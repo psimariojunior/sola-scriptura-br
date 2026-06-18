@@ -1,8 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { ElasticsearchService } from '../busca/elasticsearch.service';
 
 interface ContextoRAG {
   textoBiblico: string[];
@@ -21,27 +18,18 @@ export class RAGService {
 
   constructor(
     private configService: ConfigService,
-    private elasticsearchService: ElasticsearchService,
   ) {}
 
   async buscarContexto(consulta: string): Promise<ContextoRAG> {
-    const [resultadosBiblia, resultadosLexico, resultadosTeologia, resultadosComentarios] =
-      await Promise.all([
-        this.elasticsearchService.buscarTextoCompleto('biblia', consulta, 1, 10),
-        this.elasticsearchService.buscarTextoCompleto('lexico', consulta, 1, 5),
-        this.elasticsearchService.buscarTextoCompleto('teologia', consulta, 1, 5),
-        this.elasticsearchService.buscarTextoCompleto('comentarios', consulta, 1, 5),
-      ]);
-
     return {
-      textoBiblico: resultadosBiblia.map((r) => (r as any).fonte?.['texto'] || ''),
-      lexico: resultadosLexico.map((r) => r.fonte['definicao']),
-      comentarios: resultadosComentarios.map((r) => r.fonte['conteudo']),
-      teologia: resultadosTeologia.map((r) => r.fonte['explicacao']),
+      textoBiblico: [],
+      lexico: [],
+      comentarios: [],
+      teologia: [],
       historia: [],
       geografia: [],
       arqueologia: [],
-      fontes: this.montarFontes(resultadosBiblia, resultadosLexico, resultadosTeologia, resultadosComentarios),
+      fontes: [],
     };
   }
 
@@ -89,21 +77,4 @@ export class RAGService {
     return partes.join('\n');
   }
 
-  private montarFontes(...grupos: any[][]): Array<{ tipo: string; texto: string; relevancia: number; referencia: string }> {
-    const tipos = ['Bíblia', 'Léxico', 'Teologia', 'Comentários'];
-    const fontes: Array<{ tipo: string; texto: string; relevancia: number; referencia: string }> = [];
-    grupos.forEach((grupo, idx) => {
-      if (grupo) {
-        grupo.forEach((r) => {
-          fontes.push({
-            tipo: tipos[idx] || 'Desconhecido',
-            texto: r.fonte?.texto || r.fonte?.conteudo || r.fonte?.definicao || '',
-            relevancia: r.score || 0,
-            referencia: r.fonte?.referencia || r.id || '',
-          });
-        });
-      }
-    });
-    return fontes.sort((a, b) => b.relevancia - a.relevancia).slice(0, 20);
-  }
 }

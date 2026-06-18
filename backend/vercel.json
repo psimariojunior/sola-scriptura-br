@@ -1,14 +1,12 @@
 {
-  "buildCommand": "npx tsc -p tsconfig.json",
   "builds": [
     {
       "src": "api/index.js",
       "use": "@vercel/node"
     }
   ],
+  "installCommand": "npm install && npx tsc -p tsconfig.json",
   "routes": [
-    { "src": "/api/(.*)", "dest": "api/index.js" },
-    { "src": "/api/v1/health", "dest": "api/index.js" },
     { "src": "/(.*)", "dest": "api/index.js" }
   ]
 }

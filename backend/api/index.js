@@ -1,19 +1,21 @@
+const serverless = require('serverless-http');
 const { NestFactory } = require('@nestjs/core');
-const { AppModule } = require('../dist/app.module');
+const { AppModule } = require('./dist/app.module');
 const { ValidationPipe } = require('@nestjs/common');
 
-let app;
+let cachedHandler;
 
 async function bootstrap() {
-  if (!app) {
-    const instance = await NestFactory.create(AppModule, { logger: ['error', 'warn', 'log'] });
-    instance.setGlobalPrefix('api/v1');
-    instance.enableCors({ origin: '*', credentials: true });
-    instance.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
-    await instance.init();
-    app = instance.getHttpAdapter().getInstance();
-  }
-  return app;
+  if (cachedHandler) return cachedHandler;
+  
+  const app = await NestFactory.create(AppModule, { logger: ['error', 'warn', 'log'] });
+  app.setGlobalPrefix('api/v1');
+  app.enableCors({ origin: '*', credentials: true });
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
+  await app.init();
+  
+  cachedHandler = serverless(app.getHttpAdapter().getInstance());
+  return cachedHandler;
 }
 
 module.exports = async (req, res) => {

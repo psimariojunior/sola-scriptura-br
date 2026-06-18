@@ -92,7 +92,7 @@ export class PalavraHebraica {
   @Column({ type: 'simple-json', nullable: true, name: 'versiculos_chave' })
   versiculosChave: string[];
 
-  @Column({ type: 'text', nullable: true, name: 'vetor_embedding', array: true, precision: 1536 })
+  @Column({ type: 'float8', nullable: true, name: 'vetor_embedding', array: true })
   vetorEmbedding: number[];
 
   @CreateDateColumn({ name: 'criado_em' })

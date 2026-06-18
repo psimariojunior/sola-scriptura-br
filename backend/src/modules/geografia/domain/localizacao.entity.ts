@@ -62,7 +62,7 @@ export class Localizacao {
   @Column({ type: 'text', nullable: true, name: 'fontes' })
   fontes: string;
 
-  @Column({ type: 'text', nullable: true, name: 'vetor_embedding', array: true, precision: 1536 })
+  @Column({ type: 'float8', nullable: true, name: 'vetor_embedding', array: true })
   vetorEmbedding: number[];
 
   @CreateDateColumn({ name: 'criado_em' })

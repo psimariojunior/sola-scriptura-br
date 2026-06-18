@@ -6,26 +6,12 @@ import { useState } from 'react';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            staleTime: 60 * 1000,
-            retry: 1,
-            refetchOnWindowFocus: false,
-          },
-        },
-      }),
+    () => new QueryClient({ defaultOptions: { queries: { staleTime: 60000, retry: 1 } } }),
   );
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
         {children}
       </ThemeProvider>
     </QueryClientProvider>

@@ -1,71 +1,70 @@
 'use client';
 
-import { useState } from 'react';
-import { MainNav } from '@/components/layout/main-nav';
+import { useState, useEffect } from 'react';
+import { Cabeçalho } from '@/components/layout/cabecalho';
+import { Rodapé } from '@/components/layout/rodape';
+import { LivroNavegacao } from '@/components/biblia/livro-navegacao';
+import { TextoBiblico } from '@/components/biblia/texto-biblico';
+import { SeletorTraducao } from '@/components/biblia/seletor-traducao';
+
+const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1';
 
 export default function BibliaPage() {
-  const [livroSlug, setLivroSlug] = useState<string>('');
-  const [capitulo, setCapitulo] = useState<number>(1);
+  const [testamentos, setTestamentos] = useState<any[]>([]);
+  const [livros, setLivros] = useState<any[]>([]);
+  const [traducoes, setTraducoes] = useState<any[]>([]);
+  const [livroSel, setLivroSel] = useState<any>(null);
+  const [traducaoSel, setTraducaoSel] = useState<string>('');
+  const [carregando, setCarregando] = useState(true);
+
+  useEffect(() => {
+    Promise.all([
+      fetch(`${API}/biblia/testamentos`).then((r) => r.json()),
+      fetch(`${API}/biblia/livros`).then((r) => r.json()),
+      fetch(`${API}/biblia/traducoes`).then((r) => r.json()),
+    ]).then(([t, l, tr]) => {
+      setTestamentos(Array.isArray(t) ? t : []);
+      setLivros(Array.isArray(l) ? l : []);
+      setTraducoes(Array.isArray(tr) ? tr : []);
+      setCarregando(false);
+    }).catch(() => setCarregando(false));
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
-      <MainNav />
-      <main className="container mx-auto px-4 pt-24">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <aside className="lg:col-span-1 space-y-4">
-            <div className="bg-card rounded-xl p-4 shadow-sm border">
-              <h2 className="font-semibold mb-3">Livros</h2>
-              <div className="space-y-1">
-                {livros.map((livro) => (
-                  <button
-                    key={livro.slug}
-                    onClick={() => setLivroSlug(livro.slug)}
-                    className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
-                      livroSlug === livro.slug
-                        ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'
-                        : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-                    }`}
-                  >
-                    {livro.nome}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </aside>
+      <Cabeçalho />
+      <main className="pt-24">
+        <div className="max-w-7xl mx-auto px-6 py-12">
+          <div className="mb-10">
+            <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-2">Texto Sagrado</p>
+            <h1 className="font-display text-5xl font-light text-foreground">Bíblia</h1>
+            <div className="ornamento w-32 mt-4" />
+          </div>
 
-          <div className="lg:col-span-3">
-            <div className="bg-card rounded-xl p-6 shadow-sm border min-h-[60vh]">
-              <div className="text-center text-gray-500 mt-20">
-                <h3 className="text-2xl font-semibold mb-2">
-                  Selecione um livro
-                </h3>
-                <p>
-                  Escolha um livro na barra lateral para começar a ler
-                </p>
-              </div>
+          {traducoes.length > 0 && (
+            <div className="mb-8">
+              <SeletorTraducao traducoes={traducoes} valor={traducaoSel} onChange={setTraducaoSel} />
+            </div>
+          )}
+
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12">
+            <aside>
+              <LivroNavegacao
+                testamentos={testamentos}
+                livros={livros}
+                selecionado={livroSel}
+                onSelecionar={setLivroSel}
+                carregando={carregando}
+              />
+            </aside>
+
+            <div>
+              <TextoBiblico livro={livroSel} traducao={traducaoSel} />
             </div>
           </div>
         </div>
       </main>
+      <Rodapé />
     </div>
   );
 }
-
-const livros = [
-  { nome: 'Gênesis', slug: 'genesis' },
-  { nome: 'Êxodo', slug: 'exodo' },
-  { nome: 'Levítico', slug: 'levitico' },
-  { nome: 'Números', slug: 'numeros' },
-  { nome: 'Deuteronômio', slug: 'deuteronomio' },
-  { nome: 'Josué', slug: 'josue' },
-  { nome: 'Juízes', slug: 'juizes' },
-  { nome: 'Rute', slug: 'rute' },
-  { nome: '1 Samuel', slug: '1-samuel' },
-  { nome: '2 Samuel', slug: '2-samuel' },
-  { nome: 'Mateus', slug: 'mateus' },
-  { nome: 'Marcos', slug: 'marcos' },
-  { nome: 'Lucas', slug: 'lucas' },
-  { nome: 'João', slug: 'joao' },
-  { nome: 'Atos', slug: 'atos' },
-  { nome: 'Romanos', slug: 'romanos' },
-];

@@ -31,7 +31,7 @@ export function Rodapé() {
           <div>
             <h4 className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-4">
               Recursos
-            </hh>
+            </h4>
             <ul className="space-y-2">
               {['Atlas Bíblico', 'Cronologia', 'Arqueologia', 'Personagens'].map((i) => (
                 <li key={i}>

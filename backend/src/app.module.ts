@@ -26,6 +26,7 @@ import { PlanoLeituraModule } from './modules/plano-leitura/plano-leitura.module
 import { FavoritosModule } from './modules/favoritos/favoritos.module';
 import { NotasModule } from './modules/notas/notas.module';
 import { DicionarioModule } from './modules/dicionario/dicionario.module';
+import { SaudeController } from './modules/saude.controller';
 
 @Module({
   imports: [
@@ -81,6 +82,7 @@ import { DicionarioModule } from './modules/dicionario/dicionario.module';
     NotasModule,
     DicionarioModule,
   ],
+  controllers: [SaudeController],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },
   ],

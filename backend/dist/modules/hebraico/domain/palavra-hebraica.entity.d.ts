@@ -1,0 +1,35 @@
+export declare class PalavraHebraica {
+    id: string;
+    strong: string;
+    palavraOriginal: string;
+    lemma: string;
+    transliteracao: string;
+    pronuncia: string;
+    definicaoCurta: string;
+    definicaoCompleta: string;
+    morfologia: string;
+    classeGramatical: string;
+    raiz: string;
+    padrao: string;
+    radical: string;
+    tipoVerbo: string;
+    conjugacao: string;
+    tempo: string;
+    pessoa: string;
+    genero: string;
+    numero: string;
+    estado: string;
+    frequenciaAT: number;
+    ocorrencias: string;
+    definicoesBdb: any;
+    definicoesHalot: any;
+    definicoesGesenius: any;
+    cognatos: string[];
+    palavrasRelacionadas: string[];
+    notasGramaticais: string;
+    ocorrenciasNotaveis: string;
+    versiculosChave: string[];
+    vetorEmbedding: number[];
+    criadoEm: Date;
+    atualizadoEm: Date;
+}

@@ -1,0 +1,34 @@
+export declare class PalavraGrega {
+    id: string;
+    strong: string;
+    palavraOriginal: string;
+    lemma: string;
+    transliteracao: string;
+    pronuncia: string;
+    definicaoCurta: string;
+    definicaoCompleta: string;
+    morfologia: string;
+    classeGramatical: string;
+    tempoVerbal: string;
+    vozVerbal: string;
+    modoVerbal: string;
+    caso: string;
+    numero: string;
+    genero: string;
+    pessoa: string;
+    frequenciaAT: number;
+    frequenciaNT: number;
+    ocorrencias: string;
+    fonetica: string;
+    definicoesBdag: any;
+    definicoesThayer: any;
+    definicoesLouwNida: any;
+    domainSemantico: any;
+    sinonimos: string[];
+    antonimos: string[];
+    palavrasRelacionadas: string[];
+    notasGramaticais: string;
+    vetorEmbedding: number[];
+    criadoEm: Date;
+    atualizadoEm: Date;
+}

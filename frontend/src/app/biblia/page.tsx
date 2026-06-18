@@ -7,7 +7,7 @@ import { LivroNavegacao } from '@/components/biblia/livro-navegacao';
 import { TextoBiblico } from '@/components/biblia/texto-biblico';
 import { SeletorTraducao } from '@/components/biblia/seletor-traducao';
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1';
+const API = process.env.NEXT_PUBLIC_API_URL || 'https://api-production-bb96.up.railway.app/api/v1';
 
 export default function BibliaPage() {
   const [testamentos, setTestamentos] = useState<any[]>([]);
@@ -59,7 +59,7 @@ export default function BibliaPage() {
             </aside>
 
             <div>
-              <TextoBiblico livro={livroSel} traducao={traducaoSel} />
+              <TextoBiblico livro={livroSel} traducao={traducaoSel} apiUrl={API} />
             </div>
           </div>
         </div>

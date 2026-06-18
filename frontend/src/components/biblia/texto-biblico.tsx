@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { BookOpen, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { CentralEstudos, VersiculoCentral } from '@/components/biblia/central-estudos';
 
 interface Versiculo {
   id?: string;
@@ -23,6 +24,8 @@ export function TextoBiblico({ livro, traducao, apiUrl }: Props) {
   const [versiculos, setVersiculos] = useState<Versiculo[]>([]);
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState('');
+  const [versiculoSel, setVersiculoSel] = useState<VersiculoCentral | null>(null);
+  const [centralAberto, setCentralAberto] = useState(false);
 
   const buscarCapitulo = useCallback(async (cap: number) => {
     setCapitulo(cap);
@@ -52,6 +55,17 @@ export function TextoBiblico({ livro, traducao, apiUrl }: Props) {
       buscarCapitulo(1);
     }
   }, [livro, capitulo, buscarCapitulo]);
+
+  function abrirCentral(v: Versiculo) {
+    setVersiculoSel({
+      id: v.id,
+      numero: v.numero,
+      texto: v.texto,
+      livroNome: livro?.nome,
+      capitulo: capitulo ?? undefined,
+    });
+    setCentralAberto(true);
+  }
 
   if (!livro) {
     return (
@@ -138,21 +152,38 @@ export function TextoBiblico({ livro, traducao, apiUrl }: Props) {
           <p className="font-serif-body italic text-muted-foreground text-center py-16">
             O texto deste capítulo ainda não foi adicionado ao banco.
             <br />
-            <span className="text-sm">A estrutura de {totalCap} {totalCap === 1 ? 'capítulo está pronta' : 'capítulos está pronta'}.</span>
+            <span className="text-sm">
+              A estrutura de {totalCap} {totalCap === 1 ? 'capítulo está pronta' : 'capítulos está pronta'}.
+            </span>
           </p>
         ) : (
           <div className="texto-sagrado text-foreground">
             {versiculos.map((v) => (
-              <p key={v.id || v.numero} className="mb-2">
-                <sup className="font-sans text-xs font-semibold text-primary/70 mr-1 tabular-nums">
+              <button
+                key={v.id || v.numero}
+                onClick={() => abrirCentral(v)}
+                className="block w-full text-left mb-2 -mx-2 px-2 py-0.5 rounded-sm hover:bg-primary/5 focus:outline-none focus:bg-primary/5 transition-colors"
+              >
+                <sup className="font-sans text-xs font-bold text-primary mr-1 tabular-nums align-super">
                   {v.numero}
                 </sup>
-                {v.texto}
-              </p>
+                <span className="texto-sagrado text-foreground">{v.texto}</span>
+              </button>
             ))}
           </div>
         )}
       </div>
+
+      <p className="font-serif-body italic text-xs text-muted-foreground mt-4 text-center">
+        Clique em qualquer versículo para abrir a central de estudos — texto, Strong, teologia,
+        referências e análise por IA.
+      </p>
+
+      <CentralEstudos
+        versiculo={versiculoSel}
+        aberto={centralAberto}
+        onFechar={() => setCentralAberto(false)}
+      />
     </article>
   );
 }

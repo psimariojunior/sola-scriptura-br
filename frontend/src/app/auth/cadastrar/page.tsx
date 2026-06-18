@@ -2,44 +2,56 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { Cabeçalho } from '@/components/layout/cabecalho';
-import { BookOpen, Loader2, UserRound } from 'lucide-react';
+import { BookOpen, Loader2 } from 'lucide-react';
 import { setTokens } from '@/lib/auth';
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'https://api-production-bb96.up.railway.app/api/v1';
 
-export default function LoginPage() {
-  const router = useRouter();
+export default function CadastrarPage() {
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [confirmar, setConfirmar] = useState('');
   const [erro, setErro] = useState('');
   const [enviando, setEnviando] = useState(false);
 
-  async function entrar(e: React.FormEvent) {
+  async function cadastrar(e: React.FormEvent) {
     e.preventDefault();
     setErro('');
+
+    if (senha !== confirmar) {
+      setErro('As senhas não coincidem.');
+      return;
+    }
+    if (senha.length < 6) {
+      setErro('A senha deve ter ao menos 6 caracteres.');
+      return;
+    }
+
     setEnviando(true);
     try {
-      const resp = await fetch(`${API}/auth/login`, {
+      const resp = await fetch(`${API}/auth/cadastrar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, senha }),
+        body: JSON.stringify({ nome, email, senha }),
       });
-      if (!resp.ok) throw new Error('Credenciais inválidas');
+
+      if (!resp.ok) {
+        const dados = await resp.json().catch(() => null);
+        throw new Error(dados?.mensagem || 'Não foi possível cadastrar.');
+      }
+
       const dados = await resp.json();
       const access = dados.accessToken || dados.token;
       const refresh = dados.refreshToken || '';
       if (access) setTokens(access, refresh);
+
       window.location.href = '/biblia';
-    } catch {
-      setErro('Não foi possível entrar. Verifique suas credenciais.');
+    } catch (err: any) {
+      setErro(err.message || 'Não foi possível concluir o cadastro.');
       setEnviando(false);
     }
-  }
-
-  function entrarComoConvidado() {
-    router.push('/biblia');
   }
 
   return (
@@ -49,14 +61,27 @@ export default function LoginPage() {
         <div className="w-full max-w-sm">
           <div className="text-center mb-10">
             <BookOpen className="w-8 h-8 text-primary mx-auto mb-4" strokeWidth={1.5} />
-            <h1 className="font-display text-3xl font-light text-foreground">Entrar</h1>
+            <h1 className="font-display text-3xl font-light text-foreground">Criar Conta</h1>
             <div className="ornamento w-16 mx-auto mt-3" />
             <p className="font-serif-body text-sm text-muted-foreground mt-4 leading-relaxed">
-              Acesse sua conta para salvar favoritos, notas e planos de leitura.
+              Junte-se à comunidade de estudo das Escrituras.
             </p>
           </div>
 
-          <form onSubmit={entrar} className="space-y-6">
+          <form onSubmit={cadastrar} className="space-y-5">
+            <div>
+              <label className="block text-xs tracking-widest uppercase text-muted-foreground mb-2">
+                Nome
+              </label>
+              <input
+                type="text"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                className="w-full px-4 py-3 bg-card border border-border focus:outline-none focus:border-primary transition-colors font-serif-body"
+                placeholder="Seu nome"
+                required
+              />
+            </div>
             <div>
               <label className="block text-xs tracking-widest uppercase text-muted-foreground mb-2">
                 Email
@@ -83,6 +108,19 @@ export default function LoginPage() {
                 required
               />
             </div>
+            <div>
+              <label className="block text-xs tracking-widest uppercase text-muted-foreground mb-2">
+                Confirmar Senha
+              </label>
+              <input
+                type="password"
+                value={confirmar}
+                onChange={(e) => setConfirmar(e.target.value)}
+                className="w-full px-4 py-3 bg-card border border-border focus:outline-none focus:border-primary transition-colors font-serif-body"
+                placeholder="••••••••"
+                required
+              />
+            </div>
 
             {erro && <p className="text-sm text-burgundy">{erro}</p>}
 
@@ -93,30 +131,21 @@ export default function LoginPage() {
             >
               {enviando ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin" /> Entrando...
+                  <Loader2 className="w-4 h-4 animate-spin" /> Criando conta...
                 </>
               ) : (
-                'Entrar'
+                'Cadastrar'
               )}
             </button>
           </form>
 
-          <button
-            type="button"
-            onClick={entrarComoConvidado}
-            className="w-full mt-3 border border-border py-3.5 text-sm font-medium tracking-wide text-foreground hover:border-primary hover:text-primary transition-colors flex items-center justify-center gap-2"
-          >
-            <UserRound className="w-4 h-4" strokeWidth={1.5} />
-            Entrar como convidado
-          </button>
-
           <p className="text-center text-sm text-muted-foreground mt-8 font-serif-body">
-            Não tem conta?{' '}
+            Já tem conta?{' '}
             <Link
-              href="/auth/cadastrar"
+              href="/auth/entrar"
               className="text-primary border-b border-primary/40 hover:border-primary transition-colors"
             >
-              Cadastre-se
+              Entrar
             </Link>
           </p>
         </div>

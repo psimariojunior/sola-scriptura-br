@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bible-scholar-frontend
+  labels:
+    app: bible-scholar
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bible-scholar
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: bible-scholar
+        tier: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: bible-scholar/frontend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NEXT_PUBLIC_API_URL
+              value: "http://bible-scholar-backend:4000/api/v1"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "200m"
+            limits:
+              memory: "512Mi"
+              cpu: "400m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bible-scholar-frontend
+spec:
+  selector:
+    app: bible-scholar
+    tier: frontend
+  ports:
+    - port: 3000
+      targetPort: 3000
+  type: ClusterIP

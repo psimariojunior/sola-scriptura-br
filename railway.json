@@ -1,10 +1,10 @@
 {
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "cd backend && npm install && npm run build"
+    "buildCommand": "cd backend && npm install --ignore-scripts && npm run build"
   },
   "deploy": {
-    "startCommand": "cd backend && npm run start:prod",
+    "startCommand": "cd backend && node dist/main",
     "healthcheckPath": "/api/v1/health",
     "restartPolicyType": "ON_FAILURE"
   }

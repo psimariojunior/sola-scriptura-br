@@ -1,27 +1,20 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from '../src/app.module';
-import { ExpressAdapter } from '@nestjs/platform-express';
-import express from 'express';
-import { ValidationPipe } from '@nestjs/common';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-const server = express();
-let appReady = false;
+let handler: any = null;
 
-async function bootstrapApp() {
-  if (appReady) return;
-  const app = await NestFactory.create(
-    AppModule,
-    new ExpressAdapter(server),
-    { logger: ['error', 'warn', 'log'] },
-  );
-  app.setGlobalPrefix('api/v1');
-  app.enableCors({ origin: '*', credentials: true });
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
-  await app.init();
-  appReady = true;
-}
-
-export default async function handler(req: any, res: any) {
-  await bootstrapApp();
-  server(req, res);
+export default async function apiHandler(req: VercelRequest, res: VercelResponse) {
+  if (!handler) {
+    const { NestFactory } = await import('@nestjs/core');
+    const { AppModule } = await import('../src/app.module');
+    const { ValidationPipe } = await import('@nestjs/common');
+    
+    const app = await NestFactory.create(AppModule, { logger: ['error', 'warn', 'log'] });
+    app.setGlobalPrefix('api/v1');
+    app.enableCors({ origin: '*', credentials: true });
+    app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
+    await app.init();
+    handler = app.getHttpAdapter().getInstance();
+  }
+  
+  return handler(req, res);
 }

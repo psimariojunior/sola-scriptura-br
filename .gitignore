@@ -1,0 +1,58 @@
+# Dependências
+node_modules/
+.pnp
+.pnp.js
+
+# Build
+dist/
+.next/
+build/
+.gatsby/
+
+# Ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+
+# Testes
+coverage/
+.nyc_output/
+
+# Docker
+docker-compose.override.yml
+
+# Mobile
+mobile/build/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/.packages
+mobile/.pub-cache/
+mobile/.dart_tool/
+mobile/*.iml
+mobile/ios/Pods/
+mobile/ios/.symlinks/
+mobile/android/.gradle/
+mobile/android/app/build/
+mobile/android/build/
+
+# Flutter
+**/flutter_export_environment.sh
+**/flutter_*.podspec
+
+# TypeScript
+*.tsbuildinfo

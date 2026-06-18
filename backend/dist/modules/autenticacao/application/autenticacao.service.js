@@ -45,7 +45,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 var AutenticacaoService_1;
-var _a;
+var _a, _b;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutenticacaoService = void 0;
 const common_1 = require("@nestjs/common");
@@ -53,7 +53,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const jwt_1 = require("@nestjs/jwt");
 const config_1 = require("@nestjs/config");
-const bcrypt = __importStar(require("bcrypt"));
+const bcrypt = __importStar(require("bcryptjs"));
 const uuid_1 = require("uuid");
 const usuario_entity_1 = require("../../usuario/domain/usuario.entity");
 const refresh_token_entity_1 = require("../domain/refresh-token.entity");
@@ -130,7 +130,6 @@ exports.AutenticacaoService = AutenticacaoService = AutenticacaoService_1 = __de
     __param(0, (0, typeorm_1.InjectRepository)(usuario_entity_1.Usuario)),
     __param(1, (0, typeorm_1.InjectRepository)(refresh_token_entity_1.RefreshToken)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
-        typeorm_2.Repository,
-        jwt_1.JwtService, typeof (_a = typeof config_1.ConfigService !== "undefined" && config_1.ConfigService) === "function" ? _a : Object])
+        typeorm_2.Repository, typeof (_a = typeof jwt_1.JwtService !== "undefined" && jwt_1.JwtService) === "function" ? _a : Object, typeof (_b = typeof config_1.ConfigService !== "undefined" && config_1.ConfigService) === "function" ? _b : Object])
 ], AutenticacaoService);
 //# sourceMappingURL=autenticacao.service.js.map

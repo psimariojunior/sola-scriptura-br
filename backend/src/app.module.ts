@@ -33,17 +33,29 @@ import { DicionarioModule } from './modules/dicionario/dicionario.module';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: 'postgres',
-        host: config.get('DB_HOST') || config.get('PGHOST') || 'localhost',
-        port: parseInt(config.get('DB_PORT') || config.get('PGPORT') || '5432'),
-        username: config.get('DB_USER') || config.get('PGUSER') || 'sola_scriptura',
-        password: config.get('DB_PASSWORD') || config.get('PGPASSWORD') || 'sola_scriptura',
-        database: config.get('DB_NAME') || config.get('PGDATABASE') || 'sola_scriptura',
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: true,
-        ssl: config.get('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
-      }),
+      useFactory: (config: ConfigService) => {
+        const databaseUrl = config.get('DATABASE_URL');
+        if (databaseUrl) {
+          return {
+            type: 'postgres',
+            url: databaseUrl,
+            entities: [__dirname + '/**/*.entity{.ts,.js}'],
+            synchronize: true,
+            ssl: { rejectUnauthorized: false },
+          };
+        }
+        return {
+          type: 'postgres',
+          host: config.get('DB_HOST') || config.get('PGHOST') || 'localhost',
+          port: parseInt(config.get('DB_PORT') || config.get('PGPORT') || '5432'),
+          username: config.get('DB_USER') || config.get('PGUSER') || 'sola_scriptura',
+          password: config.get('DB_PASSWORD') || config.get('PGPASSWORD') || 'sola_scriptura',
+          database: config.get('DB_NAME') || config.get('PGDATABASE') || 'sola_scriptura',
+          entities: [__dirname + '/**/*.entity{.ts,.js}'],
+          synchronize: true,
+          ssl: config.get('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
+        };
+      },
     }),
     EventEmitterModule.forRoot({ wildcard: true }),
     ThrottlerModule.forRoot([{ ttl: 60000, limit: 100 }]),

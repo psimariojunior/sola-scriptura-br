@@ -4,15 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
-import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { join } from 'path';
-import { CacheModule } from '@nestjs/cache-manager';
-import { RedisClientOptions } from 'redis';
-import { RedisModule } from './infra/cache/redis.module';
-import { ElasticsearchModule } from './infra/busca/elasticsearch.module';
-import { RabbitMQModule } from './infra/mensageria/rabbitmq.module';
-import { OpenTelemetryModule } from './infra/observabilidade/opentelemetry.module';
 
 import { BibliaModule } from './modules/biblia/biblia.module';
 import { ExegeseModule } from './modules/exegese/exegese.module';
@@ -28,7 +19,6 @@ import { PersonagensModule } from './modules/personagens/personagens.module';
 import { ReferenciasModule } from './modules/referencias/referencias.module';
 import { ComentariosModule } from './modules/comentarios/comentarios.module';
 import { IaModule } from './modules/ia/ia.module';
-import { PesquisaModule } from './modules/pesquisa/pesquisa.module';
 import { AutenticacaoModule } from './modules/autenticacao/autenticacao.module';
 import { UsuarioModule } from './modules/usuario/usuario.module';
 import { AdminModule } from './modules/admin/admin.module';
@@ -39,48 +29,24 @@ import { DicionarioModule } from './modules/dicionario/dicionario.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: ['.env', '.env.local', '.env.production'],
-    }),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
-        host: config.get('DB_HOST', 'localhost'),
-        port: config.get('DB_PORT', 5432),
-        username: config.get('DB_USER', 'sola_scriptura'),
-        password: config.get('DB_PASSWORD', 'sola_scriptura'),
-        database: config.get('DB_NAME', 'sola_scriptura'),
+        host: config.get('DB_HOST') || config.get('PGHOST') || 'localhost',
+        port: parseInt(config.get('DB_PORT') || config.get('PGPORT') || '5432'),
+        username: config.get('DB_USER') || config.get('PGUSER') || 'sola_scriptura',
+        password: config.get('DB_PASSWORD') || config.get('PGPASSWORD') || 'sola_scriptura',
+        database: config.get('DB_NAME') || config.get('PGDATABASE') || 'sola_scriptura',
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: config.get('NODE_ENV') === 'development',
-        logging: config.get('NODE_ENV') === 'development',
+        synchronize: true,
         ssl: config.get('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
-        migrations: [__dirname + '/infra/database/migrations/*{.ts,.js}'],
-        migrationsTableName: 'migrations',
       }),
-    }),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/infra/graphql/schema.gql'),
-      sortSchema: true,
-      playground: process.env.NODE_ENV !== 'production',
-      context: ({ req, res }) => ({ req, res }),
-      subscriptions: {
-        'graphql-ws': true,
-      },
     }),
     EventEmitterModule.forRoot({ wildcard: true }),
     ThrottlerModule.forRoot([{ ttl: 60000, limit: 100 }]),
-    CacheModule.register<RedisClientOptions>({
-      isGlobal: true,
-    }),
-    RedisModule,
-    ElasticsearchModule,
-    RabbitMQModule,
-    OpenTelemetryModule,
-
     BibliaModule,
     ExegeseModule,
     HermeneuticaModule,
@@ -95,7 +61,6 @@ import { DicionarioModule } from './modules/dicionario/dicionario.module';
     ReferenciasModule,
     ComentariosModule,
     IaModule,
-    PesquisaModule,
     AutenticacaoModule,
     UsuarioModule,
     AdminModule,
@@ -105,10 +70,7 @@ import { DicionarioModule } from './modules/dicionario/dicionario.module';
     DicionarioModule,
   ],
   providers: [
-    {
-      provide: APP_GUARD,
-      useClass: ThrottlerGuard,
-    },
+    { provide: APP_GUARD, useClass: ThrottlerGuard },
   ],
 })
 export class AppModule {}

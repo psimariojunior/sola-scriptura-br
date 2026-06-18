@@ -43,7 +43,7 @@ export class ElasticsearchService {
       size: tamanho,
       body: { query: consulta },
     });
-    return resultado.hits.hits.map((hit) => ({
+    return (resultado as any).hits.hits.map((hit: any) => ({
       id: hit._id,
       score: hit._score,
       fonte: hit._source,
@@ -94,7 +94,7 @@ export class ElasticsearchService {
   async saúde(): Promise<boolean> {
     try {
       const resp = await this.client.cluster.health();
-      return resp.status === 'green' || resp.status === 'yellow';
+      return (resp as any).status === 'green' || (resp as any).status === 'yellow';
     } catch {
       return false;
     }

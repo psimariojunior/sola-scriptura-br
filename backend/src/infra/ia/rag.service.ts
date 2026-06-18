@@ -34,7 +34,7 @@ export class RAGService {
       ]);
 
     return {
-      textoBiblico: resultadosBiblia.map((r) => r.fonte['texto']),
+      textoBiblico: resultadosBiblia.map((r) => (r as any).fonte?.['texto'] || ''),
       lexico: resultadosLexico.map((r) => r.fonte['definicao']),
       comentarios: resultadosComentarios.map((r) => r.fonte['conteudo']),
       teologia: resultadosTeologia.map((r) => r.fonte['explicacao']),

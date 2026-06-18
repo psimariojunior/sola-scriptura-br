@@ -24,7 +24,7 @@ export class NotasService {
 
   async atualizar(notaId: string, usuarioId: string, dados: Partial<Nota>): Promise<Nota> {
     await this.notaRepo.update({ id: notaId, usuarioId }, dados);
-    return this.notaRepo.findOne({ where: { id: notaId } });
+    return (await this.notaRepo.findOne({ where: { id: notaId } }))!;
   }
 
   async remover(notaId: string, usuarioId: string): Promise<void> {

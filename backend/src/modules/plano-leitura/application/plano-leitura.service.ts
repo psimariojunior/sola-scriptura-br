@@ -18,7 +18,7 @@ export class PlanoLeituraService {
   }
 
   async buscarPlano(id: string): Promise<PlanoLeitura> {
-    return this.planoSchema.findOne({ where: { id } });
+    return (await this.planoSchema.findOne({ where: { id } }))!;
   }
 
   async iniciarPlano(usuarioId: string, planoId: string): Promise<ProgressoLeitura> {

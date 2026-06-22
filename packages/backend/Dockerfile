@@ -1,10 +1,10 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-COPY package.json ./
-COPY tsconfig.json ./
-COPY nest-cli.json ./
-COPY src/ ./src/
+COPY packages/backend/package.json ./
+COPY packages/backend/tsconfig.json ./
+COPY packages/backend/nest-cli.json ./
+COPY packages/backend/src/ ./src/
 
 RUN npm install
 RUN npm run build

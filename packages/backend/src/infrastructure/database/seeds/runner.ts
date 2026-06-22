@@ -1,5 +1,4 @@
 import { DataSource } from 'typeorm';
-import * as bcrypt from 'bcrypt';
 
 async function seed() {
   const dataSource = new DataSource({

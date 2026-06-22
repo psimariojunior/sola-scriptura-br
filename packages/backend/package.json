@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit",
     "migration:generate": "typeorm-ts-node-commonjs migration:generate -d src/common/database/typeorm.config.ts",
     "migration:run": "typeorm-ts-node-commonjs migration:run -d src/common/database/typeorm.config.ts",
-    "seed": "ts-node src/infrastructure/database/seeds/runner.ts"
+    "seed": "node dist/infrastructure/database/seeds/runner.js"
   },
   "dependencies": {
     "@nestjs/common": "^10.3.8",

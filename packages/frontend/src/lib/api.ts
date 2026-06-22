@@ -177,3 +177,10 @@ export const apiDicionario = {
   buscarPorSlug: (slug: string) =>
     api.get(`/dicionario/${slug}`),
 };
+
+export const apiMapas = {
+  locais: (tipo?: string) =>
+    api.get("/geografia/localizacoes", { params: { tipo } }),
+  rotas: () =>
+    api.get("/geografia/rotas"),
+};

@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { Send, Plus, Loader2 } from "lucide-react";
-import { apiChat, apiRAG } from "@/lib/api";
+import { apiIA } from "@/lib/api";
 
 interface Mensagem {
   id: string;
@@ -15,31 +14,16 @@ interface Mensagem {
 export default function ChatPage() {
   const [mensagens, setMensagens] = useState<Mensagem[]>([]);
   const [input, setInput] = useState("");
-  const [sessaoId, setSessaoId] = useState<string>("");
   const [carregando, setCarregando] = useState(false);
   const [tradicao, setTradicao] = useState("");
   const fimRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    iniciarSessao();
-  }, []);
-
-  useEffect(() => {
     fimRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [mensagens]);
 
-  async function iniciarSessao() {
-    try {
-      const res = await apiChat.novaSessao();
-      setSessaoId(res.data.sessaoId);
-      setMensagens([]);
-    } catch {
-      setSessaoId(crypto.randomUUID());
-    }
-  }
-
   async function enviarMensagem() {
-    if (!input.trim() || !sessaoId) return;
+    if (!input.trim()) return;
 
     const msgUsuario: Mensagem = {
       id: crypto.randomUUID(),
@@ -53,11 +37,11 @@ export default function ChatPage() {
     setCarregando(true);
 
     try {
-      const res = await apiChat.enviar(sessaoId, input, tradicao || undefined);
+      const res = await apiIA.perguntar(msgUsuario.conteudo, tradicao || undefined);
       const msgIA: Mensagem = {
         id: crypto.randomUUID(),
         papel: "assistente",
-        conteudo: res.data.mensagem,
+        conteudo: res.data.resposta || res.data.mensagem || JSON.stringify(res.data),
         timestamp: new Date(),
       };
       setMensagens((prev) => [...prev, msgIA]);
@@ -65,7 +49,7 @@ export default function ChatPage() {
       const msgErro: Mensagem = {
         id: crypto.randomUUID(),
         papel: "assistente",
-        conteudo: "Desculpe, ocorreu um erro ao processar sua pergunta. Tente novamente.",
+        conteudo: "Desculpe, ocorreu um erro ao processar sua pergunta. Verifique se a chave OpenAI está configurada no backend.",
         timestamp: new Date(),
       };
       setMensagens((prev) => [...prev, msgErro]);
@@ -101,9 +85,9 @@ export default function ChatPage() {
             <option value="pentecostal">Pentecostal</option>
             <option value="wesleyana">Wesleyana</option>
           </select>
-          <Button variant="outline" size="icon" onClick={iniciarSessao}>
-            <Plus className="h-4 w-4" />
-          </Button>
+          <button onClick={() => setMensagens([])} className="border rounded px-3 py-2 text-sm hover:bg-accent">
+            <Plus className="h-4 w-4 inline mr-1" /> Nova
+          </button>
         </div>
       </div>
 
@@ -167,9 +151,13 @@ export default function ChatPage() {
           className="flex-1 border rounded-lg px-4 py-3 text-sm"
           disabled={carregando}
         />
-        <Button onClick={enviarMensagem} disabled={!input.trim() || carregando}>
+        <button
+          onClick={enviarMensagem}
+          disabled={!input.trim() || carregando}
+          className="bg-primary text-primary-foreground px-4 py-3 rounded-lg disabled:opacity-50"
+        >
           <Send className="h-4 w-4" />
-        </Button>
+        </button>
       </div>
     </div>
   );

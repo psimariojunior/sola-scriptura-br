@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "/api",
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api/v1",
   timeout: 30000,
   headers: {
     "Content-Type": "application/json",
@@ -20,86 +20,160 @@ export interface ReferenciaBiblica {
   livro: string;
   capitulo: number;
   versiculo: number;
-  versao?: string;
+  traducaoId?: string;
 }
 
 export const apiBiblia = {
-  buscarVersiculo: (ref: ReferenciaBiblica) =>
-    api.get(`/v1/biblia/${ref.livro}/${ref.capitulo}/${ref.versiculo}`, {
-      params: { versao: ref.versao },
+  listarLivros: (testamentoId?: string) =>
+    api.get("/biblia/livros", { params: { testamentoId } }),
+  buscarLivro: (slug: string) =>
+    api.get(`/biblia/livros/${slug}`),
+  buscarCapitulo: (livroId: string, numero: number) =>
+    api.get(`/biblia/livros/${livroId}/capitulos/${numero}`),
+  buscarVersiculo: (livroId: string, capitulo: number, versiculo: number, traducaoId: string) =>
+    api.get(`/biblia/versiculos/${livroId}/${capitulo}/${versiculo}`, {
+      params: { traducaoId },
     }),
-  buscarContexto: (ref: ReferenciaBiblica, margem = 5) =>
-    api.get(`/v1/biblia/${ref.livro}/${ref.capitulo}/${ref.versiculo}/contexto`, {
-      params: { versao: ref.versao, margem },
+  buscarPassagem: (livroId: string, capitulo: number, inicio: number, fim: number, traducaoId: string) =>
+    api.get(`/biblia/passagem/${livroId}/${capitulo}/${inicio}/${fim}`, {
+      params: { traducaoId },
     }),
-  buscarCapitulo: (livro: string, capitulo: number, versao?: string) =>
-    api.get(`/v1/biblia/${livro}/${capitulo}`, { params: { versao } }),
-  buscarTexto: (termo: string, versao?: string) =>
-    api.get("/v1/biblia/busca", { params: { q: termo, versao } }),
-  listarVersoes: () => api.get("/v1/biblia/versoes"),
-  listarLivros: (versao?: string) => api.get("/v1/biblia/livros", { params: { versao } }),
+  listarTraducoes: () =>
+    api.get("/biblia/traducoes"),
+  pesquisar: (q: string, traducaoId: string) =>
+    api.get("/biblia/pesquisar", { params: { q, traducaoId } }),
+  buscarPalavra: (id: string) =>
+    api.get(`/biblia/palavras/${id}`),
 };
 
 export const apiExegese = {
-  analisar: (livro: string, capitulo: number, versiculo: number) =>
-    api.get(`/v1/exegese/${livro}/${capitulo}/${versiculo}`),
-  contexto: (livro: string, capitulo: number, versiculo: number) =>
-    api.get(`/v1/exegese/${livro}/${capitulo}/${versiculo}/contexto`),
+  analisar: (versiculoId: string) =>
+    api.get(`/exegese/versiculo/${versiculoId}`),
+  contextos: (versiculoId: string) =>
+    api.get(`/exegese/versiculo/${versiculoId}/contextos`),
 };
 
 export const apiTeologia = {
-  analisar: (livro: string, capitulo: number, versiculo: number, tradicao?: string) =>
-    api.get(`/v1/teologia/${livro}/${capitulo}/${versiculo}`, { params: { tradicao } }),
-  doutrinas: (categoria?: string) =>
-    api.get("/v1/teologia/doutrinas", { params: { categoria } }),
+  listarCategorias: () =>
+    api.get("/teologia/categorias"),
+  buscarDoutrina: (slug: string) =>
+    api.get(`/teologia/doutrinas/${slug}`),
+  relacionarTexto: (versiculoId: string) =>
+    api.get(`/teologia/versiculo/${versiculoId}`),
 };
 
 export const apiHermeneutica = {
-  analisar: (livro: string, capitulo: number, versiculo: number) =>
-    api.get(`/v1/hermeneutica/${livro}/${capitulo}/${versiculo}`),
+  analisar: (versiculoId: string) =>
+    api.get(`/hermeneutica/versiculo/${versiculoId}`),
+  genero: (versiculoId: string) =>
+    api.get(`/hermeneutica/versiculo/${versiculoId}/genero`),
 };
 
 export const apiLinguistica = {
-  analisarPalavra: (palavra: string, idioma?: string) =>
-    api.get(`/v1/linguistica/palavra/${palavra}`, { params: { idioma } }),
-  buscarStrong: (codigo: string) =>
-    api.get(`/v1/linguistica/strong/${codigo}`),
+  buscarGrego: (strong: string) =>
+    api.get(`/grego/strong/${strong}`),
+  buscarGregoLemma: (lemma: string) =>
+    api.get(`/grego/lemma/${lemma}`),
+  pesquisarGrego: (q: string) =>
+    api.get("/grego/buscar", { params: { q } }),
+  frequentesGrego: (limite = 100) =>
+    api.get("/grego/frequentes", { params: { limite } }),
+  buscarHebraico: (strong: string) =>
+    api.get(`/hebraico/strong/${strong}`),
+  pesquisarHebraico: (q: string) =>
+    api.get("/hebraico/buscar", { params: { q } }),
+  frequentesHebraico: (limite = 100) =>
+    api.get("/hebraico/frequentes", { params: { limite } }),
 };
 
-export const apiGrafo = {
-  buscarEntidade: (nome: string) => api.get(`/v1/grafo/entidade/${nome}`),
-  genealogia: (nome: string) => api.get(`/v1/grafo/genealogia/${nome}`),
-  tipos: () => api.get("/v1/grafo/tipos"),
+export const apiHistoria = {
+  contextoLivro: (livroId: string) =>
+    api.get(`/historia/livro/${livroId}`),
+  contextoEntidade: (tipo: string, entidadeId: string) =>
+    api.get(`/historia/${tipo}/${entidadeId}`),
 };
 
-export const apiChat = {
-  enviar: (sessaoId: string, mensagem: string, tradicao?: string) =>
-    api.post("/v1/chat/enviar", { sessaoId, mensagem, tradicao }),
-  historico: (sessaoId: string) => api.get(`/v1/chat/historico/${sessaoId}`),
-  novaSessao: () => api.post("/v1/chat/nova-sessao"),
-};
-
-export const apiReferencias = {
-  buscar: (livro: string, capitulo: number, versiculo: number) =>
-    api.get(`/v1/referencias/${livro}/${capitulo}/${versiculo}`),
-};
-
-export const apiCronologia = {
-  linhaTempo: (periodo?: string) =>
-    api.get("/v1/cronologia", { params: { periodo } }),
-};
-
-export const apiMapas = {
-  locais: (tipo?: string) => api.get("/v1/mapas/locais", { params: { tipo } }),
-  rotas: () => api.get("/v1/mapas/rotas"),
+export const apiGeografia = {
+  listarLocalizacoes: (tipo?: string) =>
+    api.get("/geografia/localizacoes", { params: { tipo } }),
+  buscarLocalizacao: (slug: string) =>
+    api.get(`/geografia/localizacoes/${slug}`),
+  listarRotas: () =>
+    api.get("/geografia/rotas"),
+  proximos: (lat: number, lng: number, raio: number) =>
+    api.get("/geografia/proximos", { params: { lat, lng, raio } }),
 };
 
 export const apiArqueologia = {
-  descoberta: (nome: string) => api.get(`/v1/arqueologia/descoberta/${nome}`),
-  importantes: () => api.get("/v1/arqueologia/importantes"),
+  listarArtefatos: (tipo: string) =>
+    api.get("/arqueologia/artefatos", { params: { tipo } }),
+  buscarArtefato: (id: string) =>
+    api.get(`/arqueologia/artefatos/${id}`),
+  listarManuscritos: () =>
+    api.get("/arqueologia/manuscritos"),
 };
 
-export const apiRAG = {
-  contexto: (consulta: string, limite = 10) =>
-    api.post("/v1/rag/contexto", { consulta, limite }),
+export const apiCronologia = {
+  linhaDoTempo: () =>
+    api.get("/cronologia/linha-do-tempo"),
+  porEra: (era: string) =>
+    api.get(`/cronologia/era/${era}`),
+  porPeriodo: (inicio: number, fim: number) =>
+    api.get("/cronologia/periodo", { params: { inicio, fim } }),
+  porCategoria: (categoria: string) =>
+    api.get(`/cronologia/categoria/${categoria}`),
+};
+
+export const apiPersonagens = {
+  listar: (limite = 50) =>
+    api.get("/personagens", { params: { limite } }),
+  buscar: (q: string) =>
+    api.get("/personagens/buscar", { params: { q } }),
+  buscarPorSlug: (slug: string) =>
+    api.get(`/personagens/${slug}`),
+};
+
+export const apiReferencias = {
+  porVersiculo: (versiculoId: string) =>
+    api.get(`/referencias/versiculo/${versiculoId}`),
+  porTipo: (tipo: string) =>
+    api.get(`/referencias/tipo/${tipo}`),
+};
+
+export const apiComentarios = {
+  listarAutores: () =>
+    api.get("/comentarios/autores"),
+  porAutor: (autor: string) =>
+    api.get(`/comentarios/autor/${autor}`),
+  porCapitulo: (livroId: string, capitulo: number, versiculo?: number) =>
+    api.get(`/comentarios/${livroId}/${capitulo}`, { params: { versiculo } }),
+};
+
+export const apiIA = {
+  perguntar: (pergunta: string, tradicao?: string) =>
+    api.post("/ia/perguntar", { pergunta }, { params: { tradicao } }),
+  analisarExegese: (versiculoId: string) =>
+    api.post("/ia/exegese", { versiculoId }),
+  analisarGrego: (texto: string) =>
+    api.post("/ia/grego", { texto }),
+  comparar: (passagens: string[]) =>
+    api.post("/ia/comparar", { passagens }),
+};
+
+export const apiAuth = {
+  cadastrar: (dados: { nome: string; email: string; senha: string }) =>
+    api.post("/auth/cadastrar", dados),
+  login: (dados: { email: string; senha: string }) =>
+    api.post("/auth/login", dados),
+  refresh: (token: string) =>
+    api.post("/auth/refresh", { token }),
+};
+
+export const apiDicionario = {
+  pesquisar: (q: string) =>
+    api.get("/dicionario/buscar", { params: { q } }),
+  porCategoria: (categoria: string) =>
+    api.get(`/dicionario/categoria/${categoria}`),
+  buscarPorSlug: (slug: string) =>
+    api.get(`/dicionario/${slug}`),
 };

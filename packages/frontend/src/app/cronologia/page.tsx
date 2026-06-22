@@ -31,7 +31,7 @@ export default function CronologiaPage() {
   async function carregarCronologia() {
     setCarregando(true);
     try {
-      const res = await apiCronologia.linhaTempo();
+      const res = await apiCronologia.linhaDoTempo();
       setPeriodos(res.data?.periodos || []);
       const expandido: Record<string, boolean> = {};
       (res.data?.periodos || []).forEach((p: Periodo) => {

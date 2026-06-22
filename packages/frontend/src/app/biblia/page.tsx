@@ -31,11 +31,13 @@ export default function BibliaPage() {
         apiBiblia.listarLivros(),
         apiBiblia.listarTraducoes(),
       ]);
-      setLivros(resLivros.data || []);
+      const livrosData = resLivros.data || [];
+      setLivros(livrosData);
       const trads = resTraducoes.data || [];
       setTraducoes(trads);
       if (trads.length > 0) setTraducaoId(trads[0].id);
     } catch (err) {
+      console.error("Erro ao carregar dados:", err);
       setErro("Erro ao carregar dados da Bíblia");
     }
   }
@@ -67,8 +69,8 @@ export default function BibliaPage() {
     setCarregando(false);
   }
 
-  const at = livros.filter((l: any) => l.testamento === "AT" || l.testamentoId === "AT");
-  const nt = livros.filter((l: any) => l.testamento === "NT" || l.testamentoId === "NT");
+  const at = livros.filter((l: any) => l.ordemGeral <= 39);
+  const nt = livros.filter((l: any) => l.ordemGeral > 39);
 
   return (
     <div className="space-y-6">

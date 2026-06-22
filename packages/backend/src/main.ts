@@ -55,6 +55,7 @@ async function bootstrap() {
   await app.listen(port);
   logger.log(`Server running on http://localhost:${port}`);
   logger.log(`API docs at http://localhost:${port}/api/docs`);
+  logger.log(`CORS origins: ${process.env.CORS_ORIGIN}`);
 }
 
 bootstrap();

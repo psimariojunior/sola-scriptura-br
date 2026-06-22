@@ -15,8 +15,8 @@ export class DatabaseConfig implements TypeOrmOptionsFactory {
         url: databaseUrl,
         entities: [__dirname + '/../../infrastructure/database/entities/**/*.entity{.ts,.js}'],
         migrations: [__dirname + '/../../infrastructure/database/migrations/*{.ts,.js}'],
-        synchronize: process.env.NODE_ENV !== 'production',
-        logging: process.env.NODE_ENV !== 'production',
+        synchronize: true,
+        logging: false,
         ssl: { rejectUnauthorized: false },
         extra: {
           application_name: 'bible_scholar_ai',

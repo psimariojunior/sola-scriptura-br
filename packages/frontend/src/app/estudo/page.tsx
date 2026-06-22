@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { apiBiblia, apiExegese, apiTeologia, apiHermeneutica, apiReferencias } from "@/lib/api";
 
-export default function EstudoPage() {
+function EstudoContent() {
   const searchParams = useSearchParams();
   const [livroSlug, setLivroSlug] = useState("");
   const [capitulo, setCapitulo] = useState(1);
@@ -152,11 +152,19 @@ export default function EstudoPage() {
               <div className="border rounded-lg p-6">
                 <h3 className="font-semibold mb-2">Referências Cruzadas</h3>
                 <pre className="text-sm whitespace-pre-wrap">{JSON.stringify(referencias, null, 2)}</pre>
-              </div>
+               </div>
             )}
           </TabsContent>
         </Tabs>
       )}
     </div>
+  );
+}
+
+export default function EstudoPage() {
+  return (
+    <Suspense fallback={<div className="text-muted-foreground">Carregando...</div>}>
+      <EstudoContent />
+    </Suspense>
   );
 }

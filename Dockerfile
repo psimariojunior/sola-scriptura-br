@@ -1,4 +1,3 @@
-# Build stage
 FROM node:20-alpine AS builder
 WORKDIR /app
 
@@ -13,21 +12,15 @@ COPY . .
 
 RUN npm run build
 
-# Backend production
-FROM node:20-alpine AS backend
+FROM node:20-alpine
 WORKDIR /app
-COPY --from=builder /app/packages/backend/dist ./dist
-COPY --from=builder /app/packages/backend/package.json ./
-RUN npm install --production
-EXPOSE 4000
-CMD ["node", "dist/main.js"]
 
-# Frontend production
-FROM node:20-alpine AS frontend
-WORKDIR /app
-COPY --from=builder /app/packages/frontend/.next ./.next
-COPY --from=builder /app/packages/frontend/public ./public
-COPY --from=builder /app/packages/frontend/package.json ./
-RUN npm install --production
-EXPOSE 3000
-CMD ["npx", "next", "start"]
+COPY --from=builder /app/packages/backend/dist ./packages/backend/dist
+COPY --from=builder /app/packages/backend/node_modules ./packages/backend/node_modules
+COPY --from=builder /app/packages/backend/package.json ./packages/backend/
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./
+
+EXPOSE 4000
+
+CMD ["node", "packages/backend/dist/main.js"]

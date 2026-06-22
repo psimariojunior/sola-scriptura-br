@@ -153,6 +153,11 @@ export default function BibliaPage() {
           {carregando && <p className="text-muted-foreground">Carregando...</p>}
 
           <div className="space-y-1">
+            {versiculos.length === 0 && !carregando && livroSelecionado && (
+              <p className="text-muted-foreground text-sm py-4">
+                Nenhum versículo encontrado para {livroSelecionado.nome} {capituloSelecionado}.
+              </p>
+            )}
             {versiculos.map((v: any) => (
               <div key={v.id || v.numero} className="verse-hover rounded px-2 py-1">
                 <span className="verse-number font-semibold mr-1">{v.numero}</span>

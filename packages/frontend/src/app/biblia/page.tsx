@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { BookOpen, ChevronLeft, ChevronRight, Search, X, Languages, MapPin, Users, ExternalLink } from "lucide-react";
+import { BookOpen, ChevronLeft, ChevronRight, Search, X, Languages, MapPin, Users, ExternalLink, Link2 } from "lucide-react";
+import { getCrossReferences } from "@/lib/cross-references";
 
 // Key biblical terms mapped to Strong's numbers
 const KEY_TERMS: Record<string, { strong: string; original: string; type: "g" | "h"; def: string }> = {
@@ -109,6 +110,7 @@ export default function BibliaPage() {
   const [versiculos, setVersiculos] = useState<Versiculo[]>([]);
   const [carregando, setCarregando] = useState(false);
   const [termoSel, setTermoSel] = useState<any>(null);
+  const [versSel, setVersSel] = useState<any>(null);
   const [sidebar, setSidebar] = useState<"livros" | "estudo" | "lexico">("livros");
   const [busca, setBusca] = useState("");
   const [traducoes, setTraducoes] = useState<any[]>([]);
@@ -339,16 +341,28 @@ export default function BibliaPage() {
             </div>
           ) : (
             <div className="max-w-3xl mx-auto p-8 space-y-1">
-              {versiculos.map(v => (
-                <div key={v.id} className="flex gap-3 py-1 group hover:bg-accent/50 rounded px-2 -mx-2 transition-colors">
-                  <span className="text-xs text-muted-foreground font-mono mt-0.5 w-5 text-right flex-shrink-0 select-none">
-                    {v.numero}
-                  </span>
-                  <p className="text-[15px] leading-relaxed">
-                    {processarTexto(v.texto)}
-                  </p>
-                </div>
-              ))}
+              {versiculos.map(v => {
+                const refs = getCrossReferences(livroSel!.nome, capSel, v.numero);
+                return (
+                  <div 
+                    key={v.id} 
+                    className={`flex gap-3 py-1 group hover:bg-accent/50 rounded px-2 -mx-2 transition-colors cursor-pointer ${
+                      versSel?.id === v.id ? "bg-primary/10 ring-1 ring-primary/30" : ""
+                    }`}
+                    onClick={() => setVersSel(versSel?.id === v.id ? null : { ...v, refs, livro: livroSel!.nome, cap: capSel })}
+                  >
+                    <span className="text-xs text-muted-foreground font-mono mt-0.5 w-5 text-right flex-shrink-0 select-none">
+                      {v.numero}
+                    </span>
+                    <p className="text-[15px] leading-relaxed">
+                      {processarTexto(v.texto)}
+                    </p>
+                    {refs.length > 0 && (
+                      <Link2 className="h-3 w-3 text-muted-foreground mt-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                    )}
+                  </div>
+                );
+              })}
               {versiculos.length === 0 && (
                 <p className="text-center text-muted-foreground py-8">Nenhum versículo encontrado</p>
               )}
@@ -358,16 +372,52 @@ export default function BibliaPage() {
       </div>
 
       {/* Study Panel */}
-      {termoSel && (
+      {(termoSel || versSel) && (
         <div className="w-80 border-l bg-background overflow-y-auto">
           <div className="p-4 border-b flex items-center justify-between">
             <h3 className="font-semibold text-sm">Estudo</h3>
-            <button onClick={() => setTermoSel(null)} className="p-1 hover:bg-accent rounded">
+            <button onClick={() => { setTermoSel(null); setVersSel(null); }} className="p-1 hover:bg-accent rounded">
               <X className="h-3.5 w-3.5" />
             </button>
           </div>
           <div className="p-4 space-y-4">
-            {termoSel.tipo === "termo" && (
+            {/* Cross-references for selected verse */}
+            {versSel && (
+              <>
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <Link2 className="h-4 w-4 text-primary" />
+                    <span className="text-xs text-muted-foreground">Referências Cruzadas</span>
+                  </div>
+                  <p className="text-lg font-bold">{versSel.livro} {versSel.cap}:{versSel.numero}</p>
+                </div>
+                <div className="bg-muted/50 rounded-lg p-3">
+                  <p className="text-sm italic">"{versSel.texto}"</p>
+                </div>
+                {versSel.refs && versSel.refs.length > 0 ? (
+                  <div className="space-y-2">
+                    <p className="text-xs font-medium text-muted-foreground uppercase">Versículos Relacionados</p>
+                    {versSel.refs.map((r: any, i: number) => (
+                      <div key={i} className="border rounded-lg p-3 space-y-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-medium text-primary">{r.ref}</span>
+                          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-secondary">{r.tipo}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{r.texto}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-xs text-muted-foreground">Nenhuma referência cruzada encontrada para este versículo.</p>
+                )}
+                <div className="text-xs text-muted-foreground">
+                  <p>Clique em palavras sublinhadas para ver o léxico.</p>
+                </div>
+              </>
+            )}
+
+            {/* Term study */}
+            {termoSel && !versSel && (
               <>
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">

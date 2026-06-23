@@ -7,23 +7,20 @@ import { useTheme } from "@/components/theme-provider";
 import {
   BookOpen, MessageSquare, Map, Globe, Clock, Library,
   Search, Settings, Home, Users, GraduationCap, Moon, Sun,
-  Calendar, LogIn,
+  Calendar, LogIn, Star,
 } from "lucide-react";
 
 const rotas = [
   { href: "/", icone: Home, label: "Início" },
   { href: "/biblia", icone: BookOpen, label: "Bíblia" },
-  { href: "/estudo", icone: Library, label: "Central de Estudos" },
+  { href: "/busca", icone: Search, label: "Busca" },
   { href: "/teologia", icone: GraduationCap, label: "Teologia" },
   { href: "/personagens", icone: Users, label: "Personagens" },
-  { href: "/chat", icone: MessageSquare, label: "Chat IA" },
   { href: "/mapas", icone: Map, label: "Mapas" },
-  { href: "/atlas", icone: Globe, label: "Atlas" },
   { href: "/cronologia", icone: Clock, label: "Cronologia" },
-  { href: "/busca", icone: Search, label: "Busca" },
-  { href: "/planos", icone: Calendar, label: "Planos de Leitura" },
-  { href: "/auth", icone: LogIn, label: "Entrar" },
-  { href: "/configuracoes", icone: Settings, label: "Configurações" },
+  { href: "/favoritos", icone: Star, label: "Favoritos" },
+  { href: "/planos", icone: Calendar, label: "Planos" },
+  { href: "/configuracoes", icone: Settings, label: "Config." },
 ];
 
 export function Sidebar() {

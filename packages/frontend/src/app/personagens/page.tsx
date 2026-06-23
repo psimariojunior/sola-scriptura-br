@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { apiPersonagens } from "@/lib/api";
-import { Users, Search } from "lucide-react";
+import { Users, Search, ChevronRight } from "lucide-react";
 
 export default function PersonagensPage() {
   const [personagens, setPersonagens] = useState<any[]>([]);
@@ -14,22 +13,17 @@ export default function PersonagensPage() {
 
   async function carregar() {
     try {
-      const res = await apiPersonagens.listar(100);
-      setPersonagens(res.data || []);
-    } catch { console.error("Erro ao carregar personagens"); }
+      const res = await fetch("/api/v1/personagens?limite=200");
+      const data = await res.json();
+      setPersonagens(Array.isArray(data) ? data : []);
+    } catch { setPersonagens([]); }
     setCarregando(false);
   }
 
-  async function buscar() {
-    if (!busca.trim()) { carregar(); return; }
-    try {
-      const res = await apiPersonagens.buscar(busca);
-      setPersonagens(res.data || []);
-    } catch { setPersonagens([]); }
-  }
-
   const filtrados = personagens.filter(p =>
-    !busca || p.nomePortugues?.toLowerCase().includes(busca.toLowerCase())
+    !busca || 
+    p.nomePortugues?.toLowerCase().includes(busca.toLowerCase()) ||
+    p.nomeOriginal?.toLowerCase().includes(busca.toLowerCase())
   );
 
   return (
@@ -38,97 +32,133 @@ export default function PersonagensPage() {
         <Users className="h-8 w-8 text-primary" />
         <div>
           <h1 className="text-3xl font-bold">Personagens Bíblicos</h1>
-          <p className="text-muted-foreground">Explore as figuras centrais da Escritura</p>
+          <p className="text-muted-foreground">{personagens.length} personagens da Escritura</p>
         </div>
       </div>
 
-      <div className="flex gap-2">
-        <div className="flex-1 relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <input
-            value={busca}
-            onChange={e => setBusca(e.target.value)}
-            onKeyDown={e => e.key === "Enter" && buscar()}
-            placeholder="Buscar personagem..."
-            className="w-full border rounded-lg pl-10 pr-4 py-2 text-sm"
-          />
-        </div>
-        <button onClick={buscar} className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm">
-          Buscar
-        </button>
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <input
+          value={busca}
+          onChange={e => setBusca(e.target.value)}
+          placeholder="Buscar por nome..."
+          className="w-full border rounded-lg pl-10 pr-4 py-2.5 text-sm"
+        />
       </div>
 
-      <div className="flex gap-6">
-        <div className="w-72 space-y-1 overflow-y-auto max-h-[calc(100vh-220px)]">
+      <div className="flex gap-6 min-h-[60vh]">
+        <div className="w-80 space-y-1 overflow-y-auto max-h-[calc(100vh-200px)] border rounded-lg p-2">
           {carregando ? (
-            <p className="text-muted-foreground text-sm">Carregando...</p>
-          ) : filtrados.map(p => (
-            <button
-              key={p.id}
-              onClick={() => setSelecionado(p)}
-              className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
-                selecionado?.id === p.id ? "bg-primary text-primary-foreground" : "hover:bg-accent"
-              }`}
-            >
-              <div className="font-medium">{p.nomePortugues}</div>
-              {p.nomeOriginal && <div className="text-xs opacity-70">{p.nomeOriginal}</div>}
-            </button>
-          ))}
+            <div className="space-y-2 p-4">
+              {[...Array(10)].map((_, i) => (
+                <div key={i} className="h-10 bg-muted rounded animate-pulse" />
+              ))}
+            </div>
+          ) : filtrados.length === 0 ? (
+            <p className="text-muted-foreground text-sm p-4">Nenhum personagem encontrado</p>
+          ) : (
+            filtrados.map(p => (
+              <button
+                key={p.id}
+                onClick={() => setSelecionado(p)}
+                className={`w-full text-left px-3 py-2.5 rounded-lg text-sm transition-all ${
+                  selecionado?.id === p.id 
+                    ? "bg-primary text-primary-foreground shadow-sm" 
+                    : "hover:bg-accent"
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="font-medium">{p.nomePortugues}</div>
+                    {p.nomeOriginal && (
+                      <div className="text-xs opacity-70">{p.nomeOriginal}</div>
+                    )}
+                  </div>
+                  <ChevronRight className="h-3 w-3 opacity-50" />
+                </div>
+              </button>
+            ))
+          )}
         </div>
 
         <div className="flex-1">
           {selecionado ? (
-            <div className="border rounded-lg p-6 space-y-4">
-              <h2 className="text-2xl font-bold">{selecionado.nomePortugues}</h2>
-              {selecionado.nomeOriginal && (
-                <p className="text-muted-foreground">Nome original: {selecionado.nomeOriginal}</p>
-              )}
+            <div className="border rounded-lg p-6 space-y-5">
+              <div>
+                <h2 className="text-2xl font-bold">{selecionado.nomePortugues}</h2>
+                {selecionado.nomeOriginal && (
+                  <p className="text-muted-foreground mt-1">Nome original: {selecionado.nomeOriginal}</p>
+                )}
+              </div>
+
               {selecionado.significadoNome && (
-                <p className="text-sm"><strong>Significado:</strong> {selecionado.significadoNome}</p>
-              )}
-              {selecionado.biografia && (
-                <div>
-                  <h3 className="font-semibold mb-1">Biografia</h3>
-                  <p className="text-sm text-muted-foreground">{selecionado.biografia}</p>
+                <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                  Significado: {selecionado.significadoNome}
                 </div>
               )}
-              {selecionado.primeiraMencao && (
-                <p className="text-sm"><strong>Primeira menção:</strong> {selecionado.primeiraMencao}</p>
+
+              {selecionado.biografia && (
+                <div className="bg-muted/50 rounded-lg p-4">
+                  <h3 className="font-semibold mb-2">Biografia</h3>
+                  <p className="text-sm leading-relaxed">{selecionado.biografia}</p>
+                </div>
               )}
-              {selecionado.ultimaMencao && (
-                <p className="text-sm"><strong>Última menção:</strong> {selecionado.ultimaMencao}</p>
-              )}
-              {selecionado.totalMencoes > 0 && (
-                <p className="text-sm"><strong>Menções:</strong> {selecionado.totalMencoes}</p>
-              )}
+
+              <div className="grid grid-cols-2 gap-4">
+                {selecionado.primeiraMencao && (
+                  <div className="border rounded-lg p-3">
+                    <p className="text-xs text-muted-foreground mb-1">Primeira Menção</p>
+                    <p className="text-sm font-medium">{selecionado.primeiraMencao}</p>
+                  </div>
+                )}
+                {selecionado.ultimaMencao && (
+                  <div className="border rounded-lg p-3">
+                    <p className="text-xs text-muted-foreground mb-1">Última Menção</p>
+                    <p className="text-sm font-medium">{selecionado.ultimaMencao}</p>
+                  </div>
+                )}
+                {selecionado.totalMencoes > 0 && (
+                  <div className="border rounded-lg p-3">
+                    <p className="text-xs text-muted-foreground mb-1">Total de Menções</p>
+                    <p className="text-sm font-medium">{selecionado.totalMencoes}</p>
+                  </div>
+                )}
+              </div>
+
               {selecionado.familia && (
                 <div>
-                  <h3 className="font-semibold mb-1">Família</h3>
+                  <h3 className="font-semibold mb-2">Família</h3>
                   <p className="text-sm text-muted-foreground">{selecionado.familia}</p>
                 </div>
               )}
+
               {selecionado.eventosPrincipais && (
                 <div>
-                  <h3 className="font-semibold mb-1">Eventos Principais</h3>
+                  <h3 className="font-semibold mb-2">Eventos Principais</h3>
                   <p className="text-sm text-muted-foreground">{selecionado.eventosPrincipais}</p>
                 </div>
               )}
+
               {selecionado.significadoTeologico && (
-                <div>
-                  <h3 className="font-semibold mb-1">Significado Teológico</h3>
-                  <p className="text-sm text-muted-foreground">{selecionado.significadoTeologico}</p>
+                <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
+                  <h3 className="font-semibold mb-2 text-primary">Significado Teológico</h3>
+                  <p className="text-sm">{selecionado.significadoTeologico}</p>
                 </div>
               )}
+
               {selecionado.versoesReferencias && (
                 <div>
-                  <h3 className="font-semibold mb-1">Referências</h3>
-                  <p className="text-sm text-muted-foreground">{selecionado.versoesReferencias}</p>
+                  <h3 className="font-semibold mb-2">Referências Bíblicas</h3>
+                  <p className="text-sm text-muted-foreground font-mono">{selecionado.versoesReferencias}</p>
                 </div>
               )}
             </div>
           ) : (
-            <div className="border rounded-lg p-12 text-center text-muted-foreground">
-              Selecione um personagem para ver os detalhes
+            <div className="border rounded-lg p-12 text-center text-muted-foreground h-full flex items-center justify-center">
+              <div className="space-y-2">
+                <Users className="h-12 w-12 mx-auto opacity-30" />
+                <p>Selecione um personagem para ver os detalhes</p>
+              </div>
             </div>
           )}
         </div>

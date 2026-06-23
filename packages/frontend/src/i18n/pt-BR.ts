@@ -2,8 +2,8 @@ const ptBR = {
   translation: {
     // Global
     app: {
-      nome: "Bible Scholar AI",
-      tagline: "Plataforma Avançada de Estudo Bíblico Acadêmico",
+      nome: "Sola Scriptura",
+      tagline: "Plataforma de Estudo Bíblico",
       carregando: "Carregando...",
       erro: "Erro ao carregar",
       buscar: "Buscar",

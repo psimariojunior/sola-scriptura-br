@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTheme } from "@/components/theme-provider";
 import { Settings } from "lucide-react";
 
 export default function ConfiguracoesPage() {
-  const [tema, setTema] = useState("claro");
+  const { theme, setTheme } = useTheme();
   const [fontSize, setFontSize] = useState(16);
   const [traducaoPadrao, setTraducaoPadrao] = useState("ARA");
   const [salvo, setSalvo] = useState(false);
@@ -13,16 +14,19 @@ export default function ConfiguracoesPage() {
     const config = localStorage.getItem("bible-scholar-config");
     if (config) {
       const parsed = JSON.parse(config);
-      setTema(parsed.tema || "claro");
       setFontSize(parsed.fontSize || 16);
       setTraducaoPadrao(parsed.traducaoPadrao || "ARA");
     }
   }, []);
 
+  useEffect(() => {
+    document.documentElement.style.fontSize = `${fontSize}px`;
+  }, [fontSize]);
+
   function salvar() {
     localStorage.setItem(
       "bible-scholar-config",
-      JSON.stringify({ tema, fontSize, traducaoPadrao })
+      JSON.stringify({ fontSize, traducaoPadrao })
     );
     setSalvo(true);
     setTimeout(() => setSalvo(false), 2000);
@@ -42,13 +46,13 @@ export default function ConfiguracoesPage() {
         <div className="space-y-2">
           <label className="text-sm font-medium">Tema</label>
           <select
-            value={tema}
-            onChange={(e) => setTema(e.target.value)}
+            value={theme}
+            onChange={(e) => setTheme(e.target.value as any)}
             className="w-full border rounded-lg px-4 py-2 text-sm"
           >
-            <option value="claro">Claro</option>
-            <option value="escuro">Escuro</option>
-            <option value="sistema">Sistema</option>
+            <option value="light">Claro</option>
+            <option value="dark">Escuro</option>
+            <option value="system">Sistema</option>
           </select>
         </div>
 

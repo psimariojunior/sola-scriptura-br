@@ -36,8 +36,8 @@ export default function AtlasPage() {
 
   const locaisFiltrados = locais.filter(
     (l) =>
-      l.nomePortugues.toLowerCase().includes(filtro.toLowerCase()) ||
-      l.tipo.toLowerCase().includes(filtro.toLowerCase())
+      l.nomePortugues?.toLowerCase().includes(filtro.toLowerCase()) ||
+      l.tipo?.toLowerCase().includes(filtro.toLowerCase())
   );
 
   const tipos = [...new Set(locais.map((l) => l.tipo))];

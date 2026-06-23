@@ -51,7 +51,7 @@ export default function HomePage() {
     <div className="space-y-8">
       <div className="text-center space-y-4 py-12">
         <h1 className="text-4xl font-bold tracking-tight">
-          Bible Scholar AI
+          Sola Scriptura
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           Plataforma Avançada de Estudo Bíblico Acadêmico com Inteligência Artificial,

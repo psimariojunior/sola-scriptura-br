@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Plataforma de estudo bíblico com IA, exegese, teologia sistemática, mapas interativos e análise linguística.",
   keywords: [
     "Bíblia", "Estudo Bíblico", "Teologia", "Exegese", "IA",
-    "Grego", "Hebraico", "Seminário", "Bible Scholar",
+    "Grego", "Hebraico", "Seminário", "Sola Scriptura",
   ],
 };
 

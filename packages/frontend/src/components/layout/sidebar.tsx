@@ -5,14 +5,14 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/components/theme-provider";
 import {
-  BookOpen, MessageSquare, Map, Globe, Clock, Library,
-  Search, Settings, Home, Users, GraduationCap, Moon, Sun,
-  Calendar, LogIn, Star,
+  BookOpen, Map, Clock, Search, Settings, Home, Users, GraduationCap, Moon, Sun,
+  Calendar, Star, Columns,
 } from "lucide-react";
 
 const rotas = [
   { href: "/", icone: Home, label: "Início" },
   { href: "/biblia", icone: BookOpen, label: "Bíblia" },
+  { href: "/estudo-paralelo", icone: Columns, label: "Paralelo" },
   { href: "/busca", icone: Search, label: "Busca" },
   { href: "/teologia", icone: GraduationCap, label: "Teologia" },
   { href: "/personagens", icone: Users, label: "Personagens" },

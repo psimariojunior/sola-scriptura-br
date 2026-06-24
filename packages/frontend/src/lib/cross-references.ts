@@ -270,7 +270,126 @@ export const CROSS_REFERENCES: Record<string, { ref: string; text: string; tipo:
   "Apocalipse 22:20": [
     { ref: "1 Tessalonicenses 4:16", text: "Porque o mesmo Senhor descerá do céu com voz de arcanjo.", tipo: "Tematico" },
     { ref: "João 14:3", text: "Vou preparar-vos lugar. E, quando eu houver ido e vos houver preparado lugar.", tipo: "Paralelo" },
-    { ref: "Atos 1:11", text: "Este mesmo Jesus, que de entre vós foi recebido em céus, virá da mesma maneira que o vistes ir para o céu.", tipo: "Tematico" },
+    { ref: "Atos 1:11", text: "Este mesmo Jesus, que de entre vós foi recebido em céu, virá da mesma maneira que o vistes ir para o céu.", tipo: "Tematico" },
+  ],
+  // MAIS REFERÊNCIAS
+  "Gênesis 3:15": [
+    { ref: "Gálatas 4:4", text: "Mas, quando veio a plenitude do tempo, Deus enviou o seu Filho.", tipo: "Messiânico" },
+    { ref: "1 João 3:8", text: "Para isto o Filho de Deus se manifestou, para desfazer as obras do diabo.", tipo: "Tematico" },
+    { ref: "Romanos 16:20", text: "E o Deus da paz esmagará em breve Satanás debaixo dos vossos pés.", tipo: "Tematico" },
+  ],
+  "Gênesis 22:14": [
+    { ref: "João 3:16", text: "Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito.", tipo: "Messiânico" },
+    { ref: "Romanos 8:32", text: "Aquele que não poupou o seu próprio Filho, mas o entregou por todos nós.", tipo: "Tematico" },
+  ],
+  "Êxodo 3:14": [
+    { ref: "João 8:58", text: "Antes que Abraão existisse, eu sou.", tipo: "Messiânico" },
+    { ref: "Apocalipse 1:8", text: "Eu sou o Alfa e o Ômega, o princípio e o fim, diz o Senhor.", tipo: "Tematico" },
+    { ref: "Isaías 44:6", text: "Eu sou o primeiro e o último; não há outro Deus além de mim.", tipo: "Tematico" },
+  ],
+  "Salmo 22:1": [
+    { ref: "Mateus 27:46", text: "Perto da hora nona, clamou Jesus com voz forte: Eli, Eli, lamá sabactâni?", tipo: "Cumprimento" },
+    { ref: "Marcos 15:34", text: "E à hora nona exclamou Jesus com voz alta: Meu Deus, meu Deus, por que me desamparaste?", tipo: "Cumprimento" },
+  ],
+  "Salmo 110:1": [
+    { ref: "Mateus 22:44", text: "Disse o Senhor ao meu Senhor: Assenta-te à minha direita.", tipo: "Messiânico" },
+    { ref: "Atos 2:34", text: "Davi não subiu aos céus, mas diz ele mesmo: Disse o Senhor ao meu Senhor.", tipo: "Tematico" },
+    { ref: "Hebreus 1:13", text: "Mas a qual dos anjos disse algum vez: Assenta-te à minha direita.", tipo: "Tematico" },
+  ],
+  "Isaías 7:14": [
+    { ref: "Mateus 1:23", text: "Eis que a virgem conceberá e dará à luz um filho, e chamam-lhe o nome Emanuel.", tipo: "Cumprimento" },
+    { ref: "Lucas 1:31", text: "E eis que conceberás no teu ventre, e darás à luz um filho.", tipo: "Paralelo" },
+  ],
+  "Miquéias 5:2": [
+    { ref: "Mateus 2:1", text: "Quando Jesus nasceu em Belém da Judeia.", tipo: "Cumprimento" },
+    { ref: "Lucas 2:4-7", text: "E foi a Belém, porque era da casa e linhagem de Davi.", tipo: "Cumprimento" },
+  ],
+  "Mateus 1:23": [
+    { ref: "Isaías 7:14", text: "Eis que a virgem conceberá e dará à luz um filho.", tipo: "Profecia" },
+    { ref: "Lucas 1:31", text: "E eis que conceberás no teu ventre, e darás à luz um filho.", tipo: "Paralelo" },
+    { ref: "João 1:14", text: "E o Verbo se fez carne e habitou entre nós.", tipo: "Tematico" },
+  ],
+  "Mateus 5:3": [
+    { ref: "Lucas 6:20", text: "Bem-aventurados vós, os pobres, porque vosso é o reino de Deus.", tipo: "Paralelo" },
+    { ref: "Isaías 61:1", text: "O Espírito do Senhor Senhor é sobre mim; porque o Senhor me ungiu.", tipo: "Messiânico" },
+  ],
+  "Mateus 11:28": [
+    { ref: "Jeremias 31:25", text: "Eu fartei de cansados e satisfiz de faltos de tudo.", tipo: "Paralelo" },
+    { ref: "Isaías 55:1", text: "Vinde a mim, todos os cansados e oprimidos, e eu vos aliviarei.", tipo: "Paralelo" },
+  ],
+  "Marcos 16:16": [
+    { ref: "Atos 2:38", text: "Arrependei-vos, e cada um de vós seja batizado em nome de Jesus Cristo.", tipo: "Tematico" },
+    { ref: "Romanos 10:9", text: "Se confessares com a tua boca que Jesus é o Senhor.", tipo: "Tematico" },
+  ],
+  "Lucas 1:37": [
+    { ref: "Jeremias 32:17", text: "Ah, Senhor Deus! Eis que tu fizeste os céus e a terra pelo teu grande poder.", tipo: "Paralelo" },
+    { ref: "Mateus 19:26", text: "Para os homens isto é impossível, mas para Deus tudo é possível.", tipo: "Tematico" },
+  ],
+  "João 1:14": [
+    { ref: "Filipenses 2:6-7", text: "O qual, sendo em forma de Deus, não teve por usurpação ser igual a Deus, mas esvaziou-se a si mesmo.", tipo: "Tematico" },
+    { ref: "1 Timóteo 3:16", text: "E, sem controvérsia, grande é o mistério da piedade: Deus se manifestou em carne.", tipo: "Tematico" },
+    { ref: "Hebreus 1:3", text: "O qual, sendo o resplendor da glória e a imagem exata do seu ser.", tipo: "Tematico" },
+  ],
+  "João 10:10": [
+    { ref: "1 Pedro 5:8", text: "O vosso adversário, o diabo, anda ao redor, rugindo como leão.", tipo: "Tematico" },
+    { ref: "1 Pedro 10:10", text: "Eu vim para que tenham vida, e a tenham em abundância.", tipo: "Paralelo" },
+  ],
+  "Atos 2:38": [
+    { ref: "Marcos 16:16", text: "Quem crer e for batizado será salvo.", tipo: "Tematico" },
+    { ref: "Romanos 6:4", text: "Assim também nós andamos em novidade de vida.", tipo: "Tematico" },
+  ],
+  "Romanos 8:38-39": [
+    { ref: "Efésios 3:18-19", text: "Para que possais compreender, com todos os santos, qual é a largura, o comprimento, a altura e a profundidade.", tipo: "Tematico" },
+    { ref: "Romanos 8:35-37", text: "Quem nos separará do amor de Cristo?", tipo: "Continuação" },
+  ],
+  "1 Coríntios 10:13": [
+    { ref: "Tiago 1:2-4", text: "Tendе muita alegria quando incidirdes em diversas tentações.", tipo: "Paralelo" },
+    { ref: "2 Pedro 2:9", text: "O Senhor sabe livrar da provação os piedosos.", tipo: "Tematico" },
+  ],
+  "2 Coríntios 4:18": [
+    { ref: "Romanos 8:18", text: "Julgo que os sofrimentos do tempo presente não são comparáveis com a glória que há de ser revelada em nós.", tipo: "Paralelo" },
+    { ref: "4:17", text: "Porque um momento de leve tribulação produz para nós um eterno peso de glória.", tipo: "Continuação" },
+  ],
+  "Efésios 6:10-11": [
+    { ref: "2 Timóteo 4:7", text: "Combati o bom combate, acabei a carreira, guardei a fé.", tipo: "Tematico" },
+    { ref: "1 Pedro 5:8", text: "Sede sóbrios, vigiai.", tipo: "Tematico" },
+    { ref: "Tiago 4:7", text: "Sujeitai-vos, pois, a Deus; resisti ao diabo.", tipo: "Tematico" },
+  ],
+  "Filipenses 3:13-14": [
+    { ref: "Hebreus 12:1", text: "Deixando tudo o que nos estorva, e o pecado que nos cerca, corramos com paciência na carreira que nos está posta.", tipo: "Paralelo" },
+    { ref: "1 Coríntios 9:24", text: "Não sabeis que os que correm na arena correm todos, mas um só recebe o prêmio?", tipo: "Tematico" },
+  ],
+  "2 Tessalonicenses 3:3": [
+    { ref: "Salmo 121:3", text: "Não deixará balançar o teu pé; o que te guarda não dormitará.", tipo: "Paralelo" },
+    { ref: "Judas 24", text: "Aquele que pode guardar-vos de tropeço, e apresentar-vos irrepreensíveis.", tipo: "Tematico" },
+  ],
+  "2 Timóteo 1:7": [
+    { ref: "Isaías 41:10", text: "Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus.", tipo: "Paralelo" },
+    { ref: "Josué 1:9", text: "Não tomando, nem desanimando; porque o Senhor teu Deus é contigo.", tipo: "Tematico" },
+  ],
+  "Hebreus 13:8": [
+    { ref: "Malaquias 3:6", text: "Porque eu sou o Senhor, e não mudo.", tipo: "Paralelo" },
+    { ref: "Tiago 1:17", text: "Toda a dádiva boa e todo o dom perfeito desce do alto.", tipo: "Tematico" },
+  ],
+  "Tiago 1:5": [
+    { ref: "Provérbios 2:3-6", text: "Se clamares pelo entendimento, e gritares pela prudência... então entenderás o temor do Senhor.", tipo: "Paralelo" },
+    { ref: "1 Coríntios 1:30", text: "Mas vós estais em Cristo Jesus, o qual nos tornou de Deus para nós sabedoria.", tipo: "Tematico" },
+  ],
+  "1 Pedro 5:7": [
+    { ref: "Filipenses 4:6-7", text: "Não vos inquieteis coisa alguma, mas em tudo sejam conhecidas as vossas petições. E a paz de Deus guardará os vossos corações.", tipo: "Paralelo" },
+    { ref: "Salmo 55:22", text: "Lança o teu cuidado sobre o Senhor, e ele te sustentará.", tipo: "Tematico" },
+  ],
+  "1 João 2:15": [
+    { ref: "Tiago 4:4", text: "Inimigos de Deus é todo aquele que é amigo do mundo.", tipo: "Paralelo" },
+    { ref: "Romanos 12:2", text: "Não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento.", tipo: "Tematico" },
+  ],
+  "Judas 1:20": [
+    { ref: "Efésios 6:18", text: "Orando em todo o tempo no Espírito.", tipo: "Tematico" },
+    { ref: "Romanos 8:26", text: "O próprio Espírito intercede por nós com gemidos indizíveis.", tipo: "Tematico" },
+  ],
+  "Apocalipse 3:20": [
+    { ref: "João 10:9", text: "Eu sou a porta; quem entrar por mim será salvo.", tipo: "Paralelo" },
+    { ref: "Mateus 24:42", text: "Vigiai, porque não sabeis em que dia o vosso Senhor há de vir.", tipo: "Tematico" },
   ],
 };
 

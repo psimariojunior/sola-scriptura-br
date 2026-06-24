@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/layout/sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ErrorBoundary } from "@/components/error-boundary";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
     "Plataforma de estudo bíblico com IA, exegese, teologia sistemática, mapas interativos e análise linguística.",
   keywords: [
     "Bíblia", "Estudo Bíblico", "Teologia", "Exegese", "IA",
-    "Grego", "Hebraico", "Seminário", "Sola Scriptura",
+    "Grego", "Hebraico", "Seminário", "Bible Scholar",
   ],
 };
 
@@ -25,10 +26,12 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider>
-          <Sidebar />
-          <main className="ml-64 min-h-screen p-6">
-            {children}
-          </main>
+          <ErrorBoundary>
+            <Sidebar />
+            <main className="ml-64 min-h-screen p-6">
+              {children}
+            </main>
+          </ErrorBoundary>
         </ThemeProvider>
       </body>
     </html>

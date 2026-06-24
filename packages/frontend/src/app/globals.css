@@ -65,3 +65,55 @@
 .verse-number {
   @apply text-xs text-muted-foreground align-super mr-1;
 }
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .ml-64 {
+    margin-left: 0 !important;
+  }
+  
+  .fixed.left-0 {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .fixed.left-0.open {
+    transform: translateX(0);
+  }
+}
+
+/* Smooth transitions */
+* {
+  transition-property: color, background-color, border-color, opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}

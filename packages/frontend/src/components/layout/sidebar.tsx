@@ -6,13 +6,14 @@ import { cn } from "@/lib/utils";
 import { useTheme } from "@/components/theme-provider";
 import {
   BookOpen, Map, Clock, Search, Settings, Home, Users, GraduationCap, Moon, Sun,
-  Calendar, Star, Columns,
+  Calendar, Star, Columns, Languages,
 } from "lucide-react";
 
 const rotas = [
   { href: "/", icone: Home, label: "Início" },
   { href: "/biblia", icone: BookOpen, label: "Bíblia" },
   { href: "/estudo-paralelo", icone: Columns, label: "Paralelo" },
+  { href: "/lexico", icone: Languages, label: "Léxico" },
   { href: "/busca", icone: Search, label: "Busca" },
   { href: "/teologia", icone: GraduationCap, label: "Teologia" },
   { href: "/personagens", icone: Users, label: "Personagens" },

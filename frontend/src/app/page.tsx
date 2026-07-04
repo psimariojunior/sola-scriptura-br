@@ -4,6 +4,7 @@ import { HeroEditorial } from '@/components/home/hero-editorial';
 import { ColecaoModulos } from '@/components/home/colecao-modulos';
 import { SecaoDestaque } from '@/components/home/secao-destaque';
 import { Lantejoulas } from '@/components/home/lantejoulas';
+import { Dashboard } from '@/components/home/dashboard';
 
 export default function PaginaInicial() {
   return (
@@ -12,6 +13,7 @@ export default function PaginaInicial() {
       <main>
         <HeroEditorial />
         <Lantejoulas />
+        <Dashboard />
         <ColecaoModulos />
         <SecaoDestaque />
       </main>

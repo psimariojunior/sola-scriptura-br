@@ -2,20 +2,18 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy only backend files needed for dependency install (no lockfile to avoid workspace conflicts)
+# Must set development mode - Railway may inject NODE_ENV=production into builds
+ENV NODE_ENV=development
+
 COPY packages/backend/package.json ./
+RUN npm install --legacy-peer-deps
 
-# Install with dev deps so TypeScript is available
-RUN npm install --include=dev --legacy-peer-deps
-
-# Copy source and tsconfig
 COPY packages/backend/tsconfig.json ./
 COPY packages/backend/src/ src/
 
-# Build TypeScript
 RUN npx tsc -p tsconfig.json
 
-# Remove dev deps to keep image small
+# Production deps only for runtime
 RUN npm prune --production
 
 EXPOSE 4000

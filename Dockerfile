@@ -7,7 +7,7 @@ WORKDIR /app
 COPY packages/backend/package*.json packages/backend/
 
 # Install dependencies including dev for typescript
-RUN cd packages/backend && npm install --include=dev
+RUN cd packages/backend && npm install --include=dev --legacy-peer-deps
 
 # Copy backend source and config
 COPY packages/backend/tsconfig.json packages/backend/

@@ -29,6 +29,5 @@
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["**/*.spec.ts", "**/*.test.ts", "test/**/*"],
-  "references": [{ "path": "../shared" }]
+  "exclude": ["**/*.spec.ts", "**/*.test.ts", "test/**/*"]
 }

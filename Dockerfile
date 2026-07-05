@@ -1,24 +1,22 @@
-FROM node:20-alpine AS builder
-ENV NODE_ENV=development
-WORKDIR /app
-
-COPY package.json ./
-COPY packages/shared/package.json packages/shared/
-COPY packages/backend/package.json packages/backend/
-
-RUN npm install --legacy-peer-deps
-
-COPY . .
-
-RUN npm run build -w @bible-scholar/shared && npm run build -w @bible-scholar/backend
-
 FROM node:20-alpine
+
 WORKDIR /app
 
-COPY --from=builder /app/packages/backend/dist packages/backend/dist
-COPY --from=builder /app/packages/backend/node_modules packages/backend/node_modules
-COPY --from=builder /app/node_modules node_modules
-COPY --from=builder /app/package.json ./
+# Copy only backend files needed for dependency install (no lockfile to avoid workspace conflicts)
+COPY packages/backend/package.json ./
+
+# Install with dev deps so TypeScript is available
+RUN npm install --include=dev --legacy-peer-deps
+
+# Copy source and tsconfig
+COPY packages/backend/tsconfig.json ./
+COPY packages/backend/src/ src/
+
+# Build TypeScript
+RUN npx tsc -p tsconfig.json
+
+# Remove dev deps to keep image small
+RUN npm prune --production
 
 EXPOSE 4000
-CMD ["node", "packages/backend/dist/main.js"]
+CMD ["node", "dist/main.js"]

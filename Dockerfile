@@ -10,7 +10,8 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+# Only build shared + backend (frontend is deployed on Vercel)
+RUN npm run build -w packages/shared && npm run build -w packages/backend
 
 FROM node:20-alpine
 WORKDIR /app

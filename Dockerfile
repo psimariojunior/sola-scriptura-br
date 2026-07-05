@@ -1,9 +1,8 @@
-FROM node:20-alpine
+FROM node:20-slim
 
 WORKDIR /app
 
-COPY packages/backend/package.json ./
-COPY packages/backend/package-lock.json ./
+COPY packages/backend/package*.json ./
 RUN npm install --include=dev --legacy-peer-deps
 
 COPY packages/backend/tsconfig.json ./

@@ -1,10 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { BibleVersion } from '@infrastructure/database/entities/bible-version.entity';
-import { BibleBook } from '@infrastructure/database/entities/bible-book.entity';
-import { BibleChapter } from '@infrastructure/database/entities/bible-chapter.entity';
-import { BibleVerse } from '@infrastructure/database/entities/bible-verse.entity';
 
 @Controller('admin')
 export class SeedController {
@@ -13,19 +9,19 @@ export class SeedController {
   @Post('seed')
   async seed() {
     try {
-      const existing = await this.ds.getRepository(BibleBook).count();
-      if (existing > 0) {
-        return { message: "Database already seeded", books: existing };
+      const existing = await this.ds.query("SELECT COUNT(*) as c FROM bible_books");
+      if (parseInt(existing[0].c) > 0) {
+        return { message: "Database already seeded", books: parseInt(existing[0].c) };
       }
 
-      const versaoRepo = this.ds.getRepository(BibleVersion);
-      const ara = versaoRepo.create({ sigla: 'ARA', nome: 'Almeida Revista e Atualizada', idioma: 'portugues', tipo: 'protestante', ano: 1993, ativo: true });
-      const nvi = versaoRepo.create({ sigla: 'NVI', nome: 'Nova Versao Internacional', idioma: 'portugues', tipo: 'protestante', ano: 2000, ativo: true });
-      const arc = versaoRepo.create({ sigla: 'ARC', nome: 'Almeida Revista e Corrigida', idioma: 'portugues', tipo: 'protestante', ano: 1993, ativo: true });
-      await versaoRepo.save([ara, nvi, arc]);
-
-      const bookRepo = this.ds.getRepository(BibleBook);
-      const chapterRepo = this.ds.getRepository(BibleChapter);
+      const versoes = await this.ds.query(`
+        INSERT INTO bible_versions (id, sigla, nome, idioma, tipo, ano, ativo, criado_em, atualizado_em)
+        VALUES (gen_random_uuid(), 'ARA', 'Almeida Revista e Atualizada', 'portugues', 'protestante', 1993, true, NOW(), NOW()),
+               (gen_random_uuid(), 'NVI', 'Nova Versao Internacional', 'portugues', 'protestante', 2000, true, NOW(), NOW()),
+               (gen_random_uuid(), 'ARC', 'Almeida Revista e Corrigida', 'portugues', 'protestante', 1993, true, NOW(), NOW())
+        RETURNING id, sigla
+      `);
+      const araId = versoes.find((v: any) => v.sigla === 'ARA').id;
 
       const books = [
         { nome: 'Genesis', capitulos: 50, ordem: 1, t: 'AT', g: 'Lei', a: 'Moises' },
@@ -96,30 +92,23 @@ export class SeedController {
         { nome: 'Apocalipse', capitulos: 22, ordem: 66, t: 'NT', g: 'Apocalipse', a: 'Joao' },
       ];
 
-      let count = 0;
       for (const b of books) {
-        const livro = bookRepo.create({
-          versaoId: ara.id,
-          ordem: b.ordem,
-          nome: b.nome,
-          testamento: b.t,
-          genero: b.g,
-          autor: b.a,
-          totalCapitulos: b.capitulos,
-        });
-        const saved = await bookRepo.save(livro);
+        const r = await this.ds.query(
+          `INSERT INTO bible_books (id, versao_id, ordem, nome, testamento, genero, autor, totalCapitulos, criado_em, atualizado_em)
+           VALUES (gen_random_uuid(), $1, $2, $3, $4, $5, $6, $7, NOW(), NOW()) RETURNING id`,
+          [araId, b.ordem, b.nome, b.t, b.g, b.a, b.capitulos]
+        );
+        const bookId = r[0].id;
         for (let c = 1; c <= b.capitulos; c++) {
-          const capitulo = chapterRepo.create({
-            livroId: saved.id,
-            numero: c,
-            totalVersiculos: 1,
-          });
-          await chapterRepo.save(capitulo);
+          await this.ds.query(
+            `INSERT INTO bible_chapters (id, livro_id, numero, criado_em, atualizado_em)
+             VALUES (gen_random_uuid(), $1, $2, NOW(), NOW())`,
+            [bookId, c]
+          );
         }
-        count++;
       }
 
-      return { message: `Database seeded: ${count} books with chapters` };
+      return { message: `Database seeded: ${books.length} books` };
     } catch (error: any) {
       return { error: error.message || String(error) };
     }
@@ -129,55 +118,54 @@ export class SeedController {
   async seedVerses(@Body() body: { livro?: string; inicio?: number; fim?: number }) {
     const { livro, inicio = 1, fim = 66 } = body;
     try {
-      const bookRepo = this.ds.getRepository(BibleBook);
-      const chapterRepo = this.ds.getRepository(BibleChapter);
-      const verseRepo = this.ds.getRepository(BibleVerse);
-      const versaoRepo = this.ds.getRepository(BibleVersion);
-      const ara = await versaoRepo.findOne({ where: { sigla: 'ARA' } });
-      if (!ara) return { error: 'Versao ARA nao encontrada' };
+      const araRows = await this.ds.query("SELECT id FROM bible_versions WHERE sigla='ARA' LIMIT 1");
+      if (!araRows.length) return { error: 'ARA version not found' };
+      const araId = araRows[0].id;
 
-      const livros = await bookRepo.find({
-        where: livro ? { nome: livro } : {},
-        order: { ordem: 'ASC' },
-      });
+      const booksQuery = livro
+        ? `SELECT id, ordem, nome, totalCapitulos FROM bible_books WHERE nome = '${livro}' ORDER BY ordem`
+        : `SELECT id, ordem, nome, totalCapitulos FROM bible_books WHERE ordem BETWEEN ${inicio} AND ${fim} ORDER BY ordem`;
+      
+      const books = await this.ds.query(booksQuery);
+      let totalVerses = 0;
 
-      let total = 0;
-      for (const l of livros.slice(inicio - 1, fim)) {
-        console.log(`Seed: ${l.nome} (${l.ordem})...`);
-        for (let c = 1; c <= (l.totalCapitulos || 1); c++) {
+      for (const book of books) {
+        console.log(`Seeding ${book.nome} (${book.ordem})...`);
+        for (let c = 1; c <= (book.totalcapitulos || book.totalCapitulos || 1); c++) {
           try {
-            const bollsUrl = `https://bolls.life/get-chapter/ARA/${l.ordem}/${c}/`;
-            const res = await fetch(bollsUrl);
-            if (!res.ok) continue;
-            const verses = await res.json();
-            if (!Array.isArray(verses)) continue;
+            const prefix = `https://bolls.life/get-chapter/ARA/${book.ordem}/${c}/`;
+            const response = await fetch(prefix);
+            if (!response.ok) { continue; }
+            const data = await response.json();
+            if (!Array.isArray(data) || data.length === 0) { continue; }
 
-            const capitulo = await chapterRepo.findOne({
-              where: { livroId: l.id, numero: c },
-            });
-            if (!capitulo) continue;
+            const chapterRows = await this.ds.query(
+              `SELECT id FROM bible_chapters WHERE livro_id=$1 AND numero=$2 LIMIT 1`,
+              [book.id, c]
+            );
+            if (!chapterRows.length) { continue; }
+            const chapterId = chapterRows[0].id;
 
-            for (const v of verses) {
-              const vNum = typeof v === 'object' ? (v.verse || v.v) : 0;
+            for (const v of data) {
+              const vNum = typeof v === 'object' ? (v.verse || 0) : 0;
               const vText = typeof v === 'object' ? (v.text || '') : String(v);
               if (!vNum || !vText) continue;
-              await verseRepo.upsert(
-                {
-                  versaoId: ara.id,
-                  livroId: l.id,
-                  capituloId: capitulo.id,
-                  numero: vNum,
-                  texto: vText,
-                },
-                { conflictPaths: ['versaoId', 'livroId', 'capituloId', 'numero'] },
+
+              await this.ds.query(
+                `INSERT INTO bible_verses (id, versao_id, livro_id, capitulo_id, numero, texto, criado_em, atualizado_em)
+                 VALUES (gen_random_uuid(), $1, $2, $3, $4, $5, NOW(), NOW())
+                 ON CONFLICT (versao_id, livro_id, capitulo_id, numero) DO UPDATE SET texto=$5`,
+                [araId, book.id, chapterId, vNum, vText]
               );
+              totalVerses++;
             }
-            total += verses.length;
-          } catch { /* skip chapter errors */ }
+          } catch (e: any) {
+            console.error(`Error on ${book.nome} ${c}: ${e.message}`);
+          }
         }
       }
 
-      return { message: `Versiculos inseridos: ${total}`, total };
+      return { message: `Verses inserted: ${totalVerses}`, total: totalVerses };
     } catch (error: any) {
       return { error: error.message || String(error) };
     }

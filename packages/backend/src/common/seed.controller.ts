@@ -100,15 +100,15 @@ export class SeedController {
 
       for (const b of books) {
         const bookRes = await runner.query(
-          `INSERT INTO bible_books (id, versao_id, ordem, nome, testamento, genero, autor, total_capitulos, criado_em, atualizado_em)
+          `INSERT INTO bible_books (id, versao_id, ordem, nome, testamento, genero, autor, totalCapitulos, criado_em, atualizado_em)
            VALUES (gen_random_uuid(), $1, $2, $3, $4, $5, $6, $7, NOW(), NOW()) RETURNING id`,
           [araId, b.o, b.n, b.t, b.g, b.a, b.c]
         );
         const bookId = bookRes[0].id;
         for (let ch = 1; ch <= b.c; ch++) {
           await runner.query(
-            `INSERT INTO bible_chapters (id, livro_id, numero, total_versiculos, criado_em, atualizado_em)
-             VALUES (gen_random_uuid(), $1, $2, 1, NOW(), NOW())`,
+            `INSERT INTO bible_chapters (id, livro_id, numero, criado_em, atualizado_em)
+             VALUES (gen_random_uuid(), $1, $2, NOW(), NOW())`,
             [bookId, ch]
           );
         }

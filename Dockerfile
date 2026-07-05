@@ -1,16 +1,15 @@
-FROM node:20
+FROM node:20-slim
 
 WORKDIR /app
 
-COPY packages/backend/package.json ./
-RUN npm install --legacy-peer-deps
+COPY packages/backend/package*.json packages/backend/
+RUN cd packages/backend && npm install --legacy-peer-deps
 
-COPY packages/backend/tsconfig.json ./
-COPY packages/backend/src ./src
+COPY packages/backend/tsconfig.json packages/backend/
+COPY packages/backend/src packages/backend/src
 
-RUN npm run build
+RUN cd packages/backend && npm run build
 
-RUN npm prune --production
-
+WORKDIR /app
 EXPOSE 4000
-CMD ["node", "dist/main.js"]
+CMD ["node", "packages/backend/dist/main.js"]

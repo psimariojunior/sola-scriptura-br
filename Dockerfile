@@ -1,22 +1,24 @@
-FROM node:20-alpine AS builder
-ENV NODE_ENV=development
-WORKDIR /app
-
-COPY packages/backend/package.json ./
-RUN npm install --legacy-peer-deps
-
-COPY packages/backend/tsconfig.json ./
-COPY packages/backend/src ./src
-
-RUN npm run build
-
+# syntax=docker/dockerfile:1
 FROM node:20-alpine
-ENV NODE_ENV=production
+
 WORKDIR /app
 
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./
+# Copy only what's needed for backend
+COPY packages/backend/package*.json packages/backend/
+
+# Install dependencies including dev for typescript
+RUN cd packages/backend && npm install --include=dev
+
+# Copy backend source and config
+COPY packages/backend/tsconfig.json packages/backend/
+COPY packages/backend/src/ packages/backend/src/
+
+# Build
+RUN cd packages/backend && npx tsc -p tsconfig.json
+
+# Remove dev deps to reduce image size
+RUN cd packages/backend && npm prune --production
 
 EXPOSE 4000
+WORKDIR /app/packages/backend
 CMD ["node", "dist/main.js"]

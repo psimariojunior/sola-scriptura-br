@@ -28,10 +28,10 @@ export const apiBiblia = {
     api.get("/biblia/livros", { params: { testamentoId } }),
   buscarLivro: (slug: string) =>
     api.get(`/biblia/livros/${slug}`),
-  buscarCapitulo: (livroId: string, numero: number) =>
-    api.get(`/biblia/livros/${livroId}/capitulos/${numero}`),
-  buscarVersiculo: (livroId: string, capitulo: number, versiculo: number, traducaoId: string) =>
-    api.get(`/biblia/versiculos/${livroId}/${capitulo}/${versiculo}`, {
+  buscarCapitulo: (livroNome: string, numero: number) =>
+    api.get(`/biblia/${encodeURIComponent(livroNome)}/${numero}`),
+  buscarVersiculo: (livroNome: string, capitulo: number, versiculo: number, traducaoId: string) =>
+    api.get(`/biblia/${encodeURIComponent(livroNome)}/${capitulo}/${versiculo}`, {
       params: { traducaoId },
     }),
   buscarPassagem: (livroId: string, capitulo: number, inicio: number, fim: number, traducaoId: string) =>
@@ -39,7 +39,7 @@ export const apiBiblia = {
       params: { traducaoId },
     }),
   listarTraducoes: () =>
-    api.get("/biblia/traducoes"),
+    api.get("/biblia/versoes"),
   pesquisar: (q: string, traducaoId: string) =>
     api.get("/biblia/pesquisar", { params: { q, traducaoId } }),
   buscarPalavra: (id: string) =>

@@ -603,7 +603,7 @@ export default function BibliaPage() {
   const carregarCapitulo = useCallback(async (livro: Livro, cap: number) => {
     setCarregando(true);
     try {
-      const res = await fetch(`/api/v1/biblia/livros/${livro.id}/capitulos/${cap}`);
+      const res = await fetch(`/api/v1/biblia/${encodeURIComponent(livro.nome)}/${cap}`);
       const data = await res.json();
       setVersiculos(Array.isArray(data.versiculos) ? data.versiculos : Array.isArray(data) ? data : []);
     } catch { setVersiculos([]); }

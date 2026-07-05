@@ -56,7 +56,7 @@ export default function EstudoParaleloPage() {
     setCarregando(true);
     try {
       // Load ARA from backend
-      const res = await fetch(`/api/v1/biblia/livros/${livro.id}/capitulos/${cap}`).then(r => r.json());
+      const res = await fetch(`/api/v1/biblia/${encodeURIComponent(livro.nome)}/${cap}`).then(r => r.json());
       const versiculos = Array.isArray(res.versiculos) ? res.versiculos : [];
       setVersiculosAra(versiculos);
       setVersiculosNvi(versiculos); // fallback: same as ARA

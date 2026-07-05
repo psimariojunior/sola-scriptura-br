@@ -7,6 +7,18 @@ import { TheologyService } from '../application/theology.service';
 export class TheologyController {
   constructor(private readonly theologyService: TheologyService) {}
 
+  @Get('doutrinas')
+  @ApiOperation({ summary: 'Listar doutrinas sistemáticas' })
+  async listarDoutrinas(@Query('categoria') categoria?: string) {
+    return this.theologyService.listarDoutrinas(categoria);
+  }
+
+  @Get('doutrinas/:nome')
+  @ApiOperation({ summary: 'Buscar doutrina específica' })
+  async buscarDoutrina(@Param('nome') nome: string) {
+    return this.theologyService.buscarDoutrina(nome);
+  }
+
   @Get(':livro/:capitulo/:versiculo')
   @ApiOperation({ summary: 'Análise teológica completa de um versículo' })
   @ApiQuery({
@@ -21,17 +33,5 @@ export class TheologyController {
     @Query('tradicao') tradicao?: string,
   ) {
     return this.theologyService.analisarTeologia(livro, capitulo, versiculo, tradicao);
-  }
-
-  @Get('doutrinas')
-  @ApiOperation({ summary: 'Listar doutrinas sistemáticas' })
-  async listarDoutrinas(@Query('categoria') categoria?: string) {
-    return this.theologyService.listarDoutrinas(categoria);
-  }
-
-  @Get('doutrinas/:nome')
-  @ApiOperation({ summary: 'Buscar doutrina específica' })
-  async buscarDoutrina(@Param('nome') nome: string) {
-    return this.theologyService.buscarDoutrina(nome);
   }
 }

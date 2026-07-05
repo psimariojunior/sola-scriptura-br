@@ -24,6 +24,7 @@ import { HistoryModule } from '@modules/history/history.module';
 import { ChronologyModule } from '@modules/chronology/chronology.module';
 import { AtlasModule } from '@modules/atlas/atlas.module';
 import { MapModule } from '@modules/map/map.module';
+import { PersonModule } from '@modules/person/person.module';
 import { UserModule } from '@modules/user/user.module';
 
 @Module({
@@ -59,6 +60,7 @@ import { UserModule } from '@modules/user/user.module';
     ChronologyModule,
     AtlasModule,
     MapModule,
+    PersonModule,
     UserModule,
   ],
 })

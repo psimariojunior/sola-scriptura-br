@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { BookOpen, ChevronLeft, ChevronRight, Columns, SplitSquareVertical, Languages } from "lucide-react";
+import { BookOpen, ChevronLeft, ChevronRight, Columns, SplitSquareVertical, Languages, AlertCircle } from "lucide-react";
+import { getBookId } from "@/lib/bolls-api";
 
 interface Livro {
   id: string;
@@ -17,31 +18,71 @@ interface Versiculo {
   texto: string;
 }
 
+interface Traducao {
+  id: string;
+  sigla: string;
+  nome: string;
+  ativo: boolean;
+}
+
 export default function EstudoParaleloPage() {
   const [livros, setLivros] = useState<Livro[]>([]);
+  const [traducoes, setTraducoes] = useState<Traducao[]>([]);
   const [livroSel, setLivroSel] = useState<Livro | null>(null);
   const [capSel, setCapSel] = useState(1);
   const [versiculosAra, setVersiculosAra] = useState<Versiculo[]>([]);
   const [versiculosNvi, setVersiculosNvi] = useState<Versiculo[]>([]);
   const [carregando, setCarregando] = useState(false);
-  const [modo, setModo] = useState<"paralelo" | "unido">("paralelo");
+  const [modo, setModo] = useState<"paralelo" | "unido" | "intercalado">("paralelo");
 
   useEffect(() => {
     fetch("/api/v1/biblia/livros")
       .then(r => r.json())
       .then(data => setLivros(Array.isArray(data) ? data : []))
       .catch(() => {});
+    fetch("/api/v1/biblia/traducoes")
+      .then(r => r.json())
+      .then(data => setTraducoes(Array.isArray(data) ? data : []))
+      .catch(() => {});
   }, []);
+
+  const traducaoDisponivel = (sigla: string) => traducoes.some(t => t.sigla === sigla);
+  const apenasAra = traducaoDisponivel("ARA") && !traducaoDisponivel("NVI");
+
+  const [temNvi, setTemNvi] = useState<boolean>(false);
+  const [nviCarregando, setNviCarregando] = useState(false);
 
   const carregarCapitulo = useCallback(async (livro: Livro, cap: number) => {
     setCarregando(true);
     try {
-      const [resAra, resNvi] = await Promise.all([
-        fetch(`/api/v1/biblia/livros/${livro.id}/capitulos/${cap}`).then(r => r.json()),
-        fetch(`/api/v1/biblia/livros/${livro.id}/capitulos/${cap}`).then(r => r.json()),
-      ]);
-      setVersiculosAra(Array.isArray(resAra.versiculos) ? resAra.versiculos : []);
-      setVersiculosNvi(Array.isArray(resNvi.versiculos) ? resNvi.versiculos : []);
+      // Load ARA from backend
+      const res = await fetch(`/api/v1/biblia/livros/${livro.id}/capitulos/${cap}`).then(r => r.json());
+      const versiculos = Array.isArray(res.versiculos) ? res.versiculos : [];
+      setVersiculosAra(versiculos);
+      setVersiculosNvi(versiculos); // fallback: same as ARA
+
+      // Try to load NVI from bolls.life
+      setNviCarregando(true);
+      const bookId = getBookId(livro.nome);
+      if (bookId) {
+        try {
+          const nviUrl = `https://bolls.life/get-chapter/NVI/${bookId}/${cap}/`;
+          const nviRes = await fetch(nviUrl);
+          if (nviRes.ok) {
+            const nviData = await nviRes.json();
+            if (Array.isArray(nviData) && nviData.length > 0) {
+              const nviVerses = nviData.map((v: any, i: number) => ({
+                id: `nvi-${bookId}-${cap}-${i + 1}`,
+                numero: i + 1,
+                texto: typeof v === "string" ? v : v?.text ?? "",
+              }));
+              setVersiculosNvi(nviVerses);
+              setTemNvi(true);
+            }
+          }
+        } catch { setTemNvi(false); }
+      }
+      setNviCarregando(false);
     } catch {
       setVersiculosAra([]);
       setVersiculosNvi([]);
@@ -74,6 +115,14 @@ export default function EstudoParaleloPage() {
             }`}
           >
             <SplitSquareVertical className="h-4 w-4 inline mr-1" /> Paralelo
+          </button>
+          <button
+            onClick={() => setModo("intercalado")}
+            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+              modo === "intercalado" ? "bg-primary text-primary-foreground" : "hover:bg-accent border"
+            }`}
+          >
+            <Columns className="h-4 w-4 inline mr-1" /> Intercalado
           </button>
           <button
             onClick={() => setModo("unido")}
@@ -161,32 +210,60 @@ export default function EstudoParaleloPage() {
             </div>
           ) : modo === "paralelo" ? (
             <div className="grid grid-cols-2 gap-6">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 mb-3 pb-2 border-b">
-                  <Languages className="h-4 w-4 text-primary" />
+              <div className="space-y-1 bg-blue-500/[0.03] rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3 pb-2 border-b border-blue-200">
+                  <Languages className="h-4 w-4 text-blue-600" />
                   <span className="text-sm font-semibold">ARA</span>
-                  <span className="text-xs text-muted-foreground">Atualizada Revisada Ampliada</span>
+                  <span className="text-xs text-muted-foreground">Almeida Revista e Atualizada</span>
                 </div>
                 {versiculosAra.map(v => (
-                  <div key={v.id} className="flex gap-2 py-1 hover:bg-accent/50 rounded px-2 -mx-2">
+                  <div key={v.id} className="flex gap-2 py-1 hover:bg-accent/50 rounded px-2 -mx-2 transition-colors">
                     <span className="text-xs text-muted-foreground font-mono w-4 text-right flex-shrink-0">{v.numero}</span>
                     <p className="text-sm leading-relaxed">{v.texto}</p>
                   </div>
                 ))}
               </div>
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 mb-3 pb-2 border-b">
+              <div className="space-y-1 bg-green-500/[0.03] rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3 pb-2 border-b border-green-200">
                   <Languages className="h-4 w-4 text-green-600" />
                   <span className="text-sm font-semibold">NVI</span>
                   <span className="text-xs text-muted-foreground">Nova Versão Internacional</span>
                 </div>
+                {nviCarregando ? (
+                  <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 mb-3">
+                    <p className="text-xs text-blue-600">Buscando texto NVI...</p>
+                  </div>
+                ) : temNvi ? (
+                  <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3 mb-3">
+                    <p className="text-xs text-green-700">NVI carregada com sucesso</p>
+                  </div>
+                ) : (
+                  <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 mb-3">
+                    <div className="flex items-center gap-2">
+                      <AlertCircle className="h-4 w-4 text-amber-600 flex-shrink-0" />
+                      <p className="text-xs text-amber-700">Texto NVI não disponível. Exibindo ARA como referência.</p>
+                    </div>
+                  </div>
+                )}
                 {versiculosNvi.map(v => (
-                  <div key={v.id} className="flex gap-2 py-1 hover:bg-accent/50 rounded px-2 -mx-2">
+                  <div key={v.id} className="flex gap-2 py-1 hover:bg-accent/50 rounded px-2 -mx-2 transition-colors">
                     <span className="text-xs text-muted-foreground font-mono w-4 text-right flex-shrink-0">{v.numero}</span>
-                    <p className="text-sm leading-relaxed text-muted-foreground">{v.texto}</p>
+                    <p className={`text-sm leading-relaxed ${temNvi ? "" : "text-muted-foreground"}`}>{v.texto}</p>
                   </div>
                 ))}
               </div>
+            </div>
+          ) : modo === "intercalado" ? (
+            <div className="max-w-3xl space-y-2">
+              {versiculosAra.map(v => (
+                <div key={v.id} className="flex gap-3 py-1.5 hover:bg-accent/30 rounded px-2 -mx-2 transition-colors">
+                  <span className="text-xs text-muted-foreground font-mono w-5 text-right flex-shrink-0 mt-0.5">{v.numero}</span>
+                  <div className="flex-1">
+                    <p className="text-sm leading-relaxed">{v.texto}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 italic">ARA — Almeida Revista e Atualizada</p>
+                  </div>
+                </div>
+              ))}
             </div>
           ) : (
             <div className="max-w-2xl space-y-1">

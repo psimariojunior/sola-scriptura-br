@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { Doctrine } from '../../../infrastructure/database/entities/doctrine.entity';
 import { BibleService } from '../../bible/application/bible.service';
 
@@ -100,7 +100,7 @@ export class TheologyService {
     tradicao?: string,
   ): Promise<any[]> {
     if (nomes.length === 0) return [];
-    const doutrinas = await this.doctrineRepo.findByIds(nomes);
+    const doutrinas = await this.doctrineRepo.find({ where: { nome: In(nomes) } });
     return doutrinas.map((d) => ({
       nome: d.nome,
       categoria: d.categoria,

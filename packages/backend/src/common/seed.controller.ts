@@ -123,15 +123,15 @@ export class SeedController {
       const araId = araRows[0].id;
 
       const booksQuery = livro
-        ? `SELECT id, ordem, nome, totalCapitulos FROM bible_books WHERE nome = '${livro}' ORDER BY ordem`
-        : `SELECT id, ordem, nome, totalCapitulos FROM bible_books WHERE ordem BETWEEN ${inicio} AND ${fim} ORDER BY ordem`;
+        ? `SELECT id, ordem, nome, "totalCapitulos" FROM bible_books WHERE nome = $1 ORDER BY ordem`
+        : `SELECT id, ordem, nome, "totalCapitulos" FROM bible_books WHERE ordem BETWEEN $1 AND $2 ORDER BY ordem`;
       
-      const books = await this.ds.query(booksQuery);
+      const books = await this.ds.query(booksQuery, livro ? [livro] : [inicio, fim]);
       let totalVerses = 0;
 
       for (const book of books) {
         console.log(`Seeding ${book.nome} (${book.ordem})...`);
-        for (let c = 1; c <= (book.totalcapitulos || book.totalCapitulos || 1); c++) {
+        for (let c = 1; c <= (book.totalCapitulos || 1); c++) {
           try {
             const prefix = `https://bolls.life/get-chapter/ARA/${book.ordem}/${c}/`;
             const response = await fetch(prefix);

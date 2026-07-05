@@ -8,6 +8,17 @@ dist/
 .next/
 build/
 .gatsby/
+out/
+
+# Old directories
+sola-scriptura-new/
+frontend/
+backend/
+mobile/
+infra/
+shared/
+ai/
+supabase/
 
 # Ambiente
 .env

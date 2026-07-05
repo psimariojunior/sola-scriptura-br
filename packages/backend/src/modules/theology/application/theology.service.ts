@@ -59,7 +59,7 @@ export class TheologyService {
     return {
       doutrinasEnvolvidas,
       categoriasTeologicas: categorias,
-      tradicoes: tradicao ? { [tradicao]: this.tradicoesTeologicas[tradicao] || '' } : this.tradicoesTeologicas,
+      tradicoes: tradicao ? { [tradicao]: (this.tradicoesTeologicas as Record<string, string>)[tradicao] || '' } : this.tradicoesTeologicas,
       referenciasSistematicas: doutrinasBD,
     };
   }

@@ -1,126 +1,126 @@
 import { Controller, Post } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { BibleVersion } from '@infrastructure/database/entities/bible-version.entity';
+import { BibleBook } from '@infrastructure/database/entities/bible-book.entity';
+import { BibleChapter } from '@infrastructure/database/entities/bible-chapter.entity';
 
 @Controller('admin')
 export class SeedController {
-  constructor(@InjectDataSource() private readonly dataSource: DataSource) {}
+  constructor(@InjectDataSource() private readonly ds: DataSource) {}
 
   @Post('seed')
   async seed() {
-    const runner = this.dataSource.createQueryRunner();
-    await runner.connect();
-    await runner.startTransaction();
     try {
-      const existing = await runner.query("SELECT COUNT(*) as c FROM bible_books");
-      if (parseInt(existing[0].c) > 0) {
-        await runner.rollbackTransaction();
-        await runner.release();
-        return { message: "Database already seeded", books: parseInt(existing[0].c) };
+      const existing = await this.ds.getRepository(BibleBook).count();
+      if (existing > 0) {
+        return { message: "Database already seeded", books: existing };
       }
 
-      const versoes = await runner.query(`
-        INSERT INTO bible_versions (id, sigla, nome, idioma, tipo, ano, ativo, criado_em, atualizado_em)
-        VALUES
-          (gen_random_uuid(), 'ARA', 'Almeida Revista e Atualizada', 'portugues', 'protestante', 1993, true, NOW(), NOW()),
-          (gen_random_uuid(), 'NVI', 'Nova Versao Internacional', 'portugues', 'protestante', 2000, true, NOW(), NOW()),
-          (gen_random_uuid(), 'ARC', 'Almeida Revista e Corrigida', 'portugues', 'protestante', 1993, true, NOW(), NOW())
-        RETURNING id, sigla
-      `);
-      const araId = versoes.find((v: any) => v.sigla === 'ARA').id;
+      const versaoRepo = this.ds.getRepository(BibleVersion);
+      const ara = versaoRepo.create({ sigla: 'ARA', nome: 'Almeida Revista e Atualizada', idioma: 'portugues', tipo: 'protestante', ano: 1993, ativo: true });
+      const nvi = versaoRepo.create({ sigla: 'NVI', nome: 'Nova Versao Internacional', idioma: 'portugues', tipo: 'protestante', ano: 2000, ativo: true });
+      const arc = versaoRepo.create({ sigla: 'ARC', nome: 'Almeida Revista e Corrigida', idioma: 'portugues', tipo: 'protestante', ano: 1993, ativo: true });
+      await versaoRepo.save([ara, nvi, arc]);
+
+      const bookRepo = this.ds.getRepository(BibleBook);
+      const chapterRepo = this.ds.getRepository(BibleChapter);
 
       const books = [
-        { n: 'Genesis', c: 50, o: 1, t: 'AT', g: 'Lei', a: 'Moises' },
-        { n: 'Exodo', c: 40, o: 2, t: 'AT', g: 'Lei', a: 'Moises' },
-        { n: 'Levitico', c: 27, o: 3, t: 'AT', g: 'Lei', a: 'Moises' },
-        { n: 'Numeros', c: 36, o: 4, t: 'AT', g: 'Lei', a: 'Moises' },
-        { n: 'Deuteronomio', c: 34, o: 5, t: 'AT', g: 'Lei', a: 'Moises' },
-        { n: 'Josue', c: 24, o: 6, t: 'AT', g: 'Historia', a: 'Josue' },
-        { n: 'Juizes', c: 21, o: 7, t: 'AT', g: 'Historia', a: 'Samuel' },
-        { n: 'Rute', c: 4, o: 8, t: 'AT', g: 'Historia', a: 'Samuel' },
-        { n: '1 Samuel', c: 31, o: 9, t: 'AT', g: 'Historia', a: 'Samuel' },
-        { n: '2 Samuel', c: 24, o: 10, t: 'AT', g: 'Historia', a: 'Samuel' },
-        { n: '1 Reis', c: 22, o: 11, t: 'AT', g: 'Historia', a: 'Jeremias' },
-        { n: '2 Reis', c: 25, o: 12, t: 'AT', g: 'Historia', a: 'Jeremias' },
-        { n: '1 Cronicas', c: 29, o: 13, t: 'AT', g: 'Historia', a: 'Esdras' },
-        { n: '2 Cronicas', c: 36, o: 14, t: 'AT', g: 'Historia', a: 'Esdras' },
-        { n: 'Esdras', c: 10, o: 15, t: 'AT', g: 'Historia', a: 'Esdras' },
-        { n: 'Neemias', c: 13, o: 16, t: 'AT', g: 'Historia', a: 'Neemias' },
-        { n: 'Ester', c: 10, o: 17, t: 'AT', g: 'Historia', a: 'Mardoqueu' },
-        { n: 'Jo', c: 42, o: 18, t: 'AT', g: 'Poesia', a: 'Desconhecido' },
-        { n: 'Salmos', c: 150, o: 19, t: 'AT', g: 'Poesia', a: 'Davi' },
-        { n: 'Proverbios', c: 31, o: 20, t: 'AT', g: 'Poesia', a: 'Salomao' },
-        { n: 'Eclesiastes', c: 12, o: 21, t: 'AT', g: 'Poesia', a: 'Salomao' },
-        { n: 'Canticos', c: 8, o: 22, t: 'AT', g: 'Poesia', a: 'Salomao' },
-        { n: 'Isaias', c: 66, o: 23, t: 'AT', g: 'Profecia', a: 'Isaias' },
-        { n: 'Jeremias', c: 52, o: 24, t: 'AT', g: 'Profecia', a: 'Jeremias' },
-        { n: 'Lamentacoes', c: 5, o: 25, t: 'AT', g: 'Profecia', a: 'Jeremias' },
-        { n: 'Ezequiel', c: 48, o: 26, t: 'AT', g: 'Profecia', a: 'Ezequiel' },
-        { n: 'Daniel', c: 12, o: 27, t: 'AT', g: 'Profecia', a: 'Daniel' },
-        { n: 'Oseias', c: 14, o: 28, t: 'AT', g: 'Profecia', a: 'Oseias' },
-        { n: 'Joel', c: 3, o: 29, t: 'AT', g: 'Profecia', a: 'Joel' },
-        { n: 'Amos', c: 9, o: 30, t: 'AT', g: 'Profecia', a: 'Amos' },
-        { n: 'Obadias', c: 1, o: 31, t: 'AT', g: 'Profecia', a: 'Obadias' },
-        { n: 'Jonas', c: 4, o: 32, t: 'AT', g: 'Profecia', a: 'Jonas' },
-        { n: 'Miqueias', c: 7, o: 33, t: 'AT', g: 'Profecia', a: 'Miqueias' },
-        { n: 'Naum', c: 3, o: 34, t: 'AT', g: 'Profecia', a: 'Naum' },
-        { n: 'Habacuque', c: 3, o: 35, t: 'AT', g: 'Profecia', a: 'Habacuque' },
-        { n: 'Sofonias', c: 3, o: 36, t: 'AT', g: 'Profecia', a: 'Sofonias' },
-        { n: 'Ageu', c: 2, o: 37, t: 'AT', g: 'Profecia', a: 'Ageu' },
-        { n: 'Zacarias', c: 14, o: 38, t: 'AT', g: 'Profecia', a: 'Zacarias' },
-        { n: 'Malaquias', c: 4, o: 39, t: 'AT', g: 'Profecia', a: 'Malaquias' },
-        { n: 'Mateus', c: 28, o: 40, t: 'NT', g: 'Evangelho', a: 'Mateus' },
-        { n: 'Marcos', c: 16, o: 41, t: 'NT', g: 'Evangelho', a: 'Marcos' },
-        { n: 'Lucas', c: 24, o: 42, t: 'NT', g: 'Evangelho', a: 'Lucas' },
-        { n: 'Joao', c: 21, o: 43, t: 'NT', g: 'Evangelho', a: 'Joao' },
-        { n: 'Atos', c: 28, o: 44, t: 'NT', g: 'Historia', a: 'Lucas' },
-        { n: 'Romanos', c: 16, o: 45, t: 'NT', g: 'Epistola', a: 'Paulo' },
-        { n: '1 Corintios', c: 16, o: 46, t: 'NT', g: 'Epistola', a: 'Paulo' },
-        { n: '2 Corintios', c: 13, o: 47, t: 'NT', g: 'Epistola', a: 'Paulo' },
-        { n: 'Galatas', c: 6, o: 48, t: 'NT', g: 'Epistola', a: 'Paulo' },
-        { n: 'Efesios', c: 6, o: 49, t: 'NT', g: 'Epistola', a: 'Paulo' },
-        { n: 'Filipenses', c: 4, o: 50, t: 'NT', g: 'Epistola', a: 'Paulo' },
-        { n: 'Colossenses', c: 4, o: 51, t: 'NT', g: 'Epistola', a: 'Paulo' },
-        { n: '1 Tessalonicenses', c: 5, o: 52, t: 'NT', g: 'Epistola', a: 'Paulo' },
-        { n: '2 Tessalonicenses', c: 3, o: 53, t: 'NT', g: 'Epistola', a: 'Paulo' },
-        { n: '1 Timoteo', c: 6, o: 54, t: 'NT', g: 'Epistola', a: 'Paulo' },
-        { n: '2 Timoteo', c: 4, o: 55, t: 'NT', g: 'Epistola', a: 'Paulo' },
-        { n: 'Tito', c: 3, o: 56, t: 'NT', g: 'Epistola', a: 'Paulo' },
-        { n: 'Filemom', c: 1, o: 57, t: 'NT', g: 'Epistola', a: 'Paulo' },
-        { n: 'Hebreus', c: 13, o: 58, t: 'NT', g: 'Epistola', a: 'Desconhecido' },
-        { n: 'Tiago', c: 5, o: 59, t: 'NT', g: 'Epistola', a: 'Tiago' },
-        { n: '1 Pedro', c: 5, o: 60, t: 'NT', g: 'Epistola', a: 'Pedro' },
-        { n: '2 Pedro', c: 3, o: 61, t: 'NT', g: 'Epistola', a: 'Pedro' },
-        { n: '1 Joao', c: 5, o: 62, t: 'NT', g: 'Epistola', a: 'Joao' },
-        { n: '2 Joao', c: 1, o: 63, t: 'NT', g: 'Epistola', a: 'Joao' },
-        { n: '3 Joao', c: 1, o: 64, t: 'NT', g: 'Epistola', a: 'Joao' },
-        { n: 'Judas', c: 1, o: 65, t: 'NT', g: 'Epistola', a: 'Judas' },
-        { n: 'Apocalipse', c: 22, o: 66, t: 'NT', g: 'Apocalipse', a: 'Joao' },
+        { nome: 'Genesis', capitulos: 50, ordem: 1, t: 'AT', g: 'Lei', a: 'Moises' },
+        { nome: 'Exodo', capitulos: 40, ordem: 2, t: 'AT', g: 'Lei', a: 'Moises' },
+        { nome: 'Levitico', capitulos: 27, ordem: 3, t: 'AT', g: 'Lei', a: 'Moises' },
+        { nome: 'Numeros', capitulos: 36, ordem: 4, t: 'AT', g: 'Lei', a: 'Moises' },
+        { nome: 'Deuteronomio', capitulos: 34, ordem: 5, t: 'AT', g: 'Lei', a: 'Moises' },
+        { nome: 'Josue', capitulos: 24, ordem: 6, t: 'AT', g: 'Historia', a: 'Josue' },
+        { nome: 'Juizes', capitulos: 21, ordem: 7, t: 'AT', g: 'Historia', a: 'Samuel' },
+        { nome: 'Rute', capitulos: 4, ordem: 8, t: 'AT', g: 'Historia', a: 'Samuel' },
+        { nome: '1 Samuel', capitulos: 31, ordem: 9, t: 'AT', g: 'Historia', a: 'Samuel' },
+        { nome: '2 Samuel', capitulos: 24, ordem: 10, t: 'AT', g: 'Historia', a: 'Samuel' },
+        { nome: '1 Reis', capitulos: 22, ordem: 11, t: 'AT', g: 'Historia', a: 'Jeremias' },
+        { nome: '2 Reis', capitulos: 25, ordem: 12, t: 'AT', g: 'Historia', a: 'Jeremias' },
+        { nome: '1 Cronicas', capitulos: 29, ordem: 13, t: 'AT', g: 'Historia', a: 'Esdras' },
+        { nome: '2 Cronicas', capitulos: 36, ordem: 14, t: 'AT', g: 'Historia', a: 'Esdras' },
+        { nome: 'Esdras', capitulos: 10, ordem: 15, t: 'AT', g: 'Historia', a: 'Esdras' },
+        { nome: 'Neemias', capitulos: 13, ordem: 16, t: 'AT', g: 'Historia', a: 'Neemias' },
+        { nome: 'Ester', capitulos: 10, ordem: 17, t: 'AT', g: 'Historia', a: 'Mardoqueu' },
+        { nome: 'Jo', capitulos: 42, ordem: 18, t: 'AT', g: 'Poesia', a: 'Desconhecido' },
+        { nome: 'Salmos', capitulos: 150, ordem: 19, t: 'AT', g: 'Poesia', a: 'Davi' },
+        { nome: 'Proverbios', capitulos: 31, ordem: 20, t: 'AT', g: 'Poesia', a: 'Salomao' },
+        { nome: 'Eclesiastes', capitulos: 12, ordem: 21, t: 'AT', g: 'Poesia', a: 'Salomao' },
+        { nome: 'Canticos', capitulos: 8, ordem: 22, t: 'AT', g: 'Poesia', a: 'Salomao' },
+        { nome: 'Isaias', capitulos: 66, ordem: 23, t: 'AT', g: 'Profecia', a: 'Isaias' },
+        { nome: 'Jeremias', capitulos: 52, ordem: 24, t: 'AT', g: 'Profecia', a: 'Jeremias' },
+        { nome: 'Lamentacoes', capitulos: 5, ordem: 25, t: 'AT', g: 'Profecia', a: 'Jeremias' },
+        { nome: 'Ezequiel', capitulos: 48, ordem: 26, t: 'AT', g: 'Profecia', a: 'Ezequiel' },
+        { nome: 'Daniel', capitulos: 12, ordem: 27, t: 'AT', g: 'Profecia', a: 'Daniel' },
+        { nome: 'Oseias', capitulos: 14, ordem: 28, t: 'AT', g: 'Profecia', a: 'Oseias' },
+        { nome: 'Joel', capitulos: 3, ordem: 29, t: 'AT', g: 'Profecia', a: 'Joel' },
+        { nome: 'Amos', capitulos: 9, ordem: 30, t: 'AT', g: 'Profecia', a: 'Amos' },
+        { nome: 'Obadias', capitulos: 1, ordem: 31, t: 'AT', g: 'Profecia', a: 'Obadias' },
+        { nome: 'Jonas', capitulos: 4, ordem: 32, t: 'AT', g: 'Profecia', a: 'Jonas' },
+        { nome: 'Miqueias', capitulos: 7, ordem: 33, t: 'AT', g: 'Profecia', a: 'Miqueias' },
+        { nome: 'Naum', capitulos: 3, ordem: 34, t: 'AT', g: 'Profecia', a: 'Naum' },
+        { nome: 'Habacuque', capitulos: 3, ordem: 35, t: 'AT', g: 'Profecia', a: 'Habacuque' },
+        { nome: 'Sofonias', capitulos: 3, ordem: 36, t: 'AT', g: 'Profecia', a: 'Sofonias' },
+        { nome: 'Ageu', capitulos: 2, ordem: 37, t: 'AT', g: 'Profecia', a: 'Ageu' },
+        { nome: 'Zacarias', capitulos: 14, ordem: 38, t: 'AT', g: 'Profecia', a: 'Zacarias' },
+        { nome: 'Malaquias', capitulos: 4, ordem: 39, t: 'AT', g: 'Profecia', a: 'Malaquias' },
+        { nome: 'Mateus', capitulos: 28, ordem: 40, t: 'NT', g: 'Evangelho', a: 'Mateus' },
+        { nome: 'Marcos', capitulos: 16, ordem: 41, t: 'NT', g: 'Evangelho', a: 'Marcos' },
+        { nome: 'Lucas', capitulos: 24, ordem: 42, t: 'NT', g: 'Evangelho', a: 'Lucas' },
+        { nome: 'Joao', capitulos: 21, ordem: 43, t: 'NT', g: 'Evangelho', a: 'Joao' },
+        { nome: 'Atos', capitulos: 28, ordem: 44, t: 'NT', g: 'Historia', a: 'Lucas' },
+        { nome: 'Romanos', capitulos: 16, ordem: 45, t: 'NT', g: 'Epistola', a: 'Paulo' },
+        { nome: '1 Corintios', capitulos: 16, ordem: 46, t: 'NT', g: 'Epistola', a: 'Paulo' },
+        { nome: '2 Corintios', capitulos: 13, ordem: 47, t: 'NT', g: 'Epistola', a: 'Paulo' },
+        { nome: 'Galatas', capitulos: 6, ordem: 48, t: 'NT', g: 'Epistola', a: 'Paulo' },
+        { nome: 'Efesios', capitulos: 6, ordem: 49, t: 'NT', g: 'Epistola', a: 'Paulo' },
+        { nome: 'Filipenses', capitulos: 4, ordem: 50, t: 'NT', g: 'Epistola', a: 'Paulo' },
+        { nome: 'Colossenses', capitulos: 4, ordem: 51, t: 'NT', g: 'Epistola', a: 'Paulo' },
+        { nome: '1 Tessalonicenses', capitulos: 5, ordem: 52, t: 'NT', g: 'Epistola', a: 'Paulo' },
+        { nome: '2 Tessalonicenses', capitulos: 3, ordem: 53, t: 'NT', g: 'Epistola', a: 'Paulo' },
+        { nome: '1 Timoteo', capitulos: 6, ordem: 54, t: 'NT', g: 'Epistola', a: 'Paulo' },
+        { nome: '2 Timoteo', capitulos: 4, ordem: 55, t: 'NT', g: 'Epistola', a: 'Paulo' },
+        { nome: 'Tito', capitulos: 3, ordem: 56, t: 'NT', g: 'Epistola', a: 'Paulo' },
+        { nome: 'Filemom', capitulos: 1, ordem: 57, t: 'NT', g: 'Epistola', a: 'Paulo' },
+        { nome: 'Hebreus', capitulos: 13, ordem: 58, t: 'NT', g: 'Epistola', a: 'Desconhecido' },
+        { nome: 'Tiago', capitulos: 5, ordem: 59, t: 'NT', g: 'Epistola', a: 'Tiago' },
+        { nome: '1 Pedro', capitulos: 5, ordem: 60, t: 'NT', g: 'Epistola', a: 'Pedro' },
+        { nome: '2 Pedro', capitulos: 3, ordem: 61, t: 'NT', g: 'Epistola', a: 'Pedro' },
+        { nome: '1 Joao', capitulos: 5, ordem: 62, t: 'NT', g: 'Epistola', a: 'Joao' },
+        { nome: '2 Joao', capitulos: 1, ordem: 63, t: 'NT', g: 'Epistola', a: 'Joao' },
+        { nome: '3 Joao', capitulos: 1, ordem: 64, t: 'NT', g: 'Epistola', a: 'Joao' },
+        { nome: 'Judas', capitulos: 1, ordem: 65, t: 'NT', g: 'Epistola', a: 'Judas' },
+        { nome: 'Apocalipse', capitulos: 22, ordem: 66, t: 'NT', g: 'Apocalipse', a: 'Joao' },
       ];
 
+      let count = 0;
       for (const b of books) {
-        const bookRes = await runner.query(
-          `INSERT INTO bible_books (id, versao_id, ordem, nome, testamento, genero, autor, totalCapitulos, criado_em, atualizado_em)
-           VALUES (gen_random_uuid(), $1, $2, $3, $4, $5, $6, $7, NOW(), NOW()) RETURNING id`,
-          [araId, b.o, b.n, b.t, b.g, b.a, b.c]
-        );
-        const bookId = bookRes[0].id;
-        for (let ch = 1; ch <= b.c; ch++) {
-          await runner.query(
-            `INSERT INTO bible_chapters (id, livro_id, numero, criado_em, atualizado_em)
-             VALUES (gen_random_uuid(), $1, $2, NOW(), NOW())`,
-            [bookId, ch]
-          );
+        const livro = bookRepo.create({
+          versaoId: ara.id,
+          ordem: b.ordem,
+          nome: b.nome,
+          testamento: b.t,
+          genero: b.g,
+          autor: b.a,
+          totalCapitulos: b.capitulos,
+        });
+        const saved = await bookRepo.save(livro);
+        for (let c = 1; c <= b.capitulos; c++) {
+          const capitulo = chapterRepo.create({
+            livroId: saved.id,
+            numero: c,
+            totalVersiculos: 1,
+          });
+          await chapterRepo.save(capitulo);
         }
+        count++;
       }
 
-      await runner.commitTransaction();
-      await runner.release();
-      return { message: "Database seeded successfully", books: books.length };
-    } catch (error) {
-      await runner.rollbackTransaction();
-      await runner.release();
-      return { error: String(error) };
+      return { message: `Database seeded: ${count} books with chapters` };
+    } catch (error: any) {
+      return { error: error.message || String(error) };
     }
   }
 }

@@ -1,0 +1,96 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-616e068a201ad621.js",
+      "static/chunks/fd9d1056-357a9aa7cf7b0906.js",
+      "static/chunks/117-2da535c0e578b6a9.js",
+      "static/chunks/main-app-f90007e2fb38341d.js",
+      "static/chunks/app/_not-found/page-a8b3782ae8a0d8fd.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-616e068a201ad621.js",
+      "static/chunks/fd9d1056-357a9aa7cf7b0906.js",
+      "static/chunks/117-2da535c0e578b6a9.js",
+      "static/chunks/main-app-f90007e2fb38341d.js",
+      "static/css/d83fa467424a9dc8.css",
+      "static/chunks/app/layout-99fa3bc325ba3518.js"
+    ],
+    "/exegese/page": [
+      "static/chunks/webpack-616e068a201ad621.js",
+      "static/chunks/fd9d1056-357a9aa7cf7b0906.js",
+      "static/chunks/117-2da535c0e578b6a9.js",
+      "static/chunks/main-app-f90007e2fb38341d.js",
+      "static/chunks/359-1fa4375cc338f3ec.js",
+      "static/chunks/app/exegese/page-9e54c7bf8a30aed1.js"
+    ],
+    "/idiomas/page": [
+      "static/chunks/webpack-616e068a201ad621.js",
+      "static/chunks/fd9d1056-357a9aa7cf7b0906.js",
+      "static/chunks/117-2da535c0e578b6a9.js",
+      "static/chunks/main-app-f90007e2fb38341d.js",
+      "static/chunks/359-1fa4375cc338f3ec.js",
+      "static/chunks/551-b7f11e458b3e3553.js",
+      "static/chunks/app/idiomas/page-ccb4378aaf7b3824.js"
+    ],
+    "/biblia/page": [
+      "static/chunks/webpack-616e068a201ad621.js",
+      "static/chunks/fd9d1056-357a9aa7cf7b0906.js",
+      "static/chunks/117-2da535c0e578b6a9.js",
+      "static/chunks/main-app-f90007e2fb38341d.js",
+      "static/chunks/359-1fa4375cc338f3ec.js",
+      "static/chunks/551-b7f11e458b3e3553.js",
+      "static/chunks/app/biblia/page-0ae1ea2ac5fac735.js"
+    ],
+    "/historia/page": [
+      "static/chunks/webpack-616e068a201ad621.js",
+      "static/chunks/fd9d1056-357a9aa7cf7b0906.js",
+      "static/chunks/117-2da535c0e578b6a9.js",
+      "static/chunks/main-app-f90007e2fb38341d.js",
+      "static/chunks/359-1fa4375cc338f3ec.js",
+      "static/chunks/app/historia/page-d9c8ec6f05cec86a.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-616e068a201ad621.js",
+      "static/chunks/fd9d1056-357a9aa7cf7b0906.js",
+      "static/chunks/117-2da535c0e578b6a9.js",
+      "static/chunks/main-app-f90007e2fb38341d.js",
+      "static/chunks/359-1fa4375cc338f3ec.js",
+      "static/chunks/app/page-ca4e7d5d339074df.js"
+    ],
+    "/personagens/page": [
+      "static/chunks/webpack-616e068a201ad621.js",
+      "static/chunks/fd9d1056-357a9aa7cf7b0906.js",
+      "static/chunks/117-2da535c0e578b6a9.js",
+      "static/chunks/main-app-f90007e2fb38341d.js",
+      "static/chunks/359-1fa4375cc338f3ec.js",
+      "static/chunks/551-b7f11e458b3e3553.js",
+      "static/chunks/app/personagens/page-9d55fc117083589e.js"
+    ],
+    "/teologia/page": [
+      "static/chunks/webpack-616e068a201ad621.js",
+      "static/chunks/fd9d1056-357a9aa7cf7b0906.js",
+      "static/chunks/117-2da535c0e578b6a9.js",
+      "static/chunks/main-app-f90007e2fb38341d.js",
+      "static/chunks/359-1fa4375cc338f3ec.js",
+      "static/chunks/551-b7f11e458b3e3553.js",
+      "static/chunks/app/teologia/page-febc5c92a3cb4c99.js"
+    ],
+    "/cronologia/page": [
+      "static/chunks/webpack-616e068a201ad621.js",
+      "static/chunks/fd9d1056-357a9aa7cf7b0906.js",
+      "static/chunks/117-2da535c0e578b6a9.js",
+      "static/chunks/main-app-f90007e2fb38341d.js",
+      "static/chunks/359-1fa4375cc338f3ec.js",
+      "static/chunks/551-b7f11e458b3e3553.js",
+      "static/chunks/app/cronologia/page-cda84eb507d2575f.js"
+    ],
+    "/ia/page": [
+      "static/chunks/webpack-616e068a201ad621.js",
+      "static/chunks/fd9d1056-357a9aa7cf7b0906.js",
+      "static/chunks/117-2da535c0e578b6a9.js",
+      "static/chunks/main-app-f90007e2fb38341d.js",
+      "static/chunks/359-1fa4375cc338f3ec.js",
+      "static/chunks/app/ia/page-0c4eb60aef34443f.js"
+    ]
+  }
+}

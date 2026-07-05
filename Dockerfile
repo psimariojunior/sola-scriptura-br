@@ -6,10 +6,9 @@ COPY packages/backend/package*.json packages/backend/
 RUN cd packages/backend && npm install --legacy-peer-deps
 
 COPY packages/backend/tsconfig.json packages/backend/
-COPY packages/backend/src packages/backend/src
+COPY packages/backend/src/ packages/backend/src/
 
-RUN cd packages/backend && npm run build
+RUN cd packages/backend && npx tsc -p tsconfig.json
 
-WORKDIR /app
 EXPOSE 4000
 CMD ["node", "packages/backend/dist/main.js"]

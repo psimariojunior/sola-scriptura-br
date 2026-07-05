@@ -1,9 +1,10 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { BibleVersion } from '@infrastructure/database/entities/bible-version.entity';
 import { BibleBook } from '@infrastructure/database/entities/bible-book.entity';
 import { BibleChapter } from '@infrastructure/database/entities/bible-chapter.entity';
+import { BibleVerse } from '@infrastructure/database/entities/bible-verse.entity';
 
 @Controller('admin')
 export class SeedController {
@@ -119,6 +120,64 @@ export class SeedController {
       }
 
       return { message: `Database seeded: ${count} books with chapters` };
+    } catch (error: any) {
+      return { error: error.message || String(error) };
+    }
+  }
+
+  @Post('seed-verses')
+  async seedVerses(@Body() body: { livro?: string; inicio?: number; fim?: number }) {
+    const { livro, inicio = 1, fim = 66 } = body;
+    try {
+      const bookRepo = this.ds.getRepository(BibleBook);
+      const chapterRepo = this.ds.getRepository(BibleChapter);
+      const verseRepo = this.ds.getRepository(BibleVerse);
+      const versaoRepo = this.ds.getRepository(BibleVersion);
+      const ara = await versaoRepo.findOne({ where: { sigla: 'ARA' } });
+      if (!ara) return { error: 'Versao ARA nao encontrada' };
+
+      const livros = await bookRepo.find({
+        where: livro ? { nome: livro } : {},
+        order: { ordem: 'ASC' },
+      });
+
+      let total = 0;
+      for (const l of livros.slice(inicio - 1, fim)) {
+        console.log(`Seed: ${l.nome} (${l.ordem})...`);
+        for (let c = 1; c <= (l.totalCapitulos || 1); c++) {
+          try {
+            const bollsUrl = `https://bolls.life/get-chapter/ARA/${l.ordem}/${c}/`;
+            const res = await fetch(bollsUrl);
+            if (!res.ok) continue;
+            const verses = await res.json();
+            if (!Array.isArray(verses)) continue;
+
+            const capitulo = await chapterRepo.findOne({
+              where: { livroId: l.id, numero: c },
+            });
+            if (!capitulo) continue;
+
+            for (const v of verses) {
+              const vNum = typeof v === 'object' ? (v.verse || v.v) : 0;
+              const vText = typeof v === 'object' ? (v.text || '') : String(v);
+              if (!vNum || !vText) continue;
+              await verseRepo.upsert(
+                {
+                  versaoId: ara.id,
+                  livroId: l.id,
+                  capituloId: capitulo.id,
+                  numero: vNum,
+                  texto: vText,
+                },
+                { conflictPaths: ['versaoId', 'livroId', 'capituloId', 'numero'] },
+              );
+            }
+            total += verses.length;
+          } catch { /* skip chapter errors */ }
+        }
+      }
+
+      return { message: `Versiculos inseridos: ${total}`, total };
     } catch (error: any) {
       return { error: error.message || String(error) };
     }

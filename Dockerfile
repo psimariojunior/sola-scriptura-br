@@ -11,4 +11,4 @@ COPY packages/backend/src/ src/
 RUN ./node_modules/.bin/tsc -p tsconfig.json
 
 EXPOSE 4000
-CMD ["node", "dist/main.js"]
+CMD ["node", "-r", "tsconfig-paths/register", "dist/main.js"]

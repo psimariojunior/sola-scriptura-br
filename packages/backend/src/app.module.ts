@@ -26,6 +26,7 @@ import { AtlasModule } from '@modules/atlas/atlas.module';
 import { MapModule } from '@modules/map/map.module';
 import { PersonModule } from '@modules/person/person.module';
 import { UserModule } from '@modules/user/user.module';
+import { SeedController } from '@common/seed.controller';
 
 @Module({
   imports: [
@@ -63,5 +64,6 @@ import { UserModule } from '@modules/user/user.module';
     PersonModule,
     UserModule,
   ],
+  controllers: [SeedController],
 })
 export class AppModule {}

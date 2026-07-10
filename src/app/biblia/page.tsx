@@ -20,6 +20,9 @@ import { diffWords } from '@/lib/diff';
 import { exportChapterPdf } from '@/lib/exportPdf';
 import ScrollReveal from '@/components/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
+import AudioPlayer from '@/components/AudioPlayer';
+import { getCrossReferences } from '@/data/crossReferences';
+import Link from 'next/link';
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
@@ -102,6 +105,8 @@ export default function BibliaPage() {
   const [quickSearchQuery, setQuickSearchQuery] = useState('');
   const [quickSearchResults, setQuickSearchResults] = useState<Array<{livro: string, nome: string, cap: number, versiculo: number, texto: string}>>([]);
   const [chapterDirection, setChapterDirection] = useState<'next' | 'prev'>('next');
+  const [showAudio, setShowAudio] = useState(false);
+  const [selectedCrossRef, setSelectedCrossRef] = useState<{verse: number; refs: string[]} | null>(null);
   const mainRef = useRef<HTMLDivElement>(null);
   const { isFavorito, refresh } = useEstudos();
 
@@ -432,7 +437,32 @@ export default function BibliaPage() {
                                       className="group flex items-start gap-2 py-1 px-2 -mx-2 rounded-lg verse-hover transition-all duration-300"
                                     >
                                       <sup className="text-[var(--primary)] font-bold text-xs mt-1 select-none min-w-[20px] text-right">{v.numero}</sup>
-                                      <p className="flex-1 font-serif-body leading-relaxed" style={{ fontSize: `${fontSize}px` }}>{v.texto}</p>
+                                      <div className="flex-1">
+                                        <p className="font-serif-body leading-relaxed" style={{ fontSize: `${fontSize}px` }}>{v.texto}</p>
+                                        {(() => {
+                                          const refs = getCrossReferences(livro.abreviacao, capituloIdx + 1, v.numero);
+                                          if (refs.length === 0) return null;
+                                          return (
+                                            <div className="mt-1 flex items-center gap-1 flex-wrap">
+                                              <span className="text-[10px] text-[var(--muted-fg)]">🔗</span>
+                                              {refs.slice(0, 3).map(ref => {
+                                                const parts = ref.split(':');
+                                                const book = parts[0];
+                                                const cap = parts[1];
+                                                return (
+                                                  <Link key={ref} href={`/biblia?livro=${book}&capitulo=${cap}`}
+                                                    className="text-[10px] text-[var(--primary)] hover:underline opacity-60 hover:opacity-100 transition-opacity">
+                                                    {ref}
+                                                  </Link>
+                                                );
+                                              })}
+                                              {refs.length > 3 && (
+                                                <span className="text-[10px] text-[var(--muted-fg)]">+{refs.length - 3}</span>
+                                              )}
+                                            </div>
+                                          );
+                                        })()}
+                                      </div>
                                       <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0">
                                         <motion.button onClick={() => toggleFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, v.texto)}
                                           whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
@@ -562,6 +592,17 @@ export default function BibliaPage() {
                             className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-30 hover:bg-[var(--bg)] transition-all duration-300">
                             Próximo <ChevronRight className="w-4 h-4" />
                           </motion.button>
+                        </div>
+                      )}
+
+                      {/* Audio Player */}
+                      {!readingMode && data[0]?.versiculos && (
+                        <div className="mt-6">
+                          <AudioPlayer
+                            verses={data[0].versiculos}
+                            bookName={livro.nome}
+                            chapter={capituloIdx + 1}
+                          />
                         </div>
                       )}
                     </motion.div>

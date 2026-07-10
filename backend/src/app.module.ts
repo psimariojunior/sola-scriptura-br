@@ -3,7 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 
 import { BibliaModule } from './modules/biblia/biblia.module';
 import { ExegeseModule } from './modules/exegese/exegese.module';
@@ -41,8 +42,9 @@ import { SaudeController } from './modules/saude.controller';
             type: 'postgres',
             url: databaseUrl,
             entities: [__dirname + '/**/*.entity{.ts,.js}'],
-            synchronize: true,
+            synchronize: config.get('NODE_ENV') !== 'production',
             ssl: { rejectUnauthorized: false },
+            logging: config.get('NODE_ENV') !== 'production',
           };
         }
         return {
@@ -53,13 +55,19 @@ import { SaudeController } from './modules/saude.controller';
           password: config.get('DB_PASSWORD') || config.get('PGPASSWORD') || 'sola_scriptura',
           database: config.get('DB_NAME') || config.get('PGDATABASE') || 'sola_scriptura',
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
-          synchronize: true,
+          synchronize: config.get('NODE_ENV') !== 'production',
           ssl: config.get('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
+          logging: config.get('NODE_ENV') !== 'production',
         };
       },
     }),
     EventEmitterModule.forRoot({ wildcard: true }),
-    ThrottlerModule.forRoot([{ ttl: 60000, limit: 100 }]),
+    ThrottlerModule.forRoot([
+      {
+        ttl: parseInt(process.env.THROTTLE_TTL || '60000'),
+        limit: parseInt(process.env.THROTTLE_LIMIT || '100'),
+      },
+    ]),
     BibliaModule,
     ExegeseModule,
     HermeneuticaModule,
@@ -84,6 +92,7 @@ import { SaudeController } from './modules/saude.controller';
   ],
   controllers: [SaudeController],
   providers: [
+    { provide: APP_GUARD, useClass: JwtAuthGuard },
     { provide: APP_GUARD, useClass: ThrottlerGuard },
   ],
 })

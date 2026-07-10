@@ -1,7 +1,5 @@
 {
   "framework": "nextjs",
-  "buildCommand": "cd sola-scriptura && npm run build",
-  "outputDirectory": "sola-scriptura/.next",
-  "installCommand": "cd sola-scriptura && npm install",
-  "devCommand": "cd sola-scriptura && npm run dev"
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next"
 }

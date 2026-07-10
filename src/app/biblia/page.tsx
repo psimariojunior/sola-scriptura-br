@@ -1,114 +1,669 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { livros } from '@/data/biblia';
-import { BookOpen, ChevronRight, ChevronLeft } from 'lucide-react';
+import { TODOS_LIVROS, traducoes, carregarTraducao, ABREV_PARA_MIDVASH } from '@/data/biblia';
+import type { CapituloComparado } from '@/data/biblia';
+import {
+  BookOpen, ChevronRight, ChevronLeft, Columns2, LayoutList, AlignJustify,
+  Menu, Search, Minus, Plus, X, Heart, StickyNote, Share2, Copy, Check,
+  History, Settings, Eye, EyeOff, Download, BookMarked
+} from 'lucide-react';
+import { toggleFavorito, obterMarca, setAnotacao as salvarAnotacao } from '@/lib/estudos';
+import { useEstudos } from '@/components/EstudosProvider';
+import PainelStrong from '@/components/PainelStrong';
+import PainelNotas from '@/components/PainelNotas';
+import PainelComentarios from '@/components/PainelComentarios';
+import { temComentario } from '@/data/comentarios';
+import { diffWords } from '@/lib/diff';
+import { exportChapterPdf } from '@/lib/exportPdf';
+import ScrollReveal from '@/components/ScrollReveal';
+
+type ViewMode = 'single' | 'parallel' | 'comparison';
+
+const TRAD_IDS = ['arc', 'nvi', 'ara', 'acf', 'aa', 'ntlh', 'kjv', 'web'] as const;
+const TRADS_LOCAIS = new Set(['arc', 'kjv', 'web']);
+const MIDVASH_API = 'https://api.midvash.com/v1';
+const cacheApi = new Map<string, string[]>();
+
+async function fetchFromMidvash(trad: string, livro: string, cap: number): Promise<string[]> {
+  const cacheKey = `${trad}:${livro}:${cap}`;
+  if (cacheApi.has(cacheKey)) return cacheApi.get(cacheKey)!;
+
+  const slug = ABREV_PARA_MIDVASH[livro];
+  if (!slug) return [];
+
+  const res = await fetch(`${MIDVASH_API}/${trad}/${slug}/${cap}`, { signal: AbortSignal.timeout(12000) });
+  if (!res.ok) return [];
+
+  const json = await res.json();
+  const verses: string[] = [];
+  const raw = json?.data?.verses;
+  if (Array.isArray(raw)) {
+    for (const v of raw) {
+      const text = typeof v === 'string' ? v : v?.text;
+      if (text?.trim()) verses.push(text.trim());
+    }
+  }
+  cacheApi.set(cacheKey, verses);
+  return verses;
+}
+
+async function loadTranslation(trad: string, livro: string, cap: number): Promise<CapituloComparado | null> {
+  try {
+    if (TRADS_LOCAIS.has(trad)) {
+      const data = await carregarTraducao(trad);
+      const arr = data[livro]?.[cap];
+      if (!arr || arr.length === 0) return null;
+      return { traducao: trad, versiculos: arr.map((t, i) => ({ numero: i + 1, texto: t })) };
+    } else {
+      const verses = await fetchFromMidvash(trad, livro, cap);
+      if (verses.length === 0) return null;
+      return { traducao: trad, versiculos: verses.map((t, i) => ({ numero: i + 1, texto: t })) };
+    }
+  } catch {
+    return null;
+  }
+}
+
+async function carregarMulti(livro: string, cap: number, trads: string[]): Promise<CapituloComparado[]> {
+  const promises = trads.map(t => loadTranslation(t, livro, cap));
+  const results = await Promise.all(promises);
+  return results.filter((r): r is CapituloComparado => r !== null);
+}
+
+const labelMap: Record<string, string> = {
+  arc: 'ARC', nvi: 'NVI', ara: 'ARA', acf: 'ACF', aa: 'AA', ntlh: 'NTLH', kjv: 'KJV', web: 'WEB',
+};
+
+const nomeMap: Record<string, string> = {
+  arc: 'Almeida Revista e Corrigida', nvi: 'Nova Versão Internacional',
+  ara: 'Almeida Revista e Atualizada', acf: 'Almeida Corrigida Fiel',
+  aa: 'Almeida Atualizada', ntlh: 'Nova Tradução na Linguagem de Hoje',
+  kjv: 'King James Version', web: 'World English Bible',
+};
+
+const tradBadgeColors: Record<string, string> = {
+  arc: 'bg-blue-500', nvi: 'bg-green-500', ara: 'bg-purple-500', acf: 'bg-rose-500',
+  aa: 'bg-cyan-500', ntlh: 'bg-orange-500', kjv: 'bg-amber-500', web: 'bg-emerald-500',
+};
+
+const tradTextColors: Record<string, string> = {
+  arc: 'text-blue-600 dark:text-blue-400', nvi: 'text-green-600 dark:text-green-400',
+  ara: 'text-purple-600 dark:text-purple-400', acf: 'text-rose-600 dark:text-rose-400',
+  aa: 'text-cyan-600 dark:text-cyan-400', ntlh: 'text-orange-600 dark:text-orange-400',
+  kjv: 'text-amber-600 dark:text-amber-400', web: 'text-emerald-600 dark:text-emerald-400',
+};
 
 export default function BibliaPage() {
   const [livroIdx, setLivroIdx] = useState(0);
   const [capituloIdx, setCapituloIdx] = useState(0);
+  const [selectedTrads, setSelectedTrads] = useState<string[]>(['arc', 'nvi']);
+  const [viewMode, setViewMode] = useState<ViewMode>('single');
+  const [data, setData] = useState<CapituloComparado[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [fontSize, setFontSize] = useState(18);
+  const [chapterGridOpen, setChapterGridOpen] = useState(false);
+  const [studyPanel, setStudyPanel] = useState<'notas' | 'strong' | 'anotacoes' | 'historico' | 'comentarios' | null>(null);
+  const [anotandoVersiculo, setAnotandoVersiculo] = useState<string | null>(null);
+  const [anotacaoTexto, setAnotacaoTexto] = useState('');
+  const [showSettings, setShowSettings] = useState(false);
+  const [readingHistory, setReadingHistory] = useState<Array<{livro: string, capitulo: number, data: Date}>>([]);
+  const [copiedVerse, setCopiedVerse] = useState<string | null>(null);
+  const [readingMode, setReadingMode] = useState(false);
+  const [showDiff, setShowDiff] = useState(true);
+  const [highlightedVerse, setHighlightedVerse] = useState<number | null>(null);
+  const [comentarioVersiculo, setComentarioVersiculo] = useState<number | null>(null);
+  const [quickSearchOpen, setQuickSearchOpen] = useState(false);
+  const [quickSearchQuery, setQuickSearchQuery] = useState('');
+  const [quickSearchResults, setQuickSearchResults] = useState<Array<{livro: string, nome: string, cap: number, versiculo: number, texto: string}>>([]);
+  const mainRef = useRef<HTMLDivElement>(null);
+  const { isFavorito, refresh } = useEstudos();
 
-  const livro = livros[livroIdx];
-  const capitulo = livro?.capitulos[capituloIdx];
+  const livro = TODOS_LIVROS[livroIdx];
+
+  const loadChapter = useCallback(async () => {
+    setLoading(true);
+    const result = await carregarMulti(livro.abreviacao, capituloIdx + 1, selectedTrads);
+    setData(result);
+    setLoading(false);
+    mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+    setReadingHistory(prev => {
+      const newHistory = [{ livro: livro.abreviacao, capitulo: capituloIdx + 1, data: new Date() }, ...prev];
+      return newHistory.slice(0, 20);
+    });
+  }, [livro.abreviacao, capituloIdx, selectedTrads]);
+
+  useEffect(() => { loadChapter(); }, [loadChapter]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const livroParam = params.get('livro');
+    const capituloParam = params.get('capitulo');
+    const tradsParam = params.get('trads');
+    if (livroParam) {
+      const idx = TODOS_LIVROS.findIndex((l) => l.abreviacao === livroParam);
+      if (idx >= 0) { setLivroIdx(idx); if (capituloParam) setCapituloIdx(Number(capituloParam) - 1); }
+    }
+    if (tradsParam) {
+      const t = tradsParam.split(',').filter((x) => (TRAD_IDS as readonly string[]).includes(x));
+      if (t.length > 0) setSelectedTrads(t);
+    }
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    params.set('livro', livro.abreviacao);
+    params.set('capitulo', String(capituloIdx + 1));
+    params.set('trads', selectedTrads.join(','));
+    window.history.replaceState(null, '', `?${params.toString()}`);
+  }, [livro.abreviacao, capituloIdx, selectedTrads]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); setQuickSearchOpen(p => !p); return; }
+      if (quickSearchOpen && e.key === 'Escape') { setQuickSearchOpen(false); return; }
+      if ((e.target as HTMLElement).tagName === 'INPUT' || (e.target as HTMLElement).tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft' && capituloIdx > 0) { e.preventDefault(); setCapituloIdx(p => Math.max(0, p - 1)); }
+      else if (e.key === 'ArrowRight' && livro && capituloIdx < livro.totalCapitulos - 1) { e.preventDefault(); setCapituloIdx(p => p + 1); }
+      else if (e.key === 'Escape') { setSidebarOpen(false); setMobileMenu(false); setChapterGridOpen(false); }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [capituloIdx, livro, quickSearchOpen]);
+
+  const toggleTrad = (id: string) => {
+    setSelectedTrads(prev => prev.includes(id) ? prev.filter(t => t !== id) : [...prev, id]);
+  };
+
+  const handleQuickSearch = useCallback(async (q: string) => {
+    setQuickSearchQuery(q);
+    if (q.length < 2) { setQuickSearchResults([]); return; }
+    const results: Array<{livro: string, nome: string, cap: number, versiculo: number, texto: string}> = [];
+    const d = await carregarTraducao('arc');
+    const query = q.toLowerCase();
+    for (const l of TODOS_LIVROS) {
+      if (results.length >= 20) break;
+      const bookData = d[l.abreviacao];
+      if (!bookData) continue;
+      for (const cap of Object.keys(bookData)) {
+        if (results.length >= 20) break;
+        const versos = bookData[Number(cap)];
+        if (!versos) continue;
+        for (let i = 0; i < versos.length; i++) {
+          if (versos[i].toLowerCase().includes(query)) {
+            results.push({ livro: l.abreviacao, nome: l.nome, cap: Number(cap), versiculo: i + 1, texto: versos[i] });
+            break;
+          }
+        }
+      }
+    }
+    setQuickSearchResults(results);
+  }, []);
+
+  const goToQuickResult = (r: { livro: string; cap: number }) => {
+    const idx = TODOS_LIVROS.findIndex(l => l.abreviacao === r.livro);
+    if (idx >= 0) { setLivroIdx(idx); setCapituloIdx(r.cap - 1); setQuickSearchOpen(false); setQuickSearchQuery(''); }
+  };
+
+  const livrosFiltrados = useMemo(() => searchQuery
+    ? TODOS_LIVROS.filter(l => l.nome.toLowerCase().includes(searchQuery.toLowerCase()) || l.abreviacao.toLowerCase().includes(searchQuery.toLowerCase()))
+    : TODOS_LIVROS, [searchQuery]);
+
+  const temDados = data.length > 0 && data.some(d => d.versiculos.length > 0);
+  const maxVersiculos = temDados ? Math.max(...data.map(d => d.versiculos.length)) : 0;
+
+  const goToBook = (idx: number) => { setLivroIdx(idx); setCapituloIdx(0); setMobileMenu(false); setChapterGridOpen(false); };
+
+  const copyVerse = async (text: string, reference: string) => {
+    await navigator.clipboard.writeText(`${reference}\n${text}`);
+    setCopiedVerse(reference);
+    setTimeout(() => setCopiedVerse(null), 2000);
+  };
+
+  const shareVerse = async (text: string, reference: string) => {
+    if (navigator.share) await navigator.share({ title: reference, text: `${reference}\n\n${text}` });
+  };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[var(--bg)]">
       <Header />
-      <main className="pt-20 pb-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          {/* Title */}
-          <div className="mb-8">
-            <h1 className="font-display text-4xl md:text-5xl font-light mb-2">Bíblia Sagrada</h1>
-            <p className="text-muted-foreground">Leitura multi-tradução com navegação completa</p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
-            {/* Sidebar - Livros */}
-            <aside className="sola-card p-4 h-fit lg:sticky lg:top-20 max-h-[calc(100vh-6rem)] overflow-y-auto">
-              <h2 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground mb-4 px-2">Livros</h2>
-              <div className="space-y-1">
-                {livros.map((l, i) => (
-                  <button
-                    key={l.abbreviacao}
-                    onClick={() => { setLivroIdx(i); setCapituloIdx(0); }}
-                    className={`w-full text-left px-3 py-2 text-sm rounded-sm transition-colors flex items-center gap-2 ${
-                      i === livroIdx
-                        ? 'bg-primary text-primary-foreground'
-                        : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                    }`}
-                  >
-                    <BookOpen className="w-3.5 h-3.5" strokeWidth={1.5} />
-                    {l.nome}
-                    <span className="ml-auto text-xs opacity-60">{l.totalCapitulos} caps</span>
+      <main className="pt-16">
+        <div className="flex h-[calc(100vh-4rem)]">
+          {/* Sidebar - Livros */}
+          <aside className={`${sidebarOpen ? 'w-64' : 'w-0'} hidden lg:block border-r border-[var(--border)] bg-[var(--card-bg)] transition-all duration-300 overflow-hidden shrink-0`}>
+            <div className="p-4 h-full flex flex-col">
+              <div className="relative mb-3">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted-fg)]" />
+                <input type="text" placeholder="Buscar livro..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
+                  className="w-full pl-9 pr-3 py-2 text-sm bg-[var(--bg)] border border-[var(--border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/20" />
+              </div>
+              <div className="flex gap-1 mb-3">
+                {(['AT', 'NT'] as const).map(test => (
+                  <button key={test} className="flex-1 text-[11px] font-semibold py-1.5 rounded-md bg-[var(--bg)] text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors">
+                    {test === 'AT' ? 'Antigo Testamento' : 'Novo Testamento'}
                   </button>
                 ))}
               </div>
-            </aside>
-
-            {/* Main Content */}
-            <div>
-              {/* Book Header */}
-              <div className="sola-card p-6 mb-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h2 className="font-display text-3xl font-light">{livro.nome}</h2>
-                    <p className="text-sm text-muted-foreground">
-                      {livro.testamento === 'AT' ? 'Antigo Testamento' : 'Novo Testamento'} · Capítulo {capitulo?.numero}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => setCapituloIdx(Math.max(0, capituloIdx - 1))}
-                      disabled={capituloIdx === 0}
-                      className="p-2 border border-border rounded-sm disabled:opacity-30 hover:bg-muted transition-colors"
-                    >
-                      <ChevronLeft className="w-4 h-4" />
+              <div className="flex-1 overflow-y-auto space-y-0.5">
+                {livrosFiltrados.map((l) => {
+                  const idx = TODOS_LIVROS.indexOf(l);
+                  return (
+                    <button key={l.abreviacao} onClick={() => goToBook(idx)}
+                      className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-all flex items-center gap-2 group ${
+                        idx === livroIdx ? 'bg-[var(--primary)]/10 text-[var(--primary)] font-semibold' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'
+                      }`}>
+                      <span className="truncate">{l.nome}</span>
+                      <span className="ml-auto text-[10px] opacity-0 group-hover:opacity-50 transition-opacity">{l.totalCapitulos}c</span>
                     </button>
-                    <span className="text-sm font-medium px-3">{capituloIdx + 1} / {livro.totalCapitulos}</span>
-                    <button
-                      onClick={() => setCapituloIdx(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
-                      disabled={capituloIdx === livro.totalCapitulos - 1}
-                      className="p-2 border border-border rounded-sm disabled:opacity-30 hover:bg-muted transition-colors"
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Chapter selector */}
-                <div className="flex flex-wrap gap-1">
-                  {Array.from({ length: Math.min(livro.totalCapitulos, 50) }, (_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setCapituloIdx(i)}
-                      className={`w-8 h-8 text-xs rounded-sm transition-colors ${
-                        i === capituloIdx
-                          ? 'bg-primary text-primary-foreground'
-                          : 'text-muted-foreground hover:bg-muted'
-                      }`}
-                    >
-                      {i + 1}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Verses */}
-              <div className="sola-card p-8">
-                {capitulo?.versiculos.map((v) => (
-                  <p key={v.numero} className="mb-4 leading-relaxed">
-                    <sup className="text-primary font-semibold text-xs mr-1">{v.numero}</sup>
-                    <span className="font-serif-body text-lg">{v.texto}</span>
-                  </p>
-                ))}
+                  );
+                })}
               </div>
             </div>
+          </aside>
+
+          {/* Conteúdo principal */}
+          <div className="flex-1 flex flex-col min-w-0">
+            {/* Toolbar superior */}
+            <div className="border-b border-[var(--border)] bg-[var(--card-bg)] px-4 py-3">
+              <div className="flex items-center gap-3">
+                <button onClick={() => setSidebarOpen(!sidebarOpen)} className="hidden lg:block p-1.5 rounded-lg hover:bg-[var(--bg)] transition-colors">
+                  <Menu className="w-4 h-4" />
+                </button>
+                <button onClick={() => setMobileMenu(true)} className="lg:hidden p-1.5 rounded-lg hover:bg-[var(--bg)]">
+                  <Menu className="w-4 h-4" />
+                </button>
+
+                {/* Navegação de capítulos */}
+                <div className="flex items-center gap-2">
+                  <button onClick={() => setCapituloIdx(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0}
+                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-30 transition-colors">
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <div className="text-sm font-semibold min-w-[140px] text-center">
+                    {livro.nome} <span className="text-[var(--primary)]">{capituloIdx + 1}</span>
+                    <span className="text-[var(--muted-fg)] font-normal"> / {livro.totalCapitulos}</span>
+                  </div>
+                  <button onClick={() => setCapituloIdx(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
+                    disabled={capituloIdx >= livro.totalCapitulos - 1}
+                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-30 transition-colors">
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <div className="flex-1" />
+
+                {/* Traduções */}
+                <div className="hidden sm:flex items-center gap-1">
+                  {TRAD_IDS.map(id => {
+                    const active = selectedTrads.includes(id);
+                    return (
+                      <button key={id} onClick={() => toggleTrad(id)} title={nomeMap[id]}
+                        className={`text-[11px] font-bold px-2.5 py-1 rounded-md transition-all ${
+                          active ? `${tradBadgeColors[id]} text-white shadow-sm` : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'
+                        }`}>
+                        {labelMap[id]}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="flex items-center gap-1">
+                  {/* Modo visualização */}
+                  {selectedTrads.length > 1 && (
+                    <div className="hidden sm:flex items-center gap-0.5 border-l border-[var(--border)] pl-2 ml-1">
+                      {([
+                        { mode: 'single' as ViewMode, icon: AlignJustify, label: 'Única' },
+                        { mode: 'parallel' as ViewMode, icon: Columns2, label: 'Lado a lado' },
+                        { mode: 'comparison' as ViewMode, icon: LayoutList, label: 'Comparação' },
+                      ]).map(({ mode, icon: Icon, label }) => (
+                        <button key={mode} onClick={() => setViewMode(mode)} title={label}
+                          className={`p-1.5 rounded-md transition-all ${viewMode === mode ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                          <Icon className="w-3.5 h-3.5" />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  <button onClick={() => setReadingMode(!readingMode)} title="Modo leitura"
+                    className={`p-1.5 rounded-md transition-all ${readingMode ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                    {readingMode ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+
+                  <button onClick={() => data.length > 0 && exportChapterPdf(livro.nome, capituloIdx + 1, data)}
+                    title="Exportar PDF" className="p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-colors">
+                    <Download className="w-4 h-4" />
+                  </button>
+
+                  <button onClick={() => setShowSettings(!showSettings)} title="Configurações"
+                    className="p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-colors">
+                    <Settings className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Settings */}
+              {showSettings && (
+                <div className="mt-3 pt-3 border-t border-[var(--border)] flex items-center gap-4 flex-wrap">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[11px] text-[var(--muted-fg)]">Tamanho:</span>
+                    <button onClick={() => setFontSize(Math.max(14, fontSize - 1))} className="p-1 rounded hover:bg-[var(--bg)]"><Minus className="w-3 h-3" /></button>
+                    <span className="text-xs font-mono w-6 text-center">{fontSize}</span>
+                    <button onClick={() => setFontSize(Math.min(28, fontSize + 1))} className="p-1 rounded hover:bg-[var(--bg)]"><Plus className="w-3 h-3" /></button>
+                  </div>
+                  {viewMode === 'comparison' && data.length >= 2 && (
+                    <button onClick={() => setShowDiff(!showDiff)}
+                      className={`text-[11px] px-2.5 py-1 rounded-full border transition-all ${showDiff ? 'bg-[var(--primary)]/10 text-[var(--primary)] border-[var(--primary)]/20' : 'text-[var(--muted-fg)] border-[var(--border)]'}`}>
+                      Diferenças
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Área de leitura */}
+            <div ref={mainRef} className="flex-1 overflow-y-auto">
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+                {loading ? (
+                  <div className="flex items-center justify-center py-20">
+                    <div className="w-8 h-8 border-2 border-[var(--primary)]/20 border-t-[var(--primary)] rounded-full animate-spin" />
+                  </div>
+                ) : temDados ? (
+                  <>
+                    {/* Modo Leitura */}
+                    {readingMode ? (
+                      <div className="max-w-[680px] mx-auto">
+                        <div className="text-center mb-12">
+                          <h2 className="font-display text-4xl md:text-5xl font-light text-[var(--primary)] mb-2">{livro.nome}</h2>
+                          <p className="text-[var(--muted-fg)] text-sm">Capítulo {capituloIdx + 1}</p>
+                          <div className="ornament w-20 mx-auto mt-6" />
+                        </div>
+                        {data[0]?.versiculos.map(v => (
+                          <p key={v.numero} className="font-serif-body leading-[2] mb-1">
+                            <sup className="text-[var(--primary)]/50 font-bold text-xs mr-1 select-none">{v.numero}</sup>
+                            {v.texto}
+                          </p>
+                        ))}
+                        <div className="ornament w-20 mx-auto mt-12 mb-6" />
+                        <p className="text-center text-xs text-[var(--muted-fg)]/50">{labelMap[data[0]?.traducao || 'arc']} — {livro.nome} {capituloIdx + 1}</p>
+                      </div>
+                    ) : (
+                      <>
+                        {/* Modo Único */}
+                        {viewMode === 'single' && data.map((item, idx) => (
+                          <ScrollReveal key={item.traducao} delay={idx * 0.05}>
+                            <div className="mb-8">
+                              <div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/50">
+                                <div className={`w-2 h-2 rounded-full ${tradBadgeColors[item.traducao]}`} />
+                                <span className="text-sm font-semibold">{labelMap[item.traducao]}</span>
+                                <span className="text-xs text-[var(--muted-fg)]">{nomeMap[item.traducao]}</span>
+                              </div>
+                              <div className="space-y-1">
+                                {item.versiculos.map(v => {
+                                  const key = `${livro.abreviacao}:${capituloIdx + 1}:${v.numero}:${item.traducao}`;
+                                  const fav = isFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao);
+                                  const ref = `${livro.nome} ${capituloIdx + 1}:${v.numero}`;
+                                  return (
+                                    <div key={v.numero} className="group flex items-start gap-2 py-1 px-2 -mx-2 rounded-lg hover:bg-[var(--bg)] transition-colors">
+                                      <sup className="text-[var(--primary)] font-bold text-xs mt-1 select-none min-w-[20px] text-right">{v.numero}</sup>
+                                      <p className="flex-1 font-serif-body leading-relaxed" style={{ fontSize: `${fontSize}px` }}>{v.texto}</p>
+                                      <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
+                                        <button onClick={() => toggleFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, v.texto)}
+                                          className={`p-1 rounded-md transition-colors ${fav ? 'text-red-500' : 'text-[var(--muted-fg)] hover:text-red-400'}`}>
+                                          <Heart className={`w-3.5 h-3.5 ${fav ? 'fill-current' : ''}`} />
+                                        </button>
+                                        <button onClick={() => { const m = obterMarca(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao); setAnotandoVersiculo(key); setAnotacaoTexto(m?.anotacao?.texto || ''); }}
+                                          className="p-1 text-[var(--muted-fg)] hover:text-amber-500 rounded-md transition-colors">
+                                          <StickyNote className="w-3.5 h-3.5" />
+                                        </button>
+                                        <button onClick={() => copyVerse(v.texto, ref)} className="p-1 text-[var(--muted-fg)] hover:text-[var(--fg)] rounded-md transition-colors">
+                                          {copiedVerse === ref ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
+                                        </button>
+                                        <button onClick={() => shareVerse(v.texto, ref)} className="p-1 text-[var(--muted-fg)] hover:text-[var(--fg)] rounded-md transition-colors">
+                                          <Share2 className="w-3.5 h-3.5" />
+                                        </button>
+                                        {temComentario(livro.abreviacao, capituloIdx + 1, v.numero) && (
+                                          <button onClick={() => { setComentarioVersiculo(v.numero); setStudyPanel('comentarios'); }}
+                                            className="p-1 text-amber-500 hover:text-amber-600 rounded-md transition-colors">
+                                            <BookOpen className="w-3.5 h-3.5" />
+                                          </button>
+                                        )}
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          </ScrollReveal>
+                        ))}
+
+                        {/* Modo Paralelo */}
+                        {viewMode === 'parallel' && (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {data.map((item, idx) => (
+                              <div key={item.traducao} className="border border-[var(--border)]/50 rounded-xl p-5">
+                                <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/30">
+                                  <div className={`w-2 h-2 rounded-full ${tradBadgeColors[item.traducao]}`} />
+                                  <span className="text-sm font-semibold">{labelMap[item.traducao]}</span>
+                                </div>
+                                {item.versiculos.map(v => (
+                                  <p key={v.numero} className="mb-1.5 leading-relaxed font-serif-body" style={{ fontSize: `${fontSize - 2}px` }}>
+                                    <sup className="text-[var(--primary)] font-bold text-[10px] mr-1 select-none">{v.numero}</sup>
+                                    {v.texto}
+                                  </p>
+                                ))}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* Modo Comparação */}
+                        {viewMode === 'comparison' && data.length >= 2 && (
+                          <div className="border border-[var(--border)]/50 rounded-xl overflow-hidden">
+                            <div className="bg-[var(--bg)] px-4 py-2 border-b border-[var(--border)]/30 flex items-center justify-between">
+                              <span className="text-xs font-semibold text-[var(--muted-fg)] uppercase tracking-wider">Comparação</span>
+                              <button onClick={() => setShowDiff(!showDiff)}
+                                className={`text-[11px] px-2.5 py-1 rounded-full transition-all ${showDiff ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' : 'text-[var(--muted-fg)]'}`}>
+                                {showDiff ? 'Diferenças ON' : 'Diferenças OFF'}
+                              </button>
+                            </div>
+                            {/* Header */}
+                            <div className="grid border-b border-[var(--border)]/30" style={{ gridTemplateColumns: `44px repeat(${data.length}, 1fr)` }}>
+                              <div className="p-2" />
+                              {data.map(item => (
+                                <div key={item.traducao} className="p-2 border-l border-[var(--border)]/20">
+                                  <div className="flex items-center gap-1.5">
+                                    <div className={`w-1.5 h-1.5 rounded-full ${tradBadgeColors[item.traducao]}`} />
+                                    <span className="text-[11px] font-bold">{labelMap[item.traducao]}</span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                            {/* Verses */}
+                            {Array.from({ length: maxVersiculos }, (_, i) => {
+                              const verseNum = i + 1;
+                              if (!data.some(d => d.versiculos[i])) return null;
+                              const baseText = data[0].versiculos[i]?.texto || '';
+                              return (
+                                <div key={verseNum}
+                                  className={`grid border-b border-[var(--border)]/15 last:border-b-0 hover:bg-[var(--bg)]/50 transition-colors cursor-pointer ${highlightedVerse === verseNum ? 'bg-[var(--primary)]/5 border-l-2 border-l-[var(--primary)]' : ''}`}
+                                  style={{ gridTemplateColumns: `44px repeat(${data.length}, 1fr)` }}
+                                  onClick={() => setHighlightedVerse(highlightedVerse === verseNum ? null : verseNum)}>
+                                  <div className="p-3 flex items-start justify-end">
+                                    <span className="text-[11px] font-bold text-[var(--primary)] bg-[var(--primary)]/10 w-6 h-6 flex items-center justify-center rounded-full">{verseNum}</span>
+                                  </div>
+                                  {data.map((item, idx) => {
+                                    const v = item.versiculos[i];
+                                    if (!v) return <div key={item.traducao} className="p-3 border-l border-[var(--border)]/20" />;
+                                    if (showDiff && idx > 0 && baseText) {
+                                      const segments = diffWords(baseText, v.texto);
+                                      return (
+                                        <div key={item.traducao} className="p-3 border-l border-[var(--border)]/20">
+                                          <p className="font-serif-body leading-relaxed" style={{ fontSize: `${fontSize - 3}px` }}>
+                                            {segments.map((seg, si) => seg.changed ? <span key={si} className="diff-word">{seg.text}</span> : <span key={si}>{seg.text}</span>)}
+                                          </p>
+                                        </div>
+                                      );
+                                    }
+                                    return (
+                                      <div key={item.traducao} className="p-3 border-l border-[var(--border)]/20">
+                                        <p className="font-serif-body leading-relaxed" style={{ fontSize: `${fontSize - 3}px` }}>{v.texto}</p>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </>
+                    )}
+
+                    {/* Navegação inferior */}
+                    {!readingMode && (
+                      <div className="flex items-center justify-center gap-4 mt-12 pt-8 border-t border-[var(--border)]/30">
+                        <button onClick={() => setCapituloIdx(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0}
+                          className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-30 hover:bg-[var(--bg)] transition-colors">
+                          <ChevronLeft className="w-4 h-4" /> Anterior
+                        </button>
+                        <span className="text-xs text-[var(--muted-fg)] font-mono">{capituloIdx + 1} / {livro.totalCapitulos}</span>
+                        <button onClick={() => setCapituloIdx(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
+                          disabled={capituloIdx >= livro.totalCapitulos - 1}
+                          className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-30 hover:bg-[var(--bg)] transition-colors">
+                          Próximo <ChevronRight className="w-4 h-4" />
+                        </button>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="text-center py-20">
+                    <BookOpen className="w-16 h-16 mx-auto mb-4 text-[var(--muted-fg)]/30" strokeWidth={1} />
+                    <p className="text-lg text-[var(--muted-fg)]">Carregando...</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Study Panels */}
+              {(studyPanel === 'notas' || studyPanel === 'strong' || studyPanel === 'comentarios') && (
+                <div className="border-t border-[var(--border)] bg-[var(--card-bg)] p-4">
+                  <div className="max-w-4xl mx-auto">
+                    {studyPanel === 'notas' && <PainelNotas livroAbrev={livro.abreviacao} capitulo={capituloIdx + 1} />}
+                    {studyPanel === 'strong' && <PainelStrong onClose={() => setStudyPanel(null)} />}
+                    {studyPanel === 'comentarios' && comentarioVersiculo && (
+                      <PainelComentarios livro={livro.abreviacao} capitulo={capituloIdx + 1} versiculo={comentarioVersiculo}
+                        onClose={() => { setStudyPanel(null); setComentarioVersiculo(null); }} />
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Mobile sidebar */}
+            {mobileMenu && (
+              <div className="fixed inset-0 z-50 lg:hidden">
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMobileMenu(false)} />
+                <aside className="absolute left-0 top-0 bottom-0 w-72 max-w-[85vw] bg-[var(--card-bg)] border-r border-[var(--border)] overflow-y-auto p-4">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-sm font-semibold">Livros</span>
+                    <button onClick={() => setMobileMenu(false)} className="p-1 rounded-lg hover:bg-[var(--bg)]"><X className="w-4 h-4" /></button>
+                  </div>
+                  <div className="space-y-0.5">
+                    {TODOS_LIVROS.map(l => {
+                      const idx = TODOS_LIVROS.indexOf(l);
+                      return (
+                        <button key={l.abreviacao} onClick={() => { goToBook(idx); setMobileMenu(false); }}
+                          className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-colors ${idx === livroIdx ? 'bg-[var(--primary)]/10 text-[var(--primary)] font-medium' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                          {l.nome}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </aside>
+              </div>
+            )}
           </div>
         </div>
       </main>
-      <Footer />
+
+      {/* Annotation modal */}
+      {anotandoVersiculo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setAnotandoVersiculo(null)}>
+          <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl shadow-2xl p-6 w-full max-w-md mx-4" onClick={e => e.stopPropagation()}>
+            <h3 className="font-display text-lg font-medium mb-1">Anotação</h3>
+            <p className="text-xs text-[var(--muted-fg)] mb-4">{anotandoVersiculo}</p>
+            <textarea value={anotacaoTexto} onChange={e => setAnotacaoTexto(e.target.value)}
+              placeholder="Digite sua anotação pessoal..."
+              className="w-full h-32 p-3 text-sm bg-[var(--bg)] border border-[var(--border)] rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/20" autoFocus />
+            <div className="flex items-center justify-end gap-3 mt-4">
+              <button onClick={() => setAnotandoVersiculo(null)} className="px-4 py-2 text-sm text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors">Cancelar</button>
+              <button onClick={() => {
+                const parts = anotandoVersiculo.split(':');
+                salvarAnotacao(parts[0], Number(parts[1]), Number(parts[2]), parts[3], anotacaoTexto || null);
+                refresh(); setAnotandoVersiculo(null); setAnotacaoTexto('');
+              }} className="px-4 py-2 text-sm font-medium bg-[var(--primary)] text-white rounded-lg hover:bg-[var(--primary)]/90 transition-colors">Salvar</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Quick Search Ctrl+K */}
+      {quickSearchOpen && (
+        <div className="fixed inset-0 z-[60] flex items-start justify-center pt-[15vh]">
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setQuickSearchOpen(false)} />
+          <div className="relative w-full max-w-lg mx-4 bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl shadow-2xl overflow-hidden">
+            <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--border)]">
+              <Search className="w-5 h-5 text-[var(--muted-fg)] shrink-0" />
+              <input autoFocus type="text" placeholder="Buscar versículos..." value={quickSearchQuery}
+                onChange={e => handleQuickSearch(e.target.value)}
+                className="flex-1 bg-transparent text-sm outline-none" />
+              <kbd className="text-[10px] bg-[var(--bg)] px-1.5 py-0.5 rounded text-[var(--muted-fg)]">ESC</kbd>
+            </div>
+            <div className="max-h-80 overflow-y-auto">
+              {quickSearchResults.length > 0 ? (
+                <div className="p-2">
+                  {quickSearchResults.map((r, i) => (
+                    <button key={i} onClick={() => goToQuickResult(r)} className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--bg)] transition-colors group">
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <span className="text-xs font-semibold text-[var(--primary)]">{r.nome} {r.cap}:{r.versiculo}</span>
+                      </div>
+                      <p className="text-xs text-[var(--muted-fg)] line-clamp-2 group-hover:text-[var(--fg)] transition-colors">{r.texto}</p>
+                    </button>
+                  ))}
+                </div>
+              ) : quickSearchQuery.length >= 2 ? (
+                <div className="p-8 text-center text-sm text-[var(--muted-fg)]">Nenhum resultado</div>
+              ) : (
+                <div className="p-8 text-center text-sm text-[var(--muted-fg)]/60">Digite pelo menos 2 caracteres</div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile bottom nav */}
+      <div className="fixed bottom-0 left-0 right-0 border-t border-[var(--border)] bg-[var(--card-bg)] lg:hidden z-30">
+        <div className="flex items-center justify-around px-2 py-2">
+          <button onClick={() => setMobileMenu(true)} className="flex flex-col items-center gap-0.5 p-2 text-[var(--muted-fg)]">
+            <BookOpen className="w-5 h-5" /><span className="text-[10px]">Livros</span>
+          </button>
+          <div className="flex items-center gap-1">
+            <button onClick={() => setCapituloIdx(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0} className="p-2 text-[var(--muted-fg)] disabled:opacity-30">
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <span className="text-xs font-mono min-w-[3rem] text-center">{capituloIdx + 1}/{livro.totalCapitulos}</span>
+            <button onClick={() => setCapituloIdx(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))} disabled={capituloIdx >= livro.totalCapitulos - 1} className="p-2 text-[var(--muted-fg)] disabled:opacity-30">
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+          <button onClick={() => setChapterGridOpen(!chapterGridOpen)} className="flex flex-col items-center gap-0.5 p-2 text-[var(--muted-fg)]">
+            <LayoutList className="w-5 h-5" /><span className="text-[10px]">Capítulos</span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

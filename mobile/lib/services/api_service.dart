@@ -197,6 +197,18 @@ class ApiService {
     throw _tratarErro(response);
   }
 
+  Future<Perfil> getPerfil() async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/auth/perfil'),
+      headers: _headers,
+    );
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body) as Map<String, dynamic>;
+      return Perfil.fromJson(data);
+    }
+    throw _tratarErro(response);
+  }
+
   Future<List<Favorito>> getFavoritos() async {
     final response = await http.get(
       Uri.parse('$baseUrl/favoritos'),

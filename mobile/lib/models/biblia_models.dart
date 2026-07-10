@@ -277,3 +277,35 @@ class Usuario {
     );
   }
 }
+
+class Perfil {
+  final String nome;
+  final String email;
+  final String? avatarUrl;
+  final int totalEstudos;
+  final int sequenciaDias;
+  final double horasEstudo;
+  final bool isPremium;
+
+  Perfil({
+    required this.nome,
+    required this.email,
+    this.avatarUrl,
+    this.totalEstudos = 0,
+    this.sequenciaDias = 0,
+    this.horasEstudo = 0,
+    this.isPremium = false,
+  });
+
+  factory Perfil.fromJson(Map<String, dynamic> json) {
+    return Perfil(
+      nome: (json['nome'] ?? json['name'] ?? '') as String,
+      email: (json['email'] ?? '') as String,
+      avatarUrl: json['avatar_url'] as String?,
+      totalEstudos: (json['total_estudos'] ?? json['totalEstudos'] ?? 0) as int,
+      sequenciaDias: (json['sequencia_dias'] ?? json['sequenciaDias'] ?? json['streak'] ?? 0) as int,
+      horasEstudo: (json['horas_estudo'] ?? json['horasEstudo'] ?? 0).toDouble(),
+      isPremium: (json['is_premium'] ?? json['isPremium'] ?? false) as bool,
+    );
+  }
+}

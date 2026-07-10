@@ -19,6 +19,7 @@ import { temComentario } from '@/data/comentarios';
 import { diffWords } from '@/lib/diff';
 import { exportChapterPdf } from '@/lib/exportPdf';
 import ScrollReveal from '@/components/ScrollReveal';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
@@ -30,24 +31,23 @@ const cacheApi = new Map<string, string[]>();
 async function fetchFromMidvash(trad: string, livro: string, cap: number): Promise<string[]> {
   const cacheKey = `${trad}:${livro}:${cap}`;
   if (cacheApi.has(cacheKey)) return cacheApi.get(cacheKey)!;
-
   const slug = ABREV_PARA_MIDVASH[livro];
   if (!slug) return [];
-
-  const res = await fetch(`${MIDVASH_API}/${trad}/${slug}/${cap}`, { signal: AbortSignal.timeout(12000) });
-  if (!res.ok) return [];
-
-  const json = await res.json();
-  const verses: string[] = [];
-  const raw = json?.data?.verses;
-  if (Array.isArray(raw)) {
-    for (const v of raw) {
-      const text = typeof v === 'string' ? v : v?.text;
-      if (text?.trim()) verses.push(text.trim());
+  try {
+    const res = await fetch(`${MIDVASH_API}/${trad}/${slug}/${cap}`, { signal: AbortSignal.timeout(12000) });
+    if (!res.ok) return [];
+    const json = await res.json();
+    const verses: string[] = [];
+    const raw = json?.data?.verses;
+    if (Array.isArray(raw)) {
+      for (const v of raw) {
+        const text = typeof v === 'string' ? v : v?.text;
+        if (text?.trim()) verses.push(text.trim());
+      }
     }
-  }
-  cacheApi.set(cacheKey, verses);
-  return verses;
+    cacheApi.set(cacheKey, verses);
+    return verses;
+  } catch { return []; }
 }
 
 async function loadTranslation(trad: string, livro: string, cap: number): Promise<CapituloComparado | null> {
@@ -62,9 +62,7 @@ async function loadTranslation(trad: string, livro: string, cap: number): Promis
       if (verses.length === 0) return null;
       return { traducao: trad, versiculos: verses.map((t, i) => ({ numero: i + 1, texto: t })) };
     }
-  } catch {
-    return null;
-  }
+  } catch { return null; }
 }
 
 async function carregarMulti(livro: string, cap: number, trads: string[]): Promise<CapituloComparado[]> {
@@ -73,28 +71,10 @@ async function carregarMulti(livro: string, cap: number, trads: string[]): Promi
   return results.filter((r): r is CapituloComparado => r !== null);
 }
 
-const labelMap: Record<string, string> = {
-  arc: 'ARC', nvi: 'NVI', ara: 'ARA', acf: 'ACF', aa: 'AA', ntlh: 'NTLH', kjv: 'KJV', web: 'WEB',
-};
-
-const nomeMap: Record<string, string> = {
-  arc: 'Almeida Revista e Corrigida', nvi: 'Nova Versão Internacional',
-  ara: 'Almeida Revista e Atualizada', acf: 'Almeida Corrigida Fiel',
-  aa: 'Almeida Atualizada', ntlh: 'Nova Tradução na Linguagem de Hoje',
-  kjv: 'King James Version', web: 'World English Bible',
-};
-
-const tradBadgeColors: Record<string, string> = {
-  arc: 'bg-blue-500', nvi: 'bg-green-500', ara: 'bg-purple-500', acf: 'bg-rose-500',
-  aa: 'bg-cyan-500', ntlh: 'bg-orange-500', kjv: 'bg-amber-500', web: 'bg-emerald-500',
-};
-
-const tradTextColors: Record<string, string> = {
-  arc: 'text-blue-600 dark:text-blue-400', nvi: 'text-green-600 dark:text-green-400',
-  ara: 'text-purple-600 dark:text-purple-400', acf: 'text-rose-600 dark:text-rose-400',
-  aa: 'text-cyan-600 dark:text-cyan-400', ntlh: 'text-orange-600 dark:text-orange-400',
-  kjv: 'text-amber-600 dark:text-amber-400', web: 'text-emerald-600 dark:text-emerald-400',
-};
+const labelMap: Record<string, string> = { arc: 'ARC', nvi: 'NVI', ara: 'ARA', acf: 'ACF', aa: 'AA', ntlh: 'NTLH', kjv: 'KJV', web: 'WEB' };
+const nomeMap: Record<string, string> = { arc: 'Almeida Revista e Corrigida', nvi: 'Nova Versão Internacional', ara: 'Almeida Revista e Atualizada', acf: 'Almeida Corrigida Fiel', aa: 'Almeida Atualizada', ntlh: 'Nova Tradução na Linguagem de Hoje', kjv: 'King James Version', web: 'World English Bible' };
+const tradBadgeColors: Record<string, string> = { arc: 'bg-blue-500', nvi: 'bg-green-500', ara: 'bg-purple-500', acf: 'bg-rose-500', aa: 'bg-cyan-500', ntlh: 'bg-orange-500', kjv: 'bg-amber-500', web: 'bg-emerald-500' };
+const tradTextColors: Record<string, string> = { arc: 'text-blue-600 dark:text-blue-400', nvi: 'text-green-600 dark:text-green-400', ara: 'text-purple-600 dark:text-purple-400', acf: 'text-rose-600 dark:text-rose-400', aa: 'text-cyan-600 dark:text-cyan-400', ntlh: 'text-orange-600 dark:text-orange-400', kjv: 'text-amber-600 dark:text-amber-400', web: 'text-emerald-600 dark:text-emerald-400' };
 
 export default function BibliaPage() {
   const [livroIdx, setLivroIdx] = useState(0);
@@ -121,6 +101,7 @@ export default function BibliaPage() {
   const [quickSearchOpen, setQuickSearchOpen] = useState(false);
   const [quickSearchQuery, setQuickSearchQuery] = useState('');
   const [quickSearchResults, setQuickSearchResults] = useState<Array<{livro: string, nome: string, cap: number, versiculo: number, texto: string}>>([]);
+  const [chapterDirection, setChapterDirection] = useState<'next' | 'prev'>('next');
   const mainRef = useRef<HTMLDivElement>(null);
   const { isFavorito, refresh } = useEstudos();
 
@@ -168,17 +149,15 @@ export default function BibliaPage() {
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); setQuickSearchOpen(p => !p); return; }
       if (quickSearchOpen && e.key === 'Escape') { setQuickSearchOpen(false); return; }
       if ((e.target as HTMLElement).tagName === 'INPUT' || (e.target as HTMLElement).tagName === 'TEXTAREA') return;
-      if (e.key === 'ArrowLeft' && capituloIdx > 0) { e.preventDefault(); setCapituloIdx(p => Math.max(0, p - 1)); }
-      else if (e.key === 'ArrowRight' && livro && capituloIdx < livro.totalCapitulos - 1) { e.preventDefault(); setCapituloIdx(p => p + 1); }
+      if (e.key === 'ArrowLeft' && capituloIdx > 0) { e.preventDefault(); setChapterDirection('prev'); setCapituloIdx(p => Math.max(0, p - 1)); }
+      else if (e.key === 'ArrowRight' && livro && capituloIdx < livro.totalCapitulos - 1) { e.preventDefault(); setChapterDirection('next'); setCapituloIdx(p => p + 1); }
       else if (e.key === 'Escape') { setSidebarOpen(false); setMobileMenu(false); setChapterGridOpen(false); }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [capituloIdx, livro, quickSearchOpen]);
 
-  const toggleTrad = (id: string) => {
-    setSelectedTrads(prev => prev.includes(id) ? prev.filter(t => t !== id) : [...prev, id]);
-  };
+  const toggleTrad = (id: string) => setSelectedTrads(prev => prev.includes(id) ? prev.filter(t => t !== id) : [...prev, id]);
 
   const handleQuickSearch = useCallback(async (q: string) => {
     setQuickSearchQuery(q);
@@ -219,6 +198,11 @@ export default function BibliaPage() {
 
   const goToBook = (idx: number) => { setLivroIdx(idx); setCapituloIdx(0); setMobileMenu(false); setChapterGridOpen(false); };
 
+  const changeChapter = (newIdx: number) => {
+    setChapterDirection(newIdx > capituloIdx ? 'next' : 'prev');
+    setCapituloIdx(newIdx);
+  };
+
   const copyVerse = async (text: string, reference: string) => {
     await navigator.clipboard.writeText(`${reference}\n${text}`);
     setCopiedVerse(reference);
@@ -229,22 +213,29 @@ export default function BibliaPage() {
     if (navigator.share) await navigator.share({ title: reference, text: `${reference}\n\n${text}` });
   };
 
+  const chapterAnimProps = {
+    initial: { opacity: 0, x: chapterDirection === 'next' ? 40 : -40, filter: 'blur(4px)' },
+    animate: { opacity: 1, x: 0, filter: 'blur(0px)' },
+    exit: { opacity: 0, x: chapterDirection === 'next' ? -40 : 40, filter: 'blur(4px)' },
+    transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+  };
+
   return (
     <div className="min-h-screen bg-[var(--bg)]">
       <Header />
       <main className="pt-16">
         <div className="flex h-[calc(100vh-4rem)]">
-          {/* Sidebar - Livros */}
+          {/* Sidebar */}
           <aside className={`${sidebarOpen ? 'w-64' : 'w-0'} hidden lg:block border-r border-[var(--border)] bg-[var(--card-bg)] transition-all duration-300 overflow-hidden shrink-0`}>
             <div className="p-4 h-full flex flex-col">
               <div className="relative mb-3">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted-fg)]" />
                 <input type="text" placeholder="Buscar livro..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 text-sm bg-[var(--bg)] border border-[var(--border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/20" />
+                  className="w-full pl-9 pr-3 py-2 text-sm bg-[var(--bg)] border border-[var(--border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/20 transition-all duration-300" />
               </div>
               <div className="flex gap-1 mb-3">
                 {(['AT', 'NT'] as const).map(test => (
-                  <button key={test} className="flex-1 text-[11px] font-semibold py-1.5 rounded-md bg-[var(--bg)] text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors">
+                  <button key={test} className="flex-1 text-[11px] font-semibold py-1.5 rounded-md bg-[var(--bg)] text-[var(--muted-fg)] hover:text-[var(--fg)] transition-all duration-300">
                     {test === 'AT' ? 'Antigo Testamento' : 'Novo Testamento'}
                   </button>
                 ))}
@@ -254,11 +245,11 @@ export default function BibliaPage() {
                   const idx = TODOS_LIVROS.indexOf(l);
                   return (
                     <button key={l.abreviacao} onClick={() => goToBook(idx)}
-                      className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-all flex items-center gap-2 group ${
+                      className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-300 flex items-center gap-2 group ${
                         idx === livroIdx ? 'bg-[var(--primary)]/10 text-[var(--primary)] font-semibold' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'
                       }`}>
                       <span className="truncate">{l.nome}</span>
-                      <span className="ml-auto text-[10px] opacity-0 group-hover:opacity-50 transition-opacity">{l.totalCapitulos}c</span>
+                      <span className="ml-auto text-[10px] opacity-0 group-hover:opacity-50 transition-opacity duration-300">{l.totalCapitulos}c</span>
                     </button>
                   );
                 })}
@@ -266,54 +257,53 @@ export default function BibliaPage() {
             </div>
           </aside>
 
-          {/* Conteúdo principal */}
+          {/* Main content */}
           <div className="flex-1 flex flex-col min-w-0">
-            {/* Toolbar superior */}
+            {/* Toolbar */}
             <div className="border-b border-[var(--border)] bg-[var(--card-bg)] px-4 py-3">
               <div className="flex items-center gap-3">
-                <button onClick={() => setSidebarOpen(!sidebarOpen)} className="hidden lg:block p-1.5 rounded-lg hover:bg-[var(--bg)] transition-colors">
+                <button onClick={() => setSidebarOpen(!sidebarOpen)} className="hidden lg:block p-1.5 rounded-lg hover:bg-[var(--bg)] transition-all duration-300">
                   <Menu className="w-4 h-4" />
                 </button>
                 <button onClick={() => setMobileMenu(true)} className="lg:hidden p-1.5 rounded-lg hover:bg-[var(--bg)]">
                   <Menu className="w-4 h-4" />
                 </button>
 
-                {/* Navegação de capítulos */}
                 <div className="flex items-center gap-2">
-                  <button onClick={() => setCapituloIdx(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0}
-                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-30 transition-colors">
+                  <button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0}
+                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-30 transition-all duration-300 hover:scale-110">
                     <ChevronLeft className="w-4 h-4" />
                   </button>
                   <div className="text-sm font-semibold min-w-[140px] text-center">
                     {livro.nome} <span className="text-[var(--primary)]">{capituloIdx + 1}</span>
                     <span className="text-[var(--muted-fg)] font-normal"> / {livro.totalCapitulos}</span>
                   </div>
-                  <button onClick={() => setCapituloIdx(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
+                  <button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
                     disabled={capituloIdx >= livro.totalCapitulos - 1}
-                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-30 transition-colors">
+                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-30 transition-all duration-300 hover:scale-110">
                     <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
 
                 <div className="flex-1" />
 
-                {/* Traduções */}
                 <div className="hidden sm:flex items-center gap-1">
                   {TRAD_IDS.map(id => {
                     const active = selectedTrads.includes(id);
                     return (
-                      <button key={id} onClick={() => toggleTrad(id)} title={nomeMap[id]}
-                        className={`text-[11px] font-bold px-2.5 py-1 rounded-md transition-all ${
+                      <motion.button key={id} onClick={() => toggleTrad(id)} title={nomeMap[id]}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`text-[11px] font-bold px-2.5 py-1 rounded-md transition-all duration-300 ${
                           active ? `${tradBadgeColors[id]} text-white shadow-sm` : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'
                         }`}>
                         {labelMap[id]}
-                      </button>
+                      </motion.button>
                     );
                   })}
                 </div>
 
                 <div className="flex items-center gap-1">
-                  {/* Modo visualização */}
                   {selectedTrads.length > 1 && (
                     <div className="hidden sm:flex items-center gap-0.5 border-l border-[var(--border)] pl-2 ml-1">
                       {([
@@ -321,235 +311,275 @@ export default function BibliaPage() {
                         { mode: 'parallel' as ViewMode, icon: Columns2, label: 'Lado a lado' },
                         { mode: 'comparison' as ViewMode, icon: LayoutList, label: 'Comparação' },
                       ]).map(({ mode, icon: Icon, label }) => (
-                        <button key={mode} onClick={() => setViewMode(mode)} title={label}
-                          className={`p-1.5 rounded-md transition-all ${viewMode === mode ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                        <motion.button key={mode} onClick={() => setViewMode(mode)} title={label}
+                          whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                          className={`p-1.5 rounded-md transition-all duration-300 ${viewMode === mode ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
                           <Icon className="w-3.5 h-3.5" />
-                        </button>
+                        </motion.button>
                       ))}
                     </div>
                   )}
 
-                  <button onClick={() => setReadingMode(!readingMode)} title="Modo leitura"
-                    className={`p-1.5 rounded-md transition-all ${readingMode ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                  <motion.button onClick={() => setReadingMode(!readingMode)} title="Modo leitura"
+                    whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                    className={`p-1.5 rounded-md transition-all duration-300 ${readingMode ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
                     {readingMode ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </button>
+                  </motion.button>
 
-                  <button onClick={() => data.length > 0 && exportChapterPdf(livro.nome, capituloIdx + 1, data)}
-                    title="Exportar PDF" className="p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-colors">
+                  <motion.button onClick={() => data.length > 0 && exportChapterPdf(livro.nome, capituloIdx + 1, data)}
+                    title="Exportar PDF" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                    className="p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-all duration-300">
                     <Download className="w-4 h-4" />
-                  </button>
+                  </motion.button>
 
-                  <button onClick={() => setShowSettings(!showSettings)} title="Configurações"
-                    className="p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-colors">
+                  <motion.button onClick={() => setShowSettings(!showSettings)} title="Configurações"
+                    whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                    className="p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-all duration-300">
                     <Settings className="w-4 h-4" />
-                  </button>
+                  </motion.button>
                 </div>
               </div>
 
-              {/* Settings */}
               {showSettings && (
-                <div className="mt-3 pt-3 border-t border-[var(--border)] flex items-center gap-4 flex-wrap">
+                <motion.div 
+                  initial={{ opacity: 0, height: 0 }} 
+                  animate={{ opacity: 1, height: 'auto' }} 
+                  exit={{ opacity: 0, height: 0 }}
+                  className="mt-3 pt-3 border-t border-[var(--border)] flex items-center gap-4 flex-wrap"
+                >
                   <div className="flex items-center gap-2">
                     <span className="text-[11px] text-[var(--muted-fg)]">Tamanho:</span>
-                    <button onClick={() => setFontSize(Math.max(14, fontSize - 1))} className="p-1 rounded hover:bg-[var(--bg)]"><Minus className="w-3 h-3" /></button>
+                    <button onClick={() => setFontSize(Math.max(14, fontSize - 1))} className="p-1 rounded hover:bg-[var(--bg)] transition-all duration-200 hover:scale-110"><Minus className="w-3 h-3" /></button>
                     <span className="text-xs font-mono w-6 text-center">{fontSize}</span>
-                    <button onClick={() => setFontSize(Math.min(28, fontSize + 1))} className="p-1 rounded hover:bg-[var(--bg)]"><Plus className="w-3 h-3" /></button>
+                    <button onClick={() => setFontSize(Math.min(28, fontSize + 1))} className="p-1 rounded hover:bg-[var(--bg)] transition-all duration-200 hover:scale-110"><Plus className="w-3 h-3" /></button>
                   </div>
                   {viewMode === 'comparison' && data.length >= 2 && (
                     <button onClick={() => setShowDiff(!showDiff)}
-                      className={`text-[11px] px-2.5 py-1 rounded-full border transition-all ${showDiff ? 'bg-[var(--primary)]/10 text-[var(--primary)] border-[var(--primary)]/20' : 'text-[var(--muted-fg)] border-[var(--border)]'}`}>
+                      className={`text-[11px] px-2.5 py-1 rounded-full border transition-all duration-300 ${showDiff ? 'bg-[var(--primary)]/10 text-[var(--primary)] border-[var(--primary)]/20' : 'text-[var(--muted-fg)] border-[var(--border)]'}`}>
                       Diferenças
                     </button>
                   )}
-                </div>
+                </motion.div>
               )}
             </div>
 
-            {/* Área de leitura */}
+            {/* Reading area */}
             <div ref={mainRef} className="flex-1 overflow-y-auto">
               <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
                 {loading ? (
-                  <div className="flex items-center justify-center py-20">
-                    <div className="w-8 h-8 border-2 border-[var(--primary)]/20 border-t-[var(--primary)] rounded-full animate-spin" />
+                  <div className="space-y-6 chapter-enter">
+                    <div className="skeleton skeleton-title w-48 mx-auto" />
+                    <div className="ornament w-20 mx-auto mb-8" />
+                    {Array.from({ length: 12 }).map((_, i) => (
+                      <div key={i} className="flex gap-3">
+                        <div className="skeleton skeleton-text w-6 h-4 shrink-0" />
+                        <div className="skeleton skeleton-text flex-1" style={{ width: `${60 + Math.random() * 40}%` }} />
+                      </div>
+                    ))}
                   </div>
                 ) : temDados ? (
-                  <>
-                    {/* Modo Leitura */}
-                    {readingMode ? (
-                      <div className="max-w-[680px] mx-auto">
-                        <div className="text-center mb-12">
-                          <h2 className="font-display text-4xl md:text-5xl font-light text-[var(--primary)] mb-2">{livro.nome}</h2>
-                          <p className="text-[var(--muted-fg)] text-sm">Capítulo {capituloIdx + 1}</p>
-                          <div className="ornament w-20 mx-auto mt-6" />
+                  <AnimatePresence mode="wait">
+                    <motion.div key={`${livro.abreviacao}-${capituloIdx}`} {...chapterAnimProps}>
+                      {readingMode ? (
+                        <div className="max-w-[680px] mx-auto chapter-enter">
+                          <div className="text-center mb-12">
+                            <motion.h2 
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.2 }}
+                              className="font-display text-4xl md:text-5xl font-light text-[var(--primary)] mb-2"
+                            >
+                              {livro.nome}
+                            </motion.h2>
+                            <p className="text-[var(--muted-fg)] text-sm">Capítulo {capituloIdx + 1}</p>
+                            <div className="ornament w-20 mx-auto mt-6" />
+                          </div>
+                          {data[0]?.versiculos.map((v, i) => (
+                            <motion.p 
+                              key={v.numero} 
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.3 + i * 0.02 }}
+                              className="font-serif-body leading-[2] mb-1 verse-hover pl-4"
+                            >
+                              <sup className="text-[var(--primary)]/50 font-bold text-xs mr-1 select-none">{v.numero}</sup>
+                              {v.texto}
+                            </motion.p>
+                          ))}
+                          <div className="ornament w-20 mx-auto mt-12 mb-6" />
+                          <p className="text-center text-xs text-[var(--muted-fg)]/50">{labelMap[data[0]?.traducao || 'arc']} — {livro.nome} {capituloIdx + 1}</p>
                         </div>
-                        {data[0]?.versiculos.map(v => (
-                          <p key={v.numero} className="font-serif-body leading-[2] mb-1">
-                            <sup className="text-[var(--primary)]/50 font-bold text-xs mr-1 select-none">{v.numero}</sup>
-                            {v.texto}
-                          </p>
-                        ))}
-                        <div className="ornament w-20 mx-auto mt-12 mb-6" />
-                        <p className="text-center text-xs text-[var(--muted-fg)]/50">{labelMap[data[0]?.traducao || 'arc']} — {livro.nome} {capituloIdx + 1}</p>
-                      </div>
-                    ) : (
-                      <>
-                        {/* Modo Único */}
-                        {viewMode === 'single' && data.map((item, idx) => (
-                          <ScrollReveal key={item.traducao} delay={idx * 0.05}>
-                            <div className="mb-8">
+                      ) : (
+                        <>
+                          {viewMode === 'single' && data.map((item, idx) => (
+                            <div key={item.traducao} className="mb-8">
                               <div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/50">
                                 <div className={`w-2 h-2 rounded-full ${tradBadgeColors[item.traducao]}`} />
                                 <span className="text-sm font-semibold">{labelMap[item.traducao]}</span>
                                 <span className="text-xs text-[var(--muted-fg)]">{nomeMap[item.traducao]}</span>
                               </div>
                               <div className="space-y-1">
-                                {item.versiculos.map(v => {
+                                {item.versiculos.map((v, i) => {
                                   const key = `${livro.abreviacao}:${capituloIdx + 1}:${v.numero}:${item.traducao}`;
                                   const fav = isFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao);
                                   const ref = `${livro.nome} ${capituloIdx + 1}:${v.numero}`;
                                   return (
-                                    <div key={v.numero} className="group flex items-start gap-2 py-1 px-2 -mx-2 rounded-lg hover:bg-[var(--bg)] transition-colors">
+                                    <motion.div 
+                                      key={v.numero} 
+                                      initial={{ opacity: 0, x: -10 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      transition={{ delay: 0.1 + i * 0.01 }}
+                                      className="group flex items-start gap-2 py-1 px-2 -mx-2 rounded-lg verse-hover transition-all duration-300"
+                                    >
                                       <sup className="text-[var(--primary)] font-bold text-xs mt-1 select-none min-w-[20px] text-right">{v.numero}</sup>
                                       <p className="flex-1 font-serif-body leading-relaxed" style={{ fontSize: `${fontSize}px` }}>{v.texto}</p>
-                                      <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
-                                        <button onClick={() => toggleFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, v.texto)}
-                                          className={`p-1 rounded-md transition-colors ${fav ? 'text-red-500' : 'text-[var(--muted-fg)] hover:text-red-400'}`}>
+                                      <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0">
+                                        <motion.button onClick={() => toggleFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, v.texto)}
+                                          whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
+                                          className={`p-1 rounded-md transition-colors duration-300 ${fav ? 'text-red-500' : 'text-[var(--muted-fg)] hover:text-red-400'}`}>
                                           <Heart className={`w-3.5 h-3.5 ${fav ? 'fill-current' : ''}`} />
-                                        </button>
-                                        <button onClick={() => { const m = obterMarca(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao); setAnotandoVersiculo(key); setAnotacaoTexto(m?.anotacao?.texto || ''); }}
-                                          className="p-1 text-[var(--muted-fg)] hover:text-amber-500 rounded-md transition-colors">
+                                        </motion.button>
+                                        <motion.button onClick={() => { const m = obterMarca(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao); setAnotandoVersiculo(key); setAnotacaoTexto(m?.anotacao?.texto || ''); }}
+                                          whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
+                                          className="p-1 text-[var(--muted-fg)] hover:text-amber-500 rounded-md transition-colors duration-300">
                                           <StickyNote className="w-3.5 h-3.5" />
-                                        </button>
-                                        <button onClick={() => copyVerse(v.texto, ref)} className="p-1 text-[var(--muted-fg)] hover:text-[var(--fg)] rounded-md transition-colors">
+                                        </motion.button>
+                                        <motion.button onClick={() => copyVerse(v.texto, ref)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
+                                          className="p-1 text-[var(--muted-fg)] hover:text-[var(--fg)] rounded-md transition-colors duration-300">
                                           {copiedVerse === ref ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
-                                        </button>
-                                        <button onClick={() => shareVerse(v.texto, ref)} className="p-1 text-[var(--muted-fg)] hover:text-[var(--fg)] rounded-md transition-colors">
+                                        </motion.button>
+                                        <motion.button onClick={() => shareVerse(v.texto, ref)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
+                                          className="p-1 text-[var(--muted-fg)] hover:text-[var(--fg)] rounded-md transition-colors duration-300">
                                           <Share2 className="w-3.5 h-3.5" />
-                                        </button>
+                                        </motion.button>
                                         {temComentario(livro.abreviacao, capituloIdx + 1, v.numero) && (
-                                          <button onClick={() => { setComentarioVersiculo(v.numero); setStudyPanel('comentarios'); }}
-                                            className="p-1 text-amber-500 hover:text-amber-600 rounded-md transition-colors">
+                                          <motion.button onClick={() => { setComentarioVersiculo(v.numero); setStudyPanel('comentarios'); }}
+                                            whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
+                                            className="p-1 text-amber-500 hover:text-amber-600 rounded-md transition-colors duration-300">
                                             <BookOpen className="w-3.5 h-3.5" />
-                                          </button>
+                                          </motion.button>
                                         )}
                                       </div>
-                                    </div>
+                                    </motion.div>
                                   );
                                 })}
                               </div>
                             </div>
-                          </ScrollReveal>
-                        ))}
+                          ))}
 
-                        {/* Modo Paralelo */}
-                        {viewMode === 'parallel' && (
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {data.map((item, idx) => (
-                              <div key={item.traducao} className="border border-[var(--border)]/50 rounded-xl p-5">
-                                <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/30">
-                                  <div className={`w-2 h-2 rounded-full ${tradBadgeColors[item.traducao]}`} />
-                                  <span className="text-sm font-semibold">{labelMap[item.traducao]}</span>
-                                </div>
-                                {item.versiculos.map(v => (
-                                  <p key={v.numero} className="mb-1.5 leading-relaxed font-serif-body" style={{ fontSize: `${fontSize - 2}px` }}>
-                                    <sup className="text-[var(--primary)] font-bold text-[10px] mr-1 select-none">{v.numero}</sup>
-                                    {v.texto}
-                                  </p>
-                                ))}
-                              </div>
-                            ))}
-                          </div>
-                        )}
-
-                        {/* Modo Comparação */}
-                        {viewMode === 'comparison' && data.length >= 2 && (
-                          <div className="border border-[var(--border)]/50 rounded-xl overflow-hidden">
-                            <div className="bg-[var(--bg)] px-4 py-2 border-b border-[var(--border)]/30 flex items-center justify-between">
-                              <span className="text-xs font-semibold text-[var(--muted-fg)] uppercase tracking-wider">Comparação</span>
-                              <button onClick={() => setShowDiff(!showDiff)}
-                                className={`text-[11px] px-2.5 py-1 rounded-full transition-all ${showDiff ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' : 'text-[var(--muted-fg)]'}`}>
-                                {showDiff ? 'Diferenças ON' : 'Diferenças OFF'}
-                              </button>
-                            </div>
-                            {/* Header */}
-                            <div className="grid border-b border-[var(--border)]/30" style={{ gridTemplateColumns: `44px repeat(${data.length}, 1fr)` }}>
-                              <div className="p-2" />
-                              {data.map(item => (
-                                <div key={item.traducao} className="p-2 border-l border-[var(--border)]/20">
-                                  <div className="flex items-center gap-1.5">
-                                    <div className={`w-1.5 h-1.5 rounded-full ${tradBadgeColors[item.traducao]}`} />
-                                    <span className="text-[11px] font-bold">{labelMap[item.traducao]}</span>
+                          {viewMode === 'parallel' && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              {data.map((item) => (
+                                <div key={item.traducao} className="border border-[var(--border)]/50 rounded-xl p-5">
+                                  <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/30">
+                                    <div className={`w-2 h-2 rounded-full ${tradBadgeColors[item.traducao]}`} />
+                                    <span className="text-sm font-semibold">{labelMap[item.traducao]}</span>
                                   </div>
+                                  {item.versiculos.map(v => (
+                                    <p key={v.numero} className="mb-1.5 leading-relaxed font-serif-body" style={{ fontSize: `${fontSize - 2}px` }}>
+                                      <sup className="text-[var(--primary)] font-bold text-[10px] mr-1 select-none">{v.numero}</sup>
+                                      {v.texto}
+                                    </p>
+                                  ))}
                                 </div>
                               ))}
                             </div>
-                            {/* Verses */}
-                            {Array.from({ length: maxVersiculos }, (_, i) => {
-                              const verseNum = i + 1;
-                              if (!data.some(d => d.versiculos[i])) return null;
-                              const baseText = data[0].versiculos[i]?.texto || '';
-                              return (
-                                <div key={verseNum}
-                                  className={`grid border-b border-[var(--border)]/15 last:border-b-0 hover:bg-[var(--bg)]/50 transition-colors cursor-pointer ${highlightedVerse === verseNum ? 'bg-[var(--primary)]/5 border-l-2 border-l-[var(--primary)]' : ''}`}
-                                  style={{ gridTemplateColumns: `44px repeat(${data.length}, 1fr)` }}
-                                  onClick={() => setHighlightedVerse(highlightedVerse === verseNum ? null : verseNum)}>
-                                  <div className="p-3 flex items-start justify-end">
-                                    <span className="text-[11px] font-bold text-[var(--primary)] bg-[var(--primary)]/10 w-6 h-6 flex items-center justify-center rounded-full">{verseNum}</span>
+                          )}
+
+                          {viewMode === 'comparison' && data.length >= 2 && (
+                            <div className="border border-[var(--border)]/50 rounded-xl overflow-hidden">
+                              <div className="bg-[var(--bg)] px-4 py-2 border-b border-[var(--border)]/30 flex items-center justify-between">
+                                <span className="text-xs font-semibold text-[var(--muted-fg)] uppercase tracking-wider">Comparação</span>
+                                <button onClick={() => setShowDiff(!showDiff)}
+                                  className={`text-[11px] px-2.5 py-1 rounded-full transition-all duration-300 ${showDiff ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' : 'text-[var(--muted-fg)]'}`}>
+                                  {showDiff ? 'Diferenças ON' : 'Diferenças OFF'}
+                                </button>
+                              </div>
+                              <div className="grid border-b border-[var(--border)]/30" style={{ gridTemplateColumns: `44px repeat(${data.length}, 1fr)` }}>
+                                <div className="p-2" />
+                                {data.map(item => (
+                                  <div key={item.traducao} className="p-2 border-l border-[var(--border)]/20">
+                                    <div className="flex items-center gap-1.5">
+                                      <div className={`w-1.5 h-1.5 rounded-full ${tradBadgeColors[item.traducao]}`} />
+                                      <span className="text-[11px] font-bold">{labelMap[item.traducao]}</span>
+                                    </div>
                                   </div>
-                                  {data.map((item, idx) => {
-                                    const v = item.versiculos[i];
-                                    if (!v) return <div key={item.traducao} className="p-3 border-l border-[var(--border)]/20" />;
-                                    if (showDiff && idx > 0 && baseText) {
-                                      const segments = diffWords(baseText, v.texto);
+                                ))}
+                              </div>
+                              {Array.from({ length: maxVersiculos }, (_, i) => {
+                                const verseNum = i + 1;
+                                if (!data.some(d => d.versiculos[i])) return null;
+                                const baseText = data[0].versiculos[i]?.texto || '';
+                                return (
+                                  <motion.div key={verseNum}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: i * 0.01 }}
+                                    className={`grid border-b border-[var(--border)]/15 last:border-b-0 hover:bg-[var(--bg)]/50 transition-all duration-300 cursor-pointer ${highlightedVerse === verseNum ? 'bg-[var(--primary)]/5 border-l-2 border-l-[var(--primary)]' : ''}`}
+                                    style={{ gridTemplateColumns: `44px repeat(${data.length}, 1fr)` }}
+                                    onClick={() => setHighlightedVerse(highlightedVerse === verseNum ? null : verseNum)}>
+                                    <div className="p-3 flex items-start justify-end">
+                                      <span className="text-[11px] font-bold text-[var(--primary)] bg-[var(--primary)]/10 w-6 h-6 flex items-center justify-center rounded-full">{verseNum}</span>
+                                    </div>
+                                    {data.map((item, idx) => {
+                                      const v = item.versiculos[i];
+                                      if (!v) return <div key={item.traducao} className="p-3 border-l border-[var(--border)]/20" />;
+                                      if (showDiff && idx > 0 && baseText) {
+                                        const segments = diffWords(baseText, v.texto);
+                                        return (
+                                          <div key={item.traducao} className="p-3 border-l border-[var(--border)]/20">
+                                            <p className="font-serif-body leading-relaxed" style={{ fontSize: `${fontSize - 3}px` }}>
+                                              {segments.map((seg, si) => seg.changed ? <span key={si} className="diff-word">{seg.text}</span> : <span key={si}>{seg.text}</span>)}
+                                            </p>
+                                          </div>
+                                        );
+                                      }
                                       return (
                                         <div key={item.traducao} className="p-3 border-l border-[var(--border)]/20">
-                                          <p className="font-serif-body leading-relaxed" style={{ fontSize: `${fontSize - 3}px` }}>
-                                            {segments.map((seg, si) => seg.changed ? <span key={si} className="diff-word">{seg.text}</span> : <span key={si}>{seg.text}</span>)}
-                                          </p>
+                                          <p className="font-serif-body leading-relaxed" style={{ fontSize: `${fontSize - 3}px` }}>{v.texto}</p>
                                         </div>
                                       );
-                                    }
-                                    return (
-                                      <div key={item.traducao} className="p-3 border-l border-[var(--border)]/20">
-                                        <p className="font-serif-body leading-relaxed" style={{ fontSize: `${fontSize - 3}px` }}>{v.texto}</p>
-                                      </div>
-                                    );
-                                  })}
-                                </div>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </>
-                    )}
+                                    })}
+                                  </motion.div>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </>
+                      )}
 
-                    {/* Navegação inferior */}
-                    {!readingMode && (
-                      <div className="flex items-center justify-center gap-4 mt-12 pt-8 border-t border-[var(--border)]/30">
-                        <button onClick={() => setCapituloIdx(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0}
-                          className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-30 hover:bg-[var(--bg)] transition-colors">
-                          <ChevronLeft className="w-4 h-4" /> Anterior
-                        </button>
-                        <span className="text-xs text-[var(--muted-fg)] font-mono">{capituloIdx + 1} / {livro.totalCapitulos}</span>
-                        <button onClick={() => setCapituloIdx(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
-                          disabled={capituloIdx >= livro.totalCapitulos - 1}
-                          className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-30 hover:bg-[var(--bg)] transition-colors">
-                          Próximo <ChevronRight className="w-4 h-4" />
-                        </button>
-                      </div>
-                    )}
-                  </>
+                      {!readingMode && (
+                        <div className="flex items-center justify-center gap-4 mt-12 pt-8 border-t border-[var(--border)]/30">
+                          <motion.button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0}
+                            whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                            className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-30 hover:bg-[var(--bg)] transition-all duration-300">
+                            <ChevronLeft className="w-4 h-4" /> Anterior
+                          </motion.button>
+                          <span className="text-xs text-[var(--muted-fg)] font-mono">{capituloIdx + 1} / {livro.totalCapitulos}</span>
+                          <motion.button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
+                            disabled={capituloIdx >= livro.totalCapitulos - 1}
+                            whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                            className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-30 hover:bg-[var(--bg)] transition-all duration-300">
+                            Próximo <ChevronRight className="w-4 h-4" />
+                          </motion.button>
+                        </div>
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
                 ) : (
-                  <div className="text-center py-20">
+                  <div className="text-center py-20 chapter-enter">
                     <BookOpen className="w-16 h-16 mx-auto mb-4 text-[var(--muted-fg)]/30" strokeWidth={1} />
-                    <p className="text-lg text-[var(--muted-fg)]">Carregando...</p>
+                    <p className="text-lg text-[var(--muted-fg)]">Selecione um livro e capítulo</p>
                   </div>
                 )}
               </div>
 
-              {/* Study Panels */}
               {(studyPanel === 'notas' || studyPanel === 'strong' || studyPanel === 'comentarios') && (
-                <div className="border-t border-[var(--border)] bg-[var(--card-bg)] p-4">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="border-t border-[var(--border)] bg-[var(--card-bg)] p-4"
+                >
                   <div className="max-w-4xl mx-auto">
                     {studyPanel === 'notas' && <PainelNotas livroAbrev={livro.abreviacao} capitulo={capituloIdx + 1} />}
                     {studyPanel === 'strong' && <PainelStrong onClose={() => setStudyPanel(null)} />}
@@ -558,110 +588,162 @@ export default function BibliaPage() {
                         onClose={() => { setStudyPanel(null); setComentarioVersiculo(null); }} />
                     )}
                   </div>
-                </div>
+                </motion.div>
               )}
             </div>
 
             {/* Mobile sidebar */}
-            {mobileMenu && (
-              <div className="fixed inset-0 z-50 lg:hidden">
-                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMobileMenu(false)} />
-                <aside className="absolute left-0 top-0 bottom-0 w-72 max-w-[85vw] bg-[var(--card-bg)] border-r border-[var(--border)] overflow-y-auto p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-semibold">Livros</span>
-                    <button onClick={() => setMobileMenu(false)} className="p-1 rounded-lg hover:bg-[var(--bg)]"><X className="w-4 h-4" /></button>
-                  </div>
-                  <div className="space-y-0.5">
-                    {TODOS_LIVROS.map(l => {
-                      const idx = TODOS_LIVROS.indexOf(l);
-                      return (
-                        <button key={l.abreviacao} onClick={() => { goToBook(idx); setMobileMenu(false); }}
-                          className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-colors ${idx === livroIdx ? 'bg-[var(--primary)]/10 text-[var(--primary)] font-medium' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
-                          {l.nome}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </aside>
-              </div>
-            )}
+            <AnimatePresence>
+              {mobileMenu && (
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-50 lg:hidden"
+                >
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 bg-black/40 backdrop-blur-sm" 
+                    onClick={() => setMobileMenu(false)} 
+                  />
+                  <motion.aside 
+                    initial={{ x: -288 }}
+                    animate={{ x: 0 }}
+                    exit={{ x: -288 }}
+                    transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="absolute left-0 top-0 bottom-0 w-72 max-w-[85vw] bg-[var(--card-bg)] border-r border-[var(--border)] overflow-y-auto p-4"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-sm font-semibold">Livros</span>
+                      <button onClick={() => setMobileMenu(false)} className="p-1 rounded-lg hover:bg-[var(--bg)]"><X className="w-4 h-4" /></button>
+                    </div>
+                    <div className="space-y-0.5">
+                      {TODOS_LIVROS.map(l => {
+                        const idx = TODOS_LIVROS.indexOf(l);
+                        return (
+                          <button key={l.abreviacao} onClick={() => { goToBook(idx); setMobileMenu(false); }}
+                            className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-300 ${idx === livroIdx ? 'bg-[var(--primary)]/10 text-[var(--primary)] font-medium' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                            {l.nome}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </motion.aside>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </main>
 
       {/* Annotation modal */}
-      {anotandoVersiculo && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setAnotandoVersiculo(null)}>
-          <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl shadow-2xl p-6 w-full max-w-md mx-4" onClick={e => e.stopPropagation()}>
-            <h3 className="font-display text-lg font-medium mb-1">Anotação</h3>
-            <p className="text-xs text-[var(--muted-fg)] mb-4">{anotandoVersiculo}</p>
-            <textarea value={anotacaoTexto} onChange={e => setAnotacaoTexto(e.target.value)}
-              placeholder="Digite sua anotação pessoal..."
-              className="w-full h-32 p-3 text-sm bg-[var(--bg)] border border-[var(--border)] rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/20" autoFocus />
-            <div className="flex items-center justify-end gap-3 mt-4">
-              <button onClick={() => setAnotandoVersiculo(null)} className="px-4 py-2 text-sm text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors">Cancelar</button>
-              <button onClick={() => {
-                const parts = anotandoVersiculo.split(':');
-                salvarAnotacao(parts[0], Number(parts[1]), Number(parts[2]), parts[3], anotacaoTexto || null);
-                refresh(); setAnotandoVersiculo(null); setAnotacaoTexto('');
-              }} className="px-4 py-2 text-sm font-medium bg-[var(--primary)] text-white rounded-lg hover:bg-[var(--primary)]/90 transition-colors">Salvar</button>
-            </div>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {anotandoVersiculo && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" 
+            onClick={() => setAnotandoVersiculo(null)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl shadow-2xl p-6 w-full max-w-md mx-4" 
+              onClick={e => e.stopPropagation()}
+            >
+              <h3 className="font-display text-lg font-medium mb-1">Anotação</h3>
+              <p className="text-xs text-[var(--muted-fg)] mb-4">{anotandoVersiculo}</p>
+              <textarea value={anotacaoTexto} onChange={e => setAnotacaoTexto(e.target.value)}
+                placeholder="Digite sua anotação pessoal..."
+                className="w-full h-32 p-3 text-sm bg-[var(--bg)] border border-[var(--border)] rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/20 transition-all duration-300" autoFocus />
+              <div className="flex items-center justify-end gap-3 mt-4">
+                <button onClick={() => setAnotandoVersiculo(null)} className="px-4 py-2 text-sm text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors duration-300">Cancelar</button>
+                <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => {
+                  const parts = anotandoVersiculo.split(':');
+                  salvarAnotacao(parts[0], Number(parts[1]), Number(parts[2]), parts[3], anotacaoTexto || null);
+                  refresh(); setAnotandoVersiculo(null); setAnotacaoTexto('');
+                }} className="px-4 py-2 text-sm font-medium bg-[var(--primary)] text-white rounded-lg hover:bg-[var(--primary)]/90 transition-all duration-300">Salvar</motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Quick Search Ctrl+K */}
-      {quickSearchOpen && (
-        <div className="fixed inset-0 z-[60] flex items-start justify-center pt-[15vh]">
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setQuickSearchOpen(false)} />
-          <div className="relative w-full max-w-lg mx-4 bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl shadow-2xl overflow-hidden">
-            <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--border)]">
-              <Search className="w-5 h-5 text-[var(--muted-fg)] shrink-0" />
-              <input autoFocus type="text" placeholder="Buscar versículos..." value={quickSearchQuery}
-                onChange={e => handleQuickSearch(e.target.value)}
-                className="flex-1 bg-transparent text-sm outline-none" />
-              <kbd className="text-[10px] bg-[var(--bg)] px-1.5 py-0.5 rounded text-[var(--muted-fg)]">ESC</kbd>
-            </div>
-            <div className="max-h-80 overflow-y-auto">
-              {quickSearchResults.length > 0 ? (
-                <div className="p-2">
-                  {quickSearchResults.map((r, i) => (
-                    <button key={i} onClick={() => goToQuickResult(r)} className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--bg)] transition-colors group">
-                      <div className="flex items-center gap-2 mb-0.5">
-                        <span className="text-xs font-semibold text-[var(--primary)]">{r.nome} {r.cap}:{r.versiculo}</span>
-                      </div>
-                      <p className="text-xs text-[var(--muted-fg)] line-clamp-2 group-hover:text-[var(--fg)] transition-colors">{r.texto}</p>
-                    </button>
-                  ))}
-                </div>
-              ) : quickSearchQuery.length >= 2 ? (
-                <div className="p-8 text-center text-sm text-[var(--muted-fg)]">Nenhum resultado</div>
-              ) : (
-                <div className="p-8 text-center text-sm text-[var(--muted-fg)]/60">Digite pelo menos 2 caracteres</div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {quickSearchOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-start justify-center pt-[15vh]"
+          >
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setQuickSearchOpen(false)} />
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0, y: -20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative w-full max-w-lg mx-4 bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl shadow-2xl overflow-hidden"
+            >
+              <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--border)]">
+                <Search className="w-5 h-5 text-[var(--muted-fg)] shrink-0" />
+                <input autoFocus type="text" placeholder="Buscar versículos..." value={quickSearchQuery}
+                  onChange={e => handleQuickSearch(e.target.value)}
+                  className="flex-1 bg-transparent text-sm outline-none" />
+                <kbd className="text-[10px] bg-[var(--bg)] px-1.5 py-0.5 rounded text-[var(--muted-fg)]">ESC</kbd>
+              </div>
+              <div className="max-h-80 overflow-y-auto">
+                {quickSearchResults.length > 0 ? (
+                  <div className="p-2">
+                    {quickSearchResults.map((r, i) => (
+                      <motion.button key={i} onClick={() => goToQuickResult(r)}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.03 }}
+                        className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--bg)] transition-colors duration-200 group"
+                      >
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className="text-xs font-semibold text-[var(--primary)]">{r.nome} {r.cap}:{r.versiculo}</span>
+                        </div>
+                        <p className="text-xs text-[var(--muted-fg)] line-clamp-2 group-hover:text-[var(--fg)] transition-colors duration-200">{r.texto}</p>
+                      </motion.button>
+                    ))}
+                  </div>
+                ) : quickSearchQuery.length >= 2 ? (
+                  <div className="p-8 text-center text-sm text-[var(--muted-fg)]">Nenhum resultado</div>
+                ) : (
+                  <div className="p-8 text-center text-sm text-[var(--muted-fg)]/60">Digite pelo menos 2 caracteres</div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Mobile bottom nav */}
       <div className="fixed bottom-0 left-0 right-0 border-t border-[var(--border)] bg-[var(--card-bg)] lg:hidden z-30">
         <div className="flex items-center justify-around px-2 py-2">
-          <button onClick={() => setMobileMenu(true)} className="flex flex-col items-center gap-0.5 p-2 text-[var(--muted-fg)]">
+          <motion.button onClick={() => setMobileMenu(true)} whileTap={{ scale: 0.9 }} className="flex flex-col items-center gap-0.5 p-2 text-[var(--muted-fg)]">
             <BookOpen className="w-5 h-5" /><span className="text-[10px]">Livros</span>
-          </button>
+          </motion.button>
           <div className="flex items-center gap-1">
-            <button onClick={() => setCapituloIdx(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0} className="p-2 text-[var(--muted-fg)] disabled:opacity-30">
+            <motion.button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0} whileTap={{ scale: 0.9 }} className="p-2 text-[var(--muted-fg)] disabled:opacity-30">
               <ChevronLeft className="w-5 h-5" />
-            </button>
+            </motion.button>
             <span className="text-xs font-mono min-w-[3rem] text-center">{capituloIdx + 1}/{livro.totalCapitulos}</span>
-            <button onClick={() => setCapituloIdx(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))} disabled={capituloIdx >= livro.totalCapitulos - 1} className="p-2 text-[var(--muted-fg)] disabled:opacity-30">
+            <motion.button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))} disabled={capituloIdx >= livro.totalCapitulos - 1} whileTap={{ scale: 0.9 }} className="p-2 text-[var(--muted-fg)] disabled:opacity-30">
               <ChevronRight className="w-5 h-5" />
-            </button>
+            </motion.button>
           </div>
-          <button onClick={() => setChapterGridOpen(!chapterGridOpen)} className="flex flex-col items-center gap-0.5 p-2 text-[var(--muted-fg)]">
+          <motion.button onClick={() => setChapterGridOpen(!chapterGridOpen)} whileTap={{ scale: 0.9 }} className="flex flex-col items-center gap-0.5 p-2 text-[var(--muted-fg)]">
             <LayoutList className="w-5 h-5" /><span className="text-[10px]">Capítulos</span>
-          </button>
+          </motion.button>
         </div>
       </div>
     </div>

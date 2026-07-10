@@ -1,187 +1,162 @@
 'use client';
 
-import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { palavrasOriginais } from '@/data/biblia';
+import { palavrasGregas } from '@/data/lexicon/grego';
+import { palavrasHebraicas } from '@/data/lexicon/hebraico';
+import { Languages, Search, BookOpen, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
-import { Search, X, Sparkles, BookOpen, Languages, ArrowRight } from 'lucide-react';
+import { useState, useMemo } from 'react';
+
+type LexiconWord = typeof palavrasGregas[number];
+
+const allWords: Array<LexiconWord & { lingua: 'grego' | 'hebraico' }> = [
+  ...palavrasGregas.map(w => ({ ...w, lingua: 'grego' as const })),
+  ...palavrasHebraicas.map(w => ({ ...w, lingua: 'hebraico' as const })),
+];
 
 export default function IdiomasPage() {
-  const [busca, setBusca] = useState('');
-  const [filtro, setFiltro] = useState<'todos' | 'grego' | 'hebraico'>('todos');
-  const [expandida, setExpandida] = useState<string | null>(null);
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState<'all' | 'grego' | 'hebraico'>('all');
 
-  const filtradas = palavrasOriginais.filter((p) => {
-    const matchBusca = busca === '' ||
-      p.palavra.toLowerCase().includes(busca.toLowerCase()) ||
-      p.transliteracao.toLowerCase().includes(busca.toLowerCase()) ||
-      p.definicao.toLowerCase().includes(busca.toLowerCase()) ||
-      p.strong.toLowerCase().includes(busca.toLowerCase());
-    const matchFiltro = filtro === 'todos' || p.idioma === filtro;
-    return matchBusca && matchFiltro;
-  });
+  const filtered = useMemo(() => {
+    return allWords.filter(w => {
+      const matchLang = filter === 'all' || w.lingua === filter;
+      const matchSearch = !search || 
+        w.palavra.toLowerCase().includes(search.toLowerCase()) ||
+        w.transliteracao?.toLowerCase().includes(search.toLowerCase()) ||
+        w.definicao.toLowerCase().includes(search.toLowerCase()) ||
+        String(w.strong).includes(search);
+      return matchLang && matchSearch;
+    });
+  }, [search, filter]);
 
-  const stats = {
-    total: palavrasOriginais.length,
-    grego: palavrasOriginais.filter(p => p.idioma === 'grego').length,
-    hebraico: palavrasOriginais.filter(p => p.idioma === 'hebraico').length,
-  };
+  const gregoCount = palavrasGregas.length;
+  const hebraicoCount = palavrasHebraicas.length;
 
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
-          {/* Hero Section */}
+      <main className="pt-24 pb-16 px-6">
+        <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                <Languages className="w-4 h-4" />
-                Línguas Bíblicas Originais
-              </div>
-              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-light mb-4">
-                Grego & <span className="text-primary italic">Hebraico</span>
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                className="w-16 h-16 rounded-2xl bg-rose-500/10 flex items-center justify-center mx-auto mb-6"
+              >
+                <Languages className="w-8 h-8 text-rose-500" />
+              </motion.div>
+              <h1 className="font-display text-4xl md:text-5xl font-light mb-4">
+                Línguas <span className="italic text-primary">Originais</span>
               </h1>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Estude as palavras originais das Escrituras — léxico, morfologia e significado profundo
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Estude o texto bíblico nas línguas originais: Grego Koiné do Novo Testamento e Hebraico Bíblico do Antigo Testamento.
               </p>
+              <div className="ornament w-16 mx-auto mt-6" />
             </div>
           </ScrollReveal>
 
           {/* Stats */}
-          <ScrollReveal>
+          <ScrollReveal delay={0.1}>
             <div className="grid grid-cols-3 gap-4 mb-8">
-              <div className="glass-card p-4 rounded-2xl text-center">
-                <p className="font-display text-3xl font-light text-primary">{stats.total}</p>
-                <p className="text-xs text-muted-foreground mt-1">Palavras</p>
+              <div className="sola-card p-4 text-center">
+                <p className="font-display text-3xl font-light text-primary">{gregoCount + hebraicoCount}</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">Total</p>
               </div>
-              <div className="glass-card p-4 rounded-2xl text-center">
-                <p className="font-display text-3xl font-light text-blue-500">{stats.grego}</p>
-                <p className="text-xs text-muted-foreground mt-1">Grego</p>
+              <div className="sola-card p-4 text-center">
+                <p className="font-display text-3xl font-light text-blue-500">{gregoCount}</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">Grego</p>
               </div>
-              <div className="glass-card p-4 rounded-2xl text-center">
-                <p className="font-display text-3xl font-light text-amber-500">{stats.hebraico}</p>
-                <p className="text-xs text-muted-foreground mt-1">Hebraico</p>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Search */}
-          <ScrollReveal>
-            <div className="glass-card p-6 rounded-2xl mb-8">
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="relative flex-1">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                  <input
-                    type="text"
-                    placeholder="Buscar palavra, Strong ou definição..."
-                    value={busca}
-                    onChange={(e) => setBusca(e.target.value)}
-                    className="w-full pl-12 pr-12 py-4 bg-background/50 border border-border/50 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all"
-                  />
-                  {busca && (
-                    <button onClick={() => setBusca('')} className="absolute right-4 top-1/2 -translate-y-1/2">
-                      <X className="w-5 h-5 text-muted-foreground hover:text-foreground transition-colors" />
-                    </button>
-                  )}
-                </div>
-                <div className="flex gap-2">
-                  {(['todos', 'grego', 'hebraico'] as const).map((f) => (
-                    <button
-                      key={f}
-                      onClick={() => setFiltro(f)}
-                      className={`px-5 py-3 text-sm font-medium rounded-xl transition-all ${
-                        filtro === f
-                          ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
-                          : 'border border-border/50 text-muted-foreground hover:bg-muted/50'
-                      }`}
-                    >
-                      {f === 'todos' ? 'Todos' : f === 'grego' ? 'Grego' : 'Hebraico'}
-                    </button>
-                  ))}
-                </div>
+              <div className="sola-card p-4 text-center">
+                <p className="font-display text-3xl font-light text-amber-500">{hebraicoCount}</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">Hebraico</p>
               </div>
             </div>
           </ScrollReveal>
 
-          {/* Results */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filtradas.map((p, idx) => (
-              <ScrollReveal key={p.strong} delay={idx * 30}>
-                <div
-                  className={`glass-card rounded-2xl overflow-hidden transition-all duration-300 ${
-                    expandida === p.strong ? 'ring-2 ring-primary/50' : ''
-                  }`}
-                  onClick={() => setExpandida(expandida === p.strong ? null : p.strong)}
+          {/* Search and filter */}
+          <ScrollReveal delay={0.15}>
+            <div className="flex flex-col sm:flex-row gap-3 mb-8">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <input
+                  type="text"
+                  placeholder="Buscar por palavra, transliteração, definição ou Strong..."
+                  value={search}
+                  onChange={e => setSearch(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 text-sm bg-card border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+                />
+              </div>
+              <div className="flex gap-2">
+                {[
+                  { value: 'all' as const, label: 'Todos' },
+                  { value: 'grego' as const, label: 'Grego' },
+                  { value: 'hebraico' as const, label: 'Hebraico' },
+                ].map(f => (
+                  <motion.button
+                    key={f.value}
+                    onClick={() => setFilter(f.value)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`px-4 py-2 text-sm rounded-lg transition-all duration-300 ${
+                      filter === f.value 
+                        ? 'bg-primary text-primary-foreground font-semibold' 
+                        : 'bg-card border border-border text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    {f.label}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Words grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filtered.slice(0, 100).map((word, i) => (
+              <ScrollReveal key={`${word.lingua}-${word.strong}`} delay={Math.min(i * 0.02, 0.5)}>
+                <motion.div
+                  className="glass-card p-5 h-full group"
+                  whileHover={{ y: -3, boxShadow: '0 8px 30px rgba(196,162,101,0.1)' }}
+                  transition={{ duration: 0.3 }}
                 >
-                  {/* Header */}
-                  <div className={`px-5 py-4 bg-gradient-to-r ${
-                    p.idioma === 'grego'
-                      ? 'from-blue-500/10 to-blue-600/5'
-                      : 'from-amber-500/10 to-amber-600/5'
-                  }`}>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <p className="font-serif text-3xl text-foreground">{p.palavra}</p>
-                        <p className="text-sm text-muted-foreground italic mt-1">{p.transliteracao}</p>
-                      </div>
-                      <div className="flex flex-col items-end gap-2">
-                        <span className={`text-[10px] font-bold uppercase px-3 py-1 rounded-full ${
-                          p.idioma === 'grego'
-                            ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300'
-                            : 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300'
-                        }`}>
-                          {p.idioma}
-                        </span>
-                        <span className="text-[10px] font-mono text-muted-foreground bg-background/50 px-2 py-1 rounded-full">
-                          {p.strong}
-                        </span>
-                      </div>
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <span className="text-2xl font-serif">{word.palavra}</span>
+                      <p className="text-sm text-muted-foreground italic">{word.transliteracao}</p>
                     </div>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                      word.lingua === 'grego' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400' : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'
+                    }`}>
+                      {word.lingua === 'grego' ? 'GREGO' : 'HEBRAICO'}
+                    </span>
                   </div>
-
-                  {/* Content */}
-                  <div className="p-5">
-                    <p className="text-sm text-foreground/80 leading-relaxed">{p.definicao}</p>
-                    
-                    {p.morfologia && (
-                      <div className="mt-3 p-3 bg-muted/30 rounded-xl">
-                        <p className="text-xs text-muted-foreground mb-1 font-semibold uppercase tracking-wider">Morfologia</p>
-                        <p className="text-sm">{p.morfologia}</p>
-                      </div>
-                    )}
-
-                    {expandida === p.strong && (
-                      <div className="mt-4 pt-4 border-t border-border/30">
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <BookOpen className="w-3.5 h-3.5" />
-                          <span>Strong&apos;s Concordance</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                          <span className="font-mono text-primary">{p.strong}</span>
-                        </div>
-                      </div>
+                  <p className="text-sm text-foreground/80 leading-relaxed mb-3">{word.definicao}</p>
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                    <span className="flex items-center gap-1">
+                      <BookOpen className="w-3 h-3" />
+                      Strong {word.strong}
+                    </span>
+                    {word.morfologia && (
+                      <span className="flex items-center gap-1">
+                        <Sparkles className="w-3 h-3" />
+                        {word.morfologia}
+                      </span>
                     )}
                   </div>
-                </div>
+                </motion.div>
               </ScrollReveal>
             ))}
           </div>
 
-          {filtradas.length === 0 && (
-            <ScrollReveal>
-              <div className="glass-card p-16 text-center rounded-2xl">
-                <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                  <Search className="w-10 h-10 text-primary/40" strokeWidth={1} />
-                </div>
-                <p className="font-display text-2xl text-muted-foreground mb-2">
-                  Nenhuma palavra encontrada
-                </p>
-                <p className="text-sm text-muted-foreground/70">
-                  Tente buscar por outro termo ou filtro
-                </p>
-              </div>
-            </ScrollReveal>
+          {filtered.length > 100 && (
+            <p className="text-center text-sm text-muted-foreground mt-8">
+              Mostrando 100 de {filtered.length} palavras
+            </p>
           )}
         </div>
       </main>

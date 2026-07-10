@@ -110,7 +110,7 @@ export default function CronologiaPage() {
 
             <div className="space-y-8">
               {filtrados.map((evento, i) => (
-                <ScrollReveal key={i} delay={i * 50}>
+                <ScrollReveal key={i} delay={Math.min(i * 30, 300)}>
                   <div className={`relative flex items-start gap-6 sm:gap-8 ${
                     i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
                   }`}>

@@ -15,7 +15,9 @@ import { useEstudos } from '@/components/EstudosProvider';
 import PainelStrong from '@/components/PainelStrong';
 import PainelNotas from '@/components/PainelNotas';
 import PainelComentarios from '@/components/PainelComentarios';
+import PainelEstudos from '@/components/PainelEstudos';
 import { temComentario } from '@/data/comentarios';
+import { temEstudo } from '@/data/estudosTeologicos';
 import { diffWords } from '@/lib/diff';
 import { exportChapterPdf } from '@/lib/exportPdf';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -23,6 +25,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import AudioPlayer from '@/components/AudioPlayer';
 import { getCrossReferences } from '@/data/crossReferences';
 import Link from 'next/link';
+import { GraduationCap, Volume2 } from 'lucide-react';
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
@@ -91,7 +94,7 @@ export default function BibliaPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [fontSize, setFontSize] = useState(18);
   const [chapterGridOpen, setChapterGridOpen] = useState(false);
-  const [studyPanel, setStudyPanel] = useState<'notas' | 'strong' | 'anotacoes' | 'historico' | 'comentarios' | null>(null);
+  const [studyPanel, setStudyPanel] = useState<'notas' | 'strong' | 'anotacoes' | 'historico' | 'comentarios' | 'estudos' | null>(null);
   const [anotandoVersiculo, setAnotandoVersiculo] = useState<string | null>(null);
   const [anotacaoTexto, setAnotacaoTexto] = useState('');
   const [showSettings, setShowSettings] = useState(false);
@@ -107,6 +110,7 @@ export default function BibliaPage() {
   const [chapterDirection, setChapterDirection] = useState<'next' | 'prev'>('next');
   const [showAudio, setShowAudio] = useState(false);
   const [selectedCrossRef, setSelectedCrossRef] = useState<{verse: number; refs: string[]} | null>(null);
+  const [estudoVersiculo, setEstudoVersiculo] = useState<number | null>(null);
   const mainRef = useRef<HTMLDivElement>(null);
   const { isFavorito, refresh } = useEstudos();
 
@@ -325,6 +329,12 @@ export default function BibliaPage() {
                     </div>
                   )}
 
+                  <motion.button onClick={() => setShowAudio(!showAudio)} title="Áudio da Bíblia"
+                    whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                    className={`p-1.5 rounded-md transition-all duration-300 ${showAudio ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                    <Volume2 className="w-4 h-4" />
+                  </motion.button>
+
                   <motion.button onClick={() => setReadingMode(!readingMode)} title="Modo leitura"
                     whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                     className={`p-1.5 rounded-md transition-all duration-300 ${readingMode ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
@@ -489,6 +499,14 @@ export default function BibliaPage() {
                                             <BookOpen className="w-3.5 h-3.5" />
                                           </motion.button>
                                         )}
+                                        {temEstudo(livro.abreviacao, capituloIdx + 1, v.numero) && (
+                                          <motion.button onClick={() => { setEstudoVersiculo(v.numero); setStudyPanel('estudos'); }}
+                                            whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
+                                            className="p-1 text-purple-500 hover:text-purple-600 rounded-md transition-colors duration-300"
+                                            title="Estudos Teológicos">
+                                            <GraduationCap className="w-3.5 h-3.5" />
+                                          </motion.button>
+                                        )}
                                       </div>
                                     </motion.div>
                                   );
@@ -596,7 +614,7 @@ export default function BibliaPage() {
                       )}
 
                       {/* Audio Player */}
-                      {!readingMode && data[0]?.versiculos && (
+                      {showAudio && !readingMode && data[0]?.versiculos && (
                         <div className="mt-6">
                           <AudioPlayer
                             verses={data[0].versiculos}
@@ -615,7 +633,7 @@ export default function BibliaPage() {
                 )}
               </div>
 
-              {(studyPanel === 'notas' || studyPanel === 'strong' || studyPanel === 'comentarios') && (
+              {(studyPanel === 'notas' || studyPanel === 'strong' || studyPanel === 'comentarios' || studyPanel === 'estudos') && (
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -627,6 +645,11 @@ export default function BibliaPage() {
                     {studyPanel === 'comentarios' && comentarioVersiculo && (
                       <PainelComentarios livro={livro.abreviacao} capitulo={capituloIdx + 1} versiculo={comentarioVersiculo}
                         onClose={() => { setStudyPanel(null); setComentarioVersiculo(null); }} />
+                    )}
+                    {studyPanel === 'estudos' && estudoVersiculo && (
+                      <PainelEstudos livro={livro.abreviacao} capitulo={capituloIdx + 1} versiculo={estudoVersiculo}
+                        nomeLivro={livro.nome}
+                        onClose={() => { setStudyPanel(null); setEstudoVersiculo(null); }} />
                     )}
                   </div>
                 </motion.div>

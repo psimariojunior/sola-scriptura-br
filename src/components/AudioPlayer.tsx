@@ -121,7 +121,7 @@ export default function AudioPlayer({ verses, bookName, chapter }: AudioPlayerPr
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed bottom-0 left-0 right-0 z-40 lg:relative lg:bottom-auto"
+      className="border border-[var(--border)] rounded-xl overflow-hidden shadow-lg"
     >
       <div className="bg-[var(--card-bg)] border-t lg:border-t-0 lg:border border-[var(--border)] shadow-lg lg:rounded-xl overflow-hidden">
         {/* Progress bar */}

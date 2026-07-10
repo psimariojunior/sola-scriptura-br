@@ -21,7 +21,7 @@ const directionMap = {
 
 export default function ScrollReveal({ children, delay = 0, direction = 'up', className = '', once = true }: ScrollRevealProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once, margin: '-60px' });
+  const isInView = useInView(ref, { once, margin: '100px' });
   const offset = directionMap[direction];
 
   return (

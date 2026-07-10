@@ -2,7 +2,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export default function BibleSplash() {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const seen = sessionStorage.getItem('ssb_splash_seen');
+    if (seen) return false;
+    sessionStorage.setItem('ssb_splash_seen', '1');
+    return true;
+  });
   const [phase, setPhase] = useState<'closed' | 'opening' | 'light' | 'done'>('closed');
 
   useEffect(() => {

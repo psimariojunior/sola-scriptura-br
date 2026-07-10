@@ -484,7 +484,7 @@ export default function BibliaPage() {
                                             );
                                           })()}
                                         </div>
-                                        <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0">
+                                        <div className="flex items-center gap-0.5 shrink-0">
                                           <VerseAudio
                                             text={v.texto}
                                             verseNumber={v.numero}
@@ -492,50 +492,48 @@ export default function BibliaPage() {
                                             onPlay={(num) => audio.play(num, v.texto)}
                                             onStop={audio.stop}
                                           />
-                                          <motion.button onClick={() => toggleFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, v.texto)}
-                                            whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                                            className={`p-1 rounded-md transition-colors duration-300 ${fav ? 'text-red-500' : 'text-[var(--muted-fg)] hover:text-red-400'}`}>
+                                          <motion.button onClick={() => { toggleFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, v.texto); refresh(); }}
+                                            whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
+                                            className={`p-1 rounded-md transition-all duration-200 ${fav ? 'text-red-400 bg-red-500/10 shadow-sm' : 'text-[var(--muted-fg)] hover:text-red-400 hover:bg-red-500/5'}`}>
                                             <Heart className={`w-3.5 h-3.5 ${fav ? 'fill-current' : ''}`} />
                                           </motion.button>
                                           <motion.button onClick={() => { const m = obterMarca(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao); setAnotandoVersiculo(key); setAnotacaoTexto(m?.anotacao?.texto || ''); }}
-                                            whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                                            className="p-1 text-[var(--muted-fg)] hover:text-amber-500 rounded-md transition-colors duration-300">
+                                            whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
+                                            className="p-1 rounded-md text-[var(--muted-fg)] hover:text-amber-400 hover:bg-amber-500/5 transition-all duration-200">
                                             <StickyNote className="w-3.5 h-3.5" />
                                           </motion.button>
-                                          <motion.button onClick={() => copyVerse(v.texto, ref)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                                            className="p-1 text-[var(--muted-fg)] hover:text-[var(--fg)] rounded-md transition-colors duration-300">
-                                            {copiedVerse === ref ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
+                                          <motion.button onClick={() => copyVerse(v.texto, ref)} whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
+                                            className="p-1 rounded-md text-[var(--muted-fg)] hover:text-[var(--primary)] hover:bg-[var(--primary)]/5 transition-all duration-200">
+                                            {copiedVerse === ref ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Copy className="w-3.5 h-3.5" />}
                                           </motion.button>
-                                          <motion.button onClick={() => shareVerse(v.texto, ref)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                                            className="p-1 text-[var(--muted-fg)] hover:text-[var(--fg)] rounded-md transition-colors duration-300">
+                                          <motion.button onClick={() => shareVerse(v.texto, ref)} whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
+                                            className="p-1 rounded-md text-[var(--muted-fg)] hover:text-sky-400 hover:bg-sky-500/5 transition-all duration-200">
                                             <Share2 className="w-3.5 h-3.5" />
                                           </motion.button>
                                           {temComentario(livro.abreviacao, capituloIdx + 1, v.numero) && (
                                             <motion.button onClick={() => { setComentarioVersiculo(v.numero); setStudyPanel('comentarios'); }}
-                                              whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                                              className="p-1 text-amber-500 hover:text-amber-600 rounded-md transition-colors duration-300">
+                                              whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
+                                              className="p-1 rounded-md text-amber-400 hover:bg-amber-500/10 transition-all duration-200">
                                               <BookOpen className="w-3.5 h-3.5" />
                                             </motion.button>
                                           )}
                                           {temAnotacao && (
-                                            <motion.button
-                                              whileHover={{ scale: 1.2 }}
-                                              className="p-1 text-amber-500 opacity-60" title="Anotação salva">
-                                              <StickyNote className="w-3.5 h-3.5 fill-current" />
-                                            </motion.button>
+                                            <span className="flex items-center" title="Anotação salva">
+                                              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                                            </span>
                                           )}
                                           {temEstudo(livro.abreviacao, capituloIdx + 1, v.numero) && (
                                             <motion.button onClick={() => setEstudoAberto(estudoInline ? null : v.numero)}
-                                              whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                                              className={`p-1 rounded-md transition-colors duration-300 ${estudoInline ? 'text-purple-500 bg-purple-500/10' : 'text-purple-500 hover:text-purple-600'}`}
+                                              whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
+                                              className={`p-1 rounded-md transition-all duration-200 ${estudoInline ? 'text-purple-400 bg-purple-500/15 shadow-sm' : 'text-purple-400 hover:bg-purple-500/10'}`}
                                               title="Estudos Teológicos">
                                               <GraduationCap className="w-3.5 h-3.5" />
                                             </motion.button>
                                           )}
                                           <motion.button
-                                            onClick={() => isFlashcard ? flashcards.removeCard(flashKey) : flashcards.addCard(flashKey)}
-                                            whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                                            className={`p-1 rounded-md transition-colors duration-300 ${isFlashcard ? 'text-cyan-500 bg-cyan-500/10' : 'text-[var(--muted-fg)] hover:text-cyan-400'}`}
+                                            onClick={() => { isFlashcard ? flashcards.removeCard(flashKey) : flashcards.addCard(flashKey); }}
+                                            whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
+                                            className={`p-1 rounded-md transition-all duration-200 ${isFlashcard ? 'text-cyan-400 bg-cyan-500/15 shadow-sm' : 'text-[var(--muted-fg)] hover:text-cyan-400 hover:bg-cyan-500/5'}`}
                                             title={isFlashcard ? 'Remover flashcard' : 'Adicionar flashcard'}>
                                             <Brain className="w-3.5 h-3.5" />
                                           </motion.button>
@@ -740,8 +738,6 @@ export default function BibliaPage() {
         totalVerses={data[0]?.versiculos?.length ?? 0}
         verseText={data[0]?.versiculos?.find(v => v.numero === audio.playingVerse)?.texto ?? ''}
         onStop={audio.stop}
-        onNext={() => {}}
-        onPrev={() => {}}
       />
 
       {/* Annotation modal */}

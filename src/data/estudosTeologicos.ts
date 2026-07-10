@@ -327,6 +327,313 @@ const estudosData: EstudoVersiculo[] = [
       { teologo: 'N.T. Wright', periodo: 'Contemporâneo', tradicao: 'Anglicana', visao: 'Nova criação', resumo: 'O céu e a terra se encontram — não vamos para o céu, o céu vem para a terra. A realidade final é a fusão dos dois mundos.', citacao: '«O destino final não é ir ao céu — é o céu vir à terra.»' },
     ],
   },
+  // ═══════════════════════════════════════════════════════════════════════
+  // GÊNESIS 12
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'gn', capitulo: 12, versiculo: 1,
+    tema: 'Chamado de Abraão — Fé e promessa',
+    contexto: 'Deus chama Abrão para deixar sua terra e seguir para uma terra desconhecida, prometendo bênção a todas as nações.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Peregrinação', resumo: 'Abraão é modelo do crente como peregrino — chamado a deixar o mundo para seguir a promessa de Deus. A fé é caminhada em direção ao invisível.', citacao: '«A fé de Abraão nos ensina que somos peregrinos neste mundo, em busca da pátria celestial.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição e chamado', resumo: 'O chamado de Abraão é pura graça — não há mérito nele. Deus escolhe um homem idoso e sem filhos para ser pai de uma nação. A promessa precede a fé.', citacao: '«Deus não chamou Abraão porque ele era fiel — tornou-o fiel ao chamá-lo.»' },
+      { teologo: 'Kierkegaard', periodo: '1813-1855', tradicao: 'Filosofia cristã', visao: 'Salto de fé', resumo: 'Abraão é o cavaleiro da fé — a obediência absurda que transcende a razão. Ele não sabia para onde ia, mas confiou. A fé é paradoxo, não certeza.', citacao: '«Pela fé, Abraão saiu da terra de seus pais e tornou-se estrangeiro na terra da promessa.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // ÊXODO 20
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ex', capitulo: 20, versiculo: 2,
+    tema: 'Os Dez Mandamentos — Lei de Deus',
+    contexto: 'Deus entrega a Lei a Israel no Sinai, estabelecendo os fundamentos da aliança.',
+    interpretacoes: [
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Lei natural', resumo: 'Os mandamentos são expressão da lei natural inscrita no coração humano. A lei moral é participação da lei eterna de Deus na criatura racional.', citacao: '«A lei divina é necessária para guiar o homem à sua perfeição última.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Usos da lei', resumo: 'A lei tem dois usos: civil (frear o pecado) e teológico (revelar o pecado e levar a Cristo). A lei não salva — prepara para a graça.', citacao: '«A lei nos mostra o pecado; o Evangelho nos mostra o Salvador.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Terceiro uso', resumo: 'A lei também tem um terceiro uso — guiar o crente na vida de santificação. Não para salvação, mas como regra de gratidão.', citacao: '«A lei é como um açoite para a carne, mas também é guia para o espírito.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // LEVÍTICO 19
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'lv', capitulo: 19, versiculo: 18,
+    tema: 'Amar ao próximo como a ti mesmo',
+    contexto: 'A lei da santidade ordena o amor ao próximo como resumo das obrigações éticas de Israel.',
+    interpretacoes: [
+      { teologo: 'Hillel', periodo: '~110 a.C.-10 d.C.', tradicao: 'Filosofia judaica', visao: 'Regra de ouro', resumo: 'Hillel resumiu a Torá como «o que é odioso para ti, não faças ao próximo». Este versículo é o fundamento da ética judaica.', citacao: '«O que é odioso para ti, não faças ao teu próximo — toda a Torá está nisto.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Amor ordenado', resumo: 'O amor ao próximo deve ser ordenado — primeiro a Deus, depois ao próximo, e a cada um conforme seu grau de parentesco e necessidade.', citacao: '«O amor é a forma de todas as virtudes — sem ele, nada é perfeito.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // DEUTERONÔMIO 6
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'dt', capitulo: 6, versiculo: 4,
+    tema: 'Shema Israel — O SENHOR é um',
+    contexto: 'A declaração central da fé de Israel: o SENHOR é único e deve ser amado com todo o ser.',
+    interpretacoes: [
+      { teologo: 'Moisés Maimônides', periodo: '1135-1204', tradicao: 'Filosofia judaica', visao: 'Unicidade absoluta', resumo: 'O Shema é a afirmação da unicidade absoluta de Deus. Não há pluralidade na divindade — Deus é um em sentido único e exclusivo.', citacao: '«Deus é um — não como um par, nem como uma espécie, nem como um composto, mas como uma unidade além de toda compreensão.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Exclusividade', resumo: 'O Shema é a base da fé bíblica — somente Deus deve ser adorado. Exclui toda idolatria e sincretismo. Amar a Deus é o primeiro e maior mandamento.', citacao: '«O coração humano é uma fábrica de ídolos — o Shema nos chama de volta ao único Deus verdadeiro.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Deus revelado', resumo: 'O Deus único se revela em três pessoas. O Shema não contradiz a Trindade — a unicidade de Deus é a base para compreender a Trindade como comunhão, não divisão.', citacao: '«Deus é um — e este Um se revela como Pai, Filho e Espírito Santo.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // JOSUÉ 1
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'js', capitulo: 1, versiculo: 9,
+    tema: 'Sê forte e corajoso — Presença de Deus',
+    contexto: 'Deus encoraja Josué a assumir a liderança de Israel na conquista de Canaã.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Coragem na vocação', resumo: 'A coragem de Josué não vem de si mesmo mas da promessa da presença de Deus. A certeza do chamado divino é a base da verdadeira coragem.', citacao: '«Não temas, porque Deus está contigo — esta promessa é o fundamento de toda coragem cristã.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Confiança na promessa', resumo: 'Deus não manda ser forte sem dar a força. A ordem vem com a promessa. A coragem cristã é confiança na fidelidade de Deus.', citacao: '«Deus não nos chamaria para uma tarefa sem nos dar a força para cumpri-la.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // 1 SAMUEL 3
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: '1sm', capitulo: 3, versiculo: 10,
+    tema: 'Fala, SENHOR — Chamado profético',
+    contexto: 'O jovem Samuel é chamado por Deus durante a noite no santuário de Siló.',
+    interpretacoes: [
+      { teologo: 'Gregório Magno', periodo: '540-604', tradicao: 'Patrística', visao: 'Discernimento', resumo: 'Samuel precisou de ajuda para discernir a voz de Deus. O discernimento espiritual é aprendido na humildade e na orientação dos mais experientes.', citacao: '«Samuel ouviu a voz de Deus, mas não a reconheceu — até ser guiado por Eli.»' },
+      { teologo: 'Bonhoeffer', periodo: '1906-1945', tradicao: 'Luterana', visao: 'Obediência', resumo: 'A resposta de Samuel «fala, SENHOR» é o modelo da obediência cristã. Estar disponível para ouvir e obedecer é a essência do discipulado.', citacao: '«A disposição para ouvir é o começo de toda obediência cristã.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // 2 SAMUEL 7
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: '2sm', capitulo: 7, versiculo: 12,
+    tema: 'Aliança Davídica — Reino eterno',
+    contexto: 'Deus promete a Davi que seu trono será estabelecido para sempre, prefigurando o Messias.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Tipologia real', resumo: 'Davi é tipo de Cristo, o Rei eterno. A promessa a Davi se cumpre plenamente em Jesus, o Filho de Davi que reina para sempre.', citacao: '«Davi prefigurou Cristo — assim como Davi reinou sobre Israel, Cristo reina sobre a Igreja.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aliança perpétua', resumo: 'A aliança com Davi é incondicional — não depende dos méritos de seus descendentes. É promessa pura de Deus, que se cumpre em Cristo.', citacao: '«Deus prometeu a Davi um reino eterno — promessa que só poderia cumprir-se no Messias.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // 1 REIS 19
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: '1rs', capitulo: 19, versiculo: 12,
+    tema: 'Voz mansa e delicada — Presença silenciosa',
+    contexto: 'Elias encontra Deus não no vento, terremoto ou fogo, mas numa voz suave e tranquila.',
+    interpretacoes: [
+      { teologo: 'Gregório de Nissa', periodo: '335-395', tradicao: 'Patrística', visao: 'Teologia mística', resumo: 'Deus não se revela no barulho mas no silêncio. O conhecimento de Deus é apofático — Ele está além de toda manifestação sensível.', citacao: '«O silêncio é a linguagem de Deus — tudo o mais é má tradução.»' },
+      { teologo: 'Kierkegaard', periodo: '1813-1855', tradicao: 'Filosofia cristã', visao: 'Encontro singular', resumo: 'Deus não se revela nas manifestações espetaculares mas no encontro pessoal, silencioso. A fé é relação íntima, não espetáculo público.', citacao: '«Deus sussurra — não grita. A fé é ouvir o que o barulho do mundo não permite.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // JÓ 1
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'jó', capitulo: 1, versiculo: 21,
+    tema: 'Nu saí do ventre — Soberania no sofrimento',
+    contexto: 'Jó perde tudo e ainda assim bendiz a Deus, reconhecendo Sua soberania.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Desapego', resumo: 'Jó ensina o desapego radical — tudo que temos é dom de Deus. Bendizer a Deus na perda é a verdadeira fé, não interessada mas desinteressada.', citacao: '«Jó amava a Deus não pelo que recebia, mas pelo que Deus é.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Jó reconhece a soberania absoluta de Deus sobre todas as coisas — bênçãos e perdas vêm de Sua mão. O sofrimento não diminui a bondade de Deus.', citacao: '«Se recebemos o bem de Deus, por que não receberíamos também o mal?»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Anglicana', visao: 'Provação', resumo: 'O sofrimento não é castigo mas refinamento. Jó mostra que a fé verdadeira não é barganha com Deus — é confiança incondicional.', citacao: '«Deus grita em nossas dores — é Seu megafone para despertar um mundo surdo.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // JEREMIAS 29
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'jr', capitulo: 29, versiculo: 11,
+    tema: 'Planos de paz e futuro — Esperança em Deus',
+    contexto: 'Deus promete esperança e futuro ao Seu povo no exílio.',
+    interpretacoes: [
+      { teologo: 'Jürgen Moltmann', periodo: '1926-2024', tradicao: 'Teologia da Esperança', visao: 'Esperança escatológica', resumo: 'A promessa de futuro não é apenas para Israel mas para toda a criação. Deus é o Deus do futuro — a esperança cristã é certeza do que virá.', citacao: '«A esperança cristã não é fuga do presente — é engajamento no futuro de Deus.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // EZEQUIEL 37
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ez', capitulo: 37, versiculo: 5,
+    tema: 'Vale de ossos secos — Restauração',
+    contexto: 'Deus mostra a Ezequiel uma visão de ossos secos que revivem, simbolizando a restauração de Israel.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ressurreição', resumo: 'A visão profetiza a ressurreição dos mortos. Os ossos secos representam a humanidade sem Deus — o Espírito dá vida onde não há esperança.', citacao: '«Onde o Espírito sopra, os mortos revivem — esta é a promessa da ressurreição.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Palavra criadora', resumo: 'A restauração é obra da Palavra de Deus. Os ossos não se movem por si — a palavra profética cria vida onde só há morte.', citacao: '«Deus fala — e o que estava morto revive. A Palavra de Deus é poder criador.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // DANIEL 3
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'dn', capitulo: 3, versiculo: 17,
+    tema: 'O Deus que pode livrar — Fé incondicional',
+    contexto: 'Sadraque, Mesaque e Abednego enfrentam a fornalha ardente com fé inabalável.',
+    interpretacoes: [
+      { teologo: 'Santo Ambrósio', periodo: '340-397', tradicao: 'Patrística', visao: 'Confiança heroica', resumo: 'Os três jovens são modelos de fé heroica — não negociam a consciência nem diante da morte. A verdadeira fé não depende do resultado.', citacao: '«Deus pode livrar — e se não livrar, ainda assim não adoraremos outros deuses.»' },
+      { teologo: 'Kierkegaard', periodo: '1813-1855', tradicao: 'Filosofia cristã', visao: 'Fé incondicional', resumo: 'A fé não é barganha — é fidelidade incondicional. Os jovens não exigem livramento — confiam mesmo sem garantia. Este é o salto da fé.', citacao: '«A fé não diz «Deus me livrará» — diz «Deus sabe o que é melhor, e eu confio».»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // MATEUS 5
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'mt', capitulo: 5, versiculo: 3,
+    tema: 'Bem-aventuranças — Felicidade do Reino',
+    contexto: 'Jesus inaugura Seu ensino declarando bem-aventurados os pobres de espírito, os que choram, os mansos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Degraus espirituais', resumo: 'As bem-aventuranças são os degraus da vida espiritual. Cada uma conduz à próxima — da humildade à visão de Deus. São o retrato do verdadeiro discípulo.', citacao: '«As bem-aventuranças são o caminho da perfeição cristã.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Ética do Reino', resumo: 'As bem-aventuranças descrevem a vida do Reino, não requisitos para entrar nele. São promessas aos que já são cidadãos do Reino.', citacao: '«Não são obras que precedem a graça — são dons que a acompanham.»' },
+      { teologo: 'Bonhoeffer', periodo: '1906-1945', tradicao: 'Luterana', visao: 'Discipulado radical', resumo: 'As bem-aventuranças são o chamado ao discipulado radical. Felizes os que sofrem por Cristo — não porque o sofrimento é bom, mas porque Cristo está com eles.', citacao: '«Quando Cristo chama um homem, chama-o para morrer.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 5, versiculo: 9,
+    tema: 'Pacificadores — Filhos de Deus',
+    contexto: 'Jesus declara bem-aventurados os pacificadores, que serão chamados filhos de Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Paz escatológica', resumo: 'A verdadeira paz é a ordem perfeita — cada coisa em seu lugar sob Deus. O pacificador é aquele que restaura a ordem divina na terra.', citacao: '«A paz é a tranquilidade da ordem — o pacificador é o artífice da ordem de Deus.»' },
+      { teologo: 'Martin Luther King Jr.', periodo: '1929-1968', tradicao: 'Batista', visao: 'Justiça como paz', resumo: 'A verdadeira paz não é ausência de conflito — é presença de justiça. O pacificador bíblico luta contra a injustiça com amor e não violência.', citacao: '«A paz verdadeira não é simplesmente a ausência de tensão — é a presença da justiça.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // MARCOS 10
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'mc', capitulo: 10, versiculo: 45,
+    tema: 'Serviço e sacrifício — O Filho do Homem veio para servir',
+    contexto: 'Jesus redefine a grandeza como serviço, dando Sua vida em resgate por muitos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Humildade redentora', resumo: 'Cristo inverte a lógica do poder — a grandeza está em servir. Ele veio não para ser servido, mas para servir e dar a vida.', citacao: '«O maior é o que serve — Cristo é o maior porque serviu até a morte.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Resgate', resumo: 'A morte de Cristo é resgate — pagamento pelos pecados. «Por muitos» significa que a salvação é aplicada aos que creem.', citacao: '«Cristo deu Sua vida em resgate — preço pelo nosso livramento.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // LUCAS 1
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'lc', capitulo: 1, versiculo: 38,
+    tema: 'Eis aqui a serva do Senhor — Magnificat',
+    contexto: 'Maria responde ao anúncio do anjo com humildade e disposição total à vontade de Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Modelo de fé', resumo: 'Maria concebeu Cristo primeiro no coração pela fé, depois no ventre. Sua disposição é o modelo de toda resposta humana à graça divina.', citacao: '«Maria concebeu pela fé antes de conceber no corpo — a fé precede o milagre.»' },
+      { teologo: 'Hans Urs von Balthasar', periodo: '1905-1988', tradicao: 'Católica', visao: 'Fiat', resumo: 'O «sim» de Maria é o ponto de encontro entre a iniciativa divina e a liberdade humana. Seu «faça-se» ecoa o «faça-se» da criação e da redenção.', citacao: '«O fiat de Maria é o sim da criação ao seu Criador.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // LUCAS 10
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'lc', capitulo: 10, versiculo: 27,
+    tema: 'O Bom Samaritano — Amor ao próximo',
+    contexto: 'Jesus responde ao doutor da lei sobre quem é o próximo com a parábola do Bom Samaritano.',
+    interpretacoes: [
+      { teologo: 'Clemente de Alexandria', periodo: '150-215', tradicao: 'Patrística', visao: 'Amor universal', resumo: 'O próximo não é apenas o vizinho ou o compatriota — é todo ser humano que precisa de ajuda.', citacao: '«O próximo é todo aquele que precisa — não há fronteiras para o amor cristão.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Amor prático', resumo: 'A parábola mostra que o amor não é sentimento mas ação. Quem é o próximo? Não o que merece, mas o que precisa.', citacao: '«O amor ao próximo não se prova com palavras, mas com obras.»' },
+      { teologo: 'Gustavo Gutiérrez', periodo: '1928-2024', tradicao: 'Teologia da Libertação', visao: 'Opção pelos pobres', resumo: 'O samaritano representa a opção preferencial pelos pobres. O amor cristão se revela na solidariedade com os vulneráveis.', citacao: '«O amor ao próximo é a medida do amor a Deus — e este amor se concretiza na justiça aos pobres.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // JOÃO 11
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'jo', capitulo: 11, versiculo: 25,
+    tema: 'Ressurreição e Vida — Vitória sobre a morte',
+    contexto: 'Jesus declara a Marta que Ele é a ressurreição e a vida, antes de ressuscitar Lázaro.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vida eterna', resumo: 'Cristo não apenas dá vida — Ele é a Vida. A ressurreição não é evento futuro apenas — quem crê já passou da morte para a vida.', citacao: '«Cristo é a ressurreição — não apenas porque ressuscita, mas porque é a própria Vida.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fé e ressurreição', resumo: 'A ressurreição de Lázaro é penhor da nossa ressurreição. Crer em Cristo é ter a vida eterna já agora.', citacao: '«Quem crê em Cristo possui a vida eterna — não apenas a esperará, mas já a possui.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // JOÃO 15
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'jo', capitulo: 15, versiculo: 5,
+    tema: 'Videira e varas — União com Cristo',
+    contexto: 'Jesus ensina que sem Ele nada podemos fazer — somos ramos dependentes da videira.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'União mística', resumo: 'A videira e os ramos simbolizam a união mística de Cristo e a Igreja. Separados dEle, não temos vida — unidos, produzimos frutos eternos.', citacao: '«Toda a nossa fecundidade vem de Cristo — separados dEle, somos ramos secos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'União vital', resumo: 'A união com Cristo é vital, não apenas legal. Permanecer nEle é a condição para frutificar. O fruto não é opcional — é evidência da união.', citacao: '«Não basta estar na videira — é preciso permanecer. A perseverança é a marca da fé verdadeira.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // GÁLATAS 5
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'gl', capitulo: 5, versiculo: 22,
+    tema: 'Fruto do Espírito — Vida no Espírito',
+    contexto: 'Paulo contrasta as obras da carne com o fruto do Espírito na vida do crente.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Virtudes cristãs', resumo: 'O fruto do Espírito é a suma de todas as virtudes cristãs. Não são obras humanas mas graça divina operando na vida do crente.', citacao: '«O fruto do Espírito é a liberdade dos filhos de Deus — viver não pela carne, mas pelo Espírito.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Santificação', resumo: 'O fruto não é opcional — é evidência da habitação do Espírito. A santificação é progressiva — o fruto amadurece com o tempo.', citacao: '«O fruto do Espírito é a marca do cristão — não perfeição instantânea, mas crescimento contínuo.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Dons e virtudes', resumo: 'O fruto do Espírito são as virtudes infundidas por Deus na alma. A caridade é a raiz — todas as outras virtudes fluem do amor.', citacao: '«A caridade é a forma de todas as virtudes — o amor é a raiz de todo fruto espiritual.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // COLOSSENSES 1
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'cl', capitulo: 1, versiculo: 15,
+    tema: 'Cristo — Imagem do Deus invisível',
+    contexto: 'O hino cristológico mais elevado declara Cristo como primogênito de toda a criação e cabeça da Igreja.',
+    interpretacoes: [
+      { teologo: 'Atanásio', periodo: '296-373 d.C.', tradicao: 'Patrística', visao: 'Homoousios', resumo: 'Cristo é imagem do Deus invisível — não criatura, mas da mesma substância do Pai. Ver Cristo é ver o Pai.', citacao: '«Cristo é a imagem do Deus invisível — não semelhança distante, mas presença plena da divindade.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Cristo mediador', resumo: 'Cristo é o mediador entre Deus e os homens porque une em Si as duas naturezas. Como imagem, revela o Pai.', citacao: '«Cristo é a imagem perfeita do Pai porque procede dEle como Verbo — expressão completa do ser divino.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Senhorio de Cristo', resumo: 'Cristo é Senhor sobre toda a criação e cabeça da Igreja. Nada escapa ao Seu senhorio.', citacao: '«Cristo não é apenas Salvador — é Senhor de tudo o que existe.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // 1 TESSALONICENSES 4
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: '1ts', capitulo: 4, versiculo: 16,
+    tema: 'Arrebatamento — Esperança da volta de Cristo',
+    contexto: 'Paulo descreve a volta de Cristo e o arrebatamento da Igreja.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ressurreição geral', resumo: 'A volta de Cristo será visível e gloriosa. Os mortos em Cristo ressuscitarão primeiro, depois os vivos serão transformados.', citacao: '«O Senhor descerá dos céus com alarido — não em segredo, mas para que todos vejam.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Consolação', resumo: 'Paulo não escreve para alimentar especulações cronológicas mas para consolar os que perderam entes queridos.', citacao: '«Consolai-vos uns aos outros com estas palavras — a esperança da volta de Cristo é o conforto da Igreja.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Esperança equilibrada', resumo: 'A volta de Cristo deve motivar vigilância e santidade, não especulação. O importante não é saber quando mas estar preparado.', citacao: '«O que importa não é saber quando Cristo voltará — é estar pronto para quando Ele vier.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // HEBREUS 1
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'hb', capitulo: 1, versiculo: 1,
+    tema: 'Deus falou pelo Filho — Supremacia de Cristo',
+    contexto: 'O autor de Hebreus abre declarando que Deus, que falou de muitas maneiras no passado, falou definitivamente pelo Filho.',
+    interpretacoes: [
+      { teologo: 'Orígenes', periodo: '185-254 d.C.', tradicao: 'Patrística', visao: 'Revelação progressiva', resumo: 'Deus falou de muitas maneiras — profetas, visões, sonhos — mas agora falou pelo Filho. A revelação em Cristo é definitiva e superior a todas as anteriores.', citacao: '«Antes, Deus falou em sombras — agora, na plena luz do Filho.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Palavra final', resumo: 'Cristo é a Palavra final de Deus. Não há revelação superior à que temos em Cristo. Toda Escritura aponta para Ele.', citacao: '«Deus não tem mais nada a dizer além do que disse em Cristo — Ele é a Palavra definitiva.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Cristo-centrismo', resumo: 'A revelação de Deus em Cristo é o centro da Escritura e da teologia. Toda a Bíblia é testemunha de Cristo.', citacao: '«Cristo é a Palavra de Deus — a Bíblia é testemunha desta Palavra.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // TIAGO 2
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'tg', capitulo: 2, versiculo: 17,
+    tema: 'Fé sem obras é morta — Fé viva',
+    contexto: 'Tiago argumenta que a fé genuína se prova pelas obras — fé sem obras não é fé verdadeira.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fé frutífera', resumo: 'Paulo fala da causa da salvação (fé); Tiago fala da evidência da salvação (obras). Somos justificados pela fé somente, mas a fé que salva não está só.', citacao: '«Somos justificados pela fé somente — mas a fé que justifica nunca está só.»' },
+      { teologo: 'John Wesley', periodo: '1703-1791', tradicao: 'Metodista', visao: 'Santificação', resumo: 'As obras são evidência da fé viva. A santificação é progressiva — a fé que não produz fruto não é fé salvadora.', citacao: '«A fé que não produz boas obras não é fé — é mera crença intelectual.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // 1 JOÃO 4
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: '1jo', capitulo: 4, versiculo: 8,
+    tema: 'Deus é amor — Natureza divina',
+    contexto: 'João declara que Deus é amor — a mais profunda definição da essência de Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor trinitário', resumo: 'Deus é amor porque é Trindade — Pai ama o Filho, Filho ama o Pai, e o Espírito Santo é o amor entre Eles. O amor não é atributo — é essência divina.', citacao: '«Deus é amor — e porque é Trindade, o amor é eterno, relacional, vivo.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Amor subsistente', resumo: 'Deus não apenas ama — Ele é amor. O amor é a própria substância divina. O amor de Deus é a fonte de todo amor criado.', citacao: '«Deus é amor — não porque ama, mas porque o amor é a própria essência do Seu ser.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Amor livre', resumo: 'Deus é amor em liberdade — ama não por necessidade mas por superabundância de bondade. O amor de Deus é gratuito, soberano, incondicional.', citacao: '«Deus ama porque é amor — e é amor em perfeita liberdade.»' },
+    ],
+  },
 ];
 
 // Índices para busca rápida

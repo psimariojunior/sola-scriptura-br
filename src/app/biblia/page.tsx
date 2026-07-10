@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef, Fragment } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { TODOS_LIVROS, traducoes, carregarTraducao, ABREV_PARA_MIDVASH } from '@/data/biblia';
@@ -8,24 +8,24 @@ import type { CapituloComparado } from '@/data/biblia';
 import {
   BookOpen, ChevronRight, ChevronLeft, Columns2, LayoutList, AlignJustify,
   Menu, Search, Minus, Plus, X, Heart, StickyNote, Share2, Copy, Check,
-  History, Settings, Eye, EyeOff, Download, BookMarked
+  History, Settings, Eye, EyeOff, Download, BookMarked, GraduationCap
 } from 'lucide-react';
 import { toggleFavorito, obterMarca, setAnotacao as salvarAnotacao } from '@/lib/estudos';
 import { useEstudos } from '@/components/EstudosProvider';
 import PainelStrong from '@/components/PainelStrong';
 import PainelNotas from '@/components/PainelNotas';
 import PainelComentarios from '@/components/PainelComentarios';
-import PainelEstudos from '@/components/PainelEstudos';
+import PainelEstudosInline from '@/components/PainelEstudosInline';
 import { temComentario } from '@/data/comentarios';
 import { temEstudo } from '@/data/estudosTeologicos';
 import { diffWords } from '@/lib/diff';
 import { exportChapterPdf } from '@/lib/exportPdf';
 import ScrollReveal from '@/components/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
-import AudioPlayer from '@/components/AudioPlayer';
 import { getCrossReferences } from '@/data/crossReferences';
 import Link from 'next/link';
-import { GraduationCap, Volume2 } from 'lucide-react';
+import VerseAudio, { AudioMiniPlayer } from '@/components/VerseAudio';
+import { useVerseAudio } from '@/lib/useVerseAudio';
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
@@ -94,7 +94,7 @@ export default function BibliaPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [fontSize, setFontSize] = useState(18);
   const [chapterGridOpen, setChapterGridOpen] = useState(false);
-  const [studyPanel, setStudyPanel] = useState<'notas' | 'strong' | 'anotacoes' | 'historico' | 'comentarios' | 'estudos' | null>(null);
+  const [studyPanel, setStudyPanel] = useState<'notas' | 'strong' | 'anotacoes' | 'historico' | 'comentarios' | null>(null);
   const [anotandoVersiculo, setAnotandoVersiculo] = useState<string | null>(null);
   const [anotacaoTexto, setAnotacaoTexto] = useState('');
   const [showSettings, setShowSettings] = useState(false);
@@ -108,11 +108,11 @@ export default function BibliaPage() {
   const [quickSearchQuery, setQuickSearchQuery] = useState('');
   const [quickSearchResults, setQuickSearchResults] = useState<Array<{livro: string, nome: string, cap: number, versiculo: number, texto: string}>>([]);
   const [chapterDirection, setChapterDirection] = useState<'next' | 'prev'>('next');
-  const [showAudio, setShowAudio] = useState(false);
   const [selectedCrossRef, setSelectedCrossRef] = useState<{verse: number; refs: string[]} | null>(null);
-  const [estudoVersiculo, setEstudoVersiculo] = useState<number | null>(null);
+  const [estudoAberto, setEstudoAberto] = useState<number | null>(null);
   const mainRef = useRef<HTMLDivElement>(null);
   const { isFavorito, refresh } = useEstudos();
+  const audio = useVerseAudio();
 
   const livro = TODOS_LIVROS[livroIdx];
 
@@ -329,12 +329,6 @@ export default function BibliaPage() {
                     </div>
                   )}
 
-                  <motion.button onClick={() => setShowAudio(!showAudio)} title="Áudio da Bíblia"
-                    whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                    className={`p-1.5 rounded-md transition-all duration-300 ${showAudio ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
-                    <Volume2 className="w-4 h-4" />
-                  </motion.button>
-
                   <motion.button onClick={() => setReadingMode(!readingMode)} title="Modo leitura"
                     whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                     className={`p-1.5 rounded-md transition-all duration-300 ${readingMode ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
@@ -438,77 +432,100 @@ export default function BibliaPage() {
                                   const key = `${livro.abreviacao}:${capituloIdx + 1}:${v.numero}:${item.traducao}`;
                                   const fav = isFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao);
                                   const ref = `${livro.nome} ${capituloIdx + 1}:${v.numero}`;
+                                  const isPlaying = audio.isVersePlaying(v.numero);
+                                  const estudoInline = estudoAberto === v.numero;
                                   return (
-                                    <motion.div 
-                                      key={v.numero} 
-                                      initial={{ opacity: 0, x: -10 }}
-                                      animate={{ opacity: 1, x: 0 }}
-                                      transition={{ delay: 0.1 + i * 0.01 }}
-                                      className="group flex items-start gap-2 py-1 px-2 -mx-2 rounded-lg verse-hover transition-all duration-300"
-                                    >
-                                      <sup className="text-[var(--primary)] font-bold text-xs mt-1 select-none min-w-[20px] text-right">{v.numero}</sup>
-                                      <div className="flex-1">
-                                        <p className="font-serif-body leading-relaxed" style={{ fontSize: `${fontSize}px` }}>{v.texto}</p>
-                                        {(() => {
-                                          const refs = getCrossReferences(livro.abreviacao, capituloIdx + 1, v.numero);
-                                          if (refs.length === 0) return null;
-                                          return (
-                                            <div className="mt-1 flex items-center gap-1 flex-wrap">
-                                              <span className="text-[10px] text-[var(--muted-fg)]">🔗</span>
-                                              {refs.slice(0, 3).map(ref => {
-                                                const parts = ref.split(':');
-                                                const book = parts[0];
-                                                const cap = parts[1];
-                                                return (
-                                                  <Link key={ref} href={`/biblia?livro=${book}&capitulo=${cap}`}
-                                                    className="text-[10px] text-[var(--primary)] hover:underline opacity-60 hover:opacity-100 transition-opacity">
-                                                    {ref}
-                                                  </Link>
-                                                );
-                                              })}
-                                              {refs.length > 3 && (
-                                                <span className="text-[10px] text-[var(--muted-fg)]">+{refs.length - 3}</span>
-                                              )}
-                                            </div>
-                                          );
-                                        })()}
-                                      </div>
-                                      <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0">
-                                        <motion.button onClick={() => toggleFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, v.texto)}
-                                          whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                                          className={`p-1 rounded-md transition-colors duration-300 ${fav ? 'text-red-500' : 'text-[var(--muted-fg)] hover:text-red-400'}`}>
-                                          <Heart className={`w-3.5 h-3.5 ${fav ? 'fill-current' : ''}`} />
-                                        </motion.button>
-                                        <motion.button onClick={() => { const m = obterMarca(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao); setAnotandoVersiculo(key); setAnotacaoTexto(m?.anotacao?.texto || ''); }}
-                                          whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                                          className="p-1 text-[var(--muted-fg)] hover:text-amber-500 rounded-md transition-colors duration-300">
-                                          <StickyNote className="w-3.5 h-3.5" />
-                                        </motion.button>
-                                        <motion.button onClick={() => copyVerse(v.texto, ref)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                                          className="p-1 text-[var(--muted-fg)] hover:text-[var(--fg)] rounded-md transition-colors duration-300">
-                                          {copiedVerse === ref ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
-                                        </motion.button>
-                                        <motion.button onClick={() => shareVerse(v.texto, ref)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                                          className="p-1 text-[var(--muted-fg)] hover:text-[var(--fg)] rounded-md transition-colors duration-300">
-                                          <Share2 className="w-3.5 h-3.5" />
-                                        </motion.button>
-                                        {temComentario(livro.abreviacao, capituloIdx + 1, v.numero) && (
-                                          <motion.button onClick={() => { setComentarioVersiculo(v.numero); setStudyPanel('comentarios'); }}
+                                    <Fragment key={v.numero}>
+                                      <motion.div 
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.1 + i * 0.01 }}
+                                        className={`group flex items-start gap-2 py-1 px-2 -mx-2 rounded-lg transition-all duration-300 ${isPlaying ? 'bg-[var(--primary)]/5 ring-1 ring-[var(--primary)]/20' : 'verse-hover'}`}
+                                      >
+                                        <sup className="text-[var(--primary)] font-bold text-xs mt-1 select-none min-w-[20px] text-right">{v.numero}</sup>
+                                        <div className="flex-1">
+                                          <p className="font-serif-body leading-relaxed" style={{ fontSize: `${fontSize}px` }}>{v.texto}</p>
+                                          {(() => {
+                                            const refs = getCrossReferences(livro.abreviacao, capituloIdx + 1, v.numero);
+                                            if (refs.length === 0) return null;
+                                            return (
+                                              <div className="mt-1 flex items-center gap-1 flex-wrap">
+                                                <span className="text-[10px] text-[var(--muted-fg)]">🔗</span>
+                                                {refs.slice(0, 3).map(ref => {
+                                                  const parts = ref.split(':');
+                                                  const book = parts[0];
+                                                  const cap = parts[1];
+                                                  return (
+                                                    <Link key={ref} href={`/biblia?livro=${book}&capitulo=${cap}`}
+                                                      className="text-[10px] text-[var(--primary)] hover:underline opacity-60 hover:opacity-100 transition-opacity">
+                                                      {ref}
+                                                    </Link>
+                                                  );
+                                                })}
+                                                {refs.length > 3 && (
+                                                  <span className="text-[10px] text-[var(--muted-fg)]">+{refs.length - 3}</span>
+                                                )}
+                                              </div>
+                                            );
+                                          })()}
+                                        </div>
+                                        <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0">
+                                          <VerseAudio
+                                            text={v.texto}
+                                            verseNumber={v.numero}
+                                            isCurrentlyPlaying={isPlaying}
+                                            onPlay={(num) => audio.play(num, v.texto)}
+                                            onStop={audio.stop}
+                                          />
+                                          <motion.button onClick={() => toggleFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, v.texto)}
                                             whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                                            className="p-1 text-amber-500 hover:text-amber-600 rounded-md transition-colors duration-300">
-                                            <BookOpen className="w-3.5 h-3.5" />
+                                            className={`p-1 rounded-md transition-colors duration-300 ${fav ? 'text-red-500' : 'text-[var(--muted-fg)] hover:text-red-400'}`}>
+                                            <Heart className={`w-3.5 h-3.5 ${fav ? 'fill-current' : ''}`} />
                                           </motion.button>
-                                        )}
-                                        {temEstudo(livro.abreviacao, capituloIdx + 1, v.numero) && (
-                                          <motion.button onClick={() => { setEstudoVersiculo(v.numero); setStudyPanel('estudos'); }}
+                                          <motion.button onClick={() => { const m = obterMarca(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao); setAnotandoVersiculo(key); setAnotacaoTexto(m?.anotacao?.texto || ''); }}
                                             whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
-                                            className="p-1 text-purple-500 hover:text-purple-600 rounded-md transition-colors duration-300"
-                                            title="Estudos Teológicos">
-                                            <GraduationCap className="w-3.5 h-3.5" />
+                                            className="p-1 text-[var(--muted-fg)] hover:text-amber-500 rounded-md transition-colors duration-300">
+                                            <StickyNote className="w-3.5 h-3.5" />
                                           </motion.button>
+                                          <motion.button onClick={() => copyVerse(v.texto, ref)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
+                                            className="p-1 text-[var(--muted-fg)] hover:text-[var(--fg)] rounded-md transition-colors duration-300">
+                                            {copiedVerse === ref ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
+                                          </motion.button>
+                                          <motion.button onClick={() => shareVerse(v.texto, ref)} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
+                                            className="p-1 text-[var(--muted-fg)] hover:text-[var(--fg)] rounded-md transition-colors duration-300">
+                                            <Share2 className="w-3.5 h-3.5" />
+                                          </motion.button>
+                                          {temComentario(livro.abreviacao, capituloIdx + 1, v.numero) && (
+                                            <motion.button onClick={() => { setComentarioVersiculo(v.numero); setStudyPanel('comentarios'); }}
+                                              whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
+                                              className="p-1 text-amber-500 hover:text-amber-600 rounded-md transition-colors duration-300">
+                                              <BookOpen className="w-3.5 h-3.5" />
+                                            </motion.button>
+                                          )}
+                                          {temEstudo(livro.abreviacao, capituloIdx + 1, v.numero) && (
+                                            <motion.button onClick={() => setEstudoAberto(estudoInline ? null : v.numero)}
+                                              whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
+                                              className={`p-1 rounded-md transition-colors duration-300 ${estudoInline ? 'text-purple-500 bg-purple-500/10' : 'text-purple-500 hover:text-purple-600'}`}
+                                              title="Estudos Teológicos">
+                                              <GraduationCap className="w-3.5 h-3.5" />
+                                            </motion.button>
+                                          )}
+                                        </div>
+                                      </motion.div>
+
+                                      {/* Inline study panel */}
+                                      <AnimatePresence>
+                                        {estudoInline && (
+                                          <PainelEstudosInline
+                                            livro={livro.abreviacao}
+                                            capitulo={capituloIdx + 1}
+                                            versiculo={v.numero}
+                                            nomeLivro={livro.nome}
+                                            onClose={() => setEstudoAberto(null)}
+                                          />
                                         )}
-                                      </div>
-                                    </motion.div>
+                                      </AnimatePresence>
+                                    </Fragment>
                                   );
                                 })}
                               </div>
@@ -613,16 +630,6 @@ export default function BibliaPage() {
                         </div>
                       )}
 
-                      {/* Audio Player */}
-                      {showAudio && !readingMode && data[0]?.versiculos && (
-                        <div className="mt-6">
-                          <AudioPlayer
-                            verses={data[0].versiculos}
-                            bookName={livro.nome}
-                            chapter={capituloIdx + 1}
-                          />
-                        </div>
-                      )}
                     </motion.div>
                   </AnimatePresence>
                 ) : (
@@ -633,7 +640,7 @@ export default function BibliaPage() {
                 )}
               </div>
 
-              {(studyPanel === 'notas' || studyPanel === 'strong' || studyPanel === 'comentarios' || studyPanel === 'estudos') && (
+              {(studyPanel === 'notas' || studyPanel === 'strong' || studyPanel === 'comentarios') && (
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -645,11 +652,6 @@ export default function BibliaPage() {
                     {studyPanel === 'comentarios' && comentarioVersiculo && (
                       <PainelComentarios livro={livro.abreviacao} capitulo={capituloIdx + 1} versiculo={comentarioVersiculo}
                         onClose={() => { setStudyPanel(null); setComentarioVersiculo(null); }} />
-                    )}
-                    {studyPanel === 'estudos' && estudoVersiculo && (
-                      <PainelEstudos livro={livro.abreviacao} capitulo={capituloIdx + 1} versiculo={estudoVersiculo}
-                        nomeLivro={livro.nome}
-                        onClose={() => { setStudyPanel(null); setEstudoVersiculo(null); }} />
                     )}
                   </div>
                 </motion.div>
@@ -701,6 +703,17 @@ export default function BibliaPage() {
           </div>
         </div>
       </main>
+
+      {/* Audio mini player */}
+      <AudioMiniPlayer
+        isPlaying={audio.isPlaying}
+        currentVerse={audio.playingVerse ?? -1}
+        totalVerses={data[0]?.versiculos?.length ?? 0}
+        verseText={data[0]?.versiculos?.find(v => v.numero === audio.playingVerse)?.texto ?? ''}
+        onStop={audio.stop}
+        onNext={() => {}}
+        onPrev={() => {}}
+      />
 
       {/* Annotation modal */}
       <AnimatePresence>

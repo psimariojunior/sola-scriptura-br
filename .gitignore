@@ -1,1 +1,35 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+
+# production
+build/
+dist/
+
+# misc
+.DS_Store
+*.pem
+.env*.local
+
+# vercel
 .vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# test
+test-results/
+coverage/
+
+# legacy
+sola-scriptura/
+sola-scriptura-new/
+frontend/
+backend/node_modules/
+e2e/

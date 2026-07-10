@@ -1,257 +1,97 @@
-// Reading plans - devocional diario
-export interface LeituraDiaria {
+export interface LeituraDia {
   dia: number;
-  livros: string;
-  capitulos: string[];
   titulo: string;
-  descricao: string;
+  passagens: Array<{ livro: string; capitulo: number; versiculoInicio?: number; versiculoFim?: number }>;
 }
 
-export interface PlanoLeitura {
-  id: string;
-  nome: string;
-  descricao: string;
-  duracao: string;
-  categoria: 'bh' | 'nt' | 'completo' | 'tematico';
-  icone: string;
-  planos: LeituraDiaria[];
+export const planos: Record<string, { nome: string; desc: string; totalDias: number }> = {
+  biblicoEm1Ano: { nome: 'Bíblia em 1 Ano', desc: 'Leia a Bíblia completa em 365 dias', totalDias: 365 },
+  ntEm30Dias: { nome: 'Novo Testamento em 30 Dias', desc: 'Leia o NT em um mês', totalDias: 30 },
+  sabedoria: { nome: 'Sabedoria em 31 Dias', desc: 'Provérbios e Sabedoria', totalDias: 31 },
+  evangelhos: { nome: 'Evangelhos em 40 Dias', desc: 'Mateus, Marcos, Lucas, João', totalDias: 40 },
+  salmos: { nome: 'Salmos em 60 Dias', desc: 'Leia todos os Salmos', totalDias: 60 },
+};
+
+function lerDia(dia: number, total: number, base: number, salto: number): number {
+  return base + ((dia - 1) * salto);
 }
 
-export const planosLeitura: PlanoLeitura[] = [
-  {
-    id: 'bh-inteira-90',
-    nome: 'Bíblia em 90 Dias',
-    descricao: 'Leia toda a Bíblia em apenas 90 dias com este plano estruturado',
-    duracao: '90 dias',
-    categoria: 'completo',
-    icone: '📖',
-    planos: Array.from({ length: 90 }, (_, i) => ({
-      dia: i + 1,
-      livros: getPlano90Dias(i).livros,
-      capitulos: getPlano90Dias(i).capitulos,
-      titulo: getPlano90Dias(i).titulo,
-      descricao: getPlano90Dias(i).descricao,
-    })),
-  },
-  {
-    id: 'nt-30',
-    nome: 'Novo Testamento em 30 Dias',
-    descricao: 'Percorra todos os 27 livros do Novo Testamento em um mês',
-    duracao: '30 dias',
-    categoria: 'nt',
-    icone: '✝️',
-    planos: Array.from({ length: 30 }, (_, i) => ({
-      dia: i + 1,
-      livros: getPlanoNT(i).livros,
-      capitulos: getPlanoNT(i).capitulos,
-      titulo: getPlanoNT(i).titulo,
-      descricao: getPlanoNT(i).descricao,
-    })),
-  },
-  {
-    id: 'pv-31',
-    nome: 'Provérbios da Sabedoria',
-    descricao: 'Um provérbio por dia durante 31 dias — sabedoria prática para a vida',
-    duracao: '31 dias',
-    categoria: 'tematico',
-    icone: '💡',
-    planos: Array.from({ length: 31 }, (_, i) => ({
-      dia: i + 1,
-      livros: 'Provérbios',
-      capitulos: [`pv:${i + 1}`],
-      titulo: `Provérbios ${i + 1}`,
-      descricao: `Sabedoria do capítulo ${i + 1} de Provérbios`,
-    })),
-  },
-];
+export function gerarPlano(id: string): LeituraDia[] {
+  const dias: LeituraDia[] = [];
 
-function getPlano90Dias(dia: number): { livros: string; capitulos: string[]; titulo: string; descricao: string } {
-  const totalCapitulos = 1189;
-  const capitulosPorDia = Math.ceil(totalCapitulos / 90);
-  const inicio = dia * capitulosPorDia + 1;
-  const fim = Math.min((dia + 1) * capitulosPorDia, totalCapitulos);
-
-  const livrosBiblicos = [
-    { nome: 'Gênesis', abrev: 'gn', caps: 50 },
-    { nome: 'Êxodo', abrev: 'ex', caps: 40 },
-    { nome: 'Levítico', abrev: 'lv', caps: 27 },
-    { nome: 'Números', abrev: 'nm', caps: 36 },
-    { nome: 'Deuteronômio', abrev: 'dt', caps: 34 },
-    { nome: 'Josué', abrev: 'js', caps: 24 },
-    { nome: 'Juízes', abrev: 'jz', caps: 21 },
-    { nome: 'Rute', abrev: 'rt', caps: 4 },
-    { nome: '1 Samuel', abrev: '1sm', caps: 31 },
-    { nome: '2 Samuel', abrev: '2sm', caps: 24 },
-    { nome: '1 Reis', abrev: '1rs', caps: 22 },
-    { nome: '2 Reis', abrev: '2rs', caps: 25 },
-    { nome: '1 Crônicas', abrev: '1cr', caps: 29 },
-    { nome: '2 Crônicas', abrev: '2cr', caps: 36 },
-    { nome: 'Esdras', abrev: 'ed', caps: 10 },
-    { nome: 'Neemias', abrev: 'ne', caps: 13 },
-    { nome: 'Ester', abrev: 'et', caps: 10 },
-    { nome: 'Jó', abrev: 'job', caps: 42 },
-    { nome: 'Salmos', abrev: 'sl', caps: 150 },
-    { nome: 'Provérbios', abrev: 'pv', caps: 31 },
-    { nome: 'Eclesiastes', abrev: 'ec', caps: 12 },
-    { nome: 'Cânticos', abrev: 'ct', caps: 8 },
-    { nome: 'Isaías', abrev: 'is', caps: 66 },
-    { nome: 'Jeremias', abrev: 'jr', caps: 52 },
-    { nome: 'Lamentações', abrev: 'lm', caps: 5 },
-    { nome: 'Ezequiel', abrev: 'ez', caps: 48 },
-    { nome: 'Daniel', abrev: 'dn', caps: 12 },
-    { nome: 'Oséias', abrev: 'os', caps: 14 },
-    { nome: 'Joel', abrev: 'jl', caps: 3 },
-    { nome: 'Amós', abrev: 'am', caps: 9 },
-    { nome: 'Obadias', abrev: 'ob', caps: 1 },
-    { nome: 'Jonas', abrev: 'jon', caps: 4 },
-    { nome: 'Miquéias', abrev: 'mq', caps: 7 },
-    { nome: 'Naum', abrev: 'na', caps: 3 },
-    { nome: 'Habacuque', abrev: 'hc', caps: 3 },
-    { nome: 'Sofonias', abrev: 'sf', caps: 3 },
-    { nome: 'Ageu', abrev: 'ag', caps: 2 },
-    { nome: 'Zacarias', abrev: 'zc', caps: 14 },
-    { nome: 'Malaquias', abrev: 'ml', caps: 4 },
-    { nome: 'Mateus', abrev: 'mt', caps: 28 },
-    { nome: 'Marcos', abrev: 'mc', caps: 16 },
-    { nome: 'Lucas', abrev: 'lc', caps: 24 },
-    { nome: 'João', abrev: 'jn', caps: 21 },
-    { nome: 'Atos', abrev: 'at', caps: 28 },
-    { nome: 'Romanos', abrev: 'rm', caps: 16 },
-    { nome: '1 Coríntios', abrev: '1co', caps: 16 },
-    { nome: '2 Coríntios', abrev: '2co', caps: 13 },
-    { nome: 'Gálatas', abrev: 'gl', caps: 6 },
-    { nome: 'Efésios', abrev: 'ef', caps: 6 },
-    { nome: 'Filipenses', abrev: 'fl', caps: 4 },
-    { nome: 'Colossenses', abrev: 'cl', caps: 4 },
-    { nome: '1 Tessalonicenses', abrev: '1ts', caps: 5 },
-    { nome: '2 Tessalonicenses', abrev: '2ts', caps: 3 },
-    { nome: '1 Timóteo', abrev: '1tm', caps: 6 },
-    { nome: '2 Timóteo', abrev: '2tm', caps: 4 },
-    { nome: 'Tito', abrev: 'tt', caps: 3 },
-    { nome: 'Filemom', abrev: 'fm', caps: 1 },
-    { nome: 'Hebreus', abrev: 'hb', caps: 13 },
-    { nome: 'Tiago', abrev: 'tg', caps: 5 },
-    { nome: '1 Pedro', abrev: '1pe', caps: 5 },
-    { nome: '2 Pedro', abrev: '2pe', caps: 3 },
-    { nome: '1 João', abrev: '1jo', caps: 5 },
-    { nome: '2 João', abrev: '2jo', caps: 1 },
-    { nome: '3 João', abrev: '3jo', caps: 1 },
-    { nome: 'Judas', abrev: 'jd', caps: 1 },
-    { nome: 'Apocalipse', abrev: 'ap', caps: 22 },
-  ];
-
-  let capAtual = 1;
-  const livrosEncontrados: string[] = [];
-  const capsEncontrados: string[] = [];
-
-  for (const livro of livrosBiblicos) {
-    for (let c = 1; c <= livro.caps; c++) {
-      if (capAtual >= inicio && capAtual <= fim) {
-        if (!livrosEncontrados.includes(livro.nome)) livrosEncontrados.push(livro.nome);
-        capsEncontrados.push(`${livro.abrev}:${c}`);
+  switch (id) {
+    case 'biblicoEm1Ano':
+      // AT pela manhã, NT à noite
+      for (let d = 1; d <= 365; d++) {
+        const dia: LeituraDia = { dia: d, titulo: `Dia ${d}`, passagens: [] };
+        // AT: 3 capítulos por dia
+        const atInicio = lerDia(d, 365, 1, 3);
+        if (atInicio <= 929) {
+          dia.passagens.push({ livro: 'gn', capitulo: atInicio });
+          if (atInicio + 1 <= 929) dia.passagens.push({ livro: 'gn', capitulo: atInicio + 1 });
+          if (atInicio + 2 <= 929) dia.passagens.push({ livro: 'gn', capitulo: atInicio + 2 });
+        }
+        // NT: 1 capítulo por dia
+        const ntInicio = lerDia(d, 365, 1, 1);
+        if (ntInicio <= 260) {
+          dia.passagens.push({ livro: 'mt', capitulo: ntInicio });
+        }
+        dias.push(dia);
       }
-      capAtual++;
-      if (capAtual > fim) break;
-    }
-    if (capAtual > fim) break;
-  }
+      break;
 
-  return {
-    livros: livrosEncontrados.join(', '),
-    capitulos: capsEncontrados,
-    titulo: `Dia ${dia + 1}`,
-    descricao: `Leitura do dia ${dia + 1}: ${livrosEncontrados.join(', ')}`,
-  };
-}
-
-function getPlanoNT(dia: number): { livros: string; capitulos: string[]; titulo: string; descricao: string } {
-  const ntLivros = [
-    { nome: 'Mateus', abrev: 'mt', caps: 28 },
-    { nome: 'Marcos', abrev: 'mc', caps: 16 },
-    { nome: 'Lucas', abrev: 'lc', caps: 24 },
-    { nome: 'João', abrev: 'jn', caps: 21 },
-    { nome: 'Atos', abrev: 'at', caps: 28 },
-    { nome: 'Romanos', abrev: 'rm', caps: 16 },
-    { nome: '1 Coríntios', abrev: '1co', caps: 16 },
-    { nome: '2 Coríntios', abrev: '2co', caps: 13 },
-    { nome: 'Gálatas', abrev: 'gl', caps: 6 },
-    { nome: 'Efésios', abrev: 'ef', caps: 6 },
-    { nome: 'Filipenses', abrev: 'fl', caps: 4 },
-    { nome: 'Colossenses', abrev: 'cl', caps: 4 },
-    { nome: '1 Tessalonicenses', abrev: '1ts', caps: 5 },
-    { nome: '2 Tessalonicenses', abrev: '2ts', caps: 3 },
-    { nome: '1 Timóteo', abrev: '1tm', caps: 6 },
-    { nome: '2 Timóteo', abrev: '2tm', caps: 4 },
-    { nome: 'Tito', abrev: 'tt', caps: 3 },
-    { nome: 'Filemom', abrev: 'fm', caps: 1 },
-    { nome: 'Hebreus', abrev: 'hb', caps: 13 },
-    { nome: 'Tiago', abrev: 'tg', caps: 5 },
-    { nome: '1 Pedro', abrev: '1pe', caps: 5 },
-    { nome: '2 Pedro', abrev: '2pe', caps: 3 },
-    { nome: '1 João', abrev: '1jo', caps: 5 },
-    { nome: '2 João', abrev: '2jo', caps: 1 },
-    { nome: '3 João', abrev: '3jo', caps: 1 },
-    { nome: 'Judas', abrev: 'jd', caps: 1 },
-    { nome: 'Apocalipse', abrev: 'ap', caps: 22 },
-  ];
-
-  const totalCaps = ntLivros.reduce((acc, l) => acc + l.caps, 0);
-  const capsPorDia = Math.ceil(totalCaps / 30);
-  const inicio = dia * capsPorDia + 1;
-  const fim = Math.min((dia + 1) * capsPorDia, totalCaps);
-
-  let capAtual = 1;
-  const livrosEncontrados: string[] = [];
-  const capsEncontrados: string[] = [];
-
-  for (const livro of ntLivros) {
-    for (let c = 1; c <= livro.caps; c++) {
-      if (capAtual >= inicio && capAtual <= fim) {
-        if (!livrosEncontrados.includes(livro.nome)) livrosEncontrados.push(livro.nome);
-        capsEncontrados.push(`${livro.abrev}:${c}`);
+    case 'ntEm30Dias':
+      for (let d = 1; d <= 30; d++) {
+        const inicio = lerDia(d, 30, 1, 9);
+        dias.push({
+          dia: d,
+          titulo: `Dia ${d}`,
+          passagens: Array.from({ length: 9 }, (_, i) => {
+            const cap = inicio + i;
+            return { livro: 'mt', capitulo: cap > 260 ? cap - 260 : cap };
+          }),
+        });
       }
-      capAtual++;
-      if (capAtual > fim) break;
-    }
-    if (capAtual > fim) break;
+      break;
+
+    case 'sabedoria':
+      for (let d = 1; d <= 31; d++) {
+        dias.push({
+          dia: d,
+          titulo: `Provérbios ${d}`,
+          passagens: [{ livro: 'pv', capitulo: d }],
+        });
+      }
+      break;
+
+    case 'evangelhos':
+      {
+        const livros = ['mt', 'mc', 'lc', 'jo'];
+        let idx = 0;
+        for (let d = 1; d <= 40; d++) {
+          const l = livros[Math.min(Math.floor((d - 1) / 10), 3)];
+          dias.push({
+            dia: d,
+            titulo: `${d} - ${l}`,
+            passagens: [{ livro: l, capitulo: ((d - 1) % 10) + 1 }],
+          });
+        }
+      }
+      break;
+
+    case 'salmos':
+      for (let d = 1; d <= 60; d++) {
+        dias.push({
+          dia: d,
+          titulo: `Salmo ${d}`,
+          passagens: [{ livro: 'sl', capitulo: d }],
+        });
+      }
+      break;
+
+    default:
+      dias.push({ dia: 1, titulo: 'Início', passagens: [{ livro: 'gn', capitulo: 1 }] });
   }
 
-  return {
-    livros: livrosEncontrados.join(', '),
-    capitulos: capsEncontrados,
-    titulo: `Dia ${dia + 1}`,
-    descricao: `Leitura do dia ${dia + 1}: ${livrosEncontrados.join(', ')}`,
-  };
-}
-
-/**
- * Get reading progress from localStorage
- */
-export function getProgressoLeitura(planoId: string): number[] {
-  if (typeof window === 'undefined') return [];
-  try {
-    const data = localStorage.getItem(`progresso-${planoId}`);
-    return data ? JSON.parse(data) : [];
-  } catch {
-    return [];
-  }
-}
-
-/**
- * Mark a day as complete
- */
-export function marcarDiaCompleto(planoId: string, dia: number): void {
-  if (typeof window === 'undefined') return;
-  const progresso = getProgressoLeitura(planoId);
-  if (!progresso.includes(dia)) {
-    progresso.push(dia);
-    localStorage.setItem(`progresso-${planoId}`, JSON.stringify(progresso));
-  }
-}
-
-/**
- * Check if a day is complete
- */
-export function diaCompleto(planoId: string, dia: number): boolean {
-  return getProgressoLeitura(planoId).includes(dia);
+  return dias;
 }

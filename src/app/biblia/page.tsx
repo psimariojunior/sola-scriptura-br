@@ -8,7 +8,7 @@ import type { CapituloComparado } from '@/data/biblia';
 import {
   BookOpen, ChevronRight, ChevronLeft, Columns2, LayoutList, AlignJustify,
   Menu, Search, Minus, Plus, X, Heart, StickyNote, Share2, Copy, Check,
-  History, Settings, Eye, EyeOff, Download, BookMarked, GraduationCap
+  History, Settings, Eye, EyeOff, Download, BookMarked, GraduationCap, Brain
 } from 'lucide-react';
 import { toggleFavorito, obterMarca, setAnotacao as salvarAnotacao } from '@/lib/estudos';
 import { useEstudos } from '@/components/EstudosProvider';
@@ -26,6 +26,8 @@ import { getCrossReferences } from '@/data/crossReferences';
 import Link from 'next/link';
 import VerseAudio, { AudioMiniPlayer } from '@/components/VerseAudio';
 import { useVerseAudio } from '@/lib/useVerseAudio';
+import ReadingPlanBanner from '@/components/ReadingPlanBanner';
+import { useFlashcards } from '@/lib/useFlashcards';
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
@@ -110,9 +112,11 @@ export default function BibliaPage() {
   const [chapterDirection, setChapterDirection] = useState<'next' | 'prev'>('next');
   const [selectedCrossRef, setSelectedCrossRef] = useState<{verse: number; refs: string[]} | null>(null);
   const [estudoAberto, setEstudoAberto] = useState<number | null>(null);
+  const [showPlan, setShowPlan] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
   const { isFavorito, refresh } = useEstudos();
   const audio = useVerseAudio();
+  const flashcards = useFlashcards();
 
   const livro = TODOS_LIVROS[livroIdx];
 
@@ -341,6 +345,12 @@ export default function BibliaPage() {
                     <Download className="w-4 h-4" />
                   </motion.button>
 
+                  <motion.button onClick={() => setShowPlan(!showPlan)} title="Plano de Leitura"
+                    whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                    className={`p-1.5 rounded-md transition-all duration-300 ${showPlan ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                    <BookMarked className="w-4 h-4" />
+                  </motion.button>
+
                   <motion.button onClick={() => setShowSettings(!showSettings)} title="Configurações"
                     whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                     className="p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-all duration-300">
@@ -375,6 +385,7 @@ export default function BibliaPage() {
             {/* Reading area */}
             <div ref={mainRef} className="flex-1 overflow-y-auto">
               <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+                {showPlan && !readingMode && <ReadingPlanBanner />}
                 {loading ? (
                   <div className="space-y-6 chapter-enter">
                     <div className="skeleton skeleton-title w-48 mx-auto" />
@@ -434,13 +445,17 @@ export default function BibliaPage() {
                                   const ref = `${livro.nome} ${capituloIdx + 1}:${v.numero}`;
                                   const isPlaying = audio.isVersePlaying(v.numero);
                                   const estudoInline = estudoAberto === v.numero;
+                                  const marca = obterMarca(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao);
+                                  const temAnotacao = marca?.anotacao?.texto && marca.anotacao.texto.length > 0;
+                                  const flashKey = `${livro.abreviacao}:${capituloIdx + 1}:${v.numero}:${item.traducao}`;
+                                  const isFlashcard = flashcards.cards.find(c => c.verseKey === flashKey);
                                   return (
                                     <Fragment key={v.numero}>
                                       <motion.div 
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: 0.1 + i * 0.01 }}
-                                        className={`group flex items-start gap-2 py-1 px-2 -mx-2 rounded-lg transition-all duration-300 ${isPlaying ? 'bg-[var(--primary)]/5 ring-1 ring-[var(--primary)]/20' : 'verse-hover'}`}
+                                        className={`group flex items-start gap-2 py-1 px-2 -mx-2 rounded-lg transition-all duration-300 ${isPlaying ? 'bg-[var(--primary)]/5 ring-1 ring-[var(--primary)]/20' : 'verse-hover'} ${temAnotacao ? 'border-l-2 border-l-amber-500/50' : ''}`}
                                       >
                                         <sup className="text-[var(--primary)] font-bold text-xs mt-1 select-none min-w-[20px] text-right">{v.numero}</sup>
                                         <div className="flex-1">
@@ -502,6 +517,13 @@ export default function BibliaPage() {
                                               <BookOpen className="w-3.5 h-3.5" />
                                             </motion.button>
                                           )}
+                                          {temAnotacao && (
+                                            <motion.button
+                                              whileHover={{ scale: 1.2 }}
+                                              className="p-1 text-amber-500 opacity-60" title="Anotação salva">
+                                              <StickyNote className="w-3.5 h-3.5 fill-current" />
+                                            </motion.button>
+                                          )}
                                           {temEstudo(livro.abreviacao, capituloIdx + 1, v.numero) && (
                                             <motion.button onClick={() => setEstudoAberto(estudoInline ? null : v.numero)}
                                               whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
@@ -510,6 +532,13 @@ export default function BibliaPage() {
                                               <GraduationCap className="w-3.5 h-3.5" />
                                             </motion.button>
                                           )}
+                                          <motion.button
+                                            onClick={() => isFlashcard ? flashcards.removeCard(flashKey) : flashcards.addCard(flashKey)}
+                                            whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}
+                                            className={`p-1 rounded-md transition-colors duration-300 ${isFlashcard ? 'text-cyan-500 bg-cyan-500/10' : 'text-[var(--muted-fg)] hover:text-cyan-400'}`}
+                                            title={isFlashcard ? 'Remover flashcard' : 'Adicionar flashcard'}>
+                                            <Brain className="w-3.5 h-3.5" />
+                                          </motion.button>
                                         </div>
                                       </motion.div>
 

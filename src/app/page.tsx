@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import ParticlesBackground from '@/components/ParticlesBackground';
+import BibleSplash from '@/components/BibleSplash';
 import { 
   BookOpen, Languages, Church, Map, Brain, ScrollText, Clock, Users, 
   ArrowRight, Sparkles, Search, Wrench, ChevronRight, Star, 
@@ -64,6 +65,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      <BibleSplash />
       <Header />
 
       {/* Hero - Cinematográfico */}

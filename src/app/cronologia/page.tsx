@@ -3,9 +3,10 @@
 import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { cronologia } from '@/data/biblia';
+import { cronologia, livroPorAbreviacao } from '@/data/biblia';
 import ScrollReveal from '@/components/ScrollReveal';
-import { CalendarDays, Filter, Sparkles } from 'lucide-react';
+import Link from 'next/link';
+import { CalendarDays, Filter, Sparkles, BookOpen, ExternalLink } from 'lucide-react';
 
 const tipoCores: Record<string, { bg: string; text: string; dot: string; gradient: string }> = {
   criacao: { bg: 'bg-purple-100 dark:bg-purple-900/30', text: 'text-purple-800 dark:text-purple-300', dot: 'bg-purple-500', gradient: 'from-purple-500 to-purple-600' },
@@ -39,6 +40,73 @@ const tipoIcones: Record<string, string> = {
   vinda: '✝️',
   igreja: '🔥',
 };
+
+function parseRefLinks(ref: string): Array<{ href: string; label: string }> {
+  const links: Array<{ href: string; label: string }> = [];
+  // Match patterns like "Gn 1-2", "Gn 2:7-25", "Gn 4:1-2", "Gn 4:17", "Gn 1-2; 3:15"
+  const parts = ref.split(';').map(s => s.trim());
+  for (const part of parts) {
+    const match = part.match(/^([\d\s]*[A-Za-záéíóú]+)\s*(\d+)/);
+    if (match) {
+      let livroAbrev = match[1].toLowerCase().replace(/[áàâã]/g, 'a').replace(/[éê]/g, 'e').replace(/[í]/g, 'i').replace(/[óôõ]/g, 'o').replace(/[ú]/g, 'u').replace(/[ç]/g, 'c');
+      // Map common Portuguese abbreviations
+      const abrevMap: Record<string, string> = {
+        gn: 'gn', gênesis: 'gn', genesis: 'gn',
+        ex: 'ex', 'êxodo': 'ex', exodo: 'ex',
+        lv: 'lv', levitico: 'lv', levítico: 'lv',
+        nm: 'nm', numeros: 'nm', números: 'nm',
+        dt: 'dt', deuteronomio: 'dt', deuteronômio: 'dt',
+        js: 'js', josué: 'js', josue: 'js',
+        '1sm': '1sm', '1samuel': '1sm', 'i samuel': '1sm', '1 samuel': '1sm',
+        '2sm': '2sm', '2samuel': '2sm', 'ii samuel': '2sm', '2 samuel': '2sm',
+        '1rs': '1rs', '1reis': '1rs', 'i reis': '1rs', '1 reis': '1rs',
+        '2rs': '2rs', '2reis': '2rs', 'ii reis': '2rs', '2 reis': '2rs',
+        is: 'is', isaias: 'is', isaías: 'is',
+        jr: 'jr', jeremias: 'jr',
+        ez: 'ez', ezequiel: 'ez',
+        dn: 'dn', daniel: 'dn',
+        mt: 'mt', mateus: 'mt',
+        mc: 'mc', marcos: 'mc',
+        lc: 'lc', lucas: 'lc',
+        jo: 'jo', joão: 'jo', joao: 'jo',
+        at: 'at', atos: 'at',
+        rm: 'rm', romanos: 'rm',
+        '1co': '1co', icorintios: '1co', '1 coríntios': '1co', '1 corintios': '1co',
+        '2co': '2co', iicorintios: '2co', '2 coríntios': '2co', '2 corintios': '2co',
+        gl: 'gl', galatas: 'gl', gálatas: 'gl',
+        ef: 'ef', efesios: 'ef', efésios: 'ef',
+        fp: 'fp', filipenses: 'fp',
+        cl: 'cl', colossenses: 'cl',
+        '1ts': '1ts', itessalonicenses: '1ts', '1 tessalonicenses': '1ts',
+        hb: 'hb', hebreus: 'hb',
+        tg: 'tg', tiago: 'tg',
+        '1pe': '1pe', ipedro: '1pe', '1 pedro': '1pe',
+        '2pe': '2pe', iipedro: '2pe', '2 pedro': '2pe',
+        '1jo': '1jo', ijoao: '1jo', '1 joão': '1jo', '1 joao': '1jo',
+        ap: 'ap', apocalipse: 'ap',
+        sl: 'sl', salmos: 'sl', salmo: 'sl',
+        pv: 'pv', proverbios: 'pv', provérbios: 'pv',
+        jó: 'jó', job: 'jó',
+      };
+      livroAbrev = abrevMap[livroAbrev] || livroAbrev;
+      const cap = match[2];
+      const subRef = part.match(/:(\d+)/);
+      if (subRef) {
+        links.push({ href: `/biblia?livro=${livroAbrev}&capitulo=${cap}`, label: part });
+      } else if (part.includes('-')) {
+        const rangeMatch = part.match(/(\d+)\s*-\s*(\d+)/);
+        if (rangeMatch) {
+          const capInicio = rangeMatch[1];
+          links.push({ href: `/biblia?livro=${livroAbrev}&capitulo=${capInicio}`, label: part.split('-')[0].trim() });
+          links.push({ href: `/biblia?livro=${livroAbrev}&capitulo=${rangeMatch[2]}`, label: part.split('-')[1].trim() });
+        }
+      } else {
+        links.push({ href: `/biblia?livro=${livroAbrev}&capitulo=${cap}`, label: part });
+      }
+    }
+  }
+  return links.length > 0 ? links.slice(0, 2) : [];
+}
 
 export default function CronologiaPage() {
   const [filtro, setFiltro] = useState<string>('todos');
@@ -134,7 +202,20 @@ export default function CronologiaPage() {
                         <div className="p-5">
                           <p className="font-mono text-sm text-primary font-semibold mb-1">{evento.ano}</p>
                           <h3 className="font-semibold text-lg mb-1">{evento.evento}</h3>
-                          <p className="text-xs text-muted-foreground font-mono">{evento.referencia}</p>
+                          <div className="flex items-center gap-1 flex-wrap">
+                            {parseRefLinks(evento.referencia).length > 0 ? (
+                              parseRefLinks(evento.referencia).map((link, li) => (
+                                <Link key={li} href={link.href}
+                                  className="text-[11px] font-mono text-[var(--primary)] hover:underline flex items-center gap-0.5 bg-[var(--primary)]/5 px-1.5 py-0.5 rounded">
+                                  <BookOpen className="w-2.5 h-2.5" />
+                                  {link.label}
+                                  <ExternalLink className="w-2.5 h-2.5 opacity-50" />
+                                </Link>
+                              ))
+                            ) : (
+                              <span className="text-[11px] text-[var(--muted-fg)] font-mono">{evento.referencia}</span>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>

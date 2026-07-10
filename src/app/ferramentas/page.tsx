@@ -4,12 +4,11 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import {
-  MapPin, Search, Filter, X, BookOpen,
-  Globe, ChevronDown, Cross
-} from 'lucide-react';
+import { MapPin, Search, X, BookOpen, Globe } from 'lucide-react';
 import { locaisBiblicos, locaisPorTestamento, buscarLocal } from '@/data/biblia/locais';
 import type { LocalBiblico } from '@/data/biblia/locais';
+import { motion } from 'framer-motion';
+import ScrollReveal from '@/components/ScrollReveal';
 
 const MapaBiblico = dynamic(() => import('./MapaBiblico'), { ssr: false });
 
@@ -50,29 +49,17 @@ export default function FerramentasPage() {
   const [filtroCategoria, setFiltroCategoria] = useState<FiltroCategoria>('todos');
   const [query, setQuery] = useState('');
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [mobileFilters, setMobileFilters] = useState(false);
 
   const locais = useMemo(() => {
-    let lista = filtroTestamento === 'todos'
-      ? locaisBiblicos
-      : locaisPorTestamento(filtroTestamento);
-    if (filtroCategoria !== 'todos') {
-      lista = lista.filter((l) => l.categoria === filtroCategoria);
-    }
-    if (query.trim()) {
-      lista = buscarLocal(query);
-    }
+    let lista = filtroTestamento === 'todos' ? locaisBiblicos : locaisPorTestamento(filtroTestamento);
+    if (filtroCategoria !== 'todos') lista = lista.filter((l) => l.categoria === filtroCategoria);
+    if (query.trim()) lista = buscarLocal(query);
     return lista;
   }, [filtroTestamento, filtroCategoria, query]);
 
-  const selected = useMemo(
-    () => locaisBiblicos.find((l) => l.id === selectedId) ?? null,
-    [selectedId]
-  );
+  const selected = useMemo(() => locaisBiblicos.find((l) => l.id === selectedId) ?? null, [selectedId]);
 
-  const handleSelect = useCallback((id: string) => {
-    setSelectedId((prev) => (prev === id ? null : id));
-  }, []);
+  const handleSelect = useCallback((id: string) => setSelectedId((prev) => (prev === id ? null : id)), []);
 
   const limparFiltros = useCallback(() => {
     setFiltroTestamento('todos');
@@ -86,154 +73,138 @@ export default function FerramentasPage() {
     <div className="min-h-screen">
       <Header />
       <main className="pt-20 pb-16">
-        <div className="max-w-7xl mx-auto px-6 mb-8">
-          <div className="flex items-center justify-between mb-2">
-            <div>
-              <h1 className="font-display text-4xl md:text-5xl font-light mb-2">Ferramentas</h1>
-              <p className="text-muted-foreground">Atlas bíblico interativo, mapas e recursos de estudo</p>
+        <ScrollReveal>
+          <div className="max-w-7xl mx-auto px-6 mb-8">
+            <div className="text-center mb-8">
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                className="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center mx-auto mb-6"
+              >
+                <Globe className="w-8 h-8 text-emerald-500" />
+              </motion.div>
+              <h1 className="font-display text-4xl md:text-5xl font-light mb-4">
+                Atlas <span className="italic text-primary">Bíblico</span>
+              </h1>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Explore os locais bíblicos em um mapa interativo com {locaisBiblicos.length} locais mapeados.
+              </p>
+              <div className="ornament w-16 mx-auto mt-6" />
             </div>
           </div>
-
-          <div className="flex flex-wrap gap-2 mb-6">
-            <Globe className="w-5 h-5 text-gold mt-0.5" />
-            <span className="text-sm text-muted-foreground">
-              {locaisBiblicos.length} locais bíblicos mapeados
-            </span>
-          </div>
-        </div>
+        </ScrollReveal>
 
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
+          <ScrollReveal delay={0.1} className="lg:col-span-2">
             <div className="sola-card rounded-xl overflow-hidden" style={{ height: 'min(70vh, 600px)' }}>
-              <MapaBiblico
-                locais={locais}
-                selectedId={selectedId}
-                onSelect={handleSelect}
-              />
+              <MapaBiblico locais={locais} selectedId={selectedId} onSelect={handleSelect} />
             </div>
-          </div>
+          </ScrollReveal>
 
-          <div className="space-y-4">
-            <div className="sola-card rounded-xl p-4">
-              <div className="relative mb-3">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <input
-                  type="text"
-                  placeholder="Buscar local..."
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 text-sm bg-transparent border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-gold/40"
-                />
-                {query && (
-                  <button onClick={() => setQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2">
-                    <X className="w-3.5 h-3.5 text-muted-foreground" />
-                  </button>
-                )}
-              </div>
-
-              <div className="flex flex-wrap gap-2 mb-3">
-                {(['todos', 'AT', 'NT', 'ambos'] as const).map((t) => (
-                  <button
-                    key={t}
-                    onClick={() => setFiltroTestamento(t)}
-                    className={`px-3 py-1 text-xs font-medium rounded-full border transition-colors ${
-                      filtroTestamento === t
-                        ? 'bg-primary text-primary-foreground border-primary'
-                        : 'border-border text-muted-foreground hover:text-foreground hover:border-foreground/30'
-                    }`}
-                  >
-                    {t === 'todos' ? 'Todos' : t === 'AT' ? 'Antigo Testamento' : t === 'NT' ? 'Novo Testamento' : 'Ambos'}
-                  </button>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-1.5 mb-2">
-                {CATEGORIAS.map((c) => (
-                  <button
-                    key={c.valor}
-                    onClick={() => setFiltroCategoria(c.valor)}
-                    className={`px-2.5 py-1 text-xs rounded transition-colors ${
-                      filtroCategoria === c.valor
-                        ? 'bg-gold/20 text-ink dark:text-parchment'
-                        : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                  >
-                    {c.label}
-                  </button>
-                ))}
-              </div>
-
-              {hasFilters && (
-                <button
-                  onClick={limparFiltros}
-                  className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
-                >
-                  <X className="w-3 h-3" /> Limpar filtros
-                </button>
-              )}
-            </div>
-
-            <div className="sola-card rounded-xl overflow-hidden">
-              <div className="p-3 border-b border-border/50">
-                <h3 className="font-display text-lg font-medium">
-                  {selected ? selected.nome : locais.length > 0 ? `${locais.length} locais` : 'Nenhum local'}
-                </h3>
-              </div>
-              <div className="overflow-y-auto max-h-[320px]">
-                {selected ? (
-                  <div className="p-4 space-y-3">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className={`px-2 py-0.5 text-xs rounded-full font-medium ${CATEGORIA_COR[selected.categoria] || ''}`}>
-                        {CATEGORIA_ICONE[selected.categoria] || ''} {selected.categoria}
-                      </span>
-                      <span className={`px-2 py-0.5 text-xs rounded-full font-medium ${TESTAMENTO_COR[selected.testamento] || ''}`}>
-                        {selected.testamento === 'AT' ? 'Antigo Testamento' : selected.testamento === 'NT' ? 'Novo Testamento' : 'Ambos Testamentos'}
-                      </span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">{selected.descricao}</p>
-                    {selected.referencias.length > 0 && (
-                      <div>
-                        <span className="text-xs uppercase tracking-wider text-muted-foreground font-medium">Referências</span>
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {selected.referencias.map((ref) => (
-                            <span
-                              key={ref}
-                              className="px-2 py-0.5 text-xs bg-primary/10 text-primary rounded font-medium"
-                            >
-                              {ref}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    <button
-                      onClick={() => setSelectedId(null)}
-                      className="text-xs text-muted-foreground hover:text-foreground"
-                    >
-                      ← Voltar
+          <ScrollReveal delay={0.2}>
+            <div className="space-y-4">
+              <div className="sola-card rounded-xl p-4">
+                <div className="relative mb-3">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <input
+                    type="text"
+                    placeholder="Buscar local..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    className="w-full pl-9 pr-3 py-2 text-sm bg-transparent border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+                  />
+                  {query && (
+                    <button onClick={() => setQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2">
+                      <X className="w-3.5 h-3.5 text-muted-foreground" />
                     </button>
-                  </div>
-                ) : (
-                  <div className="divide-y divide-border/30">
-                    {locais.map((local) => (
-                      <button
-                        key={local.id}
-                        onClick={() => handleSelect(local.id)}
-                        className="w-full text-left p-3 hover:bg-muted/50 transition-colors flex items-center gap-3"
-                      >
-                        <span className="text-lg">{CATEGORIA_ICONE[local.categoria] || '📍'}</span>
-                        <div className="flex-1 min-w-0">
-                          <div className="text-sm font-medium truncate">{local.nome}</div>
-                          <div className="text-xs text-muted-foreground truncate">{local.descricao}</div>
-                        </div>
-                        <MapPin className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
-                      </button>
-                    ))}
-                  </div>
+                  )}
+                </div>
+
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {(['todos', 'AT', 'NT', 'ambos'] as const).map((t) => (
+                    <motion.button key={t} onClick={() => setFiltroTestamento(t)} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                      className={`px-3 py-1 text-xs font-medium rounded-full border transition-all duration-300 ${
+                        filtroTestamento === t ? 'bg-primary text-primary-foreground border-primary' : 'border-border text-muted-foreground hover:text-foreground hover:border-foreground/30'
+                      }`}>
+                      {t === 'todos' ? 'Todos' : t === 'AT' ? 'Antigo Testamento' : t === 'NT' ? 'Novo Testamento' : 'Ambos'}
+                    </motion.button>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-1.5 mb-2">
+                  {CATEGORIAS.map((c) => (
+                    <motion.button key={c.valor} onClick={() => setFiltroCategoria(c.valor)} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                      className={`px-2.5 py-1 text-xs rounded transition-all duration-300 ${
+                        filtroCategoria === c.valor ? 'bg-primary/20 text-primary font-medium' : 'text-muted-foreground hover:text-foreground'
+                      }`}>
+                      {c.label}
+                    </motion.button>
+                  ))}
+                </div>
+
+                {hasFilters && (
+                  <button onClick={limparFiltros} className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors">
+                    <X className="w-3 h-3" /> Limpar filtros
+                  </button>
                 )}
               </div>
+
+              <div className="sola-card rounded-xl overflow-hidden">
+                <div className="p-3 border-b border-border/50">
+                  <h3 className="font-display text-lg font-medium">
+                    {selected ? selected.nome : locais.length > 0 ? `${locais.length} locais` : 'Nenhum local'}
+                  </h3>
+                </div>
+                <div className="overflow-y-auto max-h-[320px]">
+                  {selected ? (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 space-y-3">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className={`px-2 py-0.5 text-xs rounded-full font-medium ${CATEGORIA_COR[selected.categoria] || ''}`}>
+                          {CATEGORIA_ICONE[selected.categoria] || ''} {selected.categoria}
+                        </span>
+                        <span className={`px-2 py-0.5 text-xs rounded-full font-medium ${TESTAMENTO_COR[selected.testamento] || ''}`}>
+                          {selected.testamento === 'AT' ? 'Antigo Testamento' : selected.testamento === 'NT' ? 'Novo Testamento' : 'Ambos Testamentos'}
+                        </span>
+                      </div>
+                      <p className="text-sm text-muted-foreground">{selected.descricao}</p>
+                      {selected.referencias.length > 0 && (
+                        <div>
+                          <span className="text-xs uppercase tracking-wider text-muted-foreground font-medium">Referências</span>
+                          <div className="flex flex-wrap gap-1 mt-1">
+                            {selected.referencias.map((ref) => (
+                              <span key={ref} className="px-2 py-0.5 text-xs bg-primary/10 text-primary rounded font-medium">{ref}</span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      <button onClick={() => setSelectedId(null)} className="text-xs text-muted-foreground hover:text-foreground transition-colors">← Voltar</button>
+                    </motion.div>
+                  ) : (
+                    <div className="divide-y divide-border/30">
+                      {locais.map((local, i) => (
+                        <motion.button
+                          key={local.id}
+                          onClick={() => handleSelect(local.id)}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: Math.min(i * 0.02, 0.5) }}
+                          className="w-full text-left p-3 hover:bg-muted/50 transition-all duration-300 flex items-center gap-3"
+                        >
+                          <span className="text-lg">{CATEGORIA_ICONE[local.categoria] || '📍'}</span>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm font-medium truncate">{local.nome}</div>
+                            <div className="text-xs text-muted-foreground truncate">{local.descricao}</div>
+                          </div>
+                          <MapPin className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                        </motion.button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </main>
       <Footer />

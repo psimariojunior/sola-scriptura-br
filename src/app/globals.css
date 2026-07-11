@@ -434,3 +434,19 @@ html {
   main { padding: 0 !important; }
   .sola-card { box-shadow: none !important; border: 1px solid #ccc !important; }
 }
+
+@keyframes splashParticle {
+  0% { opacity: 0; transform: translate(0, 0) scale(0); }
+  20% { opacity: 0.8; }
+  100% { opacity: 0; transform: translate(var(--dx, 30px), var(--dy, -30px)) scale(2); }
+}
+
+@keyframes splashPulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.4); opacity: 0.8; }
+}
+
+@keyframes splashTextIn {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

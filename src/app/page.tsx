@@ -25,6 +25,8 @@ const modules = [
   { href: '/ia', icon: Brain, title: 'Assistente IA', desc: 'Especialista em estudos bíblicos', color: 'from-violet-500/10 to-violet-600/5' },
   { href: '/cronologia', icon: Clock, title: 'Cronologia', desc: 'Linha do tempo bíblica', color: 'from-orange-500/10 to-orange-600/5' },
   { href: '/personagens', icon: Users, title: 'Personagens', desc: 'Biografias e genealogias', color: 'from-teal-500/10 to-teal-600/5' },
+  { href: '/devocional', icon: Star, title: 'Devocional', desc: 'Meditação diária com oração', color: 'from-yellow-500/10 to-yellow-600/5' },
+  { href: '/flashcards', icon: Brain, title: 'Flashcards', desc: 'Memorize versículos', color: 'from-sky-500/10 to-sky-600/5' },
 ];
 
 const stats = [
@@ -336,12 +338,21 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-28 px-6 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
-          backgroundImage: 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.15) 0%, transparent 50%)',
-        }} />
+      <section className="py-28 px-6 bg-[var(--bg)] border-t border-[var(--border)] relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[var(--primary)]/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[var(--primary)]/3 rounded-full blur-3xl" />
+        </div>
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <ScrollReveal>
+            <motion.p
+              className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--muted-fg)] mb-4"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              Sua jornada começa aqui
+            </motion.p>
             <motion.h2 
               className="font-display text-4xl md:text-5xl font-light mb-6"
               initial={{ opacity: 0, y: 20 }}
@@ -349,21 +360,29 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              Comece hoje o seu estudo
+              Comece hoje o seu <span className="italic text-[var(--primary)]">estudo</span>
             </motion.h2>
-            <p className="text-primary-foreground/80 mb-10 max-w-xl mx-auto leading-relaxed">
-              Acesse todas as ferramentas gratuitamente. Estude a Bíblia com o rigor que ela merece.
+            <p className="text-[var(--muted-fg)] mb-10 max-w-xl mx-auto leading-relaxed">
+              Acesse todas as ferramentas gratuitamente. Estude a Bíblia com o rigor que ela merece — onde estiver, quando quiser.
             </p>
             <motion.div
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
+              className="inline-flex flex-wrap gap-4 justify-center"
             >
               <Link
                 href="/biblia"
-                className="inline-flex items-center gap-2 bg-white text-primary px-10 py-4 text-sm font-semibold tracking-wide hover:bg-white/90 transition-all duration-500 hover:shadow-xl"
+                className="inline-flex items-center gap-2 bg-[var(--primary)] text-white px-8 py-3.5 text-sm font-semibold tracking-wide hover:bg-[var(--primary)]/90 transition-all duration-500 hover:shadow-xl hover:shadow-[var(--primary)]/20 rounded-xl"
               >
-                Começar Agora
-                <ArrowRight className="w-4 h-4" />
+                <BookOpen className="w-4 h-4" />
+                Abrir a Bíblia
+              </Link>
+              <Link
+                href="/devocional"
+                className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold tracking-wide border border-[var(--border)] text-[var(--fg)] hover:border-[var(--primary)]/40 hover:text-[var(--primary)] transition-all duration-500 rounded-xl"
+              >
+                <Sparkles className="w-4 h-4" />
+                Devocional de Hoje
               </Link>
             </motion.div>
           </ScrollReveal>

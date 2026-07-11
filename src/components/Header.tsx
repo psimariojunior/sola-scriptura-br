@@ -24,6 +24,9 @@ const navLinks = [
 const moreLinks = [
   { href: '/cronologia', label: 'Cronologia' },
   { href: '/personagens', label: 'Personagens' },
+  { href: '/devocional', label: 'Devocional' },
+  { href: '/flashcards', label: 'Flashcards' },
+  { href: '/estatisticas', label: 'Estatísticas' },
   { href: '/estudos', label: 'Meus Estudos' },
 ];
 

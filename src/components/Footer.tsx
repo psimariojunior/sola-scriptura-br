@@ -24,6 +24,9 @@ const estudo = [
 
 const recursos = [
   { href: '/estudos', label: 'Meus Estudos' },
+  { href: '/devocional', label: 'Devocional Diário' },
+  { href: '/flashcards', label: 'Flashcards' },
+  { href: '/estatisticas', label: 'Estatísticas' },
   { href: '/admin', label: 'Painel Admin' },
   { href: '/auth/login', label: 'Minha Conta' },
 ];

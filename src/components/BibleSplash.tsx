@@ -3,29 +3,31 @@
 import { useEffect, useState } from 'react';
 
 export default function BibleSplash() {
-  const [mounted, setMounted] = useState(false);
-  const [hide, setHide] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    const t = setTimeout(() => setHide(true), 4500);
+    setVisible(true);
+    const t = setTimeout(() => setVisible(false), 4200);
     return () => clearTimeout(t);
   }, []);
 
-  if (!mounted || hide) return null;
+  if (!visible) return null;
 
   return (
-    <div className="splash-root" onClick={() => setHide(true)} style={{ cursor: 'pointer' }}>
+    <div className="splash-root" onClick={() => setVisible(false)}>
+      {/* Radial glow behind Bible */}
+      <div className="splash-bg-glow" />
+
       {/* Light rays */}
       <div className="splash-rays">
-        {Array.from({ length: 16 }).map((_, i) => (
+        {Array.from({ length: 20 }).map((_, i) => (
           <div key={i} className="splash-ray" style={{ '--i': i } as React.CSSProperties} />
         ))}
       </div>
 
       {/* Particles */}
       <div className="splash-particles">
-        {Array.from({ length: 20 }).map((_, i) => (
+        {Array.from({ length: 25 }).map((_, i) => (
           <div key={i} className="splash-particle" style={{ '--i': i } as React.CSSProperties} />
         ))}
       </div>
@@ -33,26 +35,32 @@ export default function BibleSplash() {
       {/* Bible */}
       <div className="splash-bible">
         <div className="splash-book">
+          {/* Cover */}
+          <div className="splash-cover" />
+          {/* Left page */}
           <div className="splash-page splash-page-left" />
+          {/* Right page */}
           <div className="splash-page splash-page-right" />
+          {/* Cross on cover */}
           <div className="splash-cross">
             <div className="splash-cross-h" />
             <div className="splash-cross-v" />
           </div>
-          <div className="splash-glow" />
+          {/* Center glow when open */}
+          <div className="splash-inner-glow" />
         </div>
       </div>
 
       {/* Title */}
       <div className="splash-title">
-        <h1 className="font-display">
-          <span className="splash-title-sola">Sola</span>
-          <span className="splash-title-scriptura">Scriptura</span>
+        <h1>
+          <span className="splash-sola">Sola</span>
+          <span className="splash-scriptura">Scriptura</span>
         </h1>
-        <p className="splash-subtitle">Estudo Bíblico Acadêmico</p>
+        <p className="splash-sub">Estudo Bíblico Acadêmico</p>
       </div>
 
-      {/* Tap to skip */}
+      {/* Skip */}
       <div className="splash-skip">toque para pular</div>
     </div>
   );

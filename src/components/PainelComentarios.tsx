@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { X, BookOpen, User, Tag, ChevronDown, ChevronUp } from 'lucide-react';
+import { X, BookOpen, User, Tag, ChevronDown, ChevronUp, Volume2 } from 'lucide-react';
 import { obterComentarios, type Comentario } from '@/data/comentarios';
+import { useComentarioAudio } from '@/lib/useComentarioAudio';
 
 interface Props {
   livro: string;
@@ -23,6 +24,7 @@ const tipoLabels: Record<string, { label: string; color: string }> = {
 export default function PainelComentarios({ livro, capitulo, versiculo, onClose }: Props) {
   const [expandido, setExpandido] = useState<number | null>(null);
   const comentarios = obterComentarios(livro, capitulo, versiculo);
+  const audio = useComentarioAudio();
 
   if (comentarios.length === 0) {
     return (
@@ -77,6 +79,17 @@ export default function PainelComentarios({ livro, capitulo, versiculo, onClose 
                     <User className="w-3 h-3" />
                     {c.autor}
                   </div>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); audio.playingIndex === i ? audio.stop() : audio.play(i, c.texto); }}
+                    className={`p-1 rounded-md transition-all duration-200 ${
+                      audio.playingIndex === i
+                        ? 'text-primary bg-primary/10 shadow-sm'
+                        : 'text-muted-foreground hover:text-primary hover:bg-primary/8'
+                    }`}
+                    title={audio.playingIndex === i ? 'Parar' : 'Ouvir comentário'}
+                  >
+                    <Volume2 className="w-3 h-3" />
+                  </button>
                 </div>
                 {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
               </button>

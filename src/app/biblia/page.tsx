@@ -8,7 +8,7 @@ import type { CapituloComparado } from '@/data/biblia';
 import {
   BookOpen, ChevronRight, ChevronLeft, Columns2, LayoutList, AlignJustify,
   Menu, Search, Minus, Plus, X, Heart, StickyNote, Share2, Copy, Check,
-  History, Settings, Eye, EyeOff, Download, BookMarked, GraduationCap, Brain
+  History, Settings, Eye, EyeOff, Download, BookMarked, GraduationCap, Brain, Palette
 } from 'lucide-react';
 import { toggleFavorito, obterMarca, setAnotacao as salvarAnotacao } from '@/lib/estudos';
 import { useEstudos } from '@/components/EstudosProvider';
@@ -28,6 +28,10 @@ import VerseAudio, { AudioMiniPlayer } from '@/components/VerseAudio';
 import { useVerseAudio } from '@/lib/useVerseAudio';
 import ReadingPlanBanner from '@/components/ReadingPlanBanner';
 import { useFlashcards } from '@/lib/useFlashcards';
+import { setMarcador, removeMarcador, getMarcador, CORES } from '@/lib/marcadores';
+import { isOnline, cacheChapter, getCachedChapter } from '@/lib/offline';
+import { recordReading, getStats } from '@/lib/estatisticas';
+import OfflineBanner from '@/components/OfflineBanner';
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
@@ -108,7 +112,7 @@ export default function BibliaPage() {
   const [comentarioVersiculo, setComentarioVersiculo] = useState<number | null>(null);
   const [quickSearchOpen, setQuickSearchOpen] = useState(false);
   const [quickSearchQuery, setQuickSearchQuery] = useState('');
-  const [quickSearchResults, setQuickSearchResults] = useState<Array<{livro: string, nome: string, cap: number, versiculo: number, texto: string}>>([]);
+  const [quickSearchResults, setQuickSearchResults] = useState<Array<{livro: string, nome: string, cap: number, versiculo: number, texto: string, traducao: string}>>([]);
   const [chapterDirection, setChapterDirection] = useState<'next' | 'prev'>('next');
   const [selectedCrossRef, setSelectedCrossRef] = useState<{verse: number; refs: string[]} | null>(null);
   const [estudoAberto, setEstudoAberto] = useState<number | null>(null);
@@ -117,17 +121,34 @@ export default function BibliaPage() {
   const { isFavorito, refresh } = useEstudos();
   const audio = useVerseAudio();
   const flashcards = useFlashcards();
+  const [colorPickerVerse, setColorPickerVerse] = useState<string | null>(null);
+  const [statsData, setStatsData] = useState<ReturnType<typeof getStats> | null>(null);
 
   const livro = TODOS_LIVROS[livroIdx];
 
   const loadChapter = useCallback(async () => {
     setLoading(true);
-    const result = await carregarMulti(livro.abreviacao, capituloIdx + 1, selectedTrads);
+    const livroAbrev = livro.abreviacao;
+    const cap = capituloIdx + 1;
+    if (!isOnline()) {
+      const cached = selectedTrads.map(trad => {
+        const verses = getCachedChapter(livroAbrev, cap, trad);
+        if (!verses || verses.length === 0) return null;
+        return { traducao: trad, versiculos: verses.map((t, i) => ({ numero: i + 1, texto: t })) };
+      }).filter(Boolean) as CapituloComparado[];
+      if (cached.length > 0) { setData(cached); setLoading(false); return; }
+    }
+    const result = await carregarMulti(livroAbrev, cap, selectedTrads);
     setData(result);
+    for (const item of result) {
+      cacheChapter(livroAbrev, cap, item.traducao, item.versiculos.map(v => v.texto));
+    }
     setLoading(false);
+    recordReading(livroAbrev, cap);
+    setStatsData(getStats());
     mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
     setReadingHistory(prev => {
-      const newHistory = [{ livro: livro.abreviacao, capitulo: capituloIdx + 1, data: new Date() }, ...prev];
+      const newHistory = [{ livro: livroAbrev, capitulo: cap, data: new Date() }, ...prev];
       return newHistory.slice(0, 20);
     });
   }, [livro.abreviacao, capituloIdx, selectedTrads]);
@@ -157,38 +178,67 @@ export default function BibliaPage() {
     window.history.replaceState(null, '', `?${params.toString()}`);
   }, [livro.abreviacao, capituloIdx, selectedTrads]);
 
+  const [quickSearchAutoComplete, setQuickSearchAutoComplete] = useState<Array<{livro: string; nome: string}>>([]);
+  const [recentSearches, setRecentSearches] = useState<Array<{query: string; livro: string; nome: string; cap: number; versiculo: number}>>([]);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('ssb_recent_searches');
+      if (raw) setRecentSearches(JSON.parse(raw));
+    } catch {}
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); setQuickSearchOpen(p => !p); return; }
       if (quickSearchOpen && e.key === 'Escape') { setQuickSearchOpen(false); return; }
       if ((e.target as HTMLElement).tagName === 'INPUT' || (e.target as HTMLElement).tagName === 'TEXTAREA') return;
+      if (e.key === '/') { e.preventDefault(); setQuickSearchOpen(true); return; }
       if (e.key === 'ArrowLeft' && capituloIdx > 0) { e.preventDefault(); setChapterDirection('prev'); setCapituloIdx(p => Math.max(0, p - 1)); }
       else if (e.key === 'ArrowRight' && livro && capituloIdx < livro.totalCapitulos - 1) { e.preventDefault(); setChapterDirection('next'); setCapituloIdx(p => p + 1); }
-      else if (e.key === 'Escape') { setSidebarOpen(false); setMobileMenu(false); setChapterGridOpen(false); }
+      else if (e.key === 'Escape') { setSidebarOpen(false); setMobileMenu(false); setChapterGridOpen(false); setColorPickerVerse(null); }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [capituloIdx, livro, quickSearchOpen]);
 
+  useEffect(() => {
+    const handler = () => setColorPickerVerse(null);
+    window.addEventListener('click', handler);
+    return () => window.removeEventListener('click', handler);
+  }, []);
+
   const toggleTrad = (id: string) => setSelectedTrads(prev => prev.includes(id) ? prev.filter(t => t !== id) : [...prev, id]);
 
   const handleQuickSearch = useCallback(async (q: string) => {
     setQuickSearchQuery(q);
+    const query = q.toLowerCase().trim();
+
+    // Autocomplete: match books
+    if (query.length > 0) {
+      const books = TODOS_LIVROS
+        .filter(l => l.nome.toLowerCase().includes(query) || l.abreviacao.toLowerCase().includes(query))
+        .slice(0, 5)
+        .map(l => ({ livro: l.abreviacao, nome: l.nome }));
+      setQuickSearchAutoComplete(books);
+    } else {
+      setQuickSearchAutoComplete([]);
+    }
+
     if (q.length < 2) { setQuickSearchResults([]); return; }
-    const results: Array<{livro: string, nome: string, cap: number, versiculo: number, texto: string}> = [];
+    const results: Array<{livro: string, nome: string, cap: number, versiculo: number, texto: string, traducao: string}> = [];
     const d = await carregarTraducao('arc');
-    const query = q.toLowerCase();
     for (const l of TODOS_LIVROS) {
-      if (results.length >= 20) break;
+      if (results.length >= 30) break;
       const bookData = d[l.abreviacao];
       if (!bookData) continue;
       for (const cap of Object.keys(bookData)) {
-        if (results.length >= 20) break;
+        if (results.length >= 30) break;
         const versos = bookData[Number(cap)];
         if (!versos) continue;
         for (let i = 0; i < versos.length; i++) {
           if (versos[i].toLowerCase().includes(query)) {
-            results.push({ livro: l.abreviacao, nome: l.nome, cap: Number(cap), versiculo: i + 1, texto: versos[i] });
+            results.push({ livro: l.abreviacao, nome: l.nome, cap: Number(cap), versiculo: i + 1, texto: versos[i], traducao: 'ARC' });
             break;
           }
         }
@@ -197,9 +247,23 @@ export default function BibliaPage() {
     setQuickSearchResults(results);
   }, []);
 
-  const goToQuickResult = (r: { livro: string; cap: number }) => {
+  const goToQuickResult = (r: { livro: string; nome: string; cap: number; versiculo?: number }) => {
     const idx = TODOS_LIVROS.findIndex(l => l.abreviacao === r.livro);
-    if (idx >= 0) { setLivroIdx(idx); setCapituloIdx(r.cap - 1); setQuickSearchOpen(false); setQuickSearchQuery(''); }
+    if (idx >= 0) {
+      // Save to recent searches
+      const entry = { query: quickSearchQuery, livro: r.livro, nome: r.nome, cap: r.cap, versiculo: r.versiculo || 1 };
+      setRecentSearches(prev => {
+        const next = [entry, ...prev.filter(s => s.livro !== r.livro || s.cap !== r.cap)].slice(0, 5);
+        try { localStorage.setItem('ssb_recent_searches', JSON.stringify(next)); } catch {}
+        return next;
+      });
+      setLivroIdx(idx);
+      setCapituloIdx(r.cap - 1);
+      setQuickSearchOpen(false);
+      setQuickSearchQuery('');
+      setQuickSearchResults([]);
+      setQuickSearchAutoComplete([]);
+    }
   };
 
   const livrosFiltrados = useMemo(() => searchQuery
@@ -236,6 +300,7 @@ export default function BibliaPage() {
   return (
     <div className="min-h-screen bg-[var(--bg)]">
       <Header />
+      <OfflineBanner />
       <main className="pt-16">
         <div className="flex h-[calc(100vh-4rem)]">
           {/* Sidebar */}
@@ -382,6 +447,26 @@ export default function BibliaPage() {
               )}
             </div>
 
+            {/* Stats bar */}
+            {statsData && !readingMode && (
+              <div className="border-b border-[var(--border)]/30 bg-[var(--card-bg)]/50 px-4 py-2">
+                <div className="max-w-4xl mx-auto flex items-center gap-4 text-[11px] text-[var(--muted-fg)]">
+                  <span className="flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                    Sequência: <strong className="text-[var(--fg)]">{statsData.streak}d</strong>
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                    Semana: <strong className="text-[var(--fg)]">{statsData.chaptersThisWeek} cap.</strong>
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                    Total: <strong className="text-[var(--fg)]">{statsData.totalChapters} cap.</strong>
+                  </span>
+                </div>
+              </div>
+            )}
+
             {/* Reading area */}
             <div ref={mainRef} className="flex-1 overflow-y-auto">
               <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
@@ -449,15 +534,28 @@ export default function BibliaPage() {
                                   const temAnotacao = marca?.anotacao?.texto && marca.anotacao.texto.length > 0;
                                   const flashKey = `${livro.abreviacao}:${capituloIdx + 1}:${v.numero}:${item.traducao}`;
                                   const isFlashcard = flashcards.cards.find(c => c.verseKey === flashKey);
+                                  const marcaMarcador = getMarcador(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao);
+                                  const corMarca = marcaMarcador?.cor ?? null;
                                   return (
                                     <Fragment key={v.numero}>
                                       <motion.div 
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: 0.1 + i * 0.01 }}
-                                        className={`group flex items-start gap-2 py-1 px-2 -mx-2 rounded-lg transition-all duration-300 ${isPlaying ? 'bg-[var(--primary)]/5 ring-1 ring-[var(--primary)]/20' : 'verse-hover'} ${temAnotacao ? 'border-l-2 border-l-amber-500/50' : ''}`}
+                                        className={`group flex items-start gap-2 py-1 px-2 -mx-2 rounded-lg transition-all duration-300 ${isPlaying ? 'bg-[var(--primary)]/5 ring-1 ring-[var(--primary)]/20' : 'verse-hover'} ${temAnotacao ? 'border-l-2 border-l-amber-500/50' : ''} ${corMarca ? `mark-${corMarca}-bg` : ''}`}
                                       >
-                                        <sup className="text-[var(--primary)] font-bold text-xs mt-1 select-none min-w-[20px] text-right">{v.numero}</sup>
+                                        <sup className="text-[var(--primary)] font-bold text-xs mt-1 select-none min-w-[20px] text-right relative">
+                                          {v.numero}
+                                          {corMarca && (
+                                            <span className={`absolute -top-0.5 -right-1.5 w-1.5 h-1.5 rounded-full ${
+                                              corMarca === 'yellow' ? 'bg-yellow-400' :
+                                              corMarca === 'green' ? 'bg-green-400' :
+                                              corMarca === 'blue' ? 'bg-blue-400' :
+                                              corMarca === 'pink' ? 'bg-pink-400' :
+                                              corMarca === 'orange' ? 'bg-orange-400' : 'bg-purple-400'
+                                            }`} />
+                                          )}
+                                        </sup>
                                         <div className="flex-1">
                                           <p className="font-serif-body leading-relaxed" style={{ fontSize: `${fontSize}px` }}>{v.texto}</p>
                                           {(() => {
@@ -492,6 +590,42 @@ export default function BibliaPage() {
                                             onPlay={(num) => audio.play(num, v.texto)}
                                             onStop={audio.stop}
                                           />
+                                          <div className="relative">
+                                            <motion.button
+                                              onClick={() => setColorPickerVerse(colorPickerVerse === key ? null : key)}
+                                              whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
+                                              className={`p-1 rounded-md transition-all duration-200 ${corMarca ? 'text-[var(--primary)] bg-[var(--primary)]/10 shadow-sm' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}
+                                              title="Marcar cor"
+                                            >
+                                              <Palette className="w-3.5 h-3.5" />
+                                            </motion.button>
+                                            {colorPickerVerse === key && (
+                                              <div className="absolute right-0 top-full mt-1 z-50 bg-[var(--card-bg)] border border-[var(--border)] rounded-lg shadow-xl p-2 flex gap-1"
+                                                onClick={e => e.stopPropagation()}>
+                                                {CORES.map(cor => {
+                                                  const ativa = corMarca === cor;
+                                                  const corMap: Record<string, string> = {
+                                                    yellow: 'bg-yellow-400', green: 'bg-green-400', blue: 'bg-blue-400',
+                                                    pink: 'bg-pink-400', orange: 'bg-orange-400', purple: 'bg-purple-400',
+                                                  };
+                                                  return (
+                                                    <motion.button
+                                                      key={cor}
+                                                      whileHover={{ scale: 1.2 }}
+                                                      whileTap={{ scale: 0.9 }}
+                                                      onClick={() => {
+                                                        if (ativa) { removeMarcador(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao); }
+                                                        else { setMarcador(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, cor); }
+                                                        setColorPickerVerse(null);
+                                                      }}
+                                                      className={`w-5 h-5 rounded-full ${corMap[cor]} ${ativa ? 'ring-2 ring-offset-1 ring-[var(--primary)]' : ''} transition-all duration-200`}
+                                                      title={cor}
+                                                    />
+                                                  );
+                                                })}
+                                              </div>
+                                            )}
+                                          </div>
                                           <motion.button onClick={() => { toggleFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, v.texto); refresh(); }}
                                             whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
                                             className={`p-1 rounded-md transition-all duration-200 ${fav ? 'text-red-400 bg-red-500/10 shadow-sm' : 'text-[var(--muted-fg)] hover:text-red-400 hover:bg-red-500/5'}`}>
@@ -776,7 +910,7 @@ export default function BibliaPage() {
         )}
       </AnimatePresence>
 
-      {/* Quick Search Ctrl+K */}
+      {/* Quick Search Ctrl+K / */}
       <AnimatePresence>
         {quickSearchOpen && (
           <motion.div 
@@ -795,33 +929,100 @@ export default function BibliaPage() {
             >
               <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--border)]">
                 <Search className="w-5 h-5 text-[var(--muted-fg)] shrink-0" />
-                <input autoFocus type="text" placeholder="Buscar versículos..." value={quickSearchQuery}
+                <input autoFocus type="text" placeholder="Buscar versículos ou livro..." value={quickSearchQuery}
                   onChange={e => handleQuickSearch(e.target.value)}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter' && quickSearchAutoComplete.length > 0) {
+                      const first = quickSearchAutoComplete[0];
+                      goToQuickResult({ livro: first.livro, nome: first.nome, cap: 1 });
+                    }
+                  }}
                   className="flex-1 bg-transparent text-sm outline-none" />
                 <kbd className="text-[10px] bg-[var(--bg)] px-1.5 py-0.5 rounded text-[var(--muted-fg)]">ESC</kbd>
               </div>
-              <div className="max-h-80 overflow-y-auto">
-                {quickSearchResults.length > 0 ? (
-                  <div className="p-2">
-                    {quickSearchResults.map((r, i) => (
-                      <motion.button key={i} onClick={() => goToQuickResult(r)}
+              <div className="max-h-96 overflow-y-auto">
+                {/* Autocomplete: book suggestions */}
+                {quickSearchAutoComplete.length > 0 && quickSearchQuery.length >= 2 && quickSearchResults.length === 0 && (
+                  <div className="p-2 border-b border-[var(--border)]/30">
+                    <p className="text-[10px] text-[var(--muted-fg)] uppercase tracking-wider px-3 py-1 font-semibold">Livros</p>
+                    {quickSearchAutoComplete.map((b, i) => (
+                      <motion.button key={b.livro} onClick={() => goToQuickResult({ livro: b.livro, nome: b.nome, cap: 1 })}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.03 }}
-                        className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--bg)] transition-colors duration-200 group"
+                        className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--bg)] transition-colors duration-200 flex items-center gap-2"
                       >
-                        <div className="flex items-center gap-2 mb-0.5">
-                          <span className="text-xs font-semibold text-[var(--primary)]">{r.nome} {r.cap}:{r.versiculo}</span>
-                        </div>
-                        <p className="text-xs text-[var(--muted-fg)] line-clamp-2 group-hover:text-[var(--fg)] transition-colors duration-200">{r.texto}</p>
+                        <BookOpen className="w-3.5 h-3.5 text-[var(--primary)]" />
+                        <span className="text-sm font-medium">{b.nome}</span>
+                        <span className="text-[10px] text-[var(--muted-fg)]">Capítulo 1</span>
                       </motion.button>
                     ))}
                   </div>
-                ) : quickSearchQuery.length >= 2 ? (
-                  <div className="p-8 text-center text-sm text-[var(--muted-fg)]">Nenhum resultado</div>
-                ) : (
-                  <div className="p-8 text-center text-sm text-[var(--muted-fg)]/60">Digite pelo menos 2 caracteres</div>
                 )}
+
+                {/* Recent searches */}
+                {quickSearchQuery.length === 0 && recentSearches.length > 0 && (
+                  <div className="p-2">
+                    <p className="text-[10px] text-[var(--muted-fg)] uppercase tracking-wider px-3 py-1 font-semibold">Buscas recentes</p>
+                    {recentSearches.map((s, i) => (
+                      <motion.button key={i} onClick={() => goToQuickResult({ livro: s.livro, nome: s.nome, cap: s.cap, versiculo: s.versiculo })}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.05 }}
+                        className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--bg)] transition-colors duration-200 flex items-center gap-2"
+                      >
+                        <History className="w-3.5 h-3.5 text-[var(--muted-fg)]" />
+                        <span className="text-sm">{s.nome} {s.cap}:{s.versiculo}</span>
+                      </motion.button>
+                    ))}
+                  </div>
+                )}
+
+                {/* Search results */}
+                {quickSearchResults.length > 0 ? (
+                  <div className="p-2">
+                    <div className="flex items-center justify-between px-3 py-1">
+                      <p className="text-[10px] text-[var(--muted-fg)] uppercase tracking-wider font-semibold">
+                        Resultados ({quickSearchResults.length})
+                      </p>
+                      <span className="text-[10px] text-[var(--muted-fg)]">ARC</span>
+                    </div>
+                    {quickSearchResults.map((r, i) => {
+                      const queryLower = quickSearchQuery.toLowerCase();
+                      const idx = r.texto.toLowerCase().indexOf(queryLower);
+                      const before = idx > 0 ? r.texto.slice(0, idx) : '';
+                      const match = idx >= 0 ? r.texto.slice(idx, idx + queryLower.length) : '';
+                      const after = idx >= 0 ? r.texto.slice(idx + queryLower.length) : r.texto;
+                      return (
+                        <motion.button key={i} onClick={() => goToQuickResult(r)}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.02 }}
+                          className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--bg)] transition-colors duration-200 group"
+                        >
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <span className="text-xs font-semibold text-[var(--primary)]">{r.nome} {r.cap}:{r.versiculo}</span>
+                            <span className="text-[9px] px-1 py-0.5 bg-[var(--bg)] rounded text-[var(--muted-fg)]">{r.traducao}</span>
+                          </div>
+                          <p className="text-xs text-[var(--muted-fg)] line-clamp-2 group-hover:text-[var(--fg)] transition-colors duration-200">
+                            {before && <span>{before}</span>}
+                            {match && <mark className="bg-[var(--primary)]/20 text-[var(--primary)] rounded-sm px-0.5">{match}</mark>}
+                            {after && <span>{after}</span>}
+                          </p>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                ) : quickSearchQuery.length >= 2 ? (
+                  <div className="p-8 text-center text-sm text-[var(--muted-fg)]">Nenhum resultado encontrado</div>
+                ) : quickSearchQuery.length === 0 && recentSearches.length === 0 ? (
+                  <div className="p-8 text-center text-sm text-[var(--muted-fg)]/60">
+                    <kbd className="text-xs bg-[var(--bg)] px-2 py-1 rounded border border-[var(--border)]">Ctrl+K</kbd>
+                    <span className="mx-2">ou</span>
+                    <kbd className="text-xs bg-[var(--bg)] px-2 py-1 rounded border border-[var(--border)]">/</kbd>
+                    <span className="ml-2">para buscar</span>
+                  </div>
+                ) : null}
               </div>
             </motion.div>
           </motion.div>

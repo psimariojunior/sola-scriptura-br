@@ -4,10 +4,11 @@ import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { Heart, StickyNote, Bookmark, Search, X, BookOpen, Trash2, Calendar, ArrowRight, Filter } from 'lucide-react';
+import { Heart, StickyNote, Bookmark, Search, X, BookOpen, Trash2, Calendar, ArrowRight, Filter, Download } from 'lucide-react';
 import { listarMarcas, removerMarca, toggleFavorito, type MarcaBiblia } from '@/lib/estudos';
 import { livroPorAbreviacao } from '@/data/biblia';
 import ScrollReveal from '@/components/ScrollReveal';
+import { exportToJson, exportToTxt, exportToCsv } from '@/lib/exportarEstudos';
 
 export default function EstudosPage() {
   const [marcas, setMarcas] = useState<MarcaBiblia[]>([]);
@@ -89,6 +90,25 @@ export default function EstudosPage() {
                   </button>
                 )}
               </div>
+              {marcas.length > 0 && (
+                <div className="flex items-center gap-1">
+                  <button onClick={() => exportToJson(filtradas)} title="Exportar JSON"
+                    className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium border border-border/60 rounded-lg text-muted-foreground hover:text-foreground hover:border-border transition-all">
+                    <Download className="w-3.5 h-3.5" />
+                    JSON
+                  </button>
+                  <button onClick={() => exportToTxt(filtradas)} title="Exportar TXT"
+                    className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium border border-border/60 rounded-lg text-muted-foreground hover:text-foreground hover:border-border transition-all">
+                    <Download className="w-3.5 h-3.5" />
+                    TXT
+                  </button>
+                  <button onClick={() => exportToCsv(filtradas)} title="Exportar CSV"
+                    className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium border border-border/60 rounded-lg text-muted-foreground hover:text-foreground hover:border-border transition-all">
+                    <Download className="w-3.5 h-3.5" />
+                    CSV
+                  </button>
+                </div>
+              )}
             </div>
           </ScrollReveal>
 

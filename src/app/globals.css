@@ -192,6 +192,14 @@ html {
     border-radius: 1px;
   }
 
+  /* Mark background colors */
+  .mark-yellow-bg { background: var(--mark-yellow); border-left: 3px solid rgb(234,179,8); }
+  .mark-green-bg { background: var(--mark-green); border-left: 3px solid rgb(34,197,94); }
+  .mark-blue-bg { background: var(--mark-blue); border-left: 3px solid rgb(59,130,246); }
+  .mark-pink-bg { background: var(--mark-pink); border-left: 3px solid rgb(236,72,153); }
+  .mark-orange-bg { background: var(--mark-orange); border-left: 3px solid rgb(249,115,22); }
+  .mark-purple-bg { background: var(--mark-purple); border-left: 3px solid rgb(168,85,247); }
+
   /* Strong's inline word */
   .strong-word {
     cursor: pointer;
@@ -261,6 +269,13 @@ html {
   --success: #3d7a4a;
   --warning: #a67c00;
   --danger: #b33a1a;
+
+  --mark-yellow: rgba(234,179,8,0.15);
+  --mark-green: rgba(34,197,94,0.15);
+  --mark-blue: rgba(59,130,246,0.15);
+  --mark-pink: rgba(236,72,153,0.15);
+  --mark-orange: rgba(249,115,22,0.15);
+  --mark-purple: rgba(168,85,247,0.15);
 }
 
 /* ============================================

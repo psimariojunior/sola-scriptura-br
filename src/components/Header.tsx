@@ -2,13 +2,13 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Menu, X, BookOpen, Search, Sun, Moon, 
   User, ChevronDown, Command
 } from 'lucide-react';
+import { useTema, type TemaNome } from '@/lib/temas';
 
 const navLinks = [
   { href: '/biblia', label: 'Bíblia' },
@@ -31,7 +31,8 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showMore, setShowMore] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [showTemas, setShowTemas] = useState(false);
+  const { tema, setTema, temasDisponiveis } = useTema();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -130,13 +131,42 @@ export function Header() {
             <User className="w-4 h-4" />
             <span>Entrar</span>
           </Link>
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300 hover:rotate-12"
-            aria-label="Alternar tema"
-          >
-            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
+          <div className="relative">
+            <button
+              onClick={() => setShowTemas(!showTemas)}
+              onBlur={() => setTimeout(() => setShowTemas(false), 150)}
+              className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
+              aria-label="Temas"
+            >
+              <span className="text-base leading-none">{temasDisponiveis.find(t => t.nome === tema)?.icone || '🌙'}</span>
+            </button>
+            <AnimatePresence>
+              {showTemas && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                  transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className="absolute top-full right-0 mt-1 w-44 bg-card border border-border rounded-xl shadow-xl py-1 z-50"
+                >
+                  {temasDisponiveis.map((t) => (
+                    <button
+                      key={t.nome}
+                      onClick={() => { setTema(t.nome); setShowTemas(false); }}
+                      className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-all duration-200 ${
+                        tema === t.nome
+                          ? 'text-primary bg-primary/10 font-medium'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                      }`}
+                    >
+                      <span className="text-base">{t.icone}</span>
+                      <span>{t.label}</span>
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
           <Link 
             href="/pesquisa" 
             className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300 hover:scale-110"
@@ -146,13 +176,41 @@ export function Header() {
         </div>
 
         <div className="flex lg:hidden items-center gap-1">
-          <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-2 text-muted-foreground hover:text-foreground transition-all duration-300"
-            aria-label="Alternar tema"
-          >
-            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
+          <div className="relative">
+            <button
+              onClick={() => setShowTemas(!showTemas)}
+              className="p-2 text-muted-foreground hover:text-foreground transition-all duration-300"
+              aria-label="Temas"
+            >
+              <span className="text-base leading-none">{temasDisponiveis.find(t => t.nome === tema)?.icone || '🌙'}</span>
+            </button>
+            <AnimatePresence>
+              {showTemas && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                  transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className="absolute top-full right-0 mt-1 w-44 bg-card border border-border rounded-xl shadow-xl py-1 z-50"
+                >
+                  {temasDisponiveis.map((t) => (
+                    <button
+                      key={t.nome}
+                      onClick={() => { setTema(t.nome); setShowTemas(false); }}
+                      className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-all duration-200 ${
+                        tema === t.nome
+                          ? 'text-primary bg-primary/10 font-medium'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                      }`}
+                    >
+                      <span className="text-base">{t.icone}</span>
+                      <span>{t.label}</span>
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
           <button 
             className="p-2 hover:bg-muted/50 rounded-lg transition-all duration-300" 
             onClick={() => setOpen(!open)}

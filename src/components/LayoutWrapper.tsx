@@ -1,14 +1,25 @@
 'use client';
 
+import { useEffect } from 'react';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { EstudosProvider } from '@/components/EstudosProvider';
 import PageTransition from '@/components/PageTransition';
 import BibleSplash from '@/components/BibleSplash';
 import '@/lib/i18n';
 
+function ServiceWorkerRegistration() {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+  }, []);
+  return null;
+}
+
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
+      <ServiceWorkerRegistration />
       <EstudosProvider>
         <BibleSplash />
         <PageTransition>

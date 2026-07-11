@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useRef, Fragment } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef, Fragment, lazy, Suspense } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { TODOS_LIVROS, traducoes, carregarTraducao, ABREV_PARA_MIDVASH } from '@/data/biblia';
@@ -12,10 +12,6 @@ import {
 } from 'lucide-react';
 import { toggleFavorito, obterMarca, setAnotacao as salvarAnotacao } from '@/lib/estudos';
 import { useEstudos } from '@/components/EstudosProvider';
-import PainelStrong from '@/components/PainelStrong';
-import PainelNotas from '@/components/PainelNotas';
-import PainelComentarios from '@/components/PainelComentarios';
-import PainelEstudosInline from '@/components/PainelEstudosInline';
 import { temComentario } from '@/data/comentarios';
 import { temEstudo } from '@/data/estudosTeologicos';
 import { diffWords } from '@/lib/diff';
@@ -24,7 +20,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getCrossReferences } from '@/data/crossReferences';
 import Link from 'next/link';
-import VerseAudio, { AudioMiniPlayer } from '@/components/VerseAudio';
+import VerseAudio from '@/components/VerseAudio';
 import { useVerseAudio } from '@/lib/useVerseAudio';
 import ReadingPlanBanner from '@/components/ReadingPlanBanner';
 import { useFlashcards } from '@/lib/useFlashcards';
@@ -32,6 +28,24 @@ import { setMarcador, removeMarcador, getMarcador, CORES } from '@/lib/marcadore
 import { isOnline, cacheChapter, getCachedChapter } from '@/lib/offline';
 import { recordReading, getStats } from '@/lib/estatisticas';
 import OfflineBanner from '@/components/OfflineBanner';
+
+const PainelStrong = lazy(() => import('@/components/PainelStrong'));
+const PainelNotas = lazy(() => import('@/components/PainelNotas'));
+const PainelComentarios = lazy(() => import('@/components/PainelComentarios'));
+const PainelEstudosInline = lazy(() => import('@/components/PainelEstudosInline'));
+const AudioMiniPlayer = lazy(() => import('@/components/VerseAudio').then(m => ({ default: m.AudioMiniPlayer })));
+
+function PanelFallback() {
+  return (
+    <div className="flex items-center justify-center py-8">
+      <div className="flex gap-1.5">
+        <span className="w-2 h-2 bg-[var(--primary)] rounded-full animate-bounce [animation-delay:0s]" />
+        <span className="w-2 h-2 bg-[var(--primary)] rounded-full animate-bounce [animation-delay:0.15s]" />
+        <span className="w-2 h-2 bg-[var(--primary)] rounded-full animate-bounce [animation-delay:0.3s]" />
+      </div>
+    </div>
+  );
+}
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
@@ -677,13 +691,15 @@ export default function BibliaPage() {
                                       {/* Inline study panel */}
                                       <AnimatePresence>
                                         {estudoInline && (
-                                          <PainelEstudosInline
-                                            livro={livro.abreviacao}
-                                            capitulo={capituloIdx + 1}
-                                            versiculo={v.numero}
-                                            nomeLivro={livro.nome}
-                                            onClose={() => setEstudoAberto(null)}
-                                          />
+                                          <Suspense fallback={<PanelFallback />}>
+                                            <PainelEstudosInline
+                                              livro={livro.abreviacao}
+                                              capitulo={capituloIdx + 1}
+                                              versiculo={v.numero}
+                                              nomeLivro={livro.nome}
+                                              onClose={() => setEstudoAberto(null)}
+                                            />
+                                          </Suspense>
                                         )}
                                       </AnimatePresence>
                                     </Fragment>
@@ -808,12 +824,14 @@ export default function BibliaPage() {
                   className="border-t border-[var(--border)] bg-[var(--card-bg)] p-4"
                 >
                   <div className="max-w-4xl mx-auto">
-                    {studyPanel === 'notas' && <PainelNotas livroAbrev={livro.abreviacao} capitulo={capituloIdx + 1} />}
-                    {studyPanel === 'strong' && <PainelStrong onClose={() => setStudyPanel(null)} />}
-                    {studyPanel === 'comentarios' && comentarioVersiculo && (
-                      <PainelComentarios livro={livro.abreviacao} capitulo={capituloIdx + 1} versiculo={comentarioVersiculo}
-                        onClose={() => { setStudyPanel(null); setComentarioVersiculo(null); }} />
-                    )}
+                    <Suspense fallback={<PanelFallback />}>
+                      {studyPanel === 'notas' && <PainelNotas livroAbrev={livro.abreviacao} capitulo={capituloIdx + 1} />}
+                      {studyPanel === 'strong' && <PainelStrong onClose={() => setStudyPanel(null)} />}
+                      {studyPanel === 'comentarios' && comentarioVersiculo && (
+                        <PainelComentarios livro={livro.abreviacao} capitulo={capituloIdx + 1} versiculo={comentarioVersiculo}
+                          onClose={() => { setStudyPanel(null); setComentarioVersiculo(null); }} />
+                      )}
+                    </Suspense>
                   </div>
                 </motion.div>
               )}
@@ -866,13 +884,15 @@ export default function BibliaPage() {
       </main>
 
       {/* Audio mini player */}
-      <AudioMiniPlayer
-        isPlaying={audio.isPlaying}
-        currentVerse={audio.playingVerse ?? -1}
-        totalVerses={data[0]?.versiculos?.length ?? 0}
-        verseText={data[0]?.versiculos?.find(v => v.numero === audio.playingVerse)?.texto ?? ''}
-        onStop={audio.stop}
-      />
+      <Suspense fallback={null}>
+        <AudioMiniPlayer
+          isPlaying={audio.isPlaying}
+          currentVerse={audio.playingVerse ?? -1}
+          totalVerses={data[0]?.versiculos?.length ?? 0}
+          verseText={data[0]?.versiculos?.find(v => v.numero === audio.playingVerse)?.texto ?? ''}
+          onStop={audio.stop}
+        />
+      </Suspense>
 
       {/* Annotation modal */}
       <AnimatePresence>

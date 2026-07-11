@@ -9,6 +9,7 @@ import {
   User, ChevronDown, Command
 } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
+import { useTranslation } from 'react-i18next';
 
 const navLinks = [
   { href: '/biblia', label: 'Bíblia' },
@@ -36,7 +37,21 @@ export function Header() {
   const [showMore, setShowMore] = useState(false);
   const [showTemas, setShowTemas] = useState(false);
   const { tema, setTema, temasDisponiveis } = useTema();
+  const { i18n } = useTranslation();
   const pathname = usePathname();
+  const [idioma, setIdioma] = useState<'pt' | 'en'>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('ssb_lang') as 'pt' | 'en') || 'pt';
+    }
+    return 'pt';
+  });
+
+  const toggleIdioma = () => {
+    const novo = idioma === 'pt' ? 'en' : 'pt';
+    setIdioma(novo);
+    i18n.changeLanguage(novo);
+    localStorage.setItem('ssb_lang', novo);
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -127,6 +142,13 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-2">
+          <button
+            onClick={toggleIdioma}
+            className="px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-border hover:bg-muted/50 transition-all duration-300 uppercase tracking-wider"
+            title={idioma === 'pt' ? 'Switch to English' : 'Mudar para Português'}
+          >
+            {idioma === 'pt' ? 'EN' : 'PT'}
+          </button>
           <Link 
             href="/auth/login" 
             className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
@@ -179,6 +201,12 @@ export function Header() {
         </div>
 
         <div className="flex lg:hidden items-center gap-1">
+          <button
+            onClick={toggleIdioma}
+            className="px-2 py-1 text-xs font-semibold rounded-lg border border-border hover:bg-muted/50 transition-all duration-300 uppercase tracking-wider"
+          >
+            {idioma === 'pt' ? 'EN' : 'PT'}
+          </button>
           <div className="relative">
             <button
               onClick={() => setShowTemas(!showTemas)}

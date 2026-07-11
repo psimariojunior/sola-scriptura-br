@@ -7,6 +7,7 @@ import { devocionais, getDevocionalDoDia } from '@/lib/devocional';
 import { ChevronLeft, ChevronRight, Share2, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { NotificationBanner } from '@/components/NotificationBanner';
 
 export default function DevocionalPage() {
   const hoje = Math.floor((new Date().getTime() - new Date(new Date().getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24));
@@ -27,6 +28,7 @@ export default function DevocionalPage() {
       <Header />
       <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="max-w-2xl mx-auto">
+          <NotificationBanner />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

@@ -1,0 +1,27 @@
+{
+  "name": "Sola Scriptura BR",
+  "short_name": "Sola Scriptura",
+  "description": "Plataforma de estudo bíblico acadêmico completo. Grego, Hebraico, Teologia, Exegese, IA especializada.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0a08",
+  "theme_color": "#0c0a08",
+  "orientation": "any",
+  "scope": "/",
+  "lang": "pt-BR",
+  "categories": ["education", "books", "reference"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

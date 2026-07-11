@@ -6,6 +6,11 @@ import { Footer } from '@/components/Footer';
 import { getStats, getStreakData } from '@/lib/estatisticas';
 import { Flame, BookOpen, Heart, TrendingUp, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  PieChart, Pie, Cell,
+  LineChart, Line,
+} from 'recharts';
 
 interface Stats {
   streak: number;
@@ -48,6 +53,18 @@ export default function EstatisticasPage() {
   const maxBook = Math.max(1, ...Object.values(stats.booksRead));
   const livrosOrdenados = Object.entries(stats.booksRead).sort((a, b) => b[1] - a[1]);
 
+  const COLORS = ['#d4b87a', '#c9a96e', '#b8944f', '#a67c3d', '#8b6830', '#704f24', '#5a3e1c'];
+
+  const weeklyChartData = diasAbreviados.map((dia, i) => ({
+    name: dia,
+    value: stats.weeklyData[dia] || 0,
+  }));
+
+  const booksChartData = livrosOrdenados.slice(0, 7).map(([livro, count]) => ({
+    name: livro,
+    value: count,
+  }));
+
   const today = new Date();
   const last30Days: { date: string; count: number }[] = [];
   for (let i = 29; i >= 0; i--) {
@@ -57,6 +74,11 @@ export default function EstatisticasPage() {
     const found = streakData.find(s => s.date === dateStr);
     last30Days.push({ date: dateStr, count: found ? found.count : 0 });
   }
+
+  const streakLineData = last30Days.map(d => ({
+    name: new Date(d.date).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }),
+    capitulos: d.count,
+  }));
 
   return (
     <div className="min-h-screen bg-[var(--bg)]">
@@ -110,26 +132,22 @@ export default function EstatisticasPage() {
                   <Calendar className="w-4 h-4 text-[var(--muted-fg)]" />
                   <h2 className="text-sm font-semibold text-[var(--muted-fg)] uppercase tracking-wider">Atividade Semanal</h2>
                 </div>
-                <div className="flex items-end gap-2 h-32">
-                  {diasSemana.map((dia, i) => {
-                    const count = stats.weeklyData[diasAbreviados[i]] || 0;
-                    const height = (count / maxWeekly) * 100;
-                    return (
-                      <div key={dia} className="flex-1 flex flex-col items-center gap-1">
-                        <span className="text-[10px] text-[var(--muted-fg)]">{count}</span>
-                        <div className="w-full bg-[var(--bg)] rounded-t-md overflow-hidden" style={{ height: '100px' }}>
-                          <motion.div
-                            initial={{ height: 0 }}
-                            animate={{ height: `${Math.max(4, height)}%` }}
-                            transition={{ duration: 0.6, delay: 0.4 + i * 0.05 }}
-                            className="w-full bg-gradient-to-t from-[var(--primary)]/60 to-[var(--primary)]/30 rounded-t-md"
-                          />
-                        </div>
-                        <span className="text-[10px] text-[var(--muted-fg)] uppercase">{dia}</span>
-                      </div>
-                    );
-                  })}
-                </div>
+                <ResponsiveContainer width="100%" height={200}>
+                  <BarChart data={weeklyChartData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                    <XAxis dataKey="name" tick={{ fontSize: 11, fill: 'var(--muted-fg)' }} />
+                    <YAxis tick={{ fontSize: 11, fill: 'var(--muted-fg)' }} />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: 'var(--card)',
+                        border: '1px solid var(--border)',
+                        borderRadius: '8px',
+                        fontSize: '12px',
+                      }}
+                    />
+                    <Bar dataKey="value" fill="#d4b87a" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
               </motion.div>
 
               <motion.div
@@ -142,21 +160,41 @@ export default function EstatisticasPage() {
                   <BookOpen className="w-4 h-4 text-[var(--muted-fg)]" />
                   <h2 className="text-sm font-semibold text-[var(--muted-fg)] uppercase tracking-wider">Livros Lidos</h2>
                 </div>
-                <div className="space-y-2 max-h-48 overflow-y-auto">
-                  {livrosOrdenados.slice(0, 10).map(([livro, count]) => (
-                    <div key={livro} className="flex items-center gap-2">
-                      <span className="text-xs text-[var(--fg)] w-20 truncate">{livro}</span>
-                      <div className="flex-1 bg-[var(--bg)] rounded-full h-3 overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${(count / maxBook) * 100}%` }}
-                          transition={{ duration: 0.8 }}
-                          className="h-full bg-gradient-to-r from-[var(--primary)]/60 to-[var(--primary)]/30 rounded-full"
-                        />
+                <div className="flex items-center gap-4">
+                  <ResponsiveContainer width="50%" height={200}>
+                    <PieChart>
+                      <Pie
+                        data={booksChartData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={50}
+                        outerRadius={80}
+                        paddingAngle={3}
+                        dataKey="value"
+                      >
+                        {booksChartData.map((_, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: 'var(--card)',
+                          border: '1px solid var(--border)',
+                          borderRadius: '8px',
+                          fontSize: '12px',
+                        }}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                  <div className="flex-1 space-y-1.5 max-h-48 overflow-y-auto">
+                    {booksChartData.map((item, i) => (
+                      <div key={item.name} className="flex items-center gap-2">
+                        <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: COLORS[i % COLORS.length] }} />
+                        <span className="text-xs text-[var(--fg)] flex-1 truncate">{item.name}</span>
+                        <span className="text-[10px] text-[var(--muted-fg)]">{item.value}</span>
                       </div>
-                      <span className="text-[10px] text-[var(--muted-fg)] min-w-[24px] text-right">{count}</span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -194,6 +232,45 @@ export default function EstatisticasPage() {
                   );
                 })}
               </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="sola-card p-6 mt-6"
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <TrendingUp className="w-4 h-4 text-[var(--muted-fg)]" />
+                <h2 className="text-sm font-semibold text-[var(--muted-fg)] uppercase tracking-wider">Progresso nos Últimos 30 Dias</h2>
+              </div>
+              <ResponsiveContainer width="100%" height={200}>
+                <LineChart data={streakLineData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                  <XAxis
+                    dataKey="name"
+                    tick={{ fontSize: 10, fill: 'var(--muted-fg)' }}
+                    interval={6}
+                  />
+                  <YAxis tick={{ fontSize: 11, fill: 'var(--muted-fg)' }} />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: 'var(--card)',
+                      border: '1px solid var(--border)',
+                      borderRadius: '8px',
+                      fontSize: '12px',
+                    }}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="capitulos"
+                    stroke="#d4b87a"
+                    strokeWidth={2}
+                    dot={{ fill: '#d4b87a', r: 3 }}
+                    activeDot={{ r: 5, fill: '#d4b87a' }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
             </motion.div>
           </motion.div>
         </div>

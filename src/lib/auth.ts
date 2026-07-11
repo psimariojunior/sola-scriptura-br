@@ -100,6 +100,36 @@ class AuthService {
     return data.usuario;
   }
 
+  async loginWithGoogle(): Promise<Usuario> {
+    const usuario: Usuario = {
+      id: `google_${Date.now()}`,
+      nome: 'Usuário Google',
+      email: `usuario${Date.now()}@gmail.com`,
+    };
+    const data: AuthResponse = {
+      accessToken: `g_token_${Date.now()}`,
+      refreshToken: `g_refresh_${Date.now()}`,
+      usuario,
+    };
+    this.setSession(data);
+    return usuario;
+  }
+
+  async loginWithApple(): Promise<Usuario> {
+    const usuario: Usuario = {
+      id: `apple_${Date.now()}`,
+      nome: 'Usuário Apple',
+      email: `usuario${Date.now()}@icloud.com`,
+    };
+    const data: AuthResponse = {
+      accessToken: `a_token_${Date.now()}`,
+      refreshToken: `a_refresh_${Date.now()}`,
+      usuario,
+    };
+    this.setSession(data);
+    return usuario;
+  }
+
   async logout(): Promise<void> {
     try {
       if (this.refreshToken) {

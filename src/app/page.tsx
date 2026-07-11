@@ -9,54 +9,53 @@ import BibleSplash from '@/components/BibleSplash';
 import { 
   BookOpen, Languages, Church, Map, Brain, ScrollText, Clock, Users, 
   ArrowRight, Sparkles, Search, Wrench, ChevronRight, Star, 
-  Globe, BookMarked, Shield, Heart, ChevronDown
+  Globe, BookMarked, Shield, Heart
 } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
 
 const modules = [
-  { href: '/biblia', icon: BookOpen, title: 'Bíblia', desc: 'Multi-tradução com comparação lado a lado', color: 'from-blue-500/10 to-blue-600/5' },
-  { href: '/pesquisa', icon: Search, title: 'Pesquisa', desc: 'Busca avançada em todas as traduções', color: 'from-purple-500/10 to-purple-600/5' },
-  { href: '/exegese', icon: ScrollText, title: 'Exegese', desc: 'Análise contextual e gramatical', color: 'from-amber-500/10 to-amber-600/5' },
-  { href: '/ferramentas', icon: Wrench, title: 'Ferramentas', desc: 'Atlas bíblico interativo', color: 'from-emerald-500/10 to-emerald-600/5' },
-  { href: '/idiomas', icon: Languages, title: 'Línguas Originais', desc: 'Grego Koiné e Hebraico Bíblico', color: 'from-rose-500/10 to-rose-600/5' },
-  { href: '/teologia', icon: Church, title: 'Teologia', desc: 'Sistemática e doutrinas', color: 'from-indigo-500/10 to-indigo-600/5' },
-  { href: '/historia', icon: Map, title: 'História', desc: 'Contexto histórico e cultural', color: 'from-cyan-500/10 to-cyan-600/5' },
-  { href: '/ia', icon: Brain, title: 'Assistente IA', desc: 'Especialista em estudos bíblicos', color: 'from-violet-500/10 to-violet-600/5' },
-  { href: '/cronologia', icon: Clock, title: 'Cronologia', desc: 'Linha do tempo bíblica', color: 'from-orange-500/10 to-orange-600/5' },
-  { href: '/personagens', icon: Users, title: 'Personagens', desc: 'Biografias e genealogias', color: 'from-teal-500/10 to-teal-600/5' },
-  { href: '/devocional', icon: Star, title: 'Devocional', desc: 'Meditação diária com oração', color: 'from-yellow-500/10 to-yellow-600/5' },
-  { href: '/flashcards', icon: Brain, title: 'Flashcards', desc: 'Memorize versículos', color: 'from-sky-500/10 to-sky-600/5' },
+  { href: '/biblia', icon: BookOpen, title: 'Bíblia', desc: 'Multi-tradução com áudio e comparação lado a lado' },
+  { href: '/pesquisa', icon: Search, title: 'Pesquisa', desc: 'Busca avançada em todas as traduções' },
+  { href: '/exegese', icon: ScrollText, title: 'Exegese', desc: 'Análise contextual e gramatical' },
+  { href: '/ferramentas', icon: Wrench, title: 'Ferramentas', desc: 'Atlas bíblico interativo' },
+  { href: '/idiomas', icon: Languages, title: 'Línguas', desc: 'Grego Koiné e Hebraico Bíblico' },
+  { href: '/teologia', icon: Church, title: 'Teologia', desc: 'Sistemática e doutrinas' },
+  { href: '/historia', icon: Map, title: 'História', desc: 'Contexto histórico e cultural' },
+  { href: '/ia', icon: Brain, title: 'IA', desc: 'Assistente especializado em Bíblia' },
+  { href: '/cronologia', icon: Clock, title: 'Cronologia', desc: 'Linha do tempo bíblica' },
+  { href: '/personagens', icon: Users, title: 'Personagens', desc: 'Biografias e genealogias' },
+  { href: '/devocional', icon: Star, title: 'Devocional', desc: 'Meditação diária com oração' },
+  { href: '/flashcards', icon: Brain, title: 'Flashcards', desc: 'Memorize versículos' },
 ];
 
 const stats = [
-  { value: '66', label: 'Livros Bíblicos', icon: BookOpen },
-  { value: '8', label: 'Traduções', icon: Languages },
-  { value: '1.189', label: 'Capítulos', icon: BookMarked },
-  { value: '31.102', label: 'Versículos', icon: ScrollText },
+  { value: '66', label: 'Livros Bíblicos' },
+  { value: '8', label: 'Traduções' },
+  { value: '1.189', label: 'Capítulos' },
+  { value: '31.102', label: 'Versículos' },
 ];
 
 const features = [
-  { icon: Globe, title: 'Multi-Tradução', desc: 'Compare ARC, NVI, ARA, ACF, KJV e WEB lado a lado com destaque de diferenças' },
-  { icon: Languages, title: 'Línguas Originais', desc: 'Estude palavras em Grego Koiné e Hebraico Bíblico com lexicon completo' },
-  { icon: Brain, title: 'IA Especializada', desc: 'Assistente inteligente treinado em teologia e exegese bíblica' },
+  { icon: Globe, title: 'Multi-Tradução', desc: 'ARC, NVI, ARA, ACF, KJV e WEB lado a lado com destaque de diferenças' },
+  { icon: Languages, title: 'Línguas Originais', desc: 'Estude palavras em Grego Koiné e Hebraico Bíblico' },
+  { icon: Brain, title: 'IA Especializada', desc: 'Assistente treinado em teologia e exegese bíblica' },
   { icon: Map, title: 'Atlas Interativo', desc: 'Mapas de locais bíblicos com navegação interativa' },
-  { icon: ScrollText, title: 'Exegese Automática', desc: 'Análise contextual, gramatical e teológica em um clique' },
-  { icon: Shield, title: 'Sola Scriptura', desc: 'Fundamentado na Escritura como autoridade suprema de fé e prática' },
+  { icon: Shield, title: 'Sola Scriptura', desc: 'Fundamentado na Escritura como autoridade suprema' },
+  { icon: Heart, title: 'Estudos Teológicos', desc: '80+ teólogos de todas as épocas e tradições' },
 ];
 
 const testimonials = [
-  { text: 'Uma ferramenta incrível para estudo bíblico. A comparação de traduções com destaque de diferenças é fantástica!', author: 'Pastor João', role: 'Ministro' },
-  { text: 'O estudo de línguas originais transformou minha pregação. Nunca foi tão acessível estudar Grego e Hebraico.', author: 'Pr. Marcos', role: 'Evangelista' },
-  { text: 'Finalmente uma plataforma brasileira que compete com o Logos. O modo de leitura é lindo e funcional.', author: 'Dr. Pedro', role: 'Teólogo' },
+  { text: 'A comparação de traduções com destaque de diferenças é fantástica. Transformou meu preparo de estudo.', author: 'Pastor João', role: 'Ministro' },
+  { text: 'O estudo de línguas originais acessível e profissional. Nunca vi nada igual em português.', author: 'Pr. Marcos', role: 'Evangelista' },
+  { text: 'Finalmente uma plataforma brasileira de verdade. Completa, bonita, funcional.', author: 'Dr. Pedro', role: 'Teólogo' },
 ];
 
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const heroScale = useTransform(scrollY, [0, 400], [1, 0.95]);
-  const heroY = useTransform(scrollY, [0, 400], [0, 60]);
+  const heroY = useTransform(scrollY, [0, 400], [0, 40]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -66,142 +65,106 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[var(--bg)]">
       <BibleSplash />
       <Header />
 
-      {/* Hero - Cinematográfico */}
-      <section className="relative pt-32 pb-24 px-6 overflow-hidden min-h-[90vh] flex items-center">
-        {/* Background premium */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 opacity-[0.04] hero-glow" style={{
-            backgroundImage: 'radial-gradient(circle at 25% 40%, #c4a265 0%, transparent 45%), radial-gradient(circle at 75% 25%, #8b5e3c 0%, transparent 40%), radial-gradient(circle at 50% 80%, #4a3728 0%, transparent 35%)',
-          }} />
-          <div className="absolute inset-0 opacity-[0.02]" style={{
-            backgroundImage: 'radial-gradient(circle at 20% 50%, #c4a265 0%, transparent 40%), radial-gradient(circle at 80% 20%, #8b2252 0%, transparent 35%)',
-          }} />
-          <ParticlesBackground />
-        </div>
+      {/* Hero */}
+      <section className="relative pt-28 pb-20 px-6 overflow-hidden min-h-[85vh] flex items-center">
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{
+          backgroundImage: 'radial-gradient(circle at 25% 40%, #c4a265 0%, transparent 45%), radial-gradient(circle at 75% 25%, #8b5e3c 0%, transparent 40%)',
+        }} />
+        <ParticlesBackground />
 
         <motion.div 
-          style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
-          className="max-w-6xl mx-auto text-center relative z-10 w-full"
+          style={{ opacity: heroOpacity, y: heroY }}
+          className="max-w-5xl mx-auto text-center relative z-10 w-full"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            <motion.p
-              initial={{ opacity: 0, letterSpacing: '0.5em' }}
-              animate={{ opacity: 1, letterSpacing: '0.3em' }}
-              transition={{ delay: 0.3, duration: 1 }}
-              className="text-xs font-semibold uppercase text-muted-foreground mb-8 tracking-[0.3em]"
-            >
-              Estudo Bíblico Acadêmico
-            </motion.p>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 1 }}
-              className="font-display text-7xl md:text-8xl lg:text-[10rem] font-light leading-[0.9] tracking-tight mb-6"
-            >
-              <span className="block">Sola</span>
-              <motion.span 
-                className="italic font-medium gradient-text block"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8, duration: 0.8 }}
-              >
-                Scriptura
-              </motion.span>
-            </motion.h1>
-
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 1, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="ornament w-32 mx-auto my-10"
-            />
-
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.8 }}
-              className="font-serif-body text-xl md:text-2xl text-foreground/80 leading-relaxed max-w-2xl mx-auto mb-4"
-            >
-              A Escritura como única infalível regra de fé e prática —
-              estudada com rigor acadêmico e ferramentas que servem ao texto sagrado.
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.4, duration: 0.8 }}
-              className="text-sm text-muted-foreground italic max-w-xl mx-auto mb-14"
-            >
-              Grego Koiné · Hebraico Bíblico · Teologia Sistemática · História · Geografia · IA Especializada
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.6, duration: 0.6 }}
-              className="flex flex-wrap gap-4 justify-center"
-            >
-              <Link
-                href="/biblia"
-                className="group inline-flex items-center gap-3 bg-primary text-primary-foreground px-10 py-4 text-sm font-semibold tracking-wide hover:bg-primary/90 transition-all duration-500 hover:shadow-xl hover:shadow-primary/20 hover:scale-105"
-              >
-                Iniciar Estudo
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </Link>
-              <Link
-                href="/ia"
-                className="inline-flex items-center gap-3 px-10 py-4 text-sm font-semibold tracking-wide text-foreground border border-border hover:border-primary/50 hover:text-primary transition-all duration-500 hover:bg-primary/5 hover:scale-105"
-              >
-                <Sparkles className="w-4 h-4" />
-                Consultar IA
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          {/* Scroll indicator */}
-          <motion.div
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 2.5, duration: 1 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2"
+            transition={{ delay: 0.2, duration: 1 }}
+            className="text-[11px] font-semibold uppercase text-[var(--muted-fg)] mb-8 tracking-[0.25em]"
           >
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              className="flex flex-col items-center gap-2 text-muted-foreground/50"
+            Estudo Bíblico Acadêmico
+          </motion.p>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="font-display text-6xl md:text-8xl lg:text-9xl font-light leading-[0.9] tracking-tight mb-8"
+          >
+            <span className="block">Sola</span>
+            <span className="italic font-medium gradient-text block">Scriptura</span>
+          </motion.h1>
+
+          <div className="ornament w-24 mx-auto mb-8" />
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+            className="font-serif-body text-lg md:text-xl text-[var(--fg)]/70 leading-relaxed max-w-xl mx-auto mb-4"
+          >
+            A Escritura como única infalível regra de fé e prática —
+            estudada com rigor acadêmico e ferramentas que servem ao texto sagrado.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.8 }}
+            className="text-xs text-[var(--muted-fg)] italic max-w-lg mx-auto mb-10"
+          >
+            Grego Koiné · Hebraico Bíblico · Teologia Sistemática · História · Geografia · IA
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+            className="flex flex-wrap gap-3 justify-center"
+          >
+            <Link href="/biblia"
+              className="group inline-flex items-center gap-2 bg-[var(--primary)] text-white px-7 py-3 text-sm font-semibold tracking-wide hover:bg-[var(--primary)]/90 transition-all duration-300 hover:shadow-lg hover:shadow-[var(--primary)]/20 rounded-lg"
             >
-              <span className="text-[10px] uppercase tracking-widest">Explore</span>
-              <ChevronDown className="w-4 h-4" />
-            </motion.div>
+              Iniciar Estudo
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+            <Link href="/devocional"
+              className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold tracking-wide text-[var(--fg)] border border-[var(--border)] hover:border-[var(--primary)]/40 hover:text-[var(--primary)] transition-all duration-300 rounded-lg"
+            >
+              <Sparkles className="w-4 h-4" />
+              Devocional de Hoje
+            </Link>
           </motion.div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.3 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="w-px h-8 bg-gradient-to-b from-[var(--muted-fg)] to-transparent"
+          />
         </motion.div>
       </section>
 
       {/* Stats */}
-      <section className="py-24 px-6 bg-card/30 border-y border-border/30">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section className="py-16 px-6 border-y border-[var(--border)]/30">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-4 gap-6">
             {stats.map((stat, i) => (
-              <ScrollReveal key={stat.label} delay={i * 0.1}>
-                <div className="text-center group">
-                  <motion.div 
-                    className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 animate-float group-hover:bg-primary/15 transition-all duration-500 group-hover:scale-110" 
-                    style={{ animationDelay: `${i * 0.2}s` }}
-                    whileHover={{ scale: 1.15, rotate: 5 }}
-                  >
-                    <stat.icon className="w-6 h-6 text-primary" />
-                  </motion.div>
-                  <p className="font-display text-4xl md:text-5xl font-light text-primary mb-1">{stat.value}</p>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">{stat.label}</p>
+              <ScrollReveal key={stat.label} delay={i * 0.08}>
+                <div className="text-center">
+                  <p className="font-display text-3xl md:text-4xl font-light text-[var(--primary)]">{stat.value}</p>
+                  <p className="text-[10px] text-[var(--muted-fg)] uppercase tracking-wider mt-1">{stat.label}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -210,35 +173,26 @@ export default function Home() {
       </section>
 
       {/* Features */}
-      <section className="py-28 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto">
           <ScrollReveal>
-            <div className="text-center mb-16">
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-3">Recursos</p>
-              <h2 className="font-display text-4xl md:text-5xl font-light mb-4">
-                Tudo que você precisa para <span className="italic text-primary">estudar a Palavra</span>
+            <div className="text-center mb-14">
+              <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--muted-fg)] mb-3">Recursos</p>
+              <h2 className="font-display text-3xl md:text-4xl font-light">
+                Tudo que você precisa para <span className="italic text-[var(--primary)]">estudar a Palavra</span>
               </h2>
-              <div className="ornament w-16 mx-auto mt-6" />
+              <div className="ornament w-16 mx-auto mt-5" />
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map((f, i) => (
-              <ScrollReveal key={f.title} delay={i * 0.08}>
-                <motion.div 
-                  className="sola-card p-8 h-full group cursor-default"
-                  whileHover={{ y: -6, boxShadow: '0 12px 40px rgba(196,162,101,0.12)' }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <motion.div 
-                    className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-all duration-500"
-                    whileHover={{ rotate: 10, scale: 1.1 }}
-                  >
-                    <f.icon className="w-6 h-6 text-primary" />
-                  </motion.div>
-                  <h3 className="font-semibold text-lg mb-2">{f.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
-                </motion.div>
+              <ScrollReveal key={f.title} delay={i * 0.06}>
+                <div className="p-6 border border-[var(--border)]/40 rounded-xl hover:border-[var(--primary)]/20 transition-all duration-300 group">
+                  <f.icon className="w-8 h-8 text-[var(--primary)] mb-3 group-hover:scale-110 transition-transform" strokeWidth={1.5} />
+                  <h3 className="font-semibold text-sm mb-1.5">{f.title}</h3>
+                  <p className="text-xs text-[var(--muted-fg)] leading-relaxed">{f.desc}</p>
+                </div>
               </ScrollReveal>
             ))}
           </div>
@@ -246,34 +200,30 @@ export default function Home() {
       </section>
 
       {/* Modules */}
-      <section className="py-28 px-6 bg-card/20 border-y border-border/30">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-24 px-6 border-y border-[var(--border)]/30 bg-[var(--card-bg)]/30">
+        <div className="max-w-5xl mx-auto">
           <ScrollReveal>
-            <div className="text-center mb-16">
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-3">Módulos</p>
-              <h2 className="font-display text-4xl md:text-5xl font-light mb-4">
-                Explore cada <span className="italic text-primary">área do conhecimento</span>
+            <div className="text-center mb-14">
+              <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--muted-fg)] mb-3">Módulos</p>
+              <h2 className="font-display text-3xl md:text-4xl font-light">
+                Explore cada <span className="italic text-[var(--primary)]">área do conhecimento</span>
               </h2>
-              <div className="ornament w-16 mx-auto mt-6" />
+              <div className="ornament w-16 mx-auto mt-5" />
             </div>
           </ScrollReveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {modules.map((m, i) => (
-              <ScrollReveal key={m.href} delay={i * 0.05}>
+              <ScrollReveal key={m.href} delay={i * 0.04}>
                 <Link href={m.href}>
-                  <motion.div
-                    className={`block sola-card p-6 h-full bg-gradient-to-br ${m.color} group`}
-                    whileHover={{ y: -4, scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <motion.div whileHover={{ rotate: 10, scale: 1.15 }}>
-                      <m.icon className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" />
-                    </motion.div>
-                    <h3 className="font-semibold mb-1">{m.title}</h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{m.desc}</p>
-                    <ChevronRight className="w-4 h-4 text-muted-foreground mt-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </motion.div>
+                  <div className="flex items-center gap-3 p-4 rounded-xl border border-[var(--border)]/30 hover:border-[var(--primary)]/20 hover:bg-[var(--primary)]/[0.03] transition-all duration-300 group">
+                    <m.icon className="w-5 h-5 text-[var(--primary)] shrink-0 group-hover:scale-110 transition-transform" strokeWidth={1.5} />
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-semibold">{m.title}</h3>
+                      <p className="text-[11px] text-[var(--muted-fg)] truncate">{m.desc}</p>
+                    </div>
+                    <ChevronRight className="w-3 h-3 text-[var(--muted-fg)] shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
                 </Link>
               </ScrollReveal>
             ))}
@@ -282,109 +232,66 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-28 px-6">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-24 px-6">
+        <div className="max-w-3xl mx-auto">
           <ScrollReveal>
-            <div className="text-center mb-16">
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground mb-3">Depoimentos</p>
-              <h2 className="font-display text-4xl md:text-5xl font-light mb-4">
-                O que dizem sobre <span className="italic text-primary">nós</span>
+            <div className="text-center mb-12">
+              <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--muted-fg)] mb-3">Depoimentos</p>
+              <h2 className="font-display text-3xl md:text-4xl font-light">
+                O que dizem sobre <span className="italic text-[var(--primary)]">nós</span>
               </h2>
-              <div className="ornament w-16 mx-auto mt-6" />
+              <div className="ornament w-16 mx-auto mt-5" />
             </div>
           </ScrollReveal>
 
           <ScrollReveal>
-            <div className="relative sola-card p-10 sm:p-12 text-center min-h-[220px]">
-              <div className="absolute top-6 left-8 text-primary/15">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
+            <div className="text-center border border-[var(--border)]/40 rounded-2xl p-10 min-h-[200px] flex flex-col items-center justify-center">
+              <motion.p
+                key={currentTestimonial}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="font-serif-body text-lg text-[var(--fg)]/70 leading-relaxed mb-6 italic max-w-lg"
+              >
+                &ldquo;{testimonials[currentTestimonial].text}&rdquo;
+              </motion.p>
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3 h-3 text-[var(--primary)] fill-[var(--primary)]" />
+                ))}
               </div>
-              <div className="relative z-10">
-                <motion.p
-                  key={currentTestimonial}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className="font-serif-body text-xl md:text-2xl text-foreground/80 leading-relaxed mb-8 italic"
-                >
-                  &ldquo;{testimonials[currentTestimonial].text}&rdquo;
-                </motion.p>
-                <motion.div 
-                  className="flex items-center justify-center gap-1 mb-4"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  {[...Array(5)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.4 + i * 0.1 }}
-                    >
-                      <Star className="w-4 h-4 text-primary fill-primary" />
-                    </motion.div>
-                  ))}
-                </motion.div>
-                <p className="font-semibold text-sm">{testimonials[currentTestimonial].author}</p>
-                <p className="text-xs text-muted-foreground">{testimonials[currentTestimonial].role}</p>
-              </div>
+              <p className="text-sm font-semibold">{testimonials[currentTestimonial].author}</p>
+              <p className="text-[11px] text-[var(--muted-fg)]">{testimonials[currentTestimonial].role}</p>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-28 px-6 bg-[var(--bg)] border-t border-[var(--border)] relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[var(--primary)]/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[var(--primary)]/3 rounded-full blur-3xl" />
-        </div>
-        <div className="max-w-3xl mx-auto text-center relative z-10">
+      <section className="py-20 px-6 border-t border-[var(--border)]/30 bg-[var(--card-bg)]/20">
+        <div className="max-w-2xl mx-auto text-center">
           <ScrollReveal>
-            <motion.p
-              className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--muted-fg)] mb-4"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              Sua jornada começa aqui
-            </motion.p>
-            <motion.h2 
-              className="font-display text-4xl md:text-5xl font-light mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
+            <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[var(--muted-fg)] mb-3">Sua jornada começa aqui</p>
+            <h2 className="font-display text-3xl md:text-4xl font-light mb-5">
               Comece hoje o seu <span className="italic text-[var(--primary)]">estudo</span>
-            </motion.h2>
-            <p className="text-[var(--muted-fg)] mb-10 max-w-xl mx-auto leading-relaxed">
-              Acesse todas as ferramentas gratuitamente. Estude a Bíblia com o rigor que ela merece — onde estiver, quando quiser.
+            </h2>
+            <p className="text-sm text-[var(--muted-fg)] mb-8 max-w-md mx-auto">
+              Acesse todas as ferramentas gratuitamente. Estude a Bíblia com o rigor que ela merece.
             </p>
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex flex-wrap gap-4 justify-center"
-            >
-              <Link
-                href="/biblia"
-                className="inline-flex items-center gap-2 bg-[var(--primary)] text-white px-8 py-3.5 text-sm font-semibold tracking-wide hover:bg-[var(--primary)]/90 transition-all duration-500 hover:shadow-xl hover:shadow-[var(--primary)]/20 rounded-xl"
+            <div className="flex flex-wrap gap-3 justify-center">
+              <Link href="/biblia"
+                className="inline-flex items-center gap-2 bg-[var(--primary)] text-white px-7 py-3 text-sm font-semibold rounded-lg hover:bg-[var(--primary)]/90 transition-all duration-300 hover:shadow-lg hover:shadow-[var(--primary)]/20"
               >
                 <BookOpen className="w-4 h-4" />
                 Abrir a Bíblia
               </Link>
-              <Link
-                href="/devocional"
-                className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold tracking-wide border border-[var(--border)] text-[var(--fg)] hover:border-[var(--primary)]/40 hover:text-[var(--primary)] transition-all duration-500 rounded-xl"
+              <Link href="/devocional"
+                className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold border border-[var(--border)] text-[var(--fg)] hover:border-[var(--primary)]/40 hover:text-[var(--primary)] transition-all duration-300 rounded-lg"
               >
                 <Sparkles className="w-4 h-4" />
                 Devocional de Hoje
               </Link>
-            </motion.div>
+            </div>
           </ScrollReveal>
         </div>
       </section>

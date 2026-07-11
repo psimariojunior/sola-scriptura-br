@@ -435,18 +435,256 @@ html {
   .sola-card { box-shadow: none !important; border: 1px solid #ccc !important; }
 }
 
-@keyframes splashParticle {
-  0% { opacity: 0; transform: translate(0, 0) scale(0); }
-  20% { opacity: 0.8; }
-  100% { opacity: 0; transform: translate(var(--dx, 30px), var(--dy, -30px)) scale(2); }
+/* Splash - now in new section below */
+
+/* ═══════════════════════════════════════════════════════════
+   SPLASH SCREEN - Pure CSS animation
+   ═══════════════════════════════════════════════════════════ */
+
+.splash-root {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0c0a08;
+  animation: splashFadeOut 0.6s ease-in-out 3.8s forwards;
+  cursor: pointer;
 }
 
-@keyframes splashPulse {
-  0%, 100% { transform: scale(1); opacity: 0.4; }
-  50% { transform: scale(1.4); opacity: 0.8; }
+@keyframes splashFadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; pointer-events: none; }
 }
 
-@keyframes splashTextIn {
-  0% { opacity: 0; transform: translateY(15px); }
+/* Light rays */
+.splash-rays {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: splashRaysIn 0.8s ease-out 1.5s forwards;
+}
+
+@keyframes splashRaysIn {
+  to { opacity: 1; }
+}
+
+.splash-ray {
+  position: absolute;
+  width: 200%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,184,122,0.04), transparent);
+  transform-origin: center;
+  transform: rotate(calc(var(--i) * 22.5deg)) scaleX(0);
+  animation: splashRayGrow 1.5s ease-out calc(1.5s + var(--i) * 0.05s) forwards;
+}
+
+@keyframes splashRayGrow {
+  to { transform: rotate(calc(var(--i) * 22.5deg)) scaleX(1); }
+}
+
+/* Particles */
+.splash-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.splash-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(212,184,122,0.5);
+  left: calc(10% + var(--i) * 4%);
+  top: calc(20% + (var(--i) * 37 % 60)%);
+  box-shadow: 0 0 6px rgba(212,184,122,0.3);
+  opacity: 0;
+  animation: splashParticleFloat 2.5s ease-out calc(1.8s + var(--i) * 0.12s) infinite;
+}
+
+@keyframes splashParticleFloat {
+  0% { opacity: 0; transform: translateY(0) scale(0); }
+  15% { opacity: 0.8; transform: translateY(-10px) scale(1); }
+  100% { opacity: 0; transform: translateY(-60px) scale(0.3); }
+}
+
+/* Bible */
+.splash-bible {
+  perspective: 800px;
+  position: relative;
+  z-index: 10;
+}
+
+.splash-book {
+  width: 160px;
+  height: 220px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: splashBookGlow 1s ease-out 2.8s forwards;
+}
+
+@keyframes splashBookGlow {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1.15); opacity: 0; }
+}
+
+/* Pages */
+.splash-page {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 2px;
+}
+
+.splash-page-left {
+  background: linear-gradient(135deg, #b89a5a 0%, #8b6f45 40%, #6b4c2a 100%);
+  transform-origin: right center;
+  transform: rotateY(0deg);
+  animation: splashPageLeft 0.9s ease-out 0.6s forwards;
+  box-shadow: inset -2px 0 8px rgba(0,0,0,0.2);
+}
+
+@keyframes splashPageLeft {
+  to { transform: rotateY(-165deg); }
+}
+
+.splash-page-right {
+  background: linear-gradient(225deg, #b89a5a 0%, #8b6f45 40%, #6b4c2a 100%);
+  transform-origin: left center;
+  transform: rotateY(0deg);
+  animation: splashPageRight 0.9s ease-out 0.6s forwards;
+  box-shadow: inset 2px 0 8px rgba(0,0,0,0.2);
+}
+
+@keyframes splashPageRight {
+  to { transform: rotateY(165deg); }
+}
+
+/* Cross on cover */
+.splash-cross {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  animation: splashCrossFade 0.4s ease-out 0.5s forwards;
+}
+
+@keyframes splashCrossFade {
+  to { opacity: 0; }
+}
+
+.splash-cross-h {
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  background: #d4b87a;
+  opacity: 0.6;
+  border-radius: 1px;
+}
+
+.splash-cross-v {
+  position: absolute;
+  width: 2px;
+  height: 50px;
+  background: #d4b87a;
+  opacity: 0.6;
+  border-radius: 1px;
+}
+
+/* Center glow */
+.splash-glow {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: splashGlowIn 0.6s ease-out 1.6s forwards;
+}
+
+@keyframes splashGlowIn {
+  to { opacity: 1; }
+}
+
+.splash-glow::before {
+  content: '';
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,184,122,0.4) 0%, rgba(212,184,122,0.1) 40%, transparent 70%);
+  box-shadow: 0 0 40px rgba(212,184,122,0.25), 0 0 80px rgba(212,184,122,0.1);
+  animation: splashGlowPulse 2s ease-in-out infinite;
+}
+
+@keyframes splashGlowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.3); opacity: 0.9; }
+}
+
+/* Title */
+.splash-title {
+  position: absolute;
+  bottom: 18%;
+  text-align: center;
+  z-index: 20;
+  opacity: 0;
+  animation: splashTitleIn 0.8s ease-out 1.8s forwards;
+}
+
+@keyframes splashTitleIn {
+  0% { opacity: 0; transform: translateY(12px); }
   100% { opacity: 1; transform: translateY(0); }
+}
+
+.splash-title h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  color: #ede5d8;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.splash-title-sola {
+  display: block;
+}
+
+.splash-title-scriptura {
+  display: block;
+  font-style: italic;
+  font-weight: 500;
+  color: #d4b87a;
+  font-size: 2rem;
+}
+
+.splash-subtitle {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #7a6f5e;
+  margin-top: 12px;
+}
+
+/* Skip hint */
+.splash-skip {
+  position: absolute;
+  bottom: 6%;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #4a4035;
+  opacity: 0;
+  animation: splashSkipIn 0.5s ease-out 2.5s forwards;
+}
+
+@keyframes splashSkipIn {
+  to { opacity: 0.5; }
 }

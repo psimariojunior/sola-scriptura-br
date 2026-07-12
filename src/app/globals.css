@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    /* ShadCN HSL tokens */
     --background: 40 30% 95%;
     --foreground: 20 40% 12%;
     --card: 40 30% 98%;
@@ -25,6 +26,14 @@
     --ring: 30 35% 32%;
     --radius: 0.625rem;
 
+    /* Legacy aliases for existing components */
+    --bg: #faf7f2;
+    --fg: #2c1810;
+    --muted-fg: #7a6e62;
+    --card-bg: #fffcf7;
+    --card-border: #e6ddd0;
+    --primary-light: #c4a265;
+
     --mark-yellow: rgba(234,179,8,0.15);
     --mark-green: rgba(34,197,94,0.15);
     --mark-blue: rgba(59,130,246,0.15);
@@ -34,6 +43,7 @@
   }
 
   .dark {
+    /* ShadCN HSL tokens */
     --background: 25 25% 5%;
     --foreground: 35 35% 90%;
     --card: 25 20% 10%;
@@ -53,6 +63,14 @@
     --border: 25 18% 18%;
     --input: 25 18% 18%;
     --ring: 38 45% 65%;
+
+    /* Legacy aliases */
+    --bg: #0f0d0a;
+    --fg: #ede5d8;
+    --muted-fg: #b0a494;
+    --card-bg: #1c1814;
+    --card-border: #3a3228;
+    --primary-light: #e0c88a;
   }
 
   .sepia {
@@ -75,6 +93,14 @@
     --border: 30 18% 80%;
     --input: 30 18% 80%;
     --ring: 30 28% 42%;
+
+    /* Legacy aliases */
+    --bg: #f5f0e8;
+    --fg: #3d2e1e;
+    --muted-fg: #8a7a68;
+    --card-bg: #faf5ed;
+    --card-border: #e0d5c5;
+    --primary-light: #a88b5e;
   }
 
   .noturno {
@@ -97,6 +123,14 @@
     --border: 0 0% 16%;
     --input: 0 0% 16%;
     --ring: 38 45% 65%;
+
+    /* Legacy aliases */
+    --bg: #0a0a0a;
+    --fg: #f0f0f0;
+    --muted-fg: #a0a0a0;
+    --card-bg: #141414;
+    --card-border: #2a2a2a;
+    --primary-light: #e0c88a;
   }
 
   * {

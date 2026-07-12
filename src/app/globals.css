@@ -105,34 +105,41 @@
   }
 
   .noturno {
-    /* Premium Noturno — pure black OLED */
+    /* Premium Noturno — OLED puro + filtro luz azul */
     --background: 0 0% 3%;
-    --foreground: 0 0% 95%;
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 38 50% 62%;
+    --foreground: 40 10% 88%;
+    --card: 0 0% 6%;
+    --card-foreground: 40 10% 88%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 40 10% 88%;
+    --primary: 35 40% 55%;
     --primary-foreground: 0 0% 3%;
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 75%;
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 50%;
-    --accent: 0 0% 13%;
-    --accent-foreground: 0 0% 95%;
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14%;
-    --input: 0 0% 14%;
-    --ring: 38 50% 62%;
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 40 8% 70%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 40 5% 48%;
+    --accent: 0 0% 12%;
+    --accent-foreground: 40 10% 88%;
+    --destructive: 0 55% 45%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
+    --ring: 35 40% 55%;
 
     /* Legacy aliases */
     --bg: #080808;
-    --fg: #f0f0f0;
-    --muted-fg: #808080;
-    --card-bg: #111111;
-    --card-border: #222222;
-    --primary-light: #d4a843;
+    --fg: #d8cdb8;
+    --muted-fg: #706858;
+    --card-bg: #0e0e0e;
+    --card-border: #1a1a1a;
+    --primary-light: #b8923a;
+  }
+
+  /* Noturno: filtro luz azul */
+  .noturno img,
+  .noturno video,
+  .noturno svg {
+    filter: brightness(0.9) saturate(0.85);
   }
 
   * {

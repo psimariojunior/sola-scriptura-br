@@ -123,7 +123,7 @@ export default function ReadingPlanBanner() {
             )}
 
             {!state.completedDays.includes(state.currentDay) && (
-              <span className="text-[10px] text-[var(--muted-fg)]/60 italic">
+              <span className="text-[10px] text-[var(--muted-fg)]/80 italic">
                 Marque como concluído para avançar
               </span>
             )}

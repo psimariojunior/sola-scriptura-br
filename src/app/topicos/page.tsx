@@ -10,19 +10,19 @@ import Link from 'next/link';
 import { Search, BookOpen, ChevronDown, ChevronRight, Sparkles, X, Tag, Filter } from 'lucide-react';
 
 const CATEGORIA_CONFIG: Record<string, { cor: string; icone: string; gradient: string }> = {
-  'Bibliologia':             { cor: 'bg-blue-500',    icone: '📖', gradient: 'from-blue-500 to-blue-600' },
-  'Teologia Proper':         { cor: 'bg-amber-500',   icone: '✝️', gradient: 'from-amber-500 to-amber-600' },
-  'Cristologia':             { cor: 'bg-emerald-500', icone: '👑', gradient: 'from-emerald-500 to-emerald-600' },
-  'Pneumatologia':           { cor: 'bg-violet-500',  icone: '🕊️', gradient: 'from-violet-500 to-violet-600' },
-  'Angelologia':             { cor: 'bg-cyan-500',    icone: '⚡', gradient: 'from-cyan-500 to-cyan-600' },
-  'Antropologia':            { cor: 'bg-orange-500',  icone: '👤', gradient: 'from-orange-500 to-orange-600' },
-  'Hamartiologia':           { cor: 'bg-red-500',     icone: '🔗', gradient: 'from-red-500 to-red-600' },
-  'Soteriologia':            { cor: 'bg-green-500',   icone: '🔓', gradient: 'from-green-500 to-green-600' },
-  'Eclesiologia':            { cor: 'bg-rose-500',    icone: '⛪', gradient: 'from-rose-500 to-rose-600' },
-  'Teologia Bíblica':        { cor: 'bg-teal-500',    icone: '📜', gradient: 'from-teal-500 to-teal-600' },
-  'Escatologia':             { cor: 'bg-indigo-500',  icone: '⏳', gradient: 'from-indigo-500 to-indigo-600' },
-  'Teologia Sistemática':    { cor: 'bg-purple-500',  icone: '🏗️', gradient: 'from-purple-500 to-purple-600' },
-  'Apologetica':             { cor: 'bg-slate-500',   icone: '🛡️', gradient: 'from-slate-500 to-slate-600' },
+  'Bibliologia':             { cor: 'bg-blue-700',    icone: '📖', gradient: 'from-blue-700 to-blue-800' },
+  'Teologia Proper':         { cor: 'bg-amber-700',   icone: '✝️', gradient: 'from-amber-700 to-amber-800' },
+  'Cristologia':             { cor: 'bg-emerald-700', icone: '👑', gradient: 'from-emerald-700 to-emerald-800' },
+  'Pneumatologia':           { cor: 'bg-violet-700',  icone: '🕊️', gradient: 'from-violet-700 to-violet-800' },
+  'Angelologia':             { cor: 'bg-cyan-700',    icone: '⚡', gradient: 'from-cyan-700 to-cyan-800' },
+  'Antropologia':            { cor: 'bg-orange-700',  icone: '👤', gradient: 'from-orange-700 to-orange-800' },
+  'Hamartiologia':           { cor: 'bg-red-700',     icone: '🔗', gradient: 'from-red-700 to-red-800' },
+  'Soteriologia':            { cor: 'bg-green-700',   icone: '🔓', gradient: 'from-green-700 to-green-800' },
+  'Eclesiologia':            { cor: 'bg-rose-700',    icone: '⛪', gradient: 'from-rose-700 to-rose-800' },
+  'Teologia Bíblica':        { cor: 'bg-teal-700',    icone: '📜', gradient: 'from-teal-700 to-teal-800' },
+  'Escatologia':             { cor: 'bg-indigo-700',  icone: '⏳', gradient: 'from-indigo-700 to-indigo-800' },
+  'Teologia Sistemática':    { cor: 'bg-purple-700',  icone: '🏗️', gradient: 'from-purple-700 to-purple-800' },
+  'Apologetica':             { cor: 'bg-slate-700',   icone: '🛡️', gradient: 'from-slate-700 to-slate-800' },
 };
 
 const CATEGORIA_BGBORDER: Record<string, string> = {

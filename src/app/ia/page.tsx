@@ -238,7 +238,7 @@ export default function IaPage() {
               <ScrollReveal delay={0.2}>
                 <div className="text-center py-12">
                   <MessageSquare className="w-12 h-12 mx-auto mb-3 text-muted-foreground/20" strokeWidth={1} />
-                  <p className="text-muted-foreground/60 text-sm mb-6">Faça uma pergunta sobre as Escrituras</p>
+                  <p className="text-muted-foreground/70 text-sm mb-6">Faça uma pergunta sobre as Escrituras</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-lg mx-auto">
                     {sugestoes.map((s, i) => (
                       <motion.button
@@ -299,7 +299,7 @@ export default function IaPage() {
                     
                     <div className="flex items-center justify-between mt-2 pt-2 border-t border-border/20">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] text-muted-foreground/60">
+                        <span className="text-[10px] text-muted-foreground/70">
                           {msg.timestamp.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
                         </span>
                         {msg.tipo === 'assistant' && msg.fonte && (
@@ -356,7 +356,7 @@ export default function IaPage() {
                   </span>
                 )}
                 {statusBackend === 'unknown' && (
-                  <span className="flex items-center gap-1 text-[10px] text-muted-foreground/50">
+                  <span className="flex items-center gap-1 text-[10px] text-muted-foreground/70">
                     <Wifi className="w-3 h-3" /> Verificando conexão...
                   </span>
                 )}

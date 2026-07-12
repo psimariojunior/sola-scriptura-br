@@ -345,7 +345,7 @@ export default function SermoesPage() {
               <h1 className="font-display text-4xl md:text-5xl font-light text-[var(--fg)] mb-3">
                 Esboços de Sermão
               </h1>
-              <p className="text-[var(--muted-fg)] text-lg max-w-2xl mx-auto">
+              <p className="text-[var(--fg)] text-lg max-w-2xl mx-auto">
                 Esboços prontos para pregadores — com texto base, pontos, ilustrações e conclusão
               </p>
               <div className="ornament w-16 mx-auto mt-6" />
@@ -437,7 +437,7 @@ export default function SermoesPage() {
                                       className="overflow-hidden"
                                     >
                                       <div className="px-4 pb-4 space-y-4">
-                                        <p className="text-sm text-[var(--muted-fg)] leading-relaxed italic font-serif-body border-l-3 border-[var(--primary)]/20 pl-4">
+                                        <p className="text-sm text-[var(--fg)] leading-relaxed italic font-serif-body border-l-3 border-[var(--primary)]/20 pl-4">
                                           &ldquo;{ponto.texto}&rdquo;
                                         </p>
 
@@ -450,7 +450,7 @@ export default function SermoesPage() {
                                               </div>
                                               <div>
                                                 <p className="font-semibold text-[var(--fg)] text-sm">{sub.titulo}</p>
-                                                <p className="text-sm text-[var(--muted-fg)] leading-relaxed">{sub.texto}</p>
+                                                <p className="text-sm text-[var(--fg)] leading-relaxed">{sub.texto}</p>
                                                 {sub.versiculo && (
                                                   <p className="text-xs text-[var(--primary)] mt-1">{sub.versiculo}</p>
                                                 )}
@@ -465,7 +465,7 @@ export default function SermoesPage() {
                                             <Lightbulb className="w-3 h-3" />
                                             Ilustração
                                           </p>
-                                          <p className="text-sm text-[var(--muted-fg)] leading-relaxed italic">{ponto.ilustracao}</p>
+                                          <p className="text-sm text-[var(--fg)] leading-relaxed italic">{ponto.ilustracao}</p>
                                         </div>
                                       </div>
                                     </motion.div>

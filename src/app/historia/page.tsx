@@ -50,12 +50,12 @@ interface Civilizacao {
 }
 
 const CIVILIZACOES: Civilizacao[] = [
-  { nome: 'Egito',     inicio: -3100, fim: -30,    cor: 'bg-yellow-500', abbr: 'EG' },
-  { nome: 'Assíria',    inicio: -2500, fim: -609,   cor: 'bg-orange-500', abbr: 'AS' },
-  { nome: 'Babilônia',  inicio: -1894, fim: -539,   cor: 'bg-amber-600',  abbr: 'BA' },
-  { nome: 'Pérsia',     inicio: -550,  fim: -330,   cor: 'bg-teal-500',   abbr: 'PÉ' },
-  { nome: 'Grécia',     inicio: -800,  fim: -146,   cor: 'bg-indigo-500', abbr: 'GR' },
-  { nome: 'Roma',       inicio: -753,  fim: 476,    cor: 'bg-red-600',    abbr: 'RO' },
+  { nome: 'Egito',     inicio: -3100, fim: -30,    cor: 'bg-yellow-700', abbr: 'EG' },
+  { nome: 'Assíria',    inicio: -2500, fim: -609,   cor: 'bg-orange-700', abbr: 'AS' },
+  { nome: 'Babilônia',  inicio: -1894, fim: -539,   cor: 'bg-amber-700',  abbr: 'BA' },
+  { nome: 'Pérsia',     inicio: -550,  fim: -330,   cor: 'bg-teal-700',   abbr: 'PÉ' },
+  { nome: 'Grécia',     inicio: -800,  fim: -146,   cor: 'bg-indigo-700', abbr: 'GR' },
+  { nome: 'Roma',       inicio: -753,  fim: 476,    cor: 'bg-red-700',    abbr: 'RO' },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════

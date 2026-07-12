@@ -390,7 +390,7 @@ export default function BibliaPage() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className={`text-[11px] font-bold px-2.5 py-1 rounded-md transition-all duration-300 ${
-                          active ? `${tradBadgeColors[id]} text-white shadow-sm` : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'
+                          active ? `${tradBadgeColors[id]} shadow-sm` : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'
                         }`}>
                         {labelMap[id]}
                       </motion.button>

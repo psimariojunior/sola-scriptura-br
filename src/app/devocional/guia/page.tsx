@@ -160,7 +160,7 @@ export default function DevocionalGuiaPage() {
               <h1 className="font-display text-4xl md:text-5xl font-light text-[var(--fg)] mb-3">
                 Guia Completo de Devocional
               </h1>
-              <p className="text-[var(--muted-fg)] text-lg max-w-2xl mx-auto">
+              <p className="text-[var(--fg)] text-lg max-w-2xl mx-auto">
                 Como cultivar um hábito diário de comunhão com Deus através da Palavra e da oração
               </p>
               <div className="ornament w-16 mx-auto mt-6" />
@@ -245,7 +245,7 @@ export default function DevocionalGuiaPage() {
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
               <div className="sola-card p-8">
                 <h2 className="font-display text-2xl font-light text-[var(--fg)] mb-4">A Estrutura do Devocional</h2>
-                <p className="text-[var(--muted-fg)] mb-6">
+                <p className="text-[var(--fg)] mb-6">
                   Um devocional equilibrado tem quatro pilares: Oração, Leitura, Meditação e Aplicação. Cada um alimenta o outro, e juntos formam um encontro completo com Deus.
                 </p>
 
@@ -261,7 +261,7 @@ export default function DevocionalGuiaPage() {
                         <p className="text-xs text-[var(--muted-fg)]">5 minutos</p>
                       </div>
                     </div>
-                    <p className="text-sm text-[var(--muted-fg)] leading-relaxed mb-3">
+                    <p className="text-sm text-[var(--fg)] leading-relaxed mb-3">
                       Comece pela oração. Peça ao Espírito Santo que ilumine as Escrituras. Uma oração curta e sincera é suficiente. Reconheça a presença de Deus, confesse pecados, agradeça pela oportunidade de estudar.
                     </p>
                     <div className="bg-[var(--card-bg)] rounded-lg p-4">
@@ -283,12 +283,12 @@ export default function DevocionalGuiaPage() {
                         <p className="text-xs text-[var(--muted-fg)]">10 minutos</p>
                       </div>
                     </div>
-                    <p className="text-sm text-[var(--muted-fg)] leading-relaxed mb-3">
+                    <p className="text-sm text-[var(--fg)] leading-relaxed mb-3">
                       Leia o texto do dia com atenção. Não se apresse. Leia pelo menos duas vezes — uma para吸收, outra para observar detalhes. Use uma tradução que você entenda. Considere ler em voz alta.
                     </p>
                     <div className="bg-[var(--card-bg)] rounded-lg p-4">
                       <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-2">Dica de Leitura</p>
-                      <p className="text-sm text-[var(--muted-fg)]">
+                      <p className="text-sm text-[var(--fg)]">
                         Para iniciantes, comece pelo Evangelho de João — ele foi escrito para que você cré (Jo 20:31). Leia um capítulo por dia. São 21 capítulos — em 3 semanas você terá lido a vida inteira de Jesus.
                       </p>
                     </div>
@@ -305,7 +305,7 @@ export default function DevocionalGuiaPage() {
                         <p className="text-xs text-[var(--muted-fg)]">5 minutos</p>
                       </div>
                     </div>
-                    <p className="text-sm text-[var(--muted-fg)] leading-relaxed mb-3">
+                    <p className="text-sm text-[var(--fg)] leading-relaxed mb-3">
                       A meditação bíblica não é esvaziar a mente — é enchê-la com a Palavra. Repita o versículo-chave. Pense em como ele se conecta com sua vida. Ruminare — volte ao texto ao longo do dia.
                     </p>
                     <div className="bg-[var(--card-bg)] rounded-lg p-4">
@@ -328,12 +328,12 @@ export default function DevocionalGuiaPage() {
                         <p className="text-xs text-[var(--muted-fg)]">5 minutos</p>
                       </div>
                     </div>
-                    <p className="text-sm text-[var(--muted-fg)] leading-relaxed mb-3">
+                    <p className="text-sm text-[var(--fg)] leading-relaxed mb-3">
                       A Palavra sem aplicação é informação, não transformação. Pergunte: O que devo crer? O que devo fazer? Com quem devo compartilhar? Escreva um passo concreto para hoje. Uma oração de compromisso fecha o encontro.
                     </p>
                     <div className="bg-[var(--card-bg)] rounded-lg p-4">
                       <p className="text-xs font-semibold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-2">Perguntas para Aplicação</p>
-                      <ul className="space-y-1 text-sm text-[var(--muted-fg)]">
+                      <ul className="space-y-1 text-sm text-[var(--fg)]">
                         <li>• Que verdade devo crer hoje?</li>
                         <li>• Que atitude devo mudar?</li>
                         <li>• Com quem devo compartilhar isso?</li>
@@ -352,7 +352,7 @@ export default function DevocionalGuiaPage() {
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
               <div className="sola-card p-8">
                 <h2 className="font-display text-2xl font-light text-[var(--fg)] mb-4">Planos de Leitura Devocional</h2>
-                <p className="text-[var(--muted-fg)] mb-6">
+                <p className="text-[var(--fg)] mb-6">
                   Um plano de leitura dá estrutura ao seu devocional. Em vez de abrir a Bíblia sem saber onde ler, você tem um caminho claro. Comece com o plano mais adequado ao seu nível e progrida.
                 </p>
 
@@ -416,7 +416,7 @@ export default function DevocionalGuiaPage() {
 
                 <div className="mt-6 bg-gradient-to-r from-[var(--primary)]/5 to-transparent rounded-xl p-6 border border-[var(--primary)]/10">
                   <h3 className="font-semibold text-[var(--fg)] mb-2">Dica: Crie Seu Próprio Plano</h3>
-                  <p className="text-sm text-[var(--muted-fg)] leading-relaxed">
+                  <p className="text-sm text-[var(--fg)] leading-relaxed">
                     Se nenhum plano se encaixa perfeitamente no seu momento, crie o seu próprio. Defina um livro para estudar (ex: Efésios), um tempo (ex: 6 semanas) e leia um capítulo por dia. Adicione um salmo por semana para variar. O importante é a consistência, não a perfeição do plano.
                   </p>
                 </div>
@@ -430,7 +430,7 @@ export default function DevocionalGuiaPage() {
               <div className="sola-card p-8">
                 <h2 className="font-display text-2xl font-light text-[var(--fg)] mb-2">Como Meditar na Palavra</h2>
                 <p className="text-[var(--primary)] text-sm font-semibold mb-4">Salmo 1:2 — &ldquo;Mas o seu deleite está na lei do SENHOR, e na sua lei medita dia e noite.&rdquo;</p>
-                <p className="text-[var(--muted-fg)] mb-6">
+                <p className="text-[var(--fg)] mb-6">
                   Meditar na Bíblia não é um exercício zen de esvaziar a mente. É o oposto — é enchê-la com a Palavra de Deus e deixá-la transformar o nosso pensar. O método mais prático é conhecido como <strong>Lectio Divina</strong> (Leitura Divina), praticado pela igreja há séculos.
                 </p>
 
@@ -443,7 +443,7 @@ export default function DevocionalGuiaPage() {
                         </div>
                         <h3 className="font-semibold text-[var(--fg)]">{dica.titulo}</h3>
                       </div>
-                      <p className="text-sm text-[var(--muted-fg)] leading-relaxed ml-11">{dica.descricao}</p>
+                      <p className="text-sm text-[var(--fg)] leading-relaxed ml-11">{dica.descricao}</p>
                     </div>
                   ))}
                 </div>
@@ -456,23 +456,23 @@ export default function DevocionalGuiaPage() {
                   <div className="space-y-3">
                     <div className="flex gap-3 items-start">
                       <span className="text-lg">📖</span>
-                      <p className="text-sm text-[var(--muted-fg)]"><strong className="text-[var(--fg)]">Leio:</strong> &ldquo;O Senhor é o meu pastor; nada me faltará&rdquo; (Sl 23:1)</p>
+                      <p className="text-sm text-[var(--fg)]"><strong className="text-[var(--fg)]">Leio:</strong> &ldquo;O Senhor é o meu pastor; nada me faltará&rdquo; (Sl 23:1)</p>
                     </div>
                     <div className="flex gap-3 items-start">
                       <span className="text-lg">🤔</span>
-                      <p className="text-sm text-[var(--muted-fg)]"><strong className="text-[var(--fg)]">Medito:</strong> &ldquo;Meu&rdquo; — é pessoal. &ldquo;Pastor&rdquo; — Ele cuida, guia, protege. &ldquo;Nada faltará&rdquo; — promessa total, não parcial.</p>
+                      <p className="text-sm text-[var(--fg)]"><strong className="text-[var(--fg)]">Medito:</strong> &ldquo;Meu&rdquo; — é pessoal. &ldquo;Pastor&rdquo; — Ele cuida, guia, protege. &ldquo;Nada faltará&rdquo; — promessa total, não parcial.</p>
                     </div>
                     <div className="flex gap-3 items-start">
                       <span className="text-lg">🙏</span>
-                      <p className="text-sm text-[var(--muted-fg)]"><strong className="text-[var(--fg)]">Oro:</strong> &ldquo;Senhor, obrigado por ser o meu pastor pessoal. Hoje, escolho confiar que nada me faltará, mesmo quando as circunstâncias digam o contrário.&rdquo;</p>
+                      <p className="text-sm text-[var(--fg)]"><strong className="text-[var(--fg)]">Oro:</strong> &ldquo;Senhor, obrigado por ser o meu pastor pessoal. Hoje, escolho confiar que nada me faltará, mesmo quando as circunstâncias digam o contrário.&rdquo;</p>
                     </div>
                     <div className="flex gap-3 items-start">
                       <span className="text-lg">💭</span>
-                      <p className="text-sm text-[var(--muted-fg)]"><strong className="text-[var(--fg)]">Contemplo:</strong> Fico em silêncio por 2 minutos, repetindo &ldquo;O Senhor é o meu pastor&rdquo; mentalmente.</p>
+                      <p className="text-sm text-[var(--fg)]"><strong className="text-[var(--fg)]">Contemplo:</strong> Fico em silêncio por 2 minutos, repetindo &ldquo;O Senhor é o meu pastor&rdquo; mentalmente.</p>
                     </div>
                     <div className="flex gap-3 items-start">
                       <span className="text-lg">🚶</span>
-                      <p className="text-sm text-[var(--muted-fg)]"><strong className="text-[var(--fg)]">Levo:</strong> Ao longo do dia, quando a ansiedade vier, repito: &ldquo;O Senhor é o meu pastor. Nada me faltará.&rdquo;</p>
+                      <p className="text-sm text-[var(--fg)]"><strong className="text-[var(--fg)]">Levo:</strong> Ao longo do dia, quando a ansiedade vier, repito: &ldquo;O Senhor é o meu pastor. Nada me faltará.&rdquo;</p>
                     </div>
                   </div>
                 </div>
@@ -485,7 +485,7 @@ export default function DevocionalGuiaPage() {
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
               <div className="sola-card p-8">
                 <h2 className="font-display text-2xl font-light text-[var(--fg)] mb-2">Template de Diário Devocional</h2>
-                <p className="text-[var(--muted-fg)] mb-6">
+                <p className="text-[var(--fg)] mb-6">
                   Use este modelo para registrar seus devocionais diários. Preencha cada campo e revise semanalmente. Seu diário se tornará um tesouro espiritual ao longo dos anos.
                 </p>
 
@@ -527,7 +527,7 @@ export default function DevocionalGuiaPage() {
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
               <div className="sola-card p-8">
                 <h2 className="font-display text-2xl font-light text-[var(--fg)] mb-4">Dicas para Manter Consistência</h2>
-                <p className="text-[var(--muted-fg)] mb-6">
+                <p className="text-[var(--fg)] mb-6">
                   O maior desafio do devocional não é entender a Bíblia — é fazer todo dia. Aqui estão estratégias práticas para transformar o devocional em hábito inegociável.
                 </p>
 
@@ -547,7 +547,7 @@ export default function DevocionalGuiaPage() {
                         <CheckCircle2 className="w-5 h-5 text-[var(--primary)]" />
                         {dica.titulo}
                       </h3>
-                      <p className="text-sm text-[var(--muted-fg)] leading-relaxed ml-7">{dica.descricao}</p>
+                      <p className="text-sm text-[var(--fg)] leading-relaxed ml-7">{dica.descricao}</p>
                     </div>
                   ))}
                 </div>
@@ -556,7 +556,7 @@ export default function DevocionalGuiaPage() {
               {/* Versículos de Encorajamento */}
               <div className="sola-card p-8">
                 <h2 className="font-display text-2xl font-light text-[var(--fg)] mb-4">Versículos de Encorajamento</h2>
-                <p className="text-[var(--muted-fg)] mb-6">
+                <p className="text-[var(--fg)] mb-6">
                   Quando a dificuldade de ser consistente vier, lembre-se destas promessas:
                 </p>
                 <div className="space-y-3">

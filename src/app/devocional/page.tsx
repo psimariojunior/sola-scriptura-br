@@ -100,7 +100,7 @@ export default function DevocionalPage() {
               </motion.button>
             </div>
 
-            <p className="text-center text-xs text-[var(--muted-fg)]/50 mt-6">
+            <p className="text-center text-xs text-[var(--muted-fg)]/70 mt-6">
               Dia {devocional.dia} de {devocionais.length}
             </p>
           </motion.div>

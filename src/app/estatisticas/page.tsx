@@ -53,7 +53,7 @@ export default function EstatisticasPage() {
   const maxBook = Math.max(1, ...Object.values(stats.booksRead));
   const livrosOrdenados = Object.entries(stats.booksRead).sort((a, b) => b[1] - a[1]);
 
-  const COLORS = ['#d4b87a', '#c9a96e', '#b8944f', '#a67c3d', '#8b6830', '#704f24', '#5a3e1c'];
+  const COLORS = ['#b45309', '#92400e', '#78350f', '#451a03', '#a16207', '#854d0e', '#713f12'];
 
   const weeklyChartData = diasAbreviados.map((dia, i) => ({
     name: dia,
@@ -145,7 +145,7 @@ export default function EstatisticasPage() {
                         fontSize: '12px',
                       }}
                     />
-                    <Bar dataKey="value" fill="#d4b87a" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="value" fill="#b45309" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </motion.div>
@@ -264,10 +264,10 @@ export default function EstatisticasPage() {
                   <Line
                     type="monotone"
                     dataKey="capitulos"
-                    stroke="#d4b87a"
+                    stroke="#b45309"
                     strokeWidth={2}
-                    dot={{ fill: '#d4b87a', r: 3 }}
-                    activeDot={{ r: 5, fill: '#d4b87a' }}
+                    dot={{ fill: '#b45309', r: 3 }}
+                    activeDot={{ r: 5, fill: '#b45309' }}
                   />
                 </LineChart>
               </ResponsiveContainer>

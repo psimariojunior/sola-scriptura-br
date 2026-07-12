@@ -74,7 +74,7 @@ export default function PainelEstudos({ livro, capitulo, versiculo, nomeLivro, o
       {/* Content */}
       {estudos.length === 0 ? (
         <div className="p-8 text-center">
-          <BookOpen className="w-12 h-12 mx-auto mb-3 text-[var(--muted-fg)]/30" strokeWidth={1} />
+          <BookOpen className="w-12 h-12 mx-auto mb-3 text-[var(--muted-fg)]/60" strokeWidth={1} />
           <p className="text-sm text-[var(--muted-fg)]">Nenhum estudo disponível para este versículo.</p>
           <p className="text-xs text-[var(--muted-fg)]/60 mt-1">Estudos estão disponíveis para versículos-chave selecionados.</p>
         </div>

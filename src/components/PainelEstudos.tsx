@@ -74,9 +74,9 @@ export default function PainelEstudos({ livro, capitulo, versiculo, nomeLivro, o
       {/* Content */}
       {estudos.length === 0 ? (
         <div className="p-8 text-center">
-          <BookOpen className="w-12 h-12 mx-auto mb-3 text-[var(--muted-fg)]/60" strokeWidth={1} />
+          <BookOpen className="w-12 h-12 mx-auto mb-3 text-[var(--muted-fg)]" strokeWidth={1} />
           <p className="text-sm text-[var(--muted-fg)]">Nenhum estudo disponível para este versículo.</p>
-          <p className="text-xs text-[var(--muted-fg)]/60 mt-1">Estudos estão disponíveis para versículos-chave selecionados.</p>
+          <p className="text-xs text-[var(--muted-fg)] mt-1">Estudos estão disponíveis para versículos-chave selecionados.</p>
         </div>
       ) : (
         <div className="max-h-[60vh] overflow-y-auto">
@@ -139,14 +139,14 @@ export default function PainelEstudos({ livro, capitulo, versiculo, nomeLivro, o
                           className="overflow-hidden"
                         >
                           <div className="px-4 pb-4 border-t border-[var(--border)]/30">
-                            <p className="text-sm text-[var(--fg)]/80 leading-relaxed mt-3 font-serif-body">
+                            <p className="text-sm text-[var(--fg)] leading-relaxed mt-3 font-serif-body">
                               {interp.resumo}
                             </p>
                             {interp.citacao && (
                               <div className="mt-3 p-3 bg-[var(--bg)]/80 rounded-lg border-l-3 border-[var(--primary)]/30">
                                 <div className="flex items-start gap-2">
                                   <Quote className="w-3 h-3 text-[var(--primary)] mt-1 shrink-0" />
-                                  <p className="text-xs text-[var(--fg)]/70 italic leading-relaxed font-serif-body">
+                                  <p className="text-xs text-[var(--fg)] italic leading-relaxed font-serif-body">
                                     {interp.citacao}
                                   </p>
                                 </div>

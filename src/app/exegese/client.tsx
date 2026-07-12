@@ -247,7 +247,7 @@ export function ExegeseClient() {
                         value={capituloNum ?? ''}
                         onChange={(e) => setCapituloNum(e.target.value ? Number(e.target.value) : null)}
                         disabled={!livro}
-                        className="w-full px-4 py-3 bg-background/50 border border-border/50 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all disabled:opacity-40"
+                        className="w-full px-4 py-3 bg-background/50 border border-border/50 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all disabled:opacity-60"
                       >
                         <option value="">Selecionar...</option>
                         {Array.from({ length: totalCaps }, (_, i) => i + 1).map((c) => (
@@ -275,7 +275,7 @@ export function ExegeseClient() {
                       <Search className="w-10 h-10 text-primary/40" strokeWidth={1} />
                     </div>
                     <p className="font-display text-2xl text-muted-foreground mb-2">Selecione um livro e capítulo</p>
-                    <p className="text-sm text-muted-foreground/70 max-w-md mx-auto">
+                    <p className="text-sm text-muted-foreground max-w-md mx-auto">
                       Escolha uma passagem bíblica acima para iniciar a análise exegética completa
                     </p>
                   </div>
@@ -320,8 +320,8 @@ export function ExegeseClient() {
                             <div className={`glass-card rounded-2xl overflow-hidden border ${tradBg[traducao]}`}>
                               <div className={`px-6 py-4 bg-gradient-to-r ${tradCores[traducao]}`}>
                                 <div className="flex items-center gap-3">
-                                  <span className="text-white font-bold text-sm">{traducao.toUpperCase()}</span>
-                                  <span className="text-white/80 text-sm">
+                                  <span className="dark:text-white text-[var(--fg)] font-bold text-sm">{traducao.toUpperCase()}</span>
+                                   <span className="dark:text-white/80 text-[var(--fg)]/80 text-sm">
                                     {livro?.nome} {capituloNum}
                                   </span>
                                 </div>

@@ -156,12 +156,12 @@ export default function AudioPlayer({ verses, bookName, chapter }: AudioPlayerPr
           <div className="flex items-center gap-1">
             <motion.button onClick={prevVerse} disabled={currentVerse === 0}
               whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
-              className="p-2 text-[var(--muted-fg)] hover:text-[var(--fg)] disabled:opacity-30 transition-colors">
+              className="p-2 text-[var(--muted-fg)] hover:text-[var(--fg)] disabled:opacity-50 transition-colors">
               <SkipBack className="w-4 h-4" />
             </motion.button>
             <motion.button onClick={nextVerse} disabled={currentVerse >= verses.length - 1}
               whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
-              className="p-2 text-[var(--muted-fg)] hover:text-[var(--fg)] disabled:opacity-30 transition-colors">
+              className="p-2 text-[var(--muted-fg)] hover:text-[var(--fg)] disabled:opacity-50 transition-colors">
               <SkipForward className="w-4 h-4" />
             </motion.button>
           </div>

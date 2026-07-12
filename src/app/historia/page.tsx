@@ -194,7 +194,7 @@ export default function HistoriaPage() {
                               )}
                             </div>
                             <motion.div animate={{ rotate: periodoExpandido === p.nome ? 180 : 0 }}>
-                              <ChevronDown className="w-5 h-5 text-white/60" />
+                              <ChevronDown className="w-5 h-5 text-white/80" />
                             </motion.div>
                           </div>
                         </div>

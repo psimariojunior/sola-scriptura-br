@@ -192,7 +192,7 @@ export default function TopicosPage() {
                 onClick={() => setFiltroCategoria(null)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                   !filtroCategoria
-                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-md shadow-amber-500/25'
+                    ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow-md shadow-amber-500/25'
                     : 'bg-white/60 dark:bg-white/5 backdrop-blur-md border border-amber-200/50 dark:border-amber-800/30 text-muted-foreground hover:border-amber-400 dark:hover:border-amber-600'
                 }`}
               >
@@ -361,7 +361,7 @@ export default function TopicosPage() {
                 <p className="text-muted-foreground">Tente buscar por outro termo ou ajuste os filtros.</p>
                 <button
                   onClick={() => { setBusca(''); setFiltroCategoria(null); }}
-                  className="mt-4 px-6 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-white font-medium hover:shadow-lg hover:shadow-amber-500/25 transition-all"
+                  className="mt-4 px-6 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 text-white font-medium hover:shadow-lg hover:shadow-amber-500/25 transition-all"
                 >
                   Limpar filtros
                 </button>

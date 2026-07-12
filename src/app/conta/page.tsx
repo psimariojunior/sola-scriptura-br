@@ -135,7 +135,7 @@ export default function ContaPage() {
                 <p className="text-xs text-muted-foreground mt-1">Total</p>
               </div>
               <div className="glass-card p-5 rounded-2xl text-center group hover:shadow-lg transition-all">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                   <Crown className="w-6 h-6 text-white" />
                 </div>
                 <p className="font-display text-lg font-light text-primary">Gratuito</p>
@@ -180,7 +180,7 @@ export default function ContaPage() {
             <div className="glass-card rounded-2xl overflow-hidden mb-8">
               <div className="p-6 sm:p-8 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10">
                 <div className="flex flex-col sm:flex-row items-center gap-6">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-lg">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center shadow-lg">
                     <Crown className="w-8 h-8 text-white" />
                   </div>
                   <div className="flex-1 text-center sm:text-left">
@@ -189,7 +189,7 @@ export default function ContaPage() {
                       Acesse todas as traduções, comentários, estudos avançados e muito mais
                     </p>
                   </div>
-                  <button className="px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-xl shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/30 transition-all">
+                  <button className="px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700 text-white font-semibold rounded-xl shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/30 transition-all">
                     Assinar Premium
                   </button>
                 </div>

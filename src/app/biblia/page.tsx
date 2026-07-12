@@ -366,7 +366,7 @@ export default function BibliaPage() {
 
                 <div className="flex items-center gap-2">
                   <button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0}
-                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-30 transition-all duration-300 hover:scale-110">
+                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-50 transition-all duration-300 hover:scale-110">
                     <ChevronLeft className="w-4 h-4" />
                   </button>
                   <div className="text-sm font-semibold min-w-[140px] text-center">
@@ -375,7 +375,7 @@ export default function BibliaPage() {
                   </div>
                   <button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
                     disabled={capituloIdx >= livro.totalCapitulos - 1}
-                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-30 transition-all duration-300 hover:scale-110">
+                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-50 transition-all duration-300 hover:scale-110">
                     <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -529,7 +529,7 @@ export default function BibliaPage() {
                             </motion.p>
                           ))}
                           <div className="ornament w-20 mx-auto mt-12 mb-6" />
-                          <p className="text-center text-xs text-[var(--muted-fg)]/50">{labelMap[data[0]?.traducao || 'arc']} — {livro.nome} {capituloIdx + 1}</p>
+                          <p className="text-center text-xs text-[var(--muted-fg)]">{labelMap[data[0]?.traducao || 'arc']} — {livro.nome} {capituloIdx + 1}</p>
                         </div>
                       ) : (
                         <>
@@ -599,7 +599,7 @@ export default function BibliaPage() {
                                                   const cap = parts[1];
                                                   return (
                                                     <Link key={ref} href={`/biblia?livro=${book}&capitulo=${cap}`}
-                                                      className="text-[10px] text-[var(--primary)] hover:underline opacity-60 hover:opacity-100 transition-opacity">
+                                                       className="text-[10px] text-[var(--primary)] hover:underline opacity-80 hover:opacity-100 transition-opacity">
                                                       {ref}
                                                     </Link>
                                                   );
@@ -809,14 +809,14 @@ export default function BibliaPage() {
                         <div className="flex items-center justify-center gap-4 mt-12 pt-8 border-t border-[var(--border)]/30">
                           <motion.button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0}
                             whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                            className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-30 hover:bg-[var(--bg)] transition-all duration-300">
+                            className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-50 hover:bg-[var(--bg)] transition-all duration-300">
                             <ChevronLeft className="w-4 h-4" /> Anterior
                           </motion.button>
                           <span className="text-xs text-[var(--muted-fg)] font-mono">{capituloIdx + 1} / {livro.totalCapitulos}</span>
                           <motion.button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
                             disabled={capituloIdx >= livro.totalCapitulos - 1}
                             whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                            className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-30 hover:bg-[var(--bg)] transition-all duration-300">
+                            className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-50 hover:bg-[var(--bg)] transition-all duration-300">
                             Próximo <ChevronRight className="w-4 h-4" />
                           </motion.button>
                         </div>
@@ -826,7 +826,7 @@ export default function BibliaPage() {
                   </AnimatePresence>
                 ) : (
                   <div className="text-center py-20 chapter-enter">
-                    <BookOpen className="w-16 h-16 mx-auto mb-4 text-[var(--muted-fg)]/30" strokeWidth={1} />
+                    <BookOpen className="w-16 h-16 mx-auto mb-4 text-[var(--muted-fg)]" strokeWidth={1} />
                     <p className="text-lg text-[var(--muted-fg)]">Selecione um livro e capítulo</p>
                   </div>
                 )}
@@ -1051,7 +1051,7 @@ export default function BibliaPage() {
                 ) : quickSearchQuery.length >= 2 ? (
                   <div className="p-8 text-center text-sm text-[var(--muted-fg)]">Nenhum resultado encontrado</div>
                 ) : quickSearchQuery.length === 0 && recentSearches.length === 0 ? (
-                  <div className="p-8 text-center text-sm text-[var(--muted-fg)]/60">
+                  <div className="p-8 text-center text-sm text-[var(--muted-fg)]">
                     <kbd className="text-xs bg-[var(--bg)] px-2 py-1 rounded border border-[var(--border)]">Ctrl+K</kbd>
                     <span className="mx-2">ou</span>
                     <kbd className="text-xs bg-[var(--bg)] px-2 py-1 rounded border border-[var(--border)]">/</kbd>
@@ -1080,11 +1080,11 @@ export default function BibliaPage() {
             <BookOpen className="w-5 h-5" /><span className="text-[10px]">Livros</span>
           </motion.button>
           <div className="flex items-center gap-1">
-            <motion.button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0} whileTap={{ scale: 0.9 }} className="p-2 text-[var(--muted-fg)] disabled:opacity-30">
+            <motion.button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0} whileTap={{ scale: 0.9 }} className="p-2 text-[var(--muted-fg)] disabled:opacity-50">
               <ChevronLeft className="w-5 h-5" />
             </motion.button>
             <span className="text-xs font-mono min-w-[3rem] text-center">{capituloIdx + 1}/{livro.totalCapitulos}</span>
-            <motion.button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))} disabled={capituloIdx >= livro.totalCapitulos - 1} whileTap={{ scale: 0.9 }} className="p-2 text-[var(--muted-fg)] disabled:opacity-30">
+            <motion.button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))} disabled={capituloIdx >= livro.totalCapitulos - 1} whileTap={{ scale: 0.9 }} className="p-2 text-[var(--muted-fg)] disabled:opacity-50">
               <ChevronRight className="w-5 h-5" />
             </motion.button>
           </div>

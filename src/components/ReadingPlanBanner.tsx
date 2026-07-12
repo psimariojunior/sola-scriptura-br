@@ -106,7 +106,7 @@ export default function ReadingPlanBanner() {
             <button
               onClick={prevDay}
               disabled={state.currentDay <= 1}
-              className="flex items-center gap-1 text-[11px] text-[var(--muted-fg)] hover:text-[var(--fg)] disabled:opacity-30 transition-colors"
+              className="flex items-center gap-1 text-[11px] text-[var(--muted-fg)] hover:text-[var(--fg)] disabled:opacity-50 transition-colors"
             >
               <ChevronLeft className="w-3 h-3" /> Anterior
             </button>
@@ -123,7 +123,7 @@ export default function ReadingPlanBanner() {
             )}
 
             {!state.completedDays.includes(state.currentDay) && (
-              <span className="text-[10px] text-[var(--muted-fg)]/80 italic">
+              <span className="text-[10px] text-[var(--muted-fg)] italic">
                 Marque como concluído para avançar
               </span>
             )}

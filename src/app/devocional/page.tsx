@@ -75,7 +75,7 @@ export default function DevocionalPage() {
                 disabled={diaAtual <= 1}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-30 hover:bg-[var(--card-bg)] transition-all duration-300"
+                className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-50 hover:bg-[var(--card-bg)] transition-all duration-300"
               >
                 <ChevronLeft className="w-4 h-4" /> Anterior
               </motion.button>
@@ -94,13 +94,13 @@ export default function DevocionalPage() {
                 disabled={diaAtual >= 365}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-30 hover:bg-[var(--card-bg)] transition-all duration-300"
+                className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-50 hover:bg-[var(--card-bg)] transition-all duration-300"
               >
                 Próximo <ChevronRight className="w-4 h-4" />
               </motion.button>
             </div>
 
-            <p className="text-center text-xs text-[var(--muted-fg)]/70 mt-6">
+            <p className="text-center text-xs text-[var(--muted-fg)] mt-6">
               Dia {devocional.dia} de {devocionais.length}
             </p>
           </motion.div>

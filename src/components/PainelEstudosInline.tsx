@@ -125,14 +125,14 @@ export default function PainelEstudosInline({ livro, capitulo, versiculo, nomeLi
                       className="overflow-hidden"
                     >
                       <div className="px-3 pb-3 border-t border-[var(--border)]/20">
-                        <p className="text-xs text-[var(--fg)]/70 leading-relaxed mt-2 font-serif-body">
+                        <p className="text-xs text-[var(--fg)] leading-relaxed mt-2 font-serif-body">
                           {interp.resumo}
                         </p>
                         {interp.citacao && (
                           <div className="mt-2 p-2.5 bg-[var(--bg)]/60 rounded-lg border-l-2 border-[var(--primary)]/20">
                             <div className="flex items-start gap-1.5">
                               <Quote className="w-2.5 h-2.5 text-[var(--primary)] mt-0.5 shrink-0" />
-                              <p className="text-[11px] text-[var(--fg)]/60 italic leading-relaxed font-serif-body">
+                              <p className="text-[11px] text-[var(--fg)] italic leading-relaxed font-serif-body">
                                 {interp.citacao}
                               </p>
                             </div>

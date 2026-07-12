@@ -409,7 +409,7 @@ export default function AdminPage() {
                           </div>
                         </div>
                         <div className="glass-card rounded-2xl overflow-hidden">
-                          <div className="px-5 py-4 bg-gradient-to-r from-amber-500 to-amber-600">
+                          <div className="px-5 py-4 bg-gradient-to-r from-amber-600 to-amber-700">
                             <FileText className="w-6 h-6 text-white" />
                           </div>
                           <div className="p-5">

@@ -224,7 +224,7 @@ export default function EstatisticasPage() {
                       className={`aspect-square rounded-md ${intensity} flex items-center justify-center group relative cursor-default`}
                       title={`${day.date}: ${day.count} capítulo(s)`}
                     >
-                      <span className="text-[9px] text-[var(--muted-fg)]/60">{dayNum}</span>
+                      <span className="text-[9px] text-[var(--muted-fg)]">{dayNum}</span>
                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-[var(--fg)] text-[var(--bg)] text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
                         {new Date(day.date).toLocaleDateString('pt-BR')}: {day.count} cap.
                       </div>

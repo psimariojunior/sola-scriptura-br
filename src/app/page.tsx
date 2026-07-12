@@ -91,7 +91,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="font-display text-6xl md:text-8xl lg:text-9xl font-light leading-[0.9] tracking-tight mb-8"
+            className="font-display text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-light leading-[0.9] tracking-tight mb-8"
           >
             <span className="block">Sola</span>
             <span className="italic font-medium gradient-text block">Scriptura</span>
@@ -157,7 +157,7 @@ export default function Home() {
       {/* Stats */}
       <section className="py-16 px-6 border-y border-[var(--border)]/30">
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
             {stats.map((stat, i) => (
               <ScrollReveal key={stat.label} delay={i * 0.08}>
                 <div className="text-center">

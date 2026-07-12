@@ -44,29 +44,27 @@ function highlightText(text: string, query: string, mode: string) {
   if (!query.trim()) return text;
   
   try {
-    let regex: RegExp;
+    let pattern: string;
     
     switch (mode) {
       case 'exact':
-        const escapedExact = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        regex = new RegExp(`(${escapedExact})`, 'gi');
+        pattern = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         break;
       case 'startsWith':
-        const escapedStart = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        regex = new RegExp(`(${escapedStart}\\S*)`, 'gi');
+        pattern = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\S*';
         break;
       case 'regex':
-        regex = new RegExp(`(${query})`, 'gi');
+        pattern = query;
         break;
-      default: // contains
-        const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        regex = new RegExp(`(${escaped})`, 'gi');
+      default:
+        pattern = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
     
+    const regex = new RegExp(`(${pattern})`, 'gi');
     const parts = text.split(regex);
     return parts.map((part, i) =>
-      regex.test(part)
-        ? <mark key={i} className="bg-gold/30 text-ink dark:text-parchment px-0.5 rounded-sm">{part}</mark>
+      i % 2 === 1
+        ? <mark key={i} className="bg-primary/20 text-foreground px-0.5 rounded-sm">{part}</mark>
         : part
     );
   } catch {
@@ -469,12 +467,12 @@ export default function PesquisaPage() {
                     exit={{ opacity: 0 }}
                     className="space-y-3"
                   >
-                    {resultados.map((r, i) => (
+                    {resultados.slice(0, 100).map((r, i) => (
                       <motion.div
                         key={`${r.traducao}-${r.livroAbrev}-${r.capitulo}-${r.versiculo}`}
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.03, duration: 0.3 }}
+                        transition={{ delay: Math.min(i * 0.02, 0.5), duration: 0.2 }}
                       >
                         <div className="sola-card p-5 group">
                           <div className="flex items-start justify-between gap-4">

@@ -1,0 +1,326 @@
+'use client';
+
+import { useState, useRef, useCallback } from 'react';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { motion } from 'framer-motion';
+import { Share2, Copy, Check, MessageCircle, Twitter, Instagram, Download } from 'lucide-react';
+import ScrollReveal from '@/components/ScrollReveal';
+
+const versiculosPredefinidos = [
+  'João 3:16',
+  'Salmos 23:1',
+  'Filipenses 4:13',
+  'Romanos 8:28',
+  'Jeremias 29:11',
+  'Isaías 41:10',
+  'Efésios 2:8',
+  'Provérbios 3:5-6',
+  'Mateus 11:28',
+  'Gálatas 2:20',
+];
+
+const textosVersiculos: Record<string, { texto: string; referencia: string }> = {
+  'joão 3:16': {
+    texto: 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.',
+    referencia: 'João 3:16',
+  },
+  'salmos 23:1': {
+    texto: 'O Senhor é o meu pastor; nada me faltará.',
+    referencia: 'Salmos 23:1',
+  },
+  'filipenses 4:13': {
+    texto: 'Posso todas as coisas naquele que me fortalece.',
+    referencia: 'Filipenses 4:13',
+  },
+  'romanos 8:28': {
+    texto: 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito.',
+    referencia: 'Romanos 8:28',
+  },
+  'jeremias 29:11': {
+    texto: 'Porque eu bem sei os pensamentos que penso de vós, diz o Senhor; pensamentos de paz, e não de mal, para vos dar o fim que esperais.',
+    referencia: 'Jeremias 29:11',
+  },
+  'isaías 41:10': {
+    texto: 'Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus; eu te fortaleço, e te ajudo, e te sustento com a destra da minha justiça.',
+    referencia: 'Isaías 41:10',
+  },
+  'efésios 2:8': {
+    texto: 'Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus.',
+    referencia: 'Efésios 2:8',
+  },
+  'provérbios 3:5-6': {
+    texto: 'Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitará as tuas veredas.',
+    referencia: 'Provérbios 3:5-6',
+  },
+  'mateus 11:28': {
+    texto: 'Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei.',
+    referencia: 'Mateus 11:28',
+  },
+  'gálatas 2:20': {
+    texto: 'Já não sou eu que vivo, mas Cristo vive em mim. E se eu vivo na terra, vivo pela fé no Filho de Deus, que me amou e a si mesmo se entregou por mim.',
+    referencia: 'Gálatas 2:20',
+  },
+};
+
+export default function CompartilharPage() {
+  const [inputVersiculo, setInputVersiculo] = useState('');
+  const [versiculoAtual, setVersiculoAtual] = useState<{ texto: string; referencia: string } | null>(null);
+  const [copied, setCopied] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  const buscarVersiculo = useCallback(() => {
+    const chave = inputVersiculo.toLowerCase().trim();
+    if (textosVersiculos[chave]) {
+      setVersiculoAtual(textosVersiculos[chave]);
+    } else {
+      setVersiculoAtual({
+        texto: 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito.',
+        referencia: inputVersiculo || 'João 3:16',
+      });
+    }
+  }, [inputVersiculo]);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') buscarVersiculo();
+  };
+
+  const copiarTexto = async () => {
+    if (!versiculoAtual) return;
+    const texto = `"${versiculoAtual.texto}" — ${versiculoAtual.referencia}\n\nvia Sola Scriptura`;
+    await navigator.clipboard.writeText(texto);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const compartilharWhatsApp = () => {
+    if (!versiculoAtual) return;
+    const texto = encodeURIComponent(`"${versiculoAtual.texto}" — ${versiculoAtual.referencia}\n\nvia Sola Scriptura`);
+    window.open(`https://wa.me/?text=${texto}`, '_blank');
+  };
+
+  const compartilharTwitter = () => {
+    if (!versiculoAtual) return;
+    const texto = encodeURIComponent(`"${versiculoAtual.texto}" — ${versiculoAtual.referencia}\n\nvia Sola Scriptura`);
+    window.open(`https://twitter.com/intent/tweet?text=${texto}`, '_blank');
+  };
+
+  const gerarImagem = async () => {
+    if (!versiculoAtual || !canvasRef.current) return;
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const w = 1080;
+    const h = 1080;
+    canvas.width = w;
+    canvas.height = h;
+
+    const grad = ctx.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, '#1a1612');
+    grad.addColorStop(0.5, '#2d2319');
+    grad.addColorStop(1, '#1a1612');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+
+    const goldGrad = ctx.createLinearGradient(0, 0, w, 0);
+    goldGrad.addColorStop(0, '#8B6914');
+    goldGrad.addColorStop(0.5, '#D4A843');
+    goldGrad.addColorStop(1, '#8B6914');
+
+    ctx.strokeStyle = goldGrad;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.arc(w / 2, h / 2, 380, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.strokeStyle = 'rgba(212, 168, 67, 0.15)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(w / 2, h / 2, 400, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.font = '16px serif';
+    ctx.fillStyle = '#D4A843';
+    ctx.textAlign = 'center';
+    const aspasTopoY = h / 2 - 220;
+    ctx.fillText('❝', w / 2 - 320, aspasTopoY);
+    ctx.fillText('❞', w / 2 + 300, aspasTopoY + 340);
+
+    ctx.font = 'italic 42px Georgia, serif';
+    ctx.fillStyle = '#F5F0E8';
+    ctx.textAlign = 'center';
+    const palavras = versiculoAtual.texto.split(' ');
+    let linha = '';
+    const linhas: string[] = [];
+    const maxWidth = 800;
+
+    for (const palavra of palavras) {
+      const testLine = linha + (linha ? ' ' : '') + palavra;
+      const metrics = ctx.measureText(testLine);
+      if (metrics.width > maxWidth && linha) {
+        linhas.push(linha);
+        linha = palavra;
+      } else {
+        linha = testLine;
+      }
+    }
+    linhas.push(linha);
+
+    const lineHeight = 60;
+    const startY = h / 2 - (linhas.length * lineHeight) / 2;
+    linhas.forEach((l, i) => {
+      ctx.fillText(l, w / 2, startY + i * lineHeight);
+    });
+
+    ctx.font = '600 28px Georgia, serif';
+    ctx.fillStyle = '#D4A843';
+    ctx.fillText(`— ${versiculoAtual.referencia}`, w / 2, startY + linhas.length * lineHeight + 50);
+
+    ctx.font = '18px sans-serif';
+    ctx.fillStyle = 'rgba(212, 168, 67, 0.5)';
+    ctx.fillText('Sola Scriptura', w / 2, h - 80);
+
+    const link = document.createElement('a');
+    link.download = `versiculo-${versiculoAtual.referencia.replace(/\s+/g, '-')}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  };
+
+  return (
+    <div className="min-h-screen">
+      <Header />
+      <main className="pt-24 pb-16 px-6">
+        <div className="max-w-2xl mx-auto">
+          <ScrollReveal>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Share2 className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <h1 className="font-display text-3xl font-light">Compartilhar</h1>
+                <p className="text-sm text-muted-foreground">Compartilhe versículos com formatos bonitos</p>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="rounded-2xl border border-border/50 bg-card/50 p-6">
+                <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3 block">
+                  Digite um versículo
+                </label>
+                <div className="flex gap-3">
+                  <input
+                    type="text"
+                    value={inputVersiculo}
+                    onChange={(e) => setInputVersiculo(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    placeholder="Ex: João 3:16"
+                    className="flex-1 px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-display text-lg"
+                  />
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={buscarVersiculo}
+                    className="px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-all"
+                  >
+                    Buscar
+                  </motion.button>
+                </div>
+
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {versiculosPredefinidos.map((v) => (
+                    <button
+                      key={v}
+                      onClick={() => { setInputVersiculo(v); setVersiculoAtual(textosVersiculos[v.toLowerCase()]); }}
+                      className="px-3 py-1.5 text-xs rounded-full border border-border/50 hover:bg-muted/50 hover:border-primary/30 transition-all"
+                    >
+                      {v}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {versiculoAtual && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="space-y-6"
+                >
+                  <div className="relative overflow-hidden rounded-2xl" style={{ background: 'linear-gradient(135deg, #1a1612, #2d2319, #1a1612)' }}>
+                    <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, rgba(212, 168, 67, 0.3), transparent 60%)' }} />
+                    <div className="relative p-10 text-center">
+                      <div className="inline-block w-16 h-[1px] bg-gradient-to-r from-transparent via-amber-600/50 to-transparent mb-6" />
+                      <p className="font-display italic text-2xl leading-relaxed text-amber-50/95 mb-6">
+                        &ldquo;{versiculoAtual.texto}&rdquo;
+                      </p>
+                      <p className="font-display text-lg text-amber-400/80 font-medium">
+                        — {versiculoAtual.referencia}
+                      </p>
+                      <div className="inline-block w-16 h-[1px] bg-gradient-to-r from-transparent via-amber-600/50 to-transparent mt-6" />
+                      <p className="text-xs text-amber-600/40 mt-4 tracking-widest uppercase">Sola Scriptura</p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={copiarTexto}
+                      className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-border/50 bg-card/50 hover:bg-muted/50 transition-all text-sm font-medium"
+                    >
+                      {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+                      {copied ? 'Copiado!' : 'Copiar Texto'}
+                    </motion.button>
+
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={compartilharWhatsApp}
+                      className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white transition-all text-sm font-medium"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                      WhatsApp
+                    </motion.button>
+
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={compartilharTwitter}
+                      className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white transition-all text-sm font-medium"
+                    >
+                      <Twitter className="w-4 h-4" />
+                      Twitter / X
+                    </motion.button>
+
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={gerarImagem}
+                      className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transition-all text-sm font-medium"
+                    >
+                      <Instagram className="w-4 h-4" />
+                      Instagram (PNG)
+                    </motion.button>
+                  </div>
+
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={gerarImagem}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-amber-600/30 bg-amber-600/10 hover:bg-amber-600/20 text-amber-500 transition-all text-sm font-medium"
+                  >
+                    <Download className="w-4 h-4" />
+                    Baixar como Imagem PNG
+                  </motion.button>
+                </motion.div>
+              )}
+
+              <canvas ref={canvasRef} className="hidden" />
+            </div>
+          </ScrollReveal>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+}

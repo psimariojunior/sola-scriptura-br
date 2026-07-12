@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, BookOpen, Search, Sun, Moon, User, Languages, Stars, BookMarked } from 'lucide-react';
+import { Menu, X, BookOpen, Search, Sun, Moon, User, Languages, Stars, BookMarked, Command } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { useTranslation } from 'react-i18next';
+import { BuscaGlobal } from '@/components/BuscaGlobal';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -45,6 +46,7 @@ const temaIcons: Record<string, React.ReactNode> = {
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [buscaOpen, setBuscaOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { tema, setTema, temasDisponiveis } = useTema();
   const { i18n } = useTranslation();
@@ -72,6 +74,8 @@ export function Header() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/');
 
   return (
+    <>
+    <BuscaGlobal open={buscaOpen} onOpenChange={setBuscaOpen} />
     <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${
       scrolled 
         ? 'bg-background/95 backdrop-blur-xl border-b border-border/40 shadow-[0_1px_3px_rgba(0,0,0,0.05)]' 
@@ -177,12 +181,16 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Link 
-            href="/pesquisa" 
-            className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300 hover:scale-110"
+          <button 
+            onClick={() => setBuscaOpen(true)}
+            className="flex items-center gap-1.5 p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300 hover:scale-110"
+            title="Buscar (Ctrl+K)"
           >
             <Search className="w-4 h-4" />
-          </Link>
+            <kbd className="hidden xl:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] font-mono text-muted-foreground/70 border border-border/40 rounded bg-muted/30">
+              <Command className="w-2.5 h-2.5" />K
+            </kbd>
+          </button>
         </div>
 
         <div className="flex lg:hidden items-center gap-1">
@@ -191,6 +199,13 @@ export function Header() {
             className="px-2 py-1 text-xs font-semibold rounded-lg border border-border hover:bg-muted/50 transition-all duration-300 uppercase tracking-wider"
           >
             {idioma === 'pt' ? 'EN' : 'PT'}
+          </button>
+          <button
+            onClick={() => setBuscaOpen(true)}
+            className="p-2 hover:bg-muted/50 rounded-lg transition-all duration-300"
+            aria-label="Buscar"
+          >
+            <Search className="w-5 h-5" />
           </button>
           <button 
             className="p-2 hover:bg-muted/50 rounded-lg transition-all duration-300" 
@@ -278,5 +293,6 @@ export function Header() {
         )}
       </AnimatePresence>
     </header>
+    </>
   );
 }

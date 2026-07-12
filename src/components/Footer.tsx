@@ -45,8 +45,8 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border bg-card/50 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
-        backgroundImage: 'radial-gradient(circle at 20% 80%, #c4a265 0%, transparent 40%)',
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
+        backgroundImage: 'radial-gradient(circle at 20% 80%, hsl(var(--primary)) 0%, transparent 40%)',
       }} />
       
       <div className="max-w-7xl mx-auto px-6 py-16 relative z-10">

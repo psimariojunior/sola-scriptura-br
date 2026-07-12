@@ -69,8 +69,8 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative pt-28 pb-20 px-6 overflow-hidden min-h-[85vh] flex items-center">
-        <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{
-          backgroundImage: 'radial-gradient(circle at 25% 40%, #c4a265 0%, transparent 45%), radial-gradient(circle at 75% 25%, #8b5e3c 0%, transparent 40%)',
+        <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{
+          backgroundImage: 'radial-gradient(circle at 25% 40%, hsl(38 50% 62%) 0%, transparent 45%), radial-gradient(circle at 75% 25%, hsl(28 30% 35%) 0%, transparent 40%)',
         }} />
         <ParticlesBackground />
 

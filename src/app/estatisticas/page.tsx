@@ -214,9 +214,9 @@ export default function EstatisticasPage() {
                   const d = new Date(day.date);
                   const dayNum = d.getDate();
                   const intensity = day.count > 0
-                    ? day.count >= 5 ? 'bg-[var(--primary)]'
-                    : day.count >= 3 ? 'bg-[var(--primary)]/60'
-                    : 'bg-[var(--primary)]/30'
+                    ? day.count >= 5 ? 'bg-primary'
+                    : day.count >= 3 ? 'bg-primary/60'
+                    : 'bg-primary/30'
                     : 'bg-[var(--bg)]';
                   return (
                     <div

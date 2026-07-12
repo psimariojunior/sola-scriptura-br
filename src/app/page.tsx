@@ -125,7 +125,7 @@ export default function Home() {
             className="flex flex-wrap gap-3 justify-center"
           >
             <Link href="/biblia"
-              className="group inline-flex items-center gap-2 bg-[var(--primary)] text-white px-7 py-3 text-sm font-semibold tracking-wide hover:bg-[var(--primary)]/90 transition-all duration-300 hover:shadow-lg hover:shadow-[var(--primary)]/20 rounded-lg"
+              className="group inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3 text-sm font-semibold tracking-wide hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 rounded-lg"
             >
               Iniciar Estudo
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -278,7 +278,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Link href="/biblia"
-                className="inline-flex items-center gap-2 bg-[var(--primary)] text-white px-7 py-3 text-sm font-semibold rounded-lg hover:bg-[var(--primary)]/90 transition-all duration-300 hover:shadow-lg hover:shadow-[var(--primary)]/20"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3 text-sm font-semibold rounded-lg hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
               >
                 <BookOpen className="w-4 h-4" />
                 Abrir a Bíblia

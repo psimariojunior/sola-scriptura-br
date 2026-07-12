@@ -312,7 +312,7 @@ export default function EstudoPage() {
                   onClick={() => setAbasAtiva(aba.id)}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 whitespace-nowrap ${
                     abaAtiva === aba.id
-                      ? 'bg-[var(--primary)] text-white shadow-lg shadow-[var(--primary)]/25'
+                      ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
                       : 'bg-[var(--card-bg)] text-[var(--muted-fg)] hover:text-[var(--fg)] hover:bg-[var(--bg)]'
                   }`}
                 >

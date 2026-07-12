@@ -41,9 +41,9 @@ function PanelFallback() {
   return (
     <div className="flex items-center justify-center py-8">
       <div className="flex gap-1.5">
-        <span className="w-2 h-2 bg-[var(--primary)] rounded-full animate-bounce [animation-delay:0s]" />
-        <span className="w-2 h-2 bg-[var(--primary)] rounded-full animate-bounce [animation-delay:0.15s]" />
-        <span className="w-2 h-2 bg-[var(--primary)] rounded-full animate-bounce [animation-delay:0.3s]" />
+        <span className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0s]" />
+        <span className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0.15s]" />
+        <span className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0.3s]" />
       </div>
     </div>
   );
@@ -408,7 +408,7 @@ export default function BibliaPage() {
                       ]).map(({ mode, icon: Icon, label }) => (
                         <motion.button key={mode} onClick={() => setViewMode(mode)} title={label}
                           whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                          className={`p-1.5 rounded-md transition-all duration-300 ${viewMode === mode ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                          className={`p-1.5 rounded-md transition-all duration-300 ${viewMode === mode ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
                           <Icon className="w-3.5 h-3.5" />
                         </motion.button>
                       ))}
@@ -417,7 +417,7 @@ export default function BibliaPage() {
 
                   <motion.button onClick={() => setReadingMode(!readingMode)} title="Modo leitura"
                     whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                    className={`p-1.5 rounded-md transition-all duration-300 ${readingMode ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                    className={`p-1.5 rounded-md transition-all duration-300 ${readingMode ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
                     {readingMode ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </motion.button>
 
@@ -429,7 +429,7 @@ export default function BibliaPage() {
 
                   <motion.button onClick={() => setShowPlan(!showPlan)} title="Plano de Leitura"
                     whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                    className={`p-1.5 rounded-md transition-all duration-300 ${showPlan ? 'bg-[var(--primary)] text-white' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                    className={`p-1.5 rounded-md transition-all duration-300 ${showPlan ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
                     <BookMarked className="w-4 h-4" />
                   </motion.button>
 
@@ -647,7 +647,7 @@ export default function BibliaPage() {
                                                         else { setMarcador(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, cor); }
                                                         setColorPickerVerse(null);
                                                       }}
-                                                      className={`w-5 h-5 rounded-full ${corMap[cor]} ${ativa ? 'ring-2 ring-offset-1 ring-[var(--primary)]' : ''} transition-all duration-200`}
+                                                      className={`w-5 h-5 rounded-full ${corMap[cor]} ${ativa ? 'ring-2 ring-offset-1 ring-primary' : ''} transition-all duration-200`}
                                                       title={cor}
                                                     />
                                                   );
@@ -938,7 +938,7 @@ export default function BibliaPage() {
                   const parts = anotandoVersiculo.split(':');
                   salvarAnotacao(parts[0], Number(parts[1]), Number(parts[2]), parts[3], anotacaoTexto || null);
                   refresh(); setAnotandoVersiculo(null); setAnotacaoTexto('');
-                }} className="px-4 py-2 text-sm font-medium bg-[var(--primary)] text-white rounded-lg hover:bg-[var(--primary)]/90 transition-all duration-300">Salvar</motion.button>
+                }} className="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:bg-[var(--primary)]/90 transition-all duration-300">Salvar</motion.button>
               </div>
             </motion.div>
           </motion.div>

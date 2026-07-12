@@ -53,7 +53,7 @@ export function NotificationBanner() {
             <button
               onClick={handleEnable}
               disabled={loading}
-              className="px-4 py-2 text-xs font-medium bg-[var(--primary)] text-[var(--primary-foreground)] rounded-lg hover:bg-[var(--primary)]/90 transition-colors disabled:opacity-50"
+              className="px-4 py-2 text-xs font-medium bg-primary text-primary-foreground rounded-lg hover:bg-[var(--primary)]/90 transition-colors disabled:opacity-50"
             >
               {loading ? 'Ativando...' : 'Ativar'}
             </button>

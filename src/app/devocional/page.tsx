@@ -46,7 +46,7 @@ export default function DevocionalPage() {
 
             <div className="sola-card p-8 md:p-10 mb-6">
               <div className="mb-8">
-                <p className="font-serif-body text-lg leading-relaxed text-[var(--fg)]/90 italic border-l-4 border-[var(--primary)] pl-4">
+                <p className="font-serif-body text-lg leading-relaxed text-[var(--fg)]/90 italic border-l-4 border-primary pl-4">
                   {devocional.texto}
                 </p>
                 <Link

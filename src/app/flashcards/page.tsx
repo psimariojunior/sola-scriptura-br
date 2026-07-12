@@ -132,7 +132,7 @@ export default function FlashcardsPage() {
                 {totalCards === 0 && (
                   <Link
                     href="/biblia"
-                    className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-[var(--primary)] text-white rounded-lg text-sm font-semibold hover:bg-[var(--primary)]/90 transition-all"
+                    className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-primary text-primary-foreground rounded-lg text-sm font-semibold hover:bg-[var(--primary)]/90 transition-all"
                   >
                     <BookOpen className="w-4 h-4" />
                     Ir para a Bíblia

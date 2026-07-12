@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'providers/providers.dart';
 import 'screens/splash_screen.dart';
-import 'screens/teologia_screen.dart';
-import 'screens/exegese_screen.dart';
-import 'screens/cronologia_screen.dart';
-import 'screens/mapas_screen.dart';
 
 const String API_URL = 'https://api-production-bb96.up.railway.app/api/v1';
 
@@ -14,10 +12,14 @@ void main() {
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.light,
   ));
-  runApp(const SolaScripturaApp());
+  runApp(
+    const ProviderScope(
+      child: SolaScripturaApp(),
+    ),
+  );
 }
 
-class SolaScripturaApp extends StatelessWidget {
+class SolaScripturaApp extends ConsumerWidget {
   const SolaScripturaApp({super.key});
 
   static const Color primary = Color(0xFF1A1A2E);
@@ -28,10 +30,13 @@ class SolaScripturaApp extends StatelessWidget {
   static const Color textSecondary = Color(0xFF6B7280);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeProvider = ref.watch(themeProviderInstance);
+
     return MaterialApp(
       title: 'Sola Scriptura',
       debugShowCheckedModeBanner: false,
+      themeMode: themeProvider.themeMode,
       theme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.light,
@@ -118,13 +123,93 @@ class SolaScripturaApp extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         ),
       ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.dark,
+        primaryColor: primary,
+        scaffoldBackgroundColor: const Color(0xFF0A0A14),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: accent,
+          brightness: Brightness.dark,
+          primary: primary,
+          secondary: accent,
+          surface: const Color(0xFF12121E),
+          background: const Color(0xFF0A0A14),
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF12121E),
+          foregroundColor: Colors.white,
+          centerTitle: true,
+          elevation: 0,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.5,
+          ),
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Color(0xFF12121E),
+          selectedItemColor: accent,
+          unselectedItemColor: Colors.white54,
+          type: BottomNavigationBarType.fixed,
+          elevation: 8,
+          selectedLabelStyle: TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
+          unselectedLabelStyle: TextStyle(fontSize: 11),
+        ),
+        cardTheme: CardTheme(
+          elevation: 0,
+          color: const Color(0xFF1A1A2E),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+            side: BorderSide(color: Colors.white.withOpacity(0.05)),
+          ),
+        ),
+        textTheme: TextTheme(
+          displayLarge: const TextStyle(fontFamily: 'serif', color: Colors.white),
+          displayMedium: const TextStyle(fontFamily: 'serif', color: Colors.white),
+          displaySmall: const TextStyle(fontFamily: 'serif', color: Colors.white),
+          headlineLarge: const TextStyle(fontFamily: 'serif', color: Colors.white),
+          headlineMedium: const TextStyle(fontFamily: 'serif', color: Colors.white),
+          headlineSmall: const TextStyle(fontFamily: 'serif', color: Colors.white),
+          titleLarge: const TextStyle(fontFamily: 'serif', color: Colors.white),
+          titleMedium: const TextStyle(fontFamily: 'serif', color: Colors.white),
+          titleSmall: const TextStyle(fontFamily: 'serif', color: Colors.white),
+          bodyLarge: const TextStyle(fontFamily: 'serif', color: Colors.white, height: 1.6),
+          bodyMedium: const TextStyle(fontFamily: 'serif', color: Colors.white, height: 1.5),
+          bodySmall: TextStyle(fontFamily: 'serif', color: Colors.white.withOpacity(0.5)),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: accent,
+            foregroundColor: const Color(0xFF0A0A14),
+            elevation: 0,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: const Color(0xFF12121E),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: accent, width: 2),
+          ),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        ),
+      ),
       home: const SplashScreen(),
-      routes: {
-        '/teologia': (_) => const TeologiaScreen(),
-        '/exegese': (_) => const ExegeseScreen(),
-        '/cronologia': (_) => const CronologiaScreen(),
-        '/mapas': (_) => const MapasScreen(),
-      },
     );
   }
 }

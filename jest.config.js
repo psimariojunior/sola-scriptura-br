@@ -19,6 +19,7 @@ const config = {
   transform: {
     '^.+\\.(ts|tsx)$': ['ts-jest', {
       tsconfig: 'tsconfig.json',
+      jsx: 'react-jsx',
     }],
   },
 };

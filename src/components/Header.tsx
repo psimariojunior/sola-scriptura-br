@@ -1,15 +1,20 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Menu, X, BookOpen, Search, Sun, Moon, 
-  User, ChevronDown, Command
-} from 'lucide-react';
+import { Menu, X, BookOpen, Search, Sun, Moon, User, Languages, Stars, BookMarked } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { useTranslation } from 'react-i18next';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const navLinks = [
   { href: '/biblia', label: 'Bíblia' },
@@ -31,11 +36,15 @@ const moreLinks = [
   { href: '/estudos', label: 'Meus Estudos' },
 ];
 
+const temaIcons: Record<string, React.ReactNode> = {
+  escuro: <Moon className="w-4 h-4" />,
+  sepia: <BookOpen className="w-4 h-4" />,
+  noturno: <Stars className="w-4 h-4" />,
+};
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [showMore, setShowMore] = useState(false);
-  const [showTemas, setShowTemas] = useState(false);
   const { tema, setTema, temasDisponiveis } = useTema();
   const { i18n } = useTranslation();
   const pathname = usePathname();
@@ -46,16 +55,16 @@ export function Header() {
     return 'pt';
   });
 
-  const toggleIdioma = () => {
+  const toggleIdioma = useCallback(() => {
     const novo = idioma === 'pt' ? 'en' : 'pt';
     setIdioma(novo);
     i18n.changeLanguage(novo);
     localStorage.setItem('ssb_lang', novo);
-  };
+  }, [idioma, i18n]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -82,6 +91,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
+              aria-current={isActive(link.href) ? 'page' : undefined}
               className={`text-[13px] font-medium px-3 py-2 rounded-lg transition-all duration-300 ${
                 isActive(link.href)
                   ? 'text-primary bg-primary/10 font-semibold'
@@ -91,54 +101,38 @@ export function Header() {
               {link.label}
             </Link>
           ))}
-          
-          <div className="relative">
-            <button
-              onClick={() => setShowMore(!showMore)}
-              onBlur={() => setTimeout(() => setShowMore(false), 150)}
-              className={`flex items-center gap-1 text-[13px] font-medium px-3 py-2 rounded-lg transition-all duration-300 ${
-                moreLinks.some(l => isActive(l.href))
-                  ? 'text-primary bg-primary/10 font-semibold'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-              }`}
-            >
-              Mais
-              <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${showMore ? 'rotate-180' : ''}`} />
-            </button>
-            
-            <AnimatePresence>
-              {showMore && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                  transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className="absolute top-full right-0 mt-1 w-52 bg-card border border-border rounded-xl shadow-xl py-1 z-50"
-                >
-                  {moreLinks.map((link, i) => (
-                    <motion.div
-                      key={link.href}
-                      initial={{ opacity: 0, x: -8 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05 }}
-                    >
-                      <Link
-                        href={link.href}
-                        className={`block px-4 py-2.5 text-sm transition-all duration-200 ${
-                          isActive(link.href)
-                            ? 'text-primary bg-primary/10 font-medium'
-                            : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                        }`}
-                        onClick={() => setShowMore(false)}
-                      >
-                        {link.label}
-                      </Link>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                className={`flex items-center gap-1 text-[13px] font-medium px-3 py-2 rounded-lg transition-all duration-300 ${
+                  moreLinks.some(l => isActive(l.href))
+                    ? 'text-primary bg-primary/10 font-semibold'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                }`}
+              >
+                Mais
+                <svg className="w-3 h-3" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 5L6 8L9 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-52">
+              {moreLinks.map((link) => (
+                <DropdownMenuItem key={link.href} asChild>
+                  <Link
+                    href={link.href}
+                    aria-current={isActive(link.href) ? 'page' : undefined}
+                    className={`w-full ${
+                      isActive(link.href) ? 'text-primary bg-primary/10 font-medium' : ''
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
 
         <div className="hidden lg:flex items-center gap-2">
@@ -156,42 +150,32 @@ export function Header() {
             <User className="w-4 h-4" />
             <span>Entrar</span>
           </Link>
-          <div className="relative">
-            <button
-              onClick={() => setShowTemas(!showTemas)}
-              onBlur={() => setTimeout(() => setShowTemas(false), 150)}
-              className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
-              aria-label="Temas"
-            >
-              <span className="text-base leading-none">{temasDisponiveis.find(t => t.nome === tema)?.icone || '🌙'}</span>
-            </button>
-            <AnimatePresence>
-              {showTemas && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                  transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className="absolute top-full right-0 mt-1 w-44 bg-card border border-border rounded-xl shadow-xl py-1 z-50"
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
+                aria-label="Temas"
+              >
+                {temaIcons[tema] || <Moon className="w-4 h-4" />}
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-44">
+              <DropdownMenuLabel>Temas</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {temasDisponiveis.map((t) => (
+                <DropdownMenuItem
+                  key={t.nome}
+                  onClick={() => setTema(t.nome)}
+                  className={tema === t.nome ? 'text-primary bg-primary/10 font-medium' : ''}
                 >
-                  {temasDisponiveis.map((t) => (
-                    <button
-                      key={t.nome}
-                      onClick={() => { setTema(t.nome); setShowTemas(false); }}
-                      className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-all duration-200 ${
-                        tema === t.nome
-                          ? 'text-primary bg-primary/10 font-medium'
-                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                      }`}
-                    >
-                      <span className="text-base">{t.icone}</span>
-                      <span>{t.label}</span>
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                  <span className="mr-2">{temaIcons[t.nome]}</span>
+                  {t.label}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Link 
             href="/pesquisa" 
             className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300 hover:scale-110"
@@ -207,44 +191,11 @@ export function Header() {
           >
             {idioma === 'pt' ? 'EN' : 'PT'}
           </button>
-          <div className="relative">
-            <button
-              onClick={() => setShowTemas(!showTemas)}
-              className="p-2 text-muted-foreground hover:text-foreground transition-all duration-300"
-              aria-label="Temas"
-            >
-              <span className="text-base leading-none">{temasDisponiveis.find(t => t.nome === tema)?.icone || '🌙'}</span>
-            </button>
-            <AnimatePresence>
-              {showTemas && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                  transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className="absolute top-full right-0 mt-1 w-44 bg-card border border-border rounded-xl shadow-xl py-1 z-50"
-                >
-                  {temasDisponiveis.map((t) => (
-                    <button
-                      key={t.nome}
-                      onClick={() => { setTema(t.nome); setShowTemas(false); }}
-                      className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-all duration-200 ${
-                        tema === t.nome
-                          ? 'text-primary bg-primary/10 font-medium'
-                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                      }`}
-                    >
-                      <span className="text-base">{t.icone}</span>
-                      <span>{t.label}</span>
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
           <button 
             className="p-2 hover:bg-muted/50 rounded-lg transition-all duration-300" 
             onClick={() => setOpen(!open)}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -254,6 +205,8 @@ export function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
+            id="mobile-menu"
+            role="navigation"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -270,6 +223,7 @@ export function Header() {
                 >
                   <Link
                     href={link.href}
+                    aria-current={isActive(link.href) ? 'page' : undefined}
                     className={`text-sm font-medium px-3 py-2.5 rounded-lg transition-all block ${
                       isActive(link.href)
                         ? 'text-primary bg-primary/10 font-semibold'
@@ -291,6 +245,7 @@ export function Header() {
                 >
                   <Link
                     href={link.href}
+                    aria-current={isActive(link.href) ? 'page' : undefined}
                     className={`text-sm font-medium px-3 py-2.5 rounded-lg transition-all block ${
                       isActive(link.href)
                         ? 'text-primary bg-primary/10 font-semibold'

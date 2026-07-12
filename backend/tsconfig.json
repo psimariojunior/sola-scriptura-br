@@ -26,6 +26,6 @@
     "src/infra/database/seed.ts",
     "src/infra/graphql",
     "src/infra/observabilidade",
-    "src/infra/seguranca"
+
   ]
 }

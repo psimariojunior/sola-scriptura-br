@@ -1,163 +1,125 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { TODOS_LIVROS, carregarTraducao } from '@/data/biblia';
+import { cronologia, type EventoCronologia } from '@/data/biblia';
+import { getIntroducaoLivro } from '@/data/biblia/introducoes';
+import PainelDoVersiculo from '@/components/PainelDoVersiculo';
 import ScrollReveal from '@/components/ScrollReveal';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { BookOpen, Globe, CalendarDays, MapPin, Users, Crown, Sparkles, ArrowRight } from 'lucide-react';
+import { BookOpen, Globe, CalendarDays, MapPin, Users, Crown, ArrowRight, ChevronDown } from 'lucide-react';
 
-type LivroData = Record<string, Record<number, string[]>>;
+// ═══════════════════════════════════════════════════════════════════════════════
+// MAPEAMENTO DE TIPOS → PERÍODO VISUAL
+// ═══════════════════════════════════════════════════════════════════════════════
 
-const periodos = [
-  {
-    titulo: 'Período Patriarcal',
-    data: '~2000–1500 a.C.',
-    desc: 'Abraão, Isaque, Jacó e José. A formação do povo de Deus.',
-    cor: 'from-amber-500 to-amber-600',
-    bg: 'bg-amber-50 dark:bg-amber-950/30',
-    border: 'border-amber-200 dark:border-amber-800',
-    eventos: [
-      { ref: 'Gn 12:1-3', label: 'Chamado de Abraão', abrevia: 'gn' },
-      { ref: 'Gn 15:1-21', label: 'Aliança com Abraão', abrevia: 'gn' },
-      { ref: 'Gn 35:23-26', label: 'Jacó e seus 12 filhos', abrevia: 'gn' },
-      { ref: 'Gn 37:1-36', label: 'José no Egito', abrevia: 'gn' },
-    ],
-    icono: '🌍',
-  },
-  {
-    titulo: 'Período da Lei',
-    data: '~1500–1020 a.C.',
-    desc: 'Êxodo, Sinai, a terra prometida e os juízes.',
-    cor: 'from-blue-500 to-blue-600',
-    bg: 'bg-blue-50 dark:bg-blue-950/30',
-    border: 'border-blue-200 dark:border-blue-800',
-    eventos: [
-      { ref: 'Ex 12:1-51', label: 'Êxodo do Egito', abrevia: 'ex' },
-      { ref: 'Ex 19:1-25', label: 'Lei no Sinai', abrevia: 'ex' },
-      { ref: 'Js 1:1-18', label: 'Conquista de Canaã', abrevia: 'js' },
-      { ref: 'Jz 2:16-19', label: 'Período dos Juízes', abrevia: 'jz' },
-    ],
-    icono: '📜',
-  },
-  {
-    titulo: 'Período dos Reis',
-    data: '~1020–586 a.C.',
-    desc: 'Monarquia unificada, reinos divididos e profetas.',
-    cor: 'from-purple-500 to-purple-600',
-    bg: 'bg-purple-50 dark:bg-purple-950/30',
-    border: 'border-purple-200 dark:border-purple-800',
-    eventos: [
-      { ref: '1Sm 10:1', label: 'Saul, primeiro rei', abrevia: '1sm' },
-      { ref: '2Sm 5:1-5', label: 'Davi rei de Israel', abrevia: '2sm' },
-      { ref: '1Rs 6:1', label: 'Salomão e o Templo', abrevia: '1rs' },
-      { ref: '1Rs 12:1-20', label: 'Divisão do reino', abrevia: '1rs' },
-    ],
-    icono: '👑',
-  },
-  {
-    titulo: 'Período do Exílio',
-    data: '586–516 a.C.',
-    desc: 'Destruição de Jerusalém, cativeiro na Babilônia e retorno.',
-    cor: 'from-red-500 to-red-600',
-    bg: 'bg-red-50 dark:bg-red-950/30',
-    border: 'border-red-200 dark:border-red-800',
-    eventos: [
-      { ref: '2Rs 25:1-12', label: 'Destruição do Templo', abrevia: '2rs' },
-      { ref: 'Ed 1:1-4', label: 'Retorno sob Ciro', abrevia: 'ed' },
-      { ref: 'Ed 3:8-13', label: 'Reconstrução do Templo', abrevia: 'ed' },
-      { ref: 'Is 40:1-5', label: 'Consolo profético', abrevia: 'is' },
-    ],
-    icono: '🏛️',
-  },
-  {
-    titulo: 'Período Intertestamentário',
-    data: '516 a.C.–4 d.C.',
-    desc: 'Domínio persa, grego e romano. Formação do judaísmo.',
-    cor: 'from-slate-500 to-slate-600',
-    bg: 'bg-slate-50 dark:bg-slate-950/30',
-    border: 'border-slate-200 dark:border-slate-800',
-    eventos: [
-      { ref: 'Dn 8:1-14', label: 'Visão dos impérios', abrevia: 'dn' },
-      { ref: 'Dn 11:1-45', label: 'Reis do Norte e do Sul', abrevia: 'dn' },
-      { ref: 'Ml 3:1-4', label: 'Profecia final do AT', abrevia: 'ml' },
-    ],
-    icono: '⚔️',
-  },
-  {
-    titulo: 'Vida de Cristo',
-    data: '~4–30 d.C.',
-    desc: 'Nascimento, ministério, crucificação e ressurreição de Jesus.',
-    cor: 'from-green-500 to-green-600',
-    bg: 'bg-green-50 dark:bg-green-950/30',
-    border: 'border-green-200 dark:border-green-800',
-    eventos: [
-      { ref: 'Mt 1:18-25', label: 'Nascimento em Belém', abrevia: 'mt' },
-      { ref: 'Mc 1:9-13', label: 'Batismo e tentação', abrevia: 'mc' },
-      { ref: 'Mc 15:1-39', label: 'Crucificação', abrevia: 'mc' },
-      { ref: 'Mc 16:1-8', label: 'Ressurreição', abrevia: 'mc' },
-    ],
-    icono: '✝️',
-  },
-  {
-    titulo: 'Igreja Primitiva',
-    data: '30–100 d.C.',
-    desc: 'Expansão do evangelho, epístolas e formação do cânon.',
-    cor: 'from-cyan-500 to-cyan-600',
-    bg: 'bg-cyan-50 dark:bg-cyan-950/30',
-    border: 'border-cyan-200 dark:border-cyan-800',
-    eventos: [
-      { ref: 'At 2:1-13', label: 'Pentecostes', abrevia: 'at' },
-      { ref: 'At 9:1-19', label: 'Conversão de Paulo', abrevia: 'at' },
-      { ref: 'At 13:1-5', label: 'Primeira viagem missionária', abrevia: 'at' },
-      { ref: 'Ap 1:9-11', label: 'João em Patmos', abrevia: 'ap' },
-    ],
-    icono: '🔥',
-  },
-];
-
-const linhaTempoData: { ano: string; evento: string; periodo: string; cor: string }[] = [
-  { ano: '~2000 a.C.', evento: 'Chamado de Abraão', periodo: 'Patriarcal', cor: 'bg-amber-500' },
-  { ano: '~1440 a.C.', evento: 'Êxodo do Egito', periodo: 'Lei', cor: 'bg-blue-500' },
-  { ano: '~1400 a.C.', evento: 'Conquista de Canaã', periodo: 'Lei', cor: 'bg-blue-500' },
-  { ano: '~1020 a.C.', evento: 'Início da Monarquia (Saul)', periodo: 'Reis', cor: 'bg-purple-500' },
-  { ano: '~1000 a.C.', evento: 'Davi em Jerusalém', periodo: 'Reis', cor: 'bg-purple-500' },
-  { ano: '~960 a.C.', evento: 'Templo de Salomão', periodo: 'Reis', cor: 'bg-purple-500' },
-  { ano: '722 a.C.', evento: 'Queda de Samaria (Israel)', periodo: 'Reis', cor: 'bg-purple-500' },
-  { ano: '586 a.C.', evento: 'Queda de Jerusalém (Judá)', periodo: 'Exílio', cor: 'bg-red-500' },
-  { ano: '539 a.C.', evento: 'Queda da Babilônia (Ciro)', periodo: 'Exílio', cor: 'bg-red-500' },
-  { ano: '516 a.C.', evento: 'Templo reconstruído', periodo: 'Exílio', cor: 'bg-red-500' },
-  { ano: '332 a.C.', evento: 'Império Grego', periodo: 'Intertestamentário', cor: 'bg-slate-500' },
-  { ano: '167 a.C.', evento: 'Revolta dos Macabeus', periodo: 'Intertestamentário', cor: 'bg-slate-500' },
-  { ano: '63 a.C.', evento: 'Domínio Romano', periodo: 'Intertestamentário', cor: 'bg-slate-500' },
-  { ano: '~4 a.C.', evento: 'Nascimento de Jesus', periodo: 'Cristo', cor: 'bg-green-500' },
-  { ano: '~30 d.C.', evento: 'Crucificação e Ressurreição', periodo: 'Cristo', cor: 'bg-green-500' },
-  { ano: '~30 d.C.', evento: 'Pentecostes', periodo: 'Igreja', cor: 'bg-cyan-500' },
-  { ano: '~50 d.C.', evento: 'Concílio de Jerusalém', periodo: 'Igreja', cor: 'bg-cyan-500' },
-  { ano: '~70 d.C.', evento: 'Destruição de Jerusalém', periodo: 'Igreja', cor: 'bg-cyan-500' },
-  { ano: '~95 d.C.', evento: 'Apocalipse de João', periodo: 'Igreja', cor: 'bg-cyan-500' },
-];
-
-const corPeriodo: Record<string, string> = {
-  Patriarcal: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300',
-  Lei: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
-  Reis: 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300',
-  Exílio: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300',
-  Intertestamentário: 'bg-slate-100 text-slate-800 dark:bg-slate-900/30 dark:text-slate-300',
-  Cristo: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
-  Igreja: 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300',
+const TIPO_PARA_PERIODO: Record<EventoCronologia['tipo'], string> = {
+  criacao: 'Criação',
+  patriarca: 'Patriarcas',
+  lei: 'Lei e Conquista',
+  reis: 'Reis',
+  profeta: 'Profetas',
+  exilio: 'Exílio',
+  vinda: 'Vida de Cristo',
+  igreja: 'Igreja Primitiva',
 };
 
+const PERIODOS_CONFIG: Record<string, { cor: string; icone: string; bgHeader: string }> = {
+  'Criação':            { cor: 'bg-slate-500',     icone: '🌍', bgHeader: 'from-slate-500 to-slate-600' },
+  'Patriarcas':         { cor: 'bg-amber-500',     icone: '⛺', bgHeader: 'from-amber-500 to-amber-600' },
+  'Lei e Conquista':    { cor: 'bg-blue-500',      icone: '📜', bgHeader: 'from-blue-500 to-blue-600' },
+  'Reis':               { cor: 'bg-purple-500',    icone: '👑', bgHeader: 'from-purple-500 to-purple-600' },
+  'Profetas':           { cor: 'bg-rose-500',      icone: '📢', bgHeader: 'from-rose-500 to-rose-600' },
+  'Exílio':             { cor: 'bg-red-500',       icone: '🏛️', bgHeader: 'from-red-500 to-red-600' },
+  'Vida de Cristo':     { cor: 'bg-green-500',     icone: '✝️', bgHeader: 'from-green-500 to-green-600' },
+  'Igreja Primitiva':   { cor: 'bg-cyan-500',      icone: '🔥', bgHeader: 'from-cyan-500 to-cyan-600' },
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CIVILIZAÇÕES PARALELAS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+interface Civilizacao {
+  nome: string;
+  inicio: number;
+  fim: number;
+  cor: string;
+  abbr: string;
+}
+
+const CIVILIZACOES: Civilizacao[] = [
+  { nome: 'Egito',     inicio: -3100, fim: -30,    cor: 'bg-yellow-500', abbr: 'EG' },
+  { nome: 'Assíria',    inicio: -2500, fim: -609,   cor: 'bg-orange-500', abbr: 'AS' },
+  { nome: 'Babilônia',  inicio: -1894, fim: -539,   cor: 'bg-amber-600',  abbr: 'BA' },
+  { nome: 'Pérsia',     inicio: -550,  fim: -330,   cor: 'bg-teal-500',   abbr: 'PÉ' },
+  { nome: 'Grécia',     inicio: -800,  fim: -146,   cor: 'bg-indigo-500', abbr: 'GR' },
+  { nome: 'Roma',       inicio: -753,  fim: 476,    cor: 'bg-red-600',    abbr: 'RO' },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function parseAno(anoStr: string): number {
+  const match = anoStr.match(/~?(\d+)\s*(a\.C\.|d\.C\.)/);
+  if (!match) return 0;
+  const valor = parseInt(match[1], 10);
+  return match[2] === 'a.C.' ? -valor : valor;
+}
+
+function extrairLivroCapitulo(ref: string): { livro: string; capitulo: number } | null {
+  const m = ref.match(/^(\d?\s*[A-Za-z]+)\s+(\d+)/);
+  if (!m) return null;
+  return { livro: m[1].toLowerCase().replace(/\s+/g, ''), capitulo: parseInt(m[2], 10) };
+}
+
+function agruparPorPeriodo(eventos: EventoCronologia[]): Map<string, EventoCronologia[]> {
+  const mapa = new Map<string, EventoCronologia[]>();
+  for (const e of eventos) {
+    const periodo = TIPO_PARA_PERIODO[e.tipo];
+    const arr = mapa.get(periodo) || [];
+    arr.push(e);
+    mapa.set(periodo, arr);
+  }
+  return mapa;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// COMPONENTE PRINCIPAL
+// ═══════════════════════════════════════════════════════════════════════════════
+
 export default function HistoriaPage() {
-  const [aba, setAba] = useState<'periodos' | 'timeline'>('periodos');
+  const [aba, setAba] = useState<'periodos' | 'timeline' | 'civilizacoes'>('periodos');
+  const [periodoExpandido, setPeriodoExpandido] = useState<string | null>(null);
+  const [painelVersiculo, setPainelVersiculo] = useState<{
+    livro: string;
+    capitulo: number;
+    versiculo: number;
+  } | null>(null);
+
+  const eventosPorPeriodo = useMemo(() => agruparPorPeriodo(cronologia), []);
+
+  const periodosOrdenados = useMemo(() => {
+    const ordem: EventoCronologia['tipo'][] = ['criacao', 'patriarca', 'lei', 'reis', 'profeta', 'exilio', 'vinda', 'igreja'];
+    return ordem.map(tipo => ({
+      tipo,
+      nome: TIPO_PARA_PERIODO[tipo],
+      eventos: eventosPorPeriodo.get(TIPO_PARA_PERIODO[tipo]) || [],
+      config: PERIODOS_CONFIG[TIPO_PARA_PERIODO[tipo]],
+    })).filter(p => p.eventos.length > 0);
+  }, [eventosPorPeriodo]);
+
+  const handleVersiculoClick = useCallback((livro: string, cap: number, ver: number) => {
+    setPainelVersiculo({ livro, capitulo: cap, versiculo: ver });
+  }, []);
 
   return (
     <div className="min-h-screen">
       <Header />
       <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          {/* Hero Section */}
           <ScrollReveal>
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
@@ -168,18 +130,18 @@ export default function HistoriaPage() {
                 História <span className="text-primary italic">Bíblica</span>
               </h1>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Contexto histórico, cultural e geográfico — viaje através dos tempos bíblicos
+                {cronologia.length} eventos cronológicos reais — viaje através dos tempos bíblicos
               </p>
             </div>
           </ScrollReveal>
 
-          {/* Tabs */}
           <ScrollReveal>
             <div className="glass-card p-1.5 mb-8 rounded-2xl">
               <div className="flex">
                 {([
                   { id: 'periodos' as const, label: 'Períodos', icon: BookOpen },
                   { id: 'timeline' as const, label: 'Linha do Tempo', icon: CalendarDays },
+                  { id: 'civilizacoes' as const, label: 'Civilizações', icon: Globe },
                 ]).map(({ id, label, icon: Icon }) => (
                   <button
                     key={id}
@@ -200,47 +162,99 @@ export default function HistoriaPage() {
 
           {aba === 'periodos' && (
             <div className="space-y-6">
-              {periodos.map((p, i) => (
-                <ScrollReveal key={i} delay={i * 80}>
-                  <div className={`glass-card rounded-2xl overflow-hidden border ${p.border}`}>
-                    {/* Header */}
-                    <div className={`px-6 py-5 bg-gradient-to-r ${p.cor}`}>
-                      <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center text-3xl">
-                          {p.icono}
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex flex-wrap items-center gap-3">
-                            <h2 className="text-xl font-display text-white font-semibold">{p.titulo}</h2>
-                            <span className="text-xs font-medium text-white/80 bg-white/20 px-3 py-1 rounded-full">
-                              {p.data}
-                            </span>
-                          </div>
-                          <p className="text-sm text-white/80 mt-1">{p.desc}</p>
-                        </div>
-                      </div>
-                    </div>
+              {periodosOrdenados.map((p, i) => {
+                const config = p.config;
+                const introLivro = p.eventos[0]
+                  ? getIntroducaoLivro(extrairLivroCapitulo(p.eventos[0].referencia)?.livro || '')
+                  : undefined;
 
-                    {/* Events */}
-                    <div className="p-6">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {p.eventos.map((e, j) => (
-                          <Link
-                            key={j}
-                            href={`/biblia?livro=${e.abrevia}&capitulo=${e.ref.split(' ')[1]?.split(':')[0] ?? 1}`}
-                            className="flex items-center gap-3 p-3 rounded-xl hover:bg-muted/50 transition-all group"
+                return (
+                  <ScrollReveal key={p.tipo} delay={i * 0.06}>
+                    <div className="glass-card rounded-2xl overflow-hidden border border-border/50">
+                      <button
+                        onClick={() => setPeriodoExpandido(periodoExpandido === p.nome ? null : p.nome)}
+                        className="w-full"
+                      >
+                        <div className={`px-6 py-5 bg-gradient-to-r ${config.bgHeader}`}>
+                          <div className="flex items-center gap-4">
+                            <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center text-3xl">
+                              {config.icone}
+                            </div>
+                            <div className="flex-1 text-left">
+                              <div className="flex flex-wrap items-center gap-3">
+                                <h2 className="text-xl font-display text-white font-semibold">{p.nome}</h2>
+                                <span className="text-xs font-medium text-white/80 bg-white/20 px-3 py-1 rounded-full">
+                                  {p.eventos.length} eventos
+                                </span>
+                              </div>
+                              {p.eventos.length > 0 && (
+                                <p className="text-sm text-white/80 mt-1">
+                                  {p.eventos[0].ano} — {p.eventos[p.eventos.length - 1].ano}
+                                </p>
+                              )}
+                            </div>
+                            <motion.div animate={{ rotate: periodoExpandido === p.nome ? 180 : 0 }}>
+                              <ChevronDown className="w-5 h-5 text-white/60" />
+                            </motion.div>
+                          </div>
+                        </div>
+                      </button>
+
+                      <AnimatePresence>
+                        {periodoExpandido === p.nome && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="overflow-hidden"
                           >
-                            <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 group-hover:scale-150 transition-transform" />
-                            <span className="text-sm font-medium group-hover:text-primary transition-colors flex-1">{e.label}</span>
-                            <span className="text-xs text-muted-foreground font-mono">{e.ref}</span>
-                            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </Link>
-                        ))}
-                      </div>
+                            <div className="p-6">
+                              {introLivro && (
+                                <div className="mb-4 p-4 bg-primary/5 rounded-xl border border-primary/10">
+                                  <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-1">Contexto</p>
+                                  <p className="text-sm text-foreground/70 font-serif-body">{introLivro.nomeCompleto} — {introLivro.autor}</p>
+                                </div>
+                              )}
+
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                {p.eventos.map((e, j) => {
+                                  const livroRef = extrairLivroCapitulo(e.referencia);
+                                  return (
+                                    <div
+                                      key={j}
+                                      className="flex items-center gap-3 p-3 rounded-xl hover:bg-muted/50 transition-all group"
+                                    >
+                                      <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 group-hover:scale-150 transition-transform" />
+                                      <div className="flex-1 min-w-0">
+                                        <span className="text-sm font-medium group-hover:text-primary transition-colors block truncate">
+                                          {e.evento}
+                                        </span>
+                                        <span className="text-xs text-muted-foreground font-mono">{e.ano}</span>
+                                      </div>
+                                      <div className="flex items-center gap-1">
+                                        {livroRef && (
+                                          <Link
+                                            href={`/biblia?livro=${livroRef.livro}&capitulo=${livroRef.capitulo}`}
+                                            className="text-xs text-primary/70 hover:text-primary px-2 py-0.5 rounded bg-primary/5 hover:bg-primary/10 transition-colors"
+                                          >
+                                            {e.referencia}
+                                          </Link>
+                                        )}
+                                        <ArrowRight className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
-                  </div>
-                </ScrollReveal>
-              ))}
+                  </ScrollReveal>
+                );
+              })}
             </div>
           )}
 
@@ -251,44 +265,138 @@ export default function HistoriaPage() {
                   <CalendarDays className="w-6 h-6 text-primary" strokeWidth={1.5} />
                   Linha do Tempo Bíblica
                 </h2>
-                <p className="text-sm text-muted-foreground mb-8">Aproximação cronológica dos principais eventos das Escrituras</p>
-                
+                <p className="text-sm text-muted-foreground mb-8">
+                  {cronologia.length} eventos — clique em uma referência para abrir na Bíblia
+                </p>
+
                 <div className="relative">
-                  {/* Timeline line */}
-                  <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-amber-500 via-primary to-cyan-500" />
+                  <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-slate-500 via-primary to-cyan-500" />
 
                   <div className="space-y-6">
-                    {linhaTempoData.map((item, i) => (
-                      <div
-                        key={i}
-                        className={`relative flex items-center gap-4 sm:gap-8 ${
-                          i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
-                        }`}
-                      >
-                        {/* Dot */}
-                        <div className={`absolute left-4 sm:left-1/2 w-4 h-4 ${item.cor} rounded-full -translate-x-2 sm:-translate-x-2 z-10 ring-4 ring-background`} />
+                    {cronologia.map((item, i) => {
+                      const periodo = TIPO_PARA_PERIODO[item.tipo];
+                      const config = PERIODOS_CONFIG[periodo];
+                      const livroRef = extrairLivroCapitulo(item.referencia);
 
-                        {/* Content */}
-                        <div className={`ml-12 sm:ml-0 sm:w-[calc(50%-2rem)] ${i % 2 === 0 ? 'sm:pr-8 sm:text-right' : 'sm:pl-8'}`}>
-                          <div className="glass-card p-4 rounded-xl hover:shadow-lg transition-all">
-                            <div className={`flex items-center gap-2 mb-1 ${i % 2 === 0 ? 'sm:justify-end' : ''}`}>
-                              <span className={`text-[10px] font-bold px-3 py-1 rounded-full ${corPeriodo[item.periodo]}`}>
-                                {item.periodo}
-                              </span>
+                      return (
+                        <div
+                          key={i}
+                          className={`relative flex items-center gap-4 sm:gap-8 ${
+                            i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
+                          }`}
+                        >
+                          <div className={`absolute left-4 sm:left-1/2 w-4 h-4 ${config.cor} rounded-full -translate-x-2 sm:-translate-x-2 z-10 ring-4 ring-background`} />
+
+                          <div className={`ml-12 sm:ml-0 sm:w-[calc(50%-2rem)] ${i % 2 === 0 ? 'sm:pr-8 sm:text-right' : 'sm:pl-8'}`}>
+                            <div className="glass-card p-4 rounded-xl hover:shadow-lg transition-all">
+                              <div className={`flex items-center gap-2 mb-1 ${i % 2 === 0 ? 'sm:justify-end' : ''}`}>
+                                <span className="text-[10px] font-bold px-3 py-1 rounded-full bg-muted text-muted-foreground">
+                                  {periodo}
+                                </span>
+                              </div>
+                              <p className="font-mono text-sm text-primary font-semibold">{item.ano}</p>
+                              <h3 className="font-semibold text-sm">{item.evento}</h3>
+                              {livroRef && (
+                                <Link
+                                  href={`/biblia?livro=${livroRef.livro}&capitulo=${livroRef.capitulo}`}
+                                  className="text-xs text-primary/60 hover:text-primary font-mono mt-1 inline-block transition-colors"
+                                >
+                                  {item.referencia}
+                                </Link>
+                              )}
                             </div>
-                            <p className="font-mono text-sm text-primary font-semibold">{item.ano}</p>
-                            <h3 className="font-semibold text-sm">{item.evento}</h3>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               </div>
             </ScrollReveal>
           )}
 
-          {/* Contexto Cultural */}
+          {aba === 'civilizacoes' && (
+            <ScrollReveal>
+              <div className="glass-card p-6 sm:p-8 rounded-2xl">
+                <h2 className="font-display text-2xl font-semibold mb-2 flex items-center gap-3">
+                  <Globe className="w-6 h-6 text-primary" strokeWidth={1.5} />
+                  Civilizações e o Povo de Deus
+                </h2>
+                <p className="text-sm text-muted-foreground mb-8">
+                  Impérios que moldaram o cenário bíblico
+                </p>
+
+                <div className="space-y-4">
+                  {CIVILIZACOES.map((civ, i) => (
+                    <motion.div
+                      key={civ.nome}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex items-center gap-4"
+                    >
+                      <div className={`w-12 h-12 rounded-xl ${civ.cor} flex items-center justify-center text-white font-bold text-xs flex-shrink-0`}>
+                        {civ.abbr}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-3 mb-1">
+                          <h3 className="font-semibold text-sm">{civ.nome}</h3>
+                          <span className="text-xs text-muted-foreground font-mono">
+                            {civ.inicio < 0 ? `${Math.abs(civ.inicio)} a.C.` : `${civ.inicio} d.C.`} — {civ.fim < 0 ? `${Math.abs(civ.fim)} a.C.` : `${civ.fim} d.C.`}
+                          </span>
+                        </div>
+                        <div className="relative h-4 rounded-full overflow-hidden bg-muted">
+                          <div
+                            className={`absolute h-full ${civ.cor} opacity-30 rounded-full`}
+                            style={{
+                              left: `${Math.max(0, ((civ.inicio + 4000) / 4500) * 100)}%`,
+                              width: `${((civ.fim - civ.inicio) / 4500) * 100}%`,
+                            }}
+                          />
+                          <div
+                            className={`absolute h-full ${civ.cor} rounded-full`}
+                            style={{
+                              left: `${Math.max(0, ((civ.inicio + 4000) / 4500) * 100)}%`,
+                              width: `${((civ.fim - civ.inicio) / 4500) * 100}%`,
+                              opacity: 0.7,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+
+                  <div className="mt-6 pt-6 border-t border-border/50">
+                    <h3 className="font-semibold text-sm mb-4">Linha do Tempo Comparativa</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      {cronologia
+                        .filter(e => ['patriarca', 'lei', 'reis', 'exilio', 'vinda'].includes(e.tipo))
+                        .filter((_, i) => i % 5 === 0)
+                        .map((e, i) => {
+                          const livroRef = extrairLivroCapitulo(e.referencia);
+                          return (
+                            <div key={i} className="p-3 bg-muted/30 rounded-xl">
+                              <p className="text-[10px] text-muted-foreground font-mono">{e.ano}</p>
+                              <p className="text-xs font-medium truncate">{e.evento}</p>
+                              {livroRef && (
+                                <Link
+                                  href={`/biblia?livro=${livroRef.livro}&capitulo=${livroRef.capitulo}`}
+                                  className="text-[10px] text-primary/60 hover:text-primary font-mono"
+                                >
+                                  {e.referencia}
+                                </Link>
+                              )}
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          )}
+
           <ScrollReveal>
             <div className="glass-card p-6 sm:p-8 rounded-2xl mt-8">
               <h3 className="font-display text-2xl font-semibold mb-6 flex items-center gap-3">
@@ -329,6 +437,17 @@ export default function HistoriaPage() {
         </div>
       </main>
       <Footer />
+
+      {painelVersiculo && (
+        <PainelDoVersiculo
+          livro={painelVersiculo.livro}
+          capitulo={painelVersiculo.capitulo}
+          versiculo={painelVersiculo.versiculo}
+          aberto={true}
+          onFechar={() => setPainelVersiculo(null)}
+          onVersiculoClick={handleVersiculoClick}
+        />
+      )}
     </div>
   );
 }

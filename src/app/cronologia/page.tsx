@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { cronologia, livroPorAbreviacao } from '@/data/biblia';
+import { cronologia } from '@/data/biblia';
 import ScrollReveal from '@/components/ScrollReveal';
-import Link from 'next/link';
-import { CalendarDays, Filter, Sparkles, BookOpen, ExternalLink } from 'lucide-react';
+import PainelDoVersiculo from '@/components/PainelDoVersiculo';
+import { CalendarDays, Filter, BookOpen, ExternalLink } from 'lucide-react';
 
 const tipoCores: Record<string, { bg: string; text: string; dot: string; gradient: string }> = {
   criacao: { bg: 'bg-purple-100 dark:bg-purple-900/30', text: 'text-purple-800 dark:text-purple-300', dot: 'bg-purple-500', gradient: 'from-purple-500 to-purple-600' },
@@ -41,85 +41,104 @@ const tipoIcones: Record<string, string> = {
   igreja: '🔥',
 };
 
-function parseRefLinks(ref: string): Array<{ href: string; label: string }> {
-  const links: Array<{ href: string; label: string }> = [];
-  // Match patterns like "Gn 1-2", "Gn 2:7-25", "Gn 4:1-2", "Gn 4:17", "Gn 1-2; 3:15"
-  const parts = ref.split(';').map(s => s.trim());
+const eras = ['criacao', 'patriarca', 'lei', 'reis', 'profeta', 'exilio', 'vinda', 'igreja'] as const;
+
+function parseRefLinks(ref: string): Array<{ label: string; parsed: { livro: string; cap: number; ver: number } | null }> {
+  const parts = ref.split(';').map(s => s.trim()).filter(Boolean);
+  const links: Array<{ label: string; parsed: { livro: string; cap: number; ver: number } | null }> = [];
+
   for (const part of parts) {
-    const match = part.match(/^([\d\s]*[A-Za-záéíóú]+)\s*(\d+)/);
+    const cleaned = part.toLowerCase().replace(/[()]/g, '').trim();
+
+    const abrevMap: Record<string, string> = {
+      gn: 'gn', gênesis: 'gn', genesis: 'gn',
+      ex: 'ex', 'êxodo': 'ex', exodo: 'ex',
+      lv: 'lv', levitico: 'lv', levítico: 'lv',
+      nm: 'nm', numeros: 'nm', números: 'nm',
+      dt: 'dt', deuteronomio: 'dt', deuteronômio: 'dt',
+      js: 'js', josué: 'js', josue: 'js',
+      '1sm': '1sm', '1samuel': '1sm', 'i samuel': '1sm', '1 samuel': '1sm',
+      '2sm': '2sm', '2samuel': '2sm', 'ii samuel': '2sm', '2 samuel': '2sm',
+      '1rs': '1rs', '1reis': '1rs', 'i reis': '1rs', '1 reis': '1rs',
+      '2rs': '2rs', '2reis': '2rs', 'ii reis': '2rs', '2 reis': '2rs',
+      '1cr': '1cr', '1cronicas': '1cr', '1 crônicas': '1cr',
+      '2cr': '2cr', '2cronicas': '2cr', '2 crônicas': '2cr',
+      is: 'is', isaias: 'is', isaías: 'is',
+      jr: 'jr', jeremias: 'jr',
+      lm: 'lm', lamentacoes: 'lm',
+      ez: 'ez', ezequiel: 'ez',
+      dn: 'dn', daniel: 'dn',
+      os: 'os', oseias: 'os', oséias: 'os',
+      am: 'am', amos: 'am', amós: 'am',
+      mc: 'mc', miqueias: 'mc',
+      jl: 'jl', joel: 'jl',
+      jn: 'jn', jonas: 'jn', ionas: 'jn',
+      hg: 'hg', ageu: 'hg',
+      zc: 'zc', zacarias: 'zc',
+      ml: 'ml', malaquias: 'ml',
+      ed: 'ed', esdras: 'ed',
+      ne: 'ne', neemias: 'ne',
+      rt: 'rt', rute: 'rt',
+      sf: 'sf', sofonia: 'sf',
+      jz: 'jz', juizes: 'jz',
+      '1pe': '1pe', ipedro: '1pe', '1 pedro': '1pe',
+      '2pe': '2pe', iipedro: '2pe', '2 pedro': '2pe',
+      '1jo': '1jo', ijoao: '1jo', '1 joão': '1jo',
+      ap: 'ap', apocalipse: 'ap',
+      sl: 'sl', salmos: 'sl', salmo: 'sl',
+      pv: 'pv', proverbios: 'pv', provérbios: 'pv',
+      mt: 'mt', mateus: 'mt',
+      lc: 'lc', lucas: 'lc',
+      jo: 'jo', joão: 'jo',
+      at: 'at', atos: 'at',
+      rm: 'rm', romanos: 'rm',
+      '1co': '1co', icorintios: '1co', '1 coríntios': '1co',
+      '2co': '2co', iicorintios: '2co', '2 coríntios': '2co',
+      gl: 'gl', galatas: 'gl',
+      ef: 'ef', efesios: 'ef',
+      fp: 'fp', filipenses: 'fp',
+      cl: 'cl', colossenses: 'cl',
+      '1ts': '1ts', itessalonicenses: '1ts',
+      hb: 'hb', hebreus: 'hb',
+      tg: 'tg', tiago: 'tg',
+      '1tm': '1tm', itimoteo: '1tm',
+      '2tm': '2tm', iitimoteo: '2tm',
+      '1mac': '1mac', '1 macabeus': '1mac',
+      fl: 'fp',
+    };
+
+    const match = cleaned.match(/^(?:([\d]*)\s*)?([a-záéíóú]+)\s*(\d+)/);
     if (match) {
-      let livroAbrev = match[1].toLowerCase().replace(/[áàâã]/g, 'a').replace(/[éê]/g, 'e').replace(/[í]/g, 'i').replace(/[óôõ]/g, 'o').replace(/[ú]/g, 'u').replace(/[ç]/g, 'c');
-      // Map common Portuguese abbreviations
-      const abrevMap: Record<string, string> = {
-        gn: 'gn', gênesis: 'gn', genesis: 'gn',
-        ex: 'ex', 'êxodo': 'ex', exodo: 'ex',
-        lv: 'lv', levitico: 'lv', levítico: 'lv',
-        nm: 'nm', numeros: 'nm', números: 'nm',
-        dt: 'dt', deuteronomio: 'dt', deuteronômio: 'dt',
-        js: 'js', josué: 'js', josue: 'js',
-        '1sm': '1sm', '1samuel': '1sm', 'i samuel': '1sm', '1 samuel': '1sm',
-        '2sm': '2sm', '2samuel': '2sm', 'ii samuel': '2sm', '2 samuel': '2sm',
-        '1rs': '1rs', '1reis': '1rs', 'i reis': '1rs', '1 reis': '1rs',
-        '2rs': '2rs', '2reis': '2rs', 'ii reis': '2rs', '2 reis': '2rs',
-        is: 'is', isaias: 'is', isaías: 'is',
-        jr: 'jr', jeremias: 'jr',
-        ez: 'ez', ezequiel: 'ez',
-        dn: 'dn', daniel: 'dn',
-        mt: 'mt', mateus: 'mt',
-        mc: 'mc', marcos: 'mc',
-        lc: 'lc', lucas: 'lc',
-        jo: 'jo', joão: 'jo', joao: 'jo',
-        at: 'at', atos: 'at',
-        rm: 'rm', romanos: 'rm',
-        '1co': '1co', icorintios: '1co', '1 coríntios': '1co', '1 corintios': '1co',
-        '2co': '2co', iicorintios: '2co', '2 coríntios': '2co', '2 corintios': '2co',
-        gl: 'gl', galatas: 'gl', gálatas: 'gl',
-        ef: 'ef', efesios: 'ef', efésios: 'ef',
-        fp: 'fp', filipenses: 'fp',
-        cl: 'cl', colossenses: 'cl',
-        '1ts': '1ts', itessalonicenses: '1ts', '1 tessalonicenses': '1ts',
-        hb: 'hb', hebreus: 'hb',
-        tg: 'tg', tiago: 'tg',
-        '1pe': '1pe', ipedro: '1pe', '1 pedro': '1pe',
-        '2pe': '2pe', iipedro: '2pe', '2 pedro': '2pe',
-        '1jo': '1jo', ijoao: '1jo', '1 joão': '1jo', '1 joao': '1jo',
-        ap: 'ap', apocalipse: 'ap',
-        sl: 'sl', salmos: 'sl', salmo: 'sl',
-        pv: 'pv', proverbios: 'pv', provérbios: 'pv',
-        jó: 'jó', job: 'jó',
-      };
-      livroAbrev = abrevMap[livroAbrev] || livroAbrev;
-      const cap = match[2];
+      const prefix = match[1] || '';
+      let livro = prefix + match[2];
+      livro = abrevMap[livro] || livro;
+      const cap = parseInt(match[3]);
       const subRef = part.match(/:(\d+)/);
-      if (subRef) {
-        links.push({ href: `/biblia?livro=${livroAbrev}&capitulo=${cap}`, label: part });
-      } else if (part.includes('-')) {
-        const rangeMatch = part.match(/(\d+)\s*-\s*(\d+)/);
-        if (rangeMatch) {
-          const capInicio = rangeMatch[1];
-          links.push({ href: `/biblia?livro=${livroAbrev}&capitulo=${capInicio}`, label: part.split('-')[0].trim() });
-          links.push({ href: `/biblia?livro=${livroAbrev}&capitulo=${rangeMatch[2]}`, label: part.split('-')[1].trim() });
-        }
-      } else {
-        links.push({ href: `/biblia?livro=${livroAbrev}&capitulo=${cap}`, label: part });
-      }
+      const ver = subRef ? parseInt(subRef[1]) : 1;
+      links.push({ label: part, parsed: { livro, cap, ver } });
+    } else {
+      links.push({ label: part, parsed: null });
     }
   }
-  return links.length > 0 ? links.slice(0, 2) : [];
+
+  return links;
 }
 
 export default function CronologiaPage() {
   const [filtro, setFiltro] = useState<string>('todos');
+  const [versiculoPainel, setVersiculoPainel] = useState<{ livro: string; cap: number; ver: number } | null>(null);
 
-  const tipos = [...new Set(cronologia.map(e => e.tipo))];
-  const filtrados = filtro === 'todos' ? cronologia : cronologia.filter(e => e.tipo === filtro);
+  const filtrados = useMemo(
+    () => filtro === 'todos' ? cronologia : cronologia.filter(e => e.tipo === filtro),
+    [filtro]
+  );
 
   return (
     <div className="min-h-screen">
       <Header />
       <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
-          {/* Hero Section */}
+          {/* Hero */}
           <ScrollReveal>
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
@@ -130,7 +149,7 @@ export default function CronologiaPage() {
                 Cronologia <span className="text-primary italic">Bíblica</span>
               </h1>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Linha do tempo da criação à igreja primitiva — uma jornada pela história divina
+                {cronologia.length} eventos da criação à igreja primitiva — uma jornada pela história divina
               </p>
             </div>
           </ScrollReveal>
@@ -151,34 +170,36 @@ export default function CronologiaPage() {
                       : 'border border-border/50 text-muted-foreground hover:bg-muted/50'
                   }`}
                 >
-                  Todos
+                  Todos ({cronologia.length})
                 </button>
-                {tipos.map((tipo) => (
-                  <button
-                    key={tipo}
-                    onClick={() => setFiltro(tipo)}
-                    className={`px-4 py-2 text-sm font-medium rounded-xl transition-all flex items-center gap-2 ${
-                      filtro === tipo
-                        ? `bg-gradient-to-r ${tipoCores[tipo]?.gradient} text-white shadow-lg`
-                        : `${tipoCores[tipo]?.bg} ${tipoCores[tipo]?.text} hover:opacity-80`
-                    }`}
-                  >
-                    <span>{tipoIcones[tipo]}</span>
-                    {tipoLabels[tipo]}
-                  </button>
-                ))}
+                {eras.map((tipo) => {
+                  const count = cronologia.filter(e => e.tipo === tipo).length;
+                  return (
+                    <button
+                      key={tipo}
+                      onClick={() => setFiltro(tipo)}
+                      className={`px-4 py-2 text-sm font-medium rounded-xl transition-all flex items-center gap-2 ${
+                        filtro === tipo
+                          ? `bg-gradient-to-r ${tipoCores[tipo]?.gradient} text-white shadow-lg`
+                          : `${tipoCores[tipo]?.bg} ${tipoCores[tipo]?.text} hover:opacity-80`
+                      }`}
+                    >
+                      <span>{tipoIcones[tipo]}</span>
+                      {tipoLabels[tipo]} ({count})
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </ScrollReveal>
 
           {/* Timeline */}
           <div className="relative">
-            {/* Timeline line */}
             <div className="absolute left-6 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 via-primary to-indigo-500" />
 
             <div className="space-y-8">
               {filtrados.map((evento, i) => (
-                <ScrollReveal key={i} delay={Math.min(i * 30, 300)}>
+                <ScrollReveal key={i} delay={Math.min(i * 20, 300)}>
                   <div className={`relative flex items-start gap-6 sm:gap-8 ${
                     i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
                   }`}>
@@ -197,23 +218,35 @@ export default function CronologiaPage() {
                             </span>
                           </div>
                         </div>
-                        
+
                         {/* Content */}
                         <div className="p-5">
                           <p className="font-mono text-sm text-primary font-semibold mb-1">{evento.ano}</p>
-                          <h3 className="font-semibold text-lg mb-1">{evento.evento}</h3>
-                          <div className="flex items-center gap-1 flex-wrap">
+                          <h3 className="font-semibold text-lg mb-2">{evento.evento}</h3>
+                          <div className={`flex items-center gap-1 flex-wrap ${i % 2 === 0 ? 'sm:justify-end' : ''}`}>
                             {parseRefLinks(evento.referencia).length > 0 ? (
                               parseRefLinks(evento.referencia).map((link, li) => (
-                                <Link key={li} href={link.href}
-                                  className="text-[11px] font-mono text-[var(--primary)] hover:underline flex items-center gap-0.5 bg-[var(--primary)]/5 px-1.5 py-0.5 rounded">
+                                <button
+                                  key={li}
+                                  onClick={() => {
+                                    if (link.parsed) {
+                                      setVersiculoPainel(link.parsed);
+                                    }
+                                  }}
+                                  disabled={!link.parsed}
+                                  className={`text-[11px] font-mono px-1.5 py-0.5 rounded flex items-center gap-0.5 transition-all ${
+                                    link.parsed
+                                      ? 'text-primary bg-primary/5 hover:bg-primary/10 hover:underline cursor-pointer'
+                                      : 'text-muted-foreground bg-muted/30 cursor-default'
+                                  }`}
+                                >
                                   <BookOpen className="w-2.5 h-2.5" />
                                   {link.label}
-                                  <ExternalLink className="w-2.5 h-2.5 opacity-50" />
-                                </Link>
+                                  {link.parsed && <ExternalLink className="w-2.5 h-2.5 opacity-50" />}
+                                </button>
                               ))
                             ) : (
-                              <span className="text-[11px] text-[var(--muted-fg)] font-mono">{evento.referencia}</span>
+                              <span className="text-[11px] text-muted-foreground font-mono">{evento.referencia}</span>
                             )}
                           </div>
                         </div>
@@ -225,12 +258,21 @@ export default function CronologiaPage() {
             </div>
           </div>
 
+          {filtrados.length === 0 && (
+            <ScrollReveal>
+              <div className="glass-card p-16 text-center rounded-2xl mt-8">
+                <CalendarDays className="w-10 h-10 text-primary/40 mx-auto mb-4" strokeWidth={1} />
+                <p className="font-display text-xl text-muted-foreground">Nenhum evento encontrado</p>
+              </div>
+            </ScrollReveal>
+          )}
+
           {/* Legend */}
           <ScrollReveal>
             <div className="glass-card p-6 rounded-2xl mt-12">
               <h3 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground mb-4">Legenda</h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {tipos.map((tipo) => (
+                {eras.map((tipo) => (
                   <div key={tipo} className="flex items-center gap-2">
                     <div className={`w-3 h-3 rounded-full ${tipoCores[tipo]?.dot}`} />
                     <span className="text-xs text-muted-foreground">{tipoLabels[tipo]}</span>
@@ -241,6 +283,15 @@ export default function CronologiaPage() {
           </ScrollReveal>
         </div>
       </main>
+
+      <PainelDoVersiculo
+        livro={versiculoPainel?.livro ?? 'gn'}
+        capitulo={versiculoPainel?.cap ?? 1}
+        versiculo={versiculoPainel?.ver ?? 1}
+        aberto={versiculoPainel !== null}
+        onFechar={() => setVersiculoPainel(null)}
+      />
+
       <Footer />
     </div>
   );

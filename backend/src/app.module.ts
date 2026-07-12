@@ -27,11 +27,12 @@ import { PlanoLeituraModule } from './modules/plano-leitura/plano-leitura.module
 import { FavoritosModule } from './modules/favoritos/favoritos.module';
 import { NotasModule } from './modules/notas/notas.module';
 import { DicionarioModule } from './modules/dicionario/dicionario.module';
+import { SegurancaModule } from './infra/seguranca/seguranca.module';
 import { SaudeController } from './modules/saude.controller';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env', '.env.local'] }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -89,6 +90,7 @@ import { SaudeController } from './modules/saude.controller';
     FavoritosModule,
     NotasModule,
     DicionarioModule,
+    SegurancaModule,
   ],
   controllers: [SaudeController],
   providers: [

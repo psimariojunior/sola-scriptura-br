@@ -19,7 +19,7 @@ describe('Doutrinas', () => {
   it('should include Trinity doctrine', () => {
     const trindade = doutrinas.find(d => d.slug === 'trindade');
     expect(trindade).toBeDefined();
-    expect(trindade?.categoria).toBe('Teísmo');
+    expect(trindade?.categoria).toBe('Teologia Proper');
   });
 
   it('should include Justification doctrine', () => {
@@ -38,7 +38,7 @@ describe('Doutrinas', () => {
     const categorias = new Set(doutrinas.map(d => d.categoria));
     expect(categorias.size).toBeGreaterThan(0);
     expect(categorias.has('Soteriologia')).toBe(true);
-    expect(categorias.has('Teísmo')).toBe(true);
+    expect(categorias.has('Teologia Proper')).toBe(true);
   });
 
   it('should have scripture references for all doctrines', () => {

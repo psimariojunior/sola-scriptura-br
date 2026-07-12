@@ -1,5 +1,6 @@
 {
   "buildCommand": "npm install && npm run build",
   "startCommand": "npm run start:prod",
-  "healthCheckPath": "/api/v1/health"
+  "healthCheckPath": "/api/v1/health",
+  "releaseCommand": "npm run migration:run"
 }

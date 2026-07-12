@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { Send, Sparkles, BookOpen, MessageSquare, ChevronDown, Copy, Check, RefreshCw, Trash2, Download } from 'lucide-react';
+import { Send, Sparkles, BookOpen, MessageSquare, ChevronDown, Copy, Check, RefreshCw, Trash2, Download, Wifi, WifiOff, Server, Laptop } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
 
@@ -12,7 +12,10 @@ interface Mensagem {
   texto: string;
   fontes?: Array<{ tipo: string; texto: string; referencia: string }>;
   timestamp: Date;
+  fonte?: 'backend' | 'local';
 }
+
+type FonteResposta = 'backend' | 'local' | null;
 
 const sugestoes = [
   { texto: 'Explique a doutrina da Trindade', categoria: 'Teologia' },
@@ -41,8 +44,13 @@ export default function IaPage() {
   const [carregando, setCarregando] = useState(false);
   const [mostrarTradicoes, setMostrarTradicoes] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+  const [ultimaFonte, setUltimaFonte] = useState<FonteResposta>(null);
+  const [testandoConexao, setTestandoConexao] = useState(false);
+  const [statusBackend, setStatusBackend] = useState<'online' | 'offline' | 'unknown'>('unknown');
   const fimRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const API_BASE = `${process.env.NEXT_PUBLIC_API_URL || 'https://api-production-bb96.up.railway.app/api/v1'}`;
 
   useEffect(() => {
     fimRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -57,19 +65,84 @@ export default function IaPage() {
     setPergunta('');
     setCarregando(true);
 
+    const payload = JSON.stringify({ consulta: q, tradicao: tradicao.toLowerCase() });
+
+    // Tenta backend NestJS primeiro
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+      const res = await fetch(`${API_BASE}/ia/perguntar`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload,
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+
+      if (!res.ok) throw new Error(`Backend ${res.status}`);
+      const data = await res.json();
+      setUltimaFonte('backend');
+      setStatusBackend('online');
+      setHistorico(prev => [...prev, {
+        tipo: 'assistant',
+        texto: data.resposta,
+        fontes: data.fontes,
+        timestamp: new Date(),
+        fonte: 'backend',
+      }]);
+      setCarregando(false);
+      return;
+    } catch {
+      // Backend indisponível — fallback para route handler local
+    }
+
+    // Fallback: route handler Next.js local
     try {
       const res = await fetch('/api/ia/perguntar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ consulta: q, tradicao: tradicao.toLowerCase() }),
+        body: payload,
       });
-      if (!res.ok) throw new Error('Erro na requisição');
+      if (!res.ok) throw new Error('Erro local');
       const data = await res.json();
-      setHistorico(prev => [...prev, { tipo: 'assistant', texto: data.resposta, fontes: data.fontes, timestamp: new Date() }]);
+      setUltimaFonte('local');
+      setStatusBackend('offline');
+      setHistorico(prev => [...prev, {
+        tipo: 'assistant',
+        texto: data.resposta,
+        fontes: data.fontes,
+        timestamp: new Date(),
+        fonte: 'local',
+      }]);
     } catch {
-      setHistorico(prev => [...prev, { tipo: 'assistant', texto: 'Desculpe, ocorreu um erro ao processar sua pergunta. Tente novamente.', timestamp: new Date() }]);
+      setHistorico(prev => [...prev, {
+        tipo: 'assistant',
+        texto: 'Desculpe, ocorreu um erro ao processar sua pergunta. Tente novamente.',
+        timestamp: new Date(),
+      }]);
     } finally {
       setCarregando(false);
+    }
+  };
+
+  const testarConexao = async () => {
+    setTestandoConexao(true);
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      const res = await fetch(`${API_BASE}/ia/perguntar`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ consulta: 'teste', tradicao: 'geral' }),
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+      setStatusBackend(res.ok ? 'online' : 'offline');
+    } catch {
+      setStatusBackend('offline');
+    } finally {
+      setTestandoConexao(false);
     }
   };
 
@@ -175,7 +248,7 @@ export default function IaPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 + i * 0.05 }}
                         whileHover={{ scale: 1.02, y: -2 }}
-                        className="text-left p-3 border border-border rounded-lg hover:bg-muted hover:border-primary/30 transition-all duration-300 group"
+                        className="text-left p-3 bg-card/60 backdrop-blur-sm border border-border rounded-lg hover:bg-muted/80 hover:border-primary/30 transition-all duration-300 group shadow-sm"
                       >
                         <div className="flex items-center gap-2 mb-1">
                           <span className={`text-[10px] px-1.5 py-0.5 rounded ${CATEGORIA_COR[s.categoria] || 'bg-muted'}`}>
@@ -202,7 +275,7 @@ export default function IaPage() {
                   <div className={`max-w-[85%] sm:max-w-[75%] ${
                     msg.tipo === 'user'
                       ? 'bg-primary text-primary-foreground rounded-2xl rounded-br-sm px-4 py-3'
-                      : 'bg-card border border-border/50 rounded-2xl rounded-tl-sm px-5 py-4'
+                      : 'bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl rounded-tl-sm px-5 py-4 shadow-sm'
                   }`}>
                     {msg.tipo === 'assistant' ? (
                       <div className="prose prose-sm dark:prose-invert max-w-none">
@@ -225,9 +298,20 @@ export default function IaPage() {
                     )}
                     
                     <div className="flex items-center justify-between mt-2 pt-2 border-t border-border/20">
-                      <span className="text-[10px] text-muted-foreground/60">
-                        {msg.timestamp.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-muted-foreground/60">
+                          {msg.timestamp.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
+                        </span>
+                        {msg.tipo === 'assistant' && msg.fonte && (
+                          <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-medium ${
+                            msg.fonte === 'backend'
+                              ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300'
+                              : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300'
+                          }`}>
+                            {msg.fonte === 'backend' ? 'Backend' : 'Local'}
+                          </span>
+                        )}
+                      </div>
                       <motion.button
                         onClick={() => copyMessage(msg.texto, i)}
                         whileHover={{ scale: 1.1 }}
@@ -244,7 +328,7 @@ export default function IaPage() {
 
             {carregando && (
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
-                <div className="bg-card border border-border/50 rounded-2xl rounded-tl-sm px-5 py-4">
+                <div className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl rounded-tl-sm px-5 py-4 shadow-sm">
                   <div className="flex items-center gap-2">
                     <div className="typing-dot" />
                     <div className="typing-dot" />
@@ -258,26 +342,61 @@ export default function IaPage() {
           </div>
 
           {/* Input */}
-          <div className="flex gap-3 sticky bottom-0 bg-gradient-to-t from-background via-background/95 to-transparent pt-4 pb-2">
-            <input
-              ref={inputRef}
-              type="text"
-              value={pergunta}
-              onChange={(e) => setPergunta(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && enviar()}
-              placeholder="Digite sua pergunta bíblica..."
-              className="flex-1 px-5 py-3.5 bg-card border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-300"
-              disabled={carregando}
-            />
-            <motion.button
-              onClick={() => enviar()}
-              disabled={!pergunta.trim() || carregando}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-5 py-3.5 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-            >
-              {carregando ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-            </motion.button>
+          <div className="sticky bottom-0 bg-gradient-to-t from-background via-background/95 to-transparent pt-4 pb-2">
+            <div className="flex items-center justify-between mb-2 px-1">
+              <div className="flex items-center gap-1.5">
+                {statusBackend === 'online' && (
+                  <span className="flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400">
+                    <Server className="w-3 h-3" /> Backend conectado
+                  </span>
+                )}
+                {statusBackend === 'offline' && (
+                  <span className="flex items-center gap-1 text-[10px] text-amber-600 dark:text-amber-400">
+                    <Laptop className="w-3 h-3" /> Usando fallback local
+                  </span>
+                )}
+                {statusBackend === 'unknown' && (
+                  <span className="flex items-center gap-1 text-[10px] text-muted-foreground/50">
+                    <Wifi className="w-3 h-3" /> Verificando conexão...
+                  </span>
+                )}
+              </div>
+              <button
+                onClick={testarConexao}
+                disabled={testandoConexao}
+                className="flex items-center gap-1 text-[10px] text-muted-foreground hover:text-foreground transition-colors disabled:opacity-50"
+              >
+                {testandoConexao ? (
+                  <RefreshCw className="w-3 h-3 animate-spin" />
+                ) : statusBackend === 'online' ? (
+                  <Wifi className="w-3 h-3" />
+                ) : (
+                  <WifiOff className="w-3 h-3" />
+                )}
+                {testandoConexao ? 'Testando...' : 'Testar conexão'}
+              </button>
+            </div>
+            <div className="flex gap-3">
+              <input
+                ref={inputRef}
+                type="text"
+                value={pergunta}
+                onChange={(e) => setPergunta(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && enviar()}
+                placeholder="Digite sua pergunta bíblica..."
+                className="flex-1 px-5 py-3.5 bg-card border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-300"
+                disabled={carregando}
+              />
+              <motion.button
+                onClick={() => enviar()}
+                disabled={!pergunta.trim() || carregando}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-5 py-3.5 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              >
+                {carregando ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+              </motion.button>
+            </div>
           </div>
         </div>
       </main>

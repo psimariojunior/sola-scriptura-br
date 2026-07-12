@@ -28,6 +28,8 @@ import { setMarcador, removeMarcador, getMarcador, CORES } from '@/lib/marcadore
 import { isOnline, cacheChapter, getCachedChapter } from '@/lib/offline';
 import { recordReading, getStats } from '@/lib/estatisticas';
 import OfflineBanner from '@/components/OfflineBanner';
+import PainelDoVersiculo from '@/components/PainelDoVersiculo';
+import { getTiposRecursoDisponiveis } from '@/data/biblia/versiculoRecursos';
 
 const PainelStrong = lazy(() => import('@/components/PainelStrong'));
 const PainelNotas = lazy(() => import('@/components/PainelNotas'));
@@ -99,7 +101,7 @@ async function carregarMulti(livro: string, cap: number, trads: string[]): Promi
 
 const labelMap: Record<string, string> = { arc: 'ARC', nvi: 'NVI', ara: 'ARA', acf: 'ACF', aa: 'AA', ntlh: 'NTLH', kjv: 'KJV', web: 'WEB' };
 const nomeMap: Record<string, string> = { arc: 'Almeida Revista e Corrigida', nvi: 'Nova Versão Internacional', ara: 'Almeida Revista e Atualizada', acf: 'Almeida Corrigida Fiel', aa: 'Almeida Atualizada', ntlh: 'Nova Tradução na Linguagem de Hoje', kjv: 'King James Version', web: 'World English Bible' };
-const tradBadgeColors: Record<string, string> = { arc: 'bg-blue-500', nvi: 'bg-green-500', ara: 'bg-purple-500', acf: 'bg-rose-500', aa: 'bg-cyan-500', ntlh: 'bg-orange-500', kjv: 'bg-amber-500', web: 'bg-emerald-500' };
+const tradBadgeColors: Record<string, string> = { arc: 'bg-primary/10 text-primary', nvi: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400', ara: 'bg-purple-500/10 text-purple-600 dark:text-purple-400', acf: 'bg-rose-500/10 text-rose-600 dark:text-rose-400', aa: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400', ntlh: 'bg-orange-500/10 text-orange-600 dark:text-orange-400', kjv: 'bg-amber-500/10 text-amber-600 dark:text-amber-400', web: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' };
 const tradTextColors: Record<string, string> = { arc: 'text-blue-600 dark:text-blue-400', nvi: 'text-green-600 dark:text-green-400', ara: 'text-purple-600 dark:text-purple-400', acf: 'text-rose-600 dark:text-rose-400', aa: 'text-cyan-600 dark:text-cyan-400', ntlh: 'text-orange-600 dark:text-orange-400', kjv: 'text-amber-600 dark:text-amber-400', web: 'text-emerald-600 dark:text-emerald-400' };
 
 export default function BibliaPage() {
@@ -137,6 +139,7 @@ export default function BibliaPage() {
   const flashcards = useFlashcards();
   const [colorPickerVerse, setColorPickerVerse] = useState<string | null>(null);
   const [statsData, setStatsData] = useState<ReturnType<typeof getStats> | null>(null);
+  const [versiculoSelecionado, setVersiculoSelecionado] = useState<{livro: string, cap: number, ver: number} | null>(null);
 
   const livro = TODOS_LIVROS[livroIdx];
 
@@ -556,7 +559,8 @@ export default function BibliaPage() {
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: 0.1 + i * 0.01 }}
-                                        className={`group flex items-start gap-2 py-1 px-2 -mx-2 rounded-lg transition-all duration-300 ${isPlaying ? 'bg-[var(--primary)]/5 ring-1 ring-[var(--primary)]/20' : 'verse-hover'} ${temAnotacao ? 'border-l-2 border-l-amber-500/50' : ''} ${corMarca ? `mark-${corMarca}-bg` : ''}`}
+                                        className={`group flex items-start gap-2 py-1 px-2 -mx-2 rounded-lg transition-all duration-300 cursor-pointer ${isPlaying ? 'bg-[var(--primary)]/5 ring-1 ring-[var(--primary)]/20' : 'verse-hover'} ${temAnotacao ? 'border-l-2 border-l-amber-500/50' : ''} ${corMarca ? `mark-${corMarca}-bg` : ''}`}
+                                        onClick={() => setVersiculoSelecionado({ livro: livro.abreviacao, cap: capituloIdx + 1, ver: v.numero })}
                                       >
                                         <sup className="text-[var(--primary)] font-bold text-xs mt-1 select-none min-w-[20px] text-right relative">
                                           {v.numero}
@@ -572,6 +576,17 @@ export default function BibliaPage() {
                                         </sup>
                                         <div className="flex-1">
                                           <p className="font-serif-body leading-relaxed" style={{ fontSize: `${fontSize}px` }}>{v.texto}</p>
+                                          {(() => {
+                                            const recursos = getTiposRecursoDisponiveis(livro.abreviacao, capituloIdx + 1, v.numero);
+                                            if (recursos.length === 0) return null;
+                                            return (
+                                              <div className="mt-1 flex items-center gap-1.5 flex-wrap">
+                                                <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-medium" title={`${recursos.length} recurso(s) disponível(eis)`}>
+                                                  {recursos.length} recurso{recursos.length !== 1 ? 's' : ''}
+                                                </span>
+                                              </div>
+                                            );
+                                          })()}
                                           {(() => {
                                             const refs = getCrossReferences(livro.abreviacao, capituloIdx + 1, v.numero);
                                             if (refs.length === 0) return null;
@@ -1048,6 +1063,15 @@ export default function BibliaPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Painel do Versículo */}
+      <PainelDoVersiculo
+        livro={versiculoSelecionado?.livro ?? ''}
+        capitulo={versiculoSelecionado?.cap ?? 1}
+        versiculo={versiculoSelecionado?.ver ?? 1}
+        aberto={versiculoSelecionado !== null}
+        onFechar={() => setVersiculoSelecionado(null)}
+      />
 
       {/* Mobile bottom nav */}
       <div className="fixed bottom-0 left-0 right-0 border-t border-[var(--border)] bg-[var(--card-bg)] lg:hidden z-30">

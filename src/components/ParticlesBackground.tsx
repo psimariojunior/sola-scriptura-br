@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 interface Particle {
   x: number;
@@ -15,6 +15,15 @@ interface Particle {
 export default function ParticlesBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  const animateRef = useRef<number>(0);
+
+  const handleResize = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }, []);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -22,14 +31,11 @@ export default function ParticlesBackground() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationId: number;
     let particles: Particle[] = [];
     const mouse = { x: -1000, y: -1000 };
 
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
 
     const createParticles = () => {
       const count = Math.min(80, Math.floor(canvas.width * canvas.height / 15000));
@@ -97,7 +103,7 @@ export default function ParticlesBackground() {
       });
 
       drawConnections();
-      animationId = requestAnimationFrame(animate);
+      animateRef.current = requestAnimationFrame(animate);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -105,24 +111,25 @@ export default function ParticlesBackground() {
       mouse.y = e.clientY;
     };
 
-    resize();
+    handleResize();
     createParticles();
     animate();
 
-    window.addEventListener('resize', () => { resize(); createParticles(); });
+    window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener('resize', resize);
+      cancelAnimationFrame(animateRef.current);
+      window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [handleResize]);
 
   return (
     <canvas
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none"
+      aria-hidden="true"
       style={{ opacity: 0.6 }}
     />
   );

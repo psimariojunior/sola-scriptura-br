@@ -9,10 +9,13 @@ function TemaSincronizador() {
 
   useEffect(() => {
     const root = document.documentElement;
-    if (tema === 'sepia') {
-      root.classList.remove('dark');
-    } else {
+    root.classList.remove('dark', 'sepia', 'noturno');
+    if (tema === 'escuro') {
       root.classList.add('dark');
+    } else if (tema === 'noturno') {
+      root.classList.add('dark', 'noturno');
+    } else if (tema === 'sepia') {
+      root.classList.add('sepia');
     }
   }, [tema]);
 
@@ -23,9 +26,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   return (
     <NextThemesProvider
       attribute="class"
-      defaultTheme="system"
+      defaultTheme="dark"
       enableSystem
-      disableTransitionOnChange={false}
+      disableTransitionOnChange
     >
       <TemaProvider>
         <TemaSincronizador />

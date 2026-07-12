@@ -37,9 +37,10 @@ const moreLinks = [
 ];
 
 const temaIcons: Record<string, React.ReactNode> = {
+  light: <Sun className="w-4 h-4" />,
   escuro: <Moon className="w-4 h-4" />,
   sepia: <BookOpen className="w-4 h-4" />,
-  noturno: <Stars className="w-4 h-4" />,
+  noturno: <Moon className="w-4 h-4" strokeWidth={1.5} />,
 };
 
 export function Header() {

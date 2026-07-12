@@ -10,13 +10,16 @@ function TemaSincronizador() {
   useEffect(() => {
     const root = document.documentElement;
     root.classList.remove('dark', 'sepia', 'noturno');
-    if (tema === 'escuro') {
+    if (tema === 'escuro' || tema === 'noturno') {
       root.classList.add('dark');
-    } else if (tema === 'noturno') {
-      root.classList.add('dark', 'noturno');
-    } else if (tema === 'sepia') {
+    }
+    if (tema === 'noturno') {
+      root.classList.add('noturno');
+    }
+    if (tema === 'sepia') {
       root.classList.add('sepia');
     }
+    // light: no class, uses :root CSS variables
   }, [tema]);
 
   return null;

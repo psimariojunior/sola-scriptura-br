@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, createContext, useContext, type ReactNode } from 'react';
 
-export type TemaNome = 'escuro' | 'sepia' | 'noturno';
+export type TemaNome = 'light' | 'escuro' | 'sepia' | 'noturno';
 
 export interface TemaConfig {
   nome: TemaNome;
@@ -11,6 +11,11 @@ export interface TemaConfig {
 }
 
 const TEMAS: Record<TemaNome, TemaConfig> = {
+  light: {
+    nome: 'light',
+    label: 'Claro',
+    icone: '☀️',
+  },
   escuro: {
     nome: 'escuro',
     label: 'Escuro',
@@ -19,12 +24,12 @@ const TEMAS: Record<TemaNome, TemaConfig> = {
   sepia: {
     nome: 'sepia',
     label: 'Sépia',
-    icone: '📜',
+    icone: '📖',
   },
   noturno: {
     nome: 'noturno',
     label: 'Noturno',
-    icone: '🌃',
+    icone: '🌑',
   },
 };
 
@@ -64,13 +69,16 @@ export function TemaProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(STORAGE_KEY, novo);
     const root = document.documentElement;
     root.classList.remove('dark', 'sepia', 'noturno');
-    if (novo === 'escuro') {
+    if (novo === 'escuro' || novo === 'noturno') {
       root.classList.add('dark');
-    } else if (novo === 'noturno') {
-      root.classList.add('dark', 'noturno');
-    } else if (novo === 'sepia') {
+    }
+    if (novo === 'noturno') {
+      root.classList.add('noturno');
+    }
+    if (novo === 'sepia') {
       root.classList.add('sepia');
     }
+    // light: no class added, uses :root defaults
   }, []);
 
   if (!mounted) {

@@ -89,12 +89,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               (function() {
                 try {
                   var theme = localStorage.getItem('ssb_theme');
-                  if (theme === 'escuro' || theme === 'noturno' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  if (!theme || theme === 'escuro' || theme === 'noturno') {
                     document.documentElement.classList.add('dark');
                   } else if (theme === 'sepia') {
                     document.documentElement.classList.add('sepia');
                   }
-                } catch(e) {}
+                } catch(e) {
+                  document.documentElement.classList.add('dark');
+                }
               })();
             `,
           }}

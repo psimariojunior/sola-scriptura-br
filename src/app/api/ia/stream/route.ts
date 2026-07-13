@@ -76,6 +76,8 @@ async function streamDirectOpenAI(
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${OPENAI_API_KEY}`,
+      'HTTP-Referer': 'https://sola-scriptura-two.vercel.app',
+      'X-Title': 'Sola Scriptura BR',
     },
     body: JSON.stringify({
       model: LLM_MODEL,

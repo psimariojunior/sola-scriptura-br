@@ -1,9 +1,10 @@
 'use client';
 
-// Configuração da API - usa proxy Next.js para evitar CORS
-const API_BASE = '/api';
-
 const ADMIN_EMAILS = ['psi_mariojunior@hotmail.com'];
+const USERS_KEY = 'ssb_users';
+const TOKEN_KEY = 'accessToken';
+const REFRESH_KEY = 'refreshToken';
+const USER_KEY = 'usuario';
 
 interface Usuario {
   id: string;
@@ -18,11 +19,6 @@ interface AuthResponse {
   usuario: Usuario;
 }
 
-interface ApiError {
-  message: string;
-  statusCode: number;
-}
-
 class AuthService {
   private static instance: AuthService;
   private accessToken: string | null = null;
@@ -30,15 +26,13 @@ class AuthService {
   private usuario: Usuario | null = null;
 
   private constructor() {
-    // Carregar tokens do localStorage no cliente
     if (typeof window !== 'undefined') {
-      this.accessToken = localStorage.getItem('accessToken');
-      this.refreshToken = localStorage.getItem('refreshToken');
-      const usuarioStr = localStorage.getItem('usuario');
+      this.accessToken = localStorage.getItem(TOKEN_KEY);
+      this.refreshToken = localStorage.getItem(REFRESH_KEY);
+      const usuarioStr = localStorage.getItem(USER_KEY);
       if (usuarioStr) {
         try {
           this.usuario = JSON.parse(usuarioStr);
-          // Auto-assign admin role for creator emails
           if (this.usuario && ADMIN_EMAILS.includes(this.usuario.email)) {
             this.usuario.role = 'admin';
           }
@@ -56,102 +50,61 @@ class AuthService {
     return AuthService.instance;
   }
 
-  private async fetchApi<T>(
-    endpoint: string,
-    options: RequestInit = {}
-  ): Promise<T> {
-    const url = `${API_BASE}${endpoint}`;
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-      ...((options.headers as Record<string, string>) || {}),
-    };
+  private getUsers(): Array<Usuario & { senha: string }> {
+    if (typeof window === 'undefined') return [];
+    return JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
+  }
 
-    // Adicionar token de autenticação se disponível
-    if (this.accessToken) {
-      headers['Authorization'] = `Bearer ${this.accessToken}`;
-    }
-
-    const response = await fetch(url, {
-      ...options,
-      headers,
-    });
-
-    if (!response.ok) {
-      const error: ApiError = await response.json().catch(() => ({
-        message: 'Erro na requisição',
-        statusCode: response.status,
-      }));
-      throw new Error(error.message || `Erro ${response.status}`);
-    }
-
-    return response.json();
+  private saveUsers(users: Array<Usuario & { senha: string }>): void {
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
   }
 
   async cadastrar(nome: string, email: string, senha: string): Promise<Usuario> {
-    try {
-      const data = await this.fetchApi<AuthResponse>('/auth/cadastrar', {
-        method: 'POST',
-        body: JSON.stringify({ nome, email, senha }),
-      });
-      this.setSession(data);
-      return data.usuario;
-    } catch {
-      // Fallback: client-side registration when backend is unavailable
-      const existingUsers = JSON.parse(localStorage.getItem('ssb_users') || '[]');
-      if (existingUsers.find((u: any) => u.email === email)) {
-        throw new Error('Este email já está cadastrado');
-      }
-      const usuario: Usuario = {
-        id: `local_${Date.now()}`,
-        nome,
-        email,
-        role: ADMIN_EMAILS.includes(email) ? 'admin' : 'user',
-      };
-      const localUser = { ...usuario, senha };
-      existingUsers.push(localUser);
-      localStorage.setItem('ssb_users', JSON.stringify(existingUsers));
-
-      const token = `local_token_${Date.now()}`;
-      const data: AuthResponse = {
-        accessToken: token,
-        refreshToken: `local_refresh_${Date.now()}`,
-        usuario,
-      };
-      this.setSession(data);
-      return usuario;
+    const existingUsers = this.getUsers();
+    if (existingUsers.find((u) => u.email === email)) {
+      throw new Error('Este email já está cadastrado');
     }
+
+    const usuario: Usuario = {
+      id: `user_${Date.now()}`,
+      nome,
+      email,
+      role: ADMIN_EMAILS.includes(email) ? 'admin' : 'user',
+    };
+
+    existingUsers.push({ ...usuario, senha });
+    this.saveUsers(existingUsers);
+
+    this.setSession({
+      accessToken: `token_${Date.now()}`,
+      refreshToken: `refresh_${Date.now()}`,
+      usuario,
+    });
+
+    return usuario;
   }
 
   async login(email: string, senha: string): Promise<Usuario> {
-    try {
-      const data = await this.fetchApi<AuthResponse>('/auth/login', {
-        method: 'POST',
-        body: JSON.stringify({ email, senha }),
-      });
-      this.setSession(data);
-      return data.usuario;
-    } catch {
-      // Fallback: client-side login when backend is unavailable
-      const existingUsers = JSON.parse(localStorage.getItem('ssb_users') || '[]');
-      const found = existingUsers.find((u: any) => u.email === email && u.senha === senha);
-      if (!found) {
-        throw new Error('Email ou senha incorretos');
-      }
-      const usuario: Usuario = {
-        id: found.id,
-        nome: found.nome,
-        email: found.email,
-        role: found.role || (ADMIN_EMAILS.includes(email) ? 'admin' : 'user'),
-      };
-      const token = `local_token_${Date.now()}`;
-      const data: AuthResponse = {
-        accessToken: token,
-        refreshToken: `local_refresh_${Date.now()}`,
-        usuario,
-      };
-      this.setSession(data);
-      return usuario;
+    const existingUsers = this.getUsers();
+    const found = existingUsers.find((u) => u.email === email && u.senha === senha);
+    if (!found) {
+      throw new Error('Email ou senha incorretos');
     }
+
+    const usuario: Usuario = {
+      id: found.id,
+      nome: found.nome,
+      email: found.email,
+      role: found.role || (ADMIN_EMAILS.includes(email) ? 'admin' : 'user'),
+    };
+
+    this.setSession({
+      accessToken: `token_${Date.now()}`,
+      refreshToken: `refresh_${Date.now()}`,
+      usuario,
+    });
+
+    return usuario;
   }
 
   async loginWithGoogle(): Promise<Usuario> {
@@ -160,12 +113,11 @@ class AuthService {
       nome: 'Usuário Google',
       email: `usuario${Date.now()}@gmail.com`,
     };
-    const data: AuthResponse = {
+    this.setSession({
       accessToken: `g_token_${Date.now()}`,
       refreshToken: `g_refresh_${Date.now()}`,
       usuario,
-    };
-    this.setSession(data);
+    });
     return usuario;
   }
 
@@ -175,52 +127,16 @@ class AuthService {
       nome: 'Usuário Apple',
       email: `usuario${Date.now()}@icloud.com`,
     };
-    const data: AuthResponse = {
+    this.setSession({
       accessToken: `a_token_${Date.now()}`,
       refreshToken: `a_refresh_${Date.now()}`,
       usuario,
-    };
-    this.setSession(data);
+    });
     return usuario;
   }
 
   async logout(): Promise<void> {
-    try {
-      if (this.refreshToken) {
-        await this.fetchApi('/auth/logout', {
-          method: 'POST',
-          body: JSON.stringify({ refreshToken: this.refreshToken }),
-        });
-      }
-    } catch {
-      // Ignorar erros no logout
-    } finally {
-      this.clearSession();
-    }
-  }
-
-  async refreshAccessToken(): Promise<boolean> {
-    if (!this.refreshToken) return false;
-
-    try {
-      const data = await this.fetchApi<{ accessToken: string; refreshToken: string }>('/auth/refresh', {
-        method: 'POST',
-        body: JSON.stringify({ refreshToken: this.refreshToken }),
-      });
-
-      this.accessToken = data.accessToken;
-      this.refreshToken = data.refreshToken;
-
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('accessToken', data.accessToken);
-        localStorage.setItem('refreshToken', data.refreshToken);
-      }
-
-      return true;
-    } catch {
-      this.clearSession();
-      return false;
-    }
+    this.clearSession();
   }
 
   private setSession(data: AuthResponse): void {
@@ -228,16 +144,14 @@ class AuthService {
     this.refreshToken = data.refreshToken;
     this.usuario = data.usuario;
 
-    // Auto-assign admin role for creator emails
     if (this.usuario && ADMIN_EMAILS.includes(this.usuario.email)) {
       this.usuario.role = 'admin';
     }
 
     if (typeof window !== 'undefined') {
-      localStorage.setItem('accessToken', data.accessToken);
-      localStorage.setItem('refreshToken', data.refreshToken);
-      localStorage.setItem('usuario', JSON.stringify(this.usuario));
-      // Set cookies for middleware
+      localStorage.setItem(TOKEN_KEY, data.accessToken);
+      localStorage.setItem(REFRESH_KEY, data.refreshToken);
+      localStorage.setItem(USER_KEY, JSON.stringify(this.usuario));
       document.cookie = `ssb_token=${data.accessToken}; path=/; max-age=2592000; SameSite=Lax`;
       document.cookie = `ssb_usuario=${encodeURIComponent(JSON.stringify(this.usuario))}; path=/; max-age=2592000; SameSite=Lax`;
     }
@@ -249,10 +163,9 @@ class AuthService {
     this.usuario = null;
 
     if (typeof window !== 'undefined') {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      localStorage.removeItem('usuario');
-      // Clear cookies
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(REFRESH_KEY);
+      localStorage.removeItem(USER_KEY);
       document.cookie = 'ssb_token=; path=/; max-age=0';
       document.cookie = 'ssb_usuario=; path=/; max-age=0';
     }

@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'https://api-production-bb96.up.railway.app/api/v1';
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.OPENROUTER_API_KEY || '';
+const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://openrouter.ai/api/v1';
+const LLM_MODEL = process.env.LLM_MODEL || 'openai/gpt-4o';
 
 export async function POST(request: NextRequest) {
   let body: any;
@@ -64,14 +66,14 @@ async function chamarOpenAIDireto(
     ? `Contexto adicional:\n${contexto}\n\nPergunta: ${consulta}`
     : consulta;
 
-  const resposta = await fetch('https://api.openai.com/v1/chat/completions', {
+  const resposta = await fetch(`${LLM_BASE_URL}/chat/completions`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${OPENAI_API_KEY}`,
     },
     body: JSON.stringify({
-      model: 'gpt-4o',
+      model: LLM_MODEL,
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userMessage },

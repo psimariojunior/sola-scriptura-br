@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { ExportModal } from '@/components/ExportModal';
 import type { ConteudoExport } from '@/lib/exportPdf';
+import { useToast } from '@/hooks/useToast';
 
 export interface Nota {
   id: string;
@@ -60,6 +61,7 @@ export function NotaEditor({
   const [editando, setEditando] = useState(false);
   const editorRef = useRef<HTMLDivElement>(null);
   const autoSalvarTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     if (notaInicial) setNota(notaInicial);
@@ -90,7 +92,10 @@ export function NotaEditor({
       if (idx >= 0) notas[idx] = notaSalva;
       else notas.push(notaSalva);
       localStorage.setItem('sola-notas', JSON.stringify(notas));
-    } catch { /* storage full or unavailable */ }
+      toast({ title: 'Anotação salva', variant: 'success' });
+    } catch {
+      toast({ title: 'Erro ao salvar', variant: 'error' });
+    }
 
     onSalvar?.(notaSalva);
   }, [nota, onSalvar]);

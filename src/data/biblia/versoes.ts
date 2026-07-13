@@ -10,6 +10,7 @@ export interface Versao {
 export const traducoes: Versao[] = [
   { id: 'arc', nome: 'Almeida Revista e Corrigida', sigla: 'ARC', descricao: 'Tradução clássica de João Ferreira de Almeida', idioma: 'pt-BR', ano: 1898 },
   { id: 'nvi', nome: 'Nova Versão Internacional', sigla: 'NVI', descricao: 'Tradução contemporânea e precisa', idioma: 'pt-BR', ano: 2000 },
+  { id: 'naa', nome: 'Nova Almeida Atualizada', sigla: 'NAA', descricao: 'Revisão da Almeida pela SBB em linguagem contemporânea', idioma: 'pt-BR', ano: 2017 },
   { id: 'ara', nome: 'Almeida Revista e Atualizada', sigla: 'ARA', descricao: 'Revisão da ARC pela SBB', idioma: 'pt-BR', ano: 1993 },
   { id: 'acf', nome: 'Almeida Corrigida Fiel', sigla: 'ACF', descricao: 'Revisão fiel da ARC por Stuart', idioma: 'pt-BR', ano: 2015 },
   { id: 'aa', nome: 'Almeida Atualizada', sigla: 'AA', descricao: 'Atualização da Almeida em linguagem contemporânea', idioma: 'pt-BR', ano: 2009 },

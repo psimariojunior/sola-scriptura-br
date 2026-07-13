@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Copy, Check, Share2, ExternalLink } from 'lucide-react';
+import { useToast } from '@/hooks/useToast';
 
 interface CompartilharVersiculoProps {
   livro: string;
@@ -17,6 +18,7 @@ const formatarReferencia = (livro: string, cap: number, ver: number) =>
 export function CompartilharVersiculo({ livro, capítulo, versículo, texto }: CompartilharVersiculoProps) {
   const [copiado, setCopiado] = useState(false);
   const [aberto, setAberto] = useState(false);
+  const { toast } = useToast();
 
   const referência = formatarReferencia(livro, capítulo, versículo);
   const textoFormatado = `"${texto}"\n\n— ${referência} (Sola Scriptura)`;
@@ -26,6 +28,7 @@ export function CompartilharVersiculo({ livro, capítulo, versículo, texto }: C
       await navigator.clipboard.writeText(textoFormatado);
       setCopiado(true);
       setTimeout(() => setCopiado(false), 2000);
+      toast({ title: 'Versículo copiado!', variant: 'success' });
     } catch {
       const textarea = document.createElement('textarea');
       textarea.value = textoFormatado;
@@ -35,6 +38,7 @@ export function CompartilharVersiculo({ livro, capítulo, versículo, texto }: C
       document.body.removeChild(textarea);
       setCopiado(true);
       setTimeout(() => setCopiado(false), 2000);
+      toast({ title: 'Versículo copiado!', variant: 'success' });
     }
   };
 

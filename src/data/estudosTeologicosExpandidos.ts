@@ -6572,5 +6572,375 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     tags: ['missão', 'discipulado', 'holística', 'Espírito'],
     fontes: ['David Bosch, Transforming Mission']
   },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // TRINDADE - ESTUDOS DETALHADOS (3 estudos)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  {
+    id: 'trin-001',
+    titulo: 'A Doutrina da Trindade — Fundamentos Bíblicos',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Trindade',
+    conteudo: [
+      'A doutrina da Trindade afirma que há um único Deus que subsiste em três pessoas distintas: Pai, Filho e Espírito Santo. Cada pessoa é plenamente Deus, e há um só Deus verdadeiro. Esta não é uma especulação filosófica, mas a leitura fiel da revelação bíblica.',
+      'No Antigo Testamento, a monoteísmo é radicalmente afirmado: "Ouve, Israel, o Senhor nosso Deus é o único Senhor" (Dt 6:4). Contudo, multiplicidade interna já se manifesta: o anjo do Senhor é distinto de Javé, o Espírito de Deus atua criadoramente, e a sabedoria personificada aparece em Provérbios 8.',
+      'No Novo Testamento, a Trindade aparece no batismo de Jesus (Mt 3:16-17), na Grande Comissão (Mt 28:19), na bênção apostólica (2 Co 13:14) e em diversas fórmulas litúrgicas. Jesus afirma claramente sua unidade com o Pai: "Eu e o Pai somos um" (Jo 10:30).',
+      'O Espírito Santo é pessoal e divino: fala, ensina, consola, intercede. Atribuem-se a Ele obras divinas: criação, inspiração, regeneração. Sua procession do Pai (e do Filho no Credo de Calcedônia) é debatida, mas é fato que Ele é pessoa plena da Trindade.',
+      'A Trindade não é contradição lógica: é mistério que transcende a razão. Não é três deuses, nem três modos de um Deus. É um Deus em três pessoas subsistentes, co-iguais, co-eternas, co-essenciais. A economia da salvação revela cada pessoa em operação distinta, mas nunca separada.'
+    ],
+    versicosChave: ['Mateus 28:19', '2 Coríntios 13:14', 'João 10:30', 'Gênesis 1:26', 'Isaías 48:16'],
+    tags: ['trindade', 'monoteísmo', 'Pai', 'Filho', 'Espírito Santo', 'unidade'],
+    fontes: ['Wayne Grudem, Teologia Sistemática', 'Millard Erickson, Christian Theology', 'Karl Barth, Church Dogmatics I/1']
+  },
+  {
+    id: 'trin-002',
+    titulo: 'A Trindade na História da Igreja — Concílios e Definições',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Trindade',
+    conteudo: [
+      'A formulação trinitária não foi inventada por filósofos, mas foi o resultado de séculos de leitura da Escritura e do combate às heresias que ameaçavam a fé cristã. Os primeiros Pais apologistas já afirmavam a divindade do Logos e a ação do Espírito.',
+      'O Concílio de Nicéia (325) condenou o arianismo, que negava a plena divindade do Filho. O termo "homoousios" (da mesma substância) foi adotado para afirmar que o Filho é plenamente Deus, não uma criatura, por mais exaltada que seja. Atanásio foi o principal defensor da fé nicena.',
+      'O Concílio de Constantinopla (381) completou a obra de Nicéia, afirmando a divindade do Espírito Santo contra os macedônios (pneumatômacos), que O tratavam como criatura. O Credo Niceno-Constantinopolitano, usado até hoje, cristalizou a doutrina.',
+      'Os Capadócios (Basílio de Cesareia, Gregório de Nazianzo, Gregório de Nissa) desenvolveram a distinção entre "essência" (ousia) e "pessoa" (hypostasis), distinguindo a identidade pessoal das pessoas trinitárias. Agostinho, no Ocidente, contribuiu com a analogia psicológica do amor.',
+      'A heresia modalista (Sabelianismo) via as três pessoas como modos temporais de um Deus uno. O triteísmo via três deuses. A ortodoxia nicena permaneceu como ponto de equilíbrio: três pessoas, uma essência. Esta formulação tem resistido por mil e setecentos anos.'
+    ],
+    versicosChave: ['João 1:1-3', 'Atos 5:3-4', 'Mateus 3:16-17', 'Hebreus 1:3', 'João 15:26'],
+    tags: ['Niceia', 'Constantinopla', 'homoousios', 'Capadócios', 'arianismo', 'modalismo'],
+    fontes: ['Jaroslav Pelikan, The Christian Tradition I', 'Lewis Ayres, Nicaea and its Legacy', 'Richard Rubenstein, When Jesus Became God']
+  },
+  {
+    id: 'trin-003',
+    titulo: 'A Trindade e a Vida Cristã — Aplicações Práticas',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Trindade',
+    conteudo: [
+      'A doutrina da Trindade não é mera especulação acadêmica; ela molda toda a vida cristã. A experiência de salvação é trinitária: o Pai planeja a redenção, o Filho a executa na cruz, o Espírito a aplica nos corações.',
+      'Na oração, entramos em comunhão com o Deus triúno. Pelo Espírito, oramos ao Pai em nome do Filho. A Trindade é o contexto eterno da vida devocional. A oração de Jesus em João 17 revela a intimidade trinitária que somos convidados a participar.',
+      'A comunidade cristã é imagem da Trindade. Assim como as pessoas divinas vivem em comunhão de amor, a Igreja é chamada a viver em koinonia — comunhão, participação, mutualidade. A solidão é anti-trinitária.',
+      'O amor cristão tem seu modelo na Trindade. O Pai ama o Filho, o Filho ama o Pai, e o Espírito é o vínculo desse amor. Quando amamos, participamos do amor eterno que circula na vida divina. Todo amor genuíno é reflexo do amor trinitário.',
+      'A missão é trinitária: somos enviados pelo Filho como o Filho foi enviado pelo Pai, no poder do Espírito (Jo 20:21). A Grande Comissão é obra da Trindade. Evangelizar é convidar pessoas a entrar na comunhão com o Deus triúno.'
+    ],
+    versicosChave: ['João 17:20-23', 'Mateus 28:19', 'Efésios 2:18', 'Romanos 8:26-27', 'Gálatas 4:6'],
+    tags: ['aplicação', 'oração', 'comunhão', 'amor', 'missão', 'vida cristã'],
+    fontes: ['Garry Williams, Gospel Coalition Essays on the Trinity', 'Fred Sanders, The Deep Things of God', 'Leon Morris, The Gospel According to John']
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // EXPIAÇÃO (2 estudos)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  {
+    id: 'exp-001',
+    titulo: 'A Expiação Substitutiva — O Coração do Evangelho',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Cristologia',
+    conteudo: [
+      'A expiação substitutiva é a doutrina de que Cristo morreu no lugar dos pecadores, carregando sobre Si a penalidade que nos era devida. "Ele foi ferido pelas nossas transgressões" (Is 53:5) é a declaração clássica desta verdade.',
+      'A metáfora do "Cordeiro de Deus que tira o pecado do mundo" (Jo 1:29) ecoa o sistema sacrificial do Antigo Testamento. O sangue dos animais cobria o pecado (Hb 9:22), mas o sangue de Cristo o remove definitivamente, porque Ele é o Cordeiro sem mácula (1 Pe 1:19).',
+      'Paulo apresenta a justificação pela fé baseada na morte propiciatória: "Deus o propôs como propiciação pela fé no seu sangue" (Rm 3:25). A propiciação satisfaz a ira de Deus contra o pecado, removendo o obstáculo à comunhão.',
+      'A cruz não é apenas exemplo de amor (embora também o seja), mas substituição penal. Cristo "se fez pecado por nós" (2 Co 5:21), "maldito em nosso lugar" (Gl 3:13). Ele sofreu o que nós merecíamos, para que recebêssemos o que Ele merecia (2 Co 5:21).',
+      'Implicações pastorais: a expiação substitutiva oferece segurança ao crente. Nenhuma condenação pesa sobre o justificado, porque Cristo já pagou. A santificação flui da gratidão, não do medo. A missão é motivada pela grandeza do sacrifício.'
+    ],
+    versicosChave: ['Isaías 53:5', 'Romanos 3:25', '2 Coríntios 5:21', 'Gálatas 3:13', '1 Pedro 1:18-19'],
+    tags: ['expiação', 'substituição', 'propiciação', 'sangue', 'justificação', 'cruz'],
+    fontes: ['John Stott, A Cruz de Cristo', 'R.C. Sproul, The Truth of the Cross', 'Leon Morris, The Apostolic Preaching of the Cross']
+  },
+  {
+    id: 'exp-002',
+    titulo: 'Teorias da Expiação ao Longo da História',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Cristologia',
+    conteudo: [
+      'A Igreja refletiu sobre o significado da cruz ao longo dos séculos, desenvolvendo várias teorias da expiação. Cada uma captura um aspecto da verdade bíblica, mas nenhuma esgota o mistério.',
+      'A teoria do resgate (Orígenes, Gregório de Nissa) via a morte de Cristo como pagamento a Satanás pelo direito sobre os pecadores. A limitação é fazer do diabo o destinatário do pagamento, mas o valor está em afirmar a realidade da libertação.',
+      'A teoria da satisfação (Anselmo, Cur Deus Homo, 1098) viu a morte de Cristo como reparação da honra de Deus ofendida pelo pecado. Cristo, como Deus-homem, ofereceu à divindade algo de valor infinito. Esta teoria dominou a Idade Média.',
+      'A Reforma reformulada a teoria como substituição penal: Cristo não apenas satisfez a honra, mas pagou a pena devida pelos pecadores. Calvino, Lutero e os reformados enfatizaram que a justificação se baseia na imputação da obediência ativa e passiva de Cristo.',
+      'A teoria exemplar (Abelardo, Socínio) via a cruz como exemplo de amor, não como sacrifício substitutivo. Os reformados combateram-na por reduzir a obra de Cristo a榜样 moral. A teoria do governo (Grotius) tentou um meio-termo, vendo a morte de Cristo como demonstração da seriedade da lei divina.'
+    ],
+    versicosChave: ['Romanos 5:8-9', 'Hebreus 9:14', '1 João 2:2', '1 Pedro 3:18', 'Efésios 5:2'],
+    tags: ['teorias', 'resgate', 'satisfação', 'substituição penal', 'exemplar', 'Anselmo'],
+    fontes: ['Gustaf Aulén, Christus Victor', 'John McIntyre, The Shape of Soteriology', 'H. D. McDonald, The Atonement of the Death of Christ']
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ELEIÇÃO (2 estudos)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  {
+    id: 'ele-001',
+    titulo: 'A Eleição Incondicional — O Decreto Eterno de Deus',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Soteriologia',
+    conteudo: [
+      'A eleição é o ato eterno de Deus de escolher, em Cristo, alguns para a salvação, antes da fundação do mundo. Paulo afirma: "nos escolheu nele antes da fundação do mundo" (Ef 1:4). A eleição é incondicional, não baseada em obras previstas.',
+      'A base da eleição é a livre soberania de Deus, não a fé prevista nem as obras meritórias. Romanos 9:11-13 mostra que Jacó foi escolhido antes de nascer, "para que o propósito de Deus segundo a eleição permanecesse".',
+      'A eleição é em Cristo: "nos escolheu nele". Não é uma seleção arbitrária, mas a escolha de pessoas para serem conformadas à imagem do Filho (Rm 8:29). Cristo é o fundamento e o critério da eleição.',
+      'A objeção calvinista ao arminianismo: a fé não pode ser a causa da eleição, porque a fé é dom de Deus (Ef 2:8). Logo, se a fé é dom, e a fé é condição da eleição, então Deus escolhe com base em algo que Ele mesmo dá — o que torna a escolha arbitrária de qualquer forma.',
+      'Implicações pastorais: a eleição é fonte de segurança, não de orgulho. O crente não se gloria em ter sido escolhido, mas no Deus que escolheu. A eleição é mistério que humilha e consola: não somos salvos por nossa decisão, mas pelo decreto eterno.'
+    ],
+    versicosChave: ['Efésios 1:4-5', 'Romanos 9:11-13', '2 Tessalonicenses 2:13', '1 Pedro 1:2', 'João 15:16'],
+    tags: ['eleição', 'predestinação', 'decreto', 'soberania', 'reforma'],
+    fontes: ['João Calvino, Institutas III.21-24', 'Jonathan Edwards, Freedom of the Will', 'John Piper, The Pleasures of God']
+  },
+  {
+    id: 'ele-002',
+    titulo: 'Eleição e Evangelização — O Equilíbrio Bíblico',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Soteriologia',
+    conteudo: [
+      'A eleição e a evangelização não se contradizem; ambas são ensinadas na Escritura. Deus elege soberanamente, mas também ordena que o evangelho seja pregado a toda criatura. O crente na eleição não é passivo na missão.',
+      'Jesus une os dois: "Não fostes vós que me escolhestes a mim; pelo contrário, eu vos escolhi a vós outros e vos designei para que vades e deis fruto" (Jo 15:16). A escolha precede a missão, mas a missão é o fruto da escolha.',
+      'A eleição não anula a responsabilidade humana. Paulo, sabendo-se enviado aos eleitos, pregava a todos (At 18:9-10). A soberania divina e a instrumentalidade humana coexistem na economia da salvação.',
+      'O arminianismo vê a eleição como condicional — Deus elege com base na fé prevista. Isto preserva a liberdade humana, mas enfraquece a soberania divina. O calvinismo vê a eleição como incondicional — Deus elege soberanamente, e a fé é o fruto, não a causa.',
+      'Praticamente, a doutrina da eleição deve produzir zelo missionário, não apatia. Se Deus elegeu, há eleitos em todo lugar — nossa tarefa é buscá-los pelo evangelho. Os puritanos, que criam na eleição incondicional, foram os maiores missionários de sua época.'
+    ],
+    versicosChave: ['João 15:16', 'Atos 18:9-10', 'Romanos 10:14-15', '2 Timóteo 2:10', '1 Tessalonicenses 1:4-5'],
+    tags: ['eleição', 'evangelização', 'missão', 'livre arbítrio', 'cooperação'],
+    fontes: ['Iain Murray, Spurgeon v. Hyper-Calvinism', 'John Stott, A Fé Cristã em Busca de Novos Rumos', 'Michael Horton, Putting Amazing Back Into Grace']
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // PERSEVERANÇA DOS SANTOS (1 estudo)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  {
+    id: 'pers-001',
+    titulo: 'A Perseverança dos Santos — Segurança Eterna do Crente',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Soteriologia',
+    conteudo: [
+      'A perseverança dos santos (ou preservação divina) é a doutrina de que aqueles que foram verdadeiramente regenerados por Deus perseverarão na fé até o fim. A salvação é obra de Deus, do princípio ao fim, e Ele é fiel para completar o que começou.',
+      'Paulo garante: "Aquele que começou a boa obra em vós há de completá-la até ao dia de Cristo Jesus" (Fp 1:6). A salvação é da graça, e a graça que salva é a graça que sustenta. Deus não começa uma obra para abandoná-la no meio.',
+      'Jesus afirma a segurança dos Seus: "Eu dou-lhes a vida eterna, e jamais perecerão; ninguém as arrebatará da minha mão" (Jo 10:28). A salvação é dom do Pai ao Filho, e o Filho a preserva.',
+      'O texto de Romanos 8:30 forma a "cadeia de ouro" da salvação: a quem Deus predestinou, chamou, justificou e glorificou. Cada elo do processo é obra de Deus. A glorificação é tão certa quanto a justificação, porque vem da mesma mão soberana.',
+      'Objeções comuns: e os que "desistem"? Os reformados respondem: a fé que desiste não era fé salvífica. A perseverança é evidência da regeneração. Quem nasce de Deus, o Espírito o sustenta. Não por mérito do crente, mas pela fidelidade do Deus que chamou.'
+    ],
+    versicosChave: ['Filipenses 1:6', 'João 10:28-29', 'Romanos 8:30', '1 Pedro 1:5', 'Judas 1:24'],
+    tags: ['perseverança', 'segurança', 'preservação', 'fidelidade', 'graça'],
+    fontes: ['João Calvino, Institutas III.24', 'Anthony Hoekema, Saved by Grace', 'Robert Peterson, Eternal Security']
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // BATISMO (2 estudos)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  {
+    id: 'bat-001',
+    titulo: 'O Batismo Cristão — Significado e Modo',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Sacramentos',
+    conteudo: [
+      'O batismo é o sacramento da iniciação cristã, instituído por Cristo na Grande Comissão: "Batizando-os em nome do Pai, e do Filho, e do Espírito Santo" (Mt 28:19). É o sinal de entrada no corpo de Cristo e na comunidade da fé.',
+      'O simbolismo é rico: o batismo representa a morte e ressurreição de Cristo (Rm 6:3-4), a purificação do pecado (At 2:38), a circuncisão do coração (Cl 2:11-12) e a nova criação (Gl 3:27). É morrer para o pecado e viver para Deus.',
+      'O modo do batismo divide a cristandade: imersão, aspersão e efusão são praticadas. Os batistas defendem a imersão como único modo válido, argumentando que o grego "baptizo" significa imergir, e que os simbolismos de morte e ressurreição exigem submersão.',
+      'Os pedobatistas (que batizam crianças) defendem a aspersão ou efusão, argumentando que a circuncisão do Antigo Testamento é prefiguração do batismo, e que a aliança se estende aos filhos dos crentes (At 2:38-39; 16:15,33; 1 Co 7:14).',
+      'Independentemente do modo, o batismo é ordenado por Cristo, é sinal de graça, é administrado uma vez, e é sinal de ingresso na comunidade da fé. Sua teologia não substitui a fé, mas a expressa publicamente.'
+    ],
+    versicosChave: ['Mateus 28:19', 'Romanos 6:3-4', 'Atos 2:38', 'Colossenses 2:12', 'Gálatas 3:27'],
+    tags: ['batismo', 'sacramento', 'iniciação', 'imersão', 'aspersão', 'aliança'],
+    fontes: ['Wayne Grudem, Teologia Sistemática', 'G.R. Beasley-Murray, Baptism in the New Testament', 'John Murray, Christian Baptism']
+  },
+  {
+    id: 'bat-002',
+    titulo: 'O Batismo de Crianças — Debate Histórico-Teológico',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Sacramentos',
+    conteudo: [
+      'O batismo de crianças (pedobatismo) é praticado pela maioria das tradições cristãs: católica, ortodoxa, luterana, reformada, anglicana, metodista. Os batistas e algumas igrejas evangélicas o rejeitam, praticando o batismo de crentes (credobatismo).',
+      'Os argumentos a favor do pedobatismo: 1) A aliança abraâmica incluía os filhos (Gn 17:7-12); 2) Atos 16:15 (Lídia e sua casa) e 16:33 (o carcereiro e sua casa) mencionam batismos domésticos; 3) 1 Co 7:14 indica que os filhos dos crentes são "santos"; 4) A teologia reformada vê continuidade entre Antigo e Novo Testamento.',
+      'Os argumentos a favor do credobatismo: 1) Não há mandamento explícito de batizar crianças; 2) O exemplo do Novo Testamento mostra crentes sendo batizados após a conversão; 3) O batismo pressupõe fé pessoal (Mc 16:16; At 2:41); 4) A teologia batista vê a igreja como comunidade de crentes professos.',
+      'Calvino e os reformados viram a circuncisão como prefiguração do batismo. Assim como os filhos dos hebreus eram circuncidados a partir de Abraão, os filhos dos crentes são batizados na nova aliança. A continuidade da aliança sustenta o pedobatismo.',
+      'A questão é eclesiologicamente importante: pedobatistas veem a Igreja como continuidade de Israel e a aliança abraâmica; credobatistas veem a Igreja como nova entidade de crentes professos. Ambas as posições têm argumentos exegéticos sólidos, e o debate continua na cristandade.'
+    ],
+    versicosChave: ['Gênesis 17:7-12', 'Atos 2:38-39', 'Atos 16:15', '1 Coríntios 7:14', 'Colossenses 2:11-12'],
+    tags: ['pedobatismo', 'credobatismo', 'crianças', 'aliança', 'circuncisão'],
+    fontes: ['João Calvino, Institutas IV.16', 'Karl Barth, Church Dogmatics IV/4', 'David Wright, What Has Infant Baptism Done to Baptism?']
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // CEIA DO SENHOR (2 estudos)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  {
+    id: 'ceia-001',
+    titulo: 'A Ceia do Senhor — Instituição e Significado',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Sacramentos',
+    conteudo: [
+      'A Ceia do Senhor (Eucaristia, Santa Ceia, Comunhão) foi instituída por Cristo na noite da Páscoa, pouco antes de Sua crucifixão. "Isto é o meu corpo... isto é o meu sangue" (Mt 26:26-28) é a declaração central do sacramento.',
+      'O pão representa o corpo de Cristo, partido por nós. O vinho representa o sangue da nova aliança, derramado para remissão dos pecados. Os elementos são sinais visíveis de uma graça invisível — o sacrifício de Cristo aplicado ao crente.',
+      'A Ceia é memorial: "Fazei isto em memória de mim" (1 Co 11:24). A Igreja recorda a morte salvífica de Cristo toda vez que parte o pão. A Ceia não acrescenta nada ao sacrifício de Cristo, mas o atualiza na experiência dos fiéis.',
+      'A Ceia é comunhão: "O pão que partimos não é porventura a comunhão do corpo de Cristo?" (1 Co 10:16). Participamos da morte de Cristo pela fé, e somos unidos a Ele e aos irmãos. A Ceia é comunhão vertical e horizontal.',
+      'A Ceia é proclamação: "Porque todas as vezes que comerdes deste pão e beberdes deste cálice, anunciais a morte do Senhor" (1 Co 11:26). Cada celebração é um sermão visível do evangelho, até que Ele venha. A Ceia tem dimensão escatológica.'
+    ],
+    versicosChave: ['Mateus 26:26-28', '1 Coríntios 11:23-26', '1 Coríntios 10:16-17', 'João 6:53-58', 'Lucas 22:19-20'],
+    tags: ['ceia', 'eucaristia', 'sacramento', 'comunhão', 'memorial', 'sangue'],
+    fontes: ['João Calvino, Institutas IV.17', 'Thomas Cranmer, Book of Common Prayer', 'Herman Bavinck, Reformed Dogmatics IV']
+  },
+  {
+    id: 'ceia-002',
+    titulo: 'A Presença de Cristo na Ceia — Visões Históricas',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Sacramentos',
+    conteudo: [
+      'A questão da presença de Cristo na Ceia divide a cristandade em quatro grandes visões: transubstanciação, consubstanciação, presença espiritual e memorialismo. Cada uma interpreta "isto é o meu corpo" à sua maneira.',
+      'A transubstanciação (catolicismo romano) ensina que a substância do pão se converte no corpo de Cristo, e a do vinho em Seu sangue, permanecendo apenas as aparências (espécies). Foi definida oficialmente no IV Concílio de Latrão (1215) e reafirmada em Trento.',
+      'A consubstanciação (Lutero) ensina que Cristo está presente "em, com e sob" o pão e o vinho, sem que estes deixem de ser pão e vinho. Lutero usou a analogia do ferro em brasa: o ferro está no fogo, e o fogo no ferro, sem se misturarem.',
+      'A presença espiritual (Calvino, reformados) ensina que Cristo está presente pelo Espírito, e que os crentes são elevados ao céu para participar do Seu corpo glorificado. O pão e o vinho permanecem pão e vinho, mas são meios pelos quais recebemos a Cristo pela fé.',
+      'O memorialismo (Zwinglio, batistas reformados) entende "isto é" como "isto significa", e vê a Ceia como memorial obediencial, sem presença especial de Cristo. Os elementos permanecem símbolos. A presença é pela fé, não objetivamente nos elementos.'
+    ],
+    versicosChave: ['Mateus 26:26', '1 Coríntios 11:24-25', 'João 6:63', 'Atos 3:21', 'Hebreus 1:3'],
+    tags: ['transubstanciação', 'consubstanciação', 'presença espiritual', 'memorialismo', 'Lutero', 'Calvino', 'Zwinglio'],
+    fontes: ['João Calvino, Institutas IV.17', 'Heinrich Heppe, Reformed Dogmatics', 'David Willis-Watkins, The Lutheran Reformation']
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ESCATOLOGIA DETALHADA (3 estudos)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  {
+    id: 'esc-001',
+    titulo: 'O Arrebatamento da Igreja — Pré, Mid ou Pós-Tribulacionismo',
+    categoria: 'Escatologia',
+    subcategoria: 'Eventos Finais',
+    conteudo: [
+      'O arrebatamento (raptura) é o evento em que Cristo vem para tirar Sua Igreja do mundo antes da ira escatológica. As visões principais diferem quanto ao momento: pré-tribulacionismo, mid-tribulacionismo e pós-tribulacionismo.',
+      'O pré-tribulacionismo ensina que a Igreja será arrebatada antes da tribulação de sete anos. Os argumentos: 1) A Igreja é distinta de Israel; 2) 1 Ts 4:13-18 indica um arrebatamento iminente; 3) Apocalipse menciona a Igreja apenas até o capítulo 3, ausente da tribulação; 4) Deus não destina Sua Igreja à ira (1 Ts 5:9).',
+      'O mid-tribulacionismo ensina que o arrebatamento ocorre no meio da tribulação (após 3,5 anos). Os argumentos: 1) Apocalipse 11:12 menciona dois profetas "subindo ao céu"; 2) Daniel 7:25 menciona "um tempo, dois tempos e metade de um tempo" como metade da tribulação; 3) A Igreja passa por provação, mas não pela ira final.',
+      'O pós-tribulacionismo ensina que a Igreja passa por toda a tribulação e é arrebatada no final, para encontrar Cristo na Sua segunda vinda. Os argumentos: 1) 2 Ts 2:1-4 indica que Cristo só vem após a apostasia e a revelação do anticristo; 2) A Igreja passa por perseguição sempre; 3) Não há separação clara entre a Igreja e Israel.',
+      'A posição pré-tribulacional tem sido a mais popular no evangelicalismo, especialmente no meio das assembléias e dos batistas. Os pré-milenistas geralmente a defendem. Os amilenistas e pós-milenistas tendem a rejeitar a ideia de arrebatamento secreto, vendo a vinda de Cristo como evento único e visível.'
+    ],
+    versicosChave: ['1 Tessalonicenses 4:13-18', 'Apocalipse 3:10', '1 Tessalonicenses 5:9', '2 Tessalonicenses 2:1-4', 'Mateus 24:36-44'],
+    tags: ['arrebatamento', 'raptura', 'tribulação', 'pré-tribulacionismo', 'pós-tribulacionismo', 'escatologia'],
+    fontes: ['John Walvoord, The Rapture Question', 'George Eldon Ladd, The Blessed Hope', 'Craig Keener, Matthew (IVP)']
+  },
+  {
+    id: 'esc-002',
+    titulo: 'A Grande Tribulação — Período de Angústia e Purificação',
+    categoria: 'Escatologia',
+    subcategoria: 'Eventos Finais',
+    conteudo: [
+      'A Grande Tribulação é o período final de sete anos, descrito em Daniel 9:24-27 e Apocalipse 6-19. Será um tempo de angústia sem paralelo na história (Dn 12:1; Mt 24:21), com a manifestação plena do anticristo e a ira de Deus sobre a humanidade rebelde.',
+      'Daniel 9:24-27 profetiza "setenta semanas" (anos), das quais 69 foram cumpridas na primeira vinda de Cristo. A 70ª semana (sete anos) é a tribulação, cortada ao meio (3,5 anos) pela "abominação da desolação" (Dn 9:27; Mt 24:15).',
+      'No meio da tribulação, o anticristo profanará o templo reconstruído em Jerusalém, exigindo adoração. Este evento ("abominação da desolação") marca o início da "grande tribulação" (Mt 24:21), os últimos 3,5 anos de intenso sofrimento.',
+      'As pragas do Apocalipse (selos, trombetas, taças) descrevem juízos progressivos sobre a Terra. Os 144.000 judeus selados (Ap 7:1-8) e as duas testemunhas (Ap 11) atuam durante este período. A "mulher" de Apocalipse 12 representa Israel, perseguida pelo dragão.',
+      'A Igreja, segundo o pré-tribulacionismo, é tirada antes deste período. Segundo o pós-tribulacionismo, ela passa por ele. De qualquer forma, Deus preserva um remanescente fiel. O objetivo da tribulação é o juízo da humanidade rebelde e a purificação do povo de Deus.'
+    ],
+    versicosChave: ['Daniel 9:24-27', 'Mateus 24:15-21', 'Apocalipse 7:14', 'Apocalipse 11:2-3', 'Apocalipse 13:5-7'],
+    tags: ['tribulação', 'anticristo', 'Daniel', '70 semanas', 'abominação', 'selos', 'trombetas'],
+    fontes: ['René Pache, O Retorno de Jesus Cristo', 'John Walvoord, The Revelation of Jesus Christ', 'Merrill Tenney, Interpreting Revelation']
+  },
+  {
+    id: 'esc-003',
+    titulo: 'O Milênio — Amilenismo, Pré-milenismo e Pós-milenismo',
+    categoria: 'Escatologia',
+    subcategoria: 'Eventos Finais',
+    conteudo: [
+      'Apocalipse 20:1-6 menciona um "mil anos" seis vezes, gerando intenso debate na Igreja. Três posições principais: amilenismo (não há milênio literal), pré-milenismo (milênio literal antes da eternidade) e pós-milenismo (milênio antes da segunda vinda).',
+      'O amilenismo (Agostinho, muitos reformados) entende os mil anos como o período entre a primeira e a segunda vinda de Cristo, ou como a condição atual da Igreja, na qual Cristo reina espiritualmente. Os dois ressurreições são a regeneração e a ressurreição corporal. O número 1000 é simbólico, não literal.',
+      'O pré-milenismo (literalistas, dispensacionalistas, primitivos) entende os mil anos como um reinado literal de Cristo na Terra após Sua segunda vinda, com os santos ressurrectos reinando com Ele por mil anos. Ocorre entre a primeira e a segunda ressurreição (separadas por mil anos).',
+      'O pós-milenismo (otimistas, vitoriosos) entende os mil anos como uma era de ouro da Igreja, antes da segunda vinda, em que o evangelho prevalecerá no mundo. Após este período, Cristo voltará. Foi popular entre os puritanos e no evangelicalismo do século 19.',
+      'Implicações pastorais: o pré-milenismo enfatiza a esperança da vinda iminente; o amilenismo enfatiza a realidade presente do reino; o pós-milenismo enfatiza o otimismo da missão. Todas as posições têm apoio exegético respeitável, e o debate continua.'
+    ],
+    versicosChave: ['Apocalipse 20:1-6', '1 Coríntios 15:24-28', 'Mateus 5:5', 'Isaías 65:17-25', '2 Pedro 3:8'],
+    tags: ['milênio', 'amilenismo', 'pré-milenismo', 'pós-milenismo', 'reino', 'escatologia'],
+    fontes: ['Anthony Hoekema, The Bible and the Future', 'George Eldon Ladd, The Blessed Hope', 'Herman Ridderbos, The Coming of the Kingdom']
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // VIDA DEVOCIONAL (2 estudos)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  {
+    id: 'dev-001',
+    titulo: 'A Oração — Comunhão com o Pai',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Devoção',
+    conteudo: [
+      'A oração é a comunhão do crente com Deus. É diálogo, não monólogo. Jesus ensinou a orar com a paternidade de Deus em vista: "Pai nosso, que estás nos céus" (Mt 6:9). A intimidade filial é o fundamento da oração cristã.',
+      'Os elementos da oração cristã: adoração (reconhecer quem Deus é), confissão (admitir o pecado), ação de graças (gratidão pelas bênçãos), súplica (pedir necessidades) e intercessão (orar pelos outros). A Oração do Senhor cobre todas essas dimensões.',
+      'As condições da oração eficaz: 1) Fé em Deus (Tg 1:6-7); 2) Permanecer em Cristo (Jo 15:7); 3) Pedir conforme a vontade de Deus (1 Jo 5:14); 4) Não pedir com motivos errados (Tg 4:3); 5) Humildade e arrependimento (Lc 18:9-14).',
+      'As orações do AT e do NT revelam profundidade. Moisés intercedeu por Israel (Êx 32:11-14). Davi clamou do fundo do vale (Sl 130). Daniel orou três vezes ao dia (Dn 6:10). Paulo pediu que os crentes orassem por ele (Ef 6:18-20).',
+      'A oração persistente: Jesus ensinou a parábola da viúva e do juiz (Lc 18:1-8) para encorajar a oração constante. Não é que Deus precise ser importunado, mas nossa perseverança é disciplina da alma. Oração é relacionamento, não mágica.'
+    ],
+    versicosChave: ['Mateus 6:9-13', 'Filipenses 4:6-7', '1 Tessalonicenses 5:17', 'Hebreus 4:16', 'Salmos 145:18'],
+    tags: ['oração', 'Pai nosso', 'intercessão', 'fé', 'comunhão', 'perseverança'],
+    fontes: ['Andrew Murray, Com Cristo na Escola de Oração', 'John Bunyan, O Peregrino', 'E.M. Bounds, Power Through Prayer']
+  },
+  {
+    id: 'dev-002',
+    titulo: 'A Leitura Bíblica — A Palavra como Pão Diário',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Devoção',
+    conteudo: [
+      'A leitura regular da Bíblia é essencial para a vida cristã. Jesus respondeu à tentação com "Está escrito" (Mt 4:4). A Palavra de Deus é o pão do espírito, a espada do crente, o espelho da alma, e o combustível da fé.',
+      'Como ler a Bíblia com proveito: 1) Ore antes de ler, pedindo iluminação do Espírito; 2) Leia com reverência, como Palavra de Deus; 3) Leia com regularidade, em plano sistemático; 4) Leia com atenção, meditando no texto; 5) Leia com obediência, aplicando à vida.',
+      'A leitura devocional difere do estudo exegético. A primeira visa comunhão com Deus; o segundo, entendimento do texto. Ambas são necessárias, mas têm objetivos distintos. A leitura devocional não substitui o estudo aprofundado, e vice-versa.',
+      'Os benefícios da leitura bíblica regular: 1) Santificação — "santifica-os na verdade" (Jo 17:17); 2) Consolação — "para que tenhais esperança" (Rm 15:4); 3) Direção — "lâmpada para os meus pés" (Sl 119:105); 4) Defesa — contra o erro e o pecado.',
+      'A leitura em comunidade é igualmente importante. A leitura pública da Palavra (1 Tm 4:13) era prática da Igreja primitiva. Grupos pequenos que se reúnem para estudar a Escritura crescem na fé de modo orgânico e edificam-se mutuamente.'
+    ],
+    versicosChave: ['Salmos 119:105', '2 Timóteo 3:16-17', 'Josué 1:8', 'Hebreus 4:12', 'João 17:17'],
+    tags: ['leitura bíblica', 'meditação', 'Palavra', 'devocional', 'estudo', 'santificação'],
+    fontes: ['D. Martyn Lloyd-Jones, Studies in the Sermon on the Mount', 'John Stott, Between Two Worlds', 'Howard Hendricks, Living by the Book']
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // LOUVOR E ADORAÇÃO (2 estudos)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  {
+    id: 'lov-001',
+    titulo: 'A Natureza da Adoração — Espírito e Verdade',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Adoração',
+    conteudo: [
+      'Jesus definiu a adoração autêntica: "É necessário adorar o Pai em espírito e em verdade" (Jo 4:23). A adoração não se limita a um lugar (Sião, Gerizim) ou forma exterior; é questão do coração, movido pelo Espírito.',
+      'A adoração é resposta à revelação de Deus. Quando contemplamos Quem Ele é — santo, soberano, gracioso, fiel — nosso coração explode em louvor. A adoração é obra do Espírito Santo, que nos capacita a reconhecer e exaltar a Deus.',
+      'Os elementos da adoração cristã: louvor (por quem Deus é), ação de graças (pelo que Ele fez), confissão (pelo que somos), confissão de fé (no que cremos), entrega (de nós mesmos). A liturgia celestial em Apocalipse 4-5 é o modelo eterno.',
+      'A música é meio privilegiado, mas não exclusivo. Cânticos, hinos, salmos (Cl 3:16) servem para ensinar, exortar e edificar. A música litúrgica deve ser teologicamente sólida, emocionalmente sincera e congregacionalmente acessível.',
+      'A adoração é também serviço e vida. "Adorar" em grego (proskuneo) significa prostrar-se. A vida inteira é ato de adoração quando oferecida a Deus (Rm 12:1). O culto dominical e a vida cotidiana se integram na adoração cristã.'
+    ],
+    versicosChave: ['João 4:23-24', 'Apocalipse 4:11', 'Colossenses 3:16', 'Salmos 95:6', 'Romanos 12:1'],
+    tags: ['adoração', 'espírito', 'verdade', 'louvor', 'música', 'liturgia'],
+    fontes: ['John Piper, Desiring God', 'Matt Redman, The Unquenchable Worshipper', 'Harold Best, Music Through the Eyes of Faith']
+  },
+  {
+    id: 'lov-002',
+    titulo: 'A Música na Igreja — Cânticos, Hinos e Salmos',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Adoração',
+    conteudo: [
+      'A música tem papel central na adoração cristã. Paulo exorta: "Ensinando e exortando uns aos outros com salmos, hinos e cânticos espirituais" (Cl 3:16). A música é veículo de ensino, expressão emocional e edificação comunitária.',
+      'A música congregacional é diferente da música de concerto. O objetivo não é exibição, mas participação. Os reformadores valorizavam cânticos cantados por toda a congregação, em contraste com a música apenas clerical da Idade Média.',
+      'Os critérios para a música na Igreja: 1) Fidelidade teológica ao texto bíblico; 2) Melodia que honre a Deus, não o ego; 3) Acessibilidade congregacional; 4) Equilíbrio entre tradição e contemporaneidade; 5) Edificação, não entretenimento.',
+      'A história da música cristã é rica: dos salmos hebreus aos hinos gregos, dos cânticos monásticos aos hinos da Reforma, dos spirituals ao gospel, do hino evangelical ao worship contemporâneo. Cada época expressou a fé em sua linguagem musical.',
+      'O equilíbrio entre tradição e inovação é saudável. A música litúrgica tem continuidade histórica que ancora a fé; a música contemporânea traz vitalidade e renovação. As Igrejas maduras cultivam ambas, evitando o extremismo da novidade absoluta ou da tradição paralisante.'
+    ],
+    versicosChave: ['Colossenses 3:16', 'Efésios 5:19', 'Salmos 96:1-2', 'Salmos 150:1-6', '1 Crônicas 16:23-33'],
+    tags: ['música', 'cânticos', 'hinos', 'salmos', 'adoração', 'congregação'],
+    fontes: ['Hughes Oliphant Old, Leading in Prayer', 'Paul Westermeyer, Te Deum', 'Donald Hustad, Jubilate!']
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // MISSÕES (1 estudo)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  {
+    id: 'mis-001',
+    titulo: 'A Grande Comissão — Mandato Missionário da Igreja',
+    categoria: 'Missão e Evangelismo',
+    subcategoria: 'Missões',
+    conteudo: [
+      'A Grande Comissão é o mandato final de Cristo à Sua Igreja: "Ide, portanto, fazei discípulos de todas as nações, batizando-os em nome do Pai, e do Filho, e do Espírito Santo, ensinando-os a guardar todas as coisas que vos tenho ordenado" (Mt 28:19-20).',
+      'A missão é trinitária: é obra do Pai que envia, do Filho que é enviado, e do Espírito que capacita. A Igreja participa da missão do Deus triúno. A missão não é invenção humana, mas iniciativa divina.',
+      'Os pilares da missão cristã: 1) Proclamação do evangelho (kerygma); 2) Ensino e discipulado (didache); 3) Batismo e incorporação à Igreja; 4) Vivência da comunidade koinonia; 5) Serviço diaconal (diakonia). A missão é holística, mas centrada no evangelho.',
+      'A história das missões cristãs: dos apóstolos aos Pais da Igreja, dos monges irlandeses aos missionários da Reforma, dos pietistas alemães aos grandes missionários do século 19 (William Carey, Adoniram Judson, David Livingstone, Hudson Taylor). A fé cristã é intrinsecamente missionária.',
+      'A Igreja contemporânea enfrenta o desafio da globalização, do pluralismo religioso, do secularismo e da perseguição. A Grande Comissão permanece atual: enquanto houver pessoas que não conhecem Cristo, a missão continua. A salvação é para todos os povos, línguas, tribos e nações (Ap 7:9).'
+    ],
+    versicosChave: ['Mateus 28:19-20', 'Atos 1:8', 'Romanos 10:14-15', 'Apocalipse 7:9', 'Marcos 16:15-16'],
+    tags: ['missão', 'Grande Comissão', 'evangelização', 'discipulado', 'nações', 'globalização'],
+    fontes: ['David Bosch, Transforming Mission', 'John Stott, The Contemporary Christian', 'Michael Green, Evangelism in the Early Church']
+  },
 ];
 

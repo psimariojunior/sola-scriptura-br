@@ -1,10 +1,32 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, BookOpen, Users, Church, Tag, FileText, ArrowRight, Command } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import {
+  BookOpen,
+  Users,
+  Church,
+  Tag,
+  FileText,
+  ArrowRight,
+  Command as CommandIcon,
+  Sparkles,
+  Compass,
+  Brain,
+  History,
+  Trash2,
+} from 'lucide-react';
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandShortcut,
+} from '@/components/ui/command';
+import { useAI } from '@/hooks/useAI';
 
 interface BuscaResultado {
   id: string;
@@ -19,42 +41,83 @@ interface BuscaGlobalProps {
   onOpenChange: (open: boolean) => void;
 }
 
-const categorias = [
-  { key: 'versiculo' as const, label: 'Versículos', icon: BookOpen },
-  { key: 'doutrina' as const, label: 'Doutrinas', icon: Church },
-  { key: 'personagem' as const, label: 'Personagens', icon: Users },
-  { key: 'topico' as const, label: 'Tópicos', icon: Tag },
-  { key: 'estudo' as const, label: 'Estudos', icon: FileText },
+const CATEGORIAS: Record<string, { label: string; icon: typeof BookOpen }> = {
+  versiculo: { label: 'Versículos', icon: BookOpen },
+  doutrina: { label: 'Doutrinas', icon: Church },
+  personagem: { label: 'Personagens', icon: Users },
+  topico: { label: 'Tópicos', icon: Tag },
+  estudo: { label: 'Estudos', icon: FileText },
+};
+
+const NAV_COMMANDS: { label: string; href: string; icon: typeof BookOpen; grupo: string }[] = [
+  { label: 'Bíblia', href: '/biblia', icon: BookOpen, grupo: 'Páginas' },
+  { label: 'Pesquisa', href: '/pesquisa', icon: Compass, grupo: 'Páginas' },
+  { label: 'Teologia Sistemática', href: '/teologia', icon: Church, grupo: 'Páginas' },
+  { label: 'Estudos', href: '/estudos', icon: FileText, grupo: 'Páginas' },
+  { label: 'Assistente IA', href: '/ia', icon: Sparkles, grupo: 'Páginas' },
+  { label: 'Línguas Originais', href: '/idiomas', icon: Brain, grupo: 'Páginas' },
+  { label: 'Exegese', href: '/exegese', icon: BookOpen, grupo: 'Páginas' },
+  { label: 'História Bíblica', href: '/historia', icon: History, grupo: 'Páginas' },
+  { label: 'Personagens', href: '/personagens', icon: Users, grupo: 'Páginas' },
+  { label: 'Cronologia', href: '/cronologia', icon: History, grupo: 'Páginas' },
+  { label: 'Devocional', href: '/devocional', icon: BookOpen, grupo: 'Páginas' },
+  { label: 'Planos de Leitura', href: '/planos', icon: BookOpen, grupo: 'Páginas' },
+  { label: 'Flashcards', href: '/flashcards', icon: Brain, grupo: 'Páginas' },
+  { label: 'Quiz Bíblico', href: '/quiz', icon: Brain, grupo: 'Páginas' },
+  { label: 'Concordância', href: '/ferramentas/concordancia', icon: Tag, grupo: 'Ferramentas' },
+  { label: 'Crítica Textual', href: '/ferramentas/critica-textual', icon: FileText, grupo: 'Ferramentas' },
+  { label: 'Introduções', href: '/ferramentas/introducoes', icon: BookOpen, grupo: 'Ferramentas' },
 ];
 
-const MAX_RESULTADOS = 20;
+const AcoesCommands = [
+  { id: 'abrir-ia', label: 'Pergunte à IA', icon: Sparkles, acao: 'ia' as const, grupo: 'IA' },
+  { id: 'mostrar-atalhos', label: 'Mostrar atalhos de teclado', icon: Command, acao: 'atalhos' as const, grupo: 'Ações' },
+  { id: 'recomecar-tour', label: 'Refazer tour de boas-vindas', icon: Compass, acao: 'tour' as const, grupo: 'Ações' },
+];
+
+const RECENT_KEY = 'ssb_recent_searches';
+const MAX_RECENT = 6;
+const MAX_RESULTS = 20;
 
 export function BuscaGlobal({ open, onOpenChange }: BuscaGlobalProps) {
   const [query, setQuery] = useState('');
   const [resultados, setResultados] = useState<BuscaResultado[]>([]);
   const [carregando, setCarregando] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [recentes, setRecentes] = useState<string[]>([]);
   const router = useRouter();
+  const { open: openAI, ask: askAI } = useAI();
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const raw = localStorage.getItem(RECENT_KEY);
+      if (raw) setRecentes(JSON.parse(raw));
+    } catch {
+      /* ignore */
+    }
+  }, [open]);
 
   useEffect(() => {
     if (open) {
-      setTimeout(() => inputRef.current?.focus(), 100);
       setQuery('');
       setResultados([]);
-      setSelectedIndex(0);
     }
   }, [open]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         onOpenChange(!open);
       }
     };
+    const handleToggle = () => onOpenChange(!open);
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('ssb:toggle-busca', handleToggle as EventListener);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('ssb:toggle-busca', handleToggle as EventListener);
+    };
   }, [open, onOpenChange]);
 
   const buscar = useCallback(async (q: string) => {
@@ -69,14 +132,13 @@ export function BuscaGlobal({ open, onOpenChange }: BuscaGlobalProps) {
       const limitados: BuscaResultado[] = [];
       const contagem: Record<string, number> = {};
 
-      for (const r of data.resultados || []) {
+      for (const r of (data.resultados || []) as BuscaResultado[]) {
         contagem[r.categoria] = (contagem[r.categoria] || 0) + 1;
-        if (contagem[r.categoria] <= MAX_RESULTADOS && limitados.length < MAX_RESULTADOS * 5) {
+        if (contagem[r.categoria] <= MAX_RESULTS && limitados.length < MAX_RESULTS * 5) {
           limitados.push(r);
         }
       }
       setResultados(limitados);
-      setSelectedIndex(0);
     } catch {
       setResultados([]);
     } finally {
@@ -98,27 +160,66 @@ export function BuscaGlobal({ open, onOpenChange }: BuscaGlobalProps) {
     return map;
   }, [resultados]);
 
-  const flatResults = useMemo(() => resultados.slice(0, MAX_RESULTADOS), [resultados]);
+  const salvarRecente = useCallback((q: string) => {
+    if (!q || q.trim().length < 2) return;
+    setRecentes((prev) => {
+      const semDup = prev.filter((x) => x.toLowerCase() !== q.toLowerCase());
+      const prox = [q, ...semDup].slice(0, MAX_RECENT);
+      try {
+        localStorage.setItem(RECENT_KEY, JSON.stringify(prox));
+      } catch {
+        /* ignore */
+      }
+      return prox;
+    });
+  }, []);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setSelectedIndex((i) => Math.min(i + 1, flatResults.length - 1));
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setSelectedIndex((i) => Math.max(i - 1, 0));
-    } else if (e.key === 'Enter' && flatResults[selectedIndex]) {
-      router.push(flatResults[selectedIndex].href);
-      onOpenChange(false);
-    } else if (e.key === 'Escape') {
-      onOpenChange(false);
+  const limparRecentes = useCallback(() => {
+    setRecentes([]);
+    try {
+      localStorage.removeItem(RECENT_KEY);
+    } catch {
+      /* ignore */
     }
-  };
+  }, []);
 
-  const navigateTo = (href: string) => {
-    router.push(href);
-    onOpenChange(false);
-  };
+  const navegar = useCallback(
+    (href: string) => {
+      onOpenChange(false);
+      router.push(href);
+    },
+    [onOpenChange, router]
+  );
+
+  const executarAcao = useCallback(
+    (acao: 'ia' | 'atalhos' | 'tour') => {
+      onOpenChange(false);
+      if (acao === 'ia') {
+        openAI();
+      } else if (acao === 'atalhos') {
+        window.dispatchEvent(new CustomEvent('ssb:open-shortcuts'));
+      } else if (acao === 'tour') {
+        try {
+          localStorage.removeItem('ssb_onboarding_done');
+        } catch {
+          /* ignore */
+        }
+        window.dispatchEvent(new CustomEvent('ssb:reset-onboarding'));
+      }
+    },
+    [onOpenChange, openAI]
+  );
+
+  const perguntarIA = useCallback(
+    async (pergunta: string) => {
+      salvarRecente(pergunta);
+      onOpenChange(false);
+      await askAI(pergunta);
+    },
+    [salvarRecente, onOpenChange, askAI]
+  );
+
+  const isSearching = query.trim().length >= 2;
 
   return (
     <AnimatePresence>
@@ -140,92 +241,176 @@ export function BuscaGlobal({ open, onOpenChange }: BuscaGlobalProps) {
             className="fixed inset-x-0 top-[12vh] z-[70] mx-auto w-[calc(100%-2rem)] max-w-2xl"
           >
             <div className="rounded-2xl border border-border/40 bg-background/95 backdrop-blur-xl shadow-2xl overflow-hidden">
-              {/* Input */}
-              <div className="flex items-center gap-3 px-5 border-b border-border/30">
-                <Search className="w-5 h-5 text-muted-foreground shrink-0" />
-                <input
-                  ref={inputRef}
-                  type="text"
+              <Command label="Busca global" shouldFilter={false}>
+                <CommandInput
                   value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Buscar versículos, doutrinas, personagens..."
-                  className="flex-1 h-14 bg-transparent text-base outline-none placeholder:text-muted-foreground"
+                  onValueChange={setQuery}
+                  placeholder="Buscar versículos, doutrinas, personagens ou comandos…"
+                  wrapperClassName="border-b border-border/30"
                 />
-                <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono text-muted-foreground border border-border/50 rounded-md bg-muted/50">
-                  ESC
-                </kbd>
-              </div>
-
-              {/* Resultados */}
-              <div className="max-h-[60vh] overflow-y-auto p-2">
-                {carregando && (
-                  <div className="flex items-center justify-center py-8">
-                    <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-                  </div>
-                )}
-
-                {!carregando && query.trim().length >= 2 && resultados.length === 0 && (
-                  <div className="text-center py-10">
-                    <p className="text-sm text-muted-foreground">Nenhum resultado encontrado</p>
-                    <p className="text-xs text-muted-foreground/60 mt-1">Tente outros termos de busca</p>
-                  </div>
-                )}
-
-                {!carregando && query.trim().length < 2 && (
-                  <div className="py-6 px-4">
-                    <p className="text-xs text-muted-foreground mb-3 font-medium">Busque por</p>
-                    <div className="flex flex-wrap gap-2">
-                      {['João 3:16', 'Graça', 'Paulo', 'Salvação', 'Batismo', 'Apocalipse'].map((sugestao) => (
-                        <button
-                          key={sugestao}
-                          onClick={() => setQuery(sugestao)}
-                          className="px-3 py-1.5 text-xs font-medium rounded-lg border border-border/40 hover:border-primary/30 hover:bg-primary/5 transition-all duration-200"
-                        >
-                          {sugestao}
-                        </button>
-                      ))}
+                <CommandList>
+                  {carregando && (
+                    <div className="flex items-center justify-center py-8">
+                      <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {categorias.map(({ key, label, icon: Icon }) => {
-                  const items = resultadosPorCategoria[key];
-                  if (!items || items.length === 0) return null;
-                  return (
-                    <div key={key} className="mb-2">
-                      <div className="flex items-center gap-2 px-3 py-1.5">
-                        <Icon className="w-3.5 h-3.5 text-muted-foreground" />
-                        <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">{label}</span>
-                        <Badge variant="secondary" className="ml-auto text-[10px] px-1.5 py-0">{items.length}</Badge>
-                      </div>
-                      {items.map((r) => {
-                        const globalIdx = flatResults.indexOf(r);
-                        return (
-                          <button
-                            key={r.id}
-                            onClick={() => navigateTo(r.href)}
-                            onMouseEnter={() => setSelectedIndex(globalIdx)}
-                            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-colors duration-150 ${
-                              globalIdx === selectedIndex ? 'bg-primary/10 text-foreground' : 'hover:bg-muted/50'
-                            }`}
+                  {!carregando && isSearching && resultados.length === 0 && (
+                    <CommandEmpty>
+                      <p className="text-sm">Nenhum resultado encontrado</p>
+                      <p className="text-xs text-muted-foreground/60 mt-1">
+                        Tente outros termos de busca
+                      </p>
+                    </CommandEmpty>
+                  )}
+
+                  {!carregando && !isSearching && (
+                    <>
+                      {recentes.length > 0 && (
+                        <CommandGroup heading="Buscas recentes">
+                          {recentes.map((r) => (
+                            <CommandItem
+                              key={r}
+                              value={`recente-${r}`}
+                              onSelect={() => setQuery(r)}
+                            >
+                              <History className="w-3.5 h-3.5 text-muted-foreground" />
+                              <span className="truncate">{r}</span>
+                            </CommandItem>
+                          ))}
+                          <CommandItem
+                            value="limpar-recentes"
+                            onSelect={limparRecentes}
+                            className="text-muted-foreground"
                           >
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium truncate">{r.titulo}</p>
-                              {r.subtitulo && (
-                                <p className="text-xs text-muted-foreground truncate">{r.subtitulo}</p>
-                              )}
-                            </div>
-                            <ArrowRight className={`w-3.5 h-3.5 shrink-0 transition-opacity ${globalIdx === selectedIndex ? 'opacity-100 text-primary' : 'opacity-0'}`} />
-                          </button>
+                            <Trash2 className="w-3.5 h-3.5" />
+                            <span>Limpar buscas recentes</span>
+                          </CommandItem>
+                        </CommandGroup>
+                      )}
+
+                      <CommandGroup heading="Ações">
+                        {AcoesCommands.filter((c) => c.grupo === 'Ações').map((c) => {
+                          const Icon = c.icon;
+                          return (
+                            <CommandItem
+                              key={c.id}
+                              value={c.label}
+                              onSelect={() => executarAcao(c.acao)}
+                            >
+                              <Icon className="w-3.5 h-3.5 text-muted-foreground" />
+                              <span>{c.label}</span>
+                            </CommandItem>
+                          );
+                        })}
+                      </CommandGroup>
+
+                      <CommandGroup heading="IA">
+                        {AcoesCommands.filter((c) => c.grupo === 'IA').map((c) => {
+                          const Icon = c.icon;
+                          return (
+                            <CommandItem
+                              key={c.id}
+                              value={c.label}
+                              onSelect={() => executarAcao(c.acao)}
+                            >
+                              <Icon className="w-3.5 h-3.5 text-blue-500" />
+                              <span>{c.label}</span>
+                              <CommandShortcut>⌘J</CommandShortcut>
+                            </CommandItem>
+                          );
+                        })}
+                      </CommandGroup>
+
+                      <CommandGroup heading="Páginas">
+                        {NAV_COMMANDS.filter((c) => c.grupo === 'Páginas').map((c) => {
+                          const Icon = c.icon;
+                          return (
+                            <CommandItem
+                              key={c.href}
+                              value={`nav-${c.label}`}
+                              onSelect={() => navegar(c.href)}
+                            >
+                              <Icon className="w-3.5 h-3.5 text-muted-foreground" />
+                              <span>{c.label}</span>
+                              <ArrowRight className="w-3 h-3 ml-auto text-muted-foreground/50" />
+                            </CommandItem>
+                          );
+                        })}
+                      </CommandGroup>
+
+                      <CommandGroup heading="Ferramentas">
+                        {NAV_COMMANDS.filter((c) => c.grupo === 'Ferramentas').map((c) => {
+                          const Icon = c.icon;
+                          return (
+                            <CommandItem
+                              key={c.href}
+                              value={`nav-${c.label}`}
+                              onSelect={() => navegar(c.href)}
+                            >
+                              <Icon className="w-3.5 h-3.5 text-muted-foreground" />
+                              <span>{c.label}</span>
+                              <ArrowRight className="w-3 h-3 ml-auto text-muted-foreground/50" />
+                            </CommandItem>
+                          );
+                        })}
+                      </CommandGroup>
+                    </>
+                  )}
+
+                  {!carregando && isSearching && (
+                    <>
+                      {Object.entries(resultadosPorCategoria).map(([cat, items]) => {
+                        const meta = CATEGORIAS[cat];
+                        if (!meta || !items.length) return null;
+                        const Icon = meta.icon;
+                        return (
+                          <CommandGroup
+                            key={cat}
+                            heading={`${meta.label} (${items.length})`}
+                          >
+                            {items.slice(0, 8).map((r) => (
+                              <CommandItem
+                                key={r.id}
+                                value={`${r.titulo} ${r.subtitulo || ''}`}
+                                onSelect={() => {
+                                  salvarRecente(query);
+                                  navegar(r.href);
+                                }}
+                              >
+                                <Icon className="w-3.5 h-3.5 text-muted-foreground" />
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-sm font-medium truncate">{r.titulo}</p>
+                                  {r.subtitulo && (
+                                    <p className="text-[10px] text-muted-foreground truncate">
+                                      {r.subtitulo}
+                                    </p>
+                                  )}
+                                </div>
+                                <ArrowRight className="w-3 h-3 text-muted-foreground/50" />
+                              </CommandItem>
+                            ))}
+                          </CommandGroup>
                         );
                       })}
-                    </div>
-                  );
-                })}
-              </div>
 
-              {/* Footer */}
+                      <CommandGroup heading="Sugestões">
+                        <CommandItem
+                          value={`perguntar-ia-${query}`}
+                          onSelect={() => perguntarIA(query)}
+                        >
+                          <Sparkles className="w-3.5 h-3.5 text-blue-500" />
+                          <span>
+                            Perguntar à IA: &ldquo;{query}&rdquo;
+                          </span>
+                          <CommandShortcut>⌘J</CommandShortcut>
+                        </CommandItem>
+                      </CommandGroup>
+                    </>
+                  )}
+                </CommandList>
+              </Command>
+
               <div className="flex items-center gap-4 px-5 py-2.5 border-t border-border/30 text-[11px] text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <kbd className="px-1 py-0.5 border border-border/50 rounded bg-muted/50 font-mono text-[10px]">↑↓</kbd>
@@ -240,7 +425,7 @@ export function BuscaGlobal({ open, onOpenChange }: BuscaGlobalProps) {
                   fechar
                 </span>
                 <span className="ml-auto flex items-center gap-1">
-                  <Command className="w-3 h-3" />
+                  <CommandIcon className="w-3 h-3" />
                   <span className="font-mono text-[10px]">K</span>
                 </span>
               </div>

@@ -6659,6 +6659,889 @@ add('sl', 103, 1, 'Salmos 103:1 - Reflexao teologica',
   ["Sl 119:105","2 Tm 3:16-17"]);
 
 
+// ====================================================================
+// SALMOS 23 - O SENHOR E MEU PASTOR
+// ====================================================================
+
+add('sl', 23, 1, 'O Senhor e meu Pastor',
+  'Confissao de fe pessoal: Javhe, o Deus da alianca, assume o papel de Pastor de Israel. A imagem pastoril revela cuidado, lideranca e provisao divinal.',
+  [
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'O Pastor supremo nao pode falhar, nem ovelha alguma do Seu rebanho perecera.', obra: 'Tesouro de Salmos', ano: 1880 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'David celebra a providencia paternal de Deus que o conduz como Pastor.', obra: 'Comentario aos Salmos', ano: 1557 },
+  ],
+  ["Jo 10:11","Sl 80:1","Is 40:11","1 Pe 2:25"]);
+
+add('sl', 23, 4, 'Ainda que eu ande pelo vale da sombra da morte',
+  'A presenca divina transforma o vale mais escuro em via de consolo. O cajado e a vara sao instrumentos de defesa e correcao, nao de abandono.',
+  [
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A morte perde seu aguiao quando o Pastor caminha conosco.', obra: 'Comentarios sobre os Salmos', ano: 1534 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A sombra nao pode ferir; o cajado afasta todo mal.', obra: 'Tesouro de Salmos', ano: 1880 },
+  ],
+  ["1 Co 15:55-57","Sl 16:11","Hb 2:14-15"]);
+
+add('sl', 23, 6, 'Habitarei na casa do Senhor para sempre',
+  'A esperanca escatologica: a comunhao com Deus nao e temporaria. A bondade e a misericordia sao atributos divinos que perseguem o crente ate a morada eterna.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A casa do Senhor e a Sua Igreja e, por fim, o ceu.', obra: 'Comentario aos Salmos', ano: 1557 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'A eternidade com Deus e o descanso definitivo das ovelhas.', obra: 'Enarratio in Psalmum 23', ano: 415 },
+  ],
+  ["Ap 21:3-4","Sl 27:4","Jo 14:2-3"]);
+
+
+// ====================================================================
+// SALMOS 91 - DEBAIXO DAS ASAS DO ALTISSIMO
+// ====================================================================
+
+add('sl', 91, 1, 'Aquele que habita no esconderijo do Altissimo',
+  'A imagem da ave que cobre os filhotes com suas asas evoca protecao intima. Habitar e permanencia, nao visita casual.',
+  [
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Quem habita no Altissimo nao se assusta com os males externos.', obra: 'Tesouro de Salmos', ano: 1880 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A protecao divina e certa para os que confiam.', obra: 'Comentario aos Salmos', ano: 1557 },
+  ],
+  ["Sl 17:8","Ru 2:12","Mt 23:37"]);
+
+add('sl', 91, 4, 'Com suas penas te cobrira',
+  'Asas divinas cobrem, defendem e protegem. A fidelidade de Deus e escudo e broquel inviolavel.',
+  [
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'As asas de Deus sao larga defesa contra todo mal.', obra: 'Tesouro de Salmos', ano: 1880 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A providencia guarda os seus com ternura maternal.', obra: 'Catena Aurea', ano: 1260 },
+  ],
+  ["Ex 19:4","Dt 32:11","Sl 17:8"]);
+
+add('sl', 91, 7, 'Mil cairao ao teu lado',
+  'Os males atingem a humanidade, mas o protegido de Deus e preservado. O numero de quedas alheias nao afeta a seguranca do que confia.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A praga se aproxima mas nao toca o servo fiel.', obra: 'Comentario aos Salmos', ano: 1557 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Deus distingue entre o Seu povo e os impios.', obra: 'Tesouro de Salmos', ano: 1880 },
+  ],
+  ["Sl 121:7-8","2 Ts 3:3","Ap 9:4"]);
+
+add('sl', 91, 11, 'Pois aos seus anjos dara ordens',
+  'Os anjos sao ministros de Deus para guarda dos justos. A missao angelical e descrita por Cristo no Getsemani.',
+  [
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Os anjos sao mensageiros e guardioes do povo de Deus.', obra: 'Suma Teologica I, q.113', ano: 1274 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Deus opera por anjos ou diretamente, segundo Sua vontade.', obra: 'Comentarios sobre os Salmos', ano: 1534 },
+  ],
+  ["Hb 1:14","Mt 4:6","At 12:7-8"]);
+
+
+// ====================================================================
+// SALMOS 121 - O AUXILIO VEM DO SENHOR
+// ====================================================================
+
+add('sl', 121, 1, 'Elevo os olhos para os montes',
+  'O olhar de fe ultrapassa a paisagem natural. Os montes eram lugares de culto pagão e tambem de santuários do Senhor. O salmista busca a ajuda do Deus de Jaco.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Os olhos do corpo olham os montes; os da fe, o Criador.', obra: 'Comentario aos Salmos', ano: 1557 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Olhar para o alto e romper com o olhar terreno.', obra: 'Tesouro de Salmos', ano: 1880 },
+  ],
+  ["Sl 123:1","Is 40:26","Hb 12:2"]);
+
+add('sl', 121, 4, 'Eis que nao tosquenejara nem dormira o Guarda de Israel',
+  'Ao contrario dos guardas humanos, Deus vela sem cessar. O verbo hebraico "nao tosquenejara" (yashen) indica que Ele nao cochila.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A vigilancia divina e ininterrupta.', obra: 'Comentario aos Salmos', ano: 1557 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A creatura dorme; o Criador, jamais.', obra: 'Tesouro de Salmos', ano: 1880 },
+  ],
+  ["1 Rs 18:27","Sl 127:1","Is 27:3"]);
+
+add('sl', 121, 8, 'O Senhor guardara a tua saida e a tua entrada',
+  'Protecao total da vida: do inicio ao fim, da juventude a velhice. Abrangencia da guarda divina sobre a existencia humana.',
+  [
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Desde agora e para sempre, em todo tempo e lugar.', obra: 'Tesouro de Salmos', ano: 1880 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Quem guarda Israel guarda cada filho Seu.', obra: 'Enarratio in Psalmum 121', ano: 415 },
+  ],
+  ["Dt 28:6","Sl 139:3","Jo 10:28-29"]);
+
+
+// ====================================================================
+// SALMOS 139 - A ONISCIENCIA E A ONIPRESENCA DE DEUS
+// ====================================================================
+
+add('sl', 139, 1, 'Senhor, tu me sondas e me conheces',
+  'O verbo hebraico "sondar" (chagar) sugere exame profundo, como minerar ouro. Deus conhece o crente de modo exhaustivo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Conhecer e sondar envolve penetracao na intimidade humana.', obra: 'Comentario aos Salmos', ano: 1557 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Nenhum coracao engana a Deus, pois Ele o dissecou antes.', obra: 'Tesouro de Salmos', ano: 1880 },
+  ],
+  ["Hb 4:13","Ap 2:23","Sl 44:21"]);
+
+add('sl', 139, 7, 'Para onde me ausentarei do teu espirito?',
+  'A omnipresenca do Espirito Santo: a fuga de Jonas falhou. Em lugar nenhum o crente se esconde do olhar divino.',
+  [
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Deus esta em toda parte; o coracao busca-O em si mesmo.', obra: 'Confissoes', ano: 398 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Deus esta em todas as coisas por essencia, presenca e potencia.', obra: 'Suma Teologica I, q.8', ano: 1274 },
+  ],
+  ["Jr 23:24","At 17:27-28","Jn 1:3"]);
+
+add('sl', 139, 14, 'Eu te louvarei, porque de um modo assombroso e maravilhoso fui feito',
+  'A creaturidade humana diante do Criador: somos obras-primas. O corpo, em sua complexidade, declara a gloria do Autor.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O corpo humano e o mais excellente espelho da gloria divina.', obra: 'Comentario aos Salmos', ano: 1557 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A formacao no ventre e o mais alto artesanato.', obra: 'Tesouro de Salmos', ano: 1880 },
+  ],
+  ["Sl 100:3","Jb 10:8-12","Ef 2:10"]);
+
+add('sl', 139, 17, 'Quao preciosos me sao, o Deus, os teus pensamentos',
+  'Os pensamentos de Deus sobre os Seus sao inumeraveis, abrangendo passado, presente e futuro.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Os decretos divinos sao inescrutaveis, mas sempre beneficos.', obra: 'Comentario aos Salmos', ano: 1557 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Mais numerosos que a areia; todos voltados para o bem dos filhos.', obra: 'Tesouro de Salmos', ano: 1880 },
+  ],
+  ["Is 55:8-9","Rm 11:33","Ef 1:4-5"]);
+
+add('sl', 139, 23, 'Sonda-me, o Deus, e conhece o meu coracao',
+  'A oracao do crente sincero: abrir-se ao escrutinio divino e desejar a purificacao. Humildade diante da onisciencia de Deus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Orar para ser examinado e prova de consciencia integra.', obra: 'Comentario aos Salmos', ano: 1557 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Quem se oferece a Deus para ser provado nao teme a luz.', obra: 'Enarratio in Psalmum 139', ano: 415 },
+  ],
+  ["Sl 26:2","1 Cr 28:9","Ap 2:23"]);
+
+
+// ====================================================================
+// JOAO 3 - O NOVO NASCIMENTO
+// ====================================================================
+
+add('jo', 3, 3, 'E necessario nascer de novo',
+  'Nicodemos, fariseu prudente, nao compreende o ensino sobrenatural. "De novo" (anothen) significa "do alto" — o novo nascimento e obra do Espirito, nao decisao humana.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O novo nascimento e obra exclusiva do Espirito de Deus.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Nascemos da carne para o tempo; do Espirito, para a eternidade.', obra: 'Tractatus in Joannis Evangelium', ano: 416 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A regeneracao precede a fe; nao a produzimos por nossas forcas.', obra: 'Comentario a Joao', ano: 1537 },
+  ],
+  ["Jo 1:13","Tt 3:5","1 Pe 1:23"]);
+
+add('jo', 3, 5, 'Nascido da agua e do Espirito',
+  'A agua simboliza purificacao (batismo) e a obra renovadora do Espirito. O novo nascimento combina sinal e realidade.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Agua e Espirito: o sinal externo e a realidade interna.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'A agua do bautismo e o Espirito regeneram.', obra: 'Tractatus in Joannis Evangelium', ano: 416 },
+  ],
+  ["At 2:38","Tt 3:5","Ef 5:26"]);
+
+add('jo', 3, 8, 'O vento sopra onde quer',
+  'O Espirito Santo e soberano em Sua obra, como o vento: invisivel, poderoso, livre. A regeneracao nao pode ser controlada ou forçada.',
+  [
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'O Espirito age livremente; Sua obra e tao certa quanto imprevisivel.', obra: 'Tractatus in Joannis Evangelium', ano: 416 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A eficacia do Espirito e independente da cooperacao humana.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+  ],
+  ["1 Co 12:11","At 2:2-4","Jo 6:63"]);
+
+add('jo', 3, 16, 'Porque Deus amou ao mundo de tal maneira',
+  'O evangelho em uma frase: amor de Deus, entrega do Filho, vida eterna para os que creem. Universalidade da oferta; particularidade da fe.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O amor de Deus nao e geral em abstrato; e especifico em Cristo.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'O amor de Deus e a fonte de toda a salvacao.', obra: 'Sermoes', ano: 1865 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'O termo "mundo" mostra a suficiencia universal do sacrifício de Cristo.', obra: 'Catena Aurea', ano: 1260 },
+  ],
+  ["Rm 5:8","1 Jo 4:9-10","Ef 2:4-5"]);
+
+add('jo', 3, 19, 'A luz veio ao mundo',
+  'Cristo e a luz que escurece os que amam as trevas. O julgamento pela luz e etico, nao apenas ontologico.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A luz e Cristo, que revela o pecado e salva o crente.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'A luz e a Palavra que nos convoca a fe.', obra: 'Tractatus in Joannis Evangelium', ano: 416 },
+  ],
+  ["Jo 1:4-9","Jo 8:12","Ef 5:8"]);
+
+
+// ====================================================================
+// JOAO 14 - A MORADA DO PAI
+// ====================================================================
+
+add('jo', 14, 1, 'Não se turbe o vosso coração',
+  'Palavras de despedida: Jesus tranquiliza os discipulos. A fé em Deus se estende à fé em Cristo, fundamento do coracao tranquilo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A paz do coracao vem da confiança em Deus, nao das circunstancias.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A fé e a ancora contra a tempestade da alma.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Jo 16:33","Fp 4:6-7","Is 26:3"]);
+
+add('jo', 14, 3, 'Vou preparar-vos lugar',
+  'A ascensao de Cristo e a garantia de morada celestial. O trabalho sacerdotal de Cristo no ceu inclui a preparacao de lugar para os salvos.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo intercede por nos enquanto prepara a heranca.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Cristo, como Sumo Sacerdote, nos precede na gloria.', obra: 'Suma Teologica III, q.57', ano: 1274 },
+  ],
+  ["Hb 6:19-20","2 Co 5:1","Jo 17:24"]);
+
+add('jo', 14, 6, 'Eu sou o caminho, a verdade e a vida',
+  'Cristo nao aponta o caminho; Ele e o caminho. Exclusividade mediadora: nenhum outro acesso ao Pai.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo e o unico mediador entre Deus e os homens.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Fora de Cristo nao ha verdade que salve.', obra: 'Tractatus in Joannis Evangelium', ano: 416 },
+  ],
+  ["At 4:12","1 Tm 2:5","Hb 10:19-20"]);
+
+add('jo', 14, 9, 'Quem me viu a mim viu o Pai',
+  'A plena revelacao do Pai no Filho. Cristo e o icone exato do Deus invisivel; nEle o invisivel se torna visivel.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O Filho e o espelho vivo do Pai.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Atanasio', periodo: 'patristico', tradicao: 'catolica', texto: 'O Filho e a imagem exata da substancia do Pai.', obra: 'Contra Arianos', ano: 360 },
+  ],
+  ["Cl 1:15","Hb 1:3","Jo 1:18"]);
+
+add('jo', 14, 27, 'A minha paz vos dou',
+  'A paz de Cristo e distinta da do mundo: nao e ausencia de conflito, mas presença do Principe da Paz. Legado antes da cruz.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A paz do mundo e fragil; a de Cristo e eterna.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A paz de Cristo acalma o mar revolto da consciencia.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Fp 4:7","Cl 3:15","Rm 5:1"]);
+
+
+// ====================================================================
+// JOAO 15 - A VIDEIRA VERDADEIRA
+// ====================================================================
+
+add('jo', 15, 1, 'Eu sou a videira verdadeira',
+  'Metafora agricola da união vital com Cristo. A videira produz fruto somente nos ramos que permanecem nela.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A videira e Cristo; a seiva e o Espirito; os ramos, os crentes.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Fora da videira nao ha fruto, apenas folhas e gloria va.', obra: 'Tractatus in Joannis Evangelium', ano: 416 },
+  ],
+  ["Jo 1:1","Is 5:1-7","Sl 80:8-15"]);
+
+add('jo', 15, 4, 'Permanecei em mim',
+  'O "permanecer" (meno) e a palavra-chave: comunhao continua, nao evento pontual. Sem permanencia nao ha fruto.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A permanencia e obra de Deus em nos, pela fe.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Permanecer e respirar a atmosfera de Cristo.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["1 Jo 2:28","Cl 1:23","Jo 8:31"]);
+
+add('jo', 15, 5, 'Sem mim nada podeis fazer',
+  'A absoluta dependencia do crente em Cristo. Toda obra spiritual relevante flui da união com Ele, nao do esforço autonomo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A suficiencia do crente vem de Cristo, nao de si mesmo.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Sola fide, mas a fe vem de Cristo, nao da nossa vontade.', obra: 'Comentario a Joao', ano: 1537 },
+  ],
+  ["2 Co 3:5","Fp 4:13","Jo 9:33"]);
+
+add('jo', 15, 8, 'Nisto e glorificado meu Pai',
+  'O fruto abundante evidencia a autenticidade da fe e glorifica ao Pai. Discipulado visivel produz gloria visivel a Deus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O fruto e a prova da eleição.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Muito fruto e o alvo da videira; esterilidade, sua vergonha.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Mt 5:16","Gl 5:22-23","Fp 1:11"]);
+
+add('jo', 15, 13, 'Maior amor tem ninguem do que aquele que da a sua vida',
+  'O amor crístico supremo: entrega voluntaria. A cruz e a medida maxima do amor divino e o padrao para o discipulo.',
+  [
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'O amor que da a vida e o amor de Cristo e do martir.', obra: 'Tractatus in Joannis Evangelium', ano: 416 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O amor de Cristo e o prototipo de todo amor cristão.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+  ],
+  ["1 Jo 3:16","Rm 5:6-8","Ef 5:2"]);
+
+
+// ====================================================================
+// JOAO 17 - A ORAÇAO SACERDOTAL
+// ====================================================================
+
+add('jo', 17, 1, 'Pai, e chegada a hora',
+  'A hora da glorificacao pela cruz. Jesus ora ao Pai com intimidade filial antes de entrar no Getsemani e no Calvario.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A cruz e a suprema glorificacao do Filho.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A hora e o cumprimento da missao redentora.', obra: 'Catena Aurea', ano: 1260 },
+  ],
+  ["Jo 12:23","Jo 13:31-32","Fp 2:6-8"]);
+
+add('jo', 17, 3, 'A vida eterna e conhecer-te',
+  'A definição da vida eterna nao e mera imortalidade, mas conhecimento pessoal do Deus verdadeiro e de Cristo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Conhecer a Deus e a vida da alma; ignora-Lo e morte.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'A vida eterna comeca na fe e se consuma na visao.', obra: 'Tractatus in Joannis Evangelium', ano: 416 },
+  ],
+  ["Jo 14:6","1 Jo 5:20","Sl 16:11"]);
+
+add('jo', 17, 17, 'Santifica-os na verdade',
+  'A santificação vem pela Palavra, que e verdade. A oração sacerdotal consagra os discípulos para a missão.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A Palavra de verdade e o instrumento da santificacao.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A verdade separa o crente do mundo.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Ef 5:26","2 Ts 2:13","Jo 15:3"]);
+
+add('jo', 17, 20, 'Nao rogo somente por estes',
+  'A oração de Cristo abrange todos os que crerão pela Palavra dos apóstolos — universalidade da mediação intercessora.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo intercede por todos os eleitos em todos os tempos.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A oração de Cristo e sempiternamente eficaz.', obra: 'Suma Teologica III, q.21', ano: 1274 },
+  ],
+  ["Hb 7:25","Rm 8:34","1 Jo 2:1"]);
+
+add('jo', 17, 24, 'Pai, aqueles que me deste, quero que onde eu estou estejam comigo',
+  'O desejo eterno de Cristo: a comunhão com o Pai inclui a comunhão dos salvos com Cristo. A consumação da graça.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A glória de Cristo e partilhada com os eleitos.', obra: 'Comentario ao Evangelho de Joao', ano: 1553 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'A visão de Deus face a face e a beatitude final.', obra: 'Tractatus in Joannis Evangelium', ano: 416 },
+  ],
+  ["2 Co 3:18","1 Jo 3:2","Ap 22:3-4"]);
+
+
+// ====================================================================
+// ROMANOS 8 - A VIDA SEGUNDO O ESPIRITO
+// ====================================================================
+
+add('rm', 8, 1, 'Nenhuma condenacao ha para os que estao em Cristo Jesus',
+  'A declaração culminante da justificação: o crente justificado está livre da condenação eterna. Em Cristo, o veredito já foi dado.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A justificação em Cristo elimina a condenacao eterna.', obra: 'Comentario a Romanos', ano: 1540 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Justificado pela fé tem paz com Deus; nenhuma condenacao pesa sobre ele.', obra: 'Comentario a Romanos', ano: 1515 },
+  ],
+  ["Rm 5:1","Jo 5:24","Rm 8:33-34"]);
+
+add('rm', 8, 11, 'O mesmo que ressuscitou a Cristo Jesus dentre os mortos',
+  'A garantia da ressurreição do crente: o mesmo poder que ressuscitou Cristo vive em nós pelo Espírito. A pneumatologia sustenta a escatologia.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O Espírito que habitou Cristo em Sua morte opera em nós para a vida.', obra: 'Comentario a Romanos', ano: 1540 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A ressurreição de Cristo e causa eficiente da nossa.', obra: 'Suma Teologica III, q.56', ano: 1274 },
+  ],
+  ["1 Co 6:14","2 Co 4:14","Ef 1:19-20"]);
+
+add('rm', 8, 15, 'Recebestes o espirito de adoção',
+  'O Espírito Santo não é servo do medo, mas testemunha da filiação. O "Abba" é a intimidade do filho com o Pai.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O Espírito clama em nós, Aba Pai, e selo nossa adoção.', obra: 'Comentario a Romanos', ano: 1540 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'O grito "Aba" revela o filho a si mesmo.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Gl 4:6","1 Jo 3:1","Ef 1:5"]);
+
+add('rm', 8, 28, 'Todas as coisas cooperam para o bem daqueles que amam a Deus',
+  'A providência cooperante: mesmo o mal serve ao bem dos eleitos. O "todas as coisas" inclui sofrimentos e decepções.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A providência converte o mal aparente em bem real.', obra: 'Comentario a Romanos', ano: 1540 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'As aflições virão, mas todas elas trabalham juntas para o bem.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Gn 50:20","Ef 1:11","Hb 12:6-11"]);
+
+add('rm', 8, 31, 'Se Deus e por nos, quem sera contra nos?',
+  'A lógica da graça: se o Pai entregou o Filho, não nos negará nada. Triunfo retórico que conduz à segurança eterna.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Se Deus nos justifica, ninguém pode nos condenar.', obra: 'Comentario a Romanos', ano: 1540 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A pergunta retórica de Paulo e a segurança do crente.', obra: 'Comentario a Romanos', ano: 1515 },
+  ],
+  ["Rm 8:35-39","Sl 118:6","Hb 13:6"]);
+
+add('rm', 8, 38, 'Nem a morte, nem a vida',
+  'Nada pode separar o crente do amor de Deus em Cristo. A enumeração de males visa aquilatar a indestrutibilidade da salvação.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A salvação é eterna porque fundamentada no amor imutável.', obra: 'Comentario a Romanos', ano: 1540 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Nem a própria morte pode romper o vínculo de amor.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Jo 10:28-29","Rm 8:35-37","1 Pe 1:5"]);
+
+
+// ====================================================================
+// EFESIOS 2 - SALVOS PELA GRACA
+// ====================================================================
+
+add('ef', 2, 1, 'Estaveis mortos em vossos delitos e pecados',
+  'O diagnóstico espiritual: a humanidade sem Cristo é cadáver espiritual. A morte moral precede a morte física.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O pecado não apenas feriu, mas matou a alma.', obra: 'Comentario a Efesios', ano: 1548 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Morto pelo pecado, o homem não pode por si mesmo ressuscitar.', obra: 'Enarratio in Psalmum 102', ano: 415 },
+  ],
+  ["Cl 2:13","Ef 4:18","Rm 5:12"]);
+
+add('ef', 2, 4, 'Mas Deus, sendo rico em misericordia',
+  'O contraste: do "mas Deus" brota a esperança. A misericórdia é a compaixão eficaz de Deus para com o morto espiritual.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A misericórdia precede a vida; Deus nos vivificou quando mortos.', obra: 'Comentario a Efesios', ano: 1548 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'O "mas Deus" é o ponto de virada da história humana.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Ef 2:1-3","Tt 3:5","1 Pe 1:3"]);
+
+add('ef', 2, 8, 'Pela graça sois salvos, mediante a fé',
+  'A declaração axial da soteriologia paulina: a salvação é pela graça (causa eficiente) e recebida pela fé (instrumento humano).',
+  [
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A fé é a mão que recebe; a graça é o dom dado.', obra: 'Comentario a Efesios', ano: 1522 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A salvação exclui toda glória humana; a fé vem também de Deus.', obra: 'Comentario a Efesios', ano: 1548 },
+  ],
+  ["Rm 3:24-25","Ef 2:9-10","Tt 2:11"]);
+
+add('ef', 2, 10, 'Somos feitura de Deus, criados em Cristo Jesus',
+  'A nova criação: o salvo é obra de Deus, criada para boas obras. As boas obras são fruto, não causa da salvação.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A regeneração nos torna novas criaturas; as obras são evidências.', obra: 'Comentario a Efesios', ano: 1548 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Somos criados em Cristo para as obras que Deus preparou.', obra: 'Suma Teologica I-II, q.109', ano: 1274 },
+  ],
+  ["2 Co 5:17","Gl 6:15","Ef 4:24"]);
+
+add('ef', 2, 19, 'Ja nao sois estrangeiros, mas concidados dos santos',
+  'A nova identidade em Cristo: judeus e gentios formam um só povo. A parede de hostilidade foi derrubada pela cruz.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo derrubou a separação entre judeus e gentios.', obra: 'Comentario a Efesios', ano: 1548 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'A Igreja é a cidade de Deus, construída sobre Cristo.', obra: 'De Civitate Dei', ano: 426 },
+  ],
+  ["Ef 2:14","Gl 3:28","1 Pe 2:9-10"]);
+
+
+// ====================================================================
+// EFESIOS 6 - A ARMADURA DE DEUS
+// ====================================================================
+
+add('ef', 6, 10, 'Fortalecei-vos no Senhor',
+  'A batalha espiritual exige força que vem do Senhor. O crente é chamado a vestir a armadura divina, não a confiar na própria força.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A fortaleza do crente vem do Senhor, não de si mesmo.', obra: 'Comentario a Efesios', ano: 1548 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Sem a força do Senhor, o soldado cristão é presa fácil.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Ef 6:11-12","2 Co 10:4","Fp 4:13"]);
+
+add('ef', 6, 11, 'Revesti-vos da armadura de Deus',
+  'Imagem militar: o crente está em guerra cósmica. Cada peça da armadura corresponde a uma verdade espiritual.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A armadura é a verdade de Deus, não símbolos humanos.', obra: 'Comentario a Efesios', ano: 1548 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'As armas do cristão são espirituais e eficazes.', obra: 'Suma Teologica I-II, q.108', ano: 1274 },
+  ],
+  ["Rm 13:12","2 Co 10:4","1 Ts 5:8"]);
+
+add('ef', 6, 12, 'Nossa luta não e contra carne e sangue',
+  'O adversário é espiritual: principados, potestades, forças do mal. A batalha é cósmica e invisível, mas real.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Os demônios são inimigos reais, ainda que invisíveis.', obra: 'Comentario a Efesios', ano: 1548 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'A luta invisível exige armas espirituais.', obra: 'Enarratio in Psalmum 90', ano: 415 },
+  ],
+  ["Cl 2:15","Dn 10:13","Ap 12:7-9"]);
+
+add('ef', 6, 14, 'Cingidos com a verdade',
+  'A primeira peça: a verdade. Viver na verdade é o cinto que sustenta a armadura. Sem integridade, a batalha é perdida.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A verdade é o fundamento da integridade cristã.', obra: 'Comentario a Efesios', ano: 1548 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A verdade cinge o guerreiro de Cristo.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Jo 8:32","2 Jo 1:4","3 Jo 1:4"]);
+
+add('ef', 6, 17, 'Tomai o capacete da salvação e a espada do Espirito',
+  'A única arma ofensiva: a Palavra de Deus. O crente vence pela Escritura, como Cristo venceu no deserto.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A Palavra de Deus é a espada do crente, como do próprio Cristo.', obra: 'Comentario a Efesios', ano: 1548 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A Palavra é a arma que vence o diabo e a dúvida.', obra: 'Comentario a Efesios', ano: 1522 },
+  ],
+  ["Hb 4:12","Mt 4:4","Ap 19:15"]);
+
+add('ef', 6, 18, 'Orando em todo tempo',
+  'A oração é o clima da batalha. Sem oração constante, a armadura é inerte. A oração é o respirar do guerreiro.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A oração é o canal pelo qual Deus nos revigora na luta.', obra: 'Comentario a Efesios', ano: 1548 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A oração é o suspiro da alma em guerra.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Cl 4:2","1 Ts 5:17","Rm 12:12"]);
+
+
+// ====================================================================
+// TIAGO - FE E OBRAS
+// ====================================================================
+
+add('tg', 1, 2, 'Tende por grande alegria, meus irmãos, quando cairdes em diversas provações',
+  'As provações não são motivos de lamento, mas de regozijo, porque produzem maturidade. A fé testada é fé fortalecida.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'As provações são o crivo da fé genuína.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Alegria na prova é a marca do cristão maduro.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Rm 5:3-4","1 Pe 1:6-7","Hb 12:11"]);
+
+add('tg', 1, 5, 'Se algum de vós tem falta de sabedoria, peça-a a Deus',
+  'A oração pela sabedoria é promessa garantida. Deus dá liberalmente e não censura quem busca entendimento.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A sabedoria prática vem de Deus, não da experiência humana.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A sabedoria é dom do Espírito e deve ser pedida com fé.', obra: 'Suma Teologica II-II, q.45', ano: 1274 },
+  ],
+  ["Pv 2:3-6","1 Rs 3:5-14","Cl 1:9"]);
+
+add('tg', 1, 12, 'Bem-aventurado o homem que suporta a provação',
+  'A bem-aventurança do provado: a coroa da vida aguarda os que permanecem fiéis. A prova é o vestibulo da glória.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A coroa da vida é dada por Deus aos que perseveram na fé.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A provação é a forja onde a coroa é moldada.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Ap 2:10","2 Tm 4:8","1 Pe 5:4"]);
+
+add('tg', 1, 19, 'Todo homem seja pronto para ouvir, tardio para falar',
+  'A regra do silêncio: ouvir muito, falar pouco, dominar a ira. A prudência cristã começa nos ouvidos.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A paciência para ouvir é o fundamento da sabedoria.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A língua, descontrolada, gera males; bem governada, vida.', obra: 'Suma Teologica II-II, q.161', ano: 1274 },
+  ],
+  ["Pv 18:13","Ec 5:2","Tg 3:1-12"]);
+
+add('tg', 1, 22, 'Sede praticantes da palavra e não somente ouvintes',
+  'A fé sem obras é morta. A audição da Palavra exige obediência: o Espelho da Palavra revela e exige transformação.',
+  [
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A fé viva se expressa em obras vivas.', obra: 'Comentario a Tiago', ano: 1530 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O ouvinte sem prática engana a si mesmo.', obra: 'Comentario a Tiago', ano: 1551 },
+  ],
+  ["Tg 2:26","Mt 7:24-27","Jo 13:17"]);
+
+add('tg', 1, 27, 'Religião pura e sem mácula diante de nosso Deus',
+  'A definição prática da religião: visitar órfãos e viúvas, guardar-se do mundo. A piedade se prova na caridade.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A verdadeira piedade se mostra em misericórdia e pureza.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A religião autêntica une fé e obras de misericórdia.', obra: 'Suma Teologica II-II, q.188', ano: 1274 },
+  ],
+  ["Mt 25:35-40","1 Jo 3:17-18","Is 1:17"]);
+
+add('tg', 2, 14, 'Que aproveita, meus irmãos, se alguém diz que tem fé, e não tem obras?',
+  'A pergunta retórica: a fé professada sem obras é vazia. Tiago não contradiz Paulo, mas complementa: a fé que salva é a fé que age.',
+  [
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A fé justifica, mas só a fé viva que produz obras.', obra: 'Comentario a Tiago', ano: 1530 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'As obras são os frutos necessários da fé.', obra: 'Comentario a Tiago', ano: 1551 },
+  ],
+  ["Gl 5:6","Ef 2:10","Tg 2:26"]);
+
+add('tg', 2, 17, 'A fé, se não tiver obras, é morta em si mesma',
+  'A metáfora é forte: fé sem obras é cadáver. Não há fé genuína sem manifestação prática de amor.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A fé existe quando produz frutos de obediência.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A fé morta é a heresia dos dias de Tiago, ainda viva hoje.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Gl 5:22","Tt 2:14","Mt 7:16"]);
+
+add('tg', 2, 24, 'O homem é justificado pelas obras, e não somente pela fé',
+  'A aparente tensão com Paulo se resolve: Tiago fala da justificação diante dos homens (pelas obras), Paulo da justificação diante de Deus (pela fé).',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'As obras justificam diante dos homens, demonstrando a fé.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Justificados pela fé, mas a fé justifica porque produz obras.', obra: 'Comentario a Tiago', ano: 1530 },
+  ],
+  ["Rm 4:1-5","Gl 2:16","Mt 25:31-46"]);
+
+add('tg', 2, 26, 'O corpo sem o espirito está morto',
+  'A analogia: fé e obras são como corpo e espírito. A fé separada das obras é cadáver. As obras dão vida à fé.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A fé vive quando se manifesta em obras.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A fé forma é morta; a fé viva inclui caridade.', obra: 'Suma Teologica II-II, q.4', ano: 1274 },
+  ],
+  ["1 Co 13:2","Gl 5:6","Cl 1:10"]);
+
+add('tg', 3, 1, 'Não muitos de vós vos torneis mestres',
+  'O aviso aos mestres: maior conhecimento traz maior responsabilidade. O ensino na Igreja exige preparo e temor.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O mestre carrega peso enorme; a língua dos mestres fere muitos.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A doutrina exige prudência, pois o erro conduz almas.', obra: 'Suma Teologica II-II, q.188', ano: 1274 },
+  ],
+  ["Hb 13:17","1 Tm 5:17","Mt 23:1-4"]);
+
+add('tg', 3, 5, 'A língua é um pequeno membro e se gaba de grandes coisas',
+  'A imagem do freio e do fogo: a língua é pequena, mas seu poder é imenso. O cuidado com as palavras é vital.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A língua é o maior instrumento do bem e do mal.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A pequena língua é o maior perigo do cristão.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Pv 18:21","Mt 12:36","Sl 39:1"]);
+
+add('tg', 3, 6, 'A língua é um fogo',
+  'O poder destruidor das palavras: a língua é fogo que incendeia a existência. Instrumento de bênção ou de maldição.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A língua mundana é inflamada pelo inferno.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A língua inflamada pelo orgulho é o início do pecado.', obra: 'Suma Teologica II-II, q.158', ano: 1274 },
+  ],
+  ["Pv 16:27","Mt 15:11","Mc 7:20-23"]);
+
+add('tg', 3, 17, 'A sabedoria que vem do alto é, primeiramente, pura',
+  'A marca da sabedoria divina: pureza, paz, misericórdia. Contrasta com a terrena, que é invejosa e egoísta.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A sabedoria celestial é caracterizada pela mansidão e misericórdia.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A sabedoria do alto é dom do Espírito Santo.', obra: 'Suma Teologica II-II, q.45', ano: 1274 },
+  ],
+  ["1 Co 2:6-7","Cl 3:15","Fp 4:8"]);
+
+add('tg', 4, 1, 'De onde vêm as guerras e contendas entre vós?',
+  'A raiz dos conflitos: desejos internos que não são controlados. A guerra nasce no coração antes de explodir em ações.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'As contendas provêm dos desejos desordenados do coração.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'A cobiça desordenada é a raiz de toda contenda.', obra: 'De Civitate Dei', ano: 426 },
+  ],
+  ["Rm 7:23","1 Pe 2:11","Gl 5:17"]);
+
+add('tg', 4, 4, 'A amizade do mundo é inimizade contra Deus',
+  'A advertência radical: amar o mundo é estar contra Deus. Não há neutralidade espiritual.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O mundo e Deus são incompatíveis; quem ama a um odeia ao outro.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Ame o mundo e você se torna seu inimigo declarado.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["1 Jo 2:15","Rm 12:2","Mt 6:24"]);
+
+add('tg', 4, 7, 'Resisti ao diabo, e ele fugirá de vós',
+  'A promessa: a resistência pela fé vence o maligno. Humildade diante de Deus e firmeza diante do mal.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A resistência fiel é sustentada por Deus, que esmaga Satanás.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Quem resiste pela fé faz o diabo tremer.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["1 Pe 5:9","Ef 6:11","Ap 12:11"]);
+
+add('tg', 4, 8, 'Chegai-vos a Deus, e ele se chegará a vós',
+  'A promessa da intimidade: purificar as mãos e o coração, e Deus virá ao encontro. A piedade é bilateral.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus não rejeita quem, com coração sincero, O busca.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A aproximação do homem é sustentada pela graça preveniente.', obra: 'Suma Teologica II-II, q.24', ano: 1274 },
+  ],
+  ["Sl 34:18","Is 55:6","Hb 7:19"]);
+
+add('tg', 4, 17, 'Aquele que sabe fazer o bem e o não faz, comete pecado',
+  'A omissão é pecado: a luz reconhecida e ignorada condena. O conhecimento sem ação é julgamento.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O pecado de omissão é tão grave quanto o de comissão.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A omissão diante do necessitado é crime moral.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Mt 25:45","Lc 12:47","1 Jo 3:17"]);
+
+add('tg', 5, 7, 'Sede pacientes até a vinda do Senhor',
+  'A paciência agrícola: como o lavrador espera o fruto, o crente espera o Senhor. A vinda do Senhor é a colheita.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A paciência cristã aguarda o juízo de Deus, não apressando.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A vinda do Senhor recompensa toda lágrima.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["2 Pe 3:9","Hb 10:36-37","Ap 22:20"]);
+
+add('tg', 5, 12, 'Não jureis, nem pelo céu, nem pela terra',
+  'A proibição do juramento banal: o "sim, sim; não, não" resume a integridade cristã. A palavra do crente é suficiente.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A palavra simples deve ser tão segura como juramentos.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'O juramento só é lícito em necessidade grave.', obra: 'Suma Teologica II-II, q.89', ano: 1274 },
+  ],
+  ["Mt 5:34-37","2 Co 1:17","Ef 4:25"]);
+
+add('tg', 5, 16, 'Confessai os vossos pecados uns aos outros e orai uns pelos outros',
+  'A confissão mútua e a oração: a cura espiritual e física vem da comunidade. A transparência cura.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A confissão pública do pecado, quando cabe, é saudável.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A oração do justo é poderosa em seus efeitos.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["1 Jo 1:9","At 19:18","Sl 32:3-5"]);
+
+add('tg', 5, 20, 'Aquele que converte o pecador do erro do seu caminho salvará uma alma da morte',
+  'A glória de ganhar almas: a restauração do errante cobre multidão de pecados. A evangelização tem efeito cósmico.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A obra missionária é a maior honra do cristão.', obra: 'Comentario a Tiago', ano: 1551 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Ganhar uma alma é livrar-se da morte eterna.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Pv 11:30","Dn 12:3","1 Co 9:22"]);
+
+
+// ====================================================================
+// 1 JOAO - COMUNHAO COM DEUS
+// ====================================================================
+
+add('1jo', 1, 1, 'O que era desde o princípio',
+  'O testemunho apostólico: João encadeia a revelação desde o princípio, garantindo a historicidade do Verbo encarnado.',
+  [
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'O Evangelho eterno é atemporal, mas se encarnou no tempo.', obra: 'Tractatus in Joannis Epistulam', ano: 416 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'João atesta a Palavra eterna que se fez visível.', obra: 'Comentario a 1 Joao', ano: 1556 },
+  ],
+  ["Jo 1:1-3","1 Jo 1:2","Jo 1:14"]);
+
+add('1jo', 1, 5, 'Deus é luz, e nele não há trevas nenhuma',
+  'A natureza de Deus é luz absoluta, sem mistura de mal. A comunhão com Deus exige andar na luz.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A luz de Deus expõe toda impureza do homem.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'A luz de Deus é a verdade imutável.', obra: 'Tractatus in Joannis Epistulam', ano: 416 },
+  ],
+  ["1 Jo 2:9","Jo 1:4-5","Sl 27:1"]);
+
+add('1jo', 1, 7, 'O sangue de Jesus nos purifica de todo pecado',
+  'A eficácia contínua do sangue de Cristo: a purificação não é apenas inicial, mas constante. Andar na luz é ser purificado.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O sangue de Cristo purifica continuamente a Igreja.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'O sangue de Cristo é suficiente para o maior dos pecados.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Hb 9:14","Ap 1:5","1 Jo 2:1-2"]);
+
+add('1jo', 1, 8, 'Se dissermos que não temos pecado',
+  'A ilusão perigosa: negar o pecado é enganar a si mesmo e tornar a Palavra vazia. A honestidade espiritual é fundamental.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A negação do pecado é a raiz da heresia.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A consciência do pecado precede a justificação.', obra: 'Comentario a 1 Joao', ano: 1527 },
+  ],
+  ["Pv 20:9","Ec 7:20","Rm 3:10-12"]);
+
+add('1jo', 1, 9, 'Se confessarmos os nossos pecados',
+  'A promessa: a confissão sincera traz perdão e purificação. A fidelidade e a justiça de Deus garantem o perdão.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A confissão é o caminho da misericórdia.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Confessar é o abrir da ferida para a cura de Cristo.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Sl 32:5","Pv 28:13","Hb 8:12"]);
+
+add('1jo', 2, 1, 'Para que não pequeis. E, se alguém pecar, temos um Advogado para com o Pai',
+  'A dupla bênção: o objetivo é a santidade, mas a falha não é fatal. Cristo é nosso Parakletos, Advogado e Consolador.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo é o eterno intercessor que defende os eleitos.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Cristo é advogado e propiciação pelos nossos pecados.', obra: 'Suma Teologica III, q.22', ano: 1274 },
+  ],
+  ["Rm 8:34","Hb 7:25","1 Tm 2:5"]);
+
+add('1jo', 2, 3, 'Nisto conhecemos que o conhecemos: se guardarmos os seus mandamentos',
+  'O teste do conhecimento de Deus: a obediência. Conhecer a Deus não é apenas teórico, mas produz fruto prático.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O verdadeiro conhecimento de Deus se prova na obediência.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A obediência é a marca visível da fé invisível.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Jo 14:15","1 Jo 5:3","Tg 1:22"]);
+
+add('1jo', 2, 6, 'Aquele que diz que permanece nele, deve andar como ele andou',
+  'O padrão cristão: a vida do crente deve refletir a de Cristo. A imitação de Cristo é a meta da fé.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A vida cristã é a imitação da vida de Cristo.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Cristo é o modelo, a graça é o poder, a glória é o fim.', obra: 'Suma Teologica III, q.8', ano: 1274 },
+  ],
+  ["Mt 11:29","1 Pe 2:21","Fp 2:5"]);
+
+add('1jo', 2, 15, 'Não ameis o mundo, nem o que há no mundo',
+  'A advertência radical: o amor ao Pai e o amor ao mundo são mutuamente excludentes. A trincheira da fidelidade é o amor.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O mundo corrompe o coração; o amor ao Pai o purifica.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Quem ama o mundo perde o gosto pelo céu.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Tg 4:4","Rm 12:2","Mt 6:24"]);
+
+add('1jo', 2, 17, 'O mundo passa, e a sua concupiscência',
+  'A transitoriedade do mundo: a cobiça passa, mas quem faz a vontade de Deus permanece eternamente.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O que é segundo a carne perece; o que é do Espírito permanece.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A eternidade absorve o tempo; o eterno vence o passageiro.', obra: 'Suma Teologica I, q.10', ano: 1274 },
+  ],
+  ["1 Co 7:31","2 Co 4:18","Hb 13:14"]);
+
+add('1jo', 3, 1, 'Vede que grande amor nos tem concedido o Pai',
+  'A adoção: ser chamado filho de Deus é a maior dignidade. O mundo não compreende porque não O conhece.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A adoção nos torna herdeiros de Deus e coerdeiros de Cristo.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A filiação divina é dom gratuito, não conquista humana.', obra: 'Suma Teologica III, q.23', ano: 1274 },
+  ],
+  ["Jo 1:12","Rm 8:15-17","Gl 4:4-7"]);
+
+add('1jo', 3, 4, 'Todo aquele que pratica o pecado pratica a iniquidade',
+  'A definição de pecado: iniquidade, ou transgressão da lei. Pecado não é acidente, é rebeldia contra a ordem divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O pecado é a violação da vontade santa de Deus.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'O pecado é a privação da justiça devida.', obra: 'De Natura et Gratia', ano: 415 },
+  ],
+  ["1 Jo 5:17","Rm 4:15","Tg 2:10"]);
+
+add('1jo', 3, 8, 'Para isto se manifestou o Filho de Deus, para desfazer as obras do diabo',
+  'A missão de Cristo: destruir as obras do diabo. A encarnação é a invasão do território inimigo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo veio para esmagar a cabeça da serpente.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A vitória de Cristo sobre o demônio é completa e definitiva.', obra: 'Suma Teologica III, q.49', ano: 1274 },
+  ],
+  ["Gn 3:15","Cl 2:15","Hb 2:14-15"]);
+
+add('1jo', 3, 16, 'Nisto conhecemos o amor: que Cristo deu a sua vida por nós',
+  'A medida do amor: a morte substitutiva. Devemos dar a vida pelos irmãos, como Cristo por nós.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O amor de Cristo é o critério do amor cristão.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'A morte de Cristo é a maior prova de amor já dada.', obra: 'Tractatus in Joannis Epistulam', ano: 416 },
+  ],
+  ["Jo 15:13","Rm 5:6-8","Ef 5:2"]);
+
+add('1jo', 3, 18, 'Amemos não de palavra, nem de língua, mas de fato e de verdade',
+  'A autenticidade do amor: além da retórica, a ação concreta. O amor é comprovado por obras, não por discursos.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O amor que não se traduz em ação é ilusório.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Amo-te é fácil; o difícil é estender a mão ao irmão.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Tg 2:15-16","Rm 12:8","Gl 5:13"]);
+
+add('1jo', 4, 7, 'Amados, amemo-nos uns aos outros, porque o amor procede de Deus',
+  'A origem do amor: Deus é a fonte. Quem ama é nascido de Deus e conhece a Deus. O amor é critério de filiação.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O amor é fruto e prova da regeneração.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'O amor a Deus se difunde em amor ao próximo.', obra: 'Suma Teologica II-II, q.44', ano: 1274 },
+  ],
+  ["1 Jo 4:21","1 Co 13:4-7","Mt 22:39"]);
+
+add('1jo', 4, 8, 'Deus é amor',
+  'A definição mais profunda de Deus: a essência divina é amor. Não é apenas atributo, mas a Sua natureza mesma.',
+  [
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Deus é amor; quem permanece no amor permanece em Deus.', obra: 'Tractatus in Joannis Epistulam', ano: 416 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O amor é a essência de Deus, revelado em Cristo.', obra: 'Comentario a 1 Joao', ano: 1556 },
+  ],
+  ["1 Jo 4:16","1 Jo 4:20","Jo 3:16"]);
+
+add('1jo', 4, 9, 'Nisto se manifestou o amor de Deus em nós',
+  'A manifestação histórica do amor: o envio do Filho unigênito. O amor não é abstrato; é o dom concreto do Crucificado.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O envio do Filho é a maior revelação do amor divino.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Deus não ficou no céu dizendo que nos amava: desceu.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Jo 3:16","Rm 5:8","1 Jo 4:10"]);
+
+add('1jo', 4, 16, 'Deus é amor, e quem permanece no amor permanece em Deus',
+  'A comunhão: a vida eterna é habitar no amor. A habitação mútua entre Deus e o crente é o ápice da revelação.',
+  [
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Deus é amor; permanecendo no amor, permanecemos em Deus.', obra: 'Tractatus in Joannis Epistulam', ano: 416 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A comunhão com Deus é intimidade no amor.', obra: 'Comentario a 1 Joao', ano: 1556 },
+  ],
+  ["1 Jo 3:24","Jo 15:9-10","1 Co 13:13"]);
+
+add('1jo', 4, 18, 'No amor não há medo',
+  'O perfeito amor lança fora o medo. O medo do juízo é tirado pela certeza do amor. A maturidade cristã é viver no amor.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O amor amadurecido e firme, não temeroso.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'O medo atormenta, mas o amor de Cristo acalma.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Rm 8:15","Hb 2:14-15","2 Tm 1:7"]);
+
+add('1jo', 4, 19, 'Nós amamos porque ele nos amou primeiro',
+  'A precedência do amor divino: o nosso amor é resposta ao amor de Deus. Não amamos para ser amados, mas porque fomos amados.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O nosso amor é a resposta ao amor preveniente de Deus.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Ama primeiro, e serás capaz de amar em retorno.', obra: 'Tractatus in Joannis Epistulam', ano: 416 },
+  ],
+  ["1 Jo 4:10","Rm 5:5","Ef 2:4-5"]);
+
+add('1jo', 5, 1, 'Todo aquele que crê que Jesus é o Cristo é nascido de Deus',
+  'A fé e a filiação: crer na messianidade de Jesus é obra do novo nascimento. A fé é sinal da regeneração.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A fé que confessa a Cristo é dom do novo nascimento.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A fé em Cristo é a raiz da vida espiritual.', obra: 'Suma Teologica II-II, q.2', ano: 1274 },
+  ],
+  ["Jo 1:12-13","1 Jo 5:4","1 Pe 1:23"]);
+
+add('1jo', 5, 3, 'Este é o amor de Deus: que guardemos os seus mandamentos',
+  'A definição do amor: obediência. Amar a Deus é cumprir os Seus mandamentos. A obediência é a prova do amor.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O amor não é sentimento, mas serviço obediente.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A obediência ao Senhor é o tributo que o amor paga.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Jo 14:15","1 Jo 2:3","Mt 5:19"]);
+
+add('1jo', 5, 4, 'Todo o que é nascido de Deus vence o mundo',
+  'A vitória da fé: o que nasce de Deus vence o mundo. A fé é a arma que derrota todo o mal.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A fé é a vitória que o regenerado alcança.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A fé une o crente a Cristo, o vencedor do mundo.', obra: 'Suma Teologica II-II, q.1', ano: 1274 },
+  ],
+  ["Rm 8:37","1 Co 15:57","Ap 12:11"]);
+
+add('1jo', 5, 11, 'O testemunho é este: Deus nos deu a vida eterna',
+  'A vida eterna como dom presente: não apenas promessa futura, mas posse atual. O dom é garantido pelo testemunho de Deus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A vida eterna já começou na regeneração.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A vida eterna começa na cruz e se consuma na glória.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Jo 17:3","1 Jo 5:12-13","Jo 3:36"]);
+
+add('1jo', 5, 12, 'Quem tem o Filho tem a vida',
+  'A possessão da vida: o crente tem a vida eterna em Cristo. Sem o Filho, não há vida. A união com Cristo é a vida.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Ter o Filho é ter a vida, pois Ele é a vida.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Onde Cristo está, aí está a vida; quem está fora dEle está na morte.', obra: 'Tractatus in Joannis Epistulam', ano: 416 },
+  ],
+  ["Jo 5:24","Jo 11:25","Cl 3:4"]);
+
+add('1jo', 5, 13, 'Estas coisas vos escrevi para que saibais que tendes a vida eterna',
+  'O propósito da carta: segurança da salvação. A fé produz certeza, não orgulho. O Espírito confirma a filiação.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A fé que crê, com o Espírito que testifica, gera certeza.', obra: 'Comentario a 1 Joao', ano: 1556 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A certeza da salvação é o direito do crente em Cristo.', obra: 'Sermoes', ano: 1865 },
+  ],
+  ["Rm 8:16","1 Jo 5:10","Hb 6:11"]);
+
+
 export default comentariosNovos;
 export { comentariosNovos };
 

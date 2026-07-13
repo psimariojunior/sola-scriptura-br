@@ -84,14 +84,19 @@ export function totalCapitulos(abrev: string): number {
 
 export function nomeTraducao(sigla: string): string {
   const t = traducoes.find((x) => x.id === sigla.toLowerCase());
-  return t?.sigla ?? sigla.toUpperCase();
+  if (t) return t.sigla;
+  const fallback: Record<string, string> = {
+    naa: 'NAA',
+    ntlh: 'NTLH',
+  };
+  return fallback[sigla.toLowerCase()] ?? sigla.toUpperCase();
 }
 
 export function listaLivros() {
   return TODOS_LIVROS;
 }
 
-export const TRADUCOES_APRESENTACAO = ['arc', 'ara', 'acf', 'kjv', 'nvi', 'web'] as const;
+export const TRADUCOES_APRESENTACAO = ['arc', 'nvi', 'naa', 'ara', 'acf', 'ntlh', 'kjv', 'web'] as const;
 export type TraducaoApresentacao = (typeof TRADUCOES_APRESENTACAO)[number];
 
 export function limparCache(): void {

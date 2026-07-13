@@ -7,6 +7,7 @@ import { ApresentacaoSync, buildDisplayUrl, gerarCodigo, type ApresentacaoState 
 import { useTelaCheia } from '@/lib/hooks/useTelaCheia';
 import { useAutoPlay } from '@/lib/hooks/useAutoPlay';
 import { carregarCapitulo, nomeLivro, nomeTraducao, VersiculoSimples } from '@/lib/apresentacao/versiculos';
+import { useToast } from '@/hooks/useToast';
 import ApresentacaoControle from './ApresentacaoControle';
 import QRCode from './QRCode';
 
@@ -39,6 +40,7 @@ export default function ApresentacaoModal({
   const [connected, setConnected] = useState(false);
   const syncRef = useRef<ApresentacaoSync | null>(null);
   const { isFullscreen, toggle } = useTelaCheia();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (!open) return;
@@ -53,13 +55,14 @@ export default function ApresentacaoModal({
     setState(s.getState());
     setConnected(true);
     const unsub = s.subscribe((st) => setState(st));
+    toast({ title: 'Apresentação iniciada', variant: 'success' });
     return () => {
       unsub();
       s.close();
       syncRef.current = null;
       setSync(null);
     };
-  }, [open, livro, capitulo, versiculo, translation]);
+  }, [open, livro, capitulo, versiculo, translation, toast]);
 
   useEffect(() => {
     if (!state) return;
@@ -110,6 +113,7 @@ export default function ApresentacaoModal({
       await navigator.clipboard.writeText(displayUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      toast({ title: 'Link copiado!', variant: 'success' });
     } catch {
       // ignore
     }

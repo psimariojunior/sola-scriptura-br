@@ -7,6 +7,7 @@ import {
   MessageCircle, X, Download,
 } from 'lucide-react';
 import { gerarLinkCompartilhamento } from '@/lib/exportarEstudos';
+import { useToast } from '@/hooks/useToast';
 
 interface CompartilharEstudoProps {
   estudoId: string;
@@ -25,6 +26,7 @@ export function CompartilharEstudo({
   const [aba, setAba] = useState<AbaCompartilhar>('link');
   const [copiado, setCopiado] = useState('');
   const qrRef = useRef<HTMLCanvasElement>(null);
+  const { toast } = useToast();
 
   const link = gerarLinkCompartilhamento(estudoId);
   const textoCurto = referencia ? `"${titulo}" — ${referencia}` : `"${titulo}"`;
@@ -47,18 +49,26 @@ export function CompartilharEstudo({
     }
     setCopiado(chave);
     setTimeout(() => setCopiado(''), 2000);
+    toast({ title: 'Copiado!', variant: 'success' });
+  };
+
+  const handleCompartilhar = (canal: string) => {
+    toast({ title: `Compartilhado por ${canal}`, variant: 'success' });
   };
 
   const compartilharWhatsApp = () => {
     window.open(`https://wa.me/?text=${encodeURIComponent(textoCompleto)}&url=${encodeURIComponent(link)}`, '_blank');
+    handleCompartilhar('WhatsApp');
   };
 
   const compartilharTwitter = () => {
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(textoCurto)}&url=${encodeURIComponent(link)}`, '_blank');
+    handleCompartilhar('Twitter');
   };
 
   const compartilharFacebook = () => {
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}&quote=${encodeURIComponent(textoCurto)}`, '_blank');
+    handleCompartilhar('Facebook');
   };
 
   const enviarEmail = () => {

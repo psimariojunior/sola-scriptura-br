@@ -158,9 +158,22 @@ export function Footer() {
             <p className="text-xs text-muted-foreground text-center md:text-left">
               Sola Scriptura — Estudo Bíblico Acadêmico · Feito com <Heart className="w-3 h-3 inline text-red-500 fill-current" /> e rigor
             </p>
-            <p className="text-xs text-muted-foreground text-center md:text-right">
-              &copy; {new Date().getFullYear()} Sola Scriptura. Todos os direitos reservados.
-            </p>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => {
+                  try {
+                    localStorage.removeItem('ssb_onboarding_done');
+                    window.dispatchEvent(new CustomEvent('ssb:reset-onboarding'));
+                  } catch { /* ignore */ }
+                }}
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Refazer tour
+              </button>
+              <p className="text-xs text-muted-foreground text-center md:text-right">
+                &copy; {new Date().getFullYear()} Sola Scriptura. Todos os direitos reservados.
+              </p>
+            </div>
           </div>
         </div>
       </div>

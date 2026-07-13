@@ -2,10 +2,12 @@
 
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { TemaProvider, useTema } from '@/lib/temas';
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 
 function TemaSincronizador() {
   const { tema } = useTema();
+  const previousTema = useRef<string | null>(null);
+  const mounted = useRef(false);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -19,7 +21,21 @@ function TemaSincronizador() {
     if (tema === 'sepia') {
       root.classList.add('sepia');
     }
-    // light: no class, uses :root CSS variables
+
+    if (mounted.current && previousTema.current && previousTema.current !== tema) {
+      document.body.classList.remove('theme-fading');
+      // Force reflow so the animation restarts
+      void document.body.offsetWidth;
+      document.body.classList.add('theme-fading');
+      const timeout = window.setTimeout(() => {
+        document.body.classList.remove('theme-fading');
+      }, 520);
+      previousTema.current = tema;
+      return () => window.clearTimeout(timeout);
+    }
+
+    mounted.current = true;
+    previousTema.current = tema;
   }, [tema]);
 
   return null;

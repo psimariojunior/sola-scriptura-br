@@ -27,9 +27,11 @@ import { nomeLivro, nomeTraducao, carregarCapitulo, VersiculoSimples } from '@/l
 
 const TRAD_OPCOES = [
   { id: 'arc', sigla: 'ARC' },
+  { id: 'nvi', sigla: 'NVI' },
+  { id: 'naa', sigla: 'NAA' },
   { id: 'ara', sigla: 'ARA' },
   { id: 'acf', sigla: 'ACF' },
-  { id: 'nvi', sigla: 'NVI' },
+  { id: 'ntlh', sigla: 'NTLH' },
   { id: 'kjv', sigla: 'KJV' },
   { id: 'web', sigla: 'WEB' },
 ] as const;

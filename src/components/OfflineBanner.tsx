@@ -1,16 +1,29 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { WifiOff } from 'lucide-react';
 import { isOnline, onStatusChange } from '@/lib/offline';
+import { useToast } from '@/hooks/useToast';
 
 export default function OfflineBanner() {
   const [offline, setOffline] = useState(false);
+  const { toast } = useToast();
+  const alreadyShown = useRef(false);
 
   useEffect(() => {
     setOffline(!isOnline());
-    return onStatusChange((online) => setOffline(!online));
-  }, []);
+    return onStatusChange((online) => {
+      const wasOffline = offline;
+      setOffline(!online);
+      if (!online && !alreadyShown.current) {
+        alreadyShown.current = true;
+        toast({ title: 'Modo offline ativo', description: 'Exibindo dados em cache.', variant: 'warning' });
+      } else if (online && wasOffline) {
+        alreadyShown.current = false;
+        toast({ title: 'Conexão restaurada', variant: 'success' });
+      }
+    });
+  }, [offline, toast]);
 
   if (!offline) return null;
 

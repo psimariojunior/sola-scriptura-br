@@ -8,7 +8,7 @@ import type { CapituloComparado } from '@/data/biblia';
 import {
   BookOpen, ChevronRight, ChevronLeft, Columns2, LayoutList, AlignJustify,
   Menu, Search, Minus, Plus, X, Heart, StickyNote, Share2, Copy, Check,
-  History, Settings, Eye, EyeOff, Download, BookMarked, GraduationCap, Brain, Palette, FileText, Music, Play
+  History, Settings, Eye, EyeOff, Download, BookMarked, GraduationCap, Brain, Palette, FileText, Music, Play, Sparkles
 } from 'lucide-react';
 import { toggleFavorito, obterMarca, setAnotacao as salvarAnotacao } from '@/lib/estudos';
 import { useEstudos } from '@/components/EstudosProvider';
@@ -517,7 +517,7 @@ export default function BibliaPage() {
 
                 <div className="flex-1" />
 
-                <div className="hidden sm:flex items-center gap-1">
+                <div className="hidden md:flex items-center gap-1">
                   {TRAD_IDS.map(id => {
                     const active = selectedTrads.includes(id);
                     return (
@@ -556,7 +556,7 @@ export default function BibliaPage() {
 
                   <motion.button onClick={() => setReadingMode(!readingMode)} title="Modo leitura"
                     whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                    className={`p-1.5 rounded-md transition-all duration-300 ${readingMode ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}
+                    className={`hidden sm:inline-flex p-1.5 rounded-md transition-all duration-300 ${readingMode ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}
                     aria-label={readingMode ? 'Sair do modo leitura' : 'Ativar modo leitura'}
                     aria-pressed={readingMode}>
                     {readingMode ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -572,7 +572,7 @@ export default function BibliaPage() {
                     }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`p-1.5 rounded-md transition-all duration-300 ${mostrarNotas ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}
+                    className={`hidden sm:inline-flex p-1.5 rounded-md transition-all duration-300 ${mostrarNotas ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}
                     title="Minhas Anotações"
                     aria-label="Minhas Anotações"
                     aria-pressed={mostrarNotas}
@@ -582,14 +582,14 @@ export default function BibliaPage() {
 
                   <motion.button onClick={() => data.length > 0 && exportChapterPdf(livro.nome, capituloIdx + 1, data)}
                     title="Exportar PDF" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                    className="p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-all duration-300"
+                    className="hidden sm:inline-flex p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-all duration-300"
                     aria-label="Exportar capítulo em PDF">
                     <Download className="w-4 h-4" />
                   </motion.button>
 
                   <motion.button onClick={() => setShowPlan(!showPlan)} title="Plano de Leitura"
                     whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                    className={`p-1.5 rounded-md transition-all duration-300 ${showPlan ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}
+                    className={`hidden sm:inline-flex p-1.5 rounded-md transition-all duration-300 ${showPlan ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}
                     aria-label="Plano de Leitura"
                     aria-pressed={showPlan}>
                     <BookMarked className="w-4 h-4" />
@@ -600,7 +600,7 @@ export default function BibliaPage() {
                       onClick={() => setMostrarNarracao(true)}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="p-1.5 rounded-md text-purple-400 hover:bg-purple-500/10 transition-all duration-300"
+                      className="hidden sm:inline-flex p-1.5 rounded-md text-purple-400 hover:bg-purple-500/10 transition-all duration-300"
                       title="Narração Dramática"
                       aria-label="Ouvir narração dramática"
                     >
@@ -614,6 +614,23 @@ export default function BibliaPage() {
                     aria-label="Configurações de exibição"
                     aria-expanded={showSettings}>
                     <Settings className="w-4 h-4" />
+                  </motion.button>
+
+                  {/* Prominent "Apresentar" CTA — always visible (incl. mobile) */}
+                  <motion.button
+                    onClick={() => setMostrarApresentacao(true)}
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="apresentar-cta ml-1"
+                    aria-label="Abrir modo apresentação"
+                    title="Projetar este capítulo em qualquer tela"
+                  >
+                    <span className="apresentar-cta-sparkle" aria-hidden="true">
+                      <Sparkles className="w-3.5 h-3.5" />
+                    </span>
+                    <Play className="w-3.5 h-3.5 fill-current" />
+                    <span>Apresentar</span>
+                    <span className="apresentar-cta-new" aria-label="Novo recurso">NEW</span>
                   </motion.button>
                 </div>
               </div>
@@ -780,17 +797,6 @@ export default function BibliaPage() {
                                   : capituloAudio.state.isPaused
                                   ? 'Pausado'
                                   : 'Ouvir Capítulo'}
-                              </motion.button>
-
-                              <motion.button
-                                onClick={() => setMostrarApresentacao(true)}
-                                whileHover={{ scale: 1.03 }}
-                                whileTap={{ scale: 0.97 }}
-                                className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-gradient-to-br from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:from-amber-400 hover:to-amber-500"
-                                aria-label="Abrir modo apresentação"
-                              >
-                                <Play className="w-4 h-4" fill="currentColor" />
-                                Apresentar
                               </motion.button>
                             </div>
                           )}

@@ -96,7 +96,7 @@ export default function AdminPage() {
   useEffect(() => {
     const check = () => {
       if (!authService.isAutenticado()) {
-        router.push('/auth');
+        router.push('/auth/login');
         return;
       }
       setIsAuth(true);

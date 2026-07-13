@@ -74,7 +74,7 @@ export default function PageTransition({ children, type }: PageTransitionProps) 
 
   return (
     <>
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="popLayout" initial={false}>
         <motion.div
           key={pathname}
           initial={config.initial}

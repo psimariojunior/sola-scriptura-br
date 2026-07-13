@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, BookOpen, Search, Sun, Moon, User, Languages, Stars, BookMarked, Command, Brain } from 'lucide-react';
+import { Menu, X, BookOpen, Search, Sun, Moon, User, Languages, Stars, BookMarked, Command } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { useTranslation } from 'react-i18next';
 import { BuscaGlobal } from '@/components/BuscaGlobal';
@@ -20,23 +20,22 @@ import {
 const navLinks = [
   { href: '/biblia', label: 'Bíblia' },
   { href: '/pesquisa', label: 'Pesquisa' },
-  { href: '/exegese', label: 'Exegese' },
-  { href: '/idiomas', label: 'Línguas' },
   { href: '/teologia', label: 'Teologia' },
-  { href: '/historia', label: 'História' },
   { href: '/estudos', label: 'Estudos' },
-  { href: '/quiz', label: 'Quiz', icon: Brain },
-  { href: '/ferramentas', label: 'Ferramentas' },
   { href: '/ia', label: 'IA' },
 ];
 
 const moreLinks = [
+  { href: '/exegese', label: 'Exegese' },
+  { href: '/idiomas', label: 'Línguas Originais' },
+  { href: '/historia', label: 'História' },
   { href: '/cronologia', label: 'Cronologia' },
   { href: '/personagens', label: 'Personagens' },
-  { href: '/devocional', label: 'Devocional' },
+  { href: '/ferramentas', label: 'Ferramentas' },
+  { href: '/quiz', label: 'Quiz Bíblico' },
   { href: '/flashcards', label: 'Flashcards' },
+  { href: '/devocional', label: 'Devocional' },
   { href: '/comunidade', label: 'Comunidade' },
-  { href: '/estatisticas', label: 'Estatísticas' },
   { href: '/estatisticas/gamificacao', label: 'Gamificação' },
 ];
 
@@ -133,7 +132,6 @@ export function Header() {
                     : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                 }`}
               >
-                {link.icon && <link.icon className="w-3.5 h-3.5" />}
                 {link.label}
                 {link.href === '/quiz' && hasDailyChallenge && <DailyChallengeDot />}
               </Link>
@@ -291,7 +289,6 @@ export function Header() {
                         }`}
                         onClick={() => setOpen(false)}
                       >
-                        {link.icon && <link.icon className="w-4 h-4" />}
                         {link.label}
                         {link.href === '/quiz' && hasDailyChallenge && (
                           <span className="ml-auto w-2 h-2 rounded-full bg-primary animate-pulse" />

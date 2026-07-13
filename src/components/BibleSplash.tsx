@@ -2,19 +2,29 @@
 
 import { useEffect, useState } from 'react';
 
+const SPLASH_KEY = 'ssb_splash_shown';
+
 export default function BibleSplash() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (localStorage.getItem(SPLASH_KEY)) return;
     setVisible(true);
-    const t = setTimeout(() => setVisible(false), 4200);
+    const t = setTimeout(() => {
+      setVisible(false);
+      try { localStorage.setItem(SPLASH_KEY, '1'); } catch {}
+    }, 4200);
     return () => clearTimeout(t);
   }, []);
 
   if (!visible) return null;
 
   return (
-    <div className="splash-root" onClick={() => setVisible(false)}>
+    <div className="splash-root" onClick={() => {
+      setVisible(false);
+      try { localStorage.setItem(SPLASH_KEY, '1'); } catch {}
+    }}>
       {/* Radial glow behind Bible */}
       <div className="splash-bg-glow" />
 

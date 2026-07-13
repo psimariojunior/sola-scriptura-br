@@ -1767,6 +1767,21 @@ add('ap', 22, 21, 'A Graça do Senhor Jesus',
 
 
 // ====================================================================
+// MERGE WITH NEW COMMENTARIES
+// ====================================================================
+
+import { comentariosNovos } from './comentariosExpandidosNovos';
+
+// Merge new commentaries (existing entries take precedence)
+Object.keys(comentariosNovos).forEach(key => {
+  if (!comentariosExpandidos[key]) {
+    comentariosExpandidos[key] = comentariosNovos[key];
+  }
+});
+
+console.log(`Total commentaries after merge: ${Object.keys(comentariosExpandidos).length}`);
+
+// ====================================================================
 // EXPORTAÇÃO
 // ====================================================================
 

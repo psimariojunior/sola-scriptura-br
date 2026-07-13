@@ -1,6 +1,14 @@
 // Introduções Isagógicas dos 66 livros da Bíblia
 // Fontes: Bible Knowledge Commentary, Wycliffe Bible Commentary, Matthew Henry,
 // New International Commentary on the OT/NT, Expositor's Bible Commentary
+//
+// Este arquivo mantém as introduções originais (formato detalhado) para retrocompatibilidade.
+// Para o formato completo padronizado dos 66 livros, importe de introducoesCompletas.ts
+
+import { introducoesCompletas, IntroducaoLivro as IntroducaoLivroCompleta } from './introducoesCompletas';
+
+export { introducoesCompletas };
+export type { IntroducaoLivroCompleta };
 
 export interface IntroducaoLivro {
   livro: string;

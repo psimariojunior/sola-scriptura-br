@@ -12910,4 +12910,13 @@ export const dicionarioBiblico: VerbeteBiblico[] = [
     palavrasRelacionadas: ["Cristo", "Igreja", "Fundamento", "Pedra viva"],
     notas: "Akrogoniaios = 'ângulo, canto, pedra de esquina'."
   }
-]
+];
+
+import { dicionarioExpandido } from './dicionarioExpandido';
+const idsExistentes = new Set(dicionarioBiblico.map(v => v.id));
+for (const v of dicionarioExpandido) {
+  if (!idsExistentes.has(v.id)) {
+    dicionarioBiblico.push(v);
+    idsExistentes.add(v.id);
+  }
+}

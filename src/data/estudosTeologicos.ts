@@ -1,3 +1,5 @@
+import { estudosTeologicosExpandidos, EstudoTeologico } from './estudosTeologicosExpandidos';
+
 export interface EstudoTeologo {
   teologo: string;
   periodo: string;
@@ -15,6 +17,9 @@ export interface EstudoVersiculo {
   contexto: string;
   interpretacoes: EstudoTeologo[];
 }
+
+export type { EstudoTeologico };
+export { estudosTeologicosExpandidos };
 
 const estudosData: EstudoVersiculo[] = [
   // ═══════════════════════════════════════════════════════════════════════
@@ -657,4 +662,16 @@ export function temEstudo(livro: string, capitulo: number, versiculo: number): b
 
 export function listarTodosEstudos(): EstudoVersiculo[] {
   return estudosData;
+}
+
+export function obterEstudosExpandidos(): EstudoTeologico[] {
+  return estudosTeologicosExpandidos;
+}
+
+export function obterEstudosPorCategoria(categoria: string): EstudoTeologico[] {
+  return estudosTeologicosExpandidos.filter(e => e.categoria === categoria);
+}
+
+export function obterEstudoPorId(id: string): EstudoTeologico | undefined {
+  return estudosTeologicosExpandidos.find(e => e.id === id);
 }

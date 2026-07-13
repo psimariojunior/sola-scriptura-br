@@ -811,7 +811,7 @@ export function getRecursosVersiculo(
         palavra: g.palavra,
         transliteracao: g.transliteracao,
         definicao: g.definicao,
-        morfologia: g.morfologia || '',
+        morfologia: (g as any).morfologia || (g as any).morphologia || '',
         idioma: 'grego' as const,
       } as RecursoLexico,
     });

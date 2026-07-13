@@ -1,338 +1,580 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePlanoLeitura } from '@/hooks/usePlanoLeitura';
 import {
   Calendar,
   BookOpen,
   Clock,
   CheckCircle2,
   ArrowRight,
-  Heart,
-  Sparkles,
+  Play,
+  Pause,
+  RotateCcw,
   ChevronDown,
   ChevronUp,
+  ChevronLeft,
+  ChevronRight,
   Target,
-  Gift,
+  Flame,
+  Trophy,
+  Filter,
+  X,
+  Share2,
+  BarChart3,
+  Zap,
+  Heart,
   Star,
+  Brain,
+  Users,
+  Sparkles,
 } from 'lucide-react';
-import Link from 'next/link';
+import type { PlanoLeitura } from '@/data/planosLeituraExpandidos';
 
-interface PlanoLeitura {
-  id: string;
-  nome: string;
-  duracao: string;
-  descricao: string;
-  beneficios: string[];
-  comoComecar: string[];
-  versiculosEncorajamento: Array<{ referencia: string; texto: string }>;
-  cor: string;
-  icone: React.ReactNode;
-  dias: number;
-}
+const CATEGORIA_LABELS: Record<PlanoLeitura['categoria'], string> = {
+  completo: 'Bíblia Completa',
+  tematico: 'Temático',
+  livro: 'Por Livro',
+  devocional: 'Devocional',
+};
 
-const PLANOS: PlanoLeitura[] = [
-  {
-    id: 'biblia-1-ano',
-    nome: 'Bíblia em 1 Ano',
-    duracao: '365 dias',
-    descricao: 'Leia a Bíblia completa em um ano, com 3 capítulos do Antigo Testamento e 1 capítulo do Novo Testamento por dia.',
-    beneficios: [
-      'Visão completa da narrativa bíblica',
-      'Conhecimento profundo de todos os 66 livros',
-      'Compreensão do plano redentor de Deus',
-      'Base sólida para estudo e pregação',
-      'Disciplina espiritual transformadora',
-    ],
-    comoComecar: [
-      'Defina um horário fixo (manhã ou noite)',
-      'Comece por Gênesis e Mateus',
-      'Use um plano de leitura com passagens marcadas',
-      'Não se preocupe em entender tudo — leia com fé',
-      'Leia a passagem e faça uma oração de resposta',
-    ],
-    versiculosEncorajamento: [
-      { referencia: 'Josué 1:8', texto: 'Não se apartará do teu livro esta lei, mas meditarás nela dia e noite.' },
-      { referencia: 'Salmo 119:105', texto: 'Lâmpada para os meus pés é tua Palavra, e luz para o meu caminho.' },
-      { referencia: '2 Timóteo 3:16', texto: 'Toda a Escritura é inspirada por Deus e útil.' },
-    ],
-    cor: 'from-blue-500 to-indigo-600',
-    icone: <BookOpen className="w-6 h-6" />,
-    dias: 365,
-  },
-  {
-    id: 'nt-90-dias',
-    nome: 'Novo Testamento em 90 Dias',
-    duracao: '90 dias',
-    descricao: 'Leia todo o Novo Testamento em 3 meses, cerca de 3 capítulos por dia.',
-    beneficios: [
-      'Aprofundamento na vida e ensinos de Jesus',
-      'Compreensão da teologia paulina',
-      'Conhecimento da história da igreja primitiva',
-      'Estudo mais rápido dos Evangelhos e Epístolas',
-      'Ideal para quem já leu a Bíblia várias vezes',
-    ],
-    comoComecar: [
-      'Comece por Mateus e siga a ordem canônica',
-      'Leia 3 capítulos por dia, em cerca de 20 minutos',
-      'Tire anotações dos versículos que mais tocam seu coração',
-      'Leia em voz alta para fixar melhor',
-      'Compartilhe aprendizados com um grupo',
-    ],
-    versiculosEncorajamento: [
-      { referencia: 'Romanos 15:4', texto: 'Porque tudo o que dantes foi escrito, para o nosso ensino foi escrito.' },
-      { referencia: 'Hebreus 4:12', texto: 'Porque a Palavra de Deus é viva e eficaz.' },
-      { referencia: 'João 20:31', texto: 'Estas coisas foram escritas para que creiais.' },
-    ],
-    cor: 'from-emerald-500 to-teal-600',
-    icone: <Heart className="w-6 h-6" />,
-    dias: 90,
-  },
-  {
-    id: 'salmos-30-dias',
-    nome: 'Salmos em 30 Dias',
-    duracao: '30 dias',
-    descricao: 'Leia os 150 Salmos em 30 dias, com 5 salmos por dia — o hinário de Israel.',
-    beneficios: [
-      'Aprenda a orar com o Salter',
-      'Expresse toda emoção a Deus',
-      'Memorize versículos poderosos',
-      'Desenvolva vida de louvor e adoração',
-      'Encontre conforto em tempos difíceis',
-    ],
-    comoComecar: [
-      'Leia 5 salmos por dia, seguindo a numeração',
-      'Reze cada salmo como sua oração pessoal',
-      'Destaque versículos para memorização',
-      'Use salmos como base para louvor',
-      'Comece com o Salmo 1 e termine com o Salmo 150',
-    ],
-    versiculosEncorajamento: [
-      { referencia: 'Salmo 1:2', texto: 'Mas o seu deleite está na lei do SENHOR.' },
-      { referencia: 'Salmo 119:11', texto: 'No meu coração guardei a tua palavra.' },
-      { referencia: 'Salmo 150:6', texto: 'Tudo o que tem fôlego louve ao SENHOR.' },
-    ],
-    cor: 'from-purple-500 to-violet-600',
-    icone: <Sparkles className="w-6 h-6" />,
-    dias: 30,
-  },
-  {
-    id: 'proverbios-31-dias',
-    nome: 'Provérbios em 31 Dias',
-    duracao: '31 dias',
-    descricao: 'Leia um provérbio por dia durante um mês — sabedoria prática para cada dia.',
-    beneficios: [
-      'Sabedoria aplicável ao dia a dia',
-      'Disciplina no uso da língua',
-      'Princípios para decisões sábias',
-      'Crescimento em temperança e justiça',
-      'Família mais unida e próspera',
-    ],
-    comoComecar: [
-      'Leia o provérbio correspondente ao dia do mês',
-      'Leia devagar, meditando em cada versículo',
-      'Anote os provérbios que mais se aplicam à sua vida',
-      'Compartilhe com sua família no café da manhã',
-      'Reze pedindo sabedoria para aplicar o aprendido',
-    ],
-    versiculosEncorajamento: [
-      { referencia: 'Provérbios 1:7', texto: 'O temor do SENHOR é o princípio do conhecimento.' },
-      { referencia: 'Provérbios 3:5-6', texto: 'Confia no SENHOR de todo o teu coração.' },
-      { referencia: 'Provérbios 4:23', texto: 'Guarda o teu coração, porque dele procedem as fontes da vida.' },
-    ],
-    cor: 'from-amber-500 to-orange-600',
-    icone: <Star className="w-6 h-6" />,
-    dias: 31,
-  },
-  {
-    id: 'evangelhos-40-dias',
-    nome: 'Evangelhos em 40 Dias',
-    duracao: '40 dias',
-    descricao: 'Leia Mateus, Marcos, Lucas e João em 40 dias — conheça Jesus em primeira mão.',
-    beneficios: [
-      'Conhecimento íntimo de Jesus',
-      'Comparação dos quatro Evangelhos',
-      'Compreensão dos ensinos e milagres',
-      'Base para evangelismo e discipulado',
-      'Transformação pelo encontro com Cristo',
-    ],
-    comoComecar: [
-      'Comece por Mateus, depois Marcos, Lucas e João',
-      'Leia 1-2 capítulos por dia',
-      'Preste atenção nos detalhes de cada narrativa',
-      'Anote as palavras e milagres de Jesus',
-      'Reze pedindo revelação do coração de Cristo',
-    ],
-    versiculosEncorajamento: [
-      { referencia: 'João 20:31', texto: 'Mas estas foram escritas para que creiais.' },
-      { referencia: 'Mateus 11:28', texto: 'Vinde a mim, todos os que estais cansados.' },
-      { referencia: 'Lucas 24:27', texto: 'Começando por Moisés, explicou-lhes todas as Escrituras.' },
-    ],
-    cor: 'from-rose-500 to-pink-600',
-    icone: <Target className="w-6 h-6" />,
-    dias: 40,
-  },
-  {
-    id: 'oracao-21-dias',
-    nome: '21 Dias de Oração',
-    duracao: '21 dias',
-    descricao: 'Desafio de oração guiada com passagens, reflexões e prompts diários.',
-    beneficios: [
-      'Vida de oração renovada',
-      'Aprendizado de diferentes formas de orar',
-      'Intimidade com Deus',
-      'Fé fortalecida',
-      'Mudança de hábitos espirituais',
-    ],
-    comoComecar: [
-      'Reserve 15-30 minutos por dia para orar',
-      'Leia a passagem do dia antes de orar',
-      'Use o modelo de oração como guia',
-      'Mantenha um diário de oração',
-      'Compartilhe com um parceiro de oração',
-    ],
-    versiculosEncorajamento: [
-      { referencia: 'Filipenses 4:6', texto: 'Em tudo, pela oração e súplica, apresentai os vossos pedidos a Deus.' },
-      { referencia: '1 Tessalonicenses 5:17', texto: 'Orai sem cessar.' },
-      { referencia: 'Tiago 5:16', texto: 'A oração fervorosa do justo pode muito.' },
-    ],
-    cor: 'from-cyan-500 to-blue-600',
-    icone: <Gift className="w-6 h-6" />,
-    dias: 21,
-  },
-];
+const DIFICULDADE_LABELS: Record<PlanoLeitura['dificuldade'], string> = {
+  iniciante: 'Iniciante',
+  intermediario: 'Intermediário',
+  avancado: 'Avançado',
+};
+
+const CATEGORIA_CORES: Record<PlanoLeitura['categoria'], string> = {
+  completo: 'from-blue-500 to-indigo-600',
+  tematico: 'from-purple-500 to-violet-600',
+  livro: 'from-emerald-500 to-teal-600',
+  devocional: 'from-amber-500 to-orange-600',
+};
+
+const CATEGORIA_ICONES: Record<PlanoLeitura['categoria'], React.ReactNode> = {
+  completo: <BookOpen className="w-5 h-5" />,
+  tematico: <Sparkles className="w-5 h-5" />,
+  livro: <Target className="w-5 h-5" />,
+  devocional: <Heart className="w-5 h-5" />,
+};
+
+const DIFICULDADE_CORES: Record<PlanoLeitura['dificuldade'], string> = {
+  iniciante: 'bg-green-500/10 text-green-600 dark:text-green-400',
+  intermediario: 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400',
+  avancado: 'bg-red-500/10 text-red-600 dark:text-red-400',
+};
 
 export default function PlanosPage() {
-  const [planoAberto, setPlanoAberto] = useState<string | null>(null);
+  const {
+    planosDisponiveis,
+    planoAtivo,
+    iniciarPlano,
+    completarLeitura,
+    progressoPlano,
+    diasCompletos,
+    streakAtual,
+    proximoDia,
+    pausarPlano,
+    retomarPlano,
+    trocarPlano,
+    verificarLeituraCompleta,
+    verificarDiaCompleto,
+    estaPausado,
+    dataInicio,
+  } = usePlanoLeitura();
+
+  const [filtroCategoria, setFiltroCategoria] = useState<string>('todos');
+  const [filtroDuracao, setFiltroDuracao] = useState<string>('todos');
+  const [filtroDificuldade, setFiltroDificuldade] = useState<string>('todos');
+  const [planoExpandido, setPlanoExpandido] = useState<string | null>(null);
+  const [mostrarCalendario, setMostrarCalendario] = useState(false);
+  const [diaCalendario, setDiaCalendario] = useState<number>(1);
+  const [mostrarCompartilhar, setMostrarCompartilhar] = useState(false);
+
+  const planosFiltrados = useMemo(() => {
+    return planosDisponiveis.filter((p) => {
+      if (filtroCategoria !== 'todos' && p.categoria !== filtroCategoria) return false;
+      if (filtroDificuldade !== 'todos' && p.dificuldade !== filtroDificuldade) return false;
+      if (filtroDuracao !== 'todos') {
+        const maxDias = parseInt(filtroDuracao);
+        if (p.duracao > maxDias) return false;
+      }
+      return true;
+    });
+  }, [planosDisponiveis, filtroCategoria, filtroDificuldade, filtroDuracao]);
+
+  function formatarDias(dias: number): string {
+    if (dias === 1) return '1 dia';
+    if (dias < 30) return `${dias} dias`;
+    if (dias === 30) return '1 mês';
+    if (dias < 365) return `${Math.round(dias / 30)} meses`;
+    return '1 ano';
+  }
+
+  function handleCompartilhar() {
+    if (!planoAtivo) return;
+    const texto = `Estou no dia ${diasCompletos} do plano "${planoAtivo.nome}" no Sola Scriptura BR! ${progressoPlano}% concluído. 🔥`;
+    if (navigator.share) {
+      navigator.share({ title: planoAtivo.nome, text: texto });
+    } else {
+      navigator.clipboard.writeText(texto);
+      setMostrarCompartilhar(true);
+      setTimeout(() => setMostrarCompartilhar(false), 2000);
+    }
+  }
 
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-20 pb-16 px-6">
-        <div className="max-w-5xl mx-auto">
+      <main className="pt-20 pb-16 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto">
           <ScrollReveal>
-            <div className="mb-10">
+            <div className="mb-8">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                   <Calendar className="w-5 h-5 text-primary" />
                 </div>
-                <h1 className="font-display text-4xl md:text-5xl font-light">Planos de Leitura</h1>
+                <h1 className="font-display text-3xl md:text-5xl font-light">Planos de Leitura</h1>
               </div>
-              <p className="text-muted-foreground ml-13">Disciplina bíblica transformadora para todas as estações da vida</p>
+              <p className="text-muted-foreground ml-13">
+                Discipline sua vida bíblica com planos para cada momento
+              </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid gap-5">
-            {PLANOS.map((plano, idx) => (
-              <ScrollReveal key={plano.id} delay={idx * 0.05}>
-                <motion.div
-                  layout
-                  className="sola-card overflow-hidden"
-                >
-                  {/* Header do plano */}
-                  <div
-                    className="p-6 cursor-pointer"
-                    onClick={() => setPlanoAberto(planoAberto === plano.id ? null : plano.id)}
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex items-start gap-4 flex-1">
-                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${plano.cor} flex items-center justify-center text-white flex-shrink-0`}>
-                          {plano.icone}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h2 className="font-display text-xl md:text-2xl font-medium mb-1">{plano.nome}</h2>
-                          <div className="flex items-center gap-3 text-sm text-muted-foreground mb-2">
-                            <span className="flex items-center gap-1">
-                              <Clock className="w-3.5 h-3.5" />
-                              {plano.duracao}
-                            </span>
-                          </div>
-                          <p className="text-muted-foreground text-sm leading-relaxed">{plano.descricao}</p>
-                        </div>
+          {/* Active Plan Dashboard */}
+          {planoAtivo && (
+            <ScrollReveal delay={0.05}>
+              <div className="mb-8 bg-card border border-border rounded-2xl overflow-hidden">
+                <div className={`bg-gradient-to-r ${CATEGORIA_CORES[planoAtivo.categoria]} p-6 text-white`}>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      {CATEGORIA_ICONES[planoAtivo.categoria]}
+                      <div>
+                        <h2 className="text-xl font-bold">{planoAtivo.nome}</h2>
+                        <p className="text-white/80 text-sm">{planoAtivo.descricao}</p>
                       </div>
-                      <motion.div
-                        animate={{ rotate: planoAberto === plano.id ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="flex-shrink-0 mt-1"
+                    </div>
+                    <div className="flex gap-2">
+                      {estaPausado ? (
+                        <button
+                          onClick={retomarPlano}
+                          className="px-3 py-1.5 rounded-lg bg-white/20 hover:bg-white/30 text-sm font-medium transition-colors"
+                        >
+                          <Play className="w-4 h-4 inline mr-1" />
+                          Retomar
+                        </button>
+                      ) : (
+                        <button
+                          onClick={pausarPlano}
+                          className="px-3 py-1.5 rounded-lg bg-white/20 hover:bg-white/30 text-sm font-medium transition-colors"
+                        >
+                          <Pause className="w-4 h-4 inline mr-1" />
+                          Pausar
+                        </button>
+                      )}
+                      <button
+                        onClick={handleCompartilhar}
+                        className="px-3 py-1.5 rounded-lg bg-white/20 hover:bg-white/30 text-sm font-medium transition-colors"
                       >
-                        <ChevronDown className="w-5 h-5 text-muted-foreground" />
-                      </motion.div>
+                        <Share2 className="w-4 h-4" />
+                      </button>
                     </div>
                   </div>
 
-                  {/* Conteúdo expandido */}
-                  <AnimatePresence>
-                    {planoAberto === plano.id && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 pb-6 space-y-6 border-t border-border/50 pt-6">
-                          {/* Benefícios */}
-                          <div>
-                            <h3 className="font-display text-sm font-medium uppercase tracking-wider text-muted-foreground mb-3">Benefícios</h3>
-                            <div className="grid md:grid-cols-2 gap-2">
-                              {plano.beneficios.map((b, i) => (
-                                <div key={i} className="flex items-start gap-2 text-sm">
-                                  <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                                  <span>{b}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="bg-white/10 rounded-xl p-3 text-center">
+                      <p className="text-2xl font-bold">{progressoPlano}%</p>
+                      <p className="text-white/70 text-xs">Progresso</p>
+                    </div>
+                    <div className="bg-white/10 rounded-xl p-3 text-center">
+                      <p className="text-2xl font-bold">{diasCompletos}</p>
+                      <p className="text-white/70 text-xs">Dias Completos</p>
+                    </div>
+                    <div className="bg-white/10 rounded-xl p-3 text-center">
+                      <p className="text-2xl font-bold flex items-center justify-center gap-1">
+                        <Flame className="w-5 h-5" />
+                        {streakAtual}
+                      </p>
+                      <p className="text-white/70 text-xs">Sequência</p>
+                    </div>
+                    <div className="bg-white/10 rounded-xl p-3 text-center">
+                      <p className="text-2xl font-bold">{planoAtivo.duracao - diasCompletos}</p>
+                      <p className="text-white/70 text-xs">Dias Restantes</p>
+                    </div>
+                  </div>
+                </div>
 
-                          {/* Como começar */}
-                          <div>
-                            <h3 className="font-display text-sm font-medium uppercase tracking-wider text-muted-foreground mb-3">Como Começar</h3>
-                            <ol className="space-y-2">
-                              {plano.comoComecar.map((passo, i) => (
-                                <li key={i} className="flex items-start gap-3 text-sm">
-                                  <span className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-medium flex-shrink-0 mt-0.5">
-                                    {i + 1}
-                                  </span>
-                                  <span>{passo}</span>
-                                </li>
-                              ))}
-                            </ol>
-                          </div>
+                {/* Progress Bar */}
+                <div className="p-4">
+                  <div className="w-full h-3 bg-secondary rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${progressoPlano}%` }}
+                      transition={{ duration: 1, ease: 'easeOut' }}
+                      className="h-full bg-primary rounded-full"
+                    />
+                  </div>
+                  {dataInicio && (
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Início: {new Date(dataInicio).toLocaleDateString('pt-BR')}
+                    </p>
+                  )}
+                </div>
 
-                          {/* Versículos */}
-                          <div>
-                            <h3 className="font-display text-sm font-medium uppercase tracking-wider text-muted-foreground mb-3">Versículos de Encorajamento</h3>
-                            <div className="space-y-3">
-                              {plano.versiculosEncorajamento.map((v, i) => (
-                                <div key={i} className="p-3 rounded-lg bg-muted/50 text-sm">
-                                  <p className="font-medium text-primary mb-1">{v.referencia}</p>
-                                  <p className="italic text-muted-foreground">"{v.texto}"</p>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Link para a Bíblia */}
-                          <div className="pt-2">
-                            <Link
-                              href="/biblia"
-                              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-colors"
+                {/* Proximo dia */}
+                {proximoDia && !estaPausado && (
+                  <div className="px-4 pb-4">
+                    <div className="bg-secondary/50 rounded-xl p-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="font-semibold text-sm">
+                          <Zap className="w-4 h-4 inline mr-1 text-primary" />
+                          Próximo: Dia {proximoDia.dia} — {proximoDia.titulo}
+                        </h3>
+                        <button
+                          onClick={() => setMostrarCalendario(!mostrarCalendario)}
+                          className="text-xs text-primary hover:underline"
+                        >
+                          Ver todos os dias
+                        </button>
+                      </div>
+                      <div className="space-y-2">
+                        {proximoDia.leituras.map((leitura, idx) => {
+                          const completa = verificarLeituraCompleta(proximoDia.dia, idx);
+                          return (
+                            <div
+                              key={idx}
+                              className="flex items-center gap-3"
                             >
-                              Começar agora
-                              <ArrowRight className="w-4 h-4" />
-                            </Link>
+                              <button
+                                onClick={() => completarLeitura(proximoDia.dia, idx)}
+                                className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${
+                                  completa
+                                    ? 'bg-green-500 border-green-500 text-white'
+                                    : 'border-muted-foreground/30 hover:border-primary'
+                                }`}
+                              >
+                                {completa && <CheckCircle2 className="w-4 h-4" />}
+                              </button>
+                              <span className={`text-sm ${completa ? 'line-through text-muted-foreground' : ''}`}>
+                                {leitura.livro} {leitura.capituloInicio}
+                                {leitura.capituloFim ? `-${leitura.capituloFim}` : ''}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      {proximoDia.reflexao && (
+                        <p className="text-xs text-muted-foreground mt-3 italic">
+                          💭 {proximoDia.reflexao}
+                        </p>
+                      )}
+                      {proximoDia.oracao && (
+                        <p className="text-xs text-muted-foreground mt-1 italic">
+                          🙏 {proximoDia.oracao}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Calendar View */}
+                <AnimatePresence>
+                  {mostrarCalendario && planoAtivo && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-4 pb-4 border-t border-border/50 pt-4">
+                        <div className="flex items-center justify-between mb-3">
+                          <h3 className="font-semibold text-sm flex items-center gap-2">
+                            <Calendar className="w-4 h-4" />
+                            Calendário de Progresso
+                          </h3>
+                          <button
+                            onClick={() => setMostrarCalendario(false)}
+                            className="text-muted-foreground hover:text-foreground"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                        <div className="grid grid-cols-7 gap-1">
+                          {Array.from({ length: planoAtivo.duracao }, (_, i) => {
+                            const dia = i + 1;
+                            const completo = verificarDiaCompleto(dia);
+                            const atual = dia === proximoDia?.dia;
+                            return (
+                              <button
+                                key={dia}
+                                onClick={() => setDiaCalendario(dia)}
+                                className={`aspect-square rounded-lg text-xs font-medium flex items-center justify-center transition-colors ${
+                                  completo
+                                    ? 'bg-green-500 text-white'
+                                    : atual
+                                    ? 'bg-primary text-primary-foreground ring-2 ring-primary/50'
+                                    : 'bg-secondary/50 text-muted-foreground hover:bg-secondary'
+                                }`}
+                              >
+                                {dia}
+                              </button>
+                            );
+                          })}
+                        </div>
+                        <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
+                          <span className="flex items-center gap-1">
+                            <span className="w-3 h-3 rounded bg-green-500" /> Concluído
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <span className="w-3 h-3 rounded bg-primary" /> Atual
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <span className="w-3 h-3 rounded bg-secondary/50" /> Pendente
+                          </span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </ScrollReveal>
+          )}
+
+          {/* Filters */}
+          <ScrollReveal delay={0.1}>
+            <div className="flex flex-wrap gap-3 mb-6">
+              <div className="flex items-center gap-2">
+                <Filter className="w-4 h-4 text-muted-foreground" />
+                <select
+                  value={filtroCategoria}
+                  onChange={(e) => setFiltroCategoria(e.target.value)}
+                  className="bg-secondary/50 border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                >
+                  <option value="todos">Todas as categorias</option>
+                  <option value="completo">Bíblia Completa</option>
+                  <option value="tematico">Temático</option>
+                  <option value="livro">Por Livro</option>
+                  <option value="devocional">Devocional</option>
+                </select>
+              </div>
+              <select
+                value={filtroDuracao}
+                onChange={(e) => setFiltroDuracao(e.target.value)}
+                className="bg-secondary/50 border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+              >
+                <option value="todos">Qualquer duração</option>
+                <option value="7">Até 7 dias</option>
+                <option value="14">Até 14 dias</option>
+                <option value="21">Até 21 dias</option>
+                <option value="30">Até 30 dias</option>
+                <option value="90">Até 90 dias</option>
+              </select>
+              <select
+                value={filtroDificuldade}
+                onChange={(e) => setFiltroDificuldade(e.target.value)}
+                className="bg-secondary/50 border border-border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+              >
+                <option value="todos">Todas as dificuldades</option>
+                <option value="iniciante">Iniciante</option>
+                <option value="intermediario">Intermediário</option>
+                <option value="avancado">Avançado</option>
+              </select>
+              {(filtroCategoria !== 'todos' || filtroDuracao !== 'todos' || filtroDificuldade !== 'todos') && (
+                <button
+                  onClick={() => {
+                    setFiltroCategoria('todos');
+                    setFiltroDuracao('todos');
+                    setFiltroDificuldade('todos');
+                  }}
+                  className="text-xs text-primary hover:underline flex items-center gap-1"
+                >
+                  <X className="w-3 h-3" /> Limpar filtros
+                </button>
+              )}
+            </div>
+          </ScrollReveal>
+
+          {/* Plans Grid */}
+          <div className="grid gap-4 md:grid-cols-2">
+            {planosFiltrados.map((plano, idx) => {
+              const isAtivo = planoAtivo?.id === plano.id;
+              const expandido = planoExpandido === plano.id;
+              return (
+                <ScrollReveal key={plano.id} delay={idx * 0.04}>
+                  <motion.div
+                    layout
+                    className={`bg-card border rounded-xl overflow-hidden transition-colors ${
+                      isAtivo ? 'border-primary ring-2 ring-primary/20' : 'border-border'
+                    }`}
+                  >
+                    <div
+                      className="p-5 cursor-pointer"
+                      onClick={() => setPlanoExpandido(expandido ? null : plano.id)}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div
+                          className={`w-11 h-11 rounded-xl bg-gradient-to-br ${CATEGORIA_CORES[plano.categoria]} flex items-center justify-center text-white flex-shrink-0`}
+                        >
+                          {CATEGORIA_ICONES[plano.categoria]}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap mb-1">
+                            <h3 className="font-semibold text-base">{plano.nome}</h3>
+                            {isAtivo && (
+                              <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
+                                Ativo
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2 flex-wrap">
+                            <span className="flex items-center gap-1">
+                              <Clock className="w-3 h-3" />
+                              {formatarDias(plano.duracao)}
+                            </span>
+                            <span className="text-border">•</span>
+                            <span className={`px-1.5 py-0.5 rounded ${DIFICULDADE_CORES[plano.dificuldade]}`}>
+                              {DIFICULDADE_LABELS[plano.dificuldade]}
+                            </span>
+                            <span className="text-border">•</span>
+                            <span>{CATEGORIA_LABELS[plano.categoria]}</span>
+                          </div>
+                          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                            {plano.descricao}
+                          </p>
+                          <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
+                            <span className="flex items-center gap-1">
+                              <BarChart3 className="w-3 h-3" />
+                              ~{plano.metadata.tempoEstimado}
+                            </span>
                           </div>
                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              </ScrollReveal>
-            ))}
+                        <motion.div
+                          animate={{ rotate: expandido ? 180 : 0 }}
+                          className="flex-shrink-0 mt-1"
+                        >
+                          <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                        </motion.div>
+                      </div>
+                    </div>
+
+                    <AnimatePresence>
+                      {expandido && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.25 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-5 pb-5 border-t border-border/50 pt-4 space-y-4">
+                            <div className="grid grid-cols-3 gap-2 text-center">
+                              <div className="bg-secondary/50 rounded-lg p-2">
+                                <p className="text-sm font-bold">{plano.metadata.totalCapitulos}</p>
+                                <p className="text-xs text-muted-foreground">Capítulos</p>
+                              </div>
+                              <div className="bg-secondary/50 rounded-lg p-2">
+                                <p className="text-sm font-bold">{plano.metadata.totalVersiculos.toLocaleString()}</p>
+                                <p className="text-xs text-muted-foreground">Versículos</p>
+                              </div>
+                              <div className="bg-secondary/50 rounded-lg p-2">
+                                <p className="text-sm font-bold">{plano.dias.length}</p>
+                                <p className="text-xs text-muted-foreground">Dias</p>
+                              </div>
+                            </div>
+
+                            <div>
+                              <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+                                Primeiros dias
+                              </h4>
+                              <div className="space-y-1.5">
+                                {plano.dias.slice(0, 5).map((dia) => (
+                                  <div
+                                    key={dia.dia}
+                                    className="flex items-center gap-2 text-xs"
+                                  >
+                                    <span className="w-5 h-5 rounded-full bg-secondary flex items-center justify-center text-muted-foreground font-medium">
+                                      {dia.dia}
+                                    </span>
+                                    <span className="text-muted-foreground">{dia.titulo}</span>
+                                    <span className="text-muted-foreground/60 ml-auto">
+                                      {dia.leituras
+                                        .map((l) => `${l.livro} ${l.capituloInicio}`)
+                                        .join(', ')}
+                                    </span>
+                                  </div>
+                                ))}
+                                {plano.dias.length > 5 && (
+                                  <p className="text-xs text-muted-foreground/60">
+                                    ... e mais {plano.dias.length - 5} dias
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+
+                            <div className="flex gap-2">
+                              {isAtivo ? (
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setMostrarCalendario(true);
+                                  }}
+                                  className="flex-1 px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
+                                >
+                                  <Calendar className="w-4 h-4" />
+                                  Continuar Plano
+                                </button>
+                              ) : (
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    if (planoAtivo) {
+                                      trocarPlano(plano.id);
+                                    } else {
+                                      iniciarPlano(plano.id);
+                                    }
+                                  }}
+                                  className="flex-1 px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
+                                >
+                                  <Play className="w-4 h-4" />
+                                  {planoAtivo ? 'Trocar para este' : 'Iniciar'}
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </ScrollReveal>
+              );
+            })}
           </div>
+
+          {planosFiltrados.length === 0 && (
+            <div className="text-center py-12">
+              <BookOpen className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+              <p className="text-muted-foreground">Nenhum plano encontrado com esses filtros.</p>
+            </div>
+          )}
+
+          {/* Share Toast */}
+          <AnimatePresence>
+            {mostrarCompartilhar && (
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 50 }}
+                className="fixed bottom-6 right-6 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg text-sm font-medium z-50"
+              >
+                ✓ Link copiado!
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Dica */}
           <ScrollReveal delay={0.3}>
@@ -342,8 +584,9 @@ export default function PlanosPage() {
                 Dica de Estudo
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                A consistência é mais importante que a intensidade. Melhor ler 10 minutos todos os dias do que 2 horas uma vez por semana.
-                Comece devagar, mantenha o hábito, e Deus usará a Sua Palavra para transformar a sua vida.
+                A consistência é mais importante que a intensidade. Melhor ler 10 minutos todos os dias do que
+                2 horas uma vez por semana. Comece devagar, mantenha o hábito, e Deus usará a Sua Palavra para
+                transformar a sua vida.
               </p>
             </div>
           </ScrollReveal>

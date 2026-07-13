@@ -15,6 +15,7 @@ import { Personagem } from '../personagens/domain/personagem.entity';
 import { ContextoHistorico } from '../historia/domain/contexto-historico.entity';
 import { Localizacao } from '../geografia/domain/localizacao.entity';
 import { Verbete } from '../dicionario/domain/verbete.entity';
+import { ReferenciaCruzada } from '../referencias/domain/referencia-cruzada.entity';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { Verbete } from '../dicionario/domain/verbete.entity';
       ContextoHistorico,
       Localizacao,
       Verbete,
+      ReferenciaCruzada,
     ]),
   ],
   controllers: [IaController],

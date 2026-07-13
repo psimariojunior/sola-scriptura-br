@@ -1,4 +1,4 @@
-import { useReadingPlan } from '@/lib/useReadingPlan';
+import { useReadingPlan } from '@/hooks/useReadingPlan';
 import { planos } from '@/data/planosLeitura';
 import { BookOpen, Check, ChevronLeft, ChevronRight, RotateCcw, BarChart3, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';

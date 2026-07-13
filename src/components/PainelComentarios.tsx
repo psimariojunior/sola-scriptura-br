@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { X, BookOpen, User, Tag, ChevronDown, ChevronUp, Volume2 } from 'lucide-react';
 import { obterComentarios, type Comentario } from '@/data/comentarios';
-import { useComentarioAudio } from '@/lib/useComentarioAudio';
+import { useComentarioAudio } from '@/hooks/useComentarioAudio';
 
 interface Props {
   livro: string;

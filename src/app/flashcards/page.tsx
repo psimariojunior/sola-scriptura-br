@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
-import { useFlashcards } from '@/lib/useFlashcards';
+import { useFlashcards } from '@/hooks/useFlashcards';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Brain, RotateCcw, Check, X, BookOpen, BarChart3, ArrowRight, Sparkles } from 'lucide-react';
 

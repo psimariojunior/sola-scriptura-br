@@ -99,8 +99,8 @@ export default function PainelStrong({ onClose }: { onClose?: () => void }) {
                 </span>
               </div>
               <p className="text-sm text-foreground/80">{p.definicao}</p>
-              {p.morfologia && (
-                <p className="text-xs text-muted-foreground mt-0.5">{p.morfologia}</p>
+              {(p as any).morfologia && (
+                <p className="text-xs text-muted-foreground mt-0.5">{(p as any).morfologia}</p>
               )}
               {p.frequencia !== undefined && (
                 <p className="text-xs text-muted-foreground mt-0.5">

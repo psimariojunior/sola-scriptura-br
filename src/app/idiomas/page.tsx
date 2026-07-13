@@ -9,9 +9,20 @@ import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
 import { useState, useMemo } from 'react';
 
-type LexiconWord = typeof palavrasGregas[number];
+interface LexiconWord {
+  strong: string;
+  palavra: string;
+  transliteracao: string;
+  definicao: string;
+  lingua: 'grego' | 'hebraico';
+  definicaoResumida?: string;
+  categoria?: string;
+  morphologia?: string;
+  morfologia?: string;
+  frequencia?: number;
+}
 
-const allWords: Array<LexiconWord & { lingua: 'grego' | 'hebraico' }> = [
+const allWords: LexiconWord[] = [
   ...palavrasGregas.map(w => ({ ...w, lingua: 'grego' as const })),
   ...palavrasHebraicas.map(w => ({ ...w, lingua: 'hebraico' as const })),
 ];
@@ -141,10 +152,10 @@ export default function IdiomasPage() {
                       <BookOpen className="w-3 h-3" />
                       Strong {word.strong}
                     </span>
-                    {word.morfologia && (
+                    {(word.morfologia || word.morphologia) && (
                       <span className="flex items-center gap-1">
                         <Sparkles className="w-3 h-3" />
-                        {word.morfologia}
+                        {word.morfologia || word.morphologia}
                       </span>
                     )}
                   </div>

@@ -98,22 +98,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   document.documentElement.classList.add('dark');
                 }
               })();
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js').then(function(reg) {
-                    reg.addEventListener('updatefound', function() {
-                      var newWorker = reg.installing;
-                      if (newWorker) {
-                        newWorker.addEventListener('statechange', function() {
-                          if (newWorker.state === 'activated') {
-                            newWorker.postMessage('skipWaiting');
-                          }
-                        });
-                      }
-                    });
-                  }).catch(function() {});
-                });
-              }
             `,
           }}
         />

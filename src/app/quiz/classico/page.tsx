@@ -45,6 +45,15 @@ export default function QuizClassicoPage() {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [acertosCount, setAcertosCount] = useState(0);
   const [respostas, setRespostas] = useState<(number | null)[]>([]);
+  const [nomeJogador, setNomeJogador] = useState(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
+        return usuario.nome || '';
+      } catch { return ''; }
+    }
+    return '';
+  });
 
   useEffect(() => { setRanking(carregarRanking()); }, []);
 
@@ -97,7 +106,7 @@ export default function QuizClassicoPage() {
 
   const proximaPergunta = () => {
     if (idxAtual + 1 >= perguntas.length) {
-      salvarRanking({ nome: 'Jogador', pontuacao, nivel, data: new Date().toISOString() });
+      salvarRanking({ nome: nomeJogador || 'Jogador', pontuacao, nivel, data: new Date().toISOString() });
       setRanking(carregarRanking());
       setTela('resultado');
     } else {
@@ -129,6 +138,16 @@ export default function QuizClassicoPage() {
                 </div>
               </div>
               <div className="space-y-6">
+                <div className="rounded-2xl border border-border/50 bg-card/50 p-6">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3 block">Seu Nome</label>
+                  <input
+                    type="text"
+                    value={nomeJogador}
+                    onChange={(e) => setNomeJogador(e.target.value)}
+                    placeholder="Como quer ser chamado?"
+                    className="w-full px-4 py-2.5 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                  />
+                </div>
                 <div className="rounded-2xl border border-border/50 bg-card/50 p-6">
                   <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3 block">Nível de Dificuldade</label>
                   <div className="grid grid-cols-3 gap-3">

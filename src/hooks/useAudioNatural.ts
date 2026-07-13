@@ -233,6 +233,11 @@ export function useAudioNatural() {
           el.playbackRate = state.speed;
           el.volume = state.isMuted ? 0 : state.volume;
 
+          if (resumePositionRef.current > 0) {
+            el.currentTime = resumePositionRef.current;
+            resumePositionRef.current = 0;
+          }
+
           el.onended = () => {
             setState((prev) => ({
               ...prev,
@@ -262,11 +267,6 @@ export function useAudioNatural() {
             duration: audio.duracaoMs / 1000,
             engine: 'elevenlabs',
           }));
-
-          if (resumePositionRef.current > 0) {
-            el.currentTime = resumePositionRef.current;
-            resumePositionRef.current = 0;
-          }
 
           return;
         } catch (err: unknown) {

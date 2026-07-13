@@ -31,8 +31,8 @@ interface ManualAudioPlayerProps {
 }
 
 const VELOCIDADES = [0.5, 0.75, 1, 1.25, 1.5, 2];
-const STORAGE_KEY_SPEED = 'ssb-manual-audio-speed';
-const STORAGE_KEY_VOLUME = 'ssb-manual-audio-volume';
+const STORAGE_KEY_SPEED = 'audio-speed';
+const STORAGE_KEY_VOLUME = 'audio-volume';
 
 export default function ManualAudioPlayer({
   titulo,
@@ -58,6 +58,7 @@ export default function ManualAudioPlayer({
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
   const progressInterval = useRef<NodeJS.Timeout | null>(null);
   const textRef = useRef<HTMLDivElement>(null);
+  const speechRestartTimer = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     audioRef.current = new Audio();
@@ -85,11 +86,17 @@ export default function ManualAudioPlayer({
       audioRef.current.volume = mudo ? 0 : volume;
     }
     if (synthRef.current && synthRef.current.speaking) {
-      synthRef.current.cancel();
-      if (isPlaying) {
-        iniciarSpeechApi(conteudo);
-      }
+      if (speechRestartTimer.current) clearTimeout(speechRestartTimer.current);
+      speechRestartTimer.current = setTimeout(() => {
+        synthRef.current?.cancel();
+        if (isPlaying) {
+          iniciarSpeechApi(conteudo);
+        }
+      }, 500);
     }
+    return () => {
+      if (speechRestartTimer.current) clearTimeout(speechRestartTimer.current);
+    };
   }, [velocidade, volume, mudo]);
 
   const parar = useCallback(() => {

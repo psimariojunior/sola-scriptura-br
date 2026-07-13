@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import {
   gerarAudio,
-  gerarAudioStreaming,
   converterAudioParaUrl,
   temApiKey,
   estimarDuracao,
@@ -226,7 +225,8 @@ export function useAudioCapitulo(
         currentVerseIndex: 0,
       }));
       precarregarProximo(livro, capitulo, 150, async (livroP, capP) => {
-        const audioP = await gerarAudio('');
+        const texto = `Leitura do capítulo ${capP}`;
+        const audioP = await gerarAudio(texto);
         return audioP.audio;
       }).catch(() => {});
     };

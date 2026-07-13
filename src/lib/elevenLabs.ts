@@ -212,7 +212,7 @@ function getConfig(
     typeof window !== 'undefined'
       ? localStorage.getItem('elevenlabs-config')
       : null;
-  const savedConfig = saved ? JSON.parse(saved) : {};
+  const savedConfig = saved ? (() => { try { return JSON.parse(saved); } catch { return {}; } })() : {};
   const apiKey = envKey || savedConfig.apiKey || '';
   return { ...DEFAULT_CONFIG, ...savedConfig, ...partial, apiKey };
 }
@@ -242,7 +242,9 @@ export function temApiKey(): boolean {
 
 export async function gerarAudio(
   texto: string,
-  config?: Partial<ElevenLabsConfig>
+  config?: Partial<ElevenLabsConfig>,
+  retries: number = 0,
+  maxRetries: number = 3
 ): Promise<AudioGenerado> {
   const cfg = getConfig(config);
 
@@ -291,10 +293,13 @@ export async function gerarAudio(
     clearTimeout(timeoutId);
 
     if (response.status === 429) {
+      if (retries >= maxRetries) {
+        throw new Error(`ElevenLabs API error 429: rate limited after ${maxRetries} retries`);
+      }
       const retryAfter = response.headers.get('retry-after');
       const waitTime = retryAfter ? parseInt(retryAfter) * 1000 : 5000;
       await new Promise((r) => setTimeout(r, waitTime));
-      return gerarAudio(texto, config);
+      return gerarAudio(texto, config, retries + 1, maxRetries);
     }
 
     if (!response.ok) {

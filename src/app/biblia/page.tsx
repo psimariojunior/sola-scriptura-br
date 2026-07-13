@@ -136,7 +136,7 @@ const PASSAGENS_DRAMATICAS: Record<string, { titulo: string; subtitulo: string; 
       { id: 'g1-16', narrador: 'Narrador', texto: 'E Deus os pôs na expansão dos céus, para alumiar a terra, e para governar o dia e a noite, e para separar a luz das trevas. E viu Deus que era bom.', tipo: 'narracao', tom: 'alegre' },
       { id: 'g1-17', narrador: 'Narrador', texto: 'E foi a tarde e a manhã, o quarto dia.', tipo: 'narracao', tom: 'calmo' },
       { id: 'g1-18', personagem: 'Deus', texto: 'As águas se enchaam de seres vivos, e voem aves sobre a face da expansão dos céus.', tipo: 'dialogo', tom: 'solene' },
-      { id: 'g1-19', narrador: 'Narrador', texto: 'E criou Deus os grandes animais marinhos, e todo ser vivente que se move, de que se encheram as águas, segundo a sua espécie; e toda ave according to its kind. E viu Deus que era bom.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'g1-19', narrador: 'Narrador', texto: 'E criou Deus os grandes animais marinhos, e todo ser vivente que se move, de que se encheram as águas, segundo a sua espécie; e toda ave conforme a sua espécie. E viu Deus que era bom.', tipo: 'narracao', tom: 'calmo' },
       { id: 'g1-20', narrador: 'Narrador', texto: 'E foi a tarde e a manhã, o quinto dia.', tipo: 'narracao', tom: 'calmo' },
       { id: 'g1-21', personagem: 'Deus', texto: 'A terra produza seres vivos segundo a sua espécie; animais domésticos, répteis e animais da terra, segundo a sua espécie.', tipo: 'dialogo', tom: 'intenso' },
       { id: 'g1-22', narrador: 'Narrador', texto: 'E fez Deus os animais da terra segundo a sua espécie, e o gado segundo a sua espécie, e todo réptil da terra segundo a sua espécie. E viu Deus que era bom.', tipo: 'narracao', tom: 'alegre' },
@@ -859,16 +859,14 @@ export default function BibliaPage() {
                                           <VersiculoAudioNatural
                                             text={v.texto}
                                             verseNumber={v.numero}
-                                            isCurrentlyPlaying={audioNatural.state.isPlaying && audio.playingVerse === v.numero}
+                                            isCurrentlyPlaying={audioNatural.state.isPlaying}
                                             isLoading={audioNatural.state.isLoading}
                                             engine={audioNatural.state.engine}
                                             onPlay={(num, txt) => {
                                               audioNatural.play(txt);
-                                              audio.play(num, txt);
                                             }}
                                             onStop={() => {
                                               audioNatural.stop();
-                                              audio.stop();
                                             }}
                                             onSpeedChange={(s) => audioNatural.setSpeed(s)}
                                             currentSpeed={audioNatural.state.speed}
@@ -1255,7 +1253,10 @@ export default function BibliaPage() {
             bookName={livro.nome}
             chapter={capituloIdx + 1}
             engine={audioNatural.state.engine}
-            onPlay={() => audioNatural.play(audioNatural.state.currentTime > 0 ? '' : data[0]?.versiculos?.find(v => v.numero === (audio.playingVerse ?? 1))?.texto ?? '')}
+            onPlay={() => {
+              const verseText = data[0]?.versiculos?.find(v => v.numero === (audio.playingVerse ?? 1))?.texto ?? '';
+              if (verseText) audioNatural.play(verseText);
+            }}
             onPause={audioNatural.pause}
             onStop={() => { audioNatural.stop(); audio.stop(); }}
             onSeek={audioNatural.seek}

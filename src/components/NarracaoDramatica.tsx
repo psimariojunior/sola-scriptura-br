@@ -8,7 +8,6 @@ import {
   SkipBack,
   Volume2,
   VolumeX,
-  Music,
   Theater,
   Settings,
   Maximize2,
@@ -72,7 +71,6 @@ export default function NarracaoDramatica({
   const [totalDuration, setTotalDuration] = useState(0);
   const [volume, setVolume] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
-  const [volumeMusica, setVolumeMusica] = useState(0.3);
   const [showSettings, setShowSettings] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showScript, setShowScript] = useState(true);
@@ -155,7 +153,9 @@ export default function NarracaoDramatica({
       }
 
       try {
-        const audio = await gerarAudio(cena.texto);
+        const characterName = cena.personagem || cena.narrador || 'Narrador';
+        const characterVoice = personagens.find((p) => p.nome === characterName);
+        const audio = await gerarAudio(cena.texto, { voiceId: characterVoice?.voiceId });
         const url = await converterAudioParaUrl(audio);
         audioUrlRef.current = url;
 
@@ -472,19 +472,6 @@ export default function NarracaoDramatica({
 
             {/* Volume controls */}
             <div className="flex-1 flex items-center justify-end gap-3">
-              <div className="flex items-center gap-2">
-                <Music className="w-3.5 h-3.5 text-[var(--muted-fg)]" />
-                <input
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.05"
-                  value={volumeMusica}
-                  onChange={(e) => setVolumeMusica(parseFloat(e.target.value))}
-                  className="w-16 h-1 accent-purple-500"
-                  title="Volume da música"
-                />
-              </div>
               <div className="flex items-center gap-2">
                 <button onClick={() => setIsMuted(!isMuted)}>
                   {isMuted ? (

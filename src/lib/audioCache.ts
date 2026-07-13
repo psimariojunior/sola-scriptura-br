@@ -1,5 +1,5 @@
-const DB_NAME = 'sola-scriptura-audio-cache';
-const DB_VERSION = 1;
+const DB_NAME = 'sola-scriptura-audio-cache-v2';
+const DB_VERSION = 2;
 const STORE_AUDIO = 'chapter-audio';
 const STORE_META = 'cache-meta';
 

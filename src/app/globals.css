@@ -147,7 +147,7 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased overflow-x-hidden;
   }
 }
 
@@ -399,10 +399,11 @@ html {
   30% { transform: translateY(-6px); opacity: 1; }
 }
 
-/* Smooth theme transition on all elements */
-*, *::before, *::after {
+/* Smooth theme transition on interactive elements only */
+.sola-card, .glass-card, button, a, input, select, textarea {
   transition-property: background-color, border-color, color, box-shadow, opacity;
   transition-timing-function: ease;
+  transition-duration: 150ms;
 }
 
 /* Exclude animations from theme transition */

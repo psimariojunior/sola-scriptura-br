@@ -230,20 +230,20 @@ export function Header() {
           <div className="flex lg:hidden items-center gap-1">
             <button
               onClick={toggleIdioma}
-              className="px-2 py-1 text-xs font-semibold rounded-lg border border-border hover:bg-muted/50 transition-all duration-300 uppercase tracking-wider"
+              className="px-3 py-2 min-h-[44px] text-xs font-semibold rounded-lg border border-border hover:bg-muted/50 transition-all duration-300 uppercase tracking-wider"
               aria-label={idioma === 'pt' ? 'Mudar idioma para inglês' : 'Mudar idioma para português'}
             >
               {idioma === 'pt' ? 'EN' : 'PT'}
             </button>
             <button
               onClick={() => setBuscaOpen(true)}
-              className="p-2 hover:bg-muted/50 rounded-lg transition-all duration-300"
+              className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-muted/50 rounded-lg transition-all duration-300"
               aria-label="Buscar"
             >
               <Search className="w-5 h-5" />
             </button>
             <button
-              className="p-2 hover:bg-muted/50 rounded-lg transition-all duration-300"
+              className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-muted/50 rounded-lg transition-all duration-300"
               onClick={() => setOpen(!open)}
               aria-expanded={open}
               aria-controls="mobile-menu"
@@ -284,7 +284,7 @@ export function Header() {
                       <Link
                         href={link.href}
                         aria-current={isActive(link.href) ? 'page' : undefined}
-                        className={`flex items-center gap-2.5 text-sm font-medium px-3 py-2.5 rounded-lg transition-all ${
+                        className={`flex items-center gap-2.5 text-sm font-medium px-3 py-3 min-h-[44px] rounded-lg transition-all ${
                           isActive(link.href)
                             ? 'text-primary bg-primary/10 font-semibold'
                             : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'

@@ -855,7 +855,7 @@ export default function BibliaPage() {
                                             );
                                           })()}
                                         </div>
-                                        <div className="flex items-center gap-0.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                        <div className="flex items-center gap-0.5 shrink-0 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-200">
                                           <VersiculoAudioNatural
                                             text={v.texto}
                                             verseNumber={v.numero}
@@ -1022,7 +1022,7 @@ export default function BibliaPage() {
                           )}
 
                           {viewMode === 'comparison' && data.length >= 2 && (
-                            <div className="border border-[var(--border)]/50 rounded-xl overflow-hidden">
+                            <div className="border border-[var(--border)]/50 rounded-xl overflow-x-auto">
                               <div className="bg-[var(--bg)] px-4 py-2 border-b border-[var(--border)]/30 flex items-center justify-between">
                                 <span className="text-xs font-semibold text-[var(--muted-fg)] uppercase tracking-wider">Comparação</span>
                                 <button onClick={() => setShowDiff(!showDiff)}
@@ -1473,19 +1473,19 @@ export default function BibliaPage() {
       {/* Mobile bottom nav */}
       <div className="fixed bottom-0 left-0 right-0 border-t border-[var(--border)] bg-[var(--card-bg)] lg:hidden z-30">
         <div className="flex items-center justify-around px-2 py-2">
-          <motion.button onClick={() => setMobileMenu(true)} whileTap={{ scale: 0.9 }} className="flex flex-col items-center gap-0.5 p-2 text-[var(--muted-fg)]" aria-label="Abrir lista de livros">
+          <motion.button onClick={() => setMobileMenu(true)} whileTap={{ scale: 0.9 }} className="flex flex-col items-center gap-0.5 p-2.5 min-h-[44px] min-w-[44px] text-[var(--muted-fg)]" aria-label="Abrir lista de livros">
             <BookOpen className="w-5 h-5" /><span className="text-[10px]">Livros</span>
           </motion.button>
           <div className="flex items-center gap-1">
-            <motion.button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0} whileTap={{ scale: 0.9 }} className="p-2 text-[var(--muted-fg)] disabled:opacity-50" aria-label="Capítulo anterior">
+            <motion.button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0} whileTap={{ scale: 0.9 }} className="p-2.5 min-h-[44px] min-w-[44px] text-[var(--muted-fg)] disabled:opacity-50" aria-label="Capítulo anterior">
               <ChevronLeft className="w-5 h-5" />
             </motion.button>
             <span className="text-xs font-mono min-w-[3rem] text-center">{capituloIdx + 1}/{livro.totalCapitulos}</span>
-            <motion.button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))} disabled={capituloIdx >= livro.totalCapitulos - 1} whileTap={{ scale: 0.9 }} className="p-2 text-[var(--muted-fg)] disabled:opacity-50" aria-label="Próximo capítulo">
+            <motion.button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))} disabled={capituloIdx >= livro.totalCapitulos - 1} whileTap={{ scale: 0.9 }} className="p-2.5 min-h-[44px] min-w-[44px] text-[var(--muted-fg)] disabled:opacity-50" aria-label="Próximo capítulo">
               <ChevronRight className="w-5 h-5" />
             </motion.button>
           </div>
-          <motion.button onClick={() => setChapterGridOpen(!chapterGridOpen)} whileTap={{ scale: 0.9 }} className="flex flex-col items-center gap-0.5 p-2 text-[var(--muted-fg)]" aria-label="Abrir grade de capítulos" aria-expanded={chapterGridOpen}>
+          <motion.button onClick={() => setChapterGridOpen(!chapterGridOpen)} whileTap={{ scale: 0.9 }} className="flex flex-col items-center gap-0.5 p-2.5 min-h-[44px] min-w-[44px] text-[var(--muted-fg)]" aria-label="Abrir grade de capítulos" aria-expanded={chapterGridOpen}>
             <LayoutList className="w-5 h-5" /><span className="text-[10px]">Capítulos</span>
           </motion.button>
         </div>

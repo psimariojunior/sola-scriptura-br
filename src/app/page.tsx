@@ -349,7 +349,7 @@ export default function Home() {
   }, [modulesScrollX]);
 
   return (
-    <div className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-[var(--bg)] overflow-x-hidden">
       <Header />
 
       {/* Hero Section */}
@@ -389,7 +389,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] font-light leading-[0.85] tracking-[-0.04em] mb-6"
+            className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-light leading-[0.85] tracking-[-0.04em] mb-6"
           >
             <span className="block">Sola</span>
             <span className="italic font-medium gradient-text block mt-1">Scriptura</span>
@@ -417,7 +417,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.3, duration: 0.8 }}
-            className="h-7 flex items-center justify-center mb-10"
+            className="min-h-7 flex items-center justify-center mb-10 overflow-hidden"
           >
             <span className="text-xs text-[var(--muted-fg)] font-serif-body italic">
               <TypewriterText

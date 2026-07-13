@@ -496,7 +496,7 @@ export default function PesquisaPage() {
                                 {highlightText(r.texto, debouncedQuery, searchMode)}
                               </p>
                             </Link>
-                            <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="flex items-center gap-1 opacity-100 sm:opacity-0 sm:group-hover:sm:opacity-100 transition-opacity">
                               <button
                                 onClick={() => copyResult(r)}
                                 className="p-1.5 text-muted-foreground hover:text-foreground transition-colors rounded-sm"

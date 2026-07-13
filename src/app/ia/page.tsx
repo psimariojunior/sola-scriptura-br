@@ -75,7 +75,7 @@ export default function IaPage() {
                     initial={{ opacity: 0, y: -8, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.96 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-20 bg-card border border-border rounded-xl shadow-xl p-2 flex flex-wrap justify-center gap-1 w-80"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-20 bg-card border border-border rounded-xl shadow-xl p-2 flex flex-wrap justify-center gap-1 w-80 max-w-[calc(100vw-2rem)]"
                   >
                     {tradicoes.map(t => (
                       <button key={t.valor} onClick={() => { setTradicao(t.valor); setMostrarTradicoes(false); }}

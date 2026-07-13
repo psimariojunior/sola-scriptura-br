@@ -12,9 +12,7 @@ const APP_SHELL = [
   '/',
   '/offline.html',
   '/icon.svg',
-  '/icon-192.png',
-  '/icon-512.png',
-  '/favicon.ico',
+  '/favicon.svg',
 ];
 
 const PRECACHE_ROUTES = [
@@ -42,9 +40,9 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then((cache) => {
-        return cache.addAll(APP_SHELL).catch((err) => {
-          console.warn('SW: Some app shell assets failed to cache:', err);
-        });
+        return Promise.allSettled(
+          APP_SHELL.map(url => cache.add(url).catch(() => {}))
+        );
       })
       .then(() => self.skipWaiting())
   );

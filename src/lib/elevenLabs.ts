@@ -207,12 +207,14 @@ async function obterDoCache(chave: string): Promise<ArrayBuffer | null> {
 function getConfig(
   partial?: Partial<ElevenLabsConfig>
 ): ElevenLabsConfig {
+  const envKey = process.env.NEXT_PUBLIC_ELEVENLABS_API_KEY || '';
   const saved =
     typeof window !== 'undefined'
       ? localStorage.getItem('elevenlabs-config')
       : null;
   const savedConfig = saved ? JSON.parse(saved) : {};
-  return { ...DEFAULT_CONFIG, ...savedConfig, ...partial };
+  const apiKey = envKey || savedConfig.apiKey || '';
+  return { ...DEFAULT_CONFIG, ...savedConfig, ...partial, apiKey };
 }
 
 export function obterConfigAudio(): ElevenLabsConfig {

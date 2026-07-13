@@ -163,7 +163,10 @@ export function useAudioNatural() {
 
     const voices = synth.getVoices();
     const ptVoice =
-      voices.find((v) => /Microsoft\s+(Maria|Daniel)/i.test(v.name)) ||
+      voices.find((v) => /Microsoft\s+(Maria|Francisco|Heloisa)/i.test(v.name)) ||
+      voices.find((v) => /Google.*Portugu/i.test(v.name)) ||
+      voices.find((v) => /Google/i.test(v.name) && v.lang.startsWith('pt')) ||
+      voices.find((v) => v.lang === 'pt-BR' && v.localService === false) ||
       voices.find((v) => v.lang.startsWith('pt')) ||
       voices[0];
     if (ptVoice) utterance.voice = ptVoice;

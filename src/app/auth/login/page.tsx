@@ -2,15 +2,18 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { BookOpen, Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { authService } from '@/lib/auth';
 import { useTranslation } from 'react-i18next';
+import { Suspense } from 'react';
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get('redirect') || '/conta';
   const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -30,7 +33,7 @@ export default function LoginPage() {
 
     try {
       await authService.login(email, senha);
-      router.push('/conta');
+      router.push(redirectTo);
     } catch (err: any) {
       setErro(err.message || 'Erro ao fazer login. Verifique suas credenciais.');
     } finally {
@@ -43,7 +46,7 @@ export default function LoginPage() {
     setErro('');
     try {
       await authService.loginWithGoogle();
-      router.push('/conta');
+      router.push(redirectTo);
     } catch {
       setErro('Erro ao fazer login com Google.');
     } finally {
@@ -177,5 +180,17 @@ export default function LoginPage() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }

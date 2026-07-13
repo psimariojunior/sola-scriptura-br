@@ -237,6 +237,9 @@ class AuthService {
       localStorage.setItem('accessToken', data.accessToken);
       localStorage.setItem('refreshToken', data.refreshToken);
       localStorage.setItem('usuario', JSON.stringify(this.usuario));
+      // Set cookies for middleware
+      document.cookie = `ssb_token=${data.accessToken}; path=/; max-age=2592000; SameSite=Lax`;
+      document.cookie = `ssb_usuario=${encodeURIComponent(JSON.stringify(this.usuario))}; path=/; max-age=2592000; SameSite=Lax`;
     }
   }
 
@@ -249,6 +252,9 @@ class AuthService {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('usuario');
+      // Clear cookies
+      document.cookie = 'ssb_token=; path=/; max-age=0';
+      document.cookie = 'ssb_usuario=; path=/; max-age=0';
     }
   }
 

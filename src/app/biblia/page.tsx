@@ -8,7 +8,7 @@ import type { CapituloComparado } from '@/data/biblia';
 import {
   BookOpen, ChevronRight, ChevronLeft, Columns2, LayoutList, AlignJustify,
   Menu, Search, Minus, Plus, X, Heart, StickyNote, Share2, Copy, Check,
-  History, Settings, Eye, EyeOff, Download, BookMarked, GraduationCap, Brain, Palette
+  History, Settings, Eye, EyeOff, Download, BookMarked, GraduationCap, Brain, Palette, FileText, Music
 } from 'lucide-react';
 import { toggleFavorito, obterMarca, setAnotacao as salvarAnotacao } from '@/lib/estudos';
 import { useEstudos } from '@/components/EstudosProvider';
@@ -20,22 +20,31 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getCrossReferences } from '@/data/crossReferences';
 import Link from 'next/link';
-import VerseAudio from '@/components/VerseAudio';
+import VersiculoAudioNatural from '@/components/VersiculoAudioNatural';
 import { useVerseAudio } from '@/hooks/useVerseAudio';
+import { useAudioNatural } from '@/hooks/useAudioNatural';
 import ReadingPlanBanner from '@/components/ReadingPlanBanner';
 import { useFlashcards } from '@/hooks/useFlashcards';
 import { setMarcador, removeMarcador, getMarcador, CORES } from '@/lib/marcadores';
+import { CompartilharVersiculo } from '@/components/CompartilharVersiculo';
+import { useAudioCapitulo } from '@/hooks/useAudioCapitulo';
 import { isOnline, cacheChapter, getCachedChapter } from '@/lib/offline';
 import { recordReading, getStats } from '@/lib/estatisticas';
 import OfflineBanner from '@/components/OfflineBanner';
 import PainelDoVersiculo from '@/components/PainelDoVersiculo';
 import { getTiposRecursoDisponiveis } from '@/data/biblia/versiculoRecursos';
+import { useNotas } from '@/hooks/useNotas';
 
 const PainelStrong = lazy(() => import('@/components/PainelStrong'));
 const PainelNotas = lazy(() => import('@/components/PainelNotas'));
 const PainelComentarios = lazy(() => import('@/components/PainelComentarios'));
+const NotaEditor = lazy(() => import('@/components/NotaEditor').then(m => ({ default: m.NotaEditor })));
 const PainelEstudosInline = lazy(() => import('@/components/PainelEstudosInline'));
 const AudioMiniPlayer = lazy(() => import('@/components/VerseAudio').then(m => ({ default: m.AudioMiniPlayer })));
+const AudioNaturalPlayer = lazy(() => import('@/components/AudioNaturalPlayer'));
+const NarradorSelector = lazy(() => import('@/components/NarradorSelector'));
+const NarracaoDramaticaLazy = lazy(() => import('@/components/NarracaoDramatica'));
+import type { CenaDramatica, PersonagemVoz } from '@/components/NarracaoDramatica';
 
 function PanelFallback() {
   return (
@@ -104,6 +113,106 @@ const nomeMap: Record<string, string> = { arc: 'Almeida Revista e Corrigida', nv
 const tradBadgeColors: Record<string, string> = { arc: 'bg-primary/10 text-primary', nvi: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400', ara: 'bg-purple-500/10 text-purple-600 dark:text-purple-400', acf: 'bg-rose-500/10 text-rose-600 dark:text-rose-400', aa: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400', ntlh: 'bg-orange-500/10 text-orange-600 dark:text-orange-400', kjv: 'bg-amber-500/10 text-amber-600 dark:text-amber-400', web: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' };
 const tradTextColors: Record<string, string> = { arc: 'text-blue-600 dark:text-blue-400', nvi: 'text-green-600 dark:text-green-400', ara: 'text-purple-600 dark:text-purple-400', acf: 'text-rose-600 dark:text-rose-400', aa: 'text-cyan-600 dark:text-cyan-400', ntlh: 'text-orange-600 dark:text-orange-400', kjv: 'text-amber-600 dark:text-amber-400', web: 'text-emerald-600 dark:text-emerald-400' };
 
+const PASSAGENS_DRAMATICAS: Record<string, { titulo: string; subtitulo: string; cenas: CenaDramatica[]; personagens: PersonagemVoz[] }> = {
+  'gn-1': {
+    titulo: 'A Criação do Mundo',
+    subtitulo: 'Gênesis 1',
+    cenas: [
+      { id: 'g1-1', narrador: 'Narrador', texto: 'No princípio criou Deus os céus e a terra.', tipo: 'narracao', tom: 'solene' },
+      { id: 'g1-2', narrador: 'Narrador', texto: 'E a terra era sem forma e vazia; e havia trevas sobre a face do abismo; e o Espírito de Deus se movia sobre a face das águas.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'g1-3', personagem: 'Deus', texto: 'Haja luz.', tipo: 'dialogo', tom: 'intenso' },
+      { id: 'g1-4', narrador: 'Narrador', texto: 'E houve luz. E viu Deus que a luz era boa; e fez Deus separação entre a luz e as trevas.', tipo: 'narracao', tom: 'alegre' },
+      { id: 'g1-5', narrador: 'Narrador', texto: 'E Deus chamou à luz Dia; e às trevas chamou Noite. E foi a tarde e a manhã, um dia.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'g1-6', personagem: 'Deus', texto: 'Haja uma expansão no meio das águas, e haja separação entre águas e águas.', tipo: 'dialogo', tom: 'solene' },
+      { id: 'g1-7', narrador: 'Narrador', texto: 'E fez Deus a expansão, e fez separação entre as águas que estavam debaixo da expansão e as águas que estavam sobre a expansão; e assim foi.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'g1-8', narrador: 'Narrador', texto: 'E Deus chamou à expansão Céus. E foi a tarde e a manhã, o segundo dia.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'g1-9', personagem: 'Deus', texto: 'Ajuntem-se as águas debaixo dos céus num lugar; e apareça a porção seca.', tipo: 'dialogo', tom: 'intenso' },
+      { id: 'g1-10', narrador: 'Narrador', texto: 'E assim foi. E Deus chamou à porção seca Terra; e ao ajuntamento das águas chamou Mares. E viu Deus que era bom.', tipo: 'narracao', tom: 'alegre' },
+      { id: 'g1-11', personagem: 'Deus', texto: 'A terra produza erva verde, semente que semeie, árvore frutífera que dê fruto segundo a sua espécie.', tipo: 'dialogo', tom: 'solene' },
+      { id: 'g1-12', narrador: 'Narrador', texto: 'E a terra produziu erva verde, semente que semeia segundo a sua espécie, e árvore frutífera que dá fruto segundo a sua espécie. E viu Deus que era bom.', tipo: 'narracao', tom: 'alegre' },
+      { id: 'g1-13', narrador: 'Narrador', texto: 'E foi a tarde e a manhã, o terceiro dia.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'g1-14', personagem: 'Deus', texto: 'Haja luminares na expansão dos céus, para separar o dia da noite.', tipo: 'dialogo', tom: 'intenso' },
+      { id: 'g1-15', narrador: 'Narrador', texto: 'E fez Deus os dois grandes luminares: o luminar maior para governar o dia, e o luminar menor para governar a noite; e as estrelas.', tipo: 'narracao', tom: 'solene' },
+      { id: 'g1-16', narrador: 'Narrador', texto: 'E Deus os pôs na expansão dos céus, para alumiar a terra, e para governar o dia e a noite, e para separar a luz das trevas. E viu Deus que era bom.', tipo: 'narracao', tom: 'alegre' },
+      { id: 'g1-17', narrador: 'Narrador', texto: 'E foi a tarde e a manhã, o quarto dia.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'g1-18', personagem: 'Deus', texto: 'As águas se enchaam de seres vivos, e voem aves sobre a face da expansão dos céus.', tipo: 'dialogo', tom: 'solene' },
+      { id: 'g1-19', narrador: 'Narrador', texto: 'E criou Deus os grandes animais marinhos, e todo ser vivente que se move, de que se encheram as águas, segundo a sua espécie; e toda ave according to its kind. E viu Deus que era bom.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'g1-20', narrador: 'Narrador', texto: 'E foi a tarde e a manhã, o quinto dia.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'g1-21', personagem: 'Deus', texto: 'A terra produza seres vivos segundo a sua espécie; animais domésticos, répteis e animais da terra, segundo a sua espécie.', tipo: 'dialogo', tom: 'intenso' },
+      { id: 'g1-22', narrador: 'Narrador', texto: 'E fez Deus os animais da terra segundo a sua espécie, e o gado segundo a sua espécie, e todo réptil da terra segundo a sua espécie. E viu Deus que era bom.', tipo: 'narracao', tom: 'alegre' },
+      { id: 'g1-23', narrador: 'Narrador', texto: 'E foi a tarde e a manhã, o sexto dia.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'g1-24', personagem: 'Deus', texto: 'Façamos o homem à nossa imagem, conforme a nossa semelhança.', tipo: 'dialogo', tom: 'solene' },
+      { id: 'g1-25', narrador: 'Narrador', texto: 'E criou Deus o homem à sua imagem; à imagem de Deus o criou; macho e fêmea os criou.', tipo: 'narracao', tom: 'solene' },
+      { id: 'g1-26', personagem: 'Deus', texto: 'Frutificai e multiplicai-vos, enchei a terra e sujeitai-a.', tipo: 'dialogo', tom: 'alegre' },
+      { id: 'g1-27', narrador: 'Narrador', texto: 'E viu Deus tudo o que tinha feito, e era muito bom. E foi a tarde e a manhã, o sexto dia.', tipo: 'narracao', tom: 'alegre' },
+    ],
+    personagens: [
+      { nome: 'Narrador', cor: '#8B5CF6', corBg: 'rgba(139,92,246,0.1)', voiceId: '21m00Tcm4TlvDq8ikWAM' },
+      { nome: 'Deus', cor: '#F59E0B', corBg: 'rgba(245,158,11,0.1)', voiceId: 'pNInz6obpgDQGcFmaJgB' },
+    ],
+  },
+  'sl-23': {
+    titulo: 'O Senhor é o Meu Pastor',
+    subtitulo: 'Salmos 23',
+    cenas: [
+      { id: 's23-1', narrador: 'Narrador', texto: 'O Senhor é o meu pastor; nada me faltará.', tipo: 'narracao', tom: 'calmo' },
+      { id: 's23-2', narrador: 'Narrador', texto: 'Deitar-me faz em verdes pastos; guia-me mansamente a águas tranquilas.', tipo: 'narracao', tom: 'calmo' },
+      { id: 's23-3', narrador: 'Narrador', texto: 'Refrigera a minha alma; guia-me pelas veredas da justiça, por amor do seu nome.', tipo: 'narracao', tom: 'calmo' },
+      { id: 's23-4', narrador: 'Narrador', texto: 'Ainda que eu andasse pelo vale da sombra da morte, não temeria mal algum, porque tu estás comigo; a tua vara e o teu cajado me consolam.', tipo: 'narracao', tom: 'solene' },
+      { id: 's23-5', narrador: 'Narrador', texto: 'Preparas uma mesa perante mim na presença dos meus inimigos, unges a minha cabeça com óleo, o meu cálice transborda.', tipo: 'narracao', tom: 'alegre' },
+      { id: 's23-6', narrador: 'Narrador', texto: 'Certamente que a bondade e a misericórdia me seguirão todos os dias da minha vida; e habitarei na casa do Senhor por longos dias.', tipo: 'narracao', tom: 'solene' },
+    ],
+    personagens: [
+      { nome: 'Narrador', cor: '#8B5CF6', corBg: 'rgba(139,92,246,0.1)', voiceId: '21m00Tcm4TlvDq8ikWAM' },
+    ],
+  },
+  'jo-1': {
+    titulo: 'O Verbo se Fez Carne',
+    subtitulo: 'João 1:1-14',
+    cenas: [
+      { id: 'j1-1', narrador: 'Narrador', texto: 'No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.', tipo: 'narracao', tom: 'solene' },
+      { id: 'j1-2', narrador: 'Narrador', texto: 'Ele estava no princípio com Deus.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'j1-3', narrador: 'Narrador', texto: 'Todas as coisas foram feitas por ele, e nada do que foi feito foi feito sem ele.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'j1-4', narrador: 'Narrador', texto: 'Nele estava a vida, e a vida era a luz dos homens.', tipo: 'narracao', tom: 'alegre' },
+      { id: 'j1-5', narrador: 'Narrador', texto: 'E a luz resplandece nas trevas, e as trevas não prevaleceram contra ela.', tipo: 'narracao', tom: 'intenso' },
+      { id: 'j1-6', narrador: 'Narrador', texto: 'Houve um homem enviado de Deus, cujo nome era João.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'j1-7', narrador: 'Narrador', texto: 'Este veio para testemunho, para que testemunhasse da luz, para que todos cressem por ele.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'j1-8', narrador: 'Narrador', texto: 'Ele não era a luz, mas veio para que testemunhasse da luz.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'j1-9', narrador: 'Narrador', texto: 'Aquela era a luz verdadeira, que alumia a todo homem que vem ao mundo.', tipo: 'narracao', tom: 'alegre' },
+      { id: 'j1-10', narrador: 'Narrador', texto: 'Estava no mundo, e o mundo foi feito por ele, e o mundo não o conheceu.', tipo: 'narracao', tom: 'triste' },
+      { id: 'j1-11', narrador: 'Narrador', texto: 'Veio para os que eram seus, e os seus não o receberam.', tipo: 'narracao', tom: 'triste' },
+      { id: 'j1-12', narrador: 'Narrador', texto: 'Mas, quantos o receberam, deu-lhes o poder de serem filhos de Deus, aos que creem no seu nome.', tipo: 'narracao', tom: 'alegre' },
+      { id: 'j1-13', narrador: 'Narrador', texto: 'Os quais não nasceram do sangue, nem da vontade da carne, nem da vontade do homem, mas de Deus.', tipo: 'narracao', tom: 'solene' },
+      { id: 'j1-14', narrador: 'Narrador', texto: 'E o Verbo se fez carne, e habitou entre nós, e vimos a sua glória, como a glória do unigênito do Pai, cheio de graça e de verdade.', tipo: 'narracao', tom: 'solene' },
+    ],
+    personagens: [
+      { nome: 'Narrador', cor: '#8B5CF6', corBg: 'rgba(139,92,246,0.1)', voiceId: '21m00Tcm4TlvDq8ikWAM' },
+    ],
+  },
+  'mt-27': {
+    titulo: 'A Crucificação de Jesus',
+    subtitulo: 'Mateus 27',
+    cenas: [
+      { id: 'm27-1', narrador: 'Narrador', texto: 'Então Pilatos tomou água e lavou as mãos diante da multidão, dizendo: Estou inocente do sangue deste justo.', tipo: 'narracao', tom: 'triste' },
+      { id: 'm27-2', narrador: 'Narrador', texto: 'E crucificaram-no, e repartiram entre si as suas vestes, lançando sortes; para que se cumprisse o que foi dito pelo profeta.', tipo: 'narracao', tom: 'solene' },
+      { id: 'm27-3', personagem: 'Jesus', texto: 'Deus meu, Deus meu, por que me desamparaste?', tipo: 'dialogo', tom: 'triste' },
+      { id: 'm27-4', narrador: 'Narrador', texto: 'Alguns dos que passavam ali zombavam dele, dizendo: Tu que destróis o templo e em três dias o edificas, salva-te a ti mesmo.', tipo: 'narracao', tom: 'intenso' },
+      { id: 'm27-5', personagem: 'Jesus', texto: 'Tenho sede.', tipo: 'dialogo', tom: 'triste' },
+      { id: 'm27-6', narrador: 'Narrador', texto: 'Imediatamente um deles, correndo, tomou uma esponja, encheu-a de vinagre, e pondo-a num caniço, dava-lhe de beber.', tipo: 'narracao', tom: 'calmo' },
+      { id: 'm27-7', personagem: 'Jesus', texto: 'Tudo está consumado.', tipo: 'dialogo', tom: 'solene' },
+      { id: 'm27-8', narrador: 'Narrador', texto: 'E, inclinando Jesus a cabeça, rendeu o espírito.', tipo: 'narracao', tom: 'solene' },
+      { id: 'm27-9', narrador: 'Narrador', texto: 'E eis que o véu do templo se rasgou em dois, de cima abaixo; e a terra tremeu, e as pedras se fenderam.', tipo: 'narracao', tom: 'intenso' },
+      { id: 'm27-10', narrador: 'Narrador', texto: 'E os túmulos se abriram; e muitos corpos dos santos que dormiam ressuscitaram.', tipo: 'narracao', tom: 'alegre' },
+      { id: 'm27-11', narrador: 'Narrador', texto: 'E, saindo dos túmulos, depois da ressurreição dele, entraram na santa cidade e apareceram a muitos.', tipo: 'narracao', tom: 'alegre' },
+      { id: 'm27-12', narrador: 'Narrador', texto: 'O centurião e os que com ele guardavam a Jesus, vendo o terremoto e o que se passava, tiveram grande medo, dizendo: Verdadeiramente este era Filho de Deus.', tipo: 'narracao', tom: 'solene' },
+    ],
+    personagens: [
+      { nome: 'Narrador', cor: '#8B5CF6', corBg: 'rgba(139,92,246,0.1)', voiceId: '21m00Tcm4TlvDq8ikWAM' },
+      { nome: 'Jesus', cor: '#F59E0B', corBg: 'rgba(245,158,11,0.1)', voiceId: 'pNInz6obpgDQGcFmaJgB' },
+    ],
+  },
+};
+
 export default function BibliaPage() {
   const [livroIdx, setLivroIdx] = useState(0);
   const [capituloIdx, setCapituloIdx] = useState(0);
@@ -136,12 +245,25 @@ export default function BibliaPage() {
   const mainRef = useRef<HTMLDivElement>(null);
   const { isFavorito, refresh } = useEstudos();
   const audio = useVerseAudio();
+  const audioNatural = useAudioNatural();
   const flashcards = useFlashcards();
   const [colorPickerVerse, setColorPickerVerse] = useState<string | null>(null);
   const [statsData, setStatsData] = useState<ReturnType<typeof getStats> | null>(null);
   const [versiculoSelecionado, setVersiculoSelecionado] = useState<{livro: string, cap: number, ver: number} | null>(null);
+  const [mostrarNotas, setMostrarNotas] = useState(false);
+  const [notaAtiva, setNotaAtiva] = useState<import('@/components/NotaEditor').Nota | null>(null);
+  const { notas, criarNota, salvarNota: salvarNotaHook, excluirNota } = useNotas();
+  const [mostrarNarracao, setMostrarNarracao] = useState(false);
 
   const livro = TODOS_LIVROS[livroIdx];
+  const chaveDramatica = `${livro.abreviacao}-${capituloIdx + 1}`;
+  const passagemDramatica = PASSAGENS_DRAMATICAS[chaveDramatica];
+
+  const capituloAudio = useAudioCapitulo(
+    livro.abreviacao,
+    capituloIdx + 1,
+    data[0]?.versiculos?.map(v => ({ numero: v.numero, texto: v.texto })) ?? []
+  );
 
   const loadChapter = useCallback(async () => {
     setLoading(true);
@@ -213,7 +335,7 @@ export default function BibliaPage() {
       if (e.key === '/') { e.preventDefault(); setQuickSearchOpen(true); return; }
       if (e.key === 'ArrowLeft' && capituloIdx > 0) { e.preventDefault(); setChapterDirection('prev'); setCapituloIdx(p => Math.max(0, p - 1)); }
       else if (e.key === 'ArrowRight' && livro && capituloIdx < livro.totalCapitulos - 1) { e.preventDefault(); setChapterDirection('next'); setCapituloIdx(p => p + 1); }
-      else if (e.key === 'Escape') { setSidebarOpen(false); setMobileMenu(false); setChapterGridOpen(false); setColorPickerVerse(null); }
+      else       if (e.key === 'Escape') { setSidebarOpen(false); setMobileMenu(false); setChapterGridOpen(false); setColorPickerVerse(null); setMostrarNarracao(false); }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -421,6 +543,22 @@ export default function BibliaPage() {
                     {readingMode ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </motion.button>
 
+                  <motion.button
+                    onClick={() => {
+                      if (!mostrarNotas && !notaAtiva) {
+                        const nova = criarNota(`${livro.nome} ${capituloIdx + 1}`);
+                        setNotaAtiva(nova);
+                      }
+                      setMostrarNotas(!mostrarNotas);
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`p-1.5 rounded-md transition-all duration-300 ${mostrarNotas ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}
+                    title="Minhas Anotações"
+                  >
+                    <FileText className="w-4 h-4" />
+                  </motion.button>
+
                   <motion.button onClick={() => data.length > 0 && exportChapterPdf(livro.nome, capituloIdx + 1, data)}
                     title="Exportar PDF" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                     className="p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-all duration-300">
@@ -432,6 +570,18 @@ export default function BibliaPage() {
                     className={`p-1.5 rounded-md transition-all duration-300 ${showPlan ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
                     <BookMarked className="w-4 h-4" />
                   </motion.button>
+
+                  {passagemDramatica && (
+                    <motion.button
+                      onClick={() => setMostrarNarracao(true)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="p-1.5 rounded-md text-purple-400 hover:bg-purple-500/10 transition-all duration-300"
+                      title="Narração Dramática"
+                    >
+                      <Music className="w-4 h-4" />
+                    </motion.button>
+                  )}
 
                   <motion.button onClick={() => setShowSettings(!showSettings)} title="Configurações"
                     whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
@@ -533,6 +683,46 @@ export default function BibliaPage() {
                         </div>
                       ) : (
                         <>
+                          {!readingMode && data[0]?.versiculos && data[0].versiculos.length > 0 && (
+                            <div className="mb-6">
+                              <motion.button
+                                onClick={() => {
+                                  if (capituloAudio.state.isPlaying || capituloAudio.state.isPaused) {
+                                    capituloAudio.stop();
+                                  } else {
+                                    capituloAudio.play();
+                                  }
+                                }}
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.97 }}
+                                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
+                                  capituloAudio.state.isPlaying
+                                    ? 'bg-[var(--primary)] text-[var(--primary-foreground)] shadow-lg shadow-[var(--primary)]/20'
+                                    : capituloAudio.state.isPaused
+                                    ? 'bg-[var(--primary)]/80 text-[var(--primary-foreground)] shadow-md'
+                                    : 'bg-[var(--primary)]/10 text-[var(--primary)] hover:bg-[var(--primary)]/20 border border-[var(--primary)]/20'
+                                }`}
+                              >
+                                {capituloAudio.state.isLoading ? (
+                                  <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                                ) : capituloAudio.state.isPlaying ? (
+                                  <span className="flex gap-0.5">
+                                    <span className="w-1 h-3 bg-current rounded-full" />
+                                    <span className="w-1 h-3 bg-current rounded-full" />
+                                  </span>
+                                ) : (
+                                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z" />
+                                  </svg>
+                                )}
+                                {capituloAudio.state.isPlaying
+                                  ? `Ouvindo${capituloAudio.state.currentVerseIndex >= 0 ? ` — v.${data[0].versiculos[capituloAudio.state.currentVerseIndex]?.numero ?? ''}` : ''}`
+                                  : capituloAudio.state.isPaused
+                                  ? 'Pausado'
+                                  : 'Ouvir Capítulo'}
+                              </motion.button>
+                            </div>
+                          )}
                           {viewMode === 'single' && data.map((item, idx) => (
                             <div key={item.traducao} className="mb-8">
                               <div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/50">
@@ -612,12 +802,28 @@ export default function BibliaPage() {
                                           })()}
                                         </div>
                                         <div className="flex items-center gap-0.5 shrink-0">
-                                          <VerseAudio
+                                          <VersiculoAudioNatural
                                             text={v.texto}
                                             verseNumber={v.numero}
-                                            isCurrentlyPlaying={isPlaying}
-                                            onPlay={(num) => audio.play(num, v.texto)}
-                                            onStop={audio.stop}
+                                            isCurrentlyPlaying={audioNatural.state.isPlaying && audio.playingVerse === v.numero}
+                                            isLoading={audioNatural.state.isLoading}
+                                            engine={audioNatural.state.engine}
+                                            onPlay={(num, txt) => {
+                                              audioNatural.play(txt);
+                                              audio.play(num, txt);
+                                            }}
+                                            onStop={() => {
+                                              audioNatural.stop();
+                                              audio.stop();
+                                            }}
+                                            onSpeedChange={(s) => audioNatural.setSpeed(s)}
+                                            currentSpeed={audioNatural.state.speed}
+                                          />
+                                          <CompartilharVersiculo
+                                            livro={livro.nome}
+                                            capítulo={capituloIdx + 1}
+                                            versículo={v.numero}
+                                            texto={v.texto}
                                           />
                                           <div className="relative">
                                             <motion.button
@@ -822,6 +1028,59 @@ export default function BibliaPage() {
                         </div>
                       )}
 
+                      <AnimatePresence>
+                        {mostrarNotas && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="mt-8 overflow-hidden"
+                          >
+                            <div className="border-t border-[var(--border)]/30 pt-6">
+                              <div className="flex items-center justify-between mb-4">
+                                <div className="flex items-center gap-2">
+                                  <FileText className="w-4 h-4 text-[var(--primary)]" />
+                                  <h3 className="text-sm font-semibold">Minhas Anotações</h3>
+                                  <span className="text-[10px] px-1.5 py-0.5 bg-[var(--primary)]/10 text-[var(--primary)] rounded-full">
+                                    {notas.length}
+                                  </span>
+                                </div>
+                                {notas.length > 0 && !notaAtiva && (
+                                  <div className="flex gap-1 max-h-32 overflow-y-auto">
+                                    {notas.slice(0, 10).map(n => (
+                                      <button
+                                        key={n.id}
+                                        onClick={() => setNotaAtiva(n)}
+                                        className="text-[10px] px-2 py-1 rounded-md bg-[var(--bg)] text-[var(--muted-fg)] hover:text-[var(--fg)] hover:bg-[var(--primary)]/10 transition-colors truncate max-w-[120px]"
+                                        title={n.titulo}
+                                      >
+                                        {n.titulo || 'Sem título'}
+                                      </button>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                              <Suspense fallback={<PanelFallback />}>
+                                <NotaEditor
+                                  key={notaAtiva?.id ?? 'new'}
+                                  nota={notaAtiva ?? undefined}
+                                  autoSalvar={true}
+                                  onSalvar={(nota) => {
+                                    setNotaAtiva(nota);
+                                    salvarNotaHook(nota.id, nota.conteudo);
+                                  }}
+                                  onExcluir={(id) => {
+                                    excluirNota(id);
+                                    setNotaAtiva(null);
+                                    setMostrarNotas(false);
+                                  }}
+                                />
+                              </Suspense>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
                     </motion.div>
                   </AnimatePresence>
                 ) : (
@@ -898,15 +1157,47 @@ export default function BibliaPage() {
         </div>
       </main>
 
-      {/* Audio mini player */}
+      {/* Audio natural player - ElevenLabs + Web Speech API fallback */}
       <Suspense fallback={null}>
-        <AudioMiniPlayer
-          isPlaying={audio.isPlaying}
-          currentVerse={audio.playingVerse ?? -1}
-          totalVerses={data[0]?.versiculos?.length ?? 0}
-          verseText={data[0]?.versiculos?.find(v => v.numero === audio.playingVerse)?.texto ?? ''}
-          onStop={audio.stop}
-        />
+        {audioNatural.state.isPlaying && (
+          <AudioNaturalPlayer
+            isPlaying={audioNatural.state.isPlaying}
+            isLoading={audioNatural.state.isLoading}
+            currentTime={audioNatural.state.currentTime}
+            duration={audioNatural.state.duration}
+            currentVerse={audio.playingVerse ?? undefined}
+            totalVerses={data[0]?.versiculos?.length}
+            verseText={data[0]?.versiculos?.find(v => v.numero === audio.playingVerse)?.texto}
+            bookName={livro.nome}
+            chapter={capituloIdx + 1}
+            engine={audioNatural.state.engine}
+            onPlay={() => audioNatural.play(audioNatural.state.currentTime > 0 ? '' : data[0]?.versiculos?.find(v => v.numero === (audio.playingVerse ?? 1))?.texto ?? '')}
+            onPause={audioNatural.pause}
+            onStop={() => { audioNatural.stop(); audio.stop(); }}
+            onSeek={audioNatural.seek}
+            onSkipForward={() => audioNatural.seek(Math.min(audioNatural.state.currentTime + 15, audioNatural.state.duration))}
+            onSkipBackward={() => audioNatural.seek(Math.max(audioNatural.state.currentTime - 15, 0))}
+            volume={audioNatural.state.volume}
+            speed={audioNatural.state.speed}
+            isMuted={audioNatural.state.isMuted}
+            onSetVolume={audioNatural.setVolume}
+            onSetSpeed={audioNatural.setSpeed}
+            onToggleMute={audioNatural.toggleMute}
+          />
+        )}
+      </Suspense>
+
+      {/* Legacy audio mini player fallback */}
+      <Suspense fallback={null}>
+        {!audioNatural.state.isPlaying && (
+          <AudioMiniPlayer
+            isPlaying={audio.isPlaying}
+            currentVerse={audio.playingVerse ?? -1}
+            totalVerses={data[0]?.versiculos?.length ?? 0}
+            verseText={data[0]?.versiculos?.find(v => v.numero === audio.playingVerse)?.texto ?? ''}
+            onStop={audio.stop}
+          />
+        )}
       </Suspense>
 
       {/* Annotation modal */}
@@ -1060,6 +1351,28 @@ export default function BibliaPage() {
                 ) : null}
               </div>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Narração Dramática overlay */}
+      <AnimatePresence>
+        {mostrarNarracao && passagemDramatica && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-[var(--bg)]"
+          >
+            <Suspense fallback={<PanelFallback />}>
+              <NarracaoDramaticaLazy
+                titulo={passagemDramatica.titulo}
+                subtitulo={passagemDramatica.subtitulo}
+                cenas={passagemDramatica.cenas}
+                personagens={passagemDramatica.personagens}
+                onFechar={() => setMostrarNarracao(false)}
+              />
+            </Suspense>
           </motion.div>
         )}
       </AnimatePresence>

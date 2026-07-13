@@ -5,6 +5,9 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { EstudosProvider } from '@/components/EstudosProvider';
 import PageTransition from '@/components/PageTransition';
 import BibleSplash from '@/components/BibleSplash';
+import { useAnalytics } from '@/hooks/useAnalytics';
+import { useMicroInteracoes } from '@/hooks/useMicroInteracoes';
+import { preloadRoute } from '@/lib/performance';
 import '@/lib/i18n';
 
 function ServiceWorkerRegistration() {
@@ -16,10 +19,25 @@ function ServiceWorkerRegistration() {
   return null;
 }
 
+function AnalyticsAndPerformance() {
+  useAnalytics();
+  useMicroInteracoes();
+
+  useEffect(() => {
+    const criticalRoutes = ['/biblia', '/pesquisa', '/ia', '/teologia', '/exegese'];
+    criticalRoutes.forEach((route, i) => {
+      setTimeout(() => preloadRoute(route), i * 2000);
+    });
+  }, []);
+
+  return null;
+}
+
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
       <ServiceWorkerRegistration />
+      <AnalyticsAndPerformance />
       <EstudosProvider>
         <BibleSplash />
         <PageTransition>

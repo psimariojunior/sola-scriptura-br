@@ -19,6 +19,8 @@ interface FonteResposta {
 
 interface AIChatProps {
   className?: string;
+  tradicao?: string;
+  onTradicaoChange?: (tradicao: string) => void;
 }
 
 const TRADICOES = [
@@ -89,15 +91,19 @@ function iconTipoFonte(tipo: string): string {
   return icones[tipo] || '📄';
 }
 
-export default function AIChat({ className = '' }: AIChatProps) {
+export default function AIChat({ className = '', tradicao: tradicaoExterna, onTradicaoChange }: AIChatProps) {
   const [mensagens, setMensagens] = useState<Mensagem[]>([]);
   const [input, setInput] = useState('');
-  const [tradicao, setTradicao] = useState('');
+  const [tradicaoInterna, setTradicaoInterna] = useState('');
   const [enviando, setEnviando] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
+
+  const controlado = onTradicaoChange !== undefined;
+  const tradicao = controlado ? tradicaoExterna ?? '' : tradicaoInterna;
+  const setTradicao = controlado ? onTradicaoChange : setTradicaoInterna;
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -307,6 +313,7 @@ export default function AIChat({ className = '' }: AIChatProps) {
           </div>
         </div>
         <div className="flex items-center gap-2">
+        {!controlado && (
           <select
             value={tradicao}
             onChange={e => setTradicao(e.target.value)}
@@ -318,6 +325,7 @@ export default function AIChat({ className = '' }: AIChatProps) {
               </option>
             ))}
           </select>
+        )}
           <button
             onClick={exportarConversa}
             disabled={mensagens.length === 0}

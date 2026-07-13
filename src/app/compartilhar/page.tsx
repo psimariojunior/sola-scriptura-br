@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import { motion } from 'framer-motion';
 import { Share2, Copy, Check, MessageCircle, Twitter, Instagram, Download } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
+import { CompartilharEstudo } from '@/components/CompartilharEstudo';
 
 const versiculosPredefinidos = [
   'João 3:16',
@@ -316,6 +317,28 @@ export default function CompartilharPage() {
               )}
 
               <canvas ref={canvasRef} className="hidden" />
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <div className="max-w-2xl mx-auto mt-16">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Share2 className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h2 className="font-display text-3xl font-light">Compartilhar Estudo</h2>
+                  <p className="text-sm text-muted-foreground">Compartilhe estudos bíblicos com link, QR code, embed e mais</p>
+                </div>
+              </div>
+
+              <CompartilharEstudo
+                estudoId="geral"
+                titulo="Estudo Bíblico Sola Scriptura"
+                descricao="Plataforma completa de estudo bíblico"
+                autor="Sola Scriptura"
+                referencia="Bíblia Sagrada"
+              />
             </div>
           </ScrollReveal>
         </div>

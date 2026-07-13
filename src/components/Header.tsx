@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, BookOpen, Search, Sun, Moon, User, Languages, Stars, BookMarked, Command, Settings } from 'lucide-react';
+import { Menu, X, BookOpen, Search, Sun, Moon, User, LogOut, Languages, Stars, BookMarked, Command, Settings } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { useTranslation } from 'react-i18next';
-import { authService } from '@/lib/auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { BuscaGlobal } from '@/components/BuscaGlobal';
 import {
   DropdownMenu,
@@ -69,7 +69,7 @@ export function Header() {
   const [buscaOpen, setBuscaOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hasDailyChallenge, setHasDailyChallenge] = useState(true);
-  const [isUserAdmin, setIsUserAdmin] = useState(false);
+  const { usuario, isAutenticado, isAdmin, logout } = useAuth();
   const { tema, setTema, temasDisponiveis } = useTema();
   const { i18n } = useTranslation();
   const pathname = usePathname();
@@ -94,10 +94,6 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    setIsUserAdmin(authService.isAdmin());
-  }, [pathname]);
-
-  useEffect(() => {
     if (open) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -107,6 +103,13 @@ export function Header() {
   }, [open]);
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/');
+
+  const handleLogout = async () => {
+    await logout();
+    setOpen(false);
+  };
+
+  const userInitial = usuario?.nome?.charAt(0)?.toUpperCase() || '?';
 
   return (
     <>
@@ -185,7 +188,8 @@ export function Header() {
             >
               {idioma === 'pt' ? 'EN' : 'PT'}
             </button>
-            {isUserAdmin && (
+
+            {isAdmin && (
               <Link
                 href="/admin"
                 className="flex items-center gap-2 px-3 py-1.5 text-sm text-amber-600 dark:text-amber-400 hover:bg-amber-500/10 rounded-lg transition-all duration-300 font-medium"
@@ -194,13 +198,55 @@ export function Header() {
                 <span>Admin</span>
               </Link>
             )}
-            <Link
-              href="/auth/login"
-              className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
-            >
-              <User className="w-4 h-4" />
-              <span>Entrar</span>
-            </Link>
+
+            {isAutenticado ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-muted/50 transition-all duration-300">
+                    <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center text-sm font-semibold text-primary">
+                      {userInitial}
+                    </div>
+                    <span className="text-sm font-medium max-w-[120px] truncate">{usuario?.nome}</span>
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>
+                    <div className="flex flex-col">
+                      <span className="font-medium">{usuario?.nome}</span>
+                      <span className="text-xs text-muted-foreground font-normal">{usuario?.email}</span>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/conta" className="flex items-center gap-2 cursor-pointer">
+                      <User className="w-4 h-4" />
+                      Minha Conta
+                    </Link>
+                  </DropdownMenuItem>
+                  {isAdmin && (
+                    <DropdownMenuItem asChild>
+                      <Link href="/admin" className="flex items-center gap-2 cursor-pointer">
+                        <Settings className="w-4 h-4" />
+                        Painel Admin
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout} className="flex items-center gap-2 cursor-pointer text-destructive focus:text-destructive">
+                    <LogOut className="w-4 h-4" />
+                    Sair
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link
+                href="/auth/login"
+                className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
+              >
+                <User className="w-4 h-4" />
+                <span>Entrar</span>
+              </Link>
+            )}
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -255,6 +301,11 @@ export function Header() {
             >
               <Search className="w-5 h-5" />
             </button>
+            {isAutenticado && (
+              <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center text-sm font-semibold text-primary mr-1">
+                {userInitial}
+              </div>
+            )}
             <button
               className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-muted/50 rounded-lg transition-all duration-300"
               onClick={() => setOpen(!open)}
@@ -334,7 +385,8 @@ export function Header() {
                     </motion.div>
                   ))}
                   <div className="border-t border-border/30 my-2" />
-                  {isUserAdmin && (
+
+                  {isAdmin && (
                     <motion.div
                       initial={{ opacity: 0, x: -16 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -350,20 +402,65 @@ export function Header() {
                       </Link>
                     </motion.div>
                   )}
-                  <motion.div
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: (navLinks.length + moreLinks.length) * 0.04 }}
-                  >
-                    <Link
-                      href="/auth/login"
-                      className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2.5 rounded-lg hover:bg-muted/50 transition-all"
-                      onClick={() => setOpen(false)}
+
+                  {isAutenticado ? (
+                    <>
+                      <motion.div
+                        initial={{ opacity: 0, x: -16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                      >
+                        <div className="flex items-center gap-3 px-3 py-3">
+                          <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center text-base font-semibold text-primary">
+                            {userInitial}
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-sm font-medium">{usuario?.nome}</span>
+                            <span className="text-xs text-muted-foreground">{usuario?.email}</span>
+                          </div>
+                        </div>
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, x: -16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                      >
+                        <Link
+                          href="/conta"
+                          className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2.5 rounded-lg hover:bg-muted/50 transition-all"
+                          onClick={() => setOpen(false)}
+                        >
+                          <User className="w-4 h-4" />
+                          Minha Conta
+                        </Link>
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, x: -16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                      >
+                        <button
+                          onClick={handleLogout}
+                          className="flex items-center gap-2 text-sm font-medium text-destructive hover:bg-destructive/10 px-3 py-2.5 rounded-lg transition-all w-full min-h-[44px]"
+                        >
+                          <LogOut className="w-4 h-4" />
+                          Sair
+                        </button>
+                      </motion.div>
+                    </>
+                  ) : (
+                    <motion.div
+                      initial={{ opacity: 0, x: -16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: (navLinks.length + moreLinks.length) * 0.04 }}
                     >
-                      <User className="w-4 h-4" />
-                      Entrar
-                    </Link>
-                  </motion.div>
+                      <Link
+                        href="/auth/login"
+                        className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2.5 rounded-lg hover:bg-muted/50 transition-all"
+                        onClick={() => setOpen(false)}
+                      >
+                        <User className="w-4 h-4" />
+                        Entrar
+                      </Link>
+                    </motion.div>
+                  )}
                 </nav>
               </motion.div>
             </>

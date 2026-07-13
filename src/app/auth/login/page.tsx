@@ -6,15 +6,14 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { BookOpen, Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
-import { authService } from '@/lib/auth';
-import { useTranslation } from 'react-i18next';
+import { useAuth } from '@/contexts/AuthContext';
 import { Suspense } from 'react';
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get('redirect') || '/conta';
-  const { t } = useTranslation();
+  const { login, loginWithGoogle } = useAuth();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [mostrarSenha, setMostrarSenha] = useState(false);
@@ -32,7 +31,7 @@ function LoginForm() {
     setErro('');
 
     try {
-      await authService.login(email, senha);
+      await login(email, senha);
       router.push(redirectTo);
     } catch (err: any) {
       setErro(err.message || 'Erro ao fazer login. Verifique suas credenciais.');
@@ -45,7 +44,7 @@ function LoginForm() {
     setCarregando(true);
     setErro('');
     try {
-      await authService.loginWithGoogle();
+      await loginWithGoogle();
       router.push(redirectTo);
     } catch {
       setErro('Erro ao fazer login com Google.');
@@ -58,8 +57,8 @@ function LoginForm() {
     setCarregando(true);
     setErro('');
     try {
-      await authService.loginWithApple();
-      router.push('/conta');
+      await loginWithGoogle();
+      router.push(redirectTo);
     } catch {
       setErro('Erro ao fazer login com Apple.');
     } finally {
@@ -68,57 +67,61 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="pt-20 pb-16 px-6">
-        <div className="max-w-md mx-auto">
+      <main className="flex-1 flex items-center justify-center px-4 pt-20 pb-12">
+        <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-              <BookOpen className="w-6 h-6 text-primary" />
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <BookOpen className="w-7 h-7 text-primary" />
             </div>
-            <h1 className="font-display text-3xl font-light mb-1">Entrar</h1>
-            <p className="text-sm text-muted-foreground">Acesse sua conta Sola Scriptura</p>
+            <h1 className="text-2xl font-bold">Entrar</h1>
+            <p className="text-muted-foreground text-sm mt-1">
+              Acesse sua conta para estudar a Palavra
+            </p>
           </div>
 
-          <form onSubmit={entrar} className="sola-card p-6 sm:p-8 space-y-5">
+          <form onSubmit={entrar} className="space-y-4">
             {erro && (
-              <div className="flex items-center gap-2 text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 px-4 py-3 rounded-lg border border-red-200 dark:border-red-900">
-                <AlertCircle className="w-4 h-4 shrink-0" />
+              <div className="flex items-center gap-2 p-3 text-sm text-destructive bg-destructive/10 rounded-lg">
+                <AlertCircle className="w-4 h-4 flex-shrink-0" />
                 {erro}
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-medium text-muted-foreground mb-1.5">Email</label>
+              <label htmlFor="email" className="block text-sm font-medium mb-1.5">Email</label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
+                  id="email"
                   type="email"
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="seu@email.com"
-                  className="w-full pl-10 pr-4 py-2.5 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20"
-                  disabled={carregando}
+                  className="w-full pl-10 pr-4 py-2.5 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                  required
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-muted-foreground mb-1.5">Senha</label>
+              <label htmlFor="senha" className="block text-sm font-medium mb-1.5">Senha</label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
+                  id="senha"
                   type={mostrarSenha ? 'text' : 'password'}
                   value={senha}
-                  onChange={e => setSenha(e.target.value)}
+                  onChange={(e) => setSenha(e.target.value)}
                   placeholder="Sua senha"
-                  className="w-full pl-10 pr-10 py-2.5 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20"
-                  disabled={carregando}
+                  className="w-full pl-10 pr-12 py-2.5 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                  required
                 />
                 <button
                   type="button"
                   onClick={() => setMostrarSenha(!mostrarSenha)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {mostrarSenha ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -128,17 +131,17 @@ function LoginForm() {
             <button
               type="submit"
               disabled={carregando}
-              className="w-full py-2.5 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 text-sm font-medium"
+              className="w-full py-2.5 bg-primary text-primary-foreground rounded-lg font-medium text-sm hover:bg-primary/90 transition-all disabled:opacity-50 min-h-[44px]"
             >
               {carregando ? 'Entrando...' : 'Entrar'}
             </button>
 
-            <div className="relative my-4">
+            <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-border" />
+                <div className="w-full border-t border-border/50" />
               </div>
-              <div className="relative flex justify-center text-xs">
-                <span className="bg-card px-2 text-muted-foreground">ou</span>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="px-2 bg-background text-muted-foreground">ou continue com</span>
               </div>
             </div>
 
@@ -157,19 +160,7 @@ function LoginForm() {
               Continuar com Google
             </button>
 
-            <button
-              type="button"
-              onClick={entrarComApple}
-              disabled={carregando}
-              className="w-full py-2.5 border border-border rounded-lg hover:bg-muted/50 transition-colors disabled:opacity-50 text-sm font-medium flex items-center justify-center gap-2"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-              </svg>
-              Continuar com Apple
-            </button>
-
-            <p className="text-xs text-center text-muted-foreground">
+            <p className="text-xs text-center text-muted-foreground mt-4">
               Não tem conta?{' '}
               <Link href="/auth/cadastro" className="text-primary hover:underline font-medium">
                 Cadastre-se

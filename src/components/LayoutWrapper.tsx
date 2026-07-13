@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { EstudosProvider } from '@/components/EstudosProvider';
+import { AuthProvider } from '@/contexts/AuthContext';
 import PageTransition from '@/components/PageTransition';
 import BibleSplash from '@/components/BibleSplash';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -36,14 +37,16 @@ function AnalyticsAndPerformance() {
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
-      <ServiceWorkerRegistration />
-      <AnalyticsAndPerformance />
-      <EstudosProvider>
-        <BibleSplash />
-        <PageTransition>
-          {children}
-        </PageTransition>
-      </EstudosProvider>
+      <AuthProvider>
+        <ServiceWorkerRegistration />
+        <AnalyticsAndPerformance />
+        <EstudosProvider>
+          <BibleSplash />
+          <PageTransition>
+            {children}
+          </PageTransition>
+        </EstudosProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

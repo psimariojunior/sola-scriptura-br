@@ -11,47 +11,29 @@ import {
   Mail, Calendar, Crown, ExternalLink, Sparkles, Clock,
   TrendingUp, Award, ArrowRight
 } from 'lucide-react';
-import { authService, type Usuario } from '@/lib/auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { listarMarcas, type MarcaBiblia } from '@/lib/estudos';
 import { livroPorAbreviacao } from '@/data/biblia';
 
 export default function ContaPage() {
   const router = useRouter();
-  const [usuario, setUsuario] = useState<Usuario | null>(null);
+  const { usuario, isAutenticado, logout } = useAuth();
   const [marcas, setMarcas] = useState<MarcaBiblia[]>([]);
-  const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
-    const user = authService.getUsuario();
-    if (!user) {
+    if (!isAutenticado) {
       router.push('/auth/login');
       return;
     }
-    setUsuario(user);
     setMarcas(listarMarcas());
-    setCarregando(false);
-  }, [router]);
+  }, [isAutenticado, router]);
 
   const handleLogout = async () => {
-    await authService.logout();
+    await logout();
     router.push('/');
   };
 
-  if (carregando) {
-    return (
-      <div className="min-h-screen">
-        <Header />
-        <main className="pt-24 pb-16 px-6">
-          <div className="max-w-5xl mx-auto text-center py-16">
-            <div className="animate-spin w-10 h-10 border-2 border-primary border-t-transparent rounded-full mx-auto" />
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  if (!usuario) return null;
+  if (!isAutenticado || !usuario) return null;
 
   const favoritos = marcas.filter(m => m.favorito);
   const anotacoes = marcas.filter(m => m.anotacao);

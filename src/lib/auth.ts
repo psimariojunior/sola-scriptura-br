@@ -1,7 +1,7 @@
 'use client';
 
-// Configuração da API
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api-production-bb96.up.railway.app/api/v1';
+// Configuração da API - usa proxy Next.js para evitar CORS
+const API_BASE = '/api';
 
 const ADMIN_EMAILS = ['psi_mariojunior@hotmail.com'];
 

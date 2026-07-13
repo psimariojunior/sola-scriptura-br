@@ -99,6 +99,10 @@ export default function AdminPage() {
         router.push('/auth/login');
         return;
       }
+      if (!authService.isAdmin()) {
+        router.push('/');
+        return;
+      }
       setIsAuth(true);
       setCheckingAuth(false);
     };
@@ -128,8 +132,21 @@ export default function AdminPage() {
     try {
       const data = await apiFetch<DashboardStats>('/admin/dashboard');
       setStats(data);
-    } catch (e: any) {
-      addToast(`Falha ao carregar dashboard: ${e.message}`, 'error');
+    } catch {
+      // Fallback data for when backend is unavailable
+      setStats({
+        totalUsuarios: 0,
+        usuariosRecentes: [],
+        metricas: {
+          usuariosAtivos: 0,
+          planosGratuitos: 0,
+          planosPremium: 0,
+          totalEstudos: 0,
+        },
+        versao: '1.0.0',
+        uptime: 0,
+      });
+      addToast('Backend indisponível — mostrando dados locais', 'info');
     } finally {
       setStatsLoading(false);
     }

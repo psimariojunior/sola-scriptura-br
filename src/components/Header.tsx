@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, BookOpen, Search, Sun, Moon, User, Languages, Stars, BookMarked, Command } from 'lucide-react';
+import { Menu, X, BookOpen, Search, Sun, Moon, User, Languages, Stars, BookMarked, Command, Settings } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { useTranslation } from 'react-i18next';
+import { authService } from '@/lib/auth';
 import { BuscaGlobal } from '@/components/BuscaGlobal';
 import {
   DropdownMenu,
@@ -68,6 +69,7 @@ export function Header() {
   const [buscaOpen, setBuscaOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hasDailyChallenge, setHasDailyChallenge] = useState(true);
+  const [isUserAdmin, setIsUserAdmin] = useState(false);
   const { tema, setTema, temasDisponiveis } = useTema();
   const { i18n } = useTranslation();
   const pathname = usePathname();
@@ -90,6 +92,10 @@ export function Header() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    setIsUserAdmin(authService.isAdmin());
+  }, [pathname]);
 
   useEffect(() => {
     if (open) {
@@ -179,6 +185,15 @@ export function Header() {
             >
               {idioma === 'pt' ? 'EN' : 'PT'}
             </button>
+            {isUserAdmin && (
+              <Link
+                href="/admin"
+                className="flex items-center gap-2 px-3 py-1.5 text-sm text-amber-600 dark:text-amber-400 hover:bg-amber-500/10 rounded-lg transition-all duration-300 font-medium"
+              >
+                <Settings className="w-4 h-4" />
+                <span>Admin</span>
+              </Link>
+            )}
             <Link
               href="/auth/login"
               className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
@@ -319,6 +334,22 @@ export function Header() {
                     </motion.div>
                   ))}
                   <div className="border-t border-border/30 my-2" />
+                  {isUserAdmin && (
+                    <motion.div
+                      initial={{ opacity: 0, x: -16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: (navLinks.length + moreLinks.length) * 0.04 }}
+                    >
+                      <Link
+                        href="/admin"
+                        className="flex items-center gap-2 text-sm font-medium text-amber-600 dark:text-amber-400 hover:bg-amber-500/10 px-3 py-3 min-h-[44px] rounded-lg transition-all"
+                        onClick={() => setOpen(false)}
+                      >
+                        <Settings className="w-4 h-4" />
+                        Painel Admin
+                      </Link>
+                    </motion.div>
+                  )}
                   <motion.div
                     initial={{ opacity: 0, x: -16 }}
                     animate={{ opacity: 1, x: 0 }}

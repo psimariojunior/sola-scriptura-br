@@ -3,10 +3,13 @@
 // Configuração da API
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api-production-bb96.up.railway.app/api/v1';
 
+const ADMIN_EMAILS = ['psi_mariojunior@hotmail.com'];
+
 interface Usuario {
   id: string;
   nome: string;
   email: string;
+  role?: 'admin' | 'user';
 }
 
 interface AuthResponse {
@@ -35,6 +38,10 @@ class AuthService {
       if (usuarioStr) {
         try {
           this.usuario = JSON.parse(usuarioStr);
+          // Auto-assign admin role for creator emails
+          if (this.usuario && ADMIN_EMAILS.includes(this.usuario.email)) {
+            this.usuario.role = 'admin';
+          }
         } catch {
           this.usuario = null;
         }
@@ -174,10 +181,15 @@ class AuthService {
     this.refreshToken = data.refreshToken;
     this.usuario = data.usuario;
 
+    // Auto-assign admin role for creator emails
+    if (this.usuario && ADMIN_EMAILS.includes(this.usuario.email)) {
+      this.usuario.role = 'admin';
+    }
+
     if (typeof window !== 'undefined') {
       localStorage.setItem('accessToken', data.accessToken);
       localStorage.setItem('refreshToken', data.refreshToken);
-      localStorage.setItem('usuario', JSON.stringify(data.usuario));
+      localStorage.setItem('usuario', JSON.stringify(this.usuario));
     }
   }
 
@@ -199,6 +211,11 @@ class AuthService {
 
   isAutenticado(): boolean {
     return !!this.accessToken && !!this.usuario;
+  }
+
+  isAdmin(): boolean {
+    if (!this.usuario) return false;
+    return ADMIN_EMAILS.includes(this.usuario.email) || this.usuario.role === 'admin';
   }
 
   getAccessToken(): string | null {

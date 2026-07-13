@@ -7,6 +7,14 @@ import {
   temApiKey,
   estimarDuracao,
 } from '@/lib/elevenLabs';
+import {
+  selecionarMelhorVoz,
+  obterConfigVoz,
+  salvarConfigVoz,
+  prepararTextoParaVoz,
+  esperarVozesCarregarem,
+  type VozConfig,
+} from '@/lib/vozTTS';
 
 export type AudioEngine = 'elevenlabs' | 'speech-api' | 'none';
 
@@ -20,6 +28,7 @@ export interface AudioState {
   volume: number;
   speed: number;
   isMuted: boolean;
+  vozConfig: VozConfig;
 }
 
 export interface AudioBookmark {
@@ -45,6 +54,7 @@ const DEFAULT_STATE: AudioState = {
   volume: 1,
   speed: 1,
   isMuted: false,
+  vozConfig: obterConfigVoz(),
 };
 
 export function useAudioNatural() {
@@ -156,27 +166,29 @@ export function useAudioNatural() {
 
     synth.cancel();
 
-    const utterance = new SpeechSynthesisUtterance(texto);
-    utterance.lang = 'pt-BR';
-    utterance.rate = state.speed;
-    utterance.volume = state.isMuted ? 0 : state.volume;
+    const config = state.vozConfig;
+    const textoLimpo = prepararTextoParaVoz(texto, config);
+    if (!textoLimpo) {
+      onEnd?.();
+      return;
+    }
 
     const voices = synth.getVoices();
-    const ptVoice =
-      voices.find((v) => /Microsoft\s+(Maria|Francisco|Heloisa)/i.test(v.name)) ||
-      voices.find((v) => /Google.*Portugu/i.test(v.name)) ||
-      voices.find((v) => /Google/i.test(v.name) && v.lang.startsWith('pt')) ||
-      voices.find((v) => v.lang === 'pt-BR' && v.localService === false) ||
-      voices.find((v) => v.lang.startsWith('pt')) ||
-      voices[0];
-    if (ptVoice) utterance.voice = ptVoice;
+    const melhorVoz = selecionarMelhorVoz(voices, config.preferGender);
 
-    const estimatedDuration = estimarDuracao(texto) / 1000;
+    const utterance = new SpeechSynthesisUtterance(textoLimpo);
+    if (melhorVoz) utterance.voice = melhorVoz;
+    utterance.lang = melhorVoz?.lang || 'pt-BR';
+    utterance.rate = Math.max(0.5, Math.min(2.0, config.rate * state.speed));
+    utterance.pitch = config.pitch;
+    utterance.volume = state.isMuted ? 0 : state.volume;
+
+    const estimatedDuration = estimarDuracao(textoLimpo) / 1000;
     let startTime = Date.now();
 
     if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
     progressIntervalRef.current = setInterval(() => {
-      const elapsed = (Date.now() - startTime) / 1000 * state.speed;
+      const elapsed = (Date.now() - startTime) / 1000 * (config.rate * state.speed);
       setState((prev) => ({
         ...prev,
         currentTime: elapsed,
@@ -220,9 +232,13 @@ export function useAudioNatural() {
         currentTime: 0,
       }));
 
-      if (temApiKey()) {
+      const config = state.vozConfig;
+      const usarElevenLabs =
+        (config.motor === 'elevenlabs' || config.motor === 'auto') && temApiKey();
+
+      if (usarElevenLabs) {
         try {
-          const audio = await gerarAudio(texto);
+          const audio = await gerarAudio(texto, { voiceId: config.vozElevenLabs });
           const url = await converterAudioParaUrl(audio);
           currentAudioUrlRef.current = url;
 
@@ -272,10 +288,18 @@ export function useAudioNatural() {
         } catch (err: unknown) {
           const message =
             err instanceof Error ? err.message : 'Erro desconhecido';
-          if (message === 'NO_API_KEY') {
-            // Fall through to Speech API
-          } else {
+          if (message !== 'NO_API_KEY') {
             console.warn('ElevenLabs failed, falling back to Speech API:', message);
+          }
+          if (config.motor === 'elevenlabs') {
+            setState((prev) => ({
+              ...prev,
+              isLoading: false,
+              error: message === 'NO_API_KEY'
+                ? 'ElevenLabs não configurado. Configure a API key.'
+                : `ElevenLabs falhou: ${message}`,
+            }));
+            return;
           }
         }
       }
@@ -288,7 +312,7 @@ export function useAudioNatural() {
         engine: 'speech-api',
       }));
     },
-    [state.speed, state.volume, state.isMuted]
+    [state.speed, state.volume, state.isMuted, state.vozConfig]
   );
 
   const pause = useCallback((): void => {
@@ -462,6 +486,44 @@ export function useAudioNatural() {
     []
   );
 
+  const atualizarVozConfig = useCallback((novaConfig: Partial<VozConfig>) => {
+    const merged = { ...state.vozConfig, ...novaConfig };
+    salvarConfigVoz(novaConfig);
+    setState((prev) => ({ ...prev, vozConfig: merged }));
+  }, [state.vozConfig]);
+
+  const testarVoz = useCallback(
+    async (voiceName?: string, textoTeste?: string) => {
+      const synth = synthRef.current;
+      if (!synth) return;
+      synth.cancel();
+
+      const voices = await esperarVozesCarregarem();
+      let voz: SpeechSynthesisVoice | null = null;
+      if (voiceName) {
+        voz = voices.find((v) => v.name === voiceName) || null;
+      }
+      if (!voz) {
+        voz = selecionarMelhorVoz(voices, state.vozConfig.preferGender);
+      }
+      if (!voz) return;
+
+      const fala = textoTeste || 'No princípio, criou Deus os céus e a terra. E a terra era sem forma e vazia.';
+      const utt = new SpeechSynthesisUtterance(fala);
+      utt.voice = voz;
+      utt.lang = voz.lang || 'pt-BR';
+      utt.rate = state.vozConfig.rate;
+      utt.pitch = state.vozConfig.pitch;
+      utt.volume = state.vozConfig.volume;
+      synth.speak(utt);
+    },
+    [state.vozConfig]
+  );
+
+  const pararTesteVoz = useCallback(() => {
+    synthRef.current?.cancel();
+  }, []);
+
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -527,5 +589,8 @@ export function useAudioNatural() {
     sleepTimer,
     setSleepTimerMinutes,
     downloadAudio,
+    atualizarVozConfig,
+    testarVoz,
+    pararTesteVoz,
   };
 }

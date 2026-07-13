@@ -13,7 +13,7 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get('redirect') || '/conta';
-  const { login, loginWithGoogle } = useAuth();
+  const { login, loginWithGoogle, loginWithApple } = useAuth();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [mostrarSenha, setMostrarSenha] = useState(false);
@@ -57,7 +57,7 @@ function LoginForm() {
     setCarregando(true);
     setErro('');
     try {
-      await loginWithGoogle();
+      await loginWithApple();
       router.push(redirectTo);
     } catch {
       setErro('Erro ao fazer login com Apple.');

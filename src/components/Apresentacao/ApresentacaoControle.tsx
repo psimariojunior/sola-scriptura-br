@@ -19,10 +19,11 @@ import {
   Copy,
   Check,
   RotateCcw,
+  ArrowLeft,
 } from 'lucide-react';
 import { useTelaCheia } from '@/lib/hooks/useTelaCheia';
 import { useAutoPlay } from '@/lib/hooks/useAutoPlay';
-import { ApresentacaoSync } from '@/lib/apresentacao/sync';
+import { ApresentacaoSync, buildDisplayUrl } from '@/lib/apresentacao/sync';
 import { nomeLivro, nomeTraducao, carregarCapitulo, VersiculoSimples } from '@/lib/apresentacao/versiculos';
 
 const TRAD_OPCOES = [
@@ -104,7 +105,7 @@ export default function ApresentacaoControle({ sync, onOpenQR, mode = 'floating'
   const jump = (n: number) => sync.navigateTo(state.livro, state.capitulo, n);
 
   const copyLink = async () => {
-    const url = `${window.location.origin}/p/${sync.getChannelId()}`;
+    const url = buildDisplayUrl(sync.getChannelId());
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);

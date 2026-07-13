@@ -241,7 +241,19 @@ export class ApresentacaoSync {
 }
 
 export function buildDisplayUrl(channelId: string): string {
-  if (typeof window === 'undefined') return `/p/${channelId}`;
+  const code = (channelId || '').toString().toUpperCase().trim();
+  if (typeof window === 'undefined') {
+    return `/p/${code}`;
+  }
   const origin = window.location.origin;
-  return `${origin}/p/${channelId.toUpperCase()}`;
+  if (!origin || origin === 'null') {
+    return `/p/${code}`;
+  }
+  return `${origin}/p/${code}`;
+}
+
+export function getChannelIdFromUrl(url: string): string | null {
+  if (!url) return null;
+  const match = url.match(/\/p\/([A-Z0-9]{6})/i);
+  return match ? match[1].toUpperCase() : null;
 }

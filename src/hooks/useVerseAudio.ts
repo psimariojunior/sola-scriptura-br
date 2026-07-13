@@ -1,55 +1,53 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import {
+  selecionarMelhorVoz,
+  obterConfigVoz,
+  prepararTextoParaVoz,
+  esperarVozesCarregarem,
+  type VozConfig,
+} from '@/lib/vozTTS';
 
 export function useVerseAudio() {
   const [playingVerse, setPlayingVerse] = useState<number | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const synthRef = useRef<SpeechSynthesis | null>(null);
-  const voicesLoadedRef = useRef(false);
   const bestVoiceRef = useRef<SpeechSynthesisVoice | null>(null);
+  const vozConfigRef = useRef<VozConfig>(obterConfigVoz());
 
-  // Load voices once and find the best one
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     synthRef.current = window.speechSynthesis;
+    vozConfigRef.current = obterConfigVoz();
 
-    const findBestVoice = () => {
+    const atualizarVoz = () => {
       if (!synthRef.current) return;
-      const allVoices = synthRef.current.getVoices();
-      if (allVoices.length === 0) {
-        // Try again after voices load
-        return;
+      const voices = synthRef.current.getVoices();
+      bestVoiceRef.current = selecionarMelhorVoz(voices, vozConfigRef.current.preferGender);
+    };
+
+    atualizarVoz();
+    esperarVozesCarregarem().then((voices) => {
+      bestVoiceRef.current = selecionarMelhorVoz(voices, vozConfigRef.current.preferGender);
+    });
+
+    if (synthRef.current) {
+      try {
+        synthRef.current.addEventListener('voiceschanged', atualizarVoz);
+      } catch {
+        // ignore
       }
-
-      voicesLoadedRef.current = true;
-      const ptVoices = allVoices.filter(v => v.lang.startsWith('pt'));
-
-      // Windows Microsoft voices are the most natural
-      bestVoiceRef.current =
-        ptVoices.find(v => /Microsoft\s+(Maria|Daniel|Antonio|Francisco|Heloisa|Julio|Leila)/i.test(v.name))
-        || ptVoices.find(v => v.name.includes('Google'))
-        || ptVoices.find(v => v.name.includes('Microsoft'))
-        || ptVoices.find(v => v.name.includes('Female') || v.name.includes('Male'))
-        || ptVoices.find(v => /brazil/i.test(v.name))
-        || ptVoices[0]
-        || null;
-    };
-
-    // Try immediately (voices may already be loaded)
-    findBestVoice();
-
-    // Listen for async voice loading (Chrome)
-    const onChanged = () => {
-      findBestVoice();
-    };
-    if (speechSynthesis.onvoiceschanged !== undefined) {
-      speechSynthesis.addEventListener('voiceschanged', onChanged);
     }
 
     return () => {
       synthRef.current?.cancel();
-      if (speechSynthesis.onvoiceschanged !== undefined) {
-        speechSynthesis.removeEventListener('voiceschanged', onChanged);
+      if (synthRef.current) {
+        try {
+          synthRef.current.removeEventListener('voiceschanged', atualizarVoz);
+        } catch {
+          // ignore
+        }
       }
     };
   }, []);
@@ -57,46 +55,38 @@ export function useVerseAudio() {
   const play = useCallback((verseNumber: number, text: string) => {
     if (!synthRef.current) return;
 
-    // Cancel any ongoing speech
     synthRef.current.cancel();
 
-    // Clean text for better natural reading flow
-    const cleanText = text
-      .replace(/([:;])/g, '$1 ')
-      .replace(/\.\.\./g, '… ')
-      .replace(/['']/g, '')
-      .replace(/\s+/g, ' ')
-      .trim();
+    const config = vozConfigRef.current;
+    const cleanText = prepararTextoParaVoz(text, config);
+    if (!cleanText) return;
 
     const utterance = new SpeechSynthesisUtterance(cleanText);
-    utterance.lang = 'pt-BR';
-    utterance.rate = 0.82;
-    utterance.pitch = 0.95;
-    utterance.volume = 1;
-
-    // Use best available voice
     if (bestVoiceRef.current) {
       utterance.voice = bestVoiceRef.current;
+      utterance.lang = bestVoiceRef.current.lang;
     } else {
-      // Fallback: try to find a voice at play time
-      const allVoices = synthRef.current.getVoices();
-      const ptVoice = allVoices.find(v => v.lang.startsWith('pt'));
-      if (ptVoice) utterance.voice = ptVoice;
+      utterance.lang = 'pt-BR';
     }
+    utterance.rate = Math.max(0.5, Math.min(2.0, config.rate));
+    utterance.pitch = config.pitch;
+    utterance.volume = 1;
 
+    utterance.onstart = () => {
+      setPlayingVerse(verseNumber);
+      setIsPlaying(true);
+    };
     utterance.onend = () => {
       setIsPlaying(false);
       setPlayingVerse(null);
     };
-
-    utterance.onerror = () => {
+    utterance.onerror = (e) => {
+      if (e.error === 'canceled') return;
       setIsPlaying(false);
       setPlayingVerse(null);
     };
 
     synthRef.current.speak(utterance);
-    setPlayingVerse(verseNumber);
-    setIsPlaying(true);
   }, []);
 
   const stop = useCallback(() => {
@@ -109,5 +99,5 @@ export function useVerseAudio() {
     return playingVerse === verseNumber && isPlaying;
   }, [playingVerse, isPlaying]);
 
-  return { play, stop, isVersePlaying, isPlaying, playingVerse };
+  return { play, stop, isVersePlaying, isPlaying, playingVerse, vozConfig: vozConfigRef.current };
 }

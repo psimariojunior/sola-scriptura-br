@@ -11,9 +11,22 @@ interface AuthContextType {
   cadastrar: (nome: string, email: string, senha: string) => Promise<Usuario>;
   logout: () => Promise<void>;
   loginWithGoogle: () => Promise<Usuario>;
+  loginWithApple: () => Promise<Usuario>;
+  recarregarSessao: () => void;
+  migrarContas: () => boolean;
+  diagnosticar: () => { temToken: boolean; temUsuario: boolean; totalUsers: number; temLegacy: boolean };
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
+
+function snapshot(): { usuario: Usuario | null; isAutenticado: boolean; isAdmin: boolean } {
+  const usuario = authService.getUsuario();
+  return {
+    usuario,
+    isAutenticado: authService.isAutenticado(),
+    isAdmin: authService.isAdmin(),
+  };
+}
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [usuario, setUsuario] = useState<Usuario | null>(null);
@@ -21,47 +34,77 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const user = authService.getUsuario();
-    if (user) {
-      setUsuario(user);
-      setIsAutenticado(true);
-      setIsAdmin(authService.isAdmin());
-    }
+    if (typeof window === 'undefined') return;
+    authService.migrarManualmente();
+    const snap = snapshot();
+    setUsuario(snap.usuario);
+    setIsAutenticado(snap.isAutenticado);
+    setIsAdmin(snap.isAdmin);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const unsub = authService.subscribe(() => {
+      const snap = snapshot();
+      setUsuario(snap.usuario);
+      setIsAutenticado(snap.isAutenticado);
+      setIsAdmin(snap.isAdmin);
+    });
+    return unsub;
   }, []);
 
   const login = useCallback(async (email: string, senha: string) => {
     const user = await authService.login(email, senha);
-    setUsuario(user);
-    setIsAutenticado(true);
-    setIsAdmin(authService.isAdmin());
     return user;
   }, []);
 
   const cadastrar = useCallback(async (nome: string, email: string, senha: string) => {
     const user = await authService.cadastrar(nome, email, senha);
-    setUsuario(user);
-    setIsAutenticado(true);
-    setIsAdmin(authService.isAdmin());
     return user;
   }, []);
 
   const logout = useCallback(async () => {
     await authService.logout();
-    setUsuario(null);
-    setIsAutenticado(false);
-    setIsAdmin(false);
   }, []);
 
   const loginWithGoogle = useCallback(async () => {
     const user = await authService.loginWithGoogle();
-    setUsuario(user);
-    setIsAutenticado(true);
-    setIsAdmin(authService.isAdmin());
     return user;
   }, []);
 
+  const loginWithApple = useCallback(async () => {
+    const user = await authService.loginWithApple();
+    return user;
+  }, []);
+
+  const recarregarSessao = useCallback(() => {
+    authService.recarregarSessao();
+  }, []);
+
+  const migrarContas = useCallback(() => {
+    return authService.migrarManualmente();
+  }, []);
+
+  const diagnosticar = useCallback(() => {
+    return authService.diagnosticarEstado();
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ usuario, isAutenticado, isAdmin, login, cadastrar, logout, loginWithGoogle }}>
+    <AuthContext.Provider
+      value={{
+        usuario,
+        isAutenticado,
+        isAdmin,
+        login,
+        cadastrar,
+        logout,
+        loginWithGoogle,
+        loginWithApple,
+        recarregarSessao,
+        migrarContas,
+        diagnosticar,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -78,6 +121,10 @@ export function useAuth(): AuthContextType {
       cadastrar: async () => { throw new Error('AuthProvider not mounted'); },
       logout: async () => {},
       loginWithGoogle: async () => { throw new Error('AuthProvider not mounted'); },
+      loginWithApple: async () => { throw new Error('AuthProvider not mounted'); },
+      recarregarSessao: () => {},
+      migrarContas: () => false,
+      diagnosticar: () => ({ temToken: false, temUsuario: false, totalUsers: 0, temLegacy: false }),
     };
   }
   return context;

@@ -12,6 +12,13 @@ import {
   obterAudioCapitulo,
   precarregarProximo,
 } from '@/lib/audioCache';
+import {
+  selecionarMelhorVoz,
+  obterConfigVoz,
+  prepararTextoParaVoz,
+  esperarVozesCarregarem,
+  type VozConfig,
+} from '@/lib/vozTTS';
 
 export interface VersiculoAudio {
   numero: number;
@@ -146,7 +153,11 @@ export function useAudioCapitulo(
         textoCompleto = verso.texto;
       }
 
-      if (temApiKey()) {
+      const config = obterConfigVoz();
+      const usarElevenLabs =
+        (config.motor === 'elevenlabs' || config.motor === 'auto') && temApiKey();
+
+      if (usarElevenLabs) {
         try {
           const cached = await obterAudioCapitulo(livro, capitulo);
 
@@ -161,7 +172,7 @@ export function useAudioCapitulo(
 
           setState((prev) => ({ ...prev, isLoading: true }));
 
-          const audio = await gerarAudio(chapterText);
+          const audio = await gerarAudio(chapterText, { voiceId: config.vozElevenLabs });
           await salvarAudioCapitulo(livro, capitulo, audio.audio, audio.mimeType);
 
           await playFromCache(audio.audio, audio.mimeType, index);
@@ -170,6 +181,10 @@ export function useAudioCapitulo(
           const message = err instanceof Error ? err.message : '';
           if (message !== 'NO_API_KEY') {
             console.warn('ElevenLabs failed for chapter:', message);
+          }
+          if (config.motor === 'elevenlabs') {
+            playVersoSpeechApi(textoCompleto, index);
+            return;
           }
         }
       }
@@ -285,19 +300,25 @@ export function useAudioCapitulo(
 
     synth.cancel();
 
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'pt-BR';
-    utterance.rate = speedRef.current;
-    utterance.volume = volumeRef.current;
+    const config: VozConfig = obterConfigVoz();
+    const textoLimpo = prepararTextoParaVoz(text, config);
+    if (!textoLimpo) return;
 
     const voices = synth.getVoices();
-    const ptVoice =
-      voices.find((v) => /Microsoft\s+(Maria|Daniel)/i.test(v.name)) ||
-      voices.find((v) => v.lang.startsWith('pt')) ||
-      voices[0];
-    if (ptVoice) utterance.voice = ptVoice;
+    const melhorVoz = selecionarMelhorVoz(voices, config.preferGender);
 
-    const estimatedDuration = estimarDuracao(text) / 1000;
+    const utterance = new SpeechSynthesisUtterance(textoLimpo);
+    if (melhorVoz) {
+      utterance.voice = melhorVoz;
+      utterance.lang = melhorVoz.lang;
+    } else {
+      utterance.lang = 'pt-BR';
+    }
+    utterance.rate = Math.max(0.5, Math.min(2.0, config.rate * speedRef.current));
+    utterance.pitch = config.pitch;
+    utterance.volume = volumeRef.current;
+
+    const estimatedDuration = estimarDuracao(textoLimpo) / 1000;
     startProgressTracking(estimatedDuration, 0);
 
     utterance.onend = () => {

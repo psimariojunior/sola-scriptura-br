@@ -6,6 +6,13 @@ const TOKEN_KEY = 'accessToken';
 const REFRESH_KEY = 'refreshToken';
 const USER_KEY = 'usuario';
 
+const LEGACY_KEYS = {
+  users: ['ssb_users_v1', 'sola_users', 'users', 'auth_users', 'ssb_accounts'],
+  token: ['accessToken', 'auth_token', 'ssb_token', 'token', 'jwt'],
+  refresh: ['refreshToken', 'refresh_token', 'ssb_refresh'],
+  user: ['usuario', 'user', 'currentUser', 'ssb_user', 'ssb_usuario'],
+};
+
 interface Usuario {
   id: string;
   nome: string;
@@ -19,27 +26,82 @@ interface AuthResponse {
   usuario: Usuario;
 }
 
+type StoredUser = Usuario & { senha?: string; password?: string; name?: string };
+
+function readJSON<T>(raw: string | null): T | null {
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as T;
+  } catch {
+    return null;
+  }
+}
+
+function normalizeEmail(email: string): string {
+  return (email || '').trim().toLowerCase();
+}
+
+function makeUserId(): string {
+  return `user_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function makeToken(prefix: string): string {
+  return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+}
+
+function readLegacyUsers(): StoredUser[] {
+  if (typeof window === 'undefined') return [];
+  for (const key of LEGACY_KEYS.users) {
+    const parsed = readJSON<StoredUser[] | { users: StoredUser[] }>(localStorage.getItem(key));
+    if (Array.isArray(parsed)) return parsed;
+    if (parsed && Array.isArray((parsed as { users: StoredUser[] }).users)) {
+      return (parsed as { users: StoredUser[] }).users;
+    }
+  }
+  return [];
+}
+
+function readLegacySession(): { token: string | null; refresh: string | null; usuario: Usuario | null } {
+  if (typeof window === 'undefined') return { token: null, refresh: null, usuario: null };
+  let token: string | null = null;
+  let refresh: string | null = null;
+  let usuario: Usuario | null = null;
+
+  for (const key of LEGACY_KEYS.token) {
+    const v = localStorage.getItem(key);
+    if (v) { token = v; break; }
+  }
+  for (const key of LEGACY_KEYS.refresh) {
+    const v = localStorage.getItem(key);
+    if (v) { refresh = v; break; }
+  }
+  for (const key of LEGACY_KEYS.user) {
+    const parsed = readJSON<Usuario>(localStorage.getItem(key));
+    if (parsed && parsed.email) { usuario = parsed; break; }
+  }
+
+  return { token, refresh, usuario };
+}
+
+function aplicarRole(usuario: Usuario): Usuario {
+  if (!usuario) return usuario;
+  if (ADMIN_EMAILS.includes(usuario.email)) {
+    return { ...usuario, role: 'admin' };
+  }
+  return { ...usuario, role: usuario.role || 'user' };
+}
+
 class AuthService {
   private static instance: AuthService;
   private accessToken: string | null = null;
   private refreshToken: string | null = null;
   private usuario: Usuario | null = null;
+  private listeners: Set<() => void> = new Set();
+  private migrated = false;
 
   private constructor() {
     if (typeof window !== 'undefined') {
-      this.accessToken = localStorage.getItem(TOKEN_KEY);
-      this.refreshToken = localStorage.getItem(REFRESH_KEY);
-      const usuarioStr = localStorage.getItem(USER_KEY);
-      if (usuarioStr) {
-        try {
-          this.usuario = JSON.parse(usuarioStr);
-          if (this.usuario && ADMIN_EMAILS.includes(this.usuario.email)) {
-            this.usuario.role = 'admin';
-          }
-        } catch {
-          this.usuario = null;
-        }
-      }
+      this.loadFromStorage();
     }
   }
 
@@ -50,57 +112,163 @@ class AuthService {
     return AuthService.instance;
   }
 
-  private getUsers(): Array<Usuario & { senha: string }> {
-    if (typeof window === 'undefined') return [];
-    return JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
+  private loadFromStorage(): void {
+    if (typeof window === 'undefined') return;
+
+    this.migrarContasAntigas();
+
+    this.accessToken = localStorage.getItem(TOKEN_KEY);
+    this.refreshToken = localStorage.getItem(REFRESH_KEY);
+    const usuarioStr = localStorage.getItem(USER_KEY);
+    if (usuarioStr) {
+      const parsed = readJSON<Usuario>(usuarioStr);
+      if (parsed && parsed.email) {
+        this.usuario = aplicarRole(parsed);
+      }
+    }
   }
 
-  private saveUsers(users: Array<Usuario & { senha: string }>): void {
+  private getUsers(): StoredUser[] {
+    if (typeof window === 'undefined') return [];
+    const parsed = readJSON<StoredUser[]>(localStorage.getItem(USERS_KEY));
+    return Array.isArray(parsed) ? parsed : [];
+  }
+
+  private saveUsers(users: StoredUser[]): void {
+    if (typeof window === 'undefined') return;
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
   }
 
+  private migrarContasAntigas(): void {
+    if (typeof window === 'undefined') return;
+    if (this.migrated) return;
+    this.migrated = true;
+
+    try {
+      const currentUsers = this.getUsers();
+      const legacyUsers = readLegacyUsers();
+
+      if (legacyUsers.length > 0) {
+        const emailsAtuais = new Set(currentUsers.map((u) => normalizeEmail(u.email)));
+        const usersMigrados: StoredUser[] = [...currentUsers];
+
+        for (const legacy of legacyUsers) {
+          if (!legacy || !legacy.email) continue;
+          const emailNorm = normalizeEmail(legacy.email);
+          if (emailsAtuais.has(emailNorm)) continue;
+          const senha = legacy.senha || legacy.password || '';
+          const id = legacy.id || makeUserId();
+          usersMigrados.push({
+            id,
+            nome: legacy.nome || legacy.name || legacy.email.split('@')[0],
+            email: legacy.email,
+            role: legacy.role || (ADMIN_EMAILS.includes(legacy.email) ? 'admin' : 'user'),
+            senha,
+          });
+          emailsAtuais.add(emailNorm);
+        }
+
+        if (usersMigrados.length > currentUsers.length) {
+          this.saveUsers(usersMigrados);
+        }
+      }
+
+      const hasCurrentSession = !!localStorage.getItem(TOKEN_KEY) && !!localStorage.getItem(USER_KEY);
+      if (!hasCurrentSession) {
+        const { token, refresh, usuario } = readLegacySession();
+        if (token && usuario && usuario.email) {
+          this.accessToken = token;
+          this.refreshToken = refresh;
+          this.usuario = aplicarRole(usuario);
+          this.setSession({
+            accessToken: token,
+            refreshToken: refresh || makeToken('refresh'),
+            usuario: this.usuario,
+          });
+        }
+      }
+
+      for (const key of LEGACY_KEYS.users) {
+        if (key !== USERS_KEY) localStorage.removeItem(key);
+      }
+    } catch {
+      // Falha silenciosa - migração não pode quebrar o app
+    }
+  }
+
   async cadastrar(nome: string, email: string, senha: string): Promise<Usuario> {
+    if (typeof window === 'undefined') {
+      throw new Error('Cadastro indisponível no servidor');
+    }
+
+    const emailNorm = normalizeEmail(email);
+    const nomeLimpo = (nome || '').trim();
+    const senhaLimpa = senha || '';
+
+    if (!emailNorm) throw new Error('Email é obrigatório');
+    if (!nomeLimpo) throw new Error('Nome é obrigatório');
+    if (senhaLimpa.length < 6) throw new Error('A senha deve ter pelo menos 6 caracteres');
+
+    this.migrarContasAntigas();
+
     const existingUsers = this.getUsers();
-    if (existingUsers.find((u) => u.email === email)) {
+    if (existingUsers.find((u) => normalizeEmail(u.email) === emailNorm)) {
       throw new Error('Este email já está cadastrado');
     }
 
-    const usuario: Usuario = {
-      id: `user_${Date.now()}`,
-      nome,
+    const novoUsuario: Usuario = {
+      id: makeUserId(),
+      nome: nomeLimpo,
       email,
       role: ADMIN_EMAILS.includes(email) ? 'admin' : 'user',
     };
 
-    existingUsers.push({ ...usuario, senha });
+    const stored: StoredUser = { ...novoUsuario, senha: senhaLimpa };
+    existingUsers.push(stored);
     this.saveUsers(existingUsers);
 
     this.setSession({
-      accessToken: `token_${Date.now()}`,
-      refreshToken: `refresh_${Date.now()}`,
-      usuario,
+      accessToken: makeToken('token'),
+      refreshToken: makeToken('refresh'),
+      usuario: novoUsuario,
     });
 
-    return usuario;
+    return novoUsuario;
   }
 
   async login(email: string, senha: string): Promise<Usuario> {
+    if (typeof window === 'undefined') {
+      throw new Error('Login indisponível no servidor');
+    }
+
+    const emailNorm = normalizeEmail(email);
+    const senhaLimpa = senha || '';
+
+    this.migrarContasAntigas();
+
     const existingUsers = this.getUsers();
-    const found = existingUsers.find((u) => u.email === email && u.senha === senha);
+    const found = existingUsers.find(
+      (u) => normalizeEmail(u.email) === emailNorm && (u.senha || u.password) === senhaLimpa
+    );
+
     if (!found) {
+      const existeEmail = existingUsers.find((u) => normalizeEmail(u.email) === emailNorm);
+      if (!existeEmail) {
+        throw new Error('Email ou senha incorretos');
+      }
       throw new Error('Email ou senha incorretos');
     }
 
-    const usuario: Usuario = {
+    const usuario: Usuario = aplicarRole({
       id: found.id,
       nome: found.nome,
       email: found.email,
-      role: found.role || (ADMIN_EMAILS.includes(email) ? 'admin' : 'user'),
-    };
+      role: found.role,
+    });
 
     this.setSession({
-      accessToken: `token_${Date.now()}`,
-      refreshToken: `refresh_${Date.now()}`,
+      accessToken: makeToken('token'),
+      refreshToken: makeToken('refresh'),
       usuario,
     });
 
@@ -108,30 +276,42 @@ class AuthService {
   }
 
   async loginWithGoogle(): Promise<Usuario> {
-    const usuario: Usuario = {
+    if (typeof window === 'undefined') {
+      throw new Error('Login indisponível no servidor');
+    }
+
+    const usuario: Usuario = aplicarRole({
       id: `google_${Date.now()}`,
       nome: 'Usuário Google',
       email: `usuario${Date.now()}@gmail.com`,
-    };
+    });
+
     this.setSession({
-      accessToken: `g_token_${Date.now()}`,
-      refreshToken: `g_refresh_${Date.now()}`,
+      accessToken: makeToken('g_token'),
+      refreshToken: makeToken('g_refresh'),
       usuario,
     });
+
     return usuario;
   }
 
   async loginWithApple(): Promise<Usuario> {
-    const usuario: Usuario = {
+    if (typeof window === 'undefined') {
+      throw new Error('Login indisponível no servidor');
+    }
+
+    const usuario: Usuario = aplicarRole({
       id: `apple_${Date.now()}`,
       nome: 'Usuário Apple',
       email: `usuario${Date.now()}@icloud.com`,
-    };
+    });
+
     this.setSession({
-      accessToken: `a_token_${Date.now()}`,
-      refreshToken: `a_refresh_${Date.now()}`,
+      accessToken: makeToken('a_token'),
+      refreshToken: makeToken('a_refresh'),
       usuario,
     });
+
     return usuario;
   }
 
@@ -140,21 +320,26 @@ class AuthService {
   }
 
   private setSession(data: AuthResponse): void {
+    const usuario = aplicarRole(data.usuario);
+
     this.accessToken = data.accessToken;
     this.refreshToken = data.refreshToken;
-    this.usuario = data.usuario;
-
-    if (this.usuario && ADMIN_EMAILS.includes(this.usuario.email)) {
-      this.usuario.role = 'admin';
-    }
+    this.usuario = usuario;
 
     if (typeof window !== 'undefined') {
-      localStorage.setItem(TOKEN_KEY, data.accessToken);
-      localStorage.setItem(REFRESH_KEY, data.refreshToken);
-      localStorage.setItem(USER_KEY, JSON.stringify(this.usuario));
-      document.cookie = `ssb_token=${data.accessToken}; path=/; max-age=2592000; SameSite=Lax`;
-      document.cookie = `ssb_usuario=${encodeURIComponent(JSON.stringify(this.usuario))}; path=/; max-age=2592000; SameSite=Lax`;
+      try {
+        localStorage.setItem(TOKEN_KEY, data.accessToken);
+        localStorage.setItem(REFRESH_KEY, data.refreshToken);
+        localStorage.setItem(USER_KEY, JSON.stringify(usuario));
+        const expirar = 60 * 60 * 24 * 30;
+        document.cookie = `ssb_token=${data.accessToken}; path=/; max-age=${expirar}; SameSite=Lax`;
+        document.cookie = `ssb_usuario=${encodeURIComponent(JSON.stringify(usuario))}; path=/; max-age=${expirar}; SameSite=Lax`;
+      } catch {
+        // localStorage indisponível - sessão apenas em memória
+      }
     }
+
+    this.notifyListeners();
   }
 
   private clearSession(): void {
@@ -163,11 +348,30 @@ class AuthService {
     this.usuario = null;
 
     if (typeof window !== 'undefined') {
-      localStorage.removeItem(TOKEN_KEY);
-      localStorage.removeItem(REFRESH_KEY);
-      localStorage.removeItem(USER_KEY);
-      document.cookie = 'ssb_token=; path=/; max-age=0';
-      document.cookie = 'ssb_usuario=; path=/; max-age=0';
+      try {
+        localStorage.removeItem(TOKEN_KEY);
+        localStorage.removeItem(REFRESH_KEY);
+        localStorage.removeItem(USER_KEY);
+        document.cookie = 'ssb_token=; path=/; max-age=0';
+        document.cookie = 'ssb_usuario=; path=/; max-age=0';
+      } catch {
+        // ignore
+      }
+    }
+
+    this.notifyListeners();
+  }
+
+  subscribe(callback: () => void): () => void {
+    this.listeners.add(callback);
+    return () => {
+      this.listeners.delete(callback);
+    };
+  }
+
+  private notifyListeners(): void {
+    for (const cb of this.listeners) {
+      try { cb(); } catch { /* ignore */ }
     }
   }
 
@@ -186,6 +390,59 @@ class AuthService {
 
   getAccessToken(): string | null {
     return this.accessToken;
+  }
+
+  getRefreshToken(): string | null {
+    return this.refreshToken;
+  }
+
+  recarregarSessao(): void {
+    if (typeof window === 'undefined') return;
+    this.migrarContasAntigas();
+    this.accessToken = localStorage.getItem(TOKEN_KEY);
+    this.refreshToken = localStorage.getItem(REFRESH_KEY);
+    const usuarioStr = localStorage.getItem(USER_KEY);
+    if (usuarioStr) {
+      const parsed = readJSON<Usuario>(usuarioStr);
+      this.usuario = parsed && parsed.email ? aplicarRole(parsed) : null;
+    } else {
+      this.usuario = null;
+    }
+    this.notifyListeners();
+  }
+
+  migrarManualmente(): boolean {
+    if (typeof window === 'undefined') return false;
+    this.migrated = false;
+    this.migrarContasAntigas();
+    this.recarregarSessao();
+    return this.isAutenticado();
+  }
+
+  listarUsuariosCadastrados(): number {
+    return this.getUsers().length;
+  }
+
+  diagnosticarEstado(): {
+    temToken: boolean;
+    temUsuario: boolean;
+    totalUsers: number;
+    temLegacy: boolean;
+  } {
+    if (typeof window === 'undefined') {
+      return { temToken: false, temUsuario: false, totalUsers: 0, temLegacy: false };
+    }
+    const totalUsers = this.getUsers().length;
+    const temLegacy =
+      LEGACY_KEYS.users.some((k) => !!localStorage.getItem(k) && k !== USERS_KEY) ||
+      LEGACY_KEYS.token.some((k) => !!localStorage.getItem(k) && k !== TOKEN_KEY) ||
+      LEGACY_KEYS.user.some((k) => !!localStorage.getItem(k) && k !== USER_KEY);
+    return {
+      temToken: !!localStorage.getItem(TOKEN_KEY),
+      temUsuario: !!localStorage.getItem(USER_KEY),
+      totalUsers,
+      temLegacy,
+    };
   }
 }
 

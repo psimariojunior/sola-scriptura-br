@@ -23,8 +23,9 @@ dist/
 *.tsbuildinfo
 next-env.d.ts
 
-# test
+# test artifacts
 test-results/
+playwright-report/
 coverage/
 
 # legacy
@@ -32,4 +33,3 @@ sola-scriptura/
 sola-scriptura-new/
 frontend/
 backend/node_modules/
-e2e/

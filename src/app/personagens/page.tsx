@@ -7,6 +7,7 @@ import { PERSONAGENS_AVANCADOS, type PersonagemAvancado } from '@/data/biblia/pe
 import ScrollReveal from '@/components/ScrollReveal';
 import PainelDoVersiculo from '@/components/PainelDoVersiculo';
 import { Users, Search, X, BookOpen, MapPin, Shield, GitBranch, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 const periodosUnicos = [...new Set(
   PERSONAGENS_AVANCADOS.flatMap(p => p.periodos ?? [])
@@ -64,8 +65,16 @@ export default function PersonagensPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
+      <main id="main-content" className="pt-24 pb-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
+          <div className="mb-6">
+            <Breadcrumbs
+              items={[
+                { label: 'Início', href: '/' },
+                { label: 'Personagens' },
+              ]}
+            />
+          </div>
           {/* Hero */}
           <ScrollReveal>
             <div className="text-center mb-12">

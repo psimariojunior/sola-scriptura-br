@@ -8,7 +8,7 @@ import type { CapituloComparado } from '@/data/biblia';
 import {
   BookOpen, ChevronRight, ChevronLeft, Columns2, LayoutList, AlignJustify,
   Menu, Search, Minus, Plus, X, Heart, StickyNote, Share2, Copy, Check,
-  History, Settings, Eye, EyeOff, Download, BookMarked, GraduationCap, Brain, Palette, FileText, Music
+  History, Settings, Eye, EyeOff, Download, BookMarked, GraduationCap, Brain, Palette, FileText, Music, Play
 } from 'lucide-react';
 import { toggleFavorito, obterMarca, setAnotacao as salvarAnotacao } from '@/lib/estudos';
 import { useEstudos } from '@/components/EstudosProvider';
@@ -34,6 +34,8 @@ import OfflineBanner from '@/components/OfflineBanner';
 import PainelDoVersiculo from '@/components/PainelDoVersiculo';
 import { getTiposRecursoDisponiveis } from '@/data/biblia/versiculoRecursos';
 import { useNotas } from '@/hooks/useNotas';
+import ApresentacaoModal from '@/components/Apresentacao/ApresentacaoModal';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 const PainelStrong = lazy(() => import('@/components/PainelStrong'));
 const PainelNotas = lazy(() => import('@/components/PainelNotas'));
@@ -254,6 +256,7 @@ export default function BibliaPage() {
   const [notaAtiva, setNotaAtiva] = useState<import('@/components/NotaEditor').Nota | null>(null);
   const { notas, criarNota, salvarNota: salvarNotaHook, excluirNota } = useNotas();
   const [mostrarNarracao, setMostrarNarracao] = useState(false);
+  const [mostrarApresentacao, setMostrarApresentacao] = useState(false);
 
   const livro = TODOS_LIVROS[livroIdx];
   const chaveDramatica = `${livro.abreviacao}-${capituloIdx + 1}`;
@@ -441,7 +444,15 @@ export default function BibliaPage() {
       <Header />
       <OfflineBanner />
       <main id="main-content" className="pt-16">
-        <div className="flex h-[calc(100vh-4rem)]">
+        <div className="px-4 sm:px-6 py-2.5 bg-[var(--card-bg)]/60 border-b border-[var(--border)]/30 backdrop-blur-sm">
+          <Breadcrumbs
+            items={[
+              { label: 'Início', href: '/' },
+              { label: 'Bíblia' },
+            ]}
+          />
+        </div>
+        <div className="flex h-[calc(100vh-7rem)]">
           {/* Sidebar */}
           <aside className={`${sidebarOpen ? 'w-64' : 'w-0'} hidden lg:block border-r border-[var(--border)] bg-[var(--card-bg)] transition-all duration-300 overflow-hidden shrink-0`}>
             <div className="p-4 h-full flex flex-col">
@@ -731,7 +742,7 @@ export default function BibliaPage() {
                       ) : (
                         <>
                           {!readingMode && data[0]?.versiculos && data[0].versiculos.length > 0 && (
-                            <div className="mb-6">
+                            <div className="mb-6 flex flex-wrap items-center gap-2">
                               <motion.button
                                 onClick={() => {
                                   if (capituloAudio.state.isPlaying || capituloAudio.state.isPaused) {
@@ -769,6 +780,17 @@ export default function BibliaPage() {
                                   : capituloAudio.state.isPaused
                                   ? 'Pausado'
                                   : 'Ouvir Capítulo'}
+                              </motion.button>
+
+                              <motion.button
+                                onClick={() => setMostrarApresentacao(true)}
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.97 }}
+                                className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-gradient-to-br from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:from-amber-400 hover:to-amber-500"
+                                aria-label="Abrir modo apresentação"
+                              >
+                                <Play className="w-4 h-4" fill="currentColor" />
+                                Apresentar
                               </motion.button>
                             </div>
                           )}
@@ -1491,6 +1513,15 @@ export default function BibliaPage() {
           </motion.button>
         </div>
       </div>
+
+      <ApresentacaoModal
+        open={mostrarApresentacao}
+        onClose={() => setMostrarApresentacao(false)}
+        livro={livro.abreviacao}
+        capitulo={capituloIdx + 1}
+        versiculo={1}
+        translation={selectedTrads[0] || 'arc'}
+      />
     </div>
   );
 }

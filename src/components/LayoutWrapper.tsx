@@ -6,6 +6,9 @@ import { EstudosProvider } from '@/components/EstudosProvider';
 import { AuthProvider } from '@/contexts/AuthContext';
 import PageTransition from '@/components/PageTransition';
 import BibleSplash from '@/components/BibleSplash';
+import TopProgressBar from '@/components/TopProgressBar';
+import BackToTop from '@/components/BackToTop';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { useMicroInteracoes } from '@/hooks/useMicroInteracoes';
 import { preloadRoute } from '@/lib/performance';
@@ -40,12 +43,16 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
       <AuthProvider>
         <ServiceWorkerRegistration />
         <AnalyticsAndPerformance />
-        <EstudosProvider>
-          <BibleSplash />
-          <PageTransition>
-            {children}
-          </PageTransition>
-        </EstudosProvider>
+        <TooltipProvider delayDuration={300}>
+          <EstudosProvider>
+            <TopProgressBar />
+            <BibleSplash />
+            <PageTransition>
+              {children}
+            </PageTransition>
+            <BackToTop />
+          </EstudosProvider>
+        </TooltipProvider>
       </AuthProvider>
     </ThemeProvider>
   );

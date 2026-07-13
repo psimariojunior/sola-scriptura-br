@@ -1,14 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Menu, X, BookOpen, Search, Sun, Moon, User, LogOut, Languages, Stars, BookMarked, Command, Settings } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import { BuscaGlobal } from '@/components/BuscaGlobal';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -93,6 +94,28 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (latest > previous && latest > 120) {
+      setHidden(true);
+    } else if (latest < previous) {
+      setHidden(false);
+    }
+  });
+
+  const [isRouteLoading, setIsRouteLoading] = useState(false);
+  const prevPathnameRef = useRef(pathname);
+  useEffect(() => {
+    if (prevPathnameRef.current !== pathname) {
+      prevPathnameRef.current = pathname;
+      setIsRouteLoading(true);
+      const timeout = setTimeout(() => setIsRouteLoading(false), 700);
+      return () => clearTimeout(timeout);
+    }
+  }, [pathname]);
+
   useEffect(() => {
     if (open) {
       document.body.style.overflow = 'hidden';
@@ -114,11 +137,33 @@ export function Header() {
   return (
     <>
       <BuscaGlobal open={buscaOpen} onOpenChange={setBuscaOpen} />
-      <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-background/95 backdrop-blur-xl border-b border-border/40 shadow-[0_1px_3px_rgba(0,0,0,0.05)]'
-          : 'bg-background/60 backdrop-blur-xl border-b border-transparent'
-      }`}>
+      <motion.header
+        animate={{ y: hidden ? '-100%' : '0%' }}
+        transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+          scrolled
+            ? 'bg-background/95 backdrop-blur-xl border-b border-border/40 shadow-[0_1px_3px_rgba(0,0,0,0.05)]'
+            : 'bg-background/60 backdrop-blur-xl border-b border-transparent'
+        }`}
+      >
+        <AnimatePresence>
+          {isRouteLoading && (
+            <motion.div
+              className="absolute bottom-0 left-0 right-0 h-[1.5px] overflow-hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              aria-hidden="true"
+            >
+              <motion.div
+                className="h-full w-1/3 bg-gradient-to-r from-transparent via-primary to-transparent"
+                animate={{ x: ['-100%', '400%'] }}
+                transition={{ duration: 0.9, ease: 'easeInOut', repeat: Infinity }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5 group" aria-label="Sola Scriptura — Página inicial">
             <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-300 group-hover:scale-110">
@@ -180,14 +225,20 @@ export function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-2">
-            <button
-              onClick={toggleIdioma}
-              className="px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-border hover:bg-muted/50 transition-all duration-300 uppercase tracking-wider"
-              title={idioma === 'pt' ? 'Switch to English' : 'Mudar para Português'}
-              aria-label={idioma === 'pt' ? 'Mudar idioma para inglês' : 'Change language to Portuguese'}
-            >
-              {idioma === 'pt' ? 'EN' : 'PT'}
-            </button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={toggleIdioma}
+                  className="px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-border hover:bg-muted/50 transition-all duration-300 uppercase tracking-wider"
+                  aria-label={idioma === 'pt' ? 'Mudar idioma para inglês' : 'Mudar idioma para português'}
+                >
+                  {idioma === 'pt' ? 'EN' : 'PT'}
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{idioma === 'pt' ? 'Mudar para Inglês' : 'Switch to Portuguese'}</p>
+              </TooltipContent>
+            </Tooltip>
 
             {isAdmin && (
               <Link
@@ -200,107 +251,148 @@ export function Header() {
             )}
 
             {isAutenticado ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-muted/50 transition-all duration-300">
-                    <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center text-sm font-semibold text-primary">
-                      {userInitial}
-                    </div>
-                    <span className="text-sm font-medium max-w-[120px] truncate">{usuario?.nome}</span>
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuLabel>
-                    <div className="flex flex-col">
-                      <span className="font-medium">{usuario?.nome}</span>
-                      <span className="text-xs text-muted-foreground font-normal">{usuario?.email}</span>
-                    </div>
-                  </DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild>
-                    <Link href="/conta" className="flex items-center gap-2 cursor-pointer">
-                      <User className="w-4 h-4" />
-                      Minha Conta
-                    </Link>
-                  </DropdownMenuItem>
-                  {isAdmin && (
-                    <DropdownMenuItem asChild>
-                      <Link href="/admin" className="flex items-center gap-2 cursor-pointer">
-                        <Settings className="w-4 h-4" />
-                        Painel Admin
-                      </Link>
-                    </DropdownMenuItem>
-                  )}
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout} className="flex items-center gap-2 cursor-pointer text-destructive focus:text-destructive">
-                    <LogOut className="w-4 h-4" />
-                    Sair
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-muted/50 transition-all duration-300">
+                        <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center text-sm font-semibold text-primary">
+                          {userInitial}
+                        </div>
+                        <span className="text-sm font-medium max-w-[120px] truncate">{usuario?.nome}</span>
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-56">
+                      <DropdownMenuLabel>
+                        <div className="flex flex-col">
+                          <span className="font-medium">{usuario?.nome}</span>
+                          <span className="text-xs text-muted-foreground font-normal">{usuario?.email}</span>
+                        </div>
+                      </DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem asChild>
+                        <Link href="/conta" className="flex items-center gap-2 cursor-pointer">
+                          <User className="w-4 h-4" />
+                          Minha Conta
+                        </Link>
+                      </DropdownMenuItem>
+                      {isAdmin && (
+                        <DropdownMenuItem asChild>
+                          <Link href="/admin" className="flex items-center gap-2 cursor-pointer">
+                            <Settings className="w-4 h-4" />
+                            Painel Admin
+                          </Link>
+                        </DropdownMenuItem>
+                      )}
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={handleLogout} className="flex items-center gap-2 cursor-pointer text-destructive focus:text-destructive">
+                        <LogOut className="w-4 h-4" />
+                        Sair
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Minha conta</p>
+                </TooltipContent>
+              </Tooltip>
             ) : (
-              <Link
-                href="/auth/login"
-                className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
-              >
-                <User className="w-4 h-4" />
-                <span>Entrar</span>
-              </Link>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    href="/auth/login"
+                    className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
+                  >
+                    <User className="w-4 h-4" />
+                    <span>Entrar</span>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Entrar na conta</p>
+                </TooltipContent>
+              </Tooltip>
             )}
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button
-                  className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
-                  aria-label="Temas"
-                >
-                  {temaIcons[tema] || <Moon className="w-4 h-4" />}
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-44">
-                <DropdownMenuLabel>Temas</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                {temasDisponiveis.map((t) => (
-                  <DropdownMenuItem
-                    key={t.nome}
-                    onClick={() => setTema(t.nome)}
-                    className={tema === t.nome ? 'text-primary bg-primary/10 font-medium' : ''}
-                  >
-                    <span className="mr-2">{temaIcons[t.nome]}</span>
-                    {t.label}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
+                      aria-label="Temas"
+                    >
+                      {temaIcons[tema] || <Moon className="w-4 h-4" />}
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-44">
+                    <DropdownMenuLabel>Temas</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    {temasDisponiveis.map((t) => (
+                      <DropdownMenuItem
+                        key={t.nome}
+                        onClick={() => setTema(t.nome)}
+                        className={tema === t.nome ? 'text-primary bg-primary/10 font-medium' : ''}
+                      >
+                        <span className="mr-2">{temaIcons[t.nome]}</span>
+                        {t.label}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Tema: {temasDisponiveis.find(t => t.nome === tema)?.label}</p>
+              </TooltipContent>
+            </Tooltip>
 
-            <button
-              onClick={() => setBuscaOpen(true)}
-              className="flex items-center gap-1.5 p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300 hover:scale-110"
-              title="Buscar (Ctrl+K)"
-              aria-label="Buscar versículos e conteúdo"
-            >
-              <Search className="w-4 h-4" />
-              <kbd className="hidden xl:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] font-mono text-muted-foreground/70 border border-border/40 rounded bg-muted/30">
-                <Command className="w-2.5 h-2.5" />K
-              </kbd>
-            </button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={() => setBuscaOpen(true)}
+                  className="flex items-center gap-1.5 p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300 hover:scale-110"
+                  aria-label="Buscar versículos e conteúdo"
+                >
+                  <Search className="w-4 h-4" />
+                  <kbd className="hidden xl:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] font-mono text-muted-foreground/70 border border-border/40 rounded bg-muted/30">
+                    <Command className="w-2.5 h-2.5" />K
+                  </kbd>
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Buscar (Ctrl+K)</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
 
           <div className="flex lg:hidden items-center gap-1">
-            <button
-              onClick={toggleIdioma}
-              className="px-3 py-2 min-h-[44px] text-xs font-semibold rounded-lg border border-border hover:bg-muted/50 transition-all duration-300 uppercase tracking-wider"
-              aria-label={idioma === 'pt' ? 'Mudar idioma para inglês' : 'Mudar idioma para português'}
-            >
-              {idioma === 'pt' ? 'EN' : 'PT'}
-            </button>
-            <button
-              onClick={() => setBuscaOpen(true)}
-              className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-muted/50 rounded-lg transition-all duration-300"
-              aria-label="Buscar"
-            >
-              <Search className="w-5 h-5" />
-            </button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={toggleIdioma}
+                  className="px-3 py-2 min-h-[44px] text-xs font-semibold rounded-lg border border-border hover:bg-muted/50 transition-all duration-300 uppercase tracking-wider"
+                  aria-label={idioma === 'pt' ? 'Mudar idioma para inglês' : 'Mudar idioma para português'}
+                >
+                  {idioma === 'pt' ? 'EN' : 'PT'}
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{idioma === 'pt' ? 'Mudar para Inglês' : 'Switch to Portuguese'}</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={() => setBuscaOpen(true)}
+                  className="p-2.5 min-h-[44px] min-w-[44px] hover:bg-muted/50 rounded-lg transition-all duration-300"
+                  aria-label="Buscar"
+                >
+                  <Search className="w-5 h-5" />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Buscar (Ctrl+K)</p>
+              </TooltipContent>
+            </Tooltip>
             {isAutenticado && (
               <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center text-sm font-semibold text-primary mr-1">
                 {userInitial}
@@ -466,7 +558,7 @@ export function Header() {
             </>
           )}
         </AnimatePresence>
-      </header>
+      </motion.header>
     </>
   );
 }

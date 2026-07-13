@@ -9,6 +9,7 @@ import { listarMarcas, removerMarca, toggleFavorito, type MarcaBiblia } from '@/
 import { livroPorAbreviacao } from '@/data/biblia';
 import ScrollReveal from '@/components/ScrollReveal';
 import { exportToJson, exportToTxt, exportToCsv } from '@/lib/exportarEstudos';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export default function EstudosPage() {
   const [marcas, setMarcas] = useState<MarcaBiblia[]>([]);
@@ -39,8 +40,16 @@ export default function EstudosPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-20 pb-16 px-6">
+      <main id="main-content" className="pt-20 pb-16 px-6">
         <div className="max-w-4xl mx-auto">
+          <div className="mb-6">
+            <Breadcrumbs
+              items={[
+                { label: 'Início', href: '/' },
+                { label: 'Estudos' },
+              ]}
+            />
+          </div>
           {/* Header */}
           <ScrollReveal>
             <div className="mb-10">

@@ -37,41 +37,56 @@ export const metadata: Metadata = {
     'Sola Scriptura', 'inteligência artificial', 'estudo bíblico com IA',
     'bíblia em português', 'hermenêutica', 'crítica textual',
   ],
-  authors: [{ name: 'Sola Scriptura BR' }],
+  authors: [{ name: 'Sola Scriptura BR', url: 'https://sola-scriptura-two.vercel.app' }],
   creator: 'Sola Scriptura BR',
   publisher: 'Sola Scriptura BR',
+  applicationName: 'Sola Scriptura BR',
+  category: 'Education',
+  classification: 'Educational',
   metadataBase: new URL('https://sola-scriptura-two.vercel.app'),
   alternates: {
     canonical: 'https://sola-scriptura-two.vercel.app',
+    languages: {
+      'pt-BR': 'https://sola-scriptura-two.vercel.app',
+      'en-US': 'https://sola-scriptura-two.vercel.app/en',
+    },
   },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
     url: 'https://sola-scriptura-two.vercel.app',
     siteName: 'Sola Scriptura BR',
-    title: 'Sola Scriptura BR — Estudo Bíblico Acadêmico com IA',
+    title: 'Sola Scriptura BR — Toda a biblioteca teológica',
     description:
       'Bíblia em 6 traduções, Grego e Hebraico com léxico Strong, Exegese automática com IA, Teologia Sistemática e ferramentas avançadas de pesquisa bíblica.',
+    countryName: 'Brazil',
+    emails: ['contato@solascriptura.app'],
     images: [
       {
-        url: '/og-image.png',
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Sola Scriptura BR — Estudo Bíblico Acadêmico',
+        alt: 'Sola Scriptura BR — Toda a biblioteca teológica',
+        type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sola Scriptura BR — Estudo Bíblico Acadêmico com IA',
+    site: '@solascriptura_br',
+    creator: '@solascriptura_br',
+    title: 'Sola Scriptura BR — Toda a biblioteca teológica',
     description:
       'Bíblia em 6 traduções, Grego e Hebraico, Exegese com IA, Teologia e ferramentas avançadas de pesquisa bíblica.',
-    images: ['/og-image.png'],
-    creator: '@solascriptura_br',
+    images: ['/opengraph-image'],
+  },
+  facebook: {
+    appId: 'sola-scriptura-br',
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -81,10 +96,22 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.svg',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
     apple: '/icon.svg',
+    shortcut: '/favicon.svg',
   },
   manifest: '/manifest.json',
+  verification: {
+    google: 'sola-scriptura-br',
+  },
+  other: {
+    'apple-mobile-web-app-title': 'Sola Scriptura',
+    'apple-mobile-web-app-capable': 'yes',
+    'mobile-web-app-capable': 'yes',
+    'format-detection': 'telephone=no',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

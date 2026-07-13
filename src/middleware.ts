@@ -1,15 +1,15 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// Public routes that don't require authentication
-const PUBLIC_ROUTES = [
+// Rotas públicas que NÃO precisam de login
+const PUBLIC_PATHS = [
   '/',
   '/auth/login',
   '/auth/cadastro',
   '/auth/esqueci-senha',
 ];
 
-// Static assets and API routes are always public
+// Prefixos sempre públicos
 const PUBLIC_PREFIXES = [
   '/api/',
   '/_next/',
@@ -19,27 +19,28 @@ const PUBLIC_PREFIXES = [
   '/sw.js',
   '/offline',
   '/screenshots/',
+  '/patterns/',
+  '/sounds/',
 ];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Allow static assets and public prefixes
+  // Sempre permitir prefixos públicos
   if (PUBLIC_PREFIXES.some(prefix => pathname.startsWith(prefix))) {
     return NextResponse.next();
   }
 
-  // Allow public routes
-  if (PUBLIC_ROUTES.includes(pathname)) {
+  // Sempre permitir rotas públicas
+  if (PUBLIC_PATHS.includes(pathname)) {
     return NextResponse.next();
   }
 
-  // Check for auth token in cookie (set by client-side auth)
+  // Verificar cookie de autenticação
   const token = request.cookies.get('ssb_token')?.value;
   const usuario = request.cookies.get('ssb_usuario')?.value;
 
   if (!token || !usuario) {
-    // Redirect to login with return URL
     const loginUrl = new URL('/auth/login', request.url);
     loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);
@@ -50,7 +51,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Match all routes except static files and Next.js internals
-    '/((?!_next/static|_next/image|favicon|icon|manifest|sw\\.js|offline\\.html).*)',
+    '/((?!_next/static|_next/image|favicon|icon|manifest|sw\\.js|offline\\.html|cross\\.svg).*)',
   ],
 };

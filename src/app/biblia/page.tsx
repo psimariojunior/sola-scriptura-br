@@ -35,6 +35,7 @@ import PainelDoVersiculo from '@/components/PainelDoVersiculo';
 import { getTiposRecursoDisponiveis } from '@/data/biblia/versiculoRecursos';
 import { useNotas } from '@/hooks/useNotas';
 import ApresentacaoModal from '@/components/Apresentacao/ApresentacaoModal';
+import { PainelQualidadeAudio } from '@/components/PainelQualidadeAudio';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 const PainelStrong = lazy(() => import('@/components/PainelStrong'));
@@ -257,6 +258,7 @@ export default function BibliaPage() {
   const { notas, criarNota, salvarNota: salvarNotaHook, excluirNota } = useNotas();
   const [mostrarNarracao, setMostrarNarracao] = useState(false);
   const [mostrarApresentacao, setMostrarApresentacao] = useState(false);
+  const [mostrarQualidadeAudio, setMostrarQualidadeAudio] = useState(false);
 
   const livro = TODOS_LIVROS[livroIdx];
   const chaveDramatica = `${livro.abreviacao}-${capituloIdx + 1}`;
@@ -797,6 +799,23 @@ export default function BibliaPage() {
                                   : capituloAudio.state.isPaused
                                   ? 'Pausado'
                                   : 'Ouvir Capítulo'}
+                              </motion.button>
+
+                              <motion.button
+                                onClick={() => setMostrarQualidadeAudio(true)}
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.97 }}
+                                className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground border border-border/50"
+                                title="Selecionar voz e qualidade do áudio"
+                                aria-label="Configurar qualidade do áudio"
+                              >
+                                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                                  <line x1="12" y1="19" x2="12" y2="23" />
+                                  <line x1="8" y1="23" x2="16" y2="23" />
+                                </svg>
+                                <span className="hidden sm:inline">Qualidade do Áudio</span>
                               </motion.button>
                             </div>
                           )}
@@ -1527,6 +1546,11 @@ export default function BibliaPage() {
         capitulo={capituloIdx + 1}
         versiculo={1}
         translation={selectedTrads[0] || 'arc'}
+      />
+
+      <PainelQualidadeAudio
+        open={mostrarQualidadeAudio}
+        onOpenChange={setMostrarQualidadeAudio}
       />
     </div>
   );

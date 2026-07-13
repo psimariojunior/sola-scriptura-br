@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 import { EdgeTTS } from 'node-edge-tts';
-import { writeFile, unlink } from 'fs/promises';
+import { unlink } from 'fs/promises';
 import path from 'path';
 import { tmpdir } from 'os';
 import { randomUUID } from 'crypto';
@@ -26,7 +26,6 @@ interface AudioEdgeRequest {
   rate?: string;
   pitch?: string;
   volume?: string;
-  formato?: 'mp3' | 'opus' | 'wav';
 }
 
 export async function POST(request: NextRequest) {
@@ -40,7 +39,7 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  const { texto, voz = 'feminina', vozCustom, rate = '+0%', pitch = '+0Hz', volume = '+0%', formato = 'mp3' } = body;
+  const { texto, voz = 'feminina', vozCustom, rate = '+0%', pitch = '+0Hz', volume = '+0%' } = body;
 
   if (!texto || texto.trim().length < 1) {
     return new Response(JSON.stringify({ erro: 'Texto vazio' }), {
@@ -56,77 +55,100 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  let vozFinal = vozCustom;
-  if (!vozFinal) {
-    const lista = VOZES_PT[voz] || VOZES_PT.feminina;
-    vozFinal = lista[0];
-  }
+  const vozFinal = vozCustom || (voz === 'masculina' ? 'pt-BR-AntonioNeural' : 'pt-BR-FranciscaNeural');
 
   const tempId = randomUUID();
-  const tempFile = path.join(tmpdir(), `edge-tts-${tempId}.${formato}`);
+  const tempFile = path.join(tmpdir(), `edge-tts-${tempId}.mp3`);
 
-  try {
-    const tts = new EdgeTTS({
-      voice: vozFinal,
-      lang: 'pt-BR',
-      outputFormat: `audio-24khz-48kbitrate-mono-mp3`,
-      rate,
-      pitch,
-      volume,
-      timeout: 30000,
-    });
+  const encoder = new TextEncoder();
+  const stream = new ReadableStream({
+    async start(controller) {
+      const send = (data: any) => {
+        controller.enqueue(encoder.encode(JSON.stringify(data) + '\n'));
+      };
 
-    await tts.ttsPromise(texto, tempFile);
+      try {
+        send({ tipo: 'status', mensagem: 'Conectando ao Edge TTS...', voz: vozFinal });
 
-    const fs = await import('fs/promises');
-    const audioBuffer = await fs.readFile(tempFile);
+        const tts = new EdgeTTS({
+          voice: vozFinal,
+          lang: 'pt-BR',
+          outputFormat: 'audio-24khz-48kbitrate-mono-mp3',
+          rate,
+          pitch,
+          volume,
+          timeout: 25000,
+        });
 
-    await unlink(tempFile).catch(() => {});
+        const startTime = Date.now();
 
-    const contentType = formato === 'mp3' ? 'audio/mpeg' : formato === 'wav' ? 'audio/wav' : 'audio/ogg';
+        const ttsPromise = tts.ttsPromise(texto, tempFile);
 
-    return new Response(audioBuffer, {
-      status: 200,
-      headers: {
-        'Content-Type': contentType,
-        'Content-Length': audioBuffer.length.toString(),
-        'Cache-Control': 'public, max-age=86400, immutable',
-        'X-TTS-Voice': vozFinal,
-      },
-    });
-  } catch (erro: any) {
-    await unlink(tempFile).catch(() => {});
+        let lastSize = 0;
+        const pollInterval = setInterval(() => {
+          try {
+            const stats = require('fs').statSync(tempFile);
+            if (stats.size > lastSize) {
+              lastSize = stats.size;
+              send({ tipo: 'progresso', bytes: stats.size });
+            }
+          } catch {}
+        }, 200);
 
-    return new Response(
-      JSON.stringify({
-        erro: 'Falha ao gerar áudio',
-        detalhes: erro?.message || 'Erro desconhecido',
-      }),
-      {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
+        await ttsPromise;
+        clearInterval(pollInterval);
+
+        const duracaoMs = Date.now() - startTime;
+        send({ tipo: 'status', mensagem: 'Áudio gerado, enviando...', bytes: lastSize, duracaoMs });
+
+        const fs = await import('fs');
+        const fileBuffer = fs.readFileSync(tempFile);
+        const base64Audio = fileBuffer.toString('base64');
+
+        send({ tipo: 'audio', formato: 'mp3', base64: base64Audio, voz: vozFinal });
+
+        await unlink(tempFile).catch(() => {});
+
+        send({ tipo: 'fim', duracaoMs, bytes: lastSize });
+        controller.close();
+      } catch (erro: any) {
+        await unlink(tempFile).catch(() => {});
+        send({ tipo: 'erro', mensagem: erro?.message || 'Erro desconhecido' });
+        controller.close();
       }
-    );
-  }
+    },
+  });
+
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache, no-transform',
+      'Connection': 'keep-alive',
+      'X-Accel-Buffering': 'no',
+    },
+  });
 }
 
 export async function GET() {
   return new Response(
     JSON.stringify({
-      servico: 'Microsoft Edge TTS',
-      descricao: 'TTS neural de alta qualidade em português brasileiro',
+      servico: 'Microsoft Edge TTS (Streaming)',
+      descricao: 'TTS neural de alta qualidade em PT-BR, com streaming SSE',
       vozes: {
         feminina: VOZES_PT.feminina,
         masculina: VOZES_PT.masculina,
       },
       parametros: {
+        texto: 'string (obrigatório, máx 5000 chars)',
+        voz: "'feminina' | 'masculina'",
+        vozCustom: 'string (ex: "pt-BR-FranciscaNeural")',
         rate: 'string (ex: "+10%", "-20%")',
         pitch: 'string (ex: "+5Hz", "-10Hz")',
         volume: 'string (ex: "+10%", "-50%")',
-        formato: 'mp3 | opus | wav',
       },
+      formato_resposta: 'text/event-stream com eventos: status, progresso, audio, fim, erro',
       gratuito: true,
-      nota: 'Usa as vozes neurais do Microsoft Edge. Sem necessidade de chave de API.',
+      nota: 'Usa as vozes neurais do Microsoft Edge. Sem chave de API.',
     }),
     { headers: { 'Content-Type': 'application/json' } }
   );

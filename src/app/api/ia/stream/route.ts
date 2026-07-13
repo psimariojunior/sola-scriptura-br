@@ -108,7 +108,7 @@ async function streamDirectLLM(
   const reader = resposta.body?.getReader();
   if (!reader) throw new Error('ReadableStream não disponível');
 
-  const decoder = new TextDecoder();
+  const decoder = new TextDecoder('utf-8');
   let buffer = '';
 
   try {

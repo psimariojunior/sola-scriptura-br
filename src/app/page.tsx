@@ -9,7 +9,7 @@ import {
   BookOpen, Languages, Church, Map, Brain, ScrollText, Clock, Users,
   ArrowRight, Sparkles, Search, Wrench, ChevronRight, ChevronLeft, Star,
   Globe, BookMarked, Shield, Heart, Share2, Zap, Eye, MessageCircle,
-  CheckCircle2, Play, ChevronDown
+  CheckCircle2, Play, ChevronDown, Quote
 } from 'lucide-react';
 import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -277,6 +277,54 @@ function BookOpeningEffect() {
   );
 }
 
+function FloatingSparkles() {
+  const sparkles = [
+    { x: '15%', y: '20%', delay: 0, size: 14 },
+    { x: '82%', y: '25%', delay: 1.2, size: 12 },
+    { x: '25%', y: '70%', delay: 2.4, size: 10 },
+    { x: '78%', y: '68%', delay: 0.8, size: 13 },
+    { x: '50%', y: '12%', delay: 1.8, size: 11 },
+    { x: '60%', y: '78%', delay: 3, size: 9 },
+  ];
+  return (
+    <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      {sparkles.map((s, i) => (
+        <motion.div
+          key={i}
+          className="absolute"
+          style={{ left: s.x, top: s.y }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: [0, 0.4, 0],
+            scale: [0, 1, 0],
+            y: [0, -20, -40],
+          }}
+          transition={{
+            duration: 4,
+            delay: s.delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <Sparkles className="text-[var(--primary)]" style={{ width: s.size, height: s.size }} />
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+function SectionDivider() {
+  return (
+    <div className="relative h-px max-w-4xl mx-auto" aria-hidden="true">
+      <div className="absolute inset-0" style={{
+        background: 'linear-gradient(90deg, transparent, var(--primary), transparent)',
+        opacity: 0.15,
+      }} />
+      <div className="absolute left-1/2 -translate-x-1/2 -top-1 w-2 h-2 rotate-45 border border-[var(--primary)]/20 bg-[var(--bg)]" />
+    </div>
+  );
+}
+
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentVerse, setCurrentVerse] = useState(0);
@@ -321,14 +369,17 @@ export default function Home() {
       <section className="relative pt-28 pb-20 px-6 overflow-hidden min-h-screen flex items-center">
         <div className="absolute inset-0 pointer-events-none" style={{
           backgroundImage: `
-            radial-gradient(circle at 25% 35%, rgba(212,168,67,0.05) 0%, transparent 45%),
-            radial-gradient(circle at 75% 20%, rgba(212,168,67,0.03) 0%, transparent 40%),
-            radial-gradient(circle at 50% 80%, rgba(139,92,246,0.02) 0%, transparent 50%)
+            radial-gradient(ellipse 60% 50% at 25% 35%, rgba(212,168,67,0.07) 0%, transparent 100%),
+            radial-gradient(ellipse 50% 40% at 75% 20%, rgba(212,168,67,0.04) 0%, transparent 100%),
+            radial-gradient(ellipse 70% 60% at 50% 80%, rgba(139,92,246,0.03) 0%, transparent 100%),
+            radial-gradient(ellipse 40% 30% at 15% 60%, rgba(59,130,246,0.02) 0%, transparent 100%),
+            radial-gradient(ellipse 45% 35% at 85% 70%, rgba(212,168,67,0.03) 0%, transparent 100%)
           `,
         }} />
 
         <HeroParticles />
         <CrossAnimation />
+        <FloatingSparkles />
         <BookOpeningEffect />
 
         <motion.div
@@ -395,12 +446,13 @@ export default function Home() {
             transition={{ delay: 1.5, duration: 0.6 }}
             className="flex flex-wrap gap-3 justify-center mb-16"
           >
-            <Link href="/biblia" className="group relative inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 hover:shadow-xl hover:shadow-primary/25 rounded-xl overflow-hidden">
+            <Link href="/biblia" className="group relative inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 hover:shadow-xl hover:shadow-primary/25 rounded-xl overflow-hidden" style={{ boxShadow: '0 0 20px -4px rgba(212,168,67,0.3), 0 0 40px -8px rgba(212,168,67,0.15)' }}>
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+              <span className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ boxShadow: 'inset 0 0 20px rgba(255,255,255,0.1)' }} />
               Iniciar Estudo
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
-            <Link href="/devocional" className="group inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold tracking-wide text-[var(--fg)] border border-[var(--border)] hover:border-[var(--primary)]/40 hover:text-[var(--primary)] transition-all duration-300 rounded-xl hover:bg-[var(--primary)]/[0.03]">
+            <Link href="/devocional" className="group inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold tracking-wide text-[var(--fg)] border border-[var(--primary)]/25 hover:border-[var(--primary)]/50 hover:text-[var(--primary)] transition-all duration-300 rounded-xl hover:bg-[var(--primary)]/[0.05] hover:shadow-lg hover:shadow-[var(--primary)]/10">
               <Sparkles className="w-4 h-4" />
               Devocional de Hoje
             </Link>
@@ -440,10 +492,16 @@ export default function Home() {
         </motion.div>
       </section>
 
+      <SectionDivider />
+
       {/* Features Section */}
       <section className="py-28 px-6 relative">
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
-          backgroundImage: 'radial-gradient(circle at 50% 0%, var(--primary) 0%, transparent 50%)',
+          backgroundImage: `
+            radial-gradient(circle at 50% 0%, var(--primary) 0%, transparent 50%),
+            radial-gradient(circle at 1px 1px, var(--primary) 0.5px, transparent 0.5px)
+          `,
+          backgroundSize: '100% 100%, 40px 40px',
         }} />
 
         <div className="max-w-6xl mx-auto relative z-10">
@@ -464,10 +522,13 @@ export default function Home() {
                   whileHover={{ y: -4, rotateX: 2, rotateY: -2 }}
                   transition={{ duration: 0.3 }}
                   style={{ perspective: '1000px' }}
-                  className="group p-6 rounded-2xl border border-[var(--border)]/40 hover:border-[var(--primary)]/20 transition-all duration-500 relative overflow-hidden bg-gradient-to-br from-[var(--card-bg)]/50 to-transparent backdrop-blur-sm"
+                  className="group p-6 rounded-2xl border border-[var(--border)]/40 hover:border-[var(--primary)]/25 transition-all duration-500 relative overflow-hidden bg-gradient-to-br from-[var(--card-bg)]/50 to-transparent backdrop-blur-sm card-hover"
                 >
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{
-                    backgroundImage: 'radial-gradient(circle at 30% 20%, rgba(212,168,67,0.06) 0%, transparent 60%)',
+                    backgroundImage: 'radial-gradient(circle at 30% 20%, rgba(212,168,67,0.08) 0%, transparent 60%)',
+                  }} />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-2xl" style={{
+                    boxShadow: '0 0 30px -8px rgba(212,168,67,0.12), inset 0 0 30px -12px rgba(212,168,67,0.05)',
                   }} />
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: -5 }}
@@ -483,6 +544,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SectionDivider />
 
       {/* Modules Section - Horizontal Scroll */}
       <section className="py-28 px-6 border-y border-[var(--border)]/30 bg-[var(--card-bg)]/20 relative overflow-hidden">
@@ -547,6 +610,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* Bible Verse Section */}
       <section className="py-28 px-6 relative overflow-hidden">
         <motion.div
@@ -575,11 +640,11 @@ export default function Home() {
                 className="absolute inset-0 flex flex-col items-center justify-center"
               >
                 <div className="relative">
-                  <span className="absolute -top-8 -left-4 text-5xl font-serif text-[var(--primary)] opacity-15">&ldquo;</span>
+                  <span className="absolute -top-10 -left-6 text-6xl font-serif text-[var(--primary)] opacity-10 select-none">&ldquo;</span>
                   <p className="font-serif-body text-xl md:text-2xl lg:text-3xl text-[var(--fg)] leading-relaxed max-w-2xl italic font-light">
                     {dailyVerses[currentVerse].text}
                   </p>
-                  <span className="absolute -bottom-4 -right-2 text-5xl font-serif text-[var(--primary)] opacity-15">&rdquo;</span>
+                  <span className="absolute -bottom-6 -right-4 text-6xl font-serif text-[var(--primary)] opacity-10 select-none">&rdquo;</span>
                 </div>
                 <p className="mt-6 text-sm font-semibold text-[var(--primary)]">
                   — {dailyVerses[currentVerse].ref}
@@ -640,7 +705,10 @@ export default function Home() {
                   transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className="text-center relative z-10"
                 >
-                  <div className="w-14 h-14 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center mx-auto mb-6">
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6" style={{
+                    background: 'linear-gradient(135deg, rgba(212,168,67,0.2), rgba(139,92,246,0.15))',
+                    boxShadow: '0 0 20px -4px rgba(212,168,67,0.2)',
+                  }}>
                     <span className="font-display text-lg font-semibold text-[var(--primary)]">
                       {testimonials[currentTestimonial].avatar}
                     </span>
@@ -652,9 +720,12 @@ export default function Home() {
                     ))}
                   </div>
 
-                  <p className="font-serif-body text-lg md:text-xl text-[var(--fg)] leading-relaxed mb-6 italic max-w-lg mx-auto">
-                    &ldquo;{testimonials[currentTestimonial].text}&rdquo;
-                  </p>
+                  <div className="relative max-w-lg mx-auto">
+                    <Quote className="absolute -top-4 -left-2 w-8 h-8 text-[var(--primary)] opacity-10" />
+                    <p className="font-serif-body text-lg md:text-xl text-[var(--fg)] leading-relaxed mb-6 italic">
+                      &ldquo;{testimonials[currentTestimonial].text}&rdquo;
+                    </p>
+                  </div>
 
                   <p className="text-sm font-semibold">{testimonials[currentTestimonial].author}</p>
                   <p className="text-[11px] text-[var(--muted-fg)] mt-0.5">{testimonials[currentTestimonial].role}</p>
@@ -692,6 +763,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* Stats Section */}
       <section className="py-28 px-6 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
@@ -712,8 +785,11 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
             {stats.map((stat, i) => (
               <ScrollReveal key={stat.label} delay={i * 0.08}>
-                <div className="text-center p-4 rounded-2xl border border-[var(--border)]/30 bg-[var(--card-bg)]/30 hover:border-[var(--primary)]/20 transition-all duration-300">
-                  <p className="font-display text-2xl md:text-3xl font-light text-[var(--primary)]">
+                <div className="text-center p-4 rounded-2xl border border-[var(--border)]/30 bg-[var(--card-bg)]/30 hover:border-[var(--primary)]/25 transition-all duration-300 relative group">
+                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{
+                    boxShadow: '0 0 24px -6px rgba(212,168,67,0.15)',
+                  }} />
+                  <p className="font-display text-2xl md:text-3xl font-light text-[var(--primary)] relative">
                     <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                   </p>
                   <p className="text-[10px] text-[var(--muted-fg)] uppercase tracking-wider mt-1.5">{stat.label}</p>
@@ -724,14 +800,43 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* CTA Section */}
-      <section className="py-28 px-6 border-t border-[var(--border)]/30 bg-[var(--card-bg)]/20 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
+      <section className="py-28 px-6 border-t border-[var(--border)]/30 relative overflow-hidden" style={{
+        background: 'linear-gradient(180deg, var(--card-bg) 0%, transparent 100%)',
+      }}>
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
           backgroundImage: `
             radial-gradient(circle at 20% 80%, var(--primary) 0%, transparent 40%),
             radial-gradient(circle at 80% 20%, var(--primary) 0%, transparent 40%)
           `,
         }} />
+
+        <motion.div
+          className="absolute top-10 left-[10%] opacity-[0.04] pointer-events-none"
+          animate={{ y: [0, -15, 0], rotate: [0, 10, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+          aria-hidden="true"
+        >
+          <BookOpen className="w-8 h-8 text-[var(--primary)]" />
+        </motion.div>
+        <motion.div
+          className="absolute bottom-10 right-[12%] opacity-[0.04] pointer-events-none"
+          animate={{ y: [0, 12, 0], rotate: [0, -8, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+          aria-hidden="true"
+        >
+          <Sparkles className="w-6 h-6 text-[var(--primary)]" />
+        </motion.div>
+        <motion.div
+          className="absolute top-1/2 right-[8%] opacity-[0.03] pointer-events-none hidden lg:block"
+          animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+          aria-hidden="true"
+        >
+          <Church className="w-10 h-10 text-[var(--primary)]" />
+        </motion.div>
 
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <ScrollReveal>
@@ -752,12 +857,12 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap gap-3 justify-center mb-12">
-              <Link href="/biblia" className="group relative inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 text-sm font-semibold rounded-xl hover:bg-primary/90 transition-all duration-300 hover:shadow-xl hover:shadow-primary/25 overflow-hidden">
+              <Link href="/biblia" className="group relative inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 text-sm font-semibold rounded-xl hover:bg-primary/90 transition-all duration-300 hover:shadow-xl hover:shadow-primary/25 overflow-hidden" style={{ boxShadow: '0 0 24px -6px rgba(212,168,67,0.25)' }}>
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                 <BookOpen className="w-4 h-4" />
                 Abrir a Bíblia
               </Link>
-              <Link href="/ia" className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold border border-[var(--border)] text-[var(--fg)] hover:border-[var(--primary)]/40 hover:text-[var(--primary)] transition-all duration-300 rounded-xl hover:bg-[var(--primary)]/[0.03]">
+              <Link href="/ia" className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold border border-[var(--primary)]/25 text-[var(--fg)] hover:border-[var(--primary)]/50 hover:text-[var(--primary)] transition-all duration-300 rounded-xl hover:bg-[var(--primary)]/[0.05] hover:shadow-lg hover:shadow-[var(--primary)]/10">
                 <Brain className="w-4 h-4" />
                 Experimentar IA
               </Link>

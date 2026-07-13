@@ -477,7 +477,7 @@ export default function BibliaPage() {
           {/* Main content */}
           <div className="flex-1 flex flex-col min-w-0">
             {/* Toolbar */}
-            <div className="border-b border-[var(--border)] bg-[var(--card-bg)] px-4 py-3">
+            <div className="border-b border-[var(--border)] bg-[var(--card-bg)] px-4 py-3 sticky top-0 z-20">
               <div className="flex items-center gap-3">
                 <button onClick={() => setSidebarOpen(!sidebarOpen)} className="hidden lg:block p-1.5 rounded-lg hover:bg-[var(--bg)] transition-all duration-300">
                   <Menu className="w-4 h-4" />
@@ -634,18 +634,21 @@ export default function BibliaPage() {
               </div>
             )}
 
+            {/* Gradient separator */}
+            <div className="h-px bg-gradient-to-r from-transparent via-[var(--primary)]/20 to-transparent" />
+
             {/* Reading area */}
             <div ref={mainRef} className="flex-1 overflow-y-auto">
-              <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
                 {showPlan && !readingMode && <ReadingPlanBanner />}
                 {loading ? (
                   <div className="space-y-6 chapter-enter">
-                    <div className="skeleton skeleton-title w-48 mx-auto" />
-                    <div className="ornament w-20 mx-auto mb-8" />
+                    <div className="skeleton skeleton-title w-48 mx-auto animate-pulse" />
+                    <div className="ornament w-20 mx-auto mb-8 opacity-30" />
                     {Array.from({ length: 12 }).map((_, i) => (
-                      <div key={i} className="flex gap-3">
-                        <div className="skeleton skeleton-text w-6 h-4 shrink-0" />
-                        <div className="skeleton skeleton-text flex-1" style={{ width: `${60 + Math.random() * 40}%` }} />
+                      <div key={i} className="flex gap-3 items-center" style={{ animationDelay: `${i * 50}ms` }}>
+                        <div className="skeleton skeleton-text w-6 h-4 shrink-0 rounded" />
+                        <div className="skeleton skeleton-text flex-1 rounded" style={{ width: `${60 + Math.random() * 40}%` }} />
                       </div>
                     ))}
                   </div>
@@ -654,32 +657,60 @@ export default function BibliaPage() {
                     <motion.div key={`${livro.abreviacao}-${capituloIdx}`} {...chapterAnimProps}>
                       {readingMode ? (
                         <div className="max-w-[680px] mx-auto chapter-enter">
-                          <div className="text-center mb-12">
+                          <div className="text-center mb-14 relative">
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                              className="mb-4"
+                            >
+                              <div className="inline-block px-6 py-1.5 rounded-full bg-[var(--primary)]/5 border border-[var(--primary)]/10 mb-4">
+                                <span className="text-xs font-medium text-[var(--primary)]/70 tracking-widest uppercase">Capítulo {capituloIdx + 1}</span>
+                              </div>
+                            </motion.div>
                             <motion.h2 
-                              initial={{ opacity: 0, y: 20 }}
+                              initial={{ opacity: 0, y: 30 }}
                               animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.2 }}
-                              className="font-display text-4xl md:text-5xl font-light text-[var(--primary)] mb-2"
+                              transition={{ duration: 0.7, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+                              className="font-display text-4xl md:text-5xl font-light text-[var(--primary)] mb-3"
                             >
                               {livro.nome}
                             </motion.h2>
-                            <p className="text-[var(--muted-fg)] text-sm">Capítulo {capituloIdx + 1}</p>
-                            <div className="ornament w-20 mx-auto mt-6" />
+                            <motion.p
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: 0.4 }}
+                              className="text-[var(--muted-fg)] text-sm"
+                            >
+                              {data[0]?.versiculos?.length} versículos
+                            </motion.p>
+                            <motion.div
+                              initial={{ scaleX: 0 }}
+                              animate={{ scaleX: 1 }}
+                              transition={{ delay: 0.5, duration: 0.5, ease: 'easeOut' }}
+                              className="ornament w-20 mx-auto mt-6 origin-center"
+                            />
                           </div>
                           {data[0]?.versiculos.map((v, i) => (
                             <motion.p 
                               key={v.numero} 
-                              initial={{ opacity: 0, y: 10 }}
+                              initial={{ opacity: 0, y: 12 }}
                               animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.3 + i * 0.02 }}
-                              className="font-serif-body leading-[2] mb-1 verse-hover pl-4"
+                              transition={{ delay: 0.4 + i * 0.025, ease: 'easeOut' }}
+                              className="font-serif-body leading-[2] mb-1 verse-hover pl-4 group cursor-pointer hover:bg-[var(--primary)]/5 hover:rounded-lg transition-all duration-300 -mx-4 px-4"
                             >
-                              <sup className="text-[var(--primary)]/50 font-bold text-xs mr-1 select-none">{v.numero}</sup>
+                              <sup className="text-[var(--primary)]/40 font-bold text-xs mr-1.5 select-none group-hover:text-[var(--primary)]/70 transition-colors duration-300">{v.numero}</sup>
                               {v.texto}
                             </motion.p>
                           ))}
-                          <div className="ornament w-20 mx-auto mt-12 mb-6" />
-                          <p className="text-center text-xs text-[var(--muted-fg)]">{labelMap[data[0]?.traducao || 'arc']} — {livro.nome} {capituloIdx + 1}</p>
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.6 + (data[0]?.versiculos?.length ?? 0) * 0.025 }}
+                          >
+                            <div className="ornament w-20 mx-auto mt-12 mb-6" />
+                            <p className="text-center text-xs text-[var(--muted-fg)] tracking-wide">{labelMap[data[0]?.traducao || 'arc']} — {livro.nome} {capituloIdx + 1}</p>
+                          </motion.div>
                         </div>
                       ) : (
                         <>
@@ -725,11 +756,16 @@ export default function BibliaPage() {
                           )}
                           {viewMode === 'single' && data.map((item, idx) => (
                             <div key={item.traducao} className="mb-8">
-                              <div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/50">
+                              <motion.div 
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: idx * 0.1 }}
+                                className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/50"
+                              >
                                 <div className={`w-2 h-2 rounded-full ${tradBadgeColors[item.traducao]}`} />
                                 <span className="text-sm font-semibold">{labelMap[item.traducao]}</span>
                                 <span className="text-xs text-[var(--muted-fg)]">{nomeMap[item.traducao]}</span>
-                              </div>
+                              </motion.div>
                               <div className="space-y-1">
                                 {item.versiculos.map((v, i) => {
                                   const key = `${livro.abreviacao}:${capituloIdx + 1}:${v.numero}:${item.traducao}`;
@@ -749,7 +785,7 @@ export default function BibliaPage() {
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: 0.1 + i * 0.01 }}
-                                        className={`group flex items-start gap-2 py-1 px-2 -mx-2 rounded-lg transition-all duration-300 cursor-pointer ${isPlaying ? 'bg-[var(--primary)]/5 ring-1 ring-[var(--primary)]/20' : 'verse-hover'} ${temAnotacao ? 'border-l-2 border-l-amber-500/50' : ''} ${corMarca ? `mark-${corMarca}-bg` : ''}`}
+                                        className={`group flex items-start gap-2 py-1.5 px-2 -mx-2 rounded-lg transition-all duration-300 cursor-pointer ${isPlaying ? 'bg-[var(--primary)]/5 ring-1 ring-[var(--primary)]/20 shadow-sm shadow-[var(--primary)]/5 border-l-2 border-l-[var(--primary)]' : 'verse-hover'} ${temAnotacao ? 'border-l-2 border-l-amber-500/50' : ''} ${corMarca ? `mark-${corMarca}-bg` : ''}`}
                                         onClick={() => setVersiculoSelecionado({ livro: livro.abreviacao, cap: capituloIdx + 1, ver: v.numero })}
                                       >
                                         <sup className="text-[var(--primary)] font-bold text-xs mt-1 select-none min-w-[20px] text-right relative">
@@ -801,7 +837,7 @@ export default function BibliaPage() {
                                             );
                                           })()}
                                         </div>
-                                        <div className="flex items-center gap-0.5 shrink-0">
+                                        <div className="flex items-center gap-0.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                           <VersiculoAudioNatural
                                             text={v.texto}
                                             verseNumber={v.numero}
@@ -932,8 +968,14 @@ export default function BibliaPage() {
 
                           {viewMode === 'parallel' && (
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                              {data.map((item) => (
-                                <div key={item.traducao} className="border border-[var(--border)]/50 rounded-xl p-5">
+                              {data.map((item, idx) => (
+                                <motion.div 
+                                  key={item.traducao} 
+                                  initial={{ opacity: 0, y: 20 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: idx * 0.15 }}
+                                  className="border border-[var(--border)]/50 rounded-xl p-5 hover:shadow-md transition-shadow duration-300"
+                                >
                                   <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/30">
                                     <div className={`w-2 h-2 rounded-full ${tradBadgeColors[item.traducao]}`} />
                                     <span className="text-sm font-semibold">{labelMap[item.traducao]}</span>
@@ -944,7 +986,7 @@ export default function BibliaPage() {
                                       {v.texto}
                                     </p>
                                   ))}
-                                </div>
+                                </motion.div>
                               ))}
                             </div>
                           )}
@@ -1012,17 +1054,27 @@ export default function BibliaPage() {
                       )}
 
                       {!readingMode && (
-                        <div className="flex items-center justify-center gap-4 mt-12 pt-8 border-t border-[var(--border)]/30">
+                        <div className="flex items-center justify-center gap-4 mt-16 pt-10 border-t border-[var(--border)]/30">
                           <motion.button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0}
                             whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                            className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-50 hover:bg-[var(--bg)] transition-all duration-300">
+                            className="flex items-center gap-1.5 px-5 py-2.5 text-sm border border-[var(--border)] rounded-xl disabled:opacity-30 hover:bg-[var(--primary)]/5 hover:border-[var(--primary)]/30 transition-all duration-300">
                             <ChevronLeft className="w-4 h-4" /> Anterior
                           </motion.button>
-                          <span className="text-xs text-[var(--muted-fg)] font-mono">{capituloIdx + 1} / {livro.totalCapitulos}</span>
+                          <div className="flex flex-col items-center gap-1">
+                            <span className="text-xs text-[var(--muted-fg)] font-mono">{capituloIdx + 1} / {livro.totalCapitulos}</span>
+                            <div className="w-24 h-1 rounded-full bg-[var(--border)]/50 overflow-hidden">
+                              <motion.div
+                                className="h-full rounded-full bg-[var(--primary)]/40"
+                                initial={false}
+                                animate={{ width: `${((capituloIdx + 1) / livro.totalCapitulos) * 100}%` }}
+                                transition={{ duration: 0.4, ease: 'easeOut' }}
+                              />
+                            </div>
+                          </div>
                           <motion.button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
                             disabled={capituloIdx >= livro.totalCapitulos - 1}
                             whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                            className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)] rounded-lg disabled:opacity-50 hover:bg-[var(--bg)] transition-all duration-300">
+                            className="flex items-center gap-1.5 px-5 py-2.5 text-sm border border-[var(--border)] rounded-xl disabled:opacity-30 hover:bg-[var(--primary)]/5 hover:border-[var(--primary)]/30 transition-all duration-300">
                             Próximo <ChevronRight className="w-4 h-4" />
                           </motion.button>
                         </div>

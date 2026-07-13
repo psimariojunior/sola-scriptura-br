@@ -107,11 +107,7 @@
       "autoExegesis": { "title": "Exegese Automática", "desc": "Análise contextual, gramatical e teológica em um clique" },
       "solaScriptura": { "title": "Sola Scriptura", "desc": "Fundamentado na Escritura como autoridade suprema de fé e prática" }
     },
-    "testimonialsList": [
-      { "text": "Uma ferramenta incrível para estudo bíblico. A comparação de traduções com destaque de diferenças é fantástica!", "author": "Pastor João", "role": "Ministro" },
-      { "text": "O estudo de línguas originais transformou minha pregação. Nunca foi tão acessível estudar Grego e Hebraico.", "author": "Pr. Marcos", "role": "Evangelista" },
-      { "text": "Finalmente uma plataforma brasileira que compete com o Logos. O modo de leitura é lindo e funcional.", "author": "Dr. Pedro", "role": "Teólogo" }
-    ]
+    "testimonialsList": []
   },
   "bible": {
     "searchBook": "Buscar livro...",

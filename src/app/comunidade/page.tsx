@@ -76,10 +76,10 @@ export default function ComunidadePage() {
           {/* ── Stats Row ── */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {[
-              { icon: Users, label: 'Membros Ativos', value: totalMembros.toLocaleString('pt-BR'), color: 'text-blue-500' },
-              { icon: Radio, label: 'Online Agora', value: `${totalMembrosOnline}`, color: 'text-green-500' },
-              { icon: BookOpen, label: 'Grupos', value: `${GRUPOS_ESTUDO.length}`, color: 'text-purple-500' },
-              { icon: Calendar, label: 'Sessões Ativas', value: `${sessoesAtivas.length}`, color: 'text-amber-500' },
+              { icon: Users, label: 'Membros Ativos', value: 'Em breve', color: 'text-blue-500' },
+              { icon: Radio, label: 'Online Agora', value: 'Em breve', color: 'text-green-500' },
+              { icon: BookOpen, label: 'Grupos', value: 'Em breve', color: 'text-purple-500' },
+              { icon: Calendar, label: 'Sessões', value: 'Em breve', color: 'text-amber-500' },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -333,13 +333,13 @@ export default function ComunidadePage() {
                                     </div>
                                   )}
 
-                                  {/* Group chat indicator */}
-                                  <div className="flex items-center gap-2 mt-3 p-2 rounded-lg bg-[var(--bg)]">
-                                    <MessageCircle className="w-4 h-4 text-[var(--primary)]" />
-                                    <span className="text-[11px] text-[var(--muted-fg)]">
-                                      Chat do grupo ativo · {Math.floor(Math.random() * 20 + 5)} mensagens hoje
-                                    </span>
-                                  </div>
+                                      {/* Group chat indicator */}
+                                      <div className="flex items-center gap-2 mt-3 p-2 rounded-lg bg-[var(--bg)]">
+                                        <MessageCircle className="w-4 h-4 text-[var(--primary)]" />
+                                        <span className="text-[11px] text-[var(--muted-fg)]">
+                                          Chat disponível em breve
+                                        </span>
+                                      </div>
                                 </div>
                               </motion.div>
                             )}
@@ -351,7 +351,12 @@ export default function ComunidadePage() {
 
                   {gruposFiltrados.length === 0 && (
                     <div className="text-center py-12">
-                      <p className="text-sm text-[var(--muted-fg)]">Nenhum grupo encontrado com esses filtros.</p>
+                      <p className="text-sm text-[var(--muted-fg)]">
+                        {GRUPOS_ESTUDO.length === 0
+                          ? 'Grupos de estudo disponíveis em breve.'
+                          : 'Nenhum grupo encontrado com esses filtros.'
+                        }
+                      </p>
                     </div>
                   )}
                 </div>
@@ -383,6 +388,11 @@ export default function ComunidadePage() {
                   </h3>
                 </div>
                 <div className="space-y-3">
+                  {ATIVIDADES_COMUNIDADE.length === 0 && (
+                    <p className="text-[11px] text-[var(--muted-fg)] text-center py-4">
+                      Nenhuma atividade recente. Participe de um grupo de estudo!
+                    </p>
+                  )}
                   {ATIVIDADES_COMUNIDADE.slice(0, 8).map(atividade => (
                     <div key={atividade.id} className="flex items-start gap-2.5">
                       <span className="text-lg shrink-0 mt-0.5">{atividade.avatar}</span>

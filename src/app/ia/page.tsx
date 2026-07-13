@@ -6,7 +6,21 @@ import { Footer } from '@/components/Footer';
 import { Sparkles, BookOpen, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
-import AIChat from '@/components/AIChat';
+import dynamic from 'next/dynamic';
+
+const AIChat = dynamic(() => import('@/components/AIChat'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[60vh] min-h-[400px] flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3 animate-pulse">
+          <Sparkles className="w-6 h-6 text-primary" />
+        </div>
+        <p className="text-sm text-muted-foreground">Carregando assistente...</p>
+      </div>
+    </div>
+  ),
+});
 
 const tradicoes = [
   { valor: '', label: 'Geral' },

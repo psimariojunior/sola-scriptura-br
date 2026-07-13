@@ -6,8 +6,8 @@ import { Footer } from '@/components/Footer';
 import { useGamificacao } from '@/hooks/useGamificacao';
 import { BadgeConquista } from '@/components/BadgeConquista';
 import { StreakCalendario } from '@/components/StreakCalendario';
-import { Leaderboard } from '@/components/Leaderboard';
 import { DesafioDiarioCard } from '@/components/DesafioDiario';
+import dynamic from 'next/dynamic';
 import {
   CONQUISTAS,
   CATEGORIAS_CONQUISTA,
@@ -18,6 +18,13 @@ import {
   Trophy, Star, Flame, BookOpen, Brain, Target,
   Share2, TrendingUp, Sparkles, Lock, ChevronRight,
 } from 'lucide-react';
+
+const Leaderboard = dynamic(() => import('@/components/Leaderboard').then(mod => ({ default: mod.Leaderboard })), {
+  ssr: false,
+  loading: () => (
+    <div className="sola-card p-6 rounded-2xl h-64 animate-pulse" />
+  ),
+});
 
 export default function GamificacaoPage() {
   const {

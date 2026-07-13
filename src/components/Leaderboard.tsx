@@ -72,16 +72,23 @@ export function Leaderboard({ dados, nomeUsuarioAtual = 'Você', tempo = 'semana
         </div>
       </div>
 
-      {/* Top 3 podium */}
-      <div className="flex items-end justify-center gap-4 mb-6 px-4">
-        {top3.map((entrada, i) => {
-          const ordem = [1, 0, 2][i];
-          const dadosTop = top3[ordem];
-          const nivel = getNivelByXP(dadosTop.xp);
-          const medalha = MEDALHAS[ordem];
-          const alturas = ['h-24', 'h-28', 'h-20'];
-          const tamanhos = ['w-14 h-14 text-2xl', 'w-16 h-16 text-3xl', 'w-12 h-12 text-xl'];
-          const isAtual = dadosTop.nome === nomeUsuarioAtual;
+      {dadosOrdenados.length === 0 ? (
+        <p className="text-[11px] text-[var(--muted-fg)] text-center py-6">
+          Nenhum dado de ranking ainda. Comece a estudar para subir no ranking!
+        </p>
+      ) : (
+        <>
+          {/* Top 3 podium */}
+          <div className="flex items-end justify-center gap-4 mb-6 px-4">
+            {top3.map((entrada, i) => {
+              const ordem = [1, 0, 2][i];
+              const dadosTop = top3[ordem];
+              if (!dadosTop) return null;
+              const nivel = getNivelByXP(dadosTop.xp);
+              const medalha = MEDALHAS[ordem];
+              const alturas = ['h-24', 'h-28', 'h-20'];
+              const tamanhos = ['w-14 h-14 text-2xl', 'w-16 h-16 text-3xl', 'w-12 h-12 text-xl'];
+              const isAtual = dadosTop.nome === nomeUsuarioAtual;
 
           return (
             <motion.div
@@ -167,6 +174,8 @@ export function Leaderboard({ dados, nomeUsuarioAtual = 'Você', tempo = 'semana
           Ver todos
           <ChevronDown className="w-3 h-3" />
         </button>
+      )}
+        </>
       )}
     </div>
   );

@@ -44,7 +44,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="border-t border-border bg-card/50 relative overflow-hidden">
+    <footer className="border-t border-border bg-card/50 relative overflow-hidden" role="contentinfo">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
         backgroundImage: 'radial-gradient(circle at 20% 80%, hsl(var(--primary)) 0%, transparent 40%)',
       }} />
@@ -78,12 +78,13 @@ export function Footer() {
                   <Heart className="w-4 h-4 fill-current" /> Obrigado por se inscrever!
                 </motion.p>
               ) : (
-                <form onSubmit={handleSubscribe} className="flex gap-2">
+                <form onSubmit={handleSubscribe} className="flex gap-2" aria-label="Inscrever-se na newsletter">
                   <input
                     type="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     placeholder="seu@email.com"
+                    aria-label="Endereço de email para newsletter"
                     className="flex-1 px-3 py-2 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
                   />
                   <motion.button 
@@ -91,6 +92,7 @@ export function Footer() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="px-3 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-300"
+                    aria-label="Inscrever-se"
                   >
                     <ArrowRight className="w-4 h-4" />
                   </motion.button>
@@ -99,13 +101,13 @@ export function Footer() {
             </div>
 
             <div className="flex items-center gap-4">
-              <motion.a href="mailto:contato@solascripura.com" whileHover={{ scale: 1.1, rotate: 5 }} className="text-muted-foreground hover:text-foreground transition-all duration-300">
+              <motion.a href="mailto:contato@solascripura.com" whileHover={{ scale: 1.1, rotate: 5 }} className="text-muted-foreground hover:text-foreground transition-all duration-300" aria-label="Enviar email de contato">
                 <Mail className="w-5 h-5" />
               </motion.a>
-              <motion.a href="https://github.com" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1, rotate: -5 }} className="text-muted-foreground hover:text-foreground transition-all duration-300">
+              <motion.a href="https://github.com" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1, rotate: -5 }} className="text-muted-foreground hover:text-foreground transition-all duration-300" aria-label="GitHub">
                 <Github className="w-5 h-5" />
               </motion.a>
-              <motion.a href="https://twitter.com" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1, rotate: 5 }} className="text-muted-foreground hover:text-foreground transition-all duration-300">
+              <motion.a href="https://twitter.com" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1, rotate: 5 }} className="text-muted-foreground hover:text-foreground transition-all duration-300" aria-label="Twitter">
                 <Twitter className="w-5 h-5" />
               </motion.a>
             </div>
@@ -113,7 +115,7 @@ export function Footer() {
 
           <div>
             <h3 className="font-semibold text-sm mb-4">Ferramentas</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2" aria-label="Ferramentas">
               {ferramentas.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 inline-block transition-all duration-300">
@@ -126,7 +128,7 @@ export function Footer() {
 
           <div>
             <h3 className="font-semibold text-sm mb-4">Estudo</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2" aria-label="Estudo">
               {estudo.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 inline-block transition-all duration-300">
@@ -139,7 +141,7 @@ export function Footer() {
 
           <div>
             <h3 className="font-semibold text-sm mb-4">Recursos</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2" aria-label="Recursos">
               {recursos.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 inline-block transition-all duration-300">

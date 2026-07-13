@@ -259,16 +259,7 @@ export function useGamificacao() {
   }, [verificarConquistas]);
 
   const rankingSemanal = [
-    { nome: 'Ana Beatriz', nivel: 15, xp: 28500, avatar: '👩‍🏫' },
-    { nome: 'Pedro Henrique', nivel: 14, xp: 24200, avatar: '👨‍🎓' },
-    { nome: 'Maria Clara', nivel: 13, xp: 19800, avatar: '👩‍💻' },
-    { nome: 'João Lucas', nivel: 12, xp: 16500, avatar: '👨‍🏫' },
     { nome: 'Você', nivel: nivelAtual.nivel, xp: state.xpTotal, avatar: '🙋' },
-    { nome: 'Sarah Oliveira', nivel: 11, xp: 14200, avatar: '👩‍🔬' },
-    { nome: 'Lucas Santos', nivel: 10, xp: 12800, avatar: '🧑‍💻' },
-    { nome: 'Rebeca Lima', nivel: 9, xp: 10500, avatar: '👩‍🎨' },
-    { nome: 'Daniel Costa', nivel: 8, xp: 8900, avatar: '🧑‍🎓' },
-    { nome: 'Priscila Araújo', nivel: 7, xp: 7200, avatar: '👩‍⚕️' },
   ].sort((a, b) => b.xp - a.xp);
 
   return {

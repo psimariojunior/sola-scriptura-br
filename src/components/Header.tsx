@@ -112,7 +112,7 @@ export function Header() {
           : 'bg-background/60 backdrop-blur-xl border-b border-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5 group">
+          <Link href="/" className="flex items-center gap-2.5 group" aria-label="Sola Scriptura — Página inicial">
             <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-300 group-hover:scale-110">
               <BookOpen className="w-4 h-4 text-primary" strokeWidth={1.5} />
             </div>
@@ -121,7 +121,7 @@ export function Header() {
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-0.5">
+          <nav className="hidden lg:flex items-center gap-0.5" aria-label="Navegação principal">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -177,6 +177,7 @@ export function Header() {
               onClick={toggleIdioma}
               className="px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-border hover:bg-muted/50 transition-all duration-300 uppercase tracking-wider"
               title={idioma === 'pt' ? 'Switch to English' : 'Mudar para Português'}
+              aria-label={idioma === 'pt' ? 'Mudar idioma para inglês' : 'Change language to Portuguese'}
             >
               {idioma === 'pt' ? 'EN' : 'PT'}
             </button>
@@ -217,6 +218,7 @@ export function Header() {
               onClick={() => setBuscaOpen(true)}
               className="flex items-center gap-1.5 p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300 hover:scale-110"
               title="Buscar (Ctrl+K)"
+              aria-label="Buscar versículos e conteúdo"
             >
               <Search className="w-4 h-4" />
               <kbd className="hidden xl:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] font-mono text-muted-foreground/70 border border-border/40 rounded bg-muted/30">
@@ -229,6 +231,7 @@ export function Header() {
             <button
               onClick={toggleIdioma}
               className="px-2 py-1 text-xs font-semibold rounded-lg border border-border hover:bg-muted/50 transition-all duration-300 uppercase tracking-wider"
+              aria-label={idioma === 'pt' ? 'Mudar idioma para inglês' : 'Mudar idioma para português'}
             >
               {idioma === 'pt' ? 'EN' : 'PT'}
             </button>
@@ -244,6 +247,7 @@ export function Header() {
               onClick={() => setOpen(!open)}
               aria-expanded={open}
               aria-controls="mobile-menu"
+              aria-label={open ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
             >
               {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -269,7 +273,7 @@ export function Header() {
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="lg:hidden border-t border-border/40 bg-background/98 backdrop-blur-xl overflow-hidden relative z-50"
               >
-                <nav className="flex flex-col px-6 py-4 gap-1 max-h-[70vh] overflow-y-auto">
+                <nav className="flex flex-col px-6 py-4 gap-1 max-h-[70vh] overflow-y-auto" aria-label="Navegação mobile">
                   {navLinks.map((link, i) => (
                     <motion.div
                       key={link.href}

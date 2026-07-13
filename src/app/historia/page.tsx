@@ -5,11 +5,16 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { cronologia, type EventoCronologia } from '@/data/biblia';
 import { getIntroducaoLivro } from '@/data/biblia/introducoes';
-import PainelDoVersiculo from '@/components/PainelDoVersiculo';
+import dynamic from 'next/dynamic';
 import ScrollReveal from '@/components/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { BookOpen, Globe, CalendarDays, MapPin, Users, Crown, ArrowRight, ChevronDown } from 'lucide-react';
+
+const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
+  ssr: false,
+  loading: () => null,
+});
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // MAPEAMENTO DE TIPOS → PERÍODO VISUAL

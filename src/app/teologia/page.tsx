@@ -5,11 +5,16 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { doutrinas, type Doutrina } from '@/data/biblia';
 import { getRecursosVersiculo } from '@/data/biblia/versiculoRecursos';
-import PainelDoVersiculo from '@/components/PainelDoVersiculo';
+import dynamic from 'next/dynamic';
 import { Church, Search, BookOpen, ChevronDown, ExternalLink, Share2, Copy, Check, Sparkles, X } from 'lucide-react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
+
+const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
+  ssr: false,
+  loading: () => null,
+});
 
 const CATEGORIA_CORES: Record<string, { bg: string; text: string; dot: string }> = {
   'Bibliologia': { bg: 'bg-blue-50 dark:bg-blue-950/30', text: 'text-blue-600 dark:text-blue-400', dot: 'bg-blue-500' },

@@ -2,18 +2,19 @@
 
 import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import ParticlesBackground from '@/components/ParticlesBackground';
+
+const InstallBanner = dynamic(() => import('@/components/InstallBanner'), { ssr: false });
 import {
   BookOpen, Languages, Church, Map, Brain, ScrollText, Clock, Users,
   ArrowRight, Sparkles, Search, Wrench, ChevronRight, ChevronLeft, Star,
   Globe, BookMarked, Shield, Heart, Share2, Zap, Eye, MessageCircle,
-  CheckCircle2, Play, ChevronDown, Quote
-} from 'lucide-react';
+   CheckCircle2, Play, ChevronDown
+ } from 'lucide-react';
 import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
-import InstallBanner from '@/components/InstallBanner';
 
 const modules = [
   { href: '/biblia', icon: BookOpen, title: 'Bíblia', desc: 'Multi-tradução com áudio e comparação lado a lado' },
@@ -39,13 +40,7 @@ const features = [
   { icon: Heart, title: 'Estudos Teológicos', desc: '80+ teólogos de todas as épocas e tradições' },
 ];
 
-const testimonials = [
-  { text: 'A comparação de traduções com destaque de diferenças é fantástica. Transformou meu preparo de estudo.', author: 'Pastor João', role: 'Ministro', avatar: 'PJ' },
-  { text: 'O estudo de línguas originais acessível e profissional. Nunca vi nada igual em português.', author: 'Pr. Marcos', role: 'Evangelista', avatar: 'PM' },
-  { text: 'Finalmente uma plataforma brasileira de verdade. Completa, bonita, funcional.', author: 'Dr. Pedro', role: 'Teólogo', avatar: 'DP' },
-  { text: 'A IA responde com profundidade teológica que surpreende. Ferramenta indispensável.', author: 'Ana Luiza', role: 'Biblista', avatar: 'AL' },
-  { text: 'Uso diariamente para preparo de aulas. Os alunos amam a interface limpa e elegante.', author: 'Pr. Lucas', role: 'Professor', avatar: 'PL' },
-];
+const testimonials: never[] = [];
 
 const dailyVerses = [
   { text: 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.', ref: 'João 3:16' },
@@ -62,7 +57,7 @@ const stats = [
   { value: 1189, label: 'Capítulos', suffix: '' },
   { value: 31102, label: 'Versículos', suffix: '' },
   { value: 80, label: 'Teólogos', suffix: '+' },
-  { value: 10000, label: 'Versículos emcache', suffix: '+' },
+  { value: 186612, label: 'Versículos carregados', suffix: '' },
 ];
 
 const trustBadges = [
@@ -326,7 +321,6 @@ function SectionDivider() {
 }
 
 export default function Home() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentVerse, setCurrentVerse] = useState(0);
   const [modulesScrollX, setModulesScrollX] = useState(0);
   const modulesContainerRef = useRef<HTMLDivElement>(null);
@@ -335,13 +329,6 @@ export default function Home() {
   const heroY = useTransform(scrollY, [0, 400], [0, 60]);
   const heroScale = useTransform(scrollY, [0, 400], [1, 0.95]);
   const parallaxY = useTransform(scrollY, [0, 800], [0, 150]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -366,7 +353,7 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-28 pb-20 px-6 overflow-hidden min-h-screen flex items-center">
+      <section id="main-content" className="relative pt-28 pb-20 px-6 overflow-hidden min-h-screen flex items-center" aria-label="Seção principal — Apresentação do Sola Scriptura">
         <div className="absolute inset-0 pointer-events-none" style={{
           backgroundImage: `
             radial-gradient(ellipse 60% 50% at 25% 35%, rgba(212,168,67,0.07) 0%, transparent 100%),
@@ -495,7 +482,7 @@ export default function Home() {
       <SectionDivider />
 
       {/* Features Section */}
-      <section className="py-28 px-6 relative">
+      <section className="py-28 px-6 relative" aria-label="Recursos do Sola Scriptura">
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
           backgroundImage: `
             radial-gradient(circle at 50% 0%, var(--primary) 0%, transparent 50%),
@@ -548,7 +535,7 @@ export default function Home() {
       <SectionDivider />
 
       {/* Modules Section - Horizontal Scroll */}
-      <section className="py-28 px-6 border-y border-[var(--border)]/30 bg-[var(--card-bg)]/20 relative overflow-hidden">
+      <section className="py-28 px-6 border-y border-[var(--border)]/30 bg-[var(--card-bg)]/20 relative overflow-hidden" aria-label="Módulos de estudo">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
             <div className="flex items-end justify-between mb-12">
@@ -562,14 +549,14 @@ export default function Home() {
                 <button
                   onClick={() => scrollModules('left')}
                   className="p-2 rounded-lg border border-[var(--border)]/50 text-[var(--muted-fg)] hover:text-[var(--primary)] hover:border-[var(--primary)]/30 transition-all duration-300"
-                  aria-label="Anterior"
+                  aria-label="Rolar módulos para a esquerda"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => scrollModules('right')}
                   className="p-2 rounded-lg border border-[var(--border)]/50 text-[var(--muted-fg)] hover:text-[var(--primary)] hover:border-[var(--primary)]/30 transition-all duration-300"
-                  aria-label="Próximo"
+                  aria-label="Rolar módulos para a direita"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -613,7 +600,7 @@ export default function Home() {
       <SectionDivider />
 
       {/* Bible Verse Section */}
-      <section className="py-28 px-6 relative overflow-hidden">
+      <section className="py-28 px-6 relative overflow-hidden" aria-label="Versículo do dia">
         <motion.div
           style={{ y: parallaxY }}
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -669,6 +656,7 @@ export default function Home() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[var(--border)]/50 text-xs text-[var(--muted-fg)] hover:text-[var(--primary)] hover:border-[var(--primary)]/30 transition-all duration-300"
+              aria-label="Compartilhar versículo do dia"
             >
               <Share2 className="w-3.5 h-3.5" />
               Compartilhar versículo
@@ -677,96 +665,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-28 px-6 border-y border-[var(--border)]/30 bg-[var(--card-bg)]/20">
-        <div className="max-w-4xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-14">
-              <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-[var(--muted-fg)] mb-3">Depoimentos</p>
-              <h2 className="font-display text-3xl md:text-4xl font-light">
-                O que dizem sobre <span className="italic text-[var(--primary)]">nós</span>
-              </h2>
-              <div className="w-16 h-px mx-auto mt-5" style={{ background: 'linear-gradient(90deg, transparent, var(--primary), transparent)' }} />
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal>
-            <div className="relative">
-              <div className="overflow-hidden rounded-2xl border border-[var(--border)]/40 p-10 md:p-14 min-h-[260px] flex flex-col items-center justify-center bg-gradient-to-br from-[var(--card-bg)]/50 to-transparent backdrop-blur-sm relative">
-                <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
-                  backgroundImage: 'radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 60%)',
-                }} />
-
-                <motion.div
-                  key={currentTestimonial}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  className="text-center relative z-10"
-                >
-                  <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6" style={{
-                    background: 'linear-gradient(135deg, rgba(212,168,67,0.2), rgba(139,92,246,0.15))',
-                    boxShadow: '0 0 20px -4px rgba(212,168,67,0.2)',
-                  }}>
-                    <span className="font-display text-lg font-semibold text-[var(--primary)]">
-                      {testimonials[currentTestimonial].avatar}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center justify-center gap-1 mb-5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 text-[var(--primary)] fill-[var(--primary)]" />
-                    ))}
-                  </div>
-
-                  <div className="relative max-w-lg mx-auto">
-                    <Quote className="absolute -top-4 -left-2 w-8 h-8 text-[var(--primary)] opacity-10" />
-                    <p className="font-serif-body text-lg md:text-xl text-[var(--fg)] leading-relaxed mb-6 italic">
-                      &ldquo;{testimonials[currentTestimonial].text}&rdquo;
-                    </p>
-                  </div>
-
-                  <p className="text-sm font-semibold">{testimonials[currentTestimonial].author}</p>
-                  <p className="text-[11px] text-[var(--muted-fg)] mt-0.5">{testimonials[currentTestimonial].role}</p>
-                </motion.div>
-              </div>
-
-              <div className="flex items-center justify-center gap-3 mt-6">
-                <button
-                  onClick={() => setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-                  className="p-2 rounded-lg border border-[var(--border)]/50 text-[var(--muted-fg)] hover:text-[var(--primary)] hover:border-[var(--primary)]/30 transition-all duration-300"
-                  aria-label="Anterior"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                {testimonials.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentTestimonial(i)}
-                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                      i === currentTestimonial ? 'bg-[var(--primary)] w-6' : 'bg-[var(--muted-fg)]/30 hover:bg-[var(--muted-fg)]/50'
-                    }`}
-                    aria-label={`Depoimento ${i + 1}`}
-                  />
-                ))}
-                <button
-                  onClick={() => setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)}
-                  className="p-2 rounded-lg border border-[var(--border)]/50 text-[var(--muted-fg)] hover:text-[var(--primary)] hover:border-[var(--primary)]/30 transition-all duration-300"
-                  aria-label="Próximo"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
       <SectionDivider />
 
       {/* Stats Section */}
-      <section className="py-28 px-6 relative overflow-hidden">
+      <section className="py-28 px-6 relative overflow-hidden" aria-label="Estatísticas do Sola Scriptura">
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
           backgroundImage: 'radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 50%)',
         }} />
@@ -805,7 +707,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-28 px-6 border-t border-[var(--border)]/30 relative overflow-hidden" style={{
         background: 'linear-gradient(180deg, var(--card-bg) 0%, transparent 100%)',
-      }}>
+      }} aria-label="Comece a estudar">
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
           backgroundImage: `
             radial-gradient(circle at 20% 80%, var(--primary) 0%, transparent 40%),

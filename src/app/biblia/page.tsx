@@ -440,7 +440,7 @@ export default function BibliaPage() {
     <div className="min-h-screen bg-[var(--bg)]">
       <Header />
       <OfflineBanner />
-      <main className="pt-16">
+      <main id="main-content" className="pt-16">
         <div className="flex h-[calc(100vh-4rem)]">
           {/* Sidebar */}
           <aside className={`${sidebarOpen ? 'w-64' : 'w-0'} hidden lg:block border-r border-[var(--border)] bg-[var(--card-bg)] transition-all duration-300 overflow-hidden shrink-0`}>
@@ -479,16 +479,17 @@ export default function BibliaPage() {
             {/* Toolbar */}
             <div className="border-b border-[var(--border)] bg-[var(--card-bg)] px-4 py-3 sticky top-0 z-20">
               <div className="flex items-center gap-3">
-                <button onClick={() => setSidebarOpen(!sidebarOpen)} className="hidden lg:block p-1.5 rounded-lg hover:bg-[var(--bg)] transition-all duration-300">
+                <button onClick={() => setSidebarOpen(!sidebarOpen)} className="hidden lg:block p-1.5 rounded-lg hover:bg-[var(--bg)] transition-all duration-300" aria-label={sidebarOpen ? 'Fechar barra lateral' : 'Abrir barra lateral'} aria-expanded={sidebarOpen}>
                   <Menu className="w-4 h-4" />
                 </button>
-                <button onClick={() => setMobileMenu(true)} className="lg:hidden p-1.5 rounded-lg hover:bg-[var(--bg)]">
+                <button onClick={() => setMobileMenu(true)} className="lg:hidden p-1.5 rounded-lg hover:bg-[var(--bg)]" aria-label="Abrir menu de livros">
                   <Menu className="w-4 h-4" />
                 </button>
 
                 <div className="flex items-center gap-2">
                   <button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0}
-                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-50 transition-all duration-300 hover:scale-110">
+                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-50 transition-all duration-300 hover:scale-110"
+                    aria-label="Capítulo anterior">
                     <ChevronLeft className="w-4 h-4" />
                   </button>
                   <div className="text-sm font-semibold min-w-[140px] text-center">
@@ -497,7 +498,8 @@ export default function BibliaPage() {
                   </div>
                   <button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
                     disabled={capituloIdx >= livro.totalCapitulos - 1}
-                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-50 transition-all duration-300 hover:scale-110">
+                    className="p-1.5 rounded-lg hover:bg-[var(--bg)] disabled:opacity-50 transition-all duration-300 hover:scale-110"
+                    aria-label="Próximo capítulo">
                     <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -513,7 +515,9 @@ export default function BibliaPage() {
                         whileTap={{ scale: 0.95 }}
                         className={`text-[11px] font-bold px-2.5 py-1 rounded-md transition-all duration-300 ${
                           active ? `${tradBadgeColors[id]} shadow-sm` : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'
-                        }`}>
+                        }`}
+                        aria-label={`${active ? 'Desativar' : 'Ativar'} tradução ${labelMap[id]}`}
+                        aria-pressed={active}>
                         {labelMap[id]}
                       </motion.button>
                     );
@@ -530,7 +534,9 @@ export default function BibliaPage() {
                       ]).map(({ mode, icon: Icon, label }) => (
                         <motion.button key={mode} onClick={() => setViewMode(mode)} title={label}
                           whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                          className={`p-1.5 rounded-md transition-all duration-300 ${viewMode === mode ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                          className={`p-1.5 rounded-md transition-all duration-300 ${viewMode === mode ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}
+                          aria-label={`Visualização ${label}`}
+                          aria-pressed={viewMode === mode}>
                           <Icon className="w-3.5 h-3.5" />
                         </motion.button>
                       ))}
@@ -539,7 +545,9 @@ export default function BibliaPage() {
 
                   <motion.button onClick={() => setReadingMode(!readingMode)} title="Modo leitura"
                     whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                    className={`p-1.5 rounded-md transition-all duration-300 ${readingMode ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                    className={`p-1.5 rounded-md transition-all duration-300 ${readingMode ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}
+                    aria-label={readingMode ? 'Sair do modo leitura' : 'Ativar modo leitura'}
+                    aria-pressed={readingMode}>
                     {readingMode ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </motion.button>
 
@@ -555,19 +563,24 @@ export default function BibliaPage() {
                     whileTap={{ scale: 0.95 }}
                     className={`p-1.5 rounded-md transition-all duration-300 ${mostrarNotas ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}
                     title="Minhas Anotações"
+                    aria-label="Minhas Anotações"
+                    aria-pressed={mostrarNotas}
                   >
                     <FileText className="w-4 h-4" />
                   </motion.button>
 
                   <motion.button onClick={() => data.length > 0 && exportChapterPdf(livro.nome, capituloIdx + 1, data)}
                     title="Exportar PDF" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                    className="p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-all duration-300">
+                    className="p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-all duration-300"
+                    aria-label="Exportar capítulo em PDF">
                     <Download className="w-4 h-4" />
                   </motion.button>
 
                   <motion.button onClick={() => setShowPlan(!showPlan)} title="Plano de Leitura"
                     whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                    className={`p-1.5 rounded-md transition-all duration-300 ${showPlan ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}>
+                    className={`p-1.5 rounded-md transition-all duration-300 ${showPlan ? 'bg-primary text-primary-foreground' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}
+                    aria-label="Plano de Leitura"
+                    aria-pressed={showPlan}>
                     <BookMarked className="w-4 h-4" />
                   </motion.button>
 
@@ -578,6 +591,7 @@ export default function BibliaPage() {
                       whileTap={{ scale: 0.95 }}
                       className="p-1.5 rounded-md text-purple-400 hover:bg-purple-500/10 transition-all duration-300"
                       title="Narração Dramática"
+                      aria-label="Ouvir narração dramática"
                     >
                       <Music className="w-4 h-4" />
                     </motion.button>
@@ -585,7 +599,9 @@ export default function BibliaPage() {
 
                   <motion.button onClick={() => setShowSettings(!showSettings)} title="Configurações"
                     whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-                    className="p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-all duration-300">
+                    className="p-1.5 rounded-md text-[var(--muted-fg)] hover:bg-[var(--bg)] transition-all duration-300"
+                    aria-label="Configurações de exibição"
+                    aria-expanded={showSettings}>
                     <Settings className="w-4 h-4" />
                   </motion.button>
                 </div>
@@ -600,9 +616,9 @@ export default function BibliaPage() {
                 >
                   <div className="flex items-center gap-2">
                     <span className="text-[11px] text-[var(--muted-fg)]">Tamanho:</span>
-                    <button onClick={() => setFontSize(Math.max(14, fontSize - 1))} className="p-1 rounded hover:bg-[var(--bg)] transition-all duration-200 hover:scale-110"><Minus className="w-3 h-3" /></button>
-                    <span className="text-xs font-mono w-6 text-center">{fontSize}</span>
-                    <button onClick={() => setFontSize(Math.min(28, fontSize + 1))} className="p-1 rounded hover:bg-[var(--bg)] transition-all duration-200 hover:scale-110"><Plus className="w-3 h-3" /></button>
+                    <button onClick={() => setFontSize(Math.max(14, fontSize - 1))} className="p-1 rounded hover:bg-[var(--bg)] transition-all duration-200 hover:scale-110" aria-label="Diminuir tamanho da fonte"><Minus className="w-3 h-3" /></button>
+                    <span className="text-xs font-mono w-6 text-center" aria-live="polite">{fontSize}</span>
+                    <button onClick={() => setFontSize(Math.min(28, fontSize + 1))} className="p-1 rounded hover:bg-[var(--bg)] transition-all duration-200 hover:scale-110" aria-label="Aumentar tamanho da fonte"><Plus className="w-3 h-3" /></button>
                   </div>
                   {viewMode === 'comparison' && data.length >= 2 && (
                     <button onClick={() => setShowDiff(!showDiff)}
@@ -733,6 +749,8 @@ export default function BibliaPage() {
                                     ? 'bg-[var(--primary)]/80 text-[var(--primary-foreground)] shadow-md'
                                     : 'bg-[var(--primary)]/10 text-[var(--primary)] hover:bg-[var(--primary)]/20 border border-[var(--primary)]/20'
                                 }`}
+                                aria-label={capituloAudio.state.isPlaying ? 'Pausar áudio do capítulo' : capituloAudio.state.isPaused ? 'Continuar áudio do capítulo' : 'Ouvir capítulo em áudio'}
+                                aria-pressed={capituloAudio.state.isPlaying}
                               >
                                 {capituloAudio.state.isLoading ? (
                                   <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
@@ -867,6 +885,8 @@ export default function BibliaPage() {
                                               whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
                                               className={`p-1 rounded-md transition-all duration-200 ${corMarca ? 'text-[var(--primary)] bg-[var(--primary)]/10 shadow-sm' : 'text-[var(--muted-fg)] hover:bg-[var(--bg)]'}`}
                                               title="Marcar cor"
+                                              aria-label={`Marcar versículo ${v.numero} com cor`}
+                                              aria-expanded={colorPickerVerse === key}
                                             >
                                               <Palette className="w-3.5 h-3.5" />
                                             </motion.button>
@@ -899,47 +919,57 @@ export default function BibliaPage() {
                                           </div>
                                           <motion.button onClick={() => { toggleFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, v.texto); refresh(); }}
                                             whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
-                                            className={`p-1 rounded-md transition-all duration-200 ${fav ? 'text-red-400 bg-red-500/10 shadow-sm' : 'text-[var(--muted-fg)] hover:text-red-400 hover:bg-red-500/5'}`}>
+                                            className={`p-1 rounded-md transition-all duration-200 ${fav ? 'text-red-400 bg-red-500/10 shadow-sm' : 'text-[var(--muted-fg)] hover:text-red-400 hover:bg-red-500/5'}`}
+                                            aria-label={fav ? `Remover versículo ${v.numero} dos favoritos` : `Adicionar versículo ${v.numero} aos favoritos`}
+                                            aria-pressed={fav}>
                                             <Heart className={`w-3.5 h-3.5 ${fav ? 'fill-current' : ''}`} />
                                           </motion.button>
                                           <motion.button onClick={() => { const m = obterMarca(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao); setAnotandoVersiculo(key); setAnotacaoTexto(m?.anotacao?.texto || ''); }}
                                             whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
-                                            className="p-1 rounded-md text-[var(--muted-fg)] hover:text-amber-400 hover:bg-amber-500/5 transition-all duration-200">
+                                            className="p-1 rounded-md text-[var(--muted-fg)] hover:text-amber-400 hover:bg-amber-500/5 transition-all duration-200"
+                                            aria-label={`Anotar versículo ${v.numero}`}>
                                             <StickyNote className="w-3.5 h-3.5" />
                                           </motion.button>
                                           <motion.button onClick={() => copyVerse(v.texto, ref)} whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
-                                            className="p-1 rounded-md text-[var(--muted-fg)] hover:text-[var(--primary)] hover:bg-[var(--primary)]/5 transition-all duration-200">
+                                            className="p-1 rounded-md text-[var(--muted-fg)] hover:text-[var(--primary)] hover:bg-[var(--primary)]/5 transition-all duration-200"
+                                            aria-label={copiedVerse === ref ? `Versículo ${v.numero} copiado` : `Copiar versículo ${v.numero}`}>
                                             {copiedVerse === ref ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Copy className="w-3.5 h-3.5" />}
                                           </motion.button>
                                           <motion.button onClick={() => shareVerse(v.texto, ref)} whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
-                                            className="p-1 rounded-md text-[var(--muted-fg)] hover:text-sky-400 hover:bg-sky-500/5 transition-all duration-200">
+                                            className="p-1 rounded-md text-[var(--muted-fg)] hover:text-sky-400 hover:bg-sky-500/5 transition-all duration-200"
+                                            aria-label={`Compartilhar versículo ${v.numero}`}>
                                             <Share2 className="w-3.5 h-3.5" />
                                           </motion.button>
-                                          {temComentario(livro.abreviacao, capituloIdx + 1, v.numero) && (
-                                            <motion.button onClick={() => { setComentarioVersiculo(v.numero); setStudyPanel('comentarios'); }}
-                                              whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
-                                              className="p-1 rounded-md text-amber-400 hover:bg-amber-500/10 transition-all duration-200">
-                                              <BookOpen className="w-3.5 h-3.5" />
-                                            </motion.button>
-                                          )}
+                                            {temComentario(livro.abreviacao, capituloIdx + 1, v.numero) && (
+                                              <motion.button onClick={() => { setComentarioVersiculo(v.numero); setStudyPanel('comentarios'); }}
+                                                whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
+                                                className="p-1 rounded-md text-amber-400 hover:bg-amber-500/10 transition-all duration-200"
+                                                aria-label={`Ver comentário do versículo ${v.numero}`}>
+                                                <BookOpen className="w-3.5 h-3.5" />
+                                              </motion.button>
+                                            )}
                                           {temAnotacao && (
                                             <span className="flex items-center" title="Anotação salva">
                                               <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                                             </span>
                                           )}
-                                          {temEstudo(livro.abreviacao, capituloIdx + 1, v.numero) && (
-                                            <motion.button onClick={() => setEstudoAberto(estudoInline ? null : v.numero)}
-                                              whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
-                                              className={`p-1 rounded-md transition-all duration-200 ${estudoInline ? 'text-purple-400 bg-purple-500/15 shadow-sm' : 'text-purple-400 hover:bg-purple-500/10'}`}
-                                              title="Estudos Teológicos">
-                                              <GraduationCap className="w-3.5 h-3.5" />
-                                            </motion.button>
-                                          )}
+                                            {temEstudo(livro.abreviacao, capituloIdx + 1, v.numero) && (
+                                              <motion.button onClick={() => setEstudoAberto(estudoInline ? null : v.numero)}
+                                                whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
+                                                className={`p-1 rounded-md transition-all duration-200 ${estudoInline ? 'text-purple-400 bg-purple-500/15 shadow-sm' : 'text-purple-400 hover:bg-purple-500/10'}`}
+                                                title="Estudos Teológicos"
+                                                aria-label={`Estudos teológicos do versículo ${v.numero}`}
+                                                aria-expanded={estudoInline}>
+                                                <GraduationCap className="w-3.5 h-3.5" />
+                                              </motion.button>
+                                            )}
                                           <motion.button
                                             onClick={() => { isFlashcard ? flashcards.removeCard(flashKey) : flashcards.addCard(flashKey); }}
                                             whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.9 }}
                                             className={`p-1 rounded-md transition-all duration-200 ${isFlashcard ? 'text-cyan-400 bg-cyan-500/15 shadow-sm' : 'text-[var(--muted-fg)] hover:text-cyan-400 hover:bg-cyan-500/5'}`}
-                                            title={isFlashcard ? 'Remover flashcard' : 'Adicionar flashcard'}>
+                                            title={isFlashcard ? 'Remover flashcard' : 'Adicionar flashcard'}
+                                            aria-label={isFlashcard ? `Remover versículo ${v.numero} dos flashcards` : `Adicionar versículo ${v.numero} aos flashcards`}
+                                            aria-pressed={!!isFlashcard}>
                                             <Brain className="w-3.5 h-3.5" />
                                           </motion.button>
                                         </div>
@@ -996,7 +1026,9 @@ export default function BibliaPage() {
                               <div className="bg-[var(--bg)] px-4 py-2 border-b border-[var(--border)]/30 flex items-center justify-between">
                                 <span className="text-xs font-semibold text-[var(--muted-fg)] uppercase tracking-wider">Comparação</span>
                                 <button onClick={() => setShowDiff(!showDiff)}
-                                  className={`text-[11px] px-2.5 py-1 rounded-full transition-all duration-300 ${showDiff ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' : 'text-[var(--muted-fg)]'}`}>
+                                  className={`text-[11px] px-2.5 py-1 rounded-full transition-all duration-300 ${showDiff ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' : 'text-[var(--muted-fg)]'}`}
+                                  aria-label={showDiff ? 'Ocultar diferenças' : 'Mostrar diferenças'}
+                                  aria-pressed={showDiff}>
                                   {showDiff ? 'Diferenças ON' : 'Diferenças OFF'}
                                 </button>
                               </div>
@@ -1188,7 +1220,7 @@ export default function BibliaPage() {
                   >
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-sm font-semibold">Livros</span>
-                      <button onClick={() => setMobileMenu(false)} className="p-1 rounded-lg hover:bg-[var(--bg)]"><X className="w-4 h-4" /></button>
+                      <button onClick={() => setMobileMenu(false)} className="p-1 rounded-lg hover:bg-[var(--bg)]" aria-label="Fechar menu de livros"><X className="w-4 h-4" /></button>
                     </div>
                     <div className="space-y-0.5">
                       {TODOS_LIVROS.map(l => {
@@ -1441,19 +1473,19 @@ export default function BibliaPage() {
       {/* Mobile bottom nav */}
       <div className="fixed bottom-0 left-0 right-0 border-t border-[var(--border)] bg-[var(--card-bg)] lg:hidden z-30">
         <div className="flex items-center justify-around px-2 py-2">
-          <motion.button onClick={() => setMobileMenu(true)} whileTap={{ scale: 0.9 }} className="flex flex-col items-center gap-0.5 p-2 text-[var(--muted-fg)]">
+          <motion.button onClick={() => setMobileMenu(true)} whileTap={{ scale: 0.9 }} className="flex flex-col items-center gap-0.5 p-2 text-[var(--muted-fg)]" aria-label="Abrir lista de livros">
             <BookOpen className="w-5 h-5" /><span className="text-[10px]">Livros</span>
           </motion.button>
           <div className="flex items-center gap-1">
-            <motion.button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0} whileTap={{ scale: 0.9 }} className="p-2 text-[var(--muted-fg)] disabled:opacity-50">
+            <motion.button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0} whileTap={{ scale: 0.9 }} className="p-2 text-[var(--muted-fg)] disabled:opacity-50" aria-label="Capítulo anterior">
               <ChevronLeft className="w-5 h-5" />
             </motion.button>
             <span className="text-xs font-mono min-w-[3rem] text-center">{capituloIdx + 1}/{livro.totalCapitulos}</span>
-            <motion.button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))} disabled={capituloIdx >= livro.totalCapitulos - 1} whileTap={{ scale: 0.9 }} className="p-2 text-[var(--muted-fg)] disabled:opacity-50">
+            <motion.button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))} disabled={capituloIdx >= livro.totalCapitulos - 1} whileTap={{ scale: 0.9 }} className="p-2 text-[var(--muted-fg)] disabled:opacity-50" aria-label="Próximo capítulo">
               <ChevronRight className="w-5 h-5" />
             </motion.button>
           </div>
-          <motion.button onClick={() => setChapterGridOpen(!chapterGridOpen)} whileTap={{ scale: 0.9 }} className="flex flex-col items-center gap-0.5 p-2 text-[var(--muted-fg)]">
+          <motion.button onClick={() => setChapterGridOpen(!chapterGridOpen)} whileTap={{ scale: 0.9 }} className="flex flex-col items-center gap-0.5 p-2 text-[var(--muted-fg)]" aria-label="Abrir grade de capítulos" aria-expanded={chapterGridOpen}>
             <LayoutList className="w-5 h-5" /><span className="text-[10px]">Capítulos</span>
           </motion.button>
         </div>

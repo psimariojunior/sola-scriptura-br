@@ -29,6 +29,9 @@ import { NotasModule } from './modules/notas/notas.module';
 import { DicionarioModule } from './modules/dicionario/dicionario.module';
 import { PesquisaModule } from './modules/pesquisa/pesquisa.module';
 import { SegurancaModule } from './infra/seguranca/seguranca.module';
+import { RedisModule } from './infra/cache/redis.module';
+import { ElasticsearchModule } from './infra/busca/elasticsearch.module';
+import { RabbitMQModule } from './infra/mensageria/rabbitmq.module';
 import { SaudeController } from './modules/saude.controller';
 
 @Module({
@@ -93,6 +96,9 @@ import { SaudeController } from './modules/saude.controller';
     DicionarioModule,
     PesquisaModule,
     SegurancaModule,
+    RedisModule,
+    ElasticsearchModule,
+    RabbitMQModule,
   ],
   controllers: [SaudeController],
   providers: [

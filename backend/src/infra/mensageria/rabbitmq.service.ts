@@ -17,7 +17,12 @@ export class RabbitMQService implements OnModuleDestroy {
   ];
 
   constructor(private configService: ConfigService) {
-    this.inicializar();
+    const url = this.configService.get('RABBITMQ_URL');
+    if (url) {
+      this.inicializar();
+    } else {
+      this.logger.warn('RABBITMQ_URL não configurado — RabbitMQ desabilitado');
+    }
   }
 
   private async inicializar(): Promise<void> {

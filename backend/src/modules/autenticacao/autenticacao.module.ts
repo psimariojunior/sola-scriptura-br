@@ -16,7 +16,7 @@ import { RefreshToken } from './domain/refresh-token.entity';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        secret: config.get('JWT_SECRET', 'super-secret-key'),
+        secret: config.get('JWT_SECRET') || (config.get('NODE_ENV') === 'production' ? (() => { throw new Error('JWT_SECRET é obrigatório em produção'); })() : 'super-secret-key-dev-only'),
         signOptions: {
           expiresIn: config.get('JWT_EXPIRATION', '15m'),
         },

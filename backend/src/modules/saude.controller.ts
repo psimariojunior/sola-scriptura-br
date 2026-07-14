@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpException, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
@@ -17,12 +17,24 @@ export class SaudeController {
   @Get()
   @ApiOperation({ summary: 'Verifica saúde completa do sistema' })
   @ApiResponse({ status: 200, description: 'Sistema operacional' })
+  @ApiResponse({ status: 503, description: 'Sistema degradado' })
   async health(): Promise<HealthCheckResponse> {
     const mem = process.memoryUsage();
     const dbCheck = await this.checkDatabase();
 
+    if (dbCheck.status !== 'connected') {
+      throw new HttpException({
+        status: 'degraded',
+        timestamp: new Date().toISOString(),
+        version: '1.0.0',
+        environment: process.env.NODE_ENV || 'production',
+        uptime: process.uptime(),
+        database: dbCheck,
+      }, HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
     return {
-      status: dbCheck.status === 'connected' ? 'online' : 'degraded',
+      status: 'online',
       timestamp: new Date().toISOString(),
       version: '1.0.0',
       environment: process.env.NODE_ENV || 'production',

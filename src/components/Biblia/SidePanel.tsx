@@ -50,8 +50,8 @@ function PanelFallback() {
 
 const widthMap: Record<SidePanelWidth, string> = {
   collapsed: 'w-14',
-  half: 'w-full sm:w-[400px]',
-  full: 'w-full sm:w-[60%]',
+  half: 'w-full sm:w-[340px] md:w-[380px] lg:w-[420px]',
+  full: 'w-full sm:w-[45%] lg:w-[40%]',
 };
 
 export function SidePanel({
@@ -88,7 +88,7 @@ export function SidePanel({
         'shrink-0 border-l border-[var(--border)] bg-[var(--surface-raised)]',
         'flex flex-col h-full',
         'transition-[width] duration-300',
-        isFull ? 'absolute right-0 top-0 bottom-0 z-30 shadow-2xl' : widthMap[width]
+        widthMap[width]
       )}
     >
       <div className="flex items-center justify-between p-2 border-b border-[var(--border)]/50 shrink-0">

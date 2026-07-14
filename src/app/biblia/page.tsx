@@ -314,7 +314,7 @@ export default function BibliaPage() {
           />
         </div>
 
-        <div className="flex h-[calc(100vh-7rem)] relative">
+        <div className="flex h-[calc(100vh-7rem-40px)] relative">
           <AnimatePresence>
             {sidebarOpen && (
               <motion.aside
@@ -496,7 +496,7 @@ export default function BibliaPage() {
             </div>
 
             <div ref={mainRef} className="flex-1 overflow-y-auto">
-              <div className="max-w-[720px] mx-auto px-4 sm:px-6 py-6 sm:py-10">
+              <div className="max-w-[min(900px,100%-2rem)] mx-auto px-4 sm:px-6 py-6 sm:py-10">
                 {showPlan && <ReadingPlanBanner />}
 
                 {loading ? (
@@ -579,7 +579,7 @@ export default function BibliaPage() {
                       ))}
 
                       {modoLeitura === 'comparacao' && viewMode === 'parallel' && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                           {data.map((item) => (
                             <motion.div
                               key={item.traducao}

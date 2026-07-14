@@ -33,7 +33,7 @@ export function NotesPanelSection({ open, onClose, notas, notaAtiva, onSalvar, o
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-          className="border-t border-[var(--border)]/40 bg-[var(--surface-raised)] p-4 max-w-[720px] mx-auto"
+          className="border-t border-[var(--border)]/40 bg-[var(--surface-raised)] p-4 max-w-[min(900px,100%-2rem)] mx-auto"
         >
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">

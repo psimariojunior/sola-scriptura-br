@@ -10,7 +10,7 @@ export const configuracaoBanco = registerAs('banco', () => ({
 }));
 
 export const configuracaoJWT = registerAs('jwt', () => ({
-  segredo: process.env.JWT_SECRET || 'super-secret-key-change-in-production',
+  segredo: process.env.JWT_SECRET || (process.env.NODE_ENV === 'production' ? '' : 'super-secret-key-dev-only'),
   expiracao: process.env.JWT_EXPIRATION || '15m',
   refreshExpiracao: process.env.JWT_REFRESH_EXPIRATION || '7d',
 }));

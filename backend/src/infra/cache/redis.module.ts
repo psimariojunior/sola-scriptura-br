@@ -1,4 +1,4 @@
-import { Module, Global } from '@nestjs/common';
+import { Module, Global, Logger } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import Redis from 'ioredis';
 
@@ -12,8 +12,13 @@ export const REDIS_CLIENT = 'REDIS_CLIENT';
       provide: REDIS_CLIENT,
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
+        const host = config.get('REDIS_HOST');
+        if (!host) {
+          new Logger('RedisModule').warn('REDIS_HOST não configurado — Redis desabilitado');
+          return null;
+        }
         return new Redis({
-          host: config.get('REDIS_HOST', 'localhost'),
+          host,
           port: config.get('REDIS_PORT', 6379),
           password: config.get('REDIS_PASSWORD', ''),
           db: config.get('REDIS_DB', 0),

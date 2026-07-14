@@ -681,6 +681,35 @@ export function Header() {
 
                   <div className="border-t border-border/30 my-2" />
 
+                  {/* Theme switcher - mobile */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: (navLinks.length + moreLinks.length) * 0.04 }}
+                    className="px-3 py-2"
+                  >
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60 mb-2 block">Tema</span>
+                    <div className="flex gap-1.5">
+                      {temasDisponiveis.map((t) => (
+                        <button
+                          key={t.nome}
+                          onClick={() => setTema(t.nome as TemaNome)}
+                          className={`flex-1 flex flex-col items-center gap-1 py-2.5 px-1 rounded-lg text-[11px] font-medium transition-all min-h-[44px] ${
+                            tema === t.nome
+                              ? 'bg-primary/15 text-primary ring-1 ring-primary/30'
+                              : 'text-muted-foreground hover:bg-muted/50'
+                          }`}
+                          aria-pressed={tema === t.nome}
+                        >
+                          <span className="text-base">{temaIcons[t.nome]}</span>
+                          {t.label}
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  <div className="border-t border-border/30 my-2" />
+
                   {isAdmin && (
                     <motion.div
                       initial={{ opacity: 0, x: -16 }}

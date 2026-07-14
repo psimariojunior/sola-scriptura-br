@@ -126,6 +126,15 @@ class AuthService {
         this.usuario = aplicarRole(parsed);
       }
     }
+
+    // Ensure cookies exist from localStorage (recreate if missing)
+    if (this.accessToken && this.usuario) {
+      const existingToken = document.cookie.split(';').some(c => c.trim().startsWith('ssb_token='));
+      if (!existingToken) {
+        this.setCookie('ssb_token', this.accessToken);
+        this.setCookie('ssb_usuario', JSON.stringify(this.usuario));
+      }
+    }
   }
 
   private getUsers(): StoredUser[] {
@@ -331,15 +340,19 @@ class AuthService {
         localStorage.setItem(TOKEN_KEY, data.accessToken);
         localStorage.setItem(REFRESH_KEY, data.refreshToken);
         localStorage.setItem(USER_KEY, JSON.stringify(usuario));
-        const expirar = 60 * 60 * 24 * 30;
-        document.cookie = `ssb_token=${data.accessToken}; path=/; max-age=${expirar}; SameSite=Lax`;
-        document.cookie = `ssb_usuario=${encodeURIComponent(JSON.stringify(usuario))}; path=/; max-age=${expirar}; SameSite=Lax`;
-      } catch {
-        // localStorage indisponível - sessão apenas em memória
-      }
+      } catch { /* ignore */ }
+      this.setCookie('ssb_token', data.accessToken);
+      this.setCookie('ssb_usuario', JSON.stringify(usuario));
     }
 
     this.notifyListeners();
+  }
+
+  private setCookie(name: string, value: string): void {
+    try {
+      const expirar = 60 * 60 * 24 * 30;
+      document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${expirar}; SameSite=Lax`;
+    } catch { /* ignore */ }
   }
 
   private clearSession(): void {
@@ -352,11 +365,11 @@ class AuthService {
         localStorage.removeItem(TOKEN_KEY);
         localStorage.removeItem(REFRESH_KEY);
         localStorage.removeItem(USER_KEY);
+      } catch { /* ignore */ }
+      try {
         document.cookie = 'ssb_token=; path=/; max-age=0';
         document.cookie = 'ssb_usuario=; path=/; max-age=0';
-      } catch {
-        // ignore
-      }
+      } catch { /* ignore */ }
     }
 
     this.notifyListeners();

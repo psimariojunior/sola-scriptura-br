@@ -35,6 +35,7 @@ async function sincronizarComBackend(notas: Nota[]): Promise<Nota[]> {
   try {
     const res = await fetch(`${API_BASE}/notas`, {
       headers: { Authorization: `Bearer ${token}` },
+      signal: AbortSignal.timeout(3000),
     });
     if (res.ok) {
       const remote = await res.json();
@@ -68,6 +69,7 @@ async function salvarNoBackend(nota: Nota): Promise<void> {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(nota),
+      signal: AbortSignal.timeout(3000),
     });
   } catch { /* offline */ }
 }
@@ -80,6 +82,7 @@ async function excluirNoBackend(id: string): Promise<void> {
     await fetch(`${API_BASE}/notas/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
+      signal: AbortSignal.timeout(3000),
     });
   } catch { /* offline */ }
 }

@@ -1,27 +1,21 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, lazy } from 'react';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { EstudosProvider } from '@/components/EstudosProvider';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { AIProvider } from '@/contexts/AIContext';
-import PageTransition from '@/components/PageTransition';
-import BibleSplash from '@/components/BibleSplash';
 import TopProgressBar from '@/components/TopProgressBar';
 import BackToTop from '@/components/BackToTop';
 import { Toaster } from '@/components/ui/toast-helpers';
-import { AIPainelLateral } from '@/components/AIPainelLateral';
-import { AIMiniPainel } from '@/components/AIMiniPainel';
-import { HotkeysDialog } from '@/components/HotkeysDialog';
-import { OnboardingModal, resetOnboarding } from '@/components/OnboardingModal';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import { useAnalytics } from '@/hooks/useAnalytics';
-import { useMicroInteracoes } from '@/hooks/useMicroInteracoes';
-import { useHotkeys } from '@/hooks/useHotkeys';
-import { HOTKEYS } from '@/lib/hotkeys';
-import { preloadRoute } from '@/lib/performance';
 import { useRouter } from 'next/navigation';
 import '@/lib/i18n';
+
+const AIPainelLateral = lazy(() => import('@/components/AIPainelLateral').then(m => ({ default: m.AIPainelLateral })));
+const AIMiniPainel = lazy(() => import('@/components/AIMiniPainel').then(m => ({ default: m.AIMiniPainel })));
+const HotkeysDialog = lazy(() => import('@/components/HotkeysDialog').then(m => ({ default: m.HotkeysDialog })));
+const OnboardingModal = lazy(() => import('@/components/OnboardingModal').then(m => ({ default: m.OnboardingModal, resetOnboarding: m.resetOnboarding })));
 
 function ServiceWorkerRegistration() {
   useEffect(() => {
@@ -29,20 +23,6 @@ function ServiceWorkerRegistration() {
       navigator.serviceWorker.register('/sw.js').catch(() => {});
     }
   }, []);
-  return null;
-}
-
-function AnalyticsAndPerformance() {
-  useAnalytics();
-  useMicroInteracoes();
-
-  useEffect(() => {
-    const criticalRoutes = ['/biblia', '/pesquisa', '/ia', '/teologia', '/exegese'];
-    criticalRoutes.forEach((route, i) => {
-      setTimeout(() => preloadRoute(route), i * 2000);
-    });
-  }, []);
-
   return null;
 }
 
@@ -54,7 +34,6 @@ function GlobalHotkeys() {
   useEffect(() => {
     const onShortcuts = () => setShortcutsOpen(true);
     const onReset = () => {
-      resetOnboarding();
       setOnboardingKey((k) => k + 1);
     };
     window.addEventListener('ssb:open-shortcuts', onShortcuts as EventListener);
@@ -65,22 +44,31 @@ function GlobalHotkeys() {
     };
   }, []);
 
-  useHotkeys(HOTKEYS, {
-    'busca-global': () => {
-      window.dispatchEvent(new CustomEvent('ssb:toggle-busca'));
-    },
-    'painel-ia': () => {
-      window.dispatchEvent(new CustomEvent('ssb:toggle-ai'));
-    },
-    biblia: () => router.push('/biblia'),
-    'shortcuts': () => setShortcutsOpen((o) => !o),
-    'shortcuts-alt': () => setShortcutsOpen((o) => !o),
-  });
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === '/') {
+        e.preventDefault();
+        setShortcutsOpen((o) => !o);
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        window.dispatchEvent(new CustomEvent('ssb:toggle-busca'));
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key === 'j') {
+        e.preventDefault();
+        window.dispatchEvent(new CustomEvent('ssb:toggle-ai'));
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
 
   return (
     <>
-      <HotkeysDialog open={shortcutsOpen} onOpenChange={setShortcutsOpen} />
-      <OnboardingModal key={onboardingKey} />
+      <Suspense fallback={null}>
+        <HotkeysDialog open={shortcutsOpen} onOpenChange={setShortcutsOpen} />
+        <OnboardingModal key={onboardingKey} />
+      </Suspense>
     </>
   );
 }
@@ -90,23 +78,20 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
     <ThemeProvider>
       <AuthProvider>
         <ServiceWorkerRegistration />
-        <AnalyticsAndPerformance />
         <TooltipProvider delayDuration={300}>
-          <Suspense fallback={null}>
-            <AIProvider>
-              <EstudosProvider>
-                <TopProgressBar />
-                <Toaster />
-                <PageTransition>
-                  {children}
-                </PageTransition>
-                <BackToTop />
+          <AIProvider>
+            <EstudosProvider>
+              <TopProgressBar />
+              <Toaster />
+              {children}
+              <BackToTop />
+              <Suspense fallback={null}>
                 <AIPainelLateral />
                 <AIMiniPainel />
-                <GlobalHotkeys />
-              </EstudosProvider>
-            </AIProvider>
-          </Suspense>
+              </Suspense>
+              <GlobalHotkeys />
+            </EstudosProvider>
+          </AIProvider>
         </TooltipProvider>
       </AuthProvider>
     </ThemeProvider>

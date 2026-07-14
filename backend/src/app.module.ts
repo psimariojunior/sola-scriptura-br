@@ -48,8 +48,7 @@ import { SaudeController } from './modules/saude.controller';
             url: databaseUrl,
             entities: [__dirname + '/**/*.entity{.ts,.js}'],
             synchronize: true,
-            ssl: { rejectUnauthorized: false },
-            logging: config.get('NODE_ENV') !== 'production',
+            logging: false,
           };
         }
         return {

@@ -370,7 +370,7 @@ export class KnowledgeGraphService {
         this.adicionarNoSeNovo({
           id: `historia:${h.id}`,
           tipo: 'evento',
-          nome: h.titulo || h.entidadeTipo || `Evento ${h.id}`,
+          nome: h.entidadeTipo || `Evento ${h.id}`,
           descricao: h.contextoPolitico?.slice(0, 200) || h.contextoReligioso?.slice(0, 200),
         });
       }
@@ -386,7 +386,7 @@ export class KnowledgeGraphService {
         this.adicionarNoSeNovo({
           id: `geografia:${loc.id}`,
           tipo: 'lugar',
-          nome: loc.nome,
+          nome: loc.nomePortugues,
           descricao: loc.descricao?.slice(0, 200),
           metadados: {
             latitude: loc.latitude,

@@ -14,7 +14,7 @@ export class CriptografiaService {
 
   criptografar(texto: string): { iv: string; conteudo: string; tag: string } {
     const iv = crypto.randomBytes(16);
-    const cifra = crypto.createCipheriv(this.algoritmo, this.chave, iv);
+    const cifra = crypto.createCipheriv(this.algoritmo, this.chave, iv) as crypto.CipherGCM;
     let encrypted = cifra.update(texto, 'utf8', 'hex');
     encrypted += cifra.final('hex');
     const tag = cifra.getAuthTag().toString('hex');
@@ -26,7 +26,7 @@ export class CriptografiaService {
       this.algoritmo,
       this.chave,
       Buffer.from(dados.iv, 'hex'),
-    );
+    ) as crypto.DecipherGCM;
     decipher.setAuthTag(Buffer.from(dados.tag, 'hex'));
     let decrypted = decipher.update(dados.conteudo, 'hex', 'utf8');
     decrypted += decipher.final('utf8');

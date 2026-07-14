@@ -4,7 +4,7 @@ import { LLMService } from '../../../infra/ia/llm.service';
 import { KnowledgeGraphService } from '../../../infra/ia/knowledge-graph.service';
 import { TipoEntidadeEmbedding } from '../presentation/dto/ia.dto';
 
-interface RespostaIA {
+export interface RespostaIA {
   pergunta: string;
   resposta: string;
   contexto: Array<{ tipo: string; texto: string; relevancia: number; referencia: string }>;

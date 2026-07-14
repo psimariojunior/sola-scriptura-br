@@ -287,7 +287,7 @@ export class RAGService {
         tipo: 'versiculo',
         texto: v.texto,
         relevancia: 0.7,
-        referencia: `${v.livro?.nome || ''} ${v.capituloNumero}:${v.numero}`,
+        referencia: `${v.livroId || ''} ${v.capituloNumero}:${v.numero}`,
       });
     }
 
@@ -339,9 +339,9 @@ export class RAGService {
     for (const g of geografia) {
       resultados.push({
         tipo: 'geografia',
-        texto: `${g.nome}: ${g.descricao || ''}`,
+        texto: `${g.nomePortugues}: ${g.descricao || ''}`,
         relevancia: 0.45,
-        referencia: `Geografia: ${g.nome}`,
+        referencia: `Geografia: ${g.nomePortugues}`,
       });
     }
 

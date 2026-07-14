@@ -229,13 +229,15 @@ class AuthService {
       throw new Error(data.message || 'Erro ao cadastrar');
     }
 
+    const result = data.data || data;
+
     this.setSession({
-      accessToken: data.accessToken,
-      refreshToken: data.refreshToken,
-      usuario: data.usuario,
+      accessToken: result.accessToken,
+      refreshToken: result.refreshToken,
+      usuario: result.usuario,
     });
 
-    return data.usuario;
+    return result.usuario;
   }
 
   async login(email: string, senha: string): Promise<Usuario> {
@@ -257,11 +259,12 @@ class AuthService {
       throw new Error(data.message || 'Email ou senha incorretos');
     }
 
-    const usuario: Usuario = aplicarRole(data.usuario);
+    const result = data.data || data;
+    const usuario: Usuario = aplicarRole(result.usuario);
 
     this.setSession({
-      accessToken: data.accessToken,
-      refreshToken: data.refreshToken,
+      accessToken: result.accessToken,
+      refreshToken: result.refreshToken,
       usuario,
     });
 
@@ -323,10 +326,11 @@ class AuthService {
       if (!res.ok) return false;
       const data = await res.json();
       if (data.accessToken) {
+        const result = data.data || data;
         this.setSession({
-          accessToken: data.accessToken,
-          refreshToken: data.refreshToken || this.refreshToken,
-          usuario: data.usuario || this.usuario,
+          accessToken: result.accessToken,
+          refreshToken: result.refreshToken || this.refreshToken,
+          usuario: result.usuario || this.usuario,
         });
         return true;
       }

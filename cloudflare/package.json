@@ -1,0 +1,15 @@
+{
+  "name": "sola-scriptura-edge-tts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Worker for Microsoft Edge TTS (Neural Voices)",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "status": "wrangler status"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

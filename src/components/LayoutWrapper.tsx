@@ -11,7 +11,10 @@ import { Toaster } from '@/components/ui/toast-helpers';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { useRouter, usePathname } from 'next/navigation';
 import { trackPageView } from '@/lib/analytics';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 import '@/lib/i18n';
+
+const MobilePerformanceMonitor = lazy(() => import('@/components/MobilePerformanceMonitor'));
 
 const AIPainelLateral = lazy(() => import('@/components/AIPainelLateral').then(m => ({ default: m.AIPainelLateral })));
 const AIMiniPainel = lazy(() => import('@/components/AIMiniPainel').then(m => ({ default: m.AIMiniPainel })));
@@ -83,6 +86,15 @@ function PageViewTracker() {
 }
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
+  const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--framer-motion-duration',
+      prefersReducedMotion ? '0ms' : ''
+    );
+  }, [prefersReducedMotion]);
+
   return (
     <ThemeProvider>
       <AuthProvider>
@@ -100,6 +112,11 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
                 <AIMiniPainel />
               </Suspense>
               <GlobalHotkeys />
+              {process.env.NODE_ENV === 'development' && (
+                <Suspense fallback={null}>
+                  <MobilePerformanceMonitor />
+                </Suspense>
+              )}
             </EstudosProvider>
           </AIProvider>
         </TooltipProvider>

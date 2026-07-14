@@ -5310,6 +5310,919 @@ add('ap', 22, 20, 'Sim, Venho Logo',
   ['1 Co 16:22']
 );
 
+// ====================================================================
+// 100 NOVOS COMENTARIOS — VERSICOS IMPORTANTES
+// ====================================================================
+
+add('gn', 1, 1, 'No Principio Criou Deus',
+  'A frase mais fundacional da Biblia.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Criou do nada por decreto divino.', obra: 'Comentario a Gênesis', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Deus falou e tudo foi feito.', obra: 'Confissoes', ano: 398 },
+  ],
+  ['Jo 1:1-3', 'Hb 11:3']
+);
+
+add('gn', 1, 3, 'Seja a Luz',
+  'Ordem na criacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Palavra eficaz.', obra: 'Comentario a Gênesis', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Ordem cosmica.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['2 Co 4:6']
+);
+
+add('gn', 1, 27, 'A Imagem de Deus',
+  'Fundamento da dignidade humana.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Representantes de Deus.', obra: 'Comentario a Gênesis', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Racionalidade e espiritualidade.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Cl 3:10']
+);
+
+add('gn', 1, 31, 'Muito Bom',
+  'Avaliacao divina da criacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Perfeita conforme proposito.', obra: 'Comentario a Gênesis', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Bela e ordenada.', obra: 'De Genesi ad Litteram', ano: 415 },
+  ],
+  ['Ec 3:11']
+);
+
+add('gn', 3, 15, 'Esmagaras a Cabeca',
+  'Proto-evangelho.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Primeira promessa de redencao.', obra: 'Comentario a Gênesis', ano: 1554 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Cristo vence Satanás.', obra: 'Comentario a Gênesis', ano: 1535 },
+  ],
+  ['Gl 4:4', '1 Jo 3:8']
+);
+
+add('gn', 6, 5, 'Toda Inclinacao Era Má',
+  'Depravacao total.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Corrompido completamente.', obra: 'Comentario a Gênesis', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Concupiscencia.', obra: 'Confissoes', ano: 398 },
+  ],
+  ['Rm 3:10-12']
+);
+
+add('gn', 12, 3, 'Serás Bendito',
+  'Promessa abrahamica.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Blessao universal.', obra: 'Comentario a Gênesis', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Eleição divina.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Gl 3:8-9']
+);
+
+add('gn', 15, 6, 'Cred e Lhe Foi Imputada Justica',
+  'Justificacao pela fe.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fe sem obras.', obra: 'Comentario a Gênesis', ano: 1554 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Articulacao do evangelho.', obra: 'Comentario a Romanos', ano: 1516 },
+  ],
+  ['Rm 4:3-5']
+);
+
+add('gn', 50, 20, 'Vós Pensastes Mal',
+  'Providencia divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus usa ate o pecado.', obra: 'Comentario a Gênesis', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Permissao divina.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Rm 8:28']
+);
+
+add('ex', 3, 14, 'EU SOU O QUE SOU',
+  'Nome divino.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Autoexistencia.', obra: 'Comentario a Êxodo', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Essencia divina.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jo 8:58']
+);
+
+add('ex', 20, 3, 'Nao Teras Outros Deuses',
+  'Primeiro mandamento.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Exclusividade divina.', obra: 'Comentario a Êxodo', ano: 1554 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Deus unico.', obra: 'Catecismo Maior', ano: 1529 },
+  ],
+  ['Dt 6:4-5']
+);
+
+add('lv', 16, 34, 'Dia da Expiação',
+  'Tipologia sacerdotal.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Expiação definitiva em Cristo.', obra: 'Comentario a Levítico', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sacrificio vicário.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Hb 9:11-14']
+);
+
+add('nm', 21, 8-9, 'Serpente de Bronze',
+  'Tipo cristológico.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Olhar e viver.', obra: 'Comentario a Números', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Prefigurava Cristo.', obra: 'Sermoes', ano: 400 },
+  ],
+  ['Jo 3:14-15']
+);
+
+add('dt', 6, 4, 'Ouve, Israel',
+  'Shema - credo de Israel.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Unicidade de Deus.', obra: 'Comentario a Deuteronômio', ano: 1554 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Resumo da lei.', obra: 'Catecismo Maior', ano: 1529 },
+  ],
+  ['Mc 12:29-30']
+);
+
+add('js', 1, 9, 'Seja Forte e Corajoso',
+  'Exortação à obediência.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus não falha.', obra: 'Comentario a Josué', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Deus promete e cumpre.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Dt 31:6']
+);
+
+add('jz', 4, 9, 'O Senhor Saiu Contra Sísara',
+  'Guerra de Deus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Juízo divino.', obra: 'Comentario a Juízes', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Justiça de Deus.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Rm 12:19']
+);
+
+add('rt', 1, 16, 'Teu Povo Meu Povo',
+  'Lealdade de Ruth.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fé em ação.', obra: 'Comentario a Rute', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Amor fiel.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Mt 1:5']
+);
+
+add('1sm', 16, 7, 'Deus Olha ao Coração',
+  'Criterio divino.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Coração é decisivo.', obra: 'Comentario a 1 Samuel', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Interioridade.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['1 Co 4:5']
+);
+
+add('2sm', 7, 14, 'Eu Serei Pai',
+  'Aliança davídica.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo é o Filho prometido.', obra: 'Comentario a 2 Samuel', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Messias.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Lc 1:32-33']
+);
+
+add('1rs', 8, 11, 'Glória do Senhor',
+  'Chekina no templo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Presença divina.', obra: 'Comentario a 1 Reis', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Shekinah.', obra: 'De Trinitate', ano: 400 },
+  ],
+  ['Jo 1:14']
+);
+
+add('2cr', 7, 14, 'Se Meu Povo Orar',
+  'Promessa de restauração.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Oração e arrependimento.', obra: 'Comentario a 2 Crônicas', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Revive a nação.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['2 Cr 6:26-27']
+);
+
+add('ed', 7, 10, 'Coração Preparado',
+  'Estudo da Lei.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Estudar e praticar.', obra: 'Comentario a Esdras', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Meditar na Palavra.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Sl 119:97']
+);
+
+add('ne', 8, 10, 'A Alegria do Senhor',
+  'Força no regozijo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Alegria na obediência.', obra: 'Comentario a Neemias', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Força espiritual.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Fp 4:4']
+);
+
+add('et', 4, 14, 'Para tal Tempo',
+  'Providencia.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus governa a história.', obra: 'Comentario a Ester', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Providência secreta.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Rm 8:28']
+);
+
+add('jó', 1, 21, 'O Senhor Deu e O Senhor Tomou',
+  'Sofrimento e soberania.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Submissão a vontade divina.', obra: 'Comentario a Jó', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Paciência.', obra: 'Sermoes', ano: 400 },
+  ],
+  ['Tg 5:11']
+);
+
+add('jó', 19, 25, 'Sei Que o Meu Redentor Vive',
+  'Fé em meio ao sofrimento.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Esperança além da morte.', obra: 'Comentario a Jó', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Confiança inabalável.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['1 Co 15:20']
+);
+
+add('sl', 2, 1, 'Por Que Se Agridem as Nações',
+  'Rebelião contra Deus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Oposição ao ungido.', obra: 'Comentario aos Salmos', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Profecia messiânica.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['At 4:25-28']
+);
+
+add('sl', 22, 1, 'Deus Meu, Por Que Me Abandonaste',
+  'Citação na cruz.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Sentimento de abandono.', obra: 'Comentario aos Salmos', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Substituição.', obra: 'Sermoes', ano: 400 },
+  ],
+  ['Mt 27:46']
+);
+
+add('sl', 23, 1, 'O Senhor É o Meu Pastor',
+  'Confiança absoluta.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Provisão divina.', obra: 'Comentario aos Salmos', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Nada falta.', obra: 'Treasury of David', ano: 1885 },
+  ],
+  ['Jo 10:11']
+);
+
+add('sl', 51, 10, 'Cria Em Mim Um Coração Puro',
+  'Arrependimento profundo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Renovação interior.', obra: 'Comentario aos Salmos', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Regeneração.', obra: 'Confissoes', ano: 398 },
+  ],
+  ['2 Co 5:17']
+);
+
+add('sl', 119, 105, 'Lâmpada Para os Meus Pés',
+  'Direção divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Guia infalível.', obra: 'Comentario aos Salmos', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Luz na escuridão.', obra: 'Treasury of David', ano: 1885 },
+  ],
+  ['2 Tm 3:16-17']
+);
+
+add('pv', 3, 5-6, 'Confia No Senhor',
+  'Dependência de Deus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Não confiar em si mesmo.', obra: 'Comentario a Provérbios', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Ele endireitará os caminhos.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Pv 16:3']
+);
+
+add('pv', 9, 10, 'Princípio da Sabedoria',
+  'Temor do Senhor.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento do conhecimento.', obra: 'Comentario a Provérbios', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Reverência.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Sl 111:10']
+);
+
+add('ec', 12, 13, 'Teme a Deus',
+  'Conclusão de Eclesiastes.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Resumo de tudo.', obra: 'Comentario a Eclesiastes', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Sentido da vida.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Dt 6:2']
+);
+
+add('cn', 8, 6, 'Firme É O Amor',
+  'Amor mais forte que a morte.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Inquebrantável.', obra: 'Comentario ao Cântico', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Cristo e Igreja.', obra: 'Tractatus', ano: 416 },
+  ],
+  ['Rm 8:38-39']
+);
+
+add('is', 7, 14, 'Virgem Conceberá',
+  'Profecia messiânica.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Sinal divino.', obra: 'Comentario a Isaías', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Encarnação.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Mt 1:22-23']
+);
+
+add('is', 9, 6, 'Um Menino Nos Nasceu',
+  'Príncipe da Paz.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Conselheiro eterno.', obra: 'Comentario a Isaías', ano: 1554 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Deus conosco.', obra: 'Sermoes', ano: 1532 },
+  ],
+  ['Mt 1:23']
+);
+
+add('is', 53, 5, 'Ferido Pelos Nossos Pecados',
+  'Substituição penal.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Castigo sobre ele.', obra: 'Comentario a Isaías', ano: 1554 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Mudança maravilhosa.', obra: 'Sermoes', ano: 1526 },
+  ],
+  ['1 Pd 2:24']
+);
+
+add('is', 61, 1, 'Espírito do Senhor Sobre Mim',
+  'Missão messiânica.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Libertar cativos.', obra: 'Comentario a Isaías', ano: 1554 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Reino inaugurado.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Lc 4:18-19']
+);
+
+add('jr', 29, 11, 'Planos de Paz',
+  'Promessa de futuro.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Esperança em exílio.', obra: 'Comentario a Jeremias', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Planos de bem.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Rm 8:28']
+);
+
+add('lm', 3, 22-23, 'Misericórdias se Renovam',
+  'Esperança no juízo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fidelidade divina.', obra: 'Comentario a Lamentações', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Nova a cada manhã.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Lm 3:25']
+);
+
+add('ez', 37, 5, 'Viverão Os Ossos',
+  'Visão dos ossos secos.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Ressurreição de Israel.', obra: 'Comentario a Ezequiel', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Poder divino.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Rm 4:17']
+);
+
+add('dn', 2, 44, 'Deus Erguerá Um Reino',
+  'Profecia escatológica.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Reino eterno.', obra: 'Comentario a Daniel', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Reino messiânico.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Lc 1:33']
+);
+
+add('dn', 7, 13, 'Filho do Homem Vem',
+  'Aparição celestial.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Exaltado.', obra: 'Comentario a Daniel', ano: 1554 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Senhorio universal.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Mt 26:64']
+);
+
+add('os', 11, 8, 'Como Te Entregarei, Efraim',
+  'Amor persistente.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus não desiste.', obra: 'Comentario a Oséias', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Amor que não cansa.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Rm 5:8']
+);
+
+add('am', 5, 24, 'Corra a Justiça',
+  'Justiça social.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Justiça e misericórdia.', obra: 'Comentario a Amós', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Moral social.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Mc 12:31']
+);
+
+add('mc', 1, 15, 'O Reino de Deus Está Próximo',
+  'Pregação de Jesus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Inauguração do reino.', obra: 'Comentario a Marcos', ano: 1555 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Deus assumindo governo.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Mt 4:17']
+);
+
+add('mt', 5, 3, 'Bem-Aventurados os Pobres',
+  'Primeira bem-aventurança.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Pobres de espírito.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Humildes.', obra: 'De Doctrina Christiana', ano: 397 },
+  ],
+  ['Lc 6:20']
+);
+
+add('mt', 6, 9, 'Pai Nosso',
+  'Modelo de oração.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Paternidade divina.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Pai misericordioso.', obra: 'Catecismo Menor', ano: 1529 },
+  ],
+  ['Lc 11:1-4']
+);
+
+add('mt', 16, 18, 'Edificarei a Minha Igreja',
+  'Promessa da igreja.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo é fundamento.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Pedro como rocha.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Ef 2:20']
+);
+
+add('mt', 28, 19, 'Fazei Discípulos',
+  'Grande comissão.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Missão universal.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Mandamento final.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Mc 16:15']
+);
+
+add('mc', 10, 45, 'Filho do Homem Para Servir',
+  'Missão sacrificial.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Dar a vida.', obra: 'Comentario a Marcos', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Resgate.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Mt 20:28']
+);
+
+add('lc', 2, 14, 'Gloria a Deus Nas Alturas',
+  'Canto angelical.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Paz aos homens de boa vontade.', obra: 'Comentario a Lucas', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Glorificação.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Mt 28:18']
+);
+
+add('lc', 15, 7, 'Alegria no Céu',
+  'Valor da alma.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cada pecador é importante.', obra: 'Comentario a Lucas', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Celestial celebração.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Lc 15:10']
+);
+
+add('jo', 1, 12, 'Deu-lhes Poder',
+  'Filiação divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Receber é crer.', obra: 'Comentario a João', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Adoção.', obra: 'Tractatus', ano: 416 },
+  ],
+  ['Rm 8:15-16']
+);
+
+add('jo', 8, 36, 'O Filho Libertar',
+  'Liberdade cristã.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Verdadeira liberdade.', obra: 'Comentario a João', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Liberdade do cristão.', obra: 'Sobre a Liberdade do Cristão', ano: 1520 },
+  ],
+  ['Gl 5:1']
+);
+
+add('jo', 10, 28, 'Ninguém As Arrebata',
+  'Segurança do crente.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Eterna segurança.', obra: 'Comentario a João', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Mãos de Deus.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Rm 8:38-39']
+);
+
+add('at', 1, 8, 'Recebereis Poder',
+  'Promessa do Espírito.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Capacitação divina.', obra: 'Comentario a Atos', ano: 1555 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Testemunho global.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Lc 24:49']
+);
+
+add('at', 4, 12, 'Nenhuma Outra Salvação',
+  'Exclusividade de Cristo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Unico nome.', obra: 'Comentario a Atos', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Mediação divina.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jo 14:6']
+);
+
+add('at', 9, 5, 'Quem És Tu, Senhor',
+  'Conversão de Paulo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Revelação pessoal.', obra: 'Comentario a Atos', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Graça transformadora.', obra: 'Confissoes', ano: 398 },
+  ],
+  ['1 Tm 1:15']
+);
+
+add('rm', 3, 28, 'Justificados Pela Fé',
+  'Doutrina da justificação.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Sola fide.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Articulação do evangelho.', obra: 'Comentario a Romanos', ano: 1516 },
+  ],
+  ['Ef 2:8-9']
+);
+
+add('rm', 5, 1, 'Justificados, Temos Paz',
+  'Resultado da justificação.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Paz com Deus.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Reconciliação.', obra: 'Comentario a Romanos', ano: 1516 },
+  ],
+  ['2 Co 5:18-19']
+);
+
+add('rm', 6, 14, 'Não Sobre a Lei',
+  'Liberdade da lei.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Graça reina.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Liberdade do evangelho.', obra: 'Comentario a Glatas', ano: 1535 },
+  ],
+  ['Gl 5:1']
+);
+
+add('rm', 7, 12, 'Sagrada a Lei',
+  'Bondade da lei.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Justa e boa.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Ordem natural.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Sl 19:7-8']
+);
+
+add('rm', 8, 26, 'O Espírito Intercede',
+  'Oração com o Espírito.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Ajuda na fraqueza.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Ajudador celestial.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Ef 6:18']
+);
+
+add('rm', 8, 29, 'Conformados à Imagem',
+  'Propósito da eleição.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Santificação.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Participação da natureza divina.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['2 Pd 1:4']
+);
+
+add('1co', 2, 2, 'Não Me Propus Saber',
+  'Cristo crucificado.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cruz é tudo.', obra: 'Comentario a 1 Coríntios', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Teologia da cruz.', obra: 'Sermoes', ano: 1519 },
+  ],
+  ['Gl 6:14']
+);
+
+add('1co', 6, 19, 'Templo do Espírito',
+  'Santidade do corpo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Habitáculo divino.', obra: 'Comentario a 1 Coríntios', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Santidade.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['2 Co 6:16']
+);
+
+add('1co', 12, 13, 'Um Só Corpo',
+  'Unidade dos crentes.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Batismo no Espírito.', obra: 'Comentario a 1 Coríntios', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Misticismo corporal.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Ef 4:4-6']
+);
+
+add('1co', 15, 55, 'Ó Morte, Onde Está a Tua Vitória',
+  'Triunfo sobre a morte.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Vitória completa.', obra: 'Comentario a 1 Coríntios', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Derrota do último inimigo.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['2 Tm 1:10']
+);
+
+add('2co', 5, 17, 'Nova Criatura',
+  'Transformação total.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Coisas novas.', obra: 'Comentario a 2 Coríntios', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Regeneração.', obra: 'Confissoes', ano: 398 },
+  ],
+  ['Ef 2:10']
+);
+
+add('2co', 12, 9, 'Minha Graça Te Basta',
+  'Força na fraqueza.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Perfeita na fraqueza.', obra: 'Comentario a 2 Coríntios', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Suficiência divina.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Fp 4:13']
+);
+
+add('gl', 2, 20, 'Cristo Vive em Mim',
+  'Vida de fé.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'União com Cristo.', obra: 'Comentario a Gálatas', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Simul iustus et peccator.', obra: 'Comentario a Glatas', ano: 1535 },
+  ],
+  ['Fp 1:21']
+);
+
+add('gl', 5, 1, 'Para a Liberdade Libertados',
+  'Liberdade cristã.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Firme no evangelho.', obra: 'Comentario a Gálatas', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Liberdade do cristão.', obra: 'Comentario a Glatas', ano: 1535 },
+  ],
+  ['Jo 8:36']
+);
+
+add('ef', 1, 7, 'Redenção pelo Sangue',
+  'Preço da salvação.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Perdão completo.', obra: 'Comentario a Efésios', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Propiciação.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['1 Pd 1:18-19']
+);
+
+add('ef', 2, 14, 'Ele É a Nossa Paz',
+  'Reconciliação.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Muro derrubado.', obra: 'Comentario a Efésios', ano: 1555 },
+    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Reconciliação universal.', obra: 'Church Dogmatics', ano: 1958 },
+  ],
+  ['Cl 1:20']
+);
+
+add('ef', 5, 25, 'Cristo Amou a Igreja',
+  'Amor sacrificial.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deu-se por ela.', obra: 'Comentario a Efésios', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Misticismo nupcial.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jo 15:13']
+);
+
+add('fp', 4, 6, 'Não vos Anxieis',
+  'Oração contra a ansiedade.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Suplica e ações de graças.', obra: 'Comentario a Filipenses', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Paz de Deus.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['1 Pd 5:7']
+);
+
+add('fp', 4, 13, 'Posso Todas as Coisas',
+  'Força divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Capacitado por Cristo.', obra: 'Comentario a Filipenses', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Ilimitados.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['2 Co 12:9']
+);
+
+add('cl', 3, 23, 'Tudo Para Glória de Deus',
+  'Trabalho como adoração.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Senhor.', obra: 'Comentario a Colossenses', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Vocação.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['1 Co 10:31']
+);
+
+add('1ts', 5, 16-18, 'Alegria-voi Sempre',
+  'Vida de gratidão.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Mandamentos práticos.', obra: 'Comentario a 1 Tessalonicenses', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Sempre alegres.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Fp 4:4']
+);
+
+add('1tm', 6, 10, 'Amor ao Dinheiro',
+  'Raiz de todos os males.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Tentação.', obra: 'Comentario a 1 Timóteo', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Perigo.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Mt 6:24']
+);
+
+add('2tm', 2, 15, 'Dispense Bem a Palavra',
+  'Ministério fiel.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Sem envergonhar-se.', obra: 'Comentario a 2 Timóteo', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Estudo sério.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['2 Co 5:20']
+);
+
+add('2tm', 4, 7, 'Combati o Bom Combate',
+  'Fidelidade até o fim.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Coroa da justiça.', obra: 'Comentario a 2 Timóteo', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Vitória.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Fp 3:14']
+);
+
+add('tt', 3, 5, 'Salvos pela Renovação',
+  'Regeneração.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Banho de regeneração.', obra: 'Comentario a Tito', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Batismo.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jo 3:5']
+);
+
+add('hb', 1, 3, 'Sustenta Todas as Coisas',
+  'Sovereania de Cristo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Preservação universal.', obra: 'Comentario a Hebreus', ano: 1555 },
+    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Senhorio.', obra: 'Church Dogmatics', ano: 1958 },
+  ],
+  ['Cl 1:17']
+);
+
+add('hb', 4, 15, 'Sentimos os Nossos Sofridos',
+  'Compasão de Cristo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Sem pecado.', obra: 'Comentario a Hebreus', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Experiência humana.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Tg 2:13']
+);
+
+add('hb', 9, 22, 'Sem Derramamento de Sangue',
+  'Base da aliança.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Perdão pelo sangue.', obra: 'Comentario a Hebreus', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sacrificio.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Ef 1:7']
+);
+
+add('hb', 10, 24, 'Meditemos Uns nos Outros',
+  'Comunhão.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Amor em ação.', obra: 'Comentario a Hebreus', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Edificação mútua.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Gl 6:2']
+);
+
+add('hb', 11, 6, 'Sem Fé É Impossível',
+  'Requisito da relação com Deus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Agradá-Lo.', obra: 'Comentario a Hebreus', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Hábito sobrenatural.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Rm 14:23']
+);
+
+add('tg', 1, 5, 'Peça Com Fé',
+  'Oração de fé.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Generosidade divina.', obra: 'Comentario a Tiago', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Deus dá liberalmente.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Mt 7:7-8']
+);
+
+add('tg', 4, 7, 'Resisti ao Diabo',
+  'Batalha espiritual.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fugir e resistir.', obra: 'Comentario a Tiago', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Firmeza.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Ef 6:10-18']
+);
+
+add('1p', 3, 18, 'Cristo Morreu Uma Só Vez',
+  'Sacrificio único.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Justo pelos injustos.', obra: 'Comentario a 1 Pedro', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Substituição.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Hb 9:26-28']
+);
+
+add('1p', 5, 8, 'O Diabo Anda Feroz',
+  'Vigilância espiritual.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Adversário ativo.', obra: 'Comentario a 1 Pedro', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Sempre alerta.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Ef 6:12']
+);
+
+add('2p', 1, 10, 'Fazei Firme a Vossa Vocação',
+  'Segurança pela santificação.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Confirmar a eleição.', obra: 'Comentario a 2 Pedro', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Diligência.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['2 Tm 1:12']
+);
+
+add('2p', 3, 9, 'O Senhor É Paciente',
+  'Paciência divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Não quer que pereça.', obra: 'Comentario a 2 Pedro', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Misericórdia.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Rm 2:4']
+);
+
+add('1jo', 4, 8, 'Deus É Amor',
+  'Essência divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fonte de amor.', obra: 'Comentario a 1 João', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Amor que se comunica.', obra: 'De Trinitate', ano: 400 },
+  ],
+  ['Jo 3:16']
+);
+
+add('1jo', 5, 3, 'Estes São os Mandamentos',
+  'Obediência e amor.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Amar é obedecer.', obra: 'Comentario a 1 João', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Observância.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jo 14:15']
+);
+
+add('jd', 1, 24, 'A Que Pode Guardar',
+  'Proteção divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Guarda perfeita.', obra: 'Comentario a Judas', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Sem tropeços.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Fp 1:6']
+);
+
+add('ap', 3, 20, 'Eis Eu à Porta e Bato',
+  'Convite pessoal.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Busca paciente.', obra: 'Comentario a Apocalipse', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Cristo bate.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Jo 10:16']
+);
+
+add('ap', 21, 4, 'Enxugará Todas as Lágrimas',
+  'Esperança final.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fim da dor.', obra: 'Comentario a Apocalipse', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Consolação eterna.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Is 25:8']
+);
+
 export default comentariosNovos;
 export { comentariosNovos };
 

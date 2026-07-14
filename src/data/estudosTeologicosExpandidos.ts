@@ -6942,5 +6942,821 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     tags: ['missão', 'Grande Comissão', 'evangelização', 'discipulado', 'nações', 'globalização'],
     fontes: ['David Bosch, Transforming Mission', 'John Stott, The Contemporary Christian', 'Michael Green, Evangelism in the Early Church']
   },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // 50 NOVOS ESTUDOS — PAULINAS, JOÃO, AP, AT, SISTEMÁTICA
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // --- EPÍSTOLAS PAULINAS ---
+  {
+    id: 'tl-091',
+    titulo: 'Romanos 6 — Morte e Ressurreição com Cristo',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      'Romanos 6 responde à objeção de que a graça abundante estimula o pecado (6:1). Paulo declara categoricamente: "De maneira nenhuma!" (6:2). A lógica é inescapável: se morremos com Cristo, o que há de comum entre nós e o pecado?',
+      'O batismo é apresentado como participação na morte e ressurreição de Cristo (6:3-4). Assim como Cristo ressuscitou dos mortos pela glória do Pai, também nós devemos andar em novidade de vida. O batismo é sinal externo de realidade espiritual interna.',
+      'A velha natureza foi crucificada (6:5-7). A união com Cristo na morte é a base da libertação do pecado. O crente não é mais escravo do pecado porque a sentença de morte já foi cumprida em Cristo. A justificação é completa.',
+      'A aplicação prática: "Assim também vós considerai-vos mortos para o pecado, mas vivos para Deus, em Cristo Jesus" (6:11). A indicativa precede a imperativa. Quem somos em Cristo determina como devemos viver.',
+      'A santificação é a entrega dos membros a Deus (6:12-19). Antigamente escravos do pecado, agora escravos da justiça. A transformação é radical: dos frutos de impureza para a santificação. A liberdade cristã não é licença, mas capacidade de obedecer.'
+    ],
+    versicosChave: ['Romanos 6:1-14', 'Romanos 6:23', 'Romanos 6:6-7'],
+    tags: ['batismo', 'morte', 'ressurreição', 'santificação', 'graça'],
+    fontes: ['Douglas Moo, Romans (NICNT)', 'John Murray, The Epistle to the Romans']
+  },
+  {
+    id: 'tl-092',
+    titulo: 'Romanos 7 — A Luta contra o Pecado',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      'Romanos 7:1-6 estabelece a liberdade da Lei. O crente morreu para a Lei pelo corpo de Cristo, para pertencer a outro — ao que ressuscitou dos mortos. O fruto deve ser para a santificação, não para a condenação.',
+      'O versículo 7 é crucial: "Acaso, pois, a lei é pecado? De modo nenhum!" (7:7). A Lei é santa, justa e boa. O problema não está na Lei, mas no pecado que habita no ser humano. A Lei é o espelho que revela a corrupção.',
+      'A experiência descrita em 7:14-25 é uma das mais dramáticas da Bíblia. "O que faço não é o que quero, mas o que aborreço, isso pratico" (7:15). Paulo descreve a luta interna do crente entre o desejo do bem e a inclinação para o mal.',
+      'Quem fala em primeira pessoa? Há debate: é o crente antes da conversão, o crente em experiências de fracasso, ou a experiência de Israel sob a Lei. A maioria dos reformadores vê aqui a experiência do crente em luta.',
+      'A resolução vem no versículo 25: "Graças a Deus, por meio de Jesus Cristo, nosso Senhor!" (7:25). A vitória não está no esforço humano, mas em Cristo. Romanos 8 completa o que Romanos 7 deixa em aberto.'
+    ],
+    versicosChave: ['Romanos 7:7-25', 'Romanos 7:15', 'Romanos 7:24-25'],
+    tags: ['Lei', 'pecado', 'luta interna', 'graça', 'vitória'],
+    fontes: ['Douglas Moo, Romans (NICNT)', 'Cranfield, Romans (ICC)']
+  },
+  {
+    id: 'tl-093',
+    titulo: 'Romanos 8 — A Vida no Espírito Santo',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      'Romanos 8 é o clímax da argumentação paulina. "Agora, pois, nenhuma condenação há para os que estão em Cristo Jesus" (8:1). A justificação de Romanos 3-5 culmina na liberdade do Espírito em Romanos 8.',
+      'A lei do Espírito de vida me libertou da lei do pecado e da morte (8:2). O Espírito não apenas perdoa, mas capacita. A Lei moral era impotente para transformar; o Espírito é o poder transformador. A Graça supera a Lei em eficácia.',
+      'A incarnação é base da salvação: "Deus, enviando o seu Filho em semelhança de carne de pecado" (8:3). O que a Lei não pôde, Deus fez: condenou o pecado na carne de Cristo. A justiça da Lei se cumpre em nós que andamos segundo o Espírito (8:4).',
+      'A identidade dos filhos de Deus: "Todos os que são guiados pelo Espírito de Deus são filhos de Deus" (8:14). O Espírito testemunha ao nosso espírito de que somos filhos (8:16). A adoção é realidade presente, com expectativa futura (8:23).',
+      'A segura esperança: "Nem a morte, nem a vida... nos poderão separar do amor de Deus" (8:38-39). A segurança do crente não está na sua firmeza, mas no amor invencível de Deus. A perseverança dos santos é fundamentada na soberania divina.'
+    ],
+    versicosChave: ['Romanos 8:1-2', 'Romanos 8:14-17', 'Romanos 8:28-30', 'Romanos 8:38-39'],
+    tags: ['Espírito Santo', 'liberdade', 'filiação', 'segurança', 'amor de Deus'],
+    fontes: ['Douglas Moo, Romans (NICNT)', 'John Stott, Romans (TNTC)']
+  },
+  {
+    id: 'tl-094',
+    titulo: '1 Coríntios 12 — Dons Espirituais e o Corpo',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      '1 Coríntios 12 aborda a diversidade de dons espirituais na Igreja. "Há diversidade de dons, mas o Espírito é o mesmo" (12:4). A unidade do Espírito é a base da diversidade de dons. Não há cristão sem dons.',
+      'Os dons são distribuídos "a cada um, como ele quer" (12:11). A soberania do Espírito na distribuição é absoluta. Não podemos exigir determinado don nem desprezar o de outro. Cada don é necessário para o funcionamento do corpo.',
+      'A analogia do corpo (12:12-27) é brilhante. O corpo tem membros diferentes com funções diferentes. O olho não pode dizer à mão: "Não te preciso". Os membros mais humildes são necessários. A honra mútua émandamento.',
+      'Os dons mencionados: palavra de sabedoria, palavra de conhecimento, fé, curas, milagres, profecia, discernimento de espíritos, variedade de línguas, interpretação de línguas (12:8-10). A lista não é exaustiva.',
+      'O critério supremo dos dons é a edificação da Igreja (12:7, 14:12, 26). Os dons não são para exibição pessoal, mas para construção comunitária. A love chapter (13) interrompe a discussão para lembrar: sem amor, os dons são inúteis.'
+    ],
+    versicosChave: ['1 Coríntios 12:4-11', '1 Coríntios 12:12-27', '1 Coríntios 12:31'],
+    tags: ['dons espirituais', 'corpo de Cristo', 'diversidade', 'edificação'],
+    fontes: ['Anthony Thiselton, 1 Corinthians', 'Gordon Fee, 1 Corinthians']
+  },
+  {
+    id: 'tl-095',
+    titulo: '1 Coríntios 13 — O Amor Superior',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      '1 Coríntios 13 é o "hino do amor", interrompendo a discussão sobre dons espirituais. Paulo estabelece que o amor é o critério supremo da vida cristã. Sem amor, os dons são "bronze que soa, ou sino que tine" (13:1).',
+      'As qualidades negativas do amor: não é invejoso, não se vangloria, não se ensoberbece, não procede com indecência, não busca seus interesses, não se ira facilmente, não guarda rancor (13:4-5). O amor é descrito mais pelo que não faz do que pelo que faz.',
+      'As qualidades positivas: "se alegra com a verdade, tudo sofre, tudo crê, tudo espera, tudo suporta" (13:6-7). O amor é ativo, não passivo. É virtude que se expressa em ação, não apenas sentimento.',
+      'A superioridade do amor sobre os dons: "Agora, pois, permanecem a fé, a esperança e o amor, estes três, mas o maior destes é o amor" (13:13). A fé dará lugar à visão; a esperança à posse; o amor permanece para sempre.',
+      'O "amor" grego aqui é agape — amor sacrificial, incondicional, divino. Não é eros (romântico), philia (amizade) ou storge (afeto familiar). É o amor de Deus manifestado em Cristo, que se expressa na vida do crente pelo Espírito.'
+    ],
+    versicosChave: ['1 Coríntios 13:1-13', '1 Coríntios 13:4-7', '1 Coríntios 13:13'],
+    tags: ['amor', 'agape', 'dons espirituais', 'edificação', 'eternidade'],
+    fontes: ['Anthony Thiselton, 1 Corinthians', 'Anders Nygren, Agape and Eros']
+  },
+  {
+    id: 'tl-096',
+    titulo: '1 Coríntios 15 — A Ressurreição dos Mortos',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      '1 Coríntios 15 é o mais extenso trecho neotestamentário sobre a ressurreição. Paulo transmite o que recebeu: "Cristo morreu pelos nossos pecados, foi sepultado e ressuscitou no terceiro dia" (15:3-4). É tradição apostólica, não invenção.',
+      'As testemunhas da ressurreição são múltiplas (15:5-8): Pedro, os doze, mais de 500 irmãos de uma vez, Tiago, todos os apóstolos. Paulo mesmo é testemunha: "Por último, apareceu também a mim" (15:8). O testemunho é público e verificável.',
+      'A ressurreição é fundamento da fé (15:14, 17): "Se Cristo não ressuscitou, vã é a nossa pregação, e vã é a vossa fé". Sem ressurreição, não há salvação, não há perdão, não há esperança. A fé cristã é histórica e verificável.',
+      'A natureza do corpo ressurreto (15:35-49): semente morre para nascer transformada. Corpo animal → corpo espiritual. Corpo terreno → corpo celestial. A continuidade e mudança estão em tensão: o mesmo "eu" que morre ressuscita transformado.',
+      'A vitória final: "O ultimo inimigo a ser destruído é a morte" (15:26). "Onde está, ó morte, a tua vitória?" (15:55). A ressurreição de Cristo é garantia da nossa. "Assim também nós seremos transformados" (15:51-52).'
+    ],
+    versicosChave: ['1 Coríntios 15:3-8', '1 Coríntios 15:14', '1 Coríntios 15:55-57'],
+    tags: ['ressurreição', 'Cristo', 'fé', 'vitória', 'corpo'],
+    fontes: ['Anthony Thiselton, 1 Corinthians', 'N.T. Wright, The Resurrection of the Son of God']
+  },
+  {
+    id: 'tl-097',
+    titulo: 'Gálatas 5 — A Liberdade Cristã',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      'Gálatas 5 é o coração ético da carta. "Para a liberdade Cristo nos libertou" (5:1). A liberdade não é licença, mas capacidade de servir uns aos outros pelo amor. A Lei não é caminho para a salvação.',
+      'A advertência solene: "Se vos circuncidais, Cristo de nada vos aproveitará" (5:2-3). A volta à Lei anula a graça. Não é questão de rito, mas de mentalidade: buscar justiça pelas obras em vez da fé.',
+      'A fé opera pelo amor (5:6). Nem circumcision nem incircuncisão valem algo, mas a fé que se expressa em amor. A justificação pela fé não é passividade — é atividade movida pelo amor, não pela obediência à Lei.',
+      'A lista dos frutos do Espírito (5:22-23) é uma das mais conhecidas: "amor, gozo, paz, longanimidade, benignidade, bondade, fé, mansidão, temperança". São frutos — resultado natural da vida no Espírito, não fruto (singular: o Espírito produz tudo isso junto).',
+      'O contraste entre obras da carne e frutos do Espírito: "A carne deseja contra o Espírito, e o Espírito contra a carne" (5:17). A guerra interior é real. A vitória não vem pela repressão, mas pela caminhada no Espírito (5:16).'
+    ],
+    versicosChave: ['Gálatas 5:1', 'Gálatas 5:6', 'Gálatas 5:22-23'],
+    tags: ['liberdade', 'frutos do Espírito', 'fé', 'amor', 'carne'],
+    fontes: ['Timothy George, Galatians (NAC)', 'F.F. Bruce, The Epistle to the Galatians']
+  },
+  {
+    id: 'tl-098',
+    titulo: 'Efésios 4 — A Unidade do Corpo',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      'Efésios 4:1-6 estabelece o fundamento da unidade cristã: "Um corpo, e um Espírito, como fostes chamados em uma só esperança da vossa vocação; um Senhor, uma fé, um batismo; um Deus e Pai de todos" (4:4-6). A unidade é trinitária e objetiva.',
+      'A diversidade de dons é para a unidade: "Deu uns para apóstolos, outros para profetas, outros para evangelistas, outros para pastores e mestres" (4:11). O propósito é "aperfeiçoar os santos para o desempenho do seu serviço" (4:12).',
+      'A maturidade espiritual é a meta: "Não mais sejamos como meninos, levados de lado a lado por todo vento de doutrina" (4:14). A Igreja madura é firme na verdade, não manipulável por falsos mestres.',
+      'A ética da nova vida: "Despojando-vos do velho homem" e "revestindo-vos do novo" (4:22-24). A verdade remove a mentira; a honestidade substitui a fraude; a edificação substitui a destruição. A nova criatura se expressa em novos hábitos.',
+      'O versículo 29 é regra prática: "Nenhuma palavra corrompida saia da vossa boca, mas somente a que for boa para edificação". A língua é indicador da saúde espiritual. O crente fala palavras de graça que constroem, não destroem.'
+    ],
+    versicosChave: ['Efésios 4:1-6', 'Efésios 4:11-16', 'Efésios 4:29'],
+    tags: ['unidade', 'diversidade', 'dons', 'maturidade', 'ética'],
+    fontes: ['Peter O\'Brien, Ephesians', 'Harold Hoehner, Ephesians']
+  },
+  {
+    id: 'tl-099',
+    titulo: 'Efésios 6 — A Armadura de Deus',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      'Efésios 6:10-20 apresenta a armadura de Deus como metáfora da proteção espiritual. "Estai fortes no Senhor e na força do seu poder" (6:10). A batalha não é contra carne e sangue, mas contra potestades espirituais (6:12).',
+      'As peças da armadura: cinto da verdade (6:14), couraça da justiça (6:14), escudo da fé (6:16), capacete da salvação (6:17), espírito do Espírito — a Palavra de Deus (6:17). Cada peça corresponde a uma verdade teológica.',
+      'A oração é complemento essencial: "Em todo tempo, orai em espírito" (6:18). A armadura não substitui a oração — a oração é o meio pelo qual a armadura é eficaz. A vigilância e a perseverança na oração são mandamentos.',
+      'O contexto militar romano é evidente: o soldado equipado é modelo do crente. A verdade é cinto — dá firmeza. A justiça é couraça — protege o coração. A fé é escudo — apaga as setas do maligno.',
+      'A batalha espiritual não é opcional — é realidade. "Porque a nossa luta não é contra carne e sangue, mas... contra os espíritos da maldade celestial" (6:12). A vitória já foi conquistada na cruz; a Igreja aplica essa vitória na história.'
+    ],
+    versicosChave: ['Efésios 6:10-18', 'Efésios 6:12', 'Efésios 6:17'],
+    tags: ['armadura de Deus', 'batalha espiritual', 'oração', 'verdade', 'fé'],
+    fontes: ['Peter O\'Brien, Ephesians', 'Clinton Arnold, Ephesians (ZECNT)']
+  },
+  {
+    id: 'tl-100',
+    titulo: 'Filipenses 2 — A Kenosis de Cristo',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      'Filipenses 2:6-11 é o hino cristológico mais antigo da Igreja primitiva. "Sendo em forma de Deus, não teve por usurpação ser igual a Deus" (2:6). A pré-existência de Cristo é pressuposta, não demonstrada.',
+      'A kenosis (esvaziamento) é voluntário: "Mas esvaziou a si mesmo, tomando a forma de servo" (2:7). Não é privação de atributos divinos, mas adição de natureza humana. O Filho de Deus se tornou filho do homem para que os filhos dos homens se tornem filhos de Deus.',
+      'A humilhação é progressiva: forma de Deus → forma de servo → semelhança de homens → obediência até a morte → morte de cruz (2:7-8). A cruz era o tipo mais vergonhoso de morte. O Deus Todo-Poderoso escolheu a morte de escravo.',
+      'A exaltação é igualmente progressiva: Deus o exaltou → deu-lhe nome sobre todo nome → toda joelho se dobre → toda língua confesse (2:9-11). A inversão é completa: do mais baixo ao mais alto. A confissão é universal e forçada.',
+      'A aplicação ética: "Fazei a vossa salvação com temor e tremor" (2:12). "Nada façais por contenda ou vã glória, mas, humildemente, cada um considere o outro superior a si mesmo" (2:3). O exemplo de Cristo motiva a humildade.'
+    ],
+    versicosChave: ['Filipenses 2:5-11', 'Filipenses 2:6-8'],
+    tags: ['kenosis', 'humildade', 'exaltação', 'Cristologia', 'hino'],
+    fontes: ['Gordon Fee, Philippians', 'Moule, The Origin of Christology']
+  },
+
+  // --- EVANGELHO DE JOÃO ---
+  {
+    id: 'tl-101',
+    titulo: 'João 1 — O Prólogo e a Encarnação',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Evangelho de João',
+    conteudo: [
+      'O prólogo de João (1:1-18) é a declaração mais elevada da divindade de Cristo no NT. "No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus" (1:1). A retroação ao Gênesis 1:1 é intencional: Cristo está além do tempo.',
+      'O Verbo (Logos) é conceito grego e hebraico: para os gregos, o princípio racional do universo; para os hebraicos, a Palavra criadora de Deus (Salmos 33:6). João baptiza ambos os conceitos em Cristo.',
+      'A encarnação é o evento central: "E o Verbo se fez carne e habitou entre nós" (1:14). A palavra grega "eskênôsen" (tabernaculou) remete ao tabernáculo do AT — Deus habita no meio do Seu povo. A glória é a shekinah agora visível em Cristo.',
+      'João Batista é testemunha: "Aquele que vem depois de mim... não era digno de lhe desatar a correa das sandálias" (1:27). O testemunho do Batista prepara o caminho. "Eis o Cordeiro de Deus, que tira o pecado do mundo!" (1:29).',
+      'As primeiras chamadas de discípulos: "Que queres?" (1:38). "Vem e vê" (1:39). A fé começa com curiosidade, passa por encontro pessoal, e resulta em testemunho: "Achamos o Messias" (1:41).'
+    ],
+    versicosChave: ['João 1:1-3', 'João 1:14', 'João 1:29'],
+    tags: ['Logos', 'encarnação', 'divindade', 'tabernáculo', 'testemunho'],
+    fontes: ['Craig Keener, John (HNTC)', 'Leon Morris, The Gospel of John']
+  },
+  {
+    id: 'tl-102',
+    titulo: 'João 3 — Nicodemos e o Novo Nascer',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Evangelho de João',
+    conteudo: [
+      'A entrevista de Jesus com Nicodemos (3:1-21) é uma das mais importantes do NT. Nicodemos é fariseu, membro do Sinédrio, mestre de Israel — e vem de noite, talvez por timidez ou por buscar luz nas trevas.',
+      '"Necessário é nascer de novo" (3:7). A palavra grega "anôthen" significa tanto "de cima" quanto "de novo". A dualidade é intencional: o novo nascimento é divino e transformador. Não é decisão humana, mas obra do Espírito.',
+      'A serpente de bronze (3:14-15) é tipo de Cristo: "Assim como Moisés levantou a serpente no deserto, assim é necessário que o Filho do Homem seja levantado". A cura dos israelitas pelo olhar prefigura a salvação pela fé em Cristo.',
+      'João 3:16 é o versículo mais conhecido da Bíblia: "Deus amou o mundo de tal maneira que deu o seu Filho unigênito". A universalidade do amor divino, a singularidade do Filho, a gratuidade da salvação, a condition da fé, a certeza da salvação.',
+      'O contraste entre luz e trevas (3:19-21): "A luz veio ao mundo, e os homens amaram mais as trevas do que a luz". O julgamento não é imposição externa, mas resposta da liberdade humana à revelação divina.'
+    ],
+    versicosChave: ['João 3:3', 'João 3:16', 'João 3:14-15'],
+    tags: ['novo nascimento', 'Nicodemos', 'salvação', 'fé', 'luz'],
+    fontes: ['Craig Keener, John (HNTC)', 'D.A. Carson, The Gospel of John']
+  },
+  {
+    id: 'tl-103',
+    titulo: 'João 6 — O Pão da Vida',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Evangelho de João',
+    conteudo: [
+      'João 6 contém a alimentação de 5000 (6:1-14), o caminhar sobre as águas (6:16-21), e o discurso do Pão da Vida (6:22-71). Cada seção revela a identidade de Cristo.',
+      'O discurso do Pão da Vida começa com a multiplicação: "Eu sou o pão da vida" (6:35). O maná do deserto era tipo de Cristo. Os pais comeram e morreram; quem come deste pão viverá eternamente.',
+      'A linguagem escandalosa: "Se não comerdes a carne do Filho do Homem e não beberdes o seu sangue, não tereis vida em vós mesmos" (6:53). Muitos discípulos se afastaram (6:66). Pedro responde: "Para quem iremos tu? Tu tens as palavras da vida eterna" (6:68).',
+      'A eucaristia está em pauta? A interpretação católica romana vê referência à transubstanciação; os reformadores veem referência espiritual à fé em Cristo. O contexto joânico é mais teológico que litúrgico.',
+      'A soberania divina: "Ninguém pode vir a mim, se o Pai, que me enviou, não o trouxer" (6:44). A incapacidade humana é superada pela iniciativa divina. A fé é dom de Deus, não mérito humano.'
+    ],
+    versicosChave: ['João 6:35', 'João 6:53', 'João 6:68'],
+    tags: ['Pão da Vida', 'eucaristia', 'fé', 'soberania', 'maná'],
+    fontes: ['Craig Keener, John (HNTC)', 'Rudolf Schnackenburg, John (Hermeneia)']
+  },
+  {
+    id: 'tl-104',
+    titulo: 'João 10 — O Bom Pastor',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Evangelho de João',
+    conteudo: [
+      'João 10 apresenta Jesus como o Bom Pastor. A metáfora pastoral é rica no AT: Deus é pastor de Israel (Salmos 23; Ezequiel 34). Jesus cumpre e supera a imagem.',
+      '"Eu sou a porta das ovelhas" (10:7). O pastor entra pelo portão legítimo; o ladrão entra por outro caminho. Jesus é o único caminho para o rebanho. Fora d\'Ele não há salvação.',
+      '"Eu sou o Bom Pastor. O Bom Pastor a sua vida põe pelas ovelhas" (10:11). O contraste com o assalariado: o assalariado foge do perigo, o pastor enfrenta o lobo. Jesus deu Sua vida voluntariamente (10:18).',
+      'A segurança do rebanho: "Ninguém as arrebata da minha mão" (10:28). A segurança não é no crente, mas no pastor. O Pai é maior que todos; ninguém pode arrebatar das mãos do Pai nem de Cristo (10:29).',
+      'A declaração de igualdade com o Pai: "Eu e o Pai somos um" (10:30). Os judeus entendem: "Tu, sendo homem, te fazes Deus" (10:33). A cristologia joânica não deixa espaço para meio-termo: ou Jesus é Deus ou é blasfemo.'
+    ],
+    versicosChave: ['João 10:11', 'João 10:28-29', 'João 10:30'],
+    tags: ['Bom Pastor', 'segurança', 'porta', 'vida', 'unidade com o Pai'],
+    fontes: ['Leon Morris, The Gospel of John', 'D.A. Carson, The Gospel of John']
+  },
+  {
+    id: 'tl-105',
+    titulo: 'João 14-17 — Os Discursos de Despedida',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Evangelho de João',
+    conteudo: [
+      'João 14-17 é o coração da teologia joânica. O discurso de despedida prepara os discípulos para a ausência de Jesus. "Não se turbe o vosso coração" (14:1). A fé é consolo diante da partida.',
+      'Jesus é o caminho, a verdade e a vida (14:6). Exclusividade cristã: "Ninguém vem ao Pai senão por mim". Não é intolerância, mas realidade: há um único mediador entre Deus e os homens.',
+      'A promessa do Espírito Consolador: "Outro Consolador lhes dará o Pai, para que convosco fique eternamente" (14:16). O Paracleto é quem ensina, testifica, conduz à verdade, glorifica a Cristo. O Espírito é continuador da obra de Cristo.',
+      'O mandamento novo: "Como eu vos amei, também vos amei uns aos outros" (13:34). O amor cristão não é sentimentalismo, mas sacrifício. O mundo reconhecerá os discípulos pelo amor (13:35).',
+      'A oração sacerdotal (João 17) é a mais longa oração de Jesus registrada. Interessa por: si mesmo (17:1-5), pelos discípulos (17:6-19), pelos crentes futuros (17:20-26). "Para que sejam um" (17:21) é o tema central.'
+    ],
+    versicosChave: ['João 14:6', 'João 14:16-17', 'João 15:12', 'João 17:1-26'],
+    tags: ['despedida', 'Paracleto', 'Espírito Santo', 'amor', 'oração sacerdotal'],
+    fontes: ['Craig Keener, John (HNTC)', 'Rudolf Schnackenburg, John (Hermeneia)']
+  },
+
+  // --- ATOSS E APOCALIPSE ---
+  {
+    id: 'tl-106',
+    titulo: 'Atos 2 — Pentecostes e o Nascimento da Igreja',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Atos e Apocalipse',
+    conteudo: [
+      'Atos 2 é o relato de Pentecostes, o nascimento da Igreja. "Baixou do céu um som, como de um vento veemente" (2:2). Os sinais sonoros e visíveis (línguas de fogo) marcam a efusão do Espírito.',
+      'A pregação de Pedro resulta em 3000 conversiones (2:41). O tema é o cumprimento da profecia: "Nos últimos dias, derramarei do meu Espírito sobre toda a carne" (2:17, citando Joel 2:28-32). O que era promessa agora é realidade.',
+      'A vida da comunidade primitiva: "Todos os que creram estavam juntos, e tinham tudo comum" (2:44). A comunhão, a fração do pão, as orações (2:42). Não era comunismo, mas generosidade voluntária movida pelo Espírito.',
+      'O batismo: "Arrependei-vos, e cada um de vós seja batizado" (2:38). O batismo é resposta ao evangelho — não pré-condição para salvação, mas obediência imediata que segue a fé. 3000 almas foram batizadas.',
+      'A Igreja nascente é modelo para todas as épocas: ensino dos apóstolos, comunhão, fracao do pao, oração. A simplicidade e a profundidade caminham juntas. O foco é Cristo ressuscitado.'
+    ],
+    versicosChave: ['Atos 2:1-4', 'Atos 2:38', 'Atos 2:42'],
+    tags: ['Pentecostes', 'Espírito Santo', 'Igreja', 'batismo', 'comunidade'],
+    fontes: ['Craig Keener, Acts (HNTC)', 'F.F. Bruce, The Book of the Acts']
+  },
+  {
+    id: 'tl-107',
+    titulo: 'Atos 7 — O Testemunho de Estêvão',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Atos e Apocalipse',
+    conteudo: [
+      'Atos 7 é o discurso mais longo de Atos. Estêvão, cheio do Espírito Santo (7:55), defende-se perante o Sinédrio com um resumo da história de Israel que culmina em acusação: "Homens de dura cerviz" (7:51).',
+      'A retrospectiva histórica: Abraão (7:2-8), José (7:9-16), Moisés (7:17-43), o tabernáculo e o templo (7:44-50). Estêvão mostra que Deus sempre esteve além dos limites institucionais. "O Altíssimo não habita em templos feitos por mãos de homens" (7:48).',
+      'A acusação final: "Vós, que sempre resistis ao Espírito Santo" (7:51). A resistência ao Espírito é pecado de Israel. "Vós entregastes e matastes os justos" (7:52). A linhagem de mártires vai de Abel a Cristo.',
+      'A visão celestial: "Eis que vejo os céus abertos, e o Filho do Homem de pé à destra de Deus" (7:56). A primeira menção de Cristo à destra do Pai no NT. Estêvão vê o que Pedro pregou.',
+      'O primeiro mártir: "Senhor Jesus, recebe o meu espírito" (7:59). A semelhança com a cruz de Jesus é intencional. Estêvão perdoa seus assassinos (7:60). O martírio é testemunho supremo.'
+    ],
+    versicosChave: ['Atos 7:51', 'Atos 7:55-56', 'Atos 7:59-60'],
+    tags: ['Estêvão', 'mártir', 'história de Israel', 'templo', 'Espírito Santo'],
+    fontes: ['Craig Keener, Acts (HNTC)', 'F.F. Bruce, The Book of the Acts']
+  },
+  {
+    id: 'tl-108',
+    titulo: 'Atos 10 — A Visão de Cornélio e os Gentios',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Atos e Apocalipse',
+    conteudo: [
+      'Atos 10 é ponto de virada na história da Igreja: o evangelho alcança os gentios. Cornélio, centurião romano, justo e temeroso de Deus (10:1-2), é instrumento da providência divina.',
+      'A visão de Pedro: um lençol com animais impuros e a voz: "Levanta, mata e come" (10:13). A lição não é alimentar, mas eclesiológica: "O que Deus purificou, não chames tu de comum" (10:15). A barreira entre judeus e gentios cai.',
+      'O sermão de Pedro (10:34-43) é exemplar: Cristo é ungido pelo Espírito, andou fazendo o bem, morreu na cruz, ressuscitou. "Deus não faz acepção de pessoas" (10:34). O evangelho é universal.',
+      'O derramamento do Espírito sobre os gentios (10:44-46) é surpreendente: o Espírito antecede o batismo. A iniciativa é divina, não humana. "Também aos gentios concedeu Deus o arrependimento para a vida" (10:45).',
+      'A lição para a Igreja: a missions não pode ser limitada por preconceitos culturais ou religiosos. O que Deus abriu, ninguém pode fechar. O evangelho é para toda nação, tribo, língua e povo.'
+    ],
+    versicosChave: ['Atos 10:34-35', 'Atos 10:44-46'],
+    tags: ['Cornélio', 'gentios', 'universalidade', 'visões', 'Pentecostes'],
+    fontes: ['Craig Keener, Acts (HNTC)', 'Ben Witherington III, Acts']
+  },
+  {
+    id: 'tl-109',
+    titulo: 'Atos 13-14 — A Primeira Viagem Missionária',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Atos e Apocalipse',
+    conteudo: [
+      'Atos 13-14 registra a primeira viagem missionária de Paulo e Barnabé. A Igreja em Antioquia envia, sob guia do Espírito Santo (13:2-4). A missão começa com obediência à voz do Espírito.',
+      'A pregação em Pisídia de Antioquia (13:16-41) é modelo de evangelismo: contexto histórico (Israel), centralidade de Cristo (ressurreição), chamada à fé. "Anunciamos-vos o evangelho destas coisas que a vossos pais foram prometidas" (13:32).',
+      'A oposição surge: "Encheram-se de inveja, e blasfemaram" (13:45). A reação ao evangelho é polarização: alguns creem, outros rejeitam. Paulo e Barnabé "sacudiram o pó dos seus pés" (13:51) — testemunho contra a incredulidade.',
+      'O curador coxo em Listra (14:8-10) leva o povo a querer adorá-los como deuses. "Homens, por que fazeis isto? Nós somos homens como vós" (14:14). A tentação da idolatropia é real. Os missionários recusam a glória.',
+      'A volta a Antioquia: "Relataram tudo o que Deus fizera com eles, e como abrira aos gentios a porta da fé" (14:27). A Igreja aprende com a experiência missionária. A porta aberta é oportunidade e responsabilidade.'
+    ],
+    versicosChave: ['Atos 13:2-3', 'Atos 13:47', 'Atos 14:27'],
+    tags: ['missiones', 'Paulo', 'Barnabé', 'Antioquia', 'gentios'],
+    fontes: ['Craig Keener, Acts (HNTC)', 'F.F. Bruce, The Book of the Acts']
+  },
+  {
+    id: 'tl-110',
+    titulo: 'Apocalipse 1-3 — As Sete Cartas às Igrejas',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Apocalipse',
+    conteudo: [
+      'Apocalipse 1-3 apresenta Cristo glorificado e sete cartas às igrejas da Ásia Menor. A visão de Cristo (1:12-18) é alicerce: "Eu sou o Primeiro e o Derradeiro, o que vive, e estive morto, eis que estou vivo por todos os séculos" (1:18).',
+      'Cada carta tem estrutura: endereçamento, autodescrição de Cristo, elogio, acusação, ameaça/promoção, ouvinte vence. Cristo conhece cada igreja intimamente. Não há igreja perfeita — todas têm problemas.',
+      'Efésso: "Perdeste o teu primeiro amor" (2:4). A ortodoxia sem paixão é espiritualidade morta. Esmirna: pobreza material mas riqueza espiritual (2:9). Pérgamo: compromisso com o mundo (2:14). Tiatira: tolerância ao falso profetismo (2:20).',
+      'Sardes: "Tu tens o nome de que vives, e estás morto" (3:1). A aparência sem realidade. Filadélfia: "Tiveste pouca força" (3:8) — mas Cristo não censura. A fidelidade sem poder é valorizada.',
+      'Laodiceia: "Nem quente nem frio" (3:15). A prosperidade material gera complacência espiritual. "Eu estou à porta e bato" (3:20) — Cristo busca comunhão, mas a Igreja precisa abrir. A invitacao é pessoal e urgente.'
+    ],
+    versicosChave: ['Apocalipse 1:17-18', 'Apocalipse 2-3', 'Apocalipse 3:20'],
+    tags: ['sete igrejas', 'Cristo glorificado', 'fidelidade', 'juízo', 'arrependimento'],
+    fontes: ['G.K. Beale, Revelation (NICNT)', 'David Aune, Revelation (WBC)']
+  },
+  {
+    id: 'tl-111',
+    titulo: 'Apocalipse 12 — A Mulher, o Dragão e o Filho',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Apocalipse',
+    conteudo: [
+      'Apocalipse 12 é cenário central do drama apocalíptico. A mulher vestida de sol (12:1) é interpretada de múltiplas formas: Israel, Maria, a Igreja. A serpente dragão vermelho (12:3) é Satanás.',
+      'O dragão persegue a mulher que dá à luz o macho varão (12:5). A ressurreição de Cristo é pressuposta: "O Filho foi arrebatado até Deus e ao seu trono" (12:5). A ascensão é resumo da história.',
+      'A guerra no céu: "Miguel e os seus anjos lutaram contra o dragão" (12:7). A vitória de Miguel é a vitória de Cristo. Satanás é derrotado no céu e lançado à terra. A guerra continua na terra.',
+      'A perseguição à mulher: "O dragão, irado, foi guerrear ao restante da sua semente" (12:17). Os mandamentos de Deus e o testemunho de Jesus são marcas dos perseguidos. A fidelidade custa.',
+      'A vitória já foi conquistada: "Eles o venceram pelo sangue do Cordeiro" (12:11). A cruz é o momento decisivo da história. O testemunho é arma dos vencedores: falar a verdade, mesmo que custe a vida.'
+    ],
+    versicosChave: ['Apocalipse 12:1-11', 'Apocalipse 12:17'],
+    tags: ['Mulher', 'dragão', 'Miguel', 'guerra espiritual', 'vitória'],
+    fontes: ['G.K. Beale, Revelation (NICNT)', 'David Aune, Revelation (WBC)']
+  },
+  {
+    id: 'tl-112',
+    titulo: 'Apocalipse 19-22 — A Consumação Final',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Apocalipse',
+    conteudo: [
+      'Apocalipse 19 celebra a vitória: "Aleluia! Pois o Senhor nosso Deus, o Todo-Poderoso, reina!" (19:6). As bodas do Cordeiro são celebradas — Cristo e a Igreja se encontram definitivamente.',
+      'A segunda vinda: "O céu se abriu, e eis um cavalo branco, e aquele que o montava se chama Fiel e Verdadeiro" (19:11). O julgamento é justo. O Anti-Cristo e o falso profeta são lançados no lago de fogo (19:20).',
+      'O milênio (20:1-6) é tema de debate: pré-milenarismo, pós-milenarismo, amilenarismo. Cada posição tem defensores fiéis. O texto é figurativo e literário, não necessariamente cronológico.',
+      'O grande julgamento (20:11-15): o grande trono branco, os livros abertos, o livro da vida. "Se alguém não foi achado escrito no livro da vida, esse foi lançado no lago de fogo" (20:15). O julgamento é individual e final.',
+      'Novos céus e nova terra (21:1-22:5): "Eis que faço novas todas as coisas" (21:5). Não destruição, mas renovação. "Deus dwellerá com eles, e eles serão seus povos" (21:3). Não haverá mais morte, dor, choro. O Éden restaurado e superado.'
+    ],
+    versicosChave: ['Apocalipse 19:11', 'Apocalipse 20:11-15', 'Apocalipse 21:1-5'],
+    tags: ['consumação', 'segunda vinda', 'milênio', 'novo céu', 'nova terra'],
+    fontes: ['G.K. Beale, Revelation (NICNT)', 'Robert Mounce, The Book of Revelation']
+  },
+
+  // --- TEOLOGIA DO AT ---
+  {
+    id: 'tl-113',
+    titulo: 'Êxodo 20 — Os Dez Mandamentos',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Pentateuco',
+    conteudo: [
+      'Os Dez Mandamentos (Êxodo 20:1-17) são a base da aliança Sinai. "Eu sou o Senhor teu Deus, que te tirei da terra do Egito" (20:2). A graça precede a Lei — Deus liberta antes de ordenar.',
+      'Os quatro primeiros mandamentos tratam da relação com Deus: não ter outros deuses, não fazer imagens, não tomar o nome em vão, lembrar do sábado. A prioridade é vertical: Deus primeiro.',
+      'Os seis últimos tratam da relação com o próximo: honrar pais, não matar, não adulterar, não furtar, não calar falsos testemunhos, não cobiçar. A ética social se funda no Decálogo.',
+      'A permanência da Lei moral é debate entre tradições. Os reformadores ensinam que a Lei moral (Decálogo) permanece; as leis cerimoniais se cumprem em Cristo; as leis civis são contextuais.',
+      'O Decálogo é síntese da ética bíblica. Jesus resume: "Amarás o Senhor teu Deus de todo o teu coração" e "amarás o teu próximo como a ti mesmo" (Mt 22:37-39). A Lei é cumprida no amor.'
+    ],
+    versicosChave: ['Êxodo 20:1-17', 'Deuteronômio 5:6-21'],
+    tags: ['Decálogo', 'Lei moral', 'aliança', 'ética', 'Sinaí'],
+    fontes: ['Walter Kaiser, Exodus (EBC)', 'Meredith Kline, Treaty of the Great King']
+  },
+  {
+    id: 'tl-114',
+    titulo: 'Salmos 23 — O Senhor é o Meu Pastor',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Salmos',
+    conteudo: [
+      'O Salmo 23 é o mais amado e conhecido dos salmos. David, que conhece a vida pastoral, aplica-a à relação com Deus. "O Senhor é o meu pastor; nada me faltará" (23:1). A confiança é absoluta.',
+      'Os pastos verdes e águas tranquilas (23:2) são imagem de provisão e descanso. Deus supre necessidades físicas e espirituais. "Conduz-me pelas veredas da justiça, por amor do seu nome" (23:3). A direção divina é por Sua causa.',
+      'O vale da sombra da morte (23:4) não é evitado — é enfrentado. "Embora eu ande pelo vale da sombra da morte, não temerei mal algum, porque tu estás comigo". A presença de Deus é consolo na escuridão.',
+      'A mesa preparada no meio dos inimigos (23:5) é vitória e honra. O óleo que unta a cabeça é unção — preparação para o futuro. O cálice transbordante é abundância.',
+      'O Salmo termina com certeza: "Bondade e misericórdia me seguirão todos os dias da minha vida; e habitarei na casa do Senhor por longos dias" (23:6). A fidelidade divina é promessa.'
+    ],
+    versicosChave: ['Salmos 23:1-6'],
+    tags: ['pastor', 'confiança', 'proteção', 'provisão', 'fidelidade'],
+    fontes: ['Derek Kidner, Psalms (TOTC)', 'C.H. Spurgeon, Treasury of David']
+  },
+  {
+    id: 'tl-115',
+    titulo: 'Provérbios 31 — A Mulher Virtuosa',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Livros Poéticos',
+    conteudo: [
+      'Provérbios 31:10-31 descreve a mulher virtuosa. O acróstico (cada verso começa com letra do alfabeto hebraico) sugere ideal poético, não retrato literal. "Mulher virtuosa, quem a achará?" (31:10).',
+      'A mulher virtuosa é trabalhadora: compra campos (31:16), planta vinhas (31:16), prepara comida (31:15), cuida dos pobres (31:20). O trabalho não é maldição, mas vocação. A administração doméstica é digna.',
+      'A sabedoria e a bondade: "A sua boca fala com sabedoria, e na sua língua há lição de bondade" (31:26). A palavra é instrumento de edificação. O ensino materno é fundamental.',
+      'A fé em Deus: "Engana a graça e é vaidosa a formosura; mas a mulher que teme ao Senhor, essa será louvada" (31:30). A temor do Senhor é critério suprema. A beleza exterior perece; a beleza interior permanece.',
+      'O versículo final: "Louvai-a do fruto das suas mãos, e louvem-na na sua porta as suas obras" (31:31). A mulher virtuosa é reconhecida pelo seu trabalho. A dignidade não vem do papel, mas da fé.'
+    ],
+    versicosChave: ['Provérbios 31:10-31'],
+    tags: ['mulher virtuosa', 'sabedoria', 'trabalho', 'fé', 'dignidade'],
+    fontes: ['Tremper Longman III, Proverbs (NICOT)', 'Bruce Waltke, Proverbs (NICOT)']
+  },
+  {
+    id: 'tl-116',
+    titulo: 'Isaías 53 — O Servo Sofredor',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Profetas',
+    conteudo: [
+      'Isaías 53 é a profecia mais clara sobre a morte substitutiva do Messias. "Quem crer na nossa pregação?" (53:1). A incredulidade é tema: a salvação é rejeitada pelos que deveriam recebê-la.',
+      'A aparência humilde: "Não tinha formosura nem formosura que nos atraísse" (53:2). O Messias não vem com esplendor, mas em humildade. O valor não está na aparência, mas no caráter.',
+      'O sofrimento substitutivo: "Ele foi ferido pelos nossos pecados, e moido pelas nossas iniquidades" (53:5). "O castigo que nos trazia a paz caiu sobre ele" (53:5). A satisfação vicária é clara.',
+      'A morte e sepultamento: "Foi posta a sua vida com os ímpios, e com os ricos na sua morte" (53:9). A morte é real — não há docetismo. Cristo morreu como homem.',
+      'A ressurreição e justificação: "Verá a descendência, prolongará os seus dias" (53:10). "Muitos justificará" (53:11). A ressurreição é pressuposta. O sofrimento tem fruto: a salvação de muitos.'
+    ],
+    versicosChave: ['Isaías 53:3-7', 'Isaías 53:10-12'],
+    tags: ['Servo sofredor', 'substituição', 'expiação', 'ressurreição', 'profecia'],
+    fontes: ['John Oswald, Isaiah (NICOT)', 'Brevard Childs, Isaiah (OTL)']
+  },
+  {
+    id: 'tl-117',
+    titulo: 'Daniel 7 — O Filho do Homem',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Profetas',
+    conteudo: [
+      'Daniel 7 é visão apocalíptica sobre os impérios mundiais e o Reino de Deus. Os quatro animais (7:1-8) representam impérios: Babilônia, Pérsia, Grécia, Roma. Todos são destruídos pelo Reino eterno.',
+      '"Veio um como Filho do Homem" (7:13). A figura messiânica recebe domínio, glória e reino. "Todo povo, nação e língua o servirão" (7:14). A universalidade do Reino.',
+      '"Até que o Ancião de Dias se assentou" (7:9). O trono divino é centro do julgamento. Os livros são abertos. Os ímpios são julgados. O Filho do Homem recebe o Reino.',
+      'A interpretação cristológica: Jesus se identifica como o Filho do Homem (Mt 26:64). A auto-denominação é messiânica. Cristo cumpre a profecia de Daniel.',
+      'Os santos do Altíssimo herdam o Reino (7:18, 27). A vitória não é apenas messiânica, mas solidária. O povo de Deus participa do Reino. A esperança escatológica sustenta a fidelidade presente.'
+    ],
+    versicosChave: ['Daniel 7:13-14', 'Daniel 7:9-12'],
+    tags: ['Filho do Homem', 'Ancião de Dias', 'Reino', 'impérios', ' julgamento'],
+    fontes: ['Tremper Longman III, Daniel (NICOT)', 'John Goldingay, Daniel (WBC)']
+  },
+
+  // --- SISTEMÁTICA ---
+  {
+    id: 'dp-061',
+    titulo: 'Cristologia — A Pessoa de Cristo',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Cristologia',
+    conteudo: [
+      'A cristologia estuda quem é Jesus Cristo. Ele é 100% Deus e 100% humano — duas naturezas, uma pessoa. O Concílio de Calcedônia (451) definiu: "Sem confusão, sem mudança, sem divisão, sem separação".',
+      'A divindade de Cristo é ensinada no NT: João 1:1 ("o Verbo era Deus"), Colossenses 1:16 ("todas as coisas foram criadas por ele"), Hebreus 1:3 ("imagem exata da substância de Deus"), Filipenses 2:6 ("sendo em forma de Deus").',
+      'A humanidade de Cristo: nasceu, comeu, chorou, dormiu, morreu. A encarnação é real — não é aparência. Cristo é "o mediador entre Deus e os homens" (1 Tm 2:5) porque é ambos.',
+      'As implicações: como Deus, seu sacrifício tem valor infinito; como homem, pode representar a humanidade. A satisfação vicária depende da plenitude de sua pessoa.',
+      'A cristologia é teste de fidelidade. Negar a divindade é heresia (Arrius, Testemunhas de Jeová). Negar a humanidade é heresia (Docetismo, Gnosticismo). A ortodoxia mantém o equilíbrio.'
+    ],
+    versicosChave: ['João 1:1-3', 'Colossenses 1:15-20', 'Filipenses 2:5-11', 'Hebreus 1:1-3'],
+    tags: ['Cristologia', 'divindade', 'humanidade', 'Calcedônia', 'união hipostática'],
+    fontes: ['Bruce Demarest, The Person and Work of Christ', 'Millard Erickson, Christology']
+  },
+  {
+    id: 'dp-062',
+    titulo: 'Pneumatologia — A Pessoa e Obra do Espírito Santo',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Pneumatologia',
+    conteudo: [
+      'A pneumatologia estuda o Espírito Santo. Ele é a terceira pessoa da Trindade — pessoa, não força ou influência. "O Espírito é Deus" (Atos 5:3-4). A personalidade é evidenciada: fala, guia, ensina, convence.',
+      'As obras do Espírito: regeneração (João 3:5-6), convicção do pecado (João 16:8), habitação no crente (1 Co 6:19), selo da salvação (Ef 1:13-14), dons espirituais (1 Co 12), frutos (Gl 5:22-23), intercessão (Rm 8:26).',
+      'O ministério do Espírito é cristocêntrico: "Ele me glorificará, porque recebe do que é meu e vo-lo fará saber" (João 16:14). O Espírito não traz atenção a si mesmo, mas a Cristo.',
+      'A plenitude do Espírito é mandamento: "Não vos embriagueis com vinho... mas enchei-vos do Espírito" (Ef 5:18). A enche-não é experiência única, mas andar continuado de submissão ao Espírito.',
+      'O debate sobre dons: cessacionismo (dons miraculares cessaram com os apóstolos) vs. continuísmo (dons continuam hoje). Ambas as posições são defendidas por evangélicos fiéis.'
+    ],
+    versicosChave: ['João 14:16-17', 'Atos 5:3-4', 'Efésios 5:18', '1 Coríntios 12:4-11'],
+    tags: ['Espírito Santo', 'Pneumatologia', 'regeneração', 'dons', 'plenitude'],
+    fontes: ['Gordon Fee, God\'s Empowering Presence', 'Michael Green, I Believe in the Holy Spirit']
+  },
+  {
+    id: 'dp-063',
+    titulo: 'Escatologia — As Últimas Coisas',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Escatologia',
+    conteudo: [
+      'A escatologia estuda as últimas coisas: morte, ressurreição, juízo, céu, inferno, volta de Cristo, nova criação. Cada tema é ensinado no AT e NT.',
+      'A volta de Cristo é pessoal, visível, inesperada e gloriosa. "Assim como o relâmpago... assim será a vinda do Filho do Homem" (Mt 24:27). Ninguém sabe o dia nem a hora.',
+      'O estado intermediário: os mortos em Cristo estão com o Senhor (2 Co 5:8; Fp 1:23). A separação do corpo não é separação de Cristo. A esperança é a ressurreição corporal.',
+      'O inferno é real: "Eternamente afastados da presença do Senhor" (2 Ts 1:9). O fogo eterno é linguagem figurativa, mas a realidade é terrível. A justiça de Deus exige punição do pecado.',
+      'Novos céus e nova terra (2 Pe 3:13; Ap 21:1) são a consumação. Não destruição, mas renovação. A criação será libertada da maldição. A esperança cristã é restauração completa de todas as coisas.'
+    ],
+    versicosChave: ['Mateus 24:30', '1 Tessalonicenses 4:16-17', 'Apocalipse 21:1-5'],
+    tags: ['escatologia', 'volta de Cristo', 'ressurreição', 'juízo', 'nova criação'],
+    fontes: ['G.E. Ladd, A Theology of the New Testament', 'Anthony Hoekema, The Bible and the Future']
+  },
+  {
+    id: 'dp-064',
+    titulo: 'Eclesiologia — A Natureza da Igreja',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Eclesiologia',
+    conteudo: [
+      'A eclesiologia estuda a Igreja. A palavra grega "ekklésia" significa "assembleia convocada". A Igreja é o povo de Deus convocado pela pregação do evangelho.',
+      'A Igreja invisível (todos os crentes de todas as épocas) e visível (comunidades locais). A distinção é importante: a Igreja visível inclui falsos crentes; a invisível é apenas os genuínos.',
+      'Os marcadores da Igreja visível (notae Ecclesiae): pregação fiel dos sacramentos, disciplina eclesiástica. Onde esses marcadores estão, ali está a Igreja.',
+      'Os sacramentos/ordenanças: batismo e Ceia do Senhor. O batismo é sinal de entrada na comunidade; a Ceia é sinal continuado de comunhão. Não são salvíficos por si mesmos, mas sinais da graça.',
+      'A missão da Igreja: evangelismo, discipulado, adoração, comunhão, serviço. A Igreja não é um clube para santos, mas hospital para pecadores. Sua razão de ser é glorificar a Deus e fazer discípulos.'
+    ],
+    versicosChave: ['Mateus 16:18', 'Efésios 2:19-22', '1 Pedro 2:5'],
+    tags: ['Igreja', 'eclesiologia', 'batismo', 'Ceia', 'missão'],
+    fontes: ['Edmund Clowney, The Church', 'Gregg Allison, Sojourners and Strangers']
+  },
+  {
+    id: 'dp-065',
+    titulo: 'Angelologia e Demonologia',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Angelologia',
+    conteudo: [
+      'A angelologia estuda os anjos; a demonologia, os demônios. Os anjos são seres espirituais criados por Deus para servi-Lo e servir ao Seu povo.',
+      'Os anjos são pessoais: têm inteligência, vontade e emoções. "Não são todos eles espíritos ministradores?" (Hb 1:14). Gabriel (Dn 8:16), Miguel (Dn 10:13), serafins (Is 6:2), querubins (Gn 3:24).',
+      'Satanás é anjo caído. Sua queda é descrita em Isaías 14:12-15 e Ezequiel 28:12-17. Orgulho o levou à rebelião. Ele é "deus deste mundo" (2 Co 4:4), mas seu destino é o lago de fogo.',
+      'Os demônios são anjos que seguiram Satanás. Eles atuam: tentação, acusação, possessão, engano. A vitória sobre eles está na cruz: "Despojando os principados e potestades, deu-os publicamente a triunfar" (Cl 2:15).',
+      'A batalha espiritual é real: "A nossa luta não é contra carne e sangue" (Ef 6:12). Mas o resultado não é duvidoso: Cristo venceu. A oração e a Palavra são armas. Não há medo, mas alerta.'
+    ],
+    versicosChave: ['Hebreus 1:14', 'Efésios 6:12', 'Colossenses 2:15', 'Apocalipse 12:7-9'],
+    tags: ['anjos', 'demônios', 'Satanás', 'batalha espiritual', 'vitória'],
+    fontes: ['Clarence Bass, Backgrounds to the Bible', 'William Most, The Angels']
+  },
+  {
+    id: 'dp-066',
+    titulo: 'Soteriologia — A Doutrina da Salvação',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Soteriologia',
+    conteudo: [
+      'A soteriologia é o estudo da salvação. A salvação é obra de Deus, não mérito humano. "Porque pela graça sois salvos, por meio da fé" (Ef 2:8). A fé e a graça são inseparáveis.',
+      'Os aspectos da salvação: justificação (declaração de justiça), regeneração (novo nascimento), adoção (filhos de Deus), santificação (transformação moral), glorificação (consumação final).',
+      'A justificação é forense: Deus declara justo o crente, imputando-lhe a justiça de Cristo. "Aquele que não conheceu pecado, por nós o fez pecado, para que nós fôssemos feitos justiça de Deus" (2 Co 5:21).',
+      'A salvação é por graça porque é imerecida; por fé porque é recebida; em Cristo porque é mediada; para boas obras porque é transformadora. A graça não anula a obediência — a motiva.',
+      'A segurança do crente: "Ninguém os arrebata da minha mão" (João 10:28). A perseverança dos santos é resultado da preservação divina. A certeza não é presunção, mas confiança na promessa de Deus.'
+    ],
+    versicosChave: ['Efésios 2:8-9', 'Romanos 5:1', 'João 10:28-29'],
+    tags: ['salvação', 'justificação', 'regeneração', 'santificação', 'graça'],
+    fontes: ['J.I. Packer, Knowing God', 'Louis Berkhof, Systematic Theology']
+  },
+
+  // --- MAIS ESTUDOS PAULINAS E ATOS ---
+  {
+    id: 'tl-118',
+    titulo: 'Romanos 9 — A Soberania de Deus na Salvação',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      'Romanos 9 é uma das seções mais desafiadoras do NT. Paulo lamenta a incredulidade de Israel (9:1-3). A pergunta: Deus falhou em Suas promessas? A resposta é não.',
+      'A soberania eleitoral: "Não depende do que quer, nem do que corre, mas de Deus, que tem misericórdia" (9:16). O exemplo de Jacó e Esaú: "Amei a Jacó e odiei a Esaú" (9:13). A escolha é anterior ao mérito.',
+      'O barro e o oleiro (9:20-21): "Quem és tu, ó homem, para contestar com Deus?" A criatura não pode questionar o Criador. A soberania é absoluta, mas não arbitrária.',
+      'A justiça divina é demonstrada: "Para fazer conhecidas as riquezas da sua glória, as quais ele preparou para os misericordiosos" (9:23). A misericórdia é um tesouro, não obrigação.',
+      'A tensão entre soberania e responsabilidade humana permanece. Paulo não resolve a tensão com lógica, mas com adoração: "Ó profundidade das riquezas!" (11:33). A humildade intelectual é necessária.'
+    ],
+    versicosChave: ['Romanos 9:16', 'Romanos 9:20-21', 'Romanos 9:23'],
+    tags: ['soberania', 'eleição', 'misericórdia', 'Israel', 'barro'],
+    fontes: ['Douglas Moo, Romans (NICNT)', 'Thomas Schreiner, Romans (BECNT)']
+  },
+  {
+    id: 'tl-119',
+    titulo: 'Romanos 12 — A Vida Cristã Prática',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      'Romanos 12:1-2 é a transição da doutrina para a prática. "Oferecei vossos corpos em sacrifício vivo, santo e agradável a Deus" (12:1). A adoração não é apenas culto, mas vida toda dedicada.',
+      'A renovação da mente (12:2): "Não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento". A santificação começa com a mente.',
+      'Os dons espirituais (12:6-8): "Tendo dons diferentes, segundo a graça que nos foi dada". Profecia, serviço, ensino, exortação, liberalidade, presidência, misericórdia. Cada don é necessário.',
+      'A ética cristã prática: "Amai-vos uns aos outros" (12:10). "Abençoai os que vos perseguem" (12:14). "Não pagueis mal por mal" (12:17). "Se for possível, quanto depender de vós, tende paz com todos" (12:18).',
+      'O amor inimigo: "Se o teu inimigo tiver fome, dá-lhe de comer" (12:20). "Não te vingues toi mesmo" (12:19). A vingança é de Deus. O amor é mais forte que o ódio.'
+    ],
+    versicosChave: ['Romanos 12:1-2', 'Romanos 12:9-21'],
+    tags: ['sacrifício', 'renovação', 'dons', 'amor inimigo', 'ética'],
+    fontes: ['Douglas Moo, Romans (NICNT)', 'John Stott, Romans (TNTC)']
+  },
+  {
+    id: 'tl-120',
+    titulo: '1 Coríntios 11 — A Ceia do Senhor',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      '1 Coríntios 11:17-34 trata da Ceia do Senhor. A comunidade coríntia estava dividida: os ricos comiam antes, os pobres passavam fome. ACeia era ceia de amor, não de vergonha.',
+      'A instituição: "Isto é o meu corpo, que é dado por vós" (11:24). "Este é o meu sangue da nova aliança, que é derramado por muitos" (11:25). A linguagem é simbólica, mas a realidade é espiritual.',
+      'O discernimento corporal: "Quem come e bebe sem discernir o corpo, come e bebe para sua própria condenação" (11:29). ACeia não é ritual mágico — requer fé e examinação.',
+      'As disciplinas: "Por isso há entre vós muitos enfermos e adormecidos" (11:30). A desobediência tem consequências. Mas "quando fomos julgados, somos corrigidos pelo Senhor" (11:32).',
+      'A instrução prática: "Esperai uns pelos outros" (11:33). A Ceia é ato comunitário, não individual. A communhão com Cristo e entre os crentes é inseparável.'
+    ],
+    versicosChave: ['1 Coríntios 11:23-26', '1 Coríntios 11:28-29'],
+    tags: ['Ceia do Senhor', 'Eucaristia', 'corpo', 'sangue', 'discernimento'],
+    fontes: ['Anthony Thiselton, 1 Corinthians', 'Gordon Fee, 1 Corinthians']
+  },
+  {
+    id: 'tl-121',
+    titulo: '2 Coríntios 3 — O ministério do Espírito',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      '2 Coríntios 3 contrasta o velho e o novo ministério. "A letra mata, mas o Espírito vivifica" (3:6). A aliança da letra é Lei; a do Espírito é graça.',
+      'O véu sobre Moisés (3:13-16): o véu representa a dureza de coração de Israel. "Quando se convertem ao Senhor, o véu é removido" (3:16). A conversão é remoção do véu.',
+      'A liberdade do Espírito: "Onde está o Espírito do Senhor, aí há liberdade" (3:17). A liberdade cristã não é anarquia, mas transformação pelo Espírito.',
+      'A transformação progressiva: "Nós todos, com o rosto descoberto, contemplamos como num espelho a glória do Senhor, somos transformados na mesma imagem" (3:18). A santificação é visível.',
+      'O ministério de Paulo é de-letter, mas não em letra, mas em Espírito. A competência não vem de si mesmo, mas de Deus (3:5).'
+    ],
+    versicosChave: ['2 Coríntios 3:6', '2 Coríntios 3:17', '2 Coríntios 3:18'],
+    tags: ['Espírito', 'letra', 'véu', 'transformação', 'liberdade'],
+    fontes: ['Frank Matera, 2 Corinthians', 'Barnett, The Epistle to the Corinthians']
+  },
+  {
+    id: 'tl-122',
+    titulo: 'Efésios 1 — As Bênçãos Espirituais',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      'Efésios 1:3-14 é uma bênção (berakah) em três partes: Pai (3-6), Filho (7-12), Espírito (13-14). Cada Pessoa da Trindade é mencionada.',
+      'Escolhidos antes da fundação do mundo (1:4): a eleição é pré-temporal. "Para sermos santos e sem mancha" — a eleição é para santificação, não imoralidade.',
+      'Redimidos pelo sangue (1:7): "Temos a redenção pelo seu sangue, o perdão dos pecados". A redenção tem preço: o sangue de Cristo. É gratuita para nós, custou tudo a Ele.',
+      'Selados com o Espírito Santo (1:13-14): o selo é garantia de propriedade e preservação. O Espírito é arras (garantia) da herança futura.',
+      'O louvor da glória da graça (1:6, 12, 14): o目的是 louvor. A salvação é para a glória de Deus, não apenas para nosso benefício.'
+    ],
+    versicosChave: ['Efésios 1:3-14', 'Efésios 1:4', 'Efésios 1:13-14'],
+    tags: ['eleição', 'redenção', 'selo', 'Espírito', 'graça'],
+    fontes: ['Peter O\'Brien, Ephesians', 'Harold Hoehner, Ephesians']
+  },
+  {
+    id: 'tl-123',
+    titulo: 'Colossenses 1 — Cristo, Senhor da Criação',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Epístolas Paulinas',
+    conteudo: [
+      'Colossenses 1:15-20 é o hino cristológico mais elevado de Paulo. "Imagem do Deus invisível, primogênito de toda a criatura" (1:15). A divindade e prioridade de Cristo.',
+      'Cristo criou todas as coisas (1:16-17): "Nele foram criadas todas as coisas... e Ele é antes de todas as coisas, e todas as coisas nele subsistem". A criação depende dEle.',
+      'Nele habita toda a plenitude (1:19): "Pois nele foi do agrado que habitasse toda a plenitude". A totalidade da divindade está em Cristo.',
+      'A reconciliação cósmica (1:20): "Pois foi contente reconciliar consigo todas as coisas". A redenção não é apenas humana, mas cósmica. A criação inteira será restaurada.',
+      'Cristo é a cabeça da Igreja (1:18): "Ele é o princípio, o primogênito dentre os mortos". A prioridade de Cristo é em todas as coisas.'
+    ],
+    versicosChave: ['Colossenses 1:15-20', 'Colossenses 1:16-17'],
+    tags: ['Cristologia', 'criação', 'reconciliação', 'plenitude', 'cabeça'],
+    fontes: ['Gordon Fee, Colossians', 'F.F. Bruce, Colossians']
+  },
+  {
+    id: 'tl-124',
+    titulo: 'Atos 8 — Filipe e o Eunuco Etíope',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Atos e Apocalipse',
+    conteudo: [
+      'Atos 8:26-40 registra o encontro de Filipe com o eunuco etíope. Um official de Candace, rainha dos Etíopes, que administrava todo o seu tesouro (8:27). A providência de Deus.',
+      'O eunuco lia Isaías 53: "Levará Ele o nosso sofrimento?" (8:32-33). Filipe explica a Escritura: Cristo é o Servo Sofredor. A evangelização é explicação da Escritura.',
+      'A confissão de fé: "Creio que Jesus Cristo é o Filho de Deus" (8:37). A fé é confessada antes do batismo. O batismo é resposta à fé, não condição para ela.',
+      'O batismo no deserto (8:38-39): "Desceram ambos à água... subiram da água". A imersão é praticada, mas o modo não é o ponto — o ponto é a obediência.',
+      'O eunuco segue seu caminho "com alegria" (8:39). A salvação traz alegria. Um etíope é o primeiro gentio registrado a receber o evangelho — prefigurando a missão universal.'
+    ],
+    versicosChave: ['Atos 8:30-35', 'Atos 8:37', 'Atos 8:38-39'],
+    tags: ['Filipe', 'eunuco', 'evangelismo', 'batismo', 'Isaías 53'],
+    fontes: ['Craig Keener, Acts (HNTC)', 'F.F. Bruce, The Book of the Acts']
+  },
+  {
+    id: 'tl-125',
+    titulo: 'Atos 13 — Paulo e Barnabé em Antioquia',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Atos e Apocalipse',
+    conteudo: [
+      'Atos 13:1-3 registra o chamado missionário. "Separai-me Barnabé e Saulo para a obra a que os chamei" (13:2). A missão é iniciativa divina, não humana.',
+      'A pregação em Pisídia de Antioquia (13:16-41) é modelo: resumo da história de Israel (13:17-22), centralidade de Cristo (13:23-31), chamado à fé (13:38-39).',
+      'A justificação pela fé: "Porque é por meio dele que se anuncia o perdão dos pecados. De tudo aquilo de que a lei de Moisés não vos pôde justificar, todo aquele que crê é justificado" (13:38-39).',
+      'A rejeição e aceitação: "Foi necessário que se vos anunciasse primeiro a palavra de Deus" (13:46). Paulo e Barnabé se voltam para os gentios quando os judeus rejeitam.',
+      'A alegria dos discípulos: "Encheram-se de gozo e do Espírito Santo" (13:52). A rejeição não paralisa — o Espírito traz alegria mesmo na oposição.'
+    ],
+    versicosChave: ['Atos 13:2-3', 'Atos 13:38-39'],
+    tags: ['missão', 'justificação', 'Paulo', 'Barnabé', 'gentios'],
+    fontes: ['Craig Keener, Acts (HNTC)', 'F.F. Bruce, The Book of the Acts']
+  },
+  {
+    id: 'tl-126',
+    titulo: 'Apocalipse 4-5 — A Visão do Trono',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Apocalipse',
+    conteudo: [
+      'Apocalipse 4-5 é a visão central do louvor celestial. "Sobre o trono, uma aparência de jaspe e de cornalina" (4:3). A majestade de Deus é inexprimível.',
+      'Os 24 anciãos (4:4): representam a totalidade do povo de Deus (12 tribos + 12 apóstolos). Eles lançam suas coroas diante do trono — a autoridade humana se curva diante da divina.',
+      'O livro com sete selos (5:1): quem é digno de abri-lo? "Ninguém... nem no céu, nem na terra" (5:3). A crise cósmica: quem é digno?',
+      'O Cordeiro imolado (5:6-7): "Um cordeiro que parece ter sido morto". A chaga é marca de vitória, não fraqueza. O Cordeiro toma o livro — a história está em Suas mãos.',
+      'O louvor universal (5:9-14): "Digno és de tomar o livro e de abrir os seus selos". Uma multidão que ninguém pode contar, de toda nação, louva o Cordeiro. A adoração é eterna.'
+    ],
+    versicosChave: ['Apocalipse 5:6-9', 'Apocalipse 5:13'],
+    tags: ['trono', 'Cordeiro', 'louvor', 'anciãos', 'selos'],
+    fontes: ['G.K. Beale, Revelation (NICNT)', 'David Aune, Revelation (WBC)']
+  },
+  {
+    id: 'tl-127',
+    titulo: 'Apocalipse 13 — A Besta e o Falso Profeta',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Apocalipse',
+    conteudo: [
+      'Apocalipse 13 apresenta duas figuras: a besta do mar (13:1-10) e a besta da terra (13:11-18). Ambas servem ao dragão (Satanás).',
+      'A besta do mar é poder político: "Deu-lhe o dragão poder, trono e grande autoridade" (13:2). As sete cabeças são impérios. A besta é adorada (13:4). O poder político se torna idolátrico.',
+      'A besta da terra é poder religioso: "Tem dois chifres semelhantes aos de um cordeiro" (13:11). Finge ser de Deus, mas serve à besta do mar. Engana pela aparência.',
+      'O número 666 (13:18): "É o número de um homem". Representa imperfeição (6 em vez de 7), repetição (três vezes), e falha humana. É símbolo de rebeldia contra Deus.',
+      'A marca da besta (13:16-17): sem ela, ninguém pode comprar ou vender. É controle econômico e religioso. A marca é oposta ao selo de Deus em Apocalipse 7:3.'
+    ],
+    versicosChave: ['Apocalipse 13:1-10', 'Apocalipse 13:16-18'],
+    tags: ['besta', '666', 'poder político', 'idolatria', 'marca'],
+    fontes: ['G.K. Beale, Revelation (NICNT)', 'Robert Mounce, The Book of Revelation']
+  },
+  {
+    id: 'tl-128',
+    titulo: 'Apocalipse 19-20 — A Vitória e o Milênio',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Apocalipse',
+    conteudo: [
+      'Apocalipse 19 celebra a vitória de Cristo. "Aleluia! Pois o Senhor nosso Deus, o Todo-Poderoso, reina!" (19:6). As bodas do Cordeiro são o clímax da história.',
+      'A Segunda Vinda (19:11-16): Cristo vem como guerreiro. "Fiel e Verdadeiro" é seu nome. "Rei dos reis e Senhor dos senhores" (19:16). A vitória é completa.',
+      'O milênio (20:1-6): "Reinaram com Cristo mil anos". Há três interpretações: pré-milenarismo (Cristo vem antes), pós-milenarismo (depois), amilenarismo (é período espiritual).',
+      'O julgamento final (20:11-15): "O grande e branco trono". Livros abertos. "Se alguém não foi achado escrito no livro da vida, esse foi lançado no lago de fogo" (20:15).',
+      'A vitória final: Satanás é lançado no lago de fogo (20:10). O mal é destruído para sempre. Deus é vitorioso em todas as suas promessas.'
+    ],
+    versicosChave: ['Apocalipse 19:11', 'Apocalipse 20:1-6', 'Apocalipse 20:11-15'],
+    tags: ['vitória', 'milênio', 'juízo final', 'segunda vinda', 'Satanás'],
+    fontes: ['G.K. Beale, Revelation (NICNT)', 'Craig Blaising, Progressive Dispensationalism']
+  },
+  {
+    id: 'dp-067',
+    titulo: 'Estudos por Livro — Romanos',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Atos e Epístolas',
+    conteudo: [
+      'Romanos é a carta mais sistemática de Paulo. Temas: justificação, graça, santificação, soberania de Deus, Israel, vida no Espírito.',
+      'Estrutura: Introduction (1:1-17), Condição humana (1:18-3:20), Justificação (3:21-5:21), Santificação (6-8), Soberania (9-11), Prática (12-16).',
+      'Romanos é o "evangelho segundo Paulo". Lutero o chamou de "a mais importante parte do NT". A justificação pela fé é tema central.',
+      'O impacto na história: Agostinho, Lutero, Calvino, Wesley, todos foram transformados por Romanos. A Reforma Protestante nasceu de Romanos.',
+      'A relevância contemporânea: a graça não é antinomianismo, mas transformação. A soberania de Deus não anula a responsabilidade humana.'
+    ],
+    versicosChave: ['Romanos 1:17', 'Romanos 3:28', 'Romanos 8:1'],
+    tags: ['Romanos', 'justificação', 'graça', 'soberania', 'santificação'],
+    fontes: ['Douglas Moo, Romans (NICNT)', 'John Stott, Romans (TNTC)']
+  },
+  {
+    id: 'dp-068',
+    titulo: 'Teologia do Novo Testamento — Unidade e Diversidade',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Teologia Bíblica',
+    conteudo: [
+      'A teologia do NT estuda os temas centrais das Escrituras. Unidade: Cristo é o centro. Diversidade: Mateus, Marcos, Lucas, João, Paulo, Pedro, Hebreus.',
+      'O Reino de Deus é tema central. "O Reino de Deus está próximo" (Mc 1:15). É presente e futuro, inaugurado e consumado.',
+      'A cruz é o ponto central. A morte de Cristo é substitutiva, redentora e exemplar. O NT não pode ser compreendido sem a cruz.',
+      'A ressurreição é o fundamento da fé. "Se Cristo não ressuscitou, vã é a nossa pregação" (1 Co 15:14). A ressurreição é realidade histórica.',
+      'A missão é consequência natural. A Grande Comissão (Mt 28:19-20) é o mandamento final. O evangelho é para todas as nações.'
+    ],
+    versicosChave: ['Mateus 4:17', '1 Coríntios 15:3-4', 'Mateus 28:19-20'],
+    tags: ['Reino', 'cruz', 'ressurreição', 'missão', 'unidade'],
+    fontes: ['G.E. Ladd, A Theology of the New Testament', 'Ben Witherington III, New Testament Theology']
+  },
+  {
+    id: 'dp-069',
+    titulo: 'Teologia do Antigo Testamento — Aliança e Promessa',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Teologia Bíblica',
+    conteudo: [
+      'A teologia do AT estuda os temas centrais do AT. Deus é santo, justo, misericordioso e fiel. Ele se relaciona com o povo pela aliança.',
+      'O tema da aliança: Noé, Abraão, Moisés, Davi. Cada aliança é progressiva, preparando para a nova aliança em Cristo.',
+      'A promessa messiânica percorre o AT: Gênesis 3:15 (semente da mulher), 2 Samuel 7 (filho de Davi), Isaías 53 (Servo Sofredor), Daniel 7 (Filho do Homem).',
+      'A santidade de Deus é tema central. "Santos, porque eu sou santo" (Lv 19:2). A santidade é o caráter de Deus que permeia toda a Escritura.',
+      'O AT não é "Antigo Testamento" em sentido negativo, mas o fundamento do novo. Cristo cumpre, não anula, o AT.'
+    ],
+    versicosChave: ['Gênesis 12:1-3', 'Jeremias 31:31-34', 'Isaías 53'],
+    tags: ['aliança', 'promessa', 'messias', 'santidade', 'cumprimento'],
+    fontes: ['O. Palmer Robertson, The Christ of the Covenants', 'Walter Kaiser, Toward an Old Testament Theology']
+  },
+  {
+    id: 'dp-070',
+    titulo: 'Ética Cristã — Princípios Fundamentais',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Ética',
+    conteudo: [
+      'A ética cristã é baseada no caráter de Deus e na Escritura. "Sede santos, porque eu sou santo" (1 Pd 1:16). A ética é resposta à graça.',
+      'Os princípios: amor a Deus e ao próximo (Mt 22:37-40), justiça (Am 5:24), misericórdia (Lc 6:36), verdade (Jo 8:32), santidade (1 Pd 1:15-16).',
+      'A ética não é legalismo. "A letra mata, mas o Espírito vivifica" (2 Co 3:6). A obediência é fruto da graça, não condição para ela.',
+      'Os dilemas éticos: aborto, eutanásia, guerra, pobreza. A Bíblia oferece princípios, não respostas fáceis. O discernimento é necessário.',
+      'A ética é comunitária. "Amai-vos uns aos outros" (Jo 13:34). A ética individualista é contrária ao NT. A Igreja é comunidade ética.'
+    ],
+    versicosChave: ['Mateus 22:37-40', 'Miqueias 6:8', 'Lucas 6:36'],
+    tags: ['ética', 'amor', 'justiça', 'santidade', 'comunidade'],
+    fontes: ['Glen Stassen, Doing Ethics', 'William Webb, Slaves, Women & Homosexuals']
+  },
+  {
+    id: 'dp-071',
+    titulo: 'Estudos por Livro — Gênesis',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Pentateuco',
+    conteudo: [
+      'Gênesis é o livro dos começos: criação, queda, promessa, aliança. "No princípio criou Deus" (1:1). A fundação de toda a teologia bíblica.',
+      'A narrativa de criação (1-2): ordem, bondade, propósito. O ser humano é imagem de Deus, com dignidade e responsabilidade.',
+      'A queda (3): a tentação, a desobediência, a condenação. A maldição afeta tudo: relação com Deus, com outros, com a criação.',
+      'A promessa a Abraão (12:1-3): bênção, descendência, terra. A promessa é universal: "Em ti serão benditas todas as famílias da terra".',
+      'José (37-50): provação, fidelidade, provisão, restauração. "Vós pensastes mal, mas Deus o resolveu para o bem" (50:20). A providência divina.'
+    ],
+    versicosChave: ['Gênesis 1:1', 'Gênesis 12:1-3', 'Gênesis 50:20'],
+    tags: ['Gênesis', 'criação', 'queda', 'promessa', 'providência'],
+    fontes: ['Victor Hamilton, Genesis (NICOT)', 'Walter Kaiser, Genesis (EBC)']
+  },
+  {
+    id: 'dp-072',
+    titulo: 'Estudos por Livro — Apocalipse',
+    categoria: 'Temas por Livro',
+    subcategoria: 'Apocalipse',
+    conteudo: [
+      'Apocalipse é o livro mais discutido e menos compreendido do NT. Gênero: apocalíptico, profético, epistolar. Mensagem: Cristo vence.',
+      'As sete cartas (2-3): Cristo conhece e corriga as igrejas. Eféso (primeiro amor), Esmirna (perseguição), Pérgamo (compromisso), Tiatira (falsos profetas), Sardes (morte), Filadélfia (fidelidade), Laodiceia (morna).',
+      'As sete pragas (16): juízo sobre o mal. Não são capricho divino, mas justiça sobre a rebeldia humana.',
+      'O Cordeiro (5): o centro da adoração celestial. A morte e ressurreição de Cristo são o fundamento da história.',
+      'Nova criação (21-22): "Eis que faço novas todas as coisas". A esperança cristã não é fuga, mas restauração.'
+    ],
+    versicosChave: ['Apocalipse 1:8', 'Apocalipse 5:6-9', 'Apocalipse 21:1-5'],
+    tags: ['Apocalipse', 'sete igrejas', 'Cordeiro', 'juízo', 'nova criação'],
+    fontes: ['G.K. Beale, Revelation (NICNT)', 'Robert Mounce, The Book of Revelation']
+  }
 ];
 

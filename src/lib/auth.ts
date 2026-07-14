@@ -218,31 +218,24 @@ class AuthService {
     if (!nomeLimpo) throw new Error('Nome é obrigatório');
     if (senhaLimpa.length < 6) throw new Error('A senha deve ter pelo menos 6 caracteres');
 
-    this.migrarContasAntigas();
-
-    const existingUsers = this.getUsers();
-    if (existingUsers.find((u) => normalizeEmail(u.email) === emailNorm)) {
-      throw new Error('Este email já está cadastrado');
-    }
-
-    const novoUsuario: Usuario = {
-      id: makeUserId(),
-      nome: nomeLimpo,
-      email,
-      role: ADMIN_EMAILS.includes(email) ? 'admin' : 'user',
-    };
-
-    const stored: StoredUser = { ...novoUsuario, senha: senhaLimpa };
-    existingUsers.push(stored);
-    this.saveUsers(existingUsers);
-
-    this.setSession({
-      accessToken: makeToken('token'),
-      refreshToken: makeToken('refresh'),
-      usuario: novoUsuario,
+    const res = await fetch('/api/auth/cadastrar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome: nomeLimpo, email: emailNorm, senha: senhaLimpa }),
     });
 
-    return novoUsuario;
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.message || 'Erro ao cadastrar');
+    }
+
+    this.setSession({
+      accessToken: data.accessToken,
+      refreshToken: data.refreshToken,
+      usuario: data.usuario,
+    });
+
+    return data.usuario;
   }
 
   async login(email: string, senha: string): Promise<Usuario> {
@@ -253,31 +246,22 @@ class AuthService {
     const emailNorm = normalizeEmail(email);
     const senhaLimpa = senha || '';
 
-    this.migrarContasAntigas();
-
-    const existingUsers = this.getUsers();
-    const found = existingUsers.find(
-      (u) => normalizeEmail(u.email) === emailNorm && (u.senha || u.password) === senhaLimpa
-    );
-
-    if (!found) {
-      const existeEmail = existingUsers.find((u) => normalizeEmail(u.email) === emailNorm);
-      if (!existeEmail) {
-        throw new Error('Email ou senha incorretos');
-      }
-      throw new Error('Email ou senha incorretos');
-    }
-
-    const usuario: Usuario = aplicarRole({
-      id: found.id,
-      nome: found.nome,
-      email: found.email,
-      role: found.role,
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: emailNorm, senha: senhaLimpa }),
     });
 
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.message || 'Email ou senha incorretos');
+    }
+
+    const usuario: Usuario = aplicarRole(data.usuario);
+
     this.setSession({
-      accessToken: makeToken('token'),
-      refreshToken: makeToken('refresh'),
+      accessToken: data.accessToken,
+      refreshToken: data.refreshToken,
       usuario,
     });
 
@@ -326,6 +310,45 @@ class AuthService {
 
   async logout(): Promise<void> {
     this.clearSession();
+  }
+
+  async refreshAccessToken(): Promise<boolean> {
+    if (!this.refreshToken) return false;
+    try {
+      const res = await fetch('/api/auth/refresh', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ refreshToken: this.refreshToken }),
+      });
+      if (!res.ok) return false;
+      const data = await res.json();
+      if (data.accessToken) {
+        this.setSession({
+          accessToken: data.accessToken,
+          refreshToken: data.refreshToken || this.refreshToken,
+          usuario: data.usuario || this.usuario,
+        });
+        return true;
+      }
+    } catch { /* ignore */ }
+    return false;
+  }
+
+  async apiFetch(url: string, options: RequestInit = {}): Promise<Response> {
+    const token = this.getAccessToken();
+    const headers = { ...options.headers, Authorization: `Bearer ${token}` };
+    let res = await fetch(url, { ...options, headers });
+
+    if (res.status === 401 && this.refreshToken) {
+      const refreshed = await this.refreshAccessToken();
+      if (refreshed) {
+        const newToken = this.getAccessToken();
+        const retryHeaders = { ...options.headers, Authorization: `Bearer ${newToken}` };
+        res = await fetch(url, { ...options, headers: retryHeaders });
+      }
+    }
+
+    return res;
   }
 
   private setSession(data: AuthResponse): void {

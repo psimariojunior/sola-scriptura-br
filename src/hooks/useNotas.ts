@@ -3,14 +3,10 @@
 import { useState, useCallback, useEffect, useMemo } from 'react';
 import type { Nota } from '@/components/NotaEditor';
 import { downloadAsFile } from '@/lib/exportPdf';
+import { authService } from '@/lib/auth';
 
 const STORAGE_KEY = 'sola-notas';
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api-production-bb96.up.railway.app/api/v1';
-
-function obterToken(): string | null {
-  if (typeof window === 'undefined') return null;
-  return localStorage.getItem('sola-token');
-}
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://sola-scriptura-backend.onrender.com/api/v1';
 
 function carregarNotasLocal(): Nota[] {
   if (typeof window === 'undefined') return [];
@@ -29,12 +25,10 @@ function salvarNotasLocal(notas: Nota[]) {
 }
 
 async function sincronizarComBackend(notas: Nota[]): Promise<Nota[]> {
-  const token = obterToken();
-  if (!token) return notas;
+  if (!authService.isAutenticado()) return notas;
 
   try {
-    const res = await fetch(`${API_BASE}/notas`, {
-      headers: { Authorization: `Bearer ${token}` },
+    const res = await authService.apiFetch(`${API_BASE}/notas`, {
       signal: AbortSignal.timeout(3000),
     });
     if (res.ok) {
@@ -58,16 +52,12 @@ async function sincronizarComBackend(notas: Nota[]): Promise<Nota[]> {
 }
 
 async function salvarNoBackend(nota: Nota): Promise<void> {
-  const token = obterToken();
-  if (!token) return;
+  if (!authService.isAutenticado()) return;
 
   try {
-    await fetch(`${API_BASE}/notas`, {
+    await authService.apiFetch(`${API_BASE}/notas`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(nota),
       signal: AbortSignal.timeout(3000),
     });
@@ -75,13 +65,11 @@ async function salvarNoBackend(nota: Nota): Promise<void> {
 }
 
 async function excluirNoBackend(id: string): Promise<void> {
-  const token = obterToken();
-  if (!token) return;
+  if (!authService.isAutenticado()) return;
 
   try {
-    await fetch(`${API_BASE}/notas/${id}`, {
+    await authService.apiFetch(`${API_BASE}/notas/${id}`, {
       method: 'DELETE',
-      headers: { Authorization: `Bearer ${token}` },
       signal: AbortSignal.timeout(3000),
     });
   } catch { /* offline */ }

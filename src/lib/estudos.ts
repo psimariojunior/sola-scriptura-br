@@ -1,4 +1,6 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api-production-bb96.up.railway.app/api/v1';
+import { authService } from './auth';
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://sola-scriptura-backend.onrender.com/api/v1';
 
 export interface Anotacao {
   texto: string;
@@ -53,24 +55,19 @@ function salvarLocal(data: EstudosData) {
 
 function obterToken(): string | null {
   if (typeof window === 'undefined') return null;
-  return localStorage.getItem('sola-token');
+  return localStorage.getItem('accessToken');
 }
 
 // Sync with backend
 async function syncWithBackend(marcas: Record<string, MarcaBiblia>): Promise<Record<string, MarcaBiblia>> {
-  const token = obterToken();
-  if (!token) return marcas;
+  if (!authService.isAutenticado()) return marcas;
 
   try {
-    // Get remote data
-    const res = await fetch(`${API_BASE}/estudos`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await authService.apiFetch(`${API_BASE}/estudos`);
 
     if (res.ok) {
       const remote = await res.json();
       if (remote?.data) {
-        // Merge: prefer newer data
         const merged = { ...marcas };
         for (const item of remote.data) {
           const k = chave(item.livro, item.capitulo, item.versiculo, item.traducao);
@@ -97,17 +94,13 @@ async function syncWithBackend(marcas: Record<string, MarcaBiblia>): Promise<Rec
 }
 
 async function pushToBackend(marcas: Record<string, MarcaBiblia>) {
-  const token = obterToken();
-  if (!token) return;
+  if (!authService.isAutenticado()) return;
 
   try {
     const items = Object.values(marcas).filter(m => m.favorito || m.cor || m.anotacao);
-    await fetch(`${API_BASE}/estudos/sync`, {
+    await authService.apiFetch(`${API_BASE}/estudos/sync`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ items }),
     });
   } catch {}

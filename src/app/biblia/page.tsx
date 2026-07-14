@@ -2,18 +2,14 @@
 
 import { useState, useEffect, useCallback, useMemo, useRef, lazy, Suspense } from 'react';
 import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { TODOS_LIVROS, traducoes, carregarTraducao, ABREV_PARA_MIDVASH, livroPorAbreviacao } from '@/data/biblia';
 import type { CapituloComparado } from '@/data/biblia';
 import {
-  BookOpen, ChevronRight, ChevronLeft, Search, X, History, Settings, Eye, Download,
-  BookMarked, FileText, Sparkles, Play, Mic, Volume2, Layers, BookText, ListFilter, Flame, Award, Presentation
+  BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Mic, Volume2, ListFilter
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEstudos } from '@/components/EstudosProvider';
 import { exportChapterPdf } from '@/lib/exportPdf';
-import { getCrossReferences } from '@/data/crossReferences';
-import { CompartilharVersiculo } from '@/components/CompartilharVersiculo';
 import { useVerseAudio } from '@/hooks/useVerseAudio';
 import { useAudioNatural } from '@/hooks/useAudioNatural';
 import { useAudioCapitulo } from '@/hooks/useAudioCapitulo';
@@ -35,9 +31,21 @@ import { VerseCard } from '@/components/Biblia/VerseCard';
 import { SidePanel, type SidePanelWidth } from '@/components/Biblia/SidePanel';
 import { MobileActionBar } from '@/components/Biblia/MobileActionBar';
 import { ProgressBar } from '@/components/Biblia/ProgressBar';
+import { ComparisonTable } from '@/components/Biblia/ComparisonTable';
+import { QuickSearchModal } from '@/components/Biblia/QuickSearchModal';
+import { AnnotationModal } from '@/components/Biblia/AnnotationModal';
+import { MobileBookMenu } from '@/components/Biblia/MobileBookMenu';
+import { NotesPanelSection } from '@/components/Biblia/NotesPanelSection';
+import { AudioPlayers } from '@/components/Biblia/AudioPlayers';
+import { TranslationDropdown, TRAD_IDS as TRAD_IDS_IMPORT, labelMap as labelMapImport, nomeMap as nomeMapImport, tradBadgeColors as tradBadgeColorsImport } from '@/components/Biblia/TranslationDropdown';
+import { ToolsDropdown } from '@/components/Biblia/ToolsDropdown';
+import { SettingsPanel } from '@/components/Biblia/SettingsPanel';
 
-const AudioMiniPlayer = lazy(() => import('@/components/VerseAudio').then(m => ({ default: m.AudioMiniPlayer })));
-const AudioNaturalPlayer = lazy(() => import('@/components/AudioNaturalPlayer'));
+const TRAD_IDS = TRAD_IDS_IMPORT;
+const labelMap = labelMapImport;
+const nomeMap = nomeMapImport;
+const tradBadgeColors = tradBadgeColorsImport;
+
 const NarradorSelector = lazy(() => import('@/components/NarradorSelector'));
 const NarracaoDramaticaLazy = lazy(() => import('@/components/NarracaoDramatica'));
 import type { CenaDramatica, PersonagemVoz } from '@/components/NarracaoDramatica';
@@ -56,7 +64,6 @@ function PanelFallback() {
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
-const TRAD_IDS = ['arc', 'nvi', 'ara', 'acf', 'aa', 'ntlh', 'kjv', 'web'] as const;
 const TRADS_LOCAIS = new Set(['arc', 'kjv', 'web']);
 const MIDVASH_API = 'https://api.midvash.com/v1';
 const cacheApi = new Map<string, string[]>();
@@ -104,10 +111,6 @@ async function carregarMulti(livro: string, cap: number, trads: string[]): Promi
   return results.filter((r): r is CapituloComparado => r !== null);
 }
 
-const labelMap: Record<string, string> = { arc: 'ARC', nvi: 'NVI', ara: 'ARA', acf: 'ACF', aa: 'AA', ntlh: 'NTLH', kjv: 'KJV', web: 'WEB' };
-const nomeMap: Record<string, string> = { arc: 'Almeida Revista e Corrigida', nvi: 'Nova Versão Internacional', ara: 'Almeida Revista e Atualizada', acf: 'Almeida Corrigida Fiel', aa: 'Almeida Atualizada', ntlh: 'Nova Tradução na Linguagem de Hoje', kjv: 'King James Version', web: 'World English Bible' };
-const tradBadgeColors: Record<string, string> = { arc: 'bg-primary/10 text-primary', nvi: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400', ara: 'bg-purple-500/10 text-purple-600 dark:text-purple-400', acf: 'bg-rose-500/10 text-rose-600 dark:text-rose-400', aa: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400', ntlh: 'bg-orange-500/10 text-orange-600 dark:text-orange-400', kjv: 'bg-amber-500/10 text-amber-600 dark:text-amber-400', web: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' };
-
 const PASSAGENS_DRAMATICAS: Record<string, { titulo: string; subtitulo: string; cenas: CenaDramatica[]; personagens: PersonagemVoz[] }> = {
   'gn-1': { titulo: 'A Criação do Mundo', subtitulo: 'Gênesis 1', cenas: [], personagens: [] },
   'sl-23': { titulo: 'O Senhor é o Meu Pastor', subtitulo: 'Salmos 23', cenas: [], personagens: [] },
@@ -136,8 +139,6 @@ export default function BibliaPage() {
   const [highlightedVerse, setHighlightedVerse] = useState<number | null>(null);
   const [comentarioVersiculo, setComentarioVersiculo] = useState<number | null>(null);
   const [quickSearchOpen, setQuickSearchOpen] = useState(false);
-  const [quickSearchQuery, setQuickSearchQuery] = useState('');
-  const [quickSearchResults, setQuickSearchResults] = useState<Array<{livro: string, nome: string, cap: number, versiculo: number, texto: string, traducao: string}>>([]);
   const [chapterDirection, setChapterDirection] = useState<'next' | 'prev'>('next');
   const [estudoAberto, setEstudoAberto] = useState<number | null>(null);
   const [showPlan, setShowPlan] = useState(false);
@@ -218,7 +219,6 @@ export default function BibliaPage() {
     window.history.replaceState(null, '', `?${params.toString()}`);
   }, [livro.abreviacao, capituloIdx, selectedTrads]);
 
-  const [quickSearchAutoComplete, setQuickSearchAutoComplete] = useState<Array<{livro: string; nome: string}>>([]);
   const [recentSearches, setRecentSearches] = useState<Array<{query: string; livro: string; nome: string; cap: number; versiculo: number}>>([]);
 
   useEffect(() => {
@@ -247,60 +247,6 @@ export default function BibliaPage() {
       setSelectedTrads(prev => prev.includes(id) ? prev : [...prev, id].slice(0, 4));
     } else {
       setSelectedTrads(prev => prev.includes(id) ? prev.filter(t => t !== id) : [...prev, id].slice(0, 4));
-    }
-  };
-
-  const handleQuickSearch = useCallback(async (q: string) => {
-    setQuickSearchQuery(q);
-    const query = q.toLowerCase().trim();
-
-    if (query.length > 0) {
-      const books = TODOS_LIVROS
-        .filter(l => l.nome.toLowerCase().includes(query) || l.abreviacao.toLowerCase().includes(query))
-        .slice(0, 5)
-        .map(l => ({ livro: l.abreviacao, nome: l.nome }));
-      setQuickSearchAutoComplete(books);
-    } else {
-      setQuickSearchAutoComplete([]);
-    }
-
-    if (q.length < 2) { setQuickSearchResults([]); return; }
-    const results: Array<{livro: string, nome: string, cap: number, versiculo: number, texto: string, traducao: string}> = [];
-    const d = await carregarTraducao('arc');
-    for (const l of TODOS_LIVROS) {
-      if (results.length >= 30) break;
-      const bookData = d[l.abreviacao];
-      if (!bookData) continue;
-      for (const cap of Object.keys(bookData)) {
-        if (results.length >= 30) break;
-        const versos = bookData[Number(cap)];
-        if (!versos) continue;
-        for (let i = 0; i < versos.length; i++) {
-          if (versos[i].toLowerCase().includes(query)) {
-            results.push({ livro: l.abreviacao, nome: l.nome, cap: Number(cap), versiculo: i + 1, texto: versos[i], traducao: 'ARC' });
-            break;
-          }
-        }
-      }
-    }
-    setQuickSearchResults(results);
-  }, []);
-
-  const goToQuickResult = (r: { livro: string; nome: string; cap: number; versiculo?: number }) => {
-    const idx = TODOS_LIVROS.findIndex(l => l.abreviacao === r.livro);
-    if (idx >= 0) {
-      const entry = { query: quickSearchQuery, livro: r.livro, nome: r.nome, cap: r.cap, versiculo: r.versiculo || 1 };
-      setRecentSearches(prev => {
-        const next = [entry, ...prev.filter(s => s.livro !== r.livro || s.cap !== r.cap)].slice(0, 5);
-        try { localStorage.setItem('ssb_recent_searches', JSON.stringify(next)); } catch {}
-        return next;
-      });
-      setLivroIdx(idx);
-      setCapituloIdx(r.cap - 1);
-      setQuickSearchOpen(false);
-      setQuickSearchQuery('');
-      setQuickSearchResults([]);
-      setQuickSearchAutoComplete([]);
     }
   };
 
@@ -459,71 +405,15 @@ export default function BibliaPage() {
 
                 <div className="hidden sm:block w-px h-6 bg-[var(--border)]/60" />
 
-                <div className="relative">
-                  <motion.button
-                    onClick={() => { setTradOpen(!tradOpen); setToolsOpen(false); }}
-                    whileTap={{ scale: 0.95 }}
-                    className={cn(
-                      'flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold',
-                      'border transition-all duration-200',
-                      tradOpen || selectedTrads.length > 1
-                        ? 'bg-[var(--brand-subtle)] border-[var(--brand-default)]/30 text-[var(--brand-default)]'
-                        : 'bg-[var(--surface-sunken)] border-[var(--border)]/60 text-[var(--content-secondary)] hover:text-[var(--content-primary)]'
-                    )}
-                    aria-label="Selecionar traduções"
-                    aria-expanded={tradOpen}
-                  >
-                    <BookText className="w-3.5 h-3.5" />
-                    <span className="tabular-nums">{selectedTrads.map(t => labelMap[t]).join(' · ')}</span>
-                    {selectedTrads.length > 1 && <span className="text-[10px] px-1 rounded-full bg-[var(--brand-default)] text-[var(--brand-contrast)]">{selectedTrads.length}</span>}
-                  </motion.button>
-                  <AnimatePresence>
-                    {tradOpen && (
-                      <>
-                        <div className="fixed inset-0 z-30" onClick={() => setTradOpen(false)} />
-                        <motion.div
-                          initial={{ opacity: 0, y: -8, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: -8, scale: 0.95 }}
-                          transition={{ duration: 0.15 }}
-                          className="absolute right-0 top-full mt-2 z-40 w-64 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-2"
-                        >
-                          <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] px-3 py-1.5">Traduções</p>
-                          {TRAD_IDS.map(id => {
-                            const active = selectedTrads.includes(id);
-                            return (
-                              <button key={id} onClick={() => toggleTrad(id)}
-                                className={cn(
-                                  'w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 transition-colors',
-                                  active ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)]' : 'hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]'
-                                )}>
-                                <div className={cn('w-2 h-2 rounded-full', tradBadgeColors[id])} />
-                                <div className="flex-1 min-w-0">
-                                  <div className="text-sm font-semibold">{labelMap[id]}</div>
-                                  <div className="text-[10px] text-[var(--content-muted)] truncate">{nomeMap[id]}</div>
-                                </div>
-                                {active && <span className="text-[var(--brand-default)] text-xs">✓</span>}
-                              </button>
-                            );
-                          })}
-                          {selectedTrads.length > 1 && (
-                            <div className="mt-2 pt-2 border-t border-[var(--border)]/40 px-2 flex gap-1">
-                              {(['single', 'parallel', 'comparison'] as ViewMode[]).map(m => (
-                                <button key={m} onClick={() => setViewMode(m)}
-                                  className={cn(
-                                    'flex-1 text-[10px] font-medium px-2 py-1 rounded-md transition-colors',
-                                    viewMode === m ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]' : 'text-[var(--content-muted)] hover:bg-[var(--surface-sunken)]'
-                                  )}>
-                                  {m === 'single' ? 'Única' : m === 'parallel' ? 'Lado a lado' : 'Comparar'}
-                                </button>
-                              ))}
-                            </div>
-                          )}
-                        </motion.div>
-                      </>
-                    )}
-                  </AnimatePresence>
-                </div>
+                <TranslationDropdown
+                  open={tradOpen}
+                  onToggle={() => { setTradOpen(!tradOpen); setToolsOpen(false); }}
+                  onClose={() => setTradOpen(false)}
+                  selectedTrads={selectedTrads}
+                  onToggleTrad={toggleTrad}
+                  viewMode={viewMode}
+                  onViewModeChange={setViewMode}
+                />
 
                 <div className="hidden md:flex items-center gap-0.5">
                   <motion.button
@@ -567,42 +457,20 @@ export default function BibliaPage() {
                   </motion.button>
                 </div>
 
-                <div className="relative">
-                  <motion.button
-                    onClick={() => { setToolsOpen(!toolsOpen); setTradOpen(false); }}
-                    whileTap={{ scale: 0.95 }}
-                    className={cn(
-                      'p-1.5 rounded-lg transition-colors',
-                      toolsOpen ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)]' : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]'
-                    )}
-                    title="Ferramentas"
-                    aria-label="Ferramentas"
-                    aria-expanded={toolsOpen}
-                  >
-                    <Layers className="w-4 h-4" />
-                  </motion.button>
-                  <AnimatePresence>
-                    {toolsOpen && (
-                      <>
-                        <div className="fixed inset-0 z-30" onClick={() => setToolsOpen(false)} />
-                        <motion.div
-                          initial={{ opacity: 0, y: -8, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: -8, scale: 0.95 }}
-                          transition={{ duration: 0.15 }}
-                          className="absolute right-0 top-full mt-2 z-40 w-56 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-1.5"
-                        >
-                          <ToolItem icon={FileText} label="Notas" onClick={() => { if (!mostrarNotas && !notaAtiva) { const nova = criarNota(`${livro.nome} ${capituloIdx + 1}`); setNotaAtiva(nova); } setMostrarNotas(!mostrarNotas); setToolsOpen(false); }} />
-                          <ToolItem icon={Download} label="Exportar PDF" onClick={() => { data.length > 0 && exportChapterPdf(livro.nome, capituloIdx + 1, data); setToolsOpen(false); }} />
-                          <ToolItem icon={BookMarked} label="Plano de Leitura" onClick={() => { setShowPlan(!showPlan); setToolsOpen(false); }} />
-                          {passagemDramatica && <ToolItem icon={Play} label="Narração Dramática" onClick={() => { setMostrarNarracao(true); setToolsOpen(false); }} />}
-                          <div className="my-1 h-px bg-[var(--border)]/40" />
-                          <ToolItem icon={Settings} label="Configurações" onClick={() => { setShowSettings(!showSettings); setToolsOpen(false); }} />
-                        </motion.div>
-                      </>
-                    )}
-                  </AnimatePresence>
-                </div>
+                <ToolsDropdown
+                  open={toolsOpen}
+                  onToggle={() => { setToolsOpen(!toolsOpen); setTradOpen(false); }}
+                  onClose={() => setToolsOpen(false)}
+                  bookName={livro.nome}
+                  chapter={capituloIdx + 1}
+                  data={data}
+                  hasDramatica={!!passagemDramatica}
+                  onNotas={() => { if (!mostrarNotas && !notaAtiva) { const nova = criarNota(`${livro.nome} ${capituloIdx + 1}`); setNotaAtiva(nova); } setMostrarNotas(!mostrarNotas); setToolsOpen(false); }}
+                  onExportPdf={() => { data.length > 0 && exportChapterPdf(livro.nome, capituloIdx + 1, data); setToolsOpen(false); }}
+                  onPlanoLeitura={() => { setShowPlan(!showPlan); setToolsOpen(false); }}
+                  onNarracaoDramatica={() => { setMostrarNarracao(true); setToolsOpen(false); }}
+                  onConfiguracoes={() => { setShowSettings(!showSettings); setToolsOpen(false); }}
+                />
 
                 <motion.button
                   onClick={() => setMostrarApresentacao(true)}
@@ -617,36 +485,14 @@ export default function BibliaPage() {
                 </motion.button>
               </div>
 
-              <AnimatePresence>
-                {showSettings && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="border-t border-[var(--border)]/40 bg-[var(--surface-sunken)]/40 px-4 py-2.5 flex items-center gap-4 flex-wrap text-xs"
-                  >
-                    <div className="flex items-center gap-2">
-                      <span className="text-[var(--content-muted)] font-medium">Tamanho:</span>
-                      <button onClick={() => setFontSize(Math.max(14, fontSize - 1))} className="w-6 h-6 rounded hover:bg-[var(--surface-raised)] flex items-center justify-center" aria-label="Diminuir fonte">−</button>
-                      <span className="font-mono w-6 text-center tabular-nums">{fontSize}</span>
-                      <button onClick={() => setFontSize(Math.min(28, fontSize + 1))} className="w-6 h-6 rounded hover:bg-[var(--surface-raised)] flex items-center justify-center" aria-label="Aumentar fonte">+</button>
-                    </div>
-                    {viewMode === 'comparison' && data.length >= 2 && (
-                      <button onClick={() => setShowDiff(!showDiff)}
-                        className={cn(
-                          'px-2.5 py-1 rounded-full border transition-colors',
-                          showDiff ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] border-[var(--brand-default)]/20' : 'text-[var(--content-muted)] border-[var(--border)]/60'
-                        )}>
-                        Diferenças {showDiff ? 'ON' : 'OFF'}
-                      </button>
-                    )}
-                    <div className="flex items-center gap-2 ml-auto text-[var(--content-muted)]">
-                      <Eye className="w-3.5 h-3.5" />
-                      <span>Spectral • Leitura 1.8</span>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <SettingsPanel
+                open={showSettings}
+                fontSize={fontSize}
+                onFontSizeChange={setFontSize}
+                showDiff={showDiff}
+                onToggleDiff={() => setShowDiff(!showDiff)}
+                showComparison={viewMode === 'comparison' && data.length >= 2}
+              />
             </div>
 
             <div ref={mainRef} className="flex-1 overflow-y-auto">
@@ -675,26 +521,23 @@ export default function BibliaPage() {
                         totalVersiculos={data[0]?.versiculos?.length ?? 0}
                       />
 
-                      {modoLeitura === 'foco' && data.map((item) => (
+                      {(modoLeitura === 'foco' || modoLeitura === 'estudo') && data.map((item) => (
                         <div key={item.traducao} className="mb-6">
                           {selectedTrads.length > 1 && (
                             <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/40">
                               <div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} />
                               <span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span>
-                              <span className="text-xs text-[var(--content-muted)]">{nomeMap[item.traducao]}</span>
+                              {modoLeitura === 'foco' && <span className="text-xs text-[var(--content-muted)]">{nomeMap[item.traducao]}</span>}
                             </div>
                           )}
-                          <div className="space-y-1 divide-y divide-[var(--brand-default)]/5">
+                          <div className={cn('space-y-1', modoLeitura === 'foco' && 'divide-y divide-[var(--brand-default)]/5')}>
                             {item.versiculos.map((v) => {
                               const isSelected = versiculoSelecionado?.versiculo === v.numero && versiculoSelecionado?.traducao === item.traducao;
                               const isPlaying = audio.isVersePlaying(v.numero);
-                              const isHighlighted = highlightedVerse === v.numero;
                               const verseKey = `${livro.abreviacao}:${capituloIdx + 1}:${v.numero}:${item.traducao}`;
                               const fav = isFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao);
                               const marcaMarcador = getMarcador(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao);
                               const corMarca = marcaMarcador?.cor ?? null;
-                              const temAnotacao = false;
-                              const ref = `${livro.nome} ${capituloIdx + 1}:${v.numero}`;
 
                               return (
                                 <VerseCard
@@ -708,10 +551,10 @@ export default function BibliaPage() {
                                   fontSize={fontSize}
                                   isSelected={isSelected}
                                   isPlaying={isPlaying}
-                                  isHighlighted={isHighlighted}
+                                  isHighlighted={modoLeitura === 'foco' && highlightedVerse === v.numero}
                                   isFavorito={fav}
                                   corMarca={corMarca}
-                                  temAnotacao={temAnotacao}
+                                  temAnotacao={false}
                                   copiedVerse={copiedVerse}
                                   audioNatural={audioNatural}
                                   audio={audio}
@@ -773,63 +616,6 @@ export default function BibliaPage() {
                         />
                       )}
 
-                      {modoLeitura === 'estudo' && data.map((item) => (
-                        <div key={item.traducao} className="mb-6">
-                          {selectedTrads.length > 1 && (
-                            <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/40">
-                              <div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} />
-                              <span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span>
-                            </div>
-                          )}
-                          <div className="space-y-1">
-                            {item.versiculos.map((v) => {
-                              const isSelected = versiculoSelecionado?.versiculo === v.numero && versiculoSelecionado?.traducao === item.traducao;
-                              const isPlaying = audio.isVersePlaying(v.numero);
-                              const verseKey = `${livro.abreviacao}:${capituloIdx + 1}:${v.numero}:${item.traducao}`;
-                              const fav = isFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao);
-                              const marcaMarcador = getMarcador(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao);
-                              const corMarca = marcaMarcador?.cor ?? null;
-                              const temAnotacao = false;
-
-                              return (
-                                <VerseCard
-                                  key={`${item.traducao}-${v.numero}`}
-                                  numero={v.numero}
-                                  texto={v.texto}
-                                  livroAbreviacao={livro.abreviacao}
-                                  livroNome={livro.nome}
-                                  capitulo={capituloIdx + 1}
-                                  traducao={item.traducao}
-                                  fontSize={fontSize}
-                                  isSelected={isSelected}
-                                  isPlaying={isPlaying}
-                                  isHighlighted={false}
-                                  isFavorito={fav}
-                                  corMarca={corMarca}
-                                  temAnotacao={temAnotacao}
-                                  copiedVerse={copiedVerse}
-                                  audioNatural={audioNatural}
-                                  audio={audio}
-                                  flashcards={flashcards}
-                                  estudoAberto={estudoAberto === v.numero}
-                                  onSelect={() => handleSelectFromList(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, v.texto)}
-                                  onFavoritoChange={refresh}
-                                  onAnotar={() => { setAnotandoVersiculo(verseKey); setAnotacaoTexto(''); }}
-                                  onStrong={() => { setSidePanelWidth('half'); setSidePanelTab('strong'); }}
-                                  onComentarios={() => { setComentarioVersiculo(v.numero); setSidePanelWidth('half'); setSidePanelTab('comentarios'); }}
-                                  onToggleEstudo={() => setEstudoAberto(estudoAberto === v.numero ? null : v.numero)}
-                                  copyVerse={copyVerse}
-                                  verseKey={verseKey}
-                                  showTranslationLabel={selectedTrads.length > 1}
-                                  tradLabel={labelMap[item.traducao]}
-                                  tradBadgeColor={tradBadgeColors[item.traducao]}
-                                />
-                              );
-                            })}
-                          </div>
-                        </div>
-                      ))}
-
                       <div className="flex items-center justify-center gap-4 mt-12 sm:mt-16 pt-8 sm:pt-10 border-t border-[var(--border)]/30">
                         <motion.button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0}
                           whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
@@ -859,83 +645,22 @@ export default function BibliaPage() {
                 )}
               </div>
 
-              <AnimatePresence>
-                {mostrarNotas && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="border-t border-[var(--border)]/40 bg-[var(--surface-raised)] p-4 max-w-[720px] mx-auto"
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <FileText className="w-4 h-4 text-[var(--brand-default)]" />
-                        <h3 className="text-sm font-semibold">Minhas Anotações</h3>
-                        <span className="text-[10px] px-1.5 py-0.5 bg-[var(--brand-subtle)] text-[var(--brand-default)] rounded-full">
-                          {notas.length}
-                        </span>
-                      </div>
-                      <button onClick={() => setMostrarNotas(false)} className="p-1 rounded hover:bg-[var(--surface-sunken)]" aria-label="Fechar notas">
-                        <X className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                    <Suspense fallback={<PanelFallback />}>
-                      {(() => {
-                        const NotaEditor = require('@/components/NotaEditor').NotaEditor as React.ComponentType<any>;
-                        return (
-                          <NotaEditor
-                            key={notaAtiva?.id ?? 'new'}
-                            nota={notaAtiva ?? undefined}
-                            autoSalvar={true}
-                            onSalvar={(nota: any) => { setNotaAtiva(nota); salvarNotaHook(nota.id, nota.conteudo); }}
-                            onExcluir={(id: string) => { excluirNota(id); setNotaAtiva(null); setMostrarNotas(false); }}
-                          />
-                        );
-                      })()}
-                    </Suspense>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <NotesPanelSection
+              open={mostrarNotas}
+              onClose={() => setMostrarNotas(false)}
+              notas={notas}
+              notaAtiva={notaAtiva}
+              onSalvar={(nota) => { setNotaAtiva(nota); salvarNotaHook(nota.id, nota.conteudo); }}
+              onExcluir={(id) => { excluirNota(id); setNotaAtiva(null); setMostrarNotas(false); }}
+            />
             </div>
 
-            <AnimatePresence>
-              {mobileMenu && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="fixed inset-0 z-50 lg:hidden"
-                >
-                  <motion.div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setMobileMenu(false)} />
-                  <motion.aside
-                    initial={{ x: -288 }} animate={{ x: 0 }} exit={{ x: -288 }}
-                    transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="absolute left-0 top-0 bottom-0 w-72 max-w-[85vw] bg-[var(--surface-raised)] border-r border-[var(--border)] overflow-y-auto p-4"
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-sm font-semibold">Livros</span>
-                      <button onClick={() => setMobileMenu(false)} className="p-1 rounded-lg hover:bg-[var(--surface-sunken)]" aria-label="Fechar">
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                    <div className="space-y-0.5">
-                      {TODOS_LIVROS.map(l => {
-                        const idx = TODOS_LIVROS.indexOf(l);
-                        return (
-                          <button key={l.abreviacao} onClick={() => { goToBook(idx); setMobileMenu(false); }}
-                            className={cn(
-                              'w-full text-left px-3 py-2 text-sm rounded-lg transition-colors',
-                              idx === livroIdx ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] font-medium' : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]'
-                            )}>
-                            {l.nome}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </motion.aside>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <MobileBookMenu
+            open={mobileMenu}
+            onClose={() => setMobileMenu(false)}
+            livroIdx={livroIdx}
+            onSelect={(idx) => { goToBook(idx); setMobileMenu(false); }}
+          />
           </div>
 
           <AnimatePresence>
@@ -994,171 +719,48 @@ export default function BibliaPage() {
         copiedVerse={copiedVerse}
       />
 
-      <Suspense fallback={null}>
-        {audioNatural.state.isPlaying && (
-          <AudioNaturalPlayer
-            isPlaying={audioNatural.state.isPlaying}
-            isLoading={audioNatural.state.isLoading}
-            currentTime={audioNatural.state.currentTime}
-            duration={audioNatural.state.duration}
-            currentVerse={audio.playingVerse ?? undefined}
-            totalVerses={data[0]?.versiculos?.length}
-            verseText={data[0]?.versiculos?.find(v => v.numero === audio.playingVerse)?.texto}
-            bookName={livro.nome}
-            chapter={capituloIdx + 1}
-            engine={audioNatural.state.engine}
-            onPlay={() => {
-              const verseText = data[0]?.versiculos?.find(v => v.numero === (audio.playingVerse ?? 1))?.texto ?? '';
-              if (verseText) audioNatural.play(verseText);
-            }}
-            onPause={audioNatural.pause}
-            onStop={() => { audioNatural.stop(); audio.stop(); }}
-            onSeek={audioNatural.seek}
-            onSkipForward={() => audioNatural.seek(Math.min(audioNatural.state.currentTime + 15, audioNatural.state.duration))}
-            onSkipBackward={() => audioNatural.seek(Math.max(audioNatural.state.currentTime - 15, 0))}
-            volume={audioNatural.state.volume}
-            speed={audioNatural.state.speed}
-            isMuted={audioNatural.state.isMuted}
-            onSetVolume={audioNatural.setVolume}
-            onSetSpeed={audioNatural.setSpeed}
-            onToggleMute={audioNatural.toggleMute}
-          />
-        )}
-      </Suspense>
+      <AudioPlayers
+        audioNatural={audioNatural}
+        audio={audio}
+        data={data}
+        livroNome={livro.nome}
+        capitulo={capituloIdx + 1}
+      />
 
-      <Suspense fallback={null}>
-        {!audioNatural.state.isPlaying && (
-          <AudioMiniPlayer
-            isPlaying={audio.isPlaying}
-            currentVerse={audio.playingVerse ?? -1}
-            totalVerses={data[0]?.versiculos?.length ?? 0}
-            verseText={data[0]?.versiculos?.find(v => v.numero === audio.playingVerse)?.texto ?? ''}
-            onStop={audio.stop}
-          />
-        )}
-      </Suspense>
-
-      <AnimatePresence>
-        {anotandoVersiculo && (
-          <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
-            onClick={() => setAnotandoVersiculo(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="bg-[var(--surface-raised)] border border-[var(--border)] rounded-2xl shadow-2xl p-6 w-full max-w-md"
-              onClick={e => e.stopPropagation()}
-            >
-              <h3 className="font-display text-lg font-medium mb-1">Anotação</h3>
-              <p className="text-xs text-[var(--content-muted)] mb-4">{anotandoVersiculo}</p>
-              <textarea value={anotacaoTexto} onChange={e => setAnotacaoTexto(e.target.value)}
-                placeholder="Digite sua anotação pessoal..."
-                className="w-full h-32 p-3 text-sm bg-[var(--surface-sunken)] border border-[var(--border)] rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/30 transition-all" autoFocus />
-              <div className="flex items-center justify-end gap-3 mt-4">
-                <button onClick={() => setAnotandoVersiculo(null)} className="px-4 py-2 text-sm text-[var(--content-muted)] hover:text-[var(--content-primary)]">Cancelar</button>
-                <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={async () => {
-                  const { setAnotacao } = await import('@/lib/estudos');
-                  const parts = anotandoVersiculo.split(':');
-                  setAnotacao(parts[0], Number(parts[1]), Number(parts[2]), parts[3], anotacaoTexto || null);
-                  refresh(); setAnotandoVersiculo(null); setAnotacaoTexto('');
-                }} className="px-4 py-2 text-sm font-semibold bg-[var(--brand-default)] text-[var(--brand-contrast)] rounded-lg hover:bg-[var(--brand-hover)]">
-                  Salvar
-                </motion.button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <AnnotationModal
+        open={anotandoVersiculo !== null}
+        verseKey={anotandoVersiculo}
+        initialText={anotacaoTexto}
+        onClose={() => setAnotandoVersiculo(null)}
+        onSave={async (texto) => {
+          const { setAnotacao } = await import('@/lib/estudos');
+          const parts = anotandoVersiculo!.split(':');
+          setAnotacao(parts[0], Number(parts[1]), Number(parts[2]), parts[3], texto || null);
+          refresh(); setAnotandoVersiculo(null); setAnotacaoTexto('');
+        }}
+      />
 
       <AnimatePresence>
         {quickSearchOpen && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[60] flex items-start justify-center pt-[15vh]">
-            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setQuickSearchOpen(false)} />
-            <motion.div initial={{ scale: 0.95, opacity: 0, y: -20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="relative w-full max-w-lg mx-4 bg-[var(--surface-raised)] border border-[var(--border)] rounded-2xl shadow-2xl overflow-hidden">
-              <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--border)]">
-                <Search className="w-5 h-5 text-[var(--content-muted)] shrink-0" />
-                <input autoFocus type="text" placeholder="Buscar versículos ou livro..." value={quickSearchQuery}
-                  onChange={e => handleQuickSearch(e.target.value)}
-                  onKeyDown={e => { if (e.key === 'Enter' && quickSearchAutoComplete.length > 0) { goToQuickResult({ livro: quickSearchAutoComplete[0].livro, nome: quickSearchAutoComplete[0].nome, cap: 1 }); } }}
-                  className="flex-1 bg-transparent text-sm outline-none" />
-                <kbd className="text-[10px] bg-[var(--surface-sunken)] px-1.5 py-0.5 rounded text-[var(--content-muted)]">ESC</kbd>
-              </div>
-              <div className="max-h-96 overflow-y-auto">
-                {quickSearchAutoComplete.length > 0 && quickSearchQuery.length >= 2 && quickSearchResults.length === 0 && (
-                  <div className="p-2 border-b border-[var(--border)]/30">
-                    <p className="text-[10px] text-[var(--content-muted)] uppercase tracking-wider px-3 py-1 font-semibold">Livros</p>
-                    {quickSearchAutoComplete.map((b, i) => (
-                      <motion.button key={b.livro} onClick={() => goToQuickResult({ livro: b.livro, nome: b.nome, cap: 1 })}
-                        initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.03 }}
-                        className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--surface-sunken)] transition-colors flex items-center gap-2">
-                        <BookOpen className="w-3.5 h-3.5 text-[var(--brand-default)]" />
-                        <span className="text-sm font-medium">{b.nome}</span>
-                        <span className="text-[10px] text-[var(--content-muted)]">Capítulo 1</span>
-                      </motion.button>
-                    ))}
-                  </div>
-                )}
-
-                {quickSearchQuery.length === 0 && recentSearches.length > 0 && (
-                  <div className="p-2">
-                    <p className="text-[10px] text-[var(--content-muted)] uppercase tracking-wider px-3 py-1 font-semibold">Buscas recentes</p>
-                    {recentSearches.map((s, i) => (
-                      <motion.button key={i} onClick={() => goToQuickResult({ livro: s.livro, nome: s.nome, cap: s.cap, versiculo: s.versiculo })}
-                        initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}
-                        className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--surface-sunken)] transition-colors flex items-center gap-2">
-                        <History className="w-3.5 h-3.5 text-[var(--content-muted)]" />
-                        <span className="text-sm">{s.nome} {s.cap}:{s.versiculo}</span>
-                      </motion.button>
-                    ))}
-                  </div>
-                )}
-
-                {quickSearchResults.length > 0 ? (
-                  <div className="p-2">
-                    <div className="flex items-center justify-between px-3 py-1">
-                      <p className="text-[10px] text-[var(--content-muted)] uppercase tracking-wider font-semibold">Resultados ({quickSearchResults.length})</p>
-                      <span className="text-[10px] text-[var(--content-muted)]">ARC</span>
-                    </div>
-                    {quickSearchResults.map((r, i) => {
-                      const queryLower = quickSearchQuery.toLowerCase();
-                      const idx = r.texto.toLowerCase().indexOf(queryLower);
-                      const before = idx > 0 ? r.texto.slice(0, idx) : '';
-                      const match = idx >= 0 ? r.texto.slice(idx, idx + queryLower.length) : '';
-                      const after = idx >= 0 ? r.texto.slice(idx + queryLower.length) : r.texto;
-                      return (
-                        <motion.button key={i} onClick={() => goToQuickResult(r)}
-                          initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.02 }}
-                          className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--surface-sunken)] transition-colors group">
-                          <div className="flex items-center gap-2 mb-0.5">
-                            <span className="text-xs font-semibold text-[var(--brand-default)]">{r.nome} {r.cap}:{r.versiculo}</span>
-                            <span className="text-[9px] px-1 py-0.5 bg-[var(--surface-sunken)] rounded text-[var(--content-muted)]">{r.traducao}</span>
-                          </div>
-                          <p className="text-xs text-[var(--content-muted)] line-clamp-2 group-hover:text-[var(--content-primary)] transition-colors">
-                            {before && <span>{before}</span>}
-                            {match && <mark className="bg-[var(--brand-subtle)] text-[var(--brand-default)] rounded-sm px-0.5">{match}</mark>}
-                            {after && <span>{after}</span>}
-                          </p>
-                        </motion.button>
-                      );
-                    })}
-                  </div>
-                ) : quickSearchQuery.length >= 2 ? (
-                  <div className="p-8 text-center text-sm text-[var(--content-muted)]">Nenhum resultado encontrado</div>
-                ) : quickSearchQuery.length === 0 && recentSearches.length === 0 ? (
-                  <div className="p-8 text-center text-sm text-[var(--content-muted)]">
-                    <kbd className="text-xs bg-[var(--surface-sunken)] px-2 py-1 rounded border border-[var(--border)]">Ctrl+K</kbd>
-                    <span className="mx-2">ou</span>
-                    <kbd className="text-xs bg-[var(--surface-sunken)] px-2 py-1 rounded border border-[var(--border)]">/</kbd>
-                    <span className="ml-2">para buscar</span>
-                  </div>
-                ) : null}
-              </div>
-            </motion.div>
-          </motion.div>
+          <QuickSearchModal
+            open={quickSearchOpen}
+            onClose={() => setQuickSearchOpen(false)}
+            onGoToResult={(r, query) => {
+              const idx = TODOS_LIVROS.findIndex(l => l.abreviacao === r.livro);
+              if (idx >= 0) {
+                const entry = { query, livro: r.livro, nome: r.nome, cap: r.cap, versiculo: r.versiculo || 1 };
+                setRecentSearches(prev => {
+                  const next = [entry, ...prev.filter(s => s.livro !== r.livro || s.cap !== r.cap)].slice(0, 5);
+                  try { localStorage.setItem('ssb_recent_searches', JSON.stringify(next)); } catch {}
+                  return next;
+                });
+                setLivroIdx(idx);
+                setCapituloIdx(r.cap - 1);
+                setQuickSearchOpen(false);
+              }
+            }}
+            recentSearches={recentSearches}
+          />
         )}
       </AnimatePresence>
 
@@ -1203,100 +805,3 @@ export default function BibliaPage() {
   );
 }
 
-function ToolItem({ icon: Icon, label, onClick }: { icon: typeof History; label: string; onClick: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] hover:text-[var(--content-primary)] transition-colors"
-    >
-      <Icon className="w-4 h-4" />
-      <span>{label}</span>
-    </button>
-  );
-}
-
-function ComparisonTable({ data, fontSize, showDiff, highlightedVerse, onHighlight, maxVersiculos, tradBadgeColors, labelMap }: {
-  data: CapituloComparado[];
-  fontSize: number;
-  showDiff: boolean;
-  highlightedVerse: number | null;
-  onHighlight: (v: number | null) => void;
-  maxVersiculos: number;
-  tradBadgeColors: Record<string, string>;
-  labelMap: Record<string, string>;
-}) {
-  return (
-    <div className="border border-[var(--border)]/40 rounded-xl overflow-x-auto">
-      <div className="bg-[var(--surface-sunken)]/50 px-4 py-2 border-b border-[var(--border)]/30 flex items-center justify-between">
-        <span className="text-xs font-semibold text-[var(--content-muted)] uppercase tracking-wider">Comparação</span>
-      </div>
-      <div className="grid border-b border-[var(--border)]/30" style={{ gridTemplateColumns: `48px repeat(${data.length}, 1fr)` }}>
-        <div className="p-2" />
-        {data.map(item => (
-          <div key={item.traducao} className="p-2 border-l border-[var(--border)]/20">
-            <div className="flex items-center gap-1.5">
-              <div className={cn('w-1.5 h-1.5 rounded-full', tradBadgeColors[item.traducao])} />
-              <span className="text-[11px] font-bold">{labelMap[item.traducao]}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-      {Array.from({ length: maxVersiculos }, (_, i) => {
-        const verseNum = i + 1;
-        if (!data.some(d => d.versiculos[i])) return null;
-        const baseText = data[0].versiculos[i]?.texto || '';
-        return (
-          <motion.div
-            key={verseNum}
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.01 }}
-            className={cn(
-              'grid border-b border-[var(--border)]/15 last:border-b-0 hover:bg-[var(--surface-sunken)]/50 transition-colors cursor-pointer',
-              highlightedVerse === verseNum && 'bg-[var(--brand-subtle)] border-l-2 border-l-[var(--brand-default)]'
-            )}
-            style={{ gridTemplateColumns: `48px repeat(${data.length}, 1fr)` }}
-            onClick={() => onHighlight(highlightedVerse === verseNum ? null : verseNum)}
-          >
-            <div className="p-3 flex items-start justify-end">
-              <span className="text-[11px] font-bold text-[var(--brand-default)] bg-[var(--brand-subtle)] w-6 h-6 flex items-center justify-center rounded-full tabular-nums">{verseNum}</span>
-            </div>
-            {data.map((item, idx) => {
-              const v = item.versiculos[i];
-              if (!v) return <div key={item.traducao} className="p-3 border-l border-[var(--border)]/20" />;
-              if (showDiff && idx > 0 && baseText) {
-                return (
-                  <div key={item.traducao} className="p-3 border-l border-[var(--border)]/20">
-                    <DiffText baseText={baseText} newText={v.texto} fontSize={fontSize - 3} />
-                  </div>
-                );
-              }
-              return (
-                <div key={item.traducao} className="p-3 border-l border-[var(--border)]/20">
-                  <p className="font-serif-body leading-relaxed" style={{ fontSize: `${fontSize - 3}px` }}>{v.texto}</p>
-                </div>
-              );
-            })}
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-}
-
-function DiffText({ baseText, newText, fontSize }: { baseText: string; newText: string; fontSize: number }) {
-  const segments = useMemo(() => {
-    try {
-      const { diffWords } = require('@/lib/diff');
-      return diffWords(baseText, newText);
-    } catch {
-      return [{ text: newText, changed: false }];
-    }
-  }, [baseText, newText]);
-
-  return (
-    <p className="font-serif-body leading-relaxed" style={{ fontSize: `${fontSize}px` }}>
-      {segments.map((seg: { text: string; changed: boolean }, si: number) =>
-        seg.changed ? <span key={si} className="diff-word">{seg.text}</span> : <span key={si}>{seg.text}</span>
-      )}
-    </p>
-  );
-}

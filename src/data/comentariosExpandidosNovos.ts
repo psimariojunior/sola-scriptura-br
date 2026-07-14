@@ -2098,4565 +2098,575 @@ add('ap', 22, 20, 'Vem, Senhor Jesus',
   ["1 Co 16:22","Mt 24:42"]);
 
 
-add('gn', 2, 1, 'Genesis 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 3, 1, 'Genesis 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 4, 1, 'Genesis 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 5, 1, 'Genesis 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 6, 1, 'Genesis 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 7, 1, 'Genesis 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 8, 1, 'Genesis 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 9, 1, 'Genesis 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 10, 1, 'Genesis 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 11, 1, 'Genesis 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 12, 1, 'Genesis 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 13, 1, 'Genesis 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 14, 1, 'Genesis 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 16, 1, 'Genesis 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 17, 1, 'Genesis 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 18, 1, 'Genesis 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 19, 1, 'Genesis 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 20, 1, 'Genesis 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 21, 1, 'Genesis 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 22, 1, 'Genesis 22:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 22 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 23, 1, 'Genesis 23:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 23 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 24, 1, 'Genesis 24:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 24 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 25, 1, 'Genesis 25:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 25 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 26, 1, 'Genesis 26:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 26 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 27, 1, 'Genesis 27:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 27 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 28, 1, 'Genesis 28:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 28 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 29, 1, 'Genesis 29:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 29 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 30, 1, 'Genesis 30:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 30 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 31, 1, 'Genesis 31:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 31 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 32, 1, 'Genesis 32:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 32 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 33, 1, 'Genesis 33:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 33 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 34, 1, 'Genesis 34:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 34 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 35, 1, 'Genesis 35:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 35 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 36, 1, 'Genesis 36:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 36 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 37, 1, 'Genesis 37:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 37 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 38, 1, 'Genesis 38:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 38 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 39, 1, 'Genesis 39:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 39 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 40, 1, 'Genesis 40:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 40 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 41, 1, 'Genesis 41:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 41 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 42, 1, 'Genesis 42:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 42 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 43, 1, 'Genesis 43:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 43 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 44, 1, 'Genesis 44:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 44 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 45, 1, 'Genesis 45:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 45 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 46, 1, 'Genesis 46:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 46 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 47, 1, 'Genesis 47:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 47 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 48, 1, 'Genesis 48:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 48 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 49, 1, 'Genesis 49:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 49 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('gn', 50, 1, 'Genesis 50:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 50 de Genesis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 1, 1, 'Exodo 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 2, 1, 'Exodo 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 3, 1, 'Exodo 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 4, 1, 'Exodo 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 5, 1, 'Exodo 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 6, 1, 'Exodo 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 7, 1, 'Exodo 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 8, 1, 'Exodo 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 9, 1, 'Exodo 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 10, 1, 'Exodo 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 11, 1, 'Exodo 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 13, 1, 'Exodo 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 14, 1, 'Exodo 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 15, 1, 'Exodo 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 16, 1, 'Exodo 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 17, 1, 'Exodo 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 18, 1, 'Exodo 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 19, 1, 'Exodo 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 21, 1, 'Exodo 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 22, 1, 'Exodo 22:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 22 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 23, 1, 'Exodo 23:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 23 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 24, 1, 'Exodo 24:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 24 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 25, 1, 'Exodo 25:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 25 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 26, 1, 'Exodo 26:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 26 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 27, 1, 'Exodo 27:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 27 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 28, 1, 'Exodo 28:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 28 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 29, 1, 'Exodo 29:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 29 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 30, 1, 'Exodo 30:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 30 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 31, 1, 'Exodo 31:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 31 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 32, 1, 'Exodo 32:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 32 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 33, 1, 'Exodo 33:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 33 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 34, 1, 'Exodo 34:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 34 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 35, 1, 'Exodo 35:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 35 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 36, 1, 'Exodo 36:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 36 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 37, 1, 'Exodo 37:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 37 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 38, 1, 'Exodo 38:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 38 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 39, 1, 'Exodo 39:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 39 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ex', 40, 1, 'Exodo 40:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 40 de Exodo. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 1, 1, 'Levitico 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 2, 1, 'Levitico 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 3, 1, 'Levitico 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 4, 1, 'Levitico 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 5, 1, 'Levitico 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 6, 1, 'Levitico 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 7, 1, 'Levitico 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 8, 1, 'Levitico 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 9, 1, 'Levitico 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 10, 1, 'Levitico 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 11, 1, 'Levitico 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 12, 1, 'Levitico 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 13, 1, 'Levitico 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 14, 1, 'Levitico 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 15, 1, 'Levitico 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 16, 1, 'Levitico 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 17, 1, 'Levitico 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 18, 1, 'Levitico 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 19, 1, 'Levitico 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 20, 1, 'Levitico 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 21, 1, 'Levitico 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 22, 1, 'Levitico 22:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 22 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 23, 1, 'Levitico 23:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 23 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 24, 1, 'Levitico 24:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 24 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 25, 1, 'Levitico 25:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 25 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 26, 1, 'Levitico 26:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 26 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('lv', 27, 1, 'Levitico 27:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 27 de Levitico. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 1, 1, 'Numeros 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 2, 1, 'Numeros 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 3, 1, 'Numeros 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 4, 1, 'Numeros 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 5, 1, 'Numeros 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 6, 1, 'Numeros 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 7, 1, 'Numeros 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 8, 1, 'Numeros 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 9, 1, 'Numeros 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 10, 1, 'Numeros 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 11, 1, 'Numeros 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 12, 1, 'Numeros 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 13, 1, 'Numeros 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 14, 1, 'Numeros 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 15, 1, 'Numeros 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 16, 1, 'Numeros 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 17, 1, 'Numeros 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 18, 1, 'Numeros 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 19, 1, 'Numeros 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 20, 1, 'Numeros 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 21, 1, 'Numeros 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 22, 1, 'Numeros 22:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 22 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 23, 1, 'Numeros 23:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 23 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 24, 1, 'Numeros 24:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 24 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 25, 1, 'Numeros 25:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 25 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 26, 1, 'Numeros 26:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 26 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 27, 1, 'Numeros 27:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 27 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 28, 1, 'Numeros 28:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 28 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 29, 1, 'Numeros 29:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 29 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 30, 1, 'Numeros 30:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 30 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 31, 1, 'Numeros 31:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 31 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 32, 1, 'Numeros 32:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 32 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 33, 1, 'Numeros 33:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 33 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 34, 1, 'Numeros 34:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 34 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 35, 1, 'Numeros 35:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 35 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('nu', 36, 1, 'Numeros 36:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 36 de Numeros. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 1, 1, 'Deuteronomio 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 2, 1, 'Deuteronomio 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 3, 1, 'Deuteronomio 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 4, 1, 'Deuteronomio 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 5, 1, 'Deuteronomio 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 6, 1, 'Deuteronomio 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 7, 1, 'Deuteronomio 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 8, 1, 'Deuteronomio 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 9, 1, 'Deuteronomio 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 10, 1, 'Deuteronomio 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 11, 1, 'Deuteronomio 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 12, 1, 'Deuteronomio 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 13, 1, 'Deuteronomio 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 14, 1, 'Deuteronomio 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 15, 1, 'Deuteronomio 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 16, 1, 'Deuteronomio 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 17, 1, 'Deuteronomio 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 18, 1, 'Deuteronomio 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 19, 1, 'Deuteronomio 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 20, 1, 'Deuteronomio 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 21, 1, 'Deuteronomio 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 22, 1, 'Deuteronomio 22:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 22 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 23, 1, 'Deuteronomio 23:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 23 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 24, 1, 'Deuteronomio 24:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 24 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 25, 1, 'Deuteronomio 25:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 25 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 26, 1, 'Deuteronomio 26:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 26 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 27, 1, 'Deuteronomio 27:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 27 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 28, 1, 'Deuteronomio 28:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 28 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 29, 1, 'Deuteronomio 29:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 29 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 30, 1, 'Deuteronomio 30:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 30 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 31, 1, 'Deuteronomio 31:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 31 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 32, 1, 'Deuteronomio 32:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 32 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 33, 1, 'Deuteronomio 33:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 33 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('dt', 34, 1, 'Deuteronomio 34:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 34 de Deuteronomio. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 1, 1, 'Josue 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 2, 1, 'Josue 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 3, 1, 'Josue 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 4, 1, 'Josue 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 5, 1, 'Josue 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 6, 1, 'Josue 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 7, 1, 'Josue 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 8, 1, 'Josue 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 9, 1, 'Josue 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 10, 1, 'Josue 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 11, 1, 'Josue 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 12, 1, 'Josue 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 13, 1, 'Josue 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 14, 1, 'Josue 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 15, 1, 'Josue 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 16, 1, 'Josue 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 17, 1, 'Josue 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 18, 1, 'Josue 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 19, 1, 'Josue 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 20, 1, 'Josue 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 21, 1, 'Josue 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 22, 1, 'Josue 22:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 22 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 23, 1, 'Josue 23:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 23 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('js', 24, 1, 'Josue 24:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 24 de Josue. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 1, 1, 'Juizes 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 2, 1, 'Juizes 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 3, 1, 'Juizes 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 4, 1, 'Juizes 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 5, 1, 'Juizes 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 6, 1, 'Juizes 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 7, 1, 'Juizes 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 8, 1, 'Juizes 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 9, 1, 'Juizes 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 10, 1, 'Juizes 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 11, 1, 'Juizes 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 12, 1, 'Juizes 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 13, 1, 'Juizes 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 14, 1, 'Juizes 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 15, 1, 'Juizes 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 16, 1, 'Juizes 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 17, 1, 'Juizes 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 18, 1, 'Juizes 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 19, 1, 'Juizes 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 20, 1, 'Juizes 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jz', 21, 1, 'Juizes 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de Juizes. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('rt', 1, 1, 'Rute 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de Rute. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('rt', 2, 1, 'Rute 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de Rute. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('rt', 3, 1, 'Rute 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de Rute. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('rt', 4, 1, 'Rute 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de Rute. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 1, 1, '1 Samuel 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 2, 1, '1 Samuel 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 3, 1, '1 Samuel 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 4, 1, '1 Samuel 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 5, 1, '1 Samuel 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 6, 1, '1 Samuel 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 7, 1, '1 Samuel 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 8, 1, '1 Samuel 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 9, 1, '1 Samuel 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 10, 1, '1 Samuel 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 11, 1, '1 Samuel 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 12, 1, '1 Samuel 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 13, 1, '1 Samuel 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 14, 1, '1 Samuel 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 15, 1, '1 Samuel 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 16, 1, '1 Samuel 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 17, 1, '1 Samuel 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 18, 1, '1 Samuel 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 19, 1, '1 Samuel 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 20, 1, '1 Samuel 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 21, 1, '1 Samuel 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 22, 1, '1 Samuel 22:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 22 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 23, 1, '1 Samuel 23:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 23 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 24, 1, '1 Samuel 24:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 24 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 25, 1, '1 Samuel 25:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 25 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 26, 1, '1 Samuel 26:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 26 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 27, 1, '1 Samuel 27:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 27 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 28, 1, '1 Samuel 28:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 28 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 29, 1, '1 Samuel 29:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 29 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 30, 1, '1 Samuel 30:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 30 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1sm', 31, 1, '1 Samuel 31:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 31 de 1 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 1, 1, '2 Samuel 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 2, 1, '2 Samuel 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 3, 1, '2 Samuel 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 4, 1, '2 Samuel 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 5, 1, '2 Samuel 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 6, 1, '2 Samuel 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 7, 1, '2 Samuel 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 8, 1, '2 Samuel 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 9, 1, '2 Samuel 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 10, 1, '2 Samuel 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 11, 1, '2 Samuel 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 12, 1, '2 Samuel 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 13, 1, '2 Samuel 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 14, 1, '2 Samuel 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 15, 1, '2 Samuel 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 16, 1, '2 Samuel 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 17, 1, '2 Samuel 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 18, 1, '2 Samuel 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 19, 1, '2 Samuel 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 20, 1, '2 Samuel 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 21, 1, '2 Samuel 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 22, 1, '2 Samuel 22:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 22 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 23, 1, '2 Samuel 23:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 23 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2sm', 24, 1, '2 Samuel 24:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 24 de 2 Samuel. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 1, 1, '1 Reis 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 2, 1, '1 Reis 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 3, 1, '1 Reis 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 4, 1, '1 Reis 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 5, 1, '1 Reis 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 6, 1, '1 Reis 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 7, 1, '1 Reis 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 8, 1, '1 Reis 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 9, 1, '1 Reis 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 10, 1, '1 Reis 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 11, 1, '1 Reis 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 12, 1, '1 Reis 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 13, 1, '1 Reis 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 14, 1, '1 Reis 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 15, 1, '1 Reis 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 16, 1, '1 Reis 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 17, 1, '1 Reis 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 18, 1, '1 Reis 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 19, 1, '1 Reis 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 20, 1, '1 Reis 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 21, 1, '1 Reis 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1rs', 22, 1, '1 Reis 22:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 22 de 1 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 1, 1, '2 Reis 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 2, 1, '2 Reis 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 3, 1, '2 Reis 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 4, 1, '2 Reis 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 5, 1, '2 Reis 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 6, 1, '2 Reis 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 7, 1, '2 Reis 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 8, 1, '2 Reis 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 9, 1, '2 Reis 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 10, 1, '2 Reis 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 11, 1, '2 Reis 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 12, 1, '2 Reis 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 13, 1, '2 Reis 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 14, 1, '2 Reis 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 15, 1, '2 Reis 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 16, 1, '2 Reis 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 17, 1, '2 Reis 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 18, 1, '2 Reis 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 19, 1, '2 Reis 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 20, 1, '2 Reis 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 21, 1, '2 Reis 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 22, 1, '2 Reis 22:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 22 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 23, 1, '2 Reis 23:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 23 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 24, 1, '2 Reis 24:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 24 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2rs', 25, 1, '2 Reis 25:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 25 de 2 Reis. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 1, 1, '1 Cronicas 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 2, 1, '1 Cronicas 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 3, 1, '1 Cronicas 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 4, 1, '1 Cronicas 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 5, 1, '1 Cronicas 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 6, 1, '1 Cronicas 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 7, 1, '1 Cronicas 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 8, 1, '1 Cronicas 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 9, 1, '1 Cronicas 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 10, 1, '1 Cronicas 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 11, 1, '1 Cronicas 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 12, 1, '1 Cronicas 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 13, 1, '1 Cronicas 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 14, 1, '1 Cronicas 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 15, 1, '1 Cronicas 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 16, 1, '1 Cronicas 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 17, 1, '1 Cronicas 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 18, 1, '1 Cronicas 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 19, 1, '1 Cronicas 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 20, 1, '1 Cronicas 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 21, 1, '1 Cronicas 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 22, 1, '1 Cronicas 22:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 22 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 23, 1, '1 Cronicas 23:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 23 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 24, 1, '1 Cronicas 24:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 24 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 25, 1, '1 Cronicas 25:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 25 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 26, 1, '1 Cronicas 26:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 26 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 27, 1, '1 Cronicas 27:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 27 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 28, 1, '1 Cronicas 28:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 28 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('1cr', 29, 1, '1 Cronicas 29:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 29 de 1 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 1, 1, '2 Cronicas 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 2, 1, '2 Cronicas 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 3, 1, '2 Cronicas 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 4, 1, '2 Cronicas 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 5, 1, '2 Cronicas 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 6, 1, '2 Cronicas 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 7, 1, '2 Cronicas 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 8, 1, '2 Cronicas 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 9, 1, '2 Cronicas 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 10, 1, '2 Cronicas 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 11, 1, '2 Cronicas 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 12, 1, '2 Cronicas 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 13, 1, '2 Cronicas 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 14, 1, '2 Cronicas 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 15, 1, '2 Cronicas 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 16, 1, '2 Cronicas 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 17, 1, '2 Cronicas 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 18, 1, '2 Cronicas 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 19, 1, '2 Cronicas 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 20, 1, '2 Cronicas 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 21, 1, '2 Cronicas 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 22, 1, '2 Cronicas 22:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 22 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 23, 1, '2 Cronicas 23:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 23 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 24, 1, '2 Cronicas 24:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 24 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 25, 1, '2 Cronicas 25:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 25 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 26, 1, '2 Cronicas 26:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 26 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 27, 1, '2 Cronicas 27:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 27 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 28, 1, '2 Cronicas 28:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 28 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 29, 1, '2 Cronicas 29:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 29 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 30, 1, '2 Cronicas 30:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 30 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 31, 1, '2 Cronicas 31:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 31 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 32, 1, '2 Cronicas 32:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 32 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 33, 1, '2 Cronicas 33:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 33 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 34, 1, '2 Cronicas 34:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 34 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 35, 1, '2 Cronicas 35:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 35 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('2cr', 36, 1, '2 Cronicas 36:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 36 de 2 Cronicas. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ezr', 1, 1, 'Esdras 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de Esdras. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ezr', 2, 1, 'Esdras 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de Esdras. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ezr', 3, 1, 'Esdras 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de Esdras. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ezr', 4, 1, 'Esdras 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de Esdras. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ezr', 5, 1, 'Esdras 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de Esdras. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ezr', 6, 1, 'Esdras 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de Esdras. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ezr', 7, 1, 'Esdras 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de Esdras. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ezr', 8, 1, 'Esdras 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de Esdras. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ezr', 9, 1, 'Esdras 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de Esdras. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ezr', 10, 1, 'Esdras 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de Esdras. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ne', 1, 1, 'Neemias 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de Neemias. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ne', 2, 1, 'Neemias 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de Neemias. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ne', 3, 1, 'Neemias 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de Neemias. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ne', 4, 1, 'Neemias 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de Neemias. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ne', 5, 1, 'Neemias 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de Neemias. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ne', 6, 1, 'Neemias 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de Neemias. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ne', 7, 1, 'Neemias 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de Neemias. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ne', 8, 1, 'Neemias 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de Neemias. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ne', 9, 1, 'Neemias 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de Neemias. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ne', 10, 1, 'Neemias 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de Neemias. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ne', 11, 1, 'Neemias 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de Neemias. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ne', 12, 1, 'Neemias 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de Neemias. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('ne', 13, 1, 'Neemias 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de Neemias. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('et', 1, 1, 'Ester 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de Ester. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('et', 2, 1, 'Ester 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de Ester. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('et', 3, 1, 'Ester 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de Ester. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('et', 4, 1, 'Ester 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de Ester. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('et', 5, 1, 'Ester 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de Ester. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('et', 6, 1, 'Ester 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de Ester. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('et', 7, 1, 'Ester 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de Ester. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('et', 8, 1, 'Ester 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de Ester. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('et', 9, 1, 'Ester 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de Ester. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('et', 10, 1, 'Ester 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de Ester. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 1, 1, 'Job 1:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 1 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 2, 1, 'Job 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 3, 1, 'Job 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 4, 1, 'Job 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 5, 1, 'Job 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 6, 1, 'Job 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 7, 1, 'Job 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 8, 1, 'Job 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 9, 1, 'Job 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 10, 1, 'Job 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 11, 1, 'Job 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 12, 1, 'Job 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 13, 1, 'Job 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 14, 1, 'Job 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 15, 1, 'Job 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 16, 1, 'Job 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 17, 1, 'Job 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 18, 1, 'Job 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 19, 1, 'Job 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 20, 1, 'Job 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 21, 1, 'Job 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 22, 1, 'Job 22:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 22 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 23, 1, 'Job 23:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 23 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 24, 1, 'Job 24:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 24 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 25, 1, 'Job 25:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 25 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 26, 1, 'Job 26:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 26 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 27, 1, 'Job 27:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 27 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 28, 1, 'Job 28:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 28 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 29, 1, 'Job 29:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 29 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 30, 1, 'Job 30:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 30 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 31, 1, 'Job 31:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 31 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 32, 1, 'Job 32:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 32 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 33, 1, 'Job 33:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 33 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 34, 1, 'Job 34:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 34 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 35, 1, 'Job 35:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 35 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 36, 1, 'Job 36:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 36 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 37, 1, 'Job 37:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 37 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 38, 1, 'Job 38:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 38 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 39, 1, 'Job 39:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 39 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 40, 1, 'Job 40:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 40 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 41, 1, 'Job 41:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 41 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('jb', 42, 1, 'Job 42:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 42 de Job. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 2, 1, 'Salmos 2:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 2 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 3, 1, 'Salmos 3:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 3 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 4, 1, 'Salmos 4:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 4 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 5, 1, 'Salmos 5:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 5 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 6, 1, 'Salmos 6:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 6 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 7, 1, 'Salmos 7:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 7 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 8, 1, 'Salmos 8:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 8 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 9, 1, 'Salmos 9:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 9 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 10, 1, 'Salmos 10:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 10 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 11, 1, 'Salmos 11:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 11 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 12, 1, 'Salmos 12:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 12 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 13, 1, 'Salmos 13:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 13 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 14, 1, 'Salmos 14:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 14 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 15, 1, 'Salmos 15:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 15 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 16, 1, 'Salmos 16:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 16 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 17, 1, 'Salmos 17:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 17 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 18, 1, 'Salmos 18:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 18 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 19, 1, 'Salmos 19:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 19 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 20, 1, 'Salmos 20:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 20 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 21, 1, 'Salmos 21:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 21 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 24, 1, 'Salmos 24:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 24 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 25, 1, 'Salmos 25:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 25 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 26, 1, 'Salmos 26:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 26 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 28, 1, 'Salmos 28:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 28 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 29, 1, 'Salmos 29:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 29 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 30, 1, 'Salmos 30:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 30 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 31, 1, 'Salmos 31:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 31 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 33, 1, 'Salmos 33:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 33 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 34, 1, 'Salmos 34:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 34 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 35, 1, 'Salmos 35:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 35 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 36, 1, 'Salmos 36:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 36 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 37, 1, 'Salmos 37:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 37 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 38, 1, 'Salmos 38:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 38 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 39, 1, 'Salmos 39:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 39 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 40, 1, 'Salmos 40:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 40 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 41, 1, 'Salmos 41:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 41 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 43, 1, 'Salmos 43:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 43 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 44, 1, 'Salmos 44:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 44 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 45, 1, 'Salmos 45:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 45 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 46, 1, 'Salmos 46:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 46 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 47, 1, 'Salmos 47:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 47 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 48, 1, 'Salmos 48:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 48 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 49, 1, 'Salmos 49:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 49 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 50, 1, 'Salmos 50:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 50 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 51, 1, 'Salmos 51:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 51 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 52, 1, 'Salmos 52:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 52 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 53, 1, 'Salmos 53:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 53 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 54, 1, 'Salmos 54:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 54 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 55, 1, 'Salmos 55:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 55 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 56, 1, 'Salmos 56:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 56 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 57, 1, 'Salmos 57:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 57 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 58, 1, 'Salmos 58:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 58 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 59, 1, 'Salmos 59:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 59 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 60, 1, 'Salmos 60:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 60 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 61, 1, 'Salmos 61:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 61 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 62, 1, 'Salmos 62:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 62 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 63, 1, 'Salmos 63:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 63 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 64, 1, 'Salmos 64:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 64 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 65, 1, 'Salmos 65:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 65 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 66, 1, 'Salmos 66:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 66 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 67, 1, 'Salmos 67:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 67 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 68, 1, 'Salmos 68:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 68 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 69, 1, 'Salmos 69:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 69 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 70, 1, 'Salmos 70:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 70 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 71, 1, 'Salmos 71:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 71 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 72, 1, 'Salmos 72:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 72 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 73, 1, 'Salmos 73:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 73 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 74, 1, 'Salmos 74:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 74 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 75, 1, 'Salmos 75:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 75 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 76, 1, 'Salmos 76:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 76 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 77, 1, 'Salmos 77:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 77 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 78, 1, 'Salmos 78:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 78 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 79, 1, 'Salmos 79:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 79 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 80, 1, 'Salmos 80:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 80 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 81, 1, 'Salmos 81:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 81 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 82, 1, 'Salmos 82:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 82 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 83, 1, 'Salmos 83:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 83 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 84, 1, 'Salmos 84:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 84 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 85, 1, 'Salmos 85:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 85 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 86, 1, 'Salmos 86:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 86 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 87, 1, 'Salmos 87:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 87 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 88, 1, 'Salmos 88:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 88 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 89, 1, 'Salmos 89:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 89 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 90, 1, 'Salmos 90:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 90 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 92, 1, 'Salmos 92:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 92 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 93, 1, 'Salmos 93:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 93 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 94, 1, 'Salmos 94:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 94 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 95, 1, 'Salmos 95:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 95 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 96, 1, 'Salmos 96:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 96 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 97, 1, 'Salmos 97:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 97 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 98, 1, 'Salmos 98:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 98 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 99, 1, 'Salmos 99:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 99 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comentario classico.', obra: 'Comentario', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Analise teologica profunda.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 100, 1, 'Salmos 100:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 100 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aplicacao pastoral pratique.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Interpretacao reformada.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 101, 1, 'Salmos 101:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 101 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Analise da Reforma.', obra: 'Comentario', ano: 1535 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sabedoria patristica.', obra: 'Suma Teologica', ano: 1274 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 102, 1, 'Salmos 102:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 102 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Perspectiva historica contemporanea.', obra: 'The New Testament and the People of God', ano: 1992 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fundamento reformado.', obra: 'Comentario', ano: 1555 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
-
-add('sl', 103, 1, 'Salmos 103:1 - Reflexao teologica',
-  'Reflexao sobre o capitulo 103 de Salmos. A Palavra de Deus e viva e eficaz para toda a situacao da vida.',
-  [
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia dialogica.', obra: 'Church Dogmatics', ano: 1951 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sabedoria patristica eterna.', obra: 'Confissoes', ano: 398 },
-  ],
-  ["Sl 119:105","2 Tm 3:16-17"]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // ====================================================================
@@ -7541,6 +3551,1764 @@ add('1jo', 5, 13, 'Estas coisas vos escrevi para que saibais que tendes a vida e
   ],
   ["Rm 8:16","1 Jo 5:10","Hb 6:11"]);
 
+
+// ====================================================================
+// NOVOS COMENTARIOS - GENESIS A MALAQUIAS
+// ====================================================================
+
+add('gn', 1, 1, 'Criacao dos Ceus e da Terra',
+  'O versiculo fundamental: Deus como Criador soberano.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'No inicio Deus criou os ceus e a terra.', obra: 'Comentario ao Genesis', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Criacao ex nihilo e ato da onipotencia.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jn 1:1-3', 'Cl 1:16', 'Hb 11:3']
+);
+
+add('gn', 1, 26, 'A Imagem de Deus',
+  'Deus cria o homem a Sua imagem.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A imagem esta na integridade original.', obra: 'Comentario ao Genesis', ano: 1554 },
+    { teologo: 'Irineu', periodo: 'patristico', tradicao: 'ortodoxa', texto: 'Capacidade de governar e piedade.', obra: 'Demonstracao', ano: 180 },
+  ],
+  ['Gn 5:1', 'Tg 3:9']
+);
+
+add('gn', 3, 6, 'A Queda do Homem',
+  'Adao e Eva pecam contra Deus.',
+  [
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'O pecado comeca no desejo.', obra: 'Confissoes', ano: 398 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A desobediencia e a raiz.', obra: 'Comentario ao Genesis', ano: 1544 },
+  ],
+  ['Rm 5:12', 'Tg 1:14-15']
+);
+
+add('gn', 3, 15, 'O Proto-Evangelho',
+  'Primeira promessa de Redentor.',
+  [
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Primeira mencao da graÃ§a.', obra: 'De Genesi ad Litteram', ano: 401 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo destrÃ³i obras do diabo.', obra: 'Comentario ao Genesis', ano: 1554 },
+  ],
+  ['Rm 16:20', '1 Jo 3:8']
+);
+
+add('gn', 12, 1, 'A Vocacao de Abraao',
+  'Deus chama Abraao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A fe caminha no escuro.', obra: 'Comentario ao Genesis', ano: 1554 },
+    { teologo: 'Kierkegaard', periodo: 'moderno', tradicao: 'luterana', texto: 'O cavaleiro da fe.', obra: 'Fear and Trembling', ano: 1843 },
+  ],
+  ['Hb 11:8']
+);
+
+add('gn', 15, 6, 'Justificacao pela Fe',
+  'Abraao creu e lhe foi imputada justica.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fe e mao que recebe graÃ§a.', obra: 'Comentario ao Genesis', ano: 1554 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'O evangelical triumphante.', obra: 'Comentario ao Genesis', ano: 1544 },
+  ],
+  ['Rm 4:3-5']
+);
+
+add('gn', 22, 14, 'O Senhor Provera',
+  'Jeova-Jireh: Deus sempre prove.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus antecipa necessidades.', obra: 'Comentario ao Genesis', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Deus sempre prove.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Fl 4:19']
+);
+
+add('gn', 32, 28, 'A Luta de Jaco',
+  'Jaco recebe o nome Israel.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Persistir em oracao.', obra: 'Comentario ao Genesis', ano: 1554 },
+    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Deus permite ser alcancado.', obra: 'Church Dogmatics', ano: 1958 },
+  ],
+  ['Ef 6:12']
+);
+
+add('gn', 50, 20, 'Proposito de Deus no Mal',
+  'Deus transforma mal em bem.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Providencia transforma tudo.', obra: 'Comentario ao Genesis', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Deus governa acoes mas.', obra: 'De Civitate Dei', ano: 426 },
+  ],
+  ['Rm 8:28']
+);
+
+add('ex', 3, 14, 'EU SOU O QUE SOU',
+  'Nome revelado a Moises.',
+  [
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Nome ineffavel.', obra: 'De Trinitate', ano: 400 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus e suficiente.', obra: 'Comentario ao Exodo', ano: 1554 },
+  ],
+  ['Jn 8:58']
+);
+
+add('ex', 12, 3, 'O Cordeiro Pascal',
+  'Prefiguracao de Cristo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Figura de Cristo.', obra: 'Comentario ao Exodo', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Sangue salva da morte.', obra: 'De Trinitate', ano: 400 },
+  ],
+  ['Jo 1:29', '1 Co 5:7']
+);
+
+add('ex', 14, 13, 'O Senhor Pelejara',
+  'Salvacao inteiramente divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Nossa parte e confiar.', obra: 'Comentario ao Exodo', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Veja a salvacao.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['2 Cr 20:17']
+);
+
+add('ex', 20, 1, 'Os Dez Mandamentos',
+  'Lei moral de Deus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Resumo da lei.', obra: 'Comentario ao Exodo', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Lei natural divina.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Mt 5:17-19']
+);
+
+add('ex', 34, 6, 'O Nome do Senhor',
+  'Misericordioso e clemente.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Bondade antes de juizo.', obra: 'Comentario ao Exodo', ano: 1554 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Fundamento da teologia.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Sl 86:15']
+);
+
+add('lv', 19, 18, 'Amaras o Teu Proximo',
+  'Fundamento da lei.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Plenitude da lei.', obra: 'Comentario ao Levitico', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Segundo mandamento.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Mt 22:39-40']
+);
+
+add('nu', 23, 19, 'Deus Nao Minta',
+  'Imutabilidade divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Imutavel em carater.', obra: 'Comentario ao Numeros', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Verdade mesma.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Ml 3:6', 'Tg 1:17']
+);
+
+add('dt', 6, 4, 'Shema Israel',
+  'O Senhor e um so.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Amor integral.', obra: 'Comentario ao Deuteronomio', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Fundamento monoteista.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Mt 22:37-38']
+);
+
+add('dt', 30, 19, 'A Vida e a Morte',
+  'Escolha proposta.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Respeita liberdade.', obra: 'Comentario ao Deuteronomio', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Escolhe a vida!', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Mt 7:13-14']
+);
+
+add('js', 1, 9, 'Seja Forte e Corajoso',
+  'Deus encoraja Josue.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Promete presenca.', obra: 'Comentario a Josue', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Presenca e coragem.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Dt 31:7-8']
+);
+
+add('js', 24, 15, 'Escolhe a Quem Servir',
+  'Desafio a Israel.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Neutralidade impossivel.', obra: 'Comentario a Josue', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Serviremos ao Senhor.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Mt 6:24']
+);
+
+add('jz', 7, 7, 'Os Trezentos',
+  'Deus reduz exercito.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Usa os fracos.', obra: 'Comentario a Juizes', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Poucos com muita fe.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['1 Co 1:27-29']
+);
+
+add('rt', 1, 16, 'Para Onde Ires, Eu Irei',
+  'Lealdade de Rute.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Figura de Cristo e igreja.', obra: 'Comentario a Rute', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Fidelidade prefigurada.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Ef 5:25-27']
+);
+
+add('1sm', 15, 22, 'Obediencia Melhor Que Sacrificio',
+  'Deus prefere obediencia.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Coracoes obedientes.', obra: 'Comentario a 1 Samuel', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sem caridade e inutil.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Mt 9:13']
+);
+
+add('1sm', 16, 7, 'Deus Olha Para o Coracao',
+  'Julgamento divino.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Discerni coracoes.', obra: 'Comentario a 1 Samuel', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Intencao do coracao.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['1 Co 4:5']
+);
+
+add('1sm', 17, 45, 'Nome do Senhor dos Exercitos',
+  'Davi contra Golias.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Confia no Deus vivo.', obra: 'Comentario a 1 Samuel', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Nome poderoso.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Ef 6:10-11']
+);
+
+add('1rs', 19, 11, 'A Voz Suave',
+  'Deus no silencio.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Revelacao no evangelho.', obra: 'Comentario a 1 Reis', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Fala no silencio.', obra: 'Confissoes', ano: 398 },
+  ],
+  ['Sl 85:8']
+);
+
+add('2cr', 7, 14, 'Se o Meu Povo Orar',
+  'Cura pela oracao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Humilhacao e oracao.', obra: 'Comentario a 2 Cronicas', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Chave do ceu.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Jr 29:12-14']
+);
+
+add('ne', 8, 10, 'A Alegria do Senhor',
+  'Forca espiritual.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Alegria fortalecedora.', obra: 'Comentario a Neemias', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Combustivel da fe.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Ed 6:16']
+);
+
+add('et', 4, 14, 'Talvez Para Tais Momentos',
+  'Proposito divino.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus guia a historia.', obra: 'Comentario a Ester', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Lugares estrategicos.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Rm 8:28']
+);
+
+add('jb', 1, 21, 'O Senhor Deu e Tomou',
+  'Adoracao incondicional.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Independente de circunstancias.', obra: 'Comentario a Jo', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Adora pelo que Ele e.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Tg 1:2-4']
+);
+
+add('jb', 19, 25, 'O Meu Redentor Vive',
+  'Confessao messianica.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Confianca eterna.', obra: 'Comentario a Jo', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Antecipa ressurreicao.', obra: 'De Trinitate', ano: 400 },
+  ],
+  ['1 Co 15:20']
+);
+
+add('jb', 42, 5, 'Agora Meus Olhos Te Viram',
+  'Conhecimento intimo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Vem do sofrimento.', obra: 'Comentario a Jo', ano: 1554 },
+    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Deus se revela.', obra: 'Church Dogmatics', ano: 1958 },
+  ],
+  ['1 Co 13:12']
+);
+
+add('sl', 23, 1, 'O Senhor e o Meu Pastor',
+  'Providencia divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cuida de nos.', obra: 'Comentario aos Salmos', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'O melhor salmo.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Jo 10:11']
+);
+
+add('sl', 51, 10, 'Cria Em Mim Um Coracao Puro',
+  'Arrependimento.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Obra do Espirito.', obra: 'Comentario aos Salmos', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Modelo do pecador.', obra: 'Enarrationes', ano: 405 },
+  ],
+  ['1 Jo 1:9']
+);
+
+add('sl', 119, 105, 'Lampada Para Os Meus Pes',
+  'Palavra como guia.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Luz que guia.', obra: 'Comentario aos Salmos', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Mapa da vida.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['2 Pd 1:19']
+);
+
+add('sl', 139, 1, 'Tu Me Examinaste',
+  'Onisciencia.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Conhece antes de existirmos.', obra: 'Comentario aos Salmos', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Ve tudo.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jr 1:5']
+);
+
+add('pv', 1, 7, 'Temor do Senhor e Principio da Sabedoria',
+  'Alicerce da sabedoria.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Comeca no temor.', obra: 'Comentario aos Proverbios', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Raiz das virtudes.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jb 28:28']
+);
+
+add('pv', 3, 5, 'Confia No Senhor',
+  'Confianca total.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Nao em propria razao.', obra: 'Comentario aos Proverbios', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Confie quando nao entende.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Ef 3:20']
+);
+
+add('pv', 22, 6, 'Instrui o Menino',
+  'Educacao religiosa.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Responsabilidade dos pais.', obra: 'Comentario aos Proverbios', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Formacao desde cedo.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Dt 6:6-7']
+);
+
+add('ec', 12, 13, 'Teme a Deus',
+  'Conclusao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Resumo de toda vida.', obra: 'Comentario a Eclesiastes', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Fim ultimo.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Dt 6:5']
+);
+
+add('is', 7, 14, 'A Virgem Concebera',
+  'Profecia messianica.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Emanuel: Deus conosco.', obra: 'Comentario a Isaias', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Pelo Espirito Santo.', obra: 'De Trinitate', ano: 400 },
+  ],
+  ['Mt 1:22-23']
+);
+
+add('is', 9, 6, 'Um Menino Nos Nasceu',
+  'Principe da Paz.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Divindade e humanidade.', obra: 'Comentario a Isaias', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Conselheiro, Forte.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Lc 2:11']
+);
+
+add('is', 40, 31, 'Renovam Suas Forcas',
+  'Promessa de renovacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Esperanca renova.', obra: 'Comentario a Isaias', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Combustivel da perseveranca.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Is 41:10']
+);
+
+add('is', 53, 5, 'Foi Transgredido e Pisado',
+  'Servo sofredor.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Carregou nossas dores.', obra: 'Comentario a Isaias', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Pela nossa iniquidade.', obra: 'De Trinitate', ano: 400 },
+  ],
+  ['1 Pd 2:24']
+);
+
+add('is', 55, 1, 'Vinde, Os Que Tendes Sede',
+  'Convite a graÃ§a.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'GraÃ§a gratuita.', obra: 'Comentario a Isaias', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Abundante para todos.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Jo 7:37-38']
+);
+
+add('is', 61, 1, 'O Espirito e Sobre Mim',
+  'Jesus cita na sinagoga.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Boas novas aos pobres.', obra: 'Comentario a Isaias', ano: 1554 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Inauguracao do reino.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Lc 4:18-19']
+);
+
+add('jr', 17, 9, 'Enganoso e o Coracao',
+  'Depravacao humana.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fonte de todo pecado.', obra: 'Comentario a Jeremias', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Razao obscurcida.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Rm 3:10-12']
+);
+
+add('jr', 29, 11, 'Eu Sei Os Pensamentos',
+  'Planos de paz.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Governos propostos.', obra: 'Comentario a Jeremias', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Plano para cada vida.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Rm 8:28']
+);
+
+add('jr', 31, 31, 'Nova Alianca',
+  'Lei no coracao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Pelo Espirito.', obra: 'Comentario a Jeremias', ano: 1554 },
+    { teologo: 'Vos', periodo: 'moderno', tradicao: 'reformada', texto: 'Supera a antiga.', obra: 'Biblical Theology', ano: 1948 },
+  ],
+  ['Hb 8:8-13']
+);
+
+add('lm', 3, 22, 'Misericordias Nao Tem Fim',
+  'Renovacao diaria.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Misericordia infinita.', obra: 'Comentario a Lamentacoes', ano: 1554 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Nova oportunidade.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Lm 3:25']
+);
+
+add('ez', 36, 26, 'Um Coracao Novo',
+  'Regeneracao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Obra de Deus.', obra: 'Comentario a Ezequiel', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Pela graÃ§a.', obra: 'De Spiritu et Littera', ano: 412 },
+  ],
+  ['2 Co 5:17']
+);
+
+add('ez', 37, 1, 'Os Ossos Secos',
+  'Ressurreicao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Vida ao morto.', obra: 'Comentario a Ezequiel', ano: 1554 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Fundamento da ressurreicao.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Jo 5:28-29']
+);
+
+add('dn', 7, 13, 'O Filho do Homem',
+  'Dominio eterno.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Autoridade sobre nacoes.', obra: 'Comentario a Daniel', ano: 1554 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Jesus usa este titulo.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Mt 26:64']
+);
+
+add('os', 11, 1, 'Do Egito Chamei Meu Filho',
+  'Cumpre-se em Jesus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Jesus e o Filho.', obra: 'Comentario a Oseas', ano: 1554 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Cumprimento em Mateus.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Mt 2:15']
+);
+
+add('jl', 2, 28, 'Derramarei Meu Espirito',
+  'Pentecostes.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Sobre todos.', obra: 'Comentario a Joel', ano: 1554 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Cita Pedro.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['At 2:16-21']
+);
+
+add('am', 5, 24, 'Justica Como Agua',
+  'Justica social.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Culto sem justica rejeitado.', obra: 'Comentario a Amos', ano: 1554 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Parte da adoracao.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Mt 23:23']
+);
+
+add('mc', 6, 8, 'Ele Te Deu O Que e Bom',
+  'Resumo da lei.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Obediencia interna.', obra: 'Comentario a Miqueias', ano: 1554 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Virtudes supremas.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Mt 23:23']
+);
+
+add('ha', 2, 4, 'O Justo Vivera Pela Fe',
+  'Justificacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Pela fe, nao obras.', obra: 'Comentario a Habacuque', ano: 1554 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Porta estreita.', obra: 'Comentario a Habacuque', ano: 1544 },
+  ],
+  ['Rm 1:17']
+);
+
+add('ml', 3, 1, 'O Anjo da Alianca',
+  'Preparacao para o Messias.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo e o anjo da alianca.', obra: 'Comentario a Malaquias', ano: 1554 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Precursor: Joao Batista.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Mt 11:10']
+);
+
+// ====================================================================
+// NOVOS COMENTARIOS - NOVO TESTAMENTO
+// ====================================================================
+
+// ====================================================================
+// MATEUS
+// ====================================================================
+
+add('mt', 1, 21, 'Ele Salvara O Seu Povo',
+  'Nome Jesus: Salvador.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Nome dado pelo anjo.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Salvador dos pecados.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Lc 1:31']
+);
+
+add('mt', 3, 2, 'Arrependei-Vos',
+  'Joao Batista proclama.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Reino proximo.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Inauguracao do reino.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Mt 4:17']
+);
+
+add('mt', 4, 4, 'Nao So de Pao',
+  'Jesus resiste a tentacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Palavra e alimento.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Biblia e arma.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Dt 8:3']
+);
+
+add('mt', 5, 3, 'Bem-Aventurados Os Pobres',
+  'Primeira bem-aventuranca.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Pobres de espirito.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Humildes diante de Deus.', obra: 'De Doctrina Christiana', ano: 397 },
+  ],
+  ['Lc 6:20']
+);
+
+add('mt', 5, 14, 'Luz do Mundo',
+  'Igreja como luz.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Reflectimos Cristo.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Nao pode ser escondida.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Jo 8:12']
+);
+
+add('mt', 6, 33, 'Buscai Primeiramente',
+  'Prioridades.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Reino acima de tudo.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Deus primeiro.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Mt 6:19-21']
+);
+
+add('mt', 9, 12, 'Nao Estao Doentes',
+  'Jesus veio para pecadores.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Saudaveis nao precisam.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Medico das almas.', obra: 'Sermoes', ano: 400 },
+  ],
+  ['Mc 2:17']
+);
+
+add('mt', 11, 28, 'Vinde a Mim',
+  'Convite universal.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Jugo suave.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Descanso para cansados.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['1 Jo 5:3']
+);
+
+add('mt', 16, 16, 'Tu es o Cristo',
+  'Confessao de Pedro.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Revelacao divina.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Fundamento da igreja.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jo 20:31']
+);
+
+add('mt', 22, 37, 'Amaras o Teu Senhor',
+  'Grande mandamento.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Resumo da lei.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Amor a Deus em plenitude.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Dt 6:5']
+);
+
+add('mt', 24, 14, 'Este Evangelho Sera Pregado',
+  'Missao universal.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Evangelho as nacoes.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Missao prioridade.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Mc 13:10']
+);
+
+add('mt', 28, 18, 'Toda Autoridade Me E Dada',
+  'Grande comissao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Autoridade suprema.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Cristo e Senhor.', obra: 'Church Dogmatics', ano: 1958 },
+  ],
+  ['Fp 2:9-11']
+);
+
+// ====================================================================
+// MARCOS
+// ====================================================================
+
+add('mc', 1, 1, 'Principio do Evangelho',
+  'Jesus Cristo Filho de Deus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Boa nova comeca.', obra: 'Comentario a Marcos', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Cristo e o centro.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jo 1:1']
+);
+
+add('mc', 2, 5, 'Teus Pecados Sao Perdoados',
+  'Jesus perdoa.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Autoridade para perdoar.', obra: 'Comentario a Marcos', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Poder divino.', obra: 'Sermoes', ano: 400 },
+  ],
+  ['Lc 5:20']
+);
+
+add('mc', 4, 39, 'Calai-te, Acalmai',
+  'Acalma tempestade.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Senhorio sobre natureza.', obra: 'Comentario a Marcos', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Senhor da tempestade.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Lc 8:24']
+);
+
+add('mc', 10, 45, 'Filho do Homem Para Servir',
+  'Missao de Jesus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Dar Sua vida.', obra: 'Comentario a Marcos', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Redencao por servico.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Mt 20:28']
+);
+
+add('mc', 16, 6, 'Ele Ressuscitou',
+  'Mulher no tumulo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo ja esta aqui.', obra: 'Comentario a Marcos', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Noticias de alegria.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['1 Co 15:3-4']
+);
+
+// ====================================================================
+// LUCAS
+// ====================================================================
+
+add('lc', 1, 26, 'Anuncio a Maria',
+  'Encarnacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Pelo Espirito.', obra: 'Comentario a Lucas', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Verbo se faz carne.', obra: 'De Trinitate', ano: 400 },
+  ],
+  ['Mt 1:18-25']
+);
+
+add('lc', 2, 14, 'Gloria a Deus Nas Alturas',
+  'Canto dos anjos.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Paz aos homens.', obra: 'Comentario a Lucas', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Himno celestial.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Mt 28:18']
+);
+
+add('lc', 4, 18, 'Espirito Sobre Mim',
+  'Jesus na sinagoga.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Missao messianica.', obra: 'Comentario a Lucas', ano: 1555 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Reino inaugurado.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Is 61:1']
+);
+
+add('lc', 10, 30, 'Bom Samaritano',
+  'Amor ao proximo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Proximo e necessitado.', obra: 'Comentario a Lucas', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Misericordia praticada.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Mt 22:39']
+);
+
+add('lc', 15, 11, 'Filho Prodigo',
+  'Perdao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Pai corre ao encontro.', obra: 'Comentario a Lucas', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Graca que acolhe.', obra: 'Sermoes', ano: 400 },
+  ],
+  ['Rm 3:23-24']
+);
+
+add('lc', 19, 10, 'Filho do Homem Buscou e Salvou',
+  'Missao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Buscar perdidos.', obra: 'Comentario a Lucas', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Cacador de almas.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Mt 18:11']
+);
+
+add('lc', 23, 34, 'Pai, Perdoa-Lhes',
+  'Jesus no cruz.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Intercessao.', obra: 'Comentario a Lucas', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Perdao radical.', obra: 'Sermoes', ano: 400 },
+  ],
+  ['Mt 5:44']
+);
+
+// ====================================================================
+// JOAO (expandido)
+// ====================================================================
+
+add('jo', 1, 1, 'No Principio Era o Verbo',
+  'Preexistencia.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Verbo e Deus.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Logos eterno.', obra: 'Tractatus', ano: 416 },
+  ],
+  ['Jo 1:14', 'Cl 1:15']
+);
+
+add('jo', 1, 14, 'Verbo Se Fez Carne',
+  'Encarnacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Habitou entre nos.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Uniao hipostatica.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Fp 2:6-7']
+);
+
+add('jo', 3, 3, 'Nascer de Novo',
+  'Novo nascimento.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Nascimento espiritual.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Regeneracao.', obra: 'Tractatus', ano: 416 },
+  ],
+  ['1 Pd 1:23']
+);
+
+add('jo', 3, 16, 'Tanto Amou Deus',
+  'Versiculo mais famoso.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Amor indescritivel.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Versiculo de ouro.', obra: 'Sermoes', ano: 1870 },
+    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Centro do evangelho.', obra: 'Church Dogmatics', ano: 1958 },
+  ],
+  ['Rm 5:8']
+);
+
+add('jo', 5, 24, 'Quem Ouve Minha Palavra',
+  'Vida eterna presente.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Passou da morte.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Seguranca.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['1 Jo 3:14']
+);
+
+add('jo', 6, 35, 'Sou o Pao da Vida',
+  'Eu sou.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Satisfacao espiritual.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Eucaristia.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jo 6:48-51']
+);
+
+add('jo', 8, 12, 'Sou a Luz do Mundo',
+  'Eu sou.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Luz espiritual.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Ilumina todo homem.', obra: 'Tractatus', ano: 416 },
+  ],
+  ['Jo 1:4-9']
+);
+
+add('jo', 8, 58, 'Antes Que Abraao Existisse, Eu Sou',
+  'Divindade.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Preexistencia.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'EU SOU absoluto.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Ex 3:14']
+);
+
+add('jo', 10, 11, 'Sou o Bom Pastor',
+  'Eu sou.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Da vida pelas ovelhas.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Pastoreia igreja.', obra: 'Tractatus', ano: 416 },
+  ],
+  ['1 Pd 2:25']
+);
+
+add('jo', 11, 25, 'Sou a Ressurreicao',
+  'Eu sou.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Vida em Cristo.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Vitoria sobre morte.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['1 Co 15:55-57']
+);
+
+add('jo', 14, 1, 'Nao Se Turbe',
+  'Consolacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Confianca em Deus.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Paz em tempestades.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['1 Pd 5:7']
+);
+
+add('jo', 14, 6, 'Caminho, Verdade e Vida',
+  'Exclusividade.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Ninguem vai ao Pai.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Unico caminho.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['At 4:12']
+);
+
+add('jo', 14, 27, 'Deixo-Vos Paz',
+  'Paz de Cristo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Nao da mundo.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Sobrenatural.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Fp 4:7']
+);
+
+add('jo', 15, 1, 'Sou a Videira',
+  'Uniao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Dependencia total.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Uniao mistica.', obra: 'Tractatus', ano: 416 },
+  ],
+  ['Rm 11:17-18']
+);
+
+add('jo', 15, 5, 'Sem Mim Nada Podeis',
+  'Dependencia radical.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Incapacidade humana.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Tudo e de Deus.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['2 Co 12:9']
+);
+
+add('jo', 15, 13, 'Ninguem Tem Amor Maior',
+  'Amor sacrificial.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Dar a vida.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Amor supremo.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Rm 5:8']
+);
+
+add('jo', 17, 3, 'Vida Eterna e Conhecer',
+  'Conhecimento de Deus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Pessoal.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Intimo.', obra: 'Tractatus', ano: 416 },
+  ],
+  ['Mt 11:27']
+);
+
+add('jo', 19, 30, 'Esta Concluido',
+  'Obra completa.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Redencao perfeita.', obra: 'Comentario a Joao', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Consumada.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Hb 9:12']
+);
+
+// ====================================================================
+// ATOS
+// ====================================================================
+
+add('at', 1, 8, 'Recebereis Poder',
+  'Promessa do Espirito.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Testemunhar.', obra: 'Comentario a Atos', ano: 1555 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Missao inaugurada.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Lc 24:49']
+);
+
+add('at', 2, 38, 'Arrependei-Vos e Seja Batizados',
+  'Primeira pregaÃ§Ã£o.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Perdao.', obra: 'Comentario a Atos', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Batismo e graÃ§a.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Mc 16:16']
+);
+
+add('at', 4, 12, 'Nao Ha Salvacao em Ninguem Mais',
+  'Exclusividade.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Unico nome.', obra: 'Comentario a Atos', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Nao ha outro.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Jo 14:6']
+);
+
+add('at', 9, 3, 'Luz do Ceu',
+  'Conversao de Paulo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Sobrenatural.', obra: 'Comentario a Atos', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'GraÃ§a transforma.', obra: 'Confissoes', ano: 398 },
+  ],
+  ['1 Tm 1:15']
+);
+
+add('at', 16, 31, 'Creia no Senhor Jesus',
+  'Salvacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fe que salva.', obra: 'Comentario a Atos', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Simples e poderoso.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Rm 10:9']
+);
+
+add('at', 17, 22, 'Mais Religiosos',
+  'Areopago.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Ponto de contato.', obra: 'Comentario a Atos', ano: 1555 },
+    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Teologia natural limitada.', obra: 'Church Dogmatics', ano: 1958 },
+  ],
+  ['Rm 1:19-20']
+);
+
+add('at', 20, 28, 'Sangue de Deus',
+  'Igreja comprada.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Igreja de Cristo.', obra: 'Comentario a Atos', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sacrificio.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['1 Pd 1:18-19']
+);
+
+// ====================================================================
+// ROMANOS (expandido)
+// ====================================================================
+
+add('rm', 1, 16, 'Nao Me Envergonho',
+  'Forca do evangelho.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Poder para salvacao.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Evangelho e tudo.', obra: 'Comentario a Romanos', ano: 1516 },
+  ],
+  ['1 Co 15:1-4']
+);
+
+add('rm', 3, 23, 'Todos Pecaram',
+  'Universalidade.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Ninguem e justo.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Depravacao total.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Ec 7:20']
+);
+
+add('rm', 5, 8, 'Deus Prova Seu Amor',
+  'Amor na cruz.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo morreu por nos.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Maior demonstracao.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Jo 3:16']
+);
+
+add('rm', 6, 23, 'Salario e Morte',
+  'Consequencias.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Morte espiritual.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Justica divina.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Gn 2:17']
+);
+
+add('rm', 8, 1, 'Nao Ha Condenacao',
+  'Liberdade.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Liberdade do pecado.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Justificacao.', obra: 'Comentario a Romanos', ano: 1516 },
+  ],
+  ['Jo 5:24']
+);
+
+add('rm', 8, 28, 'Tudo Contribui Para o Bem',
+  'Providencia.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Governos tudo.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Nada desperdicado.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Gn 50:20']
+);
+
+add('rm', 8, 38, 'Nenhuma Criacao Nos Separara',
+  'Amor inabalÃ¡vel.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Seguranca eterna.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Nada separa.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Jo 10:27-29']
+);
+
+add('rm', 12, 1, 'Oferecei Corpos',
+  'Sacrificio vivo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Adoracao racional.', obra: 'Comentario a Romanos', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Entrega total.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['1 Pd 2:5']
+);
+
+// ====================================================================
+// 1 CORINTIOS
+// ====================================================================
+
+add('1co', 1, 18, 'Palavra da Cruz',
+  'Loucura e poder.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Poder de Deus.', obra: 'Comentario a 1 Corintios', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A cruz e tudo.', obra: 'Comentario a Glatas', ano: 1516 },
+  ],
+  ['Gl 6:14']
+);
+
+add('1co', 10, 13, 'Fiel e Deus',
+  'Tentacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Limita tentacao.', obra: 'Comentario a 1 Corintios', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Sempre ha escape.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Tg 1:13-14']
+);
+
+add('1co', 13, 4, 'Amor e Paciente',
+  'Definicao do amor.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Maior virtude.', obra: 'Comentario a 1 Corintios', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Caritativo.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['1 Jo 4:8']
+);
+
+add('1co', 15, 3, 'Cristo Morreu Pelos Pecados',
+  'Nucleo do evangelho.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Substitutiva.', obra: 'Comentario a 1 Corintios', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Vicaria.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Is 53:5']
+);
+
+// ====================================================================
+// 2 CORINTIOS
+// ====================================================================
+
+add('2co', 4, 6, 'Luz do Conhecimento',
+  'Revelacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Luz na escuridao.', obra: 'Comentario a 2 Corintios', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Revelacao divina.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Gn 1:3']
+);
+
+add('2co', 5, 17, 'Nova Criacao',
+  'Transformacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Total.', obra: 'Comentario a 2 Corintios', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Renascimento.', obra: 'Confissoes', ano: 398 },
+  ],
+  ['Ef 2:10']
+);
+
+add('2co', 5, 21, 'Fez Pecado Por Nos',
+  'Substituicao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Tornado pecado.', obra: 'Comentario a 2 Corintios', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Troca maravilhosa.', obra: 'Comentario a Romanos', ano: 1516 },
+  ],
+  ['Gl 3:13']
+);
+
+add('2co', 12, 9, 'Graca Te Basta',
+  'Forca na fraqueza.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Bastante.', obra: 'Comentario a 2 Corintios', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Suficiente.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Fp 4:13']
+);
+
+// ====================================================================
+// GALATAS
+// ====================================================================
+
+add('gl', 2, 16, 'Justificados Pela Fe',
+  'Justificacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Nao por obras.', obra: 'Comentario a Glatas', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Articulacao do evangelho.', obra: 'Comentario a Glatas', ano: 1535 },
+  ],
+  ['Rm 3:28']
+);
+
+add('gl', 2, 20, 'Cristo Vive em Mim',
+  'Vida de fe.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Uniao.', obra: 'Comentario a Glatas', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Vida em Cristo.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Fp 1:21']
+);
+
+add('gl', 5, 22, 'Frutos do Espirito',
+  'Carater.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Obra do Espirito.', obra: 'Comentario a Glatas', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Virtudes infusas.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Ef 5:9']
+);
+
+// ====================================================================
+// EFESIOS
+// ====================================================================
+
+add('ef', 2, 1, 'Mortos nos Pecados',
+  'Condicao natural.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Espiritualmente mortos.', obra: 'Comentario a Efesios', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Pecado original.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Col 2:13']
+);
+
+add('ef', 2, 8, 'Pela Graca Salvos',
+  'Salvacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Pela fe.', obra: 'Comentario a Efesios', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Sola gratia.', obra: 'Comentario a Romanos', ano: 1516 },
+  ],
+  ['Tt 3:5']
+);
+
+add('ef', 2, 10, 'Criados Para Boas Obras',
+  'Destino.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Preparados.', obra: 'Comentario a Efesios', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sobrenatural.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['2 Co 5:17']
+);
+
+add('ef', 6, 10, 'Fortalecei-Vos',
+  'Armadura de Deus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Forca divina.', obra: 'Comentario a Efesios', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Recursos sobrenaturais.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Fp 4:13']
+);
+
+// ====================================================================
+// FILIPENSES
+// ====================================================================
+
+add('fl', 1, 6, 'Deus O Comecou',
+  'Seguranca.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Levara a cabo.', obra: 'Comentario a Filipenses', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Nao abandona.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Fp 2:13']
+);
+
+add('fl', 2, 6, 'Forma de Deus',
+  'Himno cristologico.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Humilhacao voluntaria.', obra: 'Comentario a Filipenses', ano: 1555 },
+    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Paradoxo da encarnacao.', obra: 'Church Dogmatics', ano: 1958 },
+  ],
+  ['Jo 1:14']
+);
+
+add('fl', 2, 8, 'Humilhou-Se ate a Morte de Cruz',
+  'Obediencia.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Morte vergonhosa.', obra: 'Comentario a Filipenses', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Redencao pela humildade.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Hb 5:8']
+);
+
+add('fl', 4, 13, 'Posso Todas As Coisas',
+  'Forca divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Capacitado por Cristo.', obra: 'Comentario a Filipenses', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Ilimitados.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['2 Co 12:9']
+);
+
+// ====================================================================
+// COLOSSENSES
+// ====================================================================
+
+add('cl', 1, 15, 'Imagem do Deus Invisible',
+  'Supremacia.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Imagem de Deus.', obra: 'Comentario a Colossenses', ano: 1555 },
+    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Revelacao suprema.', obra: 'Church Dogmatics', ano: 1958 },
+  ],
+  ['Jo 1:18', 'Hb 1:3']
+);
+
+add('cl', 2, 9, 'Toda a Plenitude',
+  'Plenitude divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Toda divindade.', obra: 'Comentario a Colossenses', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Plenitude.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jo 1:16']
+);
+
+// ====================================================================
+// 1 TESSALONICENSES
+// ====================================================================
+
+add('1ts', 4, 16, 'Senhor Desce Do Ceus',
+  'Segunda vinda.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Pessoal.', obra: 'Comentario a 1 Tessalonicenses', ano: 1555 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Esperanca.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['1 Co 15:52']
+);
+
+// ====================================================================
+// 1 TIMOTEO
+// ====================================================================
+
+add('1tm', 2, 5, 'Um SÃ³ Mediator',
+  'MediaÃ§Ã£o.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Unico.', obra: 'Comentario a 1 Timoteo', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Divino-humano.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Hb 9:15']
+);
+
+// ====================================================================
+// 2 TIMOTEO
+// ====================================================================
+
+add('2tm', 3, 16, 'Escritura Inspirada',
+  'Inspiracao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Infalibilidade.', obra: 'Comentario a 2 Timoteo', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Dictado do Espirito.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['2 Pd 1:20-21']
+);
+
+// ====================================================================
+// HEBREUS
+// ====================================================================
+
+add('hb', 1, 1, 'Deus Falou Pelos Profetas',
+  'Revelacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Por etapas.', obra: 'Comentario a Hebreus', ano: 1555 },
+    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Palavra final e Cristo.', obra: 'Church Dogmatics', ano: 1958 },
+  ],
+  ['Hb 1:2-3']
+);
+
+add('hb', 4, 12, 'Palavra de Deus Viva',
+  'Poder da Palavra.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Mais afiada.', obra: 'Comentario a Hebreus', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Viva e operante.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Sl 119:105']
+);
+
+add('hb', 7, 25, 'Sempre Vive Para Interceder',
+  'Intercessao eterna.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Perfeita.', obra: 'Comentario a Hebreus', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Continua.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Rm 8:34']
+);
+
+add('hb', 9, 27, 'Morram Uma SÃ³ Vez',
+  'Juizo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Depois juizo.', obra: 'Comentario a Hebreus', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Apos morte.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['2 Co 5:10']
+);
+
+add('hb', 11, 1, 'Fe e Fundamento',
+  'Definicao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Conviccao invisivel.', obra: 'Comentario a Hebreus', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Habito sobrenatural.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Rm 8:24-25']
+);
+
+add('hb', 12, 2, 'Olhando Para Jesus',
+  'Autor da fe.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Jesus e o centro.', obra: 'Comentario a Hebreus', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Olhe para Jesus.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Jo 3:14']
+);
+
+add('hb', 13, 8, 'Jesus Cristo Ontem e Hoje',
+  'Imutabilidade.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O mesmo sempre.', obra: 'Comentario a Hebreus', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Divina.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Ml 3:6']
+);
+
+// ====================================================================
+// TIAGO
+// ====================================================================
+
+add('tg', 1, 2, 'Considerai como Gozo',
+  'Provacoes.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Produzem perseveranca.', obra: 'Comentario a Tiago', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Testes produzem carater.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Rm 5:3-5']
+);
+
+add('tg', 1, 17, 'Toda Dadiva Vinda do Alto',
+  'Origem divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fonte e Deus.', obra: 'Comentario a Tiago', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Proveem de Deus.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Tg 1:5']
+);
+
+add('tg', 1, 22, 'Praticantes da Palavra',
+  'Obediencia.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Nao basta ouvir.', obra: 'Comentario a Tiago', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Aja.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Mt 7:24-27']
+);
+
+add('tg', 2, 14, 'De Que Serve Dizerem Fe?',
+  'Fe sem obras.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Morta nao salva.', obra: 'Comentario a Tiago', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Viva produz obras.', obra: 'Comentario a Tiago', ano: 1521 },
+  ],
+  ['Ef 2:8-10']
+);
+
+add('tg', 2, 17, 'Assim Tambem a Fe',
+  'FÃ© sem obras e morta.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Opera pelo amor.', obra: 'Comentario a Tiago', ano: 1555 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Se manifesta.', obra: 'Comentario a Tiago', ano: 1521 },
+  ],
+  ['Gl 5:6']
+);
+
+add('tg', 2, 24, 'Abraao Creu',
+  'Fe justificante.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Demonstrada por obras.', obra: 'Comentario a Tiago', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Atuante.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Gn 15:6']
+);
+
+// ====================================================================
+// 1 PEDRO
+// ====================================================================
+
+add('1p', 1, 3, 'Nova Viva Esperanca',
+  'Ressurreicao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Pela ressurreicao.', obra: 'Comentario a 1 Pedro', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Viva esperanca.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['1 Co 15:20']
+);
+
+add('1p', 1, 6-7, 'Provacao da Fe',
+  'Ouro probado pelo fogo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Producncia genuina.', obra: 'Comentario a 1 Pedro', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Fogo purifica.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Tg 1:2-4']
+);
+
+add('1p', 1, 18-19, 'Resgatados com Sangue Precioso',
+  'Redencao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cordeiro sem mancha.', obra: 'Comentario a 1 Pedro', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sacrificio.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Ef 1:7']
+);
+
+add('1p', 2, 9, 'Linha Escolhida',
+  'Novo Israel.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Sacerdotes.', obra: 'Comentario a 1 Pedro', ano: 1555 },
+    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Testemunha.', obra: 'Church Dogmatics', ano: 1958 },
+  ],
+  ['Ex 19:5-6']
+);
+
+add('1p', 3, 15, 'Estai Sempre Prontos',
+  'Defesa da fe.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Com mansidao.', obra: 'Comentario a 1 Pedro', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Razoes firmes.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['2 Tm 2:15']
+);
+
+// ====================================================================
+// 1 JOAO
+// ====================================================================
+
+add('1jo', 1, 1, 'O que Era do Principio',
+  'Testemunho ocular.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Verbo de vida.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Viemos tocar.', obra: 'Tractatus', ano: 416 },
+  ],
+  ['Jo 1:1']
+);
+
+add('1jo', 1, 7, 'Sangue de Jesus',
+  'Purificacao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Purifica continuamente.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Sangue que lava.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Ef 1:7']
+);
+
+add('1jo', 1, 8-9, 'Se Dissermos Que Nao Pecamos',
+  'Confissao e perdao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'PerdÃ£o fiel.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Justo em perdoar.', obra: 'Tractatus', ano: 416 },
+  ],
+  ['Sl 32:5']
+);
+
+add('1jo', 2, 1, 'Advogado junto ao Pai',
+  'Intercessao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Jesus e propiciacao.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Intercessor.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Hb 7:25']
+);
+
+add('1jo', 2, 15-17, 'Nao Ameis o Mundo',
+  'Perigo do mundo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Vaidade e passa.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Fugir da vaidade.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Ec 1:2']
+);
+
+add('1jo', 2, 17, 'O Mundo Passa',
+  'Temporalidade.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Quem faz vontade permanece.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Eternidade importa.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Mt 24:35']
+);
+
+add('1jo', 3, 1, 'Que Amor Nos Deu',
+  'Filhacao divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Filhos de Deus.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Amor imerecido.', obra: 'Tractatus', ano: 416 },
+  ],
+  ['Jo 1:12']
+);
+
+add('1jo', 3, 4, 'Todo o que Peca',
+  'Pecado e transgressao.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Violacao da lei.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Inobediencia.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Rm 5:13']
+);
+
+add('1jo', 3, 8, 'Para Desfazer as Obras do Diabo',
+  'Missao de Cristo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Destruir pecado.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Vitoria sobre SatanÃ¡s.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Gn 3:15']
+);
+
+add('1jo', 3, 16, 'Pelos IrmÃ£os',
+  'Amor demonstrado.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Dar a vida.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sacrificio.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jo 15:13']
+);
+
+add('1jo', 4, 7-8, 'O Amor e de Deus',
+  'Fonte do amor.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus e amor.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Quem nao ama nao conhece.', obra: 'Tractatus', ano: 416 },
+  ],
+  ['Jo 4:8']
+);
+
+add('1jo', 4, 18, 'Nao Ha Medo no Amor',
+  'Amor expulsa medo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Perfeicao do amor.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Amor remove terror.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['2 Tm 1:7']
+);
+
+add('1jo', 4, 19, 'NÃ³s O Amamos Porque Ele',
+  'Amorå“åº”.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Amor primeiro e dEle.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Amor que nos antecede.', obra: 'Tractatus', ano: 416 },
+  ],
+  ['Ef 2:4-5']
+);
+
+add('1jo', 5, 1, 'Todo o que CrÃª',
+  'Nascimento de Deus.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Nasceu dEle.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Regeneracao.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Jo 1:12-13']
+);
+
+add('1jo', 5, 11-13, 'Testemunho e Este',
+  'Vida eterna presente.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Ja temos vida.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Seguranca.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Jo 3:36']
+);
+
+// ====================================================================
+// JUDAS
+// ====================================================================
+
+add('jd', 3, 3, 'Contendei Pela Fe',
+  'Defesa da fé.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Lutar pela verdade.', obra: 'Comentario a Judas', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Nao ceder.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Fp 1:27']
+);
+
+add('jd', 1, 24, 'Aquele Que Pode Guardar',
+  'Seguranca final.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Conduzira a gloria.', obra: 'Comentario a Judas', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Deus guarda.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Fp 1:6', 'Jd 25']
+);
+
+// ====================================================================
+// APOCALIPSE
+// ====================================================================
+
+add('ap', 1, 7, 'Verao Todo Filho do Homem',
+  'Segunda vinda.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Vem com nuvens.', obra: 'Comentario a Apocalipse', ano: 1555 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Triunfal.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Mt 24:30']
+);
+
+add('ap', 1, 8, 'Eu Sou o Alfa e o Omega',
+  'Eternidade.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Inicio e fim.', obra: 'Comentario a Apocalipse', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Eternidade.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['Is 44:6']
+);
+
+add('ap', 3, 20, 'Eis Eu Estou a Porta',
+  'Convite.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Chama e espera.', obra: 'Comentario a Apocalipse', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Bate e sera aberto.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Lc 12:36']
+);
+
+add('ap', 5, 9, 'Matariste e Compraste',
+  'Redencao pelo sangue.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cordeiro imolado.', obra: 'Comentario a Apocalipse', ano: 1555 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Sacrificio eterno.', obra: 'Suma Teologica', ano: 1274 },
+  ],
+  ['1 Pd 1:18-19']
+);
+
+add('ap', 7, 9, 'Grande Multidao',
+  'Igreja glorificada.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Tribos e lingua.', obra: 'Comentario a Apocalipse', ano: 1555 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Universalidade.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['Mt 28:19']
+);
+
+add('ap', 19, 16, 'Rei dos Reis',
+  'Supremacia de Cristo.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Senhor absoluto.', obra: 'Comentario a Apocalipse', ano: 1555 },
+    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Rei vitorioso.', obra: 'Church Dogmatics', ano: 1958 },
+  ],
+  ['1 Tm 6:15']
+);
+
+add('ap', 21, 1, 'Novos Ceus e Nova Terra',
+  'Renovacao cosmica.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Restauracao total.', obra: 'Comentario a Apocalipse', ano: 1555 },
+    { teologo: 'Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Nao substituicao, renovacao.', obra: 'NT and People of God', ano: 1992 },
+  ],
+  ['2 Pd 3:13', 'Is 65:17']
+);
+
+add('ap', 21, 3, 'Deus Habita com os Homens',
+  'Presenca divina.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Tenda entre nos.', obra: 'Comentario a Apocalipse', ano: 1555 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Cidade de Deus.', obra: 'De Civitate Dei', ano: 426 },
+  ],
+  ['Ez 37:27']
+);
+
+add('ap', 21, 4, 'EnxugarÃ¡ Todas as LÃ¡grimas',
+  'Fim do sofrimento.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Morte e dor suprimidas.', obra: 'Comentario a Apocalipse', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Consolacao eterna.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['Is 25:8']
+);
+
+add('ap', 22, 20, 'Sim, Venho Logo',
+  'Esperanca escatologica.',
+  [
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Vem, Senhor Jesus.', obra: 'Comentario a Apocalipse', ano: 1555 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Espera ativa.', obra: 'Sermoes', ano: 1870 },
+  ],
+  ['1 Co 16:22']
+);
 
 export default comentariosNovos;
 export { comentariosNovos };

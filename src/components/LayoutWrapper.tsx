@@ -9,7 +9,8 @@ import TopProgressBar from '@/components/TopProgressBar';
 import BackToTop from '@/components/BackToTop';
 import { Toaster } from '@/components/ui/toast-helpers';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+import { trackPageView } from '@/lib/analytics';
 import '@/lib/i18n';
 
 const AIPainelLateral = lazy(() => import('@/components/AIPainelLateral').then(m => ({ default: m.AIPainelLateral })));
@@ -73,11 +74,20 @@ function GlobalHotkeys() {
   );
 }
 
+function PageViewTracker() {
+  const pathname = usePathname();
+  useEffect(() => {
+    trackPageView(pathname);
+  }, [pathname]);
+  return null;
+}
+
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
       <AuthProvider>
         <ServiceWorkerRegistration />
+        <PageViewTracker />
         <TooltipProvider delayDuration={300}>
           <AIProvider>
             <EstudosProvider>

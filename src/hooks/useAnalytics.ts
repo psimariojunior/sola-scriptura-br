@@ -6,8 +6,7 @@ import {
   trackPageView,
   trackFeatureUsage,
   trackSearch,
-  getMostUsedFeatures,
-  getPageViewCount,
+  getStats,
   getSearchHistory,
   clearAnalytics,
 } from '@/lib/analytics';
@@ -45,8 +44,7 @@ export function useAnalytics() {
     trackToolUse,
     trackSearchQuery,
     trackFeature,
-    getMostUsedFeatures,
-    getPageViewCount,
+    getStats,
     getSearchHistory,
     clearAnalytics,
   };

@@ -10,10 +10,12 @@ import {
   Settings, Activity, BookMarked, TrendingUp, BarChart3,
   Calendar, Bell, Search, Plus, Edit, Trash2, Eye, Download,
   Upload, RefreshCw, CheckCircle, AlertCircle, Clock, Sparkles,
-  Loader2, X, Save, ChevronDown, ChevronUp, ExternalLink, Star
+  Loader2, X, Save, ChevronDown, ChevronUp, ExternalLink, Star,
+  Headphones, HelpCircle, BookCopy
 } from 'lucide-react';
+import { getStats } from '@/lib/analytics';
 
-type Aba = 'dashboard' | 'conteudo' | 'usuarios' | 'estudos' | 'config';
+type Aba = 'dashboard' | 'conteudo' | 'usuarios' | 'estudos' | 'config' | 'analytics';
 
   const API_BASE = 'local'; // No backend needed
 
@@ -98,6 +100,10 @@ export default function AdminPage() {
   const [showNewDoctrine, setShowNewDoctrine] = useState(false);
   const [newDoctrine, setNewDoctrine] = useState({ nome: '', slug: '', descricao: '', categoria: '' });
   const [editingDoctrine, setEditingDoctrine] = useState<string | null>(null);
+
+  // Analytics
+  const [analyticsStats, setAnalyticsStats] = useState<ReturnType<typeof getStats> | null>(null);
+  const [analyticsLoading, setAnalyticsLoading] = useState(false);
 
   // Config
   const [config, setConfig] = useState({
@@ -202,6 +208,16 @@ export default function AdminPage() {
     }
   };
 
+  // Analytics
+  const fetchAnalytics = async () => {
+    setAnalyticsLoading(true);
+    try {
+      setAnalyticsStats(getStats());
+    } finally {
+      setAnalyticsLoading(false);
+    }
+  };
+
   // Load data on tab change
   useEffect(() => {
     if (!isAuth) return;
@@ -209,6 +225,7 @@ export default function AdminPage() {
     if (aba === 'usuarios') fetchUsuarios();
     if (aba === 'conteudo') fetchDoutrinas();
     if (aba === 'estudos') fetchEstudos();
+    if (aba === 'analytics') fetchAnalytics();
   }, [aba, isAuth]);
 
   // CRUD: Delete doctrine (local only)
@@ -276,6 +293,7 @@ export default function AdminPage() {
     { id: 'conteudo', label: 'Conteúdo', icon: BookOpen },
     { id: 'usuarios', label: 'Usuários', icon: Users },
     { id: 'estudos', label: 'Estudos', icon: FileText },
+    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
     { id: 'config', label: 'Configurações', icon: Settings },
   ];
 
@@ -825,6 +843,230 @@ export default function AdminPage() {
                       <FileText className="w-12 h-12 text-muted-foreground/40 mx-auto mb-4" />
                       <p className="text-muted-foreground">Nenhum estudo encontrado</p>
                       <button onClick={fetchEstudos} className="mt-4 text-primary text-sm hover:underline">Recarregar</button>
+                    </div>
+                  )}
+                </div>
+              </ScrollReveal>
+            )}
+
+            {/* Analytics Tab */}
+            {aba === 'analytics' && (
+              <ScrollReveal>
+                <div>
+                  <div className="flex items-center justify-between mb-8">
+                    <div>
+                      <h1 className="font-display text-3xl font-semibold">Analytics</h1>
+                      <p className="text-muted-foreground mt-1">Comportamento do usuário</p>
+                    </div>
+                    <button
+                      onClick={fetchAnalytics}
+                      disabled={analyticsLoading}
+                      className="flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-xl text-sm font-medium hover:bg-primary/90 transition-colors disabled:opacity-50"
+                    >
+                      {analyticsLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
+                      Atualizar
+                    </button>
+                  </div>
+
+                  {analyticsLoading && !analyticsStats ? (
+                    <div className="flex items-center justify-center py-20">
+                      <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                    </div>
+                  ) : analyticsStats ? (
+                    <>
+                      {/* Summary cards */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+                        <div className="glass-card rounded-2xl overflow-hidden">
+                          <div className="px-5 py-4 bg-gradient-to-r from-blue-500 to-blue-600">
+                            <BarChart3 className="w-6 h-6 text-white" />
+                          </div>
+                          <div className="p-5">
+                            <p className="text-3xl font-display font-light text-primary">{analyticsStats.totalPageViews}</p>
+                            <p className="text-sm font-medium mt-1">Page Views</p>
+                          </div>
+                        </div>
+                        <div className="glass-card rounded-2xl overflow-hidden">
+                          <div className="px-5 py-4 bg-gradient-to-r from-amber-500 to-amber-600">
+                            <Search className="w-6 h-6 text-white" />
+                          </div>
+                          <div className="p-5">
+                            <p className="text-3xl font-display font-light text-primary">{analyticsStats.totalSearches}</p>
+                            <p className="text-sm font-medium mt-1">Pesquisas</p>
+                          </div>
+                        </div>
+                        <div className="glass-card rounded-2xl overflow-hidden">
+                          <div className="px-5 py-4 bg-gradient-to-r from-green-500 to-green-600">
+                            <Headphones className="w-6 h-6 text-white" />
+                          </div>
+                          <div className="p-5">
+                            <p className="text-3xl font-display font-light text-primary">{analyticsStats.totalAudioPlays}</p>
+                            <p className="text-sm font-medium mt-1">Áudios</p>
+                          </div>
+                        </div>
+                        <div className="glass-card rounded-2xl overflow-hidden">
+                          <div className="px-5 py-4 bg-gradient-to-r from-purple-500 to-purple-600">
+                            <HelpCircle className="w-6 h-6 text-white" />
+                          </div>
+                          <div className="p-5">
+                            <p className="text-3xl font-display font-light text-primary">{analyticsStats.totalQuizCompletions}</p>
+                            <p className="text-sm font-medium mt-1">Quizzes</p>
+                          </div>
+                        </div>
+                        <div className="glass-card rounded-2xl overflow-hidden">
+                          <div className="px-5 py-4 bg-gradient-to-r from-rose-500 to-rose-600">
+                            <BookCopy className="w-6 h-6 text-white" />
+                          </div>
+                          <div className="p-5">
+                            <p className="text-3xl font-display font-light text-primary">{analyticsStats.totalStudySessions}</p>
+                            <p className="text-sm font-medium mt-1">Sessões</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        {/* Top Pages */}
+                        <div className="glass-card p-6 rounded-2xl">
+                          <h2 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                            <BarChart3 className="w-5 h-5 text-primary" />
+                            Páginas Mais Visitadas
+                          </h2>
+                          {analyticsStats.topPages.length > 0 ? (
+                            <div className="space-y-3">
+                              {analyticsStats.topPages.map((p, i) => {
+                                const maxCount = analyticsStats.topPages[0]?.count || 1;
+                                const pct = Math.round((p.count / maxCount) * 100);
+                                return (
+                                  <div key={i}>
+                                    <div className="flex items-center justify-between text-sm mb-1">
+                                      <span className="truncate max-w-[200px] font-medium">{p.page}</span>
+                                      <span className="text-muted-foreground shrink-0 ml-2">{p.count}</span>
+                                    </div>
+                                    <div className="w-full h-2 bg-muted/50 rounded-full overflow-hidden">
+                                      <div
+                                        className="h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full transition-all"
+                                        style={{ width: `${pct}%` }}
+                                      />
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">Nenhum dado disponível</p>
+                          )}
+                        </div>
+
+                        {/* Recent Searches */}
+                        <div className="glass-card p-6 rounded-2xl">
+                          <h2 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                            <Search className="w-5 h-5 text-primary" />
+                            Pesquisas Recentes
+                          </h2>
+                          {analyticsStats.recentSearches.length > 0 ? (
+                            <div className="space-y-2">
+                              {analyticsStats.recentSearches.slice(0, 15).reverse().map((s, i) => (
+                                <div key={i} className="flex items-center justify-between py-2 border-b border-border/20 last:border-b-0">
+                                  <span className="text-sm truncate">{s.query}</span>
+                                  <span className="text-xs text-muted-foreground shrink-0 ml-2">
+                                    {new Date(s.timestamp).toLocaleDateString('pt-BR')}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">Nenhuma pesquisa registrada</p>
+                          )}
+                        </div>
+
+                        {/* Top Audio */}
+                        <div className="glass-card p-6 rounded-2xl">
+                          <h2 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                            <Headphones className="w-5 h-5 text-primary" />
+                            Áudios Mais Tocados
+                          </h2>
+                          {analyticsStats.topAudio.length > 0 ? (
+                            <div className="space-y-3">
+                              {analyticsStats.topAudio.map((a, i) => {
+                                const maxCount = analyticsStats.topAudio[0]?.count || 1;
+                                const pct = Math.round((a.count / maxCount) * 100);
+                                return (
+                                  <div key={i}>
+                                    <div className="flex items-center justify-between text-sm mb-1">
+                                      <span className="truncate max-w-[200px] font-medium">{a.reference}</span>
+                                      <span className="text-muted-foreground shrink-0 ml-2">{a.count}</span>
+                                    </div>
+                                    <div className="w-full h-2 bg-muted/50 rounded-full overflow-hidden">
+                                      <div
+                                        className="h-full bg-gradient-to-r from-green-500 to-green-400 rounded-full transition-all"
+                                        style={{ width: `${pct}%` }}
+                                      />
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">Nenhum áudio tocado</p>
+                          )}
+                        </div>
+
+                        {/* Quiz Stats & Study Sessions */}
+                        <div className="glass-card p-6 rounded-2xl">
+                          <h2 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                            <HelpCircle className="w-5 h-5 text-primary" />
+                            Quizzes & Sessões de Estudo
+                          </h2>
+                          <div className="space-y-4">
+                            <div className="p-4 bg-purple-500/5 border border-purple-500/10 rounded-xl">
+                              <div className="flex items-center justify-between">
+                                <span className="text-sm font-medium">Quiz — Média de acerto</span>
+                                <span className="text-lg font-display font-semibold text-primary">
+                                  {analyticsStats.quizStats.avgScore}%
+                                </span>
+                              </div>
+                              <p className="text-xs text-muted-foreground mt-1">
+                                {analyticsStats.quizStats.totalScore}/{analyticsStats.quizStats.totalQuestions} respostas corretas
+                              </p>
+                            </div>
+
+                            {analyticsStats.topStudyBooks.length > 0 && (
+                              <div>
+                                <p className="text-sm font-medium mb-2">Livros mais estudados</p>
+                                {analyticsStats.topStudyBooks.slice(0, 5).map((b, i) => {
+                                  const maxCount = analyticsStats.topStudyBooks[0]?.count || 1;
+                                  const pct = Math.round((b.count / maxCount) * 100);
+                                  return (
+                                    <div key={i}>
+                                      <div className="flex items-center justify-between text-sm mb-1">
+                                        <span className="truncate max-w-[180px]">{b.book}</span>
+                                        <span className="text-muted-foreground shrink-0 ml-2">{b.count}</span>
+                                      </div>
+                                      <div className="w-full h-1.5 bg-muted/50 rounded-full overflow-hidden">
+                                        <div
+                                          className="h-full bg-gradient-to-r from-rose-500 to-rose-400 rounded-full transition-all"
+                                          style={{ width: `${pct}%` }}
+                                        />
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-6 text-center">
+                        <p className="text-xs text-muted-foreground">
+                          Total de eventos: {analyticsStats.totalEvents} — Dados armazenados localmente (localStorage)
+                        </p>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="glass-card p-8 rounded-2xl text-center">
+                      <BarChart3 className="w-12 h-12 text-muted-foreground/40 mx-auto mb-4" />
+                      <p className="text-muted-foreground">Falha ao carregar analytics</p>
+                      <button onClick={fetchAnalytics} className="mt-4 text-primary text-sm hover:underline">Tentar novamente</button>
                     </div>
                   )}
                 </div>

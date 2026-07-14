@@ -268,7 +268,7 @@ export class KnowledgeGraphService {
           id: `livro:${livro.id}`,
           tipo: 'livro',
           nome: livro.nome,
-          descricao: `${livro.testamento || ''} - ${livro.quantidadeCapitulos || ''} capítulos`,
+          descricao: `${livro.testamento || ''} - ${livro.totalCapitulos || ''} capítulos`,
         });
       }
     } catch (e) {
@@ -283,7 +283,7 @@ export class KnowledgeGraphService {
         this.adicionarNoSeNovo({
           id: `personagem:${p.id}`,
           tipo: 'pessoa',
-          nome: p.nomePortugues || p.nome,
+          nome: p.nomePortugues,
           descricao: p.biografia?.slice(0, 200),
           metadados: {
             nomeHebraico: p.nomeHebraico,

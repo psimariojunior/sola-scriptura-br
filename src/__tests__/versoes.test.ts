@@ -2,7 +2,7 @@ import { traducoes, traducaoPadrao } from '@/data/biblia/versoes';
 
 describe('Traduções', () => {
   it('should have 8 translations', () => {
-    expect(traducoes).toHaveLength(8);
+    expect(traducoes).toHaveLength(9);
   });
 
   it('should have ARC as default translation', () => {
@@ -13,6 +13,7 @@ describe('Traduções', () => {
     const ids = traducoes.map(t => t.id);
     expect(ids).toContain('arc');
     expect(ids).toContain('nvi');
+    expect(ids).toContain('naa');
     expect(ids).toContain('ara');
     expect(ids).toContain('acf');
     expect(ids).toContain('aa');

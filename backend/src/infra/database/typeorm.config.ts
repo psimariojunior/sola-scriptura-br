@@ -15,7 +15,7 @@ if (url) {
     username: parsed.username,
     password: parsed.password,
     database: parsed.pathname.slice(1),
-    ssl: { rejectUnauthorized: false },
+    ssl: false,
     entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
     migrations: [__dirname + '/migrations/*{.ts,.js}'],
     synchronize: false,

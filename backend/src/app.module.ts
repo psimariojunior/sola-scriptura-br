@@ -47,7 +47,7 @@ import { SaudeController } from './modules/saude.controller';
             type: 'postgres',
             url: databaseUrl,
             entities: [__dirname + '/**/*.entity{.ts,.js}'],
-            synchronize: true,
+            synchronize: false,
             logging: false,
           };
         }
@@ -59,7 +59,7 @@ import { SaudeController } from './modules/saude.controller';
           password: config.get('DB_PASSWORD') || config.get('PGPASSWORD') || 'sola_scriptura',
           database: config.get('DB_NAME') || config.get('PGDATABASE') || 'sola_scriptura',
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
-          synchronize: true,
+          synchronize: false,
           ssl: config.get('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
           logging: config.get('NODE_ENV') !== 'production',
         };

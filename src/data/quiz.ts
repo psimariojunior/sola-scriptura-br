@@ -596,8 +596,312 @@ export function obterPerguntasPorLivro(livro: string, nivel?: NivelQuiz, quantid
   return filtradas.sort(() => Math.random() - 0.5).slice(0, Math.min(quantidade, filtradas.length));
 }
 
+const perguntasExpansao: PerguntaQuiz[] = [
+  // ============================================
+  // 1. HISTÓRIA DO ANTIGO TESTAMENTO (40 questões)
+  // ============================================
+  // Criação e Queda
+  q('h001',"Em que dia Deus criou a luz?",["Primeiro dia","Segundo dia","Terceiro dia","Quarto dia"],0,"Gênesis 1:3-5 — Deus separou a luz das trevas no primeiro dia.",'historia','facil','multipla','Gênesis 1:3'),
+  q('h002',"Qual foi o primeiro homem criado por Deus?",["Adão","Noé","Abraão","Moisés"],0,"Gênesis 2:7 — Deus formou o homem do pó da terra.",'historia','facil','multipla','Gênesis 2:7'),
+  q('h003',"V/F: Eva foi criada a partir da costela de Adão.",["Verdadeiro","Falso","",""],0,"Gênesis 2:21-22 — Deus tomou uma costela e formou a mulher.",'historia','facil','verdadeiro_falso','Gênesis 2:21'),
+  q('h004',"Qual fruto Adão e Eva não deveriam comer?",["Árvore do conhecimento do bem e do mal","Árvore da vida","Árvore do perdão","Árvore da sabedoria"],0,"Gênesis 2:16-17 — Proibição divina.",'historia','facil','multipla','Gênesis 2:16'),
+  q('h005',"Quem tentou Eva no jardim?",["A serpente","Satanás directamente","Um anjo caído","Um animal"],0,"Gênesis 3:1 — A serpente era o mais astuto dos animais.",'historia','medio','multipla','Gênesis 3:1'),
+  q('h006',"Qual foi a consequência da queda para Adão?",["Trabalhar com suor do rosto","Morrer imediatamente","Ficar cego","Perder a fala"],0,"Gênesis 3:19 — Comerás o pão com suor do teu rosto.",'historia','medio','multipla','Gênesis 3:19'),
+  q('h007',"Quantos filhos Adão e Eva tiveram mencionados?",["Cain e Abel","Sete filhos","Doze filhos","Três filhos"],0,"Gênesis 4:1-2 — Cain e Abel são mencionados.",'historia','medio','multipla','Gênesis 4:1'),
+  q('h008',"Quem matou Abel?",["Cain","Set","Adão","Noé"],0,"Gênesis 4:8 — Cain levantou-se contra Abel.",'historia','facil','multipla','Gênesis 4:8'),
+  q('h009',"O que Cain construiu após ser amaldiçoado?",["Uma cidade","Um templo","Um palácio","Uma muralha"],0,"Gênesis 4:17 — Cain edificou uma cidade.",'historia','medio','multipla','Gênesis 4:17'),
+  q('h010',"Quem viveu 969 anos, sendo o homem mais velho da Bíblia?",["Matusalém","Noé","Adão","Sete"],0,"Gênesis 5:27 — Idade de Matusalém.",'historia','facil','multipla','Gênesis 5:27'),
+
+  // Dilúvio
+  q('h011',"Quantos dias e noites choveu no dilúvio?",["40 dias e 40 noites","7 dias","100 dias","120 dias"],0,"Gênesis 7:12 — Chuva sobre a terra quarenta dias e quarenta noites.",'historia','facil','multipla','Gênesis 7:12'),
+  q('h012',"Qual foi a altura da arca de Noé?",["30 côvados","50 côvados","100 côvados","10 côvados"],0,"Gênesis 6:15 — Trinta côvados de altura.",'historia','medio','multipla','Gênesis 6:15'),
+  q('h013',"Quantas pessoas foram salvas no dilúvio?",["8","4","12","3"],0,"1 Pedro 3:20 — Oito almas foram salvas.",'historia','medio','multipla','1 Pedro 3:20'),
+  q('h014',"Que sinal Deus colocou no céu após o dilúvio?",["Arco-íris","Estrela","Lua nova","Cometa"],0,"Gênesis 9:13 — Minha arco-íris na nuvem.",'historia','facil','multipla','Gênesis 9:13'),
+  q('h015',"O que Deus prometeu não fazer mais após o dilúvio?",["Destruir a terra com água","Perdoar pecados","Enviar profetas","Mudar as estações"],0,"Gênesis 9:11 — Não haverá mais dilúvio para destruir a terra.",'historia','medio','multipla','Gênesis 9:11'),
+
+  // Abraão e Patriarcas
+  q('h016',"De que cidade Deus chamou Abraão?",["Ur dos caldeus","Haran","Canaã","Egito"],0,"Gênesis 11:31 — Saiu de Ur dos caldeus.",'historia','medio','multipla','Gênesis 11:31'),
+  q('h017',"Quantos filhos teve Abraão com Sara?",["1 (Isaque)","2 (Ismael e Isaque)","3","0"],0,"Gênesis 21:2 — Sara concebeu e deu à luz Isaque.",'historia','medio','multipla','Gênesis 21:2'),
+  q('h018',"Qual foi o teste de fé mais difícil de Abraão?",["Sacrificar Isaque","Levar Sarai ao Egito","Separar-se de Lot","Deixar Ur"],0,"Gênesis 22:1-2 — Toma teu filho, teu único.",'historia','facil','multipla','Gênesis 22:1'),
+  q('h019',"Em que monte Abraão ia sacrificar Isaque?",["Moria","Sinai","Carmelo","Nebo"],0,"Gênesis 22:2 — Vai à terra de Moriá.",'historia','medio','multipla','Gênesis 22:2'),
+  q('h020',"Quem substituiu Isaque no sacrifício?",["Um cordeiro","Um carneiro","Um boi","Um bode"],0,"Gênesis 22:13 — Um carneiro preso num maze.",'historia','facil','multipla','Gênesis 22:13'),
+
+  // José no Egito
+  q('h021',"Quantos irmãos José tinha?",["11","12","10","7"],0,"Gênesis 35:22 — Doze filhos de Jacó.",'historia','medio','multipla','Gênesis 35:22'),
+  q('h022',"Quantos sonhos José interpretou para o Faraó?",["2","1","3","4"],0,"Gênesis 41:1-32 — As sete vacas magras e as sete espigas.",'historia','medio','multipla','Gênesis 41:1'),
+  q('h023',"Quanto tempo de fartura e fome José profetizou?",["7 anos de fartura e 7 de fome","5 e 5","10 e 5","3 e 3"],0,"Gênesis 41:29-30 — Sete anos de grande fartura.",'historia','medio','multipla','Gênesis 41:29'),
+  q('h024',"Que cargo José ocupou no Egito?",["Viziro","General","Sacerdote","Conselheiro"],0,"Gênesis 41:40 — Tu serás sobre a minha casa.",'historia','facil','multipla','Gênesis 41:40'),
+
+  // Êxodo
+  q('h025',"Quantos anos Israel ficou escravo no Egito?",["430 anos","400 anos","215 anos","100 anos"],0,"Êxodo 12:40 — 430 anos.",'historia','medio','multipla','Êxodo 12:40'),
+  q('h026',"Quantas pragas Deus enviou ao Egito?",["10","7","12","5"],0,"Êxodo 7-12 — Dez pragas.",'historia','facil','multipla','Êxodo 7-12'),
+  q('h027',"Qual foi a última praga do Egito?",["Morte dos primogênitos","Trevas","Granizo","Rãs"],0,"Êxodo 12:29 — Morte de todos os primogênitos.",'historia','facil','multipla','Êxodo 12:29'),
+  q('h028',"O que Israel deve pintar nas portas para a praga passar?",["Sangue de cordeiro","Óleo","Água","Incenso"],0,"Êxodo 12:7 — Sinal de sangue na ombreira.",'historia','medio','multipla','Êxodo 12:7'),
+  q('h029',"Quantas colunas de fogo guiaram Israel no deserto?",["Uma","Duas","Três","Quatro"],0,"Números 14:14 — Coluna de fogo.",'historia','medio','multipla','Números 14:14'),
+  q('h030',"Que alimento caiu do céu no deserto?",["Maná","Carne","Pão","Frutas"],0,"Êxodo 16:4 — Pão do céu.",'historia','facil','multipla','Êxodo 16:4'),
+  q('h031',"Em que monte Moisés recebeu os Dez Mandamentos?",["Sinai","Carmelo","Nebo","Horebe"],0,"Êxodo 19:20 — Moisés subiu ao monte Sinai.",'historia','facil','multipla','Êxodo 19:20'),
+  q('h032',"Quem quebrou as tábuas da Lei?",["Moisés","Josué","Aarão","Davi"],0,"Êxodo 32:19 — Moisés quebrou as tábuas ao ver o bezerro.",'historia','medio','multipla','Êxodo 32:19'),
+
+  // Período dos Juízes
+  q('h033',"Quem foi o primeiro juiz de Israel?",["Otoniel","Gideão","Débora","Samuel"],0,"Juízes 3:9-11 — Otoniel foi o primeiro juiz.",'historia','medio','multipla','Juízes 3:9'),
+  q('h034',"Quantos soldados Gideão usou para derrotar os midianitas?",["300","1000","10000","30000"],0,"Juízes 7:7 — Trezentos homens.",'historia','facil','multipla','Juízes 7:7'),
+  q('h035',"Qual sinal Deus deu a Gideão com a lã?",["Lã molhada, chão seco","Chão molhado, lã seca","Lã branca","Fogo na lã"],0,"Juízes 6:36-40 — A lã molhada e o orvalho.",'historia','medio','multipla','Juízes 6:36'),
+  q('h036',"Quem matou Sísera com estaca?",["Jael","Débora","Ester","Rute"],0,"Juízes 4:21 — Jael cravou a estaca na têmpora.",'historia','medio','multipla','Juízes 4:21'),
+  q('h037',"Qual juiz era manco e matou 1000 filisteus?",["Sansão","Gideão","Jeftá","Ehud"],0,"Juízes 3:15-22 — Ehud, canhoto.",'historia','medio','multipla','Juízes 3:15'),
+  q('h038',"Quem fez voto de sacrificar o que saísse de sua casa?",["Jeftá","Gideão","Sansão","Samuel"],0,"Juízes 11:30-31 — Jeftá fez voto.",'historia','medio','multipla','Juízes 11:30'),
+  q('h039',"Quem derrotou 1000 filisteus com queixo de jumento?",["Sansão","Gideão","Samuel","Joás"],0,"Juízes 15:15 — Sansão com queixo de jumento.",'historia','facil','multipla','Juízes 15:15'),
+  q('h040',"Quantos filhos Sansão teve?",["Nenhum mencionado","2","3","5"],0,"O livro de Sansão não menciona filhos.", 'historia','dificil','multipla'),
+
+  // Reis de Israel
+  q('h041',"Quem foi ungido por Samuel como primeiro rei?",["Saul","Davi","Salomão","Isbosete"],0,"1 Samuel 10:1 — Samuel ungiu Saul.", 'historia','facil','multipla','1 Samuel 10:1'),
+  q('h042',"Quantos anos Saul reinou?",["40 anos","20 anos","30 anos","12 anos"],0,"Atos 13:21 — 40 anos.", 'historia','medio','multipla','Atos 13:21'),
+  q('h043',"Quantos anos Davi reinou?",["40 anos","30 anos","20 anos","50 anos"],0,"1 Reis 2:11 — 40 anos.", 'historia','medio','multipla','1 Reis 2:11'),
+  q('h044',"Quantos anos Salomão reinou?",["40 anos","30 anos","20 anos","60 anos"],0,"1 Reis 11:42 — 40 anos.", 'historia','medio','multipla','1 Reis 11:42'),
+  q('h045',"Quantos filhos Salomão teve?",["Nove","Sete","Doze","Vinte"],0,"1 Reis 4:11 — Pelo menos nove filhos mencionados.", 'historia','dificil','multipla'),
+  q('h046',"O que Salomão pediu a Deus?",["Sabedoria","Riqueza","Vida longa","Vitória"],0,"1 Reis 3:11 — Sabedoria para governar.", 'historia','facil','multipla','1 Reis 3:11'),
+  q('h047',"Reino dividiu-se após a morte de Salomão. Quem liderou o norte?",["Jeroboão","Roboão","Absalom","Adonias"],0,"1 Reis 12:16-20 — Jeroboão, rei do norte.", 'historia','medio','multipla','1 Reis 12:16'),
+  q('h048',"Que ídolos Jeroboão colocou no norte?",["Dois bezerros de ouro","Baal","Astarote","Moloc"],0,"1 Reis 12:28-29 — Dois bezerros.", 'historia','medio','multipla','1 Reis 12:28'),
+  q('h049',"Quem foi o rei mais mau de Judá?",["Manassés","Acaz","Acazias","Amom"],0,"2 Reis 21:1-9 — Manassés.", 'historia','medio','multipla','2 Reis 21:1'),
+  q('h050',"Quem reformou o culto e encontrou o Livro da Lei?",["Josias","Ezequias","Manassés","Amom"],0,"2 Reis 22:8-10 — Josias.", 'historia','facil','multipla','2 Reis 22:8'),
+
+  // Exílio e Retorno
+  q('h051',"Quem destruiu o Primeiro Templo de Jerusalém?",["Nebucodonosor","Ciro","Dario","Alexandre"],0,"2 Reis 25:8-9 — Nebucodonosor.", 'historia','facil','multipla','2 Reis 25:8'),
+  q('h052',"Quantos anos durou o exílio babilônico?",["70 anos","40 anos","100 anos","50 anos"],0,"Jeremias 25:11 — 70 anos.", 'historia','medio','multipla','Jeremias 25:11'),
+  q('h053',"Quem libertou os judeus do exílio?",["Ciro da Pérsia","Dario","Alexandre","Artaxerxes"],0,"2 Crônicas 36:22-23 — Ciro da Pérsia.", 'historia','facil','multipla','2 Crônicas 36:22'),
+  q('h054',"Quem liderou a reconstrução do Templo?",["Zorobabel","Esdras","Neemias","Ageu"],0,"Esdras 3-6 — Zorobabel.", 'historia','medio','multipla','Esdras 3'),
+  q('h055',"Quem reconstruiu os muros de Jerusalém?",["Neemias","Esdras","Zorobabel","Ciro"],0,"Neemias 2:18 — Neemias.", 'historia','facil','multipla','Neemias 2:18'),
+  q('h056',"Quem leu a Lei de Moisés ao povo em Jerusalém?",["Esdras","Neemias","Zorobabel","Malaquias"],0,"Neemias 8:1-8 — Esdras.", 'historia','medio','multipla','Neemias 8'),
+  q('h057',"O que o povo fez ao ouvir a Lei lida por Esdras?",["Choraram","Celebraram","Dormiram","Rejeitaram"],0,"Neemias 8:9 — O povo chorou ao ouvir a Lei.", 'historia','medio','multipla','Neemias 8:9'),
+  q('h058',"Que decreto Ciro emitiu?",["Liberdade para reconstruir o Templo","Expulsão dos judeus","Proibição da religião","Obrigatoriedade da circuncisão"],0,"Esdras 1:2-4 — Decreto de Ciro.", 'historia','medio','multipla','Esdras 1:2'),
+
+  // Eventos Extras AT
+  q('h059',"Quantas tribos Israel tinha?",["12","10","13","14"],0,"Gênesis 49 — 12 filhos de Jacó.", 'historia','facil','multipla','Gênesis 49'),
+  q('h060',"Quem vendeu a primogenitura por um prato de lentilhas?",["Esaú","Jacó","Isaque","José"],0,"Gênesis 25:29-34 — Esaú vendeu a primogenitura.", 'historia','facil','multipla','Gênesis 25:29'),
+  q('h061',"Em que rio Jacó lutou com o anjo?",["Jaboc","Jordão","Nilo","Eufrates"],0,"Gênesis 32:24 — Jacó lutou no vale do Jaboc.", 'historia','medio','multipla','Gênesis 32:24'),
+  q('h062',"Qual novo nome Deus deu a Jacó?",["Israel","Abraão","Isaque","José"],0,"Gênesis 32:28 — Teu nome será Israel.", 'historia','facil','multipla','Gênesis 32:28'),
+  q('h063',"Quem é o ancestral dos moabitas?",["Ló","Abraão","Noé","Isaque"],0,"Gênesis 19:37 — Moabe, filho de Ló.", 'historia','medio','multipla','Gênesis 19:37'),
+  q('h064',"Quantas pragas do Egito envolviam água?",["3","4","2","5"],0,"Água em sangue, rãs e moscas na água.", 'historia','dificil','multipla'),
+  q('h065',"Quem profetizou a queda de Nínive?",["Jonas","Isaías","Jeremias","Miquéias"],0,"Jonas 3:4 — Mais 40 dias e Nínive será destruída.", 'historia','facil','multipla','Jonas 3:4'),
+  q('h066',"Quem era o rei de Nínive que se arrependeu?",["Assiripal","Senaqueribe","Jonas","Nabucodonosor"],0,"Jonas 3:6-8 — O rei de Nínive se arrependeu.", 'historia','medio','multipla','Jonas 3:6'),
+
+  // ============================================
+  // 2. HISTÓRIA DO NOVO TESTAMENTO (40 questões)
+  // ============================================
+  // Vida de Jesus
+  q('h067',"Em que cidade Jesus nasceu?",["Belém","Nazareno","Jerusalém","Capérnaum"],0,"Mateus 2:1 — Jesus nasceu em Belém.",'historia','facil','multipla','Mateus 2:1'),
+  q('h068',"Quem visitou Jesus quando era bebê e o reconheceu como Messias?",["Simeão e Ana","Pedro e João","Zacarias e Elisabete","José e Maria"],0,"Lucas 2:25-38 — Simeão e Ana no templo.", 'historia','medio','multipla','Lucas 2:25'),
+  q('h069',"Primeiro milagre de Jesus?",["Água em vinho em Caná","Curar um cego","Alimentar 5000","Andar sobre águas"],0,"João 2:1-11 — Água em vinho.", 'historia','facil','multipla','João 2:1'),
+  q('h070',"Quantos discípulos Jesus escolheu originalmente?",["12","10","70","7"],0,"Lucas 6:13-16 — Doze apóstolos.", 'historia','facil','multipla','Lucas 6:13'),
+  q('h071',"Quem foi o primeiro apóstolo chamado por Jesus?",["Pedro","André","João","Mateus"],0,"Mateus 4:18-20 — Pedro e André.", 'historia','medio','multipla','Mateus 4:18'),
+  q('h072',"Quantas parábolas Jesus contou aproximadamente?",["Mais de 40","20","10","60"],0,"Mais de 40 parábolas nos evangelhos.", 'historia','medio','multipla'),
+  q('h073',"Qual foi o último milagre de Jesus antes da crucificação?",["Curar a orelha cortada de Malco","Ressuscitar Lázaro","Andar sobre águas","Multiplicar pães"],0,"Lucas 22:51 — Curou a orelha de Malco.", 'historia','dificil','multipla','Lucas 22:51'),
+  q('h074',"Onde Jesus orou antes de ser preso?",["Getsêmani","Monte Sinai","Templo","Sinagoga"],0,"Mateus 26:36 — Getsêmani.", 'historia','facil','multipla','Mateus 26:36'),
+  q('h075',"Quem negou Jesus três vezes antes do galo cantar?",["Pedro","Judas","Tomé","João"],0,"Mateus 26:69-75 — Pedro negou Jesus.", 'historia','facil','multipla','Mateus 26:69'),
+  q('h076',"Por quanto dinheiro Judas traiu Jesus?",["30 moedas de prata","50 moedas de ouro","20 moedas de prata","100 moedas"],0,"Mateus 26:15 — 30 moedas de prata.", 'historia','facil','multipla','Mateus 26:15'),
+
+  // Crucificação e Ressurreição
+  q('h077',"O que Jesus disse na cruz sobre seu pai?",["Perdoai-lhes, porque não sabem o que fazem","Pai, por que me abandonaste?","Tudo está consumado","Ambas as anteriores"],3,"Lucas 23:34 e Mateus 27:46.",'historia','medio','multipla','Lucas 23:34'),
+  q('h078',"Quem pediu o corpo de Jesus para o túmulo?",["Jose de Arimateia","Pedro","Nicodemus","Pilatos"],0,"Mateus 27:57-60 — Jose de Arimateia.", 'historia','medio','multipla','Mateus 27:57'),
+  q('h079',"Quem descobriu o túmulo vazio?",["Maria Madalena e outras mulheres","Pedro","João","Tomé"],0,"Mateus 28:1-10 — Maria Madalena e as mulheres.", 'historia','facil','multipla','Mateus 28:1'),
+  q('h080',"Quanto tempo Jesus ficou com os discípulos após a ressurreição?",["40 dias","7 dias","3 dias","10 dias"],0,"Atos 1:3 — 40 dias.", 'historia','facil','multipla','Atos 1:3'),
+  q('h081',"Onde Jesus ascendeu ao céu?",["Monte das Oliveiras","Monte Sinai","Belém","Jerusalém"],0,"Atos 1:9-12 — Monte das Oliveiras.", 'historia','medio','multipla','Atos 1:9'),
+  q('h082',"Quem foi o centurião que disse \"Verdadeiramente este era Filho de Deus\"?",["Cornélio","Longino","Pedro","Bento"],0,"Marcos 15:39 — O centurião diante da cruz.", 'historia','medio','multipla','Marcos 15:39'),
+
+  // Igreja Primitiva
+  q('h083',"Quando o Espírito Santo desceu sobre os apóstolos?",["Pentecostes","Páscoa","Epifania","Natal"],0,"Atos 2:1-4 — No dia de Pentecostes.", 'historia','facil','multipla','Atos 2:1'),
+  q('h084',"Quantas línguas os discípulos falavam em Pentecostes?",["Aproximadamente 18","12","7","50"],0,"Atos 2:9-11 — Línguas de várias nações.", 'historia','medio','multipla','Atos 2:9'),
+  q('h085',"Quem foi o primeiro mártir cristão?",["Estêvão","Tiago","Pedro","Paulo"],0,"Atos 7:59-60 — Estêvão.", 'historia','facil','multipla','Atos 7:59'),
+  q('h086',"Quem perseguia a igreja antes de se converter?",["Saulo/Paulo","Pedro","Tiago","Barnabé"],0,"Atos 8:3 — Saulo perseguia a igreja.", 'historia','facil','multipla','Atos 8:3'),
+  q('h087',"Onde Saulo teve sua visão de Cristo?",["Estrada de Damasco","Templo","Roma","Jerusalém"],0,"Atos 9:3-9 — Na estrada de Damasco.", 'historia','facil','multipla','Atos 9:3'),
+  q('h088',"Quem baptizou Paulo após sua conversão?",["Ananias","Pedro","João","Barnabé"],0,"Atos 9:18 — Ananias.", 'historia','medio','multipla','Atos 9:18'),
+  q('h089',"Quem foi o centurião romano que buscou a Pedro?",["Cornélio","Félix","Festo","Pilatos"],0,"Atos 10 — Cornélio.", 'historia','medio','multipla','Atos 10'),
+  q('h090',"Em que cidade a igreja foi chamada pela primeira vez de \"cristãos\"?",["Antioquia","Jerusalém","Roma","Corinto"],0,"Atos 11:26 — Antioquia.", 'historia','facil','multipla','Atos 11:26'),
+
+  // Viagens Missionárias de Paulo
+  q('h091',"Quantas viagens missionárias Paulo fez?",["3","2","4","5"],0,"Atos 13-28 — Três viagens documentadas.", 'historia','facil','multipla','Atos 13-28'),
+  q('h092',"Primeira cidade da primeira viagem de Paulo?",["Antioquia da Pisídia","Derbe","Listra","Iconio"],0,"Atos 13:14 — Antioquia da Pisídia.", 'historia','medio','multipla','Atos 13:14'),
+  q('h093',"Em que cidade Paulo e Silas foram presos e cantaram?",["Filipos","Tessalônica","Corinto","Efeso"],0,"Atos 16:25 — Filipos.", 'historia','medio','multipla','Atos 16:25'),
+  q('h094',"Em que cidade Paulo viu a estátua ao \"Deus Desconhecido\"?",["Atenas","Corinto","Efeso","Roma"],0,"Atos 17:23 — Atenas.", 'historia','medio','multipla','Atos 17:23'),
+  q('h095',"Quanto tempo Paulo ficou em Corinto?",["18 meses","6 meses","3 anos","1 ano"],0,"Atos 18:11 — 18 meses.", 'historia','dificil','multipla','Atos 18:11'),
+  q('h096',"Em que cidade Paulo quase morreu apedrejado?",["Listra","Derbe","Iconio","Antioquia"],0,"Atos 14:19 — Listra.", 'historia','medio','multipla','Atos 14:19'),
+  q('h097',"Onde Paulo naufragou?",["Malta","Chipre","Creta","Sicília"],0,"Atos 27-28 — Malta.", 'historia','facil','multipla','Atos 27'),
+  q('h098',"Quanto tempo Paulo ficou preso em Roma?",["2 anos","1 ano","5 anos","6 meses"],0,"Atos 28:30 — Dois anos.", 'historia','dificil','multipla','Atos 28:30'),
+
+  // Epístolas e Escritores
+  q('h099',"Qual epístola Paulo escreveu da prisão em Roma?",["Efésios","Gálatas","1 Tessalonicenses","Filemon"],0,"Efésios 3:1 — Prisioneiro de Cristo Jesus.", 'historia','medio','multipla','Efésios 3:1'),
+  q('h100',"Quem escreveu o Apocalipse?",["João","Pedro","Paulo","Tiago"],0,"Apocalipse 1:1-4 — João.", 'historia','facil','multipla','Apocalipse 1:1'),
+  q('h101',"Em que ilha João recebeu o Apocalipse?",["Patmos","Creta","Malta","Chipre"],0,"Apocalipse 1:9 — Na ilha de Patmos.", 'historia','facil','multipla','Apocalipse 1:9'),
+  q('h102',"Qual é a epístola mais curta de Paulo?",["Filemon","2 João","3 João","Judas"],0,"Filemon — 25 versículos.", 'historia','medio','multipla','Filemon'),
+  q('h103',"Quem escreveu Hebreus?",["Autor desconhecido (Paulo é debatido)","Pedro","João","Tiago"],0,"Autoria debatida — tradição atribui a Paulo.", 'historia','dificil','multipla'),
+  q('h104',"Para quem a primeira epístola de Pedro foi dirigida?",["Cristãos da dispersão","Gentios","Romano","Judeus"],0,"1 Pedro 1:1 — Peregrinos da dispersão.", 'historia','medio','multipla','1 Pedro 1:1'),
+
+  // Perseguições e Concílios
+  q('h105',"Quem foi o imperador que perseguia cristãos e queimou Roma?",["Nero","Calígula","Domiciano","Trajano"],0,"64 d.C. — Nero.", 'historia','facil','multipla'),
+  q('h106',"Quando o Concílio de Nicéia se reuniu?",["325 d.C.","381 d.C.","451 d.C.","1054 d.C."],0,"325 d.C. — Concílio de Nicéia.", 'historia','facil','multipla'),
+  q('h107',"Qual heregia Nicéia condenou?",["Arianismo","Pelagianismo","Nestorianismo","Monofisismo"],0,"Arianismo — negava a divindade de Cristo.", 'historia','medio','multipla'),
+  q('h108',"Em que ano Constantino legalizou o cristianismo?",["313 d.C.","325 d.C.","280 d.C.","380 d.C."],0,"Edito de Milão — 313 d.C.", 'historia','medio','multipla'),
+  q('h109',"Quem foi o primeiro imperador cristão romano?",["Constantino","Teodósio","Júlio César","Augusto"],0,"Constantino — 313 d.C.", 'historia','facil','multipla'),
+  q('h110',"Quando a Bíblia foi dividida em versículos?",["Século XVI","Século IV","Século I","Século X"],0,"Robert Estienne — século XVI.", 'historia','dificil','multipla'),
+
+  // ============================================
+  // 3. TEOLOGIA & DOUTRINA (40 questões)
+  // ============================================
+  // Trindade
+  q('t001',"Quem são as três pessoas da Trindade?",["Pai, Filho e Espírito Santo","Pai, Filho e Maria","Pai, Filho e Pedro","Pai, Filho e Paulo"],0,"Mateus 28:19 — Batizando em nome do Pai, Filho e Espírito Santo.", 'doutrinas','facil','multipla','Mateus 28:19'),
+  q('t002',"Jesus é fully Deus e fully humano — qual termo?",["Hipostática união","Transubstanciação","Consubstanciação","Justificação"],0,"Concílio de Calcedônia — 451 d.C.", 'doutrinas','dificil','multipla'),
+  q('t003',"V/F: O Espírito Santo é igual ao Pai e ao Filho.",["Verdadeiro","Falso","",""],0,"Mateus 28:19 — Mesmo nome, mesma autoridade.", 'doutrinas','facil','verdadeiro_falso'),
+  q('t004',"Qual profecia do AT se cumpriu na vinda do Espírito Santo?",["Isaías 11:2","Isaías 53","Isaías 9:6","Isaías 61:1"],0,"Isaías 11:2 — O Espírito repousará sobre ele.", 'doutrinas','medio','multipla','Isaías 11:2'),
+  q('t005',"O que a palavra \"Paracleto\" significa para o Espírito Santo?",["Consolador/Advogado","Juiz","Rei","Profeta"],0,"João 14:16 — Parakletos.", 'doutrinas','facil','multipla','João 14:16'),
+
+  // Expiação e Salvação
+  q('t006',"O que significa \"expiação\"?",["Pagamento pelo pecado","Mudança de nome","Batismo","Ceia"],0,"Isaías 53:5 — Ferido pelas nossas transgressões.", 'doutrinas','medio','multipla','Isaías 53:5'),
+  q('t007',"Segundo Romanos 3:23, todos pecaram e",["carecem da glória de Deus","morrem","perdem a salvação","são condenados"],0,"Romanos 3:23 — Todos pecaram.", 'doutrinas','facil','multipla','Romanos 3:23'),
+  q('t008',"O que é a justificação?",["Ser declarado justo por Deus","Tornar-se perfeito","Seguir a Lei","Fazer penitência"],0,"Romanos 5:1 — Justificados pela fé.", 'doutrinas','facil','multipla','Romanos 5:1'),
+  q('t009',"A justificação é",["Instantânea e completa","Um processo contínuo","Condicional","Alcançada por obras"],0,"A justificação é um ato jurídico de Deus.", 'doutrinas','dificil','multipla'),
+  q('t010',"O que é propiciação?",["Satisfação da ira de Deus","Perdão automático","Batismo","Ceia"],0,"Romanos 3:25 — Propiciação pela fé.", 'doutrinas','medio','multipla','Romanos 3:25'),
+  q('t011',"Quem pagou o preço do pecado?",["Jesus Cristo","Pedro","Paulo","Moisés"],0,"1 Pedro 2:24 — Ele mesmo carregou os nossos pecados.", 'doutrinas','facil','multipla','1 Pedro 2:24'),
+  q('t012',"O que é a regeneração?",["Novo nascimento espiritual","Batismo","Ceia","Admissão na igreja"],0,"João 3:3-7 — Nascer de novo.", 'doutrinas','medio','multipla','João 3:3'),
+  q('t013',"O que é a santificação?",["Processo de tornar-se santo","Um batismo","Oração","Jejum"],0,"1 Tessalonicenses 4:3 — Santificação.", 'doutrinas','facil','multipla','1 Tessalonicenses 4:3'),
+  q('t014',"O que é a perseverança dos santos?",["Manter-se na fé até o fim","Jejum","Oração","Leitura"],0,"Filipenses 1:6 — Deus completará a boa obra.", 'doutrinas','medio','multipla','Filipenses 1:6'),
+  q('t015',"V/F: A salvação é por meio de obras.",["Falso","Verdadeiro","",""],0,"Efésios 2:8-9 — Pela graça, pela fé.", 'doutrinas','facil','verdadeiro_falso','Efésios 2:8'),
+
+  // Escatologia
+  q('t016',"O que é a parousia?",["A segunda vinda de Cristo","A criação do mundo","O dilúvio","A ascensão"],0,"1 Tessalonicenses 4:15-17 — A vinda do Senhor.", 'doutrinas','medio','multipla','1 Tessalonicenses 4:15'),
+  q('t017',"O que acontecerá com os mortos na ressurreição?",["Ressuscitarão e serão julgados","Permanecerão mortos","Serão aniquilados","Serão salvos automaticamente"],0,"João 5:28-29 — Todos ouvirão a sua voz.", 'doutrinas','medio','multipla','João 5:28'),
+  q('t018',"Qual evento escatológico NÃO é bíblico?",["Transubstanciação","Ressurreição","Juízo","Paraíso"],0,"Transubstanciação é doutrina católica medieval.", 'doutrinas','dificil','multipla'),
+  q('t019',"O que é o milênio em Apocalipse 20?",["Reino de 1000 anos de Cristo","A criação","O dilúvio","A era da igreja"],0,"Apocalipse 20:4 — Reino de mil anos.", 'doutrinas','medio','multipla','Apocalipse 20:4'),
+  q('t020',"Qual visão escatológica ensina que a igreja sofrerá tribulação?",["Pré-tribulação","Pós-tribulação","Amilenismo","Pré-milenismo"],0,"1 Tessalonicenses 4:16-17 — Arrebatamento.", 'doutrinas','dificil','multipla'),
+  q('t021',"O que é a segunda morte?",["O lago de fogo","A morte física","O batismo","A ceia"],0,"Apocalipse 20:14 — Lago de fogo.", 'doutrinas','medio','multipla','Apocalipse 20:14'),
+  q('t022',"Novos céus e nova terra serão criados em",["Apocalipse 21","Apocalipse 20","Apocalipse 22","Gênesis 1"],0,"Apocalipse 21:1 — Novos céus e nova terra.", 'doutrinas','medio','multipla','Apocalipse 21:1'),
+
+  // Ecclesiologia
+  q('t023',"O que é a igreja segundo a Bíblia?",["Corpo de Cristo","Uma organização política","Uma escola","Um exército"],0,"Efésios 1:22-23 — A igreja é o corpo de Cristo.", 'doutrinas','facil','multipla','Efésios 1:22'),
+  q('t024',"Quantos sacramentos/ordenanças o protestantismo reconhece?",["2 (batismo e ceia)","7","5","3"],0,"Batismo e Ceia do Senhor.", 'doutrinas','medio','multipla'),
+  q('t025',"O que a Ceia do Senhor representa?",["A morte e ressurreição de Cristo","O nascimento de Jesus","A ascensão","A criação"],0,"1 Coríntios 11:26 — Anunciais a morte do Senhor.", 'doutrinas','facil','multipla','1 Coríntios 11:26'),
+  q('t026',"Batismo por imersão simboliza",["Morte e ressurreição com Cristo","Limpeza do pecado","Recebimento do Espírito","Entrada na igreja"],0,"Romanos 6:4 — Sepultados com ele pelo batismo.", 'doutrinas','medio','multipla','Romanos 6:4'),
+  q('t027',"O que é \"Sola Scriptura\"?",["Somente a Escritura","Somente a Igreja","Somente a Tradição","Somente o Papa"],0,"Princípio da Reforma Protestante.", 'doutrinas','facil','multipla'),
+  q('t028',"Qual das cinco solas declara \"Somente pela Fé\"?",["Sola Fide","Sola Gratia","Solus Christus","Soli Deo Gloria"],0,"Sola Fide.", 'doutrinas','facil','multipla'),
+  q('t029',"Qual é o pecado imperdoável?",["Blasfêmia contra o Espírito Santo","Mentir","Matar","Adulterar"],0,"Mateus 12:31-32.", 'doutrinas','facil','multipla','Mateus 12:31'),
+  q('t030',"V/F: O Espírito Santo pode ser entristecido.",["Verdadeiro","Falso","",""],0,"Efésios 4:30 — Não entristeçais o Espírito Santo.", 'doutrinas','medio','verdadeiro_falso','Efésios 4:30'),
+
+  // Teologia Sistemática
+  q('t031',"O que é hamartiologia?",["Estudo do pecado","Estudo da salvação","Estudo de Deus","Estudo da igreja"],0,"Hamartia = pecado.", 'doutrinas','dificil','multipla'),
+  q('t032',"O que é pneumatologia?",["Estudo do Espírito Santo","Estudo do pecado","Estudo da igreja","Estudo da Bíblia"],0,"Pneuma = espírito.", 'doutrinas','dificil','multipla'),
+  q('t033',"O que é cristologia?",["Estudo da pessoa de Cristo","Estudo do pecado","Estudo da salvação","Estudo da igreja"],0,"Cristo + logos.", 'doutrinas','dificil','multipla'),
+  q('t034',"O que é teologia propriamente dita?",["Estudo de Deus","Estudo da natureza","Estudo do homem","Estudo da história"],0,"Theos + logos = estudo de Deus.", 'doutrinas','medio','multipla'),
+  q('t035',"Deus é onisciente, onipresente e",["Onipotente","Infinito","Eterno","Santo"],0,"Deus é onipotente — todo-poderoso.", 'doutrinas','facil','multipla'),
+  q('t036',"V/F: Deus é imutável.",["Verdadeiro","Falso","",""],0,"Malaquias 3:6 — Eu sou o Senhor, não mudo.", 'doutrinas','medio','verdadeiro_falso','Malaquias 3:6'),
+  q('t037',"O que é o decreto de Deus?",["Plano eterno de Deus para tudo","A Lei de Moisés","Os Dez Mandamentos","O Evangelho"],0,"Efésios 1:11 — Segundo o conselho da sua vontade.", 'doutrinas','dificil','multipla','Efésios 1:11'),
+  q('t038',"Qual é o primeiro pecado mencionado na Bíblia?",["Inveja (Cain)","Mentira","Morte","Idolatria"],0,"Gênesis 4:5-8 — Cain invejou Abel.", 'doutrinas','medio','multipla','Gênesis 4:5'),
+  q('t039',"V/F: O batismo é necessário para a salvação.",["Falso","Verdadeiro","",""],0,"Efésios 2:8-9 — Pela graça, pela fé.", 'doutrinas','medio','verdadeiro_falso','Efésios 2:8'),
+  q('t040',"Qual é a ordem correta dos passos da salvação?",["Eleição → Vocação → Regeneração → Justificação → Glorificação","Regeneração → Vocação → Eleição → Glorificação","Glória → Vocação → Regeneração","Justificação → Regeneração → Vocação"],0,"Romanos 8:29-30 — Ordem bíblica.", 'doutrinas','dificil','multipla','Romanos 8:29-30'),
+
+  // ============================================
+  // 4. CONHECIMENTO BÍBLICO (40 questões)
+  // ============================================
+  // Livros da Bíblia
+  q('b001',"Quantos livros tem a Bíblia protestante?",["66","73","80","52"],0,"39 AT + 27 NT.", 'historia','facil','multipla'),
+  q('b002',"Quantos livros tem o Antigo Testamento?",["39","27","24","46"],0,"39 livros no AT protestante.", 'historia','facil','multipla'),
+  q('b003',"Quantos livros tem o Novo Testamento?",["27","39","24","26"],0,"27 livros no NT.", 'historia','facil','multipla'),
+  q('b004',"Qual é o livro mais longo da Bíblia?",["Salmos","Gênesis","Isaías","Jeremias"],0,"150 capítulos em Salmos.", 'historia','facil','multipla'),
+  q('b005',"Qual é o livro mais curto da Bíblia?",["3 João","Obadias","Filemon","Judas"],0,"3 João — 15 versículos.", 'historia','medio','multipla'),
+  q('b006',"Qual é o versículo mais curto da Bíblia?",["João 11:35","1 Tessalonicenses 5:16","Efésios 6:1","Marcos 16:8"],0,"João 11:35 — Jesus chorou.", 'historia','facil','multipla','João 11:35'),
+  q('b007',"Qual livro tem mais capítulos?",["Salmos","Gênesis","Jeremias","Isaías"],0,"150 capítulos.", 'historia','medio','multipla'),
+  q('b008',"Qual é o último livro da Bíblia?",["Apocalipse","2 Pedro","Judas","2 João"],0,"Apocalipse.", 'historia','facil','multipla'),
+  q('b009',"Qual é o primeiro livro do NT?",["Mateus","Atos","Marcos","Lucas"],0,"Mateus.", 'historia','facil','multipla'),
+  q('b010',"Qual livro bíblico é escrito inteiramente em forma poética?",["Cantares","Salmos","Provérbios","Lamentações"],0,"Cantares — poesia de amor.", 'historia','medio','multipla'),
+
+  // Capítulos e Versículos
+  q('b011',"Em que capítulo Jesus nasce?",["Mateus 1","Mateus 2","Lucas 2","Lucas 1"],0,"Mateus 1:18-25 e Lucas 2:1-20.", 'historia','facil','multipla'),
+  q('b012',"Qual capítulo contém os Dez Mandamentos?",["Êxodo 19","Êxodo 20","Êxodo 21","Levítico 19"],0,"Êxodo 20:1-17.", 'historia','facil','multipla','Êxodo 20'),
+  q('b013',"Qual capítulo é conhecido como o \"Capítulo do Amor\"?",["1 Coríntios 13","Romanos 8","Efésios 2","João 3"],0,"1 Coríntios 13.", 'historia','facil','multipla','1 Coríntios 13'),
+  q('b014',"Em que capítulo Jesus fala das bem-aventuranças?",["Mateus 5","Mateus 6","Mateus 7","Lucas 6"],0,"Mateus 5:3-12.", 'historia','facil','multipla','Mateus 5'),
+  q('b015',"Qual capítulo de Romanos fala da justificação pela fé?",["Romanos 3","Romanos 5","Romanos 8","Romanos 12"],0,"Romanos 3:21-26.", 'historia','medio','multipla','Romanos 3'),
+  q('b016',"Qual capítulo de João fala do Verbo?",["João 1","João 3","João 14","João 15"],0,"João 1:1-14.", 'historia','facil','multipla','João 1'),
+  q('b017',"Qual capítulo de Isaías fala do Servo Sofredor?",["Isaías 53","Isaías 40","Isaías 61","Isaías 9"],0,"Isaías 53.", 'historia','facil','multipla','Isaías 53'),
+  q('b018',"Em que capítulo Deus cria o mundo?",["Gênesis 1","Gênesis 2","Gênesis 3","Gênesis 4"],0,"Gênesis 1.", 'historia','facil','multipla','Gênesis 1'),
+
+  // Temas e Conteúdo
+  q('b019',"Qual evangelho é mais sinótico com Marcos?",["Mateus","João","Lucas","Atos"],0,"Mateus e Lucas compartilham muito material com Marcos.", 'historia','medio','multipla'),
+  q('b020',"Qual evangelho tem mais discursos de Jesus?",["Mateus","Marcos","Lucas","João"],0,"Mateus — cinco grandes discursos.", 'historia','medio','multipla'),
+  q('b021',"Qual livro do AT é escrito como uma carta?",["Jeremias","Lamentações","Eclesiastes","Jó"],0,"Jeremias contém muitas passagens epistolares.", 'historia','dificil','multipla'),
+  q('b022',"Qual livro é considerado um poema de sabedoria?",["Jó","Eclesiastes","Provérbios","Cantares"],0,"Jó — poema dramático.", 'historia','medio','multipla'),
+  q('b023',"Qual livro contém as parábolas do Filho Pródigo e do Bom Samaritano?",["Lucas","Mateus","Marcos","João"],0,"Lucas 15 e Lucas 10.", 'historia','facil','multipla'),
+  q('b024',"Qual livro é um diário profético?",["Ezequiel","Isaías","Jeremias","Daniel"],0,"Ezequiel — visões e sonhos.", 'historia','medio','multipla'),
+  q('b025',"Qual livro bíblico contém mais salmos?",["Salmos","Salmos de Salomão","Odes","Hinos"],0,"Salmos — 150 salmos.", 'historia','facil','multipla'),
+  q('b026',"Qual livro do NT é puramente narrativo?",["Atos","Romanos","Efésios","Filemon"],0,"Atos — história da igreja primitiva.", 'historia','medio','multipla'),
+  q('b027',"Qual livro fala dos dons espirituais detalhadamente?",["1 Coríntios 12","Romanos 12","Efésios 4","1 Pedro 4"],0,"1 Coríntios 12:4-11.", 'historia','medio','multipla','1 Coríntios 12'),
+  q('b028',"Qual livro bíblico é um louvor à mulher virtuosa?",["Provérbios 31","Cantares","Rute","Ester"],0,"Provérbios 31:10-31.", 'historia','facil','multipla','Provérbios 31'),
+
+  // Números e Curiosidades
+  q('b029',"Quantos capítulos tem Gênesis?",["50","48","60","45"],0,"50 capítulos.", 'historia','medio','multipla'),
+  q('b030',"Quantos versículos tem a Bíblia?",["Mais de 31000","Mais de 20000","Mais de 40000","Mais de 15000"],0,"~31.102 versículos.", 'historia','medio','multipla'),
+  q('b031',"Qual livro tem o versículo mais longo?",["Isaías 10:4","Efésios 1:3","Efésios 1:14","Gênesis 1:1"],0,"Efésios 1:3-14 — Uma frase grega.", 'historia','dificil','multipla'),
+  q('b032',"Qual livro tem o capítulo mais longo?",["Salmos 119","Salmos 118","Salmos 90","Salmos 1"],0,"Salmos 119 — 176 versículos.", 'historia','facil','multipla','Salmos 119'),
+  q('b033',"Quantas vezes a palavra \"Deus\" aparece na Bíblia?",["Mais de 4000","Mais de 2000","Mais de 6000","Mais de 1000"],0,"~4000+ vezes.", 'historia','medio','multipla'),
+  q('b034',"Qual livro tem mais referências cruzadas?",["Salmos","Provérbios","Isaías","Gênesis"],0,"Salmos — muitas referências.", 'historia','medio','multipla'),
+  q('b035',"V/F: A Bíblia foi escrita em 3 línguas.",["Verdadeiro","Falso","",""],0,"Hebraico, grego e aramaico.", 'historia','facil','verdadeiro_falso'),
+  q('b036',"Qual é o tema central de Romanos?",["A justiça de Deus pela fé","A vida de Jesus","A história da igreja","A profecia"],0,"Romanos — justificação pela fé.", 'historia','medio','multipla'),
+  q('b037',"Qual é o tema central de Efésios?",["A igreja corpo de Cristo","A lei","A profecia","A criação"],0,"Efésios — a igreja.", 'historia','medio','multipla'),
+  q('b038',"Qual livro do AT é chamado de \"Evangelho do AT\"?",["Isaías","Salmos","Gênesis","Daniel"],0,"Isaías — profecias messiânicas.", 'historia','medio','multipla'),
+  q('b039',"Quantos livros tem a Bíblia católica?",["73","66","80","52"],0,"73 — inclui deuterocanônicos.", 'historia','facil','multipla'),
+  q('b040',"V/F: Os Salmos são usados na oração cristã.",["Verdadeiro","Falso","",""],0,"Salmos são orações e louvores.", 'historia','facil','verdadeiro_falso'),
+
+  // ============================================
+  // 5. PESSOAS & LUGARES (40 questões)
+  // ============================================
+  // Personagens do AT
+  q('p001',"Quem é chamado de \"pai da fé\"?",["Abraão","Moisés","Davi","Paulo"],0,"Romanos 4:16 — Pai de todos os que creem.", 'personagens','facil','multipla','Romanos 4:16'),
+  q('p002',"Quem interpretou os sonhos do Faraó no Egito?",["José","Daniel","Moisés","Davi"],0,"Gênesis 41:16 — José interpretou os sonhos.", 'personagens','facil','multipla','Gênesis 41:16'),
+  q('p003',"Quem lutou com Deus e teve o nome mudado para Israel?",["Jacó","Abraão","Isaque","Moisés"],0,"Gênesis 32:28 — Jacó se tornou Israel.", 'personagens','facil','multipla','Gênesis 32:28'),
+  q('p004',"Quem foi a mãe de Moisés?",["Jocabed","Sara","Rebeca","Raquel"],0,"Êxodo 2:1-2 — Jocabed.", 'personagens','medio','multipla','Êxodo 2:1'),
+  q('p005',"Quem foi o sogro de Moisés?",["Jetro","Farão","Aarão","Josué"],0,"Êxodo 2:16-21 — Jetro.", 'personagens','medio','multipla','Êxodo 2:16'),
+  q('p006',"Quem ungiu Davi como rei?",["Samuel","Natã","Gad","Eliseu"],0,"1 Samuel 16:13 — Samuel ungiu Davi.", 'personagens','facil','multipla','1 Samuel 16:13'),
+  q('p007',"Quem era o filho mais velho de Davi?",["Absalão","Adonias","Amnom","Salomão"],0,"2 Samuel 3:2 — Amnom.", 'personagens','dificil','multipla','2 Samuel 3:2'),
+  q('p008',"Quem construiu o Templo de Salomão?",["Salomão","Davi","Neemias","Esdras"],0,"1 Reis 6:14 — Salomão.", 'personagens','facil','multipla','1 Reis 6:14'),
+  q('p009',"Quem foi a rainha de Sabá?",["Desconhecida","Ester","Jezabel","Dalila"],0,"1 Reis 10:1 — Rainha do sul.", 'personagens','medio','multipla','1 Reis 10:1'),
+  q('p010',"Quem foi o profeta que confrontou Acabe?",["Elias","Isaías","Jeremias","Amós"],0,"1 Reis 18 — Elias no Carmelo.", 'personagens','facil','multipla','1 Reis 18'),
+
+  // Personagens do NT
+  q('p011',"Quem escreveu o Evangelho de Lucas e Atos?",["Lucas","Mateus","Marcos","João"],0,"Lucas — médico e historiador.", 'personagens','facil','multipla'),
+  q('p012',"Quem era o apóstolo que cobrava impostos?",["Mateus","Pedro","João","André"],0,"Mateus 9:9 — Mateus era publicano.", 'personagens','facil','multipla','Mateus 9:9'),
+  q('p013',"Quem era o \"apóstolo dos gentios\"?",["Paulo","Pedro","Tiago","Barnabé"],0,"Romanos 11:13 — Paulo.", 'personagens','facil','multipla','Romanos 11:13'),
+  q('p014',"Quem era o irmão de Pedro?",["André","João","Tiago","Filipe"],0,"Marcos 1:16-20 — André.", 'personagens','facil','multipla','Marcos 1:16'),
+  q('p015',"Quem era chamado de \"discípulo amado\"?",["João","Pedro","Tomé","André"],0,"João 13:23 — João.", 'personagens','facil','multipla','João 13:23'),
+  q('p016',"Quem se chamava Saulo antes de se converter?",["Paulo","Pedro","Tiago","Barnabé"],0,"Atos 13:9 — Saulo também chamado Paulo.", 'personagens','facil','multipla','Atos 13:9'),
+  q('p017',"Quem era o pai de Tiago e João?",["Zebedeu","Jonas","Filipe","Bartolomeu"],0,"Mateus 4:21 — Zebedeu.", 'personagens','medio','multipla','Mateus 4:21'),
+  q('p018',"Quem era conhecido como \"Dídimos\"?",["Tomé","André","Felipe","Nathanael"],0,"João 11:16 — Tomé, o gêmeo.", 'personagens','medio','multipla','João 11:16'),
+  q('p019',"Quem foi o escriba que defendeu Jesus?",["Nicodemus","Fariseu","Saduceu","Pilatos"],0,"João 3:1-21 — Nicodemus.", 'personagens','medio','multipla','João 3:1'),
+  q('p020',"Quem subiu numa árvore para ver Jesus?",["Zacateus","Mateus","Pedro","Lázaro"],0,"Lucas 19:1-10 — Zacateus.", 'personagens','facil','multipla','Lucas 19:1'),
+
+  // Lugares Bíblicos
+  q('p021',"Em que cidade Jesus nasceu?",["Belém","Nazareno","Jerusalém","Capérnaum"],0,"Mateus 2:1.", 'personagens','facil','multipla','Mateus 2:1'),
+  q('p022',"Onde Jesus foi baptizado?",["Rio Jordão","Rio Nilo","Rio Eufrates","Mar Morto"],0,"Mateus 3:13-17 — Rio Jordão.", 'personagens','facil','multipla','Mateus 3:13'),
+  q('p023',"Em que cidade Jesus realizou seu primeiro milagre?",["Cana","Belém","Nazareno","Jerusalém"],0,"João 2:1-11 — Caná da Galileia.", 'personagens','medio','multipla','João 2:1'),
+  q('p024',"Onde Jesus pregou o Sermão do Monte?",["Galileia","Judeia","Samaria","Deserto"],0,"Mateus 5-7 — Monte na Galileia.", 'personagens','medio','multipla','Mateus 5'),
+  q('p025',"Em que cidade Jesus ressuscitou Lázaro?",["Betânia","Belém","Jerusalém","Nazareno"],0,"João 11 — Betânia.", 'personagens','medio','multipla','João 11'),
+  q('p026',"Onde foi o último jantar de Jesus?",["Jerusalém","Belém","Galileia","Capérnaum"],0,"Mateus 26:17-19 — Jerusalém.", 'personagens','facil','multipla','Mateus 26:17'),
+  q('p027',"Em que monte Jesus ascendeu?",["Monte das Oliveiras","Monte Sinai","Monte Carmelo","Monte Nebo"],0,"Atos 1:9-12.", 'personagens','facil','multipla','Atos 1:9'),
+  q('p028',"De que cidade Saulo era?",["Tarso","Jerusalém","Roma","Corinto"],0,"Atos 22:3 — Tarso.", 'personagens','medio','multipla','Atos 22:3'),
+  q('p029',"Onde Paulo teve sua visão?",["Estrada de Damasco","Atenas","Roma","Corinto"],0,"Atos 9.", 'personagens','facil','multipla','Atos 9'),
+  q('p030',"Em que cidade Paulo escreveu Romanos?",["Corinto","Efeso","Roma","Filipos"],0,"Romanos 16:23 — De Corinto.", 'personagens','dificil','multipla','Romanos 16:23'),
+
+  // Geografia
+  q('p031',"Quais são os dois rios mencionados no Jardim do Éden?",["Eufrates e Tigre","Nilo e Jordão","Jordão e Eufrates","Nilo e Eufrates"],0,"Gênesis 2:14 — Eufrates e Tigre.", 'personagens','medio','multipla','Gênesis 2:14'),
+  q('p032',"Rio que Israel atravessou para entrar na terra prometida?",["Jordão","Nilo","Eufrates","Tigre"],0,"Josué 3:15-17.", 'personagens','facil','multipla','Josué 3:15'),
+  q('p033',"Mar onde Moisés atravessou?",["Mar Vermelho","Mar Morto","Mar da Galileia","Mar Mediterrâneo"],0,"Êxodo 14:21-22 — Mar Vermelho.", 'personagens','facil','multipla','Êxodo 14:21'),
+  q('p034',"Mar onde Jesus andou sobre as águas?",["Mar da Galileia","Mar Vermelho","Mar Morto","Mar Mediterrâneo"],0,"Mateus 14:25 — Mar da Galileia.", 'personagens','facil','multipla','Mateus 14:25'),
+  q('p035',"Deserto onde Israel vagou 40 anos?",["Deserto do Sinai","Deserto de Judá","Deserto de Moabe","Deserto de Cadez"],0,"Números 14:33 — Deserto do Sinai.", 'personagens','medio','multipla','Números 14:33'),
+  q('p036',"Monte onde Abraão ia sacrificar Isaque?",["Moria","Sinai","Carmelo","Nebo"],0,"Gênesis 22:2.", 'personagens','medio','multipla','Gênesis 22:2'),
+  q('p037',"Monte onde Moisés recebeu a Lei?",["Sinai","Moria","Carmelo","Nebo"],0,"Êxodo 19:20.", 'personagens','facil','multipla','Êxodo 19:20'),
+  q('p038',"Monte onde Jesus morreu?",["Gólgota","Sinai","Carmelo","Moria"],0,"Mateus 27:33 — Gólgota.", 'personagens','facil','multipla','Mateus 27:33'),
+  q('p039',"Cidade destruída com fogo e enxofre?",["Sodoma e Gomorra","Ninive","Babilônia","Jerusalém"],0,"Gênesis 19:24-25.", 'personagens','facil','multipla','Gênesis 19:24'),
+  q('p040',"Cidade onde Paulo naufragou e foi mordido por uma serpente?",["Malta","Chipre","Creta","Sicília"],0,"Atos 28:1-6 — Malta.", 'personagens','facil','multipla','Atos 28:1'),
+];
+
 export const todasPerguntas: PerguntaQuiz[] = [
   ...perguntasFacis,
   ...perguntasMedias,
   ...perguntasDificeis,
+  ...perguntasExpansao,
 ];

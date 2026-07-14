@@ -76,10 +76,10 @@ export default function ComunidadePage() {
           {/* ── Stats Row ── */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {[
-              { icon: Users, label: 'Membros Ativos', value: 'Em breve', color: 'text-blue-500' },
-              { icon: Radio, label: 'Online Agora', value: 'Em breve', color: 'text-green-500' },
-              { icon: BookOpen, label: 'Grupos', value: 'Em breve', color: 'text-purple-500' },
-              { icon: Calendar, label: 'Sessões', value: 'Em breve', color: 'text-amber-500' },
+              { icon: Users, label: 'Membros Ativos', value: totalMembros.toLocaleString('pt-BR'), color: 'text-blue-500' },
+              { icon: Radio, label: 'Online Agora', value: totalMembrosOnline.toLocaleString('pt-BR'), color: 'text-green-500' },
+              { icon: BookOpen, label: 'Grupos', value: GRUPOS_ESTUDO.length.toString(), color: 'text-purple-500' },
+              { icon: Calendar, label: 'Sessões', value: SESSOES_ESTUDO.length.toString(), color: 'text-amber-500' },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}

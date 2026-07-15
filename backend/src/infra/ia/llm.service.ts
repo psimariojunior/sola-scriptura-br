@@ -36,7 +36,8 @@ export class LLMService {
   constructor(private configService: ConfigService) {
     this.apiKey = this.configService.get('OPENAI_API_KEY', '');
     this.baseUrl = this.configService.get('LLM_BASE_URL', 'https://api.openai.com/v1').replace(/\/$/, '');
-    this.modelo = this.configService.get('LLM_MODEL', this.configService.get('IA_MODEL', 'gpt-4o')) as OpenAIModel;
+    const llmModel = this.configService.get('LLM_MODEL', '');
+    this.modelo = (llmModel || this.configService.get('IA_MODEL', 'gpt-4o')) as OpenAIModel;
     this.temperatura = parseFloat(this.configService.get('IA_TEMPERATURE', '0.3'));
     this.maxTokens = parseInt(this.configService.get('IA_MAX_TOKENS', '4096'), 10);
   }

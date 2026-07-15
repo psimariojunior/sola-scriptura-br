@@ -2,6 +2,7 @@ name = "sola-scriptura-edge-tts"
 main = "src/worker.ts"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
+workers_dev = true
 
 [vars]
-ALLOWED_ORIGIN = "https://solascripturabr.com"
+ALLOWED_ORIGIN = "https://solascripturabr.com.br"

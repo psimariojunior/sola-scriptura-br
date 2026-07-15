@@ -378,7 +378,9 @@ class AuthService {
   private setCookie(name: string, value: string): void {
     try {
       const expirar = 60 * 60 * 24 * 30;
-      document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${expirar}; SameSite=Lax`;
+      const secure = typeof window !== 'undefined' && window.location.protocol === 'https:';
+      const secureFlag = secure ? '; Secure' : '';
+      document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${expirar}; SameSite=Lax${secureFlag}`;
     } catch { /* ignore */ }
   }
 

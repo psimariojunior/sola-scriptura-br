@@ -639,6 +639,306 @@ const estudosData: EstudoVersiculo[] = [
       { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Amor livre', resumo: 'Deus é amor em liberdade — ama não por necessidade mas por superabundância de bondade. O amor de Deus é gratuito, soberano, incondicional.', citacao: '«Deus ama porque é amor — e é amor em perfeita liberdade.»' },
     ],
   },
+  // ═══════════════════════════════════════════════════════════════════════
+  // LIVROS FALTANTES (expandindo cobertura)
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'nm', capitulo: 21, versiculo: 8,
+    tema: 'A serpente de bronze — Tipo de Cristo',
+    contexto: 'Israel, picado por serpentes, é curado ao olhar para a serpente de bronze erguida por Moisés.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Tipologia cruenta', resumo: 'A serpente de bronze é figura exata da crucificação: Cristo foi feito pecado por nós para que olhando nEle vivamos.', citacao: '«O remédio estava na contemplação da serpente de bronze, figura de Cristo na cruz.»' },
+      { teologo: 'João Crisóstomo', periodo: '349-407', tradicao: 'Patrística Oriental', visao: 'Cura pela fé', resumo: 'A cura não vinha do bronze em si, mas da fé obediente em olhar para o sinal levantado.', citacao: '«A serpente não curava por natureza, mas a obediência que olhava a curava.»' },
+      { teologo: 'Agostinho', periodo: '354-430', tradicao: 'Patrística', visao: 'Exaltação do Senhor', resumo: 'Como a serpente foi erguida no deserto, o Filho do Homem foi erguido na cruz para dar vida (Jo 3:14).', citacao: '«O que a serpente de bronze significava, Cristo na cruz cumpriu plenamente.»' },
+    ],
+  },
+  {
+    livro: 'jz', capitulo: 21, versiculo: 25,
+    tema: 'Ausência de rei — Necessidade de liderança divina',
+    contexto: 'O período dos juízes termina com a constatação do caos moral quando cada um faz o que lhe parece reto.',
+    interpretacoes: [
+      { teologo: 'Agostinho', periodo: '354-430', tradicao: 'Patrística', visao: 'Pecado original', resumo: 'Sem a lei de Deus reinando no coração, a autonomia humana degenera em caos. A necessidade de um Rei justo aponta para Cristo.', citacao: '«Onde Deus não reina, cada um se torna seu próprio deus e perde o rumo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania real', resumo: 'A anarquia de Juízes é o pano de fundo da monarquia davídica e, em última instância, do Rei Messiânico.', citacao: '«A falta de rei visível faz clamar por aquele que é Rei eterno.»' },
+    ],
+  },
+  {
+    livro: 'rt', capitulo: 1, versiculo: 16,
+    tema: 'Lealdade de Rute — Graça transcultural',
+    contexto: 'Rute, moabita, declara lealdade incondicional a Noemi e ao Deus de Israel.',
+    interpretacoes: [
+      { teologo: 'Matthew Henry', periodo: '1662-1714', tradicao: 'Puritana', visao: 'Providência', resumo: 'A fidelidade de Rute revela como Deus atrai gentios à Sua aliança, integrando-os na linhagem de Cristo.', citacao: '«A graça de Deus não reconhece fronteiras de nação quando há fé sincera.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Exemplo de fé', resumo: 'Rute é modelo de conversão verdadeira: abandona os deuses estranhos para servir ao Deus vivo.', citacao: '«Rute trocou seus deuses por Cristo, ainda que não O conhecesse pelo nome.»' },
+    ],
+  },
+  {
+    livro: '2rs', capitulo: 2, versiculo: 9,
+    tema: 'Pedido de Eliseu — Herança espiritual',
+    contexto: 'Eliseu pede o duplo do espírito de Elias antes de este ser elevado aos céus.',
+    interpretacoes: [
+      { teologo: 'João Crisóstomo', periodo: '349-407', tradicao: 'Patrística Oriental', visao: 'Sucessão profética', resumo: 'O pedido não é por poder, mas por fidelidade redobrada na continuação da obra de Deus.', citacao: '«Quem serve com ousadia recebe o dobro do Espírito que o precedeu.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça ministerial', resumo: 'Deus multiplica a graça sobre Seus servos fiéis para que a Sua obra não cesse.', citacao: '«O Senhor honra quem persevera pedindo Sua presença em dobro.»' },
+    ],
+  },
+  {
+    livro: 'ed', capitulo: 7, versiculo: 10,
+    tema: 'Dedicação de Esdras — Estudo e ensino da Lei',
+    contexto: 'Esdras prepara o coração para buscar, cumprir e ensinar a Lei do Senhor em Jerusalém.',
+    interpretacoes: [
+      { teologo: 'Matthew Henry', periodo: '1662-1714', tradicao: 'Puritana', visao: 'Piedade intelectual', resumo: 'A renovação do povo começa com o líder consagrado ao estudo e ensino fiel da Palavra.', citacao: '«Esdras não estudou para si só, mas para transmitir a lei com poder.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Reforma pela Palavra', resumo: 'A restauração de Israel se faz pela redescoberta e aplicação da Escritura.', citacao: '«Onde a lei é restaurada, ali Deus restaura Seu povo.»' },
+    ],
+  },
+  {
+    livro: 'ne', capitulo: 8, versiculo: 10,
+    tema: 'A alegria do Senhor é a vossa força',
+    contexto: 'Neemias exorta o povo a não se entristecer, mas a se alegrar no Senhor após ouvir a Lei.',
+    interpretacoes: [
+      { teologo: 'Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Gozo espiritual', resumo: 'A força para resistir vem da alegria em Deus, não do esforço próprio. O gozo é combustível da obediência.', citacao: '«Tira a alegria do crente e tu tiras sua força.»' },
+      { teologo: 'Neemias (trad.)', periodo: 'Séc. V a.C.', tradicao: 'Bíblica', visao: 'Consolação comunitária', resumo: 'A alegria compartilhada no culto sustenta o povo em meio à reconstrução e oposição.', citacao: '«O dia é santo ao nosso Senhor; não vos entristeçais, porque a alegria do Senhor é a vossa força.»' },
+    ],
+  },
+  {
+    livro: 'et', capitulo: 4, versiculo: 14,
+    tema: 'Para tal momento — Providência silenciosa',
+    contexto: 'Mardoqueu convence Ester de que ela foi preservada para salvar seu povo numa hora crítica.',
+    interpretacoes: [
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Providência', resumo: 'Mesmo sem citar o nome de Deus, o livro revela Sua mão soberana operando por meio de pessoas comuns.', citacao: '«Deus prepara Seus instrumentos antes de preparar Sua obra.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'A providência de Deus age de maneira oculta mas eficaz para a salvação de Seu povo.', citacao: '«O Senhor guia os eventos por caminhos que os olhos não veem.»' },
+    ],
+  },
+  {
+    livro: 'lm', capitulo: 3, versiculo: 22,
+    tema: 'Misericórdias renovadas — Fidelidade no sofrimento',
+    contexto: 'No meio da devastação de Jerusalém, o profeta afirma que as misericórdias do Senhor não têm fim.',
+    interpretacoes: [
+      { teologo: 'Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Consolo', resumo: 'A graça renovada a cada manhã sustenta os que passam pela disciplina divina.', citacao: '«As misericórdias de Deus são como o maná: novas toda a manhã.»' },
+      { teologo: 'Agostinho', periodo: '354-430', tradicao: 'Patrística', visao: 'Esperança', resumo: 'Mesmo no juízo há amor; a fidelidade de Deus permanece quando tudo mais desaba.', citacao: '«Aonde quer que o pecado abunde, a misericórdia de Deus superabunda.»' },
+    ],
+  },
+  {
+    livro: '2pe', capitulo: 1, versiculo: 4,
+    tema: 'Participantes da natureza divina',
+    contexto: 'Pedro ensina que as promessas nos habilitam a escapar da corrupção e participar da vida de Deus.',
+    interpretacoes: [
+      { teologo: 'Pedro (trad.)', periodo: 'Séc. I d.C.', tradicao: 'Bíblica', visao: 'Deificação por graça', resumo: 'A participação não anula a criatura, mas a eleva pela graça à semelhança de Cristo.', citacao: '«Vos fizestes participantes da natureza divina, havendo escapado da corrupção.»' },
+      { teologo: 'Atanásio', periodo: '296-373', tradicao: 'Patrística', visao: 'Encarnação', resumo: 'O Verbo se fez homem para que os homens se tornassem deuses por adoção.', citacao: '«Ele se fez homem para que fôssemos feitos deuses.»' },
+    ],
+  },
+  {
+    livro: '1tm', capitulo: 2, versiculo: 5,
+    tema: 'Um só Mediador',
+    contexto: 'Paulo afirma haver um único mediador entre Deus e os homens: Cristo Jesus, homem.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Mediação exclusiva', resumo: 'Cristo, verdadeiro Deus e verdadeiro homem, é o único canal de acesso a Deus. Nenhum santo intermedia.', citacao: '«Não há meio de chegar a Deus senão por Cristo, o único Mediador.»' },
+      { teologo: 'Atanásio', periodo: '296-373', tradicao: 'Patrística', visao: 'Encarnação mediadora', resumo: 'A encarnação é necessária precisamente porque só Deus-homem pode reconciliar ambas as naturezas.', citacao: '«Aquele que é Mediador é o mesmo que é Salvador, o Verbo encarnado.»' },
+    ],
+  },
+  {
+    livro: '2jo', capitulo: 1, versiculo: 6,
+    tema: 'Andar segundo os mandamentos',
+    contexto: 'O amor verdadeiro se manifesta no andar segundo os mandamentos de Deus.',
+    interpretacoes: [
+      { teologo: 'João Crisóstomo', periodo: '349-407', tradicao: 'Patrística Oriental', visao: 'Amor obediente', resumo: 'O amor não é mero sentimento, mas obediência prática à vontade revelada de Deus.', citacao: '«Quem diz amar e desobedece, ilude a si mesmo.»' },
+      { teologo: 'João (trad.)', periodo: 'Séc. I d.C.', tradicao: 'Bíblica', visao: 'Continuidade', resumo: 'O mandamento novo é também o antigo: amar é andar como Cristo ensinou.', citacao: '«Este é o amor: que andemos segundo os Seus mandamentos.»' },
+    ],
+  },
+  {
+    livro: '3jo', capitulo: 1, versiculo: 4,
+    tema: 'Alegria do pastor — Filhos na verdade',
+    contexto: 'João expressa seu maior gozo ao ouvir que seus filhos espirituais andam na verdade.',
+    interpretacoes: [
+      { teologo: 'João Crisóstomo', periodo: '349-407', tradicao: 'Patrística Oriental', visao: 'Pastoral', resumo: 'O fruto genuíno do ministério é a santidade dos discípulos, não a aclamação própria.', citacao: '«Maior gozo não há para o pastor do que ver o rebanho na verdade.»' },
+      { teologo: 'João (trad.)', periodo: 'Séc. I d.C.', tradicao: 'Bíblica', visao: 'Alegria mútua', resumo: 'A comunhão na verdade gera alegria partilhada entre mestre e discípulo.', citacao: '«Não tenho maior gozo do que este: o de ouvir que os meus filhos andam na verdade.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // PROFETAS MENORES, CANTARES E EPÍSTOLAS CURTAS (cobertura completa)
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ct', capitulo: 8, versiculo: 6,
+    tema: 'Amor selado sobre o coração — Tipo do amor de Cristo',
+    contexto: 'O Cântico descreve um amor forte como a morte, lido tipologicamente como a paixão de Cristo pela Sua igreja.',
+    interpretacoes: [
+      { teologo: 'Bernardo de Claraval', periodo: '1090-1153', tradicao: 'Monástica', visao: 'Mística', resumo: 'O amor de Deus por alma é intenso e exclusivo; a devoção mística medeia a união com Cristo.', citacao: '«O amor de Deus derrama-se no coração e sela a alma para Si.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aliança', resumo: 'O Cântico ilustra a fidelidade da aliança entre Deus e Seu povo, espelhada no matrimônio.', citacao: '«O amor conjugal é sombra do amor invencível de Deus por Sua igreja.»' },
+    ],
+  },
+  {
+    livro: 'jl', capitulo: 2, versiculo: 28,
+    tema: 'Derramamento do Espírito — Pentecostes anunciado',
+    contexto: 'Joel profetiza que o Espírito seria derramado sobre toda a carne, cumprido em Atos 2.',
+    interpretacoes: [
+      { teologo: 'Pedro (trad.)', periodo: 'Séc. I d.C.', tradicao: 'Bíblica', visao: 'Cumprimento pentecostal', resumo: 'A profecia de Joel se cumpre no derramamento do Espírito sobre judeus e gentios igualmente.', citacao: '«Isto é o que foi dito pelo profeta Joel: derramarei do Meu Espírito.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Economia do Espírito', resumo: 'A nova era é marcada pela presença interior do Espírito, sinal do reino vindouro.', citacao: '«O derramamento do Espírito é a marca da igreja do Novo Testamento.»' },
+    ],
+  },
+  {
+    livro: 'jn', capitulo: 3, versiculo: 10,
+    tema: 'Arrependimento de Nínive — Misericórdia universal',
+    contexto: 'A cidade gentílica de Nínive se arrepende à pregação de Jonas, e Deus perdoa.',
+    interpretacoes: [
+      { teologo: 'Agostinho', periodo: '354-430', tradicao: 'Patrística', visao: 'Graça soberana', resumo: 'A salvação de Nínive demonstra que a misericórdia de Deus transpõe fronteiras de povo.', citacao: '«Deus não rejeita quem se arrepende, seja judeu ou gentio.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Justificação pela fé', resumo: 'Nínive é justificada por sua fé manifesta em arrependimento, não por merecimento.', citacao: '«A fé que se arrepende alcança o perdão de Deus.»' },
+    ],
+  },
+  {
+    livro: 'mi', capitulo: 6, versiculo: 8,
+    tema: 'O que Deus requer — Justiça, misericórdia e humildade',
+    contexto: 'Miquéias resume a exigência moral de Deus em três atitudes práticas.',
+    interpretacoes: [
+      { teologo: 'Miquéias (trad.)', periodo: 'Séc. VIII a.C.', tradicao: 'Bíblica', visao: 'Ética profética', resumo: 'A religião autêntica é fazer justiça, amar a misericórdia e andar humildemente com Deus.', citacao: '«Ele te declarou, ó homem, o que é bom; que outro bem requer o Senhor, senão praticar a justiça?»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Santidade prática', resumo: 'A verdadeira piedade se expressa em retidão social e humildade diante de Deus.', citacao: '«A justiça para com o próximo e a humildade diante de Deus são o culto real.»' },
+    ],
+  },
+  {
+    livro: 'zc', capitulo: 9, versiculo: 9,
+    tema: 'O Rei manso de Jerusalém — Entrada messiânica',
+    contexto: 'Zacarias anuncia a vinda do Rei humilde, montado em jumenta, cumprida em Mateus 21.',
+    interpretacoes: [
+      { teologo: 'Mateus (trad.)', periodo: 'Séc. I d.C.', tradicao: 'Bíblica', visao: 'Cumprimento', resumo: 'A entrada triunfal de Jesus em Jerusalém cumpre literalmente esta profecia.', citacao: '«Dizei à filha de Sião: eis que o teu Rei vem a ti, manso.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Realeza humilde', resumo: 'A majestade de Cristo se revela na humildade; Seu trono é a cruz.', citacao: '«O Rei da glória veio em humildade para reinar pela cruz.»' },
+    ],
+  },
+  {
+    livro: 'ml', capitulo: 4, versiculo: 2,
+    tema: 'O Sol da Justiça — Cura messiânica',
+    contexto: 'Malaquias encerra o AT anunciando o surgimento do Sol da Justiça para os que temem a Deus.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Esperança messiânica', resumo: 'A última profecia do AT aponta para a vinda de Cristo como luz e cura.', citacao: '«O Sol da Justiça há de nascer trazendo salvação em suas asas.»' },
+      { teologo: 'Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Consolo', resumo: 'Para os que temem a Deus, a vinda de Cristo traz cura e livramento seguros.', citacao: '«Aquele que é o Sol levanta-se para curar os que andam nas trevas.»' },
+    ],
+  },
+  {
+    livro: '2tm', capitulo: 3, versiculo: 16,
+    tema: 'Inspiração das Escrituras',
+    contexto: 'Paulo afirma a origem divina de toda a Escritura e sua utilidade para a vida do crente.',
+    interpretacoes: [
+      { teologo: 'Atanásio', periodo: '296-373', tradicao: 'Patrística', visao: 'Autoridade canônica', resumo: 'Toda a Escritura provém de Deus e é suficiente para a fé e o ministério.', citacao: '«As divinas Escrituras bastam para a piedade e para toda a edificação.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Clareza e suficiência', resumo: 'A Bíblia é a regra infalível de fé; seu testemunho é confirmado pelo Espírito.', citacao: '«A Escritura é a escola do Espírito Santo, onde aprendemos a Deus perfeitamente.»' },
+    ],
+  },
+  {
+    livro: 'tt', capitulo: 3, versiculo: 5,
+    tema: 'Salvação pela misericórdia',
+    contexto: 'Tito ensina que fomos salvos não por obras, mas pela regeneração do Espírito.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Sola gratia', resumo: 'A salvação é inteiramente pela misericórdia de Deus, mediante a lavagem da regeneração.', citacao: '«Não pelas obras de justiça que fizéssemos, mas segundo Sua misericórdia nos salvou.»' },
+      { teologo: 'Tito (trad.)', periodo: 'Séc. I d.C.', tradicao: 'Bíblica', visao: 'Renovação', resumo: 'O Espírito Santo renova o crente, tornando-o herdeiro da esperança da vida eterna.', citacao: '«Justificados pela Sua graça, fomos feitos herdeiros conforme a esperança da vida eterna.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // ESTUDOS FALTANTES (cobertura completa de 66 livros)
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: '1cr', capitulo: 29, versiculo: 11,
+    tema: 'A soberania de Deus sobre todas as coisas',
+    contexto: 'Davi declara que de Deus é o reino, a grandeza, o poder e a glória, antes de entregar a arca.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Toda preeminência e riqueza provêm de Deus; o homem nada tem que não tenha recebido.', citacao: '«Tua, ó Senhor, é a grandeza, o poder, a glória, a vitória e a majestade.»' },
+    ],
+  },
+  {
+    livro: '2cr', capitulo: 7, versiculo: 14,
+    tema: 'Humilhar-se e sarar a terra',
+    contexto: 'Deus promete perdoar e curar a terra se Seu povo se humilhar, orar e se converter.',
+    interpretacoes: [
+      { teologo: 'Matthew Henry', periodo: '1662-1714', tradicao: 'Puritana', visao: 'Avivamento', resumo: 'A condição do avivamento é a humilhação do povo diante de Deus, não o mérito.', citacao: '«O arrependimento precede sempre a cura que Deus promete.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aliança', resumo: 'A fidelidade de Deus à aliança se expressa em perdoar quando há verdadeira volta.', citacao: '«Quem se volta a Deus com todo o coração encontra o perdão certo.»' },
+    ],
+  },
+  {
+    livro: 'ec', capitulo: 12, versiculo: 13,
+    tema: 'O dever do homem — Temer a Deus',
+    contexto: 'O conclusão de Eclesiastes: temer a Deus e guardar Seus mandamentos é o dever de todo homem.',
+    interpretacoes: [
+      { teologo: 'Agostinho', periodo: '354-430', tradicao: 'Patrística', visao: 'Temor filial', resumo: 'Após esgotar a vaidade do mundo, o sábio conclui que só o temor de Deus dá sentido.', citacao: '«Teme a Deus e guarda os Seus mandamentos, porque isto é o dever de todo homem.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sabedoria', resumo: 'A reverência a Deus é o princípio e o fim de toda sabedoria autêntica.', citacao: '«O temor do Senhor é o começo e o fim da verdadeira sabedoria.»' },
+    ],
+  },
+  {
+    livro: 'os', capitulo: 6, versiculo: 6,
+    tema: 'Misericórdia, não sacrifício',
+    contexto: 'Oséias declara que Deus deseja misericórdia e conhecimento de Si, mais que holocaustos.',
+    interpretacoes: [
+      { teologo: 'Mateus (trad.)', periodo: 'Séc. I d.C.', tradicao: 'Bíblica', visao: 'Cumprimento', resumo: 'Jesus cita este versículo para priorizar a misericórdia sobre o ritual (Mt 9:13; 12:7).', citacao: '«Misericórdia quero, e não sacrifício; e o conhecimento de Deus mais do que holocaustos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Culto racional', resumo: 'O culto agradável é o amor prático, não a observância externa vazia.', citacao: '«Deus rejeita o ritual quando falta o coração cheio de misericórdia.»' },
+    ],
+  },
+  {
+    livro: 'ob', capitulo: 1, versiculo: 21,
+    tema: 'Salvadores no monte Sião',
+    contexto: 'Obadias encerra anunciando a vitória final de Deus sobre Edom e a restauração de Sião.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Juízo e reino', resumo: 'A soberania de Deus sobre as nações se consuma no reino de Cristo, libertador de Seu povo.', citacao: '«Subirão salvadores ao monte Sião para julgar o monte de Esaú.»' },
+    ],
+  },
+  {
+    livro: 'na', capitulo: 1, versiculo: 7,
+    tema: 'O Senhor é bom — Refúgio',
+    contexto: 'No meio da denúncia contra Nínive, Naum afirma a bondade de Deus para os que nEle se refugiam.',
+    interpretacoes: [
+      { teologo: 'Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Providência', resumo: 'A justiça de Deus pune a iniquidade, mas Sua bondade abriga os fiéis.', citacao: '«O Senhor é bom, uma fortaleza no dia da angústia; conhece os que nEle confiam.»' },
+    ],
+  },
+  {
+    livro: 'so', capitulo: 3, versiculo: 17,
+    tema: 'Deus se alegra sobre Seu povo',
+    contexto: 'Sofonias anuncia que o Senhor, no meio de Seu povo, se regozijará com amor.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Amor de Deus', resumo: 'O Deus santo não apenas perdoa, mas se deleita em Seu povo redimido.', citacao: '«Regozijar-se-á em ti com alegria; retomará o Seu amor em silêncio.»' },
+    ],
+  },
+  {
+    livro: 'ag', capitulo: 1, versiculo: 5,
+    tema: 'Considerai os vossos caminhos',
+    contexto: 'Ageu exorta o povo a refletir sobre suas prioridades e a reconstruir o templo de Deus.',
+    interpretacoes: [
+      { teologo: 'Ageu (trad.)', periodo: 'Séc. VI a.C.', tradicao: 'Bíblica', visao: 'Exortação', resumo: 'A escassez do povo reflete ter deixado a casa de Deus em segundo lugar.', citacao: '«Considerai os vossos caminhos: semeais muito e recolheis pouco.»' },
+    ],
+  },
+  {
+    livro: '2co', capitulo: 5, versiculo: 17,
+    tema: 'Nova criatura em Cristo',
+    contexto: 'Paulo declara que quem está em Cristo é nova criatura; as coisas velhas passaram.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Regeneração', resumo: 'A união com Cristo produz uma nova criação real; a identidade antiga é substituída.', citacao: '«Se alguém está em Cristo, nova criatura é; as coisas velhas já passaram.»' },
+      { teologo: 'Agostinho', periodo: '354-430', tradicao: 'Patrística', visao: 'Renovação', resumo: 'A graça transforma a natureza do crente de dentro para fora.', citacao: '«Quem te criou sem ti não te justificará sem ti; mas tu colaboras pela graça.»' },
+    ],
+  },
+  {
+    livro: '2co', capitulo: 12, versiculo: 9,
+    tema: 'A graça basta, o poder na fraqueza',
+    contexto: 'Deus responde a Paulo que Sua graça basta, e o poder se aperfeiçoa na fraqueza.',
+    interpretacoes: [
+      { teologo: 'Paulo (trad.)', periodo: 'Séc. I d.C.', tradicao: 'Bíblica', visao: 'Dependência', resumo: 'A fraqueza é o lugar onde a força de Cristo se manifesta plenamente.', citacao: '«A Minha graça te basta, porque o poder se aperfeiçoa na fraqueza.»' },
+      { teologo: 'Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Consolo', resumo: 'O crente não precisa temer a fraqueza, pois nela habita o poder de Cristo.', citacao: '«Quando estou fraco, então sou forte, porque Cristo me sustenta.»' },
+    ],
+  },
+  {
+    livro: '2ts', capitulo: 3, versiculo: 16,
+    tema: 'O Senhor da paz dá paz',
+    contexto: 'Paulo encerra pedindo que o Senhor da paz conceda paz em todo tempo e modo.',
+    interpretacoes: [
+      { teologo: 'João Crisóstomo', periodo: '349-407', tradicao: 'Patrística Oriental', visao: 'Paz', resumo: 'A paz de Cristo guarda a igreja em meio a perseguição e incerteza.', citacao: '«O Senhor da paz vos dê sempre a paz por todos os modos.»' },
+    ],
+  },
+  {
+    livro: 'fm', capitulo: 1, versiculo: 6,
+    tema: 'A comunicação da fé',
+    contexto: 'Paulo louva a fé de Filemom que se torna ativa em benefício dos santos.',
+    interpretacoes: [
+      { teologo: 'João Crisóstomo', periodo: '349-407', tradicao: 'Patrística Oriental', visao: 'Fraternidade', resumo: 'A fé genuína se comunica em ações de amor e reconciliação prática.', citacao: '«A comunicação da tua fé se torne eficaz no conhecimento de todo o bem.»' },
+    ],
+  },
+  {
+    livro: 'jd', capitulo: 1, versiculo: 3,
+    tema: 'Combater pela fé uma vez entregue',
+    contexto: 'Judas exorta a contenderem pela fé que foi entregue aos santos de uma vez por todas.',
+    interpretacoes: [
+      { teologo: 'Judas (trad.)', periodo: 'Séc. I d.C.', tradicao: 'Bíblica', visao: 'Ortodoxia', resumo: 'A doutrina apostólica é fixa e definitiva; deve ser defendida contra falsos mestres.', citacao: '«Contendei pela fé que uma vez foi dada aos santos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Sola Scriptura', resumo: 'A Palavra entregue é a regra invariável; a igreja a guarda, não a reinventa.', citacao: '«A fé foi entregue de uma vez; não cabe acrescentar nem tirar.»' },
+    ],
+  },
 ];
 
 // Índices para busca rápida

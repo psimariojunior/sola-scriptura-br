@@ -44,6 +44,7 @@ export default function CadastroPage() {
     try {
       await cadastrar(nome, email, senha);
       setSucesso(true);
+      router.refresh();
       setTimeout(() => {
         router.push('/conta');
       }, 2000);
@@ -59,6 +60,7 @@ export default function CadastroPage() {
     setErro('');
     try {
       await loginWithGoogle();
+      router.refresh();
       router.push('/conta');
     } catch {
       setErro('Erro ao cadastrar com Google.');

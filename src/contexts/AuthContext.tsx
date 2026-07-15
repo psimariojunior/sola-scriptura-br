@@ -33,9 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAutenticado, setIsAutenticado] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    authService.migrarManualmente();
+  const syncState = useCallback(() => {
     const snap = snapshot();
     setUsuario(snap.usuario);
     setIsAutenticado(snap.isAutenticado);
@@ -44,42 +42,51 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    authService.migrarManualmente();
+    syncState();
+  }, [syncState]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
     const unsub = authService.subscribe(() => {
-      const snap = snapshot();
-      setUsuario(snap.usuario);
-      setIsAutenticado(snap.isAutenticado);
-      setIsAdmin(snap.isAdmin);
+      syncState();
     });
     return unsub;
-  }, []);
+  }, [syncState]);
 
   const login = useCallback(async (email: string, senha: string) => {
     const user = await authService.login(email, senha);
+    syncState();
     return user;
-  }, []);
+  }, [syncState]);
 
   const cadastrar = useCallback(async (nome: string, email: string, senha: string) => {
     const user = await authService.cadastrar(nome, email, senha);
+    syncState();
     return user;
-  }, []);
+  }, [syncState]);
 
   const logout = useCallback(async () => {
     await authService.logout();
-  }, []);
+    syncState();
+  }, [syncState]);
 
   const loginWithGoogle = useCallback(async () => {
     const user = await authService.loginWithGoogle();
+    syncState();
     return user;
-  }, []);
+  }, [syncState]);
 
   const loginWithApple = useCallback(async () => {
     const user = await authService.loginWithApple();
+    syncState();
     return user;
-  }, []);
+  }, [syncState]);
 
   const recarregarSessao = useCallback(() => {
     authService.recarregarSessao();
-  }, []);
+    syncState();
+  }, [syncState]);
 
   const migrarContas = useCallback(() => {
     return authService.migrarManualmente();

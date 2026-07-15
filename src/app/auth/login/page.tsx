@@ -32,6 +32,7 @@ function LoginForm() {
 
     try {
       await login(email, senha);
+      router.refresh();
       router.push(redirectTo);
     } catch (err: any) {
       setErro(err.message || 'Erro ao fazer login. Verifique suas credenciais.');
@@ -45,6 +46,7 @@ function LoginForm() {
     setErro('');
     try {
       await loginWithGoogle();
+      router.refresh();
       router.push(redirectTo);
     } catch {
       setErro('Erro ao fazer login com Google.');
@@ -58,6 +60,7 @@ function LoginForm() {
     setErro('');
     try {
       await loginWithApple();
+      router.refresh();
       router.push(redirectTo);
     } catch {
       setErro('Erro ao fazer login com Apple.');

@@ -614,6 +614,171 @@ add('ap', 22, 17, 'Albert Barnes', 'Venha quem quer — O convite é aberto: tod
 add('ap', 22, 20, 'Spurgeon', 'Vem, Senhor Jesus — A oração final da Escritura: a expectativa da volta de Cristo.', 'escatologico');
 add('ap', 22, 20, 'Wesley', 'Vem, Senhor Jesus — O anseio da igreja: a segunda vinda é a esperança máxima.', 'escatologico');
 
+// ═══════════════════════════════════════════════════════════════════════
+// LIVROS DO AT NÃO COBERTOS ANTERIORMENTE (expandindo cobertura)
+// ═══════════════════════════════════════════════════════════════════════
+
+// LEVÍTICO
+add('lv', 19, 2, 'Calvino', 'Sede santos — A santidade é imitação de Deus. O povo de Deus é chamado a separação moral do mundo.', 'teologico');
+add('lv', 17, 11, 'Agostinho', 'A vida está no sangue — O sangue expia porque representa a vida. Tipologia do sangue de Cristo que purifica.', 'teologico');
+add('lv', 16, 30, 'Matthew Henry', 'Neste dia se fará expiação — O Dia da Expiação aponta para Cristo, nosso Sumo Sacerdote eterno.', 'escatologico');
+
+// NÚMEROS
+add('nm', 6, 24, 'Matthew Henry', 'O Senhor te abençoe — A bênção sacerdotal: graça, proteção e paz fluem da face de Deus voltada para o povo.', 'cultural');
+add('nm', 14, 18, 'Spurgeon', 'O Senhor é longânimo — A paciência de Deus não é fraqueza, mas espaço para arrependimento.', 'teologico');
+add('nm', 21, 8, 'Calvino', 'A serpente de bronze — Tipologia exata de Cristo crucificado: olhar e viver pela fé.', 'teologico');
+add('nm', 24, 17, 'Irineu', 'Surgirá de Jacó uma estrela — Profecia messiânica da estrela de Jacó cumprida em Cristo.', 'escatologico');
+
+// DEUTERONÔMIO
+add('dt', 6, 4, 'Calvino', 'Ouve, Israel: o Senhor é um — O Shema afirma o monoteísmo exclusivo. Um só Deus, uma só lealdade.', 'teologico');
+add('dt', 6, 5, 'Agostinho', 'Amarás o Senhor de todo o coração — O amor total a Deus é o resumo da Lei e o fruto da graça.', 'teologico');
+add('dt', 30, 19, 'Lutero', 'Escolhe a vida — A responsabilidade moral é real: Deus coloca diante de nós bênção e maldição.', 'aplicacao');
+
+// JOSUÉ
+add('js', 1, 8, 'Joshua Harris', 'Não se aparte da tua boca — A meditação constante na Lei produz prosperidade espiritual e obediência.', 'aplicacao');
+add('js', 1, 9, 'Spurgeon', 'Sê forte e corajoso — A coragem brota da presença de Deus, não da própria força.', 'teologico');
+add('js', 24, 15, 'Matthew Henry', 'Escolhei hoje a quem servireis — A decisão de fé é pessoal e definitiva: não se pode servir a dois senhores.', 'aplicacao');
+
+// JUÍZES
+add('jz', 2, 18, 'Calvino', 'O Senhor se compadeceu — A misericórdia divina interrompe o ciclo de juízo quando o povo clama.', 'teologico');
+add('jz', 21, 25, 'Agostinho', 'Cada um fazia o que era reto — A ausência de autoridade divina gera caos moral. Necessidade de Rei.', 'historico');
+
+// RUTE
+add('rt', 1, 16, 'Matthew Henry', 'O teu povo será o meu povo — A lealdade de Rute revela graça que ultrapassa fronteiras étnicas.', 'cultural');
+add('rt', 4, 14, 'Lutero', 'O Senhor não te deixou sem resgatador — A providência de Deus opera através de parentes redentores.', 'teologico');
+
+// 1 SAMUEL
+add('1sm', 3, 10, 'Calvino', 'Fala, Senhor — A disponibilidade de Samuel: ouvir a Deus exige silêncio diante da Sua voz.', 'teologico');
+add('1sm', 16, 7, 'Agostinho', 'O Senhor olha para o coração — Deus avalia a realidade interior, não a aparência externa.', 'teologico');
+add('1sm', 15, 22, 'Gregório Magno', 'Obediência é melhor que sacrifício — A submissão a Deus vale mais que rituais vazios.', 'teologico');
+
+// 2 SAMUEL
+add('2sm', 7, 16, 'Calvino', 'A tua casa será estabelecida para sempre — A aliança davídica aponta para o reino eterno de Cristo.', 'teologico');
+add('2sm', 12, 13, 'Agostinho', 'O Senhor perdoou o teu pecado — O arrependimento sincero encontra perdão imediato em Deus.', 'teologico');
+add('2sm', 22, 31, 'Spurgeon', 'O caminho do Senhor é perfeito — A Palavra de Deus é escudo para os que nEle se refugiam.', 'teologico');
+
+// 1 REIS
+add('1rs', 3, 11, 'Matthew Henry', 'Pediste sabedoria — Deus concede sabedoria aos que buscam governar com justiça.', 'teologico');
+add('1rs', 8, 27, 'Calvino', 'Os céus não te podem conter — A transcendência de Deus: nenhum templo O limita.', 'teologico');
+add('1rs', 19, 12, 'Elias', 'Uma voz mansa e delicada — Deus fala no silêncio, não no tumulto. A verdadeira direção vem em quietude.', 'teologico');
+
+// 2 REIS
+add('2rs', 2, 9, 'Eliseu', 'Que o duplo do teu espírito — A herança espiritual exige busca fervorosa.', 'teologico');
+add('2rs', 17, 13, 'Calvino', 'Deus enviou mensageiros — A persistência de Deus em alertar Seu povo revela Sua paciência.', 'historico');
+
+// 1 CRÔNICAS
+add('1cr', 16, 34, 'Spurgeon', 'O Senhor é bom — A bondade eterna de Deus é o tema central da adoração.', 'teologico');
+add('1cr', 29, 11, 'Calvino', 'Teu, ó Senhor, é o reino — Toda soberania pertence a Deus; nada escapa ao Seu domínio.', 'teologico');
+
+// 2 CRÔNICAS
+add('2cr', 7, 14, 'Matthew Henry', 'Se o meu povo se humilhar — O avivamento exige humildade, oração e conversão.', 'aplicacao');
+add('2cr', 20, 15, 'Josafá', 'A batalha não é vossa — A vitória pertence a Deus; o povo deve confiar, não confiar em armas.', 'teologico');
+
+// ESDRAS
+add('ed', 7, 10, 'Esdras', 'Dedicou o seu coração — O estudo e ensino da Lei brotam de coração consagrado.', 'aplicacao');
+add('ed', 3, 11, 'Calvino', 'Porque o Senhor é bom — O fundamento do Templo restaurado celebra a fidelidade de Deus.', 'teologico');
+
+// NEEMIAS
+add('ne', 8, 8, 'Neemias', 'Davam o sentido — A exposição clara da Palavra produz entendimento e edificação.', 'cultural');
+add('ne', 8, 10, 'Spurgeon', 'A alegria do Senhor é a vossa força — A força espiritual brota da alegria em Deus.', 'aplicacao');
+
+// ESTER
+add('et', 4, 14, 'Lutero', 'Quem sabe se para tal momento — A providência de Deus prepara Suas pessoas para Sua obra.', 'teologico');
+
+// JÓ
+add('jó', 1, 21, 'Calvino', 'Nu saí do ventre de minha mãe — A soberania de Deus sobre a vida e a morte: receber e perder vêm dEle.', 'teologico');
+add('jó', 19, 25, 'Agostinho', 'Eu sei que o meu Redentor vive — A esperança da ressurreição: Jó antecipa o Libertador eterno.', 'escatologico');
+add('jó', 38, 4, 'Tomás de Aquino', 'Onde estavas tu — A resposta de Deus a Jó afirma a incompreensibilidade da Sabedoria divina.', 'teologico');
+add('jó', 42, 5, 'Lutero', 'Antes te ouvia, mas agora te vejo — O conhecimento experiential de Deus supera o intelectual.', 'teologico');
+
+// LAMENTAÇÕES
+add('lm', 3, 22, 'Spurgeon', 'As misericórdias do Senhor são a cada manhã — A fidelidade renovada de Deus sustenta no sofrimento.', 'teologico');
+add('lm', 3, 25, 'Calvino', 'Bom é o Senhor para os que esperam — A espera paciente encontra bondade divina.', 'teologico');
+
+// EZEQUIEL
+add('ez', 36, 26, 'Calvino', 'Vos darei um coração novo — A regeneração é obra de Deus: Ele substitui o coração de pedra.', 'teologico');
+add('ez', 37, 5, 'Agostinho', 'Vós revivereis — A visão dos ossos secos: Deus dá vida onde há apenas morte.', 'escatologico');
+
+// ═══════════════════════════════════════════════════════════════════════
+// LIVROS DO NT FALTANTES
+// ═══════════════════════════════════════════════════════════════════════
+
+// 1 TESSALONICENSES
+add('1ts', 4, 13, 'Calvino', 'Não vos entristeçais como os demais — A esperança da ressurreição transforma o luto dos crentes.', 'escatologico');
+add('1ts', 5, 16, 'João Crisóstomo', 'Orai sem cessar — A oração contínua é atitude de dependência, não apenas atos isolados.', 'aplicacao');
+
+// 2 PEDRO
+add('2pe', 1, 4, 'Pedro', 'Fiqueis participantes da natureza divina — A graça nos eleva à semelhança de Cristo.', 'teologico');
+add('2pe', 3, 9, 'Spurgeon', 'Não retarda a Sua promessa — A paciência de Deus é salvação, não lentidão.', 'escatologico');
+
+// 1 TIMÓTEO
+add('1tm', 2, 5, 'Calvino', 'Um só Mediador — Cristo é o único intermediário entre Deus e os homens.', 'teologico');
+add('1tm', 3, 16, 'Atanásio', 'Deus se manifestou em carne — O mistério da encarnação: piedade grandiosa.', 'teologico');
+
+// 2 JOÃO
+add('2jo', 1, 6, 'João Crisóstomo', 'Andar segundo os Seus mandamentos — O amor se manifesta na obediência, não apenas em sentimento.', 'aplicacao');
+
+// 3 JOÃO
+add('3jo', 1, 4, 'João', 'Não tenho maior gozo — O contentamento do pastor: ver os filhos na verdade.', 'aplicacao');
+
+// ═══════════════════════════════════════════════════════════════════════
+// PROFETAS MENORES, CANTARES E EPÍSTOLAS CURTAS (cobertura completa)
+// ═══════════════════════════════════════════════════════════════════════
+
+// CANTARES
+add('ct', 8, 6, 'Bernardo de Claraval', 'Põe-me como selo sobre o teu coração — O amor de Deus é forte como a morte; a devoção mística expressa a intimidade com Cristo.', 'cultural');
+add('ct', 2, 7, 'Spurgeon', 'Não acordeis o amor — A comunhão com Deus não se força; floresce no tempo certo.', 'aplicacao');
+
+// JOEL
+add('jl', 2, 28, 'Pedro', 'Derramarei do Meu Espírito — Profecia do Pentecostes: o Espírito sobre toda a carne (At 2:17).', 'escatologico');
+add('jl', 2, 13, 'Calvino', 'Rasgai o vosso coração — O arrependimento verdadeiro é interno, não exterior.', 'teologico');
+
+// OBADIAS
+add('ob', 1, 21, 'Calvino', 'Subirão salvadores ao monte Sião — A vitória final de Deus sobre Edom aponta para o reino messiânico.', 'escatologico');
+
+// JONAS
+add('jn', 2, 9, 'Agostinho', 'A salvação vem do Senhor — A soberania graciosa de Deus alcança até os ninivitas.', 'teologico');
+add('jn', 3, 10, 'Spurgeon', 'Deus se arrependeu do mal — A mudança de Deus em relação ao pecado arrependido revela Sua misericórdia.', 'teologico');
+add('jn', 4, 2, 'Calvino', 'Deus é misericordioso — A compaixão de Deus por toda a criatura confunde o nacionalismo estreito.', 'teologico');
+
+// MIQUÉIAS
+add('mi', 6, 8, 'Miquéias', 'Fazer justiça, amar a misericórdia — O resumo da exigência moral de Deus.', 'teologico');
+add('mi', 5, 2, 'Mateus', 'De ti sairá o Governador — Profecia do nascimento de Cristo em Belém (Mt 2:6).', 'escatologico');
+
+// NAUM
+add('na', 1, 7, 'Spurgeon', 'O Senhor é bom — Refúgio nos dias de angústia para os que confiam nEle.', 'teologico');
+
+// SOFONIAS
+add('so', 3, 17, 'Calvino', 'Regozijar-se-á em ti — O Deus santo se alegra sobre Seu povo com amor.', 'teologico');
+
+// AGEU
+add('ag', 1, 5, 'Ageu', 'Considerai o vosso caminho — O despertar para as prioridades de Deus precede a bênção.', 'aplicacao');
+
+// ZACARIAS
+add('zc', 4, 6, 'Zacarias', 'Não por força, nem por poder — A obra de Deus se faz pelo Seu Espírito.', 'teologico');
+add('zc', 9, 9, 'Mateus', 'O teu Rei vem manso — Profecia da entrada triunfal de Cristo em Jerusalém (Mt 21:5).', 'escatologico');
+add('zc', 12, 10, 'João', 'Olharão para aquele que traspassaram — Profecia da crucificação e arrependimento (Jo 19:37).', 'escatologico');
+
+// MALAQUIAS
+add('ml', 3, 10, 'Spurgeon', 'Trazei todos os dízimos — A fidelidade material é prova de confiança em Deus.', 'aplicacao');
+add('ml', 4, 2, 'Calvino', 'Nascerá o Sol da Justiça — A vinda do Messias como cura e luz para os que O temem.', 'escatologico');
+
+// 2 TESSALONICENSES
+add('2ts', 2, 3, 'Calvino', 'O homem da perdição — A apostasia precederá a vinda do Senhor; discernimento é necessário.', 'escatologico');
+add('2ts', 3, 16, 'João Crisóstomo', 'O Senhor da paz vos dê paz — A paz de Cristo guarda a igreja em toda circunstância.', 'teologico');
+
+// TITO
+add('tt', 2, 11, 'Tito', 'A graça de Deus se manifestou — A salvação universal oferecida a todos os homens.', 'teologico');
+add('tt', 3, 5, 'Calvino', 'Não por obras de justiça — A salvação é pela misericórdia, mediante a regeneração do Espírito.', 'teologico');
+
+// FILEMOM
+add('fm', 1, 6, 'João Crisóstomo', 'A comunicação da fé — A fé se expressa em ações concretas de amor fraternal.', 'aplicacao');
+
+// 2 TIMÓTEO
+add('2tm', 1, 7, 'Paulo', 'Não nos deu espírito de temor — O Espírito concede poder, amor e domínio próprio.', 'teologico');
+add('2tm', 3, 16, 'Atanásio', 'Toda a Escritura é inspirada — A autoridade divina de toda a Palavra para ensino e correção.', 'teologico');
+add('2tm', 4, 7, 'Lutero', 'Combati o bom combate — O exemplo de perseverança até o fim na fé.', 'aplicacao');
+
 export function obterComentarios(livro: string, capitulo: number, versiculo: number): Comentario[] {
   return comentarios[chave(livro, capitulo, versiculo)] || [];
 }

@@ -65,7 +65,7 @@ function PanelFallback() {
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
-const TRADS_LOCAIS = new Set(['arc', 'kjv', 'web']);
+const TRADS_LOCAIS = new Set(['arc', 'kjv', 'web', 'nvi', 'ara', 'acf']);
 const cacheApi = new Map<string, string[]>();
 
 async function fetchFromMidvash(trad: string, livro: string, cap: number): Promise<string[]> {

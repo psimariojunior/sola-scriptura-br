@@ -22,7 +22,8 @@ Plataforma de estudo biblico academico completa, melhor que o Logos. Site + App 
 - **TTS**: Cloudflare Worker `sola-scriptura-edge-tts` (Edge TTS gratuito)
 - **Diretorio backend na VM**: `/opt/sola-scriptura/backend/`
 - **Docker compose**: `/opt/sola-scriptura/backend/docker/docker-compose.yml`
-- **Config Nginx**: `/etc/nginx/conf.d/api.conf`
+- **Config Nginx**: `/etc/nginx/conf.d/api.conf` (bloco 443 ssl + proxy `:4000`, bloco 80 só p/ acme-challenge de renovação)
+- **SSL**: Certificado Let's Encrypt emitido via `certbot` (webroot `/var/www/api.solascripturabr.com.br`), cert em `/etc/letsencrypt/live/api.solascripturabr.com.br/`, renovação automática (certbot.timer). Se a API der timeout, checar se a porta 443 está escutando (`ss -tlnp | grep 443`).
 - **Frontend .env.local**: `NEXT_PUBLIC_API_URL=https://api.solascripturabr.com.br/api/v1`
 - **Backend .env (docker)**: `/opt/sola-scriptura/backend/docker/.env`
 - **Deploy backend**: GitHub Actions (push em `backend/` → SCP + Docker build na VM)

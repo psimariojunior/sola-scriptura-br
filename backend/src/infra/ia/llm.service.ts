@@ -28,13 +28,15 @@ export class LLMService {
   private readonly logger = new Logger(LLMService.name);
   private apiKey: string;
   private modelo: string;
+  private baseUrl: string;
   private temperatura: number;
   private maxTokens: number;
   private costHistory: CostEntry[] = [];
 
   constructor(private configService: ConfigService) {
     this.apiKey = this.configService.get('OPENAI_API_KEY', '');
-    this.modelo = this.configService.get('IA_MODEL', 'gpt-4o') as OpenAIModel;
+    this.baseUrl = this.configService.get('LLM_BASE_URL', 'https://api.openai.com/v1').replace(/\/$/, '');
+    this.modelo = this.configService.get('LLM_MODEL', this.configService.get('IA_MODEL', 'gpt-4o')) as OpenAIModel;
     this.temperatura = parseFloat(this.configService.get('IA_TEMPERATURE', '0.3'));
     this.maxTokens = parseInt(this.configService.get('IA_MAX_TOKENS', '4096'), 10);
   }
@@ -162,7 +164,7 @@ export class LLMService {
   async gerarEmbedding(texto: string): Promise<number[]> {
     if (!this.apiKey) throw new Error('OPENAI_API_KEY não configurada');
 
-    const resposta = await fetch('https://api.openai.com/v1/embeddings', {
+    const resposta = await fetch(`${this.baseUrl}/embeddings`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -188,7 +190,7 @@ export class LLMService {
 
     const limpos = textos.map(t => t.slice(0, 8191));
 
-    const resposta = await fetch('https://api.openai.com/v1/embeddings', {
+    const resposta = await fetch(`${this.baseUrl}/embeddings`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -245,7 +247,7 @@ export class LLMService {
 
     for (let tentativa = 0; tentativa < maxRetries; tentativa++) {
       try {
-        const resposta = await fetch('https://api.openai.com/v1/chat/completions', {
+        const resposta = await fetch(`${this.baseUrl}/chat/completions`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -293,7 +295,7 @@ export class LLMService {
 
     for (let tentativa = 0; tentativa <= maxRetries; tentativa++) {
       try {
-        const resposta = await fetch('https://api.openai.com/v1/chat/completions', {
+        const resposta = await fetch(`${this.baseUrl}/chat/completions`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

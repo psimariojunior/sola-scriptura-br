@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, BookText, StickyNote, GraduationCap, History, X, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { obterContexto, obterContextoCapitulo } from '@/data/contextoHistorico';
 
 const PainelStrong = dynamic(() => import('@/components/PainelStrong'), { ssr: false });
 const PainelNotas = dynamic(() => import('@/components/PainelNotas'), { ssr: false });
@@ -198,11 +199,7 @@ export function SidePanel({
                     description="Os estudos teológicos aparecem ao lado de cada versículo com marcador."
                   />
                 ) : activeTab === 'contexto' ? (
-                  <EmptyPanel
-                    icon={History}
-                    title="Contexto Histórico"
-                    description="Em breve: contexto histórico, geográfico e cultural do capítulo."
-                  />
+                  <PainelContexto livro={livroAbreviacao} capitulo={capitulo} />
                 ) : null}
               </Suspense>
             </motion.div>
@@ -225,6 +222,68 @@ function EmptyPanel({ icon: Icon, title, description }: { icon: typeof BookOpen;
       <p className="text-sm text-[var(--content-muted)] max-w-xs mx-auto">
         {description}
       </p>
+    </div>
+  );
+}
+
+function Secao({ rotulo, texto }: { rotulo: string; texto: string }) {
+  return (
+    <div className="mb-4">
+      <h4 className="text-[11px] font-semibold uppercase tracking-wider text-[var(--brand-default)] mb-1">
+        {rotulo}
+      </h4>
+      <p className="text-sm text-[var(--content-secondary)] leading-relaxed">{texto}</p>
+    </div>
+  );
+}
+
+function PainelContexto({ livro, capitulo }: { livro: string; capitulo: number }) {
+  const ctx = obterContexto(livro);
+  const notaCapitulo = obterContextoCapitulo(livro, capitulo);
+
+  if (!ctx) {
+    return (
+      <EmptyPanel
+        icon={History}
+        title="Contexto Histórico"
+        description="Contexto histórico ainda não disponível para este livro."
+      />
+    );
+  }
+
+  return (
+    <div>
+      <div className="flex items-center gap-2 mb-3">
+        <History className="w-4 h-4 text-[var(--brand-default)]" />
+        <h3 className="font-display text-base font-semibold text-[var(--content-primary)]">
+          Contexto Histórico
+        </h3>
+      </div>
+
+      <div className="rounded-lg border border-border/50 bg-[var(--surface-subtle)] p-3 mb-3">
+        <p className="text-xs text-[var(--content-muted)]">
+          <span className="font-medium text-[var(--content-secondary)]">Período:</span> {ctx.periodo}
+        </p>
+        <p className="text-xs text-[var(--content-muted)] mt-0.5">
+          <span className="font-medium text-[var(--content-secondary)]">Autoria:</span> {ctx.autorTradicional}
+        </p>
+      </div>
+
+      <Secao rotulo="Ambiente Geográfico" texto={ctx.ambienteGeografico} />
+      <Secao rotulo="Contexto Histórico" texto={ctx.contextoHistorico} />
+      <Secao rotulo="Cultura e Sociedade" texto={ctx.culturaSociedade} />
+      {ctx.descobertasArqueologicas && (
+        <Secao rotulo="Descobertas Arqueológicas" texto={ctx.descobertasArqueologicas} />
+      )}
+
+      {notaCapitulo && (
+        <div className="mt-3 rounded-lg border border-[var(--brand-subtle)] bg-[var(--brand-subtle)]/40 p-3">
+          <h4 className="text-[11px] font-semibold uppercase tracking-wider text-[var(--brand-default)] mb-1">
+            Capítulo {capitulo}
+          </h4>
+          <p className="text-sm text-[var(--content-secondary)] leading-relaxed">{notaCapitulo}</p>
+        </div>
+      )}
     </div>
   );
 }

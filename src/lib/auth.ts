@@ -1,6 +1,5 @@
 'use client';
 
-const ADMIN_EMAILS = ['psi_mariojunior@hotmail.com'];
 const USERS_KEY = 'ssb_users';
 const TOKEN_KEY = 'accessToken';
 const REFRESH_KEY = 'refreshToken';
@@ -85,9 +84,6 @@ function readLegacySession(): { token: string | null; refresh: string | null; us
 
 function aplicarRole(usuario: Usuario): Usuario {
   if (!usuario) return usuario;
-  if (ADMIN_EMAILS.includes(usuario.email)) {
-    return { ...usuario, role: 'admin' };
-  }
   return { ...usuario, role: usuario.role || 'user' };
 }
 
@@ -171,7 +167,7 @@ class AuthService {
             id,
             nome: legacy.nome || legacy.name || legacy.email.split('@')[0],
             email: legacy.email,
-            role: legacy.role || (ADMIN_EMAILS.includes(legacy.email) ? 'admin' : 'user'),
+            role: legacy.role || 'user',
             senha,
           });
           emailsAtuais.add(emailNorm);
@@ -275,40 +271,16 @@ class AuthService {
     if (typeof window === 'undefined') {
       throw new Error('Login indisponível no servidor');
     }
-
-    const usuario: Usuario = aplicarRole({
-      id: `google_${Date.now()}`,
-      nome: 'Usuário Google',
-      email: `usuario${Date.now()}@gmail.com`,
-    });
-
-    this.setSession({
-      accessToken: makeToken('g_token'),
-      refreshToken: makeToken('g_refresh'),
-      usuario,
-    });
-
-    return usuario;
+    window.location.href = '/api/auth/google';
+    return new Promise<Usuario>(() => {});
   }
 
   async loginWithApple(): Promise<Usuario> {
     if (typeof window === 'undefined') {
       throw new Error('Login indisponível no servidor');
     }
-
-    const usuario: Usuario = aplicarRole({
-      id: `apple_${Date.now()}`,
-      nome: 'Usuário Apple',
-      email: `usuario${Date.now()}@icloud.com`,
-    });
-
-    this.setSession({
-      accessToken: makeToken('a_token'),
-      refreshToken: makeToken('a_refresh'),
-      usuario,
-    });
-
-    return usuario;
+    window.location.href = '/api/auth/apple';
+    return new Promise<Usuario>(() => {});
   }
 
   async logout(): Promise<void> {
@@ -427,7 +399,7 @@ class AuthService {
 
   isAdmin(): boolean {
     if (!this.usuario) return false;
-    return ADMIN_EMAILS.includes(this.usuario.email) || this.usuario.role === 'admin';
+    return this.usuario.role === 'admin';
   }
 
   getAccessToken(): string | null {
@@ -451,6 +423,11 @@ class AuthService {
       this.usuario = null;
     }
     this.notifyListeners();
+  }
+
+  definirSessaoExterna(data: AuthResponse): void {
+    if (typeof window === 'undefined') return;
+    this.setSession(data);
   }
 
   migrarManualmente(): boolean {

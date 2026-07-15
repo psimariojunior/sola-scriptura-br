@@ -243,15 +243,19 @@ export default function BibliaPage() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [capituloIdx, livro, quickSearchOpen]);
 
-  const toggleTrad = (id: string) => {
-    setSelectedTrads(prev => {
-      if (prev.length === 1 && prev[0] === id) return prev;
-      if (prev.includes(id)) {
-        return prev.filter(t => t !== id);
-      }
-      return [...prev, id].slice(0, 4);
-    });
-  };
+const toggleTrad = (id: string) => {
+  setSelectedTrads(prev => {
+    // no modo único, substituir a versão escolhida automaticamente
+    if (viewMode === 'single') {
+      return [id];
+    }
+    if (prev.length === 1 && prev[0] === id) return prev;
+    if (prev.includes(id)) {
+      return prev.filter(t => t !== id);
+    }
+    return [...prev, id].slice(0, viewMode === 'comparison' ? 4 : 2);
+  });
+};
 
   const livrosFiltrados = useMemo(() => searchQuery
     ? TODOS_LIVROS.filter(l => l.nome.toLowerCase().includes(searchQuery.toLowerCase()) || l.abreviacao.toLowerCase().includes(searchQuery.toLowerCase()))

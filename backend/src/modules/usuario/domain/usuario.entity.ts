@@ -22,6 +22,9 @@ export class Usuario {
   @Column({ type: 'boolean', default: true })
   ativo: boolean;
 
+  @Column({ type: 'varchar', length: 20, default: 'user', name: 'role' })
+  role: string;
+
   @Column({ type: 'boolean', default: false, name: 'email_verificado' })
   emailVerificado: boolean;
 

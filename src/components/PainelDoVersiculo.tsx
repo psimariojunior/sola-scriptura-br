@@ -11,6 +11,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { getRecursosVersiculo, type RecursoVersiculo, type RecursoComentario, type RecursoEstudo, type RecursoNota, type RecursoCrossRef, type RecursoLexico, type RecursoMapa, type RecursoPersonagem, type RecursoDoutrina, type RecursoCronologia, type RecursoPericope, type TipoRecurso } from '@/data/biblia/versiculoRecursos';
 import { getStrongPorVersiculo, type PalavraStrong } from '@/data/biblia/strong';
 import { carregarTraducao, type CapituloComparado } from '@/data/biblia/texto/carregar';
+import { obterVariante, obterVariantesPorLivro } from '@/data/criticaTextual';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // TYPES
@@ -571,16 +572,59 @@ function TabPericope({ recursos }: { recursos: RecursoVersiculo[] }) {
   );
 }
 
-function TabCriticaTextual() {
+function TabCriticaTextual({ livro, capitulo, versiculo }: { livro: string; capitulo: number; versiculo: number }) {
+  const variante = obterVariante(livro, capitulo, versiculo);
+  const variantesLivro = obterVariantesPorLivro(livro).filter((v) => v !== variante);
+
+  if (!variante && variantesLivro.length === 0) {
+    return (
+      <div className="text-center py-8">
+        <FileText className="w-8 h-8 text-muted-foreground/40 mx-auto mb-2" />
+        <p className="text-sm text-muted-foreground">
+          Nenhuma variante textual registrada para este versículo.
+        </p>
+        <p className="text-xs text-muted-foreground/70 mt-1">
+          O texto segue o padrão da tradição manuscrita majoritária.
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <div className="text-center py-8">
-      <FileText className="w-8 h-8 text-muted-foreground/40 mx-auto mb-2" />
-      <p className="text-sm text-muted-foreground">
-        Crítica textual detalhada será disponibilizada em breve.
-      </p>
-      <p className="text-xs text-muted-foreground/70 mt-1">
-        Variantes manuscritas e notas textuais.
-      </p>
+    <div className="space-y-3">
+      {variante && (
+        <div className="glass-card rounded-lg p-4 border border-amber-500/30 bg-amber-500/5">
+          <div className="flex items-center gap-2 mb-2">
+            <FileText className="w-4 h-4 text-amber-500" />
+            <h4 className="text-sm font-bold">{variante.titulo}</h4>
+          </div>
+          <p className="text-sm text-foreground/80 leading-relaxed font-serif-body">{variante.descricao}</p>
+          <div className="mt-3 space-y-2">
+            <div>
+              <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Testemunhas</span>
+              <p className="text-xs text-foreground/75 leading-relaxed">{variante.testemunhas}</p>
+            </div>
+            <div>
+              <span className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Avaliação</span>
+              <p className="text-xs text-foreground/75 leading-relaxed">{variante.avaliacao}</p>
+            </div>
+          </div>
+        </div>
+      )}
+      {!variante && variantesLivro.length > 0 && (
+        <p className="text-xs text-muted-foreground">
+          Nenhuma variante para este versículo específico, mas este livro possui passagens com variantes textuais conhecidas:
+        </p>
+      )}
+      {variantesLivro.map((v, i) => (
+        <div key={i} className="glass-card rounded-lg p-3 border border-border/50">
+          <div className="flex items-center gap-2 mb-1 flex-wrap">
+            <Badge variant="secondary" className="text-[10px]">{v.capitulo}:{v.versiculo}</Badge>
+            <span className="text-sm font-semibold">{v.titulo}</span>
+          </div>
+          <p className="text-xs text-foreground/75 leading-relaxed">{v.descricao}</p>
+        </div>
+      ))}
     </div>
   );
 }
@@ -647,7 +691,7 @@ export default function PainelDoVersiculo({
   const contagemPorTipo = useCallback((tipo: TipoRecurso | string): number => {
     if (tipo === 'texto') return 1;
     if (tipo === 'lexico') return recursos.filter((r) => r.tipo === 'lexico').length;
-    if (tipo === 'critica') return 0;
+    if (tipo === 'critica') return obterVariantesPorLivro(livro).length;
     if (tipo === 'ia') return 1;
     return recursos.filter((r) => r.tipo === tipo).length;
   }, [recursos]);
@@ -772,7 +816,7 @@ export default function PainelDoVersiculo({
               </Suspense>
             </TabsContent>
             <TabsContent value="critica" className="mt-0">
-              <TabCriticaTextual />
+              <TabCriticaTextual livro={livro} capitulo={capitulo} versiculo={versiculo} />
             </TabsContent>
             <TabsContent value="ia" className="mt-0">
               <TabIA livro={livro} capitulo={capitulo} versiculo={versiculo} />

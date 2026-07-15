@@ -78,7 +78,7 @@ async function streamDirectLLM(
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${OPENAI_API_KEY}`,
-        'HTTP-Referer': 'https://sola-scriptura-two.vercel.app',
+        'HTTP-Referer': 'https://solascripturabr.com.br',
         'X-Title': 'Sola Scriptura BR',
       },
       body: JSON.stringify({

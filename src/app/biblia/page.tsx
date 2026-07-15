@@ -25,6 +25,7 @@ import ApresentacaoModal from '@/components/Apresentacao/ApresentacaoModal';
 import { PainelQualidadeAudio } from '@/components/PainelQualidadeAudio';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { cn } from '@/lib/utils';
+import { midvash } from '@/lib/api-client';
 import { ChapterHeader } from '@/components/Biblia/ChapterHeader';
 import { ModoLeitura, type ModoLeituraValue } from '@/components/Biblia/ModoLeitura';
 import { VerseCard } from '@/components/Biblia/VerseCard';
@@ -65,7 +66,6 @@ function PanelFallback() {
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
 const TRADS_LOCAIS = new Set(['arc', 'kjv', 'web']);
-const MIDVASH_API = 'https://api.midvash.com/v1';
 const cacheApi = new Map<string, string[]>();
 
 async function fetchFromMidvash(trad: string, livro: string, cap: number): Promise<string[]> {
@@ -74,9 +74,7 @@ async function fetchFromMidvash(trad: string, livro: string, cap: number): Promi
   const slug = ABREV_PARA_MIDVASH[livro];
   if (!slug) return [];
   try {
-    const res = await fetch(`${MIDVASH_API}/${trad}/${slug}/${cap}`, { signal: AbortSignal.timeout(12000) });
-    if (!res.ok) return [];
-    const json = await res.json();
+    const json = await midvash.getChapter(trad, slug, cap);
     const verses: string[] = [];
     const raw = json?.data?.verses;
     if (Array.isArray(raw)) {

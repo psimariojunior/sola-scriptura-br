@@ -1,0 +1,57 @@
+name: E2E Production Smoke Tests
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Diariamente às 8h UTC
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  smoke-tests:
+    name: Production Smoke Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Run production smoke tests
+        run: npx playwright test --config=playwright.config.production.ts
+        env:
+          CI: true
+
+      - name: Upload test report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-production
+          path: playwright-report-production/
+          retention-days: 30
+
+      - name: Upload test results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-production
+          path: test-results/
+          retention-days: 30
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Production smoke tests failed! Check the test report artifact for details."

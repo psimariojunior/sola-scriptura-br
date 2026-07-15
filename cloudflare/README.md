@@ -21,7 +21,7 @@ npm run deploy            # Faz deploy do worker
 
 | Variável | Valor | Descrição |
 |----------|-------|-----------|
-| `ALLOWED_ORIGIN` | `https://sola-scriptura-two.vercel.app` | Domínio autorizado para CORS |
+| `ALLOWED_ORIGIN` | `https://solascripturabr.com.br` | Domínio autorizado para CORS |
 
 Definida em `wrangler.toml`. Para alterar, edite o arquivo e faça deploy novamente.
 

@@ -171,7 +171,7 @@ function desenharRodape(doc: jsPDF, opcoes: OpcoesExportPdf, cores: TemaCores, n
 
   doc.setFontSize(6);
   doc.setTextColor(...cores.textoSecundario.slice(0, 3).map(v => Math.min(255, v + 30)) as [number, number, number]);
-  doc.text(txt.geradoPor + ' — sola-scriptura-two.vercel.app', pw / 2, ph - 7, { align: 'center' });
+  doc.text(txt.geradoPor + ' — solascripturabr.com.br', pw / 2, ph - 7, { align: 'center' });
 }
 
 function desenharCapa(doc: jsPDF, opcoes: OpcoesExportPdf, cores: TemaCores) {
@@ -232,7 +232,7 @@ function desenharCapa(doc: jsPDF, opcoes: OpcoesExportPdf, cores: TemaCores) {
 
   doc.setFontSize(7);
   doc.setTextColor(120, 100, 70);
-  doc.text('sola-scriptura-two.vercel.app', pw / 2, ph - 30, { align: 'center' });
+  doc.text('solascripturabr.com.br', pw / 2, ph - 30, { align: 'center' });
 }
 
 function desenharIndice(doc: jsPDF, opcoes: OpcoesExportPdf, cores: TemaCores, conteudo: ConteudoExport[]) {

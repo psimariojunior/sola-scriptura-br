@@ -20,7 +20,7 @@ spec:
             - containerPort: 3000
           env:
             - name: NEXT_PUBLIC_API_URL
-              value: "https://api.sola-scriptura.com"
+              value: "https://api.solascripturabr.com.br"
           resources:
             requests:
               memory: "256Mi"

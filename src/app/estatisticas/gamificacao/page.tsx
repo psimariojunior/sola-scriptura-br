@@ -67,7 +67,7 @@ export default function GamificacaoPage() {
 
   const handleCompartilhar = async (rede: string) => {
     const texto = encodeURIComponent(compartilharTexto);
-    const url = encodeURIComponent('https://sola-scriptura-two.vercel.app');
+    const url = encodeURIComponent('https://solascripturabr.com.br');
     const links: Record<string, string> = {
       twitter: `https://twitter.com/intent/tweet?text=${texto}&url=${url}`,
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${texto}`,

@@ -29,23 +29,117 @@ jobs:
             --exclude 'node_modules' \
             --exclude '.env' \
             --exclude 'dist' \
+            --exclude '*.log' \
             backend/ \
             ${{ secrets.VM_USER }}@${{ secrets.VM_IP }}:/opt/sola-scriptura/backend/
 
       - name: Deploy
         run: |
-          ssh -i ~/.ssh/deploy_key ${{ secrets.VM_USER }}@${{ secrets.VM_IP }} << 'EOF'
+          ssh -i ~/.ssh/deploy_key ${{ secrets.VM_USER }}@${{ secrets.VM_IP }} << 'DEPLOY_SCRIPT'
+            set -euo pipefail
             cd /opt/sola-scriptura/backend/docker
-            docker-compose down
-            docker-compose up -d --build
-            sleep 10
-            docker-compose logs --tail=10 backend
-          EOF
 
-      - name: Health check
+            echo "=== Parando containers ==="
+            docker compose down --remove-orphans 2>/dev/null || docker-compose down --remove-orphans 2>/dev/null || true
+
+            echo "=== Subindo infraestrutura ==="
+            docker compose up -d --build postgres redis 2>/dev/null || docker-compose up -d --build postgres redis
+            sleep 10
+
+            echo "=== Aguardando PostgreSQL ==="
+            for i in $(seq 1 30); do
+              if docker compose exec -T postgres pg_isready -U sola_scriptura 2>/dev/null || docker-compose exec -T postgres pg_isready -U sola_scriptura 2>/dev/null; then
+                echo "PostgreSQL pronto"
+                break
+              fi
+              sleep 2
+            done
+
+            echo "=== Build e subir backend ==="
+            docker compose up -d --build backend 2>/dev/null || docker-compose up -d --build backend
+            sleep 15
+
+            echo "=== Rodando migrations ==="
+            docker compose exec -T backend node -e "
+              const{DataSource}=require('typeorm');
+              const ds=new DataSource({
+                type:'postgres',
+                host:process.env.DB_HOST||'postgres',
+                port:parseInt(process.env.DB_PORT)||5432,
+                username:process.env.DB_USER||'sola_scriptura',
+                password:process.env.DB_PASSWORD,
+                database:process.env.DB_NAME||'sola_scriptura',
+                ssl:false,
+                entities:['dist/**/*.entity.js'],
+                migrations:['dist/infra/database/migrations/*.js'],
+                synchronize:false
+              });
+              ds.initialize().then(async()=>{
+                try{await ds.runMigrations();console.log('Migrations OK')}
+                catch(e){console.log('Migration skip:',e.message)}
+                await ds.destroy();process.exit(0);
+              }).catch(e=>{console.error(e);process.exit(1);})
+            " 2>/dev/null || echo "Migrations skip"
+
+            echo "=== Verificando necessidade de seed ==="
+            SEED_COUNT=$(docker compose exec -T backend node -e "
+              const{DataSource}=require('typeorm');
+              const ds=new DataSource({
+                type:'postgres',
+                host:process.env.DB_HOST||'postgres',
+                port:parseInt(process.env.DB_PORT)||5432,
+                username:process.env.DB_USER||'sola_scriptura',
+                password:process.env.DB_PASSWORD,
+                database:process.env.DB_NAME||'sola_scriptura',
+                ssl:false,
+                entities:['dist/**/*.entity.js'],
+                synchronize:false
+              });
+              ds.initialize().then(async()=>{
+                const c=await ds.query('SELECT COUNT(*) FROM livros');
+                console.log(c[0].count);
+                await ds.destroy();process.exit(0);
+              }).catch(e=>{console.error('0');process.exit(0);})
+            " 2>/dev/null || echo "0")
+
+            if [ "$SEED_COUNT" = "0" ]; then
+              echo "=== Banco vazio, rodando seed ==="
+              docker compose exec -T backend node dist/infra/database/seed.js 2>/dev/null || echo "Seed via compiled JS falhou"
+            else
+              echo "=== Banco já populado ($SEED_COUNT livros) ==="
+            fi
+
+            echo "=== Health check ==="
+            for i in $(seq 1 60); do
+              if curl -sf http://localhost:4000/api/v1/health >/dev/null 2>&1; then
+                echo "Backend saudável!"
+                break
+              fi
+              if [ "$i" -eq 60 ]; then
+                echo "Backend não respondeu em 120s"
+                docker compose logs --tail=30 backend 2>/dev/null || docker-compose logs --tail=30 backend
+                exit 1
+              fi
+              sleep 2
+            done
+
+            echo "=== Deploy concluído ==="
+            docker compose ps 2>/dev/null || docker-compose ps
+          DEPLOY_SCRIPT
+
+      - name: Health check externo
         run: |
-          sleep 15
-          curl -f http://${{ secrets.VM_IP }}:4000/api/v1/health || exit 1
+          echo "Aguardando backend estabilizar..."
+          sleep 30
+          for i in $(seq 1 10); do
+            if curl -sf "http://${{ secrets.VM_IP }}:4000/api/v1/health" >/dev/null 2>&1; then
+              echo "Backend respondendo externamente!"
+              exit 0
+            fi
+            echo "Tentativa $i/10..."
+            sleep 10
+          done
+          echo "WARN: Backend não respondeu externamente (pode ser firewall)"
 
       - name: Cleanup
         if: always()

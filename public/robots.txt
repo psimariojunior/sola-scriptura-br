@@ -4,4 +4,4 @@ Disallow: /admin
 Disallow: /conta
 Disallow: /api/
 
-Sitemap: https://sola-scriptura-two.vercel.app/sitemap.xml
+Sitemap: https://solascripturabr.com.br/sitemap.xml

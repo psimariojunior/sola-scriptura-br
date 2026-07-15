@@ -38,4 +38,5 @@ if (url) {
 }
 
 const dataSource = new DataSource(dataSourceOptions);
+export { dataSourceOptions };
 export default dataSource;

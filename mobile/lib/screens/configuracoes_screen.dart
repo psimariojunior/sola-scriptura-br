@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../providers/providers.dart';
 
-class ConfiguracoesScreen extends StatefulWidget {
+class ConfiguracoesScreen extends ConsumerStatefulWidget {
   const ConfiguracoesScreen({super.key});
 
   @override
-  State<ConfiguracoesScreen> createState() => _ConfiguracoesScreenState();
+  ConsumerState<ConfiguracoesScreen> createState() => _ConfiguracoesScreenState();
 }
 
-class _ConfiguracoesScreenState extends State<ConfiguracoesScreen> {
+class _ConfiguracoesScreenState extends ConsumerState<ConfiguracoesScreen> {
   String _themeMode = 'dark';
-  String _traducao = 'NVI';
-  double _fontSize = 16;
-  bool _notificacoes = true;
   bool _lembreteDiario = false;
-  String _idioma = 'pt';
 
   static const Color _accent = Color(0xFFC9A96E);
 
   @override
   Widget build(BuildContext context) {
+    final settings = ref.watch(settingsProviderInstance);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bg = isDark ? const Color(0xFF0A0A14) : const Color(0xFFF8F6F0);
     final card = isDark ? const Color(0xFF1A1A2E) : Colors.white;
@@ -56,22 +55,22 @@ class _ConfiguracoesScreenState extends State<ConfiguracoesScreen> {
             const SizedBox(height: 12),
             _buildThemeSection(card, textPrimary, textSecondary),
             const SizedBox(height: 12),
-            _buildFontSection(card, textPrimary, textSecondary),
+            _buildFontSection(card, textPrimary, textSecondary, settings.fontSize),
             const SizedBox(height: 28),
 
             _buildSectionHeader('BÍBLIA', textSecondary),
             const SizedBox(height: 12),
-            _buildTranslationSection(card, textPrimary, textSecondary),
+            _buildTranslationSection(card, textPrimary, textSecondary, settings.traducaoPadrao),
             const SizedBox(height: 28),
 
             _buildSectionHeader('NOTIFICAÇÕES', textSecondary),
             const SizedBox(height: 12),
-            _buildNotificationSection(card, textPrimary, textSecondary),
+            _buildNotificationSection(card, textPrimary, textSecondary, settings.notificacoesAtivadas),
             const SizedBox(height: 28),
 
             _buildSectionHeader('IDIOMA', textSecondary),
             const SizedBox(height: 12),
-            _buildLanguageSection(card, textPrimary, textSecondary),
+            _buildLanguageSection(card, textPrimary, textSecondary, settings.idioma),
             const SizedBox(height: 28),
 
             _buildSectionHeader('SOBRE', textSecondary),
@@ -147,7 +146,7 @@ class _ConfiguracoesScreenState extends State<ConfiguracoesScreen> {
     );
   }
 
-  Widget _buildFontSection(Color card, Color textPrimary, Color textSecondary) {
+  Widget _buildFontSection(Color card, Color textPrimary, Color textSecondary, double fontSize) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -172,7 +171,7 @@ class _ConfiguracoesScreenState extends State<ConfiguracoesScreen> {
                 ),
               ),
               Text(
-                '${_fontSize.toInt()}px',
+                '${fontSize.toInt()}px',
                 style: TextStyle(fontSize: 13, color: _accent, fontWeight: FontWeight.w600),
               ),
             ],
@@ -186,17 +185,17 @@ class _ConfiguracoesScreenState extends State<ConfiguracoesScreen> {
               overlayColor: _accent.withOpacity(0.1),
             ),
             child: Slider(
-              value: _fontSize,
+              value: fontSize,
               min: 12,
               max: 24,
               divisions: 12,
-              onChanged: (v) => setState(() => _fontSize = v),
+              onChanged: (v) => ref.read(settingsProviderInstance).setFontSize(v),
             ),
           ),
           Text(
             'Exemplo de texto bíblico nesta fonte',
             style: TextStyle(
-              fontSize: _fontSize,
+              fontSize: fontSize,
               fontFamily: 'serif',
               color: textPrimary,
               height: 1.5,
@@ -207,7 +206,7 @@ class _ConfiguracoesScreenState extends State<ConfiguracoesScreen> {
     );
   }
 
-  Widget _buildTranslationSection(Color card, Color textPrimary, Color textSecondary) {
+  Widget _buildTranslationSection(Color card, Color textPrimary, Color textSecondary, String traducaoAtual) {
     final traducoes = ['NVI', 'ACF', 'KJV', 'NAA', 'TB', 'WEB', 'ARC'];
     return Container(
       padding: const EdgeInsets.all(16),
@@ -237,9 +236,9 @@ class _ConfiguracoesScreenState extends State<ConfiguracoesScreen> {
             spacing: 8,
             runSpacing: 8,
             children: traducoes.map((t) {
-              final selected = _traducao == t;
+              final selected = traducaoAtual == t;
               return GestureDetector(
-                onTap: () => setState(() => _traducao = t),
+                onTap: () => ref.read(settingsProviderInstance).setTraducao(t),
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
@@ -267,7 +266,7 @@ class _ConfiguracoesScreenState extends State<ConfiguracoesScreen> {
     );
   }
 
-  Widget _buildNotificationSection(Color card, Color textPrimary, Color textSecondary) {
+  Widget _buildNotificationSection(Color card, Color textPrimary, Color textSecondary, bool notificacoesAtivadas) {
     return Container(
       decoration: BoxDecoration(
         color: card,
@@ -278,8 +277,8 @@ class _ConfiguracoesScreenState extends State<ConfiguracoesScreen> {
           _buildSwitchTile(
             Icons.notifications_none_rounded,
             'Notificações push',
-            _notificacoes,
-            (v) => setState(() => _notificacoes = v),
+            notificacoesAtivadas,
+            (v) => ref.read(settingsProviderInstance).toggleNotificacoes(),
             textPrimary,
           ),
           _buildDivider(textSecondary),
@@ -329,7 +328,7 @@ class _ConfiguracoesScreenState extends State<ConfiguracoesScreen> {
     );
   }
 
-  Widget _buildLanguageSection(Color card, Color textPrimary, Color textSecondary) {
+  Widget _buildLanguageSection(Color card, Color textPrimary, Color textSecondary, String idiomaAtual) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -338,20 +337,20 @@ class _ConfiguracoesScreenState extends State<ConfiguracoesScreen> {
       ),
       child: Column(
         children: [
-          _buildLanguageOption('Português', 'pt', '🇧🇷', textPrimary),
-          _buildLanguageOption('English', 'en', '🇺🇸', textPrimary),
-          _buildLanguageOption('Español', 'es', '🇪🇸', textPrimary),
+          _buildLanguageOption('Português', 'pt', '🇧🇷', textPrimary, idiomaAtual),
+          _buildLanguageOption('English', 'en', '🇺🇸', textPrimary, idiomaAtual),
+          _buildLanguageOption('Español', 'es', '🇪🇸', textPrimary, idiomaAtual),
         ],
       ),
     );
   }
 
-  Widget _buildLanguageOption(String label, String value, String flag, Color textPrimary) {
-    final selected = _idioma == value;
+  Widget _buildLanguageOption(String label, String value, String flag, Color textPrimary, String idiomaAtual) {
+    final selected = idiomaAtual == value;
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () => setState(() => _idioma = value),
+        onTap: () => ref.read(settingsProviderInstance).setIdioma(value),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12),
           child: Row(

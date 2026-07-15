@@ -150,7 +150,7 @@ export default async function Image() {
             letterSpacing: '0.08em',
           }}
         >
-          <span>sola-scriptura-two.vercel.app</span>
+          <span>solascripturabr.com.br</span>
         </div>
       </div>
     ),

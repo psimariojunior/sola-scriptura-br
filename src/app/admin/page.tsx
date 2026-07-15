@@ -109,7 +109,7 @@ export default function AdminPage() {
   const [config, setConfig] = useState({
     openaiKey: '••••••••',
     backendUrl: 'Local (localStorage)',
-    frontendUrl: 'https://sola-scriptura-two.vercel.app',
+    frontendUrl: 'https://solascripturabr.com.br',
     dbStatus: 'localStorage + cookies',
     translations: ['ARC', 'NVI', 'ARA', 'ACF', 'NAA', 'NTLH', 'KJV', 'WEB'],
   });

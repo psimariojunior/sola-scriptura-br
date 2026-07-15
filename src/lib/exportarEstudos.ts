@@ -525,5 +525,5 @@ export function gerarLinkCompartilhamento(estudoId: string): string {
   if (typeof window !== 'undefined') {
     return `${window.location.origin}/compartilhar/estudo/${estudoId}`;
   }
-  return `https://sola-scriptura-two.vercel.app/compartilhar/estudo/${estudoId}`;
+  return `https://solascripturabr.com.br/compartilhar/estudo/${estudoId}`;
 }

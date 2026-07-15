@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { TODOS_LIVROS, carregarTraducao } from '@/data/biblia';
+import { biblia, type PesquisaResult as ApiPesquisaResult } from '@/lib/api-client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, X, BookOpen, Filter, ChevronDown, 
@@ -115,6 +116,7 @@ export default function PesquisaPage() {
   const [capituloFiltro, setCapituloFiltro] = useState<number | null>(null);
   const [tradSel, setTradSel] = useState<Set<string>>(new Set(['arc', 'nvi', 'ara', 'acf', 'kjv', 'web']));
   const [searchIndex, setSearchIndex] = useState<SearchResult[]>([]);
+  const [apiResults, setApiResults] = useState<SearchResult[] | null>(null);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [mobileFilters, setMobileFilters] = useState(false);
@@ -144,14 +146,44 @@ export default function PesquisaPage() {
     });
   }, []);
 
+  const tryApiSearch = useCallback(async (q: string): Promise<ApiPesquisaResult[] | null> => {
+    if (!q || q.length < 2) return null;
+    try {
+      const traducao = [...tradSel].join(',');
+      return await biblia.pesquisar(q, { traducao });
+    } catch {
+      return null;
+    }
+  }, [tradSel]);
+
   useEffect(() => {
     setLoading(true);
-    const t = setTimeout(() => {
+    const t = setTimeout(async () => {
+      const q = query.trim();
+      if (q && q.length >= 2) {
+        const apiData = await tryApiSearch(q);
+        if (apiData && apiData.length > 0) {
+          const mapped: SearchResult[] = apiData.map((r) => ({
+            livroAbrev: r.livroAbrev,
+            livroNome: r.livroNome,
+            testamento: r.testamento,
+            capitulo: r.capitulo,
+            versiculo: r.versiculo,
+            texto: r.texto,
+            traducao: r.traducao,
+          }));
+          setApiResults(mapped);
+        } else {
+          setApiResults(null);
+        }
+      } else {
+        setApiResults(null);
+      }
       setDebouncedQuery(query);
       setLoading(false);
     }, 300);
     return () => clearTimeout(t);
-  }, [query]);
+  }, [query, tryApiSearch]);
 
   const livrosFiltrados = useMemo(
     () => TODOS_LIVROS.filter((l) => testamento === 'all' || l.testamento === testamento),
@@ -166,6 +198,14 @@ export default function PesquisaPage() {
   const resultados = useMemo(() => {
     const q = debouncedQuery.trim();
     if (!q && testamento === 'all' && livroFiltro === 'all' && capituloFiltro === null && tradSel.size === 6) return [];
+
+    if (apiResults) {
+      let r = apiResults;
+      if (testamento !== 'all') r = r.filter((item) => item.testamento === testamento);
+      if (livroFiltro !== 'all') r = r.filter((item) => item.livroAbrev === livroFiltro);
+      if (capituloFiltro !== null) r = r.filter((item) => item.capitulo === capituloFiltro);
+      return r;
+    }
 
     let r = searchIndex;
 
@@ -199,7 +239,7 @@ export default function PesquisaPage() {
     if (capituloFiltro !== null) r = r.filter((item) => item.capitulo === capituloFiltro);
 
     return r;
-  }, [debouncedQuery, testamento, livroFiltro, capituloFiltro, searchIndex, tradSel, searchMode]);
+  }, [debouncedQuery, testamento, livroFiltro, capituloFiltro, searchIndex, tradSel, searchMode, apiResults]);
 
   const hasFilters = testamento !== 'all' || livroFiltro !== 'all' || capituloFiltro !== null || tradSel.size !== 6;
   const hasAnyInput = !!debouncedQuery || hasFilters;

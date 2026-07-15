@@ -5,8 +5,9 @@
 The Sola Scriptura BR project is deployed across multiple platforms:
 
 - **Frontend**: Vercel (automatic deployment from GitHub)
+- **Backend**: Oracle Cloud VM (Docker Compose)
 - **Edge TTS**: Cloudflare Workers (free tier)
-- **Backend**: Railway (optional, currently broken)
+- **AI**: Groq API (llama-3.3-70b-versatile, free)
 
 ---
 
@@ -32,22 +33,19 @@ Set these in Vercel Dashboard → Project → Settings → Environment Variables
 
 ```
 # AI Chat (required)
-OPENROUTER_API_KEY=your_key_here
-LLM_BASE_URL=https://openrouter.ai/api/v1
-LLM_MODEL=openai/gpt-4o
+OPENAI_API_KEY=gsk_...  # Groq API key
+LLM_BASE_URL=https://api.groq.com/openai/v1
+LLM_MODEL=llama-3.3-70b-versatile
 
-# Backend API (optional - leave empty if not using backend)
-NEXT_PUBLIC_API_URL=
-BACKEND_URL=
+# Backend API
+NEXT_PUBLIC_API_URL=https://api.solascripturabr.com.br/api/v1
+BACKEND_URL=https://api.solascripturabr.com.br/api/v1
 
-# Supabase (optional - leave empty for client-side localStorage auth)
+# Supabase (optional)
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 
-# ElevenLabs (optional - for premium voice narration)
-NEXT_PUBLIC_ELEVENLABS_API_KEY=
-
-# Cloudflare Edge TTS (set your worker URL)
+# Cloudflare Edge TTS
 NEXT_PUBLIC_CLOUDFLARE_TTS_URL=https://sola-scriptura-edge-tts.<subdomain>.workers.dev
 ```
 
@@ -56,12 +54,12 @@ NEXT_PUBLIC_CLOUDFLARE_TTS_URL=https://sola-scriptura-edge-tts.<subdomain>.worke
 ### Custom Domain Setup
 
 1. In Vercel Dashboard → Project → Settings → Domains
-2. Enter your custom domain (e.g., `sola-scriptura.com.br`)
-3. Add the DNS records provided by Vercel:
-   - For apex domain: Add an `A` record pointing to `76.76.21.21`
-   - For subdomain: Add a `CNAME` record pointing to `cname.vercel-dns.com`
-4. Wait for DNS propagation (can take up to 48 hours)
-5. SSL certificate is auto-provisioned by Vercel
+2. Enter `solascripturabr.com`
+3. Add DNS records:
+   - Apex domain: `A` record pointing to `76.76.21.21`
+   - www: `CNAME` record pointing to `cname.vercel-dns.com`
+4. Wait for DNS propagation (up to 48 hours)
+5. SSL is auto-provisioned by Vercel
 
 ### Performance Optimization
 
@@ -69,21 +67,79 @@ NEXT_PUBLIC_CLOUDFLARE_TTS_URL=https://sola-scriptura-edge-tts.<subdomain>.worke
 - **Code Splitting**: Next.js App Router automatically splits code by route
 - **Image Optimization**: Use `next/image` for any images
 - **Bundle Size**: Run `npm run build` locally to check bundle sizes
-- **Lighthouse**: Aim for 90+ scores on all metrics
 
-**Build optimization tips:**
+---
+
+## 2. Oracle Cloud VM (Backend)
+
+### Architecture
+
+- **VM**: VM.Standard.A1.Flex (ARM, 4 OCPU, 24GB RAM) — Free Tier
+- **OS**: Ubuntu 22.04
+- **Stack**: Docker Compose (NestJS, PostgreSQL 16, Redis 7, Nginx, Certbot)
+- **Domain**: `api.solascripturabr.com.br`
+
+### Setup
 
 ```bash
-# Analyze bundle size
-ANALYZE=true npm run build
+# Connect to VM
+ssh -i your-key.pem ubuntu@YOUR_VM_IP
 
-# Check for build errors
-npm run build 2>&1 | grep -i "error"
+# Clone repository
+cd /opt/sola-scriptura
+git clone https://github.com/psimariojunior/sola-scriptura-br.git backend
+
+# Configure environment
+cd backend/docker
+cp .env.example .env
+# Edit .env with real credentials
+
+# Start services
+docker-compose up -d --build
+
+# Verify
+curl https://api.solascripturabr.com.br/api/v1/health
+```
+
+### Docker Compose Services
+
+| Service | Port | Description |
+|---------|------|-------------|
+| backend | 4000 | NestJS API |
+| postgres | 5432 | PostgreSQL 16 + pgvector |
+| redis | 6379 | Cache |
+| nginx | 80/443 | Reverse proxy + TLS |
+| certbot | — | SSL renewal |
+
+### GitHub Actions Deploy
+
+Workflow `.github/workflows/deploy-backend.yml`:
+1. Triggers on changes to `backend/` folder
+2. Rsync files via SSH to VM
+3. Runs `docker-compose down` + `up -d --build`
+4. Executes migrations and seed
+5. Health check
+
+**Required GitHub Secrets:**
+
+| Secret | Description |
+|--------|-----------|
+| `VM_SSH_KEY` | SSH private key for VM access |
+| `VM_IP` | Oracle VM public IP |
+| `VM_USER` | VM user (usually `ubuntu`) |
+
+### SSL/SSL Setup
+
+Certbot auto-renews SSL certificates. Manual renewal:
+
+```bash
+docker-compose run --rm certbot renew
+docker-compose restart nginx
 ```
 
 ---
 
-## 2. Cloudflare Workers (Edge TTS)
+## 3. Cloudflare Workers (Edge TTS)
 
 The Edge TTS worker provides free Microsoft Neural voice synthesis.
 
@@ -107,7 +163,7 @@ compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
 [vars]
-ALLOWED_ORIGIN = "https://your-production-domain.vercel.app"
+ALLOWED_ORIGIN = "https://solascripturabr.com"
 ```
 
 ### Available Voices
@@ -122,40 +178,6 @@ ALLOWED_ORIGIN = "https://your-production-domain.vercel.app"
 - Free tier: 100,000 requests/day
 - CPU time: 30s per request
 - No API key required (uses free Edge TTS)
-
-### Update Frontend Config
-
-After deploying, update the frontend environment variable:
-
-```
-NEXT_PUBLIC_CLOUDFLARE_TTS_URL=https://sola-scriptura-edge-tts.<your-subdomain>.workers.dev
-```
-
----
-
-## 3. Backend (Railway) — Optional / Broken
-
-> **Note**: The NestJS backend is currently not required. The frontend operates fully with client-side localStorage for user data and Groq/OpenRouter API for AI chat. The backend was originally designed for PostgreSQL, Elasticsearch, and pgvector but is not deployed.
-
-### If you want to set up the backend:
-
-```bash
-cd backend
-npm install
-# Create .env with database URLs
-npx prisma migrate deploy
-npm run start:prod
-```
-
-### Railway deployment:
-
-1. Install Railway CLI: `npm i -g @railway/cli`
-2. Login: `railway login`
-3. Init project: `railway init`
-4. Add PostgreSQL plugin
-5. Deploy: `railway up`
-
-**Current status**: Backend code exists in `backend/` but is not actively maintained. The frontend works independently.
 
 ---
 
@@ -180,11 +202,20 @@ npm run build
 
 ## 5. Post-Deployment Checklist
 
-- [ ] Environment variables set in Vercel
+- [ ] Backend responding at `https://api.solascripturabr.com.br/api/v1/health`
+- [ ] Frontend deployed at `https://solascripturabr.com`
 - [ ] Cloudflare Worker deployed and URL configured
-- [ ] Custom domain configured (if applicable)
-- [ ] SSL certificate active
+- [ ] SSL certificates active (Vercel auto + Certbot auto)
 - [ ] All pages loading correctly
-- [ ] AI chat working (requires API key)
+- [ ] AI chat working (Groq API)
 - [ ] Edge TTS audio working
 - [ ] No console errors in production
+
+---
+
+## 6. Monitoring
+
+- **Health Check**: `GET /api/v1/health`
+- **API Docs**: `GET /api/docs` (Swagger)
+- **Backend Logs**: `docker-compose logs -f backend` (on VM)
+- **Nginx Logs**: `docker-compose logs -f nginx` (on VM)

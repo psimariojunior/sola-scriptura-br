@@ -4,4 +4,4 @@ compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
 [vars]
-ALLOWED_ORIGIN = "https://sola-scriptura-two.vercel.app"
+ALLOWED_ORIGIN = "https://solascripturabr.com"

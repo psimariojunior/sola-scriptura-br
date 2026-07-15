@@ -13,7 +13,9 @@
     "test:coverage": "jest --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:e2e:report": "playwright show-report test-results/playwright-report"
+    "test:e2e:report": "playwright show-report test-results/playwright-report",
+    "test:e2e:production": "playwright test --config=playwright.config.production.ts",
+    "test:e2e:production:ui": "playwright test --config=playwright.config.production.ts --ui"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.16",

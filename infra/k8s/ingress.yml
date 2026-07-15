@@ -11,11 +11,11 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - api.sola-scriptura.com
-        - app.sola-scriptura.com
+        - api.solascripturabr.com.br
+        - solascripturabr.com.br
       secretName: sola-scriptura-tls
   rules:
-    - host: api.sola-scriptura.com
+    - host: api.solascripturabr.com.br
       http:
         paths:
           - path: /
@@ -25,7 +25,7 @@ spec:
                 name: backend-service
                 port:
                   number: 4000
-    - host: app.sola-scriptura.com
+    - host: solascripturabr.com.br
       http:
         paths:
           - path: /

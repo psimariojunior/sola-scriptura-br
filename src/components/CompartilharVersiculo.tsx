@@ -48,12 +48,12 @@ export function CompartilharVersiculo({ livro, capítulo, versículo, texto }: C
   };
 
   const compartilharTwitter = () => {
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${referência}\n\n${texto.slice(0, 200)}${texto.length > 200 ? '...' : ''}`)}&url=${encodeURIComponent('https://sola-scriptura-two.vercel.app')}`;
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${referência}\n\n${texto.slice(0, 200)}${texto.length > 200 ? '...' : ''}`)}&url=${encodeURIComponent('https://solascripturabr.com.br')}`;
     window.open(url, '_blank');
   };
 
   const compartilharFacebook = () => {
-    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://sola-scriptura-two.vercel.app')}&quote=${encodeURIComponent(`${referência} — ${texto}`)}`;
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://solascripturabr.com.br')}&quote=${encodeURIComponent(`${referência} — ${texto}`)}`;
     window.open(url, '_blank');
   };
 

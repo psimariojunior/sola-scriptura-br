@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../services/api_service.dart';
 import '../models/biblia_models.dart';
+import '../providers/providers.dart';
 
-class ContaScreen extends StatefulWidget {
+class ContaScreen extends ConsumerStatefulWidget {
   const ContaScreen({super.key});
 
   @override
-  State<ContaScreen> createState() => _ContaScreenState();
+  ConsumerState<ContaScreen> createState() => _ContaScreenState();
 }
 
-class _ContaScreenState extends State<ContaScreen> {
+class _ContaScreenState extends ConsumerState<ContaScreen> {
   final ApiService _api = apiService;
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
   final _nomeController = TextEditingController();
 
-  bool _logado = false;
   bool _cadastrando = false;
   bool _carregando = false;
   String? _erro;
@@ -36,8 +37,9 @@ class _ContaScreenState extends State<ContaScreen> {
   }
 
   Future<void> _verificarSessao() async {
-    if (_api.token != null) {
-      setState(() => _logado = true);
+    final auth = ref.read(authProviderInstance);
+    if (auth.isLoggedIn) {
+      _api.setToken(auth.token);
       await _carregarPerfil();
       await _carregarFavoritos();
     }
@@ -68,15 +70,19 @@ class _ContaScreenState extends State<ContaScreen> {
     try {
       final data = await _api.login(email, senha);
       final user = data['usuario'] ?? data['user'];
+      final token = data['token']?.toString() ?? '';
+      final userName = user != null ? (user['nome'] ?? user['name'] ?? email).toString() : email;
+      await ref.read(authProviderInstance).saveSession(
+        token: token,
+        name: userName,
+        email: email,
+      );
       setState(() {
-        _logado = true;
         _carregando = false;
-        if (user != null) {
-          _perfil = Perfil(
-            nome: (user['nome'] ?? user['name'] ?? email).toString(),
-            email: email,
-          );
-        }
+        _perfil = Perfil(
+          nome: userName,
+          email: email,
+        );
       });
       await _carregarPerfil();
       await _carregarFavoritos();
@@ -100,8 +106,13 @@ class _ContaScreenState extends State<ContaScreen> {
     try {
       final data = await _api.cadastrar(nome, email, senha);
       final user = data['usuario'] ?? data['user'];
+      final token = data['token']?.toString() ?? '';
+      await ref.read(authProviderInstance).saveSession(
+        token: token,
+        name: user != null ? (user['nome'] ?? user['name'] ?? nome).toString() : nome,
+        email: email,
+      );
       setState(() {
-        _logado = true;
         _carregando = false;
         _perfil = Perfil(
           nome: user != null ? (user['nome'] ?? user['name'] ?? nome).toString() : nome,
@@ -120,8 +131,8 @@ class _ContaScreenState extends State<ContaScreen> {
 
   void _sair() {
     _api.setToken(null);
+    ref.read(authProviderInstance).logout();
     setState(() {
-      _logado = false;
       _perfil = null;
       _favoritos = [];
       _emailController.clear();
@@ -140,9 +151,10 @@ class _ContaScreenState extends State<ContaScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLoggedIn = ref.watch(authProviderInstance).isLoggedIn;
     return Scaffold(
       backgroundColor: _bg,
-      body: _logado ? _buildPerfil() : _buildAuth(),
+      body: isLoggedIn ? _buildPerfil() : _buildAuth(),
     );
   }
 

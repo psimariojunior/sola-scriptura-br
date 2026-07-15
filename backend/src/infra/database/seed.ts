@@ -4,24 +4,44 @@ import { dataSourceOptions } from './typeorm.config';
 
 config();
 
+function log(etapa: string, msg: string) {
+  console.log(`[${new Date().toISOString()}] [${etapa}] ${msg}`);
+}
+
 async function seed() {
   const ds = new DataSource(dataSourceOptions);
   await ds.initialize();
   const q = (sql: string, params?: any[]) => ds.query(sql, params);
 
-  console.log('Iniciando seed completo do banco de dados...');
+  console.log('=== Sola Scriptura BR - Seed Completo ===\n');
 
   // ============================================================
   // 1. TESTAMENTOS
   // ============================================================
-  console.log('1/12 Criando testamentos...');
-  const atId = (await q(`INSERT INTO "testamentos" ("nome","slug","ordem","total_livros") VALUES ($1,$2,$3,$4) RETURNING id`, ['Antigo Testamento', 'antigo-testamento', 1, 39]))[0].id;
-  const ntId = (await q(`INSERT INTO "testamentos" ("nome","slug","ordem","total_livros") VALUES ($1,$2,$3,$4) RETURNING id`, ['Novo Testamento', 'novo-testamento', 2, 27]))[0].id;
+  log('1/12', 'Verificando/Criando testamentos...');
+  let atId: string, ntId: string;
+  try {
+    const existingAt = await q(`SELECT id FROM "testamentos" WHERE slug = $1`, ['antigo-testamento']);
+    const existingNt = await q(`SELECT id FROM "testamentos" WHERE slug = $1`, ['novo-testamento']);
+
+    atId = existingAt.length > 0
+      ? existingAt[0].id
+      : (await q(`INSERT INTO "testamentos" ("nome","slug","ordem","total_livros") VALUES ($1,$2,$3,$4) RETURNING id`, ['Antigo Testamento', 'antigo-testamento', 1, 39]))[0].id;
+
+    ntId = existingNt.length > 0
+      ? existingNt[0].id
+      : (await q(`INSERT INTO "testamentos" ("nome","slug","ordem","total_livros") VALUES ($1,$2,$3,$4) RETURNING id`, ['Novo Testamento', 'novo-testamento', 2, 27]))[0].id;
+
+    log('1/12', `Testamentos OK (AT=${atId}, NT=${ntId})`);
+  } catch (e) {
+    log('1/12', `ERRO ao criar testamentos: ${e}`);
+    throw e;
+  }
 
   // ============================================================
   // 2. TRADUÇÕES
   // ============================================================
-  console.log('2/12 Criando traduções...');
+  log('2/12', 'Verificando/Criando traduções...');
   const traducoes = [
     ['Almeida Revista e Corrigida', 'ARC', 'pt-BR', 1681, 'Sociedade Bíblica do Brasil', true, true],
     ['Nova Versão Internacional', 'NVI', 'pt-BR', 2001, 'Editora Vida', false, true],
@@ -33,15 +53,26 @@ async function seed() {
     ['Nova Tradução na Linguagem de Hoje', 'NTLH', 'pt-BR', 2000, 'Editora Vida', false, true],
   ];
   const traducaoIds: Record<string, string> = {};
-  for (const t of traducoes) {
-    const r = (await q(`INSERT INTO "traducoes" ("nome","sigla","idioma","ano_publicacao","copyright","licenca_publica","gratuita") VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING id`, t))[0];
-    traducaoIds[t[1] as string] = r.id;
+  try {
+    for (const t of traducoes) {
+      const existing = await q(`SELECT id FROM "traducoes" WHERE sigla = $1`, [t[1]]);
+      if (existing.length > 0) {
+        traducaoIds[t[1] as string] = existing[0].id;
+      } else {
+        const r = (await q(`INSERT INTO "traducoes" ("nome","sigla","idioma","ano_publicacao","copyright","licenca_publica","gratuita") VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING id`, t))[0];
+        traducaoIds[t[1] as string] = r.id;
+      }
+    }
+    log('2/12', `Traduções OK (${Object.keys(traducaoIds).length} traduções)`);
+  } catch (e) {
+    log('2/12', `ERRO ao criar traduções: ${e}`);
+    throw e;
   }
 
   // ============================================================
   // 3. LIVROS (66 livros da Bíblia)
   // ============================================================
-  console.log('3/12 Criando 66 livros...');
+  log('3/12', 'Verificando/Criando 66 livros...');
   interface LivroData {
     nome: string; abrev: string; nomeEn: string; nomeHeb?: string; nomeGrego?: string;
     slug: string; ordemTest: number; ordemGeral: number; capitulos: number;
@@ -127,36 +158,62 @@ async function seed() {
   ];
 
   const livroIds: Record<string, string> = {};
-  for (const l of livros) {
-    const tid = l.testamento === 'AT' ? atId : ntId;
-    const r = (await q(
-      `INSERT INTO "livros" ("nome","nome_abreviado","nome_ingles","nome_hebraico","nome_grego","slug","ordem_testamento","ordem_geral","total_capitulos","autor","data_escrita","genero_literario","testamento_id")
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING id`,
-      [l.nome, l.abrev, l.nomeEn, l.nomeHeb || null, l.nomeGrego || null, l.slug, l.ordemTest, l.ordemGeral, l.capitulos, l.autor || null, l.data || null, l.genero || null, tid],
-    ))[0];
-    livroIds[l.slug] = r.id;
+  try {
+    for (const l of livros) {
+      const existing = await q(`SELECT id FROM "livros" WHERE slug = $1`, [l.slug]);
+      if (existing.length > 0) {
+        livroIds[l.slug] = existing[0].id;
+        continue;
+      }
+      const tid = l.testamento === 'AT' ? atId : ntId;
+      const r = (await q(
+        `INSERT INTO "livros" ("nome","nome_abreviado","nome_ingles","nome_hebraico","nome_grego","slug","ordem_testamento","ordem_geral","total_capitulos","autor","data_escrita","genero_literario","testamento_id")
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING id`,
+        [l.nome, l.abrev, l.nomeEn, l.nomeHeb || null, l.nomeGrego || null, l.slug, l.ordemTest, l.ordemGeral, l.capitulos, l.autor || null, l.data || null, l.genero || null, tid],
+      ))[0];
+      livroIds[l.slug] = r.id;
+    }
+    log('3/12', `Livros OK (${Object.keys(livroIds).length} livros)`);
+  } catch (e) {
+    log('3/12', `ERRO ao criar livros: ${e}`);
+    throw e;
   }
 
   // ============================================================
   // 4. CAPÍTULOS (somente para livros-chave)
   // ============================================================
-  console.log('4/12 Criando capítulos para livros-chave...');
+  log('4/12', 'Verificando/Criando capítulos para livros-chave...');
   const capitulosChave: Record<string, number> = { gn: 50, ex: 40, sl: 150, is: 66, mt: 28, jo: 21, rm: 16 };
   const capituloIds: Record<string, string> = {};
-  for (const [slug, total] of Object.entries(capitulosChave)) {
-    for (let i = 1; i <= total; i++) {
-      const r = (await q(
-        `INSERT INTO "capitulos" ("numero","total_versiculos","livro_id") VALUES ($1,0,$2) RETURNING id`,
-        [i, livroIds[slug]],
-      ))[0];
-      capituloIds[`${slug}_${i}`] = r.id;
+  try {
+    for (const [slug, total] of Object.entries(capitulosChave)) {
+      const existingCount = await q(`SELECT COUNT(*) as cnt FROM "capitulos" WHERE "livro_id" = $1`, [livroIds[slug]]);
+      if (parseInt(existingCount[0].cnt) > 0) {
+        log('4/12', `Capítulos para ${slug} já existem, pulando...`);
+        const existingCaps = await q(`SELECT id, "numero" FROM "capitulos" WHERE "livro_id" = $1 ORDER BY "numero"`, [livroIds[slug]]);
+        for (const ec of existingCaps) {
+          capituloIds[`${slug}_${ec.numero}`] = ec.id;
+        }
+        continue;
+      }
+      for (let i = 1; i <= total; i++) {
+        const r = (await q(
+          `INSERT INTO "capitulos" ("numero","total_versiculos","livro_id") VALUES ($1,0,$2) RETURNING id`,
+          [i, livroIds[slug]],
+        ))[0];
+        capituloIds[`${slug}_${i}`] = r.id;
+      }
     }
+    log('4/12', `Capítulos OK (${Object.keys(capituloIds).length} capítulos)`);
+  } catch (e) {
+    log('4/12', `ERRO ao criar capítulos: ${e}`);
+    throw e;
   }
 
   // ============================================================
   // 5. VERSÍCULOS (10+ por livro-chave, usando ARC como tradução principal)
   // ============================================================
-  console.log('5/12 Criando versículos de exemplo...');
+  log('5/12', 'Verificando/Criando versículos de exemplo...');
   const arcId = traducaoIds['ARC'];
   const nviId = traducaoIds['NVI'];
   const kvjId = traducaoIds['KJV'];
@@ -245,25 +302,36 @@ async function seed() {
   ];
 
   // Para cada versículo, inserir na ARC e NIR
-  for (const v of versiculosExemplo) {
-    const livroId = livroIds[v.livro];
-    const capId = capituloIds[`${v.livro}_${v.cap}`];
-    for (const [sigla, tid] of Object.entries(traducaoIds)) {
-      if (sigla === 'ARC' || sigla === 'NVI' || sigla === 'KJV') {
-        const texto = sigla === 'KJV' && v.textoEn ? v.textoEn : v.texto;
-        await q(
-          `INSERT INTO "versiculos" ("numero","texto","livro_id","capitulo_id","capitulo_numero","traducao_id","testamento_id")
-           VALUES ($1,$2,$3,$4,$5,$6,$7)`,
-          [v.num, texto, livroId, capId, v.cap, tid, v.livro.startsWith('mt') || v.livro.startsWith('jo') || v.livro.startsWith('rm') ? ntId : atId],
-        );
+  try {
+    const existingVersiculos = await q(`SELECT COUNT(*) as cnt FROM "versiculos"`);
+    if (parseInt(existingVersiculos[0].cnt) > 0) {
+      log('5/12', 'Versículos já existem, pulando...');
+    } else {
+      for (const v of versiculosExemplo) {
+        const livroId = livroIds[v.livro];
+        const capId = capituloIds[`${v.livro}_${v.cap}`];
+        for (const [sigla, tid] of Object.entries(traducaoIds)) {
+          if (sigla === 'ARC' || sigla === 'NVI' || sigla === 'KJV') {
+            const texto = sigla === 'KJV' && v.textoEn ? v.textoEn : v.texto;
+            await q(
+              `INSERT INTO "versiculos" ("numero","texto","livro_id","capitulo_id","capitulo_numero","traducao_id","testamento_id")
+               VALUES ($1,$2,$3,$4,$5,$6,$7)`,
+              [v.num, texto, livroId, capId, v.cap, tid, v.livro.startsWith('mt') || v.livro.startsWith('jo') || v.livro.startsWith('rm') ? ntId : atId],
+            );
+          }
+        }
       }
     }
+    log('5/12', 'Versículos OK');
+  } catch (e) {
+    log('5/12', `ERRO ao criar versículos: ${e}`);
+    throw e;
   }
 
   // ============================================================
   // 6. CATEGORIAS DE DOUTRINA
   // ============================================================
-  console.log('6/12 Criando categorias de doutrina...');
+  log('6/12', 'Verificando/Criando categorias de doutrina...');
   const catIds: Record<string, string> = {};
   const categorias = [
     ['Teologia Proper', 'teologia-proper', 'Doutrinas sobre Deus', 1],
@@ -275,15 +343,26 @@ async function seed() {
     ['Antropologia Teológica', 'antropologia-teologica', 'Doutrinas sobre o homem', 7],
     ['Bibliologia', 'bibliologia', 'Doutrinas sobre as Escrituras', 8],
   ];
-  for (const c of categorias) {
-    const r = (await q(`INSERT INTO "categorias_doutrina" ("nome","slug","descricao","ordem") VALUES ($1,$2,$3,$4) RETURNING id`, c))[0];
-    catIds[c[1]] = r.id;
+  try {
+    for (const c of categorias) {
+      const existing = await q(`SELECT id FROM "categorias_doutrina" WHERE slug = $1`, [c[1]]);
+      if (existing.length > 0) {
+        catIds[c[1]] = existing[0].id;
+      } else {
+        const r = (await q(`INSERT INTO "categorias_doutrina" ("nome","slug","descricao","ordem") VALUES ($1,$2,$3,$4) RETURNING id`, c))[0];
+        catIds[c[1]] = r.id;
+      }
+    }
+    log('6/12', `Categorias de doutrina OK (${Object.keys(catIds).length} categorias)`);
+  } catch (e) {
+    log('6/12', `ERRO ao criar categorias: ${e}`);
+    throw e;
   }
 
   // ============================================================
   // 7. DOUTRINAS (20 principais)
   // ============================================================
-  console.log('7/12 Criando doutrinas...');
+  log('7/12', 'Verificando/Criando doutrinas...');
   const doutrinas = [
     ['Unicidade de Deus', 'unicidade-deus', 'Deus é um único ser em três pessoas: Pai, Filho e Espírito Santo.', 'Deuteronômio 6:4; Mateus 28:19', 'teologia-proper'],
     ['Trindade', 'trindade', 'Deus existe eternamente em três pessoas co-iguais: Pai, Filho e Espírito Santo.', 'Mateus 28:19; 2 Coríntios 13:14', 'teologia-proper'],
@@ -307,18 +386,29 @@ async function seed() {
     ['Natureza Humana', 'natureza-humana', 'O homem foi criado à imagem de Deus, mas caiu em pecado.', 'Gênesis 1:27; Romanos 3:23', 'antropologia-teologica'],
   ];
   const doutrinaIds: string[] = [];
-  for (const d of doutrinas) {
-    const r = (await q(
-      `INSERT INTO "doutrinas" ("nome","slug","definicao","base_scriptura","categoria_id") VALUES ($1,$2,$3,$4,$5) RETURNING id`,
-      [...d, catIds[d[4]]],
-    ))[0];
-    doutrinaIds.push(r.id);
+  try {
+    for (const d of doutrinas) {
+      const existing = await q(`SELECT id FROM "doutrinas" WHERE slug = $1`, [d[1]]);
+      if (existing.length > 0) {
+        doutrinaIds.push(existing[0].id);
+      } else {
+        const r = (await q(
+          `INSERT INTO "doutrinas" ("nome","slug","definicao","base_scriptura","categoria_id") VALUES ($1,$2,$3,$4,$5) RETURNING id`,
+          [...d, catIds[d[4]]],
+        ))[0];
+        doutrinaIds.push(r.id);
+      }
+    }
+    log('7/12', `Doutrinas OK (${doutrinaIds.length} doutrinas)`);
+  } catch (e) {
+    log('7/12', `ERRO ao criar doutrinas: ${e}`);
+    throw e;
   }
 
   // ============================================================
   // 8. PERSONAGENS (10 principais)
   // ============================================================
-  console.log('8/12 Criando personagens...');
+  log('8/12', 'Verificando/Criando personagens...');
   const personagens = [
     ['Abraão', 'אַבְרָהָם', 'Ἀβραάμ', 'abraao', 'Pai da fé. Deixou Ur e obedeceu a Deus.', 'Amigo de Deus', 'Gn 12-25', 312, 'Gênesis 12:1', 'Pai de muitas nações. Tipologia de fé e obediência.'],
     ['Moisés', 'מֹשֶׁה', 'Μωϋσῆς', 'moises', 'Libertador de Israel. Recebeu a Lei no Sinai.', 'Salvador do povo', 'Ex 2- Dt 34', 845, 'Êxodo 2-3', 'Tipologia de Cristo como mediador e libertador.'],
@@ -328,28 +418,39 @@ async function seed() {
     ['Paulo', 'שָׁאוּל', 'Παῦλος', 'paulo', 'Apóstolo dos gentios. Autor de 13 epístolas.', 'Missionário', 'At 7-28', 1023, 'Atos 7:58', 'Missionário por excelência. Teólogo do NT.'],
     ['Maria', 'מִרְיָם', 'Μαρίμ', 'maria', 'Mãe de Jesus. Modelo de fé e obediência.', 'Mãe de Jesus', 'Lc 1-2', 193, 'Lucas 1:26-38', 'Tipologia de obediência. Mãe do Messias.'],
     ['José (pai de Jesus)', 'יוֹסֵף', 'Ἰωσήφ', 'jose-pai', 'Marido de Maria. Carpinteiro justo.', 'Carpinteiro', 'Mt 1-2', 44, 'Mateus 1:16', 'Homem justo que obedeceu a Deus. Guardião de Jesus.'],
-    ['José (filho de Jacó)', 'יוֹסֵφ', 'Ἰωσήφ', 'jose-ot', 'Vendido pelos irmãos. Governador do Egito.', 'Governador', 'Gn 37-50', 235, 'Gênesis 37:2', 'Tipologia de Cristo como rejeitado e exaltado.'],
+    ['José (filho de Jacó)', 'יוֹסֵף', 'Ἰωσήφ', 'jose-ot', 'Vendido pelos irmãos. Governador do Egito.', 'Governador', 'Gn 37-50', 235, 'Gênesis 37:2', 'Tipologia de Cristo como rejeitado e exaltado.'],
     ['Elias', 'אֵלִיָּה', 'Ἠλίας', 'elias', 'Profeta que desafiou Baal. Foi arrebatado.', 'Profeta', '1 Rc 17 - 2 Rc 2', 107, '1 Reis 17:1', 'Representante dos profetas. Tipologia de Cristo.'],
   ];
   const personagemIds: string[] = [];
-  for (const p of personagens) {
-    const r = (await q(
-      `INSERT INTO "personagens" ("nome_portugues","nome_hebraico","nome_grego","slug","biografia","significado_nome","ultima_mençao","total_mencoes","primeira_mencao","significado_teologico")
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id`,
-      p,
-    ))[0];
-    personagemIds.push(r.id);
+  try {
+    for (const p of personagens) {
+      const existing = await q(`SELECT id FROM "personagens" WHERE slug = $1`, [p[3]]);
+      if (existing.length > 0) {
+        personagemIds.push(existing[0].id);
+      } else {
+        const r = (await q(
+          `INSERT INTO "personagens" ("nome_portugues","nome_hebraico","nome_grego","slug","biografia","significado_nome","ultima_mençao","total_mencoes","primeira_mencao","significado_teologico")
+           VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id`,
+          p,
+        ))[0];
+        personagemIds.push(r.id);
+      }
+    }
+    log('8/12', `Personagens OK (${personagemIds.length} personagens)`);
+  } catch (e) {
+    log('8/12', `ERRO ao criar personagens: ${e}`);
+    throw e;
   }
 
   // ============================================================
   // 9. LOCALIZAÇÕES BÍBLICAS (20)
   // ============================================================
-  console.log('9/12 Criando localizações bíblicas...');
+  log('9/12', 'Verificando/Criando localizações bíblicas...');
   const localizacoes = [
     ['Jerusalém', 'יְרוּשָׁלַיִם', 'Ἱερουσαλήμ', 'jerusalem', 'cidade', 31.7683, 35.2137, 'Judá', 'Israel', 'Capital espiritual de Israel. Local do templo.'],
     ['Belém', 'בֵּית לֶחֶם', 'Βηθλέεμ', 'belem', 'cidade', 31.7049, 35.2078, 'Judá', 'Israel', 'Cidade natal de Davi e de Jesus.'],
     ['Nazarete', 'נָצְרַת', 'Ναζαρέτ', 'nazarete', 'cidade', 32.7021, 35.2979, 'Galileia', 'Israel', 'Onde Jesus cresceu.'],
-    ['Capernáum', 'כְּפַר נַחוּم', 'Καφαρναούμ', 'capernaum', 'cidade', 32.8356, 35.5773, 'Galileia', 'Israel', 'Centro do ministério de Jesus na Galileia.'],
+    ['Capernáum', 'כְּפַר נַחוּם', 'Καφαρναούμ', 'capernaum', 'cidade', 32.8356, 35.5773, 'Galileia', 'Israel', 'Centro do ministério de Jesus na Galileia.'],
     ['Betânia', 'בֵּית עַנְיָ', 'Βηθανία', 'betania', 'aldeia', 31.7722, 35.2661, 'Judá', 'Israel', 'Onde Jesus ressuscitou Lázaro.'],
     ['Engedi', 'עֵין גֶּדִי', 'Ἰνγάδδι', 'engedi', 'oásis', 31.4542, 35.3883, 'Judá', 'Israel', 'Onde Davi escondeu-se de Saul.'],
     ['Siquém', 'שְׁכֶם', 'Συχέμ', 'siquem', 'cidade', 32.2068, 35.2839, 'Efraim', 'Israel', 'Onde Deus apareceu a Abraão. Centro samaritano.'],
@@ -367,18 +468,26 @@ async function seed() {
     ['Creta', 'כְּרֵתִי', 'Κρήτη', 'creta', 'ilha', 35.2401, 24.4693, 'Creta', 'Grécia', 'Ilha onde Tito organizou igrejas.'],
     ['Samaria', 'שֹׁמְרוֹן', 'Σαμάρεια', 'samaria', 'região', 32.28, 35.2, 'Samaria', 'Israel', 'Região entre Judá e Galileia. Samaritanos.'],
   ];
-  for (const l of localizacoes) {
-    await q(
-      `INSERT INTO "localizacoes" ("nome_portugues","nome_hebraico","nome_grego","slug","tipo","latitude","longitude","regiao","pais_atual","descricao")
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
-      l,
-    );
+  try {
+    for (const l of localizacoes) {
+      const existing = await q(`SELECT id FROM "localizacoes" WHERE slug = $1`, [l[3]]);
+      if (existing.length > 0) continue;
+      await q(
+        `INSERT INTO "localizacoes" ("nome_portugues","nome_hebraico","nome_grego","slug","tipo","latitude","longitude","regiao","pais_atual","descricao")
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
+        l,
+      );
+    }
+    log('9/12', `Localizações OK (${localizacoes.length} localizações)`);
+  } catch (e) {
+    log('9/12', `ERRO ao criar localizações: ${e}`);
+    throw e;
   }
 
   // ============================================================
   // 10. EVENTOS HISTÓRICOS/CRONOLÓGICOS (50)
   // ============================================================
-  console.log('10/12 Criando eventos cronológicos...');
+  log('10/12', 'Verificando/Criando eventos cronológicos...');
   const eventos: [string, string, string, string, number, number | null, string, string, string][] = [
     ['Criação do Universo', 'criacao-universo', 'criacao', 'Deus criou os céus e a terra em 6 dias.', -4004, null, 'AC', 'Gênesis 1', 'Adão e Eva'],
     ['Queda do Homem', 'queda-homem', 'pecado', 'Adão e Eva comeram do fruto proibido.', -4004, null, 'AC', 'Gênesis 3', 'Adão, Eva'],
@@ -430,18 +539,26 @@ async function seed() {
     ['Destruição do Templo', 'destruicao-templo-jr', 'juizo', 'Romano destruíram o Segundo Templo em 70 d.C.', 70, null, 'DC', 'Mateus 24', 'Tito'],
     ['Exílio de João em Patmos', 'exilio-patmos', 'revelacao', 'João recebeu o Apocalipse na ilha de Patmos.', 95, null, 'DC', 'Apocalipse 1', 'João'],
   ];
-  for (const e of eventos) {
-    await q(
-      `INSERT INTO "eventos_historicos" ("nome","slug","categoria","descricao","ano_inicio","ano_fim","era","referencias_biblicas","personagens_envolvidos")
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
-      e,
-    );
+  try {
+    for (const e of eventos) {
+      const existing = await q(`SELECT id FROM "eventos_historicos" WHERE slug = $1`, [e[1]]);
+      if (existing.length > 0) continue;
+      await q(
+        `INSERT INTO "eventos_historicos" ("nome","slug","categoria","descricao","ano_inicio","ano_fim","era","referencias_biblicas","personagens_envolvidos")
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
+        e,
+      );
+    }
+    log('10/12', `Eventos cronológicos OK (${eventos.length} eventos)`);
+  } catch (e) {
+    log('10/12', `ERRO ao criar eventos: ${e}`);
+    throw e;
   }
 
   // ============================================================
   // 11. VERBETES DO DICIONÁRIO (20 termos teológicos)
   // ============================================================
-  console.log('11/12 Criando verbetes do dicionário...');
+  log('11/12', 'Verificando/Criando verbetes do dicionário...');
   const verbetes = [
     ['Graça', 'graca', 'Teologia', 'Favor imerecido de Deus para com o pecador.', 'A graça é o fundamento da salvação cristã.', ['favor', 'misericórdia'], ['Efésios 2:8', 'Romanos 3:24']],
     ['Fé', 'fe', 'Teologia', 'Conviccão e confiança no que se espera; certeza do que se vê.', 'A fé é a substância das coisas esperadas.', ['crença', 'confiança'], ['Hebreus 11:1', 'Romanos 10:17']],
@@ -464,46 +581,51 @@ async function seed() {
     ['Profecia', 'profecia', 'Bibliologia', 'Palavra de Deus comunicada por profetas.', 'A profecia nunca veio por vontade humana.', ['revelação', 'predição'], ['2 Pedro 1:21', '2 Timóteo 3:16']],
     ['Aliança', 'alianca', 'Teologia', 'Acordo solene entre Deus e o homem.', 'Deus fez aliança com Abraão e com Israel.', ['pacto', 'convenção'], ['Gênesis 15', 'Hebreus 8:8-12']],
   ];
-  for (const v of verbetes) {
-    await q(
-      `INSERT INTO "verbetes" ("titulo","slug","categoria","definicao","explicacao","sinonimos","referencias_biblicas")
-       VALUES ($1,$2,$3,$4,$5,$6,$7)`,
-      v,
-    );
+  try {
+    for (const v of verbetes) {
+      const existing = await q(`SELECT id FROM "verbetes" WHERE slug = $1`, [v[1]]);
+      if (existing.length > 0) continue;
+      await q(
+        `INSERT INTO "verbetes" ("titulo","slug","categoria","definicao","explicacao","sinonimos","referencias_biblicas")
+         VALUES ($1,$2,$3,$4,$5,$6,$7)`,
+        v,
+      );
+    }
+    log('11/12', `Verbetes OK (${verbetes.length} verbetes)`);
+  } catch (e) {
+    log('11/12', `ERRO ao criar verbetes: ${e}`);
+    throw e;
   }
 
   // ============================================================
   // 12. PLANOS DE LEITURA
   // ============================================================
-  console.log('12/12 Criando planos de leitura...');
-  await q(
-    `INSERT INTO "planos_leitura" ("nome","descricao","total_dias","capitulos_por_dia","programacao","categoria","publico")
-     VALUES ($1,$2,$3,$4,$5,$6,$7)`,
-    ['Bíblia em 1 Ano', 'Leia a Bíblia completa em 365 dias', 365, 3, JSON.stringify({ tipo: 'cronologica' }), 'completo', true],
-  );
-  await q(
-    `INSERT INTO "planos_leitura" ("nome","descricao","total_dias","capitulos_por_dia","programacao","categoria","publico")
-     VALUES ($1,$2,$3,$4,$5,$6,$7)`,
-    ['Novo Testamento em 3 Meses', 'Leia o Novo Testamento em 90 dias', 90, 1, JSON.stringify({ tipo: 'canonica' }), 'novo-testamento', true],
-  );
-  await q(
-    `INSERT INTO "planos_leitura" ("nome","descricao","total_dias","capitulos_por_dia","programacao","categoria","publico")
-     VALUES ($1,$2,$3,$4,$5,$6,$7)`,
-    ['Pentateuco em 30 Dias', 'Estudo dos 5 livros de Moisés em 30 dias', 30, 2, JSON.stringify({ tipo: 'livro', livros: ['gn', 'ex', 'lv', 'nm', 'dt'] }), 'pentateuco', true],
-  );
-  await q(
-    `INSERT INTO "planos_leitura" ("nome","descricao","total_dias","capitulos_por_dia","programacao","categoria","publico")
-     VALUES ($1,$2,$3,$4,$5,$6,$7)`,
-    ['Salmos em 30 Dias', 'Leia todos os 150 Salmos em 30 dias', 30, 5, JSON.stringify({ tipo: 'livro', livros: ['sl'] }), 'poetico', true],
-  );
-  await q(
-    `INSERT INTO "planos_leitura" ("nome","descricao","total_dias","capitulos_por_dia","programacao","categoria","publico")
-     VALUES ($1,$2,$3,$4,$5,$6,$7)`,
-    ['Evangelhos em 40 Dias', 'Leia os 4 Evangelhos em 40 dias', 40, 2, JSON.stringify({ tipo: 'livro', livros: ['mt', 'mc', 'lc', 'jo'] }), 'evangelhos', true],
-  );
+  log('12/12', 'Verificando/Criando planos de leitura...');
+  try {
+    const planos = [
+      ['Bíblia em 1 Ano', 'Leia a Bíblia completa em 365 dias', 365, 3, { tipo: 'cronologica' }, 'completo', true],
+      ['Novo Testamento em 3 Meses', 'Leia o Novo Testamento em 90 dias', 90, 1, { tipo: 'canonica' }, 'novo-testamento', true],
+      ['Pentateuco em 30 Dias', 'Estudo dos 5 livros de Moisés em 30 dias', 30, 2, { tipo: 'livro', livros: ['gn', 'ex', 'lv', 'nm', 'dt'] }, 'pentateuco', true],
+      ['Salmos em 30 Dias', 'Leia todos os 150 Salmos em 30 dias', 30, 5, { tipo: 'livro', livros: ['sl'] }, 'poetico', true],
+      ['Evangelhos em 40 Dias', 'Leia os 4 Evangelhos em 40 dias', 40, 2, { tipo: 'livro', livros: ['mt', 'mc', 'lc', 'jo'] }, 'evangelhos', true],
+    ];
+    for (const p of planos) {
+      const existing = await q(`SELECT id FROM "planos_leitura" WHERE nome = $1`, [p[0]]);
+      if (existing.length > 0) continue;
+      await q(
+        `INSERT INTO "planos_leitura" ("nome","descricao","total_dias","capitulos_por_dia","programacao","categoria","publico")
+         VALUES ($1,$2,$3,$4,$5,$6,$7)`,
+        [p[0], p[1], p[2], p[3], JSON.stringify(p[4]), p[5], p[6]],
+      );
+    }
+    log('12/12', `Planos de leitura OK (${planos.length} planos)`);
+  } catch (e) {
+    log('12/12', `ERRO ao criar planos: ${e}`);
+    throw e;
+  }
 
   await ds.destroy();
-  console.log('\nSeed concluído com sucesso!');
+  console.log('\n=== Seed concluído com sucesso! ===');
   console.log('Resumo:');
   console.log('  - 2 testamentos');
   console.log('  - 8 traduções');
@@ -520,6 +642,6 @@ async function seed() {
 }
 
 seed().catch((erro) => {
-  console.error('Erro no seed:', erro);
+  console.error('[FATAL] Erro no seed:', erro);
   process.exit(1);
 });

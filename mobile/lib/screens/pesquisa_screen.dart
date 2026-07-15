@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../services/api_service.dart';
 
 class PesquisaScreen extends StatefulWidget {
   const PesquisaScreen({super.key});
@@ -9,6 +10,7 @@ class PesquisaScreen extends StatefulWidget {
 }
 
 class _PesquisaScreenState extends State<PesquisaScreen> {
+  final ApiService _api = apiService;
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   String _query = '';
@@ -34,35 +36,23 @@ class _PesquisaScreenState extends State<PesquisaScreen> {
     if (_query.trim().isEmpty) return;
     setState(() => _isSearching = true);
 
-    await Future.delayed(const Duration(milliseconds: 800));
-
-    setState(() {
-      _isSearching = false;
-      _results = _mockResults();
-    });
-  }
-
-  List<Map<String, dynamic>> _mockResults() {
-    return [
-      {
-        'referencia': 'João 3:16',
-        'texto': 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito...',
-        'livro': 'João',
-        'traducoes': ['NVI', 'ACF', 'KJV'],
-      },
-      {
-        'referencia': 'Romanos 8:28',
-        'texto': 'E sabemos que todas as coisas contribuem juntamente para o bem...',
-        'livro': 'Romanos',
-        'traducoes': ['NVI', 'ACF'],
-      },
-      {
-        'referencia': 'Filipenses 4:13',
-        'texto': 'Posso todas as coisas naquele que me fortalece.',
-        'livro': 'Filipenses',
-        'traducoes': ['NVI', 'ACF', 'KJV'],
-      },
-    ];
+    try {
+      final resultados = await _api.pesquisar(_query.trim());
+      setState(() {
+        _isSearching = false;
+        _results = resultados.map((r) => {
+          'referencia': r.referencia ?? '',
+          'texto': r.texto ?? '',
+          'livro': r.livro ?? '',
+          'traducoes': ['NVI', 'ACF', 'KJV'],
+        }).toList();
+      });
+    } catch (e) {
+      setState(() {
+        _isSearching = false;
+        _results = [];
+      });
+    }
   }
 
   @override

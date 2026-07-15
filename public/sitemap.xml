@@ -3,7 +3,7 @@
 
   <!-- Home -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/</loc>
+    <loc>https://solascripturabr.com.br/</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -11,7 +11,7 @@
 
   <!-- Bible Reading -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/biblia</loc>
+    <loc>https://solascripturabr.com.br/biblia</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -19,7 +19,7 @@
 
   <!-- Advanced Search -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/pesquisa</loc>
+    <loc>https://solascripturabr.com.br/pesquisa</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -27,7 +27,7 @@
 
   <!-- Systematic Theology -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/teologia</loc>
+    <loc>https://solascripturabr.com.br/teologia</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -35,7 +35,7 @@
 
   <!-- Biblical Languages -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/idiomas</loc>
+    <loc>https://solascripturabr.com.br/idiomas</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -43,7 +43,7 @@
 
   <!-- Dictionary -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/idiomas/dicionario</loc>
+    <loc>https://solascripturabr.com.br/idiomas/dicionario</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -51,7 +51,7 @@
 
   <!-- Exegesis -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/exegese</loc>
+    <loc>https://solascripturabr.com.br/exegese</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -59,7 +59,7 @@
 
   <!-- AI Assistant -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/ia</loc>
+    <loc>https://solascripturabr.com.br/ia</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -67,7 +67,7 @@
 
   <!-- Historical Context -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/historia</loc>
+    <loc>https://solascripturabr.com.br/historia</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -75,7 +75,7 @@
 
   <!-- Bible Atlas -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/historia/atlas</loc>
+    <loc>https://solascripturabr.com.br/historia/atlas</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -83,7 +83,7 @@
 
   <!-- Biblical Characters -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/personagens</loc>
+    <loc>https://solascripturabr.com.br/personagens</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -91,7 +91,7 @@
 
   <!-- Timeline -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/cronologia</loc>
+    <loc>https://solascripturabr.com.br/cronologia</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -99,7 +99,7 @@
 
   <!-- Community -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/comunidade</loc>
+    <loc>https://solascripturabr.com.br/comunidade</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -107,7 +107,7 @@
 
   <!-- Studies Hub -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/estudos</loc>
+    <loc>https://solascripturabr.com.br/estudos</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -115,7 +115,7 @@
 
   <!-- Study: Romanos -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/estudos/romanos</loc>
+    <loc>https://solascripturabr.com.br/estudos/romanos</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -123,7 +123,7 @@
 
   <!-- Study: Joao -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/estudos/joao</loc>
+    <loc>https://solascripturabr.com.br/estudos/joao</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -131,7 +131,7 @@
 
   <!-- Study: Genesis -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/estudos/genesis</loc>
+    <loc>https://solascripturabr.com.br/estudos/genesis</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -139,7 +139,7 @@
 
   <!-- Study: Salmos -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/estudos/salmos</loc>
+    <loc>https://solascripturabr.com.br/estudos/salmos</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -147,7 +147,7 @@
 
   <!-- Study: Atos -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/estudos/atos</loc>
+    <loc>https://solascripturabr.com.br/estudos/atos</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -155,7 +155,7 @@
 
   <!-- Study: Efesios -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/estudos/efesios</loc>
+    <loc>https://solascripturabr.com.br/estudos/efesios</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -163,7 +163,7 @@
 
   <!-- Tools Hub -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/ferramentas</loc>
+    <loc>https://solascripturabr.com.br/ferramentas</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -171,7 +171,7 @@
 
   <!-- Concordance -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/ferramentas/concordancia</loc>
+    <loc>https://solascripturabr.com.br/ferramentas/concordancia</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -179,7 +179,7 @@
 
   <!-- Textual Criticism -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/ferramentas/critica-textual</loc>
+    <loc>https://solascripturabr.com.br/ferramentas/critica-textual</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -187,7 +187,7 @@
 
   <!-- Book Introductions -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/ferramentas/introducoes</loc>
+    <loc>https://solascripturabr.com.br/ferramentas/introducoes</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -195,7 +195,7 @@
 
   <!-- Quiz -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/quiz</loc>
+    <loc>https://solascripturabr.com.br/quiz</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -203,7 +203,7 @@
 
   <!-- Daily Devotional -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/devocional</loc>
+    <loc>https://solascripturabr.com.br/devocional</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -211,7 +211,7 @@
 
   <!-- Flashcards -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/flashcards</loc>
+    <loc>https://solascripturabr.com.br/flashcards</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -219,7 +219,7 @@
 
   <!-- Reading Plans -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/planos</loc>
+    <loc>https://solascripturabr.com.br/planos</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -227,7 +227,7 @@
 
   <!-- Compare Translations -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/comparar</loc>
+    <loc>https://solascripturabr.com.br/comparar</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -235,7 +235,7 @@
 
   <!-- Share Verses -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/compartilhar</loc>
+    <loc>https://solascripturabr.com.br/compartilhar</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -243,7 +243,7 @@
 
   <!-- Synoptic Harmony -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/harmonia</loc>
+    <loc>https://solascripturabr.com.br/harmonia</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -251,7 +251,7 @@
 
   <!-- Parables of Jesus -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/parabolas</loc>
+    <loc>https://solascripturabr.com.br/parabolas</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -259,7 +259,7 @@
 
   <!-- Miracles of Jesus -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/milagres</loc>
+    <loc>https://solascripturabr.com.br/milagres</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -267,7 +267,7 @@
 
   <!-- Statistics -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/estatisticas</loc>
+    <loc>https://solascripturabr.com.br/estatisticas</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -275,7 +275,7 @@
 
   <!-- Sermons -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/sermoes</loc>
+    <loc>https://solascripturabr.com.br/sermoes</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -283,7 +283,7 @@
 
   <!-- Pericopes -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/pericopes</loc>
+    <loc>https://solascripturabr.com.br/pericopes</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -291,7 +291,7 @@
 
   <!-- Theological Topics -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/topicos</loc>
+    <loc>https://solascripturabr.com.br/topicos</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -299,7 +299,7 @@
 
   <!-- Bible Literature -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/literatura</loc>
+    <loc>https://solascripturabr.com.br/literatura</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -307,7 +307,7 @@
 
   <!-- Verse Detail -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/estudo</loc>
+    <loc>https://solascripturabr.com.br/estudo</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -315,7 +315,7 @@
 
   <!-- Auth (low priority) -->
   <url>
-    <loc>https://sola-scriptura-two.vercel.app/auth</loc>
+    <loc>https://solascripturabr.com.br/auth</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>

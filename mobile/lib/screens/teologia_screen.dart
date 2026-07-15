@@ -74,7 +74,7 @@ class _TeologiaScreenState extends State<TeologiaScreen> {
         descricao:
             'A doutrina da Trindade afirma que Deus existe em três pessoas distintas e coeternas: Pai, Filho e Espírito Santo. Cada pessoa é plenamente Deus, mas há um só Deus.',
         categoria: 'Deus',
-        tradicao: '普遍接受',
+        tradicao: 'Universal',
       ),
       Doutrina(
         id: 2,
@@ -90,15 +90,15 @@ class _TeologiaScreenState extends State<TeologiaScreen> {
         descricao:
             'A Bíblia é a Palavra de Deus infalível e inerrante no que afirma em todas as suas declarações, sendo a autoridade suprema de fé e prática.',
         categoria: 'Bíblia',
-        tradicao: 'Evangelical',
+        tradicao: 'Evangélica',
       ),
       Doutrina(
         id: 4,
         nome: 'Encarnação',
         descricao:
-            'Jesus Cristo é完全神 e完全人. O Verbo se fez carne, unindo natureza divina e humana em uma só pessoa sem confusão ou mudança.',
+            'Jesus Cristo é completamente Deus e completamente homem. O Verbo se fez carne, unindo natureza divina e humana em uma só pessoa sem confusão ou mudança.',
         categoria: 'Cristo',
-        tradicao: '普遍接受',
+        tradicao: 'Universal',
       ),
       Doutrina(
         id: 5,
@@ -106,7 +106,7 @@ class _TeologiaScreenState extends State<TeologiaScreen> {
         descricao:
             'Cristo ressuscitou fisicamente dos mortos no terceiro dia, vencendo a morte e o pecado. A ressurreição é fundamental para a fé cristã.',
         categoria: 'Cristo',
-        tradicao: '普遍接受',
+        tradicao: 'Universal',
       ),
       Doutrina(
         id: 6,
@@ -130,7 +130,7 @@ class _TeologiaScreenState extends State<TeologiaScreen> {
         descricao:
             'Cristo voltará visivelmente e pessoalmente para julgar os vivos e os mortos, estabelecer Seu reino eterno e renovar todas as coisas.',
         categoria: 'Escatologia',
-        tradicao: '普遍接受',
+        tradicao: 'Universal',
       ),
       Doutrina(
         id: 9,

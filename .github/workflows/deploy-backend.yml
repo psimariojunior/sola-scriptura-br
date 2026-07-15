@@ -22,6 +22,9 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H ${{ secrets.VM_IP }} >> ~/.ssh/known_hosts
 
+      - name: Install rsync
+        run: sudo apt-get update && sudo apt-get install -y rsync
+
       - name: Sync files
         run: |
           rsync -avz --delete \

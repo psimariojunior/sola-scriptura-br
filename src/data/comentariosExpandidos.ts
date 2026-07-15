@@ -1779,8 +1779,6 @@ Object.keys(comentariosNovos).forEach(key => {
   }
 });
 
-console.log(`Total commentaries after merge: ${Object.keys(comentariosExpandidos).length}`);
-
 // ====================================================================
 // EXPORTAÇÃO
 // ====================================================================

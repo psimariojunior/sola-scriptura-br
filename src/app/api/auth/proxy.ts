@@ -1,4 +1,4 @@
-const BACKEND_URL = process.env.BACKEND_URL || 'https://sola-scriptura-backend.onrender.com/api/v1';
+const BACKEND_URL = process.env.BACKEND_URL || 'http://api.solascripturabr.com.br/api/v1';
 
 export async function proxyToBackend(
   path: string,

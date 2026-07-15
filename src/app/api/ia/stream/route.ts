@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 
-const BACKEND_URL = process.env.BACKEND_URL || 'https://api-production-bb96.up.railway.app/api/v1';
+const BACKEND_URL = process.env.BACKEND_URL || 'http://api.solascripturabr.com.br/api/v1';
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.OPENROUTER_API_KEY || '';
 const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://openrouter.ai/api/v1';
 const LLM_MODEL = process.env.LLM_MODEL || 'openai/gpt-4o';

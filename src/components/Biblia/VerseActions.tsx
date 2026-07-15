@@ -143,8 +143,8 @@ export function VerseActions({
       className={cn(
         'flex items-center gap-0.5 shrink-0',
         variant === 'inline'
-          ? 'opacity-100 lg:opacity-0 lg:group-hover:opacity-100 focus-within:opacity-100 transition-opacity duration-200'
-          : 'opacity-100'
+          ? 'hidden lg:flex lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 transition-opacity duration-200'
+          : 'flex opacity-100'
       )}
     >
       <VersiculoAudioNatural

@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, lazy, Suspense } from 'react';
+import { memo, Fragment, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -57,7 +57,7 @@ export interface VerseCardProps {
   tradBadgeColor: string;
 }
 
-export function VerseCard({
+export const VerseCard = memo(function VerseCard({
   numero,
   texto,
   livroAbreviacao,
@@ -112,7 +112,7 @@ export function VerseCard({
           'group relative cursor-pointer rounded-lg',
           'transition-all duration-300',
           'px-3 sm:px-4 -mx-3 sm:-mx-4',
-          'py-2.5 sm:py-3',
+          'py-3 sm:py-3',
           isSelected
             ? 'bg-[var(--brand-subtle)] border-l-2 border-l-[var(--brand-default)] shadow-sm'
             : isPlaying
@@ -125,12 +125,12 @@ export function VerseCard({
         aria-selected={isSelected}
         aria-label={`Versículo ${numero} de ${livroNome} ${capitulo}`}
       >
-        <div className="flex items-start gap-3 sm:gap-4">
+        <div className="flex items-start gap-2.5 sm:gap-4">
           <span
             className={cn(
               'shrink-0 inline-flex items-center justify-center',
-              'w-9 h-9 sm:w-10 sm:h-10 rounded-lg',
-              'text-xs sm:text-sm font-bold tabular-nums',
+              'w-8 h-8 sm:w-10 sm:h-10 rounded-lg',
+              'text-[11px] sm:text-sm font-bold tabular-nums',
               'transition-all duration-200',
               isSelected || isPlaying
                 ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20'
@@ -156,14 +156,14 @@ export function VerseCard({
 
           <div className="flex-1 min-w-0">
             <p
-              className="font-serif-body leading-[1.8] text-[var(--content-primary)]"
+              className="font-serif-body text-[var(--content-primary)] leading-[1.75] sm:leading-[1.8]"
               style={{ fontSize: `${fontSize}px` }}
             >
               {texto}
-              <span className="ml-2 text-[0.7em] text-[var(--content-muted)] font-normal tracking-wide tabular-nums">
-                {ref}
-              </span>
             </p>
+            <span className="block mt-0.5 text-[0.65em] sm:text-[0.7em] text-[var(--content-muted)] font-normal tracking-wide tabular-nums">
+              {ref}
+            </span>
 
             {(crossRefs.length > 0 || recursos.length > 0) && (
               <div className="mt-2 flex items-center gap-2 flex-wrap">
@@ -253,4 +253,4 @@ export function VerseCard({
       </AnimatePresence>
     </Fragment>
   );
-}
+});

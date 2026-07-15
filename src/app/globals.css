@@ -1470,6 +1470,57 @@ body.theme-fading {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   MOBILE READING OPTIMIZATIONS
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 639px) {
+  .font-serif-body {
+    font-feature-settings: 'liga' 1, 'kern' 1, 'onum' 1;
+    -webkit-font-smoothing: antialiased;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .reading-mode {
+    max-width: 100%;
+    padding: 0 0.25rem;
+    font-size: 17px;
+    line-height: 1.85;
+  }
+
+  .verse-hover:hover {
+    transform: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .sola-card:hover {
+    transform: none;
+  }
+
+  .glass-card:hover {
+    transform: none;
+  }
+
+  .card-hover:hover {
+    transform: none;
+  }
+}
+
+/* Touch-friendly tap targets for mobile */
+@media (max-width: 639px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+  }
+
+  .book-grid-item {
+    min-height: 48px;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
    ACCESSIBILITY ENHANCEMENTS
    ═══════════════════════════════════════════════════════════ */
 

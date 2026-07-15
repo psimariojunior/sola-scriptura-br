@@ -126,7 +126,10 @@ export default function BibliaPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [fontSize, setFontSize] = useState(18);
+  const [fontSize, setFontSize] = useState(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 640) return 17;
+    return 18;
+  });
   const [chapterGridOpen, setChapterGridOpen] = useState(false);
   const [studyPanel, setStudyPanel] = useState<'notas' | 'strong' | 'comentarios' | null>(null);
   const [anotandoVersiculo, setAnotandoVersiculo] = useState<string | null>(null);
@@ -513,7 +516,12 @@ export default function BibliaPage() {
                   </div>
                 ) : temDados ? (
                   <AnimatePresence mode="wait">
-                    <motion.div key={`${livro.abreviacao}-${capituloIdx}`} {...chapterAnimProps}>
+                    <motion.div
+                      key={`${livro.abreviacao}-${capituloIdx}`}
+                      {...chapterAnimProps}
+                      role="article"
+                      aria-label={`${livro.nome} capítulo ${capituloIdx + 1}`}
+                    >
                       <ChapterHeader
                         livroNome={livro.nome}
                         livroAbreviacao={livro.abreviacao}
@@ -580,21 +588,21 @@ export default function BibliaPage() {
                       ))}
 
                       {modoLeitura === 'comparacao' && viewMode === 'parallel' && (
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                           {data.map((item) => (
                             <motion.div
                               key={item.traducao}
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: 0.1 }}
-                              className="border border-[var(--border)]/40 rounded-xl p-4 sm:p-5 hover:shadow-md transition-shadow"
+                              className="border border-[var(--border)]/40 rounded-xl p-3 sm:p-5 hover:shadow-md transition-shadow"
                             >
                               <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/30">
                                 <div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} />
                                 <span className="text-sm font-semibold">{labelMap[item.traducao]}</span>
                               </div>
                               {item.versiculos.map(v => (
-                                <p key={v.numero} className="mb-1.5 leading-relaxed font-serif-body" style={{ fontSize: `${fontSize - 2}px` }}>
+                                <p key={v.numero} className="mb-2 leading-[1.7] font-serif-body" style={{ fontSize: `${Math.max(fontSize - 2, 14)}px` }}>
                                   <sup className="text-[var(--brand-default)] font-bold text-[10px] mr-1 select-none tabular-nums">{v.numero}</sup>
                                   {v.texto}
                                 </p>
@@ -617,10 +625,10 @@ export default function BibliaPage() {
                         />
                       )}
 
-                      <div className="flex items-center justify-center gap-4 mt-12 sm:mt-16 pt-8 sm:pt-10 border-t border-[var(--border)]/30">
+                      <div className="flex items-center justify-center gap-3 sm:gap-4 mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">
                         <motion.button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0}
                           whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                          className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-colors"
+                          className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-colors min-h-[44px]"
                           aria-label="Capítulo anterior">
                           <ChevronLeft className="w-4 h-4" /> Anterior
                         </motion.button>
@@ -631,7 +639,7 @@ export default function BibliaPage() {
                         <motion.button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
                           disabled={capituloIdx >= livro.totalCapitulos - 1}
                           whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                          className="flex items-center gap-1.5 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-colors"
+                          className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-colors min-h-[44px]"
                           aria-label="Próximo capítulo">
                           Próximo <ChevronRight className="w-4 h-4" />
                         </motion.button>

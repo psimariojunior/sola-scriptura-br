@@ -1,0 +1,10 @@
+name = "sola-scriptura-proxy"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+account_id = "3a882e9e61cdaa38cc3e263a71cd6f2d"
+
+routes = [
+  { pattern = "solascripturabr.com.br/*", zone_name = "solascripturabr.com.br" },
+  { pattern = "www.solascripturabr.com.br/*", zone_name = "solascripturabr.com.br" }
+]

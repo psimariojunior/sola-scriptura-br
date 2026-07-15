@@ -628,7 +628,6 @@ export class RAGService {
 
     return this.versiculoRepo
       .createQueryBuilder('v')
-      .leftJoinAndSelect('v.livro', 'livro')
       .where(conditions.join(' OR '), parameters)
       .limit(5)
       .getMany();

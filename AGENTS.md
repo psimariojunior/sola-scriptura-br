@@ -1,7 +1,7 @@
 # Sola Scriptura BR
 
-## Goal
-Plataforma de estudo bíblico acadêmico completa, melhor que o Logos. Site + App mobile.
+## Objetivo
+Plataforma de estudo biblico academico completa, melhor que o Logos. Site + App mobile.
 
 ## Stack
 - **Frontend**: Next.js 14, TypeScript, TailwindCSS, ShadCN, Framer Motion, Leaflet (mapas), Recharts
@@ -10,157 +10,157 @@ Plataforma de estudo bíblico acadêmico completa, melhor que o Logos. Site + Ap
 - **IA**: Groq (llama-3.3-70b-versatile, gratuito) + RAG vetorial (pgvector)
 - **Deploy**: Vercel (frontend), Oracle VM (backend)
 - **Auth**: Supabase (email/senha + Google OAuth)
-- **Áudio**: Cloudflare Worker (Edge TTS gratuito) + Web Speech API fallback
+- **Audio**: Cloudflare Worker (Edge TTS gratuito) + Web Speech API fallback
 - **DNS/Proxy**: Cloudflare (solascripturabr.com.br)
 
-## Infrastructure (PRODUÇÃO)
-- **VM Oracle**: IP `137.131.184.53`, user `ubuntu`, SSH key em `~/.ssh/oracle-vm-new`
+## Infraestrutura (PRODUCAO)
+- **VM Oracle**: IP `137.131.184.53`, usuario `ubuntu`, chave SSH em `~/.ssh/oracle-vm-new`
 - **Frontend**: Vercel em `https://solascripturabr.com.br`
 - **Backend API**: Oracle VM, Nginx reverse proxy em `http://api.solascripturabr.com.br` → `:4000`
 - **Banco**: PostgreSQL 16 + pgvector no Docker (porta 5432)
 - **Cache**: Redis 7 no Docker (porta 6379)
 - **TTS**: Cloudflare Worker `sola-scriptura-edge-tts` (Edge TTS gratuito)
-- **Backend dir na VM**: `/opt/sola-scriptura/backend/`
+- **Diretorio backend na VM**: `/opt/sola-scriptura/backend/`
 - **Docker compose**: `/opt/sola-scriptura/backend/docker/docker-compose.yml`
-- **Nginx conf**: `/etc/nginx/conf.d/api.conf`
+- **Config Nginx**: `/etc/nginx/conf.d/api.conf`
 - **Frontend .env.local**: `NEXT_PUBLIC_API_URL=https://api.solascripturabr.com.br/api/v1`
 - **Backend .env (docker)**: `/opt/sola-scriptura/backend/docker/.env`
 - **Deploy backend**: GitHub Actions (push em `backend/` → SCP + Docker build na VM)
-- **SSH keys**: `~/.ssh/oracle-vm-new` (privada), `~/.ssh/deploy_key` (GitHub Actions)
+- **Chaves SSH**: `~/.ssh/oracle-vm-new` (privada), `~/.ssh/deploy_key` (GitHub Actions)
 - **Firewall UFW**: Portas 22, 80, 443, 4000 abertas
-- **Groq API Key**: Ver `src/.env.local` (variável OPENAI_API_KEY)
+- **Groq API Key**: Ver `src/.env.local` (variavel OPENAI_API_KEY)
 
-## Architecture
-- Frontend Next.js na raiz do repo (`src/` — App Router)
+## Arquitetura
+- Frontend Next.js na raiz do repositorio (`src/` — App Router)
 - Backend em `backend/` (NestJS)
 - Mobile em `mobile/` (Flutter)
 - Infra em `infra/` (Docker, K8s)
 - Supabase em `supabase/`
-- Dados em `src/data/` (Bíblia 6 traduções, léxico, comentários, estudos)
+- Dados em `src/data/` (Biblia 6 traducoes, lexico, comentarios, estudos)
 
-## Pages (Frontend — src/app/)
+## Paginas (Frontend — src/app/)
 ### Principais
-- `/` — Landing page
-- `/biblia` — Leitura bíblica multi-tradução (ARC, ARA, ACF, KJV, NVI, WEB)
-- `/pesquisa` — Pesquisa avançada (Elasticsearch + pgvector)
-- `/idiomas` — Grego e Hebraico (léxico Strong's)
-- `/exegese` — Exegese automática com IA
-- `/teologia` — Teologia sistemática (13 categorias)
-- `/historia` — Contexto histórico
-- `/personagens` — Biografias bíblicas
+- `/` — Pagina inicial
+- `/biblia` — Leitura biblica multi-traducao (ARC, ARA, ACF, KJV, NVI, WEB)
+- `/pesquisa` — Pesquisa avancada (Elasticsearch + pgvector)
+- `/idiomas` — Grego e Hebraico (lexico Strong's)
+- `/exegese` — Exegese automatica com IA
+- `/teologia` — Teologia sistematica (13 categorias)
+- `/historia` — Contexto historico
+- `/personagens` — Biografias biblicas
 - `/cronologia` — Linha do tempo interativa
 - `/ia` — Assistente IA (OpenAI GPT-4 + RAG)
-- `/estudos` — Estudos salvos + manuais bíblicos
-- `/ferramentas` — Concordância, Crítica Textual, Introduções
+- `/estudos` — Estudos salvos + manuais biblicos
+- `/ferramentas` — Concordancia, Critica Textual, Introducoes
 - `/admin` — Painel administrativo
-- `/auth` — Autenticação (login/cadastro)
-- `/conta` — Conta do usuário
+- `/auth` — Autenticacao (login/cadastro)
+- `/conta` — Conta do usuario
 
 ### Ferramentas
-- `/ferramentas/concordancia` — Concordância bíblica
-- `/ferramentas/critica-textual` — Crítica textual
-- `/ferramentas/introducoes` — Introduções por livro
+- `/ferramentas/concordancia` — Concordancia biblica
+- `/ferramentas/critica-textual` — Critica textual
+- `/ferramentas/introducoes` — Introducoes por livro
 
 ### Estudos
-- `/estudos/[livro]` — Estudo por livro (rota dinâmica)
+- `/estudos/[livro]` — Estudo por livro (rota dinamica)
 - `/estudos/genesis`, `/estudos/romanos`, `/estudos/joao`, etc.
 
 ### Extras
-- `/devocional` — Devocional diário
-- `/flashcards` — Flashcards bíblicos
-- `/quiz` — Quiz bíblico
-- `/comparar` — Comparar traduções
-- `/harmonia` — Harmonia sinótica
-- `/parabolas` — Parábolas de Jesus
+- `/devocional` — Devocional diario
+- `/flashcards` — Flashcards biblicos
+- `/quiz` — Quiz biblico
+- `/comparar` — Comparar traducoes
+- `/harmonia` — Harmonia sinotica
+- `/parabolas` — Parabolas de Jesus
 - `/milagres` — Milagres de Jesus
-- `/literatura` — Literatura bíblica
-- `/sermoes` — Sermões
+- `/literatura` — Literatura biblica
+- `/sermoes` — Sermoes
 - `/planos` — Planos de leitura
-- `/estatisticas` — Estatísticas de estudo
-- `/compartilhar` — Compartilhar versículos
-- `/pericopes` — Pericópes
-- `/topicos` — Tópicos teológicos
-- `/estudo` — Estudo detalhado do versículo
+- `/estatisticas` — Estatisticas de estudo
+- `/compartilhar` — Compartilhar versiculos
+- `/pericopes` — Pericopes
+- `/topicos` — Topicoss teologicos
+- `/estudo` — Estudo detalhado do versiculo
 
-### API Routes
+### Rotas da API
 - `/api/ia/perguntar` — Rota de IA (proxy para backend NestJS)
 - `/api/ia/stream` — Streaming de respostas IA
 
-## Backend Modules (NestJS — backend/src/modules/)
-- `biblia` — Livros, Capítulos, Versículos, Palavras, Traduções
-- `pesquisa` — Busca avançada (Elasticsearch + pgvector)
-- `exegese` — Análise exegética
-- `hermeneutica` — Análise hermenêutica
+## Modulos do Backend (NestJS — backend/src/modules/)
+- `biblia` — Livros, Capitulos, Versiculos, Palavras, Traducoes
+- `pesquisa` — Pesquisa avancada (Elasticsearch + pgvector)
+- `exegese` — Analise exegetica
+- `hermeneutica` — Analise hermeneutica
 - `teologia` — Doutrinas, Categorias
-- `historia` — Contextos históricos
-- `geografia` — Localizações bíblicas
-- `arqueologia` — Artefatos e escavações
+- `historia` — Contextos historicos
+- `geografia` — Localizacoes biblicas
+- `arqueologia` — Artefatos e escavacoes
 - `grego` — Palavras gregas (Strong's)
 - `hebraico` — Palavras hebraicas (Strong's)
-- `cronologia` — Eventos cronológicos
-- `personagens` — Personagens bíblicos
-- `referencias` — Referências cruzadas
-- `comentarios` — Comentários de teólogos
+- `cronologia` — Eventos cronologicos
+- `personagens` — Personagens biblicos
+- `referencias` — Referencias cruzadas
+- `comentarios` — Comentarios de teologos
 - `ia` — RAG + LLM + Knowledge Graph
 - `autenticacao` — JWT + MFA + OAuth
-- `usuario` — Perfis e preferências
+- `usuario` — Perfis e preferencias
 - `admin` — Painel administrativo
 - `plano-leitura` — Planos de leitura
-- `favoritos` — Favoritos do usuário
-- `notas` — Anotações pessoais
-- `dicionario` — Dicionário bíblico
+- `favoritos` — Favoritos do usuario
+- `notas` — Anotacoes pessoais
+- `dicionario` — Dicionario biblico
 
-## Infrastructure (backend/src/infra/)
-- `database/` — TypeORM config, migrations, seed
+## Infraestrutura do Backend (backend/src/infra/)
+- `database/` — Config TypeORM, migrations, seed
 - `seguranca/` — JWT, criptografia, MFA
 - `ia/` — RAG (pgvector), LLM (OpenAI), Knowledge Graph
-- `busca/` — Elasticsearch full-text + semântico
+- `busca/` — Elasticsearch full-text + semantico
 - `observabilidade/` — OpenTelemetry
 - `mensageria/` — RabbitMQ
 - `graphql/` — Apollo GraphQL
 - `cache/` — Redis
 - `armazenamento/` — S3/Supabase Storage
 
-## Data (src/data/)
-- `biblia/` — 6 traduções completas (ACF, ARA, ARC, KJV, NVI, WEB)
+## Dados (src/data/)
+- `biblia/` — 6 traducoes completas (ACF, ARA, ARC, KJV, NVI, WEB)
 - `lexicon/` — Grego (~5000 palavras), Hebraico (~5000 palavras), Aramaico
-- `comentarios.ts` — Comentários versículo a versículo
-- `estudosTeologicos.ts` — Estudos teológicos por versículo
+- `comentarios.ts` — Comentarios versiculo a versiculo
+- `estudosTeologicos.ts` — Estudos teologicos por versiculo
 - `estudosPorLivro.ts` — Estudos por livro
-- `crossReferences.ts` — Referências cruzadas
+- `crossReferences.ts` — Referencias cruzadas
 - `planosLeitura.ts` — Planos de leitura
 - `quiz.ts` — Perguntas de quiz
-- `teologos.ts` — Lista de teólogos
+- `teologos.ts` — Lista de teologos
 
-## Testing
-- **Unit**: Jest 30 + React Testing Library (`src/__tests__/`)
+## Testes
+- **Unitarios**: Jest 30 + React Testing Library (`src/__tests__/`)
 - **E2E**: Playwright (Chromium + Mobile Chrome) (`e2e/`)
 - **Backend**: Jest + supertest (`backend/src/**/*.spec.ts`)
 
-## Key Decisions
+## Decisoes Importantes
 - GraphQL (Apollo) para queries complexas
 - i18next para PT/EN
 - next-themes para dark mode (4 temas: light, dark, sepia, noturno)
 - Leaflet para mapas interativos
 - Zustand para state management
 - ElevenLabs para TTS profissional
-- pgvector para busca semântica
+- pgvector para busca semantica
 
-## Relevant Files
-- `src/app/layout.tsx` — Root layout
-- `src/app/page.tsx` — Landing page
+## Arquivos Relevantes
+- `src/app/layout.tsx` — Layout raiz
+- `src/app/page.tsx` — Pagina inicial
 - `src/app/globals.css` — Estilos globais (740 linhas, 4 temas)
-- `src/app/biblia/` — Leitura bíblica
-- `src/app/pesquisa/` — Pesquisa avançada
-- `src/app/teologia/` — Teologia sistemática
+- `src/app/biblia/` — Leitura biblica
+- `src/app/pesquisa/` — Pesquisa avancada
+- `src/app/teologia/` — Teologia sistematica
 - `src/app/ia/` — Assistente IA
 - `src/components/` — 34 componentes
-- `src/data/` — Dados bíblicos
+- `src/data/` — Dados biblicos
 - `src/hooks/` — Custom hooks
-- `src/lib/` — Utilitários
-- `src/locales/` — Traduções (PT/EN)
-- `src/__tests__/` — Testes unitários
+- `src/lib/` — Utilitarios
+- `src/locales/` — Traducoes (PT/EN)
+- `src/__tests__/` — Testes unitarios
 - `e2e/` — Testes E2E
 - `backend/src/` — Backend NestJS
-- `supabase/` — Supabase config
-- `vercel.json` — Deploy config
+- `supabase/` — Config Supabase
+- `vercel.json` — Config de deploy

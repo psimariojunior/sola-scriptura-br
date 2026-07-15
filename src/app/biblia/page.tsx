@@ -241,11 +241,13 @@ export default function BibliaPage() {
   }, [capituloIdx, livro, quickSearchOpen]);
 
   const toggleTrad = (id: string) => {
-    if (id === 'arc' || (selectedTrads.length === 1 && selectedTrads.includes(id))) {
-      setSelectedTrads(prev => prev.includes(id) ? prev : [...prev, id].slice(0, 4));
-    } else {
-      setSelectedTrads(prev => prev.includes(id) ? prev.filter(t => t !== id) : [...prev, id].slice(0, 4));
-    }
+    setSelectedTrads(prev => {
+      if (prev.length === 1 && prev[0] === id) return prev;
+      if (prev.includes(id)) {
+        return prev.filter(t => t !== id);
+      }
+      return [...prev, id].slice(0, 4);
+    });
   };
 
   const livrosFiltrados = useMemo(() => searchQuery
@@ -284,10 +286,11 @@ export default function BibliaPage() {
 
   useEffect(() => {
     if (modoLeitura === 'comparacao' && selectedTrads.length < 2) {
-      const other = selectedTrads[0] === 'arc' ? 'nvi' : 'arc';
+      const fallbacks = ['nvi', 'ara', 'acf', 'arc', 'kjv'];
+      const other = fallbacks.find(t => !selectedTrads.includes(t)) || 'nvi';
       setSelectedTrads(prev => prev.includes(other) ? prev : [...prev, other]);
     }
-  }, [modoLeitura, selectedTrads]);
+  }, [modoLeitura]);
 
   const chapterAnimProps = {
     initial: { opacity: 0, x: chapterDirection === 'next' ? 40 : -40, filter: 'blur(4px)' },

@@ -272,14 +272,14 @@ export class RAGService {
 
     const [versiculos, gregos, hebraicos, doutrinas, personagens, historia, geografia, dicionario] =
       await Promise.all([
-        this.buscarVersiculos(termos),
-        this.buscarGregos(termos),
-        this.buscarHebraicos(termos),
-        this.buscarDoutrinas(termos),
-        this.buscarPersonagens(termos),
-        this.buscarHistorico(termos),
-        this.buscarGeografia(termos),
-        this.buscarDicionario(termos),
+        this.buscarVersiculos(termos).catch(() => [] as any[]),
+        this.buscarGregos(termos).catch(() => [] as any[]),
+        this.buscarHebraicos(termos).catch(() => [] as any[]),
+        this.buscarDoutrinas(termos).catch(() => [] as any[]),
+        this.buscarPersonagens(termos).catch(() => [] as any[]),
+        this.buscarHistorico(termos).catch(() => [] as any[]),
+        this.buscarGeografia(termos).catch(() => [] as any[]),
+        this.buscarDicionario(termos).catch(() => [] as any[]),
       ]);
 
     for (const v of versiculos) {
@@ -695,7 +695,7 @@ export class RAGService {
 
   private async buscarGeografia(termos: string[]): Promise<Localizacao[]> {
     if (termos.length === 0) return [];
-    const conditions = termos.map((t, i) => `(g.nome ILIKE :t${i} OR g.descricao ILIKE :t${i})`);
+      const conditions = termos.map((t, i) => `(g.nome_portugues ILIKE :t${i} OR g.descricao ILIKE :t${i})`);
     const parameters = Object.fromEntries(termos.map((t, i) => [`t${i}`, `%${t}%`]));
 
     return this.geografiaRepo

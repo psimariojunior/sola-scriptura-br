@@ -62,7 +62,7 @@ export default function ApresentacaoModal({
       syncRef.current = null;
       setSync(null);
     };
-  }, [open, livro, capitulo, versiculo, translation, toast]);
+  }, [open]);
 
   useEffect(() => {
     if (!state) return;

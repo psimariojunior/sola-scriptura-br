@@ -258,7 +258,7 @@ export default function ApresentacaoDisplay({ sync }: ApresentacaoDisplayProps) 
                 </span>
               </div>
               <p
-                className={`font-serif leading-[1.25] ${fontClass} text-white tracking-tight px-4`}
+                className={`font-serif leading-[1.25] ${fontClass} text-white tracking-tight px-4 ${state.modePresentation ? 'scale-x-[-1]' : ''}`}
                 style={{ textShadow: '0 2px 30px rgba(0,0,0,0.4)' }}
               >
                 <sup className={`${grad.accent} text-base md:text-xl align-top mr-2 font-bold opacity-70`}>

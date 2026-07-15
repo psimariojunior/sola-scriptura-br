@@ -312,7 +312,7 @@ export default function BibliaPage() {
           />
         </div>
 
-        <div className="flex h-[calc(100vh-7rem-40px)] relative">
+        <div className="flex min-h-[100dvh] md:h-[calc(100vh-7rem-40px)] relative">
           <AnimatePresence>
             {sidebarOpen && (
               <motion.aside

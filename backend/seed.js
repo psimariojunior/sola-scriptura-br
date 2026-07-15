@@ -152,14 +152,14 @@ async function seedLivros(client) {
     await client.query(`
       INSERT INTO livros (id, nome, nome_abreviado, slug, ordem_testamento, ordem_geral, total_capitulos, autor, data_escrita, temas_principais, testamento_id)
       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
-      [crypto.randomUUID(), l[0], l[1], l[2], l[3], l[3], l[4], l[5], l[6], l[7], atId]
+      [crypto.randomUUID(), l[0], l[1], l[2], l[3], l[4], l[5], l[6], l[7], l[8], atId]
     );
   }
   for (const l of livrosNT) {
     await client.query(`
       INSERT INTO livros (id, nome, nome_abreviado, slug, ordem_testamento, ordem_geral, total_capitulos, autor, data_escrita, temas_principais, testamento_id)
       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
-      [crypto.randomUUID(), l[0], l[1], l[2], l[3], l[3] + 39, l[4], l[5], l[6], l[7], ntId]
+      [crypto.randomUUID(), l[0], l[1], l[2], l[3], l[3] + 39, l[5], l[6], l[7], l[8], ntId]
     );
   }
   console.log(`  ${livrosAT.length + livrosNT.length} livros inseridos`);

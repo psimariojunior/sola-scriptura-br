@@ -7,10 +7,28 @@ Plataforma de estudo bíblico acadêmico completa, melhor que o Logos. Site + Ap
 - **Frontend**: Next.js 14, TypeScript, TailwindCSS, ShadCN, Framer Motion, Leaflet (mapas), Recharts
 - **Backend**: NestJS, TypeORM, PostgreSQL + pgvector + Elasticsearch, Redis, RabbitMQ
 - **Mobile**: Flutter
-- **IA**: OpenAI GPT-4 + RAG vetorial (pgvector)
-- **Deploy**: Vercel (frontend), Railway (backend)
+- **IA**: Groq (llama-3.3-70b-versatile, gratuito) + RAG vetorial (pgvector)
+- **Deploy**: Vercel (frontend), Oracle VM (backend)
 - **Auth**: Supabase (email/senha + Google OAuth)
-- **Áudio**: ElevenLabs TTS + Web Speech API fallback
+- **Áudio**: Cloudflare Worker (Edge TTS gratuito) + Web Speech API fallback
+- **DNS/Proxy**: Cloudflare (solascripturabr.com.br)
+
+## Infrastructure (PRODUÇÃO)
+- **VM Oracle**: IP `137.131.184.53`, user `ubuntu`, SSH key em `~/.ssh/oracle-vm-new`
+- **Frontend**: Vercel em `https://solascripturabr.com.br`
+- **Backend API**: Oracle VM, Nginx reverse proxy em `http://api.solascripturabr.com.br` → `:4000`
+- **Banco**: PostgreSQL 16 + pgvector no Docker (porta 5432)
+- **Cache**: Redis 7 no Docker (porta 6379)
+- **TTS**: Cloudflare Worker `sola-scriptura-edge-tts` (Edge TTS gratuito)
+- **Backend dir na VM**: `/opt/sola-scriptura/backend/`
+- **Docker compose**: `/opt/sola-scriptura/backend/docker/docker-compose.yml`
+- **Nginx conf**: `/etc/nginx/conf.d/api.conf`
+- **Frontend .env.local**: `NEXT_PUBLIC_API_URL=https://api.solascripturabr.com.br/api/v1`
+- **Backend .env (docker)**: `/opt/sola-scriptura/backend/docker/.env`
+- **Deploy backend**: GitHub Actions (push em `backend/` → SCP + Docker build na VM)
+- **SSH keys**: `~/.ssh/oracle-vm-new` (privada), `~/.ssh/deploy_key` (GitHub Actions)
+- **Firewall UFW**: Portas 22, 80, 443, 4000 abertas
+- **Groq API Key**: Ver `src/.env.local` (variável OPENAI_API_KEY)
 
 ## Architecture
 - Frontend Next.js na raiz do repo (`src/` — App Router)

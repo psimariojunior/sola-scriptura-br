@@ -51,7 +51,7 @@ export default function ApresentacaoControle({ sync, onOpenQR, mode = 'floating'
   const [versiculos, setVersiculos] = useState<VersiculoSimples[]>([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [esporte, setEspelho] = useState(false);
+  const [espelho, setEspelho] = useState(false);
   const { isFullscreen, toggle } = useTelaCheia();
 
   useEffect(() => {
@@ -269,14 +269,18 @@ export default function ApresentacaoControle({ sync, onOpenQR, mode = 'floating'
               <RotateCcw className="w-3.5 h-3.5" />
             </button>
             <button
-              onClick={() => setEspelho((v) => !v)}
+              onClick={() => {
+                const next = !espelho;
+                setEspelho(next);
+                sync.setModePresentation(next);
+              }}
               className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg text-[11px] font-medium transition-all ${
-                esporte ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'bg-white/5 text-white/60 hover:bg-white/10 border border-transparent'
+                espelho ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'bg-white/5 text-white/60 hover:bg-white/10 border border-transparent'
               }`}
-              title="Espelhar mudanças automaticamente"
+              title="Espelhar texto na tela"
             >
               <Repeat className="w-3.5 h-3.5" />
-              <span>Modo espelho {esporte ? 'ON' : 'OFF'}</span>
+              <span>Modo espelho {espelho ? 'ON' : 'OFF'}</span>
             </button>
             <button
               onClick={toggle}

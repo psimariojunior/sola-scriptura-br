@@ -26,7 +26,7 @@ export class Livro {
   @Column({ name: 'nome_grego', length: 100, nullable: true })
   nomeGrego: string;
 
-  @Column({ length: 10, unique: true })
+  @Column({ length: 30, unique: true })
   slug: string;
 
   @Column({ type: 'int', name: 'ordem_testamento' })

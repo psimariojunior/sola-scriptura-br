@@ -7757,6 +7757,860 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     versicosChave: ['Apocalipse 1:8', 'Apocalipse 5:6-9', 'Apocalipse 21:1-5'],
     tags: ['Apocalipse', 'sete igrejas', 'Cordeiro', 'juízo', 'nova criação'],
     fontes: ['G.K. Beale, Revelation (NICNT)', 'Robert Mounce, The Book of Revelation']
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // 50 NOVOS ESTUDOS — TEOLOGOS CLASSICOS E CONTEMPORANEOS
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // CHARLES SPURGEON (8 estudos: novo-001 a novo-008)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'novo-001',
+    titulo: 'Charles Spurgeon — A Soberania de Deus',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teólogos Clássicos',
+    conteudo: [
+      'Charles Haddon Spurgeon (1834-1892), conhecido como o "Príncipe dos Pregadores", dedicou grande parte de seu ministério à proclamação da soberania absoluta de Deus. Para Spurgeon, a soberania divina não era uma doutrina abstrata, mas a realidade mais consoladora para o crente em meio às tribulações da vida.',
+      'Spurgeon entendia que Deus governa todas as coisas com perfeita sabedoria e amor, desde os eventos cósmicos até os detalhes mais insignificantes da vida humana. Essa convicção o levava a dizer que nem um único pardal caía do céu sem o conhecimento e permissão do Pai celestial.',
+      'A soberania de Deus era para Spurgeon a base da segurança do crente. Se Deus é soberano sobre todas as coisas, então o cristão pode descansar em Sua promessa de que todas as coisas cooperam para o bem dos que O amam. Não há acidente na vida do cristão, apenas a mão providencial de Deus.',
+      'Spurgeon aplicava essa doutrina em seu próprio sofrimento, enfrentando depressão, críticas e perseguição com a convicção de que Deus estava no controle. Ele ensinava que a soberania de Deus não elimina a responsabilidade humana, mas a fundamenta, pois somente um Deus soberano pode garantir que os propósitos divinos se cumpram.',
+      'Para o pregador batista, reconhecer a soberania de Deus era o início da verdadeira adoração. Quando o cristão compreende que Deus é o Rei absoluto de toda a criação, sua resposta natural é humildade, gratidão e submissão voluntária aos Seus caminhos inscrutáveis.'
+    ],
+    versicosChave: ['Efésios 1:11', 'Romanos 9:15-16', 'Daniel 4:35', 'Salmos 115:3', 'Provérbios 21:1'],
+    tags: ['soberania de Deus', 'Spurgeon', 'Providência', 'providência divina', 'teologia reformada'],
+    fontes: ['C.H. Spurgeon, Sermões (Metropolitan Tabernacle)', 'C.H. Spurgeon, Pra ying with Purpose', 'Eric Whitley, The Sovereignty of God in Spurgeon\'s Theology']
+  },
+  {
+    id: 'novo-002',
+    titulo: 'Charles Spurgeon — O Poder da Oração',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Oração',
+    conteudo: [
+      'Spurgeon foi um homem de oração incansável, acreditando que a comunhão com Deus era a fonte de todo o poder espiritual. Ele afirmava que a oração não era apenas um dever religioso, mas o meio pelo qual o cristão acessa os tesouros da graça divina.',
+      'Para Spurgeon, a oração não muda a mente de Deus, mas é o meio ordenado por Ele para que os crentes recebam as bênçãos que Ele já deseja conceder. A oração é a chave que abre os depósitos celestiais, não porque Deus precise ser convencido, mas porque Ele deseja que busquemos Sua face.',
+      'O príncipe dos pregadores insistia que a oração deve ser feia com fé, persistência e humildade. Ele ensinava que orações superficiais produzem resultados superficiais, enquanto orações fervorosas e específicas movem montanhas de impossibilidades.',
+      'Spurgeon testemunhou inúmeros milagres em resposta à oração, desde a conversão de pecadores endurecidos até a provisão financeira para seu seminário e orfanato. Ele contava histórias de como Deus respondia orações específicas de maneiras surpreendentes.',
+      'A lição de Spurgeon para a Igreja contemporânea é clara: sem oração não há poder, sem poder não há avivamento, sem avivamento a igreja se torna uma organização social destituída da unção do Espírito Santo.'
+    ],
+    versicosChave: ['1 Tessalonicenses 5:17', 'Tiago 5:16', 'Filipenses 4:6-7', 'Jeremias 33:3'],
+    tags: ['oração', 'Spurgeon', 'comunhão com Deus', 'fé', 'unção'],
+    fontes: ['C.H. Spurgeon, Pra ying with Purpose', 'C.H. Spurgeon, The Golden Book of Sprinkled Pleas', 'Arnold Dallimore, Charles H. Spurgeon']
+  },
+  {
+    id: 'novo-003',
+    titulo: 'Charles Spurgeon — Evangelismo e Conversão',
+    categoria: 'Missiologia',
+    subcategoria: 'Evangelismo',
+    conteudo: [
+      'Spurgeon pregou para mais de 10 milhões de pessoas ao longo de sua carreira, vendo milhares de conversões genuínas. Seu ministério evangelístico era marcado pela simplicidade da mensagem e pelo poder do Espírito Santo sobre a palavra proclamada.',
+      'Para Spurgeon, o evangelho era o poder de Deus para salvação de todo aquele que crê. Ele não reduzia a mensagem a fórmulas humanas, mas a proclamava como o testemunho fiel de Deus sobre Seu Filho Jesus Cristo, crucificado e ressuscitado.',
+      'O pregador batista insistia que a conversão é obra soberana do Espírito Santo. O homem não pode se converter por si mesmo, mas Deus usa a pregação da palavra como meio para regenerar os corações. A responsabilidade humana está em crer, mas a capacidade de crer vem de Deus.',
+      'Spurgeon era pragmático em seus métodos evangelísticos, utilizando técnicas como a distribuição de literatura, a organização de reuniões especiais e a mobilização de leigos para visitação domiciliar. Ele entendia que os meios são importantes, mas nunca substituem a dependência do Espírito.',
+      'O legado evangelístico de Spurgeon desafia a Igreja contemporânea a recuperar a paixão pela perda das almas. Em uma era de formalismo religioso, ele clamava por uma pregação que tocasse os corações e conduzisse os ouvintes ao arrependimento e à fé em Cristo.'
+    ],
+    versicosChave: ['Romanos 1:16', '1 Coríntios 1:18', '2 Coríntios 5:18-20', 'João 3:16'],
+    tags: ['evangelismo', 'conversão', 'Spurgeon', 'pregação', 'missões'],
+    fontes: ['C.H. Spurgeon, Sermões Evangelísticos', 'Dallimore, Charles H. Spurgeon: A Biography', 'Spurgeon, The Soul Winner']
+  },
+  {
+    id: 'novo-004',
+    titulo: 'Charles Spurgeon — Sofrimento e Consolo Divino',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Sofrimento',
+    conteudo: [
+      'Spurgeon conheceu o sofrimento em profundidade: enfrentou depressão crônica, perseguição pela imprensa, o incêndio do Royal Surrey Garden Music Hall que matou 7 pessoas, e a perda de filhos. Seu sofrimento moldou sua teologia do consolo divino.',
+      'Para Spurgeon, o sofrimento não é acidente fortuito, mas instrumento nas mãos de um Deus sábio e amoroso. Ele via o sofrimento como meio de purificação, amadurecimento e dependência de Deus. A cruz precede a coroa.',
+      'Spurgeon ensinava que Deus não promete uma vida livre de sofrimento, mas promete estar conosco no meio dele. O Salmo 23 era sua passagem predileta: "Ainda que eu andasse pelo vale da sombra da morte, não temeria mal algum, porque tu estás comigo".',
+      'O consolo que Spurgeon recebia de Deus o capacitava a consolar outros. Ele entendia que "a consoles com que Deus nos consolou" são compartilhadas. O sofrimento produce empatia, compaixão e profundidade no ministério pastoral.',
+      'A teologia do sofrimento de Spurgeon é um antídoto contra a falsa teologia da prosperidade. Ele nunca prometeu vida fácil, mas um Deus fiel que caminha conosco nos vales mais escuros da existência humana.'
+    ],
+    versicosChave: ['2 Coríntios 1:3-4', 'Romanos 8:28', 'Salmos 23:4', '1 Pedro 4:12-13', 'Isaías 41:10'],
+    tags: ['sofrimento', 'consolo', 'Spurgeon', 'depressão', 'provação'],
+    fontes: ['C.H. Spurgeon, Che e Sto no Seu Vale', 'Dallimore, Charles H. Spurgeon: A Biography', 'Spurgeon, Through the Valley of the Shadow']
+  },
+  {
+    id: 'novo-005',
+    titulo: 'Charles Spurgeon — A Graça Sovina e Incondicional',
+    categoria: 'Soteriologia',
+    subcategoria: 'Graça',
+    conteudo: [
+      'Spurgeon era um ardoroso defensor da graça soberana, entendendo que a salvação é dom gratuito de Deus, não merecimento humano. Ele afirmava que a graça é o solo em que a fé pega raiz, e que sem a graça prévia o homem jamais buscaria a Deus.',
+      'Para Spurgeon, a graça de Deus é incondicional no sentido de que não depende de qualificações humanas. Deus salva não porque o homem é bom, mas porque Ele é misericordioso. A graça é a bondade de Deus desmerecida, imerecida e indiscriminada.',
+      'O pregador batista combatia veementemente a ideia de que o homem pode se salvar por suas próprias obras ou decisões. Ele ensinava que a salvação é "de Deus, por Deus e para Deus", desde o início até o fim. O homem é仅仅 um receptor passivo da graça divina.',
+      'Spurgeon ilustrava a graça soberana com a história de sua própria conversão, quando um pregador leigo abriu a Bíblia em Isaías 45:22 e proclamou: "Olhai para mim, e sereis salvos". Naquele momento, o Espírito Santo regenerou seu coração.',
+      'A teologia da graça de Spurgeon era equilibrada: a graça soberana não elimina a responsabilidade humana, mas a fundamenta. O homem deve arrepender-se e crer, mas capacidade de fazê-lo vem inteiramente de Deus.'
+    ],
+    versicosChave: ['Efésios 2:8-9', 'Romanos 9:16', 'João 6:44', 'Tito 3:5', 'Isaías 45:22'],
+    tags: ['graça', 'graça soberana', 'Spurgeon', 'calvinismo', 'salvação'],
+    fontes: ['C.H. Spurgeon, Sermões sobre a Graça de Deus', 'Iain Murray, Spurgeon v. Ryle', 'Spurgeon, Autobiography']
+  },
+  {
+    id: 'novo-006',
+    titulo: 'Charles Spurgeon — A Cruz de Cristo como Centro da Fé',
+    categoria: 'Cristologia',
+    subcategoria: 'Cruz',
+    conteudo: [
+      'Spurgeon colocava a cruz de Cristo no centro absoluto de sua pregação e teologia. Para ele, a cruz não era apenas um símbolo religioso, mas o evento central da história humana, o ponto de virada entre perdão e condenação.',
+      'Na cruz, Spurgeon via a justiça e a misericórdia de Deus se encontrando de maneira perfeita. A justiça divina exigia punição para o pecado; a misericórdia divina provia o substitutionário perfeito em seu Filho. A cruz satisfaz plenamente ambos.',
+      'O pregador batista insistia que a pregação deve ser "Cristo crucificado, e mais nada". Ele temia que a igreja de sua época se desviasse da simplicidade do evangelho em favor de filosofias humanas e tradições religiosas.',
+      'Spurgeon via a cruz como o fundamento da adoração, da ética cristã e da esperança eterna. Sem a cruz, não há remissão de pecados, não há reconciliação com Deus, não há esperança para o mundo perdido.',
+      'O apelo de Spurgeon à Igreja contemporânea é que nunca nos cansemos de proclamar a mensagem da cruz. Em uma cultura que busca relevância em métodos modernos, o poder está na mensagem antiga da cruz de Cristo.'
+    ],
+    versicosChave: ['1 Coríntios 1:18-24', 'Gálatas 6:14', '1 Pedro 2:24', 'Colossenses 1:20'],
+    tags: ['cruz', 'cristologia', 'Spurgeon', 'substituição', 'redenção'],
+    fontes: ['C.H. Spurgeon, The Everlasting Righteousness', 'Spurgeon, Sermões sobre a Cruz', 'Dallimore, Spurgeon']
+  },
+  {
+    id: 'novo-007',
+    titulo: 'Charles Spurgeon — A Arte e a Teologia da Pregação',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Homilética',
+    conteudo: [
+      'Spurgeon é considerado o maior pregador do séc. XIX, e um dos maiores de todos os tempos. Sua pregação era marcada por clareza bíblica, aplicação prática e poder espiritual que convertia pecadores e edificava santos.',
+      'Para Spurgeon, a pregação eficaz dependia de três elementos: o estudo diligente do texto bíblico, a unção do Espírito Santo e a paixão pelo perdido. Ele dedicava horas ao estudo, mas reconhecia que sem o Espírito a mensagem seria letra morta.',
+      'O príncipe dos pregadores era um comunicador brilhante, utilizando ilustrações do cotidiano, humor sadio e aplicação direta. Ele se recusava a ser intelectualmente pretensioso, buscando que até o analfabeto pudesse entender a mensagem do evangelho.',
+      'Spurgeon ensinava que o pregador deve ser um homem de oração antes de ser um homem de estudo. A pregação nasce no altar, não na biblioteca. O pregador que não ora, não prega com poder.',
+      'O legado homilético de Spurgeon desafia os pregadores contemporâneos a recuperarem a paixão pela verdade bíblica e a ousadia na proclamação. Em uma era de sermões terapêuticos, Spurgeon clamava por pregação que confrontasse, consolasse e convertesse.'
+    ],
+    versicosChave: ['2 Timóteo 4:2', '1 Coríntios 2:1-5', 'Romanos 10:14-17', '2 Timóteo 1:7'],
+    tags: ['pregação', 'homilética', 'Spurgeon', 'exposição', 'ministério pastoral'],
+    fontes: ['C.H. Spurgeon, Lectures to My Students', 'Spurgeon, The Art of Illustration', 'Dallimore, Charles H. Spurgeon']
+  },
+  {
+    id: 'novo-008',
+    titulo: 'Charles Spurgeon — Fé e Confiança em Deus',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Fé',
+    conteudo: [
+      'Spurgeon foi um homem de fé vibrante, que encarava os desafios da vida com a convicção de que Deus é fiel em suas promessas. A fé para ele não era sentimento passageiro, mas compromisso firme com a verdade de Deus.',
+      'A fé de Spurgeon era alimentada pela Escritura. Ele meditava diariamente nas promessas de Deus e as aplicava à sua vida com fé childlike. Acreditava que Deus nunca falha em suas promessas, mesmo quando as circunstâncias sugerem o contrário.',
+      'Para Spurgeon, a fé não é cega, mas racional e fundamentada na Palavra de Deus. Ele rejeitava tanto o fideísmo irracional quanto o racionalismo frio, buscando o equilíbrio entre razão e revelação.',
+      'A fé de Spurgeon foi provada repetidamente ao longo de sua vida, enfrentando críticas públicas, crises financeiras e perseguição religiosa. Em cada provação, ele se apoiava nas promessas de Deus e testemunhava a fidelidade divina.',
+      'O exemplo de Spurgeon convida o cristão contemporâneo a cultivar uma fé madura e perseverante. A fé não é a ausência de dúvidas, mas a certeza de que Deus é maior que todas as nossas dúvidas e temenarios.'
+    ],
+    versicosChave: ['Hebreus 11:1', '2 Coríntios 5:7', 'Romanos 10:17', 'Provérbios 3:5-6'],
+    tags: ['fé', 'confiança', 'Spurgeon', 'promessas de Deus', 'perseverança'],
+    fontes: ['C.H. Spurgeon, Faith', 'Spurgeon, According to the Promise', 'Dallimore, Charles H. Spurgeon']
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // A.W. TOZER (6 estudos: novo-009 a novo-014)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'novo-009',
+    titulo: 'A.W. Tozer — O Conhecimento de Deus',
+    categoria: 'Teologia Proper',
+    subcategoria: 'Conhecimento de Deus',
+    conteudo: [
+      'Aiden Wilson Tozer (1897-1963) dedicou sua vida ao estudo do caráter de Deus, acreditando que o conhecimento de Deus é o fundamento de toda a vida cristã. Para Tozer, conhecer a Deus não é apenas informação teológica, mas experiência transformadora.',
+      'Tozer ensinava que o conhecimento de Deus começa na reverência. O homem que não teme a Deus jamais O conhecerá verdadeiramente. A reverência é a porta de entrada para o mistério da divindade.',
+      'O pastor e autor americano insistia que o conhecimento de Deus é progressivo. Começa na regeneração, amadurece na santificação e se aperfeiçoa na glória. Nunca chegamos ao fim do conhecimento de Deus, pois Ele é infinito.',
+      'Tozer alertava contra o perigo de conhecer a Deus apenas intelectualmente, sem transformação do coração. O verdadeiro conhecimento de Deus produz humildade, adoração, amor e obediência.',
+      'A obra mais famosa de Tozer, "O Conhecimento do Santo", é um convite para a Igreja redescobrir a grandeza de Deus. Em uma era de superficialidade religiosa, Tozer clamava por um retorno ao temor do Senhor.'
+    ],
+    versicosChave: ['Jeremias 9:23-24', 'João 17:3', 'Salmos 46:10', 'Óseas 6:3'],
+    tags: ['conhecimento de Deus', 'Tozer', 'reverência', 'caráter divino', 'teologia'],
+    fontes: ['A.W. Tozer, O Conhecimento do Santo', 'A.W. Tozer, The Pursuit of God', 'J. Israel Pacheco, Tozer on the Almighty God']
+  },
+  {
+    id: 'novo-010',
+    titulo: 'A.W. Tozer — A Adoração Verdadeira',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Adoração',
+    conteudo: [
+      'Tozer distinguiu entre adoração verdadeira e adoração superficial. A adoração verdadeira nasce do conhecimento de Deus e é expressa em reverência, amor e submissão total.',
+      'Para Tozer, a adoração é o fim último da criação humana. O homem foi criado para adorar a Deus, e só encontra satisfação plena quando cumpre esse propósito. A idolatria é adoração desviada.',
+      'Tozer insistia que a adoração não pode ser fabricada por música, iluminação ou clima emocional. A adoração verdadeira nasce do coração que conhece e teme a Deus. O meio exterior é secundário.',
+      'O pastor americano alertava contra a "adoração commercializada", quando a igreja busca agradar os homens em vez de glorificar a Deus. A adoração deve ser centrada em Deus, não em experiências humanas.',
+      'A teologia da adoração de Tozer desafia a Igreja contemporânea a perguntar: estamos adorando a Deus como Ele é, ou uma imagem de nossa própria criação? A adoração verdadeira exige que conhechamos a Deus como Ele se revelou.'
+    ],
+    versicosChave: ['João 4:23-24', 'Salmos 95:6-7', 'Romanos 12:1', 'Isaías 6:1-8'],
+    tags: ['adoração', 'Tozer', 'culto', 'reverência', 'espiritualidade'],
+    fontes: ['A.W. Tozer, O Conhecimento do Santo', 'Tozer, Whatever Happened to Worship?', 'Reynold K. Burpee, The Tozer Devotional']
+  },
+  {
+    id: 'novo-011',
+    titulo: 'A.W. Tozer — A Vida Interior e a Comunhão com Deus',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Vida Espiritual',
+    conteudo: [
+      'Tozer era um defensor fervoroso da vida interior, entendendo que o cristão maduro é aquele que cultiva um relacionamento profundo e pessoal com Deus. A vida interior não é privilégio de alguns, mas dever de todos.',
+      'Para Tozer, a vida interior começa na regeneração e se desenvolve através da meditação, oração e obediência. O crente que negligencia a vida interior se torna espiritualmente seco e vulnerável às armadilhas do mundo.',
+      'Tozer ensinava que a comunhão com Deus é possível em todos os momentos, não apenas em reuniões religiosas. A oração é conversa com Deus que permeia cada aspecto da vida cotidiana.',
+      'O pastor e autor insistia que a vida interior exige disciplina e sacrifício. Não há atalhos para a maturidade espiritual. O cristão deve buscar a Deus com a mesma intensidade com que o mendigo busca pão.',
+      'A teologia de Tozer sobre a vida interior é um chamado à profundidade em uma era de superficialidade. A Igreja precisa redescobrir o valor da solidão, do silêncio e da meditação na presença de Deus.'
+    ],
+    versicosChave: ['Salmo 42:1-2', 'Mateus 6:6', 'Filipenses 4:8', 'Tiago 4:8'],
+    tags: ['vida interior', 'comunhão', 'Tozer', 'oração', 'maturidade espiritual'],
+    fontes: ['A.W. Tozer, O Preito de Deus', 'Tozer, The Divine Conquest', 'Tozer, The Counselor']
+  },
+  {
+    id: 'novo-012',
+    titulo: 'A.W. Tozer — A Idolatria Moderna',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Idolatria',
+    conteudo: [
+      'Tozer identificou a idolatria como o pecado mais perigoso da era moderna. Embora o homem contemporâneo não prostre a ídolos de madeira, ele cria ídolos com seus desejos, ambições e prazeres.',
+      'Para Tozer, qualquer coisa que ocupe o lugar de Deus na vida do homem é um ídolo. O dinheiro, o sucesso, o reconhecimento, até mesmo a família pode se tornar ídolos quando substituem a primazia de Deus.',
+      'Tozer ensinava que o ídolo é aquilo em que o homem pensa quando pensa em Deus. Se a imagem de Deus é distorcida, o homem adora uma criatura em vez do Criador.',
+      'O pastor americano alertava que a idolatria é sutil. Ela não vem com rosto repulsivo, mas com máscara de bondade. O ídolo moderno é sedutor porque oferece prazer imediato, mas leva à escravidão.',
+      'O diagnóstico de Tozer sobre a idolatria moderna continua relevante. A Igreja precisa examinar seus corações e remover tudo que usurpa o lugar que só Deus merece.'
+    ],
+    versicosChave: ['1 João 5:21', 'Colossenses 3:5', 'Romanos 1:25', 'Êxodo 20:3-4'],
+    tags: ['idolatria', 'Tozer', 'deuses modernos', 'primeiro mandamento', 'coração'],
+    fontes: ['A.W. Tozer, O Preito de Deus', 'Tozer, Man: The Dwelling Place of God', 'Tozer, The Root of the Righteous']
+  },
+  {
+    id: 'novo-013',
+    titulo: 'A.W. Tozer — O Espírito Santo na Vida Cristã',
+    categoria: 'Pneumatologia',
+    subcategoria: 'Espírito Santo',
+    conteudo: [
+      'Tozer dedicou parte significativa de seu ministério ao estudo do Espírito Santo, acreditando que a Igreja contemporânea negligenciou a pessoa e obra do Paráclito. Para Tozer, o Espírito Santo é a pessoa mais negligenciada da Trindade.',
+      'Tozer ensinava que o Espírito Santo é Deus, não uma força ou energia impessoal. Ele tem mente, vontade e emoções, e deseja habitar nos crentes de maneira plena e governante.',
+      'Para Tozer, a plenitude do Espírito não é uma experiência exclusiva para alguns cristãos, mas a norma para todos os crentes. A igreja que não vive na plenitude do Espírito é uma igreja impotente.',
+      'O pastor americano insistia que a obra do Espírito Santo é glorificar a Cristo. O Espírito não atrai atenção para si mesmo, mas para Jesus. Uma espiritualidade centrada no Espírito é, paradoxalmente, uma espiritualidade centrada em Cristo.',
+      'A pneumatologia de Tozer é um chamado para a Igreja redescobrir a dependência do Espírito Santo. Sem o Espírito, os melhores métodos e programas são vaidade. Com o Espírito, até os mais simples são transformadores.'
+    ],
+    versicosChave: ['João 14:16-17', 'Atos 1:8', 'Efésios 5:18', '1 Coríntios 12:4-11'],
+    tags: ['Espírito Santo', 'Tozer', 'pneumatologia', 'plenitude', 'carismas'],
+    fontes: ['A.W. Tozer, How to Be Filled with the Holy Spirit', 'Tozer, The Counselor', 'Tozer, The Upper Room']
+  },
+  {
+    id: 'novo-014',
+    titulo: 'A.W. Tozer — Simplicidade Espiritual',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Simplicidade',
+    conteudo: [
+      'Tozer defendia uma vida cristã marcada pela simplicidade, contrapondo-se ao materialismo e ao consumismo que invadiu até mesmo a Igreja. Para ele, a simplicidade é fruto de um coração voltado para Deus.',
+      'Para Tozer, a simplicidade não é pobreza, mas desapego. O cristão pode possuir bens sem ser possuído por eles. O problema não é ter, mas confiar no que se tem em vez de confiar em Deus.',
+      'Tozer ensinava que a complexidade da vida moderna é inimiga da vida espiritual. Quando o cristão está sobrecarregado com preocupações, ele não consegue ouvir a voz de Deus.',
+      'O pastor americano praticava o que pregava, vivendo de maneira simples e frugal, recusando-se a receber o salário acima do necessário. Sua vida era coerente com sua mensagem.',
+      'A chamada de Tozer para a simplicidade é mais necessária do que nunca em nossa era digital. A Igreja precisa redescobrir que o verdadeiro contentamento não está nas coisas, mas em Deus.'
+    ],
+    versicosChave: ['Mateus 6:33', '1 Timóteo 6:6-8', 'Filipenses 4:11-12', 'Hebreus 13:5'],
+    tags: ['simplicidade', 'Tozer', 'desapego', 'contentamento', 'materialismo'],
+    fontes: ['A.W. Tozer, Man: The Dwelling Place of God', 'Tozer, The Root of the Righteous', 'Tozer, Of God and Men']
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // R.C. SPROUL (6 estudos: novo-015 a novo-020)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'novo-015',
+    titulo: 'R.C. Sproul — A Santidade de Deus',
+    categoria: 'Teologia Proper',
+    subcategoria: 'Santidade',
+    conteudo: [
+      'R.C. Sproul (1939-2017) dedicou sua carreira a defender e ensinar a santidade de Deus como o atributo mais importante do caráter divino. Para Sproul, a santidade de Deus é o fundamento de toda a teologia cristã.',
+      'Sproul ensinava que a santidade de Deus significa que Ele é separado de toda impureza, pecado e maldade. Deus é absolutamente puro, justo e santo, e isso o torna radicalmente diferente de todas as criaturas.',
+      'A santidade de Deus é tema central de Isaías 6, onde os serafins proclamam "Santo, santo, santo". Sproul insistia que essa repetição não é redundância, mas ênfase: Deus é triplamente santo, perfeitamente santo.',
+      'Para Sproul, a santidade de Deus é ao mesmo tempo consoladora e aterrorizante. Consoladora porque o Deus santo é também misericordioso; aterrorizante porque o pecado humano é intolerável aos olhos de um Deus santo.',
+      'O legado de Sproul sobre a santidade de Deus desafia a Igreja contemporânea a redescobrir a reverência e o temor do Senhor. Em uma era de familiarity religiosa, Sproul clamava por uma recovering da transcendência divina.'
+    ],
+    versicosChave: ['Isaías 6:1-8', '1 Pedro 1:15-16', 'Hebreus 12:14', 'Apocalipse 4:8'],
+    tags: ['santidade de Deus', 'Sproul', 'transcendência', 'reverência', 'teologia reformada'],
+    fontes: ['R.C. Sproul, A Santidade de Deus', 'Sproul, The Holiness of God', 'Sproul, Everyone\'s a Theologian']
+  },
+  {
+    id: 'novo-016',
+    titulo: 'R.C. Sproul — A Justificação pela Fé',
+    categoria: 'Soteriologia',
+    subcategoria: 'Justificação',
+    conteudo: [
+      'Sproul foi um dos maiores defensores contemporâneos da doutrina da justificação pela fé somente. Para ele, essa doutrina é o artigo pelo qual a igreja se sustenta ou cai.',
+      'A justificação, segundo Sproul, é o ato jurídico de Deus pelo qual o pecador é declarado justo diante de Sua lei. Não é uma obra de transformação interior (essa é a regeneração), mas uma declaração legal de inocência.',
+      'Sproul ensinava que a justificação é somente pela fé, não pelas obras humanas. A fé é o instrumento pelo qual recebemos a justiça de Cristo, que nos é imputada por Deus. Não há mérito humano na justificação.',
+      'O teólogo reformado insistia que a justificação pela fé é inseparável da imputação da justiça de Cristo. Deus não nos declara justos porque somos justos, mas porque Cristo nos comunicou sua justiça perfeita.',
+      'A defesa de Sproul da justificação pela fé é um chamado para a Igreja não abandonar o evangelicalismo clássico. Em uma era de relativismo teológico, a justificação pela fé permanece o centro do evangelho.'
+    ],
+    versicosChave: ['Romanos 3:21-26', 'Gálatas 2:16', 'Efésios 2:8-9', 'Romanos 5:1', 'Filipenses 3:9'],
+    tags: ['justificação', 'fé', 'Sproul', 'imputação', 'sola fide'],
+    fontes: ['R.C. Sproul, Faith Alone', 'Sproul, Justified by Faith Alone', 'Sproul, The Righteousness of God']
+  },
+  {
+    id: 'novo-017',
+    titulo: 'R.C. Sproul — Soberania Divina e Responsabilidade Humana',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Soberania',
+    conteudo: [
+      'Sproul dedicou considerável atenção ao paradoxo entre a soberania de Deus e a responsabilidade humana. Para ele, essa tensão é central na teologia bíblica e não deve ser resolvida em favor de um dos polos.',
+      'Sproul ensinava que Deus é soberano sobre todas as coisas, incluindo a salvação do homem. Ele elege, chama e regenera soberanamente, sem depender de mérito humano.',
+      'No entanto, Sproul também insistia na responsabilidade humana. O homem é responsável por crer no evangelho e arrepender-se de seus pecados. A soberania de Deus não anula a responsabilidade humana.',
+      'Para Sproul, esse paradoxo é um mistério que a razão humana não pode resolver completamente. Ele defendia a tensão bíblica, rejeitando tanto o determinismo quanto o livre-arbítrio absoluto.',
+      'A abordagem equilibrada de Sproul sobre soberania e responsabilidade é um modelo para a teologia cristã. Em vez de simplificar a Bíblia em favor de um sistema, ele abraçou o paradoxo com humildade e reverência.'
+    ],
+    versicosChave: ['Efésios 1:11', 'Josué 24:15', 'Romanos 9:19-21', 'Filemom 15'],
+    tags: ['soberania', 'responsabilidade', 'Sproul', 'calvinismo', 'paradoxo'],
+    fontes: ['R.C. Sproul, Willing to Believe', 'Sproul, Chosen by God', 'Sproul, Every Believer a Theologian']
+  },
+  {
+    id: 'novo-018',
+    titulo: 'R.C. Sproul — A Inerrância Bíblica',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Escritura',
+    conteudo: [
+      'Sproul dedicou sua vida à defesa da inerrância bíblica, acreditando que a Escritura é a palavra infalível de Deus, sem erro em tudo o que afirma. Para ele, a inerrância é o fundamento de toda a fé cristã.',
+      'Sproul ensinava que a inerrância significa que a Bíblia é verdadeira em tudo o que declara. Não é apenas infalível em assuntos de fé e prática, mas perfeitamente verdadeira em seus relatos históricos e científicos.',
+      'O teólogo reformado argumentava que a inerrância é deduzida da natureza de Deus. Um Deus santo e onisciente não pode errar, e Sua Palavra reflete perfeitamente Seu caráter e conhecimento.',
+      'Sproul defendia a inerrância contra ataques de dentro e fora da Igreja. Ele insistia que a negação da inerrância leva inevitavelmente a uma erosão da autoridade bíblica e, em última instância, à negação do próprio Deus.',
+      'A defesa de Sproul da inerrância bíblica continua essencial para a Igreja. Em uma era de relativismo e ceticismo, a certeza de que a Palavra de Deus é verdadeira é a âncora da fé cristã.'
+    ],
+    versicosChave: ['2 Timóteo 3:16', 'Salmos 12:6', 'Provérbios 30:5', 'João 17:17', 'Isaías 40:8'],
+    tags: ['inerrância', 'Bíblia', 'Sproul', 'autoridade bíblica', 'sola scriptura'],
+    fontes: ['R.C. Sproul, Can I Trust the Bible?', 'Sproul, Scriptural Authority', 'Sproul, Classics of the Christian Faith']
+  },
+  {
+    id: 'novo-019',
+    titulo: 'R.C. Sproul — Os Sacramentos como Meios de Graça',
+    categoria: 'Eclesiologia',
+    subcategoria: 'Sacramentos',
+    conteudo: [
+      'Sproul via os sacramentos como meios de graça instituídos por Cristo, essenciais para a vida da Igreja. Para ele, batismo e ceia não são meros rituais, mas encontros reais com a graça divina.',
+      'Sproul ensinava que os sacramentos são visíveis da palavra. Assim como a pregação comunica a graça de Deus por meio de palavras, os sacramentos a comunicam por meio de sinais visíveis.',
+      'O batismo, para Sproul, é o sinal externo da aliança que Deus faz com Seu povo. Embora não regenere automaticamente, ele aponta para a regeneração que o Espírito Santo obra no coração.',
+      'A ceia do Senhor, para Sproul, é um encontro real com Cristo, embora não de maneira literal. Ele rejeitava tanto a transubstanciação quanto a memória meramente simbólica, defendendo a presença espiritual.',
+      'A teologia sacramental de Sproul é um chamado para a Igreja redescobrir a importância dos sacramentos como meios de graça. Em uma era de superficialidade litúrgica, os sacramentos mantêm a Igreja conectada às raízes da fé.'
+    ],
+    versicosChave: ['Mateus 28:19', '1 Coríntios 11:23-26', 'Atos 2:38', 'Romanos 6:3-4'],
+    tags: ['sacramentos', 'Sproul', 'batismo', 'ceia', 'meios de graça'],
+    fontes: ['R.C. Sproul, Truths We Confess', 'Sproul, Faith and Life', 'Sprôl, The Prince of Preachers']
+  },
+  {
+    id: 'novo-020',
+    titulo: 'R.C. Sproul — A Graça Irresistível e a Vontade do Homem',
+    categoria: 'Soteriologia',
+    subcategoria: 'Graça',
+    conteudo: [
+      'Sproul defendia a doutrina da graça irresistível, entendendo que quando Deus decide salvar um pecador, Ele capacita esse pecador a crer de maneira eficaz. A graça de Deus não pode ser permanentemente resistida pelo eleito.',
+      'Para Sproul, a graça irresistível não significa que o homem é forçado contra sua vontade. Significa que Deus transforma a vontade do homem para que ele deseje livremente aceitar o evangelho.',
+      'Sproul ensinava que a graça irresistível é consequência lógica da eleição. Se Deus elegeu certas pessoas para a salvação, Ele necessariamente providencia os meios para que essa eleição se cumpra.',
+      'O teólogo reformado argumentava que a graça irresistível não elimina a experiência subjetiva da escolha humana. O crente experimenta que está escolhendo livremente, embora essa escolha seja fruto da obra regeneradora do Espírito.',
+      'A doutrina da graça irresistível de Sproul é um testemunho do poder transformador de Deus. Em um mundo onde o homem é escravo do pecado, a graça soberana liberta e capacita para a fé e a obediência.'
+    ],
+    versicosChave: ['João 6:37', 'João 6:44', 'Romanos 9:16', 'Efésios 2:4-5', 'Filemom 15'],
+    tags: ['graça irresistível', 'Sproul', 'eleição', 'vontade', 'regeneração'],
+    fontes: ['R.C. Sproul, Chosen by God', 'Sproul, Willing to Believe', 'Sproul, The Pleasures of God']
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // JOHN PIPER (5 estudos: novo-021 a novo-025)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'novo-021',
+    titulo: 'John Piper — A Alegria em Deus como Fim Supremo',
+    categoria: 'Teologia Proper',
+    subcategoria: 'Alegria',
+    conteudo: [
+      'John Piper (n. 1946) é o teólogo do "Hedonismo Cristão", a doutrina de que o glorificar a Deus e o desfrutar de Deus são o mesmo. Para Piper, a alegria em Deus não é opcional, mas o dever supremo do cristão.',
+      'Piper argumenta que Deus é mais glorificado quando nós nos deleitamos Nele. A adoração verdadeira não é mera obediência dutil, mas gozo apreciativo da beleza de Deus em Cristo.',
+      'Para Piper, a alegria cristã é profunda e abrangente. Ela não depende das circunstâncias, mas da realidade de Deus e de Sua promessa de satisfazer nossas almas mais profundas.',
+      'Piper insiste que a alegria em Deus é o antídoto contra a idolatria. O coração humano sempre busca satisfação, e só encontra satisfação verdadeira em Deus. Buscar satisfação em qualquer coisa além de Deus é idolatria.',
+      'O chamado de Piper é que a Igreja redescubra a alegria como marca da vida cristã. O cristianismo não é uma religião de melancolia, mas de gozo abundante na presença de Deus.'
+    ],
+    versicosChave: ['Salmos 16:11', 'Filipenses 4:4', 'Habacuque 3:17-18', '1 Pedro 1:8'],
+    tags: ['alegria', 'Piper', 'hedonismo cristão', 'adoração', 'gozo'],
+    fontes: ['John Piper, Desiring God', 'Piper, The Pleasures of God', 'Piper, Future Grace']
+  },
+  {
+    id: 'novo-022',
+    titulo: 'John Piper — Missões e a Glória de Deus',
+    categoria: 'Missiologia',
+    subcategoria: 'Missões',
+    conteudo: [
+      'Para Piper, as missões existem porque a adoração não existe. O objetivo supremo das missões é que todas as nações conheçam, amem e adorem a Deus. As missões são temporárias; a adoração é eterna.',
+      'Piper argumenta que Deus deseja ser adorado em todas as nações. O Salmo 96 declarar que todos os povos devem trazer oferendas ao Senhor. As missões são o meio pelo qual esse desejo divino se cumpre.',
+      'Para Piper, a urgência das missões é ditada pela eternidade. Onde Cristo não é pregado, os homens perecem. A responsabilidade de levar o evangelho a todas as nações é uma questão de vida eterna.',
+      'Piper ensinava que o cristão deve viver para as missões, não apenas orar e dar. O estilo de vida missionary é o padrão para todos os crentes, não apenas para os missionários profissionais.',
+      'O legado missionário de Piper desafia a Igreja a ver as missões como central para a vida da comunidade de fé. As missões não são um programa lateral, mas o coração de Deus para todas as nações.'
+    ],
+    versicosChave: ['Mateus 28:19-20', 'Salmo 67', 'Apocalipse 7:9', 'Romanos 10:14-15'],
+    tags: ['missões', 'Piper', 'adoração', 'glória de Deus', 'evangelismo'],
+    fontes: ['John Piper, Let the Nations Be Glad', 'Piper, Providence', 'Piper, A Pleading for Missions']
+  },
+  {
+    id: 'novo-023',
+    titulo: 'John Piper — Provisão Divina e o Sustento do Crente',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Providência',
+    conteudo: [
+      'Piper desenvolveu uma teologia robusta da provisão divina, baseada na convicção de que Deus é o sustentador de todas as coisas. Para ele, a provisão de Deus não é mera bonança, mas cuidado soberano e fiel.',
+      'Para Piper, a provisão divina abrange todas as necessidades da vida: física, emocional, espiritual e material. Deus conhece nossas necessidades antes mesmo de as pedirmos.',
+      'Piper ensinava que a provisão de Deus não elimina o trabalho humano, mas o fundamenta. O cristão trabalha diligentemente porque Deus prometeu suprir suas necessidades através do trabalho.',
+      'O teólogo reformado insistia que a provisão divina inclui até as provações e sofrimentos. Deus usa as dificuldades para amadurecer o crente e moldar seu caráter à imagem de Cristo.',
+      'A teologia da provisão de Piper é um antídoto contra a ansiedade. Em uma era de incertezas econômicas e sociais, o crente pode descansar na certeza de que Deus é fiel em suas promessas.'
+    ],
+    versicosChave: ['Filipenses 4:19', 'Mateus 6:25-34', 'Salmos 23:1', 'Jeremias 29:11'],
+    tags: ['provisão', 'Piper', 'providência', 'sustento', 'fé'],
+    fontes: ['John Piper, Providence', 'Piper, Desiring God', 'Piper, When I Don\'t Desire God']
+  },
+  {
+    id: 'novo-024',
+    titulo: 'John Piper — Casamento para a Glória de Deus',
+    categoria: 'Ética Cristã',
+    subcategoria: 'Casamento',
+    conteudo: [
+      'Piper dedicou considerável atenção ao tema do casamento, vendo-o como uma displays da glória de Deus. Para ele, o casamento cristão não é primariamente sobre felicidade, mas sobre santidade e glória divina.',
+      'Para Piper, o casamento é uma tipologia da relação entre Cristo e a Igreja. O marido representa Cristo; a esposa representa a Igreja. Essa tipologia dá dignidade e profundidade ao casamento.',
+      'Piper ensinava que o casamento é um meio de graça pelo qual Deus amadurece o caráter dos cônjuges. As dificuldades do casamento não são acidentes, mas oportunidades para crescimento espiritual.',
+      'O teólogo reformado insistia que o casamento deve ser centrado em Deus, não no cônjuge. Quando o casamento se torna o fim último, ele se torna ídolo. Deus é o único que pode satisfazer o coração humano.',
+      'A teologia do casamento de Piper é um chamado para que os casamentos cristãos sejam testemunhos vivos da graça de Deus. Em uma era de divorcismo e relativismo, o casamento cristão é um contracultura.'
+    ],
+    versicosChave: ['Efésios 5:22-33', 'Gênesis 2:24', '1 Pedro 3:1-7', 'Miquéias 6:8'],
+    tags: ['casamento', 'Piper', 'família', 'relacionamentos', 'santidade'],
+    fontes: ['John Piper, This Momentary Marriage', 'Piper, Future Grace', 'Piper, Desiring God']
+  },
+  {
+    id: 'novo-025',
+    titulo: 'John Piper — Deus e o Prazer Eterno do Crente',
+    categoria: 'Escatologia',
+    subcategoria: 'Esperança',
+    conteudo: [
+      'Piper desenvolveu uma escatologia centrada na alegria eterna do crente na presença de Deus. Para ele, a esperança cristã não é fuga do mundo, mas o gozo pleno de Deus em um novo céu e nova terra.',
+      'Para Piper, o céu não é apenas um lugar de descanso, mas de atividade gloriosa. O crente desfrutará de Deus para sempre, conhecendo-O cada vez mais em profundidade e admiração.',
+      'Piper ensinava que a esperança da glória futura é o que sustenta o crente no sofrimento presente. As tribulações da vida presente são leves comparadas com a glória que será revelada.',
+      'O teólogo reformado insistia que a alegria eterna não é meramente a ausência de sofrimento, mas a presença positiva de Deus. O céu é onde Deus habita com Seu povo, e essa presença é a fonte de toda alegria.',
+      'A escatologia de Piper é um chamado para vivermos com eternidade em vista. A perspectiva da glória futura transforma a maneira como vivemos no presente, concedendo-nos perseverança e alegria.'
+    ],
+    versicosChave: ['Apocalipse 21:1-4', 'Romanos 8:18', '2 Coríntios 4:17-18', '1 Pedro 1:4'],
+    tags: ['céu', 'Piper', 'esperança', 'glória eterna', 'nova criação'],
+    fontes: ['John Piper, Providence', 'Piper, Desiring God', 'Piper, Spectacular Sins']
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // DIETRICH BONHOEFFER (5 estudos: novo-026 a novo-030)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'novo-026',
+    titulo: 'Dietrich Bonhoeffer — O Discipulado Radical',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Discipulado',
+    conteudo: [
+      'Dietrich Bonhoeffer (1906-1945) é um dos teólogos mais influentes do séc. XX, conhecido por sua teologia do discipulado radical. Para Bonhoeffer, seguir a Jesus não é opção, mas imperativo absoluto.',
+      'Bonhoeffer ensinava que o discipulado é uma chamada à obediência total. "Quando Jesus chama um homem, Ele o quer que morra", escreveu em "O Custo do Discipulado". A fé sem obediência é fé morta.',
+      'Para Bonhoeffer, o discipulado não é vida privada, mas compromisso público com Cristo. O discípulo segue a Jesus em todos os aspectos da vida: família, trabalho, política, sociedade.',
+      'Bonhoeffer praticava o que pregava. Sua resistência ao nazismo foi fruto de seu compromisso com o discipulado radical. Ele escolheu a morte em vez de trair sua fé.',
+      'O chamado de Bonhoeffer à Igreja contemporânea é que recupere o custo do discipulado. O evangelho barato de prosperidade e conforto é contrário ao chamado de Jesus para cruz e sacrifício.'
+    ],
+    versicosChave: ['Mateus 16:24', 'Lucas 9:23', 'João 15:14', 'Filipenses 3:10'],
+    tags: ['discipulado', 'Bonhoeffer', 'obediência', 'cruz', 'sacrifício'],
+    fontes: ['Dietrich Bonhoeffer, O Custo do Discipulado', 'Eric Metaxas, Bonhoeffer', 'Bonhoeffer, Vida em Comunhão']
+  },
+  {
+    id: 'novo-027',
+    titulo: 'Dietrich Bonhoeffer — Comunhão Cristã e Vida em Comunidade',
+    categoria: 'Eclesiologia',
+    subcategoria: 'Comunidade',
+    conteudo: [
+      'Bonhoeffer dedicou parte significativa de sua teologia ao estudo da comunhão cristã. Para ele, o cristão não pode viver sozinho: a fé é essencialmente comunitária.',
+      'Bonhoeffer ensinava que a comunidade cristã não é um ideal a ser alcançado, mas um dom de Deus. Cristo mesmo é o centro da comunidade, e os crentes são membros de Seu corpo.',
+      'Para Bonhoeffer, a comunhão verdadeira exige humildade, serviço e tolerância. A comunidade não é perfeita, mas é lugar onde o perdão e a restauração são praticados.',
+      'O teólogo luterano insistia que a comunhão cristã deve ser marcada pela Palavra de Deus. Sem a Palavra, a comunidade se torna uma organização social vazia de conteúdo espiritual.',
+      'A teologia da comunhão de Bonhoeffer é um chamado para a Igreja redescobrir o valor da vida comunitária. Em uma era de individualismo, a comunidade cristã é contracultura e testemunho.'
+    ],
+    versicosChave: ['Atos 2:42-47', 'Hebreus 10:24-25', '1 Coríntios 12:12-27', 'Romanos 12:4-5'],
+    tags: ['comunidade', 'Bonhoeffer', 'igreja', 'comunhão', 'vida em comum'],
+    fontes: ['Dietrich Bonhoeffer, Vida em Comunhão', 'Bonhoeffer, O Custo do Discipulado', 'Metaxas, Bonhoeffer']
+  },
+  {
+    id: 'novo-028',
+    titulo: 'Dietrich Bonhoeffer — Ética Cristã e Responsabilidade',
+    categoria: 'Ética Cristã',
+    subcategoria: 'Ética',
+    conteudo: [
+      'Bonhoeffer desenvolveu uma teologia ética profundamente enraizada na realidade da graça. Para ele, a ética cristã não é legalismo, mas resposta amorosa ao amor de Deus.',
+      'Bonhoeffer ensinava que a ética cristã é situacional, mas não relativista. O cristão deve discernir a vontade de Deus em cada situação concreta, aplicando princípios bíblicos com sabedoria.',
+      'Para Bonhoeffer, a responsabilidade cristã é pessoal e intransferível. Cada crente é responsável diante de Deus por suas decisões. A obediência cega à autoridade não dispensa a responsabilidade pessoal.',
+      'O teólogo luterano insistia que a ética cristã exige coragem. Resistir ao mal, mesmo quando custa caro, é parte do discipulado. A ética sem coragem é ética estéril.',
+      'A teologia ética de Bonhoeffer desafia a Igreja a viver com integridade em um mundo corrompido. A ética cristã não é perfeição, mas fidelidade ao chamado de Deus.'
+    ],
+    versicosChave: ['Miquéias 6:8', 'Romanos 12:1-2', 'Efésios 5:15-17', 'Tiago 4:17'],
+    tags: ['ética', 'Bonhoeffer', 'responsabilidade', 'obediência', 'integridade'],
+    fontes: ['Dietrich Bonhoeffer, Ética', 'Bonhoeffer, Vida em Comunhão', 'Metaxas, Bonhoeffer']
+  },
+  {
+    id: 'novo-029',
+    titulo: 'Dietrich Bonhoeffer — A Graça Barata e a Graça Custosa',
+    categoria: 'Soteriologia',
+    subcategoria: 'Graça',
+    conteudo: [
+      'Bonhoeffer é célebre pela distinção entre "graça barata" e "graça custosa". A graça barata é a graça sem discipulado, sem cruz, sem Cristo vivo. É perdão sem arrependimento, batismo sem comunidade.',
+      'A graça custosa, por outro lado, é a graça que nos chama a seguir a Jesus. É a graça que nos custa a vida, porque nos leva à cruz. É a graça que transforma, não apenas perdão.',
+      'Bonhoeffer argumentava que a graça barata é o maior perigo da Igreja. Ela oferece consolo sem mudança, salvação sem santificação. É uma graça que não salva, mas adormece.',
+      'Para Bonhoeffer, a graça custosa é a graça verdadeira. Ela nos confronta com nossa pecaminosidade e nos chama à obediência. É a graça que nos faz discípulos, não meros consumidores de religião.',
+      'O apelo de Bonhoeffer à Igreja é que não aceite a graça barata. O evangelho é oferta de graça que custa tudo, porque nos dá tudo em Cristo.'
+    ],
+    versicosChave: ['Romanos 6:1-2', 'Mateus 10:38', 'Gálatas 2:20', '1 Pedro 4:12-14'],
+    tags: ['graça barata', 'graça custosa', 'Bonhoeffer', 'discipulado', 'cruz'],
+    fontes: ['Dietrich Bonhoeffer, O Custo do Discipulado', 'Bonhoeffer, Ética', 'Metaxas, Bonhoeffer']
+  },
+  {
+    id: 'novo-030',
+    titulo: 'Dietrich Bonhoeffer — Resistência ao Mal Institucionalizado',
+    categoria: 'Ética Cristã',
+    subcategoria: 'Resistência',
+    conteudo: [
+      'Bonhoeffer é exemplo histórico de resistência ao mal institucionalizado. Sua luta contra o nazismo não foi apenas política, mas teológica: o cristão não pode tolerar o mal sob nenhuma circunstância.',
+      'Bonhoeffer ensinava que o silêncio diante do mal é conivência. A Igreja tem a responsabilidade de denunciar a injustiça e defender os oprimidos, mesmo quando isso custa a vida.',
+      'Para Bonhoeffer, a resistência ao mal exige discernimento espiritual e coragem moral. Não é violência cega, mas ação estratégica guiada pela fé e pelo amor.',
+      'O teólogo luterano praticou o que pregava, participando de uma conspiração para assassinar Hitler. Embora tenha wrestled com a consciência, ele concluiu que a responsabilidade cristã exigia ação.',
+      'O exemplo de Bonhoeffer é um chamado para a Igreja não se calar diante das injustiças do mundo. A fé cristã não é fuga da realidade, mas engajamento profundo com ela.'
+    ],
+    versicosChave: ['Miquéias 6:8', 'Amós 5:24', 'Romanos 12:21', 'Efésios 6:12'],
+    tags: ['resistência', 'Bonhoeffer', 'justiça', 'nazismo', 'coragem'],
+    fontes: ['Dietrich Bonhoeffer, Cartas e Reflexões da Prisão', 'Metaxas, Bonhoeffer', 'Bonhoeffer, Ética']
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // C.S. LEWIS (5 estudos: novo-031 a novo-035)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'novo-031',
+    titulo: 'C.S. Lewis — Dor e Sofrimento no Plano de Deus',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Sofrimento',
+    conteudo: [
+      'C.S. Lewis (1898-1963) é um dos maiores apologistas cristãos do séc. XX. Em "Problemas do Sofrimento", ele aborda a questão da dor humana à luz da fé cristã, oferecendo uma resposta que combina razão e compaixão.',
+      'Lewis argumenta que Deus permite o sofrimento porque Ele deseja que os seres humanos sejam livres. Uma criatura programada para o bem não seria realmente virtuosa, mas meramente mecânica.',
+      'Para Lewis, o sofrimento pode ser instrumento de Deus para quebrantar o orgulho humano e nos conduzir ao arrependimento. É o "megafone de Deus" em um mundo ensurdecido.',
+      'Lewis reconhece que o sofrimento é um mistério, mas insiste que Deus não é indiferente a ele. A encarnação é a prova de que Deus entrou no sofrimento humano e o transformou.',
+      'A abordagem de Lewis ao sofrimento é equilibrada: não minimiza a dor, mas a coloca no contexto de um Deus amoroso e soberano que trabalha todas as coisas para o bem.'
+    ],
+    versicosChave: ['Romanos 8:28', '2 Coríntios 4:17', 'Hebreus 12:5-11', 'Apocalipse 21:4'],
+    tags: ['sofrimento', 'Lewis', 'dor', 'providência', 'apologética'],
+    fontes: ['C.S. Lewis, Problemas do Sofrimento', 'Lewis, A Breviário da Dor', 'Michael Ward, Planet Narnia']
+  },
+  {
+    id: 'novo-032',
+    titulo: 'C.S. Lewis — A Razão da Fé Cristã',
+    categoria: 'Apologetica',
+    subcategoria: 'Razão',
+    conteudo: [
+      'Lewis foi um racionalista convertido ao cristianismo, e dedicou sua vida a mostrar que a fé é razoável. Em "Credo", ele apresenta argumentos convincentes para a existência de Deus e a veracidade do cristianismo.',
+      'Lewis argumentava que a razão é uma dádiva de Deus e deve ser usada para investigar a verdade. A fé não é irracional, mas supra-racional: vai além da razão sem a contradizer.',
+      'Para Lewis, o argumento do Logos é decisivo: o universo tem uma ordem racional porque foi criado por um Ser racional. A razão humana é um reflexo da Razão divina.',
+      'Lewis ensinava que o cristianismo é a única religião que satisfaz plenamente a razão e o coração. As outras religiões ou são irracionais ou incompletas.',
+      'O apelo de Lewis é que a fé não deve ser cega. O cristão deve conhecer sua fé, poder defendê-la e demonstrar que ela é racionalmente superior a qualquer alternativa.'
+    ],
+    versicosChave: ['João 1:1-3', 'Romanos 1:20', '1 Pedro 3:15', 'Hebreus 11:1'],
+    tags: ['razão', 'Lewis', 'apologética', 'fé', 'filosofia'],
+    fontes: ['C.S. Lewis, Credo', 'Lewis, O Problema do Sofrimento', 'Lewis, A Encosta Feliz']
+  },
+  {
+    id: 'novo-033',
+    titulo: 'C.S. Lewis — Milagres e o Sobrenatural',
+    categoria: 'Apologetica',
+    subcategoria: 'Milagres',
+    conteudo: [
+      'Em "Milagres", Lewis defende a possibilidade lógica dos milagres contra o ceticismo moderno. Ele argumenta que a natureza não é um sistema fechado, mas aberto à intervenção do Criador.',
+      'Lewis distingue entre milagres e feitiçaria. O milagre é uma suspensão da natureza pelo Criador; a feitiçaria é uma manipulação da natureza por forças malignas. Confundir ambos é um erro.',
+      'Para Lewis, a ressurreição de Jesus é o milagre central da história. Se Cristo ressuscitou, os milagres são possíveis. Se não ressuscitou, a fé cristã é vã.',
+      'Lewis argumentava que o ceticismo moderno é uma forma de preconceito, não de razão. O homem moderno recusa os milagres não porque são irracionais, mas porque são inconvenientes.',
+      'A defesa de Lewis dos milagres é um chamado para a Igreja redescobrir o sobrenatural. Em uma era de naturalismo, a fé no sobrenatural é essential para a integridade da fé cristã.'
+    ],
+    versicosChave: ['João 20:30-31', '1 Coríntios 15:3-8', 'Lucas 24:39', 'Hebreus 2:4'],
+    tags: ['milagres', 'Lewis', 'sobrenatural', 'ressurreição', 'apologética'],
+    fontes: ['C.S. Lewis, Milagres', 'Lewis, Mere Christianity', 'Lewis, The Miracles']
+  },
+  {
+    id: 'novo-034',
+    titulo: 'C.S. Lewis — A Natureza Humana e o Problema do Pecado',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Antropologia',
+    conteudo: [
+      'Lewis ofereceu uma análise perspicaz da natureza humana em suas obras de apologética. Para ele, o problema central da humanidade é o pecado, que corrompe todas as dimensões da existência.',
+      'Lewis argumentava que o pecado não é apenas ação exterior, mas condição interior. O homem é naturalmente inclinado ao egoísmo, à rebeldia e à autojustificação.',
+      'Para Lewis, o pecado é a raiz de todos os males humanos: guerras, injustiças, opressões. Sem resolver o problema do pecado, nenhum sistema político ou social pode trazer paz duradoura.',
+      'Lewis ensinava que o pecado é aussi uma questão de orgulho. O orgulho é o pecado original, do qual todos os outros derivam. Humildade é a virtude mais difícil e mais necessária.',
+      'A antropologia de Lewis é um diagnóstico realista da condição humana. Sem a graça de Deus, o homem está perdido. Com a graça, ele é transformado e restaurado.'
+    ],
+    versicosChave: ['Romanos 3:23', 'Romanos 7:18', 'Gênesis 6:5', 'Efésios 2:1-3'],
+    tags: ['pecado', 'Lewis', 'natureza humana', 'orgulho', 'redenção'],
+    fontes: ['C.S. Lewis, Mere Christianity', 'Lewis, Problemas do Sofrimento', 'Lewis, A Breviário da Dor']
+  },
+  {
+    id: 'novo-035',
+    titulo: 'C.S. Lewis — O Céu e a Realidade Eterna',
+    categoria: 'Escatologia',
+    subcategoria: 'Céu',
+    conteudo: [
+      'Lewis descreveu o céu de maneira vívida em "Pilares da Terra", imaginando-o como um lugar de intensa realidade e gozo. Para ele, o céu não é fuga da realidade, mas encontro com a realidade máxima.',
+      'Para Lewis, o céu é onde Deus habita com Seu povo. É o lar verdadeiro do ser humano, o lugar para o qual foi criado. Na terra somos exilados; no céu, finalmente em casa.',
+      'Lewis argumentava que as coisas terrenas são sombras das realidades celestiais. O amor humano é uma fração do amor divino; a beleza terrena é reflexo da beleza celestial.',
+      'O apologeta britânico insistia que o céu é personal, não impessoal. Cada crente terá um relacionamento único e pessoal com Deus, sem perder sua individualidade.',
+      'A visão de Lewis sobre o céu é um chamado para vivermos com eternidade em vista. A perspectiva do céu transforma a maneira como encaramos a vida terrena.'
+    ],
+    versicosChave: ['Apocalipse 21:1-5', 'João 14:1-3', '1 Coríntios 2:9', 'Filipenses 3:20'],
+    tags: ['céu', 'Lewis', 'eternidade', 'nova criação', 'escatologia'],
+    fontes: ['C.S. Lewis, Pilares da Terra', 'Lewis, A Breviário da Dor', 'Lewis, The Great Divorce']
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // TIM KELLER (5 estudos: novo-036 a novo-040)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'novo-036',
+    titulo: 'Tim Keller — Fé e Cultura Contemporânea',
+    categoria: 'Apologetica',
+    subcategoria: 'Cultura',
+    conteudo: [
+      'Tim Keller (1950-2023) foi um teólogo e pastor que dedicou sua vida a pensar como a fé cristã se relaciona com a cultura contemporânea. Para Keller, o cristão deve engajar a cultura, não fugir dela.',
+      'Keller argumentava que o cristianismo não é uma subcultura, mas uma contracultura que desafia todas as culturas humanas. O evangelho transcende política, economia e sociedade.',
+      'Para Keller, a Igreja deve ser inteligente em seu engajamento cultural. Isso significa compreender as narrativas culturais e responder com sabedoria e graça.',
+      'O pastor de Nova York ensinava que a fé cristã é relevante para todas as áreas da vida: arte, ciência, política, negócios. Nenhuma esfera está isoa da influência do evangelho.',
+      'O chamado de Keller é que a Igreja seja relevante sem ser mundana, contextual sem ser condescendente. A fé cristã é perenemente relevante porque é verdadeira.'
+    ],
+    versicosChave: ['Mateus 5:13-16', '1 Coríntios 9:19-23', 'Colossenses 4:5-6', '1 Pedro 3:15'],
+    tags: ['cultura', 'Keller', 'apologética', 'engajamento', 'contracultura'],
+    fontes: ['Tim Keller, Center Church', 'Keller, The Reason for God', 'Keller, Counterfeit Gods']
+  },
+  {
+    id: 'novo-037',
+    titulo: 'Tim Keller — Idolatria no Mundo Moderno',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Idolatria',
+    conteudo: [
+      'Keller identificou a idolatria como o pecado central do mundo contemporâneo. Para ele, um ídolo é qualquer coisa que se torna mais importante que Deus na vida de uma pessoa.',
+      'Keller argumentava que os ídolos modernos não são estátuas de metal, mas coisas aparentemente boas: sucesso, família, romance, poder, reconhecimento. Esses bens se tornam ídolos quando substituem Deus.',
+      'Para Keller, a idolatria é a raiz de todos os males humanos. O pecado não é apenas violação de regras, mas desvio de lealdade. O homem foi criado para adorar a Deus, e quando adora outra coisa, ele se destrói.',
+      'O pastor e teólogo ensinava que o evangelicalismo contemporâneo está vulnerável a ídolos sutis: conforto, segurança, relevância. A igreja pode se tornar ídolo para si mesma.',
+      'A análise de Keller sobre a idolatria moderna é um convite ao autoexame. O cristão deve perguntar constantemente: o que ocupa o lugar de Deus em meu coração?'
+    ],
+    versicosChave: ['1 João 5:21', 'Colossenses 3:5', 'Romanos 1:25', 'Êxodo 20:3'],
+    tags: ['idolatria', 'Keller', 'ídolos modernos', 'coração', 'adoração'],
+    fontes: ['Tim Keller, Counterfeit Gods', 'Keller, The Reason for God', 'Keller, Generous Justice']
+  },
+  {
+    id: 'novo-038',
+    titulo: 'Tim Keller — Justiça Social e o Evangelho',
+    categoria: 'Ética Cristã',
+    subcategoria: 'Justiça Social',
+    conteudo: [
+      'Keller foi um forte defensor da justiça social como dimensão essencial do evangelho. Para ele, a fé sem obras morta inclui compromisso com os pobres, oprimidos e marginalizados.',
+      'Keller argumentava que a justiça social não é política partidária, mas imperativo bíblico. Deus é justo e ama a justiça, e seus seguidores devem refletir esse caráter.',
+      'Para Keller, o evangelho é a motivação mais poderosa para a justiça social. Quando o cristão compreende que foi justificado gratuitamente, ele se torna generoso com os outros.',
+      'O pastor de Redeemer ensinava que a Igreja deve ser uma comunidade de justiça, onde os pobres são acolhidos, os marginalizados são valorizados e os oprimidos são libertados.',
+      'O chamado de Keller é que a Igreja não se canse de fazer justiça. A justiça social não é adiada para o céu, mas praticada na terra como antecipação do reino de Deus.'
+    ],
+    versicosChave: ['Miquéias 6:8', 'Isaías 1:17', 'Mateus 25:31-46', 'Tiago 1:27'],
+    tags: ['justiça social', 'Keller', 'evangelho', 'pobres', 'compaixão'],
+    fontes: ['Tim Keller, Generous Justice', 'Keller, Center Church', 'Keller, The Reason for God']
+  },
+  {
+    id: 'novo-039',
+    titulo: 'Tim Keller — O Perdão Radical no Evangelho',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Perdão',
+    conteudo: [
+      'Keller desenvolveu uma teologia do perdão que se enraíza na graça de Deus em Cristo. Para ele, o perdão cristão não é opção, mas imperativo decorrente da própria natureza do evangelho.',
+      'Keller argumentava que o perdão é possível apenas quando compreendemos que nós mesmos fomos perdoados por Deus. A consciência da própria pecaminosidade é antídoto contra o ressentimento.',
+      'Para Keller, o perdão não é negação da dor ou esquecimento do mal sofrido. É uma decisão consciente de não buscar vingança, mas confiar a Deus a justiça.',
+      'O pastor e teólogo ensinava que o perdão é processo, não evento. Alguns ofensas exigem tempo e oração para serem completamente perdoadas.',
+      'O chamado de Keller é que a Igreja seja uma comunidade de perdão. No mundo, o perdão é fraqueza; no evangelho, é a maior expressão de força espiritual.'
+    ],
+    versicosChave: ['Efésios 4:32', 'Colossenses 3:13', 'Mateus 18:21-35', 'Lucas 23:34'],
+    tags: ['perdão', 'Keller', 'graça', 'reconciliação', 'relacionamentos'],
+    fontes: ['Tim Keller, The Reason for God', 'Keller, Generous Justice', 'Keller, Walking with God through Pain and Suffering']
+  },
+  {
+    id: 'novo-040',
+    titulo: 'Tim Keller — Urbanidade e Missão Urbana',
+    categoria: 'Missiologia',
+    subcategoria: 'Missão Urbana',
+    conteudo: [
+      'Keller foi um pioneiro na teologia da missão urbana, fundando a Redeemer Presbyterian Church em Nova York. Para ele, as cidades são campos missionários estratégicos do séc. XXI.',
+      'Keller argumentava que as cidades concentram diversidade cultural, intelectual e econômica. Isso as torna locais ideais para o evangelismo e a pluração cultural.',
+      'Para Keller, a missão urbana exige criatividade, adaptabilidade e profundidade teológica. Os urbanos são céticos, mas buscadores; racionalistas, mas espiritualmente famintos.',
+      'O pastor de Nova York ensinava que a igreja urbana deve ser culturalmente sensível sem ser culturalmente capturada. O evangelho é para todas as culturas, mas não é propriedade de nenhuma.',
+      'O legado de Keller sobre missão urbana desafia a Igreja a levar o evangelho às cidades com excelência e paixão. As cidades são o futuro do cristianismo mundial.'
+    ],
+    versicosChave: ['Atos 1:8', 'Mateus 28:19-20', '1 Coríntios 9:19-23', 'Jeremias 29:7'],
+    tags: ['cidade', 'Keller', 'missão urbana', 'Redeemer', 'evangelismo'],
+    fontes: ['Tim Keller, Center Church', 'Keller, The Reason for God', 'Keller, Ministries of Mercy']
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // JONATHAN EDWARDS (4 estudos: novo-041 a novo-044)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'novo-041',
+    titulo: 'Jonathan Edwards — O Desejo de Deus como Fim Supremo',
+    categoria: 'Teologia Proper',
+    subcategoria: 'Desejo de Deus',
+    conteudo: [
+      'Jonathan Edwards (1703-1758) é considerado o maior teólogo americano. Para Edwards, o desejo de Deus é a essência da vida cristã: Deus criou o mundo para Sua glória e o ser humano para desfrutar Dele.',
+      'Edwards argumentava que todos os desejos humanos são, em última instância, desejos de felicidade. Mas a felicidade verdadeira só se encontra em Deus. Buscar felicidade em qualquer coisa além de Deus é idolatria.',
+      'Para Edwards, o desejo de Deus não é natural ao homem caído. Somente a graça regeneradora pode despertar o coração humano para o desejo de Deus.',
+      'Edwards ensinava que o cristão maduro é aquele que deseja Deus mais do que qualquer outra coisa. A santidade é, em essência, o crescimento do desejo de Deus no coração.',
+      'A teologia de Edwards sobre o desejo de Deus é um chamado à apreciação de Deus como a maior satisfação do coração humano. Em uma era de consumismo, Edwards aponta para a única fonte de satisfação eterna.'
+    ],
+    versicosChave: ['Salmos 37:4', 'Salmo 42:1-2', 'Filipenses 3:8', 'João 6:35'],
+    tags: ['desejo de Deus', 'Edwards', 'apreciação', 'santidade', 'gozo'],
+    fontes: ['Jonathan Edwards, Religious Affections', 'Edwards, The End for Which God Created the World', 'Marsden, Jonathan Edwards']
+  },
+  {
+    id: 'novo-042',
+    titulo: 'Jonathan Edwards — Avivamento e a Presença Divina',
+    categoria: 'Eclesiologia',
+    subcategoria: 'Avivamento',
+    conteudo: [
+      'Edwards foi o principal teólogo do Grande Desertamento (1730-1740), o primeiro avivamento de alcance nacional na América. Para ele, o avivamento é obra soberana do Espírito Santo.',
+      'Edwards argumentava que o avivamento não é fabricado por técnicas humanas, mas derramado por Deus. A preparação espiritual, a oração e a pregação fiel são meios, mas o resultado é de Deus.',
+      'Para Edwards, o avivamento é precedido por humilhação, arrependimento e busca fervorosa de Deus. A religião verdadeira é "afeições santificadas" — emoções que nascem da compreensão da verdade.',
+      'Edwards via o avivamento como retorno às fontes do cristianismo primitivo. Em meio à formalidade religiosa, Deus desperta Seu povo para uma experiência viva de Sua presença.',
+      'O legado de Edwards sobre avivamento é um chamado para que a Igreja busque a presença de Deus com humildade e fervor. O avivamento não é passado; é promessa para todos os tempos.'
+    ],
+    versicosChave: ['2 Crônicas 7:14', 'Atos 4:31', 'Habacuque 3:2', 'Joeel 2:28-29'],
+    tags: ['avivamento', 'Edwards', 'Desertamento', 'Espírito Santo', 'presença de Deus'],
+    fontes: ['Jonathan Edwards, A Narrative of Surprising Conversions', 'Edwards, Religious Affections', 'Marsden, Jonathan Edwards']
+  },
+  {
+    id: 'novo-043',
+    titulo: 'Jonathan Edwards — A Natureza da Verdadeira Conversão',
+    categoria: 'Soteriologia',
+    subcategoria: 'Conversão',
+    conteudo: [
+      'Edwards dedicou considerável estudo ao tema da conversão, distinguindo entre experiências religiosas genuínas e falsas. Para ele, a conversão verdadeira envolve transformação do coração, não apenas mudança de comportamento.',
+      'Edwards argumentava que a conversão é obra do Espírito Santo, que ilumina a mente, inclina a vontade e transforma os afetos. O homem não pode se converter por suas próprias forças.',
+      'Para Edwards, a conversão verdadeira produz frutos de arrependimento, fé em Cristo, amor a Deus e aos outros, e obediência à vontade divina. Sem esses frutos, não há conversão genuína.',
+      'Edwards alertava contra a confiança em experiências emocionais passageiras como evidência de conversão. A verdadeira conversão é marcada por perseverança e frutos duradouros.',
+      'O teólogo puritano ensinava que a conversão é início de uma jornada, não fim. O cristão recém-convertido precisa de discipulado, comunhão e perseverança.'
+    ],
+    versicosChave: ['João 3:3-8', '2 Coríntios 5:17', 'Efésios 2:4-5', '1 João 2:19'],
+    tags: ['conversão', 'Edwards', 'regeneração', 'verdadeira fé', 'puritanismo'],
+    fontes: ['Jonathan Edwards, Religious Affections', 'Edwards, A Treatise Concerning Religious Affections', 'Marsden, Jonathan Edwards']
+  },
+  {
+    id: 'novo-044',
+    titulo: 'Jonathan Edwards — A Beleza da Santidade',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Santidade',
+    conteudo: [
+      'Edwards via a santidade como a mais sublime beleza da criação. Para ele, a santidade de Deus é a fonte de toda a beleza, e a santidade do crente é reflexo dessa beleza divina.',
+      'Edwards argumentava que a santidade não é conformidade a regras externas, mas transformação interior do caráter. O santo é aquele cujo coração foi transformado para amar o que Deus ama.',
+      'Para Edwards, a santidade produz alegria. O crente santo não é melancólico, mas alegre, porque desfruta da beleza de Deus em sua vida.',
+      'Edwards ensinava que a santidade é progressiva. O cristão cresce em santidade através da oração, meditação na Palavra, comunhão dos santos e obediência.',
+      'A teologia da santidade de Edwards é um chamado para a Igreja redescobrir a beleza da santidade. A santidade não é pesada, mas libertadora: é o caminho para a satisfação plena em Deus.'
+    ],
+    versicosChave: ['Salmos 96:9', '1 Pedro 1:15-16', 'Hebreus 12:14', 'Salmos 29:2'],
+    tags: ['santidade', 'Edwards', 'beleza', 'caráter', 'transformação'],
+    fontes: ['Jonathan Edwards, Religious Affections', 'Edwards, The End for Which God Created the World', 'Marsden, Jonathan Edwards']
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // J.I. PACKER (3 estudos: novo-045 a novo-047)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'novo-045',
+    titulo: 'J.I. Packer — Conhecer a Deus Pessoalmente',
+    categoria: 'Teologia Proper',
+    subcategoria: 'Conhecimento de Deus',
+    conteudo: [
+      'J.I. Packer (1926-2020) é autor de "Conhecendo a Deus", obra que marcou gerações de cristãos. Para Packer, conhecer a Deus não é informação teológica, mas relação pessoal transformadora.',
+      'Packer argumentava que o conhecimento de Deus começa na Escritura. Deus se revela por meio de Sua Palavra, e o estudo sério da Bíblia é o caminho para conhecer a Deus.',
+      'Para Packer, o conhecimento de Deus é progressivo. Começa na conversão, amadurece na santificação e se aperfeiçoa na glória. Nunca chegamos ao fim do conhecimento de Deus.',
+      'Packer ensinava que o conhecimento verdadeiro de Deus produz humildade, adoração e obediência. O homem que conhece a Deus é transformado por esse conhecimento.',
+      'O chamado de Packer é que a Igreja redescobra o valor do conhecimento de Deus. Em uma era de superficialidade religiosa, o conhecimento profundo de Deus é a âncora da fé.'
+    ],
+    versicosChave: ['Jeremias 9:23-24', 'João 17:3', 'Salmos 46:10', 'Óseas 6:3'],
+    tags: ['conhecimento de Deus', 'Packer', 'Escritura', 'relação', 'teologia'],
+    fontes: ['J.I. Packer, Conhecendo a Deus', 'Packer, Knowing God', 'Packer, God Has Spoken']
+  },
+  {
+    id: 'novo-046',
+    titulo: 'J.I. Packer — A Orientação Divina na Vida do Crente',
+    categoria: 'Vida Cristã',
+    subcategoria: 'Orientação',
+    conteudo: [
+      'Packer dedicou considerável atenção ao tema da orientação divina, entendendo que muitos cristãos se confundem sobre como discernir a vontade de Deus. Para Packer, a orientação divina é real, mas exige maturidade.',
+      'Packer argumentava que Deus guia principalmente através de Sua Palavra. As Escrituras fornecem princípios claros para decisões éticas e práticas. A Bíblia não é apenas livro de histórias, mas manual de vida.',
+      'Para Packer, a orientação divina inclui também as circunstâncias da vida, os conselhos dos irmãos e as impressões do Espírito Santo. Mas tudo deve ser submetido à Palavra.',
+      'Packer ensinava que a orientação de Deus não é automática. O cristão deve buscar a Deus com humildade, oração e estudo da Escritura.',
+      'O chamado de Packer é que a Igreja não busque atalhos para a orientação divina. A vontade de Deus é descoberta na relação íntima com Ele, não em fórmulas mágicas.'
+    ],
+    versicosChave: ['Salmos 119:105', 'Provérbios 3:5-6', 'Romanos 12:1-2', 'Tiago 1:5'],
+    tags: ['orientação', 'Packer', 'vontade de Deus', 'decisões', 'Sabedoria'],
+    fontes: ['J.I. Packer, God\'s Will', 'Packer, Conhecendo a Deus', 'Packer, Direção para a Vida']
+  },
+  {
+    id: 'novo-047',
+    titulo: 'J.I. Packer — A Soberania de Deus e o Sofrimento Humano',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Sofrimento',
+    conteudo: [
+      'Packer abordou o tema do sofrimento à luz da soberania de Deus. Para ele, o sofrimento não é acidente fortuito, mas parte do plano soberano de Deus para o bem de Seu povo.',
+      'Packer argumentava que a soberania de Deus não elimina o sofrimento, mas o coloca em contexto. O Deus soberano permite o sofrimento por razões que nem sempre compreendemos.',
+      'Para Packer, o sofrimento é instrumento de Deus para amadurecer o caráter, produzir perseverança e aprofundar a dependência de Deus.',
+      'Packer ensinava que a resposta cristã ao sofrimento não é explicação, mas confiança. "Deus faz todas as coisas bem", embora não sempre compreendamos seus caminhos.',
+      'O chamado de Packer é que a Igreja descance na soberania de Deus mesmo quando o sofrimento é inexplicável. A fé não exige compreensão completa, mas confiança plena.'
+    ],
+    versicosChave: ['Romanos 8:28', 'Efésios 1:11', 'Job 1:21', '2 Coríntios 4:17'],
+    tags: ['soberania', 'sofrimento', 'Packer', 'providência', 'confiança'],
+    fontes: ['J.I. Packer, Conhecendo a Deus', 'Packer, Knowing God', 'Packer, Providence']
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // JOHN STOTT (3 estudos: novo-048 a novo-050)
+  // ─────────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'novo-048',
+    titulo: 'John Stott — A Cruz de Cristo e a Reconciliação',
+    categoria: 'Cristologia',
+    subcategoria: 'Cruz',
+    conteudo: [
+      'John Stott (1921-2011) dedicou sua obra-prima "A Cruz de Cristo" ao estudo profundo do significado da morte de Jesus. Para Stott, a cruz é o centro de toda a fé cristã.',
+      'Stott argumentava que a cruz é o meio de Deus para reconciliar consigo os pecadores rebeldes. A morte substitutiva de Cristo satisfaz a justiça divina e manifesta o amor divino.',
+      'Para Stott, a cruz não é apenas um evento histórico, mas o fundamento da nova aliança. Em Cristo, Deus estabelece uma relação nova e eterna com Seu povo.',
+      'Stott ensinava que a cruz transforma a relação entre Deus e o homem, entre o homem e si mesmo, e entre o homem e os outros. A reconciliação é total e abrangente.',
+      'O chamado de Stott é que a Igreja nunca se canse de proclamar a mensagem da cruz. Em uma era de十字架 message diluída, a cruz permanece o poder de Deus para salvação.'
+    ],
+    versicosChave: ['2 Coríntios 5:18-21', '1 Coríntios 1:18-24', 'Gálatas 6:14', 'Colossenses 1:19-20'],
+    tags: ['cruz', 'Stott', 'reconciliação', 'substituição', 'redenção'],
+    fontes: ['John Stott, A Cruz de Cristo', 'Stott, The Cross of Christ', 'Stott, The Contemporary Christian']
+  },
+  {
+    id: 'novo-049',
+    titulo: 'John Stott — A Autoridade da Escritura na Vida da Igreja',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Escritura',
+    conteudo: [
+      'Stott foi um defensor convicto da autoridade bíblica, insistindo que a Escritura é a norma suprema de fé e prática para a Igreja. Para ele, sem autoridade bíblica, não há cristianismo.',
+      'Stott argumentava que a autoridade da Bíblia não vem da Igreja, mas de Deus. A Escritura é Palavra de Deus, e por isso é autoritativa.',
+      'Para Stott, a autoridade bíblica se aplica a todas as áreas da vida: teologia, ética, cultura, política. Nenhuma esfera está isoa da soberania da Palavra.',
+      'Stott ensinava que a Igreja deve submeter-se à Escritura, não o contrário. A tradição é importante, mas é reformada pela Palavra.',
+      'O chamado de Stott é que a Igreja recupere a autoridade da Escritura como fundamento de tudo. Em uma era de relativismo, a Palavra de Deus permanece imutável.'
+    ],
+    versicosChave: ['2 Timóteo 3:16-17', 'Salmos 19:7-8', 'Isaías 40:8', 'Mateus 24:35'],
+    tags: ['autoridade bíblica', 'Stott', 'Escritura', 'sola scriptura', 'Palavra de Deus'],
+    fontes: ['John Stott, A Bíblia Autoritativa', 'Stott, Understanding the Bible', 'Stott, The Contemporary Christian']
+  },
+  {
+    id: 'novo-050',
+    titulo: 'John Stott — A Missão da Igreja no Mundo',
+    categoria: 'Missiologia',
+    subcategoria: 'Missão',
+    conteudo: [
+      'Stott foi um dos principais líderes do movimento missionário contemporâneo, sendo co-fundador da Lausanne Movement. Para ele, a missão da Igreja é central, não periférica.',
+      'Stott argumentava que a missão da Igreja é integral: evangelho e justiça são inseparáveis. A Igreja não pode pregar o evangelho sem compromisso com os pobres e oprimidos.',
+      'Para Stott, a missão da Igreja é universal. O mandato de Jesus é para todas as nações, não apenas para as culturas ocidentais.',
+      'Stott ensinava que a missão exige contextualização sem compromisso. O evangelho é transcultural, mas sua comunicação deve ser contextual.',
+      'O legado de Stott é um chamado para que a Igreja seja fiel ao mandato missionário. A missão não é opcional, mas o propósito central da existência da Igreja.'
+    ],
+    versicosChave: ['Mateus 28:19-20', 'Atos 1:8', 'Romanos 10:14-15', 'Apocalipse 7:9'],
+    tags: ['missão', 'Stott', 'Lausanne', 'evangelismo', 'justiça social'],
+    fontes: ['John Stott, A Cruz de Cristo', 'Stott, The Lausanne Covenant', 'Stott, The Contemporary Christian']
   }
 ];
 

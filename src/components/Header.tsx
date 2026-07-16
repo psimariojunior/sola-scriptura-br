@@ -39,6 +39,7 @@ const navLinks: NavLinkSpec[] = [
   { href: '/pesquisa', label: 'Pesquisa', icon: Search },
   { href: '/teologia', label: 'Teologia', icon: Library },
   { href: '/estudos', label: 'Estudos', icon: GraduationCap },
+  { href: '/estudo-ia', label: 'Estudo IA', icon: Sparkles },
   { href: '/ia', label: 'IA', icon: Brain },
 ];
 

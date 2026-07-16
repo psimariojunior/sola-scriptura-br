@@ -11,21 +11,21 @@ const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
   variable: '--font-cormorant',
-  display: 'swap',
+  display: 'optional',
 });
 
 const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-inter',
-  display: 'swap',
+  display: 'optional',
 });
 
 const spectral = Spectral({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600'],
   variable: '--font-spectral',
-  display: 'swap',
+  display: 'optional',
 });
 
 export const metadata: Metadata = {
@@ -145,17 +145,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js').then(function() {}).catch(function() {});
-                });
-              }
-            `,
-          }}
-        />
+
       </head>
       <body className="antialiased bg-background text-foreground">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:rounded-xl focus:bg-[var(--primary)] focus:text-[var(--primary-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2">

@@ -59,12 +59,9 @@ export default function CadastroPage() {
     setCarregando(true);
     setErro('');
     try {
-      await loginWithGoogle();
-      router.refresh();
-      router.push('/conta');
+      loginWithGoogle();
     } catch {
       setErro('Erro ao cadastrar com Google.');
-    } finally {
       setCarregando(false);
     }
   };

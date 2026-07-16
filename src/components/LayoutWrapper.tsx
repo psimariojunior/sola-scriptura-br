@@ -22,11 +22,6 @@ const HotkeysDialog = lazy(() => import('@/components/HotkeysDialog').then(m => 
 const OnboardingModal = lazy(() => import('@/components/OnboardingModal').then(m => ({ default: m.OnboardingModal, resetOnboarding: m.resetOnboarding })));
 
 function ServiceWorkerRegistration() {
-  useEffect(() => {
-    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(() => {});
-    }
-  }, []);
   return null;
 }
 

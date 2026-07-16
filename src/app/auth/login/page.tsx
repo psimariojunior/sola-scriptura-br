@@ -45,12 +45,9 @@ function LoginForm() {
     setCarregando(true);
     setErro('');
     try {
-      await loginWithGoogle();
-      router.refresh();
-      router.push(redirectTo);
+      loginWithGoogle();
     } catch {
       setErro('Erro ao fazer login com Google.');
-    } finally {
       setCarregando(false);
     }
   };

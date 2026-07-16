@@ -43,7 +43,21 @@ async function bootstrap() {
     maxAge: 86400,
   });
 
-  app.use(helmet());
+  app.use(helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://accounts.google.com", "https://apis.google.com"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        imgSrc: ["'self'", "data:", "https:"],
+        connectSrc: ["'self'", "https://accounts.google.com", "https://oauth2.googleapis.com", "https://www.googleapis.com"],
+        frameSrc: ["'self'", "https://accounts.google.com"],
+        formAction: ["'self'", "https://accounts.google.com", "https://solascripturabr.com.br"],
+      },
+    },
+    crossOriginEmbedderPolicy: false,
+  }));
   app.use(compression());
   app.use(cookieParser());
 

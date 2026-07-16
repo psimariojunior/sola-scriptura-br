@@ -218,7 +218,7 @@ class AuthService {
 
     if (!emailNorm) throw new Error('Email é obrigatório');
     if (!nomeLimpo) throw new Error('Nome é obrigatório');
-    if (senhaLimpa.length < 6) throw new Error('A senha deve ter pelo menos 6 caracteres');
+    if (senhaLimpa.length < 8) throw new Error('A senha deve ter pelo menos 8 caracteres');
 
     const res = await fetch('/api/auth/cadastrar', {
       method: 'POST',

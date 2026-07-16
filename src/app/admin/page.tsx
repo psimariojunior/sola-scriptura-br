@@ -17,7 +17,7 @@ import { getStats } from '@/lib/analytics';
 
 type Aba = 'dashboard' | 'conteudo' | 'usuarios' | 'estudos' | 'config' | 'analytics';
 
-  const API_BASE = 'local'; // No backend needed
+  const API_BASE = 'https://api.solascripturabr.com.br/api/v1';
 
   interface DashboardStats {
     totalUsuarios: number;
@@ -108,9 +108,9 @@ export default function AdminPage() {
   // Config
   const [config, setConfig] = useState({
     openaiKey: '••••••••',
-    backendUrl: 'Local (localStorage)',
+    backendUrl: 'https://api.solascripturabr.com.br',
     frontendUrl: 'https://solascripturabr.com.br',
-    dbStatus: 'localStorage + cookies',
+    dbStatus: 'PostgreSQL 16 + pgvector (Oracle VM)',
     translations: ['ARC', 'NVI', 'ARA', 'ACF', 'NAA', 'NTLH', 'KJV', 'WEB'],
   });
 
@@ -137,30 +137,30 @@ export default function AdminPage() {
     check();
   }, [router]);
 
-  // Fetch helpers — all local, no backend needed
-  const apiFetch = async <T,>(_endpoint: string, _options: RequestInit = {}): Promise<T> => {
-    throw new Error('Backend offline');
+  // Fetch helpers — call backend API with auth
+  const apiFetch = async <T,>(endpoint: string, options: RequestInit = {}): Promise<T> => {
+    const token = authService.getAccessToken();
+    const res = await fetch(`${API_BASE}${endpoint}`, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        ...options.headers,
+      },
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.message || `Erro ${res.status}`);
+    }
+    return res.json();
   };
 
-  // Dashboard — read from localStorage
+  // Dashboard — fetch from backend
   const fetchDashboard = async () => {
     setStatsLoading(true);
     try {
-      const usuarios = getLocalUsers();
-      const estudos = getLocalNotes();
-      const stats: DashboardStats = {
-        totalUsuarios: usuarios.length,
-        usuariosRecentes: usuarios.slice(-10).reverse().map(u => ({ ...u, criadoEm: u.criadoEm || '' })),
-        metricas: {
-          usuariosAtivos: usuarios.length,
-          planosGratuitos: usuarios.length,
-          planosPremium: 0,
-          totalEstudos: estudos.length,
-        },
-        versao: '2.0.0',
-        uptime: Math.floor((Date.now() - new Date('2025-01-01').getTime()) / 1000),
-      };
-      setStats(stats);
+      const data = await apiFetch<any>('/admin/dashboard');
+      setStats(data.data || data);
     } catch {
       setStats({
         totalUsuarios: 0,
@@ -174,10 +174,20 @@ export default function AdminPage() {
     }
   };
 
-  // Users — from localStorage
+  // Users — fetch from backend dashboard
   const fetchUsuarios = async () => {
     setUsuariosLoading(true);
     try {
+      const data = await apiFetch<any>('/admin/dashboard');
+      const d = data.data || data;
+      setUsuarios((d.usuariosRecentes || []).map((u: any) => ({
+        id: u.id || '',
+        nome: u.nome || u.email?.split('@')[0] || '',
+        email: u.email || '',
+        criadoEm: u.criadoEm || u.createdAt || '',
+        role: u.role || 'user',
+      })));
+    } catch {
       setUsuarios(getLocalUsers());
     } finally {
       setUsuariosLoading(false);

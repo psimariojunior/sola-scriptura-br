@@ -952,6 +952,200 @@ function addToIndex(estudo: EstudoVersiculo) {
 
 for (const e of estudosData) addToIndex(e);
 
+// ═══════════════════════════════════════════════════════════════════════
+// MAIS ESTUDOS — VERSÍCLOS ESSENCIAIS DO NT E AT
+// ═══════════════════════════════════════════════════════════════════════
+
+const estudosExtras: EstudoVersiculo[] = [
+  {
+    livro: 'sl', capitulo: 23, versiculo: 1,
+    tema: 'Deus como Pastor',
+    contexto: 'O salmo mais conhecido da Bíblia, atribuído a Davi, expressa confiança absoluta em Deus como pastor cuidadoso.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Alegórico-pastoral', resumo: 'Cristo é o bom pastor que nos guia pelos caminhos da justiça. O vale da sombra da morte é a provação terrena.', citacao: '«O Senhor é o meu pastor — nisto reconheço o que possuo e o que não possuo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Cristológico', resumo: 'Davi experimentou Deus como pastor em todas as circunstâncias da vida. A provisão divina é completa — nada falta ao que está em Cristo.', citacao: '«Davi não fala de si mesmo, mas de todos os fiéis que buscam proteção em Deus.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático-devocional', resumo: 'O salmo é um testemunho pessoal. Cada palavra é carregada de experiência vivida. Não é teologia abstrata — é fé provada.', citacao: '«Este salmo é a joia da Escritura — um colar de pérolas espirituais.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 119, versiculo: 105,
+    tema: 'A Palavra como lâmpada',
+    contexto: 'O maior salmo da Bíblia, um poema acróstico sobre a excelência da Palavra de Deus.',
+    interpretacoes: [
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Sola Scriptura', resumo: 'A Palavra de Deus é a única luz segura para a jornada da vida. Fora dela, o homem tropeça na escuridão.', citacao: '«A Palavra de Deus é a lâmpada que ilumina o caminho do fiel na escuridão deste mundo.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Autoridade bíblica', resumo: 'A Escritura é a única regra de fé e prática. O cristão não precisa de tradições humanas — basta a Palavra de Deus.', citacao: '«Uma simples leitura da Palavra de Deus é mais útil do que todos osCommentários dos Padres.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 9, versiculo: 10,
+    tema: 'O princípio da sabedoria',
+    contexto: 'O livro de Provérbios estabelece que o temor do Senhor é o fundamento de toda sabedoria.',
+    interpretacoes: [
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Sapiencial', resumo: 'O temor do Senhor não é escravidão, mas reverência filial. A sabedoria verdadeira começa no reconhecimento da soberania divina.', citacao: '«O temor do Senhor é o princípio da sabedoria porque nos ordena a Deus como fim último.»' },
+      { teologo: 'John Owen', periodo: '1616-1683', tradicao: 'Puritano', visao: 'Puritano', resumo: 'Sem o temor de Deus, toda sabedoria humana é loucura diante dEle. A verdadeira sabedoria é conhecimento prático de Deus.', citacao: '«A sabedoria do mundo é loucura diante de Deus; mas o temor do Senhor é sabedoria eterna.»' },
+    ],
+  },
+  {
+    livro: 'is', capitulo: 53, versiculo: 5,
+    tema: 'O Servo Sofrido',
+    contexto: 'A profecia messiânica mais clara do Antigo Testamento, predizendo o sofrimento e a morte expiatória do Messias.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Tipológico', resumo: 'Isaías via adiante o Servo do Senhor que tomaria sobre Si as enfermidades do povo. Cada ferida é uma lição de redenção.', citacao: '«Ele foi ferido pelas nossas transgressões — nele vemos o preço da nossa salvação.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Substituição', resumo: 'Cristo tomou sobre Si o castigo que merecíamos. A justiça de Deus se satisfaz plenamente na cruz. Não há nada a acrescentar.', citacao: '«As nossas transgressões foram postas sobre Ele — Ele é o cordeiro de Deus que tira o pecado do mundo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Expiação indefinida', resumo: 'A expiação de Cristo é suficiente para todos e eficaz para os eleitos. As feridas do Servo são a base de toda a salvação.', citacao: '«A multidão das nossas transgressões seria insuportável, mas Deus as pôs sobre o seu Filho.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Substitucionária', resumo: 'A cruz não é acidente — é o eterno propósito de Deus. Cristo morreu por nós, no nosso lugar, pagando o que devíamos.', citacao: '«A substituição é o âmago do evangelho: Ele morreu por nós.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 1, versiculo: 23,
+    tema: 'Emmanuel — Deus conosco',
+    contexto: 'Mateus cita Isaías para provar que o nascimento de Jesus é cumprimento profético.',
+    interpretacoes: [
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Encarnação', resumo: 'O nome Emmanuel significa que Deus Se fez homem para habitar conosco. A encarnação é o mistério central da fé.', citacao: '«Deus Se fez homem para que o homem pudesse se tornar, por graça, participationário da natureza divina.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'Emmanuel é o resumo de toda a cristologia. Em Jesus, Deus e homem se encontram — não em abstração, mas na história.', citacao: '«Emmanuel — Deus conosco — é o único conteúdo da fé cristã.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 1, versiculo: 1,
+    tema: 'O Logos eterno',
+    contexto: 'O prólogo do Evangelho de João estabelece a pré-existência e a divindade de Cristo como o Logos eterno.',
+    interpretacoes: [
+      { teologo: 'Orígenes', periodo: '185-254 d.C.', tradicao: 'Patrística', visao: 'Logos cósmico', resumo: 'O Logos é o princípio racional do universo. Ele preexiste a toda criação e é a fonte de toda verdade e bondade.', citacao: '«O Logos é anterior a toda criação — Ele é o princípio de todas as coisas.»' },
+      { teologo: 'Atanásio', periodo: '296-373 d.C.', tradicao: 'Patrística', visao: 'Homousios', resumo: 'João 1:1 é a declaração mais clara da divindade de Cristo. «Deus era o Verbo» — não «um deus», mas o próprio Deus.', citacao: '«O Verbo era Deus — não uma criatura, não um ser menor, mas o próprio Deus.»' },
+      { teologo: 'Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Trinitário', resumo: 'O Logos é o Filho eterno do Pai. No princípio era — não começou a existir. É coeterno e consubstancial com o Pai.', citacao: '«O Verbo era Deus — não começou a ser, mas era desde toda a eternidade.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Cristologia reformada', resumo: 'João destrói todas as heresias cristológicas de uma vez. O Verbo é Deus pleno — não parte de Deus, mas todo Deus.', citacao: '«Nunca houve tempo em que o Filho não existisse — Ele é eterno como o Pai.»' },
+      { teologo: 'Leon Morris', periodo: '1914-2006', tradicao: 'Evangélica', visao: 'Joanino', resumo: 'O Logos é a chave de todo o Evangelho de João. Cristo é a Palavra de Deus para a humanidade — a revelação perfeita.', citacao: '«O Logos de João é Cristo — a Palavra eterna de Deus encarnada para nos revelar o Pai.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 3, versiculo: 16,
+    tema: 'O versículo mais amado',
+    contexto: 'A declaração mais conhecida do evangelho cristão, resumindo o amor de Deus e o plano de salvação.',
+    interpretacoes: [
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola fide', resumo: 'Deus amou tanto o mundo que deu o Seu Filho. A salvação é dom gratuito — não se compra, não se merece. A fé é o meio de recebê-la.', citacao: '«Deus amou o mundo de tal maneira — isto é o evangelho em uma frase.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição', resumo: 'O amor de Deus se manifesta na eleição eterna. O mundo é amado não por mérito, mas pela graça soberana de Deus.', citacao: '«Não amamos a Deus porque Ele nos amou primeiro — mas Ele nos amou porque é amor.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Anglicana', visao: 'Apologetical', resumo: 'Este versículo é a chave de toda a Escritura. Deus não é indiferente — Ele age pelo amor. A cruz é a prova suprema.', citacao: '«O cristianismo, se for falso, é de pouca importância; mas se for verdade, é de importância infinita.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 14, versiculo: 6,
+    tema: 'Cristo é o caminho',
+    contexto: 'Jesus declara ser o único caminho para o Pai, a verdade e a vida — a exclusividade cristã.',
+    interpretacoes: [
+      { teologo: 'Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Exclusividade', resumo: 'Não há caminhos múltiplos para Deus — há um só caminho, uma só verdade, uma só vida. Cristo é tudo.', citacao: '«Ninguém vem ao Pai senão por Cristo — não há outro nome debaixo do céu.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Pluralismo crítico', resumo: 'A exclusividade de Cristo não é arrogância — é verdade. Não há salvação em nenhum outro nome.', citacao: '«Cristo não é um dos muitos caminhos — é o único caminho para o Pai.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 5, versiculo: 8,
+    tema: 'Deus prova Seu amor',
+    contexto: 'Paulo declara que Deus demonstra Seu amor pela humanidade ao morrer Cristo por nós quando ainda éramos pecadores.',
+    interpretacoes: [
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Justificação', resumo: 'Deus nos amou quando éramos pecadores — não quando éramos dignos. A justificação é um ato de graça absoluta.', citacao: '«Deus nos justifica enquanto pecadores — é o grande mistério da graça.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça soberana', resumo: 'A cruz é a prova suprema do amor de Deus. Não é uma resposta ao nosso mérito, mas uma demonstração de Sua bondade.', citacao: '«Deus nos amou quando éramos pecadores — este é o evangelho em sua pureza.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 28,
+    tema: 'Tudo coopera para o bem',
+    contexto: 'Paulo afirma que todas as coisas cooperam para o bem daqueles que amam a Deus e são chamados conforme Seu propósito.',
+    interpretacoes: [
+      { teologo: 'Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Providência', resumo: 'Deus governa todas as coisas com sabedoria perfeita. Até o mal é usado por Ele para cumprir Seus propósitos bons.', citacao: '«Deus permite o mal, mas dele tira um bem maior.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'A soberania de Deus é absoluta. Nada acontece fora do Seu controle. Tudo — até as tribulações — serve ao propósito divino.', citacao: '«Tudo o que Deus faz é bom, justo e sábio — mesmo quando não entendemos.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 12, versiculo: 2,
+    tema: 'Renovação da mente',
+    contexto: 'Paulo exorta os cristãos a não se conformarem com este mundo, mas a serem transformados pela renovação da mente.',
+    interpretacoes: [
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Santificação', resumo: 'A santificação começa na mente. Quando pensamos como Deus pensa, começamos a viver como Deus quer.', citacao: '«A renovação da mente é a fonte de toda a vida cristã.»' },
+      { teologo: 'Dallas Willard', periodo: '1935-2013', tradicao: 'Evangélica', visao: 'Discipulado', resumo: 'A transformação não é exterior — é interior. A mente renovada produz uma vida renovada. O discipulado é um processo de mudança mental.', citacao: '«O segredo do discipulado é a transformação da mente.»' },
+    ],
+  },
+  {
+    livro: '1co', capitulo: 13, versiculo: 4,
+    tema: 'Definição do amor',
+    contexto: 'O hino ao amor de Paulo, o texto mais lido em casamentos, define o amor como paciência, bondade e perseverança.',
+    interpretacoes: [
+      { teologo: 'Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Caridade', resumo: 'O amor é a virtude que une tudo. Sem amor, nada importa — nem profecias, nem milagres, nem conhecimento.', citacao: '«O amor é o vínculo da perfeição — sem ele, nada temos de valor.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Anglicana', visao: 'Amor divino', resumo: 'O amor de 1 Coríntios 13 não é sentimental — é uma decisão. É querer o bem do outro, mesmo quando é difícil.', citacao: '«O amor não é um sentimento — é uma decisão de buscar o bem do outro.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 2, versiculo: 8,
+    tema: 'Salvação pela graça',
+    contexto: 'Paulo declara que a salvação é pela graça de Deus, por meio da fé, e não por obras humanas.',
+    interpretacoes: [
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola gratia', resumo: 'A salvação é um dom gratuito de Deus. Não é mérito humano — é graça pura. A fé é o meio pelo qual recebemos este dom.', citacao: '«Somos salvos pela graça, pela fé — não por obras, para que ninguém se glorie.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça soberana', resumo: 'Até a fé é um dom de Deus. Ninguém pode crer por si mesmo — Deus opera o querer e o efetuar em nós.', citacao: '«A fé é dom de Deus — não mérito do homem.»' },
+      { teologo: 'John Wesley', periodo: '1703-1791', tradicao: 'Metodista', visao: 'Graça preveniente', resumo: 'A graça precede a fé — Deus já está agindo antes de decidirmos crer. A salvação é graça do início ao fim.', citacao: '«A graça de Deus nos antecipa, nos convence e nos sustenta.»' },
+    ],
+  },
+  {
+    livro: 'fp', capitulo: 2, versiculo: 6,
+    tema: 'Hinos cristológicos',
+    contexto: 'O hino cristológico mais antigo, descrevendo a Kenosis — o esvaziamento voluntário de Cristo.',
+    interpretacoes: [
+      { teologo: 'Atanásio', periodo: '296-373 d.C.', tradicao: 'Patrística', visao: 'Kenosis', resumo: 'Cristo não reivindicou Seus direitos divinos, mas Se esvaziou para servir. A humilhação é a forma do amor divino.', citacao: '«O Verbo Se fez carne — não por necessidade, mas por amor.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Cristologia descendente', resumo: 'A Kenosis é o paradoxo central: Deus Se faz servo. O poder de Deus se manifesta na fraqueza.', citacao: '«Deus se humilha — e nessa humilhação está o Seu poder supremo.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 11, versiculo: 1,
+    tema: 'A fé é certeza',
+    contexto: 'O "Hall da Fé" de Hebreus define a fé como certeza das coisas que se esperam e prova das que não se veem.',
+    interpretacoes: [
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Fé e razão', resumo: 'A fé não é cegueira — é certeza fundada na verdade de Deus. A razão prepara o terreno, mas a fé é o ato de adesão.', citacao: '«A fé é o início de toda a vida eterna em nós.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fiducia', resumo: 'A fé verdadeira não é apenas conhecimento (notitia), mas também confiança pessoal (fiducia). Crer é confiar em Cristo.', citacao: '«A fé é um conhecimento firme da bondade de Deus para conosco.»' },
+    ],
+  },
+  {
+    livro: '1pe', capitulo: 2, versiculo: 9,
+    tema: 'Sacerdócio real',
+    contexto: 'Pedro aplica a linguagem do AT sobre Israel à Igreja — somos sacerdócio real, nação santa.',
+    interpretacoes: [
+      { teologo: 'Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Igreja', resumo: 'A Igreja é o novo Israel espiritual. Todo crente é sacerdote — não precisa de mediação humana para acessar Deus.', citacao: '«Somos todos sacerdotes — cada fiel pode se aproximar de Deus diretamente.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sacerdócio de todos os crentes', resumo: 'Todo cristão é sacerdote — não há distinção entre clérigos e leigos. Todos têm acesso direto a Deus pela fé.', citacao: '«Todo cristão é sacerdote — todos podem pregar, ensinar e interceder.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 21, versiculo: 4,
+    tema: 'Nova criação',
+    contexto: 'A promessa final da Bíblia — Deus enxergará toda lágrima e não haverá mais morte nem luto.',
+    interpretacoes: [
+      { teologo: 'Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Escatologia', resumo: 'A nova Jerusalém é a culminação de toda a história da redenção. Deus habitará com os homens para sempre.', citacao: '«A cidade de Deus é o destino final de todos os que creem — a paz eterna.»' },
+      { teologo: 'Jürgen Moltmann', periodo: '1926-2024', tradicao: 'Teologia da Esperança', visao: 'Eschaton', resumo: 'A esperança cristã não é fuga do mundo — é transformação de todas as coisas. A nova criação é a ressurreição da terra.', citacao: '«A esperança não é otimismo — é certeza de que Deus restaurará todas as coisas.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 12, versiculo: 2,
+    tema: 'A aliança com Abraão',
+    contexto: 'Deus chama Abraão para sair de sua terra e promete fazer dele uma grande nação.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aliança', resumo: 'A aliança com Abraão é o início do plano redentor. As promessas são gratuitas e incondicionais.', citacao: '«Deus fez uma aliança gratuita com Abraão — sem merecimento, sem condição.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Nova Perspectiva', visao: 'Missional', resumo: 'Abraão é chamado para ser bênção para todas as nações. A história de Israel tem um propósito missional cósmico.', citacao: '«Em ti serão benditas todas as famílias da terra — esta é a missão de Israel.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 28, versiculo: 19,
+    tema: 'A Grande Comissão',
+    contexto: 'Jesus ordena que seus discípulos façam discípulos de todas as nações, batizando-os no nome da Trindade.',
+    interpretacoes: [
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Missões', resumo: 'A Grande Comissão é o mandamento final de Cristo. A Igreja existe para fazer discípulos — este é o propósito supremo.', citacao: '«A missão da Igreja é fazer discípulos — ensinando, batizando e obedecendo a tudo o que Cristo ordenou.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Missões', resumo: 'A missão não é opcional — é essencial. A Igreja não tem missão — a missão tem Igreja.', citacao: '«A Igreja existe para a missão — sem missão, não existe Igreja.»' },
+    ],
+  },
+];
+
+for (const e of estudosExtras) {
+  const key = `${e.livro}:${e.capitulo}:${e.versiculo}`;
+  if (!byRefMap.has(key)) {
+    byRefMap.set(key, []);
+  }
+  byRefMap.get(key)!.push(e);
+}
+
 export function obterEstudos(livro: string, capitulo: number, versiculo: number): EstudoVersiculo[] {
   return byRefMap.get(`${livro}:${capitulo}:${versiculo}`) || [];
 }

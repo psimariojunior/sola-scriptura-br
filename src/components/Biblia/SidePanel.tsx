@@ -6,10 +6,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, BookText, StickyNote, GraduationCap, History, X, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { obterContexto, obterContextoCapitulo } from '@/data/contextoHistorico';
+import { obterComentarios } from '@/data/comentarios';
 
 const PainelStrong = dynamic(() => import('@/components/PainelStrong'), { ssr: false });
 const PainelNotas = dynamic(() => import('@/components/PainelNotas'), { ssr: false });
 const PainelComentarios = dynamic(() => import('@/components/PainelComentarios'), { ssr: false });
+const PainelEstudosSidePanel = dynamic(() => import('@/components/PainelEstudosSidePanel'), { ssr: false });
 
 type TabValue = 'comentarios' | 'strong' | 'notas' | 'estudos' | 'contexto';
 
@@ -193,11 +195,19 @@ export function SidePanel({
                 ) : activeTab === 'notas' ? (
                   <PainelNotas livroAbrev={livroAbreviacao} capitulo={capitulo} />
                 ) : activeTab === 'estudos' ? (
-                  <EmptyPanel
-                    icon={GraduationCap}
-                    title="Estudos"
-                    description="Os estudos teológicos aparecem ao lado de cada versículo com marcador."
-                  />
+                  versiculo ? (
+                    <PainelEstudosSidePanel
+                      livro={livroAbreviacao}
+                      capitulo={capitulo}
+                      versiculo={versiculo}
+                    />
+                  ) : (
+                    <EmptyPanel
+                      icon={GraduationCap}
+                      title="Estudos"
+                      description="Selecione um versículo para ver os estudos teológicos com visões de múltiplos teólogos."
+                    />
+                  )
                 ) : activeTab === 'contexto' ? (
                   <PainelContexto livro={livroAbreviacao} capitulo={capitulo} />
                 ) : null}

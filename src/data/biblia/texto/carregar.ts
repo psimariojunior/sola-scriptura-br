@@ -10,14 +10,14 @@ export interface CapituloComparado {
 
 type LivroData = Record<string, Record<number, string[]>>;
 
-export const TRADUCOES_DISPONIVEIS = ['arc', 'nvi', 'ara', 'acf', 'aa', 'ntlh', 'kjv', 'web'] as const;
+export const TRADUCOES_DISPONIVEIS = ['arc', 'nvi', 'ara', 'acf', 'naa', 'aa', 'ntlh', 'kjv', 'web'] as const;
 export type TraducaoId = (typeof TRADUCOES_DISPONIVEIS)[number];
 
 // Traduções que existem localmente (completo)
 const TRADUCOES_LOCAIS = ['arc', 'kjv', 'web', 'nvi', 'ara', 'acf'] as const;
 
 // Traduções que vêm da API Midvash
-const TRADUCOES_API = ['aa', 'ntlh'] as const;
+const TRADUCOES_API = ['aa', 'ntlh', 'naa'] as const;
 
 const cache = new Map<string, LivroData>();
 

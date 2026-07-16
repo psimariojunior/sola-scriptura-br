@@ -1,0 +1,36 @@
+name: Backup CockroachDB
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Todos os dias às 02:00 UTC
+  workflow_dispatch:       # Permite executar manualmente
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump database
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          sudo apt-get update && sudo apt-get install -y postgresql-client
+          pg_dump "$DATABASE_URL" --no-owner --no-privileges --no-comments -F c -f backup_$(date +%Y%m%d_%H%M%S).dump
+
+      - name: Upload to Internet Archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: cockroachdb-backup-${{ github.run_id }}
+          path: backup_*.dump
+          retention-days: 30
+
+      - name: Save to repo backups/
+        run: |
+          mkdir -p backups
+          cp backup_*.dump backups/
+          git config user.name "Backup Bot"
+          git config user.email "backup@sola-scriptura.br"
+          git add backups/
+          git diff --staged --quiet || git commit -m "backup: $(date +%Y-%m-%d)"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -33,3 +33,6 @@ sola-scriptura/
 sola-scriptura-new/
 frontend/
 backend/node_modules/
+
+# cockroachdb backups
+backups/

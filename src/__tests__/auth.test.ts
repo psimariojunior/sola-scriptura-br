@@ -3,7 +3,7 @@
  * Valida: cadastro, login, roles de admin, persistência em localStorage/cookie
  * e propagação de estado sem necessidade de refresh.
  */
-import { authService } from '@/lib/auth';
+import { authService, AuthService } from '@/lib/auth';
 
 const ADMIN = 'psi_mariojunior@hotmail.com';
 
@@ -68,10 +68,11 @@ describe('auth.ts', () => {
     expect(authService.isAutenticado()).toBe(true);
   });
 
-  test('loginWithGoogle define sessão sem chamar backend', async () => {
-    const user = await authService.loginWithGoogle();
-    expect(authService.isAutenticado()).toBe(true);
-    expect(user.email).toContain('@gmail.com');
+  test('loginWithGoogle redireciona para o backend OAuth', () => {
+    const redirectSpy = jest.spyOn(AuthService.prototype as any, 'redirecionar').mockImplementation(() => {});
+    authService.loginWithGoogle();
+    expect(redirectSpy).toHaveBeenCalledWith('/api/auth/google');
+    redirectSpy.mockRestore();
   });
 
   test('logout limpa estado, storage e cookie', async () => {

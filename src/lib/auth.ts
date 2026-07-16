@@ -82,9 +82,15 @@ function readLegacySession(): { token: string | null; refresh: string | null; us
   return { token, refresh, usuario };
 }
 
+const ADMIN_EMAILS = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || 'psi_mariojunior@hotmail.com')
+  .split(',')
+  .map((e) => e.trim().toLowerCase())
+  .filter(Boolean);
+
 function aplicarRole(usuario: Usuario): Usuario {
   if (!usuario) return usuario;
-  return { ...usuario, role: usuario.role || 'user' };
+  const isAdmin = usuario.role === 'admin' || ADMIN_EMAILS.includes(usuario.email.trim().toLowerCase());
+  return { ...usuario, role: isAdmin ? 'admin' : 'user' };
 }
 
 class AuthService {
@@ -271,7 +277,7 @@ class AuthService {
     if (typeof window === 'undefined') {
       throw new Error('Login indisponível no servidor');
     }
-    window.location.href = '/api/auth/google';
+    this.redirecionar('/api/auth/google');
     return new Promise<Usuario>(() => {});
   }
 
@@ -279,8 +285,15 @@ class AuthService {
     if (typeof window === 'undefined') {
       throw new Error('Login indisponível no servidor');
     }
-    window.location.href = '/api/auth/apple';
+    this.redirecionar('/api/auth/apple');
     return new Promise<Usuario>(() => {});
+  }
+
+  // Isolado para permitir spy em testes e evitar acesso direto a window.location.
+  protected redirecionar(url: string): void {
+    if (typeof window !== 'undefined') {
+      window.location.assign(url);
+    }
   }
 
   async logout(): Promise<void> {
@@ -466,4 +479,5 @@ class AuthService {
 }
 
 export const authService = AuthService.getInstance();
+export { AuthService };
 export type { Usuario, AuthResponse };

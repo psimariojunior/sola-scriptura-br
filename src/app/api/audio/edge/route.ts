@@ -82,7 +82,12 @@ export async function POST(request: NextRequest) {
 
         const startTime = Date.now();
 
-        const ttsPromise = tts.ttsPromise(texto, tempFile);
+        const ttsPromise = Promise.race([
+          tts.ttsPromise(texto, tempFile),
+          new Promise<never>((_, reject) =>
+            setTimeout(() => reject(new Error('Timeout ao gerar áudio (serviço TTS indisponível)')), 20000)
+          ),
+        ]);
 
         let lastSize = 0;
         const pollInterval = setInterval(() => {

@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
+const API_BASE_URL = 'https://api.solascripturabr.com.br/api/v1';
 
 export class ApiError extends Error {
   constructor(

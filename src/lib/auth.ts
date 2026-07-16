@@ -220,8 +220,7 @@ class AuthService {
     if (!nomeLimpo) throw new Error('Nome é obrigatório');
     if (senhaLimpa.length < 8) throw new Error('A senha deve ter pelo menos 8 caracteres');
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
-    const res = await fetch(`${apiUrl}/auth/cadastrar`, {
+    const res = await fetch('https://api.solascripturabr.com.br/api/v1/auth/cadastrar', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nome: nomeLimpo, email: emailNorm, senha: senhaLimpa }),
@@ -251,8 +250,7 @@ class AuthService {
     const emailNorm = normalizeEmail(email);
     const senhaLimpa = senha || '';
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
-    const res = await fetch(`${apiUrl}/auth/login`, {
+    const res = await fetch('https://api.solascripturabr.com.br/api/v1/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: emailNorm, senha: senhaLimpa }),
@@ -305,8 +303,7 @@ class AuthService {
   async refreshAccessToken(): Promise<boolean> {
     if (!this.refreshToken) return false;
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
-      const res = await fetch(`${apiUrl}/auth/refresh`, {
+      const res = await fetch('https://api.solascripturabr.com.br/api/v1/auth/refresh', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ refreshToken: this.refreshToken }),

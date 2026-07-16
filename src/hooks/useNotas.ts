@@ -6,7 +6,7 @@ import { downloadAsFile } from '@/lib/exportPdf';
 import { authService } from '@/lib/auth';
 
 const STORAGE_KEY = 'sola-notas';
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://sola-scriptura-backend.onrender.com/api/v1';
+const API_BASE = 'https://api.solascripturabr.com.br/api/v1';
 
 function carregarNotasLocal(): Nota[] {
   if (typeof window === 'undefined') return [];

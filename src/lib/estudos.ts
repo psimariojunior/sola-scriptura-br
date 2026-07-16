@@ -1,6 +1,6 @@
 import { authService } from './auth';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://sola-scriptura-backend.onrender.com/api/v1';
+const API_BASE = 'https://api.solascripturabr.com.br/api/v1';
 
 export interface Anotacao {
   texto: string;

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { devocionais, getDevocionalDoDia } from '@/lib/devocional';
+import { devocionais, getDevocionalDoDia } from '@/data/devocional';
 import { ChevronLeft, ChevronRight, Share2, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -15,11 +15,14 @@ export default function DevocionalPage() {
   const devocional = getDevocionalDoDia(diaAtual);
 
   const handleShare = async () => {
+    const textoParaCompartilhar = `${devocional.titulo}\n\n${devocional.textoVersiculo} — ${devocional.versiculo}\n\n${devocional.reflexao}`;
     if (navigator.share) {
       await navigator.share({
         title: `${devocional.titulo} — Devocional`,
-        text: `${devocional.titulo}\n\n${devocional.texto}\n\n${devocional.meditacao}`,
+        text: textoParaCompartilhar,
       });
+    } else {
+      await navigator.clipboard.writeText(textoParaCompartilhar);
     }
   };
 
@@ -47,20 +50,16 @@ export default function DevocionalPage() {
             <div className="sola-card p-8 md:p-10 mb-6">
               <div className="mb-8">
                 <p className="font-serif-body text-lg leading-relaxed text-[var(--fg)]/90 italic border-l-4 border-primary pl-4">
-                  {devocional.texto}
+                  {devocional.textoVersiculo}
                 </p>
-                <Link
-                  href={`/biblia?livro=${devocional.versiculo.livro}&capitulo=${devocional.versiculo.capitulo}`}
-                  className="inline-flex items-center gap-1 mt-3 text-sm text-[var(--primary)] hover:underline"
-                >
-                  <BookOpen className="w-3.5 h-3.5" />
-                  Ler capítulo completo
-                </Link>
+                <p className="text-sm font-semibold text-[var(--primary)] mt-3">
+                  — {devocional.versiculo}
+                </p>
               </div>
 
               <div className="mb-8">
-                <h2 className="text-sm font-semibold text-[var(--muted-fg)] uppercase tracking-wider mb-3">Meditação</h2>
-                <p className="text-[var(--fg)] leading-relaxed">{devocional.meditacao}</p>
+                <h2 className="text-sm font-semibold text-[var(--muted-fg)] uppercase tracking-wider mb-3">Reflexão</h2>
+                <div className="text-[var(--fg)] leading-relaxed whitespace-pre-line">{devocional.reflexao}</div>
               </div>
 
               <div className="bg-[var(--bg)] rounded-xl p-6">

@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const BACKEND_URL = process.env.BACKEND_URL || 'http://api.solascripturabr.com.br/api/v1';
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
-const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1';
-const LLM_MODEL = process.env.LLM_MODEL || 'llama-3.3-70b-versatile';
+export const runtime = 'nodejs';
+
+function getLLMConfig() {
+  return {
+    apiKey: process.env.OPENAI_API_KEY ?? '',
+    baseUrl: process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1',
+    model: process.env.LLM_MODEL || 'llama-3.3-70b-versatile',
+  };
+}
 
 export async function POST(request: NextRequest) {
   let body: any;
@@ -19,9 +24,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ erro: 'Pergunta é obrigatória' }, { status: 400 });
   }
 
-  if (OPENAI_API_KEY) {
+  const { apiKey, baseUrl, model } = getLLMConfig();
+
+  if (apiKey) {
     try {
-      return await chamarLLM(consulta, tradicao, contexto);
+      return await chamarLLM(consulta, tradicao, contexto, apiKey, baseUrl, model);
     } catch (erro: any) {
       if (erro.message === 'credits_missing') {
         return NextResponse.json(gerarRespostaLocal(consulta, tradicao));
@@ -35,8 +42,11 @@ export async function POST(request: NextRequest) {
 
 async function chamarLLM(
   consulta: string,
-  tradicao?: string,
-  contexto?: string,
+  tradicao: string | undefined,
+  contexto: string | undefined,
+  apiKey: string,
+  baseUrl: string,
+  model: string,
 ): Promise<NextResponse> {
   const inicio = Date.now();
 
@@ -58,16 +68,16 @@ async function chamarLLM(
     ? `Contexto adicional:\n${contexto}\n\nPergunta: ${consulta}`
     : consulta;
 
-  const resposta = await fetch(`${LLM_BASE_URL}/chat/completions`, {
+  const resposta = await fetch(`${baseUrl}/chat/completions`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${OPENAI_API_KEY}`,
+      'Authorization': `Bearer ${apiKey}`,
       'HTTP-Referer': 'https://solascripturabr.com.br',
       'X-Title': 'Sola Scriptura BR',
     },
     body: JSON.stringify({
-      model: LLM_MODEL,
+      model,
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userMessage },
@@ -93,7 +103,7 @@ async function chamarLLM(
     fontes: [],
     tradicaoTeologica: tradicao || 'geral',
     fonte: 'llm',
-    metadados: { modelo: LLM_MODEL, tokens: dados.usage?.total_tokens, tempoMs: Date.now() - inicio },
+    metadados: { modelo: model, tokens: dados.usage?.total_tokens, tempoMs: Date.now() - inicio },
   });
 }
 

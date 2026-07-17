@@ -1,9 +1,14 @@
 import { NextRequest } from 'next/server';
 
-const BACKEND_URL = process.env.BACKEND_URL || 'http://api.solascripturabr.com.br/api/v1';
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
-const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1';
-const LLM_MODEL = process.env.LLM_MODEL || 'llama-3.3-70b-versatile';
+export const runtime = 'nodejs';
+
+function getLLMConfig() {
+  return {
+    apiKey: process.env.OPENAI_API_KEY ?? '',
+    baseUrl: process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1',
+    model: process.env.LLM_MODEL || 'llama-3.3-70b-versatile',
+  };
+}
 
 export async function POST(request: NextRequest) {
   let body: any;
@@ -25,6 +30,8 @@ export async function POST(request: NextRequest) {
     });
   }
 
+  const { apiKey, baseUrl, model } = getLLMConfig();
+
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
     async start(controller) {
@@ -33,8 +40,8 @@ export async function POST(request: NextRequest) {
       };
 
       try {
-        if (OPENAI_API_KEY) {
-          await streamDirectLLM(pergunta, tradicao, contexto, send, controller, encoder);
+        if (apiKey) {
+          await streamDirectLLM(pergunta, tradicao, contexto, send, controller, encoder, apiKey, baseUrl, model);
         } else {
           await streamLocal(pergunta, tradicao, send, controller, encoder);
         }
@@ -63,6 +70,9 @@ async function streamDirectLLM(
   send: (tipo: string, dados: any) => void,
   controller: ReadableStreamDefaultController,
   encoder: TextEncoder,
+  apiKey: string,
+  baseUrl: string,
+  model: string,
 ) {
   send('status', { message: 'Gerando resposta...', etapa: 'llm' });
 
@@ -73,16 +83,16 @@ async function streamDirectLLM(
 
   let resposta: Response;
   try {
-    resposta = await fetch(`${LLM_BASE_URL}/chat/completions`, {
+    resposta = await fetch(`${baseUrl}/chat/completions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`,
+        'Authorization': `Bearer ${apiKey}`,
         'HTTP-Referer': 'https://solascripturabr.com.br',
         'X-Title': 'Sola Scriptura BR',
       },
       body: JSON.stringify({
-        model: LLM_MODEL,
+        model,
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userMessage },

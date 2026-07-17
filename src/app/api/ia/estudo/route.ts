@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
-const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1';
-const LLM_MODEL = process.env.LLM_MODEL || 'llama-3.3-70b-versatile';
+export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
   let body: any;
@@ -18,8 +16,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ erro: 'Passagem ou tópico é obrigatório' }, { status: 400 });
   }
 
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY ?? '';
+  const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1';
+  const LLM_MODEL = process.env.LLM_MODEL || 'llama-3.3-70b-versatile';
+
   if (!OPENAI_API_KEY) {
-    return NextResponse.json({ erro: 'Chave de API não configurada' }, { status: 500 });
+    return NextResponse.json({ erro: 'Chave de API não configurada', debug: { hasKey: false, baseUrl: LLM_BASE_URL, model: LLM_MODEL } }, { status: 500 });
   }
 
   const inicio = Date.now();
@@ -92,7 +94,7 @@ REGRAS:
     return NextResponse.json({
       passagem,
       estudo,
-      tipo:tipo || 'completo',
+      tipo: tipo || 'completo',
       metadados: {
         modelo: LLM_MODEL,
         tokens: dados.usage?.total_tokens,

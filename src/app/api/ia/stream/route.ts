@@ -1,9 +1,9 @@
 import { NextRequest } from 'next/server';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://api.solascripturabr.com.br/api/v1';
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.OPENROUTER_API_KEY || '';
-const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://openrouter.ai/api/v1';
-const LLM_MODEL = process.env.LLM_MODEL || 'openai/gpt-4o';
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
+const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1';
+const LLM_MODEL = process.env.LLM_MODEL || 'llama-3.3-70b-versatile';
 
 export async function POST(request: NextRequest) {
   let body: any;

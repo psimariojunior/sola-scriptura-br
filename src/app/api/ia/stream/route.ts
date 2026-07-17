@@ -1,14 +1,7 @@
 import { NextRequest } from 'next/server';
+import { getLLMConfig } from '@/lib/llm-config';
 
 export const runtime = 'nodejs';
-
-function getLLMConfig() {
-  return {
-    apiKey: process.env.OPENAI_API_KEY ?? '',
-    baseUrl: process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1',
-    model: process.env.LLM_MODEL || 'llama-3.3-70b-versatile',
-  };
-}
 
 export async function POST(request: NextRequest) {
   let body: any;

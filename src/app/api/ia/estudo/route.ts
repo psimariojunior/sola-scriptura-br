@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getLLMConfig } from '@/lib/llm-config';
 
 export const runtime = 'nodejs';
 
@@ -16,13 +17,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ erro: 'Passagem ou tópico é obrigatório' }, { status: 400 });
   }
 
-  const OPENAI_API_KEY = process.env.OPENAI_API_KEY ?? '';
-  const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1';
-  const LLM_MODEL = process.env.LLM_MODEL || 'llama-3.3-70b-versatile';
-
-  if (!OPENAI_API_KEY) {
-    return NextResponse.json({ erro: 'Chave de API não configurada', debug: { hasKey: false, baseUrl: LLM_BASE_URL, model: LLM_MODEL } }, { status: 500 });
-  }
+  const { apiKey, baseUrl, model } = getLLMConfig();
 
   const inicio = Date.now();
 
@@ -65,14 +60,14 @@ REGRAS:
 - O estudo deve ter pelo menos 800 palavras`;
 
   try {
-    const resposta = await fetch(`${LLM_BASE_URL}/chat/completions`, {
+    const resposta = await fetch(`${baseUrl}/chat/completions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`,
+        'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: LLM_MODEL,
+        model,
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: `Gere um guia de estudo bíblico completo para: ${passagem}${tipo ? `\n\nFoco: ${tipo}` : ''}` },
@@ -96,7 +91,7 @@ REGRAS:
       estudo,
       tipo: tipo || 'completo',
       metadados: {
-        modelo: LLM_MODEL,
+        modelo: model,
         tokens: dados.usage?.total_tokens,
         tempoMs: Date.now() - inicio,
       },

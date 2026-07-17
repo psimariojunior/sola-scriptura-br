@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEstudos } from '@/components/EstudosProvider';
-import { exportChapterPdf } from '@/lib/exportPdf';
+import { ExportModal } from '@/components/Biblia/ExportModal';
 import { useVerseAudio } from '@/hooks/useVerseAudio';
 import { useAudioNatural } from '@/hooks/useAudioNatural';
 import { useAudioCapitulo } from '@/hooks/useAudioCapitulo';
@@ -167,6 +167,7 @@ export default function BibliaPage() {
   const [mostrarQualidadeAudio, setMostrarQualidadeAudio] = useState(false);
   const [tradOpen, setTradOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
+  const [exportOpen, setExportOpen] = useState(false);
 
   const livro = TODOS_LIVROS[livroIdx];
   const chaveDramatica = `${livro.abreviacao}-${capituloIdx + 1}`;
@@ -244,7 +245,8 @@ export default function BibliaPage() {
       if (e.key === '/') { e.preventDefault(); setQuickSearchOpen(true); return; }
       if (e.key === 'ArrowLeft' && capituloIdx > 0) { e.preventDefault(); setChapterDirection('prev'); setCapituloIdx(p => Math.max(0, p - 1)); }
       else if (e.key === 'ArrowRight' && livro && capituloIdx < livro.totalCapitulos - 1) { e.preventDefault(); setChapterDirection('next'); setCapituloIdx(p => p + 1); }
-      else if (e.key === 'Escape') { setSidebarOpen(false); setMobileMenu(false); setChapterGridOpen(false); setMostrarNarracao(false); setVersiculoSelecionado(null); setTradOpen(false); setToolsOpen(false); }
+      else if (e.key === 'Escape') { setSidebarOpen(false); setMobileMenu(false); setChapterGridOpen(false); setMostrarNarracao(false); setVersiculoSelecionado(null); setTradOpen(false); 
+setToolsOpen(false); setExportOpen(false); }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -496,7 +498,7 @@ const toggleTrad = (id: string) => {
                   data={data}
                   hasDramatica={!!passagemDramatica}
                   onNotas={() => { if (!mostrarNotas && !notaAtiva) { const nova = criarNota(`${livro.nome} ${capituloIdx + 1}`); setNotaAtiva(nova); } setMostrarNotas(!mostrarNotas); setToolsOpen(false); }}
-                  onExportPdf={() => { data.length > 0 && exportChapterPdf(livro.nome, capituloIdx + 1, data); setToolsOpen(false); }}
+                  onExportPdf={() => { setToolsOpen(false); setExportOpen(true); }}
                   onPlanoLeitura={() => { setShowPlan(!showPlan); setToolsOpen(false); }}
                   onNarracaoDramatica={() => { setMostrarNarracao(true); setToolsOpen(false); }}
                   onConfiguracoes={() => { setShowSettings(!showSettings); setToolsOpen(false); }}
@@ -836,6 +838,14 @@ const toggleTrad = (id: string) => {
       <PainelQualidadeAudio
         open={mostrarQualidadeAudio}
         onOpenChange={setMostrarQualidadeAudio}
+      />
+
+      <ExportModal
+        open={exportOpen}
+        onClose={() => setExportOpen(false)}
+        bookName={livro.nome}
+        chapter={capituloIdx + 1}
+        data={data}
       />
     </div>
   );

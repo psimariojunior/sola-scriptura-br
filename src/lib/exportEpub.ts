@@ -229,6 +229,80 @@ ${links}
 </html>`;
 }
 
+export interface PlanoLeituraEpub {
+  id: string;
+  nome: string;
+  descricao: string;
+  duracao: number;
+  categoria: string;
+  dificuldade: string;
+  dias: {
+    dia: number;
+    titulo: string;
+    leituras: { livro: string; capituloInicio: number; capituloFim?: number; versiculoInicio?: number; versiculoFim?: number }[];
+    reflexao?: string;
+    oracao?: string;
+  }[];
+  metadata?: { totalVersiculos: number; totalCapitulos: number; tempoEstimado: string };
+}
+
+function formatarRefLeituraEpub(l: PlanoLeituraEpub['dias'][number]['leituras'][number]): string {
+  if (l.capituloFim && l.capituloFim !== l.capituloInicio) {
+    return `${l.livro} ${l.capituloInicio}-${l.capituloFim}`;
+  }
+  if (l.versiculoInicio && l.versiculoFim) {
+    return `${l.livro} ${l.capituloInicio}:${l.versiculoInicio}-${l.versiculoFim}`;
+  }
+  return `${l.livro} ${l.capituloInicio}`;
+}
+
+export async function exportPlanEpub(plano: PlanoLeituraEpub): Promise<Blob> {
+  const capitulos: EpubCapitulo[] = plano.dias.map(d => {
+    const leituras = d.leituras.map(formatarRefLeituraEpub).join(' • ');
+    let corpo = `<div class="verse"><strong>${leituras}</strong></div>`;
+    if (d.reflexao) corpo += `<blockquote><strong>Reflexão:</strong> ${d.reflexao}</blockquote>`;
+    if (d.oracao) corpo += `<blockquote><strong>Oração:</strong> ${d.oracao}</blockquote>`;
+    return { titulo: `Dia ${d.dia} — ${d.titulo}`, conteudo: corpo };
+  });
+
+  const meta = [
+    plano.descricao,
+    `Duração: ${plano.duracao} dias`,
+    `Categoria: ${plano.categoria}`,
+    `Dificuldade: ${plano.dificuldade}`,
+    plano.metadata ? `Tempo estimado: ${plano.metadata.tempoEstimado}` : '',
+  ].filter(Boolean).join(' · ');
+
+  return gerarEpub({
+    titulo: plano.nome,
+    autor: 'Sola Scriptura',
+    descricao: meta,
+    capitulos,
+    idioma: 'pt',
+  });
+}
+
+export interface VersiculoEpub { numero: number; texto: string }
+
+export async function exportChapterEpub(
+  livroNome: string,
+  capitulo: number,
+  versiculos: VersiculoEpub[],
+  traducao: string
+): Promise<Blob> {
+  const corpo = versiculos
+    .map(v => `<p class="verse"><sup class="verse-num">${v.numero}</sup> ${v.texto}</p>`)
+    .join('\n');
+
+  return gerarEpub({
+    titulo: `${livroNome} ${capitulo} (${traducao.toUpperCase()})`,
+    autor: 'Sola Scriptura',
+    descricao: `${livroNome} capítulo ${capitulo} na tradução ${traducao.toUpperCase()}`,
+    capitulos: [{ titulo: `${livroNome} ${capitulo}`, conteudo: corpo }],
+    idioma: 'pt',
+  });
+}
+
 function gerarCapaXhtml(opcoes: EpubOpcoes): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>

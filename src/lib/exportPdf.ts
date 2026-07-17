@@ -1,5 +1,179 @@
 import jsPDF from 'jspdf';
 
+export interface PlanoLeituraExport {
+  id: string;
+  nome: string;
+  descricao: string;
+  duracao: number;
+  categoria: string;
+  dificuldade: string;
+  dias: {
+    dia: number;
+    titulo: string;
+    leituras: { livro: string; capituloInicio: number; capituloFim?: number; versiculoInicio?: number; versiculoFim?: number }[];
+    reflexao?: string;
+    oracao?: string;
+  }[];
+  metadata?: { totalVersiculos: number; totalCapitulos: number; tempoEstimado: string };
+}
+
+export interface NotaExport {
+  id: string;
+  titulo: string;
+  conteudo: string;
+  dataCriacao: string;
+  dataAtualizacao: string;
+  tags: string[];
+}
+
+function formatarReferenciaLeitura(l: PlanoLeituraExport['dias'][number]['leituras'][number]): string {
+  const livro = l.livro;
+  if (l.capituloFim && l.capituloFim !== l.capituloInicio) {
+    return `${livro} ${l.capituloInicio}-${l.capituloFim}`;
+  }
+  if (l.versiculoInicio && l.versiculoFim) {
+    return `${livro} ${l.capituloInicio}:${l.versiculoInicio}-${l.versiculoFim}`;
+  }
+  return `${livro} ${l.capituloInicio}`;
+}
+
+export async function exportPlanPDF(plano: PlanoLeituraExport, opcoes?: Partial<OpcoesExportPdf>): Promise<void> {
+  const titulo = plano.nome;
+  const opts = criarOpcoesPadrao(titulo, { subtitulo: `Plano de Leitura • ${plano.duracao} dias`, ...opcoes });
+  const cores = TEMAS[opts.tema];
+
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const ph = doc.internal.pageSize.getHeight();
+  const cw = doc.internal.pageSize.getWidth() - 2 * opts.margem;
+  let y = opts.margem + 5;
+
+  doc.setFillColor(...cores.primarioEscuro);
+  doc.rect(0, 0, doc.internal.pageSize.getWidth(), ph, 'F');
+
+  doc.setTextColor(...cores.dourado);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(24);
+  doc.text('Sola Scriptura', doc.internal.pageSize.getWidth() / 2, ph / 2 - 50, { align: 'center' });
+
+  doc.setFontSize(18);
+  doc.text(titulo, doc.internal.pageSize.getWidth() / 2, ph / 2 - 25, { align: 'center' });
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(11);
+  doc.setTextColor(200, 180, 140);
+  const descLines = doc.splitTextToSize(plano.descricao, doc.internal.pageSize.getWidth() - 2 * opts.margem - 40);
+  doc.text(descLines, doc.internal.pageSize.getWidth() / 2, ph / 2 - 5, { align: 'center' });
+
+  doc.setFontSize(9);
+  const meta = [
+    `Duração: ${plano.duracao} dias`,
+    `Categoria: ${plano.categoria}`,
+    `Dificuldade: ${plano.dificuldade}`,
+    plano.metadata ? `Tempo estimado: ${plano.metadata.tempoEstimado}` : '',
+  ].filter(Boolean);
+  doc.text(meta, doc.internal.pageSize.getWidth() / 2, ph / 2 + 25, { align: 'center' });
+
+  doc.addPage();
+  y = opts.margem + (opts.incluirCabecalho ? 22 : 5);
+
+  for (let i = 0; i < plano.dias.length; i++) {
+    const d = plano.dias[i];
+
+    if (y > ph - 40) {
+      doc.addPage();
+      y = opts.margem + (opts.incluirCabecalho ? 22 : 10);
+      if (opts.incluirCabecalho) desenharCabecalho(doc, opts, cores, titulo);
+    }
+
+    doc.setTextColor(...cores.primario);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(13);
+    doc.text(`Dia ${d.dia} — ${d.titulo}`, opts.margem, y);
+    y += 4;
+    doc.setDrawColor(...cores.dourado);
+    doc.setLineWidth(0.3);
+    doc.line(opts.margem, y, opts.margem + 30, y);
+    y += 6;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(...cores.texto);
+    const leituras = d.leituras.map(formatarReferenciaLeitura).join('  •  ');
+    const leitLines = doc.splitTextToSize(leituras, cw);
+    doc.text(leitLines, opts.margem, y);
+    y += leitLines.length * 4 + 2;
+
+    if (d.reflexao) {
+      doc.setFont('helvetica', 'italic');
+      doc.setTextColor(...cores.textoSecundario);
+      const refLines = doc.splitTextToSize(`Reflexão: ${d.reflexao}`, cw);
+      doc.text(refLines, opts.margem, y);
+      y += refLines.length * 4 + 2;
+    }
+
+    if (d.oracao) {
+      doc.setFont('helvetica', 'italic');
+      doc.setTextColor(...cores.textoSecundario);
+      const orLines = doc.splitTextToSize(`Oração: ${d.oracao}`, cw);
+      doc.text(orLines, opts.margem, y);
+      y += orLines.length * 4 + 2;
+    }
+
+    doc.setDrawColor(...cores.borda);
+    doc.setLineWidth(0.15);
+    doc.line(opts.margem, y, doc.internal.pageSize.getWidth() - opts.margem, y);
+    y += 7;
+  }
+
+  const totalPages = doc.getNumberOfPages();
+  for (let p = 2; p <= totalPages; p++) {
+    doc.setPage(p);
+    desenharRodape(doc, opts, cores, p, totalPages);
+  }
+
+  const nome = titulo.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '_');
+  doc.save(`plano_${nome}.pdf`);
+}
+
+export async function exportNotesPDF(notas: NotaExport[], opcoes?: Partial<OpcoesExportPdf>): Promise<void> {
+  const conteudo: ConteudoExport[] = notas.map(n => ({
+    tipo: 'nota',
+    titulo: n.titulo,
+    conteudo: n.conteudo.replace(/<[^>]*>/g, ''),
+    metadata: { tags: n.tags, dataCriacao: n.dataCriacao },
+  }));
+
+  const opts = criarOpcoesPadrao(`Minhas Anotações (${notas.length})`, opcoes);
+  const cores = TEMAS[opts.tema];
+
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const ph = doc.internal.pageSize.getHeight();
+  const cw = doc.internal.pageSize.getWidth() - 2 * opts.margem;
+
+  desenharCapa(doc, opts, cores);
+  doc.addPage();
+
+  let y = opts.margem + (opts.incluirCabecalho ? 22 : 5);
+
+  for (let i = 0; i < conteudo.length; i++) {
+    const item = conteudo[i];
+    if (i > 0) {
+      doc.addPage();
+      y = opts.margem + (opts.incluirCabecalho ? 22 : 5);
+    }
+    if (opts.incluirCabecalho) desenharCabecalho(doc, opts, cores, item.titulo || opts.titulo);
+    desenharSecao(doc, opts, cores, item, i);
+  }
+
+  const totalPages = doc.getNumberOfPages();
+  for (let p = 2; p <= totalPages; p++) {
+    doc.setPage(p);
+    desenharRodape(doc, opts, cores, p, totalPages);
+  }
+
+  doc.save('anotacoes_sola_scriptura.pdf');
+}
+
 export interface OpcoesExportPdf {
   titulo: string;
   subtitulo?: string;

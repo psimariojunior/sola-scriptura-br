@@ -163,8 +163,8 @@ export default function FerramentasPage() {
                         <span className={`px-2 py-0.5 text-xs rounded-full font-medium ${CATEGORIA_COR[selected.categoria] || ''}`}>
                           {CATEGORIA_ICONE[selected.categoria] || ''} {selected.categoria}
                         </span>
-                        <span className={`px-2 py-0.5 text-xs rounded-full font-medium ${TESTAMENTO_COR[selected.testamento] || ''}`}>
-                          {selected.testamento === 'AT' ? 'Antigo Testamento' : selected.testamento === 'NT' ? 'Novo Testamento' : 'Ambos Testamentos'}
+                        <span className={`px-2 py-0.5 text-xs rounded-full font-medium ${TESTAMENTO_COR[selected.testamento ?? selected.periodo] || ''}`}>
+                          {(selected.testamento ?? selected.periodo) === 'AT' ? 'Antigo Testamento' : (selected.testamento ?? selected.periodo) === 'NT' ? 'Novo Testamento' : 'Ambos Testamentos'}
                         </span>
                       </div>
                       <p className="text-sm text-muted-foreground">{selected.descricao}</p>

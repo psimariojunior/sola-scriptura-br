@@ -83,22 +83,35 @@ export default function AdminPage() {
     check();
   }, [router]);
 
-  const apiFetch = async <T,>(endpoint: string, options: RequestInit = {}): Promise<T> => {
-    const token = authService.getAccessToken();
-    const res = await fetch(`${API_BASE}${endpoint}`, {
-      ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        ...options.headers,
-      },
-    });
+  const apiFetch = useCallback(async <T,>(endpoint: string, options: RequestInit = {}): Promise<T> => {
+    let token = authService.getAccessToken();
+    const makeRequest = async (accessToken: string | null) => {
+      return fetch(`${API_BASE}${endpoint}`, {
+        ...options,
+        headers: {
+          'Content-Type': 'application/json',
+          ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
+          ...options.headers,
+        },
+      });
+    };
+
+    let res = await makeRequest(token);
+
+    if (res.status === 401) {
+      const refreshed = await authService.refreshAccessToken().catch(() => false);
+      if (refreshed) {
+        token = authService.getAccessToken();
+        res = await makeRequest(token);
+      }
+    }
+
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
       throw new Error(data.message || `Erro ${res.status}`);
     }
     return res.json();
-  };
+  }, []);
 
   if (checkingAuth) {
     return (

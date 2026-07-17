@@ -55,6 +55,7 @@ export function NarrationPanel({
   const [speedOpen, setSpeedOpen] = useState(false);
 
   const verseRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
   const currentRef = state.currentVerseIndex;
 
   useEffect(() => {
@@ -79,7 +80,11 @@ export function NarrationPanel({
       if (e.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    const t = setTimeout(() => closeBtnRef.current?.focus(), 0);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      clearTimeout(t);
+    };
   }, [open, onClose]);
 
   const isActive = state.isPlaying || state.isPaused;
@@ -129,6 +134,9 @@ export function NarrationPanel({
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-sm p-0 sm:p-4"
           onClick={handleClose}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="narration-title"
         >
           <motion.div
             initial={{ y: '100%', opacity: 0.6 }}
@@ -143,7 +151,7 @@ export function NarrationPanel({
                 <Volume2 className="w-4 h-4" />
               </div>
               <div className="min-w-0 flex-1">
-                <h2 className="font-display text-sm font-semibold text-[var(--content-primary)] truncate">
+                <h2 id="narration-title" className="font-display text-sm font-semibold text-[var(--content-primary)] truncate">
                   Narração do Capítulo
                 </h2>
                 <p className="text-xs text-[var(--content-secondary)] truncate">
@@ -151,6 +159,7 @@ export function NarrationPanel({
                 </p>
               </div>
               <button
+                ref={closeBtnRef}
                 onClick={handleClose}
                 className="p-1.5 rounded-lg text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]"
                 aria-label="Fechar narração"

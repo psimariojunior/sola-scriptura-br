@@ -779,6 +779,76 @@ add('2tm', 1, 7, 'Paulo', 'Não nos deu espírito de temor — O Espírito conce
 add('2tm', 3, 16, 'Atanásio', 'Toda a Escritura é inspirada — A autoridade divina de toda a Palavra para ensino e correção.', 'teologico');
 add('2tm', 4, 7, 'Lutero', 'Combati o bom combate — O exemplo de perseverança até o fim na fé.', 'aplicacao');
 
+// AMÓS (livro antes sem comentários)
+add('am', 3, 2, 'Calvino', 'Só a vós conheci — A eleição especial de Israel traz maior responsabilidade; o privilégio da aliança exige santidade.', 'teologico');
+add('am', 3, 7, 'Matthew Henry', 'O Senhor Deus não fará coisa alguma sem revelar o seu segredo — Deus avisa Seu povo por meio dos profetas antes do juízo.', 'teologico');
+add('am', 4, 12, 'Spurgeon', 'Prepara-te para encontrares com o teu Deus — A advertência final: o juízo exige preparo espiritual.', 'aplicacao');
+add('am', 5, 21, 'Lutero', 'Aborreci as vossas festas — O culto sem justiça é repelido por Deus; a forma religiosa não substitui a obediência.', 'teologico');
+add('am', 5, 24, 'Martin Lloyd-Jones', 'Corra a justiça como as águas — A imagem da justiça como rio contínuo: ética social que brota da fé viva.', 'aplicacao');
+add('am', 9, 11, 'N.T. Wright', 'Naquele dia erguerei o tabernáculo caído de Davi — A promessa de restauração messiânica citada por Tiago em Atos 15.', 'escatologico');
+
+// MIQUÉIAS (livro antes sem comentários)
+add('mq', 5, 2, 'Calvino', 'E tu, Belém Efrata — A profecia do Messias nascido em Belém, humilde mas eterno em origem.', 'escatologico');
+add('mq', 6, 6, 'Tomás de Aquino', 'Com que me apresentarei ao Senhor? — A pergunta do culto externo cede lugar à exigência do coração quebrado.', 'teologico');
+add('mq', 6, 8, 'João Crisóstomo', 'Fazer justiça, amar a misericórdia, humilhar-te — O resumo da exigência moral de Deus para com o homem.', 'aplicacao');
+add('mq', 7, 18, 'Spurgeon', 'Quem é Deus como tu? — A celebração da graça que perdoa e lança os pecados no fundo do mar.', 'teologico');
+add('mq', 7, 7, 'Matthew Henry', 'Eu, porém, olharei para o Senhor — A atitude de espera confiante em meio à corrupção geral.', 'aplicacao');
+
+// HABACUQUE (livro antes sem comentários)
+add('hc', 1, 2, 'Calvino', 'Até quando clamarei? — O profeta expressa a angústia diante do aparente silêncio de Deus ante a injustiça.', 'teologico');
+add('hc', 2, 4, 'Lutero', 'O justo viverá pela sua fé — Versículo-chave da Reforma: a justificação é pela fé, não pelas obras.', 'teologico');
+add('hc', 2, 14, 'Matthew Henry', 'A terra se encherá do conhecimento da glória do Senhor — A visão universal da glória de Deus revelada.', 'escatologico');
+add('hc', 3, 17, 'Spurgeon', 'A figueira não florescerá — A fé que se regozija em Deus ainda que faltem as bênçãos materiais.', 'aplicacao');
+add('hc', 3, 19, 'João Crisóstomo', 'O Senhor Deus é a minha força — A imagem dos pés de cerva sobre os lugares altos: livramento e segurança.', 'teologico');
+
+// SOFONIAS (livro antes sem comentários)
+add('sf', 1, 7, 'Calvino', 'O dia do Senhor está próximo — A solenidade do juízo iminente de Deus sobre Judá e as nações.', 'escatologico');
+add('sf', 1, 14, 'Matthew Henry', 'O dia do Senhor é grande e mui terrível — A urgência do arrependimento diante da proximidade do juízo.', 'aplicacao');
+add('sf', 2, 3, 'Lutero', 'Buscai ao Senhor, vós os mansos — O chamado à humildade como caminho de livramento no dia da ira.', 'aplicacao');
+add('sf', 3, 17, 'Spurgeon', 'Ele se deleitará em ti com alegria — O Deus guerreiro que também se regozija em amor por Seu povo.', 'teologico');
+
+// TIAGO (livro antes sem comentários)
+add('jc', 1, 2, 'Calvino', 'Tende por motivo de toda alegria — As provações produzem perseverança; a perspectiva cristã inverte a lógica do sofrimento.', 'aplicacao');
+add('jc', 1, 5, 'Matthew Henry', 'Se algum de vós tem falta de sabedoria — Deus dá liberalmente a quem pede sem fazer diferença.', 'aplicacao');
+add('jc', 1, 27, 'Lutero', 'A religião pura é visitar os órfãos — A fé verdadeira se expressa em misericórdia prática e separação do mundo.', 'aplicacao');
+add('jc', 2, 17, 'João Crisóstomo', 'A fé sem obras é morta — A fé salvadora demonstra sua realidade pelo fruto das obras.', 'teologico');
+add('jc', 2, 26, 'Tomás de Aquino', 'Como o corpo sem o espírito está morto — A analogia da fé e das obras como alma e corpo unidos.', 'teologico');
+add('jc', 3, 5, 'Spurgeon', 'A língua é um pequeno membro — O poder desproporcional da palavra para bem ou para mal.', 'aplicacao');
+
+// GÊNESIS — complementares
+add('gn', 1, 2, 'Agostinho', 'O Espírito de Deus se movia — A presença do Espírito pairava sobre as águas, iniciando a obra da criação.', 'teologico');
+add('gn', 2, 7, 'Calvino', 'Formou o homem do pó — A origem terrena do corpo e o sopro divino que concede a vida humana.', 'teologico');
+add('gn', 2, 18, 'Matthew Henry', 'Não é bom que o homem esteja só — A instituição do casamento como resposta à solidão original.', 'aplicacao');
+add('gn', 6, 8, 'Lutero', 'Noé achou graça — A graça precede o mérito: Noé foi justo porque Deus o agraciou, não por obras.', 'teologico');
+add('gn', 9, 13, 'Spurgeon', 'Porei o meu arco nas nuvens — O arco-íris como sinal da aliança de Deus de não mais destruir a terra pelas águas.', 'teologico');
+
+// SALMOS — complementares
+add('sl', 19, 1, 'Calvino', 'Os céus proclamam a glória de Deus — A revelação geral da criação testemunha do Criador a todo o homem.', 'teologico');
+add('sl', 23, 1, 'Matthew Henry', 'O Senhor é o meu pastor — A imagem do pastoreio: provisão, direção e proteção do Deus que cuida.', 'teologico');
+add('sl', 23, 4, 'Lutero', 'Ainda que ande pelo vale da sombra da morte — A presença do Pastor remove o temor mesmo diante da morte.', 'aplicacao');
+add('sl', 51, 10, 'Agostinho', 'Cria em mim, ó Deus, um coração puro — O salmo penitencial de Davi após o pecado com Bate-Seba.', 'teologico');
+add('sl', 110, 1, 'Calvino', 'Assenta-te à minha direita — O Salmo messiânico citado por Cristo e pelos apóstolos sobre Sua exaltação.', 'escatologico');
+add('sl', 119, 105, 'João Crisóstomo', 'Lâmpada para os meus pés — A Palavra de Deus ilumina o caminho do crente em meio às trevas.', 'aplicacao');
+
+// JOÃO — complementares
+add('jo', 1, 14, 'Atanásio', 'O Verbo se fez carne — A encarnação: o eterno Logos assumiu a humanidade sem perder a divindade.', 'teologico');
+add('jo', 3, 16, 'Calvino', 'De tal maneira amou o mundo — O cerne do evangelho: o dom do Filho unigênito para a vida eterna dos crentes.', 'teologico');
+add('jo', 14, 6, 'Tomás de Aquino', 'Eu sou o caminho, a verdade e a vida — A exclusividade de Cristo como mediador da salvação.', 'teologico');
+add('jo', 11, 25, 'Lutero', 'Eu sou a ressurreição e a vida — A promessa de vida eterna fundamentada na pessoa de Cristo, não na lei.', 'escatologico');
+
+// ROMANOS — complementares
+add('rm', 1, 16, 'Calvino', 'Não me envergonho do evangelho — O poder de Deus para salvação de todo aquele que crê, judeu e grego.', 'teologico');
+add('rm', 3, 23, 'Lutero', 'Todos pecaram — A universalidade da culpa humana diante da glória de Deus.', 'teologico');
+add('rm', 5, 8, 'João Crisóstomo', 'Deus prova o seu amor — Cristo morreu por nós sendo ainda pecadores: a graça preexistente ao mérito.', 'teologico');
+add('rm', 8, 28, 'Matthew Henry', 'Todas as coisas cooperam para o bem — A providência soberana de Deus sobre a vida dos que O amam.', 'aplicacao');
+add('rm', 12, 2, 'Spurgeon', 'Não vos conformeis com este século — A transformação pela renovação da mente como marca do discípulo.', 'aplicacao');
+
+// MATEUS — complementares
+add('mt', 5, 3, 'Calvino', 'Bem-aventurados os pobres de espírito — O Sermão do Monte inicia pela dependência espiritual de Deus.', 'aplicacao');
+add('mt', 5, 17, 'Lutero', 'Não vim ab-rogar a lei — Cristo cumpre a Lei e os Profetas; não os anula, mas os leva ao seu intento.', 'teologico');
+add('mt', 6, 33, 'Matthew Henry', 'Buscai primeiro o reino — A prioridade do reino de Deus atrai todas as demais necessidades.', 'aplicacao');
+add('mt', 28, 19, 'Atanásio', 'Fazei discípulos de todas as nações — A missão trinitária: batizando em nome do Pai, do Filho e do Espírito.', 'teologico');
+
 export function obterComentarios(livro: string, capitulo: number, versiculo: number): Comentario[] {
   return comentarios[chave(livro, capitulo, versiculo)] || [];
 }

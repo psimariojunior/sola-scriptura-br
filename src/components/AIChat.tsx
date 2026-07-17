@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { linkificarReferenciasHTML } from '@/components/VersiculoLink';
 
 interface Mensagem {
   id: string;
@@ -391,10 +392,9 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
               }`}
             >
               {msg.role === 'assistant' ? (
-                <div
-                  className="prose prose-sm dark:prose-invert max-w-none text-sm leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: parseMarkdown(msg.conteudo) }}
-                />
+                            <div className="prose prose-sm dark:prose-invert max-w-none text-sm leading-relaxed">
+                              {linkificarReferenciasHTML(parseMarkdown(msg.conteudo), `aichat-${msg.id}`)}
+                            </div>
               ) : (
                 <p className="text-sm leading-relaxed whitespace-pre-wrap">{msg.conteudo}</p>
               )}

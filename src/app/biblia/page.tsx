@@ -1,28 +1,26 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo, useRef, lazy, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
 import { TODOS_LIVROS, traducoes, carregarTraducao, ABREV_PARA_MIDVASH, livroPorAbreviacao } from '@/data/biblia';
 import type { CapituloComparado } from '@/data/biblia';
 import {
-  BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Mic, Volume2, ListFilter
+  BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Mic, Volume2, ListFilter, WifiOff
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEstudos } from '@/components/EstudosProvider';
-import { ExportModal } from '@/components/Biblia/ExportModal';
 import { useVerseAudio } from '@/hooks/useVerseAudio';
 import { useAudioNatural } from '@/hooks/useAudioNatural';
 import { useAudioCapitulo } from '@/hooks/useAudioCapitulo';
 import ReadingPlanBanner from '@/components/ReadingPlanBanner';
 import { useFlashcards } from '@/hooks/useFlashcards';
 import { getMarcador } from '@/lib/marcadores';
-import { isOnline, cacheChapter, getCachedChapter } from '@/lib/offline';
+import { isOnline, cacheChapter, getCachedChapter, getCachedChapterDB } from '@/lib/offline';
 import { recordReading, getStats } from '@/lib/estatisticas';
 import OfflineBanner from '@/components/OfflineBanner';
 import PainelDoVersiculo from '@/components/PainelDoVersiculo';
 import { useNotas } from '@/hooks/useNotas';
-import ApresentacaoModal from '@/components/Apresentacao/ApresentacaoModal';
-import { PainelQualidadeAudio } from '@/components/PainelQualidadeAudio';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { cn } from '@/lib/utils';
 import { ChapterHeader } from '@/components/Biblia/ChapterHeader';
@@ -39,9 +37,13 @@ import { NotesPanelSection } from '@/components/Biblia/NotesPanelSection';
 import { AudioPlayers } from '@/components/Biblia/AudioPlayers';
 import { TranslationDropdown, TRAD_IDS as TRAD_IDS_IMPORT, labelMap as labelMapImport, nomeMap as nomeMapImport, tradBadgeColors as tradBadgeColorsImport } from '@/components/Biblia/TranslationDropdown';
 import { ToolsDropdown } from '@/components/Biblia/ToolsDropdown';
-import { ShareVerseModal } from '@/components/Biblia/ShareVerseModal';
-import { SettingsPanel } from '@/components/Biblia/SettingsPanel';
 import { ChapterGrid } from '@/components/Biblia/ChapterGrid';
+
+const ExportModal = dynamic(() => import('@/components/Biblia/ExportModal').then(m => ({ default: m.ExportModal })), { ssr: false });
+const ApresentacaoModal = dynamic(() => import('@/components/Apresentacao/ApresentacaoModal'), { ssr: false });
+const PainelQualidadeAudio = dynamic(() => import('@/components/PainelQualidadeAudio').then(m => ({ default: m.PainelQualidadeAudio })), { ssr: false });
+const ShareVerseModal = dynamic(() => import('@/components/Biblia/ShareVerseModal').then(m => ({ default: m.ShareVerseModal })), { ssr: false });
+const SettingsPanel = dynamic(() => import('@/components/Biblia/SettingsPanel').then(m => ({ default: m.SettingsPanel })), { ssr: false });
 
 const TRAD_IDS = TRAD_IDS_IMPORT;
 const labelMap = labelMapImport;
@@ -130,6 +132,7 @@ export default function BibliaPage() {
   const [viewMode, setViewMode] = useState<ViewMode>('single');
   const [data, setData] = useState<CapituloComparado[]>([]);
   const [loading, setLoading] = useState(false);
+  const [offlineUnavailable, setOfflineUnavailable] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -189,13 +192,21 @@ export default function BibliaPage() {
     const livroAbrev = livro.abreviacao;
     const cap = capituloIdx + 1;
     if (!isOnline()) {
-      const cached = selectedTrads.map(trad => {
-        const verses = getCachedChapter(livroAbrev, cap, trad);
-        if (!verses || verses.length === 0) return null;
-        return { traducao: trad, versiculos: verses.map((t, i) => ({ numero: i + 1, texto: t })) };
-      }).filter(Boolean) as CapituloComparado[];
-      if (cached.length > 0) { setData(cached); setLoading(false); return; }
+      const cached = await Promise.all(
+        selectedTrads.map(async (trad) => {
+          const verses = getCachedChapter(livroAbrev, cap, trad) ?? (await getCachedChapterDB(livroAbrev, cap, trad));
+          if (!verses || verses.length === 0) return null;
+          return { traducao: trad, versiculos: verses.map((t, i) => ({ numero: i + 1, texto: t })) };
+        })
+      );
+      const filtered = cached.filter(Boolean) as CapituloComparado[];
+      if (filtered.length > 0) { setData(filtered); setOfflineUnavailable(false); setLoading(false); return; }
+      setData([]);
+      setOfflineUnavailable(true);
+      setLoading(false);
+      return;
     }
+    setOfflineUnavailable(false);
     const result = await carregarMulti(livroAbrev, cap, selectedTrads);
     setData(result);
     for (const item of result) {
@@ -546,6 +557,14 @@ const toggleTrad = (id: string) => {
                         <div className="skeleton skeleton-text flex-1 rounded" style={{ width: `${60 + Math.random() * 40}%` }} />
                       </div>
                     ))}
+                  </div>
+                ) : offlineUnavailable ? (
+                  <div className="text-center py-20">
+                    <WifiOff className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} />
+                    <p className="text-lg text-[var(--content-muted)]">Capítulo não disponível offline</p>
+                    <p className="text-sm text-[var(--content-muted)] mt-2">
+                      Este capítulo não foi baixado para leitura offline. Conecte-se à internet ou baixe as traduções em &quot;Gerenciar&quot; no aviso offline.
+                    </p>
                   </div>
                 ) : temDados ? (
                   <AnimatePresence mode="wait">

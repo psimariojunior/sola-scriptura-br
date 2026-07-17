@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, FileText, BookOpen, Loader2, Check, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -23,7 +23,23 @@ export function ExportModal({ open, onClose, bookName, chapter, data }: ExportMo
   const [processando, setProcessando] = useState(false);
   const [concluido, setConcluido] = useState(false);
 
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const firstFocusRef = useRef<HTMLButtonElement>(null);
+
   const traducoes = data.map(d => d.traducao);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    const t = setTimeout(() => firstFocusRef.current?.focus(), 0);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      clearTimeout(t);
+    };
+  }, [open, onClose]);
 
   async function fazerExportacao() {
     if (data.length === 0) return;
@@ -65,8 +81,12 @@ export function ExportModal({ open, onClose, bookName, chapter, data }: ExportMo
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
           onClick={onClose}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="export-modal-title"
         >
           <motion.div
+            ref={dialogRef}
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
@@ -75,10 +95,11 @@ export function ExportModal({ open, onClose, bookName, chapter, data }: ExportMo
             className="w-full max-w-md bg-[var(--surface-raised)] border border-[var(--border)] rounded-2xl shadow-2xl overflow-hidden"
           >
             <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border)]">
-              <h2 className="font-display text-lg font-semibold text-[var(--content-primary)]">
+              <h2 id="export-modal-title" className="font-display text-lg font-semibold text-[var(--content-primary)]">
                 Exportar {bookName} {chapter}
               </h2>
               <button
+                ref={firstFocusRef}
                 onClick={onClose}
                 className="p-1.5 rounded-lg text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]"
                 aria-label="Fechar"

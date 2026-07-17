@@ -188,12 +188,26 @@ export function ShareVerseModal({ open, onClose, verse }: ShareVerseModalProps) 
   const [busy, setBusy] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const previewRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
 
   const theme = THEMES[themeIdx];
 
   const redraw = useCallback(() => {
     if (canvasRef.current && verse) drawCanvas(canvasRef.current, verse, theme);
   }, [verse, theme]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    const t = setTimeout(() => closeRef.current?.focus(), 0);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      clearTimeout(t);
+    };
+  }, [open, onClose]);
 
   useEffect(() => {
     if (open && verse) redraw();
@@ -276,7 +290,7 @@ export function ShareVerseModal({ open, onClose, verse }: ShareVerseModalProps) 
           onClick={onClose}
           role="dialog"
           aria-modal="true"
-          aria-label="Compartilhar versículo"
+          aria-labelledby="share-verse-title"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -289,9 +303,9 @@ export function ShareVerseModal({ open, onClose, verse }: ShareVerseModalProps) 
             <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border)]/50 sticky top-0 bg-[var(--surface-raised)] z-10">
               <div className="flex items-center gap-2.5">
                 <Share2 className="w-5 h-5 text-[var(--brand-default)]" />
-                <h2 className="font-display text-lg font-semibold text-[var(--content-primary)]">Compartilhar versículo</h2>
+                <h2 id="share-verse-title" className="font-display text-lg font-semibold text-[var(--content-primary)]">Compartilhar versículo</h2>
               </div>
-              <button onClick={onClose} className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)]" aria-label="Fechar">
+              <button ref={closeRef} onClick={onClose} className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)]" aria-label="Fechar">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -304,7 +318,12 @@ export function ShareVerseModal({ open, onClose, verse }: ShareVerseModalProps) 
                   style={{ background: theme.swatch }}
                 >
                   <div className="absolute inset-0" style={{ background: theme.overlay }} />
-                  <canvas ref={canvasRef} className="w-full h-full block" />
+                  <canvas
+                    ref={canvasRef}
+                    className="w-full h-full block"
+                    role="img"
+                    aria-label={verse ? `Imagem para compartilhar: ${verse.texto} (${verse.livroNome} ${verse.capitulo}:${verse.versiculo}, ${verse.traducao.toUpperCase()})` : 'Pré-visualização do versículo'}
+                  />
                 </div>
                 <p className="mt-2 text-xs text-[var(--content-muted)] tabular-nums">
                   {verse.livroNome} {verse.capitulo}:{verse.versiculo} · {verse.traducao.toUpperCase()}

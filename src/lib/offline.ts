@@ -67,23 +67,52 @@ export function cacheChapter(livro: string, capitulo: number, traducao: string, 
     store[chapterKey(livro, capitulo, traducao)] = { data: verses, timestamp: Date.now() };
     localStorage.setItem(CACHE_KEY, JSON.stringify(store));
   } catch {}
+  try {
+    void saveChapterDB(livro, capitulo, traducao, verses);
+  } catch {}
 }
 
 export function getCachedChapter(livro: string, capitulo: number, traducao: string): string[] | null {
   try {
     const raw = localStorage.getItem(CACHE_KEY);
-    if (!raw) return null;
-    const store: CacheStore = JSON.parse(raw);
-    const entry = store[chapterKey(livro, capitulo, traducao)];
-    if (!entry) return null;
-    if (Date.now() - entry.timestamp > CACHE_EXPIRY) {
-      delete store[chapterKey(livro, capitulo, traducao)];
-      localStorage.setItem(CACHE_KEY, JSON.stringify(store));
-      return null;
+    if (raw) {
+      const store: CacheStore = JSON.parse(raw);
+      const entry = store[chapterKey(livro, capitulo, traducao)];
+      if (entry && Date.now() - entry.timestamp <= CACHE_EXPIRY) {
+        return entry.data;
+      }
     }
-    return entry.data;
+  } catch {}
+  return null;
+}
+
+export async function getCachedChapterDB(
+  livro: string,
+  capitulo: number,
+  traducao: string
+): Promise<string[] | null> {
+  try {
+    return await getChapterDB(livro, capitulo, traducao);
   } catch {
     return null;
+  }
+}
+
+export async function hasOfflineData(
+  livro: string,
+  capitulo: number,
+  traducao: string
+): Promise<boolean> {
+  try {
+    const db = await openDB();
+    return new Promise((resolve) => {
+      const tx = db.transaction(STORE_CHAPTERS, 'readonly');
+      const req = tx.objectStore(STORE_CHAPTERS).get(chapterKey(livro, capitulo, traducao));
+      req.onsuccess = () => resolve(!!req.result?.verses?.length);
+      req.onerror = () => resolve(false);
+    });
+  } catch {
+    return false;
   }
 }
 

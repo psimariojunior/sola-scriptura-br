@@ -161,6 +161,7 @@ export default function ConcordanciaPage() {
                 <input
                   type="text"
                   placeholder="Buscar palavra (ex.: graça, amor, fé, salvação)..."
+                  aria-label="Buscar palavra na concordância"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   autoFocus

@@ -12,6 +12,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { useRouter, usePathname } from 'next/navigation';
 import { trackPageView } from '@/lib/analytics';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { registerServiceWorker } from '@/lib/offline';
 import '@/lib/i18n';
 
 const MobilePerformanceMonitor = lazy(() => import('@/components/MobilePerformanceMonitor'));
@@ -22,6 +23,17 @@ const HotkeysDialog = lazy(() => import('@/components/HotkeysDialog').then(m => 
 const OnboardingModal = lazy(() => import('@/components/OnboardingModal').then(m => ({ default: m.OnboardingModal, resetOnboarding: m.resetOnboarding })));
 
 function ServiceWorkerRegistration() {
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('serviceWorker' in navigator)) return;
+    const register = () => {
+      registerServiceWorker().catch(() => {});
+    };
+    if (document.readyState === 'complete') {
+      register();
+    } else {
+      window.addEventListener('load', register, { once: true });
+    }
+  }, []);
   return null;
 }
 

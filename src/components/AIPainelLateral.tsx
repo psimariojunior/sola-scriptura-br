@@ -18,6 +18,7 @@ import {
 import { useAI } from '@/hooks/useAI';
 import { type AIMessage } from '@/contexts/AIContext';
 import { useToast } from '@/hooks/useToast';
+import { linkificarReferenciasHTML } from '@/components/VersiculoLink';
 
 function parseMarkdown(texto: string): string {
   let html = texto;
@@ -294,12 +295,12 @@ export function AIPainelLateral({ onOpenChange }: AIPainelLateralProps) {
                             }`}
                           >
                             {msg.role === 'assistant' ? (
-                              <div
-                                className="prose prose-sm dark:prose-invert max-w-none text-sm leading-relaxed"
-                                dangerouslySetInnerHTML={{
-                                  __html: parseMarkdown(msg.conteudo || (msg.status === 'streaming' ? '' : 'Sem conteúdo')),
-                                }}
-                              />
+                              <div className="prose prose-sm dark:prose-invert max-w-none text-sm leading-relaxed">
+                                {linkificarReferenciasHTML(
+                                  parseMarkdown(msg.conteudo || (msg.status === 'streaming' ? '' : 'Sem conteúdo')),
+                                  `aipainel-${msg.id}`,
+                                )}
+                              </div>
                             ) : (
                               <p className="text-sm leading-relaxed whitespace-pre-wrap">
                                 {msg.conteudo}

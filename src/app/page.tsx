@@ -11,11 +11,12 @@ const InstallBanner = dynamic(() => import('@/components/InstallBanner'), { ssr:
 import {
   BookOpen, Map, Brain, ScrollText, ArrowRight, Sparkles, Columns2,
   Globe, Shield, Heart, MonitorPlay, Music, Zap, Play,
-  CheckCircle2, ChevronDown, Tv, Smartphone, Cast,
+  CheckCircle2, ChevronDown, Tv, Smartphone, Cast, Languages,
 } from 'lucide-react';
 import {
   motion, useScroll, useTransform, useInView, AnimatePresence,
 } from 'framer-motion';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 import ScrollReveal from '@/components/ScrollReveal';
 
 const features = [
@@ -87,6 +88,13 @@ const trustBadges = [
   { label: 'Sem anúncios', icon: Shield },
   { label: 'Código aberto', icon: Globe },
   { label: 'Dados privados', icon: Heart },
+];
+
+const provasSociais = [
+  { icon: BookOpen, label: '66 livros' },
+  { icon: Languages, label: '6 traduções' },
+  { icon: Brain, label: 'IA teológica' },
+  { icon: Smartphone, label: 'Modo offline' },
 ];
 
 const heroVerses = [
@@ -187,13 +195,13 @@ function RotatingVerse() {
   );
 }
 
-function HeroParticles() {
+function HeroParticles({ disabled = false }: { disabled?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || disabled) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -240,7 +248,7 @@ function HeroParticles() {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener('resize', resize);
     };
-  }, []);
+  }, [disabled]);
 
   return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" aria-hidden="true" />;
 }
@@ -349,6 +357,7 @@ export default function Home() {
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
   const heroY = useTransform(scrollY, [0, 400], [0, 60]);
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -361,7 +370,8 @@ export default function Home() {
         aria-label="Seção principal — Apresentação do Sola Scriptura"
       >
         <div className="hero-particles" aria-hidden="true" />
-        <HeroParticles />
+        <div className="hero-aurora" aria-hidden="true" />
+        <HeroParticles disabled={prefersReducedMotion} />
 
         <motion.div
           style={{ opacity: heroOpacity, y: heroY }}
@@ -430,6 +440,13 @@ export default function Home() {
               <Play className="w-4 h-4 fill-current" />
               Apresentar em Tela
             </Link>
+            <Link
+              href="/ia"
+              className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-[15px] font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] hover:bg-primary/[0.12] hover:border-primary/50 transition-all duration-300"
+            >
+              <Brain className="w-4 h-4 text-primary" strokeWidth={1.75} />
+              Conheça a IA
+            </Link>
           </motion.div>
 
           <RotatingVerse />
@@ -450,6 +467,34 @@ export default function Home() {
             <ChevronDown className="w-4 h-4 text-muted-foreground" />
           </motion.div>
         </motion.div>
+      </section>
+
+      {/* PROVAS SOCIAIS */}
+      <section
+        className="relative py-6 sm:py-8 px-4 sm:px-6"
+        aria-label="Destaques do Sola Scriptura"
+      >
+        <div className="max-w-5xl mx-auto">
+          <ScrollReveal>
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-10">
+              {provasSociais.map((p, i) => {
+                const Icon = p.icon;
+                return (
+                  <motion.div
+                    key={p.label}
+                    initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + i * 0.08, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="flex items-center gap-2 text-muted-foreground"
+                  >
+                    <Icon className="w-4 h-4 text-primary" strokeWidth={1.75} />
+                    <span className="text-sm font-medium tracking-tight">{p.label}</span>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </ScrollReveal>
+        </div>
       </section>
 
       {/* STATS */}

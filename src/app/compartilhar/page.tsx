@@ -8,62 +8,13 @@ import { Share2, Copy, Check, MessageCircle, Twitter, Instagram, Download, Image
 import Link from 'next/link';
 import ScrollReveal from '@/components/ScrollReveal';
 import { CompartilharEstudo } from '@/components/CompartilharEstudo';
+import { versiculosDestaque } from '@/data/versiculosDestaque';
 
-const versiculosPredefinidos = [
-  'João 3:16',
-  'Salmos 23:1',
-  'Filipenses 4:13',
-  'Romanos 8:28',
-  'Jeremias 29:11',
-  'Isaías 41:10',
-  'Efésios 2:8',
-  'Provérbios 3:5-6',
-  'Mateus 11:28',
-  'Gálatas 2:20',
-];
+const versiculosPredefinidos = versiculosDestaque.map((v) => v.referencia);
 
-const textosVersiculos: Record<string, { texto: string; referencia: string }> = {
-  'joão 3:16': {
-    texto: 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.',
-    referencia: 'João 3:16',
-  },
-  'salmos 23:1': {
-    texto: 'O Senhor é o meu pastor; nada me faltará.',
-    referencia: 'Salmos 23:1',
-  },
-  'filipenses 4:13': {
-    texto: 'Posso todas as coisas naquele que me fortalece.',
-    referencia: 'Filipenses 4:13',
-  },
-  'romanos 8:28': {
-    texto: 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito.',
-    referencia: 'Romanos 8:28',
-  },
-  'jeremias 29:11': {
-    texto: 'Porque eu bem sei os pensamentos que penso de vós, diz o Senhor; pensamentos de paz, e não de mal, para vos dar o fim que esperais.',
-    referencia: 'Jeremias 29:11',
-  },
-  'isaías 41:10': {
-    texto: 'Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus; eu te fortaleço, e te ajudo, e te sustento com a destra da minha justiça.',
-    referencia: 'Isaías 41:10',
-  },
-  'efésios 2:8': {
-    texto: 'Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus.',
-    referencia: 'Efésios 2:8',
-  },
-  'provérbios 3:5-6': {
-    texto: 'Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitará as tuas veredas.',
-    referencia: 'Provérbios 3:5-6',
-  },
-  'mateus 11:28': {
-    texto: 'Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei.',
-    referencia: 'Mateus 11:28',
-  },
-  'gálatas 2:20': {
-    texto: 'Já não sou eu que vivo, mas Cristo vive em mim. E se eu vivo na terra, vivo pela fé no Filho de Deus, que me amou e a si mesmo se entregou por mim.',
-    referencia: 'Gálatas 2:20',
-  },
-};
+const textosVersiculos: Record<string, { texto: string; referencia: string }> = Object.fromEntries(
+  versiculosDestaque.map((v) => [v.referencia.toLowerCase(), { texto: v.texto, referencia: v.referencia }])
+);
 
 export default function CompartilharPage() {
   const [inputVersiculo, setInputVersiculo] = useState('');

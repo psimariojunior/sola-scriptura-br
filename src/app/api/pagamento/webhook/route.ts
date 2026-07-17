@@ -1,17 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verificarPagamento, MP_ACCESS_TOKEN } from '@/lib/assinatura';
+import { gravarPagamentoAprovado } from '@/lib/supabaseServer';
 
 export const runtime = 'nodejs';
 
-// Webhook de notificacoes do Mercado Pago.
+// Webhook de notificacoes do Mercado Pago (VERIFICACAO REAL no servidor).
 // O Mercado Pago envia POST com { type, data: { id } }.
-//
-// TODO(integracao-real): este app usa auth local (localStorage) e nao possui
-// tabela de usuarios no servidor. Para liberar o "Acesso Total" automaticamente
-// apos o pagamento, sera necessario: (1) vincular o external_reference ao email
-// do usuario no momento da criacao da preferencia (tabela no backend/NestJS),
-// (2) aqui, ao receber o pagamento aprovado, marcar o usuario como acessoTotal
-// na base. Por enquanto, apenas registramos a notificacao e retornamos 200.
+// Fluxo: recebe o id -> consulta MP (verificarPagamento) -> se aprovado,
+// grava pagamento aprovado e libera acesso_total no Supabase via service_role.
+// Retorna 200 sempre para evitar reenvios do gateway.
 export async function POST(request: NextRequest) {
   let body: any;
   try {
@@ -25,14 +22,28 @@ export async function POST(request: NextRequest) {
   if (paymentId && MP_ACCESS_TOKEN) {
     const pagamento = await verificarPagamento(paymentId, MP_ACCESS_TOKEN);
     if (pagamento && pagamento.status === 'approved') {
-      // TODO(integracao-real): liberar acessoTotal para o usuario vinculado a
-      // pagamento.external_reference (ex.: via tabela de pedidos no backend).
+      const email = pagamento?.payer?.email;
+      const externalReference = pagamento?.external_reference;
+
       console.log(
         '[webhook] Pagamento aprovado:',
         paymentId,
+        'email:',
+        email,
         'external_reference:',
-        pagamento.external_reference,
+        externalReference,
       );
+
+      if (email && externalReference) {
+        try {
+          await gravarPagamentoAprovado(email, externalReference);
+          console.log('[webhook] Acesso Total liberado para:', email);
+        } catch (err: any) {
+          console.error('[webhook] Falha ao gravar aprovacao no Supabase:', err?.message);
+        }
+      } else {
+        console.warn('[webhook] Pagamento aprovado sem email/external_reference completos.');
+      }
     } else {
       console.log('[webhook] Pagamento recebido:', paymentId, pagamento?.status);
     }

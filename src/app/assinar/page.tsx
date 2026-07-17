@@ -42,6 +42,8 @@ function AssinarContent() {
       setJaTemAcesso(true);
       setConfirmado(true);
       window.history.replaceState({}, '', '/assinar');
+      // Confirma contra o servidor (best-effort) para manter a fonte de verdade.
+      authService.sincronizarAcessoTotal().catch(() => {});
     }
   }, [searchParams]);
 

@@ -34,10 +34,13 @@ export function criarPreferenciaMP(
   valor: number = PRECO,
   descricao: string = PRODUTO,
   email: string = '',
+  externalReference?: string,
 ): PreferenciaMP {
-  const external_reference = `ssb_at_${Date.now()}_${Math.random()
-    .toString(36)
-    .slice(2, 8)}`;
+  // Usa o external_reference informado (gerado em /criar) ou gera um novo.
+  // O external_reference e' o id de pedido que o webhook usara para casar o pagamento.
+  const ref =
+    externalReference ||
+    `ssb_at_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 
   return {
     items: [
@@ -50,13 +53,13 @@ export function criarPreferenciaMP(
     ],
     payer: { email: email || '' },
     back_urls: {
-      success: `${SITE_URL}/assinar?status=sucesso&ref=${external_reference}`,
+      success: `${SITE_URL}/assinar?status=sucesso&ref=${ref}`,
       failure: `${SITE_URL}/assinar?status=erro`,
       pending: `${SITE_URL}/assinar?status=pendente`,
     },
     notification_url: `${SITE_URL}/api/pagamento/webhook`,
     statement_descriptor: 'SOLA SCRIPTURA',
-    external_reference,
+    external_reference: ref,
   };
 }
 

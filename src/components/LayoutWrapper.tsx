@@ -13,6 +13,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { trackPageView } from '@/lib/analytics';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { registerServiceWorker } from '@/lib/offline';
+import { authService } from '@/lib/auth';
 import '@/lib/i18n';
 
 const MobilePerformanceMonitor = lazy(() => import('@/components/MobilePerformanceMonitor'));
@@ -32,6 +33,18 @@ function ServiceWorkerRegistration() {
       register();
     } else {
       window.addEventListener('load', register, { once: true });
+    }
+  }, []);
+  return null;
+}
+
+// Sincroniza o "Acesso Total" real do servidor (Supabase) com o cache local,
+// uma vez ao montar, caso o usuario esteja autenticado.
+function SincronizacaoAcessoTotal() {
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (authService.isAutenticado()) {
+      authService.sincronizarAcessoTotal().catch(() => {});
     }
   }, []);
   return null;
@@ -106,6 +119,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
     <ThemeProvider>
       <AuthProvider>
         <ServiceWorkerRegistration />
+        <SincronizacaoAcessoTotal />
         <PageViewTracker />
         <TooltipProvider delayDuration={300}>
           <AIProvider>

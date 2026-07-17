@@ -421,6 +421,34 @@ class AuthService {
     return !!this.usuario?.acessoTotal;
   }
 
+  // Confirma o "Acesso Total" real no servidor (Supabase) e, se confirmado,
+  // persiste a flag no localStorage para atualizar a UI instantaneamente.
+  // O localStorage continua sendo o cache de UX; o servidor e' a fonte de verdade.
+  // Em caso de falha de rede/offline, mantem o valor atual do localStorage.
+  async sincronizarAcessoTotal(): Promise<void> {
+    if (typeof window === 'undefined') return;
+    if (!this.isAutenticado()) return;
+
+    const email = this.usuario?.email;
+    if (!email) return;
+
+    try {
+      const res = await fetch(
+        '/api/pagamento/status?email=' + encodeURIComponent(email),
+        { method: 'GET', headers: { 'Content-Type': 'application/json' } },
+      );
+      if (!res.ok) return;
+      const data = await res.json();
+      if (data && data.acessoTotal === true) {
+        if (!this.usuario?.acessoTotal) {
+          this.liberarAcessoTotal();
+        }
+      }
+    } catch {
+      // Offline/rede indisponivel: mantem o valor do localStorage.
+    }
+  }
+
   liberarAcessoTotal(): void {
     if (typeof window === 'undefined') return;
     if (!this.usuario) return;

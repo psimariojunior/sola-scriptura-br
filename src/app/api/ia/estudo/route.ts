@@ -99,7 +99,7 @@ REGRAS:
   } catch (erro: any) {
     console.error('Erro ao gerar estudo:', erro.message);
     return NextResponse.json(
-      { erro: 'Falha ao gerar estudo. Tente novamente.' },
+      { erro: 'Falha ao gerar estudo. Tente novamente.', detalhes: erro.message },
       { status: 500 }
     );
   }

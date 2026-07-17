@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
       if (erro.message === 'credits_missing') {
         return NextResponse.json(gerarRespostaLocal(consulta, tradicao));
       }
-      console.error('LLM falhou, usando resposta local:', erro.message);
+      console.error('LLM falhou, usando resposta local:', erro.message, erro.cause);
     }
   }
 

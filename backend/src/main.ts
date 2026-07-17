@@ -11,9 +11,52 @@ import { TransformInterceptor } from './common/interceptors/transform.intercepto
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: ['error', 'warn', 'log'],
+  });
   const configService = app.get(ConfigService);
   const logger = new Logger('SolaScriptura');
+
+  // Graceful shutdown
+  const server = app.getHttpServer();
+  
+  async function gracefulShutdown(signal: string) {
+    logger.log(`${signal} received. Starting graceful shutdown...`);
+    
+    // Stop accepting new connections
+    server.close(() => {
+      logger.log('HTTP server closed');
+    });
+
+    // Force close after 10s
+    setTimeout(() => {
+      logger.error('Forced shutdown after timeout');
+      process.exit(1);
+    }, 10000);
+
+    try {
+      await app.close();
+      logger.log('Application closed gracefully');
+      process.exit(0);
+    } catch (err) {
+      logger.error('Error during graceful shutdown', err);
+      process.exit(1);
+    }
+  }
+
+  process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+  process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
+  // Catch unhandled rejections
+  process.on('unhandledRejection', (reason: unknown) => {
+    logger.error('Unhandled Promise Rejection:', reason);
+  });
+
+  // Catch uncaught exceptions but don't crash (PM2 will restart)
+  process.on('uncaughtException', (err) => {
+    logger.error('Uncaught Exception:', err);
+    // Don't exit - let PM2 handle restart if needed
+  });
 
   app.setGlobalPrefix('api/v1');
 

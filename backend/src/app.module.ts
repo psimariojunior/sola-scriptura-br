@@ -63,6 +63,17 @@ import { SaudeController } from './modules/saude.controller';
           synchronize: false,
           ssl: config.get('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
           logging: config.get('NODE_ENV') !== 'production',
+          // Connection pool settings
+          poolSize: 10,
+          extra: {
+            max: 10,
+            min: 2,
+            idleTimeoutMillis: 30000,
+            connectionTimeoutMillis: 10000,
+          },
+          // Retry on connection loss
+          retryAttempts: 3,
+          retryDelay: 3000,
         };
       },
     }),

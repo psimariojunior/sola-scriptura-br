@@ -78,7 +78,7 @@ export function extrairReferencias(texto: string): ReferenciaEncontrada[] {
 function construirHref(livro: string, capitulo: number, versiculo?: number): string {
   const params = new URLSearchParams();
   params.set('livro', livro);
-  params.set('cap', String(capitulo));
+  params.set('capitulo', String(capitulo));
   if (versiculo !== undefined) params.set('versiculo', String(versiculo));
   return `/biblia?${params.toString()}`;
 }
@@ -115,40 +115,53 @@ export function VersiculoLink({ referencia, children, className = '' }: Versicul
 
 // Recebe HTML gerado por parseMarkdown e transforma apenas as referências que
 // aparecem em TEXTO (fora de tags), preservando toda a marcação existente.
-// Evita duplicar links já presentes dentro de atributos href.
+// Evita duplicar links já presentes dentro de atributos href e IGNORA texto
+// dentro de elementos <code> e <pre> (blocos de código).
 export function linkificarReferenciasHTML(html: string, keyPrefix = 'ref'): React.ReactNode[] {
-  const nos: React.ReactNode[] = [];
-  // Divide o HTML em segmentos de texto e tags
-  const partes = html.split(/(<[^>]+>)/g);
-  let key = 0;
-
-  for (const parte of partes) {
-    if (parte.startsWith('<')) {
-      nos.push(parte);
-      continue;
-    }
-    if (!parte.trim()) {
-      nos.push(parte);
-      continue;
-    }
-    const refs = extrairReferencias(parte);
-    if (refs.length === 0) {
-      nos.push(parte);
-      continue;
-    }
-    let ultimoFim = 0;
-    refs.forEach((ref) => {
-      if (ref.indice > ultimoFim) nos.push(parte.slice(ultimoFim, ref.indice));
-      nos.push(
-        <VersiculoLink key={`${keyPrefix}-${key++}`} referencia={ref}>
-          {ref.textoOriginal}
-        </VersiculoLink>,
-      );
-      ultimoFim = ref.indice + ref.tamanho;
-    });
-    if (ultimoFim < parte.length) nos.push(parte.slice(ultimoFim));
+  if (typeof window === 'undefined' || typeof DOMParser === 'undefined') {
+    // Fallback sem DOM: retorna o HTML como string (raro em cliente).
+    return [html];
   }
 
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const nos: React.ReactNode[] = [];
+  let key = 0;
+
+  const walk = (node: Node) => {
+    node.childNodes.forEach((child) => {
+      if (child.nodeType === Node.ELEMENT_NODE) {
+        const el = child as HTMLElement;
+        const tag = el.tagName.toLowerCase();
+        // Pular completamente blocos de código.
+        if (tag === 'code' || tag === 'pre') return;
+        walk(el);
+      } else if (child.nodeType === Node.TEXT_NODE) {
+        const texto = child.textContent ?? '';
+        if (!texto.trim()) {
+          nos.push(texto);
+          return;
+        }
+        const refs = extrairReferencias(texto);
+        if (refs.length === 0) {
+          nos.push(texto);
+          return;
+        }
+        let ultimoFim = 0;
+        refs.forEach((ref) => {
+          if (ref.indice > ultimoFim) nos.push(texto.slice(ultimoFim, ref.indice));
+          nos.push(
+            <VersiculoLink key={`${keyPrefix}-${key++}`} referencia={ref}>
+              {ref.textoOriginal}
+            </VersiculoLink>,
+          );
+          ultimoFim = ref.indice + ref.tamanho;
+        });
+        if (ultimoFim < texto.length) nos.push(texto.slice(ultimoFim));
+      }
+    });
+  };
+
+  walk(doc.body);
   return nos;
 }
 

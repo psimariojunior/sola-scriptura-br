@@ -8,10 +8,13 @@ import ScrollReveal from '@/components/ScrollReveal';
 
 const ferramentas = [
   { href: '/biblia', label: 'Bíblia' },
+  { href: '/comparar', label: 'Comparar Traduções' },
   { href: '/pesquisa', label: 'Pesquisa' },
   { href: '/exegese', label: 'Exegese' },
   { href: '/idiomas', label: 'Línguas Originais' },
-  { href: '/ferramentas', label: 'Atlas Bíblico' },
+  { href: '/ferramentas', label: 'Ferramentas' },
+  { href: '/ferramentas/critica-textual', label: 'Crítica Textual' },
+  { href: '/ferramentas/concordancia', label: 'Concordância' },
 ];
 
 const estudo = [
@@ -19,15 +22,17 @@ const estudo = [
   { href: '/historia', label: 'História Bíblica' },
   { href: '/cronologia', label: 'Cronologia' },
   { href: '/personagens', label: 'Personagens' },
+  { href: '/atlas', label: 'Atlas Bíblico' },
   { href: '/ia', label: 'Assistente IA' },
 ];
 
 const recursos = [
   { href: '/estudos', label: 'Meus Estudos' },
+  { href: '/planos', label: 'Planos de Leitura' },
   { href: '/devocional', label: 'Devocional Diário' },
   { href: '/flashcards', label: 'Flashcards' },
+  { href: '/quiz', label: 'Quiz Bíblico' },
   { href: '/estatisticas', label: 'Estatísticas' },
-  { href: '/admin', label: 'Painel Admin' },
   { href: '/auth/login', label: 'Minha Conta' },
 ];
 
@@ -156,7 +161,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground text-center md:text-left">
-              Sola Scriptura — Estudo Bíblico Acadêmico · Feito com <Heart className="w-3 h-3 inline text-red-500 fill-current" /> e rigor
+              Sola Scriptura — Estudo Bíblico Acadêmico · Feito com <Heart className="w-3 h-3 inline text-red-500 fill-current" /> para o povo de Deus · 100% gratuito
             </p>
             <div className="flex items-center gap-4">
               <button

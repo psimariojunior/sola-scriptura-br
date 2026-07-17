@@ -12,6 +12,7 @@ import {
   BookOpen, Map, Brain, ScrollText, ArrowRight, Sparkles, Columns2,
   Globe, Shield, Heart, MonitorPlay, Music, Zap, Play,
   CheckCircle2, ChevronDown, Tv, Smartphone, Cast, Languages,
+  BookMarked, GraduationCap, WifiOff, Share2, Gift, GitCompareArrows,
 } from 'lucide-react';
 import {
   motion, useScroll, useTransform, useInView, AnimatePresence,
@@ -56,6 +57,63 @@ const features = [
     desc: 'Projete versículos em TVs e projetores via QR code — sem instalar nada.',
     accent: 'gold',
     highlight: true,
+  },
+  {
+    icon: Languages,
+    title: 'Línguas Originais (Strong)',
+    desc: 'Grego Koiné e Hebraico Bíblico com léxico Strong palavra por palavra.',
+    accent: 'violet',
+  },
+  {
+    icon: Brain,
+    title: 'Concordância & Crítica Textual',
+    desc: 'Pesquise cada palavra em toda a Bíblia e compare manuscritos antigos.',
+    accent: 'cyan',
+  },
+  {
+    icon: BookMarked,
+    title: 'Flashcards & Memorização',
+    desc: 'Memorize versículos e conceitos com decks inteligentes e revisão espaçada.',
+    accent: 'rose',
+  },
+  {
+    icon: GraduationCap,
+    title: 'Planos de Leitura',
+    desc: 'Cronogramas estruturados para leitura diária de toda a Escritura.',
+    accent: 'emerald',
+  },
+  {
+    icon: WifiOff,
+    title: 'Modo Offline',
+    desc: 'Leve a Bíblia e seus estudos para qualquer lugar, mesmo sem internet.',
+    accent: 'slate',
+  },
+  {
+    icon: Share2,
+    title: 'Compartilhar Versículos',
+    desc: 'Crie imagens lindas de versículos para compartilhar em redes sociais.',
+    accent: 'amber',
+  },
+];
+
+const comoEstudar = [
+  {
+    step: '01',
+    title: 'Escolha sua tradução',
+    desc: 'Selecione entre ARC, NVI, ARA, ACF, KJV e WEB. Compare versões lado a lado para entender cada nuance.',
+    icon: Columns2,
+  },
+  {
+    step: '02',
+    title: 'Explore as línguas originais',
+    desc: 'Mergulhe no grego e hebraico com o léxico Strong, concordância e crítica textual — direto na página.',
+    icon: Languages,
+  },
+  {
+    step: '03',
+    title: 'Pergunte à IA',
+    desc: 'Tire dúvidas teológicas com o assistente treinado em exegese reformada, fundamentado na Escritura.',
+    icon: Brain,
   },
 ];
 
@@ -378,6 +436,20 @@ export default function Home() {
           className="max-w-6xl mx-auto text-center relative z-10 w-full"
         >
           <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05, duration: 0.6 }}
+            className="inline-flex items-center gap-2 mb-5"
+          >
+            <span className="relative inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/15 to-emerald-500/5 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300">
+              <Gift className="w-3.5 h-3.5" />
+              <span className="text-[11px] font-bold tracking-[0.12em] uppercase">100% Gratuito</span>
+              <span className="text-[11px] font-medium text-emerald-700/70 dark:text-emerald-300/70">·</span>
+              <span className="text-[11px] font-semibold tracking-[0.05em]">Sem assinatura</span>
+            </span>
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.6 }}
@@ -543,6 +615,57 @@ export default function Home() {
         </div>
       </section>
 
+      {/* COMO ESTUDAR — 3 passos com IA */}
+      <section
+        className="py-20 sm:py-28 px-4 sm:px-6 relative"
+        aria-label="Como estudar"
+      >
+        <div className="max-w-6xl mx-auto">
+          <ScrollReveal>
+            <SectionHeading
+              eyebrow="Como Estudar"
+              title="Seu estudo em"
+              highlight="3 passos."
+            />
+          </ScrollReveal>
+
+          <div className="grid md:grid-cols-3 gap-5 sm:gap-6">
+            {comoEstudar.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <ScrollReveal key={step.step} delay={i * 0.12}>
+                  <motion.div
+                    whileHover={{ y: -6 }}
+                    transition={{ duration: 0.3 }}
+                    className="group relative h-full p-7 rounded-2xl border border-border/40 bg-card/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 overflow-hidden"
+                  >
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                      style={{
+                        background:
+                          'radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.1) 0%, transparent 60%)',
+                      }}
+                    />
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-3 mb-5">
+                        <span className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-300">
+                          <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                        </span>
+                        <span className="step-badge">{step.step}</span>
+                      </div>
+                      <h3 className="font-display text-xl sm:text-2xl font-medium mb-2 leading-tight">
+                        {step.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                    </div>
+                  </motion.div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* COMO FUNCIONA */}
       <section
         className="py-20 sm:py-28 px-4 sm:px-6 relative bg-card/30 border-y border-border/30"
@@ -664,6 +787,50 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TEASER COMPARAR TRADUÇÕES */}
+      <section
+        className="py-16 sm:py-20 px-4 sm:px-6 relative"
+        aria-label="Compare traduções"
+      >
+        <div className="max-w-6xl mx-auto">
+          <ScrollReveal>
+            <Link
+              href="/comparar"
+              className="group relative block overflow-hidden rounded-3xl border border-border/40 bg-card/50 backdrop-blur-sm hover:border-primary/40 transition-all duration-500 p-8 sm:p-12"
+            >
+              <div
+                className="absolute inset-0 opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                style={{
+                  background:
+                    'radial-gradient(circle at 85% 15%, hsl(var(--primary) / 0.12) 0%, transparent 55%)',
+                }}
+              />
+              <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-300">
+                  <GitCompareArrows className="w-6 h-6 text-primary" strokeWidth={1.5} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-primary/80 mb-2">
+                    Recurso Exclusivo
+                  </p>
+                  <h3 className="font-display text-2xl sm:text-3xl font-light leading-tight mb-2">
+                    Compare traduções <span className="italic text-primary">lado a lado</span>
+                  </h3>
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">
+                    Veja até 3 versões do mesmo versículo simultaneamente e descubra as diferenças
+                    de tradução que mudam o entendimento do texto bíblico.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] group-hover:bg-primary/[0.12] group-hover:border-primary/50 transition-all duration-300 shrink-0">
+                  Experimentar
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </div>
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* CTA FINAL */}
       <section
         className="py-20 sm:py-28 px-4 sm:px-6 border-t border-border/30 relative overflow-hidden"
@@ -710,14 +877,15 @@ export default function Home() {
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                 <BookOpen className="relative w-4 h-4" />
-                <span className="relative">Abrir a Bíblia</span>
+                <span className="relative">Comece a estudar a Bíblia hoje</span>
+                <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link
-                href="/apresentar"
-                className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold border border-border/60 hover:border-primary/40 hover:bg-primary/[0.04] rounded-xl transition-all duration-300"
+                href="/ia"
+                className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] hover:bg-primary/[0.12] hover:border-primary/50 transition-all duration-300"
               >
-                <MonitorPlay className="w-4 h-4" />
-                Apresentar em Tela
+                <Brain className="w-4 h-4 text-primary" strokeWidth={1.75} />
+                Conheça a IA
               </Link>
             </div>
 

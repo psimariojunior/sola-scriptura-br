@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getLLMConfig } from '@/lib/llm-config';
+import { construirContextoRAG, detectarReferencia } from '@/lib/ragGrounding';
 
 export const runtime = 'nodejs';
 
@@ -52,12 +53,36 @@ FORMATO OBRIGATÓRIO (Markdown):
 ## 🙏 Pontos de Oração
 [3-4 pontos de oração derivados do estudo]
 
-REGRAS:
-- Use linguagem acadêmica acessível
-- Cite versículos sempre com referência completa
-- Seja abrangente mas não superficial
-- Considere diferentes perspectivas teológicas quando relevante
-- O estudo deve ter pelo menos 800 palavras`;
+  REGRAS:
+  - Use linguagem acadêmica acessível
+  - Cite versículos sempre com referência completa
+  - Seja abrangente mas não superficial
+  - Considere diferentes perspectivas teológicas quando relevante
+  - O estudo deve ter pelo menos 800 palavras`;
+
+  const referenciaRAG = await construirContextoRAG(passagem);
+  let systemPromptFinal = systemPrompt;
+  let instrucaoGrounding = '';
+
+  if (referenciaRAG && referenciaRAG.temContexto) {
+    const ref = referenciaRAG.referencia;
+    const alvo = ref.versiculo
+      ? `${ref.livroNome} ${ref.capitulo}:${ref.versiculo}`
+      : `${ref.livroNome} ${ref.capitulo}`;
+    instrucaoGrounding = `
+
+═══════════════════════════════════════════════════════════════
+MATERIAIS DE ESTUDO (FONTES REAIS — USE COMO BASE PRIMÁRIA)
+═══════════════════════════════════════════════════════════════
+${referenciaRAG.blocos.join('\n\n')}
+
+INSTRUÇÕES DE FUNDAMENTAÇÃO (RAG):
+1. Base sua resposta PRIMARIAMENTE nestes materiais de estudo para "${alvo}".
+2. Cite as fontes (teólogos, comentaristas, léxico) SEMPRE que usar suas ideias, no formato: "— Calvino", "(Mateus Henry)" ou "Fonte: <nome>".
+3. Se algo não estiver nestes materiais, diga explicitamente que é "análise adicional" ou "fora das fontes citadas".
+4. Responda em português, tom acadêmico-evangélico.
+5. NÃO invente citações de teólogos que não apareçam nos materiais acima.`;
+  }
 
   try {
     const resposta = await fetch(`${baseUrl}/chat/completions`, {
@@ -69,7 +94,7 @@ REGRAS:
       body: JSON.stringify({
         model,
         messages: [
-          { role: 'system', content: systemPrompt },
+          { role: 'system', content: systemPrompt + instrucaoGrounding },
           { role: 'user', content: `Gere um guia de estudo bíblico completo para: ${passagem}${tipo ? `\n\nFoco: ${tipo}` : ''}` },
         ],
         temperature: 0.4,
@@ -90,10 +115,13 @@ REGRAS:
       passagem,
       estudo,
       tipo: tipo || 'completo',
+      fundamentado: referenciaRAG ? referenciaRAG.temContexto : false,
+      fontes: referenciaRAG?.fontes ?? [],
       metadados: {
         modelo: model,
         tokens: dados.usage?.total_tokens,
         tempoMs: Date.now() - inicio,
+        referencia: referenciaRAG?.referencia ?? null,
       },
     });
   } catch (erro: any) {

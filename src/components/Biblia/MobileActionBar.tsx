@@ -35,6 +35,7 @@ export interface MobileActionBarProps {
   onToggleEstudo: () => void;
   onApresentar: () => void;
   onCompartilharImagem: () => void;
+  onAprofundar: () => void;
   copyVerse: (text: string, ref: string) => void;
   copiedVerse: string | null;
 }
@@ -53,6 +54,7 @@ export function MobileActionBar({
   onToggleEstudo,
   onApresentar,
   onCompartilharImagem,
+  onAprofundar,
   copyVerse,
   copiedVerse,
 }: MobileActionBarProps) {
@@ -107,6 +109,15 @@ export function MobileActionBar({
               <p className="text-sm font-serif-body leading-relaxed text-[var(--content-primary)] italic mb-4">
                 "{texto}"
               </p>
+
+              <motion.button
+                onClick={onAprofundar}
+                whileTap={{ scale: 0.97 }}
+                className="w-full mb-4 flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-md shadow-[var(--brand-default)]/20 hover:shadow-lg transition-shadow"
+              >
+                <Sparkles className="w-4 h-4" />
+                Aprofundar com IA
+              </motion.button>
 
               <AnimatePresence>
                 {colorOpen && (

@@ -301,7 +301,7 @@ export function VerseActions({
         onClick={(e) => {
           e.stopPropagation();
           if (isFlashcard) flashcards.removeCard(flashKey);
-          else flashcards.addCard(flashKey);
+          else flashcards.addCard(flashKey, texto, ref);
         }}
         ariaLabel={isFlashcard ? `Remover versículo ${versiculo} dos flashcards` : `Adicionar versículo ${versiculo} aos flashcards`}
         ariaPressed={!!isFlashcard}

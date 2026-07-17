@@ -130,7 +130,47 @@ export default function PainelEstudosInline({ livro, capitulo, versiculo, nomeLi
     return () => { ativo = false; };
   }, [livro, capitulo, versiculo]);
 
-  if (carregando || !estudo) return null;
+  if (carregando) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: 'auto' }}
+        exit={{ opacity: 0, height: 0 }}
+        transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className="overflow-hidden ml-8 my-3"
+      >
+        <div className="border-l-2 border-[var(--primary)]/30 pl-4 py-2 flex items-center gap-2">
+          <div className="flex gap-1">
+            <span className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full animate-bounce" />
+            <span className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full animate-bounce [animation-delay:0.15s]" />
+            <span className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full animate-bounce [animation-delay:0.3s]" />
+          </div>
+          <span className="text-xs text-[var(--muted-fg)]">Carregando estudo…</span>
+        </div>
+      </motion.div>
+    );
+  }
+
+  if (!estudo) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: 'auto' }}
+        exit={{ opacity: 0, height: 0 }}
+        transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className="overflow-hidden ml-8 my-3"
+      >
+        <div className="border-l-2 border-[var(--primary)]/30 pl-4 py-2 flex items-center justify-between gap-3">
+          <p className="text-xs text-[var(--muted-fg)]">
+            Estudo não disponível para este versículo ({nomeLivro} {capitulo}:{versiculo}).
+          </p>
+          <button onClick={onClose} className="p-1 hover:bg-[var(--bg)] rounded transition-colors shrink-0">
+            <X className="w-3.5 h-3.5 text-[var(--muted-fg)]" />
+          </button>
+        </div>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div

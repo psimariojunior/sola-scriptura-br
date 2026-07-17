@@ -15,6 +15,9 @@ import {
   Heart,
   Compass,
   GraduationCap,
+  Download,
+  WifiOff,
+  Gift,
 } from 'lucide-react';
 import { useToast } from '@/hooks/useToast';
 
@@ -96,6 +99,11 @@ export function OnboardingModal() {
       cor: 'from-amber-500 to-orange-600',
       conteudo: (
         <div className="space-y-4 text-center">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300">
+            <Gift className="w-3.5 h-3.5" />
+            <span className="text-[10px] font-bold tracking-[0.12em] uppercase">100% Gratuito</span>
+            <span className="text-[10px] font-semibold">· Sem assinatura</span>
+          </span>
           <p className="text-sm text-muted-foreground leading-relaxed max-w-md mx-auto">
             Bíblia em 6 traduções, grego e hebraico com léxico Strong, teologia sistemática,
             exegese com IA e ferramentas acadêmicas — tudo num só lugar.
@@ -192,15 +200,73 @@ export function OnboardingModal() {
       ),
     },
     {
+      id: 'estude-ia',
+      titulo: 'Estude com IA',
+      subtitulo: 'Tire dúvidas teológicas fundamentadas na Escritura',
+      icon: Brain,
+      cor: 'from-purple-500 to-indigo-600',
+      conteudo: (
+        <div className="space-y-3 max-w-md mx-auto">
+          <div className="flex items-start gap-3 p-3.5 rounded-xl border border-border/40 bg-primary/5">
+            <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+              <Brain className="w-4 h-4 text-primary" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-medium">Assistente Teológico</p>
+              <p className="text-[11px] text-muted-foreground leading-snug">
+                Treinado em teologia reformada e exegese bíblica — respostas com fontes e referências.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3 p-3.5 rounded-xl border border-border/40 bg-card/30">
+            <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+              <Sparkles className="w-4 h-4 text-primary" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-medium">Exegese automática</p>
+              <p className="text-[11px] text-muted-foreground leading-snug">
+                Análise contextual, gramatical e teológica de qualquer versículo em segundos.
+              </p>
+            </div>
+          </div>
+          <p className="text-[11px] text-muted-foreground text-center pt-1">
+            Abra com <kbd className="px-1.5 py-0.5 rounded bg-muted/60 font-mono text-[10px]">Ctrl + J</kbd> em qualquer página.
+          </p>
+        </div>
+      ),
+    },
+    {
       id: 'comecar',
-      titulo: 'Comece por aqui',
-      subtitulo: 'Sugestões para o seu primeiro estudo',
+      titulo: 'Leve offline & instale o app',
+      subtitulo: 'Estude em qualquer lugar, até sem internet',
       icon: GraduationCap,
       cor: 'from-emerald-500 to-teal-600',
       conteudo: (
         <div className="space-y-2.5 max-w-md mx-auto">
-          <p className="text-xs text-muted-foreground text-center mb-3">
-            Sugestões baseadas no seu objetivo:
+          <div className="flex items-start gap-3 p-3.5 rounded-xl border border-border/40 bg-card/30">
+            <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+              <Download className="w-4 h-4 text-primary" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-medium">Instale o app</p>
+              <p className="text-[11px] text-muted-foreground leading-snug">
+                Adicione à tela inicial para uma experiência nativa e rápida.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3 p-3.5 rounded-xl border border-border/40 bg-card/30">
+            <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+              <WifiOff className="w-4 h-4 text-primary" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-medium">Modo offline</p>
+              <p className="text-[11px] text-muted-foreground leading-snug">
+                Sua Bíblia e estudos ficam disponíveis mesmo sem conexão.
+              </p>
+            </div>
+          </div>
+          <p className="text-xs text-muted-foreground text-center mb-1 pt-1">
+            Sugestões para começar:
           </p>
           {(
             objetivo === 'ensino'

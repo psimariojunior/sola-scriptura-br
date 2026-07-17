@@ -7,7 +7,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-
 import {
   Menu, X, BookOpen, Search, Sun, Moon, User, LogOut, Languages, Stars, BookMarked,
   Command, Settings, ChevronDown, ScrollText, Brain, Map, Music, MonitorPlay,
-  Sparkles, GraduationCap, MessageCircle, Library, Crown, Heart, History, HelpCircle,
+  Sparkles, GraduationCap, MessageCircle, Library, Crown, Heart, History, HelpCircle, Download,
 } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +17,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip
 import { Input } from '@/components/ui/input';
 import { getStats } from '@/lib/estatisticas';
 import { TODOS_LIVROS, LIVROS_AT, LIVROS_NT } from '@/data/biblia';
+import { usePWA } from '@/hooks/usePWA';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -102,6 +103,7 @@ export function Header() {
     }
     return 'pt';
   });
+  const { isInstallable, install } = usePWA();
 
   const toggleIdioma = useCallback(() => {
     const novo = idioma === 'pt' ? 'en' : 'pt';
@@ -571,6 +573,22 @@ export function Header() {
                 </div>
                 <span className="avatar-online-dot" aria-hidden="true" />
               </div>
+            )}
+            {isInstallable && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={install}
+                    className="p-2.5 min-h-[40px] min-w-[40px] hover:bg-muted/50 rounded-lg transition-all duration-300 text-primary"
+                    aria-label="Instalar o aplicativo"
+                  >
+                    <Download className="w-5 h-5" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Instalar o app</p>
+                </TooltipContent>
+              </Tooltip>
             )}
             <button
               className="p-2.5 min-h-[40px] min-w-[40px] hover:bg-muted/50 rounded-lg transition-all duration-300"

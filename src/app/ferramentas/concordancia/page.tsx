@@ -120,7 +120,7 @@ export default function ConcordanciaPage() {
 
   const irParaVersiculo = useCallback(
     (oc: Ocorrencia) => {
-      router.push(`/biblia?livro=${oc.livro}&cap=${oc.capitulo}&versiculo=${oc.versiculo}`);
+      router.push(`/biblia?livro=${oc.livro}&capitulo=${oc.capitulo}&versiculo=${oc.versiculo}`);
     },
     [router]
   );

@@ -225,11 +225,12 @@ export default function BibliaPage() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const livroParam = params.get('livro');
-    const capituloParam = params.get('capitulo');
+    const capituloParam = params.get('capitulo') || params.get('cap');
+    const versiculoParam = params.get('versiculo') || params.get('v');
     const tradsParam = params.get('trads');
     if (livroParam) {
       const idx = TODOS_LIVROS.findIndex((l) => l.abreviacao.toLowerCase() === livroParam.toLowerCase());
-      if (idx >= 0) { setLivroIdx(idx); if (capituloParam) setCapituloIdx(Math.max(0, Number(capituloParam) - 1)); }
+      if (idx >= 0) { setLivroIdx(idx); if (capituloParam) setCapituloIdx(Math.max(0, Number(capituloParam) - 1)); if (versiculoParam) setHighlightedVerse(Math.max(1, Number(versiculoParam))); }
     }
     if (tradsParam) {
       const t = tradsParam.split(',').filter((x) => (TRAD_IDS as readonly string[]).includes(x));
@@ -472,6 +473,10 @@ const toggleTrad = (id: string) => {
                 <div className="hidden md:flex items-center gap-0.5">
                   <motion.button
                     onClick={() => {
+                      if (mostrarNarracaoCapitulo) {
+                        setMostrarNarracaoCapitulo(false);
+                        capituloAudio.stop();
+                      }
                       if (capituloAudio.state.isPlaying || capituloAudio.state.isPaused) {
                         capituloAudio.stop();
                       } else {
@@ -523,7 +528,7 @@ const toggleTrad = (id: string) => {
                   onExportPdf={() => { setToolsOpen(false); setExportOpen(true); }}
                   onPlanoLeitura={() => { setShowPlan(!showPlan); setToolsOpen(false); }}
                   onNarracaoDramatica={() => { setMostrarNarracao(true); setToolsOpen(false); }}
-                  onNarrarCapitulo={() => { setMostrarNarracaoCapitulo(true); setToolsOpen(false); }}
+                  onNarrarCapitulo={() => { capituloAudio.stop(); setMostrarNarracaoCapitulo(true); setToolsOpen(false); }}
                   onConfiguracoes={() => { setShowSettings(!showSettings); setToolsOpen(false); }}
                 />
 
@@ -872,9 +877,32 @@ const toggleTrad = (id: string) => {
         }}
         onApresentar={() => { setMostrarApresentacao(true); setVersiculoSelecionado(null); }}
         onCompartilharImagem={() => setShareOpen(true)}
+        onAprofundar={() => {
+          if (!versiculoSelecionado) return;
+          const ref = `${versiculoSelecionado.livroNome} ${versiculoSelecionado.capitulo}:${versiculoSelecionado.versiculo}`;
+          window.open(`/estudo-ia?ref=${encodeURIComponent(ref)}`, '_blank');
+        }}
         copyVerse={copyVerse}
         copiedVerse={copiedVerse}
       />
+
+      <AnimatePresence>
+        {versiculoSelecionado && (
+          <motion.a
+            href={`/estudo-ia?ref=${encodeURIComponent(`${versiculoSelecionado.livroNome} ${versiculoSelecionado.capitulo}:${versiculoSelecionado.versiculo}`)}`}
+            target="_blank"
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            className="hidden lg:flex fixed bottom-6 right-6 z-30 items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/30 hover:shadow-xl transition-shadow"
+          >
+            <Sparkles className="w-4 h-4" />
+            Aprofundar com IA
+          </motion.a>
+        )}
+      </AnimatePresence>
 
       <AudioPlayers
         audioNatural={audioNatural}
@@ -942,7 +970,7 @@ const toggleTrad = (id: string) => {
           <Suspense fallback={<PanelFallback />}>
             <NarrationPanel
               open={mostrarNarracaoCapitulo}
-              onClose={() => setMostrarNarracaoCapitulo(false)}
+              onClose={() => { setMostrarNarracaoCapitulo(false); capituloAudio.stop(); }}
               livroAbreviacao={livro.abreviacao}
               capitulo={capituloIdx + 1}
               traducao={selectedTrads[0] || 'arc'}

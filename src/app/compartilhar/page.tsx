@@ -275,7 +275,7 @@ export default function CompartilharPage() {
           <ScrollReveal>
             <div className="mt-10">
               <Link
-                href="/compartilhar/versiculo?livro=gn&cap=1&v=1&t=arc"
+                href="/compartilhar/versiculo?livro=gn&capitulo=1&versiculo=1&t=arc"
                 className="group flex items-center gap-4 rounded-2xl border border-border/50 bg-card/50 p-6 hover:border-primary/30 hover:bg-muted/40 transition-all"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">

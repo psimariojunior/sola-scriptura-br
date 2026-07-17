@@ -17,8 +17,8 @@ function VersiculoEditor() {
   const [erro, setErro] = useState<string | null>(null);
 
   const livroParam = params.get('livro') || 'gn';
-  const capParam = Number(params.get('cap') || '1');
-  const versParam = Number(params.get('v') || '1');
+  const capParam = Number(params.get('capitulo') || params.get('cap') || '1');
+  const versParam = Number(params.get('versiculo') || params.get('v') || '1');
   const tradParam = params.get('t') || 'arc';
 
   useEffect(() => {

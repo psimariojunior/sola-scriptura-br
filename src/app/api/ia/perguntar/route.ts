@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getLLMConfig } from '@/lib/llm-config';
+import { construirContextoRAG } from '@/lib/ragGrounding';
 
 export const runtime = 'nodejs';
 
@@ -21,7 +22,11 @@ export async function POST(request: NextRequest) {
 
   if (apiKey) {
     try {
-      return await chamarLLM(consulta, tradicao, contexto, apiKey, baseUrl, model);
+      const rag = await construirContextoRAG(consulta);
+      const contextoRAG = rag?.temContexto
+        ? `${contexto ? contexto + '\n\n' : ''}Materiais de estudo (use como base primária e cite as fontes):\n${rag.blocos.join('\n\n')}`
+        : contexto;
+      return await chamarLLM(consulta, tradicao, contextoRAG, apiKey, baseUrl, model, rag?.fontes);
     } catch (erro: any) {
       if (erro.message === 'credits_missing') {
         return NextResponse.json(gerarRespostaLocal(consulta, tradicao));
@@ -40,6 +45,7 @@ async function chamarLLM(
   apiKey: string,
   baseUrl: string,
   model: string,
+  fontesRAG?: string[],
 ): Promise<NextResponse> {
   const inicio = Date.now();
 
@@ -93,7 +99,8 @@ async function chamarLLM(
   return NextResponse.json({
     pergunta: consulta,
     resposta: dados.choices[0].message.content,
-    fontes: [],
+    fontes: fontesRAG && fontesRAG.length > 0 ? fontesRAG.map((f) => ({ referencia: f, tipo: 'comentario' })) : [],
+    fundamentado: !!(fontesRAG && fontesRAG.length > 0),
     tradicaoTeologica: tradicao || 'geral',
     fonte: 'llm',
     metadados: { modelo: model, tokens: dados.usage?.total_tokens, tempoMs: Date.now() - inicio },

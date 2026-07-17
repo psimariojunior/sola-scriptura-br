@@ -256,7 +256,7 @@ export function ShareVerseModal({ open, onClose, verse }: ShareVerseModalProps) 
   };
 
   const shareUrl = verse
-    ? `${typeof window !== 'undefined' ? window.location.origin : ''}/compartilhar/versiculo?livro=${encodeURIComponent(verse.livroNome.toLowerCase())}&cap=${verse.capitulo}&v=${verse.versiculo}&t=${verse.traducao}`
+    ? `${typeof window !== 'undefined' ? window.location.origin : ''}/compartilhar/versiculo?livro=${encodeURIComponent(verse.livroNome.toLowerCase())}&capitulo=${verse.capitulo}&versiculo=${verse.versiculo}&t=${verse.traducao}`
     : '';
 
   const handleNativeShare = async () => {

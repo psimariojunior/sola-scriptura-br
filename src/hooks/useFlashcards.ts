@@ -104,10 +104,13 @@ export function useFlashcards() {
     localStorage.setItem(FLASHCARD_KEY, JSON.stringify(cards));
   }, [cards]);
 
-  const addCard = useCallback((verseKey: string) => {
+  const addCard = useCallback((verseKey: string, texto?: string, referencia?: string) => {
     setCards(prev => {
       if (prev.find(c => c.verseKey === verseKey)) return prev;
-      return [...prev, criarCard(verseKey)];
+      const card = criarCard(verseKey);
+      if (texto) card.manualTexto = texto;
+      if (referencia) card.manualReferencia = referencia;
+      return [...prev, card];
     });
   }, []);
 
@@ -171,13 +174,14 @@ export function useFlashcards() {
       m.versiculo === Number(ver) && m.traducao === trad
     );
     const livroNome = livroPorAbreviacao.get(livro)?.nome || livro;
+    const textoResolvido = card.manualTexto || mark?.texto || 'Versículo não encontrado nos seus marcadores.';
     return {
       livro,
       capitulo: Number(cap),
       versiculo: Number(ver),
       traducao: trad,
-      texto: mark?.texto || 'Versículo não encontrado nos seus marcadores.',
-      referencia: `${livroNome} ${cap}:${ver}`,
+      texto: textoResolvido,
+      referencia: card.manualReferencia || `${livroNome} ${cap}:${ver}`,
     };
   }, []);
 

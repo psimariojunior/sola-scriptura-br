@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Sparkles, BookOpen, Loader2, Copy, Check, Download, ChevronDown, Brain, Cross, Lightbulb, MessageCircle, Heart } from 'lucide-react';
@@ -34,7 +34,20 @@ export default function EstudoIAPage() {
   const [erro, setErro] = useState('');
   const [copiado, setCopiado] = useState(false);
   const [historico, setHistorico] = useState<Array<{ passagem: string; data: string }>>([]);
+  const [fontes, setFontes] = useState<string[]>([]);
+  const [fundamentado, setFundamentado] = useState(false);
   const resultadoRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get('ref');
+    if (ref?.trim()) {
+      setPassagem(ref.trim());
+      if (!params.get('auto')) {
+        // permite auto-disparo opcional via ?ref=...&auto=1
+      }
+    }
+  }, []);
 
   const gerarEstudo = async () => {
     if (!passagem.trim() || carregando) return;
@@ -57,6 +70,8 @@ export default function EstudoIAPage() {
       }
 
       setEstudo(data.estudo);
+      setFundamentado(!!data.fundamentado);
+      setFontes(Array.isArray(data.fontes) ? data.fontes : []);
       setHistorico(prev => [
         { passagem: passagem.trim(), data: new Date().toLocaleString('pt-BR') },
         ...prev.slice(0, 9),
@@ -208,6 +223,12 @@ export default function EstudoIAPage() {
                   <div className="flex items-center gap-2">
                     <Cross className="w-5 h-5 text-primary" />
                     <h2 className="font-display text-xl font-semibold">Estudo: {passagem}</h2>
+                    {fundamentado && fontes.length > 0 && (
+                      <span className="ml-2 align-middle inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-medium" title={fontes.join(', ')}>
+                        <Sparkles className="w-3 h-3" />
+                        Fundamentado em {fontes.length} fontes
+                      </span>
+                    )}
                   </div>
                   <div className="flex gap-2">
                     <button

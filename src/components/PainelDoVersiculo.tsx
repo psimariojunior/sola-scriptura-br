@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getRecursosVersiculo, type RecursoVersiculo, type RecursoComentario, type RecursoEstudo, type RecursoNota, type RecursoCrossRef, type RecursoLexico, type RecursoMapa, type RecursoPersonagem, type RecursoDoutrina, type RecursoCronologia, type RecursoPericope, type TipoRecurso } from '@/data/biblia/versiculoRecursos';
 import { getStrongPorVersiculo, type PalavraStrong } from '@/data/biblia/strong';
-import { carregarTraducao, type CapituloComparado } from '@/data/biblia/texto/carregar';
+import { carregarTraducao, obterCapituloMulti, type CapituloComparado } from '@/data/biblia/texto/carregar';
 import { obterVariante, obterVariantesPorLivro } from '@/data/criticaTextual';
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -117,23 +117,24 @@ function TabTexto({ livro, capitulo, versiculo }: { livro: string; capitulo: num
     let cancelled = false;
     async function carregar() {
       setCarregando(true);
-      const trads = ['arc', 'nvi', 'ara', 'acf', 'aa', 'ntlh', 'kjv'];
-      const resultados: CapituloComparado[] = [];
-      for (const t of trads) {
-        try {
-          const data = await carregarTraducao(t);
-          const versiculos = data[livro]?.[capitulo];
-          if (versiculos && versiculos[versiculo - 1]) {
+      try {
+        const capData = await obterCapituloMulti(livro, capitulo, ['arc', 'nvi', 'ara', 'acf', 'naa', 'ntlh', 'kjv']);
+        const resultados: CapituloComparado[] = [];
+        for (const t of capData) {
+          const v = t.versiculos.find(v => v.numero === versiculo);
+          if (v) {
             resultados.push({
-              traducao: t,
-              versiculos: [{ numero: versiculo, texto: versiculos[versiculo - 1] }],
+              traducao: t.traducao,
+              versiculos: [{ numero: versiculo, texto: v.texto }],
             });
           }
-        } catch { /* skip */ }
-      }
-      if (!cancelled) {
-        setTraducoes(resultados);
-        setCarregando(false);
+        }
+        if (!cancelled) {
+          setTraducoes(resultados);
+          setCarregando(false);
+        }
+      } catch {
+        if (!cancelled) setCarregando(false);
       }
     }
     carregar();

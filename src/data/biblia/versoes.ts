@@ -13,7 +13,6 @@ export const traducoes: Versao[] = [
   { id: 'naa', nome: 'Nova Almeida Atualizada', sigla: 'NAA', descricao: 'Revisão da Almeida pela SBB em linguagem contemporânea', idioma: 'pt-BR', ano: 2017 },
   { id: 'ara', nome: 'Almeida Revista e Atualizada', sigla: 'ARA', descricao: 'Revisão da ARC pela SBB', idioma: 'pt-BR', ano: 1993 },
   { id: 'acf', nome: 'Almeida Corrigida Fiel', sigla: 'ACF', descricao: 'Revisão fiel da ARC por Stuart', idioma: 'pt-BR', ano: 2015 },
-  { id: 'aa', nome: 'Almeida Atualizada', sigla: 'AA', descricao: 'Atualização da Almeida em linguagem contemporânea', idioma: 'pt-BR', ano: 2009 },
   { id: 'ntlh', nome: 'Nova Tradução na Linguagem de Hoje', sigla: 'NTLH', descricao: 'Tradução em linguagem simples e acessível', idioma: 'pt-BR', ano: 2000 },
   { id: 'kjv', nome: 'King James Version', sigla: 'KJV', descricao: 'Authorized Version em inglês', idioma: 'en', ano: 1611 },
   { id: 'web', nome: 'World English Bible', sigla: 'WEB', descricao: 'Domínio público em inglês moderno', idioma: 'en', ano: 2000 },

@@ -105,6 +105,7 @@ export function useAudioNatural() {
         if (sleepTimerRef.current) clearTimeout(sleepTimerRef.current);
       };
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sleepTimer.enabled, sleepTimer.endTime]);
 
   function cleanup(): void {
@@ -388,6 +389,7 @@ export function useAudioNatural() {
         engine: 'speech-api',
       }));
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [state.speed, state.volume, state.isMuted, state.vozConfig]
   );
 

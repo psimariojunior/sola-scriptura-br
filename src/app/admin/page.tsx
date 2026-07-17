@@ -516,6 +516,7 @@ function UsuariosTab({ apiFetch, addToast }: { apiFetch: <T,>(e: string, o?: Req
     }
   }, [apiFetch, addToast, search, filtroRole, filtroAtivo]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { fetchUsuarios(1); }, []);
 
   const handleSearch = () => { fetchUsuarios(1); };

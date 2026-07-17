@@ -62,6 +62,7 @@ export default function ApresentacaoModal({
       syncRef.current = null;
       setSync(null);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   useEffect(() => {
@@ -74,6 +75,7 @@ export default function ApresentacaoModal({
     return () => {
       cancelled = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state?.livro, state?.capitulo, state?.translation]);
 
   useAutoPlay(

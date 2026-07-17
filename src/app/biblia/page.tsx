@@ -297,6 +297,7 @@ const toggleTrad = (id: string) => {
       const other = fallbacks.find(t => !selectedTrads.includes(t)) || 'nvi';
       setSelectedTrads(prev => prev.includes(other) ? prev : [...prev, other]);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modoLeitura]);
 
   const chapterAnimProps = {

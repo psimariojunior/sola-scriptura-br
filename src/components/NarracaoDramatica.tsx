@@ -193,6 +193,7 @@ export default function NarracaoDramatica({
         setIsLoading(false);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [cenas, volume, isMuted]
   );
 

@@ -46,6 +46,7 @@ export function PainelQualidadeAudio({ open, onOpenChange }: PainelQualidadeAudi
         }
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const testarVoz = useCallback(async () => {

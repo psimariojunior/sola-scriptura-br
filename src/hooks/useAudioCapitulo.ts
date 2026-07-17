@@ -231,6 +231,7 @@ export function useAudioCapitulo(
 
       playVersoSpeechApi(textoCompleto, index);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [versiculos, livro, capitulo, state.announceVerseNumbers, playlistQueue]
   );
 
@@ -462,6 +463,7 @@ export function useAudioCapitulo(
         setTimeout(() => play(verseIndex), 100);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [versiculos, stop, play]
   );
 

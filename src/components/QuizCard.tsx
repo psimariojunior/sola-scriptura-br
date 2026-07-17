@@ -41,6 +41,7 @@ export function QuizCard({
         }
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [mostrarExplicacao, onProxima, onSelecionarResposta]
   );
 

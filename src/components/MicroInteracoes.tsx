@@ -385,6 +385,7 @@ export function Confetti({ active, particleCount = 40, colors = defaultColors }:
     setParticles(newParticles);
     const t = setTimeout(() => setParticles([]), 2500);
     return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, particleCount, colors.join()]);
 
   if (!particles.length) return null;

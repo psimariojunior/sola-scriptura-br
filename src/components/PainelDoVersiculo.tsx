@@ -694,6 +694,7 @@ export default function PainelDoVersiculo({
     if (tipo === 'critica') return obterVariantesPorLivro(livro).length;
     if (tipo === 'ia') return 1;
     return recursos.filter((r) => r.tipo === tipo).length;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recursos]);
 
   const tabsDisponiveis = TAB_CONFIG.filter((tab) => {

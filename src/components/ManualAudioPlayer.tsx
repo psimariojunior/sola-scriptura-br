@@ -73,6 +73,7 @@ export default function ManualAudioPlayer({
     return () => {
       parar();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -97,6 +98,7 @@ export default function ManualAudioPlayer({
     return () => {
       if (speechRestartTimer.current) clearTimeout(speechRestartTimer.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [velocidade, volume, mudo]);
 
   const parar = useCallback(() => {

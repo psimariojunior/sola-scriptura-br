@@ -9,7 +9,7 @@ interface VersiculoAudioNaturalProps {
   verseNumber: number;
   isCurrentlyPlaying: boolean;
   isLoading?: boolean;
-  engine?: 'elevenlabs' | 'speech-api' | 'none';
+  engine?: 'elevenlabs' | 'edge-tts' | 'speech-api' | 'none';
   voiceName?: string;
   onPlay: (verseNumber: number, text: string) => void;
   onStop: () => void;

@@ -11,6 +11,7 @@ import {
   salvarConfigVoz,
   type VozConfig,
 } from '@/lib/vozTTS';
+import { gerarAudioEdge, edgeTTSDisponivel } from '@/lib/edgeTTS';
 
 interface PainelQualidadeAudioProps {
   open: boolean;
@@ -47,7 +48,30 @@ export function PainelQualidadeAudio({ open, onOpenChange }: PainelQualidadeAudi
     });
   }, []);
 
-  const testarVoz = useCallback(() => {
+  const testarVoz = useCallback(async () => {
+    if (config.motor === 'edge-tts' || (config.motor === 'auto' && edgeTTSDisponivel())) {
+      try {
+        setTocando(true);
+        const vozGenero = config.preferGender === 'masculino' ? 'masculina' : 'feminina';
+        const rateStr = config.rate >= 1 ? `+${Math.round((config.rate - 1) * 100)}%` : `-${Math.round((1 - config.rate) * 100)}%`;
+        const buffer = await gerarAudioEdge({
+          texto: TEXTO_TESTE,
+          voz: vozGenero,
+          vozCustom: config.vozEdgeTTS !== 'pt-BR-FranciscaNeural' ? config.vozEdgeTTS : undefined,
+          rate: rateStr,
+        });
+        const blob = new Blob([buffer], { type: 'audio/mpeg' });
+        const url = URL.createObjectURL(blob);
+        const audio = new Audio(url);
+        audio.onended = () => { setTocando(false); URL.revokeObjectURL(url); };
+        audio.onerror = () => { setTocando(false); URL.revokeObjectURL(url); };
+        await audio.play();
+        return;
+      } catch {
+        setTocando(false);
+      }
+    }
+
     if (!synthRef.current) return;
     synthRef.current.cancel();
 
@@ -117,6 +141,37 @@ export function PainelQualidadeAudio({ open, onOpenChange }: PainelQualidadeAudi
           </div>
 
           <div className="flex-1 overflow-y-auto p-4 space-y-6">
+            <div>
+              <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-1.5">
+                <Mic className="w-4 h-4" />
+                Motor de Áudio
+              </h3>
+              <p className="text-xs text-muted-foreground mb-3">
+                Escolha o engine de síntese de voz. Edge TTS é gratuito e de alta qualidade.
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                {([
+                  { value: 'auto' as const, label: 'Automático', desc: 'Melhor disponível' },
+                  { value: 'edge-tts' as const, label: 'Edge TTS', desc: 'Gratuito, neural' },
+                  { value: 'elevenlabs' as const, label: 'ElevenLabs', desc: 'Premium, pago' },
+                  { value: 'speech-api' as const, label: 'Navegador', desc: 'Sem API' },
+                ]).map((m) => (
+                  <button
+                    key={m.value}
+                    onClick={() => salvarConfig({ motor: m.value })}
+                    className={`p-3 rounded-lg border text-left transition-all ${
+                      config.motor === m.value
+                        ? 'border-primary bg-primary/10'
+                        : 'border-border hover:border-primary/30'
+                    }`}
+                  >
+                    <div className="text-sm font-medium">{m.label}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{m.desc}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div>
               <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-1.5">
                 <Mic className="w-4 h-4" />
@@ -237,11 +292,44 @@ export function PainelQualidadeAudio({ open, onOpenChange }: PainelQualidadeAudi
               </div>
             </div>
 
+            {(config.motor === 'edge-tts' || config.motor === 'auto') && (
+              <div>
+                <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-1.5">
+                  <Sparkles className="w-4 h-4" />
+                  Voz Edge TTS (Neural)
+                </h3>
+                <p className="text-xs text-muted-foreground mb-3">
+                  Vozes neurais Microsoft de alta qualidade, gratuitas.
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { id: 'pt-BR-FranciscaNeural', label: 'Francisca', desc: 'Feminina, natural' },
+                    { id: 'pt-BR-ThalitaNeural', label: 'Thalita', desc: 'Feminina, jovem' },
+                    { id: 'pt-BR-AntonioNeural', label: 'Antonio', desc: 'Masculino, sereno' },
+                    { id: 'pt-BR-DonatoNeural', label: 'Donato', desc: 'Masculino, formal' },
+                  ].map((v) => (
+                    <button
+                      key={v.id}
+                      onClick={() => salvarConfig({ vozEdgeTTS: v.id })}
+                      className={`p-3 rounded-lg border text-left transition-all ${
+                        config.vozEdgeTTS === v.id
+                          ? 'border-primary bg-primary/10'
+                          : 'border-border hover:border-primary/30'
+                      }`}
+                    >
+                      <div className="text-sm font-medium">{v.label}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">{v.desc}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg">
               <div className="flex items-start gap-2">
                 <Sparkles className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
                 <div className="text-xs text-amber-900 dark:text-amber-100">
-                  <strong>Dica:</strong> A qualidade do áudio depende das vozes instaladas no seu navegador. Para melhor qualidade, use o <strong>Microsoft Edge</strong> ou <strong>Google Chrome</strong> em Windows/Mac, que têm acesso às vozes neurais Microsoft.
+                  <strong>Dica:</strong> Para melhor qualidade, use <strong>Edge TTS</strong> (gratuito, vozes neurais Microsoft) ou <strong>ElevenLabs</strong> (pago, vozes ultra-realistas). O navegador funciona bem no Edge/Chrome Windows com vozes neurais.
                 </div>
               </div>
             </div>

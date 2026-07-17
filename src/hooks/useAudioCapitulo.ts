@@ -19,6 +19,7 @@ import {
   esperarVozesCarregarem,
   type VozConfig,
 } from '@/lib/vozTTS';
+import { gerarAudioEdge, edgeTTSDisponivel } from '@/lib/edgeTTS';
 
 export interface VersiculoAudio {
   numero: number;
@@ -156,6 +157,8 @@ export function useAudioCapitulo(
       const config = obterConfigVoz();
       const usarElevenLabs =
         (config.motor === 'elevenlabs' || config.motor === 'auto') && temApiKey();
+      const usarEdgeTTS =
+        (config.motor === 'edge-tts' || config.motor === 'auto') && edgeTTSDisponivel();
 
       if (usarElevenLabs) {
         try {
@@ -183,6 +186,43 @@ export function useAudioCapitulo(
             console.warn('ElevenLabs failed for chapter:', message);
           }
           if (config.motor === 'elevenlabs') {
+            playVersoSpeechApi(textoCompleto, index);
+            return;
+          }
+        }
+      }
+
+      if (usarEdgeTTS) {
+        try {
+          const cached = await obterAudioCapitulo(livro, capitulo, 'edge-tts');
+
+          if (cached) {
+            await playFromCache(cached.audio, cached.mimeType, index);
+            return;
+          }
+
+          const chapterText = versiculos
+            .map((v) => state.announceVerseNumbers ? `${v.numero}. ${v.texto}` : v.texto)
+            .join('\n\n ');
+
+          setState((prev) => ({ ...prev, isLoading: true }));
+
+          const vozGenero = config.preferGender === 'masculino' ? 'masculina' : 'feminina';
+          const rateStr = config.rate >= 1 ? `+${Math.round((config.rate - 1) * 100)}%` : `-${Math.round((1 - config.rate) * 100)}%`;
+
+          const audioBuffer = await gerarAudioEdge({
+            texto: chapterText,
+            voz: vozGenero,
+            vozCustom: config.vozEdgeTTS !== 'pt-BR-FranciscaNeural' ? config.vozEdgeTTS : undefined,
+            rate: rateStr,
+          });
+
+          await salvarAudioCapitulo(livro, capitulo, audioBuffer, 'audio/mpeg', 'edge-tts');
+          await playFromCache(audioBuffer, 'audio/mpeg', index);
+          return;
+        } catch (err: unknown) {
+          console.warn('Edge TTS failed for chapter:', err);
+          if (config.motor === 'edge-tts') {
             playVersoSpeechApi(textoCompleto, index);
             return;
           }

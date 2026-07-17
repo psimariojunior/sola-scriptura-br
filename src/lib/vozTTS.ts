@@ -151,8 +151,9 @@ export interface VozConfig {
   preferGender: 'feminino' | 'masculino' | 'auto';
   pausaEntreVersiculos: number;
   anunciarNumeros: boolean;
-  motor: 'auto' | 'elevenlabs' | 'speech-api';
+  motor: 'auto' | 'edge-tts' | 'elevenlabs' | 'speech-api';
   vozElevenLabs: string;
+  vozEdgeTTS: string;
 }
 
 const CONFIG_KEY = 'ssb_audio_voz_config';
@@ -167,6 +168,7 @@ const DEFAULT_VOZ_CONFIG: VozConfig = {
   anunciarNumeros: true,
   motor: 'auto',
   vozElevenLabs: '21m00Tcm4TlvDq8ikWAM',
+  vozEdgeTTS: 'pt-BR-FranciscaNeural',
 };
 
 export function obterConfigVoz(): VozConfig {
@@ -230,6 +232,18 @@ export function prepararTextoParaVoz(texto: string, config: VozConfig): string {
     .replace(/—/g, ', ')
     .replace(/–/g, ', ')
     .replace(/…/g, '...')
+    .replace(/\(/g, ', ')
+    .replace(/\)/g, ', ')
+    .replace(/\[/g, ', ')
+    .replace(/\]/g, ', ')
+    .replace(/«/g, '')
+    .replace(/»/g, '')
+    .replace(/"/g, '')
+    .replace(/"/g, '')
+    .replace(/'/g, "'")
+    .replace(/'/g, "'")
+    .replace(/;/g, ',')
+    .replace(/:/g, ',')
     .replace(/\s+/g, ' ')
     .trim();
 

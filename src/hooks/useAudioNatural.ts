@@ -15,8 +15,9 @@ import {
   esperarVozesCarregarem,
   type VozConfig,
 } from '@/lib/vozTTS';
+import { gerarAudioEdge, edgeTTSDisponivel } from '@/lib/edgeTTS';
 
-export type AudioEngine = 'elevenlabs' | 'speech-api' | 'none';
+export type AudioEngine = 'elevenlabs' | 'edge-tts' | 'speech-api' | 'none';
 
 export interface AudioState {
   isPlaying: boolean;
@@ -235,6 +236,8 @@ export function useAudioNatural() {
       const config = state.vozConfig;
       const usarElevenLabs =
         (config.motor === 'elevenlabs' || config.motor === 'auto') && temApiKey();
+      const usarEdgeTTS =
+        (config.motor === 'edge-tts' || config.motor === 'auto') && edgeTTSDisponivel();
 
       if (usarElevenLabs) {
         try {
@@ -289,7 +292,7 @@ export function useAudioNatural() {
           const message =
             err instanceof Error ? err.message : 'Erro desconhecido';
           if (message !== 'NO_API_KEY') {
-            console.warn('ElevenLabs failed, falling back to Speech API:', message);
+            console.warn('ElevenLabs failed, falling back:', message);
           }
           if (config.motor === 'elevenlabs') {
             setState((prev) => ({
@@ -298,6 +301,79 @@ export function useAudioNatural() {
               error: message === 'NO_API_KEY'
                 ? 'ElevenLabs não configurado. Configure a API key.'
                 : `ElevenLabs falhou: ${message}`,
+            }));
+            return;
+          }
+        }
+      }
+
+      if (usarEdgeTTS) {
+        try {
+          const vozGenero = config.preferGender === 'masculino' ? 'masculina' : 'feminina';
+          const rateStr = config.rate >= 1 ? `+${Math.round((config.rate - 1) * 100)}%` : `-${Math.round((1 - config.rate) * 100)}%`;
+
+          const audioBuffer = await gerarAudioEdge({
+            texto,
+            voz: vozGenero,
+            vozCustom: config.vozEdgeTTS !== 'pt-BR-FranciscaNeural' ? config.vozEdgeTTS : undefined,
+            rate: rateStr,
+          });
+
+          const blob = new Blob([audioBuffer], { type: 'audio/mpeg' });
+          const url = URL.createObjectURL(blob);
+          currentAudioUrlRef.current = url;
+
+          const el = audioRef.current;
+          if (!el) return;
+
+          el.src = url;
+          el.playbackRate = state.speed;
+          el.volume = state.isMuted ? 0 : state.volume;
+
+          if (resumePositionRef.current > 0) {
+            el.currentTime = resumePositionRef.current;
+            resumePositionRef.current = 0;
+          }
+
+          el.onended = () => {
+            setState((prev) => ({
+              ...prev,
+              isPlaying: false,
+              currentTime: 0,
+            }));
+            onEndCallbackRef.current?.();
+            onEndCallbackRef.current = null;
+          };
+
+          el.onerror = () => {
+            setState((prev) => ({
+              ...prev,
+              isPlaying: false,
+              isLoading: false,
+              error: 'Erro ao reproduzir áudio Edge TTS',
+            }));
+          };
+
+          await el.play();
+          configurarProgressoElevenLabs();
+
+          const duracaoEstimada = estimarDuracao(texto) / 1000;
+          setState((prev) => ({
+            ...prev,
+            isPlaying: true,
+            isLoading: false,
+            duration: duracaoEstimada,
+            engine: 'edge-tts',
+          }));
+
+          return;
+        } catch (err: unknown) {
+          console.warn('Edge TTS failed, falling back to Speech API:', err);
+          if (config.motor === 'edge-tts') {
+            setState((prev) => ({
+              ...prev,
+              isLoading: false,
+              error: `Edge TTS falhou: ${err instanceof Error ? err.message : 'Erro desconhecido'}`,
             }));
             return;
           }
@@ -316,7 +392,7 @@ export function useAudioNatural() {
   );
 
   const pause = useCallback((): void => {
-    if (state.engine === 'elevenlabs' && audioRef.current) {
+    if ((state.engine === 'elevenlabs' || state.engine === 'edge-tts') && audioRef.current) {
       audioRef.current.pause();
     } else if (state.engine === 'speech-api') {
       synthRef.current?.pause();
@@ -325,7 +401,7 @@ export function useAudioNatural() {
   }, [state.engine]);
 
   const resume = useCallback((): void => {
-    if (state.engine === 'elevenlabs' && audioRef.current) {
+    if ((state.engine === 'elevenlabs' || state.engine === 'edge-tts') && audioRef.current) {
       audioRef.current.play();
     } else if (state.engine === 'speech-api') {
       synthRef.current?.resume();
@@ -348,7 +424,7 @@ export function useAudioNatural() {
 
   const seek = useCallback(
     (time: number): void => {
-      if (state.engine === 'elevenlabs' && audioRef.current) {
+      if ((state.engine === 'elevenlabs' || state.engine === 'edge-tts') && audioRef.current) {
         audioRef.current.currentTime = time;
         setState((prev) => ({ ...prev, currentTime: time }));
       }
@@ -358,7 +434,7 @@ export function useAudioNatural() {
 
   const setSpeed = useCallback(
     (speed: number): void => {
-      if (state.engine === 'elevenlabs' && audioRef.current) {
+      if ((state.engine === 'elevenlabs' || state.engine === 'edge-tts') && audioRef.current) {
         audioRef.current.playbackRate = speed;
       }
       setState((prev) => ({ ...prev, speed }));
@@ -370,7 +446,7 @@ export function useAudioNatural() {
   const setVolume = useCallback(
     (volume: number): void => {
       const clamped = Math.max(0, Math.min(1, volume));
-      if (state.engine === 'elevenlabs' && audioRef.current) {
+      if ((state.engine === 'elevenlabs' || state.engine === 'edge-tts') && audioRef.current) {
         audioRef.current.volume = clamped;
       }
       setState((prev) => ({

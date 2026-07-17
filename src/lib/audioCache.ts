@@ -35,17 +35,18 @@ function openDB(): Promise<IDBDatabase> {
   });
 }
 
-function makeKey(livro: string, capitulo: number): string {
-  return `${livro}_${capitulo}`;
+function makeKey(livro: string, capitulo: number, source?: string): string {
+  return source ? `${livro}_${capitulo}_${source}` : `${livro}_${capitulo}`;
 }
 
 export async function salvarAudioCapitulo(
   livro: string,
   capitulo: number,
   audio: ArrayBuffer,
-  mimeType: string = 'audio/mpeg'
+  mimeType: string = 'audio/mpeg',
+  source?: string
 ): Promise<void> {
-  const key = makeKey(livro, capitulo);
+  const key = makeKey(livro, capitulo, source);
   const db = await openDB();
 
   try {
@@ -82,9 +83,10 @@ export async function salvarAudioCapitulo(
 
 export async function obterAudioCapitulo(
   livro: string,
-  capitulo: number
+  capitulo: number,
+  source?: string
 ): Promise<{ audio: ArrayBuffer; mimeType: string } | null> {
-  const key = makeKey(livro, capitulo);
+  const key = makeKey(livro, capitulo, source);
   const db = await openDB();
 
   try {

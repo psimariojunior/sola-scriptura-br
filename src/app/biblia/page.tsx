@@ -6,7 +6,7 @@ import { Header } from '@/components/Header';
 import { TODOS_LIVROS, traducoes, carregarTraducao, ABREV_PARA_MIDVASH, livroPorAbreviacao } from '@/data/biblia';
 import type { CapituloComparado } from '@/data/biblia';
 import {
-  BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Mic, Volume2, ListFilter, WifiOff
+  BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, Search, Sparkles, Play, Mic, Volume2, ListFilter, WifiOff, Quote
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEstudos } from '@/components/EstudosProvider';
@@ -38,6 +38,7 @@ import { AudioPlayers } from '@/components/Biblia/AudioPlayers';
 import { TranslationDropdown, TRAD_IDS as TRAD_IDS_IMPORT, labelMap as labelMapImport, nomeMap as nomeMapImport, tradBadgeColors as tradBadgeColorsImport } from '@/components/Biblia/TranslationDropdown';
 import { ToolsDropdown } from '@/components/Biblia/ToolsDropdown';
 import { ChapterGrid } from '@/components/Biblia/ChapterGrid';
+import { obterEstudoCapitulo } from '@/lib/estudosLoader';
 
 const ExportModal = dynamic(() => import('@/components/Biblia/ExportModal').then(m => ({ default: m.ExportModal })), { ssr: false });
 const ApresentacaoModal = dynamic(() => import('@/components/Apresentacao/ApresentacaoModal'), { ssr: false });
@@ -174,6 +175,7 @@ export default function BibliaPage() {
   const [toolsOpen, setToolsOpen] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
+  const [estudoCapituloAberto, setEstudoCapituloAberto] = useState(false);
   const NarrationPanel = lazy(() => import('@/components/Biblia/NarrationPanel').then(m => ({ default: m.NarrationPanel })));
 
   const livro = TODOS_LIVROS[livroIdx];
@@ -288,6 +290,11 @@ const toggleTrad = (id: string) => {
 
   const temDados = data.length > 0 && data.some(d => d.versiculos.length > 0);
   const maxVersiculos = temDados ? Math.max(...data.map(d => d.versiculos.length)) : 0;
+
+  const estudoCapitulo = useMemo(
+    () => obterEstudoCapitulo(livro.abreviacao, capituloIdx + 1),
+    [livro.abreviacao, capituloIdx]
+  );
 
   const goToBook = (idx: number, cap?: number) => { setLivroIdx(idx); setCapituloIdx(cap ?? 0); setMobileMenu(false); setChapterGridOpen(false); };
 
@@ -675,6 +682,93 @@ const toggleTrad = (id: string) => {
                           tradBadgeColors={tradBadgeColors}
                           labelMap={labelMap}
                         />
+                      )}
+
+                      {estudoCapitulo && (
+                        <div className="mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">
+                          <button
+                            onClick={() => setEstudoCapituloAberto(o => !o)}
+                            className="w-full flex items-center gap-2 text-left group"
+                            aria-expanded={estudoCapituloAberto}
+                          >
+                            <BookOpen className="w-4 h-4 text-[var(--primary)]" />
+                            <span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted-fg)] group-hover:text-[var(--fg)] transition-colors">
+                              Estudo do Capítulo
+                            </span>
+                            <span className="text-xs text-[var(--primary)] font-medium">{estudoCapitulo.titulo}</span>
+                            <div className="flex-1" />
+                            {estudoCapituloAberto ? (
+                              <ChevronUp className="w-4 h-4 text-[var(--muted-fg)]" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4 text-[var(--muted-fg)]" />
+                            )}
+                          </button>
+
+                          <AnimatePresence initial={false}>
+                            {estudoCapituloAberto && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                                className="overflow-hidden"
+                              >
+                                <div className="mt-4 border-l-2 border-[var(--primary)]/30 pl-4 py-2 space-y-4">
+                                  <p className="text-sm text-[var(--muted-fg)] leading-relaxed font-serif-body">
+                                    {estudoCapitulo.resumo}
+                                  </p>
+
+                                  {estudoCapitulo.temas.length > 0 && (
+                                    <div className="flex flex-wrap gap-1.5">
+                                      {estudoCapitulo.temas.map((t, i) => (
+                                        <span key={i} className="px-2 py-0.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] text-[10px] font-medium">
+                                          {t}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  )}
+
+                                  {estudoCapitulo.VersiculosChave.length > 0 && (
+                                    <div>
+                                      <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-2 flex items-center gap-1">
+                                        <Quote className="w-3 h-3" /> Versículos-Chave
+                                      </p>
+                                      <div className="space-y-2">
+                                        {estudoCapitulo.VersiculosChave.map((vc, i) => (
+                                          <div key={i} className="bg-[var(--bg)]/60 rounded-lg p-3 border-l-2 border-[var(--primary)]/20">
+                                            <p className="text-xs font-bold text-[var(--primary)] mb-1">{vc.referencia}</p>
+                                            <p className="text-xs text-[var(--fg)] italic leading-relaxed font-serif-body mb-1">&ldquo;{vc.texto}&rdquo;</p>
+                                            <p className="text-xs text-[var(--muted-fg)] leading-relaxed">{vc.explicacao}</p>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  )}
+
+                                  <div>
+                                    <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1 flex items-center gap-1">
+                                      <Sparkles className="w-3 h-3" /> Aplicação Prática
+                                    </p>
+                                    <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
+                                      {estudoCapitulo.aplicacaoPratica}
+                                    </p>
+                                  </div>
+
+                                  {estudoCapitulo.perguntasEstudo.length > 0 && (
+                                    <div>
+                                      <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">Perguntas de Estudo</p>
+                                      <ol className="space-y-1 list-decimal list-inside">
+                                        {estudoCapitulo.perguntasEstudo.map((p, i) => (
+                                          <li key={i} className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">{p}</li>
+                                        ))}
+                                      </ol>
+                                    </div>
+                                  )}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
                       )}
 
                       <div className="flex items-center justify-center gap-3 sm:gap-4 mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">

@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import { BookOpen, User, ChevronDown, ChevronUp, GraduationCap, Quote, Eye, Lightbulb, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { BookOpen, User, ChevronDown, ChevronUp, GraduationCap, Quote, Eye, Lightbulb, X, ScrollText, Sparkles, Link2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { obterEstudos, type EstudoTeologo } from '@/data/estudosTeologicos';
+import { obterEstudoVersiculo, type EstudoVersiculoUnificado } from '@/lib/estudosLoader';
 
 interface Props {
   livro: string;
@@ -40,11 +40,97 @@ function VisaoIcon({ visao }: { visao: string }) {
   return <GraduationCap className="w-3 h-3" />;
 }
 
+function BlocoVersiculo({ estudo }: { estudo: EstudoVersiculoUnificado }) {
+  const detalhe = estudo.detalhe!;
+  return (
+    <>
+      <p className="text-xs text-[var(--primary)] font-semibold mb-2">
+        {detalhe.titulo}
+      </p>
+
+      <div className="space-y-2">
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-0.5 flex items-center gap-1">
+            <ScrollText className="w-3 h-3" /> Contexto Histórico
+          </p>
+          <p className="text-xs text-[var(--muted-fg)] leading-relaxed font-serif-body">
+            {detalhe.contextoHistorico}
+          </p>
+        </div>
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-0.5 flex items-center gap-1">
+            <ScrollText className="w-3 h-3" /> Contexto Literário
+          </p>
+          <p className="text-xs text-[var(--muted-fg)] leading-relaxed font-serif-body">
+            {detalhe.contextoLiterario}
+          </p>
+        </div>
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-0.5 flex items-center gap-1">
+            <Sparkles className="w-3 h-3" /> Significado Teológico
+          </p>
+          <p className="text-xs text-[var(--muted-fg)] leading-relaxed font-serif-body">
+            {detalhe.significadoTeologico}
+          </p>
+        </div>
+      </div>
+
+      {detalhe.aplicacoes.length > 0 && (
+        <div className="mt-3">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">Aplicações</p>
+          <ul className="space-y-1">
+            {detalhe.aplicacoes.map((a, i) => (
+              <li key={i} className="flex items-start gap-1.5 text-xs text-[var(--fg)] leading-relaxed font-serif-body">
+                <span className="text-[var(--primary)] mt-0.5">•</span>
+                <span>{a}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {detalhe.perguntasEstudo.length > 0 && (
+        <div className="mt-3">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">Perguntas de Estudo</p>
+          <ol className="space-y-1 list-decimal list-inside">
+            {detalhe.perguntasEstudo.map((p, i) => (
+              <li key={i} className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">{p}</li>
+            ))}
+          </ol>
+        </div>
+      )}
+
+      {detalhe.versiculosConexoes.length > 0 && (
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {detalhe.versiculosConexoes.map((v, i) => (
+            <span key={i} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] text-[10px] font-medium">
+              <Link2 className="w-2.5 h-2.5" /> {v}
+            </span>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
+
 export default function PainelEstudosInline({ livro, capitulo, versiculo, nomeLivro, onClose }: Props) {
   const [expandido, setExpandido] = useState<number | null>(null);
-  const estudos = obterEstudos(livro, capitulo, versiculo);
+  const [estudo, setEstudo] = useState<EstudoVersiculoUnificado | null>(null);
+  const [carregando, setCarregando] = useState(true);
 
-  if (estudos.length === 0) return null;
+  useEffect(() => {
+    let ativo = true;
+    setCarregando(true);
+    setEstudo(null);
+    obterEstudoVersiculo(livro, capitulo, versiculo).then((res) => {
+      if (!ativo) return;
+      setEstudo(res);
+      setCarregando(false);
+    });
+    return () => { ativo = false; };
+  }, [livro, capitulo, versiculo]);
+
+  if (carregando || !estudo) return null;
 
   return (
     <motion.div
@@ -68,84 +154,92 @@ export default function PainelEstudosInline({ livro, capitulo, versiculo, nomeLi
           </button>
         </div>
 
-        {/* Theme */}
-        <p className="text-xs text-[var(--primary)] font-semibold mb-2">
-          {estudos[0].tema}
-        </p>
+        {estudo.fonte === 'teologico' ? (
+          <>
+            {/* Theme */}
+            <p className="text-xs text-[var(--primary)] font-semibold mb-2">
+              {estudo.tema}
+            </p>
 
-        {/* Contexto */}
-        <p className="text-xs text-[var(--muted-fg)] leading-relaxed mb-3 font-serif-body">
-          {estudos[0].contexto}
-        </p>
+            {/* Contexto */}
+            {estudo.contexto && (
+              <p className="text-xs text-[var(--muted-fg)] leading-relaxed mb-3 font-serif-body">
+                {estudo.contexto}
+              </p>
+            )}
 
-        {/* Teólogos */}
-        <div className="space-y-1.5">
-          {estudos[0].interpretacoes.map((interp, i) => {
-            const isOpen = expandido === i;
-            const tradicaoCor = tradicaoCores[interp.tradicao] || 'bg-gray-100 text-gray-700 dark:bg-gray-900/40 dark:text-gray-300';
+            {/* Teólogos */}
+            <div className="space-y-1.5">
+              {estudo.interpretacoes!.map((interp, i) => {
+                const isOpen = expandido === i;
+                const tradicaoCor = tradicaoCores[interp.tradicao] || 'bg-gray-100 text-gray-700 dark:bg-gray-900/40 dark:text-gray-300';
 
-            return (
-              <motion.div
-                key={i}
-                layout
-                className="border border-[var(--border)]/40 rounded-lg overflow-hidden hover:border-[var(--border)] transition-all"
-              >
-                <button
-                  onClick={() => setExpandido(isOpen ? null : i)}
-                  className="w-full flex items-center gap-2.5 px-3 py-2 hover:bg-[var(--bg)]/50 transition-colors text-left"
-                >
-                  <div className="w-6 h-6 rounded bg-[var(--primary)]/10 flex items-center justify-center shrink-0">
-                    <User className="w-3 h-3 text-[var(--primary)]" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-1.5 mb-0.5">
-                      <span className="text-xs font-semibold truncate">{interp.teologo}</span>
-                      <span className="text-[9px] text-[var(--muted-fg)] shrink-0">{interp.periodo}</span>
-                    </div>
-                    <div className="flex items-center gap-1 flex-wrap">
-                      <span className={`text-[9px] font-bold px-1 py-0.5 rounded ${tradicaoCor}`}>
-                        {interp.tradicao}
-                      </span>
-                      <span className="text-[9px] text-[var(--muted-fg)] flex items-center gap-0.5">
-                        <VisaoIcon visao={interp.visao} />
-                        {interp.visao}
-                      </span>
-                    </div>
-                  </div>
-                  {isOpen ? <ChevronUp className="w-3 h-3 text-[var(--muted-fg)] shrink-0" /> : <ChevronDown className="w-3 h-3 text-[var(--muted-fg)] shrink-0" />}
-                </button>
-
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-                      className="overflow-hidden"
+                return (
+                  <motion.div
+                    key={i}
+                    layout
+                    className="border border-[var(--border)]/40 rounded-lg overflow-hidden hover:border-[var(--border)] transition-all"
+                  >
+                    <button
+                      onClick={() => setExpandido(isOpen ? null : i)}
+                      className="w-full flex items-center gap-2.5 px-3 py-2 hover:bg-[var(--bg)]/50 transition-colors text-left"
                     >
-                      <div className="px-3 pb-3 border-t border-[var(--border)]/20">
-                        <p className="text-xs text-[var(--fg)] leading-relaxed mt-2 font-serif-body">
-                          {interp.resumo}
-                        </p>
-                        {interp.citacao && (
-                          <div className="mt-2 p-2.5 bg-[var(--bg)]/60 rounded-lg border-l-2 border-[var(--primary)]/20">
-                            <div className="flex items-start gap-1.5">
-                              <Quote className="w-2.5 h-2.5 text-[var(--primary)] mt-0.5 shrink-0" />
-                              <p className="text-[11px] text-[var(--fg)] italic leading-relaxed font-serif-body">
-                                {interp.citacao}
-                              </p>
-                            </div>
-                          </div>
-                        )}
+                      <div className="w-6 h-6 rounded bg-[var(--primary)]/10 flex items-center justify-center shrink-0">
+                        <User className="w-3 h-3 text-[var(--primary)]" />
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
-        </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5 mb-0.5">
+                          <span className="text-xs font-semibold truncate">{interp.teologo}</span>
+                          <span className="text-[9px] text-[var(--muted-fg)] shrink-0">{interp.periodo}</span>
+                        </div>
+                        <div className="flex items-center gap-1 flex-wrap">
+                          <span className={`text-[9px] font-bold px-1 py-0.5 rounded ${tradicaoCor}`}>
+                            {interp.tradicao}
+                          </span>
+                          <span className="text-[9px] text-[var(--muted-fg)] flex items-center gap-0.5">
+                            <VisaoIcon visao={interp.visao} />
+                            {interp.visao}
+                          </span>
+                        </div>
+                      </div>
+                      {isOpen ? <ChevronUp className="w-3 h-3 text-[var(--muted-fg)] shrink-0" /> : <ChevronDown className="w-3 h-3 text-[var(--muted-fg)] shrink-0" />}
+                    </button>
+
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-3 pb-3 border-t border-[var(--border)]/20">
+                            <p className="text-xs text-[var(--fg)] leading-relaxed mt-2 font-serif-body">
+                              {interp.resumo}
+                            </p>
+                            {interp.citacao && (
+                              <div className="mt-2 p-2.5 bg-[var(--bg)]/60 rounded-lg border-l-2 border-[var(--primary)]/20">
+                                <div className="flex items-start gap-1.5">
+                                  <Quote className="w-2.5 h-2.5 text-[var(--primary)] mt-0.5 shrink-0" />
+                                  <p className="text-[11px] text-[var(--fg)] italic leading-relaxed font-serif-body">
+                                    {interp.citacao}
+                                  </p>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </>
+        ) : (
+          <BlocoVersiculo estudo={estudo} />
+        )}
       </div>
     </motion.div>
   );

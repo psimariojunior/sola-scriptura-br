@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -10,6 +10,8 @@ import {
   ChevronDown, ChevronUp, Bookmark, Quote, CheckCircle2,
   ListOrdered, Brain, Target, BookMarked, StickyNote
 } from 'lucide-react';
+import { obterEstudoLivro } from '@/lib/estudosLoader';
+import { TODOS_LIVROS } from '@/data/biblia';
 
 type MetodoId = 'hermeneutico' | 'soap' | 'inductivo' | 'topico' | 'porlivro';
 
@@ -272,6 +274,12 @@ function MetodoCard({ metodo, isOpen, onToggle }: { metodo: Metodo; isOpen: bool
 export default function EstudoPage() {
   const [metodoAberto, setMetodoAberto] = useState<MetodoId | null>(null);
   const [abaAtiva, setAbasAtiva] = useState<'metodos' | 'memorizacao' | 'devocional' | 'anotacoes'>('metodos');
+  const [livroEstudo, setLivroEstudo] = useState<string>('');
+
+  const estudoDoLivro = useMemo(
+    () => (livroEstudo ? obterEstudoLivro(livroEstudo) : undefined),
+    [livroEstudo]
+  );
 
   return (
     <div className="min-h-screen bg-[var(--bg)]">
@@ -552,6 +560,88 @@ export default function EstudoPage() {
             </motion.div>
           )}
         </div>
+
+        <ScrollReveal delay={0.1}>
+          <div className="sola-card p-8 mt-8">
+            <h2 className="font-display text-2xl font-light text-[var(--fg)] mb-2 flex items-center gap-2">
+              <BookOpen className="w-6 h-6 text-[var(--primary)]" /> Estudo por Livro
+            </h2>
+            <p className="text-[var(--muted-fg)] mb-6">
+              Selecione um livro bíblico para ver um panorama de seu contexto, gênero, temas principais, versículos-chave e aplicações.
+            </p>
+
+            <select
+              value={livroEstudo}
+              onChange={(e) => setLivroEstudo(e.target.value)}
+              className="w-full sm:w-72 px-3 py-2.5 text-sm bg-[var(--surface-sunken)] border border-[var(--border)]/60 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/30 transition-all duration-200"
+            >
+              <option value="">Selecione um livro…</option>
+              {TODOS_LIVROS.map((l) => (
+                <option key={l.abreviacao} value={l.abreviacao}>{l.nome}</option>
+              ))}
+            </select>
+
+            {estudoDoLivro && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-6 border-l-2 border-[var(--primary)]/30 pl-4 py-2 space-y-4"
+              >
+                <p className="text-sm text-[var(--fg)] leading-relaxed font-serif-body">{estudoDoLivro.contexto}</p>
+
+                {estudoDoLivro.genero && (
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">Gênero</p>
+                    <p className="text-xs text-[var(--fg)] font-medium">{estudoDoLivro.genero}</p>
+                  </div>
+                )}
+
+                {estudoDoLivro.temasPrincipais.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {estudoDoLivro.temasPrincipais.map((t, i) => (
+                      <span key={i} className="px-2 py-0.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] text-[10px] font-medium">{t}</span>
+                    ))}
+                  </div>
+                )}
+
+                {estudoDoLivro.versiculosChave.length > 0 && (
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-2 flex items-center gap-1">
+                      <Quote className="w-3 h-3" /> Versículos-Chave
+                    </p>
+                    <div className="space-y-2">
+                      {estudoDoLivro.versiculosChave.map((vc, i) => (
+                        <div key={i} className="bg-[var(--bg)]/60 rounded-lg p-3 border-l-2 border-[var(--primary)]/20">
+                          <p className="text-xs font-bold text-[var(--primary)] mb-1">{vc.referencia}</p>
+                          <p className="text-xs text-[var(--fg)] italic leading-relaxed font-serif-body mb-1">&ldquo;{vc.texto}&rdquo;</p>
+                          <p className="text-xs text-[var(--muted-fg)] leading-relaxed">{vc.explicacao}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1 flex items-center gap-1">
+                    <Lightbulb className="w-3 h-3" /> Aplicação Prática
+                  </p>
+                  <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">{estudoDoLivro.aplicacaoPratica}</p>
+                </div>
+
+                {estudoDoLivro.perguntasEstudo.length > 0 && (
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">Perguntas de Estudo</p>
+                    <ol className="space-y-1 list-decimal list-inside">
+                      {estudoDoLivro.perguntasEstudo.map((p, i) => (
+                        <li key={i} className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">{p}</li>
+                      ))}
+                    </ol>
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </div>
+        </ScrollReveal>
       </main>
       <Footer />
     </div>

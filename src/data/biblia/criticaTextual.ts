@@ -31,7 +31,7 @@ export const VARIANTES_TEXTUAIS: VarianteTextual[] = [
     pericope: 'A Adúltera Perdoada',
     tipo: 'adicao',
     descricao: 'A história da mulher adúltera não se encontra nos manuscritos mais antigos de João. O texto pula de 7:52 diretamente para 8:12 em muitos testemunhos.',
-    manuscritos: ['Sinaitico (01)', 'Vaticano (03)', 'Alexandrino (02)', 'Lattimore (05)'],
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)', 'Papiro 66', 'Papiro 75'],
     evidenciaExterna: 'fraca',
     recomendacaoNA28: 'O trecho está entre colchetes, com indicação de que sua localização original é incerta.',
     notas: 'A passagem aparece em diferentes locais em alguns manuscritos: após Jo 21:25, após Lc 21:38, ou em Jo 7:36.'
@@ -42,7 +42,7 @@ export const VARIANTES_TEXTUAIS: VarianteTextual[] = [
     pericope: 'A Trindade no Texto',
     tipo: 'adicao',
     descricao: 'A chamada "Comissão Trinitária" (Tres Testimonium) — "Pois três são os que testificam no céu: o Pai, a Palavra e o Espírito Santo; e estes três são um" — não aparece em nenhum manuscrito grego anterior ao século XVI.',
-    manuscritos: ['Recebeido', 'Manuscritos posteriores'],
+    manuscritos: ['Textus Receptus', 'Manuscritos latinos tardios'],
     evidenciaExterna: 'fraca',
     recomendacaoNA28: 'Estes versos são omitidos na edição NA28, considerados uma glossa posterior.',
     textoRecebido: 'Pois três são os que testificam no céu: o Pai, a Palavra e o Espírito Santo; e estes três são um. E três são os que testificam na terra: o espírito, a água e o sangue; e estes três concordam.',
@@ -101,7 +101,7 @@ export const VARIANTES_TEXTUAIS: VarianteTextual[] = [
     manuscritos: ['Sinaitico (01)', 'Vaticano (03) — variantes'],
     evidenciaExterna: 'moderada',
     recomendacaoNA28: 'O versículo é incluído, mas com nota de divisão na evidência.',
-    notas: 'Pode ter sido omitido por抄写员 que julgavam que os judeus deveriam saber o que faziam.'
+    notas: 'Pode ter sido omitido por escribas que julgavam que os judeus deveriam saber o que faziam.'
   },
   {
     id: 'vt-009',
@@ -175,7 +175,7 @@ export const VARIANTES_TEXTUAIS: VarianteTextual[] = [
     pericope: 'Comissão Trinitária',
     tipo: 'adicao',
     descricao: 'Veja vt-003. A adição Trinitária é uma das variantes textuais mais conhecidas do NT.',
-    manuscritos: ['Recebeido', 'Manuscritos latinos tardios'],
+    manuscritos: ['Textus Receptus', 'Manuscritos latinos tardios'],
     evidenciaExterna: 'fraca',
     recomendacaoNA28: 'Omitido na NA28.',
     notas: 'Ausente em todos os manuscritos gregos antigos. Presente em 6-7 manuscritos gregos tardios (séc. XVI-XVII).'
@@ -207,11 +207,11 @@ export const VARIANTES_TEXTUAIS: VarianteTextual[] = [
     referencia: 'jo:1:18',
     pericope: 'O Verbo Encarnado',
     tipo: 'mudanca',
-    descricao: 'A variante entre "unicogênito" (μονογενής) e "unigênito" (μονογενής) versus "Deus" (θεός) — "o unigênito Deus" vs "Deus, o unigênito Filho".',
+    descricao: 'A variante entre "o unigênito Deus" (μονογενὴς θεός) e "o unigênito Filho" (ὁ μονογενὴς υἱός).',
     manuscritos: ['Sinaitico (01)', 'Vaticano (03)', 'Alexandrino (02)'],
     evidenciaExterna: 'forte',
     recomendacaoNA28: 'Lê "o unigênito Deus" (μονογενὴς θεός).',
-    notas: 'O termo monogenés é debatido: pode significar "unicogênito" ou "único".'
+    notas: 'O termo monogenés é debatido: pode significar "unigênito" ou "único".'
   },
   {
     id: 'vt-019',
@@ -274,7 +274,7 @@ export const VARIANTES_TEXTUAIS: VarianteTextual[] = [
     pericope: 'O Batismo de Jesus',
     tipo: 'mudanca',
     descricao: 'Uma variante rara onde a voz do céu diz "Tu és meu Filho amado; hoje te gerei" (Sl 2:7) em vez do relato canônico.',
-    manuscritos: ['D-Cânone de Beza', 'Manuscritos siríacos'],
+    manuscritos: ['Codex Bezae (05)', 'Manuscritos latinos antigos'],
     evidenciaExterna: 'fraca',
     notas: 'A leitura citando o Sl 2:7 pode refletir uma tradição adopcionista.'
   },
@@ -294,7 +294,7 @@ export const VARIANTES_TEXTUAIS: VarianteTextual[] = [
     referencia: '1co:11:24',
     pericope: 'A Ceia do Senhor',
     tipo: 'mudanca',
-    descricao: 'A variante entre "fazendo-se em benefício" (εἰς τὸ ὑμῶν) e "sendo partido" ou "sendo quebrado" (κλώμενον).',
+    descricao: 'A variante sobre a presença ou ausência de "partido/quebrado" (κλώμενον) após "que é por vós" — "isto é o meu corpo, que é partido por vós".',
     manuscritos: ['Alexandrino (02)', 'Vaticano (03)'],
     evidenciaExterna: 'moderada',
     recomendacaoNA28: 'Lê "isto é o meu corpo, que é dado por vós".',
@@ -320,7 +320,7 @@ export const VARIANTES_TEXTUAIS: VarianteTextual[] = [
     manuscritos: ['Alexandrino (02)', 'Vaticano (03)'],
     evidenciaExterna: 'moderada',
     recomendacaoNA28: 'Lê "de Deus, o Pai, e de Cristo".',
-    notas: 'Reflete uma tradição mais antiga sobre a relationship Pai-Filho.'
+    notas: 'Reflete uma tradição mais antiga sobre a relação Pai-Filho.'
   },
   {
     id: 'vt-029',
@@ -349,7 +349,7 @@ export const VARIANTES_TEXTUAIS: VarianteTextual[] = [
     referencia: 'jo:1:34',
     pericope: 'O Testemunho de João Batista',
     tipo: 'mudanca',
-    descricao: 'A variante entre "Filho de Deus" (υἱὸς τοῦ θεοῦ) e "Filho de Deus eleito" (ὁ ἐκλεκτός) — uma leição rara.',
+    descricao: 'A variante entre "Filho de Deus" (υἱὸς τοῦ θεοῦ) e "o Eleito de Deus" (ὁ ἐκλεκτὸς τοῦ θεοῦ) — uma leitura rara.',
     manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
     evidenciaExterna: 'moderada',
     recomendacaoNA28: 'Lê "Filho de Deus".',

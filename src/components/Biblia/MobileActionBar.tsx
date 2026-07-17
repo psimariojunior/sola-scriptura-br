@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, StickyNote, Languages, Share2, BookOpen, GraduationCap, Palette, Copy, X, Sparkles, MessageSquare } from 'lucide-react';
+import { Heart, StickyNote, Languages, Share2, BookOpen, GraduationCap, Palette, Copy, X, Sparkles, MessageSquare, Image as ImageIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
 import type { useVerseAudio } from '@/hooks/useVerseAudio';
@@ -34,6 +34,7 @@ export interface MobileActionBarProps {
   onComentarios: () => void;
   onToggleEstudo: () => void;
   onApresentar: () => void;
+  onCompartilharImagem: () => void;
   copyVerse: (text: string, ref: string) => void;
   copiedVerse: string | null;
 }
@@ -51,6 +52,7 @@ export function MobileActionBar({
   onComentarios,
   onToggleEstudo,
   onApresentar,
+  onCompartilharImagem,
   copyVerse,
   copiedVerse,
 }: MobileActionBarProps) {
@@ -201,6 +203,11 @@ export function MobileActionBar({
                   icon={Sparkles}
                   label="Apresentar"
                   onClick={onApresentar}
+                />
+                <ActionTile
+                  icon={ImageIcon}
+                  label="Imagem"
+                  onClick={onCompartilharImagem}
                 />
               </div>
             </div>

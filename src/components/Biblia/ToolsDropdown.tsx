@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, FileText, Download, BookMarked, Play, Settings } from 'lucide-react';
+import { Layers, FileText, Download, BookMarked, Play, Settings, Volume2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { exportChapterPdf } from '@/lib/exportPdf';
 import type { CapituloComparado } from '@/data/biblia';
@@ -36,10 +36,11 @@ interface ToolsDropdownProps {
   onExportPdf: () => void;
   onPlanoLeitura: () => void;
   onNarracaoDramatica: () => void;
+  onNarrarCapitulo: () => void;
   onConfiguracoes: () => void;
 }
 
-export function ToolsDropdown({ open, onToggle, onClose, bookName, chapter, data, hasDramatica, onNotas, onExportPdf, onPlanoLeitura, onNarracaoDramatica, onConfiguracoes }: ToolsDropdownProps) {
+export function ToolsDropdown({ open, onToggle, onClose, bookName, chapter, data, hasDramatica, onNotas, onExportPdf, onPlanoLeitura, onNarracaoDramatica, onNarrarCapitulo, onConfiguracoes }: ToolsDropdownProps) {
   return (
     <div className="relative">
       <motion.button
@@ -70,6 +71,7 @@ export function ToolsDropdown({ open, onToggle, onClose, bookName, chapter, data
               <ToolItem icon={Download} label="Exportar PDF" onClick={onExportPdf} />
               <ToolItem icon={BookMarked} label="Plano de Leitura" onClick={onPlanoLeitura} />
               {hasDramatica && <ToolItem icon={Play} label="Narração Dramática" onClick={onNarracaoDramatica} />}
+              <ToolItem icon={Volume2} label="Narrar Capítulo" onClick={onNarrarCapitulo} />
               <div className="my-1 h-px bg-[var(--border)]/40" />
               <ToolItem icon={Settings} label="Configurações" onClick={onConfiguracoes} />
             </motion.div>

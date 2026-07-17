@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { MapPin, Search, X, BookOpen, Globe } from 'lucide-react';
+import { MapPin, Search, X, BookOpen, Globe, ChevronRight } from 'lucide-react';
 import { locaisBiblicos, locaisPorTestamento, buscarLocal } from '@/data/biblia/locais';
 import type { LocalBiblico } from '@/data/biblia/locais';
 import { motion } from 'framer-motion';
@@ -204,6 +205,28 @@ export default function FerramentasPage() {
                 </div>
               </div>
             </div>
+          </ScrollReveal>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 mt-8">
+          <ScrollReveal delay={0.3}>
+            <Link
+              href="/ferramentas/concordancia"
+              className="sola-card rounded-xl p-5 flex items-center gap-4 hover:border-[var(--brand-default)]/40 transition-all duration-300 group"
+            >
+              <div className="w-12 h-12 rounded-xl bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0">
+                <BookOpen className="w-6 h-6 text-[var(--brand-default)]" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-display text-lg font-medium text-[var(--content-primary)] group-hover:text-[var(--brand-default)] transition-colors">
+                  Concordância Bíblica
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Busque qualquer palavra em toda a Bíblia e veja todas as ocorrências por livro e capítulo.
+                </p>
+              </div>
+              <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-[var(--brand-default)] transition-colors shrink-0" />
+            </Link>
           </ScrollReveal>
         </div>
       </main>

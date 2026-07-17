@@ -4,7 +4,8 @@ import { useState, useRef, useCallback } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion } from 'framer-motion';
-import { Share2, Copy, Check, MessageCircle, Twitter, Instagram, Download } from 'lucide-react';
+import { Share2, Copy, Check, MessageCircle, Twitter, Instagram, Download, Image as ImageIcon } from 'lucide-react';
+import Link from 'next/link';
 import ScrollReveal from '@/components/ScrollReveal';
 import { CompartilharEstudo } from '@/components/CompartilharEstudo';
 
@@ -317,6 +318,24 @@ export default function CompartilharPage() {
               )}
 
               <canvas ref={canvasRef} className="hidden" />
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <div className="mt-10">
+              <Link
+                href="/compartilhar/versiculo?livro=gn&cap=1&v=1&t=arc"
+                className="group flex items-center gap-4 rounded-2xl border border-border/50 bg-card/50 p-6 hover:border-primary/30 hover:bg-muted/40 transition-all"
+              >
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <ImageIcon className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h2 className="font-display text-xl font-light text-foreground">Compartilhar Versículo (Imagem)</h2>
+                  <p className="text-sm text-muted-foreground">Gere uma imagem personalizada de qualquer versículo para redes sociais.</p>
+                </div>
+                <Share2 className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </Link>
             </div>
           </ScrollReveal>
 

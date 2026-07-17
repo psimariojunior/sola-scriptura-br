@@ -39,6 +39,7 @@ import { NotesPanelSection } from '@/components/Biblia/NotesPanelSection';
 import { AudioPlayers } from '@/components/Biblia/AudioPlayers';
 import { TranslationDropdown, TRAD_IDS as TRAD_IDS_IMPORT, labelMap as labelMapImport, nomeMap as nomeMapImport, tradBadgeColors as tradBadgeColorsImport } from '@/components/Biblia/TranslationDropdown';
 import { ToolsDropdown } from '@/components/Biblia/ToolsDropdown';
+import { ShareVerseModal } from '@/components/Biblia/ShareVerseModal';
 import { SettingsPanel } from '@/components/Biblia/SettingsPanel';
 import { ChapterGrid } from '@/components/Biblia/ChapterGrid';
 
@@ -163,11 +164,14 @@ export default function BibliaPage() {
   const [notaAtiva, setNotaAtiva] = useState<import('@/components/NotaEditor').Nota | null>(null);
   const { notas, criarNota, salvarNota: salvarNotaHook, excluirNota } = useNotas();
   const [mostrarNarracao, setMostrarNarracao] = useState(false);
+  const [mostrarNarracaoCapitulo, setMostrarNarracaoCapitulo] = useState(false);
   const [mostrarApresentacao, setMostrarApresentacao] = useState(false);
   const [mostrarQualidadeAudio, setMostrarQualidadeAudio] = useState(false);
   const [tradOpen, setTradOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
+  const NarrationPanel = lazy(() => import('@/components/Biblia/NarrationPanel').then(m => ({ default: m.NarrationPanel })));
 
   const livro = TODOS_LIVROS[livroIdx];
   const chaveDramatica = `${livro.abreviacao}-${capituloIdx + 1}`;
@@ -245,8 +249,8 @@ export default function BibliaPage() {
       if (e.key === '/') { e.preventDefault(); setQuickSearchOpen(true); return; }
       if (e.key === 'ArrowLeft' && capituloIdx > 0) { e.preventDefault(); setChapterDirection('prev'); setCapituloIdx(p => Math.max(0, p - 1)); }
       else if (e.key === 'ArrowRight' && livro && capituloIdx < livro.totalCapitulos - 1) { e.preventDefault(); setChapterDirection('next'); setCapituloIdx(p => p + 1); }
-      else if (e.key === 'Escape') { setSidebarOpen(false); setMobileMenu(false); setChapterGridOpen(false); setMostrarNarracao(false); setVersiculoSelecionado(null); setTradOpen(false); 
-setToolsOpen(false); setExportOpen(false); }
+       else if (e.key === 'Escape') { setSidebarOpen(false); setMobileMenu(false); setChapterGridOpen(false); setMostrarNarracao(false); setMostrarNarracaoCapitulo(false); setVersiculoSelecionado(null); setTradOpen(false); 
+ setToolsOpen(false); setExportOpen(false); }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -501,6 +505,7 @@ const toggleTrad = (id: string) => {
                   onExportPdf={() => { setToolsOpen(false); setExportOpen(true); }}
                   onPlanoLeitura={() => { setShowPlan(!showPlan); setToolsOpen(false); }}
                   onNarracaoDramatica={() => { setMostrarNarracao(true); setToolsOpen(false); }}
+                  onNarrarCapitulo={() => { setMostrarNarracaoCapitulo(true); setToolsOpen(false); }}
                   onConfiguracoes={() => { setShowSettings(!showSettings); setToolsOpen(false); }}
                 />
 
@@ -753,6 +758,7 @@ const toggleTrad = (id: string) => {
           setVersiculoSelecionado(null);
         }}
         onApresentar={() => { setMostrarApresentacao(true); setVersiculoSelecionado(null); }}
+        onCompartilharImagem={() => setShareOpen(true)}
         copyVerse={copyVerse}
         copiedVerse={copiedVerse}
       />
@@ -818,6 +824,22 @@ const toggleTrad = (id: string) => {
         )}
       </AnimatePresence>
 
+      <AnimatePresence>
+        {mostrarNarracaoCapitulo && (
+          <Suspense fallback={<PanelFallback />}>
+            <NarrationPanel
+              open={mostrarNarracaoCapitulo}
+              onClose={() => setMostrarNarracaoCapitulo(false)}
+              livroAbreviacao={livro.abreviacao}
+              capitulo={capituloIdx + 1}
+              traducao={selectedTrads[0] || 'arc'}
+              livroNome={livro.nome}
+              versiculos={data[0]?.versiculos?.map(v => ({ numero: v.numero, texto: v.texto })) ?? []}
+            />
+          </Suspense>
+        )}
+      </AnimatePresence>
+
       <PainelDoVersiculo
         livro={versiculoSelecionado?.livroAbreviacao ?? ''}
         capitulo={versiculoSelecionado?.capitulo ?? 1}
@@ -846,6 +868,18 @@ const toggleTrad = (id: string) => {
         bookName={livro.nome}
         chapter={capituloIdx + 1}
         data={data}
+      />
+
+      <ShareVerseModal
+        open={shareOpen}
+        onClose={() => setShareOpen(false)}
+        verse={versiculoSelecionado ? {
+          livroNome: versiculoSelecionado.livroNome,
+          capitulo: versiculoSelecionado.capitulo,
+          versiculo: versiculoSelecionado.versiculo,
+          texto: versiculoSelecionado.texto,
+          traducao: versiculoSelecionado.traducao,
+        } : null}
       />
     </div>
   );

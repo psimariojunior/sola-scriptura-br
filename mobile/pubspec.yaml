@@ -1,27 +1,23 @@
 name: sola_scriptura_br
-description: App mobile da plataforma de estudo bíblico Sola Scriptura BR.
+description: App mobile MVP da plataforma Sola Scriptura BR — leitor bíblico.
 publish_to: 'none'
-
-version: 1.0.0+1
+version: 0.1.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   http: ^1.2.0
-  shared_preferences: ^2.2.2
-  google_fonts: ^6.1.0
-  flutter_riverpod: ^2.4.9
+  provider: ^6.1.0
+  shared_preferences: ^2.3.0
+  flutter_markdown: ^0.7.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/images/
-    - assets/animations/

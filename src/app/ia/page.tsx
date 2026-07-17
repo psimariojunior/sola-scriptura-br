@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import Paywall from '@/components/Paywall';
+import { authService } from '@/lib/auth';
 import { Sparkles, BookOpen, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -35,6 +37,12 @@ const tradicoes = [
 export default function IaPage() {
   const [tradicao, setTradicao] = useState('');
   const [mostrarTradicoes, setMostrarTradicoes] = useState(false);
+  const [temAcesso, setTemAcesso] = useState(true);
+  const [paywallAberto, setPaywallAberto] = useState(false);
+
+  useEffect(() => {
+    setTemAcesso(authService.temAcessoTotal());
+  }, []);
 
   const tradicaoLabel = tradicoes.find(t => t.valor === tradicao)?.label || 'Geral';
 
@@ -93,12 +101,32 @@ export default function IaPage() {
 
           <ScrollReveal delay={0.2}>
             <div className="h-[60vh] min-h-[400px]">
-              <AIChat tradicao={tradicao} onTradicaoChange={setTradicao} className="h-full" />
+              {temAcesso ? (
+                <AIChat tradicao={tradicao} onTradicaoChange={setTradicao} className="h-full" />
+              ) : (
+                <div className="h-full flex flex-col items-center justify-center text-center gap-4 rounded-2xl border border-dashed border-border bg-muted/20">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center shadow-lg shadow-amber-500/25">
+                    <Sparkles className="w-7 h-7 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold">Assistente de IA é do Acesso Total</p>
+                    <p className="text-sm text-muted-foreground mt-1">Pague R$20 una vez e desbloqueie para sempre.</p>
+                  </div>
+                  <button
+                    onClick={() => setPaywallAberto(true)}
+                    className="px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700 text-white font-semibold rounded-xl shadow-lg shadow-amber-500/25 hover:shadow-xl transition-all"
+                  >
+                    Desbloquear Acesso Total
+                  </button>
+                </div>
+              )}
             </div>
           </ScrollReveal>
         </div>
       </main>
       <Footer />
+
+      <Paywall aberto={paywallAberto} onFechar={() => setPaywallAberto(false)} />
     </div>
   );
 }

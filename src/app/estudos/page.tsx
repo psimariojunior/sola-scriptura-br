@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 import {
   Heart, StickyNote, Bookmark, Search, X, BookOpen, Trash2, ArrowRight,
   GraduationCap, Users, Layers, Quote, ChevronRight, Star, Library,
+  History, BookMarked, Sparkles, Filter, ArrowUpDown, Play,
 } from 'lucide-react';
 import { listarMarcas, removerMarca, toggleFavorito, type MarcaBiblia } from '@/lib/estudos';
 import { livroPorAbreviacao, TODOS_LIVROS } from '@/data/biblia';
@@ -15,8 +16,9 @@ import { exportToJson, exportToTxt, exportToCsv } from '@/lib/exportarEstudos';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { estudosPorLivro } from '@/data/estudosPorLivro';
 import { obterEstudos, type EstudoVersiculo } from '@/data/estudosTeologicos';
-import { listarTodosTeologos, getTeologosPorPeriodo, type Teologo } from '@/data/teologos';
+import { listarTodosTeologos, type Teologo } from '@/data/teologos';
 import { obterTodosComentarios, type Comentario } from '@/data/comentarios';
+import { getStats } from '@/lib/estatisticas';
 
 const PERIODOS_LABELS: Record<string, string> = {
   patristico: 'Padres da Igreja',
@@ -37,12 +39,15 @@ const PERIODOS_ICONS: Record<string, typeof BookOpen> = {
 };
 
 const CATEGORIAS_ESTUDO = [
-  { id: 'livros', label: 'Estudos por Livro', icon: BookOpen, description: 'Introdução, versículos-chave e perguntas para estudo de cada livro bíblico' },
+  { id: 'livros', label: 'Por Livro', icon: BookOpen, description: 'Estudo panorâmico de cada livro bíblico — contexto, temas, versículos-chave e perguntas' },
+  { id: 'temas', label: 'Por Tema / Tipo', icon: Layers, description: 'Teologia sistemática e tópicos doutrinários para estudo temático' },
   { id: 'teologicos', label: 'Estudos Teológicos', icon: GraduationCap, description: 'Análises de versículos-chave com visões de múltiplos teólogos' },
   { id: 'teologos', label: 'Teólogos', icon: Users, description: 'Perfis de teólogos de todas as épocas e tradições' },
   { id: 'comentarios', label: 'Comentários', icon: Quote, description: 'Comentários versículo a verso de teólogos renomados' },
   { id: 'meusestudos', label: 'Meus Estudos', icon: Bookmark, description: 'Seus versículos favoritos, anotações e marcações' },
 ];
+
+type Ordenacao = 'recente' | 'livro';
 
 export default function EstudosPage() {
   const [categoriaAtiva, setCategoriaAtiva] = useState('livros');
@@ -51,19 +56,49 @@ export default function EstudosPage() {
   const [query, setQuery] = useState('');
   const [periodoFilter, setPeriodoFilter] = useState<string>('todos');
 
+  // Personal study organization
+  const [filtroLivro, setFiltroLivro] = useState<string>('todos');
+  const [ordenacao, setOrdenacao] = useState<Ordenacao>('recente');
+
+  // Continuar estudando (reading history)
+  const [retomar, setRetomar] = useState<{ livro: string; titulo: string; capitulo: number } | null>(null);
+  const [livrosLidos, setLivrosLidos] = useState<Record<string, number>>({});
+
   const carregar = () => setMarcas(listarMarcas());
-  useEffect(() => { carregar(); }, []);
+  useEffect(() => {
+    carregar();
+    try {
+      const stats = getStats();
+      setLivrosLidos(stats.booksRead || {});
+      const ultimo = Object.entries(stats.booksRead || {})
+        .filter(([, c]) => c > 0)
+        .sort((a, b) => (b[1] as number) - (a[1] as number))[0];
+      if (ultimo) {
+        const info = livroPorAbreviacao.get(ultimo[0]);
+        if (info) setRetomar({ livro: ultimo[0], titulo: info.nome, capitulo: 1 });
+      }
+    } catch {}
+  }, []);
 
   const filtradas = useMemo(() => {
     let lista = marcas;
     if (aba === 'favoritos') lista = lista.filter((m) => m.favorito);
     if (aba === 'anotacoes') lista = lista.filter((m) => m.anotacao);
+    if (filtroLivro !== 'todos') lista = lista.filter((m) => m.livro === filtroLivro);
     if (query.trim()) {
       const q = query.toLowerCase();
       lista = lista.filter((m) => m.texto.toLowerCase().includes(q) || m.anotacao?.texto.toLowerCase().includes(q));
     }
-    return lista.sort((a, b) => b.dataCriacao - a.dataCriacao);
-  }, [marcas, aba, query]);
+    return lista.sort((a, b) => {
+      if (ordenacao === 'livro') {
+        const cmp = (livroPorAbreviacao.get(a.livro)?.nome || '').localeCompare(
+          livroPorAbreviacao.get(b.livro)?.nome || '', 'pt-BR'
+        );
+        return cmp !== 0 ? cmp : b.dataCriacao - a.dataCriacao;
+      }
+      return b.dataCriacao - a.dataCriacao;
+    });
+  }, [marcas, aba, query, filtroLivro, ordenacao]);
 
   const stats = useMemo(() => ({
     total: marcas.length,
@@ -74,9 +109,30 @@ export default function EstudosPage() {
   const livrosComEstudo = useMemo(() => {
     return Object.keys(estudosPorLivro).map(slug => {
       const info = livroPorAbreviacao.get(slug);
-      return { slug, titulo: info?.nome || slug, estudo: estudosPorLivro[slug] };
+      return { slug, titulo: info?.nome || slug, estudo: estudosPorLivro[slug], testamento: info?.testamento || 'AT' };
     }).sort((a, b) => a.titulo.localeCompare(b.titulo, 'pt-BR'));
   }, []);
+
+  const livrosEstudoFiltrados = useMemo(() => {
+    if (!query.trim()) return livrosComEstudo;
+    const q = query.toLowerCase();
+    return livrosComEstudo.filter(l =>
+      l.titulo.toLowerCase().includes(q) ||
+      l.estudo.temasPrincipais.some(t => t.toLowerCase().includes(q))
+    );
+  }, [livrosComEstudo, query]);
+
+  const livrosPorTestamento = useMemo(() => ({
+    AT: livrosEstudoFiltrados.filter(l => l.testamento === 'AT'),
+    NT: livrosEstudoFiltrados.filter(l => l.testamento === 'NT'),
+  }), [livrosEstudoFiltrados]);
+
+  const livrosUnicosFavoritos = useMemo(() => {
+    const slugs = new Set(marcas.map(m => m.livro));
+    return Array.from(slugs)
+      .map(s => ({ slug: s, nome: livroPorAbreviacao.get(s)?.nome || s }))
+      .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
+  }, [marcas]);
 
   const teologos = useMemo(() => {
     const todos = listarTodosTeologos();
@@ -118,13 +174,43 @@ export default function EstudosPage() {
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                   <GraduationCap className="w-5 h-5 text-primary" />
                 </div>
-                <h1 className="font-display text-3xl md:text-4xl font-light">Estudos Bíblicos</h1>
+                <h1 className="font-display text-3xl md:text-4xl font-light">Biblioteca de Estudos</h1>
               </div>
               <p className="text-muted-foreground ml-13 text-sm">
-                Estudos por livros, teologia sistemática, perfis de teólogos e suas contribuições
+                Sua biblioteca de pesquisa: estudos por livro, teologia sistemática, teólogos e seus estudos pessoais
               </p>
             </div>
           </ScrollReveal>
+
+          {/* ═══ CONTINUAR ESTUDANDO ═══ */}
+          {retomar && (
+            <ScrollReveal delay={0.05}>
+              <div className="sola-card p-5 mb-8 bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20">
+                <div className="flex items-center justify-between gap-4 flex-wrap">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
+                      <History className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">Continuar estudando</p>
+                      <p className="font-display text-lg font-semibold truncate">
+                        Retomar em {retomar.titulo}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {livrosLidos[retomar.livro]} {livrosLidos[retomar.livro] === 1 ? 'capítulo' : 'capítulos'} lidos neste livro
+                      </p>
+                    </div>
+                  </div>
+                  <Link
+                    href={`/biblia?livro=${retomar.livro}&capitulo=${retomar.capitulo}`}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:shadow-md shrink-0"
+                  >
+                    <Play className="w-4 h-4" /> Abrir leitura
+                  </Link>
+                </div>
+              </div>
+            </ScrollReveal>
+          )}
 
           {/* Category Tabs */}
           <ScrollReveal delay={0.1}>
@@ -149,7 +235,7 @@ export default function EstudosPage() {
             </div>
           </ScrollReveal>
 
-          {/* ═══ ESTUDOS POR LIVRO ═══ */}
+          {/* ═══ POR LIVRO ═══ */}
           {categoriaAtiva === 'livros' && (
             <div>
               <div className="flex items-center gap-2 mb-4">
@@ -157,33 +243,152 @@ export default function EstudosPage() {
                 <h2 className="font-display text-xl font-semibold">Estudos por Livro</h2>
                 <span className="text-xs text-muted-foreground ml-2">{livrosComEstudo.length} livros disponíveis</span>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {livrosComEstudo.map((l, i) => (
-                  <ScrollReveal key={l.slug} delay={Math.min(i * 0.02, 0.3)}>
-                    <Link
-                      href={`/estudos/${l.slug}`}
-                      className="block sola-card p-4 rounded-xl hover:shadow-lg transition-all group"
+
+              <div className="relative mb-6 max-w-md">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <input
+                  type="text"
+                  placeholder="Buscar livro ou tema..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  className="w-full pl-9 pr-9 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all"
+                />
+                {query && (
+                  <button onClick={() => setQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 hover:text-foreground transition-colors">
+                    <X className="w-3.5 h-3.5 text-muted-foreground" />
+                  </button>
+                )}
+              </div>
+
+      {(['AT', 'NT'] as const).map(test => {
+        const lista = livrosPorTestamento[test];
+        if (lista.length === 0) return null;
+        return (
+          <div key={test} className="mb-8">
+            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-2">
+              <Layers className="w-4 h-4" />
+              {test === 'AT' ? 'Antigo Testamento' : 'Novo Testamento'}
+              <span className="text-[10px] bg-muted px-2 py-0.5 rounded-full">{lista.length}</span>
+            </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {lista.map((l, i) => (
+                        <ScrollReveal key={l.slug} delay={Math.min(i * 0.02, 0.3)}>
+                          <Link
+                            href={`/estudos/${l.slug}`}
+                            className="block sola-card p-4 rounded-xl hover:shadow-lg transition-all group"
+                          >
+                            <div className="flex items-start justify-between mb-2">
+                              <h4 className="font-display text-base font-semibold group-hover:text-primary transition-colors">{l.titulo}</h4>
+                              <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                            </div>
+                            <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
+                              {l.estudo.contexto}
+                            </p>
+                            <div className="flex flex-wrap gap-1">
+                              {l.estudo.temasPrincipais.slice(0, 3).map(t => (
+                                <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary">{t}</span>
+                              ))}
+                            </div>
+                            <div className="mt-3 pt-2 border-t border-border/30 flex items-center gap-3 text-[10px] text-muted-foreground">
+                              <span>{l.estudo.versiculosChave.length} versículos-chave</span>
+                              <span>•</span>
+                              <span>{l.estudo.perguntasEstudo.length} perguntas</span>
+                            </div>
+                          </Link>
+                        </ScrollReveal>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+
+              {livrosEstudoFiltrados.length === 0 && (
+                <div className="sola-card p-12 text-center">
+                  <BookOpen className="w-12 h-12 mx-auto text-muted-foreground/30 mb-4" strokeWidth={1} />
+                  <p className="text-muted-foreground">Nenhum livro encontrado para &ldquo;{query}&rdquo;.</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ═══ POR TEMA / TIPO ═══ */}
+          {categoriaAtiva === 'temas' && (
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Layers className="w-5 h-5 text-primary" />
+                <h2 className="font-display text-xl font-semibold">Estudos Temáticos</h2>
+              </div>
+              <p className="text-sm text-muted-foreground mb-6">
+                Explore a Bíblia por doutrina e tópico. Estes estudos sistemáticos reúnem centenas de passagens e visões teológicas em categorias organizadas.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <ScrollReveal>
+                  <Link href="/teologia" className="block sola-card p-6 rounded-xl hover:shadow-lg transition-all group">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <GraduationCap className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">Teologia Sistemática</h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-3">
+                      13 categorias doutrinárias — Deus, Cristo, Salvação, Escatologia e mais — com estudos aprofundados.
+                    </p>
+                    <span className="inline-flex items-center gap-1 text-xs text-primary font-medium">
+                      Explorar doutrinas <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </Link>
+                </ScrollReveal>
+                <ScrollReveal delay={0.05}>
+                  <Link href="/topicos" className="block sola-card p-6 rounded-xl hover:shadow-lg transition-all group">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <Layers className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">Tópicos Teológicos</h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-3">
+                      Tópicos organizados por categoria doutrinária, com versículos-chave e conexões temáticas.
+                    </p>
+                    <span className="inline-flex items-center gap-1 text-xs text-primary font-medium">
+                      Navegar por tópicos <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </Link>
+                </ScrollReveal>
+                <ScrollReveal delay={0.1}>
+                  <Link href="/estudo" className="block sola-card p-6 rounded-xl hover:shadow-lg transition-all group">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <Sparkles className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">Métodos de Estudo</h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-3">
+                      Guia prático com métodos hermenêuticos, memorização e devocionais para estudar com profundidade.
+                    </p>
+                    <span className="inline-flex items-center gap-1 text-xs text-primary font-medium">
+                      Ver métodos <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </Link>
+                </ScrollReveal>
+                <ScrollReveal delay={0.15}>
+                  <Link href="/teologia" className="block sola-card p-6 rounded-xl hover:shadow-lg transition-all group">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <BookMarked className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">Estudo por Livro</h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-3">
+                      Seletor de livro com panorama, gênero, temas e versículos-chave — acesse pela aba &ldquo;Por Livro&rdquo;.
+                    </p>
+                    <button
+                      onClick={(e) => { e.preventDefault(); setCategoriaAtiva('livros'); }}
+                      className="inline-flex items-center gap-1 text-xs text-primary font-medium"
                     >
-                      <div className="flex items-start justify-between mb-2">
-                        <h3 className="font-display text-base font-semibold group-hover:text-primary transition-colors">{l.titulo}</h3>
-                        <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
-                      </div>
-                      <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
-                        {l.estudo.contexto}
-                      </p>
-                      <div className="flex flex-wrap gap-1">
-                        {l.estudo.temasPrincipais.slice(0, 3).map(t => (
-                          <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary">{t}</span>
-                        ))}
-                      </div>
-                      <div className="mt-3 pt-2 border-t border-border/30 flex items-center gap-3 text-[10px] text-muted-foreground">
-                        <span>{l.estudo.versiculosChave.length} versículos-chave</span>
-                        <span>•</span>
-                        <span>{l.estudo.perguntasEstudo.length} perguntas</span>
-                      </div>
-                    </Link>
-                  </ScrollReveal>
-                ))}
+                      Ir para livros <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </Link>
+                </ScrollReveal>
               </div>
             </div>
           )}
@@ -304,18 +509,27 @@ export default function EstudosPage() {
           {categoriaAtiva === 'meusestudos' && (
             <div>
               <div className="grid grid-cols-3 gap-4 mb-6">
-                <div className="sola-card p-4 text-center">
+                <Link href="/estudos" className="sola-card p-4 text-center hover:shadow-md transition-all">
                   <p className="font-display text-2xl font-light text-primary">{stats.total}</p>
                   <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-1">Total</p>
-                </div>
-                <div className="sola-card p-4 text-center">
+                </Link>
+                <Link href="/estudos" className="sola-card p-4 text-center hover:shadow-md transition-all">
                   <p className="font-display text-2xl font-light text-red-500">{stats.favoritos}</p>
                   <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-1">Favoritos</p>
-                </div>
-                <div className="sola-card p-4 text-center">
+                </Link>
+                <Link href="/estudos" className="sola-card p-4 text-center hover:shadow-md transition-all">
                   <p className="font-display text-2xl font-light text-amber-500">{stats.anotacoes}</p>
                   <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-1">Anotações</p>
-                </div>
+                </Link>
+              </div>
+
+              <div className="flex items-center gap-3 flex-wrap mb-4">
+                <Link href="/flashcards" className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium border border-border/60 rounded-lg text-muted-foreground hover:text-foreground hover:border-border transition-all">
+                  <BookMarked className="w-3.5 h-3.5" /> Flashcards
+                </Link>
+                <Link href="/biblia" className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium border border-border/60 rounded-lg text-muted-foreground hover:text-foreground hover:border-border transition-all">
+                  <BookOpen className="w-3.5 h-3.5" /> Ir para a Bíblia
+                </Link>
               </div>
 
               <div className="flex items-center gap-4 mb-4 flex-wrap">
@@ -333,6 +547,30 @@ export default function EstudosPage() {
                       <X className="w-3.5 h-3.5 text-muted-foreground" />
                     </button>
                   )}
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Filter className="w-3.5 h-3.5 text-muted-foreground" />
+                  <select
+                    value={filtroLivro}
+                    onChange={(e) => setFiltroLivro(e.target.value)}
+                    className="text-xs py-2 px-2 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 text-muted-foreground"
+                  >
+                    <option value="todos">Todos os livros</option>
+                    {livrosUnicosFavoritos.map(l => (
+                      <option key={l.slug} value={l.slug}>{l.nome}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <ArrowUpDown className="w-3.5 h-3.5 text-muted-foreground" />
+                  <select
+                    value={ordenacao}
+                    onChange={(e) => setOrdenacao(e.target.value as Ordenacao)}
+                    className="text-xs py-2 px-2 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 text-muted-foreground"
+                  >
+                    <option value="recente">Mais recentes</option>
+                    <option value="livro">Por livro (A–Z)</option>
+                  </select>
                 </div>
                 {marcas.length > 0 && (
                   <div className="flex items-center gap-1">
@@ -404,6 +642,7 @@ export default function EstudosPage() {
                                   {livro?.nome || m.livro} {m.capitulo}:{m.versiculo}
                                 </Link>
                                 <span className="text-[10px] px-2 py-0.5 bg-primary/10 text-primary rounded-full font-medium uppercase tracking-wider">{m.traducao}</span>
+                                <span className="text-[10px] text-muted-foreground">{livro?.testamento || 'AT'}</span>
                                 {m.favorito && <Heart className="w-3.5 h-3.5 text-red-500 fill-current" />}
                               </div>
                               <p className="text-sm text-foreground/80 font-serif-body leading-relaxed mb-1">{m.texto}</p>

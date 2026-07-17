@@ -39,6 +39,8 @@ import { TranslationDropdown, TRAD_IDS as TRAD_IDS_IMPORT, labelMap as labelMapI
 import { ToolsDropdown } from '@/components/Biblia/ToolsDropdown';
 import { ChapterGrid } from '@/components/Biblia/ChapterGrid';
 import { obterEstudoCapitulo } from '@/lib/estudosLoader';
+import Paywall from '@/components/Paywall';
+import { authService } from '@/lib/auth';
 
 const ExportModal = dynamic(() => import('@/components/Biblia/ExportModal').then(m => ({ default: m.ExportModal })), { ssr: false });
 const ApresentacaoModal = dynamic(() => import('@/components/Apresentacao/ApresentacaoModal'), { ssr: false });
@@ -127,6 +129,7 @@ const PASSAGENS_DRAMATICAS: Record<string, { titulo: string; subtitulo: string; 
 };
 
 export default function BibliaPage() {
+  const [paywallAprofundarAberto, setPaywallAprofundarAberto] = useState(false);
   const [livroIdx, setLivroIdx] = useState(0);
   const [capituloIdx, setCapituloIdx] = useState(0);
   const [selectedTrads, setSelectedTrads] = useState<string[]>(['arc']);
@@ -879,6 +882,10 @@ const toggleTrad = (id: string) => {
         onCompartilharImagem={() => setShareOpen(true)}
         onAprofundar={() => {
           if (!versiculoSelecionado) return;
+          if (!authService.temAcessoTotal()) {
+            setPaywallAprofundarAberto(true);
+            return;
+          }
           const ref = `${versiculoSelecionado.livroNome} ${versiculoSelecionado.capitulo}:${versiculoSelecionado.versiculo}`;
           window.open(`/estudo-ia?ref=${encodeURIComponent(ref)}`, '_blank');
         }}
@@ -887,7 +894,7 @@ const toggleTrad = (id: string) => {
       />
 
       <AnimatePresence>
-        {versiculoSelecionado && (
+        {versiculoSelecionado && authService.temAcessoTotal() && (
           <motion.a
             href={`/estudo-ia?ref=${encodeURIComponent(`${versiculoSelecionado.livroNome} ${versiculoSelecionado.capitulo}:${versiculoSelecionado.versiculo}`)}`}
             target="_blank"
@@ -1021,6 +1028,11 @@ const toggleTrad = (id: string) => {
           texto: versiculoSelecionado.texto,
           traducao: versiculoSelecionado.traducao,
         } : null}
+      />
+
+      <Paywall
+        aberto={paywallAprofundarAberto}
+        onFechar={() => setPaywallAprofundarAberto(false)}
       />
     </div>
   );

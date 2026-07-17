@@ -17,6 +17,8 @@ interface Usuario {
   nome: string;
   email: string;
   role?: 'admin' | 'user';
+  acessoTotal?: boolean;
+  dataPagamento?: string;
 }
 
 interface AuthResponse {
@@ -413,6 +415,26 @@ class AuthService {
   isAdmin(): boolean {
     if (!this.usuario) return false;
     return this.usuario.role === 'admin';
+  }
+
+  temAcessoTotal(): boolean {
+    return !!this.usuario?.acessoTotal;
+  }
+
+  liberarAcessoTotal(): void {
+    if (typeof window === 'undefined') return;
+    if (!this.usuario) return;
+    const usuarioAtualizado: Usuario = {
+      ...this.usuario,
+      acessoTotal: true,
+      dataPagamento: new Date().toISOString(),
+    };
+    this.usuario = usuarioAtualizado;
+    try {
+      localStorage.setItem(USER_KEY, JSON.stringify(usuarioAtualizado));
+      this.setCookie('ssb_usuario', JSON.stringify(usuarioAtualizado));
+    } catch { /* ignore */ }
+    this.notifyListeners();
   }
 
   getAccessToken(): string | null {

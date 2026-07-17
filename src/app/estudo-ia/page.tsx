@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import Paywall from '@/components/Paywall';
+import { authService } from '@/lib/auth';
 import { Sparkles, BookOpen, Loader2, Copy, Check, Download, ChevronDown, Brain, Cross, Lightbulb, MessageCircle, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -36,9 +38,12 @@ export default function EstudoIAPage() {
   const [historico, setHistorico] = useState<Array<{ passagem: string; data: string }>>([]);
   const [fontes, setFontes] = useState<string[]>([]);
   const [fundamentado, setFundamentado] = useState(false);
+  const [temAcesso, setTemAcesso] = useState(true);
+  const [paywallAberto, setPaywallAberto] = useState(false);
   const resultadoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setTemAcesso(authService.temAcessoTotal());
     const params = new URLSearchParams(window.location.search);
     const ref = params.get('ref');
     if (ref?.trim()) {
@@ -50,6 +55,10 @@ export default function EstudoIAPage() {
   }, []);
 
   const gerarEstudo = async () => {
+    if (!authService.temAcessoTotal()) {
+      setPaywallAberto(true);
+      return;
+    }
     if (!passagem.trim() || carregando) return;
     setCarregando(true);
     setErro('');
@@ -130,6 +139,18 @@ export default function EstudoIAPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
+            {!temAcesso && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="sola-card p-4 mb-4 border-amber-500/20 bg-amber-500/5 flex items-center gap-3"
+              >
+                <Sparkles className="w-5 h-5 text-amber-600 shrink-0" />
+                <p className="text-sm text-amber-700 dark:text-amber-300">
+                  O Gerador de Estudo com IA faz parte do <strong>Acesso Total</strong>. Pague R$20 uma vez e use para sempre.
+                </p>
+              </motion.div>
+            )}
             <div className="sola-card p-6 mb-8">
               <div className="flex flex-col gap-4">
                 <div className="relative">
@@ -166,9 +187,9 @@ export default function EstudoIAPage() {
 
                 <motion.button
                   onClick={gerarEstudo}
-                  disabled={!passagem.trim() || carregando}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={(!passagem.trim() || carregando) && temAcesso}
+                  whileHover={{ scale: temAcesso ? 1.02 : 1 }}
+                  whileTap={{ scale: temAcesso ? 0.98 : 1 }}
                   className="w-full py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-lg font-medium flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all duration-300"
                 >
                   {carregando ? (
@@ -176,10 +197,15 @@ export default function EstudoIAPage() {
                       <Loader2 className="w-4 h-4 animate-spin" />
                       Gerando estudo...
                     </>
-                  ) : (
+                  ) : temAcesso ? (
                     <>
                       <Sparkles className="w-4 h-4" />
                       Gerar Estudo Bíblico
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4" />
+                      Desbloququeie o Estudo com IA
                     </>
                   )}
                 </motion.button>
@@ -297,6 +323,8 @@ export default function EstudoIAPage() {
         </div>
       </main>
       <Footer />
+
+      <Paywall aberto={paywallAberto} onFechar={() => setPaywallAberto(false)} />
     </div>
   );
 }

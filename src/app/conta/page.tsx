@@ -12,6 +12,7 @@ import {
   TrendingUp, Award, ArrowRight
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { authService } from '@/lib/auth';
 import { listarMarcas, type MarcaBiblia } from '@/lib/estudos';
 import { livroPorAbreviacao } from '@/data/biblia';
 
@@ -19,6 +20,7 @@ export default function ContaPage() {
   const router = useRouter();
   const { usuario, isAutenticado, logout } = useAuth();
   const [marcas, setMarcas] = useState<MarcaBiblia[]>([]);
+  const [temAcessoTotal, setTemAcessoTotal] = useState(false);
 
   useEffect(() => {
     if (!isAutenticado) {
@@ -26,6 +28,7 @@ export default function ContaPage() {
       return;
     }
     setMarcas(listarMarcas());
+    setTemAcessoTotal(authService.temAcessoTotal());
   }, [isAutenticado, router]);
 
   const handleLogout = async () => {
@@ -120,7 +123,9 @@ export default function ContaPage() {
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                   <Crown className="w-6 h-6 text-white" />
                 </div>
-                <p className="font-display text-lg font-light text-primary">Gratuito</p>
+                <p className="font-display text-lg font-light text-primary">
+                  {temAcessoTotal ? 'Acesso Total' : 'Gratuito'}
+                </p>
                 <p className="text-xs text-muted-foreground mt-1">Plano atual</p>
               </div>
             </div>
@@ -171,9 +176,18 @@ export default function ContaPage() {
                       Acesse todas as traduções, comentários, estudos avançados e muito mais
                     </p>
                   </div>
-                  <button className="px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700 text-white font-semibold rounded-xl shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/30 transition-all">
-                    Assinar Premium
-                  </button>
+                   {temAcessoTotal ? (
+                    <div className="px-6 py-3 bg-primary/10 text-primary font-semibold rounded-xl flex items-center gap-2">
+                      <Crown className="w-5 h-5" /> Você já tem Acesso Total
+                    </div>
+                   ) : (
+                    <button
+                      onClick={() => router.push('/assinar')}
+                      className="px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700 text-white font-semibold rounded-xl shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/30 transition-all"
+                    >
+                      Assinar Acesso Total
+                    </button>
+                   )}
                 </div>
               </div>
             </div>

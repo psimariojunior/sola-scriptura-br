@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, Fragment, lazy, Suspense } from 'react';
+import { memo, Fragment, lazy, Suspense, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -12,6 +12,7 @@ import { getTiposRecursoDisponiveis } from '@/data/biblia/versiculoRecursos';
 import { VerseActions } from './VerseActions';
 
 const PainelEstudosInline = lazy(() => import('@/components/PainelEstudosInline'));
+const EstudoSintetizado = lazy(() => import('./EstudoSintetizado'));
 
 function PanelFallback() {
   return (
@@ -21,6 +22,69 @@ function PanelFallback() {
         <span className="w-1.5 h-1.5 bg-[var(--brand-default)] rounded-full animate-bounce [animation-delay:0.15s]" />
         <span className="w-1.5 h-1.5 bg-[var(--brand-default)] rounded-full animate-bounce [animation-delay:0.3s]" />
       </div>
+    </div>
+  );
+}
+
+function PanelFallbackSintetizado() {
+  return (
+    <div className="px-4 py-4">
+      <div className="flex gap-1">
+        <span className="w-1.5 h-1.5 bg-[var(--brand-default)] rounded-full animate-bounce" />
+        <span className="w-1.5 h-1.5 bg-[var(--brand-default)] rounded-full animate-bounce [animation-delay:0.15s]" />
+        <span className="w-1.5 h-1.5 bg-[var(--brand-default)] rounded-full animate-bounce [animation-delay:0.3s]" />
+      </div>
+    </div>
+  );
+}
+
+function EstudoToggle({ livro, livroNome, capitulo, versiculo, onClose }: {
+  livro: string; livroNome: string; capitulo: number; versiculo: number; onClose: () => void;
+}) {
+  const [modo, setModo] = useState<'resumo' | 'sintetizado'>('resumo');
+  return (
+    <div className="px-3 sm:px-4">
+      <div className="flex items-center gap-1 p-1 bg-[var(--surface-sunken)] rounded-lg mb-2 w-fit">
+        <button
+          onClick={() => setModo('resumo')}
+          className={cn(
+            'px-3 py-1.5 rounded-md text-xs font-semibold transition-colors',
+            modo === 'resumo' ? 'bg-[var(--surface-raised)] text-[var(--brand-default)] shadow-sm' : 'text-[var(--content-muted)] hover:text-[var(--content-primary)]'
+          )}
+        >
+          Estudo
+        </button>
+        <button
+          onClick={() => setModo('sintetizado')}
+          className={cn(
+            'px-3 py-1.5 rounded-md text-xs font-semibold transition-colors flex items-center gap-1.5',
+            modo === 'sintetizado' ? 'bg-[var(--surface-raised)] text-[var(--brand-default)] shadow-sm' : 'text-[var(--content-muted)] hover:text-[var(--content-primary)]'
+          )}
+        >
+          Estudo Sintetizado
+        </button>
+      </div>
+      {modo === 'resumo' ? (
+        <Suspense fallback={<PanelFallback />}>
+          <PainelEstudosInline
+            livro={livro}
+            capitulo={capitulo}
+            versiculo={versiculo}
+            nomeLivro={livroNome}
+            onClose={onClose}
+          />
+        </Suspense>
+      ) : (
+        <Suspense fallback={<PanelFallbackSintetizado />}>
+          <EstudoSintetizado
+            livro={livro}
+            livroNome={livroNome}
+            capitulo={capitulo}
+            versiculo={versiculo}
+            onClose={onClose}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }
@@ -239,15 +303,13 @@ export const VerseCard = memo(function VerseCard({
             transition={{ duration: 0.3, ease: 'easeOut' }}
             className="overflow-hidden -mx-3 sm:-mx-4 mb-3"
           >
-            <Suspense fallback={<PanelFallback />}>
-              <PainelEstudosInline
-                livro={livroAbreviacao}
-                capitulo={capitulo}
-                versiculo={numero}
-                nomeLivro={livroNome}
-                onClose={onToggleEstudo}
-              />
-            </Suspense>
+            <EstudoToggle
+              livro={livroAbreviacao}
+              livroNome={livroNome}
+              capitulo={capitulo}
+              versiculo={numero}
+              onClose={onToggleEstudo}
+            />
           </motion.div>
         )}
       </AnimatePresence>

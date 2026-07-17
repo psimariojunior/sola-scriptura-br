@@ -10,6 +10,7 @@ import {
   Sparkles, GraduationCap, MessageCircle, Library, Crown, Heart, History, HelpCircle, Download,
 } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
+import { authService } from '@/lib/auth';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import { BuscaGlobal } from '@/components/BuscaGlobal';
@@ -91,6 +92,7 @@ export function Header() {
   const [headerSearchFocused, setHeaderSearchFocused] = useState(false);
   const [xp, setXp] = useState(0);
   const [streak, setStreak] = useState(0);
+  const [temAcessoTotal, setTemAcessoTotal] = useState(false);
   const { usuario, isAutenticado, isAdmin, logout } = useAuth();
   const { tema, setTema, temasDisponiveis } = useTema();
   const { i18n } = useTranslation();
@@ -124,6 +126,14 @@ export function Header() {
     setXp(stats.totalChapters * 50 + stats.streak * 10);
     setStreak(stats.streak);
   }, [pathname]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const atualizar = () => setTemAcessoTotal(authService.temAcessoTotal());
+    atualizar();
+    const unsub = authService.subscribe(atualizar);
+    return unsub;
+  }, []);
 
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
@@ -416,6 +426,11 @@ export function Header() {
                         <span className="text-sm font-medium max-w-[120px] truncate">
                           {usuario?.nome?.split(' ')[0] || 'Conta'}
                         </span>
+                        {temAcessoTotal && (
+                          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 text-[10px] font-semibold shrink-0">
+                            <Crown className="w-2.5 h-2.5" /> Total
+                          </span>
+                        )}
                       </button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-60">

@@ -274,7 +274,7 @@ const PLANOS_COMPLETOS: PlanoLeitura[] = [
       criarDia(4, 'O Preço da Redenção', [{ livro: '1 Pedro', capituloInicio: 2, versiculoInicio: 24, versiculoFim: 24 }, { livro: 'Isaías', capituloInicio: 53, versiculoInicio: 5, versiculoFim: 6 }], 'Cristo morreu por nossos pecados.', 'Jesus, obrigado pelo Teu sacrifício na cruz.'),
       criarDia(5, 'A Graça que Salva', [{ livro: 'Efésios', capituloInicio: 2, versiculoInicio: 8, versiculoFim: 9 }, { livro: 'Tito', capituloInicio: 3, versiculoInicio: 5, versiculoFim: 7 }], 'Somos salvos pela graça, por meio da fé.', 'O Teu amor é maior que os meus pecados.'),
       criarDia(6, 'A Vida Nova', [{ livro: '2 Coríntios', capituloInicio: 5, versiculoInicio: 17, versiculoFim: 17 }, { livro: 'Romanos', capituloInicio: 8, versiculoInicio: 1, versiculoFim: 2 }], 'Se alguém está em Cristo, nova criatura é.', 'Transforma minha vida, Senhor.'),
-      criarDia(7, 'A Segurança Eterna', [{ livro: 'João', capituloInicio: 10, versiculoInicio: 28, versiculoFim: 29 }, { livro: 'Romanos', capituloInicio: 8, versiculoInicio: 38, versiculoFim: 39 }], 'Nada nos pode separar do amor de Deus.', 'Senhor, creio em Ti e接收接受 Teu dom de salvação.'),
+      criarDia(7, 'A Segurança Eterna', [{ livro: 'João', capituloInicio: 10, versiculoInicio: 28, versiculoFim: 29 }, { livro: 'Romanos', capituloInicio: 8, versiculoInicio: 38, versiculoFim: 39 }], 'Nada nos pode separar do amor de Deus.', 'Senhor, creio em Ti e recebo Teu dom de salvação.'),
     ],
   },
   {

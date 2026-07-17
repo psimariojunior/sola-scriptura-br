@@ -463,7 +463,7 @@ export const novosPlanos: Record<string, PlanoLeitura> = {
       { dia: 8, titulo: 'Confiança no Senhor', passagens: p([r('pv', 3, 5, 6), r('is', 41, 10, 10)]) },
       { dia: 9, titulo: 'Alegria no Senhor', passagens: p([r('fp', 4, 4, 4), r('ne', 8, 10, 10)]) },
       { dia: 10, titulo: 'Luz nos Escuridão', passagens: p([r('sl', 119, 105, 105), r('jo', 8, 12, 12)]) },
-      { dia: 11, titulo: 'O Nome Poderoso', passagens: p([r('pf', 6, 6, 6), r('at', 4, 12, 12), r('fp', 2, 9, 11)]) },
+      { dia: 11, titulo: 'O Nome Poderoso', passagens: p([r('fp', 6, 6, 6), r('at', 4, 12, 12), r('fp', 2, 9, 11)]) },
       { dia: 12, titulo: 'Perdão Transformador', passagens: p([r('ef', 4, 31, 32), r('cl', 3, 13, 13)]) },
       { dia: 13, titulo: 'A Coragem de Josué', passagens: p([r('js', 1, 9, 9), r('dt', 31, 6, 8)]) },
       { dia: 14, titulo: 'Liberdade em Cristo', passagens: p([r('gl', 5, 1, 1), r('jo', 8, 36, 36)]) },

@@ -41,6 +41,7 @@ import { AudioPlayers } from '@/components/Biblia/AudioPlayers';
 import { TranslationDropdown, TRAD_IDS as TRAD_IDS_IMPORT, labelMap as labelMapImport, nomeMap as nomeMapImport, tradBadgeColors as tradBadgeColorsImport } from '@/components/Biblia/TranslationDropdown';
 import { ToolsDropdown } from '@/components/Biblia/ToolsDropdown';
 import { SettingsPanel } from '@/components/Biblia/SettingsPanel';
+import { ChapterGrid } from '@/components/Biblia/ChapterGrid';
 
 const TRAD_IDS = TRAD_IDS_IMPORT;
 const labelMap = labelMapImport;
@@ -173,6 +174,7 @@ export default function BibliaPage() {
   );
 
   const loadChapter = useCallback(async () => {
+    setData([]);
     setLoading(true);
     const livroAbrev = livro.abreviacao;
     const cap = capituloIdx + 1;
@@ -203,8 +205,8 @@ export default function BibliaPage() {
     const capituloParam = params.get('capitulo');
     const tradsParam = params.get('trads');
     if (livroParam) {
-      const idx = TODOS_LIVROS.findIndex((l) => l.abreviacao === livroParam);
-      if (idx >= 0) { setLivroIdx(idx); if (capituloParam) setCapituloIdx(Number(capituloParam) - 1); }
+      const idx = TODOS_LIVROS.findIndex((l) => l.abreviacao.toLowerCase() === livroParam.toLowerCase());
+      if (idx >= 0) { setLivroIdx(idx); if (capituloParam) setCapituloIdx(Math.max(0, Number(capituloParam) - 1)); }
     }
     if (tradsParam) {
       const t = tradsParam.split(',').filter((x) => (TRAD_IDS as readonly string[]).includes(x));
@@ -245,13 +247,14 @@ export default function BibliaPage() {
 
 const toggleTrad = (id: string) => {
   setSelectedTrads(prev => {
-    // no modo único, substituir a versão escolhida automaticamente
     if (viewMode === 'single') {
       return [id];
     }
     if (prev.length === 1 && prev[0] === id) return prev;
     if (prev.includes(id)) {
-      return prev.filter(t => t !== id);
+      const next = prev.filter(t => t !== id);
+      if (next.length === 1) setViewMode('single');
+      return next;
     }
     return [...prev, id].slice(0, viewMode === 'comparison' ? 4 : 2);
   });
@@ -264,11 +267,12 @@ const toggleTrad = (id: string) => {
   const temDados = data.length > 0 && data.some(d => d.versiculos.length > 0);
   const maxVersiculos = temDados ? Math.max(...data.map(d => d.versiculos.length)) : 0;
 
-  const goToBook = (idx: number) => { setLivroIdx(idx); setCapituloIdx(0); setMobileMenu(false); setChapterGridOpen(false); };
+  const goToBook = (idx: number, cap?: number) => { setLivroIdx(idx); setCapituloIdx(cap ?? 0); setMobileMenu(false); setChapterGridOpen(false); };
 
   const changeChapter = (newIdx: number) => {
-    setChapterDirection(newIdx > capituloIdx ? 'next' : 'prev');
-    setCapituloIdx(newIdx);
+    const clamped = Math.max(0, Math.min(livro.totalCapitulos - 1, newIdx));
+    setChapterDirection(clamped > capituloIdx ? 'next' : 'prev');
+    setCapituloIdx(clamped);
   };
 
   const copyVerse = async (text: string, reference: string) => {
@@ -378,10 +382,22 @@ const toggleTrad = (id: string) => {
                     aria-label="Capítulo anterior">
                     <ChevronLeft className="w-4 h-4" />
                   </motion.button>
-                  <div className="px-2.5 py-1 rounded-md bg-[var(--surface-sunken)] border border-[var(--border)]/40 min-w-[120px] text-center">
-                    <span className="text-xs font-semibold text-[var(--content-primary)]">{livro.nome}</span>
-                    <span className="text-[var(--brand-default)] font-bold ml-1.5 tabular-nums">{capituloIdx + 1}</span>
-                    <span className="text-[var(--content-muted)] font-normal text-[10px] ml-1">/{livro.totalCapitulos}</span>
+                  <div className="relative">
+                    <button
+                      onClick={() => setChapterGridOpen(!chapterGridOpen)}
+                      className="px-2.5 py-1 rounded-md bg-[var(--surface-sunken)] border border-[var(--border)]/40 min-w-[120px] text-center hover:bg-[var(--surface-raised)] transition-colors cursor-pointer"
+                    >
+                      <span className="text-xs font-semibold text-[var(--content-primary)]">{livro.nome}</span>
+                      <span className="text-[var(--brand-default)] font-bold ml-1.5 tabular-nums">{capituloIdx + 1}</span>
+                      <span className="text-[var(--content-muted)] font-normal text-[10px] ml-1">/{livro.totalCapitulos}</span>
+                    </button>
+                    <ChapterGrid
+                      open={chapterGridOpen}
+                      onClose={() => setChapterGridOpen(false)}
+                      totalCapitulos={livro.totalCapitulos}
+                      capituloAtual={capituloIdx}
+                      onSelect={(idx) => changeChapter(idx)}
+                    />
                   </div>
                   <motion.button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
                     disabled={capituloIdx >= livro.totalCapitulos - 1}
@@ -674,6 +690,7 @@ const toggleTrad = (id: string) => {
             onClose={() => setMobileMenu(false)}
             livroIdx={livroIdx}
             onSelect={(idx) => { goToBook(idx); setMobileMenu(false); }}
+            onSelectChapter={(idx, cap) => { goToBook(idx, cap); setMobileMenu(false); }}
           />
           </div>
 

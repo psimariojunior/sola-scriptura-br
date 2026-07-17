@@ -25,7 +25,7 @@ export interface Capitulo {
 
 export interface Livro {
   nome: string;
-  abbreviacao: string;
+  abreviacao: string;
   testamento: 'AT' | 'NT';
   totalCapitulos: number;
   capitulos: Capitulo[];
@@ -33,7 +33,7 @@ export interface Livro {
 
 export const livros: Livro[] = [
   {
-    nome: 'Gênesis', abbreviacao: 'gn', testamento: 'AT', totalCapitulos: 50,
+    nome: 'Gênesis', abreviacao: 'gn', testamento: 'AT', totalCapitulos: 50,
     capitulos: [
       { numero: 1, versiculos: [
         { numero: 1, texto: 'No princípio criou Deus os céus e a terra.' },
@@ -50,7 +50,7 @@ export const livros: Livro[] = [
     ],
   },
   {
-    nome: 'Êxodo', abbreviacao: 'ex', testamento: 'AT', totalCapitulos: 40,
+    nome: 'Êxodo', abreviacao: 'ex', testamento: 'AT', totalCapitulos: 40,
     capitulos: [
       { numero: 1, versiculos: [
         { numero: 1, texto: 'Estes são os nomes dos filhos de Israel que entraram no Egito com Jacó; cada um entrou com a sua casa:' },
@@ -61,7 +61,7 @@ export const livros: Livro[] = [
     ],
   },
   {
-    nome: 'Salmos', abbreviacao: 'sl', testamento: 'AT', totalCapitulos: 150,
+    nome: 'Salmos', abreviacao: 'sl', testamento: 'AT', totalCapitulos: 150,
     capitulos: [
       { numero: 1, versiculos: [
         { numero: 1, texto: 'Bem-aventurado o homem que não andou no conselho dos ímpios, não esteve no caminho dos pecadores, e não se assentou na roda dos escarnecedores.' },
@@ -79,7 +79,7 @@ export const livros: Livro[] = [
     ],
   },
   {
-    nome: 'Provérbios', abbreviacao: 'pv', testamento: 'AT', totalCapitulos: 31,
+    nome: 'Provérbios', abreviacao: 'pv', testamento: 'AT', totalCapitulos: 31,
     capitulos: [
       { numero: 1, versiculos: [
         { numero: 1, texto: 'Provérbios de Salomão, filho de Davi, rei de Israel:' },
@@ -92,7 +92,7 @@ export const livros: Livro[] = [
     ],
   },
   {
-    nome: 'Isaías', abbreviacao: 'is', testamento: 'AT', totalCapitulos: 66,
+    nome: 'Isaías', abreviacao: 'is', testamento: 'AT', totalCapitulos: 66,
     capitulos: [
       { numero: 53, versiculos: [
         { numero: 1, texto: 'Quem crê a nossa pregação? E a quem foi revelado o braço do SENHOR?' },
@@ -104,7 +104,7 @@ export const livros: Livro[] = [
     ],
   },
   {
-    nome: 'João', abbreviacao: 'jo', testamento: 'NT', totalCapitulos: 21,
+    nome: 'João', abreviacao: 'jo', testamento: 'NT', totalCapitulos: 21,
     capitulos: [
       { numero: 1, versiculos: [
         { numero: 1, texto: 'No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.' },
@@ -120,7 +120,7 @@ export const livros: Livro[] = [
     ],
   },
   {
-    nome: 'Romanos', abbreviacao: 'rm', testamento: 'NT', totalCapitulos: 16,
+    nome: 'Romanos', abreviacao: 'rm', testamento: 'NT', totalCapitulos: 16,
     capitulos: [
       { numero: 8, versiculos: [
         { numero: 28, texto: 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito.' },
@@ -130,7 +130,7 @@ export const livros: Livro[] = [
     ],
   },
   {
-    nome: 'Efésios', abbreviacao: 'ef', testamento: 'NT', totalCapitulos: 6,
+    nome: 'Efésios', abreviacao: 'ef', testamento: 'NT', totalCapitulos: 6,
     capitulos: [
       { numero: 2, versiculos: [
         { numero: 8, texto: 'Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus.' },
@@ -140,7 +140,7 @@ export const livros: Livro[] = [
     ],
   },
   {
-    nome: 'Hebreus', abbreviacao: 'hb', testamento: 'NT', totalCapitulos: 13,
+    nome: 'Hebreus', abreviacao: 'hb', testamento: 'NT', totalCapitulos: 13,
     capitulos: [
       { numero: 11, versiculos: [
         { numero: 1, texto: 'Ora, a fé é o firme fundamento das coisas que se esperam, e a prova das coisas que se não veem.' },

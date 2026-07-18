@@ -292,6 +292,15 @@ export const contextoHistorico: Record<string, ContextoHistorico> = {
     culturaSociedade: 'Chamado ao arrependimento nacional.',
     descobertasArqueologicas: 'Pragas de gafanhotos são registradas em textos egípcios antigos.',
   },
+  am: {
+    livro: 'am',
+    periodo: '~760-750 a.C.',
+    autorTradicional: 'Amós',
+    ambienteGeografico: 'Reino do Norte (Israel), com ministério em Betel e origem em Tecoa (Judá).',
+    contextoHistorico: 'Profetizou durante o reinado de Jeroboão II, quando Israel vivia prosperidade material mas profunda corrupção moral. Amós, pastor e ladrador de sicômoros de Tecoa, foi enviado do Sul para denunciar a injustiça social, a exploração dos pobres, a idolatria e a corrupção moral do Norte. É um dos primeiros profetas escrito.',
+    culturaSociedade: 'Denúncia veemente dos que vendiam justiça por dinheiro, pisavam nos necessitados e profanavam o sábado. Contra o culto formal vazio e a ostentação dos ricos.',
+    descobertasArqueologicas: 'Inscrição de Tel Dan menciona a casa de Omri (reinado contemporâneo). Escavações em Samaria revelam a riqueza da corte do Norte descrita por Amós.',
+  },
   ob: {
     livro: 'ob',
     periodo: '~845 a.C. (ou pós-586)',
@@ -318,6 +327,15 @@ export const contextoHistorico: Record<string, ContextoHistorico> = {
     contextoHistorico: 'Juízo contra a injustiça social e promessa do governante de Belém.',
     culturaSociedade: 'Profeta do campo denuncia líderes corruptos.',
     descobertasArqueologicas: 'Tell de Micas (Moresete) preserva o vilarejo rural do profeta.',
+  },
+  hc: {
+    livro: 'hc',
+    periodo: '~609-598 a.C.',
+    autorTradicional: 'Habacuque',
+    ambienteGeografico: 'Judá, provavelmente durante o reinado de Joaquim.',
+    contextoHistorico: 'Confronta o problema da teodicéia: por que Deus usa a Babilônia, nação ímpia, para punir Judá? O diálogo de oração do profeta com Deus é único nas Escrituras. Enfatiza a fé apesar de perguntas sem resposta ("o justo viverá pela fé").',
+    culturaSociedade: 'Israel enfrenta a ascensão da Babilônia após a queda da Assíria (612 a.C.). A crise provoca questionamentos profundos sobre a justiça de Deus.',
+    descobertasArqueologicas: 'Crônicas babilônicas (ABC) documentam a ascensão de Nabopolassar e a expansão caldéia que contextualizam a ameaça ao reino de Judá.',
   },
   na: {
     livro: 'na',

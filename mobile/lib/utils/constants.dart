@@ -1,0 +1,105 @@
+class AppConstants {
+  AppConstants._();
+
+  static const String appName = 'Sola Scriptura BR';
+  static const String appVersion = '0.1.0';
+  static const String defaultTranslation = 'arc';
+  static const int maxRecentSearches = 20;
+  static const int maxOfflineChapters = 100;
+  static const Duration cacheExpiration = Duration(hours: 24);
+  static const Duration sessionRefreshInterval = Duration(minutes: 30);
+
+  static const List<String> defaultTranslations = [
+    'arc',
+    'nvi',
+    'ara',
+    'acf',
+    'kjv',
+    'web',
+  ];
+
+  static const List<String> theologyCategories = [
+    'Bibliologia',
+    'Teologia Proper',
+    'Cristologia',
+    'Pneumatologia',
+    'Antropologia',
+    'Soteriologia',
+    'Eclesiologia',
+    'Escatologia',
+    'Angelologia',
+    'Demonologia',
+    'Providencia',
+    'Harmonia Biblica',
+    'Biblia e Historia',
+  ];
+
+  static const Map<String, String> abbreviationsPT = {
+    'gn': 'Gênesis',
+    'ex': 'Êxodo',
+    'lv': 'Levítico',
+    'nm': 'Números',
+    'dt': 'Deuteronômio',
+    'js': 'Josué',
+    'jz': 'Juízes',
+    'rt': 'Rute',
+    '1sm': '1 Samuel',
+    '2sm': '2 Samuel',
+    '1rs': '1 Reis',
+    '2rs': '2 Reis',
+    '1cr': '1 Crônicas',
+    '2cr': '2 Crônicas',
+    'ed': 'Esdras',
+    'ne': 'Neemias',
+    'et': 'Ester',
+    'jó': 'Jó',
+    'sl': 'Salmos',
+    'pv': 'Provérbios',
+    'ec': 'Eclesiastes',
+    'ct': 'Cantares',
+    'is': 'Isaías',
+    'jr': 'Jeremias',
+    'lm': 'Lamentações',
+    'ez': 'Ezequiel',
+    'dn': 'Daniel',
+    'os': 'Oseias',
+    'jl': 'Joel',
+    'am': 'Amós',
+    'ob': 'Obadias',
+    'jn': 'Jonas',
+    'mq': 'Miquéias',
+    'na': 'Naum',
+    'hc': 'Habacuque',
+    'sf': 'Sofonias',
+    'ag': 'Ageu',
+    'zc': 'Zacarias',
+    'ml': 'Malaquias',
+    'mt': 'Mateus',
+    'mc': 'Marcos',
+    'lc': 'Lucas',
+    'jo': 'João',
+    'at': 'Atos',
+    'rm': 'Romanos',
+    '1co': '1 Coríntios',
+    '2co': '2 Coríntios',
+    'gl': 'Gálatas',
+    'ef': 'Efésios',
+    'fp': 'Filipenses',
+    'cl': 'Colossenses',
+    '1ts': '1 Tessalonicenses',
+    '2ts': '2 Tessalonicenses',
+    '1tm': '1 Timóteo',
+    '2tm': '2 Timóteo',
+    'tt': 'Tito',
+    'fm': 'Filêmon',
+    'hb': 'Hebreus',
+    'tg': 'Tiago',
+    '1pe': '1 Pedro',
+    '2pe': '2 Pedro',
+    '1jo': '1 João',
+    '2jo': '2 João',
+    '3jo': '3 João',
+    'jd': 'Judas',
+    'ap': 'Apocalipse',
+  };
+}

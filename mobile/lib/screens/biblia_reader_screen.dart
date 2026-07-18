@@ -12,7 +12,14 @@ import '../widgets/chapter_grid.dart';
 import '../widgets/verse_card.dart';
 
 class BibliaReaderScreen extends StatefulWidget {
-  const BibliaReaderScreen({super.key});
+  final String? livroInicial;
+  final int? capituloInicial;
+
+  const BibliaReaderScreen({
+    super.key,
+    this.livroInicial,
+    this.capituloInicial,
+  });
 
   @override
   State<BibliaReaderScreen> createState() => _BibliaReaderScreenState();
@@ -29,7 +36,15 @@ class _BibliaReaderScreenState extends State<BibliaReaderScreen> {
   @override
   void initState() {
     super.initState();
-    _livro = BibliaService.livros.first;
+    if (widget.livroInicial != null) {
+      _livro = BibliaService.livros.firstWhere(
+        (l) => l.abreviacao == widget.livroInicial,
+        orElse: () => BibliaService.livros.first,
+      );
+    } else {
+      _livro = BibliaService.livros.first;
+    }
+    _capitulo = widget.capituloInicial ?? 1;
     _carregarCapitulo();
   }
 

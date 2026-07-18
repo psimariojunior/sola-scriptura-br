@@ -124,45 +124,83 @@ export function linkificarReferenciasHTML(html: string, keyPrefix = 'ref'): Reac
   }
 
   const doc = new DOMParser().parseFromString(html, 'text/html');
-  const nos: React.ReactNode[] = [];
   let key = 0;
 
-  const walk = (node: Node) => {
-    node.childNodes.forEach((child) => {
-      if (child.nodeType === Node.ELEMENT_NODE) {
-        const el = child as HTMLElement;
-        const tag = el.tagName.toLowerCase();
-        // Pular completamente blocos de código.
-        if (tag === 'code' || tag === 'pre') return;
-        walk(el);
-      } else if (child.nodeType === Node.TEXT_NODE) {
-        const texto = child.textContent ?? '';
-        if (!texto.trim()) {
-          nos.push(texto);
-          return;
-        }
-        const refs = extrairReferencias(texto);
-        if (refs.length === 0) {
-          nos.push(texto);
-          return;
-        }
-        let ultimoFim = 0;
-        refs.forEach((ref) => {
-          if (ref.indice > ultimoFim) nos.push(texto.slice(ultimoFim, ref.indice));
-          nos.push(
-            <VersiculoLink key={`${keyPrefix}-${key++}`} referencia={ref}>
-              {ref.textoOriginal}
-            </VersiculoLink>,
-          );
-          ultimoFim = ref.indice + ref.tamanho;
-        });
-        if (ultimoFim < texto.length) nos.push(texto.slice(ultimoFim));
-      }
-    });
+  // Reconstrói elementos React a partir do DOM preservando a semântica
+  // (heading, strong, em, ul, li, pre, code, blockquote, hr, a, ...) e
+  // aplica linkificação apenas em TEXT_NODE. Diferente da versao antiga
+  // que descartava toda a formatacao markdown.
+  const render = (node: Node, index: number): React.ReactNode => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const texto = node.textContent ?? '';
+      if (!texto) return null;
+      const refs = extrairReferencias(texto);
+      if (refs.length === 0) return texto;
+
+      const out: React.ReactNode[] = [];
+      let ultimoFim = 0;
+      refs.forEach((ref) => {
+        if (ref.indice > ultimoFim) out.push(texto.slice(ultimoFim, ref.indice));
+        out.push(
+          <VersiculoLink key={`${keyPrefix}-${key++}`} referencia={ref}>
+            {ref.textoOriginal}
+          </VersiculoLink>,
+        );
+        ultimoFim = ref.indice + ref.tamanho;
+      });
+      if (ultimoFim < texto.length) out.push(texto.slice(ultimoFim));
+      return out.length === 1 ? out[0] : out;
+    }
+
+    if (node.nodeType !== Node.ELEMENT_NODE) return null;
+
+    const el = node as HTMLElement;
+    const tag = el.tagName.toLowerCase();
+
+    // Pula completamente blocos de codigo (nao linkifica dentro).
+    if (tag === 'code' || tag === 'pre') return null;
+
+    const children = Array.from(el.childNodes).map((c, i) => render(c, i));
+    const props: Record<string, any> = { key: `${keyPrefix}-${key++}` };
+
+    // Preserva classes e alguns atributos uteis.
+    if (el.className) props.className = el.className;
+    if (tag === 'a' && el.getAttribute('href')) {
+      props.href = el.getAttribute('href');
+      if (el.getAttribute('target')) props.target = el.getAttribute('target')!;
+    }
+    if (tag === 'img') {
+      props.src = el.getAttribute('src') || '';
+      props.alt = el.getAttribute('alt') || '';
+    }
+
+    // Mapa de tags HTML -> elementos React.
+    const TAG_MAP: Record<string, keyof JSX.IntrinsicElements> = {
+      h1: 'h1', h2: 'h2', h3: 'h3', h4: 'h4', h5: 'h5', h6: 'h6',
+      p: 'p', span: 'span', div: 'div',
+      strong: 'strong', b: 'b', em: 'em', i: 'i', u: 'u',
+      ul: 'ul', ol: 'ol', li: 'li',
+      pre: 'pre', code: 'code',
+      blockquote: 'blockquote',
+      hr: 'hr', br: 'br',
+      a: 'a', img: 'img',
+      table: 'table', thead: 'thead', tbody: 'tbody', tr: 'tr', th: 'th', td: 'td',
+      header: 'header', footer: 'footer', section: 'section', article: 'article',
+    };
+
+    const Component = TAG_MAP[tag] || 'span';
+    return React.createElement(Component, props, ...children);
   };
 
-  walk(doc.body);
-  return nos;
+  const out: React.ReactNode[] = [];
+  doc.body.childNodes.forEach((child, i) => {
+    const rendered = render(child, i);
+    if (rendered !== null && rendered !== undefined && rendered !== '') {
+      out.push(rendered);
+    }
+  });
+
+  return out;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════

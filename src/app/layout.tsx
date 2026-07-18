@@ -3,9 +3,12 @@ import { Cormorant_Garamond, Inter, Spectral } from 'next/font/google';
 import LayoutWrapper from '@/components/LayoutWrapper';
 import './globals.css';
 
+// App e client-heavy (62/65 paginas usam 'use client' + browser APIs no modulo).
+// Sem force-dynamic, o Next tenta pre-renderizar estaticamente todas e crashes
+// em window/localStorage. Para isso precisariamos adicionar `dynamic` em cada
+// page.tsx (62 arquivos). Marcando no layout raiz fica limpo e documentado.
+// SEO e coberto por metadata estatica em layout.tsx + rotas especificas.
 export const dynamic = 'force-dynamic';
-
-
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -84,9 +87,7 @@ export const metadata: Metadata = {
       'Bíblia em 6 traduções, Grego e Hebraico, Exegese com IA, Teologia e ferramentas avançadas de pesquisa bíblica.',
     images: ['/opengraph-image'],
   },
-  facebook: {
-    appId: 'sola-scriptura-br',
-  },
+  facebook: undefined,
   robots: {
     index: true,
     follow: true,
@@ -103,13 +104,11 @@ export const metadata: Metadata = {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
     ],
-    apple: '/icon.svg',
+    apple: '/apple-touch-icon.png',
     shortcut: '/favicon.svg',
   },
   manifest: '/manifest.json',
-  verification: {
-    google: 'sola-scriptura-br',
-  },
+  verification: undefined,
   other: {
     'apple-mobile-web-app-title': 'Sola Scriptura',
     'apple-mobile-web-app-capable': 'yes',
@@ -133,9 +132,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               (function() {
                 try {
                   var theme = localStorage.getItem('ssb_theme');
-                  if (!theme || theme === 'escuro' || theme === 'noturno') {
+                  /* Qualquer tema nao-claro precisa de dark para ativar dark:* do Tailwind */
+                  if (!theme || theme === 'escuro' || theme === 'noturno' || theme === 'sepia') {
                     document.documentElement.classList.add('dark');
-                  } else if (theme === 'sepia') {
+                  }
+                  if (theme === 'noturno') {
+                    document.documentElement.classList.add('noturno');
+                  }
+                  if (theme === 'sepia') {
                     document.documentElement.classList.add('sepia');
                   }
                 } catch(e) {

@@ -1,10 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getLLMConfig } from '@/lib/llm-config';
 import { construirContextoRAG, detectarReferencia } from '@/lib/ragGrounding';
+import { rateLimit, getClientIP, RATE_LIMITS, buildRateLimitHeaders } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
+  // Rate limit: 10/min por IP (rota mais pesada)
+  const ip = getClientIP(request);
+  const rl = rateLimit(ip, 'ia:estudo', RATE_LIMITS.IA_ESTUDO);
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { erro: 'Muitas requisicoes. Tente novamente em alguns segundos.' },
+      { status: 429, headers: buildRateLimitHeaders(rl) }
+    );
+  }
+
   let body: any;
   try {
     body = await request.json();

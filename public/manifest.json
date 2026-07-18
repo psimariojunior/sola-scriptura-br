@@ -1,11 +1,11 @@
 {
   "name": "Sola Scriptura BR",
   "short_name": "SolaScriptura",
-  "description": "Plataforma de estudo bíblico acadêmico",
+  "description": "Plataforma de estudo biblico academico",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#d4a574",
+  "background_color": "#0A0908",
+  "theme_color": "#d4a843",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "pt-BR",
@@ -33,6 +33,12 @@
       "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

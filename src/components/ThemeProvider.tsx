@@ -12,7 +12,10 @@ function TemaSincronizador() {
   useEffect(() => {
     const root = document.documentElement;
     root.classList.remove('dark', 'sepia', 'noturno');
-    if (tema === 'escuro' || tema === 'noturno') {
+    // Qualquer tema escuro/sepia/noturno precisa de classe `dark` para
+    // ativar as variantes Tailwind dark:bg-*/dark:text-* usadas em TODO o app.
+    // So o tema `claro` (light) fica sem `dark`.
+    if (tema === 'escuro' || tema === 'noturno' || tema === 'sepia') {
       root.classList.add('dark');
     }
     if (tema === 'noturno') {

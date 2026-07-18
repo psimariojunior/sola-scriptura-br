@@ -1,11 +1,17 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'Sola Scriptura BR — Toda a biblioteca teológica';
-export const size = { width: 1200, height: 630 };
+
+export const size = {
+  width: 1200,
+  height: 630,
+};
+
 export const contentType = 'image/png';
 
-export default async function Image() {
+export const alt = 'Sola Scriptura BR — Toda a biblioteca teologica';
+
+export default function OpenGraphImage() {
   return new ImageResponse(
     (
       <div
@@ -16,144 +22,96 @@ export default async function Image() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          background:
-            'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%)',
-          color: 'white',
-          fontFamily: 'system-ui, sans-serif',
+          background: 'linear-gradient(135deg, #0A0908 0%, #1a1610 50%, #0A0908 100%)',
+          color: '#f5f5f4',
+          fontFamily: 'serif',
           position: 'relative',
         }}
       >
+        {/* Aurora dourada no fundo */}
         <div
           style={{
             position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: 4,
-            background:
-              'linear-gradient(90deg, #d4a843 0%, #f4d03f 50%, #d4a843 100%)',
-            display: 'flex',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 4,
-            background:
-              'linear-gradient(90deg, #d4a843 0%, #f4d03f 50%, #d4a843 100%)',
-            display: 'flex',
-            opacity: 0.6,
+            inset: 0,
+            background: 'radial-gradient(circle at 50% 40%, rgba(212, 168, 67, 0.25) 0%, transparent 60%)',
           }}
         />
 
+        {/* Livro incandescente — simbolo */}
         <div
           style={{
-            position: 'absolute',
-            top: 40,
-            right: 60,
-            width: 200,
-            height: 200,
-            borderRadius: '50%',
-            background:
-              'radial-gradient(circle, rgba(212,168,67,0.08) 0%, transparent 70%)',
-            display: 'flex',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 60,
-            left: 40,
-            width: 160,
-            height: 160,
-            borderRadius: '50%',
-            background:
-              'radial-gradient(circle, rgba(212,168,67,0.06) 0%, transparent 70%)',
-            display: 'flex',
-          }}
-        />
-
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 110,
-            height: 110,
-            borderRadius: 24,
-            background: 'rgba(212, 168, 67, 0.12)',
-            border: '2px solid rgba(212, 168, 67, 0.35)',
-            marginBottom: 36,
+            fontSize: 140,
+            marginBottom: 24,
+            filter: 'drop-shadow(0 0 40px rgba(212, 168, 67, 0.5))',
           }}
         >
-          <div
-            style={{
-              fontSize: 56,
-              color: '#d4a843',
-              display: 'flex',
-              fontWeight: 700,
-            }}
-          >
-            ✦
-          </div>
+          📖
         </div>
 
+        {/* Titulo principal */}
         <div
           style={{
-            fontSize: 68,
-            fontWeight: 600,
-            color: '#d4a843',
-            marginBottom: 14,
+            fontSize: 76,
+            fontWeight: 300,
+            letterSpacing: -2,
             display: 'flex',
-            letterSpacing: '-0.02em',
+            color: '#d4a843',
+            textShadow: '0 2px 20px rgba(212, 168, 67, 0.25)',
           }}
         >
           Sola Scriptura
         </div>
 
+        {/* Subtitulo */}
         <div
           style={{
-            fontSize: 34,
-            color: 'rgba(255, 255, 255, 0.88)',
-            display: 'flex',
-            marginBottom: 10,
-            fontWeight: 500,
+            marginTop: 16,
+            fontSize: 32,
+            fontWeight: 300,
+            color: '#a8a29e',
+            letterSpacing: 2,
+            textTransform: 'uppercase' as const,
           }}
         >
-          Toda a biblioteca teológica
+          Toda a biblioteca teologica
         </div>
 
+        {/* Stats */}
         <div
           style={{
-            fontSize: 20,
-            color: 'rgba(255, 255, 255, 0.5)',
+            marginTop: 48,
             display: 'flex',
-            marginTop: 8,
-            letterSpacing: '0.04em',
+            gap: 48,
+            fontSize: 22,
+            color: '#fbbf24',
+            fontWeight: 400,
           }}
         >
-          Bíblia em 6 traduções · Grego e Hebraico · Exegese com IA
+          <span>66 livros</span>
+          <span style={{ color: '#57534e' }}>•</span>
+          <span>6 traducoes</span>
+          <span style={{ color: '#57534e' }}>•</span>
+          <span>31.102 versiculos</span>
+          <span style={{ color: '#57534e' }}>•</span>
+          <span>IA + Grego/Hebraico</span>
         </div>
 
+        {/* URL */}
         <div
           style={{
             position: 'absolute',
-            bottom: 30,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-            color: 'rgba(212, 168, 67, 0.7)',
-            fontSize: 16,
-            letterSpacing: '0.08em',
+            bottom: 40,
+            fontSize: 18,
+            color: '#78716c',
+            letterSpacing: 1,
           }}
         >
-          <span>solascripturabr.com.br</span>
+          solascripturabr.com.br
         </div>
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+    }
   );
 }

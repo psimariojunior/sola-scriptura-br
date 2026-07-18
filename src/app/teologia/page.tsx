@@ -37,12 +37,14 @@ function getCoresCategoria(cat: string) {
   return CATEGORIA_CORES[cat] ?? { bg: 'bg-muted', text: 'text-muted-foreground', dot: 'bg-muted-foreground' };
 }
 
-function parseReferencia(ref: string): { livro: string; capitulo: number } | null {
-  const m = ref.trim().match(/^(\d?\s*[A-Za-z]+)\s+(\d+)/);
+function parseReferencia(ref: string): { livro: string; capitulo: number; versiculo: number } | null {
+  // Aceita formatos: "Romanos 8:28", "Rm 8", "1 Jo 3:4", "Mateus 5:3-12"
+  const m = ref.trim().match(/^(\d?\s*[A-Za-zÀ-ú]+)\s+(\d+)(?::(\d+))?/);
   if (!m) return null;
   const livro = m[1].toLowerCase().replace(/\s+/g, '');
   const capitulo = parseInt(m[2], 10);
-  return { livro, capitulo };
+  const versiculo = m[3] ? parseInt(m[3], 10) : 1;
+  return { livro, capitulo, versiculo };
 }
 
 export default function TeologiaPage() {
@@ -297,7 +299,7 @@ export default function TeologiaPage() {
                                           <div key={ref} className="flex items-center gap-1">
                                             {parsed ? (
                                               <button
-                                                onClick={() => handleVersiculoClick(parsed.livro, parsed.capitulo, 1)}
+                                                onClick={() => handleVersiculoClick(parsed.livro, parsed.capitulo, parsed.versiculo)}
                                                 className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-sm hover:bg-primary/20 transition-colors flex items-center gap-1"
                                               >
                                                 {ref}
@@ -427,7 +429,7 @@ export default function TeologiaPage() {
                                               <div key={ref} className="flex items-center gap-1">
                                                 {parsed ? (
                                                   <button
-                                                    onClick={() => handleVersiculoClick(parsed.livro, parsed.capitulo, 1)}
+                                                    onClick={() => handleVersiculoClick(parsed.livro, parsed.capitulo, parsed.versiculo)}
                                                     className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-sm hover:bg-primary/20 transition-colors flex items-center gap-1"
                                                   >
                                                     {ref}

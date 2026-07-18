@@ -1,9 +1,20 @@
 import { NextRequest } from 'next/server';
 import { getLLMConfig } from '@/lib/llm-config';
+import { rateLimit, getClientIP, RATE_LIMITS, buildRateLimitHeaders } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
+  // Rate limit: 20/min por IP
+  const ip = getClientIP(request);
+  const rl = rateLimit(ip, 'ia:stream', RATE_LIMITS.IA_STREAM);
+  if (!rl.allowed) {
+    return new Response(JSON.stringify({ erro: 'Muitas requisicoes. Tente novamente em alguns segundos.' }), {
+      status: 429,
+      headers: { 'Content-Type': 'application/json', ...buildRateLimitHeaders(rl) },
+    });
+  }
+
   let body: any;
   try {
     body = await request.json();
@@ -39,7 +50,13 @@ export async function POST(request: NextRequest) {
           await streamLocal(pergunta, tradicao, send, controller, encoder);
         }
       } catch (erro: any) {
-        send('erro', { message: erro.message || 'Erro ao processar pergunta' });
+        // Fallback para modo local se creditos acabarem (402) ou LLM indisponivel
+        if (erro.message === 'credits_missing' || erro.message?.includes('LLM indispon')) {
+          send('status', { message: 'Modo local ativado...', etapa: 'local' });
+          await streamLocal(pergunta, tradicao, send, controller, encoder);
+        } else {
+          send('erro', { message: erro.message || 'Erro ao processar pergunta' });
+        }
       } finally {
         controller.close();
       }

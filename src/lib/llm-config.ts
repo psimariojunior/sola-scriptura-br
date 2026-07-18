@@ -1,12 +1,11 @@
-const _p = ['Z3NrX1Bs', 'THk3V204UGR', 'aczBUSTNPcD', 'BxV0dkeWIzR', 'llEVFRJcW5W', 'cjU5RkE0TFp', 'hZFh4TWMzcV', 'Q='];
+import 'server-only';
 
-function _d() {
-  try { return atob(_p.join('')); } catch { return Buffer.from(_p.join(''), 'base64').toString(); }
-}
-
+/**
+ * Resolve configuracao do LLM (Groq) SOMENTE a partir de variaveis de ambiente.
+ * A chave nunca deve ir hardcoded no codigo-fonte (vazamento de credencial).
+ */
 export function getLLMConfig() {
-  const envKey = process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY || '';
-  const apiKey = envKey || _d();
+  const apiKey = process.env.GROQ_API_KEY || process.env.OPENAI_API_KEY || '';
   return {
     apiKey,
     baseUrl: process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1',

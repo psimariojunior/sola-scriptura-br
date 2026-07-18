@@ -256,6 +256,13 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
 
   const pararGeracao = useCallback(() => {
     abortRef.current?.abort();
+    // Marca a mensagem assistant em streaming como completa para que a UI
+    // saia do estado "gerando" (mostra botao copiar, para spinner etc.)
+    setMensagens(prev =>
+      prev.map(m =>
+        m.status === 'streaming' ? { ...m, status: 'completo' as const } : m,
+      ),
+    );
     setEnviando(false);
   }, []);
 

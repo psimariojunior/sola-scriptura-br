@@ -1,76 +1,158 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../services/api_client.dart';
+import '../services/cache_service.dart';
+import '../config/api_config.dart';
 
 class OfflineProvider extends ChangeNotifier {
-  static const String _cacheKey = 'offline_cache';
-  Map<String, dynamic> _cache = {};
-  bool _isLoaded = false;
+  final CacheService _cache = CacheService();
+  final Connectivity _connectivity = Connectivity();
 
+  bool _isOnline = true;
+  bool _isLoaded = false;
+  List<Map<String, dynamic>> _acoesPendentes = [];
+  StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
+
+  bool get isOnline => _isOnline;
   bool get isLoaded => _isLoaded;
+  List<Map<String, dynamic>> get acoesPendentes => _acoesPendentes;
+  bool get hasPendingActions => _acoesPendentes.isNotEmpty;
 
   Future<void> init() async {
-    final prefs = await SharedPreferences.getInstance();
-    final cached = prefs.getString(_cacheKey);
-    if (cached != null) {
-      _cache = jsonDecode(cached) as Map<String, dynamic>;
-    }
+    final result = await _connectivity.checkConnectivity();
+    _isOnline = result != ConnectivityResult.none;
+
+    _acoesPendentes = await _cache.getAcoesPendentes();
     _isLoaded = true;
+    notifyListeners();
+
+    _connectivitySubscription = _connectivity.onConnectivityChanged.listen(
+      _onConnectivityChanged,
+    );
+  }
+
+  Future<void> _onConnectivityChanged(List<ConnectivityResult> results) async {
+    final wasOffline = !_isOnline;
+    _isOnline = results.any((r) => r != ConnectivityResult.none);
+    notifyListeners();
+
+    if (wasOffline && _isOnline) {
+      await sincronizarPendentes();
+    }
+  }
+
+  Future<void> sincronizarPendentes() async {
+    if (!_isOnline || _acoesPendentes.isEmpty) return;
+
+    final client = ApiClient();
+    final toRemove = <int>[];
+
+    for (final acao in _acoesPendentes) {
+      final id = acao['id'] as int;
+      final tipo = acao['tipo'] as String;
+      final dados = jsonDecode(acao['dados'] as String) as Map<String, dynamic>;
+      final tentativas = acao['tentativas'] as int? ?? 0;
+
+      if (tentativas >= 3) {
+        toRemove.add(id);
+        continue;
+      }
+
+      try {
+        switch (tipo) {
+          case 'favorito_adicionar':
+            await client.post(
+              ApiConfig.endpoint('favoritos'),
+              data: dados,
+            );
+            break;
+          case 'favorito_remover':
+            await client.delete(
+              '${ApiConfig.endpoint('favoritos')}/${dados['versiculo_ref']}',
+            );
+            break;
+          case 'nota_adicionar':
+          case 'nota_atualizar':
+            await client.post(
+              ApiConfig.endpoint('notas'),
+              data: dados,
+            );
+            break;
+        }
+        toRemove.add(id);
+      } catch (e) {
+        await _cache.incrementarTentativa(id);
+      }
+    }
+
+    for (final id in toRemove) {
+      await _cache.removeAcaoPendente(id);
+    }
+
+    _acoesPendentes = await _cache.getAcoesPendentes();
     notifyListeners();
   }
 
-  Future<void> cacheVersiculos(
-      String key, List<Map<String, dynamic>> versiculos) async {
-    _cache[key] = {
-      'data': versiculos,
-      'timestamp': DateTime.now().millisecondsSinceEpoch,
-    };
-    await _salvar();
+  Future<void> enqueueFavoritoAdicionar(String versiculoRef, {String? nota}) async {
+    await _cache.addFavorito(versiculoRef, nota: nota);
+    await _cache.addAcaoPendente('favorito_adicionar', {
+      'versiculo_ref': versiculoRef,
+      if (nota != null) 'nota': nota,
+    });
+    _acoesPendentes = await _cache.getAcoesPendentes();
+    notifyListeners();
+
+    if (_isOnline) await sincronizarPendentes();
   }
 
-  List<Map<String, dynamic>> getCachedVersiculos(String key) {
-    final entry = _cache[key];
-    if (entry == null) return [];
-    final timestamp = entry['timestamp'] as int? ?? 0;
-    final age = DateTime.now().millisecondsSinceEpoch - timestamp;
-    if (age > 24 * 60 * 60 * 1000) {
-      _cache.remove(key);
-      return [];
-    }
-    return List<Map<String, dynamic>>.from(entry['data'] as List? ?? []);
+  Future<void> enqueueFavoritoRemover(String versiculoRef) async {
+    await _cache.removeFavorito(versiculoRef);
+    await _cache.addAcaoPendente('favorito_remover', {
+      'versiculo_ref': versiculoRef,
+    });
+    _acoesPendentes = await _cache.getAcoesPendentes();
+    notifyListeners();
+
+    if (_isOnline) await sincronizarPendentes();
   }
 
-  Future<void> cacheData(String key, dynamic data) async {
-    _cache[key] = {
-      'data': data,
-      'timestamp': DateTime.now().millisecondsSinceEpoch,
-    };
-    await _salvar();
+  Future<void> enqueueNota({
+    required String versiculoRef,
+    required String conteudo,
+  }) async {
+    await _cache.addNota(versiculoRef: versiculoRef, conteudo: conteudo);
+    await _cache.addAcaoPendente('nota_adicionar', {
+      'versiculo_ref': versiculoRef,
+      'conteudo': conteudo,
+    });
+    _acoesPendentes = await _cache.getAcoesPendentes();
+    notifyListeners();
+
+    if (_isOnline) await sincronizarPendentes();
   }
 
-  dynamic getCachedData(String key) {
-    final entry = _cache[key];
-    if (entry == null) return null;
-    final timestamp = entry['timestamp'] as int? ?? 0;
-    final age = DateTime.now().millisecondsSinceEpoch - timestamp;
-    if (age > 24 * 60 * 60 * 1000) {
-      _cache.remove(key);
-      return null;
-    }
-    return entry['data'];
+  Future<void> updatePreferencia(String chave, String valor) async {
+    await _cache.setPreferencia(chave, valor);
+  }
+
+  Future<String?> getPreferencia(String chave) async {
+    return await _cache.getPreferencia(chave);
   }
 
   Future<void> limparCache() async {
-    _cache.clear();
-    await _salvar();
+    await _cache.clearAllCache();
     notifyListeners();
   }
 
-  int get cacheSize => _cache.length;
+  int get cacheSize => _acoesPendentes.length;
 
-  Future<void> _salvar() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_cacheKey, jsonEncode(_cache));
+  @override
+  void dispose() {
+    _connectivitySubscription?.cancel();
+    super.dispose();
   }
 }

@@ -1,78 +1,49 @@
 import 'dart:async';
 
+import 'package:url_launcher/url_launcher.dart';
+
 import '../config/api_config.dart';
 import '../models/usuario.dart';
 import 'api_client.dart';
 
 class AuthService {
   final ApiClient _client;
-  String? _currentToken;
   Usuario? _currentUser;
 
   AuthService(this._client);
 
-  String? get currentToken => _currentToken;
   Usuario? get currentUser => _currentUser;
-  bool get isAuthenticated => _currentToken != null;
+  bool get isAuthenticated => _client.accessToken != null;
 
-  Future<Usuario?> login(String email, String password) async {
+  Future<void> init() async {
+    await _client.loadTokens();
+    if (_client.accessToken != null) {
+      await _fetchCurrentUser();
+    }
+  }
+
+  Future<Usuario?> login(String email, String senha) async {
     final response = await _client.post(
       ApiConfig.endpoint('auth_login'),
-      data: {'email': email, 'senha': password},
+      data: {'email': email, 'senha': senha},
     );
-    final data = response.data;
+    final rawData = response.data;
+    final data = _unwrap(rawData);
     if (data is Map<String, dynamic>) {
-      _currentToken = data['token'] as String?;
-      final userData = data['usuario'] as Map<String, dynamic>?;
-      if (userData != null) {
-        _currentUser = Usuario.fromJson(userData);
-      }
-      if (_currentToken != null) {
-        _client.setAuthToken(_currentToken);
-      }
-      return _currentUser;
+      return _handleAuthResponse(data);
     }
     return null;
   }
 
-  Future<Usuario?> register(String nome, String email, String password) async {
+  Future<Usuario?> register(String nome, String email, String senha) async {
     final response = await _client.post(
       ApiConfig.endpoint('auth_register'),
-      data: {'nome': nome, 'email': email, 'senha': password},
+      data: {'nome': nome, 'email': email, 'senha': senha},
     );
-    final data = response.data;
+    final rawData = response.data;
+    final data = _unwrap(rawData);
     if (data is Map<String, dynamic>) {
-      _currentToken = data['token'] as String?;
-      final userData = data['usuario'] as Map<String, dynamic>?;
-      if (userData != null) {
-        _currentUser = Usuario.fromJson(userData);
-      }
-      if (_currentToken != null) {
-        _client.setAuthToken(_currentToken);
-      }
-      return _currentUser;
-    }
-    return null;
-  }
-
-  Future<Usuario?> loginWithGoogle() async {
-    // Google Sign-In flow would be implemented here
-    // For now, call backend with the Google token
-    final response = await _client.post(
-      ApiConfig.endpoint('auth_google'),
-      data: {'provider': 'google'},
-    );
-    final data = response.data;
-    if (data is Map<String, dynamic>) {
-      _currentToken = data['token'] as String?;
-      final userData = data['usuario'] as Map<String, dynamic>?;
-      if (userData != null) {
-        _currentUser = Usuario.fromJson(userData);
-      }
-      if (_currentToken != null) {
-        _client.setAuthToken(_currentToken);
-      }
-      return _currentUser;
+      return _handleAuthResponse(data);
     }
     return null;
   }
@@ -81,48 +52,83 @@ class AuthService {
     try {
       await _client.post(ApiConfig.endpoint('auth_logout'));
     } catch (_) {}
-    _currentToken = null;
     _currentUser = null;
-    _client.setAuthToken(null);
+    await _client.clearTokens();
   }
 
-  Future<bool> restoreSession(String token) async {
-    _currentToken = token;
-    _client.setAuthToken(token);
+  Future<void> loginWithGoogle() async {
+    final url = Uri.parse('${ApiConfig.baseUrl}${ApiConfig.endpoint('auth_google')}');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    }
+  }
+
+  Future<void> handleGoogleCallback(String accessToken, String refreshToken) async {
+    await _client.setTokens(accessToken: accessToken, refreshToken: refreshToken);
+    await _fetchCurrentUser();
+  }
+
+  Future<Usuario?> _fetchCurrentUser() async {
     try {
-      final response = await _client.get(ApiConfig.endpoint('auth_session'));
-      final data = response.data;
+      final response = await _client.get(ApiConfig.endpoint('auth_me'));
+      final rawData = response.data;
+      final data = _unwrap(rawData);
       if (data is Map<String, dynamic>) {
-        final userData = data['usuario'] as Map<String, dynamic>?;
-        if (userData != null) {
-          _currentUser = Usuario.fromJson(userData);
-          return true;
-        }
+        _currentUser = Usuario.fromJson(data);
+        return _currentUser;
       }
     } catch (_) {
-      _currentToken = null;
-      _currentUser = null;
-      _client.setAuthToken(null);
+      await _client.clearTokens();
     }
-    return false;
+    return null;
+  }
+
+  Future<void> restoreSession() async {
+    await _client.loadTokens();
+    if (_client.accessToken != null) {
+      await _fetchCurrentUser();
+    }
   }
 
   Future<void> updateProfile({String? nome, String? avatar}) async {
-    final data = <String, dynamic>{};
-    if (nome != null) data['nome'] = nome;
-    if (avatar != null) data['avatar'] = avatar;
-    if (data.isEmpty) return;
+    final payload = <String, dynamic>{};
+    if (nome != null) payload['nome'] = nome;
+    if (avatar != null) payload['avatar'] = avatar;
+    if (payload.isEmpty) return;
 
     final response = await _client.put(
-      ApiConfig.endpoint('usuario'),
-      data: data,
+      ApiConfig.endpoint('usuario_perfil'),
+      data: payload,
     );
-    final result = response.data;
-    if (result is Map<String, dynamic> && _currentUser != null) {
+    final rawData = response.data;
+    final data = _unwrap(rawData);
+    if (data is Map<String, dynamic> && _currentUser != null) {
       _currentUser = _currentUser!.copyWith(
         nome: nome ?? _currentUser!.nome,
         avatar: avatar ?? _currentUser!.avatar,
       );
     }
+  }
+
+  dynamic _unwrap(dynamic data) {
+    if (data is Map<String, dynamic> && data.containsKey('data') && data.containsKey('success')) {
+      return data['data'];
+    }
+    return data;
+  }
+
+  Usuario? _handleAuthResponse(Map<String, dynamic> data) {
+    final accessToken = data['accessToken'] as String?;
+    final refreshToken = data['refreshToken'] as String?;
+    final userData = data['usuario'] as Map<String, dynamic>?;
+
+    if (accessToken != null) {
+      _client.setTokens(accessToken: accessToken, refreshToken: refreshToken);
+    }
+
+    if (userData != null) {
+      _currentUser = Usuario.fromJson(userData);
+    }
+    return _currentUser;
   }
 }

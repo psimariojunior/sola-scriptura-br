@@ -28,16 +28,22 @@ class BibliaScreen extends StatefulWidget {
   State<BibliaScreen> createState() => _BibliaScreenState();
 }
 
-class _BibliaScreenState extends State<BibliaScreen> {
+class _BibliaScreenState extends State<BibliaScreen>
+    with SingleTickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
   final Set<int> _versiculosSelecionados = {};
   bool _modoSelecao = false;
   double _tamanhoFonte = 18.0;
   Versiculo? _versiculoDestaque;
+  late final AnimationController _chapterAnimController;
 
   @override
   void initState() {
     super.initState();
+    _chapterAnimController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 350),
+    );
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final provider = context.read<BibliaProvider>();
       if (widget.livroInicial != null) {
@@ -54,6 +60,7 @@ class _BibliaScreenState extends State<BibliaScreen> {
   @override
   void dispose() {
     _scrollController.dispose();
+    _chapterAnimController.dispose();
     super.dispose();
   }
 
@@ -96,10 +103,23 @@ class _BibliaScreenState extends State<BibliaScreen> {
   void _abrirSelecaoTraducao() async {
     final provider = context.read<BibliaProvider>();
     final resultado = await Navigator.of(context).push<String>(
-      MaterialPageRoute(
-        builder: (_) => TranslationSelectorScreen(
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => TranslationSelectorScreen(
           traducaoAtual: provider.traducaoAtual,
         ),
+        transitionsBuilder: (_, anim, __, child) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1, 0),
+              end: Offset.zero,
+            ).animate(CurvedAnimation(
+              parent: anim,
+              curve: Curves.easeOutCubic,
+            )),
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 300),
       ),
     );
     if (resultado != null) {
@@ -110,11 +130,24 @@ class _BibliaScreenState extends State<BibliaScreen> {
   void _abrirLivros() async {
     final provider = context.read<BibliaProvider>();
     final resultado = await Navigator.of(context).push<Livro>(
-      MaterialPageRoute(
-        builder: (_) => BookSelector(
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => BookSelector(
           livroSelecionado: provider.livroAtual?.abreviacao,
           onSelecionado: (l) => Navigator.of(context).pop(l),
         ),
+        transitionsBuilder: (_, anim, __, child) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(-1, 0),
+              end: Offset.zero,
+            ).animate(CurvedAnimation(
+              parent: anim,
+              curve: Curves.easeOutCubic,
+            )),
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 300),
       ),
     );
     if (resultado != null) {
@@ -126,30 +159,43 @@ class _BibliaScreenState extends State<BibliaScreen> {
     final provider = context.read<BibliaProvider>();
     if (provider.livroAtual == null) return;
     final resultado = await Navigator.of(context).push<int>(
-      MaterialPageRoute(
-        builder: (_) => Scaffold(
-          appBar: AppBar(title: Text('Capítulos — ${provider.livroAtual!.nome}')),
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => Scaffold(
+          appBar: AppBar(title: Text('Capitulos — ${provider.livroAtual!.nome}')),
           body: ChapterGrid(
             total: provider.livroAtual!.capitulos,
             capituloSelecionado: provider.capituloAtual,
             onSelecionado: (c) => Navigator.of(context).pop(c),
           ),
         ),
+        transitionsBuilder: (_, anim, __, child) {
+          return FadeTransition(
+            opacity: anim,
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 250),
       ),
     );
     if (resultado != null) {
+      _chapterAnimController.forward(from: 0);
       provider.carregarCapitulo(provider.livroAtual!.abreviacao, resultado);
+      _scrollController.jumpTo(0);
     }
   }
 
   void _navegarAnterior() {
     final provider = context.read<BibliaProvider>();
     provider.capituloAnterior();
+    _chapterAnimController.forward(from: 0);
+    _scrollController.jumpTo(0);
   }
 
   void _navegarProximo() {
     final provider = context.read<BibliaProvider>();
     provider.proximoCapitulo();
+    _chapterAnimController.forward(from: 0);
+    _scrollController.jumpTo(0);
   }
 
   void _cancelarSelecao() {
@@ -192,8 +238,12 @@ class _BibliaScreenState extends State<BibliaScreen> {
                     ),
                   ),
                   Text(
-                    Traducoes.porId(provider.traducaoAtual)?.nome ?? provider.traducaoAtual.toUpperCase(),
-                    style: const TextStyle(fontSize: 12),
+                    Traducoes.porId(provider.traducaoAtual)?.nome ??
+                        provider.traducaoAtual.toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    ),
                   ),
                 ],
               );
@@ -204,7 +254,7 @@ class _BibliaScreenState extends State<BibliaScreen> {
           if (_modoSelecao)
             IconButton(
               icon: const Icon(Icons.close),
-              tooltip: 'Cancelar seleção',
+              tooltip: 'Cancelar selecao',
               onPressed: _cancelarSelecao,
             )
           else ...[
@@ -220,7 +270,7 @@ class _BibliaScreenState extends State<BibliaScreen> {
             ),
             IconButton(
               icon: const Icon(Icons.translate),
-              tooltip: 'Tradução',
+              tooltip: 'Traducao',
               onPressed: _abrirSelecaoTraducao,
             ),
           ],
@@ -234,7 +284,9 @@ class _BibliaScreenState extends State<BibliaScreen> {
           ),
           if (_modoSelecao && _versiculosSelecionados.isNotEmpty)
             VerseSelectionToolbar(
-              versiculos: context.read<BibliaProvider>().versiculos
+              versiculos: context
+                  .read<BibliaProvider>()
+                  .versiculos
                   .where((v) => _versiculosSelecionados.contains(v.numero))
                   .toList(),
               onLimpar: _cancelarSelecao,
@@ -257,22 +309,28 @@ class _BibliaScreenState extends State<BibliaScreen> {
       builder: (context, provider, _) {
         return GestureDetector(
           onTap: _abrirCapitulos,
-          child: Container(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 250),
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             color: theme.colorScheme.primaryContainer.withOpacity(0.3),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Capítulo ${provider.capituloAtual}',
-                  style: const TextStyle(
+                  'Capitulo ${provider.capituloAtual}',
+                  style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 15,
+                    color: theme.colorScheme.onSurface,
                   ),
                 ),
                 const SizedBox(width: 4),
-                const Icon(Icons.expand_more, size: 20),
+                Icon(
+                  Icons.expand_more,
+                  size: 20,
+                  color: theme.colorScheme.onSurface.withOpacity(0.6),
+                ),
               ],
             ),
           ),
@@ -295,10 +353,22 @@ class _BibliaScreenState extends State<BibliaScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.error_outline, size: 48, color: Colors.red),
-                  const SizedBox(height: 16),
+                  Container(
+                    width: 72,
+                    height: 72,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.error.withOpacity(0.1),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.error_outline,
+                      size: 36,
+                      color: theme.colorScheme.error,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   Text(
-                    'Não foi possível carregar este capítulo.',
+                    'Nao foi possivel carregar este capitulo.',
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodyLarge,
                   ),
@@ -308,13 +378,13 @@ class _BibliaScreenState extends State<BibliaScreen> {
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodySmall,
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 20),
                   ElevatedButton.icon(
                     onPressed: () => provider.carregarCapitulo(
                       provider.livroAtual!.abreviacao,
                       provider.capituloAtual,
                     ),
-                    icon: const Icon(Icons.refresh),
+                    icon: const Icon(Icons.refresh, size: 18),
                     label: const Text('Tentar novamente'),
                   ),
                 ],
@@ -324,15 +394,21 @@ class _BibliaScreenState extends State<BibliaScreen> {
         }
 
         if (provider.versiculos.isEmpty) {
-          return const Center(child: Text('Nenhum versículo encontrado.'));
+          return Center(
+            child: Text(
+              'Nenhum versiculo encontrado.',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+          );
         }
 
         return NotificationListener<ScrollNotification>(
           onNotification: (notification) {
             if (notification is ScrollEndNotification) {
-              if (notification.metrics.pixels >= notification.metrics.maxScrollExtent - 200) {
-                // Preload next chapter if near bottom
-              }
+              if (notification.metrics.pixels >=
+                  notification.metrics.maxScrollExtent - 200) {}
             }
             return false;
           },
@@ -343,23 +419,30 @@ class _BibliaScreenState extends State<BibliaScreen> {
                 provider.capituloAtual,
               );
             },
-            child: ListView.builder(
-              controller: _scrollController,
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              itemCount: provider.versiculos.length,
-              itemBuilder: (context, index) {
-                final versiculo = provider.versiculos[index];
-                return GestureDetector(
-                  onTap: () => _onVersiculoTap(versiculo),
-                  onLongPress: () => _onVersiculoLongPress(versiculo),
-                  child: VerseCard(
-                    versiculo: versiculo,
-                    selecionado: _versiculosSelecionados.contains(versiculo.numero),
-                    tamanhoFonte: _tamanhoFonte,
-                    mostraIndicadores: true,
-                  ),
-                );
-              },
+            child: FadeTransition(
+              opacity: CurvedAnimation(
+                parent: _chapterAnimController,
+                curve: Curves.easeIn,
+              ),
+              child: ListView.builder(
+                controller: _scrollController,
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                itemCount: provider.versiculos.length,
+                itemBuilder: (context, index) {
+                  final versiculo = provider.versiculos[index];
+                  return GestureDetector(
+                    onTap: () => _onVersiculoTap(versiculo),
+                    onLongPress: () => _onVersiculoLongPress(versiculo),
+                    child: VerseCard(
+                      versiculo: versiculo,
+                      selecionado:
+                          _versiculosSelecionados.contains(versiculo.numero),
+                      tamanhoFonte: _tamanhoFonte,
+                      mostraIndicadores: true,
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         );
@@ -389,7 +472,8 @@ class _BibliaScreenState extends State<BibliaScreen> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => CommentaryScreen(
-          referencia: '${provider.livroAtual?.abreviacao ?? 'gn'} ${provider.capituloAtual}:${versiculo.numero}',
+          referencia:
+              '${provider.livroAtual?.abreviacao ?? 'gn'} ${provider.capituloAtual}:${versiculo.numero}',
         ),
       ),
     );
@@ -449,7 +533,7 @@ class _BibliaScreenState extends State<BibliaScreen> {
   void _compartilhar(String texto) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Texto copiado para compartilhar!'),
+        content: const Text('Texto copiado para compartilhar!'),
         action: SnackBarAction(
           label: 'OK',
           onPressed: () {},
@@ -471,7 +555,8 @@ class _VerseDetailPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final referencia = '$livroNome ${versiculo.capitulo ?? ""}:${versiculo.numero}';
+    final referencia =
+        '$livroNome ${versiculo.capitulo ?? ""}:${versiculo.numero}';
 
     return DraggableScrollableSheet(
       initialChildSize: 0.6,
@@ -494,7 +579,7 @@ class _VerseDetailPanel extends StatelessWidget {
                   height: 4,
                   margin: const EdgeInsets.only(bottom: 20),
                   decoration: BoxDecoration(
-                    color: theme.dividerColor,
+                    color: theme.colorScheme.outline.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
@@ -504,20 +589,22 @@ class _VerseDetailPanel extends StatelessWidget {
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.primary,
                   fontWeight: FontWeight.w600,
+                  letterSpacing: 0.3,
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 16),
               Text(
                 versiculo.texto,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   fontSize: 22,
                   height: 1.7,
+                  letterSpacing: 0.2,
                 ),
               ),
               const SizedBox(height: 24),
               const Divider(),
-              const SizedBox(height: 12),
-              _buildActionRow(context, 'Referências Cruzadas', Icons.link, () {
+              const SizedBox(height: 8),
+              _buildActionRow(context, 'Referencias Cruzadas', Icons.link, () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -529,15 +616,17 @@ class _VerseDetailPanel extends StatelessWidget {
                   ),
                 );
               }),
-              _buildActionRow(context, 'Comentários', Icons.comment, () {
+              _buildActionRow(context, 'Comentarios', Icons.comment, () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => CommentaryScreen(referencia: referencia),
+                    builder: (_) =>
+                        CommentaryScreen(referencia: referencia),
                   ),
                 );
               }),
-              _buildActionRow(context, 'Léxico (Grego/Hebraico)', Icons.translate, () {
+              _buildActionRow(
+                  context, 'Lexico (Grego/Hebraico)', Icons.translate, () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -549,7 +638,7 @@ class _VerseDetailPanel extends StatelessWidget {
                   ),
                 );
               }),
-              _buildActionRow(context, 'Áudio', Icons.headphones, () {
+              _buildActionRow(context, 'Audio', Icons.headphones, () {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -564,7 +653,7 @@ class _VerseDetailPanel extends StatelessWidget {
               _buildActionRow(context, 'Compartilhar', Icons.share, () {
                 Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Versículo copiado!')),
+                  const SnackBar(content: Text('Versiculo copiado!')),
                 );
               }),
               _buildActionRow(context, 'Adicionar nota', Icons.note_add, () {
@@ -588,11 +677,18 @@ class _VerseDetailPanel extends StatelessWidget {
   ) {
     final theme = Theme.of(context);
     return ListTile(
-      leading: Icon(icon, color: theme.colorScheme.primary),
+      leading: Icon(icon, color: theme.colorScheme.primary, size: 22),
       title: Text(label),
-      trailing: const Icon(Icons.chevron_right),
+      trailing: Icon(
+        Icons.chevron_right,
+        color: theme.colorScheme.onSurface.withOpacity(0.4),
+        size: 20,
+      ),
       onTap: onTap,
       contentPadding: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
     );
   }
 }

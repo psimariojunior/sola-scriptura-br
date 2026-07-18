@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'config/api_config.dart';
+import 'database/database_helper.dart';
 import 'providers/auth_provider.dart';
 import 'providers/biblia_provider.dart';
 import 'providers/offline_provider.dart';
@@ -23,10 +22,7 @@ import 'theme/app_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Supabase.initialize(
-    url: ApiConfig.supabaseUrl,
-    anonKey: ApiConfig.supabaseAnonKey,
-  );
+  await DatabaseHelper().database;
 
   runApp(const MyApp());
 }
@@ -49,6 +45,7 @@ class _MyAppState extends State<MyApp> {
   late final ComentarioService _comentarioService;
   late final AudioService _audioService;
   late final AppRouter _appRouter;
+  bool _initialized = false;
 
   @override
   void initState() {
@@ -63,10 +60,29 @@ class _MyAppState extends State<MyApp> {
     _comentarioService = ComentarioService(_apiClient);
     _audioService = AudioService(_apiClient);
     _appRouter = AppRouter(AuthProvider(_authService));
+    _initAsync();
+  }
+
+  Future<void> _initAsync() async {
+    await _authService.init();
+    if (mounted) {
+      setState(() => _initialized = true);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (!_initialized) {
+      return const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        ),
+      );
+    }
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => TemaProvider()),

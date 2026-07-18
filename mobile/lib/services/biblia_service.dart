@@ -6,10 +6,12 @@ import '../config/api_config.dart';
 import '../models/livro.dart';
 import '../models/traducao.dart';
 import '../models/versiculo.dart';
+import '../services/cache_service.dart';
 import 'api_client.dart';
 
 class BibliaService {
   final ApiClient _client;
+  final CacheService _cache = CacheService();
 
   BibliaService(this._client);
 
@@ -76,13 +78,27 @@ class BibliaService {
   List<Traducao> get traducoes => Traducoes.lista;
 
   Future<List<Livro>> getLivros() async {
-    final response = await _client.get(ApiConfig.endpoint('livros'));
-    final data = response.data;
-    if (data is Map<String, dynamic> && data['data'] is List) {
-      return (data['data'] as List)
-          .map((e) => Livro.fromJson(e as Map<String, dynamic>))
-          .toList();
+    // Try cache first
+    final cached = await _cache.getCachedLivros();
+    if (cached.isNotEmpty) {
+      return cached.map((e) => Livro.fromJson(e)).toList();
     }
+
+    // Fallback to API
+    try {
+      final response = await _client.get(ApiConfig.endpoint('livros'));
+      final data = response.data;
+      if (data is Map<String, dynamic> && data['data'] is List) {
+        final livros = (data['data'] as List)
+            .map((e) => Livro.fromJson(e as Map<String, dynamic>))
+            .toList();
+        // Cache the result
+        await _cache.cacheLivros(
+          (data['data'] as List).cast<Map<String, dynamic>>(),
+        );
+        return livros;
+      }
+    } catch (_) {}
     return _livros;
   }
 
@@ -92,14 +108,42 @@ class BibliaService {
     required int capitulo,
   }) async {
     final slug = slugFromAbrev(livro);
-    final path = '${ApiConfig.endpoint('versiculos')}/$traducao/$slug/$capitulo';
-    final response = await _client.get(path);
-    final data = response.data;
-    if (data is Map<String, dynamic> && data['data'] is List) {
-      return (data['data'] as List)
-          .map((e) => Versiculo.fromJson(e as Map<String, dynamic>))
-          .toList();
+
+    // Try cache first
+    final cached = await _cache.getCachedVersiculos(
+      livro: slug,
+      capitulo: capitulo,
+      traducao: traducao,
+    );
+    if (cached.isNotEmpty) {
+      return cached.map((e) => Versiculo.fromJson({
+        'numero': e['versiculo'],
+        'texto': e['texto'],
+        'traducao': e['traducao'],
+        'livro': e['livro'],
+        'capitulo': e['capitulo'],
+      })).toList();
     }
+
+    // Fallback to API
+    try {
+      final path = '${ApiConfig.endpoint('versiculos')}/$traducao/$slug/$capitulo';
+      final response = await _client.get(path);
+      final data = response.data;
+      if (data is Map<String, dynamic> && data['data'] is List) {
+        final versiculos = (data['data'] as List)
+            .map((e) => Versiculo.fromJson(e as Map<String, dynamic>))
+            .toList();
+        // Cache the result
+        await _cache.cacheVersiculos(
+          livro: slug,
+          capitulo: capitulo,
+          traducao: traducao,
+          versiculos: (data['data'] as List).cast<Map<String, dynamic>>(),
+        );
+        return versiculos;
+      }
+    } catch (_) {}
     return [];
   }
 
@@ -108,16 +152,12 @@ class BibliaService {
     required String livro,
     required int capitulo,
   }) async {
-    final slug = slugFromAbrev(livro);
-    final path = '${ApiConfig.endpoint('versiculos')}/$traducao/$slug/$capitulo';
-    final response = await _client.get(path);
-    final data = response.data;
-    if (data is Map<String, dynamic> && data['data'] is List) {
-      return (data['data'] as List)
-          .map((e) => (e as Map<String, dynamic>)['text'] as String? ?? '')
-          .toList();
-    }
-    return [];
+    final versiculos = await getVersiculos(
+      traducao: traducao,
+      livro: livro,
+      capitulo: capitulo,
+    );
+    return versiculos.map((v) => v.texto).toList();
   }
 
   static final List<Livro> _livros = [

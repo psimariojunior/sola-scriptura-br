@@ -166,9 +166,8 @@ class _ContaScreenState extends State<ContaScreen> {
                   ),
                 ),
                 const SizedBox(width: 12),
-                SolaButton(
+                SolaButton.outlined(
                   label: 'Cancelar',
-                  isOutlined: true,
                   onPressed: () {
                     setState(() {
                       _editando = false;

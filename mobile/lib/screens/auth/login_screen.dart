@@ -154,10 +154,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: _login,
                   ),
                   const SizedBox(height: 16),
-                  SolaButton(
+                  SolaButton.outlined(
                     label: 'Entrar com Google',
                     icon: Icons.g_mobiledata,
-                    isOutlined: true,
                     isLoading: auth.isLoading,
                     onPressed: _loginGoogle,
                   ),

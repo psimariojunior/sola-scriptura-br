@@ -1,0 +1,461 @@
+{
+  "totalBooks": 56,
+  "totalChapters": 1189,
+  "totalVerses": 3570,
+  "totalComments": 0,
+  "errors": [
+    "2 Samuel 23: falha no fetch",
+    "2 Samuel 24: falha no fetch",
+    "Cantares 1: falha no fetch",
+    "Cantares 2: falha no fetch",
+    "Cantares 3: falha no fetch",
+    "Cantares 4: falha no fetch",
+    "Cantares 5: falha no fetch",
+    "Cantares 6: falha no fetch",
+    "Cantares 7: falha no fetch",
+    "Cantares 8: falha no fetch",
+    "Ezequiel 1: falha no fetch",
+    "Ezequiel 2: falha no fetch",
+    "Ezequiel 3: falha no fetch",
+    "Ezequiel 4: falha no fetch",
+    "Ezequiel 5: falha no fetch",
+    "Ezequiel 6: falha no fetch",
+    "Ezequiel 7: falha no fetch",
+    "Ezequiel 8: falha no fetch",
+    "Ezequiel 9: falha no fetch",
+    "Ezequiel 10: falha no fetch",
+    "Ezequiel 11: falha no fetch",
+    "Ezequiel 12: falha no fetch",
+    "Ezequiel 13: falha no fetch",
+    "Ezequiel 14: falha no fetch",
+    "Ezequiel 15: falha no fetch",
+    "Ezequiel 16: falha no fetch",
+    "Ezequiel 17: falha no fetch",
+    "Ezequiel 18: falha no fetch",
+    "Ezequiel 19: falha no fetch",
+    "Ezequiel 20: falha no fetch",
+    "Ezequiel 21: falha no fetch",
+    "Ezequiel 22: falha no fetch",
+    "Ezequiel 23: falha no fetch",
+    "Ezequiel 24: falha no fetch",
+    "Ezequiel 25: falha no fetch",
+    "Ezequiel 26: falha no fetch",
+    "Ezequiel 27: falha no fetch",
+    "Ezequiel 28: falha no fetch",
+    "Ezequiel 29: falha no fetch",
+    "Ezequiel 30: falha no fetch",
+    "Ezequiel 31: falha no fetch",
+    "Ezequiel 32: falha no fetch",
+    "Ezequiel 33: falha no fetch",
+    "Ezequiel 34: falha no fetch",
+    "Ezequiel 35: falha no fetch",
+    "Ezequiel 36: falha no fetch",
+    "Ezequiel 37: falha no fetch",
+    "Ezequiel 38: falha no fetch",
+    "Ezequiel 39: falha no fetch",
+    "Ezequiel 40: falha no fetch",
+    "Ezequiel 41: falha no fetch",
+    "Ezequiel 42: falha no fetch",
+    "Ezequiel 43: falha no fetch",
+    "Ezequiel 44: falha no fetch",
+    "Ezequiel 45: falha no fetch",
+    "Ezequiel 46: falha no fetch",
+    "Ezequiel 47: falha no fetch",
+    "Ezequiel 48: falha no fetch",
+    "Joel 1: falha no fetch",
+    "Joel 2: falha no fetch",
+    "Joel 3: falha no fetch",
+    "Jonas 2: falha no fetch",
+    "Jonas 3: falha no fetch",
+    "Jonas 4: falha no fetch",
+    "Naum 1: falha no fetch",
+    "Naum 2: falha no fetch",
+    "Naum 3: falha no fetch",
+    "Mateus 19: falha no fetch",
+    "Mateus 20: falha no fetch",
+    "Mateus 21: falha no fetch",
+    "Mateus 22: falha no fetch",
+    "Mateus 23: falha no fetch",
+    "Mateus 24: falha no fetch",
+    "Mateus 25: falha no fetch",
+    "Mateus 26: falha no fetch",
+    "Mateus 27: falha no fetch",
+    "Mateus 28: falha no fetch",
+    "Marcos 1: falha no fetch",
+    "Marcos 2: falha no fetch",
+    "Marcos 3: falha no fetch",
+    "Marcos 4: falha no fetch",
+    "Marcos 5: falha no fetch",
+    "Marcos 6: falha no fetch",
+    "Marcos 7: falha no fetch",
+    "Marcos 8: falha no fetch",
+    "Marcos 9: falha no fetch",
+    "Marcos 10: falha no fetch",
+    "Marcos 11: falha no fetch",
+    "Marcos 12: falha no fetch",
+    "Marcos 13: falha no fetch",
+    "Marcos 14: falha no fetch",
+    "Marcos 15: falha no fetch",
+    "Marcos 16: falha no fetch",
+    "Lucas 1: falha no fetch",
+    "Lucas 2: falha no fetch",
+    "Lucas 3: falha no fetch",
+    "Lucas 4: falha no fetch",
+    "Lucas 5: falha no fetch",
+    "Lucas 6: falha no fetch",
+    "Lucas 7: falha no fetch",
+    "Lucas 8: falha no fetch",
+    "Lucas 9: falha no fetch",
+    "Lucas 10: falha no fetch",
+    "Lucas 11: falha no fetch",
+    "Lucas 12: falha no fetch",
+    "Lucas 13: falha no fetch",
+    "Lucas 14: falha no fetch",
+    "Lucas 15: falha no fetch",
+    "Lucas 16: falha no fetch",
+    "Lucas 17: falha no fetch",
+    "Lucas 18: falha no fetch",
+    "Lucas 19: falha no fetch",
+    "Lucas 20: falha no fetch",
+    "Lucas 21: falha no fetch",
+    "Lucas 22: falha no fetch",
+    "Lucas 23: falha no fetch",
+    "Lucas 24: falha no fetch",
+    "João 1: falha no fetch",
+    "João 2: falha no fetch",
+    "João 3: falha no fetch",
+    "João 4: falha no fetch",
+    "João 5: falha no fetch",
+    "João 6: falha no fetch",
+    "João 7: falha no fetch",
+    "João 8: falha no fetch",
+    "João 9: falha no fetch",
+    "João 10: falha no fetch",
+    "João 11: falha no fetch",
+    "João 12: falha no fetch",
+    "João 13: falha no fetch",
+    "João 14: falha no fetch",
+    "João 15: falha no fetch",
+    "João 16: falha no fetch",
+    "João 17: falha no fetch",
+    "João 18: falha no fetch",
+    "João 19: falha no fetch",
+    "João 20: falha no fetch",
+    "João 21: falha no fetch",
+    "Atos 1: falha no fetch",
+    "Atos 2: falha no fetch",
+    "Atos 3: falha no fetch",
+    "Atos 4: falha no fetch",
+    "Atos 5: falha no fetch",
+    "Atos 6: falha no fetch",
+    "Atos 7: falha no fetch",
+    "Atos 8: falha no fetch",
+    "Atos 9: falha no fetch",
+    "Atos 10: falha no fetch",
+    "Atos 11: falha no fetch",
+    "Atos 12: falha no fetch",
+    "Atos 13: falha no fetch",
+    "Atos 14: falha no fetch",
+    "Atos 15: falha no fetch",
+    "Atos 16: falha no fetch",
+    "Atos 17: falha no fetch",
+    "Atos 18: falha no fetch",
+    "Atos 19: falha no fetch",
+    "Atos 20: falha no fetch",
+    "Atos 21: falha no fetch",
+    "Atos 22: falha no fetch",
+    "Atos 23: falha no fetch",
+    "Atos 24: falha no fetch",
+    "Atos 25: falha no fetch",
+    "Atos 26: falha no fetch",
+    "Atos 27: falha no fetch",
+    "Atos 28: falha no fetch",
+    "Filipenses 1: falha no fetch",
+    "Filipenses 2: falha no fetch",
+    "Filipenses 3: falha no fetch",
+    "Filipenses 4: falha no fetch",
+    "Judas 1: falha no fetch"
+  ],
+  "bookResults": {
+    "gn": {
+      "nomePt": "Gênesis",
+      "capitulos": 50,
+      "comentarios": 239
+    },
+    "ex": {
+      "nomePt": "Êxodo",
+      "capitulos": 40,
+      "comentarios": 136
+    },
+    "lv": {
+      "nomePt": "Levítico",
+      "capitulos": 27,
+      "comentarios": 88
+    },
+    "nm": {
+      "nomePt": "Números",
+      "capitulos": 36,
+      "comentarios": 93
+    },
+    "dt": {
+      "nomePt": "Deuteronômio",
+      "capitulos": 34,
+      "comentarios": 101
+    },
+    "js": {
+      "nomePt": "Josué",
+      "capitulos": 24,
+      "comentarios": 69
+    },
+    "jz": {
+      "nomePt": "Juízes",
+      "capitulos": 21,
+      "comentarios": 72
+    },
+    "rt": {
+      "nomePt": "Rute",
+      "capitulos": 4,
+      "comentarios": 12
+    },
+    "1sm": {
+      "nomePt": "1 Samuel",
+      "capitulos": 31,
+      "comentarios": 103
+    },
+    "2sm": {
+      "nomePt": "2 Samuel",
+      "capitulos": 24,
+      "comentarios": 72
+    },
+    "1rs": {
+      "nomePt": "1 Reis",
+      "capitulos": 22,
+      "comentarios": 73
+    },
+    "2rs": {
+      "nomePt": "2 Reis",
+      "capitulos": 25,
+      "comentarios": 82
+    },
+    "1cr": {
+      "nomePt": "1 Crônicas",
+      "capitulos": 29,
+      "comentarios": 66
+    },
+    "2cr": {
+      "nomePt": "2 Crônicas",
+      "capitulos": 36,
+      "comentarios": 83
+    },
+    "ed": {
+      "nomePt": "Esdras",
+      "capitulos": 10,
+      "comentarios": 26
+    },
+    "ne": {
+      "nomePt": "Neemias",
+      "capitulos": 13,
+      "comentarios": 32
+    },
+    "et": {
+      "nomePt": "Ester",
+      "capitulos": 10,
+      "comentarios": 21
+    },
+    "jó": {
+      "nomePt": "Jó",
+      "capitulos": 42,
+      "comentarios": 134
+    },
+    "sl": {
+      "nomePt": "Salmos",
+      "capitulos": 150,
+      "comentarios": 443
+    },
+    "pv": {
+      "nomePt": "Provérbios",
+      "capitulos": 31,
+      "comentarios": 519
+    },
+    "ec": {
+      "nomePt": "Eclesiastes",
+      "capitulos": 12,
+      "comentarios": 42
+    },
+    "is": {
+      "nomePt": "Isaías",
+      "capitulos": 66,
+      "comentarios": 192
+    },
+    "jr": {
+      "nomePt": "Jeremias",
+      "capitulos": 52,
+      "comentarios": 148
+    },
+    "lm": {
+      "nomePt": "Lamentações",
+      "capitulos": 5,
+      "comentarios": 14
+    },
+    "dn": {
+      "nomePt": "Daniel",
+      "capitulos": 12,
+      "comentarios": 40
+    },
+    "os": {
+      "nomePt": "Oséias",
+      "capitulos": 14,
+      "comentarios": 33
+    },
+    "am": {
+      "nomePt": "Amós",
+      "capitulos": 9,
+      "comentarios": 21
+    },
+    "ob": {
+      "nomePt": "Obadias",
+      "capitulos": 1,
+      "comentarios": 2
+    },
+    "jn": {
+      "nomePt": "Jonas",
+      "capitulos": 4,
+      "comentarios": 3
+    },
+    "mq": {
+      "nomePt": "Miquéias",
+      "capitulos": 7,
+      "comentarios": 17
+    },
+    "hc": {
+      "nomePt": "Habacuque",
+      "capitulos": 3,
+      "comentarios": 8
+    },
+    "sf": {
+      "nomePt": "Sofonias",
+      "capitulos": 3,
+      "comentarios": 10
+    },
+    "ag": {
+      "nomePt": "Ageu",
+      "capitulos": 2,
+      "comentarios": 5
+    },
+    "zc": {
+      "nomePt": "Zacarias",
+      "capitulos": 14,
+      "comentarios": 34
+    },
+    "ml": {
+      "nomePt": "Malaquias",
+      "capitulos": 4,
+      "comentarios": 9
+    },
+    "mt": {
+      "nomePt": "Mateus",
+      "capitulos": 28,
+      "comentarios": 80
+    },
+    "rm": {
+      "nomePt": "Romanos",
+      "capitulos": 16,
+      "comentarios": 49
+    },
+    "1co": {
+      "nomePt": "1 Coríntios",
+      "capitulos": 16,
+      "comentarios": 67
+    },
+    "2co": {
+      "nomePt": "2 Coríntios",
+      "capitulos": 13,
+      "comentarios": 38
+    },
+    "gl": {
+      "nomePt": "Gálatas",
+      "capitulos": 6,
+      "comentarios": 18
+    },
+    "ef": {
+      "nomePt": "Efésios",
+      "capitulos": 6,
+      "comentarios": 18
+    },
+    "cl": {
+      "nomePt": "Colossenses",
+      "capitulos": 4,
+      "comentarios": 17
+    },
+    "1ts": {
+      "nomePt": "1 Tessalonicenses",
+      "capitulos": 5,
+      "comentarios": 18
+    },
+    "2ts": {
+      "nomePt": "2 Tessalonicenses",
+      "capitulos": 3,
+      "comentarios": 10
+    },
+    "1tm": {
+      "nomePt": "1 Timóteo",
+      "capitulos": 6,
+      "comentarios": 17
+    },
+    "2tm": {
+      "nomePt": "2 Timóteo",
+      "capitulos": 4,
+      "comentarios": 13
+    },
+    "tt": {
+      "nomePt": "Tito",
+      "capitulos": 3,
+      "comentarios": 8
+    },
+    "fm": {
+      "nomePt": "Filemom",
+      "capitulos": 1,
+      "comentarios": 2
+    },
+    "hb": {
+      "nomePt": "Hebreus",
+      "capitulos": 13,
+      "comentarios": 33
+    },
+    "tg": {
+      "nomePt": "Tiago",
+      "capitulos": 5,
+      "comentarios": 13
+    },
+    "1pe": {
+      "nomePt": "1 Pedro",
+      "capitulos": 5,
+      "comentarios": 22
+    },
+    "2pe": {
+      "nomePt": "2 Pedro",
+      "capitulos": 3,
+      "comentarios": 14
+    },
+    "1jo": {
+      "nomePt": "1 João",
+      "capitulos": 5,
+      "comentarios": 26
+    },
+    "2jo": {
+      "nomePt": "2 João",
+      "capitulos": 1,
+      "comentarios": 5
+    },
+    "3jo": {
+      "nomePt": "3 João",
+      "capitulos": 1,
+      "comentarios": 4
+    },
+    "ap": {
+      "nomePt": "Apocalipse",
+      "capitulos": 22,
+      "comentarios": 56
+    }
+  }
+}

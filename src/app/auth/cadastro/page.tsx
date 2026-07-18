@@ -48,8 +48,9 @@ export default function CadastroPage() {
       setTimeout(() => {
         router.push('/conta');
       }, 2000);
-    } catch (err: any) {
-      setErro(err.message || 'Erro ao criar conta. Tente novamente.');
+    } catch (err: unknown) {
+      const mensagem = err instanceof Error ? err.message : 'Erro ao criar conta. Tente novamente.';
+      setErro(mensagem);
     } finally {
       setCarregando(false);
     }

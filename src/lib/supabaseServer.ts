@@ -62,8 +62,8 @@ export async function registrarPedidoPendente(
       const erro = await res.text();
       console.error('[supabaseServer] Falha ao registrar pedido pendente:', res.status, erro);
     }
-  } catch (err: any) {
-    console.error('[supabaseServer] Erro ao registrar pedido pendente:', err?.message);
+  } catch (err: unknown) {
+    console.error('[supabaseServer] Erro ao registrar pedido pendente:', err instanceof Error ? err.message : err);
   }
 }
 
@@ -185,8 +185,8 @@ export async function consultarAcessoTotal(email: string): Promise<boolean> {
       return Array.isArray(pagamentos) && pagamentos.length > 0;
     }
     return false;
-  } catch (err: any) {
-    console.error('[supabaseServer] Erro em consultarAcessoTotal:', err?.message);
+  } catch (err: unknown) {
+    console.error('[supabaseServer] Erro em consultarAcessoTotal:', err instanceof Error ? err.message : err);
     return false;
   }
 }

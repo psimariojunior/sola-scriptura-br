@@ -218,8 +218,8 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
               case 'completo':
                 break;
             }
-          } catch (e: any) {
-            if (e.message && !e.message.includes('JSON')) {
+          } catch (e: unknown) {
+            if (e instanceof Error && e.message && !e.message.includes('JSON')) {
               throw e;
             }
           }
@@ -233,10 +233,11 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
             : m,
         ),
       );
-    } catch (e: any) {
-      if (e.name === 'AbortError') return;
+    } catch (e: unknown) {
+      if (e instanceof Error && e.name === 'AbortError') return;
 
-      setErro(e.message || 'Erro ao obter resposta');
+      const mensagem = e instanceof Error ? e.message : 'Erro ao obter resposta';
+      setErro(mensagem);
       setMensagens(prev =>
         prev.map(m =>
           m.id === msgAssistant.id

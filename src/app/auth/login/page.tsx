@@ -34,8 +34,9 @@ function LoginForm() {
       await login(email, senha);
       router.refresh();
       router.push(redirectTo);
-    } catch (err: any) {
-      setErro(err.message || 'Erro ao fazer login. Verifique suas credenciais.');
+    } catch (err: unknown) {
+      const mensagem = err instanceof Error ? err.message : 'Erro ao fazer login. Verifique suas credenciais.';
+      setErro(mensagem);
     } finally {
       setCarregando(false);
     }

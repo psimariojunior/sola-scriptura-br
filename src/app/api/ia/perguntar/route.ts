@@ -16,14 +16,16 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  let body: any;
+  let body: Record<string, unknown>;
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ erro: 'JSON inválido' }, { status: 400 });
   }
 
-  const { consulta, tradicao, contexto } = body;
+  const consulta = typeof body.consulta === 'string' ? body.consulta : '';
+  const tradicao = typeof body.tradicao === 'string' ? body.tradicao : undefined;
+  const contexto = typeof body.contexto === 'string' ? body.contexto : undefined;
 
   if (!consulta?.trim()) {
     return NextResponse.json({ erro: 'Pergunta é obrigatória' }, { status: 400 });
@@ -38,11 +40,12 @@ export async function POST(request: NextRequest) {
         ? `${contexto ? contexto + '\n\n' : ''}Materiais de estudo (use como base primária e cite as fontes):\n${rag.blocos.join('\n\n')}`
         : contexto;
       return await chamarLLM(consulta, tradicao, contextoRAG, apiKey, baseUrl, model, rag?.fontes);
-    } catch (erro: any) {
-      if (erro.message === 'credits_missing') {
+    } catch (erro: unknown) {
+      const mensagem = erro instanceof Error ? erro.message : String(erro);
+      if (mensagem === 'credits_missing') {
         return NextResponse.json(gerarRespostaLocal(consulta, tradicao));
       }
-      console.error('LLM falhou, usando resposta local:', erro.message, erro.cause);
+      console.error('LLM falhou, usando resposta local:', mensagem, erro instanceof Error ? erro.cause : undefined);
     }
   }
 

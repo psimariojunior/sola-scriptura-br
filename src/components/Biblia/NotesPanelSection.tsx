@@ -3,6 +3,7 @@
 import { Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, X } from 'lucide-react';
+import type { Nota } from '@/components/NotaEditor';
 
 function PanelFallback() {
   return (
@@ -19,9 +20,9 @@ function PanelFallback() {
 interface NotesPanelSectionProps {
   open: boolean;
   onClose: () => void;
-  notas: any[];
-  notaAtiva: any;
-  onSalvar: (nota: any) => void;
+  notas: Nota[];
+  notaAtiva: Nota | null;
+  onSalvar: (nota: Nota) => void;
   onExcluir: (id: string) => void;
 }
 
@@ -55,7 +56,7 @@ export function NotesPanelSection({ open, onClose, notas, notaAtiva, onSalvar, o
                   key={notaAtiva?.id ?? 'new'}
                   nota={notaAtiva ?? undefined}
                   autoSalvar={true}
-                  onSalvar={(nota: any) => onSalvar(nota)}
+                  onSalvar={(nota: Nota) => onSalvar(nota)}
                   onExcluir={(id: string) => onExcluir(id)}
                 />
               );

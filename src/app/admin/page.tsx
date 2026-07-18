@@ -533,8 +533,9 @@ function UsuariosTab({ apiFetch, addToast }: { apiFetch: <T,>(e: string, o?: Req
       if (selectedUser?.id === user.id) {
         setSelectedUser(prev => prev ? { ...prev, role: action === 'promover' ? 'admin' : 'user' } : null);
       }
-    } catch (e: any) {
-      addToast(e.message || 'Erro ao alterar role', 'error');
+    } catch (e: unknown) {
+      const mensagem = e instanceof Error ? e.message : 'Erro ao alterar role';
+      addToast(mensagem, 'error');
     } finally {
       setActionLoading(null);
     }
@@ -554,8 +555,9 @@ function UsuariosTab({ apiFetch, addToast }: { apiFetch: <T,>(e: string, o?: Req
         if (selectedUser?.id === user.id) {
           setSelectedUser(prev => prev ? { ...prev, ativo: false } : null);
         }
-      } catch (e: any) {
-        addToast(e.message || 'Erro ao desativar', 'error');
+      } catch (e: unknown) {
+        const mensagem = e instanceof Error ? e.message : 'Erro ao desativar';
+        addToast(mensagem, 'error');
       } finally {
         setActionLoading(null);
       }
@@ -569,8 +571,9 @@ function UsuariosTab({ apiFetch, addToast }: { apiFetch: <T,>(e: string, o?: Req
         if (selectedUser?.id === user.id) {
           setSelectedUser(prev => prev ? { ...prev, ativo: true } : null);
         }
-      } catch (e: any) {
-        addToast(e.message || 'Erro ao reativar', 'error');
+      } catch (e: unknown) {
+        const mensagem = e instanceof Error ? e.message : 'Erro ao reativar';
+        addToast(mensagem, 'error');
       } finally {
         setActionLoading(null);
       }

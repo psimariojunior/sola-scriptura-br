@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  let body: any;
+  let body: Record<string, unknown>;
   try {
     body = await request.json();
   } catch {
@@ -25,7 +25,9 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  const { pergunta, tradicao, contexto } = body;
+  const pergunta = typeof body.pergunta === 'string' ? body.pergunta : '';
+  const tradicao = typeof body.tradicao === 'string' ? body.tradicao : undefined;
+  const contexto = typeof body.contexto === 'string' ? body.contexto : undefined;
 
   if (!pergunta?.trim()) {
     return new Response(JSON.stringify({ erro: 'Pergunta é obrigatória' }), {
@@ -39,7 +41,7 @@ export async function POST(request: NextRequest) {
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
     async start(controller) {
-      const send = (tipo: string, dados: any) => {
+      const send = (tipo: string, dados: Record<string, unknown>) => {
         controller.enqueue(encoder.encode(`data: ${JSON.stringify({ tipo, dados })}\n\n`));
       };
 
@@ -49,13 +51,14 @@ export async function POST(request: NextRequest) {
         } else {
           await streamLocal(pergunta, tradicao, send, controller, encoder);
         }
-      } catch (erro: any) {
+      } catch (erro: unknown) {
+        const mensagem = erro instanceof Error ? erro.message : String(erro);
         // Fallback para modo local se creditos acabarem (402) ou LLM indisponivel
-        if (erro.message === 'credits_missing' || erro.message?.includes('LLM indispon')) {
+        if (mensagem === 'credits_missing' || mensagem.includes('LLM indispon')) {
           send('status', { message: 'Modo local ativado...', etapa: 'local' });
           await streamLocal(pergunta, tradicao, send, controller, encoder);
         } else {
-          send('erro', { message: erro.message || 'Erro ao processar pergunta' });
+          send('erro', { message: mensagem || 'Erro ao processar pergunta' });
         }
       } finally {
         controller.close();
@@ -77,7 +80,7 @@ async function streamDirectLLM(
   pergunta: string,
   tradicao: string | undefined,
   contexto: string | undefined,
-  send: (tipo: string, dados: any) => void,
+  send: (tipo: string, dados: Record<string, unknown>) => void,
   controller: ReadableStreamDefaultController,
   encoder: TextEncoder,
   apiKey: string,
@@ -171,7 +174,7 @@ async function streamDirectLLM(
 async function streamLocal(
   pergunta: string,
   tradicao: string | undefined,
-  send: (tipo: string, dados: any) => void,
+  send: (tipo: string, dados: Record<string, unknown>) => void,
   controller: ReadableStreamDefaultController,
   encoder: TextEncoder,
 ) {

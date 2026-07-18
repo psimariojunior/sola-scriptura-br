@@ -100,8 +100,8 @@ export async function gerarAudioEdge(opts: EdgeTTSOptions): Promise<ArrayBuffer>
         } else if (evento.tipo === 'erro') {
           throw new Error(evento.mensagem);
         }
-      } catch (e: any) {
-        if (e?.message?.includes('JSON')) continue;
+      } catch (e: unknown) {
+        if (e instanceof Error && e.message.includes('JSON')) continue;
         throw e;
       }
     }
@@ -171,8 +171,8 @@ export async function tocarComEdge(
     };
 
     await audio.play();
-  } catch (err: any) {
-    options?.onError?.(err);
+  } catch (err: unknown) {
+    options?.onError?.(err instanceof Error ? err : new Error(String(err)));
   }
 }
 

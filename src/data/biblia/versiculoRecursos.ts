@@ -24,9 +24,22 @@ export type TipoRecurso =
   | 'pericope'
   | 'contexto-historico';
 
+export type DadosRecurso =
+  | RecursoComentario
+  | RecursoEstudo
+  | RecursoNota
+  | RecursoCrossRef
+  | RecursoLexico
+  | RecursoMapa
+  | RecursoPersonagem
+  | RecursoDoutrina
+  | RecursoCronologia
+  | RecursoPericope
+  | RecursoContextoHistorico;
+
 export interface RecursoVersiculo {
   tipo: TipoRecurso;
-  dados: any;
+  dados: DadosRecurso;
 }
 
 export interface RecursoComentario {

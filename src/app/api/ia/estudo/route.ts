@@ -16,14 +16,15 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  let body: any;
+  let body: Record<string, unknown>;
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ erro: 'JSON inválido' }, { status: 400 });
   }
 
-  const { passagem, tipo } = body;
+  const passagem = typeof body.passagem === 'string' ? body.passagem : '';
+  const tipo = typeof body.tipo === 'string' ? body.tipo : undefined;
 
   if (!passagem?.trim()) {
     return NextResponse.json({ erro: 'Passagem ou tópico é obrigatório' }, { status: 400 });
@@ -135,10 +136,11 @@ INSTRUÇÕES DE FUNDAMENTAÇÃO (RAG):
         referencia: referenciaRAG?.referencia ?? null,
       },
     });
-  } catch (erro: any) {
-    console.error('Erro ao gerar estudo:', erro.message);
+  } catch (erro: unknown) {
+    const mensagem = erro instanceof Error ? erro.message : String(erro);
+    console.error('Erro ao gerar estudo:', mensagem);
     return NextResponse.json(
-      { erro: 'Falha ao gerar estudo. Tente novamente.', detalhes: erro.message },
+      { erro: 'Falha ao gerar estudo. Tente novamente.', detalhes: mensagem },
       { status: 500 }
     );
   }

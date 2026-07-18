@@ -229,8 +229,8 @@ export function AIProvider({ children }: AIProviderProps) {
               } else if (evento.tipo === 'erro') {
                 throw new Error(evento.dados.message);
               }
-            } catch (e: any) {
-              if (e?.message && !e.message.includes('JSON')) throw e;
+            } catch (e: unknown) {
+              if (e instanceof Error && e.message && !e.message.includes('JSON')) throw e;
             }
           }
         }
@@ -243,8 +243,8 @@ export function AIProvider({ children }: AIProviderProps) {
           )
         );
         setHasUnread(true);
-      } catch (e: any) {
-        if (e?.name === 'AbortError') {
+      } catch (e: unknown) {
+        if (e instanceof Error && e.name === 'AbortError') {
           setMessages((prev) =>
             prev.map((m) =>
               m.id === assistantMsg.id

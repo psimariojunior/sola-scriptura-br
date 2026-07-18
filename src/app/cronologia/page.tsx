@@ -5,7 +5,11 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { cronologia } from '@/data/biblia';
 import ScrollReveal from '@/components/ScrollReveal';
-import PainelDoVersiculo from '@/components/PainelDoVersiculo';
+import dynamic from 'next/dynamic';
+const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
+  ssr: false,
+  loading: () => <div className="animate-pulse h-64 bg-[var(--surface-sunken)] rounded-xl" />
+});
 import { CalendarDays, Filter, BookOpen, ExternalLink } from 'lucide-react';
 
 const tipoCores: Record<string, { bg: string; text: string; dot: string; gradient: string }> = {

@@ -5,7 +5,11 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { PERSONAGENS_AVANCADOS, type PersonagemAvancado } from '@/data/biblia/personagensAvancados';
 import ScrollReveal from '@/components/ScrollReveal';
-import PainelDoVersiculo from '@/components/PainelDoVersiculo';
+import dynamic from 'next/dynamic';
+const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
+  ssr: false,
+  loading: () => <div className="animate-pulse h-64 bg-[var(--surface-sunken)] rounded-xl" />
+});
 import { Users, Search, X, BookOpen, MapPin, Shield, GitBranch, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 

@@ -20,7 +20,11 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { getIntroducaoLivro } from '@/data/biblia/introducoes';
-import PainelDoVersiculo from '@/components/PainelDoVersiculo';
+import dynamic from 'next/dynamic';
+const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
+  ssr: false,
+  loading: () => <div className="animate-pulse h-64 bg-[var(--surface-sunken)] rounded-xl" />
+});
 
 type LivroData = Record<string, Record<number, string[]>>;
 

@@ -19,7 +19,10 @@ import { getMarcador } from '@/lib/marcadores';
 import { isOnline, cacheChapter, getCachedChapter, getCachedChapterDB } from '@/lib/offline';
 import { recordReading, getStats } from '@/lib/estatisticas';
 import OfflineBanner from '@/components/OfflineBanner';
-import PainelDoVersiculo from '@/components/PainelDoVersiculo';
+const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
+  ssr: false,
+  loading: () => <div className="animate-pulse h-64 bg-[var(--surface-sunken)] rounded-xl" />
+});
 import { useNotas } from '@/hooks/useNotas';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { cn } from '@/lib/utils';

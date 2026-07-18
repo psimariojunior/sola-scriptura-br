@@ -2,12 +2,10 @@
 
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { palavrasGregas } from '@/data/lexicon/grego';
-import { palavrasHebraicas } from '@/data/lexicon/hebraico';
 import { Languages, Search, BookOpen, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 interface LexiconWord {
   strong: string;
@@ -22,14 +20,25 @@ interface LexiconWord {
   frequencia?: number;
 }
 
-const allWords: LexiconWord[] = [
-  ...palavrasGregas.map(w => ({ ...w, lingua: 'grego' as const })),
-  ...palavrasHebraicas.map(w => ({ ...w, lingua: 'hebraico' as const })),
-];
-
 export default function IdiomasPage() {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<'all' | 'grego' | 'hebraico'>('all');
+  const [allWords, setAllWords] = useState<LexiconWord[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([
+      import('@/data/lexicon/grego'),
+      import('@/data/lexicon/hebraico'),
+    ]).then(([gregoMod, hebraicoMod]) => {
+      const words: LexiconWord[] = [
+        ...gregoMod.palavrasGregas.map(w => ({ ...w, lingua: 'grego' as const })),
+        ...hebraicoMod.palavrasHebraicas.map(w => ({ ...w, lingua: 'hebraico' as const })),
+      ];
+      setAllWords(words);
+      setLoading(false);
+    });
+  }, []);
 
   const filtered = useMemo(() => {
     return allWords.filter(w => {
@@ -41,10 +50,24 @@ export default function IdiomasPage() {
         String(w.strong).includes(search);
       return matchLang && matchSearch;
     });
-  }, [search, filter]);
+  }, [search, filter, allWords]);
 
-  const gregoCount = palavrasGregas.length;
-  const hebraicoCount = palavrasHebraicas.length;
+  const gregoCount = allWords.filter(w => w.lingua === 'grego').length;
+  const hebraicoCount = allWords.filter(w => w.lingua === 'hebraico').length;
+
+  if (loading) {
+    return (
+      <div className="min-h-screen">
+        <Header />
+        <main className="pt-24 pb-16 px-6">
+          <div className="max-w-6xl mx-auto text-center py-20">
+            <div className="animate-pulse text-muted-foreground">Carregando léxico...</div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">

@@ -17,7 +17,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { estudosPorLivro } from '@/data/estudosPorLivro';
 import { obterEstudos, type EstudoVersiculo } from '@/data/estudosTeologicos';
 import { listarTodosTeologos, type Teologo } from '@/data/teologos';
-import { obterTodosComentarios, type Comentario } from '@/data/comentarios';
+import { type Comentario } from '@/data/comentarios';
 import { getStats } from '@/lib/estatisticas';
 
 const PERIODOS_LABELS: Record<string, string> = {
@@ -688,10 +688,13 @@ export default function EstudosPage() {
 function ComentariosSection() {
   const [comentarios, setComentarios] = useState<Comentario[]>([]);
   const [query, setQuery] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const todos = obterTodosComentarios();
-    setComentarios(todos);
+    import('@/data/comentarios').then(mod => {
+      setComentarios(mod.obterTodosComentarios());
+      setLoading(false);
+    });
   }, []);
 
   const filtrados = useMemo(() => {
@@ -732,7 +735,9 @@ function ComentariosSection() {
       </div>
 
       <div className="space-y-3">
-        {filtrados.map((c, i) => {
+        {loading ? (
+          <div className="text-center py-8 text-muted-foreground text-sm">Carregando comentários...</div>
+        ) : filtrados.map((c, i) => {
           const livroInfo = livroPorAbreviacao.get(c.livro);
           return (
             <ScrollReveal key={`${c.livro}:${c.capitulo}:${c.versiculo}:${c.autor}:${i}`} delay={Math.min(i * 0.02, 0.3)}>

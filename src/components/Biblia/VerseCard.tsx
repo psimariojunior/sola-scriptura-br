@@ -1,13 +1,13 @@
 'use client';
 
-import { memo, Fragment, lazy, Suspense, useState, useRef, useEffect } from 'react';
+import { memo, Fragment, lazy, Suspense, useState, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
 import type { useVerseAudio } from '@/hooks/useVerseAudio';
 import type { useFlashcards } from '@/hooks/useFlashcards';
-import { getCrossReferences } from '@/data/crossReferences';
+import { getCrossReferencesLazy } from '@/data/lazy/crossReferences';
 import { getCrossReferencesByVerse, type CrossReference } from '@/data/biblia/crossReferences';
 import {
   getTiposRecursoDisponiveis,
@@ -214,8 +214,15 @@ export const VerseCard = memo(function VerseCard({
 }: VerseCardProps) {
   const ref = `${livroNome} ${capitulo}:${numero}`;
 
-  // ── Referências cruzadas com tipo e descrição (Melhoria 1) ──
-  const crossRefsSimples = getCrossReferences(livroAbreviacao, capitulo, numero);
+  // ── Referências cruzadas lazy-loaded (29k entries) ──
+  const [crossRefsSimples, setCrossRefsSimples] = useState<string[]>([]);
+  useEffect(() => {
+    let cancelled = false;
+    import('@/data/crossReferences').then(mod => {
+      if (!cancelled) setCrossRefsSimples(mod.crossReferences[`${livroAbreviacao}:${capitulo}:${numero}`] || []);
+    });
+    return () => { cancelled = true; };
+  }, [livroAbreviacao, capitulo, numero]);
   const crossRefsDetalhadas = getCrossReferencesByVerse(livroAbreviacao, capitulo, numero);
 
   // ── Recursos detalhados do versículo (Melhorias 2, 3, 4) ──

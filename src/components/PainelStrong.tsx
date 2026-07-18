@@ -1,22 +1,31 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Search, X, BookText } from 'lucide-react';
-import { palavrasGregas } from '@/data/lexicon/grego';
-import { palavrasHebraicas } from '@/data/lexicon/hebraico';
 import type { PalavraGrega } from '@/data/lexicon/grego';
 import type { PalavraHebraica } from '@/data/lexicon/hebraico';
 
 type Palavra = (PalavraGrega | PalavraHebraica) & { idioma: 'grego' | 'hebraico' };
 
-const todas: Palavra[] = [
-  ...palavrasGregas.map((p) => ({ ...p, idioma: 'grego' as const })),
-  ...palavrasHebraicas.map((p) => ({ ...p, idioma: 'hebraico' as const })),
-];
-
 export default function PainelStrong({ onClose }: { onClose?: () => void }) {
   const [query, setQuery] = useState('');
   const [filtroIdioma, setFiltroIdioma] = useState<'todas' | 'grego' | 'hebraico'>('todas');
+  const [todas, setTodas] = useState<Palavra[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([
+      import('@/data/lexicon/grego'),
+      import('@/data/lexicon/hebraico'),
+    ]).then(([gregoMod, hebraicoMod]) => {
+      const words: Palavra[] = [
+        ...gregoMod.palavrasGregas.map((p) => ({ ...p, idioma: 'grego' as const })),
+        ...hebraicoMod.palavrasHebraicas.map((p) => ({ ...p, idioma: 'hebraico' as const })),
+      ];
+      setTodas(words);
+      setLoading(false);
+    });
+  }, []);
 
   const resultados = useMemo(() => {
     let lista = todas;
@@ -30,7 +39,7 @@ export default function PainelStrong({ onClose }: { onClose?: () => void }) {
         p.transliteracao.toLowerCase().includes(q) ||
         p.definicao.toLowerCase().includes(q)
     );
-  }, [query, filtroIdioma]);
+  }, [query, filtroIdioma, todas]);
 
   return (
     <div className="flex flex-col h-full">

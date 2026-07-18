@@ -148,20 +148,56 @@ Plataforma de estudo biblico academico completa, melhor que o Logos. Site + App 
 - pgvector para busca semantica
 
 ## Arquivos Relevantes
-- `src/app/layout.tsx` — Layout raiz
+- `src/app/layout.tsx` — Layout raiz (force-dynamic por app ser client-heavy)
 - `src/app/page.tsx` — Pagina inicial
-- `src/app/globals.css` — Estilos globais (740 linhas, 4 temas)
+- `src/app/globals.css` — Estilos globais (2.250+ linhas, 4 temas, safe-area, touch-target)
 - `src/app/biblia/` — Leitura biblica
 - `src/app/pesquisa/` — Pesquisa avancada
 - `src/app/teologia/` — Teologia sistematica
-- `src/app/ia/` — Assistente IA
-- `src/components/` — 34 componentes
+- `src/app/ia/` — Assistente IA (rotas API em src/app/api/ia/*)
+- `src/app/opengraph-image.tsx` — OG image dinamica (ImageResponse)
+- `src/components/` — 110+ componentes
 - `src/data/` — Dados biblicos
+- `src/data/comentarios.ts` — 4.911 comentarios consolidados em PT-BR
+- `src/data/crossReferences.ts` — 29k referencias cruzadas (TSK)
+- `src/data/lexicon/` — Hebraico (457 unicos, mojibake fixed), Grego, Aramaico
 - `src/hooks/` — Custom hooks
-- `src/lib/` — Utilitarios
+- `src/lib/llm-config.ts` — Config Groq (server-only, chave via env)
+- `src/lib/rate-limit.ts` — Rate limiting em memoria por IP (20/min IA)
+- `src/lib/auth.ts` — Auth Supabase + role admin (validar no server)
 - `src/locales/` — Traducoes (PT/EN)
-- `src/__tests__/` — Testes unitarios
-- `e2e/` — Testes E2E
-- `backend/src/` — Backend NestJS
+- `scripts/normalize-data.mjs` — Fix mojibake + normaliza crossReferences
+- `scripts/merge-all-commentaries.mjs` — Rebuild comentarios.ts consolidado
+- `backend/src/` — Backend NestJS (falta testes .spec.ts)
 - `supabase/` — Config Supabase
-- `vercel.json` — Config de deploy
+- `public/manifest.json` — PWA manifest (theme #d4a843, bg #0A0908)
+- `public/apple-touch-icon.png` — iOS home screen
+
+## Comandos de Manutencao
+- **Build+lint+typecheck:** `npm run build` (faz tudo: compile + lint + gerar paginas)
+- **Typecheck only:** `npx tsc --noEmit`
+- **Lint only:** `npx next lint`
+- **Rebuild comentarios:** `node scripts/merge-all-commentaries.mjs`
+- **Normalizar dados (hebraico+crossRefs):** `node scripts/normalize-data.mjs`
+
+## Gems/importacoes criticas (NUNCA apagar)
+- `comentarios-reais/raw/*.ts` — Fontes originais PT-BR (Matthew Henry, Adam Clarke, Calvino, Gill). Nao importados diretamente; sao mesclados em `comentarios.ts` via `merge-all-commentaries.mjs`.
+- `biblia/strong/index.ts` — Léxico Strong completo (346 KB), fonte para expandir `lexicon/hebraico.ts` (atualmente 457 entradas, alvo 5000).
+- `biblia/pericopes.ts` — 180 KB pericopas com hebraico correto.
+
+## Temas (4) —schau de Cobranca
+- `claro` (light): manha premium dourado/creme
+- `escuro` (dark): padrao, noite dourado escuro
+- `sepia`: leitura classica (prega `dark` + `sepia` no `<html>`)
+- `noturno`: leitura OLED (prega `dark` + `noturno` no `<html>`)
+
+TemaSincronizador (`src/components/ThemeProvider.tsx`) PRECISA adicionar classe
+`dark` para `escuro`, `noturno` E `sepia` (caso contrario, dark:* do Tailwind nao
+ativa e o tema quebra). Script inline em `layout.tsx` tambem segue esta regra.
+
+## Limites e Rate Limits (PRODUCAO)
+- **Groq API**: 100k tokens/dia (on_demand tier). IA ja tem fallback local se
+  creditos acabarem, mas traducao em massa (千s de comentarios) excede o limite
+  em pocos minutos. Nao planejar traducao automatizada via Groq sem dev tier.
+- **Rotas IA**: 20/min para chat/stream, 10/min para estudo (rate-limit.ts).
+- **API midvash.com**: 8s timeout para NAA/NTLH, com fallback para locais.

@@ -1710,6 +1710,108 @@ textarea:focus-visible,
   border-width: 0;
 }
 
+/* ═══════════════════════════════════════════════════════════
+   BIBLE READER — Enhanced Reading Experience
+   ═══════════════════════════════════════════════════════════ */
+
+/* Verse number — elegant superscript */
+.verse-number {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  font-size: 0.65em;
+  font-weight: 600;
+  color: hsl(var(--primary) / 0.5);
+  vertical-align: super;
+  margin-right: 0.3em;
+  transition: color 0.3s ease;
+  font-feature-settings: 'tnum' 1;
+}
+
+.verse-hover:hover .verse-number {
+  color: hsl(var(--primary));
+}
+
+/* Chapter navigation — smooth slide */
+.chapter-slide-enter {
+  animation: chapterSlideIn 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes chapterSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Side panel — glassmorphism */
+.side-panel-glass {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--card) / 0.95) 0%,
+    hsl(var(--card) / 0.88) 100%
+  );
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  border-left: 1px solid hsl(var(--border) / 0.5);
+}
+
+.dark .side-panel-glass {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--card) / 0.96) 0%,
+    hsl(var(--card) / 0.9) 100%
+  );
+  border-left: 1px solid hsl(var(--primary) / 0.08);
+}
+
+/* Translation badge — elegant pill */
+.trad-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  transition: all 0.25s ease;
+}
+
+.trad-badge:hover {
+  transform: scale(1.05);
+}
+
+/* Progress bar — smooth gradient */
+.reading-progress {
+  height: 2px;
+  background: linear-gradient(90deg, hsl(var(--primary) / 0.3), hsl(var(--primary)), hsl(var(--primary) / 0.3));
+  border-radius: 1px;
+  transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Mobile action bar — glassmorphism */
+.mobile-action-bar {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--background) / 0.85) 0%,
+    hsl(var(--background) / 0.95) 100%
+  );
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-top: 1px solid hsl(var(--border) / 0.4);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.dark .mobile-action-bar {
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.3);
+}
+
 .sr-only-focusable:focus {
   position: static;
   width: auto;
@@ -1719,5 +1821,431 @@ textarea:focus-visible,
   overflow: visible;
   clip: auto;
   white-space: normal;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PHASE 3 — PREMIUM VISUAL POLISH
+   ═══════════════════════════════════════════════════════════ */
+
+/* Enhanced glassmorphism variants */
+.glass-premium {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--card) / 0.85) 0%,
+    hsl(var(--card) / 0.65) 100%
+  );
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid hsl(var(--border) / 0.4);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.dark .glass-premium {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--card) / 0.9) 0%,
+    hsl(var(--card) / 0.75) 100%
+  );
+  border: 1px solid hsl(var(--primary) / 0.1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.glass-premium:hover {
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+  border-color: hsl(var(--primary) / 0.2);
+}
+
+.dark .glass-premium:hover {
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.5),
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Gradient text — animated shimmer */
+.gradient-text-animated {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary)) 0%,
+    hsl(38 65% 65%) 25%,
+    hsl(var(--primary)) 50%,
+    hsl(38 65% 65%) 75%,
+    hsl(var(--primary)) 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientTextShimmer 6s ease-in-out infinite;
+}
+
+@keyframes gradientTextShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Gradient text — static (no animation, for performance) */
+.gradient-text-static {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(38 50% 62%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced selection */
+::selection {
+  background: hsl(var(--primary) / 0.3);
+  color: hsl(var(--foreground));
+  -webkit-text-fill-color: initial;
+}
+
+/* Smooth theme transition on ALL elements */
+* {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-duration: 200ms;
+}
+
+/* Override for elements that already have explicit transitions */
+.sola-card, .glass-card, .glass-premium, .verse-hover, .card-hover {
+  transition-property: all;
+  transition-duration: 400ms;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Exclude animations from theme transition (keep existing rule, just refine) */
+.animate-fade-in, .animate-slide-up, .animate-slide-down, .animate-scale-in,
+.animate-shimmer, .animate-float, .animate-glow, .animate-text-glow,
+.animate-border-glow, .animate-spin-slow, .animate-spin,
+.gradient-text-animated,
+[style*="animation"] {
+  transition-property: none !important;
+}
+
+/* Custom scrollbar — thinner, themed, elegant */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.2);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.4);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground) / 0.2) transparent;
+}
+
+/* Enhanced focus states — ring + glow */
+*:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px hsl(var(--primary) / 0.15);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px hsl(var(--primary) / 0.2);
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Hero section gradient overlay — divine light rays */
+.hero-divine-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, hsl(var(--primary) / 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 30%, hsl(38 60% 50% / 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 80% 20%, hsl(var(--accent-warm) / 0.04) 0%, transparent 50%);
+  mask-image: linear-gradient(180deg, #000 0%, transparent 90%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 90%);
+}
+
+/* Stats card — premium hover glow */
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.08) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px hsl(var(--primary) / 0.2);
+  border-color: hsl(var(--primary) / 0.3);
+}
+
+/* Feature card — enhanced depth */
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+/* CTA gradient button — premium shine */
+.cta-gradient {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5cd6b 0%, #d4a843 50%, #b88a30 100%);
+  color: #1c1300;
+  box-shadow: 0 0 24px -4px rgba(212, 168, 67, 0.4);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cta-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.35) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.7s ease;
+}
+
+.cta-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -4px rgba(212, 168, 67, 0.55);
+}
+
+.cta-gradient:hover::before {
+  transform: translateX(100%);
+}
+
+/* Divider with gradient */
+.divider-gradient {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, hsl(var(--border)) 20%, hsl(var(--primary) / 0.2) 50%, hsl(var(--border)) 80%, transparent 100%);
+}
+
+/* Testimonial card */
+.testimonial-card {
+  position: relative;
+  background: hsl(var(--card) / 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--border) / 0.4);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.testimonial-card::before {
+  content: '\201C';
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 4rem;
+  line-height: 1;
+  color: hsl(var(--primary) / 0.15);
+  pointer-events: none;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px -12px hsl(var(--primary) / 0.15);
+  border-color: hsl(var(--primary) / 0.25);
+}
+
+/* Animated border glow for featured items */
+.border-glow {
+  position: relative;
+}
+
+.border-glow::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.3), transparent 40%, transparent 60%, hsl(var(--primary) / 0.3));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.border-glow:hover::after {
+  opacity: 1;
+}
+
+/* Enhanced typography for biblical text */
+.font-biblical {
+  font-family: 'Spectral', 'Cormorant Garamond', Georgia, serif;
+  font-feature-settings: 'liga' 1, 'kern' 1, 'onum' 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Monospace for references */
+.font-reference {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  font-feature-settings: 'tnum' 1;
+  letter-spacing: -0.02em;
+}
+
+/* Smooth page transitions */
+.page-transition-enter {
+  animation: pageEnter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Floating label effect */
+.floating-label {
+  position: relative;
+}
+
+.floating-label::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: hsl(var(--primary));
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+
+.floating-label:hover::after {
+  width: 80%;
+}
+
+/* Pulse ring animation for CTAs */
+.pulse-ring {
+  position: relative;
+}
+
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid hsl(var(--primary) / 0.3);
+  animation: pulseRingExpand 2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseRingExpand {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+}
+
+/* Enhanced card hover — shadow depth */
+.card-depth {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-depth:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 40px -12px rgba(0, 0, 0, 0.12),
+    0 8px 20px -8px rgba(0, 0, 0, 0.08);
+}
+
+.dark .card-depth:hover {
+  box-shadow:
+    0 20px 40px -12px rgba(0, 0, 0, 0.5),
+    0 8px 20px -8px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile hamburger — enhanced touch target */
+@media (max-width: 639px) {
+  .mobile-hamburger {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-hamburger:active {
+    transform: scale(0.92);
+    background: hsl(var(--primary) / 0.1);
+  }
 }
 

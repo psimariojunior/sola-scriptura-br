@@ -204,7 +204,7 @@ export function Header() {
         transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
         className={`fixed top-0 w-full z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-background/95 backdrop-blur-xl border-b border-border/40 shadow-[0_1px_3px_rgba(0,0,0,0.05)]'
+            ? 'bg-background/92 backdrop-blur-2xl border-b border-border/40 shadow-[0_1px_8px_rgba(0,0,0,0.06)]'
             : 'bg-background/60 backdrop-blur-xl border-b border-transparent'
         }`}
       >
@@ -234,7 +234,7 @@ export function Header() {
             className="flex items-center gap-2 group shrink-0 wordmark-glow"
             aria-label="Sola Scriptura — Página inicial"
           >
-            <span className="relative inline-flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 group-hover:bg-primary/15 transition-all duration-300 group-hover:scale-110">
+            <span className="relative inline-flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 group-hover:bg-primary/15 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
               <BookOpen className="w-4 h-4 text-primary" strokeWidth={1.5} />
             </span>
             <span className="wordmark text-lg sm:text-xl hidden sm:inline-flex items-baseline">
@@ -606,13 +606,19 @@ export function Header() {
               </Tooltip>
             )}
             <button
-              className="p-2.5 min-h-[40px] min-w-[40px] hover:bg-muted/50 rounded-lg transition-all duration-300"
+              className="mobile-hamburger p-2.5 min-h-[40px] min-w-[40px] hover:bg-muted/50 rounded-lg transition-all duration-300"
               onClick={() => setOpen(!open)}
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
             >
-              {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              <motion.span
+                animate={open ? { rotate: 90 } : { rotate: 0 }}
+                transition={{ duration: 0.2 }}
+                className="block"
+              >
+                {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </motion.span>
             </button>
           </div>
         </div>
@@ -622,7 +628,7 @@ export function Header() {
           {open && (
             <>
               <motion.div
-                className="fixed inset-0 bg-black/30 backdrop-blur-sm lg:hidden z-40"
+                className="fixed inset-0 bg-black/40 backdrop-blur-md lg:hidden z-40"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -631,11 +637,11 @@ export function Header() {
               <motion.div
                 id="mobile-menu"
                 role="navigation"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="lg:hidden border-t border-border/40 bg-background/98 backdrop-blur-xl overflow-hidden relative z-50"
+                className="lg:hidden border-t border-border/40 bg-background/98 backdrop-blur-2xl overflow-hidden relative z-50 shadow-lg"
               >
                 <nav
                   className="flex flex-col px-5 py-4 gap-1 max-h-[75vh] overflow-y-auto"
@@ -728,10 +734,10 @@ export function Header() {
                         <button
                           key={t.nome}
                           onClick={() => setTema(t.nome as TemaNome)}
-                          className={`flex-1 flex flex-col items-center gap-1 py-2.5 px-1 rounded-lg text-[11px] font-medium transition-all min-h-[44px] ${
+                          className={`flex-1 flex flex-col items-center gap-1 py-2.5 px-1 rounded-xl text-[11px] font-medium transition-all duration-300 min-h-[44px] ${
                             tema === t.nome
-                              ? 'bg-primary/15 text-primary ring-1 ring-primary/30'
-                              : 'text-muted-foreground hover:bg-muted/50'
+                              ? 'bg-primary/15 text-primary ring-1 ring-primary/30 shadow-sm'
+                              : 'text-muted-foreground hover:bg-muted/50 hover:ring-1 hover:ring-border/50'
                           }`}
                           aria-pressed={tema === t.nome}
                         >

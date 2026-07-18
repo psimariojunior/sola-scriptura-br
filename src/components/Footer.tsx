@@ -51,7 +51,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-card/50 relative overflow-hidden" role="contentinfo">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
-        backgroundImage: 'radial-gradient(circle at 20% 80%, hsl(var(--primary)) 0%, transparent 40%)',
+        backgroundImage: 'radial-gradient(circle at 20% 80%, hsl(var(--primary)) 0%, transparent 40%), radial-gradient(circle at 80% 20%, hsl(var(--primary)) 0%, transparent 40%)',
       }} />
       
       <div className="max-w-7xl mx-auto px-6 py-16 relative z-10">
@@ -158,7 +158,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border">
+        <div className="mt-12 pt-8 divider-gradient">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground text-center md:text-left">
               Sola Scriptura — Estudo Bíblico Acadêmico · Feito com <Heart className="w-3 h-3 inline text-red-500 fill-current" /> para o povo de Deus · 100% gratuito

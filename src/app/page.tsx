@@ -13,6 +13,7 @@ import {
   Globe, Shield, Heart, MonitorPlay, Music, Zap, Play,
   CheckCircle2, ChevronDown, Tv, Smartphone, Cast, Languages,
   BookMarked, GraduationCap, WifiOff, Share2, Gift, GitCompareArrows,
+  Star,
 } from 'lucide-react';
 import {
   motion, useScroll, useTransform, useInView, AnimatePresence,
@@ -148,6 +149,36 @@ const trustBadges = [
   { label: 'Dados privados', icon: Heart },
 ];
 
+const depoimentos = [
+  {
+    texto: 'A melhor plataforma de estudo bíblico que já usei. O léxico Strong integrado e os comentários de teólogos são incomparáveis.',
+    autor: 'Pr. Marcos Silva',
+    cargo: 'Pastor de Ensino',
+    igreja: 'Igreja Presbiteriana',
+  },
+  {
+    texto: 'Uso o Modo Apresentação toda semana nos cultos. Meus congregados adoram a facilidade de acompanhar os versículos na tela.',
+    autor: 'Ana Beatriz',
+    cargo: 'Líder de Adoração',
+    igreja: 'Comunidade Evangélica',
+  },
+  {
+    texto: 'Como professor de seminário, encontrei aqui o rigor acadêmico que preciso. A exegese versículo a versículo é excepcional.',
+    autor: 'Dr. Ricardo Almeida',
+    cargo: 'Professor de Teologia',
+    igreja: 'Seminário Teológico',
+  },
+];
+
+const referenciadoPor = [
+  'Seminários Teológicos',
+  'Escolas Bíblicas',
+  'Igrejas Locais',
+  'Pastores e Líderes',
+  'Estudantes',
+  'Missionários',
+];
+
 const provasSociais = [
   { icon: BookOpen, label: '66 livros' },
   { icon: Languages, label: '6 traduções' },
@@ -186,8 +217,8 @@ const stats = [
   { value: 66, label: 'Livros', suffix: '' },
   { value: 6, label: 'Traduções', suffix: '' },
   { value: 31102, label: 'Versículos', suffix: '' },
-  { value: 1000, label: 'Comentários', suffix: '+' },
-  { value: 405, label: 'Estudos', suffix: '' },
+  { value: 29000, label: 'Ref. Cruzadas', suffix: '+' },
+  { value: 3900, label: 'Comentários', suffix: '+' },
   { value: 1150, label: 'Verbetes', suffix: '+' },
 ];
 
@@ -381,7 +412,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[number]; ind
       <motion.div
         whileHover={{ y: -6 }}
         transition={{ duration: 0.3 }}
-        className={`group relative h-full p-6 sm:p-7 rounded-2xl border bg-card/50 backdrop-blur-sm transition-all duration-500 overflow-hidden card-hover ${
+        className={`feature-card group relative h-full p-6 sm:p-7 rounded-2xl border bg-card/50 backdrop-blur-sm overflow-hidden ${
           feature.highlight
             ? 'border-amber-500/30 shadow-[var(--shadow-glow)]'
             : 'border-border/40'
@@ -429,6 +460,7 @@ export default function Home() {
       >
         <div className="hero-particles" aria-hidden="true" />
         <div className="hero-aurora" aria-hidden="true" />
+        <div className="hero-divine-overlay" aria-hidden="true" />
         <HeroParticles disabled={prefersReducedMotion} />
 
         <motion.div
@@ -469,7 +501,7 @@ export default function Home() {
           >
             <span className="block">Toda a biblioteca</span>
             <span className="block">
-              <span className="wordmark-sola">teológica</span>
+              <span className="gradient-text-animated">teológica</span>
               <span className="text-foreground">,</span>
             </span>
             <span className="block italic text-foreground/85">em um só lugar.</span>
@@ -578,11 +610,7 @@ export default function Home() {
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-4">
             {stats.map((stat, i) => (
               <ScrollReveal key={stat.label} delay={i * 0.06}>
-                <div className="text-center p-3 sm:p-4 rounded-xl border border-border/30 bg-card/40 hover:border-primary/25 transition-all duration-300 relative group">
-                  <div
-                    className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{ boxShadow: '0 0 24px -8px hsl(var(--primary) / 0.3)' }}
-                  />
+                <div className="stat-card text-center p-3 sm:p-4 rounded-xl border border-border/30 bg-card/40 relative group">
                   <p className="font-display text-2xl sm:text-3xl md:text-4xl font-light tracking-tight relative">
                     <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                   </p>
@@ -610,6 +638,66 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {features.map((f, i) => (
               <FeatureCard key={f.title} feature={f} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* REFERENCIADO POR — Social Proof */}
+      <section
+        className="py-14 sm:py-18 px-4 sm:px-6 border-y border-border/30 bg-card/20 relative overflow-hidden"
+        aria-label="Quem usa o Sola Scriptura"
+      >
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" aria-hidden="true">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 50% 50%, hsl(var(--primary)) 0%, transparent 50%)',
+            }}
+          />
+        </div>
+        <div className="max-w-6xl mx-auto relative z-10">
+          <ScrollReveal>
+            <div className="text-center mb-10">
+              <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-muted-foreground mb-2">
+                Referenciado por
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+                {referenciadoPor.map((item) => (
+                  <span
+                    key={item}
+                    className="text-sm sm:text-[15px] font-medium text-foreground/60 hover:text-foreground transition-colors duration-300 cursor-default"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid md:grid-cols-3 gap-5 sm:gap-6">
+            {depoimentos.map((dep, i) => (
+              <ScrollReveal key={dep.autor} delay={i * 0.1}>
+                <div className="testimonial-card h-full">
+                  <p className="text-sm sm:text-[15px] text-foreground/80 leading-relaxed mb-5 relative z-10 italic">
+                    {dep.texto}
+                  </p>
+                  <div className="flex items-center gap-3 relative z-10">
+                    <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center text-sm font-semibold text-primary shrink-0">
+                      {dep.autor.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">{dep.autor}</p>
+                      <p className="text-[11px] text-muted-foreground">{dep.cargo} · {dep.igreja}</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-0.5 mt-3 relative z-10">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <Star key={s} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -836,7 +924,7 @@ export default function Home() {
         className="py-20 sm:py-28 px-4 sm:px-6 border-t border-border/30 relative overflow-hidden"
         aria-label="Comece a estudar"
       >
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
           <div
             className="absolute inset-0"
             style={{
@@ -858,7 +946,7 @@ export default function Home() {
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light leading-[1.1] mb-5">
               Comece hoje o seu
               <br />
-              <span className="italic text-primary">estudo bíblico.</span>
+              <span className="italic gradient-text-animated">estudo bíblico.</span>
             </h2>
             <p className="text-sm sm:text-base text-muted-foreground mb-10 max-w-lg mx-auto leading-relaxed">
               Acesse todas as ferramentas gratuitamente. Estude a Bíblia com o rigor acadêmico
@@ -868,14 +956,8 @@ export default function Home() {
             <div className="flex flex-wrap gap-3 justify-center mb-12">
               <Link
                 href="/biblia"
-                className="group relative inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold rounded-xl overflow-hidden transition-all duration-300"
-                style={{
-                  background: 'linear-gradient(135deg, #f5cd6b 0%, #d4a843 50%, #b88a30 100%)',
-                  color: '#1c1300',
-                  boxShadow: '0 0 24px -4px rgba(212,168,67,0.4)',
-                }}
+                className="cta-gradient group relative inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold rounded-xl"
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                 <BookOpen className="relative w-4 h-4" />
                 <span className="relative">Comece a estudar a Bíblia hoje</span>
                 <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

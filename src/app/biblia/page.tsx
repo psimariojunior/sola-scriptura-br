@@ -47,6 +47,7 @@ const ApresentacaoModal = dynamic(() => import('@/components/Apresentacao/Aprese
 const PainelQualidadeAudio = dynamic(() => import('@/components/PainelQualidadeAudio').then(m => ({ default: m.PainelQualidadeAudio })), { ssr: false });
 const ShareVerseModal = dynamic(() => import('@/components/Biblia/ShareVerseModal').then(m => ({ default: m.ShareVerseModal })), { ssr: false });
 const SettingsPanel = dynamic(() => import('@/components/Biblia/SettingsPanel').then(m => ({ default: m.SettingsPanel })), { ssr: false });
+const PainelEstudosCapitulo = lazy(() => import('@/components/Biblia/PainelEstudosCapitulo'));
 
 const TRAD_IDS = TRAD_IDS_IMPORT;
 const labelMap = labelMapImport;
@@ -721,58 +722,22 @@ const toggleTrad = (id: string) => {
                                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                                 className="overflow-hidden"
                               >
-                                <div className="mt-4 border-l-2 border-[var(--primary)]/30 pl-4 py-2 space-y-4">
-                                  <p className="text-sm text-[var(--muted-fg)] leading-relaxed font-serif-body">
-                                    {estudoCapitulo.resumo}
-                                  </p>
-
-                                  {estudoCapitulo.temas.length > 0 && (
-                                    <div className="flex flex-wrap gap-1.5">
-                                      {estudoCapitulo.temas.map((t, i) => (
-                                        <span key={i} className="px-2 py-0.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] text-[10px] font-medium">
-                                          {t}
-                                        </span>
-                                      ))}
+                                <Suspense fallback={
+                                  <div className="mt-4 border-l-2 border-[var(--primary)]/30 pl-4 py-2 flex items-center gap-2">
+                                    <div className="flex gap-1">
+                                      <span className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full animate-bounce" />
+                                      <span className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full animate-bounce [animation-delay:0.15s]" />
+                                      <span className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full animate-bounce [animation-delay:0.3s]" />
                                     </div>
-                                  )}
-
-                                  {estudoCapitulo.VersiculosChave.length > 0 && (
-                                    <div>
-                                      <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-2 flex items-center gap-1">
-                                        <Quote className="w-3 h-3" /> Versículos-Chave
-                                      </p>
-                                      <div className="space-y-2">
-                                        {estudoCapitulo.VersiculosChave.map((vc, i) => (
-                                          <div key={i} className="bg-[var(--bg)]/60 rounded-lg p-3 border-l-2 border-[var(--primary)]/20">
-                                            <p className="text-xs font-bold text-[var(--primary)] mb-1">{vc.referencia}</p>
-                                            <p className="text-xs text-[var(--fg)] italic leading-relaxed font-serif-body mb-1">&ldquo;{vc.texto}&rdquo;</p>
-                                            <p className="text-xs text-[var(--muted-fg)] leading-relaxed">{vc.explicacao}</p>
-                                          </div>
-                                        ))}
-                                      </div>
-                                    </div>
-                                  )}
-
-                                  <div>
-                                    <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1 flex items-center gap-1">
-                                      <Sparkles className="w-3 h-3" /> Aplicação Prática
-                                    </p>
-                                    <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
-                                      {estudoCapitulo.aplicacaoPratica}
-                                    </p>
+                                    <span className="text-xs text-[var(--muted-fg)]">Carregando estudo…</span>
                                   </div>
-
-                                  {estudoCapitulo.perguntasEstudo.length > 0 && (
-                                    <div>
-                                      <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">Perguntas de Estudo</p>
-                                      <ol className="space-y-1 list-decimal list-inside">
-                                        {estudoCapitulo.perguntasEstudo.map((p, i) => (
-                                          <li key={i} className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">{p}</li>
-                                        ))}
-                                      </ol>
-                                    </div>
-                                  )}
-                                </div>
+                                }>
+                                  <PainelEstudosCapitulo
+                                    livro={livro.abreviacao}
+                                    capitulo={capituloIdx + 1}
+                                    nomeLivro={livro.nome}
+                                  />
+                                </Suspense>
                               </motion.div>
                             )}
                           </AnimatePresence>

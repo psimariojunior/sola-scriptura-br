@@ -83,7 +83,7 @@ export function MobileActionBar({
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 350 }}
-            className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-[var(--surface-raised)] border-t border-[var(--border)] rounded-t-2xl shadow-2xl"
+            className="fixed bottom-0 left-0 right-0 z-50 lg:hidden pb-safe bg-[var(--surface-raised)] border-t border-[var(--border)] rounded-t-2xl shadow-2xl"
             role="dialog"
             aria-label={`Ações para ${ref}`}
           >

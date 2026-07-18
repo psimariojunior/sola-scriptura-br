@@ -402,17 +402,17 @@ const toggleTrad = (id: string) => {
           <div className="flex-1 flex flex-col min-w-0 relative">
             <div className="border-b border-[var(--border)]/40 bg-[var(--surface-raised)]/95 backdrop-blur-sm sticky top-0 z-20">
               <div className="px-3 sm:px-4 py-2.5 flex items-center gap-2 sm:gap-3 flex-wrap">
-                <button onClick={() => setMobileMenu(true)} className="lg:hidden p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]" aria-label="Abrir menu de livros">
+                <button onClick={() => setMobileMenu(true)} className="lg:hidden touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]" aria-label="Abrir menu de livros">
                   <BookOpen className="w-4 h-4" />
                 </button>
-                <button onClick={() => setSidebarOpen(!sidebarOpen)} className="hidden lg:flex p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]" aria-label={sidebarOpen ? 'Fechar barra lateral' : 'Abrir barra lateral'}>
+                <button onClick={() => setSidebarOpen(!sidebarOpen)} className="hidden lg:flex touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]" aria-label={sidebarOpen ? 'Fechar barra lateral' : 'Abrir barra lateral'}>
                   <ListFilter className="w-4 h-4" />
                 </button>
 
                 <div className="flex items-center gap-1">
                   <motion.button onClick={() => changeChapter(Math.max(0, capituloIdx - 1))} disabled={capituloIdx === 0}
                     whileTap={{ scale: 0.92 }}
-                    className="p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)]"
+                    className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)]"
                     aria-label="Capítulo anterior">
                     <ChevronLeft className="w-4 h-4" />
                   </motion.button>
@@ -436,7 +436,7 @@ const toggleTrad = (id: string) => {
                   <motion.button onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
                     disabled={capituloIdx >= livro.totalCapitulos - 1}
                     whileTap={{ scale: 0.92 }}
-                    className="p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)]"
+                    className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)]"
                     aria-label="Próximo capítulo">
                     <ChevronRight className="w-4 h-4" />
                   </motion.button>

@@ -7,6 +7,32 @@ const PUBLIC_PATHS = [
   '/auth/cadastro',
   '/auth/callback',
   '/auth/esqueci-senha',
+  '/biblia',
+  '/teologia',
+  '/historia',
+  '/personagens',
+  '/cronologia',
+  '/idiomas',
+  '/exegese',
+  '/pesquisa',
+  '/ferramentas',
+  '/literatura',
+  '/parabolas',
+  '/milagres',
+  '/harmonia',
+  '/comparar',
+  '/topicos',
+  '/pericopes',
+  '/compartilhar',
+  '/estudos',
+  '/quiz',
+  '/flashcards',
+  '/devocional',
+  '/planos',
+  '/sermoes',
+  '/estatisticas',
+  '/estudo',
+  '/ia',
 ];
 
 const PUBLIC_PREFIXES = [
@@ -21,6 +47,13 @@ const PUBLIC_PREFIXES = [
   '/patterns/',
   '/sounds/',
   '/audio/',
+  '/estudos/',
+  '/ferramentas/',
+];
+
+const PROTECTED_PREFIXES = [
+  '/admin',
+  '/conta',
 ];
 
 export function middleware(request: NextRequest) {
@@ -30,18 +63,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (PUBLIC_PATHS.includes(pathname)) {
-    return NextResponse.next();
-  }
-
-  const token = request.cookies.get('ssb_token')?.value
-    || request.nextUrl.searchParams.get('token')
-    || request.headers.get('x-ssb-token');
-
-  if (!token) {
-    const loginUrl = new URL('/auth/login', request.url);
-    loginUrl.searchParams.set('redirect', pathname);
-    return NextResponse.redirect(loginUrl);
+  if (PROTECTED_PREFIXES.some(prefix => pathname.startsWith(prefix))) {
+    const token = request.cookies.get('ssb_token')?.value;
+    if (!token) {
+      const loginUrl = new URL('/auth/login', request.url);
+      loginUrl.searchParams.set('redirect', pathname);
+      return NextResponse.redirect(loginUrl);
+    }
   }
 
   return NextResponse.next();

@@ -8,6 +8,9 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
+  experimental: {
+    optimizePackageImports: ['framer-motion', 'lucide-react', '@heroicons/react/24/outline'],
+  },
   async headers() {
     return [
       {

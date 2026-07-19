@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { PERSONAGENS_AVANCADOS, type PersonagemAvancado } from '@/data/biblia/personagensAvancados';
+import type { PersonagemAvancado } from '@/data/biblia/personagensAvancados';
 import ScrollReveal from '@/components/ScrollReveal';
 import dynamic from 'next/dynamic';
 const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
@@ -12,10 +12,6 @@ const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo')
 });
 import { Users, Search, X, BookOpen, MapPin, Shield, GitBranch, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-
-const periodosUnicos = [...new Set(
-  PERSONAGENS_AVANCADOS.flatMap(p => p.periodos ?? [])
-)].sort();
 
 const periodoLabels: Record<string, string> = {
   'era-primevos': 'Era dos Primevos',
@@ -40,8 +36,17 @@ export default function PersonagensPage() {
   const [filtroPeriodo, setFiltroPeriodo] = useState<string>('todos');
   const [expandido, setExpandido] = useState<string | null>(null);
   const [versiculoPainel, setVersiculoPainel] = useState<{ livro: string; cap: number; ver: number } | null>(null);
+  const [personagens, setPersonagens] = useState<PersonagemAvancado[]>([]);
 
-  const filtrados = useMemo(() => PERSONAGENS_AVANCADOS.filter((p) => {
+  useEffect(() => {
+    import('@/data/biblia/personagensAvancados').then(mod => setPersonagens(mod.PERSONAGENS_AVANCADOS));
+  }, []);
+
+  const periodosUnicos = useMemo(() => [...new Set(
+    personagens.flatMap(p => p.periodos ?? [])
+  )].sort(), [personagens]);
+
+  const filtrados = useMemo(() => personagens.filter((p) => {
     const matchBusca = busca === '' ||
       p.nome.toLowerCase().includes(busca.toLowerCase()) ||
       (p.nomeHebraico ?? '').toLowerCase().includes(busca.toLowerCase()) ||
@@ -51,13 +56,13 @@ export default function PersonagensPage() {
     const matchTestamento = filtroTestamento === 'todos' || p.testamento === filtroTestamento;
     const matchPeriodo = filtroPeriodo === 'todos' || (p.periodos ?? []).includes(filtroPeriodo);
     return matchBusca && matchTestamento && matchPeriodo;
-  }), [busca, filtroTestamento, filtroPeriodo]);
+  }), [busca, filtroTestamento, filtroPeriodo, personagens]);
 
   const stats = useMemo(() => ({
-    total: PERSONAGENS_AVANCADOS.length,
-    at: PERSONAGENS_AVANCADOS.filter(p => p.testamento === 'AT').length,
-    nt: PERSONAGENS_AVANCADOS.filter(p => p.testamento === 'NT').length,
-  }), []);
+    total: personagens.length,
+    at: personagens.filter(p => p.testamento === 'AT').length,
+    nt: personagens.filter(p => p.testamento === 'NT').length,
+  }), [personagens]);
 
   function parseRefClick(ref: string): { livro: string; cap: number; ver: number } | null {
     const cleaned = ref.toLowerCase().replace(/[()]/g, '').trim();

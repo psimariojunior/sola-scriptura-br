@@ -14,10 +14,9 @@ import { livroPorAbreviacao, TODOS_LIVROS } from '@/data/biblia';
 import ScrollReveal from '@/components/ScrollReveal';
 import { exportToJson, exportToTxt, exportToCsv } from '@/lib/exportarEstudos';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { estudosPorLivro } from '@/data/estudosPorLivro';
-import { obterEstudos, type EstudoVersiculo } from '@/data/estudosTeologicos';
-import { listarTodosTeologos, type Teologo } from '@/data/teologos';
 import { type Comentario } from '@/data/comentarios';
+import type { EstudoVersiculo } from '@/data/estudosTeologicos';
+import type { Teologo } from '@/data/teologos';
 import { getStats } from '@/lib/estatisticas';
 
 const PERIODOS_LABELS: Record<string, string> = {
@@ -64,6 +63,12 @@ export default function EstudosPage() {
   const [retomar, setRetomar] = useState<{ livro: string; titulo: string; capitulo: number } | null>(null);
   const [livrosLidos, setLivrosLidos] = useState<Record<string, number>>({});
 
+  // Lazy-loaded data
+  const [estudosPorLivro, setEstudosPorLivro] = useState<Record<string, { contexto: string; temasPrincipais: string[]; versiculosChave: Array<{ referencia: string; texto: string; explicacao: string }>; perguntasEstudo: string[] }>>({});
+  const [obterEstudosFn, setObterEstudosFn] = useState<((livro: string, cap: number, ver: number) => EstudoVersiculo[]) | null>(null);
+  const [listarTodosTeologosFn, setListarTodosTeologosFn] = useState<(() => Teologo[]) | null>(null);
+  const [dadosCarregados, setDadosCarregados] = useState(false);
+
   const carregar = () => setMarcas(listarMarcas());
   useEffect(() => {
     carregar();
@@ -78,6 +83,17 @@ export default function EstudosPage() {
         if (info) setRetomar({ livro: ultimo[0], titulo: info.nome, capitulo: 1 });
       }
     } catch {}
+
+    Promise.all([
+      import('@/data/estudosPorLivro'),
+      import('@/data/estudosTeologicos'),
+      import('@/data/teologos'),
+    ]).then(([estudosMod, teologicosMod, teologosMod]) => {
+      setEstudosPorLivro(estudosMod.estudosPorLivro);
+      setObterEstudosFn(() => teologicosMod.obterEstudos);
+      setListarTodosTeologosFn(() => teologosMod.listarTodosTeologos);
+      setDadosCarregados(true);
+    });
   }, []);
 
   const filtradas = useMemo(() => {
@@ -107,11 +123,12 @@ export default function EstudosPage() {
   }), [marcas]);
 
   const livrosComEstudo = useMemo(() => {
+    if (!dadosCarregados) return [];
     return Object.keys(estudosPorLivro).map(slug => {
       const info = livroPorAbreviacao.get(slug);
       return { slug, titulo: info?.nome || slug, estudo: estudosPorLivro[slug], testamento: info?.testamento || 'AT' };
     }).sort((a, b) => a.titulo.localeCompare(b.titulo, 'pt-BR'));
-  }, []);
+  }, [estudosPorLivro, dadosCarregados]);
 
   const livrosEstudoFiltrados = useMemo(() => {
     if (!query.trim()) return livrosComEstudo;
@@ -135,12 +152,14 @@ export default function EstudosPage() {
   }, [marcas]);
 
   const teologos = useMemo(() => {
-    const todos = listarTodosTeologos();
+    if (!listarTodosTeologosFn) return [];
+    const todos = listarTodosTeologosFn();
     if (periodoFilter === 'todos') return todos;
     return todos.filter(t => t.periodo === periodoFilter);
-  }, [periodoFilter]);
+  }, [periodoFilter, listarTodosTeologosFn]);
 
   const estudosTeologicos = useMemo(() => {
+    if (!obterEstudosFn) return [];
     const estudos: EstudoVersiculo[] = [];
     const seen = new Set<string>();
     for (const livro of TODOS_LIVROS) {
@@ -148,7 +167,7 @@ export default function EstudosPage() {
         for (let v = 1; v <= 50; v++) {
           const key = `${livro.abreviacao}:${cap}:${v}`;
           if (seen.has(key)) continue;
-          const e = obterEstudos(livro.abreviacao, cap, v);
+          const e = obterEstudosFn(livro.abreviacao, cap, v);
           if (e.length > 0) {
             seen.add(key);
             estudos.push(...e);
@@ -157,7 +176,7 @@ export default function EstudosPage() {
       }
     }
     return estudos;
-  }, []);
+  }, [obterEstudosFn]);
 
   return (
     <div className="min-h-screen">

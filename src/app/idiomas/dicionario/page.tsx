@@ -2,7 +2,6 @@
 
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { dicionarioBiblico } from '@/data/dicionarioBiblico';
 import type { VerbeteBiblico } from '@/data/dicionarioBiblico';
 import { BookText, Search, Heart, ChevronDown, ChevronUp, Filter, X, ArrowUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -33,6 +32,15 @@ export default function DicionarioPage() {
   const [activeLetter, setActiveLetter] = useState<string | null>(null);
   const letterRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const [dicionarioBiblico, setDicionarioBiblico] = useState<VerbeteBiblico[]>([]);
+  const [dicLoading, setDicLoading] = useState(true);
+
+  useEffect(() => {
+    import('@/data/dicionarioBiblico').then(mod => {
+      setDicionarioBiblico(mod.dicionarioBiblico);
+      setDicLoading(false);
+    });
+  }, []);
 
   useEffect(() => {
     const saved = localStorage.getItem('dicionario-favorites');
@@ -70,7 +78,7 @@ export default function DicionarioPage() {
         v.significadoTeologico?.toLowerCase().includes(q);
       return matchCat && matchFav && matchSearch;
     });
-  }, [search, categoria, showOnlyFavorites, favorites]);
+  }, [search, categoria, showOnlyFavorites, favorites, dicionarioBiblico]);
 
   const groupedByLetter = useMemo(() => {
     const groups: Record<string, VerbeteBiblico[]> = {};
@@ -96,13 +104,22 @@ export default function DicionarioPage() {
       cats[v.categoria] = (cats[v.categoria] || 0) + 1;
     }
     return cats;
-  }, []);
+  }, [dicionarioBiblico]);
 
   return (
     <div className="min-h-screen">
       <Header />
       <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
+          {dicLoading ? (
+            <div className="text-center py-20">
+              <div className="animate-pulse">
+                <div className="h-8 w-48 bg-muted/30 rounded mx-auto mb-4" />
+                <div className="h-4 w-64 bg-muted/20 rounded mx-auto" />
+              </div>
+              <p className="text-muted-foreground text-sm mt-4">Carregando dicionário...</p>
+            </div>
+          ) : (<>
           <ScrollReveal>
             <div className="text-center mb-10">
               <motion.div
@@ -366,6 +383,7 @@ export default function DicionarioPage() {
               </button>
             </div>
           )}
+          </>)}
         </div>
       </main>
 

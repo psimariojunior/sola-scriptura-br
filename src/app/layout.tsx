@@ -3,30 +3,23 @@ import { Cormorant_Garamond, Inter, Spectral } from 'next/font/google';
 import LayoutWrapper from '@/components/LayoutWrapper';
 import './globals.css';
 
-// App e client-heavy (62/65 paginas usam 'use client' + browser APIs no modulo).
-// Sem force-dynamic, o Next tenta pre-renderizar estaticamente todas e crashes
-// em window/localStorage. Para isso precisariamos adicionar `dynamic` em cada
-// page.tsx (62 arquivos). Marcando no layout raiz fica limpo e documentado.
-// SEO e coberto por metadata estatica em layout.tsx + rotas especificas.
-export const dynamic = 'force-dynamic';
-
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
+  weight: ['400', '600'],
   variable: '--font-cormorant',
   display: 'optional',
 });
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '600'],
   variable: '--font-inter',
   display: 'optional',
 });
 
 const spectral = Spectral({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
+  weight: ['400', '600'],
   variable: '--font-spectral',
   display: 'optional',
 });
@@ -114,6 +107,7 @@ export const metadata: Metadata = {
     'apple-mobile-web-app-capable': 'yes',
     'mobile-web-app-capable': 'yes',
     'format-detection': 'telephone=no',
+    'apple-mobile-web-app-status-bar-style': 'black-translucent',
   },
 };
 

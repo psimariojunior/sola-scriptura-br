@@ -17,7 +17,7 @@ import { BuscaGlobal } from '@/components/BuscaGlobal';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { Input } from '@/components/ui/input';
 import { getStats } from '@/lib/estatisticas';
-import { TODOS_LIVROS, LIVROS_AT, LIVROS_NT } from '@/data/biblia';
+import { LIVROS_AT, LIVROS_NT } from '@/data/biblia/livros';
 import { usePWA } from '@/hooks/usePWA';
 import {
   DropdownMenu,

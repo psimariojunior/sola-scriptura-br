@@ -1,4 +1,5 @@
 {
+  "id": "https://solascripturabr.com.br",
   "name": "Sola Scriptura BR",
   "short_name": "SolaScriptura",
   "description": "Plataforma de estudo biblico academico",
@@ -39,6 +40,26 @@
       "sizes": "180x180",
       "type": "image/png",
       "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Bíblia",
+      "short_name": "Bíblia",
+      "url": "/biblia",
+      "description": "Leitura bíblica multi-tradução"
+    },
+    {
+      "name": "Pesquisa",
+      "short_name": "Pesquisa",
+      "url": "/pesquisa",
+      "description": "Pesquisa avançada"
+    },
+    {
+      "name": "Assistente IA",
+      "short_name": "IA",
+      "url": "/ia",
+      "description": "Assistente de estudo bíblico"
     }
   ],
   "screenshots": [

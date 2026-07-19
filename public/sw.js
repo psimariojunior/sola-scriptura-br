@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 const STATIC_CACHE = `ssb-static-${CACHE_VERSION}`;
 const API_CACHE = `ssb-api-${CACHE_VERSION}`;
 const BIBLE_CACHE = `ssb-bible-${CACHE_VERSION}`;
@@ -20,9 +20,9 @@ const PRECACHE_URLS = [
   '/ia',
   '/estudos',
   '/ferramentas',
-  '/auth',
-  '/favicon.ico',
+  '/offline.html',
   '/manifest.json',
+  '/icon-192.png',
 ];
 
 function openDB() {
@@ -44,10 +44,15 @@ function openDB() {
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches
-      .open(STATIC_CACHE)
-      .then((cache) => cache.addAll(PRECACHE_URLS))
-      .then(() => self.skipWaiting())
+    caches.open(STATIC_CACHE).then(async (cache) => {
+      for (const url of PRECACHE_URLS) {
+        try {
+          await cache.add(url);
+        } catch (e) {
+          console.warn('[SW] Failed to precache:', url, e);
+        }
+      }
+    }).then(() => self.skipWaiting())
   );
 });
 
@@ -90,8 +95,29 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  if (request.mode === 'navigate') {
+    event.respondWith(navigationFirst(request));
+    return;
+  }
+
   event.respondWith(staleWhileRevalidate(request, STATIC_CACHE));
 });
+
+async function navigationFirst(request) {
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      const cache = await caches.open(STATIC_CACHE);
+      cache.put(request, response.clone());
+    }
+    return response;
+  } catch {
+    const cached = await caches.match(request);
+    if (cached) return cached;
+    const offline = await caches.match('/offline.html');
+    return offline || new Response('Offline', { status: 503, headers: { 'Content-Type': 'text/html' } });
+  }
+}
 
 async function cacheFirst(request, cacheName) {
   const cached = await caches.match(request);
@@ -129,15 +155,15 @@ async function networkFirst(request, cacheName) {
 async function staleWhileRevalidate(request, cacheName) {
   const cache = await caches.open(cacheName);
   const cached = await cache.match(request);
-  const fetchPromise = fetch(request)
-    .then((response) => {
-      if (response.ok) {
-        cache.put(request, response.clone());
-      }
-      return response;
-    })
-    .catch(() => cached);
-  return cached || fetchPromise;
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      cache.put(request, response.clone());
+    }
+    return response;
+  } catch {
+    return cached || new Response('Offline', { status: 503 });
+  }
 }
 
 self.addEventListener('message', (event) => {

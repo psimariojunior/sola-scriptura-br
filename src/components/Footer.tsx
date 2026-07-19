@@ -165,17 +165,6 @@ export function Footer() {
               Sola Scriptura — Estudo Bíblico Acadêmico · Feito com <Heart className="w-3 h-3 inline text-red-500 fill-current" /> para o povo de Deus · 100% gratuito
             </p>
             <div className="flex items-center gap-4">
-              <button
-                onClick={() => {
-                  try {
-                    localStorage.removeItem('ssb_onboarding_done');
-                    window.dispatchEvent(new CustomEvent('ssb:reset-onboarding'));
-                  } catch { /* ignore */ }
-                }}
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Refazer tour
-              </button>
               <p className="text-xs text-muted-foreground text-center md:text-right">
                 &copy; {new Date().getFullYear()} Sola Scriptura. Todos os direitos reservados.
               </p>

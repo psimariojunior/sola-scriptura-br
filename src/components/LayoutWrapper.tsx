@@ -14,9 +14,7 @@ import { trackPageView } from '@/lib/analytics';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { registerServiceWorker } from '@/lib/offline';
 import { authService } from '@/lib/auth';
-import { NotificationSetup } from '@/components/NotificationSetup';
 import PageTransition from '@/components/PageTransition';
-import { OnboardingTour } from '@/components/OnboardingTour';
 import '@/lib/i18n';
 
 const MobilePerformanceMonitor = lazy(() => import('@/components/MobilePerformanceMonitor'));
@@ -25,7 +23,7 @@ const BottomNavBar = lazy(() => import('@/components/BottomNavBar'));
 const AIPainelLateral = lazy(() => import('@/components/AIPainelLateral').then(m => ({ default: m.AIPainelLateral })));
 const AIMiniPainel = lazy(() => import('@/components/AIMiniPainel').then(m => ({ default: m.AIMiniPainel })));
 const HotkeysDialog = lazy(() => import('@/components/HotkeysDialog').then(m => ({ default: m.HotkeysDialog })));
-const OnboardingModal = lazy(() => import('@/components/OnboardingModal').then(m => ({ default: m.OnboardingModal, resetOnboarding: m.resetOnboarding })));
+
 
 function ServiceWorkerRegistration() {
   useEffect(() => {
@@ -57,18 +55,12 @@ function SincronizacaoAcessoTotal() {
 function GlobalHotkeys() {
   const router = useRouter();
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
-  const [onboardingKey, setOnboardingKey] = useState(0);
 
   useEffect(() => {
     const onShortcuts = () => setShortcutsOpen(true);
-    const onReset = () => {
-      setOnboardingKey((k) => k + 1);
-    };
     window.addEventListener('ssb:open-shortcuts', onShortcuts as EventListener);
-    window.addEventListener('ssb:reset-onboarding', onReset as EventListener);
     return () => {
       window.removeEventListener('ssb:open-shortcuts', onShortcuts as EventListener);
-      window.removeEventListener('ssb:reset-onboarding', onReset as EventListener);
     };
   }, []);
 
@@ -95,7 +87,6 @@ function GlobalHotkeys() {
     <>
       <Suspense fallback={null}>
         <HotkeysDialog open={shortcutsOpen} onOpenChange={setShortcutsOpen} />
-        <OnboardingModal key={onboardingKey} />
       </Suspense>
     </>
   );
@@ -131,7 +122,6 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               <EstudosProvider>
               <TopProgressBar />
               <Toaster />
-              <NotificationSetup />
               <PageTransition>{children}</PageTransition>
               <BackToTop />
               <Suspense fallback={null}>
@@ -140,7 +130,6 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
                 <AIMiniPainel />
               </Suspense>
               <GlobalHotkeys />
-              <OnboardingTour />
               {process.env.NODE_ENV === 'development' && (
                 <Suspense fallback={null}>
                   <MobilePerformanceMonitor />

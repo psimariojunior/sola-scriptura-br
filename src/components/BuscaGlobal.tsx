@@ -73,7 +73,6 @@ const NAV_COMMANDS: { label: string; href: string; icon: typeof BookOpen; grupo:
 const AcoesCommands = [
   { id: 'abrir-ia', label: 'Pergunte à IA', icon: Sparkles, acao: 'ia' as const, grupo: 'IA' },
   { id: 'mostrar-atalhos', label: 'Mostrar atalhos de teclado', icon: Command, acao: 'atalhos' as const, grupo: 'Ações' },
-  { id: 'recomecar-tour', label: 'Refazer tour de boas-vindas', icon: Compass, acao: 'tour' as const, grupo: 'Ações' },
 ];
 
 const RECENT_KEY = 'ssb_recent_searches';
@@ -193,19 +192,12 @@ export function BuscaGlobal({ open, onOpenChange }: BuscaGlobalProps) {
   );
 
   const executarAcao = useCallback(
-    (acao: 'ia' | 'atalhos' | 'tour') => {
+    (acao: 'ia' | 'atalhos') => {
       onOpenChange(false);
       if (acao === 'ia') {
         openAI();
       } else if (acao === 'atalhos') {
         window.dispatchEvent(new CustomEvent('ssb:open-shortcuts'));
-      } else if (acao === 'tour') {
-        try {
-          localStorage.removeItem('ssb_onboarding_done');
-        } catch {
-          /* ignore */
-        }
-        window.dispatchEvent(new CustomEvent('ssb:reset-onboarding'));
       }
     },
     [onOpenChange, openAI]

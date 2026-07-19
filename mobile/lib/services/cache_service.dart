@@ -172,7 +172,7 @@ class CacheService {
       'criado_em': now,
       'atualizado_em': now,
       'sincronizado': 0,
-    }, conflictAlgorithm: ConflictAlgorithm.replace);
+    });
   }
 
   Future<void> updateNota({
@@ -212,7 +212,7 @@ class CacheService {
     await _db.insert('configuracoes', {
       'chave': chave,
       'valor': valor,
-    }, conflictAlgorithm: ConflictAlgorithm.replace);
+    });
   }
 
   Future<String?> getPreferencia(String chave) async {
@@ -277,5 +277,4 @@ class CacheService {
   // Durations
   static const int _sevenDays = 7 * 24 * 60 * 60 * 1000;
   static const int _thirtyDays = 30 * 24 * 60 * 60 * 1000;
-  static const int _oneDay = 24 * 60 * 60 * 1000;
 }

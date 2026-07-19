@@ -146,7 +146,7 @@ class _FerramentaCard extends StatelessWidget {
                 width: 48,
                 height: 48,
                 decoration: BoxDecoration(
-                  color: ferramenta.cor.withOpacity(0.15),
+                  color: ferramenta.cor.withValues(alpha: 0.15),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(ferramenta.icone, color: ferramenta.cor, size: 24),

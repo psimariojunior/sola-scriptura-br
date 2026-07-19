@@ -1,0 +1,32 @@
+{
+  "arc": {
+    "nome": "Almeida Revista e Corrigida",
+    "abreviacao": "ARC",
+    "idioma": "pt-BR"
+  },
+  "ara": {
+    "nome": "Almeida Revista e Atualizada",
+    "abreviacao": "ARA",
+    "idioma": "pt-BR"
+  },
+  "acf": {
+    "nome": "Almeida Corrigida Fiel",
+    "abreviacao": "ACF",
+    "idioma": "pt-BR"
+  },
+  "kjv": {
+    "nome": "King James Version",
+    "abreviacao": "KJV",
+    "idioma": "en"
+  },
+  "nvi": {
+    "nome": "Nova Versão Internacional",
+    "abreviacao": "NVI",
+    "idioma": "pt-BR"
+  },
+  "web": {
+    "nome": "World English Bible",
+    "abreviacao": "WEB",
+    "idioma": "en"
+  }
+}

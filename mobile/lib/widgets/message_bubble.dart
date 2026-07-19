@@ -61,7 +61,7 @@ class MessageBubble extends StatelessWidget {
               ),
               child: _buildContent(theme),
             ),
-            _buildFooter(theme),
+            _buildFooter(context, theme),
           ],
         ),
       ),
@@ -108,7 +108,7 @@ class MessageBubble extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         blockquote: TextStyle(
-          color: theme.colorScheme.onSurfaceVariant.withOpacity(0.8),
+          color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.8),
         ),
         h1: TextStyle(
           color: theme.colorScheme.onSurfaceVariant,
@@ -132,7 +132,7 @@ class MessageBubble extends StatelessWidget {
     );
   }
 
-  Widget _buildFooter(ThemeData theme) {
+  Widget _buildFooter(BuildContext context, ThemeData theme) {
     if (isLoading || error != null) return const SizedBox.shrink();
 
     return Padding(
@@ -145,7 +145,7 @@ class MessageBubble extends StatelessWidget {
               '${timestamp!.hour.toString().padLeft(2, '0')}:${timestamp!.minute.toString().padLeft(2, '0')}',
               style: TextStyle(
                 fontSize: 11,
-                color: theme.colorScheme.onSurfaceVariant.withOpacity(0.6),
+                color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
               ),
             ),
           if (!isUser && content.isNotEmpty) ...[
@@ -192,7 +192,7 @@ class _LoadingIndicator extends StatelessWidget {
         Text(
           'Gerando resposta...',
           style: TextStyle(
-            color: theme.colorScheme.onSurfaceVariant.withOpacity(0.7),
+            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
             fontSize: 14,
             fontStyle: FontStyle.italic,
           ),
@@ -277,7 +277,7 @@ class _ActionIcon extends StatelessWidget {
           child: Icon(
             icon,
             size: 14,
-            color: theme.colorScheme.onSurfaceVariant.withOpacity(0.5),
+            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
           ),
         ),
       ),

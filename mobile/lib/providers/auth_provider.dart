@@ -56,10 +56,10 @@ class AuthProvider extends ChangeNotifier {
     _error = null;
     notifyListeners();
     try {
-      final user = await _authService.loginWithGoogle();
+      await _authService.loginWithGoogle();
       _isLoading = false;
       notifyListeners();
-      return user != null;
+      return true;
     } catch (e) {
       _error = e.toString();
       _isLoading = false;
@@ -73,12 +73,28 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> restoreSession(String token) async {
+  Future<void> restoreSession() async {
     _isLoading = true;
     notifyListeners();
-    await _authService.restoreSession(token);
+    await _authService.restoreSession();
     _isLoading = false;
     notifyListeners();
+  }
+
+  Future<void> updateProfile({String? nome, String? avatar}) async {
+    _isLoading = true;
+    _error = null;
+    notifyListeners();
+    try {
+      await _authService.updateProfile(nome: nome, avatar: avatar);
+      _isLoading = false;
+      notifyListeners();
+    } catch (e) {
+      _error = e.toString();
+      _isLoading = false;
+      notifyListeners();
+      rethrow;
+    }
   }
 
   void clearError() {

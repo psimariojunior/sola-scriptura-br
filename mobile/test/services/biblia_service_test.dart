@@ -1,10 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sola_scriptura_br/services/biblia_service.dart';
-import 'package:sola_scriptura_br/models/livro.dart';
-import 'package:sola_scriptura_br/models/versiculo.dart';
-import 'package:sola_scriptura_br/services/api_client.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  setUpAll(() async {
+    await BibliaService.init();
+  });
+
   group('BibliaService', () {
     group('livros estaticos', () {
       test('deve conter 66 livros da biblia', () {
@@ -91,37 +94,89 @@ void main() {
       });
     });
 
+    group('traducoesDisponiveis', () {
+      test('deve listar 6 traducoes', () {
+        expect(BibliaService.traducoesDisponiveis.length, 6);
+      });
+
+      test('deve incluir arc, ara, acf, kjv, nvi, web', () {
+        for (final t in ['arc', 'ara', 'acf', 'kjv', 'nvi', 'web']) {
+          expect(BibliaService.traducoesDisponiveis, contains(t));
+        }
+      });
+    });
+
     group('BibliaService instancia', () {
-      late ApiClient apiClient;
       late BibliaService bibliaService;
 
       setUp(() {
-        apiClient = ApiClient();
-        apiClient.dispose();
-        apiClient = ApiClient();
-        bibliaService = BibliaService(apiClient);
+        bibliaService = BibliaService();
       });
 
-      tearDown(() {
-        apiClient.dispose();
+      test('getTraducoesInfo deve retornar lista com 6 traducoes', () {
+        final traducoes = bibliaService.getTraducoesInfo();
+        expect(traducoes.length, 6);
       });
 
-      test('deve retornar lista de traducoes', () {
-        final traducoes = bibliaService.traducoes;
-        expect(traducoes, isNotEmpty);
-        expect(traducoes.length, greaterThanOrEqualTo(6));
-      });
-
-      test('deve conter traducao ARC', () {
-        final traducoes = bibliaService.traducoes;
-        final arc = traducoes.firstWhere((t) => t.id == 'arc');
+      test('getTraducoesInfo deve conter ARC', () {
+        final arc = bibliaService
+            .getTraducoesInfo()
+            .firstWhere((t) => t.id == 'arc');
         expect(arc.nome, 'Almeida Revista e Corrigida');
       });
 
-      test('deve conter traducao NVI', () {
-        final traducoes = bibliaService.traducoes;
-        final nvi = traducoes.firstWhere((t) => t.id == 'nvi');
-        expect(nvi.nome, 'Nova Versao Internacional');
+      test('getTraducoesInfo deve conter NVI', () {
+        final nvi = bibliaService
+            .getTraducoesInfo()
+            .firstWhere((t) => t.id == 'nvi');
+        expect(nvi.nome, 'Nova Versão Internacional');
+      });
+
+      test('getLivros deve retornar mesma lista de BibliaService.livros', () {
+        expect(bibliaService.getLivros().length, BibliaService.livros.length);
+      });
+
+      test('getCapitulo deve retornar 31 versiculos para Salmos 23', () {
+        final textos = bibliaService.getCapitulo('arc', 'salmos', 23);
+        expect(textos.length, 31);
+      });
+
+      test('getCapitulo deve retornar vazio para traducao inexistente', () {
+        final textos = bibliaService.getCapitulo('xyz', 'genesis', 1);
+        expect(textos, isEmpty);
+      });
+
+      test('getTextoVersiculo deve retornar Gn 1:1', () {
+        final texto = bibliaService.getTextoVersiculo('arc', 'genesis', 1, 1);
+        expect(texto, isNotNull);
+        expect(texto, contains('princípio'));
+      });
+
+      test('getTextoVersiculo deve retornar null para versiculo inexistente', () {
+        final texto = bibliaService.getTextoVersiculo('arc', 'genesis', 1, 9999);
+        expect(texto, isNull);
+      });
+
+      test('getVersiculos deve popular numero, livro e capitulo', () {
+        final versiculos = bibliaService.getVersiculos(
+          traducao: 'arc',
+          livro: 'gn',
+          capitulo: 1,
+        );
+        expect(versiculos, isNotEmpty);
+        expect(versiculos.first.numero, 1);
+        expect(versiculos.first.livro, 'gn');
+        expect(versiculos.first.capitulo, 1);
+        expect(versiculos.first.traducao, 'arc');
+      });
+
+      test('getTextosVersiculos deve aceitar abreviacao de livro', () {
+        final textos = bibliaService.getTextosVersiculos(
+          traducao: 'arc',
+          livro: 'gn',
+          capitulo: 1,
+        );
+        expect(textos, isNotEmpty);
       });
     });
   });

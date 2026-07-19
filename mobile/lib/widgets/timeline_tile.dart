@@ -34,7 +34,7 @@ class TimelineTile extends StatelessWidget {
                   Expanded(
                     child: Container(
                       width: 2,
-                      color: theme.dividerColor.withOpacity(0.3),
+                      color: theme.dividerColor.withValues(alpha: 0.3),
                     ),
                   ),
                 Container(
@@ -46,7 +46,7 @@ class TimelineTile extends StatelessWidget {
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: eraColor.withOpacity(0.4),
+                        color: eraColor.withValues(alpha: 0.4),
                         blurRadius: 4,
                         offset: const Offset(0, 2),
                       ),
@@ -57,7 +57,7 @@ class TimelineTile extends StatelessWidget {
                   Expanded(
                     child: Container(
                       width: 2,
-                      color: theme.dividerColor.withOpacity(0.3),
+                      color: theme.dividerColor.withValues(alpha: 0.3),
                     ),
                   ),
               ],
@@ -73,7 +73,7 @@ class TimelineTile extends StatelessWidget {
                   color: theme.cardColor,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: eraColor.withOpacity(0.3),
+                    color: eraColor.withValues(alpha: 0.3),
                     width: 1,
                   ),
                 ),
@@ -102,7 +102,7 @@ class TimelineTile extends StatelessWidget {
                           vertical: 2,
                         ),
                         decoration: BoxDecoration(
-                          color: eraColor.withOpacity(0.1),
+                          color: eraColor.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(

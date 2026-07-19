@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/ia_service.dart';
+import '../../services/api_client.dart';
 import 'chat_bubble.dart';
 import 'suggested_questions.dart';
 
@@ -42,6 +44,13 @@ class IaScreen extends StatefulWidget {
   final IaService iaService;
 
   const IaScreen({super.key, required this.iaService});
+
+  factory IaScreen.defaultInstance({Key? key}) {
+    return IaScreen(
+      key: key,
+      iaService: IaService(ApiClient()),
+    );
+  }
 
   @override
   State<IaScreen> createState() => _IaScreenState();
@@ -121,25 +130,28 @@ class _IaScreenState extends State<IaScreen> {
       final resposta = StringBuffer();
 
       _streamSubscription?.cancel();
-      _streamSubscription = widget.iaService.streamPergunta(pergunta).listen(
+      _streamSubscription = widget.iaService.perguntarComFallback(pergunta).listen(
         (chunk) {
           resposta.write(chunk);
-          setState(() {
-            final idx = _mensagens.length - 1;
-            _mensagens[idx] = _mensagens[idx].copyWith(
-              conteudo: resposta.toString(),
-              isLoading: false,
-            );
-          });
-          _scrollToBottom();
+          if (mounted) {
+            setState(() {
+              final idx = _mensagens.length - 1;
+              _mensagens[idx] = _mensagens[idx].copyWith(
+                conteudo: resposta.toString(),
+                isLoading: false,
+              );
+            });
+            _scrollToBottom();
+          }
         },
         onError: (error) {
+          if (!mounted) return;
+          final msg = _extrairMensagemErro(error);
           setState(() {
             final idx = _mensagens.length - 1;
             _mensagens[idx] = _mensagens[idx].copyWith(
-              conteudo: 'Erro ao gerar resposta.',
               isLoading: false,
-              erro: error.toString(),
+              erro: msg,
             );
             _isGenerating = false;
           });
@@ -152,16 +164,45 @@ class _IaScreenState extends State<IaScreen> {
         cancelOnError: true,
       );
     } catch (e) {
+      if (!mounted) return;
       setState(() {
         final idx = _mensagens.length - 1;
         _mensagens[idx] = _mensagens[idx].copyWith(
-          conteudo: 'Erro ao conectar com o servidor.',
           isLoading: false,
-          erro: e.toString(),
+          erro: _extrairMensagemErro(e),
         );
         _isGenerating = false;
       });
     }
+  }
+
+  String _extrairMensagemErro(Object error) {
+    if (error is ApiException) return error.message;
+    if (error is DioException) {
+      final inner = error.error;
+      if (inner is ApiException) return inner.message;
+      switch (error.type) {
+        case DioExceptionType.connectionTimeout:
+        case DioExceptionType.sendTimeout:
+        case DioExceptionType.receiveTimeout:
+          return 'Tempo esgotado ao conectar com o servidor';
+        case DioExceptionType.connectionError:
+          return 'Sem conexao com o servidor';
+        case DioExceptionType.badResponse:
+          final code = error.response?.statusCode;
+          if (code == 429) return 'Muitas requisicoes. Aguarde alguns segundos.';
+          if (code == 401 || code == 403) return 'Sessao expirada. Faca login novamente.';
+          return 'Erro do servidor ($code)';
+        case DioExceptionType.cancel:
+          return 'Requisicao cancelada';
+        case DioExceptionType.badCertificate:
+          return 'Certificado SSL invalido';
+        default:
+          return error.message ?? 'Erro de conexao';
+      }
+    }
+    final s = error.toString();
+    return s.startsWith('Exception: ') ? s.substring(11) : s;
   }
 
   void _reenviar(int index) {
@@ -218,7 +259,7 @@ class _IaScreenState extends State<IaScreen> {
         Icon(
           Icons.auto_awesome,
           size: 64,
-          color: theme.colorScheme.primary.withOpacity(0.6),
+          color: theme.colorScheme.primary.withValues(alpha: 0.6),
         ),
         const SizedBox(height: 16),
         Text(
@@ -271,7 +312,7 @@ class _IaScreenState extends State<IaScreen> {
         color: theme.colorScheme.surface,
         border: Border(
           top: BorderSide(
-            color: theme.dividerColor.withOpacity(0.3),
+            color: theme.dividerColor.withValues(alpha: 0.3),
           ),
         ),
       ),

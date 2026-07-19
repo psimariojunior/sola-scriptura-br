@@ -2,20 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../models/livro.dart';
-import '../../services/biblia_service.dart';
-
-class CrossReference {
-  final String referencia;
-  final String? texto;
-  final String tipo;
-
-  const CrossReference({
-    required this.referencia,
-    this.texto,
-    this.tipo = 'paralela',
-  });
-}
+import '../../services/cross_references_service.dart';
 
 class CrossReferencesScreen extends StatefulWidget {
   final String livro;
@@ -29,64 +16,47 @@ class CrossReferencesScreen extends StatefulWidget {
     required this.versiculo,
   });
 
+  factory CrossReferencesScreen.fromReferencia({Key? key, required String referencia}) {
+    final parts = referencia.split(RegExp(r'\s+'));
+    final livro = parts.isNotEmpty ? parts[0] : 'gn';
+    final cvParts = (parts.length > 1 ? parts[1] : '1:1').split(':');
+    final capitulo = int.tryParse(cvParts[0]) ?? 1;
+    final versiculo = int.tryParse(cvParts.length > 1 ? cvParts[1] : '1') ?? 1;
+    return CrossReferencesScreen(
+      key: key,
+      livro: livro,
+      capitulo: capitulo,
+      versiculo: versiculo,
+    );
+  }
+
   @override
   State<CrossReferencesScreen> createState() => _CrossReferencesScreenState();
 }
 
 class _CrossReferencesScreenState extends State<CrossReferencesScreen> {
-  List<CrossReference> _referencias = [];
-  bool _carregando = false;
-  String? _erro;
+  final CrossReferencesService _service = CrossReferencesService();
+  List<CrossReferenceLocal> _referencias = [];
+  bool _carregando = true;
 
   @override
   void initState() {
     super.initState();
-    _carregarReferencias();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _carregarReferencias());
   }
 
-  Future<void> _carregarReferencias() async {
-    setState(() {
-      _carregando = true;
-      _erro = null;
-    });
-
-    try {
-      // Simulate API call — in real app would fetch from cross-references endpoint
-      await Future.delayed(const Duration(milliseconds: 500));
-
-      final referencias = _getMockReferences();
-      if (mounted) {
-        setState(() {
-          _referencias = referencias;
-          _carregando = false;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _erro = e.toString();
-          _carregando = false;
-        });
-      }
+  void _carregarReferencias() {
+    final result = _service.getReferencias(
+      widget.livro,
+      widget.capitulo,
+      widget.versiculo,
+    );
+    if (mounted) {
+      setState(() {
+        _referencias = result;
+        _carregando = false;
+      });
     }
-  }
-
-  List<CrossReference> _getMockReferences() {
-    final livro = BibliaService.abrevFromSlug(widget.livro);
-    return [
-      CrossReference(
-        referencia: '$livro ${widget.capitulo}:${widget.versiculo + 1}',
-        tipo: 'paralela',
-      ),
-      CrossReference(
-        referencia: '$livro ${widget.capitulo}:${widget.versiculo + 2}',
-        tipo: 'profecia',
-      ),
-      CrossReference(
-        referencia: 'jo 3:16',
-        tipo: 'cumprimento',
-      ),
-    ];
   }
 
   String _nomeTipo(String tipo) {
@@ -143,7 +113,8 @@ class _CrossReferencesScreenState extends State<CrossReferencesScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final referencia = '${widget.livro.toUpperCase()} ${widget.capitulo}:${widget.versiculo}';
+    final referencia =
+        '${widget.livro.toUpperCase()} ${widget.capitulo}:${widget.versiculo}';
 
     return Scaffold(
       appBar: AppBar(
@@ -151,10 +122,7 @@ class _CrossReferencesScreenState extends State<CrossReferencesScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text('Referências Cruzadas', style: TextStyle(fontSize: 18)),
-            Text(
-              referencia,
-              style: theme.textTheme.bodySmall,
-            ),
+            Text(referencia, style: theme.textTheme.bodySmall),
           ],
         ),
       ),
@@ -167,21 +135,22 @@ class _CrossReferencesScreenState extends State<CrossReferencesScreen> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    if (_erro != null) {
+    if (_referencias.isEmpty) {
       return Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.error_outline, size: 48, color: Colors.red),
+              Icon(
+                Icons.menu_book_outlined,
+                size: 48,
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
+              ),
               const SizedBox(height: 16),
-              Text('Erro ao carregar referências: $_erro'),
-              const SizedBox(height: 16),
-              ElevatedButton.icon(
-                onPressed: _carregarReferencias,
-                icon: const Icon(Icons.refresh),
-                label: const Text('Tentar novamente'),
+              Text(
+                'Conteúdo não disponível',
+                style: theme.textTheme.titleMedium,
               ),
             ],
           ),
@@ -189,25 +158,7 @@ class _CrossReferencesScreenState extends State<CrossReferencesScreen> {
       );
     }
 
-    if (_referencias.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.link_off, size: 48, color: theme.colorScheme.onSurface.withOpacity(0.3)),
-            const SizedBox(height: 16),
-            Text(
-              'Nenhuma referência cruzada encontrada.',
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.5),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    final agrupadas = <String, List<CrossReference>>{};
+    final agrupadas = <String, List<CrossReferenceLocal>>{};
     for (final ref in _referencias) {
       agrupadas.putIfAbsent(ref.tipo, () => []).add(ref);
     }
@@ -223,7 +174,7 @@ class _CrossReferencesScreenState extends State<CrossReferencesScreen> {
     );
   }
 
-  Widget _buildGrupo(ThemeData theme, String tipo, List<CrossReference> refs) {
+  Widget _buildGrupo(ThemeData theme, String tipo, List<CrossReferenceLocal> refs) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -248,7 +199,7 @@ class _CrossReferencesScreenState extends State<CrossReferencesScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
-                  color: _corTipo(tipo).withOpacity(0.1),
+                  color: _corTipo(tipo).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
@@ -269,7 +220,7 @@ class _CrossReferencesScreenState extends State<CrossReferencesScreen> {
     );
   }
 
-  Widget _buildReferencia(ThemeData theme, CrossReference ref) {
+  Widget _buildReferencia(ThemeData theme, CrossReferenceLocal ref) {
     return Card(
       margin: const EdgeInsets.only(bottom: 8),
       child: ListTile(
@@ -308,9 +259,7 @@ class _CrossReferencesScreenState extends State<CrossReferencesScreen> {
             );
           },
         ),
-        onTap: () {
-          _navegarParaVersiculo(ref.referencia);
-        },
+        onTap: () => _navegarParaVersiculo(ref.referencia),
       ),
     );
   }

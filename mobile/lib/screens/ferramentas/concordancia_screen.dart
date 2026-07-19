@@ -1,9 +1,9 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../models/livro.dart';
+import '../../models/pesquisa.dart';
+import '../../services/api_client.dart';
 import '../../services/biblia_service.dart';
+import '../../services/pesquisa_service.dart';
 import '../../widgets/sola_card.dart';
 import '../../widgets/sola_text_field.dart';
 import '../../widgets/empty_state.dart';
@@ -41,6 +41,8 @@ class _ConcordanciaScreenState extends State<ConcordanciaScreen> {
     super.dispose();
   }
 
+  final PesquisaService _pesquisaService = PesquisaService(ApiClient());
+
   Future<void> _buscar() async {
     final texto = _buscaController.text.trim();
     if (texto.isEmpty) return;
@@ -50,42 +52,35 @@ class _ConcordanciaScreenState extends State<ConcordanciaScreen> {
       _buscou = true;
     });
 
-    await Future.delayed(const Duration(milliseconds: 800));
+    try {
+      final resultadosApi = await _pesquisaService.pesquisarVersiculos(texto);
 
-    final random = Random();
-    final livrosFiltro = _filtroLivro != null
-        ? BibliaService.livros.where((l) => l.abreviacao == _filtroLivro).toList()
-        : BibliaService.livros.take(10).toList();
-
-    final resultados = <_ConcordanciaResultado>[];
-    final palavras = texto.split(' ');
-
-    for (final palavra in palavras) {
-      if (palavra.length < 3) continue;
-      final contagem = random.nextInt(50) + 1;
-      final refs = <String>[];
-      for (int i = 0; i < min(5, contagem); i++) {
-        final livro = livrosFiltro[random.nextInt(livrosFiltro.length)];
-        final cap = random.nextInt(livro.capitulos) + 1;
-        final ver = random.nextInt(30) + 1;
-        refs.add('${livro.nome} $cap:$ver');
+      final resultados = <_ConcordanciaResultado>[];
+      for (final r in resultadosApi) {
+        resultados.add(_ConcordanciaResultado(
+          palavra: r.titulo,
+          contagem: 1,
+          referencias: [if (r.referencia != null) r.referencia!],
+        ));
       }
-      resultados.add(_ConcordanciaResultado(
-        palavra: palavra,
-        contagem: contagem,
-        referencias: refs,
-      ));
-    }
 
-    resultados.sort((a, b) => _ordenarPor == 'frequencia'
-        ? b.contagem.compareTo(a.contagem)
-        : a.palavra.compareTo(b.palavra));
+      resultados.sort((a, b) => _ordenarPor == 'frequencia'
+          ? b.contagem.compareTo(a.contagem)
+          : a.palavra.compareTo(b.palavra));
 
-    if (mounted) {
-      setState(() {
-        _resultados = resultados;
-        _carregando = false;
-      });
+      if (mounted) {
+        setState(() {
+          _resultados = resultados;
+          _carregando = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _resultados = [];
+          _carregando = false;
+        });
+      }
     }
   }
 
@@ -111,7 +106,7 @@ class _ConcordanciaScreenState extends State<ConcordanciaScreen> {
                   children: [
                     Expanded(
                       child: DropdownButtonFormField<String>(
-                        value: _filtroLivro,
+                        initialValue: _filtroLivro,
                         decoration: const InputDecoration(
                           labelText: 'Filtrar por livro',
                           border: OutlineInputBorder(),
@@ -129,7 +124,7 @@ class _ConcordanciaScreenState extends State<ConcordanciaScreen> {
                     const SizedBox(width: 12),
                     Expanded(
                       child: DropdownButtonFormField<String>(
-                        value: _ordenarPor,
+                        initialValue: _ordenarPor,
                         decoration: const InputDecoration(
                           labelText: 'Ordenar por',
                           border: OutlineInputBorder(),

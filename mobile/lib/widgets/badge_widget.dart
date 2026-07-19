@@ -69,7 +69,7 @@ class BadgeWidget extends StatelessWidget {
         child,
         Positioned(
           top: top ?? -4,
-          end: end ?? -4,
+          right: end ?? -4,
           child: badge,
         ),
       ],
@@ -110,7 +110,7 @@ class BadgeWidget extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: color.withOpacity(0.3),
+            color: color.withValues(alpha: 0.3),
             blurRadius: 4,
             offset: const Offset(0, 1),
           ),

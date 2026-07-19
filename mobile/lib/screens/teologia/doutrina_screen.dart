@@ -7,6 +7,73 @@ class DoutrinaScreen extends StatelessWidget {
 
   const DoutrinaScreen({super.key, required this.doutrina});
 
+  factory DoutrinaScreen.fromId({Key? key, required String id}) {
+    final allDoutrinas = _todasDoutrinas();
+    final doutrina = allDoutrinas.firstWhere(
+      (d) => d.id == id,
+      orElse: () => const Doutrina(
+        id: '',
+        nome: 'Doutrina não encontrada',
+        categoria: '',
+        descricao: 'Doutrina não encontrada.',
+      ),
+    );
+    return DoutrinaScreen(key: key, doutrina: doutrina);
+  }
+
+  static List<Doutrina> _todasDoutrinas() {
+    return const [
+      Doutrina(
+        id: 'trinitarianismo',
+        nome: 'Trindade',
+        categoria: 'Teologia Própria',
+        descricao:
+            'Deus é um só em essência, subsistindo em três pessoas distinctas: Pai, Filho e Espírito Santo.',
+        versiculos: ['Mateus 28:19', '2 Coríntios 13:14'],
+      ),
+      Doutrina(
+        id: 'atributos-deus',
+        nome: 'Atributos de Deus',
+        categoria: 'Teologia Própria',
+        descricao:
+            'As características essenciais da natureza divina: onisciência, onipotência, onipresença, santidade, amor e justiça.',
+        versiculos: ['Êxodo 34:6', 'Salmos 139:1'],
+      ),
+      Doutrina(
+        id: 'encarnacao',
+        nome: 'Encarnação',
+        categoria: 'Cristologia',
+        descricao:
+            'O Verbo se fez carne e habitou entre nós, sendo Jesus totalmente Deus e totalmente homem.',
+        versiculos: ['João 1:14', 'Filipenses 2:5-8'],
+      ),
+      Doutrina(
+        id: 'ressurreicao',
+        nome: 'Ressurreição',
+        categoria: 'Cristologia',
+        descricao:
+            'Jesus ressuscitou dos mortos no terceiro dia, vencendo a morte e o pecado.',
+        versiculos: ['1 Coríntios 15:3-4', 'Mateus 28:5-6'],
+      ),
+      Doutrina(
+        id: 'justificacao',
+        nome: 'Justificação',
+        categoria: 'Soteriologia',
+        descricao:
+            'O crente é declarado justo diante de Deus somente pela fé em Jesus Cristo.',
+        versiculos: ['Romanos 5:1', 'Efésios 2:8-9'],
+      ),
+      Doutrina(
+        id: 'regeneracao',
+        nome: 'Regeneração',
+        categoria: 'Soteriologia',
+        descricao:
+            'O novo nascimento espiritual pelo Espírito Santo que transforma o coração do crente.',
+        versiculos: ['João 3:3', 'Tito 3:5'],
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

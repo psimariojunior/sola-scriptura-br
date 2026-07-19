@@ -135,6 +135,48 @@ class OfflineProvider extends ChangeNotifier {
     if (_isOnline) await sincronizarPendentes();
   }
 
+  Future<void> enqueueNotaEstruturada({
+    required String livro,
+    required int capitulo,
+    required int versiculo,
+    required String conteudo,
+    required String traducao,
+  }) async {
+    await _cache.addNota(versiculoRef: '$livro $capitulo:$versiculo', conteudo: conteudo);
+    await _cache.addAcaoPendente('nota_adicionar', {
+      'livro': livro,
+      'capitulo': capitulo,
+      'versiculo': versiculo,
+      'traducao': traducao,
+      'conteudo': conteudo,
+    });
+    _acoesPendentes = await _cache.getAcoesPendentes();
+    notifyListeners();
+
+    if (_isOnline) await sincronizarPendentes();
+  }
+
+  Future<void> enqueueFavoritoEstruturado({
+    required String livro,
+    required int capitulo,
+    required int versiculo,
+    required String traducao,
+    String? nota,
+  }) async {
+    await _cache.addFavorito('$livro $capitulo:$versiculo', nota: nota);
+    await _cache.addAcaoPendente('favorito_adicionar', {
+      'livro': livro,
+      'capitulo': capitulo,
+      'versiculo': versiculo,
+      'traducao': traducao,
+      if (nota != null) 'nota': nota,
+    });
+    _acoesPendentes = await _cache.getAcoesPendentes();
+    notifyListeners();
+
+    if (_isOnline) await sincronizarPendentes();
+  }
+
   Future<void> updatePreferencia(String chave, String valor) async {
     await _cache.setPreferencia(chave, valor);
   }

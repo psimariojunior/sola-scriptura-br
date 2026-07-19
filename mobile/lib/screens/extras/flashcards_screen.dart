@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/empty_state.dart';
-
 class _Flashcard {
   final String frente;
   final String verso;

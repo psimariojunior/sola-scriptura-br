@@ -23,7 +23,7 @@ class MaisScreen extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 28,
-                  backgroundColor: theme.colorScheme.primary.withOpacity(0.1),
+                  backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.1),
                   backgroundImage: usuario.avatar != null
                       ? NetworkImage(usuario.avatar!)
                       : null,
@@ -82,10 +82,22 @@ class MaisScreen extends StatelessWidget {
           onTap: () => context.push('/favoritos'),
         ),
         _MenuItem(
+          icon: Icons.format_color_fill,
+          title: 'Destaques',
+          subtitle: 'Versiculos marcados em cores',
+          onTap: () => context.push('/destaques'),
+        ),
+        _MenuItem(
           icon: Icons.note_outlined,
           title: 'Notas',
           subtitle: 'Anotacoes pessoais',
           onTap: () => context.push('/notas'),
+        ),
+        _MenuItem(
+          icon: Icons.bookmarks_outlined,
+          title: 'Marcadores',
+          subtitle: 'Marcadores com notas',
+          onTap: () => context.push('/marcadores'),
         ),
         _MenuItem(
           icon: Icons.calendar_today_outlined,
@@ -194,7 +206,7 @@ class _MenuItem extends StatelessWidget {
         subtitle,
         style: TextStyle(
           color: color != null
-              ? itemColor.withOpacity(0.7)
+              ? itemColor.withValues(alpha: 0.7)
               : theme.colorScheme.onSurfaceVariant,
           fontSize: 12,
         ),

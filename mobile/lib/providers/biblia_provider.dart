@@ -12,7 +12,7 @@ class BibliaProvider extends ChangeNotifier {
   int _capituloAtual = 1;
   List<Versiculo> _versiculos = [];
   List<String> _textosVersiculos = [];
-  bool _isLoading = false;
+  bool _isLoading = true;
   String? _error;
 
   BibliaProvider(this._bibliaService);
@@ -25,7 +25,7 @@ class BibliaProvider extends ChangeNotifier {
   bool get isLoading => _isLoading;
   String? get error => _error;
 
-  List<Livro> get livros => _bibliaService.livros;
+  List<Livro> get livros => BibliaService.livros;
   List<Livro> get livrosAT =>
       livros.where((l) => l.testamento == 'AT').toList();
   List<Livro> get livrosNT =>
@@ -56,16 +56,51 @@ class BibliaProvider extends ChangeNotifier {
     await carregarCapitulo(abreviacao, 1);
   }
 
+  void carregarCapituloSync(String abreviacao, int capitulo) {
+    _livroAtual = livroPorAbreviacao(abreviacao);
+    _capituloAtual = capitulo;
+    _textosVersiculos = _bibliaService.getTextosVersiculos(
+      traducao: _traducaoAtual,
+      livro: abreviacao,
+      capitulo: capitulo,
+    );
+    if (_textosVersiculos.isEmpty && _traducaoAtual != 'arc') {
+      _textosVersiculos = _bibliaService.getTextosVersiculos(
+        traducao: 'arc',
+        livro: abreviacao,
+        capitulo: capitulo,
+      );
+    }
+    _versiculos = List.generate(
+      _textosVersiculos.length,
+      (i) => Versiculo(
+        numero: i + 1,
+        texto: _textosVersiculos[i],
+        traducao: _traducaoAtual,
+        livro: abreviacao,
+        capitulo: capitulo,
+      ),
+    );
+    _isLoading = false;
+  }
+
   Future<void> carregarCapitulo(String abreviacao, int capitulo) async {
+    if (!BibliaService.isInitialized || BibliaService.livros.isEmpty) {
+      await BibliaService.init();
+    }
+    await BibliaService.garantirTraducao(_traducaoAtual);
     _isLoading = true;
     _error = null;
     notifyListeners();
     try {
-      _textosVersiculos = await _bibliaService.getTextosVersiculos(
+      _textosVersiculos = _bibliaService.getTextosVersiculos(
         traducao: _traducaoAtual,
         livro: abreviacao,
         capitulo: capitulo,
       );
+      if (_textosVersiculos.isEmpty) {
+        _textosVersiculos = const ['[Carregando...]'];
+      }
       _versiculos = List.generate(
         _textosVersiculos.length,
         (i) => Versiculo(

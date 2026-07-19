@@ -5,7 +5,7 @@ import '../../models/traducao.dart';
 class TranslationSelectorScreen extends StatelessWidget {
   final String traducaoAtual;
 
-  const TranslationSelectorScreen({super.key, required this.traducaoAtual});
+  const TranslationSelectorScreen({super.key, this.traducaoAtual = 'nvi'});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class TranslationSelectorScreen extends StatelessWidget {
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(16),
-            color: theme.colorScheme.primaryContainer.withOpacity(0.3),
+            color: theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
             child: Row(
               children: [
                 Icon(Icons.info_outline, color: theme.colorScheme.primary, size: 20),
@@ -61,7 +61,7 @@ class TranslationSelectorScreen extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       color: selecionada
-          ? theme.colorScheme.primaryContainer.withOpacity(0.5)
+          ? theme.colorScheme.primaryContainer.withValues(alpha: 0.5)
           : null,
       child: InkWell(
         onTap: () {
@@ -78,7 +78,7 @@ class TranslationSelectorScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: selecionada
                       ? theme.colorScheme.primary
-                      : theme.colorScheme.primary.withOpacity(0.1),
+                      : theme.colorScheme.primary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Center(
@@ -115,7 +115,7 @@ class TranslationSelectorScreen extends StatelessWidget {
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: _corIdioma(traducao.idioma).withOpacity(0.1),
+                            color: _corIdioma(traducao.idioma).withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Text(
@@ -131,7 +131,7 @@ class TranslationSelectorScreen extends StatelessWidget {
                         Text(
                           _descricaoTraducao(traducao.id),
                           style: theme.textTheme.bodySmall?.copyWith(
-                            color: theme.colorScheme.onSurface.withOpacity(0.5),
+                            color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -149,7 +149,7 @@ class TranslationSelectorScreen extends StatelessWidget {
               else
                 Icon(
                   Icons.chevron_right,
-                  color: theme.colorScheme.onSurface.withOpacity(0.3),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
                 ),
             ],
           ),

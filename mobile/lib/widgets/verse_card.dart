@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../models/highlight.dart';
 import '../models/versiculo.dart';
 
 class VerseCard extends StatelessWidget {
@@ -10,6 +11,8 @@ class VerseCard extends StatelessWidget {
   final bool mostraIndicadores;
   final int? crossRefCount;
   final bool? temComentario;
+  final Highlight? highlight;
+  final bool temNota;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
 
@@ -21,6 +24,8 @@ class VerseCard extends StatelessWidget {
     this.mostraIndicadores = false,
     this.crossRefCount,
     this.temComentario,
+    this.highlight,
+    this.temNota = false,
     this.onTap,
     this.onLongPress,
   });
@@ -28,6 +33,16 @@ class VerseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final highlightColor = highlight?.colorData;
+    final hasHighlight = highlightColor != null;
+
+    Color cardColor = theme.cardColor;
+    if (hasHighlight) {
+      cardColor = highlightColor.color.withValues(alpha: 0.22);
+    }
+    if (selecionado) {
+      cardColor = theme.colorScheme.primaryContainer.withValues(alpha: 0.6);
+    }
 
     return GestureDetector(
       onTap: onTap,
@@ -42,30 +57,45 @@ class VerseCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
         decoration: BoxDecoration(
-          color: selecionado
-              ? theme.colorScheme.primaryContainer.withOpacity(0.6)
-              : theme.cardColor,
+          color: cardColor,
           borderRadius: BorderRadius.circular(12),
-          border: selecionado
-              ? Border.all(
-                  color: theme.colorScheme.primary.withOpacity(0.5),
-                  width: 1.5,
+          border: hasHighlight
+              ? Border(
+                  left: BorderSide(
+                    color: highlightColor.color,
+                    width: 4,
+                  ),
                 )
-              : null,
-          boxShadow: selecionado
+              : selecionado
+                  ? Border.all(
+                      color:
+                          theme.colorScheme.primary.withValues(alpha: 0.5),
+                      width: 1.5,
+                    )
+                  : null,
+          boxShadow: hasHighlight
               ? [
                   BoxShadow(
-                    color: theme.colorScheme.primary.withOpacity(0.15),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
+                    color: highlightColor.color.withValues(alpha: 0.15),
+                    blurRadius: 6,
+                    offset: const Offset(0, 1),
                   ),
                 ]
-              : null,
+              : selecionado
+                  ? [
+                      BoxShadow(
+                        color: theme.colorScheme.primary
+                            .withValues(alpha: 0.15),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ]
+                  : null,
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildNumeroVersiculo(theme),
+            _buildNumeroVersiculo(theme, hasHighlight, highlightColor),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -85,6 +115,18 @@ class VerseCard extends StatelessWidget {
                 ],
               ),
             ),
+            if (temNota)
+              Padding(
+                padding: const EdgeInsets.only(left: 6, top: 2),
+                child: Tooltip(
+                  message: 'Este versiculo tem nota',
+                  child: Icon(
+                    Icons.sticky_note_2,
+                    size: 16,
+                    color: theme.colorScheme.primary.withValues(alpha: 0.7),
+                  ),
+                ),
+              ),
             if (selecionado)
               Padding(
                 padding: const EdgeInsets.only(left: 8),
@@ -100,15 +142,28 @@ class VerseCard extends StatelessWidget {
     );
   }
 
-  Widget _buildNumeroVersiculo(ThemeData theme) {
+  Widget _buildNumeroVersiculo(
+    ThemeData theme,
+    bool hasHighlight,
+    HighlightColor? highlightColor,
+  ) {
+    final bgColor = hasHighlight
+        ? highlightColor!.color
+        : selecionado
+            ? theme.colorScheme.primary
+            : theme.colorScheme.primary.withValues(alpha: 0.12);
+    final fgColor = hasHighlight
+        ? highlightColor!.onColor
+        : selecionado
+            ? Colors.white
+            : theme.colorScheme.primary;
+
     return Container(
       width: 30,
       height: 30,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: selecionado
-            ? theme.colorScheme.primary
-            : theme.colorScheme.primary.withOpacity(0.12),
+        color: bgColor,
         shape: BoxShape.circle,
       ),
       child: Text(
@@ -116,9 +171,7 @@ class VerseCard extends StatelessWidget {
         style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
-          color: selecionado
-              ? Colors.white
-              : theme.colorScheme.primary,
+          color: fgColor,
         ),
       ),
     );
@@ -157,7 +210,7 @@ class VerseCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(

@@ -8,6 +8,39 @@ class EstudoDetailScreen extends StatelessWidget {
 
   const EstudoDetailScreen({super.key, required this.estudo});
 
+  factory EstudoDetailScreen.fromSlug({Key? key, required String slug}) {
+    final estudo = _estudos.firstWhere(
+      (e) => e.slug == slug,
+      orElse: () => const Estudo(
+        slug: '',
+        titulo: 'Estudo não encontrado',
+        autor: '',
+      ),
+    );
+    return EstudoDetailScreen(key: key, estudo: estudo);
+  }
+
+  static const List<Estudo> _estudos = [
+    Estudo(
+      slug: 'romanos',
+      titulo: 'Romanos: O Evangelho da Graça',
+      autor: 'Equipe Sola Scriptura',
+      versiculosChave: ['Romanos 1:16-17', 'Romanos 3:23-24', 'Romanos 8:28'],
+    ),
+    Estudo(
+      slug: 'genesis',
+      titulo: 'Gênesis: A Criação e o Pacto',
+      autor: 'Equipe Sola Scriptura',
+      versiculosChave: ['Gênesis 1:1', 'Gênesis 12:1-3', 'Gênesis 15:6'],
+    ),
+    Estudo(
+      slug: 'joao',
+      titulo: 'João: O Verbo Encarnado',
+      autor: 'Equipe Sola Scriptura',
+      versiculosChave: ['João 1:1', 'João 3:16', 'João 14:6'],
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

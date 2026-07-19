@@ -128,7 +128,7 @@ class _ManuaisScreenState extends State<ManuaisScreen> {
             Container(
               width: 80,
               height: 100,
-              color: cor.withOpacity(0.12),
+              color: cor.withValues(alpha: 0.12),
               child: Icon(
                 manual['icone'] as IconData,
                 color: cor,
@@ -196,7 +196,7 @@ class _ManuaisScreenState extends State<ManuaisScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       decoration: BoxDecoration(
-        color: cor.withOpacity(0.12),
+        color: cor.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(

@@ -206,7 +206,7 @@ class _ParabolaDetalhe extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Card(
-            color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
+            color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.3),
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Text(

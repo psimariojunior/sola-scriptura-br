@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import '../../models/audio.dart';
 import '../../models/traducao.dart';
 import '../../services/audio_service.dart';
 import '../../services/api_client.dart';
-import '../../config/api_config.dart';
 
 class AudioPlayerScreen extends StatefulWidget {
   final String livro;
@@ -27,13 +26,9 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
   late AnimationController _animacaoController;
   late Animation<double> _animacaoRotacao;
 
-  AudioInfo? _audioInfo;
-  bool _tocando = false;
   bool _carregando = false;
-  String? _erro;
-  double _velocidade = 1.0;
-  Duration _duracaoTotal = const Duration(minutes: 5);
-  Duration _posicaoAtual = Duration.zero;
+  String? _audioUrl;
+  bool _audioDisponivel = false;
   String _traducaoSelecionada = '';
 
   @override
@@ -59,13 +54,14 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
   Future<void> _carregarAudio() async {
     setState(() {
       _carregando = true;
-      _erro = null;
+      _audioDisponivel = false;
+      _audioUrl = null;
     });
 
     try {
-      final apiClient = ApiClient(ApiConfig.baseUrl);
+      final apiClient = ApiClient();
       final service = AudioService(apiClient);
-      final audio = await service.getAudioCapitulo(
+      final audioInfo = await service.getAudioCapitulo(
         livro: widget.livro,
         capitulo: widget.capitulo,
         traducao: _traducaoSelecionada,
@@ -73,67 +69,36 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
 
       if (mounted) {
         setState(() {
-          _audioInfo = audio;
           _carregando = false;
+          if (audioInfo != null && audioInfo.url.isNotEmpty) {
+            _audioUrl = audioInfo.url;
+            _audioDisponivel = true;
+          }
         });
       }
     } catch (e) {
       if (mounted) {
         setState(() {
-          _erro = e.toString();
           _carregando = false;
+          _audioDisponivel = false;
         });
       }
     }
   }
 
-  void _togglePlayPause() {
-    setState(() {
-      _tocando = !_tocando;
-    });
-    if (_tocando) {
-      _animacaoController.repeat();
-      _simularProgresso();
+  Future<void> _abrirAudio() async {
+    if (_audioUrl == null) return;
+
+    final uri = Uri.parse(_audioUrl!);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
-      _animacaoController.stop();
-    }
-  }
-
-  void _simularProgresso() {
-    Future.delayed(const Duration(seconds: 1), () {
-      if (_tocando && mounted) {
-        setState(() {
-          _posicaoAtual += Duration(seconds: (1 * _velocidade).round());
-          if (_posicaoAtual >= _duracaoTotal) {
-            _posicaoAtual = _duracaoTotal;
-            _tocando = false;
-            _animacaoController.stop();
-          }
-        });
-        if (_tocando) _simularProgresso();
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Não foi possível abrir o áudio')),
+        );
       }
-    });
-  }
-
-  void _seek(Duration posicao) {
-    setState(() {
-      _posicaoAtual = posicao;
-    });
-  }
-
-  void _alterarVelocidade() {
-    final velocidades = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0];
-    final idx = velocidades.indexOf(_velocidade);
-    final nova = velocidades[(idx + 1) % velocidades.length];
-    setState(() {
-      _velocidade = nova;
-    });
-  }
-
-  String _formatarDuracao(Duration d) {
-    final min = d.inMinutes;
-    final seg = d.inSeconds % 60;
-    return '${min.toString().padLeft(2, '0')}:${seg.toString().padLeft(2, '0')}';
+    }
   }
 
   @override
@@ -156,33 +121,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
       ),
       body: _carregando
           ? const Center(child: CircularProgressIndicator())
-          : _erro != null
-              ? _buildErro(theme)
-              : _buildPlayer(theme),
-    );
-  }
-
-  Widget _buildErro(ThemeData theme) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.headphones_off, size: 48, color: Colors.red),
-            const SizedBox(height: 16),
-            Text('Erro ao carregar áudio:', style: theme.textTheme.bodyLarge),
-            const SizedBox(height: 8),
-            Text(_erro!, style: theme.textTheme.bodySmall, textAlign: TextAlign.center),
-            const SizedBox(height: 16),
-            ElevatedButton.icon(
-              onPressed: _carregarAudio,
-              icon: const Icon(Icons.refresh),
-              label: const Text('Tentar novamente'),
-            ),
-          ],
-        ),
-      ),
+          : _buildPlayer(theme),
     );
   }
 
@@ -209,14 +148,14 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                 gradient: LinearGradient(
                   colors: [
                     theme.colorScheme.primary,
-                    theme.colorScheme.primary.withOpacity(0.6),
+                    theme.colorScheme.primary.withValues(alpha: 0.6),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: theme.colorScheme.primary.withOpacity(0.3),
+                    color: theme.colorScheme.primary.withValues(alpha: 0.3),
                     blurRadius: 20,
                     offset: const Offset(0, 8),
                   ),
@@ -231,8 +170,10 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                     color: theme.scaffoldBackgroundColor,
                   ),
                   child: Icon(
-                    Icons.headphones,
-                    color: theme.colorScheme.primary,
+                    _audioDisponivel ? Icons.headphones : Icons.headphones_outlined,
+                    color: _audioDisponivel
+                        ? theme.colorScheme.primary
+                        : theme.colorScheme.onSurfaceVariant,
                     size: 32,
                   ),
                 ),
@@ -251,7 +192,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
           Text(
             'Capítulo ${widget.capitulo}',
             style: theme.textTheme.bodyLarge?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.6),
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
             ),
           ),
           const SizedBox(height: 4),
@@ -262,106 +203,98 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
             ),
           ),
           const Spacer(),
-          // Progress
-          Column(
-            children: [
-              SliderTheme(
-                data: SliderTheme.of(context).copyWith(
-                  trackHeight: 4,
-                  thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
-                ),
-                child: Slider(
-                  value: _posicaoAtual.inSeconds.toDouble(),
-                  min: 0,
-                  max: _duracaoTotal.inSeconds.toDouble(),
-                  onChanged: (v) => _seek(Duration(seconds: v.round())),
-                ),
+          // Audio status
+          if (_audioDisponivel) ...[
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
+                borderRadius: BorderRadius.circular(12),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      _formatarDuracao(_posicaoAtual),
-                      style: theme.textTheme.bodySmall,
-                    ),
-                    Text(
-                      _formatarDuracao(_duracaoTotal),
-                      style: theme.textTheme.bodySmall,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          // Controls
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.replay_10),
-                iconSize: 32,
-                tooltip: 'Retroceder 10s',
-                onPressed: () {
-                  _seek(Duration(
-                    seconds: (_posicaoAtual.inSeconds - 10).clamp(
-                      0,
-                      _duracaoTotal.inSeconds,
-                    ),
-                  ));
-                },
-              ),
-              const SizedBox(width: 16),
-              Container(
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.primary,
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  icon: Icon(
-                    _tocando ? Icons.pause : Icons.play_arrow,
-                    color: Colors.white,
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.music_note,
+                    color: theme.colorScheme.primary,
+                    size: 32,
                   ),
-                  iconSize: 48,
-                  tooltip: _tocando ? 'Pausar' : 'Reproduzir',
-                  onPressed: _togglePlayPause,
+                  const SizedBox(height: 8),
+                  Text(
+                    'Áudio disponível!',
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.primary,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Toque no botão abaixo para ouvir no navegador.',
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: _abrirAudio,
+                icon: const Icon(Icons.play_arrow),
+                label: const Text('Ouvir Áudio'),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
               ),
-              const SizedBox(width: 16),
-              IconButton(
-                icon: const Icon(Icons.forward_30),
-                iconSize: 32,
-                tooltip: 'Avançar 30s',
-                onPressed: () {
-                  _seek(Duration(
-                    seconds: (_posicaoAtual.inSeconds + 30).clamp(
-                      0,
-                      _duracaoTotal.inSeconds,
+            ),
+          ] else ...[
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.hourglass_empty,
+                    color: theme.colorScheme.onSurfaceVariant,
+                    size: 32,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Áudio em breve',
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
                     ),
-                  ));
-                },
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'O áudio para esta tradução ainda não está disponível. Tente outra tradução ou volte mais tarde.',
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
           const SizedBox(height: 24),
-          // Speed + Translation
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OutlinedButton.icon(
-                onPressed: _alterarVelocidade,
-                icon: const Icon(Icons.speed, size: 18),
-                label: Text('${_velocidade}x'),
-              ),
-              const SizedBox(width: 16),
-              OutlinedButton.icon(
-                onPressed: _mostrarSelecaoTraducao,
-                icon: const Icon(Icons.translate, size: 18),
-                label: Text(_traducaoSelecionada.toUpperCase()),
-              ),
-            ],
+          // Translation selector
+          OutlinedButton.icon(
+            onPressed: _mostrarSelecaoTraducao,
+            icon: const Icon(Icons.translate, size: 18),
+            label: Text(
+              Traducoes.porId(_traducaoSelecionada)?.nome ?? _traducaoSelecionada.toUpperCase(),
+            ),
           ),
           const SizedBox(height: 24),
         ],
@@ -390,9 +323,11 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
                     value: t.id,
                     groupValue: _traducaoSelecionada,
                     onChanged: (v) {
-                      Navigator.of(ctx).pop();
-                      setState(() => _traducaoSelecionada = v!);
-                      _carregarAudio();
+                      if (v != null) {
+                        Navigator.of(ctx).pop();
+                        setState(() => _traducaoSelecionada = v);
+                        _carregarAudio();
+                      }
                     },
                   ),
                   title: Text(t.nome),
@@ -415,12 +350,21 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen>
       'gn': 'Gênesis', 'ex': 'Êxodo', 'lv': 'Levítico', 'nm': 'Números',
       'dt': 'Deuteronômio', 'js': 'Josué', 'jz': 'Juízes', 'rt': 'Rute',
       '1sm': '1 Samuel', '2sm': '2 Samuel', '1rs': '1 Reis', '2rs': '2 Reis',
+      '1cr': '1 Crônicas', '2cr': '2 Crônicas', 'ed': 'Esdras', 'ne': 'Neemias',
+      'et': 'Ester', 'jó': 'Jó', 'sl': 'Salmos', 'pv': 'Provérbios',
+      'ec': 'Eclesiastes', 'ct': 'Cantares', 'is': 'Isaías', 'jr': 'Jeremias',
+      'lm': 'Lamentações', 'ez': 'Ezequiel', 'dn': 'Daniel', 'os': 'Oseias',
+      'jl': 'Joel', 'am': 'Amós', 'ob': 'Obadias', 'jn': 'Jonas',
+      'mq': 'Miquéias', 'na': 'Naum', 'hc': 'Habacuque', 'sf': 'Sofonias',
+      'ag': 'Ageu', 'zc': 'Zacarias', 'ml': 'Malaquias',
       'mt': 'Mateus', 'mc': 'Marcos', 'lc': 'Lucas', 'jo': 'João',
       'at': 'Atos', 'rm': 'Romanos', '1co': '1 Coríntios', '2co': '2 Coríntios',
       'gl': 'Gálatas', 'ef': 'Efésios', 'fp': 'Filipenses', 'cl': 'Colossenses',
+      '1ts': '1 Tessalonicenses', '2ts': '2 Tessalonicenses',
+      '1tm': '1 Timóteo', '2tm': '2 Timóteo', 'tt': 'Tito', 'fm': 'Filêmon',
       'hb': 'Hebreus', 'tg': 'Tiago', '1pe': '1 Pedro', '2pe': '2 Pedro',
-      '1jo': '1 João', 'ap': 'Apocalipse', 'sl': 'Salmos', 'pv': 'Provérbios',
-      'is': 'Isaías', 'jr': 'Jeremias', 'dn': 'Daniel',
+      '1jo': '1 João', '2jo': '2 João', '3jo': '3 João', 'jd': 'Judas',
+      'ap': 'Apocalipse',
     };
     return nomes[abrev] ?? abrev;
   }

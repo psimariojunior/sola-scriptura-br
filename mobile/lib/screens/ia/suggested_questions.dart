@@ -46,7 +46,7 @@ class SuggestedQuestions extends StatelessWidget {
                 onPressed: () => onPerguntaSelecionada(pergunta),
                 backgroundColor: theme.colorScheme.surfaceContainerHigh,
                 side: BorderSide(
-                  color: theme.colorScheme.outline.withOpacity(0.3),
+                  color: theme.colorScheme.outline.withValues(alpha: 0.3),
                 ),
                 labelStyle: TextStyle(
                   color: theme.colorScheme.onSurfaceVariant,

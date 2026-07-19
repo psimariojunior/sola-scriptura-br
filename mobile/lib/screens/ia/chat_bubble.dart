@@ -57,7 +57,7 @@ class ChatBubble extends StatelessWidget {
               ),
               child: _buildContent(theme),
             ),
-            _buildFooter(theme),
+            _buildFooter(context, theme),
           ],
         ),
       ),
@@ -106,7 +106,7 @@ class ChatBubble extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         blockquote: TextStyle(
-          color: theme.colorScheme.onSurfaceVariant.withOpacity(0.8),
+          color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.8),
         ),
         h1: TextStyle(
           color: theme.colorScheme.onSurfaceVariant,
@@ -130,7 +130,7 @@ class ChatBubble extends StatelessWidget {
     );
   }
 
-  Widget _buildFooter(ThemeData theme) {
+  Widget _buildFooter(BuildContext context, ThemeData theme) {
     if (isLoading || erro != null) return const SizedBox.shrink();
 
     return Padding(
@@ -143,7 +143,7 @@ class ChatBubble extends StatelessWidget {
               '${timestamp!.hour.toString().padLeft(2, '0')}:${timestamp!.minute.toString().padLeft(2, '0')}',
               style: TextStyle(
                 fontSize: 11,
-                color: theme.colorScheme.onSurfaceVariant.withOpacity(0.5),
+                color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
               ),
             ),
           if (!isUser && conteudo.isNotEmpty) ...[
@@ -198,7 +198,7 @@ class _LoadingIndicator extends StatelessWidget {
         Text(
           'Gerando resposta...',
           style: TextStyle(
-            color: theme.colorScheme.onSurfaceVariant.withOpacity(0.7),
+            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
             fontSize: 14,
             fontStyle: FontStyle.italic,
           ),
@@ -283,7 +283,7 @@ class _FooterAction extends StatelessWidget {
           child: Icon(
             icon,
             size: 14,
-            color: theme.colorScheme.onSurfaceVariant.withOpacity(0.5),
+            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
           ),
         ),
       ),

@@ -95,19 +95,19 @@ class _SolaTextFieldState extends State<SolaTextField> {
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide(
-              color: theme.colorScheme.outline.withOpacity(0.4),
+              color: theme.colorScheme.outline.withValues(alpha: 0.4),
             ),
           ),
           filled: true,
           fillColor: widget.enabled
-              ? theme.colorScheme.surfaceContainerHighest.withOpacity(0.2)
-              : theme.colorScheme.surfaceContainerHighest.withOpacity(0.1),
+              ? theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.2)
+              : theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.1),
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           labelStyle: TextStyle(
             color: _hasError
                 ? theme.colorScheme.error
-                : theme.colorScheme.onSurface.withOpacity(0.6),
+                : theme.colorScheme.onSurface.withValues(alpha: 0.6),
           ),
           floatingLabelStyle: TextStyle(
             color: _hasError
@@ -116,10 +116,10 @@ class _SolaTextFieldState extends State<SolaTextField> {
             fontWeight: FontWeight.w500,
           ),
           hintStyle: TextStyle(
-            color: theme.colorScheme.onSurface.withOpacity(0.35),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.35),
           ),
           counterStyle: TextStyle(
-            color: theme.colorScheme.onSurface.withOpacity(0.5),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
             fontSize: 11,
           ),
         ),
@@ -139,7 +139,7 @@ class _SolaTextFieldState extends State<SolaTextField> {
         style: TextStyle(
           color: widget.enabled
               ? theme.colorScheme.onSurface
-              : theme.colorScheme.onSurface.withOpacity(0.5),
+              : theme.colorScheme.onSurface.withValues(alpha: 0.5),
         ),
       ),
     );

@@ -113,7 +113,7 @@ class _ContaScreenState extends State<ContaScreen> {
           Center(
             child: CircleAvatar(
               radius: 40,
-              backgroundColor: theme.colorScheme.primary.withOpacity(0.1),
+              backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.1),
               backgroundImage: auth.currentUser?.avatar != null
                   ? NetworkImage(auth.currentUser!.avatar!)
                   : null,

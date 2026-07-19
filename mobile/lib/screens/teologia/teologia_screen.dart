@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../models/teologia_categoria.dart';
+import '../../services/teologia_service.dart';
 import '../../widgets/category_card.dart';
 import '../../widgets/empty_state.dart';
 import 'categoria_screen.dart';
@@ -12,108 +14,39 @@ class TeologiaScreen extends StatefulWidget {
 }
 
 class _TeologiaScreenState extends State<TeologiaScreen> {
+  final TeologiaService _service = TeologiaService();
   String _busca = '';
+  List<CategoriaTeologia> _categorias = [];
 
-  static const List<Map<String, dynamic>> _categorias = [
-    {
-      'nome': 'Teologia Própria',
-      'icone': Icons.account_tree,
-      'cor': Color(0xFFE53935),
-      'versiculos': 45,
-      'descricao': 'O estudo de Deus: seus atributos, natureza e trindade.',
-    },
-    {
-      'nome': 'Bibliologia',
-      'icone': Icons.auto_stories,
-      'cor': Color(0xFF8E24AA),
-      'versiculos': 32,
-      'descricao': 'A doutrina das Escrituras: inspiração, autoridade e suficiência.',
-    },
-    {
-      'nome': 'Cristologia',
-      'icone': Icons.person,
-      'cor': Color(0xFF3949AB),
-      'versiculos': 58,
-      'descricao': 'A pessoa e obra de Jesus Cristo.',
-    },
-    {
-      'nome': 'Pneumatologia',
-      'icone': Icons.air,
-      'cor': Color(0xFF00ACC1),
-      'versiculos': 28,
-      'descricao': 'A doutrina do Espírito Santo.',
-    },
-    {
-      'nome': 'Soteriologia',
-      'icone': Icons.favorite,
-      'cor': Color(0xFF43A047),
-      'versiculos': 42,
-      'descricao': 'A doutrina da salvação.',
-    },
-    {
-      'nome': 'Hamartiologia',
-      'icone': Icons.warning_amber,
-      'cor': Color(0xFFFF8F00),
-      'versiculos': 24,
-      'descricao': 'A doutrina do pecado.',
-    },
-    {
-      'nome': 'Eclesiologia',
-      'icone': Icons.groups,
-      'cor': Color(0xFF6D4C41),
-      'versiculos': 36,
-      'descricao': 'A doutrina da igreja.',
-    },
-    {
-      'nome': 'Angelologia',
-      'icone': Icons.flutter_dash,
-      'cor': Color(0xFF546E7A),
-      'versiculos': 18,
-      'descricao': 'A doutrina dos anjos.',
-    },
-    {
-      'nome': 'Demonologia',
-      'icone': Icons.dangerous,
-      'cor': Color(0xFF424242),
-      'versiculos': 14,
-      'descricao': 'A doutrina dos demônios e do mal espiritual.',
-    },
-    {
-      'nome': 'Escatologia',
-      'icone': Icons.skyline,
-      'cor': Color(0xFF7B1FA2),
-      'versiculos': 52,
-      'descricao': 'A doutrina das últimas coisas.',
-    },
-    {
-      'nome': 'Antropologia Bíblica',
-      'icone': Icons.face,
-      'cor': Color(0xFFC62828),
-      'versiculos': 22,
-      'descricao': 'A doutrina do ser humano.',
-    },
-    {
-      'nome': 'Satanologia',
-      'icone': Icons.report_problem,
-      'cor': Color(0xFF37474F),
-      'versiculos': 16,
-      'descricao': 'A doutrina de Satanás.',
-    },
-    {
-      'nome': 'Covenantologia',
-      'icone': Icons.handshake,
-      'cor': Color(0xFF00695C),
-      'versiculos': 38,
-      'descricao': 'A doutrina das alianças bíblicas.',
-    },
-  ];
+  static const _iconMap = <String, IconData>{
+    'account_tree': Icons.account_tree,
+    'auto_stories': Icons.auto_stories,
+    'person': Icons.person,
+    'air': Icons.air,
+    'favorite': Icons.favorite,
+    'warning_amber': Icons.warning_amber,
+    'groups': Icons.groups,
+    'flutter_dash': Icons.flutter_dash,
+    'dangerous': Icons.dangerous,
+    'account_balance': Icons.account_balance,
+    'face': Icons.face,
+    'report_problem': Icons.report_problem,
+    'handshake': Icons.handshake,
+    'book': Icons.book,
+  };
 
-  List<Map<String, dynamic>> get _categoriasFiltradas {
+  @override
+  void initState() {
+    super.initState();
+    _categorias = _service.getCategorias();
+  }
+
+  List<CategoriaTeologia> get _categoriasFiltradas {
     if (_busca.isEmpty) return _categorias;
     final lower = _busca.toLowerCase();
     return _categorias.where((c) {
-      return c['nome'].toString().toLowerCase().contains(lower) ||
-          c['descricao'].toString().toLowerCase().contains(lower);
+      return c.nome.toLowerCase().contains(lower) ||
+          c.descricao.toLowerCase().contains(lower);
     }).toList();
   }
 
@@ -145,8 +78,8 @@ class _TeologiaScreenState extends State<TeologiaScreen> {
           Expanded(
             child: _categoriasFiltradas.isEmpty
                 ? const EmptyState(
-                    icon: Icons.category_outlined,
-                    title: 'Nenhuma categoria encontrada',
+                    icon: Icons.menu_book_outlined,
+                    title: 'Conteúdo não disponível',
                     message: 'Tente buscar por outro termo.',
                   )
                 : GridView.builder(
@@ -162,10 +95,10 @@ class _TeologiaScreenState extends State<TeologiaScreen> {
                     itemBuilder: (context, index) {
                       final cat = _categoriasFiltradas[index];
                       return CategoryCard(
-                        icon: cat['icone'] as IconData,
-                        title: cat['nome'] as String,
-                        count: cat['versiculos'] as int,
-                        color: cat['cor'] as Color,
+                        icon: _iconMap[cat.icone] ?? Icons.book,
+                        title: cat.nome,
+                        count: cat.totalDoutrinas,
+                        color: Color(cat.corValue),
                         onTap: () => _abrirCategoria(cat),
                       );
                     },
@@ -176,14 +109,14 @@ class _TeologiaScreenState extends State<TeologiaScreen> {
     );
   }
 
-  void _abrirCategoria(Map<String, dynamic> categoria) {
+  void _abrirCategoria(CategoriaTeologia categoria) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (_) => CategoriaScreen(
-          nome: categoria['nome'] as String,
-          descricao: categoria['descricao'] as String,
-          cor: categoria['cor'] as Color,
+          nome: categoria.nome,
+          descricao: categoria.descricao,
+          cor: Color(categoria.corValue),
         ),
       ),
     );

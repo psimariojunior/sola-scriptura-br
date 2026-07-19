@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/lexicon.dart';
 import '../../services/lexicon_service.dart';
-import '../../services/api_client.dart';
 import '../../widgets/empty_state.dart';
-import '../../widgets/error_display.dart';
-import '../../widgets/loading_shimmer.dart';
 import '../../widgets/search_bar_widget.dart';
 import 'palavra_detail_screen.dart';
 
@@ -17,13 +14,11 @@ class DicionarioScreen extends StatefulWidget {
 }
 
 class _DicionarioScreenState extends State<DicionarioScreen> {
-  late final LexiconService _lexiconService;
+  final LexiconService _lexiconService = LexiconService();
   final TextEditingController _searchController = TextEditingController();
 
   List<PalavraLexicon> _todasPalavras = [];
   List<PalavraLexicon> _palavrasFiltradas = [];
-  bool _isLoading = false;
-  String? _erro;
   String? _filtroCategoria;
   String _idiomaFiltro = 'todos';
 
@@ -38,8 +33,7 @@ class _DicionarioScreenState extends State<DicionarioScreen> {
   @override
   void initState() {
     super.initState();
-    _lexiconService = LexiconService(ApiClient());
-    _carregarPalavras();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _carregarPalavras());
   }
 
   @override
@@ -48,49 +42,32 @@ class _DicionarioScreenState extends State<DicionarioScreen> {
     super.dispose();
   }
 
-  Future<void> _carregarPalavras() async {
-    setState(() {
-      _isLoading = true;
-      _erro = null;
-    });
-    try {
-      final gregas = await _lexiconService.buscarGrego('');
-      final hebraicas = await _lexiconService.buscarHebraico('');
-      if (mounted) {
-        setState(() {
-          _todasPalavras = [...gregas, ...hebraicas];
-          _aplicarFiltros();
-          _isLoading = false;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _erro = e.toString();
-          _isLoading = false;
-        });
-      }
+  void _carregarPalavras() {
+    final result = _lexiconService.buscar('', 'todos');
+    if (mounted) {
+      setState(() {
+        _todasPalavras = result;
+        _aplicarFiltros();
+      });
     }
   }
 
   void _aplicarFiltros() {
-    var resultado = List<PalavraLexicon>.from(_todasPalavras);
+    final busca = _searchController.text.trim();
+    final idioma = _idiomaFiltro;
 
-    if (_idiomaFiltro != 'todos') {
-      resultado = resultado.where((p) {
-        if (_idiomaFiltro == 'grego') return p.isGrego;
-        if (_idiomaFiltro == 'hebraico') return p.isHebraico;
-        return true;
-      }).toList();
+    List<PalavraLexicon> resultado;
+    if (busca.isEmpty) {
+      resultado = _lexiconService.buscar('', idioma);
+    } else {
+      resultado = _lexiconService.buscar(busca, idioma);
     }
 
-    final busca = _searchController.text.toLowerCase();
-    if (busca.isNotEmpty) {
+    if (idioma != 'todos') {
       resultado = resultado.where((p) {
-        return p.palavra.toLowerCase().contains(busca) ||
-            p.transliteracao.toLowerCase().contains(busca) ||
-            p.strong.toLowerCase().contains(busca) ||
-            p.definicao.toLowerCase().contains(busca);
+        if (idioma == 'grego') return p.isGrego;
+        if (idioma == 'hebraico') return p.isHebraico;
+        return true;
       }).toList();
     }
 
@@ -147,9 +124,7 @@ class _DicionarioScreenState extends State<DicionarioScreen> {
             },
           ),
           _buildResumo(contagem, theme),
-          Expanded(
-            child: _buildBody(),
-          ),
+          Expanded(child: _buildBody()),
         ],
       ),
     );
@@ -200,22 +175,8 @@ class _DicionarioScreenState extends State<DicionarioScreen> {
   }
 
   Widget _buildBody() {
-    if (_isLoading) {
-      return const Padding(
-        padding: EdgeInsets.all(16),
-        child: LoadingShimmer(count: 10),
-      );
-    }
-
-    if (_erro != null) {
-      return ErrorDisplay(
-        message: _erro!,
-        onRetry: _carregarPalavras,
-      );
-    }
-
     if (_palavrasFiltradas.isEmpty) {
-      return EmptyState(
+      return const EmptyState(
         icon: Icons.menu_book_outlined,
         title: 'Nenhuma palavra encontrada',
         message: 'Tente buscar por outro termo',
@@ -244,7 +205,7 @@ class _DicionarioScreenState extends State<DicionarioScreen> {
           SliverToBoxAdapter(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-              color: theme.colorScheme.primaryContainer.withOpacity(0.3),
+              color: theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
               child: Text(
                 letra,
                 style: TextStyle(
@@ -266,8 +227,8 @@ class _DicionarioScreenState extends State<DicionarioScreen> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: palavra.isGrego
-                          ? Colors.blue.withOpacity(0.1)
-                          : Colors.teal.withOpacity(0.1),
+                          ? Colors.blue.withValues(alpha: 0.1)
+                          : Colors.teal.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -321,7 +282,7 @@ class _ResumoBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

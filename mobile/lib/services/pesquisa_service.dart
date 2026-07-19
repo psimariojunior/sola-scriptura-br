@@ -45,14 +45,14 @@ class PesquisaService {
   }
 
   Future<List<ResultadoPesquisa>> pesquisarVersiculos(String query) async {
-    return pesquisar(query, tipo: 'versiculo');
+    return pesquisar(query, tipo: 'versiculos');
   }
 
   Future<List<ResultadoPesquisa>> pesquisarComentarios(String query) async {
-    return pesquisar(query, tipo: 'comentario');
+    return pesquisar(query);
   }
 
   Future<List<ResultadoPesquisa>> pesquisarLexicon(String query) async {
-    return pesquisar(query, tipo: 'lexicon');
+    return pesquisar(query, tipo: 'grego');
   }
 }

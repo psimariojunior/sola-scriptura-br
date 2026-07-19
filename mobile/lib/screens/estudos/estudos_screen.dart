@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import '../../models/estudo.dart';
 import '../../models/livro.dart';
 import '../../services/biblia_service.dart';
+import '../../services/estudos_service.dart';
 import '../../widgets/empty_state.dart';
-import '../../widgets/error_display.dart';
-import '../../widgets/loading_shimmer.dart';
 import 'estudo_detail_screen.dart';
 import 'manuais_screen.dart';
 
@@ -18,10 +17,9 @@ class EstudosScreen extends StatefulWidget {
 
 class _EstudosScreenState extends State<EstudosScreen>
     with SingleTickerProviderStateMixin {
+  final EstudosService _service = EstudosService();
   late TabController _tabController;
   String _busca = '';
-  bool _carregando = true;
-  String? _erro;
   List<Estudo> _estudos = [];
   List<Estudo> _estudosFiltrados = [];
   Map<String, bool> _progressoLeitura = {};
@@ -30,34 +28,14 @@ class _EstudosScreenState extends State<EstudosScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    _carregarEstudos();
+    _estudos = _service.getEstudos();
+    _aplicarFiltro();
   }
 
   @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
-  }
-
-  Future<void> _carregarEstudos() async {
-    setState(() {
-      _carregando = true;
-      _erro = null;
-    });
-    try {
-      // Simulated data — in production, fetch from API
-      await Future.delayed(const Duration(milliseconds: 400));
-      _estudos = _gerarEstudosDemo();
-      _aplicarFiltro();
-      if (mounted) setState(() => _carregando = false);
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _erro = e.toString();
-          _carregando = false;
-        });
-      }
-    }
   }
 
   void _aplicarFiltro() {
@@ -70,65 +48,6 @@ class _EstudosScreenState extends State<EstudosScreen>
             e.autor.toLowerCase().contains(lower);
       }).toList();
     }
-  }
-
-  List<Estudo> _gerarEstudosDemo() {
-    return const [
-      Estudo(
-        slug: 'genesis-criacao',
-        titulo: 'Gênesis: A Criação',
-        autor: 'Sola Scriptura',
-        data: '2025-01-15',
-        contexto:
-            'O livro de Gênesis apresenta a narrativa da criação do mundo, da humanidade e do início da história de redenção de Deus.',
-        versiculosChave: ['Gênesis 1:1', 'Gênesis 1:27', 'Gênesis 2:7'],
-      ),
-      Estudo(
-        slug: 'romanos-justificacao',
-        titulo: 'Romanos: Justificação pela Fé',
-        autor: 'Sola Scriptura',
-        data: '2025-02-10',
-        contexto:
-            'Romanos apresenta a doutrina da justificação pela fé, explicando como os pecadores são declarados justos diante de Deus.',
-        versiculosChave: ['Romanos 3:23', 'Romanos 5:8', 'Romanos 8:1'],
-      ),
-      Estudo(
-        slug: 'joao-divino',
-        titulo: 'João: O Divino',
-        autor: 'Sola Scriptura',
-        data: '2025-03-05',
-        contexto:
-            'O evangelho de João apresenta Jesus como o Verbo divino, o Filho eterno de Deus encarnado.',
-        versiculosChave: ['João 1:1', 'João 1:14', 'João 3:16'],
-      ),
-      Estudo(
-        slug: 'efesios-armadura',
-        titulo: 'Efésios: A Armadura de Deus',
-        autor: 'Sola Scriptura',
-        data: '2025-04-20',
-        contexto:
-            'Paulo descreve a armadura espiritual que o crente deve usar para resistir às astúcias do diabo.',
-        versiculosChave: ['Efésios 6:10', 'Efésios 6:13', 'Efésios 6:17'],
-      ),
-      Estudo(
-        slug: 'salmos-lamentacao',
-        titulo: 'Salmos: Lamento e Esperança',
-        autor: 'Sola Scriptura',
-        data: '2025-05-12',
-        contexto:
-            'Os salmos de lamento mostram como o povo de Deus expressa dor e busca refúgio no Senhor.',
-        versiculosChave: ['Salmos 22:1', 'Salmos 23:1', 'Salmos 42:1'],
-      ),
-      Estudo(
-        slug: 'hebreus-sacerdocio',
-        titulo: 'Hebreus: O Sacerdócio de Cristo',
-        autor: 'Sola Scriptura',
-        data: '2025-06-01',
-        contexto:
-            'A epístola aos Hebreus apresenta Jesus como o sumo sacerdote eterno according to a ordem de Melquisedeque.',
-        versiculosChave: ['Hebreus 4:14', 'Hebreus 7:25', 'Hebreus 9:12'],
-      ),
-    ];
   }
 
   @override
@@ -187,19 +106,10 @@ class _EstudosScreenState extends State<EstudosScreen>
   }
 
   Widget _buildAbaLivros() {
-    if (_carregando) {
-      return const LoadingShimmer(count: 6, height: 80);
-    }
-    if (_erro != null) {
-      return ErrorDisplay(
-        message: _erro!,
-        onRetry: _carregarEstudos,
-      );
-    }
     if (_estudosFiltrados.isEmpty) {
       return const EmptyState(
         icon: Icons.menu_book_outlined,
-        title: 'Nenhum estudo encontrado',
+        title: 'Conteúdo não disponível',
         message: 'Tente buscar por outro termo.',
       );
     }
@@ -276,7 +186,7 @@ class _EstudosScreenState extends State<EstudosScreen>
     if (_estudos.isEmpty) {
       return const EmptyState(
         icon: Icons.bookmark_border,
-        title: 'Nenhum estudo salvo',
+        title: 'Conteúdo não disponível',
         message: 'Salve seus estudos favoritos para acessar rapidamente.',
       );
     }
@@ -289,9 +199,8 @@ class _EstudosScreenState extends State<EstudosScreen>
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: Theme.of(context)
-                  .colorScheme
-                  .primaryContainer,
+              backgroundColor:
+                  Theme.of(context).colorScheme.primaryContainer,
               child: Icon(
                 Icons.bookmark,
                 color: Theme.of(context).colorScheme.primary,
@@ -313,16 +222,14 @@ class _EstudosScreenState extends State<EstudosScreen>
   }
 
   void _abrirEstudoPorLivro(Livro livro) {
-    // Find matching study or create placeholder
-    final estudo = _estudos.firstWhere(
-      (e) => e.slug.contains(livro.slug),
-      orElse: () => Estudo(
-        slug: livro.slug,
-        titulo: livro.nome,
-        autor: 'Sola Scriptura',
-        contexto: 'Estudo do livro de ${livro.nome}.',
-      ),
-    );
+    final estudo = _service.getEstudo(livro.slug) ??
+        _service.getEstudo(livro.abreviacao) ??
+        Estudo(
+          slug: livro.slug,
+          titulo: livro.nome,
+          autor: 'Sola Scriptura',
+          contexto: 'Estudo do livro de ${livro.nome}.',
+        );
     Navigator.push(
       context,
       MaterialPageRoute(

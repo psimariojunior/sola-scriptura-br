@@ -1,29 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../data/critica_textual_data.dart';
 import '../../models/livro.dart';
 import '../../services/biblia_service.dart';
+import '../../services/critica_textual_service.dart';
 import '../../widgets/book_selector.dart';
 import '../../widgets/empty_state.dart';
-
-enum _NivelCerteza { certo, provavel, possivel }
-
-class _Variante {
-  final String referencia;
-  final String textoRecebido;
-  final String textoVariante;
-  final String manuscrito;
-  final _NivelCerteza certeza;
-  final String? notas;
-
-  const _Variante({
-    required this.referencia,
-    required this.textoRecebido,
-    required this.textoVariante,
-    required this.manuscrito,
-    required this.certeza,
-    this.notas,
-  });
-}
 
 class CriticaTextualScreen extends StatefulWidget {
   const CriticaTextualScreen({super.key});
@@ -33,11 +15,11 @@ class CriticaTextualScreen extends StatefulWidget {
 }
 
 class _CriticaTextualScreenState extends State<CriticaTextualScreen> {
+  final CriticaTextualService _service = CriticaTextualService();
   Livro? _livro;
   int _capitulo = 1;
   int _versiculo = 1;
-  List<_Variante> _variantes = [];
-  bool _carregando = false;
+  List<VarianteTextual> _variantes = [];
 
   @override
   void initState() {
@@ -46,35 +28,15 @@ class _CriticaTextualScreenState extends State<CriticaTextualScreen> {
     _carregarVariantes();
   }
 
-  Future<void> _carregarVariantes() async {
-    setState(() => _carregando = true);
-    await Future.delayed(const Duration(milliseconds: 600));
-
-    final ref = '${_livro?.nome ?? ''} $_capitulo:$_versiculo';
-    final variantes = [
-      _Variante(
-        referencia: ref,
-        textoRecebido: 'No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.',
-        textoVariante: 'No princípio era o Deus, e o Deus estava com Deus.',
-        manuscrito: 'Papiro P66 (~200 d.C.)',
-        certeza: _NivelCerteza.provavel,
-        notas: 'Omitissão do artigo definido antes de "Deus" em algumas tradições manuscritas.',
-      ),
-      _Variante(
-        referencia: ref,
-        textoRecebido: 'E o Verbo se fez carne, e habitou entre nós.',
-        textoVariante: 'E o Verbo se fez carne, e habitou sobre nós.',
-        manuscrito: 'Codex Sinaiticus (~350 d.C.)',
-        certeza: _NivelCerteza.possivel,
-        notas: 'Leitura variante entre "entre" (ἐν) e "sobre" (ἐπί).',
-      ),
-    ];
-
+  void _carregarVariantes() {
+    if (_livro == null) return;
+    final result = _service.getVariantes(
+      _livro!.abreviacao,
+      _capitulo,
+      _versiculo,
+    );
     if (mounted) {
-      setState(() {
-        _variantes = variantes;
-        _carregando = false;
-      });
+      setState(() => _variantes = result);
     }
   }
 
@@ -120,7 +82,7 @@ class _CriticaTextualScreenState extends State<CriticaTextualScreen> {
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(16),
-            color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
+            color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.3),
             child: Row(
               children: [
                 Expanded(
@@ -156,24 +118,18 @@ class _CriticaTextualScreenState extends State<CriticaTextualScreen> {
               ],
             ),
           ),
-          Expanded(
-            child: _buildBody(),
-          ),
+          Expanded(child: _buildBody()),
         ],
       ),
     );
   }
 
   Widget _buildBody() {
-    if (_carregando) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
     if (_variantes.isEmpty) {
       return const EmptyState(
-        icon: Icons.article_outlined,
-        title: 'Nenhuma variante encontrada',
-        message: 'Selecione um versículo para ver as variantes textuais',
+        icon: Icons.menu_book_outlined,
+        title: 'Conteúdo não disponível',
+        message: 'Não há variantes textuais conhecidas para esta passagem.',
       );
     }
 
@@ -191,40 +147,60 @@ class _CriticaTextualScreenState extends State<CriticaTextualScreen> {
               children: [
                 Row(
                   children: [
-                    _badgeCerteza(v.certeza),
+                    _badgeCerteza(v.evidenciaExterna),
+                    const SizedBox(width: 8),
+                    _badgeTipo(v.tipo),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        v.referencia,
+                        _formatarReferencia(v.referencia),
                         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                       ),
                     ),
                   ],
                 ),
+                const SizedBox(height: 8),
+                Text(
+                  v.pericope,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
                 const Divider(height: 20),
-                _secao('Texto Recebido', v.textoRecebido, Colors.green),
-                const SizedBox(height: 10),
-                _secao('Variante', v.textoVariante, Colors.orange),
-                const SizedBox(height: 10),
+                Text(
+                  v.descricao,
+                  style: const TextStyle(fontSize: 14),
+                ),
+                const SizedBox(height: 12),
                 Row(
                   children: [
                     Icon(Icons.science_outlined, size: 14, color: Theme.of(context).colorScheme.onSurfaceVariant),
                     const SizedBox(width: 4),
                     Expanded(
                       child: Text(
-                        v.manuscrito,
+                        v.manuscritos.join(', '),
                         style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
                       ),
                     ),
                   ],
                 ),
+                if (v.textoRecebido != null) ...[
+                  const SizedBox(height: 10),
+                  _secao('Texto Recebido', v.textoRecebido!, Colors.green),
+                ],
+                if (v.recomendacaoNA28 != null) ...[
+                  const SizedBox(height: 10),
+                  _secao('Recomendação NA28', v.recomendacaoNA28!, Colors.blue),
+                ],
                 if (v.notas != null) ...[
                   const SizedBox(height: 10),
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.5),
+                      color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -241,6 +217,39 @@ class _CriticaTextualScreenState extends State<CriticaTextualScreen> {
     );
   }
 
+  String _formatarReferencia(String ref) {
+    final parts = ref.split(':');
+    if (parts.length >= 3) {
+      final livro = _nomeLivro(parts[0]);
+      return '$livro ${parts[1]}:${parts[2]}';
+    }
+    return ref;
+  }
+
+  String _nomeLivro(String abrev) {
+    const nomes = {
+      'gn': 'Gênesis', 'ex': 'Êxodo', 'lv': 'Levítico', 'nm': 'Números',
+      'dt': 'Deuteronômio', 'js': 'Josué', 'jz': 'Juízes', 'rt': 'Rute',
+      '1sm': '1 Samuel', '2sm': '2 Samuel', '1rs': '1 Reis', '2rs': '2 Reis',
+      '1cr': '1 Crônicas', '2cr': '2 Crônicas', 'ed': 'Esdras', 'ne': 'Neemias',
+      'et': 'Ester', 'jó': 'Jó', 'sl': 'Salmos', 'pv': 'Provérbios',
+      'ec': 'Eclesiastes', 'ct': 'Cantares', 'is': 'Isaías', 'jr': 'Jeremias',
+      'lm': 'Lamentações', 'ez': 'Ezequiel', 'dn': 'Daniel', 'os': 'Oseias',
+      'jl': 'Joel', 'am': 'Amós', 'ob': 'Obadias', 'jn': 'Jonas',
+      'mq': 'Miquéias', 'na': 'Naum', 'hc': 'Habacuque', 'sf': 'Sofonias',
+      'ag': 'Ageu', 'zc': 'Zacarias', 'ml': 'Malaquias',
+      'mt': 'Mateus', 'mc': 'Marcos', 'lc': 'Lucas', 'jo': 'João',
+      'at': 'Atos', 'rm': 'Romanos', '1co': '1 Coríntios', '2co': '2 Coríntios',
+      'gl': 'Gálatas', 'ef': 'Efésios', 'fp': 'Filipenses', 'cl': 'Colossenses',
+      '1ts': '1 Tessalonicenses', '2ts': '2 Tessalonicenses',
+      '1tm': '1 Timóteo', '2tm': '2 Timóteo', 'tt': 'Tito', 'fm': 'Filêmon',
+      'hb': 'Hebreus', 'tg': 'Tiago', '1pe': '1 Pedro', '2pe': '2 Pedro',
+      '1jo': '1 João', '2jo': '2 João', '3jo': '3 João', 'jd': 'Judas',
+      'ap': 'Apocalipse',
+    };
+    return nomes[abrev] ?? abrev;
+  }
+
   Widget _secao(String titulo, String texto, Color cor) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -255,29 +264,61 @@ class _CriticaTextualScreenState extends State<CriticaTextualScreen> {
     );
   }
 
-  Widget _badgeCerteza(_NivelCerteza certeza) {
+  Widget _badgeCerteza(NivelCerteza certeza) {
     Color cor;
     String texto;
     switch (certeza) {
-      case _NivelCerteza.certo:
+      case NivelCerteza.forte:
         cor = Colors.green;
-        texto = 'Certo';
+        texto = 'Forte';
         break;
-      case _NivelCerteza.provavel:
+      case NivelCerteza.moderada:
         cor = Colors.orange;
-        texto = 'Provável';
+        texto = 'Moderada';
         break;
-      case _NivelCerteza.possivel:
+      case NivelCerteza.fraca:
         cor = Colors.red;
-        texto = 'Possível';
+        texto = 'Fraca';
         break;
     }
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       decoration: BoxDecoration(
-        color: cor.withOpacity(0.15),
+        color: cor.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: cor.withOpacity(0.3)),
+        border: Border.all(color: cor.withValues(alpha: 0.3)),
+      ),
+      child: Text(texto, style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: cor)),
+    );
+  }
+
+  Widget _badgeTipo(TipoVariante tipo) {
+    Color cor;
+    String texto;
+    switch (tipo) {
+      case TipoVariante.adicao:
+        cor = Colors.blue;
+        texto = 'Adição';
+        break;
+      case TipoVariante.omissao:
+        cor = Colors.purple;
+        texto = 'Omissão';
+        break;
+      case TipoVariante.mudanca:
+        cor = Colors.teal;
+        texto = 'Mudança';
+        break;
+      case TipoVariante.transposicao:
+        cor = Colors.brown;
+        texto = 'Transposição';
+        break;
+    }
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: cor.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: cor.withValues(alpha: 0.3)),
       ),
       child: Text(texto, style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: cor)),
     );

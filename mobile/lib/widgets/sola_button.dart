@@ -30,8 +30,7 @@ class SolaButton extends StatefulWidget {
     this.icon,
     this.color,
     this.compact = false,
-  })  : variant = SolaButtonVariant.outline,
-        assert(label.isNotEmpty);
+  })  : variant = SolaButtonVariant.outline;
 
   const SolaButton.secondary({
     super.key,
@@ -41,8 +40,7 @@ class SolaButton extends StatefulWidget {
     this.icon,
     this.color,
     this.compact = false,
-  })  : variant = SolaButtonVariant.secondary,
-        assert(label.isNotEmpty);
+  })  : variant = SolaButtonVariant.secondary;
 
   const SolaButton.text({
     super.key,
@@ -52,8 +50,7 @@ class SolaButton extends StatefulWidget {
     this.icon,
     this.color,
     this.compact = false,
-  })  : variant = SolaButtonVariant.text,
-        assert(label.isNotEmpty);
+  })  : variant = SolaButtonVariant.text;
 
   @override
   State<SolaButton> createState() => _SolaButtonState();
@@ -97,8 +94,8 @@ class _SolaButtonState extends State<SolaButton>
           style: ElevatedButton.styleFrom(
             backgroundColor: primaryColor,
             foregroundColor: theme.colorScheme.onPrimary,
-            disabledBackgroundColor: primaryColor.withOpacity(0.4),
-            disabledForegroundColor: theme.colorScheme.onPrimary.withOpacity(0.6),
+            disabledBackgroundColor: primaryColor.withValues(alpha: 0.4),
+            disabledForegroundColor: theme.colorScheme.onPrimary.withValues(alpha: 0.6),
             minimumSize: Size(
               double.infinity,
               widget.compact ? 40 : 48,
@@ -113,10 +110,10 @@ class _SolaButtonState extends State<SolaButton>
         button = ElevatedButton(
           onPressed: isDisabled ? null : _handleTap,
           style: ElevatedButton.styleFrom(
-            backgroundColor: primaryColor.withOpacity(0.1),
+            backgroundColor: primaryColor.withValues(alpha: 0.1),
             foregroundColor: primaryColor,
-            disabledBackgroundColor: primaryColor.withOpacity(0.05),
-            disabledForegroundColor: primaryColor.withOpacity(0.3),
+            disabledBackgroundColor: primaryColor.withValues(alpha: 0.05),
+            disabledForegroundColor: primaryColor.withValues(alpha: 0.3),
             elevation: 0,
             minimumSize: Size(
               double.infinity,
@@ -133,7 +130,7 @@ class _SolaButtonState extends State<SolaButton>
           onPressed: isDisabled ? null : _handleTap,
           style: OutlinedButton.styleFrom(
             foregroundColor: primaryColor,
-            disabledForegroundColor: primaryColor.withOpacity(0.3),
+            disabledForegroundColor: primaryColor.withValues(alpha: 0.3),
             minimumSize: Size(
               double.infinity,
               widget.compact ? 40 : 48,
@@ -141,8 +138,8 @@ class _SolaButtonState extends State<SolaButton>
             padding: const EdgeInsets.symmetric(horizontal: 20),
             side: BorderSide(
               color: isDisabled
-                  ? primaryColor.withOpacity(0.2)
-                  : primaryColor.withOpacity(0.6),
+                  ? primaryColor.withValues(alpha: 0.2)
+                  : primaryColor.withValues(alpha: 0.6),
               width: 1.5,
             ),
           ),
@@ -155,7 +152,7 @@ class _SolaButtonState extends State<SolaButton>
           onPressed: isDisabled ? null : _handleTap,
           style: TextButton.styleFrom(
             foregroundColor: primaryColor,
-            disabledForegroundColor: primaryColor.withOpacity(0.3),
+            disabledForegroundColor: primaryColor.withValues(alpha: 0.3),
             minimumSize: Size(
               widget.compact ? 0 : 80,
               widget.compact ? 32 : 40,

@@ -2,55 +2,64 @@ import 'package:flutter/material.dart';
 
 import '../../models/comentario.dart';
 import '../../services/comentario_service.dart';
-import '../../services/api_client.dart';
-import '../../config/api_config.dart';
 
 class CommentaryScreen extends StatefulWidget {
-  final String referencia;
+  final String livro;
+  final int capitulo;
+  final int versiculo;
 
-  const CommentaryScreen({super.key, required this.referencia});
+  const CommentaryScreen({
+    super.key,
+    required this.livro,
+    required this.capitulo,
+    required this.versiculo,
+  });
+
+  factory CommentaryScreen.fromReferencia({
+    Key? key,
+    required String referencia,
+  }) {
+    final parts = referencia.split(RegExp(r'\s+'));
+    final livro = parts.isNotEmpty ? parts[0].toLowerCase() : 'gn';
+    final cvParts = (parts.length > 1 ? parts[1] : '1:1').split(':');
+    final capitulo = int.tryParse(cvParts[0]) ?? 1;
+    final versiculo = int.tryParse(cvParts.length > 1 ? cvParts[1] : '1') ?? 1;
+    return CommentaryScreen(
+      key: key,
+      livro: livro,
+      capitulo: capitulo,
+      versiculo: versiculo,
+    );
+  }
 
   @override
   State<CommentaryScreen> createState() => _CommentaryScreenState();
 }
 
 class _CommentaryScreenState extends State<CommentaryScreen> {
+  final ComentarioService _service = ComentarioService();
   List<Comentario> _comentarios = [];
-  bool _carregando = false;
-  String? _erro;
+  bool _carregando = true;
   double _tamanhoFonte = 15.0;
   final Set<int> _expandidos = {};
 
   @override
   void initState() {
     super.initState();
-    _carregarComentarios();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _carregarComentarios());
   }
 
-  Future<void> _carregarComentarios() async {
-    setState(() {
-      _carregando = true;
-      _erro = null;
-    });
-
-    try {
-      final apiClient = ApiClient(ApiConfig.baseUrl);
-      final service = ComentarioService(apiClient);
-      final comentarios = await service.buscarPorVersiculo(widget.referencia);
-
-      if (mounted) {
-        setState(() {
-          _comentarios = comentarios;
-          _carregando = false;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _erro = e.toString();
-          _carregando = false;
-        });
-      }
+  void _carregarComentarios() {
+    final result = _service.getComentariosPorVersiculo(
+      widget.livro,
+      widget.capitulo,
+      widget.versiculo,
+    );
+    if (mounted) {
+      setState(() {
+        _comentarios = result;
+        _carregando = false;
+      });
     }
   }
 
@@ -67,6 +76,8 @@ class _CommentaryScreenState extends State<CommentaryScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final referencia =
+        '${widget.livro.toUpperCase()} ${widget.capitulo}:${widget.versiculo}';
 
     return Scaffold(
       appBar: AppBar(
@@ -74,10 +85,7 @@ class _CommentaryScreenState extends State<CommentaryScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text('Comentários', style: TextStyle(fontSize: 18)),
-            Text(
-              widget.referencia.toUpperCase(),
-              style: theme.textTheme.bodySmall,
-            ),
+            Text(referencia, style: theme.textTheme.bodySmall),
           ],
         ),
         actions: [
@@ -110,56 +118,33 @@ class _CommentaryScreenState extends State<CommentaryScreen> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    if (_erro != null) {
+    if (_comentarios.isEmpty) {
       return Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.error_outline, size: 48, color: Colors.red),
+              Icon(
+                Icons.menu_book_outlined,
+                size: 48,
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
+              ),
               const SizedBox(height: 16),
-              Text('Erro ao carregar comentários:', style: theme.textTheme.bodyLarge),
+              Text(
+                'Conteúdo não disponível',
+                style: theme.textTheme.titleMedium,
+              ),
               const SizedBox(height: 8),
-              Text(_erro!, style: theme.textTheme.bodySmall, textAlign: TextAlign.center),
-              const SizedBox(height: 16),
-              ElevatedButton.icon(
-                onPressed: _carregarComentarios,
-                icon: const Icon(Icons.refresh),
-                label: const Text('Tentar novamente'),
+              Text(
+                'Comentários para este versículo serão adicionados em breve.',
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
               ),
             ],
           ),
-        ),
-      );
-    }
-
-    if (_comentarios.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.comment_bank_outlined,
-              size: 48,
-              color: theme.colorScheme.onSurface.withOpacity(0.3),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Nenhum comentário disponível para este versículo.',
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.5),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Comentários de teólogos como Matthew Henry, Adam Clarke,\ne João Calvino estarão disponíveis em breve.',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.4),
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
         ),
       );
     }
@@ -293,6 +278,7 @@ class _CommentaryScreenState extends State<CommentaryScreen> {
     if (lower.contains('calvin') || lower.contains('calvino')) return Colors.purple;
     if (lower.contains('gill')) return Colors.orange;
     if (lower.contains('spurgeon')) return Colors.teal;
+    if (lower.contains('barnes')) return Colors.brown;
     return Colors.grey;
   }
 }

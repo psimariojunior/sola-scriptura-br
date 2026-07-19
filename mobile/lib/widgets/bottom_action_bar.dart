@@ -33,7 +33,7 @@ class BottomActionBar extends StatelessWidget {
         color: theme.scaffoldBackgroundColor,
         border: Border(
           top: BorderSide(
-            color: theme.dividerColor.withOpacity(0.5),
+            color: theme.dividerColor.withValues(alpha: 0.5),
             width: 0.5,
           ),
         ),
@@ -95,8 +95,6 @@ class BottomActionBar extends StatelessWidget {
     required Color color,
     VoidCallback? onTap,
   }) {
-    final theme = Theme.of(context);
-
     return InkWell(
       onTap: () {
         HapticFeedback.lightImpact();
@@ -114,7 +112,7 @@ class BottomActionBar extends StatelessWidget {
                 Icon(
                   icon,
                   size: 22,
-                  color: color.withOpacity(0.8),
+                  color: color.withValues(alpha: 0.8),
                 ),
                 if (badge != null && badge > 0)
                   Positioned(
@@ -143,7 +141,7 @@ class BottomActionBar extends StatelessWidget {
               label,
               style: TextStyle(
                 fontSize: 10,
-                color: color.withOpacity(0.8),
+                color: color.withValues(alpha: 0.8),
                 fontWeight: FontWeight.w500,
               ),
             ),

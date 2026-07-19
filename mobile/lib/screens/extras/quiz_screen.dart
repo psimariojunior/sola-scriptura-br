@@ -1,115 +1,9 @@
 import 'dart:async';
-import 'dart:math';
 import 'package:flutter/material.dart';
 
+import '../../models/pergunta.dart';
+import '../../services/quiz_service.dart';
 import '../../widgets/empty_state.dart';
-
-class _Pergunta {
-  final String pergunta;
-  final List<String> opcoes;
-  final int correta;
-  final String categoria;
-
-  const _Pergunta({
-    required this.pergunta,
-    required this.opcoes,
-    required this.correta,
-    required this.categoria,
-  });
-}
-
-const _perguntas = [
-  _Pergunta(
-    pergunta: 'Quem construiu a arca?',
-    opcoes: ['Abraão', 'Noé', 'Moisés', 'Davi'],
-    correta: 1,
-    categoria: 'Antigo Testamento',
-  ),
-  _Pergunta(
-    pergunta: 'Qual o primeiro milagre de Jesus?',
-    opcoes: ['Cura do cego', 'Ressurreição de Lázaro', 'Água em vinho', 'Multiplicação dos pães'],
-    correta: 2,
-    categoria: 'Novo Testamento',
-  ),
-  _Pergunta(
-    pergunta: 'Quantos mandamentos Deus deu no Sinai?',
-    opcoes: ['5', '7', '10', '12'],
-    correta: 2,
-    categoria: 'Antigo Testamento',
-  ),
-  _Pergunta(
-    pergunta: 'Quem traiu Jesus com 30 moedas?',
-    opcoes: ['Pedro', 'Judas', 'Tomé', 'André'],
-    correta: 1,
-    categoria: 'Personagens',
-  ),
-  _Pergunta(
-    pergunta: 'Qual o livro mais longo da Bíblia?',
-    opcoes: ['Gênesis', 'Salmos', 'Isaías', 'Atos'],
-    correta: 1,
-    categoria: 'Bíblia Geral',
-  ),
-  _Pergunta(
-    pergunta: 'Quem foi engolido por um grande peixe?',
-    opcoes: ['Elias', 'Jonas', 'Pedro', 'Paulo'],
-    correta: 1,
-    categoria: 'Antigo Testamento',
-  ),
-  _Pergunta(
-    pergunta: 'Em que cidade Jesus nasceu?',
-    opcoes: ['Nazareto', 'Jerusalém', 'Belém', 'Cafarnaum'],
-    correta: 2,
-    categoria: 'Novo Testamento',
-  ),
-  _Pergunta(
-    pergunta: 'Quantos discípulos Jesus escolheu?',
-    opcoes: ['7', '10', '12', '24'],
-    correta: 2,
-    categoria: 'Personagens',
-  ),
-  _Pergunta(
-    pergunta: 'Qual é o primeiro livro do Novo Testamento?',
-    opcoes: ['Marcos', 'Mateus', 'Lucas', 'João'],
-    correta: 1,
-    categoria: 'Bíblia Geral',
-  ),
-  _Pergunta(
-    pergunta: 'Quem foi o primeiro rei de Israel?',
-    opcoes: ['Davi', 'Saul', 'Salomão', 'Josué'],
-    correta: 1,
-    categoria: 'Antigo Testamento',
-  ),
-  _Pergunta(
-    pergunta: 'De quem Jesus nasceu?',
-    opcoes: ['Maria e José', 'Isabel e Zacarias', 'Ana e Elias', 'Rute e Boaz'],
-    correta: 0,
-    categoria: 'Novo Testamento',
-  ),
-  _Pergunta(
-    pergunta: 'Qual o fruto do Espírito?',
-    opcoes: ['Riquezas e poder', 'Amor, alegria, paz', 'Sabedoria e ciência', 'Força e beleza'],
-    correta: 1,
-    categoria: 'Doutrina',
-  ),
-  _Pergunta(
-    pergunta: 'Quem libertou Israel do Egito?',
-    opcoes: ['Josué', 'Moisés', 'Davi', 'Abraão'],
-    correta: 1,
-    categoria: 'Antigo Testamento',
-  ),
-  _Pergunta(
-    pergunta: 'Qual apóstolo foi chamado de "pedra"?',
-    opcoes: ['Paulo', 'Pedro', 'Tiago', 'João'],
-    correta: 1,
-    categoria: 'Personagens',
-  ),
-  _Pergunta(
-    pergunta: 'Onde Jesus foi crucificado?',
-    opcoes: ['Getsemane', 'Sinai', 'Gólgota', 'Sion'],
-    correta: 2,
-    categoria: 'Novo Testamento',
-  ),
-];
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -119,6 +13,7 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
+  final QuizService _service = QuizService();
   String? _categoriaSelecionada;
   int _indiceAtual = 0;
   int _pontuacao = 0;
@@ -127,17 +22,14 @@ class _QuizScreenState extends State<QuizScreen> {
   bool _emAndamento = false;
   int _tempoRestante = 15;
   Timer? _timer;
-  List<_Pergunta> _perguntasEmbaralhadas = [];
+  List<PerguntaQuiz> _perguntasEmbaralhadas = [];
   final List<int> _historico = [];
 
-  static const _categorias = [
-    'Todos',
-    'Antigo Testamento',
-    'Novo Testamento',
-    'Personagens',
-    'Bíblia Geral',
-    'Doutrina',
-  ];
+  List<String> get _categorias {
+    final perguntas = _service.getPerguntas();
+    final cats = perguntas.map((p) => p.categoria).toSet().toList()..sort();
+    return ['Todos', ...cats];
+  }
 
   @override
   void dispose() {
@@ -145,15 +37,13 @@ class _QuizScreenState extends State<QuizScreen> {
     super.dispose();
   }
 
-  List<_Pergunta> get _perguntasFiltradas {
-    if (_categoriaSelecionada == null || _categoriaSelecionada == 'Todos') {
-      return _perguntas;
-    }
-    return _perguntas.where((p) => p.categoria == _categoriaSelecionada).toList();
+  List<PerguntaQuiz> get _perguntasFiltradas {
+    return _service.getPerguntas(categoria: _categoriaSelecionada);
   }
 
   void _iniciarQuiz() {
     final filtradas = _perguntasFiltradas;
+    if (filtradas.isEmpty) return;
     _perguntasEmbaralhadas = List.from(filtradas)..shuffle();
     setState(() {
       _indiceAtual = 0;
@@ -224,6 +114,7 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   Widget _telaInicio() {
+    final total = _service.getPerguntas().length;
     return Scaffold(
       appBar: AppBar(title: const Text('Quiz Bíblico')),
       body: ListView(
@@ -238,7 +129,7 @@ class _QuizScreenState extends State<QuizScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            '${_perguntas.length} perguntas sobre a Bíblia',
+            '$total perguntas sobre a Bíblia',
             textAlign: TextAlign.center,
             style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
           ),
@@ -322,7 +213,7 @@ class _QuizScreenState extends State<QuizScreen> {
             ),
           ),
           Expanded(
-            child: Padding(
+            child: SingleChildScrollView(
               padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -347,7 +238,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         onPressed: _respondido ? null : () => _verificarResposta(i),
                         style: OutlinedButton.styleFrom(
                           minimumSize: const Size(double.infinity, 56),
-                          backgroundColor: cor?.withOpacity(0.1),
+                          backgroundColor: cor?.withValues(alpha: 0.1),
                           side: BorderSide(color: cor ?? Theme.of(context).dividerColor),
                         ),
                         child: Text(
@@ -360,6 +251,28 @@ class _QuizScreenState extends State<QuizScreen> {
                       ),
                     );
                   }),
+                  if (_respondido && p.explicacao != null) ...[
+                    const SizedBox(height: 8),
+                    Card(
+                      color: Colors.green.withValues(alpha: 0.08),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Icon(Icons.lightbulb_outline, color: Colors.green, size: 20),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                p.explicacao!,
+                                style: const TextStyle(fontSize: 14),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),

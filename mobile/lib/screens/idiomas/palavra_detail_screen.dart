@@ -2,61 +2,57 @@ import 'package:flutter/material.dart';
 
 import '../../models/lexicon.dart';
 import '../../services/lexicon_service.dart';
-import '../../services/api_client.dart';
-import '../../widgets/error_display.dart';
 
 class PalavraDetailScreen extends StatefulWidget {
   final PalavraLexicon palavra;
 
   const PalavraDetailScreen({super.key, required this.palavra});
 
+  factory PalavraDetailScreen.fromStrong({Key? key, required String strong}) {
+    return PalavraDetailScreen(
+      key: key,
+      palavra: PalavraLexicon(
+        strong: strong,
+        palavra: '',
+        transliteracao: '',
+        definicao: '',
+        idioma: 'grego',
+      ),
+    );
+  }
+
   @override
   State<PalavraDetailScreen> createState() => _PalavraDetailScreenState();
 }
 
 class _PalavraDetailScreenState extends State<PalavraDetailScreen> {
-  late final LexiconService _lexiconService;
-  PalavraLexicon? _palavraDetalhe;
-  bool _isLoading = false;
-  String? _erro;
+  final LexiconService _lexiconService = LexiconService();
+  late PalavraLexicon _palavraDetalhe;
 
   @override
   void initState() {
     super.initState();
-    _lexiconService = LexiconService(ApiClient());
     _palavraDetalhe = widget.palavra;
-    _carregarDetalhe();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _carregarDetalhe());
   }
 
-  Future<void> _carregarDetalhe() async {
-    setState(() {
-      _isLoading = true;
-      _erro = null;
-    });
-    try {
-      final detalhe = await _lexiconService.buscarPorStrong(widget.palavra.strong);
-      if (mounted && detalhe != null) {
-        setState(() {
-          _palavraDetalhe = detalhe;
-          _isLoading = false;
-        });
-      } else if (mounted) {
-        setState(() => _isLoading = false);
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _erro = e.toString();
-          _isLoading = false;
-        });
-      }
+  void _carregarDetalhe() {
+    final idioma = widget.palavra.idioma.isEmpty
+        ? (widget.palavra.strong.startsWith('H') ? 'hebraico' : 'grego')
+        : widget.palavra.idioma;
+    final detalhe =
+        _lexiconService.getPalavra(widget.palavra.strong, idioma);
+    if (mounted && detalhe != null) {
+      setState(() => _palavraDetalhe = detalhe);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final palavra = _palavraDetalhe ?? widget.palavra;
+    final palavra = _palavraDetalhe.palavra.isEmpty
+        ? widget.palavra
+        : _palavraDetalhe;
 
     return Scaffold(
       appBar: AppBar(
@@ -65,20 +61,11 @@ class _PalavraDetailScreenState extends State<PalavraDetailScreen> {
           IconButton(
             icon: const Icon(Icons.share),
             tooltip: 'Compartilhar',
-            onPressed: () {
-              // Share placeholder
-            },
+            onPressed: () {},
           ),
         ],
       ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : _erro != null
-              ? ErrorDisplay(
-                  message: _erro!,
-                  onRetry: _carregarDetalhe,
-                )
-              : _buildContent(palavra, theme),
+      body: _buildContent(palavra, theme),
     );
   }
 
@@ -110,13 +97,13 @@ class _PalavraDetailScreenState extends State<PalavraDetailScreen> {
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: theme.colorScheme.primaryContainer.withOpacity(0.3),
+        color: theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         children: [
           Text(
-            palavra.palavra,
+            palavra.palavra.isEmpty ? '—' : palavra.palavra,
             style: const TextStyle(
               fontSize: 48,
               fontWeight: FontWeight.bold,
@@ -127,11 +114,11 @@ class _PalavraDetailScreenState extends State<PalavraDetailScreen> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             decoration: BoxDecoration(
-              color: theme.colorScheme.primary.withOpacity(0.12),
+              color: theme.colorScheme.primary.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              'Strong\'s ${palavra.strong}',
+              "Strong's ${palavra.strong}",
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
@@ -197,7 +184,7 @@ class _PalavraDetailScreenState extends State<PalavraDetailScreen> {
           child: Text(
             palavra.definicao.isNotEmpty
                 ? palavra.definicao
-                : 'Definicao nao disponivel.',
+                : 'Conteúdo não disponível.',
             style: const TextStyle(fontSize: 16, height: 1.6),
           ),
         ),
@@ -410,7 +397,7 @@ class _InfoChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.12),
+        color: color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(

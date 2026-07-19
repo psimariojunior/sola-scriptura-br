@@ -1,16 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../models/study_note.dart';
+import '../models/traducao.dart';
 import '../models/versiculo.dart';
+import '../services/bookmarks_service.dart';
+import '../services/favorites_service.dart';
+import '../services/highlights_service.dart';
+import '../services/notes_service.dart';
+import '../services/verse_share_service.dart';
+import '../widgets/favorite_button.dart';
+import '../widgets/highlight_button.dart';
+import '../widgets/note_editor.dart';
+import '../widgets/share_verse_sheet.dart';
 
 class VerseSelectionToolbar extends StatefulWidget {
   final List<Versiculo> versiculos;
+  final String livro;
+  final int capitulo;
+  final String traducao;
+  final String? livroNome;
   final VoidCallback? onLimpar;
+  final VoidCallback? onChanged;
 
   const VerseSelectionToolbar({
     super.key,
     required this.versiculos,
+    required this.livro,
+    required this.capitulo,
+    this.traducao = 'arc',
+    this.livroNome,
     this.onLimpar,
+    this.onChanged,
   });
 
   @override
@@ -22,6 +43,14 @@ class _VerseSelectionToolbarState extends State<VerseSelectionToolbar>
   late AnimationController _animacaoController;
   late Animation<Offset> _animacaoSlide;
   late Animation<double> _animacaoOpacidade;
+
+  final NotesService _notes = NotesService();
+  final FavoritesService _favorites = FavoritesService();
+  final BookmarksService _bookmarks = BookmarksService();
+  final HighlightsService _highlights = HighlightsService();
+
+  String? _currentHighlightColor;
+  bool _isFavorite = false;
 
   @override
   void initState() {
@@ -45,12 +74,7 @@ class _VerseSelectionToolbarState extends State<VerseSelectionToolbar>
       curve: Curves.easeOut,
     ));
     _animacaoController.forward();
-  }
-
-  @override
-  void dispose() {
-    _animacaoController.dispose();
-    super.dispose();
+    _loadStatus();
   }
 
   @override
@@ -59,17 +83,67 @@ class _VerseSelectionToolbarState extends State<VerseSelectionToolbar>
     if (widget.versiculos.isNotEmpty && oldWidget.versiculos.isEmpty) {
       _animacaoController.forward(from: 0);
     }
+    final oldFirst =
+        oldWidget.versiculos.isNotEmpty ? oldWidget.versiculos.first.numero : 0;
+    final newFirst = widget.versiculos.isNotEmpty
+        ? widget.versiculos.first.numero
+        : 0;
+    if (oldFirst != newFirst) {
+      _loadStatus();
+    }
   }
 
-  void _copiarVersiculos() {
-    final texto = widget.versiculos
-        .map((v) => '${v.numero}. ${v.texto}')
-        .join('\n');
-    Clipboard.setData(ClipboardData(text: texto));
+  @override
+  void dispose() {
+    _animacaoController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _loadStatus() async {
+    if (widget.versiculos.isEmpty) return;
+    final primeiro = widget.versiculos.first;
+
+    final highlight = await _highlights.getHighlightForVerse(
+      livro: widget.livro,
+      capitulo: widget.capitulo,
+      versiculo: primeiro.numero,
+      traducao: widget.traducao,
+    );
+    final fav = await _favorites.isFavorite(
+      livro: widget.livro,
+      capitulo: widget.capitulo,
+      versiculo: primeiro.numero,
+      traducao: widget.traducao,
+    );
+
+    if (!mounted) return;
+    setState(() {
+      _isFavorite = fav;
+      _currentHighlightColor = highlight?.cor;
+    });
+  }
+
+  void _copiarVersiculos() async {
+    final shareable = _toShareable();
+    final texto = shareable.versiculos.length == 1
+        ? VerseShareService.formatShareText(
+            livroNome: shareable.livroNome,
+            capitulo: shareable.capitulo,
+            versiculo: shareable.versiculos.first,
+            traducaoAbrev: shareable.traducaoAbrev,
+          )
+        : VerseShareService.formatRangeText(
+            livroNome: shareable.livroNome,
+            capitulo: shareable.capitulo,
+            versiculos: shareable.versiculos,
+            traducaoAbrev: shareable.traducaoAbrev,
+          );
+    await VerseShareService.copyToClipboard(texto);
+    if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          '${widget.versiculos.length} versículo(s) copiado(s)!',
+          '${widget.versiculos.length} versiculo(s) copiado(s)!',
         ),
         duration: const Duration(seconds: 2),
       ),
@@ -77,42 +151,175 @@ class _VerseSelectionToolbarState extends State<VerseSelectionToolbar>
   }
 
   void _compartilhar() {
-    final texto = widget.versiculos
-        .map((v) => '${v.numero}. ${v.texto}')
-        .join('\n');
+    HapticFeedback.lightImpact();
+    ShareVerseSheet.show(context, verse: _toShareable());
+  }
+
+  ShareableVerse _toShareable() {
+    final traducaoAbrev =
+        Traducoes.porId(widget.traducao)?.abreviacao ??
+            widget.traducao.toUpperCase();
+    return ShareableVerse(
+      livroNome: widget.livroNome ?? widget.livro,
+      livroAbreviacao: widget.livro,
+      capitulo: widget.capitulo,
+      versiculos: widget.versiculos,
+      traducaoAbrev: traducaoAbrev,
+    );
+  }
+
+  Future<void> _toggleHighlight(String corId) async {
+    if (widget.versiculos.isEmpty) return;
+
+    if (corId.isEmpty) {
+      for (final v in widget.versiculos) {
+        await _highlights.remove(
+          livro: widget.livro,
+          capitulo: widget.capitulo,
+          versiculo: v.numero,
+          traducao: widget.traducao,
+        );
+      }
+      if (!mounted) return;
+      setState(() => _currentHighlightColor = null);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Destaque removido')),
+      );
+      widget.onChanged?.call();
+      return;
+    }
+
+    for (final v in widget.versiculos) {
+      await _highlights.add(
+        livro: widget.livro,
+        capitulo: widget.capitulo,
+        versiculo: v.numero,
+        cor: corId,
+        traducao: widget.traducao,
+      );
+    }
+
+    if (!mounted) return;
+    setState(() => _currentHighlightColor = corId);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Função de compartilhamento em breve!'),
-        action: SnackBarAction(
-          label: 'OK',
-          onPressed: () {},
+        content: Text(
+          '${widget.versiculos.length} versiculo(s) destacado(s)',
         ),
       ),
     );
+    widget.onChanged?.call();
   }
 
-  void _adicionarNota() {
+  Future<void> _toggleFavorito() async {
+    if (widget.versiculos.isEmpty) return;
+    final primeiro = widget.versiculos.first;
+
+    if (_isFavorite) {
+      await _favorites.remove(
+        livro: widget.livro,
+        capitulo: widget.capitulo,
+        versiculo: primeiro.numero,
+        traducao: widget.traducao,
+      );
+    } else {
+      await _favorites.add(
+        livro: widget.livro,
+        capitulo: widget.capitulo,
+        versiculo: primeiro.numero,
+        traducao: widget.traducao,
+      );
+    }
+
+    if (!mounted) return;
+    setState(() => _isFavorite = !_isFavorite);
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Editor de notas em breve!'),
+      SnackBar(
+        content: Text(
+          _isFavorite ? 'Adicionado aos favoritos' : 'Removido dos favoritos',
+        ),
       ),
     );
+    widget.onChanged?.call();
   }
 
-  void _destacarVersiculos() {
+  Future<void> _adicionarNota() async {
+    if (widget.versiculos.isEmpty) return;
+    final primeiro = widget.versiculos.first;
+
+    StudyNote? existing;
+    final list = await _notes.getByReference(
+      livro: widget.livro,
+      capitulo: widget.capitulo,
+      versiculo: primeiro.numero,
+      traducao: widget.traducao,
+    );
+    if (list.isNotEmpty) existing = list.first;
+
+    final texto = await showNoteEditor(
+      context,
+      livro: widget.livro,
+      capitulo: widget.capitulo,
+      versiculo: primeiro.numero,
+      livroNome: widget.livroNome,
+      existing: existing,
+      traducao: widget.traducao,
+    );
+    if (texto == null || texto.isEmpty) return;
+
+    if (existing != null) {
+      await _notes.update(existing.id!, texto);
+    } else {
+      await _notes.add(
+        livro: widget.livro,
+        capitulo: widget.capitulo,
+        versiculo: primeiro.numero,
+        texto: texto,
+        traducao: widget.traducao,
+      );
+    }
+
+    if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Versículos destacados!'),
+      SnackBar(
+        content: Text(existing != null ? 'Nota atualizada' : 'Nota salva'),
       ),
     );
+    widget.onChanged?.call();
   }
 
-  void _compararTraducoes() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Comparação de traduções em breve!'),
-      ),
+  Future<void> _adicionarMarcador() async {
+    if (widget.versiculos.isEmpty) return;
+    final primeiro = widget.versiculos.first;
+
+    final jaExiste = await _bookmarks.hasBookmark(
+      livro: widget.livro,
+      capitulo: widget.capitulo,
+      versiculo: primeiro.numero,
     );
+
+    if (jaExiste) {
+      await _bookmarks.removeByReference(
+        livro: widget.livro,
+        capitulo: widget.capitulo,
+        versiculo: primeiro.numero,
+      );
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Marcador removido')),
+      );
+    } else {
+      await _bookmarks.add(
+        livro: widget.livro,
+        capitulo: widget.capitulo,
+        versiculo: primeiro.numero,
+      );
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Marcador adicionado')),
+      );
+    }
+    widget.onChanged?.call();
   }
 
   @override
@@ -130,7 +337,7 @@ class _VerseSelectionToolbarState extends State<VerseSelectionToolbar>
             color: theme.colorScheme.primaryContainer,
             border: Border(
               top: BorderSide(
-                color: theme.colorScheme.primary.withOpacity(0.3),
+                color: theme.colorScheme.primary.withValues(alpha: 0.3),
                 width: 1,
               ),
             ),
@@ -151,7 +358,7 @@ class _VerseSelectionToolbarState extends State<VerseSelectionToolbar>
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        '$quantidade versículo${quantidade > 1 ? 's' : ''} selecionado${quantidade > 1 ? 's' : ''}',
+                        '$quantidade versiculo${quantidade > 1 ? 's' : ''} selecionado${quantidade > 1 ? 's' : ''}',
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           color: theme.colorScheme.primary,
@@ -170,18 +377,15 @@ class _VerseSelectionToolbarState extends State<VerseSelectionToolbar>
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      _buildActionChip(
-                        context,
-                        icon: Icons.copy,
-                        label: 'Copiar',
-                        onTap: _copiarVersiculos,
+                      HighlightButton(
+                        currentColorId: _currentHighlightColor,
+                        onColorSelected: _toggleHighlight,
                       ),
                       const SizedBox(width: 8),
-                      _buildActionChip(
-                        context,
-                        icon: Icons.share,
-                        label: 'Compartilhar',
-                        onTap: _compartilhar,
+                      FavoriteButton(
+                        isFavorite: _isFavorite,
+                        showLabel: true,
+                        onTap: _toggleFavorito,
                       ),
                       const SizedBox(width: 8),
                       _buildActionChip(
@@ -193,16 +397,23 @@ class _VerseSelectionToolbarState extends State<VerseSelectionToolbar>
                       const SizedBox(width: 8),
                       _buildActionChip(
                         context,
-                        icon: Icons.highlight,
-                        label: 'Destacar',
-                        onTap: _destacarVersiculos,
+                        icon: Icons.bookmark_add_outlined,
+                        label: 'Marcar',
+                        onTap: _adicionarMarcador,
                       ),
                       const SizedBox(width: 8),
                       _buildActionChip(
                         context,
-                        icon: Icons.compare_arrows,
-                        label: 'Comparar',
-                        onTap: _compararTraducoes,
+                        icon: Icons.share,
+                        label: 'Compartilhar',
+                        onTap: _compartilhar,
+                      ),
+                      const SizedBox(width: 8),
+                      _buildActionChip(
+                        context,
+                        icon: Icons.copy,
+                        label: 'Copiar',
+                        onTap: _copiarVersiculos,
                       ),
                     ],
                   ),
@@ -235,7 +446,7 @@ class _VerseSelectionToolbarState extends State<VerseSelectionToolbar>
           color: theme.scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: theme.colorScheme.outline.withOpacity(0.3),
+            color: theme.colorScheme.outline.withValues(alpha: 0.3),
           ),
         ),
         child: Row(

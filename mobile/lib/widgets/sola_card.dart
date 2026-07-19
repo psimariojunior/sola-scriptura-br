@@ -35,12 +35,12 @@ class SolaCard extends StatelessWidget {
         color: cardColor,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: theme.colorScheme.outline.withOpacity(0.2),
+          color: theme.colorScheme.outline.withValues(alpha: 0.2),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: theme.colorScheme.shadow.withOpacity(0.05),
+            color: theme.colorScheme.shadow.withValues(alpha: 0.05),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -52,8 +52,8 @@ class SolaCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: onTap,
-          splashColor: theme.colorScheme.primary.withOpacity(0.06),
-          highlightColor: theme.colorScheme.primary.withOpacity(0.03),
+          splashColor: theme.colorScheme.primary.withValues(alpha: 0.06),
+          highlightColor: theme.colorScheme.primary.withValues(alpha: 0.03),
           child: Padding(
             padding: padding ?? const EdgeInsets.all(16),
             child: Row(

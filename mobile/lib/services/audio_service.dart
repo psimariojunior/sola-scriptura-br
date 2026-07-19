@@ -12,18 +12,22 @@ class AudioService {
     required int capitulo,
     required String traducao,
   }) async {
-    final response = await _client.get(
-      ApiConfig.endpoint('audio'),
-      queryParameters: {
-        'livro': livro,
-        'capitulo': capitulo,
-        'traducao': traducao,
-      },
-    );
+    try {
+      final response = await _client.get(
+        ApiConfig.endpoint('audio'),
+        queryParameters: {
+          'livro': livro,
+          'capitulo': capitulo,
+          'traducao': traducao,
+        },
+      );
 
-    final data = response.data;
-    if (data is Map<String, dynamic> && data['data'] != null) {
-      return AudioInfo.fromJson(data['data'] as Map<String, dynamic>);
+      final data = response.data;
+      if (data is Map<String, dynamic> && data['data'] != null) {
+        return AudioInfo.fromJson(data['data'] as Map<String, dynamic>);
+      }
+    } catch (_) {
+      // Audio endpoint not available yet
     }
     return null;
   }

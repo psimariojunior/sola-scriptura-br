@@ -67,7 +67,7 @@ class BookSelector extends StatelessWidget {
                   : Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: Theme.of(context).dividerColor.withOpacity(0.3),
+                color: Theme.of(context).dividerColor.withValues(alpha: 0.3),
               ),
             ),
             alignment: Alignment.center,

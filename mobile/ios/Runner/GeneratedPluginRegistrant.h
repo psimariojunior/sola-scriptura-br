@@ -4,21 +4,16 @@
 
 // clang-format off
 
-#import "GeneratedPluginRegistrant.h"
+#ifndef GeneratedPluginRegistrant_h
+#define GeneratedPluginRegistrant_h
 
-#if __has_include(<shared_preferences/SharedPreferencesPlugin.h>)
-#import <shared_preferences/SharedPreferencesPlugin.h>
-#endif
+#import <Flutter/Flutter.h>
 
-#if __has_include(<url_launcher/UrlLauncherPlugin.h>)
-#import <url_launcher/UrlLauncherPlugin.h>
-#endif
+NS_ASSUME_NONNULL_BEGIN
 
-@implementation GeneratedPluginRegistrant
-
-+ (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
-  [FLTSharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharedPreferencesPlugin"]];
-  [FLTURLLauncherPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTURLLauncherPlugin"]];
-}
-
+@interface GeneratedPluginRegistrant : NSObject
++ (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry;
 @end
+
+NS_ASSUME_NONNULL_END
+#endif /* GeneratedPluginRegistrant_h */

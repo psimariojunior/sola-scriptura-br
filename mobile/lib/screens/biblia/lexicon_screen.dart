@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/lexicon.dart';
 import '../../services/lexicon_service.dart';
-import '../../services/api_client.dart';
-import '../../config/api_config.dart';
+import '../../widgets/empty_state.dart';
 
 class LexiconScreen extends StatefulWidget {
   final String livro;
@@ -23,11 +22,10 @@ class LexiconScreen extends StatefulWidget {
 
 class _LexiconScreenState extends State<LexiconScreen>
     with SingleTickerProviderStateMixin {
+  final LexiconService _service = LexiconService();
   late TabController _tabController;
   List<PalavraLexicon> _palavrasGregas = [];
   List<PalavraLexicon> _palavrasHebraicas = [];
-  bool _carregando = false;
-  String? _erro;
 
   @override
   void initState() {
@@ -42,36 +40,11 @@ class _LexiconScreenState extends State<LexiconScreen>
     super.dispose();
   }
 
-  Future<void> _carregarPalavras() async {
-    setState(() {
-      _carregando = true;
-      _erro = null;
-    });
-
-    try {
-      final apiClient = ApiClient(ApiConfig.baseUrl);
-      final service = LexiconService(apiClient);
-
-      final referencia = '${widget.livro} ${widget.capitulo}:${widget.versiculo}';
-
-      final gregas = await service.buscarGrego(referencia);
-      final hebraicas = await service.buscarHebraico(referencia);
-
-      if (mounted) {
-        setState(() {
-          _palavrasGregas = gregas;
-          _palavrasHebraicas = hebraicas;
-          _carregando = false;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _erro = e.toString();
-          _carregando = false;
-        });
-      }
-    }
+  void _carregarPalavras() {
+    final ref = '${widget.livro} ${widget.capitulo}:${widget.versiculo}';
+    _palavrasGregas = _service.buscar(ref, 'grego');
+    _palavrasHebraicas = _service.buscar(ref, 'hebraico');
+    setState(() {});
   }
 
   @override
@@ -117,43 +90,13 @@ class _LexiconScreenState extends State<LexiconScreen>
           ],
         ),
       ),
-      body: _buildBody(theme),
-    );
-  }
-
-  Widget _buildBody(ThemeData theme) {
-    if (_carregando) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    if (_erro != null) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.error_outline, size: 48, color: Colors.red),
-              const SizedBox(height: 16),
-              Text('Erro ao carregar léxico: $_erro'),
-              const SizedBox(height: 16),
-              ElevatedButton.icon(
-                onPressed: _carregarPalavras,
-                icon: const Icon(Icons.refresh),
-                label: const Text('Tentar novamente'),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    return TabBarView(
-      controller: _tabController,
-      children: [
-        _buildListaPalavras(theme, _palavrasGregas, 'grego'),
-        _buildListaPalavras(theme, _palavrasHebraicas, 'hebraico'),
-      ],
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          _buildListaPalavras(theme, _palavrasGregas, 'grego'),
+          _buildListaPalavras(theme, _palavrasHebraicas, 'hebraico'),
+        ],
+      ),
     );
   }
 
@@ -163,33 +106,12 @@ class _LexiconScreenState extends State<LexiconScreen>
     String idioma,
   ) {
     if (palavras.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.translate,
-              size: 48,
-              color: theme.colorScheme.onSurface.withOpacity(0.3),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              idioma == 'grego'
-                  ? 'Nenhuma palavra grega encontrada.'
-                  : 'Nenhuma palavra hebraica encontrada.',
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.5),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'O léxico original será disponibilizado em breve.',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurface.withOpacity(0.4),
-              ),
-            ),
-          ],
-        ),
+      return EmptyState(
+        icon: Icons.translate,
+        title: 'Conteúdo não disponível',
+        message: idioma == 'grego'
+            ? 'Nenhuma palavra grega encontrada para esta referência.'
+            : 'Nenhuma palavra hebraica encontrada para esta referência.',
       );
     }
 
@@ -221,7 +143,7 @@ class _LexiconScreenState extends State<LexiconScreen>
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
-                      color: corIdioma.withOpacity(0.1),
+                      color: corIdioma.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -256,7 +178,7 @@ class _LexiconScreenState extends State<LexiconScreen>
                   ),
                   Icon(
                     Icons.chevron_right,
-                    color: theme.colorScheme.onSurface.withOpacity(0.5),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                   ),
                 ],
               ),
@@ -290,7 +212,7 @@ class _LexiconScreenState extends State<LexiconScreen>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: cor.withOpacity(0.08),
+        color: cor.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(6),
       ),
       child: Text(
@@ -356,7 +278,7 @@ class _DetalhePalavraSheet extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
                     decoration: BoxDecoration(
-                      color: corIdioma.withOpacity(0.1),
+                      color: corIdioma.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(

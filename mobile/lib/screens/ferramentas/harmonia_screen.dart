@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/empty_state.dart';
-
 class _Passagem {
   final String titulo;
   final String mateus;
@@ -140,7 +138,7 @@ class _HarmoniaScreenState extends State<HarmoniaScreen> {
           if (p.notas != null) ...[
             const SizedBox(height: 16),
             Card(
-              color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.5),
+              color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
               child: Padding(
                 padding: const EdgeInsets.all(12),
                 child: Row(

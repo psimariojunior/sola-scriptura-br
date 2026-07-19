@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../models/cronologia.dart';
+import '../../services/cronologia_service.dart';
 import '../../widgets/empty_state.dart';
-import '../../widgets/error_display.dart';
-import '../../widgets/loading_shimmer.dart';
 import '../../widgets/timeline_tile.dart';
 
 class CronologiaScreen extends StatefulWidget {
@@ -14,9 +13,8 @@ class CronologiaScreen extends StatefulWidget {
 }
 
 class _CronologiaScreenState extends State<CronologiaScreen> {
+  final CronologiaService _service = CronologiaService();
   String _eraSelecionada = 'Todas';
-  bool _carregando = true;
-  String? _erro;
   List<EventoCronologico> _eventos = [];
   List<EventoCronologico> _filtrados = [];
 
@@ -40,36 +38,12 @@ class _CronologiaScreenState extends State<CronologiaScreen> {
   @override
   void initState() {
     super.initState();
-    _carregarEventos();
-  }
-
-  Future<void> _carregarEventos() async {
-    setState(() {
-      _carregando = true;
-      _erro = null;
-    });
-    try {
-      await Future.delayed(const Duration(milliseconds: 500));
-      _eventos = _gerarEventosDemo();
-      _aplicarFiltro();
-      if (mounted) setState(() => _carregando = false);
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _erro = e.toString();
-          _carregando = false;
-        });
-      }
-    }
+    _eventos = _service.getEventos();
+    _aplicarFiltro();
   }
 
   void _aplicarFiltro() {
-    if (_eraSelecionada == 'Todas') {
-      _filtrados = List.from(_eventos);
-    } else {
-      _filtrados =
-          _eventos.where((e) => e.periodo == _eraSelecionada).toList();
-    }
+    _filtrados = _service.getEventosPorPeriodo(_eraSelecionada);
   }
 
   Color _corEra(String periodo) {
@@ -84,7 +58,6 @@ class _CronologiaScreenState extends State<CronologiaScreen> {
       ),
       body: Column(
         children: [
-          // Era filter chips
           SizedBox(
             height: 52,
             child: ListView.separated(
@@ -99,7 +72,7 @@ class _CronologiaScreenState extends State<CronologiaScreen> {
                 return ChoiceChip(
                   label: Text(era, style: const TextStyle(fontSize: 12)),
                   selected: selecionado,
-                  selectedColor: cor?.withOpacity(0.2),
+                  selectedColor: cor?.withValues(alpha: 0.2),
                   onSelected: (_) {
                     setState(() {
                       _eraSelecionada = era;
@@ -110,8 +83,6 @@ class _CronologiaScreenState extends State<CronologiaScreen> {
               },
             ),
           ),
-
-          // Timeline
           Expanded(child: _buildBody()),
         ],
       ),
@@ -119,24 +90,14 @@ class _CronologiaScreenState extends State<CronologiaScreen> {
   }
 
   Widget _buildBody() {
-    if (_carregando) {
-      return const LoadingShimmer(count: 10, height: 60);
-    }
-    if (_erro != null) {
-      return ErrorDisplay(
-        message: _erro!,
-        onRetry: _carregarEventos,
-      );
-    }
     if (_filtrados.isEmpty) {
       return const EmptyState(
         icon: Icons.timeline,
-        title: 'Nenhum evento encontrado',
+        title: 'Conteúdo não disponível',
         message: 'Selecione outra era para ver eventos.',
       );
     }
 
-    // Group events by era
     final Map<String, List<EventoCronologico>> agrupados = {};
     for (final evento in _filtrados) {
       agrupados.putIfAbsent(evento.periodo, () => []).add(evento);
@@ -148,13 +109,10 @@ class _CronologiaScreenState extends State<CronologiaScreen> {
       itemBuilder: (context, index) {
         final item = _gerarListaFlat(agrupados)[index];
         if (item is String) {
-          // Era header
           return _buildEraHeader(item);
         } else {
-          // Event tile
           final evento = item as EventoCronologico;
-          final listaEventos =
-              agrupados[evento.periodo]!;
+          final listaEventos = agrupados[evento.periodo]!;
           final isFirst = listaEventos.first == evento;
           final isLast = listaEventos.last == evento;
           return TimelineTile(
@@ -172,8 +130,8 @@ class _CronologiaScreenState extends State<CronologiaScreen> {
   List<dynamic> _gerarListaFlat(Map<String, List<EventoCronologico>> agrupados) {
     final lista = <dynamic>[];
     for (final entry in agrupados.entries) {
-      lista.add(entry.key); // era header
-      lista.addAll(entry.value); // events
+      lista.add(entry.key);
+      lista.addAll(entry.value);
     }
     return lista;
   }
@@ -186,9 +144,9 @@ class _CronologiaScreenState extends State<CronologiaScreen> {
       margin: const EdgeInsets.only(top: 16, bottom: 8),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: cor.withOpacity(0.12),
+        color: cor.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: cor.withOpacity(0.3)),
+        border: Border.all(color: cor.withValues(alpha: 0.3)),
       ),
       child: Row(
         children: [
@@ -244,7 +202,7 @@ class _CronologiaScreenState extends State<CronologiaScreen> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: cor.withOpacity(0.12),
+                      color: cor.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -291,88 +249,5 @@ class _CronologiaScreenState extends State<CronologiaScreen> {
         );
       },
     );
-  }
-
-  List<EventoCronologico> _gerarEventosDemo() {
-    return const [
-      EventoCronologico(
-        data: '~4004 a.C.',
-        evento: 'Criação do mundo',
-        periodo: 'Criação',
-        detalhes: 'Deus cria os céus, a terra e tudo que neles há em seis dias.',
-      ),
-      EventoCronologico(
-        data: '~2300 a.C.',
-        evento: 'Chamado de Abraão',
-        periodo: 'Patriarcas',
-        detalhes: 'Deus chama Abraão para sair de Ur e ir para a terra prometida.',
-      ),
-      EventoCronologico(
-        data: '~1446 a.C.',
-        evento: 'Êxodo do Egito',
-        periodo: 'Êxodo',
-        detalhes:
-            'Moisés lidera Israel para fora do Egito com mão poderosa.',
-      ),
-      EventoCronologico(
-        data: '~1406 a.C.',
-        evento: 'Conquista de Canaã',
-        periodo: 'Conquista',
-        detalhes: 'Josué lidera Israel na conquista da terra prometida.',
-      ),
-      EventoCronologico(
-        data: '~1050 a.C.',
-        evento: 'Unção de Saul como rei',
-        periodo: 'Juízes',
-        detalhes: 'Israel pede um rei e Saul é ungido por Samuel.',
-      ),
-      EventoCronologico(
-        data: '~1010 a.C.',
-        evento: 'Davi ungido rei',
-        periodo: 'Reinos',
-        detalhes: 'Davi é ungido rei de Israel, inaugurando a dinastia davídica.',
-      ),
-      EventoCronologico(
-        data: '~586 a.C.',
-        evento: 'Queda de Jerusalém',
-        periodo: 'Exílio',
-        detalhes:
-            'Babilônia destrói o templo e leva Israel ao exílio.',
-      ),
-      EventoCronologico(
-        data: '~538 a.C.',
-        evento: 'Retorno do exílio',
-        periodo: 'Retorno',
-        detalhes:
-            'Ciro, rei da Pérsia, permite o retorno e a reconstrução do templo.',
-      ),
-      EventoCronologico(
-        data: '~4 a.C.',
-        evento: 'Nascimento de Jesus',
-        periodo: 'Ministério',
-        detalhes: 'Jesus nasce em Belém, cumprindo as profecias messiânicas.',
-      ),
-      EventoCronologico(
-        data: '~30 d.C.',
-        evento: 'Crucificação e Ressurreição',
-        periodo: 'Ministério',
-        detalhes:
-            'Jesus morre na cruz e ressuscita ao terceiro dia.',
-      ),
-      EventoCronologico(
-        data: '~33 d.C.',
-        evento: 'Pentecostes',
-        periodo: 'Igreja Primitiva',
-        detalhes:
-            'O Espírito Santo descende sobre os discípulos, marcando o início da igreja.',
-      ),
-      EventoCronologico(
-        data: '~95 d.C.',
-        evento: 'Apocalipse de João',
-        periodo: 'Apocalipse',
-        detalhes:
-            'João recebe a visão apocalíptica na ilha de Patmos.',
-      ),
-    ];
   }
 }

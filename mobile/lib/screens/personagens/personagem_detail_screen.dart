@@ -1,12 +1,38 @@
 import 'package:flutter/material.dart';
 
 import '../../models/personagem.dart';
+import '../../services/personagens_service.dart';
 import '../../widgets/character_avatar.dart';
 
-class PersonagemDetailScreen extends StatelessWidget {
+class PersonagemDetailScreen extends StatefulWidget {
   final Personagem personagem;
 
   const PersonagemDetailScreen({super.key, required this.personagem});
+
+  factory PersonagemDetailScreen.fromSlug({Key? key, required String slug}) {
+    final service = PersonagensService();
+    final personagem = service.getPersonagem(slug) ??
+        Personagem(
+          slug: slug,
+          nome: 'Personagem não encontrado',
+          resumo: 'Personagem não encontrado.',
+          testamento: 'AT',
+        );
+    return PersonagemDetailScreen(key: key, personagem: personagem);
+  }
+
+  @override
+  State<PersonagemDetailScreen> createState() => _PersonagemDetailScreenState();
+}
+
+class _PersonagemDetailScreenState extends State<PersonagemDetailScreen> {
+  late Personagem _personagem;
+
+  @override
+  void initState() {
+    super.initState();
+    _personagem = widget.personagem;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,25 +40,24 @@ class PersonagemDetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(personagem.nome),
+        title: Text(_personagem.nome),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header with avatar + name
             Center(
               child: Column(
                 children: [
                   CharacterAvatar(
-                    initials: _iniciais(personagem.nome),
-                    testamento: personagem.testamento,
+                    initials: _iniciais(_personagem.nome),
+                    testamento: _personagem.testamento,
                     size: 80,
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    personagem.nome,
+                    _personagem.nome,
                     style: theme.textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -53,18 +78,18 @@ class PersonagemDetailScreen extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     decoration: BoxDecoration(
-                      color: personagem.testamento == 'AT'
-                          ? Colors.green.withOpacity(0.12)
-                          : Colors.blue.withOpacity(0.12),
+                      color: _personagem.testamento == 'AT'
+                          ? Colors.green.withValues(alpha: 0.12)
+                          : Colors.blue.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Text(
-                      personagem.testamento == 'AT'
+                      _personagem.testamento == 'AT'
                           ? 'Antigo Testamento'
                           : 'Novo Testamento',
                       style: TextStyle(
                         fontSize: 12,
-                        color: personagem.testamento == 'AT'
+                        color: _personagem.testamento == 'AT'
                             ? Colors.green[700]
                             : Colors.blue[700],
                         fontWeight: FontWeight.w600,
@@ -76,41 +101,32 @@ class PersonagemDetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Meaning
             if (_significado() != null) ...[
               _buildSecao(context, 'Significado', _significado()!),
               const SizedBox(height: 16),
             ],
 
-            // Summary
-            _buildSecao(context, 'Resumo', personagem.resumo),
+            _buildSecao(context, 'Resumo', _personagem.resumo),
             const SizedBox(height: 16),
 
-            // Timeline
             _buildSecaoTimeline(context),
             const SizedBox(height: 16),
 
-            // Family tree
             _buildSecaoArvore(context),
             const SizedBox(height: 16),
 
-            // Key events
             _buildSecaoEventos(context),
             const SizedBox(height: 16),
 
-            // Locations
             _buildSecaoLocais(context),
             const SizedBox(height: 16),
 
-            // Related doctrines
             _buildSecaoDoutrinas(context),
             const SizedBox(height: 16),
 
-            // Cross-references
             _buildSecaoReferencias(context),
             const SizedBox(height: 16),
 
-            // Related characters
             _buildSecaoRelacionados(context),
             const SizedBox(height: 32),
           ],
@@ -129,6 +145,7 @@ class PersonagemDetailScreen extends StatelessWidget {
 
   String? _scriptOriginal() {
     final Map<String, String> scripts = {
+      'jesus': 'Ἰησοῦς (Iesous)',
       'abraao': 'אַבְרָהָם (Avraham)',
       'moises': 'מֹשֶׁה (Moshe)',
       'davi': 'דָּוִד (Dawid)',
@@ -137,12 +154,14 @@ class PersonagemDetailScreen extends StatelessWidget {
       'paulo': 'Παῦλος (Paulos)',
       'maria-mae': 'מִרְיָם (Miryam)',
       'joao-batista': 'יוחנן (Yochanan)',
+      'joao-apocalipse': 'Ἰωάννης (Ioannes)',
     };
-    return scripts[personagem.slug];
+    return scripts[_personagem.slug];
   }
 
   String? _significado() {
     final Map<String, String> significados = {
+      'jesus': 'Deus é salvação',
       'abraao': 'Pai de multidões',
       'moises': 'Tirado das águas',
       'davi': 'Amado',
@@ -151,8 +170,9 @@ class PersonagemDetailScreen extends StatelessWidget {
       'paulo': 'Pequeno, humilde',
       'maria-mae': 'Amada, senhora',
       'joao-batista': 'Deus é misericordioso',
+      'joao-apocalipse': 'Deus é gracioso',
     };
-    return significados[personagem.slug];
+    return significados[_personagem.slug];
   }
 
   Widget _buildSecao(BuildContext context, String titulo, String conteudo) {
@@ -362,7 +382,7 @@ class PersonagemDetailScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        ...personagem.referencias.map((ref) {
+        ..._personagem.referencias.map((ref) {
           return Card(
             margin: const EdgeInsets.only(bottom: 6),
             child: ListTile(
@@ -401,12 +421,25 @@ class PersonagemDetailScreen extends StatelessWidget {
             child: ListTile(
               leading: CharacterAvatar(
                 initials: _iniciais(nome),
-                testamento: personagem.testamento,
+                testamento: _personagem.testamento,
                 size: 36,
               ),
               title: Text(nome),
               trailing: const Icon(Icons.chevron_right),
-              onTap: () {},
+              onTap: () {
+                final service = PersonagensService();
+                final p = service.getPersonagem(
+                  nome.toLowerCase().replaceAll(' ', '-'),
+                );
+                if (p != null) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => PersonagemDetailScreen(personagem: p),
+                    ),
+                  );
+                }
+              },
             ),
           );
         }),
@@ -416,64 +449,98 @@ class PersonagemDetailScreen extends StatelessWidget {
 
   List<String> _obterEventos() {
     final Map<String, List<String>> eventos = {
+      'jesus': [
+        'Nascimento em Belém (~4 a.C.)',
+        'Batismo no Jordão (~27 d.C.)',
+        'Início do Ministério',
+        'Crucificação e Ressurreição (~30 d.C.)',
+        'Ascensão ao Céu',
+        'Derramamento do Espírito Santo em Pentecostes',
+      ],
       'abraao': [
         'Chamado por Deus (Gn 12)',
         'Aliança com Deus (Gn 15)',
+        'Circuncisão (Gn 17)',
         'Sacrifício de Isaac (Gn 22)',
+        'Morte e sepultamento em Hebrom (Gn 25)',
       ],
       'moises': [
         'Nascimento e salvação nas águas (Êx 2)',
         'Sarça ardente (Êx 3)',
+        'Dez pragas e Páscoa (Êx 7-12)',
         'Êxodo do Egito (Êx 14)',
         'Entrega da Lei no Sinai (Êx 20)',
+        'Moisés no Monte Nebo (Dt 34)',
       ],
       'davi': [
         'Ungido por Samuel (1 Sm 16)',
         'Vitória sobre Golias (1 Sm 17)',
-        'Rei de Israel (2 Sm 5)',
+        'Rei de Judá e depois de Israel (2 Sm 5)',
         'Pecado e arrependimento (2 Sm 12)',
+        'Preparação para a construção do Templo (1 Cr 22)',
       ],
       'pedro': [
         'Chamado por Jesus (Mt 4)',
         'Confissão em Cesareia (Mt 16)',
         'Negação e restauração (Jo 21)',
-        'Pentecostes (At 2)',
+        'Pentecostes e início da Igreja (At 2)',
+        'Conferência de Jerusalém (At 15)',
       ],
       'paulo': [
         'Conversão no caminho de Damasco (At 9)',
         'Primeira viagem missionária (At 13)',
-        'Cartas aos churches',
-        'Prisão e apelação a César (At 25)',
+        'Conferência de Jerusalém (At 15)',
+        'Viagens missionárias pela Ásia e Europa (At 16-21)',
+        'Prisão em Roma e martírio (~67 d.C.)',
       ],
     };
-    return eventos[personagem.slug] ?? ['Vida dedicada a Deus'];
+    return eventos[_personagem.slug] ?? ['Vida dedicada a Deus'];
   }
 
   Map<String, String> _obterFamilia() {
     final Map<String, Map<String, String>> familias = {
+      'jesus': {
+        'Mãe': 'Maria',
+        'Pai (adotivo)': 'José',
+        'Irmãos': 'Tiago, José, Simão, Judas',
+      },
       'abraao': {
         'Pai': 'Térate',
         'Esposa': 'Sara',
         'Filho': 'Isaque',
+        'Neto': 'Jacó',
       },
       'moises': {
-        'Irmã': 'Miriam',
+        'Irmã': 'Miriã',
         'Irmão': 'Aarão',
         'Esposa': 'Zípora',
+        'Filhos': 'Gerson e Eliézer',
       },
       'davi': {
-        'Pai': 'Jesse',
+        'Pai': 'Jessé',
+        'Esposa': 'Mical, Abigail, Bate-Seba',
         'Filho': 'Salomão',
       },
       'pedro': {
+        'Irmão': 'André',
         'Esposa': 'Citada em 1 Co 9:5',
       },
+      'paulo': {
+        'Mestre': 'Gamaliel',
+        'Companheiro': 'Barnabé',
+      },
     };
-    return familias[personagem.slug] ?? {};
+    return familias[_personagem.slug] ?? {};
   }
 
   List<String> _obterEventosPrincipais() {
     final Map<String, List<String>> eventos = {
+      'jesus': [
+        'Pregação do Reino',
+        'Cura de enfermos e milagres',
+        'Ensino das parábolas',
+        'Instituição da Ceia do Senhor',
+      ],
       'abraao': [
         'Deixou Ur dos caldeus',
         'Separou-se de Ló',
@@ -482,7 +549,7 @@ class PersonagemDetailScreen extends StatelessWidget {
       ],
       'moises': [
         'Criado na corte do Faraó',
-        'Matou um egípcio',
+        'Matou um egípcio e fugiu',
         'Falou com Deus na sarça',
         'Partiu o mar vermelho',
         'Recebeu os Dez Mandamentos',
@@ -494,39 +561,48 @@ class PersonagemDetailScreen extends StatelessWidget {
         'Rei unificador de Israel',
       ],
     };
-    return eventos[personagem.slug] ?? [];
+    return eventos[_personagem.slug] ?? [];
   }
 
   List<String> _obterLocais() {
     final Map<String, List<String>> locais = {
-      'abraao': ['Ur', 'Canaã', 'Hebron', 'Monte Moria'],
+      'jesus': ['Belém', 'Nazaré', 'Galileia', 'Jerusalém', 'Getsêmani', 'Gólgota'],
+      'abraao': ['Ur', 'Canaã', 'Hebrom', 'Monte Moriá'],
       'moises': ['Egito', 'Monte Sinai', 'Deserto', 'Monte Nebo'],
-      'davi': ['Belém', 'Jerusalém', 'Hebroém'],
+      'davi': ['Belém', 'Jerusalém', 'Hebrom'],
       'pedro': ['Galileia', 'Jerusalém', 'Antioquia', 'Roma'],
-      'paulo': ['Tarso', 'Damasco', 'Corinto', 'Efeso', 'Roma'],
+      'paulo': ['Tarso', 'Damasco', 'Corinto', 'Éfeso', 'Roma'],
     };
-    return locais[personagem.slug] ?? [];
+    return locais[_personagem.slug] ?? [];
   }
 
   List<String> _obterDoutrinas() {
     final Map<String, List<String>> doutrinas = {
+      'jesus': [
+        'Cristologia',
+        'Encarnação',
+        'Expiação',
+        'Ressurreição',
+        'Segunda Vinda',
+      ],
       'abraao': ['Aliança', 'Justificação pela fé', 'Promessa messiânica'],
       'moises': ['Lei', 'Redenção', 'Tipologia de Cristo'],
       'davi': ['Reinado messiânico', 'Aliança davídica', 'Arrependimento'],
       'pedro': ['Igreja', 'Pentecostes', 'Missões'],
       'paulo': ['Justificação', 'Graça', 'Mistério do evangelho'],
     };
-    return doutrinas[personagem.slug] ?? [];
+    return doutrinas[_personagem.slug] ?? [];
   }
 
   List<String> _obterRelacionados() {
     final Map<String, List<String>> rels = {
+      'jesus': ['Pedro', 'João (Apóstolo)', 'Moisés', 'Abraão', 'Davi'],
       'abraao': ['Isaque', 'Jacó', 'Sara', 'Lot'],
-      'moises': ['Josué', 'Aarão', 'Miriam', 'Faraó'],
-      'davi': ['Salomão', 'Samuel', ' Saul', 'Natã'],
-      'pedro': ['Paulo', 'João', 'Tiago', 'André'],
+      'moises': ['Josué', 'Aarão', 'Miriã', 'Faraó'],
+      'davi': ['Salomão', 'Samuel', 'Saul', 'Natã'],
+      'pedro': ['Paulo', 'João (Apóstolo)', 'Tiago', 'André'],
       'paulo': ['Barnabé', 'Timóteo', 'Silas', 'Pedro'],
     };
-    return rels[personagem.slug] ?? [];
+    return rels[_personagem.slug] ?? [];
   }
 }

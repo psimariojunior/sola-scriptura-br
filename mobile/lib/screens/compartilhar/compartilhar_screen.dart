@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../widgets/empty_state.dart';
-
 class CompartilharScreen extends StatefulWidget {
   const CompartilharScreen({super.key});
 
@@ -75,7 +73,7 @@ class _CompartilharScreenState extends State<CompartilharScreen> {
                       gradient: LinearGradient(
                         colors: [
                           Theme.of(context).colorScheme.primaryContainer,
-                          Theme.of(context).colorScheme.primaryContainer.withOpacity(0.5),
+                          Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.5),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(12),

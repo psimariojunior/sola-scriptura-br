@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   backend:
     build:
@@ -9,6 +7,12 @@ services:
     restart: unless-stopped
     ports:
       - "4000:4000"
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 256M
     environment:
       - NODE_ENV=production
       - PORT=4000

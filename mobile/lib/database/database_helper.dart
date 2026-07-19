@@ -17,12 +17,14 @@ class DatabaseHelper {
     return _database!;
   }
 
+  static const int _dbVersion = 3;
+
   Future<Database> _initDatabase() async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, 'sola_scriptura.db');
     return await openDatabase(
       path,
-      version: 1,
+      version: _dbVersion,
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );
@@ -70,6 +72,10 @@ class DatabaseHelper {
       CREATE TABLE favoritos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         versiculo_ref TEXT NOT NULL UNIQUE,
+        livro TEXT,
+        capitulo INTEGER,
+        versiculo INTEGER,
+        traducao TEXT,
         nota TEXT,
         criado_em INTEGER NOT NULL,
         sincronizado INTEGER NOT NULL DEFAULT 0
@@ -80,6 +86,10 @@ class DatabaseHelper {
       CREATE TABLE notas (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         versiculo_ref TEXT NOT NULL UNIQUE,
+        livro TEXT,
+        capitulo INTEGER,
+        versiculo INTEGER,
+        traducao TEXT,
         conteudo TEXT NOT NULL,
         criado_em INTEGER NOT NULL,
         atualizado_em INTEGER NOT NULL,
@@ -111,10 +121,147 @@ class DatabaseHelper {
         tentativas INTEGER NOT NULL DEFAULT 0
       )
     ''');
+
+    await db.execute('''
+      CREATE TABLE devocionais_lidos (
+        dia INTEGER NOT NULL PRIMARY KEY,
+        lido_em INTEGER NOT NULL
+      )
+    ''');
+
+    await _createHighlightsTable(db);
+    await _createBookmarksTable(db);
+    await _createReadingHistoryTable(db);
+
+    await _createV2Tables(db);
+  }
+
+  Future<void> _createV2Tables(Database db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS highlights_v2 (
+        id TEXT PRIMARY KEY,
+        livro TEXT NOT NULL,
+        capitulo INTEGER NOT NULL,
+        versiculo INTEGER NOT NULL,
+        cor TEXT NOT NULL,
+        criadoEm TEXT NOT NULL,
+        traducao TEXT NOT NULL
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS notes_v2 (
+        id TEXT PRIMARY KEY,
+        livro TEXT NOT NULL,
+        capitulo INTEGER NOT NULL,
+        versiculo INTEGER NOT NULL,
+        texto TEXT NOT NULL,
+        criadoEm TEXT NOT NULL,
+        atualizadoEm TEXT NOT NULL,
+        traducao TEXT NOT NULL
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS favorites_v2 (
+        id TEXT PRIMARY KEY,
+        livro TEXT NOT NULL,
+        capitulo INTEGER NOT NULL,
+        versiculo INTEGER NOT NULL,
+        criadoEm TEXT NOT NULL,
+        traducao TEXT NOT NULL
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS reading_history_v2 (
+        livro TEXT NOT NULL,
+        capitulo INTEGER NOT NULL,
+        ultimaLeitura TEXT NOT NULL,
+        PRIMARY KEY (livro, capitulo)
+      )
+    ''');
   }
 
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    // Future migrations go here
+    if (oldVersion < 2) {
+      await _ensureColumn(db, 'favoritos', 'livro', 'TEXT');
+      await _ensureColumn(db, 'favoritos', 'capitulo', 'INTEGER');
+      await _ensureColumn(db, 'favoritos', 'versiculo', 'INTEGER');
+      await _ensureColumn(db, 'favoritos', 'traducao', 'TEXT');
+
+      await _ensureColumn(db, 'notas', 'livro', 'TEXT');
+      await _ensureColumn(db, 'notas', 'capitulo', 'INTEGER');
+      await _ensureColumn(db, 'notas', 'versiculo', 'INTEGER');
+      await _ensureColumn(db, 'notas', 'traducao', 'TEXT');
+
+      await _createHighlightsTable(db);
+      await _createBookmarksTable(db);
+      await _createReadingHistoryTable(db);
+      await _createDevocionaisLidosTable(db);
+    }
+    if (oldVersion < 3) {
+      await _createV2Tables(db);
+    }
+  }
+
+  Future<void> _createDevocionaisLidosTable(Database db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS devocionais_lidos (
+        dia INTEGER NOT NULL PRIMARY KEY,
+        lido_em INTEGER NOT NULL
+      )
+    ''');
+  }
+
+  Future<void> _createHighlightsTable(Database db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS highlights (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        livro TEXT NOT NULL,
+        capitulo INTEGER NOT NULL,
+        versiculo INTEGER NOT NULL,
+        cor TEXT NOT NULL,
+        created_at INTEGER NOT NULL,
+        traducao TEXT NOT NULL,
+        UNIQUE(livro, capitulo, versiculo, traducao)
+      )
+    ''');
+  }
+
+  Future<void> _createBookmarksTable(Database db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS bookmarks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        livro TEXT NOT NULL,
+        capitulo INTEGER NOT NULL,
+        versiculo INTEGER NOT NULL,
+        nota TEXT,
+        created_at INTEGER NOT NULL
+      )
+    ''');
+  }
+
+  Future<void> _createReadingHistoryTable(Database db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS reading_history (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        livro TEXT NOT NULL,
+        capitulo INTEGER NOT NULL,
+        last_read_at INTEGER NOT NULL,
+        UNIQUE(livro, capitulo)
+      )
+    ''');
+  }
+
+  Future<void> _ensureColumn(
+    Database db,
+    String table,
+    String column,
+    String type,
+  ) async {
+    final info = await db.rawQuery('PRAGMA table_info($table)');
+    final hasColumn = info.any((row) => row['name'] == column);
+    if (!hasColumn) {
+      await db.execute('ALTER TABLE $table ADD COLUMN $column $type');
+    }
   }
 
   Future<int> insert(String table, Map<String, dynamic> data) async {
@@ -170,6 +317,9 @@ class DatabaseHelper {
     await db.delete('livros');
     await db.delete('comentarios');
     await db.delete('historico_pesquisa');
+    await db.delete('highlights');
+    await db.delete('bookmarks');
+    await db.delete('reading_history');
   }
 
   Future<void> insertBatch(String table, List<Map<String, dynamic>> items) async {

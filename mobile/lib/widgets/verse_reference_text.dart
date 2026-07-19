@@ -50,7 +50,7 @@ class VerseReferenceText extends StatelessWidget {
               color: Theme.of(context).colorScheme.primary,
               fontWeight: FontWeight.w600,
               decoration: TextDecoration.underline,
-              decorationColor: Theme.of(context).colorScheme.primary.withOpacity(0.4),
+              decorationColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.4),
             ),
           ),
         ),

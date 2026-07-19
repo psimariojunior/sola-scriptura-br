@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, createContext, useContext, type ReactNode } from 'react';
 
-export type TemaNome = 'light' | 'escuro' | 'sepia' | 'noturno';
+export type TemaNome = 'light' | 'dim' | 'escuro' | 'sepia' | 'noturno';
 
 export interface TemaConfig {
   nome: TemaNome;
@@ -15,6 +15,11 @@ const TEMAS: Record<TemaNome, TemaConfig> = {
     nome: 'light',
     label: 'Claro',
     icone: '☀️',
+  },
+  dim: {
+    nome: 'dim',
+    label: 'Meio-escuro',
+    icone: '🌆',
   },
   escuro: {
     nome: 'escuro',
@@ -68,9 +73,13 @@ export function TemaProvider({ children }: { children: ReactNode }) {
     setTemaState(novo);
     localStorage.setItem(STORAGE_KEY, novo);
     const root = document.documentElement;
-    root.classList.remove('dark', 'sepia', 'noturno');
+    root.classList.remove('dark', 'dim', 'sepia', 'noturno');
     if (novo === 'escuro' || novo === 'noturno') {
       root.classList.add('dark');
+    }
+    if (novo === 'dim') {
+      root.classList.add('dark');
+      root.classList.add('dim');
     }
     if (novo === 'noturno') {
       root.classList.add('noturno');

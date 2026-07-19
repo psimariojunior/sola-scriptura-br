@@ -14,6 +14,7 @@ class AuthService {
 
   Usuario? get currentUser => _currentUser;
   bool get isAuthenticated => _client.accessToken != null;
+  String? get currentToken => _client.accessToken;
 
   Future<void> init() async {
     await _client.loadTokens();
@@ -70,7 +71,7 @@ class AuthService {
 
   Future<Usuario?> _fetchCurrentUser() async {
     try {
-      final response = await _client.get(ApiConfig.endpoint('auth_me'));
+      final response = await _client.get(ApiConfig.endpoint('usuario_perfil'));
       final rawData = response.data;
       final data = _unwrap(rawData);
       if (data is Map<String, dynamic>) {

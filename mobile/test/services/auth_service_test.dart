@@ -24,7 +24,7 @@ void main() {
       });
 
       test('deve iniciar com token nulo', () {
-        expect(authService.currentToken, isNull);
+        expect(apiClient.accessToken, isNull);
       });
 
       test('deve iniciar com usuario nulo', () {
@@ -34,8 +34,6 @@ void main() {
 
     group('login', () {
       test('deve retornar null quando resposta nao e Map', () async {
-        // Mock do client retornaria tipo invalido
-        // Teste verifica que o metodo nao quebra
         expect(authService.isAuthenticated, isFalse);
       });
     });
@@ -43,7 +41,7 @@ void main() {
     group('register', () {
       test('deve iniciar sem usuario apos inicializacao', () async {
         expect(authService.currentUser, isNull);
-        expect(authService.currentToken, isNull);
+        expect(apiClient.accessToken, isNull);
       });
     });
 
@@ -52,14 +50,14 @@ void main() {
         await authService.logout();
 
         expect(authService.isAuthenticated, isFalse);
-        expect(authService.currentToken, isNull);
+        expect(apiClient.accessToken, isNull);
         expect(authService.currentUser, isNull);
       });
     });
 
     group('setAuthToken', () {
-      test('deve definir header de autorizacao', () {
-        apiClient.setAuthToken('meu-token');
+      test('deve definir header de autorizacao', () async {
+        await apiClient.setTokens(accessToken: 'meu-token');
 
         expect(
           apiClient.dio.options.headers['Authorization'],
@@ -67,9 +65,9 @@ void main() {
         );
       });
 
-      test('deve remover header de autorizacao quando token e nulo', () {
-        apiClient.setAuthToken('meu-token');
-        apiClient.setAuthToken(null);
+      test('deve remover header de autorizacao quando token e nulo', () async {
+        await apiClient.setTokens(accessToken: 'meu-token');
+        await apiClient.clearTokens();
 
         expect(
           apiClient.dio.options.headers.containsKey('Authorization'),
@@ -79,10 +77,9 @@ void main() {
     });
 
     group('restoreSession', () {
-      test('deve retornar false quando token e invalido', () async {
-        final result = await authService.restoreSession('token-invalido');
+      test('deve nao autenticar quando token e invalido', () async {
+        await authService.restoreSession();
 
-        expect(result, isFalse);
         expect(authService.isAuthenticated, isFalse);
       });
     });

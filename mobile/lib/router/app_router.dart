@@ -8,7 +8,6 @@ import '../screens/auth/login_screen.dart';
 import '../screens/biblia/biblia_screen.dart';
 import '../screens/biblia/commentary_screen.dart';
 import '../screens/biblia/cross_references_screen.dart';
-import '../screens/biblia/lexicon_screen.dart';
 import '../screens/biblia/translation_selector_screen.dart';
 import '../screens/biblia/verse_detail_screen.dart';
 import '../screens/compartilhar/compartilhar_screen.dart';
@@ -16,11 +15,12 @@ import '../screens/conta_screen.dart';
 import '../screens/cronologia/cronologia_screen.dart';
 import '../screens/estudos/estudo_detail_screen.dart';
 import '../screens/estudos/estudos_screen.dart';
+import '../screens/estudos/estudo_detail_screen.dart';
 import '../screens/estudos/manuais_screen.dart';
 import '../screens/extras/devocional_screen.dart';
 import '../screens/extras/flashcards_screen.dart';
 import '../screens/extras/quiz_screen.dart';
-import '../screens/favoritos_screen.dart';
+import '../screens/favorites_screen.dart';
 import '../screens/ferramentas/comparar_screen.dart';
 import '../screens/ferramentas/concordancia_screen.dart';
 import '../screens/ferramentas/critica_textual_screen.dart';
@@ -29,13 +29,15 @@ import '../screens/ferramentas/harmonia_screen.dart';
 import '../screens/ferramentas/introducoes_screen.dart';
 import '../screens/ferramentas/milagres_screen.dart';
 import '../screens/ferramentas/parabolas_screen.dart';
+import '../screens/highlights_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/ia/ia_screen.dart';
 import '../screens/idiomas/dicionario_screen.dart';
 import '../screens/idiomas/idiomas_screen.dart';
 import '../screens/idiomas/palavra_detail_screen.dart';
-import '../screens/notas_screen.dart';
+import '../screens/notes_screen.dart';
 import '../screens/personagens/personagem_detail_screen.dart';
+import '../screens/bookmarks_screen.dart';
 import '../screens/personagens/personagens_screen.dart';
 import '../screens/pesquisa/pesquisa_screen.dart';
 import '../screens/planos/planos_screen.dart';
@@ -103,19 +105,19 @@ class AppRouter {
       // Versículo
       GoRoute(
         path: '/versiculo/:ref',
-        builder: (_, state) => VerseDetailScreen(
+        builder: (_, state) => VerseDetailScreen.fromReferencia(
           referencia: state.pathParameters['ref'] ?? '',
         ),
       ),
       GoRoute(
         path: '/comentarios/:ref',
-        builder: (_, state) => CommentaryScreen(
+        builder: (_, state) => CommentaryScreen.fromReferencia(
           referencia: state.pathParameters['ref'] ?? '',
         ),
       ),
       GoRoute(
         path: '/referencias-cruzadas/:ref',
-        builder: (_, state) => CrossReferencesScreen(
+        builder: (_, state) => CrossReferencesScreen.fromReferencia(
           referencia: state.pathParameters['ref'] ?? '',
         ),
       ),
@@ -127,7 +129,7 @@ class AppRouter {
       GoRoute(path: '/idiomas', builder: (_, __) => const IdiomasScreen()),
       GoRoute(
         path: '/idiomas/:strong',
-        builder: (_, state) => PalavraDetailScreen(
+        builder: (_, state) => PalavraDetailScreen.fromStrong(
           strong: state.pathParameters['strong'] ?? '',
         ),
       ),
@@ -137,13 +139,13 @@ class AppRouter {
       ),
 
       // IA
-      GoRoute(path: '/ia', builder: (_, __) => const IaScreen()),
+      GoRoute(path: '/ia', builder: (_, __) => IaScreen.defaultInstance()),
 
       // Estudos
       GoRoute(path: '/estudos', builder: (_, __) => const EstudosScreen()),
       GoRoute(
         path: '/estudos/:slug',
-        builder: (_, state) => EstudoDetailScreen(
+        builder: (_, state) => EstudoDetailScreen.fromSlug(
           slug: state.pathParameters['slug'] ?? '',
         ),
       ),
@@ -153,13 +155,13 @@ class AppRouter {
       GoRoute(path: '/teologia', builder: (_, __) => const TeologiaScreen()),
       GoRoute(
         path: '/teologia/:categoria',
-        builder: (_, state) => CategoriaScreen(
-          categoria: state.pathParameters['categoria'] ?? '',
+        builder: (_, state) => CategoriaScreen.fromSlug(
+          slug: state.pathParameters['categoria'] ?? '',
         ),
       ),
       GoRoute(
         path: '/teologia/:categoria/:id',
-        builder: (_, state) => DoutrinaScreen(
+        builder: (_, state) => DoutrinaScreen.fromId(
           id: state.pathParameters['id'] ?? '',
         ),
       ),
@@ -171,7 +173,7 @@ class AppRouter {
       ),
       GoRoute(
         path: '/personagens/:slug',
-        builder: (_, state) => PersonagemDetailScreen(
+        builder: (_, state) => PersonagemDetailScreen.fromSlug(
           slug: state.pathParameters['slug'] ?? '',
         ),
       ),
@@ -227,8 +229,15 @@ class AppRouter {
         builder: (_, __) => const DevocionalScreen(),
       ),
       GoRoute(
+        path: '/devocional/:dia',
+        builder: (_, state) {
+          final dia = int.tryParse(state.pathParameters['dia'] ?? '');
+          return DevocionalScreen(diaInicial: dia);
+        },
+      ),
+      GoRoute(
         path: '/planos',
-        builder: (_, __) => const PlanosScreen(),
+        builder: (_, __) => const PlanosLeituraScreen(),
       ),
       GoRoute(
         path: '/compartilhar',
@@ -237,8 +246,16 @@ class AppRouter {
 
       // Conta
       GoRoute(path: '/conta', builder: (_, __) => const ContaScreen()),
-      GoRoute(path: '/favoritos', builder: (_, __) => const FavoritosScreen()),
-      GoRoute(path: '/notas', builder: (_, __) => const NotasScreen()),
+      GoRoute(path: '/favoritos', builder: (_, __) => const FavoritesScreen()),
+      GoRoute(path: '/notas', builder: (_, __) => const NotesScreen()),
+      GoRoute(
+        path: '/destaques',
+        builder: (_, __) => const HighlightsScreen(),
+      ),
+      GoRoute(
+        path: '/marcadores',
+        builder: (_, __) => const BookmarksScreen(),
+      ),
     ],
     errorBuilder: (_, state) => Scaffold(
       body: Center(child: Text('Página não encontrada: ${state.error}')),

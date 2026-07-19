@@ -51,6 +51,7 @@ const PainelQualidadeAudio = dynamic(() => import('@/components/PainelQualidadeA
 const ShareVerseModal = dynamic(() => import('@/components/Biblia/ShareVerseModal').then(m => ({ default: m.ShareVerseModal })), { ssr: false });
 const SettingsPanel = dynamic(() => import('@/components/Biblia/SettingsPanel').then(m => ({ default: m.SettingsPanel })), { ssr: false });
 const PainelEstudosCapitulo = lazy(() => import('@/components/Biblia/PainelEstudosCapitulo'));
+const InterlinearView = dynamic(() => import('@/components/InterlinearView').then(m => ({ default: m.InterlinearView })), { ssr: false });
 
 const TRAD_IDS = TRAD_IDS_IMPORT;
 const labelMap = labelMapImport;
@@ -183,6 +184,7 @@ export default function BibliaPage() {
   const [exportOpen, setExportOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
   const [estudoCapituloAberto, setEstudoCapituloAberto] = useState(false);
+  const [showInterlinear, setShowInterlinear] = useState(false);
   const NarrationPanel = lazy(() => import('@/components/Biblia/NarrationPanel').then(m => ({ default: m.NarrationPanel })));
 
   const livro = TODOS_LIVROS[livroIdx];
@@ -467,6 +469,21 @@ const toggleTrad = (id: string) => {
 
                 <div className="hidden sm:block w-px h-6 bg-[var(--border)]/60" />
 
+                <button
+                  onClick={() => setShowInterlinear(!showInterlinear)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                    showInterlinear
+                      ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20'
+                      : 'bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20'
+                  }`}
+                  title="Mostrar texto original hebraico/grego"
+                >
+                  <span className="font-hebrew" style={{ fontSize: '11px' }}>א</span>
+                  <span className="hidden sm:inline">Interlinear</span>
+                </button>
+
+                <div className="hidden sm:block w-px h-6 bg-[var(--border)]/60" />
+
                 <TranslationDropdown
                   open={tradOpen}
                   onToggle={() => { setTradOpen(!tradOpen); setToolsOpen(false); }}
@@ -601,6 +618,22 @@ const toggleTrad = (id: string) => {
                         totalVersiculos={data[0]?.versiculos?.length ?? 0}
                       />
 
+                      {showInterlinear && data[0] && (
+                        <div className="mb-8">
+                          <div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/40">
+                            <span className="font-hebrew text-lg text-[var(--brand-default)]">א</span>
+                            <span className="text-sm font-semibold text-[var(--content-primary)]">Vista Interlinear</span>
+                            <span className="text-xs text-[var(--content-muted)]">Texto original hebraico/grego</span>
+                          </div>
+                          <InterlinearView
+                            versiculos={data[0].versiculos}
+                            livro={livro.abreviacao}
+                            capitulo={capituloIdx + 1}
+                            traducao={data[0].traducao}
+                          />
+                        </div>
+                      )}
+
                       {(modoLeitura === 'foco' || modoLeitura === 'estudo') && data.map((item) => (
                         <div key={item.traducao} className="mb-6">
                           {selectedTrads.length > 1 && (
@@ -614,6 +647,7 @@ const toggleTrad = (id: string) => {
                             {item.versiculos.map((v) => {
                               const isSelected = versiculoSelecionado?.versiculo === v.numero && versiculoSelecionado?.traducao === item.traducao;
                               const isPlaying = audio.isVersePlaying(v.numero);
+                              const isCurrentAudioVerse = capituloAudio.state.isPlaying && capituloAudio.state.currentVerseIndex === v.numero - 1;
                               const verseKey = `${livro.abreviacao}:${capituloIdx + 1}:${v.numero}:${item.traducao}`;
                               const fav = isFavorito(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao);
                               const marcaMarcador = getMarcador(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao);
@@ -651,6 +685,7 @@ const toggleTrad = (id: string) => {
                                   showTranslationLabel={selectedTrads.length > 1}
                                   tradLabel={labelMap[item.traducao]}
                                   tradBadgeColor={tradBadgeColors[item.traducao]}
+                                  isCurrentAudioVerse={isCurrentAudioVerse}
                                 />
                               );
                             })}

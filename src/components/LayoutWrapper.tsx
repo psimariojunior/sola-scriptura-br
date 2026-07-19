@@ -14,6 +14,7 @@ import { trackPageView } from '@/lib/analytics';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { registerServiceWorker } from '@/lib/offline';
 import { authService } from '@/lib/auth';
+import { NotificationSetup } from '@/components/NotificationSetup';
 import '@/lib/i18n';
 
 const MobilePerformanceMonitor = lazy(() => import('@/components/MobilePerformanceMonitor'));
@@ -127,6 +128,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
             <EstudosProvider>
               <TopProgressBar />
               <Toaster />
+              <NotificationSetup />
               {children}
               <BackToTop />
               <Suspense fallback={null}>

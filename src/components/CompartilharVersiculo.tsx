@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Copy, Check, Share2, ExternalLink } from 'lucide-react';
+import { Copy, Check, Share2, ExternalLink, Image as ImageIcon } from 'lucide-react';
 import { useToast } from '@/hooks/useToast';
+import { ShareVerseImageModal } from './ShareVerseImageModal';
+import type { ShareVerseImageData } from './ShareVerseImageModal';
 
 interface CompartilharVersiculoProps {
   livro: string;
@@ -18,6 +20,7 @@ const formatarReferencia = (livro: string, cap: number, ver: number) =>
 export function CompartilharVersiculo({ livro, capítulo, versículo, texto }: CompartilharVersiculoProps) {
   const [copiado, setCopiado] = useState(false);
   const [aberto, setAberto] = useState(false);
+  const [imagemAberta, setImagemAberta] = useState(false);
   const { toast } = useToast();
 
   const referência = formatarReferencia(livro, capítulo, versículo);
@@ -57,6 +60,14 @@ export function CompartilharVersiculo({ livro, capítulo, versículo, texto }: C
     window.open(url, '_blank');
   };
 
+  const verseData: ShareVerseImageData = {
+    livroNome: livro,
+    capitulo: capítulo,
+    versiculo: versículo,
+    texto,
+    traducao: 'NVI',
+  };
+
   return (
     <div className="relative">
       <button
@@ -84,6 +95,17 @@ export function CompartilharVersiculo({ livro, capítulo, versículo, texto }: C
 
             {/* Ações */}
             <div className="p-2 space-y-1">
+              <button
+                onClick={() => {
+                  setAberto(false);
+                  setImagemAberta(true);
+                }}
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-muted/50 transition-all duration-200"
+              >
+                <ImageIcon className="w-4 h-4 text-[var(--brand-default)]" />
+                Imagem
+              </button>
+
               <button
                 onClick={copiar}
                 className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-muted/50 transition-all duration-200"
@@ -146,6 +168,12 @@ export function CompartilharVersiculo({ livro, capítulo, versículo, texto }: C
           </motion.div>
         )}
       </AnimatePresence>
+
+      <ShareVerseImageModal
+        open={imagemAberta}
+        onClose={() => setImagemAberta(false)}
+        verse={verseData}
+      />
     </div>
   );
 }

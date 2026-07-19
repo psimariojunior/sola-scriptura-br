@@ -175,6 +175,7 @@ export interface VerseCardProps {
   showTranslationLabel: boolean;
   tradLabel: string;
   tradBadgeColor: string;
+  isCurrentAudioVerse?: boolean;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -211,8 +212,16 @@ export const VerseCard = memo(function VerseCard({
   showTranslationLabel,
   tradLabel,
   tradBadgeColor,
+  isCurrentAudioVerse = false,
 }: VerseCardProps) {
   const ref = `${livroNome} ${capitulo}:${numero}`;
+  const articleRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (isCurrentAudioVerse && articleRef.current) {
+      articleRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [isCurrentAudioVerse]);
 
   // ── Referências cruzadas lazy-loaded (29k entries) ──
   const [crossRefsSimples, setCrossRefsSimples] = useState<string[]>([]);
@@ -267,6 +276,7 @@ export const VerseCard = memo(function VerseCard({
   return (
     <Fragment>
       <motion.article
+        ref={articleRef}
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
@@ -276,7 +286,9 @@ export const VerseCard = memo(function VerseCard({
           'transition-all duration-300',
           'px-3 sm:px-4 -mx-3 sm:-mx-4',
           'py-3 sm:py-3',
-          isSelected
+          isCurrentAudioVerse
+            ? 'bg-amber-100/40 dark:bg-amber-900/20 border-l-2 border-l-amber-500 shadow-sm ring-1 ring-amber-400/30'
+            : isSelected
             ? 'bg-[var(--brand-subtle)] border-l-2 border-l-[var(--brand-default)] shadow-sm'
             : isPlaying
             ? 'bg-[var(--brand-subtle)] border-l-2 border-l-[var(--brand-default)]'

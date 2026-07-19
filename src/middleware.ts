@@ -34,7 +34,9 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const token = request.cookies.get('ssb_token')?.value;
+  const token = request.cookies.get('ssb_token')?.value
+    || request.nextUrl.searchParams.get('token')
+    || request.headers.get('x-ssb-token');
 
   if (!token) {
     const loginUrl = new URL('/auth/login', request.url);

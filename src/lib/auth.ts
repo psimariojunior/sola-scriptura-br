@@ -367,7 +367,7 @@ class AuthService {
       const expirar = 60 * 60 * 24 * 30;
       const secure = typeof window !== 'undefined' && window.location.protocol === 'https:';
       const secureFlag = secure ? '; Secure' : '';
-      document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${expirar}; SameSite=Lax${secureFlag}`;
+      document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${expirar}; SameSite=None${secureFlag}`;
     } catch { /* ignore */ }
   }
 

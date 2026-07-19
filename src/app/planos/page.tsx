@@ -1,11 +1,14 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePlanoLeitura } from '@/hooks/usePlanoLeitura';
+
+const PlanoPersonalizado = dynamic(() => import('@/components/PlanoPersonalizado'), { ssr: false });
 import {
   Calendar,
   BookOpen,
@@ -344,6 +347,9 @@ export default function PlanosPage() {
               </div>
             </ScrollReveal>
           )}
+
+          {/* Personalized Reading Plan */}
+          <PlanoPersonalizado />
 
           {/* Filters */}
           <ScrollReveal delay={0.1}>

@@ -76,7 +76,7 @@ function PanelFallback() {
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
-const TRADS_LOCAIS = new Set(['arc', 'kjv', 'web', 'nvi', 'ara', 'acf']);
+const TRADS_LOCAIS = new Set(['arc', 'kjv', 'web', 'nvi', 'ara', 'acf', 'nvt', 'kja', 'aa', 'nbv']);
 const cacheApi = new Map<string, string[]>();
 
 const MIDVASH_API = 'https://api.midvash.com/v1';

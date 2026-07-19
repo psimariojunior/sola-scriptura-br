@@ -16,6 +16,10 @@ export const traducoes: Versao[] = [
   { id: 'ntlh', nome: 'Nova Tradução na Linguagem de Hoje', sigla: 'NTLH', descricao: 'Tradução em linguagem simples e acessível', idioma: 'pt-BR', ano: 2000 },
   { id: 'kjv', nome: 'King James Version', sigla: 'KJV', descricao: 'Authorized Version em inglês', idioma: 'en', ano: 1611 },
   { id: 'web', nome: 'World English Bible', sigla: 'WEB', descricao: 'Domínio público em inglês moderno', idioma: 'en', ano: 2000 },
+  { id: 'nvt', nome: 'Nova Versão Transformadora', sigla: 'NVT', descricao: 'Tradução que enfatiza a transformação do leitor', idioma: 'pt-BR', ano: 2020 },
+  { id: 'kja', nome: 'King James Atualizada', sigla: 'KJA', descricao: 'Atualização da KJV em português moderno', idioma: 'pt-BR', ano: 2015 },
+  { id: 'aa', nome: 'Almeida e Atualizada', sigla: 'AA', descricao: 'Versão atualizada da Almeida', idioma: 'pt-BR', ano: 2009 },
+  { id: 'nbv', nome: 'Nova Bíblia Viva', sigla: 'NBV', descricao: 'Tradução em linguagem contemporânea e acessível', idioma: 'pt-BR', ano: 2008 },
 ];
 
 export const traducaoPadrao = 'arc';

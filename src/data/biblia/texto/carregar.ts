@@ -17,7 +17,7 @@ export type TraducaoId = (typeof TRADUCOES_DISPONIVEIS)[number];
 const TRADUCOES_LOCAIS = ['arc', 'kjv', 'web', 'nvi', 'ara', 'acf'] as const;
 
 // Traduções que vêm da API Midvash
-const TRADUCOES_API = ['ntlh', 'naa'] as const;
+const TRADUCOES_API = ['ntlh', 'naa', 'nvt', 'kja', 'aa', 'nbv'] as const;
 
 const cache = new Map<string, LivroData>();
 

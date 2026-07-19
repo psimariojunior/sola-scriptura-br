@@ -24,6 +24,8 @@ import { VerseActions } from './VerseActions';
 const PainelEstudosInline = lazy(() => import('@/components/PainelEstudosInline'));
 const EstudoSintetizado = lazy(() => import('./EstudoSintetizado'));
 const InlineStrongHighlight = lazy(() => import('./InlineStrongHighlight'));
+const ComentarioInline = lazy(() => import('./ComentarioInline').then(m => ({ default: m.ComentarioInline })));
+const CrossReferenceExplorer = lazy(() => import('@/components/CrossReferenceExplorer').then(m => ({ default: m.CrossReferenceExplorer })));
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // FALLBACKS DE LOADING (lazy loading)
@@ -341,6 +343,33 @@ export const VerseCard = memo(function VerseCard({
             <span className="block mt-0.5 text-[0.65em] sm:text-[0.7em] text-[var(--content-muted)] font-normal tracking-wide tabular-nums">
               {ref}
             </span>
+
+            {/* ═══════════════════════════════════════════════════════════════ */}
+            {/* MELHORIA: Comentários inline por versículo                    */}
+            {/* Mostra contagem e expande para ver todos os comentários       */}
+            {/* ═══════════════════════════════════════════════════════════════ */}
+            <Suspense fallback={null}>
+              <ComentarioInline
+                livro={livroAbreviacao}
+                capitulo={capitulo}
+                verso={numero}
+              />
+            </Suspense>
+
+            {/* ═══════════════════════════════════════════════════════════════ */}
+            {/* MELHORIA: Explorador de referências cruzadas visuais           */}
+            {/* Grid com cards clicáveis das referências cruzadas              */}
+            {/* ═══════════════════════════════════════════════════════════════ */}
+            {crossRefsDetalhadas.length > 0 && (
+              <Suspense fallback={null}>
+                <CrossReferenceExplorer
+                  livro={livroAbreviacao}
+                  capitulo={capitulo}
+                  verso={numero}
+                  className="mt-2"
+                />
+              </Suspense>
+            )}
 
             {/* ═══════════════════════════════════════════════════════════════ */}
             {/* MELHORIA 1: Referências cruzadas com tipo + descrição        */}

@@ -15,6 +15,8 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { registerServiceWorker } from '@/lib/offline';
 import { authService } from '@/lib/auth';
 import { NotificationSetup } from '@/components/NotificationSetup';
+import PageTransition from '@/components/PageTransition';
+import { OnboardingTour } from '@/components/OnboardingTour';
 import '@/lib/i18n';
 
 const MobilePerformanceMonitor = lazy(() => import('@/components/MobilePerformanceMonitor'));
@@ -129,7 +131,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               <TopProgressBar />
               <Toaster />
               <NotificationSetup />
-              {children}
+              <PageTransition>{children}</PageTransition>
               <BackToTop />
               <Suspense fallback={null}>
                 <BottomNavBar />
@@ -137,6 +139,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
                 <AIMiniPainel />
               </Suspense>
               <GlobalHotkeys />
+              <OnboardingTour />
               {process.env.NODE_ENV === 'development' && (
                 <Suspense fallback={null}>
                   <MobilePerformanceMonitor />

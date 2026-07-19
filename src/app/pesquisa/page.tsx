@@ -10,8 +10,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, X, BookOpen, Filter, ChevronDown, 
   Settings, Hash, Type, AlignLeft, Download,
-  Copy, Share2, ExternalLink
+  Copy, Share2, ExternalLink, Sparkles
 } from 'lucide-react';
+import { expandirConsulta, correspondeSemanticamente, obterQueryExpandida } from '@/lib/sinonimos';
 
 interface SearchResult {
   livroAbrev: string;
@@ -122,6 +123,7 @@ export default function PesquisaPage() {
   const [mobileFilters, setMobileFilters] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [copiedResult, setCopiedResult] = useState<string | null>(null);
+  const [buscaSemantica, setBuscaSemantica] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -216,6 +218,10 @@ export default function PesquisaPage() {
         const textoLower = item.texto.toLowerCase();
         const queryLower = q.toLowerCase();
         
+        if (buscaSemantica) {
+          return correspondeSemanticamente(item.texto, q, true);
+        }
+        
         switch (searchMode) {
           case 'exact':
             return textoLower.includes(queryLower);
@@ -239,7 +245,7 @@ export default function PesquisaPage() {
     if (capituloFiltro !== null) r = r.filter((item) => item.capitulo === capituloFiltro);
 
     return r;
-  }, [debouncedQuery, testamento, livroFiltro, capituloFiltro, searchIndex, tradSel, searchMode, apiResults]);
+  }, [debouncedQuery, testamento, livroFiltro, capituloFiltro, searchIndex, tradSel, searchMode, apiResults, buscaSemantica]);
 
   const hasFilters = testamento !== 'all' || livroFiltro !== 'all' || capituloFiltro !== null || tradSel.size !== 6;
   const hasAnyInput = !!debouncedQuery || hasFilters;
@@ -332,6 +338,33 @@ export default function PesquisaPage() {
                       </button>
                     ))}
                   </div>
+                </div>
+
+                {/* Semantic Search Toggle */}
+                <div>
+                  <button
+                    onClick={() => setBuscaSemantica(!buscaSemantica)}
+                    className={`w-full flex items-center gap-2 px-3 py-2 text-xs rounded-sm transition-all ${
+                      buscaSemantica
+                        ? 'bg-primary/10 text-primary border border-primary/30'
+                        : 'bg-muted text-muted-foreground hover:bg-muted/80 border border-border'
+                    }`}
+                  >
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span className="font-semibold">Busca Semântica</span>
+                    <span className={`ml-auto w-8 h-4 rounded-full relative transition-colors ${
+                      buscaSemantica ? 'bg-primary' : 'bg-border'
+                    }`}>
+                      <span className={`absolute top-0.5 w-3 h-3 rounded-full bg-white shadow transition-transform ${
+                        buscaSemantica ? 'translate-x-4' : 'translate-x-0.5'
+                      }`} />
+                    </span>
+                  </button>
+                  {buscaSemantica && (
+                    <p className="text-[10px] text-muted-foreground mt-1 px-1 leading-relaxed">
+                      Busca por conceitos relacionados: &ldquo;fé&rdquo; inclui &ldquo;crer&rdquo;, &ldquo;crença&rdquo;, etc.
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -448,6 +481,12 @@ export default function PesquisaPage() {
                     {resultados.length > 0 ? (
                       <span>
                         <strong className="text-foreground">{resultados.length}</strong> resultado{resultados.length !== 1 ? 's' : ''} para &ldquo;<strong className="text-foreground">{debouncedQuery}</strong>&rdquo;
+                        {buscaSemantica && (
+                          <span className="ml-2 inline-flex items-center gap-1 text-[10px] text-primary/80 bg-primary/5 px-1.5 py-0.5 rounded-full">
+                            <Sparkles className="w-2.5 h-2.5" />
+                            semântico
+                          </span>
+                        )}
                       </span>
                     ) : (
                       <span>Nenhum resultado para &ldquo;<strong className="text-foreground">{debouncedQuery}</strong>&rdquo;</span>

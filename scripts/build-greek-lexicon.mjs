@@ -2,10 +2,9 @@
 /**
  * build-greek-lexicon.mjs
  *
- * Lê STRONG_POR_VERSICULO de src/data/biblia/strong/index.ts,
- * extrai todas as palavras gregas, deduplica por número Strong,
- * calcula frequência, merge com as entradas existentes de grego.ts
- * e gera src/data/lexicon/grego.ts.
+ * Lê o dicionário completo Strong's Greek (temp_greek.json) com ~5500 entradas,
+ * merge com as entradas curadas existentes de grego.ts,
+ * e gera src/data/lexicon/grego.ts atualizado.
  */
 
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -15,167 +14,19 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 
-// ─── Mapeamento de abreviações de livros ─────────────────────────────────────
+// ─── 1. Ler dicionário completo Strong's Greek ──────────────────────────────
 
-const BOOK_MAP = {
-  gn: 'Gn', ex: 'Ex', lv: 'Lv', nm: 'Nm', dt: 'Dt',
-  js: 'Js', jz: 'Jz', rt: 'Rt', '1sm': '1 Sm', '2sm': '2 Sm',
-  '1rs': '1 Rs', '2rs': '2 Rs', '1cr': '1 Cr', '2cr': '2 Cr',
-  ed: 'Ed', ne: 'Ne', et: 'Et', jo: 'Jó', sl: 'Sl',
-  pv: 'Pv', ec: 'Ec', ct: 'Ct', is: 'Is', jr: 'Jr',
-  lm: 'Lm', ez: 'Ez', dn: 'Dn', os: 'Os', jl: 'Jl',
-  am: 'Am', ob: 'Ob', mq: 'Mq', na: 'Na', hc: 'Hc',
-  sof: 'Sof', ag: 'Ag', zc: 'Zc', ml: 'Ml',
-  mt: 'Mt', mc: 'Mc', lc: 'Lc', at: 'At',
-  rm: 'Rm', '1co': '1 Co', '2co': '2 Co', gl: 'Gl',
-  ef: 'Ef', fp: 'Fp', cl: 'Cl', '1ts': '1 Ts', '2ts': '2 Ts',
-  '1tm': '1 Tm', '2tm': '2 Tm', tt: 'Tt', fm: 'Fm',
-  hb: 'Hb', tg: 'Tg', '1pe': '1 Pe', '2pe': '2 Pe',
-  '1jo': '1 Jo', '2jo': '2 Jo', '3jo': '3 Jo', jd: 'Jd', rv: 'Ap',
-};
+const strongsPath = resolve(ROOT, 'temp_greek.json');
+const strongsData = JSON.parse(readFileSync(strongsPath, 'utf8'));
 
-function verseKeyToRef(key) {
-  const parts = key.split(':');
-  if (parts.length < 3) return key;
-  const [book, chap, ver] = parts;
-  const abbr = BOOK_MAP[book] || book.toUpperCase();
-  return `${abbr} ${chap}:${ver}`;
-}
+console.log(`📥 Strong's Greek entries loaded: ${Object.keys(strongsData).length}`);
 
-// ─── Mapeamento de morfologia → categoria ────────────────────────────────────
-
-function inferCategoria(morfologia) {
-  const m = morfologia.toLowerCase();
-  if (m.includes('verbo')) return 'verbo';
-  if (m.includes('adjetivo')) return 'adjetivo';
-  if (m.includes('advérbio') || m.includes('adverbio')) return 'advérbio';
-  if (m.includes('preposição') || m.includes('preposicao')) return 'preposição';
-  if (m.includes('conjunção') || m.includes('conjuncao')) return 'conjunção';
-  if (m.includes('pronome')) return 'pronome';
-  if (m.includes('numeral')) return 'numeral';
-  if (m.includes('partícula') || m.includes('particula')) return 'partícula';
-  if (m.includes('interjeição') || m.includes('interjeicao')) return 'interjeição';
-  if (m.includes('substantivo')) return 'substantivo';
-  return 'substantivo';
-}
-
-// ─── 1. Ler e parsear o arquivo strong/index.ts ──────────────────────────────
-
-const strongPath = resolve(ROOT, 'src/data/biblia/strong/index.ts');
-const raw = readFileSync(strongPath, 'utf8');
-
-const objStart = raw.indexOf('STRONG_POR_VERSICULO: Record<string, PalavraStrong[]> = {');
-if (objStart === -1) {
-  console.error('Não encontrei STRONG_POR_VERSICULO no arquivo.');
-  process.exit(1);
-}
-const blockStart = raw.indexOf('{', objStart);
-
-let depth = 0;
-let blockEnd = -1;
-for (let i = blockStart; i < raw.length; i++) {
-  if (raw[i] === '{') depth++;
-  if (raw[i] === '}') depth--;
-  if (depth === 0) { blockEnd = i + 1; break; }
-}
-if (blockEnd === -1) {
-  console.error('Não consegui encontrar o fim do objeto STRONG_POR_VERSICULO.');
-  process.exit(1);
-}
-
-const objBlock = raw.slice(blockStart, blockEnd);
-
-const entryRe = /'([^']+)'\s*:\s*\[([\s\S]*?)\]\s*,?/g;
-const verses = new Map();
-let match;
-while ((match = entryRe.exec(objBlock)) !== null) {
-  const verseKey = match[1];
-  const arrBlock = match[2];
-  const objRe = /\{([^}]+)\}/g;
-  let objMatch;
-  const palavras = [];
-  while ((objMatch = objRe.exec(arrBlock)) !== null) {
-    const props = objMatch[1];
-    const get = (name) => {
-      const m = props.match(new RegExp(`${name}\\s*:\\s*'([^']*)'`));
-      return m ? m[1] : '';
-    };
-    palavras.push({
-      strong: get('strong'),
-      palavra: get('palavra'),
-      transliteracao: get('transliteracao'),
-      definicao: get('definicao'),
-      morfologia: get('morfologia'),
-      idioma: get('idioma'),
-    });
-  }
-  if (palavras.length > 0) {
-    verses.set(verseKey, palavras);
-  }
-}
-
-console.log(`✅ Versículos parseados: ${verses.size}`);
-
-// ─── 2. Filtrar apenas gregos e deduplicar ───────────────────────────────────
-
-const byStrong = new Map();
-
-for (const [verseKey, palavras] of verses) {
-  for (const p of palavras) {
-    if (p.idioma !== 'grego') continue;
-    if (!p.strong.startsWith('G')) continue;
-
-    const ref = verseKeyToRef(verseKey);
-    const existing = byStrong.get(p.strong);
-
-    // strong/index.ts has: definicao = grammar, morfologia = meaning
-    // We swap to match grego.ts: definicao = meaning, morphologia = grammar
-    if (!existing) {
-      byStrong.set(p.strong, {
-        strong: p.strong,
-        palavra: p.palavra,
-        transliteracao: p.transliteracao,
-        definicao: p.morfologia || '',
-        morfologia: p.definicao,
-        ocorrencias: new Set([ref]),
-      });
-    } else {
-      existing.ocorrencias.add(ref);
-      if (p.palavra && !existing.palavra) existing.palavra = p.palavra;
-      if (p.transliteracao && !existing.transliteracao) existing.transliteracao = p.transliteracao;
-      if (p.morfologia && p.morfologia.length > existing.definicao.length) existing.definicao = p.morfologia;
-      if (p.definicao && !existing.morfologia) existing.morfologia = p.definicao;
-    }
-  }
-}
-
-const strongEntries = Array.from(byStrong.values()).map((e) => ({
-  strong: e.strong,
-  palavra: e.palavra,
-  transliteracao: e.transliteracao,
-  definicao: e.definicao,
-  morfologia: e.morfologia || undefined,
-  frequencia: e.ocorrencias.size,
-  versiculos: Array.from(e.ocorrencias).sort(),
-}));
-
-strongEntries.sort((a, b) => {
-  const numA = parseInt(a.strong.replace('G', ''), 10);
-  const numB = parseInt(b.strong.replace('G', ''), 10);
-  return numA - numB;
-});
-
-console.log(`✅ Entradas gregas únicas (Strong): ${strongEntries.length}`);
-
-// ─── 3. Ler e parsear as entradas existentes de grego.ts ─────────────────────
+// ─── 2. Ler e parsear as entradas existentes de grego.ts ─────────────────────
 
 const gregoPath = resolve(ROOT, 'src/data/lexicon/grego.ts');
 const gregoRaw = readFileSync(gregoPath, 'utf8');
 
-// Extrair as entradas existentes do array palavrasGregas
 const existingMap = new Map();
-
-// Regex para extrair cada objeto do array
 const entryObjRe = /\{\s*strong:\s*'G(\d+)'([^}]*)\}/g;
 let existingMatch;
 while ((existingMatch = entryObjRe.exec(gregoRaw)) !== null) {
@@ -220,37 +71,76 @@ while ((existingMatch = entryObjRe.exec(gregoRaw)) !== null) {
 
 console.log(`✅ Entradas existentes no grego.ts: ${existingMap.size}`);
 
+// ─── 3. Mapeamento de morfologia → categoria ──────────────────────────────────
+
+function inferCategoria(strongEntry) {
+  const kjvDef = (strongEntry.kjv_def || '').toLowerCase();
+  const lemma = strongEntry.lemma || '';
+
+  // Infer based on KJV definition patterns
+  if (kjvDef.includes('(v.)') || kjvDef.includes('to ') || kjvDef.includes('-ed') || kjvDef.includes('-ing')) {
+    return 'verbo';
+  }
+  if (kjvDef.includes('(adj.)') || kjvDef.includes('(a.)') || kjvDef.match(/\b(good|great|small|big|new|old|first|last|holy|right|just|evil|bad|dark|light|rich|poor|strong|weak|wise|foolish)\b/)) {
+    return 'adjetivo';
+  }
+  if (kjvDef.includes('(adv.)')) return 'advérbio';
+  if (kjvDef.includes('(prep.)') || kjvDef.includes('(particle)')) return 'preposição';
+  if (kjvDef.includes('(conj.)')) return 'conjunção';
+  if (kjvDef.includes('(pron.)') || kjvDef.includes('(pronoun)')) return 'pronome';
+
+  // Default based on common Greek patterns
+  if (lemma.endsWith('ω') || lemma.endsWith('ομαι') || lemma.endsWith('μι')) return 'verbo';
+  if (lemma.endsWith('ος') || lemma.endsWith('ης') || lemma.endsWith('ον') || lemma.endsWith('ον')) return 'adjetivo';
+  if (lemma.endsWith('η') || lemma.endsWith('ια') || lemma.endsWith('σις') || lemma.endsWith('μα')) return 'substantivo';
+
+  return 'substantivo';
+}
+
 // ─── 4. Merge: manter existentes + adicionar novos ───────────────────────────
 
 const merged = new Map(existingMap);
-
 let addedCount = 0;
-for (const entry of strongEntries) {
-  if (merged.has(entry.strong)) continue;
+let curatedKept = 0;
 
-  const definicao = entry.definicao || '';
-  const morphologia = entry.morfologia || '';
-  const definicaoResumida = definicao.length > 40
-    ? definicao.substring(0, 37) + '...'
-    : definicao;
+for (const [key, entry] of Object.entries(strongsData)) {
+  if (!key.startsWith('G')) continue;
 
-  merged.set(entry.strong, {
-    strong: entry.strong,
-    palavra: entry.palavra,
-    transliteracao: entry.transliteracao,
-    definicao: definicao,
-    definicaoResumida: definicaoResumida,
-    categoria: morphologia ? inferCategoria(morphologia) : 'substantivo',
+  // If we already have a curated entry, keep it (preserves rich Portuguese data)
+  if (merged.has(key)) {
+    curatedKept++;
+    continue;
+  }
+
+  const palavra = entry.lemma || '';
+  const transliteracao = entry.translit || '';
+  const definicaoEn = entry.strongs_def || entry.kjv_def || '';
+  const kjvDef = entry.kjv_def || '';
+  const categoria = inferCategoria(entry);
+
+  // Create a brief Portuguese summary from the English definition
+  const definicaoResumida = definicaoEn.length > 40
+    ? definicaoEn.substring(0, 37) + '...'
+    : definicaoEn;
+
+  merged.set(key, {
+    strong: key,
+    palavra,
+    transliteracao,
+    definicao: definicaoEn,
+    definicaoResumida,
+    categoria,
     testamento: 'NT',
-    morphologia: morphologia,
-    uso: entry.versiculos.join('; '),
-    versiculos: entry.versiculos,
-    pronuncia: '',
-    frequencia: entry.frequencia,
+    morphologia: entry.derivation || '',
+    uso: kjvDef,
+    versiculos: [],
+    pronuncia: transliteracao,
+    frequencia: 0,
   });
   addedCount++;
 }
 
+console.log(`✅ Entradas existentes preservadas: ${curatedKept}`);
 console.log(`✅ Novas entradas adicionadas: ${addedCount}`);
 console.log(`✅ Total final: ${merged.size}`);
 
@@ -288,7 +178,7 @@ lines.push(``);
 lines.push(`export const palavrasGregas: PalavraGrega[] = [`);
 
 for (const e of sorted) {
-  const versiculosStr = e.versiculos.length > 0
+  const versiculosStr = e.versiculos && e.versiculos.length > 0
     ? `[${e.versiculos.map(v => `'${escapeTS(v)}'`).join(', ')}]`
     : '[]';
 
@@ -300,7 +190,7 @@ for (const e of sorted) {
     ? `, notas: '${escapeTS(e.notas)}'`
     : '';
 
-  const freqStr = e.frequencia
+  const freqStr = e.frequencia && e.frequencia > 0
     ? `, frequencia: ${e.frequencia}`
     : '';
 
@@ -317,18 +207,13 @@ writeFileSync(gregoPath, lines.join('\n'), 'utf8');
 const total = sorted.length;
 const withPronuncia = sorted.filter(e => e.pronuncia).length;
 const withNotas = sorted.filter(e => e.notas).length;
-const withFrequencia = sorted.filter(e => e.frequencia).length;
-const top10 = [...sorted].sort((a, b) => (b.frequencia || 0) - (a.frequencia || 0)).slice(0, 10);
+const withFrequencia = sorted.filter(e => e.frequencia && e.frequencia > 0).length;
 
-console.log(`\n📊 Estatísticas do léxico grego:`);
+console.log(`\n📊 Estatísticas do léxico grego expandido:`);
 console.log(`   Total de entradas: ${total}`);
 console.log(`   Com pronúncia: ${withPronuncia}`);
 console.log(`   Com notas: ${withNotas}`);
 console.log(`   Com frequência: ${withFrequencia}`);
-console.log(`   Entradas existentes preservadas: ${existingMap.size}`);
+console.log(`   Entradas existentes preservadas: ${curatedKept}`);
 console.log(`   Novas entradas adicionadas: ${addedCount}`);
-console.log(`\n   Top 10 palavras mais frequentes:`);
-for (const e of top10) {
-  console.log(`     ${e.strong} ${e.palavra} (${e.transliteracao}) — ${e.frequencia}×`);
-}
 console.log(`\n✅ Arquivo gerado: ${gregoPath}`);

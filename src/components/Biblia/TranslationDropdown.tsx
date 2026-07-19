@@ -6,10 +6,10 @@ import { cn } from '@/lib/utils';
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
-const TRAD_IDS = ['arc', 'nvi', 'ara', 'acf', 'naa', 'ntlh', 'kjv', 'web'] as const;
-const labelMap: Record<string, string> = { arc: 'ARC', nvi: 'NVI', ara: 'ARA', acf: 'ACF', naa: 'NAA', ntlh: 'NTLH', kjv: 'KJV', web: 'WEB' };
-const nomeMap: Record<string, string> = { arc: 'Almeida Revista e Corrigida', nvi: 'Nova Versão Internacional', ara: 'Almeida Revista e Atualizada', acf: 'Almeida Corrigida Fiel', naa: 'Nova Almeida Atualizada', ntlh: 'Nova Tradução na Linguagem de Hoje', kjv: 'King James Version', web: 'World English Bible' };
-const tradBadgeColors: Record<string, string> = { arc: 'bg-primary/10 text-primary', nvi: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400', ara: 'bg-purple-500/10 text-purple-600 dark:text-purple-400', acf: 'bg-rose-500/10 text-rose-600 dark:text-rose-400', naa: 'bg-teal-500/10 text-teal-600 dark:text-teal-400', ntlh: 'bg-orange-500/10 text-orange-600 dark:text-orange-400', kjv: 'bg-amber-500/10 text-amber-600 dark:text-amber-400', web: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' };
+const TRAD_IDS = ['arc', 'nvi', 'ara', 'acf', 'naa', 'ntlh', 'nvt', 'kja', 'aa', 'nbv', 'kjv', 'web'] as const;
+const labelMap: Record<string, string> = { arc: 'ARC', nvi: 'NVI', ara: 'ARA', acf: 'ACF', naa: 'NAA', ntlh: 'NTLH', nvt: 'NVT', kja: 'KJA', aa: 'AA', nbv: 'NBV', kjv: 'KJV', web: 'WEB' };
+const nomeMap: Record<string, string> = { arc: 'Almeida Revista e Corrigida', nvi: 'Nova Versão Internacional', ara: 'Almeida Revista e Atualizada', acf: 'Almeida Corrigida Fiel', naa: 'Nova Almeida Atualizada', ntlh: 'Nova Tradução na Linguagem de Hoje', nvt: 'Nova Versão Transformadora', kja: 'King James Atualizada', aa: 'Almeida e Atualizada', nbv: 'Nova Bíblia Viva', kjv: 'King James Version', web: 'World English Bible' };
+const tradBadgeColors: Record<string, string> = { arc: 'bg-primary/10 text-primary', nvi: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400', ara: 'bg-purple-500/10 text-purple-600 dark:text-purple-400', acf: 'bg-rose-500/10 text-rose-600 dark:text-rose-400', naa: 'bg-teal-500/10 text-teal-600 dark:text-teal-400', ntlh: 'bg-orange-500/10 text-orange-600 dark:text-orange-400', nvt: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400', kja: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400', aa: 'bg-pink-500/10 text-pink-600 dark:text-pink-400', nbv: 'bg-lime-500/10 text-lime-600 dark:text-lime-400', kjv: 'bg-amber-500/10 text-amber-600 dark:text-amber-400', web: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' };
 
 interface TranslationDropdownProps {
   open: boolean;

@@ -21,6 +21,7 @@ import {
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import ScrollReveal from '@/components/ScrollReveal';
 const VerseDoDia = dynamic(() => import('@/components/VerseDoDia'), { ssr: false });
+const ContinuarLeitura = dynamic(() => import('@/components/ContinuarLeitura'), { ssr: false });
 
 const features = [
   {
@@ -576,6 +577,9 @@ export default function Home() {
 
       {/* VERSÍCULO DO DIA */}
       <VerseDoDia />
+
+      {/* CONTINUAR LEITURA */}
+      <ContinuarLeitura />
 
       {/* PROVAS SOCIAIS */}
       <section

@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 import { Loader2, AlertTriangle } from 'lucide-react';
 import { authService } from '@/lib/auth';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
-export default function AuthCallbackPage() {
+function AuthCallbackContent() {
   const params = useSearchParams();
   const router = useRouter();
   const [erro, setErro] = useState<string | null>(null);
@@ -64,5 +65,17 @@ export default function AuthCallbackPage() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+export default function AuthCallbackPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    }>
+      <AuthCallbackContent />
+    </Suspense>
   );
 }

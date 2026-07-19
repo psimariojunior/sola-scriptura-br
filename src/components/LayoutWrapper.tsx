@@ -126,8 +126,9 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
         <SincronizacaoAcessoTotal />
         <PageViewTracker />
         <TooltipProvider delayDuration={300}>
-          <AIProvider>
-            <EstudosProvider>
+          <Suspense fallback={null}>
+            <AIProvider>
+              <EstudosProvider>
               <TopProgressBar />
               <Toaster />
               <NotificationSetup />
@@ -145,8 +146,9 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
                   <MobilePerformanceMonitor />
                 </Suspense>
               )}
-            </EstudosProvider>
-          </AIProvider>
+              </EstudosProvider>
+            </AIProvider>
+          </Suspense>
         </TooltipProvider>
       </AuthProvider>
     </ThemeProvider>

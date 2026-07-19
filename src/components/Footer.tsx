@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { BookOpen, Mail, Github, Twitter, Heart, ArrowRight, Smartphone } from 'lucide-react';
+import { BookOpen, Mail, Github, Twitter, Heart, ArrowRight, Smartphone, HeartHandshake } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
 
@@ -33,6 +33,7 @@ const recursos = [
   { href: '/flashcards', label: 'Flashcards' },
   { href: '/quiz', label: 'Quiz Bíblico' },
   { href: '/estatisticas', label: 'Estatísticas' },
+  { href: '/ofertas', label: 'Oferecer' },
   { href: '/auth/login', label: 'Minha Conta' },
 ];
 

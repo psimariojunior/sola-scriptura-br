@@ -9,7 +9,6 @@ import {
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from '@/components/ui/dialog';
 import type { OpcoesExportPdf, ConteudoExport } from '@/lib/exportPdf';
 import type { EstudoCompleto, OpcoesExport } from '@/lib/exportarEstudos';
-import { exportarPdf, exportarEstudo } from '@/lib/exportPdf';
 import {
   exportarEstudoCompleto, exportarParaMarkdown,
   exportarParaHTML, exportarParaTXT, gerarLinkCompartilhamento,
@@ -75,6 +74,7 @@ export function ExportModal({
     setSucesso(false);
     try {
       if (formato === 'pdf' && conteudo) {
+        const { exportarPdf } = await import('@/lib/exportPdf');
         await exportarPdf(conteudo, {
           ...opcoesPdf,
           titulo,

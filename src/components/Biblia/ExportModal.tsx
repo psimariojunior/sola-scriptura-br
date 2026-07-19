@@ -4,8 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, FileText, BookOpen, Loader2, Check, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { exportChapterPdf } from '@/lib/exportPdf';
-import { exportChapterEpub } from '@/lib/exportEpub';
 import type { CapituloComparado } from '@/data/biblia';
 
 interface ExportModalProps {
@@ -47,6 +45,7 @@ export function ExportModal({ open, onClose, bookName, chapter, data }: ExportMo
     setConcluido(false);
     try {
       if (formato === 'pdf') {
+        const { exportChapterPdf } = await import('@/lib/exportPdf');
         if (data.length === 1) {
           const v = data[0].versiculos.map(vs => ({ numero: vs.numero, texto: vs.texto }));
           await exportChapterPdf(bookName, chapter, [{ traducao: data[0].traducao, versiculos: v }]);
@@ -57,6 +56,7 @@ export function ExportModal({ open, onClose, bookName, chapter, data }: ExportMo
           })));
         }
       } else {
+        const { exportChapterEpub } = await import('@/lib/exportEpub');
         const principal = data[0];
         await exportChapterEpub(
           bookName,

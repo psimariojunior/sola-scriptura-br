@@ -80,7 +80,6 @@ export const metadata: Metadata = {
       'Bíblia em 6 traduções, Grego e Hebraico, Exegese com IA, Teologia e ferramentas avançadas de pesquisa bíblica.',
     images: ['/opengraph-image'],
   },
-  facebook: undefined,
   robots: {
     index: true,
     follow: true,
@@ -120,6 +119,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="manifest" href="/manifest.json" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://api.midvash.com" />
+        <link rel="dns-prefetch" href="https://api.solascripturabr.com.br" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

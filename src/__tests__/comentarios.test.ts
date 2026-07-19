@@ -12,7 +12,7 @@ describe('comentarios.ts', () => {
   });
 
   test('temComentario retorna false para versículos sem comentário', () => {
-    expect(temComentario('lv', 1, 1)).toBe(false);
+    expect(temComentario('zz', 99, 99)).toBe(false);
   });
 
   test('obterComentarios retorna array de comentários', () => {

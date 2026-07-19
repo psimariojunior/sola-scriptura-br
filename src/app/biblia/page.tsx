@@ -21,7 +21,17 @@ import { recordReading, getStats } from '@/lib/estatisticas';
 import OfflineBanner from '@/components/OfflineBanner';
 const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
   ssr: false,
-  loading: () => <div className="animate-pulse h-64 bg-[var(--surface-sunken)] rounded-xl" />
+  loading: () => (
+    <div className="relative overflow-hidden h-64 bg-[var(--surface-sunken)] rounded-xl">
+      <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="p-4 space-y-3">
+        <div className="h-4 bg-[var(--surface-raised)] rounded w-1/3" />
+        <div className="h-3 bg-[var(--surface-raised)] rounded w-full" />
+        <div className="h-3 bg-[var(--surface-raised)] rounded w-5/6" />
+        <div className="h-3 bg-[var(--surface-raised)] rounded w-2/3" />
+      </div>
+    </div>
+  ),
 });
 import { useNotas } from '@/hooks/useNotas';
 import { Breadcrumbs } from '@/components/Breadcrumbs';

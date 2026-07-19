@@ -4,6 +4,7 @@ import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { TODOS_LIVROS, carregarTraducao } from '@/data/biblia';
+import { motion, AnimatePresence } from 'framer-motion';
 import { palavrasOriginais } from '@/data/biblia';
 import { doutrinas } from '@/data/biblia';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -23,7 +24,16 @@ import { getIntroducaoLivro } from '@/data/biblia/introducoes';
 import dynamic from 'next/dynamic';
 const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
   ssr: false,
-  loading: () => <div className="animate-pulse h-64 bg-[var(--surface-sunken)] rounded-xl" />
+  loading: () => (
+    <div className="relative overflow-hidden h-64 bg-[var(--surface-sunken)] rounded-xl">
+      <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="p-4 space-y-3">
+        <div className="h-4 bg-[var(--surface-raised)] rounded w-1/3" />
+        <div className="h-3 bg-[var(--surface-raised)] rounded w-full" />
+        <div className="h-3 bg-[var(--surface-raised)] rounded w-5/6" />
+      </div>
+    </div>
+  ),
 });
 
 type LivroData = Record<string, Record<number, string[]>>;
@@ -317,8 +327,16 @@ export function ExegeseClient() {
                     </ScrollReveal>
 
                     {/* Tab Content */}
+                    <AnimatePresence mode="wait">
                     {tab === 'texto' && (
-                      <div className="space-y-4">
+                      <motion.div
+                        key="texto"
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.25 }}
+                        className="space-y-4"
+                      >
                         {textoMulti.map(({ traducao, versiculos }, idx) => (
                           <ScrollReveal key={traducao} delay={idx * 100}>
                             <div className={`glass-card rounded-2xl overflow-hidden border ${tradBg[traducao]}`}>
@@ -346,11 +364,18 @@ export function ExegeseClient() {
                             </div>
                           </ScrollReveal>
                         ))}
-                      </div>
+                    </motion.div>
                     )}
 
                     {tab === 'contexto' && (
-                      <div className="space-y-4">
+                      <motion.div
+                        key="contexto"
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.25 }}
+                        className="space-y-4"
+                      >
                         {generoInfo && (
                           <ScrollReveal>
                             <div className="glass-card p-6 rounded-2xl">
@@ -466,11 +491,18 @@ export function ExegeseClient() {
                             </div>
                           </ScrollReveal>
                         )}
-                      </div>
+                    </motion.div>
                     )}
 
                     {tab === 'palavras' && (
-                      <div className="space-y-4">
+                      <motion.div
+                        key="palavras"
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.25 }}
+                        className="space-y-4"
+                      >
                         <ScrollReveal>
                           <div className="glass-card p-6 rounded-2xl">
                             <h3 className="font-semibold text-sm mb-4 flex items-center gap-2 text-muted-foreground uppercase tracking-wider">
@@ -508,11 +540,18 @@ export function ExegeseClient() {
                             </div>
                           </div>
                         </ScrollReveal>
-                      </div>
+                    </motion.div>
                     )}
 
                     {tab === 'teologia' && (
-                      <div className="space-y-4">
+                      <motion.div
+                        key="teologia"
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.25 }}
+                        className="space-y-4"
+                      >
                         {doutrinasRelacionadas.length > 0 && (
                           <ScrollReveal>
                             <div className="glass-card p-6 rounded-2xl">
@@ -562,8 +601,9 @@ export function ExegeseClient() {
                             </div>
                           </div>
                         </ScrollReveal>
-                      </div>
+                    </motion.div>
                     )}
+                    </AnimatePresence>
                   </div>
 
                   {/* Sidebar */}

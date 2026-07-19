@@ -96,13 +96,17 @@ export default function BottomNavBar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.95 }}
               transition={{ duration: 0.2 }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mais opcoes de navegacao"
               style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
             >
               <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-                <span className="text-sm font-semibold">Mais opções</span>
+                <span className="text-sm font-semibold">Mais opcoes</span>
                 <button
                   onClick={() => setShowMore(false)}
                   className="p-1 rounded-lg hover:bg-muted transition-colors"
+                  aria-label="Fechar menu"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -135,6 +139,7 @@ export default function BottomNavBar() {
 
       {/* Barra inferior */}
       <nav
+        aria-label="Navegacao mobile"
         className="fixed bottom-0 left-0 right-0 z-[50] border-t border-border bg-[#0A0908]"
         style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       >
@@ -145,25 +150,40 @@ export default function BottomNavBar() {
               ? isMoreActive
               : pathname === tab.href || (tab.href !== '/' && pathname?.startsWith(tab.href));
 
+            if (isMore) {
+              return (
+                <button
+                  key={tab.href}
+                  onClick={() => setShowMore((s) => !s)}
+                  aria-label="Mais opcoes"
+                  aria-expanded={showMore}
+                  className={`flex flex-col items-center justify-center flex-1 h-full transition-colors ${
+                    active ? 'text-[#D4A843]' : 'text-gray-500'
+                  }`}
+                >
+                  <tab.icon className="w-5 h-5 mb-1" strokeWidth={active ? 2 : 1.5} />
+                  <span className="text-[10px] font-medium">{tab.label}</span>
+                  {active && (
+                    <motion.div
+                      className="absolute bottom-[54px] w-8 h-[2px] bg-[#D4A843] rounded-full"
+                      layoutId="bottomTab"
+                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                    />
+                  )}
+                </button>
+              );
+            }
+
             return (
-              <button
+              <Link
                 key={tab.href}
-                onClick={() => {
-                  if (isMore) {
-                    setShowMore((s) => !s);
-                  }
-                }}
+                href={tab.href}
+                aria-label={tab.label}
                 className={`flex flex-col items-center justify-center flex-1 h-full transition-colors ${
                   active ? 'text-[#D4A843]' : 'text-gray-500'
                 }`}
               >
-                {isMore ? (
-                  <tab.icon className="w-5 h-5 mb-1" strokeWidth={active ? 2 : 1.5} />
-                ) : (
-                  <Link href={tab.href} className="flex flex-col items-center justify-center w-full h-full">
-                    <tab.icon className="w-5 h-5 mb-1" strokeWidth={active ? 2 : 1.5} />
-                  </Link>
-                )}
+                <tab.icon className="w-5 h-5 mb-1" strokeWidth={active ? 2 : 1.5} />
                 <span className="text-[10px] font-medium">{tab.label}</span>
                 {active && (
                   <motion.div
@@ -172,7 +192,7 @@ export default function BottomNavBar() {
                     transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                   />
                 )}
-              </button>
+              </Link>
             );
           })}
         </div>

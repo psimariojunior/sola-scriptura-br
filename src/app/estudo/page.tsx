@@ -183,7 +183,7 @@ function MetodoCard({ metodo, isOpen, onToggle }: { metodo: Metodo; isOpen: bool
     >
       <button
         onClick={onToggle}
-        className="w-full flex items-center gap-4 p-6 text-left hover:bg-[var(--bg)]/50 transition-colors"
+        className="w-full flex items-center gap-4 p-6 text-left hover:bg-[var(--bg)]/50 transition-all duration-200 hover:shadow-sm"
       >
         <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${metodo.cor} flex items-center justify-center shrink-0`}>
           {metodo.icone}
@@ -220,7 +220,13 @@ function MetodoCard({ metodo, isOpen, onToggle }: { metodo: Metodo; isOpen: bool
                 </h4>
                 <div className="space-y-4">
                   {metodo.passos.map((passo, i) => (
-                    <div key={i} className="flex gap-3">
+                    <motion.div
+                      key={i}
+                      className="flex gap-3"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.08, duration: 0.3 }}
+                    >
                       <div className="w-8 h-8 rounded-full bg-[var(--primary)]/10 flex items-center justify-center shrink-0 mt-0.5">
                         <span className="text-sm font-bold text-[var(--primary)]">{i + 1}</span>
                       </div>
@@ -228,7 +234,7 @@ function MetodoCard({ metodo, isOpen, onToggle }: { metodo: Metodo; isOpen: bool
                         <h5 className="font-semibold text-[var(--fg)] mb-1">{passo.titulo}</h5>
                         <p className="text-sm text-[var(--muted-fg)] leading-relaxed">{passo.descricao}</p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -256,10 +262,16 @@ function MetodoCard({ metodo, isOpen, onToggle }: { metodo: Metodo; isOpen: bool
                 </h4>
                 <ul className="space-y-2">
                   {metodo.dicas.map((dica, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-[var(--muted-fg)]">
+                    <motion.li
+                      key={i}
+                      className="flex items-start gap-2 text-sm text-[var(--muted-fg)]"
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.2 + i * 0.06, duration: 0.25 }}
+                    >
                       <CheckCircle2 className="w-4 h-4 text-[var(--primary)] shrink-0 mt-0.5" />
                       {dica}
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
               </div>

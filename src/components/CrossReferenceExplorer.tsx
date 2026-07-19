@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { getCrossReferencesByVerse, type CrossReference } from '@/data/biblia/crossReferences';
 
@@ -150,7 +151,7 @@ function CrossReferenceExplorerConteudo({ livro, capitulo, verso }: { livro: str
                 {TYPE_LABELS[type]}
               </span>
             </div>
-            {grouped[type].map((ref) => {
+            {grouped[type].map((ref, idx) => {
               const refInfo = extrairLivroCapitulo(ref.to);
               const nomeLivro = NOMES_LIVROS[refInfo.livro] || refInfo.livro;
               const capVersoStr = refInfo.verso
@@ -158,37 +159,43 @@ function CrossReferenceExplorerConteudo({ livro, capitulo, verso }: { livro: str
                 : `${refInfo.capitulo}`;
 
               return (
-                <Link
+                <motion.div
                   key={`${ref.from}-${ref.to}-${ref.type}`}
-                  href={`/biblia?livro=${refInfo.livro}&capitulo=${refInfo.capitulo}`}
-                  className={cn(
-                    'block rounded-lg border p-2.5 transition-all duration-200',
-                    'hover:shadow-md hover:scale-[1.01]',
-                    TYPE_COLORS[type].bg,
-                    TYPE_COLORS[type].border
-                  )}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.04, duration: 0.25 }}
                 >
-                  <div className="flex items-start gap-2">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-1.5 mb-0.5">
-                        <span className={cn('text-[9px] font-bold uppercase px-1 py-0.5 rounded', TYPE_COLORS[type].text, TYPE_COLORS[type].bg)}>
-                          {TYPE_LABELS[type]}
-                        </span>
-                      </div>
-                      <p className="text-xs font-semibold text-[var(--content-primary)] truncate">
-                        {nomeLivro} {capVersoStr}
-                      </p>
-                      {ref.description && (
-                        <p className="text-[10px] text-[var(--content-muted)] mt-0.5 line-clamp-2 leading-relaxed">
-                          {ref.description}
+                  <Link
+                    href={`/biblia?livro=${refInfo.livro}&capitulo=${refInfo.capitulo}`}
+                    className={cn(
+                      'block rounded-lg border p-2.5 transition-all duration-200',
+                      'hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]',
+                      TYPE_COLORS[type].bg,
+                      TYPE_COLORS[type].border
+                    )}
+                  >
+                    <div className="flex items-start gap-2">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5 mb-0.5">
+                          <span className={cn('text-[9px] font-bold uppercase px-1 py-0.5 rounded', TYPE_COLORS[type].text, TYPE_COLORS[type].bg)}>
+                            {TYPE_LABELS[type]}
+                          </span>
+                        </div>
+                        <p className="text-xs font-semibold text-[var(--content-primary)] truncate">
+                          {nomeLivro} {capVersoStr}
                         </p>
-                      )}
+                        {ref.description && (
+                          <p className="text-[10px] text-[var(--content-muted)] mt-0.5 line-clamp-2 leading-relaxed">
+                            {ref.description}
+                          </p>
+                        )}
+                      </div>
+                      <svg className="w-3 h-3 text-[var(--content-muted)] shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
                     </div>
-                    <svg className="w-3 h-3 text-[var(--content-muted)] shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </Link>
+                  </Link>
+                </motion.div>
               );
             })}
           </div>

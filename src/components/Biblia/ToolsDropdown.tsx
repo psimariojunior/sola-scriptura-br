@@ -3,7 +3,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Layers, FileText, Download, BookMarked, Play, Settings, Volume2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { exportChapterPdf } from '@/lib/exportPdf';
 import type { CapituloComparado } from '@/data/biblia';
 
 interface ToolItemProps {

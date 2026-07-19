@@ -455,11 +455,13 @@ export default function Home() {
       <Header />
 
       {/* HERO */}
-      <section
+      <main
         id="main-content"
-        className="relative pt-28 sm:pt-32 pb-20 sm:pb-24 px-4 sm:px-6 overflow-hidden"
-        aria-label="Seção principal — Apresentação do Sola Scriptura"
+        className="relative"
       >
+        <section
+          className="relative pt-28 sm:pt-32 pb-20 sm:pb-24 px-4 sm:px-6 overflow-hidden"
+        >
         <div className="hero-particles" aria-hidden="true" />
         <div className="hero-aurora" aria-hidden="true" />
         <div className="hero-divine-overlay" aria-hidden="true" />
@@ -994,6 +996,7 @@ export default function Home() {
         </div>
       </section>
 
+      </main>
       <Footer />
       <InstallBanner />
     </div>

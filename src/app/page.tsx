@@ -20,6 +20,7 @@ import {
 } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import ScrollReveal from '@/components/ScrollReveal';
+const VerseDoDia = dynamic(() => import('@/components/VerseDoDia'), { ssr: false });
 
 const features = [
   {
@@ -572,6 +573,9 @@ export default function Home() {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* VERSÍCULO DO DIA */}
+      <VerseDoDia />
 
       {/* PROVAS SOCIAIS */}
       <section

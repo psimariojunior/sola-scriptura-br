@@ -276,6 +276,85 @@ export async function precarregarProximo(
   }
 }
 
+const versePreloadCache = new Map<string, ArrayBuffer>();
+
+function versePreloadKey(livro: string, capitulo: number, versoIndex: number): string {
+  return `${livro}_${capitulo}_v${versoIndex}`;
+}
+
+export function obterAudioVersiculoPreCarregado(
+  livro: string,
+  capitulo: number,
+  versoIndex: number
+): ArrayBuffer | null {
+  return versePreloadCache.get(versePreloadKey(livro, capitulo, versoIndex)) || null;
+}
+
+export async function precarregarAudioVersiculos(
+  livro: string,
+  capitulo: number,
+  versiculos: Array<{ numero: number; texto: string }>,
+  opts: {
+    announceVerseNumbers: boolean;
+    motor: string;
+    voiceId?: string;
+    vozGenero?: string;
+    vozCustom?: string;
+    rateStr?: string;
+  }
+): Promise<void> {
+  const first3 = versiculos.slice(0, 3);
+  if (first3.length === 0) return;
+
+  const run = async () => {
+    for (let i = 0; i < first3.length; i++) {
+      const v = first3[i];
+      const texto = opts.announceVerseNumbers ? `${v.numero}. ${v.texto}` : v.texto;
+      const key = versePreloadKey(livro, capitulo, i);
+
+      if (versePreloadCache.has(key)) continue;
+
+      try {
+        let buffer: ArrayBuffer | null = null;
+
+        if (opts.motor === 'edge-tts' || opts.motor === 'auto') {
+          try {
+            const { gerarAudioEdge, edgeTTSDisponivel } = await import('@/lib/edgeTTS');
+            if (edgeTTSDisponivel()) {
+              buffer = await gerarAudioEdge({
+                texto,
+                voz: (opts.vozGenero as 'feminina' | 'masculina') || 'feminina',
+                vozCustom: opts.vozCustom,
+                rate: opts.rateStr || '+0%',
+              });
+            }
+          } catch {}
+        }
+
+        if (!buffer && (opts.motor === 'elevenlabs' || opts.motor === 'auto')) {
+          try {
+            const { gerarAudio, temApiKey } = await import('@/lib/elevenLabs');
+            if (temApiKey()) {
+              const audio = await gerarAudio(texto, { voiceId: opts.voiceId });
+              buffer = audio.audio;
+            }
+          } catch {}
+        }
+
+        if (buffer && buffer.byteLength > 0) {
+          versePreloadCache.set(key, buffer);
+        }
+      } catch {}
+    }
+  };
+
+  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+    (window as Window & { requestIdleCallback: (cb: () => void) => void }).requestIdleCallback(run, { timeout: 15000 });
+  } else {
+    setTimeout(run, 0);
+  }
+}
+
 export async function evictLRU(keepCount: number): Promise<number> {
   const db = await openDB();
   let removidos = 0;

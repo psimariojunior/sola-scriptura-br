@@ -11,6 +11,8 @@ import {
   salvarAudioCapitulo,
   obterAudioCapitulo,
   precarregarProximo,
+  precarregarAudioVersiculos,
+  obterAudioVersiculoPreCarregado,
 } from '@/lib/audioCache';
 import {
   selecionarMelhorVoz,
@@ -90,6 +92,29 @@ export function useAudioCapitulo(
     cleanup();
   }, [livro, capitulo]);
 
+  useEffect(() => {
+    if (versiculos.length === 0) return;
+    const config = obterConfigVoz();
+    const usarElevenLabs = (config.motor === 'elevenlabs' || config.motor === 'auto') && temApiKey();
+    const usarEdgeTTS = (config.motor === 'edge-tts' || config.motor === 'auto') && edgeTTSDisponivel();
+    if (!usarElevenLabs && !usarEdgeTTS) return;
+
+    const vozGenero = config.preferGender === 'masculino' ? 'masculina' : 'feminina';
+    const rateStr = config.rate >= 1
+      ? `+${Math.round((config.rate - 1) * 100)}%`
+      : `-${Math.round((1 - config.rate) * 100)}%`;
+
+    precarregarAudioVersiculos(livro, capitulo, versiculos, {
+      announceVerseNumbers: state.announceVerseNumbers,
+      motor: config.motor,
+      voiceId: config.vozElevenLabs,
+      vozGenero,
+      vozCustom: config.vozEdgeTTS !== 'pt-BR-FranciscaNeural' ? config.vozEdgeTTS : undefined,
+      rateStr,
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [livro, capitulo, versiculos]);
+
   function cleanup(): void {
     isStoppingRef.current = true;
     if (audioRef.current) {
@@ -152,6 +177,66 @@ export function useAudioCapitulo(
         textoCompleto = `${verso.numero}. ${verso.texto}`;
       } else {
         textoCompleto = verso.texto;
+      }
+
+      const preloaded = obterAudioVersiculoPreCarregado(livro, capitulo, index);
+      if (preloaded) {
+        const el = audioRef.current;
+        if (el) {
+          if (currentUrlRef.current) URL.revokeObjectURL(currentUrlRef.current);
+          const blob = new Blob([preloaded], { type: 'audio/mpeg' });
+          const url = URL.createObjectURL(blob);
+          currentUrlRef.current = url;
+          el.src = url;
+          el.playbackRate = speedRef.current;
+          el.volume = volumeRef.current;
+
+          const estimatedDuration = estimarDuracao(textoCompleto) / 1000;
+          startProgressTracking(estimatedDuration, 0);
+
+          el.onended = () => {
+            stopProgressTracking();
+            if (isStoppingRef.current) return;
+            if (index < versiculos.length - 1) {
+              const pauseMs = state.pauseBetweenVerses * 1000;
+              setState((prev) => ({ ...prev, isPaused: true }));
+              pauseTimeoutRef.current = setTimeout(() => {
+                if (isStoppingRef.current) return;
+                setState((prev) => ({ ...prev, isPaused: false }));
+                playVerso(index + 1);
+              }, pauseMs);
+            } else {
+              setState((prev) => ({
+                ...prev,
+                isPlaying: false,
+                isPaused: false,
+                currentVerseIndex: 0,
+                currentTime: 0,
+              }));
+            }
+          };
+
+          el.onerror = () => {
+            stopProgressTracking();
+            setState((prev) => ({
+              ...prev,
+              isPlaying: false,
+              isLoading: false,
+              error: 'Erro ao reproduzir áudio',
+            }));
+          };
+
+          await el.play();
+          setState((prev) => ({
+            ...prev,
+            isPlaying: true,
+            isPaused: false,
+            isLoading: false,
+            currentVerseIndex: index,
+            totalTime: estimatedDuration,
+          }));
+          return;
+        }
       }
 
       const config = obterConfigVoz();

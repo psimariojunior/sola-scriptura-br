@@ -17,6 +17,7 @@ import { authService } from '@/lib/auth';
 import '@/lib/i18n';
 
 const MobilePerformanceMonitor = lazy(() => import('@/components/MobilePerformanceMonitor'));
+const BottomNavBar = lazy(() => import('@/components/BottomNavBar'));
 
 const AIPainelLateral = lazy(() => import('@/components/AIPainelLateral').then(m => ({ default: m.AIPainelLateral })));
 const AIMiniPainel = lazy(() => import('@/components/AIMiniPainel').then(m => ({ default: m.AIMiniPainel })));
@@ -129,6 +130,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               {children}
               <BackToTop />
               <Suspense fallback={null}>
+                <BottomNavBar />
                 <AIPainelLateral />
                 <AIMiniPainel />
               </Suspense>

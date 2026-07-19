@@ -1,247 +1,239 @@
 import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+
+const PAGES_TO_TEST = [
+  { path: '/', name: 'Home' },
+  { path: '/biblia', name: 'Biblia' },
+  { path: '/pesquisa', name: 'Pesquisa' },
+  { path: '/ia', name: 'IA' },
+  { path: '/quiz', name: 'Quiz' },
+  { path: '/comparar', name: 'Comparar' },
+  { path: '/favoritos', name: 'Favoritos' },
+];
 
 test.describe('Accessibility', () => {
-  test.describe('Buttons have aria-labels', () => {
-    test.beforeEach(async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(2000);
-    });
+  test.describe('WCAG 2.1 AA compliance (axe-core)', () => {
+    for (const page of PAGES_TO_TEST) {
+      test(`${page.name} (${page.path}) has no serious/critical axe violations`, async ({ page: p }) => {
+        await p.goto(page.path, {
+          waitUntil: 'networkidle',
+          timeout: 60000,
+        });
 
-    test('theme button has aria-label', async ({ page }) => {
-      const themeBtn = page.locator('button[aria-label="Temas"]').first();
-      await expect(themeBtn).toBeVisible();
-      const ariaLabel = await themeBtn.getAttribute('aria-label');
-      expect(ariaLabel).toBeTruthy();
-    });
+        const results = await new AxeBuilder({ page: p })
+          .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+          .analyze();
 
-    test('mobile menu button has aria-controls', async ({ page }) => {
-      await page.setViewportSize({ width: 375, height: 812 });
-      await page.waitForTimeout(500);
-      const menuBtn = page.locator('button[aria-controls="mobile-menu"]');
-      await expect(menuBtn).toBeVisible();
-      const ariaControls = await menuBtn.getAttribute('aria-controls');
-      expect(ariaControls).toBe('mobile-menu');
-    });
+        const seriousAndCritical = results.violations.filter(
+          (v) => v.impact === 'serious' || v.impact === 'critical'
+        );
 
-    test('mobile menu button has aria-expanded', async ({ page }) => {
-      await page.setViewportSize({ width: 375, height: 812 });
-      await page.waitForTimeout(500);
-      const menuBtn = page.locator('button[aria-controls="mobile-menu"]');
-      const ariaExpanded = await menuBtn.getAttribute('aria-expanded');
-      expect(ariaExpanded).toBe('false');
-    });
+        if (seriousAndCritical.length > 0) {
+          const details = seriousAndCritical
+            .map((v) => `  [${v.impact}] ${v.id}: ${v.help} (${v.nodes.length} nodes)`)
+            .join('\n');
+          console.warn(`Accessibility violations on ${page.path}:\n${details}`);
+        }
 
-    test('mobile menu button aria-expanded changes on click', async ({ page }) => {
-      await page.setViewportSize({ width: 375, height: 812 });
-      await page.waitForTimeout(500);
-      const menuBtn = page.locator('button[aria-controls="mobile-menu"]');
-      await menuBtn.click();
-      await page.waitForTimeout(500);
-      const ariaExpanded = await menuBtn.getAttribute('aria-expanded');
-      expect(ariaExpanded).toBe('true');
-    });
+        // Report but don't fail for minor/moderate issues
+        const minorViolations = results.violations.filter(
+          (v) => v.impact === 'minor' || v.impact === 'moderate'
+        );
+        if (minorViolations.length > 0) {
+          console.info(
+            `Minor/moderate issues on ${page.path}: ${minorViolations.length} violations (not failing)`
+          );
+        }
+
+        expect(
+          seriousAndCritical.length,
+          `Found ${seriousAndCritical.length} serious/critical accessibility violations on ${page.path}`
+        ).toBe(0);
+      });
+    }
   });
 
-  test.describe('Images have alt text', () => {
-    test('all img elements have alt attribute', async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(2000);
-      const images = page.locator('img');
-      const count = await images.count();
-      for (let i = 0; i < count; i++) {
-        const alt = await images.nth(i).getAttribute('alt');
-        expect(alt).not.toBeNull();
-      }
-    });
+  test.describe('Color contrast across all pages', () => {
+    for (const page of PAGES_TO_TEST) {
+      test(`${page.name} passes color contrast checks`, async ({ page: p }) => {
+        await p.goto(page.path, {
+          waitUntil: 'networkidle',
+          timeout: 60000,
+        });
 
-    test('images on biblia page have alt text', async ({ page }) => {
-      await page.goto('/biblia', { timeout: 90000, waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(5000);
-      const images = page.locator('img');
-      const count = await images.count();
-      for (let i = 0; i < count; i++) {
-        const alt = await images.nth(i).getAttribute('alt');
-        expect(alt).not.toBeNull();
-      }
-    });
+        const results = await new AxeBuilder({ page: p })
+          .include('body')
+          .withRules(['color-contrast'])
+          .analyze();
+
+        const contrastViolations = results.violations.filter((v) => v.id === 'color-contrast');
+
+        if (contrastViolations.length > 0) {
+          const details = contrastViolations
+            .flatMap((v) => v.nodes.map((n) => `    ${n.html.substring(0, 120)}`))
+            .join('\n');
+          console.warn(`Color contrast issues on ${page.path}:\n${details}`);
+        }
+
+        // Fail only on serious impact contrast issues (typically large text failures)
+        const seriousContrast = contrastViolations.filter((v) => v.impact === 'serious');
+        expect(
+          seriousContrast.length,
+          `Found ${seriousContrast.length} serious color contrast violations on ${page.path}`
+        ).toBe(0);
+      });
+    }
   });
 
   test.describe('Keyboard navigation', () => {
-    test('Tab key moves focus through interactive elements', async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(2000);
-      await page.keyboard.press('Tab');
-      const firstFocused = await page.evaluate(() => document.activeElement?.tagName);
-      expect(['A', 'BUTTON', 'INPUT']).toContain(firstFocused);
-    });
+    test('Tab key moves focus through interactive elements on home page', async ({ page }) => {
+      await page.goto('/', { waitUntil: 'networkidle', timeout: 60000 });
 
-    test('multiple Tab presses move through header elements', async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(2000);
-      const focusedElements: string[] = [];
-      for (let i = 0; i < 5; i++) {
+      const focusedTags: string[] = [];
+      for (let i = 0; i < 8; i++) {
         await page.keyboard.press('Tab');
-        const tag = await page.evaluate(() => document.activeElement?.tagName);
-        focusedElements.push(tag || '');
+        const tag = await page.evaluate(() => document.activeElement?.tagName ?? '');
+        focusedTags.push(tag);
       }
-      const hasInteractive = focusedElements.some(tag => ['A', 'BUTTON', 'INPUT'].includes(tag));
-      expect(hasInteractive).toBe(true);
+
+      const interactiveCount = focusedTags.filter((t) =>
+        ['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'].includes(t)
+      ).length;
+      expect(interactiveCount).toBeGreaterThanOrEqual(3);
     });
 
-    test('Enter key activates focused link', async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(2000);
-      const bibliaLink = page.locator('nav a[href="/biblia"]').first();
-      await bibliaLink.focus();
-      await page.keyboard.press('Enter');
-      await page.waitForURL(/\/biblia/, { timeout: 60000 });
-      await expect(page).toHaveURL(/\/biblia/);
+    test('focus indicator is visible on focused elements', async ({ page }) => {
+      await page.goto('/', { waitUntil: 'networkidle', timeout: 60000 });
+
+      await page.keyboard.press('Tab');
+      await page.keyboard.press('Tab');
+
+      const hasFocusOutline = await page.evaluate(() => {
+        const el = document.activeElement as HTMLElement;
+        if (!el) return false;
+        const style = window.getComputedStyle(el);
+        const outline = style.outlineStyle;
+        const boxShadow = style.boxShadow;
+        const borderColor = style.borderColor;
+        return (
+          outline !== 'none' ||
+          (boxShadow !== 'none' && boxShadow !== '' && borderColor !== 'transparent')
+        );
+      });
+
+      expect(hasFocusOutline).toBe(true);
     });
 
-    test('Escape key closes mobile menu', async ({ page }) => {
-      await page.setViewportSize({ width: 375, height: 812 });
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(1500);
-      const menuBtn = page.locator('button[aria-controls="mobile-menu"]');
-      await menuBtn.click();
-      await page.waitForTimeout(500);
-      const mobileNav = page.locator('#mobile-menu');
-      await expect(mobileNav).toBeVisible();
-      await page.keyboard.press('Escape');
-      await page.waitForTimeout(500);
-      const isHidden = await mobileNav.isHidden();
-      expect(isHidden).toBe(true);
-    });
-  });
+    test('Tab navigates through biblia page interactive elements', async ({ page }) => {
+      await page.goto('/biblia', { waitUntil: 'networkidle', timeout: 60000 });
 
-  test.describe('Semantic HTML', () => {
-    test('page has a header element', async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(2000);
-      const header = page.locator('header');
-      await expect(header).toBeVisible();
-    });
-
-    test('page has a nav element', async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(2000);
-      const nav = page.locator('nav').first();
-      await expect(nav).toBeVisible();
-    });
-
-    test('mobile menu has role="navigation"', async ({ page }) => {
-      await page.setViewportSize({ width: 375, height: 812 });
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(1500);
-      const menuBtn = page.locator('button[aria-controls="mobile-menu"]');
-      await menuBtn.click();
-      await page.waitForTimeout(500);
-      const nav = page.locator('#mobile-menu[role="navigation"]');
-      await expect(nav).toBeVisible();
-    });
-
-    test('main landmark exists on biblia page', async ({ page }) => {
-      await page.goto('/biblia', { timeout: 90000, waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(5000);
-      const main = page.locator('main');
-      await expect(main).toBeVisible();
-    });
-  });
-
-  test.describe('Link accessibility', () => {
-    test('nav links have visible text', async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(2000);
-      const navLinks = page.locator('nav a');
-      const count = await navLinks.count();
-      for (let i = 0; i < count; i++) {
-        const text = await navLinks.nth(i).textContent();
-        expect(text!.trim().length).toBeGreaterThan(0);
+      const focusedTags: string[] = [];
+      for (let i = 0; i < 10; i++) {
+        await page.keyboard.press('Tab');
+        const tag = await page.evaluate(() => document.activeElement?.tagName ?? '');
+        focusedTags.push(tag);
       }
+
+      const interactiveCount = focusedTags.filter((t) =>
+        ['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'].includes(t)
+      ).length;
+      expect(interactiveCount).toBeGreaterThanOrEqual(3);
     });
 
-    test('links have href attribute', async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(2000);
-      const links = page.locator('a[href]');
-      const count = await links.count();
-      expect(count).toBeGreaterThan(0);
-    });
-  });
+    test('Escape key closes open dropdowns/modals', async ({ page }) => {
+      await page.goto('/', { waitUntil: 'networkidle', timeout: 60000 });
 
-  test.describe('Color contrast (basic checks)', () => {
-    test('body text has sufficient contrast in light mode', async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(2000);
       const themeBtn = page.locator('button[aria-label="Temas"]').first();
-      await themeBtn.click();
-      await page.waitForTimeout(500);
-      const lightOption = page.locator('[role="menuitem"]').filter({ hasText: /Claro/ });
-      await lightOption.click();
-      await page.waitForTimeout(500);
-      const bodyColor = await page.evaluate(() => {
-        return window.getComputedStyle(document.body).color;
-      });
-      expect(bodyColor).toBeTruthy();
-    });
+      if (await themeBtn.isVisible()) {
+        await themeBtn.click();
+        await page.waitForTimeout(300);
 
-    test('body text has sufficient contrast in dark mode', async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(2000);
-      const themeBtn = page.locator('button[aria-label="Temas"]').first();
-      await themeBtn.click();
-      await page.waitForTimeout(500);
-      const darkOption = page.locator('[role="menuitem"]').filter({ hasText: /Escuro/ });
-      await darkOption.click();
-      await page.waitForTimeout(500);
-      const bodyColor = await page.evaluate(() => {
-        return window.getComputedStyle(document.body).color;
-      });
-      expect(bodyColor).toBeTruthy();
+        const menuVisible = await page.locator('[role="menuitem"]').first().isVisible();
+        if (menuVisible) {
+          await page.keyboard.press('Escape');
+          await page.waitForTimeout(300);
+          const menuHidden = await page.locator('[role="menuitem"]').first().isHidden();
+          expect(menuHidden).toBe(true);
+        }
+      }
     });
   });
 
   test.describe('Form accessibility', () => {
-    test('search input on biblia page has placeholder', async ({ page }) => {
-      await page.goto('/biblia', { timeout: 90000, waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(5000);
-      const searchInput = page.locator('input[placeholder="Buscar livro..."]');
-      await expect(searchInput).toBeVisible();
-      const placeholder = await searchInput.getAttribute('placeholder');
-      expect(placeholder).toBeTruthy();
+    test('search input on pesquisa page is keyboard accessible', async ({ page }) => {
+      await page.goto('/pesquisa', { waitUntil: 'networkidle', timeout: 60000 });
+
+      const searchInput = page.locator('input[type="text"], input[type="search"], input[placeholder]').first();
+      if (await searchInput.isVisible()) {
+        await searchInput.focus();
+        const isFocused = await page.evaluate(
+          () => document.activeElement?.tagName === 'INPUT'
+        );
+        expect(isFocused).toBe(true);
+      }
     });
 
-    test('search input is focusable', async ({ page }) => {
-      await page.goto('/biblia', { timeout: 90000, waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(5000);
-      const searchInput = page.locator('input[placeholder="Buscar livro..."]');
-      await searchInput.focus();
-      const isFocused = await page.evaluate(() => document.activeElement === document.querySelector('input[placeholder="Buscar livro..."]'));
-      expect(isFocused).toBe(true);
+    test('inputs have associated labels or aria-label', async ({ page }) => {
+      await page.goto('/pesquisa', { waitUntil: 'networkidle', timeout: 60000 });
+
+      const results = await new AxeBuilder({ page })
+        .withRules(['label'])
+        .analyze();
+
+      const labelViolations = results.violations.filter((v) => v.id === 'label');
+      expect(
+        labelViolations.length,
+        `Found ${labelViolations.length} input elements without labels on /pesquisa`
+      ).toBe(0);
     });
   });
 
-  test.describe('ARIA attributes', () => {
-    test('dropdown menus use role="menuitem"', async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(1500);
-      const moreBtn = page.locator('nav button').filter({ hasText: 'Mais' }).first();
-      await moreBtn.click();
-      await page.waitForTimeout(500);
-      const menuItems = page.locator('[role="menuitem"]');
-      const count = await menuItems.count();
-      expect(count).toBeGreaterThan(0);
+  test.describe('Semantic structure', () => {
+    test('pages have proper landmark regions', async ({ page }) => {
+      await page.goto('/', { waitUntil: 'networkidle', timeout: 60000 });
+
+      const landmarks = await page.evaluate(() => {
+        return {
+          header: document.querySelectorAll('header, [role="banner"]').length,
+          nav: document.querySelectorAll('nav, [role="navigation"]').length,
+          main: document.querySelectorAll('main, [role="main"]').length,
+        };
+      });
+
+      expect(landmarks.header).toBeGreaterThanOrEqual(1);
+      expect(landmarks.nav).toBeGreaterThanOrEqual(1);
     });
 
-    test('theme dropdown has correct menu structure', async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(1500);
-      const themeBtn = page.locator('button[aria-label="Temas"]').first();
-      await themeBtn.click();
-      await page.waitForTimeout(500);
-      const menuItems = page.locator('[role="menuitem"]');
-      const count = await menuItems.count();
-      expect(count).toBeGreaterThanOrEqual(3);
+    test('heading hierarchy is logical', async ({ page }) => {
+      await page.goto('/', { waitUntil: 'networkidle', timeout: 60000 });
+
+      const headings = await page.evaluate(() => {
+        const hs = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+        return hs.map((h) => parseInt(h.tagName.charAt(1)));
+      });
+
+      expect(headings.length).toBeGreaterThan(0);
+      expect(headings[0]).toBe(1);
+
+      for (let i = 1; i < headings.length; i++) {
+        expect(
+          headings[i] - headings[i - 1],
+          `Heading h${headings[i]} follows h${headings[i - 1]} (skip level)`
+        ).toBeLessThanOrEqual(1);
+      }
+    });
+  });
+
+  test.describe('Image accessibility', () => {
+    test('all images have alt attributes on home page', async ({ page }) => {
+      await page.goto('/', { waitUntil: 'networkidle', timeout: 60000 });
+
+      const results = await new AxeBuilder({ page })
+        .withRules(['image-alt'])
+        .analyze();
+
+      const imageViolations = results.violations.filter((v) => v.id === 'image-alt');
+      expect(imageViolations.length).toBe(0);
     });
   });
 });

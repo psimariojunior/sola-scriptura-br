@@ -342,6 +342,9 @@ const toggleTrad = (id: string) => {
     const livroInfo = livroPorAbreviacao.get(livro);
     const livroNome = livroInfo?.nome || livro;
     setVersiculoSelecionado({ livro, livroNome, livroAbreviacao: livro, capitulo: cap, versiculo: ver, traducao, texto });
+    // Open side panel with verse resources
+    setSidePanelTab('comentarios');
+    setSidePanelWidth('half');
   };
 
   useEffect(() => {
@@ -857,6 +860,8 @@ const toggleTrad = (id: string) => {
                 capitulo={capituloIdx + 1}
                 versiculo={comentarioVersiculo ?? versiculoSelecionado?.versiculo}
                 onClose={() => { setSidePanelTab(null); setSidePanelWidth('collapsed'); }}
+                versiculoTexto={versiculoSelecionado?.texto}
+                versiculoTraducao={versiculoSelecionado?.traducao}
               />
             )}
           </AnimatePresence>

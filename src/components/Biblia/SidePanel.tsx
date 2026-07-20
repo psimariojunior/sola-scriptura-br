@@ -3,9 +3,13 @@
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, BookText, StickyNote, GraduationCap, History, X, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
+import { MessageSquare, BookText, StickyNote, GraduationCap, History, X, ChevronLeft, ChevronRight, BookOpen, Link2, Users, Shield, Map, Calendar } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { obterContexto, obterContextoCapitulo } from '@/data/contextoHistorico';
+import { obterComentarios } from '@/data/comentarios';
+import { getCrossReferencesByVerse } from '@/data/biblia/crossReferences';
+import { getTiposRecursoDisponiveis, getRecursosVersiculo } from '@/data/biblia/versiculoRecursos';
+import { obterEstudos } from '@/data/estudosTeologicos';
 
 
 const PainelStrong = dynamic(() => import('@/components/PainelStrong'), { ssr: false });
@@ -29,6 +33,8 @@ export interface SidePanelProps {
   capitulo: number;
   versiculo?: number | null;
   onClose: () => void;
+  versiculoTexto?: string;
+  versiculoTraducao?: string;
 }
 
 const tabs: { value: TabValue; label: string; icon: typeof BookOpen }[] = [
@@ -69,6 +75,8 @@ export function SidePanel({
   capitulo,
   versiculo,
   onClose,
+  versiculoTexto,
+  versiculoTraducao,
 }: SidePanelProps) {
   const isCollapsed = width === 'collapsed';
   const isFull = width === 'full';
@@ -78,6 +86,12 @@ export function SidePanel({
     else if (width === 'half') onWidthChange('full');
     else onWidthChange('collapsed');
   };
+
+  // Get resource counts for the selected verse
+  const comentarios = versiculo ? obterComentarios(livroAbreviacao, capitulo, versiculo) : [];
+  const crossRefs = versiculo ? getCrossReferencesByVerse(livroAbreviacao, capitulo, versiculo) : [];
+  const tiposRecursos = versiculo ? getTiposRecursoDisponiveis(livroAbreviacao, capitulo, versiculo) : [];
+  const estudos = versiculo ? obterEstudos(livroAbreviacao, capitulo, versiculo) : [];
 
   if (!open) return null;
 
@@ -164,6 +178,72 @@ export function SidePanel({
       </nav>
 
       <div className="flex-1 overflow-y-auto">
+        {/* Verse Overview - shows when a verse is selected */}
+        {versiculo && versiculoTexto && !isCollapsed && (
+          <div className="px-4 pt-4 pb-3 border-b border-[var(--border)]/30">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-[var(--brand-default)] text-[var(--brand-contrast)] text-[10px] font-bold">
+                {versiculo}
+              </span>
+              <span className="text-xs font-medium text-[var(--content-muted)]">
+                {livroNome} {capitulo}:{versiculo}
+              </span>
+              {versiculoTraducao && (
+                <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-[var(--brand-subtle)] text-[var(--brand-default)] font-semibold uppercase">
+                  {versiculoTraducao}
+                </span>
+              )}
+            </div>
+            <p className="text-sm font-serif-body text-[var(--content-secondary)] leading-relaxed mb-3">
+              {versiculoTexto}
+            </p>
+
+            {/* Resource summary badges */}
+            <div className="flex flex-wrap gap-1.5">
+              {comentarios.length > 0 && (
+                <button
+                  onClick={() => onActiveTabChange('comentarios')}
+                  className={cn(
+                    'inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-full font-medium transition-colors',
+                    activeTab === 'comentarios'
+                      ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300'
+                      : 'bg-[var(--surface-sunken)] text-[var(--content-muted)] hover:bg-amber-50 dark:hover:bg-amber-900/20'
+                  )}
+                >
+                  <MessageSquare className="w-3 h-3" />
+                  {comentarios.length} comentário{comentarios.length !== 1 ? 's' : ''}
+                </button>
+              )}
+              {crossRefs.length > 0 && (
+                <span className="inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-full bg-[var(--surface-sunken)] text-[var(--content-muted)] font-medium">
+                  <Link2 className="w-3 h-3" />
+                  {crossRefs.length} ref{crossRefs.length !== 1 ? 's' : ''} cruzada{crossRefs.length !== 1 ? 's' : ''}
+                </span>
+              )}
+              {estudos.length > 0 && (
+                <button
+                  onClick={() => onActiveTabChange('estudos')}
+                  className={cn(
+                    'inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-full font-medium transition-colors',
+                    activeTab === 'estudos'
+                      ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300'
+                      : 'bg-[var(--surface-sunken)] text-[var(--content-muted)] hover:bg-emerald-50 dark:hover:bg-emerald-900/20'
+                  )}
+                >
+                  <GraduationCap className="w-3 h-3" />
+                  {estudos.length} estudo{estudos.length !== 1 ? 's' : ''}
+                </button>
+              )}
+              {tiposRecursos.filter(t => !['comentario', 'estudo', 'cross-ref', 'nota'].includes(t)).length > 0 && (
+                <span className="inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-full bg-[var(--surface-sunken)] text-[var(--content-muted)] font-medium">
+                  <BookOpen className="w-3 h-3" />
+                  +{tiposRecursos.filter(t => !['comentario', 'estudo', 'cross-ref', 'nota'].includes(t)).length} recurso{tiposRecursos.filter(t => !['comentario', 'estudo', 'cross-ref', 'nota'].includes(t)).length !== 1 ? 's' : ''}
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+
         <AnimatePresence mode="wait">
           {activeTab && !isCollapsed && (
             <motion.div

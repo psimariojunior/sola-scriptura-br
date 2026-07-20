@@ -10,7 +10,7 @@ const nextConfig = {
   },
   experimental: {
     optimizePackageImports: [
-      'framer-motion', 'lucide-react', '@heroicons/react/24/outline',
+      'framer-motion', 'lucide-react',
       'recharts', 'leaflet', 'react-leaflet',
       '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-popover',
       '@radix-ui/react-tabs', '@radix-ui/react-select', '@radix-ui/react-accordion',

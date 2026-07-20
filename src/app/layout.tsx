@@ -3,8 +3,6 @@ import { Cormorant_Garamond, Inter, Spectral } from 'next/font/google';
 import LayoutWrapper from '@/components/LayoutWrapper';
 import './globals.css';
 
-export const dynamic = 'force-dynamic';
-
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   weight: ['400', '600'],

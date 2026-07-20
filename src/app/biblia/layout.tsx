@@ -1,7 +1,4 @@
 import type { Metadata } from 'next';
-import { generateBreadcrumbSchema, generateWebAppSchema } from '@/lib/seo';
-
-export const dynamic = 'force-dynamic';
 
 const SITE_URL = 'https://solascripturabr.com.br';
 
@@ -67,24 +64,5 @@ export const metadata: Metadata = {
 };
 
 export default function BibliaLayout({ children }: { children: React.ReactNode }) {
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Início', url: '/' },
-    { name: 'Bíblia Sagrada', url: '/biblia' },
-  ]);
-
-  const webAppSchema = generateWebAppSchema();
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
-      />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }

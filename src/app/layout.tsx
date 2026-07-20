@@ -4,6 +4,7 @@ import LayoutWrapper from '@/components/LayoutWrapper';
 import './globals.css';
 
 export const dynamic = 'force-dynamic';
+// deploy v2
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],

@@ -28,6 +28,10 @@ class WebViewService {
       ..setNavigationDelegate(_createNavigationDelegate())
       ..setOnConsoleMessage(_onConsoleMessage);
 
+    // Clear cache to ensure fresh content
+    await controller.clearCache();
+    await controller.clearLocalStorage();
+
     _isInitialized = true;
   }
 

@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef, lazy, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { TODOS_LIVROS, traducoes, carregarTraducao, ABREV_PARA_MIDVASH, livroPorAbreviacao } from '@/data/biblia';
 import type { CapituloComparado } from '@/data/biblia';
 import {
@@ -1039,24 +1040,33 @@ const toggleTrad = (id: string) => {
 
           <AnimatePresence>
             {sidePanelOpen && (
-              <SidePanel
-                open={sidePanelOpen}
-                width={sidePanelWidth}
-                onWidthChange={setSidePanelWidth}
-                activeTab={sidePanelTab}
-                onActiveTabChange={(tab) => {
-                  setSidePanelTab(tab);
-                  if (!tab) setSidePanelWidth('collapsed');
-                }}
-                livro={livro.nome}
-                livroNome={livro.nome}
-                livroAbreviacao={livro.abreviacao}
-                capitulo={capituloIdx + 1}
-                versiculo={comentarioVersiculo ?? versiculoSelecionado?.versiculo}
-                onClose={() => { setSidePanelTab(null); setSidePanelWidth('collapsed'); }}
-                versiculoTexto={versiculoSelecionado?.texto}
-                versiculoTraducao={versiculoSelecionado?.traducao}
-              />
+              <ErrorBoundary fallback={
+                <div className="shrink-0 w-full sm:w-[340px] md:w-[380px] lg:w-[420px] border-l border-[var(--border)] bg-[var(--surface-raised)] flex items-center justify-center p-8">
+                  <div className="text-center">
+                    <p className="text-sm text-[var(--content-muted)] mb-3">Erro ao carregar painel</p>
+                    <button onClick={() => { setSidePanelTab(null); setSidePanelWidth('collapsed'); }} className="text-xs text-[var(--brand-default)] underline">Fechar</button>
+                  </div>
+                </div>
+              }>
+                <SidePanel
+                  open={sidePanelOpen}
+                  width={sidePanelWidth}
+                  onWidthChange={setSidePanelWidth}
+                  activeTab={sidePanelTab}
+                  onActiveTabChange={(tab) => {
+                    setSidePanelTab(tab);
+                    if (!tab) setSidePanelWidth('collapsed');
+                  }}
+                  livro={livro.nome}
+                  livroNome={livro.nome}
+                  livroAbreviacao={livro.abreviacao}
+                  capitulo={capituloIdx + 1}
+                  versiculo={comentarioVersiculo ?? versiculoSelecionado?.versiculo}
+                  onClose={() => { setSidePanelTab(null); setSidePanelWidth('collapsed'); }}
+                  versiculoTexto={versiculoSelecionado?.texto}
+                  versiculoTraducao={versiculoSelecionado?.traducao}
+                />
+              </ErrorBoundary>
             )}
           </AnimatePresence>
         </div>

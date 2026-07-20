@@ -6,7 +6,7 @@ import { Header } from '@/components/Header';
 import { TODOS_LIVROS, traducoes, carregarTraducao, ABREV_PARA_MIDVASH, livroPorAbreviacao } from '@/data/biblia';
 import type { CapituloComparado } from '@/data/biblia';
 import {
-  BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, Search, Sparkles, Play, Mic, Volume2, ListFilter, WifiOff, Quote
+  BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, Search, Sparkles, Play, Mic, Volume2, ListFilter, WifiOff, Quote, X
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEstudos } from '@/components/EstudosProvider';
@@ -173,6 +173,8 @@ export default function BibliaPage() {
   const [estudoAberto, setEstudoAberto] = useState<number | null>(null);
   const [showPlan, setShowPlan] = useState(false);
   const [modoLeitura, setModoLeitura] = useState<ModoLeituraValue>('foco');
+  const [focusedVerse, setFocusedVerse] = useState<number | null>(null);
+  const [zenMode, setZenMode] = useState(false);
   const [sidePanelWidth, setSidePanelWidth] = useState<SidePanelWidth>('collapsed');
   const [sidePanelTab, setSidePanelTab] = useState<'comentarios' | 'strong' | 'notas' | 'estudos' | 'contexto' | null>(null);
   const mainRef = useRef<HTMLDivElement>(null);
@@ -262,8 +264,13 @@ export default function BibliaPage() {
     params.set('livro', livro.abreviacao);
     params.set('capitulo', String(capituloIdx + 1));
     params.set('trads', selectedTrads.join(','));
+    if (versiculoSelecionado) {
+      params.set('v', String(versiculoSelecionado.versiculo));
+    } else {
+      params.delete('v');
+    }
     window.history.replaceState(null, '', `?${params.toString()}`);
-  }, [livro.abreviacao, capituloIdx, selectedTrads]);
+  }, [livro.abreviacao, capituloIdx, selectedTrads, versiculoSelecionado]);
 
   const [recentSearches, setRecentSearches] = useState<Array<{query: string; livro: string; nome: string; cap: number; versiculo: number}>>([]);
 
@@ -279,15 +286,100 @@ export default function BibliaPage() {
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); setQuickSearchOpen(p => !p); return; }
       if (quickSearchOpen && e.key === 'Escape') { setQuickSearchOpen(false); return; }
       if ((e.target as HTMLElement).tagName === 'INPUT' || (e.target as HTMLElement).tagName === 'TEXTAREA') return;
+
+      // Quick search
       if (e.key === '/') { e.preventDefault(); setQuickSearchOpen(true); return; }
-      if (e.key === 'ArrowLeft' && capituloIdx > 0) { e.preventDefault(); setChapterDirection('prev'); setCapituloIdx(p => Math.max(0, p - 1)); }
-      else if (e.key === 'ArrowRight' && livro && capituloIdx < livro.totalCapitulos - 1) { e.preventDefault(); setChapterDirection('next'); setCapituloIdx(p => p + 1); }
-       else if (e.key === 'Escape') { setSidebarOpen(false); setMobileMenu(false); setChapterGridOpen(false); setMostrarNarracao(false); setMostrarNarracaoCapitulo(false); setVersiculoSelecionado(null); setTradOpen(false); 
- setToolsOpen(false); setExportOpen(false); }
+
+      // Zen mode toggle
+      if (e.key === 'z' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); setZenMode(p => !p); return; }
+
+      // Chapter navigation
+      const maxVersos = data[0]?.versiculos?.length ?? 0;
+
+      if (e.key === 'ArrowLeft' && !e.shiftKey && capituloIdx > 0) {
+        e.preventDefault();
+        setChapterDirection('prev');
+        setCapituloIdx(p => Math.max(0, p - 1));
+        setFocusedVerse(null);
+      } else if (e.key === 'ArrowRight' && !e.shiftKey && livro && capituloIdx < livro.totalCapitulos - 1) {
+        e.preventDefault();
+        setChapterDirection('next');
+        setCapituloIdx(p => p + 1);
+        setFocusedVerse(null);
+      }
+      // Verse navigation with Shift+Arrow
+      else if (e.key === 'ArrowDown' && e.shiftKey && maxVersos > 0) {
+        e.preventDefault();
+        setFocusedVerse(prev => {
+          if (prev === null) return 1;
+          return Math.min(maxVersos, prev + 1);
+        });
+      } else if (e.key === 'ArrowUp' && e.shiftKey && maxVersos > 0) {
+        e.preventDefault();
+        setFocusedVerse(prev => {
+          if (prev === null) return 1;
+          return Math.max(1, prev - 1);
+        });
+      }
+      // Enter to select focused verse
+      else if (e.key === 'Enter' && focusedVerse !== null) {
+        e.preventDefault();
+        const trad = selectedTrads[0] || 'arc';
+        const texto = data[0]?.versiculos?.find(v => v.numero === focusedVerse)?.texto || '';
+        handleSelectFromList(livro.abreviacao, capituloIdx + 1, focusedVerse, trad, texto);
+      }
+      // Escape to close panels
+      else if (e.key === 'Escape') {
+        setSidebarOpen(false); setMobileMenu(false); setChapterGridOpen(false);
+        setMostrarNarracao(false); setMostrarNarracaoCapitulo(false);
+        setVersiculoSelecionado(null); setFocusedVerse(null);
+        setTradOpen(false); setToolsOpen(false); setExportOpen(false);
+        setZenMode(false);
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [capituloIdx, livro, quickSearchOpen]);
+  }, [capituloIdx, livro, quickSearchOpen, focusedVerse, selectedTrads, data]);
+
+  // Mobile swipe gestures for chapter navigation
+  useEffect(() => {
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+      const deltaX = touchEndX - touchStartX;
+      const deltaY = touchEndY - touchStartY;
+
+      // Only trigger if horizontal swipe is dominant and long enough
+      if (Math.abs(deltaX) > 80 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+        if (deltaX < 0 && capituloIdx < livro.totalCapitulos - 1) {
+          // Swipe left - next chapter
+          setChapterDirection('next');
+          setCapituloIdx(p => p + 1);
+          setFocusedVerse(null);
+        } else if (deltaX > 0 && capituloIdx > 0) {
+          // Swipe right - previous chapter
+          setChapterDirection('prev');
+          setCapituloIdx(p => Math.max(0, p - 1));
+          setFocusedVerse(null);
+        }
+      }
+    };
+
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [capituloIdx, livro]);
 
 const toggleTrad = (id: string) => {
   setSelectedTrads(prev => {
@@ -364,6 +456,103 @@ const toggleTrad = (id: string) => {
   };
 
   const sidePanelOpen = sidePanelWidth !== 'collapsed' && sidePanelTab !== null;
+
+  // Zen mode - clean reading view
+  if (zenMode && temDados) {
+    return (
+      <div className="fixed inset-0 z-50 bg-[var(--bg)] overflow-y-auto">
+        <div className="max-w-[700px] mx-auto px-6 py-16">
+          {/* Zen header - minimal */}
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setZenMode(false)}
+                className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"
+                title="Sair do modo zen (Esc)"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <div>
+                <h1 className="font-display text-xl font-semibold text-[var(--content-primary)]">
+                  {livro.nome} {capituloIdx + 1}
+                </h1>
+                <p className="text-xs text-[var(--content-muted)]">
+                  {selectedTrads.map(t => labelMap[t] || t.toUpperCase()).join(' · ')}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => changeChapter(Math.max(0, capituloIdx - 1))}
+                disabled={capituloIdx === 0}
+                className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] disabled:opacity-30 transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
+                disabled={capituloIdx >= livro.totalCapitulos - 1}
+                className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] disabled:opacity-30 transition-colors"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Verses - clean reading */}
+          {data.map((item) => (
+            <div key={item.traducao}>
+              {selectedTrads.length > 1 && (
+                <div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/30">
+                  <div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} />
+                  <span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span>
+                </div>
+              )}
+              <div className="space-y-4">
+                {item.versiculos.map((v) => (
+                  <motion.p
+                    key={v.numero}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: v.numero * 0.02 }}
+                    className="font-serif-body text-[var(--content-primary)] leading-[2] cursor-pointer hover:bg-[var(--surface-sunken)]/40 rounded-lg px-3 py-2 -mx-3 transition-colors"
+                    style={{ fontSize: `${fontSize + 2}px` }}
+                    onClick={() => {
+                      setZenMode(false);
+                      handleSelectFromList(livro.abreviacao, capituloIdx + 1, v.numero, item.traducao, v.texto);
+                    }}
+                  >
+                    <sup className="text-[var(--brand-default)] font-bold text-[11px] mr-1.5 select-none tabular-nums">{v.numero}</sup>
+                    {v.texto}
+                  </motion.p>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          {/* Zen footer */}
+          <div className="flex items-center justify-center gap-4 mt-16 pt-8 border-t border-[var(--border)]/30">
+            <button
+              onClick={() => changeChapter(Math.max(0, capituloIdx - 1))}
+              disabled={capituloIdx === 0}
+              className="flex items-center gap-2 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--surface-sunken)] transition-colors"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              Capítulo anterior
+            </button>
+            <button
+              onClick={() => changeChapter(Math.min(livro.totalCapitulos - 1, capituloIdx + 1))}
+              disabled={capituloIdx >= livro.totalCapitulos - 1}
+              className="flex items-center gap-2 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--surface-sunken)] transition-colors"
+            >
+              Próximo capítulo
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[var(--bg)]">
@@ -679,6 +868,7 @@ const toggleTrad = (id: string) => {
                                   isSelected={isSelected}
                                   isPlaying={isPlaying}
                                   isHighlighted={modoLeitura === 'foco' && highlightedVerse === v.numero}
+                                  isFocused={focusedVerse === v.numero}
                                   isFavorito={fav}
                                   corMarca={corMarca}
                                   temAnotacao={false}

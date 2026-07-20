@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, BookText, StickyNote, GraduationCap, History, X, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { obterContexto, obterContextoCapitulo } from '@/data/contextoHistorico';
-import { obterComentarios } from '@/data/comentarios';
+
 
 const PainelStrong = dynamic(() => import('@/components/PainelStrong'), { ssr: false });
 const PainelNotas = dynamic(() => import('@/components/PainelNotas'), { ssr: false });

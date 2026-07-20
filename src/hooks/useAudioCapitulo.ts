@@ -74,7 +74,7 @@ export function useAudioCapitulo(
   const speedRef = useRef(1);
 
   useEffect(() => {
-    synthRef.current = typeof window !== 'undefined' ? window.speechSynthesis : null;
+    synthRef.current = typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis : null;
     audioRef.current = new Audio();
     audioRef.current.preload = 'auto';
 

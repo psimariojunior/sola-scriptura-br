@@ -305,13 +305,13 @@ export function criarUtteranceComPausa(
 }
 
 export function listarVozesDisponiveis(): SpeechSynthesisVoice[] {
-  if (typeof window === 'undefined') return [];
+  if (typeof window === 'undefined' || !window.speechSynthesis) return [];
   return window.speechSynthesis.getVoices();
 }
 
 export function esperarVozesCarregarem(timeoutMs: number = 2000): Promise<SpeechSynthesisVoice[]> {
   return new Promise((resolve) => {
-    if (typeof window === 'undefined') {
+    if (typeof window === 'undefined' || !window.speechSynthesis) {
       resolve([]);
       return;
     }

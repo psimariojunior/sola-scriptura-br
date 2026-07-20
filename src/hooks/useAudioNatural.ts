@@ -77,7 +77,7 @@ export function useAudioNatural() {
   const onEndCallbackRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
-    synthRef.current = typeof window !== 'undefined' ? window.speechSynthesis : null;
+    synthRef.current = typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis : null;
 
     audioRef.current = new Audio();
     audioRef.current.preload = 'auto';

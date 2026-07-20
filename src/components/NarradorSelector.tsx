@@ -33,7 +33,7 @@ export default function NarradorSelector({
   });
 
   function playPreview(voice: VoiceConfig): void {
-    if (!synthRef.current) {
+    if (!synthRef.current && typeof window !== 'undefined' && window.speechSynthesis) {
       synthRef.current = window.speechSynthesis;
     }
 

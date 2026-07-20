@@ -63,7 +63,7 @@ export default function ManualAudioPlayer({
   useEffect(() => {
     audioRef.current = new Audio();
     audioRef.current.preload = 'auto';
-    synthRef.current = typeof window !== 'undefined' ? window.speechSynthesis : null;
+    synthRef.current = typeof window !== 'undefined' && window.speechSynthesis ? window.speechSynthesis : null;
 
     const savedSpeed = localStorage.getItem(STORAGE_KEY_SPEED);
     const savedVol = localStorage.getItem(STORAGE_KEY_VOLUME);

@@ -17,7 +17,7 @@ export function useVerseAudio() {
   const vozConfigRef = useRef<VozConfig>(obterConfigVoz());
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || !window.speechSynthesis) return;
     synthRef.current = window.speechSynthesis;
     vozConfigRef.current = obterConfigVoz();
 

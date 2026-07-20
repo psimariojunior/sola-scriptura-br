@@ -8,6 +8,7 @@ export function useComentarioAudio() {
   const bestVoiceRef = useRef<SpeechSynthesisVoice | null>(null);
 
   useEffect(() => {
+    if (typeof window === 'undefined' || !window.speechSynthesis) return;
     synthRef.current = window.speechSynthesis;
 
     const findBestVoice = () => {
@@ -31,14 +32,14 @@ export function useComentarioAudio() {
     findBestVoice();
 
     const onChanged = () => { findBestVoice(); };
-    if (speechSynthesis.onvoiceschanged !== undefined) {
-      speechSynthesis.addEventListener('voiceschanged', onChanged);
+    if (synthRef.current && synthRef.current.onvoiceschanged !== undefined) {
+      synthRef.current.addEventListener('voiceschanged', onChanged);
     }
 
     return () => {
       synthRef.current?.cancel();
-      if (speechSynthesis.onvoiceschanged !== undefined) {
-        speechSynthesis.removeEventListener('voiceschanged', onChanged);
+      if (synthRef.current && synthRef.current.onvoiceschanged !== undefined) {
+        synthRef.current.removeEventListener('voiceschanged', onChanged);
       }
     };
   }, []);

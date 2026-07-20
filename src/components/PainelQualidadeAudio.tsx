@@ -28,7 +28,7 @@ export function PainelQualidadeAudio({ open, onOpenChange }: PainelQualidadeAudi
   const synthRef = useRef<SpeechSynthesis | null>(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || !window.speechSynthesis) return;
     synthRef.current = window.speechSynthesis;
 
     esperarVozesCarregarem(3000).then((v) => {

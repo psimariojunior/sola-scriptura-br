@@ -5,7 +5,8 @@
         android:label="Sola Scriptura BR"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:usesCleartextTraffic="true">
+        android:hardwareAccelerated="true"
+        android:largeHeap="true">
         <activity
             android:name=".MainActivity"
             android:exported="true"

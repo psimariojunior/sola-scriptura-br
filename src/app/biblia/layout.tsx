@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { generateBreadcrumbSchema, generateWebAppSchema } from '@/lib/seo';
 
+export const dynamic = 'force-dynamic';
+
 const SITE_URL = 'https://solascripturabr.com.br';
 
 export const metadata: Metadata = {

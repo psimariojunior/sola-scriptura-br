@@ -182,11 +182,10 @@ export const VerseCard = memo(function VerseCard({
               </span>
               {hasResources && (
                 <span
-                  className="inline-flex items-center gap-1 text-[9px] text-[var(--brand-default)]/60 font-medium"
-                  title={`${tiposRecursos.length} recurso(s) disponível(is)`}
+                  className="inline-flex items-center text-[9px] text-[var(--brand-default)]/60 font-medium"
+                  title="Recursos disponíveis"
                 >
-                  <span className="w-1 h-1 rounded-full bg-[var(--brand-default)]/40" />
-                  {tiposRecursos.length + (crossRefsDetalhadas.length > 0 ? 1 : 0)}
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand-default)]/40" />
                 </span>
               )}
             </div>

@@ -1,0 +1,16 @@
+node_modules/
+.next/
+mobile_app/
+mobile/
+backend/
+supabase/
+infra/
+scripts/
+e2e/
+test-results/
+playwright-report/
+coverage/
+*.md
+.git/
+.opencode/
+Estudo_Teste.pdf

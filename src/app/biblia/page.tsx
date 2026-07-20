@@ -431,12 +431,16 @@ const toggleTrad = (id: string) => {
   };
 
   const handleSelectFromList = (livro: string, cap: number, ver: number, traducao: string, texto: string) => {
-    const livroInfo = livroPorAbreviacao.get(livro);
-    const livroNome = livroInfo?.nome || livro;
-    setVersiculoSelecionado({ livro, livroNome, livroAbreviacao: livro, capitulo: cap, versiculo: ver, traducao, texto });
-    // Open side panel with verse resources
-    setSidePanelTab('comentarios');
-    setSidePanelWidth('half');
+    try {
+      const livroInfo = livroPorAbreviacao.get(livro);
+      const livroNome = livroInfo?.nome || livro;
+      setVersiculoSelecionado({ livro, livroNome, livroAbreviacao: livro, capitulo: cap, versiculo: ver, traducao, texto });
+      // Open side panel with verse resources
+      setSidePanelTab('comentarios');
+      setSidePanelWidth('half');
+    } catch (e) {
+      console.error('Erro ao selecionar versículo:', e);
+    }
   };
 
   useEffect(() => {

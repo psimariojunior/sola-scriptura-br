@@ -85,11 +85,15 @@ export const VerseCard = memo(function VerseCard({
     }
   }, [isCurrentAudioVerse, isFocused]);
 
-  // Count available resources for the indicator (memoized)
+  // Count available resources for the indicator (memoized, with error handling)
   const hasResources = useMemo(() => {
-    const tipos = getTiposRecursoDisponiveis(livroAbreviacao, capitulo, numero);
-    const refs = getCrossReferencesByVerse(livroAbreviacao, capitulo, numero);
-    return tipos.length > 0 || refs.length > 0;
+    try {
+      const tipos = getTiposRecursoDisponiveis(livroAbreviacao, capitulo, numero);
+      const refs = getCrossReferencesByVerse(livroAbreviacao, capitulo, numero);
+      return tipos.length > 0 || refs.length > 0;
+    } catch {
+      return false;
+    }
   }, [livroAbreviacao, capitulo, numero]);
 
   const corBgMap: Record<string, string> = {

@@ -87,15 +87,19 @@ export function SidePanel({
     else onWidthChange('collapsed');
   };
 
-  // Get resource counts for the selected verse (memoized)
+  // Get resource counts for the selected verse (memoized, with error handling)
   const resourceData = useMemo(() => {
     if (!versiculo) return { comentarios: [], crossRefs: [], tiposRecursos: [], estudos: [] };
-    return {
-      comentarios: obterComentarios(livroAbreviacao, capitulo, versiculo),
-      crossRefs: getCrossReferencesByVerse(livroAbreviacao, capitulo, versiculo),
-      tiposRecursos: getTiposRecursoDisponiveis(livroAbreviacao, capitulo, versiculo),
-      estudos: obterEstudos(livroAbreviacao, capitulo, versiculo),
-    };
+    try {
+      return {
+        comentarios: obterComentarios(livroAbreviacao, capitulo, versiculo),
+        crossRefs: getCrossReferencesByVerse(livroAbreviacao, capitulo, versiculo),
+        tiposRecursos: getTiposRecursoDisponiveis(livroAbreviacao, capitulo, versiculo),
+        estudos: obterEstudos(livroAbreviacao, capitulo, versiculo),
+      };
+    } catch {
+      return { comentarios: [], crossRefs: [], tiposRecursos: [], estudos: [] };
+    }
   }, [versiculo, livroAbreviacao, capitulo]);
 
   const comentarios = resourceData.comentarios;

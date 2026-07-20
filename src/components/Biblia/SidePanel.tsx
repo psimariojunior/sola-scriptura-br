@@ -1,14 +1,14 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, BookText, StickyNote, GraduationCap, History, X, ChevronLeft, ChevronRight, BookOpen, Link2, Users, Shield, Map, Calendar } from 'lucide-react';
+import { MessageSquare, BookText, StickyNote, GraduationCap, History, X, ChevronLeft, ChevronRight, BookOpen, Link2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { obterContexto, obterContextoCapitulo } from '@/data/contextoHistorico';
 import { obterComentarios } from '@/data/comentarios';
 import { getCrossReferencesByVerse } from '@/data/biblia/crossReferences';
-import { getTiposRecursoDisponiveis, getRecursosVersiculo } from '@/data/biblia/versiculoRecursos';
+import { getTiposRecursoDisponiveis } from '@/data/biblia/versiculoRecursos';
 import { obterEstudos } from '@/data/estudosTeologicos';
 
 
@@ -87,11 +87,21 @@ export function SidePanel({
     else onWidthChange('collapsed');
   };
 
-  // Get resource counts for the selected verse
-  const comentarios = versiculo ? obterComentarios(livroAbreviacao, capitulo, versiculo) : [];
-  const crossRefs = versiculo ? getCrossReferencesByVerse(livroAbreviacao, capitulo, versiculo) : [];
-  const tiposRecursos = versiculo ? getTiposRecursoDisponiveis(livroAbreviacao, capitulo, versiculo) : [];
-  const estudos = versiculo ? obterEstudos(livroAbreviacao, capitulo, versiculo) : [];
+  // Get resource counts for the selected verse (memoized)
+  const resourceData = useMemo(() => {
+    if (!versiculo) return { comentarios: [], crossRefs: [], tiposRecursos: [], estudos: [] };
+    return {
+      comentarios: obterComentarios(livroAbreviacao, capitulo, versiculo),
+      crossRefs: getCrossReferencesByVerse(livroAbreviacao, capitulo, versiculo),
+      tiposRecursos: getTiposRecursoDisponiveis(livroAbreviacao, capitulo, versiculo),
+      estudos: obterEstudos(livroAbreviacao, capitulo, versiculo),
+    };
+  }, [versiculo, livroAbreviacao, capitulo]);
+
+  const comentarios = resourceData.comentarios;
+  const crossRefs = resourceData.crossRefs;
+  const tiposRecursos = resourceData.tiposRecursos;
+  const estudos = resourceData.estudos;
 
   if (!open) return null;
 

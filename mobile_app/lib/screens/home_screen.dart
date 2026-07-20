@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../config/constants.dart';
 import '../config/theme.dart';
 import '../services/webview_service.dart';

@@ -28,13 +28,6 @@ class WebViewService {
       ..setNavigationDelegate(_createNavigationDelegate())
       ..setOnConsoleMessage(_onConsoleMessage);
 
-    // Enable DOM storage and caching
-    try {
-      await controller.setNavigationDelegate(_createNavigationDelegate());
-    } catch (e) {
-      debugPrint('WebView init error: $e');
-    }
-
     _isInitialized = true;
   }
 
@@ -68,23 +61,14 @@ class WebViewService {
           onError?.call(error.description);
         }
       },
-      onNavigationRequest: (request) {
-        return _shouldAllowNavigation(request.url)
-            ? NavigationDecision.navigate
-            : NavigationDecision.prevent;
+      onNavigationRequest: (request) async {
+        final uri = Uri.parse(request.url);
+        final allowed = AppConstants.allowedDomains.any(
+          (domain) => uri.host == domain || uri.host.endsWith('.$domain'),
+        );
+        return allowed ? NavigationDecision.navigate : NavigationDecision.prevent;
       },
     );
-  }
-
-  NavigationDecision _shouldAllowNavigation(String url) {
-    try {
-      final uri = Uri.parse(url);
-      return AppConstants.allowedDomains.any(
-        (domain) => uri.host == domain || uri.host.endsWith('.$domain'),
-      );
-    } catch (_) {
-      return NavigationDecision.prevent;
-    }
   }
 
   void _onConsoleMessage(JavaScriptConsoleMessage message) {
@@ -116,7 +100,6 @@ class WebViewService {
   }
 
   void dispose() {
-    // WebView controller doesn't have explicit dispose
     _isInitialized = false;
   }
 }

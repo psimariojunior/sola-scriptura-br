@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, Fragment, useRef, useState, useEffect, Suspense } from 'react';
+import { memo, Fragment, useRef, useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -10,38 +10,8 @@ import type { useFlashcards } from '@/hooks/useFlashcards';
 import { getCrossReferencesByVerse, type CrossReference } from '@/data/biblia/crossReferences';
 import {
   getTiposRecursoDisponiveis,
-  getRecursosVersiculo,
-  type TipoRecurso,
-  type RecursoMapa,
-  type RecursoPersonagem,
-  type RecursoDoutrina,
-  type RecursoLexico,
 } from '@/data/biblia/versiculoRecursos';
-import { authService } from '@/lib/auth';
 import { VerseActions } from './VerseActions';
-
-const crossRefTypeColors: Record<CrossReference['type'], { bg: string; text: string; label: string }> = {
-  parallel: { bg: 'bg-emerald-100 dark:bg-emerald-900/30', text: 'text-emerald-700 dark:text-emerald-300', label: 'Paralelo' },
-  fulfillment: { bg: 'bg-blue-100 dark:bg-blue-900/30', text: 'text-blue-700 dark:text-blue-300', label: 'Cumprimento' },
-  quotation: { bg: 'bg-orange-100 dark:bg-orange-900/30', text: 'text-orange-700 dark:text-orange-300', label: 'Citação' },
-  contrast: { bg: 'bg-red-100 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-300', label: 'Contraste' },
-  thematic: { bg: 'bg-purple-100 dark:bg-purple-900/30', text: 'text-purple-700 dark:text-purple-300', label: 'Temático' },
-  typology: { bg: 'bg-amber-100 dark:bg-amber-900/30', text: 'text-amber-700 dark:text-amber-300', label: 'Tipologia' },
-};
-
-const resourceTypeInfo: Record<TipoRecurso, { icon: string; label: string }> = {
-  comentario: { icon: '📝', label: 'Comentário' },
-  estudo: { icon: '📖', label: 'Estudo' },
-  nota: { icon: '📋', label: 'Nota' },
-  'cross-ref': { icon: '🔗', label: 'Ref. Cruzada' },
-  lexico: { icon: '🔤', label: 'Léxico' },
-  mapa: { icon: '🗺️', label: 'Mapa' },
-  personagem: { icon: '👤', label: 'Personagem' },
-  doutrina: { icon: '⛪', label: 'Doutrina' },
-  cronologia: { icon: '📅', label: 'Cronologia' },
-  pericope: { icon: '📑', label: 'Perícope' },
-  'contexto-historico': { icon: '🏛️', label: 'Contexto Histórico' },
-};
 
 export interface VerseCardProps {
   numero: number;
@@ -115,10 +85,12 @@ export const VerseCard = memo(function VerseCard({
     }
   }, [isCurrentAudioVerse, isFocused]);
 
-  // Count available resources for the indicator
-  const tiposRecursos = getTiposRecursoDisponiveis(livroAbreviacao, capitulo, numero);
-  const crossRefsDetalhadas = getCrossReferencesByVerse(livroAbreviacao, capitulo, numero);
-  const hasResources = tiposRecursos.length > 0 || crossRefsDetalhadas.length > 0;
+  // Count available resources for the indicator (memoized)
+  const hasResources = useMemo(() => {
+    const tipos = getTiposRecursoDisponiveis(livroAbreviacao, capitulo, numero);
+    const refs = getCrossReferencesByVerse(livroAbreviacao, capitulo, numero);
+    return tipos.length > 0 || refs.length > 0;
+  }, [livroAbreviacao, capitulo, numero]);
 
   const corBgMap: Record<string, string> = {
     yellow: 'bg-[var(--mark-yellow)]',

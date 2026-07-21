@@ -1506,6 +1506,298 @@ const estudosExtras: EstudoVersiculo[] = [
       { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Gospel', resumo: 'Deus é amor significa que o amor não é ilusão — tem origem eterna. O amor que experimentamos aponta para o amor que é Deus.', citacao: '«Deus não apenas ama — Ele é amor. Isso significa que o amor é a realidade mais profunda do universo.»' },
     ],
   },
+  // ═══════════════════════════════════════════════════════════════════════
+  // SALTOS E SALMOS EXPANDIDOS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'sl', capitulo: 23, versiculo: 1,
+    tema: 'O Senhor é o meu pastor',
+    contexto: 'O Salmo mais conhecido da Bíblia. David, que era pastor, compara Deus ao pastor perfeito que cuida de suas ovelhas.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristo como Bom Pastor', resumo: 'Este salmo é uma profecia de Cristo. Ele é o Bom Pastor que dá a vida pelas ovelhas. Em Deus como pastor, encontramos provisão, proteção e descanso.', citacao: '«Cristo é nosso Pastor — e nós somos suas ovelhas. Ele nos pastoreia com amor eterno.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1564', tradicao: 'Reforma', visao: 'Confiança', resumo: 'A chave é \"o meu\" — não basta saber que Deus é pastor, é preciso fazê-lo SEU pastor. A fé pessoal transforma conhecimento em experiência.', citacao: '«A fé diz: \"Deus é MEU pastor\" — não apenas o pastor do mundo, mas o meu.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Graça', resumo: 'David não diz \"eu cuido de mim mesmo\" — ele reconhece dependência total. Num mundo que exige autossuficiência, admitir que precisa de um pastor é revolucionário.', citacao: '«A verdadeira liberdade não é não precisar de ninguém — é confiar no Pastor perfeito.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 51, versiculo: 10,
+    tema: 'Cria em mim um coração puro',
+    contexto: 'David escreve este salmo após seu pecado com Betecebá. É o maior salmo de arrependimento da Bíblia — uma confissão completa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Arrependimento', resumo: 'David não pede apenas perdão — pede transformação interior. O pecado não é apenas ação, é condição do coração. Só Deus pode criar um coração puro.', citacao: '«Não peço apenas limpeza, mas uma nova criação — um coração puro que me faça capaz de te amar.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Regeneração', resumo: 'O arrependimento verdadeiro começa não com remorso, mas com pedido de transformação. David sabe que não pode se limpar — precisa de um novo coração.', citacao: '«A penitência verdadeira não é tristeza pelo pecado, mas desejo de santidade.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 119, versiculo: 105,
+    tema: 'Lâmpada para os meus pés',
+    contexto: 'O mais longo salmo da Bíblia, um poema acrostico sobre a Palavra de Deus. Este versículo é seu verso central.',
+    interpretacoes: [
+      { teologo: 'Martinho Lutero', periodo: '1483-1564', tradicao: 'Reforma', visao: 'Sola Scriptura', resumo: 'A Bíblia não ilumina todo o caminho de uma vez — ela ilumina apenas os próximos passos. É assim que Deus nos guia: passo a passo, em fé.', citacao: '«A Palavra de Deus não mostra o caminho inteiro — mostra o próximo passo.»' },
+      { teologo: 'John Piper', periodo: '1946-presente', tradicao: 'Reformada', visao: 'Alegria', resumo: 'A Bíblia não é apenas regra de vida — é fonte de alegria. Quanto mais lemos, mais conhecemos Deus, e quanto mais conhecemos Deus, mais nos alegramos.', citacao: '«A Bíblia não é um manual de instruções — é uma carta de amor que traz alegria.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // PROVÉRBIOS EXPANDIDOS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'pv', capitulo: 3, versiculo: 5,
+    tema: 'Confia no Senhor de todo o teu coração',
+    contexto: 'Um dos versículos mais memorizados da Bíblia. Salomão ensina que a verdadeira sabedoria começa com confiança total em Deus.',
+    interpretacoes: [
+      { teologo: 'Martinho Lutero', periodo: '1483-1564', tradicao: 'Reforma', visao: 'Fé', resumo: 'Confiar de todo o coração significa não confiar em parte em Deus e em parte na própria compreensão. É um abandono total da autoconfiança.', citacao: '«A fé não divide lealdade — ela a concentra toda em Deus.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessional', visao: 'Cruz', resumo: 'A confiança plena em Deus muitas vezes significa aceitar o que não entendemos. É na escuridão que a fé se prova verdadeira.', citacao: '«Quando Deus nos chama, Ele nos leva aonde nossa compreensão falha — e é aí que a fé começa.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 22, versiculo: 6,
+    tema: 'Instruí o menino no caminho',
+    contexto: 'Provérbio sobre educação e criação de filhos — o princípio de que a formação da infância molda o adulto.',
+    interpretacoes: [
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Educação', resumo: 'A educação não é apenas informação — é formação de caráter. Crianças que aprendem os caminhos de Deus desde cedo têm um fundamento inabalável.', citacao: '«Ensine o menino no caminho, e quando for velho não se desviará dele.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Família', resumo: 'Este provérbio não é uma promessa garantida, mas um princípio geral. A educação cristã não é controle — é semear sementes que Deus faz brotar.', citacao: '«Não podemos forçar resultados, mas podemos semear sementes de fé que duram para sempre.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // ISAÍAS EXPANDIDO
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'is', capitulo: 9, versiculo: 6,
+    tema: 'Príncipe da Paz',
+    contexto: 'A profecia messiânica mais famosa de Isaías — o nascimento do Messias que seria chamado Maravilhoso, Conselheiro, Deus Forte, Pai eterno, Príncipe da Paz.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Encarnação', resumo: 'As quatro names messiânicas revelam quem é Jesus: Maravilhoso (mistério), Conselheiro (sabedoria), Deus Forte (poder), Pai eterno (cuidado), Príncipe da Paz (reconciliação).', citacao: '«Nestas palavras, Isaías descreve o que João descreverá: o Verbo se fez carne.»' },
+      { teologo: 'Martin Luther King Jr.', periodo: '1929-1968', tradicao: 'Batista', visao: 'Paz', resumo: 'A paz que Jesus traz não é ausência de conflito — é justiça. A verdadeira paz vem quando todos são tratados com dignidade.', citacao: '«A paz não é apenas ausência de tensão — é presença de justiça.»' },
+    ],
+  },
+  {
+    livro: 'is', capitulo: 53, versiculo: 5,
+    tema: 'Machucado pelas nossas transgressões',
+    contexto: 'O capítulo 53 de Isaías é a profecia mais clara sobre a morte expiatória do Messias no Antigo Testamento — a «profecia da cepa sofredora».',
+    interpretacoes: [
+      { teologo: 'Martinho Lutero', periodo: '1483-1564', tradicao: 'Reforma', visao: 'Substituição', resumo: 'Cristo foi machucado por NOSSAS transgressões — Ele tomou o castigo que merecíamos. Esta é a essência da expiação substitutiva.', citacao: '«Ele foi ferido por nossas rebeliões — o castigo que era nosso caiu sobre Ele.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Cruz', resumo: 'A cruz não é acidente — é plano eterno de Deus. A ferida de Cristo é a cura do mundo. A morte dele é a nossa vida.', citacao: '«Na cruz, a justiça de Deus e a misericórdia de Deus se encontram — e nós somos salvos.»' },
+    ],
+  },
+  {
+    livro: 'is', capitulo: 40, versiculo: 31,
+    tema: 'Renovarão as forças',
+    contexto: 'O início da segunda parte de Isaías (capítulos 40-55), voltada ao exílio em Babilônia. A promessa é de restauração e renovamento.',
+    interpretacoes: [
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Esperança', resumo: 'A promessa não é força própria — é força recebida. Quem espera no Senhor não se cansa porque não depende de suas próprias forças.', citacao: '«Os que esperam no Senhor não correm — voam.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-presente', tradicao: 'Anglicana', visao: 'Renovação', resumo: 'A renovação de forças não é apenas espiritual — é restauração completa. Deus não apenas consola, Ele restaura a dignidade e o propósito.', citacao: '«Deus não nos devolve ao estado anterior — Ele nos leva a algo maior.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // MATEUS EXPANDIDO
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'mt', capitulo: 11, versiculo: 28,
+    tema: 'Vinde a mim todos os que estais cansados',
+    contexto: 'Jesus convida os que carregam fardos pesados — um dos versículos mais reconfortantes do Novo Testamento.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Descanso', resumo: 'O descanso de Cristo não é inatividade — é cessar de lutar contra o pecado pela nossa própria força. É entregar o fardo e aceitar a graça.', citacao: '«O jugo de Cristo é suave porque é leve — é o peso da graça, não da lei.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Graça', resumo: 'Jesus não diz \"venham os perfeitos\" — diz \"os cansados\". O evangelho é para quem reconhece que não consegue mais carregar sozinho.', citacao: '«O evangelho não é para os que se sentem fortes — é para os que sabem que são fracos.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 6, versiculo: 9,
+    tema: 'Pai nosso que estais nos céus',
+    contexto: 'O Pai-Nosso, a oração modelada por Jesus — o padrão de toda oração cristã.',
+    interpretacoes: [
+      { teologo: 'Martinho Lutero', periodo: '1483-1564', tradicao: 'Reforma', visao: 'Oração', resumo: 'Lutero ensinava que o Pai-Nosso contém tudo o que podemos pedir. Começa com a glória de Deus e termina com nossas necessidades — a ordem certa.', citacao: '«O Pai-Nosso é a oração perfeita — todas as outras orações cabem nele.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessional', visao: 'Comunidade', resumo: 'Note que Jesus diz \"nosso\", não \"meu\". A oração cristã é sempre comunitária. Quando oramos, oramos com e pela Igreja.', citacao: '«Não existe oração cristã solitária — sempre oramos como membros do corpo de Cristo.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 24, versiculo: 35,
+    tema: 'O céu e a terra passarão',
+    contexto: 'Jesus fala sobre o fim dos tempos — as palavras dele nunca passarão, mesmo quando tudo ao redor mudar.',
+    interpretacoes: [
+      { teologo: 'N.T. Wright', periodo: '1948-presente', tradicao: 'Anglicana', visao: 'Escatologia', resumo: 'A palavra de Jesus não é apenas eterna — é transformadora. Ela não sobreviverá apenas ao fim — ela CRIA o novo mundo.', citacao: '«As palavras de Jesus não apenas sobrevivem ao fim — elas inauguram o novo céu e a nova terra.»' },
+      { teologo: 'John Piper', periodo: '1946-presente', tradicao: 'Reformada', visao: 'Eternidade', resumo: 'Tudo o que o mundo oferece é temporário — apenas a Palavra de Jesus permanece. Nossos problemas são temporários; a promessa de Deus é eterna.', citacao: '«O mundo passa — mas a Palavra de Cristo permanece para sempre.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // LUCAS EXPANDIDO
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'lc', capitulo: 1, versiculo: 37,
+    tema: 'Nenhuma coisa é impossível para Deus',
+    contexto: 'O anjo Gabriel anuncia a Maria que ela conceberá por obra do Espírito Santo — a promessa de que Deus pode fazer o impossível.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Onipotência', resumo: 'Deus não faz o logicamente impossível (como um círculo quadrado), mas o naturalmente impossível — a encarnação, a ressurreição, a salvação.', citacao: '«Deus não faz o absurdo — Ele faz o impossível.»' },
+      { teologo: 'John Calvin', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'A impossibilidade humana não limita Deus. A virgem conceber, Lázaro ressuscitar, o mundo ser salvo — tudo é possível para quem criou o universo.', citacao: '«Não há limite para o poder de Deus — o impossível para nós é simples para Ele.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 15, versiculo: 11,
+    tema: 'A parábola do filho pródigo',
+    contexto: 'Uma das parábolas mais famosas de Jesus — sobre um filho que desperdiça sua herança e retorna arrependido ao pai.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Conversão', resumo: 'O filho pródigo representa todo pecador que desperdiça a herança da graça. O retorno não é mérito — é o início da misericórdia. O pai corre ao encontro, não espera de braços cruzados.', citacao: '«O pai não esperou — correu. Assim Deus corre ao encontro do pecador arrependido.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Graça', resumo: 'O verdadeiro problema não é apenas o filho que foi embora, mas o filho que ficou e não se alegrou com o perdão. A parábola é tanto sobre auto-justiça quanto sobre pecado.', citacao: '«A graça de Deus é tão escandalosa que ofende tanto os pecadores quanto os religiosos.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 23, versiculo: 34,
+    tema: 'Pai, perdoa-lhes',
+    contexto: 'A primeira palavra de Jesus na cruz — mesmo sendo torturado injustamente, Ele pede o perdão para seus algozes.',
+    interpretacoes: [
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessional', visao: 'Graça barata', resumo: 'A graça que Jesus oferece na cruz é gratuita — mas não é barata. Custou a vida dele. O perdão não minimiza o pecado — o custo da cruz o revela em toda a sua gravidade.', citacao: '«A graça gratuita não é graça barata — ela custou a vida do Filho de Deus.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-presente', tradicao: 'Anglicana', visao: 'Reconciliação', resumo: 'Jesus não apenas perdoa — Ele inaugura o novo pacto com seu sangue. Na cruz, a velha ordem morre e a nova começa.', citacao: '«Na cruz, Jesus não apenas sofre — Ele está criando um novo povo, uma nova aliança, um novo mundo.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // ATOS EXPANDIDO
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'at', capitulo: 1, versiculo: 8,
+    tema: 'Recebereis poder quando o Espírito Santo descer',
+    contexto: 'A última instrução de Jesus antes da ascensão — a promessa do Espírito Santo e a missão global da Igreja.',
+    interpretacoes: [
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Missões', resumo: 'A ordem é clara: primeiro o poder do Espírito, depois o testemunho em Jerusalém, na Judeia, na Samaria e até os confins da terra. A missão é centrípeta — começa em casa e vai até o mundo.', citacao: '«O evangelho começa em Jerusalém e vai até os confins da terra — mas começa em casa.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1564', tradicao: 'Reforma', visao: 'Espírito', resumo: 'Sem o Espírito Santo, não há testemunho eficaz. A Igreja não depende de estratégia humana, mas do poder divino.', citacao: '«A Igreja não avança por força humana — avança pelo poder do Espírito.»' },
+    ],
+  },
+  {
+    livro: 'at', capitulo: 2, versiculo: 38,
+    tema: 'Arrependei-vos e sede batizados',
+    contexto: 'O sermão de Pedro no Pentecostes — o primeiro chamado à salvação na história da Igreja, resultando em 3 mil conversões.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Arrependimento', resumo: 'Arrependimento e batismo não são obras que salvam — são respostas à graça de Deus. O arrependimento é a mudança de mente que leva à mudança de vida.', citacao: '«O arrependimento não é obra nossa — é dom de Deus que nos capacita a voltar para Ele.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-presente', tradicao: 'Anglicana', visao: 'Novo pacto', resumo: 'A promessa é para \"vós e vossos filhos\" — não é individual, é familiar e comunitária. O batismo marca a entrada no novo povo de Deus.', citacao: '«A promessa do Espírito é para toda a família — gerações inteiras são chamadas.»' },
+    ],
+  },
+  {
+    livro: 'at', capitulo: 4, versiculo: 12,
+    tema: 'Não há salvação em nenhum outro',
+    contexto: 'Pedro diante do Sinédrio — a declaração mais exclusivista e mais universal do cristianismo primitivo.',
+    interpretacoes: [
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Cristologia', resumo: 'A exclusividade de Cristo não é arrogância — é humildade. Não inventamos um Deus que salva — recebemos o único que se revelou.', citacao: '«A exclusividade de Cristo não é intolerância — é fidelidade ao Deus que se revelou.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Universalidade', resumo: 'O único nome dado aos homens é um dom — não uma restrição. Deus não restringe a salvação — Ele a oferece a todos através de um único caminho.', citacao: '«A salvação em somente um nome não é restrição — é a generosidade de Deus em oferecer um caminho certo.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // ROMANOS EXPANDIDO
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'rm', capitulo: 3, versiculo: 23,
+    tema: 'Todos pecaram',
+    contexto: 'O diagnóstico universal do pecado — o versículo que fundamenta toda a teologia da depravação humana.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Pecado original', resumo: 'O pecado não é apenas ato — é condição. Todos pecaram significa que ninguém é justo por si mesmo. A solução não é melhoria, mas regeneração.', citacao: '«O pecado é a condição da natureza humana caída — não apenas a violação de uma lei.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1564', tradicao: 'Reforma', visao: 'Justificação', resumo: 'Este versículo é a base da justificação pela fé. Se todos pecaram, ninguém pode se salvar por obras. A salvação é dom gratuito.', citacao: '«Se todos pecaram, ninguém pode se justificar — a salvação é só pela graça.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 6, versiculo: 23,
+    tema: 'O salário do pecado é a morte',
+    contexto: 'O versículo que conecta a gravidade do pecado com o dom da vida eterna — dois destinos, duas escolhas.',
+    interpretacoes: [
+      { teologo: 'John Piper', periodo: '1946-presente', tradicao: 'Reformada', visao: 'Dualidade', resumo: 'O versículo tem duas metades: morte (pecado) e graça (Cristo). A morte é o salário que merecemos; a graça é o dom que não merecemos.', citacao: '«O pecado paga salário — mas a graça dá presente. E o presente é infinitamente maior.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Cruz', resumo: 'O salário do pecado é a morte — mas Cristo tomou esse salário na cruz. O que merecíamos foi pago por Ele.', citacao: '«Na cruz, Jesus recebeu o salário que merecíamos — para que pudéssemos receber o dom que não merecíamos.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 10, versiculo: 9,
+    tema: 'Se confessares com a tua boca',
+    contexto: 'A fórmula da salvação em Romanos — confessar e crer que Deus ressuscitou a Jesus dos mortos.',
+    interpretacoes: [
+      { teologo: 'Martinho Lutero', periodo: '1483-1564', tradicao: 'Reforma', visao: 'Fé', resumo: 'Confessar e crer não são obras — são a resposta da fé. A salvação é pela graça mediante a fé — não pelo mérito.', citacao: '«A fé que salva não é sentimento — é confiança em Cristo e em sua ressurreição.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-presente', tradicao: 'Anglicana', visao: 'Ressurreição', resumo: 'A ressurreição não é apenas evento passado — é a realidade que define o futuro. Crer na ressurreição é aceitar que Deus vai renovar tudo.', citacao: '«Cristo ressuscitou — e isso muda tudo. O futuro do mundo já começou.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // 1 CORÍNTIOS E GÁLATAS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: '1co', capitulo: 13, versiculo: 4,
+    tema: 'O amor é sofredor',
+    contexto: 'O hino ao amor — o capítulo mais lido em casamentos, mas que vai muito além do romantismo. É a definição divina do amor.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Caridade', resumo: 'O amor de 1 Coríntios 13 é o amor de Deus — ágape. Não é sentimento, é escolha. É a virtude que permanece quando tudo o mais passa.', citacao: '«A fé, a esperança e o amor permanecem — mas o maior é o amor.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Cruz', resumo: 'Cristo é o cumprimento perfeito deste poema. Ele é sofredor, bondoso, não inveja, não se orgulha. O amor de 1 Coríntios 13 é o amor da cruz.', citacao: '«O amor que Paulo descreve não é um ideal impossível — é o amor que vemos na cruz de Cristo.»' },
+    ],
+  },
+  {
+    livro: 'gl', capitulo: 5, versiculo: 22,
+    tema: 'Os frutos do Espírito',
+    contexto: 'A lista dos frutos do Espírito — não são obras que fazemos, mas frutos que o Espírito produz em nós.',
+    interpretacoes: [
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessional', visao: 'Obediência', resumo: 'Os frutos do Espírito não são virtudes que cultivamos — são evidências de uma vida rendida a Cristo. Não produzimos fruto por esforço, mas por conexão.', citacao: '«O fruto não é obra do homem — é obra do Espírito no homem que se rende.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Caráter', resumo: 'Nove frutos, uma árvore. O fruto do Espírito é unidade — não podemos ter amor sem paciência, nem bondade sem mansidão. São inseparáveis.', citacao: '«O fruto do Espírito é um — nove facetas de uma mesma joia: o caráter de Cristo.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // EFÉSIOS, FILIPENSES, COLOSSENSSES
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ef', capitulo: 2, versiculo: 8,
+    tema: 'Pela graça sois salvos',
+    contexto: 'O versículo central da soteriologia paulina — a salvação é dom de Deus, não resultado de obras humanas.',
+    interpretacoes: [
+      { teologo: 'Martinho Lutero', periodo: '1483-1564', tradicao: 'Reforma', visao: 'Sola Gratia', resumo: 'A salvação é pela graça — não pela lei, não por obras, não por mérito. É o coração da Reforma: salvação por graça mediante fé.', citacao: '«Somos salvos por graça, mediante fé — não por obras, para que ninguém se glorie.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição', resumo: 'A graça precede a fé — Deus nos escolheu antes que pudéssemos escolher. A salvação é 100% obra de Deus, 0% obra humana.', citacao: '«A fé é o meio pelo qual recebemos a graça — mas a graça é a fonte de tudo.»' },
+    ],
+  },
+  {
+    livro: 'fp', capitulo: 4, versiculo: 13,
+    tema: 'Posso todas as coisas naquele que me fortalece',
+    contexto: 'Paulo escreve da prisão — não é sobre vitória esportiva, mas sobre contentamento em qualquer circunstância.',
+    interpretacoes: [
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Contentamento', resumo: 'Paulo não diz \"posso tudo\" — diz \"posso todas as coisas naquele que me fortalece\". A força vem de Cristo, não de nós mesmos.', citacao: '«O segredo não é ter tudo — é ter a Cristo em tudo.»' },
+      { teologo: 'John Piper', periodo: '1946-presente', tradicao: 'Reformada', visao: 'Dependência', resumo: 'A verdadeira força é reconhecer nossa fraqueza. Paulo aprendeu que quanto mais fraco ele era, mais Cristo operava nele.', citacao: '«Quando somos fracos, então somos fortes — porque Cristo opera em nossa fraqueza.»' },
+    ],
+  },
+  {
+    livro: 'cl', capitulo: 3, versiculo: 23,
+    tema: 'Tudo o que fizerdes, fazei de todo o coração',
+    contexto: 'Paulo transforma o trabalho cotidiano em ato de worship — tudo é para o Senhor, não para patrões.',
+    interpretacoes: [
+      { teologo: 'Martinho Lutero', periodo: '1483-1564', tradicao: 'Reforma', visao: 'Vocação', resumo: 'Lutero reformou o conceito de trabalho: lavar louça é tão sagrado quanto pregar. Toda vocação é chamamento de Deus.', citacao: '«Não há trabalho pequeno diante de Deus — tudo é oportunidade de servir.»' },
+      { teologo: 'Dorothy Sayers', periodo: '1893-1957', tradicao: 'Anglicana', visao: 'Trabalho', resumo: 'O trabalho não é apenas meio de subsistência — é expressão da criatividade humana feita à imagem de Deus. Fazer bem é glorificar a Deus.', citacao: '«O trabalho não é um meio para ganhar a vida — é a vida em si mesma, uma oportunidade de gloria.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // HEBREUS, TIAGO, PEDRO, APOCALIPSE
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'hb', capitulo: 11, versiculo: 1,
+    tema: 'A fé é o firme fundamento',
+    contexto: 'O «hall da fé» — a definição mais precisa de fé em toda a Bíblia, seguida pela lista dos heróis da fé.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Crença', resumo: 'A fé não é cegueiro — é ver o invisível. Os santos antigos viam além do visível e entraram no que Deus prometeu.', citacao: '«A fé é ver o invisível como se fosse visível, e o impossível como se fosse possível.»' },
+      { teologo: 'Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'A fé não é nossa contribuição — é resposta à revelação de Deus. Deus fala, e nós cremos. A fé é ato de Deus em nós.', citacao: '«A fé não é nossa descoberta — é Deus quem se revela e nos faz crer.»' },
+    ],
+  },
+  {
+    livro: 'tg', capitulo: 2, versiculo: 17,
+    tema: 'A fé sem obras é morta',
+    contexto: 'Tiago confronta a falsa noção de que basta crer intelectualmente — a fé verdadeira se demonstra em ação.',
+    interpretacoes: [
+      { teologo: 'Lutero', periodo: '1483-1564', tradicao: 'Reforma', visao: 'Fé + Obras', resumo: 'Lutero chamou Tiago de «epístola de palha» porque parecia contradazer Paulo. Mas Tiago não fala de fé sem obras — fala de obras como evidência da fé.', citacao: '«Tiago não contradiz Paulo — ambos dizem que a fé verdadeira produz frutos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Evidência', resumo: 'A fé sem obras não é fé fraca — é fé morta. A obra não salva, mas é prova de que a fé está viva.', citacao: '«A fé que não produz obras é como um corpo sem respiração — morta por dentro.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 3, versiculo: 20,
+    tema: 'Eis que estou à porta e bato',
+    contexto: 'Jesus bate à porta — imagem clássica do convite divino. Ele não arromba, Ele espera que abramos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Liberdade', resumo: 'Deus respeita nossa liberdade — Ele bate, mas não entra à força. A salvação é convite, não imposição.', citacao: '«Deus bate à porta — mas só entra quando abrimos.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessional', visao: 'Graça', resumo: 'A porta que Cristo bate é o coração humano. Ele não força a entrada — mas nunca para de bajar. O convite é eterno.', citacao: '«O amor de Deus não invade — ele convida. E esse convite dura para sempre.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 21, versiculo: 4,
+    tema: 'Enxugará toda lágrima',
+    contexto: 'A promessa final — um novo céu e uma nova terra onde não haverá mais dor, luto nem morte.',
+    interpretacoes: [
+      { teologo: 'N.T. Wright', periodo: '1948-presente', tradicao: 'Anglicana', visao: 'Nova criação', resumo: 'O Apocalipse não é sobre ir para o céu — é sobre o céu vindo à terra. Deus não destrói a criação, Ele a renova.', citacao: '«Deus não vai nos levar para longe da terra — Ele vai trazer o céu para a terra.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Esperança', resumo: 'A dor não é o fim da história. Deus promete restauração total — não apenas perdoar o passado, mas curar tudo o que foi perdido.', citacao: '«Deus não apenas perdoa — Ele restaura. Todas as lágrimas serão enxugadas.»' },
+    ],
+  },
 ];
 
 for (const e of estudosExtras) {

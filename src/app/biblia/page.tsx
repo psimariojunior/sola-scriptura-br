@@ -4,8 +4,11 @@ import { useState, useEffect, useCallback, useMemo, useRef, lazy, Suspense } fro
 import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
-import { TODOS_LIVROS, traducoes, carregarTraducao, ABREV_PARA_MIDVASH, livroPorAbreviacao } from '@/data/biblia';
-import type { CapituloComparado } from '@/data/biblia';
+import { TODOS_LIVROS, livroPorAbreviacao } from '@/data/biblia/livros';
+import { traducoes } from '@/data/biblia/versoes';
+import { carregarTraducao } from '@/data/biblia/texto/carregar';
+import type { CapituloComparado } from '@/data/biblia/texto/carregar';
+import { ABREV_PARA_MIDVASH } from '@/data/biblia/midvash';
 import {
   BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, Search, Sparkles, Play, Mic, Volume2, ListFilter, WifiOff, Quote, X
 } from 'lucide-react';
@@ -40,7 +43,7 @@ import { cn } from '@/lib/utils';
 import { ChapterHeader } from '@/components/Biblia/ChapterHeader';
 import { ModoLeitura, type ModoLeituraValue } from '@/components/Biblia/ModoLeitura';
 import { VerseCard } from '@/components/Biblia/VerseCard';
-import { SidePanel, type SidePanelWidth } from '@/components/Biblia/SidePanel';
+import type { SidePanelWidth } from '@/components/Biblia/SidePanel';
 import { MobileActionBar } from '@/components/Biblia/MobileActionBar';
 import { ProgressBar } from '@/components/Biblia/ProgressBar';
 import { ComparisonTable } from '@/components/Biblia/ComparisonTable';
@@ -52,7 +55,6 @@ import { AudioPlayers } from '@/components/Biblia/AudioPlayers';
 import { TranslationDropdown, TRAD_IDS as TRAD_IDS_IMPORT, labelMap as labelMapImport, nomeMap as nomeMapImport, tradBadgeColors as tradBadgeColorsImport } from '@/components/Biblia/TranslationDropdown';
 import { ToolsDropdown } from '@/components/Biblia/ToolsDropdown';
 import { ChapterGrid } from '@/components/Biblia/ChapterGrid';
-import { obterEstudoCapitulo } from '@/lib/estudosLoader';
 import Paywall from '@/components/Paywall';
 import { authService } from '@/lib/auth';
 
@@ -63,6 +65,7 @@ const ShareVerseModal = dynamic(() => import('@/components/Biblia/ShareVerseModa
 const SettingsPanel = dynamic(() => import('@/components/Biblia/SettingsPanel').then(m => ({ default: m.SettingsPanel })), { ssr: false });
 const PainelEstudosCapitulo = lazy(() => import('@/components/Biblia/PainelEstudosCapitulo'));
 const InterlinearView = dynamic(() => import('@/components/InterlinearView').then(m => ({ default: m.InterlinearView })), { ssr: false });
+const SidePanel = dynamic(() => import('@/components/Biblia/SidePanel').then(m => ({ default: m.SidePanel })), { ssr: false });
 
 const TRAD_IDS = TRAD_IDS_IMPORT;
 const labelMap = labelMapImport;
@@ -404,10 +407,15 @@ const toggleTrad = (id: string) => {
   const temDados = data.length > 0 && data.some(d => d.versiculos.length > 0);
   const maxVersiculos = temDados ? Math.max(...data.map(d => d.versiculos.length)) : 0;
 
-  const estudoCapitulo = useMemo(
-    () => obterEstudoCapitulo(livro.abreviacao, capituloIdx + 1),
-    [livro.abreviacao, capituloIdx]
-  );
+  const [estudoCapitulo, setEstudoCapitulo] = useState<import('@/data/estudosCapitulo').EstudoCapitulo | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    import('@/lib/estudosLoader').then(({ obterEstudoCapitulo }) => {
+      if (!cancelled) setEstudoCapitulo(obterEstudoCapitulo(livro.abreviacao, capituloIdx + 1));
+    });
+    return () => { cancelled = true; };
+  }, [livro.abreviacao, capituloIdx]);
 
   const goToBook = (idx: number, cap?: number) => { setLivroIdx(idx); setCapituloIdx(cap ?? 0); setMobileMenu(false); setChapterGridOpen(false); };
 

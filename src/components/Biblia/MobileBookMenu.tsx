@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { TODOS_LIVROS, LIVROS_AT, LIVROS_NT } from '@/data/biblia';
+import { TODOS_LIVROS, LIVROS_AT, LIVROS_NT } from '@/data/biblia/livros';
 
 interface MobileBookMenuProps {
   open: boolean;

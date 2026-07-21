@@ -1,17 +1,11 @@
 export type { LivroInfo } from './biblia/livros';
 export type { Versao } from './biblia/versoes';
-export type { PalavraGrega } from './lexicon/grego';
-export type { PalavraHebraica } from './lexicon/hebraico';
 
 export { TODOS_LIVROS, LIVROS_AT, LIVROS_NT, livroPorAbreviacao, livroPorOrdem } from './biblia/livros';
 export { traducoes, traducaoPadrao } from './biblia/versoes';
 export { carregarTraducao, obterCapituloMulti, obterInfoTraducao, TRADUCOES_DISPONIVEIS } from './biblia/texto/carregar';
 export type { CapituloComparado, VersiculoData } from './biblia/texto/carregar';
 export { ABREV_PARA_MIDVASH } from './biblia/midvash';
-export { palavrasGregas } from './lexicon/grego';
-export { palavrasHebraicas } from './lexicon/hebraico';
-import { palavrasGregas as _palavrasGregas } from './lexicon/grego';
-import { palavrasHebraicas as _palavrasHebraicas } from './lexicon/hebraico';
 
 export interface Versiculo {
   numero: number;
@@ -161,11 +155,6 @@ export interface PalavraOriginal {
   morfologia?: string;
   frequencia?: number;
 }
-
-export const palavrasOriginais: PalavraOriginal[] = [
-  ..._palavrasGregas.map((g) => ({ ...g, idioma: 'grego' as const })),
-  ..._palavrasHebraicas.map((h) => ({ ...h, idioma: 'hebraico' as const })),
-];
 
 export interface Doutrina {
   nome: string;

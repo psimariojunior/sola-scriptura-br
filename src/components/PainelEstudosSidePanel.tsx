@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { GraduationCap, BookOpen, Users, ChevronRight } from 'lucide-react';
 import { obterEstudos, type EstudoVersiculo } from '@/data/estudosTeologicos';
 import { obterComentarios, type Comentario } from '@/data/comentarios';
-import { livroPorAbreviacao } from '@/data/biblia';
+import { livroPorAbreviacao } from '@/data/biblia/livros';
 import { estudosPorLivro } from '@/data/estudosPorLivro';
 
 interface Props {

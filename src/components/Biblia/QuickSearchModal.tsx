@@ -4,7 +4,8 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, History, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { TODOS_LIVROS, carregarTraducao } from '@/data/biblia';
+import { TODOS_LIVROS } from '@/data/biblia/livros';
+import { carregarTraducao } from '@/data/biblia/texto/carregar';
 
 interface QuickSearchModalProps {
   open: boolean;

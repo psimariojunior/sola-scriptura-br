@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { TODOS_LIVROS, livroPorAbreviacao } from '@/data/biblia';
+import { TODOS_LIVROS, livroPorAbreviacao } from '@/data/biblia/livros';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // DETECÇÃO DE REFERÊNCIAS BÍBLICAS

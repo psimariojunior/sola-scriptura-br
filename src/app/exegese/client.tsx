@@ -3,9 +3,10 @@
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { TODOS_LIVROS, carregarTraducao } from '@/data/biblia';
+import { TODOS_LIVROS } from '@/data/biblia/livros';
+import { carregarTraducao } from '@/data/biblia/texto/carregar';
 import { motion, AnimatePresence } from 'framer-motion';
-import { palavrasOriginais } from '@/data/biblia';
+import { palavrasOriginais } from '@/data/palavrasOriginais';
 import { doutrinas } from '@/data/biblia';
 import ScrollReveal from '@/components/ScrollReveal';
 import {

@@ -1,16 +1,13 @@
 'use client';
 
-import { memo, Fragment, useRef, useState, useEffect, useMemo } from 'react';
+import { memo, Fragment, useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
 import type { useVerseAudio } from '@/hooks/useVerseAudio';
 import type { useFlashcards } from '@/hooks/useFlashcards';
-import { getCrossReferencesByVerse, type CrossReference } from '@/data/biblia/crossReferences';
-import {
-  getTiposRecursoDisponiveis,
-} from '@/data/biblia/versiculoRecursos';
+import type { CrossReference } from '@/data/biblia/crossReferences';
 import { VerseActions } from './VerseActions';
 
 export interface VerseCardProps {
@@ -86,14 +83,23 @@ export const VerseCard = memo(function VerseCard({
   }, [isCurrentAudioVerse, isFocused]);
 
   // Count available resources for the indicator (memoized, with error handling)
-  const hasResources = useMemo(() => {
-    try {
-      const tipos = getTiposRecursoDisponiveis(livroAbreviacao, capitulo, numero);
-      const refs = getCrossReferencesByVerse(livroAbreviacao, capitulo, numero);
-      return tipos.length > 0 || refs.length > 0;
-    } catch {
-      return false;
-    }
+  const [hasResources, setHasResources] = useState(false);
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all([
+      import('@/data/biblia/crossReferences'),
+      import('@/data/biblia/versiculoRecursos'),
+    ]).then(([crossMod, recursosMod]) => {
+      if (cancelled) return;
+      try {
+        const tipos = recursosMod.getTiposRecursoDisponiveis(livroAbreviacao, capitulo, numero);
+        const refs = crossMod.getCrossReferencesByVerse(livroAbreviacao, capitulo, numero);
+        setHasResources(tipos.length > 0 || refs.length > 0);
+      } catch {
+        setHasResources(false);
+      }
+    }).catch(() => {});
+    return () => { cancelled = true; };
   }, [livroAbreviacao, capitulo, numero]);
 
   const corBgMap: Record<string, string> = {

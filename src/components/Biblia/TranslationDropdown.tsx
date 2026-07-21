@@ -1,15 +1,17 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { BookText } from 'lucide-react';
+import { BookText, CloudOff } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
 const TRAD_IDS = ['arc', 'nvi', 'ara', 'acf', 'naa', 'ntlh', 'nvt', 'kja', 'aa', 'nbv', 'kjv', 'web'] as const;
 const labelMap: Record<string, string> = { arc: 'ARC', nvi: 'NVI', ara: 'ARA', acf: 'ACF', naa: 'NAA', ntlh: 'NTLH', nvt: 'NVT', kja: 'KJA', aa: 'AA', nbv: 'NBV', kjv: 'KJV', web: 'WEB' };
-const nomeMap: Record<string, string> = { arc: 'Almeida Revista e Corrigida', nvi: 'Nova Versão Internacional', ara: 'Almeida Revista e Atualizada', acf: 'Almeida Corrigida Fiel', naa: 'Nova Almeida Atualizada', ntlh: 'Nova Tradução na Linguagem de Hoje', nvt: 'Nova Versão Transformadora', kja: 'King James Atualizada', aa: 'Almeida e Atualizada', nbv: 'Nova Bíblia Viva', kjv: 'King James Version', web: 'World English Bible' };
+const nomeMap: Record<string, string> = { arc: 'Almeida Revista e Corrigida', nvi: 'Nova Versao Internacional', ara: 'Almeida Revista e Atualizada', acf: 'Almeida Corrigida Fiel', naa: 'Nova Almeida Atualizada', ntlh: 'Nova Traducao na Linguagem de Hoje', nvt: 'Nova Versao Transformadora', kja: 'King James Atualizada', aa: 'Almeida e Atualizada', nbv: 'Nova Biblia Viva', kjv: 'King James Version', web: 'World English Bible' };
 const tradBadgeColors: Record<string, string> = { arc: 'bg-primary/10 text-primary', nvi: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400', ara: 'bg-purple-500/10 text-purple-600 dark:text-purple-400', acf: 'bg-rose-500/10 text-rose-600 dark:text-rose-400', naa: 'bg-teal-500/10 text-teal-600 dark:text-teal-400', ntlh: 'bg-orange-500/10 text-orange-600 dark:text-orange-400', nvt: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400', kja: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400', aa: 'bg-pink-500/10 text-pink-600 dark:text-pink-400', nbv: 'bg-lime-500/10 text-lime-600 dark:text-lime-400', kjv: 'bg-amber-500/10 text-amber-600 dark:text-amber-400', web: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' };
+
+const TRADS_MIDVASH = new Set(['naa', 'ntlh', 'nvt', 'kja', 'aa', 'nbv']);
 
 interface TranslationDropdownProps {
   open: boolean;
@@ -34,11 +36,11 @@ export function TranslationDropdown({ open, onToggle, onClose, selectedTrads, on
             ? 'bg-[var(--brand-subtle)] border-[var(--brand-default)]/30 text-[var(--brand-default)]'
             : 'bg-[var(--surface-sunken)] border-[var(--border)]/60 text-[var(--content-secondary)] hover:text-[var(--content-primary)]'
         )}
-        aria-label="Selecionar traduções"
+        aria-label="Selecionar traducoes"
         aria-expanded={open}
       >
         <BookText className="w-3.5 h-3.5" />
-        <span className="tabular-nums">{selectedTrads.map(t => labelMap[t]).join(' · ')}</span>
+        <span className="tabular-nums">{selectedTrads.map(t => labelMap[t]).join(' . ')}</span>
         {selectedTrads.length > 1 && <span className="text-[10px] px-1 rounded-full bg-[var(--brand-default)] text-[var(--brand-contrast)]">{selectedTrads.length}</span>}
       </motion.button>
       <AnimatePresence>
@@ -50,11 +52,12 @@ export function TranslationDropdown({ open, onToggle, onClose, selectedTrads, on
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="absolute right-0 top-full mt-2 z-40 w-64 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-2"
+              className="absolute right-0 top-full mt-2 z-40 w-72 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-2 max-h-[70vh] overflow-y-auto"
             >
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] px-3 py-1.5">Traduções</p>
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] px-3 py-1.5">Traducoes</p>
               {TRAD_IDS.map(id => {
                 const active = selectedTrads.includes(id);
+                const isMidvash = TRADS_MIDVASH.has(id);
                 return (
                   <button key={id} onClick={() => onToggleTrad(id)}
                     className={cn(
@@ -63,10 +66,18 @@ export function TranslationDropdown({ open, onToggle, onClose, selectedTrads, on
                     )}>
                     <div className={cn('w-2 h-2 rounded-full', tradBadgeColors[id])} />
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold">{labelMap[id]}</div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-sm font-semibold">{labelMap[id]}</span>
+                        {isMidvash && (
+                          <span className="inline-flex items-center gap-0.5 text-[9px] px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                            <CloudOff className="w-2.5 h-2.5" />
+                            API
+                          </span>
+                        )}
+                      </div>
                       <div className="text-[10px] text-[var(--content-muted)] truncate">{nomeMap[id]}</div>
                     </div>
-                    {active && <span className="text-[var(--brand-default)] text-xs">✓</span>}
+                    {active && <span className="text-[var(--brand-default)] text-xs">&#10003;</span>}
                   </button>
                 );
               })}
@@ -78,7 +89,7 @@ export function TranslationDropdown({ open, onToggle, onClose, selectedTrads, on
                         'flex-1 text-[10px] font-medium px-2 py-1 rounded-md transition-colors',
                         viewMode === m ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]' : 'text-[var(--content-muted)] hover:bg-[var(--surface-sunken)]'
                       )}>
-                      {m === 'single' ? 'Única' : m === 'parallel' ? 'Lado a lado' : 'Comparar'}
+                      {m === 'single' ? 'Unica' : m === 'parallel' ? 'Lado a lado' : 'Comparar'}
                     </button>
                   ))}
                 </div>

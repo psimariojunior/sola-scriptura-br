@@ -90,7 +90,8 @@ function PanelFallback() {
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
-const TRADS_LOCAIS = new Set(['arc', 'kjv', 'web', 'nvi', 'ara', 'acf', 'nvt', 'kja', 'aa', 'nbv']);
+const TRADS_LOCAIS = new Set(['arc', 'kjv', 'web', 'nvi', 'ara', 'acf']);
+const TRADS_MIDVASH = new Set(['nvt', 'kja', 'aa', 'nbv', 'naa', 'ntlh']);
 const cacheApi = new Map<string, string[]>();
 
 const MIDVASH_API = 'https://api.midvash.com/v1';
@@ -126,11 +127,12 @@ async function loadTranslation(trad: string, livro: string, cap: number): Promis
       const arr = data[livro]?.[cap];
       if (!arr || arr.length === 0) return null;
       return { traducao: trad, versiculos: arr.map((t, i) => ({ numero: i + 1, texto: t })) };
-    } else {
+    } else if (TRADS_MIDVASH.has(trad)) {
       const verses = await fetchFromMidvash(trad, livro, cap);
       if (verses.length === 0) return null;
       return { traducao: trad, versiculos: verses.map((t, i) => ({ numero: i + 1, texto: t })) };
     }
+    return null;
   } catch { return null; }
 }
 

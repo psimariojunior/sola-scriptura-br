@@ -193,6 +193,60 @@ export async function getMeta(key: string): Promise<unknown | null> {
 export const TRADUCOES_LOCAIS = ['acf', 'ara', 'arc', 'kjv', 'nvi', 'web'] as const;
 export type TraducaoLocalId = (typeof TRADUCOES_LOCAIS)[number];
 
+export async function cacheTranslation(
+  traducao: string,
+  onProgress?: (current: number, total: number) => void
+): Promise<void> {
+  try {
+    const mod = await import(`@/data/biblia/texto/${traducao}/index`);
+    const data = mod.default;
+    let count = 0;
+    const totalChapters = Object.values(data as Record<string, Record<number, string[]>>).reduce(
+      (acc: number, capitulos: Record<number, string[]>) => acc + Object.keys(capitulos).length, 0
+    );
+
+    for (const [livro, capitulos] of Object.entries(data)) {
+      for (const [capStr, versiculos] of Object.entries(capitulos as Record<number, string[]>)) {
+        const capitulo = Number(capStr);
+        await saveChapterDB(livro, capitulo, traducao, versiculos);
+        count++;
+        onProgress?.(count, totalChapters);
+      }
+    }
+
+    await saveMeta(`sync:${traducao}`, Date.now());
+  } catch {}
+}
+
+export async function isTranslationDownloaded(traducao: string): Promise<boolean> {
+  try {
+    const stats = await getOfflineStats();
+    return (stats.translations[traducao] || 0) > 0;
+  } catch { return false; }
+}
+
+export async function removeTranslation(traducao: string): Promise<void> {
+  try {
+    const db = await openDB();
+    return new Promise((resolve) => {
+      const tx = db.transaction(STORE_CHAPTERS, 'readwrite');
+      const store = tx.objectStore(STORE_CHAPTERS);
+      const req = store.openCursor();
+      req.onsuccess = () => {
+        const cursor = req.result;
+        if (cursor) {
+          if (cursor.value.traducao === traducao) cursor.delete();
+          cursor.continue();
+        }
+      };
+      tx.oncomplete = async () => {
+        await saveMeta(`sync:${traducao}`, null);
+        resolve();
+      };
+    });
+  } catch {}
+}
+
 export async function cacheAllTranslations(
   onProgress?: (translation: string, current: number, total: number) => void
 ): Promise<void> {

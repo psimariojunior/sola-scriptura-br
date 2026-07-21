@@ -4,7 +4,8 @@ import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { TODOS_LIVROS, carregarTraducao } from '@/data/biblia';
+import { TODOS_LIVROS } from '@/data/biblia/livros';
+import { carregarTraducao } from '@/data/biblia/texto/carregar';
 import { biblia, type PesquisaResult as ApiPesquisaResult } from '@/lib/api-client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 

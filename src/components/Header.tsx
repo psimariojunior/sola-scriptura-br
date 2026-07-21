@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import {
@@ -83,7 +83,7 @@ function DailyChallengeDot() {
   );
 }
 
-export function Header() {
+function HeaderInner() {
   const [open, setOpen] = useState(false);
   const [buscaOpen, setBuscaOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -838,6 +838,8 @@ export function Header() {
     </>
   );
 }
+
+export const Header = memo(HeaderInner);
 
 function QuickBookSwitcher({
   onSelect,

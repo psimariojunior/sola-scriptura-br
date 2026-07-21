@@ -14,7 +14,7 @@ import {
 import { useAuth } from '@/contexts/AuthContext';
 import { authService } from '@/lib/auth';
 import { listarMarcas, type MarcaBiblia } from '@/lib/estudos';
-import { livroPorAbreviacao } from '@/data/biblia';
+import { livroPorAbreviacao } from '@/data/biblia/livros';
 
 export default function ContaPage() {
   const router = useRouter();

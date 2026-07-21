@@ -1,5 +1,5 @@
 import { carregarTraducao, getTraducoesLocais } from '@/data/biblia/texto/carregar';
-import { livroPorAbreviacao, TODOS_LIVROS } from '@/data/biblia';
+import { livroPorAbreviacao, TODOS_LIVROS } from '@/data/biblia/livros';
 
 export interface Ocorrencia {
   livro: string;

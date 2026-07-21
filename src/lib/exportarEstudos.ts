@@ -1,5 +1,5 @@
 import { downloadAsFile } from './exportPdf';
-import { livroPorAbreviacao } from '@/data/biblia';
+import { livroPorAbreviacao } from '@/data/biblia/livros';
 import type { MarcaBiblia } from './estudos';
 
 export interface OpcoesExport {

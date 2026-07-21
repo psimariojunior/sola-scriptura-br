@@ -11,7 +11,7 @@ import {
   ListOrdered, Brain, Target, BookMarked, StickyNote
 } from 'lucide-react';
 import { obterEstudoLivro } from '@/lib/estudosLoader';
-import { TODOS_LIVROS } from '@/data/biblia';
+import { TODOS_LIVROS } from '@/data/biblia/livros';
 
 type MetodoId = 'hermeneutico' | 'soap' | 'inductivo' | 'topico' | 'porlivro';
 

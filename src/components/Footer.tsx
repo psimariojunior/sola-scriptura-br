@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { BookOpen, Mail, ExternalLink, X, Heart, ArrowRight, Smartphone, HeartHandshake } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -37,7 +37,7 @@ const recursos = [
   { href: '/auth/login', label: 'Minha Conta' },
 ];
 
-export function Footer() {
+function FooterInner() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -175,3 +175,5 @@ export function Footer() {
     </footer>
   );
 }
+
+export const Footer = memo(FooterInner);

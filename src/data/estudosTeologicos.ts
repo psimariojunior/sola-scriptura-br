@@ -1136,6 +1136,376 @@ const estudosExtras: EstudoVersiculo[] = [
       { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Missões', resumo: 'A missão não é opcional — é essencial. A Igreja não tem missão — a missão tem Igreja.', citacao: '«A Igreja existe para a missão — sem missão, não existe Igreja.»' },
     ],
   },
+  // ═══════════════════════════════════════════════════════════════════════
+  // AMÓS — JUSTIÇA SOCIAL
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'am', capitulo: 3, versiculo: 2,
+    tema: 'Eleição e responsabilidade',
+    contexto: 'Amós dirigiu-se a Israel no auge de sua prosperidade, lembrando que a eleição não traz privilégio mas responsabilidade diante de Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Eleição', resumo: 'Deus escolheu Israel não por mérito, mas por graça. A eleição traz responsabilidade — quanto mais se conhece a vontade de Deus, maior a condenação ao desobedecer.', citacao: '«A vocação de Israel é um dom, não um prêmio — e com ela veio o dever de santidade.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania divina', resumo: 'A eleição não é imunidade ao julgamento. Deus julga com mais severidade aqueles que receberam mais revelação. O privilégio espiritual aumenta a responsabilidade.', citacao: '«Deus não tolera que seus próprios escolhidos abusem de Sua bondade impunemente.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Eleição cristológica', resumo: 'A eleição de Israel aponta para Cristo — o verdadeiro Eleito. Em Jesus, Deus e a humanidade são reconciliados. A eleição não exclui, mas inclui todas as nações.', citacao: '«A eleição de Israel é o caminho histórico para a eleição universal em Jesus Cristo.»' },
+    ],
+  },
+  {
+    livro: 'am', capitulo: 5, versiculo: 24,
+    tema: 'Justiça como rio caudaloso',
+    contexto: 'Amós clama por justiça que flua como águas que não cessam — a religião sem justiça social é abominação para Deus.',
+    interpretacoes: [
+      { teologo: 'Martin Luther King Jr.', periodo: '1929-1968', tradicao: 'Batista', visao: 'Justiça social', resumo: 'Este versículo é o fundamento bíblico do movimento pelos direitos civis. A justiça não é luxo — é necessidade urgente e contínua.', citacao: '«Devemos insistir na justiça como um rio caudaloso — fluindo sem descanso.»' },
+      { teologo: 'Gustavo Gutiérrez', periodo: '1928-2024', tradicao: 'Teologia da Libertação', visao: 'Liberdade', resumo: 'Deus está do lado dos oprimidos. A justiça não é caridade — é direito. A Igreja deve denunciar as estruturas de pecado que mantêm a desigualdade.', citacao: '«A opção pelos pobres não é preferência ideológica — é exigência profética.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Cidade justa', resumo: 'A justiça bíblica vai além da caridade — ela confronta as causas sistêmicas da opressão. A Igreja deve buscar a justiça em todas as esferas da sociedade.', citacao: '«A justiça não é apenas dar esmolas — é reformar as estruturas que destroem vidas.»' },
+    ],
+  },
+  {
+    livro: 'am', capitulo: 6, versiculo: 4,
+    tema: 'Condenação dos opulentos',
+    contexto: 'Amós denuncia a elite de Israel que vive em luxo enquanto o povo sofre — religião e prosperidade não substituem a justiça.',
+    interpretacoes: [
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessante', visao: 'Custo da graça', resumo: 'A graça barata permite que os ricos durmam em leitos de marfim enquanto os pobres passam fome. O discípulo verdadeiro compartilha o sofrimento do próximo.', citacao: '«A graça barata é a graça que beneficia a si mesma — a graça custosa custa a vida do homem.»' },
+      { teologo: 'José Míguez Bonino', periodo: '1924-2014', tradicao: 'Teologia da Libertação', visao: 'Comunitário', resumo: 'A injustiça não é apenas individual mas estrutural. A denúncia profética de Amós se aplica a qualquer sistema econômico que marginaliza os pobres.', citacao: '«O pecado social é mais grave que o individual porque afeta comunidades inteiras.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Nova Perspectiva', visao: 'Reino de Deus', resumo: 'A justiça do Reino de Deus é integral — abrange o bem-estar físico e espiritual. Deus não separa religião de justiça social.', citacao: '«O Deus bíblico se importa com corpos famintos tanto quanto com almas perdidas.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // HABACUQUE — FÉ E JUSTIÇA
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'hc', capitulo: 2, versiculo: 4,
+    tema: 'O justo viverá pela fé',
+    contexto: 'Habacuque recebe a resposta divina: o orgulhoso não tem reta alma, mas o justo viverá pela sua fé — versículo central da teologia reformada.',
+    interpretacoes: [
+      { teologo: 'São Paulo', periodo: '~55 d.C.', tradicao: 'Apostólica', visao: 'Sola fide', resumo: 'Paulo cita Habacuque 2:4 em Romanos 1:17 e Gálatas 3:11 para fundamentar a doutrina da justificação pela fé. A fé é o meio pelo qual o homem justo recebe a vida de Deus.', citacao: '«O justo viverá pela fé — não pelas obras da lei, mas pela confiança em Deus.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola fide', resumo: 'Este versículo foi a pedra angular da Reforma. Lutero entendeu que o justo não é quem obedece perfeitamente, mas quem confia em Deus apesar de suas falhas.', citacao: '«Esta frase me abriu as portas do céu — o justo viverá pela fé, não pelas obras.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Justificação', resumo: 'A fé é o instrumento pelo qual recebemos a justiça de Cristo. Não é uma fé morta, mas viva e ativa — produz frutos, mas não os merece.', citacao: '«A fé justificante não está sozinha — sempre vem acompanhada de arrependimento e santificação.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Nova Perspectiva', visao: 'Fé como lealdade', resumo: 'No contexto original hebraico, fé (emunah) significa lealdade e fidelidade. O justo viverá mantendo aliança — não apenas crendo, mas perseverando em fidelidade.', citacao: '«A fé bíblica não é apenas crença mental — é lealdade实践 ao Deus da aliança.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Gospel', resumo: 'A fé é receber o que não merecemos — a justiça de Cristo. É humildade radical: reconhecer que nada podemos fazer para nos salvar.', citacao: '«A fé é as mãos vazias que recebem o dom gratuito de Deus.»' },
+    ],
+  },
+  {
+    livro: 'hc', capitulo: 1, versiculo: 2,
+    tema: 'A queixa contra a injustiça',
+    contexto: 'Habacuque questiona Deus por permitir a violência e a injustiça — um salmo de lamento profético que expressa a dor diante do silêncio divino.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Providência', resumo: 'Deus permite o mal para um bem maior. O lamento profético não é falta de fé — é expressão de uma fé que busca compreender os caminhos de Deus.', citacao: '«O grito do profeta é a voz de todos os que sofrem injustiça e clamam por justiça divina.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessante', visao: 'Custo da graça', resumo: 'O cristão não pode ser indiferente à injustiça. Habacuque mostra que questionar Deus é parte da fé — o que Deus não tolera é a indiferença diante do mal.', citacao: '«Quem clama contra a injustiça está mais perto de Deus do que quem se cala.»' },
+      { teologo: 'Jürgen Moltmann', periodo: '1926-2024', tradicao: 'Teologia da Esperança', visao: 'Teodiceia', resumo: 'O lamento profético é uma forma legítima de oração. Deus não é indiferente ao sofrimento — Ele mesmo sofre conosco na história.', citacao: '«O Deus crucificado é o Deus que sofre com os oprimidos e contra os opressores.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // ROMANOS — DOUTRINA CENTRAL DA FÉ
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'rm', capitulo: 5, versiculo: 8,
+    tema: 'O amor de Deus na cruz',
+    contexto: 'Paulo revela a prova suprema do amor de Deus: Cristo morreu por nós quando ainda éramos pecadores — não por nossos méritos, mas por Sua graça.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Graça', resumo: 'O amor de Deus não é resposta à nossa bondade — é a origem da nossa salvação. Deus nos amou quando éramos inimigos, e esta é a essência da graça.', citacao: '«Deus nos amou quando éramos pecadores — não para que nos tornássemos pecadores, mas para nos tornar justos.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Substituição', resumo: 'A cruz é a manifestação máxima do amor divino. Cristo tomou sobre Si a ira que merecíamos, substituindo-nos perfeitamente.', citacao: '«Deus não nos amou porque éramos dignos — nos tornamos dignos porque Deus nos amou.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Expiação', resumo: 'A morte de Cristo não é apenas exemplo — é sacrifício expiatório. Deus demonstra Seu amor ao satisfazer Sua própria justiça na cruz.', citacao: '«A morte de Cristo é a demonstração mais clara de que Deus é amor e justiça ao mesmo tempo.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Substituição', resumo: 'O versículo condensa todo o evangelho: Deus nos amou, Cristo morreu, éramos pecadores. A cruz não é acidente — é o plano eterno de Deus.', citacao: '«A cruz é o ponto culminante da história — onde amor e justiça se encontram.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Gospel', resumo: 'O amor de Deus não depende da performance humana. Isso liberta do desempenho e da culpa — somos amados não pelo que fazemos, mas pelo que Cristo fez por nós.', citacao: '«O evangelho não é: eu amo Deus — é: Deus me amou primeiro.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 28,
+    tema: 'Tudo coopera para o bem',
+    contexto: 'Paulo assegura que todas as coisas — até o sofrimento — cooperam para o bem daqueles que amam a Deus e são chamados segundo o Seu propósito.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Providência', resumo: 'Deus permite o mal para tirar dele um bem maior. A providência divina governa todas as coisas, mesmo aquelas que não compreendemos.', citacao: '«Deus permite o mal para um bem maior que não poderia existir sem ele.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Providência', resumo: 'A providência de Deus não elimina o livre-arbítrio — Ele governa as coisas de modo a usar até as escolhas humanas para Seus propósitos.', citacao: '«Deus governa todas as coisas de modo indireto — permitindo que as causas secundárias ajam livremente.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Nada acontece por acidente. A soberania de Deus é absoluta — Ele governa até as catástrofes para cumprir Seus propósitos de amor.', citacao: '«A providência de Deus se estende até os menores detalhes da vida humana.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Anglicana', visao: 'O maior conto', resumo: 'Deus é como um autor que escreve a história mais bela usando até os capítulos mais sombrios. O sofrimento não é o fim — é parte da narrativa redentora.', citacao: '«Deus supreendentemente nos conta a história mais bela possível — mesmo usando os capítulos que preferiríamos pular.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Gospel', resumo: 'Este versículo não é um clichê — é a promessa de que Deus não desperdiça nenhuma dor. Ele transforma sofrimento em caráter, e características em glória.', citacao: '«Deus não causa o mal, mas Ele o governa e o transforma para nosso bem.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 31,
+    tema: 'Deus por nós',
+    contexto: 'Paulo chega ao clímax da argumentação: se Deus é por nós, quem será contra nós? — a segurança final do crente.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Triunfo', resumo: 'Nenhuma força criada pode derrotar aquele que Deus defende. A segurança do crente não está em suas capacidades, mas no poder de Deus por ele.', citacao: '«Se Deus é por nós, toda a criação não pode contra nós — porque Deus é maior que a criação.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Coram Deo', resumo: 'O crente está diante de Deus e seguro. Nenhum acusador — nem Satanás, nem a lei, nem a consciência — pode condenar quem está em Cristo.', citacao: '«Diante de Deus, somos justos — não porque não pecamos, mas porque Cristo cobriu nossos pecados.»' },
+      { teologo: 'John Murray', periodo: '1898-1975', tradicao: 'Reformada', visao: 'Segurança', resumo: 'A pergunta é retórica — não há ninguém que possa derrotar o crente. Deus não apenas é conosco — Ele é por nós, comprometido com nossa salvação.', citacao: '«A segurança do crente está no caráter imutável de Deus — Ele não abandona o que começou.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 12, versiculo: 1,
+    tema: 'Oferecer o corpo em sacrifício',
+    contexto: 'Paulo faz a transição da doutrina para a prática — a resposta à graça é a entrega total da vida como culto vivo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Culto interior', resumo: 'O sacrifício aceitável não é animal — é a vida inteira do crente. A adoração verdadeira começa na mente renovada e se expressa em ação.', citacao: '«O sacrifício que Deus pede é um coração quebrantado e humilhado — não sacrifícios externos.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessante', visao: 'Graça barata', resumo: 'A graça custosa exige tudo — não apenas palavras, mas a vida inteira. O discípulo que não conta o custo não é digno de Cristo.', citacao: '«A graça barata é a graça que beneficia a si mesma — a graça custosa custa a vida do homem.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Vida cristã', resumo: 'A adoração não é apenas música — é uma vida inteira oferecida a Deus. O corpo inclui mente, vontade e emoções — tudo deve ser consagrado.', citacao: '«A adoração é a resposta total da criatura ao Criador — corpo e alma.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 12, versiculo: 2,
+    tema: 'Renovação da mente',
+    contexto: 'Paulo ordena que não nos conformemos com este mundo, mas que nos transformemos pela renovação da mente — mudança interior que produz transformação exterior.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Conversão', resumo: 'A conversão é antes de tudo uma mudança mental — a mente que estava cega para Deus é iluminada pela graça. A renovação é progressiva.', citacao: '«O amor ordena: não te conformes com este mundo — pensa de modo diferente para viver de modo diferente.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Mente renovada', resumo: 'Arenovação da mente é o início da santificação. O cristão deve examinar tudo pelo filtro da Escritura, não pela cultura dominante.', citacao: '«A mente renovada pela Palavra de Deus é o instrumento pelo qual discernimos a vontade de Deus.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Gospel', resumo: 'A cultura sempre tenta nos conformar. A mente renovada pelo evangelho resiste a esta pressão — não por legalismo, mas por uma nova identidade em Cristo.', citacao: '«Não basta resistir à cultura — é preciso ser transformado por algo maior: o evangelho.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 13, versiculo: 1,
+    tema: 'Submissão às autoridades',
+    contexto: 'Paulo instrui os cristãos a se submeterem às autoridades governamentais — toda autoridade vem de Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ordem social', resumo: 'A autoridade civil é uma concessão divina para conter o pecado. Sem governo, o mundo mergulharia no caos.', citacao: '«A autoridade é necessária para manter a ordem — sem ela, o pecado se multiplica sem limite.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Magistrados', resumo: 'Deus governa o mundo através de magistrados. Submeter-se à autoridade é submeter-se a Deus — mas quando a autoridade ordena contra Deus, a obediência a Deus tem prioridade.', citacao: '«Devemos obedecer aos magistrados como ministros de Deus — mas Deus deve ser obedecido em primeiro lugar.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Cidadania', resumo: 'O cristão é cidadão de dois reinos — o terrestre e o celestial. A submissão às autoridades é parte da responsabilidade cidadã, não obediência absoluta.', citacao: '«O cristão deve ser o melhor cidadão — submisso às leis, mas leal a Cristo acima de tudo.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 16, versiculo: 1,
+    tema: 'Recomendação de Febe',
+    contexto: 'Paulo recomenda Febe, diaconisa da igreja em Cêncreia — evidência do papel ativo das mulheres na igreja primitiva.',
+    interpretacoes: [
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Nova Perspectiva', visao: 'Igualdade', resumo: 'Febe é chamada de diaconisa (diákonos) e protetora (prostatis) — termos de liderança. As mulheres exerciam funções ministeriais na igreja primitiva.', citacao: '«Febe não era auxiliar — era líder. Paulo a recomenda como diáconisa e protetora da igreja.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Complementaridade', resumo: 'A igualdade fundamental dos sexos na criação se manifesta no ministério cristão. Em Cristo, não há masculino nem feminino — todos são um.', citacao: '«Em Cristo, a distinção entre homem e mulher não desaparece — mas é reconciliada.»' },
+      { teologo: 'Catherine Mowry Cssalvatore', periodo: '1945-', tradicao: 'Feminista', visao: 'Inclusividade', resumo: 'O testemunho de Paulo sobre Febe desafia interpretações exclusivistas. A história da igreja mostra mulheres em todos os níveis de liderança.', citacao: '«Febe é prova de que as mulheres sempre estiveram no centro da missão cristã.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // EFÉSIOS — IGREJA E ARMADURA
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ef', capitulo: 2, versiculo: 8,
+    tema: 'Salvos pela graça pela fé',
+    contexto: 'Paulo resume toda a doutrina da salvação: é dom de Deus, não resultado de obras — para que ninguém se glorie.',
+    interpretacoes: [
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola gratia, sola fide', resumo: 'A salvação é 100% graça de Deus, recebida pela fé. Não há mérito humano — a fé é o meio, não o mérito. A salvação é completa em Cristo.', citacao: '«Somos salvos pela graça de Deus mediante a fé — não por nossos esforços, mas pelo dom de Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça irresistível', resumo: 'Até a fé é um dom de Deus — não é obra humana. A graça precede, capacita e sustenta a fé. O homem não pode se salvar por si mesmo.', citacao: '«A fé que crê na salvação também é dom de Deus — tudo vem dEle, tudo é por Ele, tudo é para Ele.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Evangelho', resumo: 'A salvação é composta de três dádivas: graça (o que Deus dá), fé (como recebemos) e salvação (o que ganhamos). Tudo é dom.', citacao: '«Graça é a dádiva suprema — é o que recebemos quando não merecemos nada.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Gospel', resumo: 'Se a salvação dependesse de nossas obras, nunca teríamos certeza. A graça免费 nos dá segurança — porque depende de Deus, não de nós.', citacao: '«O evangelho é a notícia de que Jesus morreu por mim — não que eu preciso fazer algo por Ele.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 6, versiculo: 10,
+    tema: 'A armadura de Deus',
+    contexto: 'Paulo encerra a carta com a exortação à guerra espiritual — o crente deve revestir-se da armadura completa de Deus para enfrentar as forças do mal.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Guerra espiritual', resumo: 'A armadura é Cristo mesmo — cada peça representa uma virtude que recebemos Dele. A força vem de Deus, não de nós mesmos.', citacao: '«A armadura de Deus é Cristo — revestimo-Lo ao nos vestirmos Dele.»' },
+      { teologo: 'Martin Luther', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola Scriptura', resumo: 'A Espada do Espírito é a Palavra de Deus — a única arma ofensiva. Lutero escreveu o hino "Uma Fortaleza é o nosso Deus" meditando neste texto.', citacao: '«A Palavra de Deus é a espada que corta todas as mentiras e acusações do inimigo.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Vida cristã', resumo: 'A guerra espiritual não é contra pessoas — é contra princípios e potestades. A armadura protege toda a pessoa: verdade, justiça, paz, fé, salvação e Palavra.', citacao: '«O inimigo não é carne e sangue — são as forças espirituais da maldade.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Anglicana', visao: 'Espiritual', resumo: 'A guerra espiritual é real, mas o resultado já está decidido. Cristo venceu na cruz — nós lutamos a partir da vitória, não por ela.', citacao: '«O inimigo é forte, mas já foi derrotado — nossa luta é a da celebração.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // HEBREUS — FÉ E PERSISTÊNCIA
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'hb', capitulo: 4, versiculo: 12,
+    tema: 'A Palavra de Deus viva e eficaz',
+    contexto: 'O autor de Hebreus descreve a Palavra de Deus como viva, eficaz, mais afiada que qualquer espada — penetra até os mais íntimos recessos da alma.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Eficácia', resumo: 'A Palavra de Deus não é texto morto — é voz viva de Deus que transforma, convence e regenera. Ela opera no coração com poder divino.', citacao: '«A Palavra de Deus é como o trovão de Deus — ressoa no coração e transforma a vida.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola Scriptura', resumo: 'A Escritura é mais poderosa que qualquer instituição humana. Ela julga, corrige e ensina — é a autoridade suprema da fé e da prática.', citacao: '«A Palavra de Deus não pode ser acorrentada — ela sempre encontra um caminho para o coração.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Iluminação', resumo: 'A Palavra exige iluminação do Espírito Santo para ser compreendida. Sem o Espírito, lemos letra morta. Com Ele, encontramos vida.', citacao: '«A Palavra de Deus é como o sol — precisa da luz do Espírito para ser vista.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Autoridade', resumo: 'A Palavra de Deus tem autoridade inegável — ela nos conhece melhor do que nós mesmos. Não podemos fugir dela.', citacao: '«A Palavra de Deus nos penetra — ela sabe o que há no mais profundo do coração.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 11, versiculo: 1,
+    tema: 'A fé é certeza',
+    contexto: 'O "salmo da fé" do Novo Testamento — a fé é a certeza das coisas que se esperam, a convicção das coisas que se não veem.',
+    interpretacoes: [
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Assentimento', resumo: 'A fé é um assentimento da mente movido pela vontade, sob a iluminação divina. Não é cegueira — é ver o invisível pela luz de Deus.', citacao: '«A fé é o início da vida eterna — nos faz ver o que ainda não vemos, mas já possuímos.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Fiducia', resumo: 'A fé verdadeira não é apenas conhecimento (notitia), mas também confiança pessoal (fiducia). Crer é confiar em Cristo.', citacao: '«A fé é um conhecimento firme da bondade de Deus para conosco.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Certezza', resumo: 'A fé não é probabilidade — é certeza. Não porque temos provas científicas, mas porque Deus é digno de confiança. Fé e dúvida são opostas.', citacao: '«A fé é uma convicção firme e segura da verdade de Deus — acima de toda incerteza humana.»' },
+      { teologo: 'Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'A fé é resposta à Palavra de Deus. Não é invenção humana — é Deus quem Se revela e chama. A fé é sempre dom, nunca conquista.', citacao: '«A fé é a mão aberta que recebe o que Deus dá — e o que Deus dá é Ele mesmo.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Nova Perspectiva', visao: 'Reino', resumo: 'A fé não é apenas crença individual — é lealdade ao Deus da aliança que está restaurando o mundo. Fé é participar do projeto de Deus.', citacao: '«A fé é confiar no Deus que está fazendo todas as coisas novas — e ser parte disso.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 12, versiculo: 1,
+    tema: 'A corrida da fé',
+    contexto: 'O autor exorta os crentes a perseverarem, tendo como testemunhas os heróis da fé do capítulo 11 — uma cloud of witnesses.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Comunhão dos santos', resumo: 'Os santos que já partiram nos observam e nos incentivam. A comunhão dos santos não é apenas terrena — é celestial.', citacao: '«A multidão dos santos nos cerca — somos espectadores e corredores ao mesmo tempo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Perseverança', resumo: 'A corrida exige perseverança — não é para quem começa, mas para quem termina. Largamos o peso do pecado e corremos com olhos fixos em Cristo.', citacao: '«A perseverança é a marca dos verdadeiros crentes — eles correm até o fim.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessante', visao: 'Custo', resumo: 'A corrida da fé não é confortável — exige renúncia, sofrimento e perseverança. Mas o prêmio supera infinitamente o custo.', citacao: '«Quando Cristo chama um homem, Ele o chama para vir e morrer.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Perseverança', resumo: 'A vida cristã é uma corrida, não uma caminhada. Exige disciplina, foco e determinação. O alvo é Cristo — e só Ele.', citacao: '«Corramos com perseverança, olhando para Jesus — o autor e consumador da fé.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // 1 PEDRO — ESPERANÇA E RESISTÊNCIA
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: '1pe', capitulo: 3, versiculo: 15,
+    tema: 'Defender a esperança',
+    contexto: 'Pedro instrui os crentes a estarem sempre preparados para explicar sua fé — com mansidão e temor.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Apologética', resumo: 'A defesa da fé deve ser feita com amor e humildade. A arrogância destroi o testemunho — a mansidão abre corações.', citacao: '«A verdade deve ser dita com caridade — sem ela, a verdade se torna veneno.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Apologética', resumo: 'O crente deve conhecer sua fé e ser capaz de defendê-la. A apologética não é privilégio de teólogos — é dever de todo cristão.', citacao: '«Todo cristão deve ser capaz de dar razão de sua esperança — não por orgulho, mas por obediência.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Apologética cultural', resumo: 'A apologética moderna deve ser contextual — responder às perguntas reais das pessoas. A mansidão e o temor mostram que a fé não é fanatismo.', citacao: '«A melhor apologética é uma vida transformada — mas às vezes precisamos também de palavras.»' },
+    ],
+  },
+  {
+    livro: '1pe', capitulo: 5, versiculo: 8,
+    tema: 'Vigiar contra o diabo',
+    contexto: 'Pedro alerta: o diabo ronda como leão rugindo, buscando quem devorar — a vigilância é essencial.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Guerra espiritual', resumo: 'O diabo é real e perigoso — mas já foi derrotado por Cristo. A vigilância é necessária, mas o medo não.', citacao: '«O diabo rug como leão — mas Cristo é o Leão de Judá que o venceu.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessante', visao: 'Vigilância', resumo: 'A comunidade é o antídoto contra o diabo. Ele ataca o isolamento — a solidão espiritual é perigosa. Precisamos uns dos outros.', citacao: '«O diabo não entra onde a comunidade é forte — ele cisma, acusa e isola.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Vida cristã', resumo: 'Vigiar não é paranoia — é consciência. O crente não deve subestimar o inimigo nem superestimá-lo. A arma é a fé firme em Cristo.', citacao: '«Sejamos sóbrios e vigilantes — não porque temos medo, mas porque sabemos quem é o inimigo.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // TIAGO — FÉ E OBRAS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'tg', capitulo: 1, versiculo: 2,
+    tema: 'Alegria nas tribulações',
+    contexto: 'Tiago começa sua carta com um paradoxo: considerem puro gozo quando passarem por provações — porque a provação produz perseverança.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Provação', resumo: 'A provação é o teste da fé — assim como o ouro é provado pelo fogo. Deus permite as tribulações para nos aperfeiçoar.', citacao: '«A tribulação é o forno onde a fé é purificada — só sobra o que é genuíno.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Virtude', resumo: 'A perseverança é uma virtude que se fortalece com a prática. Quanto mais enfrentamos dificuldades, mais fortes nos tornamos na fé.', citacao: '«A perseverança é a virtude que nos mantém firmes diante do mal — e é fortalecida pelo exercício.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessante', visao: 'Custo', resumo: 'A alegria na tribulação não é masoquismo — é fé que confia no propósito de Deus mesmo quando não compreendemos.', citacao: '«Quando Cristo chama um homem, Ele o chama para vir e morrer — mas também para viver de modo novo.»' },
+    ],
+  },
+  {
+    livro: 'tg', capitulo: 2, versiculo: 14,
+    tema: 'Fé sem obras é morta',
+    contexto: 'Tiago enfrenta o antinomianismo: fé sem obras concretas de amor não salva — a fé verdadeira se manifesta em ação.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor', resumo: 'A fé verdadeira se expressa em amor. Fé sem obras é como um corpo sem alma — existe em teoria, mas não em realidade.', citacao: '«A fé que não ama não é fé — é conhecimento morto que não transforma a vida.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola fide', resumo: 'Lutero reconhecia que Tiago não contradiz Paulo — Paulo fala de obras da lei como meio de salvação, Tiago fala de obras de amor como fruto da fé.', citacao: '«Tiago não ensina obras para salvação — ensina que a fé verdadeira sempre produz frutos de amor.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fé viva', resumo: 'A fé verdadeira é viva e ativa — produz frutos inevitavelmente. Uma fé que não produz obras não é fé — é ilusão.', citacao: '«A fé é a raiz, as obras são o fruto — uma árvore sem frutos está morta.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Nova Perspectiva', visao: 'Nova aliança', resumo: 'A fé que salva é uma fé que obedece — não por mérito, mas porque o Espírito capacita. Fé e obras são inseparáveis.', citacao: '«Paulo e Tiago não discordam — falam de coisas diferentes. Paulo: não por obras da lei. Tiago: sem obras, fé é morta.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // MATEUS — ENSINOS DE JESUS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'mt', capitulo: 5, versiculo: 3,
+    tema: 'As Bem-Aventuranças',
+    contexto: 'Jesus inicia o Sermão do Monte com as Bem-Aventuranzas — uma revolução dos valores: os pobres de espírito, os que choram, os mansos são abençoados.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Escatológico', resumo: 'As bem-aventuranças são promessas escatológicas — os que sofrem agora receberão consolo na consumação do Reino. São duas cidades, dois destinos.', citacao: '«As bem-aventuranças descrevem os cidadãos da cidade de Deus — pobres em espírito, ricos em graça.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Beatitude', resumo: 'A felicidade suprema (beatitudo) não está em bens materiais — está na visão direta de Deus. As bem-aventuranças são o caminho para essa felicidade.', citacao: '«A felicidade perfeita não pode ser encontrada em bens terrenos — apenas na posse de Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Reino', resumo: 'As bem-aventuranças são o currículo do Reino — descrevem o caráter de quem pertence a Jesus. Não são mérito, mas fruto do Espírito.', citacao: '«As bem-aventuranças são o retrato do discípulo de Cristo — humilde, manso, justo, misericordioso.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessante', visao: 'Discipulado', resumo: 'As bem-aventuranças são o manifesto do discipulado cristão. Não são conforto — são convocação para uma vida radical de following Jesus.', citacao: '«Quando Cristo chama um homem, Ele o chama para vir e morrer — e as bem-aventuranças são o caminho.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Nova Perspectiva', visao: 'Reino de Deus', resumo: 'As bem-aventuranças são a constituição do Reino de Deus — os reis do mundo são os mansos, os pobres, os perseguidores. Jesus inverte os valores.', citacao: '«As bem-aventuranças são o manifesto do Reino — onde os últimos serão primeiros.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 6, versiculo: 9,
+    tema: 'O Pai Nosso',
+    contexto: 'Jesus ensina os discípulos a orar — o Pai Nosso é o modelo supremo de oração, contendo adoração, súplica e entrega.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Comunhão', resumo: 'O Pai Nosso é a oração perfeita — resume tudo o que o homem pode pedir e tudo o que Deus pode dar. É oração comunitária — dizemos "Pai nosso", não "Pai meu".', citacao: '«O Pai Nosso é breve em palavras, mas rico em significado — toda a Escritura nele se resume.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Catequese', resumo: 'Lutero ensinava que o Pai Nosso é a oração mais perfeita — cada petição nos ensina a depender completamente de Deus.', citacao: '«Não precisamos de muitas palavras — Deus já sabe o que precisamos. O Pai Nosso é suficiente.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Adoração', resumo: 'A primeira petição — "santificado seja o teu nome" — é a mais importante. Tudo o mais é consequência. Deus primeiro, depois nossas necessidades.', citacao: '«A oração começa onde começa o Pai Nosso — na adoração ao nome santo de Deus.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 16, versiculo: 16,
+    tema: 'Confissão de Pedro',
+    contexto: 'Pedro confessa Jesus como o Cristo, o Filho de Deus — o momento mais decisivo da revelação no Evangelho de Mateus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristológico', resumo: 'A confissão de Pedro é o fundamento da Igreja. Não foi revelação humana — foi revelação divina. "Carne e sangue não te revelaram isso, mas meu Pai.".', citacao: '«Pedro confessou o Cristo — e sobre esta pedra, Cristo edificou Sua Igreja.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Cristológico', resumo: 'Cristo é simultaneamente verdadeiro Deus e verdadeiro homem — esta é a confessão central da fé. Pedro foi o primeiro a articulá-la.', citacao: '«A confissão de Pedro contém os dois artigos essenciais da fé: Cristo é Senhor e Cristo é Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Cristológico', resumo: 'Pedro não é a pedra da Igreja — Cristo é. A Igreja se edifica sobre a confissão de que Jesus é o Cristo, o Filho de Deus.', citacao: '«A Igreja se edifica sobre Cristo — não sobre Pedro. A pedra viva é Jesus mesmo.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 28, versiculo: 19,
+    tema: 'A Grande Comissão',
+    contexto: 'Jesus ordena que seus discípulos façam discípulos de todas as nações, batizando-os no nome da Trindade.',
+    interpretacoes: [
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Missões', resumo: 'A Grande Comissão é o mandamento final de Cristo. A Igreja existe para fazer discípulos — este é o propósito supremo.', citacao: '«A missão da Igreja é fazer discípulos — ensinando, batizando e obedecendo a tudo o que Cristo ordenou.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Missões', resumo: 'A missão não é opcional — é essencial. A Igreja não tem missão — a missão tem Igreja.', citacao: '«A Igreja existe para a missão — sem missão, não existe Igreja.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Nova Perspectiva', visao: 'Missão integral', resumo: 'A missão não é apenas evangelismo — é fazer discípulos que obedecem a tudo o que Jesus ensinou, incluindo justiça e misericórdia.', citacao: '«A missão de Jesus é integral — inclui palavras e ações, evangelho e justiça.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // JOÃO — IDENTIDADE E SALVAÇÃO
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'jo', capitulo: 1, versiculo: 1,
+    tema: 'O Logos eterno',
+    contexto: 'O prólogo do Evangelho de João declara que o Verbo era Deus e estava com Deus desde o início — a declaração mais elevada da divindade de Cristo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Trinitário', resumo: 'O Verbo é eterno como o Pai — não foi criado, mas gerado. A relação entre Pai e Filho é a origem de todo amor e comunhão.', citacao: '«O Verbo era Deus — não uma criatura, mas o Criador. Não começou a existir — sempre existiu com o Pai.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Logos', resumo: 'O Logos é a Razão eterna de Deus — através dela todas as coisas foram feitas. João aplicou o termo grego para expressar a verdade hebraica.', citacao: '«O Verbo é a perfeita expressão do Pai — nele habita toda a plenitude da divindade.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'O Prólogo de João é a declaração mais clara de que Jesus é a Palavra viva de Deus — não apenas porta-voz, mas o próprio Deus falando.', citacao: '«Em Jesus Cristo, a Palavra se fez carne — Deus falou pela última e definitiva vez.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Nova Perspectiva', visao: 'Cristológico', resumo: 'João usa o Logos para conectar o Evangelho com a filosofia grega — mas o Logos é antes de tudo o Verbo criador de Gênesis 1.', citacao: '«O Verbo que criou o mundo agora vem habitar nele — é o Deus que Se aproxima.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 3, versiculo: 16,
+    tema: 'O versículo mais conhecido',
+    contexto: 'Jesus fala a Nicodemos sobre o amor de Deus que deu o Filho único para que todo o que crê não pereça, mas tenha a vida eterna.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor', resumo: 'O amor de Deus não é abstrato — é concreto, histórico, pessoal. Deus deu o que tinha de mais precioso para resgatar o que tinha de mais perdido.', citacao: '«Tão grande é o amor de Deus que não poupou o próprio Filho — e por esse amor, somos livres.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Evangelho', resumo: 'Este versículo é o evangelho em miniatura: Deus amou, deu o Filho, o mundo precisa, quem crê não perece, tem vida eterna.', citacao: '«O evangelho é isso: Deus nos amou e deu o Filho por nós — não para condenação, mas para salvação.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'A universalidade do amor ("o mundo") e a especificidade da salvação ("todo o que crê") — Deus ama a todos, mas salva os que creem.', citacao: '«Deus amou o mundo — mas é pelo crer que recebemos o que Ele deu.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Gospel', resumo: 'O versículo mais traduzido da história resume tudo: o amor de Deus, o sacrifício de Cristo, a necessidade da fé, o dom da vida.', citacao: '«João 3:16 é a Bíblia inteira em uma frase — o evangelho em 26 palavras.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 10, versiculo: 10,
+    tema: 'Vida em abundância',
+    contexto: 'Jesus declara que veio para que as ovelhas tenham vida — e vida em abundância, em contraste com o ladrão que vem para roubar.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Plenitude', resumo: 'A vida abundância não é prosperidade material — é a plenitude da vida em Deus. O pecado rouba a verdadeira vida; Cristo a restaura.', citacao: '«A vida que Cristo dá não é apenas existir — é viver em comunhão com o Criador.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Vida eterna', resumo: 'A vida abundância é a vida eterna que começa agora — não apenas no céu. Quem está em Cristo já experimenta a vida nova.', citacao: '«A vida abundância é a graça de Deus operando em nós — transformando-nos día a día.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessante', visao: 'Discipulado', resumo: 'A vida abundância não é conforto — é significado. O discípulo que segue a Cristo encontra propósito que nenhum bem material pode dar.', citacao: '«Quando Cristo chama um homem, Ele o chama para uma vida que vale a pena ser vivida.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Gospel', resumo: 'A abundância de Jesus não é acréscimo — é substituição. Ele não acrescenta coisas à vida — Ele dá vida nova.', citacao: '«A vida abundância é ser libertado de si mesmo — é encontrar a vida perdendo a vida.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 14, versiculo: 6,
+    tema: 'O caminho, a verdade e a vida',
+    contexto: 'Jesus declara exclusividade: ninguém vem ao Pai senão por Ele — a declaração mais exclusivista e mais amada do cristianismo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Exclusivismo', resumo: 'Cristo é o único caminho porque é o único que preenche o abismo entre Deus e o homem. Não há salvação em nenhum outro nome.', citacao: '«Em nenhum outro há salvação — porque em nenhum outro Deus Se fez homem para nos resgatar.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Veritas', resumo: 'Cristo é a verdade objetiva que liberta. Não é uma verdade entre muitas — é a verdade definitiva que revela Deus e o homem.', citacao: '«Cristo é a verdade que nos liberta do erro — e o caminho que nos conduz ao Pai.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'A exclusividade de Cristo não é arrogância — é humildade. Deus Se revelou em um lugar concreto, numa pessoa histórica. A verdade é pessoal, não abstrata.', citacao: '«Deus não é uma ideia — é uma pessoa. E essa pessoa é Jesus Cristo.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Evangelho', resumo: 'Jesus não disse "uma das verdades" — disse "a verdade". A exclusividade não é intolerância — é amor que compartilha o único caminho de salvação.', citacao: '«A exclusividade de Cristo não é intolerância — é a verdade que liberta.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 15, versiculo: 5,
+    tema: 'A videira e os sarmentos',
+    contexto: 'Jesus se compara à videira — os discípulos são os sarmentos que só produzem frutos quando permanecem Nele.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'União', resumo: 'A união com Cristo é a fonte de toda a vida espiritual. Sem Ele, nada podemos fazer — com Ele, tudo é possível.', citacao: '«A videira é Cristo — sem Ele, os sarmentos secam e são queimados.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Perseverança', resumo: 'Permanecer na videira é perseverar na fé e na obediência. Os sarmentos que não produzem frutos são retirados — a perseverança é evidência da graça.', citacao: '«O sarmento que não produz fruto prova que nunca esteve verdadeiramente unido à videira.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessante', visao: 'Discipulado', resumo: 'Permanecer em Cristo é obedecer aos seus mandamentos. Fé sem obediência não é fé — é ilusão. A união se manifesta em frutos.', citacao: '«A obediência não é opcional para o discípulo — é o teste da união com Cristo.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // 1 JOÃO — AMOR E COMUNHÃO
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: '1jo', capitulo: 1, versiculo: 9,
+    tema: 'Perdão dos pecados',
+    contexto: 'João assegura que Deus é fiel e justo para perdoar nossos pecados e nos purificar de toda injustiça — a promessa da restauração.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Misericórdia', resumo: 'O perdão de Deus não é relutante — é generoso. Ele não apenas perdoa, mas purifica. A justiça de Deus exige purificação; a misericórdia a oferece.', citacao: '«Deus é fiel para perdoar — não porque somos dignos, mas porque Ele é misericordioso.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Promessa', resumo: 'Este versículo é uma promessoal clara: confessar é ser perdoado. Não há dúvida, não há condicional — é promessa absoluta de Deus.', citacao: '«Se confessamos nossos pecados, Deus é fiel — Ele prometeu perdoar e perdoa.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fidelidade', resumo: 'Deus é fiel à Sua própria palavra — Ele não pode mentir. Quando promete perdoar, perdoa. A nossa confiança está no caráter Dele, não nos nossos méritos.', citacao: '«A fidelidade de Deus é a garantia do nosso perdão — Ele não pode abandonar o que prometeu.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Gospel', resumo: 'A confissão não é uma transação — é uma relação. Deus não apenas perdoa, mas restaura. O perdão é o início da cura.', citacao: '«A confissão é a porta de entrada para a graça — Deus não apenas perdoa, mas restaura.»' },
+    ],
+  },
+  {
+    livro: '1jo', capitulo: 4, versiculo: 8,
+    tema: 'Deus é amor',
+    contexto: 'A declaração mais concisa e mais profunda sobre a natureza de Deus: Deus não apenas ama — Ele é amor.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Trindade', resumo: 'Deus é amor porque é Trindade — Pai, Filho e Espírito Santo em comunhão perfeita. O amor não existiu antes da Trindade — é a própria natureza de Deus.', citacao: '«Deus é amor — e este amor é a comunhão eterna do Pai, do Filho e do Espírito Santo.»' },
+      { teologo: 'Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'Deus é amor — não como atributo, mas como essência. O amor não é uma ideia humana aplicada a Deus — é Deus quem define o que é amor.', citacao: '«O amor não é uma qualidade de Deus — é Deus mesmo. Quem vê o Filho vê o amor do Pai.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Gospel', resumo: 'Deus é amor significa que o amor não é ilusão — tem origem eterna. O amor que experimentamos aponta para o amor que é Deus.', citacao: '«Deus não apenas ama — Ele é amor. Isso significa que o amor é a realidade mais profunda do universo.»' },
+    ],
+  },
 ];
 
 for (const e of estudosExtras) {

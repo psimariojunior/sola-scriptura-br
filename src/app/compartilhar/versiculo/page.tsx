@@ -6,7 +6,8 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion } from 'framer-motion';
 import { Share2 } from 'lucide-react';
-import { TODOS_LIVROS, carregarTraducao } from '@/data/biblia';
+import { TODOS_LIVROS } from '@/data/biblia/livros';
+import { carregarTraducao } from '@/data/biblia/texto/carregar';
 import { ShareVerseModal, type ShareVerseData } from '@/components/Biblia/ShareVerseModal';
 
 function VersiculoEditor() {

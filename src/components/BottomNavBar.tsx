@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -57,7 +57,7 @@ const extraLinks: ExtraLink[] = [
   { href: '/ia', label: 'IA', icon: Brain },
 ];
 
-export default function BottomNavBar() {
+function BottomNavBarInner() {
   const pathname = usePathname();
   const [isMobile, setIsMobile] = useState(false);
   const [showMore, setShowMore] = useState(false);
@@ -200,3 +200,5 @@ export default function BottomNavBar() {
     </>
   );
 }
+
+export default memo(BottomNavBarInner);

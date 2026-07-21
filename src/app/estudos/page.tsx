@@ -10,7 +10,7 @@ import {
   History, BookMarked, Sparkles, Filter, ArrowUpDown, Play,
 } from 'lucide-react';
 import { listarMarcas, removerMarca, toggleFavorito, type MarcaBiblia } from '@/lib/estudos';
-import { livroPorAbreviacao, TODOS_LIVROS } from '@/data/biblia';
+import { livroPorAbreviacao, TODOS_LIVROS } from '@/data/biblia/livros';
 import ScrollReveal from '@/components/ScrollReveal';
 import { exportToJson, exportToTxt, exportToCsv } from '@/lib/exportarEstudos';
 import { Breadcrumbs } from '@/components/Breadcrumbs';

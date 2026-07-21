@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { estudosPorLivro } from '@/data/estudosPorLivro';
-import { livroPorAbreviacao } from '@/data/biblia';
+import { livroPorAbreviacao } from '@/data/biblia/livros';
 
 type Props = {
   params: Promise<{ livro: string }>;

@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { estudosPorLivro, type EstudoLivro } from '@/data/estudosPorLivro';
-import { livroPorAbreviacao } from '@/data/biblia';
+import { livroPorAbreviacao } from '@/data/biblia/livros';
 
 export default function EstudoLivroPage() {
   const params = useParams();

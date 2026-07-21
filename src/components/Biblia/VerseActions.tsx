@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Heart,
@@ -94,7 +94,7 @@ export interface VerseActionsProps {
   variant?: 'inline' | 'floating';
 }
 
-export function VerseActions({
+function VerseActionsInner({
   livro,
   livroNome,
   livroAbreviacao,
@@ -309,3 +309,5 @@ export function VerseActions({
     </div>
   );
 }
+
+export const VerseActions = memo(VerseActionsInner);

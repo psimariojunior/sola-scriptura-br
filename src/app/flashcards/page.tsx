@@ -7,7 +7,8 @@ import { Footer } from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import { useFlashcards } from '@/hooks/useFlashcards';
 import { listarFavoritos, type MarcaBiblia } from '@/lib/estudos';
-import { carregarTraducao, livroPorAbreviacao } from '@/data/biblia';
+import { carregarTraducao } from '@/data/biblia/texto/carregar';
+import { livroPorAbreviacao } from '@/data/biblia/livros';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Brain, RotateCcw, Check, X, BookOpen, BarChart3, ArrowRight, Sparkles, Plus, Trash2, Flame, Clock, Star } from 'lucide-react';
 

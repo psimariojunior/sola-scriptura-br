@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { listarMarcas, type MarcaBiblia } from '@/lib/estudos';
-import { livroPorAbreviacao } from '@/data/biblia';
+import { livroPorAbreviacao } from '@/data/biblia/livros';
 
 const FLASHCARD_KEY = 'sola-flashcards';
 

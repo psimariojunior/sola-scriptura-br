@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
 import type { useVerseAudio } from '@/hooks/useVerseAudio';
 import type { useFlashcards } from '@/hooks/useFlashcards';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { CORES, setMarcador, removeMarcador, getMarcador, type CorMarcador } from '@/lib/marcadores';
 import { toggleFavorito } from '@/lib/estudos';
 import { temComentario } from '@/data/comentarios';
@@ -40,7 +40,7 @@ export interface MobileActionBarProps {
   copiedVerse: string | null;
 }
 
-export function MobileActionBar({
+function MobileActionBarInner({
   selected,
   onClose,
   audioNatural,
@@ -228,6 +228,8 @@ export function MobileActionBar({
     </AnimatePresence>
   );
 }
+
+export const MobileActionBar = memo(MobileActionBarInner);
 
 interface ActionTileProps {
   icon: typeof Heart;

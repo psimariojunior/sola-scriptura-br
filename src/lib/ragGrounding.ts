@@ -6,7 +6,7 @@ import {
 import { obterComentarios } from '@/data/comentarios';
 import { crossReferences } from '@/data/crossReferences';
 import { findWordInText, getStrongByNumber } from '@/lib/lexiconSearch';
-import { TODOS_LIVROS, livroPorAbreviacao } from '@/data/biblia';
+import { TODOS_LIVROS, livroPorAbreviacao } from '@/data/biblia/livros';
 
 const LIMITE_PALAVRAS = 1500;
 

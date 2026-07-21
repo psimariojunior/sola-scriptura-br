@@ -1,28 +1,33 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, Inter, Spectral } from 'next/font/google';
+import localFont from 'next/font/local';
 import LayoutWrapper from '@/components/LayoutWrapper';
 import './globals.css';
 
 export const dynamic = 'force-dynamic';
-// deploy v2
 
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['400', '600'],
+const cormorant = localFont({
+  src: [
+    { path: '../../public/fonts/cormorant-latin-400.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/cormorant-latin-600.woff2', weight: '600', style: 'normal' },
+  ],
   variable: '--font-cormorant',
   display: 'optional',
 });
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '600'],
+const inter = localFont({
+  src: [
+    { path: '../../public/fonts/inter-latin-400.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/inter-latin-600.woff2', weight: '600', style: 'normal' },
+  ],
   variable: '--font-inter',
   display: 'optional',
 });
 
-const spectral = Spectral({
-  subsets: ['latin'],
-  weight: ['400', '600'],
+const spectral = localFont({
+  src: [
+    { path: '../../public/fonts/spectral-latin-400.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/spectral-latin-600.woff2', weight: '600', style: 'normal' },
+  ],
   variable: '--font-spectral',
   display: 'optional',
 });

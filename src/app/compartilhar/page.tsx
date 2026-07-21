@@ -4,7 +4,7 @@ import { useState, useRef, useCallback } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion } from 'framer-motion';
-import { Share2, Copy, Check, MessageCircle, Twitter, Instagram, Download, Image as ImageIcon } from 'lucide-react';
+import { Share2, Copy, Check, MessageCircle, X, ExternalLink, Download, Image as ImageIcon } from 'lucide-react';
 import Link from 'next/link';
 import ScrollReveal from '@/components/ScrollReveal';
 import { CompartilharEstudo } from '@/components/CompartilharEstudo';
@@ -241,7 +241,7 @@ export default function CompartilharPage() {
                       onClick={compartilharTwitter}
                       className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white transition-all text-sm font-medium"
                     >
-                      <Twitter className="w-4 h-4" />
+                      <X className="w-4 h-4" />
                       Twitter / X
                     </motion.button>
 
@@ -251,7 +251,7 @@ export default function CompartilharPage() {
                       onClick={gerarImagem}
                       className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transition-all text-sm font-medium"
                     >
-                      <Instagram className="w-4 h-4" />
+                      <ExternalLink className="w-4 h-4" />
                       Instagram (PNG)
                     </motion.button>
                   </div>

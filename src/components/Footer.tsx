@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { BookOpen, Mail, Github, Twitter, Heart, ArrowRight, Smartphone, HeartHandshake } from 'lucide-react';
+import { BookOpen, Mail, ExternalLink, X, Heart, ArrowRight, Smartphone, HeartHandshake } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
 
@@ -111,10 +111,10 @@ export function Footer() {
                 <Mail className="w-5 h-5" />
               </motion.a>
               <motion.a href="https://github.com" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1, rotate: -5 }} className="text-muted-foreground hover:text-foreground transition-all duration-300" aria-label="GitHub">
-                <Github className="w-5 h-5" />
+                <ExternalLink className="w-5 h-5" />
               </motion.a>
               <motion.a href="https://twitter.com" target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.1, rotate: 5 }} className="text-muted-foreground hover:text-foreground transition-all duration-300" aria-label="Twitter">
-                <Twitter className="w-5 h-5" />
+                <X className="w-5 h-5" />
               </motion.a>
             </div>
           </div>

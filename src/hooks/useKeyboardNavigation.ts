@@ -13,7 +13,7 @@ interface UseKeyboardNavigationOptions {
 interface UseKeyboardNavigationReturn {
   activeIndex: number;
   setActiveIndex: (index: number) => void;
-  containerRef: React.RefObject<HTMLDivElement>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
   handlers: {
     onKeyDown: (e: React.KeyboardEvent) => void;
   };

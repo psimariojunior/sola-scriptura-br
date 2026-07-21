@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function BibliaError({
   error,
   reset,
@@ -22,9 +24,9 @@ export default function BibliaError({
           <button onClick={reset} className="px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors">
             Tentar novamente
           </button>
-          <a href="/" className="px-6 py-3 bg-muted text-muted-foreground rounded-xl font-medium hover:bg-muted/80 transition-colors">
+          <Link href="/" className="px-6 py-3 bg-muted text-muted-foreground rounded-xl font-medium hover:bg-muted/80 transition-colors">
             Ir para o início
-          </a>
+          </Link>
         </div>
       </div>
     </div>

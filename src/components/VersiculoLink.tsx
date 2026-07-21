@@ -175,7 +175,7 @@ export function linkificarReferenciasHTML(html: string, keyPrefix = 'ref'): Reac
     }
 
     // Mapa de tags HTML -> elementos React.
-    const TAG_MAP: Record<string, keyof JSX.IntrinsicElements> = {
+    const TAG_MAP: Record<string, keyof React.JSX.IntrinsicElements> = {
       h1: 'h1', h2: 'h2', h3: 'h3', h4: 'h4', h5: 'h5', h6: 'h6',
       p: 'p', span: 'span', div: 'div',
       strong: 'strong', b: 'b', em: 'em', i: 'i', u: 'u',

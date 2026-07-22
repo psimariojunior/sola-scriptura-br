@@ -8611,6 +8611,4075 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     versicosChave: ['Mateus 28:19-20', 'Atos 1:8', 'Romanos 10:14-15', 'Apocalipse 7:9'],
     tags: ['missão', 'Stott', 'Lausanne', 'evangelismo', 'justiça social'],
     fontes: ['John Stott, A Cruz de Cristo', 'Stott, The Lausanne Covenant', 'Stott, The Contemporary Christian']
-  }
+  },
+  {
+  'id': 'pn-001',
+  'titulo': 'A Personalidade do Espírito Santo',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Natureza do Espírito',
+  'conteudo': [
+    'O Espírito Santo não é uma força impersonal ou uma influência abstrata, mas uma pessoa divina com vontade, emoções e inteligência.',
+    'A Bíblia atribui ao Espírito Santo ações pessoais: Ele fala (Atos 13:2), ensina (João 14:26), intercede (Romanos 8:26), testifica (João 15:26), e pode ser entristecido (Efésios 4:30).',
+    'No Concílio de Constantinopla (381 d.C.), a Igreja affirmou a divindade e personalidade do Espírito Santo contra o pneumatomachianismo.',
+    'Agostinho desenvolveu a pneumatologia ocidental, comparando o Espírito ao amor que proceed do Pai e do Filho.',
+    'A teologia reformada enfatiza a obra do Espírito na regeneração e santificação, enquanto a tradição pentecostal destaca os dons carismáticos.'
+  ],
+  'versicosChave': [
+    'João 14:26',
+    'Atos 13:2',
+    'Romanos 8:26',
+    'Efésios 4:30'
+  ],
+  'tags': [
+    'espírito santo',
+    'pneumatologia',
+    'trindade',
+    'divindade'
+  ],
+  'fontes': [
+    'Agostinho, De Trinitate',
+    'Calvino, Institutas I.13',
+    'G.E. Ladd, Teologia do NT'
+  ]
+},
+  {
+  'id': 'pn-002',
+  'titulo': 'A Obra do Espírito Santo na Regeneração',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Salvação',
+  'conteudo': [
+    'A regeneração é a obra sobrenatural do Espírito Santo que transforma a natureza espiritual do pecador, capacitando-o a crer em Cristo.',
+    'Jesus ensinou que é necessário nascer de novo (João 3:3-7), e que esse nascimento vem do Espírito Santo.',
+    'A regeneração precede a fé — o pecador não pode crer até que o Espírito Santo lhe dé vida espiritual.',
+    'A tradição reformada ensina a regeneração eficaz, enquanto a tradição arminiana enfatiza a graça resistível.',
+    'A regeneração é instantânea, secreta e irresistível no que diz respeito à sua eficácia.'
+  ],
+  'versicosChave': [
+    'João 3:5-6',
+    'Tito 3:5',
+    '1 Pedro 1:23',
+    'Efésios 2:5'
+  ],
+  'tags': [
+    'regeneração',
+    'conversão',
+    'novo nascimento',
+    'espírito santo'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.1',
+    'Hodge, Systematic Theology',
+    'Berkouwer, The Work of the Holy Spirit'
+  ]
+},
+  {
+  'id': 'pn-003',
+  'titulo': 'Os Dons Espirituais — Cessacionismo vs. Continuismo',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Dons Espirituais',
+  'conteudo': [
+    'Os dons espirituais são habilidades sobrenaturais concedidas pelo Espírito Santo para edificação da igreja.',
+    'O cessacionismo sustenta que os dons miraculosos (profecia, línguas, curas) cessaram com a morte dos apóstolos e a canonização das Escrituras.',
+    'O continuismo defende que todos os dons do Espírito Santo continuam operantes hoje, incluindo línguas e profecia.',
+    'O cessacionismo apela para 1 Coríntios 13:8-10 (\'o perfeito virá\') como referência à canonização bíblica.',
+    'O continuismo apela para Hebreus 13:8 (\'Jesus ontem, hoje e sempre\') e para a universalidade dos dons no NT.',
+    'A posição moderada (aberto/cessacionismo) aceita que alguns dons podem continuar, mas com limitações.'
+  ],
+  'versicosChave': [
+    '1 Coríntios 12:4-11',
+    '1 Coríntios 13:8-10',
+    'Efésios 4:11-12',
+    'Hebreus 13:8'
+  ],
+  'tags': [
+    'dons espirituais',
+    'cessacionismo',
+    'continuismo',
+    'línguas',
+    'profecia'
+  ],
+  'fontes': [
+    'Grudem, The Gift of Prophecy',
+    'MacArthur, Charismática',
+    'Deere, Power Encounter'
+  ]
+},
+  {
+  'id': 'pn-004',
+  'titulo': 'O Batismo no Espírito Santo',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Experiência',
+  'conteudo': [
+    'O batismo no Espírito Santo é a experiência de ser imerso na presença e poder do Espírito de Deus.',
+    'Na teologia pentecostal, o batismo no Espírito é uma experiência posterior à regeneração, frequentemente acompanhada de línguas.',
+    'Na teologia reformada, o batismo no Espírito é simultâneo à regeneração — todo crente já foi batizado no Espírito.',
+    'Atos mostra múltiplas ocasiões em que o Espírito Santo veio sobre os crentes (Atos 2, 8, 10, 19).',
+    'O propósito do batismo no Espírito é capacitamento para testemunho e serviço, não salvação.'
+  ],
+  'versicosChave': [
+    'Atos 1:5',
+    'Atos 2:4',
+    '1 Coríntios 12:13',
+    'Efésios 5:18'
+  ],
+  'tags': [
+    'batismo',
+    'espírito santo',
+    'pentecostal',
+    'experiência'
+  ],
+  'fontes': [
+    'Ruthven, On the Cessation of the Charismata',
+    'Stronstad, The Charismatic Theology of Luke'
+  ]
+},
+  {
+  'id': 'pn-005',
+  'titulo': 'O Fruto do Espírito Santo',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Santificação',
+  'conteudo': [
+    'O fruto do Espírito Santo é o character Christlike que o Espírito produz na vida do crente (Gálatas 5:22-23).',
+    'Os nove aspectos do fruto formam um todo integrado: amor, gozo, paz, longanimidade, benignidade, bondade, fé, mansidão, temperança.',
+    'O fruto não é fruto de esforço humano, mas resultado da obra do Espírito no crente que se rende.',
+    'Diferente dos dons (distribuídos individualmente), o fruto é produzido em todos os crentes.',
+    'O fruto é evidência madura da vida cristã — leva tempo para amadurecer, como uma árvore que dá fruto em sua estação.'
+  ],
+  'versicosChave': [
+    'Gálatas 5:22-23',
+    'João 15:4-5',
+    'Romanos 8:29',
+    'Efésios 5:9'
+  ],
+  'tags': [
+    'fruto do espírito',
+    'santificação',
+    'caráter',
+    'virtude'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Gálatas',
+    'Stott, The Message of Romans',
+    'Moo, The Epistle to the Galatians'
+  ]
+},
+  {
+  'id': 'pn-006',
+  'titulo': 'A Unção do Espírito Santo',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Experiência',
+  'conteudo': [
+    'A unção do Espírito Santo é a equipagem sobrenatural para serviço, especialmente para pregação e ministério.',
+    'Jesus foi unido pelo Espírito Santo no batismo (Lucas 3:22) e essa unção qualificou Seu ministério terreno.',
+    '1 João 2:20 fala de uma unção que todos os crentes recebem — \'vocês têm uma unção da parte dAquele que é santo\'.',
+    'A unção não é o mesmo que batismo no Espírito — é mais específica para service e ministério.',
+    'A unção capacitante não deve ser confundida com a unção para salvação (regeneração).'
+  ],
+  'versicosChave': [
+    'Lucas 3:22',
+    '1 João 2:20',
+    '1 João 2:27',
+    'Isaías 61:1'
+  ],
+  'tags': [
+    'unção',
+    'ministério',
+    'capacitação',
+    'serviço'
+  ],
+  'fontes': [
+    'Horton, The Holy Spirit',
+    'Ryrie, The Holy Spirit'
+  ]
+},
+  {
+  'id': 'pn-007',
+  'titulo': 'A Intercessão do Espírito Santo',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Oração',
+  'conteudo': [
+    'Romanos 8:26-27 ensina que o Espírito Santo intercede por nós com \'gemidos inexprimíveis\'.',
+    'A intercessão do Espírito é uma obra secreta e infalível — Ele ora de acordo com a vontade de Deus.',
+    'Mesmo quando não sabemos como orar, o Espírito ora por nós.',
+    'A intercessão do Espírito complementa a intercessão de Cristo (Hebreus 7:25) — Cristo ora como Sumo Sacerdote, o Espírito ora em nosso íntimo.',
+    'Essa verdade deveria trazer grande consolo aos crentes que se sentem inadequados na oração.'
+  ],
+  'versicosChave': [
+    'Romanos 8:26-27',
+    'Hebreus 7:25',
+    'Efésios 6:18',
+    'Judas 1:20'
+  ],
+  'tags': [
+    'intercessão',
+    'oração',
+    'espírito santo',
+    'consolo'
+  ],
+  'fontes': [
+    'Murray, Romans',
+    'Moo, The Epistle to the Romans',
+    'Calvino, Institutas III.20'
+  ]
+},
+  {
+  'id': 'pn-008',
+  'titulo': 'O Espírito Santo e a Santificação',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Santificação',
+  'conteudo': [
+    'A santificação é a obra progressiva do Espírito Santo que transforma o crente à imagem de Cristo.',
+    'O Espírito opera em dupla dimensão: nos declara santos (justificação) e nos faz santos (santificação).',
+    'A santificação é cooperativa — o crente trabalha com o Espírito (Filipenses 2:12-13).',
+    'O fruto do Espírito é a evidência da santificação progressiva.',
+    'A santificação nunca será completa nesta vida — a glorificação é o consumação final.'
+  ],
+  'versicosChave': [
+    '2 Coríntios 3:18',
+    'Filipenses 2:12-13',
+    '1 Tessalonicenses 4:3',
+    'Gálatas 5:22-23'
+  ],
+  'tags': [
+    'santificação',
+    'transformação',
+    'caráter',
+    'crescimento'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.6',
+    'Murray, Redemption Accomplished',
+    'Packer, Keep in Step with the Spirit'
+  ]
+},
+  {
+  'id': 'pn-009',
+  'titulo': 'O Espírito Santo e a Escritura',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Revelação',
+  'conteudo': [
+    'O Espírito Santo é o autor inspirador das Escrituras — toda Escritura é inspirada por Deus (2 Timóteo 3:16).',
+    'O Espírito ilumina a mente do crente para compreender as Escrituras (1 Coríntios 2:10-14).',
+    'A inspiração bíblica é plenária (toda a Bíblia), verbal (as palavras), e dinâmica (Deus atuando nos autores).',
+    'A iluminação do Espírito não substitui o estudo diligente, mas o capacita.',
+    'O mesmo Espírito que inspirou as Escrituras é o que as interpreta — a Escritura é sua própria intérprete.'
+  ],
+  'versicosChave': [
+    '2 Timóteo 3:16',
+    '1 Coríntios 2:10-14',
+    '2 Pedro 1:21',
+    'João 16:13'
+  ],
+  'tags': [
+    'inspiração',
+    'iluminação',
+    'escritura',
+    'revelação'
+  ],
+  'fontes': [
+    'Warfield, Inspiration and Authority of Scripture',
+    'Calvino, Institutas I.7',
+    'Geisler, Biblical Inspiration'
+  ]
+},
+  {
+  'id': 'pn-010',
+  'titulo': 'O Espírito Santo na Criação',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Cosmologia',
+  'conteudo': [
+    'O Espírito Santo estava presente e ativo na obra da criação (Gênesis 1:2).',
+    'O \'sopro de Deus\' (ruach) sobre as águas é vista como o Espírito criador.',
+    'Salmos 33:6 confirma que \'pela palavra do Senhor os céus foram feitos\'.',
+    'A Trindade está envolvida na criação: Pai planeja, Filho executa, Espírito capacita.',
+    'O Espírito continua sustentando a criação (Colossenses 1:17).'
+  ],
+  'versicosChave': [
+    'Gênesis 1:2',
+    'Salmos 33:6',
+    'Jó 33:4',
+    'Colossenses 1:17'
+  ],
+  'tags': [
+    'criação',
+    'cosmologia',
+    'sustento',
+    'trindade'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Gênesis',
+    'Clowney, The Unfolding Mystery'
+  ]
+},
+  {
+  'id': 'an-001',
+  'titulo': 'A Natureza e Hierarquia dos Anjos',
+  'categoria': 'Angelologia',
+  'subcategoria': 'Natureza',
+  'conteudo': [
+    'Os anjos são seres criados espirituais, inteligentes e pessoais, designados para servir a Deus e aos homens.',
+    'A Bíblia descreve uma hierarquia angelical: querubins, serafins, thronos, dominações, potestades (Efésios 6:12, Colossenses 1:16).',
+    'Os anjos não têm corpos materiais, mas podem assumir forma humana quando necessário (Hebreus 13:2).',
+    'Os anjos são criados para adorar e servir a Deus — \'Santos, santos, santos é o Senhor dos Exércitos\' (Isaías 6:3).',
+    'A tradição judaica e cristã desenvolveu detalhes sobre ordens angelicais, embora a Bíblia seja limitada nesse assunto.'
+  ],
+  'versicosChave': [
+    'Hebreus 1:14',
+    'Efésios 6:12',
+    'Isaías 6:2',
+    'Colossenses 1:16'
+  ],
+  'tags': [
+    'anjos',
+    'hierarquia',
+    'querubins',
+    'serafins'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.13-14',
+    'Pentecost, Things to Come',
+    'Bauckham, The Fate of the Dead'
+  ]
+},
+  {
+  'id': 'an-002',
+  'titulo': 'Anjos da Guarda — Proteção Divina',
+  'categoria': 'Angelologia',
+  'subcategoria': 'Ministério',
+  'conteudo': [
+    'Deus designa anjos para proteger e guiar os Seus filhos (Salmo 91:11-12).',
+    'Cada criança pode ter um anjo da guarda (Mateus 18:10).',
+    'Os anjos da guarda protegem contra perigos físicos e espirituais.',
+    'Daniel experimentou a proteção angelical na cova dos leões (Daniel 6:22).',
+    'Pedro foi libertado da prisão por um anjo (Atos 12:7-11).'
+  ],
+  'versicosChave': [
+    'Salmo 91:11-12',
+    'Mateus 18:10',
+    'Atos 12:7-11',
+    'Daniel 6:22'
+  ],
+  'tags': [
+    'anjos da guarda',
+    'proteção',
+    'livramento',
+    'ministério'
+  ],
+  'fontes': [
+    'Pentecost, Things to Come',
+    'Aalders, Daniel'
+  ]
+},
+  {
+  'id': 'an-003',
+  'titulo': 'Satanás e os Anjos Caídos',
+  'categoria': 'Angelologia',
+  'subcategoria': 'Demonologia',
+  'conteudo': [
+    'Satanás é um anjo caído, originalmente criado como querubim ungido (Ezequiel 28:14).',
+    'A queda de Satanás ocorreu por orgulho — ele quis se igualar a Deus (Isaías 14:12-15).',
+    'Um terço dos anjos caiu com Satanás e se tornaram demônios (Apocalipse 12:4).',
+    'Satanás é chamado de \'deus deste século\' (2 Coríntios 4:4) e \'príncipe deste mundo\' (João 14:30).',
+    'A derrota final de Satanás está garantida pela cruz de Cristo (Colossenses 2:15) e se cumprirá no lago de fogo (Apocalipse 20:10).'
+  ],
+  'versicosChave': [
+    'Ezequiel 28:14-17',
+    'Isaías 14:12-15',
+    'Apocalipse 12:4',
+    'Colossenses 2:15'
+  ],
+  'tags': [
+    'satanás',
+    'demônios',
+    'queda',
+    'guerra espiritual'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.14',
+    'Lewis, The Screwtape Letters',
+    "Fee, God's Empowering Presence"
+  ]
+},
+  {
+  'id': 'an-004',
+  'titulo': 'A Guerra Espiritual — Efésios 6:10-18',
+  'categoria': 'Angelologia',
+  'subcategoria': 'Guerra Espiritual',
+  'conteudo': [
+    'A guerra espiritual é uma realidade — nossos inimigos não são de carne e sangue, mas principados e potestades.',
+    'A armadura de Deus inclui: verdade, justiça, evangelho, fé, salvação, Palavra e oração.',
+    'Cada peça da armadura corresponde a uma verdade doutrinária que o crente deve vestir pela fé.',
+    'A oração é a arma ofensiva na guerra espiritual — ela invoca o poder de Deus.',
+    'Vitória já foi conquistada na cruz — a guerra espiritual é aplicação dessa vitória.'
+  ],
+  'versicosChave': [
+    'Efésios 6:10-18',
+    '2 Coríntios 10:3-5',
+    'Romanos 8:37',
+    '1 João 5:4'
+  ],
+  'tags': [
+    'guerra espiritual',
+    'armadura de deus',
+    'poder',
+    'vitória'
+  ],
+  'fontes': [
+    'Stott, The Message of Ephesios',
+    'Boyd, God of the Possible',
+    'Powlison, Power Encounters'
+  ]
+},
+  {
+  'id': 'an-005',
+  'titulo': 'Anjos no Julgamento Final',
+  'categoria': 'Angelologia',
+  'subcategoria': 'Escatologia',
+  'conteudo': [
+    'Os anjos serão instrumentos do julgamento divino no final dos tempos (Mateus 13:39-42).',
+    'Jesus voltará com os Seus anjos em glória (Mateus 25:31).',
+    'Os anjos separarão os justos dos injustos na colheita final.',
+    'Os anjos atarão os demônios e os lançarão no lago de fogo (Apocalipse 20:1-3).',
+    'A presença angelical no julgamento demonstra a autoridade delegada de Deus.'
+  ],
+  'versicosChave': [
+    'Mateus 13:39-42',
+    'Mateus 25:31',
+    'Apocalipse 20:1-3',
+    '2 Pedro 2:4'
+  ],
+  'tags': [
+    'julgamento',
+    'escatologia',
+    'colheita',
+    'lago de fogo'
+  ],
+  'fontes': [
+    'Pentecost, Things to Come',
+    'Morris, The Gospel According to Matthew'
+  ]
+},
+  {
+  'id': 'at-001',
+  'titulo': 'A Natureza Humana — Corpo, Alma e Espírito',
+  'categoria': 'Antropologia',
+  'subcategoria': 'Composição',
+  'conteudo': [
+    'O ser humano é composto de corpo, alma e espírito (1 Tessalonicenses 5:23).',
+    'O dualismo grego (corpo vs. alma) contrasta com a visão bíblica da unidade da pessoa.',
+    'O corpo não é prisão da alma, mas templo do Espírito Santo (1 Coríntios 6:19).',
+    'A morte é a separação entre corpo e alma, mas não é aniquilação.',
+    'A ressurreição envolverá tanto o corpo quanto a alma — a totalidade da pessoa.'
+  ],
+  'versicosChave': [
+    '1 Tessalonicenses 5:23',
+    '1 Coríntios 6:19',
+    'Gênesis 2:7',
+    'Filipenses 1:23'
+  ],
+  'tags': [
+    'antropologia',
+    'corpo',
+    'alma',
+    'espírito',
+    'dualismo'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.15',
+    'Savage, Body, Soul, and Spirit',
+    'Gundry, The Body in Scripture'
+  ]
+},
+  {
+  'id': 'at-002',
+  'titulo': 'A Queda do Homem e o Pecado Original',
+  'categoria': 'Antropologia',
+  'subcategoria': 'Hamartiologia',
+  'conteudo': [
+    'Adão e Eva foram criados perfeitos mas com a possibilidade de cair (posse non posse non peccare).',
+    'A Queda foi uma rebelião consciente contra o comando de Deus (Gênesis 3:6).',
+    'O pecado original é a corrupção transmitida a todos os descendentes de Adão (Romanos 5:12).',
+    'Agostinho ensinou que o pecado original é transmitida pela concupiscência — o desejo desordenado.',
+    'A Queda afetou todas as faculdades humanas: razão, vontade, emoções, corpo.',
+    'Sem a graça regeneradora, o ser humano é incapaz de buscar a Deus (Romanos 3:10-18).'
+  ],
+  'versicosChave': [
+    'Gênesis 3:6',
+    'Romanos 5:12',
+    'Romanos 3:10-18',
+    'Efésios 2:1-3'
+  ],
+  'tags': [
+    'queda',
+    'pecado original',
+    'hamartiologia',
+    'corrupção'
+  ],
+  'fontes': [
+    'Agostinho, De Natura et Gratia',
+    'Calvino, Institutas II.1',
+    'Bavinck, Reformed Dogmatics'
+  ]
+},
+  {
+  'id': 'at-003',
+  'titulo': 'A Liberdade Humana e a Soberania Divina',
+  'categoria': 'Antropologia',
+  'subcategoria': 'Debate',
+  'conteudo': [
+    'O ser humano possui livre-arbítrio genuíno para agir de acordo com sua natureza.',
+    'A Queda corrompeu a vontade humana — o pecador é livre para escolher, mas não livre para crer sem graça.',
+    'A Soberania de Deus não anula a responsabilidade humana — ambos são verdadeiros.',
+    'O calvinismo enfatiza a soberania absoluta; o arminianismo enfatiza a responsabilidade humana.',
+    'O compatibilismo defende que soberania e livre-arbítrio são compatíveis — Deus governa sem coagir.'
+  ],
+  'versicosChave': [
+    'Deuteronômio 30:19',
+    'Josué 24:15',
+    'Provérbios 21:1',
+    'Filipenses 2:12-13'
+  ],
+  'tags': [
+    'livre-arbítrio',
+    'soberania',
+    'predestinação',
+    'deus'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.2-5',
+    'Arminio, Works',
+    'Pinnock, The Grace of God'
+  ]
+},
+  {
+  'id': 'at-004',
+  'titulo': 'A Imagem de Deus no Homem (Imago Dei)',
+  'categoria': 'Antropologia',
+  'subcategoria': 'Dignidade',
+  'conteudo': [
+    'O ser humano foi criado à imagem e semelhança de Deus (Gênesis 1:26-27).',
+    'A imagem de Deus inclui: racionalidade, moralidade, relacionalidade, criatividade, domínio.',
+    'A Queda corrompeu a imagem, mas não a destruiu — todo ser humano tem dignidade inerente.',
+    'A imagem é restaurada em Cristo — \'renovados para o conhecimento, conforme à imagem daquele que o criou\' (Colossenses 3:10).',
+    'A dignidade humana é a base da ética cristã e dos direitos humanos.'
+  ],
+  'versicosChave': [
+    'Gênesis 1:26-27',
+    'Colossenses 3:10',
+    'Tiago 3:9',
+    '1 João 3:2'
+  ],
+  'tags': [
+    'imago dei',
+    'dignidade',
+    'humanidade',
+    'criação'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Gênesis',
+    'Grudem, Systematic Theology',
+    'Volf, After Our Likeness'
+  ]
+},
+  {
+  'id': 'at-005',
+  'titulo': 'A Morte e o Destino do Homem',
+  'categoria': 'Antropologia',
+  'subcategoria': 'Escatologia',
+  'conteudo': [
+    'A morte é a consequência do pecado — \'no dia em que comerdes, certamente morrereis\' (Gênesis 2:17).',
+    'Há duas mortes: a física (separação alma-corpo) e a eterna (separação de Deus).',
+    'Após a morte, os crentes estão com Cristo (2 Coríntios 5:8), os incrédulos sofrem antecipadamente.',
+    'A ressurreição dos mortos é uma doutrina central — Jesus ressuscitou e promete ressurreição aos Seus.',
+    'O juízo final determinará o destino eterno: vida eterna ou condenação.'
+  ],
+  'versicosChave': [
+    'Gênesis 2:17',
+    '2 Coríntios 5:8',
+    'João 5:28-29',
+    'Apocalipse 20:12-15'
+  ],
+  'tags': [
+    'morte',
+    'juízo',
+    'vida eterna',
+    'conenação'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.25',
+    'Hoekema, The Bible and the Future',
+    'Wright, Surprised by Hope'
+  ]
+},
+  {
+  'id': 'hm-001',
+  'titulo': 'A Natureza do Pecado',
+  'categoria': 'Hamartiologia',
+  'subcategoria': 'Definição',
+  'conteudo': [
+    'Pecado é toda falta de conformidade com a Lei de Deus, tanto por ação quanto por omissão (Tiago 4:17).',
+    'A palavra grega \'hamartia\' significa errar o alvo — o pecado é falhar no propósito para o qual fomos criados.',
+    'O pecado é primariamente contra Deus — \'contra Ti somente pequei\' (Salmo 51:4).',
+    'O pecado é universal — \'não há justo, nem um sequer\' (Romanos 3:10).',
+    'O pecado é radical — afeta todas as faculdades e dimensões da existência humana.'
+  ],
+  'versicosChave': [
+    'Romanos 3:10',
+    'Tiago 4:17',
+    'Salmo 51:4',
+    '1 João 3:4'
+  ],
+  'tags': [
+    'pecado',
+    'hamartiologia',
+    'natureza',
+    'universalidade'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.1',
+    'Stott, The Cross of Christ',
+    'Packer, Knowing God'
+  ]
+},
+  {
+  'id': 'hm-002',
+  'titulo': 'A Penalidade do Pecado — Morte e Condenação',
+  'categoria': 'Hamartiologia',
+  'subcategoria': 'Penalidade',
+  'conteudo': [
+    'A penalidade do pecado é a morte — \'o salário do pecado é a morte\' (Romanos 6:23).',
+    'A morte inclui três dimensões: espiritual (separação de Deus), física (separação alma-corpo), eterna (lago de fogo).',
+    'A justiça de Deus exige punição — Deus não pode tolerar o pecado sem penalidade.',
+    'A penalidade é proporcional à ofensa — ofender o Deus eterno merece punição eterna.',
+    'Somente a graça de Deus pode livrar o pecador da penalidade merecida.'
+  ],
+  'versicosChave': [
+    'Romanos 6:23',
+    'Romanos 1:18',
+    'Mateus 25:46',
+    'Apocalipse 20:14-15'
+  ],
+  'tags': [
+    'penalidade',
+    'morte',
+    'condenação',
+    'justiça'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.6',
+    'Calvin, Institutes',
+    'Frame, The Doctrine of God'
+  ]
+},
+  {
+  'id': 'hm-003',
+  'titulo': 'A Expiação — O Morreu pelos Pecados',
+  'categoria': 'Hamartiologia',
+  'subcategoria': 'Expiação',
+  'conteudo': [
+    'A expiação é o ato de Cristo em morrer na cruz para satisfazer a justiça de Deus e reconciliar os pecadores com Ele.',
+    'A satisfação vicária (Anselmo) — Cristo morreu como substituto, satisfazendo a honra de Deus.',
+    'A substituição penal — Cristo assumiu as penalidades que merecíamos (Isaías 53:5-6).',
+    'A propiciação — a ira de Deus contra o pecado foi derramada sobre Cristo (1 João 2:2).',
+    'A expiação é limitada na extensão (somente para os eleitos) mas ilimitada no valor (suficiente para todos).',
+    'A cruz é o centro da história e da redenção — tudo aponta para ela.'
+  ],
+  'versicosChave': [
+    'Isaías 53:5-6',
+    '1 João 2:2',
+    '2 Coríntios 5:21',
+    '1 Pedro 2:24'
+  ],
+  'tags': [
+    'expiação',
+    'substituição',
+    'propiciação',
+    'cruz'
+  ],
+  'fontes': [
+    'Anselmo, Cur Deus Homo',
+    'Calvino, Institutas II.16',
+    'Stott, The Cross of Christ'
+  ]
+},
+  {
+  'id': 'hm-004',
+  'titulo': 'A Redenção — Comprado com Preço',
+  'categoria': 'Hamartiologia',
+  'subcategoria': 'Redenção',
+  'conteudo': [
+    'Redenção é o ato de Deus de nos comprar da escravidão do pecado pelo sangue de Cristo.',
+    'A metáfora da redenção vem do mercado de escravos — fomos comprados com o precioso sangue de Cristo (1 Pedro 1:18-19).',
+    'A redenção inclui: justificação, regeneração, santificação e glorificação.',
+    'O preço pago foi o sangue de Cristo — valor infinito que satisfez a justiça divina.',
+    'A redenção é completa — nada pode ser adicionado à obra consumada na cruz.'
+  ],
+  'versicosChave': [
+    '1 Pedro 1:18-19',
+    'Efésios 1:7',
+    'Colossenses 1:14',
+    'Gálatas 3:13'
+  ],
+  'tags': [
+    'redenção',
+    'sangue',
+    'preço',
+    'libertação'
+  ],
+  'fontes': [
+    'Murray, Redemption Accomplished',
+    'Calvino, Institutas II.16',
+    'Owen, The Death of Death'
+  ]
+},
+  {
+  'id': 'hm-005',
+  'titulo': 'A Justificação — Declarado Justo',
+  'categoria': 'Hamartiologia',
+  'subcategoria': 'Justificação',
+  'conteudo': [
+    'A justificação é o ato judicial de Deus de declarar o pecador justo pela fé em Cristo.',
+    'É por fé somente (sola fide) — não por obras da lei (Romanos 3:28).',
+    'A justificação é imputação — a justiça de Cristo é creditada ao crente (2 Coríntios 5:21).',
+    'Lutero a chamou de \'a artigo da igreja que se sustenta ou cai\' — é a doutrina da Reforma.',
+    'A justificação é simultânea à fé — não é um processo gradual.',
+    'Frutos de justiça são evidências, não requisitos, da justificação.'
+  ],
+  'versicosChave': [
+    'Romanos 3:28',
+    'Romanos 5:1',
+    'Gálatas 2:16',
+    '2 Coríntios 5:21'
+  ],
+  'tags': [
+    'justificação',
+    'sola fide',
+    'imputação',
+    'reforma'
+  ],
+  'fontes': [
+    'Lutero, Comentário a Gálatas',
+    'Calvino, Institutas III.11',
+    'Owen, Justification by Faith'
+  ]
+},
+  {
+  'id': 'pn-011',
+  'titulo': 'O Espírito Santo na Ressurreição de Cristo',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Cristologia',
+  'conteudo': [
+    'O Espírito Santo foi instrumental na ressurreição de Jesus dos mortos.',
+    'Romanos 8:11 afirma que \'o Espírito de Deus, que ressuscitou a Jesus dentre os mortos, habita em vocês\'.',
+    'A ressurreição é ato da Trindade: Pai ressuscita o Filho pelo Espírito.',
+    'O mesmo poder que ressuscitou Cristo está disponível para os crentes.',
+    'A ressurreição é a base da nossa justificação (Romanos 4:25) e esperança.'
+  ],
+  'versicosChave': [
+    'Romanos 8:11',
+    'Romanos 4:25',
+    'Atos 2:24',
+    '1 Coríntios 15:45'
+  ],
+  'tags': [
+    'ressurreição',
+    'poder',
+    'esperança',
+    'cristologia'
+  ],
+  'fontes': [
+    "Fee, God's Empowering Presence",
+    'Moo, The Epistle to the Romans'
+  ]
+},
+  {
+  'id': 'pn-012',
+  'titulo': 'A Galardão do Espírito Santo na Oração',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Oração',
+  'conteudo': [
+    'O Espírito Santo nos capacita a orar de acordo com a vontade de Deus.',
+    'Efésios 6:18 ordena \'orando em todo tempo no Espírito\'.',
+    'A oração no Espírito não é necessariamente em línguas, mas com dependência e fervor.',
+    'O Espírito nos dá palavras quando não sabemos como orar.',
+    'A oração no Espírito é uma oração que se alinha com o caráter e vontade de Deus.'
+  ],
+  'versicosChave': [
+    'Efésios 6:18',
+    'Judas 1:20',
+    'Romanos 8:26-27',
+    'Zacarias 12:10'
+  ],
+  'tags': [
+    'oração',
+    'espírito santo',
+    'vontade de deus',
+    'fervor'
+  ],
+  'fontes': [
+    'Moo, The Epistle to the Ephesios',
+    'Packer, Keep in Step with the Spirit'
+  ]
+},
+  {
+  'id': 'pn-013',
+  'titulo': 'Os Sete Espíritos de Deus (Apocalipse)',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Simbolismo',
+  'conteudo': [
+    'Apocalipse menciona \'os sete espíritos de Deus\' (Apocalipse 1:4, 4:5, 5:6).',
+    'O número sete representa completude — o Espírito Santo em Sua plenitude.',
+    'Isaías 11:2 descreve sete manifestações do Espírito sobre o Messias.',
+    'Os sete espíritos podem representar as sete faculdades do Espírito: sabedoria, entendimento, conselho, fortaleza, conhecimento, piedade, temor do Senhor.',
+    'A vela de sete pavios no candelabro de Apocalipse 4:5 representa o Espírito em plenitude.'
+  ],
+  'versicosChave': [
+    'Apocalipse 1:4',
+    'Apocalipse 4:5',
+    'Apocalipse 5:6',
+    'Isaías 11:2'
+  ],
+  'tags': [
+    'sete espíritos',
+    'apocalipse',
+    'plenitude',
+    'simbolismo'
+  ],
+  'fontes': [
+    'Beale, The Book of Revelation',
+    'Aune, Revelation 1-5'
+  ]
+},
+  {
+  'id': 'pn-014',
+  'titulo': 'O Espírito Santo e os Sacramentos',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Eclesiologia',
+  'conteudo': [
+    'O Espírito Santo é o agente que opera nos sacramentos/batismo e ceia.',
+    'No batismo, o Espírito nos une a Cristo e selamos para o dia da redenção.',
+    'Na ceia, o Espírito nos comunica a presença espiritual de Cristo.',
+    'Os sacramentos são eficazes não pela água ou pão, mas pela obra do Espírito.',
+    'A ceia é um meio de graça onde o Espírito nourishes os crentes.'
+  ],
+  'versicosChave': [
+    '1 Coríntios 12:13',
+    '1 Coríntios 10:16-17',
+    'Efésios 5:18-20',
+    'Romanos 6:3-4'
+  ],
+  'tags': [
+    'sacramentos',
+    'batismo',
+    'ceia',
+    'graça'
+  ],
+  'fontes': [
+    'Calvino, Institutas IV.17',
+    'Calvin, Institutes',
+    'Calvin, Institutes IV.17'
+  ]
+},
+  {
+  'id': 'pn-015',
+  'titulo': 'O Espírito Santo na Vida da Igreja',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Eclesiologia',
+  'conteudo': [
+    'A Igreja nasceu no dia de Pentecostes quando o Espírito Santo desceu (Atos 2).',
+    'O Espírito distribui dons para edificação da igreja (1 Coríntios 12:4-11).',
+    'O Espírito guia a igreja em verdade (João 16:13).',
+    'O Espírito sustenta a unidade da igreja (Efésios 4:3).',
+    'Sem o Espírito, a igreja é apenas uma organização humana.'
+  ],
+  'versicosChave': [
+    'Atos 2:1-4',
+    '1 Coríntios 12:4-11',
+    'João 16:13',
+    'Efésios 4:3'
+  ],
+  'tags': [
+    'igreja',
+    'pentecostes',
+    'dons',
+    'unidade'
+  ],
+  'fontes': [
+    'Calvino, Institutas IV.3',
+    'Ridderbos, The Coming of the Kingdom'
+  ]
+},
+  {
+  'id': 'an-006',
+  'titulo': 'Miguel — O Arcanjo Guerreiro',
+  'categoria': 'Angelologia',
+  'subcategoria': 'Anjos Especiais',
+  'conteudo': [
+    'Miguel é o único anjo chamado de \'arcanjo\' na Bíblia (Judas 1:9).',
+    'Seu nome significa \'Quem é como Deus?\' — uma declaração de humildade.',
+    'Miguel é retratado como guerreiro que combate Satanás e seus anjos.',
+    'Daniel 10-12 mostra Miguel como protetor de Israel.',
+    'Apocalipse 12:7 descreve Miguel liderando a batalha contra o dragão.'
+  ],
+  'versicosChave': [
+    'Judas 1:9',
+    'Daniel 10:13',
+    'Daniel 12:1',
+    'Apocalipse 12:7'
+  ],
+  'tags': [
+    'miguel',
+    'arcanjo',
+    'guerreiro',
+    'protetor'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Daniel',
+    'Bauckham, The Fate of the Dead'
+  ]
+},
+  {
+  'id': 'an-007',
+  'titulo': 'Gabriel — O Mensageiro de Deus',
+  'categoria': 'Angelologia',
+  'subcategoria': 'Anjos Especiais',
+  'conteudo': [
+    'Gabriel é o anjo mensageiro que comunicou planos importantes de Deus.',
+    'Seu nome significa \'Deus é meu guerreiro\'.',
+    'Gabriel apareceu a Daniel para revelar o plano profético (Daniel 8:16).',
+    'Gabriel anunciou o nascimento de João Batista (Lucas 1:19) e de Jesus (Lucas 1:26-38).',
+    'Gabriel é descrito como \'que se apresentou diante de Deus\' — um anjo de alta posição.'
+  ],
+  'versicosChave': [
+    'Daniel 8:16',
+    'Lucas 1:19',
+    'Lucas 1:26-38',
+    'Daniel 9:21'
+  ],
+  'tags': [
+    'gabriel',
+    'mensageiro',
+    'anunciação',
+    'profecia'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Lucas',
+    'Ellis, The Gospel of Luke'
+  ]
+},
+  {
+  'id': 'an-008',
+  'titulo': 'Os Querubins — Guardiões da Glória de Deus',
+  'categoria': 'Angelologia',
+  'subcategoria': 'Hierarquia',
+  'conteudo': [
+    'Os querubins são a ordem angelical associada à presença e glória de Deus.',
+    'Dois querubins de ouro cobriam a Arca da Aliança (Êxodo 25:18-20).',
+    'Ezequiel descreve criaturas com quatro faces (humana, leão, boi, águia) e quatro asas.',
+    'Os querubins guardaram o caminho para o Éden após a Queda (Gênesis 3:24).',
+    'O tabernáculo e templo tinham imagens de querubins bordadas nas cortinas.'
+  ],
+  'versicosChave': [
+    'Êxodo 25:18-20',
+    'Ezequiel 1:5-14',
+    'Gênesis 3:24',
+    'Salmo 80:1'
+  ],
+  'tags': [
+    'querubins',
+    'glória',
+    'arca',
+    'santuário'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Êxodo',
+    'Block, The Book of Ezekiel'
+  ]
+},
+  {
+  'id': 'an-009',
+  'titulo': 'Serafins — Adoradores da Santidade de Deus',
+  'categoria': 'Angelologia',
+  'subcategoria': 'Hierarquia',
+  'conteudo': [
+    'Os serafins são mencionados apenas em Isaías 6:1-7.',
+    'Seu nome significa \'ardentes\' — refletem o fogo da santidade divina.',
+    'Têm seis asas: duas para cobrir o rosto, duas para cobrir os pés, duas para voar.',
+    'Cantam \'Santos, santos, santos é o Senhor dos Exércitos; toda a terra está cheia da Sua glória\'.',
+    'Um serafim tocou os lábios de Isaías com brasa, purificando-o para o ministério profético.'
+  ],
+  'versicosChave': [
+    'Isaías 6:1-7',
+    'Isaías 6:3'
+  ],
+  'tags': [
+    'serafins',
+    'santidade',
+    'adoração',
+    'purificação'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Isaías',
+    'Oswalt, The Book of Isaiah, Chapters 1-39'
+  ]
+},
+  {
+  'id': 'an-010',
+  'titulo': 'Os Demônios — Organização e Atividade',
+  'categoria': 'Angelologia',
+  'subcategoria': 'Demonologia',
+  'conteudo': [
+    'Os demônios são anjos caídos que servem a Satanás contra o propósito de Deus.',
+    'Eles são organizados em hierarquia (Efésios 6:12 — principados, potestades).',
+    'Os demônios podem possuir pessoas (Marcos 5:1-20 — o endemoninhado geraseno).',
+    'Eles causam doenças, cegueira espiritual e engano doutrinário.',
+    'Os demônios tremem diante de Cristo (Marcos 1:23-24) e serão julgados no final.'
+  ],
+  'versicosChave': [
+    'Efésios 6:12',
+    'Marcos 5:1-20',
+    'Tiago 2:19',
+    'Mateus 12:28'
+  ],
+  'tags': [
+    'demônios',
+    'hierarquia',
+    'possessão',
+    'guerra espiritual'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.14',
+    "Fee, God's Empowering Presence"
+  ]
+},
+  {
+  'id': 'at-006',
+  'titulo': 'A Alma Imortal — Debate Teológico',
+  'categoria': 'Antropologia',
+  'subcategoria': 'Natureza',
+  'conteudo': [
+    'O debate sobre a imortalidade da alma tem raízes gregas e bíblicas.',
+    'Platão ensinava a imortalidade natural da alma — a alma sobrevive à morte por natureza.',
+    'A Bíblia ensina a imortalidade condicional — a alma sobrevive pela graça de Deus.',
+    'Os adventistas defendem o condicionalismo — os mortos dormem até a ressurreição.',
+    'A maioria dos cristãos defende a imortalidade da alma como doutrina bíblica.',
+    'A verdade bíblica central é que Deus é o senhor da vida e da morte.'
+  ],
+  'versicosChave': [
+    'Daniel 12:2',
+    'João 5:28-29',
+    '2 Coríntios 5:8',
+    'Filipenses 1:23'
+  ],
+  'tags': [
+    'alma',
+    'imortalidade',
+    'condicionalismo',
+    'morte'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.25',
+    'Wright, Surprised by Hope',
+    'Franke, The Character of Theology'
+  ]
+},
+  {
+  'id': 'at-007',
+  'titulo': 'A Criação do Homem — Adão e Eva',
+  'categoria': 'Antropologia',
+  'subcategoria': 'Criação',
+  'conteudo': [
+    'Adão foi formado do pó da terra e recebeu o sopro de vida (Gênesis 2:7).',
+    'Eva foi criada da costela de Adão — não da cabeça (para dominá-la) nem dos pés (para pisá-la).',
+    'O casamento foi instituído antes da Queda — é criação de Deus, não invenção humana.',
+    'A igualdade entre homem e mulher se baseia na imagem de Deus em ambos.',
+    'A complementaridade dos sexos reflete a riqueza da imagem divina.'
+  ],
+  'versicosChave': [
+    'Gênesis 2:7',
+    'Gênesis 2:18-23',
+    'Gênesis 1:27',
+    'Mateus 19:4-6'
+  ],
+  'tags': [
+    'criação',
+    'adão',
+    'eva',
+    'casamento',
+    'complementaridade'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Gênesis',
+    'Wenham, The Book of Genesis'
+  ]
+},
+  {
+  'id': 'at-008',
+  'titulo': 'A Queda — Consequências e Cursed',
+  'categoria': 'Antropologia',
+  'subcategoria': 'Hamartiologia',
+  'conteudo': [
+    'A Queda trouxe maldições sobre a serpente, sobre a terra, e sobre a humanidade.',
+    'A maldição sobre a serpente — rastejar e ter inimizade com a descendência da mulher.',
+    'A maldição sobre a terra — esforço e suor para produzir alimento.',
+    'A maldição sobre a mulher — dor na concepção e no parto.',
+    'A maldição sobre o homem — trabalhar com suor até voltar à terra.',
+    'A promessa da redenção está na \'descendência da mulher\' (Gênesis 3:15) — proto-evangelho.'
+  ],
+  'versicosChave': [
+    'Gênesis 3:14-19',
+    'Gênesis 3:15',
+    'Romanos 5:12',
+    'Romanos 8:20-22'
+  ],
+  'tags': [
+    'queda',
+    'maldição',
+    'proto-evangelho',
+    'consequências'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Gênesis',
+    'Westermann, Genesis 1-11',
+    'Wenham, The Book of Genesis'
+  ]
+},
+  {
+  'id': 'at-009',
+  'titulo': 'A Vocação Humana — Trabalho e Domínio',
+  'categoria': 'Antropologia',
+  'subcategoria': 'Vocação',
+  'conteudo': [
+    'Deus deu ao ser humano a vocação de \'cultivar e guardar\' o jardim (Gênesis 2:15).',
+    'O trabalho não é maldição da Queda, mas vocação original — Deus trabalhou na criação.',
+    'O domínio sobre a criação é delegado, não absoluto — somos mayordomos, não donos.',
+    'A vocação humana inclui criatividade, responsabilidade e stewardship.',
+    'A dignidade do trabalho se baseia em Deus ser trabalhador.'
+  ],
+  'versicosChave': [
+    'Gênesis 2:15',
+    'Gênesis 1:28',
+    'Colossenses 3:23',
+    'Efésios 2:10'
+  ],
+  'tags': [
+    'vocação',
+    'trabalho',
+    'domínio',
+    'criatividade'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.13',
+    'Wolters, Creation Regained',
+    'Moltmann, God in Creation'
+  ]
+},
+  {
+  'id': 'cr-012',
+  'titulo': 'A Dupla Natureza de Cristo — Deus e Homem',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Natureza',
+  'conteudo': [
+    'Cristo é plenamente Deus e plenamente homem — o mistério da encarnação.',
+    'O Concílio de Calcedônia (451 d.C.) definiu: duas naturezas, sem confusão, sem mudança, sem divisão, sem separação.',
+    'Nestório separava as duas naturezas — foi condenado como heresia.',
+    'Eutiques confundia as naturezas — monofisismo — também condenado.',
+    'A união hipostática — as duas naturezas se unem em uma pessoa divina.',
+    'A compreensão correta da pessoa de Cristo é essencial para a salvação.'
+  ],
+  'versicosChave': [
+    'João 1:1-14',
+    'Filipenses 2:5-11',
+    'Colossenses 2:9',
+    '1 Timóteo 3:16'
+  ],
+  'tags': [
+    'cristologia',
+    'natureza',
+    'calcedônia',
+    'encarnação'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.14',
+    'Kelly, Early Christian Doctrines',
+    'Pelikan, The Christian Tradition'
+  ]
+},
+  {
+  'id': 'cr-013',
+  'titulo': 'A Obra de Cristo — Profeta, Sacerdote e Rei',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Ofícios',
+  'conteudo': [
+    'Cristo exerce três ofícios: profeto, sacerdote e rei.',
+    'Como profeto, Cristo é o último e supremo revelador de Deus (Hebreus 1:1-2).',
+    'Como sacerdote, Cristo ofereceu Si mesmo como sacrifício e intercede por nós (Hebreus 7:23-27).',
+    'Como rei, Cristo governa a igreja e o universo com autoridade soberana.',
+    'Os três ofícios são inseparáveis — um ofício qualifica os outros.'
+  ],
+  'versicosChave': [
+    'Deuteronômio 18:15',
+    'Hebreus 7:23-27',
+    'Efésios 1:20-22',
+    'João 18:37'
+  ],
+  'tags': [
+    'profeta',
+    'sacerdote',
+    'rei',
+    'ofícios'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.15',
+    'Calvin, Institutes II.15',
+    'Calvin, Institutes'
+  ]
+},
+  {
+  'id': 'cr-014',
+  'titulo': 'A Ressurreição de Cristo — Realidade Histórica',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Ressurreição',
+  'conteudo': [
+    'A ressurreição de Cristo é o fato central da fé cristã — sem ela, a fé é vã.',
+    'A evidência histórica inclui: túmulo vazio, múltiplas aparições, transformação dos discípulos.',
+    'As aparições ressurretas foram a 12 pessoas e grupos ao longo de 40 dias.',
+    'A Igreja primitiva testificou a ressurreição sob risco de morte — ninguém morre por algo que sabe ser falso.',
+    'A ressurreição é uma obra sobrenatural de Deus — não é uma metáfora ou experiência subjetiva.'
+  ],
+  'versicosChave': [
+    '1 Coríntios 15:3-8',
+    'Mateus 28:5-10',
+    'Atos 1:3',
+    '1 Coríntios 15:14'
+  ],
+  'tags': [
+    'ressurreição',
+    'histórica',
+    'evidência',
+    'fé'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.16',
+    'Wright, The Resurrection of the Son of God',
+    'N.T. Wright, Surprised by Hope'
+  ]
+},
+  {
+  'id': 'cr-015',
+  'titulo': 'A Ascensão de Cristo — Exaltação e Intercessão',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Exaltação',
+  'conteudo': [
+    'A ascensão de Cristo foi Sua exaltação à direita do Pai.',
+    'Atos 1:9-11 descreve a ascensão — Cristo foi recebido em uma nuvem.',
+    'A ascensão não é desaparecimento — Cristo continua presente pelo Espírito.',
+    'Cristo ascendeu como Sumo Sacerdote que ofereceu Si mesmo.',
+    'A ascensão garante Sua intercessão contínua por nós (Hebreus 7:25).'
+  ],
+  'versicosChave': [
+    'Atos 1:9-11',
+    'Efésios 1:20-22',
+    'Hebreus 7:25',
+    'Filipenses 2:9-11'
+  ],
+  'tags': [
+    'ascensão',
+    'exaltação',
+    'intercessão',
+    'sumo sacerdote'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.16',
+    "O'Brien, The Ascension of Christ in the New Testament"
+  ]
+},
+  {
+  'id': 'cr-016',
+  'titulo': 'A Segunda Vinda de Cristo — Parusia',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Escatologia',
+  'conteudo': [
+    'Cristo voltará pessoalmente, visivelmente e gloriamente (Atos 1:11).',
+    'A parusia será inesperada — como um ladrão na noite (1 Tessalonicenses 5:2).',
+    'Haverá sinais antes da volta: guerras, fomes, terremotos, apostasia.',
+    'A volta de Cristo trará consumação do reino, ressurreição dos mortos e juízo final.',
+    'Vivemos na era da igreja, entre a primeira e a segunda vinda — \'já mas ainda não\'.'
+  ],
+  'versicosChave': [
+    'Atos 1:11',
+    '1 Tessalonicenses 4:16-17',
+    'Mateus 24:30-31',
+    'Apocalipse 19:11-16'
+  ],
+  'tags': [
+    'parusia',
+    'segunda vinda',
+    'escatologia',
+    'juízo'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.25',
+    'Hoekema, The Bible and the Future',
+    'Ladd, A Theology of the New Testament'
+  ]
+},
+  {
+  'id': 'so-034',
+  'titulo': 'A Regeneração — Nova Criatura em Cristo',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Ordo Salutis',
+  'conteudo': [
+    'A regeneração é a obra do Espírito Santo que nos faz nascer de novo.',
+    'É um ato divino, não humano — o homem não pode regenerar a si mesmo.',
+    'A regeneração produz fé e arrependimento — não é resultado deles.',
+    'Somos \'nova criatura\' — o velho passou, eis que tudo se fez novo (2 Coríntios 5:17).',
+    'A regeneração é instantaneous e irreversível — uma vez regenerado, sempre regenerado.'
+  ],
+  'versicosChave': [
+    'João 3:3-7',
+    '2 Coríntios 5:17',
+    'Tito 3:5',
+    '1 Pedro 1:23'
+  ],
+  'tags': [
+    'regeneração',
+    'novo nascimento',
+    'espírito santo',
+    'nova criatura'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.1',
+    'Bavinck, Reformed Dogmatics'
+  ]
+},
+  {
+  'id': 'so-035',
+  'titulo': 'A Eleição — Escolhidos pela Graça de Deus',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Doutrina',
+  'conteudo': [
+    'A eleição é a escolha soberana de Deus de salvar indivíduos para Si.',
+    'Efésios 1:4 — \'nos escolheu Nele antes da fundação do mundo\'.',
+    'A eleição é baseada na graça, não nos méritos humanos.',
+    'O calvinismo ensina eleição incondicional — Deus escolhe sem referência à fé prevista.',
+    'O arminianismo ensina eleição condicional — Deus escolhe baseado na presciência da fé.',
+    'A eleição não anula a responsabilidade humana — Deus usa meios (pregação, evangelismo).'
+  ],
+  'versicosChave': [
+    'Efésios 1:4-5',
+    'Romanos 8:28-30',
+    '2 Timóteo 1:9',
+    '1 Pedro 1:1-2'
+  ],
+  'tags': [
+    'eleição',
+    'predestinação',
+    'graça',
+    'soberania'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.21',
+    'Arminio, Works',
+    'Pinnock, The Grace of God'
+  ]
+},
+  {
+  'id': 'so-036',
+  'titulo': 'A Glorificação — O Destino Final do Crente',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Ordo Salutis',
+  'conteudo': [
+    'A glorificação é a consumação final da salvação — ser feito semelhante a Cristo.',
+    'Romanos 8:30 — \'aos que justificou, esses também glorificou\'.',
+    'A glorificação inclui a ressurreição do corpo e a Transformação total.',
+    'Seremos como Cristo porque O viremos como Ele é (1 João 3:2).',
+    'A glorificação é a etapa final do ordo salutis — aperfeiçoamento completo.'
+  ],
+  'versicosChave': [
+    'Romanos 8:30',
+    '1 João 3:2',
+    'Filipenses 3:20-21',
+    '1 Coríntios 15:51-53'
+  ],
+  'tags': [
+    'glorificação',
+    'ressurreição',
+    'perfeição',
+    'destino'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.25',
+    'Hoekema, The Bible and the Future'
+  ]
+},
+  {
+  'id': 'ap-004',
+  'titulo': 'O Argumento do Design — Teleologia',
+  'categoria': 'Apologetica',
+  'subcategoria': 'Argumentos',
+  'conteudo': [
+    'O argumento teleológico observa a ordem e propósito na criação como evidência de um Designer.',
+    'A complexidade irredutível dos sistemas biológicos aponta para design inteligente.',
+    'O ajuste fino dos constantes cósmicos (gravidade, força nuclear) sugere um Criador.',
+    'William Paley popularizou o argumento do relojoeiro — um relógio implica um relojoeiro.',
+    'O argumento não prova o Deus bíblico, mas estabelece a existência de um Designer.'
+  ],
+  'versicosChave': [
+    'Salmos 19:1',
+    'Romanos 1:20',
+    'Hebreus 11:3',
+    'Salmo 139:14'
+  ],
+  'tags': [
+    'teleologia',
+    'design',
+    'apologética',
+    'argumento'
+  ],
+  'fontes': [
+    'Paley, Natural Theology',
+    "Behe, Darwin's Black Box",
+    'Dawkins, The Blind Watchmaker (crítica)'
+  ]
+},
+  {
+  'id': 'ap-005',
+  'titulo': 'A Resurreição — Evidência Histórica',
+  'categoria': 'Apologetica',
+  'subcategoria': 'Evidência',
+  'conteudo': [
+    'A ressurreição de Cristo é o fato mais bem atestado da história antiga.',
+    'As evidências incluem: túmulo vazio, aparições, mudança dos discípulos, origem da igreja.',
+    'O túmulo vazio é atestado por fontes hostis (relato da guarda em Mateus 28:11-15).',
+    'As aparições foram a múltiplas pessoas, em diferentes ocasiões, ao longo de 40 dias.',
+    'A transformação dos discípulos — de covardes a mártires — é inexplicável sem a ressurreição.',
+    'A origem da igreja no Judaísmo é impossível sem a ressurreição.'
+  ],
+  'versicosChave': [
+    '1 Coríntios 15:3-8',
+    'Atos 1:3',
+    'Mateus 28:5-10',
+    'Lucas 24:36-49'
+  ],
+  'tags': [
+    'ressurreição',
+    'evidência',
+    'histórica',
+    'apologética'
+  ],
+  'fontes': [
+    'Wright, The Resurrection of the Son of God',
+    'Habermas, The Ressurection of Jesus'
+  ]
+},
+  {
+  'id': 'hm-006',
+  'titulo': 'A Regra de Ouro da Interpretação',
+  'categoria': 'Hermenêutica',
+  'subcategoria': 'Princípios',
+  'conteudo': [
+    'A regra de ouro: interprete sempre pela Escritura mais clara.',
+    'O princípio da analogia da fé — passagens obscuras devem ser interpretadas pelas claras.',
+    'Nenhuma passagem pode ensinar algo que contradiga o ensino bíblico claro.',
+    'O contexto imediato (versículo, capítulo) e o remoto (livro, Bíblia) são importantes.',
+    'A interpretação literal é a regra geral — só se recorre ao sentido figurado quando o contexto exige.'
+  ],
+  'versicosChave': [
+    '2 Pedro 1:20-21',
+    '2 Timóteo 2:15',
+    '1 Coríntios 2:13',
+    'Salmo 119:105'
+  ],
+  'tags': [
+    'hermenêutica',
+    'interpretação',
+    'regra de ouro',
+    'contexto'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.7',
+    'Fee, New Testament Exegesis',
+    'Kaiser & Silva, Introduction to Biblical Hermeneutics'
+  ]
+},
+  {
+  'id': 'hm-007',
+  'titulo': 'Tipologia Bíblica — Sombra e Realidade',
+  'categoria': 'Hermenêutica',
+  'subcategoria': 'Métodos',
+  'conteudo': [
+    'Tipologia é o estudo de tipos — pessoas, eventos ou instituições do AT que prefiguram realidades no NT.',
+    'Adão é tipo de Cristo (Romanos 5:14) — a queda de um, a redenção do outro.',
+    'O sacrifício do cordeiro pascal prefigura Cristo, o Cordeiro de Deus.',
+    'O tabernáculo e o templo são sombras da realidade celestial.',
+    'A tipologia não é alegoria — os tipos têm fundamento histórico e se cumprirão literalmente.'
+  ],
+  'versicosChave': [
+    'Romanos 5:14',
+    '1 Coríntios 15:45',
+    'Hebreus 8:5',
+    '1 Coríntios 10:11'
+  ],
+  'tags': [
+    'tipologia',
+    'AT',
+    'NT',
+    'sombra',
+    'realidade'
+  ],
+  'fontes': [
+    'Kline, The Structure of Biblical Authority',
+    'Gundry, The Use of the Old Testament in the New Testament'
+  ]
+},
+  {
+  'id': 'et-025',
+  'titulo': 'A Bioética Cristã — Aborto, Eutanásia e Engenharia Genética',
+  'categoria': 'Ética Cristã',
+  'subcategoria': 'Contemporâneo',
+  'conteudo': [
+    'A bioética cristã aplica princípios bíblicos a questões modernas de vida.',
+    'Aborto: a vida humana começa na concepção (Salmo 139:13-16) — é vida preciosa.',
+    'Eutanásia: a vida é dom de Deus — nós não somos donos dela.',
+    'Engenharia genética: manipular a criação de Deus levanta questões éticas profundas.',
+    'Células-tronco: a dignidade humana deve ser respeitada em qualquer pesquisa.',
+    'A base ética é a imagem de Deus em todo ser humano.'
+  ],
+  'versicosChave': [
+    'Salmo 139:13-16',
+    'Jó 1:21',
+    'Gênesis 1:27',
+    '1 Coríntios 6:19-20'
+  ],
+  'tags': [
+    'bioética',
+    'aborto',
+    'eutanásia',
+    'ética'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.7',
+    'Calvin, Institutes III.7'
+  ]
+},
+  {
+  'id': 'et-026',
+  'titulo': 'A Ética do Trabalho — Honestidade e Excelência',
+  'categoria': 'Ética Cristã',
+  'subcategoria': 'Prática',
+  'conteudo': [
+    'O trabalho é vocação divina — feito para a glória de Deus (1 Coríntios 10:31).',
+    'A honestidade no trabalho é mandamento — \'não furtarás\' inclui roubar tempo.',
+    'A excelência no trabalho é testemunho — \'tudo quanto fizerdes, fazei de coração\' (Colossenses 3:23).',
+    'A ganância é idolatria — o dinheiro não pode ser o alvo da vida.',
+    'O descanso semanal é mandamento — Deus descansou e nos ordena fazer o mesmo.'
+  ],
+  'versicosChave': [
+    '1 Coríntios 10:31',
+    'Colossenses 3:23',
+    'Efésios 4:28',
+    'Éxodo 20:8-11'
+  ],
+  'tags': [
+    'trabalho',
+    'honestidade',
+    'excelência',
+    'descanso'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.10',
+    'Wolters, Creation Regained'
+  ]
+},
+  {
+  'id': 'mi-017',
+  'titulo': 'A Grande Comissão — Mandato Missionário',
+  'categoria': 'Missiologia',
+  'subcategoria': 'Fundamento',
+  'conteudo': [
+    'Mateus 28:18-20 é a Grande Comissão — o mandato de Cristo para a Igreja.',
+    'A autoridade de Cristo é a base: \'Toda autoridade me é dada\'.',
+    'O alvo é universal: \'todas as nações\' — sem exceção.',
+    'O método é relacional: \'fazendo discípulos\' — não apenas convertidos.',
+    'A-promessa é presence: \'estarei convosco todos os dias\'.',
+    'A obediência à Grande Comissão é teste de amor a Cristo.'
+  ],
+  'versicosChave': [
+    'Mateus 28:18-20',
+    'Marcos 16:15',
+    'Lucas 24:46-48',
+    'Atos 1:8'
+  ],
+  'tags': [
+    'grande comissão',
+    'missão',
+    'evangelismo',
+    'discipulado'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.21',
+    'Ridderbos, The Coming of the Kingdom'
+  ]
+},
+  {
+  'id': 'mi-018',
+  'titulo': 'A Urgência da Salvação — Evangelismo',
+  'categoria': 'Missiologia',
+  'subcategoria': 'Prática',
+  'conteudo': [
+    'O evangelismo é urgente porque as almas estão perdidas sem Cristo.',
+    'Romanos 10:14-15 — \'como crerão naquele em quem não creram? Como crerão naquele de quem não ouviram?\'',
+    'A mensagem é simples: arrependimento e fé em Cristo.',
+    'O método deve ser contextualizado sem comprometer a verdade.',
+    'O fruto do evangelismo é a glória de Deus — não números.'
+  ],
+  'versicosChave': [
+    'Romanos 10:14-15',
+    '2 Coríntios 5:20',
+    'Atos 4:12',
+    '1 Coríntios 9:22'
+  ],
+  'tags': [
+    'evangelismo',
+    'urgência',
+    'salvação',
+    'missão'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.21',
+    'Stott, The Contemporary Mission',
+    'Packer, Evangelism and the Sovereignty of God'
+  ]
+},
+  {
+  'id': 'cc-061',
+  'titulo': 'Cristianismo e Redes Sociais',
+  'categoria': 'Questões Contemporâneas',
+  'subcategoria': 'Cultura Digital',
+  'conteudo': [
+    'As redes sociais são ferramentas que podem ser usadas para o evangelho.',
+    'O perigo da \'fé de Instagram\' — superficialidade e aparência.',
+    'A comunidade online pode complementar, mas não substituir a igreja local.',
+    'O cuidado com a língua nas redes — \'nenhuma palavra corrupta saia da boca\'.',
+    'A internet como campo missionário — oportunidades para proclamar Cristo.'
+  ],
+  'versicosChave': [
+    'Efésios 4:29',
+    'Colossenses 4:6',
+    '1 Pedro 3:15',
+    'Hebreus 10:24-25'
+  ],
+  'tags': [
+    'redes sociais',
+    'cultura digital',
+    'evangelismo',
+    'comunidade'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.6',
+    'Calvin, Institutes III.6'
+  ]
+},
+  {
+  'id': 'cc-062',
+  'titulo': 'Cristianismo e Ciência — Harmonia ou Conflito?',
+  'categoria': 'Questões Contemporâneas',
+  'subcategoria': 'Fé e Ciência',
+  'conteudo': [
+    'A relação entre fé e ciência é complexa — há conflito, independência e integração.',
+    'O conflito (Dawkins, Hitchens) — ciência explica tudo, Deus é desnecessário.',
+    'A independência (Gould) — ciência e fé respondem a perguntas diferentes.',
+    'A integração (Polkinghorne) — ciência e fé se complementam na busca da verdade.',
+    'A Bíblia não é livro de ciência — é revelação de Deus sobre como ter relação com Ele.',
+    'A criação testifica a Deus — \'os céus declaram a glória de Deus\' (Salmo 19:1).'
+  ],
+  'versicosChave': [
+    'Salmo 19:1',
+    'Romanos 1:20',
+    'Provérbios 25:2',
+    'Eclesiastes 7:24'
+  ],
+  'tags': [
+    'ciência',
+    'fé',
+    'criação',
+    'evolução',
+    'integração'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.14',
+    'Polkinghorne, Belief in God in an Age of Science'
+  ]
+},
+  {
+  'id': 'ty-013',
+  'titulo': 'O Tabernáculo — Tipo de Cristo',
+  'categoria': 'Tipologia',
+  'subcategoria': 'AT',
+  'conteudo': [
+    'O tabernáculo é um dos mais ricos tipos de Cristo no AT.',
+    'A porta do tabernáculo — \'Eu sou a porta\' (João 10:7).',
+    'O altar do Holocausto — Cristo é o sacrifício perfeito.',
+    'A mesa dos pães da proposição — Cristo é o pão da vida.',
+    'O candelabro — Cristo é a luz do mundo.',
+    'O propiciatório — Cristo é nossa propiciação.'
+  ],
+  'versicosChave': [
+    'Êxodo 25-27',
+    'João 10:7',
+    'João 6:35',
+    'João 8:12'
+  ],
+  'tags': [
+    'tabernáculo',
+    'tipo',
+    'cristo',
+    'sacrifício'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Êxodo',
+    'Kline, The Structure of Biblical Authority'
+  ]
+},
+  {
+  'id': 'ty-014',
+  'titulo': 'José — Tipo de Cristo',
+  'categoria': 'Tipologia',
+  'subcategoria': 'AT',
+  'conteudo': [
+    'José é um dos tipos mais completos de Cristo no AT.',
+    'Amado pelo pai, odiado pelos irmãos — Cristo rejeitado por Israel.',
+    'Vendido por 20 peças de prata — Judas traiu Cristo por 30.',
+    'Desceu ao Egito (morte) e ressurgiu à glória — ressurreição.',
+    'Proveu alimento para os irmãos — Cristo é o pão da vida.',
+    'No final, os irmãos se prostraram — todo joelho se dobrará.'
+  ],
+  'versicosChave': [
+    'Gênesis 37-50',
+    'Filipenses 2:10-11',
+    'João 6:35'
+  ],
+  'tags': [
+    'josé',
+    'tipo',
+    'cristo',
+    'ressurreição'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Gênesis',
+    'Kline, The Structure of Biblical Authority'
+  ]
+},
+  {
+  'id': 'lp-011',
+  'titulo': 'Jó — O Problema do Sofrimento',
+  'categoria': 'Livros Poéticos',
+  'subcategoria': 'Jó',
+  'conteudo': [
+    'Jó é a resposta bíblica ao problema do sofrimento do inocente.',
+    'Jó não sofreu por causa de pecado — Deus o testemunhou como justo.',
+    'Os conselheiros de Jó ofereceram teologia retributiva — sofrimento = pecado.',
+    'Deus respondeu do redemoinho — não explicou o sofrimento, mas revelou Sua soberania.',
+    'A lição final: Deus é soberano, e nós somos limitados para compreender Seus caminhos.',
+    'Jó é tipo de Cristo — sofreu injustamente e foi restaurado.'
+  ],
+  'versicosChave': [
+    'Jó 1:1',
+    'Jó 42:5-6',
+    'Romanos 8:28',
+    '1 Pedro 4:12-19'
+  ],
+  'tags': [
+    'jó',
+    'sofrimento',
+    'soberania',
+    'paciência'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Jó',
+    'Clines, Job 1-20',
+    'Anderson, Out of the Whirlwind'
+  ]
+},
+  {
+  'id': 'bi-006',
+  'titulo': 'A Inerrância Bíblica',
+  'categoria': 'Bibliologia',
+  'subcategoria': 'Natureza',
+  'conteudo': [
+    'A inerrância bíblica afirma que as Escrituras são verdadeiras em tudo o que afirmam.',
+    'A Bíblia é infalível em tudo o que ensina — não pode errar em doutrina, história ou ciência.',
+    'A inerrância se baseia na natureza de Deus — Ele não pode mentir (Hebreus 6:18).',
+    'A Bíblia é a palavra de Deus, mas foi escrita por homens — inspiração divina e humanidade simultâneas.',
+    'A inerrância não significa que a Bíblia seja um livro de ciência ou história completa.'
+  ],
+  'versicosChave': [
+    '2 Timóteo 3:16',
+    '2 Pedro 1:21',
+    'Hebreus 6:18',
+    'Salmo 12:6'
+  ],
+  'tags': [
+    'inerrância',
+    'inspiração',
+    'verdade',
+    'autoridade'
+  ],
+  'fontes': [
+    'Warfield, The Inspiration and Authority of Scripture',
+    'Sproul, Knowing Scripture'
+  ]
+},
+  {
+  'id': 'bi-007',
+  'titulo': 'A Canonização das Escrituras',
+  'categoria': 'Bibliologia',
+  'subcategoria': 'Canon',
+  'conteudo': [
+    'O cânon bíblico é a lista dos livros reconhecidos como inspirados por Deus.',
+    'O AT foi reconhecido gradualmente — a maioria dos livros era aceita no século I.',
+    'O NT foi reconhecido por critérios: apostolicidade, ortodoxia, uso litúrgico.',
+    'O Concílio de Hipona (393 d.C.) confirmou o cânon do NT.',
+    'O Espírito Santo guiou a Igreja no reconhecimento dos livros canônicos.'
+  ],
+  'versicosChave': [
+    '2 Pedro 1:20-21',
+    '2 Timóteo 3:16-17',
+    'Apocalipse 22:18-19'
+  ],
+  'tags': [
+    'canon',
+    'cânone',
+    'livros',
+    'reconhecimento'
+  ],
+  'fontes': [
+    'Metzger, The Canon of the New Testament',
+    'Köstenberger, The Heresy of the Canon'
+  ]
+},
+  {
+  'id': 'bi-008',
+  'titulo': 'A Tradução Bíblica — Princípios e Desafios',
+  'categoria': 'Bibliologia',
+  'subcategoria': 'Tradução',
+  'conteudo': [
+    'A tradução bíblica é essencial para que todos os povos ouçam a Palavra.',
+    'Existem duas filosofias: formalismo (sentença a sentença) e dinamicismo (pensão a pensão).',
+    'A KJV é formal; a NVI é mais dinâmica. Ambas têm valor.',
+    'Nenhuma tradução é perfeita — todas são approximations da verdade original.',
+    'A tradução deve respeitar: fidelidade ao original, compreensibilidade no idioma, estilo natural.'
+  ],
+  'versicosChave': [
+    'Atos 2:6-11',
+    '1 Coríntios 14:19',
+    'Efésios 6:19'
+  ],
+  'tags': [
+    'tradução',
+    'versão',
+    'tradução formal',
+    'tradução dinâmica'
+  ],
+  'fontes': [
+    'Nida, The Theory and Practice of Translation',
+    'Carson, The King James Version Debate'
+  ]
+},
+  {
+  'id': 'bi-009',
+  'titulo': 'A Iluminação do Espírito na Interpretação',
+  'categoria': 'Bibliologia',
+  'subcategoria': 'Interpretação',
+  'conteudo': [
+    'O Espírito Santo ilumina a mente do crente para compreender as Escrituras.',
+    'A iluminação não substitui o estudo — capacita o estudo.',
+    '1 Coríntios 2:10-14 — \'o homem natural não compreende as coisas do Espírito\'.',
+    'A iluminação é necessária porque o人心 pecador é hostil à verdade divina.',
+    'O estudo bíblico deve ser feito com oração, dependência do Espírito e humildade.'
+  ],
+  'versicosChave': [
+    '1 Coríntios 2:10-14',
+    'João 16:13',
+    'Salmo 119:18'
+  ],
+  'tags': [
+    'iluminação',
+    'espírito santo',
+    'interpretação',
+    'compreeensão'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.7',
+    'Fee, New Testament Exegesis'
+  ]
+},
+  {
+  'id': 'bi-010',
+  'titulo': 'A Autoridade da Bíblia — Sola Scriptura',
+  'categoria': 'Bibliologia',
+  'subcategoria': 'Autoridade',
+  'conteudo': [
+    'Sola Scriptura é o princípio reformado de que a Bíblia é a autoridade suprema.',
+    'A Bíblia é a norma normans non normata — a norma que normatiza e não é normatizada.',
+    'A tradição tem valor, mas está sujeita à Escritura.',
+    'O magistério da Igreja é útil, mas não infalível.',
+    'A autoridade da Bíblia é auto-testemunhada — ela claims ser Palavra de Deus.'
+  ],
+  'versicosChave': [
+    '2 Timóteo 3:16-17',
+    'Isaías 40:8',
+    'Mateus 24:35',
+    'Hebreus 4:12'
+  ],
+  'tags': [
+    'sola scriptura',
+    'autoridade',
+    'tradição',
+    'reforma'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.7-8',
+    'Lutero, Sobre a Escravidão Babilônica'
+  ]
+},
+  {
+  'id': 'bi-011',
+  'titulo': 'A Persistência da Palavra de Deus',
+  'categoria': 'Bibliologia',
+  'subcategoria': 'Natureza',
+  'conteudo': [
+    'A Palavra de Deus é viva e eficaz — mais afiada que espada de dois gumes.',
+    'As Escrituras não podem ser quebradas (João 10:35).',
+    'A Palavra de Deus dura para sempre (Isaías 40:8).',
+    'O céu e a terra passarão, mas as palavras de Jesus não passarão.',
+    'A Palavra de Deus é fonte de vida, luz e verdade.'
+  ],
+  'versicosChave': [
+    'Hebreus 4:12',
+    'Isaías 40:8',
+    'Mateus 24:35',
+    'João 10:35'
+  ],
+  'tags': [
+    'palavra de deus',
+    'persistência',
+    'eficácia',
+    'eternidade'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.7',
+    'Calvin, Institutes I.7'
+  ]
+},
+  {
+  'id': 'so-037',
+  'titulo': 'A Propiciação — A Ira de Deus Satisfeita',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Expiação',
+  'conteudo': [
+    'A propiciação é a satisfação da ira de Deus pelo sacrifício de Cristo.',
+    'Romanos 3:25 — Deus propiciou a Si mesmo através de Cristo.',
+    'A propiciação não é Deus sendo satisfeito — é Deus satisfez Sua própria justiça.',
+    'O termo \'propiciação\' é controverso — alguns preferem \'expição\'.',
+    'A propiciação é particular — Cristo morreu por Seu povo.'
+  ],
+  'versicosChave': [
+    'Romanos 3:25',
+    '1 João 2:2',
+    '1 João 4:10',
+    'Hebreus 2:17'
+  ],
+  'tags': [
+    'propiciação',
+    'ira de deus',
+    'satisfação',
+    'justiça'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.16',
+    'Calvin, Institutes II.16'
+  ]
+},
+  {
+  'id': 'so-038',
+  'titulo': 'A Adoção — Filhos de Deus',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Benefícios',
+  'conteudo': [
+    'A adoção é o ato de Deus de nos tornar Seus filhos.',
+    'Gálatas 4:4-7 — \'enviou Deus o Seu Filho... para que recibamos a adoção de filhos\'.',
+    'A adoção é por graça — não por mérito.',
+    'Como filhos, temos: acesso a Deus, herança eterna, assistência do Espírito.',
+    'A adoção é consumada na ressurreição — \'sabemos que seremos como Ele\' (1 João 3:2).'
+  ],
+  'versicosChave': [
+    'Gálatas 4:4-7',
+    'Romanos 8:14-17',
+    '1 João 3:1-2',
+    'Efésios 1:5'
+  ],
+  'tags': [
+    'adoção',
+    'filhos de deus',
+    'herança',
+    'espírito'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.19',
+    'Calvin, Institutes III.19'
+  ]
+},
+  {
+  'id': 'so-039',
+  'titulo': 'A Perseverança dos Santos',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Doutrina',
+  'conteudo': [
+    'A perseverança dos santos é a doutrina de que os verdadeiros crentes perseverarão até o fim.',
+    'João 10:28-29 — \'ninguém os arrebata da Minha mão\'.',
+    'A perseverança não é dependente do poder humano, mas da fidelidade de Deus.',
+    'Os eleitos podem cair temporariamente, mas serão restaurados.',
+    'A perseverança é certeza — não é presunção.'
+  ],
+  'versicosChave': [
+    'João 10:28-29',
+    'Filipenses 1:6',
+    'Romanos 8:38-39',
+    '1 Pedro 1:5'
+  ],
+  'tags': [
+    'perseverança',
+    'segurança',
+    'eleição',
+    'fidelidade'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.24',
+    'Calvin, Institutes III.24'
+  ]
+},
+  {
+  'id': 'so-040',
+  'titulo': 'A Vocação Eficaz',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Ordo Salutis',
+  'conteudo': [
+    'A vocação eficaz é o chamado de Deus que traz o pecador à fé.',
+    'Romanos 8:30 — \'aos que chamou, esses também justificou\'.',
+    'A vocação é externa (pregação) e interna (operação do Espírito).',
+    'A vocação eficaz é irresistible — Deus muda o coração para crer.',
+    'A vocação é o elo entre a eleição e a fé — Deus efetivamente chama os eleitos.'
+  ],
+  'versicosChave': [
+    'Romanos 8:30',
+    '1 Coríntios 1:23-24',
+    '2 Timóteo 1:9'
+  ],
+  'tags': [
+    'vocação',
+    'chamado',
+    'efeito',
+    'irresistível'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.24',
+    'Calvin, Institutes III.24'
+  ]
+},
+  {
+  'id': 'so-041',
+  'titulo': 'A Satisfação Vicária — Anselmo',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Expiação',
+  'conteudo': [
+    'A teoria da satisfação vicária (Anselmo) é a mais influente na teologia cristã.',
+    'A honra de Deus foi ofendida pelo pecado — exige satisfação.',
+    'Cristo, como Deus-homem, ofereceu satisfação perfeita e infinita.',
+    'A satisfação não é um comercial — é um ato de amor e justiça.',
+    'Calvino aperfeiçoou a teoria: Cristo morreu como substituto e propiciação.'
+  ],
+  'versicosChave': [
+    'Isaías 53:5-6',
+    'Romanos 3:25',
+    '1 Pedro 2:24'
+  ],
+  'tags': [
+    'satisfação',
+    'anselmo',
+    'substituição',
+    'honor'
+  ],
+  'fontes': [
+    'Anselmo, Cur Deus Homo',
+    'Calvino, Institutas II.16'
+  ]
+},
+  {
+  'id': 'cr-017',
+  'titulo': 'A Encarnação de Cristo — Deus se faz Homem',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Encarnação',
+  'conteudo': [
+    'A encarnação é o mistério central da fé — o Verbo se fez carne (João 1:14).',
+    'Cristo nasceu de mulher (Gálatas 4:4) — verdadeiramente humano.',
+    'Cristo nasceu de virgem — miraculamente, sem pai humano.',
+    'A encarnação não é Deus habitando um corpo — é Deus se tornando humano.',
+    'Cristo é uma pessoa com duas naturezas: divina e humana.'
+  ],
+  'versicosChave': [
+    'João 1:14',
+    'Gálatas 4:4',
+    'Filipenses 2:6-8',
+    'Hebreus 2:14-17'
+  ],
+  'tags': [
+    'encarnação',
+    'verbo',
+    'carne',
+    'virgem'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.12-13',
+    'Athanasius, On the Incarnation'
+  ]
+},
+  {
+  'id': 'cr-018',
+  'titulo': 'A Tentação de Cristo — Sem Pecado',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Vida',
+  'conteudo': [
+    'Cristo foi tentado em todas as coisas, como nós, porém sem pecado (Hebreus 4:15).',
+    'A tentação no deserto (Mateus 4:1-11) mostra Cristo como o novo Adão.',
+    'Cristo resistiu pela Palavra de Deus — \'está escrito\'.',
+    'Cristo não podia pecar — Sua natureza divina era impecável.',
+    'A tentação de Cristo qualifica Ele para ser nosso Sumo Sacerdote misericordioso.'
+  ],
+  'versicosChave': [
+    'Hebreus 4:15',
+    'Mateus 4:1-11',
+    '1 João 3:5'
+  ],
+  'tags': [
+    'tentação',
+    'pecado',
+    'impecabilidade',
+    'deserto'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.16',
+    'Calvin, Institutes II.16'
+  ]
+},
+  {
+  'id': 'cr-019',
+  'titulo': 'A Autoridade de Cristo — Senhor de Tudo',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Soberania',
+  'conteudo': [
+    'Cristo tem toda autoridade no céu e na terra (Mateus 28:18).',
+    'Ele é Senhor de todos (Atos 10:36), mesmo que nem todos O reconheçam.',
+    'A autoridade de Cristo se manifesta em: ensino, milagres, julgamento.',
+    'Cristo exerce autoridade através da Igreja.',
+    'Todo joelho se dobrará e toda língua confessará que Jesus é Senhor (Filipenses 2:10-11).'
+  ],
+  'versicosChave': [
+    'Mateus 28:18',
+    'Filipenses 2:10-11',
+    'Efésios 1:20-22',
+    '1 Pedro 3:22'
+  ],
+  'tags': [
+    'autoridade',
+    'soberania',
+    'senhor',
+    'domínio'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.16',
+    'Ridderbos, The Coming of the Kingdom'
+  ]
+},
+  {
+  'id': 'es-024',
+  'titulo': 'O Milênio — Amilenarismo, Premilenarismo e Pós-milenarismo',
+  'categoria': 'Escatologia',
+  'subcategoria': 'Debate',
+  'conteudo': [
+    'O milênio (Apocalipse 20:1-6) é o período de 1000 anos mencionado na Bíblia.',
+    'O amilenarismo ensina que o milênio é simbólico — a era atual da igreja.',
+    'O premilenarismo ensina que Cristo voltará antes do milênio literal.',
+    'O pós-milenarismo ensina que a igreja trará o milênio antes da volta de Cristo.',
+    'A maioria dos reformados é amilenarista — Calvino, Warfield, Hoekema.'
+  ],
+  'versicosChave': [
+    'Apocalipse 20:1-6',
+    'Revelação 19:11-16',
+    '2 Pedro 3:10-13'
+  ],
+  'tags': [
+    'milênio',
+    'amilenarismo',
+    'premilenarismo',
+    'pós-milenarismo'
+  ],
+  'fontes': [
+    'Hoekema, The Bible and the Future',
+    'Ladd, The Gospel of the Kingdom',
+    'Boyd, God of the Possible'
+  ]
+},
+  {
+  'id': 'es-025',
+  'titulo': 'O Juízo Final',
+  'categoria': 'Escatologia',
+  'subcategoria': 'Eventos',
+  'conteudo': [
+    'O juízo final é o tribunal de Cristo onde todos prestarão contas.',
+    'Mateus 25:31-46 — separação das ovelhas e dos bodes.',
+    'Apocalipse 20:11-15 — o Livro da Vida e o Livro das Obras.',
+    'O juízo dos crentes não é para salvação (já salvo), mas para recompensa.',
+    'O juízo dos incrédulos é condenação eterna.'
+  ],
+  'versicosChave': [
+    'Mateus 25:31-46',
+    'Apocalipse 20:11-15',
+    'Romanos 14:10-12',
+    '2 Coríntios 5:10'
+  ],
+  'tags': [
+    'juízo final',
+    'livro da vida',
+    'condenação',
+    'recompensa'
+  ],
+  'fontes': [
+    'Hoekema, The Bible and the Future',
+    'Morris, The Gospel According to Matthew'
+  ]
+},
+  {
+  'id': 'hm-008',
+  'titulo': 'Interpretação de Parábolas',
+  'categoria': 'Hermenêutica',
+  'subcategoria': 'Métodos',
+  'conteudo': [
+    'As parábolas são histórias com um ponto principal — não são alegorias detalhadas.',
+    'A regra de ouro: encontre o ponto principal do narrador.',
+    'Cada parábola tem um contexto que determina seu significado.',
+    'As parábolas foram feitas para revelar verdade aos que tinham ouvidos.',
+    'Não é necessariamente cada detalhe tem significado simbólico.'
+  ],
+  'versicosChave': [
+    'Mateus 13:10-17',
+    'Marcos 4:10-12',
+    'Lucas 15:1-7'
+  ],
+  'tags': [
+    'parábolas',
+    'interpretação',
+    'alegoria',
+    'simbolismo'
+  ],
+  'fontes': [
+    'Fee, New Testament Exegesis',
+    'Blomberg, Interpreting the Parables'
+  ]
+},
+  {
+  'id': 'hm-009',
+  'titulo': 'O Contexto Histórico e Cultural',
+  'categoria': 'Hermenêutica',
+  'subcategoria': 'Princípios',
+  'conteudo': [
+    'A Bíblia foi escrita em contextos específicos — precisamos entender esses contextos.',
+    'A cultura do Antigo Oriente Próximo ajuda a entender o AT.',
+    'O judaísmo do segundo templo é essencial para entender o NT.',
+    'A língua original (hebraico, aramaico, grego) é fundamental.',
+    'A história da Igreja mostra como a Bíblia foi interpretada ao longo do tempo.'
+  ],
+  'versicosChave': [
+    '2 Timóteo 2:15',
+    '1 Coríntios 9:20-22'
+  ],
+  'tags': [
+    'contexto',
+    'história',
+    'cultura',
+    'língua'
+  ],
+  'fontes': [
+    'Fee, New Testament Exegesis',
+    'Kaiser & Silva, Introduction to Biblical Hermeneutics'
+  ]
+},
+  {
+  'id': 'et-027',
+  'titulo': 'A Ética Sexual — Pureza e Castidade',
+  'categoria': 'Ética Cristã',
+  'subcategoria': 'Moral',
+  'conteudo': [
+    'A sexualidade é dom de Deus, destinada ao casamento.',
+    'A imoralidade sexual é pecado — \'fugi da imoralidade sexual\' (1 Coríntios 6:18).',
+    'A castidade não é repressão, mas expressão ordenada do desejo.',
+    'O adultério, a pornografia e a homossexualidade prática são contrários à Bíblia.',
+    'A graça de Deus capacita a santificação sexual.'
+  ],
+  'versicosChave': [
+    '1 Coríntios 6:18-20',
+    '1 Tessalonicenses 4:3-5',
+    'Hebreus 13:4',
+    'Gênesis 2:24'
+  ],
+  'tags': [
+    'sexualidade',
+    'pureza',
+    'casamento',
+    'castidade'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.8',
+    'Calvin, Institutes II.8'
+  ]
+},
+  {
+  'id': 'et-028',
+  'titulo': 'A Ética Econômica — Justiça e Generosidade',
+  'categoria': 'Ética Cristã',
+  'subcategoria': 'Social',
+  'conteudo': [
+    'A Bíblia condena a avareza e a exploração.',
+    'A décima parte e a oferta são princípios de generosidade.',
+    'O dízimo não é lei para o NT, mas o princípio de dar com alegria.',
+    'A justiça social é mandamento — \'pratica a justiça, ama a misericórdia\'.',
+    'O cristão é mordomo, não dono — tudo pertence a Deus.'
+  ],
+  'versicosChave': [
+    'Miquéias 6:8',
+    'Lucas 12:15',
+    '2 Coríntios 9:6-7',
+    'Provérbios 3:9-10'
+  ],
+  'tags': [
+    'economia',
+    'justiça',
+    'generosidade',
+    'décima'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.10',
+    'Wolters, Creation Regained'
+  ]
+},
+  {
+  'id': 'et-029',
+  'titulo': 'A Ética da Verdade — Honestidade e Integridade',
+  'categoria': 'Ética Cristã',
+  'subcategoria': 'Moral',
+  'conteudo': [
+    'Deus é verdadeiro — não pode mentir (Hebreus 6:18).',
+    'A mentira é pecado — Satanás é o pai da mentira (João 8:44).',
+    'A honestidade é virtude cristã — \'não mintam uns aos outros\' (Colossenses 3:9).',
+    'A verdade deve ser dita com amor (Efésios 4:15).',
+    'A integridade é testemunho — o cristão deve ser confiável.'
+  ],
+  'versicosChave': [
+    'Hebreus 6:18',
+    'João 8:44',
+    'Colossenses 3:9',
+    'Efésios 4:15'
+  ],
+  'tags': [
+    'verdade',
+    'honestidade',
+    'integridade',
+    'mentira'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.8',
+    'Packer, Knowing God'
+  ]
+},
+  {
+  'id': 'mi-019',
+  'titulo': 'A Estratégia Missionária Paulina',
+  'categoria': 'Missiologia',
+  'subcategoria': 'Estratégia',
+  'conteudo': [
+    'Paulo tinha uma estratégia clara: ir às cidades, pregar, estabelecer igrejas, seguir adiante.',
+    'Ele focava nas cidades estratégicas — Jerusalém, Antioquia, Éfeso, Corinto, Roma.',
+    'O método incluía: sinagoga, praça, casa, escola.',
+    'Paulo usava o que já existia — estradas romanas, língua grega, sinagogas.',
+    'Ele delegava liderança — nunca ficava como líder permanente.'
+  ],
+  'versicosChave': [
+    'Atos 13-28',
+    'Romanos 15:19-24',
+    '1 Coríntios 9:19-23'
+  ],
+  'tags': [
+    'estratégia',
+    'paulo',
+    'missões',
+    'cidades'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.21',
+    'Bosch, Transforming Mission'
+  ]
+},
+  {
+  'id': 'mi-020',
+  'titulo': 'A Contextualização do Evangelho',
+  'categoria': 'Missiologia',
+  'subcategoria': 'Método',
+  'conteudo': [
+    'A contextualização é adaptar a apresentação do evangelho sem alterar o conteúdo.',
+    'Paulo se tornou \'judeu entre os judeus\' para ganhar judeus (1 Coríntios 9:20-22).',
+    'A contextualização não é sincretismo — é tradução cultural.',
+    'O perigo é contextualizar tanto que o evangelho se perde.',
+    'A contextualização é necessária — o evangelho precisa ser compreendido em cada cultura.'
+  ],
+  'versicosChave': [
+    '1 Coríntios 9:19-23',
+    'Atos 17:22-34',
+    'Colossenses 4:5-6'
+  ],
+  'tags': [
+    'contextualização',
+    'cultura',
+    'tradução',
+    'evangelho'
+  ],
+  'fontes': [
+    'Bosch, Transforming Mission',
+    'Hiebert, Transforming Worldviews'
+  ]
+},
+  {
+  'id': 'cc-063',
+  'titulo': 'Cristianismo e Política',
+  'categoria': 'Questões Contemporâneas',
+  'subcategoria': 'Sociedade',
+  'conteudo': [
+    'A relação entre cristianismo e política é complexa e controversa.',
+    'Jesus não veio para ser rei político — \'meu reino não é deste mundo\'.',
+    'A Igreja deve ser profética — denunciar injustiças e proclamar a verdade.',
+    'O perigo do nacionalismo religioso — confundir nação com reino de Deus.',
+    'A política pode ser meio de serviço, mas não de idolatria.'
+  ],
+  'versicosChave': [
+    'João 18:36',
+    'Mateus 22:21',
+    '1 Pedro 2:13-17',
+    'Atos 5:29'
+  ],
+  'tags': [
+    'política',
+    'sociedade',
+    'profecia',
+    'nação'
+  ],
+  'fontes': [
+    'Calvino, Institutas IV.20',
+    'Calvin, Institutes IV.20'
+  ]
+},
+  {
+  'id': 'cc-064',
+  'titulo': 'Cristianismo e Pobreza',
+  'categoria': 'Questões Contemporâneas',
+  'subcategoria': 'Justiça',
+  'conteudo': [
+    'A Bíblia tem muito a dizer sobre pobreza e justiça.',
+    '\'Os pobres vocês sempre terão convosco\' (Mateus 26:11).',
+    'Deus é defensor dos pobres — \'o Senhor é o seu refúgio\'.',
+    'A Igreja deve ajudar os pobres — não apenas com palavras, mas com ações.',
+    'O perigo é transformar evangelismo em apenas assistencialismo.'
+  ],
+  'versicosChave': [
+    'Mateus 26:11',
+    'Provérbios 19:17',
+    'Tiago 2:15-17',
+    'Mateus 25:31-46'
+  ],
+  'tags': [
+    'pobreza',
+    'justiça',
+    'ajuda',
+    'misericórdia'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.10',
+    'Calvin, Institutes III.10'
+  ]
+},
+  {
+  'id': 'pn-016',
+  'titulo': 'O Espírito Santo e a Unidade da Igreja',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Eclesiologia',
+  'conteudo': [
+    'O Espírito Santo é o autor da unidade na Igreja.',
+    'Efésios 4:3 — \'esforçando-vos por preservar a unidade do Espírito\'.',
+    'A unidade não é uniformidade — é diversidade na harmonia.',
+    'O Espírito distribui dons diferentes para um mesmo corpo.',
+    'A unidade é um testemunho ao mundo — \'para que o mundo creia\' (João 17:21).'
+  ],
+  'versicosChave': [
+    'Efésios 4:3-6',
+    'João 17:20-23',
+    '1 Coríntios 12:4-13'
+  ],
+  'tags': [
+    'unidade',
+    'diversidade',
+    'igreja',
+    'testemunho'
+  ],
+  'fontes': [
+    'Calvino, Institutas IV.1',
+    'Calvin, Institutes IV.1'
+  ]
+},
+  {
+  'id': 'an-011',
+  'titulo': 'A Adoração Angélica',
+  'categoria': 'Angelologia',
+  'subcategoria': 'Adoração',
+  'conteudo': [
+    'Os anjos adoram continuamente a Deus no céu.',
+    'Os serafins cantam \'Santos, santos, santos\' (Isaías 6:3).',
+    'Os 24 anciãos se prostram diante do trono (Apocalipse 4:10).',
+    'A adoração angélica é dirigida a Deus — não aos anjos.',
+    'A Igreja se une à adoração angélica na worship.'
+  ],
+  'versicosChave': [
+    'Isaías 6:3',
+    'Apocalipse 4:8-11',
+    'Hebreus 1:6'
+  ],
+  'tags': [
+    'adoração',
+    'culto',
+    'céu',
+    'trono'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.13',
+    'Calvin, Institutes I.13'
+  ]
+},
+  {
+  'id': 'ty-015',
+  'titulo': 'O Éxodo — Tipo de Salvação',
+  'categoria': 'Tipologia',
+  'subcategoria': 'AT',
+  'conteudo': [
+    'O Éxodo é o maior tipo de salvação no AT.',
+    'Israel escravizado no Egito → liberdade pela mão poderosa de Deus.',
+    'O cordeiro pascal → Cristo, nosso Cordeiro.',
+    'O mar Vermelho → batismo e morte com Cristo.',
+    'O deserto → jornada de fé e provação.',
+    'A terra prometida → descanso eterno.'
+  ],
+  'versicosChave': [
+    'Êxodo 12:1-14',
+    '1 Coríntios 5:7',
+    'Hebreus 11:29'
+  ],
+  'tags': [
+    'êxodo',
+    'salvação',
+    'cordeiro',
+    'libertação'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Êxodo',
+    'Kline, The Structure of Biblical Authority'
+  ]
+},
+  {
+  'id': 'cc-065',
+  'titulo': 'Cristianismo e Saúde Mental',
+  'categoria': 'Questões Contemporâneas',
+  'subcategoria': 'Saúde',
+  'conteudo': [
+    'A saúde mental é uma questão importante para os cristãos.',
+    'A Bíblia não condena quem sofre de depressão ou ansiedade.',
+    'Deus usa meios: medicação, aconselhamento, comunidade.',
+    'A oração e a Palavra são meios de graça, mas não substituem ajuda profissional.',
+    'A Igreja deve ser lugar de acolhimento, não de julgamento.'
+  ],
+  'versicosChave': [
+    'Salmo 42:1-5',
+    '1 Reis 19:1-8',
+    '2 Coríntios 1:3-4',
+    'Provérbios 11:14'
+  ],
+  'tags': [
+    'saúde mental',
+    'depressão',
+    'ansiedade',
+    'acolhimento'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.20',
+    'Calvin, Institutes III.20'
+  ]
+},
+  {
+  'id': 'lp-012',
+  'titulo': 'Salmos — O Livro de Orações da Igreja',
+  'categoria': 'Livros Poéticos',
+  'subcategoria': 'Salmos',
+  'conteudo': [
+    'Os Salmos são o hymnbook da Igreja — mais de 50% do AT em poesia.',
+    'Cada salmo tem um contexto, autor e propósito específicos.',
+    'Os salmos cobrem todas as emoções humanas: louvor, lamento, gratidão, súplica.',
+    'Jesus citou os salmos frequentemente — especialmente o Salmo 22 na cruz.',
+    'Os salmos são modelo de oração para a Igreja.'
+  ],
+  'versicosChave': [
+    'Salmo 23:1-6',
+    'Salmo 51:1-17',
+    'Salmo 119:105',
+    'Salmo 22:1-31'
+  ],
+  'tags': [
+    'salmos',
+    'oração',
+    'louvor',
+    'lamento'
+  ],
+  'fontes': [
+    'Calvino, Comentário aos Salmos',
+    'Tate, Psalms'
+  ]
+},
+  {
+  'id': 'lp-013',
+  'titulo': 'Provérbios — Sabedoria Prática',
+  'categoria': 'Livros Poéticos',
+  'subcategoria': 'Provérbios',
+  'conteudo': [
+    'Provérbios é o livro de sabedoria prática para a vida diária.',
+    'O temor do Senhor é o princípio da sabedoria (Provérbios 1:7).',
+    'Os provérbios não são promessas absolutas — são generalizações.',
+    'O tema do pecado vs. sabedoria percorre todo o livro.',
+    'Provérbios é especialmente relevante para jovens em formação.'
+  ],
+  'versicosChave': [
+    'Provérbios 1:7',
+    'Provérbios 3:5-6',
+    'Provérbios 22:6',
+    'Provérbios 31:10-31'
+  ],
+  'tags': [
+    'provérbios',
+    'sabedoria',
+    'temor',
+    'prática'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Provérbios',
+    'Waltke, The Book of Proverbs'
+  ]
+},
+  {
+  'id': 'ev-026',
+  'titulo': 'João 3:16 — O Versículo Mais Conhecido',
+  'categoria': 'Evangelhos',
+  'subcategoria': 'João',
+  'conteudo': [
+    'João 3:16 é o versículo mais conhecido e memorizado da Bíblia.',
+    'Resume todo o evangelho: amor, dá, Filho, crer, não pereça, vida eterna.',
+    'O contexto é a conversa de Jesus com Nicodemos.',
+    '\'Tanto amou Deus o mundo\' — o mundo é o objeto do amor divino.',
+    '\'Deu o seu Filho unigênito\' — o custo da salvação.'
+  ],
+  'versicosChave': [
+    'João 3:16',
+    'João 3:1-21',
+    '1 João 4:9-10'
+  ],
+  'tags': [
+    'joão 3:16',
+    'evangelho',
+    'amor',
+    'salvação'
+  ],
+  'fontes': [
+    'Calvino, Comentário a João',
+    'Carson, The Gospel According to John'
+  ]
+},
+  {
+  'id': 'ev-027',
+  'titulo': 'Mateus 28:19-20 — A Grande Comissão',
+  'categoria': 'Evangelhos',
+  'subcategoria': 'Mateus',
+  'conteudo': [
+    'Mateus 28:19-20 é a Grande Comissão — o mandato da Igreja.',
+    'A autoridade de Cristo é a base — \'Toda autoridade me é dada\'.',
+    'O alvo é universal — \'todas as nações\'.',
+    'O método é disciple-making — \'fazendo discípulos\'.',
+    'A-promessa é presence — \'estarei convosco todos os dias\'.'
+  ],
+  'versicosChave': [
+    'Mateus 28:18-20',
+    'Marcos 16:15-16',
+    'Atos 1:8'
+  ],
+  'tags': [
+    'grande comissão',
+    'discipulado',
+    'missão',
+    'autoridade'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.21',
+    'Ridderbos, The Coming of the Kingdom'
+  ]
+},
+  {
+  'id': 'cr-020',
+  'titulo': 'A Perfeição de Cristo',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Natureza',
+  'conteudo': [
+    'Cristo é perfeito em todas as Sua qualidades: sabedoria, poder, amor, justiça.',
+    'Ele não pecou — é o Cordeiro imaculado.',
+    'Sua perfeição é a base da nossa salvação — somente um perfeito pode satisfazer a justiça.',
+    'Cristo é perfeito como profeto, sacerdote e rei.',
+    'A perfeição de Cristo é eterna — não diminui nem aumenta.'
+  ],
+  'versicosChave': [
+    'Hebreus 4:15',
+    '1 Pedro 2:22',
+    '2 Coríntios 5:21',
+    'Colossenses 2:9'
+  ],
+  'tags': [
+    'perfeição',
+    'impecabilidade',
+    'justiça',
+    'santidade'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.16',
+    'Calvin, Institutes II.16'
+  ]
+},
+  {
+  'id': 'cr-021',
+  'titulo': 'A Humilhação de Cristo',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Paixão',
+  'conteudo': [
+    'A humilhação de Cristo inclui: encarnação, vida terrena, morte, descenso aos infernos.',
+    'Filipenses 2:6-8 — \'despojou-se a si mesmo, tomando a forma de servo\'.',
+    'A cruz é o ápice da humilhação — morte de escravo.',
+    'O descenso aos infernos é o mais misterioso dos artigos.',
+    'A humilhação é voluntária — Cristo deu Sua vida por Si mesmo.'
+  ],
+  'versicosChave': [
+    'Filipenses 2:6-8',
+    'Isaías 53:3-9',
+    '1 Pedro 2:24',
+    '1 Pedro 3:18-20'
+  ],
+  'tags': [
+    'humilhação',
+    'cruz',
+    'servo',
+    'encarnação'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.16',
+    'Calvin, Institutes II.16'
+  ]
+},
+  {
+  'id': 'cr-022',
+  'titulo': 'A Exaltação de Cristo',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Glorificação',
+  'conteudo': [
+    'A exaltação de Cristo inclui: ressurreição, ascensão, sentado à direita do Pai.',
+    'Filipenses 2:9-11 — \'Deus o exaltou soberanamente e lhe deu o nome que é acima de todo nome\'.',
+    'Cristo é agora Senhor de todos.',
+    'Ele intercede por nós como Sumo Sacerdote.',
+    'A exaltação será consumada na segunda vinda.'
+  ],
+  'versicosChave': [
+    'Filipenses 2:9-11',
+    'Efésios 1:20-22',
+    'Hebreus 7:25',
+    'Atos 2:33'
+  ],
+  'tags': [
+    'exaltação',
+    'ressurreição',
+    'ascensão',
+    'senhor'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.16',
+    'Calvin, Institutes II.16'
+  ]
+},
+  {
+  'id': 'bi-012',
+  'titulo': 'A Hermenêutica de Calvino',
+  'categoria': 'Bibliologia',
+  'subcategoria': 'Interpretação',
+  'conteudo': [
+    'Calvino desenvolveu princípios hermenêuticos que influenciaram toda a tradição reformada.',
+    'A regra principal: a Escritura interpreta a si mesma.',
+    'O contexto imediato e remoto são essenciais.',
+    'O sentido literal é o primeiro e mais importante.',
+    'O Espírito Santo ilumina a mente para compreender.'
+  ],
+  'versicosChave': [
+    '2 Timóteo 3:16',
+    '2 Pedro 1:20-21'
+  ],
+  'tags': [
+    'calvino',
+    'hermenêutica',
+    'interpretação'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.7'
+  ]
+},
+  {
+  'id': 'bi-013',
+  'titulo': 'O Testemunho Interno do Espírito',
+  'categoria': 'Bibliologia',
+  'subcategoria': 'Autoridade',
+  'conteudo': [
+    'O Espírito Santo testifica em nosso espírito que a Bíblia é Palavra de Deus.',
+    'A Escritura não precisa de prova externa — ela carrega sua própria autoridade.',
+    'A fé na Escritura é racional e espiritual.',
+    'O testemunho do Espírito confirma a verdade da Bíblia.',
+    'A autoridade da Bíblia é Autoctônica — vem de dentro dela.'
+  ],
+  'versicosChave': [
+    '1 Coríntios 2:10-14',
+    '1 Tessalonicenses 2:13'
+  ],
+  'tags': [
+    'testemunho',
+    'espírito',
+    'autoridade',
+    'fé'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.7',
+    'Warfield, Studies in Theology'
+  ]
+},
+  {
+  'id': 'bi-014',
+  'titulo': 'A Bíblia e a Ciência',
+  'categoria': 'Bibliologia',
+  'subcategoria': 'Contemporâneo',
+  'conteudo': [
+    'A Bíblia não é um livro de ciência — é revelação de Deus.',
+    'Quando a Bíblia fala de temas científicos, é precisa no que afirma.',
+    'A hermenêutica bíblica deve respeitar o gênero literário.',
+    'A ciência e a fé não são inimigas — ambas buscam a verdade.',
+    'O criacionismo, design inteligente e evolução teísta são posições cristãs.'
+  ],
+  'versicosChave': [
+    'Gênesis 1:1',
+    'Romanos 1:20',
+    'Salmo 19:1'
+  ],
+  'tags': [
+    'ciência',
+    'criação',
+    'hermenêutica',
+    'gênero'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.14',
+    'Mooradian, Theology and Science'
+  ]
+},
+  {
+  'id': 'cr-023',
+  'titulo': 'A Cidade de Deus — Agostinho',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Augustinismo',
+  'conteudo': [
+    'A Cidade de Deus é a obra-prima de Agostinho — história da salvação.',
+    'A Cidade de Deus se opõe à Cidade dos Homens.',
+    'A Cidade de Deus é formada pelos amantes de Deus; a dos Homens, pelos amantes de si mesmos.',
+    'A história é linear — criação, queda, redenção, consumação.',
+    'Agostinho influenciou profundamente a teologia ocidental.'
+  ],
+  'versicosChave': [
+    'Hebreus 11:10',
+    '13:14',
+    'Apocalipse 21:1-2'
+  ],
+  'tags': [
+    'agostinho',
+    'cidade de deus',
+    'história',
+    'salvação'
+  ],
+  'fontes': [
+    'Agostinho, A Cidade de Deus'
+  ]
+},
+  {
+  'id': 'cr-024',
+  'titulo': 'Cristo e a Lei',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Ética',
+  'conteudo': [
+    'Cristo não aboliu a Lei, mas a cumpriu perfeitamente.',
+    'Mateus 5:17-19 — \'não vim para abrogar a Lei, mas para cumprir\'.',
+    'A Lei moral (10 Mandamentos) continua válida como norma de vida.',
+    'A Lei civil e cerimonial foram cumpridas em Cristo.',
+    'A Lei é espelho que nos mostra nosso pecado e nos conduz a Cristo.'
+  ],
+  'versicosChave': [
+    'Mateus 5:17-19',
+    'Romanos 3:31',
+    'Romanos 7:7-12',
+    'Gálatas 3:24-25'
+  ],
+  'tags': [
+    'lei',
+    'mandamentos',
+    'cumprimento',
+    'ética'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.9',
+    'Calvin, Institutes II.9'
+  ]
+},
+  {
+  'id': 'cr-025',
+  'titulo': 'O Reino de Deus — Já e Ainda Não',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Escatologia',
+  'conteudo': [
+    'O Reino de Deus é central no ensino de Jesus.',
+    'O Reino já começou com a vinda de Cristo — \'o Reino de Deus está perto\'.',
+    'O Reino ainda não se consumou — esperamos a volta de Cristo.',
+    'A tensão \'já e ainda não\' define a era da igreja.',
+    'O Reino de Deus cresce como semente de mostarda — pequeno, mas se expande.'
+  ],
+  'versicosChave': [
+    'Marcos 1:15',
+    'Mateus 13:31-33',
+    'Lucas 17:20-21'
+  ],
+  'tags': [
+    'reino',
+    'já e ainda não',
+    'escatologia',
+    'igreja'
+  ],
+  'fontes': [
+    'Ladd, A Theology of the New Testament',
+    'Ridderbos, The Coming of the Kingdom'
+  ]
+},
+  {
+  'id': 'cr-026',
+  'titulo': 'A Morte de Cristo — Expiação Universal vs. Particular',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Expiação',
+  'conteudo': [
+    'A expiação universal sustenta que Cristo morreu por todos.',
+    'A expiação particular sustenta que Cristo morreu somente pelos eleitos.',
+    'Calvino defendia a expiação particular — \'Cristo morreu pelo Seu povo\'.',
+    'Os arminianos defendem a expiação universal — \'mundo\' significa todos.',
+    'Ambas as posições são aceitas dentro do protestantismo.'
+  ],
+  'versicosChave': [
+    'João 3:16',
+    '1 Timóteo 2:6',
+    'Efésios 5:25',
+    'Romanos 5:8'
+  ],
+  'tags': [
+    'expiação',
+    'universal',
+    'particular',
+    'debate'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.16',
+    'Dowey, The Knowledge of God and the Doctrine of Atonement'
+  ]
+},
+  {
+  'id': 'pn-017',
+  'titulo': 'A Inspiração Verbal e Plenária',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Bibliologia',
+  'conteudo': [
+    'A inspiração verbal significa que Deus inspirou cada palavra da Bíblia.',
+    'A inspiração plenária significa que toda a Bíblia é inspirada — não apenas partes.',
+    'A inspiração não é ditado — Deus usou a personalidade e estilo de cada autor.',
+    'A inerrância se baseia na inspiração plenária.',
+    'A Bíblia é a palavra de Deus em palavras humanas.'
+  ],
+  'versicosChave': [
+    '2 Timóteo 3:16',
+    '2 Pedro 1:21',
+    '1 Coríntios 2:13'
+  ],
+  'tags': [
+    'inspiração',
+    'verbal',
+    'plenária',
+    'inerrância'
+  ],
+  'fontes': [
+    'Warfield, The Inspiration and Authority of Scripture'
+  ]
+},
+  {
+  'id': 'so-042',
+  'titulo': 'A Graça Irresistível',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Doutrina',
+  'conteudo': [
+    'A graça irresistível é a doutrina de que Deus efetivamente chama os eleitos.',
+    'A graça não é coativa — ela muda o coração para querer a Deus.',
+    'João 6:44 — \'ninguém pode vir a Mim se o Pai que Me enviou não o atrair\'.',
+    'A graça irresistível não anula a liberdade — o crente escolhe livremente em Cristo.',
+    'Todos os eleitos responderão positivamente ao chamado de Deus.'
+  ],
+  'versicosChave': [
+    'João 6:44',
+    'João 6:37',
+    'Romanos 8:30'
+  ],
+  'tags': [
+    'graça',
+    'irresistível',
+    'chamado',
+    'eleição'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.24',
+    'Calvin, Institutes III.24'
+  ]
+},
+  {
+  'id': 'so-043',
+  'titulo': 'A Expiação Ilimitada vs. Limitada',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Debate',
+  'conteudo': [
+    'A expiação ilimitada: Cristo morreu por todos os seres humanos.',
+    'A expiação limitada: Cristo morreu somente pelos eleitos.',
+    'O calvinismo defende a expiação limitada (definite atonement).',
+    'O arminianismo defende a expiação ilimitada.',
+    'A diferença está na extensão, não no valor da expiação.'
+  ],
+  'versicosChave': [
+    'João 10:11',
+    '1 João 2:2',
+    'Efésios 5:25',
+    'Romanos 5:8'
+  ],
+  'tags': [
+    'expiação',
+    'ilimitada',
+    'limitada',
+    'debate'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.16',
+    'Owen, The Death of Death in the Death of Christ'
+  ]
+},
+  {
+  'id': 'so-044',
+  'titulo': 'A Justificação pela Fé Somente',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Reforma',
+  'conteudo': [
+    'Sola fide é o princípio de que a fé é o único meio de justificação.',
+    'A fé não é obra — é o instrumento pela qual recebemos a graça.',
+    'A fé verdadeira produz boas obras — mas as obras não salvam.',
+    'Lutero chamou a justificação pela fé de \'artigo da igreja que se sustenta ou cai\'.',
+    'A justificação é forensic — Deus declara justo, não nos torna justos.'
+  ],
+  'versicosChave': [
+    'Romanos 3:28',
+    'Efésios 2:8-9',
+    'Gálatas 2:16',
+    'Romanos 5:1'
+  ],
+  'tags': [
+    'sola fide',
+    'fé',
+    'justificação',
+    'reforma'
+  ],
+  'fontes': [
+    'Lutero, Comentário a Gálatas',
+    'Calvino, Institutas III.11'
+  ]
+},
+  {
+  'id': 'hm-010',
+  'titulo': 'A Interpretação de Profecias',
+  'categoria': 'Hermenêutica',
+  'subcategoria': 'Métodos',
+  'conteudo': [
+    'As profecias bíblicas são frequentemente cumpridas em múltiplas camadas.',
+    'O cumprimento tipológico é mais comum que o literal.',
+    'As profecias escatológicas são as mais debatidas.',
+    'A regra de ouro: interprete pela Escritura mais clara.',
+    'Não faça profecia dizer mais do que o texto sustenta.'
+  ],
+  'versicosChave': [
+    '2 Pedro 1:20-21',
+    '1 Pedro 1:10-12'
+  ],
+  'tags': [
+    'profecia',
+    'interpretação',
+    'cumprimento',
+    'escatologia'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.7',
+    'Baldwin, Daniel'
+  ]
+},
+  {
+  'id': 'et-030',
+  'titulo': 'A Ética da Guerra e da Paz',
+  'categoria': 'Ética Cristã',
+  'subcategoria': 'Social',
+  'conteudo': [
+    'A posição cristã sobre a guerra é debatida: pacifismo, guerra justa, realismo cristão.',
+    'O pacifismo sustenta que os cristãos não devem participar de guerras.',
+    'A guerra justa (Agostinho, Tomás de Aquino) estabelece critérios para guerra legítima.',
+    'O realismo cristão (Niebuhr) aceita a guerra como mal necessário.',
+    'A Bíblia ensina amor ao inimigo — mas também proteção dos inocentes.'
+  ],
+  'versicosChave': [
+    'Mateus 5:38-48',
+    'Romanos 13:1-7',
+    '2 Coríntios 10:3-5'
+  ],
+  'tags': [
+    'guerra',
+    'paz',
+    'violência',
+    'justiça'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.8',
+    'Calvin, Institutes II.8'
+  ]
+},
+  {
+  'id': 'et-031',
+  'titulo': 'A Ética daMENTE',
+  'categoria': 'Ética Cristã',
+  'subcategoria': 'Mentalidade',
+  'conteudo': [
+    'A Bíblia tem muito a dizer sobre como pensar.',
+    'Filipenses 4:8 — \'pensai nessas coisas: verdade, honestidade, justiça, pureza\'.',
+    'A renovação da mente é mandamento (Romanos 12:2).',
+    'O pensamento cristão deve ser capturado por Cristo.',
+    'A meditação bíblica é pensamento guiado pela Palavra.'
+  ],
+  'versicosChave': [
+    'Filipenses 4:8',
+    'Romanos 12:2',
+    'Josué 1:8',
+    'Salmo 1:1-3'
+  ],
+  'tags': [
+    'mente',
+    'pensamento',
+    'renovação',
+    'meditação'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.7',
+    'Calvin, Institutes III.7'
+  ]
+},
+  {
+  'id': 'mi-021',
+  'titulo': 'A Missão no Antigo Testamento',
+  'categoria': 'Missiologia',
+  'subcategoria': 'Fundamento',
+  'conteudo': [
+    'A missão não começou no NT — Deus sempre teve um povo para Si.',
+    'Israel era chamado para ser \'luz das nações\' (Isaías 49:6).',
+    'Abraão foi abençoado para ser bênção a todos os povos.',
+    'Os salmos celebram a universalidade do reinado de Deus.',
+    'O AT prepara o terreno para a missão universal do NT.'
+  ],
+  'versicosChave': [
+    'Gênesis 12:3',
+    'Isaías 49:6',
+    'Salmo 67',
+    'Salmo 96:1-3'
+  ],
+  'tags': [
+    'missão',
+    'AT',
+    'israel',
+    'luz'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.21',
+    'Wright, The Mission of God'
+  ]
+},
+  {
+  'id': 'an-012',
+  'titulo': 'Os Anjos e a Oração',
+  'categoria': 'Angelologia',
+  'subcategoria': 'Ministério',
+  'conteudo': [
+    'Os anjos podem estar envolvidos na transmissão de orações.',
+    'Tobias 12:12 (Apocrifo) mostra um anjo apresentando orações a Deus.',
+    'A Bíblia canônica é mais cautelosa sobre esse assunto.',
+    'O principal intercessor é Cristo, não os anjos.',
+    'Os anjos são mensageiros, não mediadores.'
+  ],
+  'versicosChave': [
+    'Tobias 12:12',
+    '1 Timóteo 2:5',
+    'Hebreus 7:25'
+  ],
+  'tags': [
+    'anjos',
+    'oração',
+    'intercessão',
+    'mediador'
+  ],
+  'fontes': [
+    'Calvino, Institutas I.13',
+    'Calvin, Institutes I.13'
+  ]
+},
+  {
+  'id': 'so-045',
+  'titulo': 'A Obediência Cristã — Fruto da Graça',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Vida Cristã',
+  'conteudo': [
+    'A obediência é fruto da salvação, não causa dela.',
+    'Efésios 2:8-10 — somos salvos por graça, mas criados para boas obras.',
+    'A obediência cristã é motivada por amor, não por medo.',
+    'A desobediência não anula a salvação, mas a prejudica.',
+    'A obediência é.progressiva — crescemos em santidade ao longo da vida.'
+  ],
+  'versicosChave': [
+    'Efésios 2:8-10',
+    '1 João 5:3',
+    'João 14:15',
+    'Romanos 6:1-2'
+  ],
+  'tags': [
+    'obediência',
+    'graça',
+    'santificação',
+    'vida cristã'
+  ],
+  'fontes': [
+    'Calvino, Institutas III.10',
+    'Packer, The Ten Commandments'
+  ]
+},
+  {
+  'id': 'lp-014',
+  'titulo': 'Eclesiastes — O Sentido da Vida',
+  'categoria': 'Livros Poéticos',
+  'subcategoria': 'Eclesiastes',
+  'conteudo': [
+    'Eclesiastes é o livro mais existencial da Bíblia — \'vaidade de vaidades\'.',
+    'O Autor (Salomão?) testa tudo: sabedoria, prazer, trabalho, riqueza.',
+    'Tudo é \'vaidade\' — vapor, efêmero, sem sentido final.',
+    'A conclusão: \'teme a Deus e guarda os Seus mandamentos\'.',
+    'O evangelho responde o que Eclesiastes pergunta: o sentido está em Deus.'
+  ],
+  'versicosChave': [
+    'Eclesiastes 1:2',
+    'Eclesiastes 12:13-14',
+    'Mateus 6:33'
+  ],
+  'tags': [
+    'eclesiastes',
+    'sentido',
+    'vaidade',
+    'temor'
+  ],
+  'fontes': [
+    'Calvino, Comentário a Eclesiastes',
+    'Wright, The Message of Ecclesiastes'
+  ]
+},
+  {
+  'id': 'cc-066',
+  'titulo': 'Cristianismo e Religiões Não-Cristãs',
+  'categoria': 'Questões Contemporâneas',
+  'subcategoria': 'Religião',
+  'conteudo': [
+    'Como o cristianismo se relaciona com outras religiões?',
+    'O pluralismo religioso sustenta que todas as religiões conduzem a Deus.',
+    'O exclusivismo sustenta que Cristo é o único caminho.',
+    'O inclusivismo sustenta que há salvação fora da Igreja visível, mas em Cristo.',
+    'A Bíblia é clara: \'nenhum outro nome debaixo do céu\' (Atos 4:12).'
+  ],
+  'versicosChave': [
+    'Atos 4:12',
+    'João 14:6',
+    '1 Timóteo 2:5'
+  ],
+  'tags': [
+    'religiões',
+    'pluralismo',
+    'exclusivismo',
+    'salvação'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.6',
+    'Calvin, Institutes II.6'
+  ]
+},
+  {
+  'id': 'cc-067',
+  'titulo': 'Cristianismo e Feminismo',
+  'categoria': 'Questões Contemporâneas',
+  'subcategoria': 'Gênero',
+  'conteudo': [
+    'A relação entre cristianismo e feminismo é debatida.',
+    'O feminismo cristão sustenta que a igualdade de gênero é bíblica.',
+    'O complementarismo sustenta que homens e mulheres são iguais em dignidade, diferentes em função.',
+    'A Bíblia ensina: \'não há homem nem mulher, todos são um em Cristo\' (Gálatas 3:28).',
+    'O debate gira em torno de liderança na igreja e no lar.'
+  ],
+  'versicosChave': [
+    'Gálatas 3:28',
+    '1 Timóteos 2:11-15',
+    'Efésios 5:22-33'
+  ],
+  'tags': [
+    'feminismo',
+    'gênero',
+    'igualdade',
+    'complementarismo'
+  ],
+  'fontes': [
+    'Calvino, Institutas II.8',
+    'Grudem, Evangelical Feminism'
+  ]
+},
+  {
+  'id': 'so-046',
+  'titulo': 'O Chamado Eterno',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Doutrina',
+  'conteudo': [
+    'O chamado eterno é a ordem lógica da salvação na mente de Deus.',
+    'Romanos 8:29-30 — \'aos que de antemão conhecceu, também predestinou... e aos que predestinou, esses também chamou\'.',
+    'O chamado eterno é anterior à criação do mundo.',
+    'Ele inclui: eleição, predestinação, chamado, justificação, glorificação.',
+    'Tudo é obra da graça soberana de Deus.'
+  ],
+  'versicosChave': [
+    'Romanos 8:29-30',
+    'Efésios 1:4-5',
+    '2 Timóteo 1:9'
+  ],
+  'tags': [
+    'chamado',
+    'eterno',
+    'predestinação',
+    'graça'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'so-047',
+  'titulo': 'A Glorificação dos Santos',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Escatologia',
+  'conteudo': [
+    'A glorificação é a consumação final da salvação.',
+    'Romanos 8:30 — \'aos que justificou, esses também glorificou\'.',
+    'A glorificação inclui a ressurreição do corpo e a Transformação total.',
+    'Seremos como Cristo porque O viremos como Ele é.',
+    'A glorificação é certeza — Deus promete e cumpre.'
+  ],
+  'versicosChave': [
+    'Romanos 8:30',
+    '1 João 3:2',
+    'Filipenses 3:20-21'
+  ],
+  'tags': [
+    'glorificação',
+    'ressurreição',
+    'perfeição'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'so-048',
+  'titulo': 'A Maldição do Pecado',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Hamartiologia',
+  'conteudo': [
+    'A maldição do pecado é a condenação que recai sobre todo ser humano.',
+    'Romanos 3:23 — \'todos pecaram e estão destituídos da glória de Deus\'.',
+    'Romanos 6:23 — \'o salário do pecado é a morte\'.',
+    'A maldição é universal — atinge a todos sem exceção.',
+    'Somente Cristo pode redimir da maldição (Gálatas 3:13).'
+  ],
+  'versicosChave': [
+    'Romanos 3:23',
+    'Romanos 6:23',
+    'Gálatas 3:13'
+  ],
+  'tags': [
+    'maldição',
+    'pecado',
+    'condenação'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'so-049',
+  'titulo': 'A Redenção em Cristo',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Benefícios',
+  'conteudo': [
+    'A redenção é o ato de Deus de nos comprar da escravidão do pecado.',
+    'Efésios 1:7 — \'nEle temos a redenção pelo Seu sangue\'.',
+    'O preço foi o sangue de Cristo — valor infinito.',
+    'A redenção inclui: justificação, regeneração, santificação.',
+    'A redenção é completa — nada pode ser adicionado à obra consumada.'
+  ],
+  'versicosChave': [
+    'Efésios 1:7',
+    'Colossenses 1:14',
+    '1 Pedro 1:18-19'
+  ],
+  'tags': [
+    'redenção',
+    'sangue',
+    'compra'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'so-050',
+  'titulo': 'A Maldição Removida pela Cruz',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Expiação',
+  'conteudo': [
+    'Cristo removeu a maldição ao se tornar maldição por nós.',
+    'Gálatas 3:13 — \'Cristo nos resgatou da maldição da lei, fazendo-se maldição por nós\'.',
+    'A cruz é o meio pelo qual a maldição foi suportada.',
+    'A satisfação vicária — Cristo pagou o que nós devíamos.',
+    'A maldição foi removida de uma vez para sempre.'
+  ],
+  'versicosChave': [
+    'Gálatas 3:13',
+    '2 Coríntios 5:21',
+    '1 Pedro 2:24'
+  ],
+  'tags': [
+    'cruz',
+    'maldição',
+    'satisfação'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'so-051',
+  'titulo': 'O Pecado Contra o Espírito Santo',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Pecado',
+  'conteudo': [
+    'O pecado contra o Espírito Santo é atribuir a obra do Espírito a Satanás.',
+    'Mateus 12:31-32 — \'todo pecado e blasfêmia serão perdoados... mas a blasfêmia contra o Espírito não será perdoada\'.',
+    'Este pecado é rejeição deliberada e consciente da verdade.',
+    'É a rebelião final e irrecuperável contra Deus.',
+    'A maioria dos teólogos diz que um cristão verdadeiro não pode cometer este pecado.'
+  ],
+  'versicosChave': [
+    'Mateus 12:31-32',
+    'Hebreus 6:4-6',
+    '1 João 5:16'
+  ],
+  'tags': [
+    'blasfêmia',
+    'espírito santo',
+    'pecado'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'so-052',
+  'titulo': 'A Vida Eterna — Presente e Futura',
+  'categoria': 'Soteriologia',
+  'subcategoria': 'Escatologia',
+  'conteudo': [
+    'A vida eterna é tanto presente quanto futura.',
+    'João 5:24 — \'quem ouve a Minha palavra... tem a vida eterna e não entrará em juízo\'.',
+    'A vida eterna presente é relação com Deus (João 17:3).',
+    'A vida eterna futura é gozo eterno na presença de Deus.',
+    'A vida eterna é dom de Deus — não é conquistada.'
+  ],
+  'versicosChave': [
+    'João 5:24',
+    'João 17:3',
+    'Romanos 6:23'
+  ],
+  'tags': [
+    'vida eterna',
+    'presente',
+    'futuro'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'cr-027',
+  'titulo': 'Cristo — O Novo Adão',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Tipologia',
+  'conteudo': [
+    'Cristo é o novo Adão que obedece onde Adão desobedeceu.',
+    'Romanos 5:12-21 — contraste entre Adão e Cristo.',
+    'Onde Adão trouxe pecado e morte, Cristo trouxe justiça e vida.',
+    'A obediência de Cristo é perfeita e completa.',
+    'A justificação é por obediência de um só — Cristo.'
+  ],
+  'versicosChave': [
+    'Romanos 5:12-21',
+    '1 Coríntios 15:22-45'
+  ],
+  'tags': [
+    'adão',
+    'novoadão',
+    'obediência'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'cr-028',
+  'titulo': 'Cristo — O Bom Pastor',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Metáfora',
+  'conteudo': [
+    'Jesus se declara o Bom Pastor que dá Sua vida pelas ovelhas.',
+    'João 10:11 — \'Eu sou o Bom Pastor; o Bom Pastor dá a Sua vida pelas ovelhas\'.',
+    'O pastor conhece suas ovelhas e elas conhecem sua voz.',
+    'Cristo tem outras ovelhas que ainda não conhece.',
+    'A segurança das ovelhas está na mão do Pai e na mão do Filho.'
+  ],
+  'versicosChave': [
+    'João 10:11-18',
+    '1 Pedro 2:25',
+    '1 Pedro 5:4'
+  ],
+  'tags': [
+    'pastor',
+    'ovelhas',
+    'segurança'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'cr-029',
+  'titulo': 'Cristo — O Cordeiro de Deus',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Metáfora',
+  'conteudo': [
+    'Jesus é o Cordeiro de Deus que tira o pecado do mundo.',
+    'João 1:29 — \'eis o Cordeiro de Deus, que tira o pecado do mundo\'.',
+    'A metáfora do cordeiro aponta para o sacrifício pascal.',
+    'Cristo é o Cordeiro imaculado — sem pecado.',
+    'O cordeiro foi morto desde a fundação do mundo (Apocalipse 13:8).'
+  ],
+  'versicosChave': [
+    'João 1:29',
+    '1 Coríntios 5:7',
+    'Apocalipse 5:6-12'
+  ],
+  'tags': [
+    'cordeiro',
+    'sacrifício',
+    'pascal'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'cr-030',
+  'titulo': 'Cristo — A Rocha',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Metáfora',
+  'conteudo': [
+    'Cristo é a Rocha que sustenta o crente.',
+    '1 Coríntios 10:4 — \'a Rocha era Cristo\'.',
+    'A rocha no deserto供水以色列 — Cristo nos dá vida.',
+    'Cristo é a Rocha sobre a qual a igreja é edificada.',
+    'Os inimigos tropeçam na Rocha — ela é pedra de tropeço e de sustentação.'
+  ],
+  'versicosChave': [
+    '1 Coríntios 10:4',
+    'Mateus 16:18',
+    '1 Pedro 2:4-8'
+  ],
+  'tags': [
+    'rocha',
+    'sustento',
+    'fundamento'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'cr-031',
+  'titulo': 'Cristo — O Caminho, a Verdade e a Vida',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Metáfora',
+  'conteudo': [
+    'Jesus é o único caminho para Deus.',
+    'João 14:6 — \'Eu sou o caminho, a verdade e a vida; ninguém vem ao Pai senão por Mim\'.',
+    'Não há múltiplos caminhos — há um só.',
+    'Cristo é a verdade — não apenas ensina verdade, é a verdade.',
+    'Cristo é a vida — sem Ele, não há vida eterna.'
+  ],
+  'versicosChave': [
+    'João 14:6',
+    'Atos 4:12'
+  ],
+  'tags': [
+    'caminho',
+    'verdade',
+    'vida'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'cr-032',
+  'titulo': 'Cristo — O Mediador da Nova Aliança',
+  'categoria': 'Cristologia',
+  'subcategoria': 'Aliança',
+  'conteudo': [
+    'Cristo é o mediador da nova aliança entre Deus e os homens.',
+    '1 Timóteo 2:5 — \'um só é o Mediador entre Deus e os homens, o homem Cristo Jesus\'.',
+    'A nova aliança é melhor que a antiga — escrita no coração.',
+    'Cristo intercede por nós continuamente.',
+    'A mediação de Cristo é eficaz e eterna.'
+  ],
+  'versicosChave': [
+    '1 Timóteo 2:5',
+    'Hebreus 8:6',
+    'Hebreus 9:15'
+  ],
+  'tags': [
+    'mediador',
+    'aliança',
+    'intercessão'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'pn-018',
+  'titulo': 'O Espírito Santo e a Unidade da Fé',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Eclesiologia',
+  'conteudo': [
+    'O Espírito Santo promove a unidade na verdade.',
+    'Efésios 4:3-6 — \'um só Espírito... uma só fé\'.',
+    'A unidade não é apenas organizational, mas espiritual.',
+    'O Espírito nos guia em toda a verdade.',
+    'A unidade é testemunho ao mundo da realidade de Cristo.'
+  ],
+  'versicosChave': [
+    'Efésios 4:3-6',
+    'João 16:13'
+  ],
+  'tags': [
+    'unidade',
+    'fé',
+    'verdade'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'pn-019',
+  'titulo': 'O Espírito Santo e a Ressurreição',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Poder',
+  'conteudo': [
+    'O Espírito Santo é o poder da ressurreição.',
+    'Romanos 8:11 — \'o Espírito... que ressuscitou a Jesus dentre os mortos\'.',
+    'O mesmo poder que ressuscitou Cristo habita em nós.',
+    'A ressurreição é obra da Trindade.',
+    'O Espírito nos dá vida nova agora e na ressurreição.'
+  ],
+  'versicosChave': [
+    'Romanos 8:11',
+    'Efésios 1:19-20'
+  ],
+  'tags': [
+    'ressurreição',
+    'poder',
+    'espírito'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'pn-020',
+  'titulo': 'O Espírito Santo na Consciência',
+  'categoria': 'Pneumatologia',
+  'subcategoria': 'Obras',
+  'conteudo': [
+    'O Espírito Santo atua na consciência humana.',
+    'João 16:8 — \'convencerá o mundo de pecado, de justiça e de juízo\'.',
+    'O Espírito convence do pecado — mostra nossa necessidade de salvação.',
+    'O Espírito convence da justiça — mostra que Cristo é a nossa justiça.',
+    'O Espírito convence do juízo — mostra que Satanás foi julgado.'
+  ],
+  'versicosChave': [
+    'João 16:8-11'
+  ],
+  'tags': [
+    'consciência',
+    'convicção',
+    'juízo'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'hm-011',
+  'titulo': 'A Gramática Histórica',
+  'categoria': 'Hermenêutica',
+  'subcategoria': 'Método',
+  'conteudo': [
+    'A gramática histórica estuda o significado das palavras no contexto original.',
+    'O léxico bíblico é essencial para a interpretação.',
+    'As palavras têm significado que muda ao longo do tempo.',
+    'O contexto imediato e o uso bíblico determinam o significado.',
+    'A gramática histórica é o fundamento de toda hermenêutica.'
+  ],
+  'versicosChave': [
+    '2 Timóteo 2:15',
+    '1 Coríntios 2:13'
+  ],
+  'tags': [
+    'gramática',
+    'histórica',
+    'léxico'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'hm-012',
+  'titulo': 'A Interpretação de Salmos',
+  'categoria': 'Hermenêutica',
+  'subcategoria': 'Método',
+  'conteudo': [
+    'Os salmos requerem atenção ao gênero literário.',
+    'Os salmos de louvo são diferentes dos de lamento.',
+    'Alguns salmos são messiânicos — apontam para Cristo.',
+    'O salmo deve ser interpretado em seu contexto histórico.',
+    'Os salmos são modelo de oração para a Igreja.'
+  ],
+  'versicosChave': [
+    'Salmo 23:1-6',
+    'Salmo 51:1-17'
+  ],
+  'tags': [
+    'salmos',
+    'oração',
+    'louvo'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'et-032',
+  'titulo': 'A Ética da Comunicação',
+  'categoria': 'Ética Cristã',
+  'subcategoria': 'Prática',
+  'conteudo': [
+    'A Bíblia tem muito a dizer sobre como nos comunicamos.',
+    'Efésios 4:29 — \'nenhuma palavra corrupta saia da boca\'.',
+    'A língua é pequena, mas causa grandes danos (Tiago 3:1-12).',
+    'A comunicação cristã deve ser: verdadeira, amorosa, necessária, oportuna.',
+    'A mentira é pecado — a verdade é virtude.'
+  ],
+  'versicosChave': [
+    'Efésios 4:29',
+    'Tiago 3:1-12',
+    'Colossenses 4:6'
+  ],
+  'tags': [
+    'comunicação',
+    'língua',
+    'verdade'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'et-033',
+  'titulo': 'A Ética da Família',
+  'categoria': 'Ética Cristã',
+  'subcategoria': 'Social',
+  'conteudo': [
+    'A família é instituição divina — Deus a criou antes da Igreja.',
+    'Efésios 5:22-33 — maridos e mulheres se amam como Cristo e a igreja.',
+    'Provérbios 22:6 — \'ensina ao menino o caminho em que deve andar\'.',
+    'A família é a base da sociedade — quando a família se desfaz, a sociedade desmorona.',
+    'A família cristã deve ser testemunho do evangelho.'
+  ],
+  'versicosChave': [
+    'Efésios 5:22-33',
+    'Provérbios 22:6',
+    'Deuteronômio 6:4-9'
+  ],
+  'tags': [
+    'família',
+    'casamento',
+    'filhos'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'et-034',
+  'titulo': 'A Ética do Meio Ambiente',
+  'categoria': 'Ética Cristã',
+  'subcategoria': 'Criação',
+  'conteudo': [
+    'A Bíblia ensina responsabilidade sobre a criação.',
+    'Gênesis 2:15 — \'cultivar e guardar\' o jardim.',
+    'A criação clama por redenção (Romanos 8:19-22).',
+    'O cristão deve ser mordomo responsável da criação.',
+    'A exploração da criação é contrária ao mandamento divino.'
+  ],
+  'versicosChave': [
+    'Gênesis 2:15',
+    'Romanos 8:19-22',
+    'Salmo 24:1'
+  ],
+  'tags': [
+    'meio ambiente',
+    'criação',
+    'stewardship'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'mi-022',
+  'titulo': 'A Missão e a Cultura',
+  'categoria': 'Missiologia',
+  'subcategoria': 'Contextualização',
+  'conteudo': [
+    'O evangelho deve ser contextualizado sem ser corrompido.',
+    'Paulo se adaptou culturalmente para ganhar mais pessoas.',
+    'A contextualização não é sincretismo.',
+    'O perigo é contextualizar tanto que o evangelho se perde.',
+    'A missão exige: humildade, estudo, oração, coragem.'
+  ],
+  'versicosChave': [
+    '1 Coríntios 9:19-23',
+    'Atos 17:22-34'
+  ],
+  'tags': [
+    'cultura',
+    'contextualização',
+    'missão'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'cc-068',
+  'titulo': 'Cristianismo e Tecnologia',
+  'categoria': 'Questões Contemporâneas',
+  'subcategoria': 'Cultura',
+  'conteudo': [
+    'A tecnologia é ferramenta — pode ser usada para bem ou para mal.',
+    'A IA e a automação levantam questões éticas.',
+    'A vigilância digital pode ser usada para controle social.',
+    'O cristão deve ser sábio no uso da tecnologia.',
+    'A tecnologia não substitui a comunhão humana.'
+  ],
+  'versicosChave': [
+    'Provérbios 25:2',
+    'Efésios 5:15-16'
+  ],
+  'tags': [
+    'tecnologia',
+    'IA',
+    'cultura'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'cc-069',
+  'titulo': 'Cristianismo e a Crise Ambiental',
+  'categoria': 'Questões Contemporâneas',
+  'subcategoria': 'Criação',
+  'conteudo': [
+    'A crise ambiental é real — o cristão deve responder.',
+    'O consumismo é idolatria — \'não acumuleis tesouros na terra\'.',
+    'A criação é boa — Deus a criou e a sustenta.',
+    'A responsabilidade sobre a criação é mandamento.',
+    'A esperança cristã inclui a renovação de toda a criação.'
+  ],
+  'versicosChave': [
+    'Mateus 6:19-21',
+    'Romanos 8:19-22'
+  ],
+  'tags': [
+    'ambiente',
+    'crise',
+    'criação'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'bi-015',
+  'titulo': 'A Escritura como Norma Suprema',
+  'categoria': 'Bibliologia',
+  'subcategoria': 'Autoridade',
+  'conteudo': [
+    'A Bíblia é a autoridade suprema em todas as questões de fé e prática.',
+    'Não há outra revelação além da Escritura.',
+    'A tradição tem valor, mas está sujeita à Bíblia.',
+    'O magistério é útil, mas não infalível.',
+    'A autoridade da Bíblia é auto-testemunhada.'
+  ],
+  'versicosChave': [
+    '2 Timóteo 3:16-17',
+    'Isaías 40:8'
+  ],
+  'tags': [
+    'autoridade',
+    'norma',
+    'suprema'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
+  {
+  'id': 'bi-016',
+  'titulo': 'A Perspicuidade da Escritura',
+  'categoria': 'Bibliologia',
+  'subcategoria': 'Interpretação',
+  'conteudo': [
+    'A Bíblia é suficientemente clara para que qualquer pessoa possa entender a mensagem central.',
+    'A claridade não significa facilidade — a Bíblia tem passagens difíceis.',
+    'O Espírito Santo ilumina a mente para compreender.',
+    'A oração e o estudo são necessários.',
+    'A perspicuidade é um princípio reformado.'
+  ],
+  'versicosChave': [
+    'Salmo 19:7-8',
+    'Salmo 119:130'
+  ],
+  'tags': [
+    'claridade',
+    'perspicuidade',
+    'interpretação'
+  ],
+  'fontes': [
+    'Calvino, Institutas',
+    'Grudem, Systematic Theology'
+  ]
+},
 ];
 

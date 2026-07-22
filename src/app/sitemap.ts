@@ -42,6 +42,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/estatisticas`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE_URL}/comunidade`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE_URL}/estudo`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE_URL}/status`, lastModified: new Date(), changeFrequency: 'always', priority: 0.3 },
+    { url: `${BASE_URL}/favoritos`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
+    { url: `${BASE_URL}/notas`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
+    { url: `${BASE_URL}/colecoes`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
+    { url: `${BASE_URL}/atlas`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE_URL}/estudo-colaborativo`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
   ];
 
   const bookPages: MetadataRoute.Sitemap = TODOS_LIVROS.map((livro) => ({

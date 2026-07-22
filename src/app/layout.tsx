@@ -118,6 +118,31 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Sola Scriptura BR',
+  url: 'https://solascripturabr.com.br',
+  description: 'Plataforma completa de estudo bíblico acadêmico com IA. Bíblia em 10 traduções, Grego e Hebraico com léxico Strong, Exegese automática, Teologia Sistemática e ferramentas avançadas.',
+  applicationCategory: 'EducationalApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },
+  inLanguage: 'pt-BR',
+  featureList: [
+    'Bíblia em 10 traduções',
+    'Léxico Grego e Hebraico Strong',
+    'Exegese automática com IA',
+    'Teologia Sistemática',
+    'Concordância bíblica',
+    'Comentários de teólogos',
+    'Referências cruzadas',
+    'Átlas bíblico interativo',
+    'Harmonia sinótica',
+    'Planos de leitura personalizados',
+  ],
+  author: { '@type': 'Organization', name: 'Sola Scriptura BR', url: 'https://solascripturabr.com.br' },
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning className={`${cormorant.variable} ${inter.variable} ${spectral.variable}`}>
@@ -129,13 +154,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://api.midvash.com" />
         <link rel="dns-prefetch" href="https://api.solascripturabr.com.br" />
         <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
                   var theme = localStorage.getItem('ssb_theme');
-                  /* Qualquer tema nao-claro precisa de dark para ativar dark:* do Tailwind */
-                  if (!theme || theme === 'escuro' || theme === 'noturno' || theme === 'sepia') {
+                  if (!theme) {
+                    /* Sem tema salvo — respeitar preferencia do sistema */
+                    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    theme = prefersDark ? 'escuro' : 'claro';
+                  }
+                  if (theme === 'escuro' || theme === 'noturno' || theme === 'sepia') {
                     document.documentElement.classList.add('dark');
                   }
                   if (theme === 'noturno') {

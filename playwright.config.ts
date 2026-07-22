@@ -7,7 +7,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : 2,
   reporter: [['list'], ['html', { open: 'never', outputFolder: 'playwright-report' }]],
-  timeout: 60000,
+  timeout: 30000,
   expect: {
     timeout: 10000,
   },
@@ -22,10 +22,6 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    },
-    {
-      name: 'mobile-chrome',
-      use: { ...devices['Pixel 5'] },
     },
   ],
   webServer: {

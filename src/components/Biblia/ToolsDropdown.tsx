@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, FileText, Download, BookMarked, Play, Settings, Volume2 } from 'lucide-react';
+import { Layers, FileText, Download, BookMarked, Play, Settings, Volume2, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { CapituloComparado } from '@/data/biblia';
 
@@ -71,8 +71,9 @@ export function ToolsDropdown({ open, onToggle, onClose, bookName, chapter, data
               <ToolItem icon={BookMarked} label="Plano de Leitura" onClick={onPlanoLeitura} />
               {hasDramatica && <ToolItem icon={Play} label="Narração Dramática" onClick={onNarracaoDramatica} />}
               <ToolItem icon={Volume2} label="Narrar Capítulo" onClick={onNarrarCapitulo} />
-              <div className="my-1 h-px bg-[var(--border)]/40" />
-              <ToolItem icon={Settings} label="Configurações" onClick={onConfiguracoes} />
+               <div className="my-1 h-px bg-[var(--border)]/40" />
+               <ToolItem icon={Users} label="Estudo Colaborativo" onClick={() => { window.location.href = '/estudo-colaborativo'; }} />
+               <ToolItem icon={Settings} label="Configurações" onClick={onConfiguracoes} />
             </motion.div>
           </>
         )}

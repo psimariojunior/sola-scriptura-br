@@ -1,8 +1,10 @@
 'use client';
 
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Eye } from 'lucide-react';
+import { Eye, Palette } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ThemeCustomizer } from '@/components/ThemeCustomizer';
 
 interface SettingsPanelProps {
   open: boolean;
@@ -14,6 +16,8 @@ interface SettingsPanelProps {
 }
 
 export function SettingsPanel({ open, fontSize, onFontSizeChange, showDiff, onToggleDiff, showComparison }: SettingsPanelProps) {
+  const [showCustomizer, setShowCustomizer] = useState(false);
+
   return (
     <AnimatePresence>
       {open && (
@@ -38,10 +42,22 @@ export function SettingsPanel({ open, fontSize, onFontSizeChange, showDiff, onTo
               Diferenças {showDiff ? 'ON' : 'OFF'}
             </button>
           )}
+          <button
+            onClick={() => setShowCustomizer(!showCustomizer)}
+            className={cn(
+              'flex items-center gap-1.5 px-2.5 py-1 rounded-full border transition-colors',
+              showCustomizer ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] border-[var(--brand-default)]/20' : 'text-[var(--content-muted)] border-[var(--border)]/60 hover:text-[var(--content-primary)]'
+            )}
+            title="Customizar tema"
+          >
+            <Palette className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Tema</span>
+          </button>
           <div className="flex items-center gap-2 ml-auto text-[var(--content-muted)]">
             <Eye className="w-3.5 h-3.5" />
             <span>Spectral • Leitura 1.8</span>
           </div>
+          <ThemeCustomizer open={showCustomizer} onClose={() => setShowCustomizer(false)} />
         </motion.div>
       )}
     </AnimatePresence>

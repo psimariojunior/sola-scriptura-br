@@ -14,6 +14,7 @@ import { trackPageView } from '@/lib/analytics';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { registerServiceWorker } from '@/lib/offline';
 import { authService } from '@/lib/auth';
+import { initSentry } from '@/lib/sentry';
 import PageTransition from '@/components/PageTransition';
 import '@/lib/i18n';
 
@@ -102,6 +103,10 @@ function PageViewTracker() {
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    initSentry();
+  }, []);
 
   useEffect(() => {
     document.documentElement.style.setProperty(

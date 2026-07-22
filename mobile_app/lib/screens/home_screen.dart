@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -14,8 +13,9 @@ import '../bridges/js_bridge.dart';
 
 class HomeScreen extends StatefulWidget {
   final WebViewService webViewService;
+  final String? initialPath;
 
-  const HomeScreen({super.key, required this.webViewService});
+  const HomeScreen({super.key, required this.webViewService, this.initialPath});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _hasError = false;
   String? _errorMessage;
   DateTime? _lastBackPress;
+  String? _pendingDeepLink;
 
   @override
   void initState() {
@@ -38,13 +39,48 @@ class _HomeScreenState extends State<HomeScreen> {
     _webView = widget.webViewService;
     _connectivity = ConnectivityService();
     _share = ShareService();
+    _pendingDeepLink = widget.initialPath;
 
     _setupServices();
     _loadWebsite();
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _handleIncomingIntent();
+  }
+
+  void _handleIncomingIntent() {
+    final uri = ModalRoute.of(context)?.settings.arguments as Uri?;
+    if (uri != null) {
+      final path = uri.path;
+      if (path.isNotEmpty && path != '/') {
+        final targetUrl = '${AppConstants.baseUrl}$path';
+        _webView.loadUrl(targetUrl);
+        return;
+      }
+      // Handle custom scheme: sola-scriptura://some/path
+      if (uri.scheme == 'sola-scriptura' && uri.host.isNotEmpty) {
+        final targetUrl = '${AppConstants.baseUrl}/${uri.host}${uri.path}';
+        _webView.loadUrl(targetUrl);
+      }
+    }
+  }
+
+  String _resolveInitialUrl() {
+    if (_pendingDeepLink != null) {
+      final path = _pendingDeepLink!;
+      _pendingDeepLink = null;
+      if (path.startsWith('/')) {
+        return '${AppConstants.baseUrl}$path';
+      }
+      return '${AppConstants.baseUrl}/$path';
+    }
+    return AppConstants.baseUrl;
+  }
+
   void _setupServices() {
-    // WebView callbacks
     _webView.onLoadingChanged = (loading) {
       if (mounted) setState(() => _isLoading = loading);
     };
@@ -64,12 +100,11 @@ class _HomeScreenState extends State<HomeScreen> {
           _hasError = false;
           _errorMessage = null;
         });
-        // Inject performance optimizations
         JsBridge.injectPerformanceOptimizations(_webView.controller);
+        JsBridge.injectOfflineSupport(_webView.controller);
       }
     };
 
-    // Connectivity monitoring
     _connectivity.initialize();
     _connectivity.statusStream.listen((status) {
       if (!mounted) return;
@@ -77,27 +112,20 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         _isOffline = status == ConnectivityStatus.offline;
       });
-      // Auto-reload when coming back online
+      _webView.setOnlineStatus(!_isOffline);
       if (wasOffline && !_isOffline) {
         _webView.reload();
       }
     });
 
-    // Initial connectivity check
     setState(() {
       _isOffline = _connectivity.isOffline;
     });
   }
 
   Future<void> _loadWebsite() async {
-    if (_connectivity.isOffline) {
-      setState(() {
-        _hasError = true;
-        _errorMessage = 'Sem conexão com a internet';
-      });
-      return;
-    }
-    await _webView.loadUrl(AppConstants.baseUrl);
+    final url = _resolveInitialUrl();
+    await _webView.loadUrl(url);
   }
 
   Future<void> _handleRetry() async {
@@ -110,13 +138,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<bool> _handleBackButton() async {
-    // Check if WebView can go back
     if (await _webView.canGoBack()) {
       await _webView.goBack();
-      return false; // Don't exit
+      return false;
     }
 
-    // Double-press to exit
     final now = DateTime.now();
     if (_lastBackPress == null ||
         now.difference(_lastBackPress!) > AppConstants.backPressExitDelay) {
@@ -133,14 +159,15 @@ class _HomeScreenState extends State<HomeScreen> {
             duration: AppConstants.backPressExitDelay,
             behavior: SnackBarBehavior.floating,
             margin: const EdgeInsets.all(16),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
         );
       }
-      return false; // Don't exit yet
+      return false;
     }
 
-    // Exit app
     SystemNavigator.pop();
     return true;
   }
@@ -162,31 +189,25 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       child: Scaffold(
         body: SafeArea(
-          top: false, // Full screen WebView
+          top: false,
           child: Column(
             children: [
-              // Offline banner
-              if (_isOffline)
-                OfflineBanner(onRetry: _handleRetry),
-
-              // WebView or Error
+              if (_isOffline) OfflineBanner(onRetry: _handleRetry),
               Expanded(
                 child: _hasError
                     ? ErrorScreen(
                         title: _isOffline
                             ? 'Sem conexão'
                             : 'Não foi possível carregar',
-                        message: _errorMessage ??
+                        message:
+                            _errorMessage ??
                             'Verifique sua conexão com a internet e tente novamente.',
                         onRetry: _handleRetry,
                       )
                     : Stack(
                         children: [
-                          // WebView
                           if (_webView.isInitialized)
                             WebViewWidget(controller: _webView.controller),
-
-                          // Loading overlay
                           if (_isLoading)
                             const LoadingOverlay(
                               isLoading: true,

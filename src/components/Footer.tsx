@@ -15,6 +15,7 @@ const ferramentas = [
   { href: '/ferramentas', label: 'Ferramentas' },
   { href: '/ferramentas/critica-textual', label: 'Crítica Textual' },
   { href: '/ferramentas/concordancia', label: 'Concordância' },
+  { href: '/estudo-colaborativo', label: 'Estudo Colaborativo' },
 ];
 
 const estudo = [

@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
-import dynamic from 'next/dynamic';
-
-const HomeClient = dynamic(() => import('@/components/home/HomeClient'), { ssr: false });
+import { HomeLoader } from '@/components/home/HomeLoader';
 
 export const metadata: Metadata = {
   title: 'Sola Scriptura BR — Estudo Bíblico Acadêmico com IA',
@@ -10,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomeClient />;
+  return <HomeLoader />;
 }

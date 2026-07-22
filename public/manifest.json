@@ -62,6 +62,39 @@
       "description": "Assistente de estudo bíblico"
     }
   ],
+  "widgets": [
+    {
+      "name": "Versículo do Dia",
+      "description": "Receba um versículo bíblico diário",
+      "tag": "ssb-daily-verse",
+      "ms_accent_color": "#d4a843",
+      "ms_background_color": "#0A0908",
+      "type": "application/json",
+      "data": "/api/widget/daily-verse",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ],
+      "screenshots": [
+        {
+          "src": "/screenshots/widget-verse.png",
+          "sizes": "300x200",
+          "type": "image/png",
+          "label": "Versículo do Dia"
+        }
+      ],
+      "related_applications": [],
+      "shortcuts": [
+        {
+          "name": "Abrir Bíblia",
+          "url": "/biblia"
+        }
+      ]
+    }
+  ],
   "screenshots": [
     {
       "src": "/screenshots/desktop.png",

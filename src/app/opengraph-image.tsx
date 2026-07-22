@@ -9,22 +9,21 @@ export const size = {
 
 export const contentType = 'image/png';
 
-export const alt = 'Sola Scriptura BR — Toda a biblioteca teologica';
+export const alt = 'Sola Scriptura BR — Estudo Bíblico Acadêmico';
 
 export default function OpenGraphImage() {
   return new ImageResponse(
     (
       <div
         style={{
+          background: 'linear-gradient(135deg, #1C1917 0%, #292524 50%, #1C1917 100%)',
           width: '100%',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #0A0908 0%, #1a1610 50%, #0A0908 100%)',
-          color: '#f5f5f4',
-          fontFamily: 'serif',
+          alignItems: 'center',
+          padding: '60px',
           position: 'relative',
         }}
       >
@@ -33,29 +32,18 @@ export default function OpenGraphImage() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'radial-gradient(circle at 50% 40%, rgba(212, 168, 67, 0.25) 0%, transparent 60%)',
+            background: 'radial-gradient(circle at 50% 40%, rgba(212, 168, 67, 0.15) 0%, transparent 60%)',
           }}
         />
-
-        {/* Livro incandescente — simbolo */}
-        <div
-          style={{
-            fontSize: 140,
-            marginBottom: 24,
-            filter: 'drop-shadow(0 0 40px rgba(212, 168, 67, 0.5))',
-          }}
-        >
-          📖
-        </div>
 
         {/* Titulo principal */}
         <div
           style={{
-            fontSize: 76,
-            fontWeight: 300,
-            letterSpacing: -2,
-            display: 'flex',
-            color: '#d4a843',
+            fontSize: 72,
+            fontWeight: 700,
+            color: '#D4A843',
+            fontFamily: 'serif',
+            textAlign: 'center',
             textShadow: '0 2px 20px rgba(212, 168, 67, 0.25)',
           }}
         >
@@ -65,35 +53,35 @@ export default function OpenGraphImage() {
         {/* Subtitulo */}
         <div
           style={{
+            fontSize: 28,
+            color: '#A8A29E',
             marginTop: 16,
-            fontSize: 32,
-            fontWeight: 300,
-            color: '#a8a29e',
+            fontFamily: 'sans-serif',
             letterSpacing: 2,
             textTransform: 'uppercase' as const,
           }}
         >
-          Toda a biblioteca teologica
+          Estudo Bíblico Acadêmico
         </div>
 
-        {/* Stats */}
+        {/* Features */}
         <div
           style={{
-            marginTop: 48,
+            fontSize: 20,
+            color: '#737373',
+            marginTop: 24,
+            fontFamily: 'sans-serif',
             display: 'flex',
-            gap: 48,
-            fontSize: 22,
-            color: '#fbbf24',
-            fontWeight: 400,
+            gap: 24,
           }}
         >
-          <span>66 livros</span>
-          <span style={{ color: '#57534e' }}>•</span>
-          <span>6 traducoes</span>
-          <span style={{ color: '#57534e' }}>•</span>
-          <span>31.102 versiculos</span>
-          <span style={{ color: '#57534e' }}>•</span>
-          <span>IA + Grego/Hebraico</span>
+          <span>10 Traduções</span>
+          <span style={{ color: '#57534e' }}>·</span>
+          <span>Grego</span>
+          <span style={{ color: '#57534e' }}>·</span>
+          <span>Hebraico</span>
+          <span style={{ color: '#57534e' }}>·</span>
+          <span>IA</span>
         </div>
 
         {/* URL */}
@@ -102,8 +90,9 @@ export default function OpenGraphImage() {
             position: 'absolute',
             bottom: 40,
             fontSize: 18,
-            color: '#78716c',
+            color: '#57534e',
             letterSpacing: 1,
+            fontFamily: 'sans-serif',
           }}
         >
           solascripturabr.com.br

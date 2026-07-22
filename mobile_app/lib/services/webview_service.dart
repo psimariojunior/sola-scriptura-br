@@ -9,6 +9,7 @@ class WebViewService {
   bool _isLoading = true;
   String? _currentUrl;
   String? _errorDescription;
+  bool _isOnline = true;
 
   bool get isInitialized => _isInitialized;
   bool get isLoading => _isLoading;
@@ -28,9 +29,8 @@ class WebViewService {
       ..setNavigationDelegate(_createNavigationDelegate())
       ..setOnConsoleMessage(_onConsoleMessage);
 
-    // Clear cache to ensure fresh content
-    await controller.clearCache();
-    await controller.clearLocalStorage();
+    // Do NOT clear cache — preserve offline content
+    // Cache is cleared only on first install or explicit user action
 
     _isInitialized = true;
   }
@@ -70,7 +70,9 @@ class WebViewService {
         final allowed = AppConstants.allowedDomains.any(
           (domain) => uri.host == domain || uri.host.endsWith('.$domain'),
         );
-        return allowed ? NavigationDecision.navigate : NavigationDecision.prevent;
+        return allowed
+            ? NavigationDecision.navigate
+            : NavigationDecision.prevent;
       },
     );
   }
@@ -79,16 +81,38 @@ class WebViewService {
     debugPrint('WebView Console [${message.level.name}]: ${message.message}');
   }
 
+  void setOnlineStatus(bool isOnline) {
+    _isOnline = isOnline;
+  }
+
   Future<void> loadUrl(String url) async {
     if (!_isInitialized) return;
     _errorDescription = null;
-    await controller.loadRequest(Uri.parse(url));
+    if (!_isOnline) {
+      // When offline, load from cache if available
+      await controller.loadRequest(
+        Uri.parse(url),
+        headers: {'Cache-Control': 'max-stale=31536000'},
+      );
+    } else {
+      await controller.loadRequest(Uri.parse(url));
+    }
   }
 
   Future<void> reload() async {
     if (!_isInitialized) return;
     _errorDescription = null;
-    await controller.reload();
+    if (!_isOnline) {
+      // Offline reload: try to load current URL from cache
+      if (_currentUrl != null) {
+        await controller.loadRequest(
+          Uri.parse(_currentUrl!),
+          headers: {'Cache-Control': 'max-stale=31536000'},
+        );
+      }
+    } else {
+      await controller.reload();
+    }
   }
 
   Future<bool> canGoBack() async {

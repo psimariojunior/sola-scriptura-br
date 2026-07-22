@@ -13,6 +13,7 @@ import {
   Settings, Hash, Type, AlignLeft, Download,
   Copy, Share2, ExternalLink, Sparkles
 } from 'lucide-react';
+import { VoiceSearchButton } from '@/components/VoiceSearchButton';
 import { expandirConsulta, correspondeSemanticamente, obterQueryExpandida } from '@/lib/sinonimos';
 
 interface SearchResult {
@@ -452,7 +453,7 @@ export default function PesquisaPage() {
 
             <div>
               <div className="sola-card p-4 mb-6">
-                <div className="relative">
+                <div className="relative flex items-center gap-2">
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" strokeWidth={1.5} />
                   <input
                     ref={inputRef}
@@ -460,18 +461,24 @@ export default function PesquisaPage() {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Pesquisar nas Escrituras..."
-                    className="w-full pl-12 pr-10 py-3 bg-transparent text-lg font-serif-body focus:outline-none"
+                    className="w-full pl-12 pr-24 py-3 bg-transparent text-lg font-serif-body focus:outline-none"
                     autoFocus
                   />
-                  {query && (
-                    <button
-                      onClick={() => setQuery('')}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                      aria-label="Limpar busca"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  )}
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                    {query && (
+                      <button
+                        onClick={() => setQuery('')}
+                        className="text-muted-foreground hover:text-foreground p-1"
+                        aria-label="Limpar busca"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    )}
+                    <VoiceSearchButton
+                      onResult={(text) => setQuery(text)}
+                      size="sm"
+                    />
+                  </div>
                 </div>
               </div>
 

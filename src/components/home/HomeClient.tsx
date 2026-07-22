@@ -11,7 +11,7 @@ import {
   Globe, Shield, Heart, MonitorPlay, Music, Zap, Play,
   CheckCircle2, ChevronDown, Tv, Smartphone, Cast, Languages,
   BookMarked, GraduationCap, WifiOff, Share2, Gift, GitCompareArrows,
-  Star,
+  Star, Bell,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -22,6 +22,7 @@ const AnimatedCounter = dynamic(() => import('@/components/home/AnimatedCounter'
 const VerseDoDia = dynamic(() => import('@/components/VerseDoDia'), { ssr: false });
 const ContinuarLeitura = dynamic(() => import('@/components/ContinuarLeitura'), { ssr: false });
 const InstallBanner = dynamic(() => import('@/components/InstallBanner'), { ssr: false });
+const NotificationSetup = dynamic(() => import('@/components/NotificationSetup').then(m => ({ default: m.NotificationSetup })), { ssr: false });
 
 const features = [
   { icon: Columns2, title: 'Multi-Tradução', desc: 'ARC, NVI, ARA, ACF, KJV e WEB lado a lado com destaque automático de diferenças.', accent: 'amber' },
@@ -472,6 +473,20 @@ export default function HomeClient() {
                   </div>
                 ))}
               </div>
+            </ScrollReveal>
+          </div>
+        </section>
+        <section className="py-16 sm:py-20 px-4 sm:px-6 border-t border-border/30 relative" aria-label="Notificações">
+          <div className="max-w-md mx-auto text-center">
+            <ScrollReveal>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/15 bg-primary/[0.04] mb-6">
+                <Bell className="w-3.5 h-3.5 text-primary" />
+                <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">Versículo Diário</span>
+              </div>
+              <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto">
+                Receba um versículo inspirador toda manhã às 7h direto no seu navegador.
+              </p>
+              <NotificationSetup />
             </ScrollReveal>
           </div>
         </section>

@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, History, BookOpen } from 'lucide-react';
+import { VoiceSearchButton } from '@/components/VoiceSearchButton';
 import { cn } from '@/lib/utils';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
 import { carregarTraducao } from '@/data/biblia/texto/carregar';
@@ -87,6 +88,13 @@ export function QuickSearchModal({ open, onClose, onGoToResult, recentSearches }
             onChange={e => handleSearch(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter' && autoComplete.length > 0) { goToResult({ livro: autoComplete[0].livro, nome: autoComplete[0].nome, cap: 1 }); } }}
             className="flex-1 bg-transparent text-sm outline-none" />
+          <VoiceSearchButton
+            onResult={(text) => {
+              setQuery(text);
+              handleSearch(text);
+            }}
+            size="sm"
+          />
           <kbd className="text-[10px] bg-[var(--surface-sunken)] px-1.5 py-0.5 rounded text-[var(--content-muted)]">ESC</kbd>
         </div>
         <div className="max-h-96 overflow-y-auto">

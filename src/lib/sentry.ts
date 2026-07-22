@@ -1,3 +1,5 @@
+import * as Sentry from '@sentry/nextjs';
+
 let sentryInitialized = false;
 
 export function initSentry() {
@@ -7,21 +9,8 @@ export function initSentry() {
   if (!SENTRY_DSN) return;
 
   sentryInitialized = true;
-
-  // Dynamic import with string to bypass TS module resolution
-  // Sentry is an optional dependency — only load if installed
-  const modId = '@sentry/nextjs';
-  import(/* webpackIgnore: true */ /* @vite-ignore */ modId)
-    .then((Sentry: unknown) => {
-      (Sentry as { init: (cfg: Record<string, unknown>) => void }).init({
-        dsn: SENTRY_DSN,
-        tracesSampleRate: 0.1,
-        environment: process.env.NODE_ENV,
-      });
-    })
-    .catch(() => {
-      // Sentry not installed — silent ignore
-    });
+  // Sentry is now initialized via sentry.client.config.ts
+  // This function is kept for backward compatibility
 }
 
 export function captureError(error: Error, context?: Record<string, unknown>) {
@@ -29,12 +18,15 @@ export function captureError(error: Error, context?: Record<string, unknown>) {
 
   if (!sentryInitialized) return;
 
-  const modId = '@sentry/nextjs';
-  import(/* webpackIgnore: true */ /* @vite-ignore */ modId)
-    .then((Sentry: unknown) => {
-      (Sentry as { captureException: (err: Error, ctx?: unknown) => void }).captureException(error, { extra: context });
-    })
-    .catch(() => {
-      // Sentry not available
-    });
+  Sentry.captureException(error, { extra: context });
+}
+
+export function setSentryUser(user: { id: string; email?: string }) {
+  if (!sentryInitialized) return;
+  Sentry.setUser(user);
+}
+
+export function clearSentryUser() {
+  if (!sentryInitialized) return;
+  Sentry.setUser(null);
 }

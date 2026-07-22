@@ -1,3 +1,5 @@
+const { withSentryConfig } = require('@sentry/nextjs');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -32,11 +34,11 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://va.vercel-scripts.com https://vercel.live",
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://va.vercel-scripts.com https://vercel.live https://browser.sentry-cdn.com",
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https://*.tile.openstreetmap.org https://solascripturabr.com.br",
               "font-src 'self'",
-              "connect-src 'self' https://api.solascripturabr.com.br https://api.midvash.com https://*.vercel-insights.com https://va.vercel-scripts.com wss://*.vercel.app",
+              "connect-src 'self' https://api.solascripturabr.com.br https://api.midvash.com https://*.vercel-insights.com https://va.vercel-scripts.com https://*.sentry.io wss://*.vercel.app",
               "frame-src 'self' https://www.google.com https://accounts.google.com",
               "media-src 'self' blob:",
             ].join('; '),
@@ -54,4 +56,13 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+  disableLogger: true,
+  hideSourceMaps: true,
+  disableServerWebpackPlugin: true,
+  disableClientWebpackPlugin: true,
+});

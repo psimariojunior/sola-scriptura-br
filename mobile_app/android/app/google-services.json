@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "826448838050",
+    "project_id": "solascripturabr-b550c",
+    "storage_bucket": "solascripturabr-b550c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826448838050:android:2c172dbba7da9ed9ed46fb",
+        "android_client_info": {
+          "package_name": "com.solascriptura.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmy1LpSn8WiXnhtezPFYWU-Y_R2-DIIfU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

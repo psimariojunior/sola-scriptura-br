@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'config/theme.dart';
 import 'screens/splash_screen.dart';
 import 'screens/settings_screen.dart';
@@ -10,8 +12,17 @@ import 'services/app_lock_service.dart';
 
 const platform = MethodChannel('com.solascriptura/deeplink');
 
-void main() {
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+}
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -53,6 +64,7 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
     _checkOnboarding();
     _retrieveInitialLink();
     _listenForNewLinks();
+    _setupFCM();
   }
 
   @override
@@ -115,6 +127,32 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
           );
         }
       }
+    });
+  }
+
+  Future<void> _setupFCM() async {
+    final messaging = FirebaseMessaging.instance;
+    final settings = await messaging.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      final token = await messaging.getToken();
+      debugPrint('FCM Token: $token');
+
+      messaging.onTokenRefresh.listen((newToken) {
+        debugPrint('FCM Token refreshed: $newToken');
+      });
+    }
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      debugPrint('Foreground message: ${message.notification?.title}');
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      debugPrint('Notification opened: ${message.data}');
     });
   }
 

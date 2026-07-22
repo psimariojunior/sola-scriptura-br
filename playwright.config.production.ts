@@ -12,7 +12,7 @@ export default defineConfig({
     timeout: 15000,
   },
   use: {
-    baseURL: 'https://solascripturabr.com',
+    baseURL: 'https://solascripturabr.com.br',
     trace: 'on-first-retry',
     screenshot: 'on',
     actionTimeout: 15000,

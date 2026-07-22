@@ -32,7 +32,7 @@ test.describe('Smoke - API Health', () => {
   test('CORS headers are present', async ({ request }) => {
     const response = await request.get(`${API_BASE}/api/v1/health`, {
       headers: {
-        Origin: 'https://solascripturabr.com',
+        Origin: 'https://solascripturabr.com.br',
       },
     });
     const corsHeader = response.headers()['access-control-allow-origin'];

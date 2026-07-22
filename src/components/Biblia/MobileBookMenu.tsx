@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft } from 'lucide-react';
+import { X, ChevronLeft, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TODOS_LIVROS, LIVROS_AT, LIVROS_NT } from '@/data/biblia/livros';
 
@@ -16,6 +16,8 @@ interface MobileBookMenuProps {
 
 export function MobileBookMenu({ open, onClose, livroIdx, onSelect, onSelectChapter }: MobileBookMenuProps) {
   const [selectedBookIdx, setSelectedBookIdx] = useState<number | null>(null);
+  const [atExpanded, setAtExpanded] = useState(true);
+  const [ntExpanded, setNtExpanded] = useState(false);
 
   const selectedBook = selectedBookIdx !== null ? TODOS_LIVROS[selectedBookIdx] : null;
 
@@ -37,6 +39,45 @@ export function MobileBookMenu({ open, onClose, livroIdx, onSelect, onSelectChap
     setSelectedBookIdx(null);
     onClose();
   };
+
+  const renderBookList = (books: typeof TODOS_LIVROS, label: string, expanded: boolean, onToggle: () => void) => (
+    <div className="mb-2">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center justify-between px-3 py-2 text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] hover:text-[var(--content-secondary)] transition-colors"
+      >
+        {label}
+        <ChevronDown className={cn('w-3 h-3 transition-transform', expanded && 'rotate-180')} />
+      </button>
+      <AnimatePresence initial={false}>
+        {expanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
+          >
+            <div className="space-y-0.5">
+              {books.map(l => {
+                const idx = TODOS_LIVROS.indexOf(l);
+                return (
+                  <button key={l.abreviacao} onClick={() => handleSelectBook(idx)}
+                    className={cn(
+                      'w-full text-left px-3 py-2 text-sm rounded-lg transition-colors flex items-center justify-between',
+                      idx === livroIdx ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] font-medium' : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]'
+                    )}>
+                    <span>{l.nome}</span>
+                    <span className="text-[10px] text-[var(--content-muted)]">{l.totalCapitulos} caps</span>
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 
   return (
     <AnimatePresence>
@@ -71,38 +112,8 @@ export function MobileBookMenu({ open, onClose, livroIdx, onSelect, onSelectChap
 
             {!selectedBook ? (
               <>
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-2">Antigo Testamento</p>
-                <div className="space-y-0.5 mb-4">
-                  {LIVROS_AT.map(l => {
-                    const idx = TODOS_LIVROS.indexOf(l);
-                    return (
-                      <button key={l.abreviacao} onClick={() => handleSelectBook(idx)}
-                        className={cn(
-                          'w-full text-left px-3 py-2 text-sm rounded-lg transition-colors flex items-center justify-between',
-                          idx === livroIdx ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] font-medium' : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]'
-                        )}>
-                        <span>{l.nome}</span>
-                        <span className="text-[10px] text-[var(--content-muted)]">{l.totalCapitulos} caps</span>
-                      </button>
-                    );
-                  })}
-                </div>
-                <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-2">Novo Testamento</p>
-                <div className="space-y-0.5">
-                  {LIVROS_NT.map(l => {
-                    const idx = TODOS_LIVROS.indexOf(l);
-                    return (
-                      <button key={l.abreviacao} onClick={() => handleSelectBook(idx)}
-                        className={cn(
-                          'w-full text-left px-3 py-2 text-sm rounded-lg transition-colors flex items-center justify-between',
-                          idx === livroIdx ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] font-medium' : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]'
-                        )}>
-                        <span>{l.nome}</span>
-                        <span className="text-[10px] text-[var(--content-muted)]">{l.totalCapitulos} caps</span>
-                      </button>
-                    );
-                  })}
-                </div>
+                {renderBookList(LIVROS_AT, 'Antigo Testamento', atExpanded, () => setAtExpanded(p => !p))}
+                {renderBookList(LIVROS_NT, 'Novo Testamento', ntExpanded, () => setNtExpanded(p => !p))}
               </>
             ) : (
               <div className="grid grid-cols-6 gap-1.5">

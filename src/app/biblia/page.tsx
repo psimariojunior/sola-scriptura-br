@@ -38,6 +38,7 @@ const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo')
   ),
 });
 import { useNotas } from '@/hooks/useNotas';
+import { useVerseResources } from '@/hooks/useVerseResources';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { cn } from '@/lib/utils';
 import { ChapterHeader } from '@/components/Biblia/ChapterHeader';
@@ -74,6 +75,7 @@ const tradBadgeColors = tradBadgeColorsImport;
 
 const NarradorSelector = lazy(() => import('@/components/NarradorSelector'));
 const NarracaoDramaticaLazy = lazy(() => import('@/components/NarracaoDramatica'));
+const NarrationPanel = lazy(() => import('@/components/Biblia/NarrationPanel').then(m => ({ default: m.NarrationPanel })));
 import type { CenaDramatica, PersonagemVoz } from '@/components/NarracaoDramatica';
 
 function PanelFallback() {
@@ -193,6 +195,7 @@ export default function BibliaPage() {
   const [mostrarNotas, setMostrarNotas] = useState(false);
   const [notaAtiva, setNotaAtiva] = useState<import('@/components/NotaEditor').Nota | null>(null);
   const { notas, criarNota, salvarNota: salvarNotaHook, excluirNota } = useNotas();
+  const verseResources = useVerseResources();
   const [mostrarNarracao, setMostrarNarracao] = useState(false);
   const [mostrarNarracaoCapitulo, setMostrarNarracaoCapitulo] = useState(false);
   const [mostrarApresentacao, setMostrarApresentacao] = useState(false);
@@ -203,7 +206,6 @@ export default function BibliaPage() {
   const [shareOpen, setShareOpen] = useState(false);
   const [estudoCapituloAberto, setEstudoCapituloAberto] = useState(false);
   const [showInterlinear, setShowInterlinear] = useState(false);
-  const NarrationPanel = lazy(() => import('@/components/Biblia/NarrationPanel').then(m => ({ default: m.NarrationPanel })));
 
   const livro = TODOS_LIVROS[livroIdx];
   const chaveDramatica = `${livro.abreviacao}-${capituloIdx + 1}`;
@@ -358,6 +360,7 @@ export default function BibliaPage() {
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
+      if (versiculoSelecionado || mobileMenu || sidebarOpen || chapterGridOpen || mostrarApresentacao || mostrarNarracao || mostrarNarracaoCapitulo || zenMode) return;
       const touchEndX = e.changedTouches[0].clientX;
       const touchEndY = e.changedTouches[0].clientY;
       const deltaX = touchEndX - touchStartX;
@@ -385,7 +388,7 @@ export default function BibliaPage() {
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [capituloIdx, livro]);
+  }, [capituloIdx, livro, versiculoSelecionado, mobileMenu, sidebarOpen, chapterGridOpen, mostrarApresentacao, mostrarNarracao, mostrarNarracaoCapitulo, zenMode]);
 
 const toggleTrad = (id: string) => {
   setSelectedTrads(prev => {
@@ -904,6 +907,7 @@ const toggleTrad = (id: string) => {
                                   tradLabel={labelMap[item.traducao]}
                                   tradBadgeColor={tradBadgeColors[item.traducao]}
                                   isCurrentAudioVerse={isCurrentAudioVerse}
+                                  hasResources={verseResources.hasResources(livro.abreviacao, capituloIdx + 1, v.numero)}
                                 />
                               );
                             })}

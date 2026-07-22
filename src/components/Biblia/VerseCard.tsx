@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
 import type { useVerseAudio } from '@/hooks/useVerseAudio';
 import type { useFlashcards } from '@/hooks/useFlashcards';
-import type { CrossReference } from '@/data/biblia/crossReferences';
 import { VerseActions } from './VerseActions';
 
 export interface VerseCardProps {
@@ -42,6 +41,7 @@ export interface VerseCardProps {
   tradLabel: string;
   tradBadgeColor: string;
   isCurrentAudioVerse?: boolean;
+  hasResources?: boolean;
 }
 
 export const VerseCard = memo(function VerseCard({
@@ -71,6 +71,7 @@ export const VerseCard = memo(function VerseCard({
   copyVerse,
   verseKey,
   isCurrentAudioVerse = false,
+  hasResources: hasResourcesProp = false,
 }: VerseCardProps) {
   const ref = `${livroNome} ${capitulo}:${numero}`;
   const articleRef = useRef<HTMLElement>(null);
@@ -81,26 +82,6 @@ export const VerseCard = memo(function VerseCard({
       articleRef.current.scrollIntoView({ behavior: 'smooth', block: isFocused ? 'center' : 'center' });
     }
   }, [isCurrentAudioVerse, isFocused]);
-
-  // Count available resources for the indicator (memoized, with error handling)
-  const [hasResources, setHasResources] = useState(false);
-  useEffect(() => {
-    let cancelled = false;
-    Promise.all([
-      import('@/data/biblia/crossReferences'),
-      import('@/data/biblia/versiculoRecursos'),
-    ]).then(([crossMod, recursosMod]) => {
-      if (cancelled) return;
-      try {
-        const tipos = recursosMod.getTiposRecursoDisponiveis(livroAbreviacao, capitulo, numero);
-        const refs = crossMod.getCrossReferencesByVerse(livroAbreviacao, capitulo, numero);
-        setHasResources(tipos.length > 0 || refs.length > 0);
-      } catch {
-        setHasResources(false);
-      }
-    }).catch(() => {});
-    return () => { cancelled = true; };
-  }, [livroAbreviacao, capitulo, numero]);
 
   const corBgMap: Record<string, string> = {
     yellow: 'bg-[var(--mark-yellow)]',
@@ -186,7 +167,7 @@ export const VerseCard = memo(function VerseCard({
               <span className="text-[0.6em] text-[var(--content-muted)] font-normal tracking-wide tabular-nums">
                 {ref}
               </span>
-              {hasResources && (
+              {hasResourcesProp && (
                 <span
                   className="inline-flex items-center text-[9px] text-[var(--brand-default)]/60 font-medium"
                   title="Recursos disponíveis"

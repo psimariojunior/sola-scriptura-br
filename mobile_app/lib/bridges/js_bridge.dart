@@ -30,9 +30,9 @@ class JsBridge {
       document.addEventListener('touchmove', function() {}, { passive: true });
       document.addEventListener('wheel', function() {}, { passive: true });
       
-      // Reduce repaints
+      // Prevent double-tap zoom on interactive elements
       var style = document.createElement('style');
-      style.textContent = '*, *::before, *::after { will-change: auto; }';
+      style.textContent = 'button, a, input, select, textarea, [role="button"] { touch-action: manipulation; }';
       document.head.appendChild(style);
     })();
   ''';

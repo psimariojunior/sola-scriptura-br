@@ -23,7 +23,7 @@ class AppConstants {
 
   // WebView
   static const String userAgent =
-      'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36 SolaScriptura/1.0';
+      'Mozilla/5.0 (Linux; Android 15) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36 SolaScriptura/1.0';
 
   // Cache
   static const int maxCacheSize = 50 * 1024 * 1024; // 50MB

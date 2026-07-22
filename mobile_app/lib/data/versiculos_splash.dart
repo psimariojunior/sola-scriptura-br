@@ -2,50 +2,56 @@ class VersiculosSplash {
   VersiculosSplash._();
 
   static const List<Map<String, String>> versiculos = [
-    {
-      'texto': 'No princípio criou Deus os céus e a terra.',
-      'referencia': 'Gênesis 1:1',
-    },
-    {
-      'texto':
-          'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito.',
-      'referencia': 'João 3:16',
-    },
-    {
-      'texto': 'O Senhor é o meu pastor; nada me faltará.',
-      'referencia': 'Salmos 23:1',
-    },
-    {
-      'texto':
-          'Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento.',
-      'referencia': 'Provérbios 3:5',
-    },
-    {
-      'texto':
-          'Eu sou o caminho, a verdade e a vida. Ninguém vem ao Pai senão por mim.',
-      'referencia': 'João 14:6',
-    },
-    {
-      'texto': 'Tudo posso naquele que me fortalece.',
-      'referencia': 'Filipenses 4:13',
-    },
-    {
-      'texto':
-          'Deem graças ao Senhor porque ele é bom; o seu amor dura para sempre.',
-      'referencia': 'Salmos 136:1',
-    },
-    {
-      'texto': 'Ora, a fé é o firme fundamento das coisas que se esperam.',
-      'referencia': 'Hebreus 11:1',
-    },
-    {
-      'texto':
-          'Porque eu bem sei os pensamentos que tenho a vosso respeito, diz o Senhor.',
-      'referencia': 'Jeremias 29:11',
-    },
-    {
-      'texto': 'Amarás o Senhor, o teu Deus, de todo o teu coração.',
-      'referencia': 'Mateus 22:37',
-    },
+    {'texto': 'No princípio criou Deus os céus e a terra.', 'referencia': 'Gênesis 1:1'},
+    {'texto': 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito.', 'referencia': 'João 3:16'},
+    {'texto': 'O Senhor é o meu pastor; nada me faltará.', 'referencia': 'Salmos 23:1'},
+    {'texto': 'Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento.', 'referencia': 'Provérbios 3:5'},
+    {'texto': 'Eu sou o caminho, a verdade e a vida. Ninguém vem ao Pai senão por mim.', 'referencia': 'João 14:6'},
+    {'texto': 'Tudo posso naquele que me fortalece.', 'referencia': 'Filipenses 4:13'},
+    {'texto': 'Deem graças ao Senhor porque ele é bom; o seu amor dura para sempre.', 'referencia': 'Salmos 136:1'},
+    {'texto': 'Ora, a fé é o firme fundamento das coisas que se esperam.', 'referencia': 'Hebreus 11:1'},
+    {'texto': 'Porque eu bem sei os pensamentos que tenho a vosso respeito, diz o Senhor.', 'referencia': 'Jeremias 29:11'},
+    {'texto': 'Amarás o Senhor, o teu Deus, de todo o teu coração.', 'referencia': 'Mateus 22:37'},
+    {'texto': 'O Senhor é a minha luz e a minha salvação; a quem temerei?', 'referencia': 'Salmos 27:1'},
+    {'texto': 'Perto está o Senhor de todos os que o invocam, de todos os que o invocam em verdade.', 'referencia': 'Salmos 145:18'},
+    {'texto': 'Orai sem cessar.', 'referencia': '1 Tessalonicenses 5:17'},
+    {'texto': 'Antes de te formar no ventre, eu te conheci.', 'referencia': 'Jeremias 1:5'},
+    {'texto': 'Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei.', 'referencia': 'Mateus 11:28'},
+    {'texto': 'Porque onde estiver o vosso tesouro, aí estará também o vosso coração.', 'referencia': 'Mateus 6:21'},
+    {'texto': 'Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus.', 'referencia': 'Isaías 41:10'},
+    {'texto': 'Ensina-nos a contar os nossos dias, para que ganhemos coração sábio.', 'referencia': 'Salmos 90:12'},
+    {'texto': 'Buscai primeiro o reino de Deus e a sua justiça, e todas estas coisas vos serão acrescentadas.', 'referencia': 'Mateus 6:33'},
+    {'texto': 'O amor é paciente, o amor é bondoso. Não inveja, não se vangloria, não se orgulha.', 'referencia': '1 Coríntios 13:4'},
+    {'texto': 'Se Deus é por nós, quem será contra nós?', 'referencia': 'Romanos 8:31'},
+    {'texto': 'Exultai sempre no Senhor; outra vez digo, exultai.', 'referencia': 'Filipenses 4:4'},
+    {'texto': 'O meu paz vos dou; não vos dou como o mundo a dá.', 'referencia': 'João 14:27'},
+    {'texto': 'Porque o salário do pecado é a morte, mas o dom gratuito de Deus é a vida eterna.', 'referencia': 'Romanos 6:23'},
+    {'texto': 'Eu sou a videira, vós as varas. Quem permanece em mim, e eu nele, esse dá muito fruto.', 'referencia': 'João 15:5'},
+    {'texto': 'Portanto, se alguém está em Cristo, é nova criatura. As coisas velhas já passaram.', 'referencia': '2 Coríntios 5:17'},
+    {'texto': 'O Senhor pelejará por vós, e vós estareis quietos.', 'referencia': 'Êxodo 14:14'},
+    {'texto': 'Ainda que eu andasse pelo vale da sombra da morte, não temeria mal algum, porque tu estás comigo.', 'referencia': 'Salmos 23:4'},
+    {'texto': 'Porque Deus não nos deu espírito de covardia, mas de fortaleza, de amor e de moderação.', 'referencia': '2 Timóteo 1:7'},
+    {'texto': 'Lâmpada para os meus pés é tua palavra, e luz para o meu caminho.', 'referencia': 'Salmos 119:105'},
+    {'texto': 'Esforça-te e tem bom ânimo! Não temas, nem te desanimes, porque o Senhor teu Deus é contigo.', 'referencia': 'Josué 1:9'},
+    {'texto': 'O amor nunca falha. Mas havendo profecias, elas cessarão.', 'referencia': '1 Coríntios 13:8'},
+    {'texto': 'Clama a mim, e responder-te-ei, e anunciar-te-ei coisas grandes e firmes, que não sabes.', 'referencia': 'Jeremias 33:3'},
+    {'texto': 'Não se ponha o sol sobre a vossa ira.', 'referencia': 'Efésios 4:26'},
+    {'texto': 'Bem-aventurados os mansos, porque eles herdarão a terra.', 'referencia': 'Mateus 5:5'},
+    {'texto': 'Eu posso todas as coisas naquele que me fortalece.', 'referencia': 'Filipenses 4:13'},
+    {'texto': 'Aquele que começa boa obra em vós, a aperfeiçoará até o dia de Cristo Jesus.', 'referencia': 'Filipenses 1:6'},
+    {'texto': 'Não vos preocupeis com o dia de amanhã, porque o dia de amanhá trará os seus cuidados.', 'referencia': 'Mateus 6:34'},
+    {'texto': 'Porque o pecado não terá domínio sobre vós, porque não estais debaixo da lei, mas debaixo da graça.', 'referencia': 'Romanos 6:14'},
+    {'texto': 'O Senhor é bom, um refúgio no dia da angústia, e conhece os que nele confiam.', 'referencia': 'Nahum 1:7'},
+    {'texto': 'Na mesma noite em que foi ferido o Egito, o Senhor feriu todos os primogênitos.', 'referencia': 'Êxodo 12:29'},
+    {'texto': 'EJesus crescia em sabedoria, em estatura e em graça diante de Deus e dos homens.', 'referencia': 'Lucas 2:52'},
+    {'texto': 'Portanto, ide e fazei discípulos de todas as nações.', 'referencia': 'Mateus 28:19'},
+    {'texto': 'Mas buscai primeiro o reino de Deus.', 'referencia': 'Mateus 6:33'},
+    {'texto': 'Porque Deus amou o mundo de tal maneira.', 'referencia': 'João 3:16'},
+    {'texto': 'Eu sou a ressurreição e a vida. Quem crê em mim, ainda que morra, viverá.', 'referencia': 'João 11:25'},
+    {'texto': 'Porque eu sei em quem tenho crido, e estou certo de que é poderoso para guardar o meu depósito.', 'referencia': '2 Timóteo 1:12'},
+    {'texto': 'Tudo o que é nascido de Deus vence o mundo. E esta é a vitória que vence o mundo: a nossa fé.', 'referencia': '1 João 5:4'},
+    {'texto': 'O Senhor é o meu rochedo, a minha fortaleza, o meu libertador.', 'referencia': '2 Samuel 22:2'},
+    {'texto': 'Porque o Senhor teu Deus é quem vai contigo; não te deixará, nem te desamparará.', 'referencia': 'Deuteronômio 31:6'},
+    {'texto': 'E conhecereis a verdade, e a verdade vos libertará.', 'referencia': 'João 8:32'},
   ];
 }

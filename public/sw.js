@@ -1,11 +1,14 @@
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 const STATIC_CACHE = `ssb-static-${CACHE_VERSION}`;
 const API_CACHE = `ssb-api-${CACHE_VERSION}`;
 const BIBLE_CACHE = `ssb-bible-${CACHE_VERSION}`;
+const PAGES_CACHE = `ssb-pages-${CACHE_VERSION}`;
 const DB_NAME = 'ssb_offline';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORE_CHAPTERS = 'chapters';
 const STORE_META = 'meta';
+const STORE_FAVORITES = 'favorites';
+const STORE_NOTES = 'notes';
 
 const PRECACHE_URLS = [
   '/',
@@ -20,6 +23,14 @@ const PRECACHE_URLS = [
   '/ia',
   '/estudos',
   '/ferramentas',
+  '/favoritos',
+  '/notas',
+  '/colecoes',
+  '/atlas',
+  '/harmonia',
+  '/planos',
+  '/compartilhar',
+  '/status',
   '/offline.html',
   '/manifest.json',
   '/icon-192.png',
@@ -35,6 +46,12 @@ function openDB() {
       }
       if (!db.objectStoreNames.contains(STORE_META)) {
         db.createObjectStore(STORE_META, { keyPath: 'key' });
+      }
+      if (!db.objectStoreNames.contains(STORE_FAVORITES)) {
+        db.createObjectStore(STORE_FAVORITES, { keyPath: 'key' });
+      }
+      if (!db.objectStoreNames.contains(STORE_NOTES)) {
+        db.createObjectStore(STORE_NOTES, { keyPath: 'key' });
       }
     };
     req.onsuccess = () => resolve(req.result);
@@ -63,7 +80,7 @@ self.addEventListener('activate', (event) => {
       .then((keys) =>
         Promise.all(
           keys
-            .filter((key) => key !== STATIC_CACHE && key !== API_CACHE && key !== BIBLE_CACHE)
+            .filter((key) => key !== STATIC_CACHE && key !== API_CACHE && key !== BIBLE_CACHE && key !== PAGES_CACHE)
             .map((key) => caches.delete(key))
         )
       )
@@ -96,7 +113,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (request.mode === 'navigate') {
-    event.respondWith(navigationFirst(request));
+    event.respondWith(pageCacheFirst(request));
     return;
   }
 
@@ -108,6 +125,22 @@ async function navigationFirst(request) {
     const response = await fetch(request);
     if (response.ok) {
       const cache = await caches.open(STATIC_CACHE);
+      cache.put(request, response.clone());
+    }
+    return response;
+  } catch {
+    const cached = await caches.match(request);
+    if (cached) return cached;
+    const offline = await caches.match('/offline.html');
+    return offline || new Response('Offline', { status: 503, headers: { 'Content-Type': 'text/html' } });
+  }
+}
+
+async function pageCacheFirst(request) {
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      const cache = await caches.open(PAGES_CACHE);
       cache.put(request, response.clone());
     }
     return response;
@@ -184,6 +217,14 @@ self.addEventListener('message', (event) => {
     event.waitUntil(syncPendingNotes());
   }
 
+  if (data.type === 'STORE_FAVORITE_OFFLINE') {
+    event.waitUntil(storeFavoriteOffline(data));
+  }
+
+  if (data.type === 'STORE_NOTE_OFFLINE') {
+    event.waitUntil(storeNoteOffline(data));
+  }
+
   if (data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
@@ -255,6 +296,42 @@ async function syncPendingNotes() {
     for (const client of clients) {
       client.postMessage({ type: 'NOTES_SYNCED' });
     }
+  } catch {}
+}
+
+async function storeFavoriteOffline(data) {
+  try {
+    const db = await openDB();
+    const tx = db.transaction(STORE_FAVORITES, 'readwrite');
+    tx.objectStore(STORE_FAVORITES).put({
+      key: `${data.traducao}:${data.livro}:${data.capitulo}:${data.versiculo}`,
+      ...data,
+      timestamp: Date.now(),
+      synced: false,
+    });
+    await new Promise((resolve, reject) => {
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+    db.close();
+  } catch {}
+}
+
+async function storeNoteOffline(data) {
+  try {
+    const db = await openDB();
+    const tx = db.transaction(STORE_NOTES, 'readwrite');
+    tx.objectStore(STORE_NOTES).put({
+      key: `${data.traducao}:${data.livro}:${data.capitulo}:${data.versiculo}`,
+      ...data,
+      timestamp: Date.now(),
+      synced: false,
+    });
+    await new Promise((resolve, reject) => {
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+    db.close();
   } catch {}
 }
 

@@ -1,5 +1,4 @@
 import * as Sentry from '@sentry/nextjs';
-import type { RequestAsyncContext } from 'next/dist/server/request-async-storage';
 
 export function register() {
   if (process.env.NEXT_RUNTIME === 'nodejs') {
@@ -21,5 +20,3 @@ export function register() {
     });
   }
 }
-
-export const onRequestError = Sentry.captureRequestError;

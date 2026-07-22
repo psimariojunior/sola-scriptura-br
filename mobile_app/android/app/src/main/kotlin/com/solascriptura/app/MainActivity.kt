@@ -1,4 +1,4 @@
-package com.solascriptura.sola_scriptura_app
+package com.solascriptura.app
 
 import android.content.Intent
 import io.flutter.embedding.android.FlutterActivity
@@ -12,14 +12,13 @@ class MainActivity : FlutterActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
 
-        // Extract deep link from launch intent
         initialLink = extractLinkFromIntent(intent)
 
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL)
             .setMethodCallHandler { call, result ->
                 if (call.method == "getInitialLink") {
                     result.success(initialLink)
-                    initialLink = null // Consume it
+                    initialLink = null
                 } else {
                     result.notImplemented()
                 }
@@ -30,7 +29,6 @@ class MainActivity : FlutterActivity() {
         super.onNewIntent(intent)
         val link = extractLinkFromIntent(intent)
         if (link != null) {
-            // Send to Flutter via method channel if engine is ready
             val channel = MethodChannel(
                 flutterEngine?.dartExecutor?.binaryMessenger ?: return,
                 CHANNEL
@@ -47,7 +45,6 @@ class MainActivity : FlutterActivity() {
         return if (data.scheme == "sola-scriptura") {
             "/$host$path"
         } else {
-            // https scheme
             path.ifEmpty { null }
         }
     }

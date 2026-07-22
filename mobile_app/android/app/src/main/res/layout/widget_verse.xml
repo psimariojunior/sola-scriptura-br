@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_background"
+    android:padding="16dp">
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:src="@mipmap/ic_launcher"
+        android:alpha="0.6" />
+
+    <TextView
+        android:id="@+id/widget_verse_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="&quot;Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito&quot;"
+        android:textColor="#F5F1E8"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        android:fontFamily="serif"
+        android:lineSpacingExtra="4dp"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/widget_verse_reference"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_verse_text"
+        android:layout_marginTop="8dp"
+        android:text="— João 3:16"
+        android:textColor="#A17A2C"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+</RelativeLayout>

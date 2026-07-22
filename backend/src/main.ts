@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe, Logger } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
+import { CacheInterceptor } from './infra/cache/cache.interceptor';
+import { CacheService } from './infra/cache/cache.service';
 import helmet from 'helmet';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
@@ -118,6 +120,17 @@ async function bootstrap() {
 
   app.useGlobalFilters(new AllExceptionsFilter());
   app.useGlobalInterceptors(new TransformInterceptor());
+
+  // Redis cache interceptor (only active if REDIS_HOST is configured)
+  try {
+    const cacheService = app.get(CacheService);
+    if (cacheService.isAvailable()) {
+      app.useGlobalInterceptors(new CacheInterceptor(cacheService));
+      logger.log('Redis cache interceptor ativo');
+    }
+  } catch {
+    logger.warn('Cache interceptor não configurado — cache desabilitado');
+  }
 
   if (configService.get('NODE_ENV') !== 'production') {
     app.useGlobalInterceptors(new LoggingInterceptor());

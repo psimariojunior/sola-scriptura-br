@@ -52,9 +52,9 @@ export interface UseBibliaUIReturn {
   estudoCapituloAberto: boolean;
   setEstudoCapituloAberto: React.Dispatch<React.SetStateAction<boolean>>;
   chapterAnimProps: {
-    initial: { opacity: number; x: number };
-    animate: { opacity: number; x: number };
-    exit: { opacity: number; x: number };
+    initial: { opacity: number; x: number; filter?: string };
+    animate: { opacity: number; x: number; filter?: string };
+    exit: { opacity: number; x: number; filter?: string };
     transition: { duration: number; ease: number[] };
   };
 }
@@ -216,11 +216,25 @@ export function UseBibliaUI({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modoLeitura]);
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
   const chapterAnimProps = {
-    initial: { opacity: 0, x: chapterDirection === 'next' ? 30 : -30 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: chapterDirection === 'next' ? -30 : 30 },
-    transition: { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] },
+    initial: {
+      opacity: 0,
+      x: chapterDirection === 'next' ? 30 : -30,
+      ...(isMobile ? {} : { filter: 'blur(6px)' }),
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+      ...(isMobile ? {} : { filter: 'blur(0px)' }),
+    },
+    exit: {
+      opacity: 0,
+      x: chapterDirection === 'next' ? -30 : 30,
+      ...(isMobile ? {} : { filter: 'blur(6px)' }),
+    },
+    transition: { duration: isMobile ? 0.2 : 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
   };
 
   return {

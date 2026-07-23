@@ -11,8 +11,6 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
-  createStudyRoom,
-  joinStudyRoom,
   getParticipantId,
   getParticipantColor,
   getParticipantLabel,
@@ -140,6 +138,9 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     svc.onCallAccept(() => setIncomingCall(null));
     svc.onCallReject(() => setIncomingCall(null));
     svc.onBibleNavigation((data) => setBibleSyncData(data));
+    svc.onParticipants((participants) => {
+      setRoom(prev => prev ? { ...prev, participants: participants.map(p => p.participantId) } : prev);
+    });
 
     svc.onPresentationSync((data) => {
       if (data.action === 'stop') setPresentedVerse(null);
@@ -156,13 +157,12 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [room?.code]);
 
-  // Auto-join via initialCode
+  // Auto-join via initialCode — conectar ao WebSocket imediatamente
   useEffect(() => {
-    if (initialCode) {
-      const found = joinStudyRoom(initialCode);
-      if (found) setRoom(found);
+    if (initialCode && initialCode.length === 6) {
+      setRoom({ id: `room-${Date.now()}`, code: initialCode, participants: [participantId], createdAt: Date.now(), verses: [] });
     }
-  }, [initialCode]);
+  }, [initialCode, participantId]);
 
   // Verificar versículo pendente
   useEffect(() => {
@@ -195,16 +195,17 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   }, [bibleSyncData, prefetchAdjacent]);
 
   const handleCreate = useCallback(() => {
-    const newRoom = createStudyRoom();
-    setRoom(newRoom);
+    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    setRoom({ id: `room-${Date.now()}`, code, participants: [participantId], createdAt: Date.now(), verses: [] });
     setShowEntrance(true);
-  }, []);
+  }, [participantId]);
 
   const handleJoin = useCallback(() => {
     if (joinCode.length !== 6) return;
-    const found = joinStudyRoom(joinCode);
-    if (found) { setRoom(found); setJoinCode(''); setShowEntrance(true); }
-  }, [joinCode]);
+    setRoom({ id: `room-${Date.now()}`, code: joinCode, participants: [participantId], createdAt: Date.now(), verses: [] });
+    setJoinCode('');
+    setShowEntrance(true);
+  }, [joinCode, participantId]);
 
   const handleShare = useCallback(() => {
     if (!room || !shareInput.trim()) return;

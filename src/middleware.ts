@@ -77,6 +77,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon|icon|manifest|sw\\.js|offline\\.html|cross\\.svg).*)',
+    '/admin/:path*',
+    '/conta/:path*',
   ],
 };

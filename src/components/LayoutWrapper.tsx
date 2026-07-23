@@ -15,6 +15,8 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { registerServiceWorker } from '@/lib/offline';
 import { authService } from '@/lib/auth';
 import { initSentry } from '@/lib/sentry';
+import { startAutoSync, stopAutoSync } from '@/lib/syncManager';
+import { onOfflineStatusChange } from '@/lib/offlineStorage';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import PageTransition from '@/components/PageTransition';
 import '@/lib/i18n';
@@ -118,6 +120,21 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
       prefersReducedMotion ? '0ms' : ''
     );
   }, [prefersReducedMotion]);
+
+  // Start auto-sync and listen for offline events
+  useEffect(() => {
+    startAutoSync(); // Sync every 5 minutes
+    const cleanup = onOfflineStatusChange((offline) => {
+      if (!offline) {
+        // When coming back online, sync immediately
+        import('@/lib/syncManager').then(({ syncAll }) => syncAll());
+      }
+    });
+    return () => {
+      stopAutoSync();
+      cleanup();
+    };
+  }, []);
 
   return (
     <ThemeProvider>

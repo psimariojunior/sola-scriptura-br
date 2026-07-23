@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, CheckCircle2, Circle, Bell, BellOff, Clock, BookOpen, ChevronRight, Play, Pause, RotateCcw } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
+import { PlanReminderButton } from '@/components/PlanReminder';
 
 interface PlanoLeitura {
   id: string;
@@ -224,12 +225,7 @@ export default function PlanosPage() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <button onClick={() => setPushEnabled(!pushEnabled)}
-                    className={cn('flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium transition-all',
-                      pushEnabled ? 'bg-green-500/10 text-green-600 border border-green-500/30' : 'border border-border text-muted-foreground')}>
-                    {pushEnabled ? <Bell className="w-3.5 h-3.5" /> : <BellOff className="w-3.5 h-3.5" />}
-                    {pushEnabled ? 'Lembrete ativo (7h)' : 'Ativar lembrete'}
-                  </button>
+                  <PlanReminderButton planoId={plano.id} planoTitulo={plano.titulo} />
                 </div>
               </div>
 

@@ -33,6 +33,7 @@ import { SegurancaModule } from './infra/seguranca/seguranca.module';
 import { RedisModule } from './infra/cache/redis.module';
 import { ElasticsearchModule } from './infra/busca/elasticsearch.module';
 import { RabbitMQModule } from './infra/mensageria/rabbitmq.module';
+import { ColaborativoModule } from './modules/colaborativo/colaborativo.module';
 import { SaudeController } from './modules/saude.controller';
 
 @Module({
@@ -110,6 +111,7 @@ import { SaudeController } from './modules/saude.controller';
     RedisModule,
     ElasticsearchModule,
     RabbitMQModule,
+    ColaborativoModule,
   ],
   controllers: [SaudeController],
   providers: [

@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Users, Plus, LogIn, Share2, Copy, MessageSquare,
-  BookOpen, Trash2, X, Link as LinkIcon, Check
+  BookOpen, Trash2, X, Link as LinkIcon, Check, Phone, PhoneOff
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
@@ -19,6 +19,7 @@ import {
   type VerseShared,
   type StudyRoom,
 } from '@/lib/collaborative';
+import { VideoCall, CallButton } from '@/components/VideoCall';
 
 interface CollaborativeStudyProps {
   initialCode?: string;
@@ -33,6 +34,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   const [copied, setCopied] = useState(false);
   const [showShare, setShowShare] = useState(false);
   const [verseInput, setVerseInput] = useState({ livro: '', capitulo: '', versiculo: '', texto: '' });
+  const [isCallActive, setIsCallActive] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const participantId = getParticipantId();
 
@@ -205,6 +207,13 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               </div>
             ))}
           </div>
+          <CallButton
+            roomCode={room.code}
+            participantId={participantId}
+            isCallActive={isCallActive}
+            onStartCall={() => setIsCallActive(true)}
+            onEndCall={() => setIsCallActive(false)}
+          />
           <button
             onClick={copyRoomLink}
             className="p-2 hover:bg-[var(--surface-raised)] rounded-lg transition-colors text-[var(--content-muted)] hover:text-[var(--content-primary)]"
@@ -221,6 +230,25 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           </button>
         </div>
       </div>
+
+      {/* Video Call Panel */}
+      <AnimatePresence>
+        {isCallActive && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 400 }}
+            exit={{ opacity: 0, height: 0 }}
+            className="border-b border-[var(--border)]/40 overflow-hidden"
+          >
+            <VideoCall
+              roomCode={room.code}
+              participantId={participantId}
+              displayName={getParticipantLabel(participantId)}
+              onEndCall={() => setIsCallActive(false)}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Lista de versículos */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">

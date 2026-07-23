@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe, Logger } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
+import { IoAdapter } from '@nestjs/platform-socket.io';
 import { CacheInterceptor } from './infra/cache/cache.interceptor';
 import { CacheService } from './infra/cache/cache.service';
 import helmet from 'helmet';
@@ -87,6 +88,8 @@ async function bootstrap() {
     credentials: true,
     maxAge: 86400,
   });
+
+  app.useWebSocketAdapter(new IoAdapter(app));
 
   app.use(helmet({
     contentSecurityPolicy: {

@@ -3,7 +3,7 @@
 import { io, Socket } from 'socket.io-client';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1';
-const WS_URL = API_URL.replace('/api/v1', '').replace('https://', 'wss://').replace('http://', 'ws://');
+const WS_URL = API_URL.replace('/api/v1', '');
 
 const ICE_SERVERS: RTCConfiguration = {
   iceServers: [
@@ -48,7 +48,8 @@ export class WebRTCService {
   }
 
   connect(roomCode: string, participantId: string, displayName: string) {
-    this.socket = io(WS_URL + '/colaborativo', {
+    this.socket = io(WS_URL, {
+      path: '/socket.io/',
       transports: ['websocket', 'polling'],
       reconnection: true,
       reconnectionAttempts: 10,

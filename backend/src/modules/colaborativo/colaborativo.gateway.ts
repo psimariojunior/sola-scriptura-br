@@ -26,7 +26,7 @@ interface SignalingRoom {
     origin: '*',
     methods: ['GET', 'POST'],
   },
-  namespace: '/colaborativo',
+  path: '/socket.io/',
 })
 export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()

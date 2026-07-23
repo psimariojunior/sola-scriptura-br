@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BookOpen, ChevronLeft, ChevronRight, Share2, X, Search } from 'lucide-react';
+import { BookOpen, ChevronLeft, ChevronRight, Share2, X, Search, MonitorPlay } from 'lucide-react';
 import { carregarCapitulo, nomeLivro, totalCapitulos, TRADUCOES_APRESENTACAO } from '@/lib/apresentacao/versiculos';
 import { type LivroInfo } from '@/data/biblia/livros';
 import { Button } from '@/components/ui/button';
@@ -12,9 +12,11 @@ import { BookGridSkeleton, ChapterGridSkeleton, ChapterSkeleton } from '@/compon
 
 interface BibleBrowserProps {
   onShareVerses?: (verses: { ref: string; text: string }[]) => void;
+  onPresentVerse?: (ref: string, text: string) => void;
   syncData?: { livro: string; capitulo: number; traducao: string } | null;
   onNavigate?: (data: { livro: string; capitulo: number; traducao: string }) => void;
   isPresenter?: boolean;
+  showPresentButton?: boolean;
 }
 
 const TESTAMENTOS = [
@@ -22,7 +24,7 @@ const TESTAMENTOS = [
   { nome: 'Novo Testamento', livros: [] as LivroInfo[] },
 ];
 
-export function BibleBrowser({ onShareVerses, syncData, onNavigate, isPresenter = true }: BibleBrowserProps) {
+export function BibleBrowser({ onShareVerses, onPresentVerse, syncData, onNavigate, isPresenter = true, showPresentButton = false }: BibleBrowserProps) {
   const [step, setStep] = useState<'books' | 'chapters' | 'verses'>('books');
   const [selectedBook, setSelectedBook] = useState<string | null>(null);
   const [selectedChapter, setSelectedChapter] = useState<number | null>(null);
@@ -274,18 +276,27 @@ export function BibleBrowser({ onShareVerses, syncData, onNavigate, isPresenter 
                   <ScrollArea className="flex-1">
                     <div className="p-3 space-y-2">
                       {versiculos.map(v => (
-                        <button
-                          key={v.numero}
-                          onClick={() => toggleVerse(v.numero)}
-                          className={`w-full text-left p-2.5 rounded-lg text-sm leading-relaxed transition-all ${
-                            selectedVerses.has(v.numero)
-                              ? 'bg-[var(--brand)]/10 border border-[var(--brand)]/30'
-                              : 'hover:bg-[var(--bg-secondary)] border border-transparent'
-                          }`}
-                        >
-                          <span className="font-bold text-[var(--brand)] mr-1.5">{v.numero}</span>
-                          <span>{v.texto}</span>
-                        </button>
+                        <div key={v.numero} className={`group rounded-lg transition-all border ${
+                          selectedVerses.has(v.numero)
+                            ? 'bg-[var(--brand)]/10 border-[var(--brand)]/30'
+                            : 'border-transparent hover:bg-[var(--bg-secondary)]'
+                        }`}>
+                          <button
+                            onClick={() => toggleVerse(v.numero)}
+                            className="w-full text-left p-2.5 text-sm leading-relaxed"
+                          >
+                            <span className="font-bold text-[var(--brand)] mr-1.5">{v.numero}</span>
+                            <span>{v.texto}</span>
+                          </button>
+                          {showPresentButton && onPresentVerse && (
+                            <button
+                              onClick={(e) => { e.stopPropagation(); onPresentVerse(`${selectedBook} ${selectedChapter}:${v.numero}`, v.texto); }}
+                              className="w-full flex items-center justify-center gap-1.5 py-1.5 text-[10px] font-medium text-[var(--brand-default)] bg-[var(--brand-default)]/5 border-t border-[var(--border)]/30 hover:bg-[var(--brand-default)]/15 transition-colors"
+                            >
+                              <MonitorPlay className="w-3 h-3" /> Apresentar
+                            </button>
+                          )}
+                        </div>
                       ))}
                     </div>
                   </ScrollArea>

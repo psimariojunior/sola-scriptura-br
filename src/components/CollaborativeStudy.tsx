@@ -6,7 +6,7 @@ import {
   Users, Plus, Share2, Copy, MessageSquare,
   BookOpen, X, Link as LinkIcon, Check, PhoneOff,
   Mic, Video, Send, MonitorPlay, StickyNote, Zap,
-  Palette, Maximize2, Minimize2, Settings
+  Palette, Maximize2, Minimize2, Settings, ArrowUp, ArrowDown
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
@@ -42,7 +42,7 @@ interface CollaborativeStudyProps {
   compact?: boolean;
 }
 
-type TabType = 'chat' | 'verses' | 'presentation' | 'bible' | 'notes' | 'quiz';
+type TabType = 'chat' | 'bible' | 'notes' | 'quiz';
 
 interface SharedNote {
   id: string;
@@ -80,7 +80,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   const [showShare, setShowShare] = useState(false);
   const [verseInput, setVerseInput] = useState({ livro: '', capitulo: '', versiculo: '', texto: '' });
   const [isCallActive, setIsCallActive] = useState(false);
-  const [activeTab, setActiveTab] = useState<TabType>('verses');
+  const [activeTab, setActiveTab] = useState<TabType>('bible');
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [wsVerses, setWsVerses] = useState<VerseSharedEvent[]>([]);
   const [typingParticipants, setTypingParticipants] = useState<Map<string, string>>(new Map());
@@ -102,6 +102,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   const [quizIndex, setQuizIndex] = useState(0);
   const [quizAnswers, setQuizAnswers] = useState<any[]>([]);
   const [quizScores, setQuizScores] = useState<any[]>([]);
+  const [showBiblePanel, setShowBiblePanel] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatServiceRef = useRef<WebRTCService | null>(null);
@@ -217,7 +218,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       livro, capitulo: cap, versiculo: verso, texto, message: shareMessage || undefined, timestamp: Date.now(),
     };
     setWsVerses(prev => [...prev, verseData]);
-    setActiveTab('verses');
+    setActiveTab('bible');
     chatServiceRef.current?.sendVerseShared(verseData);
     setShareInput(''); setShareMessage(''); setVerseInput({ livro: '', capitulo: '', versiculo: '', texto: '' }); setShowShare(false);
   }, [room, shareInput, shareMessage, verseInput, participantId, participantName]);
@@ -252,10 +253,15 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     typingTimerRef.current = setTimeout(() => chatServiceRef.current?.sendTypingStop(participantId), 2000);
   }, [participantId, participantName]);
 
-  const handlePresentVerse = useCallback((verse: VerseSharedEvent) => {
-    setPresentedVerse({ texto: verse.texto, referencia: verse.verse, apresentadoPor: verse.displayName || getParticipantLabel(verse.participantId) });
-    setActiveTab('presentation');
-    chatServiceRef.current?.sendPresentationSync({ action: 'navigate', livro: verse.livro, capitulo: verse.capitulo, versiculo: verse.versiculo, texto: verse.texto, presentedBy: participantName });
+  const handlePresentVerse = useCallback((verseOrRef: VerseSharedEvent | string, text?: string) => {
+    if (typeof verseOrRef === 'string') {
+      setPresentedVerse({ texto: text || '', referencia: verseOrRef, apresentadoPor: participantName });
+      chatServiceRef.current?.sendPresentationSync({ action: 'navigate', texto: text, presentedBy: participantName });
+    } else {
+      setPresentedVerse({ texto: verseOrRef.texto, referencia: verseOrRef.verse, apresentadoPor: verseOrRef.displayName || getParticipantLabel(verseOrRef.participantId) });
+      chatServiceRef.current?.sendPresentationSync({ action: 'navigate', livro: verseOrRef.livro, capitulo: verseOrRef.capitulo, versiculo: verseOrRef.versiculo, texto: verseOrRef.texto, presentedBy: participantName });
+    }
+    setShowBiblePanel(true);
   }, [participantName]);
 
   const handleStopPresentation = useCallback(() => { setPresentedVerse(null); chatServiceRef.current?.sendPresentationSync({ action: 'stop' }); }, []);
@@ -416,12 +422,10 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       {/* Tabs */}
       <div className="flex border-b border-[var(--border)]/40 bg-[var(--surface-sunken)]/20 overflow-x-auto">
         {([
-          { id: 'verses' as const, icon: BookOpen, label: 'Versículos', count: wsVerses.length },
           { id: 'bible' as const, icon: BookOpen, label: 'Bíblia', count: 0 },
           { id: 'chat' as const, icon: MessageSquare, label: 'Chat', count: chatMessages.length },
           { id: 'notes' as const, icon: StickyNote, label: 'Notas', count: sharedNotes.length },
           { id: 'quiz' as const, icon: Zap, label: 'Quiz', count: 0 },
-          { id: 'presentation' as const, icon: MonitorPlay, label: 'Apresentar', count: 0 },
         ]).map(tab => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id)}
             className={cn('flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 text-xs font-medium transition-all border-b-2 whitespace-nowrap',
@@ -431,154 +435,111 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
             {tab.count > 0 && (
               <span className="px-1 py-0.5 text-[9px] rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)]">{tab.count}</span>
             )}
-            {tab.id === 'presentation' && presentedVerse && <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />}
           </button>
         ))}
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-hidden">
-        {activeTab === 'presentation' ? (
-          <div className="h-full relative">
-            {presentedVerse ? (
-              <>
-                <RealtimeCursors cursors={[]} currentUserId={participantId} verses={[]} />
-                <PresentationInline texto={presentedVerse.texto} referencia={presentedVerse.referencia} apresentadoPor={presentedVerse.apresentadoPor}
-                  fontSize={presentationFontSize} mirror={presentationMirror} isController={true}
-                  onFontSizeChange={handlePresentationFontSize} onMirrorChange={handlePresentationMirror} onStop={handleStopPresentation} />
-              </>
-            ) : (
-              <div className="flex flex-col items-center justify-center h-full gap-4 px-4">
-                <MonitorPlay className="w-12 h-12 text-[var(--content-muted)]/30" strokeWidth={1} />
-                <p className="text-sm text-[var(--content-muted)] text-center">Nenhum versículo sendo apresentado.</p>
-                <p className="text-xs text-[var(--content-muted)]/70 text-center">Compartilhe um versículo e clique &quot;Apresentar&quot; para exibir em tela grande.</p>
-              </div>
-            )}
-          </div>
-        ) : activeTab === 'bible' ? (
-          <PullToRefreshWrapper onRefresh={async () => { if (bibleSyncData) await prefetchAdjacent(bibleSyncData.livro, bibleSyncData.capitulo); }} className="h-full">
-            <BibleBrowser
-              onShareVerses={(verses) => { verses.forEach(v => handleShareBibleVerse(v.ref, v.text)); setActiveTab('verses'); }}
-              syncData={bibleSyncData}
-              onNavigate={(data) => chatServiceRef.current?.sendBibleNavigation(data)}
-              isPresenter={room.participants[0] === participantId}
-            />
-          </PullToRefreshWrapper>
-        ) : activeTab === 'notes' ? (
-          <SharedNotes notes={sharedNotes} currentUserId={participantId} onAdd={handleAddNote} onDelete={handleDeleteNote} onUpdate={handleUpdateNote} />
-        ) : activeTab === 'quiz' ? (
-          <LiveQuiz questions={SAMPLE_QUESTIONS} answers={quizAnswers} scores={quizScores} currentQuestionIndex={quizIndex}
-            currentUserId={participantId} isHost={room.participants[0] === participantId}
-            onAnswer={handleQuizAnswer} onNextQuestion={handleNextQuestion} onEndQuiz={() => { setQuizStarted(false); setQuizIndex(0); setQuizAnswers([]); setQuizScores([]); }} />
-        ) : activeTab === 'verses' ? (
-          <div className="space-y-3 p-4">
-            {wsVerses.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-12 text-center">
-                <div className="w-16 h-16 rounded-2xl bg-[var(--brand-default)]/10 flex items-center justify-center mb-4">
-                  <BookOpen className="w-8 h-8 text-[var(--brand-default)]" strokeWidth={1.5} />
-                </div>
-                <p className="text-sm font-medium text-[var(--content-primary)] mb-1">Compartilhe versículos</p>
-                <p className="text-xs text-[var(--content-muted)] mb-4 max-w-xs">Use a aba Bíblia para selecionar e compartilhar versículos com o grupo.</p>
-                <motion.button onClick={() => setActiveTab('bible')} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--brand-default)]/10 text-[var(--brand-default)] text-xs font-medium hover:bg-[var(--brand-default)]/20 transition-colors">
-                  <BookOpen className="w-3.5 h-3.5" /> Abrir Bíblia
-                </motion.button>
-              </div>
-            ) : (
-              wsVerses.map((v) => (
-                <motion.div key={v.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                  className="rounded-xl border border-[var(--border)]/40 overflow-hidden bg-[var(--surface-raised)]">
-                  <div className="flex items-center gap-2 px-3 py-2 border-b border-[var(--border)]/20 bg-[var(--surface-sunken)]/30">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold text-white"
-                      style={{ backgroundColor: getParticipantColor(v.participantId) }}>
-                      {v.participantId === participantId ? 'Eu' : v.participantId.slice(-2).toUpperCase()}
-                    </div>
-                    <span className="text-[10px] text-[var(--content-muted)]">{new Date(v.timestamp).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</span>
-                    <span className="text-[10px] font-semibold text-[var(--brand-default)] ml-auto">{v.verse}</span>
-                  </div>
-                  <div className="px-3 py-2">
-                    <p className="text-sm font-serif-body text-[var(--content-primary)] leading-relaxed">{v.texto}</p>
-                    {v.message && <p className="text-xs text-[var(--content-muted)] mt-2 italic">&ldquo;{v.message}&rdquo;</p>}
-                  </div>
-                  <div className="px-3 py-2 border-t border-[var(--border)]/20">
-                    <button onClick={() => handlePresentVerse(v)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-medium rounded-lg bg-[var(--brand-default)]/10 text-[var(--brand-default)] hover:bg-[var(--brand-default)]/20 transition-colors">
-                      <MonitorPlay className="w-3 h-3" /> Apresentar em tela grande
-                    </button>
-                  </div>
-                </motion.div>
-              ))
-            )}
-            <div ref={messagesEndRef} />
-          </div>
-        ) : (
-          <div className="space-y-3 p-4">
-            {chatMessages.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-12 text-center">
-                <div className="w-16 h-16 rounded-2xl bg-[var(--brand-default)]/10 flex items-center justify-center mb-4">
-                  <MessageSquare className="w-8 h-8 text-[var(--brand-default)]" strokeWidth={1.5} />
-                </div>
-                <p className="text-sm font-medium text-[var(--content-primary)] mb-1">Inicie uma conversa</p>
-                <p className="text-xs text-[var(--content-muted)]">Envie mensagens para discutir com o grupo.</p>
-              </div>
-            ) : (
-              chatMessages.map((msg) => (
-                <motion.div key={msg.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                  className={cn('rounded-xl border border-[var(--border)]/40 overflow-hidden',
-                    msg.participantId === participantId ? 'bg-[var(--brand-default)]/5 border-[var(--brand-default)]/20' : 'bg-[var(--surface-raised)]')}>
-                  <div className="flex items-center gap-2 px-3 py-2 border-b border-[var(--border)]/20 bg-[var(--surface-sunken)]/30">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold text-white"
-                      style={{ backgroundColor: getParticipantColor(msg.participantId) }}>
-                      {msg.participantId === participantId ? 'Eu' : msg.participantId.slice(-2).toUpperCase()}
-                    </div>
-                    <span className="text-xs font-medium text-[var(--content-primary)]">{msg.participantId === participantId ? 'Você' : msg.displayName}</span>
-                    <span className="text-[10px] text-[var(--content-muted)] ml-auto">{new Date(msg.timestamp).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</span>
-                  </div>
-                  <div className="px-3 py-2"><p className="text-sm text-[var(--content-primary)]">{msg.message}</p></div>
-                </motion.div>
-              ))
-            )}
-            {typingParticipants.size > 0 && (
-              <div className="flex items-center gap-2 px-3 py-2">
-                <div className="flex gap-1">
-                  <span className="w-2 h-2 rounded-full bg-[var(--content-muted)] animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <span className="w-2 h-2 rounded-full bg-[var(--content-muted)] animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <span className="w-2 h-2 rounded-full bg-[var(--content-muted)] animate-bounce" style={{ animationDelay: '300ms' }} />
-                </div>
-                <span className="text-xs text-[var(--content-muted)]">
-                  {Array.from(typingParticipants.values()).join(', ')} {typingParticipants.size === 1 ? 'está' : 'estão'} digitando...
-                </span>
-              </div>
-            )}
-            <div ref={chatEndRef} />
+      <div className="flex-1 overflow-hidden flex flex-col">
+        {/* Apresentação: ocupa tela toda quando sem bible panel, senão 40% */}
+        {presentedVerse && (
+          <div className={cn('relative bg-[#0a0a14] flex-shrink-0 transition-all duration-300', showBiblePanel ? 'h-[40%] min-h-[180px]' : 'flex-1')}>
+            <RealtimeCursors cursors={[]} currentUserId={participantId} verses={[]} />
+            <PresentationInline texto={presentedVerse.texto} referencia={presentedVerse.referencia} apresentadoPor={presentedVerse.apresentadoPor}
+              fontSize={presentationFontSize} mirror={presentationMirror} isController={true}
+              onFontSizeChange={handlePresentationFontSize} onMirrorChange={handlePresentationMirror} onStop={handleStopPresentation} />
+            {/* Toggle Bible panel */}
+            <button onClick={() => setShowBiblePanel(!showBiblePanel)}
+              className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-2 rounded-full bg-black/70 text-white text-xs font-medium hover:bg-black/90 transition-colors backdrop-blur-sm z-10">
+              <BookOpen className="w-3.5 h-3.5" />
+              {showBiblePanel ? 'Tela cheia' : 'Abrir Bíblia'}
+            </button>
           </div>
         )}
-      </div>
 
-      {/* Input bar */}
-      <div className="border-t border-[var(--border)]/40 bg-[var(--surface-sunken)]/30 p-3">
-        <div className="flex gap-2">
-          <input type="text" value={shareMessage}
-            onChange={(e) => { setShareMessage(e.target.value); if (activeTab === 'chat') handleTyping(); }}
-            onKeyDown={(e) => { if (e.key === 'Enter') { if (activeTab === 'chat') handleSendMessage(); else if (showShare) handleShare(); } }}
-            placeholder={activeTab === 'chat' ? 'Digite sua mensagem...' : activeTab === 'notes' ? 'Digite uma nota...' : 'Digite algo...'}
-            className="flex-1 px-4 py-2.5 text-sm bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/20 transition-all" />
-          {activeTab === 'chat' && (
-            <motion.button onClick={handleSendMessage} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} disabled={!shareMessage.trim()}
-              className={cn('px-3 py-2.5 rounded-xl transition-all flex-shrink-0',
-                shareMessage.trim() ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]' : 'opacity-50 cursor-not-allowed bg-[var(--surface-raised)]')}>
-              <Send className="w-4 h-4" />
-            </motion.button>
-          )}
-          {activeTab === 'notes' && (
-            <motion.button onClick={() => { if (shareMessage.trim()) { handleAddNote(shareMessage); setShareMessage(''); } }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} disabled={!shareMessage.trim()}
-              className={cn('px-3 py-2.5 rounded-xl transition-all flex-shrink-0',
-                shareMessage.trim() ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]' : 'opacity-50 cursor-not-allowed bg-[var(--surface-raised)]')}>
-              <Send className="w-4 h-4" />
-            </motion.button>
+        {/* Área de conteúdo (aba ativa) */}
+        <div className={cn('flex-1 overflow-hidden', presentedVerse && showBiblePanel ? 'min-h-0' : presentedVerse ? 'hidden' : '')}>
+          {activeTab === 'bible' ? (
+            <PullToRefreshWrapper onRefresh={async () => { if (bibleSyncData) await prefetchAdjacent(bibleSyncData.livro, bibleSyncData.capitulo); }} className="h-full">
+              <BibleBrowser
+                onPresentVerse={handlePresentVerse}
+                onShareVerses={(verses) => { verses.forEach(v => handleShareBibleVerse(v.ref, v.text)); }}
+                syncData={bibleSyncData}
+                onNavigate={(data) => chatServiceRef.current?.sendBibleNavigation(data)}
+                isPresenter={room.participants[0] === participantId}
+                showPresentButton={true}
+              />
+            </PullToRefreshWrapper>
+          ) : activeTab === 'notes' ? (
+            <SharedNotes notes={sharedNotes} currentUserId={participantId} onAdd={handleAddNote} onDelete={handleDeleteNote} onUpdate={handleUpdateNote} />
+          ) : activeTab === 'quiz' ? (
+            <LiveQuiz questions={SAMPLE_QUESTIONS} answers={quizAnswers} scores={quizScores} currentQuestionIndex={quizIndex}
+              currentUserId={participantId} isHost={room.participants[0] === participantId}
+              onAnswer={handleQuizAnswer} onNextQuestion={handleNextQuestion} onEndQuiz={() => { setQuizStarted(false); setQuizIndex(0); setQuizAnswers([]); setQuizScores([]); }} />
+          ) : (
+            <div className="space-y-3 p-4">
+              {chatMessages.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-12 text-center">
+                  <div className="w-16 h-16 rounded-2xl bg-[var(--brand-default)]/10 flex items-center justify-center mb-4">
+                    <MessageSquare className="w-8 h-8 text-[var(--brand-default)]" strokeWidth={1.5} />
+                  </div>
+                  <p className="text-sm font-medium text-[var(--content-primary)] mb-1">Chat da sala</p>
+                  <p className="text-xs text-[var(--content-muted)]">Envie mensagens para discutir com o grupo.</p>
+                </div>
+              ) : (
+                chatMessages.map((msg) => (
+                  <motion.div key={msg.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                    className={cn('rounded-xl border border-[var(--border)]/40 overflow-hidden',
+                      msg.participantId === participantId ? 'bg-[var(--brand-default)]/5 border-[var(--brand-default)]/20' : 'bg-[var(--surface-raised)]')}>
+                    <div className="flex items-center gap-2 px-3 py-2 border-b border-[var(--border)]/20 bg-[var(--surface-sunken)]/30">
+                      <div className="w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold text-white"
+                        style={{ backgroundColor: getParticipantColor(msg.participantId) }}>
+                        {msg.participantId === participantId ? 'Eu' : msg.participantId.slice(-2).toUpperCase()}
+                      </div>
+                      <span className="text-xs font-medium text-[var(--content-primary)]">{msg.participantId === participantId ? 'Você' : msg.displayName}</span>
+                      <span className="text-[10px] text-[var(--content-muted)] ml-auto">{new Date(msg.timestamp).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</span>
+                    </div>
+                    <div className="px-3 py-2"><p className="text-sm text-[var(--content-primary)]">{msg.message}</p></div>
+                  </motion.div>
+                ))
+              )}
+              {typingParticipants.size > 0 && (
+                <div className="flex items-center gap-2 px-3 py-2">
+                  <div className="flex gap-1">
+                    <span className="w-2 h-2 rounded-full bg-[var(--content-muted)] animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-2 h-2 rounded-full bg-[var(--content-muted)] animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-2 h-2 rounded-full bg-[var(--content-muted)] animate-bounce" style={{ animationDelay: '300ms' }} />
+                  </div>
+                  <span className="text-xs text-[var(--content-muted)]">
+                    {Array.from(typingParticipants.values()).join(', ')} {typingParticipants.size === 1 ? 'está' : 'estão'} digitando...
+                  </span>
+                </div>
+              )}
+              <div ref={chatEndRef} />
+            </div>
           )}
         </div>
       </div>
+
+      {/* Input bar (chat/notes) */}
+      {(activeTab === 'chat' || activeTab === 'notes') && (
+        <div className="border-t border-[var(--border)]/40 bg-[var(--surface-sunken)]/30 p-3">
+          <div className="flex gap-2">
+            <input type="text" value={shareMessage}
+              onChange={(e) => { setShareMessage(e.target.value); if (activeTab === 'chat') handleTyping(); }}
+              onKeyDown={(e) => { if (e.key === 'Enter') { if (activeTab === 'chat') handleSendMessage(); else if (activeTab === 'notes') { if (shareMessage.trim()) { handleAddNote(shareMessage); setShareMessage(''); } } } }}
+              placeholder={activeTab === 'chat' ? 'Digite sua mensagem...' : 'Digite uma nota...'}
+              className="flex-1 px-4 py-2.5 text-sm bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/20 transition-all" />
+            <motion.button
+              onClick={() => { if (activeTab === 'chat') handleSendMessage(); else if (activeTab === 'notes' && shareMessage.trim()) { handleAddNote(shareMessage); setShareMessage(''); } }}
+              whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} disabled={!shareMessage.trim()}
+              className={cn('px-3 py-2.5 rounded-xl transition-all flex-shrink-0',
+                shareMessage.trim() ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]' : 'opacity-50 cursor-not-allowed bg-[var(--surface-raised)]')}>
+              <Send className="w-4 h-4" />
+            </motion.button>
+          </div>
+        </div>
+      )}
 
       {/* Settings Bottom Sheet */}
       <BottomSheet open={showSettings} onClose={() => setShowSettings(false)} title="Configurações da Sala">

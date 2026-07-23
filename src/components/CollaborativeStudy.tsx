@@ -10,6 +10,7 @@ import {
   ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { TODOS_LIVROS } from '@/data/biblia/livros';
 import {
   getParticipantId,
   getParticipantColor,
@@ -35,6 +36,7 @@ import {
   type VerseSharedEvent,
   type CallInviteEvent,
 } from '@/lib/webrtc';
+import { carregarCapitulo, nomeLivro } from '@/lib/apresentacao/versiculos';
 
 interface CollaborativeStudyProps {
   initialCode?: string;
@@ -260,21 +262,57 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     typingTimerRef.current = setTimeout(() => chatServiceRef.current?.sendTypingStop(participantId), 2000);
   }, [participantId, participantName]);
 
-  const handlePresentVerse = useCallback((verseOrRef: VerseSharedEvent | string, text?: string) => {
+  const handlePresentVerse = useCallback(async (verseOrRef: VerseSharedEvent | string, text?: string) => {
     if (typeof verseOrRef === 'string') {
-      setPresentedVerse({ texto: text || '', referencia: verseOrRef, apresentadoPor: participantName });
+      // Parse reference like "Mateus 1:1" or "Mt 1:1"
+      const refMatch = verseOrRef.match(/^(.+?)\s+(\d+):(\d+)$/);
+      if (refMatch) {
+        const [, livroNome, capStr, verStr] = refMatch;
+        const capitulo = parseInt(capStr);
+        const versiculo = parseInt(verStr);
+
+        // Find book abbreviation
+        const livroInfo = TODOS_LIVROS.find(l =>
+          l.nome === livroNome || l.abreviacao === livroNome || l.nome.startsWith(livroNome)
+        );
+        const livroAbrev = livroInfo?.abreviacao || livroNome.toLowerCase().slice(0, 2);
+
+        // Load full chapter
+        try {
+          const verses = await carregarCapitulo(livroAbrev, capitulo, 'nvi');
+          if (verses && verses.length > 0) {
+            const chapterVersesData = verses.map(v => ({
+              texto: v.texto,
+              referencia: `${livroNome} ${capitulo}:${v.numero}`,
+            }));
+            setChapterVerses(chapterVersesData);
+            const idx = verses.findIndex(v => v.numero === versiculo);
+            setChapterVerseIndex(idx >= 0 ? idx : 0);
+            setPresentedVerse({
+              texto: verses[idx >= 0 ? idx : 0].texto,
+              referencia: verseOrRef,
+              apresentadoPor: participantName,
+            });
+          } else {
+            // Fallback: use provided text
+            setChapterVerses([{ texto: text || '', referencia: verseOrRef }]);
+            setChapterVerseIndex(0);
+            setPresentedVerse({ texto: text || '', referencia: verseOrRef, apresentadoPor: participantName });
+          }
+        } catch {
+          // Fallback: use provided text
+          setChapterVerses([{ texto: text || '', referencia: verseOrRef }]);
+          setChapterVerseIndex(0);
+          setPresentedVerse({ texto: text || '', referencia: verseOrRef, apresentadoPor: participantName });
+        }
+      } else {
+        // Can't parse reference, use text as-is
+        setChapterVerses([{ texto: text || '', referencia: verseOrRef }]);
+        setChapterVerseIndex(0);
+        setPresentedVerse({ texto: text || '', referencia: verseOrRef, apresentadoPor: participantName });
+      }
       chatServiceRef.current?.sendPresentationSync({ action: 'navigate', texto: text, presentedBy: participantName });
       setCurrentVerseIndex(-1);
-      // Also add to chapter verses for navigation
-      setChapterVerses(prev => {
-        const exists = prev.some(v => v.referencia === verseOrRef);
-        if (exists) return prev;
-        return [...prev, { texto: text || '', referencia: verseOrRef }];
-      });
-      setChapterVerseIndex(prev => {
-        const idx = chapterVerses.findIndex(v => v.referencia === verseOrRef);
-        return idx >= 0 ? idx : chapterVerses.length;
-      });
     } else {
       const idx = wsVerses.findIndex(v => v.id === verseOrRef.id);
       setCurrentVerseIndex(idx >= 0 ? idx : wsVerses.length);
@@ -282,7 +320,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       chatServiceRef.current?.sendPresentationSync({ action: 'navigate', livro: verseOrRef.livro, capitulo: verseOrRef.capitulo, versiculo: verseOrRef.versiculo, texto: verseOrRef.texto, presentedBy: participantName });
     }
     setShowBiblePanel(true);
-  }, [participantName, wsVerses, chapterVerses]);
+  }, [participantName, wsVerses]);
 
   const handleStopPresentation = useCallback(() => { setPresentedVerse(null); setCurrentVerseIndex(-1); chatServiceRef.current?.sendPresentationSync({ action: 'stop' }); }, []);
   const handlePresentationFontSize = useCallback((size: number) => { setPresentationFontSize(size); chatServiceRef.current?.sendPresentationSync({ action: 'fontSize', fontSize: size }); }, []);

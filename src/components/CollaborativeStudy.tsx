@@ -541,13 +541,24 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               <div className="space-y-3">
                 {wsVerses.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-12 text-center">
-                    <BookOpen className="w-12 h-12 text-[var(--content-muted)]/30 mb-3" strokeWidth={1} />
-                    <p className="text-sm text-[var(--content-muted)]">
-                      Nenhum versículo compartilhado ainda.
+                    <div className="w-16 h-16 rounded-2xl bg-[var(--brand-default)]/10 flex items-center justify-center mb-4">
+                      <BookOpen className="w-8 h-8 text-[var(--brand-default)]" strokeWidth={1.5} />
+                    </div>
+                    <p className="text-sm font-medium text-[var(--content-primary)] mb-1">
+                      Compartilhe versículos
                     </p>
-                    <p className="text-xs text-[var(--content-muted)]/70 mt-1">
-                      Compartilhe versículos para iniciar o estudo!
+                    <p className="text-xs text-[var(--content-muted)] mb-4 max-w-xs">
+                      Clique no ícone de livro na barra abaixo para compartilhar um versículo com o grupo.
                     </p>
+                    <motion.button
+                      onClick={() => setShowShare(true)}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--brand-default)]/10 text-[var(--brand-default)] text-xs font-medium hover:bg-[var(--brand-default)]/20 transition-colors"
+                    >
+                      <BookOpen className="w-3.5 h-3.5" />
+                      Compartilhar agora
+                    </motion.button>
                   </div>
                 ) : (
                   wsVerses.map((v) => (
@@ -667,24 +678,28 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               exit={{ opacity: 0, height: 0 }}
               className="mb-3 space-y-2"
             >
+              <div className="flex items-center gap-2 mb-2">
+                <BookOpen className="w-4 h-4 text-[var(--brand-default)]" />
+                <span className="text-xs font-medium text-[var(--brand-default)]">Compartilhar versículo</span>
+              </div>
               <div className="grid grid-cols-3 gap-2">
                 <input
                   type="text"
-                  placeholder="Livro (ex: Jo)"
+                  placeholder="Livro (ex: João)"
                   value={verseInput.livro}
                   onChange={(e) => setVerseInput(p => ({ ...p, livro: e.target.value }))}
                   className="px-3 py-2 text-xs bg-[var(--surface-raised)] border border-[var(--border)] rounded-lg focus:outline-none focus:ring-1 focus:ring-[var(--brand-default)]/30"
                 />
                 <input
                   type="text"
-                  placeholder="Cap:Vv (3:16)"
+                  placeholder="Capítulo:Verso (3:16)"
                   value={shareInput}
                   onChange={(e) => setShareInput(e.target.value)}
                   className="px-3 py-2 text-xs bg-[var(--surface-raised)] border border-[var(--border)] rounded-lg focus:outline-none focus:ring-1 focus:ring-[var(--brand-default)]/30"
                 />
                 <input
                   type="text"
-                  placeholder="Texto (opcional)"
+                  placeholder="Texto do versículo"
                   value={verseInput.texto}
                   onChange={(e) => setVerseInput(p => ({ ...p, texto: e.target.value }))}
                   className="px-3 py-2 text-xs bg-[var(--surface-raised)] border border-[var(--border)] rounded-lg focus:outline-none focus:ring-1 focus:ring-[var(--brand-default)]/30"
@@ -698,11 +713,44 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
                 onKeyDown={(e) => e.key === 'Enter' && handleShare()}
                 className="w-full px-3 py-2 text-xs bg-[var(--surface-raised)] border border-[var(--border)] rounded-lg focus:outline-none focus:ring-1 focus:ring-[var(--brand-default)]/30"
               />
+              <motion.button
+                onClick={handleShare}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                disabled={!shareInput.trim()}
+                className={cn(
+                  'w-full py-2 rounded-lg text-xs font-medium transition-all',
+                  shareInput.trim()
+                    ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]'
+                    : 'bg-[var(--surface-raised)] text-[var(--content-muted)] opacity-50 cursor-not-allowed'
+                )}
+              >
+                Compartilhar
+              </motion.button>
             </motion.div>
           )}
         </AnimatePresence>
 
         <div className="flex gap-2">
+          {/* Botão de compartilhar versículo - sempre visível */}
+          <motion.button
+            onClick={() => {
+              setShowShare(!showShare);
+              if (activeTab !== 'verses') setActiveTab('verses');
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={cn(
+              'px-3 py-2.5 rounded-xl transition-all flex-shrink-0',
+              showShare
+                ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]'
+                : 'bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--content-muted)] hover:text-[var(--brand-default)] hover:border-[var(--brand-default)]/30'
+            )}
+            title="Compartilhar versículo"
+          >
+            <BookOpen className="w-4 h-4" />
+          </motion.button>
+
           <input
             type="text"
             value={shareMessage}
@@ -716,25 +764,15 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
                 else if (activeTab === 'chat') handleSendMessage();
               }
             }}
-            placeholder={showShare && activeTab === 'verses' ? 'Compartilhar versículo...' : activeTab === 'chat' ? 'Enviar mensagem...' : 'Enviar mensagem ou ative compartilhar...'}
+            placeholder={
+              showShare
+                ? 'Digite a referência e pressione Compartilhar...'
+                : activeTab === 'chat'
+                  ? 'Digite sua mensagem...'
+                  : 'Digite algo ou compartilhe um versículo...'
+            }
             className="flex-1 px-4 py-2.5 text-sm bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/20 transition-all"
           />
-          {activeTab === 'verses' && (
-            <motion.button
-              onClick={() => setShowShare(!showShare)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={cn(
-                'px-3 py-2.5 rounded-xl transition-all',
-                showShare
-                  ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]'
-                  : 'bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--content-muted)] hover:text-[var(--content-primary)]'
-              )}
-              title="Compartilhar versículo"
-            >
-              <Share2 className="w-4 h-4" />
-            </motion.button>
-          )}
           {activeTab === 'chat' && (
             <motion.button
               onClick={handleSendMessage}
@@ -742,7 +780,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               whileTap={{ scale: 0.95 }}
               disabled={!shareMessage.trim()}
               className={cn(
-                'px-3 py-2.5 rounded-xl transition-all',
+                'px-3 py-2.5 rounded-xl transition-all flex-shrink-0',
                 shareMessage.trim()
                   ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]'
                   : 'bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--content-muted)] opacity-50 cursor-not-allowed'

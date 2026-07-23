@@ -31,15 +31,15 @@ const estrutura = [
     'A glória de Jesus é a rejeicao de Israel',
   ]},
   { parte: 'Parte II: O Livro da Paixao (Caps. 13-21)', cor: 'border-red-500', bg: 'bg-red-500/5', itens: [
-    'Caps. 13-17: A ceia, os últimos discursos é a oracao sumo-sacerdotal',
+    'Caps. 13-17: A ceia, os últimos discursos é a oração sumo-sacerdotal',
     'Caps. 18-19: A Paixao — julgamento, crucificacao e sepultamento',
-    'Caps. 20-21: A Ressurreicao e restauracao de Pedro',
+    'Caps. 20-21: A Ressurreição e restauração de Pedro',
   ]},
 ];
 
 const euSou = [
   { título: 'Eu sou o pão da vida', referência: 'João 6:35', cor: 'text-amber-500', icone: Cross, descricao: 'Jesus é a sustentacao espiritual do homem. Assim como o maná sustentou Israel no deserto, Cristo é o alimento que satisfaz a fome espiritual eterna. Quem vem a Ele jamais terá fome.' },
-  { título: 'Eu sou a luz do mundo', referência: 'João 8:12; 9:5', cor: 'text-yellow-500', icone: Sun, descricao: 'Jesus é a revelacao de Deus nas trevas. Assim como a coluna de fogo guiou Israel, Cristo ilumina os caminhos da humanidade. Quem O segue não andara em trevas.' },
+  { título: 'Eu sou a luz do mundo', referência: 'João 8:12; 9:5', cor: 'text-yellow-500', icone: Sun, descricao: 'Jesus é a revelação de Deus nas trevas. Assim como a coluna de fogo guiou Israel, Cristo ilumina os caminhos da humanidade. Quem O segue não andara em trevas.' },
   { título: 'Eu sou a porta', referência: 'João 10:7, 9', cor: 'text-green-500', icone: DoorOpen, descricao: 'Jesus é o unico caminho para a salvação. Por Ele o rebanho entra e sai, e encontra pasto. Todos que tentam entrar por outro caminho são ladroes e salteadores.' },
   { título: 'Eu sou o bom pastor', referência: 'João 10:11, 14', cor: 'text-blue-500', icone: Heart, descricao: 'Jesus conhece suas ovelhas e da a vida por elas. O pastor雇佣 (assalariado) foge, mas o bom pastor permanece. O amor do pastor e sacrificial.' },
   { título: 'Eu sou a ressurreição é a vida', referência: 'João 11:25', cor: 'text-purple-500', icone: Sparkles, descricao: 'Jesus tem poder sobre a morte. Quem crê nEle, mesmo que morra, viverá. Esta é a promessa suprema diante do tumor da morte.' },
@@ -51,7 +51,7 @@ const sinais = [
   { título: ' água em vinho', referência: 'João 2:1-11', local: 'Casamento em Cana', cor: 'text-red-500', descricao: 'O primeiro sinal revela a glória de Jesus. A transformação da água em vinho simboliza a novidade que Cristo traz — o velho (Lei) cede lugar ao novo (Graça). Sinal messianico de abundancia.' },
   { título: 'Curacao do filho do funccionario', referência: 'João 4:46-54', local: 'Cana para Cafarnaum', cor: 'text-blue-500', descricao: 'A primeira cura registrada em Joao. Jesus cura a distancia, demonstrando autoridade sobre a distancia é o tempo. A fé do pai e recompensada.' },
   { título: 'Curacao do paralitico', referência: 'João 5:1-15', local: 'Piscina de Betesda', cor: 'text-green-500', descricao: 'Jesus cura um doente a 38 anos no sabado, revelando autoridade sobre a Lei. O Filho opera em unidade com o Pai, mesmo no sabado.' },
-  { título: 'Alimentacao de 5.000', referência: 'João 6:1-14', local: 'Deserto da GaliLeia', cor: 'text-amber-500', descricao: 'O unico sinal narrado nos quatro evangelhos. Jesus é o pao da vida que alimenta a humanidade inteira. Sinal de compaixao e provisão divina.' },
+  { título: 'Alimentacao de 5.000', referência: 'João 6:1-14', local: 'Deserto da GaliLeia', cor: 'text-amber-500', descricao: 'O unico sinal narrado nos quatro evangelhos. Jesus é o pão da vida que alimenta a humanidade inteira. Sinal de compaixao e provisão divina.' },
   { título: 'Caminhar sobre as águas', referência: 'João 6:16-21', local: 'Mar da GaliLeia', cor: 'text-blue-500', descricao: 'Jesus revela Seu poder sobre a natureza e os elementos. "Eu Sou; não temais." A presenca de Jesus transforma o medo em coragem.' },
   { título: 'Curacao do cego de nascença', referência: 'João 9:1-41', local: 'Jerusalém', cor: 'text-yellow-500', descricao: 'Jesus é a luz do mundo. O cego recebe visão fisica e espiritual. Os fariseus, que se dizem videntes, são espiritualmente cegos. Sinal que divide opiniões.' },
   { título: 'Ressurreicao de Lázaro', referência: 'João 11:1-44', local: 'Betânia', cor: 'text-purple-500', descricao: 'O maior sinal de Joao. Jesus chama Lázaro do tumulo apos quatro dias. Revela o poder sobre a morte e antecipa a propria ressurreição. "Eu sou a ressurreição é a vida."' },
@@ -61,7 +61,7 @@ const prologo = [
   { versiculo: 'João 1:1', texto: 'No princípio era o Verbo, é o Verbo estava com Deus, é o Verbo era Deus.', nota: 'A eternidade de Cristo. Ele não teve começo. As tres pessoas da Trindade estão presentes na criação.' },
   { versiculo: 'João 1:2', texto: 'Ele estava no princípio com Deus.', nota: 'Reforça a unidade e distinção entre o Pai é o Filho. Eterna communhão.' },
   { versiculo: 'João 1:3', texto: 'Todas as coisas foram féitas por Ele, e sem Ele nada do que foi feito se fez.', nota: 'Cristo é o Criador de todas as coisas. Nada existe fora dEle.' },
-  { versiculo: 'João 1:4', texto: 'Nele estava a vida, é a vida era a luz dos homens.', nota: 'Cristo é a fonte da vida e da iluminação espiritual. Sem Ele so ha trevas.' },
+  { versiculo: 'João 1:4', texto: 'Nele estava a vida, é a vida era a luz dos homens.', nota: 'Cristo é a fonte da vida e da iluminação espiritual. Sem Ele só há trevas.' },
   { versiculo: 'João 1:5', texto: 'E a luz resplandece nas trevas, e as trevas não prevaleceram contra ela.', nota: 'A vitória definitiva da luz. O mal e as trevas jamais derrotarão a Cristo.' },
   { versiculo: 'João 1:12', texto: 'Mas a todos quantos o receberam, deu-lhes o poder de serem feitos filhos de Deus.', nota: 'A adocao divina. Quem recebe a Cristo se torna filho de Deus. A fé é a porta de entrada.' },
   { versiculo: 'João 1:14', texto: 'E o Verbo se fez carne, e habitou entre nós, e vimos a sua glória.', nota: 'A incarnação. O Deus eterno se tornou homem. A glória divina se revela em humanidade plena.' },
@@ -69,14 +69,14 @@ const prologo = [
 ];
 
 const versiculosChave = [
-  { referência: 'João 1:14', texto: 'E o Verbo se fez carne, e habitou entre nós, e vimos a sua glória, glória como a do unigênito do Pai, cheio de graça e de verdade.', explicação: 'A incarnacao é o centro do cristianismo. Deus se tornou homem para habitar entre os homens. A glória de Cristo é a glória do próprio Deus.' },
+  { referência: 'João 1:14', texto: 'E o Verbo se fez carne, e habitou entre nós, e vimos a sua glória, glória como a do unigênito do Pai, cheio de graça e de verdade.', explicação: 'A encarnação é o centro do cristianismo. Deus se tornou homem para habitar entre os homens. A glória de Cristo é a glória do próprio Deus.' },
   { referência: 'João 3:16', texto: 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele cre pereça, mas tenha a vida eterna.', explicação: 'O versículo mais famoso da Biblia. O amor de Deus e universal, o sacrifio e unico, a salvação e individual pela fé.' },
   { referência: 'João 3:30', texto: 'E preciso que Ele cresça, e que eu diminua.', explicação: 'Joao Batista reconhece sua posição diante de Cristo. O crente deve diminuir para que Cristo cresça em sua vida.' },
-  { referência: 'João 6:35', texto: 'Jesus lhes disse: Eu sou o pão da vida; quem vem a mim jamais terá fome, e quem crê em mim jamais terá sede.', explicação: 'Jesus é a satisfação suprema da alma humana. Nada neste mundo satisfaz plenamente alem dEle.' },
+  { referência: 'João 6:35', texto: 'Jesus lhes disse: Eu sou o pão da vida; quem vem a mim jamais terá fome, e quem crê em mim jamais terá sede.', explicação: 'Jesus é a satisfação suprema da alma humana. Nada neste mundo satisfaz plenamente além dEle.' },
   { referência: 'João 8:32', texto: 'E conhecereis a verdade, é a verdade vos libertará.', explicação: 'A liberdade vem pelo conhecimento da verdade de Cristo. A verdade não e apenas uma ideia, mas uma Pessoa.' },
   { referência: 'João 10:10', texto: 'Eu vim para que tenham vida, é a tenham em abundancia.', explicação: 'O propósito de Cristo não e apenas salvar da morte, mas dar vida abundana, cheia de propósito e significado.' },
   { referência: 'João 11:25-26', texto: 'Eu sou a ressurreição é a vida. Quem crê em mim, ainda que morra, viverá; e todo aquele que vive e crê em mim jamais morrerá.', explicação: 'A promessa suprema diante da morte. A fé em Cristo transcende a morte fisica. A vida eterna comeca agora.' },
-  { referência: 'João 14:6', texto: 'Jesus lhe disse: Eu sou o caminho, é a verdade, é a vida; ninguem vai ao Pai senão por mim.', explicação: 'A exclusividade de Cristo. Nao ha caminhos alternativos. Cristo é o unico mediador entre Deus e os homens.' },
+  { referência: 'João 14:6', texto: 'Jesus lhe disse: Eu sou o caminho, é a verdade, é a vida; ninguem vai ao Pai senão por mim.', explicação: 'A exclusividade de Cristo. Não há caminhos alternativos. Cristo é o unico mediador entre Deus e os homens.' },
 ];
 
 const temasCentrais = [
@@ -90,7 +90,7 @@ const temasCentrais = [
 const aplicações = [
   'Receba a Cristo pessoalmente — a fé e individual e transformadora.',
   'Conheça a Palavra de Deus — a verdade liberta e transforma a mente.',
-  'Vida em abundancia — busque em Cristo a satisfação que o mundo não oférece.',
+  'Vida em abundância — busque em Cristo a satisfação que o mundo não oférece.',
   'Ande na luz — confésse pecados e viva na verdade diante de Deus.',
   'Ame como Cristo amou — o amor sacrificial é a marca do discipulo.',
   'Permaneça na videira — a união com Cristo produz fruto espiritual.',
@@ -103,7 +103,7 @@ const perguntas = [
   'Qual a importancia dos sete "Eu Sou" para entender a identidade de Cristo?',
   'Como o sinal da ressurreição de Lázaro aponta para a ressurreição de Cristo?',
   'O que significa "nascer de novo" (João 3:3-8)?',
-  'De que forma a oracao sumo-sacerdotal de Jesus (João 17) revela Seu coração?',
+  'De que forma a oração sumo-sacerdotal de Jesus (João 17) revela Seu coração?',
   'Como a washing dos pes (João 13) ensina sobre servico e humildade?',
   'Qual a relação entré a verdade é a liberdade (João 8:31-36)?',
   'De que maneira a ressurreição de Joao 20 confirmã todas as promessas de Cristo?',

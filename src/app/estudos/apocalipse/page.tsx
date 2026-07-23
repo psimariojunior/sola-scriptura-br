@@ -29,9 +29,9 @@ const sistemasInterpretativos = [
     exponentes: 'Calvino, Wesley, Iglesias Reformadas',
     cor: 'border-blue-500',
     bg: 'bg-blue-500/5',
-    descricao: 'A historia da igreja se desenrola de Joao ate o fim. Cada selo, trombeta e taça representa eventos ao longo dos seculos. O AntiCristo ja foi identificado com papas, imperadores romanos, etc.',
+    descricao: 'A historia da igreja se desenrola de Joao até o fim. Cada selo, trombeta e taça representa eventos ao longo dos seculos. O AntiCristo já foi identificado com papas, imperadores romanos, etc.',
     pontos: [
-      'A Revelacao cobre toda a historia da igreja',
+      'A Revelação cobre toda a historia da igreja',
       'A "Babylonia" representa sistemas religiosos corruptos ao longo do tempo',
       'O milenio e espiritual — o reinado de Cristo na igreja',
       'Permitiu que reformadores identificassem o papado como sistema anticristao',
@@ -66,7 +66,7 @@ const sistemasInterpretativos = [
     exponentes: 'Agostinho, George Eldon Ladd, Kim Riddlebarger, Kenneth Gentry',
     cor: 'border-purple-500',
     bg: 'bg-purple-500/5',
-    descricao: 'O milenio de Apocalipse 20 e simbólico, representando o reinado atual de Cristo do céu. Nao ha um reinado literál futuro na terra. A "primeira ressurreição" (20:5) e espiritual — a regeneração do crente. O "mil anos" é o período entre a primeira e segunda vinda de Cristo.',
+    descricao: 'O milenio de Apocalipse 20 e simbólico, representando o reinado atual de Cristo do céu. Não há um reinado literál futuro na terra. A "primeira ressurreição" (20:5) e espiritual — a regeneração do crente. O "mil anos" é o período entre a primeira e segunda vinda de Cristo.',
     pontos: [
       'Consistente com a interpretação simbólica do restante do livro',
       'Agostinho desenvolveu esta visão em "A Cidade de Deus"',
@@ -112,7 +112,7 @@ const seteIgrejas = [
 const versiculosChave = [
   {
     referência: 'Apocalipse 1:8',
-    texto: 'Eu sou o Alfa é o Omega, o Princípio é o Fim, diz o Senhor, que e, e que era, e que ha de vir, o Todo-Poderoso.',
+    texto: 'Eu sou o Alfa é o Omega, o Princípio é o Fim, diz o Senhor, que e, e que era, e que há de vir, o Todo-Poderoso.',
     explicação: 'A auto-revelação de Cristo em Apocalipse: eterno, soberano, o que sustenta toda a realidade do início ao fim.',
     comentarios: [
       { teologo: 'G.K. Beale', texto: 'A declaração "Alfa e Omega" conecta Cristo ao Deus do Antigo Testamento (Is 44:6). Ele é o autor e consumador da história. Tudo o que Apocalipse descreve — julgamento, salvação, nova criação — está sob sua autoridade soberana.' },
@@ -124,7 +124,7 @@ const versiculosChave = [
     texto: 'E cantavam um cantico novo, dizendo: Tu és digno de tomar o livro e de abrir os seus selos; porque fste immolado, e com teu sangue compraste para Deus gente de toda tribo, e lingua, e povo, e nacao; e deles fizeste para o nosso Deus reis e sacerdotes, e reinarao sobre a terra.',
     explicação: 'O Cordeiro imolado (Cristo) é o único digno de revelar o plano de Deus. A redenção é por sangue, é o fruto é um povo multicultural que reina.',
     comentarios: [
-      { teologo: 'Richard Bauckham', texto: 'O cantico do Cordeiro é o climax liturgico de Apocalipse 4-5. A adoração celeste é o centro do livro. O Cordeiro não está morto, mas de pé — a ressurreição é pressuposta. A multidão redimida provém de todas as nações.' },
+      { teologo: 'Richard Bauckham', texto: 'O cantico do Cordeiro é o climax litúrgico de Apocalipse 4-5. A adoração celeste é o centro do livro. O Cordeiro não está morto, mas de pé — a ressurreição é pressuposta. A multidão redimida provém de todas as nações.' },
       { teologo: 'G.K. Beale', texto: 'A linguagem de "comprar com sangue" remete à redenção de Israel no Êxodo. Cristo realize o Êxodo definitivo — redime um povo de todas as nações, não apenas de Israel. Isso cumpre a promessa abraâmica de bênção para todas as nações.' },
     ],
   },
@@ -148,11 +148,11 @@ const temasCentrais = [
 ];
 
 const versiculos21_22 = [
-  { verso: '21:1-2', texto: 'Vi um ceu novo é uma terra nova; porque o ceu primeiro é a terra primeira passaram; é o mar ja não existia. E eu, Joao, vi a santa cidade, a nova Jerusalém, que de Deus descia do ceu, aparelhada como uma esposa para o seu marido.', explicação: 'A nova criação substitui a velha. A nova Jerusalém é a Igreja, noiva de Cristo. Nao ha mais mar (simbolo de caos e separacao).', teologo: 'Beale: "A nova Jerusalém é a realizes definitiva do Eden — o templo de Deus habitando com os homens"' },
-  { verso: '21:3-4', texto: 'E ouvi uma grande voz do ceu, dizendo: Eis o tabernaculo de Deus com os homens, e ele habitara com eles. E eles seráo seu povo, e Deus será com eles, e será seu Deus. E enxugara toda lagrima dos seus olhos; é a morte ja não existira, nem houve lamento, nem clamor, nem dor, pois ja as primeiras coisas passaram.', explicação: 'A promessa mais bela da Escritura: Deus habita com os homens. Nao ha mais sofrimento. A morte e derrotada. A nova criação é a restauracao da comunhão perdida em Eden.', teologo: 'N.T. Wright: "Isto não é uma fuga do mundo, mas a renovação de todas as coisas. Deus não destrói a criação, mas a transforma"' },
-  { verso: '21:5', texto: 'E o que estava assentado sobre o trono disse: Eis que eu faço todas as coisas novas.', explicação: 'Deus é o renovador. Nao apenas conserta, mas cria algo novo. A novidade e total — céu, terra, humanidade, comunhão.', teologo: 'Richard Bauckham: "Todas as coisas novas" não é substituição, mas renovação. A criação original era boa, e Deus a restaura à sua intenção original' },
-  { verso: '21:22-27', texto: 'E não vi templo nela; porque o Senhor Deus Todo-Poderoso é o Cordeiro são o seu templo. E a cidade não precisa de sol nem de lua para a alumiar; porque a glória de Deus a alumia, é o Cordeiro é a sua lumiar.', explicação: 'Nao ha templo porque toda a cidade e templo. Deus é o Cordeiro substituem o sol. A luz é a propria presenca divina.', teologo: 'G.K. Beale: "A ausencia de templo indica que toda a criação se tornou sagrada. Nao ha mais espaco secular — tudo é culto a Deus"' },
-  { verso: '22:1-5', texto: 'E mostrou-me um rio limpo da água da vida, claro como cristal, saindo do trono de Deus e do Cordeiro. E no meio da rua da cidade, e de um e de outro lado do rio, estava a arvore da vida, que produzia doze frutos, e deu o seu fruto cada mes; e as folhas da arvore eram para a saude das nações. E ja não haverá maldição.', explicação: 'O rio é a arvore da vida remetem ao Gênesis (2:9-10). A maldição de Gênesis 3 é removida. As folhas são para saude — a cura completa da humanidade.', teologo: 'Jurgen Moltmann: "Apocalipse 22 é o Gênesis 2 restaurado. O que foi perdido em Eden é recuperado na nova criação. O ciclo da historia se fécha: criação, queda, redenção, restauração"' },
+  { verso: '21:1-2', texto: 'Vi um ceu novo é uma terra nova; porque o ceu primeiro é a terra primeira passaram; é o mar já não existia. E eu, Joao, vi a santa cidade, a nova Jerusalém, que de Deus descia do ceu, aparelhada como uma esposa para o seu marido.', explicação: 'A nova criação substitui a velha. A nova Jerusalém é a Igreja, noiva de Cristo. Não há mais mar (simbolo de caos e separacao).', teologo: 'Beale: "A nova Jerusalém é a realizes definitiva do Eden — o templo de Deus habitando com os homens"' },
+  { verso: '21:3-4', texto: 'E ouvi uma grande voz do ceu, dizendo: Eis o tabernáculo de Deus com os homens, e ele habitara com eles. E eles seráo seu povo, e Deus será com eles, e será seu Deus. E enxugara toda lágrima dos seus olhos; é a morte já não existira, nem houve lamento, nem clamor, nem dor, pois já as primeiras coisas passaram.', explicação: 'A promessa mais bela da Escritura: Deus habita com os homens. Não há mais sofrimento. A morte e derrotada. A nova criação é a restauração da comunhão perdida em Eden.', teologo: 'N.T. Wright: "Isto não é uma fuga do mundo, mas a renovação de todas as coisas. Deus não destrói a criação, mas a transforma"' },
+  { verso: '21:5', texto: 'E o que estava assentado sobre o trono disse: Eis que eu faço todas as coisas novas.', explicação: 'Deus é o renovador. Não apenas conserta, mas cria algo novo. A novidade e total — céu, terra, humanidade, comunhão.', teologo: 'Richard Bauckham: "Todas as coisas novas" não é substituição, mas renovação. A criação original era boa, e Deus a restaura à sua intenção original' },
+  { verso: '21:22-27', texto: 'E não vi templo nela; porque o Senhor Deus Todo-Poderoso é o Cordeiro são o seu templo. E a cidade não precisa de sol nem de lua para a alumiar; porque a glória de Deus a alumia, é o Cordeiro é a sua lumiar.', explicação: 'Nao há templo porque toda a cidade e templo. Deus é o Cordeiro substituem o sol. A luz é a propria presenca divina.', teologo: 'G.K. Beale: "A ausencia de templo indica que toda a criação se tornou sagrada. Não há mais espaco secular — tudo é culto a Deus"' },
+  { verso: '22:1-5', texto: 'E mostrou-me um rio limpo da água da vida, claro como cristal, saindo do trono de Deus e do Cordeiro. E no meio da rua da cidade, e de um e de outro lado do rio, estava a arvore da vida, que produzia doze frutos, e deu o seu fruto cada mes; e as folhas da arvore eram para a saude das nações. E já não haverá maldição.', explicação: 'O rio é a arvore da vida remetem ao Gênesis (2:9-10). A maldição de Gênesis 3 é removida. As folhas são para saude — a cura completa da humanidade.', teologo: 'Jurgen Moltmann: "Apocalipse 22 é o Gênesis 2 restaurado. O que foi perdido em Eden é recuperado na nova criação. O ciclo da historia se fécha: criação, queda, redenção, restauração"' },
 ];
 
 const aplicações = [

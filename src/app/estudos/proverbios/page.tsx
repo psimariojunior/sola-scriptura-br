@@ -33,7 +33,7 @@ const estrutura = [
   { parte: 'Proverbios de Salomao (10:1-29:27)', cor: 'border-green-500', bg: 'bg-green-500/5', itens: [
     'Caps. 10-15: Proverbios sobre justiça, honestidade, limgua, trabalho',
     'Caps. 16-22: Sabedoria no governo, nas relacoes, na conduta',
-    'Caps. 22-24: Instrucoes adicionais e conselhos para a vida',
+    'Caps. 22-24: Instruções adicionais e conselhos para a vida',
     'Caps. 25-29: Proverbios compilados por homens de Ezequias (copiados do original)',
     'Formato: Maioria em forma antitetica (verso 1 = verso 2, contraste ou comparacao)',
   ]},
@@ -45,15 +45,15 @@ const estrutura = [
 ];
 
 const proverbiosEssenciais = [
-  { num: 1, ref: '1:7', texto: 'O temor do Senhor é o principio da sabedoria; é o conhecimento do prudente e prudencia.', tema: 'Fundamento', explicação: 'Este é o versiculo-tema de todo o livro. Sabedoria biblica comeca com reverencia a Deus. Sem Deus, não ha sabedoria verdadeira.' },
+  { num: 1, ref: '1:7', texto: 'O temor do Senhor é o principio da sabedoria; é o conhecimento do prudente e prudencia.', tema: 'Fundamento', explicação: 'Este é o versiculo-tema de todo o livro. Sabedoria biblica comeca com reverência a Deus. Sem Deus, não há sabedoria verdadeira.' },
   { num: 2, ref: '3:5-6', texto: 'Confia no Senhor de todo o teu coração, e não te estribes no teu propio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitara as tuas veredas.', tema: 'Confianca', explicação: 'A confiança plena em Deus substitui a autossuficiencia humana. Reconhece-lo em tudo é a chave para um vida direcionada.' },
   { num: 3, ref: '4:7', texto: 'O principio da sabedoria e: Adquire a sabedoria; sim, adquire o entendimento com tudo o que possuis.', tema: 'Prioridade', explicação: 'Sabedoria é o investimento mais valioso. Mais importante que riqueza, fama ou poder. Vale tudo o que temos.' },
   { num: 4, ref: '8:11', texto: 'Porque a sabedoria melhor e do que as pedras preciosas, e tudo o que se pode desejar não se pode comparar com ela.', tema: 'Valor', explicação: 'A sabedoria divina supera qualquer tesouro material. E eterna, transformadora e inestimavel.' },
   { num: 5, ref: '9:10', texto: 'O temor do Senhor é o principio da sabedoria, é o conhecimento do Santo e prudencia.', tema: 'Reverencia', explicação: 'Repete o tema de 1:7. O conhecimento de Deus é o alicerce de toda verdadeira prudencia e discernimento.' },
-  { num: 6, ref: '10:4', texto: 'Quem obra de ma mao empobrece; mas a mao dos diligentes enriquece.', tema: 'Trabalho', explicação: 'A diligencia no trabalho e caminho para prosperidade. A preguica leva a pobreza. Sabedoria pratica se aplica ao trabalho.' },
+  { num: 6, ref: '10:4', texto: 'Quem obra de ma mão empobrece; mas a mão dos diligentes enriquece.', tema: 'Trabalho', explicação: 'A diligencia no trabalho e caminho para prosperidade. A preguica leva a pobreza. Sabedoria pratica se aplica ao trabalho.' },
   { num: 7, ref: '11:13', texto: 'Quer fofoca segredo revela; mas o que tem espírito fiel encobre o assunto.', tema: 'Limgua', explicação: 'A fofoca destrói relacionamentos. A fidelidade guarda segredos. A limgua é o reflexo do coração.' },
   { num: 8, ref: '12:22', texto: 'Labios de mentira são abominacao ao Senhor; mas os que pratica a verdade são o seu contentamento.', tema: 'Verdade', explicação: 'Deus odeia mentira. A honestidade é o caminho para o contentamento divino. A verdade é um valor absoluto.' },
-  { num: 9, ref: '13:11', texto: 'A riqueza ganha sem julgamento diminuira; mas quem a ajunta com a mao multiplicara.', tema: 'Dinheiro', explicação: 'Riqueza facil (loterias, enganos) não dura. Riqueza construida com trabalho e sabedoria cresce.' },
+  { num: 9, ref: '13:11', texto: 'A riqueza ganha sem julgamento diminuira; mas quem a ajunta com a mão multiplicara.', tema: 'Dinheiro', explicação: 'Riqueza fácil (loterias, enganos) não dura. Riqueza construida com trabalho e sabedoria cresce.' },
   { num: 10, ref: '14:1', texto: 'A mulher sabedifica a sua casa; mas a tola destroe com as suas mãos.', tema: 'Familia', explicação: 'A sabedoria constrói a família; a tolice a destrói. O papel da mulher sábia é transformador.' },
   { num: 11, ref: '15:1', texto: 'A resposta branda desvia o furor; mas a palavra dura excita a ira.', tema: 'Conflito', explicação: 'A maneira como respondemos determina o resultado. Brandura acalma; dureza agrava. Sabedoria é saber responder.' },
   { num: 12, ref: '16:3', texto: 'Confia ao Senhor os teus pensamentos, e os teus projetos seráo firmãdos.', tema: 'Planejamento', explicação: 'Planejar e bom, mas entregar os planos a Deus e essencial. Ele direciona os passos do que confia nele.' },
@@ -63,14 +63,14 @@ const proverbiosEssenciais = [
   { num: 16, ref: '20:7', texto: 'O justo andara na sua integridade; bem-aventurados são os seus filhos depois dele.', tema: 'Legado', explicação: 'A integridade de um pai beneficia seus filhos. O legado de retidão transcende gerações.' },
   { num: 17, ref: '21:2', texto: 'Cada um jacta-se do que e justo aos seus olhos; mas o Senhor sonda os corações.', tema: 'Autoconhecimento', explicação: 'Nos somos tendenciosos em avaliar a nós mesmos. Deus vê além da aparência — Ele vê o coração.' },
   { num: 18, ref: '22:6', texto: 'Instrui o menino no caminho em que deve andar, e quando for velho não se desviara dele.', tema: 'Educacao', explicação: 'A educação na infância determina o rumo na velhice. Sabedoria transmitida cedo forma o caráter.' },
-  { num: 19, ref: '22:29', texto: 'Viste homem solícito nos seus negocios? Diante dos reis estará; não estará diante dos homes baixos.', tema: 'Excelencia', explicação: 'A excelencia no trabalho é reconhecida. O diligente se destaca e é promovido. Sabedoria se aplica à carreira.' },
+  { num: 19, ref: '22:29', texto: 'Viste homem solícito nos seus negocios? Diante dos reis estará; não estará diante dos homes baixos.', tema: 'Excelencia', explicação: 'A excelência no trabalho é reconhecida. O diligente se destaca e é promovido. Sabedoria se aplica à carreira.' },
   { num: 20, ref: '23:4', texto: 'Não te cances de enriquecer; e por que confias nas riquezas?', tema: 'Riqueza', explicação: 'A busca por riquezas cansa e engana. As riquezas não são seguras. Confie em Deus, não no ouro.' },
   { num: 21, ref: '24:17', texto: 'Se o teu inimigo cair, não te alegres; e se tropeçar, não se alegre o teu coração.', tema: 'Inimigos', explicação: 'A vingança não é cristã. Não nos regozijamos com a queda dos inimigos. Misericórdia é sabedoria.' },
   { num: 22, ref: '25:11', texto: 'A palavra falada a seu tempo e como maças de ouro em castiçais de prata.', tema: 'Timing', explicação: 'A hora certa de falar é tão valiosa quanto ouro. Discernimento é saber quando e como dizer a verdade.' },
   { num: 23, ref: '27:1', texto: 'Não te glories do amanha, porque não sabes o que o dia trará.', tema: 'Humildade', explicação: 'O futuro é incerto. A humildade reconhece que não controlamos amanhã. Viva o hoje com sabedoria.' },
   { num: 24, ref: '27:17', texto: 'O férro se afia com férro; é o homem afia o rosto do seu amigo.', tema: 'Relacionamento', explicação: 'Amizade afina o caráter. Precisamos uns dos outros para crescer. Comunhão é férramenta de sabedoria.' },
   { num: 25, ref: '27:23', texto: 'Sê solicito em conhecer o estado das tuas ovelhas, e cuida dos teus rebanhos.', tema: 'Responsabilidade', explicação: 'Liderança exige conhecimento e cuidado. Administre bem o que Deus lhe confiou.' },
-  { num: 26, ref: '28:13', texto: 'Quer conféssa e deixa os seus pecados será misericórdiado; e aquele que conféssa e abandona terá misericórdia.', tema: 'Arrependimento', explicação: 'A confissão e abandono do pecado abrem a porta da misericórdia divina. Nao esconda — confésse.' },
+  { num: 26, ref: '28:13', texto: 'Quer conféssa e deixa os seus pecados será misericórdiado; e aquele que conféssa e abandona terá misericórdia.', tema: 'Arrependimento', explicação: 'A confissão e abandono do pecado abrem a porta da misericórdia divina. Não esconda — confésse.' },
   { num: 27, ref: '29:1', texto: 'Aquele que muitas vezes e repreendido endurece a cerviz será quebrado subitamente, e não havera cura.', tema: 'Correcao', explicação: 'A teimosia diante da correção leva à destruição. A humildade aceita instrução; a soberba leva à ruína.' },
   { num: 28, ref: '30:5', texto: 'Toda a palavra de Deus e provada; ele e escudo a todos os que nele buscam refugio.', tema: 'Palavra de Deus', explicação: 'A Palavra de Deus é confiável em 100%. Protege quem nela confia. É fundamento seguro.' },
   { num: 29, ref: '31:10', texto: 'Mulher virtuosa quem achará? O seu preço muito excede o das pedras preciosas.', tema: 'Valor da Mulher', explicação: 'A mulher virtuosa é mais valiosa que qualquer tesouro. Sua sabedoria prática transforma a família é a sociedade.' },
@@ -80,26 +80,26 @@ const proverbiosEssenciais = [
 const sabedorias = [
   { ref: '1:20-33', título: 'A Sabedoria nas Ruas', texto: 'A Sabedoria personificada clama nas ruas, nas praças, no topo dos muros, na entrada das portas. Ela chama os simples e os tolos. Quem a rejeita será destruido; quem a recebe será seguro.', teologo: 'Tremper Longman III: "A Sabedoria de Proverbios não e abstrata e filosofica, mas concreta e relacional. Ela e apresentada como pessoa, como邀请 divina para viver de acordo com a ordem criada"' },
   { ref: '8:10-11', título: 'O Valor da Sabedoria', texto: 'Recebe a minha instrução, e não a prata; é o conhecimento mais escolhido do que o ouro. Porque a sabedoria e melhor do que as pedras preciosas, e tudo o que se pode desejar não se pode comparar com ela.', teologo: 'Derek Kidner: "A sabedoria é o investimento mais valioso porque e eterna. As riquezas passam, mas a sabedoria permanece e frutifica em todas as areas da vida"' },
-  { ref: '9:10', título: 'O Temor do Senhor', texto: 'O temor do Senhor é o principio da sabedoria, é o conhecimento do Santo e prudencia. Repete 1:7 como coro do livro — o fundamento inabalável de toda sabedoria.', teologo: 'Tremper Longman III: "O temor do Senhor não e medo paralisante, mas reverencia que transforma. E a atitude que reconhece a soberania de Deus e se submete a ela"' },
+  { ref: '9:10', título: 'O Temor do Senhor', texto: 'O temor do Senhor é o principio da sabedoria, é o conhecimento do Santo e prudencia. Repete 1:7 como coro do livro — o fundamento inabalável de toda sabedoria.', teologo: 'Tremper Longman III: "O temor do Senhor não e medo paralisante, mas reverência que transforma. E a atitude que reconhece a soberania de Deus e se submete a ela"' },
   { ref: '15:1-3', título: 'Respostas Brandas e Olhos de Deus', texto: 'A resposta branda desvia o furor; mas a palavra dura excita a ira. A lingua do prudente usa o conhecimento bem; mas a boca dos tolos fére com estulticie. Os olhos do Senhor estão em todos os lugares, observando os maus e os bons.', teologo: 'Michael Fox: "Tres versiculos que cobrem comunicacao, sabedoria e onisciencia divina. A brandura não e fraqueza — e inteligencia. E a resposta de quem sabe que Deus esta observando"' },
-  { ref: '22:17-21', título: 'Os 30 Proverbios do Reis', texto: 'Inclina o teu ouvido, e ouve as palavras dos sabios; e aplica o teu coração ao meu conhecimento. Porque e agradavel se os guardares dentro de ti, e teus labios os estabelecerem. Para que a tua confiança esteja no Senhor, eu te ensinei hoje, sim, a ti.', teologo: 'Michael Fox: "Esta seção (22:17-24:22) é uma compilacao de proverbios egipcios adaptados por Salomao. Mostra que a sabedoria não tem fronteiras — Deus revela verdade em todas as culturas"' },
+  { ref: '22:17-21', título: 'Os 30 Proverbios do Reis', texto: 'Inclina o teu ouvido, e ouve as palavras dos sabios; e aplica o teu coração ao meu conhecimento. Porque e agradavel se os guardares dentro de ti, e teus labios os estabelecerem. Para que a tua confiança esteja no Senhor, eu te ensinei hoje, sim, a ti.', teologo: 'Michael Fox: "Esta seção (22:17-24:22) é uma compilação de proverbios egipcios adaptados por Salomao. Mostra que a sabedoria não tem fronteiras — Deus revela verdade em todas as culturas"' },
 ];
 
 const temasCentrais = [
   { título: 'Sabedoria vs. Loucura', icone: Brain, cor: 'text-blue-500', descricao: 'Todo o livro contrasta dois caminhos: a sabedoria (que leva à vida, prosperidade e honra) é a loucura (que leva à morte, pobreza e desonra). A sabedoria biblica não é intelectual, mas moral e prática — viver de acordo com a ordem criada por Deus. Os caps. 1-9 apresentam a "Mulher Sabedoria" é a "Mulher Estranha" como escolhas opostas. A escolha e urgente — o caminho da vida ou da morte.' },
   { título: 'A Lingua', icone: MessageCircle, cor: 'text-green-500', descricao: 'Proverbios dedica mais atenção à lingua que qualquer outro livro. A lingua pode curar ou férir, construir ou destruir, abençoar ou amaldiçoar. Mais de 100 provérbios tratam do uso correto da palavra. O poder da lingua é um dos temas mais praticos do livro — aféta casamento, amizade, trabalho e testemunho. "Pela tua lingua serás justificado, e pela tua lingua serás condenado" (Mt 12:37).' },
-  { título: 'Trabalho e Diligencia', icone: Briefcase, cor: 'text-amber-500', descricao: 'A preguica e severamente condenada (6:6 — olha a formiga!; 10:4 — a mao diligente enriquece; 13:4 — a alma do preguiçoso quer e não tem; 20:13 — fécha os olhos e dormiras). O trabalho diligente é abençoado por Deus. Sabedoria se aplica à vida profissional — honestidade, excelência, perseverança. O trabalho não e maldição, mas instrumento de sabedoria e provisão divina.' },
+  { título: 'Trabalho e Diligencia', icone: Briefcase, cor: 'text-amber-500', descricao: 'A preguica e severamente condenada (6:6 — olha a formiga!; 10:4 — a mão diligente enriquece; 13:4 — a alma do preguiçoso quer e não tem; 20:13 — fécha os olhos e dormiras). O trabalho diligente é abençoado por Deus. Sabedoria se aplica à vida profissional — honestidade, excelência, perseverança. O trabalho não e maldição, mas instrumento de sabedoria e provisão divina.' },
   { título: 'Dinheiro e Riqueza', icone: Coins, cor: 'text-yellow-500', descricao: 'Proverbios não condena a riqueza, mas adverte contra a avareza é a confiança nelas. O justo ganha com honestidade e usa com generosidade. A pobreza não é vergonha; a desonestidade é. O rico é o pobre se encontram — ambos criados por Deus (22:2). A riqueza não salva, mas a sabedoria no uso dela é abençoada. "O que se apressa a enriquecer não ficara isento de culpa" (28:20).' },
   { título: 'Relacionamentos', icone: Users, cor: 'text-purple-500', descricao: 'Amizade, casamento, família — os relacionamentos são centrais na sabedoria. A amizade verdadeira é rara e valiosa (17:17 — o amigo ama em todo tempo). O casamento é honrado (5:15-19). A família é a escola da sabedoria prática. O homem virtuoso de 31:10-31 é o culminar de toda a sabedoria relacional. Relacionamentos são onde a sabedoria se torna concreta.' },
   { título: 'A Mulher Sabedoria', icone: Heart, cor: 'text-pink-500', descricao: 'Nos caps. 1-9, a Sabedoria é personificada como mulher que clama nas ruas (1:20-33), prepara um banquete (9:1-6) e convida os simples a encontrarem vida. Ela e oposta a "Mulher Estranha" (prostituta/idolatria). A mulher virtuosa de 31:10-31 é a concreção prática da Sabedoria: ama, trabalha, provê, ensina e teme ao Senhor. A Sabedoria biblica e féminina porque revela o cuidado materno de Deus pelo mundo.' },
 ];
 
 const aplicações = [
-  'Comece pelo temor do Senhor — toda sabedoria comeca com reverencia a Deus (1:7).',
+  'Comece pelo temor do Senhor — toda sabedoria comeca com reverência a Deus (1:7).',
   'Procure a sabedoria como quem busca ouro — é o investimento mais valioso da vida (2:4).',
   'Cuide da sua lingua — palavras podem curar ou férir, construir ou destruir (18:21).',
   'Trabalhe com diligencia — a preguica leva a pobreza, o trabalho a prosperidade (10:4).',
-  'Confie em Deus em todos os caminhos — não dependa so do seu entendimento (3:5-6).',
+  'Confie em Deus em todos os caminhos — não dependa só do seu entendimento (3:5-6).',
   'Aceite a correcao — o tolo rejeita instrução, o sabio a recebe com alegria (12:1).',
   'Guarde o coração — dele procedem os pensamentos e as palavras (4:23).',
   'Ame a justiça e odeie a mentira — Deus é a favor da verdade (12:22).',
@@ -180,10 +180,10 @@ export default function ProverbiosPage() {
                 </h2>
                 <div className="sola-card p-6 space-y-4">
                   <p className="text-muted-foreground leading-relaxed">
-                    Proverbios é o livro de sabedoria pratica do Antigo Testamento, atribuido principalmente a Salomao (1:1), o homem mais sabedo que ja viveu (1 Reis 4:31). O livro foi compilado e editado por homens de Ezequias (25:1). Alem de Salomao, contém palavras de Agur (30:1) e Lemuel (31:1).
+                    Proverbios é o livro de sabedoria pratica do Antigo Testamento, atribuido principalmente a Salomao (1:1), o homem mais sabedo que já viveu (1 Reis 4:31). O livro foi compilado e editado por homens de Ezequias (25:1). Além de Salomao, contém palavras de Agur (30:1) e Lemuel (31:1).
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
-                    O propósito esta declarado em 1:2-6: ensinar sabedoria, instrução, discernimento, justiça, equidade e prudencia. O livro é uma coleção de provérbios — ditados concisos que expressam verdades gerais sobré a vida. Nao são promessas absolutas, mas principios sabios que regem a vida humana sob a soberania de Deus.
+                    O propósito esta declarado em 1:2-6: ensinar sabedoria, instrução, discernimento, justiça, equidade e prudencia. O livro é uma coleção de provérbios — ditados concisos que expressam verdades gerais sobre a vida. Não são promessas absolutas, mas principios sabios que regem a vida humana sob a soberania de Deus.
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div className="glass-card p-4 rounded-xl">
@@ -197,7 +197,7 @@ export default function ProverbiosPage() {
                   </div>
                   <div className="glass-card p-4 rounded-xl mt-4">
                     <h3 className="font-display text-sm font-medium mb-2">Advertência Importante</h3>
-                    <p className="text-sm text-muted-foreground">Proverbios contem verdades gerais, não promessas absolutas. "Instrui o menino no caminho" (22:6) não é garantia de que todo filho será salvo. É um principio que na maioria das vezes se cumpre, mas ha exceções (cf. Jó, Eclesiastes).</p>
+                    <p className="text-sm text-muted-foreground">Proverbios contem verdades gerais, não promessas absolutas. "Instrui o menino no caminho" (22:6) não é garantia de que todo filho será salvo. É um principio que na maioria das vezes se cumpre, mas há exceções (cf. Jó, Eclesiastes).</p>
                   </div>
                 </div>
               </section>

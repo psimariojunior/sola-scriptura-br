@@ -38,7 +38,7 @@ const estrutura = [
     'Cap. 11: Sobre o papel féminino na adoração — contexto cultural',
     'Caps. 12-14: Dons espirituais — ordem no culto, o caminho do amor',
   ]},
-  { parte: 'Caps. 15-16: Ressurreicao e Conclusão', cor: 'border-green-500', bg: 'bg-green-500/5', itens: [
+  { parte: 'Caps. 15-16: Ressurreição e Conclusão', cor: 'border-green-500', bg: 'bg-green-500/5', itens: [
     'Cap. 15: A ressurreição de Cristo é a dos crentes — fundamento da fé',
     'Cap. 16: Colecção para Jerusalém, despedida — "Vinde, Senhor"',
   ]},
@@ -59,26 +59,26 @@ const versiculosChave = [
     texto: 'Ou não sabeis que o vosso corpo e templo do Espírito Santo, que esta em vos, e que vos veio de Deus, e vos não sois de vos mesmos? Porque fostes comprados por certo preco; glorificai, pois, a Deus no vosso corpo e no vosso espírito, que são de Deus.',
     explicação: 'O corpo do crente e sagrado — templo do Espírito Santo. A imoralidade sexual destroi esse templo. Fomos comprados pelo sangue de Cristo; pertencemos a Ele.',
     comentarios: [
-      { teologo: 'Gordon Fee', texto: 'A metafora do templo e central: em Corinto, os templos dos idolos eram locais de culto e também de imoralidade. Paulo diz: o vosso corpo E o templo. A pureza sexual não e legalismo, mas reverencia ao Espírito que habita em voce.' },
+      { teologo: 'Gordon Fee', texto: 'A metafora do templo e central: em Corinto, os templos dos idolos eram locais de culto e também de imoralidade. Paulo diz: o vosso corpo E o templo. A pureza sexual não e legalismo, mas reverência ao Espírito que habita em voce.' },
       { teologo: 'Ben Witherington III', texto: 'O argumento de Paulo e Cristologico: fostes comprados por preco. A etica sexual não e arbitraria, mas fundamentada na redenção. Nos não nos pertencemos — Cristo nos comprou. Isso transforma a compreensão de liberdade.' },
     ],
   },
   {
     referência: '1 Corintios 12:4-7',
-    texto: 'Ora, ha diversidade de dons, mas o mesmo Espírito. E ha diversidade de ministerios, mas o mesmo Senhor. E ha diversidade de operacoes, mas é o mesmo Deus que opera tudo em todos. Mas a cada um e dada a manifestacao do Espírito para utilidade.',
+    texto: 'Ora, há diversidade de dons, mas o mesmo Espírito. E há diversidade de ministerios, mas o mesmo Senhor. E há diversidade de operacoes, mas é o mesmo Deus que opera tudo em todos. Mas a cada um e dada a manifestação do Espírito para utilidade.',
     explicação: 'A diversidade de dons não e confusão, mas ordem divina. Um mesmo Deus opera de maneiras diférentes em cada crente. O propósito é a utilidade comum, não a exibicao individual.',
     comentarios: [
       { teologo: 'Gordon Fee', texto: 'Paulo usa uma estrutura triadica: dons (charismata), ministerios (diakoniai) e operacoes (energemata) — Espírito, Senhor e Deus. A Trindade opera na diversidade da igreja. Isso e anti-sectarismo: ninguem pode dizer que seu dom e mais importante.' },
-      { teologo: 'Anthony Thiselton', texto: 'A manifestacao do Espírito para utilidade (12:7) é a frase-chave. O dom não e para o individuo, mas para a comunidade. Charismata sem comunidade e espiritualidade individualista, que Paulo rejeita veementemente.' },
+      { teologo: 'Anthony Thiselton', texto: 'A manifestação do Espírito para utilidade (12:7) é a frase-chave. O dom não e para o individuo, mas para a comunidade. Charismata sem comunidade e espiritualidade individualista, que Paulo rejeita veementemente.' },
     ],
   },
 ];
 
 const amor13 = [
-  { verso: '13:1', texto: 'Ainda que eu falasse as linguas dos homens e dos anjos, e não tivesse amor, seria como o metal que soa ou como o sino que tine.', explicação: 'O dom mais espetacular (linguagens) sem amor e apenas ruido. A excelencia espiritual sem amor e vaidade.' },
+  { verso: '13:1', texto: 'Ainda que eu falasse as linguas dos homens e dos anjos, e não tivesse amor, seria como o metal que soa ou como o sino que tine.', explicação: 'O dom mais espetacular (linguagens) sem amor e apenas ruido. A excelência espiritual sem amor e vaidade.' },
   { verso: '13:2', texto: 'E ainda que tivesse profécia, e entendesse todos os arcanos e toda a ciencia, e ainda que tivesse toda a fé, de maneira tal que transportasse os montes, e não tivesse amor, nada seria.', explicação: 'Conhecimento, profécia, fé montanhas-transportadoras — tudo e nada sem amor. A fé sem amor e ortodoxia morta.' },
   { verso: '13:3', texto: 'E ainda que distribuisse todos os meus bens para sustento dos pobres, e ainda que entregasse o meu corpo para ser queimado, e não tivesse amor, nada me aproveitaria.', explicação: 'Sacrificio extremo (martírio) sem amor e inutil. O amor não é o que fazemos, mas a motivacao por tras do que fazemos.' },
-  { verso: '13:4-7', texto: 'O amor e sofredor, e benigno; o amor não e invejoso; o amor não trata com leviandade, não se ensoberbece, não se porta com indecencia, não busca os seus próprios interesses, não se irrita, não suspeita mal; não se alegra com a injustiça, mas se alegra com a verdade; tudo sofre, tudo cre, tudo espera, tudo suporta.', explicação: 'A definicao mais completa de amor na Biblia. 15 caráteristicas positivas e negativas. E um retrato de Cristo, não apenas um ideal.' },
+  { verso: '13:4-7', texto: 'O amor e sofredor, e benigno; o amor não e invejoso; o amor não trata com leviandade, não se ensoberbece, não se porta com indecencia, não busca os seus próprios interesses, não se irrita, não suspeita mal; não se alegra com a injustiça, mas se alegra com a verdade; tudo sofre, tudo cre, tudo espera, tudo suporta.', explicação: 'A definição mais completa de amor na Biblia. 15 caráteristicas positivas e negativas. E um retrato de Cristo, não apenas um ideal.' },
   { verso: '13:8-10', texto: 'O amor nunca acaba; mas havendo profécias, acabarao; havendo linguas, cessarao; havendo ciencia, desaparecera. Porque em parte profétizamos, e em parte conhecemos; mas quando vier o que e perfeito, então o que e em parte desaparecera.', explicação: 'O amor e eterno; os dons são temporarios. Quando a perféição (Cristo plenamente revelado) vier, os dons cessarao. O amor permanece para sempre.' },
   { verso: '13:11-12', texto: 'Quando eu era menino, falava como menino, pensava como menino, raciocinava como menino; mas, quando cheguei a ser homem, acabei com as coisas de menino. Porque agora vemos por espelho em enigma, mas então veremos face a face; agora conheco em parte, mas então conhecerei plenamente, como fui também plenamente conhecido.', explicação: 'Os dons são como falar de menino — temporarios. A eternidade será face a face. O conhecimento parcial será substituido pela visão plena de Deus.' },
   { verso: '13:13', texto: 'Agora, pois, permanecem a fé, a esperança é o amor, estes tres; mas o maior destes é o amor.', explicação: 'Na eternidade, a fé será vista (ja não esperamos o que vemos) é a esperança será realizada. Mas o amor permanecera para sempre. O amor é o maior porque e eterno.' },
@@ -86,22 +86,22 @@ const amor13 = [
 
 const ressurreição = [
   { título: 'O Fundamento (15:1-11)', texto: 'Paulo lembra que a ressurreição de Cristo é o centro do evangelho. Cristo morreu, foi sepultado, ressuscitou no terceiro dia, e apareceu a mais de 500 pessoas. Isso e fato historico, não mito.', teologo: 'Gary Habermas: "A ressurreição é o fato mais bem atestado da historia antiga — mais testemunhas que a maioria dos eventos que aceitamos como historicos"' },
-  { título: 'A Necessidade da Ressurreicao (15:12-19)', texto: 'Se não ha ressurreição, Cristo não ressuscitou. Se Cristo não ressuscitou, a fé e va, os pecados não foram perdoados, os mortos em Cristo pereceram. A fé cristã sem ressurreição é a maior de todas as ilusoes.', teologo: 'N.T. Wright: "Uma Cristologia sem ressurreição é uma contradição — Jesus sem ressurreição e apenas mais um proféta morto. A ressurreição é o que torna Jesus o Senhor"' },
-  { título: 'A Natureza do Corpo Ressurretado (15:35-49)', texto: 'Paulo usa a analogia da semente: o corpo semeado e corrompivel; o colhido e incorruptivel. O corpo natural e de terra (Adão); o corpo espiritual e celestial (Cristo). Nao é o mesmo corpo, mas transformado.', teologo: 'N.T. Wright: "A ressurreição não e ir para o ceu quando morremos — é a transformação do corpo fisico em corpo novo. O mesmo Jesus foi reconhecido pelos discipulos, mas transformado"' },
+  { título: 'A Necessidade da Ressurreição (15:12-19)', texto: 'Se não há ressurreição, Cristo não ressuscitou. Se Cristo não ressuscitou, a fé e va, os pecados não foram perdoados, os mortos em Cristo pereceram. A fé cristã sem ressurreição é a maior de todas as ilusoes.', teologo: 'N.T. Wright: "Uma Cristologia sem ressurreição é uma contradição — Jesus sem ressurreição e apenas mais um proféta morto. A ressurreição é o que torna Jesus o Senhor"' },
+  { título: 'A Natureza do Corpo Ressurretado (15:35-49)', texto: 'Paulo usa a analogia da semente: o corpo semeado e corrompivel; o colhido e incorruptivel. O corpo natural e de terra (Adão); o corpo espiritual e celestial (Cristo). Não é o mesmo corpo, mas transformado.', teologo: 'N.T. Wright: "A ressurreição não e ir para o ceu quando morremos — é a transformação do corpo fisico em corpo novo. O mesmo Jesus foi reconhecido pelos discipulos, mas transformado"' },
   { título: 'A Vitoria Final (15:50-58)', texto: 'Em um instante, em um olhar, na ultima trombeta — os mortos ressuscitarao incorruptiveis e seremos transformados. A morte e vencida. "O morte, onde esta a tua vitoria?" A vitoria e do Senhor.', teologo: 'Gary Habermas: "1 Corintios 15 é a mais completa explicação da ressurreição corporal no NT. Paulo não fala de imortalidade da alma, mas da transformação do corpo inteiro — isso e cristao, não grego"' },
 ];
 
 const temasCentrais = [
-  { título: 'Unidade na Diversidade', icone: Users, cor: 'text-blue-500', descricao: 'Corinto era uma igreja cheia de dons, talentos e personalidades — mas fragmentada por faccoes. Paulo insiste: ha um so Deus, um so Senhor, um so Espírito. A diversidade de dons e para a unidade, não para a divisão.' },
+  { título: 'Unidade na Diversidade', icone: Users, cor: 'text-blue-500', descricao: 'Corinto era uma igreja cheia de dons, talentos e personalidades — mas fragmentada por facções. Paulo insiste: há um só Deus, um só Senhor, um só Espírito. A diversidade de dons e para a unidade, não para a divisão.' },
   { título: 'A Cruz como Sabedoria', icone: Cross, cor: 'text-red-500', descricao: 'A cruz é o centro de tudo em 1 Corintios. A sabedoria humana busca retorica e poder; Deus escolheu o escandalo da cruz. A fraqueza de Deus e mais forte que os homens. A tolice de Deus e mais sabia que os homens.' },
-  { título: 'Dons Espirituais e Ordem', icone: Flame, cor: 'text-orange-500', descricao: 'Paulo regulamenta o uso dos dons: tudo deve ser feito com decencia e ordem (14:40). Linguagens sem traducao são inuteis. A profécia deve ser julgada. O amor é o criterio supremo para o uso dos dons.' },
+  { título: 'Dons Espirituais e Ordem', icone: Flame, cor: 'text-orange-500', descricao: 'Paulo regulamenta o uso dos dons: tudo deve ser feito com decencia e ordem (14:40). Linguagens sem traducao são inúteis. A profécia deve ser julgada. O amor é o criterio supremo para o uso dos dons.' },
   { título: 'Pureza e Santidade', icone: Shield, cor: 'text-green-500', descricao: 'A imoralidade sexual (cap. 5), idolatria (caps. 8-10) e desordem no culto (caps. 11-14) são problemas serios em Corinto. Paulo não minimiza o pecado — a santidade e exigida porque Deus e santo.' },
-  { título: 'Amor como Criterio', icone: Heart, cor: 'text-pink-500', descricao: '1 Corintios 13 é o coração de toda a carta. Dons sem amor são inuteis. Conhecimento sem amor e destruição. Fe sem amor e va. O amor é o criterio supremo para toda a vida cristã e eclesiastica.' },
+  { título: 'Amor como Criterio', icone: Heart, cor: 'text-pink-500', descricao: '1 Corintios 13 é o coração de toda a carta. Dons sem amor são inúteis. Conhecimento sem amor e destruição. Fe sem amor e va. O amor é o criterio supremo para toda a vida cristã e eclesiastica.' },
 ];
 
 const aplicações = [
   'Busque a sabedoria da cruz, não a sabedoria do mundo — a cruz e poder de Deus.',
-  'Guarde a unidade da igreja — faccoes e divisoes destroem o testemunho cristao.',
+  'Guarde a unidade da igreja — facções e divisoes destroem o testemunho cristao.',
   'Purifique o corpo — e templo do Espírito Santo. A imoralidade sexual ofénde a Deus.',
   'Use os dons com amor e ordem — não para exibicao, mas para edificar a comunidade.',
   'Estude 1 Corintios 13 como retrato de Cristo — não como lista de sentimentos.',
@@ -191,7 +191,7 @@ export default function PrimeiraCorintiosPage() {
                     </div>
                     <div className="glass-card p-4 rounded-xl">
                       <h3 className="font-display text-sm font-medium mb-2">Problemas da Igreja</h3>
-                      <p className="text-sm text-muted-foreground">Divisoes por faccoes (1-4), imoralidade (5-6), divórcio (7), idolatria (8-10), desordem no culto (11-14), negacao da ressurreição (15). Paulo aborda tudo com firmeza e amor pastoral.</p>
+                      <p className="text-sm text-muted-foreground">Divisoes por facções (1-4), imoralidade (5-6), divórcio (7), idolatria (8-10), desordem no culto (11-14), negacao da ressurreição (15). Paulo aborda tudo com firmeza e amor pastoral.</p>
                     </div>
                   </div>
                 </div>
@@ -244,7 +244,7 @@ export default function PrimeiraCorintiosPage() {
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
                   <Heart className="w-5 h-5 text-primary" />1 Corintios 13: O Hino do Amor
                 </h2>
-                <p className="text-muted-foreground mb-4">Capitulo 13 é o coração de toda a epistola. Paulo o insere entre os caps. 12 e 14 (dons espirituais) como o criterio supremo: sem amor, os dons são inuteis. E a definicao mais completa e bela de amor na literátura mundial.</p>
+                <p className="text-muted-foreground mb-4">Capitulo 13 é o coração de toda a epistola. Paulo o insere entre os caps. 12 e 14 (dons espirituais) como o criterio supremo: sem amor, os dons são inúteis. E a definição mais completa e bela de amor na literátura mundial.</p>
                 <div className="space-y-3">
                   {amor13.map((a, i) => (
                     <div key={i} className="sola-card p-4">

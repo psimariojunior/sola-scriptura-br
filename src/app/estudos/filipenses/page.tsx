@@ -24,19 +24,19 @@ const secoes = [
 
 const estrutura = [
   { parte: 'Parte I: Relacao Pessoal (Caps. 1-2)', cor: 'border-blue-500', bg: 'bg-blue-500/5', itens: [
-    'Cap. 1: Agradecimento e oracao — Paulo preso, mas alegre; o evangelho avanca mesmo na prisão',
+    'Cap. 1: Agradecimento e oração — Paulo preso, mas alegre; o evangelho avanca mesmo na prisão',
     'Cap. 2: Exortacao a unidade — o Hino Cristológico (2:5-11) como fundamento da humildade',
   ]},
-  { parte: 'Parte II: Instrucao Pratica (Caps. 3-4)', cor: 'border-green-500', bg: 'bg-green-500/5', itens: [
+  { parte: 'Parte II: Instrução Pratica (Caps. 3-4)', cor: 'border-green-500', bg: 'bg-green-500/5', itens: [
     'Cap. 3: Perseguir a Cristo — contar tudo como perda, connaece-lo na ressurreição',
-    'Cap. 4: Instrucoes finais — contentamento, paz de Deus, fortalecer-se no Senhor',
+    'Cap. 4: Instruções finais — contentamento, paz de Deus, fortalecer-se no Senhor',
   ]},
 ];
 
 const versiculosChave = [
   {
     referência: 'Filipenses 1:6',
-    texto: 'Estou certo de que aquele que em vós começo a boa obra a consumara ate ao dia de Cristo Jesus.',
+    texto: 'Estou certo de que aquele que em vós começo a boa obra a consumara até ao dia de Cristo Jesus.',
     explicação: 'Deus é o autor e consumador da obra de salvação. O que Ele comeca, termina. Essa certeza da perseverança e fundamento para a alegria de Paulo na prisão. O processo de santificação e garantido pela fidelidade divina.',
     comentarios: [
       { teologo: 'D.A. Carson', texto: 'Paulo não tem duvidas sobre o resultado final da obra de Deus. A certeza não esta em nos mesmos, mas na fidelidade de Deus que comeca e completa. Isso não anula a responsabilidade humana, mas a sustenta com a garantia divina.' },
@@ -45,30 +45,30 @@ const versiculosChave = [
   },
   {
     referência: 'Filipenses 2:5-11',
-    texto: 'De sorte que havendo em vos o mesmo sentimento que houve também em Cristo Jesus, que, sendo em forma de Deus, não teve por ususrpacao ser igual a Deus, mas esvaziou-se a si mesmo, tomando a forma de servo, fazendo-se semelhante aos homens; e, achado em figura de homem, humilhou a si mesmo, sendo obediente ate a morte, e morte de cruz. Pelo que Deus também o exaltou soberanamente, e lhe deu um nome que e sobre todo nome, para que em nome de Jesus se dobre todo joelho dos que estão nos ceus, e na terra, e debaixo da terra, e toda lingua confésse que Jesus Cristo é o Senhor, para glória de Deus Pai.',
-    explicação: 'Este é o mais elevado texto Cristologico do Novo Testamento. Descreve a kenosis (esvaziamento) voluntaria de Cristo: de Deus, servo; de senhor, obediente; de glória, cruz. A exaltação subsequente é a consequencia da humildade perfeita.',
+    texto: 'De sorte que havendo em vos o mesmo sentimento que houve também em Cristo Jesus, que, sendo em forma de Deus, não teve por ususrpacao ser igual a Deus, mas esvaziou-se a si mesmo, tomando a forma de servo, fazendo-se semelhante aos homens; e, achado em figura de homem, humilhou a si mesmo, sendo obediente até a morte, e morte de cruz. Pelo que Deus também o exaltou soberanamente, e lhe deu um nome que e sobre todo nome, para que em nome de Jesus se dobre todo joelho dos que estão nos ceus, e na terra, e debaixo da terra, e toda lingua confésse que Jesus Cristo é o Senhor, para glória de Deus Pai.',
+    explicação: 'Este é o mais elevado texto Cristologico do Novo Testamento. Descreve a kenosis (esvaziamento) voluntaria de Cristo: de Deus, servo; de senhor, obediente; de glória, cruz. A exaltação subsequente é a consequência da humildade perfeita.',
     comentarios: [
       { teologo: 'Atanasio de Alexandria', texto: 'Cristo não deixou de ser Deus ao se fazer homem. A kenosis não é uma diminuicao da divindade, mas um acréscimo da humanidade. Ele tomou o que não era (servo) sem perder o que era (Deus). A dois naturezas permanecem intactas na pessoa de Cristo.' },
-      { teologo: 'Karl Barth', texto: 'O himno Cristologico de Filipenses 2 é a chave para toda a teologia paulina. A humildade de Cristo é o paradigma da relacao entre Deus e humanidade. Deus não se impoe, mas se doa. A cruz é o climax da revelacao divina: Deus como servo.' },
+      { teologo: 'Karl Barth', texto: 'O himno Cristologico de Filipenses 2 é a chave para toda a teologia paulina. A humildade de Cristo é o paradigma da relacao entre Deus e humanidade. Deus não se impoe, mas se doa. A cruz é o climax da revelação divina: Deus como servo.' },
       { teologo: 'Jurgen Moltmann', texto: 'A kenosis de Cristo revela um Deus que sofre pelo mundo. A cruz não e apenas um ato de obediência, mas o sofrimento de Deus na historia. O Deus crucificado é o unico Deus que pode salvar um mundo crucificado.' },
       { teologo: 'N.T. Wright', texto: 'A exaltação de Jesus (2:9-11) não e apenas espiritual, mas cosmica. Todo joelho se dobra — ceus, terra, debaixo da terra. Jesus e Senhor sobre toda a realidade. Isso implica que Cesar não e senhor. O hino e subversivo politicamente.' },
     ],
   },
   {
     referência: 'Filipenses 4:6-7',
-    texto: 'Nao vos preocupeis com nada, mas em tudo sejam conhecidas as vossas peticoes diante de Deus, em oracao e suplica, com acoes de graças. E a paz de Deus, que sobrepuja todo entendimento, guardara os vossos corações e os vossos pensamentos em Cristo Jesus.',
-    explicação: 'Paulo ensina um padrao de oracao: em vez de ansiedade, oracao com agradecimento. A paz de Deus e sobrenatural — protege o coração é a mente. Nao e ausencia de problemas, mas presenca de Deus no meio deles.',
+    texto: 'Nao vos preocupeis com nada, mas em tudo sejam conhecidas as vossas peticoes diante de Deus, em oração e suplica, com acoes de graças. E a paz de Deus, que sobrepuja todo entendimento, guardara os vossos corações e os vossos pensamentos em Cristo Jesus.',
+    explicação: 'Paulo ensina um padrao de oracao: em vez de ansiedade, oração com agradecimento. A paz de Deus e sobrenatural — protege o coração é a mente. Não e ausencia de problemas, mas presenca de Deus no meio deles.',
     comentarios: [
-      { teologo: 'Dietrich Bonhoeffér', texto: 'A oracao de acoes de graças é o antitodo para a ansiedade. Quem agradece não se preocupa, porque reconhece que Deus ja agiu. A paz de Deus não e compreensivel racionalmente — ela guardara os pensamentos como uma guarnicao divina.' },
-      { teologo: 'R.C. Sproul', texto: 'A instrução de Paulo não e sentimental, mas imperativa: "não vos preocupeis" é um comando. A oracao é a férramenta que torna obedece-lo possivel. A paz de Deus é o fruto da obediência na oracao, não meramente um sentimento.' },
+      { teologo: 'Dietrich Bonhoeffér', texto: 'A oração de acoes de graças é o antitodo para a ansiedade. Quem agradece não se preocupa, porque reconhece que Deus já agiu. A paz de Deus não e compreensivel racionalmente — ela guardara os pensamentos como uma guarnição divina.' },
+      { teologo: 'R.C. Sproul', texto: 'A instrução de Paulo não e sentimental, mas imperativa: "não vos preocupeis" é um comando. A oração é a férramenta que torna obedece-lo possivel. A paz de Deus é o fruto da obediência na oracao, não meramente um sentimento.' },
     ],
   },
   {
     referência: 'Filipenses 4:13',
     texto: 'Posso todas as coisas naquele que me fortalece.',
-    explicação: 'Este versiculo não e sobre realizar ambicoes pessoais, mas sobre encontrar contentamento em qualquer circunstancia — abundancia ou escassez. O contexto (4:10-13) fala de contentamento, não de conquista.',
+    explicação: 'Este versiculo não e sobre realizar ambicoes pessoais, mas sobre encontrar contentamento em qualquer circunstancia — abundância ou escassez. O contexto (4:10-13) fala de contentamento, não de conquista.',
     comentarios: [
-      { teologo: 'John Stott', texto: 'Filipenses 4:13 é um dos versiculos mais mal interpretados da Biblia. Paulo não esta dizendo que pode alcanar qualquer meta. Ele esta dizendo que aprendeu a contentar-se em toda a situacao — na abundancia e na falta. O "fortalecimento" e para perseverar, não para conquistar.' },
+      { teologo: 'John Stott', texto: 'Filipenses 4:13 é um dos versiculos mais mal interpretados da Biblia. Paulo não esta dizendo que pode alcanar qualquer meta. Ele esta dizendo que aprendeu a contentar-se em toda a situação — na abundância e na falta. O "fortalecimento" e para perseverar, não para conquistar.' },
       { teologo: 'D.A. Carson', texto: 'O contexto imediato e essencial: Paulo aprendeu a contentar-se (4:11-12). O versiculo 4:13 é a explicação de como ele consegue contentar-se — pela forca de Cristo. Aplica-lo a ganhar competicoes ou conquistas materiais é uma distorcao grave do texto.' },
     ],
   },
@@ -76,17 +76,17 @@ const versiculosChave = [
 
 const temasCentrais = [
   { título: 'Alegria na Adversidade', icone: Smile, cor: 'text-yellow-500', descricao: 'A palavra "alegria" ou "gozo" aparece 16 vezes em 4 epistolas. Em Filipenses, Paulo esta preso, ameacado de morte, e mesmo assim exulta. A alegria cristã não depende de circunstancias, mas de Cristo. A frase-chave: "Alegrai-vos sempre no Senhor" (4:4). A alegria de Paulo não e otimismo superficial, mas certeza profunda de que Deus esta no controle.' },
-  { título: 'Humildade de Cristo', icone: Heart, cor: 'text-red-500', descricao: 'O Hino Cristológico (2:5-11) é o coração teologico de Filipenses. Cristo se esvaziou, servo, morreu na cruz. A humildade divina é o modelo para a humildade humana. Quem conhece a humildade de Cristo se humilha diante dos irmãos. A kenosis não e perda de divindade, mas aquisicao de humanidade — Cristo tomou o que não era sem perder o que era.' },
-  { título: 'Contentamento', icone: Star, cor: 'text-green-500', descricao: 'Paulo aprendeu a contentar-se em toda a situacao (4:11-12). O contentamento não e conformismo, mas confiança de que Cristo basta em qualquer circunstancia. E um dos frutos maduros do evangelho na vida do crente. Paulo testemunha que ja esteve na abundancia e na falta — e em ambos aprendeu o segredo do contentamento.' },
+  { título: 'Humildade de Cristo', icone: Heart, cor: 'text-red-500', descricao: 'O Hino Cristológico (2:5-11) é o coração teológico de Filipenses. Cristo se esvaziou, servo, morreu na cruz. A humildade divina é o modelo para a humildade humana. Quem conhece a humildade de Cristo se humilha diante dos irmãos. A kenosis não e perda de divindade, mas aquisicao de humanidade — Cristo tomou o que não era sem perder o que era.' },
+  { título: 'Contentamento', icone: Star, cor: 'text-green-500', descricao: 'Paulo aprendeu a contentar-se em toda a situação (4:11-12). O contentamento não e conformismo, mas confiança de que Cristo basta em qualquer circunstancia. E um dos frutos maduros do evangelho na vida do crente. Paulo testemunha que já esteve na abundância e na falta — e em ambos aprendeu o segredo do contentamento.' },
   { título: 'Unidade na Igreja', icone: BookMarked, cor: 'text-purple-500', descricao: 'Paulo exorta Evodia e Sintique a concordarem no Senhor (4:2). A unidade da igreja e mais importante que razoes pessoais. O fundamento da unidade é a humildade Cristologica (2:1-11). Cristo é o modelo é o mantenedor da unidade. A unidade não exige uniformidade, mas amor que prioriza o Reino acima de preferências pessoais.' },
-  { título: 'A Proclamacao do Evangelho', icone: Sparkles, cor: 'text-blue-500', descricao: 'Paulo esta preso, mas o evangelho avanca (1:12-14). Até os pretorianos (soldados da guarda imperial) conhecem Cristo (4:22). A prisão não impede o evangelho — pelo contrario, a torna mais poderosa. A cadeia de Paulo se torna púlpito para o império.' },
+  { título: 'A Proclamação do Evangelho', icone: Sparkles, cor: 'text-blue-500', descricao: 'Paulo esta preso, mas o evangelho avanca (1:12-14). Até os pretorianos (soldados da guarda imperial) conhecem Cristo (4:22). A prisão não impede o evangelho — pelo contrario, a torna mais poderosa. A cadeia de Paulo se torna púlpito para o império.' },
   { título: 'A Corrida Cristã', icone: Target, cor: 'text-orange-500', descricao: 'Paulo compara a vida cristã com uma corrida (3:12-14): "Esquecendo-me das coisas que ficam para tras e me estendendo as que estão diante de mim, prossigo para o alvo." O cristão não pode se acomodar — há sempre mais para conhecer de Cristo.' },
 ];
 
 const hinoDetalhes = [
-  { verso: 'Fase 1: Pre-existencia', referência: '2:6', descricao: 'Cristo existia em forma de Deus — não era uma copia, mas a propria expressão da divindade. Nao usurpou igualdade com Deus, porque ja a possuia. A forma de Deus (morphe) indica a realidade essencial da divindade, não meramente aparência.', teologo: 'Athanasius: "Cristo não era inférior ao Pai, mas era igual em substancia e eternidade. A forma de Deus é a propria essencia divina"' },
-  { verso: 'Fase 2: Kenosis (Esvaziamento)', referência: '2:7', descricao: 'Cristo se esvaziou — não de divindade, mas de privilegios. Tomou forma de servo, nasceu de mulher, viveu como homem comum. A majestade se escondeu na humildade. O esvaziamento é a escolha divina de se limitar à humanidade.', teologo: 'Barth: "O esvaziamento é o ato supremo de liberdade divina: Deus escolhe ser servo. Nao ha perda de divindade, mas aquisição de humanidade"' },
-  { verso: 'Fase 3: Encarnacao', referência: '2:7-8', descricao: 'Fez-se semelhante aos homens. Achado em figura de homem, humilhou-se ate a morte, morte de cruz. A encarnacao culmina na cruz — o ponto mais baixo da historia humana. A morte de cruz era a forma mais vergonhosa de morrer no mundo antigo.', teologo: 'Moltmann: "A cruz é o lugar onde Deus se identifica completamente com os abandonados. O Deus crucificado é o único Deus que pode salvar um mundo crucificado"' },
+  { verso: 'Fase 1: Pre-existencia', referência: '2:6', descricao: 'Cristo existia em forma de Deus — não era uma copia, mas a propria expressão da divindade. Não usurpou igualdade com Deus, porque já a possuia. A forma de Deus (morphe) indica a realidade essencial da divindade, não meramente aparência.', teologo: 'Athanasius: "Cristo não era inférior ao Pai, mas era igual em substancia e eternidade. A forma de Deus é a propria essencia divina"' },
+  { verso: 'Fase 2: Kenosis (Esvaziamento)', referência: '2:7', descricao: 'Cristo se esvaziou — não de divindade, mas de privilegios. Tomou forma de servo, nasceu de mulher, viveu como homem comum. A majestade se escondeu na humildade. O esvaziamento é a escolha divina de se limitar à humanidade.', teologo: 'Barth: "O esvaziamento é o ato supremo de liberdade divina: Deus escolhe ser servo. Não há perda de divindade, mas aquisição de humanidade"' },
+  { verso: 'Fase 3: Encarnacao', referência: '2:7-8', descricao: 'Fez-se semelhante aos homens. Achado em figura de homem, humilhou-se até a morte, morte de cruz. A encarnacao culmina na cruz — o ponto mais baixo da historia humana. A morte de cruz era a forma mais vergonhosa de morrer no mundo antigo.', teologo: 'Moltmann: "A cruz é o lugar onde Deus se identifica completamente com os abandonados. O Deus crucificado é o único Deus que pode salvar um mundo crucificado"' },
   { verso: 'Fase 4: Exaltacao', referência: '2:9-11', descricao: 'Pelo que Deus o exaltou soberanamente. O nome que e sobre todo nome — Senhor (Kyrios). Todo joelho se dobra, toda lingua conféssa. A humildade e recompensada pela exaltação cosmica. Isso implica que Cesar não é senhor — Jesus é.', teologo: 'Wright: "Jesus e Senhor — isso implica que Cesar e apenas um imperador temporario. O hino e subversivo politicamente"' },
   { verso: 'Fase 5: Apliçação Pratica', referência: '2:1-5', descricao: 'Paulo aplica a kenosis à vida da igreja: tenham o mesmo sentimento, não façam nada por rivalidade, considerem os outros superiores. A Cristologia não e abstrata — ela se traduz em humildade prática nas relações.', teologo: 'Fee: "A kenosis de Cristo não é uma doutrina abstrata, mas um paradigm para a vida da comunidade. A unidade da igreja depende da humildade Cristologica"' },
 ];
@@ -94,7 +94,7 @@ const hinoDetalhes = [
 const aplicações = [
   'Alegrai-vos sempre no Senhor — a alegria cristã é uma escolha baseada na verdade, não na emocao.',
   'Humilhai-vos como Cristo se humilhou — a unidade da igreja exige morte ao orgulho pessoal.',
-  'Aprendam a contentar-se — Cristo basta em toda circunstancia, na abundancia e na falta.',
+  'Aprendam a contentar-se — Cristo basta em toda circunstancia, na abundância e na falta.',
   'Orai com agradecimento em vez de se preocupar — a paz de Deus guardara vosso coração.',
   'Fazei tudo sem murmuracoes — a ingratidao destrói o testemunho cristão.',
   'Amai-se uns aos outros com amor espiritual — a unidade da igreja é o maior testemunho ao mundo.',
@@ -114,7 +114,7 @@ const perguntas = [
   'Como a paz de Deus (4:6-7) se manifesta na vida prática?',
   'Por que Paulo menciona Evodia e Sintique na carta? Qual a lição?',
   'Como 4:8 pode transformar nossos pensamentos diários?',
-  'De que maneira a oracao é a antitese da ansiedade segundo Paulo?',
+  'De que maneira a oração é a antitese da ansiedade segundo Paulo?',
   'Como a prisão de Paulo se tornou uma oportunidade para o evangelho avançar?',
   'Qual a relação entre Filipenses 2:5-11 é a unidade da igreja?',
   'O que significa "conhecer a Cristo é a força da sua ressurreição" (3:10)?',
@@ -178,7 +178,7 @@ export default function FilipensesPage() {
                     Filipenses é uma das quatro epistolas prisonais de Paulo, escrita durante sua primeira prisão em Roma (~60-62 d.C.). Diférente de Efésios (circular) e Colossenses (para combater heresias), Filipenses é uma carta pessoal e afétuosa. Paulo escreve a uma igreja que o ama e que o sustentou materialmente durante o ministério.
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
-                    O tema central é a alegria em Cristo mesmo nas adversidades. Paulo esta preso, ameacado de morte, mas sua carta transborda de gozo. A palavra "alegria" ou "gozo" aparece 16 vezes. E a carta mais pessoal de Paulo — ele fala de si, de seus sentimentos, de sua experiencia com Cristo.
+                    O tema central é a alegria em Cristo mesmo nas adversidades. Paulo esta preso, ameacado de morte, mas sua carta transborda de gozo. A palavra "alegria" ou "gozo" aparece 16 vezes. E a carta mais pessoal de Paulo — ele fala de si, de seus sentimentos, de sua experiência com Cristo.
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div className="glass-card p-4 rounded-xl">
@@ -187,7 +187,7 @@ export default function FilipensesPage() {
                     </div>
                     <div className="glass-card p-4 rounded-xl">
                       <h3 className="font-display text-sm font-medium mb-2">O Propsito da Carta</h3>
-                      <p className="text-sm text-muted-foreground">Paulo escreve para agradecer o envio de Epafrodito (4:18), informar sobre sua situacao em Roma, exortar a unidade (4:2-3) e ao contentamento (4:10-13). E uma carta de amor, não de doutrina polêmica.</p>
+                      <p className="text-sm text-muted-foreground">Paulo escreve para agradecer o envio de Epafrodito (4:18), informar sobre sua situação em Roma, exortar a unidade (4:2-3) e ao contentamento (4:10-13). E uma carta de amor, não de doutrina polêmica.</p>
                     </div>
                   </div>
                 </div>
@@ -261,7 +261,7 @@ export default function FilipensesPage() {
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
                   <Heart className="w-5 h-5 text-primary" />O Hino Cristológico (Filipenses 2:5-11)
                 </h2>
-                <p className="text-muted-foreground mb-4">Considerado o texto Cristologico mais elevado do Novo Testamento, este hino descreve a jornada de Cristo da glória a humildade e de volta a glória. Muitos estudiosos acreditam que era um hino liturgico ja existente que Paulo incluiu na carta.</p>
+                <p className="text-muted-foreground mb-4">Considerado o texto Cristologico mais elevado do Novo Testamento, este hino descreve a jornada de Cristo da glória a humildade e de volta a glória. Muitos estudiosos acreditam que era um hino litúrgico já existente que Paulo incluiu na carta.</p>
                 <div className="space-y-4">
                   {hinoDetalhes.map((h, i) => (
                     <div key={i} className="sola-card p-5">

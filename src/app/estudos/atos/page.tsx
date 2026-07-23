@@ -91,7 +91,7 @@ const versiculosChave = [
 const versiculosExtras = [
   {
     referência: 'Atos 1:8',
-    texto: 'Mas recebereis a virtude do Espírito Santo, que ha de vir sobre vos; e ser-me-eis testemunhas em Jerusalém, e em toda a Judeia, e Samaria, e ate os confins da terra.',
+    texto: 'Mas recebereis a virtude do Espírito Santo, que há de vir sobre vos; e ser-me-eis testemunhas em Jerusalém, e em toda a Judeia, e Samaria, e até os confins da terra.',
     explicação: 'A tese central de Atos: o Espírito Santo é a fonte do testemunho. A missão não e opcional — é a razao de ser da Igreja. A expansão geografica espelha a estrutura do livro.',
     comentarios: [
       { teologo: 'F.F. Bruce', texto: 'Atos 1:8 funciona como sumario programatico de todo o livro. Cada seção narrativa pode ser mapeada neste versiculo: Jerusalém (caps. 1-7), Judeia e Samaria (caps. 8-12), confins da terra (caps. 13-28). A promessa do Espírito não e apenas para os apostolos, mas para todos que testemunham.' },
@@ -103,17 +103,17 @@ const versiculosExtras = [
     texto: 'E perseveravam na doutrina dos apostolos, e na comunhão, e no partir do pao, e nas orações. E em toda alma havia temor; e muitos prodigios e sinais eram feitos pelos apostolos. E todos os que tinham criam, e tudo tiham comum.',
     explicação: 'O retrato mais completo da igreja primitiva: quatro pilares (doutrina, comunhão, culto, oracao), temor de Deus, sinais sobrenaturais e generosidade radical.',
     comentarios: [
-      { teologo: 'F.F. Bruce', texto: 'Lucas não esta descrevendo um programa institucional, mas o fruto espontaneo do Espírito. A comunhão (koinonia) não era apenas espiritual, mas incluia compartilhamento de bens materiais. Era a consequencia natural do evangelho no coração.' },
-      { teologo: 'David Peterson', texto: 'Os quatro pilares de 2:42 são marcas da vida cristã, não opções. A doutrina dos apostolos é o ensino sobre Jesus Cristo. A comunhão é a partilha da vida em Cristo. O partir do pao inclui a ceia do Senhor e as reféicoes em comum.' },
+      { teologo: 'F.F. Bruce', texto: 'Lucas não esta descrevendo um programa institucional, mas o fruto espontaneo do Espírito. A comunhão (koinonia) não era apenas espiritual, mas incluia compartilhamento de bens materiais. Era a consequência natural do evangelho no coração.' },
+      { teologo: 'David Peterson', texto: 'Os quatro pilares de 2:42 são marcas da vida cristã, não opções. A doutrina dos apostolos é o ensino sobre Jesus Cristo. A comunhão é a partilha da vida em Cristo. O partir do pão inclui a ceia do Senhor e as reféicoes em comum.' },
     ],
   },
   {
     referência: 'Atos 4:12',
-    texto: 'E em nenhum outro ha salvação; porque também não ha outro nome debaixo do ceu, dado entre os homens, pelo qual devamos ser salvos.',
-    explicação: 'A exclusividade de Cristo e declarada sem rodeios. Nao ha plano B, não ha salvação por outra via. Jesus é o unico Mediador entre Deus e os homens.',
+    texto: 'E em nenhum outro há salvação; porque também não há outro nome debaixo do ceu, dado entre os homens, pelo qual devamos ser salvos.',
+    explicação: 'A exclusividade de Cristo e declarada sem rodeios. Não há plano B, não há salvação por outra via. Jesus é o unico Mediador entre Deus e os homens.',
     comentarios: [
       { teologo: 'C.K. Barrett', texto: 'Pedro fala diante do Sinhedrio, o tribunal religioso mais poderoso de Israel. A afluicao "dado entre os homens" sublinha a encarnacao: Deus agiu na historia por meio de um homem especifico — Jesus de Nazare.' },
-      { teologo: 'Craig Keener', texto: 'A exclusividade de Cristo em Atos 4:12 não e intolerancia, mas urgencia missionaria. Se não ha outro nome, então a proclamacao do evangelho e questão de vida ou morte eterna. Keener destaca o paralelo com o monoteismo judeu: um so Deus, um so nome.' },
+      { teologo: 'Craig Keener', texto: 'A exclusividade de Cristo em Atos 4:12 não e intolerancia, mas urgencia missionaria. Se não há outro nome, então a proclamação do evangelho e questão de vida ou morte eterna. Keener destaca o paralelo com o monoteismo judeu: um só Deus, um só nome.' },
     ],
   },
   {
@@ -137,19 +137,19 @@ const versiculosExtras = [
   {
     referência: 'Atos 13:1-3',
     texto: 'Havia na igreja que estava em Antioquia prophetas e mestres: Barnabé, Simeao, chamado Niger, e Lucio de Cirene, e Manaen, que fora criado com Herodes o tetrarca, e Saulo. E, ministrando eles ao Senhor, e jejuando, disse o Espírito Santo: Apartai-me Barnabé e Saulo para a obra a que os chamei.',
-    explicação: 'A primeira referência explicita de chamada missionaria no NT. O Espírito Santo fala diretamente a igreja. A oracao é o jejunam precedem a separacao para a missão.',
+    explicação: 'A primeira referência explicita de chamada missionaria no NT. O Espírito Santo fala diretamente a igreja. A oração é o jejunam precedem a separacao para a missão.',
     comentarios: [
       { teologo: 'Ekkehard Schnabel', texto: 'Antioquia era a terceira maior cidade do Imperio Romano, multicultural e portuaria. A lideranca era etnicamente diversa: Simeao Niger (africano), Lucio de Cirene (libio), Manaen (romano). A diversidade da lideranca reflete a universalidade do evangelho.' },
-      { teologo: 'Ben Witherington III', texto: 'O chamado de Barnabé e Saulo é um modelo para a missão cristã: a igreja local reconhece, a comunidade envia, o Espírito direciona. Nao e missão individual, mas eclesial. A oracao é o jejunam são a preparacao espiritual para o trabalho missionario.' },
+      { teologo: 'Ben Witherington III', texto: 'O chamado de Barnabé e Saulo é um modelo para a missão cristã: a igreja local reconhece, a comunidade envia, o Espírito direciona. Não e missão individual, mas eclesial. A oração é o jejunam são a preparacao espiritual para o trabalho missionario.' },
     ],
   },
   {
     referência: 'Atos 15:1-29',
-    texto: 'E alguns que desceram da Judeia ensinavam os irmãos: Se não vos circumcirdes segundo o costume de Moises, não podeis ser salvos. ... Entao aos apostolos e anciaos, em Jeruselem, este negocio...',
+    texto: 'E alguns que desceram da Judeia ensinavam os irmãos: Se não vos circumcirdes segundo o costume de Moises, não podeis ser salvos. ... Então aos apostolos e anciaos, em Jeruselem, este negocio...',
     explicação: 'O Concilio de Jerusalém é a decisão mais importante da igreja primitiva. A questão: gentios precisam se submeter a Lei de Moises para ser salvos? A resposta: não. A salvação e pela graça de Cristo, não pela obra da Lei.',
     comentarios: [
       { teologo: 'F.F. Bruce', texto: 'O Concilio de Jerusalém é o modelo biblico para resolver disputas teologicas na igreja. Pedro, Paulo e Barnabé falam; Tiago preside; a decisão e unanime. A autoridade esta na Escritura, na experiencia, e na direção do Espírito.' },
-      { teologo: 'James D.G. Dunn', texto: 'A decisão de Jerusalém não foi meramente pragmatica, mas teologica. O Espírito Santo ja havia dado dons aos gentios (10:44-47), provando que Deus os aceitava sem Lei. A igreja apenas reconheceu o que Deus ja estava fazendo.' },
+      { teologo: 'James D.G. Dunn', texto: 'A decisão de Jerusalém não foi meramente pragmatica, mas teologica. O Espírito Santo já havia dado dons aos gentios (10:44-47), provando que Deus os aceitava sem Lei. A igreja apenas reconheceu o que Deus já estava fazendo.' },
     ],
   },
 ];
@@ -160,7 +160,7 @@ const temasCentrais = [
   { título: 'Missões e Universalidade', icone: Target, cor: 'text-green-500', descricao: 'O universalismo do evangelho se revela gradualmente: juDeus (caps. 1-7), samaritanos (8:4-25), etíope (8:26-40), cornélio (10:1-48), gentios em Antioquia (11:19-26), gregos em Atenas (17:16-34). Deus não faz acepção de pessoas.' },
   { título: 'Perseguição e Fé', icone: Shield, cor: 'text-red-500', descricao: 'A perseguição não destrói a Igreja, mas a espalha. Estêvão é apedrejado (7), mas seu martírio leva o evangelho a Samaria. Paulo e Barnabé são expulsos de Listra (14), mas retornam para fortalecer os convertidos. O sangue dos mártires é semente da Igreja. O sofrimento não é acidente — é o caminho normal da fidelidade cristã.' },
   { título: 'A Igreja Primitiva como Modelo', icone: Users, cor: 'text-purple-500', descricao: 'Lucas retrata a igreja de Jerusalém como paradigma: ensino apostólico, comunhão genuína, oração constante, generosidade radical e poder sobrenatural. Não é um modelo legalista, mas um padrão inspirador para todas as igrejas. A diversidade de liderança (juDeus, helenistas, gentios) demonstra que o evangelho transcende barreiras culturais desde o início da história da Igreja.' },
-  { título: 'A Oração é o Poder', icone: Sparkles, cor: 'text-pink-500', descricao: 'A oração é o fio condutor de Atos: precede a descida do Espírito (1:14), acompanha o nascimento da igreja (2:42), provoca sinais (4:31), direciona missões (13:2-3), e sustenta Paulo em todas as tribulações. Sem oração, não ha poder. Com oração, o impossivel se torna realidade. A oração não é uma opção — é a condição para o avivamento.' },
+  { título: 'A Oração é o Poder', icone: Sparkles, cor: 'text-pink-500', descricao: 'A oração é o fio condutor de Atos: precede a descida do Espírito (1:14), acompanha o nascimento da igreja (2:42), provoca sinais (4:31), direciona missões (13:2-3), e sustenta Paulo em todas as tribulações. Sem oração, não há poder. Com oração, o impossível se torna realidade. A oração não é uma opção — é a condição para o avivamento.' },
 ];
 
 const expansão = [
@@ -171,11 +171,11 @@ const expansão = [
 
 const aplicações = [
   'Receba a Palavra com avidez como os bereanos — estude diariamente as Escrituras (At 17:11).',
-  'Dependa do Espírito Santo em tudo — não ha missão sem o poder do Espírito (At 1:8).',
+  'Dependa do Espírito Santo em tudo — não há missão sem o poder do Espírito (At 1:8).',
   'Nao tema a perseguição — Deus usa as dificuldades para espalhar o evangelho (At 8:1-4).',
   'Pratique a comunhão genuina — compartilhe tempo, talentos e bens com necessitados (At 2:44-45).',
   'Esteja pronto para dar razao da esperança — Paulo sempre argumentou pelas Escrituras (At 17:2-3).',
-  'Ore com ousadia — a oracao precedé o poder (At 4:31, 16:25-26).',
+  'Ore com ousadia — a oração precedé o poder (At 4:31, 16:25-26).',
   'Aceite a vontade de Deus mesmo quando e inesperada — o etíope, Cornélio, Paulo em Troas (At 8, 10, 16).',
   'Nao julgue pelas aparências — Deus trabalha entre samaritanos, etíopes e gentios (At 8, 10).',
   'Mantenha a alegria mesmo na perseguição — os apostolos saíram alegrando-se por serem julgados por causa do nome (At 5:41).',

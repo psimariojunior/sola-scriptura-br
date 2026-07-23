@@ -153,7 +153,7 @@ add('gn', 4, 25, 'O Nascimento de Sete',
   'Eva da a luz Sete como substituto de Abel. A linhagem da esperanca continua.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Sete significa apontado; Deus designa uma nova semente.', obra: 'Comentario ao Genesis', ano: 1554 },
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'A historia da salvaÃ§Ã£o continua atraves da descendencia fiel.', obra: 'The New Testament and the People of God', ano: 1992 },
+    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'A historia da salvação continua atraves da descendencia fiel.', obra: 'The New Testament and the People of God', ano: 1992 },
   ],
   ["Gn 5:3","Lc 3:38"]);
 
@@ -173,11 +173,11 @@ add('gn', 6, 5, 'A Corrupcao da Humanidade',
   ],
   ["Rm 3:10-12","Jr 17:9"]);
 
-add('gn', 6, 8, 'Noe Achou GraÃ§a',
-  'Noe encontrou graÃ§a aos olhos do Senhor em meio a corrupcao generalizada.',
+add('gn', 6, 8, 'Noe Achou Graça',
+  'Noe encontrou graça aos olhos do Senhor em meio a corrupcao generalizada.',
   [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A graÃ§a precede o merito; Noe nao era perfeito, mas fiel.', obra: 'Comentario ao Genesis', ano: 1554 },
-    { teologo: 'Wesley', periodo: 'moderno', tradicao: 'arminiana', texto: 'A graÃ§a divina busca o homem mesmo na corrupcao.', obra: 'Sermoens', ano: 1750 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A graça precede o merito; Noe nao era perfeito, mas fiel.', obra: 'Comentario ao Genesis', ano: 1554 },
+    { teologo: 'Wesley', periodo: 'moderno', tradicao: 'arminiana', texto: 'A graça divina busca o homem mesmo na corrupcao.', obra: 'Sermoens', ano: 1750 },
   ],
   ["Ef 2:4-5","Tt 3:4-7"]);
 
@@ -309,7 +309,7 @@ add('gn', 18, 22, 'A Intercessao por Sodoma',
   ],
   ["Ex 32:11-14","Tg 5:16"]);
 
-add('gn', 19, 24, 'A DestruiÃ§ao de Sodoma',
+add('gn', 19, 24, 'A Destruiçao de Sodoma',
   'Deus faz chover enxofre e fogo sobre Sodoma e Gomorra.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O juizo divino e justo sobre a impiedade corrupta.', obra: 'Comentario ao Genesis', ano: 1554 },
@@ -329,7 +329,7 @@ add('gn', 21, 1, 'O Nascimento de Isaque',
   'Sara concebe e da a luz Isaque no tempo prometido. O cumprimento da promessa.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Isaque nasce pela promessa, nao pela natureza.', obra: 'Comentario ao Genesis', ano: 1554 },
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'O nascimento miraculoso aponta para a graÃ§a divina.', obra: 'The New Testament and the People of God', ano: 1992 },
+    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'O nascimento miraculoso aponta para a graça divina.', obra: 'The New Testament and the People of God', ano: 1992 },
   ],
   ["Gl 4:28","Rm 9:8-9"]);
 
@@ -337,7 +337,7 @@ add('gn', 21, 6, 'A Alegria de Sara',
   'Sara exclama: Deus preparou para mim riso. A alegria do cumprimento.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O riso de Sara e de admiracao e gratidao.', obra: 'Comentario ao Genesis', ano: 1554 },
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A alegria da graÃ§a supera a expectativa humana.', obra: 'Sermons', ano: 1870 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A alegria da graça supera a expectativa humana.', obra: 'Sermons', ano: 1870 },
   ],
   ["Sl 126:1-3","Lc 1:14"]);
 
@@ -437,7 +437,7 @@ add('gn', 31, 3, 'A Fuga de Jaco',
   ],
   ["Sl 37:23","Ex 14:19-20"]);
 
-add('gn', 32, 9, 'A OraÃ§ao de Jaco',
+add('gn', 32, 9, 'A Oraçao de Jaco',
   'Jaco ora humildemente: nao sou digno de todas as misericordias.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A humildade e o inicio da oracao aceita.', obra: 'Comentario ao Genesis', ano: 1554 },
@@ -457,7 +457,7 @@ add('gn', 32, 24, 'Lutando com Deus',
 add('gn', 33, 1, 'O Encontro com Esau',
   'Jaco se curva sete vezes diante de Esau, que o recebe com abraco.',
   [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A reconciliacao e fruto da graÃ§a de Deus.', obra: 'Comentario ao Genesis', ano: 1554 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A reconciliacao e fruto da graça de Deus.', obra: 'Comentario ao Genesis', ano: 1554 },
     { teologo: 'Tim Keller', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'O evangelho transforma inimigos em irmaos.', obra: 'Walking with God', ano: 2013 },
   ],
   ["Rm 12:17-21","Mt 5:9"]);
@@ -473,7 +473,7 @@ add('gn', 34, 1, 'Dina e os Siquemitas',
 add('gn', 35, 1, 'Betel: Renovacao da Alianca',
   'Deus ordena a Jaco que volte a Betel. Renovacao espiritual.',
   [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Betel e lugar de recordacao da graÃ§a divina.', obra: 'Comentario ao Genesis', ano: 1554 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Betel e lugar de recordacao da graça divina.', obra: 'Comentario ao Genesis', ano: 1554 },
     { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Voltar a Betel e voltar a Deus.', obra: 'Sermons', ano: 1870 },
   ],
   ["Is 44:2-5","Ap 2:4-5"]);
@@ -522,7 +522,7 @@ add('gn', 39, 9, 'Jose e a Tentacao',
   'Jose resiste a tentacao da mulher de Potifar.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A fidelidade a Deus supera qualquer tentacao.', obra: 'Comentario ao Genesis', ano: 1554 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A virtude da castidade e preservada pela graÃ§a.', obra: 'Suma Teologica', ano: 1274 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A virtude da castidade e preservada pela graça.', obra: 'Suma Teologica', ano: 1274 },
   ],
   ["1 Co 10:13","Tg 1:12-14"]);
 
@@ -562,7 +562,7 @@ add('gn', 44, 1, 'A Taca de Prata',
   'Jose coloca sua taca no saco de Benjamim para testar seus irmaos.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O teste revela se os irmaos mudaram de coracao.', obra: 'Comentario ao Genesis', ano: 1554 },
-    { teologo: 'Tim Keller', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'A graÃ§a de Deus transforma o carater.', obra: 'Walking with God', ano: 2013 },
+    { teologo: 'Tim Keller', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'A graça de Deus transforma o carater.', obra: 'Walking with God', ano: 2013 },
   ],
   ["2 Co 13:5","Lm 3:40"]);
 
@@ -592,7 +592,7 @@ add('gn', 49, 1, 'As Bencaos de Jaco',
   ["Nm 24:9","Ap 5:5"]);
 
 add('gn', 50, 15, 'Jose Perdoa os Irmaos',
-  'Jose perdoa seus irmaos: vÃ³s pensastes mal, Deus o resolveu para bem.',
+  'Jose perdoa seus irmaos: vós pensastes mal, Deus o resolveu para bem.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O perdao e fruto da confianca na soberania divina.', obra: 'Comentario ao Genesis', ano: 1554 },
     { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Deus transforma o mal em bem.', obra: 'Sermons', ano: 1870 },
@@ -601,7 +601,7 @@ add('gn', 50, 15, 'Jose Perdoa os Irmaos',
   ["Rm 8:28","Mt 6:14-15"]);
 
 add('ex', 3, 14, 'Eu Sou o Que Sou',
-  'A revelaÃ§ao do nome divino.',
+  'A revelaçao do nome divino.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Autoexistente, imutavel e fiel as promessas.', obra: 'Comentario ao Exodo', ano: 1561 },
     { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Deus e ato puro, sem potencialidade.', obra: 'Suma Teologica', ano: 1274 },
@@ -705,9 +705,9 @@ add('ex', 33, 11, 'Fala-face a Face',
   ["Nm 12:8","Dt 34:10"]);
 
 add('ex', 34, 6, 'O Carater de Deus',
-  'A revelaÃ§ao do carater divino.',
+  'A revelaçao do carater divino.',
   [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Misericordia e graÃ§a sao primarios.', obra: 'Comentario ao Exodo', ano: 1561 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Misericordia e graça sao primarios.', obra: 'Comentario ao Exodo', ano: 1561 },
     { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Deus se define pela bondade.', obra: 'Suma Teologica', ano: 1274 },
   ],
   ["Nm 14:18","Sl 86:15"]);
@@ -724,7 +724,7 @@ add('lv', 16, 2, 'O Dia da Expiacao',
   'A expiacao pelo pecado de todo o povo.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Prefigura Cristo entrando no ceu.', obra: 'Comentario ao Levitico', ano: 1561 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'O bode expiatÃ³rio carrega os pecados.', obra: 'Suma Teologica', ano: 1274 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'O bode expiatório carrega os pecados.', obra: 'Suma Teologica', ano: 1274 },
   ],
   ["He 9:7-14","1 Jo 2:2"]);
 
@@ -736,11 +736,11 @@ add('lv', 19, 18, 'Amaras o Teu Proximo',
   ],
   ["Mt 22:39","Rm 13:8-10"]);
 
-add('nu', 6, 24, 'A Bencao AarÃ´nica',
+add('nu', 6, 24, 'A Bencao Aarônica',
   'A bencao trinitaria sobre Israel.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A bencao e trinitaria.', obra: 'Comentario aos Numeros', ano: 1561 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Transmissao da graÃ§a divina.', obra: 'Suma Teologica', ano: 1274 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Transmissao da graça divina.', obra: 'Suma Teologica', ano: 1274 },
   ],
   ["2 Co 13:14"]);
 
@@ -772,7 +772,7 @@ add('dt', 30, 19, 'Escolha a Vida',
   'A exortacao a obediencia.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A soberania nao anula a responsabilidade.', obra: 'Comentario ao Deuteronomio', ano: 1561 },
-    { teologo: 'Wesley', periodo: 'moderno', tradicao: 'arminiana', texto: 'A graÃ§a capacita a escolha.', obra: 'Sermoens', ano: 1750 },
+    { teologo: 'Wesley', periodo: 'moderno', tradicao: 'arminiana', texto: 'A graça capacita a escolha.', obra: 'Sermoens', ano: 1750 },
   ],
   ["Js 24:15","Mt 7:13-14"]);
 
@@ -836,7 +836,7 @@ add('rt', 1, 16, 'Onde Ires, Eu Irei',
   'Lealdade e fe transcultural.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A lealdade de Rute e modelo.', obra: 'Comentario a Rute', ano: 1561 },
-    { teologo: 'Tim Keller', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'A graÃ§a se estende a todas as nacoes.', obra: 'Walking with God', ano: 2013 },
+    { teologo: 'Tim Keller', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'A graça se estende a todas as nacoes.', obra: 'Walking with God', ano: 2013 },
   ],
   ["Rt 1:16-17","Mt 1:5"]);
 
@@ -883,7 +883,7 @@ add('1sm', 15, 22, 'Obediencia Melhor que Sacrificio',
 add('1sm', 16, 7, 'Deus Ve o Coracao',
   'Deus nao olha a aparancia.',
   [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus avalia pelo critÃ©rio divino.', obra: 'Comentario ao 1 Samuel', ano: 1561 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus avalia pelo critério divino.', obra: 'Comentario ao 1 Samuel', ano: 1561 },
     { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Humilha orgulhosos e conforta humildes.', obra: 'Sermons', ano: 1870 },
   ],
   ["1 Co 1:27-29"]);
@@ -968,8 +968,8 @@ add('2rs', 5, 14, 'Mergulha Sete Vezes',
   ],
   ["Mt 8:2-4","Lc 4:27"]);
 
-add('jb', 1, 21, 'Nu SaÃ­ do Ventre da MÃ£e',
-  'A confianÃ§a absoluta de Job.',
+add('jb', 1, 21, 'Nu Saí do Ventre da Mãe',
+  'A confiança absoluta de Job.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A fe genuina persevera na desgraca.', obra: 'Comentario ao Job', ano: 1561 },
     { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Deus da e Deus tira.', obra: 'Suma Teologica', ano: 1274 },
@@ -988,7 +988,7 @@ add('jb', 13, 15, 'Mata-me, Esperarei',
   'Fe inabalavel na morte.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A fe persiste mesmo quando tudo parece perdido.', obra: 'Comentario ao Job', ano: 1561 },
-    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'A fe e confianÃ§a em Deus.', obra: 'Church Dogmatics', ano: 1951 },
+    { teologo: 'Barth', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'A fe e confiança em Deus.', obra: 'Church Dogmatics', ano: 1951 },
   ],
   ["Rm 8:38-39","He 11:1"]);
 
@@ -1051,13 +1051,13 @@ add('sl', 22, 1, 'Deus Meu, Por Que Me Desamparaste?',
 add('sl', 23, 1, 'O Senhor e o Meu Pastor',
   'O salmo mais amado.',
   [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cuidado pessoal, provisao e proteÃ§Ã£o.', obra: 'Comentario aos Salmos', ano: 1557 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cuidado pessoal, provisao e proteção.', obra: 'Comentario aos Salmos', ano: 1557 },
     { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'O Pastor onipotente supre tudo.', obra: 'Salmo 23', ano: 1865 },
   ],
   ["Jo 10:11-14","1 P 2:25"]);
 
 add('sl', 27, 1, 'O Senhor e a minha luz',
-  'ConfianÃ§a absoluta.',
+  'Confiança absoluta.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus e luz que dissipa trevas.', obra: 'Comentario aos Salmos', ano: 1557 },
     { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Quem tem Deus tem tudo.', obra: 'Sermons', ano: 1870 },
@@ -1068,7 +1068,7 @@ add('sl', 32, 1, 'Bem-aventurado o perdoado',
   'A bencao do perdao.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O perdao e a maior bencao.', obra: 'Comentario aos Salmos', ano: 1557 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'O perdao traz alegria.', obra: 'Suma Teologica', ano: 1274 },
+    { teologo: 'Tomás de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'O perdao traz alegria.', obra: 'Suma Teologica', ano: 1274 },
   ],
   ["Rm 4:7-8","1 Jo 1:9"]);
 
@@ -1080,7 +1080,7 @@ add('sl', 34, 8, 'Provai e vedes que o Senhor e bom',
   ],
   ["1 P 2:3","Jo 7:37"]);
 
-add('sl', 42, 1, 'Como anseia a corÃ§a pelas aguas',
+add('sl', 42, 1, 'Como anseia a corça pelas aguas',
   'A sede de Deus.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A sede espiritual e sinal da vida.', obra: 'Comentario aos Salmos', ano: 1557 },
@@ -1100,12 +1100,12 @@ add('sl', 51, 10, 'Cria em mim um coracao puro',
   'O maior salmo de arrependimento.',
   [
     { teologo: 'Wesley', periodo: 'moderno', tradicao: 'arminiana', texto: 'A regeneracao e obra do Esprito.', obra: 'Sermoens', ano: 1750 },
-    { teologo: 'R.C. Sproul', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'A alegria pode ser restaurada pela graÃ§a.', obra: 'The Holiness of God', ano: 1985 },
+    { teologo: 'R.C. Sproul', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'A alegria pode ser restaurada pela graça.', obra: 'The Holiness of God', ano: 1985 },
   ],
   ["Jo 3:3-7","1 Jo 1:9"]);
 
 add('sl', 91, 1, 'Quem habita no esconderijo do Altissimo',
-  'A proteÃ§Ã£o divina.',
+  'A proteção divina.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O abrigo em Deus e seguro.', obra: 'Comentario aos Salmos', ano: 1557 },
     { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Deus e nosso abrigo.', obra: 'Sermons', ano: 1870 },
@@ -1116,7 +1116,7 @@ add('sl', 100, 3, 'Sabei que o Senhor e Deus',
   'O reconhecimento de Deus.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Somos de Deus; Ele nos criou.', obra: 'Comentario aos Salmos', ano: 1557 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A criacao e ato de amor.', obra: 'Suma Teologica', ano: 1274 },
+    { teologo: 'Tomás de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A criacao e ato de amor.', obra: 'Suma Teologica', ano: 1274 },
   ],
   ["Gn 1:1","At 17:28"]);
 
@@ -1172,7 +1172,7 @@ add('sl', 145, 3, 'Grande e o Senhor',
   'A grandeza de Deus.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A grandeza de Deus e incompreensivel.', obra: 'Comentario aos Salmos', ano: 1557 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A grandeza divina transcende toda medida.', obra: 'Suma Teologica', ano: 1274 },
+    { teologo: 'Tomás de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'A grandeza divina transcende toda medida.', obra: 'Suma Teologica', ano: 1274 },
   ],
   ["Job 11:7-9","Is 40:28"]);
 
@@ -1180,12 +1180,12 @@ add('pv', 1, 7, 'O temor do Senhor e o principio da sabedoria',
   'A base de toda sabedoria.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O temor de Deus e o fundamento.', obra: 'Comentario a Proverbios', ano: 1561 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'O temor e virtude teologal.', obra: 'Suma Teologica', ano: 1274 },
+    { teologo: 'Tomás de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'O temor e virtude teologal.', obra: 'Suma Teologica', ano: 1274 },
   ],
   ["Sl 111:10","Ec 12:13"]);
 
 add('pv', 3, 5, 'Confia no Senhor de todo o teu coracao',
-  'ConfianÃ§a absoluta.',
+  'Confiança absoluta.',
   [
     { teologo: 'Wesley', periodo: 'moderno', tradicao: 'arminiana', texto: 'Exclui a dependencia propria.', obra: 'Sermoens', ano: 1750 },
     { teologo: 'Tim Keller', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Humildade intelectual.', obra: 'Proverbs for Today', ano: 2014 },
@@ -1204,15 +1204,15 @@ add('pv', 8, 22, 'A Sabedoria Personificada',
   'Prefiguracao do Logos.',
   [
     { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'A Sabedoria prefigura o Logos eterno.', obra: 'De Trinitate', ano: 517 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Co-eterna com Deus.', obra: 'Suma Teologica', ano: 1274 },
+    { teologo: 'Tomás de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Co-eterna com Deus.', obra: 'Suma Teologica', ano: 1274 },
   ],
   ["Jo 1:1-3","Cl 1:15-17"]);
 
 add('pv', 22, 6, 'Instrui o menino no caminho',
-  'A educaÃ§Ã£o.',
+  'A educação.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A formacao espiritual comeca na infancia.', obra: 'Comentario a Proverbios', ano: 1561 },
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A educaÃ§Ã£o e investimento eterno.', obra: 'Sermons', ano: 1870 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'A educação e investimento eterno.', obra: 'Sermons', ano: 1870 },
   ],
   ["Dt 6:6-7","Ef 6:4"]);
 
@@ -1244,7 +1244,7 @@ add('ct', 8, 6, 'Poe-me como selo sobre o teu coracao',
   'A forca do amor.',
   [
     { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Morte e amor sao as forcas mais poderosas.', obra: 'Confissoes', ano: 398 },
-    { teologo: 'TomÃ¡s de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'O amor e inextinguivel.', obra: 'Suma Teologica', ano: 1274 },
+    { teologo: 'Tomás de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'O amor e inextinguivel.', obra: 'Suma Teologica', ano: 1274 },
   ],
   ["1 Jo 4:7-12","Ef 5:25-32"]);
 
@@ -1313,7 +1313,7 @@ add('is', 53, 5, 'Pelas suas chagas sararemos',
   ["1 P 2:24-25","2 Co 5:21"]);
 
 add('is', 55, 1, 'Vinde, sem dinheiro',
-  'O convite a graÃ§a.',
+  'O convite a graça.',
   [
     { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'O convite e universal.', obra: 'Sermons', ano: 1870 },
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A salvacao e dom gratuito.', obra: 'Comentario a Isaias', ano: 1551 },
@@ -1340,11 +1340,11 @@ add('jr', 31, 31, 'A nova alianca',
   'A profecia central.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Lei no coracao, perdao.', obra: 'Comentario a Jeremias', ano: 1561 },
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A graÃ§a substitui a Lei.', obra: 'Disputas', ano: 1521 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A graça substitui a Lei.', obra: 'Disputas', ano: 1521 },
   ],
   ["Lc 22:20","2 Co 3:6","He 8:6-13"]);
 
-add('ez', 36, 26, 'CoraÃ§Ã£o novo',
+add('ez', 36, 26, 'Coração novo',
   'A regeneracao.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Obra soberana de Deus.', obra: 'Comentario a Ezequiel', ano: 1566 },
@@ -1379,7 +1379,7 @@ add('dn', 9, 24, 'As setenta semanas',
 add('os', 13, 14, 'Onde esta a tua praga, oh morte?',
   'A vitoria sobre a morte.',
   [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus destruira a morte.', obra: 'Comentario a OsÃ©ias', ano: 1561 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus destruira a morte.', obra: 'Comentario a Oséias', ano: 1561 },
     { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Citado em 1 Co 15.', obra: 'The Resurrection of the Son of God', ano: 2003 },
   ],
   ["1 Co 15:55-57"]);
@@ -1393,10 +1393,10 @@ add('jl', 2, 28, 'Derramarei do Meu Esprito',
   ["At 2:16-18"]);
 
 add('am', 5, 24, 'Corra a justica como agua',
-  'A justiÃ§a social.',
+  'A justiça social.',
   [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Religiao sem justiÃ§a e repugnante.', obra: 'Sermoens', ano: 1530 },
-    { teologo: 'John Stott', periodo: 'contemporaneo', tradicao: 'evangelical', texto: 'Fe exige justiÃ§a social.', obra: 'Issues Facing Christians Today', ano: 1990 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Religiao sem justiça e repugnante.', obra: 'Sermoens', ano: 1530 },
+    { teologo: 'John Stott', periodo: 'contemporaneo', tradicao: 'evangelical', texto: 'Fe exige justiça social.', obra: 'Issues Facing Christians Today', ano: 1990 },
   ],
   ["Mt 25:31-46","Tg 2:14-17"]);
 
@@ -1409,7 +1409,7 @@ add('ha', 2, 4, 'O justo vivera pela fe',
   ["Rm 1:17","Gl 3:11","He 10:38"]);
 
 add('zc', 9, 9, 'O teu rei vem-te justo',
-  'A entrada em JerusalÃ©m.',
+  'A entrada em Jerusalém.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Rei pacifico.', obra: 'Comentario a Zacarias', ano: 1561 },
     { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Entrada deliberada.', obra: 'Jesus and the Victory of God', ano: 1996 },
@@ -1433,7 +1433,7 @@ add('mt', 1, 21, 'Ele salvara o seu povo',
   ["Lc 2:21","At 4:12"]);
 
 add('mt', 3, 2, 'Arrependei-vos',
-  'A pregaÃ§Ã£o joanina.',
+  'A pregação joanina.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'O reino se aproxima.', obra: 'Comentario a Mateus', ano: 1555 },
     { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Urgencia messianica.', obra: 'The New Testament and the People of God', ano: 1992 },
@@ -1441,15 +1441,15 @@ add('mt', 3, 2, 'Arrependei-vos',
   ["Mc 1:15","Lc 3:8"]);
 
 add('mt', 4, 4, 'Nem so de pao',
-  'A tentaÃ§Ã£o.',
+  'A tentação.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'A Palavra de Deus e suficiente.', obra: 'Comentario a Mateus', ano: 1555 },
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A Escritura resiste a tentaÃ§Ã£o.', obra: 'Sermoens', ano: 1530 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'A Escritura resiste a tentação.', obra: 'Sermoens', ano: 1530 },
   ],
   ["Dt 8:3","Lc 4:4"]);
 
 add('mt', 5, 3, 'Bem-aventurados os pobres',
-  'A primeira bem-aventuranÃ§a.',
+  'A primeira bem-aventurança.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Pobreza espiritual e reconhecimento de Deus.', obra: 'Comentario a Mateus', ano: 1555 },
     { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Humildade abre portas do ceu.', obra: 'Sermons', ano: 1870 },
@@ -1489,10 +1489,10 @@ add('mt', 11, 28, 'Vinde a mim, cansados',
   ["Is 55:1","Mt 11:29-30"]);
 
 add('mt', 16, 16, 'Tu es o Cristo',
-  'A confissao messiÃ¢nica.',
+  'A confissao messiânica.',
   [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'RevelaÃ§Ã£o divina.', obra: 'Comentario a Mateus', ano: 1555 },
-    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Climax da revelaÃ§Ã£o.', obra: 'Jesus and the Victory of God', ano: 1996 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Revelação divina.', obra: 'Comentario a Mateus', ano: 1555 },
+    { teologo: 'N.T. Wright', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Climax da revelação.', obra: 'Jesus and the Victory of God', ano: 1996 },
   ],
   ["Mc 8:29","Jo 6:68-69"]);
 
@@ -1536,7 +1536,7 @@ add('mc', 2, 5, 'Filho, teus pecados peroados',
   ],
   ["Lc 5:20-26","Jo 5:14"]);
 
-add('mc', 4, 39, 'EnfreÃ§a! Calma-te!',
+add('mc', 4, 39, 'Enfreça! Calma-te!',
   'Poder sobre a natureza.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Poder divino se manifesta.', obra: 'Comentario a Marcos', ano: 1551 },
@@ -1585,10 +1585,10 @@ add('lc', 10, 30, 'Bom samaritano',
   ["Mt 25:31-46","Tg 2:14-17"]);
 
 add('lc', 15, 11, 'Filho prodiro',
-  'GraÃ§a que restaura.',
+  'Graça que restaura.',
   [
     { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Restauracao completa.', obra: 'Sermoens', ano: 1530 },
-    { teologo: 'Tim Keller', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'GraÃ§a precede arrependimento.', obra: 'The Prodigal God', ano: 2008 },
+    { teologo: 'Tim Keller', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Graça precede arrependimento.', obra: 'The Prodigal God', ano: 2008 },
   ],
   ["Jo 3:16-17","Ef 2:1-10"]);
 
@@ -1676,7 +1676,7 @@ add('jo', 14, 6, 'Caminho, verdade e vida',
 add('jo', 15, 5, 'Eu sou a vide',
   'Dependencia radical.',
   [
-    { teologo: 'Wesley', periodo: 'moderno', tradicao: 'arminiana', texto: 'GraÃ§a indispensavel.', obra: 'Sermoens', ano: 1750 },
+    { teologo: 'Wesley', periodo: 'moderno', tradicao: 'arminiana', texto: 'Graça indispensavel.', obra: 'Sermoens', ano: 1750 },
     { teologo: 'Tim Keller', periodo: 'contemporaneo', tradicao: 'reformada', texto: 'Humildade radical.', obra: 'King Cross', ano: 2011 },
   ],
   ["Gl 2:20","Fp 4:13"]);
@@ -1698,7 +1698,7 @@ add('at', 1, 8, 'Recebereis poder',
   ["Mt 28:19-20","Mc 16:15"]);
 
 add('at', 2, 38, 'Arrependei-vos e sede batizados',
-  'Primeira pregaÃ§Ã£o.',
+  'Primeira pregação.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Arrependimento e fe sao meios.', obra: 'Comentario aos Atos', ano: 1552 },
     { teologo: 'Wesley', periodo: 'moderno', tradicao: 'arminiana', texto: 'Promessa para todos.', obra: 'Sermoens', ano: 1750 },
@@ -1716,7 +1716,7 @@ add('at', 4, 12, 'Nenhum outro ha salvacao',
 add('at', 9, 3, 'Saulo, por que me persegues?',
   'Conversao de Saulo.',
   [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'GraÃ§a alcanca perseguidores.', obra: 'Comentario aos Atos', ano: 1552 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Graça alcanca perseguidores.', obra: 'Comentario aos Atos', ano: 1552 },
     { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Deus converte qualquer um.', obra: 'Sermons', ano: 1870 },
   ],
   ["1 Tm 1:15","Gl 1:15-16"]);
@@ -1773,7 +1773,7 @@ add('rm', 6, 23, 'Salario do pecado e a morte',
   'Morte versus vida eterna.',
   [
     { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Salario e o que merecemos.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'GraÃ§a supera merito do pecado.', obra: 'Comentario aos Romanos', ano: 1551 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Graça supera merito do pecado.', obra: 'Comentario aos Romanos', ano: 1551 },
   ],
   ["Rm 5:17","Ef 2:5-6"]);
 
@@ -1821,7 +1821,7 @@ add('1co', 10, 13, 'Nenhuma tentacao',
   'Fidelidade de Deus.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Deus limita tentacao.', obra: 'Comentario a 1 Corintios', ano: 1551 },
-    { teologo: 'Wesley', periodo: 'moderno', tradicao: 'arminiana', texto: 'GraÃ§a capacita resistir.', obra: 'Sermoens', ano: 1750 },
+    { teologo: 'Wesley', periodo: 'moderno', tradicao: 'arminiana', texto: 'Graça capacita resistir.', obra: 'Sermoens', ano: 1750 },
   ],
   ["Tg 1:2-4"]);
 
@@ -1857,11 +1857,11 @@ add('2co', 5, 21, 'Por nos se fez pecado',
   ],
   ["Is 53:5-6","Fp 3:9"]);
 
-add('2co', 12, 9, 'Minha graÃ§a te basta',
-  'Suficiencia da graÃ§a.',
+add('2co', 12, 9, 'Minha graça te basta',
+  'Suficiencia da graça.',
   [
     { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Cristo na fraqueza.', obra: 'Sermons', ano: 1870 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'GraÃ§a supre insuficiencia.', obra: 'Comentario a 2 Corintios', ano: 1551 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Graça supre insuficiencia.', obra: 'Comentario a 2 Corintios', ano: 1551 },
   ],
   ["Fp 4:13"]);
 
@@ -1877,7 +1877,7 @@ add('gl', 2, 20, 'Cristo vive em mim',
   'Vida pela fe.',
   [
     { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Cristo vivendo em nos.', obra: 'Comentario a Galatas', ano: 1535 },
-    { teologo: 'Wesley', periodo: 'moderno', tradicao: 'arminiana', texto: 'GraÃ§a transformadora.', obra: 'Sermoens', ano: 1750 },
+    { teologo: 'Wesley', periodo: 'moderno', tradicao: 'arminiana', texto: 'Graça transformadora.', obra: 'Sermoens', ano: 1750 },
   ],
   ["Jo 15:5","Fp 1:21"]);
 
@@ -1889,10 +1889,10 @@ add('gl', 5, 22, 'Fruto do Esprito',
   ],
   ["Mt 7:16-20","Ef 5:9"]);
 
-add('ef', 2, 8, 'Por graÃ§a sois salvos',
+add('ef', 2, 8, 'Por graça sois salvos',
   'Salvacao como dom.',
   [
-    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'GraÃ§a e suficiente.', obra: 'Comentario aos Romanos', ano: 1515 },
+    { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Graça e suficiente.', obra: 'Comentario aos Romanos', ano: 1515 },
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fe e dom, nao merito.', obra: 'Comentario a Efesios', ano: 1548 },
   ],
   ["Rm 3:24","Tt 3:5"]);
@@ -3586,8 +3586,8 @@ add('gn', 3, 6, 'A Queda do Homem',
 add('gn', 3, 15, 'O Proto-Evangelho',
   'Primeira promessa de Redentor.',
   [
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Primeira mencao da graÃ§a.', obra: 'De Genesi ad Litteram', ano: 401 },
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo destrÃ³i obras do diabo.', obra: 'Comentario ao Genesis', ano: 1554 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Primeira mencao da graça.', obra: 'De Genesi ad Litteram', ano: 401 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Cristo destrói obras do diabo.', obra: 'Comentario ao Genesis', ano: 1554 },
   ],
   ['Rm 16:20', '1 Jo 3:8']
 );
@@ -3604,7 +3604,7 @@ add('gn', 12, 1, 'A Vocacao de Abraao',
 add('gn', 15, 6, 'Justificacao pela Fe',
   'Abraao creu e lhe foi imputada justica.',
   [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fe e mao que recebe graÃ§a.', obra: 'Comentario ao Genesis', ano: 1554 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Fe e mao que recebe graça.', obra: 'Comentario ao Genesis', ano: 1554 },
     { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'O evangelical triumphante.', obra: 'Comentario ao Genesis', ano: 1544 },
   ],
   ['Rm 4:3-5']
@@ -3953,9 +3953,9 @@ add('is', 53, 5, 'Foi Transgredido e Pisado',
 );
 
 add('is', 55, 1, 'Vinde, Os Que Tendes Sede',
-  'Convite a graÃ§a.',
+  'Convite a graça.',
   [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'GraÃ§a gratuita.', obra: 'Comentario a Isaias', ano: 1554 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Graça gratuita.', obra: 'Comentario a Isaias', ano: 1554 },
     { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Abundante para todos.', obra: 'Sermoes', ano: 1870 },
   ],
   ['Jo 7:37-38']
@@ -4010,7 +4010,7 @@ add('ez', 36, 26, 'Um Coracao Novo',
   'Regeneracao.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Obra de Deus.', obra: 'Comentario a Ezequiel', ano: 1554 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Pela graÃ§a.', obra: 'De Spiritu et Littera', ano: 412 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Pela graça.', obra: 'De Spiritu et Littera', ano: 412 },
   ],
   ['2 Co 5:17']
 );
@@ -4500,10 +4500,10 @@ add('at', 1, 8, 'Recebereis Poder',
 );
 
 add('at', 2, 38, 'Arrependei-Vos e Seja Batizados',
-  'Primeira pregaÃ§Ã£o.',
+  'Primeira pregação.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Perdao.', obra: 'Comentario a Atos', ano: 1555 },
-    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Batismo e graÃ§a.', obra: 'Suma Teologica', ano: 1274 },
+    { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Batismo e graça.', obra: 'Suma Teologica', ano: 1274 },
   ],
   ['Mc 16:16']
 );
@@ -4521,7 +4521,7 @@ add('at', 9, 3, 'Luz do Ceu',
   'Conversao de Paulo.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Sobrenatural.', obra: 'Comentario a Atos', ano: 1555 },
-    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'GraÃ§a transforma.', obra: 'Confissoes', ano: 398 },
+    { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Graça transforma.', obra: 'Confissoes', ano: 398 },
   ],
   ['1 Tm 1:15']
 );
@@ -4612,7 +4612,7 @@ add('rm', 8, 28, 'Tudo Contribui Para o Bem',
 );
 
 add('rm', 8, 38, 'Nenhuma Criacao Nos Separara',
-  'Amor inabalÃ¡vel.',
+  'Amor inabalável.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Seguranca eterna.', obra: 'Comentario a Romanos', ano: 1555 },
     { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Nada separa.', obra: 'Sermoes', ano: 1870 },
@@ -4859,8 +4859,8 @@ add('1ts', 4, 16, 'Senhor Desce Do Ceus',
 // 1 TIMOTEO
 // ====================================================================
 
-add('1tm', 2, 5, 'Um SÃ³ Mediator',
-  'MediaÃ§Ã£o.',
+add('1tm', 2, 5, 'Um Só Mediator',
+  'Mediação.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Unico.', obra: 'Comentario a 1 Timoteo', ano: 1555 },
     { teologo: 'Tomas de Aquino', periodo: 'medieval', tradicao: 'catolica', texto: 'Divino-humano.', obra: 'Suma Teologica', ano: 1274 },
@@ -4912,7 +4912,7 @@ add('hb', 7, 25, 'Sempre Vive Para Interceder',
   ['Rm 8:34']
 );
 
-add('hb', 9, 27, 'Morram Uma SÃ³ Vez',
+add('hb', 9, 27, 'Morram Uma Só Vez',
   'Juizo.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Depois juizo.', obra: 'Comentario a Hebreus', ano: 1555 },
@@ -4989,7 +4989,7 @@ add('tg', 2, 14, 'De Que Serve Dizerem Fe?',
 );
 
 add('tg', 2, 17, 'Assim Tambem a Fe',
-  'FÃ© sem obras e morta.',
+  'Fé sem obras e morta.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Opera pelo amor.', obra: 'Comentario a Tiago', ano: 1555 },
     { teologo: 'Lutero', periodo: 'reforma', tradicao: 'luterana', texto: 'Se manifesta.', obra: 'Comentario a Tiago', ano: 1521 },
@@ -5080,7 +5080,7 @@ add('1jo', 1, 7, 'Sangue de Jesus',
 add('1jo', 1, 8-9, 'Se Dissermos Que Nao Pecamos',
   'Confissao e perdao.',
   [
-    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'PerdÃ£o fiel.', obra: 'Comentario a 1 Joao', ano: 1555 },
+    { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Perdão fiel.', obra: 'Comentario a 1 Joao', ano: 1555 },
     { teologo: 'Agostinho', periodo: 'patristico', tradicao: 'catolica', texto: 'Justo em perdoar.', obra: 'Tractatus', ano: 416 },
   ],
   ['Sl 32:5']
@@ -5135,12 +5135,12 @@ add('1jo', 3, 8, 'Para Desfazer as Obras do Diabo',
   'Missao de Cristo.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Destruir pecado.', obra: 'Comentario a 1 Joao', ano: 1555 },
-    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Vitoria sobre SatanÃ¡s.', obra: 'Sermoes', ano: 1870 },
+    { teologo: 'Spurgeon', periodo: 'moderno', tradicao: 'bautista', texto: 'Vitoria sobre Satanás.', obra: 'Sermoes', ano: 1870 },
   ],
   ['Gn 3:15']
 );
 
-add('1jo', 3, 16, 'Pelos IrmÃ£os',
+add('1jo', 3, 16, 'Pelos Irmãos',
   'Amor demonstrado.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Dar a vida.', obra: 'Comentario a 1 Joao', ano: 1555 },
@@ -5167,7 +5167,7 @@ add('1jo', 4, 18, 'Nao Ha Medo no Amor',
   ['2 Tm 1:7']
 );
 
-add('1jo', 4, 19, 'NÃ³s O Amamos Porque Ele',
+add('1jo', 4, 19, 'Nós O Amamos Porque Ele',
   'Amorå“åº”.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Amor primeiro e dEle.', obra: 'Comentario a 1 Joao', ano: 1555 },
@@ -5176,7 +5176,7 @@ add('1jo', 4, 19, 'NÃ³s O Amamos Porque Ele',
   ['Ef 2:4-5']
 );
 
-add('1jo', 5, 1, 'Todo o que CrÃª',
+add('1jo', 5, 1, 'Todo o que Crê',
   'Nascimento de Deus.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Nasceu dEle.', obra: 'Comentario a 1 Joao', ano: 1555 },
@@ -5292,7 +5292,7 @@ add('ap', 21, 3, 'Deus Habita com os Homens',
   ['Ez 37:27']
 );
 
-add('ap', 21, 4, 'EnxugarÃ¡ Todas as LÃ¡grimas',
+add('ap', 21, 4, 'Enxugará Todas as Lágrimas',
   'Fim do sofrimento.',
   [
     { teologo: 'Calvino', periodo: 'reforma', tradicao: 'reformada', texto: 'Morte e dor suprimidas.', obra: 'Comentario a Apocalipse', ano: 1555 },

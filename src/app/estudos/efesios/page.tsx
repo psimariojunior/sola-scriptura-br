@@ -35,13 +35,13 @@ const estrutura = [
 ];
 
 const versiculosChave = [
-  { referência: 'Efésios 1:3-4', texto: 'Bendito seja o Deus e Pai de nosso Senhor Jesus Cristo, que nos abençoou com toda sorte de bênção espiritual nos lugares celestiais em Cristo. Ele nos escolheu nele antes da fundação do mundo, para sermos santos e irrepreensíveis perante ele.', explicação: 'Toda a riqueza espiritual ja esta disponivel em Cristo. A eLeicao divina e anterior a fundacao do mundo, demonstrando o propósito eterno de Deus para os crentes.' },
-  { referência: 'Efésios 2:8-9', texto: 'Porque pela graça sois salvos, por meio da fé; e isto não vem de vos mesmos, e dom de Deus; não vem das obras, para que ninguem se glorie.', explicação: 'A salvação e inteiramente pela graça de Deus, recebida pela fé. Nao ha merito humano algum. A graça é um dom gratuito que exclui todo o orgulho.' },
-  { referência: 'Efésios 2:10', texto: 'Porque somos féitura dele, criados em Cristo Jesus para boas obras, as quais Deus preparou de antemao, para que andassemos nelas.', explicação: 'Apos recebermos a salvação pela graça, somos criados para boas obras. As obras são o fruto da salvação, não a causa dela. Deus ja preparou o caminho.' },
-  { referência: 'Efésios 3:20', texto: 'Aquele que, segundo o poder que ja opera em nos, e capaz de fazer infinitamente mais do que tudo o que pedimos ou pensamos.', explicação: 'O poder de Deus opera nos crentes. As promessas de Deus superam nossas expectativas. Podemos ousar sonhar e orar grandemente.' },
+  { referência: 'Efésios 1:3-4', texto: 'Bendito seja o Deus e Pai de nosso Senhor Jesus Cristo, que nos abençoou com toda sorte de bênção espiritual nos lugares celestiais em Cristo. Ele nos escolheu nele antes da fundação do mundo, para sermos santos e irrepreensíveis perante ele.', explicação: 'Toda a riqueza espiritual já esta disponivel em Cristo. A eLeicao divina e anterior a fundação do mundo, demonstrando o propósito eterno de Deus para os crentes.' },
+  { referência: 'Efésios 2:8-9', texto: 'Porque pela graça sois salvos, por meio da fé; e isto não vem de vos mesmos, e dom de Deus; não vem das obras, para que ninguem se glorie.', explicação: 'A salvação e inteiramente pela graça de Deus, recebida pela fé. Não há merito humano algum. A graça é um dom gratuito que exclui todo o orgulho.' },
+  { referência: 'Efésios 2:10', texto: 'Porque somos féitura dele, criados em Cristo Jesus para boas obras, as quais Deus preparou de antemão, para que andassemos nelas.', explicação: 'Apos recebermos a salvação pela graça, somos criados para boas obras. As obras são o fruto da salvação, não a causa dela. Deus já preparou o caminho.' },
+  { referência: 'Efésios 3:20', texto: 'Aquele que, segundo o poder que já opera em nos, e capaz de fazer infinitamente mais do que tudo o que pedimos ou pensamos.', explicação: 'O poder de Deus opera nos crentes. As promessas de Deus superam nossas expectativas. Podemos ousar sonhar e orar grandemente.' },
   { referência: 'Efésios 4:1-3', texto: 'Eu, therefore, preso no Senhor, vos rogo que andeis de modo digno da vocacao com que fostes chamados, com toda humildade e mansidao, com longanimidade, suportando-vos uns aos outros em amor, esforcando-vos por preservar a unidade do Esprito pelo vinculo da paz.', explicação: 'A unidade da Igreja é um dever. Humildade, mansidao, longanimidade e amor são as qualidades essenciais para a convivencia cristã.' },
   { referência: 'Efésios 6:10-11', texto: 'No demais, irmãos meus, fortalecei-vos no Senhor e na força do seu poder. Revesti-vos de toda a armadura de Deus, para poderdes ficar firmes contra as ciladas do diabo.', explicação: 'A guerra cristã não e contra carne e sangue, mas contra espíritos maus. A armadura de Deus e essencial para resistir e vencer.' },
-  { referência: 'Efésios 6:18', texto: 'Orando sempre em todo o tempo em o Esprito, com toda oracao e súplica, e vigiando para isto com toda perseverança e súplica por todos os santos.', explicação: 'A oracao é o complemento de toda a armadura. A guerra espiritual se trava no lugar da oracao, com perseverança e intercessão.' },
+  { referência: 'Efésios 6:18', texto: 'Orando sempre em todo o tempo em o Esprito, com toda oração e súplica, e vigiando para isto com toda perseverança e súplica por todos os santos.', explicação: 'A oração é o complemento de toda a armadura. A guerra espiritual se trava no lugar da oracao, com perseverança e intercessão.' },
 ];
 
 const temasCentrais = [
@@ -54,18 +54,18 @@ const temasCentrais = [
 
 const armadura = [
   { peca: 'Cinto da Verdade', referência: 'Ef 6:14a', descricao: 'A verdade de Deus é a base de toda a armadura. Sem ela, todas as outras pecas caem. A verdade e Cristo e Sua Palavra.', uso: 'Estude a Biblia diariamente. Conheça a verdade para não ser enganado.' },
-  { peca: 'Couracada da Justica', referência: 'Ef 6:14b', descricao: 'A justiça de Cristo nos protege. Nossa propria justiça e como trapos. A justiça imputada de Cristo é a protecao do peito.', uso: 'Viva em santidade. A obediência a Palavra fortalece o couracada.' },
-  { peca: 'Sapatos do Evangelho da Paz', referência: 'Ef 6:15', descricao: 'A prontidao do evangelho da paz nos da estabilidade. Andamos firmes quando sabemos que trazemos a boa nova.', uso: 'Esteja pronto para compartilhar a esperança que ha em voce.' },
+  { peca: 'Couracada da Justica', referência: 'Ef 6:14b', descricao: 'A justiça de Cristo nos protege. Nossa propria justiça e como trapos. A justiça imputada de Cristo é a proteção do peito.', uso: 'Viva em santidade. A obediência a Palavra fortalece o couracada.' },
+  { peca: 'Sapatos do Evangelho da Paz', referência: 'Ef 6:15', descricao: 'A prontidão do evangelho da paz nos da estabilidade. Andamos firmes quando sabemos que trazemos a boa nova.', uso: 'Esteja pronto para compartilhar a esperança que há em voce.' },
   { peca: 'Escudo da Fe', referência: 'Ef 6:16', descricao: 'A fé é o escudo que apaga todas as flechadas do maligno — duvidas, medos, tentacoes, acusacoes.', uso: 'Exercite a fé diaria. Creia na Palavra de Deus mesmo quando as circunstancias são dificeis.' },
-  { peca: 'Capacete da Salvacao', referência: 'Ef 6:17a', descricao: 'O capacete protege a mente — os pensamentos. A certeza da salvação protege contra duvidas e mentiras.', uso: 'Lembre-se sempre de que voce e salvo por graça. Nao permita que duvidas invadam sua mente.' },
+  { peca: 'Capacete da Salvacao', referência: 'Ef 6:17a', descricao: 'O capacete protege a mente — os pensamentos. A certeza da salvação protege contra duvidas e mentiras.', uso: 'Lembre-se sempre de que você e salvo por graça. Não permita que duvidas invadam sua mente.' },
   { peca: 'Espada do Esprito', referência: 'Ef 6:17b', descricao: 'A Palavra de Deus é a unica ofénsiva. Jesus venceu Satanás citando a Escritura. A Palavra e viva e eficaz.', uso: 'Memorize versiculos. Use a Biblia contra as tentacoes e mentiras do inimigo.' },
-  { peca: 'Oração', referência: 'Ef 6:18', descricao: 'A oracao é o meio pelo qual todas as pecas são ativadas. Sem oracao, a armadura e inutil.', uso: 'Ore sempre no Esprito, com perseverança, por todos os santos.' },
+  { peca: 'Oração', referência: 'Ef 6:18', descricao: 'A oração é o meio pelo qual todas as pecas são ativadas. Sem oracao, a armadura e inutil.', uso: 'Ore sempre no Esprito, com perseverança, por todos os santos.' },
 ];
 
 const aplicações = [
   'Fortaleca-se no Senhor diariamente — a guerra espiritual exige preparacao constante.',
   'Revesta-se de TODA a armadura, não apenas algumas pecas. Todas são necessarias.',
-  'Ore sempre no Esprito — a oracao é a arma mais poderosa que temos.',
+  'Ore sempre no Esprito — a oração é a arma mais poderosa que temos.',
   'Ande em unidade com a Igreja — humildade, mansidao e amor são essenciais.',
   'Use os seus dons para edificar o corpo de Cristo, não para si mesmo.',
   'Perdoe os outros como Deus em Cristo vos perdoou (Ef 4:32).',
@@ -144,7 +144,7 @@ export default function EfésiosPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div className="glass-card p-4 rounded-xl">
                       <h3 className="font-display text-sm font-medium mb-2">Autoria e Contexto</h3>
-                      <p className="text-sm text-muted-foreground">Paulo escreve da prisão em Roma, junto com Timoteo. A carta carrega o peso da experiencia carceraria, mas transborda de alegria e esperança no evangelho.</p>
+                      <p className="text-sm text-muted-foreground">Paulo escreve da prisão em Roma, junto com Timoteo. A carta carrega o peso da experiência carceraria, mas transborda de alegria e esperança no evangelho.</p>
                     </div>
                     <div className="glass-card p-4 rounded-xl">
                       <h3 className="font-display text-sm font-medium mb-2">Estrutura</h3>

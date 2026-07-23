@@ -6,7 +6,8 @@ import {
   Users, Plus, Share2, Copy, MessageSquare,
   BookOpen, X, Link as LinkIcon, Check, PhoneOff,
   Mic, Video, Send, MonitorPlay, StickyNote, Zap,
-  Palette, Maximize2, Minimize2, Settings, ArrowUp, ArrowDown
+  Palette, Maximize2, Minimize2, Settings, ArrowUp, ArrowDown,
+  ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
@@ -103,6 +104,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   const [quizAnswers, setQuizAnswers] = useState<any[]>([]);
   const [quizScores, setQuizScores] = useState<any[]>([]);
   const [showBiblePanel, setShowBiblePanel] = useState(false);
+  const [currentVerseIndex, setCurrentVerseIndex] = useState(-1);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatServiceRef = useRef<WebRTCService | null>(null);
@@ -257,16 +259,60 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     if (typeof verseOrRef === 'string') {
       setPresentedVerse({ texto: text || '', referencia: verseOrRef, apresentadoPor: participantName });
       chatServiceRef.current?.sendPresentationSync({ action: 'navigate', texto: text, presentedBy: participantName });
+      setCurrentVerseIndex(-1);
     } else {
+      const idx = wsVerses.findIndex(v => v.id === verseOrRef.id);
+      setCurrentVerseIndex(idx >= 0 ? idx : wsVerses.length);
       setPresentedVerse({ texto: verseOrRef.texto, referencia: verseOrRef.verse, apresentadoPor: verseOrRef.displayName || getParticipantLabel(verseOrRef.participantId) });
       chatServiceRef.current?.sendPresentationSync({ action: 'navigate', livro: verseOrRef.livro, capitulo: verseOrRef.capitulo, versiculo: verseOrRef.versiculo, texto: verseOrRef.texto, presentedBy: participantName });
     }
     setShowBiblePanel(true);
-  }, [participantName]);
+  }, [participantName, wsVerses]);
 
-  const handleStopPresentation = useCallback(() => { setPresentedVerse(null); chatServiceRef.current?.sendPresentationSync({ action: 'stop' }); }, []);
+  const handleStopPresentation = useCallback(() => { setPresentedVerse(null); setCurrentVerseIndex(-1); chatServiceRef.current?.sendPresentationSync({ action: 'stop' }); }, []);
   const handlePresentationFontSize = useCallback((size: number) => { setPresentationFontSize(size); chatServiceRef.current?.sendPresentationSync({ action: 'fontSize', fontSize: size }); }, []);
   const handlePresentationMirror = useCallback((mirror: boolean) => { setPresentationMirror(mirror); chatServiceRef.current?.sendPresentationSync({ action: 'mirror', mirror }); }, []);
+
+  // Navegação entre versículos na apresentação
+  const navigateVerse = useCallback((direction: 'prev' | 'next') => {
+    if (wsVerses.length === 0) return;
+    let newIndex: number;
+    if (direction === 'next') {
+      newIndex = currentVerseIndex < wsVerses.length - 1 ? currentVerseIndex + 1 : 0;
+    } else {
+      newIndex = currentVerseIndex > 0 ? currentVerseIndex - 1 : wsVerses.length - 1;
+    }
+    const verse = wsVerses[newIndex];
+    setCurrentVerseIndex(newIndex);
+    setPresentedVerse({ texto: verse.texto, referencia: verse.verse, apresentadoPor: verse.displayName || getParticipantLabel(verse.participantId) });
+    chatServiceRef.current?.sendPresentationSync({ action: 'navigate', texto: verse.texto, presentedBy: participantName });
+  }, [wsVerses, currentVerseIndex, participantName]);
+
+  const navigateToVerse = useCallback((index: number) => {
+    if (index < 0 || index >= wsVerses.length) return;
+    const verse = wsVerses[index];
+    setCurrentVerseIndex(index);
+    setPresentedVerse({ texto: verse.texto, referencia: verse.verse, apresentadoPor: verse.displayName || getParticipantLabel(verse.participantId) });
+    chatServiceRef.current?.sendPresentationSync({ action: 'navigate', texto: verse.texto, presentedBy: participantName });
+  }, [wsVerses, participantName]);
+
+  // Navegação por teclado (setas esquerda/direita) quando apresentando
+  useEffect(() => {
+    if (!presentedVerse) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        navigateVerse('next');
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        navigateVerse('prev');
+      } else if (e.key === 'Escape') {
+        handleStopPresentation();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [presentedVerse, navigateVerse, handleStopPresentation]);
 
   const handleStartCall = useCallback((type: 'video' | 'voice') => { setCallType(type); setIsCallActive(true); chatServiceRef.current?.sendCallInvite(participantId, participantName, type); }, [participantId, participantName]);
   const handleAcceptCall = useCallback(() => { if (incomingCall) { chatServiceRef.current?.sendCallAccept(incomingCall.callerSocketId, participantName); setCallType(incomingCall.callType); setIsCallActive(true); } setIncomingCall(null); }, [incomingCall, participantName]);
@@ -448,6 +494,24 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
             <PresentationInline texto={presentedVerse.texto} referencia={presentedVerse.referencia} apresentadoPor={presentedVerse.apresentadoPor}
               fontSize={presentationFontSize} mirror={presentationMirror} isController={true}
               onFontSizeChange={handlePresentationFontSize} onMirrorChange={handlePresentationMirror} onStop={handleStopPresentation} />
+            {/* Navegação entre versículos */}
+            {wsVerses.length > 0 && (
+              <div className="absolute bottom-14 left-0 right-0 flex items-center justify-center gap-3 z-10">
+                <button onClick={() => navigateVerse('prev')}
+                  className="p-2 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors backdrop-blur-sm"
+                  title="Versículo anterior (←)">
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <span className="text-xs text-white/70 font-mono px-3 py-1 rounded-full bg-black/50 backdrop-blur-sm">
+                  {currentVerseIndex >= 0 ? `${currentVerseIndex + 1}/${wsVerses.length}` : `${wsVerses.length} versículos`}
+                </span>
+                <button onClick={() => navigateVerse('next')}
+                  className="p-2 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors backdrop-blur-sm"
+                  title="Próximo versículo (→)">
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            )}
             {/* Toggle Bible panel */}
             <button onClick={() => setShowBiblePanel(!showBiblePanel)}
               className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-2 rounded-full bg-black/70 text-white text-xs font-medium hover:bg-black/90 transition-colors backdrop-blur-sm z-10">
@@ -460,16 +524,43 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
         {/* Área de conteúdo (aba ativa) */}
         <div className={cn('flex-1 overflow-hidden', presentedVerse && showBiblePanel ? 'min-h-0' : presentedVerse ? 'hidden' : '')}>
           {activeTab === 'bible' ? (
-            <PullToRefreshWrapper onRefresh={async () => { if (bibleSyncData) await prefetchAdjacent(bibleSyncData.livro, bibleSyncData.capitulo); }} className="h-full">
-              <BibleBrowser
-                onPresentVerse={handlePresentVerse}
-                onShareVerses={(verses) => { verses.forEach(v => handleShareBibleVerse(v.ref, v.text)); }}
-                syncData={bibleSyncData}
-                onNavigate={(data) => chatServiceRef.current?.sendBibleNavigation(data)}
-                isPresenter={room.participants[0] === participantId}
-                showPresentButton={true}
-              />
-            </PullToRefreshWrapper>
+            <div className="h-full flex flex-col">
+              <PullToRefreshWrapper onRefresh={async () => { if (bibleSyncData) await prefetchAdjacent(bibleSyncData.livro, bibleSyncData.capitulo); }} className="flex-1 min-h-0">
+                <BibleBrowser
+                  onPresentVerse={handlePresentVerse}
+                  onShareVerses={(verses) => { verses.forEach(v => handleShareBibleVerse(v.ref, v.text)); }}
+                  syncData={bibleSyncData}
+                  onNavigate={(data) => chatServiceRef.current?.sendBibleNavigation(data)}
+                  isPresenter={room.participants[0] === participantId}
+                  showPresentButton={true}
+                />
+              </PullToRefreshWrapper>
+              {/* Lista de versículos compartilhados */}
+              {wsVerses.length > 0 && (
+                <div className="border-t border-[var(--border)]/40 bg-[var(--surface-sunken)]/30 max-h-[180px] overflow-y-auto">
+                  <div className="px-3 py-2 flex items-center justify-between border-b border-[var(--border)]/20">
+                    <span className="text-[10px] font-semibold text-[var(--content-muted)] uppercase tracking-wider">Versículos compartilhados ({wsVerses.length})</span>
+                    {presentedVerse && (
+                      <button onClick={handleStopPresentation} className="text-[10px] text-red-500 hover:text-red-600 font-medium">Parar apresentação</button>
+                    )}
+                  </div>
+                  <div className="p-2 space-y-1">
+                    {wsVerses.map((v, i) => (
+                      <button key={v.id} onClick={() => navigateToVerse(i)}
+                        className={cn('w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-left transition-all text-xs',
+                          currentVerseIndex === i ? 'bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/30 text-[var(--brand-default)]' : 'hover:bg-[var(--surface-raised)] text-[var(--content-primary)]')}>
+                        <span className="w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold text-white flex-shrink-0"
+                          style={{ backgroundColor: getParticipantColor(v.participantId) }}>
+                          {i + 1}
+                        </span>
+                        <span className="font-semibold flex-shrink-0">{v.verse}</span>
+                        <span className="truncate text-[var(--content-muted)]">{v.texto.slice(0, 60)}...</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           ) : activeTab === 'notes' ? (
             <SharedNotes notes={sharedNotes} currentUserId={participantId} onAdd={handleAddNote} onDelete={handleDeleteNote} onUpdate={handleUpdateNote} />
           ) : activeTab === 'quiz' ? (

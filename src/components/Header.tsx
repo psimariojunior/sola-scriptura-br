@@ -8,7 +8,7 @@ import {
   Menu, X, BookOpen, Search, Sun, Moon, User, LogOut, Languages, Stars, BookMarked,
   Command, Settings, ChevronDown, ScrollText, Brain, Map, Music, MonitorPlay,
   Sparkles, GraduationCap, MessageCircle, Library, Crown, Heart, History, HelpCircle, Download,
-  Users, Trophy, Target, BarChart3, GitBranch, Calendar,
+  Users, Trophy, Target, BarChart3, GitBranch, Calendar, Columns,
 } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { authService } from '@/lib/auth';
@@ -67,6 +67,9 @@ const moreLinks: NavLinkSpec[] = [
   { href: '/desafios', label: 'Desafios', icon: Target },
   { href: '/comparar-comentarios', label: 'Comentários', icon: MessageCircle },
   { href: '/comparar', label: 'Comparar Traduções', icon: Languages },
+  { href: '/comparar-paralelo', label: 'Comparar Paralelo', icon: Columns },
+  { href: '/sermon-builder', label: 'Sermon Builder', icon: Sparkles },
+  { href: '/gamificacao', label: 'Gamificação', icon: Trophy },
   { href: '/dashboard', label: 'Meu Dashboard', icon: BarChart3 },
   { href: '/comunidade', label: 'Comunidade', icon: MessageCircle },
   { href: '/estatisticas/gamificacao', label: 'Gamificação', icon: Crown },

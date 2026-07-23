@@ -46,16 +46,6 @@ export function BibleBrowser({ onShareVerses, syncData, onNavigate, isPresenter 
     });
   }, []);
 
-  // Sync from other users
-  useEffect(() => {
-    if (!syncData) return;
-    setSelectedBook(syncData.livro);
-    setSelectedChapter(syncData.capitulo);
-    setTraducao(syncData.traducao);
-    setStep('verses');
-    loadChapter(syncData.livro, syncData.capitulo, syncData.traducao);
-  }, [syncData, loadChapter]);
-
   const loadChapter = useCallback(async (livro: string, cap: number, trad?: string) => {
     setLoading(true);
     try {
@@ -69,6 +59,16 @@ export function BibleBrowser({ onShareVerses, syncData, onNavigate, isPresenter 
       setLoading(false);
     }
   }, [traducao]);
+
+  // Sync from other users
+  useEffect(() => {
+    if (!syncData) return;
+    setSelectedBook(syncData.livro);
+    setSelectedChapter(syncData.capitulo);
+    setTraducao(syncData.traducao);
+    setStep('verses');
+    loadChapter(syncData.livro, syncData.capitulo, syncData.traducao);
+  }, [syncData, loadChapter]);
 
   const handleBookSelect = (book: LivroInfo) => {
     setSelectedBook(book.abreviacao);

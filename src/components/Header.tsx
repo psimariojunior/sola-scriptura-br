@@ -8,7 +8,7 @@ import {
   Menu, X, BookOpen, Search, Sun, Moon, User, LogOut, Languages, Stars, BookMarked,
   Command, Settings, ChevronDown, ScrollText, Brain, Map, Music, MonitorPlay,
   Sparkles, GraduationCap, MessageCircle, Library, Crown, Heart, History, HelpCircle, Download,
-  Users, Trophy, Target, BarChart3,
+  Users, Trophy, Target, BarChart3, GitBranch, Calendar,
 } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { authService } from '@/lib/auth';
@@ -49,15 +49,20 @@ const navLinks: NavLinkSpec[] = [
 const moreLinks: NavLinkSpec[] = [
   { href: '/exegese', label: 'Exegese', icon: ScrollText },
   { href: '/idiomas', label: 'Línguas Originais', icon: Languages },
+  { href: '/palavras', label: 'Palavras Originais', icon: Languages },
   { href: '/historia', label: 'História', icon: Map },
   { href: '/cronologia', label: 'Cronologia', icon: History },
   { href: '/personagens', label: 'Personagens', icon: User },
   { href: '/relacoes', label: 'Relações Bíblicas', icon: Users },
+  { href: '/mapas', label: 'Atlas Bíblico', icon: Map },
+  { href: '/referencias', label: 'Referências Cruzadas', icon: GitBranch },
+  { href: '/estudo-split', label: 'Modo Estudo', icon: BookOpen },
   { href: '/ferramentas', label: 'Ferramentas', icon: Sparkles },
   { href: '/quiz', label: 'Quiz Bíblico', icon: HelpCircle },
   { href: '/quiz/multiplayer', label: 'Quiz Multiplayer', icon: Trophy },
   { href: '/flashcards', label: 'Flashcards', icon: BookMarked },
   { href: '/memorizacao', label: 'Memorização', icon: Brain },
+  { href: '/planos', label: 'Planos de Leitura', icon: Calendar },
   { href: '/devocional', label: 'Devocional', icon: Heart },
   { href: '/desafios', label: 'Desafios', icon: Target },
   { href: '/comparar-comentarios', label: 'Comentários', icon: MessageCircle },

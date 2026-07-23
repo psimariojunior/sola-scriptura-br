@@ -85,6 +85,7 @@ export default function ComunidadePage() {
     svc.connect('comunidade-chat', userId, userName || getUserName());
 
     return () => { svc.disconnect(); svcRef.current = null; };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

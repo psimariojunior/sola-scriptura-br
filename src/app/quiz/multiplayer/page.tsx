@@ -103,6 +103,7 @@ export default function QuizMultiplayerPage() {
     svc.connect(room.code, playerId, playerName || getPlayerName());
 
     return () => { svc.disconnect(); svcRef.current = null; };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [room?.code]);
 
   // Timer
@@ -118,6 +119,7 @@ export default function QuizMultiplayerPage() {
       });
     }, 1000);
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [screen, showResult, currentQIndex]);
 
   // Countdown

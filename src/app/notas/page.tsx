@@ -179,7 +179,7 @@ export default function NotasPage() {
                                 </div>
                               </div>
                               <p className="text-sm text-muted-foreground line-clamp-2 mb-3"
-                                dangerouslySetInnerHTML={{ __html: nota.conteudo.replace(/<[^>]+>/g, ' ').slice(0, 150) }} />
+                                dangerouslySetInnerHTML={{ __html: nota.conteudo.replace(/<[^>]+>/g, ' ').replace(/</g, '&lt;').replace(/>/g, '&gt;').slice(0, 150) }} />
                               <div className="flex items-center gap-2 flex-wrap">
                                 {nota.tags.map(t => (
                                   <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground">{t}</span>

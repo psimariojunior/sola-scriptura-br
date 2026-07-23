@@ -8,6 +8,7 @@ import { type LivroInfo } from '@/data/biblia/livros';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Input } from '@/components/ui/input';
+import { BookGridSkeleton, ChapterGridSkeleton, ChapterSkeleton } from '@/components/Skeleton';
 
 interface BibleBrowserProps {
   onShareVerses?: (verses: { ref: string; text: string }[]) => void;
@@ -144,9 +145,10 @@ export function BibleBrowser({ onShareVerses, syncData, onNavigate, isPresenter 
         )}
         <BookOpen className="h-4 w-4 text-[var(--brand)]" />
         <span className="font-medium text-sm flex-1">
-          {step === 'books' && 'Livros'}
-          {step === 'chapters' && selectedBook && nomeLivro(selectedBook)}
-          {step === 'verses' && selectedBook && selectedChapter && `${nomeLivro(selectedBook)} ${selectedChapter}`}
+          {initialLoad ? 'Carregando...' :
+           step === 'books' ? 'Livros' :
+           step === 'chapters' && selectedBook ? nomeLivro(selectedBook) :
+           step === 'verses' && selectedBook && selectedChapter ? `${nomeLivro(selectedBook)} ${selectedChapter}` : ''}
         </span>
         <select
           value={traducao}
@@ -161,6 +163,9 @@ export function BibleBrowser({ onShareVerses, syncData, onNavigate, isPresenter 
 
       {/* Content */}
       <div className="flex-1 overflow-hidden">
+        {initialLoad ? (
+          <BookGridSkeleton count={18} />
+        ) : (
         <AnimatePresence mode="wait">
           {step === 'books' && (
             <motion.div
@@ -253,8 +258,8 @@ export function BibleBrowser({ onShareVerses, syncData, onNavigate, isPresenter 
               className="h-full flex flex-col"
             >
               {loading ? (
-                <div className="flex items-center justify-center h-32">
-                  <div className="w-6 h-6 border-2 border-[var(--brand)] border-t-transparent rounded-full animate-spin" />
+                <div className="p-3">
+                  <ChapterSkeleton />
                 </div>
               ) : (
                 <>
@@ -289,6 +294,7 @@ export function BibleBrowser({ onShareVerses, syncData, onNavigate, isPresenter 
             </motion.div>
           )}
         </AnimatePresence>
+        )}
       </div>
 
       {/* Share button */}

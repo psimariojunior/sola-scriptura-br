@@ -1,7 +1,7 @@
 # Sola Scriptura BR
 
 ## Objetivo
-Plataforma de estudo biblico academico completa, melhor que o Logos e YouVersion. Site + App mobile. **Tudo gratuito, sem paywall.**
+Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem anuncios.**
 
 ## Stack
 - **Frontend**: Next.js 14, TypeScript, TailwindCSS, ShadCN, Framer Motion, Leaflet (mapas), Recharts
@@ -64,12 +64,23 @@ Plataforma de estudo biblico academico completa, melhor que o Logos e YouVersion
 - `/ofertas` — Ofertas voluntarias via PIX (QR Code + copiar chave)
 
 ### Novas (sessao atual)
-- `/favoritos` — Versiculos favoritos com cores, filtros por cor/livro
-- `/notas` — Anotacoes pessoais por versiculo
+- `/favoritos` — Versiculos favoritos com cores, filtros por cor/livro, export JSON, ordenacao
+- `/notas` — Editor rico com formatacao, tags, historico de versoes
 - `/colecoes` — Listas customizadas de versiculos
 - `/atlas` — Atlas biblico interativo (20 locais + mapa OpenStreetMap)
 - `/harmonia` — Harmonia sinotica interativa (4 colunas: Mateus, Marcos, Lucas, Joao)
-- `/planos` — Planos de leitura personalizados (progresso + sugestoes)
+- `/planos` — Planos de leitura personalizados (progresso + lembretes push)
+- `/mapas` — Mapas biblicos interativos com Leaflet (20 locais, markers coloridos, filtros)
+- `/palavras` — Estudo por palavra original (5526 gregos + 8674 hebraicos, Strong's, morfologia)
+- `/referencias` — Cadeia de referencias cruzadas (29k+ refs TSK, arvore interativa)
+- `/memorizacao` — Flashcards com repeticao espacada (SM-2), quality ratings, stats
+- `/relacoes` — Mapa de relacoes biblicas (24 personagens, conexoes visuais)
+- `/desafios` — Desafios comunitarios (6 desafios, progresso individual)
+- `/comparar-comentarios` — Comparacao de comentarios lado a lado (8 teologos classicos)
+- `/dashboard` — Dashboard de progresso pessoal (stats, grafico semanal, streak)
+- `/estudo-split` — Modo estudo split view (Biblia + notas lado a lado)
+- `/comunidade` — Chat comunitario via WebSocket (5 canais, usernames)
+- `/quiz/multiplayer` — Quiz multiplayer com salas, WebSocket, leaderboard
 
 ### Ferramentas
 - `/ferramentas/concordancia` — Concordancia biblica
@@ -100,6 +111,9 @@ Plataforma de estudo biblico academico completa, melhor que o Logos e YouVersion
 - `/api/ia/stream` — Streaming de respostas IA
 - `/api/audio/edge` — Edge TTS (gera MP3 via node-edge-tts)
 - `/api/notifications` — Push notifications (placeholder)
+- `/api/sync` — Sincronizacao de dados do usuario (favoritos, notas, colecoes)
+- `/api/audio/edge` — Edge TTS (gera MP3 via node-edge-tts)
+- `/api/notifications` — Push notifications (placeholder)
 
 ## Componentes Chave (src/components/)
 - `VerseDoDia.tsx` — Versiculo do dia na home page
@@ -117,6 +131,18 @@ Plataforma de estudo biblico academico completa, melhor que o Logos e YouVersion
 - `AdicionarAColecao.tsx` — Dropdown para adicionar verso a colecao
 - `NotificationSetup.tsx` — Gerenciamento de push notifications
 - `LayoutWrapper.tsx` — Wrapper com providers + SW registration + onboarding + bottom nav
+- `ErrorBoundary.tsx` — Tratamento de erros global com retry
+- `ShareProgress.tsx` — Compartilhar progresso (WhatsApp, copiar, imagem)
+- `CollaborativeStudy.tsx` — Sala de estudo compartilhado com apresentacao, chat, notas
+- `PresentationInline.tsx` — Modo apresentacao com mood detection e font size
+- `FlashcardSystem.tsx` — Flashcards com repeticao espacada
+- `LiveQuiz.tsx` — Quiz com timer, scoring, ranking
+- `SharedNotes.tsx` — Notas compartilhadas com cores
+- `BottomSheet.tsx` — Bottom sheet nativo com snap points
+- `PullToRefresh.tsx` — Pull-to-refresh wrapper
+- `RoomEntrance.tsx` — Animacao de entrada na sala
+- `RoomThemes.tsx` — 7 temas visuais para salas
+- `VideoCall.tsx` — Chamada de video/voz via WebRTC
 
 ## Modulos do Backend (NestJS — backend/src/modules/)
 - `biblia` — Livros, Capitulos, Versiculos, Palavras, Traducoes
@@ -141,6 +167,8 @@ Plataforma de estudo biblico academico completa, melhor que o Logos e YouVersion
 - `favoritos` — Favoritos do usuario
 - `notas` — Anotacoes pessoais
 - `dicionario` — Dicionario biblico
+- `user-data` — CRUD unificado (favoritos, notas, colecoes, progresso)
+- `colaborativo` — WebSocket para salas, chat, apresentacao, videochamada
 
 ## Dados (src/data/)
 - `biblia/` — 10 traducoes (ARC, ARA, ACF, KJV, NVI, WEB + NVT, KJA, AA, NBV via API Midvash)

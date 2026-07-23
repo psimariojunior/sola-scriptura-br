@@ -24,12 +24,12 @@ interface Desafio {
 }
 
 const DESAFIOS: Desafio[] = [
-  { id: 'd1', titulo: 'Gênesis em 30 dias', descricao: 'Leia todo o livro de Gênesis em 30 dias', tipo: 'leitura', meta: 50, unidade: 'capítulos', duracao: '30 dias', participantes: 128, icone: '📖', cor: 'from-amber-500 to-orange-500', progresso: 0, completado: false },
-  { id: 'd2', titulo: 'Salmos de Louvor', descricao: 'Leia 5 Salmos por dia durante 30 dias', tipo: 'leitura', meta: 150, unidade: 'salmos', duracao: '30 dias', participantes: 89, icone: '🎵', cor: 'from-purple-500 to-violet-500', progresso: 0, completado: false },
-  { id: 'd3', titulo: '10 Versículos Memorizados', descricao: 'Memorize 10 versículos essenciais', tipo: 'memorizacao', meta: 10, unidade: 'versículos', duracao: 'Sem limite', participantes: 256, icone: '🧠', cor: 'from-blue-500 to-cyan-500', progresso: 0, completado: false },
-  { id: 'd4', titulo: 'Evangelhos em 60 dias', descricao: 'Leia Mateus, Marcos, Lucas e João', tipo: 'leitura', meta: 89, unidade: 'capítulos', duracao: '60 dias', participantes: 67, icone: '✝️', cor: 'from-red-500 to-pink-500', progresso: 0, completado: false },
-  { id: 'd5', titulo: 'Novo Testamento', descricao: 'Leia todo o Novo Testamento', tipo: 'leitura', meta: 260, unidade: 'capítulos', duracao: '90 dias', participantes: 45, icone: '📚', cor: 'from-green-500 to-emerald-500', progresso: 0, completado: false },
-  { id: 'd6', titulo: 'Provérbios da Semana', descricao: 'Leia 1 capítulo de Provérbios por dia', tipo: 'leitura', meta: 7, unidade: 'capítulos', duracao: '7 dias', participantes: 312, icone: '💡', cor: 'from-yellow-500 to-amber-500', progresso: 0, completado: false },
+  { id: 'd1', titulo: 'Gênesis em 30 dias', descricao: 'Leia todo o livro de Gênesis em 30 dias', tipo: 'leitura', meta: 50, unidade: 'capítulos', duracao: '30 dias', participantes: 0, icone: '📖', cor: 'from-amber-500 to-orange-500', progresso: 0, completado: false },
+  { id: 'd2', titulo: 'Salmos de Louvor', descricao: 'Leia 5 Salmos por dia durante 30 dias', tipo: 'leitura', meta: 150, unidade: 'salmos', duracao: '30 dias', participantes: 0, icone: '🎵', cor: 'from-purple-500 to-violet-500', progresso: 0, completado: false },
+  { id: 'd3', titulo: '10 Versículos Memorizados', descricao: 'Memorize 10 versículos essenciais', tipo: 'memorizacao', meta: 10, unidade: 'versículos', duracao: 'Sem limite', participantes: 0, icone: '🧠', cor: 'from-blue-500 to-cyan-500', progresso: 0, completado: false },
+  { id: 'd4', titulo: 'Evangelhos em 60 dias', descricao: 'Leia Mateus, Marcos, Lucas e João', tipo: 'leitura', meta: 89, unidade: 'capítulos', duracao: '60 dias', participantes: 0, icone: '✝️', cor: 'from-red-500 to-pink-500', progresso: 0, completado: false },
+  { id: 'd5', titulo: 'Novo Testamento', descricao: 'Leia todo o Novo Testamento', tipo: 'leitura', meta: 260, unidade: 'capítulos', duracao: '90 dias', participantes: 0, icone: '📚', cor: 'from-green-500 to-emerald-500', progresso: 0, completado: false },
+  { id: 'd6', titulo: 'Provérbios da Semana', descricao: 'Leia 1 capítulo de Provérbios por dia', tipo: 'leitura', meta: 7, unidade: 'capítulos', duracao: '7 dias', participantes: 0, icone: '💡', cor: 'from-yellow-500 to-amber-500', progresso: 0, completado: false },
 ];
 
 type Filter = 'todos' | 'leitura' | 'memorizacao' | 'estudo';

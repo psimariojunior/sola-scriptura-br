@@ -48,24 +48,19 @@ const comoEstudar = [
 
 const comoFunciona = [
   { step: '01', title: 'Abra qualquer versículo', desc: 'Navegue pelas 6 traduções, escolha o livro e capítulo. Recursos aparecem ao lado.' },
-  { step: '02', title: 'Explore os recursos', desc: 'Comentários de 80+ teólogos, grego e hebraico, referências cruzadas, áudio e mais.' },
+  { step: '02', title: 'Explore os recursos', desc: 'Comentários de teólogos clássicos, grego e hebraico, referências cruzadas, áudio e mais.' },
   { step: '03', title: 'Apresente em qualquer tela', desc: 'Abra o modo Apresentação, escaneie o QR code e compartilhe versículos em tempo real.' },
 ];
 
-const paraGrupos = ['Projete versículos em qualquer tela', 'Ideal para cultos, células, escolas bíblicas', 'Sem instalação, sem cadastro, sem custo'];
+const paraGrupos = ['Projete versículos em qualquer tela', 'Ideal para cultos, células, escolas bíblicas', 'Sem instalação, sem cadastro'];
 
 const trustBadges = [
-  { label: 'Gratuito para sempre', icon: CheckCircle2 },
   { label: 'Sem anúncios', icon: Shield },
   { label: 'Código aberto', icon: Globe },
   { label: 'Dados privados', icon: Heart },
 ];
 
-const depoimentos = [
-  { texto: 'A melhor plataforma de estudo bíblico que já usei. O léxico Strong integrado e os comentários de teólogos são incomparáveis.', autor: 'Pr. Marcos Silva', cargo: 'Pastor de Ensino', igreja: 'Igreja Presbiteriana' },
-  { texto: 'Uso o Modo Apresentação toda semana nos cultos. Meus congregados adoram a facilidade de acompanhar os versículos na tela.', autor: 'Ana Beatriz', cargo: 'Líder de Adoração', igreja: 'Comunidade Evangélica' },
-  { texto: 'Como professor de seminário, encontrei aqui o rigor acadêmico que preciso. A exegese versículo a versículo é excepcional.', autor: 'Dr. Ricardo Almeida', cargo: 'Professor de Teologia', igreja: 'Seminário Teológico' },
-];
+const depoimentos: { texto: string; autor: string; cargo: string }[] = [];
 
 const referenciadoPor = ['Seminários Teológicos', 'Escolas Bíblicas', 'Igrejas Locais', 'Pastores e Líderes', 'Estudantes', 'Missionários'];
 
@@ -80,7 +75,7 @@ const stats = [
   { value: 66, label: 'Livros', suffix: '' },
   { value: 6, label: 'Traduções', suffix: '' },
   { value: 31102, label: 'Versículos', suffix: '' },
-  { value: 29000, label: 'Ref. Cruzadas', suffix: '+' },
+  { value: 29266, label: 'Ref. Cruzadas', suffix: '' },
   { value: 4911, label: 'Comentários', suffix: '' },
   { value: 14200, label: 'Verbetes', suffix: '' },
 ];
@@ -182,27 +177,27 @@ export default function HomeClient() {
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05, duration: 0.6 }} className="inline-flex items-center gap-2 mb-5">
               <span className="relative inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/15 to-emerald-500/5 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300">
                 <Gift className="w-3.5 h-3.5" />
-                <span className="text-[11px] font-bold tracking-[0.12em] uppercase">100% Gratuito</span>
+                <span className="text-[11px] font-bold tracking-[0.12em] uppercase">Acesso Livre</span>
                 <span className="text-[11px] font-medium text-emerald-700/70 dark:text-emerald-300/70">·</span>
-                <span className="text-[11px] font-semibold tracking-[0.05em]">Sem assinatura</span>
+                <span className="text-[11px] font-semibold tracking-[0.05em]">Sem anúncios</span>
               </span>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }} className="inline-flex items-center gap-2 mb-7 px-3.5 py-1.5 rounded-full border border-primary/15 bg-primary/[0.04]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">Estudo Bíblico Acadêmico</span>
+              <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">Estudo Bíblico</span>
             </motion.div>
 
             <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="wordmark text-[2.75rem] leading-[0.95] sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] mb-7">
-              <span className="block">Toda a biblioteca</span>
-              <span className="block"><span className="gradient-text-animated">teológica</span><span className="text-foreground">,</span></span>
-              <span className="block italic text-foreground/85">em um só lugar.</span>
+              <span className="block">Estude a Bíblia</span>
+              <span className="block"><span className="gradient-text-animated">em profundidade</span><span className="text-foreground">,</span></span>
+              <span className="block italic text-foreground/85">gratuitamente.</span>
             </motion.h1>
 
             <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.8 }}
               className="font-sans text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-10 sm:mb-12 px-2">
-              Estude a Bíblia em profundidade, com comentários de 80+ teólogos, 6 traduções, IA teológica e modo apresentação para igrejas e células.
+              6 traduções da Bíblia, comentários de teólogos clássicos, léxico grego e hebraico, referências cruzadas, IA teológica e modo apresentação para igrejas e células.
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.6 }}
@@ -282,37 +277,26 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section className="py-14 sm:py-18 px-4 sm:px-6 border-y border-border/30 bg-card/20 relative overflow-hidden" aria-label="Quem usa o Sola Scriptura">
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" aria-hidden="true">
-            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, hsl(var(--primary)) 0%, transparent 50%)' }} />
-          </div>
+        <section className="py-14 sm:py-18 px-4 sm:px-6 border-y border-border/30 bg-card/20 relative overflow-hidden" aria-label="Recursos do Sola Scriptura">
           <div className="max-w-6xl mx-auto relative z-10">
             <ScrollReveal>
               <div className="text-center mb-10">
-                <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-muted-foreground mb-2">Referenciado por</p>
-                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-                  {referenciadoPor.map((item) => (
-                    <span key={item} className="text-sm sm:text-[15px] font-medium text-foreground/60 hover:text-foreground transition-colors duration-300 cursor-default">{item}</span>
+                <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-muted-foreground mb-2">Dados da plataforma</p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                  {[
+                    { label: 'Comentários', desc: 'Matthew Henry, Adam Clarke, John Gill e outros (domínio público)' },
+                    { label: 'Léxico Strong', desc: '5.526 gregos + 8.674 hebraicos, fonte: Strong\'s Exhaustive Concordance' },
+                    { label: 'Referências Cruzadas', desc: '29.266 refs do Treasury of Scripture Knowledge (TSK)' },
+                    { label: 'Traduções', desc: 'ARC, ARA, ACF, KJV, NVI, WEB — gratuitas via API MidVash' },
+                  ].map((item) => (
+                    <div key={item.label} className="text-center p-3">
+                      <p className="text-sm font-medium text-foreground mb-1">{item.label}</p>
+                      <p className="text-[11px] text-muted-foreground leading-relaxed">{item.desc}</p>
+                    </div>
                   ))}
                 </div>
               </div>
             </ScrollReveal>
-            <div className="grid md:grid-cols-3 gap-5 sm:gap-6">
-              {depoimentos.map((dep, i) => (
-                <ScrollReveal key={dep.autor} delay={i * 0.1}>
-                  <div className="testimonial-card h-full">
-                    <p className="text-sm sm:text-[15px] text-foreground/80 leading-relaxed mb-5 relative z-10 italic">{dep.texto}</p>
-                    <div className="flex items-center gap-3 relative z-10">
-                      <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center text-sm font-semibold text-primary shrink-0">{dep.autor.charAt(0)}</div>
-                      <div><p className="text-sm font-semibold text-foreground">{dep.autor}</p><p className="text-[11px] text-muted-foreground">{dep.cargo} · {dep.igreja}</p></div>
-                    </div>
-                    <div className="flex gap-0.5 mt-3 relative z-10">
-                      {[1, 2, 3, 4, 5].map((s) => (<Star key={s} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />))}
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -430,7 +414,7 @@ export default function HomeClient() {
                     <GitCompareArrows className="w-6 h-6 text-primary" strokeWidth={1.5} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-primary/80 mb-2">Recurso Exclusivo</p>
+                    <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-primary/80 mb-2">Modo Apresentação</p>
                     <h3 className="font-display text-2xl sm:text-3xl font-light leading-tight mb-2">Compare traduções <span className="italic text-primary">lado a lado</span></h3>
                     <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">Veja até 3 versões do mesmo versículo simultaneamente e descubra as diferenças de tradução que mudam o entendimento do texto bíblico.</p>
                   </div>

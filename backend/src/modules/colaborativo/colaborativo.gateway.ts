@@ -130,12 +130,26 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
   }
 
   private removeParticipantFromAllRooms(socketId: string) {
-    for (const [code, room] of this.rooms.entries()) {
-      if (room.participants.has(socketId)) {
-        this.removeParticipantFromRoom(
-          { id: socketId, leave: () => {}, join: () => {} } as Socket,
-          code,
-        );
+    for (const [code] of this.rooms.entries()) {
+      const room = this.rooms.get(code);
+      if (room && room.participants.has(socketId)) {
+        const participant = room.participants.get(socketId);
+        room.participants.delete(socketId);
+
+        if (participant) {
+          this.logger.log(`${participant.displayName} disconnected from room ${code}`);
+        }
+
+        if (room.participants.size === 0) {
+          this.rooms.delete(code);
+          this.logger.log(`Room ${code} deleted (empty)`);
+        } else {
+          this.server.to(code).emit('room-participants', {
+            code,
+            participants: Array.from(room.participants.values()),
+          });
+          this.server.to(code).emit('peer-left', { socketId });
+        }
       }
     }
   }

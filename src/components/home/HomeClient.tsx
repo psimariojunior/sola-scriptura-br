@@ -21,6 +21,7 @@ const RotatingVerse = dynamic(() => import('@/components/home/RotatingVerse').th
 const AnimatedCounter = dynamic(() => import('@/components/home/AnimatedCounter').then(m => ({ default: m.AnimatedCounter })), { ssr: false });
 const VerseDoDia = dynamic(() => import('@/components/VerseDoDia'), { ssr: false });
 const ContinuarLeitura = dynamic(() => import('@/components/ContinuarLeitura'), { ssr: false });
+const WordOfDayWidget = dynamic(() => import('@/components/WordOfDay').then(m => ({ default: m.WordOfDay })), { ssr: false });
 const InstallBanner = dynamic(() => import('@/components/InstallBanner'), { ssr: false });
 const NotificationSetup = dynamic(() => import('@/components/NotificationSetup').then(m => ({ default: m.NotificationSetup })), { ssr: false });
 
@@ -233,6 +234,7 @@ export default function HomeClient() {
 
         <VerseDoDia />
         <ContinuarLeitura />
+        <WordOfDayWidget />
 
         <section className="relative py-6 sm:py-8 px-4 sm:px-6" aria-label="Destaques do Sola Scriptura">
           <div className="max-w-5xl mx-auto">

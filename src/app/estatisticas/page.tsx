@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { getStats, getStreakData } from '@/lib/estatisticas';
-import { Flame, BookOpen, Heart, TrendingUp } from 'lucide-react';
+import { Flame, BookOpen, Heart, TrendingUp, Dna, BarChart3 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 
@@ -15,6 +15,16 @@ const StatsCharts = dynamic(() => import('@/components/StatsCharts'), {
       <div className="h-48 bg-muted/30 rounded-lg" />
     </div>
   ),
+});
+
+const BibleDNA = dynamic(() => import('@/components/BibleDNA').then(m => ({ default: m.BibleDNA })), {
+  ssr: false,
+  loading: () => <div className="sola-card p-6 animate-pulse"><div className="h-64 bg-muted/30 rounded-lg" /></div>,
+});
+
+const BibleInfographics = dynamic(() => import('@/components/BibleInfographics').then(m => ({ default: m.BibleInfographics })), {
+  ssr: false,
+  loading: () => <div className="sola-card p-6 animate-pulse"><div className="h-64 bg-muted/30 rounded-lg" /></div>,
 });
 
 interface Stats {
@@ -129,6 +139,28 @@ export default function EstatisticasPage() {
               booksChartData={booksChartData}
               streakLineData={streakLineData}
             />
+
+            {/* Bible DNA */}
+            <div className="mt-10">
+              <div className="flex items-center gap-2 mb-4">
+                <Dna className="w-5 h-5 text-[var(--brand)]" />
+                <h2 className="font-display text-2xl font-light text-[var(--fg)]">Bible DNA</h2>
+              </div>
+              <div className="sola-card overflow-hidden" style={{ height: '500px' }}>
+                <BibleDNA />
+              </div>
+            </div>
+
+            {/* Infographics */}
+            <div className="mt-10">
+              <div className="flex items-center gap-2 mb-4">
+                <BarChart3 className="w-5 h-5 text-[var(--brand)]" />
+                <h2 className="font-display text-2xl font-light text-[var(--fg)]">Infográficos Bíblicos</h2>
+              </div>
+              <div className="sola-card overflow-hidden" style={{ height: '500px' }}>
+                <BibleInfographics />
+              </div>
+            </div>
           </motion.div>
         </div>
       </main>

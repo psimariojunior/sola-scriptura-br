@@ -18,6 +18,12 @@ import { type Comentario } from '@/data/comentarios';
 import type { EstudoVersiculo } from '@/data/estudosTeologicos';
 import type { Teologo } from '@/data/teologos';
 import { getStats } from '@/lib/estatisticas';
+import dynamic from 'next/dynamic';
+
+const BibleCourses = dynamic(() => import('@/components/BibleCourses').then(m => ({ default: m.BibleCourses })), {
+  ssr: false,
+  loading: () => <div className="sola-card p-6 animate-pulse"><div className="h-64 bg-muted/30 rounded-lg" /></div>,
+});
 
 const PERIODOS_LABELS: Record<string, string> = {
   patristico: 'Padres da Igreja',
@@ -51,7 +57,7 @@ type Ordenacao = 'recente' | 'livro';
 export default function EstudosPage() {
   const [categoriaAtiva, setCategoriaAtiva] = useState('livros');
   const [marcas, setMarcas] = useState<MarcaBiblia[]>([]);
-  const [aba, setAba] = useState<'todas' | 'favoritos' | 'anotacoes'>('todas');
+  const [aba, setAba] = useState<'todas' | 'favoritos' | 'anotacoes' | 'cursos'>('todas');
   const [query, setQuery] = useState('');
   const [periodoFilter, setPeriodoFilter] = useState<string>('todos');
 
@@ -611,6 +617,7 @@ export default function EstudosPage() {
                   { id: 'todas' as const, label: 'Todas', icon: Bookmark, count: stats.total },
                   { id: 'favoritos' as const, label: 'Favoritos', icon: Heart, count: stats.favoritos },
                   { id: 'anotacoes' as const, label: 'Anotações', icon: StickyNote, count: stats.anotacoes },
+                  { id: 'cursos' as const, label: 'Cursos', icon: GraduationCap, count: 0 },
                 ]).map((t) => (
                   <button
                     key={t.id}
@@ -630,7 +637,11 @@ export default function EstudosPage() {
                 ))}
               </div>
 
-              {filtradas.length === 0 ? (
+              {aba === 'cursos' ? (
+                <div className="sola-card overflow-hidden" style={{ height: '600px' }}>
+                  <BibleCourses />
+                </div>
+              ) : filtradas.length === 0 ? (
                 <div className="sola-card p-12 text-center">
                   <BookOpen className="w-12 h-12 mx-auto text-muted-foreground/30 mb-4" strokeWidth={1} />
                   <p className="text-lg font-medium text-muted-foreground mb-2">

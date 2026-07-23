@@ -4,14 +4,14 @@ export const manualAngelologia: ManualBiblico = {
   "id": "angelologia",
   "slug": "angelologia",
   "titulo": "Angelologia",
-  "subtitulo": "Doutrina dos Anjos e Demonios",
-  "autor": "Comissao Teologica Sola Scriptura",
-  "descricao": "Estudo sobre anjos, demonios e guerra espiritual.",
+  "subtitulo": "Doutrina dos Anjos e Demônios",
+  "autor": "Comissão Teologica Sola Scriptura",
+  "descricao": "Estudo sobre anjos, demônios e guerra espiritual.",
   "categorias": [
     "Anjos",
-    "Demonios",
+    "Demônios",
     "Guerra Espiritual",
-    "Satanas"
+    "Satanás"
   ],
   "icone": "Shield",
   "cor": "text-yellow-500",
@@ -20,11 +20,11 @@ export const manualAngelologia: ManualBiblico = {
       "numero": 1,
       "titulo": "Natureza dos Anjos",
       "resumo": "Criaturas espirituais inteligentes.",
-      "conteudo": "Anjos sao seres espirituais criados por Deus (Cl 1:16). Nao tem corpo material, mas podem assumir aparencia humana. Sao inteligentes (1 Pe 1:12), tem vontade propria. Sao espiritos ministradores (Hb 1:14).",
+      "conteudo": "Anjos sao seres espirituais criados por Deus (Cl 1:16). Não tem corpo matérial, mas podem assumir aparência humana. São inteligentes (1 Pe 1:12), tem vontade própria. São espíritos ministradores (Hb 1:14).",
       "versicosChave": [
         {
           "referencia": "Hebreus 1:14",
-          "texto": "Nao sao todos espiritos ministradores?",
+          "texto": "Não sao todos espíritos ministradores?",
           "traducao": "NVI"
         }
       ],
@@ -33,8 +33,8 @@ export const manualAngelologia: ManualBiblico = {
       ],
       "citacoesTeologos": [
         {
-          "nome": "Tomas de Aquino",
-          "periodo": "Escolastica (1225-1274)",
+          "nome": "Tomás de Aquino",
+          "periodo": "Escolástica (1225-1274)",
           "citacao": "Os anjos sao intelectos puros criados para conhecer e amar a Deus.",
           "obra": "Summa Theologiae"
         }
@@ -43,11 +43,11 @@ export const manualAngelologia: ManualBiblico = {
     {
       "numero": 2,
       "titulo": "Hierarquia Angelical",
-      "resumo": "A organizacao das hostes celestiais.",
-      "conteudo": "Ordens: serafins (Is 6:2), querubins (Ez 1), arcanjos (1 Ts 4:16), principados (Ef 1:21). A hierarquia reflete a ordem e soberania de Deus.",
+      "resumo": "A organização das hostes celestiais.",
+      "conteudo": "Ordens: seráfins (Is 6:2), querubins (Ez 1), arcanjos (1 Ts 4:16), principados (Ef 1:21). A hierarquia reflete a ordem e soberania de Deus.",
       "versicosChave": [
         {
-          "referencia": "Isaias 6:2",
+          "referencia": "Isaías 6:2",
           "texto": "Serafins clamavam: Santo, Santo, Santo e o Senhor.",
           "traducao": "NVI"
         }
@@ -57,8 +57,8 @@ export const manualAngelologia: ManualBiblico = {
       ],
       "citacoesTeologos": [
         {
-          "nome": "Tomas de Aquino",
-          "periodo": "Escolastica (1225-1274)",
+          "nome": "Tomás de Aquino",
+          "periodo": "Escolástica (1225-1274)",
           "citacao": "As hierarquias angelicais refletem a ordem divina.",
           "obra": "Summa Theologiae"
         }
@@ -91,12 +91,12 @@ export const manualAngelologia: ManualBiblico = {
     {
       "numero": 4,
       "titulo": "Anjos da Guarda",
-      "resumo": "A protecao angelical individual.",
-      "conteudo": "Cada crente pode ter anjo da guarda (Mt 18:10). Protegem fisicamente e espiritualmente. Nao sao adorados (Ap 22:8-9).",
+      "resumo": "A proteção angelical individual.",
+      "conteudo": "Cada crente pode ter anjo da guarda (Mt 18:10). Protegem fisicamente e espiritualmente. Não sao adorados (Ap 22:8-9).",
       "versicosChave": [
         {
-          "referencia": "Mateus 18:10",
-          "texto": "Os seus anjos nos ceus veem sempre a face do meu Pai.",
+          "referencia": "Matéus 18:10",
+          "texto": "Os seus anjos nos céus veem sempre a face do meu Pai.",
           "traducao": "NVI"
         }
       ],
@@ -107,16 +107,16 @@ export const manualAngelologia: ManualBiblico = {
         {
           "nome": "Derek Kidner",
           "periodo": "Contemporaneo (1913-2008)",
-          "citacao": "A doutrina dos anjos e um lembrete de que nao estamos sozinhos.",
+          "citacao": "A doutrina dos anjos e um lembrete de que não estamos sozinhos.",
           "obra": "Salmos"
         }
       ]
     },
     {
       "numero": 5,
-      "titulo": "Satanas: Origem e Natureza",
+      "titulo": "Satanás: Origem e Natureza",
       "resumo": "A queda do querubim ungido.",
-      "conteudo": "Satanas era um dos mais exaltados anjos (Ez 28:12-15). Queda por orgulho (Is 14:12-14). E o acusador (Ap 12:10), tentador (Mt 4:3) e principe deste mundo (Jo 14:30).",
+      "conteudo": "Satanás era um dos mais exaltados anjos (Ez 28:12-15). Queda por orgulho (Is 14:12-14). E o acusador (Ap 12:10), tentador (Mt 4:3) e principe deste mundo (Jo 14:30).",
       "versicosChave": [
         {
           "referencia": "Ezequiel 28:15",
@@ -124,28 +124,28 @@ export const manualAngelologia: ManualBiblico = {
           "traducao": "ARC"
         },
         {
-          "referencia": "Isaias 14:12-14",
+          "referencia": "Isaías 14:12-14",
           "texto": "Como caiste do ceu, estrela da manha!",
           "traducao": "NVI"
         }
       ],
       "perguntasEstudo": [
-        "Satanas caiu antes ou depois da criacao?"
+        "Satanás caiu antes ou depois da criação?"
       ],
       "citacoesTeologos": [
         {
           "nome": "C.S. Lewis",
           "periodo": "Modernos (1898-1963)",
-          "citacao": "Satanas e o maior tolo do universo.",
+          "citacao": "Satanás e o maior tolo do universo.",
           "obra": "Cartas de um Diabo ao Seu Aprendiz"
         }
       ]
     },
     {
       "numero": 6,
-      "titulo": "Demonios: Natureza e Acao",
+      "titulo": "Demônios: Natureza e Acao",
       "resumo": "Os anjos caidos e sua atividade.",
-      "conteudo": "Demonios sao anjos que seguiram Satanás (Mt 25:41). Possuem pessoas (Mc 5), enganam (2 Co 11:14), causam doencas (Lc 13:11).",
+      "conteudo": "Demônios sao anjos que seguirám Satanás (Mt 25:41). Possuem pessoas (Mc 5), enganam (2 Co 11:14), causam doencas (Lc 13:11).",
       "versicosChave": [
         {
           "referencia": "2 Corintios 11:14",
@@ -154,13 +154,13 @@ export const manualAngelologia: ManualBiblico = {
         }
       ],
       "perguntasEstudo": [
-        "Como os demonios operam hoje?"
+        "Como os demônios operam hoje?"
       ],
       "citacoesTeologos": [
         {
           "nome": "Martinho Lutero",
           "periodo": "Reforma (1483-1546)",
-          "citacao": "Nao tenho medo de mil demonios, mas temo de um simples mau pensamento.",
+          "citacao": "Não tenho medo de mil demônios, mas temo de um simples mau pensamento.",
           "obra": "Sermoens"
         }
       ]
@@ -169,27 +169,27 @@ export const manualAngelologia: ManualBiblico = {
       "numero": 7,
       "titulo": "Guerra Espiritual",
       "resumo": "A batalha cosmica entre Deus e Satanás.",
-      "conteudo": "A guerra espiritual e real (Ef 6:12). Cristo ja venceu na cruz (Cl 2:15), mas a vitoria ainda nao foi consumada. A igreja participa pela oracao e Palavra.",
+      "conteudo": "A guerra espiritual e real (Ef 6:12). Cristo já venceu na cruz (Cl 2:15), mas a vitoria ainda não foi consumada. A igrejá participa pela oracao e Palavra.",
       "versicosChave": [
         {
           "referencia": "Efesios 6:12",
-          "texto": "A nossa luta nao e contra sangue e carne, mas contra principados e potestades.",
+          "texto": "A nossa luta não e contra sangue e carne, mas contra principados e potestades.",
           "traducao": "NVI"
         },
         {
           "referencia": "Colossenses 2:15",
-          "texto": "Despojando os principados e potestades.",
+          "texto": "Despojándo os principados e potestades.",
           "traducao": "NVI"
         }
       ],
       "perguntasEstudo": [
-        "Como a igreja deve combater a guerra espiritual?"
+        "Como a igrejá deve combatér a guerra espiritual?"
       ],
       "citacoesTeologos": [
         {
           "nome": "Peter Sprinkle",
           "periodo": "Contemporaneo (1953-)",
-          "citacao": "A guerra espiritual e uma realidade que a igreja moderna negligenciou.",
+          "citacao": "A guerra espiritual e uma realidade que a igrejá moderna negligenciou.",
           "obra": "Todo Poder"
         }
       ]
@@ -198,7 +198,7 @@ export const manualAngelologia: ManualBiblico = {
       "numero": 8,
       "titulo": "Posicao do Crente",
       "resumo": "A autoridade do crente em Cristo.",
-      "conteudo": "O crente tem autoridade sobre Satanás em nome de Jesus (Lc 10:19). A autoridade e legal (posicional) e pratica (experiencial).",
+      "conteudo": "O crente tem autoridade sobre Satanás em nome de Jesus (Lc 10:19). A autoridade e legal (posicional) e pratica (experiêncial).",
       "versicosChave": [
         {
           "referencia": "Lucas 10:19",
@@ -207,13 +207,13 @@ export const manualAngelologia: ManualBiblico = {
         }
       ],
       "perguntasEstudo": [
-        "Como exercer a autoridade sobre os demonios?"
+        "Como exercer a autoridade sobre os demônios?"
       ],
       "citacoesTeologos": [
         {
           "nome": "John Owen",
           "periodo": "Pos-Reforma (1616-1683)",
-          "citacao": "O crente tem autoridade porque Cristo ja derrotou Satanás.",
+          "citacao": "O crente tem autoridade porque Cristo já derrotou Satanás.",
           "obra": "Pecado e Graca"
         }
       ]
@@ -221,8 +221,8 @@ export const manualAngelologia: ManualBiblico = {
     {
       "numero": 9,
       "titulo": "Enganos Demoniacos",
-      "resumo": "As estrategias de Satanás.",
-      "conteudo": "Satanas engana: doutrinas falsas (1 Tm 4:1), acusacao (Ap 12:10), tentacao (1 Co 7:5), distração (Lc 8:12). A defesa e a Palavra de Deus.",
+      "resumo": "As estratégias de Satanás.",
+      "conteudo": "Satanás engana: doutrinas falsas (1 Tm 4:1), acusacao (Ap 12:10), tentacao (1 Co 7:5), distração (Lc 8:12). A defesa e a Palavra de Deus.",
       "versicosChave": [
         {
           "referencia": "1 Pedro 5:8",
@@ -236,7 +236,7 @@ export const manualAngelologia: ManualBiblico = {
         }
       ],
       "perguntasEstudo": [
-        "Quais sao as principais estrategias de Satanás?"
+        "Quais sao as principais estratégias de Satanás?"
       ],
       "citacoesTeologos": [
         {
@@ -251,7 +251,7 @@ export const manualAngelologia: ManualBiblico = {
       "numero": 10,
       "titulo": "Vitoria em Cristo",
       "resumo": "A derrota de Satanás consumada.",
-      "conteudo": "Cristo derrotou Satanás na cruz (Cl 2:15), consumacao sera no retorno (Ap 20:10). O crente vive entre ja e ainda nao.",
+      "conteudo": "Cristo derrotou Satanás na cruz (Cl 2:15), consumacao será no retorno (Ap 20:10). O crente vive entre já e ainda não.",
       "versicosChave": [
         {
           "referencia": "1 Joao 3:8",
@@ -265,13 +265,13 @@ export const manualAngelologia: ManualBiblico = {
         }
       ],
       "perguntasEstudo": [
-        "Como viver na vitoria ja conquistada?"
+        "Como viver na vitoria já conquistada?"
       ],
       "citacoesTeologos": [
         {
           "nome": "G.K. Beale",
           "periodo": "Contemporaneo (1952-)",
-          "citacao": "A vitoria de Cristo e decisiva, mas a consumacao ainda aguarda.",
+          "citacao": "A vitoria de Cristo e decisiva, mas a consumacao ainda águarda.",
           "obra": "O NT e a Teologia do AT"
         }
       ]

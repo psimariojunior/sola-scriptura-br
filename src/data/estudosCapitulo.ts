@@ -19,9 +19,9 @@ export const estudosCapitulo: Record<string, EstudoCapitulo> = {
   "gn:1": {
     livro: "gn",
     capitulo: 1,
-    titulo: "Criacao",
+    titulo: "Criação",
     resumo: "Deus cria o universo e o homem. Ele vê que tudo é bom.",
-    temas: ["Criacao", "Deus", "Homem"],
+    temas: ["Criação", "Deus", "Homem"],
     VersiculosChave: [
       { referencia: "Gênesis 1:1", texto: "No princípio, criou Deus os céus e a terra.", explicacao: "Deus cria os céus e a terra." },
       { referencia: "Gênesis 1:27", texto: "E criou Deus o homem à sua imagem; à imagem de Deus o criou; macho e fêmea os criou.", explicacao: "Deus cria o homem à sua imagem." },
@@ -46,7 +46,7 @@ export const estudosCapitulo: Record<string, EstudoCapitulo> = {
     capitulo: 3,
     titulo: "Queda",
     resumo: "Adão e Eva desobedecem a Deus e comem o fruto proibido.",
-    temas: ["Pecado", "Desobediencia", "Consequencia"],
+    temas: ["Pecado", "Desobediência", "Consequência"],
     VersiculosChave: [
       { referencia: "Gênesis 3:6", texto: "E, vendo a mulher que aquela árvore era boa para se comer, e agradável aos olhos, e árvore desejável para dar entendimento, tomou do seu fruto, e comeu, e deu também a seu marido, e ele comeu com ela.", explicacao: "Eva é enganada e come o fruto proibido." },
       { referencia: "Gênesis 3:15", texto: "E porei inimizade entre ti e a mulher e entre a tua semente e a sua semente; esta te ferirá a cabeça, e tu lhe ferirás o calcanhar.", explicacao: "Deus promete um Salvador para derrotar o mal." },

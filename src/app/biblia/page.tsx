@@ -249,6 +249,13 @@ export default function BibliaPage() {
         onComentarios={() => { if (verse.versiculoSelecionado) { verse.setComentarioVersiculo(verse.versiculoSelecionado.versiculo); panels.setSidePanelWidth('half'); panels.setSidePanelTab('comentarios'); } verse.setVersiculoSelecionado(null); }}
         onToggleEstudo={() => { if (verse.versiculoSelecionado) verse.setEstudoAberto(verse.estudoAberto === verse.versiculoSelecionado.versiculo ? null : verse.versiculoSelecionado.versiculo); verse.setVersiculoSelecionado(null); }}
         onApresentar={() => { ui.setMostrarApresentacao(true); verse.setVersiculoSelecionado(null); }} onCompartilharImagem={() => ui.setShareOpen(true)}
+        onCompartilharSala={() => {
+          if (!verse.versiculoSelecionado) return;
+          const v = verse.versiculoSelecionado;
+          const data = { livro: v.livroNome, livroAbrev: v.livroAbreviacao, capitulo: v.capitulo, versiculo: v.versiculo, texto: v.texto, traducao: v.traducao };
+          try { localStorage.setItem('ssb_collab_share_pending', JSON.stringify(data)); } catch {}
+          window.location.href = '/estudo-colaborativo';
+        }}
         onAprofundar={() => { if (!verse.versiculoSelecionado) return; if (!authService.temAcessoTotal()) { panels.setPaywallAprofundarAberto(true); return; } window.open(`/estudo-ia?ref=${encodeURIComponent(`${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`)}`, '_blank'); }}
         copyVerse={verse.copyVerse} copiedVerse={verse.copiedVerse} />
       <AnimatePresence>{verse.versiculoSelecionado && authService.temAcessoTotal() && (

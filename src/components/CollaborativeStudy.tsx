@@ -4,32 +4,26 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Users, Plus, LogIn, Share2, Copy, MessageSquare,
-  BookOpen, X, Link as LinkIcon, Check, Phone, PhoneOff,
-  Mic, Video, Bell, BellOff, Send, MonitorPlay
+  BookOpen, X, Link as LinkIcon, Check, PhoneOff,
+  Mic, Video, Send, MonitorPlay
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   createStudyRoom,
   joinStudyRoom,
-  shareVerse,
-  onVerseShared,
-  sendMessage,
   getParticipantId,
   getParticipantColor,
   getParticipantLabel,
-  type VerseShared,
   type StudyRoom,
 } from '@/lib/collaborative';
-import { VideoCall, CallButton } from '@/components/VideoCall';
+import { VideoCall } from '@/components/VideoCall';
 import { PresentationInline } from '@/components/Apresentacao/PresentationInline';
 import {
   createWebRTCService,
   type WebRTCService,
   type ChatMessage,
   type VerseSharedEvent,
-  type TypingEvent,
   type CallInviteEvent,
-  type PresentationSyncEvent,
 } from '@/lib/webrtc';
 
 interface CollaborativeStudyProps {
@@ -63,11 +57,75 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   const [presentationMirror, setPresentationMirror] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
-  const serviceRef = useRef<WebRTCService | null>(null);
+  const chatServiceRef = useRef<WebRTCService | null>(null);
   const typingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const participantId = getParticipantId();
   const participantName = getParticipantLabel(participantId);
 
+  // Conectar serviço WebSocket para chat/sync (independente da chamada)
+  useEffect(() => {
+    if (!room) return;
+    const svc = createWebRTCService();
+    chatServiceRef.current = svc;
+
+    svc.onChatMessage((msg) => {
+      setChatMessages(prev => {
+        if (prev.some(m => m.id === msg.id)) return prev;
+        return [...prev, msg];
+      });
+    });
+
+    svc.onVerseShared((verse) => {
+      setWsVerses(prev => {
+        if (prev.some(v => v.id === verse.id)) return prev;
+        return [...prev, verse];
+      });
+    });
+
+    svc.onTypingStart((data) => {
+      setTypingParticipants(prev => new Map(prev).set(data.participantId, data.displayName));
+    });
+
+    svc.onTypingStop((participantId) => {
+      setTypingParticipants(prev => {
+        const next = new Map(prev);
+        next.delete(participantId);
+        return next;
+      });
+    });
+
+    svc.onCallInvite((data) => setIncomingCall(data));
+    svc.onCallAccept(() => setIncomingCall(null));
+    svc.onCallReject(() => setIncomingCall(null));
+
+    svc.onPresentationSync((data) => {
+      if (data.action === 'stop') {
+        setPresentedVerse(null);
+      } else if (data.action === 'navigate' && data.texto) {
+        setPresentedVerse({
+          texto: data.texto,
+          referencia: data.livro ? `${data.livro} ${data.capitulo}:${data.versiculo}` : '',
+          apresentadoPor: data.presentedBy || '',
+        });
+      } else if (data.action === 'fontSize' && data.fontSize) {
+        setPresentationFontSize(data.fontSize);
+      } else if (data.action === 'mirror' && data.mirror !== undefined) {
+        setPresentationMirror(data.mirror!);
+      }
+    });
+
+    // Conectar ao room via WebSocket
+    const stream = svc.getLocalStream(false, false).catch(() => {});
+    svc.connect(room.code, participantId, participantName);
+
+    return () => {
+      svc.disconnect();
+      chatServiceRef.current = null;
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [room?.code]);
+
+  // Auto-join via initialCode
   useEffect(() => {
     if (initialCode) {
       const found = joinStudyRoom(initialCode);
@@ -75,89 +133,43 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     }
   }, [initialCode]);
 
+  // Verificar versículo pendente da página da Bíblia
   useEffect(() => {
     if (!room) return;
-    const unsub = onVerseShared(room.code, (shared) => {
-      setRoom(prev => {
-        if (!prev) return prev;
-        if (prev.verses.some(v => v.id === shared.id)) return prev;
-        return { ...prev, verses: [...prev.verses, shared] };
-      });
-    });
-    return unsub;
+    try {
+      const pending = localStorage.getItem('ssb_collab_share_pending');
+      if (pending) {
+        const data = JSON.parse(pending);
+        localStorage.removeItem('ssb_collab_share_pending');
+
+        const verseData: VerseSharedEvent = {
+          id: `v-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+          participantId,
+          displayName: participantName,
+          verse: `${data.livro} ${data.capitulo}:${data.versiculo}`,
+          livro: data.livro,
+          capitulo: data.capitulo,
+          versiculo: data.versiculo,
+          texto: data.texto,
+          timestamp: Date.now(),
+        };
+
+        setWsVerses(prev => [...prev, verseData]);
+        chatServiceRef.current?.sendVerseShared(verseData);
+      }
+    } catch {}
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [room?.code]);
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [room?.verses.length]);
-
+  // Scroll chat
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chatMessages.length]);
 
-  const handlePresentVerse = useCallback((verse: VerseSharedEvent) => {
-    setPresentedVerse({
-      texto: verse.texto,
-      referencia: verse.verse,
-      apresentadoPor: verse.displayName || getParticipantLabel(verse.participantId),
-    });
-    setActiveTab('presentation');
-    if (serviceRef.current) {
-      serviceRef.current.sendPresentationSync({
-        action: 'navigate',
-        livro: verse.livro,
-        capitulo: verse.capitulo,
-        versiculo: verse.versiculo,
-        texto: verse.texto,
-        presentedBy: participantName,
-      });
-    }
-  }, [participantName]);
-
-  const handlePresentDirectly = useCallback(() => {
-    if (!shareInput.trim()) return;
-    const match = shareInput.trim().match(/^(\d{1,3})\s*[:\.]\s*(\d{1,3})$/);
-    const texto = verseInput.texto || shareMessage || 'Versículo compartilhado';
-    const ref = match ? `${verseInput.livro || 'Bíblia'} ${match[1]}:${match[2]}` : shareInput.trim();
-    setPresentedVerse({
-      texto,
-      referencia: ref,
-      apresentadoPor: participantName,
-    });
-    setActiveTab('presentation');
-    if (serviceRef.current) {
-      serviceRef.current.sendPresentationSync({
-        action: 'navigate',
-        livro: verseInput.livro || 'Bíblia',
-        capitulo: match ? parseInt(match[1]) : 1,
-        versiculo: match ? parseInt(match[2]) : 1,
-        texto,
-        presentedBy: participantName,
-      });
-    }
-  }, [shareInput, verseInput, shareMessage, participantName]);
-
-  const handleStopPresentation = useCallback(() => {
-    setPresentedVerse(null);
-    if (serviceRef.current) {
-      serviceRef.current.sendPresentationSync({ action: 'stop' });
-    }
-  }, []);
-
-  const handlePresentationFontSize = useCallback((size: number) => {
-    setPresentationFontSize(size);
-    if (serviceRef.current) {
-      serviceRef.current.sendPresentationSync({ action: 'fontSize', fontSize: size });
-    }
-  }, []);
-
-  const handlePresentationMirror = useCallback((mirror: boolean) => {
-    setPresentationMirror(mirror);
-    if (serviceRef.current) {
-      serviceRef.current.sendPresentationSync({ action: 'mirror', mirror });
-    }
-  }, []);
+  // Scroll versículos
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [wsVerses.length]);
 
   const handleCreate = useCallback(() => {
     const newRoom = createStudyRoom();
@@ -173,76 +185,117 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     }
   }, [joinCode]);
 
+  // Compartilhar versículo
   const handleShare = useCallback(() => {
     if (!room || !shareInput.trim()) return;
     const match = shareInput.trim().match(/^(\d{1,3})\s*[:\.]\s*(\d{1,3})$/);
-    const texto = verseInput.texto || 'Versículo compartilhado';
-    const shared = shareVerse(room.code, {
-      livro: verseInput.livro || 'Bíblia',
-      capitulo: match ? parseInt(match[1]) : 1,
-      versiculo: match ? parseInt(match[2]) : 1,
+    const texto = verseInput.texto || shareMessage || 'Versículo compartilhado';
+    const livro = verseInput.livro || 'Bíblia';
+    const cap = match ? parseInt(match[1]) : 1;
+    const verso = match ? parseInt(match[2]) : 1;
+    const ref = `${livro} ${cap}:${verso}`;
+
+    const verseData: VerseSharedEvent = {
+      id: `v-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      participantId,
+      displayName: participantName,
+      verse: ref,
+      livro,
+      capitulo: cap,
+      versiculo: verso,
       texto,
       message: shareMessage || undefined,
-    });
-    if (shared && serviceRef.current) {
-      serviceRef.current.sendVerseShared({
-        id: shared.id,
-        participantId,
-        displayName: participantName,
-        verse: shared.verse,
-        livro: shared.livro,
-        capitulo: shared.capitulo,
-        versiculo: shared.versiculo,
-        texto: shared.texto,
-        message: shared.message,
-        timestamp: shared.timestamp,
-      });
-    }
+      timestamp: Date.now(),
+    };
+
+    // Adicionar localmente
+    setWsVerses(prev => [...prev, verseData]);
+    setActiveTab('verses');
+
+    // Enviar via WebSocket
+    chatServiceRef.current?.sendVerseShared(verseData);
+
     setShareInput('');
     setShareMessage('');
     setVerseInput({ livro: '', capitulo: '', versiculo: '', texto: '' });
     setShowShare(false);
   }, [room, shareInput, shareMessage, verseInput, participantId, participantName]);
 
+  // Enviar mensagem no chat
   const handleSendMessage = useCallback(() => {
     if (!room || !shareMessage.trim()) return;
-    const msgId = sendMessage(room.code, 'chat', shareMessage);
-    if (msgId && serviceRef.current) {
-      serviceRef.current.sendChatMessage(
-        msgId.id || `msg-${Date.now()}`,
-        participantId,
-        participantName,
-        shareMessage
-      );
-    }
+
+    const msg: ChatMessage = {
+      id: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      participantId,
+      displayName: participantName,
+      message: shareMessage,
+      timestamp: Date.now(),
+    };
+
+    // Adicionar localmente
+    setChatMessages(prev => [...prev, msg]);
+
+    // Enviar via WebSocket
+    chatServiceRef.current?.sendChatMessage(
+      msg.id, participantId, participantName, shareMessage
+    );
+
     setShareMessage('');
-    if (serviceRef.current) {
-      serviceRef.current.sendTypingStop(participantId);
-    }
+    chatServiceRef.current?.sendTypingStop(participantId);
   }, [room, shareMessage, participantId, participantName]);
 
   const handleTyping = useCallback(() => {
-    if (!serviceRef.current) return;
-    serviceRef.current.sendTypingStart(participantId, participantName);
-    if (typingTimerRef.current) {
-      clearTimeout(typingTimerRef.current);
-    }
+    if (!chatServiceRef.current) return;
+    chatServiceRef.current.sendTypingStart(participantId, participantName);
+    if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
     typingTimerRef.current = setTimeout(() => {
-      serviceRef.current?.sendTypingStop(participantId);
+      chatServiceRef.current?.sendTypingStop(participantId);
     }, 2000);
   }, [participantId, participantName]);
+
+  // Apresentar versículo
+  const handlePresentVerse = useCallback((verse: VerseSharedEvent) => {
+    setPresentedVerse({
+      texto: verse.texto,
+      referencia: verse.verse,
+      apresentadoPor: verse.displayName || getParticipantLabel(verse.participantId),
+    });
+    setActiveTab('presentation');
+    chatServiceRef.current?.sendPresentationSync({
+      action: 'navigate',
+      livro: verse.livro,
+      capitulo: verse.capitulo,
+      versiculo: verse.versiculo,
+      texto: verse.texto,
+      presentedBy: participantName,
+    });
+  }, [participantName]);
+
+  const handleStopPresentation = useCallback(() => {
+    setPresentedVerse(null);
+    chatServiceRef.current?.sendPresentationSync({ action: 'stop' });
+  }, []);
+
+  const handlePresentationFontSize = useCallback((size: number) => {
+    setPresentationFontSize(size);
+    chatServiceRef.current?.sendPresentationSync({ action: 'fontSize', fontSize: size });
+  }, []);
+
+  const handlePresentationMirror = useCallback((mirror: boolean) => {
+    setPresentationMirror(mirror);
+    chatServiceRef.current?.sendPresentationSync({ action: 'mirror', mirror });
+  }, []);
 
   const handleStartCall = useCallback((type: 'video' | 'voice') => {
     setCallType(type);
     setIsCallActive(true);
-    if (serviceRef.current) {
-      serviceRef.current.sendCallInvite(participantId, participantName, type);
-    }
+    chatServiceRef.current?.sendCallInvite(participantId, participantName, type);
   }, [participantId, participantName]);
 
   const handleAcceptCall = useCallback(() => {
-    if (incomingCall && serviceRef.current) {
-      serviceRef.current.sendCallAccept(incomingCall.callerSocketId, participantName);
+    if (incomingCall) {
+      chatServiceRef.current?.sendCallAccept(incomingCall.callerSocketId, participantName);
       setCallType(incomingCall.callType);
       setIsCallActive(true);
     }
@@ -250,8 +303,8 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   }, [incomingCall, participantName]);
 
   const handleRejectCall = useCallback(() => {
-    if (incomingCall && serviceRef.current) {
-      serviceRef.current.sendCallReject(incomingCall.callerSocketId, participantName);
+    if (incomingCall) {
+      chatServiceRef.current?.sendCallReject(incomingCall.callerSocketId, participantName);
     }
     setIncomingCall(null);
   }, [incomingCall, participantName]);
@@ -264,11 +317,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     setTimeout(() => setCopied(false), 2000);
   }, [room]);
 
-  const allItems = [
-    ...wsVerses.map(v => ({ ...v, type: 'verse' as const })),
-    ...chatMessages.map(m => ({ ...m, type: 'chat' as const })),
-  ].sort((a, b) => a.timestamp - b.timestamp);
-
+  // Tela de criação/join
   if (!room) {
     return (
       <div className={cn(
@@ -333,7 +382,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
                   : 'bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--content-muted)] opacity-50 cursor-not-allowed'
               )}
             >
-              <LogIn className="w-5 h-5" />
+              <LinkIcon className="w-5 h-5" />
             </motion.button>
           </div>
         </div>
@@ -369,7 +418,6 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               </div>
             ))}
           </div>
-
           <div className="flex items-center gap-1">
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -378,15 +426,13 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               disabled={isCallActive}
               className={cn(
                 'p-2 rounded-lg transition-all',
-                isCallActive
-                  ? 'opacity-50 cursor-not-allowed text-[var(--content-muted)]'
+                isCallActive ? 'opacity-50 cursor-not-allowed text-[var(--content-muted)]'
                   : 'bg-green-500/10 border border-green-500/30 text-green-600 dark:text-green-400 hover:bg-green-500/20'
               )}
               title="Chamada de voz"
             >
               <Mic className="w-4 h-4" />
             </motion.button>
-
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -394,15 +440,13 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               disabled={isCallActive}
               className={cn(
                 'p-2 rounded-lg transition-all',
-                isCallActive
-                  ? 'opacity-50 cursor-not-allowed text-[var(--content-muted)]'
+                isCallActive ? 'opacity-50 cursor-not-allowed text-[var(--content-muted)]'
                   : 'bg-green-500/10 border border-green-500/30 text-green-600 dark:text-green-400 hover:bg-green-500/20'
               )}
               title="Chamada de vídeo"
             >
               <Video className="w-4 h-4" />
             </motion.button>
-
             {isCallActive && (
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -415,7 +459,6 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               </motion.button>
             )}
           </div>
-
           <button
             onClick={copyRoomLink}
             className="p-2 hover:bg-[var(--surface-raised)] rounded-lg transition-colors text-[var(--content-muted)] hover:text-[var(--content-primary)]"
@@ -448,7 +491,6 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               displayName={participantName}
               callType={callType}
               onEndCall={() => setIsCallActive(false)}
-              onServiceReady={(svc) => { serviceRef.current = svc; }}
             />
           </motion.div>
         )}
@@ -456,55 +498,33 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
 
       {/* Abas */}
       <div className="flex border-b border-[var(--border)]/40 bg-[var(--surface-sunken)]/20">
-        <button
-          onClick={() => setActiveTab('verses')}
-          className={cn(
-            'flex-1 flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium transition-all border-b-2',
-            activeTab === 'verses'
-              ? 'border-[var(--brand-default)] text-[var(--brand-default)]'
-              : 'border-transparent text-[var(--content-muted)] hover:text-[var(--content-primary)]'
-          )}
-        >
-          <BookOpen className="w-4 h-4" />
-          Versículos
-          {wsVerses.length > 0 && (
-            <span className="px-1.5 py-0.5 text-[10px] rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)]">
-              {wsVerses.length}
-            </span>
-          )}
-        </button>
-        <button
-          onClick={() => setActiveTab('chat')}
-          className={cn(
-            'flex-1 flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium transition-all border-b-2',
-            activeTab === 'chat'
-              ? 'border-[var(--brand-default)] text-[var(--brand-default)]'
-              : 'border-transparent text-[var(--content-muted)] hover:text-[var(--content-primary)]'
-          )}
-        >
-          <MessageSquare className="w-4 h-4" />
-          Chat
-          {chatMessages.length > 0 && (
-            <span className="px-1.5 py-0.5 text-[10px] rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)]">
-              {chatMessages.length}
-            </span>
-          )}
-        </button>
-        <button
-          onClick={() => setActiveTab('presentation')}
-          className={cn(
-            'flex-1 flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium transition-all border-b-2',
-            activeTab === 'presentation'
-              ? 'border-[var(--brand-default)] text-[var(--brand-default)]'
-              : 'border-transparent text-[var(--content-muted)] hover:text-[var(--content-primary)]'
-          )}
-        >
-          <MonitorPlay className="w-4 h-4" />
-          Apresentar
-          {presentedVerse && (
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          )}
-        </button>
+        {([
+          { id: 'verses' as const, icon: BookOpen, label: 'Versículos', count: wsVerses.length },
+          { id: 'chat' as const, icon: MessageSquare, label: 'Chat', count: chatMessages.length },
+          { id: 'presentation' as const, icon: MonitorPlay, label: 'Apresentar', count: 0 },
+        ]).map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={cn(
+              'flex-1 flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium transition-all border-b-2',
+              activeTab === tab.id
+                ? 'border-[var(--brand-default)] text-[var(--brand-default)]'
+                : 'border-transparent text-[var(--content-muted)] hover:text-[var(--content-primary)]'
+            )}
+          >
+            <tab.icon className="w-4 h-4" />
+            {tab.label}
+            {tab.count > 0 && (
+              <span className="px-1.5 py-0.5 text-[10px] rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)]">
+                {tab.count}
+              </span>
+            )}
+            {tab.id === 'presentation' && presentedVerse && (
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            )}
+          </button>
+        ))}
       </div>
 
       {/* Conteúdo */}
@@ -524,13 +544,13 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
                 onStop={handleStopPresentation}
               />
             ) : (
-              <div className="flex flex-col items-center justify-center h-full gap-4">
+              <div className="flex flex-col items-center justify-center h-full gap-4 px-4">
                 <MonitorPlay className="w-12 h-12 text-[var(--content-muted)]/30" strokeWidth={1} />
-                <p className="text-sm text-[var(--content-muted)]">
+                <p className="text-sm text-[var(--content-muted)] text-center">
                   Nenhum versículo sendo apresentado.
                 </p>
-                <p className="text-xs text-[var(--content-muted)]/70">
-                  Clique &quot;Apresentar&quot; em um versículo compartilhado para exibir em tela grande.
+                <p className="text-xs text-[var(--content-muted)]/70 text-center">
+                  Compartilhe um versículo e clique &quot;Apresentar&quot; para exibir em tela grande.
                 </p>
               </div>
             )}
@@ -608,12 +628,14 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               <div className="space-y-3">
                 {chatMessages.length === 0 ? (
                   <div className="flex flex-col items-center justify-center py-12 text-center">
-                    <MessageSquare className="w-12 h-12 text-[var(--content-muted)]/30 mb-3" strokeWidth={1} />
-                    <p className="text-sm text-[var(--content-muted)]">
-                      Nenhuma mensagem ainda.
+                    <div className="w-16 h-16 rounded-2xl bg-[var(--brand-default)]/10 flex items-center justify-center mb-4">
+                      <MessageSquare className="w-8 h-8 text-[var(--brand-default)]" strokeWidth={1.5} />
+                    </div>
+                    <p className="text-sm font-medium text-[var(--content-primary)] mb-1">
+                      Inicie uma conversa
                     </p>
-                    <p className="text-xs text-[var(--content-muted)]/70 mt-1">
-                      Inicie uma conversa!
+                    <p className="text-xs text-[var(--content-muted)]">
+                      Envie mensagens para discutir com o grupo.
                     </p>
                   </div>
                 ) : (
@@ -732,7 +754,6 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
         </AnimatePresence>
 
         <div className="flex gap-2">
-          {/* Botão de compartilhar versículo - sempre visível */}
           <motion.button
             onClick={() => {
               setShowShare(!showShare);
@@ -766,7 +787,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
             }}
             placeholder={
               showShare
-                ? 'Digite a referência e pressione Compartilhar...'
+                ? 'Referência e texto acima, depois clique Compartilhar...'
                 : activeTab === 'chat'
                   ? 'Digite sua mensagem...'
                   : 'Digite algo ou compartilhe um versículo...'

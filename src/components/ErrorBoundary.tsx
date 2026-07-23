@@ -1,25 +1,26 @@
 'use client';
 
-import React from 'react';
-import { AlertTriangle, RefreshCw } from 'lucide-react';
+import { Component, type ReactNode } from 'react';
+import { AlertTriangle, RotateCcw, Home } from 'lucide-react';
+import Link from 'next/link';
 
-interface ErrorBoundaryProps {
-  children: React.ReactNode;
-  fallback?: React.ReactNode;
+interface Props {
+  children: ReactNode;
+  fallback?: ReactNode;
 }
 
-interface ErrorBoundaryState {
+interface State {
   hasError: boolean;
   error: Error | null;
 }
 
-export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
+export class ErrorBoundary extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+  static getDerivedStateFromError(error: Error): State {
     return { hasError: true, error };
   }
 
@@ -27,34 +28,36 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
     console.error('ErrorBoundary caught:', error, errorInfo);
   }
 
-  handleRetry = () => {
-    this.setState({ hasError: false, error: null });
-  };
-
   render() {
     if (this.state.hasError) {
-      if (this.props.fallback) {
-        return this.props.fallback;
-      }
+      if (this.props.fallback) return this.props.fallback;
 
       return (
-        <div className="flex flex-col items-center justify-center p-8 my-8 rounded-2xl border border-[var(--border)] bg-[var(--card)] text-center" role="alert">
-          <div className="w-14 h-14 rounded-xl bg-red-500/10 flex items-center justify-center mb-5">
-            <AlertTriangle className="w-7 h-7 text-red-500" />
+        <div className="min-h-[300px] flex items-center justify-center p-8">
+          <div className="text-center max-w-md">
+            <div className="w-16 h-16 rounded-2xl bg-red-500/10 flex items-center justify-center mx-auto mb-4">
+              <AlertTriangle className="w-8 h-8 text-red-500" />
+            </div>
+            <h2 className="font-display text-xl font-medium mb-2">Algo deu errado</h2>
+            <p className="text-sm text-muted-foreground mb-6">
+              Ocorreu um erro inesperado. Tente recarregar a página.
+            </p>
+            {this.state.error && (
+              <details className="text-xs text-left bg-muted/50 rounded-lg p-3 mb-4 text-muted-foreground">
+                <summary className="cursor-pointer font-medium mb-1">Detalhes do erro</summary>
+                <code className="block whitespace-pre-wrap break-all">{this.state.error.message}</code>
+              </details>
+            )}
+            <div className="flex gap-3 justify-center">
+              <button onClick={() => this.setState({ hasError: false, error: null })}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-medium">
+                <RotateCcw className="w-4 h-4" /> Tentar novamente
+              </button>
+              <Link href="/" className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border text-sm font-medium hover:bg-muted/50">
+                <Home className="w-4 h-4" /> Início
+              </Link>
+            </div>
           </div>
-          <h2 className="text-lg font-semibold text-[var(--fg)] mb-2">
-            Algo deu errado
-          </h2>
-          <p className="text-sm text-[var(--muted-fg)] mb-6 max-w-md">
-            Ocorreu um erro inesperado. Por favor, tente novamente ou recarregue a página.
-          </p>
-          <button
-            onClick={this.handleRetry}
-            className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] hover:opacity-90 transition-all duration-300"
-          >
-            <RefreshCw className="w-4 h-4" />
-            Tentar novamente
-          </button>
         </div>
       );
     }

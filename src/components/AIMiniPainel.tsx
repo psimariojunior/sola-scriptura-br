@@ -33,7 +33,7 @@ export function AIMiniPainel() {
         exit={{ scale: 0, opacity: 0 }}
         transition={{ duration: 0.3, type: 'spring', stiffness: 260, damping: 20 }}
         onClick={isMinimized ? expand : open}
-        className="fixed bottom-6 right-6 z-[70] w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transition-all group"
+        className="fixed left-6 bottom-[calc(60px+env(safe-area-inset-bottom,0px)+16px)] z-[70] w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transition-all group md:left-6 md:bottom-6"
         aria-label="Abrir assistente IA"
         title="Assistente IA (Ctrl+J)"
       >

@@ -91,7 +91,7 @@ function BottomNavBarInner() {
               onClick={() => setShowMore(false)}
             />
             <motion.div
-              className="fixed bottom-[68px] left-2 right-2 z-[61] bg-card border border-border rounded-xl shadow-xl overflow-hidden"
+              className="fixed bottom-[calc(60px+env(safe-area-inset-bottom,0px))] left-2 right-2 z-[61] bg-card border border-border rounded-xl shadow-xl overflow-hidden"
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.95 }}

@@ -2396,6 +2396,11 @@ textarea:focus-visible,
 
 /* Safe area insets (iPhone notch / dynamic island / Android gesture bar) */
 /* Aplicar em containers com pt-safe / pb-safe / pl-safe / pr-safe */
+:root {
+  --mobile-nav-height: 60px;
+  --mobile-bottom-offset: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom, 0px) + 16px);
+}
+
 @supports (padding: env(safe-area-inset-top)) {
   .pt-safe { padding-top: env(safe-area-inset-top); }
   .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
@@ -2414,6 +2419,18 @@ textarea:focus-visible,
     padding-bottom: env(safe-area-inset-bottom);
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Padding bottom para paginas com BottomNavBar mobile */
+.pb-mobile-nav {
+  padding-bottom: var(--mobile-bottom-offset);
+}
+
+@media (max-width: 767px) {
+  /* Sobrescrever pb-16 nas paginas para incluir espaco do BottomNavBar + safe area */
+  main[class*="pb-16"] {
+    padding-bottom: var(--mobile-bottom-offset) !important;
   }
 }
 

@@ -8,7 +8,7 @@ import {
   Menu, X, BookOpen, Search, Sun, Moon, User, LogOut, Languages, Stars, BookMarked,
   Command, Settings, ChevronDown, ScrollText, Brain, Map, Music, MonitorPlay,
   Sparkles, GraduationCap, MessageCircle, Library, Crown, Heart, History, HelpCircle, Download,
-  Users, Trophy, Target, BarChart3, GitBranch, Calendar, Columns,
+  Users, Trophy, Target, BarChart3, GitBranch, Calendar, Columns, Tag,
 } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { authService } from '@/lib/auth';
@@ -56,6 +56,8 @@ const moreLinks: NavLinkSpec[] = [
   { href: '/relacoes', label: 'Relações Bíblicas', icon: Users },
   { href: '/mapas', label: 'Atlas Bíblico', icon: Map },
   { href: '/referencias', label: 'Referências Cruzadas', icon: GitBranch },
+  { href: '/word-study', label: 'Word Study', icon: BookOpen },
+  { href: '/topicos', label: 'Índice Tópico', icon: Tag },
   { href: '/estudo-split', label: 'Modo Estudo', icon: BookOpen },
   { href: '/ferramentas', label: 'Ferramentas', icon: Sparkles },
   { href: '/quiz', label: 'Quiz Bíblico', icon: HelpCircle },

@@ -15,6 +15,7 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { registerServiceWorker } from '@/lib/offline';
 import { authService } from '@/lib/auth';
 import { initSentry } from '@/lib/sentry';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 import PageTransition from '@/components/PageTransition';
 import '@/lib/i18n';
 
@@ -130,7 +131,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               <EstudosProvider>
               <TopProgressBar />
               <Toaster />
-              <PageTransition>{children}</PageTransition>
+              <PageTransition><ErrorBoundary>{children}</ErrorBoundary></PageTransition>
               <BackToTop />
               <Suspense fallback={null}>
                 <BottomNavBar />

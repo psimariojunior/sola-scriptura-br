@@ -92,6 +92,10 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   } | null>(null);
   const [presentationFontSize, setPresentationFontSize] = useState(48);
   const [presentationMirror, setPresentationMirror] = useState(false);
+  const [chapterVerses, setChapterVerses] = useState<Array<{ texto: string; referencia: string }>>([]);
+  const [chapterVerseIndex, setChapterVerseIndex] = useState(-1);
+  const [autoAdvance, setAutoAdvance] = useState(false);
+  const autoAdvanceTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [bibleSyncData, setBibleSyncData] = useState<{ livro: string; capitulo: number; traducao: string } | null>(null);
   const [showEntrance, setShowEntrance] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -261,6 +265,16 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       setPresentedVerse({ texto: text || '', referencia: verseOrRef, apresentadoPor: participantName });
       chatServiceRef.current?.sendPresentationSync({ action: 'navigate', texto: text, presentedBy: participantName });
       setCurrentVerseIndex(-1);
+      // Also add to chapter verses for navigation
+      setChapterVerses(prev => {
+        const exists = prev.some(v => v.referencia === verseOrRef);
+        if (exists) return prev;
+        return [...prev, { texto: text || '', referencia: verseOrRef }];
+      });
+      setChapterVerseIndex(prev => {
+        const idx = chapterVerses.findIndex(v => v.referencia === verseOrRef);
+        return idx >= 0 ? idx : chapterVerses.length;
+      });
     } else {
       const idx = wsVerses.findIndex(v => v.id === verseOrRef.id);
       setCurrentVerseIndex(idx >= 0 ? idx : wsVerses.length);
@@ -268,7 +282,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       chatServiceRef.current?.sendPresentationSync({ action: 'navigate', livro: verseOrRef.livro, capitulo: verseOrRef.capitulo, versiculo: verseOrRef.versiculo, texto: verseOrRef.texto, presentedBy: participantName });
     }
     setShowBiblePanel(true);
-  }, [participantName, wsVerses]);
+  }, [participantName, wsVerses, chapterVerses]);
 
   const handleStopPresentation = useCallback(() => { setPresentedVerse(null); setCurrentVerseIndex(-1); chatServiceRef.current?.sendPresentationSync({ action: 'stop' }); }, []);
   const handlePresentationFontSize = useCallback((size: number) => { setPresentationFontSize(size); chatServiceRef.current?.sendPresentationSync({ action: 'fontSize', fontSize: size }); }, []);
@@ -276,26 +290,50 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
 
   // Navegação entre versículos na apresentação
   const navigateVerse = useCallback((direction: 'prev' | 'next') => {
-    if (wsVerses.length === 0) return;
+    // Prefer wsVerses if available, otherwise use chapterVerses
+    const verses = wsVerses.length > 0 ? wsVerses.map(v => ({ texto: v.texto, referencia: v.verse })) : chapterVerses;
+    const idx = wsVerses.length > 0 ? currentVerseIndex : chapterVerseIndex;
+    if (verses.length === 0) return;
+
     let newIndex: number;
     if (direction === 'next') {
-      newIndex = currentVerseIndex < wsVerses.length - 1 ? currentVerseIndex + 1 : 0;
+      newIndex = idx < verses.length - 1 ? idx + 1 : 0;
     } else {
-      newIndex = currentVerseIndex > 0 ? currentVerseIndex - 1 : wsVerses.length - 1;
+      newIndex = idx > 0 ? idx - 1 : verses.length - 1;
     }
-    const verse = wsVerses[newIndex];
-    setCurrentVerseIndex(newIndex);
-    setPresentedVerse({ texto: verse.texto, referencia: verse.verse, apresentadoPor: verse.displayName || getParticipantLabel(verse.participantId) });
+
+    const verse = verses[newIndex];
+    if (wsVerses.length > 0) {
+      setCurrentVerseIndex(newIndex);
+    } else {
+      setChapterVerseIndex(newIndex);
+    }
+    setPresentedVerse({ texto: verse.texto, referencia: verse.referencia, apresentadoPor: participantName });
     chatServiceRef.current?.sendPresentationSync({ action: 'navigate', texto: verse.texto, presentedBy: participantName });
-  }, [wsVerses, currentVerseIndex, participantName]);
+  }, [wsVerses, chapterVerses, currentVerseIndex, chapterVerseIndex, participantName]);
 
   const navigateToVerse = useCallback((index: number) => {
-    if (index < 0 || index >= wsVerses.length) return;
-    const verse = wsVerses[index];
-    setCurrentVerseIndex(index);
-    setPresentedVerse({ texto: verse.texto, referencia: verse.verse, apresentadoPor: verse.displayName || getParticipantLabel(verse.participantId) });
+    const verses = wsVerses.length > 0 ? wsVerses.map(v => ({ texto: v.texto, referencia: v.verse })) : chapterVerses;
+    if (index < 0 || index >= verses.length) return;
+    const verse = verses[index];
+    if (wsVerses.length > 0) {
+      setCurrentVerseIndex(index);
+    } else {
+      setChapterVerseIndex(index);
+    }
+    setPresentedVerse({ texto: verse.texto, referencia: verse.referencia, apresentadoPor: participantName });
     chatServiceRef.current?.sendPresentationSync({ action: 'navigate', texto: verse.texto, presentedBy: participantName });
-  }, [wsVerses, participantName]);
+  }, [wsVerses, chapterVerses, participantName]);
+
+  // Auto-advance timer
+  useEffect(() => {
+    if (!autoAdvance || !presentedVerse) {
+      if (autoAdvanceTimerRef.current) { clearInterval(autoAdvanceTimerRef.current); autoAdvanceTimerRef.current = null; }
+      return;
+    }
+    autoAdvanceTimerRef.current = setInterval(() => { navigateVerse('next'); }, 10000); // 10 seconds
+    return () => { if (autoAdvanceTimerRef.current) { clearInterval(autoAdvanceTimerRef.current); autoAdvanceTimerRef.current = null; } };
+  }, [autoAdvance, presentedVerse, navigateVerse]);
 
   // Navegação por teclado (setas esquerda/direita) quando apresentando
   useEffect(() => {
@@ -496,23 +534,30 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               fontSize={presentationFontSize} mirror={presentationMirror} isController={true}
               onFontSizeChange={handlePresentationFontSize} onMirrorChange={handlePresentationMirror} onStop={handleStopPresentation} />
             {/* Navegação entre versículos */}
-            {wsVerses.length > 0 && (
-              <div className="absolute bottom-14 left-0 right-0 flex items-center justify-center gap-3 z-10">
-                <button onClick={() => navigateVerse('prev')}
-                  className="p-2 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors backdrop-blur-sm"
-                  title="Versículo anterior (←)">
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <span className="text-xs text-white/70 font-mono px-3 py-1 rounded-full bg-black/50 backdrop-blur-sm">
-                  {currentVerseIndex >= 0 ? `${currentVerseIndex + 1}/${wsVerses.length}` : `${wsVerses.length} versículos`}
-                </span>
-                <button onClick={() => navigateVerse('next')}
-                  className="p-2 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors backdrop-blur-sm"
-                  title="Próximo versículo (→)">
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            )}
+            <div className="absolute bottom-14 left-0 right-0 flex items-center justify-center gap-3 z-10">
+              <button onClick={() => navigateVerse('prev')}
+                className="p-2 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors backdrop-blur-sm"
+                title="Versículo anterior (←)">
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <span className="text-xs text-white/70 font-mono px-3 py-1 rounded-full bg-black/50 backdrop-blur-sm">
+                {(() => {
+                  const total = wsVerses.length > 0 ? wsVerses.length : chapterVerses.length;
+                  const idx = wsVerses.length > 0 ? currentVerseIndex : chapterVerseIndex;
+                  return idx >= 0 ? `${idx + 1}/${total}` : `${total} versículos`;
+                })()}
+              </span>
+              <button onClick={() => navigateVerse('next')}
+                className="p-2 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors backdrop-blur-sm"
+                title="Próximo versículo (→)">
+                <ChevronRight className="w-5 h-5" />
+              </button>
+              <button onClick={() => setAutoAdvance(!autoAdvance)}
+                className={cn('p-2 rounded-full transition-colors backdrop-blur-sm', autoAdvance ? 'bg-green-500/80 text-white' : 'bg-black/60 text-white hover:bg-black/80')}
+                title={autoAdvance ? 'Parar auto-avanço' : 'Auto-avanço (10s)'}>
+                <Zap className="w-5 h-5" />
+              </button>
+            </div>
             {/* Toggle Bible panel */}
             <button onClick={() => setShowBiblePanel(!showBiblePanel)}
               className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-2 rounded-full bg-black/70 text-white text-xs font-medium hover:bg-black/90 transition-colors backdrop-blur-sm z-10">

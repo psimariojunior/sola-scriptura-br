@@ -3,10 +3,11 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { motion } from 'framer-motion';
-import { BarChart3, BookOpen, Heart, FileText, Brain, Flame, Target, Trophy, TrendingUp, Clock } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { BarChart3, BookOpen, Heart, FileText, Brain, Flame, Target, Trophy, TrendingUp, Clock, Share2 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
+import { ShareProgress } from '@/components/ShareProgress';
 
 interface ReadingSession {
   date: string;
@@ -18,6 +19,7 @@ interface ReadingSession {
 export default function DashboardPage() {
   const [sessions, setSessions] = useState<ReadingSession[]>([]);
   const [favoritos, setFavoritos] = useState<any[]>([]);
+  const [showShare, setShowShare] = useState(false);
   const [notas, setNotas] = useState<any[]>([]);
   const [flashcards, setFlashcards] = useState<any[]>([]);
   const [carregado, setCarregado] = useState(false);
@@ -70,16 +72,32 @@ export default function DashboardPage() {
       <main className="pt-24 pb-16 px-6">
         <div className="max-w-4xl mx-auto">
           <ScrollReveal>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                <BarChart3 className="w-5 h-5 text-primary" />
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                  <BarChart3 className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h1 className="font-display text-3xl font-light">Meu <span className="text-primary italic">Dashboard</span></h1>
+                  <p className="text-sm text-muted-foreground">Acompanhe seu progresso no estudo bíblico</p>
+                </div>
               </div>
-              <div>
-                <h1 className="font-display text-3xl font-light">Meu <span className="text-primary italic">Dashboard</span></h1>
-                <p className="text-sm text-muted-foreground">Acompanhe seu progresso no estudo bíblico</p>
-              </div>
+              <motion.button onClick={() => setShowShare(!showShare)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border text-sm font-medium hover:bg-muted/50 transition-all">
+                <Share2 className="w-4 h-4" /> Compartilhar
+              </motion.button>
             </div>
           </ScrollReveal>
+
+          <AnimatePresence>
+            {showShare && (
+              <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
+                className="mb-8 overflow-hidden">
+                <ShareProgress stats={{ chaptersRead: stats.totalChapters, booksCompleted: stats.uniqueBooks, streak: stats.streak, memorized: stats.mastered }}
+                  onClose={() => setShowShare(false)} />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">

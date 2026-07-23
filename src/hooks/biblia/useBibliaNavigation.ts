@@ -55,7 +55,6 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
   const livro = TODOS_LIVROS[livroIdx];
 
   const loadChapter = useCallback(async () => {
-    setData([]);
     setLoading(true);
     const livroAbrev = livro.abreviacao;
     const cap = capituloIdx + 1;

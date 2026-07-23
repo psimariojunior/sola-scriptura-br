@@ -128,7 +128,7 @@ export default function BibliaPage() {
                 <div className="flex-1 overflow-y-auto space-y-0.5">{nav.livrosFiltrados.map((l) => { const idx = TODOS_LIVROS.indexOf(l); return (<button key={l.abreviacao} onClick={() => handleGoToBook(idx)} className={cn('w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 flex items-center gap-2 group', idx === nav.livroIdx ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] font-semibold' : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] hover:text-[var(--content-primary)]')}><span className="truncate">{l.nome}</span><span className="ml-auto text-[10px] opacity-0 group-hover:opacity-50 transition-opacity tabular-nums">{l.totalCapitulos}c</span></button>); })}</div>
               </div>
             </motion.aside>)}</AnimatePresence>
-          <div className="flex-1 flex flex-col min-w-0 relative">
+          <div className="flex-1 flex flex-col min-w-0 relative overflow-hidden">
             <div className="border-b border-[var(--border)]/40 bg-[var(--surface-raised)]/95 backdrop-blur-sm sticky top-0 z-20">
               <div className="px-3 sm:px-4 py-2.5 flex items-center gap-2 sm:gap-3 flex-wrap">
                 <button onClick={() => ui.setMobileMenu(true)} className="lg:hidden touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]" aria-label="Abrir menu de livros"><BookOpen className="w-4 h-4" /></button>
@@ -173,10 +173,10 @@ export default function BibliaPage() {
               </div>
               <SettingsPanel open={ui.showSettings} fontSize={ui.fontSize} onFontSizeChange={ui.setFontSize} showDiff={ui.showDiff} onToggleDiff={() => ui.setShowDiff(!ui.showDiff)} showComparison={nav.viewMode === 'comparison' && nav.data.length >= 2} />
             </div>
-            <div ref={nav.mainRef} className="flex-1 overflow-y-auto">
+            <div ref={nav.mainRef} className="flex-1 overflow-y-auto" style={{ contain: 'layout' }}>
               <div className="max-w-[min(900px,100%-2rem)] mx-auto px-4 sm:px-6 py-6 sm:py-10">
                 {ui.showPlan && <ReadingPlanBanner />}
-                {nav.loading ? (
+                {nav.loading && !nav.temDados ? (
                   <div className="space-y-4 chapter-enter"><div className="skeleton skeleton-title w-48 mx-auto animate-pulse" /><div className="ornament w-20 mx-auto mb-8 opacity-30" />
                     {Array.from({ length: 10 }).map((_, i) => (<div key={i} className="flex gap-3 items-center" style={{ animationDelay: `${i * 50}ms` }}><div className="skeleton skeleton-text w-10 h-10 shrink-0 rounded-lg" /><div className="skeleton skeleton-text flex-1 rounded" style={{ width: `${60 + Math.random() * 40}%` }} /></div>))}
                   </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { memo, Fragment, useRef, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
@@ -96,9 +96,8 @@ export const VerseCard = memo(function VerseCard({
     <Fragment>
       <motion.article
         ref={articleRef}
-        initial={{ opacity: 0 }}
+        initial={false}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.25, ease: 'easeOut' }}
         onClick={onSelect}
         onMouseEnter={() => setShowActions(true)}
         onMouseLeave={() => setShowActions(false)}
@@ -179,16 +178,9 @@ export const VerseCard = memo(function VerseCard({
           </div>
 
           {/* Actions - appear on hover/selection */}
-          <AnimatePresence>
-            {(showActions || isSelected) && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.15 }}
-                className="shrink-0"
-              >
-                <VerseActions
+          {(showActions || isSelected) && (
+            <div className="shrink-0">
+              <VerseActions
                   livro={livroNome}
                   livroNome={livroNome}
                   livroAbreviacao={livroAbreviacao}
@@ -211,9 +203,8 @@ export const VerseCard = memo(function VerseCard({
                   copiedVerse={copiedVerse}
                   verseKey={verseKey}
                 />
-              </motion.div>
-            )}
-          </AnimatePresence>
+            </div>
+          )}
         </div>
       </motion.article>
     </Fragment>

@@ -4,31 +4,34 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Video, VideoOff, Mic, MicOff, PhoneOff, Phone,
-  MonitorUp, Users, Maximize2, Minimize2
+  MonitorUp, Maximize2, Minimize2
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { createWebRTCService, type PeerStream, type ConnectionStatus } from '@/lib/webrtc';
+import { createWebRTCService, type PeerStream, type ConnectionStatus, type WebRTCService } from '@/lib/webrtc';
 import { getParticipantLabel } from '@/lib/collaborative';
 
 interface VideoCallProps {
   roomCode: string;
   participantId: string;
   displayName?: string;
+  callType?: 'video' | 'voice';
   onEndCall: () => void;
+  onServiceReady?: (service: WebRTCService) => void;
 }
 
-export function VideoCall({ roomCode, participantId, displayName, onEndCall }: VideoCallProps) {
+export function VideoCall({ roomCode, participantId, displayName, callType = 'video', onEndCall, onServiceReady }: VideoCallProps) {
   const [status, setStatus] = useState<ConnectionStatus>('disconnected');
   const [localStream, setLocalStream] = useState<MediaStream | null>(null);
   const [peerStreams, setPeerStreams] = useState<PeerStream[]>([]);
   const [audioEnabled, setAudioEnabled] = useState(true);
-  const [videoEnabled, setVideoEnabled] = useState(true);
+  const [videoEnabled, setVideoEnabled] = useState(callType === 'video');
   const [minimized, setMinimized] = useState(false);
   const [isScreenSharing, setIsScreenSharing] = useState(false);
-  const serviceRef = useRef<ReturnType<typeof createWebRTCService> | null>(null);
+  const serviceRef = useRef<WebRTCService | null>(null);
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const screenStreamRef = useRef<MediaStream | null>(null);
   const name = displayName || getParticipantLabel(participantId);
+  const isVoiceOnly = callType === 'voice';
 
   const startCall = useCallback(async () => {
     try {
@@ -38,18 +41,19 @@ export function VideoCall({ roomCode, participantId, displayName, onEndCall }: V
       service.onStatus(setStatus);
       service.onPeerStream(setPeerStreams);
 
-      const stream = await service.getLocalStream(true, true);
+      const stream = await service.getLocalStream(!isVoiceOnly, true);
       setLocalStream(stream);
       if (localVideoRef.current) {
         localVideoRef.current.srcObject = stream;
       }
 
       service.connect(roomCode, participantId, name);
+      onServiceReady?.(service);
     } catch (err) {
       console.error('Failed to start call:', err);
       setStatus('error');
     }
-  }, [roomCode, participantId, name]);
+  }, [roomCode, participantId, name, isVoiceOnly, onServiceReady]);
 
   useEffect(() => {
     startCall();
@@ -92,7 +96,7 @@ export function VideoCall({ roomCode, participantId, displayName, onEndCall }: V
       setLocalStream(screenStream);
       screenStream.getVideoTracks()[0].onended = () => {
         setIsScreenSharing(false);
-        serviceRef.current?.getLocalStream(true, true).then(s => setLocalStream(s));
+        serviceRef.current?.getLocalStream(!isVoiceOnly, true).then(s => setLocalStream(s));
       };
     } catch {
       // user cancelled
@@ -124,13 +128,13 @@ export function VideoCall({ roomCode, participantId, displayName, onEndCall }: V
           )}
         >
           <div className="relative">
-            <Video className="w-5 h-5" />
+            {isVoiceOnly ? <Mic className="w-5 h-5" /> : <Video className="w-5 h-5" />}
             {isInCall && (
               <span className="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             )}
           </div>
           <span className="text-sm font-medium">
-            {totalPeers > 0 ? `${totalPeers + 1} participantes` : 'Chamada ativa'}
+            {totalPeers > 0 ? `${totalPeers + 1} participantes` : isVoiceOnly ? 'Chamada de voz' : 'Chamada ativa'}
           </span>
         </button>
       </motion.div>
@@ -151,7 +155,8 @@ export function VideoCall({ roomCode, participantId, displayName, onEndCall }: V
             isInCall ? 'bg-green-500 animate-pulse' : status === 'connecting' ? 'bg-yellow-500' : 'bg-red-500'
           )} />
           <span className="text-sm font-medium text-[var(--content-primary)]">
-            {isInCall ? 'Chamada em andamento' : status === 'connecting' ? 'Conectando...' : 'Desconectado'}
+            {isVoiceOnly ? '🎙️ Chamada de voz' : '📹 Chamada de vídeo'}
+            {isInCall ? ' — Ativa' : status === 'connecting' ? ' — Conectando...' : ' — Desconectado'}
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -168,48 +173,70 @@ export function VideoCall({ roomCode, participantId, displayName, onEndCall }: V
         </div>
       </div>
 
-      {/* Video Grid */}
+      {/* Video/Audio Grid */}
       <div className="flex-1 overflow-y-auto p-2">
-        <div className={cn(
-          'grid gap-2 h-full',
-          totalPeers === 0 ? 'grid-cols-1' : totalPeers === 1 ? 'grid-cols-2' : 'grid-cols-2 grid-rows-2'
-        )}>
-          {/* Local Video */}
-          <div className="relative rounded-xl overflow-hidden bg-black/80 border border-[var(--border)]/20">
-            <video
-              ref={localVideoRef}
-              autoPlay
-              muted
-              playsInline
-              className={cn(
-                'w-full h-full object-cover',
-                !videoEnabled && 'hidden'
-              )}
-            />
-            {!videoEnabled && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
-                <div className="w-16 h-16 rounded-full bg-[var(--brand-default)]/20 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-[var(--brand-default)]">
-                    {name.charAt(0).toUpperCase()}
-                  </span>
-                </div>
+        {isVoiceOnly ? (
+          <div className="flex flex-wrap justify-center items-center gap-4 h-full">
+            {/* Local participant avatar */}
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold text-white border-4 border-[var(--brand-default)]/30"
+                style={{ backgroundColor: audioEnabled ? 'var(--brand-default)' : '#666' }}>
+                {name.charAt(0).toUpperCase()}
               </div>
-            )}
-            <div className="absolute bottom-2 left-2 px-2 py-1 bg-black/60 rounded text-xs text-white font-medium">
-              Você
+              <span className="text-xs text-[var(--content-muted)]">Você {!audioEnabled && '(mudo)'}</span>
             </div>
-            {!audioEnabled && (
-              <div className="absolute top-2 right-2 p-1 bg-red-500/80 rounded-full">
-                <MicOff className="w-3 h-3 text-white" />
+            {/* Remote participant avatars */}
+            {peerStreams.map((peer) => (
+              <div key={peer.socketId} className="flex flex-col items-center gap-2">
+                <div className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold text-white border-4 border-green-500/30 bg-green-500/80">
+                  {(peer.displayName || peer.participantId).charAt(0).toUpperCase()}
+                </div>
+                <span className="text-xs text-[var(--content-muted)]">{peer.displayName || peer.participantId.slice(0, 8)}</span>
               </div>
-            )}
+            ))}
           </div>
+        ) : (
+          <div className={cn(
+            'grid gap-2 h-full',
+            totalPeers === 0 ? 'grid-cols-1' : totalPeers === 1 ? 'grid-cols-2' : 'grid-cols-2 grid-rows-2'
+          )}>
+            {/* Local Video */}
+            <div className="relative rounded-xl overflow-hidden bg-black/80 border border-[var(--border)]/20">
+              <video
+                ref={localVideoRef}
+                autoPlay
+                muted
+                playsInline
+                className={cn(
+                  'w-full h-full object-cover',
+                  !videoEnabled && 'hidden'
+                )}
+              />
+              {!videoEnabled && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
+                  <div className="w-16 h-16 rounded-full bg-[var(--brand-default)]/20 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-[var(--brand-default)]">
+                      {name.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                </div>
+              )}
+              <div className="absolute bottom-2 left-2 px-2 py-1 bg-black/60 rounded text-xs text-white font-medium">
+                Você
+              </div>
+              {!audioEnabled && (
+                <div className="absolute top-2 right-2 p-1 bg-red-500/80 rounded-full">
+                  <MicOff className="w-3 h-3 text-white" />
+                </div>
+              )}
+            </div>
 
-          {/* Remote Videos */}
-          {peerStreams.map((peer) => (
-            <RemoteVideo key={peer.socketId} peer={peer} />
-          ))}
-        </div>
+            {/* Remote Videos */}
+            {peerStreams.map((peer) => (
+              <RemoteVideo key={peer.socketId} peer={peer} />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Controls */}
@@ -229,35 +256,39 @@ export function VideoCall({ roomCode, participantId, displayName, onEndCall }: V
           {audioEnabled ? <Mic className="w-5 h-5" /> : <MicOff className="w-5 h-5" />}
         </motion.button>
 
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={toggleVideo}
-          className={cn(
-            'w-12 h-12 rounded-full flex items-center justify-center transition-all',
-            videoEnabled
-              ? 'bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--content-primary)]'
-              : 'bg-red-500 text-white'
-          )}
-          title={videoEnabled ? 'Desligar câmera' : 'Ligar câmera'}
-        >
-          {videoEnabled ? <Video className="w-5 h-5" /> : <VideoOff className="w-5 h-5" />}
-        </motion.button>
+        {!isVoiceOnly && (
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={toggleVideo}
+            className={cn(
+              'w-12 h-12 rounded-full flex items-center justify-center transition-all',
+              videoEnabled
+                ? 'bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--content-primary)]'
+                : 'bg-red-500 text-white'
+            )}
+            title={videoEnabled ? 'Desligar câmera' : 'Ligar câmera'}
+          >
+            {videoEnabled ? <Video className="w-5 h-5" /> : <VideoOff className="w-5 h-5" />}
+          </motion.button>
+        )}
 
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={toggleScreenShare}
-          className={cn(
-            'w-12 h-12 rounded-full flex items-center justify-center transition-all',
-            isScreenSharing
-              ? 'bg-blue-500 text-white'
-              : 'bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--content-primary)]'
-          )}
-          title={isScreenSharing ? 'Parar compartilhamento' : 'Compartilhar tela'}
-        >
-          <MonitorUp className="w-5 h-5" />
-        </motion.button>
+        {!isVoiceOnly && (
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={toggleScreenShare}
+            className={cn(
+              'w-12 h-12 rounded-full flex items-center justify-center transition-all',
+              isScreenSharing
+                ? 'bg-blue-500 text-white'
+                : 'bg-[var(--surface-raised)] border border-[var(--border)] text-[var(--content-primary)]'
+            )}
+            title={isScreenSharing ? 'Parar compartilhamento' : 'Compartilhar tela'}
+          >
+            <MonitorUp className="w-5 h-5" />
+          </motion.button>
+        )}
 
         <motion.button
           whileHover={{ scale: 1.1 }}

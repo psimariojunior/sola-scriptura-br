@@ -28,6 +28,51 @@ interface SignalingParticipant {
   displayName: string;
 }
 
+export interface ChatMessage {
+  id: string;
+  participantId: string;
+  displayName: string;
+  message: string;
+  timestamp: number;
+}
+
+export interface VerseSharedEvent {
+  id: string;
+  participantId: string;
+  displayName: string;
+  verse: string;
+  livro: string;
+  capitulo: number;
+  versiculo: number;
+  texto: string;
+  message?: string;
+  timestamp: number;
+}
+
+export interface TypingEvent {
+  participantId: string;
+  displayName: string;
+}
+
+export interface CallInviteEvent {
+  callerSocketId: string;
+  callerId: string;
+  callerName: string;
+  callType: 'video' | 'voice';
+  code: string;
+}
+
+export interface PresentationSyncEvent {
+  action: 'navigate' | 'fontSize' | 'mirror' | 'stop';
+  livro?: string;
+  capitulo?: number;
+  versiculo?: number;
+  texto?: string;
+  fontSize?: number;
+  mirror?: boolean;
+  presentedBy?: string;
+}
+
 export class WebRTCService {
   private socket: Socket | null = null;
   private peers = new Map<string, RTCPeerConnection>();
@@ -35,8 +80,21 @@ export class WebRTCService {
   private onPeerStreamCallback: ((peers: PeerStream[]) => void) | null = null;
   private onStatusCallback: ((status: ConnectionStatus) => void) | null = null;
   private onParticipantsCallback: ((participants: SignalingParticipant[]) => void) | null = null;
+  private onChatMessageCallback: ((msg: ChatMessage) => void) | null = null;
+  private onVerseSharedCallback: ((verse: VerseSharedEvent) => void) | null = null;
+  private onTypingStartCallback: ((data: TypingEvent) => void) | null = null;
+  private onTypingStopCallback: ((participantId: string) => void) | null = null;
+  private onCallInviteCallback: ((data: CallInviteEvent) => void) | null = null;
+  private onCallAcceptCallback: ((data: { code: string; acceptorSocketId: string }) => void) | null = null;
+  private onCallRejectCallback: ((data: { code: string; rejectorName: string }) => void) | null = null;
+  private onPresentationSyncCallback: ((data: PresentationSyncEvent) => void) | null = null;
   private peerStreams: PeerStream[] = [];
   private mySocketId = '';
+  private roomCode = '';
+
+  get socketId(): string {
+    return this.mySocketId;
+  }
 
   async getLocalStream(video = true, audio = true): Promise<MediaStream> {
     const stream = await navigator.mediaDevices.getUserMedia({
@@ -48,6 +106,7 @@ export class WebRTCService {
   }
 
   connect(roomCode: string, participantId: string, displayName: string) {
+    this.roomCode = roomCode;
     this.socket = io(WS_URL, {
       path: '/socket.io/',
       transports: ['websocket', 'polling'],
@@ -97,6 +156,99 @@ export class WebRTCService {
     this.socket.on('peer-left', (data: { socketId: string }) => {
       this.removePeer(data.socketId);
     });
+
+    this.socket.on('chat-message', (data: ChatMessage) => {
+      this.onChatMessageCallback?.(data);
+    });
+
+    this.socket.on('verse-shared-ws', (data: VerseSharedEvent) => {
+      this.onVerseSharedCallback?.(data);
+    });
+
+    this.socket.on('typing-start', (data: TypingEvent) => {
+      this.onTypingStartCallback?.(data);
+    });
+
+    this.socket.on('typing-stop', (data: { participantId: string }) => {
+      this.onTypingStopCallback?.(data.participantId);
+    });
+
+    this.socket.on('call-invite', (data: CallInviteEvent) => {
+      this.onCallInviteCallback?.(data);
+    });
+
+    this.socket.on('call-accept', (data: { code: string; acceptorSocketId: string }) => {
+      this.onCallAcceptCallback?.(data);
+    });
+
+    this.socket.on('call-reject', (data: { code: string; rejectorName: string }) => {
+      this.onCallRejectCallback?.(data);
+    });
+
+    this.socket.on('presentation-sync', (data: PresentationSyncEvent) => {
+      this.onPresentationSyncCallback?.(data);
+    });
+  }
+
+  sendChatMessage(id: string, participantId: string, displayName: string, message: string) {
+    if (!this.socket || !this.roomCode) return;
+    const data = {
+      code: this.roomCode,
+      id,
+      participantId,
+      displayName,
+      message,
+      timestamp: Date.now(),
+    };
+    this.socket.emit('chat-message', data);
+  }
+
+  sendVerseShared(data: VerseSharedEvent) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('verse-shared-ws', { ...data, code: this.roomCode });
+  }
+
+  sendTypingStart(participantId: string, displayName: string) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('typing-start', { code: this.roomCode, participantId, displayName });
+  }
+
+  sendTypingStop(participantId: string) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('typing-stop', { code: this.roomCode, participantId });
+  }
+
+  sendCallInvite(callerId: string, callerName: string, callType: 'video' | 'voice') {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('call-invite', {
+      code: this.roomCode,
+      callerId,
+      callerName,
+      callType,
+    });
+  }
+
+  sendCallAccept(targetSocketId: string, callerName: string) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('call-accept', {
+      code: this.roomCode,
+      targetSocketId,
+      callerName,
+    });
+  }
+
+  sendCallReject(targetSocketId: string, callerName: string) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('call-reject', {
+      code: this.roomCode,
+      targetSocketId,
+      callerName,
+    });
+  }
+
+  sendPresentationSync(data: PresentationSyncEvent) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('presentation-sync', { ...data, code: this.roomCode });
   }
 
   private async createOffer(targetSocketId: string) {
@@ -240,6 +392,38 @@ export class WebRTCService {
     this.onParticipantsCallback = cb;
   }
 
+  onChatMessage(cb: (msg: ChatMessage) => void) {
+    this.onChatMessageCallback = cb;
+  }
+
+  onVerseShared(cb: (verse: VerseSharedEvent) => void) {
+    this.onVerseSharedCallback = cb;
+  }
+
+  onTypingStart(cb: (data: TypingEvent) => void) {
+    this.onTypingStartCallback = cb;
+  }
+
+  onTypingStop(cb: (participantId: string) => void) {
+    this.onTypingStopCallback = cb;
+  }
+
+  onCallInvite(cb: (data: CallInviteEvent) => void) {
+    this.onCallInviteCallback = cb;
+  }
+
+  onCallAccept(cb: (data: { code: string; acceptorSocketId: string }) => void) {
+    this.onCallAcceptCallback = cb;
+  }
+
+  onCallReject(cb: (data: { code: string; rejectorName: string }) => void) {
+    this.onCallRejectCallback = cb;
+  }
+
+  onPresentationSync(cb: (data: PresentationSyncEvent) => void) {
+    this.onPresentationSyncCallback = cb;
+  }
+
   disconnect() {
     this.peers.forEach(pc => pc.close());
     this.peers.clear();
@@ -252,6 +436,14 @@ export class WebRTCService {
     this.onPeerStreamCallback = null;
     this.onStatusCallback = null;
     this.onParticipantsCallback = null;
+    this.onChatMessageCallback = null;
+    this.onVerseSharedCallback = null;
+    this.onTypingStartCallback = null;
+    this.onTypingStopCallback = null;
+    this.onCallInviteCallback = null;
+    this.onCallAcceptCallback = null;
+    this.onCallRejectCallback = null;
+    this.onPresentationSyncCallback = null;
   }
 }
 

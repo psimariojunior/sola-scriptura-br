@@ -34,6 +34,7 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
 
   private logger = new Logger('ColaborativoGateway');
   private rooms = new Map<string, SignalingRoom>();
+  private typingTimers = new Map<string, ReturnType<typeof setTimeout>>();
 
   handleConnection(client: Socket) {
     this.logger.log(`Client connected: ${client.id}`);
@@ -41,6 +42,7 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
 
   handleDisconnect(client: Socket) {
     this.logger.log(`Client disconnected: ${client.id}`);
+    this.handleTypingStopBySocket(client);
     this.removeParticipantFromAllRooms(client.id);
   }
 
@@ -105,6 +107,137 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
     });
   }
 
+  @SubscribeMessage('chat-message')
+  handleChatMessage(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: {
+      code: string;
+      id: string;
+      participantId: string;
+      displayName: string;
+      message: string;
+      timestamp: number;
+    },
+  ) {
+    client.to(data.code).emit('chat-message', data);
+  }
+
+  @SubscribeMessage('verse-shared-ws')
+  handleVerseSharedWs(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: {
+      code: string;
+      id: string;
+      participantId: string;
+      displayName: string;
+      verse: string;
+      livro: string;
+      capitulo: number;
+      versiculo: number;
+      texto: string;
+      message?: string;
+      timestamp: number;
+    },
+  ) {
+    client.to(data.code).emit('verse-shared-ws', data);
+  }
+
+  @SubscribeMessage('typing-start')
+  handleTypingStart(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { code: string; participantId: string; displayName: string },
+  ) {
+    client.to(data.code).emit('typing-start', data);
+
+    const key = `${data.code}:${data.participantId}`;
+    if (this.typingTimers.has(key)) {
+      clearTimeout(this.typingTimers.get(key)!);
+    }
+    this.typingTimers.set(key, setTimeout(() => {
+      this.handleTypingStop(data.code, data.participantId);
+      this.typingTimers.delete(key);
+    }, 3000));
+  }
+
+  @SubscribeMessage('typing-stop')
+  handleTypingStop(code: string, participantId: string) {
+    this.server.to(code).emit('typing-stop', { code, participantId });
+  }
+
+  private handleTypingStopBySocket(client: Socket) {
+    for (const [code] of this.rooms.entries()) {
+      const room = this.rooms.get(code);
+      if (room) {
+        const participant = room.participants.get(client.id);
+        if (participant) {
+          this.handleTypingStop(code, participant.participantId);
+          const key = `${code}:${participant.participantId}`;
+          if (this.typingTimers.has(key)) {
+            clearTimeout(this.typingTimers.get(key)!);
+            this.typingTimers.delete(key);
+          }
+        }
+      }
+    }
+  }
+
+  @SubscribeMessage('call-invite')
+  handleCallInvite(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: {
+      code: string;
+      callerId: string;
+      callerName: string;
+      callType: 'video' | 'voice';
+    },
+  ) {
+    client.to(data.code).emit('call-invite', {
+      ...data,
+      callerSocketId: client.id,
+    });
+  }
+
+  @SubscribeMessage('call-accept')
+  handleCallAccept(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { code: string; targetSocketId: string; callerName: string },
+  ) {
+    this.server.to(data.targetSocketId).emit('call-accept', {
+      code: data.code,
+      acceptorSocketId: client.id,
+      callerName: data.callerName,
+    });
+  }
+
+  @SubscribeMessage('call-reject')
+  handleCallReject(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { code: string; targetSocketId: string; callerName: string },
+  ) {
+    this.server.to(data.targetSocketId).emit('call-reject', {
+      code: data.code,
+      rejectorName: data.callerName,
+    });
+  }
+
+  @SubscribeMessage('presentation-sync')
+  handlePresentationSync(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: {
+      code: string;
+      action: 'navigate' | 'fontSize' | 'mirror' | 'stop';
+      livro?: string;
+      capitulo?: number;
+      versiculo?: number;
+      texto?: string;
+      fontSize?: number;
+      mirror?: boolean;
+      presentedBy?: string;
+    },
+  ) {
+    client.to(data.code).emit('presentation-sync', data);
+  }
+
   private removeParticipantFromRoom(client: Socket, code: string) {
     const room = this.rooms.get(code);
     if (!room) return;
@@ -115,6 +248,11 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
 
     if (participant) {
       this.logger.log(`${participant.displayName} left room ${code}`);
+      const key = `${code}:${participant.participantId}`;
+      if (this.typingTimers.has(key)) {
+        clearTimeout(this.typingTimers.get(key)!);
+        this.typingTimers.delete(key);
+      }
     }
 
     if (room.participants.size === 0) {
@@ -138,6 +276,11 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
 
         if (participant) {
           this.logger.log(`${participant.displayName} disconnected from room ${code}`);
+          const key = `${code}:${participant.participantId}`;
+          if (this.typingTimers.has(key)) {
+            clearTimeout(this.typingTimers.get(key)!);
+            this.typingTimers.delete(key);
+          }
         }
 
         if (room.participants.size === 0) {

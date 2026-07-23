@@ -13,118 +13,118 @@ import {
 } from 'lucide-react';
 
 const secoes = [
-  { id: 'intro', label: 'Introducao' },
+  { id: 'intro', label: 'Introdução' },
   { id: 'estrutura', label: 'Estrutura' },
-  { id: 'versiculos', label: 'Versiculos-Chave' },
+  { id: 'versiculos', label: 'Versículos-Chave' },
   { id: 'temas', label: 'Temas Centrais' },
-  { id: 'hino', label: 'Hino Cristologico' },
-  { id: 'aplicacao', label: 'Aplicacao' },
+  { id: 'hino', label: 'Hino Cristológico' },
+  { id: 'aplicação', label: 'Aplicação' },
   { id: 'perguntas', label: 'Perguntas' },
 ];
 
 const estrutura = [
   { parte: 'Parte I: Relacao Pessoal (Caps. 1-2)', cor: 'border-blue-500', bg: 'bg-blue-500/5', itens: [
-    'Cap. 1: Agradecimento e oracao — Paulo preso, mas alegre; o evangelho avanca mesmo na prisao',
-    'Cap. 2: Exortacao a unidade — o Hino Cristologico (2:5-11) como fundamento da humildade',
+    'Cap. 1: Agradecimento e oracao — Paulo preso, mas alegre; o evangelho avanca mesmo na prisão',
+    'Cap. 2: Exortacao a unidade — o Hino Cristológico (2:5-11) como fundamento da humildade',
   ]},
   { parte: 'Parte II: Instrucao Pratica (Caps. 3-4)', cor: 'border-green-500', bg: 'bg-green-500/5', itens: [
-    'Cap. 3: Perseguir a Cristo — contar tudo como perda, connaece-lo na ressurreicao',
+    'Cap. 3: Perseguir a Cristo — contar tudo como perda, connaece-lo na ressurreição',
     'Cap. 4: Instrucoes finais — contentamento, paz de Deus, fortalecer-se no Senhor',
   ]},
 ];
 
 const versiculosChave = [
   {
-    referencia: 'Filipenses 1:6',
+    referência: 'Filipenses 1:6',
     texto: 'Estou certo de que aquele que em vós começo a boa obra a consumara ate ao dia de Cristo Jesus.',
-    explicacao: 'Deus e o autor e consumador da obra de salvacao. O que Ele comeca, termina. Essa certeza da perseveranca e fundamento para a alegria de Paulo na prisao. O processo de santificacao e garantido pela fidelidade divina.',
+    explicação: 'Deus é o autor e consumador da obra de salvação. O que Ele comeca, termina. Essa certeza da perseverança e fundamento para a alegria de Paulo na prisão. O processo de santificação e garantido pela fidelidade divina.',
     comentarios: [
-      { teologo: 'D.A. Carson', texto: 'Paulo nao tem duvidas sobre o resultado final da obra de Deus. A certeza nao esta em nos mesmos, mas na fidelidade de Deus que comeca e completa. Isso nao anula a responsabilidade humana, mas a sustenta com a garantia divina.' },
-      { teologo: 'John Stott', texto: 'A boa obra de Deus inclui tanto a justificacao inicial quanto a santificacao continuada e a glorificacao futura. E um processo integral que Deus supervisiona do principio ao fim.' },
+      { teologo: 'D.A. Carson', texto: 'Paulo não tem duvidas sobre o resultado final da obra de Deus. A certeza não esta em nos mesmos, mas na fidelidade de Deus que comeca e completa. Isso não anula a responsabilidade humana, mas a sustenta com a garantia divina.' },
+      { teologo: 'John Stott', texto: 'A boa obra de Deus inclui tanto a justificação inicial quanto a santificação continuada é a glorificação futura. E um processo integral que Deus supervisiona do principio ao fim.' },
     ],
   },
   {
-    referencia: 'Filipenses 2:5-11',
-    texto: 'De sorte que havendo em vos o mesmo sentimento que houve tambem em Cristo Jesus, que, sendo em forma de Deus, nao teve por ususrpacao ser igual a Deus, mas esvaziou-se a si mesmo, tomando a forma de servo, fazendo-se semelhante aos homens; e, achado em figura de homem, humilhou a si mesmo, sendo obediente ate a morte, e morte de cruz. Pelo que Deus tambem o exaltou soberanamente, e lhe deu um nome que e sobre todo nome, para que em nome de Jesus se dobre todo joelho dos que estao nos ceus, e na terra, e debaixo da terra, e toda lingua confesse que Jesus Cristo e o Senhor, para gloria de Deus Pai.',
-    explicacao: 'Este e o mais elevado texto cristologico do Novo Testamento. Descreve a kenosis (esvaziamento) voluntaria de Cristo: de Deus, servo; de senhor, obediente; de gloria, cruz. A exaltacao subsequente e a consequencia da humildade perfeita.',
+    referência: 'Filipenses 2:5-11',
+    texto: 'De sorte que havendo em vos o mesmo sentimento que houve também em Cristo Jesus, que, sendo em forma de Deus, não teve por ususrpacao ser igual a Deus, mas esvaziou-se a si mesmo, tomando a forma de servo, fazendo-se semelhante aos homens; e, achado em figura de homem, humilhou a si mesmo, sendo obediente ate a morte, e morte de cruz. Pelo que Deus também o exaltou soberanamente, e lhe deu um nome que e sobre todo nome, para que em nome de Jesus se dobre todo joelho dos que estão nos ceus, e na terra, e debaixo da terra, e toda lingua confésse que Jesus Cristo é o Senhor, para glória de Deus Pai.',
+    explicação: 'Este é o mais elevado texto Cristologico do Novo Testamento. Descreve a kenosis (esvaziamento) voluntaria de Cristo: de Deus, servo; de senhor, obediente; de glória, cruz. A exaltação subsequente é a consequencia da humildade perfeita.',
     comentarios: [
-      { teologo: 'Atanasio de Alexandria', texto: 'Cristo nao deixou de ser Deus ao se fazer homem. A kenosis nao e uma diminuicao da divindade, mas um acréscimo da humanidade. Ele tomou o que nao era (servo) sem perder o que era (Deus). A dois naturezas permanecem intactas na pessoa de Cristo.' },
-      { teologo: 'Karl Barth', texto: 'O himno cristologico de Filipenses 2 e a chave para toda a teologia paulina. A humildade de Cristo e o paradigma da relacao entre Deus e humanidade. Deus nao se impoe, mas se doa. A cruz e o climax da revelacao divina: Deus como servo.' },
-      { teologo: 'Jurgen Moltmann', texto: 'A kenosis de Cristo revela um Deus que sofre pelo mundo. A cruz nao e apenas um ato de obediencia, mas o sofrimento de Deus na historia. O Deus crucificado e o unico Deus que pode salvar um mundo crucificado.' },
-      { teologo: 'N.T. Wright', texto: 'A exaltacao de Jesus (2:9-11) nao e apenas espiritual, mas cosmica. Todo joelho se dobra — ceus, terra, debaixo da terra. Jesus e Senhor sobre toda a realidade. Isso implica que Cesar nao e senhor. O hino e subversivo politicamente.' },
+      { teologo: 'Atanasio de Alexandria', texto: 'Cristo não deixou de ser Deus ao se fazer homem. A kenosis não é uma diminuicao da divindade, mas um acréscimo da humanidade. Ele tomou o que não era (servo) sem perder o que era (Deus). A dois naturezas permanecem intactas na pessoa de Cristo.' },
+      { teologo: 'Karl Barth', texto: 'O himno Cristologico de Filipenses 2 é a chave para toda a teologia paulina. A humildade de Cristo é o paradigma da relacao entre Deus e humanidade. Deus não se impoe, mas se doa. A cruz é o climax da revelacao divina: Deus como servo.' },
+      { teologo: 'Jurgen Moltmann', texto: 'A kenosis de Cristo revela um Deus que sofre pelo mundo. A cruz não e apenas um ato de obediência, mas o sofrimento de Deus na historia. O Deus crucificado é o unico Deus que pode salvar um mundo crucificado.' },
+      { teologo: 'N.T. Wright', texto: 'A exaltação de Jesus (2:9-11) não e apenas espiritual, mas cosmica. Todo joelho se dobra — ceus, terra, debaixo da terra. Jesus e Senhor sobre toda a realidade. Isso implica que Cesar não e senhor. O hino e subversivo politicamente.' },
     ],
   },
   {
-    referencia: 'Filipenses 4:6-7',
-    texto: 'Nao vos preocupeis com nada, mas em tudo sejam conhecidas as vossas peticoes diante de Deus, em oracao e suplica, com acoes de graças. E a paz de Deus, que sobrepuja todo entendimento, guardara os vossos coracoes e os vossos pensamentos em Cristo Jesus.',
-    explicacao: 'Paulo ensina um padrao de oracao: em vez de ansiedade, oracao com agradecimento. A paz de Deus e sobrenatural — protege o coracao e a mente. Nao e ausencia de problemas, mas presenca de Deus no meio deles.',
+    referência: 'Filipenses 4:6-7',
+    texto: 'Nao vos preocupeis com nada, mas em tudo sejam conhecidas as vossas peticoes diante de Deus, em oracao e suplica, com acoes de graças. E a paz de Deus, que sobrepuja todo entendimento, guardara os vossos corações e os vossos pensamentos em Cristo Jesus.',
+    explicação: 'Paulo ensina um padrao de oracao: em vez de ansiedade, oracao com agradecimento. A paz de Deus e sobrenatural — protege o coração é a mente. Nao e ausencia de problemas, mas presenca de Deus no meio deles.',
     comentarios: [
-      { teologo: 'Dietrich Bonhoeffer', texto: 'A oracao de acoes de graças e o antitodo para a ansiedade. Quem agradece nao se preocupa, porque reconhece que Deus ja agiu. A paz de Deus nao e compreensivel racionalmente — ela guardara os pensamentos como uma guarnicao divina.' },
-      { teologo: 'R.C. Sproul', texto: 'A instrucao de Paulo nao e sentimental, mas imperativa: "nao vos preocupeis" e um comando. A oracao e a ferramenta que torna obedece-lo possivel. A paz de Deus e o fruto da obediencia na oracao, nao meramente um sentimento.' },
+      { teologo: 'Dietrich Bonhoeffér', texto: 'A oracao de acoes de graças é o antitodo para a ansiedade. Quem agradece não se preocupa, porque reconhece que Deus ja agiu. A paz de Deus não e compreensivel racionalmente — ela guardara os pensamentos como uma guarnicao divina.' },
+      { teologo: 'R.C. Sproul', texto: 'A instrução de Paulo não e sentimental, mas imperativa: "não vos preocupeis" é um comando. A oracao é a férramenta que torna obedece-lo possivel. A paz de Deus é o fruto da obediência na oracao, não meramente um sentimento.' },
     ],
   },
   {
-    referencia: 'Filipenses 4:13',
+    referência: 'Filipenses 4:13',
     texto: 'Posso todas as coisas naquele que me fortalece.',
-    explicacao: 'Este versiculo nao e sobre realizar ambicoes pessoais, mas sobre encontrar contentamento em qualquer circunstancia — abundancia ou escassez. O contexto (4:10-13) fala de contentamento, nao de conquista.',
+    explicação: 'Este versiculo não e sobre realizar ambicoes pessoais, mas sobre encontrar contentamento em qualquer circunstancia — abundancia ou escassez. O contexto (4:10-13) fala de contentamento, não de conquista.',
     comentarios: [
-      { teologo: 'John Stott', texto: 'Filipenses 4:13 e um dos versiculos mais mal interpretados da Biblia. Paulo nao esta dizendo que pode alcanar qualquer meta. Ele esta dizendo que aprendeu a contentar-se em toda a situacao — na abundancia e na falta. O "fortalecimento" e para perseverar, nao para conquistar.' },
-      { teologo: 'D.A. Carson', texto: 'O contexto imediato e essencial: Paulo aprendeu a contentar-se (4:11-12). O versiculo 4:13 e a explicacao de como ele consegue contentar-se — pela forca de Cristo. Aplica-lo a ganhar competicoes ou conquistas materiais e uma distorcao grave do texto.' },
+      { teologo: 'John Stott', texto: 'Filipenses 4:13 é um dos versiculos mais mal interpretados da Biblia. Paulo não esta dizendo que pode alcanar qualquer meta. Ele esta dizendo que aprendeu a contentar-se em toda a situacao — na abundancia e na falta. O "fortalecimento" e para perseverar, não para conquistar.' },
+      { teologo: 'D.A. Carson', texto: 'O contexto imediato e essencial: Paulo aprendeu a contentar-se (4:11-12). O versiculo 4:13 é a explicação de como ele consegue contentar-se — pela forca de Cristo. Aplica-lo a ganhar competicoes ou conquistas materiais é uma distorcao grave do texto.' },
     ],
   },
 ];
 
 const temasCentrais = [
-  { titulo: 'Alegria na Adversidade', icone: Smile, cor: 'text-yellow-500', descricao: 'A palavra "alegria" ou "gozo" aparece 16 vezes em 4 epistolas. Em Filipenses, Paulo esta preso, ameacado de morte, e mesmo assim exulta. A alegria cristã nao depende de circunstancias, mas de Cristo. A frase-chave: "Alegrai-vos sempre no Senhor" (4:4). A alegria de Paulo nao e otimismo superficial, mas certeza profunda de que Deus esta no controle.' },
-  { titulo: 'Humildade de Cristo', icone: Heart, cor: 'text-red-500', descricao: 'O Hino Cristologico (2:5-11) e o coracao teologico de Filipenses. Cristo se esvaziou, servo, morreu na cruz. A humildade divina e o modelo para a humildade humana. Quem conhece a humildade de Cristo se humilha diante dos irmaos. A kenosis nao e perda de divindade, mas aquisicao de humanidade — Cristo tomou o que nao era sem perder o que era.' },
-  { titulo: 'Contentamento', icone: Star, cor: 'text-green-500', descricao: 'Paulo aprendeu a contentar-se em toda a situacao (4:11-12). O contentamento nao e conformismo, mas confianca de que Cristo basta em qualquer circunstancia. E um dos frutos maduros do evangelho na vida do crente. Paulo testemunha que ja esteve na abundancia e na falta — e em ambos aprendeu o segredo do contentamento.' },
-  { titulo: 'Unidade na Igreja', icone: BookMarked, cor: 'text-purple-500', descricao: 'Paulo exorta Evodia e Sintique a concordarem no Senhor (4:2). A unidade da igreja e mais importante que razoes pessoais. O fundamento da unidade e a humildade cristologica (2:1-11). Cristo e o modelo e o mantenedor da unidade. A unidade nao exige uniformidade, mas amor que prioriza o Reino acima de preferencias pessoais.' },
-  { titulo: 'A Proclamacao do Evangelho', icone: Sparkles, cor: 'text-blue-500', descricao: 'Paulo esta preso, mas o evangelho avanca (1:12-14). Até os pretorianos (soldados da guarda imperial) conhecem Cristo (4:22). A prisao nao impede o evangelho — pelo contrario, a torna mais poderosa. A cadeia de Paulo se torna púlpito para o império.' },
-  { titulo: 'A Corrida Cristã', icone: Target, cor: 'text-orange-500', descricao: 'Paulo compara a vida cristã com uma corrida (3:12-14): "Esquecendo-me das coisas que ficam para tras e me estendendo as que estao diante de mim, prossigo para o alvo." O cristão nao pode se acomodar — há sempre mais para conhecer de Cristo.' },
+  { título: 'Alegria na Adversidade', icone: Smile, cor: 'text-yellow-500', descricao: 'A palavra "alegria" ou "gozo" aparece 16 vezes em 4 epistolas. Em Filipenses, Paulo esta preso, ameacado de morte, e mesmo assim exulta. A alegria cristã não depende de circunstancias, mas de Cristo. A frase-chave: "Alegrai-vos sempre no Senhor" (4:4). A alegria de Paulo não e otimismo superficial, mas certeza profunda de que Deus esta no controle.' },
+  { título: 'Humildade de Cristo', icone: Heart, cor: 'text-red-500', descricao: 'O Hino Cristológico (2:5-11) é o coração teologico de Filipenses. Cristo se esvaziou, servo, morreu na cruz. A humildade divina é o modelo para a humildade humana. Quem conhece a humildade de Cristo se humilha diante dos irmãos. A kenosis não e perda de divindade, mas aquisicao de humanidade — Cristo tomou o que não era sem perder o que era.' },
+  { título: 'Contentamento', icone: Star, cor: 'text-green-500', descricao: 'Paulo aprendeu a contentar-se em toda a situacao (4:11-12). O contentamento não e conformismo, mas confiança de que Cristo basta em qualquer circunstancia. E um dos frutos maduros do evangelho na vida do crente. Paulo testemunha que ja esteve na abundancia e na falta — e em ambos aprendeu o segredo do contentamento.' },
+  { título: 'Unidade na Igreja', icone: BookMarked, cor: 'text-purple-500', descricao: 'Paulo exorta Evodia e Sintique a concordarem no Senhor (4:2). A unidade da igreja e mais importante que razoes pessoais. O fundamento da unidade é a humildade Cristologica (2:1-11). Cristo é o modelo é o mantenedor da unidade. A unidade não exige uniformidade, mas amor que prioriza o Reino acima de preferências pessoais.' },
+  { título: 'A Proclamacao do Evangelho', icone: Sparkles, cor: 'text-blue-500', descricao: 'Paulo esta preso, mas o evangelho avanca (1:12-14). Até os pretorianos (soldados da guarda imperial) conhecem Cristo (4:22). A prisão não impede o evangelho — pelo contrario, a torna mais poderosa. A cadeia de Paulo se torna púlpito para o império.' },
+  { título: 'A Corrida Cristã', icone: Target, cor: 'text-orange-500', descricao: 'Paulo compara a vida cristã com uma corrida (3:12-14): "Esquecendo-me das coisas que ficam para tras e me estendendo as que estão diante de mim, prossigo para o alvo." O cristão não pode se acomodar — há sempre mais para conhecer de Cristo.' },
 ];
 
 const hinoDetalhes = [
-  { verso: 'Fase 1: Pre-existencia', referencia: '2:6', descricao: 'Cristo existia em forma de Deus — nao era uma copia, mas a propria expressao da divindade. Nao usurpou igualdade com Deus, porque ja a possuia. A forma de Deus (morphe) indica a realidade essencial da divindade, nao meramente aparência.', teologo: 'Athanasius: "Cristo nao era inferior ao Pai, mas era igual em substancia e eternidade. A forma de Deus e a propria essencia divina"' },
-  { verso: 'Fase 2: Kenosis (Esvaziamento)', referencia: '2:7', descricao: 'Cristo se esvaziou — nao de divindade, mas de privilegios. Tomou forma de servo, nasceu de mulher, viveu como homem comum. A majestade se escondeu na humildade. O esvaziamento e a escolha divina de se limitar à humanidade.', teologo: 'Barth: "O esvaziamento e o ato supremo de liberdade divina: Deus escolhe ser servo. Nao ha perda de divindade, mas aquisição de humanidade"' },
-  { verso: 'Fase 3: Encarnacao', referencia: '2:7-8', descricao: 'Fez-se semelhante aos homens. Achado em figura de homem, humilhou-se ate a morte, morte de cruz. A encarnacao culmina na cruz — o ponto mais baixo da historia humana. A morte de cruz era a forma mais vergonhosa de morrer no mundo antigo.', teologo: 'Moltmann: "A cruz e o lugar onde Deus se identifica completamente com os abandonados. O Deus crucificado é o único Deus que pode salvar um mundo crucificado"' },
-  { verso: 'Fase 4: Exaltacao', referencia: '2:9-11', descricao: 'Pelo que Deus o exaltou soberanamente. O nome que e sobre todo nome — Senhor (Kyrios). Todo joelho se dobra, toda lingua confessa. A humildade e recompensada pela exaltacao cosmica. Isso implica que Cesar não é senhor — Jesus é.', teologo: 'Wright: "Jesus e Senhor — isso implica que Cesar e apenas um imperador temporario. O hino e subversivo politicamente"' },
-  { verso: 'Fase 5: Apliçação Pratica', referencia: '2:1-5', descricao: 'Paulo aplica a kenosis à vida da igreja: tenham o mesmo sentimento, nao façam nada por rivalidade, considerem os outros superiores. A cristologia nao e abstrata — ela se traduz em humildade prática nas relações.', teologo: 'Fee: "A kenosis de Cristo nao e uma doutrina abstrata, mas um paradigm para a vida da comunidade. A unidade da igreja depende da humildade cristologica"' },
+  { verso: 'Fase 1: Pre-existencia', referência: '2:6', descricao: 'Cristo existia em forma de Deus — não era uma copia, mas a propria expressão da divindade. Nao usurpou igualdade com Deus, porque ja a possuia. A forma de Deus (morphe) indica a realidade essencial da divindade, não meramente aparência.', teologo: 'Athanasius: "Cristo não era inférior ao Pai, mas era igual em substancia e eternidade. A forma de Deus é a propria essencia divina"' },
+  { verso: 'Fase 2: Kenosis (Esvaziamento)', referência: '2:7', descricao: 'Cristo se esvaziou — não de divindade, mas de privilegios. Tomou forma de servo, nasceu de mulher, viveu como homem comum. A majestade se escondeu na humildade. O esvaziamento é a escolha divina de se limitar à humanidade.', teologo: 'Barth: "O esvaziamento é o ato supremo de liberdade divina: Deus escolhe ser servo. Nao ha perda de divindade, mas aquisição de humanidade"' },
+  { verso: 'Fase 3: Encarnacao', referência: '2:7-8', descricao: 'Fez-se semelhante aos homens. Achado em figura de homem, humilhou-se ate a morte, morte de cruz. A encarnacao culmina na cruz — o ponto mais baixo da historia humana. A morte de cruz era a forma mais vergonhosa de morrer no mundo antigo.', teologo: 'Moltmann: "A cruz é o lugar onde Deus se identifica completamente com os abandonados. O Deus crucificado é o único Deus que pode salvar um mundo crucificado"' },
+  { verso: 'Fase 4: Exaltacao', referência: '2:9-11', descricao: 'Pelo que Deus o exaltou soberanamente. O nome que e sobre todo nome — Senhor (Kyrios). Todo joelho se dobra, toda lingua conféssa. A humildade e recompensada pela exaltação cosmica. Isso implica que Cesar não é senhor — Jesus é.', teologo: 'Wright: "Jesus e Senhor — isso implica que Cesar e apenas um imperador temporario. O hino e subversivo politicamente"' },
+  { verso: 'Fase 5: Apliçação Pratica', referência: '2:1-5', descricao: 'Paulo aplica a kenosis à vida da igreja: tenham o mesmo sentimento, não façam nada por rivalidade, considerem os outros superiores. A Cristologia não e abstrata — ela se traduz em humildade prática nas relações.', teologo: 'Fee: "A kenosis de Cristo não é uma doutrina abstrata, mas um paradigm para a vida da comunidade. A unidade da igreja depende da humildade Cristologica"' },
 ];
 
-const aplicacoes = [
-  'Alegrai-vos sempre no Senhor — a alegria cristã e uma escolha baseada na verdade, nao na emocao.',
+const aplicações = [
+  'Alegrai-vos sempre no Senhor — a alegria cristã é uma escolha baseada na verdade, não na emocao.',
   'Humilhai-vos como Cristo se humilhou — a unidade da igreja exige morte ao orgulho pessoal.',
   'Aprendam a contentar-se — Cristo basta em toda circunstancia, na abundancia e na falta.',
-  'Orai com agradecimento em vez de se preocupar — a paz de Deus guardara vosso coracao.',
+  'Orai com agradecimento em vez de se preocupar — a paz de Deus guardara vosso coração.',
   'Fazei tudo sem murmuracoes — a ingratidao destrói o testemunho cristão.',
-  'Amai-se uns aos outros com amor espiritual — a unidade da igreja e o maior testemunho ao mundo.',
-  'Esforcei-vos pela salvacao com temor e tremor — a salvacao e dom de Deus, mas exige cooperacao humana.',
+  'Amai-se uns aos outros com amor espiritual — a unidade da igreja é o maior testemunho ao mundo.',
+  'Esforcei-vos pela salvação com temor e tremor — a salvação e dom de Deus, mas exige cooperacao humana.',
   'Mantenede a pureza — pensai nas coisas verdadeiras, honestas, justas (4:8).',
-  'Vivei como cidadãos do ceu — nossa verdadeira cidadania nao e terrena (3:20).',
-  'Busquei conhecer a Cristo cada vez mais — nao e apenas conhecimento intelectual, mas relacional (3:10).',
-  'Lembrai-vos de que Deus completara a obra que comecou em vos — essa certeza da perseveranca da fé e fundamento para a esperança (1:6).',
+  'Vivei como cidadãos do ceu — nossa verdadeira cidadania não e terrena (3:20).',
+  'Busquei conhecer a Cristo cada vez mais — não e apenas conhecimento intelectual, mas relacional (3:10).',
+  'Lembrai-vos de que Deus completara a obra que comecou em vos — essa certeza da perseverança da fé e fundamento para a esperança (1:6).',
   'Prossiga para o alvo — esqueça-se das coisas que ficam para tras e estenda-se às que estão diante (3:13-14).',
 ];
 
 const perguntas = [
-  'Como Paulo consegue ter alegria na prisao? Qual o segredo?',
+  'Como Paulo consegue ter alegria na prisão? Qual o segredo?',
   'O que a kenosis de Cristo (2:5-11) nos ensina sobre lideranca e poder?',
   'Como a humildade de Cristo se aplica a relacoes na igreja?',
-  'Qual a diferenca entre contentamento biblico e conformismo?',
+  'Qual a diférenca entre contentamento biblico e conformismo?',
   'Como a paz de Deus (4:6-7) se manifesta na vida prática?',
   'Por que Paulo menciona Evodia e Sintique na carta? Qual a lição?',
   'Como 4:8 pode transformar nossos pensamentos diários?',
-  'De que maneira a oracao e a antitese da ansiedade segundo Paulo?',
+  'De que maneira a oracao é a antitese da ansiedade segundo Paulo?',
   'Como a prisão de Paulo se tornou uma oportunidade para o evangelho avançar?',
-  'Qual a relação entre Filipenses 2:5-11 e a unidade da igreja?',
-  'O que significa "conhecer a Cristo e a força da sua ressurreição" (3:10)?',
+  'Qual a relação entre Filipenses 2:5-11 é a unidade da igreja?',
+  'O que significa "conhecer a Cristo é a força da sua ressurreição" (3:10)?',
   'Como a corrida cristã de 3:12-14 se aplica à vida espiritual?',
   'Como o exemplo de Paulo nos ensina a ser contentes em qualquer circunstancia?',
-  'Qual a diferença entre a "justiça própria" (3:9) e a "justiça que vem de Deus"?',
+  'Qual a diférença entre a "justiça própria" (3:9) é a "justiça que vem de Deus"?',
 ];
 
 export default function FilipensesPage() {
-  const [secaoAtiva, setSecaoAtiva] = useState('intro');
+  const [seçãoAtiva, setSecaoAtiva] = useState('intro');
 
   return (
     <div className="min-h-screen">
@@ -149,7 +149,7 @@ export default function FilipensesPage() {
               </div>
               <div className="flex items-center gap-4 text-sm text-muted-foreground mt-3 ml-13 flex-wrap">
                 <span className="flex items-center gap-1"><User className="w-3.5 h-3.5" />Paulo, Apostolo</span>
-                <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />~60-62 d.C., Roma (prisao)</span>
+                <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />~60-62 d.C., Roma (prisão)</span>
                 <span className="flex items-center gap-1"><Tag className="w-3.5 h-3.5" />Epistola de Agradecimento</span>
                 <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">Novo Testamento</span>
               </div>
@@ -160,34 +160,34 @@ export default function FilipensesPage() {
             <div className="flex flex-wrap gap-2 mb-8 sticky top-20 z-10 bg-background/80 backdrop-blur-lg py-3 -mx-6 px-6">
               {secoes.map((s) => (
                 <button key={s.id} onClick={() => setSecaoAtiva(s.id)}
-                  className={`px-4 py-2 text-sm rounded-lg transition-all ${secaoAtiva === s.id ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground border border-border/60 hover:border-border'}`}>
+                  className={`px-4 py-2 text-sm rounded-lg transition-all ${seçãoAtiva === s.id ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground border border-border/60 hover:border-border'}`}>
                   {s.label}
                 </button>
               ))}
             </div>
           </ScrollReveal>
 
-          {secaoAtiva === 'intro' && (
+          {seçãoAtiva === 'intro' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
-                  <Lightbulb className="w-5 h-5 text-primary" />Introducao a Epistola aos Filipenses
+                  <Lightbulb className="w-5 h-5 text-primary" />Introdução a Epistola aos Filipenses
                 </h2>
                 <div className="sola-card p-6 space-y-4">
                   <p className="text-muted-foreground leading-relaxed">
-                    Filipenses e uma das quatro epistolas prisonais de Paulo, escrita durante sua primeira prisao em Roma (~60-62 d.C.). Diferente de Efesios (circular) e Colossenses (para combater heresias), Filipenses e uma carta pessoal e afetuosa. Paulo escreve a uma igreja que o ama e que o sustentou materialmente durante o ministério.
+                    Filipenses é uma das quatro epistolas prisonais de Paulo, escrita durante sua primeira prisão em Roma (~60-62 d.C.). Diférente de Efésios (circular) e Colossenses (para combater heresias), Filipenses é uma carta pessoal e afétuosa. Paulo escreve a uma igreja que o ama e que o sustentou materialmente durante o ministério.
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
-                    O tema central e a alegria em Cristo mesmo nas adversidades. Paulo esta preso, ameacado de morte, mas sua carta transborda de gozo. A palavra "alegria" ou "gozo" aparece 16 vezes. E a carta mais pessoal de Paulo — ele fala de si, de seus sentimentos, de sua experiencia com Cristo.
+                    O tema central é a alegria em Cristo mesmo nas adversidades. Paulo esta preso, ameacado de morte, mas sua carta transborda de gozo. A palavra "alegria" ou "gozo" aparece 16 vezes. E a carta mais pessoal de Paulo — ele fala de si, de seus sentimentos, de sua experiencia com Cristo.
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div className="glass-card p-4 rounded-xl">
                       <h3 className="font-display text-sm font-medium mb-2">Contexto Historico</h3>
-                      <p className="text-sm text-muted-foreground">A igreja em Filipos foi a primeira igreja fundada por Paulo na Europa (Atos 16). Lydia, a primeira convertida europeia, era de Filipos. A igreja sempre apoiou Paulo materialmente, mesmo quando outras igrejas nao o fizeram (4:15-16).</p>
+                      <p className="text-sm text-muted-foreground">A igreja em Filipos foi a primeira igreja fundada por Paulo na Europa (Atos 16). Lydia, a primeira convertida europeia, era de Filipos. A igreja sempre apoiou Paulo materialmente, mesmo quando outras igrejas não o fizeram (4:15-16).</p>
                     </div>
                     <div className="glass-card p-4 rounded-xl">
                       <h3 className="font-display text-sm font-medium mb-2">O Propsito da Carta</h3>
-                      <p className="text-sm text-muted-foreground">Paulo escreve para agradecer o envio de Epafrodito (4:18), informar sobre sua situacao em Roma, exortar a unidade (4:2-3) e ao contentamento (4:10-13). E uma carta de amor, nao de doutrina polêmica.</p>
+                      <p className="text-sm text-muted-foreground">Paulo escreve para agradecer o envio de Epafrodito (4:18), informar sobre sua situacao em Roma, exortar a unidade (4:2-3) e ao contentamento (4:10-13). E uma carta de amor, não de doutrina polêmica.</p>
                     </div>
                   </div>
                 </div>
@@ -195,7 +195,7 @@ export default function FilipensesPage() {
             </ScrollReveal>
           )}
 
-          {secaoAtiva === 'estrutura' && (
+          {seçãoAtiva === 'estrutura' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
@@ -219,11 +219,11 @@ export default function FilipensesPage() {
             </ScrollReveal>
           )}
 
-          {secaoAtiva === 'versiculos' && (
+          {seçãoAtiva === 'versiculos' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
-                  <Quote className="w-5 h-5 text-primary" />Versiculos-Chave com Comentario de Teologos
+                  <Quote className="w-5 h-5 text-primary" />Versículos-Chave com Comentario de Teologos
                 </h2>
                 <div className="space-y-6">
                   {versiculosChave.map((v, i) => (
@@ -234,7 +234,7 @@ export default function FilipensesPage() {
             </ScrollReveal>
           )}
 
-          {secaoAtiva === 'temas' && (
+          {seçãoAtiva === 'temas' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
@@ -245,7 +245,7 @@ export default function FilipensesPage() {
                     <div key={i} className="glass-card p-5 rounded-xl">
                       <div className="flex items-center gap-2 mb-2">
                         <t.icone className={`w-5 h-5 ${t.cor}`} />
-                        <h3 className="font-display text-lg font-medium">{t.titulo}</h3>
+                        <h3 className="font-display text-lg font-medium">{t.título}</h3>
                       </div>
                       <p className="text-sm text-muted-foreground leading-relaxed">{t.descricao}</p>
                     </div>
@@ -255,13 +255,13 @@ export default function FilipensesPage() {
             </ScrollReveal>
           )}
 
-          {secaoAtiva === 'hino' && (
+          {seçãoAtiva === 'hino' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-primary" />O Hino Cristologico (Filipenses 2:5-11)
+                  <Heart className="w-5 h-5 text-primary" />O Hino Cristológico (Filipenses 2:5-11)
                 </h2>
-                <p className="text-muted-foreground mb-4">Considerado o texto cristologico mais elevado do Novo Testamento, este hino descreve a jornada de Cristo da gloria a humildade e de volta a gloria. Muitos estudiosos acreditam que era um hino liturgico ja existente que Paulo incluiu na carta.</p>
+                <p className="text-muted-foreground mb-4">Considerado o texto Cristologico mais elevado do Novo Testamento, este hino descreve a jornada de Cristo da glória a humildade e de volta a glória. Muitos estudiosos acreditam que era um hino liturgico ja existente que Paulo incluiu na carta.</p>
                 <div className="space-y-4">
                   {hinoDetalhes.map((h, i) => (
                     <div key={i} className="sola-card p-5">
@@ -269,7 +269,7 @@ export default function FilipensesPage() {
                         <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-medium">{i + 1}</span>
                         <div>
                           <h3 className="font-display text-sm font-medium">{h.verso}</h3>
-                          <p className="text-xs text-primary">{h.referencia}</p>
+                          <p className="text-xs text-primary">{h.referência}</p>
                         </div>
                       </div>
                       <p className="text-sm text-muted-foreground leading-relaxed mb-2 ml-11">{h.descricao}</p>
@@ -283,15 +283,15 @@ export default function FilipensesPage() {
             </ScrollReveal>
           )}
 
-          {secaoAtiva === 'aplicacao' && (
+          {seçãoAtiva === 'aplicação' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
-                  <Lightbulb className="w-5 h-5 text-primary" />Aplicacao Pratica
+                  <Lightbulb className="w-5 h-5 text-primary" />Aplicação Pratica
                 </h2>
                 <div className="sola-card p-6 border-l-4 border-primary">
                   <ul className="space-y-3">
-                    {aplicacoes.map((a, i) => (
+                    {aplicações.map((a, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
                         <span className="text-sm leading-relaxed">{a}</span>
@@ -303,7 +303,7 @@ export default function FilipensesPage() {
             </ScrollReveal>
           )}
 
-          {secaoAtiva === 'perguntas' && (
+          {seçãoAtiva === 'perguntas' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
@@ -340,14 +340,14 @@ export default function FilipensesPage() {
   );
 }
 
-function VersiculoCard({ versiculo }: { versiculo: { referencia: string; texto: string; explicacao: string; comentarios: { teologo: string; texto: string }[] } }) {
+function VersiculoCard({ versiculo }: { versiculo: { referência: string; texto: string; explicação: string; comentarios: { teologo: string; texto: string }[] } }) {
   const [expandido, setExpandido] = useState(false);
   return (
     <motion.div layout className="sola-card overflow-hidden">
       <div className="p-5 cursor-pointer" onClick={() => setExpandido(!expandido)}>
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
-            <p className="font-display text-sm font-medium text-primary mb-1">{versiculo.referencia}</p>
+            <p className="font-display text-sm font-medium text-primary mb-1">{versiculo.referência}</p>
             <p className="text-sm italic leading-relaxed font-serif-body">&ldquo;{versiculo.texto}&rdquo;</p>
           </div>
           <motion.div animate={{ rotate: expandido ? 180 : 0 }} transition={{ duration: 0.2 }} className="flex-shrink-0">
@@ -359,7 +359,7 @@ function VersiculoCard({ versiculo }: { versiculo: { referencia: string; texto: 
         {expandido && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
             <div className="px-5 pb-5 border-t border-border/50 pt-3 space-y-4">
-              <p className="text-sm text-muted-foreground leading-relaxed">{versiculo.explicacao}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{versiculo.explicação}</p>
               <div className="space-y-3">
                 <p className="text-xs font-semibold uppercase tracking-wider text-primary">Comentarios de Teologos</p>
                 {versiculo.comentarios.map((c, i) => (

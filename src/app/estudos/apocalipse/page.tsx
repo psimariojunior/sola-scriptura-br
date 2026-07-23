@@ -13,13 +13,13 @@ import {
 } from 'lucide-react';
 
 const secoes = [
-  { id: 'intro', label: 'Introducao' },
-  { id: 'interpretacoes', label: 'Visoes Interpretativas' },
+  { id: 'intro', label: 'Introdução' },
+  { id: 'interpretações', label: 'Visões Interpretativas' },
   { id: 'seteigrejas', label: 'As 7 Igrejas' },
-  { id: 'versiculos', label: 'Versiculos-Chave' },
+  { id: 'versiculos', label: 'Versículos-Chave' },
   { id: 'temas', label: 'Temas Centrais' },
   { id: '2122', label: 'Caps. 21-22' },
-  { id: 'aplicacao', label: 'Aplicacao' },
+  { id: 'aplicação', label: 'Aplicação' },
   { id: 'perguntas', label: 'Perguntas' },
 ];
 
@@ -29,7 +29,7 @@ const sistemasInterpretativos = [
     exponentes: 'Calvino, Wesley, Iglesias Reformadas',
     cor: 'border-blue-500',
     bg: 'bg-blue-500/5',
-    descricao: 'A historia da igreja se desenrola de Joao ate o fim. Cada selo, trombeta e taça representa eventos ao longo dos seculos. O Anticristo ja foi identificado com papas, imperadores romanos, etc.',
+    descricao: 'A historia da igreja se desenrola de Joao ate o fim. Cada selo, trombeta e taça representa eventos ao longo dos seculos. O AntiCristo ja foi identificado com papas, imperadores romanos, etc.',
     pontos: [
       'A Revelacao cobre toda a historia da igreja',
       'A "Babylonia" representa sistemas religiosos corruptos ao longo do tempo',
@@ -44,18 +44,18 @@ const sistemasInterpretativos = [
   },
   {
     nome: 'Premilenista Dispensacionalista',
-    exponentes: 'C.I. Scofield, Lewis Sperry Chafer, John Walvoord, Charles Ryrie',
+    exponentes: 'C.I. Scofield, Lewis Sperry Chafér, John Walvoord, Charles Ryrie',
     cor: 'border-green-500',
     bg: 'bg-green-500/5',
-    descricao: 'Cristo voltara antes do milenio (literal de 1.000 anos). A igreja passará pela tribulação (ou sera arrebatada antes). O milenio e um reinado literal de Cristo em Israel. Israel e a Igreja sao dois povos distintos de Deus.',
+    descricao: 'Cristo voltará antes do milenio (literál de 1.000 anos). A igreja passará pela tribulação (ou será arrebatada antes). O milenio é um reinado literál de Cristo em Israel. Israel é a Igreja são dois povos distintos de Deus.',
     pontos: [
-      'Leva a linguagem apocalíptica de forma literal quando possível',
+      'Leva a linguagem apocalíptica de forma literál quando possível',
       'Distingue claramente Israel da Igreja',
-      'Oferece uma linha do tempo clara e sistemática',
+      'Oférece uma linha do tempo clara e sistemática',
       'Influenciou amplamente o cristianismo popular no Brasil e EUA',
     ],
     fraquezas: [
-      'Confunde literalismo com interpretação correta — apocalipse usa simbolismo',
+      'Confunde literálismo com interpretação correta — apocalipse usa simbolismo',
       'A distinção Israel/Igreja não é clara no NT',
       'Sistema complexo com muitas divisões entre os próprios dispensacionalistas',
       'Igreja dos primeiros séculos nunca ensinou isso',
@@ -66,15 +66,15 @@ const sistemasInterpretativos = [
     exponentes: 'Agostinho, George Eldon Ladd, Kim Riddlebarger, Kenneth Gentry',
     cor: 'border-purple-500',
     bg: 'bg-purple-500/5',
-    descricao: 'O milenio de Apocalipse 20 e simbólico, representando o reinado atual de Cristo do céu. Nao ha um reinado literal futuro na terra. A "primeira ressurreição" (20:5) e espiritual — a regeneração do crente. O "mil anos" e o período entre a primeira e segunda vinda de Cristo.',
+    descricao: 'O milenio de Apocalipse 20 e simbólico, representando o reinado atual de Cristo do céu. Nao ha um reinado literál futuro na terra. A "primeira ressurreição" (20:5) e espiritual — a regeneração do crente. O "mil anos" é o período entre a primeira e segunda vinda de Cristo.',
     pontos: [
       'Consistente com a interpretação simbólica do restante do livro',
       'Agostinho desenvolveu esta visão em "A Cidade de Deus"',
-      'Evita confusão entre literal e figurativo no mesmo livro',
+      'Evita confusão entre literál e figurativo no mesmo livro',
       'Historia da igreja como periodo messiânico, não como tribulação',
     ],
     fraquezas: [
-      'Pode minimizar a escatologia futura e a esperança de retorno de Cristo',
+      'Pode minimizar a escatologia futura é a esperança de retorno de Cristo',
       'A "primeira ressurreição" como espiritual é uma interpolação',
       'Pode levar a um otimismo excessivo sobre o progresso da igreja',
     ],
@@ -84,10 +84,10 @@ const sistemasInterpretativos = [
     exponentes: 'George Eldon Ladd, Keith Mathison, Jonathan Edwards (historicamente)',
     cor: 'border-amber-500',
     bg: 'bg-amber-500/5',
-    descricao: 'Cristo voltara DEPOIS do milenio. O evangelho gradualmente transformará as nações antes do retorno de Cristo. O "mil anos" é simbólico mas representa um periodo real de progresso do Reino. Diferente do pre-milenismo, o reinado é espiritual e gradual, não literal.',
+    descricao: 'Cristo voltará DEPOIS do milenio. O evangelho gradualmente transformará as nações antes do retorno de Cristo. O "mil anos" é simbólico mas representa um periodo real de progresso do Reino. Diférente do pre-milenismo, o reinado é espiritual e gradual, não literál.',
     pontos: [
       'Reconhece o progresso do Reino na historia sem dispensacionalismo',
-      'Mantém a escatologia futura sem o literalismo extremo',
+      'Mantém a escatologia futura sem o literálismo extremo',
       'Historicamente associado ao puritanismo e ao idealismo reformado',
       'Evita tanto o pessimismo dispensacionalista quanto o otimismo liberal',
     ],
@@ -100,85 +100,85 @@ const sistemasInterpretativos = [
 ];
 
 const seteIgrejas = [
-  { nome: 'Efeso', tema: 'A Igreja que Perdeu o Primeiro Amor', verso: '2:1-7', corao: 'Fria', problema: 'Abandono do amor primeiro por Cristo', elogio: 'Fortaleza na doutrina, rejeição de falsos apóstolos', correcao: 'Lembrar de onde caíram, arrepender-se, voltar às primeiras obras', promessa: 'Fruto da árvore da vida' },
-  { nome: 'Esmirna', tema: 'A Igreja Perseguida', verso: '2:8-11', corao: 'Sofredora', problema: 'Perseguição por judeus e romanos', elogio: 'Riqueza espiritual na pobreza material, fidelidade na tribulação', correcao: 'Nenhuma — só exortação para perseverar', promessa: 'Nao será danada pela segunda morte' },
-  { nome: 'Pérgamo', tema: 'A Igreja que Compromete a Fé', verso: '2:12-17', corao: 'Morna', problema: 'Tolerância a falsa doutrina (ensino de Balaão, nicolaítas)', elogio: 'Fidelidade onde Satanás habita literalmente', correcao: 'Arrepender-se ou Deus virá com espada', promessa: 'Maná escondido e pedra branca com nome novo' },
-  { nome: 'Tiatira', tema: 'A Igreja com Falso Profeta', verso: '2:18-29', corao: 'Enganada', problema: 'Tolerância com a "profetisa Jezabel" — imoralidade e idolatria', elogio: 'Amor, serviço, fé, perseverança — cresceram em boas obras', correcao: 'Afastar Jezabel e arrepender-se dos que a seguem', promessa: 'Autoridade sobre as nações, estrela da manhã' },
+  { nome: 'Eféso', tema: 'A Igreja que Perdeu o Primeiro Amor', verso: '2:1-7', corao: 'Fria', problema: 'Abandono do amor primeiro por Cristo', elogio: 'Fortaleza na doutrina, rejeição de falsos apóstolos', correcao: 'Lembrar de onde caíram, arrepender-se, voltar às primeiras obras', promessa: 'Fruto da árvore da vida' },
+  { nome: 'Esmirna', tema: 'A Igreja Perseguida', verso: '2:8-11', corao: 'Sofredora', problema: 'Perseguição por juDeus e romanos', elogio: 'Riqueza espiritual na pobreza material, fidelidade na tribulação', correcao: 'Nenhuma — só exortação para perseverar', promessa: 'Nao será danada pela segunda morte' },
+  { nome: 'Pérgamo', tema: 'A Igreja que Compromete a Fé', verso: '2:12-17', corao: 'Morna', problema: 'Tolerância a falsa doutrina (ensino de Balaão, nicolaítas)', elogio: 'Fidelidade onde Satanás habita literálmente', correcao: 'Arrepender-se ou Deus virá com espada', promessa: 'Maná escondido e pedra branca com nome novo' },
+  { nome: 'Tiatira', tema: 'A Igreja com Falso Proféta', verso: '2:18-29', corao: 'Enganada', problema: 'Tolerância com a "profétisa Jezabel" — imoralidade e idolatria', elogio: 'Amor, serviço, fé, perseverança — cresceram em boas obras', correcao: 'Afastar Jezabel e arrepender-se dos que a seguem', promessa: 'Autoridade sobre as nações, estrela da manhã' },
   { nome: 'Sardes', tema: 'A Igreja Morta', verso: '3:1-6', corao: 'Morta', problema: 'Aparência de vida, realidade de morte espiritual', elogio: 'Alguns poucos não contaminaram suas vestes', correcao: 'Fortalecer o que resta e está para morrer, arrepender-se', promessa: 'Vestido de branco, nome no livro da vida' },
-  { nome: 'Filadélfia', tema: 'A Igreja Fiel', verso: '3:7-13', corao: 'Fiel', problema: 'Pouco poder, mas fidelidade no pequeno', elogio: 'Guardaram a palavra, não negaram o nome de Cristo, abriram porta que ninguém fechará', correcao: 'Nenhuma — só exortação para perseverar', promessa: 'Ser coluna no templo de Deus, nome novo e cidade nova' },
+  { nome: 'Filadélfia', tema: 'A Igreja Fiel', verso: '3:7-13', corao: 'Fiel', problema: 'Pouco poder, mas fidelidade no pequeno', elogio: 'Guardaram a palavra, não negaram o nome de Cristo, abriram porta que ninguém féchará', correcao: 'Nenhuma — só exortação para perseverar', promessa: 'Ser coluna no templo de Deus, nome novo e cidade nova' },
   { nome: 'Laodiceia', tema: 'A Igreja Morna', verso: '3:14-22', corao: 'Morna', problema: 'Auto-satisfação, riqueza material, frieza espiritual', elogio: 'Nenhum — a mais criticada', correcao: 'Comprar ouro refinado, ungir os olhos, arrepender-se', promessa: 'Sentar-se com Cristo no seu trono' },
 ];
 
 const versiculosChave = [
   {
-    referencia: 'Apocalipse 1:8',
-    texto: 'Eu sou o Alfa e o Omega, o Princípio e o Fim, diz o Senhor, que e, e que era, e que ha de vir, o Todo-Poderoso.',
-    explicacao: 'A auto-revelação de Cristo em Apocalipse: eterno, soberano, o que sustenta toda a realidade do início ao fim.',
+    referência: 'Apocalipse 1:8',
+    texto: 'Eu sou o Alfa é o Omega, o Princípio é o Fim, diz o Senhor, que e, e que era, e que ha de vir, o Todo-Poderoso.',
+    explicação: 'A auto-revelação de Cristo em Apocalipse: eterno, soberano, o que sustenta toda a realidade do início ao fim.',
     comentarios: [
       { teologo: 'G.K. Beale', texto: 'A declaração "Alfa e Omega" conecta Cristo ao Deus do Antigo Testamento (Is 44:6). Ele é o autor e consumador da história. Tudo o que Apocalipse descreve — julgamento, salvação, nova criação — está sob sua autoridade soberana.' },
-      { teologo: 'David Aune', texto: 'A fórmula "que era, que é e que há de vir" espelha o Nome divino de Êxodo 3:14. Cristo assume a identidade de YHWH. Isso é revolucionário para judeus monoteístas: Jesus é Deus.' },
+      { teologo: 'David Aune', texto: 'A fórmula "que era, que é e que há de vir" espelha o Nome divino de Êxodo 3:14. Cristo assume a identidade de YHWH. Isso é revolucionário para juDeus monoteístas: Jesus é Deus.' },
     ],
   },
   {
-    referencia: 'Apocalipse 5:9-10',
+    referência: 'Apocalipse 5:9-10',
     texto: 'E cantavam um cantico novo, dizendo: Tu és digno de tomar o livro e de abrir os seus selos; porque fste immolado, e com teu sangue compraste para Deus gente de toda tribo, e lingua, e povo, e nacao; e deles fizeste para o nosso Deus reis e sacerdotes, e reinarao sobre a terra.',
-    explicacao: 'O Cordeiro imolado (Cristo) é o único digno de revelar o plano de Deus. A redenção é por sangue, e o fruto é um povo multicultural que reina.',
+    explicação: 'O Cordeiro imolado (Cristo) é o único digno de revelar o plano de Deus. A redenção é por sangue, é o fruto é um povo multicultural que reina.',
     comentarios: [
       { teologo: 'Richard Bauckham', texto: 'O cantico do Cordeiro é o climax liturgico de Apocalipse 4-5. A adoração celeste é o centro do livro. O Cordeiro não está morto, mas de pé — a ressurreição é pressuposta. A multidão redimida provém de todas as nações.' },
       { teologo: 'G.K. Beale', texto: 'A linguagem de "comprar com sangue" remete à redenção de Israel no Êxodo. Cristo realize o Êxodo definitivo — redime um povo de todas as nações, não apenas de Israel. Isso cumpre a promessa abraâmica de bênção para todas as nações.' },
     ],
   },
   {
-    referencia: 'Apocalipse 11:15',
-    texto: 'E houve grandes vociferacoes no ceu, dizendo: Os reinos do mundo se tornaram do nosso Senhor e do seu Cristo, e ele reinara para sempre.',
-    explicacao: 'O objetivo final de toda a história: os reinos do mundo se tornam de Cristo. O reinado é eterno e universal.',
+    referência: 'Apocalipse 11:15',
+    texto: 'E houve grandes vociféracoes no ceu, dizendo: Os reinos do mundo se tornaram do nosso Senhor e do seu Cristo, e ele reinara para sempre.',
+    explicação: 'O objetivo final de toda a história: os reinos do mundo se tornam de Cristo. O reinado é eterno e universal.',
     comentarios: [
       { teologo: 'Craig Koester', texto: 'Esta declaração é o高潮 da narrativa escatológica. Não é apenas um futuro distante, mas uma realidade que se desdobra na história. A cada conversão, a cada transformação social, o Reino avança.' },
-      { teologo: 'Gregory Beale', texto: 'O salmo 2 é aqui citado: "Os reinos do mundo se tornaram do meu Filho ungido". Cristo já é Rei, mas o mundo só reconhecerá isso plenamente no fim. Apocalipse mostra o processo entre o "já" e o "ainda não".' },
+      { teologo: 'Gregory Beale', texto: 'O salmo 2 é aqui citado: "Os reinos do mundo se tornaram do meu Filho ungido". Cristo já é Rei, mas o mundo só reconhecerá isso plenamente no fim. Apocalipse mostra o processo entre o "já" é o "ainda não".' },
     ],
   },
 ];
 
 const temasCentrais = [
-  { titulo: 'Soberania de Cristo', icone: Crown, cor: 'text-yellow-500', descricao: 'Apocalipse revela Cristo como Senhor da historia. Ele abre os selos, envia as trombetas, derrama as taças. Nada acontece fora do seu controle. O livro todo é uma resposta à pergunta: "Quem governa a história?"' },
-  { titulo: 'Adoração Celeste', icone: Star, cor: 'text-blue-500', descricao: 'A adoração é o fio condutor de Apocalipse. Os 24 anciãos, os 4 seres viventes, a multidão vestida de branco — todos adoram ao Cordeiro. A adoração não é entretenimento, mas reconhecimento da soberania divina.' },
-  { titulo: 'Julgamento e Misericórdia', icone: Sword, cor: 'text-red-500', descricao: 'As 7 trombetas e 7 taças são julgamentos progressivos que repetem as pragas do Êxodo. Mas cada julgamento é uma oportunidade de arrependimento. A paciência de Deus é real, mesmo quando o julgamento é severo.' },
-  { titulo: 'Vitória Final', icone: Flame, cor: 'text-green-500', descricao: 'Apocalipse não é um livro de medo, mas de vitória. O Cordeiro venceu. Babilônia caiu. Satanás é derrotado. A nova criação vem. O fim está seguro. O crente pode enfrentar qualquer perseguição sabendo que o resultado final já está decidido.' },
-  { titulo: 'Perseverança na Perseguição', icone: AlertTriangle, cor: 'text-orange-500', descricao: 'Sete vezes Jesus diz "seja fiel até a morte e eu te darei a coroa da vida". O contexto de Apocalipse é a perseguição sob Domiciano (~95 d.C.). O livro é um chamado à fidelidade, não ao medo.' },
+  { título: 'Soberania de Cristo', icone: Crown, cor: 'text-yellow-500', descricao: 'Apocalipse revela Cristo como Senhor da historia. Ele abre os selos, envia as trombetas, derrama as taças. Nada acontece fora do seu controle. O livro todo é uma resposta à pergunta: "Quem governa a história?"' },
+  { título: 'Adoração Celeste', icone: Star, cor: 'text-blue-500', descricao: 'A adoração é o fio condutor de Apocalipse. Os 24 anciãos, os 4 seres viventes, a multidão vestida de branco — todos adoram ao Cordeiro. A adoração não é entretenimento, mas reconhecimento da soberania divina.' },
+  { título: 'Julgamento e Misericórdia', icone: Sword, cor: 'text-red-500', descricao: 'As 7 trombetas e 7 taças são julgamentos progressivos que repetem as pragas do Êxodo. Mas cada julgamento é uma oportunidade de arrependimento. A paciência de Deus é real, mesmo quando o julgamento é severo.' },
+  { título: 'Vitória Final', icone: Flame, cor: 'text-green-500', descricao: 'Apocalipse não é um livro de medo, mas de vitória. O Cordeiro venceu. Babilônia caiu. Satanás é derrotado. A nova criação vem. O fim está seguro. O crente pode enfrentar qualquer perseguição sabendo que o resultado final já está decidido.' },
+  { título: 'Perseverança na Perseguição', icone: AlertTriangle, cor: 'text-orange-500', descricao: 'Sete vezes Jesus diz "seja fiel até a morte e eu te darei a coroa da vida". O contexto de Apocalipse é a perseguição sob Domiciano (~95 d.C.). O livro é um chamado à fidelidade, não ao medo.' },
 ];
 
 const versiculos21_22 = [
-  { verso: '21:1-2', texto: 'Vi um ceu novo e uma terra nova; porque o ceu primeiro e a terra primeira passaram; e o mar ja nao existia. E eu, Joao, vi a santa cidade, a nova Jerusalem, que de Deus descia do ceu, aparelhada como uma esposa para o seu marido.', explicacao: 'A nova criacao substitui a velha. A nova Jerusalem e a Igreja, noiva de Cristo. Nao ha mais mar (simbolo de caos e separacao).', teologo: 'Beale: "A nova Jerusalem e a realizes definitiva do Eden — o templo de Deus habitando com os homens"' },
-  { verso: '21:3-4', texto: 'E ouvi uma grande voz do ceu, dizendo: Eis o tabernaculo de Deus com os homens, e ele habitara com eles. E eles serao seu povo, e Deus sera com eles, e sera seu Deus. E enxugara toda lagrima dos seus olhos; e a morte ja nao existira, nem houve lamento, nem clamor, nem dor, pois ja as primeiras coisas passaram.', explicacao: 'A promessa mais bela da Escritura: Deus habita com os homens. Nao ha mais sofrimento. A morte e derrotada. A nova criacao e a restauracao da comunhao perdida em Eden.', teologo: 'N.T. Wright: "Isto nao e uma fuga do mundo, mas a renovacao de todas as coisas. Deus nao destrói a criacao, mas a transforma"' },
-  { verso: '21:5', texto: 'E o que estava assentado sobre o trono disse: Eis que eu faço todas as coisas novas.', explicacao: 'Deus e o renovador. Nao apenas conserta, mas cria algo novo. A novidade e total — céu, terra, humanidade, comunhão.', teologo: 'Richard Bauckham: "Todas as coisas novas" nao é substituição, mas renovação. A criação original era boa, e Deus a restaura à sua intenção original' },
-  { verso: '21:22-27', texto: 'E nao vi templo nela; porque o Senhor Deus Todo-Poderoso e o Cordeiro sao o seu templo. E a cidade nao precisa de sol nem de lua para a alumiar; porque a gloria de Deus a alumia, e o Cordeiro e a sua lumiar.', explicacao: 'Nao ha templo porque toda a cidade e templo. Deus e o Cordeiro substituem o sol. A luz e a propria presenca divina.', teologo: 'G.K. Beale: "A ausencia de templo indica que toda a criação se tornou sagrada. Nao ha mais espaco secular — tudo é culto a Deus"' },
-  { verso: '22:1-5', texto: 'E mostrou-me um rio limpo da agua da vida, claro como cristal, saindo do trono de Deus e do Cordeiro. E no meio da rua da cidade, e de um e de outro lado do rio, estava a arvore da vida, que produzia doze frutos, e deu o seu fruto cada mes; e as folhas da arvore eram para a saude das nacoes. E ja nao haverá maldição.', explicacao: 'O rio e a arvore da vida remetem ao Gênesis (2:9-10). A maldição de Gênesis 3 é removida. As folhas sao para saude — a cura completa da humanidade.', teologo: 'Jurgen Moltmann: "Apocalipse 22 e o Gênesis 2 restaurado. O que foi perdido em Eden é recuperado na nova criação. O ciclo da historia se fecha: criação, queda, redenção, restauração"' },
+  { verso: '21:1-2', texto: 'Vi um ceu novo é uma terra nova; porque o ceu primeiro é a terra primeira passaram; é o mar ja não existia. E eu, Joao, vi a santa cidade, a nova Jerusalém, que de Deus descia do ceu, aparelhada como uma esposa para o seu marido.', explicação: 'A nova criação substitui a velha. A nova Jerusalém é a Igreja, noiva de Cristo. Nao ha mais mar (simbolo de caos e separacao).', teologo: 'Beale: "A nova Jerusalém é a realizes definitiva do Eden — o templo de Deus habitando com os homens"' },
+  { verso: '21:3-4', texto: 'E ouvi uma grande voz do ceu, dizendo: Eis o tabernaculo de Deus com os homens, e ele habitara com eles. E eles seráo seu povo, e Deus será com eles, e será seu Deus. E enxugara toda lagrima dos seus olhos; é a morte ja não existira, nem houve lamento, nem clamor, nem dor, pois ja as primeiras coisas passaram.', explicação: 'A promessa mais bela da Escritura: Deus habita com os homens. Nao ha mais sofrimento. A morte e derrotada. A nova criação é a restauracao da comunhão perdida em Eden.', teologo: 'N.T. Wright: "Isto não é uma fuga do mundo, mas a renovação de todas as coisas. Deus não destrói a criação, mas a transforma"' },
+  { verso: '21:5', texto: 'E o que estava assentado sobre o trono disse: Eis que eu faço todas as coisas novas.', explicação: 'Deus é o renovador. Nao apenas conserta, mas cria algo novo. A novidade e total — céu, terra, humanidade, comunhão.', teologo: 'Richard Bauckham: "Todas as coisas novas" não é substituição, mas renovação. A criação original era boa, e Deus a restaura à sua intenção original' },
+  { verso: '21:22-27', texto: 'E não vi templo nela; porque o Senhor Deus Todo-Poderoso é o Cordeiro são o seu templo. E a cidade não precisa de sol nem de lua para a alumiar; porque a glória de Deus a alumia, é o Cordeiro é a sua lumiar.', explicação: 'Nao ha templo porque toda a cidade e templo. Deus é o Cordeiro substituem o sol. A luz é a propria presenca divina.', teologo: 'G.K. Beale: "A ausencia de templo indica que toda a criação se tornou sagrada. Nao ha mais espaco secular — tudo é culto a Deus"' },
+  { verso: '22:1-5', texto: 'E mostrou-me um rio limpo da água da vida, claro como cristal, saindo do trono de Deus e do Cordeiro. E no meio da rua da cidade, e de um e de outro lado do rio, estava a arvore da vida, que produzia doze frutos, e deu o seu fruto cada mes; e as folhas da arvore eram para a saude das nações. E ja não haverá maldição.', explicação: 'O rio é a arvore da vida remetem ao Gênesis (2:9-10). A maldição de Gênesis 3 é removida. As folhas são para saude — a cura completa da humanidade.', teologo: 'Jurgen Moltmann: "Apocalipse 22 é o Gênesis 2 restaurado. O que foi perdido em Eden é recuperado na nova criação. O ciclo da historia se fécha: criação, queda, redenção, restauração"' },
 ];
 
-const aplicacoes = [
+const aplicações = [
   'Adore a Cristo como Senhor soberano — nada acontece fora do seu controle.',
   'Persevere na fé mesmo na perseguição — o Cordeiro venceu.',
   'Avalie se sua igreja é como Filadélfia (fiel) ou Laodiceia (morna).',
-  'Espere pela nova criacao com esperanca concreta — nao e fuga, mas renovacao.',
-  'Estude Apocalipse com humildade — nao e um quebra-cabeca, mas um livro de adoracao.',
+  'Espere pela nova criação com esperança concreta — não e fuga, mas renovação.',
+  'Estude Apocalipse com humildade — não é um quebra-cabeca, mas um livro de adoração.',
   'Recuse o medo — o livro da revelação é dado para abençoar, não para assustar (1:3).',
-  'Viva para a eternidade — as coisas presentes sao temporarias.',
-  'Pratique a justiça e a santidade — a nova criacao e para os santos.',
+  'Viva para a eternidade — as coisas presentes são temporarias.',
+  'Pratique a justiça é a santidade — a nova criação e para os santos.',
 ];
 
 const perguntas = [
-  'Qual a importância de ler Apocalipse como literatura apocalíptica, não como código secreto?',
+  'Qual a importância de ler Apocalipse como literátura apocalíptica, não como código secreto?',
   'Como a soberania de Cristo em Apocalipse se relaciona com a cruz?',
-  'Qual a diferença entre as 7 trombetas e as 7 taças? Por que a estrutura repetitiva?',
+  'Qual a diférença entre as 7 trombetas e as 7 taças? Por que a estrutura repetitiva?',
   'Como a visão da nova criação (caps. 21-22) nos dá esperança em tempos difíceis?',
-  'Por que há tantas interpretações diferentes de Apocalipse? Qual a abordagem mais saudável?',
+  'Por que há tantas interpretações diférentes de Apocalipse? Qual a abordagem mais saudável?',
   'O que a queda de Babilônia (caps. 17-18) nos ensina sobre os sistemas mundanos?',
   'Como a liturgia celestial de Apocalipse 4-5 pode transformar nossa adoração?',
   'Qual a mensagem de Apocalipse para a igreja perseguida hoje?',
 ];
 
 export default function ApocalipsePage() {
-  const [secaoAtiva, setSecaoAtiva] = useState('intro');
+  const [seçãoAtiva, setSecaoAtiva] = useState('intro');
 
   return (
     <div className="min-h-screen">
@@ -214,22 +214,22 @@ export default function ApocalipsePage() {
             <div className="flex flex-wrap gap-2 mb-8 sticky top-20 z-10 bg-background/80 backdrop-blur-lg py-3 -mx-6 px-6">
               {secoes.map((s) => (
                 <button key={s.id} onClick={() => setSecaoAtiva(s.id)}
-                  className={`px-4 py-2 text-sm rounded-lg transition-all ${secaoAtiva === s.id ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground border border-border/60 hover:border-border'}`}>
+                  className={`px-4 py-2 text-sm rounded-lg transition-all ${seçãoAtiva === s.id ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground border border-border/60 hover:border-border'}`}>
                   {s.label}
                 </button>
               ))}
             </div>
           </ScrollReveal>
 
-          {secaoAtiva === 'intro' && (
+          {seçãoAtiva === 'intro' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
-                  <Lightbulb className="w-5 h-5 text-primary" />Introducao ao Apocalipse
+                  <Lightbulb className="w-5 h-5 text-primary" />Introdução ao Apocalipse
                 </h2>
                 <div className="sola-card p-6 space-y-4">
                   <p className="text-muted-foreground leading-relaxed">
-                    O Apocalipse de Joao e o ultimo livro do Novo Testamento, escrito por Joao durante o exilio na ilha de Patmos (~95 d.C.) sob o imperador Domiciano. O nome "Apocalipse" significa "revelação" — e o Livro da Revelação de Jesus Cristo, nao de mistérios obscuros.
+                    O Apocalipse de Joao é o ultimo livro do Novo Testamento, escrito por Joao durante o exilio na ilha de Patmos (~95 d.C.) sob o imperador Domiciano. O nome "Apocalipse" significa "revelação" — é o Livro da Revelação de Jesus Cristo, não de mistérios obscuros.
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
                     Genero apocalitico judaico-cristão — cheio de simbolismo, números significativos (7, 12, 144.000), visões oníricas e linguagem figurada. Assim como Daniel, Ezequiel e Zacarias usaram simbolismo apocalitico, Joao segue essa tradição. O livro não é um código secreto para desvendar o futuro, mas um livro de adoração e esperança para igrejas perseguidas.
@@ -237,23 +237,23 @@ export default function ApocalipsePage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <div className="glass-card p-4 rounded-xl">
                       <h3 className="font-display text-sm font-medium mb-2">Autoria e Data</h3>
-                      <p className="text-sm text-muted-foreground">Joao, o discípulo amado, escreveu de Patmos. A maioria dos estudiosos data entre 95-96 d.C. durante a perseguição de Domiciano. Uma minoria defende data nerôniana (~65 d.C.).</p>
+                      <p className="text-sm text-muted-foreground">Joao, o discípulo amado, escreveu de Patmos. A maioria dos estudiosos data entre 95-96 d.C. durante a perseguição de Domiciano. Uma minoria defénde data nerôniana (~65 d.C.).</p>
                     </div>
                     <div className="glass-card p-4 rounded-xl">
                       <h3 className="font-display text-sm font-medium mb-2">Genero Literário</h3>
-                      <p className="text-sm text-muted-foreground">Apocalipse não é profecia linear nem alegoria pura. É literatura apocalíptica: revelação divina por meio de visões simbólicas, com estrutura literária complexa (seis séptuplos principais).</p>
+                      <p className="text-sm text-muted-foreground">Apocalipse não é profécia linear nem alegoria pura. É literátura apocalíptica: revelação divina por meio de visões simbólicas, com estrutura literária complexa (seis séptuplos principais).</p>
                     </div>
                   </div>
                   <div className="glass-card p-4 rounded-xl mt-4">
                     <h3 className="font-display text-sm font-medium mb-2">Estrutura Geral</h3>
-                    <p className="text-sm text-muted-foreground">As coisas que são (1-3), as que são e que hão de ser (4-22): Cristo entre as 7 igrejas (1-3), o trono e o Cordeiro (4-5), os 7 selos (6-8:1), as 7 trombetas (8:2-11:19), os sinais maiores (12-14), as 7 taças (15-16), Babilônia (17-19), milênio e julgamento final (20), nova criação (21-22).</p>
+                    <p className="text-sm text-muted-foreground">As coisas que são (1-3), as que são e que hão de ser (4-22): Cristo entre as 7 igrejas (1-3), o trono é o Cordeiro (4-5), os 7 selos (6-8:1), as 7 trombetas (8:2-11:19), os sinais maiores (12-14), as 7 taças (15-16), Babilônia (17-19), milênio e julgamento final (20), nova criação (21-22).</p>
                   </div>
                 </div>
               </section>
             </ScrollReveal>
           )}
 
-          {secaoAtiva === 'interpretacoes' && (
+          {seçãoAtiva === 'interpretações' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
@@ -295,7 +295,7 @@ export default function ApocalipsePage() {
             </ScrollReveal>
           )}
 
-          {secaoAtiva === 'seteigrejas' && (
+          {seçãoAtiva === 'seteigrejas' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
@@ -311,11 +311,11 @@ export default function ApocalipsePage() {
             </ScrollReveal>
           )}
 
-          {secaoAtiva === 'versiculos' && (
+          {seçãoAtiva === 'versiculos' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
-                  <Quote className="w-5 h-5 text-primary" />Versiculos-Chave com Comentario de Teologos
+                  <Quote className="w-5 h-5 text-primary" />Versículos-Chave com Comentario de Teologos
                 </h2>
                 <div className="space-y-6">
                   {versiculosChave.map((v, i) => (
@@ -326,7 +326,7 @@ export default function ApocalipsePage() {
             </ScrollReveal>
           )}
 
-          {secaoAtiva === 'temas' && (
+          {seçãoAtiva === 'temas' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
@@ -337,7 +337,7 @@ export default function ApocalipsePage() {
                     <div key={i} className="glass-card p-5 rounded-xl">
                       <div className="flex items-center gap-2 mb-2">
                         <t.icone className={`w-5 h-5 ${t.cor}`} />
-                        <h3 className="font-display text-lg font-medium">{t.titulo}</h3>
+                        <h3 className="font-display text-lg font-medium">{t.título}</h3>
                       </div>
                       <p className="text-sm text-muted-foreground leading-relaxed">{t.descricao}</p>
                     </div>
@@ -347,11 +347,11 @@ export default function ApocalipsePage() {
             </ScrollReveal>
           )}
 
-          {secaoAtiva === '2122' && (
+          {seçãoAtiva === '2122' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
-                  <Crown className="w-5 h-5 text-primary" />Apocalipse 21-22: A Nova Criacao
+                  <Crown className="w-5 h-5 text-primary" />Apocalipse 21-22: A Nova Criação
                 </h2>
                 <p className="text-muted-foreground mb-4">O clímax de toda a Escritura: a nova criação. O Gênesis se encontra com o Apocalipse. O que foi perdido em Eden é restaurado para sempre.</p>
                 <div className="space-y-4">
@@ -362,7 +362,7 @@ export default function ApocalipsePage() {
                         <p className="font-display text-sm font-medium text-primary">{v.verso}</p>
                       </div>
                       <p className="text-sm italic text-muted-foreground mb-2 ml-11 font-serif-body">&ldquo;{v.texto}&rdquo;</p>
-                      <p className="text-sm text-muted-foreground leading-relaxed mb-2 ml-11">{v.explicacao}</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-2 ml-11">{v.explicação}</p>
                       <div className="ml-11 p-2 rounded-lg bg-primary/5 border border-primary/10">
                         <p className="text-xs text-primary font-medium italic">&ldquo;{v.teologo}&rdquo;</p>
                       </div>
@@ -373,15 +373,15 @@ export default function ApocalipsePage() {
             </ScrollReveal>
           )}
 
-          {secaoAtiva === 'aplicacao' && (
+          {seçãoAtiva === 'aplicação' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
-                  <Lightbulb className="w-5 h-5 text-primary" />Aplicacao Pratica
+                  <Lightbulb className="w-5 h-5 text-primary" />Aplicação Pratica
                 </h2>
                 <div className="sola-card p-6 border-l-4 border-primary">
                   <ul className="space-y-3">
-                    {aplicacoes.map((a, i) => (
+                    {aplicações.map((a, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
                         <span className="text-sm leading-relaxed">{a}</span>
@@ -393,7 +393,7 @@ export default function ApocalipsePage() {
             </ScrollReveal>
           )}
 
-          {secaoAtiva === 'perguntas' && (
+          {seçãoAtiva === 'perguntas' && (
             <ScrollReveal>
               <section className="mb-8">
                 <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
@@ -430,14 +430,14 @@ export default function ApocalipsePage() {
   );
 }
 
-function VersiculoCard({ versiculo }: { versiculo: { referencia: string; texto: string; explicacao: string; comentarios: { teologo: string; texto: string }[] } }) {
+function VersiculoCard({ versiculo }: { versiculo: { referência: string; texto: string; explicação: string; comentarios: { teologo: string; texto: string }[] } }) {
   const [expandido, setExpandido] = useState(false);
   return (
     <motion.div layout className="sola-card overflow-hidden">
       <div className="p-5 cursor-pointer" onClick={() => setExpandido(!expandido)}>
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
-            <p className="font-display text-sm font-medium text-primary mb-1">{versiculo.referencia}</p>
+            <p className="font-display text-sm font-medium text-primary mb-1">{versiculo.referência}</p>
             <p className="text-sm italic leading-relaxed font-serif-body">&ldquo;{versiculo.texto}&rdquo;</p>
           </div>
           <motion.div animate={{ rotate: expandido ? 180 : 0 }} transition={{ duration: 0.2 }} className="flex-shrink-0">
@@ -449,7 +449,7 @@ function VersiculoCard({ versiculo }: { versiculo: { referencia: string; texto: 
         {expandido && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
             <div className="px-5 pb-5 border-t border-border/50 pt-3 space-y-4">
-              <p className="text-sm text-muted-foreground leading-relaxed">{versiculo.explicacao}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{versiculo.explicação}</p>
               <div className="space-y-3">
                 <p className="text-xs font-semibold uppercase tracking-wider text-primary">Comentarios de Teologos</p>
                 {versiculo.comentarios.map((c, i) => (

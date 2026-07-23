@@ -66,6 +66,7 @@ const moreLinks: NavLinkSpec[] = [
   { href: '/devocional', label: 'Devocional', icon: Heart },
   { href: '/desafios', label: 'Desafios', icon: Target },
   { href: '/comparar-comentarios', label: 'Comentários', icon: MessageCircle },
+  { href: '/comparar', label: 'Comparar Traduções', icon: Languages },
   { href: '/dashboard', label: 'Meu Dashboard', icon: BarChart3 },
   { href: '/comunidade', label: 'Comunidade', icon: MessageCircle },
   { href: '/estatisticas/gamificacao', label: 'Gamificação', icon: Crown },

@@ -3,11 +3,15 @@
 import { useState, useMemo } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import dynamic from 'next/dynamic';
 import { icon } from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import { Map, Search, X, Filter, Navigation, BookOpen, ChevronDown } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
+
+const MapContainer = dynamic(() => import('react-leaflet').then(m => m.MapContainer), { ssr: false });
+const TileLayer = dynamic(() => import('react-leaflet').then(m => m.TileLayer), { ssr: false });
+const MarkerComp = dynamic(() => import('react-leaflet').then(m => m.Marker), { ssr: false });
+const PopupComp = dynamic(() => import('react-leaflet').then(m => m.Popup), { ssr: false });
 import { cn } from '@/lib/utils';
 
 interface LocalBiblico {
@@ -54,12 +58,6 @@ const CATEGORIA_CORES: Record<string, string> = {
 const TIPO_ICONS: Record<string, string> = {
   cidade: '🏙️', montanha: '⛰️', rio: '🌊', deserto: '🏜️', mar: '🌊', regiao: '🌍',
 };
-
-function ChangeView({ center, zoom }: { center: [number, number]; zoom: number }) {
-  const map = useMap();
-  map.setView(center, zoom);
-  return null;
-}
 
 export default function MapasPage() {
   const [busca, setBusca] = useState('');
@@ -125,23 +123,22 @@ export default function MapasPage() {
           <div className="flex-1 relative">
             <MapContainer center={mapCenter} zoom={mapZoom} className="h-full w-full z-0" zoomControl={false}>
               <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org">OpenStreetMap</a>' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-              <ChangeView center={mapCenter} zoom={mapZoom} />
               {filtrados.map((local, i) => (
-                <Marker key={i} position={[local.lat, local.lng]}
+                <MarkerComp key={i} position={[local.lat, local.lng]}
                   icon={icon({
                     iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${local.categoria === 'AT' ? 'gold' : local.categoria === 'NT' ? 'blue' : 'violet'}.png`,
                     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
                     iconSize: [25, 41], iconAnchor: [12, 41],
                   })}
                   eventHandlers={{ click: () => { setSelectedLocal(local); setMapCenter([local.lat, local.lng]); setMapZoom(10); } }}>
-                  <Popup>
+                  <PopupComp>
                     <div className="min-w-[200px]">
                       <h3 className="font-bold text-sm">{local.nome}</h3>
                       <p className="text-xs text-gray-600 mt-1">{local.descricao}</p>
                       <p className="text-xs text-blue-600 mt-1">{local.referencia}</p>
                     </div>
-                  </Popup>
-                </Marker>
+                  </PopupComp>
+                </MarkerComp>
               ))}
             </MapContainer>
           </div>

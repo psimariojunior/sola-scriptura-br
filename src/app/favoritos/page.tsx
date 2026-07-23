@@ -1,13 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Trash2, Filter, BookOpen, Star, X } from 'lucide-react';
+import { Heart, Trash2, Search, X, ArrowUpDown, BookOpen, Download } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
+import { cn } from '@/lib/utils';
+import { TODOS_LIVROS } from '@/data/biblia/livros';
 
 interface Favorito {
+  id: string;
   versiculo: string;
   livro: string;
   capitulo: number;
@@ -17,22 +20,22 @@ interface Favorito {
   data: string;
 }
 
-const coresDisponiveis = [
-  { valor: 'amarelo', cor: '#FDE68A', label: 'Amarelo' },
-  { valor: 'verde', cor: '#BBF7D0', label: 'Verde' },
-  { valor: 'azul', cor: '#BFDBFE', label: 'Azul' },
-  { valor: 'rosa', cor: '#FBCFE8', label: 'Rosa' },
-  { valor: 'roxo', cor: '#DDD6FE', label: 'Roxo' },
+type SortBy = 'data' | 'livro' | 'cor';
+const CORES = [
+  { id: 'all', label: 'Todas', cor: '' },
+  { id: '#fbbf24', label: 'Amarelo', cor: '#fbbf24' },
+  { id: '#34d399', label: 'Verde', cor: '#34d399' },
+  { id: '#60a5fa', label: 'Azul', cor: '#60a5fa' },
+  { id: '#f472b6', label: 'Rosa', cor: '#f472b6' },
+  { id: '#a78bfa', label: 'Roxo', cor: '#a78bfa' },
 ];
-
-function obterCorHex(valor: string): string {
-  return coresDisponiveis.find((c) => c.valor === valor)?.cor ?? '#FDE68A';
-}
 
 export default function FavoritosPage() {
   const [favoritos, setFavoritos] = useState<Favorito[]>([]);
-  const [filtroCor, setFiltroCor] = useState<string>('');
-  const [filtroLivro, setFiltroLivro] = useState<string>('');
+  const [busca, setBusca] = useState('');
+  const [filtroCor, setFiltroCor] = useState('all');
+  const [filtroLivro, setFiltroLivro] = useState('all');
+  const [sortBy, setSortBy] = useState<SortBy>('data');
   const [carregado, setCarregado] = useState(false);
 
   useEffect(() => {
@@ -43,28 +46,46 @@ export default function FavoritosPage() {
     setCarregado(true);
   }, []);
 
-  const livros = [...new Set(favoritos.map((f) => f.livro))].sort();
+  const remover = useCallback((id: string) => {
+    setFavoritos(prev => {
+      const updated = prev.filter(f => f.id !== id);
+      localStorage.setItem('ssb_favoritos', JSON.stringify(updated));
+      return updated;
+    });
+  }, []);
 
-  const favoritosFiltrados = favoritos.filter((f) => {
-    if (filtroCor && f.cor !== filtroCor) return false;
-    if (filtroLivro && f.livro !== filtroLivro) return false;
-    return true;
-  });
+  const exportar = useCallback(() => {
+    const data = JSON.stringify(favoritos, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `favoritos-sola-scriptura-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [favoritos]);
 
-  const agrupados = favoritosFiltrados.reduce<Record<string, Favorito[]>>((acc, f) => {
-    if (!acc[f.livro]) acc[f.livro] = [];
-    acc[f.livro].push(f);
-    return acc;
-  }, {});
+  const livrosComFavoritos = useMemo(() => {
+    const livros = new Set(favoritos.map(f => f.livro));
+    return TODOS_LIVROS.filter(l => livros.has(l.nome));
+  }, [favoritos]);
 
-  const removerFavorito = (index: number) => {
-    const alvo = favoritosFiltrados[index];
-    const novos = favoritos.filter(
-      (f) => !(f.versiculo === alvo.versiculo && f.data === alvo.data)
-    );
-    setFavoritos(novos);
-    localStorage.setItem('ssb_favoritos', JSON.stringify(novos));
-  };
+  const filtrados = useMemo(() => {
+    let result = favoritos;
+    if (busca) {
+      const termo = busca.toLowerCase();
+      result = result.filter(f => f.texto.toLowerCase().includes(termo) || f.versiculo.toLowerCase().includes(termo));
+    }
+    if (filtroCor !== 'all') result = result.filter(f => f.cor === filtroCor);
+    if (filtroLivro !== 'all') result = result.filter(f => f.livro === filtroLivro);
+
+    result = [...result].sort((a, b) => {
+      if (sortBy === 'data') return new Date(b.data).getTime() - new Date(a.data).getTime();
+      if (sortBy === 'livro') return a.livro.localeCompare(b.livro);
+      return a.cor.localeCompare(b.cor);
+    });
+    return result;
+  }, [favoritos, busca, filtroCor, filtroLivro, sortBy]);
 
   return (
     <div className="min-h-screen">
@@ -72,141 +93,102 @@ export default function FavoritosPage() {
       <main className="pt-24 pb-16 px-6">
         <div className="max-w-3xl mx-auto">
           <ScrollReveal>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                <Heart className="w-5 h-5 text-primary" />
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center">
+                  <Heart className="w-5 h-5 text-red-500" />
+                </div>
+                <div>
+                  <h1 className="font-display text-3xl font-light">Favoritos</h1>
+                  <p className="text-sm text-muted-foreground">{favoritos.length} versículos salvos</p>
+                </div>
               </div>
-              <div>
-                <h1 className="font-display text-3xl font-light">Favoritos</h1>
-                <p className="text-sm text-muted-foreground">Versículos marcados e destacados</p>
-              </div>
+              {favoritos.length > 0 && (
+                <motion.button onClick={exportar} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border text-sm text-muted-foreground hover:bg-muted/50 transition-all">
+                  <Download className="w-4 h-4" /> Exportar
+                </motion.button>
+              )}
             </div>
           </ScrollReveal>
 
           {carregado && favoritos.length === 0 ? (
             <ScrollReveal>
               <div className="rounded-2xl border border-border/50 bg-card/50 p-12 text-center">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <Star className="w-8 h-8 text-primary/50" />
+                <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4">
+                  <Heart className="w-8 h-8 text-red-500/50" />
                 </div>
                 <h2 className="font-display text-xl font-light mb-2">Nenhum favorito</h2>
-                <p className="text-sm text-muted-foreground">
-                  Destaque versículos na Bíblia para encontrá-los facilmente aqui.
-                </p>
+                <p className="text-sm text-muted-foreground">Favorite versículos na Bíblia para encontrá-los facilmente.</p>
               </div>
             </ScrollReveal>
           ) : (
             <>
               <ScrollReveal>
-                <div className="flex flex-wrap gap-3 mb-8">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <Filter className="w-4 h-4 text-muted-foreground" />
-                    <button
-                      onClick={() => setFiltroCor('')}
-                      className={`px-3 py-1.5 text-xs rounded-full border transition-all ${
-                        !filtroCor ? 'border-primary bg-primary/10 text-primary' : 'border-border/50 hover:bg-muted/50'
-                      }`}
-                    >
-                      Todas
-                    </button>
-                    {coresDisponiveis.map((c) => (
-                      <button
-                        key={c.valor}
-                        onClick={() => setFiltroCor(filtroCor === c.valor ? '' : c.valor)}
-                        className="w-6 h-6 rounded-full border-2 transition-all hover:scale-110"
-                        style={{
-                          backgroundColor: c.cor,
-                          borderColor: filtroCor === c.valor ? '#D4A843' : 'transparent',
-                        }}
-                        title={c.label}
-                      />
+                <div className="space-y-3 mb-6">
+                  <div className="relative">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <input type="text" value={busca} onChange={e => setBusca(e.target.value)}
+                      placeholder="Buscar nos favoritos..."
+                      className="w-full pl-11 pr-10 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                    {busca && <button onClick={() => setBusca('')} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-muted/50">
+                      <X className="w-4 h-4 text-muted-foreground" /></button>}
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {CORES.map(c => (
+                      <button key={c.id} onClick={() => setFiltroCor(c.id)}
+                        className={cn('px-3 py-1.5 rounded-full text-xs font-medium transition-all border',
+                          filtroCor === c.id ? 'border-primary bg-primary/10 text-primary' : 'border-border text-muted-foreground hover:bg-muted/50')}>
+                        {c.cor && <span className="inline-block w-2 h-2 rounded-full mr-1.5" style={{ backgroundColor: c.cor }} />}
+                        {c.label}
+                      </button>
                     ))}
                   </div>
 
-                  <div className="w-px h-6 bg-border/50 mx-1 hidden sm:block" />
-
-                  <select
-                    value={filtroLivro}
-                    onChange={(e) => setFiltroLivro(e.target.value)}
-                    className="px-3 py-1.5 text-xs rounded-full border border-border/50 bg-background focus:outline-none focus:ring-2 focus:ring-primary/20"
-                  >
-                    <option value="">Todos os livros</option>
-                    {livros.map((l) => (
-                      <option key={l} value={l}>{l}</option>
-                    ))}
-                  </select>
-
-                  {(filtroCor || filtroLivro) && (
-                    <button
-                      onClick={() => { setFiltroCor(''); setFiltroLivro(''); }}
-                      className="flex items-center gap-1 px-3 py-1.5 text-xs rounded-full border border-red-500/30 text-red-500 hover:bg-red-500/10 transition-all"
-                    >
-                      <X className="w-3 h-3" /> Limpar filtros
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <select value={filtroLivro} onChange={e => setFiltroLivro(e.target.value)}
+                      className="px-3 py-1.5 rounded-lg text-xs border border-border bg-background">
+                      <option value="all">Todos os livros</option>
+                      {livrosComFavoritos.map(l => <option key={l.abreviacao} value={l.nome}>{l.nome}</option>)}
+                    </select>
+                    <button onClick={() => setSortBy(prev => prev === 'data' ? 'livro' : prev === 'livro' ? 'cor' : 'data')}
+                      className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs border border-border text-muted-foreground hover:bg-muted/50">
+                      <ArrowUpDown className="w-3 h-3" /> {sortBy === 'data' ? 'Data' : sortBy === 'livro' ? 'Livro' : 'Cor'}
                     </button>
-                  )}
+                  </div>
                 </div>
               </ScrollReveal>
 
-              <AnimatePresence mode="wait">
-                {Object.entries(agrupados).map(([livro, itens]) => (
-                  <ScrollReveal key={livro}>
-                    <div className="mb-8">
-                      <div className="flex items-center gap-2 mb-4">
-                        <BookOpen className="w-4 h-4 text-primary" />
-                        <h2 className="font-display text-lg font-medium text-primary">{livro}</h2>
-                        <span className="text-xs text-muted-foreground">({itens.length})</span>
+              <div className="space-y-3">
+                <AnimatePresence>
+                  {filtrados.map((fav, idx) => (
+                    <motion.div key={fav.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, x: -20 }} transition={{ delay: idx * 0.03 }}
+                      className="relative rounded-xl border border-border/50 bg-card/50 p-4 group hover:border-primary/30 transition-all">
+                      <div className="absolute left-0 top-0 bottom-0 w-1.5 rounded-l-xl" style={{ backgroundColor: fav.cor }} />
+                      <div className="pl-3">
+                        <p className="text-sm text-foreground/90 leading-relaxed mb-2">{fav.texto}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-primary/80">{fav.versiculo}</span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[10px] text-muted-foreground">{new Date(fav.data).toLocaleDateString('pt-BR')}</span>
+                            <button onClick={() => remover(fav.id)}
+                              className="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-red-500/10 text-red-500 transition-all">
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
                       </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
 
-                      <div className="space-y-3">
-                        {itens.map((fav, idx) => {
-                          const globalIdx = favoritosFiltrados.indexOf(fav);
-                          return (
-                            <motion.div
-                              key={`${fav.versiculo}-${fav.data}`}
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -10 }}
-                              transition={{ delay: idx * 0.05 }}
-                              className="relative rounded-xl border border-border/50 bg-card/50 p-5 group hover:border-primary/30 transition-all"
-                            >
-                              <div
-                                className="absolute left-0 top-0 bottom-0 w-1 rounded-l-xl"
-                                style={{ backgroundColor: obterCorHex(fav.cor) }}
-                              />
-                              <div className="pl-3">
-                                <p className="font-display italic text-foreground/90 mb-2 leading-relaxed">
-                                  {fav.texto}
-                                </p>
-                                <div className="flex items-center justify-between">
-                                  <p className="text-sm font-medium text-primary/80">
-                                    {fav.versiculo}
-                                  </p>
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-xs text-muted-foreground">
-                                      {new Date(fav.data).toLocaleDateString('pt-BR')}
-                                    </span>
-                                    <button
-                                      onClick={() => removerFavorito(globalIdx)}
-                                      className="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-red-500/10 text-red-500 transition-all"
-                                      title="Remover"
-                                    >
-                                      <Trash2 className="w-3.5 h-3.5" />
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </motion.div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </ScrollReveal>
-                ))}
-              </AnimatePresence>
-
-              <p className="text-center text-xs text-muted-foreground mt-8">
-                {favoritosFiltrados.length} de {favoritos.length} favoritos
-              </p>
+              {busca && filtrados.length === 0 && (
+                <div className="text-center py-8"><p className="text-sm text-muted-foreground">Nenhum favorito encontrado</p></div>
+              )}
+              <p className="text-center text-xs text-muted-foreground mt-8">{filtrados.length} de {favoritos.length} favoritos</p>
             </>
           )}
         </div>

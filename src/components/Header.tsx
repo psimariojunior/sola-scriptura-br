@@ -8,6 +8,7 @@ import {
   Menu, X, BookOpen, Search, Sun, Moon, User, LogOut, Languages, Stars, BookMarked,
   Command, Settings, ChevronDown, ScrollText, Brain, Map, Music, MonitorPlay,
   Sparkles, GraduationCap, MessageCircle, Library, Crown, Heart, History, HelpCircle, Download,
+  Users, Trophy, Target, BarChart3,
 } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { authService } from '@/lib/auth';
@@ -51,10 +52,16 @@ const moreLinks: NavLinkSpec[] = [
   { href: '/historia', label: 'História', icon: Map },
   { href: '/cronologia', label: 'Cronologia', icon: History },
   { href: '/personagens', label: 'Personagens', icon: User },
+  { href: '/relacoes', label: 'Relações Bíblicas', icon: Users },
   { href: '/ferramentas', label: 'Ferramentas', icon: Sparkles },
   { href: '/quiz', label: 'Quiz Bíblico', icon: HelpCircle },
+  { href: '/quiz/multiplayer', label: 'Quiz Multiplayer', icon: Trophy },
   { href: '/flashcards', label: 'Flashcards', icon: BookMarked },
+  { href: '/memorizacao', label: 'Memorização', icon: Brain },
   { href: '/devocional', label: 'Devocional', icon: Heart },
+  { href: '/desafios', label: 'Desafios', icon: Target },
+  { href: '/comparar-comentarios', label: 'Comentários', icon: MessageCircle },
+  { href: '/dashboard', label: 'Meu Dashboard', icon: BarChart3 },
   { href: '/comunidade', label: 'Comunidade', icon: MessageCircle },
   { href: '/estatisticas/gamificacao', label: 'Gamificação', icon: Crown },
 ];

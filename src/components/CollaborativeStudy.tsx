@@ -18,6 +18,7 @@ import {
 } from '@/lib/collaborative';
 import { VideoCall } from '@/components/VideoCall';
 import { PresentationInline } from '@/components/Apresentacao/PresentationInline';
+import { BibleBrowser } from '@/components/BibleBrowser';
 import {
   createWebRTCService,
   type WebRTCService,
@@ -31,7 +32,7 @@ interface CollaborativeStudyProps {
   compact?: boolean;
 }
 
-type TabType = 'chat' | 'verses' | 'presentation';
+type TabType = 'chat' | 'verses' | 'presentation' | 'bible';
 
 export function CollaborativeStudy({ initialCode, compact = false }: CollaborativeStudyProps) {
   const [room, setRoom] = useState<StudyRoom | null>(null);
@@ -55,6 +56,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   } | null>(null);
   const [presentationFontSize, setPresentationFontSize] = useState(48);
   const [presentationMirror, setPresentationMirror] = useState(false);
+  const [bibleSyncData, setBibleSyncData] = useState<{ livro: string; capitulo: number; traducao: string } | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatServiceRef = useRef<WebRTCService | null>(null);
@@ -97,6 +99,10 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     svc.onCallInvite((data) => setIncomingCall(data));
     svc.onCallAccept(() => setIncomingCall(null));
     svc.onCallReject(() => setIncomingCall(null));
+
+    svc.onBibleNavigation((data) => {
+      setBibleSyncData(data);
+    });
 
     svc.onPresentationSync((data) => {
       if (data.action === 'stop') {
@@ -220,6 +226,25 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     setVerseInput({ livro: '', capitulo: '', versiculo: '', texto: '' });
     setShowShare(false);
   }, [room, shareInput, shareMessage, verseInput, participantId, participantName]);
+
+  const handleShareBibleVerse = useCallback((ref: string, text: string) => {
+    if (!room) return;
+
+    const verseData: VerseSharedEvent = {
+      id: `v-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      participantId,
+      displayName: participantName,
+      verse: ref,
+      livro: ref,
+      capitulo: 0,
+      versiculo: 0,
+      texto: text,
+      timestamp: Date.now(),
+    };
+
+    setWsVerses(prev => [...prev, verseData]);
+    chatServiceRef.current?.sendVerseShared(verseData);
+  }, [room, participantId, participantName]);
 
   // Enviar mensagem no chat
   const handleSendMessage = useCallback(() => {
@@ -500,6 +525,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       <div className="flex border-b border-[var(--border)]/40 bg-[var(--surface-sunken)]/20">
         {([
           { id: 'verses' as const, icon: BookOpen, label: 'Versículos', count: wsVerses.length },
+          { id: 'bible' as const, icon: BookOpen, label: 'Bíblia', count: 0 },
           { id: 'chat' as const, icon: MessageSquare, label: 'Chat', count: chatMessages.length },
           { id: 'presentation' as const, icon: MonitorPlay, label: 'Apresentar', count: 0 },
         ]).map(tab => (
@@ -623,6 +649,22 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
                   ))
                 )}
                 <div ref={messagesEndRef} />
+              </div>
+            ) : activeTab === 'bible' ? (
+              <div className="h-full">
+                <BibleBrowser
+                  onShareVerses={(verses) => {
+                    verses.forEach(v => {
+                      handleShareBibleVerse(v.ref, v.text);
+                    });
+                    setActiveTab('verses');
+                  }}
+                  syncData={bibleSyncData}
+                  onNavigate={(data) => {
+                    chatServiceRef.current?.sendBibleNavigation(data);
+                  }}
+                  isPresenter={room.participants[0] === participantId}
+                />
               </div>
             ) : (
               <div className="space-y-3">

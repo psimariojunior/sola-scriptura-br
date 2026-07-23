@@ -40,6 +40,18 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
     this.logger.log(`Client connected: ${client.id}`);
   }
 
+  @SubscribeMessage('bible-navigation')
+  handleBibleNavigation(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { code: string; livro: string; capitulo: number; traducao: string },
+  ) {
+    client.to(data.code).emit('bible-navigation', {
+      livro: data.livro,
+      capitulo: data.capitulo,
+      traducao: data.traducao,
+    });
+  }
+
   handleDisconnect(client: Socket) {
     this.logger.log(`Client disconnected: ${client.id}`);
     this.handleTypingStopBySocket(client);

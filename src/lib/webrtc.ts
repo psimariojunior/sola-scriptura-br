@@ -88,6 +88,7 @@ export class WebRTCService {
   private onCallAcceptCallback: ((data: { code: string; acceptorSocketId: string }) => void) | null = null;
   private onCallRejectCallback: ((data: { code: string; rejectorName: string }) => void) | null = null;
   private onPresentationSyncCallback: ((data: PresentationSyncEvent) => void) | null = null;
+  private onBibleNavigationCallback: ((data: { livro: string; capitulo: number; traducao: string }) => void) | null = null;
   private peerStreams: PeerStream[] = [];
   private mySocketId = '';
   private roomCode = '';
@@ -173,6 +174,10 @@ export class WebRTCService {
       this.onTypingStopCallback?.(data.participantId);
     });
 
+    this.socket.on('bible-navigation', (data: { livro: string; capitulo: number; traducao: string }) => {
+      this.onBibleNavigationCallback?.(data);
+    });
+
     this.socket.on('call-invite', (data: CallInviteEvent) => {
       this.onCallInviteCallback?.(data);
     });
@@ -206,6 +211,11 @@ export class WebRTCService {
   sendVerseShared(data: VerseSharedEvent) {
     if (!this.socket || !this.roomCode) return;
     this.socket.emit('verse-shared-ws', { ...data, code: this.roomCode });
+  }
+
+  sendBibleNavigation(data: { livro: string; capitulo: number; traducao: string }) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('bible-navigation', { ...data, code: this.roomCode });
   }
 
   sendTypingStart(participantId: string, displayName: string) {
@@ -408,6 +418,10 @@ export class WebRTCService {
     this.onTypingStopCallback = cb;
   }
 
+  onBibleNavigation(cb: (data: { livro: string; capitulo: number; traducao: string }) => void) {
+    this.onBibleNavigationCallback = cb;
+  }
+
   onCallInvite(cb: (data: CallInviteEvent) => void) {
     this.onCallInviteCallback = cb;
   }
@@ -443,6 +457,7 @@ export class WebRTCService {
     this.onCallInviteCallback = null;
     this.onCallAcceptCallback = null;
     this.onCallRejectCallback = null;
+    this.onBibleNavigationCallback = null;
     this.onPresentationSyncCallback = null;
   }
 }

@@ -280,8 +280,75 @@ export default function HomeClient() {
         <section className="py-24 sm:py-32 px-4 sm:px-6 relative" aria-label="Recursos">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal><SectionHeading eyebrow="Recursos" title="Tudo que você precisa para" highlight="estudar a Palavra." /></ScrollReveal>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-              {features.map((f, i) => (<FeatureCard key={f.title} feature={f} index={i} />))}
+            {/* Bento grid irregular — BibleProject style */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+              {/* Card grande — 2 colunas */}
+              <div className="sm:col-span-2 lg:col-span-2">
+                <FeatureCard feature={features[0]} index={0} />
+              </div>
+              {/* Cards normais */}
+              <FeatureCard feature={features[1]} index={1} />
+              <FeatureCard feature={features[2]} index={2} />
+              {/* Card grande — 2 colunas */}
+              <div className="sm:col-span-2 lg:col-span-2">
+                <FeatureCard feature={features[3]} index={3} />
+              </div>
+              {/* Cards normais */}
+              <FeatureCard feature={features[4]} index={4} />
+              <FeatureCard feature={features[5]} index={5} />
+              {/* Card grande — destaque */}
+              <div className="sm:col-span-2 lg:col-span-2">
+                <FeatureCard feature={features[6]} index={6} />
+              </div>
+              {/* Cards normais */}
+              <FeatureCard feature={features[7]} index={7} />
+              <FeatureCard feature={features[8]} index={8} />
+              {/* Card grande — 2 colunas */}
+              <div className="sm:col-span-2 lg:col-span-2">
+                <FeatureCard feature={features[9]} index={9} />
+              </div>
+              {/* Cards normais */}
+              <FeatureCard feature={features[10]} index={10} />
+              <FeatureCard feature={features[11]} index={11} />
+            </div>
+          </div>
+        </section>
+
+        {/* Carrossel horizontal de planos — YouVersion style */}
+        <section className="py-20 sm:py-24 px-4 sm:px-6" aria-label="Planos de leitura em destaque">
+          <div className="max-w-6xl mx-auto">
+            <ScrollReveal>
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <p className="eyebrow-label text-left">Planos de Leitura</p>
+                  <h2 className="font-display text-2xl sm:text-3xl font-light heading-premium">Comece sua jornada</h2>
+                </div>
+                <Link href="/planos" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+                  Ver todos <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </ScrollReveal>
+            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
+              {[
+                { title: 'Salmos para Ansiedade', days: 7, category: 'Paz', color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400' },
+                { title: 'Versículos de Esperança', days: 14, category: 'Esperança', color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' },
+                { title: 'Fundamentos da Fé', days: 21, category: 'Fé', color: 'bg-amber-500/10 text-amber-600 dark:text-amber-400' },
+                { title: 'Amor em Ação', days: 10, category: 'Amor', color: 'bg-rose-500/10 text-rose-600 dark:text-rose-400' },
+                { title: 'Cura Interior', days: 14, category: 'Cura', color: 'bg-purple-500/10 text-purple-600 dark:text-purple-400' },
+                { title: 'Sabedoria Provérbios', days: 31, category: 'Sabedoria', color: 'bg-orange-500/10 text-orange-600 dark:text-orange-400' },
+              ].map((plano) => (
+                <Link key={plano.title} href="/planos" className="flex-shrink-0 w-56 snap-start group">
+                  <div className="h-32 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 border border-border/40 p-5 flex flex-col justify-between group-hover:border-primary/30 transition-all duration-300">
+                    <span className={`inline-flex self-start px-2.5 py-1 rounded-full text-[10px] font-semibold ${plano.color}`}>
+                      {plano.category}
+                    </span>
+                    <div>
+                      <h3 className="font-semibold text-sm mb-1 line-clamp-2">{plano.title}</h3>
+                      <p className="text-[11px] text-muted-foreground">{plano.days} dias</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </section>

@@ -117,12 +117,12 @@ function ApresentacaoMockup() {
 
 function SectionHeading({ eyebrow, title, highlight, align = 'center' }: { eyebrow: string; title: React.ReactNode; highlight: React.ReactNode; align?: 'center' | 'left' }) {
   return (
-    <div className={`mb-12 sm:mb-14 ${align === 'center' ? 'text-center' : ''}`}>
-      <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-muted-foreground mb-3">{eyebrow}</p>
-      <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light leading-[1.1] tracking-tight">
+    <div className={`mb-14 sm:mb-16 ${align === 'center' ? 'text-center' : ''}`}>
+      <p className="eyebrow-label">{eyebrow}</p>
+      <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light heading-premium">
         {title} <span className="italic text-primary">{highlight}</span>
       </h2>
-      <div className={`h-px mt-5 bg-gradient-to-r from-transparent via-primary/40 to-transparent ${align === 'center' ? 'mx-auto w-16' : 'w-16'}`} />
+      <div className={`h-px mt-6 bg-gradient-to-r from-transparent via-primary/30 to-transparent ${align === 'center' ? 'mx-auto w-20' : 'w-20'}`} />
     </div>
   );
 }
@@ -132,24 +132,25 @@ function FeatureCard({ feature, index }: { feature: typeof features[number]; ind
   return (
     <ScrollReveal delay={index * 0.08}>
       <motion.div
-        whileHover={{ y: -6 }}
-        transition={{ duration: 0.3 }}
-        className={`feature-card group relative h-full p-6 sm:p-7 rounded-2xl border bg-card/50 backdrop-blur-sm overflow-hidden ${
+        whileHover={{ y: -4 }}
+        transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className={`feature-card group relative h-full p-7 sm:p-8 rounded-2xl border bg-card/50 backdrop-blur-sm overflow-hidden ${
           feature.highlight ? 'border-amber-500/30 shadow-[var(--shadow-glow)]' : 'border-border/40'
         }`}
       >
         {feature.highlight && (
-          <span className="absolute top-3 right-3 inline-flex items-center gap-1 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-black shadow-sm">
+          <span className="absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-black shadow-sm">
             <Sparkles className="w-2.5 h-2.5" /> Novo
           </span>
         )}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{ background: 'radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.1) 0%, transparent 60%)' }} />
+          style={{ background: 'radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.08) 0%, transparent 60%)' }} />
         <div className="relative z-10">
-          <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-300">
+          <p className="step-number">{String(index + 1).padStart(2, '0')}</p>
+          <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-300">
             <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
           </div>
-          <h3 className="font-semibold text-base mb-2 text-foreground">{feature.title}</h3>
+          <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{feature.title}</h3>
           <p className="text-[13px] text-muted-foreground leading-relaxed">{feature.desc}</p>
         </div>
       </motion.div>
@@ -189,18 +190,26 @@ export default function HomeClient() {
             </motion.div>
 
             <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="wordmark text-[2.75rem] leading-[0.95] sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] mb-7">
+              className="wordmark text-[2.75rem] leading-[0.95] sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] mb-7 heading-premium">
               <span className="block">Estude a Bíblia</span>
               <span className="block"><span className="gradient-text-animated">em profundidade</span><span className="text-foreground">,</span></span>
               <span className="block italic text-foreground/85">gratuitamente.</span>
             </motion.h1>
 
             <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.8 }}
-              className="font-sans text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-10 sm:mb-12 px-2">
+              className="font-sans text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8 px-2">
               6 traduções da Bíblia, comentários de teólogos clássicos, léxico grego e hebraico, referências cruzadas, IA teológica e modo apresentação para igrejas e células.
             </motion.p>
 
-            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.6 }}
+            {/* Social proof badges */}
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.6 }}
+              className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+              <span className="proof-badge"><BookOpen className="w-3.5 h-3.5" /> 10 traduções</span>
+              <span className="proof-badge"><Languages className="w-3.5 h-3.5" /> 14.200 verbetes</span>
+              <span className="proof-badge"><Brain className="w-3.5 h-3.5" /> IA teológica</span>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.6 }}
               className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-14">
               <Link href="/biblia" className="group relative inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-[15px] font-semibold rounded-xl overflow-hidden transition-all duration-300"
                 style={{ background: 'linear-gradient(135deg, #f5cd6b 0%, #d4a843 50%, #b88a30 100%)', color: '#1c1300', boxShadow: '0 0 24px -4px rgba(212,168,67,0.4), 0 0 40px -8px rgba(212,168,67,0.2)' }}>
@@ -268,29 +277,29 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section className="py-20 sm:py-28 px-4 sm:px-6 relative" aria-label="Recursos">
+        <section className="py-24 sm:py-32 px-4 sm:px-6 relative" aria-label="Recursos">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal><SectionHeading eyebrow="Recursos" title="Tudo que você precisa para" highlight="estudar a Palavra." /></ScrollReveal>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
               {features.map((f, i) => (<FeatureCard key={f.title} feature={f} index={i} />))}
             </div>
           </div>
         </section>
 
-        <section className="py-14 sm:py-18 px-4 sm:px-6 border-y border-border/30 bg-card/20 relative overflow-hidden" aria-label="Recursos do Sola Scriptura">
+        <section className="py-20 sm:py-24 px-4 sm:px-6 border-y border-border/30 bg-card/20 relative overflow-hidden" aria-label="Recursos do Sola Scriptura">
           <div className="max-w-6xl mx-auto relative z-10">
             <ScrollReveal>
               <div className="text-center mb-10">
-                <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-muted-foreground mb-2">Dados da plataforma</p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                <p className="eyebrow-label">Dados da plataforma</p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-3xl mx-auto">
                   {[
                     { label: 'Comentários', desc: 'Matthew Henry, Adam Clarke, John Gill e outros (domínio público)' },
                     { label: 'Léxico Strong', desc: '5.526 gregos + 8.674 hebraicos, fonte: Strong\'s Exhaustive Concordance' },
                     { label: 'Referências Cruzadas', desc: '29.266 refs do Treasury of Scripture Knowledge (TSK)' },
                     { label: 'Traduções', desc: 'ARC, ARA, ACF, KJV, NVI, WEB — gratuitas via API MidVash' },
                   ].map((item) => (
-                    <div key={item.label} className="text-center p-3">
-                      <p className="text-sm font-medium text-foreground mb-1">{item.label}</p>
+                    <div key={item.label} className="text-center p-4">
+                      <p className="text-sm font-semibold text-foreground mb-1.5">{item.label}</p>
                       <p className="text-[11px] text-muted-foreground leading-relaxed">{item.desc}</p>
                     </div>
                   ))}
@@ -300,7 +309,7 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section className="py-20 sm:py-28 px-4 sm:px-6 relative" aria-label="Como estudar">
+        <section className="py-24 sm:py-32 px-4 sm:px-6 relative" aria-label="Como estudar">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal><SectionHeading eyebrow="Como Estudar" title="Seu estudo em" highlight="3 passos." /></ScrollReveal>
             <div className="grid md:grid-cols-3 gap-5 sm:gap-6">
@@ -330,20 +339,20 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section className="py-20 sm:py-28 px-4 sm:px-6 relative bg-card/30 border-y border-border/30" aria-label="Como funciona">
+        <section className="py-24 sm:py-32 px-4 sm:px-6 relative bg-card/30 border-y border-border/30" aria-label="Como funciona">
           <div className="max-w-5xl mx-auto">
             <ScrollReveal><SectionHeading eyebrow="Como Funciona" title="Comece a estudar em" highlight="3 passos." /></ScrollReveal>
             <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
               {comoFunciona.map((step, i) => (
                 <ScrollReveal key={step.step} delay={i * 0.1}>
-                  <div className="relative h-full p-6 sm:p-7 rounded-2xl border border-border/40 bg-card/50 hover:border-primary/30 transition-all duration-500">
-                    <div className="flex items-center gap-3 mb-4">
+                  <div className="relative h-full p-7 sm:p-8 rounded-2xl border border-border/40 bg-card/50 hover:border-primary/30 transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-5">
                       <span className="step-badge">{step.step}</span>
                       {i < comoFunciona.length - 1 && (
                         <span className="hidden md:block flex-1 h-px" style={{ background: 'linear-gradient(90deg, hsl(var(--primary) / 0.3), transparent)' }} aria-hidden="true" />
                       )}
                     </div>
-                    <h3 className="font-display text-xl sm:text-2xl font-medium mb-2 leading-tight">{step.title}</h3>
+                    <h3 className="font-display text-xl sm:text-2xl font-medium mb-2.5 leading-tight">{step.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
                   </div>
                 </ScrollReveal>
@@ -352,7 +361,7 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section className="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden" aria-label="Modo Apresentação para grupos"
+        <section className="py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden" aria-label="Modo Apresentação para grupos"
           style={{ background: 'linear-gradient(180deg, transparent 0%, hsl(var(--primary) / 0.04) 50%, transparent 100%)' }}>
           <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
             <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-amber-500/[0.06] blur-3xl" />
@@ -362,10 +371,10 @@ export default function HomeClient() {
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               <div>
                 <ScrollReveal>
-                  <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-amber-600 dark:text-amber-400 mb-4 flex items-center gap-2">
+                  <p className="eyebrow-label text-amber-600 dark:text-amber-400 flex items-center gap-2">
                     <MonitorPlay className="w-3.5 h-3.5" /> Para Grupos e Igrejas
                   </p>
-                  <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light leading-[1.05] tracking-tight mb-6">
+                  <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light heading-premium mb-6">
                     Mostre a Palavra<br /><span className="italic text-primary">em qualquer tela.</span>
                   </h2>
                   <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg">
@@ -403,19 +412,19 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section className="py-16 sm:py-20 px-4 sm:px-6 relative" aria-label="Compare traduções">
+        <section className="py-20 sm:py-24 px-4 sm:px-6 relative" aria-label="Compare traduções">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
-              <Link href="/comparar" className="group relative block overflow-hidden rounded-3xl border border-border/40 bg-card/50 backdrop-blur-sm hover:border-primary/40 transition-all duration-500 p-8 sm:p-12">
-                <div className="absolute inset-0 opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+              <Link href="/comparar" className="group relative block overflow-hidden rounded-3xl border border-border/40 bg-card/50 backdrop-blur-sm hover:border-primary/40 transition-all duration-300 p-8 sm:p-12">
+                <div className="absolute inset-0 opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{ background: 'radial-gradient(circle at 85% 15%, hsl(var(--primary) / 0.12) 0%, transparent 55%)' }} />
                 <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
                   <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-300">
                     <GitCompareArrows className="w-6 h-6 text-primary" strokeWidth={1.5} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-primary/80 mb-2">Modo Apresentação</p>
-                    <h3 className="font-display text-2xl sm:text-3xl font-light leading-tight mb-2">Compare traduções <span className="italic text-primary">lado a lado</span></h3>
+                    <p className="eyebrow-label text-primary/80">Comparação</p>
+                    <h3 className="font-display text-2xl sm:text-3xl font-light heading-premium mb-2">Compare traduções <span className="italic text-primary">lado a lado</span></h3>
                     <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">Veja até 3 versões do mesmo versículo simultaneamente e descubra as diferenças de tradução que mudam o entendimento do texto bíblico.</p>
                   </div>
                   <span className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] group-hover:bg-primary/[0.12] group-hover:border-primary/50 transition-all duration-300 shrink-0">
@@ -427,7 +436,7 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section className="py-20 sm:py-28 px-4 sm:px-6 border-t border-border/30 relative overflow-hidden" aria-label="Comece a estudar">
+        <section className="py-24 sm:py-32 px-4 sm:px-6 border-t border-border/30 relative overflow-hidden" aria-label="Comece a estudar">
           <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
             <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 20% 80%, hsl(var(--primary)) 0%, transparent 40%), radial-gradient(circle at 80% 20%, hsl(var(--primary)) 0%, transparent 40%)' }} />
           </div>
@@ -437,7 +446,7 @@ export default function HomeClient() {
                 <Zap className="w-3.5 h-3.5 text-primary" />
                 <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">100% Gratuito · Sem anúncios</span>
               </div>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light leading-[1.1] mb-5">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light heading-premium mb-5">
                 Comece hoje o seu<br /><span className="italic gradient-text-animated">estudo bíblico.</span>
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground mb-10 max-w-lg mx-auto leading-relaxed">

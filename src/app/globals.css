@@ -407,6 +407,46 @@ html {
   .font-display { font-family: 'Cormorant Garamond', Georgia, serif; }
   .font-serif-body { font-family: 'Spectral', Georgia, serif; }
 
+  /* Premium typography — letter-spacing negativo para títulos (Logos style) */
+  .heading-premium {
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  /* Label uppercase refinado antes dos títulos */
+  .eyebrow-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 12px;
+  }
+
+  /* Numeração de features (01, 02, 03) */
+  .step-number {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: hsl(var(--primary) / 0.6);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  /* Social proof badge */
+  .proof-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    background: hsl(var(--primary) / 0.08);
+    border: 1px solid hsl(var(--primary) / 0.15);
+    font-size: 12px;
+    font-weight: 600;
+    color: hsl(var(--primary));
+  }
+
   .ornament {
     background-image: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.4), transparent);
     height: 1px;

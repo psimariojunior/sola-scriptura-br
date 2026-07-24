@@ -82,28 +82,41 @@ export default function ContinuarLeitura() {
   return (
     <section className="py-6 sm:py-8 px-4 sm:px-6" aria-label="Continuar Leitura">
       <div className="max-w-3xl mx-auto">
-        <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
-          <div className="p-5 sm:p-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card to-amber-500/5"
+        >
+          <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+
+          <div className="relative p-5 sm:p-6">
             <div className="flex items-center gap-2 mb-4">
-              <BookOpen className="w-4 h-4 text-primary" />
-              <h3 className="font-semibold text-base">Continuar Leitura</h3>
+              <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                <BookOpen className="w-4 h-4 text-primary" />
+              </div>
+              <h3 className="font-display text-base font-semibold">Continuar Leitura</h3>
               {capitulosLidos.size > 0 && (
-                <span className="ml-auto text-xs text-muted-foreground">
+                <span className="ml-auto flex items-center gap-1 text-[11px] text-muted-foreground">
+                  <Flame className="w-3 h-3 text-primary" />
                   {capitulosLidos.size} capítulos
                 </span>
               )}
             </div>
 
+            {/* Progress */}
             {capitulosLidos.size > 0 && (
               <div className="mb-4">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs text-muted-foreground">{progresso}% da Bíblia</span>
-                  <span className="text-xs text-muted-foreground">{capitulosLidos.size}/{TOTAL_CHAPTERS}</span>
+                  <span className="text-[11px] text-muted-foreground">{progresso}% da Bíblia</span>
+                  <span className="text-[11px] text-muted-foreground">{capitulosLidos.size}/{TOTAL_CHAPTERS}</span>
                 </div>
-                <div className="w-full h-1.5 bg-secondary rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-primary rounded-full transition-all duration-500"
-                    style={{ width: `${progresso}%` }}
+                <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progresso}%` }}
+                    transition={{ duration: 0.8 }}
+                    className="h-full bg-gradient-to-r from-primary to-amber-500 rounded-full"
                   />
                 </div>
               </div>
@@ -113,35 +126,39 @@ export default function ContinuarLeitura() {
               {ultimaLeitura && (
                 <Link
                   href={`/biblia?livro=${ultimaLeitura.livro}&capitulo=${proximoIsNovoLivro ? 1 : proximoCapitulo}`}
-                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-secondary transition-colors group"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-secondary/50 hover:bg-secondary/80 transition-colors group"
                 >
-                  <BookOpen className="w-4 h-4 text-primary flex-shrink-0" />
+                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                    <BookOpen className="w-4 h-4 text-primary" />
+                  </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate">
+                    <p className="text-sm font-semibold truncate">
                       {proximoIsNovoLivro ? 'Próximo Livro' : `${livroAtual} ${proximoCapitulo}`}
                     </p>
-                    <p className="text-xs text-muted-foreground">Continue de onde parou</p>
+                    <p className="text-[11px] text-muted-foreground">Continue de onde parou</p>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
                 </Link>
               )}
 
               {sugestao && (
                 <Link
                   href={`/biblia?livro=${sugestao.livro}&capitulo=${sugestao.capitulo}`}
-                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-secondary transition-colors group"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-amber-500/5 border border-amber-500/10 hover:bg-amber-500/10 transition-colors group"
                 >
-                  <ChevronRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate">{sugestao.nomeLivro} {sugestao.capitulo}</p>
-                    <p className="text-xs text-muted-foreground">Próximo não lido</p>
+                  <div className="w-9 h-9 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-500/20 transition-colors">
+                    <ChevronRight className="w-4 h-4 text-amber-500" />
                   </div>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold truncate">{sugestao.nomeLivro} {sugestao.capitulo}</p>
+                    <p className="text-[11px] text-muted-foreground">Próximo não lido</p>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all" />
                 </Link>
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

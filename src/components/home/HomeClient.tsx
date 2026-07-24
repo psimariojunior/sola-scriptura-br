@@ -115,29 +115,45 @@ function ApresentacaoMockup() {
   );
 }
 
-function SectionHeading({ eyebrow, title, highlight, align = 'center' }: { eyebrow?: string; title: React.ReactNode; highlight: React.ReactNode; align?: 'center' | 'left' }) {
+function SectionHeading({ eyebrow, title, highlight, align = 'center' }: { eyebrow: string; title: React.ReactNode; highlight: React.ReactNode; align?: 'center' | 'left' }) {
   return (
-    <div className={`mb-10 sm:mb-12 ${align === 'center' ? 'text-center' : ''}`}>
-      {eyebrow && <p className="text-xs font-medium tracking-wider uppercase text-muted-foreground mb-3">{eyebrow}</p>}
+    <div className={`mb-12 sm:mb-14 ${align === 'center' ? 'text-center' : ''}`}>
+      <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-muted-foreground mb-3">{eyebrow}</p>
       <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light leading-[1.1] tracking-tight">
         {title} <span className="italic text-primary">{highlight}</span>
       </h2>
+      <div className={`h-px mt-5 bg-gradient-to-r from-transparent via-primary/40 to-transparent ${align === 'center' ? 'mx-auto w-16' : 'w-16'}`} />
     </div>
   );
 }
 
-function FeatureCard({ feature, index, large = false }: { feature: typeof features[number]; index: number; large?: boolean }) {
+function FeatureCard({ feature, index }: { feature: typeof features[number]; index: number }) {
   const Icon = feature.icon;
   return (
-    <div className={`group h-full p-6 rounded-xl border border-border bg-card hover:border-primary/20 hover:shadow-md transition-all duration-200 ${large ? 'p-8' : ''}`}>
-      <div className="flex items-start gap-4">
-        <Icon className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" strokeWidth={1.5} />
-        <div>
-          <h3 className={`font-semibold mb-1.5 ${large ? 'text-lg' : 'text-base'}`}>{feature.title}</h3>
-          <p className={`text-muted-foreground leading-relaxed ${large ? 'text-sm' : 'text-[13px]'}`}>{feature.desc}</p>
+    <ScrollReveal delay={index * 0.08}>
+      <motion.div
+        whileHover={{ y: -6 }}
+        transition={{ duration: 0.3 }}
+        className={`feature-card group relative h-full p-6 sm:p-7 rounded-2xl border bg-card/50 backdrop-blur-sm overflow-hidden ${
+          feature.highlight ? 'border-amber-500/30 shadow-[var(--shadow-glow)]' : 'border-border/40'
+        }`}
+      >
+        {feature.highlight && (
+          <span className="absolute top-3 right-3 inline-flex items-center gap-1 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-black shadow-sm">
+            <Sparkles className="w-2.5 h-2.5" /> Novo
+          </span>
+        )}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          style={{ background: 'radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.1) 0%, transparent 60%)' }} />
+        <div className="relative z-10">
+          <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-300">
+            <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
+          </div>
+          <h3 className="font-semibold text-base mb-2 text-foreground">{feature.title}</h3>
+          <p className="text-[13px] text-muted-foreground leading-relaxed">{feature.desc}</p>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </ScrollReveal>
   );
 }
 
@@ -151,238 +167,313 @@ export default function HomeClient() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Header />
       <main id="main-content" className="relative">
-        <section className="relative pt-28 sm:pt-32 pb-20 sm:pb-24 px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 mb-6 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-300">
-              <Gift className="w-3.5 h-3.5" />
-              <span className="text-xs font-medium">Acesso Livre · Sem anúncios</span>
-            </div>
+        <section className="relative pt-28 sm:pt-32 pb-20 sm:pb-24 px-4 sm:px-6 overflow-hidden">
+          <div className="hero-particles" aria-hidden="true" />
+          <div className="hero-aurora" aria-hidden="true" />
+          <div className="hero-divine-overlay" aria-hidden="true" />
+          <HeroParticles disabled={prefersReducedMotion} />
 
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tight mb-6">
+          <motion.div style={{ opacity: heroOpacity, y: heroY }} className="max-w-6xl mx-auto text-center relative z-10 w-full">
+            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05, duration: 0.6 }} className="inline-flex items-center gap-2 mb-5">
+              <span className="relative inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/15 to-emerald-500/5 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300">
+                <Gift className="w-3.5 h-3.5" />
+                <span className="text-[11px] font-bold tracking-[0.12em] uppercase">Acesso Livre</span>
+                <span className="text-[11px] font-medium text-emerald-700/70 dark:text-emerald-300/70">·</span>
+                <span className="text-[11px] font-semibold tracking-[0.05em]">Sem anúncios</span>
+              </span>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }} className="inline-flex items-center gap-2 mb-7 px-3.5 py-1.5 rounded-full border border-primary/15 bg-primary/[0.04]">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">Estudo Bíblico</span>
+            </motion.div>
+
+            <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="wordmark text-[2.75rem] leading-[0.95] sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] mb-7">
               <span className="block">Estude a Bíblia</span>
-              <span className="block"><span className="text-primary">em profundidade</span>,</span>
-              <span className="block italic text-foreground/80">gratuitamente.</span>
-            </h1>
+              <span className="block"><span className="gradient-text-animated">em profundidade</span><span className="text-foreground">,</span></span>
+              <span className="block italic text-foreground/85">gratuitamente.</span>
+            </motion.h1>
 
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-10">
+            <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.8 }}
+              className="font-sans text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-10 sm:mb-12 px-2">
               6 traduções da Bíblia, comentários de teólogos clássicos, léxico grego e hebraico, referências cruzadas, IA teológica e modo apresentação para igrejas e células.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
-              <Link href="/biblia" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
-                Começar a Estudar
-                <ArrowRight className="w-4 h-4" />
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.6 }}
+              className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-14">
+              <Link href="/biblia" className="group relative inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-[15px] font-semibold rounded-xl overflow-hidden transition-all duration-300"
+                style={{ background: 'linear-gradient(135deg, #f5cd6b 0%, #d4a843 50%, #b88a30 100%)', color: '#1c1300', boxShadow: '0 0 24px -4px rgba(212,168,67,0.4), 0 0 40px -8px rgba(212,168,67,0.2)' }}>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                <span className="relative">Começar a Estudar</span>
+                <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
-              <Link href="/apresentar" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg border border-border hover:bg-secondary transition-colors">
+              <Link href="/apresentar" className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-[15px] font-semibold rounded-xl border border-border/60 hover:border-primary/40 hover:bg-primary/[0.04] transition-all duration-300">
                 <Play className="w-4 h-4 fill-current" /> Apresentar em Tela
               </Link>
-              <Link href="/ia" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg border border-border hover:bg-secondary transition-colors">
-                <Brain className="w-4 h-4" /> Conheça a IA
+              <Link href="/ia" className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-[15px] font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] hover:bg-primary/[0.12] hover:border-primary/50 transition-all duration-300">
+                <Brain className="w-4 h-4 text-primary" strokeWidth={1.75} /> Conheça a IA
               </Link>
-            </div>
+            </motion.div>
 
             <RotatingVerse />
-          </div>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} transition={{ delay: 1.6, duration: 1 }} className="absolute bottom-6 left-1/2 -translate-x-1/2">
+            <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }} className="flex flex-col items-center gap-1">
+              <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Scroll</span>
+              <ChevronDown className="w-4 h-4 text-muted-foreground" />
+            </motion.div>
+          </motion.div>
         </section>
 
         <VerseDoDia />
         <ContinuarLeitura />
         <WordOfDayWidget />
 
-        <section className="py-8 px-4 sm:px-6" aria-label="Destaques do Sola Scriptura">
+        <section className="relative py-6 sm:py-8 px-4 sm:px-6" aria-label="Destaques do Sola Scriptura">
           <div className="max-w-5xl mx-auto">
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-              {provasSociais.map((p) => {
-                const Icon = p.icon;
-                return (
-                  <div key={p.label} className="flex items-center gap-2 text-muted-foreground">
-                    <Icon className="w-4 h-4 text-primary" strokeWidth={1.75} />
-                    <span className="text-sm font-medium">{p.label}</span>
+            <ScrollReveal>
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-10">
+                {provasSociais.map((p, i) => {
+                  const Icon = p.icon;
+                  return (
+                    <motion.div key={p.label} initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 + i * 0.08, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      className="flex items-center gap-2 text-muted-foreground">
+                      <Icon className="w-4 h-4 text-primary" strokeWidth={1.75} />
+                      <span className="text-sm font-medium tracking-tight">{p.label}</span>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        <section className="relative py-16 sm:py-20 px-4 sm:px-6 border-y border-border/30 bg-card/30" aria-label="Estatísticas do Sola Scriptura">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-4">
+              {stats.map((stat, i) => (
+                <ScrollReveal key={stat.label} delay={i * 0.06}>
+                  <div className="stat-card text-center p-3 sm:p-4 rounded-xl border border-border/30 bg-card/40 relative group">
+                    <p className="font-display text-2xl sm:text-3xl md:text-4xl font-light tracking-tight relative">
+                      <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                    </p>
+                    <p className="text-[10px] sm:text-[11px] text-muted-foreground uppercase tracking-wider mt-1.5 font-medium">{stat.label}</p>
                   </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-12 sm:py-16 px-4 sm:px-6 bg-secondary/30" aria-label="Estatísticas do Sola Scriptura">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center p-3 rounded-lg bg-card border border-border">
-                  <p className="font-display text-2xl sm:text-3xl font-light tracking-tight">
-                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                  </p>
-                  <p className="text-[10px] sm:text-[11px] text-muted-foreground uppercase tracking-wider mt-1">{stat.label}</p>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-16 sm:py-24 px-4 sm:px-6" aria-label="Recursos">
+        <section className="py-20 sm:py-28 px-4 sm:px-6 relative" aria-label="Recursos">
           <div className="max-w-6xl mx-auto">
-            <SectionHeading title="Tudo que você precisa para" highlight="estudar a Palavra." />
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {features.map((f, i) => (
-                <div key={f.title} className={f.highlight ? 'sm:col-span-2 lg:col-span-2' : ''}>
-                  <FeatureCard feature={f} index={i} large={f.highlight} />
-                </div>
-              ))}
+            <ScrollReveal><SectionHeading eyebrow="Recursos" title="Tudo que você precisa para" highlight="estudar a Palavra." /></ScrollReveal>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+              {features.map((f, i) => (<FeatureCard key={f.title} feature={f} index={i} />))}
             </div>
           </div>
         </section>
 
-        <section className="py-12 sm:py-16 px-4 sm:px-6" aria-label="Dados da plataforma">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-8">
-              <h3 className="font-display text-xl font-medium mb-2">Dados da plataforma</h3>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-              {[
-                { label: 'Comentários', desc: 'Matthew Henry, Adam Clarke, John Gill e outros' },
-                { label: 'Léxico Strong', desc: '5.526 gregos + 8.674 hebraicos' },
-                { label: 'Referências Cruzadas', desc: '29.266 refs do TSK' },
-                { label: 'Traduções', desc: 'ARC, ARA, ACF, KJV, NVI, WEB' },
-              ].map((item) => (
-                <div key={item.label} className="text-center p-3 rounded-lg bg-card border border-border">
-                  <p className="text-sm font-medium mb-1">{item.label}</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+        <section className="py-14 sm:py-18 px-4 sm:px-6 border-y border-border/30 bg-card/20 relative overflow-hidden" aria-label="Recursos do Sola Scriptura">
+          <div className="max-w-6xl mx-auto relative z-10">
+            <ScrollReveal>
+              <div className="text-center mb-10">
+                <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-muted-foreground mb-2">Dados da plataforma</p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                  {[
+                    { label: 'Comentários', desc: 'Matthew Henry, Adam Clarke, John Gill e outros (domínio público)' },
+                    { label: 'Léxico Strong', desc: '5.526 gregos + 8.674 hebraicos, fonte: Strong\'s Exhaustive Concordance' },
+                    { label: 'Referências Cruzadas', desc: '29.266 refs do Treasury of Scripture Knowledge (TSK)' },
+                    { label: 'Traduções', desc: 'ARC, ARA, ACF, KJV, NVI, WEB — gratuitas via API MidVash' },
+                  ].map((item) => (
+                    <div key={item.label} className="text-center p-3">
+                      <p className="text-sm font-medium text-foreground mb-1">{item.label}</p>
+                      <p className="text-[11px] text-muted-foreground leading-relaxed">{item.desc}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
 
-        <section className="py-16 sm:py-24 px-4 sm:px-6 bg-secondary/30" aria-label="Como estudar">
+        <section className="py-20 sm:py-28 px-4 sm:px-6 relative" aria-label="Como estudar">
           <div className="max-w-6xl mx-auto">
-            <SectionHeading title="Seu estudo em" highlight="3 passos." />
-            <div className="grid md:grid-cols-3 gap-5">
+            <ScrollReveal><SectionHeading eyebrow="Como Estudar" title="Seu estudo em" highlight="3 passos." /></ScrollReveal>
+            <div className="grid md:grid-cols-3 gap-5 sm:gap-6">
               {comoEstudar.map((step, i) => {
                 const Icon = step.icon;
                 return (
-                  <div key={step.step} className="h-full p-6 rounded-xl border border-border bg-card">
-                    <div className="flex items-center gap-3 mb-4">
-                      <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                      <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">{step.step}</span>
-                    </div>
-                    <h3 className="font-display text-xl font-medium mb-2 leading-tight">{step.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
-                  </div>
+                  <ScrollReveal key={step.step} delay={i * 0.12}>
+                    <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.3 }}
+                      className="group relative h-full p-7 rounded-2xl border border-border/40 bg-card/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 overflow-hidden">
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                        style={{ background: 'radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.1) 0%, transparent 60%)' }} />
+                      <div className="relative z-10">
+                        <div className="flex items-center gap-3 mb-5">
+                          <span className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-300">
+                            <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                          </span>
+                          <span className="step-badge">{step.step}</span>
+                        </div>
+                        <h3 className="font-display text-xl sm:text-2xl font-medium mb-2 leading-tight">{step.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                      </div>
+                    </motion.div>
+                  </ScrollReveal>
                 );
               })}
             </div>
           </div>
         </section>
 
-        <section className="py-16 sm:py-24 px-4 sm:px-6" aria-label="Como funciona">
+        <section className="py-20 sm:py-28 px-4 sm:px-6 relative bg-card/30 border-y border-border/30" aria-label="Como funciona">
           <div className="max-w-5xl mx-auto">
-            <SectionHeading title="Comece a estudar em" highlight="3 passos." />
-            <div className="grid md:grid-cols-3 gap-5">
+            <ScrollReveal><SectionHeading eyebrow="Como Funciona" title="Comece a estudar em" highlight="3 passos." /></ScrollReveal>
+            <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
               {comoFunciona.map((step, i) => (
-                <div key={step.step} className="h-full p-6 rounded-xl border border-border bg-card">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-xs font-medium text-primary uppercase tracking-wider">{step.step}</span>
-                    {i < comoFunciona.length - 1 && (
-                      <span className="hidden md:block flex-1 h-px bg-border" aria-hidden="true" />
-                    )}
+                <ScrollReveal key={step.step} delay={i * 0.1}>
+                  <div className="relative h-full p-6 sm:p-7 rounded-2xl border border-border/40 bg-card/50 hover:border-primary/30 transition-all duration-500">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="step-badge">{step.step}</span>
+                      {i < comoFunciona.length - 1 && (
+                        <span className="hidden md:block flex-1 h-px" style={{ background: 'linear-gradient(90deg, hsl(var(--primary) / 0.3), transparent)' }} aria-hidden="true" />
+                      )}
+                    </div>
+                    <h3 className="font-display text-xl sm:text-2xl font-medium mb-2 leading-tight">{step.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
                   </div>
-                  <h3 className="font-display text-xl font-medium mb-2 leading-tight">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-16 sm:py-24 px-4 sm:px-6 bg-secondary/30" aria-label="Modo Apresentação para grupos">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden" aria-label="Modo Apresentação para grupos"
+          style={{ background: 'linear-gradient(180deg, transparent 0%, hsl(var(--primary) / 0.04) 50%, transparent 100%)' }}>
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-amber-500/[0.06] blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-orange-500/[0.05] blur-3xl" />
+          </div>
+          <div className="max-w-6xl mx-auto relative z-10">
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               <div>
-                <p className="text-xs font-medium tracking-wider uppercase text-muted-foreground mb-4 flex items-center gap-2">
-                  <MonitorPlay className="w-3.5 h-3.5" /> Para Grupos e Igrejas
-                </p>
-                <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light leading-[1.05] tracking-tight mb-6">
-                  Mostre a Palavra<br /><span className="italic text-primary">em qualquer tela.</span>
-                </h2>
-                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg">
-                  O Modo Apresentação transforma qualquer TV, projetor ou monitor em uma ferramenta de culto. Controle tudo do seu celular via QR code.
-                </p>
-                <ul className="space-y-3 mb-8">
-                  {paraGrupos.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-3">
-                  <Link href="/apresentar" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
-                    Experimentar Modo Apresentação
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link href="/biblia" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg border border-border hover:bg-secondary transition-colors">
-                    <BookOpen className="w-4 h-4" /> Abrir a Bíblia
-                  </Link>
+                <ScrollReveal>
+                  <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-amber-600 dark:text-amber-400 mb-4 flex items-center gap-2">
+                    <MonitorPlay className="w-3.5 h-3.5" /> Para Grupos e Igrejas
+                  </p>
+                  <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light leading-[1.05] tracking-tight mb-6">
+                    Mostre a Palavra<br /><span className="italic text-primary">em qualquer tela.</span>
+                  </h2>
+                  <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg">
+                    O Modo Apresentação transforma qualquer TV, projetor ou monitor em uma ferramenta de culto. Controle tudo do seu celular via QR code.
+                  </p>
+                  <ul className="space-y-3 mb-9">
+                    {paraGrupos.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-sm sm:text-[15px]">
+                        <span className="mt-0.5 w-5 h-5 rounded-full bg-primary/15 text-primary flex items-center justify-center shrink-0"><CheckCircle2 className="w-3.5 h-3.5" /></span>
+                        <span className="text-foreground/90">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-3">
+                    <Link href="/apresentar" className="group relative inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl overflow-hidden transition-all duration-300"
+                      style={{ background: 'linear-gradient(135deg, #f5cd6b 0%, #d4a843 50%, #b88a30 100%)', color: '#1c1300', boxShadow: '0 8px 24px -6px rgba(212,168,67,0.45)' }}>
+                      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                      <span className="relative">Experimentar Modo Apresentação</span>
+                      <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    </Link>
+                    <Link href="/biblia" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border border-border/60 hover:border-primary/40 hover:bg-primary/[0.04] rounded-xl transition-all duration-300">
+                      <BookOpen className="w-4 h-4" /> Abrir a Bíblia
+                    </Link>
+                  </div>
+                </ScrollReveal>
+              </div>
+              <ScrollReveal direction="right">
+                <div className="relative">
+                  <ApresentacaoMockup />
+                  <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-amber-500/20 blur-2xl -z-10" />
+                  <div className="absolute -top-4 -left-4 w-20 h-20 rounded-full bg-amber-500/15 blur-2xl -z-10" />
                 </div>
-              </div>
-              <div>
-                <ApresentacaoMockup />
-              </div>
+              </ScrollReveal>
             </div>
           </div>
         </section>
 
-        <section className="py-16 sm:py-20 px-4 sm:px-6" aria-label="Compare traduções">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 relative" aria-label="Compare traduções">
           <div className="max-w-6xl mx-auto">
-            <Link href="/comparar" className="group block rounded-xl border border-border bg-card hover:border-primary/20 hover:shadow-md transition-all duration-200 p-8 sm:p-10">
-              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
-                <GitCompareArrows className="w-8 h-8 text-primary flex-shrink-0" strokeWidth={1.5} />
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-display text-2xl sm:text-3xl font-light leading-tight mb-2">Compare traduções <span className="italic text-primary">lado a lado</span></h3>
-                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">Veja até 3 versões do mesmo versículo simultaneamente e descubra as diferenças de tradução que mudam o entendimento do texto bíblico.</p>
+            <ScrollReveal>
+              <Link href="/comparar" className="group relative block overflow-hidden rounded-3xl border border-border/40 bg-card/50 backdrop-blur-sm hover:border-primary/40 transition-all duration-500 p-8 sm:p-12">
+                <div className="absolute inset-0 opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                  style={{ background: 'radial-gradient(circle at 85% 15%, hsl(var(--primary) / 0.12) 0%, transparent 55%)' }} />
+                <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-300">
+                    <GitCompareArrows className="w-6 h-6 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-primary/80 mb-2">Modo Apresentação</p>
+                    <h3 className="font-display text-2xl sm:text-3xl font-light leading-tight mb-2">Compare traduções <span className="italic text-primary">lado a lado</span></h3>
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">Veja até 3 versões do mesmo versículo simultaneamente e descubra as diferenças de tradução que mudam o entendimento do texto bíblico.</p>
+                  </div>
+                  <span className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] group-hover:bg-primary/[0.12] group-hover:border-primary/50 transition-all duration-300 shrink-0">
+                    Experimentar <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
                 </div>
-                <span className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg border border-border group-hover:bg-secondary transition-colors shrink-0">
-                  Experimentar <ArrowRight className="w-4 h-4" />
-                </span>
-              </div>
-            </Link>
+              </Link>
+            </ScrollReveal>
           </div>
         </section>
 
-        <section className="py-16 sm:py-24 px-4 sm:px-6 border-t border-border" aria-label="Comece a estudar">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light leading-[1.1] mb-5">
-              Comece hoje o seu<br /><span className="italic text-primary">estudo bíblico.</span>
-            </h2>
-            <p className="text-base text-muted-foreground mb-8 max-w-lg mx-auto leading-relaxed">
-              Acesse todas as ferramentas gratuitamente. Estude a Bíblia com o rigor acadêmico que ela merece.
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center mb-8">
-              <Link href="/biblia" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
-                <BookOpen className="w-4 h-4" /> Comece a estudar a Bíblia hoje
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link href="/ia" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg border border-border hover:bg-secondary transition-colors">
-                <Brain className="w-4 h-4" /> Conheça a IA
-              </Link>
-            </div>
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-              {trustBadges.map((badge) => (
-                <div key={badge.label} className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <badge.icon className="w-3.5 h-3.5 text-primary" />{badge.label}
-                </div>
-              ))}
-            </div>
+        <section className="py-20 sm:py-28 px-4 sm:px-6 border-t border-border/30 relative overflow-hidden" aria-label="Comece a estudar">
+          <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 20% 80%, hsl(var(--primary)) 0%, transparent 40%), radial-gradient(circle at 80% 20%, hsl(var(--primary)) 0%, transparent 40%)' }} />
+          </div>
+          <div className="max-w-3xl mx-auto text-center relative z-10">
+            <ScrollReveal>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/15 bg-primary/[0.04] mb-7">
+                <Zap className="w-3.5 h-3.5 text-primary" />
+                <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">100% Gratuito · Sem anúncios</span>
+              </div>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light leading-[1.1] mb-5">
+                Comece hoje o seu<br /><span className="italic gradient-text-animated">estudo bíblico.</span>
+              </h2>
+              <p className="text-sm sm:text-base text-muted-foreground mb-10 max-w-lg mx-auto leading-relaxed">
+                Acesse todas as ferramentas gratuitamente. Estude a Bíblia com o rigor acadêmico que ela merece — e leve a Palavra para sua igreja.
+              </p>
+              <div className="flex flex-wrap gap-3 justify-center mb-12">
+                <Link href="/biblia" className="cta-gradient group relative inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold rounded-xl">
+                  <BookOpen className="relative w-4 h-4" /><span className="relative">Comece a estudar a Bíblia hoje</span>
+                  <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+                <Link href="/ia" className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] hover:bg-primary/[0.12] hover:border-primary/50 transition-all duration-300">
+                  <Brain className="w-4 h-4 text-primary" strokeWidth={1.75} /> Conheça a IA
+                </Link>
+              </div>
+              <div className="flex flex-wrap justify-center gap-x-6 gap-y-2.5">
+                {trustBadges.map((badge) => (
+                  <div key={badge.label} className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                    <badge.icon className="w-3.5 h-3.5 text-primary" />{badge.label}
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
           </div>
         </section>
-        <section className="py-16 sm:py-20 px-4 sm:px-6 border-t border-border" aria-label="Notificações">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 border-t border-border/30 relative" aria-label="Notificações">
           <div className="max-w-md mx-auto text-center">
-            <h3 className="font-display text-xl font-medium mb-3">Versículo Diário</h3>
-            <p className="text-sm text-muted-foreground mb-6">
-              Receba um versículo inspirador toda manhã às 7h direto no seu navegador.
-            </p>
-            <NotificationSetup />
+            <ScrollReveal>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/15 bg-primary/[0.04] mb-6">
+                <Bell className="w-3.5 h-3.5 text-primary" />
+                <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">Versículo Diário</span>
+              </div>
+              <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto">
+                Receba um versículo inspirador toda manhã às 7h direto no seu navegador.
+              </p>
+              <NotificationSetup />
+            </ScrollReveal>
           </div>
         </section>
       </main>

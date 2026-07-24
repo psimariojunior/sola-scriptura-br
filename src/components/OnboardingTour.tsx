@@ -176,62 +176,76 @@ export function OnboardingTour() {
     <AnimatePresence>
       {active && current && (
         <>
+          {/* Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[115] bg-black/50"
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[115] bg-black/50 backdrop-blur-[2px]"
             onClick={dismiss}
           />
 
+          {/* Highlight ring around target */}
           {targetRect && (
             <motion.div
               key={`highlight-${current.id}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
               className="fixed z-[116] pointer-events-none rounded-lg"
               style={{
-                top: targetRect.top - 6,
-                left: targetRect.left - 6,
-                width: targetRect.width + 12,
-                height: targetRect.height + 12,
-                boxShadow: '0 0 0 2px hsl(var(--primary) / 0.5)',
+                top: targetRect.top - 8,
+                left: targetRect.left - 8,
+                width: targetRect.width + 16,
+                height: targetRect.height + 16,
+                boxShadow: '0 0 0 3px rgba(212, 168, 67, 0.6), 0 0 20px rgba(212, 168, 67, 0.3)',
               }}
             />
           )}
 
+          {/* Tooltip */}
           <motion.div
             ref={tooltipRef}
             key={`tooltip-${current.id}`}
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 4 }}
-            transition={{ duration: 0.2 }}
-            className="fixed z-[117] w-72 rounded-xl border border-border bg-background shadow-lg overflow-hidden"
+            initial={{ opacity: 0, y: 8, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.96 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="fixed z-[117] w-72 rounded-2xl border border-amber-500/30 bg-background shadow-2xl overflow-hidden"
             style={{ top: tooltipPos.top, left: tooltipPos.left }}
           >
+            {/* Golden top accent */}
+            <div className="h-1 w-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500" />
+
             <div className="p-4">
+              {/* Step indicator */}
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-medium text-muted-foreground">
-                  Passo {step + 1}/{TOUR_STEPS.length}
-                </span>
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-md">
+                    <Sparkles className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-[10px] font-bold tracking-widest uppercase text-amber-600 dark:text-amber-400">
+                    Passo {step + 1}/{TOUR_STEPS.length}
+                  </span>
+                </div>
                 <button
                   onClick={dismiss}
-                  className="p-1 rounded hover:bg-secondary transition-colors text-muted-foreground"
+                  className="p-1 rounded-md hover:bg-muted/50 transition-colors text-muted-foreground"
                   aria-label="Pular tour"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
               </div>
 
-              <h3 className="font-semibold text-base mb-1">{current.titulo}</h3>
+              {/* Content */}
+              <h3 className="font-display text-lg font-semibold mb-1">{current.titulo}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                 {current.descricao}
               </p>
 
+              {/* Actions */}
               <div className="flex items-center justify-between">
                 <button
                   onClick={dismiss}
@@ -241,22 +255,23 @@ export function OnboardingTour() {
                 </button>
                 <button
                   onClick={next}
-                  className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                  className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all shadow-md hover:shadow-lg"
                 >
                   {isLast ? 'Começar' : 'Próximo'}
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
 
-              <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-border">
+              {/* Progress dots */}
+              <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-border/30">
                 {TOUR_STEPS.map((_, i) => (
                   <div
                     key={i}
-                    className={`h-1 rounded-full transition-all duration-200 ${
+                    className={`h-1 rounded-full transition-all duration-300 ${
                       i === step
-                        ? 'w-6 bg-primary'
+                        ? 'w-6 bg-gradient-to-r from-amber-500 to-orange-500'
                         : i < step
-                        ? 'w-1.5 bg-primary/40'
+                        ? 'w-1.5 bg-amber-500/50'
                         : 'w-1.5 bg-border'
                     }`}
                   />

@@ -98,31 +98,43 @@ export default function VerseDoDia() {
   };
 
   return (
-    <section
-      className="relative py-12 sm:py-16 px-4 sm:px-6"
+    <motion.section
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className="relative py-14 sm:py-18 px-4 sm:px-6"
       aria-label="Versículo do Dia"
     >
       <div className="max-w-3xl mx-auto">
-        <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
-          <div className="p-8 sm:p-10 text-center">
-            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-6">
+        <div
+          className="relative rounded-2xl border-2 border-primary/40 bg-gradient-to-br from-primary/[0.04] via-card to-primary/[0.06] shadow-lg shadow-primary/[0.06] overflow-hidden"
+        >
+          {/* Decorative top accent */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent" />
+
+          <div className="p-8 sm:p-12 text-center">
+            {/* Label */}
+            <p className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-primary/70 mb-6">
               Versículo do Dia
             </p>
 
-            <blockquote className="font-serif-body text-lg sm:text-xl md:text-2xl italic font-light text-foreground/80 leading-relaxed">
-              <span aria-hidden="true" className="text-primary/20 text-2xl sm:text-3xl mr-1">&ldquo;</span>
+            {/* Verse text */}
+            <blockquote className="font-serif-body text-lg sm:text-xl md:text-2xl italic font-light text-content-secondary dark:text-foreground/85 leading-relaxed">
+              <span aria-hidden="true" className="text-primary/30 text-2xl sm:text-3xl mr-1">&ldquo;</span>
               {verso.texto}
-              <span aria-hidden="true" className="text-primary/20 text-2xl sm:text-3xl ml-1">&rdquo;</span>
+              <span aria-hidden="true" className="text-primary/30 text-2xl sm:text-3xl ml-1">&rdquo;</span>
             </blockquote>
 
-            <p className="mt-5 text-sm font-medium tracking-wider uppercase text-primary">
+            {/* Reference */}
+            <p className="mt-5 text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase text-primary">
               — {verso.referencia}
             </p>
 
+            {/* Actions */}
             <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
               <button
                 onClick={handleCopy}
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-border text-foreground hover:bg-secondary transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl border border-primary/30 bg-primary/5 text-primary hover:bg-primary/10 transition-all duration-200 cursor-pointer"
               >
                 {copied ? (
                   <>
@@ -139,15 +151,18 @@ export default function VerseDoDia() {
 
               <Link
                 href={bibliaUrl}
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl bg-primary/10 text-primary hover:bg-primary/15 transition-all duration-200"
               >
                 <BookOpen className="w-4 h-4" />
                 Ler capítulo
               </Link>
             </div>
           </div>
+
+          {/* Decorative bottom accent */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent" />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

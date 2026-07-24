@@ -687,7 +687,7 @@ export default function EstudosPage() {
               </div>
 
               {aba === 'cursos' ? (
-                <div className="sola-card overflow-hidden" style={{ height: '600px' }}>
+                <div className="sola-card overflow-hidden" style={{ height: '700px' }}>
                   <BibleCourses />
                 </div>
               ) : filtradas.length === 0 ? (

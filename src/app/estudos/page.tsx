@@ -325,32 +325,52 @@ export default function EstudosPage() {
               <span className="text-[10px] bg-muted px-2 py-0.5 rounded-full">{lista.length}</span>
             </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {lista.map((l, i) => (
-                        <ScrollReveal key={l.slug} delay={Math.min(i * 0.02, 0.3)}>
-                          <Link
-                            href={`/estudos/${l.slug}`}
-                            className="block sola-card p-4 rounded-xl hover:shadow-lg transition-all group"
-                          >
-                            <div className="flex items-start justify-between mb-2">
-                              <h4 className="font-display text-base font-semibold group-hover:text-primary transition-colors">{l.titulo}</h4>
-                              <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
-                            </div>
-                            <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
-                              {l.estudo.contexto}
-                            </p>
-                            <div className="flex flex-wrap gap-1">
-                              {l.estudo.temasPrincipais.slice(0, 3).map(t => (
-                                <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary">{t}</span>
-                              ))}
-                            </div>
-                            <div className="mt-3 pt-2 border-t border-border/30 flex items-center gap-3 text-[10px] text-muted-foreground">
-                              <span>{l.estudo.versiculosChave.length} versículos-chave</span>
-                              <span>•</span>
-                              <span>{l.estudo.perguntasEstudo.length} perguntas</span>
-                            </div>
-                          </Link>
-                        </ScrollReveal>
-                      ))}
+                      {lista.map((l, i) => {
+                        // Gradiente baseado no testamento
+                        const gradient = l.testamento === 'AT'
+                          ? 'from-amber-500/20 via-orange-500/10 to-transparent'
+                          : 'from-emerald-500/20 via-teal-500/10 to-transparent';
+                        const accentColor = l.testamento === 'AT' ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400';
+                        return (
+                          <ScrollReveal key={l.slug} delay={Math.min(i * 0.02, 0.3)}>
+                            <Link
+                              href={`/estudos/${l.slug}`}
+                              className="block sola-card rounded-xl overflow-hidden hover:shadow-lg transition-all group"
+                            >
+                              {/* Header com gradiente — BibleProject style */}
+                              <div className={`h-20 bg-gradient-to-br ${gradient} flex items-center justify-center relative`}>
+                                <span className={`font-display text-3xl font-light ${accentColor} opacity-60`}>
+                                  {l.slug.toUpperCase().slice(0, 3)}
+                                </span>
+                                <div className="absolute bottom-2 right-3">
+                                  <span className="text-[9px] px-2 py-0.5 rounded-full bg-black/10 dark:bg-white/10 font-medium uppercase tracking-wider">
+                                    {l.testamento}
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="p-4">
+                                <div className="flex items-start justify-between mb-2">
+                                  <h4 className="font-display text-base font-semibold group-hover:text-primary transition-colors">{l.titulo}</h4>
+                                  <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0" />
+                                </div>
+                                <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
+                                  {l.estudo.contexto}
+                                </p>
+                                <div className="flex flex-wrap gap-1">
+                                  {l.estudo.temasPrincipais.slice(0, 3).map(t => (
+                                    <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary">{t}</span>
+                                  ))}
+                                </div>
+                                <div className="mt-3 pt-2 border-t border-border/30 flex items-center gap-3 text-[10px] text-muted-foreground">
+                                  <span>{l.estudo.versiculosChave.length} versículos-chave</span>
+                                  <span>•</span>
+                                  <span>{l.estudo.perguntasEstudo.length} perguntas</span>
+                                </div>
+                              </div>
+                            </Link>
+                          </ScrollReveal>
+                        );
+                      })}
                     </div>
                   </div>
                 );

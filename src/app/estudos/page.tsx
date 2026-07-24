@@ -207,6 +207,35 @@ export default function EstudosPage() {
             </div>
           </ScrollReveal>
 
+          {/* ═══ FILTROS EMOCIONAIS — YouVersion style ═══ */}
+          <ScrollReveal delay={0.05}>
+            <div className="mb-8">
+              <p className="text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-3">Explorar por sentimento</p>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { label: 'Fé', color: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20' },
+                  { label: 'Esperança', color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20' },
+                  { label: 'Amor', color: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 hover:bg-rose-500/20' },
+                  { label: 'Cura', color: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-500/20' },
+                  { label: 'Ansiedade', color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20' },
+                  { label: 'Paz', color: 'bg-sky-500/10 text-sky-600 dark:text-sky-400 hover:bg-sky-500/20' },
+                  { label: 'Sabedoria', color: 'bg-orange-500/10 text-orange-600 dark:text-orange-400 hover:bg-orange-500/20' },
+                  { label: 'Gratidão', color: 'bg-teal-500/10 text-teal-600 dark:text-teal-400 hover:bg-teal-500/20' },
+                  { label: 'Força', color: 'bg-red-500/10 text-red-600 dark:text-red-400 hover:bg-red-500/20' },
+                  { label: 'Perdão', color: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/20' },
+                ].map(emocao => (
+                  <button
+                    key={emocao.label}
+                    onClick={() => setQuery(emocao.label.toLowerCase())}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${emocao.color}`}
+                  >
+                    {emocao.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+
           {/* ═══ CONTINUAR ESTUDANDO ═══ */}
           {retomar && (
             <ScrollReveal delay={0.05}>

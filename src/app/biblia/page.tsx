@@ -171,7 +171,7 @@ export default function BibliaPage() {
                   <Sparkles className="w-3.5 h-3.5" /><span className="hidden sm:inline">Apresentar</span><span className="hidden md:inline-flex items-center px-1 py-0 rounded text-[8px] font-extrabold bg-white/20">NEW</span>
                 </motion.button>
               </div>
-              <SettingsPanel open={ui.showSettings} fontSize={ui.fontSize} onFontSizeChange={ui.setFontSize} showDiff={ui.showDiff} onToggleDiff={() => ui.setShowDiff(!ui.showDiff)} showComparison={nav.viewMode === 'comparison' && nav.data.length >= 2} />
+              <SettingsPanel open={ui.showSettings} fontSize={ui.fontSize} onFontSizeChange={ui.setFontSize} showDiff={ui.showDiff} onToggleDiff={() => ui.setShowDiff(!ui.showDiff)} showComparison={nav.viewMode === 'comparison' && nav.data.length >= 2} fontFamily={ui.fontFamily} onFontFamilyChange={ui.setFontFamily} lineSpacing={ui.lineSpacing} onLineSpacingChange={ui.setLineSpacing} />
             </div>
             <div ref={nav.mainRef} className="flex-1 overflow-y-auto" style={{ contain: 'layout' }}>
               <div className="max-w-[min(900px,100%-2rem)] mx-auto px-4 sm:px-6 py-6 sm:py-10">

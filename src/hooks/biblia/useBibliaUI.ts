@@ -51,6 +51,10 @@ export interface UseBibliaUIReturn {
   setMostrarQualidadeAudio: React.Dispatch<React.SetStateAction<boolean>>;
   estudoCapituloAberto: boolean;
   setEstudoCapituloAberto: React.Dispatch<React.SetStateAction<boolean>>;
+  fontFamily: 'serif' | 'sans';
+  setFontFamily: (font: 'serif' | 'sans') => void;
+  lineSpacing: number;
+  setLineSpacing: (spacing: number) => void;
   chapterAnimProps: {
     initial: { opacity: number; x: number; filter?: string };
     animate: { opacity: number; x: number; filter?: string };
@@ -117,6 +121,18 @@ export function UseBibliaUI({
   const [mostrarApresentacao, setMostrarApresentacao] = useState(false);
   const [mostrarQualidadeAudio, setMostrarQualidadeAudio] = useState(false);
   const [estudoCapituloAberto, setEstudoCapituloAberto] = useState(false);
+  const [fontFamily, setFontFamily] = useState<'serif' | 'sans'>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('ssb_font_family') as 'serif' | 'sans') || 'serif';
+    }
+    return 'serif';
+  });
+  const [lineSpacing, setLineSpacing] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return parseFloat(localStorage.getItem('ssb_line_spacing') || '1.8');
+    }
+    return 1.8;
+  });
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); setQuickSearchOpen(p => !p); return; }
@@ -284,6 +300,16 @@ export function UseBibliaUI({
     setMostrarQualidadeAudio,
     estudoCapituloAberto,
     setEstudoCapituloAberto,
+    fontFamily,
+    setFontFamily: (font: 'serif' | 'sans') => {
+      setFontFamily(font);
+      try { localStorage.setItem('ssb_font_family', font); } catch {}
+    },
+    lineSpacing,
+    setLineSpacing: (spacing: number) => {
+      setLineSpacing(spacing);
+      try { localStorage.setItem('ssb_line_spacing', String(spacing)); } catch {}
+    },
     chapterAnimProps,
   };
 }

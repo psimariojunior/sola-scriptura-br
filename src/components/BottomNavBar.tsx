@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, memo, useCallback, useMemo } from 'react';
+import { useState, useEffect, memo, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -15,10 +15,16 @@ import {
   Map,
   BookMarked,
   Globe,
-  Shield,
   Heart,
-  MonitorPlay,
   Languages,
+  Wrench,
+  Tag,
+  GitBranch,
+  Calendar,
+  HelpCircle,
+  BarChart3,
+  MessageCircle,
+  ChevronDown,
 } from 'lucide-react';
 
 interface TabItem {
@@ -41,26 +47,57 @@ interface ExtraLink {
   icon: typeof Globe;
 }
 
-const extraLinks: ExtraLink[] = [
-  { href: '/cursos', label: 'Cursos', icon: GraduationCap },
-  { href: '/teologia', label: 'Teologia', icon: Shield },
-  { href: '/historia', label: 'História', icon: Globe },
-  { href: '/cronologia', label: 'Cronologia', icon: ScrollText },
-  { href: '/personagens', label: 'Personagens', icon: Heart },
-  { href: '/atlas', label: 'Atlas', icon: Map },
-  { href: '/idiomas', label: 'Línguas', icon: Languages },
-  { href: '/exegese', label: 'Exegese', icon: Brain },
-  { href: '/comparar', label: 'Comparar', icon: BookMarked },
-  { href: '/ferramentas', label: 'Ferramentas', icon: MonitorPlay },
-  { href: '/quiz', label: 'Quiz', icon: BookOpen },
-  { href: '/flashcards', label: 'Flashcards', icon: BookMarked },
-  { href: '/ia', label: 'IA', icon: Brain },
+interface NavGroup {
+  titulo: string;
+  links: ExtraLink[];
+}
+
+const grupos: NavGroup[] = [
+  {
+    titulo: 'Ferramentas',
+    links: [
+      { href: '/idiomas', label: 'Línguas', icon: Languages },
+      { href: '/referencias', label: 'Referências', icon: GitBranch },
+      { href: '/topicos', label: 'Tópicos', icon: Tag },
+      { href: '/ferramentas', label: 'Ferramentas', icon: Wrench },
+    ],
+  },
+  {
+    titulo: 'Contexto',
+    links: [
+      { href: '/historia', label: 'História', icon: Globe },
+      { href: '/cronologia', label: 'Cronologia', icon: ScrollText },
+      { href: '/personagens', label: 'Personagens', icon: Heart },
+      { href: '/atlas', label: 'Atlas', icon: Map },
+    ],
+  },
+  {
+    titulo: 'Prática',
+    links: [
+      { href: '/cursos', label: 'Seminário', icon: GraduationCap },
+      { href: '/planos', label: 'Planos', icon: Calendar },
+      { href: '/devocional', label: 'Devocional', icon: Heart },
+      { href: '/flashcards', label: 'Flashcards', icon: BookMarked },
+    ],
+  },
+  {
+    titulo: 'Comunidade',
+    links: [
+      { href: '/quiz', label: 'Quiz', icon: HelpCircle },
+      { href: '/comunidade', label: 'Comunidade', icon: MessageCircle },
+      { href: '/ia', label: 'IA', icon: Brain },
+      { href: '/dashboard', label: 'Dashboard', icon: BarChart3 },
+    ],
+  },
 ];
 
 function BottomNavBarInner() {
   const pathname = usePathname();
   const [isMobile, setIsMobile] = useState(false);
   const [showMore, setShowMore] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(() =>
+    Object.fromEntries(grupos.map((g) => [g.titulo, true]))
+  );
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -76,9 +113,13 @@ function BottomNavBarInner() {
   const toggleMore = useCallback(() => setShowMore((s) => !s), []);
   const closeMore = useCallback(() => setShowMore(false), []);
 
+  const toggleGroup = useCallback((titulo: string) => {
+    setExpandedGroups((prev) => ({ ...prev, [titulo]: !prev[titulo] }));
+  }, []);
+
   if (!isMobile) return null;
 
-  const isMoreActive = pathname && extraLinks.some((l) => pathname.startsWith(l.href));
+  const isMoreActive = pathname && grupos.some((g) => g.links.some((l) => pathname.startsWith(l.href)));
 
   return (
     <>
@@ -97,7 +138,7 @@ function BottomNavBarInner() {
             style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
           >
             <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-              <span className="text-sm font-semibold">Mais opcoes</span>
+              <span className="text-sm font-semibold">Explorar</span>
               <button
                 onClick={closeMore}
                 className="p-1 rounded-lg hover:bg-muted transition-colors"
@@ -106,24 +147,45 @@ function BottomNavBarInner() {
                 <X className="w-4 h-4" />
               </button>
             </div>
-            <div className="grid grid-cols-4 gap-1 p-3 max-h-[60vh] overflow-y-auto">
-              {extraLinks.map((link) => {
-                const active = pathname === link.href || pathname.startsWith(link.href + '/');
+            <div className="max-h-[60vh] overflow-y-auto">
+              {grupos.map((grupo) => {
+                const expanded = expandedGroups[grupo.titulo];
                 return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`flex flex-col items-center gap-1.5 p-3 rounded-lg transition-colors ${
-                      active
-                        ? 'bg-primary/10 text-primary'
-                        : 'text-muted-foreground hover:bg-muted/50'
-                    }`}
-                  >
-                    <link.icon className="w-5 h-5" strokeWidth={1.5} />
-                    <span className="text-[11px] font-medium text-center leading-tight">
-                      {link.label}
-                    </span>
-                  </Link>
+                  <div key={grupo.titulo} className="border-b border-border/30 last:border-b-0">
+                    <button
+                      onClick={() => toggleGroup(grupo.titulo)}
+                      className="w-full flex items-center justify-between px-4 py-2.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60 bg-muted/20 hover:bg-muted/40 transition-colors"
+                      aria-expanded={expanded}
+                    >
+                      <span>{grupo.titulo}</span>
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                          expanded ? 'rotate-0' : '-rotate-90'
+                        }`}
+                      />
+                    </button>
+                    {expanded && (
+                      <div className="grid grid-cols-2 gap-1 p-3">
+                        {grupo.links.map((link) => {
+                          const active = pathname === link.href || pathname.startsWith(link.href + '/');
+                          return (
+                            <Link
+                              key={link.href}
+                              href={link.href}
+                              className={`flex items-center gap-2 p-2.5 rounded-lg transition-colors ${
+                                active
+                                  ? 'bg-primary/10 text-primary'
+                                  : 'text-muted-foreground hover:bg-muted/50'
+                              }`}
+                            >
+                              <link.icon className="w-4 h-4" strokeWidth={1.5} />
+                              <span className="text-[12px] font-medium">{link.label}</span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </div>

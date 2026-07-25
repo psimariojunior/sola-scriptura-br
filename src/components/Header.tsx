@@ -5,10 +5,10 @@ import { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import {
-  Menu, X, BookOpen, Search, Sun, Moon, User, LogOut, Languages, Stars, BookMarked,
-  Command, Settings, ChevronDown, ScrollText, Brain, Map, Music, MonitorPlay,
+  Menu, X, BookOpen, Search, Sun, Moon, User, LogOut, Languages, BookMarked,
+  Command, Settings, ChevronDown, ScrollText, Brain, Map,
   Sparkles, GraduationCap, MessageCircle, Library, Crown, Heart, History, HelpCircle, Download,
-  Users, Trophy, Target, BarChart3, GitBranch, Calendar, Columns, Tag,
+  Users, Target, BarChart3, GitBranch, Calendar, Tag,
 } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { authService } from '@/lib/auth';
@@ -42,40 +42,61 @@ const navLinks: NavLinkSpec[] = [
   { href: '/pesquisa', label: 'Pesquisa', icon: Search },
   { href: '/teologia', label: 'Teologia', icon: Library },
   { href: '/estudos', label: 'Estudos', icon: GraduationCap },
-  { href: '/estudo-ia', label: 'Estudo IA', icon: Sparkles },
   { href: '/ia', label: 'IA', icon: Brain },
 ];
 
-const moreLinks: NavLinkSpec[] = [
-  { href: '/cursos', label: 'Seminario', icon: GraduationCap },
-  { href: '/exegese', label: 'Exegese', icon: ScrollText },
-  { href: '/idiomas', label: 'Línguas Originais', icon: Languages },
-  { href: '/palavras', label: 'Palavras Originais', icon: Languages },
-  { href: '/historia', label: 'História', icon: Map },
-  { href: '/cronologia', label: 'Cronologia', icon: History },
-  { href: '/personagens', label: 'Personagens', icon: User },
-  { href: '/relacoes', label: 'Relações Bíblicas', icon: Users },
-  { href: '/mapas', label: 'Atlas Bíblico', icon: Map },
-  { href: '/referencias', label: 'Referências Cruzadas', icon: GitBranch },
-  { href: '/word-study', label: 'Word Study', icon: BookOpen },
-  { href: '/topicos', label: 'Índice Tópico', icon: Tag },
-  { href: '/estudo-split', label: 'Modo Estudo', icon: BookOpen },
-  { href: '/ferramentas', label: 'Ferramentas', icon: Sparkles },
-  { href: '/quiz', label: 'Quiz Bíblico', icon: HelpCircle },
-  { href: '/quiz/multiplayer', label: 'Quiz Multiplayer', icon: Trophy },
-  { href: '/flashcards', label: 'Flashcards', icon: BookMarked },
-  { href: '/memorizacao', label: 'Memorização', icon: Brain },
-  { href: '/planos', label: 'Planos de Leitura', icon: Calendar },
-  { href: '/devocional', label: 'Devocional', icon: Heart },
-  { href: '/desafios', label: 'Desafios', icon: Target },
-  { href: '/comparar-comentarios', label: 'Comentários', icon: MessageCircle },
-  { href: '/comparar', label: 'Comparar Traduções', icon: Languages },
-  { href: '/comparar-paralelo', label: 'Comparar Paralelo', icon: Columns },
-  { href: '/sermon-builder', label: 'Sermon Builder', icon: Sparkles },
-  { href: '/gamificacao', label: 'Gamificação', icon: Trophy },
-  { href: '/dashboard', label: 'Meu Dashboard', icon: BarChart3 },
-  { href: '/comunidade', label: 'Comunidade', icon: MessageCircle },
-  { href: '/estatisticas/gamificacao', label: 'Gamificação', icon: Crown },
+interface NavGroup {
+  titulo: string;
+  links: NavLinkSpec[];
+}
+
+const maisGrupos: NavGroup[] = [
+  {
+    titulo: 'Ferramentas',
+    links: [
+      { href: '/idiomas', label: 'Língua Original', icon: Languages },
+      { href: '/referencias', label: 'Referências Cruzadas', icon: GitBranch },
+      { href: '/topicos', label: 'Índice Tópico', icon: Tag },
+      { href: '/ferramentas', label: 'Ferramentas', icon: Sparkles },
+    ],
+  },
+  {
+    titulo: 'Contexto Bíblico',
+    links: [
+      { href: '/historia', label: 'História', icon: Map },
+      { href: '/cronologia', label: 'Cronologia', icon: History },
+      { href: '/personagens', label: 'Personagens', icon: User },
+      { href: '/atlas', label: 'Atlas Bíblico', icon: Map },
+    ],
+  },
+  {
+    titulo: 'Prática',
+    links: [
+      { href: '/cursos', label: 'Seminário Bíblico', icon: GraduationCap },
+      { href: '/planos', label: 'Planos de Leitura', icon: Calendar },
+      { href: '/devocional', label: 'Devocional', icon: Heart },
+      { href: '/flashcards', label: 'Flashcards', icon: BookMarked },
+      { href: '/memorizacao', label: 'Memorização', icon: Brain },
+    ],
+  },
+  {
+    titulo: 'Comparar & Analisar',
+    links: [
+      { href: '/exegese', label: 'Exegese', icon: ScrollText },
+      { href: '/comparar', label: 'Comparar Traduções', icon: Languages },
+      { href: '/comparar-comentarios', label: 'Comentários', icon: MessageCircle },
+      { href: '/relacoes', label: 'Relações Bíblicas', icon: Users },
+    ],
+  },
+  {
+    titulo: 'Comunidade & Progresso',
+    links: [
+      { href: '/dashboard', label: 'Meu Dashboard', icon: BarChart3 },
+      { href: '/comunidade', label: 'Comunidade', icon: MessageCircle },
+      { href: '/quiz', label: 'Quiz Bíblico', icon: HelpCircle },
+      { href: '/desafios', label: 'Desafios', icon: Target },
+    ],
+  },
 ];
 
 const temaIcons: Record<string, React.ReactNode> = {
@@ -210,7 +231,7 @@ function HeaderInner() {
   };
 
   const isMoreActive = useMemo(
-    () => moreLinks.some((l) => isActive(l.href)),
+    () => maisGrupos.some((g) => g.links.some((l) => isActive(l.href))),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [pathname]
   );
@@ -312,7 +333,7 @@ function HeaderInner() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* "Mais" dropdown — 2x6 grid of items with icons */}
+            {/* "Mais" dropdown — grouped navigation */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
@@ -336,30 +357,37 @@ function HeaderInner() {
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-[520px] p-2" sideOffset={8}>
-                <div className="grid grid-cols-2 gap-0.5">
-                  {moreLinks.map((link) => {
-                    const Icon = link.icon;
-                    const active = isActive(link.href);
-                    return (
-                      <DropdownMenuItem key={link.href} asChild>
-                        <Link
-                          href={link.href}
-                          aria-current={active ? 'page' : undefined}
-                          className={`flex items-center gap-2.5 cursor-pointer rounded-lg px-2.5 py-2 ${
-                            active
-                              ? 'bg-primary/10 text-primary font-semibold'
-                              : 'text-foreground'
-                          }`}
-                        >
-                          <span className="w-7 h-7 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                            <Icon className="w-3.5 h-3.5" strokeWidth={1.75} />
-                          </span>
-                          <span className="text-[13px] font-medium leading-tight">{link.label}</span>
-                        </Link>
-                      </DropdownMenuItem>
-                    );
-                  })}
-                </div>
+                {maisGrupos.map((grupo) => (
+                  <div key={grupo.titulo} className="mb-2">
+                    <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60">
+                      {grupo.titulo}
+                    </div>
+                    <div className="grid grid-cols-2 gap-0.5">
+                      {grupo.links.map((link) => {
+                        const Icon = link.icon;
+                        const active = isActive(link.href);
+                        return (
+                          <DropdownMenuItem key={link.href} asChild>
+                            <Link
+                              href={link.href}
+                              aria-current={active ? 'page' : undefined}
+                              className={`flex items-center gap-2.5 cursor-pointer rounded-lg px-2.5 py-2 ${
+                                active
+                                  ? 'bg-primary/10 text-primary font-semibold'
+                                  : 'text-foreground'
+                              }`}
+                            >
+                              <span className="w-7 h-7 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                                <Icon className="w-3.5 h-3.5" strokeWidth={1.75} />
+                              </span>
+                              <span className="text-[13px] font-medium leading-tight">{link.label}</span>
+                            </Link>
+                          </DropdownMenuItem>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
               </DropdownMenuContent>
             </DropdownMenu>
           </nav>
@@ -711,32 +739,39 @@ function HeaderInner() {
 
                   <div className="border-t border-border/30 my-2" />
 
-                  {moreLinks.map((link, i) => {
-                    const Icon = link.icon;
-                    const active = isActive(link.href);
-                    return (
-                      <motion.div
-                        key={link.href}
-                        initial={{ opacity: 0, x: -16 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: (navLinks.length + i) * 0.04 }}
-                      >
-                        <Link
-                          href={link.href}
-                          aria-current={active ? 'page' : undefined}
-                          className={`flex items-center gap-2.5 text-sm font-medium px-3 py-2.5 rounded-lg transition-all ${
-                            active
-                              ? 'text-primary bg-primary/10 font-semibold'
-                              : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                          }`}
-                          onClick={() => setOpen(false)}
-                        >
-                          <Icon className="w-4 h-4" strokeWidth={1.75} />
-                          {link.label}
-                        </Link>
-                      </motion.div>
-                    );
-                  })}
+                  {maisGrupos.map((grupo) => (
+                    <div key={grupo.titulo}>
+                      <div className="px-3 pt-3 pb-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60">
+                        {grupo.titulo}
+                      </div>
+                      {grupo.links.map((link, i) => {
+                        const Icon = link.icon;
+                        const active = isActive(link.href);
+                        return (
+                          <motion.div
+                            key={link.href}
+                            initial={{ opacity: 0, x: -16 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.04 }}
+                          >
+                            <Link
+                              href={link.href}
+                              aria-current={active ? 'page' : undefined}
+                              className={`flex items-center gap-2.5 text-sm font-medium px-3 py-2.5 rounded-lg transition-all ${
+                                active
+                                  ? 'text-primary bg-primary/10 font-semibold'
+                                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                              }`}
+                              onClick={() => setOpen(false)}
+                            >
+                              <Icon className="w-4 h-4" strokeWidth={1.75} />
+                              {link.label}
+                            </Link>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  ))}
 
                   <div className="border-t border-border/30 my-2" />
 
@@ -744,7 +779,7 @@ function HeaderInner() {
                   <motion.div
                     initial={{ opacity: 0, x: -16 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: (navLinks.length + moreLinks.length) * 0.04 }}
+                    transition={{ delay: (navLinks.length + maisGrupos.length) * 0.04 }}
                     className="px-3 py-2"
                   >
                     <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60 mb-2 block">Tema</span>
@@ -773,7 +808,7 @@ function HeaderInner() {
                     <motion.div
                       initial={{ opacity: 0, x: -16 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: (navLinks.length + moreLinks.length) * 0.04 }}
+                      transition={{ delay: (navLinks.length + maisGrupos.length) * 0.04 }}
                     >
                       <Link
                         href="/admin"
@@ -836,7 +871,7 @@ function HeaderInner() {
                     <motion.div
                       initial={{ opacity: 0, x: -16 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: (navLinks.length + moreLinks.length) * 0.04 }}
+                      transition={{ delay: (navLinks.length + maisGrupos.length) * 0.04 }}
                     >
                       <Link
                         href="/auth/login"

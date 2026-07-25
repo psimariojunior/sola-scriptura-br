@@ -275,6 +275,22 @@ export default function EstudosPage() {
             </ScrollReveal>
           )}
 
+          {/* Cursos CTA Banner */}
+          <Link href="/cursos" className="block mb-4">
+            <div className="glass-card-3d gradient-border shine-effect p-4 rounded-xl cursor-pointer group">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500 to-amber-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <GraduationCap className="w-6 h-6 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-sm">Seminário Bíblico Gratuito</h3>
+                  <p className="text-xs text-[var(--content-muted)]">8 cursos com certificado · Estude no seu ritmo</p>
+                </div>
+                <ChevronRight className="w-5 h-5 text-[var(--content-muted)] group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </Link>
+
           {/* Category Tabs */}
           <ScrollReveal delay={0.1}>
             <div className="flex flex-wrap gap-2 mb-8">

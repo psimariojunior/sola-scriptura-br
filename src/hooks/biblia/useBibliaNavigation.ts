@@ -57,20 +57,46 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
   const livro = TODOS_LIVROS[livroIdx];
 
   const loadChapter = useCallback(async () => {
-    setLoading(true);
     const livroAbrev = livro.abreviacao;
     const cap = capituloIdx + 1;
+
+    // Cache-first: try to show cached data instantly
+    const cachedResults: CapituloComparado[] = [];
+    for (const trad of selectedTrads) {
+      const verses = getCachedChapter(livroAbrev, cap, trad) ?? (await getCachedChapterDB(livroAbrev, cap, trad));
+      if (verses && verses.length > 0) {
+        cachedResults.push({ traducao: trad, versiculos: verses.map((t, i) => ({ numero: i + 1, texto: t })) });
+      }
+    }
+
+    if (cachedResults.length > 0) {
+      setData(cachedResults);
+      setLoading(false);
+      mainRef.current?.scrollTo({ top: 0 });
+      recordReading(livroAbrev, cap);
+      setStatsData(getStats());
+      // Still fetch fresh data in background for non-cached translations
+      const missingTrads = selectedTrads.filter(t => !cachedResults.find(c => c.traducao === t));
+      if (missingTrads.length > 0) {
+        obterCapituloMulti(livroAbrev, cap, missingTrads).then(fresh => {
+          if (fresh.length > 0) {
+            setData(prev => {
+              const merged = prev.filter(p => !fresh.find(f => f.traducao === p.traducao));
+              return [...merged, ...fresh];
+            });
+            for (const item of fresh) {
+              cacheChapter(livroAbrev, cap, item.traducao, item.versiculos.map(v => v.texto));
+            }
+          }
+        }).catch(() => {});
+      }
+      requestIdleCallback(() => { prefetchAdjacent(livroAbrev, cap); });
+      return;
+    }
+
+    // No cache: full fetch
+    setLoading(true);
     if (!isOnline()) {
-      const cached = await Promise.all(
-        selectedTrads.map(async (trad) => {
-          const verses = getCachedChapter(livroAbrev, cap, trad) ?? (await getCachedChapterDB(livroAbrev, cap, trad));
-          if (!verses || verses.length === 0) return null;
-          return { traducao: trad, versiculos: verses.map((t, i) => ({ numero: i + 1, texto: t })) };
-        })
-      );
-      const filtered = cached.filter(Boolean) as CapituloComparado[];
-      if (filtered.length > 0) { setData(filtered); setOfflineUnavailable(false); setLoading(false); return; }
-      setData([]);
       setOfflineUnavailable(true);
       setLoading(false);
       return;

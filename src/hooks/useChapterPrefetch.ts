@@ -1,8 +1,9 @@
 'use client';
 
 import { useCallback, useRef } from 'react';
-import { carregarCapitulo } from '@/lib/apresentacao/versiculos';
+import { obterCapituloMulti } from '@/data/biblia/texto/carregar';
 import { livroPorAbreviacao } from '@/data/biblia/livros';
+import { cacheChapter } from '@/lib/offline';
 
 const prefetchedChapters = new Set<string>();
 
@@ -14,11 +15,19 @@ export function useChapterPrefetch(traducao: string = 'nvi') {
     if (prefetchedChapters.has(key)) return;
 
     prefetchedChapters.add(key);
-    const promise = carregarCapitulo(livro, cap, traducao).then(() => {}).catch(() => {});
+    const promise = obterCapituloMulti(livro, cap, [traducao]).then((result) => {
+      for (const item of result) {
+        cacheChapter(livro, cap, item.traducao, item.versiculos.map(v => v.texto));
+      }
+    }).catch(() => {});
     prefetchQueue.current.push(promise);
 
-    if (prefetchQueue.current.length > 5) {
-      prefetchQueue.current.shift();
+    if (prefetchedChapters.size > 30) {
+      const iter = prefetchedChapters.values();
+      for (let i = 0; i < 10; i++) {
+        const old = iter.next().value;
+        if (old) prefetchedChapters.delete(old);
+      }
     }
   }, [traducao]);
 
@@ -26,11 +35,14 @@ export function useChapterPrefetch(traducao: string = 'nvi') {
     const book = livroPorAbreviacao.get(livro);
     if (!book) return;
 
-    if (cap > 1) prefetch(livro, cap - 1);
-    if (cap < book.totalCapitulos) prefetch(livro, cap + 1);
-
-    if (cap > 2) prefetch(livro, cap - 2);
-    if (cap < book.totalCapitulos - 1) prefetch(livro, cap + 2);
+    // Prefetch next chapters first (most likely to be needed)
+    for (let i = 1; i <= 3; i++) {
+      if (cap + i <= book.totalCapitulos) prefetch(livro, cap + i);
+    }
+    // Then previous chapters
+    for (let i = 1; i <= 2; i++) {
+      if (cap - i >= 1) prefetch(livro, cap - i);
+    }
   }, [prefetch]);
 
   const prefetchBook = useCallback((livro: string, maxChapters: number = 5) => {

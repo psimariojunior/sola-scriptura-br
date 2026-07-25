@@ -200,7 +200,7 @@ export default function BibliaPage() {
                 ) : nav.offlineUnavailable ? (
                   <div className="text-center py-20"><WifiOff className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} /><p className="text-lg text-[var(--content-muted)]">Capítulo não disponível offline</p><p className="text-sm text-[var(--content-muted)] mt-2">Conecte-se à internet ou baixe as traduções.</p></div>
                 ) : nav.temDados ? (
-                    <AnimatePresence mode="popLayout"><motion.div key={`${nav.livro.abreviacao}-${nav.capituloIdx}`} {...ui.chapterAnimProps} role="article" aria-label={`${nav.livro.nome} capítulo ${nav.capituloIdx + 1}`}>
+                    <div role="article" aria-label={`${nav.livro.nome} capítulo ${nav.capituloIdx + 1}`}>
                     {nav.loading && nav.temDados && (<div className="fixed top-0 left-0 right-0 z-50 h-0.5 bg-[var(--brand-default)]/20"><div className="h-full bg-[var(--brand-default)] animate-loading-bar" /></div>)}
                     <ChapterHeader livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} totalCapitulos={nav.livro.totalCapitulos} totalVersiculos={nav.data[0]?.versiculos?.length ?? 0} />
                     {ui.showInterlinear && nav.data[0] && (<div className="mb-8"><div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/40"><span className="font-hebrew text-lg text-[var(--brand-default)]">א</span><span className="text-sm font-semibold text-[var(--content-primary)]">Vista Interlinear</span></div><InterlinearView versiculos={nav.data[0].versiculos} livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} traducao={nav.data[0].traducao} /></div>)}
@@ -225,10 +225,10 @@ export default function BibliaPage() {
                       })}</div>
                     </div>))}
                     {ui.modoLeitura === 'comparacao' && nav.viewMode === 'parallel' && (<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">{nav.data.map((item) => (
-                      <motion.div key={item.traducao} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="border border-[var(--border)]/40 rounded-xl p-3 sm:p-5 hover:shadow-md transition-shadow">
+                      <div key={item.traducao} className="border border-[var(--border)]/40 rounded-xl p-3 sm:p-5 hover:shadow-md transition-shadow">
                         <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/30"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold">{labelMap[item.traducao]}</span></div>
                         {item.versiculos.map(v => (<p key={v.numero} className="mb-2 leading-[1.7] font-serif-body" style={{ fontSize: `${Math.max(ui.fontSize - 2, 14)}px` }}><sup className="text-[var(--brand-default)] font-bold text-[10px] mr-1 select-none tabular-nums">{v.numero}</sup>{v.texto}</p>))}
-                      </motion.div>))}</div>)}
+                      </div>))}</div>)}
                     {ui.modoLeitura === 'comparacao' && nav.viewMode === 'comparison' && nav.data.length >= 2 && (<ComparisonTable data={nav.data} fontSize={ui.fontSize} showDiff={ui.showDiff} highlightedVerse={ui.highlightedVerse} onHighlight={ui.setHighlightedVerse} maxVersiculos={nav.maxVersiculos} tradBadgeColors={tradBadgeColors} labelMap={labelMap} />)}
                     {nav.estudoCapitulo && (<div className="mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">
                       <button onClick={() => ui.setEstudoCapituloAberto(o => !o)} className="w-full flex items-center gap-2 text-left group" aria-expanded={ui.estudoCapituloAberto}>
@@ -245,7 +245,7 @@ export default function BibliaPage() {
                       <div className="hidden sm:flex flex-col items-center gap-1.5 min-w-[120px]"><span className="text-[10px] text-[var(--content-muted)] font-mono tabular-nums">{nav.capituloIdx + 1} / {nav.livro.totalCapitulos}</span><ProgressBar value={nav.capituloIdx + 1} total={nav.livro.totalCapitulos} className="w-24" /></div>
                       <motion.button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-colors min-h-[44px]">Próximo <ChevronRight className="w-4 h-4" /></motion.button>
                     </div>
-                  </motion.div></AnimatePresence>
+                    </div>
                 ) : (<div className="text-center py-20"><BookOpen className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} /><p className="text-lg text-[var(--content-muted)]">Selecione um livro e capítulo</p></div>)}
               </div>
               <NotesPanelSection open={ui.mostrarNotas} onClose={() => ui.setMostrarNotas(false)} notas={verse.notas} notaAtiva={verse.notaAtiva} onSalvar={(nota) => { verse.setNotaAtiva(nota); verse.salvarNotaHook(nota.id, nota.conteudo); }} onExcluir={(id) => { verse.excluirNota(id); verse.setNotaAtiva(null); ui.setMostrarNotas(false); }} />

@@ -1,6 +1,5 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 interface ChapterGridProps {
@@ -13,22 +12,14 @@ interface ChapterGridProps {
 
 export function ChapterGrid({ open, onClose, totalCapitulos, capituloAtual, onSelect }: ChapterGridProps) {
   return (
-    <AnimatePresence>
-      {open && (
+      open && (
         <>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40"
+          <div
+            className="fixed inset-0 z-40 animate-fade-in"
             onClick={onClose}
           />
-          <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.95 }}
-            transition={{ duration: 0.15 }}
-            className="absolute left-1/2 -translate-x-1/2 top-full mt-2 z-50 w-80 max-w-[90vw] bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-3"
+          <div
+            className="absolute left-1/2 -translate-x-1/2 top-full mt-2 z-50 w-80 max-w-[90vw] bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-3 animate-slide-up"
           >
             <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-2 px-1">
               Selecione o capítulo
@@ -49,9 +40,8 @@ export function ChapterGrid({ open, onClose, totalCapitulos, capituloAtual, onSe
                 </button>
               ))}
             </div>
-          </motion.div>
+          </div>
         </>
-      )}
-    </AnimatePresence>
+      )
   );
 }

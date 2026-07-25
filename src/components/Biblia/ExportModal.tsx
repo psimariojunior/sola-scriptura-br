@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { X, FileText, BookOpen, Loader2, Check, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { CapituloComparado } from '@/data/biblia';
@@ -73,26 +72,18 @@ export function ExportModal({ open, onClose, bookName, chapter, data }: ExportMo
   }
 
   return (
-    <AnimatePresence>
-      {open && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      open && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in"
           onClick={onClose}
           role="dialog"
           aria-modal="true"
           aria-labelledby="export-modal-title"
         >
-          <motion.div
+          <div
             ref={dialogRef}
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            transition={{ duration: 0.18 }}
             onClick={e => e.stopPropagation()}
-            className="w-full max-w-md bg-[var(--surface-raised)] border border-[var(--border)] rounded-2xl shadow-2xl overflow-hidden"
+            className="w-full max-w-md bg-[var(--surface-raised)] border border-[var(--border)] rounded-2xl shadow-2xl overflow-hidden animate-scale-in"
           >
             <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border)]">
               <h2 id="export-modal-title" className="font-display text-lg font-semibold text-[var(--content-primary)]">
@@ -172,10 +163,9 @@ export function ExportModal({ open, onClose, bookName, chapter, data }: ExportMo
                 )}
               </button>
             </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          </div>
+        </div>
+      )
   );
 }
 

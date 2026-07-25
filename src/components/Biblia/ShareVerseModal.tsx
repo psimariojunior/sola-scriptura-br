@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { X, Download, Copy, Check, Share2, Image as ImageIcon, Type } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -280,25 +279,18 @@ export function ShareVerseModal({ open, onClose, verse }: ShareVerseModalProps) 
   };
 
   return (
-    <AnimatePresence>
+    <>
       {open && verse && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-sm"
+        <div
+          className="animate-fade-in fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-sm"
           onClick={onClose}
           role="dialog"
           aria-modal="true"
           aria-labelledby="share-verse-title"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: 'spring', damping: 28, stiffness: 320 }}
+          <div
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-lg max-h-[92vh] overflow-y-auto bg-[var(--surface-raised)] border border-[var(--border)] rounded-2xl shadow-2xl"
+            className="animate-slide-up w-full max-w-lg max-h-[92vh] overflow-y-auto bg-[var(--surface-raised)] border border-[var(--border)] rounded-2xl shadow-2xl"
           >
             <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border)]/50 sticky top-0 bg-[var(--surface-raised)] z-10">
               <div className="flex items-center gap-2.5">
@@ -353,38 +345,34 @@ export function ShareVerseModal({ open, onClose, verse }: ShareVerseModalProps) 
               </div>
 
               <div className="grid grid-cols-2 gap-2.5">
-                <motion.button
-                  whileTap={{ scale: 0.97 }}
+                <button
                   onClick={handleDownload}
                   disabled={busy}
-                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[var(--brand-default)] text-[var(--brand-contrast)] font-medium hover:opacity-90 transition-all text-sm disabled:opacity-50"
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[var(--brand-default)] text-[var(--brand-contrast)] font-medium hover:opacity-90 active:scale-97 transition-all text-sm disabled:opacity-50"
                 >
                   <Download className="w-4 h-4" /> Baixar PNG
-                </motion.button>
-                <motion.button
-                  whileTap={{ scale: 0.97 }}
+                </button>
+                <button
                   onClick={handleCopyImage}
                   disabled={busy}
-                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-[var(--border)]/60 bg-[var(--surface-sunken)] hover:bg-[var(--brand-subtle)] text-[var(--content-primary)] font-medium transition-all text-sm disabled:opacity-50"
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-[var(--border)]/60 bg-[var(--surface-sunken)] hover:bg-[var(--brand-subtle)] text-[var(--content-primary)] font-medium active:scale-97 transition-all text-sm disabled:opacity-50"
                 >
                   {saved ? <Check className="w-4 h-4 text-green-500" /> : <ImageIcon className="w-4 h-4" />}
                   {saved ? 'Imagem copiada!' : 'Copiar imagem'}
-                </motion.button>
-                <motion.button
-                  whileTap={{ scale: 0.97 }}
+                </button>
+                <button
                   onClick={handleCopyText}
-                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-[var(--border)]/60 bg-[var(--surface-sunken)] hover:bg-[var(--brand-subtle)] text-[var(--content-primary)] font-medium transition-all text-sm"
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-[var(--border)]/60 bg-[var(--surface-sunken)] hover:bg-[var(--brand-subtle)] text-[var(--content-primary)] font-medium active:scale-97 transition-all text-sm"
                 >
                   {copied ? <Check className="w-4 h-4 text-green-500" /> : <Type className="w-4 h-4" />}
                   {copied ? 'Texto copiado!' : 'Copiar texto'}
-                </motion.button>
-                <motion.button
-                  whileTap={{ scale: 0.97 }}
+                </button>
+                <button
                   onClick={handleShareClick}
-                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-[var(--border)]/60 bg-[var(--surface-sunken)] hover:bg-[var(--brand-subtle)] text-[var(--content-primary)] font-medium transition-all text-sm"
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-[var(--border)]/60 bg-[var(--surface-sunken)] hover:bg-[var(--brand-subtle)] text-[var(--content-primary)] font-medium active:scale-97 transition-all text-sm"
                 >
                   <Share2 className="w-4 h-4" /> Compartilhar
-                </motion.button>
+                </button>
               </div>
 
               <div className="rounded-xl border border-[var(--border)]/50 bg-[var(--surface-sunken)]/40 p-3">
@@ -392,9 +380,9 @@ export function ShareVerseModal({ open, onClose, verse }: ShareVerseModalProps) 
                 <p className="text-xs text-[var(--content-secondary)] break-all font-mono">{shareUrl}</p>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import { Download, Check, X, Trash2, Wifi, WifiOff, HardDrive, RefreshCw, ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
@@ -132,11 +132,12 @@ export function OfflineDownloadManager({ open, onClose }: OfflineDownloadManager
   const downloadedCount = Object.values(downloaded).filter(Boolean).length;
 
   return (
-    <AnimatePresence>
+    <>
       {open && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
-            className="w-full max-w-lg max-h-[85vh] bg-[var(--surface-raised)] border border-[var(--border)] rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
+          <div
+            className="w-full max-w-lg max-h-[85vh] bg-[var(--surface-raised)] border border-[var(--border)] rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-scale-in"
+          >
 
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-[var(--border)]">
@@ -234,10 +235,10 @@ export function OfflineDownloadManager({ open, onClose }: OfflineDownloadManager
                 Versões baixadas ficam disponíveis offline e carregam mais rápido
               </p>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }
 

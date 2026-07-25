@@ -1,6 +1,5 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
 import { Layers, FileText, Download, BookMarked, Play, Settings, Volume2, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { CapituloComparado } from '@/data/biblia';
@@ -42,11 +41,10 @@ interface ToolsDropdownProps {
 export function ToolsDropdown({ open, onToggle, onClose, bookName, chapter, data, hasDramatica, onNotas, onExportPdf, onPlanoLeitura, onNarracaoDramatica, onNarrarCapitulo, onConfiguracoes }: ToolsDropdownProps) {
   return (
     <div className="relative">
-      <motion.button
+      <button
         onClick={onToggle}
-        whileTap={{ scale: 0.95 }}
         className={cn(
-          'p-1.5 rounded-lg transition-colors',
+          'p-1.5 rounded-lg transition-colors active:scale-95 transition-transform',
           open ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)]' : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]'
         )}
         title="Ferramentas"
@@ -54,30 +52,24 @@ export function ToolsDropdown({ open, onToggle, onClose, bookName, chapter, data
         aria-expanded={open}
       >
         <Layers className="w-4 h-4" />
-      </motion.button>
-      <AnimatePresence>
-        {open && (
-          <>
-            <div className="fixed inset-0 z-30" onClick={onClose} />
-            <motion.div
-              initial={{ opacity: 0, y: -8, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.95 }}
-              transition={{ duration: 0.15 }}
-              className="absolute right-0 top-full mt-2 z-40 w-56 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-1.5"
-            >
-              <ToolItem icon={FileText} label="Notas" onClick={onNotas} />
-              <ToolItem icon={Download} label="Exportar PDF" onClick={onExportPdf} />
-              <ToolItem icon={BookMarked} label="Plano de Leitura" onClick={onPlanoLeitura} />
-              {hasDramatica && <ToolItem icon={Play} label="Narração Dramática" onClick={onNarracaoDramatica} />}
-              <ToolItem icon={Volume2} label="Narrar Capítulo" onClick={onNarrarCapitulo} />
-               <div className="my-1 h-px bg-[var(--border)]/40" />
-               <ToolItem icon={Users} label="Estudo Colaborativo" onClick={() => { window.location.href = '/estudo-colaborativo'; }} />
-               <ToolItem icon={Settings} label="Configurações" onClick={onConfiguracoes} />
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-30" onClick={onClose} />
+          <div
+            className="absolute right-0 top-full mt-2 z-40 w-56 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-1.5 animate-scale-in"
+          >
+            <ToolItem icon={FileText} label="Notas" onClick={onNotas} />
+            <ToolItem icon={Download} label="Exportar PDF" onClick={onExportPdf} />
+            <ToolItem icon={BookMarked} label="Plano de Leitura" onClick={onPlanoLeitura} />
+            {hasDramatica && <ToolItem icon={Play} label="Narração Dramática" onClick={onNarracaoDramatica} />}
+            <ToolItem icon={Volume2} label="Narrar Capítulo" onClick={onNarrarCapitulo} />
+             <div className="my-1 h-px bg-[var(--border)]/40" />
+             <ToolItem icon={Users} label="Estudo Colaborativo" onClick={() => { window.location.href = '/estudo-colaborativo'; }} />
+             <ToolItem icon={Settings} label="Configurações" onClick={onConfiguracoes} />
+          </div>
+        </>
+      )}
     </div>
   );
 }

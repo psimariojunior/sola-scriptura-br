@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 interface ProgressBarProps {
   value: number;
   total: number;
@@ -21,11 +19,9 @@ export function ProgressBar({ value, total, className = '', showLabel = false }:
         </div>
       )}
       <div className="w-full h-1 rounded-full bg-[var(--brand-subtle)] overflow-hidden">
-        <motion.div
-          className="h-full rounded-full bg-gradient-to-r from-[var(--brand-default)] to-[var(--brand-emphasis)]"
-          initial={false}
-          animate={{ width: `${percent}%` }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+        <div
+          className="h-full rounded-full bg-gradient-to-r from-[var(--brand-default)] to-[var(--brand-emphasis)] transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+          style={{ width: `${percent}%` }}
         />
       </div>
     </div>

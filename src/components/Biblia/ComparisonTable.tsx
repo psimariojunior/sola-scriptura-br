@@ -1,7 +1,7 @@
 'use client';
 
 import { memo, useMemo } from 'react';
-import { motion } from 'framer-motion';
+
 import { cn } from '@/lib/utils';
 import type { CapituloComparado } from '@/data/biblia';
 
@@ -67,14 +67,13 @@ function ComparisonTableComponent({
           if (!data.some(d => d.versiculos[i])) return null;
           const baseText = data[0].versiculos[i]?.texto || '';
           return (
-            <motion.div
+            <div
               key={verseNum}
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.01 }}
               className={cn(
-                'grid border-b border-[var(--border)]/15 last:border-b-0 hover:bg-[var(--surface-sunken)]/50 transition-colors cursor-pointer',
+                'animate-fade-in grid border-b border-[var(--border)]/15 last:border-b-0 hover:bg-[var(--surface-sunken)]/50 transition-colors cursor-pointer',
                 highlightedVerse === verseNum && 'bg-[var(--brand-subtle)] border-l-2 border-l-[var(--brand-default)]'
               )}
-              style={{ gridTemplateColumns: `40px repeat(${data.length}, 1fr)` }}
+              style={{ gridTemplateColumns: `40px repeat(${data.length}, 1fr)`, animationDelay: `${i * 0.01}s` }}
               onClick={() => onHighlight(highlightedVerse === verseNum ? null : verseNum)}
             >
               <div className="p-2 sm:p-3 flex items-start justify-end">
@@ -96,7 +95,7 @@ function ComparisonTableComponent({
                 </div>
               );
             })}
-          </motion.div>
+          </div>
         );
       })}
     </div>

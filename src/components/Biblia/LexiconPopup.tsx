@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import Link from 'next/link';
 import type { LexiconEntry } from '@/lib/lexiconSearch';
 import { isHebrewStrong } from '@/lib/lexiconSearch';
@@ -57,16 +57,11 @@ export function LexiconPopup({ entry, position, onClose }: LexiconPopupProps) {
   const langColor = isHebrew ? 'text-blue-400' : 'text-purple-400';
 
   return (
-    <AnimatePresence>
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, scale: 0.9, y: 4 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.9, y: 4 }}
-        transition={{ duration: 0.15, ease: 'easeOut' }}
-        className="fixed z-50 w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] p-4 shadow-[var(--shadow-lg)]"
-        style={{ left: adjustedPos.x, top: adjustedPos.y }}
-      >
+    <div
+      ref={ref}
+      className="fixed z-50 w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] p-4 shadow-[var(--shadow-lg)] animate-scale-in"
+      style={{ left: adjustedPos.x, top: adjustedPos.y }}
+    >
         <div className="mb-3 flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
@@ -140,7 +135,6 @@ export function LexiconPopup({ entry, position, onClose }: LexiconPopupProps) {
             </svg>
           </Link>
         </div>
-      </motion.div>
-    </AnimatePresence>
+      </div>
   );
 }

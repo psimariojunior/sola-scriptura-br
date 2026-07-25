@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import type { RecursoLexico } from '@/data/biblia/versiculoRecursos';
@@ -96,18 +96,14 @@ export function InlineStrongHighlight({
       </button>
 
       {/* Popover com detalhes do léxico */}
-      <AnimatePresence>
-        {palavraAtiva && (
-          <motion.div
+      {palavraAtiva && (
+          <div
             ref={popoverRef}
-            initial={{ opacity: 0, y: -4, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -4, scale: 0.95 }}
-            transition={{ duration: 0.15 }}
             className={cn(
               'absolute left-0 top-full mt-1 z-40',
               'bg-[var(--surface-raised)] border border-[var(--border)]',
-              'rounded-lg shadow-xl p-3 min-w-[220px] max-w-[300px]'
+              'rounded-lg shadow-xl p-3 min-w-[220px] max-w-[300px]',
+              'animate-scale-in'
             )}
             onClick={(e) => e.stopPropagation()}
           >
@@ -198,9 +194,8 @@ export function InlineStrongHighlight({
                 </div>
               </div>
             )}
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+      )}
     </div>
   );
 }

@@ -1,6 +1,5 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
 import { BookText, CloudOff } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -26,11 +25,10 @@ interface TranslationDropdownProps {
 export function TranslationDropdown({ open, onToggle, onClose, selectedTrads, onToggleTrad, viewMode, onViewModeChange }: TranslationDropdownProps) {
   return (
     <div className="relative">
-      <motion.button
+      <button
         onClick={onToggle}
-        whileTap={{ scale: 0.95 }}
         className={cn(
-          'flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold',
+          'flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold active:scale-95 transition-transform',
           'border transition-all duration-200',
           open || selectedTrads.length > 1
             ? 'bg-[var(--brand-subtle)] border-[var(--brand-default)]/30 text-[var(--brand-default)]'
@@ -42,62 +40,56 @@ export function TranslationDropdown({ open, onToggle, onClose, selectedTrads, on
         <BookText className="w-3.5 h-3.5" />
         <span className="tabular-nums">{selectedTrads.map(t => labelMap[t]).join(' . ')}</span>
         {selectedTrads.length > 1 && <span className="text-[10px] px-1 rounded-full bg-[var(--brand-default)] text-[var(--brand-contrast)]">{selectedTrads.length}</span>}
-      </motion.button>
-      <AnimatePresence>
-        {open && (
-          <>
-            <div className="fixed inset-0 z-30" onClick={onClose} />
-            <motion.div
-              initial={{ opacity: 0, y: -8, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.95 }}
-              transition={{ duration: 0.15 }}
-              className="absolute right-0 top-full mt-2 z-40 w-72 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-2 max-h-[70vh] overflow-y-auto"
-            >
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] px-3 py-1.5">Traducoes</p>
-              {TRAD_IDS.map(id => {
-                const active = selectedTrads.includes(id);
-                const isMidvash = TRADS_MIDVASH.has(id);
-                return (
-                  <button key={id} onClick={() => onToggleTrad(id)}
-                    className={cn(
-                      'w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 transition-colors',
-                      active ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)]' : 'hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]'
-                    )}>
-                    <div className={cn('w-2 h-2 rounded-full', tradBadgeColors[id])} />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-sm font-semibold">{labelMap[id]}</span>
-                        {isMidvash && (
-                          <span className="inline-flex items-center gap-0.5 text-[9px] px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400">
-                            <CloudOff className="w-2.5 h-2.5" />
-                            API
-                          </span>
-                        )}
-                      </div>
-                      <div className="text-[10px] text-[var(--content-muted)] truncate">{nomeMap[id]}</div>
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-30" onClick={onClose} />
+          <div
+            className="absolute right-0 top-full mt-2 z-40 w-72 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-2 max-h-[70vh] overflow-y-auto animate-scale-in"
+          >
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] px-3 py-1.5">Traducoes</p>
+            {TRAD_IDS.map(id => {
+              const active = selectedTrads.includes(id);
+              const isMidvash = TRADS_MIDVASH.has(id);
+              return (
+                <button key={id} onClick={() => onToggleTrad(id)}
+                  className={cn(
+                    'w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 transition-colors',
+                    active ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)]' : 'hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]'
+                  )}>
+                  <div className={cn('w-2 h-2 rounded-full', tradBadgeColors[id])} />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-sm font-semibold">{labelMap[id]}</span>
+                      {isMidvash && (
+                        <span className="inline-flex items-center gap-0.5 text-[9px] px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                          <CloudOff className="w-2.5 h-2.5" />
+                          API
+                        </span>
+                      )}
                     </div>
-                    {active && <span className="text-[var(--brand-default)] text-xs">&#10003;</span>}
+                    <div className="text-[10px] text-[var(--content-muted)] truncate">{nomeMap[id]}</div>
+                  </div>
+                  {active && <span className="text-[var(--brand-default)] text-xs">&#10003;</span>}
+                </button>
+              );
+            })}
+            {selectedTrads.length > 1 && (
+              <div className="mt-2 pt-2 border-t border-[var(--border)]/40 px-2 flex gap-1">
+                {(['single', 'parallel', 'comparison'] as ViewMode[]).map(m => (
+                  <button key={m} onClick={() => onViewModeChange(m)}
+                    className={cn(
+                      'flex-1 text-[10px] font-medium px-2 py-1 rounded-md transition-colors',
+                      viewMode === m ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]' : 'text-[var(--content-muted)] hover:bg-[var(--surface-sunken)]'
+                    )}>
+                    {m === 'single' ? 'Unica' : m === 'parallel' ? 'Lado a lado' : 'Comparar'}
                   </button>
-                );
-              })}
-              {selectedTrads.length > 1 && (
-                <div className="mt-2 pt-2 border-t border-[var(--border)]/40 px-2 flex gap-1">
-                  {(['single', 'parallel', 'comparison'] as ViewMode[]).map(m => (
-                    <button key={m} onClick={() => onViewModeChange(m)}
-                      className={cn(
-                        'flex-1 text-[10px] font-medium px-2 py-1 rounded-md transition-colors',
-                        viewMode === m ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]' : 'text-[var(--content-muted)] hover:bg-[var(--surface-sunken)]'
-                      )}>
-                      {m === 'single' ? 'Unica' : m === 'parallel' ? 'Lado a lado' : 'Comparar'}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+                ))}
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { GraduationCap, BookOpen, CheckCircle2, Clock, ChevronRight, Award, Play, FileText, HelpCircle, ArrowLeft, Download, Share2, RotateCcw } from 'lucide-react';
+import { GraduationCap, BookOpen, CheckCircle2, Clock, ChevronRight, Award, Play, FileText, HelpCircle, ArrowLeft, Download, Share2, RotateCcw, Users, BarChart3, ClipboardCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
@@ -112,6 +112,29 @@ export function BibleCourses() {
     });
   }, []);
 
+  const handleCompartilharCertificado = useCallback(async (nomeCurso: string) => {
+    const shareData = {
+      title: `Certificado - ${nomeCurso}`,
+      text: `Conclui o curso "${nomeCurso}" no Sola Scriptura Bíblico! 🎓`,
+      url: typeof window !== 'undefined' ? window.location.origin + '/cursos' : '',
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(shareData.url);
+        alert('Link copiado para a área de transferência!');
+      }
+    } catch {
+      try {
+        await navigator.clipboard.writeText(shareData.url);
+        alert('Link copiado para a área de transferência!');
+      } catch {
+        alert('Não foi possível compartilhar. Acesse: ' + shareData.url);
+      }
+    }
+  }, []);
+
   if (state.tela === 'certificado') {
     const curso = getCurso(state.cursoId);
     if (!curso) return null;
@@ -122,9 +145,12 @@ export function BibleCourses() {
           <h2 className="text-xl font-bold mb-2">Parabens!</h2>
           <p className="text-sm text-[var(--content-muted)] mb-6">Voce concluiu o curso <strong>{curso.titulo}</strong></p>
           <canvas ref={canvasRef} width={540} height={420} className="rounded-lg shadow-2xl mb-4 max-w-full" />
-          <div className="flex gap-3 justify-center">
+          <div className="flex gap-3 justify-center flex-wrap">
             <Button onClick={() => handleBaixarCertificado(curso.titulo)} className="bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
               <Download className="w-4 h-4 mr-2" /> Baixar Certificado
+            </Button>
+            <Button variant="outline" onClick={() => handleCompartilharCertificado(curso.titulo)}>
+              <Share2 className="w-4 h-4 mr-2" /> Compartilhar
             </Button>
             <Button variant="outline" onClick={() => setState({ tela: 'lista' })}>
               <ArrowLeft className="w-4 h-4 mr-2" /> Voltar
@@ -188,6 +214,28 @@ export function BibleCourses() {
           <h2 className="font-bold text-lg">Seminario Biblico Gratuito</h2>
         </div>
         <p className="text-xs text-[var(--content-muted)]">Cursos completos com certificado. Estude no seu ritmo, sem custo.</p>
+      </div>
+      <div className="grid grid-cols-4 gap-2 p-4 border-b border-[var(--border)]/20">
+        <div className="text-center p-2 rounded-lg bg-[var(--surface-sunken)]">
+          <BarChart3 className="w-4 h-4 mx-auto mb-1 text-[var(--brand)]" />
+          <p className="text-lg font-bold">{CURSOS.length}</p>
+          <p className="text-[10px] text-[var(--content-muted)]">Cursos</p>
+        </div>
+        <div className="text-center p-2 rounded-lg bg-[var(--surface-sunken)]">
+          <Users className="w-4 h-4 mx-auto mb-1 text-blue-500" />
+          <p className="text-lg font-bold">{Object.values(progressos).filter(p => p.matriculado).length}</p>
+          <p className="text-[10px] text-[var(--content-muted)]">Matriculas</p>
+        </div>
+        <div className="text-center p-2 rounded-lg bg-[var(--surface-sunken)]">
+          <CheckCircle2 className="w-4 h-4 mx-auto mb-1 text-green-500" />
+          <p className="text-lg font-bold">{Object.values(progressos).filter(p => p.dataConclusao).length}</p>
+          <p className="text-[10px] text-[var(--content-muted)]">Concluidos</p>
+        </div>
+        <div className="text-center p-2 rounded-lg bg-[var(--surface-sunken)]">
+          <ClipboardCheck className="w-4 h-4 mx-auto mb-1 text-yellow-500" />
+          <p className="text-lg font-bold">{Object.values(progressos).reduce((sum, p) => sum + Object.keys(p.quizResultados).length, 0)}</p>
+          <p className="text-[10px] text-[var(--content-muted)]">Quizzes</p>
+        </div>
       </div>
       <ScrollArea className="flex-1">
         <div className="p-3 space-y-3">

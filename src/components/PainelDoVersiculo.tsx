@@ -705,7 +705,7 @@ export default function PainelDoVersiculo({
   });
 
   const panelContent = (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-border/50 shrink-0">
         <div className="flex items-center gap-2">
@@ -853,7 +853,7 @@ export default function PainelDoVersiculo({
               role="dialog"
               aria-label={`Painel de recursos para ${livro.toUpperCase()} ${capitulo}:${versiculo}`}
               aria-modal="true"
-              className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-background border-l border-border shadow-2xl flex flex-col"
+              className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-background border-l border-border shadow-2xl flex flex-col overflow-hidden"
             >
               {panelContent}
             </motion.aside>
@@ -885,7 +885,7 @@ export default function PainelDoVersiculo({
             role="dialog"
             aria-label={`Painel de recursos para ${livro.toUpperCase()} ${capitulo}:${versiculo}`}
             aria-modal="true"
-            className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] bg-background border-t border-border shadow-2xl rounded-t-2xl flex flex-col"
+            className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] bg-background border-t border-border shadow-2xl rounded-t-2xl flex flex-col overflow-hidden"
           >
             {/* Drag handle */}
             <div className="flex justify-center py-2 shrink-0">

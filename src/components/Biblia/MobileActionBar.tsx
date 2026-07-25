@@ -1,6 +1,5 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, StickyNote, Languages, Share2, BookOpen, Palette, Copy, X, Sparkles, MessageSquare, Image as ImageIcon, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
@@ -69,25 +68,17 @@ function MobileActionBarInner({
   const isFlashcard = flashcards.cards.find((c) => c.verseKey === flashKey);
 
   return (
-    <AnimatePresence>
-      {selected && (
-        <>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden"
-            onClick={onClose}
-          />
-          <motion.div
-            initial={{ y: '100%' }}
-            animate={{ y: 0 }}
-            exit={{ y: '100%' }}
-            transition={{ type: 'spring', damping: 30, stiffness: 350 }}
-            className="fixed bottom-0 left-0 right-0 z-50 lg:hidden pb-safe bg-[var(--surface-raised)] border-t border-[var(--border)] rounded-t-2xl shadow-2xl"
-            role="dialog"
-            aria-label={`Ações para ${ref}`}
-          >
+    selected ? (
+      <>
+        <div
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden animate-fade-in"
+          onClick={onClose}
+        />
+        <div
+          className="fixed bottom-0 left-0 right-0 z-50 lg:hidden pb-safe bg-[var(--surface-raised)] border-t border-[var(--border)] rounded-t-2xl shadow-2xl overflow-hidden animate-slide-up"
+          role="dialog"
+          aria-label={`Ações para ${ref}`}
+        >
             <div className="flex items-center justify-between p-4 border-b border-[var(--border)]/50">
               <div className="min-w-0 flex-1">
                 <p className="text-xs text-[var(--content-muted)] font-medium uppercase tracking-wider">
@@ -111,49 +102,40 @@ function MobileActionBarInner({
                 "{texto}"
               </p>
 
-              <motion.button
+              <button
                 onClick={onAprofundar}
-                whileTap={{ scale: 0.97 }}
-                className="w-full mb-4 flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-md shadow-[var(--brand-default)]/20 hover:shadow-lg transition-shadow"
+                className="w-full mb-4 flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-md shadow-[var(--brand-default)]/20 hover:shadow-lg active:scale-97 transition-all"
               >
                 <Sparkles className="w-4 h-4" />
                 Aprofundar com IA
-              </motion.button>
+              </button>
 
-              <AnimatePresence>
-                {colorOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="mb-4 overflow-hidden"
-                  >
-                    <div className="flex items-center gap-2 p-3 rounded-lg bg-[var(--surface-sunken)]/60">
-                      <span className="text-xs text-[var(--content-muted)] font-medium">Cor:</span>
-                      {CORES.map((cor) => {
-                        const ativa = corAtual === cor;
-                        return (
-                          <button
-                            key={cor}
-                            onClick={() => {
-                              if (ativa) removeMarcador(livroAbreviacao, capitulo, versiculo, traducao);
-                              else setMarcador(livroAbreviacao, capitulo, versiculo, traducao, cor);
-                              setColorOpen(false);
-                            }}
-                            className={cn(
-                              'w-7 h-7 rounded-full transition-all',
-                              corMap[cor],
-                              ativa && 'ring-2 ring-offset-1 ring-[var(--brand-default)]'
-                            )}
-                            aria-label={`Cor ${cor}`}
-                          />
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
+              {colorOpen && (
+                <div className="mb-4 animate-expand-vertical">
+                  <div className="flex items-center gap-2 p-3 rounded-lg bg-[var(--surface-sunken)]/60">
+                    <span className="text-xs text-[var(--content-muted)] font-medium">Cor:</span>
+                    {CORES.map((cor) => {
+                      const ativa = corAtual === cor;
+                      return (
+                        <button
+                          key={cor}
+                          onClick={() => {
+                            if (ativa) removeMarcador(livroAbreviacao, capitulo, versiculo, traducao);
+                            else setMarcador(livroAbreviacao, capitulo, versiculo, traducao, cor);
+                            setColorOpen(false);
+                          }}
+                          className={cn(
+                            'w-7 h-7 rounded-full transition-all',
+                            corMap[cor],
+                            ativa && 'ring-2 ring-offset-1 ring-[var(--brand-default)]'
+                          )}
+                          aria-label={`Cor ${cor}`}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
               <div className="grid grid-cols-4 gap-2">
                 <ActionTile
                   icon={Heart}
@@ -226,10 +208,9 @@ function MobileActionBarInner({
                 />
               </div>
             </div>
-          </motion.div>
+          </div>
         </>
-      )}
-    </AnimatePresence>
+      ) : null
   );
 }
 
@@ -245,12 +226,10 @@ interface ActionTileProps {
 
 function ActionTile({ icon: Icon, label, active, activeColor, onClick }: ActionTileProps) {
   return (
-    <motion.button
-      whileTap={{ scale: 0.95 }}
+    <button
       onClick={onClick}
       className={cn(
-        'flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl',
-        'transition-colors duration-200',
+        'flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl active:scale-95 transition-all duration-200',
         active
           ? cn('text-white', activeColor || 'bg-[var(--brand-default)]')
           : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-[var(--brand-subtle)] hover:text-[var(--brand-default)]'
@@ -258,6 +237,6 @@ function ActionTile({ icon: Icon, label, active, activeColor, onClick }: ActionT
     >
       <Icon className="w-4 h-4" />
       <span className="text-[10px] font-medium">{label}</span>
-    </motion.button>
+    </button>
   );
 }

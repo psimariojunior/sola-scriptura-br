@@ -501,10 +501,13 @@ const LIVROS_COMPLETOS: Array<{ abrev: string; midvash: string; capitulos: numbe
   { abrev: 'ap', midvash: 'apocalipse', capitulos: 22 },
 ];
 
+import { fetchWithRetry } from './fetchWithRetry';
+
 async function fetchMidvashChapter(traducao: string, slug: string, capitulo: number): Promise<string[] | null> {
   try {
-    const res = await fetch(`${MIDVASH_API}/${traducao}/${slug}/${capitulo}`, {
-      signal: AbortSignal.timeout(10000),
+    const res = await fetchWithRetry(`${MIDVASH_API}/${traducao}/${slug}/${capitulo}`, {
+      timeoutMs: 10_000,
+      maxRetries: 2,
     });
     if (!res.ok) return null;
     const json = await res.json();
@@ -552,6 +555,9 @@ export async function downloadApiTranslation(
         await flushBatch(batch);
         batch = [];
       }
+
+      // Stagger para evitar rate limit na API
+      await new Promise((r) => setTimeout(r, 150));
     }
   }
 

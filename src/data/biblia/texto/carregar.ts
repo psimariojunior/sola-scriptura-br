@@ -26,6 +26,7 @@ const cacheMid = new Map<string, string[]>();
 
 // Mapeamento de abreviações para slugs do Midvash (em português)
 import { ABREV_PARA_MIDVASH as MIDVASH_MAP } from '../midvash';
+import { fetchWithRetry } from '@/lib/fetchWithRetry';
 
 async function fetchMidvash(traducao: string, livro: string, capitulo: number): Promise<string[] | null> {
   const key = `${traducao}_${livro}_${capitulo}`;
@@ -36,9 +37,7 @@ async function fetchMidvash(traducao: string, livro: string, capitulo: number): 
 
   try {
     const url = `${MIDVASH_API}/${traducao}/${slug}/${capitulo}`;
-    const res = await fetch(url, {
-      signal: AbortSignal.timeout(8000), // 8s timeout
-    });
+    const res = await fetchWithRetry(url, { timeoutMs: 10_000, maxRetries: 2 });
     if (!res.ok) return null;
 
     const json = await res.json();
@@ -46,7 +45,6 @@ async function fetchMidvash(traducao: string, livro: string, capitulo: number): 
 
     if (json.data?.verses) {
       for (const v of json.data.verses) {
-        // A API retorna versículos como strings diretas ou objetos com propriedade text
         const texto = typeof v === 'string' ? v : v.text;
         if (texto?.trim()) {
           versiculos.push(texto.trim());

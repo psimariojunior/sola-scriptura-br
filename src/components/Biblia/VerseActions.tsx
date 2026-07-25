@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, useEffect, memo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import {
   Heart,
   StickyNote,
@@ -48,13 +47,11 @@ interface ActionButtonProps {
 
 function ActionButton({ icon: Icon, label, active, activeColor, onClick, ariaLabel, ariaPressed, children }: ActionButtonProps) {
   return (
-    <motion.button
+    <button
       onClick={onClick}
-      whileHover={{ scale: 1.12 }}
-      whileTap={{ scale: 0.9 }}
       className={cn(
         'group relative inline-flex items-center justify-center rounded-lg p-2',
-        'transition-all duration-200',
+        'transition-all duration-200 hover:scale-110 active:scale-90',
         active
           ? cn('text-white shadow-sm', activeColor || 'bg-[var(--brand-default)]/90')
           : 'text-[var(--content-muted)] hover:text-[var(--brand-default)] hover:bg-[var(--brand-subtle)]'
@@ -65,7 +62,7 @@ function ActionButton({ icon: Icon, label, active, activeColor, onClick, ariaLab
     >
       <Icon className="w-3.5 h-3.5" />
       {children}
-    </motion.button>
+    </button>
   );
 }
 
@@ -186,40 +183,32 @@ function VerseActionsInner({
           ariaLabel={`Marcar versículo ${versiculo} com cor`}
           ariaPressed={!!corAtual}
         />
-        <AnimatePresence>
-          {colorOpen && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: -4 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: -4 }}
-              transition={{ duration: 0.15 }}
-              className="absolute right-0 top-full mt-1.5 z-30 bg-[var(--surface-raised)] border border-[var(--border)] rounded-lg shadow-xl p-2 flex gap-1.5"
-            >
-              {CORES.map((cor) => {
-                const ativa = corAtual === cor;
-                return (
-                  <motion.button
-                    key={cor}
-                    whileHover={{ scale: 1.25 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => {
-                      if (ativa) removeMarcador(livroAbreviacao, capitulo, versiculo, traducao);
-                      else setMarcador(livroAbreviacao, capitulo, versiculo, traducao, cor);
-                      setColorOpen(false);
-                    }}
-                    className={cn(
-                      'w-5 h-5 rounded-full transition-all duration-200',
-                      corMap[cor],
-                      ativa && 'ring-2 ring-offset-1 ring-[var(--brand-default)]'
-                    )}
-                    title={cor}
-                    aria-label={`Cor ${cor}`}
-                  />
-                );
-              })}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div className={cn(
+          'absolute right-0 top-full mt-1.5 z-30 bg-[var(--surface-raised)] border border-[var(--border)] rounded-lg shadow-xl p-2 flex gap-1.5',
+          'transition-all duration-150',
+          colorOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'
+        )}>
+          {CORES.map((cor) => {
+            const ativa = corAtual === cor;
+            return (
+              <button
+                key={cor}
+                onClick={() => {
+                  if (ativa) removeMarcador(livroAbreviacao, capitulo, versiculo, traducao);
+                  else setMarcador(livroAbreviacao, capitulo, versiculo, traducao, cor);
+                  setColorOpen(false);
+                }}
+                className={cn(
+                  'w-5 h-5 rounded-full transition-all duration-200 hover:scale-125 active:scale-90',
+                  corMap[cor],
+                  ativa && 'ring-2 ring-offset-1 ring-[var(--brand-default)]'
+                )}
+                title={cor}
+                aria-label={`Cor ${cor}`}
+              />
+            );
+          })}
+        </div>
       </div>
 
       <ActionButton

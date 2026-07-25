@@ -1,7 +1,6 @@
 'use client';
 
 import { memo, Fragment, useRef, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
@@ -94,18 +93,14 @@ export const VerseCard = memo(function VerseCard({
 
   return (
     <Fragment>
-      <motion.article
+      <article
         ref={articleRef}
-        initial={{ opacity: 0, y: 4 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, ease: 'easeOut' }}
-        style={{ willChange: 'transform, opacity' }}
         onClick={onSelect}
         onMouseEnter={() => setShowActions(true)}
         onMouseLeave={() => setShowActions(false)}
         className={cn(
           'group relative cursor-pointer rounded-lg',
-          'transition-all duration-200',
+          'transition-all duration-200 animate-verse-fade-in',
           'px-3 sm:px-4 -mx-3 sm:-mx-4',
           'py-2.5 sm:py-3',
           isCurrentAudioVerse
@@ -180,43 +175,36 @@ export const VerseCard = memo(function VerseCard({
           </div>
 
           {/* Actions - appear on hover/selection */}
-          <AnimatePresence>
-            {(showActions || isSelected) && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.12 }}
-                className="shrink-0"
-              >
-                <VerseActions
-                  livro={livroNome}
-                  livroNome={livroNome}
-                  livroAbreviacao={livroAbreviacao}
-                  capitulo={capitulo}
-                  versiculo={numero}
-                  traducao={traducao}
-                  texto={texto}
-                  audioNatural={audioNatural}
-                  audio={audio}
-                  flashcards={flashcards}
-                  isFavorito={isFavorito}
-                  onFavoritoChange={onFavoritoChange}
-                  onAnotar={onAnotar}
-                  onStrong={onStrong}
-                  onComentarios={onComentarios}
-                  onEstudos={onToggleEstudo}
-                  onSelected={onSelect}
-                  temAnotacao={false}
-                  copyVerse={copyVerse}
-                  copiedVerse={copiedVerse}
-                  verseKey={verseKey}
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <div className={cn(
+            'shrink-0 transition-all duration-150',
+            (showActions || isSelected) ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+          )}>
+            <VerseActions
+              livro={livroNome}
+              livroNome={livroNome}
+              livroAbreviacao={livroAbreviacao}
+              capitulo={capitulo}
+              versiculo={numero}
+              traducao={traducao}
+              texto={texto}
+              audioNatural={audioNatural}
+              audio={audio}
+              flashcards={flashcards}
+              isFavorito={isFavorito}
+              onFavoritoChange={onFavoritoChange}
+              onAnotar={onAnotar}
+              onStrong={onStrong}
+              onComentarios={onComentarios}
+              onEstudos={onToggleEstudo}
+              onSelected={onSelect}
+              temAnotacao={false}
+              copyVerse={copyVerse}
+              copiedVerse={copiedVerse}
+              verseKey={verseKey}
+            />
+          </div>
         </div>
-      </motion.article>
+      </article>
     </Fragment>
   );
 });

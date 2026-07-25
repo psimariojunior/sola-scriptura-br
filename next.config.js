@@ -1,3 +1,5 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({ enabled: process.env.ANALYZE === 'true' });
+
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -55,15 +57,17 @@ const nextConfig = {
 
 const sentryPlugins = process.env.SENTRY_ORG ? [require('@sentry/nextjs')] : [];
 
-module.exports = sentryPlugins.length > 0
+let config = sentryPlugins.length > 0
   ? require('@sentry/nextjs').withSentryConfig(nextConfig, {
       org: process.env.SENTRY_ORG,
       project: process.env.SENTRY_PROJECT,
       silent: !process.env.CI,
       widenClientFileUpload: true,
-      disableLogger: true,
       hideSourceMaps: true,
       disableServerWebpackPlugin: true,
       disableClientWebpackPlugin: true,
+      telemetry: false,
     })
   : nextConfig;
+
+module.exports = withBundleAnalyzer(config);

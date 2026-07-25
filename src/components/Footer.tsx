@@ -169,6 +169,9 @@ function FooterInner() {
               <p className="text-xs text-muted-foreground text-center md:text-right">
                 &copy; {new Date().getFullYear()} Sola Scriptura. Todos os direitos reservados.
               </p>
+              <Link href="/privacidade" className="text-xs text-muted-foreground hover:text-foreground transition-colors duration-200">
+                Privacidade
+              </Link>
             </div>
           </div>
         </div>

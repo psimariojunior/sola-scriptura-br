@@ -2,6 +2,8 @@ export type CategoriaQuiz = 'versiculos' | 'personagens' | 'doutrinas' | 'histor
 export type NivelQuiz = 'facil' | 'medio' | 'dificil';
 export type TipoPergunta = 'multipla' | 'verdadeiro_falso' | 'completar' | 'ordenar' | 'referencia' | 'citacao';
 
+import { QUIZ_EXPANDIDO } from './_quiz_expandido';
+
 export interface PerguntaQuiz {
   id: string;
   enunciado: string;
@@ -904,4 +906,5 @@ export const todasPerguntas: PerguntaQuiz[] = [
   ...perguntasMedias,
   ...perguntasDificeis,
   ...perguntasExpansao,
+  ...QUIZ_EXPANDIDO,
 ];

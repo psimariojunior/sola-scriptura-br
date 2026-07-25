@@ -38,6 +38,10 @@ export interface Curso {
   modulos: CursoModulo[];
 }
 
+import { CURSO_FUNDAMENTOS } from './_curso_fundamentos';
+import { CURSO_HERMENEUTICA } from './_curso_hermenetica';
+import { CURSO_EVANGELHOS } from './_curso_evangelhos';
+
 export const CURSOS: Curso[] = [
   {
     id: 'conhecendo-a-biblia',
@@ -396,4 +400,7 @@ O objetivo do estudo biblico nao e acumular informacao — e conhecer a Deus. Se
       },
     ],
   },
+  CURSO_FUNDAMENTOS,
+  CURSO_HERMENEUTICA,
+  CURSO_EVANGELHOS,
 ];

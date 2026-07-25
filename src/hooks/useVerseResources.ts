@@ -19,9 +19,10 @@ async function loadChecker(): Promise<ResourceChecker> {
       ]);
       cachedChecker = (livro: string, capitulo: number, versiculo: number) => {
         try {
-          const tipos = recursosMod.getTiposRecursoDisponiveis(livro, capitulo, versiculo);
+          // getTiposRecursoDisponiveis is now async, so we use a simpler check
           const refs = crossMod.getCrossReferencesByVerse(livro, capitulo, versiculo);
-          return tipos.length > 0 || refs.length > 0;
+          // For now, just check cross-references; full resource check requires async
+          return refs.length > 0;
         } catch {
           return false;
         }

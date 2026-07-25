@@ -5,7 +5,6 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { doutrinas, type Doutrina } from '@/data/biblia';
 import { estudosTeologicosExpandidos, type EstudoTeologico } from '@/data/estudosTeologicosExpandidos';
-import { getRecursosVersiculo } from '@/data/biblia/versiculoRecursos';
 import dynamic from 'next/dynamic';
 import { Church, Search, BookOpen, ChevronDown, ExternalLink, Share2, Copy, Check, Sparkles, X, Layers, GraduationCap } from 'lucide-react';
 import Link from 'next/link';

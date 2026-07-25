@@ -9,8 +9,8 @@ import type { useFlashcards } from '@/hooks/useFlashcards';
 import { useState, memo } from 'react';
 import { CORES, setMarcador, removeMarcador, getMarcador, type CorMarcador } from '@/lib/marcadores';
 import { toggleFavorito } from '@/lib/estudos';
-import { temComentario } from '@/data/comentarios';
-import { temEstudo } from '@/data/estudosTeologicos';
+import { temComentario } from '@/data/comentarios-index';
+import { temEstudo } from '@/data/estudos-index';
 
 const corMap: Record<CorMarcador, string> = {
   yellow: 'bg-yellow-400',

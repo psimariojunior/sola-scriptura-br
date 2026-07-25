@@ -8,7 +8,6 @@ import { cn } from '@/lib/utils';
 import { obterContexto, obterContextoCapitulo } from '@/data/contextoHistorico';
 import { obterComentarios } from '@/data/comentarios';
 import { getCrossReferencesByVerse } from '@/data/biblia/crossReferences';
-import { getTiposRecursoDisponiveis } from '@/data/biblia/versiculoRecursos';
 import { obterEstudos } from '@/data/estudosTeologicos';
 
 
@@ -91,11 +90,18 @@ export function SidePanel({
   const resourceData = useMemo(() => {
     if (!versiculo) return { comentarios: [], crossRefs: [], tiposRecursos: [], estudos: [] };
     try {
+      const comps = obterComentarios(livroAbreviacao, capitulo, versiculo);
+      const ests = obterEstudos(livroAbreviacao, capitulo, versiculo);
+      const xrefs = getCrossReferencesByVerse(livroAbreviacao, capitulo, versiculo);
+      const tipos = new Set<string>();
+      if (comps.length > 0) tipos.add('comentario');
+      if (ests.length > 0) tipos.add('estudo');
+      if (xrefs.length > 0) tipos.add('cross-ref');
       return {
-        comentarios: obterComentarios(livroAbreviacao, capitulo, versiculo),
-        crossRefs: getCrossReferencesByVerse(livroAbreviacao, capitulo, versiculo),
-        tiposRecursos: getTiposRecursoDisponiveis(livroAbreviacao, capitulo, versiculo),
-        estudos: obterEstudos(livroAbreviacao, capitulo, versiculo),
+        comentarios: comps,
+        crossRefs: xrefs,
+        tiposRecursos: [...tipos],
+        estudos: ests,
       };
     } catch {
       return { comentarios: [], crossRefs: [], tiposRecursos: [], estudos: [] };

@@ -1,11 +1,41 @@
-import { obterComentarios } from '../comentarios';
-import { obterEstudos } from '../estudosTeologicos';
-import { notas } from './notas';
-import { getCrossReferences } from '../crossReferences';
-import { palavrasGregas } from '../lexicon/grego';
-import { palavrasHebraicas } from '../lexicon/hebraico';
+// Heavy data loaded dynamically to avoid 14MB+ in the initial bundle
+let _obterComentarios: typeof import('../comentarios')['obterComentarios'] | null = null;
+let _obterEstudos: typeof import('../estudosTeologicos')['obterEstudos'] | null = null;
+let _getCrossReferences: typeof import('../crossReferences')['getCrossReferences'] | null = null;
+let _palavrasGregas: typeof import('../lexicon/grego')['palavrasGregas'] | null = null;
+let _palavrasHebraicas: typeof import('../lexicon/hebraico')['palavrasHebraicas'] | null = null;
+let _notasLoaded = false;
+let _notasData: Record<string, any> = {};
+
 import { locaisBiblicos } from './locais';
 import { doutrinas, personagens, cronologia } from '../biblia';
+
+async function ensureHeavyData() {
+  if (!_obterComentarios) {
+    const [comentariosMod, estudosMod, crossRefMod, gregoMod, hebraicoMod] = await Promise.all([
+      import('../comentarios'),
+      import('../estudosTeologicos'),
+      import('../crossReferences'),
+      import('../lexicon/grego'),
+      import('../lexicon/hebraico'),
+    ]);
+    _obterComentarios = comentariosMod.obterComentarios;
+    _obterEstudos = estudosMod.obterEstudos;
+    _getCrossReferences = crossRefMod.getCrossReferences;
+    _palavrasGregas = gregoMod.palavrasGregas;
+    _palavrasHebraicas = hebraicoMod.palavrasHebraicas;
+  }
+  if (!_notasLoaded) {
+    const notasMod = await import('./notas');
+    _notasData = notasMod.notas;
+    _notasLoaded = true;
+  }
+}
+
+// Lazy getter for notas (still synchronous after first load)
+function getNotas() {
+  return _notasData;
+}
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // TIPOS
@@ -704,16 +734,17 @@ function referenciaContemVersiculo(
 // FUNÇÃO PRINCIPAL
 // ═══════════════════════════════════════════════════════════════════════════════
 
-export function getRecursosVersiculo(
+export async function getRecursosVersiculo(
   livro: string,
   capitulo: number,
   versiculo: number,
-): RecursoVersiculo[] {
+): Promise<RecursoVersiculo[]> {
+  await ensureHeavyData();
   const recursos: RecursoVersiculo[] = [];
   const livroLower = livro.toLowerCase();
 
   // 1. Comentários
-  const comentarios = obterComentarios(livroLower, capitulo, versiculo);
+  const comentarios = _obterComentarios!(livroLower, capitulo, versiculo);
   for (const c of comentarios) {
     recursos.push({
       tipo: 'comentario',
@@ -727,7 +758,7 @@ export function getRecursosVersiculo(
   }
 
   // 2. Estudos teológicos
-  const estudos = obterEstudos(livroLower, capitulo, versiculo);
+  const estudos = _obterEstudos!(livroLower, capitulo, versiculo);
   for (const e of estudos) {
     recursos.push({
       tipo: 'estudo',
@@ -747,6 +778,7 @@ export function getRecursosVersiculo(
   }
 
   // 3. Notas
+  const notas = getNotas();
   const chaveNota = `${livroLower}:${capitulo}:${versiculo}`;
   const chaveNotaRange = notas[chaveNota];
   if (chaveNotaRange) {
@@ -793,7 +825,7 @@ export function getRecursosVersiculo(
   }
 
   // 4. Cross-references
-  const crossRefs = getCrossReferences(livroLower, capitulo, versiculo);
+  const crossRefs = _getCrossReferences!(livroLower, capitulo, versiculo);
   if (crossRefs.length > 0) {
     recursos.push({
       tipo: 'cross-ref',
@@ -806,7 +838,7 @@ export function getRecursosVersiculo(
 
   // 5. Léxico (palavras gregas e hebraicas associadas)
   // Palavras gregas relacionadas ao versículo
-  const gregosRelevantes = palavrasGregas.filter((p) => {
+  const gregosRelevantes = _palavrasGregas!.filter((p) => {
     const nomeLower = normalizarPalavra(p.palavra);
     return referenciaContemVersiculo(
       `${livroLower}:${capitulo}:${versiculo}`,
@@ -831,7 +863,7 @@ export function getRecursosVersiculo(
   }
 
   // Palavras hebraicas relacionadas ao versículo
-  const hebraicosRelevantes = palavrasHebraicas.filter((p) => {
+  const hebraicosRelevantes = _palavrasHebraicas!.filter((p) => {
     return referenciaContemVersiculo(
       `${livroLower}:${capitulo}:${versiculo}`,
       livroLower,
@@ -883,7 +915,7 @@ export function getRecursosVersiculo(
         normalizarPalavra(c.texto).includes(nomeLower),
       ) ||
       Object.values(notas).some(
-        (n) =>
+        (n: any) =>
           normalizarPalavra(n.conteudo).includes(nomeLower) ||
           normalizarPalavra(n.titulo).includes(nomeLower),
       );
@@ -919,7 +951,6 @@ export function getRecursosVersiculo(
   }
 
   // 9. Cronologia
-  const referenciaChave = `${livroLower}:${capitulo}:${versiculo}`;
   cronologia.forEach((evento, idx) => {
     if (evento.referencia.toLowerCase().includes(livroLower)) {
       recursos.push({
@@ -980,7 +1011,8 @@ export function getRecursosVersiculo(
 /**
  * Retorna todos os recursos disponíveis para um livro inteiro.
  */
-export function getRecursosPorLivro(livro: string): RecursoVersiculo[] {
+export async function getRecursosPorLivro(livro: string): Promise<RecursoVersiculo[]> {
+  await ensureHeavyData();
   const recursos: RecursoVersiculo[] = [];
   const livroLower = livro.toLowerCase();
 
@@ -994,7 +1026,7 @@ export function getRecursosPorLivro(livro: string): RecursoVersiculo[] {
   }
 
   // Comentários de todas as passagens do livro
-  const todosComentarios = comentariosPorLivro(livroLower);
+  const todosComentarios = await comentariosPorLivro(livroLower);
   for (const c of todosComentarios) {
     recursos.push({
       tipo: 'comentario',
@@ -1008,14 +1040,14 @@ export function getRecursosPorLivro(livro: string): RecursoVersiculo[] {
   }
 
   // Estudos do livro
-  const todosEstudos = estudosPorLivro(livroLower);
+  const todosEstudos = await estudosPorLivro(livroLower);
   for (const e of todosEstudos) {
     recursos.push({
       tipo: 'estudo',
       dados: {
         tipo: 'estudo' as const,
         tema: e.tema,
-        interpretes: e.interpretacoes.map((i) => ({
+        interpretes: e.interpretacoes.map((i: any) => ({
           nome: i.teologo,
           periodo: i.periodo,
           tradicao: i.tradicao,
@@ -1028,7 +1060,8 @@ export function getRecursosPorLivro(livro: string): RecursoVersiculo[] {
   }
 
   // Notas do livro
-  for (const [chave, nota] of Object.entries(notas)) {
+  const notasLivro = getNotas();
+  for (const [chave, nota] of Object.entries(notasLivro)) {
     if (chave.startsWith(`${livroLower}:`)) {
       recursos.push({
         tipo: 'nota',
@@ -1118,12 +1151,12 @@ export function getRecursosPorLivro(livro: string): RecursoVersiculo[] {
 /**
  * Retorna os tipos de recursos disponíveis para um versículo específico.
  */
-export function getTiposRecursoDisponiveis(
+export async function getTiposRecursoDisponiveis(
   livro: string,
   cap: number,
   ver: number,
-): TipoRecurso[] {
-  const recursos = getRecursosVersiculo(livro, cap, ver);
+): Promise<TipoRecurso[]> {
+  const recursos = await getRecursosVersiculo(livro, cap, ver);
   const tipos = new Set<TipoRecurso>();
   for (const r of recursos) {
     tipos.add(r.tipo);
@@ -1131,16 +1164,13 @@ export function getTiposRecursoDisponiveis(
   return [...tipos];
 }
 
-/**
- * Verifica se um versículo tem um tipo específico de recurso.
- */
-export function temRecursoEspecifico(
+export async function temRecursoEspecifico(
   livro: string,
   cap: number,
   ver: number,
   tipo: TipoRecurso,
-): boolean {
-  const tipos = getTiposRecursoDisponiveis(livro, cap, ver);
+): Promise<boolean> {
+  const tipos = await getTiposRecursoDisponiveis(livro, cap, ver);
   return tipos.includes(tipo);
 }
 
@@ -1148,18 +1178,18 @@ export function temRecursoEspecifico(
 // FUNÇÕES INTERNAS DE SUPORTE
 // ═══════════════════════════════════════════════════════════════════════════════
 
-import { obterTodosComentarios } from '../comentarios';
-import { listarTodosEstudos } from '../estudosTeologicos';
 import type { Comentario } from '../comentarios';
 import type { EstudoVersiculo } from '../estudosTeologicos';
 
-function comentariosPorLivro(livro: string): Comentario[] {
+async function comentariosPorLivro(livro: string): Promise<Comentario[]> {
+  const { obterTodosComentarios } = await import('../comentarios');
   return obterTodosComentarios().filter(
     (c) => c.livro.toLowerCase() === livro.toLowerCase(),
   );
 }
 
-function estudosPorLivro(livro: string): EstudoVersiculo[] {
+async function estudosPorLivro(livro: string): Promise<EstudoVersiculo[]> {
+  const { listarTodosEstudos } = await import('../estudosTeologicos');
   return listarTodosEstudos().filter(
     (e) => e.livro.toLowerCase() === livro.toLowerCase(),
   );

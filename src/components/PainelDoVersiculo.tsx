@@ -676,7 +676,8 @@ export default function PainelDoVersiculo({
   }, []);
 
   useEffect(() => {
-    setRecursos(getRecursosVersiculo(livro, capitulo, versiculo));
+    setRecursos([]);
+    getRecursosVersiculo(livro, capitulo, versiculo).then(setRecursos);
     setActiveTab('texto');
   }, [livro, capitulo, versiculo]);
 

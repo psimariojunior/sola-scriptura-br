@@ -1,9 +1,8 @@
 'use client';
 
-import { useState, useEffect, memo } from 'react';
+import { useState, useEffect, memo, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
 import {
   Home,
   BookOpen,
@@ -73,6 +72,9 @@ function BottomNavBarInner() {
     setShowMore(false);
   }, [pathname]);
 
+  const toggleMore = useCallback(() => setShowMore((s) => !s), []);
+  const closeMore = useCallback(() => setShowMore(false), []);
+
   if (!isMobile) return null;
 
   const isMoreActive = pathname && extraLinks.some((l) => pathname.startsWith(l.href));
@@ -80,62 +82,53 @@ function BottomNavBarInner() {
   return (
     <>
       {/* Menu "Mais" overlay */}
-      <AnimatePresence>
-        {showMore && (
-          <>
-            <motion.div
-              className="fixed inset-0 bg-black/50 z-[60]"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowMore(false)}
-            />
-            <motion.div
-              className="fixed bottom-[calc(60px+env(safe-area-inset-bottom,0px))] left-2 right-2 z-[61] bg-card border border-border rounded-xl shadow-xl overflow-hidden"
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              role="dialog"
-              aria-modal="true"
-              aria-label="Mais opcoes de navegacao"
-              style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
-            >
-              <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-                <span className="text-sm font-semibold">Mais opcoes</span>
-                <button
-                  onClick={() => setShowMore(false)}
-                  className="p-1 rounded-lg hover:bg-muted transition-colors"
-                  aria-label="Fechar menu"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-              <div className="grid grid-cols-4 gap-1 p-3 max-h-[60vh] overflow-y-auto">
-                {extraLinks.map((link) => {
-                  const active = pathname === link.href || pathname.startsWith(link.href + '/');
-                  return (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className={`flex flex-col items-center gap-1.5 p-3 rounded-lg transition-colors ${
-                        active
-                          ? 'bg-primary/10 text-primary'
-                          : 'text-muted-foreground hover:bg-muted/50'
-                      }`}
-                    >
-                      <link.icon className="w-5 h-5" strokeWidth={1.5} />
-                      <span className="text-[11px] font-medium text-center leading-tight">
-                        {link.label}
-                      </span>
-                    </Link>
-                  );
-                })}
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {showMore && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/50 z-[60] animate-[fadeIn_0.15s_ease-out]"
+            onClick={closeMore}
+          />
+          <div
+            className="fixed bottom-[calc(60px+env(safe-area-inset-bottom,0px))] left-2 right-2 z-[61] bg-card border border-border rounded-xl shadow-xl overflow-hidden animate-[slideUp_0.2s_ease-out]"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mais opcoes de navegacao"
+            style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+          >
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+              <span className="text-sm font-semibold">Mais opcoes</span>
+              <button
+                onClick={closeMore}
+                className="p-1 rounded-lg hover:bg-muted transition-colors"
+                aria-label="Fechar menu"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="grid grid-cols-4 gap-1 p-3 max-h-[60vh] overflow-y-auto">
+              {extraLinks.map((link) => {
+                const active = pathname === link.href || pathname.startsWith(link.href + '/');
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`flex flex-col items-center gap-1.5 p-3 rounded-lg transition-colors ${
+                      active
+                        ? 'bg-primary/10 text-primary'
+                        : 'text-muted-foreground hover:bg-muted/50'
+                    }`}
+                  >
+                    <link.icon className="w-5 h-5" strokeWidth={1.5} />
+                    <span className="text-[11px] font-medium text-center leading-tight">
+                      {link.label}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Barra inferior */}
       <nav
@@ -154,21 +147,17 @@ function BottomNavBarInner() {
               return (
                 <button
                   key={tab.href}
-                  onClick={() => setShowMore((s) => !s)}
+                  onClick={toggleMore}
                   aria-label="Mais opcoes"
                   aria-expanded={showMore}
-                  className={`flex flex-col items-center justify-center flex-1 h-full transition-colors ${
+                  className={`relative flex flex-col items-center justify-center flex-1 h-full transition-colors ${
                     active ? 'text-[#D4A843]' : 'text-gray-500'
                   }`}
                 >
                   <tab.icon className="w-5 h-5 mb-1" strokeWidth={active ? 2 : 1.5} />
                   <span className="text-[10px] font-medium">{tab.label}</span>
                   {active && (
-                    <motion.div
-                      className="absolute bottom-[54px] w-8 h-[2px] bg-[#D4A843] rounded-full"
-                      layoutId="bottomTab"
-                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-                    />
+                    <div className="absolute bottom-[54px] w-8 h-[2px] bg-[#D4A843] rounded-full" />
                   )}
                 </button>
               );
@@ -179,18 +168,14 @@ function BottomNavBarInner() {
                 key={tab.href}
                 href={tab.href}
                 aria-label={tab.label}
-                className={`flex flex-col items-center justify-center flex-1 h-full transition-colors ${
+                className={`relative flex flex-col items-center justify-center flex-1 h-full transition-colors ${
                   active ? 'text-[#D4A843]' : 'text-gray-500'
                 }`}
               >
                 <tab.icon className="w-5 h-5 mb-1" strokeWidth={active ? 2 : 1.5} />
                 <span className="text-[10px] font-medium">{tab.label}</span>
                 {active && (
-                  <motion.div
-                    className="absolute bottom-[54px] w-8 h-[2px] bg-[#D4A843] rounded-full"
-                    layoutId="bottomTab"
-                    transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-                  />
+                  <div className="absolute bottom-[54px] w-8 h-[2px] bg-[#D4A843] rounded-full" />
                 )}
               </Link>
             );

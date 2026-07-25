@@ -113,6 +113,11 @@ export default function BibliaPage() {
     verse.setEstudoAberto(num);
   }, [verse.setEstudoAberto]);
 
+  // Scroll to top when chapter changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [nav.capituloIdx, nav.livroIdx]);
+
   if (ui.zenMode && nav.temDados) {
     return (
       <div className="fixed inset-0 z-50 bg-[var(--bg)] overflow-y-auto">

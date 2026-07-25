@@ -1,11 +1,11 @@
 'use client';
 
-import { useCallback, lazy, Suspense, useMemo, useEffect } from 'react';
+import { useCallback, lazy, Suspense, useMemo, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
-import { BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, Search, Sparkles, Play, Mic, Volume2, ListFilter, WifiOff, X } from 'lucide-react';
+import { BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, Search, Sparkles, Play, Mic, Volume2, ListFilter, WifiOff, X, HardDrive } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEstudos } from '@/components/EstudosProvider';
 import { useVerseAudio } from '@/hooks/useVerseAudio';
@@ -50,6 +50,7 @@ const NarracaoDramaticaLazy = lazy(() => import('@/components/NarracaoDramatica'
 const NarrationPanel = lazy(() => import('@/components/Biblia/NarrationPanel').then(m => ({ default: m.NarrationPanel })));
 import type { CenaDramatica, PersonagemVoz } from '@/components/NarracaoDramatica';
 import Paywall from '@/components/Paywall';
+import { OfflineDownloadManager } from '@/components/Biblia/OfflineDownloadManager';
 const labelMap = labelMapImport;
 const nomeMap = nomeMapImport;
 const tradBadgeColors = tradBadgeColorsImport;
@@ -91,6 +92,7 @@ export default function BibliaPage() {
   });
   const chaveDramatica = `${nav.livro.abreviacao}-${nav.capituloIdx + 1}`;
   const passagemDramatica = PASSAGENS_DRAMATICAS[chaveDramatica];
+  const [showDownloadManager, setShowDownloadManager] = useState(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleGoToBook = useCallback((idx: number, cap?: number) => { nav.goToBook(idx, cap); ui.setMobileMenu(false); ui.setChapterGridOpen(false); }, [nav.goToBook, ui.setMobileMenu, ui.setChapterGridOpen]);
 
@@ -175,6 +177,9 @@ export default function BibliaPage() {
                 <div className="hidden sm:block w-px h-6 bg-[var(--border)]/60" />
                 <button onClick={() => ui.setShowInterlinear(!ui.showInterlinear)} className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all', ui.showInterlinear ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20' : 'bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20')} title="Mostrar texto original hebraico/grego">
                   <span className="font-hebrew" style={{ fontSize: '11px' }}>א</span><span className="hidden sm:inline">Interlinear</span>
+                </button>
+                <button onClick={() => setShowDownloadManager(true)} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20 transition-all" title="Gerenciar versões offline">
+                  <HardDrive className="w-3.5 h-3.5" /><span className="hidden sm:inline">Versões</span>
                 </button>
                 <div className="hidden sm:block w-px h-6 bg-[var(--border)]/60" />
                 <TranslationDropdown open={ui.tradOpen} onToggle={() => { ui.setTradOpen(!ui.tradOpen); ui.setToolsOpen(false); }} onClose={() => ui.setTradOpen(false)} selectedTrads={nav.selectedTrads} onToggleTrad={nav.toggleTrad} viewMode={nav.viewMode} onViewModeChange={nav.setViewMode} />
@@ -300,5 +305,6 @@ export default function BibliaPage() {
       <ExportModal open={ui.exportOpen} onClose={() => ui.setExportOpen(false)} bookName={nav.livro.nome} chapter={nav.capituloIdx + 1} data={nav.data} />
       <ShareVerseModal open={ui.shareOpen} onClose={() => ui.setShareOpen(false)} verse={verse.versiculoSelecionado ? { livroNome: verse.versiculoSelecionado.livroNome, capitulo: verse.versiculoSelecionado.capitulo, versiculo: verse.versiculoSelecionado.versiculo, texto: verse.versiculoSelecionado.texto, traducao: verse.versiculoSelecionado.traducao } : null} />
       <Paywall aberto={panels.paywallAprofundarAberto} onFechar={() => panels.setPaywallAprofundarAberto(false)} />
+      <OfflineDownloadManager open={showDownloadManager} onClose={() => setShowDownloadManager(false)} />
     </div>);
 }

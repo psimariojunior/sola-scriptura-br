@@ -7,6 +7,7 @@ import type { CapituloComparado } from '@/data/biblia/texto/carregar';
 import { obterCapituloMulti } from '@/data/biblia/texto/carregar';
 import { isOnline, cacheChapter, getCachedChapter, getCachedChapterDB } from '@/lib/offline';
 import { recordReading, getStats } from '@/lib/estatisticas';
+import { useChapterPrefetch } from '@/hooks/useChapterPrefetch';
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
@@ -51,6 +52,7 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
   const [statsData, setStatsData] = useState<ReturnType<typeof getStats> | null>(null);
   const [estudoCapitulo, setEstudoCapitulo] = useState<import('@/data/estudosCapitulo').EstudoCapitulo | null>(null);
   const mainRef = useRef<HTMLDivElement>(null);
+  const { prefetchAdjacent } = useChapterPrefetch(selectedTrads[0] || 'arc');
 
   const livro = TODOS_LIVROS[livroIdx];
 
@@ -83,7 +85,8 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
     recordReading(livroAbrev, cap);
     setStatsData(getStats());
     mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [livro.abreviacao, capituloIdx, selectedTrads]);
+    requestIdleCallback(() => { prefetchAdjacent(livroAbrev, cap); });
+  }, [livro.abreviacao, capituloIdx, selectedTrads, prefetchAdjacent]);
 
   useEffect(() => { loadChapter(); }, [loadChapter]);
 
@@ -104,7 +107,7 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
       const t = tradsParam.split(',').filter((x) => (TRAD_IDS as readonly string[]).includes(x));
       if (t.length > 0) setSelectedTrads(t);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
 
   useEffect(() => {

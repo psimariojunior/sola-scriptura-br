@@ -84,38 +84,44 @@ export async function carregarTraducao(traducao: string): Promise<LivroData> {
   return {};
 }
 
+async function carregarTraducaoLocal(trad: string, livro: string, capitulo: number): Promise<CapituloComparado | null> {
+  const data = await carregarTraducao(trad);
+  const versiculos = data[livro]?.[capitulo];
+  if (versiculos) {
+    return {
+      traducao: trad,
+      versiculos: versiculos.map((texto, i) => ({ numero: i + 1, texto })),
+    };
+  }
+  return null;
+}
+
+async function carregarTraducaoAPI(trad: string, livro: string, capitulo: number): Promise<CapituloComparado | null> {
+  const versiculos = await fetchMidvash(trad, livro, capitulo);
+  if (versiculos) {
+    return {
+      traducao: trad,
+      versiculos: versiculos.map((texto, i) => ({ numero: i + 1, texto })),
+    };
+  }
+  return null;
+}
+
 export async function obterCapituloMulti(
   livro: string,
   capitulo: number,
   traducoes: string[]
 ): Promise<CapituloComparado[]> {
-  const resultados: CapituloComparado[] = [];
-
-  for (const trad of traducoes) {
-    // Para traduções da API, busca diretamente
-    if ((TRADUCOES_API as readonly string[]).includes(trad)) {
-      const versiculos = await fetchMidvash(trad, livro, capitulo);
-      if (versiculos) {
-        resultados.push({
-          traducao: trad,
-          versiculos: versiculos.map((texto, i) => ({ numero: i + 1, texto })),
-        });
+  const resultados = await Promise.all(
+    traducoes.map((trad) => {
+      if ((TRADUCOES_API as readonly string[]).includes(trad)) {
+        return carregarTraducaoAPI(trad, livro, capitulo);
       }
-      continue;
-    }
+      return carregarTraducaoLocal(trad, livro, capitulo);
+    })
+  );
 
-    // Para traduções locais
-    const data = await carregarTraducao(trad);
-    const versiculos = data[livro]?.[capitulo];
-    if (versiculos) {
-      resultados.push({
-        traducao: trad,
-        versiculos: versiculos.map((texto, i) => ({ numero: i + 1, texto })),
-      });
-    }
-  }
-
-  return resultados;
+  return resultados.filter(Boolean) as CapituloComparado[];
 }
 
 export function versaoDisponivel(data: LivroData, livro: string, capitulo: number): boolean {

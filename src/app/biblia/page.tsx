@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, lazy, Suspense } from 'react';
+import { useCallback, lazy, Suspense, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
@@ -20,7 +20,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { cn } from '@/lib/utils';
 import { ChapterHeader } from '@/components/Biblia/ChapterHeader';
 import { ModoLeitura } from '@/components/Biblia/ModoLeitura';
-import { VerseCard } from '@/components/Biblia/VerseCard';
+import { VerseListItem } from '@/components/Biblia/VerseListItem';
 import { MobileActionBar } from '@/components/Biblia/MobileActionBar';
 import { ProgressBar } from '@/components/Biblia/ProgressBar';
 import { ComparisonTable } from '@/components/Biblia/ComparisonTable';
@@ -85,6 +85,23 @@ export default function BibliaPage() {
   const passagemDramatica = PASSAGENS_DRAMATICAS[chaveDramatica];
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleGoToBook = useCallback((idx: number, cap?: number) => { nav.goToBook(idx, cap); ui.setMobileMenu(false); ui.setChapterGridOpen(false); }, [nav.goToBook, ui.setMobileMenu, ui.setChapterGridOpen]);
+
+  const stableHandleSelectFromList = useCallback((livro: string, cap: number, ver: number, traducao: string, texto: string) => {
+    verse.handleSelectFromList(livro, cap, ver, traducao, texto);
+  }, [verse.handleSelectFromList]);
+
+  const stableSetAnotandoVersiculo = useCallback((key: string) => {
+    verse.setAnotandoVersiculo(key);
+    verse.setAnotacaoTexto('');
+  }, [verse.setAnotandoVersiculo, verse.setAnotacaoTexto]);
+
+  const stableSetComentarioVersiculo = useCallback((num: number | null) => {
+    verse.setComentarioVersiculo(num);
+  }, [verse.setComentarioVersiculo]);
+
+  const stableSetEstudoAberto = useCallback((num: number | null) => {
+    verse.setEstudoAberto(num);
+  }, [verse.setEstudoAberto]);
 
   if (ui.zenMode && nav.temDados) {
     return (
@@ -183,7 +200,8 @@ export default function BibliaPage() {
                 ) : nav.offlineUnavailable ? (
                   <div className="text-center py-20"><WifiOff className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} /><p className="text-lg text-[var(--content-muted)]">Capítulo não disponível offline</p><p className="text-sm text-[var(--content-muted)] mt-2">Conecte-se à internet ou baixe as traduções.</p></div>
                 ) : nav.temDados ? (
-                  <AnimatePresence mode="wait"><motion.div key={`${nav.livro.abreviacao}-${nav.capituloIdx}`} {...ui.chapterAnimProps} role="article" aria-label={`${nav.livro.nome} capítulo ${nav.capituloIdx + 1}`}>
+                    <AnimatePresence mode="popLayout"><motion.div key={`${nav.livro.abreviacao}-${nav.capituloIdx}`} {...ui.chapterAnimProps} role="article" aria-label={`${nav.livro.nome} capítulo ${nav.capituloIdx + 1}`}>
+                    {nav.loading && nav.temDados && (<div className="fixed top-0 left-0 right-0 z-50 h-0.5 bg-[var(--brand-default)]/20"><div className="h-full bg-[var(--brand-default)] animate-loading-bar" /></div>)}
                     <ChapterHeader livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} totalCapitulos={nav.livro.totalCapitulos} totalVersiculos={nav.data[0]?.versiculos?.length ?? 0} />
                     {ui.showInterlinear && nav.data[0] && (<div className="mb-8"><div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/40"><span className="font-hebrew text-lg text-[var(--brand-default)]">א</span><span className="text-sm font-semibold text-[var(--content-primary)]">Vista Interlinear</span></div><InterlinearView versiculos={nav.data[0].versiculos} livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} traducao={nav.data[0].traducao} /></div>)}
                     {(ui.modoLeitura === 'foco' || ui.modoLeitura === 'estudo') && nav.data.map((item) => (<div key={item.traducao} className="mb-6">
@@ -194,16 +212,16 @@ export default function BibliaPage() {
                         const isCurrentAudioVerse = capituloAudio.state.isPlaying && capituloAudio.state.currentVerseIndex === v.numero - 1;
                         const verseKey = `${nav.livro.abreviacao}:${nav.capituloIdx + 1}:${v.numero}:${item.traducao}`;
                         const fav = isFavorito(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao);
-                        const marcaMarcador = getMarcador(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao);
-                        return (<VerseCard key={`${item.traducao}-${v.numero}`} numero={v.numero} texto={v.texto} livroAbreviacao={nav.livro.abreviacao} livroNome={nav.livro.nome} capitulo={nav.capituloIdx + 1} traducao={item.traducao} fontSize={ui.fontSize}
-                          isSelected={isSelected} isPlaying={isPlaying} isHighlighted={ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero} isFocused={ui.focusedVerse === v.numero} isFavorito={fav} corMarca={marcaMarcador?.cor ?? null} temAnotacao={false} copiedVerse={verse.copiedVerse}
+                        return (<VerseListItem key={`${item.traducao}-${v.numero}`} numero={v.numero} texto={v.texto} livroAbreviacao={nav.livro.abreviacao} livroNome={nav.livro.nome} capitulo={nav.capituloIdx + 1} traducao={item.traducao} fontSize={ui.fontSize}
+                          isSelected={isSelected} isPlaying={isPlaying} isHighlighted={ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero} isFocused={ui.focusedVerse === v.numero} isFavorito={fav} copiedVerse={verse.copiedVerse}
                           audioNatural={audioNatural} audio={audio} flashcards={flashcards} estudoAberto={verse.estudoAberto === v.numero}
-                          onSelect={() => verse.handleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto)} onFavoritoChange={refresh}
-                          onAnotar={() => { verse.setAnotandoVersiculo(verseKey); verse.setAnotacaoTexto(''); }} onStrong={() => { panels.setSidePanelWidth('half'); panels.setSidePanelTab('strong'); }}
-                          onComentarios={() => { verse.setComentarioVersiculo(v.numero); panels.setSidePanelWidth('half'); panels.setSidePanelTab('comentarios'); }}
-                          onToggleEstudo={() => verse.setEstudoAberto(verse.estudoAberto === v.numero ? null : v.numero)} copyVerse={verse.copyVerse} verseKey={verseKey}
-                          showTranslationLabel={nav.selectedTrads.length > 1} tradLabel={labelMap[item.traducao]} tradBadgeColor={tradBadgeColors[item.traducao]}
-                          isCurrentAudioVerse={isCurrentAudioVerse} hasResources={verseResources.hasResources(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero)} />);
+                          isCurrentAudioVerse={isCurrentAudioVerse} hasResources={verseResources.hasResources(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero)}
+                          selectedTradsCount={nav.selectedTrads.length}
+                          onSelectFromList={stableHandleSelectFromList} onFavoritoChange={refresh}
+                          onSetAnotandoVersiculo={stableSetAnotandoVersiculo} onSetAnotacaoTexto={verse.setAnotacaoTexto}
+                          onSetSidePanelWidth={panels.setSidePanelWidth} onSetSidePanelTab={panels.setSidePanelTab}
+                          onSetComentarioVersiculo={stableSetComentarioVersiculo} onSetEstudoAberto={stableSetEstudoAberto}
+                          estudoAbertoState={verse.estudoAberto} copyVerse={verse.copyVerse} />);
                       })}</div>
                     </div>))}
                     {ui.modoLeitura === 'comparacao' && nav.viewMode === 'parallel' && (<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">{nav.data.map((item) => (

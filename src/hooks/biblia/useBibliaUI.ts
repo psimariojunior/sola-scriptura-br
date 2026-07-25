@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import type { ModoLeituraValue } from '@/components/Biblia/ModoLeitura';
 import type { CapituloComparado } from '@/data/biblia/texto/carregar';
 
@@ -134,6 +134,33 @@ export function UseBibliaUI({
     return 1.8;
   });
 
+  const capituloIdxRef = useRef(capituloIdx);
+  capituloIdxRef.current = capituloIdx;
+  const livroTotalCapitulosRef = useRef(livroTotalCapitulos);
+  livroTotalCapitulosRef.current = livroTotalCapitulos;
+  const selectedTradsRef = useRef(selectedTrads);
+  selectedTradsRef.current = selectedTrads;
+  const dataRef = useRef(data);
+  dataRef.current = data;
+  const livroAbreviacaoRef = useRef(livroAbreviacao);
+  livroAbreviacaoRef.current = livroAbreviacao;
+  const versiculoSelecionadoRef = useRef(versiculoSelecionado);
+  versiculoSelecionadoRef.current = versiculoSelecionado;
+  const mobileMenuRef = useRef(mobileMenu);
+  mobileMenuRef.current = mobileMenu;
+  const sidebarOpenRef = useRef(sidebarOpen);
+  sidebarOpenRef.current = sidebarOpen;
+  const chapterGridOpenRef = useRef(chapterGridOpen);
+  chapterGridOpenRef.current = chapterGridOpen;
+  const mostrarApresentacaoRef = useRef(mostrarApresentacao);
+  mostrarApresentacaoRef.current = mostrarApresentacao;
+  const mostrarNarracaoRef = useRef(mostrarNarracao);
+  mostrarNarracaoRef.current = mostrarNarracao;
+  const mostrarNarracaoCapituloRef = useRef(mostrarNarracaoCapitulo);
+  mostrarNarracaoCapituloRef.current = mostrarNarracaoCapitulo;
+  const zenModeRef = useRef(zenMode);
+  zenModeRef.current = zenMode;
+
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); setQuickSearchOpen(p => !p); return; }
     if (quickSearchOpen && e.key === 'Escape') { setQuickSearchOpen(false); return; }
@@ -142,14 +169,20 @@ export function UseBibliaUI({
     if (e.key === '/') { e.preventDefault(); setQuickSearchOpen(true); return; }
     if (e.key === 'z' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); setZenMode(p => !p); return; }
 
-    const maxVersos = data[0]?.versiculos?.length ?? 0;
+    const curCapituloIdx = capituloIdxRef.current;
+    const curLivroTotalCapitulos = livroTotalCapitulosRef.current;
+    const curData = dataRef.current;
+    const curSelectedTrads = selectedTradsRef.current;
+    const curLivroAbreviacao = livroAbreviacaoRef.current;
+    const curVersiculoSelecionado = versiculoSelecionadoRef.current;
+    const maxVersos = curData[0]?.versiculos?.length ?? 0;
 
-    if (e.key === 'ArrowLeft' && !e.shiftKey && capituloIdx > 0) {
+    if (e.key === 'ArrowLeft' && !e.shiftKey && curCapituloIdx > 0) {
       e.preventDefault();
       setChapterDirection('prev');
       setCapituloIdx(p => Math.max(0, p - 1));
       setFocusedVerse(null);
-    } else if (e.key === 'ArrowRight' && !e.shiftKey && capituloIdx < livroTotalCapitulos - 1) {
+    } else if (e.key === 'ArrowRight' && !e.shiftKey && curCapituloIdx < curLivroTotalCapitulos - 1) {
       e.preventDefault();
       setChapterDirection('next');
       setCapituloIdx(p => p + 1);
@@ -168,9 +201,9 @@ export function UseBibliaUI({
       });
     } else if (e.key === 'Enter' && focusedVerse !== null) {
       e.preventDefault();
-      const trad = selectedTrads[0] || 'arc';
-      const texto = data[0]?.versiculos?.find(v => v.numero === focusedVerse)?.texto || '';
-      handleSelectFromList(livroAbreviacao, capituloIdx + 1, focusedVerse, trad, texto);
+      const trad = curSelectedTrads[0] || 'arc';
+      const texto = curData[0]?.versiculos?.find(v => v.numero === focusedVerse)?.texto || '';
+      handleSelectFromList(curLivroAbreviacao, curCapituloIdx + 1, focusedVerse, trad, texto);
     } else if (e.key === 'Escape') {
       setSidebarOpen(false); setMobileMenu(false); setChapterGridOpen(false);
       setMostrarNarracao(false); setMostrarNarracaoCapitulo(false);
@@ -178,7 +211,7 @@ export function UseBibliaUI({
       setTradOpen(false); setToolsOpen(false); setExportOpen(false);
       setZenMode(false);
     }
-  }, [capituloIdx, livroTotalCapitulos, quickSearchOpen, focusedVerse, selectedTrads, data, livroAbreviacao, handleSelectFromList, setCapituloIdx, setFocusedVerse, setVersiculoSelecionado, setChapterDirection]);
+  }, [quickSearchOpen, focusedVerse, handleSelectFromList, setCapituloIdx, setFocusedVerse, setVersiculoSelecionado, setChapterDirection]);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -195,18 +228,20 @@ export function UseBibliaUI({
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
-      if (versiculoSelecionado || mobileMenu || sidebarOpen || chapterGridOpen || mostrarApresentacao || mostrarNarracao || mostrarNarracaoCapitulo || zenMode) return;
+      if (versiculoSelecionadoRef.current || mobileMenuRef.current || sidebarOpenRef.current || chapterGridOpenRef.current || mostrarApresentacaoRef.current || mostrarNarracaoRef.current || mostrarNarracaoCapituloRef.current || zenModeRef.current) return;
       const touchEndX = e.changedTouches[0].clientX;
       const touchEndY = e.changedTouches[0].clientY;
       const deltaX = touchEndX - touchStartX;
       const deltaY = touchEndY - touchStartY;
 
       if (Math.abs(deltaX) > 80 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
-        if (deltaX < 0 && capituloIdx < livroTotalCapitulos - 1) {
+        const curCapituloIdx = capituloIdxRef.current;
+        const curLivroTotalCapitulos = livroTotalCapitulosRef.current;
+        if (deltaX < 0 && curCapituloIdx < curLivroTotalCapitulos - 1) {
           setChapterDirection('next');
           setCapituloIdx(p => p + 1);
           setFocusedVerse(null);
-        } else if (deltaX > 0 && capituloIdx > 0) {
+        } else if (deltaX > 0 && curCapituloIdx > 0) {
           setChapterDirection('prev');
           setCapituloIdx(p => Math.max(0, p - 1));
           setFocusedVerse(null);
@@ -221,7 +256,7 @@ export function UseBibliaUI({
       window.removeEventListener('touchend', handleTouchEnd);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [capituloIdx]);
+  }, []);
 
   useEffect(() => {
     if (modoLeitura === 'comparacao' && selectedTrads.length < 2) {
@@ -237,20 +272,17 @@ export function UseBibliaUI({
   const chapterAnimProps = {
     initial: {
       opacity: 0,
-      x: chapterDirection === 'next' ? 30 : -30,
-      ...(isMobile ? {} : { filter: 'blur(6px)' }),
+      x: chapterDirection === 'next' ? 20 : -20,
     },
     animate: {
       opacity: 1,
       x: 0,
-      ...(isMobile ? {} : { filter: 'blur(0px)' }),
     },
     exit: {
       opacity: 0,
-      x: chapterDirection === 'next' ? -30 : 30,
-      ...(isMobile ? {} : { filter: 'blur(6px)' }),
+      x: chapterDirection === 'next' ? -20 : 20,
     },
-    transition: { duration: isMobile ? 0.2 : 0.35, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: isMobile ? 0.15 : 0.25, ease: [0.25, 0.46, 0.45, 0.94] },
   };
 
   return {

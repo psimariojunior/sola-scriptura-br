@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v5';
 const STATIC_CACHE = `ssb-static-${CACHE_VERSION}`;
 const API_CACHE = `ssb-api-${CACHE_VERSION}`;
 const BIBLE_CACHE = `ssb-bible-${CACHE_VERSION}`;
@@ -10,41 +10,21 @@ const STORE_META = 'meta';
 const STORE_FAVORITES = 'favorites';
 const STORE_NOTES = 'notes';
 
+// Precache otimizado: apenas as 12 paginas mais visitadas
+// As demais serao cacheadas na primeira navegacao via pageCacheFirst
 const PRECACHE_URLS = [
   '/',
   '/biblia',
   '/pesquisa',
   '/idiomas',
-  '/exegese',
   '/teologia',
   '/historia',
-  '/personagens',
-  '/cronologia',
   '/ia',
   '/estudos',
-  '/ferramentas',
   '/favoritos',
   '/notas',
-  '/colecoes',
-  '/atlas',
-  '/harmonia',
-  '/planos',
-  '/compartilhar',
-  '/quiz',
-  '/flashcards',
-  '/devocional',
-  '/comunidade',
-  '/relacoes',
-  '/mapas',
-  '/palavras',
-  '/referencias',
-  '/memorizacao',
-  '/desafios',
-  '/comparar-comentarios',
-  '/dashboard',
-  '/estudo-split',
-  '/galeria',
-  '/status',
+  '/exegese',
+  '/personagens',
   '/offline.html',
   '/manifest.json',
   '/icon-192.png',

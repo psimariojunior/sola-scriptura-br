@@ -2277,21 +2277,69 @@ textarea:focus-visible,
 }
 
 /* Smooth page transitions */
-.page-transition-enter {
-  animation: pageEnter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+.page-transition {
+  animation: pageEnter 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 @keyframes pageEnter {
   from {
     opacity: 0;
     transform: translateY(8px);
-    filter: blur(2px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
+}
+
+/* Sidebar slide in/out */
+.sidebar-enter {
+  animation: sidebarSlideIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes sidebarSlideIn {
+  from { transform: translateX(-288px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Panel expand/collapse */
+.panel-expand-enter {
+  animation: panelExpand 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.panel-expand-exit {
+  animation: panelCollapse 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes panelExpand {
+  from { height: 0; opacity: 0; }
+  to { height: auto; opacity: 1; }
+}
+
+@keyframes panelCollapse {
+  from { height: auto; opacity: 1; }
+  to { height: 0; opacity: 0; }
+}
+
+/* Fade in from bottom */
+.fade-in-bottom {
+  animation: fadeInBottom 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes fadeInBottom {
+  from { opacity: 0; transform: translateY(20px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Verse stagger animation */
+.verse-stagger {
+  animation: verseFadeIn 0.3s ease forwards;
+  opacity: 0;
+}
+
+@keyframes verseFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* Floating label effect */

@@ -6,7 +6,7 @@ import { Header } from '@/components/Header';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
 import { BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, Search, Sparkles, Play, Mic, Volume2, ListFilter, WifiOff, X, HardDrive } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+// framer-motion removido — animações via CSS puro
 import { useEstudos } from '@/components/EstudosProvider';
 import { useVerseAudio } from '@/hooks/useVerseAudio';
 import { useAudioNatural } from '@/hooks/useAudioNatural';
@@ -134,10 +134,9 @@ export default function BibliaPage() {
           </div>
           {nav.data.map((item) => (<div key={item.traducao}>
             {nav.selectedTrads.length > 1 && (<div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/30"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span></div>)}
-            <div className="space-y-4">{item.versiculos.map((v) => (<motion.p key={v.numero} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: v.numero * 0.02 }}
-              className="font-serif-body text-[var(--content-primary)] leading-[2] cursor-pointer hover:bg-[var(--surface-sunken)]/40 rounded-lg px-3 py-2 -mx-3 transition-colors" style={{ fontSize: `${ui.fontSize + 2}px` }}
+            <div className="space-y-4">{item.versiculos.map((v) => (<p key={v.numero} className="verse-stagger font-serif-body text-[var(--content-primary)] leading-[2] cursor-pointer hover:bg-[var(--surface-sunken)]/40 rounded-lg px-3 py-2 -mx-3 transition-colors" style={{ fontSize: `${ui.fontSize + 2}px`, animationDelay: `${v.numero * 20}ms` }}
               onClick={() => { ui.setZenMode(false); verse.handleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto); }}>
-              <sup className="text-[var(--brand-default)] font-bold text-[11px] mr-1.5 select-none tabular-nums">{v.numero}</sup>{v.texto}</motion.p>))}</div>
+              <sup className="text-[var(--brand-default)] font-bold text-[11px] mr-1.5 select-none tabular-nums">{v.numero}</sup>{v.texto}</p>))}</div>
           </div>))}
           <div className="flex items-center justify-center gap-4 mt-16 pt-8 border-t border-[var(--border)]/30">
             <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="flex items-center gap-2 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--surface-sunken)] transition-colors"><ChevronLeft className="w-4 h-4" />Capítulo anterior</button>
@@ -153,20 +152,20 @@ export default function BibliaPage() {
       <main id="main-content" className="pt-16">
         <div className="px-4 sm:px-6 py-2 bg-[var(--surface-raised)]/80 border-b border-[var(--border)]/40 backdrop-blur-sm"><Breadcrumbs items={[{ label: 'Início', href: '/' }, { label: 'Bíblia' }]} /></div>
         <div className="flex min-h-[100dvh] md:h-[calc(100vh-7rem-40px)] relative">
-          <AnimatePresence>{ui.sidebarOpen && (
-            <motion.aside initial={{ x: -288, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -288, opacity: 0 }} transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }} className="hidden lg:block w-64 border-r border-[var(--border)] bg-[var(--surface-raised)] overflow-y-auto shrink-0">
+          {ui.sidebarOpen && (
+            <aside className="sidebar-enter hidden lg:block w-64 border-r border-[var(--border)] bg-[var(--surface-raised)] overflow-y-auto shrink-0">
               <div className="p-4 h-full flex flex-col">
                 <div className="relative mb-3"><Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--content-muted)]" /><input type="text" placeholder="Buscar livro..." value={nav.searchQuery} onChange={e => nav.setSearchQuery(e.target.value)} className="w-full pl-9 pr-3 py-2 text-sm bg-[var(--surface-sunken)] border border-[var(--border)]/60 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/30 transition-all duration-200" /></div>
                 <div className="flex-1 overflow-y-auto space-y-0.5">{nav.livrosFiltrados.map((l) => { const idx = TODOS_LIVROS.indexOf(l); return (<button key={l.abreviacao} onClick={() => handleGoToBook(idx)} className={cn('w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 flex items-center gap-2 group', idx === nav.livroIdx ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] font-semibold' : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] hover:text-[var(--content-primary)]')}><span className="truncate">{l.nome}</span><span className="ml-auto text-[10px] opacity-0 group-hover:opacity-50 transition-opacity tabular-nums">{l.totalCapitulos}c</span></button>); })}</div>
               </div>
-            </motion.aside>)}</AnimatePresence>
+            </aside>)}
           <div className="flex-1 flex flex-col min-w-0 relative overflow-hidden">
             <div className="border-b border-[var(--border)]/40 bg-[var(--surface-raised)]/95 backdrop-blur-sm sticky top-0 z-20">
               <div className="px-3 sm:px-4 py-2.5 flex items-center gap-2 sm:gap-3 flex-wrap">
                 <button onClick={() => ui.setMobileMenu(true)} className="lg:hidden touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]" aria-label="Abrir menu de livros"><BookOpen className="w-4 h-4" /></button>
                 <button onClick={() => ui.setSidebarOpen(!ui.sidebarOpen)} className="hidden lg:flex touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]"><ListFilter className="w-4 h-4" /></button>
                 <div className="flex items-center gap-1">
-                  <motion.button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} whileTap={{ scale: 0.92 }} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)]"><ChevronLeft className="w-4 h-4" /></motion.button>
+                  <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform"><ChevronLeft className="w-4 h-4" /></button>
                   <div className="relative">
                     <button onClick={() => ui.setChapterGridOpen(!ui.chapterGridOpen)} className="px-2.5 py-1 rounded-md bg-[var(--surface-sunken)] border border-[var(--border)]/40 min-w-[120px] text-center hover:bg-[var(--surface-raised)] transition-colors cursor-pointer">
                       <span className="text-xs font-semibold text-[var(--content-primary)]">{nav.livro.nome}</span>
@@ -175,7 +174,7 @@ export default function BibliaPage() {
                     </button>
                     <ChapterGrid open={ui.chapterGridOpen} onClose={() => ui.setChapterGridOpen(false)} totalCapitulos={nav.livro.totalCapitulos} capituloAtual={nav.capituloIdx} onSelect={(idx) => nav.changeChapter(idx)} />
                   </div>
-                  <motion.button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} whileTap={{ scale: 0.92 }} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)]"><ChevronRight className="w-4 h-4" /></motion.button>
+                  <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform"><ChevronRight className="w-4 h-4" /></button>
                 </div>
                 <div className="flex-1" />
                 <ModoLeitura value={ui.modoLeitura} onChange={(v) => { ui.setModoLeitura(v); if (v === 'comparacao') nav.setViewMode('parallel'); else if (v === 'estudo') { panels.setSidePanelWidth('half'); panels.setSidePanelTab('comentarios'); } else if (v === 'apresentacao') ui.setMostrarApresentacao(true); else { nav.setViewMode('single'); panels.setSidePanelWidth('collapsed'); } }} size="sm" />
@@ -189,22 +188,22 @@ export default function BibliaPage() {
                 <div className="hidden sm:block w-px h-6 bg-[var(--border)]/60" />
                 <TranslationDropdown open={ui.tradOpen} onToggle={() => { ui.setTradOpen(!ui.tradOpen); ui.setToolsOpen(false); }} onClose={() => ui.setTradOpen(false)} selectedTrads={nav.selectedTrads} onToggleTrad={nav.toggleTrad} viewMode={nav.viewMode} onViewModeChange={nav.setViewMode} />
                 <div className="hidden md:flex items-center gap-0.5">
-                  <motion.button onClick={() => { if (ui.mostrarNarracaoCapitulo) { ui.setMostrarNarracaoCapitulo(false); capituloAudio.stop(); } if (capituloAudio.state.isPlaying || capituloAudio.state.isPaused) capituloAudio.stop(); else capituloAudio.play(); }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
-                    className={cn('flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold transition-all', capituloAudio.state.isPlaying ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20' : 'bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20')}>
+                  <button onClick={() => { if (ui.mostrarNarracaoCapitulo) { ui.setMostrarNarracaoCapitulo(false); capituloAudio.stop(); } if (capituloAudio.state.isPlaying || capituloAudio.state.isPaused) capituloAudio.stop(); else capituloAudio.play(); }}
+                    className={cn('flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold transition-all active:scale-95 hover:scale-105', capituloAudio.state.isPlaying ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20' : 'bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20')}>
                     {capituloAudio.state.isLoading ? <span className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin" /> : capituloAudio.state.isPlaying ? <span className="flex gap-0.5"><span className="w-0.5 h-3 bg-current rounded-full" /><span className="w-0.5 h-3 bg-current rounded-full" /></span> : <Play className="w-3.5 h-3.5 fill-current" />}
                     <Volume2 className="w-3.5 h-3.5" />
-                  </motion.button>
-                  <motion.button onClick={() => ui.setMostrarQualidadeAudio(true)} whileTap={{ scale: 0.96 }} className="p-1.5 rounded-full text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]" title="Qualidade do áudio"><Mic className="w-3.5 h-3.5" /></motion.button>
+                  </button>
+                  <button onClick={() => ui.setMostrarQualidadeAudio(true)} className="p-1.5 rounded-full text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] active:scale-95 transition-transform" title="Qualidade do áudio"><Mic className="w-3.5 h-3.5" /></button>
                 </div>
                 <ToolsDropdown open={ui.toolsOpen} onToggle={() => { ui.setToolsOpen(!ui.toolsOpen); ui.setTradOpen(false); }} onClose={() => ui.setToolsOpen(false)} bookName={nav.livro.nome} chapter={nav.capituloIdx + 1} data={nav.data} hasDramatica={!!passagemDramatica}
                   onNotas={() => { if (!ui.mostrarNotas && !verse.notaAtiva) { verse.setNotaAtiva(verse.criarNota(`${nav.livro.nome} ${nav.capituloIdx + 1}`)); } ui.setMostrarNotas(!ui.mostrarNotas); ui.setToolsOpen(false); }}
                   onExportPdf={() => { ui.setToolsOpen(false); ui.setExportOpen(true); }} onPlanoLeitura={() => { ui.setShowPlan(!ui.showPlan); ui.setToolsOpen(false); }}
                   onNarracaoDramatica={() => { ui.setMostrarNarracao(true); ui.setToolsOpen(false); }} onNarrarCapitulo={() => { capituloAudio.stop(); ui.setMostrarNarracaoCapitulo(true); ui.setToolsOpen(false); }}
                   onConfiguracoes={() => { ui.setShowSettings(!ui.showSettings); ui.setToolsOpen(false); }} />
-                <motion.button onClick={() => ui.setMostrarApresentacao(true)} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-[var(--brand-contrast)] bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] shadow-md shadow-[var(--brand-default)]/30 hover:shadow-lg hover:shadow-[var(--brand-default)]/40 transition-shadow">
+                <button onClick={() => ui.setMostrarApresentacao(true)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-[var(--brand-contrast)] bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] shadow-md shadow-[var(--brand-default)]/30 hover:shadow-lg hover:shadow-[var(--brand-default)]/40 transition-all active:scale-97 hover:scale-105">
                   <Sparkles className="w-3.5 h-3.5" /><span className="hidden sm:inline">Apresentar</span><span className="hidden md:inline-flex items-center px-1 py-0 rounded text-[8px] font-extrabold bg-white/20">NEW</span>
-                </motion.button>
+                </button>
               </div>
               <SettingsPanel open={ui.showSettings} fontSize={ui.fontSize} onFontSizeChange={ui.setFontSize} showDiff={ui.showDiff} onToggleDiff={() => ui.setShowDiff(!ui.showDiff)} showComparison={nav.viewMode === 'comparison' && nav.data.length >= 2} fontFamily={ui.fontFamily} onFontFamilyChange={ui.setFontFamily} lineSpacing={ui.lineSpacing} onLineSpacingChange={ui.setLineSpacing} />
             </div>
@@ -254,14 +253,14 @@ export default function BibliaPage() {
                         <span className="text-xs text-[var(--primary)] font-medium">{nav.estudoCapitulo.titulo}</span><div className="flex-1" />
                         {ui.estudoCapituloAberto ? <ChevronUp className="w-4 h-4 text-[var(--muted-fg)]" /> : <ChevronDown className="w-4 h-4 text-[var(--muted-fg)]" />}
                       </button>
-                      <AnimatePresence initial={false}>{ui.estudoCapituloAberto && (<motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }} className="overflow-hidden">
+                      {ui.estudoCapituloAberto && (<div className="panel-expand-enter overflow-hidden">
                         <Suspense fallback={<PanelFallback />}><PainelEstudosCapitulo livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} nomeLivro={nav.livro.nome} /></Suspense>
-                      </motion.div>)}</AnimatePresence>
+                      </div>)}
                     </div>)}
                     <div className="flex items-center justify-center gap-3 sm:gap-4 mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">
-                      <motion.button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-colors min-h-[44px]"><ChevronLeft className="w-4 h-4" /> Anterior</motion.button>
+                      <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-all active:scale-98 min-h-[44px]"><ChevronLeft className="w-4 h-4" /> Anterior</button>
                       <div className="hidden sm:flex flex-col items-center gap-1.5 min-w-[120px]"><span className="text-[10px] text-[var(--content-muted)] font-mono tabular-nums">{nav.capituloIdx + 1} / {nav.livro.totalCapitulos}</span><ProgressBar value={nav.capituloIdx + 1} total={nav.livro.totalCapitulos} className="w-24" /></div>
-                      <motion.button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-colors min-h-[44px]">Próximo <ChevronRight className="w-4 h-4" /></motion.button>
+                      <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-all active:scale-98 min-h-[44px]">Próximo <ChevronRight className="w-4 h-4" /></button>
                     </div>
                     </div>
                 ) : (<div className="text-center py-20"><BookOpen className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} /><p className="text-lg text-[var(--content-muted)]">Selecione um livro e capítulo</p></div>)}
@@ -270,12 +269,12 @@ export default function BibliaPage() {
             </div>
             <MobileBookMenu open={ui.mobileMenu} onClose={() => ui.setMobileMenu(false)} livroIdx={nav.livroIdx} onSelect={(idx) => handleGoToBook(idx)} onSelectChapter={(idx, cap) => handleGoToBook(idx, cap)} />
           </div>
-          <AnimatePresence>{panels.sidePanelOpen && (
+          {panels.sidePanelOpen && (
             <ErrorBoundary fallback={<div className="shrink-0 w-full sm:w-[340px] md:w-[380px] lg:w-[420px] border-l border-[var(--border)] bg-[var(--surface-raised)] flex items-center justify-center p-8"><p className="text-sm text-[var(--content-muted)]">Erro ao carregar painel</p><button onClick={() => { panels.setSidePanelTab(null); panels.setSidePanelWidth('collapsed'); }} className="text-xs text-[var(--brand-default)] underline">Fechar</button></div>}>
               <SidePanel open={panels.sidePanelOpen} width={panels.sidePanelWidth} onWidthChange={panels.setSidePanelWidth} activeTab={panels.sidePanelTab} onActiveTabChange={(tab) => { panels.setSidePanelTab(tab); if (!tab) panels.setSidePanelWidth('collapsed'); }}
                 livro={nav.livro.nome} livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} versiculo={verse.comentarioVersiculo ?? verse.versiculoSelecionado?.versiculo}
                 onClose={() => { panels.setSidePanelTab(null); panels.setSidePanelWidth('collapsed'); }} versiculoTexto={verse.versiculoSelecionado?.texto} versiculoTraducao={verse.versiculoSelecionado?.traducao} />
-            </ErrorBoundary>)}</AnimatePresence>
+            </ErrorBoundary>)}
         </div>
       </main>
       <MobileActionBar selected={verse.versiculoSelecionado} onClose={() => verse.setVersiculoSelecionado(null)} audioNatural={audioNatural} audio={audio} flashcards={flashcards}
@@ -294,16 +293,16 @@ export default function BibliaPage() {
         }}
         onAprofundar={() => { if (!verse.versiculoSelecionado) return; if (!authService.temAcessoTotal()) { panels.setPaywallAprofundarAberto(true); return; } window.open(`/estudo-ia?ref=${encodeURIComponent(`${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`)}`, '_blank'); }}
         copyVerse={verse.copyVerse} copiedVerse={verse.copiedVerse} />
-      <AnimatePresence>{verse.versiculoSelecionado && authService.temAcessoTotal() && (
-        <motion.a href={`/estudo-ia?ref=${encodeURIComponent(`${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`)}`} target="_blank" initial={{ opacity: 0, y: 20, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.9 }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
-          className="hidden lg:flex fixed bottom-6 right-6 z-30 items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/30 hover:shadow-xl transition-shadow"><Sparkles className="w-4 h-4" />Aprofundar com IA</motion.a>)}</AnimatePresence>
+      {verse.versiculoSelecionado && authService.temAcessoTotal() && (
+        <a href={`/estudo-ia?ref=${encodeURIComponent(`${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`)}`} target="_blank"
+          className="fade-in-bottom hidden lg:flex fixed bottom-6 right-6 z-30 items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all"><Sparkles className="w-4 h-4" />Aprofundar com IA</a>)}
       <AudioPlayers audioNatural={audioNatural} audio={audio} data={nav.data} livroNome={nav.livro.nome} capitulo={nav.capituloIdx + 1} />
       <AnnotationModal open={verse.anotandoVersiculo !== null} verseKey={verse.anotandoVersiculo} initialText={verse.anotacaoTexto} onClose={() => verse.setAnotandoVersiculo(null)}
         onSave={async (texto) => { const { setAnotacao } = await import('@/lib/estudos'); const parts = verse.anotandoVersiculo!.split(':'); setAnotacao(parts[0], Number(parts[1]), Number(parts[2]), parts[3], texto || null); refresh(); verse.setAnotandoVersiculo(null); verse.setAnotacaoTexto(''); }} />
-      <AnimatePresence>{ui.quickSearchOpen && (<QuickSearchModal open={ui.quickSearchOpen} onClose={() => ui.setQuickSearchOpen(false)}
-        onGoToResult={(r, query) => { const idx = TODOS_LIVROS.findIndex(l => l.abreviacao === r.livro); if (idx >= 0) { verse.setRecentSearches(prev => { const next = [{ query, livro: r.livro, nome: r.nome, cap: r.cap, versiculo: r.versiculo || 1 }, ...prev.filter(s => s.livro !== r.livro || s.cap !== r.cap)].slice(0, 5); try { localStorage.setItem('ssb_recent_searches', JSON.stringify(next)); } catch {} return next; }); nav.setLivroIdx(idx); nav.setCapituloIdx(r.cap - 1); ui.setQuickSearchOpen(false); } }} recentSearches={verse.recentSearches} />)}</AnimatePresence>
-      <AnimatePresence>{ui.mostrarNarracao && passagemDramatica && (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-[var(--bg)]"><Suspense fallback={<PanelFallback />}><NarracaoDramaticaLazy titulo={passagemDramatica.titulo} subtitulo={passagemDramatica.subtitulo} cenas={passagemDramatica.cenas} personagens={passagemDramatica.personagens} onFechar={() => ui.setMostrarNarracao(false)} /></Suspense></motion.div>)}</AnimatePresence>
-      <AnimatePresence>{ui.mostrarNarracaoCapitulo && (<Suspense fallback={<PanelFallback />}><NarrationPanel open={ui.mostrarNarracaoCapitulo} onClose={() => { ui.setMostrarNarracaoCapitulo(false); capituloAudio.stop(); }} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} traducao={nav.selectedTrads[0] || 'arc'} livroNome={nav.livro.nome} versiculos={nav.data[0]?.versiculos?.map(v => ({ numero: v.numero, texto: v.texto })) ?? []} /></Suspense>)}</AnimatePresence>
+      {ui.quickSearchOpen && (<QuickSearchModal open={ui.quickSearchOpen} onClose={() => ui.setQuickSearchOpen(false)}
+        onGoToResult={(r, query) => { const idx = TODOS_LIVROS.findIndex(l => l.abreviacao === r.livro); if (idx >= 0) { verse.setRecentSearches(prev => { const next = [{ query, livro: r.livro, nome: r.nome, cap: r.cap, versiculo: r.versiculo || 1 }, ...prev.filter(s => s.livro !== r.livro || s.cap !== r.cap)].slice(0, 5); try { localStorage.setItem('ssb_recent_searches', JSON.stringify(next)); } catch {} return next; }); nav.setLivroIdx(idx); nav.setCapituloIdx(r.cap - 1); ui.setQuickSearchOpen(false); } }} recentSearches={verse.recentSearches} />)}
+      {ui.mostrarNarracao && passagemDramatica && (<div className="page-transition fixed inset-0 z-50 bg-[var(--bg)]"><Suspense fallback={<PanelFallback />}><NarracaoDramaticaLazy titulo={passagemDramatica.titulo} subtitulo={passagemDramatica.subtitulo} cenas={passagemDramatica.cenas} personagens={passagemDramatica.personagens} onFechar={() => ui.setMostrarNarracao(false)} /></Suspense></div>)}
+      {ui.mostrarNarracaoCapitulo && (<Suspense fallback={<PanelFallback />}><NarrationPanel open={ui.mostrarNarracaoCapitulo} onClose={() => { ui.setMostrarNarracaoCapitulo(false); capituloAudio.stop(); }} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} traducao={nav.selectedTrads[0] || 'arc'} livroNome={nav.livro.nome} versiculos={nav.data[0]?.versiculos?.map(v => ({ numero: v.numero, texto: v.texto })) ?? []} /></Suspense>)}
       <PainelDoVersiculo livro={verse.versiculoSelecionado?.livroAbreviacao ?? ''} capitulo={verse.versiculoSelecionado?.capitulo ?? 1} versiculo={verse.versiculoSelecionado?.versiculo ?? 1} aberto={verse.versiculoSelecionado !== null} onFechar={() => verse.setVersiculoSelecionado(null)} />
       <ApresentacaoModal open={ui.mostrarApresentacao} onClose={() => ui.setMostrarApresentacao(false)} livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} versiculo={1} translation={nav.selectedTrads[0] || 'arc'} />
       <PainelQualidadeAudio open={ui.mostrarQualidadeAudio} onOpenChange={ui.setMostrarQualidadeAudio} />

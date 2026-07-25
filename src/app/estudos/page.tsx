@@ -13,6 +13,7 @@ import { listarMarcas, removerMarca, toggleFavorito, type MarcaBiblia } from '@/
 import { livroPorAbreviacao, TODOS_LIVROS } from '@/data/biblia/livros';
 import ScrollReveal from '@/components/ScrollReveal';
 import { exportToJson, exportToTxt, exportToCsv } from '@/lib/exportarEstudos';
+import { obterProgressoCursos } from '@/lib/cursoProgress';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { type Comentario } from '@/data/comentarios';
 import type { EstudoVersiculo } from '@/data/estudosTeologicos';
@@ -121,6 +122,14 @@ export default function EstudosPage() {
       return b.dataCriacao - a.dataCriacao;
     });
   }, [marcas, aba, query, filtroLivro, ordenacao]);
+
+  const [cursosMatriculados, setCursosMatriculados] = useState(0);
+
+  useEffect(() => {
+    const progresso = obterProgressoCursos();
+    const count = Object.values(progresso).filter(p => p.matriculado).length;
+    setCursosMatriculados(count);
+  }, []);
 
   const stats = useMemo(() => ({
     total: marcas.length,
@@ -666,7 +675,7 @@ export default function EstudosPage() {
                   { id: 'todas' as const, label: 'Todas', icon: Bookmark, count: stats.total },
                   { id: 'favoritos' as const, label: 'Favoritos', icon: Heart, count: stats.favoritos },
                   { id: 'anotacoes' as const, label: 'Anotações', icon: StickyNote, count: stats.anotacoes },
-                  { id: 'cursos' as const, label: 'Cursos', icon: GraduationCap, count: 0 },
+                  { id: 'cursos' as const, label: 'Cursos', icon: GraduationCap, count: cursosMatriculados },
                 ]).map((t) => (
                   <button
                     key={t.id}

@@ -42,6 +42,7 @@ interface ExtraLink {
 }
 
 const extraLinks: ExtraLink[] = [
+  { href: '/cursos', label: 'Cursos', icon: GraduationCap },
   { href: '/teologia', label: 'Teologia', icon: Shield },
   { href: '/historia', label: 'História', icon: Globe },
   { href: '/cronologia', label: 'Cronologia', icon: ScrollText },

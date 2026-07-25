@@ -1,8 +1,8 @@
 {
   "id": "https://solascripturabr.com.br",
-  "name": "Sola Scriptura BR",
-  "short_name": "SolaScriptura",
-  "description": "Plataforma de estudo biblico academico",
+  "name": "Sola Scriptura - Estudo Biblico Gratuito",
+  "short_name": "Sola Scriptura",
+  "description": "Plataforma completa de estudo biblico com 24 traducoes, 1150+ perguntas de quiz, cursos com certificado e muito mais.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0A0908",

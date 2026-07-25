@@ -1,6 +1,6 @@
-import type { QuizQuestion } from './cursos';
+import type { Curso } from './cursos';
 
-export const CURSO_HERMENEUTICA = {
+export const CURSO_HERMENEUTICA: Curso = {
   id: 'hermeneutica-pratica',
   titulo: 'Hermenêutica Prática',
   descricao: 'Aprenda a interpretar a Bíblia corretamente com métodos comprovados. Evite erros comuns e aprofunde seu entendimento.',
@@ -1149,4 +1149,4 @@ O AT não é um "livro velho e obsoleto". Ele é a história da fidelidade de De
       ],
     },
   ],
-} as const satisfies import('./cursos').Curso;
+};

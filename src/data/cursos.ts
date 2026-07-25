@@ -41,6 +41,10 @@ export interface Curso {
 import { CURSO_FUNDAMENTOS } from './_curso_fundamentos';
 import { CURSO_HERMENEUTICA } from './_curso_hermenetica';
 import { CURSO_EVANGELHOS } from './_curso_evangelhos';
+import { CURSO_EXODO } from './_curso_exodo';
+import { CURSO_SALMOS } from './_curso_salmos';
+import { CURSO_ROMANOS } from './_curso_romanos';
+import { CURSO_APOCALIPSE } from './_curso_apocalipse';
 
 export const CURSOS: Curso[] = [
   {
@@ -403,4 +407,8 @@ O objetivo do estudo biblico nao e acumular informacao — e conhecer a Deus. Se
   CURSO_FUNDAMENTOS,
   CURSO_HERMENEUTICA,
   CURSO_EVANGELHOS,
+  CURSO_EXODO,
+  CURSO_SALMOS,
+  CURSO_ROMANOS,
+  CURSO_APOCALIPSE,
 ];

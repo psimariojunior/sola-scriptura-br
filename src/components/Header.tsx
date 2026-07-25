@@ -47,6 +47,7 @@ const navLinks: NavLinkSpec[] = [
 ];
 
 const moreLinks: NavLinkSpec[] = [
+  { href: '/cursos', label: 'Seminario', icon: GraduationCap },
   { href: '/exegese', label: 'Exegese', icon: ScrollText },
   { href: '/idiomas', label: 'Línguas Originais', icon: Languages },
   { href: '/palavras', label: 'Palavras Originais', icon: Languages },

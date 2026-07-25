@@ -1,8 +1,8 @@
 import { traducoes, traducaoPadrao } from '@/data/biblia/versoes';
 
 describe('Traduções', () => {
-  it('should have 12 translations', () => {
-    expect(traducoes).toHaveLength(12);
+  it('should have 24 translations', () => {
+    expect(traducoes).toHaveLength(24);
   });
 
   it('should have ARC as default translation', () => {

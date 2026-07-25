@@ -73,7 +73,7 @@ export const VerseCard = memo(function VerseCard({
   hasResources: hasResourcesProp = false,
 }: VerseCardProps) {
   const ref = `${livroNome} ${capitulo}:${numero}`;
-  const articleRef = useRef<HTMLElement>(null);
+  const articleRef = useRef<HTMLDivElement>(null);
   const [showActions, setShowActions] = useState(false);
 
   useEffect(() => {
@@ -93,8 +93,10 @@ export const VerseCard = memo(function VerseCard({
 
   return (
     <Fragment>
-      <article
+      <div
         ref={articleRef}
+        tabIndex={-1}
+        aria-label={`Versículo ${numero} de ${livroNome} ${capitulo}${isSelected ? ' (selecionado)' : ''}`}
         onClick={onSelect}
         onMouseEnter={() => setShowActions(true)}
         onMouseLeave={() => setShowActions(false)}
@@ -116,8 +118,6 @@ export const VerseCard = memo(function VerseCard({
             : 'hover:bg-[var(--surface-sunken)]/60 border-l-2 border-l-transparent hover:border-l-[var(--brand-default)]/30',
           corMarca && corBgMap[corMarca]
         )}
-        aria-selected={isSelected}
-        aria-label={`Versículo ${numero} de ${livroNome} ${capitulo}`}
       >
         <div className="flex items-start gap-2.5 sm:gap-4">
           {/* Verse number badge */}
@@ -204,7 +204,7 @@ export const VerseCard = memo(function VerseCard({
             />
           </div>
         </div>
-      </article>
+      </div>
     </Fragment>
   );
 });

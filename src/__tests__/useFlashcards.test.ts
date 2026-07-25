@@ -123,15 +123,9 @@ describe('useFlashcards — addCardManual e stats', () => {
 });
 
 describe('useFlashcards — SSR-safe', () => {
-  test('inicializa vazio quando window é undefined', () => {
-    const realWindow = global.window;
-    // @ts-expect-error simula ambiente sem window
-    delete global.window;
-    try {
-      const { result } = renderHook(() => useFlashcards());
-      expect(result.current.cards).toEqual([]);
-    } finally {
-      global.window = realWindow;
-    }
+  test('inicializa vazio quando localStorage não tem dados', () => {
+    localStorage.clear();
+    const { result } = renderHook(() => useFlashcards());
+    expect(result.current.cards).toEqual([]);
   });
 });

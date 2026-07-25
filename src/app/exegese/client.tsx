@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
 import { carregarTraducao } from '@/data/biblia/texto/carregar';
 import { motion, AnimatePresence } from 'framer-motion';
-import { palavrasOriginais } from '@/data/palavrasOriginais';
+import { carregarLexicoGrego, carregarLexicoHebraico } from '@/lib/lexicon-lazy';
 import { doutrinas } from '@/data/biblia';
 import ScrollReveal from '@/components/ScrollReveal';
 import {
@@ -23,6 +23,10 @@ import {
 } from 'lucide-react';
 import { getIntroducaoLivro } from '@/data/biblia/introducoes';
 import dynamic from 'next/dynamic';
+import type { PalavraGrega } from '@/data/lexicon/grego';
+import type { PalavraHebraica } from '@/data/lexicon/hebraico';
+
+type PalavraOriginal = (PalavraGrega | PalavraHebraica) & { idioma: 'grego' | 'hebraico' };
 const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
   ssr: false,
   loading: () => (
@@ -135,16 +139,26 @@ export function ExegeseClient() {
   const [carregando, setCarregando] = useState(true);
   const [tab, setTab] = useState<TabId>('texto');
   const [versiculoSelecionado, setVersiculoSelecionado] = useState<{livro: string, cap: number, ver: number} | null>(null);
+  const [palavrasOriginais, setPalavrasOriginais] = useState<PalavraOriginal[]>([]);
 
   useEffect(() => {
-    Promise.all(TRAD_IDS.map((t) => carregarTraducao(t))).then(
-      (todos) => {
-        const map: Record<string, LivroData> = {};
-        TRAD_IDS.forEach((t, i) => { map[t] = todos[i]; });
-        setData(map);
-        setCarregando(false);
-      }
-    );
+    Promise.all([
+      ...TRAD_IDS.map((t) => carregarTraducao(t)),
+      carregarLexicoGrego(),
+      carregarLexicoHebraico(),
+    ]).then((results) => {
+      const lexicoGrego = results[results.length - 2] as PalavraGrega[];
+      const lexicoHebraico = results[results.length - 1] as PalavraHebraica[];
+      const map: Record<string, LivroData> = {};
+      TRAD_IDS.forEach((t, i) => { map[t] = results[i] as LivroData; });
+      setData(map);
+      const palavrasComIdioma: PalavraOriginal[] = [
+        ...lexicoGrego.map(g => ({ ...g, idioma: 'grego' as const })),
+        ...lexicoHebraico.map(h => ({ ...h, idioma: 'hebraico' as const })),
+      ];
+      setPalavrasOriginais(palavrasComIdioma);
+      setCarregando(false);
+    });
   }, []);
 
   const livro = useMemo(
@@ -182,14 +196,14 @@ export function ExegeseClient() {
   }, [livroAbrev]);
 
   const palavrasRelacionadas = useMemo(() => {
-    if (!livroAbrev) return [];
+    if (!livroAbrev || palavrasOriginais.length === 0) return [];
     const livroObj = TODOS_LIVROS.find((l) => l.abreviacao === livroAbrev);
     if (!livroObj) return [];
     const isNT = livroObj.testamento === 'NT';
     return palavrasOriginais
       .filter((p) => p.idioma === (isNT ? 'grego' : 'hebraico'))
       .slice(0, 10);
-  }, [livroAbrev]);
+  }, [livroAbrev, palavrasOriginais]);
 
   const doutrinasRelacionadas = useMemo(() => {
     if (!livroAbrev) return [];
@@ -527,10 +541,10 @@ export function ExegeseClient() {
                                       </span>
                                     </div>
                                     <p className="text-sm mt-2">{p.definicao}</p>
-                                    {p.morfologia && (
+                                    {('morfologia' in p ? p.morfologia : 'morphologia' in p ? (p as PalavraGrega).morphologia : null) && (
                                       <p className="text-xs text-muted-foreground mt-2 flex items-center gap-1">
                                         <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                                        {p.morfologia}
+                                        {'morfologia' in p ? p.morfologia : (p as PalavraGrega).morphologia}
                                       </p>
                                     )}
                                   </div>

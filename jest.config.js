@@ -4,6 +4,7 @@ const config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^jspdf$': '<rootDir>/src/__mocks__/jspdf.ts',
   },
   testPathIgnorePatterns: [
     '<rootDir>/node_modules/',
@@ -18,9 +19,18 @@ const config = {
     '!src/**/page.tsx',
   ],
   transform: {
-    '^.+\\.(ts|tsx)$': ['ts-jest', {
-      tsconfig: 'tsconfig.json',
-      jsx: 'react-jsx',
+    '^.+\\.(ts|tsx)$': ['@swc/jest', {
+      jsc: {
+        parser: {
+          syntax: 'typescript',
+          tsx: true,
+        },
+        transform: {
+          react: {
+            runtime: 'automatic',
+          },
+        },
+      },
     }],
   },
 };

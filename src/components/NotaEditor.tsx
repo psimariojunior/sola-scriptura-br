@@ -221,7 +221,7 @@ export function NotaEditor({
             className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all"
             title="Inserir imagem"
           >
-            {/* eslint-disable-next-line jsx-a11y/alt-text */}
+            { }
             <Image className="w-4 h-4" />
           </button>
 

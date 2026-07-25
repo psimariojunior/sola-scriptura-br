@@ -56,7 +56,7 @@ const PROTECTED_PREFIXES = [
   '/conta',
 ];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (PUBLIC_PREFIXES.some(prefix => pathname.startsWith(prefix))) {

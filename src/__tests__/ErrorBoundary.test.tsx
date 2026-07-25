@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { render, screen, fireEvent } from '@testing-library/react';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 function ThrowingComponent({ shouldThrow = true }: { shouldThrow?: boolean }) {
@@ -7,7 +8,8 @@ function ThrowingComponent({ shouldThrow = true }: { shouldThrow?: boolean }) {
 }
 
 describe('ErrorBoundary', () => {
-  beforeEach(() => { vi.spyOn(console, 'error').mockImplementation(() => {}); });
+  beforeEach(() => { jest.spyOn(console, 'error').mockImplementation(() => {}); });
+  afterEach(() => { jest.restoreAllMocks(); });
 
   it('renders children when no error', () => {
     render(<ErrorBoundary><ThrowingComponent shouldThrow={false} /></ErrorBoundary>);
@@ -26,9 +28,8 @@ describe('ErrorBoundary', () => {
   });
 
   it('has retry button that resets error state', () => {
-    const { rerender } = render(<ErrorBoundary><ThrowingComponent /></ErrorBoundary>);
+    render(<ErrorBoundary><ThrowingComponent /></ErrorBoundary>);
     expect(screen.getByText('Algo deu errado')).toBeInTheDocument();
     fireEvent.click(screen.getByText('Tentar novamente'));
-    // After retry, the boundary re-renders children
   });
 });

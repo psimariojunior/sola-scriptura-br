@@ -96,6 +96,7 @@ export default function BibliaPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleGoToBook = useCallback((idx: number, cap?: number) => { nav.goToBook(idx, cap); ui.setMobileMenu(false); ui.setChapterGridOpen(false); }, [nav.goToBook, ui.setMobileMenu, ui.setChapterGridOpen]);
 
+  /* eslint-disable react-hooks/exhaustive-deps */
   const stableHandleSelectFromList = useCallback((livro: string, cap: number, ver: number, traducao: string, texto: string) => {
     verse.handleSelectFromList(livro, cap, ver, traducao, texto);
   }, [verse.handleSelectFromList]);
@@ -112,6 +113,7 @@ export default function BibliaPage() {
   const stableSetEstudoAberto = useCallback((num: number | null) => {
     verse.setEstudoAberto(num);
   }, [verse.setEstudoAberto]);
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   // Scroll to top when chapter changes
   useEffect(() => {
@@ -294,7 +296,7 @@ export default function BibliaPage() {
         onAprofundar={() => { if (!verse.versiculoSelecionado) return; if (!authService.temAcessoTotal()) { panels.setPaywallAprofundarAberto(true); return; } window.open(`/estudo-ia?ref=${encodeURIComponent(`${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`)}`, '_blank'); }}
         copyVerse={verse.copyVerse} copiedVerse={verse.copiedVerse} />
       {verse.versiculoSelecionado && authService.temAcessoTotal() && (
-        <a href={`/estudo-ia?ref=${encodeURIComponent(`${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`)}`} target="_blank"
+        <a href={`/estudo-ia?ref=${encodeURIComponent(`${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`)}`} target="_blank" rel="noreferrer"
           className="fade-in-bottom hidden lg:flex fixed bottom-6 right-6 z-30 items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all"><Sparkles className="w-4 h-4" />Aprofundar com IA</a>)}
       <AudioPlayers audioNatural={audioNatural} audio={audio} data={nav.data} livroNome={nav.livro.nome} capitulo={nav.capituloIdx + 1} />
       <AnnotationModal open={verse.anotandoVersiculo !== null} verseKey={verse.anotandoVersiculo} initialText={verse.anotacaoTexto} onClose={() => verse.setAnotandoVersiculo(null)}

@@ -319,6 +319,7 @@ function RemoteVideo({ peer }: { peer: PeerStream }) {
       'relative rounded-xl overflow-hidden bg-black/80 border border-[var(--border)]/20',
       isFullscreen ? 'col-span-2 row-span-2' : ''
     )}>
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
         ref={videoRef}
         autoPlay

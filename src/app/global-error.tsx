@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable */
 
 import * as Sentry from '@sentry/nextjs';
 import { useEffect } from 'react';

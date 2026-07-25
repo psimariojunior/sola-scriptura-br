@@ -1,14 +1,15 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Languages, Search, X, BookOpen, ArrowRight, Hash, Volume2, ChevronDown, ChevronUp } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
-import { palavrasGregas, type PalavraGrega } from '@/data/lexicon/grego';
-import { palavrasHebraicas, type PalavraHebraica } from '@/data/lexicon/hebraico';
+import { carregarLexicoGrego, carregarLexicoHebraico } from '@/lib/lexicon-lazy';
+import type { PalavraGrega } from '@/data/lexicon/grego';
+import type { PalavraHebraica } from '@/data/lexicon/hebraico';
 
 type Idioma = 'grego' | 'hebraico';
 
@@ -17,8 +18,19 @@ export default function PalavrasOriginaisPage() {
   const [busca, setBusca] = useState('');
   const [expandedStrong, setExpandedStrong] = useState<string | null>(null);
   const [filtroCategoria, setFiltroCategoria] = useState<string>('all');
+  const [palavrasGregas, setPalavrasGregas] = useState<PalavraGrega[]>([]);
+  const [palavrasHebraicas, setPalavrasHebraicas] = useState<PalavraHebraica[]>([]);
+  const [carregando, setCarregando] = useState(true);
 
-  const palavras = useMemo(() => idioma === 'grego' ? palavrasGregas : palavrasHebraicas, [idioma]);
+  useEffect(() => {
+    Promise.all([carregarLexicoGrego(), carregarLexicoHebraico()]).then(([g, h]) => {
+      setPalavrasGregas(g);
+      setPalavrasHebraicas(h);
+      setCarregando(false);
+    });
+  }, []);
+
+  const palavras = useMemo(() => idioma === 'grego' ? palavrasGregas : palavrasHebraicas, [idioma, palavrasGregas, palavrasHebraicas]);
 
   const categorias = useMemo(() => {
     const cats = new Set(palavras.map(p => 'categoria' in p ? p.categoria : '').filter(Boolean));
@@ -59,7 +71,7 @@ export default function PalavrasOriginaisPage() {
               </div>
               <h1 className="font-display text-4xl font-light mb-3">Palavras <span className="text-primary italic">Originais</span></h1>
               <p className="text-muted-foreground max-w-lg mx-auto">
-                Estude o grego do Novo Testamento ({palavrasGregas.length} palavras) e o hebraico do Antigo Testamento ({palavrasHebraicas.length} palavras)
+                Estude o grego do Novo Testamento ({carregando ? '...' : palavrasGregas.length} palavras) e o hebraico do Antigo Testamento ({carregando ? '...' : palavrasHebraicas.length} palavras)
               </p>
             </div>
           </ScrollReveal>
@@ -106,7 +118,17 @@ export default function PalavrasOriginaisPage() {
           </div>
 
           <div className="space-y-2">
-            {filtradas.map((p) => {
+            {carregando ? (
+              <div className="text-center py-16">
+                <div className="inline-flex gap-2">
+                  <span className="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:0s]" />
+                  <span className="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:0.15s]" />
+                  <span className="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:0.3s]" />
+                </div>
+                <p className="text-sm text-muted-foreground mt-4">Carregando léxico...</p>
+              </div>
+            ) : (
+              filtradas.map((p) => {
               const isExpanded = expandedStrong === p.strong;
               return (
                 <motion.div key={p.strong} layout
@@ -191,7 +213,8 @@ export default function PalavrasOriginaisPage() {
                   )}
                 </motion.div>
               );
-            })}
+            })
+            )}
           </div>
 
           <p className="text-center text-xs text-muted-foreground mt-8">

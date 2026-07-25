@@ -93,6 +93,7 @@ export function OfflineDownloadManager({ open, onClose }: OfflineDownloadManager
     setDownloading(null);
     setProgress({ current: 0, total: 0, book: '' });
     loadStats();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [downloading, progress.current, loadStats]);
 
   const handleRemove = useCallback(async (traducao: string) => {

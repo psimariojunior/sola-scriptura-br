@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, lazy, Suspense, useMemo } from 'react';
+import { useCallback, lazy, Suspense, useMemo, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
@@ -65,7 +65,15 @@ const PASSAGENS_DRAMATICAS: Record<string, { titulo: string; subtitulo: string; 
   'mt-27': { titulo: 'A Crucificação de Jesus', subtitulo: 'Mateus 27', cenas: [], personagens: [] },
 };
 
+import { carregarTraducao } from '@/data/biblia/texto/carregar';
+
 export default function BibliaPage() {
+  useEffect(() => {
+    const trads = ['arc', 'nvi', 'ara', 'acf', 'kjv', 'web'];
+    requestIdleCallback(() => {
+      trads.forEach(t => { carregarTraducao(t); });
+    });
+  }, []);
   const { isFavorito, refresh } = useEstudos();
   const audio = useVerseAudio();
   const audioNatural = useAudioNatural();

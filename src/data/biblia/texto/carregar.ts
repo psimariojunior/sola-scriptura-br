@@ -63,6 +63,10 @@ async function fetchMidvash(traducao: string, livro: string, capitulo: number): 
   }
 }
 
+export function carregarTraducaoSync(traducao: string): LivroData | null {
+  return cache.get(traducao) ?? null;
+}
+
 export async function carregarTraducao(traducao: string): Promise<LivroData> {
   if (cache.has(traducao)) return cache.get(traducao)!;
 

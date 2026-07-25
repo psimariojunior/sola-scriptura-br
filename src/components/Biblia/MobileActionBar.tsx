@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, StickyNote, Languages, Share2, BookOpen, GraduationCap, Palette, Copy, X, Sparkles, MessageSquare, Image as ImageIcon, Users } from 'lucide-react';
+import { Heart, StickyNote, Languages, Share2, BookOpen, Palette, Copy, X, Sparkles, MessageSquare, Image as ImageIcon, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
 import type { useVerseAudio } from '@/hooks/useVerseAudio';
@@ -10,7 +10,6 @@ import { useState, memo } from 'react';
 import { CORES, setMarcador, removeMarcador, getMarcador, type CorMarcador } from '@/lib/marcadores';
 import { toggleFavorito } from '@/lib/estudos';
 import { temComentario } from '@/data/comentarios-index';
-import { temEstudo } from '@/data/estudos-index';
 
 const corMap: Record<CorMarcador, string> = {
   yellow: 'bg-yellow-400',
@@ -32,7 +31,7 @@ export interface MobileActionBarProps {
   onAnotar: () => void;
   onStrong: () => void;
   onComentarios: () => void;
-  onToggleEstudo: () => void;
+  onAbrirPainel: () => void;
   onApresentar: () => void;
   onCompartilharImagem: () => void;
   onAprofundar: () => void;
@@ -52,7 +51,7 @@ function MobileActionBarInner({
   onAnotar,
   onStrong,
   onComentarios,
-  onToggleEstudo,
+  onAbrirPainel,
   onApresentar,
   onCompartilharImagem,
   onAprofundar,
@@ -194,13 +193,6 @@ function MobileActionBarInner({
                     onClick={onComentarios}
                   />
                 )}
-                {temEstudo(livroAbreviacao, capitulo, versiculo) && (
-                  <ActionTile
-                    icon={GraduationCap}
-                    label="Estudo"
-                    onClick={onToggleEstudo}
-                  />
-                )}
                 <ActionTile
                   icon={Share2}
                   label="Compartilhar"
@@ -226,6 +218,11 @@ function MobileActionBarInner({
                   icon={Users}
                   label="Sala"
                   onClick={onCompartilharSala}
+                />
+                <ActionTile
+                  icon={BookOpen}
+                  label="Estudo"
+                  onClick={onAbrirPainel}
                 />
               </div>
             </div>

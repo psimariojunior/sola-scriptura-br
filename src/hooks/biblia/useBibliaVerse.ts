@@ -92,8 +92,11 @@ export function UseBibliaVerse({
       const livroInfo = livroPorAbreviacao.get(livro);
       const livroNome = livroInfo?.nome || livro;
       setVersiculoSelecionado({ livro, livroNome, livroAbreviacao: livro, capitulo: cap, versiculo: ver, traducao, texto });
-      setSidePanelTab('comentarios');
-      setSidePanelWidth('half');
+      // No mobile (lg:), so abre MobileActionBar — SidePanel so abre no desktop
+      if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
+        setSidePanelTab('comentarios');
+        setSidePanelWidth('half');
+      }
     } catch (e) {
       console.error('Erro ao selecionar versículo:', e);
     }

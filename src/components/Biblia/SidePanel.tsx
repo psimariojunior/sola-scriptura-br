@@ -125,6 +125,7 @@ export function SidePanel({
         'shrink-0 border-l border-[var(--border)] bg-[var(--surface-raised)]',
         'flex flex-col h-full',
         'transition-[width] duration-300',
+        'max-lg:fixed max-lg:inset-y-0 max-lg:right-0 max-lg:z-50 max-lg:shadow-2xl max-lg:border-l',
         widthMap[width]
       )}
     >

@@ -93,6 +93,7 @@ export default function BibliaPage() {
   const chaveDramatica = `${nav.livro.abreviacao}-${nav.capituloIdx + 1}`;
   const passagemDramatica = PASSAGENS_DRAMATICAS[chaveDramatica];
   const [showDownloadManager, setShowDownloadManager] = useState(false);
+  const [painelVersiculoAberto, setPainelVersiculoAberto] = useState(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleGoToBook = useCallback((idx: number, cap?: number) => { nav.goToBook(idx, cap); ui.setMobileMenu(false); ui.setChapterGridOpen(false); }, [nav.goToBook, ui.setMobileMenu, ui.setChapterGridOpen]);
 
@@ -272,11 +273,14 @@ export default function BibliaPage() {
             <MobileBookMenu open={ui.mobileMenu} onClose={() => ui.setMobileMenu(false)} livroIdx={nav.livroIdx} onSelect={(idx) => handleGoToBook(idx)} onSelectChapter={(idx, cap) => handleGoToBook(idx, cap)} />
           </div>
           {panels.sidePanelOpen && (
-            <ErrorBoundary fallback={<div className="shrink-0 w-full sm:w-[340px] md:w-[380px] lg:w-[420px] border-l border-[var(--border)] bg-[var(--surface-raised)] flex items-center justify-center p-8"><p className="text-sm text-[var(--content-muted)]">Erro ao carregar painel</p><button onClick={() => { panels.setSidePanelTab(null); panels.setSidePanelWidth('collapsed'); }} className="text-xs text-[var(--brand-default)] underline">Fechar</button></div>}>
-              <SidePanel open={panels.sidePanelOpen} width={panels.sidePanelWidth} onWidthChange={panels.setSidePanelWidth} activeTab={panels.sidePanelTab} onActiveTabChange={(tab) => { panels.setSidePanelTab(tab); if (!tab) panels.setSidePanelWidth('collapsed'); }}
-                livro={nav.livro.nome} livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} versiculo={verse.comentarioVersiculo ?? verse.versiculoSelecionado?.versiculo}
-                onClose={() => { panels.setSidePanelTab(null); panels.setSidePanelWidth('collapsed'); }} versiculoTexto={verse.versiculoSelecionado?.texto} versiculoTraducao={verse.versiculoSelecionado?.traducao} />
-            </ErrorBoundary>)}
+            <>
+              <div className="hidden max-lg:block fixed inset-0 z-40 bg-black/40 backdrop-blur-sm" onClick={() => { panels.setSidePanelTab(null); panels.setSidePanelWidth('collapsed'); }} />
+              <ErrorBoundary fallback={<div className="shrink-0 w-full sm:w-[340px] md:w-[380px] lg:w-[420px] border-l border-[var(--border)] bg-[var(--surface-raised)] flex items-center justify-center p-8"><p className="text-sm text-[var(--content-muted)]">Erro ao carregar painel</p><button onClick={() => { panels.setSidePanelTab(null); panels.setSidePanelWidth('collapsed'); }} className="text-xs text-[var(--brand-default)] underline">Fechar</button></div>}>
+                <SidePanel open={panels.sidePanelOpen} width={panels.sidePanelWidth} onWidthChange={panels.setSidePanelWidth} activeTab={panels.sidePanelTab} onActiveTabChange={(tab) => { panels.setSidePanelTab(tab); if (!tab) panels.setSidePanelWidth('collapsed'); }}
+                  livro={nav.livro.nome} livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} versiculo={verse.comentarioVersiculo ?? verse.versiculoSelecionado?.versiculo}
+                  onClose={() => { panels.setSidePanelTab(null); panels.setSidePanelWidth('collapsed'); }} versiculoTexto={verse.versiculoSelecionado?.texto} versiculoTraducao={verse.versiculoSelecionado?.traducao} />
+              </ErrorBoundary>
+            </>)}
         </div>
       </main>
       <MobileActionBar selected={verse.versiculoSelecionado} onClose={() => verse.setVersiculoSelecionado(null)} audioNatural={audioNatural} audio={audio} flashcards={flashcards}
@@ -284,7 +288,7 @@ export default function BibliaPage() {
         onAnotar={() => { if (!verse.versiculoSelecionado) return; const m = getMarcador(verse.versiculoSelecionado.livro, verse.versiculoSelecionado.capitulo, verse.versiculoSelecionado.versiculo, verse.versiculoSelecionado.traducao); verse.setAnotandoVersiculo(`${verse.versiculoSelecionado.livro}:${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}:${verse.versiculoSelecionado.traducao}`); verse.setAnotacaoTexto(m?.cor || ''); verse.setVersiculoSelecionado(null); }}
         onStrong={() => { panels.setSidePanelWidth('half'); panels.setSidePanelTab('strong'); verse.setVersiculoSelecionado(null); }}
         onComentarios={() => { if (verse.versiculoSelecionado) { verse.setComentarioVersiculo(verse.versiculoSelecionado.versiculo); panels.setSidePanelWidth('half'); panels.setSidePanelTab('comentarios'); } verse.setVersiculoSelecionado(null); }}
-        onToggleEstudo={() => { if (verse.versiculoSelecionado) verse.setEstudoAberto(verse.estudoAberto === verse.versiculoSelecionado.versiculo ? null : verse.versiculoSelecionado.versiculo); verse.setVersiculoSelecionado(null); }}
+        onAbrirPainel={() => { setPainelVersiculoAberto(true); verse.setVersiculoSelecionado(null); }}
         onApresentar={() => { ui.setMostrarApresentacao(true); verse.setVersiculoSelecionado(null); }} onCompartilharImagem={() => ui.setShareOpen(true)}
         onCompartilharSala={() => {
           if (!verse.versiculoSelecionado) return;
@@ -305,7 +309,7 @@ export default function BibliaPage() {
         onGoToResult={(r, query) => { const idx = TODOS_LIVROS.findIndex(l => l.abreviacao === r.livro); if (idx >= 0) { verse.setRecentSearches(prev => { const next = [{ query, livro: r.livro, nome: r.nome, cap: r.cap, versiculo: r.versiculo || 1 }, ...prev.filter(s => s.livro !== r.livro || s.cap !== r.cap)].slice(0, 5); try { localStorage.setItem('ssb_recent_searches', JSON.stringify(next)); } catch {} return next; }); nav.setLivroIdx(idx); nav.setCapituloIdx(r.cap - 1); ui.setQuickSearchOpen(false); } }} recentSearches={verse.recentSearches} />)}
       {ui.mostrarNarracao && passagemDramatica && (<div className="page-transition fixed inset-0 z-50 bg-[var(--bg)]"><Suspense fallback={<PanelFallback />}><NarracaoDramaticaLazy titulo={passagemDramatica.titulo} subtitulo={passagemDramatica.subtitulo} cenas={passagemDramatica.cenas} personagens={passagemDramatica.personagens} onFechar={() => ui.setMostrarNarracao(false)} /></Suspense></div>)}
       {ui.mostrarNarracaoCapitulo && (<Suspense fallback={<PanelFallback />}><NarrationPanel open={ui.mostrarNarracaoCapitulo} onClose={() => { ui.setMostrarNarracaoCapitulo(false); capituloAudio.stop(); }} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} traducao={nav.selectedTrads[0] || 'arc'} livroNome={nav.livro.nome} versiculos={nav.data[0]?.versiculos?.map(v => ({ numero: v.numero, texto: v.texto })) ?? []} /></Suspense>)}
-      <PainelDoVersiculo livro={verse.versiculoSelecionado?.livroAbreviacao ?? ''} capitulo={verse.versiculoSelecionado?.capitulo ?? 1} versiculo={verse.versiculoSelecionado?.versiculo ?? 1} aberto={verse.versiculoSelecionado !== null} onFechar={() => verse.setVersiculoSelecionado(null)} />
+      <PainelDoVersiculo livro={verse.versiculoSelecionado?.livroAbreviacao ?? ''} capitulo={verse.versiculoSelecionado?.capitulo ?? 1} versiculo={verse.versiculoSelecionado?.versiculo ?? 1} aberto={painelVersiculoAberto} onFechar={() => setPainelVersiculoAberto(false)} />
       <ApresentacaoModal open={ui.mostrarApresentacao} onClose={() => ui.setMostrarApresentacao(false)} livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} versiculo={1} translation={nav.selectedTrads[0] || 'arc'} />
       <PainelQualidadeAudio open={ui.mostrarQualidadeAudio} onOpenChange={ui.setMostrarQualidadeAudio} />
       <ExportModal open={ui.exportOpen} onClose={() => ui.setExportOpen(false)} bookName={nav.livro.nome} chapter={nav.capituloIdx + 1} data={nav.data} />

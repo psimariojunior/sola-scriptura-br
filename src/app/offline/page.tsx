@@ -1,29 +1,70 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Download, Check, Trash2, HardDrive, Wifi, WifiOff,
-  ChevronRight, BookOpen, RefreshCw, Info, Shield
+  ChevronRight, ChevronDown, ChevronUp, BookOpen, RefreshCw, Info, Shield,
+  Globe, Zap, CloudOff
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   cacheTranslation, removeTranslation, isTranslationDownloaded,
   getOfflineStats, cacheAllTranslations, TRADUCOES_LOCAIS,
-  type TraducaoLocalId
+  downloadApiTranslation, type TraducaoLocalId
 } from '@/lib/offline';
-import Link from 'next/link';
+import { traducoes } from '@/data/biblia/versoes';
 import ScrollReveal from '@/components/ScrollReveal';
+import Link from 'next/link';
 
-const TRADUCOES_INFO: Record<TraducaoLocalId, { nome: string; descricao: string; cor: string }> = {
-  arc: { nome: 'Atualizada Revisada e Corrigida', descricao: 'Tradição evangélica', cor: '#6366f1' },
-  nvi: { nome: 'Nova Versão Internacional', descricao: 'Mais lida do mundo', cor: '#10b981' },
-  ara: { nome: 'Atualizada Revisada ao Falar do Dia', descricao: 'Tradição protestante', cor: '#f59e0b' },
-  acf: { nome: 'Almeida Corrigida e Fiel', descricao: 'Clássica e fiel ao original', cor: '#ef4444' },
-  kjv: { nome: 'King James Version', descricao: 'Referência em inglês', cor: '#8b5cf6' },
-  web: { nome: 'World English Bible', descricao: 'Dominio público em inglês', cor: '#06b6d4' },
+interface TraducaoInfo {
+  id: string;
+  nome: string;
+  sigla: string;
+  descricao: string;
+  cor: string;
+  tipo: 'local' | 'api';
+  idioma: string;
+  tamanho?: string;
+}
+
+const ALL_TRANSLATIONS: TraducaoInfo[] = [
+  // Locais — instantâneo, ~4MB cada
+  { id: 'arc', nome: 'Almeida Revista e Corrigida', sigla: 'ARC', descricao: 'Tradição evangélica clássica', cor: '#6366f1', tipo: 'local', idioma: 'pt', tamanho: '~4 MB' },
+  { id: 'nvi', nome: 'Nova Versão Internacional', sigla: 'NVI', descricao: 'Mais lida do mundo', cor: '#10b981', tipo: 'local', idioma: 'pt', tamanho: '~4 MB' },
+  { id: 'ara', nome: 'Almeida Revista e Atualizada', sigla: 'ARA', descricao: 'Revisão pela SBB', cor: '#f59e0b', tipo: 'local', idioma: 'pt', tamanho: '~4 MB' },
+  { id: 'acf', nome: 'Almeida Corrigida Fiel', sigla: 'ACF', descricao: 'Fiel ao original hebraico/grego', cor: '#ef4444', tipo: 'local', idioma: 'pt', tamanho: '~4 MB' },
+  { id: 'kjv', nome: 'King James Version', sigla: 'KJV', descricao: 'Referência em inglês', cor: '#8b5cf6', tipo: 'local', idioma: 'en', tamanho: '~4 MB' },
+  { id: 'web', nome: 'World English Bible', sigla: 'WEB', descricao: 'Domínio público em inglês', cor: '#06b6d4', tipo: 'local', idioma: 'en', tamanho: '~4 MB' },
+
+  // API — baixam da Midvash, precisam de internet uma vez
+  { id: 'naa', nome: 'Nova Almeida Atualizada', sigla: 'NAA', descricao: 'Atualização contemporânea', cor: '#f97316', tipo: 'api', idioma: 'pt', tamanho: '~3 MB' },
+  { id: 'ntlh', nome: 'Nova Tradução na Linguagem de Hoje', sigla: 'NTLH', descricao: 'Linguagem simples e acessível', cor: '#14b8a6', tipo: 'api', idioma: 'pt', tamanho: '~3 MB' },
+  { id: 'nvt', nome: 'Nova Versão Transformadora', sigla: 'NVT', descricao: 'Enfatiza transformação', cor: '#a855f7', tipo: 'api', idioma: 'pt', tamanho: '~3 MB' },
+  { id: 'kja', nome: 'King James Atualizada', sigla: 'KJA', descricao: 'KJV em português moderno', cor: '#e11d48', tipo: 'api', idioma: 'pt', tamanho: '~3 MB' },
+  { id: 'aa', nome: 'Almeida e Atualizada', sigla: 'AA', descricao: 'Versão atualizada da Almeida', cor: '#0ea5e9', tipo: 'api', idioma: 'pt', tamanho: '~3 MB' },
+  { id: 'nbv', nome: 'Nova Bíblia Viva', sigla: 'NBV', descricao: 'Contemporânea e acessível', cor: '#84cc16', tipo: 'api', idioma: 'pt', tamanho: '~3 MB' },
+  { id: 'as21', nome: 'Almeida Século 21', sigla: 'AS21', descricao: 'Linguagem do século 21', cor: '#d946ef', tipo: 'api', idioma: 'pt', tamanho: '~3 MB' },
+  { id: 'jfaa', nome: 'João Ferreira de Almeida Atualizada', sigla: 'JFAA', descricao: 'Revisão contemporânea', cor: '#f43f5e', tipo: 'api', idioma: 'pt', tamanho: '~3 MB' },
+  { id: 'kjf', nome: 'King James Fiel', sigla: 'KJF', descricao: 'Fiel da KJV em português', cor: '#7c3aed', tipo: 'api', idioma: 'pt', tamanho: '~3 MB' },
+  { id: 'msgpt', nome: 'A Mensagem', sigla: 'MSG', descricao: 'Paráfrase de Eugene Peterson', cor: '#059669', tipo: 'api', idioma: 'pt', tamanho: '~3 MB' },
+  { id: 'bpm', nome: 'Bíblia Portuguesa Mundial', sigla: 'BPM', descricao: 'Português acessível', cor: '#2563eb', tipo: 'api', idioma: 'pt', tamanho: '~3 MB' },
+  { id: 'nva', nome: 'Nova Versão de Acesso Livre', sigla: 'NVA', descricao: 'Domínio público', cor: '#ca8a04', tipo: 'api', idioma: 'pt', tamanho: '~3 MB' },
+  { id: 'esv', nome: 'English Standard Version', sigla: 'ESV', descricao: 'Inglês acadêmica', cor: '#9333ea', tipo: 'api', idioma: 'en', tamanho: '~3 MB' },
+  { id: 'niv', nome: 'New International Version', sigla: 'NIV', descricao: 'Inglês popular', cor: '#dc2626', tipo: 'api', idioma: 'en', tamanho: '~3 MB' },
+  { id: 'nkjv', nome: 'New King James Version', sigla: 'NKJV', descricao: 'KJV em inglês moderno', cor: '#0284c7', tipo: 'api', idioma: 'en', tamanho: '~3 MB' },
+  { id: 'nlt', nome: 'New Living Translation', sigla: 'NLT', descricao: 'Linguagem acessível', cor: '#16a34a', tipo: 'api', idioma: 'en', tamanho: '~3 MB' },
+  { id: 'rvr1960', nome: 'Reina-Valera 1960', sigla: 'RVR60', descricao: 'Espanhol clássica', cor: '#ea580c', tipo: 'api', idioma: 'es', tamanho: '~3 MB' },
+  { id: 'lsg', nome: 'Louis Segond', sigla: 'LSG', descricao: 'Francês clássica', cor: '#4f46e5', tipo: 'api', idioma: 'fr', tamanho: '~3 MB' },
+];
+
+const IDIOMA_LABELS: Record<string, string> = {
+  pt: 'Português',
+  en: 'Inglês',
+  es: 'Espanhol',
+  fr: 'Francês',
 };
 
 export default function OfflinePage() {
@@ -33,57 +74,67 @@ export default function OfflinePage() {
   const [stats, setStats] = useState({ totalChapters: 0, totalTranslations: 0, translations: {} as Record<string, number>, storageUsed: 0, lastSync: null as number | null });
   const [mounted, setMounted] = useState(false);
   const [downloadingAll, setDownloadingAll] = useState(false);
+  const [showLocal, setShowLocal] = useState(true);
+  const [showApi, setShowApi] = useState(true);
+  const abortRef = useRef<AbortController | null>(null);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => { setMounted(true); }, []);
 
   const loadStats = useCallback(async () => {
     try {
       const s = await getOfflineStats();
       setStats(s);
       const d: Record<string, boolean> = {};
-      for (const t of TRADUCOES_LOCAIS) {
-        d[t] = s.translations[t] > 0;
+      for (const t of ALL_TRANSLATIONS) {
+        d[t.id] = (s.translations[t.id] || 0) > 0;
       }
       setDownloaded(d);
     } catch {}
   }, []);
 
-  useEffect(() => {
-    if (mounted) {
-      loadStats();
-    }
-  }, [mounted, loadStats]);
+  useEffect(() => { if (mounted) loadStats(); }, [mounted, loadStats]);
 
-  const handleDownload = async (traducao: TraducaoLocalId) => {
-    setDownloading(traducao);
-    setProgress({ current: 0, total: 0, book: '' });
+  const handleDownload = async (traducao: TraducaoInfo) => {
+    if (downloading) return;
+    setDownloading(traducao.id);
+    setProgress({ current: 0, total: 0, book: traducao.sigla });
+    abortRef.current = new AbortController();
+
     try {
-      await cacheTranslation(traducao, (current, total) => {
-        setProgress({ current, total, book: traducao.toUpperCase() });
-      });
+      if (traducao.tipo === 'local') {
+        await cacheTranslation(traducao.id, (current, total) => {
+          setProgress({ current, total, book: traducao.sigla });
+        });
+      } else {
+        await downloadApiTranslation(traducao.id, (book, chapter, total) => {
+          setProgress(prev => ({ current: prev.current + 1, total, book: `${traducao.sigla} — ${book.toUpperCase()}` }));
+        }, abortRef.current.signal);
+      }
       await loadStats();
     } catch {}
     setDownloading(null);
+    setProgress({ current: 0, total: 0, book: '' });
   };
 
-  const handleRemove = async (traducao: TraducaoLocalId) => {
-    try {
-      await removeTranslation(traducao);
-      await loadStats();
-    } catch {}
+  const handleRemove = async (traducaoId: string) => {
+    await removeTranslation(traducaoId);
+    await loadStats();
   };
 
-  const handleDownloadAll = async () => {
+  const handleDownloadAllLocal = async () => {
+    if (downloadingAll) return;
     setDownloadingAll(true);
     setProgress({ current: 0, total: 0, book: '' });
-    try {
-      await cacheAllTranslations((traducao, current, total) => {
-        setProgress({ current, total, book: traducao.toUpperCase() });
-      });
-      await loadStats();
-    } catch {}
+    await cacheAllTranslations((trad, current, total) => {
+      setProgress({ current, total, book: trad.toUpperCase() });
+    });
+    setDownloadingAll(false);
+    await loadStats();
+  };
+
+  const handleCancel = () => {
+    abortRef.current?.abort();
+    setDownloading(null);
     setDownloadingAll(false);
   };
 
@@ -97,7 +148,9 @@ export default function OfflinePage() {
 
   if (!mounted) return null;
 
-  const allDownloaded = TRADUCOES_LOCAIS.every((t) => downloaded[t]);
+  const localTranslations = ALL_TRANSLATIONS.filter(t => t.tipo === 'local');
+  const apiTranslations = ALL_TRANSLATIONS.filter(t => t.tipo === 'api');
+  const downloadedCount = Object.values(downloaded).filter(Boolean).length;
   const anyDownloading = !!(downloading || downloadingAll);
 
   return (
@@ -108,18 +161,19 @@ export default function OfflinePage() {
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4"
               style={{ background: 'var(--surface-raised)', border: '1px solid var(--border)' }}>
-              <BookOpen size={18} style={{ color: 'var(--brand-default)' }} />
-              <span className="text-sm font-medium" style={{ color: 'var(--content-muted)' }}>Gestão de Offline</span>
+              <CloudOff size={18} style={{ color: 'var(--brand-default)' }} />
+              <span className="text-sm font-medium" style={{ color: 'var(--content-muted)' }}>Bíblia Offline</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-bold mb-3" style={{ color: 'var(--content-primary)' }}>
-              Bíblia Offline
+              Baixar Versões
             </h1>
             <p className="text-lg" style={{ color: 'var(--content-muted)' }}>
-              Leia a Bíblia sem conexão com a internet
+              24 traduções disponíveis — baixe e leia sem internet
             </p>
           </div>
         </ScrollReveal>
 
+        {/* Status Card */}
         <ScrollReveal delay={0.1}>
           <div className="rounded-2xl p-6 mb-8" style={{
             background: 'var(--surface-raised)',
@@ -130,238 +184,289 @@ export default function OfflinePage() {
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center"
                   style={{ background: 'var(--brand-default)', color: '#fff' }}>
-                  {navigator.onLine ? <Wifi size={22} /> : <WifiOff size={22} />}
+                  {typeof navigator !== 'undefined' && navigator.onLine ? <Wifi size={22} /> : <WifiOff size={22} />}
                 </div>
                 <div>
                   <h2 className="font-semibold text-lg" style={{ color: 'var(--content-primary)' }}>
-                    {navigator.onLine ? 'Online' : 'Offline'}
+                    {downloadedCount}/{ALL_TRANSLATIONS.length} versões baixadas
                   </h2>
                   <p className="text-sm" style={{ color: 'var(--content-muted)' }}>
-                    {stats.totalTranslations} versão(ões) baixada(s)
+                    {stats.totalChapters.toLocaleString('pt-BR')} capítulos · {formatBytes(stats.storageUsed)}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 px-4 py-2 rounded-xl"
-                  style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
-                  <HardDrive size={16} style={{ color: 'var(--brand-default)' }} />
-                  <span className="text-sm font-medium" style={{ color: 'var(--content-primary)' }}>
-                    {formatBytes(stats.storageUsed)}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 px-4 py-2 rounded-xl"
-                  style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
-                  <BookOpen size={16} style={{ color: 'var(--brand-default)' }} />
-                  <span className="text-sm font-medium" style={{ color: 'var(--content-primary)' }}>
-                    {stats.totalChapters} capítulos
-                  </span>
-                </div>
-              </div>
+              <Link href="/biblia"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all hover:brightness-110"
+                style={{ background: 'var(--brand-default)', color: '#fff' }}>
+                <BookOpen size={16} /> Abrir Bíblia
+              </Link>
             </div>
           </div>
         </ScrollReveal>
 
+        {/* Download All Locals */}
         <ScrollReveal delay={0.15}>
           <button
-            onClick={handleDownloadAll}
-            disabled={anyDownloading || allDownloaded}
+            onClick={handleDownloadAllLocal}
+            disabled={anyDownloading}
             className={cn(
-              "w-full rounded-2xl p-5 mb-8 flex items-center justify-center gap-3 font-semibold text-lg transition-all duration-300",
-              allDownloaded ? "opacity-60 cursor-not-allowed" : "hover:scale-[1.01] active:scale-[0.99]"
+              "w-full rounded-2xl p-5 mb-6 flex items-center justify-center gap-3 font-semibold text-lg transition-all duration-300",
+              anyDownloading ? "opacity-60 cursor-not-allowed" : "hover:scale-[1.01] active:scale-[0.99]"
             )}
             style={{
-              background: allDownloaded
+              background: anyDownloading
                 ? 'var(--surface-raised)'
                 : 'linear-gradient(135deg, var(--brand-default), #b8860b)',
-              color: allDownloaded ? 'var(--content-muted)' : '#fff',
-              border: `1px solid ${allDownloaded ? 'var(--border)' : 'transparent'}`,
-              boxShadow: allDownloaded ? 'none' : '0 4px 20px rgba(184,134,11,0.3)',
+              color: anyDownloading ? 'var(--content-muted)' : '#fff',
+              border: `1px solid ${anyDownloading ? 'var(--border)' : 'transparent'}`,
+              boxShadow: anyDownloading ? 'none' : '0 4px 20px rgba(184,134,11,0.3)',
             }}
           >
-            {allDownloaded ? (
-              <>
-                <Check size={22} />
-                Todas as versões já estão baixadas
-              </>
-            ) : anyDownloading ? (
+            {anyDownloading ? (
               <>
                 <RefreshCw size={22} className="animate-spin" />
-                Baixando... {progress.total > 0 && `(${progress.current}/${progress.total})`}
+                Baixando {progress.book}... {progress.total > 0 && `(${progress.current}/${progress.total})`}
               </>
             ) : (
               <>
-                <Download size={22} />
-                Baixar Todas as Versões Locais
-                <span className="text-sm opacity-80 ml-2">6 traduções</span>
+                <Zap size={22} />
+                Baixar Todas as Versões Locais (6)
+                <span className="text-sm opacity-80 ml-2">~24 MB</span>
               </>
             )}
           </button>
 
-          {anyDownloading && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="mb-6"
-            >
-              <div className="rounded-xl p-4" style={{ background: 'var(--surface-raised)', border: '1px solid var(--border)' }}>
-                <div className="flex justify-between text-sm mb-2" style={{ color: 'var(--content-muted)' }}>
-                  <span>Baixando {progress.book || ''}</span>
-                  <span>{progress.total > 0 ? Math.round((progress.current / progress.total) * 100) : 0}%</span>
+          {/* Progress Bar */}
+          <AnimatePresence>
+            {anyDownloading && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="mb-6"
+              >
+                <div className="rounded-xl p-4" style={{ background: 'var(--surface-raised)', border: '1px solid var(--border)' }}>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium" style={{ color: 'var(--content-primary)' }}>
+                      {progress.book}
+                    </span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs" style={{ color: 'var(--content-muted)' }}>
+                        {progress.total > 0 ? `${progress.current}/${progress.total} capítulos` : 'Iniciando...'}
+                      </span>
+                      <button onClick={handleCancel}
+                        className="text-xs font-medium px-2 py-1 rounded-lg transition-colors"
+                        style={{ color: '#ef4444', background: '#ef444410' }}>
+                        Cancelar
+                      </button>
+                    </div>
+                  </div>
+                  <div className="h-2.5 rounded-full overflow-hidden" style={{ background: 'var(--bg)' }}>
+                    <motion.div
+                      className="h-full rounded-full"
+                      style={{ background: 'linear-gradient(90deg, var(--brand-default), #fbbf24)' }}
+                      initial={{ width: 0 }}
+                      animate={{ width: `${progress.total > 0 ? (progress.current / progress.total) * 100 : 0}%` }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </div>
                 </div>
-                <div className="h-2 rounded-full overflow-hidden" style={{ background: 'var(--bg)' }}>
-                  <motion.div
-                    className="h-full rounded-full"
-                    style={{ background: 'linear-gradient(90deg, var(--brand-default), #fbbf24)' }}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${progress.total > 0 ? (progress.current / progress.total) * 100 : 0}%` }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </div>
-              </div>
-            </motion.div>
-          )}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
-          {TRADUCOES_LOCAIS.map((traducao, i) => {
-            const info = TRADUCOES_INFO[traducao];
-            const isDownloaded = downloaded[traducao];
-            const isCurrentlyDownloading = downloading === traducao;
-            return (
-              <ScrollReveal key={traducao} delay={0.2 + i * 0.05}>
-                <div className="rounded-xl p-5 transition-all duration-300 hover:scale-[1.01]"
-                  style={{
-                    background: 'var(--surface-raised)',
-                    border: `1px solid ${isDownloaded ? info.cor + '40' : 'var(--border)'}`,
-                    boxShadow: isDownloaded ? `0 0 0 1px ${info.cor}20, 0 4px 16px ${info.cor}10` : 'none',
-                  }}>
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center gap-3">
-                      <span className="px-3 py-1 rounded-lg text-sm font-bold text-white"
-                        style={{ background: info.cor }}>
-                        {traducao.toUpperCase()}
-                      </span>
-                      {isDownloaded && (
-                        <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium"
-                          style={{ background: info.cor + '20', color: info.cor }}>
-                          <Check size={12} /> Baixada
-                        </span>
-                      )}
-                    </div>
-                    {isDownloaded && (
-                      <button
-                        onClick={() => handleRemove(traducao)}
-                        className="p-2 rounded-lg transition-colors hover:bg-red-500/10"
-                        style={{ color: 'var(--content-muted)' }}
-                        title="Remover"
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                    )}
-                  </div>
-                  <p className="text-sm font-medium mb-1" style={{ color: 'var(--content-primary)' }}>
-                    {info.nome}
-                  </p>
-                  <p className="text-xs mb-4" style={{ color: 'var(--content-muted)' }}>
-                    {info.descricao}
-                  </p>
-                  {!isDownloaded && (
-                    <button
-                      onClick={() => handleDownload(traducao)}
-                      disabled={anyDownloading}
-                      className="w-full py-2.5 rounded-xl text-sm font-medium flex items-center justify-center gap-2 transition-all duration-200 hover:brightness-110"
-                      style={{
-                        background: isCurrentlyDownloading
-                          ? `${info.cor}20`
-                          : info.cor + '15',
-                        color: info.cor,
-                        border: `1px solid ${info.cor}30`,
-                      }}
-                    >
-                      {isCurrentlyDownloading ? (
-                        <>
-                          <RefreshCw size={14} className="animate-spin" />
-                          Baixando...
-                        </>
-                      ) : (
-                        <>
-                          <Download size={14} />
-                          Baixar {traducao.toUpperCase()}
-                        </>
-                      )}
-                    </button>
-                  )}
-                  {isDownloaded && (
-                    <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--content-muted)' }}>
-                      <HardDrive size={12} />
-                      <span>
-                        {stats.translations[traducao]
-                          ? `${stats.translations[traducao]} capítulos`
-                          : 'Baixada'}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              </ScrollReveal>
-            );
-          })}
-        </div>
+        {/* Local Translations */}
+        <ScrollReveal delay={0.2}>
+          <div className="mb-6">
+            <button onClick={() => setShowLocal(!showLocal)}
+              className="flex items-center gap-2 w-full text-left mb-3 group">
+              {showLocal ? <ChevronUp size={16} style={{ color: 'var(--content-muted)' }} /> : <ChevronDown size={16} style={{ color: 'var(--content-muted)' }} />}
+              <Globe size={16} style={{ color: 'var(--brand-default)' }} />
+              <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--content-muted)' }}>
+                Versões Locais — Instantâneo
+              </span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: 'var(--brand-default)15', color: 'var(--brand-default)' }}>
+                {localTranslations.filter(t => downloaded[t.id]).length}/{localTranslations.length}
+              </span>
+            </button>
 
+            <AnimatePresence>
+              {showLocal && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="grid grid-cols-1 md:grid-cols-2 gap-3 overflow-hidden"
+                >
+                  {localTranslations.map((t) => {
+                    const isDown = downloaded[t.id];
+                    const isCurrentDL = downloading === t.id;
+                    return (
+                      <div key={t.id} className="rounded-xl p-4 transition-all duration-200"
+                        style={{
+                          background: 'var(--surface-raised)',
+                          border: `1px solid ${isDown ? t.cor + '40' : 'var(--border)'}`,
+                        }}>
+                        <div className="flex items-start justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            <span className="px-2.5 py-1 rounded-lg text-xs font-bold text-white"
+                              style={{ background: t.cor }}>
+                              {t.sigla}
+                            </span>
+                            {isDown && (
+                              <span className="flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium"
+                                style={{ background: t.cor + '20', color: t.cor }}>
+                                <Check size={10} /> Baixada
+                              </span>
+                            )}
+                          </div>
+                          {isDown && (
+                            <button onClick={() => handleRemove(t.id)}
+                              className="p-1.5 rounded-lg transition-colors hover:bg-red-500/10"
+                              style={{ color: 'var(--content-muted)' }} title="Remover">
+                              <Trash2 size={14} />
+                            </button>
+                          )}
+                        </div>
+                        <p className="text-sm font-medium mb-0.5" style={{ color: 'var(--content-primary)' }}>{t.nome}</p>
+                        <p className="text-[11px] mb-3" style={{ color: 'var(--content-muted)' }}>{t.descricao}</p>
+                        {!isDown ? (
+                          <button onClick={() => handleDownload(t)} disabled={anyDownloading}
+                            className="w-full py-2 rounded-lg text-xs font-medium flex items-center justify-center gap-1.5 transition-all hover:brightness-110"
+                            style={{ background: t.cor + '15', color: t.cor, border: `1px solid ${t.cor}30` }}>
+                            {isCurrentDL ? (
+                              <><RefreshCw size={12} className="animate-spin" /> Baixando...</>
+                            ) : (
+                              <><Download size={12} /> Baixar</>
+                            )}
+                          </button>
+                        ) : (
+                          <div className="flex items-center gap-1.5 text-[10px]" style={{ color: 'var(--content-muted)' }}>
+                            <HardDrive size={10} />
+                            {stats.translations[t.id] ? `${stats.translations[t.id]} capítulos` : 'Disponível offline'}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </ScrollReveal>
+
+        {/* API Translations */}
+        <ScrollReveal delay={0.25}>
+          <div className="mb-8">
+            <button onClick={() => setShowApi(!showApi)}
+              className="flex items-center gap-2 w-full text-left mb-3">
+              {showApi ? <ChevronUp size={16} style={{ color: 'var(--content-muted)' }} /> : <ChevronDown size={16} style={{ color: 'var(--content-muted)' }} />}
+              <CloudOff size={16} style={{ color: 'var(--brand-default)' }} />
+              <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--content-muted)' }}>
+                Versões Online — Requer Internet para Baixar
+              </span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: 'var(--brand-default)15', color: 'var(--brand-default)' }}>
+                {apiTranslations.filter(t => downloaded[t.id]).length}/{apiTranslations.length}
+              </span>
+            </button>
+
+            <AnimatePresence>
+              {showApi && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="space-y-2 overflow-hidden"
+                >
+                  {Object.entries(
+                    apiTranslations.reduce((acc, t) => {
+                      const lang = IDIOMA_LABELS[t.idioma] || t.idioma;
+                      if (!acc[lang]) acc[lang] = [];
+                      acc[lang].push(t);
+                      return acc;
+                    }, {} as Record<string, TraducaoInfo[]>)
+                  ).map(([idioma, trads]) => (
+                    <div key={idioma} className="mb-4">
+                      <p className="text-[10px] font-semibold uppercase tracking-wider mb-2 ml-1"
+                        style={{ color: 'var(--content-muted)' }}>
+                        {idioma} ({trads.length})
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                        {trads.map((t) => {
+                          const isDown = downloaded[t.id];
+                          const isCurrentDL = downloading === t.id;
+                          return (
+                            <div key={t.id} className="rounded-xl p-3 transition-all duration-200"
+                              style={{
+                                background: 'var(--surface-raised)',
+                                border: `1px solid ${isDown ? t.cor + '40' : 'var(--border)'}`,
+                              }}>
+                              <div className="flex items-center justify-between mb-1.5">
+                                <div className="flex items-center gap-1.5">
+                                  <span className="px-2 py-0.5 rounded text-[10px] font-bold text-white"
+                                    style={{ background: t.cor }}>
+                                    {t.sigla}
+                                  </span>
+                                  {isDown && <Check size={12} style={{ color: '#10b981' }} />}
+                                </div>
+                                {isDown && (
+                                  <button onClick={() => handleRemove(t.id)}
+                                    className="p-1 rounded hover:bg-red-500/10 transition-colors"
+                                    style={{ color: 'var(--content-muted)' }}>
+                                    <Trash2 size={12} />
+                                  </button>
+                                )}
+                              </div>
+                              <p className="text-xs font-medium truncate" style={{ color: 'var(--content-primary)' }}>{t.nome}</p>
+                              <p className="text-[10px] truncate" style={{ color: 'var(--content-muted)' }}>{t.descricao}</p>
+                              {!isDown && (
+                                <button onClick={() => handleDownload(t)} disabled={anyDownloading}
+                                  className="w-full mt-2 py-1.5 rounded-lg text-[11px] font-medium flex items-center justify-center gap-1 transition-all hover:brightness-110"
+                                  style={{ background: t.cor + '15', color: t.cor, border: `1px solid ${t.cor}30` }}>
+                                  {isCurrentDL ? (
+                                    <><RefreshCw size={10} className="animate-spin" /> {progress.total > 0 ? `${Math.round((progress.current / progress.total) * 100)}%` : '...'}</>
+                                  ) : (
+                                    <><Download size={10} /> Baixar</>
+                                  )}
+                                </button>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </ScrollReveal>
+
+        {/* Info Section */}
         <ScrollReveal delay={0.3}>
           <div className="mb-8">
-            <div className="flex items-center gap-2 mb-6">
-              <Info size={20} style={{ color: 'var(--brand-default)' }} />
-              <h2 className="text-xl font-bold" style={{ color: 'var(--content-primary)' }}>
-                Por que baixar?
+            <div className="flex items-center gap-2 mb-5">
+              <Info size={18} style={{ color: 'var(--brand-default)' }} />
+              <h2 className="text-lg font-bold" style={{ color: 'var(--content-primary)' }}>
+                Como funciona?
               </h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="rounded-xl p-5 text-center" style={{
-                background: 'var(--surface-raised)',
-                border: '1px solid var(--border)',
-              }}>
-                <div className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center"
-                  style={{ background: 'var(--brand-default)15', color: 'var(--brand-default)' }}>
-                  <WifiOff size={22} />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {[
+                { icon: Zap, title: 'Versões Locais', desc: 'ARC, NVI, ARA, ACF, KJV, WEB — baixam instantaneamente do app' },
+                { icon: CloudOff, title: 'Versões Online', desc: 'As outras 18 traduções baixam da internet uma vez e ficam salvas' },
+                { icon: Shield, title: 'Sem Limite', desc: 'Baixe todas as 24 traduções — ocupam ~80 MB no total' },
+              ].map(({ icon: Icon, title, desc }, i) => (
+                <div key={i} className="rounded-xl p-4" style={{ background: 'var(--surface-raised)', border: '1px solid var(--border)' }}>
+                  <div className="w-10 h-10 rounded-lg mb-2 flex items-center justify-center"
+                    style={{ background: 'var(--brand-default)15', color: 'var(--brand-default)' }}>
+                    <Icon size={18} />
+                  </div>
+                  <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--content-primary)' }}>{title}</h3>
+                  <p className="text-xs" style={{ color: 'var(--content-muted)' }}>{desc}</p>
                 </div>
-                <h3 className="font-semibold mb-1" style={{ color: 'var(--content-primary)' }}>
-                  Leitura Sem Internet
-                </h3>
-                <p className="text-sm" style={{ color: 'var(--content-muted)' }}>
-                  Acesse a Bíblia em qualquer lugar, mesmo sem sinal
-                </p>
-              </div>
-              <div className="rounded-xl p-5 text-center" style={{
-                background: 'var(--surface-raised)',
-                border: '1px solid var(--border)',
-              }}>
-                <div className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center"
-                  style={{ background: 'var(--brand-default)15', color: 'var(--brand-default)' }}>
-                  <ChevronRight size={22} />
-                </div>
-                <h3 className="font-semibold mb-1" style={{ color: 'var(--content-primary)' }}>
-                  Carregamento Instantâneo
-                </h3>
-                <p className="text-sm" style={{ color: 'var(--content-muted)' }}>
-                  Capítulos abrem em menos de 1 segundo
-                </p>
-              </div>
-              <div className="rounded-xl p-5 text-center" style={{
-                background: 'var(--surface-raised)',
-                border: '1px solid var(--border)',
-              }}>
-                <div className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center"
-                  style={{ background: 'var(--brand-default)15', color: 'var(--brand-default)' }}>
-                  <Shield size={22} />
-                </div>
-                <h3 className="font-semibold mb-1" style={{ color: 'var(--content-primary)' }}>
-                  Economia de Dados
-                </h3>
-                <p className="text-sm" style={{ color: 'var(--content-muted)' }}>
-                  Não consome sua franquia de internet
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </ScrollReveal>

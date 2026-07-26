@@ -50,7 +50,11 @@ function getStoredEvents(): AnalyticsEvent[] {
   if (typeof window === 'undefined') return [];
   try {
     const raw = localStorage.getItem(ANALYTICS_KEY);
-    return raw ? JSON.parse(raw) : [];
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) return parsed;
+    if (parsed && Array.isArray(parsed.events)) return parsed.events;
+    return [];
   } catch {
     return [];
   }

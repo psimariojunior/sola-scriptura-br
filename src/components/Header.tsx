@@ -37,7 +37,7 @@ interface NavLinkSpec {
   icon: LucideIcon;
 }
 
-const navLinks: NavLinkSpec[] = [
+const navLinksStatic: NavLinkSpec[] = [
   { href: '/biblia', label: 'Bíblia', icon: BookOpen },
   { href: '/pesquisa', label: 'Pesquisa', icon: Search },
   { href: '/teologia', label: 'Teologia', icon: Library },
@@ -136,10 +136,15 @@ function HeaderInner() {
   const [temAcessoTotal, setTemAcessoTotal] = useState(false);
   const { usuario, isAutenticado, isAdmin, logout } = useAuth();
   const { tema, setTema, temasDisponiveis } = useTema();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const pathname = usePathname();
   const router = useRouter();
   const headerSearchRef = useRef<HTMLInputElement>(null);
+
+  const navLinks = useMemo(() => navLinksStatic.map(l => ({
+    ...l,
+    label: l.href === '/biblia' ? t('nav.bible') : l.href === '/pesquisa' ? t('nav.search') : l.href === '/teologia' ? t('nav.theology') : l.href === '/estudos' ? t('nav.myStudies') : l.href === '/ia' ? t('nav.ai') : l.label,
+  })), [t]);
   const [idioma, setIdioma] = useState<'pt' | 'en'>(() => {
     if (typeof window !== 'undefined') {
       return (localStorage.getItem('ssb_lang') as 'pt' | 'en') || 'pt';

@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { Suspense, useEffect, useState, lazy } from 'react';
-import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { EstudosProvider } from '@/components/EstudosProvider';
@@ -12,13 +11,12 @@ import TopProgressBar from '@/components/TopProgressBar';
 import BackToTop from '@/components/BackToTop';
 import { Toaster } from '@/components/ui/toast-helpers';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { trackPageView } from '@/lib/analytics';
-import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { registerServiceWorker } from '@/lib/offline';
 import { authService } from '@/lib/auth';
 import { initSentry } from '@/lib/sentry';
-import { startAutoSync, stopAutoSync } from '@/lib/syncManager';
+import { startAutoSync } from '@/lib/syncManager';
 import { onOfflineStatusChange } from '@/lib/offlineStorage';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import PageTransition from '@/components/PageTransition';
@@ -63,7 +61,6 @@ function SincronizacaoAcessoTotal() {
 }
 
 function GlobalHotkeys() {
-  const router = useRouter();
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
 
   useEffect(() => {
@@ -111,64 +108,52 @@ function PageViewTracker() {
 }
 
 function FloatingDonateButton() {
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setHasAnimated(true), 3000);
+    const timer = setTimeout(() => setVisible(true), 1000);
     return () => clearTimeout(timer);
   }, []);
 
+  if (!visible) return null;
+
   return (
-    <motion.div
-      className="fixed bottom-20 right-4 z-[25] sm:bottom-6"
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 1 }}
-    >
+    <div className="fixed bottom-20 right-4 z-[25] sm:bottom-6 animate-fade-in-up">
       <Link
         href="/ofertas"
         className="group flex items-center gap-2 px-3 py-2.5 rounded-full bg-amber-500/90 hover:bg-amber-500 text-white shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-300 hover:scale-105"
         aria-label="Apoie o projeto"
       >
-        <motion.span
-          animate={!hasAnimated ? { scale: [1, 1.2, 1] } : {}}
-          transition={{ duration: 1.5, repeat: hasAnimated ? 0 : Infinity, ease: 'easeInOut' }}
-        >
-          <Heart className="w-4 h-4 fill-current" />
-        </motion.span>
+        <Heart className="w-4 h-4 fill-current animate-heart-pulse" />
         <span className="hidden sm:inline text-xs font-semibold">Apoie</span>
       </Link>
-    </motion.div>
+    </div>
   );
 }
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
-  const prefersReducedMotion = useReducedMotion();
-
   useEffect(() => {
-    initSentry();
+    if (typeof requestIdleCallback !== 'undefined') {
+      requestIdleCallback(() => initSentry());
+    } else {
+      initSentry();
+    }
   }, []);
 
   useEffect(() => {
-    document.documentElement.style.setProperty(
-      '--framer-motion-duration',
-      prefersReducedMotion ? '0ms' : ''
-    );
-  }, [prefersReducedMotion]);
-
-  // Start auto-sync and listen for offline events
-  useEffect(() => {
-    startAutoSync(); // Sync every 5 minutes
-    const cleanup = onOfflineStatusChange((offline) => {
-      if (!offline) {
-        // When coming back online, sync immediately
-        import('@/lib/syncManager').then(({ syncAll }) => syncAll());
-      }
-    });
-    return () => {
-      stopAutoSync();
-      cleanup();
+    const initSync = () => {
+      startAutoSync();
+      onOfflineStatusChange((offline) => {
+        if (!offline) {
+          import('@/lib/syncManager').then(({ syncAll }) => syncAll());
+        }
+      });
     };
+    if (typeof requestIdleCallback !== 'undefined') {
+      requestIdleCallback(initSync);
+    } else {
+      initSync();
+    }
   }, []);
 
   return (

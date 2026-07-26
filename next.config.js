@@ -14,7 +14,7 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: [
       'framer-motion', 'lucide-react',
-      'recharts', 'leaflet', 'react-leaflet',
+      'recharts', 'leaflet', 'react-leaflet', 'socket.io-client',
       '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-popover',
       '@radix-ui/react-tabs', '@radix-ui/react-select', '@radix-ui/react-accordion',
       '@radix-ui/react-scroll-area', '@radix-ui/react-checkbox', '@radix-ui/react-label',

@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect, memo, useCallback } from 'react';
+import { useState, useEffect, memo, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
 import {
   Home,
   BookOpen,
@@ -33,14 +34,6 @@ interface TabItem {
   icon: typeof Home;
 }
 
-const tabs: TabItem[] = [
-  { href: '/', label: 'Início', icon: Home },
-  { href: '/biblia', label: 'Bíblia', icon: BookOpen },
-  { href: '/estudos', label: 'Estudos', icon: GraduationCap },
-  { href: '/pesquisa', label: 'Pesquisa', icon: Search },
-  { href: '#more', label: 'Mais', icon: MoreHorizontal },
-];
-
 interface ExtraLink {
   href: string;
   label: string;
@@ -52,53 +45,65 @@ interface NavGroup {
   links: ExtraLink[];
 }
 
-const grupos: NavGroup[] = [
-  {
-    titulo: 'Ferramentas',
-    links: [
-      { href: '/idiomas', label: 'Línguas', icon: Languages },
-      { href: '/referencias', label: 'Referências', icon: GitBranch },
-      { href: '/topicos', label: 'Tópicos', icon: Tag },
-      { href: '/ferramentas', label: 'Ferramentas', icon: Wrench },
-    ],
-  },
-  {
-    titulo: 'Contexto',
-    links: [
-      { href: '/historia', label: 'História', icon: Globe },
-      { href: '/cronologia', label: 'Cronologia', icon: ScrollText },
-      { href: '/personagens', label: 'Personagens', icon: Heart },
-      { href: '/atlas', label: 'Atlas', icon: Map },
-    ],
-  },
-  {
-    titulo: 'Prática',
-    links: [
-      { href: '/cursos', label: 'Seminário', icon: GraduationCap },
-      { href: '/planos', label: 'Planos', icon: Calendar },
-      { href: '/devocional', label: 'Devocional', icon: Heart },
-      { href: '/flashcards', label: 'Flashcards', icon: BookMarked },
-    ],
-  },
-  {
-    titulo: 'Comunidade',
-    links: [
-      { href: '/quiz', label: 'Quiz', icon: HelpCircle },
-      { href: '/comunidade', label: 'Comunidade', icon: MessageCircle },
-      { href: '/ia', label: 'IA', icon: Brain },
-      { href: '/dashboard', label: 'Dashboard', icon: BarChart3 },
-    ],
-  },
-];
-
 function BottomNavBarInner() {
+  const { t } = useTranslation();
   const pathname = usePathname();
   const [isMobile, setIsMobile] = useState(false);
   const [showMore, setShowMore] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(() =>
-    Object.fromEntries(grupos.map((g) => [g.titulo, true]))
-  );
+
+  const tabs: TabItem[] = useMemo(() => [
+    { href: '/', label: t('bottomBar.home'), icon: Home },
+    { href: '/biblia', label: t('bottomBar.bible'), icon: BookOpen },
+    { href: '/estudos', label: t('bottomBar.studies'), icon: GraduationCap },
+    { href: '/pesquisa', label: t('bottomBar.search'), icon: Search },
+    { href: '#more', label: t('bottomBar.more'), icon: MoreHorizontal },
+  ], [t]);
+
+  const grupos: NavGroup[] = useMemo(() => [
+    {
+      titulo: t('bottomBar.groupFerramentas'),
+      links: [
+        { href: '/idiomas', label: t('bottomBar.languages'), icon: Languages },
+        { href: '/referencias', label: t('bottomBar.references'), icon: GitBranch },
+        { href: '/topicos', label: t('bottomBar.topics'), icon: Tag },
+        { href: '/ferramentas', label: t('bottomBar.tools'), icon: Wrench },
+      ],
+    },
+    {
+      titulo: t('bottomBar.groupContext'),
+      links: [
+        { href: '/historia', label: t('bottomBar.history'), icon: Globe },
+        { href: '/cronologia', label: t('bottomBar.chronology'), icon: ScrollText },
+        { href: '/personagens', label: t('bottomBar.characters'), icon: Heart },
+        { href: '/atlas', label: t('bottomBar.atlas'), icon: Map },
+      ],
+    },
+    {
+      titulo: t('bottomBar.groupPractice'),
+      links: [
+        { href: '/cursos', label: t('bottomBar.seminary'), icon: GraduationCap },
+        { href: '/planos', label: t('bottomBar.plans'), icon: Calendar },
+        { href: '/devocional', label: t('bottomBar.devotional'), icon: Heart },
+        { href: '/flashcards', label: t('bottomBar.flashcards'), icon: BookMarked },
+      ],
+    },
+    {
+      titulo: t('bottomBar.groupStudy'),
+      links: [
+        { href: '/quiz', label: t('bottomBar.quizzes'), icon: HelpCircle },
+        { href: '/comunidade', label: t('bottomBar.community'), icon: MessageCircle },
+        { href: '/ia', label: t('bottomBar.aiAssistant'), icon: Brain },
+        { href: '/dashboard', label: t('bottomBar.statistics'), icon: BarChart3 },
+      ],
+    },
+  ], [t]);
+
+  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    setExpandedGroups(Object.fromEntries(grupos.map((g) => [g.titulo, true])));
+  }, [grupos]);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -154,7 +159,7 @@ function BottomNavBarInner() {
             style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
           >
             <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-              <span className="text-sm font-semibold">Explorar</span>
+              <span className="text-sm font-semibold">{t('nav.more')}</span>
               <button
                 onClick={closeMore}
                 className="p-1 rounded-lg hover:bg-muted transition-colors"

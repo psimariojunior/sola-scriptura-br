@@ -150,7 +150,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#d4a843" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://api.midvash.com" />
         <link rel="dns-prefetch" href="https://api.solascripturabr.com.br" />
         <script
@@ -190,9 +189,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       </head>
       <body className="antialiased bg-background text-foreground">
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:rounded-xl focus:bg-[var(--primary)] focus:text-[var(--primary-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2">
-          Pular para o conteúdo principal
-        </a>
         <LayoutWrapper>
           {children}
         </LayoutWrapper>

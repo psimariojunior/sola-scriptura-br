@@ -398,6 +398,30 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso }: {
               <MarkdownRenderer content={aula.conteúdo} />
             </div>
           )}
+          {aula.tipo === 'video' && aula.videoUrl && (
+            <div className="space-y-4">
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black">
+                <iframe
+                  src={aula.videoUrl.replace('watch?v=', 'embed/')}
+                  title={aula.videoTítulo || aula.título}
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              {aula.videoTítulo && (
+                <div className="flex items-center gap-2 text-xs text-[var(--content-muted)]">
+                  <Play className="w-3 h-3" />
+                  <span>{aula.videoTítulo}</span>
+                </div>
+              )}
+              {aula.conteúdo && (
+                <div className="prose prose-sm dark:prose-invert max-w-none mt-4">
+                  <MarkdownRenderer content={aula.conteúdo} />
+                </div>
+              )}
+            </div>
+          )}
           {aula.tipo === 'quiz' && (
             <div className="text-center py-8">
               <HelpCircle className="w-12 h-12 text-[var(--brand)] mx-auto mb-4" />

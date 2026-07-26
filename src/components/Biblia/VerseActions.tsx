@@ -140,7 +140,7 @@ function VerseActionsInner({
       className={cn(
         'flex items-center gap-0.5 shrink-0',
         variant === 'inline'
-          ? 'hidden lg:flex lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-within:opacity-100 transition-opacity duration-200'
+          ? 'opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200'
           : 'flex opacity-100'
       )}
     >

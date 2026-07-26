@@ -39,6 +39,7 @@ interface VerseListItemProps {
   onSetEstudoAberto: (num: number | null) => void;
   estudoAbertoState: number | null;
   copyVerse: (text: string, ref: string) => void;
+  onCorMarcaChange?: () => void;
 }
 
 export const VerseListItem = memo(function VerseListItem({
@@ -72,6 +73,7 @@ export const VerseListItem = memo(function VerseListItem({
   onSetEstudoAberto,
   estudoAbertoState,
   copyVerse,
+  onCorMarcaChange,
 }: VerseListItemProps) {
   const verseKey = `${livroAbreviacao}:${capitulo}:${numero}:${traducao}`;
   const marcaMarcador = getMarcador(livroAbreviacao, capitulo, numero, traducao);
@@ -134,6 +136,7 @@ export const VerseListItem = memo(function VerseListItem({
       tradBadgeColor={tradBadgeColors[traducao] || ''}
       isCurrentAudioVerse={isCurrentAudioVerse}
       hasResources={hasResources}
+      onCorMarcaChange={onCorMarcaChange}
     />
   );
 });

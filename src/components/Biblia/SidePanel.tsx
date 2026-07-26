@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useMemo } from 'react';
+import { Suspense, useMemo, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, BookText, StickyNote, GraduationCap, History, X, ChevronLeft, ChevronRight, BookOpen, Link2 } from 'lucide-react';
@@ -79,6 +79,15 @@ export function SidePanel({
 }: SidePanelProps) {
   const isCollapsed = width === 'collapsed';
   const isFull = width === 'full';
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 1023px)');
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
 
   const cycleWidth = () => {
     if (width === 'collapsed') onWidthChange('half');
@@ -115,6 +124,198 @@ export function SidePanel({
 
   if (!open) return null;
 
+  if (isMobile) {
+    return (
+      <>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-40 bg-black/40"
+          onClick={onClose}
+        />
+        <motion.aside
+          initial={{ y: '100%' }}
+          animate={{ y: 0 }}
+          exit={{ y: '100%' }}
+          transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className={cn(
+            'fixed bottom-0 left-0 right-0 z-50',
+            'bg-[var(--surface-raised)] rounded-t-2xl shadow-2xl',
+            'flex flex-col max-h-[60vh]'
+          )}
+        >
+          <div className="flex justify-center pt-2 pb-1 shrink-0">
+            <div className="w-10 h-1 rounded-full bg-[var(--border)]" />
+          </div>
+          <div className="flex items-center justify-between px-2 pb-1 border-b border-[var(--border)]/50 shrink-0">
+            <div className="flex items-center gap-1.5 px-2">
+              <span className="text-[10px] uppercase tracking-wider font-semibold text-[var(--content-muted)]">
+                {activeTab ? tabs.find(t => t.value === activeTab)?.label : 'Painel'}
+              </span>
+            </div>
+            <div className="flex items-center gap-0.5 ml-auto">
+              <button
+                onClick={onClose}
+                className="p-1.5 rounded-md text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"
+                title="Fechar painel"
+                aria-label="Fechar painel"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          <nav
+            className="flex items-stretch gap-0.5 p-2 overflow-x-auto shrink-0 border-b border-[var(--border)]/40"
+            aria-label="Abas do painel de estudo"
+          >
+            {tabs.map(({ value, label, icon: Icon }) => {
+              const active = activeTab === value;
+              return (
+                <button
+                  key={value}
+                  onClick={() => onActiveTabChange(active ? null : value)}
+                  aria-label={label}
+                  aria-pressed={active}
+                  className={cn(
+                    'relative inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-200',
+                    'text-[12px] px-3 py-2 whitespace-nowrap',
+                    active
+                      ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)]'
+                      : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] hover:text-[var(--content-primary)]'
+                  )}
+                >
+                  <Icon className="w-4 h-4 shrink-0" />
+                  <span>{label}</span>
+                  {active && (
+                    <motion.span
+                      layoutId="sidepanel-active-mobile"
+                      className="absolute inset-x-2 -bottom-[5px] h-0.5 bg-[var(--brand-default)] rounded-full"
+                      transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </nav>
+
+          <div className="flex-1 overflow-y-auto">
+            {versiculo && versiculoTexto && (
+              <div className="px-4 pt-4 pb-3 border-b border-[var(--border)]/30">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-[var(--brand-default)] text-[var(--brand-contrast)] text-[10px] font-bold">
+                    {versiculo}
+                  </span>
+                  <span className="text-xs font-medium text-[var(--content-muted)]">
+                    {livroNome} {capitulo}:{versiculo}
+                  </span>
+                  {versiculoTraducao && (
+                    <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-[var(--brand-subtle)] text-[var(--brand-default)] font-semibold uppercase">
+                      {versiculoTraducao}
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm font-serif-body text-[var(--content-secondary)] leading-relaxed mb-3">
+                  {versiculoTexto}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {comentarios.length > 0 && (
+                    <button
+                      onClick={() => onActiveTabChange('comentarios')}
+                      className={cn(
+                        'inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-full font-medium transition-colors',
+                        activeTab === 'comentarios'
+                          ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300'
+                          : 'bg-[var(--surface-sunken)] text-[var(--content-muted)] hover:bg-amber-50 dark:hover:bg-amber-900/20'
+                      )}
+                    >
+                      <MessageSquare className="w-3 h-3" />
+                      {comentarios.length} comentário{comentarios.length !== 1 ? 's' : ''}
+                    </button>
+                  )}
+                  {crossRefs.length > 0 && (
+                    <span className="inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-full bg-[var(--surface-sunken)] text-[var(--content-muted)] font-medium">
+                      <Link2 className="w-3 h-3" />
+                      {crossRefs.length} ref{crossRefs.length !== 1 ? 's' : ''} cruzada{crossRefs.length !== 1 ? 's' : ''}
+                    </span>
+                  )}
+                  {estudos.length > 0 && (
+                    <button
+                      onClick={() => onActiveTabChange('estudos')}
+                      className={cn(
+                        'inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-full font-medium transition-colors',
+                        activeTab === 'estudos'
+                          ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300'
+                          : 'bg-[var(--surface-sunken)] text-[var(--content-muted)] hover:bg-emerald-50 dark:hover:bg-emerald-900/20'
+                      )}
+                    >
+                      <GraduationCap className="w-3 h-3" />
+                      {estudos.length} estudo{estudos.length !== 1 ? 's' : ''}
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
+
+            <AnimatePresence mode="wait">
+              {activeTab && (
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-4"
+                >
+                  <Suspense fallback={<PanelFallback />}>
+                    {activeTab === 'comentarios' ? (
+                      versiculo ? (
+                        <PainelComentarios
+                          livro={livroAbreviacao}
+                          capitulo={capitulo}
+                          versiculo={versiculo}
+                          onClose={() => onActiveTabChange(null)}
+                        />
+                      ) : (
+                        <EmptyPanel
+                          icon={MessageSquare}
+                          title="Comentários"
+                          description="Selecione um versículo para ver comentários teológicos."
+                        />
+                      )
+                    ) : activeTab === 'strong' ? (
+                      <PainelStrong onClose={() => onActiveTabChange(null)} />
+                    ) : activeTab === 'notas' ? (
+                      <PainelNotas livroAbrev={livroAbreviacao} capitulo={capitulo} />
+                    ) : activeTab === 'estudos' ? (
+                      versiculo ? (
+                        <PainelEstudosSidePanel
+                          livro={livroAbreviacao}
+                          capitulo={capitulo}
+                          versiculo={versiculo}
+                        />
+                      ) : (
+                        <EmptyPanel
+                          icon={GraduationCap}
+                          title="Estudos"
+                          description="Selecione um versículo para ver os estudos teológicos com visões de múltiplos teólogos."
+                        />
+                      )
+                    ) : activeTab === 'contexto' ? (
+                      <PainelContexto livro={livroAbreviacao} capitulo={capitulo} />
+                    ) : null}
+                  </Suspense>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </motion.aside>
+      </>
+    );
+  }
+
   return (
     <motion.aside
       initial={{ opacity: 0, x: 20 }}
@@ -125,7 +326,6 @@ export function SidePanel({
         'shrink-0 border-l border-[var(--border)] bg-[var(--surface-raised)]',
         'flex flex-col h-full',
         'transition-[width] duration-300',
-        'max-lg:fixed max-lg:inset-y-0 max-lg:right-0 max-lg:z-50 max-lg:shadow-2xl max-lg:border-l',
         widthMap[width]
       )}
     >

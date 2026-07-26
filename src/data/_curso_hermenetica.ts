@@ -55,7 +55,7 @@ Todo estudo hermenêutico segue um caminho lógico:
 - **Interpretação**: O que o texto significa? (contexto, gramática, história)
 - **Aplicação**: O que eu devo fazer com isso? (transformação prática)
 
-Esse三点método — observar, interpretar, aplicar — é a espinha dorsal de todo estudo sério da Bíblia. Ignorar qualquer um desses passos leva a distorções.
+Esse método — observar, interpretar, aplicar — é a espinha dorsal de todo estudo sério da Bíblia. Ignorar qualquer um desses passos leva a distorções.
 
 ### Hermenêutica ≠ opinião pessoal
 
@@ -322,7 +322,7 @@ Antes de estudar qualquer passagem, faça uma oração simples: "Senhor, me livr
               pergunta: 'Qual é o método fundamental da hermenêutica bíblica?',
               opcoes: ['Leer, memorizar, recitar', 'Observar, interpretar, aplicar', 'Estudar, debater, discutir', 'Ler, meditar, orar'],
               respostaCorreta: 1,
-              explicacao: 'O三点método (observar, interpretar, aplicar) é a espinha dorsal de todo estudo sério da Bíblia. Observar o que o texto diz, interpretar o que significa, e aplicar à vida.',
+              explicacao: 'O método (observar, interpretar, aplicar) é a espinha dorsal de todo estudo sério da Bíblia. Observar o que o texto diz, interpretar o que significa, e aplicar à vida.',
             },
             {
               id: 'q-herm-1-3',
@@ -415,7 +415,7 @@ Nas narrativas bíblicas, personagens são revelados pelo que fazem, dizem e pen
 
 **3. O narrador bíblico é confiável**
 
-Ao contrário de romances modernos, onde o narrador pode ser não-confiável, o narrador bíblico sempre apresenta a verdade. Quando评价 um personagem ou evento, podemos confiar na sua avaliação.
+Ao contrário de romances modernos, onde o narrador pode ser não-confiável, o narrador bíblico sempre apresenta a verdade. Quando o narrador avalia um personagem ou evento, podemos confiar na sua avaliação.
 
 ### Como interpretar narrativas
 
@@ -437,7 +437,7 @@ Ao contrário de romances modernos, onde o narrador pode ser não-confiável, o 
 ### Narrativas do NT
 
 - **Evangelhos**: Biografias teológicas de Jesus — cada um com ênfase diferente
-- **Atos dos Apostolos**: A expansão da igreja doJerusalém a Roma
+- **Atos dos Apóstolos**: A expansão da igreja de Jerusalém a Roma
 
 ### Erros comuns com narrativas
 
@@ -540,7 +540,7 @@ O profeta anuncia eventos que ainda não aconteceram no momento da fala. Exemplo
 
 **2. Profecia de julgamento (condicional)**
 
-O profeta anuncia consequências que podem ser evitadas通过 arrependimento. Exemplo:
+O profeta anuncia consequências que podem ser evitadas através do arrependimento. Exemplo:
 > "Se o povo se arrepender, Deus não trará o julgamento" (Jeremias 18:7-10)
 
 **3. Profecia de restauração (consolação)**
@@ -628,7 +628,7 @@ Paulo usa ironia (Gálatas 5:12), sarcasmo (2 Coríntios 12:13), e humor. Ignora
 ### Principais cartas
 
 - **Romanos**: A exposição mais completa da doutrina da justificação
-- **1 Coríntios**: Respostas a problemas práticos em uma igrejaProblemática
+- **1 Coríntios**: Respostas a problemas práticos em uma igreja problemática
 - **Efésios**: A igreja como corpo de Cristo
 - **Filipenses**: Alegria em meio à adversidade
 - **Hebreus**: A superioridade de Cristo sobre o sistema levítico
@@ -637,7 +637,7 @@ Paulo usa ironia (Gálatas 5:12), sarcasmo (2 Coríntios 12:13), e humor. Ignora
 
 Apesar de endereçadas a situações específicas, as cartas contêm verdades universais. O desafio é discernir: o que era contextual e o que é permanente? A resposta geralmente está em outros textos da mesma Bíblia.`,
           versiculosChave: [
-            { ref: '2 Timoteo 3:16', texto: 'Toda a Escritura é inspirada por Deus e útil para o ensino, para a repreensão, para a correção, para a educação na justica.' },
+            { ref: '2 Timoteo 3:16', texto: 'Toda a Escritura é inspirada por Deus e útil para o ensino, para a repreensão, para a correção, para a educação na justiça.' },
             { ref: 'Romanos 15:4', texto: 'Porque tudo o que foi escrito, para nosso ensino foi escrito.' },
           ],
         },
@@ -893,7 +893,7 @@ Muitos usam isso para proibir qualquer forma de julgamento. Mas Mateus 7:5 diz "
 Estudo devocional e estudo hermenêutico não são mutuamente exclusivos. Você pode meditar em um versículo todos os dias — mas sempre voltando ao contexto para não perder o significado real. O versículo é a porta de entrada; o contexto é a casa inteira.`,
           versiculosChave: [
             { ref: 'Mateus 7:1', texto: 'Não julgueis, para que não sejais julgados.' },
-            { ref: 'Mateus 7:5', texto: 'Hipócrita, tira primeiro a trave do teu olho, e então verás claramente para tirar aLasca do olho do teu irmão.' },
+            { ref: 'Mateus 7:5', texto: 'Hipócrita, tira primeiro a trave do teu olho, e então verás claramente para tirar a lasca do olho do teu irmão.' },
             { ref: 'Filipenses 4:13', texto: 'Posso todas as coisas naquele que me fortalece.' },
           ],
         },
@@ -984,7 +984,7 @@ Paulo envia Onesimo de volta a Filemom como "irmão amado" (Filemom 16). A Bíbl
 
 Ana fez um voto a Deus e depois o cumpriu (1 Samuel 1). A Bíblia descreve isso. Mas Jesus ensina: "não jureis nem pelo céu nem pela terra" (Mateus 5:34-37). A descrição do AT é superada pela prescrição do NT.
 
-### Como distinguishir descrição de prescrição
+### Como distinguir descrição de prescrição
 
 1. **Busque a avaliação do autor.** O autor bíblico aprova, condena ou é neutro em relação ao que descreve?
 
@@ -1003,7 +1003,7 @@ Quando confundimos descrição com prescrição:
 
 ### O critério final
 
-O critério para distinguir descrição de prescrição é: **O que Jesus ensinou e praticou?** Ele é o ápice da revelação de Deus. Tudo o que precedeEle deve ser lido à luz dEle.`,
+O critério para distinguir descrição de prescrição é: **O que Jesus ensinou e praticou?** Ele é o ápice da revelação de Deus. Tudo o que precede a Ele deve ser lido à luz dEle.`,
           versiculosChave: [
             { ref: 'Mateus 5:17-18', texto: 'Não cuideis que vim destruir a Lei ou os Profetas; não vim para destruir, mas para cumprir.' },
             { ref: 'Hebreus 1:1-2', texto: 'Havendo Deus antigamente falado de muitos modos aos nossos pais, por meio dos profetas, nestes últimos tempos nos falou pelo Filho.' },
@@ -1064,7 +1064,7 @@ Hebreus 10:1 diz que "a Lei tem uma sombra dos bens futuros, não a imagem exata
 O AT não é um "livro velho e obsoleto". Ele é a história da fidelidade de Deus mesmo quando o povo falhava. É a preparação para o evangelho. É a raiz na qual o NT cresce. Sem o AT, perdemos metade da história de Deus com a humanidade.`,
           versiculosChave: [
             { ref: 'Mateus 5:17', texto: 'Não cuideis que vim destruir a Lei ou os Profetas; não vim para destruir, mas para cumprir.' },
-            { ref: 'Hebreus 10:1', texto: 'Porque, tendo a Lei uma sombra dos bens futuros, não a imagem exata das coisas, nunca pode, pelos mesmos sacrifícios que se offerecem continuamente cada anno, aperfeiçoar os que a eles se chegam.' },
+            { ref: 'Hebreus 10:1', texto: 'Porque, tendo a Lei uma sombra dos bens futuros, não a imagem exata das coisas, nunca pode, pelos mesmos sacrifícios que se oferecem continuamente cada ano, aperfeiçoar os que a eles se chegam.' },
             { ref: '2 Timoteo 3:16', texto: 'Toda a Escritura é inspirada por Deus e útil para o ensino.' },
           ],
         },
@@ -1135,12 +1135,12 @@ O AT não é um "livro velho e obsoleto". Ele é a história da fidelidade de De
               pergunta: 'Qual é o critério final para distinguir descrição de prescrição?',
               opcoes: ['O que o pastor diz', 'O que Jesus ensinou e praticou', 'O que a maioria dos cristãos faz', 'O que é mais confortável'],
               respostaCorreta: 1,
-              explicacao: 'Jesus é o ápice da revelação de Deus. Tudo o que precedeEle deve ser lido à luz dEle. O que Ele ensinou e praticou é o critério definitivo para entender o que é prescrito.',
+              explicacao: 'Jesus é o ápice da revelação de Deus. Tudo o que precede a Ele deve ser lido à luz dEle. O que Ele ensinou e praticou é o critério definitivo para entender o que é prescrito.',
             },
             {
               id: 'q-herm-3-10',
               pergunta: 'Qual é o erro do antinomianismo no que diz respeito ao AT?',
-              opcoes: ['Leer demais o AT', 'A Lei não vale mais, então posso fazer o que quiser', 'Seguir todas as leis do AT', 'Ignorar o Novo Testamento'],
+              opcoes: ['Ler demais o AT', 'A Lei não vale mais, então posso fazer o que quiser', 'Seguir todas as leis do AT', 'Ignorar o Novo Testamento'],
               respostaCorreta: 1,
               explicacao: 'O antinomianismo é o erro de pensar que, porque a lei cerimonial foi cumprida, todos os mandamentos morais também foram abolidos. O NT confirma os princípios morais do AT.',
             },

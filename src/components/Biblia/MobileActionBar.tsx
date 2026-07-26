@@ -71,7 +71,7 @@ function MobileActionBarInner({
     selected ? (
       <>
         <div
-          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden animate-fade-in"
+          className="fixed inset-0 z-30 bg-black/40 backdrop-blur-sm lg:hidden animate-fade-in"
           onClick={onClose}
         />
         <div

@@ -1,12 +1,15 @@
 'use client';
 
-import { memo, Fragment, useRef, useState, useEffect } from 'react';
+import { memo, Fragment, useRef, useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
 import type { useVerseAudio } from '@/hooks/useVerseAudio';
 import type { useFlashcards } from '@/hooks/useFlashcards';
 import { VerseActions } from './VerseActions';
+import { Heart, Palette, Copy, StickyNote, Brain } from 'lucide-react';
+import { toggleFavorito } from '@/lib/estudos';
+import { setMarcador, removeMarcador, getMarcador, CORES, type CorMarcador } from '@/lib/marcadores';
 
 export interface VerseCardProps {
   numero: number;
@@ -41,6 +44,7 @@ export interface VerseCardProps {
   tradBadgeColor: string;
   isCurrentAudioVerse?: boolean;
   hasResources?: boolean;
+  onCorMarcaChange?: () => void;
 }
 
 export const VerseCard = memo(function VerseCard({
@@ -71,16 +75,110 @@ export const VerseCard = memo(function VerseCard({
   verseKey,
   isCurrentAudioVerse = false,
   hasResources: hasResourcesProp = false,
+  onCorMarcaChange,
 }: VerseCardProps) {
   const ref = `${livroNome} ${capitulo}:${numero}`;
   const articleRef = useRef<HTMLDivElement>(null);
   const [showActions, setShowActions] = useState(false);
+  const [showMobileColor, setShowMobileColor] = useState(false);
+  const [showLongPressColor, setShowLongPressColor] = useState(false);
+  const mobileColorRef = useRef<HTMLDivElement>(null);
+  const colorRef = useRef<HTMLDivElement>(null);
+  const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const didLongPressRef = useRef(false);
 
   useEffect(() => {
     if ((isCurrentAudioVerse || isFocused) && articleRef.current) {
       articleRef.current.scrollIntoView({ behavior: 'smooth', block: isFocused ? 'center' : 'center' });
     }
   }, [isCurrentAudioVerse, isFocused]);
+
+  useEffect(() => {
+    if (!isSelected) return;
+    const handler = (e: MouseEvent | TouchEvent) => {
+      if (articleRef.current && !articleRef.current.contains(e.target as Node)) {
+        onSelect();
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    document.addEventListener('touchstart', handler);
+    return () => {
+      document.removeEventListener('mousedown', handler);
+      document.removeEventListener('touchstart', handler);
+    };
+  }, [isSelected, onSelect]);
+
+  useEffect(() => {
+    if (!showMobileColor) return;
+    const handler = (e: MouseEvent) => {
+      if (mobileColorRef.current && !mobileColorRef.current.contains(e.target as Node)) {
+        setShowMobileColor(false);
+      }
+    };
+    window.addEventListener('click', handler);
+    return () => window.removeEventListener('click', handler);
+  }, [showMobileColor]);
+
+  useEffect(() => {
+    if (!showLongPressColor) return;
+    const handler = (e: MouseEvent | TouchEvent) => {
+      if (colorRef.current && !colorRef.current.contains(e.target as Node)) {
+        setShowLongPressColor(false);
+      }
+    };
+    window.addEventListener('mousedown', handler);
+    window.addEventListener('touchstart', handler);
+    return () => {
+      window.removeEventListener('mousedown', handler);
+      window.removeEventListener('touchstart', handler);
+    };
+  }, [showLongPressColor]);
+
+  const handlePointerDown = useCallback(() => {
+    didLongPressRef.current = false;
+    longPressTimerRef.current = setTimeout(() => {
+      didLongPressRef.current = true;
+      setShowLongPressColor(true);
+    }, 500);
+  }, []);
+
+  const handlePointerUp = useCallback(() => {
+    if (longPressTimerRef.current) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+  }, []);
+
+  const handlePointerLeave = useCallback(() => {
+    if (longPressTimerRef.current) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+  }, []);
+
+  const handleClickCapture = useCallback((e: React.MouseEvent) => {
+    if (didLongPressRef.current) {
+      e.preventDefault();
+      e.stopPropagation();
+      didLongPressRef.current = false;
+    }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (longPressTimerRef.current) clearTimeout(longPressTimerRef.current);
+    };
+  }, []);
+
+  const corAtual = getMarcador(livroAbreviacao, capitulo, numero, traducao)?.cor ?? null;
+  const corBgMapInline: Record<CorMarcador, string> = {
+    yellow: 'bg-yellow-400',
+    green: 'bg-green-400',
+    blue: 'bg-blue-400',
+    pink: 'bg-pink-400',
+    orange: 'bg-orange-400',
+    purple: 'bg-purple-400',
+  };
 
   const corBgMap: Record<string, string> = {
     yellow: 'bg-[var(--mark-yellow)]',
@@ -98,6 +196,10 @@ export const VerseCard = memo(function VerseCard({
         tabIndex={-1}
         aria-label={`Versículo ${numero} de ${livroNome} ${capitulo}${isSelected ? ' (selecionado)' : ''}`}
         onClick={onSelect}
+        onClickCapture={handleClickCapture}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
+        onPointerLeave={handlePointerLeave}
         onMouseEnter={() => setShowActions(true)}
         onMouseLeave={() => setShowActions(false)}
         className={cn(
@@ -176,7 +278,7 @@ export const VerseCard = memo(function VerseCard({
 
           {/* Actions - appear on hover/selection */}
           <div className={cn(
-            'shrink-0 transition-all duration-150',
+            'shrink-0 transition-all duration-150 hidden lg:block',
             (showActions || isSelected) ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
           )}>
             <VerseActions
@@ -204,6 +306,95 @@ export const VerseCard = memo(function VerseCard({
             />
           </div>
         </div>
+
+        {/* Long-press color picker popup */}
+        {showLongPressColor && (
+          <div
+            ref={colorRef}
+            className="absolute left-3 sm:left-4 top-full mt-1 z-30 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-xl p-2 flex gap-2"
+            onClick={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()}
+          >
+            {CORES.map((cor) => (
+              <button
+                key={cor}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (corAtual === cor) removeMarcador(livroAbreviacao, capitulo, numero, traducao);
+                  else setMarcador(livroAbreviacao, capitulo, numero, traducao, cor);
+                  setShowLongPressColor(false);
+                  onCorMarcaChange?.();
+                }}
+                className={cn(
+                  'w-8 h-8 rounded-full transition-all active:scale-90',
+                  corBgMapInline[cor],
+                  corAtual === cor && 'ring-2 ring-offset-2 ring-[var(--brand-default)]'
+                )}
+                aria-label={`Marcar ${cor}`}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Mobile inline action row */}
+        {isSelected && (
+          <div className="flex lg:hidden items-center gap-1 mt-2 pt-2 border-t border-[var(--border)]/20 animate-[slideDown_0.2s_ease-out]">
+            <button
+              onClick={(e) => { e.stopPropagation(); toggleFavorito(livroAbreviacao, capitulo, numero, traducao, texto); onFavoritoChange(); }}
+              className={cn('flex items-center justify-center w-11 h-11 rounded-lg transition-all active:scale-90', isFavorito ? 'text-red-500 bg-red-500/10' : 'text-[var(--content-muted)] hover:text-red-500 hover:bg-red-500/10')}
+              aria-label={isFavorito ? 'Remover favorito' : 'Favoritar'}
+            >
+              <Heart className="w-4.5 h-4.5" fill={isFavorito ? 'currentColor' : 'none'} />
+            </button>
+            <div className="relative" ref={mobileColorRef}>
+              <button
+                onClick={(e) => { e.stopPropagation(); setShowMobileColor(!showMobileColor); }}
+                className={cn('flex items-center justify-center w-11 h-11 rounded-lg transition-all active:scale-90', corAtual ? 'text-white' : 'text-[var(--content-muted)] hover:text-[var(--brand-default)] hover:bg-[var(--brand-subtle)]')}
+                style={corAtual ? { backgroundColor: corAtual === 'yellow' ? '#facc15' : corAtual === 'green' ? '#4ade80' : corAtual === 'blue' ? '#60a5fa' : corAtual === 'pink' ? '#f472b6' : corAtual === 'orange' ? '#fb923c' : '#a78bfa' } : undefined}
+                aria-label="Cor"
+              >
+                <Palette className="w-4.5 h-4.5" />
+              </button>
+              {showMobileColor && (
+                <div className="absolute left-0 bottom-full mb-1.5 z-30 bg-[var(--surface-raised)] border border-[var(--border)] rounded-lg shadow-xl p-2 flex gap-1.5">
+                  {CORES.map((cor) => (
+                    <button
+                      key={cor}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (corAtual === cor) removeMarcador(livroAbreviacao, capitulo, numero, traducao);
+                        else setMarcador(livroAbreviacao, capitulo, numero, traducao, cor);
+                        setShowMobileColor(false);
+                      }}
+                      className={cn('w-7 h-7 rounded-full transition-all active:scale-90', corBgMapInline[cor], corAtual === cor && 'ring-2 ring-offset-1 ring-[var(--brand-default)]')}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+            <button
+              onClick={(e) => { e.stopPropagation(); copyVerse(texto, ref); }}
+              className={cn('flex items-center justify-center w-11 h-11 rounded-lg transition-all active:scale-90', copiedVerse === ref ? 'text-green-500 bg-green-500/10' : 'text-[var(--content-muted)] hover:text-[var(--brand-default)] hover:bg-[var(--brand-subtle)]')}
+              aria-label="Copiar"
+            >
+              <Copy className="w-4.5 h-4.5" />
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); onAnotar(); }}
+              className="flex items-center justify-center w-11 h-11 rounded-lg text-[var(--content-muted)] hover:text-amber-500 hover:bg-amber-500/10 transition-all active:scale-90"
+              aria-label="Anotar"
+            >
+              <StickyNote className="w-4.5 h-4.5" />
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); onStrong(); }}
+              className="flex items-center justify-center w-11 h-11 rounded-lg text-[var(--content-muted)] hover:text-cyan-500 hover:bg-cyan-500/10 transition-all active:scale-90"
+              aria-label="IA / Léxico"
+            >
+              <Brain className="w-4.5 h-4.5" />
+            </button>
+          </div>
+        )}
       </div>
     </Fragment>
   );

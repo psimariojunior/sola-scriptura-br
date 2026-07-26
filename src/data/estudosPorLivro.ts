@@ -61,7 +61,7 @@ export const estudosPorLivro: Record<string, EstudoLivro> = {
     slug: 'lv', titulo: 'Levítico', autor: 'Moisés (tradicional)', data: '~1446-1406 a.C.',
     contexto: 'Manual de leis e rituais para os sacerdotes e o povo de Israel. Estabelece os sacrifícios, festas e pureza ritual.',
     genero: 'Pentateuco / Lei',
-    temasPrincipais: ['Santidade de Deus', 'Sacrifício e expiação', 'Sacerdócio', 'Pureza e purificação', 'Festas e worship'],
+    temasPrincipais: ['Santidade de Deus', 'Sacrifício e expiação', 'Sacerdócio', 'Pureza e purificação', 'Festas e adoração'],
     versiculosChave: [
       { referencia: 'Levítico 19:2', texto: 'Sede santos, porque eu sou santo.', explicacao: 'Chamado à santidade baseada no caráter de Deus.' },
       { referencia: 'Levítico 17:11', texto: 'A vida está no sangue.', explicacao: 'Fundamento da teologia sacrificial — expiação pelo sangue.' },
@@ -1214,7 +1214,7 @@ export const estudosPorLivro: Record<string, EstudoLivro> = {
       { referencia: '3 João 1:4', texto: 'Não tenho maior alegria do que esta: ouvir que os meus filhos andam na verdade.', explicacao: 'A maior satisfação de um líder cristão é ver seus espiritualmente crescendo e caminhando na fidelidade à Palavra.' },
       { referencia: '3 João 1:5-6', texto: 'Tu fazes fielmente tudo quanto fazes para com os irmãos, e isso principalmente para com os estranhos.', explicacao: 'A hospitalidade para com missionários desconhecidos é ato de fé que colabora diretamente com a obra do evangelho.' },
       { referencia: '3 João 1:8', texto: 'Devemos acolher tais pessoas, para sermos cooperadores da verdade.', explicacao: 'Apoiar obreiros não é apenas bondade — é participação ativa na propagação da verdade do evangelho.' },
-      { referencia: '3 João 1:11', texto: 'Amigo, não sigas o mal, mas o bem.', explicacao: 'A escolha é clara e binary: ou seguimos o bem exemplificado por Gaio ou o mal praticado por Diótrifes — não há neutralidade.' },
+      { referencia: '3 João 1:11', texto: 'Amigo, não sigas o mal, mas o bem.', explicacao: 'A escolha é clara e binária: ou seguimos o bem exemplificado por Gaio ou o mal praticado por Diótrifes — não há neutralidade.' },
       { referencia: '3 João 1:2', texto: 'Amado, eu desejo que tu prosperes em todas as coisas, e que tenhas saúde.', explicacao: 'A preocupação de João com o bem-estar integral de Gaio — espiritual, físico e material — reflete o amor pastoral.' },
       { referencia: '3 João 1:9', texto: 'Eu escrevi à igreja; mas Diótrifes, que quer ser o primeiro entre eles, não nos recebe.', explicacao: 'O orgulho na liderança é um dos maiores perigos: Diótrifes prioriza seu poder sobre a missão do evangelho.' },
       { referencia: '3 João 1:10', texto: 'Se eu for, recordarei as suas obras que faz.', explicacao: 'A liderança autoritária será julgada — João promete confrontar publicamente o comportamento errado de Diótrifes.' },

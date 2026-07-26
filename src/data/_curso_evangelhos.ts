@@ -260,7 +260,7 @@ Essa parábola ensina paciência. Deus permite que justos e injustos coexistam n
 
 **3. A Semente de Mostarda (13:31-32)**
 
-A semente mais pequena do campo se torna a maior das árvores. O Reino começa pequeno — um judeu obscuro numa colina da Galileia — e se torna universal. Asmall beginnings, grande resultado.
+A semente mais pequena do campo se torna a maior das árvores. O Reino começa pequeno — um judeu obscuro numa colina da Galileia — e se torna universal. De pequenos começos, grande resultado.
 
 **4. O Fermento (13:33)**
 
@@ -276,7 +276,7 @@ Um comerciante busca pérolas finas e encontra uma de valor inestimável. Simila
 
 **7. A Rede (13:47-50)**
 
-Uha rede lançada ao mar聚集各种各样的鱼。在世界末了，天使将恶人从义人中分别出来。这与荞麦的比喻相似，但强调最终审判。
+Uma rede lançada ao mar apanha todo tipo de peixe. No fim do mundo, os anjos separarão os maus dos justos. Semelhante à parábola do joio, mas enfatiza o julgamento final.
 
 ### A aplicação
 
@@ -389,7 +389,7 @@ Marcos escreveu para cristãos de origem romana/gentia. Isso explica várias car
 
 ### Estrutura: O Servo em ação
 
-Marcos não tem五段论结构 como Mateus. Ele usa uma abordagem mais narrativa:
+Marcos não tem a estrutura de cinco discursos como Mateus. Ele usa uma abordagem mais narrativa:
 
 1. **Preparação do servo** (caps. 1-1:13) — Batismo e tentação
 2. **Ministério na Galileia** (caps. 1:14-10:52) — Ensinos e milagres
@@ -529,7 +529,7 @@ Marcos mostra que Jesus tem autoridade sobre a natureza — algo que só Deus te
 
 ### O endemoninhado Gadara (5:1-20)
 
-Jesus encontra um homem possuído por uma legião de demônios que vive entre os túmulos, gritando e se autodeferindo. Ninguém conseguia控制á-lo. Jesus expulsa os demônios em porcos — e o homem fica "em sã consciência, assentado e bem-vestido" (5:15). A restauração é completa.
+Jesus encontra um homem possuído por uma legião de demônios que vive entre os túmulos, gritando e se autodeferindo. Ninguém conseguia controlá-lo. Jesus expulsa os demônios em porcos — e o homem fica "em sã consciência, assentado e bem-vestido" (5:15). A restauração é completa.
 
 ### A mulher com fluxo de sangue (5:25-34)
 
@@ -693,7 +693,7 @@ Marcos começa com "Início do evangelho de Jesus Cristo, Filho de Deus" (1:1) e
     {
       id: 'mod-lucas-filho',
       titulo: 'Lucas: O Filho do Homem',
-      descricao: 'O evangelho que enfatiza a humanidade de Jesus, a compaixão e os marginados',
+      descricao: 'O evangelho que enfatiza a humanidade de Jesus, a compaixão e os marginalizados',
       icone: '🌟',
       aulas: [
         {
@@ -738,7 +738,7 @@ Lucas mostra Jesus como o Filho do Homem — um título que combina:
 1. **Prólogo** (1:1-4) — Introdução histórica
 2. **Infância** (1:5-2:52) — Nascimento de Jesus e João Batista
 3. **Ministério na Galileia** (3:1-9:50) — Preparação e início
-4. **Viagem a Jerusalém** (9:51-19:27) — O caminho do十字架
+4. **Viagem a Jerusalém** (9:51-19:27) — O caminho da cruz
 5. **Ministério em Jerusalém** (19:28-21:38) — Ensinos finais
 6. **Paixão e Ressurreição** (22-24) — A morte e vitória
 
@@ -791,7 +791,7 @@ Lucas 1-2 é a narrativa mais detalhada do nascimento de Jesus no Novo Testament
 
 Zacarias e Elisabete são sacerdotes idosos e estéreis — uma dupla vergonha na cultura judaica. Zacarias está servindo no templo quando um anjo aparece: Gabriel. A Elisabete nascerá um filho, João, que preparará o caminho do Senhor.
 
-Zacarias duvida: "Como saberei isso? Pois sou velho, e minha mulher é de edad avançada" (1:18). Gabriel o torna mudo até o nascimento do filho. A incredulidade tem consequências — mas Deus não abandona o projeto.
+Zacarias duvida: "Como saberei isso? Pois sou velho, e minha mulher é de idade avançada" (1:18). Gabriel o torna mudo até o nascimento do filho. A incredulidade tem consequências — mas Deus não abandona o projeto.
 
 ### O cântico de Zacarias (1:68-79)
 
@@ -860,10 +860,10 @@ Lucas conclui: "Jesus crescia em sabedoria, em estatura e em graça diante de De
         },
         {
           id: 'aula-ev-3-3',
-          titulo: 'Jesus e os marginados',
+          titulo: 'Jesus e os marginalizados',
           tipo: 'texto',
           duracao: '15 min',
-          conteudo: `## Jesus e os marginados
+          conteudo: `## Jesus e os marginalizados
 
 Uma das marcas mais marcantes do evangelho de Lucas é o retrato de Jesus como alguém que busca os marginalizados, os rejeitados e os pecadores. Enquanto Mateus enfatiza a ética e João a divindade, Lucas enfatiza a compaixão.
 
@@ -932,7 +932,7 @@ Se você se sente marginalizado, rejeitado ou indigno — Lucas é o seu evangel
           duracao: '15 min',
           conteudo: `## Jesus e a oração
 
-A oração é um tema central no evangelho de Lucas. Mais que qualquer outro evangelista, Lucas retrata Jesus como um homem de oração — someone que toma decisões, enfrenta crises e mantém comunhão com o Pai através da oração.
+A oração é um tema central no evangelho de Lucas. Mais que qualquer outro evangelista, Lucas retrata Jesus como um homem de oração — alguém que toma decisões, enfrenta crises e mantém comunhão com o Pai através da oração.
 
 ### Onde Jesus ora
 
@@ -1010,7 +1010,7 @@ Maria Madalena, Joana, Maria, mãe de Tiago e outras mulheres vão ao túmulo co
 
 "Dois homens com vestes resplandecentes" aparecem e dizem: "Por que buscais entre os mortos o que está vivo? Não está aqui, mas ressuscitou" (24:5-6). A pergunta é devastadora — se Jesus vive, por que buscar entre os mortos?
 
-As mulheres lembram das palavras de Jesus e vão anunciar aos onze. Mas "esta palavra lhes pareceu um crebilão, e não lhes creram" (24:11). A incredulidade diante da ressurreição é um tema em todos os evangelhos — mas Lucas é particularmente honesto.
+As mulheres lembram das palavras de Jesus e vão anunciar aos onze. Mas "esta palavra lhes pareceu um incrível, e não lhes creram" (24:11). A incredulidade diante da ressurreição é um tema em todos os evangelhos — mas Lucas é particularmente honesto.
 
 ### Os discípulos de Emaús (24:13-35)
 
@@ -1098,7 +1098,7 @@ João não é organizado cronologicamente como os sinóticos. Ele reorganiza a v
 
 **Sete sinais (milagres):**
 1. Transformar água em vinho (2:1-11)
-2. Curar o filho do official (4:46-54)
+2. Curar o filho do oficial (4:46-54)
 3. Curar o paralítico na piscina de Betesda (5:1-15)
 4. Multiplicar pães e peixes (6:1-14)
 5. Caminhar sobre as águas (6:16-21)
@@ -1355,11 +1355,11 @@ Enquanto os sinóticos relatam dezenas de milagres, João seleciona cuidadosamen
 
 ### 2. Curar o filho do official (4:46-54)
 
-**Contexto:** Um official romano pede que Jesus cure seu filho doente. Jesus diz: "Vai; o teu filho vive" (4:50). O official acredita e vai. No caminho, seus servos confirmam: o filho melhorou na mesma hora.
+**Contexto:** Um oficial romano pede que Jesus cure seu filho doente. Jesus diz: "Vai; o teu filho vive" (4:50). O official acredita e vai. No caminho, seus servos confirmam: o filho melhorou na mesma hora.
 
 **O sinal:** A cura acontece à distância — Jesus não vai à casa. A palavra de Jesus tem poder sem presença física.
 
-**Significado teológico:** A fé不需要verificação visual. "Porque viu o teu filho, e creste" (4:53). A fé se baseia na palavra de Jesus, não nas circunstâncias.
+**Significado teológico:** A fé não precisa de verificação visual. "Porque viu o teu filho, e creste" (4:53). A fé se baseia na palavra de Jesus, não nas circunstâncias.
 
 ### 3. Curar o paralítico na piscina de Betesda (5:1-15)
 
@@ -1442,7 +1442,7 @@ João escolheu esses sete porque cada um é um ícone teológico — uma janela 
               pergunta: 'Qual evangelho apresenta Jesus como o "Filho do Homem" com ênfase na sua humanidade?',
               opcoes: ['Mateus', 'João', 'Marcos', 'Lucas'],
               respostaCorreta: 3,
-              explicacao: 'Lucas retrata Jesus como o Filho do Homem — perfeito em sua humanidade, comê, bebe, chora, ora e tem compaixão dos marginados. É o evangelho mais focado na humanidade de Jesus.',
+              explicacao: 'Lucas retrata Jesus como o Filho do Homem — perfeito em sua humanidade, come, bebe, chora, ora e tem compaixão dos marginalizados. É o evangelho mais focado na humanidade de Jesus.',
             },
             {
               id: 'qf-ev-3',

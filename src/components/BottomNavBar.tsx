@@ -95,6 +95,7 @@ function BottomNavBarInner() {
   const pathname = usePathname();
   const [isMobile, setIsMobile] = useState(false);
   const [showMore, setShowMore] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(() =>
     Object.fromEntries(grupos.map((g) => [g.titulo, true]))
   );
@@ -104,6 +105,21 @@ function BottomNavBarInner() {
     check();
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
+  }, []);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > 100 && currentY > lastScrollY) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      lastScrollY = currentY;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
@@ -196,7 +212,7 @@ function BottomNavBarInner() {
       {/* Barra inferior */}
       <nav
         aria-label="Navegacao mobile"
-        className="fixed bottom-0 left-0 right-0 z-[50] border-t border-border bg-[#0A0908]"
+        className={`fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-[#0A0908] transition-transform duration-300 ${hidden ? 'translate-y-full' : 'translate-y-0'}`}
         style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       >
         <div className="flex items-center justify-around h-[60px]">

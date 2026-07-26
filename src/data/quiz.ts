@@ -175,7 +175,7 @@ const perguntasFacis: PerguntaQuiz[] = [
   q('f135',"V/F: \"Christos\" significa \"ungido\".",["Verdadeiro","Falso","",""],0,"Tradução grega de Messias",'linguas','facil','verdadeiro_falso'),
   q('f136',"\"Evangelho\" em grego significa?",["Boa nova","Palavra de Deus","Salvação","Reino"],0,"Euangelion",'linguas','facil','multipla'),
   q('f137',"\"Senhor\" para Deus em hebraico?",["Adonai","Yahweh","Elohim","Shaddai"],0,"Adonai — substituto para YHWH",'linguas','facil','multipla'),
-  q('f138',"V/F: \"Bíblia\" significa \"livros\".",["Verdadeiro","Falso","",""],0,"Biblia = livros",'linguas','facil','verdadeiro_falso'),
+  q('f138',"V/F: \"Bíblia\" significa \"livros\".",["Verdadeiro","Falso","",""],0,"Bíblia = livros",'linguas','facil','verdadeiro_falso'),
   q('f139',"\"Torah\" significa?",["Lei/Instrução","Profecia","Louvor","Oração"],0,"Instrução",'linguas','facil','multipla'),
   q('f140',"\"Deus\" em grego?",["Theos","Kyrios","Pater","Christos"],0,"Theos — 1300+ vezes",'linguas','facil','multipla'),
   q('f141',"\"Amém\" significa?",["Que assim seja","Glória a Deus","Paz","Louvor"],0,"Ser firme",'linguas','facil','multipla'),

@@ -19,7 +19,9 @@ export const CURSO_ROMANOS: Curso = {
         {
           id: 'aula-rom-1-1',
           título: 'Introdução a Romanos',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=uGLbrGF1JJk',
+          videoTítulo: 'Romanos 1-4 || Bible Project Português ||',
           duração: '14 min',
           conteúdo: '## Introdução a Romanos\n\nRomanos é a carta mais sistemática de Paulo. Escrita por volta de 57 d.C. de Corinto, ela apresenta o evangelho em sua forma mais completa.\n\n### Por que Romanos é importante\n\nAgostinho converteu-se lendo Romanos 9-10. Lutero a usou para desafiar a indulgência. Wesley sentiu o coração "estranhamente aquecido" lendo a prefação de Romanos. Martin Luther King Jr. baseou-se nela para o movimento dos direitos civis.\n\n### O tema central\n\nA justificação pela fé: como o justo Deus pode declarar justo o pecador, apenas pela fé em Cristo.\n\n### A estrutura\n\nCaps 1-3: O problema (pecado universal). Caps 3-5: A solução (justificação pela fé). Caps 6-8: A vida no espírito. Caps 9-11: O plano para Israel e as nações. Caps 12-16: Aplicação prática.',
           versículosChave: [
@@ -88,7 +90,9 @@ export const CURSO_ROMANOS: Curso = {
         {
           id: 'aula-rom-2-1',
           título: 'A justificação pela fé (Rom 3:21-31)',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=gcpurQOORaI',
+          videoTítulo: 'O que é justificação - Moises Brasil',
           duração: '16 min',
           conteúdo: '## A justificação pela fé\n\nRomanos 3:21-31 é o núcleo da teologia paulina. Aqui Paulo revela como o justo Deus declara justo o pecador.\n\n### A justiça de Deus\n\nUma justiça de Deus se manifestou sem a Lei, testificada pela Lei e pelos Profetas (3:21). Essa justiça vem por meio da fé em Jesus Cristo para todos que creem (3:22).\n\n### O propiciatório\n\nDeus propôs Jesus como propiciatório pelo seu sangue, mediante a fé (3:25). Propiciatório significa que Jesus absorveu a ira de Deus que era direcionada a nós.\n\n### A graça\n\nA justificação é pela graça, de graça, como dom (3:24). Não há merecimento humano. É um presente de Deus.\n\n### O orgulho humano\n\nNão há lugar para orgulho. Se é dom, não é obra. Se é graça, não é mérito.',
           versículosChave: [
@@ -190,7 +194,9 @@ export const CURSO_ROMANOS: Curso = {
         {
           id: 'aula-rom-3-4',
           título: 'Vida no Espírito (Rom 8:1-17)',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=Xy9rHjb2Hq4',
+          videoTítulo: 'Espírito Santo - Filiação e Fruto do Espírito - Curso de Teologia Trinitária - Moises Brasil',
           duração: '16 min',
           conteúdo: '## Vida no Espírito\n\nO capítulo 8 é o ponto alto de Romanos. Não há condenação para os que estão em Cristo Jesus.\n\n### A libertação\n\nA lei do espírito de vida me livrou da lei do pecado e da morte (8:2). O Espírito nos libertou. Não é esforço humano — é obra divina.\n\n### A vida no espírito\n\nOs que andam segundo o Espírito pensam nas coisas do Espírito (8:5). A vida cristã é guiada pelo Espírito.\n\n### Filhos de Deus\n\nO Espírito mesmo testifica ao nosso espírito de que somos filhos de Deus (8:16). Essa é a certeza da salvação.\n\n### Herdeiros\n\nSe filhos, logo herdeiros — herdeiros de Deus e co-herdeiros com Cristo (8:17).',
           versículosChave: [

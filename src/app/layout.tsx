@@ -18,7 +18,7 @@ const inter = localFont({
     { path: '../../public/fonts/inter-latin-600.woff2', weight: '600', style: 'normal' },
   ],
   variable: '--font-inter',
-  display: 'optional',
+  display: 'swap',
 });
 
 const spectral = localFont({
@@ -168,7 +168,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
                     theme = prefersDark ? 'escuro' : 'claro';
                   }
-                  if (theme === 'escuro' || theme === 'noturno' || theme === 'sepia') {
+                  if (theme === 'escuro' || theme === 'noturno' || theme === 'sepia' || theme === 'dim') {
                     document.documentElement.classList.add('dark');
                   }
                   if (theme === 'noturno') {
@@ -176,6 +176,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   }
                   if (theme === 'sepia') {
                     document.documentElement.classList.add('sepia');
+                  }
+                  if (theme === 'dim') {
+                    document.documentElement.classList.add('dim');
                   }
                 } catch(e) {
                   document.documentElement.classList.add('dark');

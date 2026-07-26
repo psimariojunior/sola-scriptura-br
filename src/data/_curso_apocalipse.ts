@@ -19,7 +19,9 @@ export const CURSO_APOCALIPSE: Curso = {
         {
           id: 'aula-apo-1-1',
           título: 'Introdução ao Apocalipse',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=BLQEAe9VDUQ',
+          videoTítulo: 'Apocalipse 1-11 || Bible Project Português ||',
           duração: '14 min',
           conteúdo: '## Introdução ao Apocalipse\n\nO Apocalipse é o último livro da Bíblia e o mais misterioso. O título grego significa "revelação" — não "oculto". É a revelação de Jesus Cristo.\n\n### O autor\n\nJoão, o discípulo amado, escreveu na ilha de Patmos por volta de 95 d.C., durante a perseguição do imperador Domiciano.\n\n### O propósito\n\nRevelar Jesus Cristo como o Senhor soberano da história e o que está por vir. Não é um código secreto — é uma mensagem de esperança para a igreja perseguida.\n\n### Como interpretar\n\nO Apocalipse usa simbolismo do AT (especialmente Daniel, Ezequiel e Isaías). Nem tudo é literal; nem tudo é simbólico. O contexto é a chave.\n\n### A estrutura\n\nRevelações 1: visão de Cristo. Caps 2-3: sete igrejas. Caps 4-5: o trono no céu. Caps 6-19: as sete pragas e o julgamento. Caps 20-22: o novo mundo.',
           versículosChave: [
@@ -90,7 +92,9 @@ export const CURSO_APOCALIPSE: Curso = {
         {
           id: 'aula-apo-2-1',
           título: 'O trono no céu (Ap 4-5)',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=dh07WiDsEZI',
+          videoTítulo: 'Quem são os 144 mil do Apocalipse | Apocalipse 7 (1-8) e 14 (1-5) - Moises Brasil',
           duração: '14 min',
           conteúdo: '## O trono no céu\n\nJoão é arrebatado ao céu e vê o trono de Deus cercado de adoradores.\n\n### A visão do trono\n\n24 anciãos, quatro seres viventes, relâmpagos e trovões. A adoração é constante: Santo, Santo, Santo é o Senhor Deus Todo-Poderoso.\n\n### O pergaminho selado\n\nNinguém podia abrir o pergaminho — nem nos céus nem na terra. João chorou. Mas o Cordeiro (Cristo) é digno de abrir os selos, porque foi imolado (5:9).\n\n### O hino do Cordeiro\n\nDigno és de tomar o livro e de abrir os seus selos, porque foste imolado, e com o teu sangue nos compraste para Deus (5:9). A redenção é o fundamento do louvor celestial.\n\n### A adoração eterna\n\nToda a criação louva: ao que está sentado no trono, e ao Cordeiro, seja louvor, e honra, e glória, e poder, para todo o sempre (5:13).',
           versículosChave: [
@@ -112,7 +116,9 @@ export const CURSO_APOCALIPSE: Curso = {
         {
           id: 'aula-apo-2-3',
           título: 'As sete trombetas (Ap 8-11)',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=HEcsnbgvExs',
+          videoTítulo: 'As duas testemunhas do Apocalipse - Moises Brasil',
           duração: '14 min',
           conteúdo: '## As sete trombetas\n\nAs trombetas intensificam o julgamento. Cada uma traz destruição parcial.\n\n### As trombetas\n\n1. Granizo e fogo misturados com sangue\n2. Uma montanha em chamas lançada ao mar\n3. Uma estrela cai sobre as águas\n4. Um terço do céu fica escuro\n5. Gafanhotos do abismo\n6. Quatro anjos do Eufrates\n7. O reino do mundo se torna do Senhor\n\n### O sétimo som\n\nO sétimo trombetas anuncia: Os reinos do mundo são do nosso Senhor e do Seu Cristo, e Ele reinará para todo o sempre (11:15).\n\n### Os dois testemunhas\n\nDois profetas testemunham por 1.260 dias, são mortos e ressuscitam. São imagens da igreja fiel em perseguição.\n\n### O proporcional\n\nOs julgamentos são proporcionais — um terço é destruído, não tudo. A misericórdia de Deus é limitada, mas real.',
           versículosChave: [
@@ -181,7 +187,9 @@ export const CURSO_APOCALIPSE: Curso = {
         {
           id: 'aula-apo-3-3',
           título: 'O novo céu e a nova terra (Ap 21-22)',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=eizPQBawrsU',
+          videoTítulo: 'Apocalipse 12-22 || Bible Project Português ||',
           duração: '16 min',
           conteúdo: '## O novo céu e a nova terra\n\nO Apocalipse termina com a mais bela visão da Bíblia: a nova criação.\n\n### A renovação\n\nVi um novo céu e uma nova terra (21:1). Não é destruição total — é renovação. Assim como a ressurreição de Cristo, a criação será restaurada e transformada.\n\n### A nova Jerusalém\n\nA cidade desce do céu, preparada como uma noiva. Suas portas nunca se fecharão. Não há Templo nela, porque o Senhor Deus Todo-Poderoso e o Cordeiro são o seu templo.\n\n### Sem sofrimento\n\nEnxugará toda lágrima dos seus olhos, e a morte não haverá mais (21:4). Não haverá mais luto, nem pranto, nem dor.\n\n### O rio da vida\n\nUm rio da água da vida corria do trono de Deus (22:1). De cada lado do rio, a árvore da vida. As folhas são para a cura das nações.\n\n### A bênção final\n\nNão haverá mais noite; e não precisarão de lâmpada nem de luz do sol, porque o Senhor Deus os iluminará (22:5). A eternidade é luz eterna.\n\n### O convite final\n\nO Espírito e a noiva dizem: Vem! E quem ouve diga: Vem! (22:17). O Apocalipse termina com um convite aberto a todos.',
           versículosChave: [

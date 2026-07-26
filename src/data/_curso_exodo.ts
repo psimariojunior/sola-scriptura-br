@@ -19,7 +19,9 @@ export const CURSO_EXODO: Curso = {
         {
           id: 'aula-exo-1-1',
           título: 'Israel no Egito: A Escravidão',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=TF6whgRN6AM',
+          videoTítulo: 'Êxodo 1-18 || Bible Project Português ||',
           duração: '14 min',
           conteúdo: '## Israel no Egito: A Escravidão\n\nO livro de Êxodo começa onde Gênesis termina: os filhos de Israel vivendo no Egito, protegidos por José. Mas passaram-se 400 anos e a situação mudou completamente.\n\n### A descendência de Abraão\n\nDeus havia prometido a Abraão uma terra, uma descendência e uma benção. A descendência cresceu — 70 pessoas que entraram no Egito se tornarám uma nação inteira. Êxodo 1:7 diz que os filhos de Israel frutificaram e se multiplicaram.\n\n### A opressão\n\nUm novo faraó, que não conheceu a José (Ex 1:8), temeu que os israelitas se tornassem numerosos demais e os transformou em escravos. O povo de Deus sofria, mas Deus não havia esquecido Sua promessa.\n\n### Moisés nasce\n\nNesse contexto, nasce Moisés. Sua mãe o escondeu por três meses e depois colocou-o num cesto nas águas do Nilo. A filha do faraó o encontrou e o criou como príncipe egípcio.\n\n### A chamada na sarça ardente\n\nEm Êxodo 3, Deus fala a Moisés do meio de uma sarça que ardia sem se consumir. A revelação é tripla: Eu sou o que sou (3:14), eu vejo a aflição do meu povo (3:7), e eu os livrarei (3:8).',
           versículosChave: [
@@ -31,7 +33,9 @@ export const CURSO_EXODO: Curso = {
         {
           id: 'aula-exo-1-2',
           título: 'As Dez Pragas',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=BYPrXXmh_QE',
+          videoTítulo: 'O Livro do Êxodo - Os livros da Bíblia - Moises Brasil',
           duração: '16 min',
           conteúdo: '## As Dez Pragas\n\nAs dez pragas são um dos episódios mais dramáticos da Bíblia. Nãosão apenas demonstrações de poder — são juízos contra os deuses do Egito.\n\n### O propósito das pragas\n\nO propósito não era apenas libertar Israel — era revelar quem Deus e aos egípcios e aos israelitas.\n\n### As pragas e os deuses egípcios\n\nCada praga atacava diretamente uma divindade egípcia. Água em sangue atacou Hapi (deus do Nilo). Escuridão atacou Ra (deus do sol). A décima praga atacou o próprio faraó como deus.\n\n### A décima praga e a Páscoa\n\nA décima praga — a morte dos primogênitos — e a mais devastadora. Mas Deus deu uma saída: o cordeiro pascal. Jesus é o Cordeiro de Deus (João 1:29). A Páscoa do AT é a sombra da Páscoa do NT.',
           versículosChave: [
@@ -100,7 +104,9 @@ export const CURSO_EXODO: Curso = {
         {
           id: 'aula-exo-2-1',
           título: 'A Chegada ao Sinai',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=cfZVX_ns8ds',
+          videoTítulo: 'Êxodo 19-40 || Bible Project Português ||',
           duração: '12 min',
           conteúdo: '## A Chegada ao Sinai\n\ntrês meses depois de sair do Egito, Israel chegou ao monte Sinai. Foi ali que Deus estabeleceu Sua aliança com o povo.\n\n### A proposta de aliança\n\nDeus propôs um pacto: Se vocês me obedecerem fielmente, serão o meu povo de propriedade exclusiva (Ex 19:5). Era uma aliança recíproca.\n\n### A revelação no monte\n\nQuando Deus desceu sobre o Sinai em fogo e nuvem, todo o povo tremeu. A experiência foi tanto medo quanto reverência.',
           versículosChave: [
@@ -111,7 +117,9 @@ export const CURSO_EXODO: Curso = {
         {
           id: 'aula-exo-2-2',
           título: 'Os Dez Mandamentos',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=7L9cmfn4trI',
+          videoTítulo: 'Os 10 Mandamentos: Um Convite à Sabedoria - BibleProject Português',
           duração: '16 min',
           conteúdo: '## Os Dez Mandamentos\n\nOs Dez Mandamentos são o núcleo da Lei de Deus. Gravados em duas tábuas de pedra pelo próprio dedo de Deus.\n\n### As duas tábuas\n\nA primeira tábua (1-4) trata do relacionamento com Deus. A segunda (5-10) trata do próximo. Jesus resumiu tudo em amar a Deus e ao próximo (Mateus 22:37-40).\n\n### O propósito da Lei\n\nPaulo ensina que a Lei foi nosso aio para nos conduzir a Cristo (Gal 3:24). A Lei revela o pecado e aponta para a necessidade de um Salvador.',
           versículosChave: [

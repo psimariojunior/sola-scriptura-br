@@ -19,7 +19,9 @@ export const CURSO_HERMENEUTICA: Curso = {
         {
           id: 'aula-herm-1-1',
           título: 'O que é hermenêutica?',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=i8vlARU4_ng',
+          videoTítulo: 'O que é Hermenêutica? A ciência e a arte de entender a Bíblia corretamente - Moises Brasil',
           duração: '12 min',
           conteúdo: `## O que é hermenêutica?
 
@@ -74,7 +76,9 @@ Hermenêutica não é apenas para pastores e teólogos. Todo cristão que lê a 
         {
           id: 'aula-herm-1-2',
           título: 'A regra de interpretação pela Bíblia',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=j1AxJMUPbA0',
+          videoTítulo: 'BIBLIOLOGIA | AULA 6 – COMO INTERPRETAR A BÍBLIA CORRETAMENTE? (PARTE 1) - Lécio Ferreira',
           duração: '14 min',
           conteúdo: `## A regra de interpretação pela Bíblia
 
@@ -848,7 +852,9 @@ Respeite o gênero literário. Não alegorize narrativas históricas. Não force
         {
           id: 'aula-herm-3-2',
           título: 'Isolar versículos do contexto',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=Crl-yLs9PCU',
+          videoTítulo: 'O ERRO GRAVE NA HORA DE LER A BÍBLIA (E COMO EVITÁ-LO) - Lécio Ferreira',
           duração: '14 min',
           conteúdo: `## Isolar versículos do contexto
 

@@ -76,7 +76,9 @@ Estudar a natureza de Deus não é apenas teologia abstrata — é o fundamento 
         {
           id: 'aula-1-2',
           título: 'O Problema do Pecado: Separação e Morte Espiritual',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=2oe6ftQVoto',
+          videoTítulo: 'Pecado, iniquidade e impiedade: Qual a diferença? - Moises Brasil',
           duração: '15 min',
           conteúdo: `## O Problema do Pecado: Separação e Morte Espiritual
 
@@ -507,7 +509,9 @@ A vida cristã é um ciclo de queda, arrependimento e restauração. Deus não e
         {
           id: 'aula-2-2',
           título: 'A Graça de Deus: Injustificável e Transformadora',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=OycTEfDjja4',
+          videoTítulo: 'O que é a GRAÇA DE DEUS - Simples conceito - Moises Brasil',
           duração: '15 min',
           conteúdo: `## A Graça de Deus: Injustificável e Transformadora
 
@@ -576,7 +580,9 @@ Não éramos dignos. Não fizéramos nada para merecer. E foi exatamente por iss
         {
           id: 'aula-2-3',
           título: 'Regeneração e Justificação',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=cWCBZTHQBOY',
+          videoTítulo: 'Soteriologia - A doutrina da salvação - Curso Básico de Teologia - Moises Brasil',
           duração: '15 min',
           conteúdo: `## Regeneração e Justificação
 
@@ -880,7 +886,9 @@ A segurança do crente não é licença para viver sem compromisso. A verdadeira
         {
           id: 'aula-3-1',
           título: 'Deus Pai: Criador e Soberano',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=z31Tg-HJvQo',
+          videoTítulo: 'Introdução e a revelação de Deus - Curso Gratuito de Teologia Trinitária - Moises Brasil',
           duração: '12 min',
           conteúdo: `## Deus Pai: Criador e Soberano
 

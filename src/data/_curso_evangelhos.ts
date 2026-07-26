@@ -19,7 +19,9 @@ export const CURSO_EVANGELHOS: Curso = {
         {
           id: 'aula-ev-1-1',
           título: 'Introdução ao Evangelho de Mateus',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=VskOdIySJQI',
+          videoTítulo: 'Mateus 1-13 || Bible Project Português ||',
           duração: '15 min',
           conteúdo: `## Introdução ao Evangelho de Mateus
 
@@ -293,7 +295,9 @@ Estudar as parábolas é como abrir um tesouro — sempre há algo novo para des
         {
           id: 'aula-ev-1-5',
           título: 'A Grande Comissão (cap. 28)',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=4E-Ju-WKe1k',
+          videoTítulo: 'Mateus 14-28 || Bible Project Português ||',
           duração: '15 min',
           conteúdo: `## A Grande Comissão (cap. 28)
 
@@ -365,7 +369,9 @@ A igreja que não faz discípulos está desobedecendo ao último e mais importan
         {
           id: 'aula-ev-2-1',
           título: 'Introdução ao Evangelho de Marcos',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=B05lvqNtCpM',
+          videoTítulo: 'Quem foi o Jesus Histórico? Existe diferença entre o Jesus Histórico e o Cristo da fé? - Moises Brasil',
           duração: '15 min',
           conteúdo: `## Introdução ao Evangelho de Marcos
 
@@ -557,7 +563,9 @@ Os milagres de Marcos não são espetáculo — são evidência.`,
         {
           id: 'aula-ev-2-4',
           título: 'A paixão e crucificação (caps. 14-15)',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=ASvvA_0dwtc',
+          videoTítulo: 'O julgamento e a morte de Jesus - Moises Brasil',
           duração: '15 min',
           conteúdo: `## A paixão e crucificação (caps. 14-15)
 

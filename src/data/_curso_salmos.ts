@@ -19,7 +19,9 @@ export const CURSO_SALMOS: Curso = {
         {
           id: 'aula-sal-1-1',
           título: 'Introdução aos Salmos',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=fOPF8khGeII',
+          videoTítulo: 'Salmos || Bible Project Português ||',
           duração: '14 min',
           conteúdo: '## Introdução aos Salmos\n\nO livro de Salmos é a maior coletânea de poética da Bíblia. Sao 150 poemas, orações e cantos que expressam toda a gama de emoções humanas diante de Deus.\n\n### A estrutura\n\nO Saltério se divide em cinco livros (como o Pentateuco): Livro 1 (Sl 1-41), Livro 2 (Sl 42-72), Livro 3 (Sl 73-89), Livro 4 (Sl 90-106), Livro 5 (Sl 107-150).\n\n### Os tipos de salmos\n\nExistem vários tipos: louvor, lamentação, sabedoria, royal, de confiança, de ação de graças e imprecação. Entender o tipo ajuda a interpretar corretamente.\n\n### Relevância para hoje\n\nOs Salmos são a hinária da igreja. Jesus cantou Salmos. Paulo citou Salmos. Eles permanecem como modelo de oração e louvor.',
           versículosChave: [
@@ -30,7 +32,9 @@ export const CURSO_SALMOS: Curso = {
         {
           id: 'aula-sal-1-2',
           título: 'Salmo 23: O Senhor e o meu Pastor',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=6bcGsMjiCOE',
+          videoTítulo: 'O Livro dos Salmos - BibleProject Português',
           duração: '16 min',
           conteúdo: '## Salmo 23: O Senhor e o meu Pastor\n\nO Salmo 23 é o mais conhecido e amado da Bíblia. Escrito por Davi, que era pastor antes de ser rei, ele usa a imagem de pastor e ovelha.\n\n### Análise verso a verso\n\nO Senhor é o meu pastor — não faltará nada. Me faz deitar em verdes pastos — descanso e provisão. Guia-me pelas veredas da justiça — direção moral. Ainda que va pelo vale da sombra da morte — momentos difíceis — não temerei, porque tu estas comigo. A tua vara e o teu cajado me consolam — proteção e cuidado.\n\n### A metáfora do pastor\n\nNo Oriente Antigo, o pastor dormia na entrada do curral. Jesus disse: Eu sou a porta das ovelhas (João 10:7). E Também: Eu sou o bom pastor (João 10:11). O Salmo 23 cumpre-se em Cristo.\n\n### Aplicação\n\nO Salmo 23 nos ensina que Deus supre nossas necessidades, nos guia, nos protege e nos prepare uma mesa mesmo diante dos inimigos. A casa do Pai tem muitos aposentos (João 14:2).',
           versículosChave: [
@@ -112,7 +116,9 @@ export const CURSO_SALMOS: Curso = {
         {
           id: 'aula-sal-2-2',
           título: 'Salmo 22: Meu Deus, por que me abandonaste?',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=u5i9Rx9EGzo',
+          videoTítulo: 'Salmos messiânicos - Moises Brasil',
           duração: '16 min',
           conteúdo: '## Salmo 22: Meu Deus, por que me abandonaste?\n\nO Salmo 22 é o salmo mais citado por Jesus na cruz. Começa com desespero e termina em triunfo.\n\n### A petição de Jesus\n\nAs palavras de Jesus na cruz — Meu Deus, meu Deus, por que me abandonaste? (Mateus 27:46) — citam o inicio deste salmo. Isso mostra que Jesus orava os Salmos mesmo no sofrimento.\n\n### O sofrimento descrito\n\nO salmista descreve abutres, corações de leão, o corpo derretido, a língua colada ao palato. A descrição é tao vívida que parece prefigurar a crucificação.\n\n### A virada\n\nDepois da lamentação, o salmo muda radicalmente: Eu declarei o teu nome aos meus irmãos, no meio da congregação te louvarei (v.22). O sofrimento termina em louvor.\n\n### Cristologia do Salmo 22\n\nCristãos primitivos viam neste salmo uma profecia da crucificação: os ossos contados, a roupa dividida, a saliva nos lábios. Jesus cumpriu este salmo na cruz.',
           versículosChave: [
@@ -220,7 +226,9 @@ export const CURSO_SALMOS: Curso = {
         {
           id: 'aula-sal-3-4',
           título: 'A Sabedoria nos Salmos',
-          tipo: 'texto',
+          tipo: 'video',
+          videoUrl: 'https://www.youtube.com/watch?v=1yfnzRKqLhE',
+          videoTítulo: 'O Salmo 119 | Estudo bíblico sobre o Salmo 119 - Moises Brasil',
           duração: '12 min',
           conteúdo: '## A Sabedoria nos Salmos\n\nOs Salmos de sabedoria ensinam a viver com discernimento e temor a Deus.\n\n### O temor do Senhor\n\nO princípio da sabedoria é o temor do Senhor (Salmo 111:10, Provérbios 1:7). Temer a Deus não é medo — é reverência, admiração e submissão.\n\n### A Lei como guia\n\nO Salmo 119, o mais longo da Bíblia, celebra a Lei como luz, guia, fonte de vida e alegria. A Lei não é fardo — é presente divino.\n\n### A sabedoria praticada\n\nA sabedoria bíblica não é apenas conhecimento — é saber aplicar o conhecimento na vida real, com discernimento e misericórdia.\n\n### Jesus, a sabedoria de Deus\n Paulo chama Jesus de sabedoria de Deus (1 Coríntios 1:24). Os Salmos de sabedoria apontam para Ele.',
           versículosChave: [

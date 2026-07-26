@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'config/theme.dart';
 import 'screens/splash_screen.dart';
 import 'screens/settings_screen.dart';
@@ -143,6 +145,19 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       final token = await messaging.getToken();
       debugPrint('FCM Token: $token');
+
+      if (token != null) {
+        try {
+          final response = await http.post(
+            Uri.parse('https://api.solascripturabr.com.br/api/v1/notifications/register'),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({'token': token, 'platform': 'android'}),
+          );
+          debugPrint('FCM token registered: ${response.statusCode}');
+        } catch (e) {
+          debugPrint('Failed to register FCM token: $e');
+        }
+      }
 
       messaging.onTokenRefresh.listen((newToken) {
         debugPrint('FCM Token refreshed: $newToken');

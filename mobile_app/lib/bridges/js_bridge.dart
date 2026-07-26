@@ -8,7 +8,7 @@ class JsBridge {
       if (window.__SSB_NATIVE) return;
       
       window.__SSB_NATIVE = true;
-      window.__SSB_VERSION = '1.0.0';
+      window.__SSB_VERSION = '1.1.0';
       window.__SSB_PLATFORM = 'flutter';
       
       window.__SSB_SHARE = function(text, url) {

@@ -45,6 +45,8 @@ import { CURSO_EXODO } from './_curso_exodo';
 import { CURSO_SALMOS } from './_curso_salmos';
 import { CURSO_ROMANOS } from './_curso_romanos';
 import { CURSO_APOCALIPSE } from './_curso_apocalipse';
+import { CURSO_GENESIS } from './_curso_genesis';
+import { CURSO_JOAO } from './_curso_joao';
 
 export const CURSOS: Curso[] = [
   {
@@ -423,4 +425,6 @@ O objetivo do estudo bíblico não é acumular informação — é conhecer a De
   CURSO_SALMOS,
   CURSO_ROMANOS,
   CURSO_APOCALIPSE,
+  CURSO_GENESIS,
+  CURSO_JOAO,
 ];

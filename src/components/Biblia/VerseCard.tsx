@@ -1,13 +1,12 @@
 'use client';
 
 import { memo, Fragment, useRef, useState, useEffect, useCallback } from 'react';
-import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
 import type { useVerseAudio } from '@/hooks/useVerseAudio';
 import type { useFlashcards } from '@/hooks/useFlashcards';
 import { VerseActions } from './VerseActions';
-import { Heart, Palette, Copy, StickyNote, Brain } from 'lucide-react';
+import { Heart, Palette, Copy, StickyNote, Languages, MessageSquare, Share2, Sparkles, ImageIcon, Users, BookOpen } from 'lucide-react';
 import { toggleFavorito } from '@/lib/estudos';
 import { setMarcador, removeMarcador, getMarcador, CORES, type CorMarcador } from '@/lib/marcadores';
 
@@ -38,6 +37,11 @@ export interface VerseCardProps {
   onComentarios: () => void;
   onToggleEstudo: () => void;
   copyVerse: (text: string, ref: string) => void;
+  onApresentar?: () => void;
+  onCompartilharImagem?: () => void;
+  onAprofundar?: () => void;
+  onCompartilharSala?: () => void;
+  onAbrirPainel?: () => void;
   verseKey: string;
   showTranslationLabel: boolean;
   tradLabel: string;
@@ -72,6 +76,11 @@ export const VerseCard = memo(function VerseCard({
   onComentarios,
   onToggleEstudo,
   copyVerse,
+  onApresentar,
+  onCompartilharImagem,
+  onAprofundar,
+  onCompartilharSala,
+  onAbrirPainel,
   verseKey,
   isCurrentAudioVerse = false,
   hasResources: hasResourcesProp = false,
@@ -98,13 +107,14 @@ export const VerseCard = memo(function VerseCard({
     if (isSelected && articleRef.current) {
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
       if (isMobile) {
-        // Scroll the verse to the top third of the viewport so MobileActionBar (bottom sheet) doesn't cover it
+        // Always scroll the verse into the top quarter of the viewport
+        // so the MobileActionBar (bottom sheet ~50vh) never covers it
         requestAnimationFrame(() => {
           if (articleRef.current) {
             const rect = articleRef.current.getBoundingClientRect();
             const viewportH = window.innerHeight;
-            // If verse is in the bottom half, scroll it up
-            if (rect.top > viewportH * 0.35) {
+            // If verse is below the top 25% of viewport, scroll it up
+            if (rect.top > viewportH * 0.25 || rect.bottom > viewportH * 0.6) {
               articleRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
           }
@@ -364,63 +374,136 @@ export const VerseCard = memo(function VerseCard({
           </div>
         )}
 
-        {/* Mobile inline action row */}
+        {/* Mobile inline action panel */}
         {isSelected && (
-          <div className="flex lg:hidden items-center gap-1 mt-2 pt-2 border-t border-[var(--border)]/20 animate-[slideDown_0.2s_ease-out]">
-            <button
-              onClick={(e) => { e.stopPropagation(); toggleFavorito(livroAbreviacao, capitulo, numero, traducao, texto); onFavoritoChange(); }}
-              className={cn('flex items-center justify-center w-11 h-11 rounded-lg transition-all active:scale-90', isFavorito ? 'text-red-500 bg-red-500/10' : 'text-[var(--content-muted)] hover:text-red-500 hover:bg-red-500/10')}
-              aria-label={isFavorito ? 'Remover favorito' : 'Favoritar'}
-            >
-              <Heart className="w-4.5 h-4.5" fill={isFavorito ? 'currentColor' : 'none'} />
-            </button>
-            <div className="relative" ref={mobileColorRef}>
+          <div className="lg:hidden mt-2 pt-2 border-t border-[var(--border)]/20 animate-[slideDown_0.2s_ease-out]">
+            <p className="text-[10px] text-[var(--content-muted)] font-medium uppercase tracking-wider mb-2">Ações</p>
+            <div className="grid grid-cols-4 gap-1.5">
               <button
-                onClick={(e) => { e.stopPropagation(); setShowMobileColor(!showMobileColor); }}
-                className={cn('flex items-center justify-center w-11 h-11 rounded-lg transition-all active:scale-90', corAtual ? 'text-white' : 'text-[var(--content-muted)] hover:text-[var(--brand-default)] hover:bg-[var(--brand-subtle)]')}
-                style={corAtual ? { backgroundColor: corAtual === 'yellow' ? '#facc15' : corAtual === 'green' ? '#4ade80' : corAtual === 'blue' ? '#60a5fa' : corAtual === 'pink' ? '#f472b6' : corAtual === 'orange' ? '#fb923c' : '#a78bfa' } : undefined}
-                aria-label="Cor"
+                onClick={(e) => { e.stopPropagation(); toggleFavorito(livroAbreviacao, capitulo, numero, traducao, texto); onFavoritoChange(); }}
+                className={cn('flex flex-col items-center justify-center gap-1 p-2 rounded-xl transition-all active:scale-95', isFavorito ? 'text-white bg-red-500' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-red-500/10 hover:text-red-500')}
+                aria-label={isFavorito ? 'Remover favorito' : 'Favoritar'}
               >
-                <Palette className="w-4.5 h-4.5" />
+                <Heart className="w-4 h-4" fill={isFavorito ? 'currentColor' : 'none'} />
+                <span className="text-[10px] font-medium">Favorito</span>
               </button>
-              {showMobileColor && (
-                <div className="absolute left-0 bottom-full mb-1.5 z-30 bg-[var(--surface-raised)] border border-[var(--border)] rounded-lg shadow-xl p-2 flex gap-2">
-                  {CORES.map((cor) => (
-                    <button
-                      key={cor}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (corAtual === cor) removeMarcador(livroAbreviacao, capitulo, numero, traducao);
-                        else setMarcador(livroAbreviacao, capitulo, numero, traducao, cor);
-                        setShowMobileColor(false);
-                      }}
-                      className={cn('w-8 h-8 rounded-full transition-all active:scale-90', corBgMapInline[cor], corAtual === cor && 'ring-2 ring-offset-1 ring-[var(--brand-default)]')}
-                    />
-                  ))}
-                </div>
+              <button
+                onClick={(e) => { e.stopPropagation(); onAnotar(); }}
+                className="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-amber-500/10 hover:text-amber-500 transition-all active:scale-95"
+                aria-label="Anotar"
+              >
+                <StickyNote className="w-4 h-4" />
+                <span className="text-[10px] font-medium">Anotar</span>
+              </button>
+              <div className="relative" ref={mobileColorRef}>
+                <button
+                  onClick={(e) => { e.stopPropagation(); setShowMobileColor(!showMobileColor); }}
+                  className={cn('w-full flex flex-col items-center justify-center gap-1 p-2 rounded-xl transition-all active:scale-95', corAtual ? 'text-white' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-[var(--brand-subtle)] hover:text-[var(--brand-default)]')}
+                  style={corAtual ? { backgroundColor: corAtual === 'yellow' ? '#facc15' : corAtual === 'green' ? '#4ade80' : corAtual === 'blue' ? '#60a5fa' : corAtual === 'pink' ? '#f472b6' : corAtual === 'orange' ? '#fb923c' : '#a78bfa' } : undefined}
+                  aria-label="Cor"
+                >
+                  <Palette className="w-4 h-4" />
+                  <span className="text-[10px] font-medium">Cor</span>
+                </button>
+                {showMobileColor && (
+                  <div className="absolute left-0 bottom-full mb-1.5 z-30 bg-[var(--surface-raised)] border border-[var(--border)] rounded-lg shadow-xl p-2 flex gap-2">
+                    {CORES.map((cor) => (
+                      <button
+                        key={cor}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (corAtual === cor) removeMarcador(livroAbreviacao, capitulo, numero, traducao);
+                          else setMarcador(livroAbreviacao, capitulo, numero, traducao, cor);
+                          setShowMobileColor(false);
+                        }}
+                        className={cn('w-8 h-8 rounded-full transition-all active:scale-90', corBgMapInline[cor], corAtual === cor && 'ring-2 ring-offset-1 ring-[var(--brand-default)]')}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+              <button
+                onClick={(e) => { e.stopPropagation(); copyVerse(texto, ref); }}
+                className={cn('flex flex-col items-center justify-center gap-1 p-2 rounded-xl transition-all active:scale-95', copiedVerse === ref ? 'text-white bg-green-500' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-[var(--brand-subtle)] hover:text-[var(--brand-default)]')}
+                aria-label="Copiar"
+              >
+                <Copy className="w-4 h-4" />
+                <span className="text-[10px] font-medium">Copiar</span>
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); onStrong(); }}
+                className="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-cyan-500/10 hover:text-cyan-500 transition-all active:scale-95"
+                aria-label="Léxico"
+              >
+                <Languages className="w-4 h-4" />
+                <span className="text-[10px] font-medium">Léxico</span>
+              </button>
+              {onComentarios && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); onComentarios(); }}
+                  className="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-amber-500/10 hover:text-amber-500 transition-all active:scale-95"
+                  aria-label="Comentário"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span className="text-[10px] font-medium">Coment.</span>
+                </button>
+              )}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (navigator.share) {
+                    navigator.share({ title: ref, text: `${ref}\n\n${texto}` });
+                  } else {
+                    copyVerse(texto, ref);
+                  }
+                }}
+                className="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-emerald-500/10 hover:text-emerald-500 transition-all active:scale-95"
+                aria-label="Compartilhar"
+              >
+                <Share2 className="w-4 h-4" />
+                <span className="text-[10px] font-medium">Compart.</span>
+              </button>
+              {onApresentar && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); onApresentar(); }}
+                  className="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-violet-500/10 hover:text-violet-500 transition-all active:scale-95"
+                  aria-label="Apresentar"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span className="text-[10px] font-medium">Apresent.</span>
+                </button>
+              )}
+              {onCompartilharImagem && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); onCompartilharImagem(); }}
+                  className="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-pink-500/10 hover:text-pink-500 transition-all active:scale-95"
+                  aria-label="Imagem"
+                >
+                  <ImageIcon className="w-4 h-4" />
+                  <span className="text-[10px] font-medium">Imagem</span>
+                </button>
+              )}
+              {onCompartilharSala && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); onCompartilharSala(); }}
+                  className="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-orange-500/10 hover:text-orange-500 transition-all active:scale-95"
+                  aria-label="Sala"
+                >
+                  <Users className="w-4 h-4" />
+                  <span className="text-[10px] font-medium">Sala</span>
+                </button>
+              )}
+              {onAbrirPainel && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); onAbrirPainel(); }}
+                  className="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-blue-500/10 hover:text-blue-500 transition-all active:scale-95"
+                  aria-label="Estudo"
+                >
+                  <BookOpen className="w-4 h-4" />
+                  <span className="text-[10px] font-medium">Estudo</span>
+                </button>
               )}
             </div>
-            <button
-              onClick={(e) => { e.stopPropagation(); copyVerse(texto, ref); }}
-              className={cn('flex items-center justify-center w-11 h-11 rounded-lg transition-all active:scale-90', copiedVerse === ref ? 'text-green-500 bg-green-500/10' : 'text-[var(--content-muted)] hover:text-[var(--brand-default)] hover:bg-[var(--brand-subtle)]')}
-              aria-label="Copiar"
-            >
-              <Copy className="w-4.5 h-4.5" />
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); onAnotar(); }}
-              className="flex items-center justify-center w-11 h-11 rounded-lg text-[var(--content-muted)] hover:text-amber-500 hover:bg-amber-500/10 transition-all active:scale-90"
-              aria-label="Anotar"
-            >
-              <StickyNote className="w-4.5 h-4.5" />
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); onStrong(); }}
-              className="flex items-center justify-center w-11 h-11 rounded-lg text-[var(--content-muted)] hover:text-cyan-500 hover:bg-cyan-500/10 transition-all active:scale-90"
-              aria-label="IA / Léxico"
-            >
-              <Brain className="w-4.5 h-4.5" />
-            </button>
           </div>
         )}
       </div>

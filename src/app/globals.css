@@ -1604,8 +1604,8 @@ body.theme-fading {
 }
 
 @keyframes themeBodyFade {
-  0%   { opacity: 0.55; filter: blur(4px) saturate(0.85); }
-  100% { opacity: 1;    filter: blur(0)   saturate(1); }
+  0%   { opacity: 0.7; }
+  100% { opacity: 1; }
 }
 
 /* Reading-feature mark — small feature row inside header dropdown */

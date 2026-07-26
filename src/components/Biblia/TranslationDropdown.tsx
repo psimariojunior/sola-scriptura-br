@@ -52,7 +52,7 @@ export function TranslationDropdown({ open, onToggle, onClose, selectedTrads, on
               const active = selectedTrads.includes(id);
               const isMidvash = TRADS_MIDVASH.has(id);
               return (
-                <button key={id} onClick={() => onToggleTrad(id)}
+                <button key={id} onClick={() => { onToggleTrad(id); onClose(); }}
                   className={cn(
                     'w-full text-left px-3 py-2 rounded-lg flex items-center gap-2 transition-colors',
                     active ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)]' : 'hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]'

@@ -40,6 +40,11 @@ interface VerseListItemProps {
   estudoAbertoState: number | null;
   copyVerse: (text: string, ref: string) => void;
   onCorMarcaChange?: () => void;
+  onApresentar?: () => void;
+  onCompartilharImagem?: () => void;
+  onAprofundar?: () => void;
+  onCompartilharSala?: () => void;
+  onAbrirPainel?: () => void;
 }
 
 export const VerseListItem = memo(function VerseListItem({
@@ -74,6 +79,11 @@ export const VerseListItem = memo(function VerseListItem({
   estudoAbertoState,
   copyVerse,
   onCorMarcaChange,
+  onApresentar,
+  onCompartilharImagem,
+  onAprofundar,
+  onCompartilharSala,
+  onAbrirPainel,
 }: VerseListItemProps) {
   const verseKey = `${livroAbreviacao}:${capitulo}:${numero}:${traducao}`;
   const marcaMarcador = getMarcador(livroAbreviacao, capitulo, numero, traducao);
@@ -137,6 +147,11 @@ export const VerseListItem = memo(function VerseListItem({
       isCurrentAudioVerse={isCurrentAudioVerse}
       hasResources={hasResources}
       onCorMarcaChange={onCorMarcaChange}
+      onApresentar={onApresentar}
+      onCompartilharImagem={onCompartilharImagem}
+      onAprofundar={onAprofundar}
+      onCompartilharSala={onCompartilharSala}
+      onAbrirPainel={onAbrirPainel}
     />
   );
 });

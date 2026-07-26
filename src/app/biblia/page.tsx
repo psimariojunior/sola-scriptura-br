@@ -13,7 +13,6 @@ import { useAudioNatural } from '@/hooks/useAudioNatural';
 import { useAudioCapitulo } from '@/hooks/useAudioCapitulo';
 import ReadingPlanBanner from '@/components/ReadingPlanBanner';
 import { useFlashcards } from '@/hooks/useFlashcards';
-import { getMarcador } from '@/lib/marcadores';
 import OfflineBanner from '@/components/OfflineBanner';
 import { useVerseResources } from '@/hooks/useVerseResources';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
@@ -21,7 +20,6 @@ import { cn } from '@/lib/utils';
 import { ChapterHeader } from '@/components/Biblia/ChapterHeader';
 import { ModoLeitura } from '@/components/Biblia/ModoLeitura';
 import { VerseListItem } from '@/components/Biblia/VerseListItem';
-import { MobileActionBar } from '@/components/Biblia/MobileActionBar';
 import { ProgressBar } from '@/components/Biblia/ProgressBar';
 import { ComparisonTable } from '@/components/Biblia/ComparisonTable';
 import { QuickSearchModal } from '@/components/Biblia/QuickSearchModal';
@@ -165,10 +163,10 @@ export default function BibliaPage() {
             </aside>)}
           <div className="flex-1 flex flex-col min-w-0 relative overflow-hidden">
             <div className="border-b border-[var(--border)]/40 bg-[var(--surface-raised)]/95 backdrop-blur-sm sticky top-0 z-20">
-              <div className="px-3 sm:px-4 py-2.5 flex items-center gap-1.5 sm:gap-3">
-                <button onClick={() => ui.setMobileMenu(true)} className="lg:hidden touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]" aria-label="Abrir menu de livros"><BookOpen className="w-4 h-4" /></button>
-                <button onClick={() => ui.setSidebarOpen(!ui.sidebarOpen)} className="hidden lg:flex touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]"><ListFilter className="w-4 h-4" /></button>
-                <div className="flex items-center gap-1">
+              <div className="px-3 sm:px-4 py-2.5 flex items-center gap-1.5 sm:gap-3 overflow-x-auto scrollbar-hide">
+                <button onClick={() => ui.setMobileMenu(true)} className="lg:hidden touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] shrink-0" aria-label="Abrir menu de livros"><BookOpen className="w-4 h-4" /></button>
+                <button onClick={() => ui.setSidebarOpen(!ui.sidebarOpen)} className="hidden lg:flex touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] shrink-0"><ListFilter className="w-4 h-4" /></button>
+                <div className="flex items-center gap-1 shrink-0">
                   <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform"><ChevronLeft className="w-4 h-4" /></button>
                   <div className="relative">
                     <button onClick={() => ui.setChapterGridOpen(!ui.chapterGridOpen)} className="px-2.5 py-1 rounded-md bg-[var(--surface-sunken)] border border-[var(--border)]/40 min-w-[80px] max-w-[130px] sm:min-w-[120px] sm:max-w-none text-center hover:bg-[var(--surface-raised)] transition-colors cursor-pointer truncate">
@@ -182,7 +180,7 @@ export default function BibliaPage() {
                 </div>
                 <div className="flex-1" />
                 <TranslationDropdown open={ui.tradOpen} onToggle={() => { ui.setTradOpen(!ui.tradOpen); ui.setToolsOpen(false); }} onClose={() => ui.setTradOpen(false)} selectedTrads={nav.selectedTrads} onToggleTrad={nav.toggleTrad} viewMode={nav.viewMode} onViewModeChange={nav.setViewMode} />
-                <div className="md:hidden relative">
+                <div className="md:hidden relative shrink-0">
                   <button onClick={() => setMobileToolbarMenuOpen(!mobileToolbarMenuOpen)} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] active:scale-95 transition-transform" aria-label="Mais opções"><MoreVertical className="w-4 h-4" /></button>
                   {mobileToolbarMenuOpen && (
                     <>
@@ -261,7 +259,20 @@ export default function BibliaPage() {
                           onSetAnotandoVersiculo={stableSetAnotandoVersiculo} onSetAnotacaoTexto={verse.setAnotacaoTexto}
                           onSetSidePanelWidth={panels.setSidePanelWidth} onSetSidePanelTab={panels.setSidePanelTab}
                           onSetComentarioVersiculo={stableSetComentarioVersiculo} onSetEstudoAberto={stableSetEstudoAberto}
-                          estudoAbertoState={verse.estudoAberto} copyVerse={verse.copyVerse} />);
+                          estudoAbertoState={verse.estudoAberto} copyVerse={verse.copyVerse}
+                          onApresentar={() => { ui.setMostrarApresentacao(true); }}
+                          onCompartilharImagem={() => ui.setShareOpen(true)}
+                          onAprofundar={() => {
+                            if (!authService.temAcessoTotal()) { panels.setPaywallAprofundarAberto(true); return; }
+                            window.open(`/estudo-ia?ref=${encodeURIComponent(`${nav.livro.nome} ${nav.capituloIdx + 1}:${v.numero}`)}`, '_blank');
+                          }}
+                          onCompartilharSala={() => {
+                            const data = { livro: nav.livro.nome, livroAbrev: nav.livro.abreviacao, capitulo: nav.capituloIdx + 1, versiculo: v.numero, texto: v.texto, traducao: item.traducao };
+                            try { localStorage.setItem('ssb_collab_share_pending', JSON.stringify(data)); } catch {}
+                            window.location.href = '/estudo-colaborativo';
+                          }}
+                          onAbrirPainel={() => { setPainelVersiculoAberto(true); verse.setVersiculoSelecionado(null); }}
+                          />);
                       })}</div>
                     </div>))}
                     {ui.modoLeitura === 'comparacao' && nav.viewMode === 'parallel' && (<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">{nav.data.map((item) => (
@@ -303,22 +314,6 @@ export default function BibliaPage() {
             </>)}
         </div>
       </main>
-      <MobileActionBar selected={verse.versiculoSelecionado} onClose={() => verse.setVersiculoSelecionado(null)} audioNatural={audioNatural} audio={audio} flashcards={flashcards}
-        isFavorito={verse.versiculoSelecionado ? isFavorito(verse.versiculoSelecionado.livro, verse.versiculoSelecionado.capitulo, verse.versiculoSelecionado.versiculo, verse.versiculoSelecionado.traducao) : false} onFavoritoChange={refresh}
-        onAnotar={() => { if (!verse.versiculoSelecionado) return; const m = getMarcador(verse.versiculoSelecionado.livro, verse.versiculoSelecionado.capitulo, verse.versiculoSelecionado.versiculo, verse.versiculoSelecionado.traducao); verse.setAnotandoVersiculo(`${verse.versiculoSelecionado.livro}:${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}:${verse.versiculoSelecionado.traducao}`); verse.setAnotacaoTexto(m?.cor || ''); verse.setVersiculoSelecionado(null); }}
-        onStrong={() => { panels.setSidePanelWidth('half'); panels.setSidePanelTab('strong'); verse.setVersiculoSelecionado(null); }}
-        onComentarios={() => { if (verse.versiculoSelecionado) { verse.setComentarioVersiculo(verse.versiculoSelecionado.versiculo); panels.setSidePanelWidth('half'); panels.setSidePanelTab('comentarios'); } verse.setVersiculoSelecionado(null); }}
-        onAbrirPainel={() => { setPainelVersiculoAberto(true); verse.setVersiculoSelecionado(null); }}
-        onApresentar={() => { ui.setMostrarApresentacao(true); verse.setVersiculoSelecionado(null); }} onCompartilharImagem={() => ui.setShareOpen(true)}
-        onCompartilharSala={() => {
-          if (!verse.versiculoSelecionado) return;
-          const v = verse.versiculoSelecionado;
-          const data = { livro: v.livroNome, livroAbrev: v.livroAbreviacao, capitulo: v.capitulo, versiculo: v.versiculo, texto: v.texto, traducao: v.traducao };
-          try { localStorage.setItem('ssb_collab_share_pending', JSON.stringify(data)); } catch {}
-          window.location.href = '/estudo-colaborativo';
-        }}
-        onAprofundar={() => { if (!verse.versiculoSelecionado) return; if (!authService.temAcessoTotal()) { panels.setPaywallAprofundarAberto(true); return; } window.open(`/estudo-ia?ref=${encodeURIComponent(`${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`)}`, '_blank'); }}
-        copyVerse={verse.copyVerse} copiedVerse={verse.copiedVerse} />
       {verse.versiculoSelecionado && authService.temAcessoTotal() && (
         <a href={`/estudo-ia?ref=${encodeURIComponent(`${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`)}`} target="_blank" rel="noreferrer"
           className="fade-in-bottom hidden lg:flex fixed bottom-6 right-6 z-30 items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all"><Sparkles className="w-4 h-4" />Aprofundar com IA</a>)}

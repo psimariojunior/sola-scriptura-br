@@ -102,22 +102,26 @@ export const VerseCard = memo(function VerseCard({
     }
   }, [isCurrentAudioVerse, isFocused]);
 
-  // Auto-scroll to selected verse on mobile so MobileActionBar doesn't cover it
+  // Auto-scroll to selected verse on mobile so actions panel is visible
   useEffect(() => {
     if (isSelected && articleRef.current) {
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
       if (isMobile) {
-        // Always scroll the verse into the top quarter of the viewport
-        // so the MobileActionBar (bottom sheet ~50vh) never covers it
+        // First scroll: bring verse near center
+        articleRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Second scroll after actions render: adjust so both verse + actions visible
         requestAnimationFrame(() => {
-          if (articleRef.current) {
-            const rect = articleRef.current.getBoundingClientRect();
-            const viewportH = window.innerHeight;
-            // If verse is below the top 25% of viewport, scroll it up
-            if (rect.top > viewportH * 0.25 || rect.bottom > viewportH * 0.6) {
-              articleRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          requestAnimationFrame(() => {
+            if (articleRef.current) {
+              const rect = articleRef.current.getBoundingClientRect();
+              const headerH = 65;
+              // If the bottom of the verse (which now includes actions) is past viewport, scroll up
+              if (rect.bottom > window.innerHeight - 20) {
+                const overflow = rect.bottom - (window.innerHeight - 20);
+                window.scrollBy({ top: overflow, behavior: 'smooth' });
+              }
             }
-          }
+          });
         });
       }
     }

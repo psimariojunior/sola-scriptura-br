@@ -102,52 +102,17 @@ export const VerseCard = memo(function VerseCard({
     }
   }, [isCurrentAudioVerse, isFocused]);
 
-  // Auto-scroll to selected verse on mobile so actions panel is visible
-  useEffect(() => {
-    if (isSelected && articleRef.current) {
-      const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
-      if (isMobile) {
-        // First scroll: bring verse near center
-        articleRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        // Second scroll after actions render: adjust so both verse + actions visible
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            if (articleRef.current) {
-              const rect = articleRef.current.getBoundingClientRect();
-              const headerH = 65;
-              // If the bottom of the verse (which now includes actions) is past viewport, scroll up
-              if (rect.bottom > window.innerHeight - 20) {
-                const overflow = rect.bottom - (window.innerHeight - 20);
-                window.scrollBy({ top: overflow, behavior: 'smooth' });
-              }
-            }
-          });
-        });
-      }
-    }
-  }, [isSelected]);
-
+  // Click outside to deselect verse (mobile: only mousedown, no touchstart to avoid conflicts)
   useEffect(() => {
     if (!isSelected) return;
-    const handler = (e: MouseEvent | TouchEvent) => {
+    const handler = (e: MouseEvent) => {
       const target = e.target as Node;
-      // Don't deselect if clicking on MobileActionBar (z-30 overlay or z-50 panel)
-      const mobileBar = target instanceof HTMLElement && (
-        target.closest('[role="dialog"]') ||
-        target.closest('.fixed.z-30') ||
-        target.closest('.fixed.z-50')
-      );
-      if (mobileBar) return;
       if (articleRef.current && !articleRef.current.contains(target)) {
         onSelect();
       }
     };
     document.addEventListener('mousedown', handler);
-    document.addEventListener('touchstart', handler, { passive: true });
-    return () => {
-      document.removeEventListener('mousedown', handler);
-      document.removeEventListener('touchstart', handler);
-    };
+    return () => document.removeEventListener('mousedown', handler);
   }, [isSelected, onSelect]);
 
   useEffect(() => {

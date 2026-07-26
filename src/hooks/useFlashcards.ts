@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { listarMarcas, type MarcaBiblia } from '@/lib/estudos';
 import { livroPorAbreviacao } from '@/data/biblia/livros';
+import { saveFlashcardsOffline } from '@/lib/offlineStorage';
 
 const FLASHCARD_KEY = 'sola-flashcards';
 
@@ -102,6 +103,7 @@ export function useFlashcards() {
 
   useEffect(() => {
     localStorage.setItem(FLASHCARD_KEY, JSON.stringify(cards));
+    saveFlashcardsOffline(cards).catch(() => {});
   }, [cards]);
 
   const addCard = useCallback((verseKey: string, texto?: string, referencia?: string) => {

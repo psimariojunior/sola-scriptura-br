@@ -9,6 +9,10 @@ const STORES = {
   notes: 'notes',
   plans: 'plans',
   settings: 'settings',
+  collections: 'collections',
+  flashcards: 'flashcards',
+  gamification: 'gamification',
+  marcas: 'marcas',
 } as const;
 
 function openDB(): Promise<IDBDatabase> {
@@ -145,6 +149,42 @@ export async function saveSettingOffline(key: string, value: unknown): Promise<v
 
 export async function getSettingOffline<T>(key: string): Promise<T | null> {
   return getItem(STORES.settings, key);
+}
+
+// Collections
+export async function saveCollectionsOffline(collections: unknown[]): Promise<void> {
+  await setItem(STORES.collections, 'all', collections);
+}
+
+export async function getCollectionsOffline(): Promise<unknown[]> {
+  return (await getItem<unknown[]>(STORES.collections, 'all')) || [];
+}
+
+// Flashcards
+export async function saveFlashcardsOffline(flashcards: unknown[]): Promise<void> {
+  await setItem(STORES.flashcards, 'all', flashcards);
+}
+
+export async function getFlashcardsOffline(): Promise<unknown[]> {
+  return (await getItem<unknown[]>(STORES.flashcards, 'all')) || [];
+}
+
+// Gamification
+export async function saveGamificationOffline(events: unknown[]): Promise<void> {
+  await setItem(STORES.gamification, 'all', events);
+}
+
+export async function getGamificationOffline(): Promise<unknown[]> {
+  return (await getItem<unknown[]>(STORES.gamification, 'all')) || [];
+}
+
+// Marcas de estudo (highlights, notes, etc.)
+export async function saveMarcasOffline(marcas: unknown[]): Promise<void> {
+  await setItem(STORES.marcas, 'all', marcas);
+}
+
+export async function getMarcasOffline(): Promise<unknown[]> {
+  return (await getItem<unknown[]>(STORES.marcas, 'all')) || [];
 }
 
 // Check if offline

@@ -1,3 +1,5 @@
+import { saveGamificationOffline } from './offlineStorage';
+
 const TRACKER_KEY = 'ssb_gamification_tracker';
 
 export interface GamificationEvent {
@@ -41,6 +43,7 @@ function carregar(): GamificationEvent[] {
 
 function salvar(events: GamificationEvent[]) {
   try { localStorage.setItem(TRACKER_KEY, JSON.stringify(events)); } catch {}
+  saveGamificationOffline(events).catch(() => {});
 }
 
 function getDataAtual(): string {

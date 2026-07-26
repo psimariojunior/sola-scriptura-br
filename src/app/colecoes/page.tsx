@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Folder, FolderPlus, Trash2, ChevronLeft, BookOpen, Plus,
-  X, FileText, Calendar, Hash,
+  X, FileText, Calendar, Hash, Share2,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -86,6 +86,26 @@ export default function ColecoesPage() {
     setSelectedId(null);
   };
 
+  const compartilharColecao = async (colecao: Colecao) => {
+    const texto = [
+      `📖 ${colecao.nome}`,
+      colecao.descricao ? `${colecao.descricao}\n` : '',
+      colecao.versiculos.map(v => `• ${v.referencia} — "${v.texto}"`).join('\n\n'),
+      '\n— Sola Scriptura BR',
+    ].filter(Boolean).join('\n');
+    try {
+      await navigator.clipboard.writeText(texto);
+      alert('Coleção copiada para a área de transferência!');
+    } catch {
+      const blob = new Blob([texto], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${colecao.nome.replace(/\s+/g, '_')}.txt`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+  };
+
   const colecaoSelecionada = colecoes.find(c => c.id === selectedId);
 
   if (!mounted) return (
@@ -155,6 +175,12 @@ export default function ColecoesPage() {
                       <Hash className="w-3.5 h-3.5" />
                       {colecaoSelecionada.versiculos.length} versículo{colecaoSelecionada.versiculos.length !== 1 ? 's' : ''}
                     </span>
+                    <button
+                      onClick={() => compartilharColecao(colecaoSelecionada)}
+                      className="flex items-center gap-1 text-[var(--brand-default)] hover:text-[var(--brand-hover)] transition-colors"
+                    >
+                      <Share2 className="w-3.5 h-3.5" /> Compartilhar
+                    </button>
                     <button
                       onClick={() => excluirColecao(colecaoSelecionada.id)}
                       className="ml-auto flex items-center gap-1 text-red-500 hover:text-red-400 transition-colors"

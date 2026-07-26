@@ -3,9 +3,42 @@
 import { useMemo } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Share2, BookOpen, Copy, Check } from 'lucide-react';
+import { Share2, BookOpen, Copy, Check, Dices } from 'lucide-react';
 import { useState } from 'react';
 import { versiculosDestaque } from '@/data/versiculosDestaque';
+
+const VERSICULOS_ALEATORIOS = [
+  { referencia: 'Romanos 8:28', texto: 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, aos que são chamados segundo o seu propósito.' },
+  { referencia: 'Salmos 23:1', texto: 'O Senhor é o meu pastor; nada me faltará.' },
+  { referencia: 'Filipenses 4:13', texto: 'Posso todas as coisas naquele que me fortalece.' },
+  { referencia: 'Jeremias 29:11', texto: 'Porque eu bem sei os pensamentos que tenho a vosso respeito, diz o Senhor; pensamentos de paz, e não de mal, para vos dar o fim que esperais.' },
+  { referencia: 'Isaías 40:31', texto: 'Mas os que esperam no Senhor renovarão as forças, subirão com asas como águias.' },
+  { referencia: 'Provérbios 3:5-6', texto: 'Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitará as tuas veredas.' },
+  { referencia: 'Mateus 11:28', texto: 'Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei.' },
+  { referencia: '2 Timóteo 1:7', texto: 'Porque Deus não nos deu o espírito de temor, mas de fortaleza, e de amor, e de moderação.' },
+  { referencia: 'Hebreus 11:1', texto: 'Ora, a fé é o firme fundamento das coisas que se esperam, e a prova das coisas que se não veem.' },
+  { referencia: 'Efésios 2:8-9', texto: 'Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus. Não vem das obras, para que ninguém se glorie.' },
+  { referencia: '1 Coríntios 10:13', texto: 'Não vos sobreveio tentação que não fosse humana; mas Deus é fiel, e não deixará que sejais tentados acima do que podeis.' },
+  { referencia: 'Romanos 12:2', texto: 'E não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento.' },
+  { referencia: 'Salmos 46:10', texto: 'Aquietai-vos, e sabei que eu sou Deus; serei exaltado entre os gentios; serei exaltado sobre a terra.' },
+  { referencia: 'Tiago 1:5', texto: 'E, se algum de vós tem falta de sabedoria, peça-a a Deus, que a todos dá liberalmente, e o não lança em rosto, e ser-lhe-á dada.' },
+  { referencia: 'Mateus 6:33', texto: 'Mas, buscai primeiro o reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas.' },
+  { referencia: 'Gálatas 5:22-23', texto: 'Mas o fruto do Espírito é: amor, gozo, paz, longanimidade, benignidade, bondade, fé, mansidão, temperança.' },
+  { referencia: 'Colossenses 3:23', texto: 'E, tudo o que fizerdes, fazei-o de todo o coração, como ao Senhor, e não aos homens.' },
+  { referencia: '1 Pedro 5:7', texto: 'Lançando sobre ele todo o vosso cuidado, porque ele mesmo cuida de vós.' },
+  { referencia: 'Salmos 91:1', texto: 'Aquele que habita no esconderijo do Altíssimo, à sombra do Onipotente descansará.' },
+  { referencia: 'Josué 1:9', texto: 'Não to mandei eu? Esforça-te e tem bom ânimo; não pasmes, nem te espantes; porque o Senhor teu Deus é contigo, por onde quer que andares.' },
+  { referencia: 'Lamentações 3:22-23', texto: 'As misericórdias do Senhor são a causa de não sermos consumidos; as suas misericórdias são novas a cada manhã.' },
+  { referencia: 'João 14:27', texto: 'Deixo-vos a paz, a minha paz vos dou; não vo-la dou como o mundo a dá.' },
+  { referencia: 'Romanos 15:13', texto: 'Ora o Deus de esperança vos encha de todo o gozo e paz em crença, para que abundeis em esperança pela virtude do Espírito Santo.' },
+  { referencia: 'Efésios 6:10', texto: 'No demais, irmãos meus, fortalecei-vos no Senhor e na força do seu poder.' },
+  { referencia: 'Mateus 5:14-16', texto: 'Vós sois a luz do mundo. Não se pode esconder uma cidade edificada sobre um monte.' },
+  { referencia: 'Hebreus 13:8', texto: 'Jesus Cristo é o mesmo ontem, e hoje, e eternamente.' },
+  { referencia: '1 João 4:19', texto: 'Nós o amamos a ele, porque ele nos amou primeiro.' },
+  { referencia: 'Filipenses 4:6-7', texto: 'Não vos preocupeis com coisa alguma; mas em tudo sejam conhecidas, diante de Deus, as vossas petições, pela oração e súplicas, com ações de graças.' },
+  { referencia: 'Salmos 119:105', texto: 'Lâmpada para os meus pés é tua palavra, e luz para o meu caminho.' },
+  { referencia: '1 Tessalonicenses 5:16-18', texto: 'Regozijai-vos sempre. Orai sem cessar. Em tudo dai graças, porque esta é a vontade de Deus em Cristo Jesus para convosco.' },
+];
 
 function getDiaDoAno(): number {
   const hoje = new Date();
@@ -81,20 +114,25 @@ function parseReferencia(ref: string): { livro: string; capitulo: string; versic
 
 export default function VerseDoDia() {
   const [copied, setCopied] = useState(false);
-
-  const verso = useMemo(() => {
+  const [versoAtual, setVersoAtual] = useState(() => {
     const idx = (getDiaDoAno() - 1) % versiculosDestaque.length;
     return versiculosDestaque[idx];
-  }, []);
+  });
 
-  const { livro, capitulo } = parseReferencia(verso.referencia);
+  const { livro, capitulo } = parseReferencia(versoAtual.referencia);
   const bibliaUrl = `/biblia?livro=${livro}&capitulo=${capitulo}`;
 
   const handleCopy = async () => {
-    const texto = `"${verso.texto}" — ${verso.referencia}`;
+    const texto = `"${versoAtual.texto}" — ${versoAtual.referencia}`;
     await navigator.clipboard.writeText(texto);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleSurpreendaMe = () => {
+    const randomIdx = Math.floor(Math.random() * VERSICULOS_ALEATORIOS.length);
+    const v = VERSICULOS_ALEATORIOS[randomIdx];
+    setVersoAtual({ referencia: v.referencia, texto: v.texto });
   };
 
   return (
@@ -121,13 +159,13 @@ export default function VerseDoDia() {
             {/* Verse text */}
             <blockquote className="font-serif-body text-lg sm:text-xl md:text-2xl italic font-light text-content-secondary dark:text-foreground/85 leading-relaxed">
               <span aria-hidden="true" className="text-primary/30 text-2xl sm:text-3xl mr-1">&ldquo;</span>
-              {verso.texto}
+              {versoAtual.texto}
               <span aria-hidden="true" className="text-primary/30 text-2xl sm:text-3xl ml-1">&rdquo;</span>
             </blockquote>
 
             {/* Reference */}
             <p className="mt-5 text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase text-primary">
-              — {verso.referencia}
+              — {versoAtual.referencia}
             </p>
 
             {/* Actions */}
@@ -147,6 +185,14 @@ export default function VerseDoDia() {
                     Compartilhar
                   </>
                 )}
+              </button>
+
+              <button
+                onClick={handleSurpreendaMe}
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl border border-primary/30 bg-primary/5 text-primary hover:bg-primary/10 transition-all duration-200 cursor-pointer"
+              >
+                <Dices className="w-4 h-4" />
+                Surpreenda-me!
               </button>
 
               <Link

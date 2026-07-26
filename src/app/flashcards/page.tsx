@@ -9,8 +9,9 @@ import { useFlashcards } from '@/hooks/useFlashcards';
 import { listarFavoritos, type MarcaBiblia } from '@/lib/estudos';
 import { carregarTraducao } from '@/data/biblia/texto/carregar';
 import { livroPorAbreviacao } from '@/data/biblia/livros';
+import { getSummary } from '@/lib/gamificationTracker';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, RotateCcw, Check, X, BookOpen, BarChart3, ArrowRight, Sparkles, Plus, Trash2, Flame, Clock, Star } from 'lucide-react';
+import { Brain, RotateCcw, Check, X, BookOpen, BarChart3, ArrowRight, Sparkles, Plus, Trash2, Flame, Clock, Star, Lightbulb, Dices } from 'lucide-react';
 
 const QUALITY_BUTTONS = [
   { quality: 1, label: 'Errei', sub: 'Repetir', color: 'text-red-500', bg: 'bg-red-500/10 hover:bg-red-500/20', border: 'border-red-500/30' },
@@ -32,12 +33,85 @@ export default function FlashcardsPage() {
   const [favoritos, setFavoritos] = useState<MarcaBiblia[]>([]);
   const [carregandoFav, setCarregandoFav] = useState(false);
   const [adicionados, setAdicionados] = useState<Set<string>>(new Set());
+  const [sugestoes, setSugestoes] = useState<Array<{ ref: string; texto: string; motivo: string }>>([]);
 
   // Referências já existentes como card manual
   const chavesExistentes = useMemo(
     () => new Set(cards.map((c) => c.manualReferencia?.toLowerCase()).filter(Boolean) as string[]),
     [cards],
   );
+
+  // Smart suggestions based on reading history
+  useEffect(() => {
+    try {
+      const summary = getSummary();
+      if (summary.totalVersiculos < 3) return;
+
+      const favs = listarFavoritos();
+      const existingRefs = new Set(cards.map(c => c.manualReferencia?.toLowerCase()).filter(Boolean));
+      const addedRefs = new Set(adicionados);
+
+      const suggestions: Array<{ ref: string; texto: string; motivo: string }> = [];
+
+      // Priority 1: Favorited verses not yet in flashcards
+      for (const fav of favs) {
+        const ref = `${livroPorAbreviacao.get(fav.livro)?.nome || fav.livro} ${fav.capitulo}:${fav.versiculo}`;
+        if (!existingRefs.has(ref.toLowerCase()) && !addedRefs.has(ref.toLowerCase()) && fav.texto) {
+          suggestions.push({ ref, texto: fav.texto, motivo: '❤️ Seu favorito' });
+        }
+      }
+
+      // Priority 2: Verses from most-read books
+      const bookCounts: Record<string, number> = {};
+      const events = (() => {
+        try { return JSON.parse(localStorage.getItem('ssb_gamification_tracker') || '[]'); } catch { return []; }
+      })();
+      for (const evt of events) {
+        if (evt.tipo === 'versiculo_lido' && evt.dados?.livro) {
+          const book = evt.dados.livro as string;
+          bookCounts[book] = (bookCounts[book] || 0) + evt.quantidade;
+        }
+      }
+      const topBooks = Object.entries(bookCounts).sort((a, b) => b[1] - a[1]).slice(0, 3);
+
+      const KEY_VERSES: Record<string, { ref: string; texto: string }[]> = {
+        'rom': [{ ref: 'Romanos 8:28', texto: 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, aos que são chamados segundo o seu propósito.' }, { ref: 'Romanos 12:2', texto: 'E não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento.' }, { ref: 'Romanos 5:8', texto: 'Mas Deus prova o seu amor por nós em que Cristo morreu por nós, sendo nós ainda pecadores.' }],
+        'jo': [{ ref: 'João 3:16', texto: 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.' }, { ref: 'João 14:27', texto: 'Deixo-vos a paz, a minha paz vos dou; não vo-la dou como o mundo a dá.' }, { ref: 'João 15:5', texto: 'Eu sou a vide, e vós as varas. Quem permanece em mim, e eu nele, esse dá muito fruto; porque sem mim nada podeis fazer.' }],
+        'ef': [{ ref: 'Efésios 2:8-9', texto: 'Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus. Não vem das obras, para que ninguém se glorie.' }, { ref: 'Efésios 6:10', texto: 'No demais, irmãos meus, fortalecei-vos no Senhor e na força do seu poder.' }],
+        'fp': [{ ref: 'Filipenses 4:13', texto: 'Posso todas as coisas naquele que me fortalece.' }, { ref: 'Filipenses 4:6-7', texto: 'Não vos preocupeis com coisa alguma; mas em tudo sejam conhecidas, diante de Deus, as vossas petições, pela oração e súplicas.' }],
+        'sl': [{ ref: 'Salmos 23:1', texto: 'O Senhor é o meu pastor; nada me faltará.' }, { ref: 'Salmos 119:105', texto: 'Lâmpada para os meus pés é tua palavra, e luz para o meu caminho.' }, { ref: 'Salmos 46:10', texto: 'Aquietai-vos, e sabei que eu sou Deus; serei exaltado entre os gentios; serei exaltado sobre a terra.' }],
+        'pv': [{ ref: 'Provérbios 3:5-6', texto: 'Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitará as tuas veredas.' }],
+        'mt': [{ ref: 'Mateus 11:28', texto: 'Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei.' }, { ref: 'Mateus 6:33', texto: 'Mas, buscai primeiro o reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas.' }],
+        'hb': [{ ref: 'Hebreus 11:1', texto: 'Ora, a fé é o firme fundamento das coisas que se esperam, e a prova das coisas que se não veem.' }, { ref: 'Hebreus 12:1', texto: 'Portanto, nós também, pois temos tal nuvem de testemunhas ao redor de nós, deixemos todo o peso e o pecado que nos assedia.' }],
+        '1jo': [{ ref: '1 João 4:19', texto: 'Nós o amamos a ele, porque ele nos amou primeiro.' }],
+        'rm': [{ ref: 'Romanos 8:28', texto: 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus.' }, { ref: 'Romanos 12:2', texto: 'E não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento.' }],
+        'atos': [{ ref: 'Atos 1:8', texto: 'Mas recebereis a virtude do Espírito Santo, que há de vir sobre vós; e ser-me-eis testemunhas em Jerusalém, e em toda a Judeia e Samaria, e até os confins da terra.' }],
+      };
+
+      for (const [book] of topBooks) {
+        const verses = KEY_VERSES[book];
+        if (verses) {
+          for (const v of verses) {
+            if (!existingRefs.has(v.ref.toLowerCase()) && !addedRefs.has(v.ref.toLowerCase())) {
+              suggestions.push({ ref: v.ref, texto: v.texto, motivo: `📖 Livro mais lido` });
+            }
+          }
+        }
+      }
+
+      if (suggestions.length === 0 && favs.length > 0) {
+        const recent = favs.slice(0, 3);
+        for (const fav of recent) {
+          const ref = `${livroPorAbreviacao.get(fav.livro)?.nome || fav.livro} ${fav.capitulo}:${fav.versiculo}`;
+          if (!existingRefs.has(ref.toLowerCase()) && !addedRefs.has(ref.toLowerCase()) && fav.texto) {
+            suggestions.push({ ref, texto: fav.texto, motivo: '⭐ Recomendado' });
+          }
+        }
+      }
+
+      setSugestoes(suggestions.slice(0, 5));
+    } catch {}
+  }, [cards, adicionados]);
 
   const abrirFavoritos = useCallback(() => {
     setShowFav(true);
@@ -68,6 +142,21 @@ export default function FlashcardsPage() {
     addCardManual(ref, texto);
     setAdicionados(prev => new Set(prev).add(chave));
   }, [chavesExistentes, adicionados, addCardManual]);
+
+  const adicionarSugestao = useCallback((s: { ref: string; texto: string }) => {
+    if (chavesExistentes.has(s.ref.toLowerCase()) || adicionados.has(s.ref.toLowerCase())) return;
+    addCardManual(s.ref, s.texto);
+    setAdicionados(prev => new Set(prev).add(s.ref.toLowerCase()));
+  }, [chavesExistentes, adicionados, addCardManual]);
+
+  const adicionarTodasSugestoes = useCallback(() => {
+    for (const s of sugestoes) {
+      if (!chavesExistentes.has(s.ref.toLowerCase()) && !adicionados.has(s.ref.toLowerCase())) {
+        addCardManual(s.ref, s.texto);
+        setAdicionados(prev => new Set(prev).add(s.ref.toLowerCase()));
+      }
+    }
+  }, [sugestoes, chavesExistentes, adicionados, addCardManual]);
 
   const currentCard = dueCards[currentIdx];
   const currentData = currentCard ? getVerseData(currentCard) : null;
@@ -357,6 +446,52 @@ export default function FlashcardsPage() {
                   <span className="text-xs text-[var(--muted-fg)]">{stats.known} dominados · {stats.learning} aprendendo · {stats.new} novos</span>
                 )}
               </div>
+
+              {/* Smart Suggestions */}
+              {sugestoes.length > 0 && (
+                <div className="mt-8 p-5 rounded-2xl border border-[var(--border)]/50 bg-[var(--card-bg)]">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <Lightbulb className="w-5 h-5 text-amber-500" />
+                      <h3 className="font-display text-lg font-semibold text-[var(--content-primary)]">Sugestões Inteligentes</h3>
+                    </div>
+                    <button
+                      onClick={adicionarTodasSugestoes}
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 transition-colors"
+                    >
+                      <Plus className="w-3.5 h-3.5" /> Adicionar todas
+                    </button>
+                  </div>
+                  <p className="text-xs text-[var(--muted-fg)] mb-4">Baseado no que você mais lê e nos seus favoritos.</p>
+                  <div className="space-y-2">
+                    {sugestoes.map((s, i) => {
+                      const jaExiste = chavesExistentes.has(s.ref.toLowerCase()) || adicionados.has(s.ref.toLowerCase());
+                      return (
+                        <motion.div
+                          key={s.ref}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: i * 0.05 }}
+                          className="flex items-center gap-3 p-3 rounded-xl border border-[var(--border)]/50 hover:border-amber-500/30 transition-all"
+                        >
+                          <span className="text-lg shrink-0">{s.motivo.split(' ')[0]}</span>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-[var(--content-primary)] truncate">{s.ref}</p>
+                            <p className="text-[10px] text-[var(--muted-fg)] truncate">{s.texto.slice(0, 60)}...</p>
+                          </div>
+                          <button
+                            onClick={() => adicionarSugestao(s)}
+                            disabled={jaExiste}
+                            className="shrink-0 p-2 rounded-lg hover:bg-amber-500/10 transition-colors disabled:opacity-40"
+                          >
+                            {jaExiste ? <Check className="w-4 h-4 text-green-500" /> : <Plus className="w-4 h-4 text-amber-500" />}
+                          </button>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </ScrollReveal>
           ) : currentData && (
             <div className="space-y-6">

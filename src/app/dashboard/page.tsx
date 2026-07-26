@@ -4,67 +4,49 @@ import { useState, useEffect, useMemo } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BarChart3, BookOpen, Heart, FileText, Brain, Flame, Target, Trophy, TrendingUp, Clock, Share2 } from 'lucide-react';
+import { BarChart3, BookOpen, Heart, FileText, Brain, Flame, Target, Trophy, TrendingUp, Clock, Share2, Zap, Star, Globe } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
 import { ShareProgress } from '@/components/ShareProgress';
-
-interface ReadingSession {
-  date: string;
-  chaptersRead: number;
-  timeSpent: number; // minutes
-  books: string[];
-}
+import { getSummary, getWeeklyStats, type GamificationSummary } from '@/lib/gamificationTracker';
 
 export default function DashboardPage() {
-  const [sessions, setSessions] = useState<ReadingSession[]>([]);
-  const [favoritos, setFavoritos] = useState<any[]>([]);
   const [showShare, setShowShare] = useState(false);
+  const [favoritos, setFavoritos] = useState<any[]>([]);
   const [notas, setNotas] = useState<any[]>([]);
-  const [flashcards, setFlashcards] = useState<any[]>([]);
   const [carregado, setCarregado] = useState(false);
+  const [summary, setSummary] = useState<GamificationSummary | null>(null);
 
   useEffect(() => {
     try {
-      const s = localStorage.getItem('ssb_reading_sessions');
-      if (s) setSessions(JSON.parse(s));
       const f = localStorage.getItem('ssb_favoritos');
       if (f) setFavoritos(JSON.parse(f));
       const n = localStorage.getItem('ssb_notas_rich');
       if (n) setNotas(JSON.parse(n));
-      const fc = localStorage.getItem('ssb_flashcards');
-      if (fc) setFlashcards(JSON.parse(fc));
+      setSummary(getSummary());
     } catch {}
     setCarregado(true);
   }, []);
 
   const stats = useMemo(() => {
-    const totalChapters = sessions.reduce((acc, s) => acc + s.chaptersRead, 0);
-    const totalTime = sessions.reduce((acc, s) => acc + s.timeSpent, 0);
-    const streak = calculateStreak(sessions);
-    const uniqueBooks = new Set(sessions.flatMap(s => s.books)).size;
-    const dueFlashcards = flashcards.filter((c: any) => c.nextReview <= Date.now()).length;
-    const mastered = flashcards.filter((c: any) => c.repetition >= 5).length;
-    return { totalChapters, totalTime, streak, uniqueBooks, dueFlashcards, mastered };
-  }, [sessions, flashcards]);
+    if (!summary) return { streak: 0, chapters: 0, verses: 0, quizzes: 0, estudos: 0, favoritos: favoritos.length, notas: notas.length, diasAtivos: 0 };
+    return {
+      streak: summary.streakAtual,
+      chapters: summary.totalCapitulos,
+      verses: summary.totalVersiculos,
+      quizzes: summary.totalQuizzes,
+      estudos: summary.totalEstudos + summary.totalExegese,
+      favoritos: favoritos.length,
+      notas: notas.length,
+      diasAtivos: summary.diasAtivos.length,
+    };
+  }, [summary, favoritos.length, notas.length]);
 
   const weeklyData = useMemo(() => {
-    const days = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-    const now = new Date();
-    return days.map((day, i) => {
-      const date = new Date(now);
-      date.setDate(date.getDate() - (6 - i));
-      const dateStr = date.toISOString().slice(0, 10);
-      const daySessions = sessions.filter(s => s.date === dateStr);
-      return {
-        day,
-        chapters: daySessions.reduce((acc, s) => acc + s.chaptersRead, 0),
-        time: daySessions.reduce((acc, s) => acc + s.timeSpent, 0),
-      };
-    });
-  }, [sessions]);
+    return getWeeklyStats();
+  }, []);
 
-  const maxChapters = Math.max(...weeklyData.map(d => d.chapters), 1);
+  const maxVersiculos = Math.max(...weeklyData.map(d => d.versiculos), 1);
 
   return (
     <div className="min-h-screen">
@@ -93,7 +75,7 @@ export default function DashboardPage() {
             {showShare && (
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
                 className="mb-8 overflow-hidden">
-                <ShareProgress stats={{ chaptersRead: stats.totalChapters, booksCompleted: stats.uniqueBooks, streak: stats.streak, memorized: stats.mastered }}
+                <ShareProgress stats={{ chaptersRead: stats.chapters, booksCompleted: stats.diasAtivos, streak: stats.streak, memorized: 0 }}
                   onClose={() => setShowShare(false)} />
               </motion.div>
             )}
@@ -103,9 +85,9 @@ export default function DashboardPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
             {[
               { icon: Flame, label: 'Sequência', value: `${stats.streak} dias`, color: 'text-orange-500', bg: 'bg-orange-500/10' },
-              { icon: BookOpen, label: 'Capítulos', value: stats.totalChapters.toString(), color: 'text-blue-500', bg: 'bg-blue-500/10' },
-              { icon: Clock, label: 'Tempo total', value: `${stats.totalTime}min`, color: 'text-green-500', bg: 'bg-green-500/10' },
-              { icon: Target, label: 'Livros', value: stats.uniqueBooks.toString(), color: 'text-purple-500', bg: 'bg-purple-500/10' },
+              { icon: BookOpen, label: 'Capítulos', value: stats.chapters.toString(), color: 'text-blue-500', bg: 'bg-blue-500/10' },
+              { icon: Zap, label: 'Versículos', value: stats.verses.toLocaleString('pt-BR'), color: 'text-amber-500', bg: 'bg-amber-500/10' },
+              { icon: Brain, label: 'Quizzes', value: stats.quizzes.toString(), color: 'text-purple-500', bg: 'bg-purple-500/10' },
             ].map(({ icon: Icon, label, value, color, bg }, i) => (
               <motion.div key={label} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
                 className="rounded-xl border border-border/50 bg-card/50 p-4">
@@ -126,11 +108,11 @@ export default function DashboardPage() {
                 {weeklyData.map((d, i) => (
                   <div key={i} className="flex-1 flex flex-col items-center gap-1">
                     <div className="w-full flex flex-col items-center gap-1" style={{ height: '120px', justifyContent: 'flex-end' }}>
-                      <motion.div initial={{ height: 0 }} animate={{ height: `${(d.chapters / maxChapters) * 100}%` }}
+                      <motion.div initial={{ height: 0 }} animate={{ height: `${(d.versiculos / maxVersiculos) * 100}%` }}
                         transition={{ delay: i * 0.1, duration: 0.5 }}
                         className="w-full rounded-t-lg bg-gradient-to-t from-primary/80 to-primary/40 min-h-[4px]" />
                     </div>
-                    <span className="text-[10px] text-muted-foreground">{d.day}</span>
+                    <span className="text-[10px] text-muted-foreground">{d.dia}</span>
                   </div>
                 ))}
               </div>
@@ -145,7 +127,7 @@ export default function DashboardPage() {
                   <Heart className="w-4 h-4 text-red-500" />
                   <h3 className="font-medium text-sm">Favoritos</h3>
                 </div>
-                <p className="text-3xl font-bold mb-1">{favoritos.length}</p>
+                <p className="text-3xl font-bold mb-1">{stats.favoritos}</p>
                 <p className="text-xs text-muted-foreground">versículos salvos</p>
               </div>
             </ScrollReveal>
@@ -155,21 +137,18 @@ export default function DashboardPage() {
                   <FileText className="w-4 h-4 text-blue-500" />
                   <h3 className="font-medium text-sm">Notas</h3>
                 </div>
-                <p className="text-3xl font-bold mb-1">{notas.length}</p>
+                <p className="text-3xl font-bold mb-1">{stats.notas}</p>
                 <p className="text-xs text-muted-foreground">anotações pessoais</p>
               </div>
             </ScrollReveal>
             <ScrollReveal>
               <div className="rounded-2xl border border-border/50 bg-card/50 p-5">
                 <div className="flex items-center gap-2 mb-3">
-                  <Brain className="w-4 h-4 text-purple-500" />
-                  <h3 className="font-medium text-sm">Memorização</h3>
+                  <Target className="w-4 h-4 text-emerald-500" />
+                  <h3 className="font-medium text-sm">Dias Ativos</h3>
                 </div>
-                <p className="text-3xl font-bold mb-1">{stats.mastered}</p>
-                <p className="text-xs text-muted-foreground">versículos memorizados</p>
-                {stats.dueFlashcards > 0 && (
-                  <p className="text-[10px] text-orange-500 mt-1">⏳ {stats.dueFlashcards} para revisar</p>
-                )}
+                <p className="text-3xl font-bold mb-1">{stats.diasAtivos}</p>
+                <p className="text-xs text-muted-foreground">dias de estudo</p>
               </div>
             </ScrollReveal>
           </div>
@@ -178,23 +157,4 @@ export default function DashboardPage() {
       <Footer />
     </div>
   );
-}
-
-function calculateStreak(sessions: ReadingSession[]): number {
-  if (sessions.length === 0) return 0;
-  const dates = [...new Set(sessions.map(s => s.date))].sort().reverse();
-  let streak = 0;
-  let current = new Date();
-  current.setHours(0, 0, 0, 0);
-
-  for (const dateStr of dates) {
-    const d = new Date(dateStr);
-    d.setHours(0, 0, 0, 0);
-    const diff = (current.getTime() - d.getTime()) / (1000 * 60 * 60 * 24);
-    if (diff <= 1) {
-      streak++;
-      current = d;
-    } else break;
-  }
-  return streak;
 }

@@ -8,6 +8,7 @@ import { Heart, Trash2, Search, X, ArrowUpDown, BookOpen, Download } from 'lucid
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
+import { getFavoritesOffline, saveFavoritesOffline } from '@/lib/offlineStorage';
 
 interface Favorito {
   id: string;
@@ -39,17 +40,31 @@ export default function FavoritosPage() {
   const [carregado, setCarregado] = useState(false);
 
   useEffect(() => {
-    try {
-      const dados = localStorage.getItem('ssb_favoritos');
-      if (dados) setFavoritos(JSON.parse(dados));
-    } catch {}
-    setCarregado(true);
+    const load = async () => {
+      try {
+        const fromIDB = (await getFavoritesOffline()) as Favorito[];
+        if (fromIDB.length > 0) {
+          setFavoritos(fromIDB);
+        } else {
+          const raw = localStorage.getItem('ssb_favoritos');
+          if (raw) setFavoritos(JSON.parse(raw));
+        }
+      } catch {
+        try {
+          const raw = localStorage.getItem('ssb_favoritos');
+          if (raw) setFavoritos(JSON.parse(raw));
+        } catch {}
+      }
+      setCarregado(true);
+    };
+    load();
   }, []);
 
   const remover = useCallback((id: string) => {
     setFavoritos(prev => {
       const updated = prev.filter(f => f.id !== id);
       localStorage.setItem('ssb_favoritos', JSON.stringify(updated));
+      saveFavoritesOffline(updated).catch(() => {});
       return updated;
     });
   }, []);

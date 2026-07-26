@@ -8,6 +8,7 @@ import { FileText, Trash2, Search, BookOpen, X, Plus, ArrowLeft, Edit3 } from 'l
 import ScrollReveal from '@/components/ScrollReveal';
 import { NotaEditor, type Nota } from '@/components/NotaEditor';
 import { cn } from '@/lib/utils';
+import { getNotesOffline, saveNotesOffline } from '@/lib/offlineStorage';
 
 type View = 'list' | 'editor';
 
@@ -19,11 +20,24 @@ export default function NotasPage() {
   const [editingNota, setEditingNota] = useState<Nota | undefined>(undefined);
 
   useEffect(() => {
-    try {
-      const dados = localStorage.getItem('ssb_notas_rich');
-      if (dados) setNotas(JSON.parse(dados));
-    } catch {}
-    setCarregado(true);
+    const load = async () => {
+      try {
+        const fromIDB = (await getNotesOffline()) as Nota[];
+        if (fromIDB.length > 0) {
+          setNotas(fromIDB);
+        } else {
+          const raw = localStorage.getItem('ssb_notas_rich');
+          if (raw) setNotas(JSON.parse(raw));
+        }
+      } catch {
+        try {
+          const raw = localStorage.getItem('ssb_notas_rich');
+          if (raw) setNotas(JSON.parse(raw));
+        } catch {}
+      }
+      setCarregado(true);
+    };
+    load();
   }, []);
 
   const salvarNota = useCallback((nota: Nota) => {
@@ -33,6 +47,7 @@ export default function NotasPage() {
         ? prev.map(n => n.id === nota.id ? nota : n)
         : [...prev, nota];
       localStorage.setItem('ssb_notas_rich', JSON.stringify(updated));
+      saveNotesOffline(updated).catch(() => {});
       return updated;
     });
     setView('list');
@@ -43,6 +58,7 @@ export default function NotasPage() {
     setNotas(prev => {
       const updated = prev.filter(n => n.id !== id);
       localStorage.setItem('ssb_notas_rich', JSON.stringify(updated));
+      saveNotesOffline(updated).catch(() => {});
       return updated;
     });
   }, []);

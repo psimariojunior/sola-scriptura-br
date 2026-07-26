@@ -9,6 +9,7 @@ import {
   X, FileText, Calendar, Hash, Share2,
 } from 'lucide-react';
 import Link from 'next/link';
+import { getCollectionsOffline, saveCollectionsOffline } from '@/lib/offlineStorage';
 
 interface Versiculo {
   livro: string;
@@ -26,19 +27,6 @@ interface Colecao {
   criadaEm: string;
 }
 
-function getColecoes(): Colecao[] {
-  if (typeof window === 'undefined') return [];
-  try {
-    return JSON.parse(localStorage.getItem('ssb_colecoes') || '[]');
-  } catch {
-    return [];
-  }
-}
-
-function saveColecoes(c: Colecao[]) {
-  localStorage.setItem('ssb_colecoes', JSON.stringify(c));
-}
-
 export default function ColecoesPage() {
   const [colecoes, setColecoes] = useState<Colecao[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -48,13 +36,30 @@ export default function ColecoesPage() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setColecoes(getColecoes());
-    setMounted(true);
+    const load = async () => {
+      try {
+        const fromIDB = (await getCollectionsOffline()) as Colecao[];
+        if (fromIDB.length > 0) {
+          setColecoes(fromIDB);
+        } else {
+          const raw = localStorage.getItem('ssb_colecoes');
+          if (raw) setColecoes(JSON.parse(raw));
+        }
+      } catch {
+        try {
+          const raw = localStorage.getItem('ssb_colecoes');
+          if (raw) setColecoes(JSON.parse(raw));
+        } catch {}
+      }
+      setMounted(true);
+    };
+    load();
   }, []);
 
   const persistir = useCallback((novas: Colecao[]) => {
-    saveColecoes(novas);
     setColecoes(novas);
+    localStorage.setItem('ssb_colecoes', JSON.stringify(novas));
+    saveCollectionsOffline(novas).catch(() => {});
   }, []);
 
   const criar = () => {

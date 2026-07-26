@@ -138,19 +138,22 @@ class _SplashScreenState extends State<SplashScreen>
                             shape: BoxShape.circle,
                             gradient: RadialGradient(
                               colors: [
-                                AppTheme.goldLight.withOpacity(0.3),
-                                AppTheme.gold.withOpacity(0.1),
+                                AppTheme.goldLight.withValues(alpha: 0.3),
+                                AppTheme.gold.withValues(alpha: 0.1),
                               ],
                             ),
                             border: Border.all(
-                              color: AppTheme.gold.withOpacity(0.3),
+                              color: AppTheme.gold.withValues(alpha: 0.3),
                               width: 1,
                             ),
                           ),
-                          child: const Icon(
-                            Icons.auto_stories_rounded,
-                            size: 48,
-                            color: AppTheme.goldLight,
+                          child: ClipOval(
+                            child: Image.asset(
+                              'assets/app_icon.png',
+                              width: 72,
+                              height: 72,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),

@@ -92,12 +92,12 @@ class _OnboardingTourState extends State<OnboardingTour> {
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        AppTheme.goldLight.withOpacity(0.3),
-                        AppTheme.gold.withOpacity(0.1),
+                        AppTheme.goldLight.withValues(alpha: 0.3),
+                        AppTheme.gold.withValues(alpha: 0.1),
                       ],
                     ),
                     border: Border.all(
-                      color: AppTheme.gold.withOpacity(0.3),
+                      color: AppTheme.gold.withValues(alpha: 0.3),
                       width: 1,
                     ),
                   ),
@@ -164,7 +164,7 @@ class _OnboardingTourState extends State<OnboardingTour> {
                       height: 8,
                       margin: const EdgeInsets.symmetric(horizontal: 4),
                       decoration: BoxDecoration(
-                        color: i == _currentStep ? AppTheme.gold : AppTheme.textMuted.withOpacity(0.3),
+                        color: i == _currentStep ? AppTheme.gold : AppTheme.textMuted.withValues(alpha: 0.3),
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),

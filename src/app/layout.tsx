@@ -3,8 +3,6 @@ import localFont from 'next/font/local';
 import LayoutWrapper from '@/components/LayoutWrapper';
 import './globals.css';
 
-export const dynamic = 'force-dynamic';
-
 const cormorant = localFont({
   src: [
     { path: '../../public/fonts/cormorant-latin-400.woff2', weight: '400', style: 'normal' },
@@ -38,7 +36,7 @@ export const metadata: Metadata = {
     template: '%s | Sola Scriptura BR',
   },
   description:
-    'Plataforma completa de estudo bíblico acadêmico com IA. Bíblia em 6 traduções, Grego e Hebraico com léxico Strong, Exegese automática, Teologia Sistemática, Concordância, Comentários de teólogos e ferramentas avançadas de pesquisa.',
+    'Plataforma completa de estudo bíblico acadêmico com IA. Bíblia em 10 traduções, Grego e Hebraico com léxico Strong, Exegese automática, Teologia Sistemática, Concordância, Comentários de teólogos e ferramentas avançadas de pesquisa.',
   keywords: [
     'bíblia', 'estudo bíblico', 'grego', 'hebraico', 'teologia', 'exegese',
     'comentários', 'concordância', 'léxico strong', 'bíblia online',
@@ -66,7 +64,7 @@ export const metadata: Metadata = {
     siteName: 'Sola Scriptura BR',
     title: 'Sola Scriptura BR — Toda a biblioteca teológica',
     description:
-      'Bíblia em 6 traduções, Grego e Hebraico com léxico Strong, Exegese automática com IA, Teologia Sistemática e ferramentas avançadas de pesquisa bíblica.',
+      'Bíblia em 10 traduções, Grego e Hebraico com léxico Strong, Exegese automática com IA, Teologia Sistemática e ferramentas avançadas de pesquisa bíblica.',
     countryName: 'Brazil',
     emails: ['contato@solascriptura.app'],
     images: [
@@ -85,7 +83,7 @@ export const metadata: Metadata = {
     creator: '@solascriptura_br',
     title: 'Sola Scriptura BR — Toda a biblioteca teológica',
     description:
-      'Bíblia em 6 traduções, Grego e Hebraico, Exegese com IA, Teologia e ferramentas avançadas de pesquisa bíblica.',
+      'Bíblia em 10 traduções, Grego e Hebraico, Exegese com IA, Teologia e ferramentas avançadas de pesquisa bíblica.',
     images: ['/opengraph-image'],
   },
   robots: {
@@ -103,6 +101,8 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: '/icon-192.png',
     shortcut: '/favicon.svg',

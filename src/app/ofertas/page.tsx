@@ -9,7 +9,40 @@ import QRCode from 'qrcode';
 import Link from 'next/link';
 
 const PIX_KEY = 'contato@solascripturabr.com.br';
-const PIX_QR_DATA = `00020126580014br.gov.bcb.pix0136${PIX_KEY}52040000530398654040.005802BR5925SOLA SCRIPTURA BR6009SAO PAULO62070503***6304`;
+
+function crc16CCITT(str: string): string {
+  let crc = 0xFFFF;
+  for (let i = 0; i < str.length; i++) {
+    crc ^= str.charCodeAt(i) << 8;
+    for (let j = 0; j < 8; j++) {
+      crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) : (crc << 1);
+      crc &= 0xFFFF;
+    }
+  }
+  return crc.toString(16).toUpperCase().padStart(4, '0');
+}
+
+function generatePixPayload(amount: number): string {
+  const MERCHANT_NAME = 'SOLA SCRIPTURA BR';
+  const MERCHANT_CITY = 'SAO PAULO';
+  const TXID = '***';
+
+  const gui = 'br.gov.bcb.pix';
+  const sub00 = `00${String(gui.length).padStart(2, '0')}${gui}`;
+  const sub01 = `01${String(PIX_KEY.length).padStart(2, '0')}${PIX_KEY}`;
+  const field26 = `26${String(sub00.length + sub01.length).padStart(2, '0')}${sub00}${sub01}`;
+
+  const field52 = `52040000`;
+  const field53 = `5303986`;
+  const field54 = amount > 0 ? `54${String(amount.toFixed(2).length).padStart(2, '0')}${amount.toFixed(2)}` : '';
+  const field58 = `5802BR`;
+  const field59 = `59${String(MERCHANT_NAME.length).padStart(2, '0')}${MERCHANT_NAME}`;
+  const field60 = `60${String(MERCHANT_CITY.length).padStart(2, '0')}${MERCHANT_CITY}`;
+  const field62 = `62${String(TXID.length + 4).padStart(2, '0')}05${String(TXID.length).padStart(2, '0')}${TXID}`;
+
+  const payload = `000201${field26}${field52}${field53}${field54}${field58}${field59}${field60}${field62}6304`;
+  return payload + crc16CCITT(payload);
+}
 
 export default function OfertasPage() {
   const [copied, setCopied] = useState(false);
@@ -17,18 +50,20 @@ export default function OfertasPage() {
   const [valor, setValor] = useState('');
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  const pixPayload = generatePixPayload(valor ? Number(valor) : 0);
+
   useEffect(() => {
     const fg = getComputedStyle(document.documentElement).getPropertyValue('--fg').trim() || '#F5F1E8';
     const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#0A0908';
 
-    QRCode.toCanvas(canvasRef.current, PIX_QR_DATA, {
+    QRCode.toCanvas(canvasRef.current, pixPayload, {
       width: 240,
       margin: 2,
       color: { dark: fg, light: bg },
       errorCorrectionLevel: 'L',
     }).catch(console.error);
 
-    QRCode.toDataURL(PIX_QR_DATA, {
+    QRCode.toDataURL(pixPayload, {
       width: 240,
       margin: 2,
       color: { dark: fg, light: bg },
@@ -36,7 +71,7 @@ export default function OfertasPage() {
     })
       .then((url) => setQrDataUrl(url))
       .catch(console.error);
-  }, []);
+  }, [pixPayload]);
 
   const copiarChave = async () => {
     try {

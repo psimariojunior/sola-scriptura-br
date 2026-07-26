@@ -24,6 +24,7 @@ interface PainelDoVersiculoProps {
   aberto?: boolean;
   onFechar?: () => void;
   onVersiculoClick?: (livro: string, cap: number, ver: number) => void;
+  tabInicial?: string;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -663,9 +664,10 @@ export default function PainelDoVersiculo({
   aberto = false,
   onFechar,
   onVersiculoClick,
+  tabInicial,
 }: PainelDoVersiculoProps) {
   const [recursos, setRecursos] = useState<RecursoVersiculo[]>([]);
-  const [activeTab, setActiveTab] = useState('texto');
+  const [activeTab, setActiveTab] = useState(tabInicial || 'texto');
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -678,8 +680,8 @@ export default function PainelDoVersiculo({
   useEffect(() => {
     setRecursos([]);
     getRecursosVersiculo(livro, capitulo, versiculo).then(setRecursos);
-    setActiveTab('texto');
-  }, [livro, capitulo, versiculo]);
+    setActiveTab(tabInicial || 'texto');
+  }, [livro, capitulo, versiculo, tabInicial]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape' && aberto) onFechar?.();

@@ -41,7 +41,7 @@ export interface VerseCardProps {
   onCompartilharImagem?: () => void;
   onAprofundar?: () => void;
   onCompartilharSala?: () => void;
-  onAbrirPainel?: () => void;
+  onAbrirPainel?: (tab?: string) => void;
   verseKey: string;
   showTranslationLabel: boolean;
   tradLabel: string;
@@ -464,7 +464,7 @@ export const VerseCard = memo(function VerseCard({
               )}
               {onAbrirPainel && (
                 <button
-                  onClick={(e) => { e.stopPropagation(); onAbrirPainel(); }}
+                  onClick={(e) => { e.stopPropagation(); onAbrirPainel('estudo'); }}
                   className="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-blue-500/10 hover:text-blue-500 transition-all active:scale-95"
                   aria-label="Estudo"
                 >

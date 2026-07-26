@@ -44,7 +44,7 @@ interface VerseListItemProps {
   onCompartilharImagem?: () => void;
   onAprofundar?: () => void;
   onCompartilharSala?: () => void;
-  onAbrirPainel?: () => void;
+  onAbrirPainel?: (tab?: string) => void;
 }
 
 export const VerseListItem = memo(function VerseListItem({

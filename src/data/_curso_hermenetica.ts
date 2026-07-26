@@ -2,26 +2,26 @@ import type { Curso } from './cursos';
 
 export const CURSO_HERMENEUTICA: Curso = {
   id: 'hermeneutica-pratica',
-  titulo: 'Hermenêutica Prática',
-  descricao: 'Aprenda a interpretar a Bíblia corretamente com métodos comprovados. Evite erros comuns e aprofunde seu entendimento.',
+  título: 'Hermenêutica Prática',
+  descrição: 'Aprenda a interpretar a Bíblia corretamente com métodos comprovados. Evite erros comuns e aprofunde seu entendimento.',
   instrutor: 'Sola Scriptura',
-  duracao: '5 semanas',
-  nivel: 'intermediario',
+  duração: '5 semanas',
+  nível: 'intermediário',
   categoria: 'Interpretação Bíblica',
   certificado: true,
-  modulos: [
+  módulos: [
     {
       id: 'mod-principios-fundamentais',
-      titulo: 'Princípios Fundamentais',
-      descricao: 'Os alicerces para uma interpretação bíblica fiel e consistente',
-      icone: '🔍',
+      título: 'Princípios Fundamentais',
+      descrição: 'Os alicerces para uma interpretação bíblica fiel e consistente',
+      ícone: '🔍',
       aulas: [
         {
           id: 'aula-herm-1-1',
-          titulo: 'O que é hermenêutica?',
+          título: 'O que é hermenêutica?',
           tipo: 'texto',
-          duracao: '12 min',
-          conteudo: `## O que é hermenêutica?
+          duração: '12 min',
+          conteúdo: `## O que é hermenêutica?
 
 A hermenêutica é a ciência e a arte da interpretação de textos. Quando aplicada especificamente à Bíblia, torna-se um conjunto de princípios e métodos que nos ajudam a descobrir o significado original dos textos sagrados e a aplicá-los corretamente à nossa vida.
 
@@ -66,17 +66,17 @@ Um erro muito comum é pensar que "interpretar" significa "dar minha opinião so
 ### Para quem é esse estudo?
 
 Hermenêutica não é apenas para pastores e teólogos. Todo cristão que lê a Bíblia é, implicitamente, um intérprete. A diferença está na qualidade da interpretação. Este curso foi escrito para qualquer crente que queira ler a Bíblia com mais clareza, profundidade e fidelidade.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: '2 Timoteo 2:15', texto: 'Esforça-te por apresentar a Deus um obreiro que não tenha de que se envergonhar, que maneje bem a palavra da verdade.' },
-            { ref: 'Atos 8:30-31', texto: 'E Philippe, correndo, ouviu que ele lia o profeta Isaías, e disse: Entendes, pois, o que lês? E ele: Como poderei, se ninguém me dirigir?' },
+            { ref: 'Atos 8:30-31', texto: 'E Filipe, correndo, ouviu que ele lia o profeta Isaías, e disse: Entendes, pois, o que lês? E ele: Como poderei, se ninguém me dirigir?' },
           ],
         },
         {
           id: 'aula-herm-1-2',
-          titulo: 'A regra de interpretação pela Bíblia',
+          título: 'A regra de interpretação pela Bíblia',
           tipo: 'texto',
-          duracao: '14 min',
-          conteudo: `## A regra de interpretação pela Bíblia
+          duração: '14 min',
+          conteúdo: `## A regra de interpretação pela Bíblia
 
 Um dos princípios mais importantes da hermenêutica reformada é chamado de *scriptura interpreta scriptura* — "a Escritura interpreta a Escritura". Isso significa que a melhor chave para entender um passagem difícil é outra passagem clara da própria Bíblia.
 
@@ -119,17 +119,17 @@ A palavra "batismo" (do grego *baptizō*) aparece em vários contextos. Em Atos 
 ### A unidade da Bíblia
 
 Quando aplicamos esse princípio corretamente, descobrimos algo maravilhoso: a Bíblia é um livro unitário, com uma mensagem coerente do início ao fim. Cada livro, cada autor, cada seção contribui para o grandioso relato da redenção em Jesus Cristo.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: '2 Pedro 1:20-21', texto: 'Sobretudo, tendes por certo que nenhuma profecia da Escritura é de interpretação particular.' },
             { ref: 'Isaías 28:10', texto: 'Porque mandamento sobre mandamento, mandamento sobre mandamento, regra sobre regra, regra sobre regra, aqui um pouco, ali um pouco.' },
           ],
         },
         {
           id: 'aula-herm-1-3',
-          titulo: 'Contexto histórico e cultural',
+          título: 'Contexto histórico e cultural',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Contexto histórico e cultural
+          duração: '15 min',
+          conteúdo: `## Contexto histórico e cultural
 
 A Bíblia foi escrita em momentos históricos específicos, por pessoas que viviam em culturas muito diferentes da nossa. Ignorar esse fato é como assistir ao último episódio de uma série sem ter visto os anteriores — você até entende algo, mas perde a maior parte do significado.
 
@@ -182,17 +182,17 @@ O contexto histórico não é um "atalho mágico". Algumas dicas importantes:
 ### O Espírito Santo e o contexto
 
 Estudar o contexto não substitui a iluminação do Espírito Santo — complementa. Deus usa o nosso esforço de estudo para nos conduzir à verdade. O Espírito não nos poupa o trabalho de estudar; Ele nos guia através dele.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Atos 17:11', texto: 'Estes foram mais nobres do que os de Tessalônica, pois receberam a palavra com toda a avidez, examinando diariamente as Escrituras para ver se assim era.' },
-            { ref: 'Lucas 24:27', texto: 'E, começando por Moises e todos os profetas, explicou-lhes o que de si mesmo constava em todas as Escrituras.' },
+            { ref: 'Lucas 24:27', texto: 'E, começando por Moisés e todos os profetas, explicou-lhes o que de si mesmo constava em todas as Escrituras.' },
           ],
         },
         {
           id: 'aula-herm-1-4',
-          titulo: 'Contexto literário e gramatical',
+          título: 'Contexto literário e gramatical',
           tipo: 'texto',
-          duracao: '14 min',
-          conteudo: `## Contexto literário e gramatical
+          duração: '14 min',
+          conteúdo: `## Contexto literário e gramatical
 
 Enquanto o contexto histórico nos conecta ao mundo do autor e do público original, o contexto literário e gramatical nos ajuda a entender *como* a mensagem foi comunicada. A forma como algo é dito é tão importante quanto o que é dito.
 
@@ -243,18 +243,18 @@ Paulo usa "mas", "portanto", "assim", "porque" com precisão cirúrgica. Esses p
 
 ### Lei da primeira menção
 
-Quando um conceito aparece pela primeira vez na Bíblia, ele frequentemente estabelece um padrão que influencia todos os usos seguintes. Por exemplo, a primeira menção de "louvor" (Gênesis 4:26, "então began a invocar o nome do SENHOR") lança luz sobre todo o tema do louvor nas Escrituras.`,
-          versiculosChave: [
+Quando um conceito aparece pela primeira vez na Bíblia, ele frequentemente estabelece um padrão que influencia todos os usos seguintes. Por exemplo, a primeira menção de "louvor" (Gênesis 4:26, "então começou a invocar o nome do SENHOR") lança luz sobre todo o tema do louvor nas Escrituras.`,
+          versículosChave: [
             { ref: 'Tiago 2:24', texto: 'Vedes, pois, que o homem é justificado por obras e não somente pela fé.' },
             { ref: 'Romanos 3:28', texto: 'Concluímos, pois, que o homem é justificado pela fé sem as obras da lei.' },
           ],
         },
         {
           id: 'aula-herm-1-5',
-          titulo: 'O intérprete e seus pressupostos',
+          título: 'O intérprete e seus pressupostos',
           tipo: 'texto',
-          duracao: '13 min',
-          conteudo: `## O intérprete e seus pressupostos
+          duração: '13 min',
+          conteúdo: `## O intérprete e seus pressupostos
 
 Ninguém lê a Bíblia em um vácuo. Cada pessoa traz consigo um conjunto de pressupostos, experiências, tradições e expectativas que influenciam como lê o texto. Reconhecer isso não é um problema — é o primeiro passo para uma interpretação honesta.
 
@@ -299,86 +299,86 @@ A hermenêutica não é apenas um exercício acadêmico. O Espírito Santo é o 
 ### Aplicação prática
 
 Antes de estudar qualquer passagem, faça uma oração simples: "Senhor, me livra dos meus pressupostos errados. Ilumina o que estou lendo. Me ensina o que tu queres me dizer." Essa atitude de humildade abre a porta para que o Espírito Santo faça o Seu trabalho em nós.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Provérbios 18:17', texto: 'Na causa do próprio homem, até o seu parece justo; mas vem o outro e o examina.' },
             { ref: '1 Coríntios 2:14', texto: 'Ora, o homem natural não aceita as coisas do Espírito de Deus, porque lhe são loucura; e não pode entendê-las, porque elas se discernem espiritualmente.' },
           ],
         },
         {
           id: 'aula-herm-1-6',
-          titulo: 'Quiz: Princípios Fundamentais',
+          título: 'Quiz: Princípios Fundamentais',
           tipo: 'quiz',
-          duracao: '10 min',
+          duração: '10 min',
           perguntas: [
             {
               id: 'q-herm-1-1',
               pergunta: 'O que significa o termo grego "hermeneuein"?',
-              opcoes: ['Predizer o futuro', 'Interpretar ou explicar', 'Ensinar a multidão', 'Traduzir línguas'],
+              opções: ['Predizer o futuro', 'Interpretar ou explicar', 'Ensinar a multidão', 'Traduzir línguas'],
               respostaCorreta: 1,
-              explicacao: 'Hermeneuein significa "interpretar" ou "explicar". A hermenêutica é a ciência da interpretação de textos.',
+              explicação: 'Hermeneuein significa "interpretar" ou "explicar". A hermenêutica é a ciência da interpretação de textos.',
             },
             {
               id: 'q-herm-1-2',
               pergunta: 'Qual é o método fundamental da hermenêutica bíblica?',
-              opcoes: ['Leer, memorizar, recitar', 'Observar, interpretar, aplicar', 'Estudar, debater, discutir', 'Ler, meditar, orar'],
+              opções: ['Ler, memorizar, recitar', 'Observar, interpretar, aplicar', 'Estudar, debater, discutir', 'Ler, meditar, orar'],
               respostaCorreta: 1,
-              explicacao: 'O método (observar, interpretar, aplicar) é a espinha dorsal de todo estudo sério da Bíblia. Observar o que o texto diz, interpretar o que significa, e aplicar à vida.',
+              explicação: 'O método (observar, interpretar, aplicar) é a espinha dorsal de todo estudo sério da Bíblia. Observar o que o texto diz, interpretar o que significa, e aplicar à vida.',
             },
             {
               id: 'q-herm-1-3',
               pergunta: 'O que significa "scriptura interpreta scriptura"?',
-              opcoes: ['A Bíblia é melhor em latim', 'A Bíblia não tem contradições', 'A Escritura interpreta a Escritura', 'Cada pessoa interpreta como quer'],
+              opções: ['A Bíblia é melhor em latim', 'A Bíblia não tem contradições', 'A Escritura interpreta a Escritura', 'Cada pessoa interpreta como quer'],
               respostaCorreta: 2,
-              explicacao: 'Scriptura interpreta scriptura significa que a melhor chave para entender uma passagem difícil é buscar outras passagens da Bíblia que esclareçam o mesmo tema.',
+              explicação: 'Scriptura interpreta scriptura significa que a melhor chave para entender uma passagem difícil é buscar outras passagens da Bíblia que esclareçam o mesmo tema.',
             },
             {
               id: 'q-herm-1-4',
               pergunta: 'Por que o contexto histórico é importante para interpretar a Bíblia?',
-              opcoes: ['Porque a Bíblia é um livro de história', 'Porque o autor escreveu para um público específico', 'Porque só importa o que aconteceu antigamente', 'Porque o passado é mais importante que o presente'],
+              opções: ['Porque a Bíblia é um livro de história', 'Porque o autor escreveu para um público específico', 'Porque só importa o que aconteceu antigamente', 'Porque o passado é mais importante que o presente'],
               respostaCorreta: 1,
-              explicacao: 'O contexto histórico importa porque a Bíblia foi escrita por autores reais para públicos reais em momentos históricos específicos. Entender isso ajuda a captar o significado original.',
+              explicação: 'O contexto histórico importa porque a Bíblia foi escrita por autores reais para públicos reais em momentos históricos específicos. Entender isso ajuda a captar o significado original.',
             },
             {
               id: 'q-herm-1-5',
               pergunta: 'Qual passagem diz "esforça-te por apresentar a Deus um obreiro que não tenha de que se envergonhar, que maneje bem a palavra da verdade"?',
-              opcoes: ['2 Timoteo 2:15', 'Hebreus 4:12', 'Tiago 1:22', 'Romanos 12:1-2'],
+              opções: ['2 Timoteo 2:15', 'Hebreus 4:12', 'Tiago 1:22', 'Romanos 12:1-2'],
               respostaCorreta: 0,
-              explicacao: '2 Timoteo 2:15 é o versículo-chave que exorta o estudioso da Bíblia a manejar bem a Palavra com precisão e fidelidade.',
+              explicação: '2 Timoteo 2:15 é o versículo-chave que exorta o estudioso da Bíblia a manejar bem a Palavra com precisão e fidelidade.',
             },
             {
               id: 'q-herm-1-6',
               pergunta: 'O que é "humildade hermenêutica"?',
-              opcoes: ['Não estudar a Bíblia demais', 'Aceitar que nossa interpretação pode estar errada', 'Apenas ler o que outros já disseram', 'Nunca discordar da tradição'],
+              opções: ['Não estudar a Bíblia demais', 'Aceitar que nossa interpretação pode estar errada', 'Apenas ler o que outros já disseram', 'Nunca discordar da tradição'],
               respostaCorreta: 1,
-              explicacao: 'Humildade hermenêutica significa reconhecer que nossa interpretação não é infalível e estar aberto a ser corrigido pelo texto bíblico.',
+              explicação: 'Humildade hermenêutica significa reconhecer que nossa interpretação não é infalível e estar aberto a ser corrigido pelo texto bíblico.',
             },
             {
               id: 'q-herm-1-7',
               pergunta: 'Qual é o erro de isolar versículos do contexto?',
-              opcoes: ['Usar concordâncias', 'Tirar um versículo do seu parágrafo e livro', 'Ler várias traduções', 'Estudar o grego'],
+              opções: ['Usar concordâncias', 'Tirar um versículo do seu parágrafo e livro', 'Ler várias traduções', 'Estudar o grego'],
               respostaCorreta: 1,
-              explicacao: 'Isolar versículos do contexto é um dos erros mais comuns. O significado de um versículo depende do parágrafo, capítulo e livro em que está inserido.',
+              explicação: 'Isolar versículos do contexto é um dos erros mais comuns. O significado de um versículo depende do parágrafo, capítulo e livro em que está inserido.',
             },
             {
               id: 'q-herm-1-8',
               pergunta: 'O que são "pressupostos" no estudo hermenêutico?',
-              opcoes: ['Versículos que decoramos', 'Ideias que aceitamos antes de examinar o texto', 'Regras gramaticais do grego', 'Opiniões de pastores famosos'],
+              opções: ['Versículos que decoramos', 'Ideias que aceitamos antes de examinar o texto', 'Regras gramaticais do grego', 'Opiniões de pastores famosos'],
               respostaCorreta: 1,
-              explicacao: 'Pressupostos são ideias que aceitamos como verdadeiras antes de examinarmos o texto. Todos nós temos pressupostos — reconhecê-los é o primeiro passo para uma interpretação honesta.',
+              explicação: 'Pressupostos são ideias que aceitamos como verdadeiras antes de examinarmos o texto. Todos nós temos pressupostos — reconhecê-los é o primeiro passo para uma interpretação honesta.',
             },
             {
               id: 'q-herm-1-9',
               pergunta: 'Qual é a relação entre hermenêutica e exegese?',
-              opcoes: ['São a mesma coisa', 'A hermenêutica aplica os princípios; a exegese os estuda', 'A hermenêutica estuda os princípios; a exegese os aplica a um texto', 'Não têm relação entre si'],
+              opções: ['São a mesma coisa', 'A hermenêutica aplica os princípios; a exegese os estuda', 'A hermenêutica estuda os princípios; a exegese os aplica a um texto', 'Não têm relação entre si'],
               respostaCorreta: 2,
-              explicacao: 'A hermenêutica é o estudo dos princípios e regras de interpretação. A exegese é a aplicação prática desses princípios a um texto específico.',
+              explicação: 'A hermenêutica é o estudo dos princípios e regras de interpretação. A exegese é a aplicação prática desses princípios a um texto específico.',
             },
             {
               id: 'q-herm-1-10',
               pergunta: 'Por que "fé" pode ter significados diferentes em Romanos e Tiago?',
-              opcoes: ['Porque Paulo e Tiago discordavam', 'Porque cada autor usa a palavra com nuances diferentes em contextos diferentes', 'Porque a Bíblia tem erros', 'Porque as traduções estão erradas'],
+              opções: ['Porque Paulo e Tiago discordavam', 'Porque cada autor usa a palavra com nuances diferentes em contextos diferentes', 'Porque a Bíblia tem erros', 'Porque as traduções estão erradas'],
               respostaCorreta: 1,
-              explicacao: 'Paulo fala de justificação diante de Deus (fé sem obras da lei), enquanto Tiago fala de justificação diante dos homens (fé que produz obras). Cada autor usa "fé" com nuances diferentes.',
+              explicação: 'Paulo fala de justificação diante de Deus (fé sem obras da lei), enquanto Tiago fala de justificação diante dos homens (fé que produz obras). Cada autor usa "fé" com nuances diferentes.',
             },
           ],
         },
@@ -386,16 +386,16 @@ Antes de estudar qualquer passagem, faça uma oração simples: "Senhor, me livr
     },
     {
       id: 'mod-generos-literarios',
-      titulo: 'Gêneros Literários',
-      descricao: 'Entenda os diferentes tipos de literatura da Bíblia e como interpretar cada um',
-      icone: '📚',
+      título: 'Gêneros Literários',
+      descrição: 'Entenda os diferentes tipos de literatura da Bíblia e como interpretar cada um',
+      ícone: '📚',
       aulas: [
         {
           id: 'aula-herm-2-1',
-          titulo: 'Literatura narrativa',
+          título: 'Literatura narrativa',
           tipo: 'texto',
-          duracao: '14 min',
-          conteudo: `## Literatura narrativa
+          duração: '14 min',
+          conteúdo: `## Literatura narrativa
 
 A narrativa é o gênero mais abundante da Bíblia. Mais de 40% do AT e quase metade do NT são narrativas — histórias de pessoas, nações e eventos. Entender como a narrativa bíblica funciona é essencial para não cometer erros de interpretação.
 
@@ -421,7 +421,7 @@ Ao contrário de romances modernos, onde o narrador pode ser não-confiável, o 
 
 **Princípio 1: Não faça o que o personagem faz sem confirmar com outros textos.** Davi cometeu adultério e assassinato — mas a narrativa não endossa essas ações. Abraão mentiu sobre sua esposa — mas isso não é uma instrução para nós.
 
-**Princípio 2: Observe o contexto literário maior.** Uma narrativa no livro de Juizes frequentemente termina com a frase "cada um fazia o que lhe parecia reto". Isso é avaliação, não aprovação.
+**Princípio 2: Observe o contexto literário maior.** Uma narrativa no livro de Juízes frequentemente termina com a frase "cada um fazia o que lhe parecia reto". Isso é avaliação, não aprovação.
 
 **Princípio 3: Busque o propósito teológico.** Pergunte: por que o autor incluiu essa história? O que ela ensina sobre Deus, sobre o povo, sobre o plano redentor?
 
@@ -430,7 +430,7 @@ Ao contrário de romances modernos, onde o narrador pode ser não-confiável, o 
 - **Gênesis 1-11**: Narrativa primordial (criação, queda, dilúvio, Babel)
 - **Gênesis 12-50**: Patriarcas (Abraão, Isaque, Jacó, José)
 - **Êxodo 1-15**: Libertação do Egito
-- **Livro de Rute**: Lealdade e providência no período dos juizes
+- **Livro de Rute**: Lealdade e providência no período dos juízes
 - **1-2 Samuel**: Monarquia de Saul e Davi
 - **Livro de Jonas**: Misericórdia de Deus e os limites da nação de Israel
 
@@ -447,19 +447,19 @@ Ao contrário de romances modernos, onde o narrador pode ser não-confiável, o 
 4. **Isolamento**: Ler a história fora do livro em que está inserida
 
 > A narrativa bíblica não é um manual de instruções — é uma história que nos convida a participar da narrativa de Deus.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Romanos 15:4', texto: 'Porque tudo o que foi escrito, para nosso ensino foi escrito, para que, pela paciência e pela consolação das Escrituras, tenhamos esperança.' },
             { ref: '1 Coríntios 10:11', texto: 'Tudo isso lhes aconteceu como exemplo, e foi escrito para advertência de nós, sobre quem chegaram os fins dos séculos.' },
           ],
         },
         {
           id: 'aula-herm-2-2',
-          titulo: 'Literatura poética',
+          título: 'Literatura poética',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Literatura poética
+          duração: '15 min',
+          conteúdo: `## Literatura poética
 
-A poesia ocupa um lugar central na Bíblia. O Salter é o livro mais citado no NT, e Jesus mesmo citou Salmos frequentemente. Mas a poesia bíblica tem regras próprias que precisamos entender para não interpretar errado.
+A poesia ocupa um lugar central na Bíblia. O Saltério é o livro mais citado no NT, e Jesus mesmo citou Salmos frequentemente. Mas a poesia bíblica tem regras próprias que precisamos entender para não interpretar errado.
 
 ### Características da poesia hebraica
 
@@ -493,7 +493,7 @@ Davi não estava com ossos literalmente partidos — ele expressava a intensidad
 
 ### Livros poéticos principais
 
-- **Salmos**: Louvores, orações, lamentações — a hymnbook de Israel
+- **Salmos**: Louvores, orações, lamentações — o hinário de Israel
 - **Provérbios**: Máximas de sabedoria prática
 - **Eclesiastes**: Reflexão filosófica sobre o sentido da vida
 - **Cântico dos Cantos**: Poesia de amor entre noivo e noiva
@@ -517,17 +517,17 @@ A poesia bíblica é frequentemente mal usada:
 - Hipérboles são tratadas como fatos
 
 A chave é sempre perguntar: "O autor estava sendo literal ou figurado? Como eu sei isso?"`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Salmo 19:1', texto: 'Os céus narram a glória de Deus, e o firmamento anuncia a obra das suas mãos.' },
             { ref: 'Provérbios 3:5-6', texto: 'Confia no SENHOR de todo o teu coração, e não te estribes no teu próprio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitará as tuas veredas.' },
           ],
         },
         {
           id: 'aula-herm-2-3',
-          titulo: 'Literatura profética',
+          título: 'Literatura profética',
           tipo: 'texto',
-          duracao: '14 min',
-          conteudo: `## Literatura profética
+          duração: '14 min',
+          conteúdo: `## Literatura profética
 
 A literatura profética é uma das mais mal compreendidas da Bíblia. Muita gente abre o livro de Apocalipse ou Isaías e se perde em símbolos, visões e linguagem apocalíptica. Entender os gêneros proféticos é a chave para destrancar esses livros.
 
@@ -574,17 +574,17 @@ Apocalipse (e partes de Daniel e Ezequiel) pertence ao gênero apocalíptico, qu
 ### O princípio cristológico
 
 Toda profecia aponta para Cristo. Isaías 53 fala do Servo Sofredor. Daniel 7 fala do Filho do Homem. Apocalipse 19 fala do Cavaleiro fiel. Quando você não sabe como interpretar uma profecia, pergunte: "Onde está Jesus aqui?"`,
-          versiculosChave: [
+          versículosChave: [
             { ref: '2 Pedro 1:20-21', texto: 'Sobretudo, tendes por certo que nenhuma profecia da Escritura é de interpretação particular.' },
             { ref: 'Apocalipse 1:3', texto: 'Bem-aventurado aquele que lê e os que ouvem as palavras desta profecia, e guardam o que nela está escrito; porque o tempo está próximo.' },
           ],
         },
         {
           id: 'aula-herm-2-4',
-          titulo: 'Literatura epistolar',
+          título: 'Literatura epistolar',
           tipo: 'texto',
-          duracao: '13 min',
-          conteudo: `## Literatura epistolar
+          duração: '13 min',
+          conteúdo: `## Literatura epistolar
 
 O Novo Testamento contém 21 cartas — mais da metade dos seus livros. Entender como funcionavam as cartas antigas é fundamental para interpretar Paulo, Tiago, Pedro, João e o autor de Hebreus.
 
@@ -636,17 +636,17 @@ Paulo usa ironia (Gálatas 5:12), sarcasmo (2 Coríntios 12:13), e humor. Ignora
 ### A universalidade da mensagem
 
 Apesar de endereçadas a situações específicas, as cartas contêm verdades universais. O desafio é discernir: o que era contextual e o que é permanente? A resposta geralmente está em outros textos da mesma Bíblia.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: '2 Timoteo 3:16', texto: 'Toda a Escritura é inspirada por Deus e útil para o ensino, para a repreensão, para a correção, para a educação na justiça.' },
             { ref: 'Romanos 15:4', texto: 'Porque tudo o que foi escrito, para nosso ensino foi escrito.' },
           ],
         },
         {
           id: 'aula-herm-2-5',
-          titulo: 'Literatura sapiencial',
+          título: 'Literatura sapiencial',
           tipo: 'texto',
-          duracao: '12 min',
-          conteudo: `## Literatura sapiencial
+          duração: '12 min',
+          conteúdo: `## Literatura sapiencial
 
 A literatura sapiencial compreende livros que lidam com as questões fundamentais da vida: sofrimento, justiça, prudência, prazer e o temor a Deus. Provérbios, Jó, Eclesiastes e Cantico dos Canticos são os principais representantes dessa tradição.
 
@@ -695,7 +695,7 @@ Cântico dos Canticos celebra o amor humano como reflexo do amor divino. A tradi
 2. **Ignorar o tom de Jó e Eclesiastes**
 3. **Alegorizar Cântico dos Canticos demais**
 4. **Confundir sabedoria com conhecimento** — sabedoria é saber aplicar o conhecimento`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Provérbios 1:7', texto: 'O temor do SENHOR é o princípio do conhecimento; os insensatos desprezam a sabedoria e a instrução.' },
             { ref: 'Eclesiastes 12:13', texto: 'Teme a Deus e guarda os seus mandamentos; porque isso é o dever de todo homem.' },
             { ref: 'Jó 42:2-3', texto: 'Eu sei que tudo podes, e que nenhum dos teus propósitos pode ser frustrado. Quem é este que sem saber fala? Diria eu o que não entendo, coisas maravilhosas demais para mim.' },
@@ -703,79 +703,79 @@ Cântico dos Canticos celebra o amor humano como reflexo do amor divino. A tradi
         },
         {
           id: 'aula-herm-2-6',
-          titulo: 'Quiz: Gêneros Literários',
+          título: 'Quiz: Gêneros Literários',
           tipo: 'quiz',
-          duracao: '10 min',
+          duração: '10 min',
           perguntas: [
             {
               id: 'q-herm-2-1',
               pergunta: 'Qual é a característica principal da poesia hebraica?',
-              opcoes: ['Rima no final dos versos', 'Paralelismo entre linhas', 'Métrica regular', 'Estrofes organizadas'],
+              opções: ['Rima no final dos versos', 'Paralelismo entre linhas', 'Métrica regular', 'Estrofes organizadas'],
               respostaCorreta: 1,
-              explicacao: 'A poesia hebraica usa paralelismo em vez de rima. As linhas se relacionam por sinonímia, antítese ou síntese, comunicando ideias de maneira paralela.',
+              explicação: 'A poesia hebraica usa paralelismo em vez de rima. As linhas se relacionam por sinonímia, antítese ou síntese, comunicando ideias de maneira paralela.',
             },
             {
               id: 'q-herm-2-2',
               pergunta: 'Qual tipo de profecia pode ser evitada com arrependimento?',
-              opcoes: ['Profecia preditiva absoluta', 'Profecia de julgamento condicional', 'Profecia de restauração', 'Profecia apocalíptica'],
+              opções: ['Profecia preditiva absoluta', 'Profecia de julgamento condicional', 'Profecia de restauração', 'Profecia apocalíptica'],
               respostaCorreta: 1,
-              explicacao: 'A profecia de julgamento condicional é acompanhada de uma condição: se o povo se arrepender, Deus não trará o julgamento (Jeremias 18:7-10).',
+              explicação: 'A profecia de julgamento condicional é acompanhada de uma condição: se o povo se arrepender, Deus não trará o julgamento (Jeremias 18:7-10).',
             },
             {
               id: 'q-herm-2-3',
-              pergunta: 'Qual livro da Bíblia é classificado como "hineário de Israel"?',
-              opcoes: ['Provérbios', 'Salmos', 'Lamentações', 'Cântico dos Canticos'],
+              pergunta: 'Qual livro da Bíblia é classificado como "hinário de Israel"?',
+              opções: ['Provérbios', 'Salmos', 'Lamentações', 'Cântico dos Canticos'],
               respostaCorreta: 1,
-              explicacao: 'O Salter (Salmos) é o hineário de Israel — uma coleção de cânticos, orações e louvores usados no culto do templo e que permanecem centrais na adoração judaica e cristã.',
+              explicação: 'O Saltério (Salmos) é o hinário de Israel — uma coleção de cânticos, orações e louvores usados no culto do templo e que permanecem centrais na adoração judaica e cristã.',
             },
             {
               id: 'q-herm-2-4',
               pergunta: 'Quando você encontra uma narrativa na Bíblia, o que deve perguntar primeiro?',
-              opcoes: ['Isso é literal?', 'Qual é a moral da história?', 'Por que o autor incluiu essa história?', 'Como posso aplicar isso hoje?'],
+              opções: ['Isso é literal?', 'Qual é a moral da história?', 'Por que o autor incluiu essa história?', 'Como posso aplicar isso hoje?'],
               respostaCorreta: 2,
-              explicacao: 'O primeiro passo é entender o propósito teológico do autor. Por que ele incluiu essa história no livro? O que ela ensina sobre Deus e o plano redentor?',
+              explicação: 'O primeiro passo é entender o propósito teológico do autor. Por que ele incluiu essa história no livro? O que ela ensina sobre Deus e o plano redentor?',
             },
             {
               id: 'q-herm-2-5',
               pergunta: 'Qual é o erro mais comum ao interpretar Provérbios?',
-              opcoes: ['Ler em português', 'Tratar provérbios como promessas absolutas', 'Comparar com outros livros', 'Estudar o contexto histórico'],
+              opções: ['Ler em português', 'Tratar provérbios como promessas absolutas', 'Comparar com outros livros', 'Estudar o contexto histórico'],
               respostaCorreta: 1,
-              explicacao: 'Provérbios são verdades gerais, não promessas absolutas. "Instrui o menino no caminho" é uma máxima de sabedoria, não uma garantia infalível.',
+              explicação: 'Provérbios são verdades gerais, não promessas absolutas. "Instrui o menino no caminho" é uma máxima de sabedoria, não uma garantia infalível.',
             },
             {
               id: 'q-herm-2-6',
               pergunta: 'Qual é a conclusão de Eclesiastes?',
-              opcoes: ['Tudo é inútil, não faça nada', 'Aproveite a vida enquanto pode', 'Teme a Deus e guarda os seus mandamentos', 'A sabedoria não tem valor'],
+              opções: ['Tudo é inútil, não faça nada', 'Aproveite a vida enquanto pode', 'Teme a Deus e guarda os seus mandamentos', 'A sabedoria não tem valor'],
               respostaCorreta: 2,
-              explicacao: 'Eclesiastes 12:13 é a conclusão: "Teme a Deus e guarda os seus mandamentos; porque isso é o dever de todo homem." Apesar de toda a "vaidade", Deus é o centro.',
+              explicação: 'Eclesiastes 12:13 é a conclusão: "Teme a Deus e guarda os seus mandamentos; porque isso é o dever de todo homem." Apesar de toda a "vaidade", Deus é o centro.',
             },
             {
               id: 'q-herm-2-7',
               pergunta: 'O que diferencia as cartas do NT de cartas modernas?',
-              opcoes: ['Eram escritas em grego', 'Eram lidas publicamente em comunidades inteiras', 'Não tinham saudação', 'Eram sempre anônimas'],
+              opções: ['Eram escritas em grego', 'Eram lidas publicamente em comunidades inteiras', 'Não tinham saudação', 'Eram sempre anônimas'],
               respostaCorreta: 1,
-              explicacao: 'As cartas do NT eram lidas em voz alta em reuniões da igreja. Eram dirigidas a comunidades, não apenas a indivíduos, e continham ensino e exortação para toda a congregação.',
+              explicação: 'As cartas do NT eram lidas em voz alta em reuniões da igreja. Eram dirigidas a comunidades, não apenas a indivíduos, e continham ensino e exortação para toda a congregação.',
             },
             {
               id: 'q-herm-2-8',
               pergunta: 'O que significa "hebel" em Eclesiastes?',
-              opcoes: ['Perfeito', 'Vapor ou efêmero', 'Eterno', 'Secreto'],
+              opções: ['Perfeito', 'Vapor ou efêmero', 'Eterno', 'Secreto'],
               respostaCorreta: 1,
-              explicacao: 'Hebel (הֶבֶל) significa "vapor" ou "efêmero". Eclesiastes usa essa palavra repetidamente para descrever a natureza passageira das coisas humanas.',
+              explicação: 'Hebel (הֶבֶל) significa "vapor" ou "efêmero". Eclesiastes usa essa palavra repetidamente para descrever a natureza passageira das coisas humanas.',
             },
             {
               id: 'q-herm-2-9',
               pergunta: 'Qual é o princípio cristológico na interpretação de profecia?',
-              opcoes: ['Toda profecia é sobre o Antigo Testamento', 'Toda profecia aponta para Cristo', 'Profecia é apenas sobre o futuro', 'Profecia não tem relação com Jesus'],
+              opções: ['Toda profecia é sobre o Antigo Testamento', 'Toda profecia aponta para Cristo', 'Profecia é apenas sobre o futuro', 'Profecia não tem relação com Jesus'],
               respostaCorreta: 1,
-              explicacao: 'Toda profecia bíblica aponta, direta ou indiretamente, para Cristo. Isaías 53 fala do Servo Sofredor. Daniel 7 do Filho do Homem. Apocalipse 19 do Cavaleiro fiel.',
+              explicação: 'Toda profecia bíblica aponta, direta ou indiretamente, para Cristo. Isaías 53 fala do Servo Sofredor. Daniel 7 do Filho do Homem. Apocalipse 19 do Cavaleiro fiel.',
             },
             {
               id: 'q-herm-2-10',
               pergunta: 'Qual é a diferença entre sabedoria e conhecimento na literatura sapiencial?',
-              opcoes: ['Não há diferença', 'Conhecimento é informação; sabedoria é saber aplicar', 'Sabedoria é para velhos; conhecimento para jovens', 'Conhecimento é bíblico; sabedoria não é'],
+              opções: ['Não há diferença', 'Conhecimento é informação; sabedoria é saber aplicar', 'Sabedoria é para velhos; conhecimento para jovens', 'Conhecimento é bíblico; sabedoria não é'],
               respostaCorreta: 1,
-              explicacao: 'Conhecimento é acumular informações. Sabedoria é saber como aplicar essas informações na vida real, com discernimento e temor a Deus.',
+              explicação: 'Conhecimento é acumular informações. Sabedoria é saber como aplicar essas informações na vida real, com discernimento e temor a Deus.',
             },
           ],
         },
@@ -783,16 +783,16 @@ Cântico dos Canticos celebra o amor humano como reflexo do amor divino. A tradi
     },
     {
       id: 'mod-erros-comuns',
-      titulo: 'Erros Comuns de Interpretação',
-      descricao: 'Identifique e evite os equívocos mais frequentes na leitura da Bíblia',
-      icone: '⚠️',
+      título: 'Erros Comuns de Interpretação',
+      descrição: 'Identifique e evite os equívocos mais frequentes na leitura da Bíblia',
+      ícone: '⚠️',
       aulas: [
         {
           id: 'aula-herm-3-1',
-          titulo: 'Alegorização excessiva',
+          título: 'Alegorização excessiva',
           tipo: 'texto',
-          duracao: '13 min',
-          conteudo: `## Alegorização excessiva
+          duração: '13 min',
+          conteúdo: `## Alegorização excessiva
 
 A alegorização é um dos erros mais sedutores da interpretação bíblica. Ela consiste em atribuir significados ocultos ou simbólicos a detalhes que o autor provavelmente pretendia que fossem literais. Embora a Bíblia use simbolismo (especialmente em profecia e poesia), a alegorização excessiva distorce o texto.
 
@@ -840,17 +840,17 @@ Em Apocalipse, "águas" frequentemente representam povos ou nações (Ap 17:15).
 ### O caminho correto
 
 Respeite o gênero literário. Não alegorize narrativas históricas. Não force símbolos onde o texto é claro. E sempre pergunte: "O que o autor provavelmente quis dizer com isso para o seu público original?"`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Lucas 10:36', texto: 'Qual, pois, destes três te parece que foi o próximo daquele que caiu nas mãos dos salteadores?' },
             { ref: '2 Pedro 1:20', texto: 'Sobretudo, tendes por certo que nenhuma profecia da Escritura é de interpretação particular.' },
           ],
         },
         {
           id: 'aula-herm-3-2',
-          titulo: 'Isolar versículos do contexto',
+          título: 'Isolar versículos do contexto',
           tipo: 'texto',
-          duracao: '14 min',
-          conteudo: `## Isolar versículos do contexto
+          duração: '14 min',
+          conteúdo: `## Isolar versículos do contexto
 
 O versículo isolado é o maior inimigo da interpretação bíblica correta. Frases tiradas do contexto se tornam armas nas mãos de quem quer provar qualquer coisa. A hermenêutica séria exige que leiamos versículos dentro do seu parágrafo, capítulo e livro.
 
@@ -891,7 +891,7 @@ Muitos usam isso para proibir qualquer forma de julgamento. Mas Mateus 7:5 diz "
 ### A prática devocional e o contexto
 
 Estudo devocional e estudo hermenêutico não são mutuamente exclusivos. Você pode meditar em um versículo todos os dias — mas sempre voltando ao contexto para não perder o significado real. O versículo é a porta de entrada; o contexto é a casa inteira.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Mateus 7:1', texto: 'Não julgueis, para que não sejais julgados.' },
             { ref: 'Mateus 7:5', texto: 'Hipócrita, tira primeiro a trave do teu olho, e então verás claramente para tirar a lasca do olho do teu irmão.' },
             { ref: 'Filipenses 4:13', texto: 'Posso todas as coisas naquele que me fortalece.' },
@@ -899,10 +899,10 @@ Estudo devocional e estudo hermenêutico não são mutuamente exclusivos. Você 
         },
         {
           id: 'aula-herm-3-3',
-          titulo: 'Projetar a cultura moderna no texto antigo',
+          título: 'Projetar a cultura moderna no texto antigo',
           tipo: 'texto',
-          duracao: '13 min',
-          conteudo: `## Projetar a cultura moderna no texto antigo
+          duração: '13 min',
+          conteúdo: `## Projetar a cultura moderna no texto antigo
 
 Um dos erros mais sutis e perigosos na hermenêutica é ler a Bíblia com os óculos da cultura moderna. Quando fazemos isso, o texto diz o que nós queremos ouvir em vez do que o autor quis comunicar.
 
@@ -942,17 +942,17 @@ Quando dizemos "vamos ao culto", imaginamos um prédio, um púlpito, hinos e um 
 4. **Não envergonhe a Bíblia.** Não tente fazer a Bíblia parecer "moderna". Ela é antiga — e é exatamente isso que a torna relevante. Ela fala de um mundo diferente com verdades universais.
 
 > "O texto bíblico não foi escrito para nós, mas foi preservado para nós." — Kevin DeYoung`,
-          versiculosChave: [
+          versículosChave: [
             { ref: '1 Coríntios 9:20-22', texto: 'Tornei-me judeu para os judeus, para ganhar os judeus; para os que estão debaixo da lei, como se estivesse debaixo da lei...'} ,
             { ref: 'Romanos 12:2', texto: 'E não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento.' },
           ],
         },
         {
           id: 'aula-herm-3-4',
-          titulo: 'Confundir descrição com prescrição',
+          título: 'Confundir descrição com prescrição',
           tipo: 'texto',
-          duracao: '12 min',
-          conteudo: `## Confundir descrição com prescrição
+          duração: '12 min',
+          conteúdo: `## Confundir descrição com prescrição
 
 Uma das confusões mais comuns na interpretação bíblica é assumir que, porque algo é descrito na Bíblia, é também prescrito (ordenado). A Bíblia muitas vezes descreve o que aconteceu sem endossar o que aconteceu.
 
@@ -1004,17 +1004,17 @@ Quando confundimos descrição com prescrição:
 ### O critério final
 
 O critério para distinguir descrição de prescrição é: **O que Jesus ensinou e praticou?** Ele é o ápice da revelação de Deus. Tudo o que precede a Ele deve ser lido à luz dEle.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Mateus 5:17-18', texto: 'Não cuideis que vim destruir a Lei ou os Profetas; não vim para destruir, mas para cumprir.' },
             { ref: 'Hebreus 1:1-2', texto: 'Havendo Deus antigamente falado de muitos modos aos nossos pais, por meio dos profetas, nestes últimos tempos nos falou pelo Filho.' },
           ],
         },
         {
           id: 'aula-herm-3-5',
-          titulo: 'Aplicação correta do Antigo Testamento',
+          título: 'Aplicação correta do Antigo Testamento',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Aplicação correta do Antigo Testamento
+          duração: '15 min',
+          conteúdo: `## Aplicação correta do Antigo Testamento
 
 O Antigo Testamento é frequentemente negligenciado ou mal interpretado. Muitos cristãos ignoram o AT porque "é do tempo da lei", ou o lêem de forma literal demais, aplicando rituais e leis que não se aplicam mais. Entender como o NT se relaciona com o AT é essencial para uma hermenêutica saudável.
 
@@ -1062,7 +1062,7 @@ Hebreus 10:1 diz que "a Lei tem uma sombra dos bens futuros, não a imagem exata
 ### A beleza do AT
 
 O AT não é um "livro velho e obsoleto". Ele é a história da fidelidade de Deus mesmo quando o povo falhava. É a preparação para o evangelho. É a raiz na qual o NT cresce. Sem o AT, perdemos metade da história de Deus com a humanidade.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Mateus 5:17', texto: 'Não cuideis que vim destruir a Lei ou os Profetas; não vim para destruir, mas para cumprir.' },
             { ref: 'Hebreus 10:1', texto: 'Porque, tendo a Lei uma sombra dos bens futuros, não a imagem exata das coisas, nunca pode, pelos mesmos sacrifícios que se oferecem continuamente cada ano, aperfeiçoar os que a eles se chegam.' },
             { ref: '2 Timoteo 3:16', texto: 'Toda a Escritura é inspirada por Deus e útil para o ensino.' },
@@ -1070,79 +1070,79 @@ O AT não é um "livro velho e obsoleto". Ele é a história da fidelidade de De
         },
         {
           id: 'aula-herm-3-6',
-          titulo: 'Quiz: Erros Comuns',
+          título: 'Quiz: Erros Comuns',
           tipo: 'quiz',
-          duracao: '10 min',
+          duração: '10 min',
           perguntas: [
             {
               id: 'q-herm-3-1',
               pergunta: 'O que é alegorização excessiva?',
-              opcoes: ['Ler a Bíblia em alegria', 'Atribuir significados ocultos a detalhes que o autor pretendeu literais', 'Estudar a Bíblia com alegria', 'Interpretar parábolas'],
+              opções: ['Ler a Bíblia em alegria', 'Atribuir significados ocultos a detalhes que o autor pretendeu literais', 'Estudar a Bíblia com alegria', 'Interpretar parábolas'],
               respostaCorreta: 1,
-              explicacao: 'A alegorização excessiva consiste em atribuir significados simbólicos a detalhes que o autor provavelmente pretendia que fossem literais, como detalhes geográficos ou numéricos.',
+              explicação: 'A alegorização excessiva consiste em atribuir significados simbólicos a detalhes que o autor provavelmente pretendia que fossem literais, como detalhes geográficos ou numéricos.',
             },
             {
               id: 'q-herm-3-2',
               pergunta: 'Qual é o problema de usar Filipenses 4:13 ("Posso todas as coisas") fora de contexto?',
-              opcoes: ['O versículo é falso', 'Foi escrito para pessoas específicas', 'O contexto fala de contentamento em toda situação, não de realizar sonhos pessoais', 'O versículo só se aplica a Paulo'],
+              opções: ['O versículo é falso', 'Foi escrito para pessoas específicas', 'O contexto fala de contentamento em toda situação, não de realizar sonhos pessoais', 'O versículo só se aplica a Paulo'],
               respostaCorreta: 2,
-              explicacao: 'No contexto de Filipenses 4:10-19, Paulo fala de contentamento tanto na abundância quanto na necessidade. Ele pode enfrentar qualquer circunstância — não realizar qualquer sonho pessoal.',
+              explicação: 'No contexto de Filipenses 4:10-19, Paulo fala de contentamento tanto na abundância quanto na necessidade. Ele pode enfrentar qualquer circunstância — não realizar qualquer sonho pessoal.',
             },
             {
               id: 'q-herm-3-3',
               pergunta: 'Qual é a diferença entre descrição e prescrição na Bíblia?',
-              opcoes: ['Descrição é do AT, prescrição é do NT', 'Descrição é o que aconteceu; prescrição é o que deve acontecer', 'Não há diferença', 'Descrição é mais importante'],
+              opções: ['Descrição é do AT, prescrição é do NT', 'Descrição é o que aconteceu; prescrição é o que deve acontecer', 'Não há diferença', 'Descrição é mais importante'],
               respostaCorreta: 1,
-              explicacao: 'A Bíblia descreve muitas coisas que aconteceram (adultério de Davi, poligamia de Jacó) sem necessariamente prescrever (ordenar) essas práticas. Distinguir o que é narrado do que é ordenado é crucial.',
+              explicação: 'A Bíblia descreve muitas coisas que aconteceram (adultério de Davi, poligamia de Jacó) sem necessariamente prescrever (ordenar) essas práticas. Distinguir o que é narrado do que é ordenado é crucial.',
             },
             {
               id: 'q-herm-3-4',
               pergunta: 'Por que não devemos projetar a cultura moderna no texto bíblico?',
-              opcoes: ['Porque a Bíblia é perfeita', 'Porque o autor escreveu para um público específico com categorias diferentes', 'Porque a cultura moderna é superior', 'Porque a Bíblia não tem nada a ver com a vida real'],
+              opções: ['Porque a Bíblia é perfeita', 'Porque o autor escreveu para um público específico com categorias diferentes', 'Porque a cultura moderna é superior', 'Porque a Bíblia não tem nada a ver com a vida real'],
               respostaCorreta: 1,
-              explicacao: 'O autor bíblico escreveu para pessoas com categorias, valores e experiências diferentes dos nossos. Projetar a cultura moderna faz o texto dizer o que nós queremos ouvir em vez do que o autor quis comunicar.',
+              explicação: 'O autor bíblico escreveu para pessoas com categorias, valores e experiências diferentes dos nossos. Projetar a cultura moderna faz o texto dizer o que nós queremos ouvir em vez do que o autor quis comunicar.',
             },
             {
               id: 'q-herm-3-5',
               pergunta: 'Como o NT se relaciona com as leis cerimoniais do AT?',
-              opcoes: ['Elas continuam válidas', 'Cristo as cumpriu, então não se aplicam mais', 'Nunca foram importantes', 'Devemos segui-las literalmente'],
+              opções: ['Elas continuam válidas', 'Cristo as cumpriu, então não se aplicam mais', 'Nunca foram importantes', 'Devemos segui-las literalmente'],
               respostaCorreta: 1,
-              explicacao: 'As leis cerimoniais (sacrifícios, festas, pureza ritual) foram cumpridas em Cristo. Ele é o sacrifício perfeito, o verdadeiro cordeiro pascal. Portanto, essas leis não se aplicam mais à igreja.',
+              explicação: 'As leis cerimoniais (sacrifícios, festas, pureza ritual) foram cumpridas em Cristo. Ele é o sacrifício perfeito, o verdadeiro cordeiro pascal. Portanto, essas leis não se aplicam mais à igreja.',
             },
             {
               id: 'q-herm-3-6',
               pergunta: 'Qual exemplo de alegorização é considerado inadequado?',
-              opcoes: ['Paulo alegorizando Sara e Hagar em Gálatas 4', 'Santo Agostinho alegorizando a parábola do bom samaritano', 'Jesus usando parábolas', 'João escrevendo Apocalipse'],
+              opções: ['Paulo alegorizando Sara e Hagar em Gálatas 4', 'Santo Agostinho alegorizando a parábola do bom samaritano', 'Jesus usando parábolas', 'João escrevendo Apocalipse'],
               respostaCorreta: 1,
-              explicacao: 'Agostinho interpretou detalhes da parábola como alegorias (Adão, Cristo, a igreja), mas Jesus explicou que o bom samaritano era "aquele que praticou a misericórdia" — uma interpretação moral, não alegórica.',
+              explicação: 'Agostinho interpretou detalhes da parábola como alegorias (Adão, Cristo, a igreja), mas Jesus explicou que o bom samaritano era "aquele que praticou a misericórdia" — uma interpretação moral, não alegórica.',
             },
             {
               id: 'q-herm-3-7',
               pergunta: 'O que significava "pobre" (anawim) no contexto bíblico?',
-              opcoes: ['Apenas sem dinheiro', 'Os humildes, oprimidos e sem poder político', 'Pessoas preguiçosas', 'Estrangeiros'],
+              opções: ['Apenas sem dinheiro', 'Os humildes, oprimidos e sem poder político', 'Pessoas preguiçosas', 'Estrangeiros'],
               respostaCorreta: 1,
-              explicacao: 'Os anawim no AT não eram apenas financeiramente necessitados — eram os humildes, os oprimidos socialmente e os sem poder político. A pobreza bíblica tem uma dimensão mais ampla que a nossa categoria moderna.',
+              explicação: 'Os anawim no AT não eram apenas financeiramente necessitados — eram os humildes, os oprimidos socialmente e os sem poder político. A pobreza bíblica tem uma dimensão mais ampla que a nossa categoria moderna.',
             },
             {
               id: 'q-herm-3-8',
               pergunta: 'Por que "não julgueis" (Mateus 7:1) não proíbe todo julgamento?',
-              opcoes: ['Porque Jesus não sabia do que falava', 'Porque Mateus 7:5 e João 7:24 ensinam discernimento', 'Porque o versículo é opcional', 'Porque Paulo discorda de Jesus'],
+              opções: ['Porque Jesus não sabia do que falava', 'Porque Mateus 7:5 e João 7:24 ensinam discernimento', 'Porque o versículo é opcional', 'Porque Paulo discorda de Jesus'],
               respostaCorreta: 1,
-              explicacao: 'Mateus 7:5 diz "tira primeiro a trave do teu olho" (implicando que depois pode ajudar), e João 7:24 manda "julgai com justo juízo". O versículo proíbe julgamento hipócrita, não discernimento.',
+              explicação: 'Mateus 7:5 diz "tira primeiro a trave do teu olho" (implicando que depois pode ajudar), e João 7:24 manda "julgai com justo juízo". O versículo proíbe julgamento hipócrita, não discernimento.',
             },
             {
               id: 'q-herm-3-9',
               pergunta: 'Qual é o critério final para distinguir descrição de prescrição?',
-              opcoes: ['O que o pastor diz', 'O que Jesus ensinou e praticou', 'O que a maioria dos cristãos faz', 'O que é mais confortável'],
+              opções: ['O que o pastor diz', 'O que Jesus ensinou e praticou', 'O que a maioria dos cristãos faz', 'O que é mais confortável'],
               respostaCorreta: 1,
-              explicacao: 'Jesus é o ápice da revelação de Deus. Tudo o que precede a Ele deve ser lido à luz dEle. O que Ele ensinou e praticou é o critério definitivo para entender o que é prescrito.',
+              explicação: 'Jesus é o ápice da revelação de Deus. Tudo o que precede a Ele deve ser lido à luz dEle. O que Ele ensinou e praticou é o critério definitivo para entender o que é prescrito.',
             },
             {
               id: 'q-herm-3-10',
               pergunta: 'Qual é o erro do antinomianismo no que diz respeito ao AT?',
-              opcoes: ['Ler demais o AT', 'A Lei não vale mais, então posso fazer o que quiser', 'Seguir todas as leis do AT', 'Ignorar o Novo Testamento'],
+              opções: ['Ler demais o AT', 'A Lei não vale mais, então posso fazer o que quiser', 'Seguir todas as leis do AT', 'Ignorar o Novo Testamento'],
               respostaCorreta: 1,
-              explicacao: 'O antinomianismo é o erro de pensar que, porque a lei cerimonial foi cumprida, todos os mandamentos morais também foram abolidos. O NT confirma os princípios morais do AT.',
+              explicação: 'O antinomianismo é o erro de pensar que, porque a lei cerimonial foi cumprida, todos os mandamentos morais também foram abolidos. O NT confirma os princípios morais do AT.',
             },
           ],
         },

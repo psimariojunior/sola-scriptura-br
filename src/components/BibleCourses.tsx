@@ -12,14 +12,14 @@ import { gerarCertificado } from '@/lib/certificado';
 
 const LEVEL_COLORS = {
   iniciante: 'text-green-500 bg-green-500/10',
-  intermediario: 'text-yellow-500 bg-yellow-500/10',
-  avancado: 'text-red-500 bg-red-500/10',
+  intermediário: 'text-yellow-500 bg-yellow-500/10',
+  avançado: 'text-red-500 bg-red-500/10',
 };
 
 const LEVEL_LABELS = {
   iniciante: 'Iniciante',
-  intermediario: 'Intermediario',
-  avancado: 'Avancado',
+  intermediário: 'Intermediário',
+  avançado: 'Avançado',
 };
 
 const LESSON_ICONS = {
@@ -46,7 +46,7 @@ export function BibleCourses() {
 
   const getCurso = useCallback((id: string) => CURSOS.find(c => c.id === id), []);
 
-  const getTotalAulas = useCallback((curso: Curso) => curso.modulos.reduce((sum, m) => sum + m.aulas.length, 0), []);
+  const getTotalAulas = useCallback((curso: Curso) => curso.módulos.reduce((sum, m) => sum + m.aulas.length, 0), []);
 
   const refreshProgress = useCallback((cursoId: string) => {
     const prog = obterProgressoCurso(cursoId);
@@ -142,14 +142,14 @@ export function BibleCourses() {
       <div className="flex flex-col h-full items-center justify-center p-6 text-center">
         <div className="animate-scale-in">
           <Award className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
-          <h2 className="text-xl font-bold mb-2">Parabens!</h2>
-          <p className="text-sm text-[var(--content-muted)] mb-6">Voce concluiu o curso <strong>{curso.titulo}</strong></p>
+          <h2 className="text-xl font-bold mb-2">Parabéns!</h2>
+          <p className="text-sm text-[var(--content-muted)] mb-6">Você concluiu o curso <strong>{curso.título}</strong></p>
           <canvas ref={canvasRef} width={540} height={420} className="rounded-lg shadow-2xl mb-4 max-w-full" />
           <div className="flex gap-3 justify-center flex-wrap">
-            <Button onClick={() => handleBaixarCertificado(curso.titulo)} className="bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
+            <Button onClick={() => handleBaixarCertificado(curso.título)} className="bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
               <Download className="w-4 h-4 mr-2" /> Baixar Certificado
             </Button>
-            <Button variant="outline" onClick={() => handleCompartilharCertificado(curso.titulo)}>
+            <Button variant="outline" onClick={() => handleCompartilharCertificado(curso.título)}>
               <Share2 className="w-4 h-4 mr-2" /> Compartilhar
             </Button>
             <Button variant="outline" onClick={() => setState({ tela: 'lista' })}>
@@ -164,7 +164,7 @@ export function BibleCourses() {
   if (state.tela === 'quiz') {
     const curso = getCurso(state.cursoId);
     if (!curso) return null;
-    const aula = curso.modulos.flatMap(m => m.aulas).find(a => a.id === state.aulaId);
+    const aula = curso.módulos.flatMap(m => m.aulas).find(a => a.id === state.aulaId);
     if (!aula || !aula.perguntas) return null;
     return (
       <QuizView
@@ -178,7 +178,7 @@ export function BibleCourses() {
   if (state.tela === 'aula') {
     const curso = getCurso(state.cursoId);
     if (!curso) return null;
-    const aula = curso.modulos.flatMap(m => m.aulas).find(a => a.id === state.aulaId);
+    const aula = curso.módulos.flatMap(m => m.aulas).find(a => a.id === state.aulaId);
     if (!aula) return null;
     return (
       <AulaView
@@ -211,7 +211,7 @@ export function BibleCourses() {
       <div className="p-4 border-b border-[var(--border)]/40">
         <div className="flex items-center gap-2 mb-1">
           <GraduationCap className="w-5 h-5 text-[var(--brand)]" />
-          <h2 className="font-bold text-lg">Seminario Biblico Gratuito</h2>
+          <h2 className="font-bold text-lg">Seminário Bíblico Gratuito</h2>
         </div>
         <p className="text-xs text-[var(--content-muted)]">Cursos completos com certificado. Estude no seu ritmo, sem custo.</p>
       </div>
@@ -224,12 +224,12 @@ export function BibleCourses() {
         <div className="text-center p-2 rounded-lg bg-[var(--surface-sunken)]">
           <Users className="w-4 h-4 mx-auto mb-1 text-blue-500" />
           <p className="text-lg font-bold">{Object.values(progressos).filter(p => p.matriculado).length}</p>
-          <p className="text-[10px] text-[var(--content-muted)]">Matriculas</p>
+          <p className="text-[10px] text-[var(--content-muted)]">Matrículas</p>
         </div>
         <div className="text-center p-2 rounded-lg bg-[var(--surface-sunken)]">
           <CheckCircle2 className="w-4 h-4 mx-auto mb-1 text-green-500" />
           <p className="text-lg font-bold">{Object.values(progressos).filter(p => p.dataConclusao).length}</p>
-          <p className="text-[10px] text-[var(--content-muted)]">Concluidos</p>
+          <p className="text-[10px] text-[var(--content-muted)]">Concluídos</p>
         </div>
         <div className="text-center p-2 rounded-lg bg-[var(--surface-sunken)]">
           <ClipboardCheck className="w-4 h-4 mx-auto mb-1 text-yellow-500" />
@@ -255,13 +255,13 @@ export function BibleCourses() {
                       {curso.certificado && <Award className="w-4 h-4 text-yellow-500" />}
                     </div>
                   </div>
-                  <h3 className="font-bold text-sm mb-1">{curso.titulo}</h3>
-                  <p className="text-xs text-[var(--content-muted)] mb-3 line-clamp-2">{curso.descricao}</p>
+                  <h3 className="font-bold text-sm mb-1">{curso.título}</h3>
+                  <p className="text-xs text-[var(--content-muted)] mb-3 line-clamp-2">{curso.descrição}</p>
                   <div className="flex items-center gap-3 text-xs text-[var(--content-muted)] mb-3 flex-wrap">
-                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{curso.duracao}</span>
-                    <span className="flex items-center gap-1"><BookOpen className="w-3 h-3" />{curso.modulos.length} modulos</span>
+                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{curso.duração}</span>
+                    <span className="flex items-center gap-1"><BookOpen className="w-3 h-3" />{curso.módulos.length} modulos</span>
                     <span className="flex items-center gap-1"><FileText className="w-3 h-3" />{totalAulas} aulas</span>
-                    <span className={cn('text-[10px] px-2 py-0.5 rounded-full font-medium', LEVEL_COLORS[curso.nivel])}>{LEVEL_LABELS[curso.nivel]}</span>
+                    <span className={cn('text-[10px] px-2 py-0.5 rounded-full font-medium', LEVEL_COLORS[curso.nível])}>{LEVEL_LABELS[curso.nível]}</span>
                   </div>
                   {matriculado ? (
                     <div>
@@ -276,7 +276,7 @@ export function BibleCourses() {
                     </div>
                   ) : (
                     <Button onClick={() => handleMatricular(curso.id)} size="sm" variant="outline" className="w-full text-xs">
-                      Comecar Curso — Gratuito
+                      Começar Curso — Gratuito
                     </Button>
                   )}
                 </div>
@@ -290,8 +290,8 @@ export function BibleCourses() {
 }
 
 function CursoDetailView({ curso, progresso, onAulaClick, onBack, onCertificado }: { curso: Curso; progresso?: CursoProgresso; onAulaClick: (aulaId: string) => void; onBack: () => void; onCertificado: () => void }) {
-  const [modExpandido, setModExpandido] = useState<string | null>(curso.modulos[0]?.id || null);
-  const totalAulas = curso.modulos.reduce((s, m) => s + m.aulas.length, 0);
+  const [modExpandido, setModExpandido] = useState<string | null>(curso.módulos[0]?.id || null);
+  const totalAulas = curso.módulos.reduce((s, m) => s + m.aulas.length, 0);
   const aulasCompletas = progresso?.aulasCompletas.length || 0;
   const progressoPct = totalAulas > 0 ? Math.round((aulasCompletas / totalAulas) * 100) : 0;
   const concluido = estaConcluido(curso.id);
@@ -302,12 +302,12 @@ function CursoDetailView({ curso, progresso, onAulaClick, onBack, onCertificado 
         <button onClick={onBack} className="text-xs text-[var(--brand)] mb-2 flex items-center gap-1 hover:underline">
           <ArrowLeft className="w-3 h-3" /> Voltar aos cursos
         </button>
-        <h2 className="font-bold text-lg">{curso.titulo}</h2>
-        <p className="text-xs text-[var(--content-muted)] mt-1">{curso.descricao}</p>
+        <h2 className="font-bold text-lg">{curso.título}</h2>
+        <p className="text-xs text-[var(--content-muted)] mt-1">{curso.descrição}</p>
         <div className="flex items-center gap-3 mt-3 flex-wrap">
-          <div className="flex items-center gap-1 text-xs"><Clock className="w-3 h-3" /> {curso.duracao}</div>
-          <span className={cn('text-[10px] px-2 py-0.5 rounded-full font-medium', LEVEL_COLORS[curso.nivel])}>{LEVEL_LABELS[curso.nivel]}</span>
-          {concluido && <span className="text-[10px] px-2 py-0.5 rounded-full font-medium bg-green-500/10 text-green-500">Concluido</span>}
+          <div className="flex items-center gap-1 text-xs"><Clock className="w-3 h-3" /> {curso.duração}</div>
+          <span className={cn('text-[10px] px-2 py-0.5 rounded-full font-medium', LEVEL_COLORS[curso.nível])}>{LEVEL_LABELS[curso.nível]}</span>
+          {concluido && <span className="text-[10px] px-2 py-0.5 rounded-full font-medium bg-green-500/10 text-green-500">Concluído</span>}
         </div>
         {progresso?.matriculado && (
           <div className="mt-3">
@@ -323,16 +323,16 @@ function CursoDetailView({ curso, progresso, onAulaClick, onBack, onCertificado 
       </div>
       <ScrollArea className="flex-1">
         <div className="p-3 space-y-2">
-          {curso.modulos.map((mod) => {
+          {curso.módulos.map((mod) => {
             const modAulasCompletas = mod.aulas.filter(a => progresso?.aulasCompletas.includes(a.id)).length;
             return (
               <div key={mod.id} className="rounded-xl border border-[var(--border)]/40 overflow-hidden">
                 <button onClick={() => setModExpandido(modExpandido === mod.id ? null : mod.id)}
                   className="w-full flex items-center gap-3 p-3 text-left hover:bg-[var(--surface-raised)] transition-colors">
-                  <span className="text-xl">{mod.icone}</span>
+                  <span className="text-xl">{mod.ícone}</span>
                   <div className="flex-1">
-                    <div className="font-medium text-sm">{mod.titulo}</div>
-                    <div className="text-[10px] text-[var(--content-muted)]">{mod.descricao}</div>
+                    <div className="font-medium text-sm">{mod.título}</div>
+                    <div className="text-[10px] text-[var(--content-muted)]">{mod.descrição}</div>
                   </div>
                   <div className="text-[10px] text-[var(--content-muted)]">
                     {modAulasCompletas}/{mod.aulas.length}
@@ -353,8 +353,8 @@ function CursoDetailView({ curso, progresso, onAulaClick, onBack, onCertificado 
                             <Icon className={cn('w-3.5 h-3.5', completa ? 'text-green-500' : 'text-[var(--content-muted)]')} />
                           </div>
                           <div className="flex-1">
-                            <div className="text-xs font-medium">{aula.titulo}</div>
-                            <div className="text-[10px] text-[var(--content-muted)]">{aula.duracao}</div>
+                            <div className="text-xs font-medium">{aula.título}</div>
+                            <div className="text-[10px] text-[var(--content-muted)]">{aula.duração}</div>
                           </div>
                           {completa ? (
                             <CheckCircle2 className="w-4 h-4 text-green-500" />
@@ -384,37 +384,37 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso }: {
         <button onClick={onBack} className="text-xs text-[var(--brand)] mb-2 flex items-center gap-1 hover:underline">
           <ArrowLeft className="w-3 h-3" /> Voltar ao curso
         </button>
-        <h2 className="font-bold text-lg">{aula.titulo}</h2>
+        <h2 className="font-bold text-lg">{aula.título}</h2>
         <div className="flex items-center gap-3 mt-2">
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--surface-sunken)] text-[var(--content-muted)]">{curso.titulo}</span>
-          <span className="text-[10px] text-[var(--content-muted)] flex items-center gap-1"><Clock className="w-3 h-3" />{aula.duracao}</span>
-          {completa && <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-500">Concluida</span>}
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--surface-sunken)] text-[var(--content-muted)]">{curso.título}</span>
+          <span className="text-[10px] text-[var(--content-muted)] flex items-center gap-1"><Clock className="w-3 h-3" />{aula.duração}</span>
+          {completa && <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-500">Concluída</span>}
         </div>
       </div>
       <ScrollArea className="flex-1">
         <div className="p-4">
-          {aula.tipo === 'texto' && aula.conteudo && (
+          {aula.tipo === 'texto' && aula.conteúdo && (
             <div className="prose prose-sm dark:prose-invert max-w-none">
-              <MarkdownRenderer content={aula.conteudo} />
+              <MarkdownRenderer content={aula.conteúdo} />
             </div>
           )}
           {aula.tipo === 'quiz' && (
             <div className="text-center py-8">
               <HelpCircle className="w-12 h-12 text-[var(--brand)] mx-auto mb-4" />
-              <h3 className="font-bold text-lg mb-2">Avaliacao Final</h3>
+              <h3 className="font-bold text-lg mb-2">Avaliação Final</h3>
               <p className="text-sm text-[var(--content-muted)] mb-4">
-                Responda {aula.perguntas?.length || 0} perguntas. Voce precisa acertar 70% para ser aprovado e receber o certificado.
+                Responda {aula.perguntas?.length || 0} perguntas. Você precisa acertar 70% para ser aprovado e receber o certificado.
               </p>
               <Button onClick={onStartQuiz} className="bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
-                Iniciar Avaliacao
+                Iniciar Avaliação
               </Button>
             </div>
           )}
-          {aula.versiculosChave && aula.versiculosChave.length > 0 && (
+          {aula.versículosChave && aula.versículosChave.length > 0 && (
             <div className="mt-6 p-4 rounded-xl bg-[var(--surface-sunken)] border border-[var(--border)]/30">
-              <h4 className="font-bold text-xs mb-3 text-[var(--brand)]">Versiculos-Chave</h4>
+              <h4 className="font-bold text-xs mb-3 text-[var(--brand)]">Versículos-Chave</h4>
               <div className="space-y-2">
-                {aula.versiculosChave.map((v, i) => (
+                {aula.versículosChave.map((v: { ref: string; texto: string }, i: number) => (
                   <div key={i} className="text-xs">
                     <span className="font-bold">{v.ref}</span>
                     <span className="text-[var(--content-muted)] ml-2">— {v.texto}</span>
@@ -429,11 +429,11 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso }: {
         <div className="p-4 border-t border-[var(--border)]/40">
           {completa ? (
             <div className="flex items-center gap-2 text-green-500 text-sm">
-              <CheckCircle2 className="w-4 h-4" /> Aula concluida
+              <CheckCircle2 className="w-4 h-4" /> Aula concluída
             </div>
           ) : (
             <Button onClick={onComplete} className="w-full bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
-              Marcar como Concluida
+              Marcar como Concluída
             </Button>
           )}
         </div>
@@ -474,7 +474,7 @@ function QuizView({ perguntas, onComplete, onBack }: { perguntas: QuizQuestion[]
         <button onClick={onBack} className="text-xs text-[var(--brand)] mb-2 flex items-center gap-1 hover:underline">
           <ArrowLeft className="w-3 h-3" /> Voltar a aula
         </button>
-        <h2 className="font-bold text-lg">Avaliacao Final</h2>
+        <h2 className="font-bold text-lg">Avaliação Final</h2>
         <div className="flex items-center gap-2 mt-2">
           <span className="text-xs text-[var(--content-muted)]">Pergunta {atual + 1} de {perguntas.length}</span>
           <Progress value={((atual + 1) / perguntas.length) * 100} className="h-1.5 flex-1" />
@@ -484,7 +484,7 @@ function QuizView({ perguntas, onComplete, onBack }: { perguntas: QuizQuestion[]
         <div className="p-4">
           <p className="font-medium text-sm mb-4">{pergunta.pergunta}</p>
           <div className="space-y-2">
-            {pergunta.opcoes.map((op, idx) => {
+            {pergunta.opções.map((op, idx) => {
               let style = 'border-[var(--border)]/40 hover:border-[var(--brand)]/50';
               if (respondido) {
                 if (idx === pergunta.respostaCorreta) style = 'border-green-500 bg-green-500/10';
@@ -501,7 +501,7 @@ function QuizView({ perguntas, onComplete, onBack }: { perguntas: QuizQuestion[]
           </div>
           {respondido && (
             <div className="mt-4 p-3 rounded-xl bg-[var(--surface-sunken)] border border-[var(--border)]/30 animate-fade-in">
-              <p className="text-xs text-[var(--content-muted)]">{pergunta.explicacao}</p>
+              <p className="text-xs text-[var(--content-muted)]">{pergunta.explicação}</p>
             </div>
           )}
         </div>
@@ -509,7 +509,7 @@ function QuizView({ perguntas, onComplete, onBack }: { perguntas: QuizQuestion[]
       {respondido && (
         <div className="p-4 border-t border-[var(--border)]/40">
           <Button onClick={handleProxima} className="w-full bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
-            {atual < perguntas.length - 1 ? 'Proxima Pergunta' : 'Ver Resultado'}
+            {atual < perguntas.length - 1 ? 'Próxima Pergunta' : 'Ver Resultado'}
           </Button>
         </div>
       )}

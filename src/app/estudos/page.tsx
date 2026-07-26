@@ -291,6 +291,22 @@ export default function EstudosPage() {
             </div>
           </Link>
 
+          {/* Donation CTA */}
+          <Link href="/ofertas" className="block mb-6">
+            <div className="glass-card p-4 rounded-xl border border-amber-500/20 bg-gradient-to-r from-amber-500/5 to-transparent cursor-pointer group hover:border-amber-500/30 transition-all">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center shrink-0">
+                  <Heart className="w-5 h-5 text-amber-500 fill-amber-500/30" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium">Gostou do conteúdo?</p>
+                  <p className="text-xs text-muted-foreground">Apoie o projeto voluntariamente.</p>
+                </div>
+                <ChevronRight className="w-4 h-4 text-amber-500/60 group-hover:translate-x-1 transition-transform shrink-0" />
+              </div>
+            </div>
+          </Link>
+
           {/* Category Tabs */}
           <ScrollReveal delay={0.1}>
             <div className="flex flex-wrap gap-2 mb-8">

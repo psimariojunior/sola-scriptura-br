@@ -77,6 +77,7 @@ const maisGrupos: NavGroup[] = [
       { href: '/devocional', label: 'Devocional', icon: Heart },
       { href: '/flashcards', label: 'Flashcards', icon: BookMarked },
       { href: '/memorizacao', label: 'Memorização', icon: Brain },
+      { href: '/ofertas', label: 'Oferecer', icon: Heart },
     ],
   },
   {
@@ -549,6 +550,22 @@ function HeaderInner() {
                 </TooltipContent>
               </Tooltip>
             )}
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  href="/ofertas"
+                  className="flex items-center gap-1 px-2 py-1.5 text-xs font-medium text-amber-500 hover:text-amber-400 rounded-lg transition-colors duration-300"
+                  aria-label="Apoie o projeto"
+                >
+                  <Heart className="w-3.5 h-3.5 fill-current" />
+                  <span>Apoie</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Apoie o projeto voluntariamente</p>
+              </TooltipContent>
+            </Tooltip>
 
             <Tooltip>
               <TooltipTrigger asChild>

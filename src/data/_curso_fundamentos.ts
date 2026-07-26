@@ -2,26 +2,26 @@ import { Curso } from './cursos';
 
 export const CURSO_FUNDAMENTOS: Curso = {
   id: 'fundamentos-da-fe',
-  titulo: 'Fundamentos da Fé Cristã',
-  descricao: 'Os pilares fundamentais do cristianismo: salvação, graça, fé, arrependimento, trindade e a autoridade das Escrituras.',
+  título: 'Fundamentos da Fé Cristã',
+  descrição: 'Os pilares fundamentais do cristianismo: salvação, graça, fé, arrependimento, trindade e a autoridade das Escrituras.',
   instrutor: 'Sola Scriptura',
-  duracao: '6 semanas',
-  nivel: 'intermediario',
+  duração: '6 semanas',
+  nível: 'intermediário',
   categoria: 'Teologia Sistemática',
   certificado: true,
-  modulos: [
+  módulos: [
     {
       id: 'mod-evangelho',
-      titulo: 'O Evangelho de Jesus Cristo',
-      descricao: 'Entenda a mensagem central do cristianismo: quem é Deus, qual é o problema da humanidade e qual é a solução em Cristo.',
-      icone: '✝️',
+      título: 'O Evangelho de Jesus Cristo',
+      descrição: 'Entenda a mensagem central do cristianismo: quem é Deus, qual é o problema da humanidade e qual é a solução em Cristo.',
+      ícone: '✝️',
       aulas: [
         {
           id: 'aula-1-1',
-          titulo: 'A Natureza de Deus: Santidade, Amor e Justiça',
+          título: 'A Natureza de Deus: Santidade, Amor e Justiça',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## A Natureza de Deus: Santidade, Amor e Justiça
+          duração: '15 min',
+          conteúdo: `## A Natureza de Deus: Santidade, Amor e Justiça
 
 Para entendermos o evangelho, precisamos primeiro entender quem é Deus. A Bíblia revela um Deus que é ao mesmo tempo santo, amor e justo — e essas qualidades não se contradizem, mas se harmonizam perfeitamente.
 
@@ -66,7 +66,7 @@ A resposta é a **cruz de Cristo**. Na cruz, a justiça de Deus foi satisfeita (
 > "Porque a justiça de Deus se revela no evangelho, de fé em fé, como está escrito: Mas o justo viverá pela fé." — Romanos 1:17
 
 Estudar a natureza de Deus não é apenas teologia abstrata — é o fundamento de tudo o que cremos. Se Deus não fosse santo, não haveria padrão moral. Se não fosse justo, não haveria julgamento. Se não fosse amoroso, não haveria salvação.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Isaías 6:3', texto: 'Santo, santo, santo é o Senhor dos Exércitos; a terra toda está cheia da sua glória!' },
             { ref: 'João 3:16', texto: 'Porque Deus tanto amou o mundo que deu o seu Filho unigênito...' },
             { ref: 'Romanos 1:17', texto: 'Mas o justo viverá pela fé.' },
@@ -75,10 +75,10 @@ Estudar a natureza de Deus não é apenas teologia abstrata — é o fundamento 
         },
         {
           id: 'aula-1-2',
-          titulo: 'O Problema do Pecado: Separação e Morte Espiritual',
+          título: 'O Problema do Pecado: Separação e Morte Espiritual',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## O Problema do Pecado: Separação e Morte Espiritual
+          duração: '15 min',
+          conteúdo: `## O Problema do Pecado: Separação e Morte Espiritual
 
 A humanidade tem um problema sério — e esse problema é o pecado. Não se trata apenas de erros ocasionais ou más escolhas. O pecado é uma condição que afeta toda a nossa existência, nos separando de Deus e nos levando à morte espiritual.
 
@@ -140,7 +140,7 @@ Nenhum ser humano, exceto Jesus, viveu sem pecado. Não existe exceção. Mesmo 
 ### Por que isso importa
 
 Entender a gravidade do pecado é essencial para apreciar a grandeza da salvação. Quanto mais profundo é o poço, mais incrível é o resgate. O evangelho não faz sentido se não compreendermos primeiro o problema que ele resolve.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Romanos 3:23', texto: 'Porque todos pecaram e estão destituídos da glória de Deus.' },
             { ref: 'Romanos 6:23', texto: 'Pois o salário do pecado é a morte, mas o dom gratuito de Deus é a vida eterna.' },
             { ref: 'Isaías 59:2', texto: 'Mas as vossas iniquidades fazem separação entre vós e o vosso Deus.' },
@@ -149,10 +149,10 @@ Entender a gravidade do pecado é essencial para apreciar a grandeza da salvaç�
         },
         {
           id: 'aula-1-3',
-          titulo: 'A Solução em Cristo: Substituição e Expição',
+          título: 'A Solução em Cristo: Substituição e Expição',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## A Solução em Cristo: Substituição e Expição
+          duração: '15 min',
+          conteúdo: `## A Solução em Cristo: Substituição e Expição
 
 Se o problema da humanidade é o pecado com suas consequências de morte e separação, a solução não veio através de esforços humanos, religiões ou filosofias. A solução veio através de uma pessoa: Jesus Cristo.
 
@@ -205,7 +205,7 @@ Nenhuma outra religião oferece um substituto. Em todas as outras, o homem tenta
 A ressurreição é a prova de que a obra de Jesus foi aceita por Deus. Se Ele tivesse morrido e permanecido no túmulo, seria mais um mártir. Mas Ele ressuscitou, vencendo a morte e demonstrando que seu sacrifício foi suficiente.
 
 A cruz sem a ressurreição seria tragédia. A ressurreição transforma a cruz em vitória.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Isaías 53:5', texto: 'Mas ele foi ferido por causa das nossas rebeliões, esmagado por causa das nossas iniquidades.' },
             { ref: '1 Pedro 3:18', texto: 'Cristo morreu uma vez por todas pelos pecados, o justo pelos injustos.' },
             { ref: 'João 14:6', texto: 'Eu sou o caminho, a verdade e a vida. Ninguém vem ao Pai senão por mim.' },
@@ -214,10 +214,10 @@ A cruz sem a ressurreição seria tragédia. A ressurreição transforma a cruz 
         },
         {
           id: 'aula-1-4',
-          titulo: 'O que é Fé?',
+          título: 'O que é Fé?',
           tipo: 'texto',
-          duracao: '12 min',
-          conteudo: `## O que é Fé?
+          duração: '12 min',
+          conteúdo: `## O que é Fé?
 
 A fé é o pilar da vida cristã. Sem fé, é impossível agradar a Deus (Hebreus 11:6). Mas o que é fé biblicamente? Não é cega, não é irracional, não é apenas "sentir" algo. A fé bíblica tem conteúdo, fundamento e objeto.
 
@@ -266,7 +266,7 @@ Não é fé cega. É fé informada. Quando lemos as promessas de Deus e confiamo
 Tiago 2:17 diz: "Assim também a fé, se não tiver obras, é morta em si mesma." A fé verdadeira produz frutos. Não é uma fé teórica — é uma fé que se manifesta em obediência, amor e ação.
 
 Abraão creu e saiu. Noé creu e construiu. Moisés creu e liderou. A fé sempre se move.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Hebreus 11:1', texto: 'A fé é a certeza daquilo que esperamos e a prova das coisas que não vemos.' },
             { ref: 'Hebreus 11:6', texto: 'Sem é impossível agradar-lhe, porque é necessário que quem se aproxima de Deus creia que ele existe.' },
             { ref: 'Romanos 10:17', texto: 'Assim, a fé vem pelo ouvir, e o ouvir pela palavra de Cristo.' },
@@ -275,10 +275,10 @@ Abraão creu e saiu. Noé creu e construiu. Moisés creu e liderou. A fé sempre
         },
         {
           id: 'aula-1-5',
-          titulo: 'Fé versus Obras',
+          título: 'Fé versus Obras',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Fé versus Obras
+          duração: '15 min',
+          conteúdo: `## Fé versus Obras
 
 Uma das questões mais debatidas na história da igreja é: somos salvos pela fé ou pelas obras? A Bíblia é clara: somos salvos pela fé, não pelas obras. Mas isso não significa que as obras sejam desnecessárias.
 
@@ -338,7 +338,7 @@ Uma fé que não muda nada na vida é uma fé falsa. A verdadeira fé transforma
 ### A Equação Perfeita
 
 A fé é a raiz; a salvação é o tronco; as obras são os frutos. Não separamos fé de obras no sentido de que a fé verdadeira sempre produz obras. Mas a ordem é clara: primeiro fé, depois obras. A fé salva; as obras comprovam.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Efésios 2:8-9', texto: 'Pois pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus.' },
             { ref: 'Romanos 3:28', texto: 'Sustentamos que o homem é justificado pela fé, independentemente das obras da lei.' },
             { ref: 'Tiago 2:17', texto: 'Assim também a fé, se não tiver obras, é morta em si mesma.' },
@@ -347,79 +347,79 @@ A fé é a raiz; a salvação é o tronco; as obras são os frutos. Não separam
         },
         {
           id: 'aula-quiz-1',
-          titulo: 'Quiz: O Evangelho de Jesus Cristo',
+          título: 'Quiz: O Evangelho de Jesus Cristo',
           tipo: 'quiz',
-          duracao: '10 min',
+          duração: '10 min',
           perguntas: [
             {
               id: 'q1-1',
               pergunta: 'Qual das seguintes qualidades de Deus é enfatizada com a tripla repetição em Isaías 6:3?',
-              opcoes: ['Amor', 'Justiça', 'Santidade', 'Misericórdia'],
+              opções: ['Amor', 'Justiça', 'Santidade', 'Misericórdia'],
               respostaCorreta: 2,
-              explicacao: 'Isaías 6:3 declara "Santo, santo, santo é o Senhor dos Exércitos". A tripla repetição (trisagion) enfatiza que a santidade é a qualidade suprema e mais enfatizada de Deus nas Escrituras.',
+              explicação: 'Isaías 6:3 declara "Santo, santo, santo é o Senhor dos Exércitos". A tripla repetição (trisagion) enfatiza que a santidade é a qualidade suprema e mais enfatizada de Deus nas Escrituras.',
             },
             {
               id: 'q1-2',
               pergunta: 'De acordo com Romanos 3:23, qual é a condição da humanidade?',
-              opcoes: ['Todos são naturalmente bons', 'Todos pecaram e estão destituídos da glória de Deus', 'Apenas alguns pecaram', 'O pecado é apenas um erro de julgamento'],
+              opções: ['Todos são naturalmente bons', 'Todos pecaram e estão destituídos da glória de Deus', 'Apenas alguns pecaram', 'O pecado é apenas um erro de julgamento'],
               respostaCorreta: 1,
-              explicacao: 'Romanos 3:23 afirma que "todos pecaram e estão destituídos da glória de Deus". Isso inclui toda a humanidade, sem exceção.',
+              explicação: 'Romanos 3:23 afirma que "todos pecaram e estão destituídos da glória de Deus". Isso inclui toda a humanidade, sem exceção.',
             },
             {
               id: 'q1-3',
               pergunta: 'Qual profeta do Antigo Testamento descreveu o Messias como "ferido por nossas rebeliões"?',
-              opcoes: ['Jeremias', 'Isaías', 'Daniel', 'Ezequiel'],
+              opções: ['Jeremias', 'Isaías', 'Daniel', 'Ezequiel'],
               respostaCorreta: 1,
-              explicacao: 'Isaías 53:5 profetiza que "ele foi ferido por causa das nossas rebeliões, esmagado por causa das nossas iniquidades". Essa é uma das profecias messiânicas mais claras.',
+              explicação: 'Isaías 53:5 profetiza que "ele foi ferido por causa das nossas rebeliões, esmagado por causa das nossas iniquidades". Essa é uma das profecias messiânicas mais claras.',
             },
             {
               id: 'q1-4',
               pergunta: 'O que significa a palavra grega "hamartia" usada para pecado?',
-              opcoes: ['Rebelião', 'Errar o alvo', 'Injustiça', 'Ingratidão'],
+              opções: ['Rebelião', 'Errar o alvo', 'Injustiça', 'Ingratidão'],
               respostaCorreta: 1,
-              explicacao: 'Hamartia (ἁμαρτία) significa literalmente "errar o alvo". Indica que o pecado é uma falha em atingir o padrão perfeito de Deus.',
+              explicação: 'Hamartia (ἁμαρτία) significa literalmente "errar o alvo". Indica que o pecado é uma falha em atingir o padrão perfeito de Deus.',
             },
             {
               id: 'q1-5',
               pergunta: 'Segundo Hebreus 11:1, quais são os três componentes da fé?',
-              opcoes: ['Amor, alegria e paz', 'Certeza, esperança e prova do invisível', 'Oração, jejum e evangelismo', 'Leitura, estudo e meditação'],
+              opções: ['Amor, alegria e paz', 'Certeza, esperança e prova do invisível', 'Oração, jejum e evangelismo', 'Leitura, estudo e meditação'],
               respostaCorreta: 1,
-              explicacao: 'Hebreus 11:1 define a fé como "a certeza daquilo que esperamos e a prova das coisas que não vemos". Fé envolve convicção, expectativa e percepção do invisível.',
+              explicação: 'Hebreus 11:1 define a fé como "a certeza daquilo que esperamos e a prova das coisas que não vemos". Fé envolve convicção, expectativa e percepção do invisível.',
             },
             {
               id: 'q1-6',
               pergunta: 'Em Efésios 2:8-9, qual é a fonte da salvação?',
-              opcoes: ['Nossas boas obras', 'A graça de Deus pela fé', 'Nosso arrependimento', 'A obediência à lei'],
+              opções: ['Nossas boas obras', 'A graça de Deus pela fé', 'Nosso arrependimento', 'A obediência à lei'],
               respostaCorreta: 1,
-              explicacao: 'Efésios 2:8-9 declara: "Pois pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus". A salvação é um dom, não algo que conquistamos.',
+              explicação: 'Efésios 2:8-9 declara: "Pois pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus". A salvação é um dom, não algo que conquistamos.',
             },
             {
               id: 'q1-7',
               pergunta: 'Qual é a relação entre fé e obras, segundo a Bíblia?',
-              opcoes: ['As obras produzem a salvação', 'A fé verdadeira produz obras como fruto', 'Fé e obras são a mesma coisa', 'As obras são desnecessárias para o crente'],
+              opções: ['As obras produzem a salvação', 'A fé verdadeira produz obras como fruto', 'Fé e obras são a mesma coisa', 'As obras são desnecessárias para o crente'],
               respostaCorreta: 1,
-              explicacao: 'Tiago 2:17 ensina que a fé sem obras é morta. A fé verdadeira sempre produz frutos de obediência, mas as obras são resultado, não causa, da salvação.',
+              explicação: 'Tiago 2:17 ensina que a fé sem obras é morta. A fé verdadeira sempre produz frutos de obediência, mas as obras são resultado, não causa, da salvação.',
             },
             {
               id: 'q1-8',
               pergunta: 'O que Jesus declarou em João 14:6?',
-              opcoes: ['Eu sou o caminho, a verdade e a vida', 'Eu sou a luz do mundo', 'Eu sou o pão da vida', 'Eu sou o bom pastor'],
+              opções: ['Eu sou o caminho, a verdade e a vida', 'Eu sou a luz do mundo', 'Eu sou o pão da vida', 'Eu sou o bom pastor'],
               respostaCorreta: 0,
-              explicacao: 'Em João 14:6, Jesus declara: "Eu sou o caminho, a verdade e a vida. Ninguém vem ao Pai senão por mim". Essa afirmação estabelece a exclusividade de Cristo como único caminho de salvação.',
+              explicação: 'Em João 14:6, Jesus declara: "Eu sou o caminho, a verdade e a vida. Ninguém vem ao Pai senão por mim". Essa afirmação estabelece a exclusividade de Cristo como único caminho de salvação.',
             },
             {
               id: 'q1-9',
               pergunta: 'Quem são os patriarcas mencionados como exemplos de fé no capítulo 11 de Hebreus?',
-              opcoes: ['Pedro, Paulo e Tiago', 'Abel, Noé e Abraão', 'Davi, Salomão e Ezequias', 'José, Moisés e Josué'],
+              opções: ['Pedro, Paulo e Tiago', 'Abel, Noé e Abraão', 'Davi, Salomão e Ezequias', 'José, Moisés e Josué'],
               respostaCorreta: 1,
-              explicacao: 'Hebreus 11 menciona Abel (fé na adoração), Noé (fé na obediência) e Abraão (fé na caminhada) como exemplos fundamentais de fé no AT.',
+              explicação: 'Hebreus 11 menciona Abel (fé na adoração), Noé (fé na obediência) e Abraão (fé na caminhada) como exemplos fundamentais de fé no AT.',
             },
             {
               id: 'q1-10',
               pergunta: 'Por que Deus não pode simplesmente ignorar o pecado?',
-              opcoes: ['Ele não se importa', 'Porque é justo e deve punir o pecado', 'Porque é fraco', 'Porque os anjos não deixam'],
+              opções: ['Ele não se importa', 'Porque é justo e deve punir o pecado', 'Porque é fraco', 'Porque os anjos não deixam'],
               respostaCorreta: 1,
-              explicacao: 'A justiça de Deus exige que o pecado seja punido. Se Ele ignorasse o pecado, não seria justo. A cruz resolve esse dilema: a justiça foi satisfeita e o amor se manifestou.',
+              explicação: 'A justiça de Deus exige que o pecado seja punido. Se Ele ignorasse o pecado, não seria justo. A cruz resolve esse dilema: a justiça foi satisfeita e o amor se manifestou.',
             },
           ],
         },
@@ -427,16 +427,16 @@ A fé é a raiz; a salvação é o tronco; as obras são os frutos. Não separam
     },
     {
       id: 'mod-salvacao',
-      titulo: 'Salvação e Arrependimento',
-      descricao: 'Aprofunde-se nos conceitos de arrependimento, graça, regeneração, justificação, santificação e segurança do crente.',
-      icone: '🙏',
+      título: 'Salvação e Arrependimento',
+      descrição: 'Aprofunde-se nos conceitos de arrependimento, graça, regeneração, justificação, santificação e segurança do crente.',
+      ícone: '🙏',
       aulas: [
         {
           id: 'aula-2-1',
-          titulo: 'O que é Arrependimento?',
+          título: 'O que é Arrependimento?',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## O que é Arrependimento?
+          duração: '15 min',
+          conteúdo: `## O que é Arrependimento?
 
 O arrependimento é uma das palavras mais importantes do Novo Testamento. Muitas pessoas entendem arrependimento como "sentir culpa" ou "chorar pelos pecados". Mas o significado bíblico é muito mais profundo e transformador.
 
@@ -497,7 +497,7 @@ O arrependimento é sempre a porta de entrada na vida cristã.
 O arrependimento inicial é aquele que nos leva à salvação. Mas o arrependimento continua sendo necessário na vida cristã. Não porque perdemos a salvação, mas porque continuamos pecando e precisamos constantemente nos voltar para Deus.
 
 A vida cristã é um ciclo de queda, arrependimento e restauração. Deus não espera perfeição — espera um coração que se volta para Ele quando falha.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Atos 3:19', texto: 'Arrependei-vos, pois, e tornai-vos, para que sejam apagados os vossos pecados.' },
             { ref: 'Mateus 4:17', texto: 'Arrependei-vos, porque é chegado o reino dos céus.' },
             { ref: '1 João 1:9', texto: 'Se confessarmos os nossos pecados, ele é fiel e justo para nos perdoar.' },
@@ -506,10 +506,10 @@ A vida cristã é um ciclo de queda, arrependimento e restauração. Deus não e
         },
         {
           id: 'aula-2-2',
-          titulo: 'A Graça de Deus: Injustificável e Transformadora',
+          título: 'A Graça de Deus: Injustificável e Transformadora',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## A Graça de Deus: Injustificável e Transformadora
+          duração: '15 min',
+          conteúdo: `## A Graça de Deus: Injustificável e Transformadora
 
 A graça é o pilar da salvação cristã. Sem a graça, não há esperança. Mas o que é exatamente graça? E como ela funciona na vida do crente?
 
@@ -566,7 +566,7 @@ Uma das características mais impressionantes da graça é que ela não pode ser
 > "Mas Deus, sendo rico em misericórdia, pelo seu grande amor com que nos amou, também nos vivificou com Cristo." — Efésios 2:4-5
 
 Não éramos dignos. Não fizéramos nada para merecer. E foi exatamente por isso que a graça opera — porque ela, por definição, não pode ser merecida.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Efésios 2:8-9', texto: 'Pois pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus.' },
             { ref: '2 Coríntios 12:9', texto: 'Minha graça é suficiente para você, pois o meu poder se aperfeiçoa na fraqueza.' },
             { ref: 'Romanos 6:1-2', texto: 'Pecaremos para que a graça abunde? De jeito nenhum!' },
@@ -575,10 +575,10 @@ Não éramos dignos. Não fizéramos nada para merecer. E foi exatamente por iss
         },
         {
           id: 'aula-2-3',
-          titulo: 'Regeneração e Justificação',
+          título: 'Regeneração e Justificação',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Regeneração e Justificação
+          duração: '15 min',
+          conteúdo: `## Regeneração e Justificação
 
 Dois termos teológicos fundamentais para entender a salvação são regeneração e justificação. Embora estejam intimamente ligados, descrevem aspectos diferentes da obra salvadora de Deus.
 
@@ -647,7 +647,7 @@ A ordem bíblica da salvação inclui:
 8. **Glorificação** — Plena semelhança com Cristo (Romanos 8:30)
 
 Tudo isso é obra de Deus, do início ao fim. O homem recebe por fé.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'João 3:3', texto: 'Aquele que não nascer de novo não pode ver o reino de Deus.' },
             { ref: '2 Coríntios 5:17', texto: 'Se alguém está em Cristo, é nova criatura.' },
             { ref: 'Romanos 5:1', texto: 'Sendo justificados pela fé, temos paz com Deus.' },
@@ -656,10 +656,10 @@ Tudo isso é obra de Deus, do início ao fim. O homem recebe por fé.`,
         },
         {
           id: 'aula-2-4',
-          titulo: 'Santificação Progressiva',
+          título: 'Santificação Progressiva',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Santificação Progressiva
+          duração: '15 min',
+          conteúdo: `## Santificação Progressiva
 
 Se a justificação é um ato pontual (o crente é declarado justo no momento da fé), a santificação é um processo contínuo. É a obra do Espírito Santo que nos transforma progressivamente à imagem de Cristo.
 
@@ -715,7 +715,7 @@ Deus nos disciplina para nosso crescimento:
 A meta final da santificação é sermos conformados à imagem de Cristo. Esse processo se completa na glorificação, quando veremos Cristo face a face e seremos como Ele (1 João 3:2).
 
 Enquanto estivermos neste mundo, a santificação é progressiva e imperfeita. Mas o Espírito Santo trabalha em nós, e Deus é fiel para completar a obra que começou (Filipenses 1:6).`,
-          versiculosChave: [
+          versículosChave: [
             { ref: '1 Tessalonicenses 4:3', texto: 'Esta é a vontade de Deus, a vossa santificação.' },
             { ref: 'Gálatas 5:22-23', texto: 'O fruto do Espírito é: amor, gozo, paz, longanimidade, benignidade, bondade, fé.' },
             { ref: 'Filipenses 1:6', texto: 'Deus, que começou em vós boa obra, a aperfeiçoará até ao dia de Cristo Jesus.' },
@@ -724,10 +724,10 @@ Enquanto estivermos neste mundo, a santificação é progressiva e imperfeita. M
         },
         {
           id: 'aula-2-5',
-          titulo: 'A Segurança do Crente',
+          título: 'A Segurança do Crente',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## A Segurança do Crente
+          duração: '15 min',
+          conteúdo: `## A Segurança do Crente
 
 Uma das perguntas mais importantes que o cristão pode fazer é: "Posso perder a salvação?" A Bíblia ensina que o crente verdadeiro tem segurança eterna — não por seus méritos, mas pela fidelidade de Deus.
 
@@ -784,7 +784,7 @@ Alguns podem se afastar temporariamente, mas Deus os traz de volta. A perseveran
 ### A Segurança não é Motivo para Pecar
 
 A segurança do crente não é licença para viver sem compromisso. A verdadeira compreensão da graça produz gratidão e obediência, não rebeldia. A segurança é fundamento para a obediência, não desculpa para o pecado.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'João 10:28-29', texto: 'Ninguém as arrancará da minha mão. O meu Pai é maior que todos.' },
             { ref: 'Romanos 8:38-39', texto: 'Nada nos poderá separar do amor de Deus, que está em Cristo Jesus.' },
             { ref: 'Efésios 1:13', texto: 'Foram marcados com o selo do Espírito Santo da promessa.' },
@@ -793,79 +793,79 @@ A segurança do crente não é licença para viver sem compromisso. A verdadeira
         },
         {
           id: 'aula-quiz-2',
-          titulo: 'Quiz: Salvação e Arrependimento',
+          título: 'Quiz: Salvação e Arrependimento',
           tipo: 'quiz',
-          duracao: '10 min',
+          duração: '10 min',
           perguntas: [
             {
               id: 'q2-1',
               pergunta: 'O que significa a palavra grega "metanoia" usada para arrependimento?',
-              opcoes: ['Sentir culpa profunda', 'Chorar pelos pecados', 'Mudança de mente', 'Penitência pública'],
+              opções: ['Sentir culpa profunda', 'Chorar pelos pecados', 'Mudança de mente', 'Penitência pública'],
               respostaCorreta: 2,
-              explicacao: 'Metanoia (μετάνοια) significa literalmente "mudança de mente". O arrependimento bíblico é uma mudança de mentalidade que resulta em mudança de direção.',
+              explicação: 'Metanoia (μετάνοια) significa literalmente "mudança de mente". O arrependimento bíblico é uma mudança de mentalidade que resulta em mudança de direção.',
             },
             {
               id: 'q2-2',
               pergunta: 'Segundo Efésios 2:8, qual é a fonte da salvação?',
-              opcoes: ['Nossas obras meritórias', 'A graça de Deus pela fé', 'O batismo em águas', 'A obediência à lei moral'],
+              opções: ['Nossas obras meritórias', 'A graça de Deus pela fé', 'O batismo em águas', 'A obediência à lei moral'],
               respostaCorreta: 1,
-              explicacao: 'Efésios 2:8 afirma: "Pois pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus".',
+              explicação: 'Efésios 2:8 afirma: "Pois pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus".',
             },
             {
               id: 'q2-3',
               pergunta: 'O que a regeneração faz no crente?',
-              opcoes: ['Perdoa os pecados passados', 'Transforma a natureza do pecador em nova criatura', 'Dá dons espirituais', 'Garante prosperidade material'],
+              opções: ['Perdoa os pecados passados', 'Transforma a natureza do pecador em nova criatura', 'Dá dons espirituais', 'Garante prosperidade material'],
               respostaCorreta: 1,
-              explicacao: 'Regeneração é a obra do Espírito Santo que transforma a natureza do pecador, tornando-o "nova criatura" (2 Coríntios 5:17).',
+              explicação: 'Regeneração é a obra do Espírito Santo que transforma a natureza do pecador, tornando-o "nova criatura" (2 Coríntios 5:17).',
             },
             {
               id: 'q2-4',
               pergunta: 'Qual é a diferença entre justificação e santificação?',
-              opcoes: ['São a mesma coisa', 'Justificação é pontual, santificação é progressiva', 'Justificação é gradual, santificação é instantânea', 'Santificação é por obras, justificação por fé'],
+              opções: ['São a mesma coisa', 'Justificação é pontual, santificação é progressiva', 'Justificação é gradual, santificação é instantânea', 'Santificação é por obras, justificação por fé'],
               respostaCorreta: 1,
-              explicacao: 'Justificação é um ato pontual (declarado justo), enquanto santificação é um processo contínuo (crescimento em santidade).',
+              explicação: 'Justificação é um ato pontual (declarado justo), enquanto santificação é um processo contínuo (crescimento em santidade).',
             },
             {
               id: 'q2-5',
               pergunta: 'Segundo João 10:28-29, quem pode arrancar o crente da mão de Jesus?',
-              opcoes: ['Satanás', 'O próprio crente', 'Ninguém', 'Anjos caídos'],
+              opções: ['Satanás', 'O próprio crente', 'Ninguém', 'Anjos caídos'],
               respostaCorreta: 2,
-              explicacao: 'Jesus declara: "Ninguém as arrancará da minha mão". A segurança do crente é garantida pelo poder do Filho e do Pai.',
+              explicação: 'Jesus declara: "Ninguém as arrancará da minha mão". A segurança do crente é garantida pelo poder do Filho e do Pai.',
             },
             {
               id: 'q2-6',
               pergunta: 'Qual é o fruto do Espírito mencionado em Gálatas 5:22-23?',
-              opcoes: ['Riqueza, poder e fama', 'Amor, gozo, paz e mais', 'Milagres, profecia e línguas', 'Sabedoria, entendimento e conselho'],
+              opções: ['Riqueza, poder e fama', 'Amor, gozo, paz e mais', 'Milagres, profecia e línguas', 'Sabedoria, entendimento e conselho'],
               respostaCorreta: 1,
-              explicacao: 'O fruto do Espírito é: amor, gozo, paz, longanimidade, benignidade, bondade, fé, mansidão e temperança.',
+              explicação: 'O fruto do Espírito é: amor, gozo, paz, longanimidade, benignidade, bondade, fé, mansidão e temperança.',
             },
             {
               id: 'q2-7',
               pergunta: 'O que Romanos 8:38-39 afirma sobre o crente?',
-              opcoes: ['Ele pode perder a salvação se pecar', 'Nada pode separá-lo do amor de Deus em Cristo', 'Ele precisa de boas obras para manter a salvação', 'A salvação depende do arrependimento contínuo'],
+              opções: ['Ele pode perder a salvação se pecar', 'Nada pode separá-lo do amor de Deus em Cristo', 'Ele precisa de boas obras para manter a salvação', 'A salvação depende do arrependimento contínuo'],
               respostaCorreta: 1,
-              explicacao: 'Paulo lista todas as forças do universo e conclui: "nada nos poderá separar do amor de Deus, que está em Cristo Jesus".',
+              explicação: 'Paulo lista todas as forças do universo e conclui: "nada nos poderá separar do amor de Deus, que está em Cristo Jesus".',
             },
             {
               id: 'q2-8',
               pergunta: 'Por que algumas pessoas que "saíram da fé" nunca foram salvas?',
-              opcoes: ['Deus as rejeitou', 'Eram falsos crentes, não eram de nós', 'A graça de Deus falhou', 'Elas não foram escolhidas'],
+              opções: ['Deus as rejeitou', 'Eram falsos crentes, não eram de nós', 'A graça de Deus falhou', 'Elas não foram escolhidas'],
               respostaCorreta: 1,
-              explicacao: '1 João 2:19 diz: "Sairam de nós, mas não eram de nós; porque, se fossem de nós, teriam permanecido connosco".',
+              explicação: '1 João 2:19 diz: "Sairam de nós, mas não eram de nós; porque, se fossem de nós, teriam permanecido connosco".',
             },
             {
               id: 'q2-9',
               pergunta: 'O que é o selo do Espírito Santo?',
-              opcoes: ['Um dom de cura', 'Uma marca de propriedade e garantia', 'Uma experiência emocional', 'Um conhecimento secreto'],
+              opções: ['Um dom de cura', 'Uma marca de propriedade e garantia', 'Uma experiência emocional', 'Um conhecimento secreto'],
               respostaCorreta: 1,
-              explicacao: 'O selo do Espírito Santo (Efésios 1:13) é uma marca de propriedade e garantia de que pertencemos a Deus.',
+              explicação: 'O selo do Espírito Santo (Efésios 1:13) é uma marca de propriedade e garantia de que pertencemos a Deus.',
             },
             {
               id: 'q2-10',
               pergunta: 'A santificação é obra de quem?',
-              opcoes: ['Apenas do crente', 'Apenas do Espírito Santo', 'Do Espírito Santo em cooperação com o crente', 'Da igreja e do pastor'],
+              opções: ['Apenas do crente', 'Apenas do Espírito Santo', 'Do Espírito Santo em cooperação com o crente', 'Da igreja e do pastor'],
               respostaCorreta: 2,
-              explicacao: 'A santificação é obra do Espírito Santo (Gálatas 5:22-23) em cooperação com o crente que obedece, lê a Bíblia e ora.',
+              explicação: 'A santificação é obra do Espírito Santo (Gálatas 5:22-23) em cooperação com o crente que obedece, lê a Bíblia e ora.',
             },
           ],
         },
@@ -873,16 +873,16 @@ A segurança do crente não é licença para viver sem compromisso. A verdadeira
     },
     {
       id: 'mod-trindade',
-      titulo: 'A Trindade',
-      descricao: 'Estude o mistério central da fé cristã: um Deus em três pessoas — Pai, Filho e Espírito Santo.',
-      icone: '🔺',
+      título: 'A Trindade',
+      descrição: 'Estude o mistério central da fé cristã: um Deus em três pessoas — Pai, Filho e Espírito Santo.',
+      ícone: '🔺',
       aulas: [
         {
           id: 'aula-3-1',
-          titulo: 'Deus Pai: Criador e Soberano',
+          título: 'Deus Pai: Criador e Soberano',
           tipo: 'texto',
-          duracao: '12 min',
-          conteudo: `## Deus Pai: Criador e Soberano
+          duração: '12 min',
+          conteúdo: `## Deus Pai: Criador e Soberano
 
 A primeira pessoa da Trindade é Deus Pai — o Criador de todas as coisas, o Soberano do universo, o Pai de todos os crentes.
 
@@ -927,7 +927,7 @@ A adoção como filhos é um dom do Pai. Não nascemos filhos de Deus — somos 
 > "Deus, muito mais, não nos poupou a ele próprio, mas o entregou por todos nós, como não nos pouparia também, e nos dará todas as coisas com ele?" — Romanos 8:32
 
 O Pai amou o mundo de tal forma que deu o seu Filho (João 3:16). Essa entrega não foi acidente — foi o eterno decreto de amor do Pai.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Gênesis 1:1', texto: 'No princípio, Deus criou os céus e a terra.' },
             { ref: 'Efésios 1:3-4', texto: 'Ele nos abençoou... Nele nos escolheu antes da fundação do mundo.' },
             { ref: 'Romanos 8:32', texto: 'Deus não o poupou, mas o entregou por todos nós.' },
@@ -936,10 +936,10 @@ O Pai amou o mundo de tal forma que deu o seu Filho (João 3:16). Essa entrega n
         },
         {
           id: 'aula-3-2',
-          titulo: 'Jesus Cristo: Deus e Homem — A Cristologia',
+          título: 'Jesus Cristo: Deus e Homem — A Cristologia',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Jesus Cristo: Deus e Homem — A Cristologia
+          duração: '15 min',
+          conteúdo: `## Jesus Cristo: Deus e Homem — A Cristologia
 
 A cristologia é o estudo da pessoa e obra de Jesus Cristo. A pergunta central é: quem é Jesus? A Bíblia responde: Ele é plenamente Deus e plenamente homem — a segunda pessoa da Trindade encarnada.
 
@@ -1002,7 +1002,7 @@ A obra de Cristo pode ser resumida em três títulos proféticos:
 > "Por isso, Deus o exaltou sobremaneira e lhe deu o nome que está acima de todo nome, para que, no nome de Jesus, se dobre todo joelho nos céus, na terra e debaixo da terra, e toda língua confesse que Jesus Cristo é o Senhor, para a glória de Deus Pai." — Filipenses 2:9-11
 
 Após a morte e ressurreição, Jesus foi exaltado à destra do Pai. Todo joelho se dobrará perante Ele — universalmente, inevitavelmente.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'João 1:1', texto: 'No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.' },
             { ref: 'Colossenses 2:9', texto: 'Nele habita corporalmente toda a plenitude da divindade.' },
             { ref: 'Filipenses 2:6-8', texto: 'Existindo em forma de Deus, não teve por usurpação ser igual a Deus, mas esvaziou-se a si mesmo.' },
@@ -1011,10 +1011,10 @@ Após a morte e ressurreição, Jesus foi exaltado à destra do Pai. Todo joelho
         },
         {
           id: 'aula-3-3',
-          titulo: 'O Espírito Santo: Nosso Consolador',
+          título: 'O Espírito Santo: Nosso Consolador',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## O Espírito Santo: Nosso Consolador
+          duração: '15 min',
+          conteúdo: `## O Espírito Santo: Nosso Consolador
 
 O Espírito Santo é a terceira pessoa da Trindade — não uma força, não uma influência, mas uma Pessoa divina com mente, vontade e emoções.
 
@@ -1087,7 +1087,7 @@ O preenchimento do Espírito se manifesta em:
 > "Há um só corpo e um só Espírito." — Efésios 4:4
 
 O Espírito Santo é o elo que une todos os crentes em Cristo. Embora estejamos em lugares diferentes, somos um pelo Espírito.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'João 16:13', texto: 'Quando vier o Espírito da verdade, ele vos guará a toda a verdade.' },
             { ref: 'Romanos 8:26', texto: 'O Espírito mesmo intercede por nós com gemidos indizíveis.' },
             { ref: 'Gálatas 5:22-23', texto: 'O fruto do Espírito é: amor, gozo, paz, longanimidade, benignidade, bondade.' },
@@ -1096,10 +1096,10 @@ O Espírito Santo é o elo que une todos os crentes em Cristo. Embora estejamos 
         },
         {
           id: 'aula-3-4',
-          titulo: 'A Trindade na Bíblia',
+          título: 'A Trindade na Bíblia',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## A Trindade na Bíblia
+          duração: '15 min',
+          conteúdo: `## A Trindade na Bíblia
 
 O termo "Trindade" não aparece na Bíblia, mas o ensino de que Deus é três pessoas em uma substância está claramente presente nas Escrituras. Vejamos as passagens-chave.
 
@@ -1164,7 +1164,7 @@ A Trindade é um mistério — não pode ser compreendido plenamente pela mente 
 - **Sol** — o sol, a luz e o calor. Três efeitos distintos de uma fonte. (Mas isso sugere que o Filho e o Espírito são apenas "efeitos", o que também não é verdade.)
 
 A melhor compreensão é aceitar o que a Bíblia ensina: Deus é um em essência, três em pessoa. Não é três deuses (triteísmo), não é uma pessoa mudando de forma (modalismo), não é três "partes" de Deus (tropicismo). É três pessoas plenas e distintas em uma única divindade.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Mateus 28:19', texto: 'Batizando-os em nome do Pai, do Filho e do Espírito Santo.' },
             { ref: '2 Coríntios 13:14', texto: 'A graça do Senhor Jesus Cristo, o amor de Deus e a comunhão do Espírito Santo.' },
             { ref: 'Mateus 3:16-17', texto: 'O Espírito desceu como pomba... e a voz do Pai disse: Este é o meu Filho amado.' },
@@ -1173,10 +1173,10 @@ A melhor compreensão é aceitar o que a Bíblia ensina: Deus é um em essência
         },
         {
           id: 'aula-3-5',
-          titulo: 'Mitos sobre a Trindade',
+          título: 'Mitos sobre a Trindade',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Mitos sobre a Trindade
+          duração: '15 min',
+          conteúdo: `## Mitos sobre a Trindade
 
 A Trindade é um dos ensinos mais incompreendidos do cristianismo. Muitos cristãos — e muitos não cristãos — têm ideias erradas sobre o que a Bíblia ensina. Vamos esclarecer os mitos mais comuns.
 
@@ -1252,7 +1252,7 @@ A Trindade não é uma questão teológica abstrata. Ela afeta:
 - **Nossa vida cristã** — o Espírito habita em nós para nos guiar
 
 A Trindade é o fundamento de tudo o que cremos e vivemos como cristãos.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Deuteronômio 6:4', texto: 'Ouve, Israel: O Senhor, o nosso Deus, é o único Senhor.' },
             { ref: 'João 10:30', texto: 'Eu e o Pai somos um.' },
             { ref: 'Atos 5:3-4', texto: 'Mentiste ao Espírito Santo... não mentiste a homens, mas a Deus.' },
@@ -1261,79 +1261,79 @@ A Trindade é o fundamento de tudo o que cremos e vivemos como cristãos.`,
         },
         {
           id: 'aula-quiz-3',
-          titulo: 'Quiz: A Trindade',
+          título: 'Quiz: A Trindade',
           tipo: 'quiz',
-          duracao: '10 min',
+          duração: '10 min',
           perguntas: [
             {
               id: 'q3-1',
               pergunta: 'Qual passagem contém a fórmula batismal mencionando Pai, Filho e Espírito Santo?',
-              opcoes: ['João 3:16', 'Mateus 28:19', 'Romanos 8:28', 'Efésios 2:8'],
+              opções: ['João 3:16', 'Mateus 28:19', 'Romanos 8:28', 'Efésios 2:8'],
               respostaCorreta: 1,
-              explicacao: 'Mateus 28:19 é a fórmula batismal: "Batizando-os em nome do Pai, do Filho e do Espírito Santo".',
+              explicação: 'Mateus 28:19 é a fórmula batismal: "Batizando-os em nome do Pai, do Filho e do Espírito Santo".',
             },
             {
               id: 'q3-2',
               pergunta: 'O que João 1:1 afirma sobre o Verbo?',
-              opcoes: ['O Verbo era uma criatura', 'O Verbo era Deus', 'O Verbo era um anjo', 'O Verbo era um profeta'],
+              opções: ['O Verbo era uma criatura', 'O Verbo era Deus', 'O Verbo era um anjo', 'O Verbo era um profeta'],
               respostaCorreta: 1,
-              explicacao: 'João 1:1 declara: "No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus."',
+              explicação: 'João 1:1 declara: "No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus."',
             },
             {
               id: 'q3-3',
               pergunta: 'O Espírito Santo é descrito como:',
-              opcoes: ['Uma força impersonal', 'Uma energia cósmica', 'Uma pessoa divina', 'Um sentimento'],
+              opções: ['Uma força impersonal', 'Uma energia cósmica', 'Uma pessoa divina', 'Um sentimento'],
               respostaCorreta: 2,
-              explicacao: 'O Espírito Santo é uma pessoa: ele fala (João 16:13), pode ser entristecido (Efésios 4:30) e intercede (Romanos 8:26).',
+              explicação: 'O Espírito Santo é uma pessoa: ele fala (João 16:13), pode ser entristecido (Efésios 4:30) e intercede (Romanos 8:26).',
             },
             {
               id: 'q3-4',
               pergunta: 'No batismo de Jesus (Mateus 3:16-17), quem está presente?',
-              opcoes: ['Apenas Jesus e o Pai', 'Apenas Jesus e o Espírito Santo', 'As três pessoas da Trindade', 'Apenas o Espírito Santo'],
+              opções: ['Apenas Jesus e o Pai', 'Apenas Jesus e o Espírito Santo', 'As três pessoas da Trindade', 'Apenas o Espírito Santo'],
               respostaCorreta: 2,
-              explicacao: 'O Filho é batizado, o Espírito desce como pomba, e o Pai fala dos céus — as três pessoas estão presentes.',
+              explicação: 'O Filho é batizado, o Espírito desce como pomba, e o Pai fala dos céus — as três pessoas estão presentes.',
             },
             {
               id: 'q3-5',
               pergunta: 'A Trindade ensina que Deus é:',
-              opcoes: ['Três deuses diferentes', 'Um Deus em três pessoas', 'Uma pessoa que muda de forma', 'Três partes de um mesmo Deus'],
+              opções: ['Três deuses diferentes', 'Um Deus em três pessoas', 'Uma pessoa que muda de forma', 'Três partes de um mesmo Deus'],
               respostaCorreta: 1,
-              explicacao: 'A Trindade é: um Deus em três pessoas — Pai, Filho e Espírito Santo — compartilham a mesma essência divina.',
+              explicação: 'A Trindade é: um Deus em três pessoas — Pai, Filho e Espírito Santo — compartilham a mesma essência divina.',
             },
             {
               id: 'q3-6',
               pergunta: 'Qual passagem afirma "Eu e o Pai somos um"?',
-              opcoes: ['João 1:1', 'João 10:30', 'João 14:6', 'João 3:16'],
+              opções: ['João 1:1', 'João 10:30', 'João 14:6', 'João 3:16'],
               respostaCorreta: 1,
-              explicacao: 'João 10:30 registra Jesus dizendo: "Eu e o Pai somos um". Isso mostra a unidade de essência entre o Pai e o Filho.',
+              explicação: 'João 10:30 registra Jesus dizendo: "Eu e o Pai somos um". Isso mostra a unidade de essência entre o Pai e o Filho.',
             },
             {
               id: 'q3-7',
               pergunta: 'Em 2 Coríntios 13:14, qual é a bênção associada ao Espírito Santo?',
-              opcoes: ['A graça', 'O amor', 'A comunhão', 'A paz'],
+              opções: ['A graça', 'O amor', 'A comunhão', 'A paz'],
               respostaCorreta: 2,
-              explicacao: 'Paulo bênção dizendo: "A graça do Senhor Jesus Cristo, o amor de Deus e a comunhão do Espírito Santo".',
+              explicação: 'Paulo bênção dizendo: "A graça do Senhor Jesus Cristo, o amor de Deus e a comunhão do Espírito Santo".',
             },
             {
               id: 'q3-8',
               pergunta: 'Por que a Bíblia diz que "mentir ao Espírito Santo" é mentir a Deus (Atos 5:3-4)?',
-              opcoes: ['Porque o Espírito é mais importante que os anjos', 'Porque o Espírito Santo é Deus', 'Porque o Espírito é a mesma pessoa que o Pai', 'Porque o Espírito controla os anjos'],
+              opções: ['Porque o Espírito é mais importante que os anjos', 'Porque o Espírito Santo é Deus', 'Porque o Espírito é a mesma pessoa que o Pai', 'Porque o Espírito controla os anjos'],
               respostaCorreta: 1,
-              explicacao: 'A passagem mostra que mentir ao Espírito Santo é mentir a Deus, confirmando a divindade do Espírito.',
+              explicação: 'A passagem mostra que mentir ao Espírito Santo é mentir a Deus, confirmando a divindade do Espírito.',
             },
             {
               id: 'q3-9',
               pergunta: 'Qual dos seguintes NÃO é um equívoco sobre a Trindade?',
-              opcoes: ['A Trindade significa três deuses', 'O Espírito Santo é apenas uma força', 'Deus é três pessoas em uma essência', 'A Trindade é uma invenção medieval'],
+              opções: ['A Trindade significa três deuses', 'O Espírito Santo é apenas uma força', 'Deus é três pessoas em uma essência', 'A Trindade é uma invenção medieval'],
               respostaCorreta: 2,
-              explicacao: 'A afirmação correta é que Deus é três pessoas em uma essência. As outras opções são equívocos comuns.',
+              explicação: 'A afirmação correta é que Deus é três pessoas em uma essência. As outras opções são equívocos comuns.',
             },
             {
               id: 'q3-10',
               pergunta: 'Qual é a importância prática da Trindade para o cristão?',
-              opcoes: ['É apenas uma questão teológica abstrata', 'Afeta a adoração, oração, salvação e vida cristã', 'Não tem importância prática', 'Apenas pastores precisam entender'],
+              opções: ['É apenas uma questão teológica abstrata', 'Afeta a adoração, oração, salvação e vida cristã', 'Não tem importância prática', 'Apenas pastores precisam entender'],
               respostaCorreta: 1,
-              explicacao: 'A Trindade afeta tudo: adoramos Pai, Filho e Espírito; oramos ao Pai pelo Filho no Espírito; somos salvos pela obra das três pessoas.',
+              explicação: 'A Trindade afeta tudo: adoramos Pai, Filho e Espírito; oramos ao Pai pelo Filho no Espírito; somos salvos pela obra das três pessoas.',
             },
           ],
         },

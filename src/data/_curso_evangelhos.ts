@@ -2,26 +2,26 @@ import { Curso } from './cursos';
 
 export const CURSO_EVANGELHOS: Curso = {
   id: 'evangelhos-vida-de-jesus',
-  titulo: 'Evangelhos: A Vida de Jesus',
-  descricao: 'Estudo comparativo dos quatro evangelhos — Mateus, Marcos, Lucas e João. A pessoa e obra de Cristo.',
+  título: 'Evangelhos: A Vida de Jesus',
+  descrição: 'Estudo comparativo dos quatro evangelhos — Mateus, Marcos, Lucas e João. A pessoa e obra de Cristo.',
   instrutor: 'Sola Scriptura',
-  duracao: '8 semanas',
-  nivel: 'intermediario',
+  duração: '8 semanas',
+  nível: 'intermediário',
   categoria: 'Novo Testamento',
   certificado: true,
-  modulos: [
+  módulos: [
     {
       id: 'mod-mateus-rei',
-      titulo: 'Mateus: O Rei dos Judeus',
-      descricao: 'O evangelho que apresenta Jesus como o Messias prometido ao povo de Israel',
-      icone: '👑',
+      título: 'Mateus: O Rei dos Judeus',
+      descrição: 'O evangelho que apresenta Jesus como o Messias prometido ao povo de Israel',
+      ícone: '👑',
       aulas: [
         {
           id: 'aula-ev-1-1',
-          titulo: 'Introdução ao Evangelho de Mateus',
+          título: 'Introdução ao Evangelho de Mateus',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Introdução ao Evangelho de Mateus
+          duração: '15 min',
+          conteúdo: `## Introdução ao Evangelho de Mateus
 
 O evangelho de Mateus é o primeiro livro do Novo Testamento e uma ponte magistral entre o Antigo e o Novo Testamento. Escrito provavelmente entre 60 e 70 d.C., é dirigido principalmente ao público judaico, buscando demonstrar que Jesus de Nazaré é o Messias (Cristo) prometido nas Escrituras hebraicas.
 
@@ -41,7 +41,7 @@ Mateus organiza a vida de Jesus em torno de cinco grandes discursos, imitando a 
 4. **Discurso eclesial** (cap. 18) — A vida na comunidade
 5. **Discurso escatológico** (caps. 24-25) — O retorno do Rei
 
-Essa estrutura sugere que Mateus via Jesus como o novo Moises, trazendo não apenas a Lei, mas o cumprimento da Lei. Enquanto Moises recebeu os mandamentos no Monte Sinai, Jesus proclama a vontade de Deus no Monte das Oliveiras (ou em uma colina da Galileia).
+Essa estrutura sugere que Mateus via Jesus como o novo Moisés, trazendo não apenas a Lei, mas o cumprimento da Lei. Enquanto Moisés recebeu os mandamentos no Monte Sinai, Jesus proclama a vontade de Deus no Monte das Oliveiras (ou em uma colina da Galileia).
 
 ### Por que Mateus começa com a genealogia?
 
@@ -78,7 +78,7 @@ Embora escrito para judeus, Mateus traz mensagens universais:
 - A presença de Jesus "até o fim do mundo" (28:20) é uma promessa de companheirismo
 
 Estudar Mateus é entender que Jesus não veio apenas para salvar — veio para reinar. E esse reino começa no coração de quem O recebe.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Mateus 1:1', texto: 'Livro da genealogia de Jesus Cristo, filho de Davi, filho de Abraão.' },
             { ref: 'Mateus 1:23', texto: 'Eis que a virgem conceberá e dará à luz um filho, e chamará o seu nome Emanuel, que traduzido é: Deus conosco.' },
             { ref: 'Mateus 28:18-19', texto: 'Toda autoridade me é dada no céu e na terra. Ide, portanto, e fazei discípulos de todas as nações.' },
@@ -86,10 +86,10 @@ Estudar Mateus é entender que Jesus não veio apenas para salvar — veio para 
         },
         {
           id: 'aula-ev-1-2',
-          titulo: 'Genealogia e nascimento: Cumprimento de profecias',
+          título: 'Genealogia e nascimento: Cumprimento de profecias',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Genealogia e nascimento: Cumprimento de profecias
+          duração: '15 min',
+          conteúdo: `## Genealogia e nascimento: Cumprimento de profecias
 
 A genealogia de Jesus em Mateus 1:1-17 e o relato de seu nascimento em Mateus 1:18-25 não são meros dados biográficos — são argumentos teológicos poderosos. Mateus está apresentando evidências de que Jesus é o Messias prometido.
 
@@ -120,7 +120,7 @@ Por que incluir essas mulheres? Porque Mateus está mostrando que:
 
 Mateus 1:18-25 apresenta o nascimento de Jesus em termos que teriam profundo significado para ouvintes judeus:
 
-**O problema**: Maria estava grávida antes de viver com José. Segundo a Lei de Moises (Deuteronômio 22:23-24), isso poderia resultar em lapidação. José, sendo justo, queria divorciar-se secretamente para não envergonhar Maria.
+**O problema**: Maria estava grávida antes de viver com José. Segundo a Lei de Moisés (Deuteronômio 22:23-24), isso poderia resultar em lapidação. José, sendo justo, queria divorciar-se secretamente para não envergonhar Maria.
 
 **A solução**: Um anjo aparece em sonho a José e explica que a criança foi concebida pelo Espírito Santo (Mateus 1:20). O anjo cita Isaías 7:14 — a profecia de que uma virgem conceberia e daria à luz um filho chamado Emanuel.
 
@@ -149,7 +149,7 @@ Mateus registra vários outros cumprimentos no relato do nascimento:
 4. **A encarnação é real** — Deus se tornou humano, "Deus conosco"
 
 Estudar a genealogia e o nascimento de Jesus não é tarefa tediosa — é mergulhar no mistério da encarnação e na fidelidade de um Deus que cumpre cada palavra de suas promessas.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Mateus 1:22-23', texto: 'Tudo isso aconteceu para que se cumprisse o que foi dito pelo Senhor, através do profeta: Eis que a virgem conceberá...' },
             { ref: 'Isaías 7:14', texto: 'Portanto, o próprio Senhor vos dará um sinal: Eis que a virgem conceberá e dará à luz um filho.' },
             { ref: 'Mateus 2:15', texto: 'E ficou ali até a morte de Herodes, para que se cumprisse o que foi dito pelo profeta: Do Egito chamei o meu filho.' },
@@ -157,10 +157,10 @@ Estudar a genealogia e o nascimento de Jesus não é tarefa tediosa — é mergu
         },
         {
           id: 'aula-ev-1-3',
-          titulo: 'O Sermão do Monte (caps. 5-7)',
+          título: 'O Sermão do Monte (caps. 5-7)',
           tipo: 'texto',
-          duracao: '20 min',
-          conteudo: `## O Sermão do Monte (caps. 5-7)
+          duração: '20 min',
+          conteúdo: `## O Sermão do Monte (caps. 5-7)
 
 O Sermão do Monte, em Mateus 5-7, é o mais famoso discurso de Jesus e uma das preleções mais conhecidas da história da humanidade. É a "declaração de intenções" do Reino de Deus — a constituição ética do governo do Rei.
 
@@ -220,7 +220,7 @@ O sermão termina com duas parábolas: a casa construída sobre a rocha e a casa
 O Sermão do Monte já inspirou movimentos de justiça social, resistência pacífica e reforma ética. Martin Luther King Jr., Mahatma Gandhi e muitos outros encontraram nele bases para suas lutas.
 
 Mas o sermão é mais que inspiração social — é o padrão de vida do cidadão do Reino de Deus. Não é impossível sem a graça de Deus. Ele nos dá o Espírito Santo para viver o que Ele exigiu.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Mateus 5:1-2', texto: 'Vendo Jesus a multidão, subiu a um monte, e, assentando-se, aproximaram-se dele os seus discípulos.' },
             { ref: 'Mateus 5:17', texto: 'Não cuideis que vim destruir a Lei ou os Profetas; não vim destruir, mas cumprir.' },
             { ref: 'Mateus 6:33', texto: 'Mas, buscai primeiro o reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas.' },
@@ -229,10 +229,10 @@ Mas o sermão é mais que inspiração social — é o padrão de vida do cidad�
         },
         {
           id: 'aula-ev-1-4',
-          titulo: 'Parábolas do Reino (cap. 13)',
+          título: 'Parábolas do Reino (cap. 13)',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Parábolas do Reino (cap. 13)
+          duração: '15 min',
+          conteúdo: `## Parábolas do Reino (cap. 13)
 
 Mateus 13 é o "capítulo das parábolas" — sete histórias que Jesus conta em um único dia para revelar o mistério do Reino de Deus. As parábolas não são fábulas morais; são retratos da realidade espiritual disfarçados de histórias do dia a dia.
 
@@ -283,7 +283,7 @@ Uma rede lançada ao mar apanha todo tipo de peixe. No fim do mundo, os anjos se
 Cada parábola desafia o ouvinte a se posicionar. O Reino não é abstrato — é concreto, presente e exige resposta. Jesus termina o capítulo perguntando: "Compreendeis todas essas coisas?" (13:51). Os discípulos dizem sim. Ele conclui: "Todo escriba instruído para o Reino dos céus é semelhante a um homem rico que tira do seu esconderijo coisas novas e antigas" (13:52).
 
 Estudar as parábolas é como abrir um tesouro — sempre há algo novo para descobrir.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Mateus 13:11', texto: 'Porque a vós é dado saber os mistérios do Reino dos céus, mas a eles não é dado.' },
             { ref: 'Mateus 13:31-32', texto: 'O Reino dos céus é semelhante ao grão de mostarda, que um homem toma e semeia no seu campo.' },
             { ref: 'Mateus 13:44', texto: 'O Reino dos céus é semelhante a um tesouro escondido num campo. O qual, quando um homem o acha, esconde-o, e, pela alegria que dele tem, vai e vende tudo o que tem, e compra esse campo.' },
@@ -292,10 +292,10 @@ Estudar as parábolas é como abrir um tesouro — sempre há algo novo para des
         },
         {
           id: 'aula-ev-1-5',
-          titulo: 'A Grande Comissão (cap. 28)',
+          título: 'A Grande Comissão (cap. 28)',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## A Grande Comissão (cap. 28)
+          duração: '15 min',
+          conteúdo: `## A Grande Comissão (cap. 28)
 
 Mateus 28:18-20 é o versículo de despedida de Jesus e o mandato missionário da igreja. É tão importante que é chamado de "A Grande Comissão" — a missão que Jesus deixou para todos os seus seguidores até o fim do mundo.
 
@@ -348,7 +348,7 @@ A Grande Comissão não é apenas para pastores e missionários — é para todo
 5. **Confiança** — saber que Jesus está conosco
 
 A igreja que não faz discípulos está desobedecendo ao último e mais importante comando de Jesus.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Mateus 28:18-20', texto: 'Toda autoridade me é dada no céu e na terra. Ide, portanto, e fazei discípulos de todas as nações, batizando-os em nome do Pai, e do Filho, e do Espírito Santo, ensinando-os a guardar todas as coisas que vos tenho ordenado. E eis que estou convosco todos os dias, até a consumação do século.' },
             { ref: 'Mateus 28:17', texto: 'E, vendo-o, o adoraram; mas alguns duvidaram.' },
             { ref: 'Gênesis 12:3', texto: 'Em ti serão abençoadas todas as famílias da terra.' },
@@ -358,16 +358,16 @@ A igreja que não faz discípulos está desobedecendo ao último e mais importan
     },
     {
       id: 'mod-marcos-servo',
-      titulo: 'Marcos: O Servo Sofredor',
-      descricao: 'O evangelho mais curto e dinâmico, centrado na ação e no serviço de Jesus',
-      icone: '🕊️',
+      título: 'Marcos: O Servo Sofredor',
+      descrição: 'O evangelho mais curto e dinâmico, centrado na ação e no serviço de Jesus',
+      ícone: '🕊️',
       aulas: [
         {
           id: 'aula-ev-2-1',
-          titulo: 'Introdução ao Evangelho de Marcos',
+          título: 'Introdução ao Evangelho de Marcos',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Introdução ao Evangelho de Marcos
+          duração: '15 min',
+          conteúdo: `## Introdução ao Evangelho de Marcos
 
 Marcos é o mais curto dos quatro evangelhos — apenas 16 capítulos, cerca de 11.000 palavras. É também o mais dinâmico, cheio de ação, ritmo acelerado e linguagem gráfica. Marcos não perde tempo com genealogias ou discursos longos — ele quer mostrar Jesus em ação.
 
@@ -434,7 +434,7 @@ Marcos nos ensina que:
 - Mesmo com dúvidas e falhas, Deus usa seus filhos
 
 Estudar Marcos é ver Jesus em movimento — e ser desafiado a se mover também.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Marcos 10:45', texto: 'Porque o Filho do Homem não veio para ser servido, mas para servir, e dar a sua vida em resgate por muitos.' },
             { ref: 'Marcos 1:1', texto: 'Princípio do evangelho de Jesus Cristo, Filho de Deus.' },
             { ref: 'Marcos 16:15', texto: 'Ide por todo o mundo, e pregai o evangelho a toda criatura.' },
@@ -442,10 +442,10 @@ Estudar Marcos é ver Jesus em movimento — e ser desafiado a se mover também.
         },
         {
           id: 'aula-ev-2-2',
-          titulo: 'O serviço de Jesus (Marcos 10:45)',
+          título: 'O serviço de Jesus (Marcos 10:45)',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## O serviço de Jesus (Marcos 10:45)
+          duração: '15 min',
+          conteúdo: `## O serviço de Jesus (Marcos 10:45)
 
 Marcos 10:45 é o versículo-chave de todo o evangelho: "Porque o Filho do Homem não veio para ser servido, mas para servir, e dar a sua vida em resgate por muitos." Se Mateus tem a Grande Comissão e João tem a glorificação do Filho, Marcos tem esta frase — a declaração central da missão de Jesus.
 
@@ -484,7 +484,7 @@ A palavra grega para "resgate" é *lytron* — um termo de mercado que significa
 5. **Serviço é motivado pelo evangelho** — não para ganhar pontos, mas porque fomos servidos primeiro
 
 A igreja mais forte é a que mais serve — não a que mais acumula cargos ou títulos.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Marcos 10:45', texto: 'Porque o Filho do Homem não veio para ser servido, mas para servir, e dar a sua vida em resgate por muitos.' },
             { ref: 'Marcos 10:43-44', texto: 'Mas não é assim entre vós; mas, entre vós, quem quiser ser grande, será vosso servo; e, entre vós, quem quiser ser o primeiro, será escravo de todos.' },
             { ref: 'Daniel 7:13-14', texto: 'E foi-lhe dada a soberania, a honra e o reino... o seu domínio é eterno.' },
@@ -492,10 +492,10 @@ A igreja mais forte é a que mais serve — não a que mais acumula cargos ou t�
         },
         {
           id: 'aula-ev-2-3',
-          titulo: 'Os milagres como evidência (caps. 1-8)',
+          título: 'Os milagres como evidência (caps. 1-8)',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Os milagres como evidência (caps. 1-8)
+          duração: '15 min',
+          conteúdo: `## Os milagres como evidência (caps. 1-8)
 
 Marcos dedica boa parte de sua narrativa aos milagres de Jesus. Enquanto Mateus foca nos discursos e João na teologia, Marcos quer ver Jesus em ação. Os milagres não são episódios avulsos — são evidências de que o Reino de Deus chegou.
 
@@ -548,7 +548,7 @@ A filha de um líder da sinagoga morre. Jesus vai à casa, segura a mão da meni
 5. **Apontam para a cruz** — a maior demonstração de poder é vencer a morte
 
 Os milagres de Marcos não são espetáculo — são evidência.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Marcos 1:27', texto: 'Que é isto? Um ensino novo! Com autoridade manda até nos espíritos imundos, e eles lhe obedecem!' },
             { ref: 'Marcos 2:5', texto: 'Jesus, vendo a fé deles, disse ao paralítico: Filho, estão perdoados os teus pecados.' },
             { ref: 'Marcos 4:39', texto: 'E, despertando, repreendeu o vento, e disse ao mar: Calma, pega! E o vento cessou, e fez-se grande bonança.' },
@@ -556,10 +556,10 @@ Os milagres de Marcos não são espetáculo — são evidência.`,
         },
         {
           id: 'aula-ev-2-4',
-          titulo: 'A paixão e crucificação (caps. 14-15)',
+          título: 'A paixão e crucificação (caps. 14-15)',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## A paixão e crucificação (caps. 14-15)
+          duração: '15 min',
+          conteúdo: `## A paixão e crucificação (caps. 14-15)
 
 A segunda metade de Marcos (caps. 14-15) é dedicada integralmente à paixão de Jesus. Enquanto a primeira metade mostra Jesus em ação curando e ensinando, a segunda mostra o Servo Sofredor — aquele que dá sua vida por muitos.
 
@@ -571,7 +571,7 @@ Uma mulher unge os pés de Jesus com perfume de nardo puro, que valia mais de 30
 
 A ceia pascal é o contexto da Última Ceia. Jesus está celebrando a Páscoa — o lembrate da libertação do Egito. Mas Ele transforma o ritual: "Isto é o meu corpo" (14:22); "Este é o meu sangue da aliança, que é derramado por muitos" (14:24).
 
-A aliança não é a antiga (Moises no Sinai) — é nova. O sangue de Jesus inaugura uma nova relação entre Deus e os homens. Jesus antecipa a traição de Pedro e a fuga dos discípulos, mas continua comendo. A ceia é misericórdia mesmo na traição.
+A aliança não é a antiga (Moisés no Sinai) — é nova. O sangue de Jesus inaugura uma nova relação entre Deus e os homens. Jesus antecipa a traição de Pedro e a fuga dos discípulos, mas continua comendo. A ceia é misericórdia mesmo na traição.
 
 ### O Getsêmani (14:32-42)
 
@@ -612,7 +612,7 @@ Um gentio — um soldado romano — é o primeiro a reconhecer a identidade divi
 ### A sepultura (15:42-47)
 
 José de Arimateia pede o corpo de Jesus e o sepulta em um túmulo novo, onde ninguém fora posto. Marcos detalha o processo: linho, mirra, a pedra rolada. A morte é real — Jesus não desmaiou, não fingiu. Ele morreu de verdade. Sem ressurreição real, não há salvação.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Marcos 14:36', texto: 'E disse: Abba, Pai! Tudo é possível para ti; afasta este cálice de mim; não o que eu quero, mas o que tu queres.' },
             { ref: 'Marcos 15:34', texto: 'E, à nona hora, Jesus clamarou com grande voz, dizendo: Eloi, Eloi, lema sabactâni? Que quer dizer: Meu Deus, meu Deus, por que me desamparaste?' },
             { ref: 'Marcos 15:39', texto: 'E, vendo o centurião que assim gritou e expirou, disse: Verdadeiramente este homem era Filho de Deus.' },
@@ -620,10 +620,10 @@ José de Arimateia pede o corpo de Jesus e o sepulta em um túmulo novo, onde ni
         },
         {
           id: 'aula-ev-2-5',
-          titulo: 'A ressurreição e ascensão (cap. 16)',
+          título: 'A ressurreição e ascensão (cap. 16)',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## A ressurreição e ascensão (cap. 16)
+          duração: '15 min',
+          conteúdo: `## A ressurreição e ascensão (cap. 16)
 
 Marcos 16 é um dos capítulos mais debatidos da Bíblia. A versão mais antiga dos manuscritos (como o Código Sinaiticus e o Vaticano) termina em 16:8, com as mulheres fugindo do túmulo com medo. Versões posteriores acrescentam aparições e a ascensão. Vamos estudar o que Marcos realmente escreveu.
 
@@ -649,7 +649,7 @@ A proclamação é direta:
 
 Marcos não é um escritor ruim — ele é dramático. O final em 16:8 deixa o leitor em suspense: "E agora?" A ressurreição aconteceu, mas a história não terminou. Marcos convida o leitor a participar da narrativa — a ser testemunha.
 
-Alguns estudiosos sugerem que Marcos planejava escribir mais, mas o manuscrito original se perdeu. Outros argumentam que o final intencionalmente deixa a história aberta — porque a história de Jesus continua através da igreja.
+Alguns estudiosos sugerem que Marcos planejava escrever mais, mas o manuscrito original se perdeu. Outros argumentam que o final intencionalmente deixa a história aberta — porque a história de Jesus continua através da igreja.
 
 ### As aparições (se considerarmos 16:9-14)
 
@@ -682,7 +682,7 @@ Marcos não oferece um tratado teológico sobre a ressurreição — ele oferece
 - O evangelho é verdadeiro e tem poder para salvar
 
 Marcos começa com "Início do evangelho de Jesus Cristo, Filho de Deus" (1:1) e termina com o evangelho sendo pregado a toda criatura. A história de Jesus não terminou — continua em cada geração, em cada discípulo, em cada nação.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Marcos 16:6', texto: 'Não vos assusteis. Buscais a Jesus nazareno, que foi crucificado; não está aqui; ressuscitou.' },
             { ref: 'Marcos 16:15', texto: 'E disse-lhes: Ide por todo o mundo, e pregai o evangelho a toda criatura.' },
             { ref: 'Marcos 16:19', texto: 'E, depois de lhes ter falado, foi recebido no céu, e assentou-se à direita de Deus.' },
@@ -692,16 +692,16 @@ Marcos começa com "Início do evangelho de Jesus Cristo, Filho de Deus" (1:1) e
     },
     {
       id: 'mod-lucas-filho',
-      titulo: 'Lucas: O Filho do Homem',
-      descricao: 'O evangelho que enfatiza a humanidade de Jesus, a compaixão e os marginalizados',
-      icone: '🌟',
+      título: 'Lucas: O Filho do Homem',
+      descrição: 'O evangelho que enfatiza a humanidade de Jesus, a compaixão e os marginalizados',
+      ícone: '🌟',
       aulas: [
         {
           id: 'aula-ev-3-1',
-          titulo: 'Introdução ao Evangelho de Lucas',
+          título: 'Introdução ao Evangelho de Lucas',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Introdução ao Evangelho de Lucas
+          duração: '15 min',
+          conteúdo: `## Introdução ao Evangelho de Lucas
 
 Lucas é o evangelho mais literário, mais detalhado e mais focado na humanidade de Jesus. Escrito por um médico gentio, é dirigido a um público grego, e retrata Jesus como o Filho do Homem — perfeito em sua humanidade, cheio de compaixão e misericórdia.
 
@@ -709,7 +709,7 @@ Lucas é o evangelho mais literário, mais detalhado e mais focado na humanidade
 
 O autor é Lucas, mencionado em Colossenses 4:14 como "o médico amado". Lucas não era apóstolo — era companheiro de Paulo em suas viagens missionárias (Atos 16:10-17; 20:5-15; 27:1-28:16). Ele escreveu tanto o evangelho quanto Atos dos Apóstolos — dois volumes que formam a história do cristianismo primitivo.
 
-Lucas era um homem culto, meticulous e detalhista. Ele investigou cuidadosamente antes de escrever (Lucas 1:1-4), interviewando testemunhas oculares e organizando os relatos em ordem cronológica. Seu evangelho é o mais longo do Novo Testamento.
+Lucas era um homem culto, meticuloso e detalhista. Ele investigou cuidadosamente antes de escrever (Lucas 1:1-4), entrevistando testemunhas oculares e organizando os relatos em ordem cronológica. Seu evangelho é o mais longo do Novo Testamento.
 
 A data provável é entre 60 e 80 d.C.
 
@@ -758,7 +758,7 @@ Lucas preserva parábolas que não aparecem em nenhum outro evangelho:
 Lucas retrata Jesus como:
 - **Amigável com pecadores** — come com publicanos e fariseus
 - **Compasivo com marginalizados** — cura leprosos, ressuscita mortos, perdoa adúlteras
-- **Prayerful** — oração é um tema constante (Jesus ora antes de cada decisão importante)
+- **Homem de oração** — oração é um tema constante (Jesus ora antes de cada decisão importante)
 - **Universal** — o evangelho é para judeus e gentios
 - **Misericordioso** — mais enfase na graça que na Lei
 
@@ -772,18 +772,18 @@ Lucas nos ensina que:
 - A salvação é para todos — sem distinção de raça, classe ou gênero
 
 Se Mateus é o evangelho do Rei, Marcos do Servo, e João de Deus, Lucas é o evangelho da humanidade — daquele que entende nossas dores, nossas dúvidas e nossas necessidades.`,
-          versiculosChave: [
-            { ref: 'Lucas 1:3-4', texto: 'Também eu, depois de ter feito diligente investigação de tudo desde o princípio, resolvi escrever-te orderly, ó excelente Teófilo.' },
+          versículosChave: [
+            { ref: 'Lucas 1:3-4', texto: 'Também eu, depois de ter feito diligente investigação de tudo desde o princípio, resolvi escrever-te ordenadamente, ó excelente Teófilo.' },
             { ref: 'Lucas 19:10', texto: 'Porque o Filho do Homem veio buscar e salvar o que se havia perdido.' },
             { ref: 'Lucas 4:18-19', texto: 'O Espírito do Senhor está sobre mim, porque me ungiu para pregar boas novas aos pobres... para libertar os cativos.' },
           ],
         },
         {
           id: 'aula-ev-3-2',
-          titulo: 'O nascimento narrado (caps. 1-2)',
+          título: 'O nascimento narrado (caps. 1-2)',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## O nascimento narrado (caps. 1-2)
+          duração: '15 min',
+          conteúdo: `## O nascimento narrado (caps. 1-2)
 
 Lucas 1-2 é a narrativa mais detalhada do nascimento de Jesus no Novo Testamento. É rica em poesia, profecia e humanidade. Mateus foca em José; Lucas foca em Maria. Juntos, completam o retrato.
 
@@ -851,7 +851,7 @@ Ana, uma profetisa viúva de 84 anos, também reconhece o Messias. Lucas destaca
 Aos 12 anos, Jesus fica no templo discutindo com os mestres. Quando Maria e José O encontram, Ele diz: "Por que me procuráveis? Não sabíeis que me cumpria estar na casa do meu Pai?" (2:49). A primeira declaração sobre Sua missão divina.
 
 Lucas conclui: "Jesus crescia em sabedoria, em estatura e em graça diante de Deus e dos homens" (2:52). A incarnação é real — Jesus cresceu, aprendeu, amadureceu como qualquer ser humano.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Lucas 1:37', texto: 'Porque nada é impossível a Deus.' },
             { ref: 'Lucas 1:46-47', texto: 'A minha alma glorifica ao Senhor, e o meu espírito se alegra em Deus, meu Salvador.' },
             { ref: 'Lucas 2:11', texto: 'Hoje, na cidade de Davi, vos nasceu o Salvador, que é o Cristo, o Senhor.' },
@@ -860,10 +860,10 @@ Lucas conclui: "Jesus crescia em sabedoria, em estatura e em graça diante de De
         },
         {
           id: 'aula-ev-3-3',
-          titulo: 'Jesus e os marginalizados',
+          título: 'Jesus e os marginalizados',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Jesus e os marginalizados
+          duração: '15 min',
+          conteúdo: `## Jesus e os marginalizados
 
 Uma das marcas mais marcantes do evangelho de Lucas é o retrato de Jesus como alguém que busca os marginalizados, os rejeitados e os pecadores. Enquanto Mateus enfatiza a ética e João a divindade, Lucas enfatiza a compaixão.
 
@@ -918,7 +918,7 @@ A graça transforma Zaqueu: "Senhor, a metade dos meus bens dou aos pobres, e, s
 5. **A graça desafia o legalismo** — os fariseus são frequentemente antagonistas
 
 Se você se sente marginalizado, rejeitado ou indigno — Lucas é o seu evangelho. Jesus veio para você.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Lucas 15:7', texto: 'Assim, vos digo que haverá mais alegria no céu por um pecador que se arrepende do que por noventa e nove justos que não necessitam de arrependimento.' },
             { ref: 'Lucas 15:20', texto: 'Mas, ainda ele longe, o viu o pai, e se moveu de compaixão, e, correndo, lançou-se-lhe ao pescoço, e o beijou.' },
             { ref: 'Lucas 19:10', texto: 'Porque o Filho do Homem veio buscar e salvar o que se havia perdido.' },
@@ -927,10 +927,10 @@ Se você se sente marginalizado, rejeitado ou indigno — Lucas é o seu evangel
         },
         {
           id: 'aula-ev-3-4',
-          titulo: 'Jesus e a oração',
+          título: 'Jesus e a oração',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Jesus e a oração
+          duração: '15 min',
+          conteúdo: `## Jesus e a oração
 
 A oração é um tema central no evangelho de Lucas. Mais que qualquer outro evangelista, Lucas retrata Jesus como um homem de oração — alguém que toma decisões, enfrenta crises e mantém comunhão com o Pai através da oração.
 
@@ -988,7 +988,7 @@ Lucas preserva ensinos exclusivos sobre oração:
 5. **A oração transforma** — a transfiguração, a alegria, a entrega na cruz
 
 Lucas nos mostra que a oração não é técnica — é relacionamento. É falar com o Pai como quem confia, que pede, que obedece, que se entrega.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Lucas 5:16', texto: 'Jesus, porém, frequentemente se retirava para lugares solitários e orava.' },
             { ref: 'Lucas 11:1', texto: 'Aconteceu que, estando Jesus em oração em certo lugar, quando cessou, um dos seus discípulos lhe disse: Senhor, ensina-nos a orar.' },
             { ref: 'Lucas 11:9', texto: 'Pedi, e ser-vos-á dado; buscareis, e achareis; batei, e ser-vos-á aberto.' },
@@ -997,10 +997,10 @@ Lucas nos mostra que a oração não é técnica — é relacionamento. É falar
         },
         {
           id: 'aula-ev-3-5',
-          titulo: 'A ressurreição em Lucas',
+          título: 'A ressurreição em Lucas',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## A ressurreição em Lucas
+          duração: '15 min',
+          conteúdo: `## A ressurreição em Lucas
 
 Lucas 24 é o relato mais detalhado e teologicamente rico da ressurreição de Jesus. Enquanto Marcos termina em 16:8 com as mulheres assustadas, Lucas dá a continuação — e é gloriosa.
 
@@ -1010,7 +1010,7 @@ Maria Madalena, Joana, Maria, mãe de Tiago e outras mulheres vão ao túmulo co
 
 "Dois homens com vestes resplandecentes" aparecem e dizem: "Por que buscais entre os mortos o que está vivo? Não está aqui, mas ressuscitou" (24:5-6). A pergunta é devastadora — se Jesus vive, por que buscar entre os mortos?
 
-As mulheres lembram das palavras de Jesus e vão anunciar aos onze. Mas "esta palavra lhes pareceu um incrível, e não lhes creram" (24:11). A incredulidade diante da ressurreição é um tema em todos os evangelhos — mas Lucas é particularmente honesto.
+As mulheres lembram das palavras de Jesus e vão anunciar aos onze. Mas "esta palavra lhes pareceu incrível, e não lhes creram" (24:11). A incredulidade diante da ressurreição é um tema em todos os evangelhos — mas Lucas é particularmente honesto.
 
 ### Os discípulos de Emaús (24:13-35)
 
@@ -1018,7 +1018,7 @@ Este é o dos relatos mais bonitos do Novo Testamento. Dois discípulos caminham
 
 Jesus pergunta o que os aflige. Um deles responde: "Tu és o único de Jerusalém que não sabes destas coisas que ali aconteceram?" (24:18). Jesus pergunta: "Que coisas?" Eles respondem: "Sobre Jesus de Nazaré, que foi profeta poderoso em obras e palavras... mas nós esperávamos que fosse ele o que resgataria a Israel" (24:19-21).
 
-Jesus os corrige: "Ó insensatos, e de coração tardio para crer em tudo o que os profetas disseram!" (24:25). Então, "principiando por Moises e por todos os profetas, explicou-lhes o que dele dizia em todas as Escrituras" (24:27).
+Jesus os corrige: "Ó insensatos, e de coração tardio para crer em tudo o que os profetas disseram!" (24:25). Então, "principiando por Moisés e por todos os profetas, explicou-lhes o que dele dizia em todas as Escrituras" (24:27).
 
 Quando chegam a Emaús, Jesus faz como se fosse adiante. Eles O convidam a ficar: "Fica conosco, porque é tarde" (24:29). Ao partir, eles O reconhecem: "Não nos ardia o coração em nós, quando nos falava e nos explicava as Escrituras?" (24:32).
 
@@ -1056,9 +1056,9 @@ O evangelho termina com louvor — não com desespero. A ressurreição transfor
 6. **A ressurreição é razão de alegria** — não de medo
 
 Lucas nos mostra que a ressurreição não é apenas um evento histórico — é a base de tudo: da fé, da igreja, da missão e da esperança. Se Jesus não ressuscitou, a fé é vã. Mas Ele ressuscitou — e isso muda tudo.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'Lucas 24:5-6', texto: 'Por que buscais entre os mortos o que está vivo? Não está aqui, mas ressuscitou.' },
-            { ref: 'Lucas 24:27', texto: 'E, principiando por Moises e por todos os profetas, explicou-lhes o que dele dizia em todas as Escrituras.' },
+            { ref: 'Lucas 24:27', texto: 'E, principiando por Moisés e por todos os profetas, explicou-lhes o que dele dizia em todas as Escrituras.' },
             { ref: 'Lucas 24:46-47', texto: 'Assim está escrito, e assim cumpria-se que o Cristo havia de padecer e ressuscitar dentre os mortos ao terceiro dia.' },
             { ref: 'Lucas 24:52', texto: 'E, tendo-lhes feito uma inclinação, voltou para Jerusalém com grande alegria.' },
           ],
@@ -1067,16 +1067,16 @@ Lucas nos mostra que a ressurreição não é apenas um evento histórico — é
     },
     {
       id: 'mod-joao-verbo',
-      titulo: 'João: O Verbo Encarnado',
-      descricao: 'O evangelho teológico que proclama a divindade de Jesus — "No princípio era o Verbo"',
-      icone: '✨',
+      título: 'João: O Verbo Encarnado',
+      descrição: 'O evangelho teológico que proclama a divindade de Jesus — "No princípio era o Verbo"',
+      ícone: '✨',
       aulas: [
         {
           id: 'aula-ev-4-1',
-          titulo: 'Introdução ao Evangelho de João',
+          título: 'Introdução ao Evangelho de João',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Introdução ao Evangelho de João
+          duração: '15 min',
+          conteúdo: `## Introdução ao Evangelho de João
 
 João é o evangelho mais diferente dos quatro. Enquanto Mateus, Marcos e Lucas (os "sinóticos") compartilham muita matéria comum, João é quase inteiramente independente. É mais teológico, mais simbólico e mais profundo. Se os outros três são retratos, João é um vitral colorido.
 
@@ -1159,7 +1159,7 @@ A última ceia em João (caps. 13-17) é a mais íntima dos quatro evangelhos. J
 5. É evangelístico — aponta para a fé e a vida eterna
 
 João é o evangelho para quem quer conhecer Jesus não apenas como profeta ou rei, mas como Deus encarnado — o Verbo eterno que veio habitar entre nós.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'João 1:1', texto: 'No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.' },
             { ref: 'João 1:14', texto: 'E o Verbo se fez carne, e habitou entre nós, e vimos a sua glória, como a do unigênito do Pai, cheio de graça e de verdade.' },
             { ref: 'João 20:31', texto: 'Mas estes foram escritos para que creiais que Jesus é o Cristo, o Filho de Deus, e, crendo, tenhais vida em seu nome.' },
@@ -1167,10 +1167,10 @@ João é o evangelho para quem quer conhecer Jesus não apenas como profeta ou r
         },
         {
           id: 'aula-ev-4-2',
-          titulo: 'O Prólogo (João 1:1-18)',
+          título: 'O Prólogo (João 1:1-18)',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## O Prólogo (João 1:1-18)
+          duração: '15 min',
+          conteúdo: `## O Prólogo (João 1:1-18)
 
 João 1:1-18 é a introdução do evangelho de João — e é um dos textos mais densos, belos e teológicos de toda a Bíblia. São apenas 18 versículos, mas neles cabe a essência do cristianismo: quem é Jesus e o que Ele fez.
 
@@ -1225,9 +1225,9 @@ A paradoxia: Jesus veio depois de João (nascimento), mas é antes de João (ete
 
 ### A graça sobre a Lei (1:16-17)
 
-> "Porque da sua plenitude tomamos todos nós, e graça sobre graça. Porque a Lei foi dada por Moises; a graça e a verdade vieram por Jesus Cristo." (1:16-17)
+> "Porque da sua plenitude tomamos todos nós, e graça sobre graça. Porque a Lei foi dada por Moisés; a graça e a verdade vieram por Jesus Cristo." (1:16-17)
 
-A Lei revelou o padrão de Deus; a graça de Jesus dá o poder para cumprir. Não é Lei contra graça — é Lei preparando para graça. Moises deu a sombra; Jesus deu a substância.
+A Lei revelou o padrão de Deus; a graça de Jesus dá o poder para cumprir. Não é Lei contra graça — é Lei preparando para graça. Moisés deu a sombra; Jesus deu a substância.
 
 ### Ninguém viu a Deus (1:18)
 
@@ -1247,7 +1247,7 @@ Em 18 versículos, João estabelece:
 - A exclusividade de Jesus como revelador de Deus (1:18)
 
 O Prólogo é o DNA de todo o evangelho. Tudo o que vem depois é expansão dessas 18 palavras.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'João 1:1', texto: 'No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.' },
             { ref: 'João 1:14', texto: 'E o Verbo se fez carne, e habitou entre nós.' },
             { ref: 'João 1:12', texto: 'Mas, a todos quantos o receberam, deu-lhes o poder de serem feitos filhos de Deus, aos que creem no seu nome.' },
@@ -1256,12 +1256,12 @@ O Prólogo é o DNA de todo o evangelho. Tudo o que vem depois é expansão dess
         },
         {
           id: 'aula-ev-4-3',
-          titulo: 'Os 7 "Eu Sou" de Jesus',
+          título: 'Os 7 "Eu Sou" de Jesus',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Os 7 "Eu Sou" de Jesus
+          duração: '15 min',
+          conteúdo: `## Os 7 "Eu Sou" de Jesus
 
-Em João, Jesus faz sete declarações "Eu Sou" (*egō eimi*) que ecoam o nome divino revelado a Moises no Monte Sinai: "Eu Sou o que Sou" (Êxodo 3:14). Cada "Eu Sou" revela um aspecto da identidade de Jesus como Deus encarnado.
+Em João, Jesus faz sete declarações "Eu Sou" (*egō eimi*) que ecoam o nome divino revelado a Moisés no Monte Sinai: "Eu Sou o que Sou" (Êxodo 3:14). Cada "Eu Sou" revela um aspecto da identidade de Jesus como Deus encarnado.
 
 ### 1. "Eu sou o pão da vida" (6:35)
 
@@ -1326,7 +1326,7 @@ Os sete "Eu Sou" revelam que Jesus é:
 - **Videira** — fonte de vida
 
 Cada um deles é uma resposta às necessidades mais profundas do coração humano. Jesus não apenas ensina sobre Deus — Ele *é* Deus, suprindo tudo o que precisamos.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'João 6:35', texto: 'Eu sou o pão da vida. Quem a mim vem, nunca terá fome; e quem em mim crê, nunca terá sede.' },
             { ref: 'João 8:12', texto: 'Eu sou a luz do mundo. Quem me segue não andará em trevas, mas terá a luz da vida.' },
             { ref: 'João 10:11', texto: 'Eu sou o bom pastor. O bom pastor a sua vida dá pelas ovelhas.' },
@@ -1338,10 +1338,10 @@ Cada um deles é uma resposta às necessidades mais profundas do coração human
         },
         {
           id: 'aula-ev-4-4',
-          titulo: 'Os 7 sinais milagrosos',
+          título: 'Os 7 sinais milagrosos',
           tipo: 'texto',
-          duracao: '15 min',
-          conteudo: `## Os 7 sinais milagrosos
+          duração: '15 min',
+          conteúdo: `## Os 7 sinais milagrosos
 
 Enquanto os sinóticos relatam dezenas de milagres, João seleciona cuidadosamente sete — os "sinais" (*sēmeia*). A palavra "sinal" é importante: os milagres não são espetáculo, são evidências da identidade e missão de Jesus. Cada sinal aponta para algo maior.
 
@@ -1353,9 +1353,9 @@ Enquanto os sinóticos relatam dezenas de milagres, João seleciona cuidadosamen
 
 **Significado teológico:** Jesus é o novíssimo — Ele restaura o que falta, transforma o ordinário em extraordinário, e começa Sua vida pública com alegria, não com severidade.
 
-### 2. Curar o filho do official (4:46-54)
+### 2. Curar o filho do oficial (4:46-54)
 
-**Contexto:** Um oficial romano pede que Jesus cure seu filho doente. Jesus diz: "Vai; o teu filho vive" (4:50). O official acredita e vai. No caminho, seus servos confirmam: o filho melhorou na mesma hora.
+**Contexto:** Um oficial romano pede que Jesus cure seu filho doente. Jesus diz: "Vai; o teu filho vive" (4:50). O oficial acredita e vai. No caminho, seus servos confirmam: o filho melhorou na mesma hora.
 
 **O sinal:** A cura acontece à distância — Jesus não vai à casa. A palavra de Jesus tem poder sem presença física.
 
@@ -1375,7 +1375,7 @@ Enquanto os sinóticos relatam dezenas de milagres, João seleciona cuidadosamen
 
 **O sinal:** Alimenta uma multidão com quase nada. "Todos se fartaram" (6:13), e sobram 12 cestos — um para cada tribo de Israel.
 
-**Significado teológico:** Jesus é o novo Moises (que deu maná no deserto), mas maior. O maná era temporário; o pão de Jesus é eterno: "Eu sou o pão da vida" (6:35).
+**Significado teológico:** Jesus é o novo Moisés (que deu maná no deserto), mas maior. O maná era temporário; o pão de Jesus é eterno: "Eu sou o pão da vida" (6:35).
 
 ### 5. Caminhar sobre as águas (6:16-21)
 
@@ -1417,7 +1417,7 @@ Todos os sinais compartilham características:
 5. Apontam para algo maior que o milagre em si
 
 João escolheu esses sete porque cada um é um ícone teológico — uma janela para a divindade de Jesus.`,
-          versiculosChave: [
+          versículosChave: [
             { ref: 'João 2:11', texto: 'Este foi o princípio dos sinais Jesus, o de Caná da Galileia, e manifestou a sua glória; e os seus discípulos creram nele.' },
             { ref: 'João 11:25', texto: 'Disse-lhe Jesus: Eu sou a ressurreição e a vida; quem crê em mim, ainda que morra, viverá.' },
             { ref: 'João 11:43', texto: 'E, dizendo isto, clamou com grande voz: Lázaro, sai!' },
@@ -1426,79 +1426,79 @@ João escolheu esses sete porque cada um é um ícone teológico — uma janela 
         },
         {
           id: 'aula-ev-4-5',
-          titulo: 'Quiz Final: Comparação dos 4 Evangelhos',
+          título: 'Quiz Final: Comparação dos 4 Evangelhos',
           tipo: 'quiz',
-          duracao: '10 min',
+          duração: '10 min',
           perguntas: [
             {
               id: 'qf-ev-1',
               pergunta: 'Qual evangelho começa com a genealogia de Jesus conectando-o com Abraão e Davi?',
-              opcoes: ['Marcos', 'Lucas', 'Mateus', 'João'],
+              opções: ['Marcos', 'Lucas', 'Mateus', 'João'],
               respostaCorreta: 2,
-              explicacao: 'Mateus começa com a genealogia em Mateus 1:1-17, conectando Jesus com Abraão e Davi para mostrar que Ele é o Messias prometido ao povo judeu.',
+              explicação: 'Mateus começa com a genealogia em Mateus 1:1-17, conectando Jesus com Abraão e Davi para mostrar que Ele é o Messias prometido ao povo judeu.',
             },
             {
               id: 'qf-ev-2',
               pergunta: 'Qual evangelho apresenta Jesus como o "Filho do Homem" com ênfase na sua humanidade?',
-              opcoes: ['Mateus', 'João', 'Marcos', 'Lucas'],
+              opções: ['Mateus', 'João', 'Marcos', 'Lucas'],
               respostaCorreta: 3,
-              explicacao: 'Lucas retrata Jesus como o Filho do Homem — perfeito em sua humanidade, come, bebe, chora, ora e tem compaixão dos marginalizados. É o evangelho mais focado na humanidade de Jesus.',
+              explicação: 'Lucas retrata Jesus como o Filho do Homem — perfeito em sua humanidade, come, bebe, chora, ora e tem compaixão dos marginalizados. É o evangelho mais focado na humanidade de Jesus.',
             },
             {
               id: 'qf-ev-3',
               pergunta: 'Qual é o versículo-chave de todo o evangelho de Marcos?',
-              opcoes: ['João 1:1', 'Mateus 28:19', 'Marcos 10:45', 'Lucas 24:47'],
+              opções: ['João 1:1', 'Mateus 28:19', 'Marcos 10:45', 'Lucas 24:47'],
               respostaCorreta: 2,
-              explicacao: 'Marcos 10:45 — "O Filho do Homem não veio para ser servido, mas para servir, e dar a sua vida em resgate por muitos" — é o tema central do evangelho.',
+              explicação: 'Marcos 10:45 — "O Filho do Homem não veio para ser servido, mas para servir, e dar a sua vida em resgate por muitos" — é o tema central do evangelho.',
             },
             {
               id: 'qf-ev-4',
               pergunta: 'Qual evangelho tem como público-alvo principal os judeus?',
-              opcoes: ['João', 'Lucas', 'Marcos', 'Mateus'],
+              opções: ['João', 'Lucas', 'Marcos', 'Mateus'],
               respostaCorreta: 3,
-              explicacao: 'Mateus foi escrito para cristãos judeus. Por isso tem mais de 60 citações do AT, enfatiza o cumprimento de profecias e apresenta Jesus como o Messias (Cristo) prometido.',
+              explicação: 'Mateus foi escrito para cristãos judeus. Por isso tem mais de 60 citações do AT, enfatiza o cumprimento de profecias e apresenta Jesus como o Messias (Cristo) prometido.',
             },
             {
               id: 'qf-ev-5',
               pergunta: 'Em João 1:1, a expressão "o Verbo era Deus" confirma que Jesus:',
-              opcoes: ['É um profeta superior', 'É uma criatura celestial', 'É Deus em essência', 'É anjo de Deus'],
+              opções: ['É um profeta superior', 'É uma criatura celestial', 'É Deus em essência', 'É anjo de Deus'],
               respostaCorreta: 2,
-              explicacao: 'João 1:1 declara explicitamente que "o Verbo era Deus" — afirmando a divindade plena de Jesus desde a eternidade.',
+              explicação: 'João 1:1 declara explicitamente que "o Verbo era Deus" — afirmando a divindade plena de Jesus desde a eternidade.',
             },
             {
               id: 'qf-ev-6',
               pergunta: 'Qual é a parábola exclusiva de Lucas que ensina o perdão incondicional de Deus?',
-              opcoes: ['O Semeador', 'O Filho Pródigo', 'O Bom Samaritano', 'A Pérola de Grande Preço'],
+              opções: ['O Semeador', 'O Filho Pródigo', 'O Bom Samaritano', 'A Pérola de Grande Preço'],
               respostaCorreta: 1,
-              explicacao: 'O Filho Pródigo (Lucas 15:11-32) é exclusiva de Lucas e revela o coração do Pai que corre, abraça e restaura o filho que volta.',
+              explicação: 'O Filho Pródigo (Lucas 15:11-32) é exclusiva de Lucas e revela o coração do Pai que corre, abraça e restaura o filho que volta.',
             },
             {
               id: 'qf-ev-7',
               pergunta: 'Qual dos "Eu Sou" de Jesus em João declara: "Eu sou o caminho, a verdade e a vida"?',
-              opcoes: ['Capítulo 6:35', 'Capítulo 10:11', 'Capítulo 14:6', 'Capítulo 15:1'],
+              opções: ['Capítulo 6:35', 'Capítulo 10:11', 'Capítulo 14:6', 'Capítulo 15:1'],
               respostaCorreta: 2,
-              explicacao: 'João 14:6 — a declaração mais exclusiva de Jesus. Ele não dá um caminho — Ele é o caminho. Não mostra a verdade — Ele é a verdade. Não oferece vida — Ele é a vida.',
+              explicação: 'João 14:6 — a declaração mais exclusiva de Jesus. Ele não dá um caminho — Ele é o caminho. Não mostra a verdade — Ele é a verdade. Não oferece vida — Ele é a vida.',
             },
             {
               id: 'qf-ev-8',
               pergunta: 'Qual evangelho retrata Jesus como o "Servo Sofredor" baseado em Isaías 53?',
-              opcoes: ['Lucas', 'Mateus', 'João', 'Marcos'],
+              opções: ['Lucas', 'Mateus', 'João', 'Marcos'],
               respostaCorreta: 3,
-              explicacao: 'Marcos retrata Jesus como o Servo Sofredor que dá sua vida por muitos. A segunda metade do evangelho é dedicada à paixão e crucificação.',
+              explicação: 'Marcos retrata Jesus como o Servo Sofredor que dá sua vida por muitos. A segunda metade do evangelho é dedicada à paixão e crucificação.',
             },
             {
               id: 'qf-ev-9',
               pergunta: 'Qual evangelho contém o relato mais detalhado do nascimento de Jesus, incluindo o cântico de Maria (Magnificat)?',
-              opcoes: ['Mateus', 'João', 'Lucas', 'Marcos'],
+              opções: ['Mateus', 'João', 'Lucas', 'Marcos'],
               respostaCorreta: 2,
-              explicacao: 'Lucas 1-2 é o relato mais detalhado do nascimento, incluindo a Anunciação, o Magnificat (1:46-55), o nascimento em Belém e a apresentação no templo.',
+              explicação: 'Lucas 1-2 é o relato mais detalhado do nascimento, incluindo a Anunciação, o Magnificat (1:46-55), o nascimento em Belém e a apresentação no templo.',
             },
             {
               id: 'qf-ev-10',
               pergunta: 'Qual é o propósito declarado do evangelho de João segundo João 20:31?',
-              opcoes: ['Registrar fatos históricos', 'Ensinar ética cristã', 'Creiam que Jesus é o Cristo e tenham vida', 'Converter os judeus'],
+              opções: ['Registrar fatos históricos', 'Ensinar ética cristã', 'Creiam que Jesus é o Cristo e tenham vida', 'Converter os judeus'],
               respostaCorreta: 2,
-              explicacao: 'João 20:31 declara: "Estes foram escritos para que creiais que Jesus é o Cristo, o Filho de Deus, e, crendo, tenhais vida em seu nome."',
+              explicação: 'João 20:31 declara: "Estes foram escritos para que creiais que Jesus é o Cristo, o Filho de Deus, e, crendo, tenhais vida em seu nome."',
             },
           ],
         },

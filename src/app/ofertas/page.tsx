@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion } from 'framer-motion';
-import { Heart, Copy, Check, QrCode, Gift, BookOpen } from 'lucide-react';
+import { Heart, Copy, Check, QrCode, Gift, ArrowLeft } from 'lucide-react';
 import QRCode from 'qrcode';
 import Link from 'next/link';
 
@@ -18,23 +18,20 @@ export default function OfertasPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    const fg = getComputedStyle(document.documentElement).getPropertyValue('--fg').trim() || '#F5F1E8';
+    const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#0A0908';
+
     QRCode.toCanvas(canvasRef.current, PIX_QR_DATA, {
       width: 240,
       margin: 2,
-      color: {
-        dark: '#F5F1E8',
-        light: '#0A0908',
-      },
+      color: { dark: fg, light: bg },
       errorCorrectionLevel: 'L',
     }).catch(console.error);
 
     QRCode.toDataURL(PIX_QR_DATA, {
       width: 240,
       margin: 2,
-      color: {
-        dark: '#F5F1E8',
-        light: '#0A0908',
-      },
+      color: { dark: fg, light: bg },
       errorCorrectionLevel: 'L',
     })
       .then((url) => setQrDataUrl(url))
@@ -60,29 +57,44 @@ export default function OfertasPage() {
 
   const compartilharWhatsApp = () => {
     const texto = encodeURIComponent(
-      `Supporte o Sola Scriptura BR! 🙏\n\nOferta via PIX:\nChave: ${PIX_KEY}\n\nTodo valor ajuda a manter este estudo bíblico gratuito para todos.\n\nhttps://solascripturabr.com.br/ofertas`
+      `Apoie o Sola Scriptura BR! 🙏\n\nSua doação ajuda a manter a plataforma gratuita e sem anúncios.\n\nOferta via PIX:\nChave: ${PIX_KEY}\n\nhttps://solascripturabr.com.br/ofertas`
     );
     window.open(`https://wa.me/?text=${texto}`, '_blank');
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0908]">
+    <div className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
       <Header />
       <main className="pt-24 pb-16">
-        <div className="max-w-2xl mx-auto px-4">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="mb-6"
+          >
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-sm text-[var(--fg)] opacity-60 hover:opacity-100 hover:text-[var(--brand)] transition-all"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Voltar
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="text-center mb-10"
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#D4A843]/10 mb-6">
-              <Heart className="w-8 h-8 text-[#D4A843]" />
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--brand-subtle)] mb-6">
+              <Heart className="w-8 h-8 text-[var(--brand)]" />
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-[#F5F1E8] mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-[var(--fg)] mb-4">
               Ofereça Voluntariamente
             </h1>
-            <p className="text-[#B8B0A4] text-lg leading-relaxed max-w-lg mx-auto">
+            <p className="text-[var(--fg)] opacity-60 text-lg leading-relaxed max-w-lg mx-auto">
               Se este estudo tem abençoado a sua vida, considere fazer uma oferta
               para ajudar a manter esta plataforma gratuita para todos.
             </p>
@@ -92,32 +104,32 @@ export default function OfertasPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-[#1A1814] border border-[#D4A843]/20 rounded-2xl p-6 md:p-8 mb-6"
+            className="glass-card rounded-2xl p-6 md:p-8 mb-6"
           >
             <div className="flex items-center gap-3 mb-6">
-              <QrCode className="w-5 h-5 text-[#D4A843]" />
-              <h2 className="text-xl font-semibold text-[#F5F1E8]">
+              <QrCode className="w-5 h-5 text-[var(--brand)]" />
+              <h2 className="text-xl font-semibold text-[var(--fg)]">
                 PIX — QR Code
               </h2>
             </div>
 
             <div className="flex flex-col items-center gap-6">
-              <div className="bg-[#0A0908] p-4 rounded-xl border border-[#D4A843]/10">
+              <div className="bg-[var(--bg)] p-4 rounded-xl border border-[var(--brand-subtle)]">
                 <canvas ref={canvasRef} className="block" />
               </div>
 
               <div className="text-center">
-                <p className="text-[#B8B0A4] text-sm mb-2">
+                <p className="text-[var(--fg)] opacity-60 text-sm mb-2">
                   Chave PIX (Email):
                 </p>
-                <p className="text-[#D4A843] font-mono text-lg font-medium tracking-wide">
+                <p className="text-[var(--brand)] font-mono text-lg font-medium tracking-wide">
                   {PIX_KEY}
                 </p>
               </div>
 
               <button
                 onClick={copiarChave}
-                className="flex items-center gap-2 px-6 py-3 bg-[#D4A843] text-[#0A0908] font-semibold rounded-xl hover:bg-[#E0B558] transition-colors"
+                className="flex items-center gap-2 px-6 py-3 bg-[var(--brand)] text-[var(--brand-contrast)] font-semibold rounded-xl hover:bg-[var(--brand-hover)] transition-colors"
               >
                 {copied ? (
                   <>
@@ -138,24 +150,24 @@ export default function OfertasPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-[#1A1814] border border-[#D4A843]/20 rounded-2xl p-6 md:p-8 mb-6"
+            className="glass-card rounded-2xl p-6 md:p-8 mb-6"
           >
             <div className="flex items-center gap-3 mb-6">
-              <Gift className="w-5 h-5 text-[#D4A843]" />
-              <h2 className="text-xl font-semibold text-[#F5F1E8]">
+              <Gift className="w-5 h-5 text-[var(--brand)]" />
+              <h2 className="text-xl font-semibold text-[var(--fg)]">
                 Valor Voluntário
               </h2>
             </div>
 
-            <div className="grid grid-cols-4 gap-3 mb-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
               {['R$ 10', 'R$ 25', 'R$ 50', 'R$ 100'].map((v) => (
                 <button
                   key={v}
                   onClick={() => setValor(v.replace('R$ ', ''))}
                   className={`py-3 rounded-xl font-semibold transition-all ${
                     valor === v.replace('R$ ', '')
-                      ? 'bg-[#D4A843] text-[#0A0908]'
-                      : 'bg-[#0A0908] text-[#B8B0A4] border border-[#D4A843]/20 hover:border-[#D4A843]/50'
+                      ? 'bg-[var(--brand)] text-[var(--brand-contrast)]'
+                      : 'bg-[var(--bg)] text-[var(--fg)] opacity-60 border border-[var(--brand-subtle)] hover:border-[var(--brand)] hover:opacity-100'
                   }`}
                 >
                   {v}
@@ -164,7 +176,7 @@ export default function OfertasPage() {
             </div>
 
             <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#B8B0A4] font-medium">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--fg)] opacity-40 font-medium">
                 R$
               </span>
               <input
@@ -172,14 +184,14 @@ export default function OfertasPage() {
                 placeholder="Outro valor"
                 value={valor}
                 onChange={(e) => setValor(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-[#0A0908] border border-[#D4A843]/20 rounded-xl text-[#F5F1E8] placeholder-[#666] focus:border-[#D4A843]/50 focus:outline-none transition-colors"
+                className="w-full pl-12 pr-4 py-3 bg-[var(--bg)] border border-[var(--brand-subtle)] rounded-xl text-[var(--fg)] placeholder-[var(--fg)] placeholder:opacity-30 focus:border-[var(--brand)] focus:outline-none transition-colors"
               />
             </div>
 
             {valor && Number(valor) > 0 && (
-              <p className="text-center text-[#B8B0A4] text-sm mt-3">
+              <p className="text-center text-[var(--fg)] opacity-60 text-sm mt-3">
                 Abra o aplicativo do banco, escaneie o QR Code ou copie a chave,
-                e envie <span className="text-[#D4A843] font-semibold">R$ {Number(valor).toFixed(2)}</span>
+                e envie <span className="text-[var(--brand)] font-semibold">R$ {Number(valor).toFixed(2)}</span>
               </p>
             )}
           </motion.div>
@@ -200,22 +212,14 @@ export default function OfertasPage() {
               Compartilhar via WhatsApp
             </button>
 
-            <div className="border-t border-[#D4A843]/10 pt-6 mt-6">
-              <p className="text-[#B8B0A4] text-sm leading-relaxed max-w-md mx-auto">
-                <span className="text-[#D4A843] font-semibold">2 Coríntios 9:7</span>
+            <div className="border-t border-[var(--brand-subtle)] pt-6 mt-6">
+              <p className="text-[var(--fg)] opacity-60 text-sm leading-relaxed max-w-md mx-auto">
+                <span className="text-[var(--brand)] font-semibold">2 Coríntios 9:7</span>
                 <br />
                 &ldquo;Cada um contribua como propôs em seu coração, não tristemente ou por obrigação,
                 porque Deus ama o que dá com alegria.&rdquo;
               </p>
             </div>
-
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-[#D4A843] hover:text-[#E0B558] transition-colors text-sm mt-4"
-            >
-              <BookOpen className="w-4 h-4" />
-              Voltar ao estudo
-            </Link>
           </motion.div>
         </div>
       </main>

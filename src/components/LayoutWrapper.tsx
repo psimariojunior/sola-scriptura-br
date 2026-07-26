@@ -1,6 +1,9 @@
 'use client';
 
+import Link from 'next/link';
 import { Suspense, useEffect, useState, lazy } from 'react';
+import { motion } from 'framer-motion';
+import { Heart } from 'lucide-react';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { EstudosProvider } from '@/components/EstudosProvider';
 import { AuthProvider } from '@/contexts/AuthContext';
@@ -107,6 +110,38 @@ function PageViewTracker() {
   return null;
 }
 
+function FloatingDonateButton() {
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setHasAnimated(true), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <motion.div
+      className="fixed bottom-20 right-4 z-30 sm:bottom-6"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 1 }}
+    >
+      <Link
+        href="/ofertas"
+        className="group flex items-center gap-2 px-3 py-2.5 rounded-full bg-amber-500/90 hover:bg-amber-500 text-white shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-300 hover:scale-105"
+        aria-label="Apoie o projeto"
+      >
+        <motion.span
+          animate={!hasAnimated ? { scale: [1, 1.2, 1] } : {}}
+          transition={{ duration: 1.5, repeat: hasAnimated ? 0 : Infinity, ease: 'easeInOut' }}
+        >
+          <Heart className="w-4 h-4 fill-current" />
+        </motion.span>
+        <span className="hidden sm:inline text-xs font-semibold">Apoie</span>
+      </Link>
+    </motion.div>
+  );
+}
+
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -153,6 +188,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               <Toaster />
               <PageTransition><ErrorBoundary>{children}</ErrorBoundary></PageTransition>
               <BackToTop />
+              <FloatingDonateButton />
               <Suspense fallback={null}>
                 <BottomNavBar />
                 <AIPainelLateral />

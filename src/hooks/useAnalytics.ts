@@ -4,10 +4,10 @@ import { useCallback, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import {
   trackPageView,
-  trackFeatureUsage,
+  trackFeatureUse,
   trackSearch,
-  getStats,
-  getSearchHistory,
+  trackBibleRead as trackBibleReadEvent,
+  getAnalyticsSummary,
   clearAnalytics,
 } from '@/lib/analytics';
 
@@ -19,23 +19,23 @@ export function useAnalytics() {
   }, [pathname]);
 
   const trackBibleTranslation = useCallback((translation: string) => {
-    trackFeatureUsage('bible', 'select_translation', { translation });
+    trackFeatureUse('bible:select_translation', { translation });
   }, []);
 
   const trackBibleRead = useCallback((book: string, chapter: number, translation: string) => {
-    trackFeatureUsage('bible', 'read_chapter', { book, chapter: String(chapter), translation });
+    trackBibleReadEvent(book, chapter, translation);
   }, []);
 
   const trackToolUse = useCallback((tool: string, action = 'use') => {
-    trackFeatureUsage('tool', action, { tool });
+    trackFeatureUse(`tool:${tool}`, { action });
   }, []);
 
   const trackSearchQuery = useCallback((query: string, resultCount?: number) => {
-    trackSearch(query, resultCount);
+    trackSearch(query, resultCount ?? 0);
   }, []);
 
   const trackFeature = useCallback((feature: string, action: string) => {
-    trackFeatureUsage(feature, action);
+    trackFeatureUse(`${feature}:${action}`);
   }, []);
 
   return {
@@ -44,8 +44,7 @@ export function useAnalytics() {
     trackToolUse,
     trackSearchQuery,
     trackFeature,
-    getStats,
-    getSearchHistory,
+    getStats: getAnalyticsSummary,
     clearAnalytics,
   };
 }

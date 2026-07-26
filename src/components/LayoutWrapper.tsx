@@ -16,10 +16,12 @@ import { trackPageView } from '@/lib/analytics';
 import { registerServiceWorker } from '@/lib/offline';
 import { authService } from '@/lib/auth';
 import { initSentry } from '@/lib/sentry';
-import { startAutoSync } from '@/lib/syncManager';
+import { startAutoSync, syncAll } from '@/lib/supabaseSync';
 import { onOfflineStatusChange } from '@/lib/offlineStorage';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import PageTransition from '@/components/PageTransition';
+import { SkipLinks } from '@/components/SkipLinks';
+import { checkAndSendPlanReminder } from '@/lib/pushPlanReminder';
 import '@/lib/i18n';
 
 const MobilePerformanceMonitor = lazy(() => import('@/components/MobilePerformanceMonitor'));
@@ -143,9 +145,10 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   useEffect(() => {
     const initSync = () => {
       startAutoSync();
+      checkAndSendPlanReminder();
       onOfflineStatusChange((offline) => {
         if (!offline) {
-          import('@/lib/syncManager').then(({ syncAll }) => syncAll());
+          syncAll();
         }
       });
     };
@@ -159,9 +162,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   return (
     <ThemeProvider>
       <AuthProvider>
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-primary-foreground focus:text-sm focus:font-medium">
-          Pular para o conteúdo principal
-        </a>
+        <SkipLinks />
         <ServiceWorkerRegistration />
         <SincronizacaoAcessoTotal />
         <PageViewTracker />

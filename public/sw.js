@@ -1,8 +1,10 @@
-const CACHE_VERSION = 'v5';
+const CACHE_VERSION = 'v6';
 const STATIC_CACHE = `ssb-static-${CACHE_VERSION}`;
 const API_CACHE = `ssb-api-${CACHE_VERSION}`;
 const BIBLE_CACHE = `ssb-bible-${CACHE_VERSION}`;
 const PAGES_CACHE = `ssb-pages-${CACHE_VERSION}`;
+const VISITED_PAGES_CACHE = `ssb-visited-pages-${CACHE_VERSION}`;
+const BIBLE_OFFLINE_CACHE = `ssb-bible-offline-${CACHE_VERSION}`;
 const DB_NAME = 'ssb_offline';
 const DB_VERSION = 2;
 const STORE_CHAPTERS = 'chapters';
@@ -74,7 +76,14 @@ self.addEventListener('activate', (event) => {
       .then((keys) =>
         Promise.all(
           keys
-            .filter((key) => key !== STATIC_CACHE && key !== API_CACHE && key !== BIBLE_CACHE && key !== PAGES_CACHE)
+            .filter((key) =>
+              key !== STATIC_CACHE &&
+              key !== API_CACHE &&
+              key !== BIBLE_CACHE &&
+              key !== PAGES_CACHE &&
+              key !== VISITED_PAGES_CACHE &&
+              key !== BIBLE_OFFLINE_CACHE
+            )
             .map((key) => caches.delete(key))
         )
       )
@@ -136,6 +145,9 @@ async function pageCacheFirst(request) {
     if (response.ok) {
       const cache = await caches.open(PAGES_CACHE);
       cache.put(request, response.clone());
+
+      const visitedCache = await caches.open(VISITED_PAGES_CACHE);
+      visitedCache.put(response.url, response.clone());
     }
     return response;
   } catch {
@@ -222,6 +234,14 @@ self.addEventListener('message', (event) => {
   if (data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
+
+  if (data.type === 'DOWNLOAD_BIBLE_CHAPTER') {
+    event.waitUntil(downloadBibleChapter(data));
+  }
+
+  if (data.type === 'GET_OFFLINE_STATS') {
+    event.waitUntil(getOfflineStats(event));
+  }
 });
 
 async function cacheTranslationFromClient(data) {
@@ -252,6 +272,46 @@ async function cacheTranslationFromClient(data) {
         reject(tx.error);
       };
     });
+  } catch {}
+}
+
+async function downloadBibleChapter(data) {
+  const { livro, capitulo, traducao, verses } = data;
+  if (!livro || !capitulo || !traducao || !verses) return;
+
+  try {
+    const db = await openDB();
+    const tx = db.transaction(STORE_CHAPTERS, 'readwrite');
+    tx.objectStore(STORE_CHAPTERS).put({
+      key: `${traducao}:${livro}:${capitulo}`,
+      livro,
+      capitulo,
+      traducao,
+      verses,
+      timestamp: Date.now(),
+    });
+    await new Promise((resolve, reject) => {
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+    db.close();
+  } catch {}
+}
+
+async function getOfflineStats(event) {
+  try {
+    const db = await openDB();
+    const count = await new Promise((resolve) => {
+      const tx = db.transaction(STORE_CHAPTERS, 'readonly');
+      const req = tx.objectStore(STORE_CHAPTERS).count();
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => resolve(0);
+    });
+    db.close();
+    const client = event.source;
+    if (client) {
+      client.postMessage({ type: 'OFFLINE_STATS', chaptersCount: count });
+    }
   } catch {}
 }
 
@@ -329,9 +389,107 @@ async function storeNoteOffline(data) {
   } catch {}
 }
 
+async function syncAllData() {
+  const db = await openDB();
+
+  try {
+    const pendingFavorites = await new Promise((resolve) => {
+      const tx = db.transaction(STORE_META, 'readonly');
+      const req = tx.objectStore(STORE_META).get('pendingFavorites');
+      req.onsuccess = () => resolve(req.result?.value || []);
+      req.onerror = () => resolve([]);
+    });
+
+    for (const fav of pendingFavorites) {
+      try {
+        await fetch('/api/v1/favoritos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(fav),
+        });
+      } catch {}
+    }
+
+    if (pendingFavorites.length) {
+      const clearTx = db.transaction(STORE_META, 'readwrite');
+      clearTx.objectStore(STORE_META).delete('pendingFavorites');
+      await new Promise((resolve, reject) => {
+        clearTx.oncomplete = () => resolve();
+        clearTx.onerror = () => reject(clearTx.error);
+      });
+    }
+  } catch {}
+
+  try {
+    const pendingNotes = await new Promise((resolve) => {
+      const tx = db.transaction(STORE_META, 'readonly');
+      const req = tx.objectStore(STORE_META).get('pendingNotes');
+      req.onsuccess = () => resolve(req.result?.value || []);
+      req.onerror = () => resolve([]);
+    });
+
+    for (const note of pendingNotes) {
+      try {
+        await fetch('/api/v1/notas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(note),
+        });
+      } catch {}
+    }
+
+    if (pendingNotes.length) {
+      const clearTx = db.transaction(STORE_META, 'readwrite');
+      clearTx.objectStore(STORE_META).delete('pendingNotes');
+      await new Promise((resolve, reject) => {
+        clearTx.oncomplete = () => resolve();
+        clearTx.onerror = () => reject(clearTx.error);
+      });
+    }
+  } catch {}
+
+  try {
+    const pendingChapters = await new Promise((resolve) => {
+      const tx = db.transaction(STORE_META, 'readonly');
+      const req = tx.objectStore(STORE_META).get('pendingChapters');
+      req.onsuccess = () => resolve(req.result?.value || []);
+      req.onerror = () => resolve([]);
+    });
+
+    for (const ch of pendingChapters) {
+      try {
+        await fetch('/api/v1/biblia/capitulos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(ch),
+        });
+      } catch {}
+    }
+
+    if (pendingChapters.length) {
+      const clearTx = db.transaction(STORE_META, 'readwrite');
+      clearTx.objectStore(STORE_META).delete('pendingChapters');
+      await new Promise((resolve, reject) => {
+        clearTx.oncomplete = () => resolve();
+        clearTx.onerror = () => reject(clearTx.error);
+      });
+    }
+  } catch {}
+
+  db.close();
+
+  const clients = await self.clients.matchAll();
+  for (const client of clients) {
+    client.postMessage({ type: 'SYNC_COMPLETE' });
+  }
+}
+
 self.addEventListener('sync', (event) => {
   if (event.tag === 'sync-notes') {
     event.waitUntil(syncPendingNotes());
+  }
+  if (event.tag === 'sync-all-data') {
+    event.waitUntil(syncAllData());
   }
 });
 
@@ -378,6 +536,24 @@ self.addEventListener('push', (event) => {
     };
   }
 
+  if (payload.type === 'plan-reminder') {
+    event.waitUntil(
+      self.registration.showNotification(payload.title || 'Plano de Leitura', {
+        body: payload.body || 'Você está atrasado no seu plano de leitura.',
+        icon: '/icon-192.png',
+        badge: '/icon-192.png',
+        tag: 'plan-reminder',
+        data: { url: payload.url || '/planos' },
+        actions: [
+          { action: 'open-plan', title: 'Abrir Plano' },
+          { action: 'dismiss', title: 'Dispensar' },
+        ],
+        vibrate: [200, 100, 200],
+      })
+    );
+    return;
+  }
+
   event.waitUntil(
     self.registration.showNotification(payload.title || 'Sola Scriptura', {
       body: payload.body || 'Nova notificação',
@@ -400,7 +576,10 @@ self.addEventListener('notificationclick', (event) => {
   const action = event.action;
   if (action === 'dismiss') return;
 
-  const url = event.notification.data?.url || '/biblia';
+  let url = event.notification.data?.url || '/biblia';
+  if (action === 'open-plan') {
+    url = '/planos';
+  }
 
   event.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clients) => {

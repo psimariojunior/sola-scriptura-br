@@ -212,7 +212,7 @@ function BottomNavBarInner() {
       {/* Barra inferior */}
       <nav
         aria-label="Navegacao mobile"
-        className={`fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-[#0A0908] transition-transform duration-300 ${hidden ? 'translate-y-full' : 'translate-y-0'}`}
+        className={`fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-background/95 backdrop-blur-xl transition-transform duration-300 ${hidden ? 'translate-y-full' : 'translate-y-0'}`}
         style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       >
         <div className="flex items-center justify-around h-[60px]">
@@ -230,13 +230,13 @@ function BottomNavBarInner() {
                   aria-label="Mais opcoes"
                   aria-expanded={showMore}
                   className={`relative flex flex-col items-center justify-center flex-1 h-full transition-colors ${
-                    active ? 'text-[#D4A843]' : 'text-gray-500'
+                    active ? 'text-primary' : 'text-muted-foreground'
                   }`}
                 >
                   <tab.icon className="w-5 h-5 mb-1" strokeWidth={active ? 2 : 1.5} />
                   <span className="text-[10px] font-medium">{tab.label}</span>
                   {active && (
-                    <div className="absolute bottom-[54px] w-8 h-[2px] bg-[#D4A843] rounded-full" />
+                    <div className="absolute top-0 w-8 h-[2px] bg-primary rounded-full" />
                   )}
                 </button>
               );
@@ -248,13 +248,13 @@ function BottomNavBarInner() {
                 href={tab.href}
                 aria-label={tab.label}
                 className={`relative flex flex-col items-center justify-center flex-1 h-full transition-colors ${
-                  active ? 'text-[#D4A843]' : 'text-gray-500'
+                  active ? 'text-primary' : 'text-muted-foreground'
                 }`}
               >
                 <tab.icon className="w-5 h-5 mb-1" strokeWidth={active ? 2 : 1.5} />
                 <span className="text-[10px] font-medium">{tab.label}</span>
                 {active && (
-                  <div className="absolute bottom-[54px] w-8 h-[2px] bg-[#D4A843] rounded-full" />
+                  <div className="absolute top-0 w-8 h-[2px] bg-primary rounded-full" />
                 )}
               </Link>
             );

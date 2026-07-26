@@ -215,7 +215,7 @@ export function BibleCourses() {
         </div>
         <p className="text-xs text-[var(--content-muted)]">Cursos completos com certificado. Estude no seu ritmo, sem custo.</p>
       </div>
-      <div className="grid grid-cols-4 gap-2 p-4 border-b border-[var(--border)]/20">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-4 border-b border-[var(--border)]/20">
         <div className="text-center p-2 rounded-lg bg-[var(--surface-sunken)]">
           <BarChart3 className="w-4 h-4 mx-auto mb-1 text-[var(--brand)]" />
           <p className="text-lg font-bold">{CURSOS.length}</p>

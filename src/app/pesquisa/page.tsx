@@ -296,10 +296,10 @@ export default function PesquisaPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-20 pb-16 px-6">
+      <main className="pt-20 pb-24 sm:pb-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-8">
-            <h1 className="font-display text-4xl md:text-5xl font-light mb-2">Pesquisa Bíblica</h1>
+            <h1 className="font-display text-3xl md:text-5xl font-light mb-2">Pesquisa Bíblica</h1>
             <p className="text-muted-foreground">Busque por palavras-chave em todas as traduções disponíveis</p>
           </div>
 
@@ -461,7 +461,7 @@ export default function PesquisaPage() {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Pesquisar nas Escrituras..."
-                    className="w-full pl-12 pr-24 py-3 bg-transparent text-lg font-serif-body focus:outline-none"
+                    className="w-full pl-12 pr-14 sm:pr-24 py-3 bg-transparent text-lg font-serif-body focus:outline-none"
                     autoFocus
                   />
                   <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">

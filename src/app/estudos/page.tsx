@@ -210,7 +210,7 @@ export default function EstudosPage() {
                 </div>
                 <h1 className="font-display text-3xl md:text-4xl font-light">Biblioteca de Estudos</h1>
               </div>
-              <p className="text-muted-foreground ml-13 text-sm">
+              <p className="text-muted-foreground ml-0 sm:ml-13 text-sm">
                 Sua biblioteca de pesquisa: estudos por livro, teologia sistemática, teólogos e seus estudos pessoais
               </p>
             </div>
@@ -623,7 +623,7 @@ export default function EstudosPage() {
           {/* ═══ MEUS ESTUDOS ═══ */}
           {categoriaAtiva === 'meusestudos' && (
             <div>
-              <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-6">
                 <Link href="/estudos" className="sola-card p-4 text-center hover:shadow-md transition-all">
                   <p className="font-display text-2xl font-light text-primary">{stats.total}</p>
                   <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-1">Total</p>
@@ -648,7 +648,7 @@ export default function EstudosPage() {
               </div>
 
               <div className="flex items-center gap-4 mb-4 flex-wrap">
-                <div className="relative flex-1 min-w-[200px]">
+                <div className="relative flex-1 min-w-0 sm:min-w-[200px]">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <input
                     type="text"

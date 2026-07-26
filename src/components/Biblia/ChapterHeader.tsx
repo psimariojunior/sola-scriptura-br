@@ -85,7 +85,7 @@ export function ChapterHeader({
           </div>
 
           <h1
-            className="animate-slide-up font-display text-5xl sm:text-6xl md:text-7xl font-light text-[var(--brand-default)] leading-[1.05] tracking-tight"
+            className="animate-slide-up font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-[var(--brand-default)] leading-[1.05] tracking-tight"
             style={{ animationDelay: '0.1s' }}
           >
             {livroNome}
@@ -94,7 +94,7 @@ export function ChapterHeader({
           <Ornament />
 
           <div
-            className="animate-fade-in flex items-center justify-center gap-4 sm:gap-5 text-[12px] sm:text-[13px] text-[var(--content-secondary)]"
+            className="animate-fade-in flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-5 text-[12px] sm:text-[13px] text-[var(--content-secondary)]"
             style={{ animationDelay: '0.55s' }}
           >
             <span className="flex items-center gap-1.5">

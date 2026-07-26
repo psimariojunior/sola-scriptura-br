@@ -125,7 +125,7 @@ export default function BibliaPage() {
   if (ui.zenMode && nav.temDados) {
     return (
       <div className="fixed inset-0 z-50 bg-[var(--bg)] overflow-y-auto">
-        <div className="max-w-[700px] mx-auto px-6 py-16">
+        <div className="max-w-[700px] mx-auto px-4 sm:px-6 py-12 sm:py-16 pb-safe">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
               <button onClick={() => ui.setZenMode(false)} className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors" title="Sair do modo zen (Esc)"><X className="w-5 h-5" /></button>
@@ -155,7 +155,7 @@ export default function BibliaPage() {
       <Header /><OfflineBanner />
       <main id="main-content" className="pt-16">
         <div className="hidden sm:block px-4 sm:px-6 py-2 bg-[var(--surface-raised)]/80 border-b border-[var(--border)]/40 backdrop-blur-sm"><Breadcrumbs items={[{ label: 'Início', href: '/' }, { label: 'Bíblia' }]} /></div>
-        <div className="flex min-h-[100dvh] md:h-[calc(100vh-7rem-40px)] relative">
+        <div className="flex min-h-[100dvh] md:h-[calc(100vh-7rem-40px)] relative overflow-hidden">
           {ui.sidebarOpen && (
             <aside className="sidebar-enter hidden lg:block w-64 border-r border-[var(--border)] bg-[var(--surface-raised)] overflow-y-auto shrink-0">
               <div className="p-4 h-full flex flex-col">
@@ -171,7 +171,7 @@ export default function BibliaPage() {
                 <div className="flex items-center gap-1">
                   <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform"><ChevronLeft className="w-4 h-4" /></button>
                   <div className="relative">
-                    <button onClick={() => ui.setChapterGridOpen(!ui.chapterGridOpen)} className="px-2.5 py-1 rounded-md bg-[var(--surface-sunken)] border border-[var(--border)]/40 min-w-[120px] text-center hover:bg-[var(--surface-raised)] transition-colors cursor-pointer">
+                    <button onClick={() => ui.setChapterGridOpen(!ui.chapterGridOpen)} className="px-2.5 py-1 rounded-md bg-[var(--surface-sunken)] border border-[var(--border)]/40 min-w-[100px] sm:min-w-[120px] text-center hover:bg-[var(--surface-raised)] transition-colors cursor-pointer">
                       <span className="text-xs font-semibold text-[var(--content-primary)]">{nav.livro.nome}</span>
                       <span className="text-[var(--brand-default)] font-bold ml-1.5 tabular-nums">{nav.capituloIdx + 1}</span>
                       <span className="text-[var(--content-muted)] font-normal text-[10px] ml-1">/{nav.livro.totalCapitulos}</span>
@@ -231,7 +231,7 @@ export default function BibliaPage() {
               <SettingsPanel open={ui.showSettings} fontSize={ui.fontSize} onFontSizeChange={ui.setFontSize} showDiff={ui.showDiff} onToggleDiff={() => ui.setShowDiff(!ui.showDiff)} showComparison={nav.viewMode === 'comparison' && nav.data.length >= 2} fontFamily={ui.fontFamily} onFontFamilyChange={ui.setFontFamily} lineSpacing={ui.lineSpacing} onLineSpacingChange={ui.setLineSpacing} />
             </div>
             <div ref={nav.mainRef} className="flex-1 overflow-y-auto" style={{ contain: 'layout' }}>
-              <div className="max-w-[min(900px,100%-2rem)] mx-auto px-4 sm:px-6 py-6 sm:py-10">
+              <div className="max-w-[min(900px,100%-2rem)] mx-auto px-4 sm:px-6 py-6 sm:py-10 pb-24 md:pb-10">
                 {ui.showPlan && <ReadingPlanBanner />}
                 {nav.loading && !nav.temDados ? (
                   <div className="space-y-4 chapter-enter"><div className="skeleton skeleton-title w-48 mx-auto animate-pulse" /><div className="ornament w-20 mx-auto mb-8 opacity-30" />

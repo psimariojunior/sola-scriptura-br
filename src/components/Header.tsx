@@ -329,7 +329,7 @@ function HeaderInner() {
                   </span>
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-[640px] p-0" sideOffset={8}>
+              <DropdownMenuContent align="start" className="w-[min(640px,calc(100vw-2rem))] p-0" sideOffset={8}>
                 <QuickBookSwitcher onSelect={handleQuickBook} currentPath={pathname} />
               </DropdownMenuContent>
             </DropdownMenu>
@@ -357,7 +357,7 @@ function HeaderInner() {
                   )}
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-[520px] p-2" sideOffset={8}>
+              <DropdownMenuContent align="end" className="w-[min(520px,calc(100vw-1rem))] p-2" sideOffset={8}>
                 {maisGrupos.map((grupo) => (
                   <div key={grupo.titulo} className="mb-2">
                     <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60">
@@ -646,12 +646,12 @@ function HeaderInner() {
               </TooltipContent>
             </Tooltip>
             {isAutenticado && (
-              <div className="relative inline-flex">
+              <Link href="/conta" className="relative inline-flex">
                 <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center text-sm font-semibold text-primary mr-1">
                   {userInitial}
                 </div>
                 <span className="avatar-online-dot" aria-hidden="true" />
-              </div>
+              </Link>
             )}
             {isInstallable && (
               <Tooltip>

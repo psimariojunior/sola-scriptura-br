@@ -877,8 +877,8 @@ html {
 }
 
 .splash-book {
-  width: 200px;
-  height: 280px;
+  width: min(200px, 50vw);
+  height: min(280px, 60vh);
   position: relative;
   transform-style: preserve-3d;
   animation: splashBookFade 1s ease-out 3s forwards;
@@ -1007,7 +1007,7 @@ html {
 
 .splash-title h1 {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 3rem;
+  font-size: clamp(1.5rem, 8vw, 3rem);
   font-weight: 300;
   letter-spacing: 0.15em;
   line-height: 1;
@@ -1023,7 +1023,7 @@ html {
   font-style: italic;
   font-weight: 500;
   color: #d4b87a;
-  font-size: 2.2rem;
+  font-size: clamp(1.2rem, 6vw, 2.2rem);
 }
 
 .splash-sub {
@@ -1690,8 +1690,8 @@ body.theme-fading {
   }
 }
 
-/* Touch-friendly tap targets for mobile */
-@media (max-width: 639px) {
+/* Touch-friendly tap targets for mobile + tablet touch */
+@media (max-width: 767px), (pointer: coarse) {
   button, a, [role="button"] {
     min-height: 44px;
   }
@@ -2524,6 +2524,10 @@ textarea:focus-visible,
 }
 
 @media (max-width: 767px) {
+  /* Ensure main content is not hidden behind BottomNavBar */
+  main {
+    padding-bottom: max(var(--mobile-bottom-offset), 1rem);
+  }
   /* Sobrescrever pb-16 nas paginas para incluir espaco do BottomNavBar + safe area */
   main[class*="pb-16"] {
     padding-bottom: var(--mobile-bottom-offset) !important;

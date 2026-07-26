@@ -100,7 +100,7 @@ export default function IaPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
-            <div className="h-[60vh] min-h-[400px]">
+            <div className="h-[60vh] min-h-[300px] sm:min-h-[400px]">
               {temAcesso ? (
                 <AIChat tradicao={tradicao} onTradicaoChange={setTradicao} className="h-full" />
               ) : (

@@ -75,10 +75,10 @@ export function VoiceSearchButton({ onResult, className, size = 'md' }: VoiceSea
       <AnimatePresence>
         {isListening && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, x: 8 }}
-            animate={{ opacity: 1, scale: 1, x: 8 }}
-            exit={{ opacity: 0, scale: 0.8, x: 8 }}
-            className="absolute left-full ml-2 flex items-center gap-2 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl px-3 py-2 shadow-xl whitespace-nowrap"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            className="absolute right-0 bottom-full mb-2 sm:right-auto sm:left-full sm:bottom-auto sm:ml-2 sm:mb-0 flex items-center gap-2 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl px-3 py-2 shadow-xl whitespace-nowrap"
           >
             <WaveformAnimation />
             {transcript && (

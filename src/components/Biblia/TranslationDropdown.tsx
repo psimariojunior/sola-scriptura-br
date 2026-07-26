@@ -38,14 +38,14 @@ export function TranslationDropdown({ open, onToggle, onClose, selectedTrads, on
         aria-expanded={open}
       >
         <BookText className="w-3.5 h-3.5" />
-        <span className="tabular-nums">{selectedTrads.map(t => labelMap[t]).join(' . ')}</span>
+        <span className="tabular-nums truncate max-w-[100px] sm:max-w-none">{selectedTrads.map(t => labelMap[t]).join(' . ')}</span>
         {selectedTrads.length > 1 && <span className="text-[10px] px-1 rounded-full bg-[var(--brand-default)] text-[var(--brand-contrast)]">{selectedTrads.length}</span>}
       </button>
       {open && (
         <>
           <div className="fixed inset-0 z-30" onClick={onClose} />
           <div
-            className="absolute right-0 top-full mt-2 z-40 w-72 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-2 max-h-[70vh] overflow-y-auto animate-scale-in"
+            className="absolute right-0 top-full mt-2 z-40 w-[min(288px,calc(100vw-1rem))] bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-2 max-h-[70vh] overflow-y-auto animate-scale-in"
           >
             <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] px-3 py-1.5">Traducoes</p>
             {TRAD_IDS.map(id => {

@@ -34,7 +34,7 @@ export default function CursosPage() {
                 </div>
                 <h1 className="font-display text-3xl md:text-4xl font-light">Seminário Bíblico Gratuito</h1>
               </div>
-              <p className="text-muted-foreground ml-13 text-sm">
+              <p className="text-muted-foreground ml-0 sm:ml-13 text-sm">
                 Cursos completos com certificado. Estude no seu ritmo, sem custo.
               </p>
             </div>

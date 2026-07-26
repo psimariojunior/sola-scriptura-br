@@ -271,7 +271,7 @@ export default function BibliaPage() {
                             try { localStorage.setItem('ssb_collab_share_pending', JSON.stringify(data)); } catch {}
                             window.location.href = '/estudo-colaborativo';
                           }}
-                          onAbrirPainel={() => { setPainelVersiculoAberto(true); verse.setVersiculoSelecionado(null); }}
+                          onAbrirPainel={() => { setPainelVersiculoAberto(true); }}
                           />);
                       })}</div>
                     </div>))}

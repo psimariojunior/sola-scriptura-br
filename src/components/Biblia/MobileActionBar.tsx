@@ -136,7 +136,7 @@ function MobileActionBarInner({
                   </div>
                 </div>
               )}
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-4 gap-1.5">
                 <ActionTile
                   icon={Heart}
                   label="Favorito"
@@ -229,7 +229,7 @@ function ActionTile({ icon: Icon, label, active, activeColor, onClick }: ActionT
     <button
       onClick={onClick}
       className={cn(
-        'flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl active:scale-95 transition-all duration-200',
+        'flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl active:scale-95 transition-all duration-200',
         active
           ? cn('text-white', activeColor || 'bg-[var(--brand-default)]')
           : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:bg-[var(--brand-subtle)] hover:text-[var(--brand-default)]'

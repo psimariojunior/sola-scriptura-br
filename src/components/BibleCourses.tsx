@@ -207,7 +207,7 @@ export function BibleCourses() {
   }
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col">
       <div className="p-4 border-b border-[var(--border)]/40">
         <div className="flex items-center gap-2 mb-1">
           <GraduationCap className="w-5 h-5 text-[var(--brand)]" />
@@ -237,7 +237,7 @@ export function BibleCourses() {
           <p className="text-[10px] text-[var(--content-muted)]">Quizzes</p>
         </div>
       </div>
-      <ScrollArea className="flex-1">
+      <ScrollArea>
         <div className="p-3 space-y-3">
           {CURSOS.map((curso) => {
             const totalAulas = getTotalAulas(curso);
@@ -321,7 +321,7 @@ function CursoDetailView({ curso, progresso, onAulaClick, onBack, onCertificado 
           </Button>
         )}
       </div>
-      <ScrollArea className="flex-1">
+      <ScrollArea>
         <div className="p-3 space-y-2">
           {curso.módulos.map((mod) => {
             const modAulasCompletas = mod.aulas.filter(a => progresso?.aulasCompletas.includes(a.id)).length;
@@ -391,7 +391,7 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso }: {
           {completa && <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-500">Concluída</span>}
         </div>
       </div>
-      <ScrollArea className="flex-1">
+      <ScrollArea>
         <div className="p-4">
           {aula.tipo === 'texto' && aula.conteúdo && (
             <div className="prose prose-sm dark:prose-invert max-w-none">

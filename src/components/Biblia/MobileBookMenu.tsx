@@ -116,7 +116,7 @@ export function MobileBookMenu({ open, onClose, livroIdx, onSelect, onSelectChap
                 {renderBookList(LIVROS_NT, 'Novo Testamento', ntExpanded, () => setNtExpanded(p => !p))}
               </>
             ) : (
-              <div className="grid grid-cols-6 gap-1.5">
+              <div className="grid grid-cols-5 sm:grid-cols-6 gap-1.5">
                 {Array.from({ length: selectedBook.totalCapitulos }, (_, i) => i + 1).map(num => (
                   <button
                     key={num}

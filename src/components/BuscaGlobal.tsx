@@ -404,7 +404,7 @@ export function BuscaGlobal({ open, onOpenChange }: BuscaGlobalProps) {
                 </CommandList>
               </Command>
 
-              <div className="flex items-center gap-4 px-5 py-2.5 border-t border-border/30 text-[11px] text-muted-foreground">
+              <div className="flex items-center justify-between gap-2 px-3 sm:px-5 py-2 border-t border-border/30 text-[10px] sm:text-[11px] text-muted-foreground flex-wrap">
                 <span className="flex items-center gap-1">
                   <kbd className="px-1 py-0.5 border border-border/50 rounded bg-muted/50 font-mono text-[10px]">↑↓</kbd>
                   navegar

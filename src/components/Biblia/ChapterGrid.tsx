@@ -19,7 +19,7 @@ export function ChapterGrid({ open, onClose, totalCapitulos, capituloAtual, onSe
             onClick={onClose}
           />
           <div
-            className="absolute left-1/2 -translate-x-1/2 top-full mt-2 z-50 w-80 max-w-[90vw] bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-3 animate-slide-up"
+            className="absolute left-0 sm:left-1/2 sm:-translate-x-1/2 top-full mt-2 z-50 w-80 max-w-[90vw] bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-3 animate-slide-up"
           >
             <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-2 px-1">
               Selecione o capítulo

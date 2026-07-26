@@ -190,7 +190,7 @@ export default function HomeClient() {
             </motion.div>
 
             <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="wordmark text-[2.75rem] leading-[0.95] sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] mb-7 heading-premium">
+              className="wordmark text-[2rem] leading-[0.95] sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] mb-7 heading-premium">
               <span className="block">Estude a Bíblia</span>
               <span className="block"><span className="gradient-text-animated">em profundidade</span><span className="text-foreground">,</span></span>
               <span className="block italic text-foreground/85">gratuitamente.</span>

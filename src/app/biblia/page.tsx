@@ -165,13 +165,13 @@ export default function BibliaPage() {
             </aside>)}
           <div className="flex-1 flex flex-col min-w-0 relative overflow-hidden">
             <div className="border-b border-[var(--border)]/40 bg-[var(--surface-raised)]/95 backdrop-blur-sm sticky top-0 z-20">
-              <div className="px-3 sm:px-4 py-2.5 flex items-center gap-2 sm:gap-3">
+              <div className="px-3 sm:px-4 py-2.5 flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-hide">
                 <button onClick={() => ui.setMobileMenu(true)} className="lg:hidden touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]" aria-label="Abrir menu de livros"><BookOpen className="w-4 h-4" /></button>
                 <button onClick={() => ui.setSidebarOpen(!ui.sidebarOpen)} className="hidden lg:flex touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]"><ListFilter className="w-4 h-4" /></button>
                 <div className="flex items-center gap-1">
                   <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform"><ChevronLeft className="w-4 h-4" /></button>
                   <div className="relative">
-                    <button onClick={() => ui.setChapterGridOpen(!ui.chapterGridOpen)} className="px-2.5 py-1 rounded-md bg-[var(--surface-sunken)] border border-[var(--border)]/40 min-w-[100px] sm:min-w-[120px] text-center hover:bg-[var(--surface-raised)] transition-colors cursor-pointer">
+                    <button onClick={() => ui.setChapterGridOpen(!ui.chapterGridOpen)} className="px-2.5 py-1 rounded-md bg-[var(--surface-sunken)] border border-[var(--border)]/40 min-w-[80px] max-w-[130px] sm:min-w-[120px] sm:max-w-none text-center hover:bg-[var(--surface-raised)] transition-colors cursor-pointer truncate">
                       <span className="text-xs font-semibold text-[var(--content-primary)]">{nav.livro.nome}</span>
                       <span className="text-[var(--brand-default)] font-bold ml-1.5 tabular-nums">{nav.capituloIdx + 1}</span>
                       <span className="text-[var(--content-muted)] font-normal text-[10px] ml-1">/{nav.livro.totalCapitulos}</span>

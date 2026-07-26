@@ -143,7 +143,7 @@ export function SidePanel({
           className={cn(
             'fixed bottom-0 left-0 right-0 z-50',
             'bg-[var(--surface-raised)] rounded-t-2xl shadow-2xl',
-            'flex flex-col max-h-[60vh]'
+            'flex flex-col max-h-[60vh] min-h-[200px]'
           )}
         >
           <div className="flex justify-center pt-2 pb-1 shrink-0">

@@ -311,7 +311,7 @@ export const VerseCard = memo(function VerseCard({
         {showLongPressColor && (
           <div
             ref={colorRef}
-            className="absolute left-3 sm:left-4 top-full mt-1 z-30 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-xl p-2 flex gap-2"
+            className="absolute left-0 top-full mt-1 z-30 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-xl p-2 flex gap-1.5"
             onClick={(e) => e.stopPropagation()}
             onPointerDown={(e) => e.stopPropagation()}
           >
@@ -356,7 +356,7 @@ export const VerseCard = memo(function VerseCard({
                 <Palette className="w-4.5 h-4.5" />
               </button>
               {showMobileColor && (
-                <div className="absolute left-0 bottom-full mb-1.5 z-30 bg-[var(--surface-raised)] border border-[var(--border)] rounded-lg shadow-xl p-2 flex gap-1.5">
+                <div className="absolute left-0 bottom-full mb-1.5 z-30 bg-[var(--surface-raised)] border border-[var(--border)] rounded-lg shadow-xl p-2 flex gap-2">
                   {CORES.map((cor) => (
                     <button
                       key={cor}
@@ -366,7 +366,7 @@ export const VerseCard = memo(function VerseCard({
                         else setMarcador(livroAbreviacao, capitulo, numero, traducao, cor);
                         setShowMobileColor(false);
                       }}
-                      className={cn('w-7 h-7 rounded-full transition-all active:scale-90', corBgMapInline[cor], corAtual === cor && 'ring-2 ring-offset-1 ring-[var(--brand-default)]')}
+                      className={cn('w-8 h-8 rounded-full transition-all active:scale-90', corBgMapInline[cor], corAtual === cor && 'ring-2 ring-offset-1 ring-[var(--brand-default)]')}
                     />
                   ))}
                 </div>

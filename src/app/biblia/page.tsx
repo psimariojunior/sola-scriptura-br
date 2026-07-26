@@ -230,7 +230,7 @@ export default function BibliaPage() {
               </div>
               <SettingsPanel open={ui.showSettings} fontSize={ui.fontSize} onFontSizeChange={ui.setFontSize} showDiff={ui.showDiff} onToggleDiff={() => ui.setShowDiff(!ui.showDiff)} showComparison={nav.viewMode === 'comparison' && nav.data.length >= 2} fontFamily={ui.fontFamily} onFontFamilyChange={ui.setFontFamily} lineSpacing={ui.lineSpacing} onLineSpacingChange={ui.setLineSpacing} />
             </div>
-            <div ref={nav.mainRef} className="flex-1 overflow-y-auto" style={{ contain: 'layout' }}>
+            <div ref={nav.mainRef} className="flex-1 overflow-y-auto">
               <div className="max-w-[min(900px,100%-2rem)] mx-auto px-4 sm:px-6 py-6 sm:py-10 pb-24 md:pb-10">
                 {ui.showPlan && <ReadingPlanBanner />}
                 {nav.loading && !nav.temDados ? (

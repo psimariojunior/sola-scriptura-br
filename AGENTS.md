@@ -131,6 +131,7 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
 - `AdicionarAColecao.tsx` — Dropdown para adicionar verso a colecao
 - `NotificationSetup.tsx` — Gerenciamento de push notifications
 - `LayoutWrapper.tsx` — Wrapper com providers + SW registration + onboarding + bottom nav
+- `BuscaGlobal.tsx` — Command Palette (Ctrl+K) com busca, navegacao, acoes tema/idioma
 - `ErrorBoundary.tsx` — Tratamento de erros global com retry
 - `ShareProgress.tsx` — Compartilhar progresso (WhatsApp, copiar, imagem)
 - `CollaborativeStudy.tsx` — Sala de estudo compartilhado com apresentacao, chat, notas
@@ -195,8 +196,18 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
 - **Removido `force-dynamic`** do layout raiz — paginas podem ser SSG
 - **Lazy load**: recharts (200KB), estudos data (320KB), dicionario (570KB), personagens (76KB)
 - **Header leve**: importa `@/data/biblia/livros` (6KB) em vez do barrel (314KB com lexico)
-- **optimizePackageImports**: framer-motion + lucide-react (30-50% menor bundle)
+- **optimizePackageImports**: framer-motion + lucide-react + socket.io-client (30-50% menor bundle)
 - **Fontes**: reduzidas de 5→2 pesos cada (Inter, Cormorant, Spectral)
+- **LayoutWrapper**: framer-motion removido (FloatingDonateButton → CSS animations), Sentry/sync deferrados com requestIdleCallback
+- **Removido preconnect** desnecessario (fontes sao locais), html transition, scroll-behavior duplicado
+
+## i18n (Internacionalizacao)
+- **Sistema**: react-i18next + LanguageDetector, fallback PT
+- **Traducoes**: `src/locales/pt.json` (~600 linhas) + `src/locales/en.json` (~600 linhas)
+- **Componentes traduzidos**: Header navLinks, BottomNavBar tabs+grupos, HomeClient (hero, features, stats, sections), Footer (3 colunas, newsletter)
+- **Command Palette**: alternar tema (claro/escuro) e idioma (PT/EN) via Ctrl+K
+- **Status**: ~150 chaves traduzidas. Home, nav e footer 100%. Paginas internas ainda hardcoded PT
+- **Para completar**: traduzir paginas /biblia, /pesquisa, /estudos, /cursos, /ia, etc.
 
 ## PWA (Service Worker)
 - **sw.js** v3: corrige SW que nao instalava (favicon.ico removido do precache)

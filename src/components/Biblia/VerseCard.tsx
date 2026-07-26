@@ -89,19 +89,47 @@ export const VerseCard = memo(function VerseCard({
 
   useEffect(() => {
     if ((isCurrentAudioVerse || isFocused) && articleRef.current) {
-      articleRef.current.scrollIntoView({ behavior: 'smooth', block: isFocused ? 'center' : 'center' });
+      articleRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }, [isCurrentAudioVerse, isFocused]);
+
+  // Auto-scroll to selected verse on mobile so MobileActionBar doesn't cover it
+  useEffect(() => {
+    if (isSelected && articleRef.current) {
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+      if (isMobile) {
+        // Scroll the verse to the top third of the viewport so MobileActionBar (bottom sheet) doesn't cover it
+        requestAnimationFrame(() => {
+          if (articleRef.current) {
+            const rect = articleRef.current.getBoundingClientRect();
+            const viewportH = window.innerHeight;
+            // If verse is in the bottom half, scroll it up
+            if (rect.top > viewportH * 0.35) {
+              articleRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      }
+    }
+  }, [isSelected]);
 
   useEffect(() => {
     if (!isSelected) return;
     const handler = (e: MouseEvent | TouchEvent) => {
-      if (articleRef.current && !articleRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      // Don't deselect if clicking on MobileActionBar (z-30 overlay or z-50 panel)
+      const mobileBar = target instanceof HTMLElement && (
+        target.closest('[role="dialog"]') ||
+        target.closest('.fixed.z-30') ||
+        target.closest('.fixed.z-50')
+      );
+      if (mobileBar) return;
+      if (articleRef.current && !articleRef.current.contains(target)) {
         onSelect();
       }
     };
     document.addEventListener('mousedown', handler);
-    document.addEventListener('touchstart', handler);
+    document.addEventListener('touchstart', handler, { passive: true });
     return () => {
       document.removeEventListener('mousedown', handler);
       document.removeEventListener('touchstart', handler);

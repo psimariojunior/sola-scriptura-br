@@ -168,6 +168,7 @@ function VerseActionsInner({
         capítulo={capitulo}
         versículo={versiculo}
         texto={texto}
+        traducao={traducao}
       />
 
       <div className="relative" ref={colorRef}>

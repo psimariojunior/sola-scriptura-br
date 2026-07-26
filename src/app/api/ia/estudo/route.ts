@@ -106,7 +106,7 @@ INSTRUÇÕES DE FUNDAMENTAÇÃO (RAG):
       body: JSON.stringify({
         model,
         messages: [
-          { role: 'system', content: systemPrompt + instrucaoGrounding },
+          { role: 'system', content: systemPromptFinal + instrucaoGrounding },
           { role: 'user', content: `Gere um guia de estudo bíblico completo para: ${passagem}${tipo ? `\n\nFoco: ${tipo}` : ''}` },
         ],
         temperature: 0.4,
@@ -121,7 +121,7 @@ INSTRUÇÕES DE FUNDAMENTAÇÃO (RAG):
     }
 
     const dados = await resposta.json();
-    const estudo = dados.choices[0].message.content;
+    const estudo = dados.choices?.[0]?.message?.content ?? '';
 
     return NextResponse.json({
       passagem,

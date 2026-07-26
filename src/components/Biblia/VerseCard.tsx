@@ -65,6 +65,7 @@ export const VerseCard = memo(function VerseCard({
   isFocused,
   isFavorito,
   corMarca,
+  temAnotacao,
   copiedVerse,
   audioNatural,
   audio,
@@ -310,7 +311,7 @@ export const VerseCard = memo(function VerseCard({
               onComentarios={onComentarios}
               onEstudos={onToggleEstudo}
               onSelected={onSelect}
-              temAnotacao={false}
+              temAnotacao={temAnotacao}
               copyVerse={copyVerse}
               copiedVerse={copiedVerse}
               verseKey={verseKey}

@@ -90,6 +90,7 @@ export function useAudioCapitulo(
     setState((prev) => ({ ...prev, currentVerseIndex: 0, isPlaying: false }));
     accumulatedTimeRef.current = 0;
     cleanup();
+    return () => cleanup();
   }, [livro, capitulo]);
 
   useEffect(() => {

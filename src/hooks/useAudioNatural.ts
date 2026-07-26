@@ -463,7 +463,7 @@ export function useAudioNatural() {
 
   const toggleMute = useCallback((): void => {
     const newMuted = !state.isMuted;
-    if (state.engine === 'elevenlabs' && audioRef.current) {
+    if ((state.engine === 'elevenlabs' || state.engine === 'edge-tts') && audioRef.current) {
       audioRef.current.volume = newMuted ? 0 : state.volume;
     }
     setState((prev) => ({ ...prev, isMuted: newMuted }));
@@ -471,7 +471,7 @@ export function useAudioNatural() {
 
   const skipForward = useCallback(
     (seconds: number = 15): void => {
-      if (state.engine === 'elevenlabs' && audioRef.current) {
+      if ((state.engine === 'elevenlabs' || state.engine === 'edge-tts') && audioRef.current) {
         const newTime = Math.min(
           audioRef.current.currentTime + seconds,
           audioRef.current.duration || 0
@@ -485,7 +485,7 @@ export function useAudioNatural() {
 
   const skipBackward = useCallback(
     (seconds: number = 15): void => {
-      if (state.engine === 'elevenlabs' && audioRef.current) {
+      if ((state.engine === 'elevenlabs' || state.engine === 'edge-tts') && audioRef.current) {
         const newTime = Math.max(audioRef.current.currentTime - seconds, 0);
         audioRef.current.currentTime = newTime;
         setState((prev) => ({ ...prev, currentTime: newTime }));

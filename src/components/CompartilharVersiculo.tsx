@@ -12,12 +12,13 @@ interface CompartilharVersiculoProps {
   capítulo: number;
   versículo: number;
   texto: string;
+  traducao?: string;
 }
 
 const formatarReferencia = (livro: string, cap: number, ver: number) =>
   `${livro} ${cap}:${ver}`;
 
-export function CompartilharVersiculo({ livro, capítulo, versículo, texto }: CompartilharVersiculoProps) {
+export function CompartilharVersiculo({ livro, capítulo, versículo, texto, traducao }: CompartilharVersiculoProps) {
   const [copiado, setCopiado] = useState(false);
   const [aberto, setAberto] = useState(false);
   const [imagemAberta, setImagemAberta] = useState(false);
@@ -65,7 +66,7 @@ export function CompartilharVersiculo({ livro, capítulo, versículo, texto }: C
     capitulo: capítulo,
     versiculo: versículo,
     texto,
-    traducao: 'NVI',
+    traducao: traducao || 'NVI',
   };
 
   return (

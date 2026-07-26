@@ -96,9 +96,17 @@ export function usePWA(): UsePWAReturn {
     window.matchMedia('(display-mode: standalone)').addEventListener('change', handleDisplayModeChange);
 
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        setUpdateAvailable(true);
-      });
+      const handleControllerChange = () => setUpdateAvailable(true);
+      navigator.serviceWorker.addEventListener('controllerchange', handleControllerChange);
+
+      return () => {
+        window.removeEventListener('online', handleOnline);
+        window.removeEventListener('offline', handleOffline);
+        window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+        window.removeEventListener('appinstalled', handleAppInstalled);
+        window.matchMedia('(display-mode: standalone)').removeEventListener('change', handleDisplayModeChange);
+        navigator.serviceWorker.removeEventListener('controllerchange', handleControllerChange);
+      };
     }
 
     return () => {

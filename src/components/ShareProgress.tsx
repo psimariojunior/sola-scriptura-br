@@ -27,8 +27,19 @@ export function ShareProgress({ stats, onClose }: ShareProgressProps) {
 
 Estude a Bíblia em profundidade gratuitamente em solascripturabr.com.br`;
 
-  const copyText = useCallback(() => {
-    navigator.clipboard.writeText(shareText);
+  const copyText = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(shareText);
+    } catch {
+      const textarea = document.createElement('textarea');
+      textarea.value = shareText;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }, [shareText]);
@@ -72,7 +83,20 @@ Estude a Bíblia em profundidade gratuitamente em solascripturabr.com.br`;
       const y = 250 + i * 180;
       ctx.fillStyle = '#ffffff20';
       ctx.beginPath();
-      ctx.roundRect(100, y, 880, 140, 20);
+      if (ctx.roundRect) {
+        ctx.roundRect(100, y, 880, 140, 20);
+      } else {
+        ctx.moveTo(120, y);
+        ctx.lineTo(960, y);
+        ctx.arcTo(980, y, 980, y + 20, 20);
+        ctx.lineTo(980, y + 120);
+        ctx.arcTo(980, y + 140, 960, y + 140, 20);
+        ctx.lineTo(120, y + 140);
+        ctx.arcTo(100, y + 140, 100, y + 120, 20);
+        ctx.lineTo(100, y + 20);
+        ctx.arcTo(100, y, 120, y, 20);
+        ctx.closePath();
+      }
       ctx.fill();
 
       ctx.fillStyle = '#ffffff';

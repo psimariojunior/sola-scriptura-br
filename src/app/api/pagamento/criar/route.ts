@@ -8,14 +8,14 @@ import { registrarPedidoPendente } from '@/lib/supabaseServer';
 export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
-  let body: any;
+  let body: { email?: string };
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ erro: 'JSON inválido' }, { status: 400 });
   }
 
-  const email = (body?.email || '').toString().trim();
+  const email = String(body?.email || '').trim();
 
   // Gera o id de pedido (external_reference) que o webhook usara para casar o pagamento.
   const externalReference = `ssb_${Date.now()}_${Math.random()
@@ -65,8 +65,9 @@ export async function POST(request: NextRequest) {
       preference_id: data.id,
       external_reference: externalReference,
     });
-  } catch (err: any) {
-    console.error('Erro ao chamar Mercado Pago:', err?.message);
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error('Erro ao chamar Mercado Pago:', msg);
     return NextResponse.json(
       { erro: 'Erro de conexão com o gateway de pagamento' },
       { status: 502 },

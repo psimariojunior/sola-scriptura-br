@@ -112,7 +112,7 @@ async function chamarLLM(
   const dados = await resposta.json();
   return NextResponse.json({
     pergunta: consulta,
-    resposta: dados.choices[0].message.content,
+    resposta: dados.choices?.[0]?.message?.content ?? '',
     fontes: fontesRAG && fontesRAG.length > 0 ? fontesRAG.map((f) => ({ referencia: f, tipo: 'comentario' })) : [],
     fundamentado: !!(fontesRAG && fontesRAG.length > 0),
     tradicaoTeologica: tradicao || 'geral',

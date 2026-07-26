@@ -4,7 +4,7 @@
 Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem anuncios.**
 
 ## Stack
-- **Frontend**: Next.js 14, TypeScript, TailwindCSS, ShadCN, Framer Motion, Leaflet (mapas), Recharts
+- **Frontend**: Next.js 16, TypeScript, TailwindCSS, ShadCN, Framer Motion, Leaflet (mapas), Recharts
 - **Backend**: NestJS, TypeORM, PostgreSQL + pgvector + Elasticsearch, Redis, RabbitMQ
 - **Mobile**: Flutter WebView (mobile_app/) — carrega o site com splash screen dourada
 - **IA**: Groq (llama-3.3-70b-versatile, gratuito) + RAG vetorial (pgvector)
@@ -216,10 +216,11 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
 - **Cache strategies**: cacheFirst (static), networkFirst (API), staleWhileRevalidate (HTML)
 - **Manifest**: shortcuts (Biblia, Pesquisa, IA), id, apple-status-bar-style
 
-## Middleware (src/middleware.ts)
+## Middleware (src/proxy.ts)
 - `/admin` e `/conta` requerem cookie `ssb_token`
 - **Tudo mais e publico** — sem auth para conteudo biblico
 - Suporta token via cookie, query string (?token=), ou header (x-ssb-token)
+- Next.js 16 usa `proxy.ts` em vez de `middleware.ts`
 
 ## Temas (5)
 - `claro` (light): premium dourado/creme
@@ -255,6 +256,9 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
 - Edge TTS para audio gratuito
 - pgvector para busca semantica
 - Canvas API para criador de imagem social (sem biblioteca externa)
+- IndexedDB para persistencia de dados do usuario (favoritos, notas, colecoes, flashcards, gamificacao) com localStorage como fallback
+- `proxy.ts` (em vez de `middleware.ts`) para auth no Next.js 16
+- `syncAll` em `requestIdleCallback` para nao bloquear a UI na inicializacao
 
 ## Arquivos Relevantes
 - `src/app/layout.tsx` — Layout raiz (SEM force-dynamic, fontes reduzidas)
@@ -264,29 +268,38 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
 - `src/app/pesquisa/` — Pesquisa com busca semantica
 - `src/app/harmonia/` — Harmonia sinotica interativa (4 colunas)
 - `src/app/atlas/` — Atlas biblico (20 locais + mapa)
-- `src/app/favoritos/` — Versiculos favoritos
-- `src/app/notas/` — Anotacoes pessoais
-- `src/app/colecoes/` — Listas de versiculos
+- `src/app/favoritos/` — Versiculos favoritos (IndexedDB + localStorage)
+- `src/app/notas/` — Anotacoes pessoais (IndexedDB + localStorage)
+- `src/app/colecoes/` — Listas de versiculos (IndexedDB + localStorage)
 - `src/app/ofertas/` — Ofertas PIX
 - `src/components/` — 120+ componentes
 - `src/components/BottomNavBar.tsx` — Bottom tab bar mobile
-- `src/components/OnboardingTour.tsx` — Tour guiado
-- `src/components/VerseImageCreator.tsx` — Criador de imagem social
-- `src/components/InterlinearView.tsx` — Vista interlinear
-- `src/components/CrossReferenceExplorer.tsx` — Refs cruzadas visuais
-- `src/components/ComentarioInline.tsx` — Comentarios inline
-- `src/lib/audioCache.ts` — Cache de audio + preload
-- `src/lib/sinonimos.ts` — Sinonimos para busca semantica
+- `src/components/LayoutWrapper.tsx` — Wrapper com providers + sync + skip links + bottom nav
+- `src/components/SkipLinks.tsx` — Acessibilidade (skip navigation)
+- `src/components/AnalyticsDashboard.tsx` — Dashboard de analytics local
+- `src/components/ErrorBoundary.tsx` — Tratamento de erros global com retry
+- `src/lib/analytics.ts` — Analytics local (privacy-first, IndexedDB + localStorage)
+- `src/lib/supabaseSync.ts` — Sync unificado Supabase para favoritos/notas/colecoes/flashcards/progresso
+- `src/lib/pushPlanReminder.ts` — Push notifications inteligentes (lembrete de plano atrasado)
+- `src/lib/offlineStorage.ts` — Abstracao IndexedDB (capitulos, favoritos, notas, planos, configuracoes, colecoes, flashcards, gamificacao, marcas)
+- `src/lib/offline.ts` — Cache offline de capítulos biblicos + download de traduções via API Midvash
+- `src/lib/auth.ts` — Auth custom com cookie ssb_token + localStorage
+- `src/lib/llm-config.ts` — Config Groq (server-only)
+- `src/lib/rate-limit.ts` — Rate limiting (20/min IA)
+- `src/hooks/usePersistenciaLocal.ts` — Hooks unificados IndexedDB-first com localStorage fallback
+- `src/hooks/useFlashcards.ts` — Flashcards com repeticao espacada (SM-2) + IndexedDB sync
+- `src/lib/gamificationTracker.ts` — Tracker unificado de eventos de gamificação
+- `src/lib/pushNotifications.ts` — Notificações push (streak reminders, smart scheduling)
+- `src/data/biblia/livros` — Import leve (6KB) para Header
+- `src/data/biblia/texto/` — Textos bíblicos locais (6 traduções)
 - `src/data/lexicon/hebraico.ts` — 8674 entradas hebraicas
 - `src/data/lexicon/grego.ts` — 5526 entradas gregas
 - `src/data/comentarios.ts` — 4911 comentarios
 - `src/data/crossReferences.ts` — 29k refs cruzadas
-- `src/lib/llm-config.ts` — Config Groq (server-only)
-- `src/lib/rate-limit.ts` — Rate limiting (20/min IA)
-- `src/lib/auth.ts` — Auth com cookie ssb_token
-- `public/sw.js` v3 — Service worker (offline.html + precache correto)
+- `public/sw.js` v6 — Service worker (visited pages cache, background sync, plan reminders)
+- `public/offline.html` — Offline fallback page
 - `public/manifest.json` — PWA manifest (shortcuts, id)
-- `src/middleware.ts` — Auth apenas para /admin e /conta
+- `src/proxy.ts` — Auth middleware (Next.js 16, replaces middleware.ts)
 - `next.config.js` — optimizePackageImports
 
 ## Scripts

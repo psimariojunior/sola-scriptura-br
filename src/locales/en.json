@@ -66,7 +66,24 @@
     "myAccount": "My Account",
     "madeWith": "Made with",
     "andRigor": "and rigor",
-    "rightsReserved": "All rights reserved."
+    "rightsReserved": "All rights reserved.",
+    "newsletter": "Stay updated",
+    "newsletterSuccess": "Thank you for subscribing!",
+    "subscribe": "Subscribe",
+    "compareTranslations": "Compare Translations",
+    "exegesis": "Exegesis",
+    "textualCriticism": "Textual Criticism",
+    "concordance": "Concordance",
+    "collaborativeStudy": "Collaborative Study",
+    "readingPlans": "Reading Plans",
+    "dailyDevotional": "Daily Devotional",
+    "flashcards": "Flashcards",
+    "biblicalQuiz": "Biblical Quiz",
+    "statistics": "Statistics",
+    "give": "Give",
+    "myAccountLogin": "My Account",
+    "privacy": "Privacy",
+    "copyright": "Sola Scriptura — Academic Biblical Study · Made with ❤️ for God's people · 100% free"
   },
   "landing": {
     "heroSubtitle": "Academic Biblical Study",
@@ -76,6 +93,8 @@
     "consultAI": "Consult AI",
     "resources": "Features",
     "resourcesTitle": "Everything you need to study the Word",
+    "resourcesTitle1": "Everything you need to",
+    "resourcesTitle2": "study the Word.",
     "modules": "Modules",
     "modulesTitle": "Explore each area of knowledge",
     "testimonials": "Testimonials",
@@ -107,7 +126,95 @@
       "autoExegesis": { "title": "Automatic Exegesis", "desc": "Contextual, grammatical and theological analysis in one click" },
       "solaScriptura": { "title": "Sola Scriptura", "desc": "Founded on Scripture as the supreme authority of faith and practice" }
     },
-    "testimonialsList": []
+    "testimonialsList": [],
+    "features": {
+      "multiTranslation": { "title": "Multi-Translation", "desc": "ARC, NVI, ARA, ACF, KJV and WEB side by side with automatic difference highlighting." },
+      "exegesis": { "title": "Verse-by-Verse Exegesis", "desc": "Contextual, grammatical and theological analysis for every verse, with cross-references." },
+      "ai": { "title": "Theological AI", "desc": "Assistant trained in Reformed theology and biblical exegesis — grounded answers." },
+      "atlas": { "title": "Interactive Biblical Atlas", "desc": "Detailed maps of biblical locations with narrative routes and historical context." },
+      "audio": { "title": "Dramatic Narration Audio", "desc": "ElevenLabs + Web Speech API: professional narration with character voices." },
+      "presentation": { "title": "Presentation Mode", "desc": "Project verses on TVs and projectors via QR code — no installation needed." },
+      "originalLanguages": { "title": "Original Languages (Strong)", "desc": "Koine Greek and Biblical Hebrew with Strong's lexicon word by word." },
+      "concordance": { "title": "Concordance & Textual Criticism", "desc": "Search every word across the entire Bible and compare ancient manuscripts." },
+      "flashcards": { "title": "Flashcards & Memorization", "desc": "Memorize verses and concepts with smart decks and spaced repetition." },
+      "readingPlans": { "title": "Reading Plans", "desc": "Structured schedules for daily reading of all Scripture." },
+      "offline": { "title": "Offline Mode", "desc": "Take the Bible and your studies anywhere, even without internet." },
+      "share": { "title": "Share Verses", "desc": "Create beautiful verse images to share on social media." }
+    },
+    "howToStudy eyebrow": "How to Study",
+    "howToStudyTitle1": "Your study in",
+    "howToStudyTitle2": "3 steps.",
+    "howItWorks eyebrow": "How It Works",
+    "howItWorksTitle1": "Start studying in",
+    "howItWorksTitle2": "3 steps.",
+    "howToStudy": {
+      "step1": { "title": "Choose your translation", "desc": "Select from ARC, NVI, ARA, ACF, KJV and WEB. Compare versions side by side to understand every nuance." },
+      "step2": { "title": "Explore original languages", "desc": "Dive into Greek and Hebrew with Strong's lexicon, concordance and textual criticism — right on the page." },
+      "step3": { "title": "Ask the AI", "desc": "Get theological questions answered by an assistant trained in Reformed exegesis, grounded in Scripture." }
+    },
+    "howItWorks": {
+      "step1": { "title": "Open any verse", "desc": "Browse 6 translations, choose the book and chapter. Resources appear alongside." },
+      "step2": { "title": "Explore resources", "desc": "Commentaries from classic theologians, Greek and Hebrew, cross-references, audio and more." },
+      "step3": { "title": "Present on any screen", "desc": "Open Presentation mode, scan the QR code and share verses in real time." }
+    },
+    "stats": {
+      "books": "Books",
+      "translations": "Translations",
+      "verses": "Verses",
+      "crossRefs": "Cross Refs",
+      "commentaries": "Commentaries",
+      "entries": "Entries"
+    },
+    "socialProof": {
+      "translations": "10 translations",
+      "entries": "14,200 entries",
+      "ai": "Theological AI"
+    },
+    "presentationSection": {
+      "eyebrow": "For Groups & Churches",
+      "title1": "Show the Word",
+      "title2": "on any screen.",
+      "desc": "Presentation Mode turns any TV, projector or monitor into a worship tool. Control everything from your phone via QR code.",
+      "item1": "Project verses on any screen",
+      "item2": "Perfect for services, small groups, Bible schools",
+      "item3": "No installation, no registration",
+      "cta": "Try Presentation Mode",
+      "openBible": "Open the Bible"
+    },
+    "compareSection": {
+      "eyebrow": "Comparison",
+      "title1": "Compare translations",
+      "title2": "side by side",
+      "desc": "View up to 3 versions of the same verse simultaneously and discover translation differences that change how you understand the biblical text.",
+      "cta": "Try it"
+    },
+    "ctaSection": {
+      "badge": "100% Free · No Ads",
+      "title1": "Start your",
+      "title2": "biblical study today.",
+      "desc": "Access all tools for free. Study the Bible with the academic rigor it deserves — and bring the Word to your church.",
+      "cta1": "Start studying the Bible today",
+      "cta2": "Meet the AI",
+      "noAds": "No ads",
+      "openSource": "Open source",
+      "private": "Private data"
+    },
+    "notificationsSection": {
+      "badge": "Daily Verse",
+      "desc": "Receive an inspiring verse every morning at 7am right in your browser."
+    },
+    "readingPlansSection": {
+      "eyebrow": "Reading Plans",
+      "title": "Start your journey",
+      "viewAll": "View all"
+    },
+    "dataSection": {
+      "eyebrow": "Platform data",
+      "commentaries": { "label": "Commentaries", "desc": "Matthew Henry, Adam Clarke, John Gill and others (public domain)" },
+      "lexicon": { "label": "Strong's Lexicon", "desc": "5,526 Greek + 8,674 Hebrew entries, source: Strong's Exhaustive Concordance" },
+      "crossRefs": { "label": "Cross References", "desc": "29,266 refs from Treasury of Scripture Knowledge (TSK)" },
+      "translations": { "label": "Translations", "desc": "ARC, ARA, ACF, KJV, NVI, WEB — free via MidVash API" }
+    }
   },
   "bible": {
     "searchBook": "Search book...",

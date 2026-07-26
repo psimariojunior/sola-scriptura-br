@@ -66,7 +66,24 @@
     "myAccount": "Minha Conta",
     "madeWith": "Feito com",
     "andRigor": "e rigor",
-    "rightsReserved": "Todos os direitos reservados."
+    "rightsReserved": "Todos os direitos reservados.",
+    "newsletter": "Receba novidades",
+    "newsletterSuccess": "Obrigado por se inscrever!",
+    "subscribe": "Inscrever-se",
+    "compareTranslations": "Comparar Traduções",
+    "exegesis": "Exegese",
+    "textualCriticism": "Crítica Textual",
+    "concordance": "Concordância",
+    "collaborativeStudy": "Estudo Colaborativo",
+    "readingPlans": "Planos de Leitura",
+    "dailyDevotional": "Devocional Diário",
+    "flashcards": "Flashcards",
+    "biblicalQuiz": "Quiz Bíblico",
+    "statistics": "Estatísticas",
+    "give": "Oferecer",
+    "myAccountLogin": "Minha Conta",
+    "privacy": "Privacidade",
+    "copyright": "Sola Scriptura — Estudo Bíblico Acadêmico · Feito com ❤️ para o povo de Deus · 100% gratuito"
   },
   "landing": {
     "heroSubtitle": "Estudo Bíblico Acadêmico",
@@ -75,7 +92,9 @@
     "startStudy": "Iniciar Estudo",
     "consultAI": "Consultar IA",
     "resources": "Recursos",
-    "resourcesTitle": "Tudo que você precisa para estudar a Palavra",
+    "resourcesTitle": "Tudo que você precisa para estudar a Palavra.",
+    "resourcesTitle1": "Tudo que você precisa para",
+    "resourcesTitle2": "estudar a Palavra.",
     "modules": "Módulos",
     "modulesTitle": "Explore cada área do conhecimento",
     "testimonials": "Depoimentos",
@@ -107,7 +126,95 @@
       "autoExegesis": { "title": "Exegese Automática", "desc": "Análise contextual, gramatical e teológica em um clique" },
       "solaScriptura": { "title": "Sola Scriptura", "desc": "Fundamentado na Escritura como autoridade suprema de fé e prática" }
     },
-    "testimonialsList": []
+    "testimonialsList": [],
+    "features": {
+      "multiTranslation": { "title": "Multi-Tradução", "desc": "ARC, NVI, ARA, ACF, KJV e WEB lado a lado com destaque automático de diferenças." },
+      "exegesis": { "title": "Exegese Versículo a Versículo", "desc": "Análise contextual, gramatical e teológica para cada versículo, com referências cruzadas." },
+      "ai": { "title": "IA Teológica", "desc": "Assistente treinado em teologia reformada e exegese bíblica — respostas fundamentadas." },
+      "atlas": { "title": "Atlas Bíblico Interativo", "desc": "Mapas detalhados de locais bíblicos com rotas narrativas e contexto histórico." },
+      "audio": { "title": "Áudio com Narração Dramática", "desc": "ElevenLabs + Web Speech API: narração profissional com vozes por personagem." },
+      "presentation": { "title": "Modo Apresentação", "desc": "Projete versículos em TVs e projetores via QR code — sem instalar nada." },
+      "originalLanguages": { "title": "Línguas Originais (Strong)", "desc": "Grego Koiné e Hebraico Bíblico com léxico Strong palavra por palavra." },
+      "concordance": { "title": "Concordância & Crítica Textual", "desc": "Pesquise cada palavra em toda a Bíblia e compare manuscritos antigos." },
+      "flashcards": { "title": "Flashcards & Memorização", "desc": "Memorize versículos e conceitos com decks inteligentes e revisão espaçada." },
+      "readingPlans": { "title": "Planos de Leitura", "desc": "Cronogramas estruturados para leitura diária de toda a Escritura." },
+      "offline": { "title": "Modo Offline", "desc": "Leve a Bíblia e seus estudos para qualquer lugar, mesmo sem internet." },
+      "share": { "title": "Compartilhar Versículos", "desc": "Crie imagens lindas de versículos para compartilhar em redes sociais." }
+    },
+    "howToStudy eyebrow": "Como Estudar",
+    "howToStudyTitle1": "Seu estudo em",
+    "howToStudyTitle2": "3 passos.",
+    "howItWorks eyebrow": "Como Funciona",
+    "howItWorksTitle1": "Comece a estudar em",
+    "howItWorksTitle2": "3 passos.",
+    "howToStudy": {
+      "step1": { "title": "Escolha sua tradução", "desc": "Selecione entre ARC, NVI, ARA, ACF, KJV e WEB. Compare versões lado a lado para entender cada nuance." },
+      "step2": { "title": "Explore as línguas originais", "desc": "Mergulhe no grego e hebraico com o léxico Strong, concordância e crítica textual — direto na página." },
+      "step3": { "title": "Pergunte à IA", "desc": "Tire dúvidas teológicas com o assistente treinado em exegese reformada, fundamentado na Escritura." }
+    },
+    "howItWorks": {
+      "step1": { "title": "Abra qualquer versículo", "desc": "Navegue pelas 6 traduções, escolha o livro e capítulo. Recursos aparecem ao lado." },
+      "step2": { "title": "Explore os recursos", "desc": "Comentários de teólogos clássicos, grego e hebraico, referências cruzadas, áudio e mais." },
+      "step3": { "title": "Apresente em qualquer tela", "desc": "Abra o modo Apresentação, escaneie o QR code e compartilhe versículos em tempo real." }
+    },
+    "stats": {
+      "books": "Livros",
+      "translations": "Traduções",
+      "verses": "Versículos",
+      "crossRefs": "Ref. Cruzadas",
+      "commentaries": "Comentários",
+      "entries": "Verbetes"
+    },
+    "socialProof": {
+      "translations": "10 traduções",
+      "entries": "14.200 verbetes",
+      "ai": "IA teológica"
+    },
+    "presentationSection": {
+      "eyebrow": "Para Grupos e Igrejas",
+      "title1": "Mostre a Palavra",
+      "title2": "em qualquer tela.",
+      "desc": "O Modo Apresentação transforma qualquer TV, projetor ou monitor em uma ferramenta de culto. Controle tudo do seu celular via QR code.",
+      "item1": "Projete versículos em qualquer tela",
+      "item2": "Ideal para cultos, células, escolas bíblicas",
+      "item3": "Sem instalação, sem cadastro",
+      "cta": "Experimentar Modo Apresentação",
+      "openBible": "Abrir a Bíblia"
+    },
+    "compareSection": {
+      "eyebrow": "Comparação",
+      "title1": "Compare traduções",
+      "title2": "lado a lado",
+      "desc": "Veja até 3 versões do mesmo versículo simultaneamente e descubra as diferenças de tradução que mudam o entendimento do texto bíblico.",
+      "cta": "Experimentar"
+    },
+    "ctaSection": {
+      "badge": "100% Gratuito · Sem anúncios",
+      "title1": "Comece hoje o seu",
+      "title2": "estudo bíblico.",
+      "desc": "Acesse todas as ferramentas gratuitamente. Estude a Bíblia com o rigor acadêmico que ela merece — e leve a Palavra para sua igreja.",
+      "cta1": "Comece a estudar a Bíblia hoje",
+      "cta2": "Conheça a IA",
+      "noAds": "Sem anúncios",
+      "openSource": "Código aberto",
+      "private": "Dados privados"
+    },
+    "notificationsSection": {
+      "badge": "Versículo Diário",
+      "desc": "Receba um versículo inspirador toda manhã às 7h direto no seu navegador."
+    },
+    "readingPlansSection": {
+      "eyebrow": "Planos de Leitura",
+      "title": "Comece sua jornada",
+      "viewAll": "Ver todos"
+    },
+    "dataSection": {
+      "eyebrow": "Dados da plataforma",
+      "commentaries": { "label": "Comentários", "desc": "Matthew Henry, Adam Clarke, John Gill e outros (domínio público)" },
+      "lexicon": { "label": "Léxico Strong", "desc": "5.526 gregos + 8.674 hebraicos, fonte: Strong's Exhaustive Concordance" },
+      "crossRefs": { "label": "Referências Cruzadas", "desc": "29.266 refs do Treasury of Scripture Knowledge (TSK)" },
+      "translations": { "label": "Traduções", "desc": "ARC, ARA, ACF, KJV, NVI, WEB — gratuitas via API MidVash" }
+    }
   },
   "bible": {
     "searchBook": "Buscar livro...",

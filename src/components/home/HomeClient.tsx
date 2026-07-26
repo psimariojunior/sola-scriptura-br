@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 const HeroParticles = dynamic(() => import('@/components/home/HeroParticles').then(m => ({ default: m.HeroParticles })), { ssr: false });
 const RotatingVerse = dynamic(() => import('@/components/home/RotatingVerse').then(m => ({ default: m.RotatingVerse })), { ssr: false });
@@ -25,39 +26,31 @@ const WordOfDayWidget = dynamic(() => import('@/components/WordOfDay').then(m =>
 const InstallBanner = dynamic(() => import('@/components/InstallBanner'), { ssr: false });
 const NotificationSetup = dynamic(() => import('@/components/NotificationSetup').then(m => ({ default: m.NotificationSetup })), { ssr: false });
 
-const features = [
-  { icon: Columns2, title: 'Multi-Tradução', desc: 'ARC, NVI, ARA, ACF, KJV e WEB lado a lado com destaque automático de diferenças.', accent: 'amber' },
-  { icon: ScrollText, title: 'Exegese Versículo a Versículo', desc: 'Análise contextual, gramatical e teológica para cada versículo, com referências cruzadas.', accent: 'emerald' },
-  { icon: Brain, title: 'IA Teológica', desc: 'Assistente treinado em teologia reformada e exegese bíblica — respostas fundamentadas.', accent: 'purple' },
-  { icon: Map, title: 'Atlas Bíblico Interativo', desc: 'Mapas detalhados de locais bíblicos com rotas narrativas e contexto histórico.', accent: 'sky' },
-  { icon: Music, title: 'Áudio com Narração Dramática', desc: 'ElevenLabs + Web Speech API: narração profissional com vozes por personagem.', accent: 'rose' },
-  { icon: MonitorPlay, title: 'Modo Apresentação', desc: 'Projete versículos em TVs e projetores via QR code — sem instalar nada.', accent: 'gold', highlight: true },
-  { icon: Languages, title: 'Línguas Originais (Strong)', desc: 'Grego Koiné e Hebraico Bíblico com léxico Strong palavra por palavra.', accent: 'violet' },
-  { icon: Brain, title: 'Concordância & Crítica Textual', desc: 'Pesquise cada palavra em toda a Bíblia e compare manuscritos antigos.', accent: 'cyan' },
-  { icon: BookMarked, title: 'Flashcards & Memorização', desc: 'Memorize versículos e conceitos com decks inteligentes e revisão espaçada.', accent: 'rose' },
-  { icon: GraduationCap, title: 'Planos de Leitura', desc: 'Cronogramas estruturados para leitura diária de toda a Escritura.', accent: 'emerald' },
-  { icon: WifiOff, title: 'Modo Offline', desc: 'Leve a Bíblia e seus estudos para qualquer lugar, mesmo sem internet.', accent: 'slate' },
-  { icon: Share2, title: 'Compartilhar Versículos', desc: 'Crie imagens lindas de versículos para compartilhar em redes sociais.', accent: 'amber' },
+const featuresStatic = [
+  { icon: Columns2, featureKey: 'multiTranslation', accent: 'amber' },
+  { icon: ScrollText, featureKey: 'exegesis', accent: 'emerald' },
+  { icon: Brain, featureKey: 'ai', accent: 'purple' },
+  { icon: Map, featureKey: 'atlas', accent: 'sky' },
+  { icon: Music, featureKey: 'audio', accent: 'rose' },
+  { icon: MonitorPlay, featureKey: 'presentation', accent: 'gold', highlight: true },
+  { icon: Languages, featureKey: 'originalLanguages', accent: 'violet' },
+  { icon: Brain, featureKey: 'concordance', accent: 'cyan' },
+  { icon: BookMarked, featureKey: 'flashcards', accent: 'rose' },
+  { icon: GraduationCap, featureKey: 'readingPlans', accent: 'emerald' },
+  { icon: WifiOff, featureKey: 'offline', accent: 'slate' },
+  { icon: Share2, featureKey: 'share', accent: 'amber' },
 ];
 
-const comoEstudar = [
-  { step: '01', title: 'Escolha sua tradução', desc: 'Selecione entre ARC, NVI, ARA, ACF, KJV e WEB. Compare versões lado a lado para entender cada nuance.', icon: Columns2 },
-  { step: '02', title: 'Explore as línguas originais', desc: 'Mergulhe no grego e hebraico com o léxico Strong, concordância e crítica textual — direto na página.', icon: Languages },
-  { step: '03', title: 'Pergunte à IA', desc: 'Tire dúvidas teológicas com o assistente treinado em exegese reformada, fundamentado na Escritura.', icon: Brain },
+const comoEstudarStatic = [
+  { step: '01', key: 'step1', icon: Columns2 },
+  { step: '02', key: 'step2', icon: Languages },
+  { step: '03', key: 'step3', icon: Brain },
 ];
 
-const comoFunciona = [
-  { step: '01', title: 'Abra qualquer versículo', desc: 'Navegue pelas 6 traduções, escolha o livro e capítulo. Recursos aparecem ao lado.' },
-  { step: '02', title: 'Explore os recursos', desc: 'Comentários de teólogos clássicos, grego e hebraico, referências cruzadas, áudio e mais.' },
-  { step: '03', title: 'Apresente em qualquer tela', desc: 'Abra o modo Apresentação, escaneie o QR code e compartilhe versículos em tempo real.' },
-];
-
-const paraGrupos = ['Projete versículos em qualquer tela', 'Ideal para cultos, células, escolas bíblicas', 'Sem instalação, sem cadastro'];
-
-const trustBadges = [
-  { label: 'Sem anúncios', icon: Shield },
-  { label: 'Código aberto', icon: Globe },
-  { label: 'Dados privados', icon: Heart },
+const comoFuncionaStatic = [
+  { step: '01', key: 'step1' },
+  { step: '02', key: 'step2' },
+  { step: '03', key: 'step3' },
 ];
 
 const depoimentos: { texto: string; autor: string; cargo: string }[] = [];
@@ -72,12 +65,12 @@ const provasSociais = [
 ];
 
 const stats = [
-  { value: 66, label: 'Livros', suffix: '' },
-  { value: 6, label: 'Traduções', suffix: '' },
-  { value: 31102, label: 'Versículos', suffix: '' },
-  { value: 29266, label: 'Ref. Cruzadas', suffix: '' },
-  { value: 4911, label: 'Comentários', suffix: '' },
-  { value: 14200, label: 'Verbetes', suffix: '' },
+  { value: 66, labelKey: 'landing.stats.books', suffix: '' },
+  { value: 6, labelKey: 'landing.stats.translations', suffix: '' },
+  { value: 31102, labelKey: 'landing.stats.verses', suffix: '' },
+  { value: 29266, labelKey: 'landing.stats.crossRefs', suffix: '' },
+  { value: 4911, labelKey: 'landing.stats.commentaries', suffix: '' },
+  { value: 14200, labelKey: 'landing.stats.entries', suffix: '' },
 ];
 
 function ApresentacaoMockup() {
@@ -127,8 +120,10 @@ function SectionHeading({ eyebrow, title, highlight, align = 'center' }: { eyebr
   );
 }
 
-function FeatureCard({ feature, index }: { feature: typeof features[number]; index: number }) {
+function FeatureCard({ feature, index, t }: { feature: typeof featuresStatic[number]; index: number; t: (key: string) => string }) {
   const Icon = feature.icon;
+  const title = t(`landing.features.${feature.featureKey}.title`);
+  const desc = t(`landing.features.${feature.featureKey}.desc`);
   return (
     <ScrollReveal delay={index * 0.08}>
       <motion.div
@@ -150,8 +145,8 @@ function FeatureCard({ feature, index }: { feature: typeof features[number]; ind
           <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-300">
             <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
           </div>
-          <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{feature.title}</h3>
-          <p className="text-[13px] text-muted-foreground leading-relaxed">{feature.desc}</p>
+          <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{title}</h3>
+          <p className="text-[13px] text-muted-foreground leading-relaxed">{desc}</p>
         </div>
       </motion.div>
     </ScrollReveal>
@@ -159,6 +154,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[number]; ind
 }
 
 export default function HomeClient() {
+  const { t } = useTranslation();
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
   const heroY = useTransform(scrollY, [0, 400], [0, 60]);
@@ -191,22 +187,22 @@ export default function HomeClient() {
 
             <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="wordmark text-[2rem] leading-[0.95] sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] mb-7 heading-premium">
-              <span className="block">Estude a Bíblia</span>
-              <span className="block"><span className="gradient-text-animated">em profundidade</span><span className="text-foreground">,</span></span>
-              <span className="block italic text-foreground/85">gratuitamente.</span>
+              <span className="block">{t('landing.heroTitle1')}</span>
+              <span className="block"><span className="gradient-text-animated">{t('landing.heroTitle2')}</span><span className="text-foreground">,</span></span>
+              <span className="block italic text-foreground/85">{t('landing.heroTitle3')}</span>
             </motion.h1>
 
             <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.8 }}
               className="font-sans text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8 px-2">
-              6 traduções da Bíblia, comentários de teólogos clássicos, léxico grego e hebraico, referências cruzadas, IA teológica e modo apresentação para igrejas e células.
+              {t('landing.heroDescription')}
             </motion.p>
 
             {/* Social proof badges */}
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.6 }}
               className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
-              <span className="proof-badge"><BookOpen className="w-3.5 h-3.5" /> 10 traduções</span>
-              <span className="proof-badge"><Languages className="w-3.5 h-3.5" /> 14.200 verbetes</span>
-              <span className="proof-badge"><Brain className="w-3.5 h-3.5" /> IA teológica</span>
+              <span className="proof-badge"><BookOpen className="w-3.5 h-3.5" /> {t('landing.socialProof.translations')}</span>
+              <span className="proof-badge"><Languages className="w-3.5 h-3.5" /> {t('landing.socialProof.entries')}</span>
+              <span className="proof-badge"><Brain className="w-3.5 h-3.5" /> {t('landing.socialProof.ai')}</span>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.6 }}
@@ -214,14 +210,14 @@ export default function HomeClient() {
               <Link href="/biblia" className="group relative inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-[15px] font-semibold rounded-xl overflow-hidden transition-all duration-300"
                 style={{ background: 'linear-gradient(135deg, #f5cd6b 0%, #d4a843 50%, #b88a30 100%)', color: '#1c1300', boxShadow: '0 0 24px -4px rgba(212,168,67,0.4), 0 0 40px -8px rgba(212,168,67,0.2)' }}>
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                <span className="relative">Começar a Estudar</span>
+                <span className="relative">{t('landing.startStudy')}</span>
                 <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link href="/apresentar" className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-[15px] font-semibold rounded-xl border border-border/60 hover:border-primary/40 hover:bg-primary/[0.04] transition-all duration-300">
-                <Play className="w-4 h-4 fill-current" /> Apresentar em Tela
+                <Play className="w-4 h-4 fill-current" /> {t('landing.presentationSection.cta')}
               </Link>
               <Link href="/ia" className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-[15px] font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] hover:bg-primary/[0.12] hover:border-primary/50 transition-all duration-300">
-                <Brain className="w-4 h-4 text-primary" strokeWidth={1.75} /> Conheça a IA
+                <Brain className="w-4 h-4 text-primary" strokeWidth={1.75} /> {t('landing.consultAI')}
               </Link>
             </motion.div>
 
@@ -264,12 +260,12 @@ export default function HomeClient() {
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-4">
               {stats.map((stat, i) => (
-                <ScrollReveal key={stat.label} delay={i * 0.06}>
+                <ScrollReveal key={stat.labelKey} delay={i * 0.06}>
                   <div className="stat-card text-center p-3 sm:p-4 rounded-xl border border-border/30 bg-card/40 relative group">
                     <p className="font-display text-2xl sm:text-3xl md:text-4xl font-light tracking-tight relative">
                       <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                     </p>
-                    <p className="text-[10px] sm:text-[11px] text-muted-foreground uppercase tracking-wider mt-1.5 font-medium">{stat.label}</p>
+                    <p className="text-[10px] sm:text-[11px] text-muted-foreground uppercase tracking-wider mt-1.5 font-medium">{t(stat.labelKey)}</p>
                   </div>
                 </ScrollReveal>
               ))}
@@ -279,37 +275,37 @@ export default function HomeClient() {
 
         <section className="py-24 sm:py-32 px-4 sm:px-6 relative" aria-label="Recursos">
           <div className="max-w-6xl mx-auto">
-            <ScrollReveal><SectionHeading eyebrow="Recursos" title="Tudo que você precisa para" highlight="estudar a Palavra." /></ScrollReveal>
+            <ScrollReveal>              <SectionHeading eyebrow={t('landing.resources')} title={t('landing.resourcesTitle1')} highlight={t('landing.resourcesTitle2')} /></ScrollReveal>
             {/* Bento grid irregular — BibleProject style */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
               {/* Card grande — 2 colunas */}
               <div className="sm:col-span-2 lg:col-span-2">
-                <FeatureCard feature={features[0]} index={0} />
+                <FeatureCard feature={featuresStatic[0]} index={0} t={t} />
               </div>
               {/* Cards normais */}
-              <FeatureCard feature={features[1]} index={1} />
-              <FeatureCard feature={features[2]} index={2} />
+              <FeatureCard feature={featuresStatic[1]} index={1} t={t} />
+              <FeatureCard feature={featuresStatic[2]} index={2} t={t} />
               {/* Card grande — 2 colunas */}
               <div className="sm:col-span-2 lg:col-span-2">
-                <FeatureCard feature={features[3]} index={3} />
+                <FeatureCard feature={featuresStatic[3]} index={3} t={t} />
               </div>
               {/* Cards normais */}
-              <FeatureCard feature={features[4]} index={4} />
-              <FeatureCard feature={features[5]} index={5} />
+              <FeatureCard feature={featuresStatic[4]} index={4} t={t} />
+              <FeatureCard feature={featuresStatic[5]} index={5} t={t} />
               {/* Card grande — destaque */}
               <div className="sm:col-span-2 lg:col-span-2">
-                <FeatureCard feature={features[6]} index={6} />
+                <FeatureCard feature={featuresStatic[6]} index={6} t={t} />
               </div>
               {/* Cards normais */}
-              <FeatureCard feature={features[7]} index={7} />
-              <FeatureCard feature={features[8]} index={8} />
+              <FeatureCard feature={featuresStatic[7]} index={7} t={t} />
+              <FeatureCard feature={featuresStatic[8]} index={8} t={t} />
               {/* Card grande — 2 colunas */}
               <div className="sm:col-span-2 lg:col-span-2">
-                <FeatureCard feature={features[9]} index={9} />
+                <FeatureCard feature={featuresStatic[9]} index={9} t={t} />
               </div>
               {/* Cards normais */}
-              <FeatureCard feature={features[10]} index={10} />
-              <FeatureCard feature={features[11]} index={11} />
+              <FeatureCard feature={featuresStatic[10]} index={10} t={t} />
+              <FeatureCard feature={featuresStatic[11]} index={11} t={t} />
             </div>
           </div>
         </section>
@@ -320,11 +316,11 @@ export default function HomeClient() {
             <ScrollReveal>
               <div className="flex items-center justify-between mb-8">
                 <div>
-                  <p className="eyebrow-label text-left">Planos de Leitura</p>
-                  <h2 className="font-display text-2xl sm:text-3xl font-light heading-premium">Comece sua jornada</h2>
+                  <p className="eyebrow-label text-left">{t('landing.readingPlansSection.eyebrow')}</p>
+                  <h2 className="font-display text-2xl sm:text-3xl font-light heading-premium">{t('landing.readingPlansSection.title')}</h2>
                 </div>
                 <Link href="/planos" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
-                  Ver todos <ArrowRight className="w-4 h-4" />
+                  {t('landing.readingPlansSection.viewAll')} <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </ScrollReveal>
@@ -357,17 +353,17 @@ export default function HomeClient() {
           <div className="max-w-6xl mx-auto relative z-10">
             <ScrollReveal>
               <div className="text-center mb-10">
-                <p className="eyebrow-label">Dados da plataforma</p>
+                <p className="eyebrow-label">{t('landing.dataSection.eyebrow')}</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-3xl mx-auto">
                   {[
-                    { label: 'Comentários', desc: 'Matthew Henry, Adam Clarke, John Gill e outros (domínio público)' },
-                    { label: 'Léxico Strong', desc: '5.526 gregos + 8.674 hebraicos, fonte: Strong\'s Exhaustive Concordance' },
-                    { label: 'Referências Cruzadas', desc: '29.266 refs do Treasury of Scripture Knowledge (TSK)' },
-                    { label: 'Traduções', desc: 'ARC, ARA, ACF, KJV, NVI, WEB — gratuitas via API MidVash' },
+                    { labelKey: 'landing.dataSection.commentaries.label', descKey: 'landing.dataSection.commentaries.desc' },
+                    { labelKey: 'landing.dataSection.lexicon.label', descKey: 'landing.dataSection.lexicon.desc' },
+                    { labelKey: 'landing.dataSection.crossRefs.label', descKey: 'landing.dataSection.crossRefs.desc' },
+                    { labelKey: 'landing.dataSection.translations.label', descKey: 'landing.dataSection.translations.desc' },
                   ].map((item) => (
-                    <div key={item.label} className="text-center p-4">
-                      <p className="text-sm font-semibold text-foreground mb-1.5">{item.label}</p>
-                      <p className="text-[11px] text-muted-foreground leading-relaxed">{item.desc}</p>
+                    <div key={item.labelKey} className="text-center p-4">
+                      <p className="text-sm font-semibold text-foreground mb-1.5">{t(item.labelKey)}</p>
+                      <p className="text-[11px] text-muted-foreground leading-relaxed">{t(item.descKey)}</p>
                     </div>
                   ))}
                 </div>
@@ -378,9 +374,9 @@ export default function HomeClient() {
 
         <section className="py-24 sm:py-32 px-4 sm:px-6 relative" aria-label="Como estudar">
           <div className="max-w-6xl mx-auto">
-            <ScrollReveal><SectionHeading eyebrow="Como Estudar" title="Seu estudo em" highlight="3 passos." /></ScrollReveal>
+            <ScrollReveal><SectionHeading eyebrow={t('landing.howToStudy eyebrow')} title={t('landing.howToStudyTitle1')} highlight={t('landing.howToStudyTitle2')} /></ScrollReveal>
             <div className="grid md:grid-cols-3 gap-5 sm:gap-6">
-              {comoEstudar.map((step, i) => {
+              {comoEstudarStatic.map((step, i) => {
                 const Icon = step.icon;
                 return (
                   <ScrollReveal key={step.step} delay={i * 0.12}>
@@ -395,8 +391,8 @@ export default function HomeClient() {
                           </span>
                           <span className="step-badge">{step.step}</span>
                         </div>
-                        <h3 className="font-display text-xl sm:text-2xl font-medium mb-2 leading-tight">{step.title}</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                        <h3 className="font-display text-xl sm:text-2xl font-medium mb-2 leading-tight">{t(`landing.howToStudy.${step.key}.title`)}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{t(`landing.howToStudy.${step.key}.desc`)}</p>
                       </div>
                     </motion.div>
                   </ScrollReveal>
@@ -408,19 +404,19 @@ export default function HomeClient() {
 
         <section className="py-24 sm:py-32 px-4 sm:px-6 relative bg-card/30 border-y border-border/30" aria-label="Como funciona">
           <div className="max-w-5xl mx-auto">
-            <ScrollReveal><SectionHeading eyebrow="Como Funciona" title="Comece a estudar em" highlight="3 passos." /></ScrollReveal>
+            <ScrollReveal><SectionHeading eyebrow={t('landing.howItWorks eyebrow')} title={t('landing.howItWorksTitle1')} highlight={t('landing.howItWorksTitle2')} /></ScrollReveal>
             <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
-              {comoFunciona.map((step, i) => (
+              {comoFuncionaStatic.map((step, i) => (
                 <ScrollReveal key={step.step} delay={i * 0.1}>
                   <div className="relative h-full p-7 sm:p-8 rounded-2xl border border-border/40 bg-card/50 hover:border-primary/30 transition-all duration-300">
                     <div className="flex items-center gap-3 mb-5">
                       <span className="step-badge">{step.step}</span>
-                      {i < comoFunciona.length - 1 && (
+                      {i < comoFuncionaStatic.length - 1 && (
                         <span className="hidden md:block flex-1 h-px" style={{ background: 'linear-gradient(90deg, hsl(var(--primary) / 0.3), transparent)' }} aria-hidden="true" />
                       )}
                     </div>
-                    <h3 className="font-display text-xl sm:text-2xl font-medium mb-2.5 leading-tight">{step.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                    <h3 className="font-display text-xl sm:text-2xl font-medium mb-2.5 leading-tight">{t(`landing.howItWorks.${step.key}.title`)}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{t(`landing.howItWorks.${step.key}.desc`)}</p>
                   </div>
                 </ScrollReveal>
               ))}
@@ -439,16 +435,16 @@ export default function HomeClient() {
               <div>
                 <ScrollReveal>
                   <p className="eyebrow-label text-amber-600 dark:text-amber-400 flex items-center gap-2">
-                    <MonitorPlay className="w-3.5 h-3.5" /> Para Grupos e Igrejas
+                    <MonitorPlay className="w-3.5 h-3.5" /> {t('landing.presentationSection.eyebrow')}
                   </p>
                   <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light heading-premium mb-6">
-                    Mostre a Palavra<br /><span className="italic text-primary">em qualquer tela.</span>
+                    {t('landing.presentationSection.title1')}<br /><span className="italic text-primary">{t('landing.presentationSection.title2')}</span>
                   </h2>
                   <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg">
-                    O Modo Apresentação transforma qualquer TV, projetor ou monitor em uma ferramenta de culto. Controle tudo do seu celular via QR code.
+                    {t('landing.presentationSection.desc')}
                   </p>
                   <ul className="space-y-3 mb-9">
-                    {paraGrupos.map((item) => (
+                    {[t('landing.presentationSection.item1'), t('landing.presentationSection.item2'), t('landing.presentationSection.item3')].map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm sm:text-[15px]">
                         <span className="mt-0.5 w-5 h-5 rounded-full bg-primary/15 text-primary flex items-center justify-center shrink-0"><CheckCircle2 className="w-3.5 h-3.5" /></span>
                         <span className="text-foreground/90">{item}</span>
@@ -459,11 +455,11 @@ export default function HomeClient() {
                     <Link href="/apresentar" className="group relative inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl overflow-hidden transition-all duration-300"
                       style={{ background: 'linear-gradient(135deg, #f5cd6b 0%, #d4a843 50%, #b88a30 100%)', color: '#1c1300', boxShadow: '0 8px 24px -6px rgba(212,168,67,0.45)' }}>
                       <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                      <span className="relative">Experimentar Modo Apresentação</span>
+                      <span className="relative">{t('landing.presentationSection.cta')}</span>
                       <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
                     <Link href="/biblia" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border border-border/60 hover:border-primary/40 hover:bg-primary/[0.04] rounded-xl transition-all duration-300">
-                      <BookOpen className="w-4 h-4" /> Abrir a Bíblia
+                      <BookOpen className="w-4 h-4" /> {t('landing.presentationSection.openBible')}
                     </Link>
                   </div>
                 </ScrollReveal>
@@ -490,12 +486,12 @@ export default function HomeClient() {
                     <GitCompareArrows className="w-6 h-6 text-primary" strokeWidth={1.5} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="eyebrow-label text-primary/80">Comparação</p>
-                    <h3 className="font-display text-2xl sm:text-3xl font-light heading-premium mb-2">Compare traduções <span className="italic text-primary">lado a lado</span></h3>
-                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">Veja até 3 versões do mesmo versículo simultaneamente e descubra as diferenças de tradução que mudam o entendimento do texto bíblico.</p>
+                    <p className="eyebrow-label text-primary/80">{t('landing.compareSection.eyebrow')}</p>
+                    <h3 className="font-display text-2xl sm:text-3xl font-light heading-premium mb-2">{t('landing.compareSection.title1')} <span className="italic text-primary">{t('landing.compareSection.title2')}</span></h3>
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">{t('landing.compareSection.desc')}</p>
                   </div>
                   <span className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] group-hover:bg-primary/[0.12] group-hover:border-primary/50 transition-all duration-300 shrink-0">
-                    Experimentar <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    {t('landing.compareSection.cta')} <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </span>
                 </div>
               </Link>
@@ -511,25 +507,25 @@ export default function HomeClient() {
             <ScrollReveal>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/15 bg-primary/[0.04] mb-7">
                 <Zap className="w-3.5 h-3.5 text-primary" />
-                <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">100% Gratuito · Sem anúncios</span>
+                <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">{t('landing.ctaSection.badge')}</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light heading-premium mb-5">
-                Comece hoje o seu<br /><span className="italic gradient-text-animated">estudo bíblico.</span>
+                {t('landing.ctaSection.title1')}<br /><span className="italic gradient-text-animated">{t('landing.ctaSection.title2')}</span>
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground mb-10 max-w-lg mx-auto leading-relaxed">
-                Acesse todas as ferramentas gratuitamente. Estude a Bíblia com o rigor acadêmico que ela merece — e leve a Palavra para sua igreja.
+                {t('landing.ctaSection.desc')}
               </p>
               <div className="flex flex-wrap gap-3 justify-center mb-12">
                 <Link href="/biblia" className="cta-gradient group relative inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold rounded-xl">
-                  <BookOpen className="relative w-4 h-4" /><span className="relative">Comece a estudar a Bíblia hoje</span>
+                  <BookOpen className="relative w-4 h-4" /><span className="relative">{t('landing.ctaSection.cta1')}</span>
                   <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
                 <Link href="/ia" className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] hover:bg-primary/[0.12] hover:border-primary/50 transition-all duration-300">
-                  <Brain className="w-4 h-4 text-primary" strokeWidth={1.75} /> Conheça a IA
+                  <Brain className="w-4 h-4 text-primary" strokeWidth={1.75} /> {t('landing.ctaSection.cta2')}
                 </Link>
               </div>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-2.5">
-                {trustBadges.map((badge) => (
+                {[{ label: t('landing.ctaSection.noAds'), icon: Shield }, { label: t('landing.ctaSection.openSource'), icon: Globe }, { label: t('landing.ctaSection.private'), icon: Heart }].map((badge) => (
                   <div key={badge.label} className="flex items-center gap-1.5 text-xs text-muted-foreground">
                     <badge.icon className="w-3.5 h-3.5 text-primary" />{badge.label}
                   </div>
@@ -543,10 +539,10 @@ export default function HomeClient() {
             <ScrollReveal>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/15 bg-primary/[0.04] mb-6">
                 <Bell className="w-3.5 h-3.5 text-primary" />
-                <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">Versículo Diário</span>
+                <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">{t('landing.notificationsSection.badge')}</span>
               </div>
               <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto">
-                Receba um versículo inspirador toda manhã às 7h direto no seu navegador.
+                {t('landing.notificationsSection.desc')}
               </p>
               <NotificationSetup />
             </ScrollReveal>

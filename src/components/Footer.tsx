@@ -4,43 +4,45 @@ import Link from 'next/link';
 import { useState, memo } from 'react';
 import { BookOpen, Mail, ExternalLink, X, Heart, ArrowRight, Smartphone, HeartHandshake } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import ScrollReveal from '@/components/ScrollReveal';
 
-const ferramentas = [
-  { href: '/biblia', label: 'Bíblia' },
-  { href: '/comparar', label: 'Comparar Traduções' },
-  { href: '/pesquisa', label: 'Pesquisa' },
-  { href: '/exegese', label: 'Exegese' },
-  { href: '/idiomas', label: 'Línguas Originais' },
-  { href: '/ferramentas', label: 'Ferramentas' },
-  { href: '/ferramentas/critica-textual', label: 'Crítica Textual' },
-  { href: '/ferramentas/concordancia', label: 'Concordância' },
-  { href: '/estudo-colaborativo', label: 'Estudo Colaborativo' },
-];
-
-const estudo = [
-  { href: '/teologia', label: 'Teologia Sistemática' },
-  { href: '/historia', label: 'História Bíblica' },
-  { href: '/cronologia', label: 'Cronologia' },
-  { href: '/personagens', label: 'Personagens' },
-  { href: '/atlas', label: 'Atlas Bíblico' },
-  { href: '/ia', label: 'Assistente IA' },
-];
-
-const recursos = [
-  { href: '/estudos', label: 'Meus Estudos' },
-  { href: '/planos', label: 'Planos de Leitura' },
-  { href: '/devocional', label: 'Devocional Diário' },
-  { href: '/flashcards', label: 'Flashcards' },
-  { href: '/quiz', label: 'Quiz Bíblico' },
-  { href: '/estatisticas', label: 'Estatísticas' },
-  { href: '/ofertas', label: 'Oferecer' },
-  { href: '/auth/login', label: 'Minha Conta' },
-];
-
 function FooterInner() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+
+  const ferramentas = [
+    { href: '/biblia', label: t('nav.bible') },
+    { href: '/comparar', label: t('footer.compareTranslations') },
+    { href: '/pesquisa', label: t('nav.search') },
+    { href: '/exegese', label: t('footer.exegesis') },
+    { href: '/idiomas', label: t('footer.originalLanguages') },
+    { href: '/ferramentas', label: t('footer.tools') },
+    { href: '/ferramentas/critica-textual', label: t('footer.textualCriticism') },
+    { href: '/ferramentas/concordancia', label: t('footer.concordance') },
+    { href: '/estudo-colaborativo', label: t('footer.collaborativeStudy') },
+  ];
+
+  const estudo = [
+    { href: '/teologia', label: t('footer.systematicTheology') },
+    { href: '/historia', label: t('footer.biblicalHistory') },
+    { href: '/cronologia', label: t('nav.chronology') },
+    { href: '/personagens', label: t('nav.characters') },
+    { href: '/atlas', label: t('footer.biblicalAtlas') },
+    { href: '/ia', label: t('footer.aiAssistant') },
+  ];
+
+  const recursos = [
+    { href: '/estudos', label: t('footer.myStudies') },
+    { href: '/planos', label: t('footer.readingPlans') },
+    { href: '/devocional', label: t('footer.dailyDevotional') },
+    { href: '/flashcards', label: t('footer.flashcards') },
+    { href: '/quiz', label: t('footer.biblicalQuiz') },
+    { href: '/estatisticas', label: t('footer.statistics') },
+    { href: '/ofertas', label: t('footer.give') },
+    { href: '/auth/login', label: t('footer.myAccountLogin') },
+  ];
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,20 +71,19 @@ function FooterInner() {
               <span className="font-display text-xl font-semibold">Sola Scriptura</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-md mb-6">
-              Estudo bíblico acadêmico com rigor. Grego Koiné, Hebraico Bíblico, Teologia Sistemática,
-              Exegese e Inteligência Artificial — tudo integrado em uma plataforma completa.
+              {t('footer.description')}
             </p>
 
             {/* Newsletter */}
             <div className="mb-6">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Receba novidades</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">{t('footer.newsletter')}</p>
               {subscribed ? (
                 <motion.p 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="text-sm text-green-600 dark:text-green-400 flex items-center gap-2"
                 >
-                  <Heart className="w-4 h-4 fill-current" /> Obrigado por se inscrever!
+                  <Heart className="w-4 h-4 fill-current" /> {t('footer.newsletterSuccess')}
                 </motion.p>
               ) : (
                 <form onSubmit={handleSubscribe} className="flex gap-2" aria-label="Inscrever-se na newsletter">
@@ -121,7 +122,7 @@ function FooterInner() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-sm mb-4">Ferramentas</h3>
+            <h3 className="font-semibold text-sm mb-4">{t('footer.tools')}</h3>
             <ul className="space-y-2" aria-label="Ferramentas">
               {ferramentas.map((link) => (
                 <li key={link.href}>
@@ -134,7 +135,7 @@ function FooterInner() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-sm mb-4">Estudo</h3>
+            <h3 className="font-semibold text-sm mb-4">{t('footer.study')}</h3>
             <ul className="space-y-2" aria-label="Estudo">
               {estudo.map((link) => (
                 <li key={link.href}>
@@ -147,7 +148,7 @@ function FooterInner() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-sm mb-4">Recursos</h3>
+            <h3 className="font-semibold text-sm mb-4">{t('footer.resources')}</h3>
             <ul className="space-y-2" aria-label="Recursos">
               {recursos.map((link) => (
                 <li key={link.href}>
@@ -167,7 +168,7 @@ function FooterInner() {
             </p>
             <div className="flex items-center gap-4">
               <p className="text-xs text-muted-foreground text-center md:text-right">
-                &copy; {new Date().getFullYear()} Sola Scriptura. Todos os direitos reservados.
+                &copy; {new Date().getFullYear()} Sola Scriptura. {t('footer.rightsReserved')}
               </p>
               <Link href="/privacidade" className="text-xs text-muted-foreground hover:text-foreground transition-colors duration-200">
                 Privacidade

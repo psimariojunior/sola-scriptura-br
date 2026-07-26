@@ -16,6 +16,8 @@ import {
   Brain,
   History,
   Trash2,
+  Sun,
+  Languages,
 } from 'lucide-react';
 import {
   Command,
@@ -72,6 +74,8 @@ const NAV_COMMANDS: { label: string; href: string; icon: typeof BookOpen; grupo:
 
 const AcoesCommands = [
   { id: 'abrir-ia', label: 'Pergunte à IA', icon: Sparkles, acao: 'ia' as const, grupo: 'IA' },
+  { id: 'alternar-tema', label: 'Alternar tema (claro/escuro)', icon: Sun, acao: 'tema' as const, grupo: 'Ações' },
+  { id: 'alternar-idioma', label: 'Alternar idioma (PT/EN)', icon: Languages, acao: 'idioma' as const, grupo: 'Ações' },
   { id: 'mostrar-atalhos', label: 'Mostrar atalhos de teclado', icon: Command, acao: 'atalhos' as const, grupo: 'Ações' },
 ];
 
@@ -192,12 +196,23 @@ export function BuscaGlobal({ open, onOpenChange }: BuscaGlobalProps) {
   );
 
   const executarAcao = useCallback(
-    (acao: 'ia' | 'atalhos') => {
+    (acao: 'ia' | 'atalhos' | 'tema' | 'idioma') => {
       onOpenChange(false);
       if (acao === 'ia') {
         openAI();
       } else if (acao === 'atalhos') {
         window.dispatchEvent(new CustomEvent('ssb:open-shortcuts'));
+      } else if (acao === 'tema') {
+        const current = localStorage.getItem('ssb_theme') || 'escuro';
+        const next = (current === 'escuro' || current === 'noturno') ? 'claro' : 'escuro';
+        localStorage.setItem('ssb_theme', next);
+        window.dispatchEvent(new CustomEvent('ssb:theme-change', { detail: next }));
+        window.location.reload();
+      } else if (acao === 'idioma') {
+        const current = localStorage.getItem('ssb_lang') || 'pt';
+        const next = current === 'pt' ? 'en' : 'pt';
+        localStorage.setItem('ssb_lang', next);
+        window.location.reload();
       }
     },
     [onOpenChange, openAI]

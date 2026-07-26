@@ -40,7 +40,27 @@ export interface GamificacaoState {
   totalCapitulos: number;
   totalQuizzes: number;
   totalMinutos: number;
+  streakRewards?: StreakReward[];
 }
+
+export interface StreakReward {
+  dias: number;
+  xpBonus: number;
+  titulo: string;
+  descricao: string;
+  desbloqueado: boolean;
+}
+
+export const STREAK_REWARDS: { dias: number; xpBonus: number; titulo: string; descricao: string }[] = [
+  { dias: 3, xpBonus: 15, titulo: 'Início de Jornada', descricao: '+15 XP por 3 dias de sequência' },
+  { dias: 7, xpBonus: 50, titulo: 'Semana Perfeita', descricao: '+50 XP por 7 dias de sequência' },
+  { dias: 14, xpBonus: 100, titulo: 'Duas Semanas', descricao: '+100 XP por 14 dias de sequência' },
+  { dias: 21, xpBonus: 200, titulo: 'Três Semanas', descricao: '+200 XP por 21 dias de sequência' },
+  { dias: 30, xpBonus: 350, titulo: 'Mês de Fogo', descricao: '+350 XP por 30 dias de sequência' },
+  { dias: 50, xpBonus: 500, titulo: 'Meio Ano', descricao: '+500 XP por 50 dias de sequência' },
+  { dias: 100, xpBonus: 1000, titulo: 'Centenário de Fogo', descricao: '+1000 XP por 100 dias de sequência' },
+  { dias: 365, xpBonus: 5000, titulo: 'Ano Bíblico', descricao: '+5000 XP por 365 dias de sequência' },
+];
 
 function getDataAtual(): string {
   return new Date().toISOString().split('T')[0];
@@ -139,6 +159,11 @@ export function useGamificacao() {
 
   const desafiosDoDia = getDesafiosDoDia(new Date().getDay());
 
+  const streakRewards: StreakReward[] = STREAK_REWARDS.map(r => ({
+    ...r,
+    desbloqueado: streaks.atual >= r.dias || streaks.melhor >= r.dias,
+  }));
+
   const verificarConquistas = useCallback((novoEstado: GamificacaoState) => {
     for (const conquista of CONQUISTAS) {
       if (novoEstado.conquistasDesbloqueadas.includes(conquista.id)) continue;
@@ -204,6 +229,9 @@ export function useGamificacao() {
       if (tipo === 'versiculos') xpGanho = quantidade * 2;
       if (tipo === 'capitulos') xpGanho = quantidade * 10;
       if (tipo === 'quizzes') xpGanho = quantidade * 5;
+
+      const streakMultiplier = Math.min(1 + (streaks.atual * 0.05), 2.0);
+      xpGanho = Math.round(xpGanho * streakMultiplier);
 
       const novoEstado: GamificacaoState = {
         ...prev,
@@ -273,6 +301,7 @@ export function useGamificacao() {
     desafiosDiarios: desafiosDoDia,
     streakAtual: streaks.atual,
     melhorStreak: streaks.melhor,
+    streakRewards,
     pontosTotais: state.xpTotal,
     totalVersiculos: state.totalVersiculos,
     totalCapitulos: state.totalCapitulos,

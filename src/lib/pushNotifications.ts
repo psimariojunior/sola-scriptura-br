@@ -2,6 +2,8 @@ const VAPID_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || '';
 const PUSH_ENABLED_KEY = 'ssb_push_enabled';
 const PUSH_SUBSCRIPTION_KEY = 'ssb_push_subscription';
 const DAILY_VERSE_TAG = 'ssb-daily-verse-push';
+const PUSH_SCHEDULE_KEY = 'ssb_push_schedule';
+const PUSH_SMART_KEY = 'ssb_push_smart';
 
 const DAILY_VERSES = [
   { ref: 'João 3:16', text: 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.' },
@@ -221,7 +223,7 @@ export async function reschedulePushFromStorage(): Promise<void> {
   if (Notification.permission !== 'granted') return;
 
   try {
-    const raw = localStorage.getItem('ssb_push_schedule');
+    const raw = localStorage.getItem(PUSH_SCHEDULE_KEY);
     if (raw) {
       const schedule = JSON.parse(raw);
       const delay = schedule.triggerAt - Date.now();
@@ -238,5 +240,123 @@ export async function reschedulePushFromStorage(): Promise<void> {
     }
   } catch {
     scheduleDailyPush(7, 0);
+  }
+}
+
+export interface SmartPushSettings {
+  hora: number;
+  minuto: number;
+  lembreteStreak: boolean;
+  lembretePlano: boolean;
+  versiculoMotivacional: boolean;
+}
+
+export function getSmartPushSettings(): SmartPushSettings {
+  if (typeof window === 'undefined') return { hora: 7, minuto: 0, lembreteStreak: true, lembretePlano: true, versiculoMotivacional: true };
+  try {
+    const raw = localStorage.getItem(PUSH_SMART_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch {}
+  return { hora: 7, minuto: 0, lembreteStreak: true, lembretePlano: true, versiculoMotivacional: true };
+}
+
+export function saveSmartPushSettings(settings: SmartPushSettings) {
+  if (typeof window === 'undefined') return;
+  try { localStorage.setItem(PUSH_SMART_KEY, JSON.stringify(settings)); } catch {}
+}
+
+const STREAK_REMINDER_VERSES = [
+  { ref: 'Hebreus 12:1', text: 'Portanto, nós também, pois temos tal nuvem de testemunhas ao redor de nós, deixemos todo o peso e o pecado que nos assedia, e corramos com paciência a carreira que nos está posta diante.' },
+  { ref: '1 Coríntios 9:24', text: 'Não sabeis que os que correm na pista, todos certamente correm, mas somente um recebe o prêmio? Assim correi, para que o alcanceis.' },
+  { ref: 'Filipenses 3:13-14', text: 'Irmãos, eu não me julgo já haver alcançado; mas uma coisa faço: esquecendo-me das coisas que ficam atrás e procurando as que estão adiante, prossigo para o alvo, para o prêmio da soberana vocação de Deus em Cristo Jesus.' },
+  { ref: 'Josué 1:8', text: 'Não se aparte deste livro da lei da tua boca, mas medita nele dia e noite, para que guardes e faças segundo tudo o que nele está escrito; porque então farás prosperar o teu caminho, e então terás êxito.' },
+  { ref: 'Salmos 119:105', text: 'Lâmpada para os meus pés é tua palavra, e luz para o meu caminho.' },
+  { ref: '2 Timóteo 2:15', text: 'Procura apresentar-te a Deus aprovado, como obreiro que não tem de que se envergonhar, que maneja bem a palavra da verdade.' },
+];
+
+export async function sendStreakReminder(streak: number): Promise<void> {
+  if (!isPushSupported() || Notification.permission !== 'granted') return;
+
+  const verse = STREAK_REMINDER_VERSES[Math.floor(Math.random() * STREAK_REMINDER_VERSES.length)];
+  const streakText = streak > 0
+    ? `🔥 ${streak} dias de sequência! Não pare agora.`
+    : '📖 Que tal ler um versículo hoje?';
+
+  const reg = await getSWRegistration();
+  if (!reg) return;
+
+  try {
+    await reg.showNotification(`🔥 Lembrete de Leitura`, {
+      body: `${streakText}\n\n"${verse.text}" — ${verse.ref}`,
+      tag: `${DAILY_VERSE_TAG}-streak`,
+      icon: '/icon-192.png',
+      badge: '/icon-192.png',
+      data: { url: '/biblia' },
+      actions: [
+        { action: 'open-bible', title: 'Ler Agora' },
+        { action: 'dismiss', title: 'Mais Tarde' },
+      ],
+      vibrate: [200, 100, 200],
+    } as NotificationOptions);
+  } catch (err) {
+    console.error('[Push] Streak reminder failed:', err);
+  }
+}
+
+export async function sendStreakRiskNotification(streak: number): Promise<void> {
+  if (!isPushSupported() || Notification.permission !== 'granted') return;
+  if (streak < 2) return;
+
+  const reg = await getSWRegistration();
+  if (!reg) return;
+
+  try {
+    await reg.showNotification(`⚠️ Sua sequência está em risco!`, {
+      body: `Você tem ${streak} dias de sequência. Leia agora para não perder!`,
+      tag: `${DAILY_VERSE_TAG}-streak-risk`,
+      icon: '/icon-192.png',
+      badge: '/icon-192.png',
+      data: { url: '/biblia' },
+      actions: [
+        { action: 'open-bible', title: 'Ler Agora' },
+        { action: 'dismiss', title: 'Dispensar' },
+      ],
+      vibrate: [300, 150, 300],
+    } as NotificationOptions);
+  } catch (err) {
+    console.error('[Push] Streak risk notification failed:', err);
+  }
+}
+
+export function scheduleSmartNotifications() {
+  const settings = getSmartPushSettings();
+  if (!isPushEnabled() || !isPushSupported()) return;
+  if (Notification.permission !== 'granted') return;
+
+  const now = new Date();
+  const hour = now.getHours();
+
+  if (settings.versiculoMotivacional) {
+    scheduleDailyPush(settings.hora, settings.minuto);
+  }
+
+  if (settings.lembreteStreak) {
+    const reminderHour = Math.min(settings.hora + 12, 23);
+    const reminderMinute = settings.minuto;
+    const reminderTarget = new Date();
+    reminderTarget.setHours(reminderHour, reminderMinute, 0, 0);
+    if (reminderTarget.getTime() <= now.getTime()) {
+      reminderTarget.setDate(reminderTarget.getDate() + 1);
+    }
+    const reminderDelay = reminderTarget.getTime() - now.getTime();
+    setTimeout(() => {
+      const raw = localStorage.getItem('ssb_gamificacao');
+      if (raw) {
+        const state = JSON.parse(raw);
+        if (state.streakAtual > 0) {
+          sendStreakReminder(state.streakAtual);
+        }
+      }
+    }, reminderDelay);
   }
 }

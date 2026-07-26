@@ -16,8 +16,10 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Trophy, Star, Flame, BookOpen, Brain, Target,
-  Share2, TrendingUp, Sparkles, Lock, ChevronRight,
+  Share2, TrendingUp, Sparkles, Lock, ChevronRight, FileDown, Palette,
 } from 'lucide-react';
+import { EstudoExportador } from '@/components/EstudoExportador';
+import { ShareImageGenerator } from '@/components/ShareImageGenerator';
 
 const Leaderboard = dynamic(() => import('@/components/Leaderboard').then(mod => ({ default: mod.Leaderboard })), {
   ssr: false,
@@ -38,6 +40,7 @@ export default function GamificacaoPage() {
     desafiosDiarios,
     streakAtual,
     melhorStreak,
+    streakRewards,
     totalVersiculos,
     totalCapitulos,
     totalQuizzes,
@@ -50,6 +53,8 @@ export default function GamificacaoPage() {
 
   const [filtroCategoria, setFiltroCategoria] = useState<string>('todas');
   const [showCompartilhar, setShowCompartilhar] = useState(false);
+  const [showExport, setShowExport] = useState(false);
+  const [showImageGen, setShowImageGen] = useState(false);
 
   const conquistasFiltradas = useMemo(() => {
     if (filtroCategoria === 'todas') return CONQUISTAS;
@@ -96,6 +101,14 @@ export default function GamificacaoPage() {
               Sua Jornada de Estudo
             </h1>
             <div className="ornament w-16 mx-auto mt-4" />
+            <div className="flex items-center justify-center gap-3 mt-4">
+              <button onClick={() => setShowExport(true)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20 transition-all">
+                <FileDown className="w-3.5 h-3.5" /> Exportar Estudos
+              </button>
+              <button onClick={() => setShowImageGen(true)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20 transition-all">
+                <Palette className="w-3.5 h-3.5" /> Criar Imagem
+              </button>
+            </div>
           </motion.div>
 
           {/* ── Level Card ── */}
@@ -215,6 +228,41 @@ export default function GamificacaoPage() {
               </motion.div>
             ))}
           </div>
+
+          {/* ── Streak Rewards ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+            className="mb-8"
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <Flame className="w-5 h-5 text-orange-500" />
+              <h2 className="text-sm font-semibold text-[var(--muted-fg)] uppercase tracking-wider">
+                Recompensas de Sequência
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {streakRewards?.map((reward, i) => (
+                <motion.div
+                  key={reward.dias}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3 + i * 0.05 }}
+                  className={`sola-card p-4 rounded-xl text-center transition-all ${reward.desbloqueado ? 'ring-2 ring-amber-500/50 shadow-md shadow-amber-500/10' : 'opacity-50'}`}
+                >
+                  <div className="text-2xl mb-1">{reward.desbloqueado ? '🔥' : '🔒'}</div>
+                  <p className="text-xs font-bold text-[var(--fg)]">{reward.dias} dias</p>
+                  <p className="text-[10px] text-[var(--muted-fg)] mt-0.5">+{reward.xpBonus} XP</p>
+                  {reward.desbloqueado && (
+                    <span className="inline-block mt-1 text-[9px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold">
+                      Conquistado!
+                    </span>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
           {/* ── Daily Challenges ── */}
           <motion.div
@@ -419,6 +467,9 @@ export default function GamificacaoPage() {
       </AnimatePresence>
 
       <Footer />
+
+      <EstudoExportador open={showExport} onOpenChange={setShowExport} />
+      <ShareImageGenerator open={showImageGen} onClose={() => setShowImageGen(false)} />
     </div>
   );
 }

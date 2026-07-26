@@ -65,6 +65,7 @@ const PASSAGENS_DRAMATICAS: Record<string, { titulo: string; subtitulo: string; 
 };
 
 import { carregarTraducao } from '@/data/biblia/texto/carregar';
+import { trackEvent } from '@/lib/gamificationTracker';
 
 export default function BibliaPage() {
   useEffect(() => {
@@ -119,7 +120,14 @@ export default function BibliaPage() {
   // Scroll to top when chapter changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [nav.capituloIdx, nav.livroIdx]);
+    if (nav.temDados && nav.data[0]?.versiculos) {
+      const verseCount = nav.data[0].versiculos.length;
+      if (verseCount > 0) {
+        trackEvent('versiculo_lido', verseCount);
+        trackEvent('capitulo_lido', 1);
+      }
+    }
+  }, [nav.capituloIdx, nav.livroIdx, nav.temDados, nav.data]);
 
   if (ui.zenMode && nav.temDados) {
     return (

@@ -8,6 +8,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import Link from 'next/link';
 import { LIVROS_BIBLIA, todasPerguntas, type PerguntaQuiz } from '@/data/quiz';
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { trackEvent } from '@/lib/gamificationTracker';
 
 const MODOS = [
   {
@@ -230,6 +231,12 @@ export default function QuizPage() {
     : 0;
   const percentualAcerto = totalPerguntas > 0 ? Math.round((acertos / totalPerguntas) * 100) : 0;
   const rankingAtual = RANKINGS.find(r => percentualAcerto >= r.min && percentualAcerto < r.max) || RANKINGS[0];
+
+  useEffect(() => {
+    if (tela === 'resultado' && totalPerguntas > 0) {
+      trackEvent('quiz_completo', 1, { pontuacao, acertos, erros, percentualAcerto });
+    }
+  }, [tela, totalPerguntas, pontuacao, acertos, erros, percentualAcerto]);
 
   const salvarNoRanking = () => {
     if (!nomeJogador.trim()) return;

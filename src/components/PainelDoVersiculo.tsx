@@ -668,7 +668,10 @@ export default function PainelDoVersiculo({
 }: PainelDoVersiculoProps) {
   const [recursos, setRecursos] = useState<RecursoVersiculo[]>([]);
   const [activeTab, setActiveTab] = useState(tabInicial || 'texto');
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768;
+  });
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -887,7 +890,7 @@ export default function PainelDoVersiculo({
             role="dialog"
             aria-label={`Painel de recursos para ${livro.toUpperCase()} ${capitulo}:${versiculo}`}
             aria-modal="true"
-            className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] bg-background border-t border-border shadow-2xl rounded-t-2xl flex flex-col overflow-hidden"
+            className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] bg-background border-t border-border shadow-2xl rounded-t-2xl flex flex-col overflow-y-auto"
           >
             {/* Drag handle */}
             <div className="flex justify-center py-2 shrink-0">

@@ -5,13 +5,26 @@ import { io, Socket } from 'socket.io-client';
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
 const WS_URL = API_URL.replace('/api/v1', '');
 
-const ICE_SERVERS: RTCConfiguration = {
-  iceServers: [
-    { urls: 'stun:stun.l.google.com:19302' },
-    { urls: 'stun:stun1.l.google.com:19302' },
-    { urls: 'stun:stun2.l.google.com:19302' },
-  ],
-};
+const TURN_URLS = process.env.NEXT_PUBLIC_TURN_URLS || '';
+const TURN_USERNAME = process.env.NEXT_PUBLIC_TURN_USERNAME || '';
+const TURN_CREDENTIAL = process.env.NEXT_PUBLIC_TURN_CREDENTIAL || '';
+
+const iceServers: RTCIceServer[] = [
+  { urls: 'stun:stun.l.google.com:19302' },
+  { urls: 'stun:stun1.l.google.com:19302' },
+  { urls: 'stun:stun2.l.google.com:19302' },
+];
+
+if (TURN_URLS && TURN_USERNAME && TURN_CREDENTIAL) {
+  for (const url of TURN_URLS.split(',')) {
+    const trimmed = url.trim();
+    if (trimmed) {
+      iceServers.push({ urls: trimmed, username: TURN_USERNAME, credential: TURN_CREDENTIAL });
+    }
+  }
+}
+
+const ICE_SERVERS: RTCConfiguration = { iceServers };
 
 export interface PeerStream {
   participantId: string;

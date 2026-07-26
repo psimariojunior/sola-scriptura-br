@@ -79,7 +79,10 @@ export function SidePanel({
 }: SidePanelProps) {
   const isCollapsed = width === 'collapsed';
   const isFull = width === 'full';
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 1024;
+  });
 
   useEffect(() => {
     const mql = window.matchMedia('(max-width: 1023px)');

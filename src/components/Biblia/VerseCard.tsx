@@ -102,17 +102,21 @@ export const VerseCard = memo(function VerseCard({
     }
   }, [isCurrentAudioVerse, isFocused]);
 
-  // Click outside to deselect verse (mobile: only mousedown, no touchstart to avoid conflicts)
+  // Click/touch outside to deselect verse
   useEffect(() => {
     if (!isSelected) return;
-    const handler = (e: MouseEvent) => {
+    const handler = (e: MouseEvent | TouchEvent) => {
       const target = e.target as Node;
       if (articleRef.current && !articleRef.current.contains(target)) {
         onSelect();
       }
     };
     document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
+    document.addEventListener('touchstart', handler);
+    return () => {
+      document.removeEventListener('mousedown', handler);
+      document.removeEventListener('touchstart', handler);
+    };
   }, [isSelected, onSelect]);
 
   useEffect(() => {

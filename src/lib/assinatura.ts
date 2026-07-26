@@ -68,7 +68,7 @@ export function criarPreferenciaMP(
 export async function verificarPagamento(
   paymentId: string,
   accessToken: string = MP_ACCESS_TOKEN,
-): Promise<any | null> {
+): Promise<Record<string, unknown> | null> {
   if (!accessToken || !paymentId) return null;
   try {
     const res = await fetch(

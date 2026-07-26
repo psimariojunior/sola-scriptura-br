@@ -43,87 +43,96 @@ export async function GET(request: NextRequest) {
 
     try {
       const { doutrinas } = await import('@/data/biblia');
-      const doutrinasList = Array.isArray(doutrinas) ? doutrinas : Object.values(doutrinas as any);
+      const doutrinasList = Array.isArray(doutrinas) ? doutrinas : Object.values(doutrinas as Record<string, unknown>);
       for (const d of doutrinasList) {
         if (!d || typeof d !== 'object') continue;
-        const dd = d as any;
-        const nome = normalize(dd.nome || dd.titulo || '');
-        const desc = normalize(dd.descricao || dd.resumo || '');
+        const dd = d as Record<string, unknown>;
+        const nome = normalize(String(dd.nome || dd.titulo || ''));
+        const desc = normalize(String(dd.descricao || dd.resumo || ''));
         if (nome.includes(query) || desc.includes(query)) {
           resultados.push({
-            id: `doutrina-${dd.id || dd.nome}`,
-            titulo: dd.nome || dd.titulo,
-            subtitulo: dd.categoria || 'Teologia',
+            id: `doutrina-${String(dd.id || dd.nome)}`,
+            titulo: String(dd.nome || dd.titulo),
+            subtitulo: String(dd.categoria || 'Teologia'),
             categoria: 'doutrina',
             href: `/teologia`,
           });
         }
       }
-    } catch {}
+    } catch (err: unknown) {
+      console.error('[busca] Erro ao buscar doutrinas:', err instanceof Error ? err.message : err);
+    }
 
     try {
       const mod = await import('@/data/biblia/personagensAvancados');
-      const personagensAvancados = (mod as any).default || (mod as any).personagensAvancados || [];
+      const personagensAvancados = (mod as Record<string, unknown>).default || (mod as Record<string, unknown>).personagensAvancados || [];
       const personagens = Array.isArray(personagensAvancados) ? personagensAvancados : [];
       for (const p of personagens) {
         if (!p || typeof p !== 'object') continue;
-        const pp = p as any;
-        const nome = normalize(pp.nome || '');
-        const desc = normalize(pp.descricao || pp.resumo || '');
+        const pp = p as Record<string, unknown>;
+        const nome = normalize(String(pp.nome || ''));
+        const desc = normalize(String(pp.descricao || pp.resumo || ''));
         if (nome.includes(query) || desc.includes(query)) {
           resultados.push({
-            id: `personagem-${pp.id || pp.nome}`,
-            titulo: pp.nome,
-            subtitulo: pp.cargo || pp.funcao || '',
+            id: `personagem-${String(pp.id || pp.nome)}`,
+            titulo: String(pp.nome),
+            subtitulo: String(pp.cargo || pp.funcao || ''),
             categoria: 'personagem',
             href: `/personagens`,
           });
         }
       }
-    } catch {}
+    } catch (err: unknown) {
+      console.error('[busca] Erro ao buscar personagens:', err instanceof Error ? err.message : err);
+    }
 
     try {
       const dicMod = await import('@/data/dicionarioBiblico');
-      const dicionarioBiblico = (dicMod as any).default || (dicMod as any).dicionarioBiblico || [];
+      const dicionarioBiblico = (dicMod as Record<string, unknown>).default || (dicMod as Record<string, unknown>).dicionarioBiblico || [];
       const verbetes = Array.isArray(dicionarioBiblico) ? dicionarioBiblico : [];
       for (const v of verbetes) {
         if (!v || typeof v !== 'object') continue;
-        const vv = v as any;
-        const termo = normalize(vv.termo || '');
-        const def = normalize(vv.definicao || '');
+        const vv = v as Record<string, unknown>;
+        const termo = normalize(String(vv.termo || ''));
+        const def = normalize(String(vv.definicao || ''));
         if (termo.includes(query) || def.includes(query)) {
           resultados.push({
-            id: `topico-${vv.id || vv.termo}`,
-            titulo: vv.termo,
-            subtitulo: vv.categoria || '',
+            id: `topico-${String(vv.id || vv.termo)}`,
+            titulo: String(vv.termo),
+            subtitulo: String(vv.categoria || ''),
             categoria: 'topico',
             href: `/idiomas/dicionario`,
           });
         }
       }
-    } catch {}
+    } catch (err: unknown) {
+      console.error('[busca] Erro ao buscar dicionario:', err instanceof Error ? err.message : err);
+    }
 
     try {
       const comMod = await import('@/data/comentariosExpandidos');
-      const comentariosModule = (comMod as any).default || (comMod as any).comentariosExpandidos || {};
+      const comentariosModule = (comMod as Record<string, unknown>).default || (comMod as Record<string, unknown>).comentariosExpandidos || {};
       const comentarios = typeof comentariosModule === 'object' && comentariosModule !== null
-        ? Object.values(comentariosModule as Record<string, any>)
+        ? Object.values(comentariosModule as Record<string, unknown>)
         : [];
       for (const c of comentarios) {
         if (!c || typeof c !== 'object') continue;
-        const titulo = normalize(c.titulo || '');
-        const resumo = normalize(c.resumo || '');
+        const cc = c as Record<string, unknown>;
+        const titulo = normalize(String(cc.titulo || ''));
+        const resumo = normalize(String(cc.resumo || ''));
         if (titulo.includes(query) || resumo.includes(query)) {
           resultados.push({
-            id: `estudo-${c.livro}-${c.capitulo}-${c.versiculo}`,
-            titulo: c.titulo,
-            subtitulo: `${(c.livro || '').toUpperCase()} ${c.capitulo}:${c.versiculo}`,
+            id: `estudo-${String(cc.livro)}-${String(cc.capitulo)}-${String(cc.versiculo)}`,
+            titulo: String(cc.titulo),
+            subtitulo: `${String(cc.livro || '').toUpperCase()} ${String(cc.capitulo)}:${String(cc.versiculo)}`,
             categoria: 'estudo',
-            href: `/biblia?livro=${c.livro}&capitulo=${c.capitulo}`,
+            href: `/biblia?livro=${String(cc.livro)}&capitulo=${String(cc.capitulo)}`,
           });
         }
       }
-    } catch {}
+    } catch (err: unknown) {
+      console.error('[busca] Erro ao buscar comentarios:', err instanceof Error ? err.message : err);
+    }
 
     const ordenados = resultados
       .sort((a, b) => {

@@ -15,13 +15,13 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  let body: any;
+  let body: Record<string, unknown>;
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ erro: 'JSON invalido' }, { status: 400 });
   }
-  const email = (body?.email || '').toString().trim();
+  const email = String((body?.email || '')).trim();
   if (!email) {
     return NextResponse.json({ erro: 'email obrigatorio' }, { status: 400 });
   }

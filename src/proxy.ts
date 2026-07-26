@@ -1,40 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const PUBLIC_PATHS = [
-  '/',
-  '/auth/login',
-  '/auth/cadastro',
-  '/auth/callback',
-  '/auth/esqueci-senha',
-  '/biblia',
-  '/teologia',
-  '/historia',
-  '/personagens',
-  '/cronologia',
-  '/idiomas',
-  '/exegese',
-  '/pesquisa',
-  '/ferramentas',
-  '/literatura',
-  '/parabolas',
-  '/milagres',
-  '/harmonia',
-  '/comparar',
-  '/topicos',
-  '/pericopes',
-  '/compartilhar',
-  '/estudos',
-  '/quiz',
-  '/flashcards',
-  '/devocional',
-  '/planos',
-  '/sermoes',
-  '/estatisticas',
-  '/estudo',
-  '/ia',
-];
-
 const PUBLIC_PREFIXES = [
   '/api/',
   '/_next/',
@@ -56,6 +22,19 @@ const PROTECTED_PREFIXES = [
   '/conta',
 ];
 
+function getTokenFromRequest(request: NextRequest): string | null {
+  const cookieToken = request.cookies.get('ssb_token')?.value;
+  if (cookieToken) return cookieToken;
+
+  const urlToken = request.nextUrl.searchParams.get('token');
+  if (urlToken) return urlToken;
+
+  const authHeader = request.headers.get('x-ssb-token');
+  if (authHeader) return authHeader;
+
+  return null;
+}
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -64,9 +43,9 @@ export function proxy(request: NextRequest) {
   }
 
   if (PROTECTED_PREFIXES.some(prefix => pathname.startsWith(prefix))) {
-    const token = request.cookies.get('ssb_token')?.value;
+    const token = getTokenFromRequest(request);
     if (!token) {
-      const loginUrl = new URL('/auth/login', request.url);
+      const loginUrl = new URL('/auth', request.url);
       loginUrl.searchParams.set('redirect', pathname);
       return NextResponse.redirect(loginUrl);
     }

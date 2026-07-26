@@ -1,4 +1,4 @@
-const VAPID_PUBLIC_KEY = 'BExG_PLACEHOLDER_VAPID_PUBLIC_KEY_REPLACE_WITH_REAL_KEY';
+const VAPID_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || '';
 const PUSH_ENABLED_KEY = 'ssb_push_enabled';
 const PUSH_SUBSCRIPTION_KEY = 'ssb_push_subscription';
 const DAILY_VERSE_TAG = 'ssb-daily-verse-push';
@@ -92,6 +92,11 @@ export async function requestNotificationPermission(): Promise<NotificationPermi
 export async function subscribeToPush(): Promise<PushSubscription | null> {
   const reg = await getSWRegistration();
   if (!reg) return null;
+
+  if (!VAPID_PUBLIC_KEY) {
+    console.warn('[Push] NEXT_PUBLIC_VAPID_PUBLIC_KEY nao configurada. Push notifications desabilitadas.');
+    return null;
+  }
 
   try {
     const permission = await requestNotificationPermission();

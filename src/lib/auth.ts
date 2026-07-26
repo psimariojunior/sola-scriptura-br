@@ -27,7 +27,7 @@ interface AuthResponse {
   usuario: Usuario;
 }
 
-type StoredUser = Usuario & { senha?: string; password?: string; name?: string };
+type StoredUser = Usuario & { name?: string };
 
 function readJSON<T>(raw: string | null): T | null {
   if (!raw) return null;
@@ -169,14 +169,12 @@ class AuthService {
           if (!legacy || !legacy.email) continue;
           const emailNorm = normalizeEmail(legacy.email);
           if (emailsAtuais.has(emailNorm)) continue;
-          const senha = legacy.senha || legacy.password || '';
           const id = legacy.id || makeUserId();
           usersMigrados.push({
             id,
             nome: legacy.nome || legacy.name || legacy.email.split('@')[0],
             email: legacy.email,
             role: legacy.role || 'user',
-            senha,
           });
           emailsAtuais.add(emailNorm);
         }
@@ -277,18 +275,28 @@ class AuthService {
 
   async loginWithGoogle(): Promise<Usuario> {
     if (typeof window === 'undefined') {
-      throw new Error('Login indisponível no servidor');
+      throw new Error('Login indisponivel no servidor');
     }
     window.location.href = 'https://api.solascripturabr.com.br/api/v1/auth/google';
-    return new Promise<Usuario>(() => {});
+    return new Promise<Usuario>((_, reject) => {
+      const timeout = setTimeout(() => {
+        reject(new Error('Redirecionamento interrompido. Tente novamente.'));
+      }, 10000);
+      window.addEventListener('beforeunload', () => clearTimeout(timeout));
+    });
   }
 
   async loginWithApple(): Promise<Usuario> {
     if (typeof window === 'undefined') {
-      throw new Error('Login indisponível no servidor');
+      throw new Error('Login indisponivel no servidor');
     }
     this.redirecionar('/api/auth/apple');
-    return new Promise<Usuario>(() => {});
+    return new Promise<Usuario>((_, reject) => {
+      const timeout = setTimeout(() => {
+        reject(new Error('Redirecionamento interrompido. Tente novamente.'));
+      }, 10000);
+      window.addEventListener('beforeunload', () => clearTimeout(timeout));
+    });
   }
 
   // Isolado para permitir spy em testes e evitar acesso direto a window.location.

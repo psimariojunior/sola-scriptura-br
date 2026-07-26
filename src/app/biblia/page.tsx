@@ -165,7 +165,7 @@ export default function BibliaPage() {
             </aside>)}
           <div className="flex-1 flex flex-col min-w-0 relative overflow-hidden">
             <div className="border-b border-[var(--border)]/40 bg-[var(--surface-raised)]/95 backdrop-blur-sm sticky top-0 z-20">
-              <div className="px-3 sm:px-4 py-2.5 flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-hide">
+              <div className="px-3 sm:px-4 py-2.5 flex items-center gap-1.5 sm:gap-3">
                 <button onClick={() => ui.setMobileMenu(true)} className="lg:hidden touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]" aria-label="Abrir menu de livros"><BookOpen className="w-4 h-4" /></button>
                 <button onClick={() => ui.setSidebarOpen(!ui.sidebarOpen)} className="hidden lg:flex touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)]"><ListFilter className="w-4 h-4" /></button>
                 <div className="flex items-center gap-1">

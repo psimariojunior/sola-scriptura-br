@@ -45,7 +45,7 @@ export function TranslationDropdown({ open, onToggle, onClose, selectedTrads, on
         <>
           <div className="fixed inset-0 z-30" onClick={onClose} />
           <div
-            className="absolute right-0 top-full mt-2 z-40 w-[min(288px,calc(100vw-1rem))] bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-2 max-h-[70vh] overflow-y-auto animate-scale-in"
+            className="fixed sm:absolute left-2 right-2 sm:left-auto sm:right-0 top-16 sm:top-full sm:mt-2 z-40 sm:w-[min(288px,calc(100vw-1rem))] w-auto bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-2xl p-2 max-h-[60vh] overflow-y-auto animate-scale-in"
           >
             <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] px-3 py-1.5">Traducoes</p>
             {TRAD_IDS.map(id => {

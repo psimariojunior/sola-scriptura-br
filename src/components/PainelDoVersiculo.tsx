@@ -728,7 +728,16 @@ export default function PainelDoVersiculo({
       return;
     }
     getRecursosVersiculo(livro, capitulo, versiculo)
-      .then(setRecursos)
+      .then((recursosCarregados) => {
+        setRecursos(recursosCarregados);
+        if (!tabInicial) {
+          const temEstudos = recursosCarregados.some(r => r.tipo === 'estudo');
+          const temComentarios = recursosCarregados.some(r => r.tipo === 'comentario');
+          if (temEstudos) setActiveTab('estudo');
+          else if (temComentarios) setActiveTab('comentarios');
+          else setActiveTab('texto');
+        }
+      })
       .catch((err) => {
         console.error('Erro ao carregar recursos do versículo:', err);
         setErro('Erro ao carregar recursos. Tente novamente.');

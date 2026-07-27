@@ -301,6 +301,7 @@ export default function BibliaPage() {
                             window.location.href = '/estudo-colaborativo';
                           }}
                           onAbrirPainel={(tab?: string) => { setPainelTabInicial(tab); setPainelVersiculoAberto(true); }}
+                          painelVersiculoAberto={painelVersiculoAberto}
                           />);
                       })}</div>
                     </div>))}

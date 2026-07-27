@@ -508,9 +508,12 @@ export class WebRTCService {
     this.peerStreams = [];
     this.localStream?.getTracks().forEach(t => t.stop());
     this.localStream = null;
-    this.socket?.emit('leave-room', {});
+    if (this.socket && this.roomCode) {
+      this.socket.emit('leave-room', { code: this.roomCode });
+    }
     this.socket?.disconnect();
     this.socket = null;
+    this.mySocketId = '';
     this.onPeerStreamCallback = null;
     this.onStatusCallback = null;
     this.onParticipantsCallback = null;

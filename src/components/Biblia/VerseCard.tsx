@@ -43,6 +43,7 @@ export interface VerseCardProps {
   onCompartilharSala?: () => void;
   onAbrirPainel?: (tab?: string) => void;
   onDeselect?: () => void;
+  hideMobileActions?: boolean;
   verseKey: string;
   showTranslationLabel: boolean;
   tradLabel: string;
@@ -84,6 +85,7 @@ export const VerseCard = memo(function VerseCard({
   onCompartilharSala,
   onAbrirPainel,
   onDeselect,
+  hideMobileActions = false,
   verseKey,
   isCurrentAudioVerse = false,
   hasResources: hasResourcesProp = false,
@@ -352,7 +354,7 @@ export const VerseCard = memo(function VerseCard({
         )}
 
         {/* Mobile inline action panel */}
-        {isSelected && (
+        {isSelected && !hideMobileActions && (
           <div className="lg:hidden mt-2 pt-2 border-t border-[var(--border)]/20 animate-[slideDown_0.2s_ease-out]">
             <p className="text-[10px] text-[var(--content-muted)] font-medium uppercase tracking-wider mb-2">Ações</p>
             <div className="grid grid-cols-4 gap-1.5">

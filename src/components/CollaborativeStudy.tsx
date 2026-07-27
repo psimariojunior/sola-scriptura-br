@@ -114,6 +114,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatServiceRef = useRef<WebRTCService | null>(null);
   const typingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const wsConnectedRef = useRef(false);
   const participantId = getParticipantId();
   const participantName = getParticipantLabel(participantId);
   const { containerRef, isFullscreen, toggleFullscreen } = useFullscreen();
@@ -121,7 +122,8 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
 
   // Conectar serviço WebSocket
   useEffect(() => {
-    if (!room) return;
+    if (!room || wsConnectedRef.current) return;
+    wsConnectedRef.current = true;
     const svc = createWebRTCService();
     chatServiceRef.current = svc;
 
@@ -146,12 +148,20 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     svc.onCallReject(() => setIncomingCall(null));
     svc.onBibleNavigation((data) => setBibleSyncData(data));
     svc.onParticipants((participants) => {
-      setRoom(prev => prev ? { ...prev, participants: participants.map(p => p.participantId) } : prev);
+      setRoom(prev => {
+        if (!prev) return prev;
+        const newParticipantIds = participants.map(p => p.participantId);
+        const currentIds = prev.participants.join(',');
+        const newIds = newParticipantIds.join(',');
+        if (currentIds === newIds) return prev;
+        return { ...prev, participants: newParticipantIds };
+      });
     });
 
     svc.onRoomFull((data) => {
       setRoomFull({ maxParticipants: data.maxParticipants });
       setRoom(null);
+      wsConnectedRef.current = false;
     });
 
     svc.onPresentationSync((data) => {
@@ -165,7 +175,11 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     svc.getLocalStream(false, false).catch(() => {});
     svc.connect(room.code, participantId, participantName);
 
-    return () => { svc.disconnect(); chatServiceRef.current = null; };
+    return () => {
+      svc.disconnect();
+      chatServiceRef.current = null;
+      wsConnectedRef.current = false;
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [room?.code]);
 
@@ -299,25 +313,49 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               referencia: verseOrRef,
               apresentadoPor: participantName,
             });
+            chatServiceRef.current?.sendPresentationSync({
+              action: 'navigate',
+              livro: livroNome,
+              capitulo,
+              versiculo,
+              texto: verses[idx >= 0 ? idx : 0].texto,
+              presentedBy: participantName,
+            });
           } else {
             // Fallback: use provided text
             setChapterVerses([{ texto: text || '', referencia: verseOrRef }]);
             setChapterVerseIndex(0);
             setPresentedVerse({ texto: text || '', referencia: verseOrRef, apresentadoPor: participantName });
+            chatServiceRef.current?.sendPresentationSync({
+              action: 'navigate',
+              livro: livroNome,
+              capitulo,
+              versiculo,
+              texto: text || '',
+              presentedBy: participantName,
+            });
           }
         } catch {
           // Fallback: use provided text
           setChapterVerses([{ texto: text || '', referencia: verseOrRef }]);
           setChapterVerseIndex(0);
           setPresentedVerse({ texto: text || '', referencia: verseOrRef, apresentadoPor: participantName });
+          chatServiceRef.current?.sendPresentationSync({
+            action: 'navigate',
+            livro: livroNome,
+            capitulo,
+            versiculo,
+            texto: text || '',
+            presentedBy: participantName,
+          });
         }
       } else {
         // Can't parse reference, use text as-is
         setChapterVerses([{ texto: text || '', referencia: verseOrRef }]);
         setChapterVerseIndex(0);
         setPresentedVerse({ texto: text || '', referencia: verseOrRef, apresentadoPor: participantName });
+        chatServiceRef.current?.sendPresentationSync({ action: 'navigate', texto: text || '', presentedBy: participantName });
       }
-      chatServiceRef.current?.sendPresentationSync({ action: 'navigate', texto: text, presentedBy: participantName });
       setCurrentVerseIndex(-1);
     } else {
       const idx = wsVerses.findIndex(v => v.id === verseOrRef.id);
@@ -353,7 +391,11 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       setChapterVerseIndex(newIndex);
     }
     setPresentedVerse({ texto: verse.texto, referencia: verse.referencia, apresentadoPor: participantName });
-    chatServiceRef.current?.sendPresentationSync({ action: 'navigate', texto: verse.texto, presentedBy: participantName });
+    const refMatch = verse.referencia.match(/^(.+?)\s+(\d+):(\d+)$/);
+    const livro = refMatch ? refMatch[1] : undefined;
+    const capitulo = refMatch ? parseInt(refMatch[2]) : undefined;
+    const versiculo = refMatch ? parseInt(refMatch[3]) : undefined;
+    chatServiceRef.current?.sendPresentationSync({ action: 'navigate', livro, capitulo, versiculo, texto: verse.texto, presentedBy: participantName });
   }, [wsVerses, chapterVerses, currentVerseIndex, chapterVerseIndex, participantName]);
 
   const navigateToVerse = useCallback((index: number) => {
@@ -366,7 +408,11 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       setChapterVerseIndex(index);
     }
     setPresentedVerse({ texto: verse.texto, referencia: verse.referencia, apresentadoPor: participantName });
-    chatServiceRef.current?.sendPresentationSync({ action: 'navigate', texto: verse.texto, presentedBy: participantName });
+    const refMatch = verse.referencia.match(/^(.+?)\s+(\d+):(\d+)$/);
+    const livro = refMatch ? refMatch[1] : undefined;
+    const capitulo = refMatch ? parseInt(refMatch[2]) : undefined;
+    const versiculo = refMatch ? parseInt(refMatch[3]) : undefined;
+    chatServiceRef.current?.sendPresentationSync({ action: 'navigate', livro, capitulo, versiculo, texto: verse.texto, presentedBy: participantName });
   }, [wsVerses, chapterVerses, participantName]);
 
   // Auto-advance timer
@@ -538,7 +584,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           <button onClick={() => setShowSettings(true)} className="p-2 hover:bg-[var(--surface-raised)] rounded-lg transition-colors text-[var(--content-muted)]">
             <Settings className="w-4 h-4" />
           </button>
-          <button onClick={() => { setRoom(null); setIsCallActive(false); }}
+          <button onClick={() => { setRoom(null); setIsCallActive(false); wsConnectedRef.current = false; }}
             className="p-2 hover:bg-[var(--surface-raised)] rounded-lg transition-colors text-[var(--content-muted)]"><X className="w-4 h-4" /></button>
         </div>
       </div>

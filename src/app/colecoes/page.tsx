@@ -35,6 +35,7 @@ export default function ColecoesPage() {
   const [nome, setNome] = useState('');
   const [descricao, setDescricao] = useState('');
   const [mounted, setMounted] = useState(false);
+  const [copiado, setCopiado] = useState(false);
 
   const carregarColecoes = useCallback(async () => {
     try {
@@ -102,7 +103,8 @@ export default function ColecoesPage() {
     ].filter(Boolean).join('\n');
     try {
       await navigator.clipboard.writeText(texto);
-      alert('Coleção copiada para a área de transferência!');
+      setCopiado(true);
+      setTimeout(() => setCopiado(false), 2000);
     } catch {
       const blob = new Blob([texto], { type: 'text/plain' });
       const a = document.createElement('a');
@@ -126,7 +128,7 @@ export default function ColecoesPage() {
   return (
     <div className="min-h-screen bg-[var(--bg)]">
       <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
+      <main className="pt-24 pb-24 md:pb-16 px-4 sm:px-6">
         <PullToRefreshWrapper onRefresh={carregarColecoes}>
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
@@ -189,6 +191,7 @@ export default function ColecoesPage() {
                     >
                       <Share2 className="w-3.5 h-3.5" /> Compartilhar
                     </button>
+                    {copiado && <span className="text-xs text-green-500 font-medium animate-fade-in">Copiado!</span>}
                     <button
                       onClick={() => excluirColecao(colecaoSelecionada.id)}
                       className="ml-auto flex items-center gap-1 text-red-500 hover:text-red-400 transition-colors"

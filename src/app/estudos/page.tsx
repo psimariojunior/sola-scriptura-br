@@ -196,7 +196,7 @@ export default function EstudosPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main id="main-content" className="pt-20 pb-16 px-4 sm:px-6">
+      <main id="main-content" className="pt-20 pb-24 md:pb-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="mb-6">
             <Breadcrumbs items={[{ label: 'Início', href: '/' }, { label: 'Estudos' }]} />
@@ -778,7 +778,7 @@ export default function EstudosPage() {
                                 </div>
                               )}
                             </div>
-                            <div className="flex items-center gap-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="flex items-center gap-1 shrink-0 sm:opacity-0 sm:group-hover:opacity-100 opacity-100 transition-opacity">
                               <button onClick={() => { toggleFavorito(m.livro, m.capitulo, m.versiculo, m.traducao, m.texto); carregar(); }}
                                 className={`p-1.5 rounded-md transition-colors ${m.favorito ? 'text-red-500 bg-red-50 dark:bg-red-950/20' : 'text-muted-foreground hover:text-red-400 hover:bg-muted'}`}
                                 title={m.favorito ? 'Remover favorito' : 'Favoritar'}>

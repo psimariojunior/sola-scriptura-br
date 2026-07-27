@@ -250,6 +250,34 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
     client.to(data.code).emit('presentation-sync', data);
   }
 
+  @SubscribeMessage('quiz-start')
+  handleQuizStart(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { code: string; questions: unknown[] },
+  ) {
+    client.to(data.code).emit('quiz-start', { questions: data.questions });
+    this.logger.log(`Quiz started in room ${data.code} (${data.questions.length} questions)`);
+  }
+
+  @SubscribeMessage('quiz-answer')
+  handleQuizAnswer(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { code: string; answer: unknown },
+  ) {
+    client.to(data.code).emit('quiz-answer', { answer: data.answer });
+  }
+
+  @SubscribeMessage('quiz-sync')
+  handleQuizSync(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { code: string; currentQuestion: number; status: string },
+  ) {
+    client.to(data.code).emit('quiz-sync', {
+      currentQuestion: data.currentQuestion,
+      status: data.status,
+    });
+  }
+
   private removeParticipantFromRoom(client: Socket, code: string) {
     const room = this.rooms.get(code);
     if (!room) return;

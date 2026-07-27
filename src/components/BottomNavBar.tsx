@@ -239,7 +239,7 @@ function BottomNavBarInner() {
                   }`}
                 >
                   <tab.icon className="w-5 h-5 mb-1" strokeWidth={active ? 2 : 1.5} />
-                  <span className="text-[10px] font-medium">{tab.label}</span>
+<span className="text-[11px] font-medium">{tab.label}</span>
                   {active && (
                     <div className="absolute top-0 w-8 h-[2px] bg-primary rounded-full" />
                   )}

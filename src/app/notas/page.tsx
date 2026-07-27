@@ -110,7 +110,7 @@ export default function NotasPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-24 pb-16 px-6">
+      <main className="pt-24 pb-24 md:pb-16 px-6">
         <PullToRefreshWrapper onRefresh={carregarNotas}>
         <div className="max-w-3xl mx-auto">
           <ScrollReveal>
@@ -186,7 +186,7 @@ export default function NotasPage() {
                             <div className="pl-3">
                               <div className="flex items-start justify-between mb-2">
                                 <h3 className="font-medium text-foreground">{nota.titulo || 'Sem título'}</h3>
-                                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div className="flex items-center gap-1 sm:opacity-0 sm:group-hover:opacity-100 opacity-100 transition-opacity">
                                   <button onClick={(e) => { e.stopPropagation(); setEditingNota(nota); setView('editor'); }}
                                     className="p-1.5 rounded-lg hover:bg-primary/10 text-primary" title="Editar">
                                     <Edit3 className="w-3.5 h-3.5" />

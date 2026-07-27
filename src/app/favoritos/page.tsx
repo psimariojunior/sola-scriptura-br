@@ -107,7 +107,7 @@ export default function FavoritosPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-24 pb-16 px-6">
+      <main className="pt-24 pb-24 md:pb-16 px-6">
         <PullToRefreshWrapper onRefresh={carregarFavoritos}>
         <div className="max-w-3xl mx-auto">
           <ScrollReveal>
@@ -192,7 +192,7 @@ export default function FavoritosPage() {
                           <div className="flex items-center gap-2">
                             <span className="text-[10px] text-muted-foreground">{new Date(fav.data).toLocaleDateString('pt-BR')}</span>
                             <button onClick={() => remover(fav.id)}
-                              className="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-red-500/10 text-red-500 transition-all">
+                              className="sm:opacity-0 sm:group-hover:opacity-100 opacity-100 p-1.5 rounded-lg hover:bg-red-500/10 text-red-500 transition-all">
                               <Trash2 className="w-3.5 h-3.5" />
                             </button>
                           </div>

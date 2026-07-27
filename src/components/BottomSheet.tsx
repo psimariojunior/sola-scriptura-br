@@ -23,7 +23,7 @@ export function BottomSheet({
   title,
   children,
   className,
-  snapPoints = [50, 80, 95],
+  snapPoints = [40, 70, 95],
   initialSnap = 0,
   showHandle = true,
   showClose = true,
@@ -38,13 +38,14 @@ export function BottomSheet({
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
+      setCurrentSnap(initialSnap);
     }
     return () => {
       document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.width = '';
     };
-  }, [open]);
+  }, [open, initialSnap]);
 
   const handleDragEnd = (_: never, info: PanInfo) => {
     const velocity = info.velocity.y;

@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, BookOpen, Languages, MessageSquare, GraduationCap, StickyNote, Link2, Users, Shield, Clock, Map, ScrollText, FileText, Sparkles, ChevronRight, ExternalLink, Search } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -729,16 +728,7 @@ export default function PainelDoVersiculo({
       return;
     }
     getRecursosVersiculo(livro, capitulo, versiculo)
-      .then((recursosCarregados) => {
-        setRecursos(recursosCarregados);
-        if (!tabInicial) {
-          const temEstudos = recursosCarregados.some(r => r.tipo === 'estudo');
-          const temComentarios = recursosCarregados.some(r => r.tipo === 'comentario');
-          if (temEstudos) setActiveTab('estudo');
-          else if (temComentarios) setActiveTab('comentarios');
-          else setActiveTab('texto');
-        }
-      })
+      .then(setRecursos)
       .catch((err) => {
         console.error('Erro ao carregar recursos do versículo:', err);
         setErro('Erro ao carregar recursos. Tente novamente.');
@@ -773,7 +763,7 @@ export default function PainelDoVersiculo({
   });
 
   const panelContent = (
-    <div className="flex flex-col flex-1 min-h-0">
+    <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
       {/* Header */}
       <div className="px-4 py-3 border-b border-border/50 shrink-0">
         <div className="flex items-center justify-between mb-2">
@@ -867,7 +857,7 @@ export default function PainelDoVersiculo({
         </div>
 
         {/* Content */}
-        <div className="flex-1 min-h-0 overflow-y-auto">
+        <ScrollArea className="flex-1 min-h-0">
           <div className="p-4">
             {erro ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
@@ -955,7 +945,7 @@ export default function PainelDoVersiculo({
             </>
             )}
           </div>
-        </div>
+        </ScrollArea>
       </Tabs>
     </div>
   );
@@ -1015,15 +1005,13 @@ export default function PainelDoVersiculo({
             role="dialog"
             aria-label={`Painel de recursos para ${livro.toUpperCase()} ${capitulo}:${versiculo}`}
             aria-modal="true"
-            className="fixed inset-x-0 bottom-0 z-50 h-[85vh] bg-[var(--surface-raised)] border-t border-[var(--border)] shadow-2xl rounded-t-2xl flex flex-col"
+            className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] bg-background border-t border-border shadow-2xl rounded-t-2xl flex flex-col overflow-y-auto"
           >
             {/* Drag handle */}
             <div className="flex justify-center py-2 shrink-0">
-              <div className="w-10 h-1 rounded-full bg-[var(--content-muted)]/30" />
+              <div className="w-10 h-1 rounded-full bg-muted-foreground/30" />
             </div>
-            <div className="flex-1 min-h-0 overflow-hidden">
-              {panelContent}
-            </div>
+            {panelContent}
           </motion.div>
         </>
       )}

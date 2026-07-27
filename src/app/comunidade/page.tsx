@@ -1,13 +1,16 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, Send, Users, Hash, Bell, BellOff, Settings } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
-import { createWebRTCService, type WebRTCService } from '@/lib/webrtc';
+
+const loadWebRTC = () => import('@/lib/webrtc').then(m => m.createWebRTCService);
+type WebRTCServiceType = Awaited<ReturnType<typeof loadWebRTC>> extends (...args: any[]) => infer R ? R : never;
 
 interface ChatMessage {
   id: string;
@@ -53,7 +56,7 @@ export default function ComunidadePage() {
   const [userName, setUserName] = useState('');
   const [editingName, setEditingName] = useState(false);
   const [onlineCount, setOnlineCount] = useState(0);
-  const svcRef = useRef<WebRTCService | null>(null);
+  const svcRef = useRef<WebRTCServiceType | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -63,28 +66,32 @@ export default function ComunidadePage() {
 
   // WebSocket connection
   useEffect(() => {
-    const svc = createWebRTCService();
-    svcRef.current = svc;
+    let cancelled = false;
+    loadWebRTC().then(createWebRTC => {
+      if (cancelled) return;
+      const svc = createWebRTC();
+      svcRef.current = svc;
 
-    svc.onChatMessage((msg) => {
-      const chatMsg: ChatMessage = {
-        id: msg.id,
-        userId: msg.participantId,
-        userName: msg.displayName,
-        message: msg.message,
-        channel: 'geral',
-        timestamp: msg.timestamp,
-      };
-      setMessages(prev => prev.some(m => m.id === msg.id) ? prev : [...prev, chatMsg]);
+      svc.onChatMessage((msg) => {
+        const chatMsg: ChatMessage = {
+          id: msg.id,
+          userId: msg.participantId,
+          userName: msg.displayName,
+          message: msg.message,
+          channel: 'geral',
+          timestamp: msg.timestamp,
+        };
+        setMessages(prev => prev.some(m => m.id === msg.id) ? prev : [...prev, chatMsg]);
+      });
+
+      svc.onParticipants((participants) => {
+        setOnlineCount(participants.length);
+      });
+
+      svc.connect('comunidade-chat', userId, userName || getUserName());
     });
 
-    svc.onParticipants((participants) => {
-      setOnlineCount(participants.length);
-    });
-
-    svc.connect('comunidade-chat', userId, userName || getUserName());
-
-    return () => { svc.disconnect(); svcRef.current = null; };
+    return () => { cancelled = true; svcRef.current?.disconnect(); svcRef.current = null; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

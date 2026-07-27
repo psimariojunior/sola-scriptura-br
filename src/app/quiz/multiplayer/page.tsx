@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -10,7 +11,9 @@ import { useSearchParams } from 'next/navigation';
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
 import { obterPerguntasAleatorias, type PerguntaQuiz } from '@/data/quiz';
-import { createWebRTCService, type WebRTCService } from '@/lib/webrtc';
+
+const loadWebRTC = () => import('@/lib/webrtc').then(m => m.createWebRTCService);
+type WebRTCServiceType = Awaited<ReturnType<typeof loadWebRTC>> extends (...args: any[]) => infer R ? R : never;
 
 interface QuizRoom {
   code: string;
@@ -78,7 +81,7 @@ export default function QuizMultiplayerPage() {
   const [totalScore, setTotalScore] = useState(0);
   const [wsPlayers, setWsPlayers] = useState<QuizPlayer[]>([]);
   const searchParams = useSearchParams();
-  const svcRef = useRef<WebRTCService | null>(null);
+  const svcRef = useRef<WebRTCServiceType | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const isHost = room?.hostId === playerId;
@@ -104,36 +107,40 @@ export default function QuizMultiplayerPage() {
   // WebSocket
   useEffect(() => {
     if (!room) return;
-    const svc = createWebRTCService();
-    svcRef.current = svc;
+    let cancelled = false;
+    loadWebRTC().then(createWebRTC => {
+      if (cancelled) return;
+      const svc = createWebRTC();
+      svcRef.current = svc;
 
-    svc.onParticipants((participants) => {
-      const players = participants.map(p => ({
-        id: p.participantId,
-        name: p.displayName,
-        score: 0,
-        streak: 0,
-        correctCount: 0,
-      }));
-      setWsPlayers(players);
-      setRoom(prev => prev ? { ...prev, players } : prev);
-    });
-
-    svc.onQuizStart((data) => {
-      setRoom(prev => prev ? { ...prev, questions: data.questions as PerguntaQuiz[] } : prev);
-    });
-
-    svc.onQuizAnswer((data) => {
-      const answer = data.answer as QuizAnswer;
-      setAnswers(prev => {
-        if (prev.some(a => a.questionId === answer.questionId && a.playerId === answer.playerId)) return prev;
-        return [...prev, answer];
+      svc.onParticipants((participants) => {
+        const players = participants.map(p => ({
+          id: p.participantId,
+          name: p.displayName,
+          score: 0,
+          streak: 0,
+          correctCount: 0,
+        }));
+        setWsPlayers(players);
+        setRoom(prev => prev ? { ...prev, players } : prev);
       });
+
+      svc.onQuizStart((data) => {
+        setRoom(prev => prev ? { ...prev, questions: data.questions as PerguntaQuiz[] } : prev);
+      });
+
+      svc.onQuizAnswer((data) => {
+        const answer = data.answer as QuizAnswer;
+        setAnswers(prev => {
+          if (prev.some(a => a.questionId === answer.questionId && a.playerId === answer.playerId)) return prev;
+          return [...prev, answer];
+        });
+      });
+
+      svc.connect(room.code, playerId, playerName || getPlayerName());
     });
 
-    svc.connect(room.code, playerId, playerName || getPlayerName());
-
-    return () => { svc.disconnect(); svcRef.current = null; };
+    return () => { cancelled = true; svcRef.current?.disconnect(); svcRef.current = null; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [room?.code]);
 

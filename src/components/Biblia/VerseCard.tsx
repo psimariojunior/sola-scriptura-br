@@ -353,7 +353,7 @@ export const VerseCard = memo(function VerseCard({
           </div>
         )}
 
-        {/* Mobile inline action panel */}
+        {/* Mobile inline action panel - only show when PainelDoVersiculo is NOT open */}
         {isSelected && !hideMobileActions && (
           <div className="lg:hidden mt-2 pt-2 border-t border-[var(--border)]/20 animate-[slideDown_0.2s_ease-out]">
             <p className="text-[10px] text-[var(--content-muted)] font-medium uppercase tracking-wider mb-2">Ações</p>

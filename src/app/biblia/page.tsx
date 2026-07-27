@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, lazy, Suspense, useMemo, useEffect, useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
@@ -68,6 +69,7 @@ import { carregarTraducao } from '@/data/biblia/texto/carregar';
 import { trackEvent } from '@/lib/gamificationTracker';
 
 export default function BibliaPage() {
+  const { t } = useTranslation();
   useEffect(() => {
     const trads = ['arc', 'nvi', 'ara', 'acf', 'kjv', 'web'];
     requestIdleCallback(() => {
@@ -142,7 +144,7 @@ export default function BibliaPage() {
         <div className="max-w-[700px] mx-auto px-4 sm:px-6 py-12 sm:py-16 pb-safe">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
-              <button onClick={() => ui.setZenMode(false)} className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors" title="Sair do modo zen (Esc)"><X className="w-5 h-5" /></button>
+              <button onClick={() => ui.setZenMode(false)} className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors" title={t('biblia.exitZen')}><X className="w-5 h-5" /></button>
               <div><h1 className="font-display text-xl font-semibold text-[var(--content-primary)]">{nav.livro.nome} {nav.capituloIdx + 1}</h1><p className="text-xs text-[var(--content-muted)]">{nav.selectedTrads.map(t => labelMap[t] || t.toUpperCase()).join(' · ')}</p></div>
             </div>
             <div className="flex items-center gap-2">
@@ -157,8 +159,8 @@ export default function BibliaPage() {
               <sup className="text-[var(--brand-default)] font-bold text-[11px] mr-1.5 select-none tabular-nums">{v.numero}</sup>{v.texto}</p>))}</div>
           </div>))}
           <div className="flex items-center justify-center gap-4 mt-16 pt-8 border-t border-[var(--border)]/30">
-            <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="flex items-center gap-2 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--surface-sunken)] transition-colors"><ChevronLeft className="w-4 h-4" />Capítulo anterior</button>
-            <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="flex items-center gap-2 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--surface-sunken)] transition-colors">Próximo capítulo<ChevronRight className="w-4 h-4" /></button>
+            <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="flex items-center gap-2 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--surface-sunken)] transition-colors"><ChevronLeft className="w-4 h-4" />{t('biblia.previousChapter')}</button>
+            <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="flex items-center gap-2 px-4 py-2 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--surface-sunken)] transition-colors">{t('biblia.nextChapter')}<ChevronRight className="w-4 h-4" /></button>
           </div>
         </div>
       </div>);
@@ -173,7 +175,7 @@ export default function BibliaPage() {
           {ui.sidebarOpen && (
             <aside className="sidebar-enter hidden lg:block w-64 border-r border-[var(--border)] bg-[var(--surface-raised)] overflow-y-auto shrink-0">
               <div className="p-4 h-full flex flex-col">
-                <div className="relative mb-3"><Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--content-muted)]" /><input type="text" placeholder="Buscar livro..." value={nav.searchQuery} onChange={e => nav.setSearchQuery(e.target.value)} className="w-full pl-9 pr-3 py-2 text-sm bg-[var(--surface-sunken)] border border-[var(--border)]/60 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/30 transition-all duration-200" /></div>
+                <div className="relative mb-3"><Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--content-muted)]" /><input type="text" placeholder={t('biblia.searchBook')} value={nav.searchQuery} onChange={e => nav.setSearchQuery(e.target.value)} className="w-full pl-9 pr-3 py-2 text-sm bg-[var(--surface-sunken)] border border-[var(--border)]/60 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/30 transition-all duration-200" /></div>
                 <div className="flex-1 overflow-y-auto space-y-0.5">{nav.livrosFiltrados.map((l) => { const idx = TODOS_LIVROS.indexOf(l); return (<button key={l.abreviacao} onClick={() => handleGoToBook(idx)} className={cn('w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 flex items-center gap-2 group', idx === nav.livroIdx ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] font-semibold' : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] hover:text-[var(--content-primary)]')}><span className="truncate">{l.nome}</span><span className="ml-auto text-[10px] opacity-0 group-hover:opacity-50 transition-opacity tabular-nums">{l.totalCapitulos}c</span></button>); })}</div>
               </div>
             </aside>)}
@@ -203,18 +205,18 @@ export default function BibliaPage() {
                       setMobileMenuPos({ top: rect.bottom + 4, right: window.innerWidth - rect.right });
                     }
                     setMobileToolbarMenuOpen(!mobileToolbarMenuOpen);
-                  }} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] active:scale-95 transition-transform" aria-label="Mais opções"><MoreVertical className="w-4 h-4" /></button>
+                  }} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] active:scale-95 transition-transform" aria-label={t('biblia.moreOptions')}><MoreVertical className="w-4 h-4" /></button>
                   {mobileToolbarMenuOpen && (
                     <>
                       <div className="fixed inset-0 z-30" onClick={() => setMobileToolbarMenuOpen(false)} />
                       <div className="fixed z-40 w-56 rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] shadow-xl py-1 animate-scale-in origin-top-right" style={{ top: mobileMenuPos.top, right: mobileMenuPos.right }}>
-                        <button onClick={() => { ui.setModoLeitura(ui.modoLeitura === 'foco' ? 'estudo' : 'foco'); nav.setViewMode('single'); panels.setSidePanelWidth('collapsed'); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><BookOpen className="w-4 h-4 text-[var(--content-muted)]" />Modo Leitura</button>
+                        <button onClick={() => { ui.setModoLeitura(ui.modoLeitura === 'foco' ? 'estudo' : 'foco'); nav.setViewMode('single'); panels.setSidePanelWidth('collapsed'); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><BookOpen className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.readingMode')}</button>
                         <button onClick={() => { ui.setShowInterlinear(!ui.showInterlinear); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><span className="font-hebrew text-sm text-[var(--brand-default)]">א</span>Interlinear</button>
-                        <button onClick={() => { setShowDownloadManager(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><HardDrive className="w-4 h-4 text-[var(--content-muted)]" />Versões Offline</button>
-                        <button onClick={() => { if (capituloAudio.state.isPlaying || capituloAudio.state.isPaused) capituloAudio.stop(); else capituloAudio.play(); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Volume2 className="w-4 h-4 text-[var(--content-muted)]" />Áudio do Capítulo</button>
+                        <button onClick={() => { setShowDownloadManager(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><HardDrive className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.offlineVersions')}</button>
+                        <button onClick={() => { if (capituloAudio.state.isPlaying || capituloAudio.state.isPaused) capituloAudio.stop(); else capituloAudio.play(); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Volume2 className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.chapterAudio')}</button>
                         <div className="h-px bg-[var(--border)]/40 my-1" />
-                        <button onClick={() => { ui.setToolsOpen(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Sparkles className="w-4 h-4 text-[var(--content-muted)]" />Ferramentas</button>
-                        <button onClick={() => { ui.setMostrarApresentacao(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-semibold text-[var(--brand-default)] hover:bg-[var(--brand-subtle)] transition-colors"><Sparkles className="w-4 h-4" />Apresentar</button>
+                        <button onClick={() => { ui.setToolsOpen(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Sparkles className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.tools')}</button>
+                        <button onClick={() => { ui.setMostrarApresentacao(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-semibold text-[var(--brand-default)] hover:bg-[var(--brand-subtle)] transition-colors"><Sparkles className="w-4 h-4" />{t('biblia.present')}</button>
                       </div>
                     </>
                   )}
@@ -222,10 +224,10 @@ export default function BibliaPage() {
                 <div className="hidden md:flex items-center gap-2">
                   <ModoLeitura value={ui.modoLeitura} onChange={(v) => { ui.setModoLeitura(v); if (v === 'comparacao') nav.setViewMode('parallel'); else if (v === 'estudo') { panels.setSidePanelWidth('half'); panels.setSidePanelTab('comentarios'); } else if (v === 'apresentacao') ui.setMostrarApresentacao(true); else { nav.setViewMode('single'); panels.setSidePanelWidth('collapsed'); } }} size="sm" />
                   <div className="w-px h-6 bg-[var(--border)]/60" />
-                  <button onClick={() => ui.setShowInterlinear(!ui.showInterlinear)} className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all', ui.showInterlinear ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20' : 'bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20')} title="Mostrar texto original hebraico/grego">
+                  <button onClick={() => ui.setShowInterlinear(!ui.showInterlinear)} className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all', ui.showInterlinear ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20' : 'bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20')} title={t('biblia.showOriginalText')}>
                     <span className="font-hebrew" style={{ fontSize: '11px' }}>א</span>Interlinear
                   </button>
-                  <button onClick={() => setShowDownloadManager(true)} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20 transition-all" title="Gerenciar versões offline">
+                  <button onClick={() => setShowDownloadManager(true)} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20 transition-all" title={t('biblia.manageOffline')}>
                     <HardDrive className="w-3.5 h-3.5" />Versões
                   </button>
                   <div className="w-px h-6 bg-[var(--border)]/60" />
@@ -235,7 +237,7 @@ export default function BibliaPage() {
                       {capituloAudio.state.isLoading ? <span className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin" /> : capituloAudio.state.isPlaying ? <span className="flex gap-0.5"><span className="w-0.5 h-3 bg-current rounded-full" /><span className="w-0.5 h-3 bg-current rounded-full" /></span> : <Play className="w-3.5 h-3.5 fill-current" />}
                       <Volume2 className="w-3.5 h-3.5" />
                     </button>
-                    <button onClick={() => ui.setMostrarQualidadeAudio(true)} className="p-1.5 rounded-full text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] active:scale-95 transition-transform" title="Qualidade do áudio"><Mic className="w-3.5 h-3.5" /></button>
+                    <button onClick={() => ui.setMostrarQualidadeAudio(true)} className="p-1.5 rounded-full text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] active:scale-95 transition-transform" title={t('biblia.audioQuality')}><Mic className="w-3.5 h-3.5" /></button>
                   </div>
                   <ToolsDropdown open={ui.toolsOpen} onToggle={() => { ui.setToolsOpen(!ui.toolsOpen); ui.setTradOpen(false); }} onClose={() => ui.setToolsOpen(false)} bookName={nav.livro.nome} chapter={nav.capituloIdx + 1} data={nav.data} hasDramatica={!!passagemDramatica}
                     onNotas={() => { if (!ui.mostrarNotas && !verse.notaAtiva) { verse.setNotaAtiva(verse.criarNota(`${nav.livro.nome} ${nav.capituloIdx + 1}`)); } ui.setMostrarNotas(!ui.mostrarNotas); ui.setToolsOpen(false); }}
@@ -244,7 +246,7 @@ export default function BibliaPage() {
                     onConfiguracoes={() => { ui.setShowSettings(!ui.showSettings); ui.setToolsOpen(false); }} />
                   <button onClick={() => ui.setMostrarApresentacao(true)}
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-[var(--brand-contrast)] bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] shadow-md shadow-[var(--brand-default)]/30 hover:shadow-lg hover:shadow-[var(--brand-default)]/40 transition-all active:scale-97 hover:scale-105">
-                    <Sparkles className="w-3.5 h-3.5" />Apresentar<span className="inline-flex items-center px-1 py-0 rounded text-[8px] font-extrabold bg-white/20">NEW</span>
+                    <Sparkles className="w-3.5 h-3.5" />{t('biblia.present')}<span className="inline-flex items-center px-1 py-0 rounded text-[8px] font-extrabold bg-white/20">{t('biblia.new')}</span>
                   </button>
                 </div>
               </div>
@@ -258,12 +260,12 @@ export default function BibliaPage() {
                     {Array.from({ length: 10 }).map((_, i) => (<div key={i} className="flex gap-3 items-center" style={{ animationDelay: `${i * 50}ms` }}><div className="skeleton skeleton-text w-10 h-10 shrink-0 rounded-lg" /><div className="skeleton skeleton-text flex-1 rounded" style={{ width: `${60 + Math.random() * 40}%` }} /></div>))}
                   </div>
                 ) : nav.offlineUnavailable ? (
-                  <div className="text-center py-20"><WifiOff className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} /><p className="text-lg text-[var(--content-muted)]">Capítulo não disponível offline</p><p className="text-sm text-[var(--content-muted)] mt-2">Conecte-se à internet ou baixe as traduções.</p></div>
+                  <div className="text-center py-20"><WifiOff className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} /><p className="text-lg text-[var(--content-muted)]">{t('biblia.chapterOffline')}</p><p className="text-sm text-[var(--content-muted)] mt-2">{t('biblia.connectOrDownload')}</p></div>
                 ) : nav.temDados ? (
                     <div role="article" aria-label={`${nav.livro.nome} capítulo ${nav.capituloIdx + 1}`}>
                     {nav.loading && nav.temDados && (<div className="fixed top-0 left-0 right-0 z-20 h-0.5 bg-[var(--brand-default)]/20"><div className="h-full bg-[var(--brand-default)] animate-loading-bar" /></div>)}
                     <ChapterHeader livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} totalCapitulos={nav.livro.totalCapitulos} totalVersiculos={nav.data[0]?.versiculos?.length ?? 0} />
-                    {ui.showInterlinear && nav.data[0] && (<div className="mb-8"><div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/40"><span className="font-hebrew text-lg text-[var(--brand-default)]">א</span><span className="text-sm font-semibold text-[var(--content-primary)]">Vista Interlinear</span></div><InterlinearView versiculos={nav.data[0].versiculos} livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} traducao={nav.data[0].traducao} /></div>)}
+                    {ui.showInterlinear && nav.data[0] && (<div className="mb-8"><div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/40"><span className="font-hebrew text-lg text-[var(--brand-default)]">א</span><span className="text-sm font-semibold text-[var(--content-primary)]">{t('biblia.interlinearView')}</span></div><InterlinearView versiculos={nav.data[0].versiculos} livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} traducao={nav.data[0].traducao} /></div>)}
                     {(ui.modoLeitura === 'foco' || ui.modoLeitura === 'estudo') && nav.data.map((item) => (<div key={item.traducao} className="mb-6">
                       {nav.selectedTrads.length > 1 && (<div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/40"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span>{ui.modoLeitura === 'foco' && <span className="text-xs text-[var(--content-muted)]">{nomeMap[item.traducao]}</span>}</div>)}
                       <div className={cn('space-y-1', ui.modoLeitura === 'foco' && 'divide-y divide-[var(--brand-default)]/5')}>{item.versiculos.map((v) => {
@@ -306,7 +308,7 @@ export default function BibliaPage() {
                     {ui.modoLeitura === 'comparacao' && nav.viewMode === 'comparison' && nav.data.length >= 2 && (<ComparisonTable data={nav.data} fontSize={ui.fontSize} showDiff={ui.showDiff} highlightedVerse={ui.highlightedVerse} onHighlight={ui.setHighlightedVerse} maxVersiculos={nav.maxVersiculos} tradBadgeColors={tradBadgeColors} labelMap={labelMap} />)}
                     {nav.estudoCapitulo && (<div className="mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">
                       <button onClick={() => ui.setEstudoCapituloAberto(o => !o)} className="w-full flex items-center gap-2 text-left group" aria-expanded={ui.estudoCapituloAberto}>
-                        <BookOpen className="w-4 h-4 text-[var(--primary)]" /><span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted-fg)] group-hover:text-[var(--fg)] transition-colors">Estudo do Capítulo</span>
+                        <BookOpen className="w-4 h-4 text-[var(--primary)]" /><span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted-fg)] group-hover:text-[var(--fg)] transition-colors">{t('biblia.chapterStudy')}</span>
                         <span className="text-xs text-[var(--primary)] font-medium">{nav.estudoCapitulo.titulo}</span><div className="flex-1" />
                         {ui.estudoCapituloAberto ? <ChevronUp className="w-4 h-4 text-[var(--muted-fg)]" /> : <ChevronDown className="w-4 h-4 text-[var(--muted-fg)]" />}
                       </button>
@@ -315,12 +317,12 @@ export default function BibliaPage() {
                       </div>)}
                     </div>)}
                     <div className="flex items-center justify-center gap-3 sm:gap-4 mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">
-                      <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-all active:scale-98 min-h-[44px]"><ChevronLeft className="w-4 h-4" /> Anterior</button>
+                      <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-all active:scale-98 min-h-[44px]"><ChevronLeft className="w-4 h-4" /> {t('biblia.previous')}</button>
                       <div className="hidden sm:flex flex-col items-center gap-1.5 min-w-[120px]"><span className="text-[10px] text-[var(--content-muted)] font-mono tabular-nums">{nav.capituloIdx + 1} / {nav.livro.totalCapitulos}</span><ProgressBar value={nav.capituloIdx + 1} total={nav.livro.totalCapitulos} className="w-24" /></div>
-                      <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-all active:scale-98 min-h-[44px]">Próximo <ChevronRight className="w-4 h-4" /></button>
+                      <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-all active:scale-98 min-h-[44px]">{t('biblia.next')} <ChevronRight className="w-4 h-4" /></button>
                     </div>
                     </div>
-                ) : (<div className="text-center py-20"><BookOpen className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} /><p className="text-lg text-[var(--content-muted)]">Selecione um livro e capítulo</p></div>)}
+                ) : (<div className="text-center py-20"><BookOpen className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} /><p className="text-lg text-[var(--content-muted)]">{t('biblia.selectBookChapter')}</p></div>)}
               </div>
               <NotesPanelSection open={ui.mostrarNotas} onClose={() => ui.setMostrarNotas(false)} notas={verse.notas} notaAtiva={verse.notaAtiva} onSalvar={(nota) => { verse.setNotaAtiva(nota); verse.salvarNotaHook(nota.id, nota.conteudo); }} onExcluir={(id) => { verse.excluirNota(id); verse.setNotaAtiva(null); ui.setMostrarNotas(false); }} />
             </div>
@@ -329,7 +331,7 @@ export default function BibliaPage() {
           {panels.sidePanelOpen && (
             <>
               <div className="hidden max-lg:block fixed inset-0 z-30 bg-black/40 backdrop-blur-sm" onClick={() => { panels.setSidePanelTab(null); panels.setSidePanelWidth('collapsed'); verse.setVersiculoSelecionado(null); }} />
-              <ErrorBoundary fallback={<div className="shrink-0 w-full sm:w-[340px] md:w-[380px] lg:w-[420px] border-l border-[var(--border)] bg-[var(--surface-raised)] flex items-center justify-center p-8"><p className="text-sm text-[var(--content-muted)]">Erro ao carregar painel</p><button onClick={() => { panels.setSidePanelTab(null); panels.setSidePanelWidth('collapsed'); }} className="text-xs text-[var(--brand-default)] underline">Fechar</button></div>}>
+              <ErrorBoundary fallback={<div className="shrink-0 w-full sm:w-[340px] md:w-[380px] lg:w-[420px] border-l border-[var(--border)] bg-[var(--surface-raised)] flex items-center justify-center p-8"><p className="text-sm text-[var(--content-muted)]">{t('biblia.errorLoading')}</p><button onClick={() => { panels.setSidePanelTab(null); panels.setSidePanelWidth('collapsed'); }} className="text-xs text-[var(--brand-default)] underline">{t('biblia.close')}</button></div>}>
                 <SidePanel open={panels.sidePanelOpen} width={panels.sidePanelWidth} onWidthChange={panels.setSidePanelWidth} activeTab={panels.sidePanelTab} onActiveTabChange={(tab) => { panels.setSidePanelTab(tab); if (!tab) panels.setSidePanelWidth('collapsed'); }}
                   livro={nav.livro.nome} livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} versiculo={verse.comentarioVersiculo ?? verse.versiculoSelecionado?.versiculo}
                   onClose={() => { panels.setSidePanelTab(null); panels.setSidePanelWidth('collapsed'); verse.setVersiculoSelecionado(null); }} versiculoTexto={verse.versiculoSelecionado?.texto} versiculoTraducao={verse.versiculoSelecionado?.traducao} />
@@ -339,7 +341,7 @@ export default function BibliaPage() {
       </main>
       {verse.versiculoSelecionado && authService.temAcessoTotal() && (
         <a href={`/estudo-ia?ref=${encodeURIComponent(`${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`)}`} target="_blank" rel="noreferrer"
-          className="fade-in-bottom hidden lg:flex fixed bottom-6 right-6 z-30 items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all"><Sparkles className="w-4 h-4" />Aprofundar com IA</a>)}
+          className="fade-in-bottom hidden lg:flex fixed bottom-6 right-6 z-30 items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all"><Sparkles className="w-4 h-4" />{t('biblia.deepenAI')}</a>)}
       <AudioPlayers audioNatural={audioNatural} audio={audio} data={nav.data} livroNome={nav.livro.nome} capitulo={nav.capituloIdx + 1} />
       <AnnotationModal open={verse.anotandoVersiculo !== null} verseKey={verse.anotandoVersiculo} initialText={verse.anotacaoTexto} onClose={() => verse.setAnotandoVersiculo(null)}
         onSave={async (texto) => { const { setAnotacao } = await import('@/lib/estudos'); const parts = verse.anotandoVersiculo!.split(':'); setAnotacao(parts[0], Number(parts[1]), Number(parts[2]), parts[3], texto || null); refresh(); verse.setAnotandoVersiculo(null); verse.setAnotacaoTexto(''); }} />

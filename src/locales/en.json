@@ -801,5 +801,32 @@
     "saveOffline": "Save offline",
     "savedOffline": "Saved offline",
     "saving": "Saving..."
+  },
+  "biblia": {
+    "exitZen": "Exit zen mode (Esc)",
+    "previousChapter": "Previous chapter",
+    "nextChapter": "Next chapter",
+    "home": "Home",
+    "searchBook": "Search book...",
+    "moreOptions": "More options",
+    "readingMode": "Reading mode",
+    "offlineVersions": "Offline versions",
+    "chapterAudio": "Chapter audio",
+    "tools": "Tools",
+    "present": "Present",
+    "showOriginalText": "Show original Hebrew/Greek text",
+    "manageOffline": "Manage offline versions",
+    "audioQuality": "Audio quality",
+    "chapterOffline": "Chapter not available offline",
+    "connectOrDownload": "Connect to the internet or download translations.",
+    "interlinearView": "Interlinear view",
+    "chapterStudy": "Chapter study",
+    "previous": "Previous",
+    "next": "Next",
+    "selectBookChapter": "Select a book and chapter",
+    "errorLoading": "Error loading panel",
+    "close": "Close",
+    "deepenAI": "Deepen with AI",
+    "new": "NEW"
   }
 }

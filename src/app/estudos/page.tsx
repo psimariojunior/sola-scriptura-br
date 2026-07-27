@@ -20,6 +20,7 @@ import type { EstudoVersiculo } from '@/data/estudosTeologicos';
 import type { Teologo } from '@/data/teologos';
 import { getStats } from '@/lib/estatisticas';
 import dynamic from 'next/dynamic';
+import { useTranslation } from 'react-i18next';
 
 const BibleCourses = dynamic(() => import('@/components/BibleCourses').then(m => ({ default: m.BibleCourses })), {
   ssr: false,
@@ -56,6 +57,7 @@ const CATEGORIAS_ESTUDO = [
 type Ordenacao = 'recente' | 'livro';
 
 export default function EstudosPage() {
+  const { t } = useTranslation();
   const [categoriaAtiva, setCategoriaAtiva] = useState('livros');
   const [marcas, setMarcas] = useState<MarcaBiblia[]>([]);
   const [aba, setAba] = useState<'todas' | 'favoritos' | 'anotacoes' | 'cursos'>('todas');
@@ -150,7 +152,7 @@ export default function EstudosPage() {
     const q = query.toLowerCase();
     return livrosComEstudo.filter(l =>
       l.titulo.toLowerCase().includes(q) ||
-      l.estudo.temasPrincipais.some(t => t.toLowerCase().includes(q))
+      l.estudo.temasPrincipais.some(tema => tema.toLowerCase().includes(q))
     );
   }, [livrosComEstudo, query]);
 
@@ -170,7 +172,7 @@ export default function EstudosPage() {
     if (!listarTodosTeologosFn) return [];
     const todos = listarTodosTeologosFn();
     if (periodoFilter === 'todos') return todos;
-    return todos.filter(t => t.periodo === periodoFilter);
+    return todos.filter(teologo => teologo.periodo === periodoFilter);
   }, [periodoFilter, listarTodosTeologosFn]);
 
   const estudosTeologicos = useMemo(() => {
@@ -193,13 +195,31 @@ export default function EstudosPage() {
     return estudos;
   }, [obterEstudosFn]);
 
+  const catLabelMap: Record<string, string> = {
+    livros: t('estudos.byBook'),
+    temas: t('estudos.byTheme'),
+    teologicos: t('estudos.theologicalStudies'),
+    teologos: t('estudos.theologians'),
+    comentarios: t('estudos.commentaries'),
+    meusestudos: t('estudos.myStudies'),
+  };
+
+  const periodoTKeys: Record<string, string> = {
+    patristico: 'estudos.periodoPatristico',
+    escolastico: 'estudos.periodoEscolastico',
+    reforma: 'estudos.periodoReforma',
+    'pos-reforma': 'estudos.periodoPosReforma',
+    modernos: 'estudos.periodoModernos',
+    contemporaneos: 'estudos.periodoContemporaneos',
+  };
+
   return (
     <div className="min-h-screen">
       <Header />
       <main id="main-content" className="pt-20 pb-24 md:pb-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="mb-6">
-            <Breadcrumbs items={[{ label: 'Início', href: '/' }, { label: 'Estudos' }]} />
+            <Breadcrumbs items={[{ label: t('estudos.breadcrumbHome'), href: '/' }, { label: t('estudos.breadcrumbEstudos') }]} />
           </div>
 
           <ScrollReveal>
@@ -208,10 +228,10 @@ export default function EstudosPage() {
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                   <GraduationCap className="w-5 h-5 text-primary" />
                 </div>
-                <h1 className="font-display text-3xl md:text-4xl font-light">Biblioteca de Estudos</h1>
+                <h1 className="font-display text-3xl md:text-4xl font-light">{t('estudos.title')}</h1>
               </div>
               <p className="text-muted-foreground ml-0 sm:ml-13 text-sm">
-                Sua biblioteca de pesquisa: estudos por livro, teologia sistemática, teólogos e seus estudos pessoais
+                {t('estudos.subtitle')}
               </p>
             </div>
           </ScrollReveal>
@@ -219,26 +239,26 @@ export default function EstudosPage() {
           {/* ═══ FILTROS EMOCIONAIS — YouVersion style ═══ */}
           <ScrollReveal delay={0.05}>
             <div className="mb-8">
-              <p className="text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-3">Explorar por sentimento</p>
+              <p className="text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-3">{t('estudos.exploreByFeeling')}</p>
               <div className="flex flex-wrap gap-2">
                 {[
-                  { label: 'Fé', color: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20' },
-                  { label: 'Esperança', color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20' },
-                  { label: 'Amor', color: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 hover:bg-rose-500/20' },
-                  { label: 'Cura', color: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-500/20' },
-                  { label: 'Ansiedade', color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20' },
-                  { label: 'Paz', color: 'bg-sky-500/10 text-sky-600 dark:text-sky-400 hover:bg-sky-500/20' },
-                  { label: 'Sabedoria', color: 'bg-orange-500/10 text-orange-600 dark:text-orange-400 hover:bg-orange-500/20' },
-                  { label: 'Gratidão', color: 'bg-teal-500/10 text-teal-600 dark:text-teal-400 hover:bg-teal-500/20' },
-                  { label: 'Força', color: 'bg-red-500/10 text-red-600 dark:text-red-400 hover:bg-red-500/20' },
-                  { label: 'Perdão', color: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/20' },
+                  { query: 'fé', tKey: 'emotionFe', color: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20' },
+                  { query: 'esperança', tKey: 'emotionEsperanca', color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20' },
+                  { query: 'amor', tKey: 'emotionAmor', color: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 hover:bg-rose-500/20' },
+                  { query: 'cura', tKey: 'emotionCura', color: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-500/20' },
+                  { query: 'ansiedade', tKey: 'emotionAnsiedade', color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20' },
+                  { query: 'paz', tKey: 'emotionPaz', color: 'bg-sky-500/10 text-sky-600 dark:text-sky-400 hover:bg-sky-500/20' },
+                  { query: 'sabedoria', tKey: 'emotionSabedoria', color: 'bg-orange-500/10 text-orange-600 dark:text-orange-400 hover:bg-orange-500/20' },
+                  { query: 'gratidão', tKey: 'emotionGratidao', color: 'bg-teal-500/10 text-teal-600 dark:text-teal-400 hover:bg-teal-500/20' },
+                  { query: 'força', tKey: 'emotionForca', color: 'bg-red-500/10 text-red-600 dark:text-red-400 hover:bg-red-500/20' },
+                  { query: 'perdão', tKey: 'emotionPerdao', color: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/20' },
                 ].map(emocao => (
                   <button
-                    key={emocao.label}
-                    onClick={() => setQuery(emocao.label.toLowerCase())}
+                    key={emocao.tKey}
+                    onClick={() => setQuery(emocao.query)}
                     className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${emocao.color}`}
                   >
-                    {emocao.label}
+                    {t(`estudos.${emocao.tKey}`)}
                   </button>
                 ))}
               </div>
@@ -255,12 +275,12 @@ export default function EstudosPage() {
                       <History className="w-5 h-5 text-primary" />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">Continuar estudando</p>
+                      <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">{t('estudos.continueStudying')}</p>
                       <p className="font-display text-lg font-semibold truncate">
-                        Retomar em {retomar.titulo}
+                        {t('estudos.resumeIn')} {retomar.titulo}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        {livrosLidos[retomar.livro]} {livrosLidos[retomar.livro] === 1 ? 'capítulo' : 'capítulos'} lidos neste livro
+                        {livrosLidos[retomar.livro]} {livrosLidos[retomar.livro] === 1 ? t('estudos.chapter') : t('estudos.chapters')} {t('estudos.chaptersRead')}
                       </p>
                     </div>
                   </div>
@@ -268,7 +288,7 @@ export default function EstudosPage() {
                     href={`/biblia?livro=${retomar.livro}&capitulo=${retomar.capitulo}`}
                     className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:shadow-md shrink-0"
                   >
-                    <Play className="w-4 h-4" /> Abrir leitura
+                    <Play className="w-4 h-4" /> {t('estudos.openReading')}
                   </Link>
                 </div>
               </div>
@@ -283,8 +303,8 @@ export default function EstudosPage() {
                   <GraduationCap className="w-6 h-6 text-white" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-sm">Seminário Bíblico Gratuito</h3>
-                  <p className="text-xs text-[var(--content-muted)]">8 cursos com certificado · Estude no seu ritmo</p>
+                  <h3 className="font-bold text-sm">{t('estudos.freeSeminary')}</h3>
+                  <p className="text-xs text-[var(--content-muted)]">{t('estudos.freeSeminaryDesc')}</p>
                 </div>
                 <ChevronRight className="w-5 h-5 text-[var(--content-muted)] group-hover:translate-x-1 transition-transform" />
               </div>
@@ -299,8 +319,8 @@ export default function EstudosPage() {
                   <Heart className="w-5 h-5 text-amber-500 fill-amber-500/30" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium">Gostou do conteúdo?</p>
-                  <p className="text-xs text-muted-foreground">Apoie o projeto voluntariamente.</p>
+                  <p className="text-sm font-medium">{t('estudos.supportProject')}</p>
+                  <p className="text-xs text-muted-foreground">{t('estudos.supportDesc')}</p>
                 </div>
                 <ChevronRight className="w-4 h-4 text-amber-500/60 group-hover:translate-x-1 transition-transform shrink-0" />
               </div>
@@ -323,7 +343,7 @@ export default function EstudosPage() {
                     }`}
                   >
                     <Icon className="w-4 h-4" />
-                    {cat.label}
+                    {catLabelMap[cat.id]}
                   </button>
                 );
               })}
@@ -335,15 +355,15 @@ export default function EstudosPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <BookOpen className="w-5 h-5 text-primary" />
-                <h2 className="font-display text-xl font-semibold">Estudos por Livro</h2>
-                <span className="text-xs text-muted-foreground ml-2">{livrosComEstudo.length} livros disponíveis</span>
+                <h2 className="font-display text-xl font-semibold">{t('estudos.sectionByBook')}</h2>
+                <span className="text-xs text-muted-foreground ml-2">{livrosComEstudo.length} {t('estudos.booksAvailable')}</span>
               </div>
 
               <div className="relative mb-6 max-w-md">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Buscar livro ou tema..."
+                  placeholder={t('estudos.search')}
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   className="w-full pl-9 pr-9 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all"
@@ -362,7 +382,7 @@ export default function EstudosPage() {
           <div key={test} className="mb-8">
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-2">
               <Layers className="w-4 h-4" />
-              {test === 'AT' ? 'Antigo Testamento' : 'Novo Testamento'}
+              {test === 'AT' ? t('estudos.oldTestament') : t('estudos.newTestament')}
               <span className="text-[10px] bg-muted px-2 py-0.5 rounded-full">{lista.length}</span>
             </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -398,14 +418,14 @@ export default function EstudosPage() {
                                   {l.estudo.contexto}
                                 </p>
                                 <div className="flex flex-wrap gap-1">
-                                  {l.estudo.temasPrincipais.slice(0, 3).map(t => (
-                                    <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary">{t}</span>
+                                  {l.estudo.temasPrincipais.slice(0, 3).map(tema => (
+                                    <span key={tema} className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary">{tema}</span>
                                   ))}
                                 </div>
                                 <div className="mt-3 pt-2 border-t border-border/30 flex items-center gap-3 text-[10px] text-muted-foreground">
-                                  <span>{l.estudo.versiculosChave.length} versículos-chave</span>
+                                  <span>{l.estudo.versiculosChave.length} {t('estudos.keyVerses')}</span>
                                   <span>•</span>
-                                  <span>{l.estudo.perguntasEstudo.length} perguntas</span>
+                                  <span>{l.estudo.perguntasEstudo.length} {t('estudos.questions')}</span>
                                 </div>
                               </div>
                             </Link>
@@ -420,7 +440,7 @@ export default function EstudosPage() {
               {livrosEstudoFiltrados.length === 0 && (
                 <div className="sola-card p-12 text-center">
                   <BookOpen className="w-12 h-12 mx-auto text-muted-foreground/30 mb-4" strokeWidth={1} />
-                  <p className="text-muted-foreground">Nenhum livro encontrado para &ldquo;{query}&rdquo;.</p>
+                  <p className="text-muted-foreground">{t('estudos.noBookFound')} &ldquo;{query}&rdquo;.</p>
                 </div>
               )}
             </div>
@@ -431,10 +451,10 @@ export default function EstudosPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Layers className="w-5 h-5 text-primary" />
-                <h2 className="font-display text-xl font-semibold">Estudos Temáticos</h2>
+                <h2 className="font-display text-xl font-semibold">{t('estudos.thematicStudies')}</h2>
               </div>
               <p className="text-sm text-muted-foreground mb-6">
-                Explore a Bíblia por doutrina e tópico. Estes estudos sistemáticos reúnem centenas de passagens e visões teológicas em categorias organizadas.
+                {t('estudos.thematicDesc')}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <ScrollReveal>
@@ -443,13 +463,13 @@ export default function EstudosPage() {
                       <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
                         <GraduationCap className="w-5 h-5 text-primary" />
                       </div>
-                      <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">Teologia Sistemática</h3>
+                      <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">{t('estudos.systematicTheology')}</h3>
                     </div>
                     <p className="text-xs text-muted-foreground mb-3">
-                      13 categorias doutrinárias — Deus, Cristo, Salvação, Escatologia e mais — com estudos aprofundados.
+                      {t('estudos.systematicTheologyDesc')}
                     </p>
                     <span className="inline-flex items-center gap-1 text-xs text-primary font-medium">
-                      Explorar doutrinas <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      {t('estudos.exploreDoctrines')} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </Link>
                 </ScrollReveal>
@@ -459,13 +479,13 @@ export default function EstudosPage() {
                       <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
                         <Layers className="w-5 h-5 text-primary" />
                       </div>
-                      <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">Tópicos Teológicos</h3>
+                      <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">{t('estudos.theologicalTopics')}</h3>
                     </div>
                     <p className="text-xs text-muted-foreground mb-3">
-                      Tópicos organizados por categoria doutrinária, com versículos-chave e conexões temáticas.
+                      {t('estudos.theologicalTopicsDesc')}
                     </p>
                     <span className="inline-flex items-center gap-1 text-xs text-primary font-medium">
-                      Navegar por tópicos <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      {t('estudos.browseTopics')} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </Link>
                 </ScrollReveal>
@@ -475,13 +495,13 @@ export default function EstudosPage() {
                       <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
                         <Sparkles className="w-5 h-5 text-primary" />
                       </div>
-                      <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">Métodos de Estudo</h3>
+                      <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">{t('estudos.studyMethods')}</h3>
                     </div>
                     <p className="text-xs text-muted-foreground mb-3">
-                      Guia prático com métodos hermenêuticos, memorização e devocionais para estudar com profundidade.
+                      {t('estudos.studyMethodsDesc')}
                     </p>
                     <span className="inline-flex items-center gap-1 text-xs text-primary font-medium">
-                      Ver métodos <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      {t('estudos.viewMethods')} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </Link>
                 </ScrollReveal>
@@ -491,16 +511,16 @@ export default function EstudosPage() {
                       <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
                         <BookMarked className="w-5 h-5 text-primary" />
                       </div>
-                      <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">Estudo por Livro</h3>
+                      <h3 className="font-display text-lg font-semibold group-hover:text-primary transition-colors">{t('estudos.bookStudy')}</h3>
                     </div>
                     <p className="text-xs text-muted-foreground mb-3">
-                      Seletor de livro com panorama, gênero, temas e versículos-chave — acesse pela aba &ldquo;Por Livro&rdquo;.
+                      {t('estudos.bookStudyDesc')}
                     </p>
                     <button
                       onClick={(e) => { e.preventDefault(); setCategoriaAtiva('livros'); }}
                       className="inline-flex items-center gap-1 text-xs text-primary font-medium"
                     >
-                      Ir para livros <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      {t('estudos.goToBooks')} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </Link>
                 </ScrollReveal>
@@ -513,8 +533,8 @@ export default function EstudosPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <GraduationCap className="w-5 h-5 text-primary" />
-                <h2 className="font-display text-xl font-semibold">Estudos Teológicos por Versículo</h2>
-                <span className="text-xs text-muted-foreground ml-2">{estudosTeologicos.length} versículos com estudo</span>
+                <h2 className="font-display text-xl font-semibold">{t('estudos.verseStudies')}</h2>
+                <span className="text-xs text-muted-foreground ml-2">{estudosTeologicos.length} {t('estudos.versesWithStudy')}</span>
               </div>
               <div className="space-y-4">
                 {estudosTeologicos.map((estudo, i) => {
@@ -560,8 +580,8 @@ export default function EstudosPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Users className="w-5 h-5 text-primary" />
-                <h2 className="font-display text-xl font-semibold">Teólogos de Todas as Épocas</h2>
-                <span className="text-xs text-muted-foreground ml-2">{teologos.length} teólogos</span>
+                <h2 className="font-display text-xl font-semibold">{t('estudos.allTheologians')}</h2>
+                <span className="text-xs text-muted-foreground ml-2">{teologos.length} {t('estudos.theologiansCount')}</span>
               </div>
               <div className="flex flex-wrap gap-2 mb-6">
                 <button
@@ -570,9 +590,9 @@ export default function EstudosPage() {
                     periodoFilter === 'todos' ? 'bg-primary text-primary-foreground' : 'bg-card border border-border text-muted-foreground hover:text-foreground'
                   }`}
                 >
-                  Todos
+                  {t('estudos.all')}
                 </button>
-                {Object.entries(PERIODOS_LABELS).map(([key, label]) => (
+                {Object.entries(PERIODOS_LABELS).map(([key]) => (
                   <button
                     key={key}
                     onClick={() => setPeriodoFilter(key)}
@@ -580,30 +600,30 @@ export default function EstudosPage() {
                       periodoFilter === key ? 'bg-primary text-primary-foreground' : 'bg-card border border-border text-muted-foreground hover:text-foreground'
                     }`}
                   >
-                    {label}
+                    {t(periodoTKeys[key])}
                   </button>
                 ))}
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {teologos.map((t, i) => {
-                  const PeriodIcon = PERIODOS_ICONS[t.periodo] || BookOpen;
+                {teologos.map((teologo, i) => {
+                  const PeriodIcon = PERIODOS_ICONS[teologo.periodo] || BookOpen;
                   return (
-                    <ScrollReveal key={t.slug} delay={Math.min(i * 0.02, 0.3)}>
+                    <ScrollReveal key={teologo.slug} delay={Math.min(i * 0.02, 0.3)}>
                       <div className="sola-card p-4 rounded-xl hover:shadow-md transition-all">
                         <div className="flex items-start gap-3">
                           <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                             <PeriodIcon className="w-5 h-5 text-primary" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h3 className="font-display text-sm font-semibold">{t.nome}</h3>
+                            <h3 className="font-display text-sm font-semibold">{teologo.nome}</h3>
                             <p className="text-[10px] text-muted-foreground">
-                              {t.nascimento && t.morte ? `${t.nascimento}–${t.morte}` : PERIODOS_LABELS[t.periodo]}
-                              {t.nacionalidade ? ` • ${t.nacionalidade}` : ''}
+                              {teologo.nascimento && teologo.morte ? `${teologo.nascimento}–${teologo.morte}` : t(periodoTKeys[teologo.periodo])}
+                              {teologo.nacionalidade ? ` • ${teologo.nacionalidade}` : ''}
                             </p>
-                            <p className="text-xs text-foreground/70 mt-1 line-clamp-3">{t.resumo}</p>
+                            <p className="text-xs text-foreground/70 mt-1 line-clamp-3">{teologo.resumo}</p>
                             <div className="flex flex-wrap gap-1 mt-2">
-                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-primary/10 text-primary">{t.tradicao}</span>
-                              {t.obrasChave.slice(0, 2).map(obra => (
+                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-primary/10 text-primary">{teologo.tradicao}</span>
+                              {teologo.obrasChave.slice(0, 2).map(obra => (
                                 <span key={obra} className="text-[10px] px-1.5 py-0.5 rounded bg-muted text-muted-foreground">{obra}</span>
                               ))}
                             </div>
@@ -626,15 +646,15 @@ export default function EstudosPage() {
               <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-6">
                 <Link href="/estudos" className="sola-card p-4 text-center hover:shadow-md transition-all">
                   <p className="font-display text-2xl font-light text-primary">{stats.total}</p>
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-1">Total</p>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-1">{t('estudos.total')}</p>
                 </Link>
                 <Link href="/estudos" className="sola-card p-4 text-center hover:shadow-md transition-all">
                   <p className="font-display text-2xl font-light text-red-500">{stats.favoritos}</p>
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-1">Favoritos</p>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-1">{t('estudos.favorites')}</p>
                 </Link>
                 <Link href="/estudos" className="sola-card p-4 text-center hover:shadow-md transition-all">
                   <p className="font-display text-2xl font-light text-amber-500">{stats.anotacoes}</p>
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-1">Anotações</p>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-1">{t('estudos.annotations')}</p>
                 </Link>
               </div>
 
@@ -643,7 +663,7 @@ export default function EstudosPage() {
                   <BookMarked className="w-3.5 h-3.5" /> Flashcards
                 </Link>
                 <Link href="/biblia" className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium border border-border/60 rounded-lg text-muted-foreground hover:text-foreground hover:border-border transition-all">
-                  <BookOpen className="w-3.5 h-3.5" /> Ir para a Bíblia
+                  <BookOpen className="w-3.5 h-3.5" /> {t('estudos.goToBible')}
                 </Link>
               </div>
 
@@ -652,7 +672,7 @@ export default function EstudosPage() {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <input
                     type="text"
-                    placeholder="Buscar nos estudos..."
+                    placeholder={t('estudos.searchStudies')}
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     className="w-full pl-9 pr-9 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all"
@@ -670,7 +690,7 @@ export default function EstudosPage() {
                     onChange={(e) => setFiltroLivro(e.target.value)}
                     className="text-xs py-2 px-2 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 text-muted-foreground"
                   >
-                    <option value="todos">Todos os livros</option>
+                    <option value="todos">{t('estudos.allBooks')}</option>
                     {livrosUnicosFavoritos.map(l => (
                       <option key={l.slug} value={l.slug}>{l.nome}</option>
                     ))}
@@ -683,20 +703,20 @@ export default function EstudosPage() {
                     onChange={(e) => setOrdenacao(e.target.value as Ordenacao)}
                     className="text-xs py-2 px-2 bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 text-muted-foreground"
                   >
-                    <option value="recente">Mais recentes</option>
-                    <option value="livro">Por livro (A–Z)</option>
+                    <option value="recente">{t('estudos.newest')}</option>
+                    <option value="livro">{t('estudos.byBookAZ')}</option>
                   </select>
                 </div>
                 {marcas.length > 0 && (
                   <div className="flex items-center gap-1">
                     <button onClick={() => exportToJson(filtradas)} className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium border border-border/60 rounded-lg text-muted-foreground hover:text-foreground hover:border-border transition-all">
-                      <Bookmark className="w-3.5 h-3.5" /> JSON
+                      <Bookmark className="w-3.5 h-3.5" /> {t('estudos.json')}
                     </button>
                     <button onClick={() => exportToTxt(filtradas)} className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium border border-border/60 rounded-lg text-muted-foreground hover:text-foreground hover:border-border transition-all">
-                      TXT
+                      {t('estudos.txt')}
                     </button>
                     <button onClick={() => exportToCsv(filtradas)} className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium border border-border/60 rounded-lg text-muted-foreground hover:text-foreground hover:border-border transition-all">
-                      CSV
+                      {t('estudos.csv')}
                     </button>
                   </div>
                 )}
@@ -704,24 +724,24 @@ export default function EstudosPage() {
 
               <div className="flex items-center gap-2 mb-6">
                 {([
-                  { id: 'todas' as const, label: 'Todas', icon: Bookmark, count: stats.total },
-                  { id: 'favoritos' as const, label: 'Favoritos', icon: Heart, count: stats.favoritos },
-                  { id: 'anotacoes' as const, label: 'Anotações', icon: StickyNote, count: stats.anotacoes },
-                  { id: 'cursos' as const, label: 'Cursos', icon: GraduationCap, count: cursosMatriculados },
-                ]).map((t) => (
+                  { id: 'todas' as const, label: t('estudos.tabAll'), icon: Bookmark, count: stats.total },
+                  { id: 'favoritos' as const, label: t('estudos.tabFavorites'), icon: Heart, count: stats.favoritos },
+                  { id: 'anotacoes' as const, label: t('estudos.tabNotes'), icon: StickyNote, count: stats.anotacoes },
+                  { id: 'cursos' as const, label: t('estudos.tabCourses'), icon: GraduationCap, count: cursosMatriculados },
+                ]).map((tab) => (
                   <button
-                    key={t.id}
-                    onClick={() => setAba(t.id)}
+                    key={tab.id}
+                    onClick={() => setAba(tab.id)}
                     className={`flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg transition-all ${
-                      aba === t.id
+                      aba === tab.id
                         ? 'bg-primary text-primary-foreground shadow-sm'
                         : 'text-muted-foreground hover:text-foreground border border-border/60 hover:border-border'
                     }`}
                   >
-                    <t.icon className="w-3.5 h-3.5" />
-                    {t.label}
-                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full ml-1 ${aba === t.id ? 'bg-white/20' : 'bg-muted'}`}>
-                      {t.count}
+                    <tab.icon className="w-3.5 h-3.5" />
+                    {tab.label}
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full ml-1 ${aba === tab.id ? 'bg-white/20' : 'bg-muted'}`}>
+                      {tab.count}
                     </span>
                   </button>
                 ))}
@@ -735,16 +755,16 @@ export default function EstudosPage() {
                 <div className="sola-card p-12 text-center">
                   <BookOpen className="w-12 h-12 mx-auto text-muted-foreground/30 mb-4" strokeWidth={1} />
                   <p className="text-lg font-medium text-muted-foreground mb-2">
-                    {marcas.length === 0 ? 'Nenhum estudo salvo' : 'Nenhum resultado encontrado'}
+                    {marcas.length === 0 ? t('estudos.noSavedStudy') : t('estudos.noResult')}
                   </p>
                   <p className="text-sm text-muted-foreground/70 max-w-sm mx-auto mb-6">
                     {marcas.length === 0
-                      ? 'Favorite versículos ou adicione anotações durante a leitura da Bíblia para vê-los aqui.'
-                      : 'Tente ajustar os filtros ou a busca.'}
+                      ? t('estudos.emptyDesc')
+                      : t('estudos.adjustFilters')}
                   </p>
                   {marcas.length === 0 && (
                     <Link href="/biblia" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:shadow-md">
-                      <BookOpen className="w-4 h-4" /> Ir para a Bíblia <ArrowRight className="w-4 h-4" />
+                      <BookOpen className="w-4 h-4" /> {t('estudos.goToBible')} <ArrowRight className="w-4 h-4" />
                     </Link>
                   )}
                 </div>
@@ -781,11 +801,11 @@ export default function EstudosPage() {
                             <div className="flex items-center gap-1 shrink-0 sm:opacity-0 sm:group-hover:opacity-100 opacity-100 transition-opacity">
                               <button onClick={() => { toggleFavorito(m.livro, m.capitulo, m.versiculo, m.traducao, m.texto); carregar(); }}
                                 className={`p-1.5 rounded-md transition-colors ${m.favorito ? 'text-red-500 bg-red-50 dark:bg-red-950/20' : 'text-muted-foreground hover:text-red-400 hover:bg-muted'}`}
-                                title={m.favorito ? 'Remover favorito' : 'Favoritar'}>
+                                title={m.favorito ? t('estudos.removeFavorite') : t('estudos.addFavorite')}>
                                 <Heart className={`w-4 h-4 ${m.favorito ? 'fill-current' : ''}`} />
                               </button>
                               <button onClick={() => { removerMarca(m.livro, m.capitulo, m.versiculo, m.traducao); carregar(); }}
-                                className="p-1.5 text-muted-foreground hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-md transition-colors" title="Remover">
+                                className="p-1.5 text-muted-foreground hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-md transition-colors" title={t('estudos.remove')}>
                                 <Trash2 className="w-4 h-4" />
                               </button>
                             </div>
@@ -806,6 +826,7 @@ export default function EstudosPage() {
 }
 
 function ComentariosSection() {
+  const { t } = useTranslation();
   const [comentarios, setComentarios] = useState<Comentario[]>([]);
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(true);
@@ -833,15 +854,15 @@ function ComentariosSection() {
     <div>
       <div className="flex items-center gap-2 mb-4">
         <Quote className="w-5 h-5 text-primary" />
-        <h2 className="font-display text-xl font-semibold">Comentários Teológicos</h2>
-        <span className="text-xs text-muted-foreground ml-2">{comentarios.length} comentários de {autores.length} autores</span>
+        <h2 className="font-display text-xl font-semibold">{t('estudos.theologicalComments')}</h2>
+        <span className="text-xs text-muted-foreground ml-2">{comentarios.length} {t('estudos.commentsCount')} {autores.length} {t('estudos.commentsAuthors')}</span>
       </div>
 
       <div className="relative mb-6">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <input
           type="text"
-          placeholder="Buscar por autor, texto ou referência..."
+          placeholder={t('estudos.searchByAuthor')}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="w-full pl-9 pr-4 py-2.5 text-sm bg-card border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all"
@@ -856,7 +877,7 @@ function ComentariosSection() {
 
       <div className="space-y-3">
         {loading ? (
-          <div className="text-center py-8 text-muted-foreground text-sm">Carregando comentários...</div>
+          <div className="text-center py-8 text-muted-foreground text-sm">{t('estudos.loading')}</div>
         ) : filtrados.map((c, i) => {
           const livroInfo = livroPorAbreviacao.get(c.livro);
           return (

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion } from 'framer-motion';
@@ -13,6 +13,37 @@ export default function EstudoPage() {
   const [nota, setNota] = useState<Nota | null>(null);
   const [isFullscreen, setIsFullscreen] = useState<'bible' | 'notes' | null>(null);
   const [currentVerse, setCurrentVerse] = useState<{ ref: string; text: string } | null>(null);
+  const [splitRatio, setSplitRatio] = useState(50);
+  const isDragging = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    isDragging.current = true;
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+  }, []);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDragging.current || !containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const pct = Math.min(80, Math.max(20, (x / rect.width) * 100));
+      setSplitRatio(pct);
+    };
+    const handleMouseUp = () => {
+      isDragging.current = false;
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []);
 
   const handleVerseSelect = useCallback((ref: string, text: string) => {
     setCurrentVerse({ ref, text });
@@ -88,10 +119,11 @@ export default function EstudoPage() {
         </div>
 
         {/* Split View */}
-        <div className="flex-1 flex overflow-hidden">
+        <div ref={containerRef} className="flex-1 flex overflow-hidden">
           {/* Bible Panel */}
           <div className={cn('border-r border-border/40 overflow-hidden flex flex-col',
-            isFullscreen === 'bible' ? 'w-full' : isFullscreen === 'notes' ? 'hidden' : 'w-1/2')}>
+            isFullscreen === 'bible' ? 'w-full' : isFullscreen === 'notes' ? 'hidden' : '')}
+            style={!isFullscreen && !isFullscreen ? { width: `${splitRatio}%` } : undefined}>
             <BibleBrowser
               onPresentVerse={(ref, text) => handleVerseSelect(ref as string, text)}
               onShareVerses={() => {}}
@@ -101,13 +133,15 @@ export default function EstudoPage() {
 
           {/* Resize Handle */}
           {!isFullscreen && (
-            <div className="w-1 bg-border/40 hover:bg-primary/50 cursor-col-resize transition-colors flex-shrink-0"
+            <div onMouseDown={handleMouseDown}
+              className="w-1.5 bg-border/40 hover:bg-primary/50 cursor-col-resize transition-colors flex-shrink-0 active:bg-primary/70"
               title="Arrastar para redimensionar" />
           )}
 
           {/* Notes Panel */}
           <div className={cn('overflow-hidden flex flex-col',
-            isFullscreen === 'notes' ? 'w-full' : isFullscreen === 'bible' ? 'hidden' : 'w-1/2')}>
+            isFullscreen === 'notes' ? 'w-full' : isFullscreen === 'bible' ? 'hidden' : '')}
+            style={!isFullscreen && !isFullscreen ? { width: `${100 - splitRatio}%` } : undefined}>
             <div className="px-4 py-2 border-b border-border/40 bg-background/50 flex items-center gap-2">
               <FileText className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium">Notas de Estudo</span>

@@ -14,6 +14,11 @@ const TRADUCOES = [
   { id: 'ara', nome: 'ARA', descricao: 'Almeida Revista e Atualizada' },
   { id: 'acf', nome: 'ACF', descricao: 'Almeida Corrigida e Fiel' },
   { id: 'nvi', nome: 'NVI', descricao: 'Nova Versão Internacional' },
+  { id: 'aa', nome: 'AA', descricao: 'Nova Almeida Atualizada' },
+  { id: 'ntlh', nome: 'NTLH', descricao: 'Nova Tradução na Linguagem de Hoje' },
+  { id: 'nvt', nome: 'NVT', descricao: 'Nova Versão Trinitariana' },
+  { id: 'kja', nome: 'KJA', descricao: 'King James Atualizada' },
+  { id: 'nbv', nome: 'NBV', descricao: 'Nova Bíblia Viva' },
   { id: 'kjv', nome: 'KJV', descricao: 'King James Version' },
   { id: 'web', nome: 'WEB', descricao: 'World English Bible' },
 ];
@@ -22,8 +27,10 @@ export default function CompararPage() {
   const [livro, setLivro] = useState('gn');
   const [capitulo, setCapitulo] = useState(1);
   const [versiculo, setVersiculo] = useState(1);
+  const [modoCapitulo, setModoCapitulo] = useState(false);
   const [traducoesSelecionadas, setTraducoesSelecionadas] = useState<string[]>(['arc', 'nvi', 'acf']);
   const [textoTraducoes, setTextoTraducoes] = useState<Record<string, string>>({});
+  const [textoCapitulo, setTextoCapitulo] = useState<Record<string, Record<number, string>>>({});
   const [carregando, setCarregando] = useState(false);
   const [copiado, setCopiado] = useState<string | null>(null);
 
@@ -38,15 +45,21 @@ export default function CompararPage() {
         const resp = await fetch(`/api/biblia/${trad}/${livro}/${capitulo}`);
         if (resp.ok) {
           const data = await resp.json();
-          const ver = data.versiculos?.find((v: any) => v.versiculo === versiculo);
-          if (ver) resultados[trad] = ver.texto;
+          if (modoCapitulo) {
+            const versos: Record<number, string> = {};
+            data.versiculos?.forEach((v: any) => { versos[v.versiculo] = v.texto; });
+            setTextoCapitulo(prev => ({ ...prev, [trad]: versos }));
+          } else {
+            const ver = data.versiculos?.find((v: any) => v.versiculo === versiculo);
+            if (ver) resultados[trad] = ver.texto;
+          }
         }
       } catch {}
     }));
 
-    setTextoTraducoes(resultados);
+    if (!modoCapitulo) setTextoTraducoes(resultados);
     setCarregando(false);
-  }, [livro, capitulo, versiculo, traducoesSelecionadas]);
+  }, [livro, capitulo, versiculo, traducoesSelecionadas, modoCapitulo]);
 
   useEffect(() => { carregarVersiculo(); }, [carregarVersiculo]);
 
@@ -123,9 +136,51 @@ export default function CompararPage() {
                 ))}
               </div>
             </div>
+
+            <div className="flex items-center gap-3 mt-4">
+              <button onClick={() => setModoCapitulo(!modoCapitulo)}
+                className={cn('px-4 py-2 rounded-xl text-sm font-medium transition-all border',
+                  modoCapitulo ? 'border-primary bg-primary/10 text-primary' : 'border-border text-muted-foreground')}>
+                {modoCapitulo ? 'Modo Versículo' : 'Modo Capítulo Inteiro'}
+              </button>
+              {traducoesSelecionadas.length > 4 && (
+                <span className="text-xs text-amber-500">Máx. 4 traduções no modo capítulo</span>
+              )}
+            </div>
           </div>
 
-          {/* Resultado */}
+          {/* Resultado - Modo Capítulo */}
+          {modoCapitulo ? (
+            <div className="rounded-2xl border border-border/50 bg-card/50 overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-border/50 bg-muted/30">
+                      <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground w-12">Vers.</th>
+                      {traducoesSelecionadas.slice(0, 4).map(trad => (
+                        <th key={trad} className="px-3 py-2 text-left text-xs font-medium text-primary">
+                          {TRADUCOES.find(t => t.id === trad)?.nome}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Array.from({ length: livroInfo?.totalCapitulos || 1 }, (_, i) => i + 1).map(v => (
+                      <tr key={v} className={cn('border-b border-border/20 hover:bg-muted/20 transition-colors', v === versiculo && 'bg-primary/5')}>
+                        <td className="px-3 py-2 text-xs font-medium text-muted-foreground">{v}</td>
+                        {traducoesSelecionadas.slice(0, 4).map(trad => (
+                          <td key={trad} className="px-3 py-2 text-xs leading-relaxed">
+                            {textoCapitulo[trad]?.[v] || <span className="text-muted-foreground">...</span>}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : (
+          /* Resultado - Modo Versículo */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {traducoesSelecionadas.map((trad) => {
               const info = TRADUCOES.find(t => t.id === trad);
@@ -159,6 +214,7 @@ export default function CompararPage() {
               );
             })}
           </div>
+          )}
         </div>
       </main>
       <Footer />

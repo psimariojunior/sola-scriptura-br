@@ -755,5 +755,51 @@
     "paywallTitle": "AI Assistant requires Full Access",
     "paywallDesc": "Pay R$20 once and unlock forever.",
     "unlock": "Unlock Full Access"
+  },
+  "notifications": {
+    "title": "Push Notifications",
+    "subtitle": "Configure personalized reminders to maintain your Bible study routine",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "pushToggle": "Push Notifications",
+    "dailyVerse": "Daily Verse Schedule",
+    "types": "Notification Types",
+    "motivationalVerse": "Motivational Verse",
+    "motivationalVerseDesc": "Daily verse with reading encouragement",
+    "streakReminder": "Streak Reminder",
+    "streakReminderDesc": "Alert when your reading streak is at risk",
+    "planReminder": "Plan Reminder",
+    "planReminderDesc": "Alert when you're behind on your reading plan",
+    "notSupported": "Your browser does not support push notifications.",
+    "permissionDenied": "Permission denied. Enable in your browser settings.",
+    "activated": "Notifications enabled!",
+    "deactivated": "Notifications disabled"
+  },
+  "palavras": {
+    "title": "Original Words",
+    "subtitle": "Study New Testament Greek and Old Testament Hebrew",
+    "frequency": "Frequency",
+    "list": "List",
+    "topFrequency": "Top 20 Most Frequent Words",
+    "greekNT": "in the New Testament",
+    "hebrewAT": "in the Old Testament",
+    "concordance": "Concordance",
+    "occurrences": "Occurrences",
+    "pronunciation": "Pronunciation",
+    "notes": "Notes",
+    "frequencyNT": "Frequency in NT",
+    "allWords": "All",
+    "searchGreek": "Search Greek word (e.g., agape, logos, pistis)...",
+    "searchHebrew": "Search Hebrew word (e.g., shalom, berith)...",
+    "loadingLexicon": "Loading lexicon..."
+  },
+  "offline": {
+    "connectionRestored": "Connection restored",
+    "offlineMode": "Offline mode",
+    "syncing": "Syncing data...",
+    "chaptersAvailable": "chapters available offline",
+    "saveOffline": "Save offline",
+    "savedOffline": "Saved offline",
+    "saving": "Saving..."
   }
 }

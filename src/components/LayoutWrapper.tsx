@@ -29,6 +29,7 @@ const BottomNavBar = lazy(() => import('@/components/BottomNavBar'));
 const OfflineManager = lazy(() => import('@/components/OfflineManager').then(m => ({ default: m.OfflineManager })));
 const VoiceCommands = lazy(() => import('@/components/VoiceCommands').then(m => ({ default: m.VoiceCommands })));
 const AccessibilityPanel = lazy(() => import('@/components/AccessibilityPanel').then(m => ({ default: m.AccessibilityPanel })));
+const OfflineIndicator = lazy(() => import('@/components/OfflineIndicator').then(m => ({ default: m.OfflineIndicator })));
 
 const AIPainelLateral = lazy(() => import('@/components/AIPainelLateral').then(m => ({ default: m.AIPainelLateral })));
 const AIMiniPainel = lazy(() => import('@/components/AIMiniPainel').then(m => ({ default: m.AIMiniPainel })));
@@ -183,6 +184,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               <GlobalHotkeys />
               <Suspense fallback={null}>
                 <OfflineManager />
+                <OfflineIndicator />
                 <AccessibilityPanel />
               </Suspense>
               {process.env.NODE_ENV === 'development' && (

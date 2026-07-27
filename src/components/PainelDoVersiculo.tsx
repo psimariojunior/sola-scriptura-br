@@ -857,8 +857,8 @@ export default function PainelDoVersiculo({
         </div>
 
         {/* Content */}
-        <ScrollArea className="flex-1 min-h-0">
-          <div className="p-4">
+        <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain">
+          <div className="p-4 pb-20">
             {erro ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
                 <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-3">
@@ -945,7 +945,7 @@ export default function PainelDoVersiculo({
             </>
             )}
           </div>
-        </ScrollArea>
+        </div>
       </Tabs>
     </div>
   );

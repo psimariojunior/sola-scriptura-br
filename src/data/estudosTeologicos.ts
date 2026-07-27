@@ -1,5 +1,6 @@
 import { estudosTeologicosExpandidos, EstudoTeologico } from './estudosTeologicosExpandidos';
 import { estudosGerados } from './estudosGerados';
+import { estudosEspecificos } from './estudosEspecificos';
 
 export interface EstudoTeologo {
   teologo: string;
@@ -2053,6 +2054,14 @@ for (const e of estudosExtras) {
 }
 
 for (const e of estudosGerados) {
+  const key = `${e.livro}:${e.capitulo}:${e.versiculo}`;
+  if (!byRefMap.has(key)) {
+    byRefMap.set(key, []);
+  }
+  byRefMap.get(key)!.push(e);
+}
+
+for (const e of estudosEspecificos) {
   const key = `${e.livro}:${e.capitulo}:${e.versiculo}`;
   if (!byRefMap.has(key)) {
     byRefMap.set(key, []);

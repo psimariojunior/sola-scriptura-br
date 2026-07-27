@@ -590,5 +590,22 @@
     "groupContext": "Context",
     "groupPractice": "Practice",
     "groupStudy": "Study"
+  },
+  "dashboard": {
+    "title": "My Dashboard",
+    "subtitle": "Track your Bible study progress",
+    "share": "Share",
+    "streak": "Streak",
+    "chapters": "Chapters",
+    "verses": "Verses",
+    "quizzes": "Quizzes",
+    "studies": "Studies",
+    "favorites": "Favorites",
+    "notes": "Notes",
+    "activeDays": "Active Days",
+    "weeklyProgress": "Weekly Progress",
+    "recentActivity": "Recent Activity",
+    "noActivity": "No activity recorded",
+    "days": "days"
   }
 }

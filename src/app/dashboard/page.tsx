@@ -9,8 +9,10 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
 import { ShareProgress } from '@/components/ShareProgress';
 import { getSummary, getWeeklyStats, type GamificationSummary } from '@/lib/gamificationTracker';
+import { useTranslation } from 'react-i18next';
 
 export default function DashboardPage() {
+  const { t } = useTranslation();
   const [showShare, setShowShare] = useState(false);
   const [favoritos, setFavoritos] = useState<any[]>([]);
   const [notas, setNotas] = useState<any[]>([]);
@@ -61,12 +63,12 @@ export default function DashboardPage() {
                 </div>
                 <div>
                   <h1 className="font-display text-3xl font-light">Meu <span className="text-primary italic">Dashboard</span></h1>
-                  <p className="text-sm text-muted-foreground">Acompanhe seu progresso no estudo bíblico</p>
+                  <p className="text-sm text-muted-foreground">{t('dashboard.subtitle')}</p>
                 </div>
               </div>
               <motion.button onClick={() => setShowShare(!showShare)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border text-sm font-medium hover:bg-muted/50 transition-all">
-                <Share2 className="w-4 h-4" /> Compartilhar
+                <Share2 className="w-4 h-4" /> {t('dashboard.share')}
               </motion.button>
             </div>
           </ScrollReveal>
@@ -84,10 +86,10 @@ export default function DashboardPage() {
           {/* Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
             {[
-              { icon: Flame, label: 'Sequência', value: `${stats.streak} dias`, color: 'text-orange-500', bg: 'bg-orange-500/10' },
-              { icon: BookOpen, label: 'Capítulos', value: stats.chapters.toString(), color: 'text-blue-500', bg: 'bg-blue-500/10' },
-              { icon: Zap, label: 'Versículos', value: stats.verses.toLocaleString('pt-BR'), color: 'text-amber-500', bg: 'bg-amber-500/10' },
-              { icon: Brain, label: 'Quizzes', value: stats.quizzes.toString(), color: 'text-purple-500', bg: 'bg-purple-500/10' },
+              { icon: Flame, label: t('dashboard.streak'), value: `${stats.streak} ${t('dashboard.days')}`, color: 'text-orange-500', bg: 'bg-orange-500/10' },
+              { icon: BookOpen, label: t('dashboard.chapters'), value: stats.chapters.toString(), color: 'text-blue-500', bg: 'bg-blue-500/10' },
+              { icon: Zap, label: t('dashboard.verses'), value: stats.verses.toLocaleString('pt-BR'), color: 'text-amber-500', bg: 'bg-amber-500/10' },
+              { icon: Brain, label: t('dashboard.quizzes'), value: stats.quizzes.toString(), color: 'text-purple-500', bg: 'bg-purple-500/10' },
             ].map(({ icon: Icon, label, value, color, bg }, i) => (
               <motion.div key={label} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
                 className="rounded-xl border border-border/50 bg-card/50 p-4">
@@ -103,7 +105,7 @@ export default function DashboardPage() {
           {/* Weekly Chart */}
           <ScrollReveal>
             <div className="rounded-2xl border border-border/50 bg-card/50 p-6 mb-8">
-              <h2 className="font-display text-lg font-medium mb-4">Atividade da Semana</h2>
+              <h2 className="font-display text-lg font-medium mb-4">{t('dashboard.weeklyProgress')}</h2>
               <div className="flex items-end gap-2 h-40">
                 {weeklyData.map((d, i) => (
                   <div key={i} className="flex-1 flex flex-col items-center gap-1">
@@ -125,17 +127,17 @@ export default function DashboardPage() {
               <div className="rounded-2xl border border-border/50 bg-card/50 p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <Heart className="w-4 h-4 text-red-500" />
-                  <h3 className="font-medium text-sm">Favoritos</h3>
+                  <h3 className="font-medium text-sm">{t('dashboard.favorites')}</h3>
                 </div>
                 <p className="text-3xl font-bold mb-1">{stats.favoritos}</p>
-                <p className="text-xs text-muted-foreground">versículos salvos</p>
+                <p className="text-xs text-muted-foreground">{t('dashboard.verses').toLowerCase()} salvos</p>
               </div>
             </ScrollReveal>
             <ScrollReveal>
               <div className="rounded-2xl border border-border/50 bg-card/50 p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <FileText className="w-4 h-4 text-blue-500" />
-                  <h3 className="font-medium text-sm">Notas</h3>
+                  <h3 className="font-medium text-sm">{t('dashboard.notes')}</h3>
                 </div>
                 <p className="text-3xl font-bold mb-1">{stats.notas}</p>
                 <p className="text-xs text-muted-foreground">anotações pessoais</p>
@@ -145,10 +147,10 @@ export default function DashboardPage() {
               <div className="rounded-2xl border border-border/50 bg-card/50 p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <Target className="w-4 h-4 text-emerald-500" />
-                  <h3 className="font-medium text-sm">Dias Ativos</h3>
+                  <h3 className="font-medium text-sm">{t('dashboard.activeDays')}</h3>
                 </div>
                 <p className="text-3xl font-bold mb-1">{stats.diasAtivos}</p>
-                <p className="text-xs text-muted-foreground">dias de estudo</p>
+                <p className="text-xs text-muted-foreground">{t('dashboard.days')} de estudo</p>
               </div>
             </ScrollReveal>
           </div>

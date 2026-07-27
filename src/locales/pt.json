@@ -590,5 +590,22 @@
     "groupContext": "Contexto",
     "groupPractice": "Prática",
     "groupStudy": "Estudo"
+  },
+  "dashboard": {
+    "title": "Meu Dashboard",
+    "subtitle": "Acompanhe seu progresso no estudo bíblico",
+    "share": "Compartilhar",
+    "streak": "Sequência",
+    "chapters": "Capítulos",
+    "verses": "Versículos",
+    "quizzes": "Quizzes",
+    "studies": "Estudos",
+    "favorites": "Favoritos",
+    "notes": "Notas",
+    "activeDays": "Dias Ativos",
+    "weeklyProgress": "Progresso Semanal",
+    "recentActivity": "Atividade Recente",
+    "noActivity": "Nenhuma atividade registrada",
+    "days": "dias"
   }
 }

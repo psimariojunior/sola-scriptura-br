@@ -1,8 +1,8 @@
 'use client';
 
-import { Suspense, useMemo, useState, useEffect } from 'react';
+import { Suspense, useMemo, useState, useEffect, useCallback } from 'react';
 import dynamic from 'next/dynamic';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { MessageSquare, BookText, StickyNote, GraduationCap, History, X, ChevronLeft, ChevronRight, BookOpen, Link2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { obterContexto, obterContextoCapitulo } from '@/data/contextoHistorico';
@@ -98,6 +98,26 @@ export function SidePanel({
     else onWidthChange('collapsed');
   };
 
+  // Body scroll lock for mobile bottom sheet
+  useEffect(() => {
+    if (isMobile && open) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    };
+  }, [isMobile, open]);
+
+  const handleDragEnd = useCallback((_: never, info: PanInfo) => {
+    if (info.velocity.y > 300 || info.offset.y > 100) {
+      onClose();
+    }
+  }, [onClose]);
+
   // Get resource counts for the selected verse (memoized, with error handling)
   const resourceData = useMemo(() => {
     if (!versiculo) return { comentarios: [], crossRefs: [], tiposRecursos: [], estudos: [] };
@@ -142,7 +162,11 @@ export function SidePanel({
           initial={{ y: '100%' }}
           animate={{ y: 0 }}
           exit={{ y: '100%' }}
-          transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+          drag="y"
+          dragConstraints={{ top: 0, bottom: 0 }}
+          dragElastic={0.2}
+          onDragEnd={handleDragEnd}
           className={cn(
             'fixed bottom-0 left-0 right-0 z-50',
             'bg-[var(--surface-raised)] rounded-t-2xl shadow-2xl',

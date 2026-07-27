@@ -102,6 +102,9 @@ export class WebRTCService {
   private onCallRejectCallback: ((data: { code: string; rejectorName: string }) => void) | null = null;
   private onPresentationSyncCallback: ((data: PresentationSyncEvent) => void) | null = null;
   private onBibleNavigationCallback: ((data: { livro: string; capitulo: number; traducao: string }) => void) | null = null;
+  private onQuizStartCallback: ((data: { questions: unknown[] }) => void) | null = null;
+  private onQuizAnswerCallback: ((data: { answer: unknown }) => void) | null = null;
+  private onQuizSyncCallback: ((data: { currentQuestion: number; status: string }) => void) | null = null;
   private peerStreams: PeerStream[] = [];
   private mySocketId = '';
   private roomCode = '';
@@ -206,6 +209,18 @@ export class WebRTCService {
     this.socket.on('presentation-sync', (data: PresentationSyncEvent) => {
       this.onPresentationSyncCallback?.(data);
     });
+
+    this.socket.on('quiz-start', (data: { questions: unknown[] }) => {
+      this.onQuizStartCallback?.(data);
+    });
+
+    this.socket.on('quiz-answer', (data: { answer: unknown }) => {
+      this.onQuizAnswerCallback?.(data);
+    });
+
+    this.socket.on('quiz-sync', (data: { currentQuestion: number; status: string }) => {
+      this.onQuizSyncCallback?.(data);
+    });
   }
 
   sendChatMessage(id: string, participantId: string, displayName: string, message: string) {
@@ -272,6 +287,33 @@ export class WebRTCService {
   sendPresentationSync(data: PresentationSyncEvent) {
     if (!this.socket || !this.roomCode) return;
     this.socket.emit('presentation-sync', { ...data, code: this.roomCode });
+  }
+
+  sendQuizStart(questions: unknown[]) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('quiz-start', { code: this.roomCode, questions });
+  }
+
+  sendQuizAnswer(answer: unknown) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('quiz-answer', { code: this.roomCode, answer });
+  }
+
+  sendQuizSync(data: { currentQuestion: number; status: string }) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('quiz-sync', { code: this.roomCode, ...data });
+  }
+
+  onQuizStart(cb: (data: { questions: unknown[] }) => void) {
+    this.onQuizStartCallback = cb;
+  }
+
+  onQuizAnswer(cb: (data: { answer: unknown }) => void) {
+    this.onQuizAnswerCallback = cb;
+  }
+
+  onQuizSync(cb: (data: { currentQuestion: number; status: string }) => void) {
+    this.onQuizSyncCallback = cb;
   }
 
   private async createOffer(targetSocketId: string) {
@@ -472,6 +514,9 @@ export class WebRTCService {
     this.onCallRejectCallback = null;
     this.onBibleNavigationCallback = null;
     this.onPresentationSyncCallback = null;
+    this.onQuizStartCallback = null;
+    this.onQuizAnswerCallback = null;
+    this.onQuizSyncCallback = null;
   }
 }
 

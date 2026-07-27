@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { getCollectionsOffline, saveCollectionsOffline } from '@/lib/offlineStorage';
+import { PullToRefreshWrapper } from '@/components/PullToRefresh';
 
 interface Versiculo {
   livro: string;
@@ -35,26 +36,27 @@ export default function ColecoesPage() {
   const [descricao, setDescricao] = useState('');
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const fromIDB = (await getCollectionsOffline()) as Colecao[];
-        if (fromIDB.length > 0) {
-          setColecoes(fromIDB);
-        } else {
-          const raw = localStorage.getItem('ssb_colecoes');
-          if (raw) setColecoes(JSON.parse(raw));
-        }
-      } catch {
-        try {
-          const raw = localStorage.getItem('ssb_colecoes');
-          if (raw) setColecoes(JSON.parse(raw));
-        } catch {}
+  const carregarColecoes = useCallback(async () => {
+    try {
+      const fromIDB = (await getCollectionsOffline()) as Colecao[];
+      if (fromIDB.length > 0) {
+        setColecoes(fromIDB);
+      } else {
+        const raw = localStorage.getItem('ssb_colecoes');
+        if (raw) setColecoes(JSON.parse(raw));
       }
-      setMounted(true);
-    };
-    load();
+    } catch {
+      try {
+        const raw = localStorage.getItem('ssb_colecoes');
+        if (raw) setColecoes(JSON.parse(raw));
+      } catch {}
+    }
+    setMounted(true);
   }, []);
+
+  useEffect(() => {
+    carregarColecoes();
+  }, [carregarColecoes]);
 
   const persistir = useCallback((novas: Colecao[]) => {
     setColecoes(novas);
@@ -125,6 +127,7 @@ export default function ColecoesPage() {
     <div className="min-h-screen bg-[var(--bg)]">
       <Header />
       <main className="pt-24 pb-16 px-4 sm:px-6">
+        <PullToRefreshWrapper onRefresh={carregarColecoes}>
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
 
@@ -340,6 +343,7 @@ export default function ColecoesPage() {
             </AnimatePresence>
           </motion.div>
         </div>
+        </PullToRefreshWrapper>
       </main>
       <Footer />
     </div>

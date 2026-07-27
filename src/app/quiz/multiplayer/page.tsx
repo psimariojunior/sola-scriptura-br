@@ -6,6 +6,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Users, Plus, Link as LinkIcon, Check, Clock, Trophy, ArrowLeft, Zap, Target, Flame, Timer } from 'lucide-react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
 import { obterPerguntasAleatorias, type PerguntaQuiz } from '@/data/quiz';
@@ -76,10 +77,29 @@ export default function QuizMultiplayerPage() {
   const [streak, setStreak] = useState(0);
   const [totalScore, setTotalScore] = useState(0);
   const [wsPlayers, setWsPlayers] = useState<QuizPlayer[]>([]);
+  const searchParams = useSearchParams();
   const svcRef = useRef<WebRTCService | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const isHost = room?.hostId === playerId;
+
+  // Auto-join from URL code
+  useEffect(() => {
+    if (screen !== 'lobby' || room) return;
+    const code = searchParams.get('code');
+    if (!code || code.length !== 6) return;
+    setJoinCode(code);
+    const name = getPlayerName();
+    const player: QuizPlayer = { id: playerId, name, score: 0, streak: 0, correctCount: 0 };
+    const newRoom: QuizRoom = {
+      code, hostId: '', players: [player], status: 'waiting',
+      currentQuestion: 0, questions: obterPerguntasAleatorias(15), answers: [],
+    };
+    setRoom(newRoom);
+    setPlayerName(name);
+    setScreen('waiting');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // WebSocket
   useEffect(() => {
@@ -99,7 +119,18 @@ export default function QuizMultiplayerPage() {
       setRoom(prev => prev ? { ...prev, players } : prev);
     });
 
-    // Listen for quiz events
+    svc.onQuizStart((data) => {
+      setRoom(prev => prev ? { ...prev, questions: data.questions as PerguntaQuiz[] } : prev);
+    });
+
+    svc.onQuizAnswer((data) => {
+      const answer = data.answer as QuizAnswer;
+      setAnswers(prev => {
+        if (prev.some(a => a.questionId === answer.questionId && a.playerId === answer.playerId)) return prev;
+        return [...prev, answer];
+      });
+    });
+
     svc.connect(room.code, playerId, playerName || getPlayerName());
 
     return () => { svc.disconnect(); svcRef.current = null; };
@@ -180,6 +211,7 @@ export default function QuizMultiplayerPage() {
 
   const startGame = useCallback(() => {
     if (!room || !isHost) return;
+    svcRef.current?.sendQuizStart(room.questions);
     setRoom(prev => prev ? { ...prev, status: 'countdown', startedAt: Date.now() } : prev);
     setScreen('countdown');
     setCountdown(3);
@@ -204,6 +236,7 @@ export default function QuizMultiplayerPage() {
       questionId: q.id, selectedIndex: index, isCorrect, timeSpent, points,
     };
     setAnswers(prev => [...prev, answer]);
+    svcRef.current?.sendQuizAnswer(answer);
     setTotalScore(prev => prev + points);
     if (isCorrect) setStreak(prev => prev + 1); else setStreak(0);
   }, [selectedAnswer, room, currentQIndex, timeLeft, streak, playerId, playerName]);
@@ -227,6 +260,22 @@ export default function QuizMultiplayerPage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }, [room]);
+
+  // Compute scores from answers
+  useEffect(() => {
+    const playerMap = new Map<string, QuizPlayer>();
+    room?.players.forEach(p => {
+      playerMap.set(p.id, { ...p, score: 0, streak: 0, correctCount: 0 });
+    });
+    answers.forEach(a => {
+      const existing = playerMap.get(a.playerId) || { id: a.playerId, name: a.playerName, score: 0, streak: 0, correctCount: 0 };
+      existing.score += a.points;
+      if (a.isCorrect) existing.correctCount++;
+      playerMap.set(a.playerId, existing);
+    });
+    const sorted = [...playerMap.values()].sort((a, b) => b.score - a.score);
+    setScores(sorted);
+  }, [answers, room?.players]);
 
   const currentQuestion = room?.questions[currentQIndex];
   const currentAnswer = showResult ? answers.find(a => a.questionId === currentQuestion?.id) : null;

@@ -9,6 +9,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
 import { getFavoritesOffline, saveFavoritesOffline } from '@/lib/offlineStorage';
+import { PullToRefreshWrapper } from '@/components/PullToRefresh';
 
 interface Favorito {
   id: string;
@@ -39,26 +40,27 @@ export default function FavoritosPage() {
   const [sortBy, setSortBy] = useState<SortBy>('data');
   const [carregado, setCarregado] = useState(false);
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const fromIDB = (await getFavoritesOffline()) as Favorito[];
-        if (fromIDB.length > 0) {
-          setFavoritos(fromIDB);
-        } else {
-          const raw = localStorage.getItem('ssb_favoritos');
-          if (raw) setFavoritos(JSON.parse(raw));
-        }
-      } catch {
-        try {
-          const raw = localStorage.getItem('ssb_favoritos');
-          if (raw) setFavoritos(JSON.parse(raw));
-        } catch {}
+  const carregarFavoritos = useCallback(async () => {
+    try {
+      const fromIDB = (await getFavoritesOffline()) as Favorito[];
+      if (fromIDB.length > 0) {
+        setFavoritos(fromIDB);
+      } else {
+        const raw = localStorage.getItem('ssb_favoritos');
+        if (raw) setFavoritos(JSON.parse(raw));
       }
-      setCarregado(true);
-    };
-    load();
+    } catch {
+      try {
+        const raw = localStorage.getItem('ssb_favoritos');
+        if (raw) setFavoritos(JSON.parse(raw));
+      } catch {}
+    }
+    setCarregado(true);
   }, []);
+
+  useEffect(() => {
+    carregarFavoritos();
+  }, [carregarFavoritos]);
 
   const remover = useCallback((id: string) => {
     setFavoritos(prev => {
@@ -106,6 +108,7 @@ export default function FavoritosPage() {
     <div className="min-h-screen">
       <Header />
       <main className="pt-24 pb-16 px-6">
+        <PullToRefreshWrapper onRefresh={carregarFavoritos}>
         <div className="max-w-3xl mx-auto">
           <ScrollReveal>
             <div className="flex items-center justify-between mb-6">
@@ -207,6 +210,7 @@ export default function FavoritosPage() {
             </>
           )}
         </div>
+        </PullToRefreshWrapper>
       </main>
       <Footer />
     </div>

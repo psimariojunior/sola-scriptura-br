@@ -9,6 +9,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { NotaEditor, type Nota } from '@/components/NotaEditor';
 import { cn } from '@/lib/utils';
 import { getNotesOffline, saveNotesOffline } from '@/lib/offlineStorage';
+import { PullToRefreshWrapper } from '@/components/PullToRefresh';
 
 type View = 'list' | 'editor';
 
@@ -19,26 +20,27 @@ export default function NotasPage() {
   const [view, setView] = useState<View>('list');
   const [editingNota, setEditingNota] = useState<Nota | undefined>(undefined);
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const fromIDB = (await getNotesOffline()) as Nota[];
-        if (fromIDB.length > 0) {
-          setNotas(fromIDB);
-        } else {
-          const raw = localStorage.getItem('ssb_notas_rich');
-          if (raw) setNotas(JSON.parse(raw));
-        }
-      } catch {
-        try {
-          const raw = localStorage.getItem('ssb_notas_rich');
-          if (raw) setNotas(JSON.parse(raw));
-        } catch {}
+  const carregarNotas = useCallback(async () => {
+    try {
+      const fromIDB = (await getNotesOffline()) as Nota[];
+      if (fromIDB.length > 0) {
+        setNotas(fromIDB);
+      } else {
+        const raw = localStorage.getItem('ssb_notas_rich');
+        if (raw) setNotas(JSON.parse(raw));
       }
-      setCarregado(true);
-    };
-    load();
+    } catch {
+      try {
+        const raw = localStorage.getItem('ssb_notas_rich');
+        if (raw) setNotas(JSON.parse(raw));
+      } catch {}
+    }
+    setCarregado(true);
   }, []);
+
+  useEffect(() => {
+    carregarNotas();
+  }, [carregarNotas]);
 
   const salvarNota = useCallback((nota: Nota) => {
     setNotas(prev => {
@@ -109,6 +111,7 @@ export default function NotasPage() {
     <div className="min-h-screen">
       <Header />
       <main className="pt-24 pb-16 px-6">
+        <PullToRefreshWrapper onRefresh={carregarNotas}>
         <div className="max-w-3xl mx-auto">
           <ScrollReveal>
             <div className="flex items-center justify-between mb-8">
@@ -225,6 +228,7 @@ export default function NotasPage() {
             </>
           )}
         </div>
+        </PullToRefreshWrapper>
       </main>
       <Footer />
     </div>

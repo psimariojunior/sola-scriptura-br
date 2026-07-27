@@ -18,7 +18,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-001',
     titulo: 'A Existência de Deus —” Argumentos Clássicos',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A questão da existência de Deus é uma das mais debatidas na história da filosofia e da teologia. Os argumentos clássicos buscam demonstrar a existência de Deus pela razão humana.',
       'O argumento cosmológico parte do fato de que tudo que começa a existir tem uma causa. Ao retrocedermos na cadeia causal, chegamos a uma Primeira Causa não causada —” Deus.',
@@ -34,7 +34,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-002',
     titulo: 'A Trindade —” Mistério Central da Fé',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A doutrina da Trindade é o mistério central da fé cristã: um único Deus em três pessoas —” Pai, Filho e Espírito Santo. Cada pessoa é plenamente Deus.',
       'A formulação trinitária emergiu dos debates cristológicos dos séculos III e IV. O Concílio de Nicéia estabeleceu que o Filho é homoousios com o Pai.',
@@ -50,7 +50,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-003',
     titulo: 'A Transcendência e Imanência de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'Deus é ao mesmo tempo infinitamente distinto da criação (transcendente) e profundamente presente nela (imanente). Este paradoxo é fundamental para compreender Deus.',
       'A transcendência significa que Deus está além de todas as limitações criadas —” tempo, espaço, matéria. Ã‰ o Deus que habita a luz inacessível.',
@@ -66,7 +66,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-004',
     titulo: 'A Onisciência de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A onisciência de Deus significa que Ele sabe todas as coisas —” passado, presente e futuro —” de forma perfeita e simultânea.',
       'Deus conhece todas as possibilidades e atualidades. Ele sabe o que é, o que foi, o que será e o que poderia ser.',
@@ -82,7 +82,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-005',
     titulo: 'A Omnipotência de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A omnipotência de Deus significa que Ele pode fazer tudo o que é logicamente possível. Deus não pode fazer o logicamente impossível.',
       'A Bíblia declara que para Deus nada é impossível. Deus criou o universo do nada, sustenta tudo pelo poder da Sua palavra e realizará todas as Suas promessas.',
@@ -98,7 +98,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-006',
     titulo: 'A Santidade de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A santidade de Deus é Seu atributo mais elevado —” a separação absoluta de tudo o que é impuro e a perfeição moral absoluta.',
       'A santidade implica Sua justiça: Ele não pode tolerar o pecado. A lei moral é reflexo da Sua santidade.',
@@ -114,7 +114,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-007',
     titulo: 'A Justiça de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A justiça de Deus é a perfeição moral pela qual Ele age em conformidade com a Sua própria natureza santa.',
       'A justiça divina se manifesta de duas formas: retributiva (castigar o pecado) e distributiva (dar a cada um o que merece).',
@@ -130,7 +130,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-008',
     titulo: 'A Misericórdia e Graça de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A misericórdia de Deus é Seu amor para com os miseráveis. A graça é Seu amor gratuito e imerecido.',
       'Misericórdia é não nos dar o que merecemos; graça é nos dar o que não merecemos. Ambas são expressões do amor divino.',
@@ -146,7 +146,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-009',
     titulo: 'A Eternidade e Imutabilidade de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'Deus é eterno —” não tem começo nem fim. O tempo é criação de Deus, mas Ele não está sujeito ao tempo.',
       'A imutabilidade significa que Ele não muda em Sua natureza, caráter, propósitos ou promessas.',
@@ -162,7 +162,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-010',
     titulo: 'A Soberania de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A soberania de Deus é Seu domínio absoluto sobre toda a criação. Ele governa todas as coisas segundo a Sua vontade.',
       'A soberania se manifesta em decreto (propósito eterno) e providência (execução no tempo).',
@@ -178,7 +178,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-011',
     titulo: 'O Amor de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'O amor de Deus é o atributo que fundamenta todos os outros. Deus não apenas ama —” Ele é amor (1 João 4:8).',
       'O amor divino é incondicional, inesgotável e universal. Ele amou o mundo de tal maneira que deu o Seu Filho.',
@@ -194,7 +194,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-012',
     titulo: 'A Fidelidade de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A fidelidade de Deus significa que Ele cumpre todas as Suas promessas. Ele é fiel mesmo quando somos infiéis.',
       'A aliança de Deus com Israel é modelo de fidelidade: apesar da desobediência do povo, Deus mantém Suas promessas.',
@@ -210,7 +210,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-013',
     titulo: 'A Graça Comum',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A graça comum é a bondade de Deus para com todos os seres humanos, independentemente de sua fé.',
       'Ela se manifesta na providência: chuva, sol, alimento, governos, cultura, conhecimento.',
@@ -226,7 +226,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-014',
     titulo: 'A Graça Especial (Salvífica)',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A graça especial é a obra redentora de Deus que salva os eleitos do pecado e da morte.',
       'Ela inclui: chamado eficaz, regeneração, fé, arrependimento, justificação, santificação e glorificação.',
@@ -242,7 +242,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-015',
     titulo: 'A Predestinação',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A predestinação é o decreto eterno de Deus de salvar uns e condenar outros. Ã‰ tema central no debate calvinista-arminiano.',
       'O calvinismo sustenta a predestinação incondicional: Deus escolhe antes da fundação do mundo, sem referência ao mérito.',
@@ -258,7 +258,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-016',
     titulo: 'A Providência de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A providência de Deus é Seu governo contínuo de todas as coisas para realizar Seus propósitos.',
       'Deus governa tudo: nações, natureza, história, destinos individuais. Nada escapa ao Seu controle.',
@@ -274,7 +274,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-017',
     titulo: 'A Revelação Geral de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A revelação geral é o conhecimento de Deus disponível a todos os seres humanos através da criação e da consciência.',
       'Romanos 1:19-20 declara que a criação revela a existência e os atributos de Deus de forma clara e inescusável.',
@@ -290,7 +290,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-018',
     titulo: 'A Revelação Especial —” Escritura e Cristo',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A revelação especial é Deus se comunicando diretamente —” através da Escritura e da pessoa de Jesus Cristo.',
       'Cristo é a Palavra definitiva de Deus —” a revelação plena e final. Deus falou de muitas maneiras, mas agora pelo Filho.',
@@ -306,7 +306,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-019',
     titulo: 'O Livre-Arbítrio e a Graça',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'O livre-arbítrio é a capacidade humana de escolher entre alternativas. A graça de Deus opera na escolha humana.',
       'O calvinismo sustenta que o livre-arbítrio é escravo —” o homem caído não pode escolher a Deus sem a graça regeneradora.',
@@ -322,7 +322,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-020',
     titulo: 'A Natureza do Pecado',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'O pecado é rebelião contra Deus —” transgressão da Sua lei e ofensa à Sua santidade.',
       'O pecado tem origem na queda (Gênesis 3) —” a humanidade herdou uma natureza corrupta.',
@@ -338,7 +338,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-021',
     titulo: 'A Maldição do Pecado',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A maldição do pecado é a consequência da desobediência humana —” morte, sofrimento, separação de Deus.',
       'A maldição se estende a toda a criação —” a terra foi amaldiçoada por causa do pecado humano.',
@@ -530,7 +530,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-033',
     titulo: 'A Oração —” Comunhão com Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Espiritualidade',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'A oração é comunhão direta com Deus —” falar e ouvir, pedir e agradecer, confessar e adorar.',
       'O modelo de oração é o Pai Nosso (Mateus 6:9-13) —” adoração, petição, confissão, proteção.',
@@ -546,7 +546,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-034',
     titulo: 'A Adoração —” O Propósito da Vida',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Espiritualidade',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'A adoração é reconhecer o valor supremo de Deus e responder com reverência, amor e obediência.',
       'A adoração não é apenas música —” é toda a vida vivida para a glória de Deus.',
@@ -562,7 +562,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-035',
     titulo: 'O Discipulado —” Seguindo a Cristo',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Espiritualidade',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'O discipulado é seguir a Cristo como Senhor —” não apenas crer, mas obedecer e transformar-se.',
       'Jesus chamou para seguir: Venhe depois de mim. O discipulado é relacionamento pessoal com Cristo.',
@@ -578,7 +578,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-036',
     titulo: 'A Consciência —” Guia Moral Interior',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A consciência é a faculdade moral que distingue certo de errado. Ã‰ dom de Deus, mas pode ser educada.',
       'A consciência não é infalível —” pode ser corrompida pelo pecado, pela cultura, pela falsa religião.',
@@ -839,7 +839,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ad-002',
     titulo: 'Satanás e os Demônios',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Demonologia',
+    subcategoria: 'Angelologia',
     conteudo: [
       'Satanás é um anjo caído, originalmente belo e poderoso. Sua queda é por orgulho.',
       'Satanás tem múltiplos títulos: Adversário, Diabo, Tentador, Príncipe deste mundo.',
@@ -912,8 +912,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-001',
     titulo: 'Gênesis —” Criação e Ordem Cósmica',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Pentateuco',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Gênesis 1-2 apresenta a criação do universo por Deus com ordem, propósito e bondade.',
       'Deus cria pela Sua palavra e mostra-se pessoal. O homem é a culminação —” criado à imagem de Deus.',
@@ -928,8 +928,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-002',
     titulo: 'Gênesis —” A Queda e o Pecado',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Pentateuco',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Gênesis 3 narra a queda: tentação, desobediência e consequências.',
       'O pecado é rebelião —” querer ser como Deus. Ã‰ a raiz de todo mal.',
@@ -944,8 +944,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-003',
     titulo: 'Gênesis —” Aliança e Promessa',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Pentateuco',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O tema da aliança percorre Gênesis: Adão, Noé, Abraão, Isaac, Jacó.',
       'A aliança com Abraão é central: promessa de terra, descendência e bênção universal.',
@@ -960,8 +960,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-004',
     titulo: 'ÃŠxodo —” Libertação e Páscoa',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Pentateuco',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O ÃŠxodo é evento fundante —” libertação da escravidão por Deus.',
       'A Páscoa é sacrifício central: o cordeiro imolado protege da sentença.',
@@ -976,8 +976,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-005',
     titulo: 'ÃŠxodo —” A Lei e os Dez Mandamentos',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Pentateuco',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'A entrega da Lei no Sinai é ápice da aliança.',
       'Os Dez Mandamentos são o resumo da lei moral de Deus.',
@@ -992,8 +992,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-006',
     titulo: 'Salmos —” Adoração e Louvor',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Livros Poéticos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Os Salmos são o hinário de Israel —” 150 cânticos que expressam toda a gama de emoções.',
       'O louvor é resposta à grandeza de Deus. Não depende de circunstâncias.',
@@ -1008,8 +1008,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-007',
     titulo: 'Livro de Jó —” Sofrimento e Soberania',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Livros Poéticos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Jó é a mais profunda reflexão sobre o sofrimento do inocente.',
       'Os amigos oferecem teologia da retribuição —” mas Jó é justo.',
@@ -1024,8 +1024,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-008',
     titulo: 'Provérbios —” Sabedoria Prática',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Livros Poéticos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Provérbios é manual de sabedoria prática. O temor do Senhor é princípio da sabedoria.',
       'A sabedoria bíblica não é erudição mas discernimento para viver bem.',
@@ -1040,8 +1040,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-009',
     titulo: 'Isaías —” O Profeta Messiânico',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Profetas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Isaías é o evangelho do AT —” profecias messiânicas mais detalhadas.',
       'Os Serviços do Senhor descrevem a obra redentora do Messias.',
@@ -1056,8 +1056,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-010',
     titulo: 'Jeremias —” Nova Aliança e Restauração',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Profetas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Jeremias profetizou nos últimos anos antes do exílio.',
       'Jeremias 29:11 é promessa de futuro.',
@@ -1072,8 +1072,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-011',
     titulo: 'Daniel —” Soberania e Escatologia',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Profetas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Daniel profetizou no exílio babilônico.',
       'Daniel 7:13-14 descreve o Filho do Homem.',
@@ -1088,8 +1088,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-012',
     titulo: 'Mateus —” O Evangelho do Reino',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelhos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Mateus apresenta Jesus como Messias prometido.',
       'As cinco seções refletem os cinco livros de Moisés.',
@@ -1104,8 +1104,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-013',
     titulo: 'Marcos —” O Evangelho da Ação',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelhos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Marcos é o evangelho mais curto e dinâmico.',
       'Jesus é servo sofredor.',
@@ -1120,8 +1120,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-014',
     titulo: 'Lucas —” O Evangelho Universal',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelhos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Lucas destaca Jesus como Salvador de todos.',
       'Enfatiza a universalidade: gentios, mulheres, pobres.',
@@ -1136,8 +1136,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-015',
     titulo: 'João —” O Evangelho da Divindade',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelhos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'João apresenta Jesus como Verbo eterno.',
       'Os sete Eu Sou revelam Sua identidade.',
@@ -1152,8 +1152,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-016',
     titulo: 'Atos —” A Igreja em Expansão',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Atos narra a expansão da Igreja de Jerusalém ao mundo.',
       'O Espírito Santo é protagonista.',
@@ -1168,8 +1168,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-017',
     titulo: 'Romanos —” O Evangelho Sistemático',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Romanos é a epístola mais sistemática de Paulo.',
       'O justo viverá pela fé.',
@@ -1184,8 +1184,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-018',
     titulo: '1 e 2 Coríntios —” A Igreja Imperfeita',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 Coríntios é carta a igreja problemática.',
       'O amor de 1 Coríntios 13 é o capítulo mais belo.',
@@ -1200,8 +1200,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-019',
     titulo: 'Gálatas —” Liberdade na Graça',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Gálatas é a epístola da liberdade cristã.',
       'A justificação pela fé é tema central.',
@@ -1216,8 +1216,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-020',
     titulo: 'Efésios —” A Igreja, Corpo de Cristo',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Efésios é a epístola dos céus.',
       'Bênçãos espirituais e unidade da Igreja.',
@@ -1232,8 +1232,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-021',
     titulo: 'Filipenses —” Alegria na Adversidade',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Filipenses é a epístola da alegria.',
       'Paulo escreve da prisão com gozo.',
@@ -1248,8 +1248,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-022',
     titulo: 'Colossenses —” A Supremacia de Cristo',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Colossenses declara a supremacia de Cristo sobre toda a criação.',
       'Cristo é imagem do Deus invisível.',
@@ -1264,8 +1264,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-023',
     titulo: '1 Tessalonicenses —” A Esperança da Volta de Cristo',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 Tessalonicenses é a epístola mais antiga de Paulo.',
       'O tema central é a segunda vinda de Cristo.',
@@ -1280,8 +1280,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-024',
     titulo: 'Hebreus —” A Superioridade de Cristo',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Gerais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Hebreus declara a superioridade de Cristo sobre tudo.',
       'Cristo é superior aos anjos, Moisés, Aarão.',
@@ -1296,8 +1296,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-025',
     titulo: 'Tiago —” Fé Viva e Obras',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Gerais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Tiago é manual de ética cristã.',
       'Fé sem obras é morta.',
@@ -1312,8 +1312,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-026',
     titulo: '1 Pedro —” Sofrimento e Esperança',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Gerais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 Pedro é escrito a cristãos sofrendo perseguição.',
       'O sofrimento é provação de fé.',
@@ -1328,8 +1328,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-027',
     titulo: '1 João —” Amor e Verdade',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Gerais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 João é carta de amor e verdade.',
       'Deus é amor.',
@@ -1344,8 +1344,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-028',
     titulo: 'Apocalipse —” Revelação e Esperança',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Escatologia',
     conteudo: [
       'Apocalipse é revelação de Jesus Cristo.',
       'O Cordeiro é vitorioso.',
@@ -1360,8 +1360,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-029',
     titulo: 'Números —” Peregrinação e Desobediência',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Pentateuco',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Números narra a peregrinação de Israel no deserto.',
       'A desobediência gera julgamento —” 40 anos de deserto.',
@@ -1376,8 +1376,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-030',
     titulo: 'Deuteronômio —” Renovação da Aliança',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Pentateuco',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Deuteronômio é renovação da aliança antes da entrada em Canaã.',
       'O Shema é declaração central da fé.',
@@ -1392,8 +1392,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-031',
     titulo: 'Josué —” Conquista e Fidelidade',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Josué narra a conquista de Canaã.',
       'Deus cumple a promessa feita a Abraão.',
@@ -1408,8 +1408,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-032',
     titulo: 'Juízes —” Círculo de Desobediência',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Juízes mostra o ciclo: pecado, julgamento, clamor, libertação.',
       'Não havia rei em Israel —” cada um fazia o que parecia certo.',
@@ -1424,8 +1424,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-033',
     titulo: 'Rute —” Graça e Redenção',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Rute é história de graça e lealdade.',
       'A gentia Rute entra no povo de Deus.',
@@ -1440,8 +1440,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-034',
     titulo: '1 Samuel —” Realeza e Profecia',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       '1 Samuel marca a transição de juízes para monarquia.',
       'Samuel é o último juiz e primeiro profeta.',
@@ -1456,8 +1456,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-035',
     titulo: '2 Samuel —” A Aliança Davídica',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       '2 Samuel descreve o reinado de Davi.',
       'A aliança com Davi é central.',
@@ -1472,8 +1472,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-036',
     titulo: '1 Reis —” O Templo e a Divisão',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       '1 Reis narra a construção do templo por Salomão.',
       'A sabedoria de Salomão é dádiva divina.',
@@ -1488,8 +1488,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-037',
     titulo: '2 Reis —” Exílio e Julgamento',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       '2 Reis narra o exílio de Israel e Judá.',
       'A queda de Samaria (722 a.C.).',
@@ -1504,8 +1504,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-038',
     titulo: 'Crônicas —” Revisão Teológica',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Crônicas é revisão teológica da história de Israel.',
       'ÃŠnfase no templo e na adoração.',
@@ -1520,8 +1520,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-039',
     titulo: 'Esdras e Neemias —” Restauração',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Esdras e Neemias narram a restauração pós-exílio.',
       'Esdra é escriba e reformador.',
@@ -1536,8 +1536,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-040',
     titulo: 'Ester —” Providência e Coragem',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Ester é história de providência divina em Persia.',
       'O nome de Deus não é mencionado mas Sua presença é evidente.',
@@ -1558,7 +1558,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-001',
     titulo: 'Ã‰tica Cristã e Moralidade Absoluta',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A ética cristã se fundamenta na natureza de Deus e na Sua Palavra.',
       'O relativismo moral contemporâneo desafia a noção de verdade absoluta.',
@@ -1574,7 +1574,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-002',
     titulo: 'Bioética —” Vida, Morte e Dignidade',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Bioética',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A bioética cristã defende a dignidade da vida humana desde a concepção.',
       'O aborto é rejeitado pela tradição cristã como interrupção injustificada da vida.',
@@ -1590,7 +1590,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-003',
     titulo: 'Justiça Social —” Pobres e Oprimidos',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Justiça Social',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A justiça social é chamamento bíblico —” Deus defende os oprimidos.',
       'Os profetas denunciam a exploração dos pobres.',
@@ -1606,7 +1606,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-004',
     titulo: 'Cuidado com a Criação —” Ecologia Cristã',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ecologia',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A criação é dom de Deus —” somos mordomos, não donos.',
       'O mandato de dominar não é exploração mas cuidado responsável.',
@@ -1622,7 +1622,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-005',
     titulo: 'Religião e Ciência —” Fé e Razão',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Fé e Ciência',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Fé e ciência não são necessariamente conflitantes.',
       'A ciência responde ao como; a fé ao por quê.',
@@ -1638,7 +1638,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-006',
     titulo: 'Pluralismo Religioso',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Pluralismo',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'O pluralismo sustenta que todas as religiões são caminhos para Deus.',
       'A Bíblia afirma a exclusividade de Cristo: não há salvação em nenhum outro.',
@@ -1670,7 +1670,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-008',
     titulo: 'Cultura Cristã —” Engajamento Cultural',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Cultura',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A Igreja deve engajar a cultura sem ser absorvida por ela.',
       'A anticultura cristã é withdraw; a aculturação é compromisso.',
@@ -1686,7 +1686,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-009',
     titulo: 'Mídia Digital e Fé',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Cultura Digital',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A mídia digital é ferramenta de evangelismo e comunhão.',
       'Os perigos incluem: distração, superficialidade, vício.',
@@ -1702,7 +1702,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-010',
     titulo: 'Fé e Política',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Pública',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A fé cristã tem implicações políticas —” mas não é partidária.',
       'O Reino de Deus transcende partidos e ideologias.',
@@ -1723,7 +1723,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-001',
     titulo: 'Os Pais da Igreja Primitiva',
     categoria: 'História da Igreja',
-    subcategoria: 'Patrística',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Os Pais da Igreja são os teólogos dos primeiros séculos do cristianismo.',
       'Os Apóstolicos (Clemente, Inácio, Policarpo) foram contemporâneos dos apóstolos.',
@@ -1739,7 +1739,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-002',
     titulo: 'Santo Agostinho —” Graça e Cidade de Deus',
     categoria: 'História da Igreja',
-    subcategoria: 'Patrística',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Agostinho é o pai do Ocidente cristão. Suas Confissões são autobiografia espiritual.',
       'A graça soberana é tema central —” Deus precede o homem em tudo.',
@@ -1755,7 +1755,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-003',
     titulo: 'Os Concílios Ecumênicos',
     categoria: 'História da Igreja',
-    subcategoria: 'Concílios',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'Os concílios definiram a doutrina cristã contra heresias.',
       'Nicéia (325) —” divindade de Cristo contra o arianismo.',
@@ -1771,7 +1771,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-004',
     titulo: 'São Tomás de Aquino —” Fé e Razão',
     categoria: 'História da Igreja',
-    subcategoria: 'Escolástica',
+    subcategoria: 'Teologia Sistemática',
     conteudo: [
       'Tomás de Aquino sintetizou fé e razão na Suma Teológica.',
       'A existência de Deus pode ser demonstrada pela razão.',
@@ -1787,7 +1787,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-005',
     titulo: 'Martin Lutero e a Reforma Protestante',
     categoria: 'História da Igreja',
-    subcategoria: 'Reforma',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Lutero pregou as 95 teses em 1517, iniciando a Reforma.',
       'As cinco solas: sola Scriptura, sola gratia, sola fide, solus Christus, sola Deo gloria.',
@@ -1803,7 +1803,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-006',
     titulo: 'João Calvino —” Soberania e Reforma',
     categoria: 'História da Igreja',
-    subcategoria: 'Reforma',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Calvino é autor das Institutas da Religião Cristã.',
       'A soberania de Deus é tema central.',
@@ -1819,7 +1819,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-007',
     titulo: 'John Wesley e o Metodismo',
     categoria: 'História da Igreja',
-    subcategoria: 'Avivamentos',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Wesley é fundador do metodismo. Sua teologia enfatiza a santificação.',
       'A graça preveniente capacita a resposta humana.',
@@ -1835,7 +1835,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-008',
     titulo: 'Dietrich Bonhoeffer —” Graça Custosa',
     categoria: 'História da Igreja',
-    subcategoria: 'Teologia Moderna',
+    subcategoria: 'Teologia Sistemática',
     conteudo: [
       'Bonhoeffer é teólogo luterano martirizado pelo nazismo.',
       'A graça custosa é semipreço —” Deus nos chama a seguir.',
@@ -1851,7 +1851,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-009',
     titulo: 'Karl Barth —” Teologia Dialética',
     categoria: 'História da Igreja',
-    subcategoria: 'Teologia Moderna',
+    subcategoria: 'Teologia Sistemática',
     conteudo: [
       'Barth é o maior teólogo do século XX.',
       'Deus é totalmente diferente (totaliter aliter) e totalmente próximo.',
@@ -1867,7 +1867,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-010',
     titulo: 'O Movimento Pentecostal',
     categoria: 'História da Igreja',
-    subcategoria: 'Avivamentos',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'O pentecostalismo nasceu no início do século XX (Azusa Street, 1906).',
       'Enfatiza: batismo no Espírito, dons espirituais, cura divina.',
@@ -1883,7 +1883,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-011',
     titulo: 'As Cruzadas —” Fé e Violência',
     categoria: 'História da Igreja',
-    subcategoria: 'Medieval',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'As cruzadas foram expedições militares para recuperar a Terra Santa.',
       'A motivação era religiosa —” libertar os locais sagrados.',
@@ -1899,7 +1899,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-012',
     titulo: 'A Inquisição —” Fé e Poder',
     categoria: 'História da Igreja',
-    subcategoria: 'Medieval',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'A Inquisição foi tribunal eclesiástico para combater heresias.',
       'A tortura e morte de acusados são manchas na história da Igreja.',
@@ -1915,7 +1915,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-013',
     titulo: 'O Movimento Puritano',
     categoria: 'História da Igreja',
-    subcategoria: 'Reforma',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Os puritanos buscavam purificar a Igreja Anglicana de práticas católicas.',
       'Enfatizavam: pregação fiel, disciplina, santificação.',
@@ -1931,7 +1931,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-014',
     titulo: 'O Avivamento de Gales (1904-1905)',
     categoria: 'História da Igreja',
-    subcategoria: 'Avivamentos',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'O avivamento de Gales transformou o país espiritualmente.',
       'Liderado por Evan Roberts, jovem de 26 anos.',
@@ -1963,7 +1963,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-016',
     titulo: 'O Concílio de Trento —” Resposta Católica',
     categoria: 'História da Igreja',
-    subcategoria: 'Contrarreforma',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'O Concílio de Trento (1545-1563) foi resposta da Igreja Católica à Reforma.',
       'Reafirma: sete sacramentos, transubstanciação, mérito.',
@@ -1979,7 +1979,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-017',
     titulo: 'Soren Kierkegaard —” Fé e Existência',
     categoria: 'História da Igreja',
-    subcategoria: 'Filosofia Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Kierkegaard é pai do existencialismo cristão.',
       'A fé é salto paradoxal —” não racionalidade.',
@@ -2011,7 +2011,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-019',
     titulo: 'O Movimento de Santidade',
     categoria: 'História da Igreja',
-    subcategoria: 'Avivamentos',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'O movimento de santidade surgiu no séc. XIX.',
       'Enfatizava a santificação completa como experiência segunda.',
@@ -2027,7 +2027,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-020',
     titulo: 'A Igreja Primitiva —” Vida e Organização',
     categoria: 'História da Igreja',
-    subcategoria: 'Patrística',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'A Igreja primitiva viveu em comunhão, partilha e oração.',
       'A organização incluía bispos, presbíteros e diáconos.',
@@ -2043,7 +2043,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-021',
     titulo: 'São Francisco de Assis —” Pobreza e Amor',
     categoria: 'História da Igreja',
-    subcategoria: 'Medieval',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Francisco é modelo de pobreza evangélica e amor à criação.',
       'Abandonou riqueza para seguir a Cristo.',
@@ -2059,7 +2059,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-022',
     titulo: 'A Escravidão e a Igreja',
     categoria: 'História da Igreja',
-    subcategoria: 'Justiça Social',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A Igreja teve papel ambíguo na escravidão.',
       'Alguns cristãos combateram a escravidão (Wesley, Wilberforce).',
@@ -2075,7 +2075,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-023',
     titulo: 'O Movimiento da Teologia da Libertação',
     categoria: 'História da Igreja',
-    subcategoria: 'Teologia Moderna',
+    subcategoria: 'Teologia Sistemática',
     conteudo: [
       'A teologia da libertação surgiu na América Latina nos anos 60.',
       'Gustavo Gutiérrez é principal expoente.',
@@ -2091,7 +2091,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-024',
     titulo: 'A Igreja Ortodoxa —” Tradição e Liturgia',
     categoria: 'História da Igreja',
-    subcategoria: 'Ortodoxia',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'A Igreja Ortodoxa preserva a tradição dos primeiros séculos.',
       'A liturgia é central —” a Divina Liturgia é mistério.',
@@ -2107,7 +2107,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-025',
     titulo: 'O Ecumenismo Moderno',
     categoria: 'História da Igreja',
-    subcategoria: 'Ecumenismo',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'O ecumenismo busca a unidade visível da Igreja.',
       'O Concílio Vaticano II abriu diálogo.',
@@ -2128,7 +2128,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-001',
     titulo: 'Comparação entre os Quatro Evangelhos',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Comparação Sinótica',
+    subcategoria: 'Estudos Comparativos',
     conteudo: [
       'Mateus, Marcos e Lucas são sinóticos —” narram a mesma história com ênfases diferentes.',
       'João é distinto —” apresentação teológica mais elevada.',
@@ -2144,7 +2144,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-002',
     titulo: 'Criação em Gênesis e Ciência Moderna',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'AT e Ciência',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Gênesis 1-2 apresenta o relato da criação.',
       'Existem múltiplas interpretações: literal, literária, framework.',
@@ -2160,7 +2160,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-003',
     titulo: 'Alianças do Antigo e Novo Testamento',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Alianças',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'As alianças do AT (Noé, Abraão, Moisés, Davi) preparam para a nova aliança.',
       'A nova aliança em Cristo cumpre e supera as anteriores.',
@@ -2176,7 +2176,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-004',
     titulo: 'Temas Mesianos —” AT e NT',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Messianismo',
+    subcategoria: 'Cristologia',
     conteudo: [
       'As profecias messiânicas do AT se cumprem em Cristo.',
       'Isaías 53 descreve a morte substitutiva.',
@@ -2192,7 +2192,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-005',
     titulo: 'Sofrimento no AT e NT',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Tematica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O sofrimento é tema que percorre toda a Bíblia.',
       'No AT: Jó, Salmos de lamento, profetas.',
@@ -2208,7 +2208,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-006',
     titulo: 'Lei no AT e Graça no NT',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Lei e Graça',
+    subcategoria: 'Soteriologia',
     conteudo: [
       'A relação entre Lei e Evangelho é central no cristianismo.',
       'A Lei revela o pecado; o Evangelho mostra o Salvador.',
@@ -2224,7 +2224,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-007',
     titulo: 'Reis de Israel e Reinado de Cristo',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Realeza',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Os reis de Israel são prefigurações de Cristo.',
       'Davi é o rei segundo o coração de Deus.',
@@ -2240,7 +2240,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-008',
     titulo: 'Tipologias Bíblicas —” Tipos e Antitipos',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Tipologia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Tipologia é estudo de prefigurações no AT que se cumprem no NT.',
       'Adão é tipo de Cristo (Romanos 5:14).',
@@ -2256,7 +2256,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-009',
     titulo: 'Adoração no AT e NT',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Liturgia',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'A adoração no AT incluía templo, sacrifícios, festas.',
       'No NT, a adoração é em espírito e verdade.',
@@ -2272,7 +2272,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-010',
     titulo: 'Profecia no AT e NT',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Profecia',
+    subcategoria: 'Escatologia',
     conteudo: [
       'O AT contém profecias messiânicas detalhadas.',
       'O NT cumpre e interpreta as profecias.',
@@ -2288,7 +2288,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-011',
     titulo: 'Sacramentos —” Prefigurações no AT',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Sacramentos',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'O batismo tem prefigurações: dilúvio, Mar Vermelho, circuncisão.',
       'A Ceia tem prefigurações: Páscoa, maná, águas amargas.',
@@ -2304,7 +2304,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-012',
     titulo: 'Justiça no AT e NT',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Justiça',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A justiça no AT é mantida pela lei.',
       'A justiça no NT é imputada pela fé.',
@@ -2320,7 +2320,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-013',
     titulo: 'Misericórdia no AT e NT',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Misericórdia',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'A misericórdia de Deus é tema que percorre toda a Bíblia.',
       'No AT: Deus se arrepende, perdoa, restaura.',
@@ -2384,7 +2384,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-017',
     titulo: 'Pecado e Redenção —” Narrativa Bíblica',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Redenção',
+    subcategoria: 'Soteriologia',
     conteudo: [
       'A narrativa bíblica é: criação â†’ queda â†’ redenção â†’ consumação.',
       'O pecado corrompe tudo; a redenção restaura tudo.',
@@ -2400,7 +2400,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-018',
     titulo: 'Amor no AT e NT',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Ã‰tica',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O amor a Deus e ao próximo é central em ambas as alianças.',
       'O AT ordena: Amarás o Senhor teu Deus. Amarás o próximo.',
@@ -2432,7 +2432,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-020',
     titulo: 'Deus como Pai —” AT e NT',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'Deus é chamado de Pai no AT —” geralmente como criador e provedor.',
       'No NT, Jesus intensifica a relação: Abba, Pai.',
@@ -2464,7 +2464,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-022',
     titulo: 'Aliança com Abraão e Fé em Cristo',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Alianças',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Abraão creu em Deus e lhe foi imputado justiça.',
       'A fé de Abraão é modelo para todos.',
@@ -2480,7 +2480,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-023',
     titulo: 'Lei Moral —” Permanência e Aplicação',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Ã‰tica',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A lei moral (Decálogo) é permanente.',
       'As leis cerimoniais se cumprem em Cristo.',
@@ -2533,7 +2533,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-001',
     titulo: 'Interpretação Literal —” Método Gramatical-Histórico',
     categoria: 'Hermenêutica',
-    subcategoria: 'Métodos',
+    subcategoria: 'Hermenêutica',
     conteudo: [
       'O método literal busca o sentido que o autor quis comunicar ao leitor original.',
       'Respeita o contexto, o gênero literário e a linguagem.',
@@ -2549,7 +2549,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-002',
     titulo: 'Gêneros Literários na Bíblia',
     categoria: 'Hermenêutica',
-    subcategoria: 'Gêneros',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'A Bíblia contém múltiplos gêneros: história, poesia, profecia, epístola, apocalipse.',
       'Cada gênero requer método interpretativo diferente.',
@@ -2565,7 +2565,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-003',
     titulo: 'Contexto Histórico-Cultural',
     categoria: 'Hermenêutica',
-    subcategoria: 'Contexto',
+    subcategoria: 'Hermenêutica',
     conteudo: [
       'Entender o contexto histórico-cultural é essencial para interpretação.',
       'A Bíblia foi escrita em culturas específicas.',
@@ -2581,7 +2581,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-004',
     titulo: 'Línguas Originais —” Hebraico e Grego',
     categoria: 'Hermenêutica',
-    subcategoria: 'Línguas',
+    subcategoria: 'Bibliologia',
     conteudo: [
       'O hebraico é a língua do AT —” rica em imagens e paradoxos.',
       'O grego do NT é koiné —” língua comum do império romano.',
@@ -2597,7 +2597,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-005',
     titulo: 'Crítica Textual —” Manuscritos e Variantes',
     categoria: 'Hermenêutica',
-    subcategoria: 'Crítica Textual',
+    subcategoria: 'Bibliologia',
     conteudo: [
       'A crítica textual busca estabelecer o texto original das Escrituras.',
       'Temos milhares de manuscritos —” mais do que qualquer outro documento antigo.',
@@ -2613,7 +2613,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-006',
     titulo: 'Interpretação Alegórica —” Uso e Limites',
     categoria: 'Hermenêutica',
-    subcategoria: 'Métodos',
+    subcategoria: 'Hermenêutica',
     conteudo: [
       'A interpretação alegórica busca significados além do literal.',
       'Foi predominante nos Padres da Igreja (Orígenes, Clemente).',
@@ -2629,7 +2629,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-007',
     titulo: 'Tipologia —” Prefigurações Bíblicas',
     categoria: 'Hermenêutica',
-    subcategoria: 'Métodos',
+    subcategoria: 'Hermenêutica',
     conteudo: [
       'A tipologia estuda prefigurações no AT que se cumprem no NT.',
       'Ã‰ diferente de alegoria —” é baseada no texto bíblico.',
@@ -2645,7 +2645,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-008',
     titulo: 'Narrativa Bíblica —” Interpretação Narrativa',
     categoria: 'Hermenêutica',
-    subcategoria: 'Métodos',
+    subcategoria: 'Hermenêutica',
     conteudo: [
       'A interpretação narrativa respeita a narrativa como gênero.',
       'Personagens, enredo, tema e cenário são elementos-chave.',
@@ -2661,7 +2661,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-009',
     titulo: 'Poesia Hebraica —” Paralelismo e Imagem',
     categoria: 'Hermenêutica',
-    subcategoria: 'Poesia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'A poesia hebraica usa paralelismo: sinônimo, antitético, sintético.',
       'As imagens são vívidas e concretas.',
@@ -2677,7 +2677,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-010',
     titulo: 'Profecia —” Literal e Simbólica',
     categoria: 'Hermenêutica',
-    subcategoria: 'Profecia',
+    subcategoria: 'Escatologia',
     conteudo: [
       'A profecia pode ser literal (Isaías 53) ou simbólica (Apocalipse).',
       'O contexto determina a interpretação.',
@@ -2693,7 +2693,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-011',
     titulo: 'Parábolas de Jesus —” Interpretação',
     categoria: 'Hermenêutica',
-    subcategoria: 'Gêneros',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'As parábolas são histórias com lição moral ou espiritual.',
       'Cada parábola tem ponto central —” não devemos detalhar demais.',
@@ -2709,7 +2709,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-012',
     titulo: 'Hebreus —” Hermenêutica do Novo Testamento',
     categoria: 'Hermenêutica',
-    subcategoria: 'Hermenêutica NT',
+    subcategoria: 'Hermenêutica',
     conteudo: [
       'Hebreus é exemplo de hermenêutica do NT aplicando o AT.',
       'Cristo é superior a anjos, Moisés, Aarão.',
@@ -2725,7 +2725,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-013',
     titulo: 'Paulo e a Lei —” Hermenêutica Paulina',
     categoria: 'Hermenêutica',
-    subcategoria: 'Hermenêutica NT',
+    subcategoria: 'Hermenêutica',
     conteudo: [
       'Paulo tem hermenêutica própria da Lei.',
       'A lei é pedagogo para Cristo.',
@@ -2757,7 +2757,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-015',
     titulo: 'Interpretação do Apocalipse',
     categoria: 'Hermenêutica',
-    subcategoria: 'Apocalipse',
+    subcategoria: 'Escatologia',
     conteudo: [
       'O Apocalipse é gênero apocalíptico —” símbolos e visões.',
       'Existem quatro abordagens: preterista, historicista, futurista, idealista.',
@@ -2773,7 +2773,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-016',
     titulo: 'Interpretação de Eclesiastes',
     categoria: 'Hermenêutica',
-    subcategoria: 'Livros Poéticos',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Eclesiastes é gênero sapiencial —” reflexão sobre a vida.',
       'O tema é a vanidade (hevel) de tudo sob o sol.',
@@ -2789,7 +2789,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-017',
     titulo: 'Salmos de Lamento —” Interpretação',
     categoria: 'Hermenêutica',
-    subcategoria: 'Poesia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Os Salmos de lamento expressam dor e busca por Deus.',
       'Estrutura: invocação, queixa, confiança, petição, louvor.',
@@ -2805,7 +2805,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-018',
     titulo: 'Profecias Messiânicas —” Hermenêutica',
     categoria: 'Hermenêutica',
-    subcategoria: 'Profecia',
+    subcategoria: 'Escatologia',
     conteudo: [
       'As profecias messiânicas são literais e simbólicas.',
       'O contexto revela o cumprimento.',
@@ -2821,7 +2821,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-019',
     titulo: 'Ã‰tica no AT e NT —” Continuidade',
     categoria: 'Hermenêutica',
-    subcategoria: 'Ã‰tica',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A ética bíblica tem continuidade e mudança.',
       'O amor é a forma da lei.',
@@ -2837,7 +2837,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-020',
     titulo: 'Hermenêutica Reformada —” Princípios',
     categoria: 'Hermenêutica',
-    subcategoria: 'Reforma',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'A hermenêutica reformada enfatiza: analogia da fé, senso comum, oração.',
       'A Bíblia interpreta a Bíblia.',
@@ -2858,7 +2858,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-051',
     titulo: 'A Omnipresença de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'Deus está presente em todos os lugares ao mesmo tempo.',
       'Não há lugar onde Deus não esteja —” nem o céu nem o inferno.',
@@ -3022,8 +3022,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-041',
     titulo: 'Levítico —” Santidade e Sacrificação',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Pentateuco',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Levítico é o livro da santidade —” como o povo se aproxima de Deus santo.',
       'Os sacrifícios apontam para Cristo —” cordeiro imolado.',
@@ -3038,8 +3038,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-042',
     titulo: 'Juízes —” Círculo de Pecado',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'O ciclo de Juízes: pecado â†’ julgamento â†’ clamor â†’ libertação.',
       'Cada juiz é instrumento imperfeito de Deus.',
@@ -3054,8 +3054,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-043',
     titulo: 'Rute —” Graça Gentia',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Rute, moabita, entra no povo de Deus pela graça.',
       'A lealdade de Rute é exemplar.',
@@ -3070,8 +3070,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-044',
     titulo: '1 Crônicas —” Adoração e Genealogias',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'As genealogias mostram continuidade e propósito divino.',
       'A adoração no templo é central.',
@@ -3086,8 +3086,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-045',
     titulo: 'Esdras —” Reforma e Leitura da Lei',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Esdra é escriba e reformador.',
       'A leitura pública da Lei transforma o povo.',
@@ -3102,8 +3102,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-046',
     titulo: 'Neemias —” Reconstrução e Oração',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Neemias reconstrói os muros de Jerusalém.',
       'A oração é central em sua liderança.',
@@ -3118,8 +3118,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-047',
     titulo: 'Ester —” Providência Divina',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Históricos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'O nome de Deus não aparece mas Sua providência é evidente.',
       'Ester arriscam a vida por Seu povo.',
@@ -3134,8 +3134,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-048',
     titulo: 'Eclesiastes —” Vanidade e Sentido',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Livros Poéticos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Tudo sob o sol é vaidade —” não pessimismo mas realismo.',
       'A busca pelo sentido da vida.',
@@ -3150,8 +3150,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-049',
     titulo: 'Cânticos —” Amor e Relacionamento',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Livros Poéticos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O Cântico dos Cânticos é poesia de amor.',
       'O amor humano é celebrado como dom de Deus.',
@@ -3166,8 +3166,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-050',
     titulo: 'Lamentações —” Dor e Esperança',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Profetas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Lamentações é lamento pela destruição de Jerusalém.',
       'As lágrimas de Jeremias são modelo de lamento.',
@@ -3182,8 +3182,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-051',
     titulo: 'Oséias —” Amor Infinito',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Profetas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Deus como marido fiel de Israel infiel.',
       'O amor de Deus persiste apesar da traição.',
@@ -3198,8 +3198,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-052',
     titulo: 'Amós —” Justiça Social',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Profetas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Amós é profeta da justiça social.',
       'Deus exige justiça, não apenas ritual.',
@@ -3214,8 +3214,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-053',
     titulo: 'Miqueias —” Justiça, Misericórdia e Humildade',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Profetas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Miqueias resume a fé: justiça, misericórdia e humildade.',
       'O julgamento é para os poderosos.',
@@ -3230,8 +3230,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-054',
     titulo: 'Jonas —” Misericórdia Universal',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Profetas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Jonas resiste à missão —” mas Deus persiste.',
       'Nínive se arrepende e Deus se arrepende do julgamento.',
@@ -3246,8 +3246,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-055',
     titulo: 'Habacuque —” Fé no Meio do Caos',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Profetas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Habacuque questiona Deus sobre a injustiça.',
       'Deus responde: o justo viverá pela fé.',
@@ -3262,8 +3262,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-056',
     titulo: 'Zacarias —” Profecias Messiânicas',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Profetas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Zacarias contém profecias messiânicas detalhadas.',
       'O rei humilde montado em jumento.',
@@ -3278,8 +3278,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-057',
     titulo: 'Malaquias —” A Ãšltima Profecia',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Profetas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Malaquias é o último profeta do AT.',
       'O julgamento sobre a infidelidade.',
@@ -3294,8 +3294,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-058',
     titulo: 'Mateus —” Sermão da Montanha',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelhos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O Sermão da Montanha é constituição do Reino.',
       'As bem-aventuranças são retrato do discípulo.',
@@ -3310,8 +3310,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-059',
     titulo: 'Mateus —” Parábolas do Reino',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelhos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Mateus 13 contém as principais parábolas.',
       'O semeador —” diferentes receptividades.',
@@ -3326,8 +3326,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-060',
     titulo: 'Marcos —” A Paixão de Cristo',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelhos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'A Paixão é o clímax do evangelho de Marcos.',
       'A ceia do Senhor é estabelecida.',
@@ -3342,8 +3342,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-061',
     titulo: 'Lucas —” Magnificat e Cânticos',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelhos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Lucas contém os cânticos da infância.',
       'O Magnificat de Maria é cântico revolucionário.',
@@ -3358,8 +3358,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-062',
     titulo: 'Lucas —” Parábolas da Misericórdia',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelhos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Lucas enfatiza as parábolas da misericórdia.',
       'O Bom Samaritano —” amor ao próximo.',
@@ -3374,8 +3374,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-063',
     titulo: 'João —” Sete Milagres (Sinais)',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelhos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'João seleciona sete sinais que revelam a glória de Jesus.',
       'Água em vinho (2), cura do filho (4), cura do paralítico (5)',
@@ -3390,8 +3390,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-064',
     titulo: 'João —” Disursos de Despedida',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelhos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'João 13-17 é o discurso de despedida.',
       'O lava-pés como modelo de serviço.',
@@ -3406,8 +3406,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-065',
     titulo: 'Atos —” O Espírito Santo na Igreja',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O Espírito Santo é protagonista de Atos.',
       'Efusão em Pentecostes (2), Samaria (8), Cornélio (10), Ã‰feso (19).',
@@ -3422,8 +3422,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-066',
     titulo: 'Atos —” A Perseguição e a Missão',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'A perseguição espalha a Igreja.',
       'Estêvão é o primeiro mártir.',
@@ -3438,8 +3438,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-067',
     titulo: 'Romanos —” A Queda e a Graça',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Romanos 1-3 apresenta a queda universal.',
       'Romanos 3-5 apresenta a justificação pela fé.',
@@ -3454,8 +3454,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-068',
     titulo: 'Romanos —” Israel e os Gentios',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Romanos 9-11 trata do papel de Israel na história da salvação.',
       'Deus não rejeitou Seu povo.',
@@ -3470,8 +3470,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-069',
     titulo: '1 Coríntios —” Dons Espirituais',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 Coríntios 12-14 trata dos dons espirituais.',
       'A diversidade de dons para edificação da Igreja.',
@@ -3486,8 +3486,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-070',
     titulo: '2 Coríntios —” Consolação e Força',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '2 Coríntios é a epístola mais pessoal de Paulo.',
       'A graça é suficiente na fraqueza.',
@@ -3502,8 +3502,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-071',
     titulo: 'Efésios —” As Bênçãos Espirituais',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Efésios 1 lista bênçãos espirituais em Cristo.',
       'Escolhidos antes da fundação do mundo.',
@@ -3518,8 +3518,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-072',
     titulo: 'Filipenses —” A Kenosis de Cristo',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Filipenses 2:6-11 é o hino cristológico mais antigo.',
       'Cristo se esvaziou voluntariamente.',
@@ -3534,8 +3534,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-073',
     titulo: 'Colossenses —” Cristo, Image de Deus',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Cristo é imagem do Deus invisível.',
       'Primogênito de toda a criatura.',
@@ -3550,8 +3550,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-074',
     titulo: '1 Tessalonicenses —” A Volta de Cristo',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 Tessalonicenses é a epístola mais antiga.',
       'O tema é a segunda vinda.',
@@ -3566,8 +3566,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-075',
     titulo: '2 Tessalonicenses —” A Volta e a Vigilância',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '2 Tessalonicenses corrige equívocos sobre a volta.',
       'O dia do Senhor virá inesperadamente.',
@@ -3582,8 +3582,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-076',
     titulo: '1 Timóteo —” Pastoral e Liderança',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Pastorais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 Timóteo é carta pastoral sobre liderança na Igreja.',
       'Qualificações de bispos e diáconos.',
@@ -3598,8 +3598,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-077',
     titulo: '2 Timóteo —” A Coroa da Justiça',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Pastorais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '2 Timóteo é a última carta de Paulo.',
       'O ministério fiel apesar da oposição.',
@@ -3614,8 +3614,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-078',
     titulo: 'Tito —” A Sã Doutrina',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Pastorais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Tito é carta pastoral para a ilha de Creta.',
       'A sã doutrina gera boa conduta.',
@@ -3630,8 +3630,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-079',
     titulo: 'Filemom —” Perdão e Reconciliação',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Pessoais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Filemom é carta pessoal sobre perdão.',
       'Onésimo, escravo fugido, se tornou crente.',
@@ -3646,8 +3646,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-080',
     titulo: 'Hebreus —” O Novo Testamento',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Gerais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Hebreus declara a superioridade do novo testamento.',
       'Cristo é superior a todos os mediadores anteriores.',
@@ -3662,8 +3662,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-081',
     titulo: 'Hebreus 11 —” A Galeria da Fé',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Gerais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Hebreus 11 lista heróis da fé.',
       'Abel, Enoque, Noé, Abraão, Sara.',
@@ -3678,8 +3678,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-082',
     titulo: 'Tiago —” Fé e Obras',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Gerais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Tiago combate a fé sem obras.',
       'A fé viva se prova pelas obras.',
@@ -3694,8 +3694,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-083',
     titulo: '1 Pedro —” Sofrimento e Glória',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Gerais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O sofrimento precede a glória.',
       'Cristo é exemplo de sofrimento injusto.',
@@ -3710,8 +3710,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-084',
     titulo: '2 Pedro —” A Volta Certa',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Gerais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '2 Pedro combate céticos sobre a volta.',
       'O Senhor é paciente —” não deseja que pereça.',
@@ -3726,8 +3726,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-085',
     titulo: '1 João —” Amor e Verdade',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Gerais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Deus é amor —” a mais profunda definição.',
       'O amor se prova em ação.',
@@ -3742,8 +3742,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-086',
     titulo: '2 e 3 João —” Verdade e Hospitalidade',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Gerais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '2 João enfatiza a verdade e o amor.',
       '3 João é sobre hospitalidade.',
@@ -3758,8 +3758,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-087',
     titulo: 'Judas —” Contenda pela Fé',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Gerais',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Judas é alerta contra falsos mestres.',
       'A fé precisa ser defendida.',
@@ -3774,8 +3774,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-088',
     titulo: 'Apocalipse —” As Sete Igrejas',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Escatologia',
     conteudo: [
       'As sete cartas às igrejas da Ásia.',
       'Eféso: perdeu o primeiro amor.',
@@ -3793,8 +3793,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-089',
     titulo: 'Apocalipse —” O Cordeiro e o Trono',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Escatologia',
     conteudo: [
       'O Cordeiro é centro da adoração celestial.',
       'O trono de Deus é centro do cosmos.',
@@ -3809,8 +3809,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-090',
     titulo: 'Apocalipse —” O Julgamento Final',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Escatologia',
     conteudo: [
       'O julgamento das nações.',
       'O grande trono branco.',
@@ -3831,7 +3831,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-011',
     titulo: 'Economia e Fé Cristã',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Pública',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A fé cristã tem implicações econômicas.',
       'A avareza é pecado; a generosidade é virtude.',
@@ -3847,7 +3847,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-012',
     titulo: 'Ciência e Criação —” Perspectivas Cristãs',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Fé e Ciência',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Existem múltiplas perspectivas cristãs sobre ciência e criação.',
       'O criacionismo de terra jovem sustenta 6 dias literais.',
@@ -3863,7 +3863,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-013',
     titulo: 'Aborto e Dignidade Humana',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Bioética',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O aborto é questão ética central.',
       'A vida humana começa na concepção.',
@@ -3879,7 +3879,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-014',
     titulo: 'Eutanásia e Soberania de Deus',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Bioética',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A eutanásia contradiz a soberania de Deus.',
       'A vida e a morte estão nas mãos de Deus.',
@@ -3895,7 +3895,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-015',
     titulo: 'Engenharia Genética e Manipulação',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Bioética',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A engenharia genética levanta questões éticas.',
       'Manipular a criação pode ser arrogância humana.',
@@ -3911,7 +3911,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-016',
     titulo: 'Drogas e Dependência',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O uso de drogas é contrário ao chamado de santificação.',
       'A dependência é escravidão —” Cristo liberta.',
@@ -3927,7 +3927,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-017',
     titulo: 'Casamento e Família',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Família',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'O casamento é instituição divina.',
       'A família é base da sociedade.',
@@ -3943,7 +3943,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-018',
     titulo: 'Divórcio e Novas Uniões',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Família',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'O divórcio é permitido mas não desejado por Deus.',
       'Jesus restringe as causas do divórcio.',
@@ -3959,7 +3959,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-019',
     titulo: 'Homossexualidade e Bíblia',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A Bíblia condena a prática homossexual.',
       'O casamento é entre homem e mulher.',
@@ -3975,7 +3975,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-020',
     titulo: 'Transgênero e Identidade',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Deus criou o ser humano como macho e fêmea.',
       'A identidade de gênero é designação divina.',
@@ -3991,7 +3991,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-021',
     titulo: 'Raça e Reconciliação',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Justiça Social',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A reconciliação racial é evangelho em ação.',
       'Em Cristo não há distinção racial.',
@@ -4007,7 +4007,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-022',
     titulo: 'Pobreza e Desigualdade',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Justiça Social',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A pobreza é consequência do pecado e da injustiça.',
       'Deus defende os pobres.',
@@ -4023,7 +4023,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-023',
     titulo: 'Violência e Não-Violência',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A Bíblia ensina amor aos inimigos.',
       'A não-violência é ideal, mas há exceções (legítima defesa, governo).',
@@ -4039,7 +4039,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-024',
     titulo: 'Morte e Luto',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A morte é inimigo —” mas Cristo a venceu.',
       'O luto é legítimo e necessário.',
@@ -4055,7 +4055,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-025',
     titulo: 'Suicídio e Saúde Mental',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Saúde Mental',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O suicídio é tragédia —” não é condenação eterna.',
       'A doença mental é realidade humana.',
@@ -4071,7 +4071,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-026',
     titulo: 'Cultura da Morte vs. Cultura da Vida',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Bioética',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A cultura da morte inclui aborto, eutanásia, pena de morte.',
       'A cultura da vida defende a dignidade humana.',
@@ -4087,7 +4087,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-027',
     titulo: 'Ã‰tica Ambiental Cristã',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ecologia',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O cuidado com a criação é mandamento divino.',
       'A exploração ambiental é desobediência.',
@@ -4103,7 +4103,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-028',
     titulo: 'Educação Cristã',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Família',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'A educação é responsabilidade dos pais.',
       'A formação cristã deve ser integral.',
@@ -4119,7 +4119,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-029',
     titulo: 'Mídia e Formação da Opinião',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Cultura Digital',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A mídia influencia pensamento e comportamento.',
       'O cristão deve ser critico diante da mídia.',
@@ -4135,7 +4135,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-030',
     titulo: 'Globalização e Fé',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Cultura',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A globalização traz desafios e oportunidades.',
       'O evangelho é universal —” transcende culturas.',
@@ -4151,7 +4151,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-031',
     titulo: 'Tecnologia e Transhumanismo',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Bioética',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O transhumanismo busca melhorar o ser humano pela tecnologia.',
       'A dignidade humana não pode ser melhorada artificialmente.',
@@ -4167,7 +4167,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-032',
     titulo: 'Ã‰tica no Trabalho',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O trabalho é chamado de Deus —” não maldição.',
       'A ética trabalhista é exigência bíblica.',
@@ -4183,7 +4183,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-033',
     titulo: 'Corrupção e Justiça',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Justiça Social',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A corrupção é pecado contra a justiça.',
       'Deus detesta a injustiça.',
@@ -4199,7 +4199,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-034',
     titulo: 'Migração e Refugiados',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Justiça Social',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A migração é realidade global.',
       'A Bíblia exige hospedagem do estrangeiro.',
@@ -4215,7 +4215,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'qc-035',
     titulo: 'Mentalidade de Consumo',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O consumismo é contrário à fé.',
       'A ganância é pecado.',
@@ -4236,7 +4236,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-026',
     titulo: 'Orígenes —” Filosofia e Teologia',
     categoria: 'História da Igreja',
-    subcategoria: 'Patrística',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Orígenes é o primeiro grande sistemático cristão.',
       'A alegoria é método predominante.',
@@ -4252,7 +4252,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-027',
     titulo: 'São Basílio —” O Espírito Santo',
     categoria: 'História da Igreja',
-    subcategoria: 'Patrística',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Basílio defendeu a divindade do Espírito Santo.',
       'De Spiritu Sancto é obra fundamental.',
@@ -4268,7 +4268,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-028',
     titulo: 'Gregório de Nissa —” Contemplação',
     categoria: 'História da Igreja',
-    subcategoria: 'Patrística',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Gregório de Nissa é mestre da contemplação.',
       'A vida de Moisés é modelo espiritual.',
@@ -4284,7 +4284,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-029',
     titulo: 'Agostinho —” Graça e Conversão',
     categoria: 'História da Igreja',
-    subcategoria: 'Patrística',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'As Confissões são autobiografia espiritual.',
       'A conversão é obra da graça divina.',
@@ -4300,7 +4300,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-030',
     titulo: 'Pedro Lombardo —” Sentenças',
     categoria: 'História da Igreja',
-    subcategoria: 'Escolástica',
+    subcategoria: 'Teologia Sistemática',
     conteudo: [
       'Pedro Lombardo compilou as Sentenças.',
       'A obra é compêndio teológico medieval.',
@@ -4316,7 +4316,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-031',
     titulo: 'Bernardo de Claraval —” Amor e Contemplação',
     categoria: 'História da Igreja',
-    subcategoria: 'Medieval',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Bernardo é mestre de contemplação.',
       'O amor divino é tema central.',
@@ -4332,7 +4332,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-032',
     titulo: 'Francisco de Assis —” Pobreza e Cantico',
     categoria: 'História da Igreja',
-    subcategoria: 'Medieval',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Francisco abandona riqueza para seguir a Cristo.',
       'A ordem franciscana renova a Igreja.',
@@ -4348,7 +4348,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-033',
     titulo: 'Tomás de Aquino —” Fé e Razão',
     categoria: 'História da Igreja',
-    subcategoria: 'Escolástica',
+    subcategoria: 'Teologia Sistemática',
     conteudo: [
       'Tomás de Aquino sintetizou Aristóteles e Cristianismo.',
       'A Suma Teológica é obra-prima.',
@@ -4364,7 +4364,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-034',
     titulo: 'Lutero e a Justificação pela Fé',
     categoria: 'História da Igreja',
-    subcategoria: 'Reforma',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'A torre experiência de Lutero revelou a justificação pela fé.',
       'Sola fide é principio central.',
@@ -4380,7 +4380,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-035',
     titulo: 'Calvino e as Institutas',
     categoria: 'História da Igreja',
-    subcategoria: 'Reforma',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'As Institutas são manual de teologia cristã.',
       'O conhecimento de Deus e de nós mesmos.',
@@ -4396,7 +4396,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-036',
     titulo: 'Zwinglio e a Reforma Suíça',
     categoria: 'História da Igreja',
-    subcategoria: 'Reforma',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Zwinglio reformou Zurique.',
       'A Ceia é memorial, não transubstanciação.',
@@ -4412,7 +4412,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-037',
     titulo: 'Melanchton —” O Professor da Reforma',
     categoria: 'História da Igreja',
-    subcategoria: 'Reforma',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Melanchton é professor e sistematizador.',
       'A Augsburg Confession é sua obra.',
@@ -4428,7 +4428,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-038',
     titulo: 'Os Mártires Anabatistas',
     categoria: 'História da Igreja',
-    subcategoria: 'Reforma',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Os anabatistas sofreram perseguição de católicos e protestantes.',
       'O batismo de crentes era prática controversa.',
@@ -4444,7 +4444,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-039',
     titulo: 'Jonathan Edwards —” Avivamento e Graça',
     categoria: 'História da Igreja',
-    subcategoria: 'Avivamentos',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Edwards é teólogo do Grande Despertamento.',
       'O pecado nas mãos de um Deus irado é sermão famoso.',
@@ -4460,7 +4460,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-040',
     titulo: 'Charles Spurgeon —” Príncipe dos Pregadores',
     categoria: 'História da Igreja',
-    subcategoria: 'Avivamentos',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Spurgeon é o maior pregador batista do séc. XIX.',
       'A pregação expositiva é central.',
@@ -4476,7 +4476,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-041',
     titulo: 'Oxford Movement —” Renovação Anglo-Católica',
     categoria: 'História da Igreja',
-    subcategoria: 'Movimentos',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'O Oxford Movement buscou renovar a Igreja Anglicana.',
       'O retorno à tradição patrística.',
@@ -4492,7 +4492,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-042',
     titulo: 'O Movimento Socialdo',
     categoria: 'História da Igreja',
-    subcategoria: 'Movimentos',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'O Movimento Socialdo buscava justiça social no séc. XIX.',
       'William Wilberforce combateu a escravidão.',
@@ -4508,7 +4508,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-043',
     titulo: 'O Concílio Vaticano II',
     categoria: 'História da Igreja',
-    subcategoria: 'Catolicismo',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'O Vaticano II (1962-65) renovou a Igreja Católica.',
       'A liturgia vernacular.',
@@ -4524,7 +4524,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-044',
     titulo: 'Mother Teresa —” Serviço aos Pobres',
     categoria: 'História da Igreja',
-    subcategoria: 'Servo',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Mother Teresa dedicou sua vida aos pobres de Calcutá.',
       'A ordem das Missionárias da Caridade.',
@@ -4540,7 +4540,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-045',
     titulo: 'Billy Graham —” Evangelista Global',
     categoria: 'História da Igreja',
-    subcategoria: 'Avivamentos',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Billy Graham é o maior evangelista do séc. XX.',
       'As cruzadas mundiais alcançaram milhões.',
@@ -4556,7 +4556,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-046',
     titulo: 'Corrie ten Boom —” Perdão e Resistência',
     categoria: 'História da Igreja',
-    subcategoria: 'Mártir',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Corrie ten Boom escondeu judeus durante o Holocausto.',
       'A resistência ao nazismo.',
@@ -4572,7 +4572,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-047',
     titulo: 'Martyn Lloyd-Jones —” Pregação Expositiva',
     categoria: 'História da Igreja',
-    subcategoria: 'Movimentos',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Lloyd-Jones é modelo de pregação expositiva.',
       'O Evangelho e Deus Soberano.',
@@ -4588,7 +4588,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-048',
     titulo: 'John Stott —” Teologia Evangélica',
     categoria: 'História da Igreja',
-    subcategoria: 'Teologia Moderna',
+    subcategoria: 'Teologia Sistemática',
     conteudo: [
       'John Stott é figura central do evangelicalismo.',
       'A Cruz de Cristo é obra-prima.',
@@ -4604,7 +4604,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'hi-049',
     titulo: 'O Movimento Vineyard',
     categoria: 'História da Igreja',
-    subcategoria: 'Carismático',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'O Vineyard é movimento carismático influente.',
       'John Wimber é fundador.',
@@ -4641,7 +4641,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-026',
     titulo: 'Pedro e Paulo —” Dois Ministérios',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Comparação Apostólica',
+    subcategoria: 'Estudos Comparativos',
     conteudo: [
       'Pedro é apóstolo dos judeus; Paulo, dos gentios.',
       'Ambos são fiéis ao evangelho.',
@@ -4657,7 +4657,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-027',
     titulo: 'Maria e Eva —” Tipologia Feminina',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Tipologia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Eva é a causa da queda; Maria é instrumento de redenção.',
       'Obediência de Maria desfaz a desobediência de Eva.',
@@ -4673,7 +4673,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-028',
     titulo: 'Adão e Cristo —” Dois Representantes',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Tipologia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Adão é representante da humanidade caída.',
       'Cristo é o novo Adão —” restaura o que Adão perdeu.',
@@ -4689,7 +4689,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-029',
     titulo: 'Arca de Noé e Batismo',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Tipologia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'A arca salvou poucos pela água.',
       'O batismo é figura de salvação.',
@@ -4705,7 +4705,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-030',
     titulo: 'Maná e Cristo Pão da Vida',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Tipologia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O maná sustentou Israel no deserto.',
       'Cristo se declara o pão da vida.',
@@ -4721,7 +4721,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-031',
     titulo: 'Serpente de Bronze e Cristo Crucificado',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Tipologia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'A serpente de bronze curava os picados.',
       'Cristo crucificado cura do pecado.',
@@ -4737,7 +4737,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-032',
     titulo: 'Cordeiro Pascual e Cristo',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Tipologia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O cordeiro pascual era imolado em Israel.',
       'Cristo é o cordeiro de Deus que tira o pecado.',
@@ -4753,7 +4753,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-033',
     titulo: 'Circuncisão e Batismo',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Sacramentos',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'A circuncisão era sinal da aliança no AT.',
       'O batismo é sinal da nova aliança.',
@@ -4769,7 +4769,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-034',
     titulo: 'Templo e Igreja',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Tipologia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O templo era centro de adoração e presença divina.',
       'A Igreja é novo templo —” pedras vivas.',
@@ -4785,7 +4785,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-035',
     titulo: 'Moisés e Cristo —” Mediadores',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Tipologia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Moisés mediou a aliança no Sinai.',
       'Cristo media a nova aliança.',
@@ -4801,7 +4801,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-036',
     titulo: 'Davi e Cristo —” Rei e Messias',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Tipologia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Davi é rei segundo o coração de Deus.',
       'Cristo é o Filho de Davi que reina eternamente.',
@@ -4817,7 +4817,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-037',
     titulo: 'Salomão e Cristo —” Sabedoria',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Tipologia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Salomão recebeu sabedoria de Deus.',
       'Cristo é a Sabedoria encarnada.',
@@ -4833,7 +4833,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-038',
     titulo: 'Elias e João Batista',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Tipologia',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Elias é o profeta que prepara o caminho.',
       'João Batista é o Elias que vem.',
@@ -4865,7 +4865,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-040',
     titulo: 'Temor e Adoração',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Espiritualidade',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'O temor do Senhor é princípio da sabedoria.',
       'A adoração é resposta ao temor.',
@@ -4881,7 +4881,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-041',
     titulo: 'Oração e Providência',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Espiritualidade',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'A oração não muda Deus —” muda a nós.',
       'A providência governa todas as coisas.',
@@ -4945,7 +4945,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-045',
     titulo: 'Verdade e Amor',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Ã‰tica',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A verdade sem amor é dura.',
       'O amor sem verdade é sentimentalismo.',
@@ -4961,7 +4961,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-046',
     titulo: 'Julgamento e Misericórdia',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'Deus é justo E misericordioso.',
       'A justiça sem misericórdia é crueldade.',
@@ -4977,7 +4977,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-047',
     titulo: 'Fé e Ciência —” Harmonia',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Fé e Ciência',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Fé e ciência não são necessariamente conflitantes.',
       'A ciência estuda o como; a fé o por quê.',
@@ -4993,7 +4993,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-048',
     titulo: 'Cristianismo e Judaísmo',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Religiões',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O cristianismo nasce do judaísmo.',
       'Jesus é judeu —” os apóstolos são judeus.',
@@ -5009,7 +5009,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-049',
     titulo: 'Cristianismo e Islamismo',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Religiões',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Cristianismo e Islamismo são monoteísticos.',
       'A questão central: Jesus é Deus?',
@@ -5025,7 +5025,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-050',
     titulo: 'Cristianismo e Hinduísmo',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Religiões',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O hinduísmo é politeísta; o cristianismo é monoteísta.',
       'A encarnação é única —” não reencarnação.',
@@ -5041,7 +5041,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-051',
     titulo: 'Cristianismo e Budismo',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Religiões',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O budismo é não-teísta; o cristianismo é teísta.',
       'A iluminação não é salvação.',
@@ -5057,7 +5057,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-052',
     titulo: 'Idolatria Antiga e Contemporânea',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Idolatria',
+    subcategoria: 'Hamartiologia',
     conteudo: [
       'A idolatria é tema central do AT.',
       'A idolatria contemporânea é secular.',
@@ -5073,7 +5073,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-053',
     titulo: 'Sabedoria Proverbial e NT',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Sabedoria',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'A sabedoria de Provérbios é prática.',
       'A sabedoria do NT é Cristo.',
@@ -5089,7 +5089,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ec-054',
     titulo: 'Lamento no AT e NT',
     categoria: 'Estudos Comparativos',
-    subcategoria: 'Espiritualidade',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'O lamento é expressão de dor diante de Deus.',
       'No AT: Salmos, Lamentações, Jó.',
@@ -5126,7 +5126,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-021',
     titulo: 'Interpretação de Efésios',
     categoria: 'Hermenêutica',
-    subcategoria: 'Epístolas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Efésios é epístola circular —” não endereçada a uma igreja.',
       'O tema é a Igreja, corpo de Cristo.',
@@ -5142,7 +5142,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-022',
     titulo: 'Interpretação de Filipenses',
     categoria: 'Hermenêutica',
-    subcategoria: 'Epístolas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Filipenses é carta de agradecimento.',
       'O tema é a alegria na adversidade.',
@@ -5158,7 +5158,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-023',
     titulo: 'Interpretação de Colossenses',
     categoria: 'Hermenêutica',
-    subcategoria: 'Epístolas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Colossenses combate falsa doutrina.',
       'A supremacia de Cristo é tema.',
@@ -5174,7 +5174,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-024',
     titulo: 'Interpretação de 1 e 2 Tessalonicenses',
     categoria: 'Hermenêutica',
-    subcategoria: 'Epístolas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'As cartas tratam da segunda vinda.',
       '1 Tessalonicenses consola os aflitos.',
@@ -5190,7 +5190,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-025',
     titulo: 'Interpretação de 1 e 2 Timóteo e Tito',
     categoria: 'Hermenêutica',
-    subcategoria: 'Epístolas Pastorais',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'As epístolas pastorais tratam de liderança.',
       'Qualificações de líderes.',
@@ -5206,7 +5206,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-026',
     titulo: 'Interpretação de Filemom',
     categoria: 'Hermenêutica',
-    subcategoria: 'Epístolas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Filemom é carta pessoal.',
       'Trata de perdão e reconciliação.',
@@ -5222,7 +5222,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-027',
     titulo: 'Interpretação de 1 e 2 Pedro',
     categoria: 'Hermenêutica',
-    subcategoria: 'Epístolas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 Pedro trata de sofrimento e esperança.',
       '2 Pedro combate céticos.',
@@ -5238,7 +5238,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-028',
     titulo: 'Interpretação de 1, 2 e 3 João',
     categoria: 'Hermenêutica',
-    subcategoria: 'Epístolas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 João é sobre amor e verdade.',
       '2 João é sobre hospitalidade.',
@@ -5254,7 +5254,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-029',
     titulo: 'Interpretação de Judas',
     categoria: 'Hermenêutica',
-    subcategoria: 'Epístolas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Judas é carta breve mas intensa.',
       'Combate falsos mestres.',
@@ -5270,7 +5270,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-030',
     titulo: 'Princípios de Interpretação Profética',
     categoria: 'Hermenêutica',
-    subcategoria: 'Profecia',
+    subcategoria: 'Escatologia',
     conteudo: [
       'A profecia pode ter cumprimento múltiplo.',
       'O contexto determina o significado.',
@@ -5286,7 +5286,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-031',
     titulo: 'Hermenêutica de Gênesis 1-3',
     categoria: 'Hermenêutica',
-    subcategoria: 'Pentateuco',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Gênesis 1-3 é teológico, não científico.',
       'A criação é ato deliberado de Deus.',
@@ -5302,7 +5302,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-032',
     titulo: 'Hermenêutica de Romanos',
     categoria: 'Hermenêutica',
-    subcategoria: 'Paulinas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Romanos é epístola sistemática.',
       'A estrutura é lógica.',
@@ -5318,7 +5318,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-033',
     titulo: 'Hermenêutica de João',
     categoria: 'Hermenêutica',
-    subcategoria: 'Evangelhos',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'João é teologicamente distinto dos sinóticos.',
       'O prólogo é declaração cristológica.',
@@ -5334,7 +5334,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-034',
     titulo: 'Hermenêutica de Apocalipse',
     categoria: 'Hermenêutica',
-    subcategoria: 'Apocalipse',
+    subcategoria: 'Escatologia',
     conteudo: [
       'O Apocalipse é gênero apocalíptico.',
       'Símbolos e visões são predominantes.',
@@ -5350,7 +5350,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-035',
     titulo: 'Hermenêutica de Provérbios',
     categoria: 'Hermenêutica',
-    subcategoria: 'Livros Poéticos',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Provérbios contém provérbios independentes.',
       'Não são promessas absolutas.',
@@ -5366,7 +5366,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-036',
     titulo: 'Hermenêutica de Eclesiastes',
     categoria: 'Hermenêutica',
-    subcategoria: 'Livros Poéticos',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Eclesiastes é reflexão sobre a vida.',
       'A vanidade é tema central.',
@@ -5382,7 +5382,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-037',
     titulo: 'Hermenêutica de Jó',
     categoria: 'Hermenêutica',
-    subcategoria: 'Livros Poéticos',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Jó é drama teológico.',
       'O sofrimento do inocente é tema.',
@@ -5398,7 +5398,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-038',
     titulo: 'Hermenêutica de Isaías',
     categoria: 'Hermenêutica',
-    subcategoria: 'Profetas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Isaías é evangelho do AT.',
       'As profecias messiânicas são centrais.',
@@ -5414,7 +5414,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-039',
     titulo: 'Hermenêutica de Jeremias',
     categoria: 'Hermenêutica',
-    subcategoria: 'Profetas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Jeremias é profeta do exílio.',
       'A nova aliança é tema central.',
@@ -5430,7 +5430,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-040',
     titulo: 'Hermenêutica de Daniel',
     categoria: 'Hermenêutica',
-    subcategoria: 'Profetas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Daniel combina narrativa e profecia.',
       'As visões são apocalípticas.',
@@ -5446,7 +5446,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-041',
     titulo: 'Hermenêutica de Mateus',
     categoria: 'Hermenêutica',
-    subcategoria: 'Evangelhos',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Mateus é evangelho para judeus.',
       'A genealogia é importante.',
@@ -5462,7 +5462,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-042',
     titulo: 'Hermenêutica de Marcos',
     categoria: 'Hermenêutica',
-    subcategoria: 'Evangelhos',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Marcos é evangelho mais curto.',
       'Jesus é servo sofredor.',
@@ -5478,7 +5478,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-043',
     titulo: 'Hermenêutica de Lucas',
     categoria: 'Hermenêutica',
-    subcategoria: 'Evangelhos',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Lucas é evangelho universal.',
       'Os marginalizados são enfatizados.',
@@ -5494,7 +5494,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-044',
     titulo: 'Hermenêutica de Atos',
     categoria: 'Hermenêutica',
-    subcategoria: 'Histórico',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Atos é história da Igreja primitiva.',
       'O Espírito Santo é protagonista.',
@@ -5510,7 +5510,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-045',
     titulo: 'Hermenêutica de Gálatas',
     categoria: 'Hermenêutica',
-    subcategoria: 'Paulinas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Gálatas é epístola da liberdade.',
       'A justificação pela fé é tema.',
@@ -5526,7 +5526,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-046',
     titulo: 'Hermenêutica de 1 Coríntios',
     categoria: 'Hermenêutica',
-    subcategoria: 'Paulinas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 Coríntios é carta a igreja problemática.',
       'Divisões, imoralidade, dons.',
@@ -5542,7 +5542,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-047',
     titulo: 'Hermenêutica de 2 Coríntios',
     categoria: 'Hermenêutica',
-    subcategoria: 'Paulinas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '2 Coríntios é mais pessoal.',
       'A fraqueza é fortaleza.',
@@ -5558,7 +5558,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-048',
     titulo: 'Hermenêutica de Efésios',
     categoria: 'Hermenêutica',
-    subcategoria: 'Paulinas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Efésios é epístola dos céus.',
       'As bênçãos espirituais são centrais.',
@@ -5574,7 +5574,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-049',
     titulo: 'Hermenêutica de Filipenses',
     categoria: 'Hermenêutica',
-    subcategoria: 'Paulinas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Filipenses é carta de alegria.',
       'A kenosis é central.',
@@ -5590,7 +5590,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'he-050',
     titulo: 'Hermenêutica de Colossenses',
     categoria: 'Hermenêutica',
-    subcategoria: 'Paulinas',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Colossenses declara a supremacia de Cristo.',
       'A falsa doutrina é combatida.',
@@ -5611,7 +5611,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-001',
     titulo: 'A Imagem de Deus no Homem',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'O ser humano foi criado à imagem e semelhança de Deus.',
       'A imagem inclui: razão, personalidade, capacidade moral, relacionamento.',
@@ -5627,7 +5627,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-002',
     titulo: 'O Chamado de Deus à Vocação',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Espiritualidade',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Todo crente é chamado por Deus para servir.',
       'A vocação não é apenas ministerial —” é toda a vida.',
@@ -5643,7 +5643,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-003',
     titulo: 'A Oração do Senhor —” Modelo de Oração',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Espiritualidade',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'O Pai Nosso é o modelo de oração.',
       'Inclui: adoração, petição, confissão, proteção.',
@@ -5659,7 +5659,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-004',
     titulo: 'A Humildade —” Virtude Cristã',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A humildade é reconhecer nossa dependência de Deus.',
       'Cristo é modelo de humildade.',
@@ -5723,7 +5723,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-008',
     titulo: 'A Disciplina Cristã',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Espiritualidade',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'A disciplina é caminho para a santidade.',
       'Inclui: oração, jejum, leitura da Bíblia, partilha.',
@@ -5755,7 +5755,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-010',
     titulo: 'A Alegria Cristã',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Espiritualidade',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'A alegria é fruto do Espírito.',
       'Não depende de circunstâncias.',
@@ -5771,7 +5771,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-011',
     titulo: 'A Obediência Cristã',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A obediência é resposta ao amor de Deus.',
       'Não é legalismo —” é gratidão.',
@@ -5787,7 +5787,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-012',
     titulo: 'A Generosidade Cristã',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A generosidade é virtude cristã.',
       'Deus é o doador de tudo.',
@@ -5803,7 +5803,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-013',
     titulo: 'A Paciência Cristã',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A paciência é fruto do Espírito.',
       'Deus é paciente conosco.',
@@ -5819,7 +5819,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-014',
     titulo: 'A Bondade Cristã',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A bondade é fruto do Espírito.',
       'Deus é bondade em essência.',
@@ -5835,7 +5835,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-015',
     titulo: 'A Fidelidade Cristã',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A fidelidade é compromisso com Deus e com os outros.',
       'Deus é fiel —” podemos confiar.',
@@ -5867,7 +5867,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-017',
     titulo: 'A Justiça Cristã',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A justiça é atributo divino.',
       'Deus exige justiça dos homens.',
@@ -5883,7 +5883,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-018',
     titulo: 'A Paz Cristã',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A paz é fruto do Espírito.',
       'Cristo é nosso paz.',
@@ -5899,7 +5899,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-019',
     titulo: 'O Perdão Cristão',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O perdão é essencial para o cristão.',
       'Deus perdoa em Cristo.',
@@ -5915,7 +5915,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-020',
     titulo: 'A Gratidão Cristã',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Espiritualidade',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'A gratidão é resposta à graça de Deus.',
       'Tudo é dom de Deus.',
@@ -5963,7 +5963,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-023',
     titulo: 'A Glória de Deus',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A glória de Deus é a manifestação de Sua majestade.',
       'Tudo existe para a glória de Deus.',
@@ -6011,7 +6011,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-026',
     titulo: 'A Criatividade Cristã',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Cultura',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Deus é Criador —” a criatividade é reflexo divino.',
       'A arte é forma de adoração.',
@@ -6027,7 +6027,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-027',
     titulo: 'A Tecnologia e a Fé',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Cultura Digital',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A tecnologia é ferramenta —” neutra em si.',
       'Pode ser usada para o bem ou para o mal.',
@@ -6043,7 +6043,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-028',
     titulo: 'A Responsabilidade Social',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Justiça Social',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A responsabilidade social é evangelho em prática.',
       'Deus defende os oprimidos.',
@@ -6059,7 +6059,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-029',
     titulo: 'O Cuidado dos Idosos',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O idoso é digno de respeito e honra.',
       'A experiência é tesouro.',
@@ -6075,7 +6075,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-030',
     titulo: 'A Criança e o Reino',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Família',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Jesus valorizou as crianças.',
       'O Reino é de tais como estas.',
@@ -6123,7 +6123,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-033',
     titulo: 'A Jovem Geração e a Fé',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Cultura',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A jovem geração busca autenticidade.',
       'O nominalismo é desafio.',
@@ -6139,7 +6139,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-034',
     titulo: 'A Ciência da Computação e a Fé',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Fé e Ciência',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A ciência da computação é ferramenta poderosa.',
       'Pode ser usada para evangelismo e educação.',
@@ -6155,7 +6155,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-035',
     titulo: 'A Psicologia e a Fé',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Fé e Ciência',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A psicologia e a fé não são necessariamente conflitantes.',
       'Deus usa meios para curar.',
@@ -6171,7 +6171,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-036',
     titulo: 'A Filosofia e a Fé',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Fé e Ciência',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A filosofia é busca da verdade.',
       'A fé ilumina a razão.',
@@ -6187,7 +6187,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-037',
     titulo: 'A História e a Fé',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Fé e Ciência',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A história é teatro da ação divina.',
       'Deus age na história.',
@@ -6203,7 +6203,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-038',
     titulo: 'A Sociologia e a Fé',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Fé e Ciência',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A sociologia estuda as sociedades.',
       'A Igreja é comunidade sociológica.',
@@ -6219,7 +6219,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-039',
     titulo: 'A Economia Cristã',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Pública',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A economia deve servir ao bem comum.',
       'A avareza é pecado.',
@@ -6235,7 +6235,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-040',
     titulo: 'A Política Cristã',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Pública',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A política é esfera de responsabilidade.',
       'O Reino de Deus transcende partidos.',
@@ -6251,7 +6251,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-041',
     titulo: 'A Educação Cristã no Século XXI',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Educação',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'A educação é essencial para a fé.',
       'O desafio do relativismo.',
@@ -6267,7 +6267,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-042',
     titulo: 'A Arte e a Fé',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Cultura',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A arte é expressão da criatividade divina.',
       'A música é adoração.',
@@ -6283,7 +6283,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-043',
     titulo: 'A Comunicação Cristã',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Cultura',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A comunicação é essencial para o evangelho.',
       'A verdade deve ser comunicada com amor.',
@@ -6315,7 +6315,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-045',
     titulo: 'A Solução dos Conflitos',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Ã‰tica Cristã',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O conflito é realidade humana.',
       'O evangelho é ministério de reconciliação.',
@@ -6331,7 +6331,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'extra-046',
     titulo: 'A Formação de Caráter',
     categoria: 'Questões Contemporâneas',
-    subcategoria: 'Espiritualidade',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'O caráter é fruto do Espírito.',
       'A formação é processo.',
@@ -6464,7 +6464,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'final-004',
     titulo: 'O Amor Incondicional',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'O amor de Deus é incondicional.',
       'Ele nos amou quando ainda éramos pecadores.',
@@ -6512,7 +6512,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'final-007',
     titulo: 'A Soberania de Deus na História',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Teologia Proper',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'Deus governa todas as coisas.',
       'Nada acontece fora do Seu controle.',
@@ -6581,7 +6581,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'trin-001',
     titulo: 'A Doutrina da Trindade —” Fundamentos Bíblicos',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Trindade',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A doutrina da Trindade afirma que há um único Deus que subsiste em três pessoas distintas: Pai, Filho e Espírito Santo. Cada pessoa é plenamente Deus, e há um só Deus verdadeiro. Esta não é uma especulação filosófica, mas a leitura fiel da revelação bíblica.',
       'No Antigo Testamento, a monoteísmo é radicalmente afirmado: "Ouve, Israel, o Senhor nosso Deus é o único Senhor" (Dt 6:4). Contudo, multiplicidade interna já se manifesta: o anjo do Senhor é distinto de Javé, o Espírito de Deus atua criadoramente, e a sabedoria personificada aparece em Provérbios 8.',
@@ -6597,7 +6597,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'trin-002',
     titulo: 'A Trindade na História da Igreja —” Concílios e Definições',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Trindade',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A formulação trinitária não foi inventada por filósofos, mas foi o resultado de séculos de leitura da Escritura e do combate às heresias que ameaçavam a fé cristã. Os primeiros Pais apologistas já afirmavam a divindade do Logos e a ação do Espírito.',
       'O Concílio de Nicéia (325) condenou o arianismo, que negava a plena divindade do Filho. O termo "homoousios" (da mesma substância) foi adotado para afirmar que o Filho é plenamente Deus, não uma criatura, por mais exaltada que seja. Atanásio foi o principal defensor da fé nicena.',
@@ -6613,7 +6613,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'trin-003',
     titulo: 'A Trindade e a Vida Cristã —” Aplicações Práticas',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Trindade',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A doutrina da Trindade não é mera especulação acadêmica; ela molda toda a vida cristã. A experiência de salvação é trinitária: o Pai planeja a redenção, o Filho a executa na cruz, o Espírito a aplica nos corações.',
       'Na oração, entramos em comunhão com o Deus triúno. Pelo Espírito, oramos ao Pai em nome do Filho. A Trindade é o contexto eterno da vida devocional. A oração de Jesus em João 17 revela a intimidade trinitária que somos convidados a participar.',
@@ -6729,7 +6729,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'bat-001',
     titulo: 'O Batismo Cristão —” Significado e Modo',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Sacramentos',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'O batismo é o sacramento da iniciação cristã, instituído por Cristo na Grande Comissão: "Batizando-os em nome do Pai, e do Filho, e do Espírito Santo" (Mt 28:19). Ã‰ o sinal de entrada no corpo de Cristo e na comunidade da fé.',
       'O simbolismo é rico: o batismo representa a morte e ressurreição de Cristo (Rm 6:3-4), a purificação do pecado (At 2:38), a circuncisão do coração (Cl 2:11-12) e a nova criação (Gl 3:27). Ã‰ morrer para o pecado e viver para Deus.',
@@ -6745,7 +6745,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'bat-002',
     titulo: 'O Batismo de Crianças —” Debate Histórico-Teológico',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Sacramentos',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'O batismo de crianças (pedobatismo) é praticado pela maioria das tradições cristãs: católica, ortodoxa, luterana, reformada, anglicana, metodista. Os batistas e algumas igrejas evangélicas o rejeitam, praticando o batismo de crentes (credobatismo).',
       'Os argumentos a favor do pedobatismo: 1) A aliança abraâmica incluía os filhos (Gn 17:7-12); 2) Atos 16:15 (Lídia e sua casa) e 16:33 (o carcereiro e sua casa) mencionam batismos domésticos; 3) 1 Co 7:14 indica que os filhos dos crentes são "santos"; 4) A teologia reformada vê continuidade entre Antigo e Novo Testamento.',
@@ -6766,7 +6766,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ceia-001',
     titulo: 'A Ceia do Senhor —” Instituição e Significado',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Sacramentos',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'A Ceia do Senhor (Eucaristia, Santa Ceia, Comunhão) foi instituída por Cristo na noite da Páscoa, pouco antes de Sua crucifixão. "Isto é o meu corpo... isto é o meu sangue" (Mt 26:26-28) é a declaração central do sacramento.',
       'O pão representa o corpo de Cristo, partido por nós. O vinho representa o sangue da nova aliança, derramado para remissão dos pecados. Os elementos são sinais visíveis de uma graça invisível —” o sacrifício de Cristo aplicado ao crente.',
@@ -6782,7 +6782,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'ceia-002',
     titulo: 'A Presença de Cristo na Ceia —” Visões Históricas',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Sacramentos',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'A questão da presença de Cristo na Ceia divide a cristandade em quatro grandes visões: transubstanciação, consubstanciação, presença espiritual e memorialismo. Cada uma interpreta "isto é o meu corpo" à sua maneira.',
       'A transubstanciação (catolicismo romano) ensina que a substância do pão se converte no corpo de Cristo, e a do vinho em Seu sangue, permanecendo apenas as aparências (espécies). Foi definida oficialmente no IV Concílio de Latrão (1215) e reafirmada em Trento.',
@@ -6803,7 +6803,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'esc-001',
     titulo: 'O Arrebatamento da Igreja —” Pré, Mid ou Pós-Tribulacionismo',
     categoria: 'Escatologia',
-    subcategoria: 'Eventos Finais',
+    subcategoria: 'Escatologia',
     conteudo: [
       'O arrebatamento (raptura) é o evento em que Cristo vem para tirar Sua Igreja do mundo antes da ira escatológica. As visões principais diferem quanto ao momento: pré-tribulacionismo, mid-tribulacionismo e pós-tribulacionismo.',
       'O pré-tribulacionismo ensina que a Igreja será arrebatada antes da tribulação de sete anos. Os argumentos: 1) A Igreja é distinta de Israel; 2) 1 Ts 4:13-18 indica um arrebatamento iminente; 3) Apocalipse menciona a Igreja apenas até o capítulo 3, ausente da tribulação; 4) Deus não destina Sua Igreja à ira (1 Ts 5:9).',
@@ -6819,7 +6819,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'esc-002',
     titulo: 'A Grande Tribulação —” Período de Angústia e Purificação',
     categoria: 'Escatologia',
-    subcategoria: 'Eventos Finais',
+    subcategoria: 'Escatologia',
     conteudo: [
       'A Grande Tribulação é o período final de sete anos, descrito em Daniel 9:24-27 e Apocalipse 6-19. Será um tempo de angústia sem paralelo na história (Dn 12:1; Mt 24:21), com a manifestação plena do anticristo e a ira de Deus sobre a humanidade rebelde.',
       'Daniel 9:24-27 profetiza "setenta semanas" (anos), das quais 69 foram cumpridas na primeira vinda de Cristo. A 70Âª semana (sete anos) é a tribulação, cortada ao meio (3,5 anos) pela "abominação da desolação" (Dn 9:27; Mt 24:15).',
@@ -6835,7 +6835,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'esc-003',
     titulo: 'O Milênio —” Amilenismo, Pré-milenismo e Pós-milenismo',
     categoria: 'Escatologia',
-    subcategoria: 'Eventos Finais',
+    subcategoria: 'Escatologia',
     conteudo: [
       'Apocalipse 20:1-6 menciona um "mil anos" seis vezes, gerando intenso debate na Igreja. Três posições principais: amilenismo (não há milênio literal), pré-milenismo (milênio literal antes da eternidade) e pós-milenismo (milênio antes da segunda vinda).',
       'O amilenismo (Agostinho, muitos reformados) entende os mil anos como o período entre a primeira e a segunda vinda de Cristo, ou como a condição atual da Igreja, na qual Cristo reina espiritualmente. Os dois ressurreições são a regeneração e a ressurreição corporal. O número 1000 é simbólico, não literal.',
@@ -6855,8 +6855,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'dev-001',
     titulo: 'A Oração —” Comunhão com o Pai',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Devoção',
+    categoria: 'Vida Crista',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'A oração é a comunhão do crente com Deus. Ã‰ diálogo, não monólogo. Jesus ensinou a orar com a paternidade de Deus em vista: "Pai nosso, que estás nos céus" (Mt 6:9). A intimidade filial é o fundamento da oração cristã.',
       'Os elementos da oração cristã: adoração (reconhecer quem Deus é), confissão (admitir o pecado), ação de graças (gratidão pelas bênçãos), súplica (pedir necessidades) e intercessão (orar pelos outros). A Oração do Senhor cobre todas essas dimensões.',
@@ -6871,8 +6871,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'dev-002',
     titulo: 'A Leitura Bíblica —” A Palavra como Pão Diário',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Devoção',
+    categoria: 'Vida Crista',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'A leitura regular da Bíblia é essencial para a vida cristã. Jesus respondeu à tentação com "Está escrito" (Mt 4:4). A Palavra de Deus é o pão do espírito, a espada do crente, o espelho da alma, e o combustível da fé.',
       'Como ler a Bíblia com proveito: 1) Ore antes de ler, pedindo iluminação do Espírito; 2) Leia com reverência, como Palavra de Deus; 3) Leia com regularidade, em plano sistemático; 4) Leia com atenção, meditando no texto; 5) Leia com obediência, aplicando à vida.',
@@ -6892,8 +6892,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'lov-001',
     titulo: 'A Natureza da Adoração —” Espírito e Verdade',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Adoração',
+    categoria: 'Vida Crista',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Jesus definiu a adoração autêntica: "Ã‰ necessário adorar o Pai em espírito e em verdade" (Jo 4:23). A adoração não se limita a um lugar (Sião, Gerizim) ou forma exterior; é questão do coração, movido pelo Espírito.',
       'A adoração é resposta à revelação de Deus. Quando contemplamos Quem Ele é —” santo, soberano, gracioso, fiel —” nosso coração explode em louvor. A adoração é obra do Espírito Santo, que nos capacita a reconhecer e exaltar a Deus.',
@@ -6908,8 +6908,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'lov-002',
     titulo: 'A Música na Igreja —” Cânticos, Hinos e Salmos',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Adoração',
+    categoria: 'Vida Crista',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'A música tem papel central na adoração cristã. Paulo exorta: "Ensinando e exortando uns aos outros com salmos, hinos e cânticos espirituais" (Cl 3:16). A música é veículo de ensino, expressão emocional e edificação comunitária.',
       'A música congregacional é diferente da música de concerto. O objetivo não é exibição, mas participação. Os reformadores valorizavam cânticos cantados por toda a congregação, em contraste com a música apenas clerical da Idade Média.',
@@ -6929,8 +6929,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'mis-001',
     titulo: 'A Grande Comissão —” Mandato Missionário da Igreja',
-    categoria: 'Missão e Evangelismo',
-    subcategoria: 'Missões',
+    categoria: 'Missiologia',
+    subcategoria: 'Missiologia',
     conteudo: [
       'A Grande Comissão é o mandato final de Cristo à Sua Igreja: "Ide, portanto, fazei discípulos de todas as nações, batizando-os em nome do Pai, e do Filho, e do Espírito Santo, ensinando-os a guardar todas as coisas que vos tenho ordenado" (Mt 28:19-20).',
       'A missão é trinitária: é obra do Pai que envia, do Filho que é enviado, e do Espírito que capacita. A Igreja participa da missão do Deus triúno. A missão não é invenção humana, mas iniciativa divina.',
@@ -6951,8 +6951,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-091',
     titulo: 'Romanos 6 —” Morte e Ressurreição com Cristo',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Romanos 6 responde à objeção de que a graça abundante estimula o pecado (6:1). Paulo declara categoricamente: "De maneira nenhuma!" (6:2). A lógica é inescapável: se morremos com Cristo, o que há de comum entre nós e o pecado?',
       'O batismo é apresentado como participação na morte e ressurreição de Cristo (6:3-4). Assim como Cristo ressuscitou dos mortos pela glória do Pai, também nós devemos andar em novidade de vida. O batismo é sinal externo de realidade espiritual interna.',
@@ -6967,8 +6967,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-092',
     titulo: 'Romanos 7 —” A Luta contra o Pecado',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Romanos 7:1-6 estabelece a liberdade da Lei. O crente morreu para a Lei pelo corpo de Cristo, para pertencer a outro —” ao que ressuscitou dos mortos. O fruto deve ser para a santificação, não para a condenação.',
       'O versículo 7 é crucial: "Acaso, pois, a lei é pecado? De modo nenhum!" (7:7). A Lei é santa, justa e boa. O problema não está na Lei, mas no pecado que habita no ser humano. A Lei é o espelho que revela a corrupção.',
@@ -6983,8 +6983,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-093',
     titulo: 'Romanos 8 —” A Vida no Espírito Santo',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Romanos 8 é o clímax da argumentação paulina. "Agora, pois, nenhuma condenação há para os que estão em Cristo Jesus" (8:1). A justificação de Romanos 3-5 culmina na liberdade do Espírito em Romanos 8.',
       'A lei do Espírito de vida me libertou da lei do pecado e da morte (8:2). O Espírito não apenas perdoa, mas capacita. A Lei moral era impotente para transformar; o Espírito é o poder transformador. A Graça supera a Lei em eficácia.',
@@ -6999,8 +6999,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-094',
     titulo: '1 Coríntios 12 —” Dons Espirituais e o Corpo',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 Coríntios 12 aborda a diversidade de dons espirituais na Igreja. "Há diversidade de dons, mas o Espírito é o mesmo" (12:4). A unidade do Espírito é a base da diversidade de dons. Não há cristão sem dons.',
       'Os dons são distribuídos "a cada um, como ele quer" (12:11). A soberania do Espírito na distribuição é absoluta. Não podemos exigir determinado don nem desprezar o de outro. Cada don é necessário para o funcionamento do corpo.',
@@ -7015,8 +7015,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-095',
     titulo: '1 Coríntios 13 —” O Amor Superior',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 Coríntios 13 é o "hino do amor", interrompendo a discussão sobre dons espirituais. Paulo estabelece que o amor é o critério supremo da vida cristã. Sem amor, os dons são "bronze que soa, ou sino que tine" (13:1).',
       'As qualidades negativas do amor: não é invejoso, não se vangloria, não se ensoberbece, não procede com indecência, não busca seus interesses, não se ira facilmente, não guarda rancor (13:4-5). O amor é descrito mais pelo que não faz do que pelo que faz.',
@@ -7031,8 +7031,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-096',
     titulo: '1 Coríntios 15 —” A Ressurreição dos Mortos',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 Coríntios 15 é o mais extenso trecho neotestamentário sobre a ressurreição. Paulo transmite o que recebeu: "Cristo morreu pelos nossos pecados, foi sepultado e ressuscitou no terceiro dia" (15:3-4). Ã‰ tradição apostólica, não invenção.',
       'As testemunhas da ressurreição são múltiplas (15:5-8): Pedro, os doze, mais de 500 irmãos de uma vez, Tiago, todos os apóstolos. Paulo mesmo é testemunha: "Por último, apareceu também a mim" (15:8). O testemunho é público e verificável.',
@@ -7047,8 +7047,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-097',
     titulo: 'Gálatas 5 —” A Liberdade Cristã',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Gálatas 5 é o coração ético da carta. "Para a liberdade Cristo nos libertou" (5:1). A liberdade não é licença, mas capacidade de servir uns aos outros pelo amor. A Lei não é caminho para a salvação.',
       'A advertência solene: "Se vos circuncidais, Cristo de nada vos aproveitará" (5:2-3). A volta à Lei anula a graça. Não é questão de rito, mas de mentalidade: buscar justiça pelas obras em vez da fé.',
@@ -7063,8 +7063,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-098',
     titulo: 'Efésios 4 —” A Unidade do Corpo',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Efésios 4:1-6 estabelece o fundamento da unidade cristã: "Um corpo, e um Espírito, como fostes chamados em uma só esperança da vossa vocação; um Senhor, uma fé, um batismo; um Deus e Pai de todos" (4:4-6). A unidade é trinitária e objetiva.',
       'A diversidade de dons é para a unidade: "Deu uns para apóstolos, outros para profetas, outros para evangelistas, outros para pastores e mestres" (4:11). O propósito é "aperfeiçoar os santos para o desempenho do seu serviço" (4:12).',
@@ -7079,8 +7079,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-099',
     titulo: 'Efésios 6 —” A Armadura de Deus',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Efésios 6:10-20 apresenta a armadura de Deus como metáfora da proteção espiritual. "Estai fortes no Senhor e na força do seu poder" (6:10). A batalha não é contra carne e sangue, mas contra potestades espirituais (6:12).',
       'As peças da armadura: cinto da verdade (6:14), couraça da justiça (6:14), escudo da fé (6:16), capacete da salvação (6:17), espírito do Espírito —” a Palavra de Deus (6:17). Cada peça corresponde a uma verdade teológica.',
@@ -7095,8 +7095,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-100',
     titulo: 'Filipenses 2 —” A Kenosis de Cristo',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Filipenses 2:6-11 é o hino cristológico mais antigo da Igreja primitiva. "Sendo em forma de Deus, não teve por usurpação ser igual a Deus" (2:6). A pré-existência de Cristo é pressuposta, não demonstrada.',
       'A kenosis (esvaziamento) é voluntário: "Mas esvaziou a si mesmo, tomando a forma de servo" (2:7). Não é privação de atributos divinos, mas adição de natureza humana. O Filho de Deus se tornou filho do homem para que os filhos dos homens se tornem filhos de Deus.',
@@ -7113,8 +7113,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-101',
     titulo: 'João 1 —” O Prólogo e a Encarnação',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelho de João',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O prólogo de João (1:1-18) é a declaração mais elevada da divindade de Cristo no NT. "No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus" (1:1). A retroação ao Gênesis 1:1 é intencional: Cristo está além do tempo.',
       'O Verbo (Logos) é conceito grego e hebraico: para os gregos, o princípio racional do universo; para os hebraicos, a Palavra criadora de Deus (Salmos 33:6). João baptiza ambos os conceitos em Cristo.',
@@ -7129,8 +7129,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-102',
     titulo: 'João 3 —” Nicodemos e o Novo Nascer',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelho de João',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'A entrevista de Jesus com Nicodemos (3:1-21) é uma das mais importantes do NT. Nicodemos é fariseu, membro do Sinédrio, mestre de Israel —” e vem de noite, talvez por timidez ou por buscar luz nas trevas.',
       '"Necessário é nascer de novo" (3:7). A palavra grega "anôthen" significa tanto "de cima" quanto "de novo". A dualidade é intencional: o novo nascimento é divino e transformador. Não é decisão humana, mas obra do Espírito.',
@@ -7145,8 +7145,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-103',
     titulo: 'João 6 —” O Pão da Vida',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelho de João',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'João 6 contém a alimentação de 5000 (6:1-14), o caminhar sobre as águas (6:16-21), e o discurso do Pão da Vida (6:22-71). Cada seção revela a identidade de Cristo.',
       'O discurso do Pão da Vida começa com a multiplicação: "Eu sou o pão da vida" (6:35). O maná do deserto era tipo de Cristo. Os pais comeram e morreram; quem come deste pão viverá eternamente.',
@@ -7161,8 +7161,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-104',
     titulo: 'João 10 —” O Bom Pastor',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelho de João',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'João 10 apresenta Jesus como o Bom Pastor. A metáfora pastoral é rica no AT: Deus é pastor de Israel (Salmos 23; Ezequiel 34). Jesus cumpre e supera a imagem.',
       '"Eu sou a porta das ovelhas" (10:7). O pastor entra pelo portão legítimo; o ladrão entra por outro caminho. Jesus é o único caminho para o rebanho. Fora d\'Ele não há salvação.',
@@ -7177,8 +7177,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-105',
     titulo: 'João 14-17 —” Os Discursos de Despedida',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Evangelho de João',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'João 14-17 é o coração da teologia joânica. O discurso de despedida prepara os discípulos para a ausência de Jesus. "Não se turbe o vosso coração" (14:1). A fé é consolo diante da partida.',
       'Jesus é o caminho, a verdade e a vida (14:6). Exclusividade cristã: "Ninguém vem ao Pai senão por mim". Não é intolerância, mas realidade: há um único mediador entre Deus e os homens.',
@@ -7195,8 +7195,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-106',
     titulo: 'Atos 2 —” Pentecostes e o Nascimento da Igreja',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Atos 2 é o relato de Pentecostes, o nascimento da Igreja. "Baixou do céu um som, como de um vento veemente" (2:2). Os sinais sonoros e visíveis (línguas de fogo) marcam a efusão do Espírito.',
       'A pregação de Pedro resulta em 3000 conversiones (2:41). O tema é o cumprimento da profecia: "Nos últimos dias, derramarei do meu Espírito sobre toda a carne" (2:17, citando Joel 2:28-32). O que era promessa agora é realidade.',
@@ -7211,8 +7211,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-107',
     titulo: 'Atos 7 —” O Testemunho de Estêvão',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Atos 7 é o discurso mais longo de Atos. Estêvão, cheio do Espírito Santo (7:55), defende-se perante o Sinédrio com um resumo da história de Israel que culmina em acusação: "Homens de dura cerviz" (7:51).',
       'A retrospectiva histórica: Abraão (7:2-8), José (7:9-16), Moisés (7:17-43), o tabernáculo e o templo (7:44-50). Estêvão mostra que Deus sempre esteve além dos limites institucionais. "O Altíssimo não habita em templos feitos por mãos de homens" (7:48).',
@@ -7227,8 +7227,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-108',
     titulo: 'Atos 10 —” A Visão de Cornélio e os Gentios',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Atos 10 é ponto de virada na história da Igreja: o evangelho alcança os gentios. Cornélio, centurião romano, justo e temeroso de Deus (10:1-2), é instrumento da providência divina.',
       'A visão de Pedro: um lençol com animais impuros e a voz: "Levanta, mata e come" (10:13). A lição não é alimentar, mas eclesiológica: "O que Deus purificou, não chames tu de comum" (10:15). A barreira entre judeus e gentios cai.',
@@ -7243,8 +7243,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-109',
     titulo: 'Atos 13-14 —” A Primeira Viagem Missionária',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Atos 13-14 registra a primeira viagem missionária de Paulo e Barnabé. A Igreja em Antioquia envia, sob guia do Espírito Santo (13:2-4). A missão começa com obediência à voz do Espírito.',
       'A pregação em Pisídia de Antioquia (13:16-41) é modelo de evangelismo: contexto histórico (Israel), centralidade de Cristo (ressurreição), chamada à fé. "Anunciamos-vos o evangelho destas coisas que a vossos pais foram prometidas" (13:32).',
@@ -7259,8 +7259,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-110',
     titulo: 'Apocalipse 1-3 —” As Sete Cartas às Igrejas',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Escatologia',
     conteudo: [
       'Apocalipse 1-3 apresenta Cristo glorificado e sete cartas às igrejas da Ásia Menor. A visão de Cristo (1:12-18) é alicerce: "Eu sou o Primeiro e o Derradeiro, o que vive, e estive morto, eis que estou vivo por todos os séculos" (1:18).',
       'Cada carta tem estrutura: endereçamento, autodescrição de Cristo, elogio, acusação, ameaça/promoção, ouvinte vence. Cristo conhece cada igreja intimamente. Não há igreja perfeita —” todas têm problemas.',
@@ -7275,8 +7275,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-111',
     titulo: 'Apocalipse 12 —” A Mulher, o Dragão e o Filho',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Escatologia',
     conteudo: [
       'Apocalipse 12 é cenário central do drama apocalíptico. A mulher vestida de sol (12:1) é interpretada de múltiplas formas: Israel, Maria, a Igreja. A serpente dragão vermelho (12:3) é Satanás.',
       'O dragão persegue a mulher que dá à luz o macho varão (12:5). A ressurreição de Cristo é pressuposta: "O Filho foi arrebatado até Deus e ao seu trono" (12:5). A ascensão é resumo da história.',
@@ -7291,8 +7291,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-112',
     titulo: 'Apocalipse 19-22 —” A Consumação Final',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Escatologia',
     conteudo: [
       'Apocalipse 19 celebra a vitória: "Aleluia! Pois o Senhor nosso Deus, o Todo-Poderoso, reina!" (19:6). As bodas do Cordeiro são celebradas —” Cristo e a Igreja se encontram definitivamente.',
       'A segunda vinda: "O céu se abriu, e eis um cavalo branco, e aquele que o montava se chama Fiel e Verdadeiro" (19:11). O julgamento é justo. O Anti-Cristo e o falso profeta são lançados no lago de fogo (19:20).',
@@ -7309,8 +7309,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-113',
     titulo: 'ÃŠxodo 20 —” Os Dez Mandamentos',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Pentateuco',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Os Dez Mandamentos (ÃŠxodo 20:1-17) são a base da aliança Sinai. "Eu sou o Senhor teu Deus, que te tirei da terra do Egito" (20:2). A graça precede a Lei —” Deus liberta antes de ordenar.',
       'Os quatro primeiros mandamentos tratam da relação com Deus: não ter outros deuses, não fazer imagens, não tomar o nome em vão, lembrar do sábado. A prioridade é vertical: Deus primeiro.',
@@ -7325,8 +7325,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-114',
     titulo: 'Salmos 23 —” O Senhor é o Meu Pastor',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Salmos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O Salmo 23 é o mais amado e conhecido dos salmos. David, que conhece a vida pastoral, aplica-a à relação com Deus. "O Senhor é o meu pastor; nada me faltará" (23:1). A confiança é absoluta.',
       'Os pastos verdes e águas tranquilas (23:2) são imagem de provisão e descanso. Deus supre necessidades físicas e espirituais. "Conduz-me pelas veredas da justiça, por amor do seu nome" (23:3). A direção divina é por Sua causa.',
@@ -7341,8 +7341,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-115',
     titulo: 'Provérbios 31 —” A Mulher Virtuosa',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Livros Poéticos',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Provérbios 31:10-31 descreve a mulher virtuosa. O acróstico (cada verso começa com letra do alfabeto hebraico) sugere ideal poético, não retrato literal. "Mulher virtuosa, quem a achará?" (31:10).',
       'A mulher virtuosa é trabalhadora: compra campos (31:16), planta vinhas (31:16), prepara comida (31:15), cuida dos pobres (31:20). O trabalho não é maldição, mas vocação. A administração doméstica é digna.',
@@ -7357,8 +7357,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-116',
     titulo: 'Isaías 53 —” O Servo Sofredor',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Profetas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Isaías 53 é a profecia mais clara sobre a morte substitutiva do Messias. "Quem crer na nossa pregação?" (53:1). A incredulidade é tema: a salvação é rejeitada pelos que deveriam recebê-la.',
       'A aparência humilde: "Não tinha formosura nem formosura que nos atraísse" (53:2). O Messias não vem com esplendor, mas em humildade. O valor não está na aparência, mas no caráter.',
@@ -7373,8 +7373,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-117',
     titulo: 'Daniel 7 —” O Filho do Homem',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Profetas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Daniel 7 é visão apocalíptica sobre os impérios mundiais e o Reino de Deus. Os quatro animais (7:1-8) representam impérios: Babilônia, Pérsia, Grécia, Roma. Todos são destruídos pelo Reino eterno.',
       '"Veio um como Filho do Homem" (7:13). A figura messiânica recebe domínio, glória e reino. "Todo povo, nação e língua o servirão" (7:14). A universalidade do Reino.',
@@ -7489,8 +7489,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-118',
     titulo: 'Romanos 9 —” A Soberania de Deus na Salvação',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Romanos 9 é uma das seções mais desafiadoras do NT. Paulo lamenta a incredulidade de Israel (9:1-3). A pergunta: Deus falhou em Suas promessas? A resposta é não.',
       'A soberania eleitoral: "Não depende do que quer, nem do que corre, mas de Deus, que tem misericórdia" (9:16). O exemplo de Jacó e Esaú: "Amei a Jacó e odiei a Esaú" (9:13). A escolha é anterior ao mérito.',
@@ -7505,8 +7505,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-119',
     titulo: 'Romanos 12 —” A Vida Cristã Prática',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Romanos 12:1-2 é a transição da doutrina para a prática. "Oferecei vossos corpos em sacrifício vivo, santo e agradável a Deus" (12:1). A adoração não é apenas culto, mas vida toda dedicada.',
       'A renovação da mente (12:2): "Não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento". A santificação começa com a mente.',
@@ -7521,8 +7521,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-120',
     titulo: '1 Coríntios 11 —” A Ceia do Senhor',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 Coríntios 11:17-34 trata da Ceia do Senhor. A comunidade coríntia estava dividida: os ricos comiam antes, os pobres passavam fome. ACeia era ceia de amor, não de vergonha.',
       'A instituição: "Isto é o meu corpo, que é dado por vós" (11:24). "Este é o meu sangue da nova aliança, que é derramado por muitos" (11:25). A linguagem é simbólica, mas a realidade é espiritual.',
@@ -7537,8 +7537,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-121',
     titulo: '2 Coríntios 3 —” O ministério do Espírito',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       '2 Coríntios 3 contrasta o velho e o novo ministério. "A letra mata, mas o Espírito vivifica" (3:6). A aliança da letra é Lei; a do Espírito é graça.',
       'O véu sobre Moisés (3:13-16): o véu representa a dureza de coração de Israel. "Quando se convertem ao Senhor, o véu é removido" (3:16). A conversão é remoção do véu.',
@@ -7553,8 +7553,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-122',
     titulo: 'Efésios 1 —” As Bênçãos Espirituais',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Efésios 1:3-14 é uma bênção (berakah) em três partes: Pai (3-6), Filho (7-12), Espírito (13-14). Cada Pessoa da Trindade é mencionada.',
       'Escolhidos antes da fundação do mundo (1:4): a eleição é pré-temporal. "Para sermos santos e sem mancha" —” a eleição é para santificação, não imoralidade.',
@@ -7569,8 +7569,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-123',
     titulo: 'Colossenses 1 —” Cristo, Senhor da Criação',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Epístolas Paulinas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Colossenses 1:15-20 é o hino cristológico mais elevado de Paulo. "Imagem do Deus invisível, primogênito de toda a criatura" (1:15). A divindade e prioridade de Cristo.',
       'Cristo criou todas as coisas (1:16-17): "Nele foram criadas todas as coisas... e Ele é antes de todas as coisas, e todas as coisas nele subsistem". A criação depende dEle.',
@@ -7585,8 +7585,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-124',
     titulo: 'Atos 8 —” Filipe e o Eunuco Etíope',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Atos 8:26-40 registra o encontro de Filipe com o eunuco etíope. Um official de Candace, rainha dos Etíopes, que administrava todo o seu tesouro (8:27). A providência de Deus.',
       'O eunuco lia Isaías 53: "Levará Ele o nosso sofrimento?" (8:32-33). Filipe explica a Escritura: Cristo é o Servo Sofredor. A evangelização é explicação da Escritura.',
@@ -7601,8 +7601,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-125',
     titulo: 'Atos 13 —” Paulo e Barnabé em Antioquia',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Atos 13:1-3 registra o chamado missionário. "Separai-me Barnabé e Saulo para a obra a que os chamei" (13:2). A missão é iniciativa divina, não humana.',
       'A pregação em Pisídia de Antioquia (13:16-41) é modelo: resumo da história de Israel (13:17-22), centralidade de Cristo (13:23-31), chamado à fé (13:38-39).',
@@ -7617,8 +7617,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-126',
     titulo: 'Apocalipse 4-5 —” A Visão do Trono',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Escatologia',
     conteudo: [
       'Apocalipse 4-5 é a visão central do louvor celestial. "Sobre o trono, uma aparência de jaspe e de cornalina" (4:3). A majestade de Deus é inexprimível.',
       'Os 24 anciãos (4:4): representam a totalidade do povo de Deus (12 tribos + 12 apóstolos). Eles lançam suas coroas diante do trono —” a autoridade humana se curva diante da divina.',
@@ -7633,8 +7633,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-127',
     titulo: 'Apocalipse 13 —” A Besta e o Falso Profeta',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Escatologia',
     conteudo: [
       'Apocalipse 13 apresenta duas figuras: a besta do mar (13:1-10) e a besta da terra (13:11-18). Ambas servem ao dragão (Satanás).',
       'A besta do mar é poder político: "Deu-lhe o dragão poder, trono e grande autoridade" (13:2). As sete cabeças são impérios. A besta é adorada (13:4). O poder político se torna idolátrico.',
@@ -7649,8 +7649,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'tl-128',
     titulo: 'Apocalipse 19-20 —” A Vitória e o Milênio',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Escatologia',
     conteudo: [
       'Apocalipse 19 celebra a vitória de Cristo. "Aleluia! Pois o Senhor nosso Deus, o Todo-Poderoso, reina!" (19:6). As bodas do Cordeiro são o clímax da história.',
       'A Segunda Vinda (19:11-16): Cristo vem como guerreiro. "Fiel e Verdadeiro" é seu nome. "Rei dos reis e Senhor dos senhores" (19:16). A vitória é completa.',
@@ -7665,8 +7665,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'dp-067',
     titulo: 'Estudos por Livro —” Romanos',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Atos e Epístolas',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Romanos é a carta mais sistemática de Paulo. Temas: justificação, graça, santificação, soberania de Deus, Israel, vida no Espírito.',
       'Estrutura: Introduction (1:1-17), Condição humana (1:18-3:20), Justificação (3:21-5:21), Santificação (6-8), Soberania (9-11), Prática (12-16).',
@@ -7714,7 +7714,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'dp-070',
     titulo: 'Ã‰tica Cristã —” Princípios Fundamentais',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Ã‰tica',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A ética cristã é baseada no caráter de Deus e na Escritura. "Sede santos, porque eu sou santo" (1 Pd 1:16). A ética é resposta à graça.',
       'Os princípios: amor a Deus e ao próximo (Mt 22:37-40), justiça (Am 5:24), misericórdia (Lc 6:36), verdade (Jo 8:32), santidade (1 Pd 1:15-16).',
@@ -7729,8 +7729,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'dp-071',
     titulo: 'Estudos por Livro —” Gênesis',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Pentateuco',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Gênesis é o livro dos começos: criação, queda, promessa, aliança. "No princípio criou Deus" (1:1). A fundação de toda a teologia bíblica.',
       'A narrativa de criação (1-2): ordem, bondade, propósito. O ser humano é imagem de Deus, com dignidade e responsabilidade.',
@@ -7745,8 +7745,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'dp-072',
     titulo: 'Estudos por Livro —” Apocalipse',
-    categoria: 'Temas por Livro',
-    subcategoria: 'Apocalipse',
+    categoria: 'Teologia Bíblica',
+    subcategoria: 'Escatologia',
     conteudo: [
       'Apocalipse é o livro mais discutido e menos compreendido do NT. Gênero: apocalíptico, profético, epistolar. Mensagem: Cristo vence.',
       'As sete cartas (2-3): Cristo conhece e corriga as igrejas. Eféso (primeiro amor), Esmirna (perseguição), Pérgamo (compromisso), Tiatira (falsos profetas), Sardes (morte), Filadélfia (fidelidade), Laodiceia (morna).',
@@ -7771,7 +7771,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-001',
     titulo: 'Charles Spurgeon —” A Soberania de Deus',
     categoria: 'Teologia Bíblica',
-    subcategoria: 'Teólogos Clássicos',
+    subcategoria: 'Bibliologia',
     conteudo: [
       'Charles Haddon Spurgeon (1834-1892), conhecido como o "Príncipe dos Pregadores", dedicou grande parte de seu ministério à proclamação da soberania absoluta de Deus. Para Spurgeon, a soberania divina não era uma doutrina abstrata, mas a realidade mais consoladora para o crente em meio às tribulações da vida.',
       'Spurgeon entendia que Deus governa todas as coisas com perfeita sabedoria e amor, desde os eventos cósmicos até os detalhes mais insignificantes da vida humana. Essa convicção o levava a dizer que nem um único pardal caía do céu sem o conhecimento e permissão do Pai celestial.',
@@ -7786,8 +7786,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-002',
     titulo: 'Charles Spurgeon —” O Poder da Oração',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Oração',
+    categoria: 'Vida Crista',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Spurgeon foi um homem de oração incansável, acreditando que a comunhão com Deus era a fonte de todo o poder espiritual. Ele afirmava que a oração não era apenas um dever religioso, mas o meio pelo qual o cristão acessa os tesouros da graça divina.',
       'Para Spurgeon, a oração não muda a mente de Deus, mas é o meio ordenado por Ele para que os crentes recebam as bênçãos que Ele já deseja conceder. A oração é a chave que abre os depósitos celestiais, não porque Deus precise ser convencido, mas porque Ele deseja que busquemos Sua face.',
@@ -7803,7 +7803,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-003',
     titulo: 'Charles Spurgeon —” Evangelismo e Conversão',
     categoria: 'Missiologia',
-    subcategoria: 'Evangelismo',
+    subcategoria: 'Missiologia',
     conteudo: [
       'Spurgeon pregou para mais de 10 milhões de pessoas ao longo de sua carreira, vendo milhares de conversões genuínas. Seu ministério evangelístico era marcado pela simplicidade da mensagem e pelo poder do Espírito Santo sobre a palavra proclamada.',
       'Para Spurgeon, o evangelho era o poder de Deus para salvação de todo aquele que crê. Ele não reduzia a mensagem a fórmulas humanas, mas a proclamava como o testemunho fiel de Deus sobre Seu Filho Jesus Cristo, crucificado e ressuscitado.',
@@ -7818,8 +7818,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-004',
     titulo: 'Charles Spurgeon —” Sofrimento e Consolo Divino',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Sofrimento',
+    categoria: 'Vida Crista',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Spurgeon conheceu o sofrimento em profundidade: enfrentou depressão crônica, perseguição pela imprensa, o incêndio do Royal Surrey Garden Music Hall que matou 7 pessoas, e a perda de filhos. Seu sofrimento moldou sua teologia do consolo divino.',
       'Para Spurgeon, o sofrimento não é acidente fortuito, mas instrumento nas mãos de um Deus sábio e amoroso. Ele via o sofrimento como meio de purificação, amadurecimento e dependência de Deus. A cruz precede a coroa.',
@@ -7835,7 +7835,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-005',
     titulo: 'Charles Spurgeon —” A Graça Sovina e Incondicional',
     categoria: 'Soteriologia',
-    subcategoria: 'Graça',
+    subcategoria: 'Soteriologia',
     conteudo: [
       'Spurgeon era um ardoroso defensor da graça soberana, entendendo que a salvação é dom gratuito de Deus, não merecimento humano. Ele afirmava que a graça é o solo em que a fé pega raiz, e que sem a graça prévia o homem jamais buscaria a Deus.',
       'Para Spurgeon, a graça de Deus é incondicional no sentido de que não depende de qualificações humanas. Deus salva não porque o homem é bom, mas porque Ele é misericordioso. A graça é a bondade de Deus desmerecida, imerecida e indiscriminada.',
@@ -7851,7 +7851,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-006',
     titulo: 'Charles Spurgeon —” A Cruz de Cristo como Centro da Fé',
     categoria: 'Cristologia',
-    subcategoria: 'Cruz',
+    subcategoria: 'Cristologia',
     conteudo: [
       'Spurgeon colocava a cruz de Cristo no centro absoluto de sua pregação e teologia. Para ele, a cruz não era apenas um símbolo religioso, mas o evento central da história humana, o ponto de virada entre perdão e condenação.',
       'Na cruz, Spurgeon via a justiça e a misericórdia de Deus se encontrando de maneira perfeita. A justiça divina exigia punição para o pecado; a misericórdia divina provia o substitutionário perfeito em seu Filho. A cruz satisfaz plenamente ambos.',
@@ -7867,7 +7867,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-007',
     titulo: 'Charles Spurgeon —” A Arte e a Teologia da Pregação',
     categoria: 'Teologia Bíblica',
-    subcategoria: 'Homilética',
+    subcategoria: 'Hermenêutica',
     conteudo: [
       'Spurgeon é considerado o maior pregador do séc. XIX, e um dos maiores de todos os tempos. Sua pregação era marcada por clareza bíblica, aplicação prática e poder espiritual que convertia pecadores e edificava santos.',
       'Para Spurgeon, a pregação eficaz dependia de três elementos: o estudo diligente do texto bíblico, a unção do Espírito Santo e a paixão pelo perdido. Ele dedicava horas ao estudo, mas reconhecia que sem o Espírito a mensagem seria letra morta.',
@@ -7882,8 +7882,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-008',
     titulo: 'Charles Spurgeon —” Fé e Confiança em Deus',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Fé',
+    categoria: 'Vida Crista',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Spurgeon foi um homem de fé vibrante, que encarava os desafios da vida com a convicção de que Deus é fiel em suas promessas. A fé para ele não era sentimento passageiro, mas compromisso firme com a verdade de Deus.',
       'A fé de Spurgeon era alimentada pela Escritura. Ele meditava diariamente nas promessas de Deus e as aplicava à sua vida com fé childlike. Acreditava que Deus nunca falha em suas promessas, mesmo quando as circunstâncias sugerem o contrário.',
@@ -7903,8 +7903,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-009',
     titulo: 'A.W. Tozer —” O Conhecimento de Deus',
-    categoria: 'Teologia Proper',
-    subcategoria: 'Conhecimento de Deus',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'Aiden Wilson Tozer (1897-1963) dedicou sua vida ao estudo do caráter de Deus, acreditando que o conhecimento de Deus é o fundamento de toda a vida cristã. Para Tozer, conhecer a Deus não é apenas informação teológica, mas experiência transformadora.',
       'Tozer ensinava que o conhecimento de Deus começa na reverência. O homem que não teme a Deus jamais O conhecerá verdadeiramente. A reverência é a porta de entrada para o mistério da divindade.',
@@ -7919,8 +7919,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-010',
     titulo: 'A.W. Tozer —” A Adoração Verdadeira',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Adoração',
+    categoria: 'Vida Crista',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Tozer distinguiu entre adoração verdadeira e adoração superficial. A adoração verdadeira nasce do conhecimento de Deus e é expressa em reverência, amor e submissão total.',
       'Para Tozer, a adoração é o fim último da criação humana. O homem foi criado para adorar a Deus, e só encontra satisfação plena quando cumpre esse propósito. A idolatria é adoração desviada.',
@@ -7935,8 +7935,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-011',
     titulo: 'A.W. Tozer —” A Vida Interior e a Comunhão com Deus',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Vida Espiritual',
+    categoria: 'Vida Crista',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Tozer era um defensor fervoroso da vida interior, entendendo que o cristão maduro é aquele que cultiva um relacionamento profundo e pessoal com Deus. A vida interior não é privilégio de alguns, mas dever de todos.',
       'Para Tozer, a vida interior começa na regeneração e se desenvolve através da meditação, oração e obediência. O crente que negligencia a vida interior se torna espiritualmente seco e vulnerável às armadilhas do mundo.',
@@ -7952,7 +7952,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-012',
     titulo: 'A.W. Tozer —” A Idolatria Moderna',
     categoria: 'Teologia Bíblica',
-    subcategoria: 'Idolatria',
+    subcategoria: 'Hamartiologia',
     conteudo: [
       'Tozer identificou a idolatria como o pecado mais perigoso da era moderna. Embora o homem contemporâneo não prostre a ídolos de madeira, ele cria ídolos com seus desejos, ambições e prazeres.',
       'Para Tozer, qualquer coisa que ocupe o lugar de Deus na vida do homem é um ídolo. O dinheiro, o sucesso, o reconhecimento, até mesmo a família pode se tornar ídolos quando substituem a primazia de Deus.',
@@ -7968,7 +7968,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-013',
     titulo: 'A.W. Tozer —” O Espírito Santo na Vida Cristã',
     categoria: 'Pneumatologia',
-    subcategoria: 'Espírito Santo',
+    subcategoria: 'Pneumatologia',
     conteudo: [
       'Tozer dedicou parte significativa de seu ministério ao estudo do Espírito Santo, acreditando que a Igreja contemporânea negligenciou a pessoa e obra do Paráclito. Para Tozer, o Espírito Santo é a pessoa mais negligenciada da Trindade.',
       'Tozer ensinava que o Espírito Santo é Deus, não uma força ou energia impessoal. Ele tem mente, vontade e emoções, e deseja habitar nos crentes de maneira plena e governante.',
@@ -7983,8 +7983,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-014',
     titulo: 'A.W. Tozer —” Simplicidade Espiritual',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Simplicidade',
+    categoria: 'Vida Crista',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Tozer defendia uma vida cristã marcada pela simplicidade, contrapondo-se ao materialismo e ao consumismo que invadiu até mesmo a Igreja. Para ele, a simplicidade é fruto de um coração voltado para Deus.',
       'Para Tozer, a simplicidade não é pobreza, mas desapego. O cristão pode possuir bens sem ser possuído por eles. O problema não é ter, mas confiar no que se tem em vez de confiar em Deus.',
@@ -8004,8 +8004,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-015',
     titulo: 'R.C. Sproul —” A Santidade de Deus',
-    categoria: 'Teologia Proper',
-    subcategoria: 'Santidade',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'R.C. Sproul (1939-2017) dedicou sua carreira a defender e ensinar a santidade de Deus como o atributo mais importante do caráter divino. Para Sproul, a santidade de Deus é o fundamento de toda a teologia cristã.',
       'Sproul ensinava que a santidade de Deus significa que Ele é separado de toda impureza, pecado e maldade. Deus é absolutamente puro, justo e santo, e isso o torna radicalmente diferente de todas as criaturas.',
@@ -8021,7 +8021,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-016',
     titulo: 'R.C. Sproul —” A Justificação pela Fé',
     categoria: 'Soteriologia',
-    subcategoria: 'Justificação',
+    subcategoria: 'Soteriologia',
     conteudo: [
       'Sproul foi um dos maiores defensores contemporâneos da doutrina da justificação pela fé somente. Para ele, essa doutrina é o artigo pelo qual a igreja se sustenta ou cai.',
       'A justificação, segundo Sproul, é o ato jurídico de Deus pelo qual o pecador é declarado justo diante de Sua lei. Não é uma obra de transformação interior (essa é a regeneração), mas uma declaração legal de inocência.',
@@ -8037,7 +8037,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-017',
     titulo: 'R.C. Sproul —” Soberania Divina e Responsabilidade Humana',
     categoria: 'Teologia Bíblica',
-    subcategoria: 'Soberania',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Sproul dedicou considerável atenção ao paradoxo entre a soberania de Deus e a responsabilidade humana. Para ele, essa tensão é central na teologia bíblica e não deve ser resolvida em favor de um dos polos.',
       'Sproul ensinava que Deus é soberano sobre todas as coisas, incluindo a salvação do homem. Ele elege, chama e regenera soberanamente, sem depender de mérito humano.',
@@ -8053,7 +8053,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-018',
     titulo: 'R.C. Sproul —” A Inerrância Bíblica',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Escritura',
+    subcategoria: 'Bibliologia',
     conteudo: [
       'Sproul dedicou sua vida à defesa da inerrância bíblica, acreditando que a Escritura é a palavra infalível de Deus, sem erro em tudo o que afirma. Para ele, a inerrância é o fundamento de toda a fé cristã.',
       'Sproul ensinava que a inerrância significa que a Bíblia é verdadeira em tudo o que declara. Não é apenas infalível em assuntos de fé e prática, mas perfeitamente verdadeira em seus relatos históricos e científicos.',
@@ -8069,7 +8069,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-019',
     titulo: 'R.C. Sproul —” Os Sacramentos como Meios de Graça',
     categoria: 'Eclesiologia',
-    subcategoria: 'Sacramentos',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'Sproul via os sacramentos como meios de graça instituídos por Cristo, essenciais para a vida da Igreja. Para ele, batismo e ceia não são meros rituais, mas encontros reais com a graça divina.',
       'Sproul ensinava que os sacramentos são visíveis da palavra. Assim como a pregação comunica a graça de Deus por meio de palavras, os sacramentos a comunicam por meio de sinais visíveis.',
@@ -8085,7 +8085,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-020',
     titulo: 'R.C. Sproul —” A Graça Irresistível e a Vontade do Homem',
     categoria: 'Soteriologia',
-    subcategoria: 'Graça',
+    subcategoria: 'Soteriologia',
     conteudo: [
       'Sproul defendia a doutrina da graça irresistível, entendendo que quando Deus decide salvar um pecador, Ele capacita esse pecador a crer de maneira eficaz. A graça de Deus não pode ser permanentemente resistida pelo eleito.',
       'Para Sproul, a graça irresistível não significa que o homem é forçado contra sua vontade. Significa que Deus transforma a vontade do homem para que ele deseje livremente aceitar o evangelho.',
@@ -8105,8 +8105,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-021',
     titulo: 'John Piper —” A Alegria em Deus como Fim Supremo',
-    categoria: 'Teologia Proper',
-    subcategoria: 'Alegria',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'John Piper (n. 1946) é o teólogo do "Hedonismo Cristão", a doutrina de que o glorificar a Deus e o desfrutar de Deus são o mesmo. Para Piper, a alegria em Deus não é opcional, mas o dever supremo do cristão.',
       'Piper argumenta que Deus é mais glorificado quando nós nos deleitamos Nele. A adoração verdadeira não é mera obediência dutil, mas gozo apreciativo da beleza de Deus em Cristo.',
@@ -8122,7 +8122,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-022',
     titulo: 'John Piper —” Missões e a Glória de Deus',
     categoria: 'Missiologia',
-    subcategoria: 'Missões',
+    subcategoria: 'Missiologia',
     conteudo: [
       'Para Piper, as missões existem porque a adoração não existe. O objetivo supremo das missões é que todas as nações conheçam, amem e adorem a Deus. As missões são temporárias; a adoração é eterna.',
       'Piper argumenta que Deus deseja ser adorado em todas as nações. O Salmo 96 declarar que todos os povos devem trazer oferendas ao Senhor. As missões são o meio pelo qual esse desejo divino se cumpre.',
@@ -8137,8 +8137,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-023',
     titulo: 'John Piper —” Provisão Divina e o Sustento do Crente',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Providência',
+    categoria: 'Vida Crista',
+    subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Piper desenvolveu uma teologia robusta da provisão divina, baseada na convicção de que Deus é o sustentador de todas as coisas. Para ele, a provisão de Deus não é mera bonança, mas cuidado soberano e fiel.',
       'Para Piper, a provisão divina abrange todas as necessidades da vida: física, emocional, espiritual e material. Deus conhece nossas necessidades antes mesmo de as pedirmos.',
@@ -8153,8 +8153,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-024',
     titulo: 'John Piper —” Casamento para a Glória de Deus',
-    categoria: 'Ã‰tica Cristã',
-    subcategoria: 'Casamento',
+    categoria: 'Questões Contemporâneas',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Piper dedicou considerável atenção ao tema do casamento, vendo-o como uma displays da glória de Deus. Para ele, o casamento cristão não é primariamente sobre felicidade, mas sobre santidade e glória divina.',
       'Para Piper, o casamento é uma tipologia da relação entre Cristo e a Igreja. O marido representa Cristo; a esposa representa a Igreja. Essa tipologia dá dignidade e profundidade ao casamento.',
@@ -8170,7 +8170,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-025',
     titulo: 'John Piper —” Deus e o Prazer Eterno do Crente',
     categoria: 'Escatologia',
-    subcategoria: 'Esperança',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Piper desenvolveu uma escatologia centrada na alegria eterna do crente na presença de Deus. Para ele, a esperança cristã não é fuga do mundo, mas o gozo pleno de Deus em um novo céu e nova terra.',
       'Para Piper, o céu não é apenas um lugar de descanso, mas de atividade gloriosa. O crente desfrutará de Deus para sempre, conhecendo-O cada vez mais em profundidade e admiração.',
@@ -8190,8 +8190,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-026',
     titulo: 'Dietrich Bonhoeffer —” O Discipulado Radical',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Discipulado',
+    categoria: 'Vida Crista',
+    subcategoria: 'Missiologia',
     conteudo: [
       'Dietrich Bonhoeffer (1906-1945) é um dos teólogos mais influentes do séc. XX, conhecido por sua teologia do discipulado radical. Para Bonhoeffer, seguir a Jesus não é opção, mas imperativo absoluto.',
       'Bonhoeffer ensinava que o discipulado é uma chamada à obediência total. "Quando Jesus chama um homem, Ele o quer que morra", escreveu em "O Custo do Discipulado". A fé sem obediência é fé morta.',
@@ -8207,7 +8207,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-027',
     titulo: 'Dietrich Bonhoeffer —” Comunhão Cristã e Vida em Comunidade',
     categoria: 'Eclesiologia',
-    subcategoria: 'Comunidade',
+    subcategoria: 'Eclesiologia',
     conteudo: [
       'Bonhoeffer dedicou parte significativa de sua teologia ao estudo da comunhão cristã. Para ele, o cristão não pode viver sozinho: a fé é essencialmente comunitária.',
       'Bonhoeffer ensinava que a comunidade cristã não é um ideal a ser alcançado, mas um dom de Deus. Cristo mesmo é o centro da comunidade, e os crentes são membros de Seu corpo.',
@@ -8222,8 +8222,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-028',
     titulo: 'Dietrich Bonhoeffer —” Ã‰tica Cristã e Responsabilidade',
-    categoria: 'Ã‰tica Cristã',
-    subcategoria: 'Ã‰tica',
+    categoria: 'Questões Contemporâneas',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Bonhoeffer desenvolveu uma teologia ética profundamente enraizada na realidade da graça. Para ele, a ética cristã não é legalismo, mas resposta amorosa ao amor de Deus.',
       'Bonhoeffer ensinava que a ética cristã é situacional, mas não relativista. O cristão deve discernir a vontade de Deus em cada situação concreta, aplicando princípios bíblicos com sabedoria.',
@@ -8239,7 +8239,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-029',
     titulo: 'Dietrich Bonhoeffer —” A Graça Barata e a Graça Custosa',
     categoria: 'Soteriologia',
-    subcategoria: 'Graça',
+    subcategoria: 'Soteriologia',
     conteudo: [
       'Bonhoeffer é célebre pela distinção entre "graça barata" e "graça custosa". A graça barata é a graça sem discipulado, sem cruz, sem Cristo vivo. Ã‰ perdão sem arrependimento, batismo sem comunidade.',
       'A graça custosa, por outro lado, é a graça que nos chama a seguir a Jesus. Ã‰ a graça que nos custa a vida, porque nos leva à cruz. Ã‰ a graça que transforma, não apenas perdão.',
@@ -8254,8 +8254,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-030',
     titulo: 'Dietrich Bonhoeffer —” Resistência ao Mal Institucionalizado',
-    categoria: 'Ã‰tica Cristã',
-    subcategoria: 'Resistência',
+    categoria: 'Questões Contemporâneas',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Bonhoeffer é exemplo histórico de resistência ao mal institucionalizado. Sua luta contra o nazismo não foi apenas política, mas teológica: o cristão não pode tolerar o mal sob nenhuma circunstância.',
       'Bonhoeffer ensinava que o silêncio diante do mal é conivência. A Igreja tem a responsabilidade de denunciar a injustiça e defender os oprimidos, mesmo quando isso custa a vida.',
@@ -8276,7 +8276,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-031',
     titulo: 'C.S. Lewis —” Dor e Sofrimento no Plano de Deus',
     categoria: 'Teologia Bíblica',
-    subcategoria: 'Sofrimento',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'C.S. Lewis (1898-1963) é um dos maiores apologistas cristãos do séc. XX. Em "Problemas do Sofrimento", ele aborda a questão da dor humana à luz da fé cristã, oferecendo uma resposta que combina razão e compaixão.',
       'Lewis argumenta que Deus permite o sofrimento porque Ele deseja que os seres humanos sejam livres. Uma criatura programada para o bem não seria realmente virtuosa, mas meramente mecânica.',
@@ -8292,7 +8292,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-032',
     titulo: 'C.S. Lewis —” A Razão da Fé Cristã',
     categoria: 'Apologetica',
-    subcategoria: 'Razão',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Lewis foi um racionalista convertido ao cristianismo, e dedicou sua vida a mostrar que a fé é razoável. Em "Credo", ele apresenta argumentos convincentes para a existência de Deus e a veracidade do cristianismo.',
       'Lewis argumentava que a razão é uma dádiva de Deus e deve ser usada para investigar a verdade. A fé não é irracional, mas supra-racional: vai além da razão sem a contradizer.',
@@ -8308,7 +8308,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-033',
     titulo: 'C.S. Lewis —” Milagres e o Sobrenatural',
     categoria: 'Apologetica',
-    subcategoria: 'Milagres',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Em "Milagres", Lewis defende a possibilidade lógica dos milagres contra o ceticismo moderno. Ele argumenta que a natureza não é um sistema fechado, mas aberto à intervenção do Criador.',
       'Lewis distingue entre milagres e feitiçaria. O milagre é uma suspensão da natureza pelo Criador; a feitiçaria é uma manipulação da natureza por forças malignas. Confundir ambos é um erro.',
@@ -8340,7 +8340,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-035',
     titulo: 'C.S. Lewis —” O Céu e a Realidade Eterna',
     categoria: 'Escatologia',
-    subcategoria: 'Céu',
+    subcategoria: 'Escatologia',
     conteudo: [
       'Lewis descreveu o céu de maneira vívida em "Pilares da Terra", imaginando-o como um lugar de intensa realidade e gozo. Para ele, o céu não é fuga da realidade, mas encontro com a realidade máxima.',
       'Para Lewis, o céu é onde Deus habita com Seu povo. Ã‰ o lar verdadeiro do ser humano, o lugar para o qual foi criado. Na terra somos exilados; no céu, finalmente em casa.',
@@ -8361,7 +8361,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-036',
     titulo: 'Tim Keller —” Fé e Cultura Contemporânea',
     categoria: 'Apologetica',
-    subcategoria: 'Cultura',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Tim Keller (1950-2023) foi um teólogo e pastor que dedicou sua vida a pensar como a fé cristã se relaciona com a cultura contemporânea. Para Keller, o cristão deve engajar a cultura, não fugir dela.',
       'Keller argumentava que o cristianismo não é uma subcultura, mas uma contracultura que desafia todas as culturas humanas. O evangelho transcende política, economia e sociedade.',
@@ -8377,7 +8377,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-037',
     titulo: 'Tim Keller —” Idolatria no Mundo Moderno',
     categoria: 'Teologia Bíblica',
-    subcategoria: 'Idolatria',
+    subcategoria: 'Hamartiologia',
     conteudo: [
       'Keller identificou a idolatria como o pecado central do mundo contemporâneo. Para ele, um ídolo é qualquer coisa que se torna mais importante que Deus na vida de uma pessoa.',
       'Keller argumentava que os ídolos modernos não são estátuas de metal, mas coisas aparentemente boas: sucesso, família, romance, poder, reconhecimento. Esses bens se tornam ídolos quando substituem Deus.',
@@ -8392,8 +8392,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-038',
     titulo: 'Tim Keller —” Justiça Social e o Evangelho',
-    categoria: 'Ã‰tica Cristã',
-    subcategoria: 'Justiça Social',
+    categoria: 'Questões Contemporâneas',
+    subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Keller foi um forte defensor da justiça social como dimensão essencial do evangelho. Para ele, a fé sem obras morta inclui compromisso com os pobres, oprimidos e marginalizados.',
       'Keller argumentava que a justiça social não é política partidária, mas imperativo bíblico. Deus é justo e ama a justiça, e seus seguidores devem refletir esse caráter.',
@@ -8408,8 +8408,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-039',
     titulo: 'Tim Keller —” O Perdão Radical no Evangelho',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Perdão',
+    categoria: 'Vida Crista',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Keller desenvolveu uma teologia do perdão que se enraíza na graça de Deus em Cristo. Para ele, o perdão cristão não é opção, mas imperativo decorrente da própria natureza do evangelho.',
       'Keller argumentava que o perdão é possível apenas quando compreendemos que nós mesmos fomos perdoados por Deus. A consciência da própria pecaminosidade é antídoto contra o ressentimento.',
@@ -8425,7 +8425,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-040',
     titulo: 'Tim Keller —” Urbanidade e Missão Urbana',
     categoria: 'Missiologia',
-    subcategoria: 'Missão Urbana',
+    subcategoria: 'Missiologia',
     conteudo: [
       'Keller foi um pioneiro na teologia da missão urbana, fundando a Redeemer Presbyterian Church em Nova York. Para ele, as cidades são campos missionários estratégicos do séc. XXI.',
       'Keller argumentava que as cidades concentram diversidade cultural, intelectual e econômica. Isso as torna locais ideais para o evangelismo e a pluração cultural.',
@@ -8445,8 +8445,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-041',
     titulo: 'Jonathan Edwards —” O Desejo de Deus como Fim Supremo',
-    categoria: 'Teologia Proper',
-    subcategoria: 'Desejo de Deus',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Jonathan Edwards (1703-1758) é considerado o maior teólogo americano. Para Edwards, o desejo de Deus é a essência da vida cristã: Deus criou o mundo para Sua glória e o ser humano para desfrutar Dele.',
       'Edwards argumentava que todos os desejos humanos são, em última instância, desejos de felicidade. Mas a felicidade verdadeira só se encontra em Deus. Buscar felicidade em qualquer coisa além de Deus é idolatria.',
@@ -8462,7 +8462,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-042',
     titulo: 'Jonathan Edwards —” Avivamento e a Presença Divina',
     categoria: 'Eclesiologia',
-    subcategoria: 'Avivamento',
+    subcategoria: 'História da Igreja',
     conteudo: [
       'Edwards foi o principal teólogo do Grande Desertamento (1730-1740), o primeiro avivamento de alcance nacional na América. Para ele, o avivamento é obra soberana do Espírito Santo.',
       'Edwards argumentava que o avivamento não é fabricado por técnicas humanas, mas derramado por Deus. A preparação espiritual, a oração e a pregação fiel são meios, mas o resultado é de Deus.',
@@ -8478,7 +8478,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-043',
     titulo: 'Jonathan Edwards —” A Natureza da Verdadeira Conversão',
     categoria: 'Soteriologia',
-    subcategoria: 'Conversão',
+    subcategoria: 'Soteriologia',
     conteudo: [
       'Edwards dedicou considerável estudo ao tema da conversão, distinguindo entre experiências religiosas genuínas e falsas. Para ele, a conversão verdadeira envolve transformação do coração, não apenas mudança de comportamento.',
       'Edwards argumentava que a conversão é obra do Espírito Santo, que ilumina a mente, inclina a vontade e transforma os afetos. O homem não pode se converter por suas próprias forças.',
@@ -8493,8 +8493,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-044',
     titulo: 'Jonathan Edwards —” A Beleza da Santidade',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Santidade',
+    categoria: 'Vida Crista',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Edwards via a santidade como a mais sublime beleza da criação. Para ele, a santidade de Deus é a fonte de toda a beleza, e a santidade do crente é reflexo dessa beleza divina.',
       'Edwards argumentava que a santidade não é conformidade a regras externas, mas transformação interior do caráter. O santo é aquele cujo coração foi transformado para amar o que Deus ama.',
@@ -8514,8 +8514,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-045',
     titulo: 'J.I. Packer —” Conhecer a Deus Pessoalmente',
-    categoria: 'Teologia Proper',
-    subcategoria: 'Conhecimento de Deus',
+    categoria: 'Doutrinas Fundamentais',
+    subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'J.I. Packer (1926-2020) é autor de "Conhecendo a Deus", obra que marcou gerações de cristãos. Para Packer, conhecer a Deus não é informação teológica, mas relação pessoal transformadora.',
       'Packer argumentava que o conhecimento de Deus começa na Escritura. Deus se revela por meio de Sua Palavra, e o estudo sério da Bíblia é o caminho para conhecer a Deus.',
@@ -8530,8 +8530,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   {
     id: 'novo-046',
     titulo: 'J.I. Packer —” A Orientação Divina na Vida do Crente',
-    categoria: 'Vida Cristã',
-    subcategoria: 'Orientação',
+    categoria: 'Vida Crista',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Packer dedicou considerável atenção ao tema da orientação divina, entendendo que muitos cristãos se confundem sobre como discernir a vontade de Deus. Para Packer, a orientação divina é real, mas exige maturidade.',
       'Packer argumentava que Deus guia principalmente através de Sua Palavra. As Escrituras fornecem princípios claros para decisões éticas e práticas. A Bíblia não é apenas livro de histórias, mas manual de vida.',
@@ -8547,7 +8547,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-047',
     titulo: 'J.I. Packer —” A Soberania de Deus e o Sofrimento Humano',
     categoria: 'Teologia Bíblica',
-    subcategoria: 'Sofrimento',
+    subcategoria: 'Vida Crista',
     conteudo: [
       'Packer abordou o tema do sofrimento à luz da soberania de Deus. Para ele, o sofrimento não é acidente fortuito, mas parte do plano soberano de Deus para o bem de Seu povo.',
       'Packer argumentava que a soberania de Deus não elimina o sofrimento, mas o coloca em contexto. O Deus soberano permite o sofrimento por razões que nem sempre compreendemos.',
@@ -8568,7 +8568,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-048',
     titulo: 'John Stott —” A Cruz de Cristo e a Reconciliação',
     categoria: 'Cristologia',
-    subcategoria: 'Cruz',
+    subcategoria: 'Cristologia',
     conteudo: [
       'John Stott (1921-2011) dedicou sua obra-prima "A Cruz de Cristo" ao estudo profundo do significado da morte de Jesus. Para Stott, a cruz é o centro de toda a fé cristã.',
       'Stott argumentava que a cruz é o meio de Deus para reconciliar consigo os pecadores rebeldes. A morte substitutiva de Cristo satisfaz a justiça divina e manifesta o amor divino.',
@@ -8584,7 +8584,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-049',
     titulo: 'John Stott —” A Autoridade da Escritura na Vida da Igreja',
     categoria: 'Doutrinas Fundamentais',
-    subcategoria: 'Escritura',
+    subcategoria: 'Bibliologia',
     conteudo: [
       'Stott foi um defensor convicto da autoridade bíblica, insistindo que a Escritura é a norma suprema de fé e prática para a Igreja. Para ele, sem autoridade bíblica, não há cristianismo.',
       'Stott argumentava que a autoridade da Bíblia não vem da Igreja, mas de Deus. A Escritura é Palavra de Deus, e por isso é autoritativa.',
@@ -8600,7 +8600,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     id: 'novo-050',
     titulo: 'John Stott —” A Missão da Igreja no Mundo',
     categoria: 'Missiologia',
-    subcategoria: 'Missão',
+    subcategoria: 'Missiologia',
     conteudo: [
       'Stott foi um dos principais líderes do movimento missionário contemporâneo, sendo co-fundador da Lausanne Movement. Para ele, a missão da Igreja é central, não periférica.',
       'Stott argumentava que a missão da Igreja é integral: evangelho e justiça são inseparáveis. A Igreja não pode pregar o evangelho sem compromisso com os pobres e oprimidos.',
@@ -12684,760 +12684,825 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
 
   // --- PNEUMATOLOGIA (expandido) ---
-  { id: 'pneum-001', titulo: 'A Terceira Pessoa da Trindade', categoria: 'Pneumatologia', subcategoria: 'Natureza do Espirito Santo', conteudo: ['O Espirito Santo e a terceira pessoa da Trindade, co-igual e co-eterno com o Pai e o Filho.', 'Ate o Concilio de Constantinopla (381 d.C.), muitos cristoes duvidavam da divindade do Espirito Santo.', 'O Credo Niceno-Constantinopolitano afirma que o Espirito Santo e Senhor e Doador da vida.', 'O Espirito Santo possui todas as qualidades divinas: onisciencia, onipresencia, onipotencia.', 'Em Atos 5:3-4, mentir ao Espirito Santo e mentir a Deus, confirmando Sua divindade.'], versicosChave: ['João 14:26', 'Atos 5:3-4', '1 Coríntios 12:4-6'], tags: ['espirito santo', 'trindade', 'divindade'], fontes: ['Teologia Sistematica - Grudem', 'Historia da Igreja - Justo Gonzalez'] },
-  { id: 'pneum-002', titulo: 'Os Dons do Espirito Santo', categoria: 'Pneumatologia', subcategoria: 'Dons Espirituais', conteudo: ['Os dons espirituais sao distribuidos pelo Espirito Santo segundo a Sua vontade.', 'Dons espirituais sao capacitacoes sobrenaturais dadas aos crentes para edificacao da igreja.', 'Diferente de talentos naturais, dons espirituais sao dados especificamente para servico na igreja.', 'Todos os crentes recebem pelo menos um don espiritual (1 Pedro 4:10).', 'Os dons nao sao para exaltacao pessoal, mas para o bem comum da comunidade cristã.'], versicosChave: ['1 Coríntios 12:4-11', '1 Pedro 4:10', 'Romanos 12:6-8'], tags: ['dons espirituais', 'carismas', 'edificacao'], fontes: ['Teologia do Novo Testamento - George Eldon Ladd'] },
-  { id: 'pneum-003', titulo: 'O Batismo no Espirito Santo', categoria: 'Pneumatologia', subcategoria: 'Experiencias Espirituais', conteudo: ['O batismo no Espirito Santo e uma experiencia unica que une o crente a Cristo.', 'Todos os crentes sao batizados no Espirito Santo no momento da conversao.', 'O batismo no Espirito Santo empodera a identidade do crente no corpo de Cristo.', 'A plenitude do Espirito e uma experiencia continua, nao apenas um evento unico.', 'O batismo no Espirito Santo capacita para testemunho e servico.'], versicosChave: ['Atos 2:4', '1 Coríntios 12:13', 'Efésios 5:18'], tags: ['batismo', 'espirito santo', 'pentecostes'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'pneum-004', titulo: 'O Fruto do Espirito Santo', categoria: 'Pneumatologia', subcategoria: 'Carater Cristao', conteudo: ['O fruto do Espirito Santo e o resultado natural da vida vivida em submissao ao Espirito.', 'Os nove frutos formam um todo integrado, nao virtudes isoladas.', 'Amor e o primeiro fruto, pois e a base de todos os outros.', 'O fruto do Espirito se desenvolve gradualmente ao longo da vida cristã.', 'Diferente dos dons, o fruto e produzido em todos os crentes.'], versicosChave: ['Gálatas 5:22-23', 'Romanos 8:9', 'Colossenses 1:10'], tags: ['fruto', 'carater', 'santificacao'], fontes: ['A Vida do Espirito - Watchman Nee'] },
-  { id: 'pneum-005', titulo: 'A Uncao do Espirito Santo', categoria: 'Pneumatologia', subcategoria: 'Ministerio', conteudo: ['A uncao do Espirito Santo capacita para ministerio profetico, sacerdotal e real.', 'Todos os crentes sao uncos pelo Espirito Santo.', 'A uncao nao e uma experiencia emocional, mas uma realidade espiritual.', 'A uncao do Espirito Santo e o que torna o ministerio eficaz.', 'A uncao pode ser perdida por desobediencia, mas restaurada por arrependimento.'], versicosChave: ['1 João 2:20', '2 Coríntios 1:21-22', '1 João 2:27'], tags: ['uncao', 'ministerio', 'capacitacao'], fontes: ['O Ministerio do Espirito Santo - Gordon Fee'] },
+  { id: 'pneum-001', titulo: 'A Terceira Pessoa da Trindade', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['O Espirito Santo e a terceira pessoa da Trindade, co-igual e co-eterno com o Pai e o Filho.', 'Ate o Concilio de Constantinopla (381 d.C.), muitos cristoes duvidavam da divindade do Espirito Santo.', 'O Credo Niceno-Constantinopolitano afirma que o Espirito Santo e Senhor e Doador da vida.', 'O Espirito Santo possui todas as qualidades divinas: onisciencia, onipresencia, onipotencia.', 'Em Atos 5:3-4, mentir ao Espirito Santo e mentir a Deus, confirmando Sua divindade.'], versicosChave: ['João 14:26', 'Atos 5:3-4', '1 Coríntios 12:4-6'], tags: ['espirito santo', 'trindade', 'divindade'], fontes: ['Teologia Sistematica - Grudem', 'Historia da Igreja - Justo Gonzalez'] },
+  { id: 'pneum-002', titulo: 'Os Dons do Espirito Santo', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['Os dons espirituais sao distribuidos pelo Espirito Santo segundo a Sua vontade.', 'Dons espirituais sao capacitacoes sobrenaturais dadas aos crentes para edificacao da igreja.', 'Diferente de talentos naturais, dons espirituais sao dados especificamente para servico na igreja.', 'Todos os crentes recebem pelo menos um don espiritual (1 Pedro 4:10).', 'Os dons nao sao para exaltacao pessoal, mas para o bem comum da comunidade cristã.'], versicosChave: ['1 Coríntios 12:4-11', '1 Pedro 4:10', 'Romanos 12:6-8'], tags: ['dons espirituais', 'carismas', 'edificacao'], fontes: ['Teologia do Novo Testamento - George Eldon Ladd'] },
+  { id: 'pneum-003', titulo: 'O Batismo no Espirito Santo', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['O batismo no Espirito Santo e uma experiencia unica que une o crente a Cristo.', 'Todos os crentes sao batizados no Espirito Santo no momento da conversao.', 'O batismo no Espirito Santo empodera a identidade do crente no corpo de Cristo.', 'A plenitude do Espirito e uma experiencia continua, nao apenas um evento unico.', 'O batismo no Espirito Santo capacita para testemunho e servico.'], versicosChave: ['Atos 2:4', '1 Coríntios 12:13', 'Efésios 5:18'], tags: ['batismo', 'espirito santo', 'pentecostes'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'pneum-004', titulo: 'O Fruto do Espirito Santo', categoria: 'Pneumatologia', subcategoria: 'Vida Crista', conteudo: ['O fruto do Espirito Santo e o resultado natural da vida vivida em submissao ao Espirito.', 'Os nove frutos formam um todo integrado, nao virtudes isoladas.', 'Amor e o primeiro fruto, pois e a base de todos os outros.', 'O fruto do Espirito se desenvolve gradualmente ao longo da vida cristã.', 'Diferente dos dons, o fruto e produzido em todos os crentes.'], versicosChave: ['Gálatas 5:22-23', 'Romanos 8:9', 'Colossenses 1:10'], tags: ['fruto', 'carater', 'santificacao'], fontes: ['A Vida do Espirito - Watchman Nee'] },
+  { id: 'pneum-005', titulo: 'A Uncao do Espirito Santo', categoria: 'Pneumatologia', subcategoria: 'Eclesiologia', conteudo: ['A uncao do Espirito Santo capacita para ministerio profetico, sacerdotal e real.', 'Todos os crentes sao uncos pelo Espirito Santo.', 'A uncao nao e uma experiencia emocional, mas uma realidade espiritual.', 'A uncao do Espirito Santo e o que torna o ministerio eficaz.', 'A uncao pode ser perdida por desobediencia, mas restaurada por arrependimento.'], versicosChave: ['1 João 2:20', '2 Coríntios 1:21-22', '1 João 2:27'], tags: ['uncao', 'ministerio', 'capacitacao'], fontes: ['O Ministerio do Espirito Santo - Gordon Fee'] },
   // --- ANGELOGIA ---
-  { id: 'angel-001', titulo: 'A Natureza dos Anjos', categoria: 'Angelologia', subcategoria: 'Seres Angelicais', conteudo: ['Anjos sao seres criados por Deus, espirituais e pessoais.', 'Foram criados antes da criacao do mundo.', 'Os anjos possuem inteligencia, emocoes e vontade propria.', 'Sao seres sobrenaturais com poderes que superam os humanos.', 'Os anjos nao se casam nem se reproduzem.'], versicosChave: ['Colossenses 1:16', 'Hebreus 1:14', 'Mateus 22:30'], tags: ['anjos', 'seres espirituais', 'criacao'], fontes: ['Teologia Sistematica - Millard Erickson'] },
-  { id: 'angel-002', titulo: 'A Hierarquia Angelical', categoria: 'Angelologia', subcategoria: 'Ordem Angelical', conteudo: ['A Escritura menciona diferentes ordens de anjos: serafins, querubins, arcanjos.', 'Serafins cercam o trono de Deus cantando Santo, santo, santo.', 'Querubins guardam o caminho da arvore da vida.', 'Miguel e o unico arcanjo mencionado pelo nome na Escritura.', 'Gabriel e o anjo mensageiro que anunciou o nascimento de Jesus.'], versicosChave: ['Isaías 6:1-3', 'Gênesis 3:24', 'Daniel 10:13'], tags: ['anjos', 'hierarquia', 'serafins', 'querubins'], fontes: ['Historia da Redencao - Louis Berkhof'] },
-  { id: 'angel-003', titulo: 'Anjos Mensageiros', categoria: 'Angelologia', subcategoria: 'Ministerio Angelical', conteudo: ['Anjos servem como mensageiros de Deus.', 'Gabriel anunciou o nascimento de João Batista e de Jesus.', 'Anjos anunciaram a ressurreição de Jesus às mulheres.', 'No AT, anjos visitaram Abraão, Lot e Jacob.', 'Os anjos do Senhor apareceram aos pastores para anunciar o nascimento de Jesus.'], versicosChave: ['Lucas 1:26-38', 'Mateus 28:5-7', 'Lucas 2:8-14'], tags: ['anjos', 'mensageiros', 'anuncio'], fontes: ['Comentario ao Antigo Testamento - Keil e Delitzsch'] },
-  { id: 'angel-004', titulo: 'Anjos Guerreiros', categoria: 'Angelologia', subcategoria: 'Protecao e Juizo', conteudo: ['Anjos agem como guerreiros de Deus para proteger e executar juizos.', 'O anjo do Senhor destruiu 185.000 soldados assirios.', 'Miguel liderou os anjos na batalha contra Satanias.', 'Os quatro cavaleiros do Apocalipse sao anjos que executam juizos.', 'Anjos protegem os crentes de perigos fisicos e espirituais.'], versicosChave: ['2 Reis 19:35', 'Apocalipse 12:7-9', 'Salmo 91:11-12'], tags: ['anjos', 'guerreiros', 'protecao', 'juizo'], fontes: ['Teologia do Antigo Testamento - J.I. Packer'] },
-  { id: 'angel-005', titulo: 'A Queda de Satanias e dos Anjos', categoria: 'Angelologia', subcategoria: 'Demonologia', conteudo: ['Satanias era um querubim perfeito ate a iniquidade corromper seu coração.', 'A queda de Satanias ocorreu antes da queda do homem.', 'Um terco dos anjos seguiram Satanias na rebeliao.', 'Os anjos caidos foram despojados de sua gloria e condenados eternamente.', 'Satanias e descrito como deus deste mundo e principe deste mundo.'], versicosChave: ['Ezequiel 28:15-17', 'Apocalipse 12:4', '2 Coríntios 4:4'], tags: ['satanias', 'queda', 'anjos caidos', 'demonios'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'angel-001', titulo: 'A Natureza dos Anjos', categoria: 'Angelologia', subcategoria: 'Angelologia', conteudo: ['Anjos sao seres criados por Deus, espirituais e pessoais.', 'Foram criados antes da criacao do mundo.', 'Os anjos possuem inteligencia, emocoes e vontade propria.', 'Sao seres sobrenaturais com poderes que superam os humanos.', 'Os anjos nao se casam nem se reproduzem.'], versicosChave: ['Colossenses 1:16', 'Hebreus 1:14', 'Mateus 22:30'], tags: ['anjos', 'seres espirituais', 'criacao'], fontes: ['Teologia Sistematica - Millard Erickson'] },
+  { id: 'angel-002', titulo: 'A Hierarquia Angelical', categoria: 'Angelologia', subcategoria: 'Angelologia', conteudo: ['A Escritura menciona diferentes ordens de anjos: serafins, querubins, arcanjos.', 'Serafins cercam o trono de Deus cantando Santo, santo, santo.', 'Querubins guardam o caminho da arvore da vida.', 'Miguel e o unico arcanjo mencionado pelo nome na Escritura.', 'Gabriel e o anjo mensageiro que anunciou o nascimento de Jesus.'], versicosChave: ['Isaías 6:1-3', 'Gênesis 3:24', 'Daniel 10:13'], tags: ['anjos', 'hierarquia', 'serafins', 'querubins'], fontes: ['Historia da Redencao - Louis Berkhof'] },
+  { id: 'angel-003', titulo: 'Anjos Mensageiros', categoria: 'Angelologia', subcategoria: 'Angelologia', conteudo: ['Anjos servem como mensageiros de Deus.', 'Gabriel anunciou o nascimento de João Batista e de Jesus.', 'Anjos anunciaram a ressurreição de Jesus às mulheres.', 'No AT, anjos visitaram Abraão, Lot e Jacob.', 'Os anjos do Senhor apareceram aos pastores para anunciar o nascimento de Jesus.'], versicosChave: ['Lucas 1:26-38', 'Mateus 28:5-7', 'Lucas 2:8-14'], tags: ['anjos', 'mensageiros', 'anuncio'], fontes: ['Comentario ao Antigo Testamento - Keil e Delitzsch'] },
+  { id: 'angel-004', titulo: 'Anjos Guerreiros', categoria: 'Angelologia', subcategoria: 'Escatologia', conteudo: ['Anjos agem como guerreiros de Deus para proteger e executar juizos.', 'O anjo do Senhor destruiu 185.000 soldados assirios.', 'Miguel liderou os anjos na batalha contra Satanias.', 'Os quatro cavaleiros do Apocalipse sao anjos que executam juizos.', 'Anjos protegem os crentes de perigos fisicos e espirituais.'], versicosChave: ['2 Reis 19:35', 'Apocalipse 12:7-9', 'Salmo 91:11-12'], tags: ['anjos', 'guerreiros', 'protecao', 'juizo'], fontes: ['Teologia do Antigo Testamento - J.I. Packer'] },
+  { id: 'angel-005', titulo: 'A Queda de Satanias e dos Anjos', categoria: 'Angelologia', subcategoria: 'Angelologia', conteudo: ['Satanias era um querubim perfeito ate a iniquidade corromper seu coração.', 'A queda de Satanias ocorreu antes da queda do homem.', 'Um terco dos anjos seguiram Satanias na rebeliao.', 'Os anjos caidos foram despojados de sua gloria e condenados eternamente.', 'Satanias e descrito como deus deste mundo e principe deste mundo.'], versicosChave: ['Ezequiel 28:15-17', 'Apocalipse 12:4', '2 Coríntios 4:4'], tags: ['satanias', 'queda', 'anjos caidos', 'demonios'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
   // --- DEMONOLOGIA ---
-  { id: 'demon-001', titulo: 'A Natureza dos Demonios', categoria: 'Demonologia', subcategoria: 'Seres Demoniacos', conteudo: ['Demonios sao anjos caidos que seguiram Satanias na rebeliao contra Deus.', 'Sao seres espirituais inteligentes, pessoais e malevolos.', 'Os demonios buscam enganar, destruir e contrariar a obra de Deus.', 'Podem possuir e oprimir pessoas.', 'Os demonios temem o nome de Jesus e se submetem ao poder de Deus.'], versicosChave: ['Tiago 2:19', 'Marcos 5:1-20', 'Efésios 6:12'], tags: ['demonios', 'anjos caidos', 'opressao', 'possessao'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'demon-002', titulo: 'A Batalha Espiritual', categoria: 'Demonologia', subcategoria: 'Guerra Espiritual', conteudo: ['A batalha espiritual nao e contra carne e sangue, mas contra principados e potestades.', 'A armadura de Deus e nossa defesa na batalha espiritual.', 'A oracao e a arma principal na guerra espiritual.', 'O nome de Jesus tem autoridade sobre todo demonio.', 'Vencemos pela fé em Cristo, nao por forcas proprias.'], versicosChave: ['Efésios 6:12', 'Efésios 6:13-18', 'Lucas 10:17'], tags: ['guerra espiritual', 'armadura', 'autoridade'], fontes: ['Batalha Espiritual - C. Fred Dickason'] },
+  { id: 'demon-001', titulo: 'A Natureza dos Demonios', categoria: 'Angelologia', subcategoria: 'Angelologia', conteudo: ['Demonios sao anjos caidos que seguiram Satanias na rebeliao contra Deus.', 'Sao seres espirituais inteligentes, pessoais e malevolos.', 'Os demonios buscam enganar, destruir e contrariar a obra de Deus.', 'Podem possuir e oprimir pessoas.', 'Os demonios temem o nome de Jesus e se submetem ao poder de Deus.'], versicosChave: ['Tiago 2:19', 'Marcos 5:1-20', 'Efésios 6:12'], tags: ['demonios', 'anjos caidos', 'opressao', 'possessao'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'demon-002', titulo: 'A Batalha Espiritual', categoria: 'Angelologia', subcategoria: 'Angelologia', conteudo: ['A batalha espiritual nao e contra carne e sangue, mas contra principados e potestades.', 'A armadura de Deus e nossa defesa na batalha espiritual.', 'A oracao e a arma principal na guerra espiritual.', 'O nome de Jesus tem autoridade sobre todo demonio.', 'Vencemos pela fé em Cristo, nao por forcas proprias.'], versicosChave: ['Efésios 6:12', 'Efésios 6:13-18', 'Lucas 10:17'], tags: ['guerra espiritual', 'armadura', 'autoridade'], fontes: ['Batalha Espiritual - C. Fred Dickason'] },
   // --- HAMARTIOLOGIA ---
-  { id: 'hamart-001', titulo: 'A Natureza do Pecado', categoria: 'Hamartiologia', subcategoria: 'Doutrina do Pecado', conteudo: ['Pecado e qualquer coisa que contradiz a natureza perfeita de Deus.', 'O pecado original entrou no mundo pela desobediencia de Adão e Eva.', 'Todos os humanos nascem com a natureza pecaminosa.', 'O pecado nao e apenas acoes externas, mas tambem pensamentos do coração.', 'O pecado separa o homem de Deus e exige expiacao.'], versicosChave: ['Romanos 3:23', 'Gênesis 3:1-7', 'Isaías 59:2'], tags: ['pecado', 'natureza humana', 'queda'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
-  { id: 'hamart-002', titulo: 'O Pecado Original', categoria: 'Hamartiologia', subcategoria: 'Hereditariedade do Pecado', conteudo: ['O pecado original nao se refere ao primeiro pecado de Adão, mas a sua consequencia.', 'Todos os humanos herdam a natureza pecaminosa de Adão.', 'O pecado original nos inclina ao pecado.', 'Apenas Jesus Cristo nao teve pecado original.', 'O batismo simboliza a morte ao pecado original.'], versicosChave: ['Romanos 5:12-21', 'Salmo 51:5', 'Efésios 2:3'], tags: ['pecado original', 'hereditariedade'], fontes: ['Teologia Sistematica - Charles Hodge'] },
-  { id: 'hamart-003', titulo: 'Os Tipos de Pecado', categoria: 'Hamartiologia', subcategoria: 'Classificacao', conteudo: ['Pecado de comissao: quando fazemos o que Deus proibiu.', 'Pecado de omissao: quando deixamos de fazer o que Deus ordenou.', 'Pecado de pensamento: pecados internos que precedem acoes.', 'Pecado mortal: leva a morte espiritual e separacao eterna.', 'Pecado venial: falhas que nao destroem a relacao com Deus.'], versicosChave: ['1 João 3:4', 'Tiago 4:17', 'Mateus 5:28'], tags: ['tipos de pecado', 'comissao', 'omissao'], fontes: ['Etica Crista - John Stott'] },
+  { id: 'hamart-001', titulo: 'A Natureza do Pecado', categoria: 'Hamartiologia', subcategoria: 'Antropologia', conteudo: ['Pecado e qualquer coisa que contradiz a natureza perfeita de Deus.', 'O pecado original entrou no mundo pela desobediencia de Adão e Eva.', 'Todos os humanos nascem com a natureza pecaminosa.', 'O pecado nao e apenas acoes externas, mas tambem pensamentos do coração.', 'O pecado separa o homem de Deus e exige expiacao.'], versicosChave: ['Romanos 3:23', 'Gênesis 3:1-7', 'Isaías 59:2'], tags: ['pecado', 'natureza humana', 'queda'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
+  { id: 'hamart-002', titulo: 'O Pecado Original', categoria: 'Hamartiologia', subcategoria: 'Antropologia', conteudo: ['O pecado original nao se refere ao primeiro pecado de Adão, mas a sua consequencia.', 'Todos os humanos herdam a natureza pecaminosa de Adão.', 'O pecado original nos inclina ao pecado.', 'Apenas Jesus Cristo nao teve pecado original.', 'O batismo simboliza a morte ao pecado original.'], versicosChave: ['Romanos 5:12-21', 'Salmo 51:5', 'Efésios 2:3'], tags: ['pecado original', 'hereditariedade'], fontes: ['Teologia Sistematica - Charles Hodge'] },
+  { id: 'hamart-003', titulo: 'Os Tipos de Pecado', categoria: 'Hamartiologia', subcategoria: 'Bibliologia', conteudo: ['Pecado de comissao: quando fazemos o que Deus proibiu.', 'Pecado de omissao: quando deixamos de fazer o que Deus ordenou.', 'Pecado de pensamento: pecados internos que precedem acoes.', 'Pecado mortal: leva a morte espiritual e separacao eterna.', 'Pecado venial: falhas que nao destroem a relacao com Deus.'], versicosChave: ['1 João 3:4', 'Tiago 4:17', 'Mateus 5:28'], tags: ['tipos de pecado', 'comissao', 'omissao'], fontes: ['Etica Crista - John Stott'] },
   // --- CRISTOLOGIA ---
-  { id: 'crist-001', titulo: 'A Dupla Natureza de Cristo', categoria: 'Cristologia', subcategoria: 'Natureza de Cristo', conteudo: ['Jesus Cristo e plenamente Deus e plenamente homem.', 'A natureza divina e humana estao unidas em uma unica pessoa.', 'O Concilio de Calcedonia definiu a uniao hipostatica.', 'Jesus era completamente humano: sentia fome, sede e dor.', 'Jesus era completamente Deus: perdoava pecados e controlava a natureza.'], versicosChave: ['João 1:14', 'Colossenses 2:9', 'Filipenses 2:5-8'], tags: ['cristologia', 'natureza divina', 'natureza humana'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'crist-002', titulo: 'A Obra Redentora de Cristo', categoria: 'Cristologia', subcategoria: 'Salvacao', conteudo: ['A morte de Jesus na cruz foi substituicao vicaria.', 'A ressurreicao prova Sua vitória sobre a morte.', 'A ascensao prepara o lugar para os crentes.', 'A intercessao garante a salvacao dos santos.', 'A segunda vinda completara a obra redentora.'], versicosChave: ['1 Coríntios 15:3-4', 'Romanos 5:8', 'Hebreus 7:25'], tags: ['redencao', 'cruz', 'ressurreicao'], fontes: ['A Cruz de Cristo - John Stott'] },
+  { id: 'crist-001', titulo: 'A Dupla Natureza de Cristo', categoria: 'Cristologia', subcategoria: 'Cristologia', conteudo: ['Jesus Cristo e plenamente Deus e plenamente homem.', 'A natureza divina e humana estao unidas em uma unica pessoa.', 'O Concilio de Calcedonia definiu a uniao hipostatica.', 'Jesus era completamente humano: sentia fome, sede e dor.', 'Jesus era completamente Deus: perdoava pecados e controlava a natureza.'], versicosChave: ['João 1:14', 'Colossenses 2:9', 'Filipenses 2:5-8'], tags: ['cristologia', 'natureza divina', 'natureza humana'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'crist-002', titulo: 'A Obra Redentora de Cristo', categoria: 'Cristologia', subcategoria: 'Soteriologia', conteudo: ['A morte de Jesus na cruz foi substituicao vicaria.', 'A ressurreicao prova Sua vitória sobre a morte.', 'A ascensao prepara o lugar para os crentes.', 'A intercessao garante a salvacao dos santos.', 'A segunda vinda completara a obra redentora.'], versicosChave: ['1 Coríntios 15:3-4', 'Romanos 5:8', 'Hebreus 7:25'], tags: ['redencao', 'cruz', 'ressurreicao'], fontes: ['A Cruz de Cristo - John Stott'] },
   // --- SOTERIOLOGIA ---
-  { id: 'soter-001', titulo: 'A Justificacao pela Fe', categoria: 'Soteriologia', subcategoria: 'Doutrina da Salvacao', conteudo: ['Justificacao e o ato de Deus de declarar justo o pecador pela fe.', 'A justificacao e por graça somente, nao por obras.', 'A fe e o meio, nao a causa meritoria.', 'A justificacao e completa e instantanea.', 'A justificacao inclui perdao e imputacao da justiça de Cristo.'], versicosChave: ['Romanos 3:24-28', 'Efésios 2:8-9', 'Gálatas 2:16'], tags: ['justificacao', 'fe', 'graça'], fontes: ['A Teologia da Reforma - Alister McGrath'] },
-  { id: 'soter-002', titulo: 'A Regeneracao', categoria: 'Soteriologia', subcategoria: 'Renascimento Espiritual', conteudo: ['Regeneracao e a obra do Espirito Santo que transforma o pecador.', 'O renascimento e necessario para entrar no Reino de Deus.', 'A regeneracao e um ato soberano de Deus.', 'A regeneracao produz uma nova criatura.', 'A regeneracao e o fundamento da perseveranca.'], versicosChave: ['João 3:3-5', 'Tito 3:5', '2 Coríntios 5:17'], tags: ['regeneracao', 'renascimento'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'soter-003', titulo: 'A Adocao', categoria: 'Soteriologia', subcategoria: 'Identidade Cristã', conteudo: ['Adocao e o ato de Deus de receber o pecador como filho.', 'A adocao e um presente da graça de Deus.', 'Recebemos todos os direitos de filhos de Deus.', 'O Espirito Santo testemunha que somos filhos.', 'A adocao completa sera revelada na ressurreicao.'], versicosChave: ['Efésios 1:5', 'Romanos 8:15-17', 'Gálatas 4:4-7'], tags: ['adocao', 'filhos de deus'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
+  { id: 'soter-001', titulo: 'A Justificacao pela Fe', categoria: 'Soteriologia', subcategoria: 'Soteriologia', conteudo: ['Justificacao e o ato de Deus de declarar justo o pecador pela fe.', 'A justificacao e por graça somente, nao por obras.', 'A fe e o meio, nao a causa meritoria.', 'A justificacao e completa e instantanea.', 'A justificacao inclui perdao e imputacao da justiça de Cristo.'], versicosChave: ['Romanos 3:24-28', 'Efésios 2:8-9', 'Gálatas 2:16'], tags: ['justificacao', 'fe', 'graça'], fontes: ['A Teologia da Reforma - Alister McGrath'] },
+  { id: 'soter-002', titulo: 'A Regeneracao', categoria: 'Soteriologia', subcategoria: 'Vida Crista', conteudo: ['Regeneracao e a obra do Espirito Santo que transforma o pecador.', 'O renascimento e necessario para entrar no Reino de Deus.', 'A regeneracao e um ato soberano de Deus.', 'A regeneracao produz uma nova criatura.', 'A regeneracao e o fundamento da perseveranca.'], versicosChave: ['João 3:3-5', 'Tito 3:5', '2 Coríntios 5:17'], tags: ['regeneracao', 'renascimento'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'soter-003', titulo: 'A Adocao', categoria: 'Soteriologia', subcategoria: 'Antropologia', conteudo: ['Adocao e o ato de Deus de receber o pecador como filho.', 'A adocao e um presente da graça de Deus.', 'Recebemos todos os direitos de filhos de Deus.', 'O Espirito Santo testemunha que somos filhos.', 'A adocao completa sera revelada na ressurreicao.'], versicosChave: ['Efésios 1:5', 'Romanos 8:15-17', 'Gálatas 4:4-7'], tags: ['adocao', 'filhos de deus'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
   // --- ESCATOLOGIA ---
-  { id: 'escat-001', titulo: 'A Segunda Vinda de Cristo', categoria: 'Escatologia', subcategoria: 'Parousia', conteudo: ['Jesus Cristo voltara gloriamente para julgar os vivos e os mortos.', 'A segunda vinda e visivel para todos.', 'Ninguém sabe o dia nem a hora.', 'A segunda vinta estabelecera o Reino milenar.', 'Os sinais incluem guerras, fomes e terremotes.'], versicosChave: ['Atos 1:11', 'Mateus 24:36', '1 Tessalonicenses 4:16-17'], tags: ['segunda vinda', 'parousia', 'millenio'], fontes: ['Teologia do Novo Testamento - George Eldon Ladd'] },
-  { id: 'escat-002', titulo: 'O Julgamento Final', categoria: 'Escatologia', subcategoria: 'Juizo', conteudo: ['Todos comparecerão perante o tribunal de Cristo.', 'O julgamento separara crentes e incrédulos eternamente.', 'Os crentes serao julgados pelas obras para recompensa.', 'Os incrédulos serao condenados ao lago de fogo.', 'O julgamento demonstra a justiça de Deus.'], versicosChave: ['2 Coríntios 5:10', 'Mateus 25:31-46', 'Apocalipse 20:11-15'], tags: ['juizo final', 'recompensa', 'condenacao'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'escat-001', titulo: 'A Segunda Vinda de Cristo', categoria: 'Escatologia', subcategoria: 'Escatologia', conteudo: ['Jesus Cristo voltara gloriamente para julgar os vivos e os mortos.', 'A segunda vinda e visivel para todos.', 'Ninguém sabe o dia nem a hora.', 'A segunda vinta estabelecera o Reino milenar.', 'Os sinais incluem guerras, fomes e terremotes.'], versicosChave: ['Atos 1:11', 'Mateus 24:36', '1 Tessalonicenses 4:16-17'], tags: ['segunda vinda', 'parousia', 'millenio'], fontes: ['Teologia do Novo Testamento - George Eldon Ladd'] },
+  { id: 'escat-002', titulo: 'O Julgamento Final', categoria: 'Escatologia', subcategoria: 'Escatologia', conteudo: ['Todos comparecerão perante o tribunal de Cristo.', 'O julgamento separara crentes e incrédulos eternamente.', 'Os crentes serao julgados pelas obras para recompensa.', 'Os incrédulos serao condenados ao lago de fogo.', 'O julgamento demonstra a justiça de Deus.'], versicosChave: ['2 Coríntios 5:10', 'Mateus 25:31-46', 'Apocalipse 20:11-15'], tags: ['juizo final', 'recompensa', 'condenacao'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
   // --- ECLESIOLOGIA ---
-  { id: 'ecles-001', titulo: 'A Natureza da Igreja', categoria: 'Eclesiologia', subcategoria: 'Definicao', conteudo: ['A igreja e a comunidade universal de crentes em Cristo.', 'A igreja visivel inclui todas as congregações locais.', 'A igreja invisivel inclui todos os verdadeiros crentes.', 'A igreja e o corpo de Cristo.', 'A igreja e a noiva de Cristo.'], versicosChave: ['Efésios 1:22-23', 'Apocalipse 19:7-9', 'Mateus 16:18'], tags: ['igreja', 'corpo de cristo'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'ecles-002', titulo: 'Os Sacramentos', categoria: 'Eclesiologia', subcategoria: 'Ordenancas', conteudo: ['Baptismo e a ordenanca que simboliza morte e ressurreição com Cristo.', 'A Ceia simboliza comunhão com Cristo e uns com os outros.', 'Os sacramentos nao sao meios automaticos de graça.', 'O baptismo e para crentes professos.', 'A Ceia deve ser celebrada regularmente.'], versicosChave: ['Mateus 28:19', '1 Coríntios 11:24-26', 'Romanos 6:3-4'], tags: ['baptismo', 'ceia', 'sacramentos'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
+  { id: 'ecles-001', titulo: 'A Natureza da Igreja', categoria: 'Eclesiologia', subcategoria: 'Apologetica', conteudo: ['A igreja e a comunidade universal de crentes em Cristo.', 'A igreja visivel inclui todas as congregações locais.', 'A igreja invisivel inclui todos os verdadeiros crentes.', 'A igreja e o corpo de Cristo.', 'A igreja e a noiva de Cristo.'], versicosChave: ['Efésios 1:22-23', 'Apocalipse 19:7-9', 'Mateus 16:18'], tags: ['igreja', 'corpo de cristo'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'ecles-002', titulo: 'Os Sacramentos', categoria: 'Eclesiologia', subcategoria: 'Eclesiologia', conteudo: ['Baptismo e a ordenanca que simboliza morte e ressurreição com Cristo.', 'A Ceia simboliza comunhão com Cristo e uns com os outros.', 'Os sacramentos nao sao meios automaticos de graça.', 'O baptismo e para crentes professos.', 'A Ceia deve ser celebrada regularmente.'], versicosChave: ['Mateus 28:19', '1 Coríntios 11:24-26', 'Romanos 6:3-4'], tags: ['baptismo', 'ceia', 'sacramentos'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
   // --- APOLOGETICA ---
-  { id: 'apol-001', titulo: 'A Existencia de Deus', categoria: 'Apologetica', subcategoria: 'Argumentos', conteudo: ['O argumento cosmologico: tudo que comeca tem uma causa.', 'O universo comcou a existir, portanto tem uma causa.', 'A causa deve ser eterna, atemporal e poderosa.', 'O argumento teleologico: ordem e proposito no universo.', 'A probabilidade da vida por acaso e impossível.'], versicosChave: ['Romanos 1:20', 'Gênesis 1:1', 'Hebreus 11:3'], tags: ['existencia de deus', 'cosmologico'], fontes: ['Mere Christianity - C.S. Lewis'] },
-  { id: 'apol-002', titulo: 'A Resurreição de Jesus', categoria: 'Apologetica', subcategoria: 'Evidencias', conteudo: ['A ressurreição e o fato mais bem documentado da historia antiga.', 'Mais de 500 pessoas testemunharam.', 'A teoria do roubo nao explica as aparições.', 'A teoria da alucinacao nao explica as aparições em grupo.', 'A transformação dos discípulos prova a ressurreição.'], versicosChave: ['1 Coríntios 15:3-8', 'Mateus 28:5-7', 'Lucas 24:36-49'], tags: ['ressurreicao', 'evidencia historica'], fontes: ['A Ressurreição do Filho de Deus - N.T. Wright'] },
+  { id: 'apol-001', titulo: 'A Existencia de Deus', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['O argumento cosmologico: tudo que comeca tem uma causa.', 'O universo comcou a existir, portanto tem uma causa.', 'A causa deve ser eterna, atemporal e poderosa.', 'O argumento teleologico: ordem e proposito no universo.', 'A probabilidade da vida por acaso e impossível.'], versicosChave: ['Romanos 1:20', 'Gênesis 1:1', 'Hebreus 11:3'], tags: ['existencia de deus', 'cosmologico'], fontes: ['Mere Christianity - C.S. Lewis'] },
+  { id: 'apol-002', titulo: 'A Resurreição de Jesus', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['A ressurreição e o fato mais bem documentado da historia antiga.', 'Mais de 500 pessoas testemunharam.', 'A teoria do roubo nao explica as aparições.', 'A teoria da alucinacao nao explica as aparições em grupo.', 'A transformação dos discípulos prova a ressurreição.'], versicosChave: ['1 Coríntios 15:3-8', 'Mateus 28:5-7', 'Lucas 24:36-49'], tags: ['ressurreicao', 'evidencia historica'], fontes: ['A Ressurreição do Filho de Deus - N.T. Wright'] },
   // --- ETICA CRISTA ---
-  { id: 'etica-001', titulo: 'A Etica do Amor', categoria: 'Etica Crista', subcategoria: 'Virtude', conteudo: ['O amor e o cumprimento da lei.', 'O amor cristao inclui amor a Deus e ao proximo.', 'Jesus ensinou a amar os inimigos.', 'O amor nao busca o proprio interesse.', 'O amor e a marca dos discípulos.'], versicosChave: ['1 Coríntios 13:1-13', 'Mateus 22:37-40', 'João 13:35'], tags: ['amor', 'mandamento', 'virtude'], fontes: ['O Carater do Cristiano - J.C. Ryle'] },
-  { id: 'etica-002', titulo: 'A Veracidade na Comunicacao', categoria: 'Etica Crista', subcategoria: 'Verdade', conteudo: ['Mentir e abominavel aos olhos de Deus.', 'A verdade deve ser dita com amor.', 'A mentira e caracteristica do diabo.', 'A honestidade e fundamental para a comunhão cristã.', 'Devemos ser verazes mesmo quando custoso.'], versicosChave: ['Efésios 4:15', 'João 8:44', 'Provérbios 12:22'], tags: ['verdade', 'honestidade'], fontes: ['Etica Crista - John Stott'] },
+  { id: 'etica-001', titulo: 'A Etica do Amor', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['O amor e o cumprimento da lei.', 'O amor cristao inclui amor a Deus e ao proximo.', 'Jesus ensinou a amar os inimigos.', 'O amor nao busca o proprio interesse.', 'O amor e a marca dos discípulos.'], versicosChave: ['1 Coríntios 13:1-13', 'Mateus 22:37-40', 'João 13:35'], tags: ['amor', 'mandamento', 'virtude'], fontes: ['O Carater do Cristiano - J.C. Ryle'] },
+  { id: 'etica-002', titulo: 'A Veracidade na Comunicacao', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['Mentir e abominavel aos olhos de Deus.', 'A verdade deve ser dita com amor.', 'A mentira e caracteristica do diabo.', 'A honestidade e fundamental para a comunhão cristã.', 'Devemos ser verazes mesmo quando custoso.'], versicosChave: ['Efésios 4:15', 'João 8:44', 'Provérbios 12:22'], tags: ['verdade', 'honestidade'], fontes: ['Etica Crista - John Stott'] },
   // --- MISSIOLOGIA ---
-  { id: 'miss-001', titulo: 'O Mandamento Missional', categoria: 'Missiologia', subcategoria: 'Grande Comissao', conteudo: ['A Grande Comissao e o mandamento central da missão cristã.', 'Devemos fazer discípulos de todas as nações.', 'O baptismo e a primeira obediência do discípulo.', 'A missão inclui evangelização e ensino.', 'A igreja primitiva foi intensamente missionária.'], versicosChave: ['Mateus 28:19-20', 'Atos 1:8', 'Romanos 10:14-15'], tags: ['missao', 'grande comissao', 'evangelismo'], fontes: ['A Igreja Missional - Ed Stetzer'] },
+  { id: 'miss-001', titulo: 'O Mandamento Missional', categoria: 'Missiologia', subcategoria: 'Missiologia', conteudo: ['A Grande Comissao e o mandamento central da missão cristã.', 'Devemos fazer discípulos de todas as nações.', 'O baptismo e a primeira obediência do discípulo.', 'A missão inclui evangelização e ensino.', 'A igreja primitiva foi intensamente missionária.'], versicosChave: ['Mateus 28:19-20', 'Atos 1:8', 'Romanos 10:14-15'], tags: ['missao', 'grande comissao', 'evangelismo'], fontes: ['A Igreja Missional - Ed Stetzer'] },
   // --- VIDA CRISTA ---
-  { id: 'vida-001', titulo: 'A Oração na Vida Cristã', categoria: 'Vida Crista', subcategoria: 'Comunhão', conteudo: ['A oracao e o meio de comunhão direta com Deus.', 'Jesus era um homem de oração constante.', 'A oracao deve ser feita em fé.', 'Devemos orar sem cessar.', 'A oracao nos transforma mais do que as circunstâncias.'], versicosChave: ['Mateus 6:5-15', '1 Tessalonicenses 5:17', 'Tiago 5:16'], tags: ['oracao', 'comunhao', 'fe'], fontes: ['A Oração - E.M. Bounds'] },
-  { id: 'vida-002', titulo: 'A Leitura da Escritura', categoria: 'Vida Crista', subcategoria: 'Alimento Espiritual', conteudo: ['A Escritura e o alimento espiritual do crente.', 'Devemos estudar a Escritura diariamente.', 'A Escritura e inspirada e proveitosa.', 'A meditação na Palavra traz paz e sabedoria.', 'A Escritura e viva e eficaz.'], versicosChave: ['2 Timóteo 3:16-17', 'Salmo 1:1-3', 'Hebreus 4:12'], tags: ['escritura', 'estudo', 'meditacao'], fontes: ['Como Ler a Bíblia - Gordon Fee'] },
-  { id: 'vida-003', titulo: 'O Serviço Cristão', categoria: 'Vida Crista', subcategoria: 'Ministerio', conteudo: ['Todo crente e chamado para servir.', 'O serviço e motivado pelo amor e gratidão.', 'Jesus serviu como exemplo.', 'O maior na igreja e o servo de todos.', 'O serviço deve ser feito com humildade.'], versicosChave: ['Marcos 10:43-45', '1 Pedro 4:10', 'Gálatas 5:13'], tags: ['servico', 'ministerio', 'humildade'], fontes: ['O Carater do Cristiano - J.C. Ryle'] },
+  { id: 'vida-001', titulo: 'A Oração na Vida Cristã', categoria: 'Vida Crista', subcategoria: 'Eclesiologia', conteudo: ['A oracao e o meio de comunhão direta com Deus.', 'Jesus era um homem de oração constante.', 'A oracao deve ser feita em fé.', 'Devemos orar sem cessar.', 'A oracao nos transforma mais do que as circunstâncias.'], versicosChave: ['Mateus 6:5-15', '1 Tessalonicenses 5:17', 'Tiago 5:16'], tags: ['oracao', 'comunhao', 'fe'], fontes: ['A Oração - E.M. Bounds'] },
+  { id: 'vida-002', titulo: 'A Leitura da Escritura', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A Escritura e o alimento espiritual do crente.', 'Devemos estudar a Escritura diariamente.', 'A Escritura e inspirada e proveitosa.', 'A meditação na Palavra traz paz e sabedoria.', 'A Escritura e viva e eficaz.'], versicosChave: ['2 Timóteo 3:16-17', 'Salmo 1:1-3', 'Hebreus 4:12'], tags: ['escritura', 'estudo', 'meditacao'], fontes: ['Como Ler a Bíblia - Gordon Fee'] },
+  { id: 'vida-003', titulo: 'O Serviço Cristão', categoria: 'Vida Crista', subcategoria: 'Eclesiologia', conteudo: ['Todo crente e chamado para servir.', 'O serviço e motivado pelo amor e gratidão.', 'Jesus serviu como exemplo.', 'O maior na igreja e o servo de todos.', 'O serviço deve ser feito com humildade.'], versicosChave: ['Marcos 10:43-45', '1 Pedro 4:10', 'Gálatas 5:13'], tags: ['servico', 'ministerio', 'humildade'], fontes: ['O Carater do Cristiano - J.C. Ryle'] },
   // --- TEOLOGIA BIBLICA ---
-  { id: 'teobib-001', titulo: 'O Reino de Deus', categoria: 'Teologia Biblica', subcategoria: 'Tema Central', conteudo: ['O Reino de Deus e o tema central da pregação de Jesus.', 'O Reino e presente e futuro.', 'O Reino e o governo soberano de Deus.', 'Entrar no Reino requer arrependimento e fé.', 'O Reino se expande pela palavra de Deus.'], versicosChave: ['Mateus 6:33', 'Marcos 1:15', 'Lucas 17:20-21'], tags: ['reino de deus', 'soberania'], fontes: ['Teologia do Novo Testamento - George Eldon Ladd'] },
+  { id: 'teobib-001', titulo: 'O Reino de Deus', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['O Reino de Deus e o tema central da pregação de Jesus.', 'O Reino e presente e futuro.', 'O Reino e o governo soberano de Deus.', 'Entrar no Reino requer arrependimento e fé.', 'O Reino se expande pela palavra de Deus.'], versicosChave: ['Mateus 6:33', 'Marcos 1:15', 'Lucas 17:20-21'], tags: ['reino de deus', 'soberania'], fontes: ['Teologia do Novo Testamento - George Eldon Ladd'] },
   // --- TEOLOGIA PROPER ---
-  { id: 'teoprop-001', titulo: 'A Onisciência de Deus', categoria: 'Teologia Proper', subcategoria: 'Atributos', conteudo: ['Deus sabe todas as coisas, passado, presente e futuro.', 'A onisciência inclui conhecimento de todas as possibilidades.', 'Nada pode esconder-se de Deus.', 'Deus nos conhece antes de nascermos.', 'A onisciência traz consolo e segurança.'], versicosChave: ['Salmo 139:1-4', 'Hebreus 4:13', '1 João 3:20'], tags: ['onisciencia', 'conhecimento de deus'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'teoprop-002', titulo: 'A Onipotência de Deus', categoria: 'Teologia Proper', subcategoria: 'Atributos', conteudo: ['Deus e todo-poderoso e pode fazer tudo consistente com a Sua natureza.', 'Deus criou o universo do nada.', 'Deus sustenta todas as coisas.', 'Nada e impossível para Deus.', 'A onipotência nao inclui o absurdo.'], versicosChave: ['Jeremias 32:17', 'Lucas 1:37', 'Hebreus 1:3'], tags: ['onipotencia', 'poder de deus'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
+  { id: 'teoprop-001', titulo: 'A Onisciência de Deus', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['Deus sabe todas as coisas, passado, presente e futuro.', 'A onisciência inclui conhecimento de todas as possibilidades.', 'Nada pode esconder-se de Deus.', 'Deus nos conhece antes de nascermos.', 'A onisciência traz consolo e segurança.'], versicosChave: ['Salmo 139:1-4', 'Hebreus 4:13', '1 João 3:20'], tags: ['onisciencia', 'conhecimento de deus'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'teoprop-002', titulo: 'A Onipotência de Deus', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['Deus e todo-poderoso e pode fazer tudo consistente com a Sua natureza.', 'Deus criou o universo do nada.', 'Deus sustenta todas as coisas.', 'Nada e impossível para Deus.', 'A onipotência nao inclui o absurdo.'], versicosChave: ['Jeremias 32:17', 'Lucas 1:37', 'Hebreus 1:3'], tags: ['onipotencia', 'poder de deus'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
   // --- TEOLOGIA HISTORICA ---
-  { id: 'teohist-001', titulo: 'A Reforma Protestante', categoria: 'Historia da Igreja', subcategoria: 'Reforma', conteudo: ['Lutero pregou as 95 teses em 1517 contra as indulgencias.', 'Os 5 solas: Sola Scriptura, Sola Fide, Sola Gratia, Solus Christus, Soli Deo Gloria.', 'Calvino desenvolveu a teologia da soberania de Deus.', 'Zwinglio reformou Zurich e enfatizou a Ceia.', 'A Reforma transformou a teologia, a liturgia e a sociedade.'], versicosChave: ['Efésios 2:8-9', 'Romanos 3:28', '2 Timóteo 3:16'], tags: ['reforma', 'lutero', 'calvino', 'solas'], fontes: ['Historia da Reforma - Alister McGrath'] },
-  { id: 'teohist-002', titulo: 'A Historia dos Pais da Igreja', categoria: 'Historia da Igreja', subcategoria: 'Patristica', conteudo: ['Agostinho (354-430) desenvolveu a doutrina da graça e do pecado original.', 'Atanásio defendeu a divindade de Cristo contra o arianismo.', 'Jerônimo traduziu a Bíblia para o latim (Vulgata).', 'Basilio, Gregorio de Nazianzo e Gregorio de Nissa formam os Capadócios.', 'Ireneu combateu as heresias e escreveu Contra as Heresias.'], versicosChave: ['João 1:1', 'Romanos 5:12', 'Efésios 2:8'], tags: ['pais da igreja', 'patristica', 'agostinho'], fontes: ['Historia da Igreja - Justo Gonzalez'] },
+  { id: 'teohist-001', titulo: 'A Reforma Protestante', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['Lutero pregou as 95 teses em 1517 contra as indulgencias.', 'Os 5 solas: Sola Scriptura, Sola Fide, Sola Gratia, Solus Christus, Soli Deo Gloria.', 'Calvino desenvolveu a teologia da soberania de Deus.', 'Zwinglio reformou Zurich e enfatizou a Ceia.', 'A Reforma transformou a teologia, a liturgia e a sociedade.'], versicosChave: ['Efésios 2:8-9', 'Romanos 3:28', '2 Timóteo 3:16'], tags: ['reforma', 'lutero', 'calvino', 'solas'], fontes: ['Historia da Reforma - Alister McGrath'] },
+  { id: 'teohist-002', titulo: 'A Historia dos Pais da Igreja', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['Agostinho (354-430) desenvolveu a doutrina da graça e do pecado original.', 'Atanásio defendeu a divindade de Cristo contra o arianismo.', 'Jerônimo traduziu a Bíblia para o latim (Vulgata).', 'Basilio, Gregorio de Nazianzo e Gregorio de Nissa formam os Capadócios.', 'Ireneu combateu as heresias e escreveu Contra as Heresias.'], versicosChave: ['João 1:1', 'Romanos 5:12', 'Efésios 2:8'], tags: ['pais da igreja', 'patristica', 'agostinho'], fontes: ['Historia da Igreja - Justo Gonzalez'] },
   // --- MUSICOLOGIA ---
-  { id: 'musico-001', titulo: 'A Adoração na Escritura', categoria: 'Teologia Biblica', subcategoria: 'Adoracao', conteudo: ['A adoracao e o proposito principal da criacao humana.', 'Jesus ensinou que devemos adorar em espirito e verdade.', 'O Salmo 150 mostra a diversidade da adoracao no AT.', 'A adoracao inclui louvor, oração, ofertas e leitura da Palavra.', 'A adoracao e um estilo de vida, nao apenas um evento.'], versicosChave: ['João 4:23-24', 'Salmo 150', 'Romanos 12:1'], tags: ['adoracao', 'louvor', 'liturgia'], fontes: ['Teologia da Adoração - Robert Webber'] },
+  { id: 'musico-001', titulo: 'A Adoração na Escritura', categoria: 'Teologia Bíblica', subcategoria: 'Vida Crista', conteudo: ['A adoracao e o proposito principal da criacao humana.', 'Jesus ensinou que devemos adorar em espirito e verdade.', 'O Salmo 150 mostra a diversidade da adoracao no AT.', 'A adoracao inclui louvor, oração, ofertas e leitura da Palavra.', 'A adoracao e um estilo de vida, nao apenas um evento.'], versicosChave: ['João 4:23-24', 'Salmo 150', 'Romanos 12:1'], tags: ['adoracao', 'louvor', 'liturgia'], fontes: ['Teologia da Adoração - Robert Webber'] },
   // --- HARMONOLOGIA ---
-  { id: 'harmon-001', titulo: 'A Harmonia dos Evangelhos', categoria: 'Estudos Comparativos', subcategoria: 'Harmonia', conteudo: ['Mateus, Marcos e Lucas sao sinopticos; João e diferente.', 'Marcos e o evangelho mais curto e possivelmente o mais antigo.', 'Mateus enfatiza Jesus como o Messias prometido.', 'Lucas enfatiza Jesus como o Salvador universal.', 'João enfatiza a divindade de Cristo e teologias profundas.'], versicosChave: ['Mateus 1:1', 'Marcos 1:1', 'Lucas 1:1-4', 'João 1:1-18'], tags: ['evangelhos', 'sinopticos', 'harmonia'], fontes: ['Introdução ao NT - D.A. Carson'] },
+  { id: 'harmon-001', titulo: 'A Harmonia dos Evangelhos', categoria: 'Estudos Comparativos', subcategoria: 'Estudos Comparativos', conteudo: ['Mateus, Marcos e Lucas sao sinopticos; João e diferente.', 'Marcos e o evangelho mais curto e possivelmente o mais antigo.', 'Mateus enfatiza Jesus como o Messias prometido.', 'Lucas enfatiza Jesus como o Salvador universal.', 'João enfatiza a divindade de Cristo e teologias profundas.'], versicosChave: ['Mateus 1:1', 'Marcos 1:1', 'Lucas 1:1-4', 'João 1:1-18'], tags: ['evangelhos', 'sinopticos', 'harmonia'], fontes: ['Introdução ao NT - D.A. Carson'] },
   // --- LITERARIA ---
-  { id: 'liter-001', titulo: 'A Poesia Hebraica', categoria: 'Literatura Biblica', subcategoria: 'Generos Literarios', conteudo: ['A poesia hebraica usa paralelismo: sinônimo, antitetico e sintetico.', 'Salmos, Provérbios e Cantares sao livros poeticos.', 'O paralelismo antitetico contrapoe ideias opostas.', 'A poesia hebraica expressa emocoes profundas de louvor e lamento.', 'A estrutura do acrostico e comum nos Salmos.'], versicosChave: ['Salmo 1:1-6', 'Provérbios 10:1', 'Cantares 2:1'], tags: ['poesia', 'paralelismo', 'salmos'], fontes: ['Introdução ao AT - E.J. Young'] },
+  { id: 'liter-001', titulo: 'A Poesia Hebraica', categoria: 'Bibliologia', subcategoria: 'Bibliologia', conteudo: ['A poesia hebraica usa paralelismo: sinônimo, antitetico e sintetico.', 'Salmos, Provérbios e Cantares sao livros poeticos.', 'O paralelismo antitetico contrapoe ideias opostas.', 'A poesia hebraica expressa emocoes profundas de louvor e lamento.', 'A estrutura do acrostico e comum nos Salmos.'], versicosChave: ['Salmo 1:1-6', 'Provérbios 10:1', 'Cantares 2:1'], tags: ['poesia', 'paralelismo', 'salmos'], fontes: ['Introdução ao AT - E.J. Young'] },
   // --- BIOGRAFIA ---
-  { id: 'biog-001', titulo: 'A Vida de Paulo', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['Paulo nasceu em Tarso e foi educado como fariseu.', 'Perseguiu a igreja antes de sua conversão dramática.', 'Realizou tres viagens missionarias documentadas em Atos.', 'Escreveu 13 epistolas no Novo Testamento.', 'Foi martirizado em Roma, possivelmente sob Nero.'], versicosChave: ['Atos 9:1-19', 'Filipenses 3:4-11', '2 Timóteo 4:6-8'], tags: ['paulo', 'apostolo', 'missionario'], fontes: ['A Vida de Paulo - F.F. Bruce'] },
+  { id: 'biog-001', titulo: 'A Vida de Paulo', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Paulo nasceu em Tarso e foi educado como fariseu.', 'Perseguiu a igreja antes de sua conversão dramática.', 'Realizou tres viagens missionarias documentadas em Atos.', 'Escreveu 13 epistolas no Novo Testamento.', 'Foi martirizado em Roma, possivelmente sob Nero.'], versicosChave: ['Atos 9:1-19', 'Filipenses 3:4-11', '2 Timóteo 4:6-8'], tags: ['paulo', 'apostolo', 'missionario'], fontes: ['A Vida de Paulo - F.F. Bruce'] },
   // --- HERMENEUTICA (expandido) ---
-  { id: 'herm-001', titulo: 'Os Principios da Hermenêutica', categoria: 'Hermenêutica', subcategoria: 'Fundamentos', conteudo: ['A hermeneutica e a ciência de interpretar a Escritura.', 'O contexto immediate, book e canonico e importante.', 'Devemos considerar o genero literário.', 'A interpretação deve ser literal quando a Escritura permite.', 'O Espirito Santo ilumina a Escritura para os crentes.'], versicosChave: ['2 Timóteo 2:15', '2 Pedro 1:20-21', 'Salmo 119:18'], tags: ['hermeneutica', 'interpretacao', 'contexto'], fontes: ['How to Read the Bible for All Its Worth - Gordon Fee'] },
+  { id: 'herm-001', titulo: 'Os Principios da Hermenêutica', categoria: 'Hermenêutica', subcategoria: 'Vida Crista', conteudo: ['A hermeneutica e a ciência de interpretar a Escritura.', 'O contexto immediate, book e canonico e importante.', 'Devemos considerar o genero literário.', 'A interpretação deve ser literal quando a Escritura permite.', 'O Espirito Santo ilumina a Escritura para os crentes.'], versicosChave: ['2 Timóteo 2:15', '2 Pedro 1:20-21', 'Salmo 119:18'], tags: ['hermeneutica', 'interpretacao', 'contexto'], fontes: ['How to Read the Bible for All Its Worth - Gordon Fee'] },
   // --- LINGUISTICA ---
-  { id: 'ling-001', titulo: 'O Hebraico Bíblico', categoria: 'Linguas Biblicas', subcategoria: 'Antigo Testamento', conteudo: ['O hebraico e a lingua do Antigo Testamento.', 'Usa o alfabeto hebraico com 22 consonantes.', 'O hebraico e lido da direita para a esquerda.', 'O verbo hebraico nao tem tempo, mas aspecto.', 'O lexico Strong contem 8674 entradas hebraicas.'], versicosChave: ['Gênesis 1:1', 'Salmo 119:105', 'Provérbios 31:1'], tags: ['hebraico', 'lingua', 'alfabeto'], fontes: ['Gramática do Hebraico - Joüon-Muraoka'] },
-  { id: 'ling-002', titulo: 'O Grego Koiné', categoria: 'Linguas Biblicas', subcategoria: 'Novo Testamento', conteudo: ['O grego koiné e a lingua do Novo Testamento.', 'E uma forma simplificada do grego classico.', 'O NT usa cerca de 5.400 palavras gregas unicas.', 'O lexico Strong contem 5526 entradas gregas.', 'Paulo e Lucas eram fluentes em grego.'], versicosChave: ['João 1:1', 'Efésios 2:8', '1 Coríntios 15:3'], tags: ['grego', 'koiné', 'lingua'], fontes: ['Gramática do Grego - Daniel Wallace'] },
+  { id: 'ling-001', titulo: 'O Hebraico Bíblico', categoria: 'Bibliologia', subcategoria: 'Teologia Bíblica', conteudo: ['O hebraico e a lingua do Antigo Testamento.', 'Usa o alfabeto hebraico com 22 consonantes.', 'O hebraico e lido da direita para a esquerda.', 'O verbo hebraico nao tem tempo, mas aspecto.', 'O lexico Strong contem 8674 entradas hebraicas.'], versicosChave: ['Gênesis 1:1', 'Salmo 119:105', 'Provérbios 31:1'], tags: ['hebraico', 'lingua', 'alfabeto'], fontes: ['Gramática do Hebraico - Joüon-Muraoka'] },
+  { id: 'ling-002', titulo: 'O Grego Koiné', categoria: 'Bibliologia', subcategoria: 'Teologia Bíblica', conteudo: ['O grego koiné e a lingua do Novo Testamento.', 'E uma forma simplificada do grego classico.', 'O NT usa cerca de 5.400 palavras gregas unicas.', 'O lexico Strong contem 5526 entradas gregas.', 'Paulo e Lucas eram fluentes em grego.'], versicosChave: ['João 1:1', 'Efésios 2:8', '1 Coríntios 15:3'], tags: ['grego', 'koiné', 'lingua'], fontes: ['Gramática do Grego - Daniel Wallace'] },
   // --- ARQUEOLOGIA ---
-  { id: 'arqueo-001', titulo: 'Evidencias Arqueológicas da Bíblia', categoria: 'Historia da Igreja', subcategoria: 'Arqueologia', conteudo: ['A Tableta de Mesha confirma a menção de Omri, rei de Israel.', 'A Inscrição de Pilatos confirma Pôncio Pilatos.', 'As Rolos do Mar Morto contêm livros do AT.', 'A Estela de Merneptá confirma a existência de Israel em 1208 a.C.', 'Arqueologia confirma detalhes históricos dos Evangelhos.'], versicosChave: ['Lucas 3:1', 'Atos 18:12', '1 Reis 16:23'], tags: ['arqueologia', 'evidencia', 'historia'], fontes: ['A Arqueologia e a Bíblia - John Finegan'] },
+  { id: 'arqueo-001', titulo: 'Evidencias Arqueológicas da Bíblia', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['A Tableta de Mesha confirma a menção de Omri, rei de Israel.', 'A Inscrição de Pilatos confirma Pôncio Pilatos.', 'As Rolos do Mar Morto contêm livros do AT.', 'A Estela de Merneptá confirma a existência de Israel em 1208 a.C.', 'Arqueologia confirma detalhes históricos dos Evangelhos.'], versicosChave: ['Lucas 3:1', 'Atos 18:12', '1 Reis 16:23'], tags: ['arqueologia', 'evidencia', 'historia'], fontes: ['A Arqueologia e a Bíblia - John Finegan'] },
   // --- FILOSOFIA CRISTA ---
-  { id: 'filo-001', titulo: 'A Verdade Absoluta', categoria: 'Apologetica', subcategoria: 'Filosofia', conteudo: ['A Bíblia afirma a existência de verdade absoluta.', 'O relativismo contradiz a propria afirmação de verdade.', 'Jesus disse Eu sou a verdade (João 14:6).', 'A verdade absoluta e objetiva, nao depende de opiniões.', 'Devemos buscar e proclamar a verdade com amor.'], versicosChave: ['João 14:6', 'João 8:32', '1 João 1:8'], tags: ['verdade', 'filosofia', 'relativismo'], fontes: ['A Verdade Cristã - Norman Geisler'] },
+  { id: 'filo-001', titulo: 'A Verdade Absoluta', categoria: 'Apologetica', subcategoria: 'Questões Contemporâneas', conteudo: ['A Bíblia afirma a existência de verdade absoluta.', 'O relativismo contradiz a propria afirmação de verdade.', 'Jesus disse Eu sou a verdade (João 14:6).', 'A verdade absoluta e objetiva, nao depende de opiniões.', 'Devemos buscar e proclamar a verdade com amor.'], versicosChave: ['João 14:6', 'João 8:32', '1 João 1:8'], tags: ['verdade', 'filosofia', 'relativismo'], fontes: ['A Verdade Cristã - Norman Geisler'] },
   // --- PSICOLOGIA BIBLICA ---
-  { id: 'psico-001', titulo: 'A Saude Mental na Bíblia', categoria: 'Vida Crista', subcategoria: 'Saude', conteudo: ['A Bíblia reconhece a realidade da depressão e ansiedade.', 'Davi experimentou profunda tristeza e desespero.', 'Jesus oferece paz que excede todo entendimento.', 'A comunhão cristã e essencial para a saude emocional.', 'A oracao e um meio de alivio da ansiedade.'], versicosChave: ['Filipenses 4:6-7', 'Salmo 42:11', '1 Pedro 5:7'], tags: ['saude mental', 'depressao', 'ansiedade', 'paz'], fontes: ['A Bíblia e a Saúde Mental - Eric Johnson'] },
+  { id: 'psico-001', titulo: 'A Saude Mental na Bíblia', categoria: 'Vida Crista', subcategoria: 'Questões Contemporâneas', conteudo: ['A Bíblia reconhece a realidade da depressão e ansiedade.', 'Davi experimentou profunda tristeza e desespero.', 'Jesus oferece paz que excede todo entendimento.', 'A comunhão cristã e essencial para a saude emocional.', 'A oracao e um meio de alivio da ansiedade.'], versicosChave: ['Filipenses 4:6-7', 'Salmo 42:11', '1 Pedro 5:7'], tags: ['saude mental', 'depressao', 'ansiedade', 'paz'], fontes: ['A Bíblia e a Saúde Mental - Eric Johnson'] },
   // --- ECOLOGIA CRISTA ---
-  { id: 'eco-001', titulo: 'A Criação e o Cuidado Ambiental', categoria: 'Etica Crista', subcategoria: 'Ambiente', conteudo: ['Deus confiou ao homem o cuidado da criação (Gênesis 2:15).', 'A criação glorifica a Deus (Salmo 19:1).', 'O pecado afetou toda a criação (Romanos 8:22).', 'A restauração incluira a renovacao da criação (Apocalipse 21:1).', 'Devemos ser mordomos responsáveis da criação.'], versicosChave: ['Gênesis 2:15', 'Salmo 19:1', 'Apocalipse 21:1'], tags: ['ecologia', 'criacao', 'ambiente'], fontes: ['Ecologia e Teologia - Steven Bouma-Prediger'] },
+  { id: 'eco-001', titulo: 'A Criação e o Cuidado Ambiental', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['Deus confiou ao homem o cuidado da criação (Gênesis 2:15).', 'A criação glorifica a Deus (Salmo 19:1).', 'O pecado afetou toda a criação (Romanos 8:22).', 'A restauração incluira a renovacao da criação (Apocalipse 21:1).', 'Devemos ser mordomos responsáveis da criação.'], versicosChave: ['Gênesis 2:15', 'Salmo 19:1', 'Apocalipse 21:1'], tags: ['ecologia', 'criacao', 'ambiente'], fontes: ['Ecologia e Teologia - Steven Bouma-Prediger'] },
   // --- JUSTICA SOCIAL ---
-  { id: 'just-001', titulo: 'A Justiça Social na Bíblia', categoria: 'Etica Crista', subcategoria: 'Justiça', conteudo: ['Deus ama a justiça e odeia a injustiça.', 'Os profetas condenaram a exploração dos pobres.', 'Jesus identificou-se com os marginalizados.', 'A igreja primitiva praticou generosidade radical.', 'A justiça social e expressão do amor ao proximo.'], versicosChave: ['Miquéias 6:8', 'Mateus 25:35-40', 'Tiago 1:27'], tags: ['justiça social', 'pobres', 'generosidade'], fontes: ['Justiça Cristã - Timothy Keller'] },
+  { id: 'just-001', titulo: 'A Justiça Social na Bíblia', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['Deus ama a justiça e odeia a injustiça.', 'Os profetas condenaram a exploração dos pobres.', 'Jesus identificou-se com os marginalizados.', 'A igreja primitiva praticou generosidade radical.', 'A justiça social e expressão do amor ao proximo.'], versicosChave: ['Miquéias 6:8', 'Mateus 25:35-40', 'Tiago 1:27'], tags: ['justiça social', 'pobres', 'generosidade'], fontes: ['Justiça Cristã - Timothy Keller'] },
   // --- LIDERANCA CRISTA ---
-  { id: 'lid-001', titulo: 'Principios de Liderança Bíblica', categoria: 'Eclesiologia', subcategoria: 'Liderança', conteudo: ['A liderança cristã e baseada no servicio, nao no poder.', 'Jesus lavou os pes dos discípulos como exemplo.', 'Os anciãos devem ser aptos para ensinar.', 'A liderança deve ser exercida com humildade.', 'O exemplo e mais poderoso que as palavras.'], versicosChave: ['João 13:14-15', '1 Timóteo 3:1-7', '1 Pedro 5:2-3'], tags: ['liderança', 'servicio', 'ancião'], fontes: ['Liderança Crista - John Maxwell'] },
+  { id: 'lid-001', titulo: 'Principios de Liderança Bíblica', categoria: 'Eclesiologia', subcategoria: 'Vida Crista', conteudo: ['A liderança cristã e baseada no servicio, nao no poder.', 'Jesus lavou os pes dos discípulos como exemplo.', 'Os anciãos devem ser aptos para ensinar.', 'A liderança deve ser exercida com humildade.', 'O exemplo e mais poderoso que as palavras.'], versicosChave: ['João 13:14-15', '1 Timóteo 3:1-7', '1 Pedro 5:2-3'], tags: ['liderança', 'servicio', 'ancião'], fontes: ['Liderança Crista - John Maxwell'] },
   // --- FAMILIA CRISTA ---
-  { id: 'fam-001', titulo: 'O Casamento Bíblico', categoria: 'Vida Crista', subcategoria: 'Familia', conteudo: ['O casamento foi instituído por Deus no Gênesis.', 'O marido e a mulher se tornam uma carne.', 'Cristo e a cabeça da igreja, o marido da esposa.', 'O amor conjugal deve ser como o de Cristo pela igreja.', 'A fidelidade no casamento e sagrada.'], versicosChave: ['Gênesis 2:24', 'Efésios 5:25-33', 'Hebreus 13:4'], tags: ['casamento', 'familia', 'amor'], fontes: ['O Casamento - Tim Keller'] },
+  { id: 'fam-001', titulo: 'O Casamento Bíblico', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['O casamento foi instituído por Deus no Gênesis.', 'O marido e a mulher se tornam uma carne.', 'Cristo e a cabeça da igreja, o marido da esposa.', 'O amor conjugal deve ser como o de Cristo pela igreja.', 'A fidelidade no casamento e sagrada.'], versicosChave: ['Gênesis 2:24', 'Efésios 5:25-33', 'Hebreus 13:4'], tags: ['casamento', 'familia', 'amor'], fontes: ['O Casamento - Tim Keller'] },
   // --- MUSICA CRISTA ---
-  { id: 'mus-001', titulo: 'A Historia da Musica na Igreja', categoria: 'Historia da Igreja', subcategoria: 'Musica', conteudo: ['A musica tem raizes no AT com Davi e os salmos.', 'O canto gregoriano dominou a Idade Média.', 'Lutero introduziu hinos na lingua do povo.', 'Wesley revolucionou o himnario protestante.', 'A adoração contemporânea busca relevancia cultural.'], versicosChave: ['Colossenses 3:16', 'Efésios 5:19', 'Salmo 150'], tags: ['musica', 'hinos', 'adoracao'], fontes: ['Historia da Musica Cristã - Robert Weber'] },
+  { id: 'mus-001', titulo: 'A Historia da Musica na Igreja', categoria: 'História da Igreja', subcategoria: 'Vida Crista', conteudo: ['A musica tem raizes no AT com Davi e os salmos.', 'O canto gregoriano dominou a Idade Média.', 'Lutero introduziu hinos na lingua do povo.', 'Wesley revolucionou o himnario protestante.', 'A adoração contemporânea busca relevancia cultural.'], versicosChave: ['Colossenses 3:16', 'Efésios 5:19', 'Salmo 150'], tags: ['musica', 'hinos', 'adoracao'], fontes: ['Historia da Musica Cristã - Robert Weber'] },
   // --- EDUCAÇÃO CRISTA ---
-  { id: 'edu-001', titulo: 'A Educação na Bíblia', categoria: 'Vida Crista', subcategoria: 'Educacao', conteudo: ['Deus mandou ensinar a Palavra diligentemente.', 'Oshéa usou imagens da natureza para ensinar.', 'Jesus usou parabolas como metodo de ensino.', 'Paulo exortou Timóteo a estudar bem.', 'A educação cristã deve ser integral e prática.'], versicosChave: ['Deuteronômio 6:6-9', 'Mateus 13:34', '2 Timóteo 2:15'], tags: ['educacao', 'ensino', 'discipulado'], fontes: ['Educacao Crista - G.K. Beale'] },
+  { id: 'edu-001', titulo: 'A Educação na Bíblia', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Deus mandou ensinar a Palavra diligentemente.', 'Oshéa usou imagens da natureza para ensinar.', 'Jesus usou parabolas como metodo de ensino.', 'Paulo exortou Timóteo a estudar bem.', 'A educação cristã deve ser integral e prática.'], versicosChave: ['Deuteronômio 6:6-9', 'Mateus 13:34', '2 Timóteo 2:15'], tags: ['educacao', 'ensino', 'discipulado'], fontes: ['Educacao Crista - G.K. Beale'] },
   // --- EMPREENDEDORISMO CRISTA ---
-  { id: 'emp-001', titulo: 'Trabalho e Vocação', categoria: 'Vida Crista', subcategoria: 'Trabalho', conteudo: ['O trabalho e uma benção de Deus, nao uma maldição.', 'Jesus era carpinteiro antes de iniciar ministerio.', 'Paulo trabalhou como fabricante de tendas.', 'Devemos trabalhar como para o Senhor.', 'A honestidade no trabalho testemunha a fé.'], versicosChave: ['Colossenses 3:23', '1 Tessalonicenses 4:11', 'Provérbios 14:23'], tags: ['trabalho', 'vocacao', 'honestidade'], fontes: ['O Chamado do Trabalho - Tim Keller'] },
+  { id: 'emp-001', titulo: 'Trabalho e Vocação', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['O trabalho e uma benção de Deus, nao uma maldição.', 'Jesus era carpinteiro antes de iniciar ministerio.', 'Paulo trabalhou como fabricante de tendas.', 'Devemos trabalhar como para o Senhor.', 'A honestidade no trabalho testemunha a fé.'], versicosChave: ['Colossenses 3:23', '1 Tessalonicenses 4:11', 'Provérbios 14:23'], tags: ['trabalho', 'vocacao', 'honestidade'], fontes: ['O Chamado do Trabalho - Tim Keller'] },
 
 
   // --- BATCH 2: Mais 200+ estudos ---
   // --- TEMAS POR LIVRO ---
-  { id: 'livro-132', titulo: 'A Criação em Gênesis 1', categoria: 'Temas por Livro', subcategoria: 'Genese', conteudo: ['Deus criou tudo pela Sua palavra.', 'A criação foi gradual e ordenada.', 'O homem foi criado à imagem de Deus.', 'Deus viu que tudo era muito bom.', 'O descanso no sétimo dia estabelece o padrão semanal.'], versicosChave: ['Gênesis 1:1-31', 'Gênesis 2:1-3'], tags: ['genesis', 'criacao', 'imagem de deus'], fontes: ['Comentario ao Gênesis - Gordon Wenham'] },
-  { id: 'livro-133', titulo: 'A Queda do Homem em Gênesis 3', categoria: 'Temas por Livro', subcategoria: 'Genese', conteudo: ['A serpente enganou Eva com mentiras.', 'Adão e Eva desobedeceram ao mandamento de Deus.', 'O pecado trouxe vergonha e medo.', 'Deus prometeu um redentor que esmagaria a serpente.', 'A maldição afetou a terra, o trabalho e o parto.'], versicosChave: ['Gênesis 3:1-24'], tags: ['genesis', 'queda', 'pecado', 'promessa'], fontes: ['Comentario ao Gênesis - Bruce Waltke'] },
-  { id: 'livro-134', titulo: 'A Aliança com Noé', categoria: 'Temas por Livro', subcategoria: 'Genese', conteudo: ['O diluvio foi um juizo sobre a corrupção humana.', 'Noé encontrou graça aos olhos do Senhor.', 'Deus fez uma aliança de não mais destruir com diluvio.', 'O arco-íris é o sinal da aliança.', 'Deus abençoou Noé e seus filhos.'], versicosChave: ['Gênesis 6:5-9:17'], tags: ['genesis', 'alianca', 'diluvio', 'noe'], fontes: ['Comentario ao Gênesis - Victor Hamilton'] },
-  { id: 'livro-135', titulo: 'A Vida de Abraão', categoria: 'Temas por Livro', subcategoria: 'Genese', conteudo: ['Abraão obedeceu à chamada de Deus para sair de Ur.', 'Deus fez uma aliança com Abraão de bênção para todas as nações.', 'A fé de Abraão foi creditada como justiça.', 'O sacrifício de Isaac testou a fé de Abraão.', 'Abraão é chamado de amigo de Deus.'], versicosChave: ['Gênesis 12:1-3', 'Gênesis 15:6', 'Gênesis 22:1-19'], tags: ['genesis', 'abraao', 'alianca', 'fe'], fontes: ['Comentario ao Gênesis - Nahum Sarna'] },
-  { id: 'livro-136', titulo: 'José e a Providência de Deus', categoria: 'Temas por Livro', subcategoria: 'Genese', conteudo: ['José foi vendido pelos próprios irmãos.', 'Deus usou o sofrimento de José para prepará-lo.', 'José perdoou seus irmãos e sustentou a família.', 'A frase-chave: Vocês pensaram o mal, mas Deus o tornou em bem.', 'José é um tipo de Cristo.'], versicosChave: ['Gênesis 37:1-50:26', 'Gênesis 50:20'], tags: ['genesis', 'jose', 'perdao', 'providencia'], fontes: ['Comentario ao Gênesis - Derek Kidner'] },
-  { id: 'livro-137', titulo: 'O Êxodo e a Libertação', categoria: 'Temas por Livro', subcategoria: 'Exodo', conteudo: ['Deus ouviu o clamor de Israel no Egito.', 'As dez pragas demonstraram o poder de Deus.', 'O cordeiro pascal é tipo de Cristo.', 'O mar Vermelho se abriu para libertar o povo.', 'O Sinai estabeleceu a aliança e a lei.'], versicosChave: ['Êxodo 3:7-8', 'Êxodo 12:1-14', 'Êxodo 14:21-31'], tags: ['exodo', 'libertacao', 'cordeiro pascal', 'mar vermelho'], fontes: ['Comentario ao Êxodo - Douglas Stuart'] },
-  { id: 'livro-138', titulo: 'Os Dez Mandamentos', categoria: 'Temas por Livro', subcategoria: 'Exodo', conteudo: ['Os mandamentos revelam a vontade santa de Deus.', 'O primeiro mandamento proíbe ídolos.', 'O quarto mandamento ordena o descanso semanal.', 'Os mandamentos são baseados no amor a Deus e ao próximo.', 'Jesus resumiu os mandamentos em dois.'], versicosChave: ['Êxodo 20:1-17', 'Mateus 22:37-40'], tags: ['exodo', 'mandamentos', 'lei', 'lei moral'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'livro-139', titulo: 'O Tabernáculo', categoria: 'Temas por Livro', subcategoria: 'Exodo', conteudo: ['O tabernáculo era o lugar da presença de Deus.', 'Seu desenho revela verdades sobre Cristo.', 'O véu separava o Santo dos Santos.', 'A arca da aliança representava o trono de Deus.', 'Os sacrifícios apontavam para o sacrifício final de Cristo.'], versicosChave: ['Êxodo 25:8-9', 'Hebreus 9:1-14'], tags: ['exodo', 'tabernaculo', 'sacrificio'], fontes: ['O Tabernáculo e Seu Serviço - John Currid'] },
-  { id: 'livro-140', titulo: 'A Conquista de Canaã', categoria: 'Temas por Livro', subcategoria: 'Josue', conteudo: ['Deus cumpriu a promessa de dar a terra a Israel.', 'Josué liderou o povo com coragem e fé.', 'A queda de Jericó demonstrou o poder de Deus.', 'A terra foi dividida entre as tribos.', 'Josué desafiou o povo a servir ao Senhor.'], versicosChave: ['Josué 1:9', 'Josué 6:1-27', 'Josué 24:14-15'], tags: ['josue', 'conquista', 'promessa', 'fe'], fontes: ['Comentario ao Josue - Richard Hess'] },
+  { id: 'livro-132', titulo: 'A Criação em Gênesis 1', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Deus criou tudo pela Sua palavra.', 'A criação foi gradual e ordenada.', 'O homem foi criado à imagem de Deus.', 'Deus viu que tudo era muito bom.', 'O descanso no sétimo dia estabelece o padrão semanal.'], versicosChave: ['Gênesis 1:1-31', 'Gênesis 2:1-3'], tags: ['genesis', 'criacao', 'imagem de deus'], fontes: ['Comentario ao Gênesis - Gordon Wenham'] },
+  { id: 'livro-133', titulo: 'A Queda do Homem em Gênesis 3', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['A serpente enganou Eva com mentiras.', 'Adão e Eva desobedeceram ao mandamento de Deus.', 'O pecado trouxe vergonha e medo.', 'Deus prometeu um redentor que esmagaria a serpente.', 'A maldição afetou a terra, o trabalho e o parto.'], versicosChave: ['Gênesis 3:1-24'], tags: ['genesis', 'queda', 'pecado', 'promessa'], fontes: ['Comentario ao Gênesis - Bruce Waltke'] },
+  { id: 'livro-134', titulo: 'A Aliança com Noé', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['O diluvio foi um juizo sobre a corrupção humana.', 'Noé encontrou graça aos olhos do Senhor.', 'Deus fez uma aliança de não mais destruir com diluvio.', 'O arco-íris é o sinal da aliança.', 'Deus abençoou Noé e seus filhos.'], versicosChave: ['Gênesis 6:5-9:17'], tags: ['genesis', 'alianca', 'diluvio', 'noe'], fontes: ['Comentario ao Gênesis - Victor Hamilton'] },
+  { id: 'livro-135', titulo: 'A Vida de Abraão', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Abraão obedeceu à chamada de Deus para sair de Ur.', 'Deus fez uma aliança com Abraão de bênção para todas as nações.', 'A fé de Abraão foi creditada como justiça.', 'O sacrifício de Isaac testou a fé de Abraão.', 'Abraão é chamado de amigo de Deus.'], versicosChave: ['Gênesis 12:1-3', 'Gênesis 15:6', 'Gênesis 22:1-19'], tags: ['genesis', 'abraao', 'alianca', 'fe'], fontes: ['Comentario ao Gênesis - Nahum Sarna'] },
+  { id: 'livro-136', titulo: 'José e a Providência de Deus', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['José foi vendido pelos próprios irmãos.', 'Deus usou o sofrimento de José para prepará-lo.', 'José perdoou seus irmãos e sustentou a família.', 'A frase-chave: Vocês pensaram o mal, mas Deus o tornou em bem.', 'José é um tipo de Cristo.'], versicosChave: ['Gênesis 37:1-50:26', 'Gênesis 50:20'], tags: ['genesis', 'jose', 'perdao', 'providencia'], fontes: ['Comentario ao Gênesis - Derek Kidner'] },
+  { id: 'livro-137', titulo: 'O Êxodo e a Libertação', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Deus ouviu o clamor de Israel no Egito.', 'As dez pragas demonstraram o poder de Deus.', 'O cordeiro pascal é tipo de Cristo.', 'O mar Vermelho se abriu para libertar o povo.', 'O Sinai estabeleceu a aliança e a lei.'], versicosChave: ['Êxodo 3:7-8', 'Êxodo 12:1-14', 'Êxodo 14:21-31'], tags: ['exodo', 'libertacao', 'cordeiro pascal', 'mar vermelho'], fontes: ['Comentario ao Êxodo - Douglas Stuart'] },
+  { id: 'livro-138', titulo: 'Os Dez Mandamentos', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Os mandamentos revelam a vontade santa de Deus.', 'O primeiro mandamento proíbe ídolos.', 'O quarto mandamento ordena o descanso semanal.', 'Os mandamentos são baseados no amor a Deus e ao próximo.', 'Jesus resumiu os mandamentos em dois.'], versicosChave: ['Êxodo 20:1-17', 'Mateus 22:37-40'], tags: ['exodo', 'mandamentos', 'lei', 'lei moral'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'livro-139', titulo: 'O Tabernáculo', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['O tabernáculo era o lugar da presença de Deus.', 'Seu desenho revela verdades sobre Cristo.', 'O véu separava o Santo dos Santos.', 'A arca da aliança representava o trono de Deus.', 'Os sacrifícios apontavam para o sacrifício final de Cristo.'], versicosChave: ['Êxodo 25:8-9', 'Hebreus 9:1-14'], tags: ['exodo', 'tabernaculo', 'sacrificio'], fontes: ['O Tabernáculo e Seu Serviço - John Currid'] },
+  { id: 'livro-140', titulo: 'A Conquista de Canaã', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Deus cumpriu a promessa de dar a terra a Israel.', 'Josué liderou o povo com coragem e fé.', 'A queda de Jericó demonstrou o poder de Deus.', 'A terra foi dividida entre as tribos.', 'Josué desafiou o povo a servir ao Senhor.'], versicosChave: ['Josué 1:9', 'Josué 6:1-27', 'Josué 24:14-15'], tags: ['josue', 'conquista', 'promessa', 'fe'], fontes: ['Comentario ao Josue - Richard Hess'] },
   // --- DOUTRINAS FUNDAMENTAIS ---
   { id: 'doutr-124', titulo: 'A Inerrância da Bíblia', categoria: 'Doutrinas Fundamentais', subcategoria: 'Bibliologia', conteudo: ['A Bíblia é inspirada por Deus e sem erro no original.', 'Deus é verdadeiro e não pode mentir.', 'A inerrância se aplica ao que a Bíblia afirma e ensina.', 'Jesus afirmou a autoridade do AT.', 'O Espirito Santo ilumina a Palavra para os crentes.'], versicosChave: ['2 Timóteo 3:16', '2 Pedro 1:20-21', 'João 10:35'], tags: ['inerrancia', 'inspiracao', 'biblia', 'autoridade'], fontes: ['A Bíblia Inerrante - Roger Nicole'] },
-  { id: 'doutr-125', titulo: 'A Trindade', categoria: 'Doutrinas Fundamentais', subcategoria: 'Teologia Proper', conteudo: ['Deus é um só em essência, três em pessoas.', 'O Pai, o Filho e o Espirito Santo são co-iguais.', 'A Trindade é um mistério revelado, não compreendido pela razão.', 'A fórmula bautismal menciona as três pessoas.', 'A Trindade está presente na criação, redenção e santificação.'], versicosChave: ['Mateus 28:19', '2 Coríntios 13:14', 'Gênesis 1:1-2'], tags: ['trindade', 'deus', 'pessoas divinas'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'doutr-125', titulo: 'A Trindade', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['Deus é um só em essência, três em pessoas.', 'O Pai, o Filho e o Espirito Santo são co-iguais.', 'A Trindade é um mistério revelado, não compreendido pela razão.', 'A fórmula bautismal menciona as três pessoas.', 'A Trindade está presente na criação, redenção e santificação.'], versicosChave: ['Mateus 28:19', '2 Coríntios 13:14', 'Gênesis 1:1-2'], tags: ['trindade', 'deus', 'pessoas divinas'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
   { id: 'doutr-126', titulo: 'A Expiação de Cristo', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['A morte de Cristo foi substituiva e satisfatória.', 'Cristo morreu pelos nossos pecados conforme as Escrituras.', 'A expiação é limitada em intenção mas ilimitada em eficácia.', 'O sangue de Cristo nos purifica de todo pecado.', 'A cruz é o centro da história da redenção.'], versicosChave: ['Isaías 53:5-6', '1 Coríntios 15:3', '1 João 2:2'], tags: ['expiacao', 'cruz', 'sacrificio', 'redencao'], fontes: ['A Morte da Morte - John Owen'] },
   { id: 'doutr-127', titulo: 'A Ressurreição Corporal', categoria: 'Doutrinas Fundamentais', subcategoria: 'Escatologia', conteudo: ['Todos ressuscitarão: justos e injustos.', 'A ressurreição dos justos será para a vida eterna.', 'O corpo ressuscitado será transformado.', 'Cristo é as primícias da ressurreição.', 'A ressurreição é a base da esperança cristã.'], versicosChave: ['João 5:28-29', '1 Coríntios 15:20-23', '1 Tessalonicenses 4:16'], tags: ['ressurreicao', 'corpo', 'escatologia'], fontes: ['A Ressurreição do Filho de Deus - N.T. Wright'] },
   // --- QUESTÕES CONTEMPORÂNEAS ---
-  { id: 'contemp-61', titulo: 'A Ética da IA e a Bíblia', categoria: 'Questões Contemporâneas', subcategoria: 'Tecnologia', conteudo: ['Deus é o criador de toda sabedoria e entendimento.', 'A tecnologia deve ser usada para glória de Deus.', 'A IA não substitui o juízo moral humano.', 'Devemos discernir a verdade em meio à desinformação.', 'O propósito da tecnologia deve ser servir, não dominar.'], versicosChave: ['Provérbios 2:6', 'Filipenses 4:8', '1 Tessalonicenses 5:21'], tags: ['tecnologia', 'inteligencia artificial', 'etica'], fontes: ['Ética Cristã e Problemas Contemporâneas - Wayne Grudem'] },
-  { id: 'contemp-62', titulo: 'A Crise da Solidão Moderna', categoria: 'Questões Contemporâneas', subcategoria: 'Saúde Mental', conteudo: ['A solidão é um problema crescente na era digital.', 'Deus criou o homem para comunhão.', 'A igreja é a família espiritual do crente.', 'A comunhão genuína requer vulnerabilidade e compromisso.', 'A oração é comunhão direta com Deus.'], versicosChave: ['Gênesis 2:18', 'Hebreus 10:24-25', 'Salmo 34:18'], tags: ['solidao', 'comunhao', 'saude mental'], fontes: ['A Epidemia da Solidão - Vivek Murthy'] },
+  { id: 'contemp-61', titulo: 'A Ética da IA e a Bíblia', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['Deus é o criador de toda sabedoria e entendimento.', 'A tecnologia deve ser usada para glória de Deus.', 'A IA não substitui o juízo moral humano.', 'Devemos discernir a verdade em meio à desinformação.', 'O propósito da tecnologia deve ser servir, não dominar.'], versicosChave: ['Provérbios 2:6', 'Filipenses 4:8', '1 Tessalonicenses 5:21'], tags: ['tecnologia', 'inteligencia artificial', 'etica'], fontes: ['Ética Cristã e Problemas Contemporâneas - Wayne Grudem'] },
+  { id: 'contemp-62', titulo: 'A Crise da Solidão Moderna', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['A solidão é um problema crescente na era digital.', 'Deus criou o homem para comunhão.', 'A igreja é a família espiritual do crente.', 'A comunhão genuína requer vulnerabilidade e compromisso.', 'A oração é comunhão direta com Deus.'], versicosChave: ['Gênesis 2:18', 'Hebreus 10:24-25', 'Salmo 34:18'], tags: ['solidao', 'comunhao', 'saude mental'], fontes: ['A Epidemia da Solidão - Vivek Murthy'] },
   // --- ESTUDOS COMPARATIVOS ---
-  { id: 'comp-56', titulo: 'Cristianismo vs. Islamismo', categoria: 'Estudos Comparativos', subcategoria: 'Religiões', conteudo: ['O cristianismo afirma a Trindade; o islamismo é estritamente monoteísta.', 'Cristo é Deus encarnado no cristianismo; no islamismo é apenas profeta.', 'A salvação é por graça no cristianismo; por obras no islamismo.', 'A Bíblia e o Alcorão têm visões diferentes de Deus.', 'O cristianismo é baseado em relacionamento, o islamismo em submissão.'], versicosChave: ['João 14:6', 'Efésios 2:8-9', '1 Timóteo 2:5'], tags: ['cristianismo', 'islamismo', 'comparacao', 'religioes'], fontes: ['Cristianismo e Islamismo - Winfred Corduan'] },
-  { id: 'comp-57', titulo: 'Cristianismo vs. Budismo', categoria: 'Estudos Comparativos', subcategoria: 'Religiões', conteudo: ['O cristianismo tem Deus pessoal; o budismo não tem deus criador.', 'A salvação no cristianismo é relação; no budismo é iluminação.', 'O cristianismo afirma a criação; o budismo afirma o ciclo de renascimento.', 'Jesus é o Salvador; Buda é um guia espiritual.', 'A esperança cristã é a ressurreição; o nirvana é o fim do sofrimento.'], versicosChave: ['João 14:6', 'Atos 4:12', '1 Coríntios 15:17'], tags: ['cristianismo', 'budismo', 'comparacao'], fontes: ['Cristianismo e Religiões Orientais - Norman Geisler'] },
+  { id: 'comp-56', titulo: 'Cristianismo vs. Islamismo', categoria: 'Estudos Comparativos', subcategoria: 'Questões Contemporâneas', conteudo: ['O cristianismo afirma a Trindade; o islamismo é estritamente monoteísta.', 'Cristo é Deus encarnado no cristianismo; no islamismo é apenas profeta.', 'A salvação é por graça no cristianismo; por obras no islamismo.', 'A Bíblia e o Alcorão têm visões diferentes de Deus.', 'O cristianismo é baseado em relacionamento, o islamismo em submissão.'], versicosChave: ['João 14:6', 'Efésios 2:8-9', '1 Timóteo 2:5'], tags: ['cristianismo', 'islamismo', 'comparacao', 'religioes'], fontes: ['Cristianismo e Islamismo - Winfred Corduan'] },
+  { id: 'comp-57', titulo: 'Cristianismo vs. Budismo', categoria: 'Estudos Comparativos', subcategoria: 'Questões Contemporâneas', conteudo: ['O cristianismo tem Deus pessoal; o budismo não tem deus criador.', 'A salvação no cristianismo é relação; no budismo é iluminação.', 'O cristianismo afirma a criação; o budismo afirma o ciclo de renascimento.', 'Jesus é o Salvador; Buda é um guia espiritual.', 'A esperança cristã é a ressurreição; o nirvana é o fim do sofrimento.'], versicosChave: ['João 14:6', 'Atos 4:12', '1 Coríntios 15:17'], tags: ['cristianismo', 'budismo', 'comparacao'], fontes: ['Cristianismo e Religiões Orientais - Norman Geisler'] },
   // --- HISTÓRIA DA IGREJA ---
-  { id: 'hist-51', titulo: 'O Concílio de Niceia (325 d.C.)', categoria: 'Historia da Igreja', subcategoria: 'Concílios', conteudo: ['O Concílio de Niceia foi o primeiro concílio ecumênico.', 'Definiu a divindade de Cristo contra o arianismo.', 'O Credo Niceno afirma que o Filho é consubstancial com o Pai.', 'Constantino convocou o concílio para unificar a igreja.', 'O concílio estabeleceu a data da Páscoa.'], versicosChave: ['João 1:1', 'Colossenses 2:9', 'Hebreus 1:3'], tags: ['niceia', 'credo', 'arianismo', 'concilio'], fontes: ['Historia da Igreja - Justo Gonzalez'] },
-  { id: 'hist-52', titulo: 'A Missão de Bonifácio na Germânia', categoria: 'Historia da Igreja', subcategoria: 'Missões', conteudo: ['Bonifácio (675-754) é o apóstolo dos germânicos.', 'Derrubou a árvore de Donar, símbolo pagão.', 'Fundou mosteiros que se tornaram centros de evangelização.', 'Martyriou em Frísia enquanto evangelizava.', 'Sua vida demonstra coragem e fé inabalável.'], versicosChave: ['Mateus 28:19-20', 'Atos 1:8', 'Hebreus 11:33-34'], tags: ['bonifacio', 'missions', 'germania'], fontes: ['Historia da Missão Cristã - Stephen Neill'] },
+  { id: 'hist-51', titulo: 'O Concílio de Niceia (325 d.C.)', categoria: 'História da Igreja', subcategoria: 'Eclesiologia', conteudo: ['O Concílio de Niceia foi o primeiro concílio ecumênico.', 'Definiu a divindade de Cristo contra o arianismo.', 'O Credo Niceno afirma que o Filho é consubstancial com o Pai.', 'Constantino convocou o concílio para unificar a igreja.', 'O concílio estabeleceu a data da Páscoa.'], versicosChave: ['João 1:1', 'Colossenses 2:9', 'Hebreus 1:3'], tags: ['niceia', 'credo', 'arianismo', 'concilio'], fontes: ['Historia da Igreja - Justo Gonzalez'] },
+  { id: 'hist-52', titulo: 'A Missão de Bonifácio na Germânia', categoria: 'História da Igreja', subcategoria: 'Missiologia', conteudo: ['Bonifácio (675-754) é o apóstolo dos germânicos.', 'Derrubou a árvore de Donar, símbolo pagão.', 'Fundou mosteiros que se tornaram centros de evangelização.', 'Martyriou em Frísia enquanto evangelizava.', 'Sua vida demonstra coragem e fé inabalável.'], versicosChave: ['Mateus 28:19-20', 'Atos 1:8', 'Hebreus 11:33-34'], tags: ['bonifacio', 'missions', 'germania'], fontes: ['Historia da Missão Cristã - Stephen Neill'] },
   // --- HERMENÊUTICA ---
-  { id: 'herm-51', titulo: 'A Interpretação de Parábolas', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['As parábolas são histórias com um ponto central.', 'Nem todos os detalhes devem ser interpretados literalmente.', 'O contexto anterior e posterior da parábola é crucial.', 'As parábolas frequentemente surpreendem o ouvinte.', 'Devemos buscar o significado que o autor original quis comunicar.'], versicosChave: ['Mateus 13:10-17', 'Marcos 4:33-34', 'Lucas 15:1-32'], tags: ['parabolas', 'interpretacao', 'hermeneutica'], fontes: ['Como Ler a Bíblia para Toda sua Vida - Gordon Fee'] },
-  { id: 'herm-52', titulo: 'A Tipologia Bíblica', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['Tipos são pessoas, eventos ou instituições do AT que prefiguram realidades no NT.', 'Adão é tipo de Cristo (Romanos 5:14).', 'O cordeiro pascal é tipo de Cristo (1 Coríntios 5:7).', 'O tabernáculo é tipo de Cristo (João 1:14).', 'Devemos ter cuidado para não alegorizar excessivamente.'], versicosChave: ['Romanos 5:14', '1 Coríntios 5:7', 'Hebreus 8:1-5'], tags: ['tipologia', 'at', 'nt', 'simbolismo'], fontes: ['Teologia do Antigo Testamento - E.J. Young'] },
+  { id: 'herm-51', titulo: 'A Interpretação de Parábolas', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['As parábolas são histórias com um ponto central.', 'Nem todos os detalhes devem ser interpretados literalmente.', 'O contexto anterior e posterior da parábola é crucial.', 'As parábolas frequentemente surpreendem o ouvinte.', 'Devemos buscar o significado que o autor original quis comunicar.'], versicosChave: ['Mateus 13:10-17', 'Marcos 4:33-34', 'Lucas 15:1-32'], tags: ['parabolas', 'interpretacao', 'hermeneutica'], fontes: ['Como Ler a Bíblia para Toda sua Vida - Gordon Fee'] },
+  { id: 'herm-52', titulo: 'A Tipologia Bíblica', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['Tipos são pessoas, eventos ou instituições do AT que prefiguram realidades no NT.', 'Adão é tipo de Cristo (Romanos 5:14).', 'O cordeiro pascal é tipo de Cristo (1 Coríntios 5:7).', 'O tabernáculo é tipo de Cristo (João 1:14).', 'Devemos ter cuidado para não alegorizar excessivamente.'], versicosChave: ['Romanos 5:14', '1 Coríntios 5:7', 'Hebreus 8:1-5'], tags: ['tipologia', 'at', 'nt', 'simbolismo'], fontes: ['Teologia do Antigo Testamento - E.J. Young'] },
   // --- VIDA CRISTA ---
-  { id: 'vida-004', titulo: 'O Perdão na Vida Cristã', categoria: 'Vida Crista', subcategoria: 'Relacionamentos', conteudo: ['Deus perdoou-nos em Cristo, devemos perdoar os outros.', 'O perdão não é sentimentos, mas uma decisão.', 'O perdão não significa esquecer ou tolerar o mal.', 'Jesus ensinou a perdoar setenta vezes sete.', 'O perdão libera o ofendido do peso da mágoa.'], versicosChave: ['Efésios 4:32', 'Mateus 18:21-22', 'Colossenses 3:13'], tags: ['perdao', 'relacionamentos', 'maga'], fontes: ['O Perdão - Tim Keller'] },
-  { id: 'vida-005', titulo: 'A Generosidade Cristã', categoria: 'Vida Crista', subcategoria: 'Mordomia', conteudo: ['Tudo o que temos vem de Deus.', 'Devemos dar com alegria, não por compulsão.', 'A oferenda é um ato de adoração.', 'Deus abençoa generosamente aqueles que dão.', 'A generosidade reflete o caráter de Deus.'], versicosChave: ['2 Coríntios 9:6-8', 'Lucas 6:38', 'Provérbios 11:25'], tags: ['generosidade', 'dizimo', 'oferta', 'mordomia'], fontes: ['A Mordomia da Vida - Randy Alcorn'] },
-  { id: 'vida-006', titulo: 'A Pureza Sexual', categoria: 'Vida Crista', subcategoria: 'Santidade', conteudo: ['A sexualidade é dom de Deus dentro do casamento.', 'A imoralidade sexual é condenada nas Escrituras.', 'Devemos fugir da imoralidade, não resistir.', 'A graça capacita para a pureza.', 'A pureza inclui pensamentos e atitudes.'], versicosChave: ['1 Coríntios 6:18-20', '1 Tessalonicenses 4:3-5', 'Mateus 5:28'], tags: ['pureza', 'sexualidade', 'casamento', 'santidade'], fontes: ['A Pureza do Evangelho - Joshua Harris'] },
+  { id: 'vida-004', titulo: 'O Perdão na Vida Cristã', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Deus perdoou-nos em Cristo, devemos perdoar os outros.', 'O perdão não é sentimentos, mas uma decisão.', 'O perdão não significa esquecer ou tolerar o mal.', 'Jesus ensinou a perdoar setenta vezes sete.', 'O perdão libera o ofendido do peso da mágoa.'], versicosChave: ['Efésios 4:32', 'Mateus 18:21-22', 'Colossenses 3:13'], tags: ['perdao', 'relacionamentos', 'maga'], fontes: ['O Perdão - Tim Keller'] },
+  { id: 'vida-005', titulo: 'A Generosidade Cristã', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Tudo o que temos vem de Deus.', 'Devemos dar com alegria, não por compulsão.', 'A oferenda é um ato de adoração.', 'Deus abençoa generosamente aqueles que dão.', 'A generosidade reflete o caráter de Deus.'], versicosChave: ['2 Coríntios 9:6-8', 'Lucas 6:38', 'Provérbios 11:25'], tags: ['generosidade', 'dizimo', 'oferta', 'mordomia'], fontes: ['A Mordomia da Vida - Randy Alcorn'] },
+  { id: 'vida-006', titulo: 'A Pureza Sexual', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A sexualidade é dom de Deus dentro do casamento.', 'A imoralidade sexual é condenada nas Escrituras.', 'Devemos fugir da imoralidade, não resistir.', 'A graça capacita para a pureza.', 'A pureza inclui pensamentos e atitudes.'], versicosChave: ['1 Coríntios 6:18-20', '1 Tessalonicenses 4:3-5', 'Mateus 5:28'], tags: ['pureza', 'sexualidade', 'casamento', 'santidade'], fontes: ['A Pureza do Evangelho - Joshua Harris'] },
   // --- ECCLESIOLOGIA ---
-  { id: 'ecles-003', titulo: 'Os Dons de Governo na Igreja', categoria: 'Eclesiologia', subcategoria: 'Ministerios', conteudo: ['Deus estabeleceu líderes na igreja para cuidar do rebanho.', 'Pastores e mestres protegem a igreja do erro.', 'A liderança deve ser exercida com humildade.', 'O conselho de anciãos governa coletivamente.', 'A disciplina eclesiástica é amor, não punição.'], versicosChave: ['Atos 20:28', '1 Pedro 5:2-4', 'Tito 1:5-9'], tags: ['lideranca', 'ancianos', 'pastores', 'governo'], fontes: ['A Igreja - Edmund Clowney'] },
-  { id: 'ecles-004', titulo: 'A Adoração Cristã', categoria: 'Eclesiologia', subcategoria: 'Liturgia', conteudo: ['A adoração deve ser em espirito e verdade.', 'A adoração inclui louvor, oração, leitura e pregação.', 'A Ceia do Senhor é centro da adoração.', 'Devemos adorar com reverência e alegria.', 'A adoração não é entretenimento, mas encuentro com Deus.'], versicosChave: ['João 4:23-24', 'Colossenses 3:16', 'Hebreus 12:28-29'], tags: ['adoracao', 'liturgia', 'ceia', 'louvor'], fontes: ['A Teologia da Adoração Cristã - Hughes Oliphant Old'] },
+  { id: 'ecles-003', titulo: 'Os Dons de Governo na Igreja', categoria: 'Eclesiologia', subcategoria: 'Eclesiologia', conteudo: ['Deus estabeleceu líderes na igreja para cuidar do rebanho.', 'Pastores e mestres protegem a igreja do erro.', 'A liderança deve ser exercida com humildade.', 'O conselho de anciãos governa coletivamente.', 'A disciplina eclesiástica é amor, não punição.'], versicosChave: ['Atos 20:28', '1 Pedro 5:2-4', 'Tito 1:5-9'], tags: ['lideranca', 'ancianos', 'pastores', 'governo'], fontes: ['A Igreja - Edmund Clowney'] },
+  { id: 'ecles-004', titulo: 'A Adoração Cristã', categoria: 'Eclesiologia', subcategoria: 'Eclesiologia', conteudo: ['A adoração deve ser em espirito e verdade.', 'A adoração inclui louvor, oração, leitura e pregação.', 'A Ceia do Senhor é centro da adoração.', 'Devemos adorar com reverência e alegria.', 'A adoração não é entretenimento, mas encuentro com Deus.'], versicosChave: ['João 4:23-24', 'Colossenses 3:16', 'Hebreus 12:28-29'], tags: ['adoracao', 'liturgia', 'ceia', 'louvor'], fontes: ['A Teologia da Adoração Cristã - Hughes Oliphant Old'] },
   // --- PNEUMATOLOGIA ---
-  { id: 'pneum-006', titulo: 'A Inspiração da Escritura pelo Espirito', categoria: 'Pneumatologia', subcategoria: 'Escritura', conteudo: ['O Espirito Santo inspirou os autores da Bíblia.', 'A inspiração é plenária, verbal e inspirada.', 'O Espirito ilumina a Palavra para os crentes.', 'A Escritura é viva e eficaz pelo Espirito.', 'O Espirito testifica com nossa mente da verdade.'], versicosChave: ['2 Pedro 1:20-21', '2 Timóteo 3:16', '1 Coríntios 2:12-14'], tags: ['espirito santo', 'inspiracao', 'escritura', 'iluminacao'], fontes: ['A Obra do Espirito Santo - John Owen'] },
+  { id: 'pneum-006', titulo: 'A Inspiração da Escritura pelo Espirito', categoria: 'Pneumatologia', subcategoria: 'Bibliologia', conteudo: ['O Espirito Santo inspirou os autores da Bíblia.', 'A inspiração é plenária, verbal e inspirada.', 'O Espirito ilumina a Palavra para os crentes.', 'A Escritura é viva e eficaz pelo Espirito.', 'O Espirito testifica com nossa mente da verdade.'], versicosChave: ['2 Pedro 1:20-21', '2 Timóteo 3:16', '1 Coríntios 2:12-14'], tags: ['espirito santo', 'inspiracao', 'escritura', 'iluminacao'], fontes: ['A Obra do Espirito Santo - John Owen'] },
   // --- TEOLOGIA BÍBLICA ---
-  { id: 'teobib-002', titulo: 'A Aliança Bíblica', categoria: 'Teologia Biblica', subcategoria: 'Tema Central', conteudo: ['O conceito de aliança é central na Bíblia.', 'Aliança com Noé, Abraão, Moisés, Davi e Nova.', 'Deus é sempre fiel às Suas alianças.', 'A Nova Aliança em Cristo é a consumação.', 'A aliança envolve promessas, obrigações e sinais.'], versicosChave: ['Gênesis 15:18', 'Jeremias 31:31-34', 'Lucas 22:20'], tags: ['alianca', 'at', 'nt', 'promessa'], fontes: ['A Teologia da Aliança - O. Palmer Robertson'] },
+  { id: 'teobib-002', titulo: 'A Aliança Bíblica', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['O conceito de aliança é central na Bíblia.', 'Aliança com Noé, Abraão, Moisés, Davi e Nova.', 'Deus é sempre fiel às Suas alianças.', 'A Nova Aliança em Cristo é a consumação.', 'A aliança envolve promessas, obrigações e sinais.'], versicosChave: ['Gênesis 15:18', 'Jeremias 31:31-34', 'Lucas 22:20'], tags: ['alianca', 'at', 'nt', 'promessa'], fontes: ['A Teologia da Aliança - O. Palmer Robertson'] },
   // --- APOLÓGÉTICA ---
-  { id: 'apol-003', titulo: 'O Problema do Mal', categoria: 'Apologetica', subcategoria: 'Problemas', conteudo: ['Se Deus é bom e todo-poderoso, por que existe o mal?', 'O mal é resultado do livre-arbítrio humano.', 'Deus permite o mal para um bem maior.', 'O mal será finalmente derrotado.', 'Cristo sofreu o mal na cruz para redimi-lo.'], versicosChave: ['Romanos 8:28', 'Gênesis 50:20', 'Apocalipse 21:4'], tags: ['mal', 'soberania', 'livre arbítrio'], fontes: ['O Problema do Alcides Plantinga - Stephen Wykstra'] },
-  { id: 'apol-004', titulo: 'A Autoridade da Bíblia', categoria: 'Apologetica', subcategoria: 'Evidencias', conteudo: ['A Bíblia tem mais manuscritos que qualquer outro livro antigo.', 'A coerência interna de 66 livros é miraculosa.', 'A Bíblia transformou vidas ao longo da história.', 'As profecias bíblicas se cumpriram historicamente.', 'A autoridade da Bíblia vem de Deus, não de homens.'], versicosChave: ['2 Timóteo 3:16', '2 Pedro 1:21', 'Isaías 40:8'], tags: ['autoridade', 'manuscritos', 'profecias'], fontes: ['A Palavra de Deus em Homens - B.B. Warfield'] },
+  { id: 'apol-003', titulo: 'O Problema do Mal', categoria: 'Apologetica', subcategoria: 'Questões Contemporâneas', conteudo: ['Se Deus é bom e todo-poderoso, por que existe o mal?', 'O mal é resultado do livre-arbítrio humano.', 'Deus permite o mal para um bem maior.', 'O mal será finalmente derrotado.', 'Cristo sofreu o mal na cruz para redimi-lo.'], versicosChave: ['Romanos 8:28', 'Gênesis 50:20', 'Apocalipse 21:4'], tags: ['mal', 'soberania', 'livre arbítrio'], fontes: ['O Problema do Alcides Plantinga - Stephen Wykstra'] },
+  { id: 'apol-004', titulo: 'A Autoridade da Bíblia', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['A Bíblia tem mais manuscritos que qualquer outro livro antigo.', 'A coerência interna de 66 livros é miraculosa.', 'A Bíblia transformou vidas ao longo da história.', 'As profecias bíblicas se cumpriram historicamente.', 'A autoridade da Bíblia vem de Deus, não de homens.'], versicosChave: ['2 Timóteo 3:16', '2 Pedro 1:21', 'Isaías 40:8'], tags: ['autoridade', 'manuscritos', 'profecias'], fontes: ['A Palavra de Deus em Homens - B.B. Warfield'] },
   // --- TEOLOGIA PRÓPRIA ---
-  { id: 'teoprop-003', titulo: 'A Santidade de Deus', categoria: 'Teologia Proper', subcategoria: 'Atributos', conteudo: ['Deus é absolutamente santo e separado do pecado.', 'A santidade de Deus é o fundamento de Sua justiça.', 'Isaías viu a glória de Deus e exclamou Santo, santo.', 'A santidade de Deus torna o pecado ainda mais grave.', 'Devemos ser santos porque Deus é santo.'], versicosChave: ['Isaías 6:1-3', '1 Pedro 1:15-16', 'Habacuque 1:13'], tags: ['santidade', 'pureza', 'gloria'], fontes: ['O Problema do Sofrimento - J.I. Packer'] },
-  { id: 'teoprop-004', titulo: 'A Misericórdia de Deus', categoria: 'Teologia Proper', subcategoria: 'Atributos', conteudo: ['Deus é misericordioso e compassivo.', 'A misericórdia de Deus é maior que o pecado humano.', 'Deus não nos trata como nossos pecados merecem.', 'A misericórdia de Deus se manifestou em Cristo.', 'Devemos ser misericordiosos como Deus é misericordioso.'], versicosChave: ['Salmo 103:8-14', 'Lamentações 3:22-23', 'Mateus 5:7'], tags: ['misericordia', 'graça', 'perdao'], fontes: ['Deus - J.I. Packer'] },
+  { id: 'teoprop-003', titulo: 'A Santidade de Deus', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['Deus é absolutamente santo e separado do pecado.', 'A santidade de Deus é o fundamento de Sua justiça.', 'Isaías viu a glória de Deus e exclamou Santo, santo.', 'A santidade de Deus torna o pecado ainda mais grave.', 'Devemos ser santos porque Deus é santo.'], versicosChave: ['Isaías 6:1-3', '1 Pedro 1:15-16', 'Habacuque 1:13'], tags: ['santidade', 'pureza', 'gloria'], fontes: ['O Problema do Sofrimento - J.I. Packer'] },
+  { id: 'teoprop-004', titulo: 'A Misericórdia de Deus', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['Deus é misericordioso e compassivo.', 'A misericórdia de Deus é maior que o pecado humano.', 'Deus não nos trata como nossos pecados merecem.', 'A misericórdia de Deus se manifestou em Cristo.', 'Devemos ser misericordiosos como Deus é misericordioso.'], versicosChave: ['Salmo 103:8-14', 'Lamentações 3:22-23', 'Mateus 5:7'], tags: ['misericordia', 'graça', 'perdao'], fontes: ['Deus - J.I. Packer'] },
   // --- ESCATOLOGIA ---
-  { id: 'escat-003', titulo: 'O Milênio', categoria: 'Escatologia', subcategoria: 'Reino', conteudo: ['O milênio é o período de 1.000 anos mencionado em Apocalipse 20.', 'Há diferentes visões: premilenial, pós-milenial, amilenial.', 'O premilenialismo afirma que Cristo voltará antes do milênio.', 'O amilenialismo vê o milênio como o período atual da igreja.', 'O pós-milenialismo afirma que o mundo será evangelizado antes do retorno.'], versicosChave: ['Apocalipse 20:1-6', 'Isaías 65:17-25', 'Revelação 19:11-16'], tags: ['milenio', 'reino', 'segunda vinda'], fontes: ['A Teologia do NT - George Eldon Ladd'] },
-  { id: 'escat-004', titulo: 'O Novo Céu e a Nova Terra', categoria: 'Escatologia', subcategoria: 'Eternidade', conteudo: ['Deus criará um novo céu e uma nova terra.', 'A morte, o luto e a dor não existirão mais.', 'Deus habitará com os homens.', 'A Nova Jerusalém descerá do céu.', 'Será a consumação eterna da aliança.'], versicosChave: ['Apocalipse 21:1-5', 'Isaías 65:17', '2 Pedro 3:10-13'], tags: ['novo ceu', 'nova terra', 'eternidade', 'nova jerusalem'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'escat-003', titulo: 'O Milênio', categoria: 'Escatologia', subcategoria: 'Escatologia', conteudo: ['O milênio é o período de 1.000 anos mencionado em Apocalipse 20.', 'Há diferentes visões: premilenial, pós-milenial, amilenial.', 'O premilenialismo afirma que Cristo voltará antes do milênio.', 'O amilenialismo vê o milênio como o período atual da igreja.', 'O pós-milenialismo afirma que o mundo será evangelizado antes do retorno.'], versicosChave: ['Apocalipse 20:1-6', 'Isaías 65:17-25', 'Revelação 19:11-16'], tags: ['milenio', 'reino', 'segunda vinda'], fontes: ['A Teologia do NT - George Eldon Ladd'] },
+  { id: 'escat-004', titulo: 'O Novo Céu e a Nova Terra', categoria: 'Escatologia', subcategoria: 'Escatologia', conteudo: ['Deus criará um novo céu e uma nova terra.', 'A morte, o luto e a dor não existirão mais.', 'Deus habitará com os homens.', 'A Nova Jerusalém descerá do céu.', 'Será a consumação eterna da aliança.'], versicosChave: ['Apocalipse 21:1-5', 'Isaías 65:17', '2 Pedro 3:10-13'], tags: ['novo ceu', 'nova terra', 'eternidade', 'nova jerusalem'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
   // --- MISSIOLOGIA ---
-  { id: 'miss-002', titulo: 'A Enculturação no Missões', categoria: 'Missiologia', subcategoria: 'Prática', conteudo: ['O evangelho deve ser comunicado em termos culturais.', 'Jesus encarnou-se na cultura judaica.', 'Devemos distinguir entre o evangelical e o cultural.', 'A igreja deve se expressar em todas as culturas.', 'A enculturação não é sincretismo.'], versicosChave: ['1 Coríntios 9:19-23', 'João 1:14', 'Mateus 28:19'], tags: ['enculturacao', 'cultura', 'missao'], fontes: ['Missões - David Bosch'] },
+  { id: 'miss-002', titulo: 'A Enculturação no Missões', categoria: 'Missiologia', subcategoria: 'Vida Crista', conteudo: ['O evangelho deve ser comunicado em termos culturais.', 'Jesus encarnou-se na cultura judaica.', 'Devemos distinguir entre o evangelical e o cultural.', 'A igreja deve se expressar em todas as culturas.', 'A enculturação não é sincretismo.'], versicosChave: ['1 Coríntios 9:19-23', 'João 1:14', 'Mateus 28:19'], tags: ['enculturacao', 'cultura', 'missao'], fontes: ['Missões - David Bosch'] },
   // --- ETICA CRISTA ---
-  { id: 'etica-003', titulo: 'A Stewardship da Criação', categoria: 'Etica Crista', subcategoria: 'Ambiente', conteudo: ['Deus confiou ao homem o cuidado da criação.', 'A criação declara a glória de Deus.', 'Devemos ser mordomos responsáveis.', 'A degradação ambiental é consequência do pecado.', 'A restauração da criação é prometida.'], versicosChave: ['Gênesis 2:15', 'Salmo 24:1', 'Romanos 8:19-22'], tags: ['mordomia', 'criacao', 'ambiente'], fontes: ['Ecologia e Teologia - Steven Bouma-Prediger'] },
+  { id: 'etica-003', titulo: 'A Stewardship da Criação', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['Deus confiou ao homem o cuidado da criação.', 'A criação declara a glória de Deus.', 'Devemos ser mordomos responsáveis.', 'A degradação ambiental é consequência do pecado.', 'A restauração da criação é prometida.'], versicosChave: ['Gênesis 2:15', 'Salmo 24:1', 'Romanos 8:19-22'], tags: ['mordomia', 'criacao', 'ambiente'], fontes: ['Ecologia e Teologia - Steven Bouma-Prediger'] },
   // --- MÚSICA CRISTA ---
-  { id: 'mus-002', titulo: 'O Salmo 23 e a Adoração', categoria: 'Vida Crista', subcategoria: 'Adoracao', conteudo: ['O Salmo 23 é o mais conhecido dos Salmos.', 'Deus é comparado a um pastor que cuida do rebanho.', 'O salmista encontra descanso e segurança em Deus.', 'O vale da sombra da morte é superado pela presença de Deus.', 'A bondade e a misericórdia acompanharão o crente.'], versicosChave: ['Salmo 23:1-6'], tags: ['salmo 23', 'pastor', 'adoracao', 'confianca'], fontes: ['Comentario aos Salmos - Derek Kidner'] },
+  { id: 'mus-002', titulo: 'O Salmo 23 e a Adoração', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['O Salmo 23 é o mais conhecido dos Salmos.', 'Deus é comparado a um pastor que cuida do rebanho.', 'O salmista encontra descanso e segurança em Deus.', 'O vale da sombra da morte é superado pela presença de Deus.', 'A bondade e a misericórdia acompanharão o crente.'], versicosChave: ['Salmo 23:1-6'], tags: ['salmo 23', 'pastor', 'adoracao', 'confianca'], fontes: ['Comentario aos Salmos - Derek Kidner'] },
   // --- FILOSOFIA CRISTA ---
-  { id: 'filo-002', titulo: 'A Epistemologia Cristã', categoria: 'Apologetica', subcategoria: 'Epistemologia', conteudo: ['A verdade objetiva existe e pode ser conhecida.', 'Deus é a fonte de toda verdade.', 'A razão e a fé não estão em conflito.', 'O pecado afeta a capacidade de conhecer a verdade.', 'O Espirito Santo ilumina a mente para conhecer a Deus.'], versicosChave: ['Provérbios 1:7', 'Romanos 1:18-21', '1 Coríntios 2:14-16'], tags: ['epistemologia', 'verdade', 'razao', 'fe'], fontes: ['A Verdade Cristã - Norman Geisler'] },
+  { id: 'filo-002', titulo: 'A Epistemologia Cristã', categoria: 'Apologetica', subcategoria: 'Questões Contemporâneas', conteudo: ['A verdade objetiva existe e pode ser conhecida.', 'Deus é a fonte de toda verdade.', 'A razão e a fé não estão em conflito.', 'O pecado afeta a capacidade de conhecer a verdade.', 'O Espirito Santo ilumina a mente para conhecer a Deus.'], versicosChave: ['Provérbios 1:7', 'Romanos 1:18-21', '1 Coríntios 2:14-16'], tags: ['epistemologia', 'verdade', 'razao', 'fe'], fontes: ['A Verdade Cristã - Norman Geisler'] },
   // --- LIDERANCA ---
-  { id: 'lid-002', titulo: 'A Liderança Serviçal', categoria: 'Eclesiologia', subcategoria: 'Liderança', conteudo: ['Jesus liderou lavando os pés dos discípulos.', 'O maior é o servo de todos.', 'A liderança cristã é sacrifício, não privilégio.', 'Líderes devem ser exemplos, não chefes.', 'Deus julga os líderes com mais rigor.'], versicosChave: ['João 13:14-17', 'Marcos 10:43-45', 'Tiago 3:1'], tags: ['lideranca', 'servicio', 'humildade'], fontes: ['O Líder Serviçal - Ken Blanchard'] },
+  { id: 'lid-002', titulo: 'A Liderança Serviçal', categoria: 'Eclesiologia', subcategoria: 'Vida Crista', conteudo: ['Jesus liderou lavando os pés dos discípulos.', 'O maior é o servo de todos.', 'A liderança cristã é sacrifício, não privilégio.', 'Líderes devem ser exemplos, não chefes.', 'Deus julga os líderes com mais rigor.'], versicosChave: ['João 13:14-17', 'Marcos 10:43-45', 'Tiago 3:1'], tags: ['lideranca', 'servicio', 'humildade'], fontes: ['O Líder Serviçal - Ken Blanchard'] },
   // --- FAMÍLIA ---
-  { id: 'fam-002', titulo: 'A Educação dos Filhos', categoria: 'Vida Crista', subcategoria: 'Família', conteudo: ['Pais devem ensinar os filhos nos caminhos do Senhor.', 'A disciplina é expressão de amor.', 'O exemplo dos pais é mais poderoso que as palavras.', 'Devemos orar pelos nossos filhos.', 'A bênção dos filhos é um privilégio dos pais.'], versicosChave: ['Deuteronômio 6:6-7', 'Provérbios 22:6', 'Efésios 6:4'], tags: ['filhos', 'educacao', 'disciplina', 'pais'], fontes: ['A Sabedoria da Paternidade - Ted Tripp'] },
+  { id: 'fam-002', titulo: 'A Educação dos Filhos', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Pais devem ensinar os filhos nos caminhos do Senhor.', 'A disciplina é expressão de amor.', 'O exemplo dos pais é mais poderoso que as palavras.', 'Devemos orar pelos nossos filhos.', 'A bênção dos filhos é um privilégio dos pais.'], versicosChave: ['Deuteronômio 6:6-7', 'Provérbios 22:6', 'Efésios 6:4'], tags: ['filhos', 'educacao', 'disciplina', 'pais'], fontes: ['A Sabedoria da Paternidade - Ted Tripp'] },
   // --- ARQUEOLOGIA ---
-  { id: 'arqueo-002', titulo: 'A Inscrição de Caiaphas', categoria: 'Historia da Igreja', subcategoria: 'Arqueologia', conteudo: ['Uma ossuária com o nome de Caifás foi encontrada em Jerusalém.', 'Caifás é o sumo sacerdote que julgou Jesus.', 'A inscrição confirma detalhes bíblicos.', 'A arqueologia sustenta a historicidade dos Evangelhos.', 'Cada descoberta reforça a confiabilidade da Bíblia.'], versicosChave: ['Mateus 26:57-68', 'João 18:13-14'], tags: ['arqueologia', 'caifas', 'historia'], fontes: ['Arqueologia e Bíblia - Kent Weeks'] },
+  { id: 'arqueo-002', titulo: 'A Inscrição de Caiaphas', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['Uma ossuária com o nome de Caifás foi encontrada em Jerusalém.', 'Caifás é o sumo sacerdote que julgou Jesus.', 'A inscrição confirma detalhes bíblicos.', 'A arqueologia sustenta a historicidade dos Evangelhos.', 'Cada descoberta reforça a confiabilidade da Bíblia.'], versicosChave: ['Mateus 26:57-68', 'João 18:13-14'], tags: ['arqueologia', 'caifas', 'historia'], fontes: ['Arqueologia e Bíblia - Kent Weeks'] },
   // --- BIOGRAFIA ---
-  { id: 'biog-002', titulo: 'A Vida de Moisés', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['Moisés foi preservado no Nilo e criado na corte do Faraó.', 'Recebeu a lei no Sinai e liderou Israel.', 'Foi o maior legislador do AT.', 'Falhou ao golpear a rocha, mas Deus o usou mesmo assim.', 'Moisés é tipo de Cristo como libertador e mediador.'], versicosChave: ['Êxodo 2:1-10', 'Deuteronômio 34:5-6', 'Hebreus 11:23-29'], tags: ['moises', 'lei', 'exodo', 'lideranca'], fontes: ['A Vida de Moisés - Louis Ginzberg'] },
+  { id: 'biog-002', titulo: 'A Vida de Moisés', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Moisés foi preservado no Nilo e criado na corte do Faraó.', 'Recebeu a lei no Sinai e liderou Israel.', 'Foi o maior legislador do AT.', 'Falhou ao golpear a rocha, mas Deus o usou mesmo assim.', 'Moisés é tipo de Cristo como libertador e mediador.'], versicosChave: ['Êxodo 2:1-10', 'Deuteronômio 34:5-6', 'Hebreus 11:23-29'], tags: ['moises', 'lei', 'exodo', 'lideranca'], fontes: ['A Vida de Moisés - Louis Ginzberg'] },
   // --- LINGUÍSTICA ---
-  { id: 'ling-003', titulo: 'Os Manuscritos do Mar Morto', categoria: 'Linguas Biblicas', subcategoria: 'Manuscritos', conteudo: ['Descobertos em 1947 em Qumran.', 'Contêm fragmentos de todos os livros do AT except Ester.', 'Confirmam a fidelidade da transmissão do texto hebraico.', 'Incluem textos sectários e históricos.', 'São a maior descoberta arqueológica bíblica do séc. XX.'], versicosChave: ['Isaías 53', 'Salmo 22', 'Gênesis 1'], tags: ['manuscritos', 'qumran', 'mar morto'], fontes: ['Os Manuscritos do Mar Morto - Geza Vermes'] },
+  { id: 'ling-003', titulo: 'Os Manuscritos do Mar Morto', categoria: 'Bibliologia', subcategoria: 'Bibliologia', conteudo: ['Descobertos em 1947 em Qumran.', 'Contêm fragmentos de todos os livros do AT except Ester.', 'Confirmam a fidelidade da transmissão do texto hebraico.', 'Incluem textos sectários e históricos.', 'São a maior descoberta arqueológica bíblica do séc. XX.'], versicosChave: ['Isaías 53', 'Salmo 22', 'Gênesis 1'], tags: ['manuscritos', 'qumran', 'mar morto'], fontes: ['Os Manuscritos do Mar Morto - Geza Vermes'] },
   // --- HERMENÊUTICA ---
-  { id: 'herm-53', titulo: 'O Contexto Histórico-Cultural', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['Devemos entender o mundo do autor e do leitor original.', 'Costumes, leis e geografia afetam a interpretação.', 'A pesquisa bíblica é um auxílio, não um substituto para o Espirito.', 'O contexto imediato é mais importante que o distante.', 'Devemos ler a Bíblia como literatura, não como manual técnico.'], versicosChave: ['Atos 17:10-11', '1 Coríntios 9:19-23'], tags: ['contexto', 'cultura', 'historia'], fontes: ['Como Ler a Bíblia para Toda sua Vida - Gordon Fee'] },
+  { id: 'herm-53', titulo: 'O Contexto Histórico-Cultural', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['Devemos entender o mundo do autor e do leitor original.', 'Costumes, leis e geografia afetam a interpretação.', 'A pesquisa bíblica é um auxílio, não um substituto para o Espirito.', 'O contexto imediato é mais importante que o distante.', 'Devemos ler a Bíblia como literatura, não como manual técnico.'], versicosChave: ['Atos 17:10-11', '1 Coríntios 9:19-23'], tags: ['contexto', 'cultura', 'historia'], fontes: ['Como Ler a Bíblia para Toda sua Vida - Gordon Fee'] },
 
 
   // --- BATCH 3: +400 estudos para atingir 1000+ ---
   // Temas por Livro - AT
-  { id: 'livro-141', titulo: 'A Vida de Davi', categoria: 'Temas por Livro', subcategoria: 'Samuel', conteudo: ['Davi foi ungido por Samuel.', 'Davi derrotou Golias com fé.', 'Davi foi perseguido por Saul mas não vingou.', 'Davi pecou mas se arrependeu profundamente.', 'Davi é chamado de homem segundo o coração de Deus.'], versicosChave: ['1 Samuel 16:1-13', '1 Samuel 17:45-50', 'Salmo 51'], tags: ['davi', 'rei', 'arrependimento'], fontes: ['1 e 2 Samuel - Robert Pinsky'] },
-  { id: 'livro-142', titulo: 'O Reino Dividido', categoria: 'Temas por Livro', subcategoria: 'Reis', conteudo: ['Após Salomão, o reino se dividiu.', 'Israel ao norte e Judá ao sul.', 'Reis ímpios levaram o povo à idolatria.', 'Profetas alertaram contra o julgamento.', 'A queda de Israel e Judá foi consequência da desobediência.'], versicosChave: ['1 Reis 12:1-20', '2 Reis 17:7-23', '2 Reis 25:1-21'], tags: ['reino dividido', 'reis', 'idolatria'], fontes: ['1 e 2 Reis - Iain Provan'] },
-  { id: 'livro-143', titulo: 'Os Profetas Menores', categoria: 'Temas por Livro', subcategoria: 'Profetas', conteudo: ['Os 12 profetas menores são mensageiros de Deus.', 'Oséias ilustra o amor fiel de Deus.', 'Jonas mostra a misericórdia de Deus para todas as nações.', 'Miquéias anuncia a justiça e a humildade.', 'Ageu estimula a reconstrução do templo.'], versicosChave: ['Oséias 11:1-4', 'Jonas 4:2', 'Miquéias 6:8'], tags: ['profetas', 'menores', 'justica', 'misericordia'], fontes: ['Os Doze Profetas Menores - Douglas Stuart'] },
-  { id: 'livro-144', titulo: 'O Cântico dos Cânticos', categoria: 'Temas por Livro', subcategoria: 'Poésia', conteudo: ['Celebra o amor entre o homem e a mulher.', 'Reflete o amor de Deus pelo Seu povo.', 'A poesia hebraica é rica e bela.', 'O amor é descrito como forte como a morte.', 'A fidelidade no amor é um tema central.'], versicosChave: ['Cantares 2:16', 'Cantares 8:6-7'], tags: ['canticos', 'amor', 'poesia', 'casamento'], fontes: ['Cantares - Tremper Longman III'] },
-  { id: 'livro-145', titulo: 'A Restauração de Judá', categoria: 'Temas por Livro', subcategoria: 'Esdras-Neemias', conteudo: ['Ciro permitiu o retorno do exílio.', 'Esdras restaurou a lei e a adoração.', 'Neemias reconstruiu os muros de Jerusalém.', 'O templo foi reconstruído.', 'O povo renovou sua aliança com Deus.'], versicosChave: ['Esdras 1:1-4', 'Neemias 2:17-18', 'Esdras 9:8-9'], tags: ['restauracao', 'exilio', 'templo', 'muros'], fontes: ['Esdras e Neemias - Mervin Breneman'] },
+  { id: 'livro-141', titulo: 'A Vida de Davi', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Davi foi ungido por Samuel.', 'Davi derrotou Golias com fé.', 'Davi foi perseguido por Saul mas não vingou.', 'Davi pecou mas se arrependeu profundamente.', 'Davi é chamado de homem segundo o coração de Deus.'], versicosChave: ['1 Samuel 16:1-13', '1 Samuel 17:45-50', 'Salmo 51'], tags: ['davi', 'rei', 'arrependimento'], fontes: ['1 e 2 Samuel - Robert Pinsky'] },
+  { id: 'livro-142', titulo: 'O Reino Dividido', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Após Salomão, o reino se dividiu.', 'Israel ao norte e Judá ao sul.', 'Reis ímpios levaram o povo à idolatria.', 'Profetas alertaram contra o julgamento.', 'A queda de Israel e Judá foi consequência da desobediência.'], versicosChave: ['1 Reis 12:1-20', '2 Reis 17:7-23', '2 Reis 25:1-21'], tags: ['reino dividido', 'reis', 'idolatria'], fontes: ['1 e 2 Reis - Iain Provan'] },
+  { id: 'livro-143', titulo: 'Os Profetas Menores', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Os 12 profetas menores são mensageiros de Deus.', 'Oséias ilustra o amor fiel de Deus.', 'Jonas mostra a misericórdia de Deus para todas as nações.', 'Miquéias anuncia a justiça e a humildade.', 'Ageu estimula a reconstrução do templo.'], versicosChave: ['Oséias 11:1-4', 'Jonas 4:2', 'Miquéias 6:8'], tags: ['profetas', 'menores', 'justica', 'misericordia'], fontes: ['Os Doze Profetas Menores - Douglas Stuart'] },
+  { id: 'livro-144', titulo: 'O Cântico dos Cânticos', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Celebra o amor entre o homem e a mulher.', 'Reflete o amor de Deus pelo Seu povo.', 'A poesia hebraica é rica e bela.', 'O amor é descrito como forte como a morte.', 'A fidelidade no amor é um tema central.'], versicosChave: ['Cantares 2:16', 'Cantares 8:6-7'], tags: ['canticos', 'amor', 'poesia', 'casamento'], fontes: ['Cantares - Tremper Longman III'] },
+  { id: 'livro-145', titulo: 'A Restauração de Judá', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Ciro permitiu o retorno do exílio.', 'Esdras restaurou a lei e a adoração.', 'Neemias reconstruiu os muros de Jerusalém.', 'O templo foi reconstruído.', 'O povo renovou sua aliança com Deus.'], versicosChave: ['Esdras 1:1-4', 'Neemias 2:17-18', 'Esdras 9:8-9'], tags: ['restauracao', 'exilio', 'templo', 'muros'], fontes: ['Esdras e Neemias - Mervin Breneman'] },
   // Doutinas Fundamentais
   { id: 'doutr-128', titulo: 'A Regeneração', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['A regeneração é obra do Espírito Santo.', 'É necessária para entrar no Reino de Deus.', 'Produz mudança de natureza.', 'Não depende de mérito humano.', 'É instantânea e completa.'], versicosChave: ['João 3:3-5', 'Tito 3:5'], tags: ['regeneracao', 'espirito santo', 'renascimento'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
   { id: 'doutr-129', titulo: 'A Perseverança dos Santos', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['Os verdadeiros crentes perseverarão até o fim.', 'Deus os guarda pelo Seu poder.', 'A perseverança é evidência de verdadeira fé.', 'Quem começa bem terminará bem.', 'A segurança não é licença para pecar.'], versicosChave: ['Filipenses 1:6', 'João 10:27-29', 'Romanos 8:28-39'], tags: ['perseveranca', 'seguranca', 'salvacao'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
   { id: 'doutr-130', titulo: 'A Segunda Vinda de Cristo', categoria: 'Doutrinas Fundamentais', subcategoria: 'Escatologia', conteudo: ['Cristo voltará pessoalmente.', 'A volta será visível e gloriosa.', 'Ninguém sabe a hora exata.', 'Os sinais incluem guerras, fomes e perseguição.', 'A volta consumará a salvação.'], versicosChave: ['Atos 1:11', 'Mateus 24:30-31', '1 Tessalonicenses 4:16'], tags: ['segunda vinda', 'parousia', 'escatologia'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
   // Questões Contemporâneas
-  { id: 'contemp-63', titulo: 'A Crise Ambiental e a Fé', categoria: 'Questões Contemporâneas', subcategoria: 'Ambiente', conteudo: ['A degradação ambiental é um desafio real.', 'Deus confiou ao homem a guarda da criação.', 'A escatologia não isenta de responsabilidade.', 'A sustentabilidade é mordomia.', 'A oração e a ação juntas.'], versicosChave: ['Gênesis 2:15', 'Romanos 8:19-22'], tags: ['ambiente', 'sustentabilidade', 'criacao'], fontes: ['Ecologia Cristã - Cal DeWitt'] },
-  { id: 'contemp-64', titulo: 'O Evangelho na Era Digital', categoria: 'Questões Contemporâneas', subcategoria: 'Evangelismo', conteudo: ['A mídia digital é ferramenta para evangelização.', 'O conteúdo bíblico pode ser acessível globalmente.', 'Devemos ser sábios na comunicação online.', 'As relações pessoais continuam essenciais.', 'A verdade não muda com a tecnologia.'], versicosChave: ['Mateus 28:19-20', '1 Coríntios 9:22-23'], tags: ['digital', 'evangelismo', 'tecnologia'], fontes: ['A Igreja Digital - Ed Stetzer'] },
+  { id: 'contemp-63', titulo: 'A Crise Ambiental e a Fé', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['A degradação ambiental é um desafio real.', 'Deus confiou ao homem a guarda da criação.', 'A escatologia não isenta de responsabilidade.', 'A sustentabilidade é mordomia.', 'A oração e a ação juntas.'], versicosChave: ['Gênesis 2:15', 'Romanos 8:19-22'], tags: ['ambiente', 'sustentabilidade', 'criacao'], fontes: ['Ecologia Cristã - Cal DeWitt'] },
+  { id: 'contemp-64', titulo: 'O Evangelho na Era Digital', categoria: 'Questões Contemporâneas', subcategoria: 'Missiologia', conteudo: ['A mídia digital é ferramenta para evangelização.', 'O conteúdo bíblico pode ser acessível globalmente.', 'Devemos ser sábios na comunicação online.', 'As relações pessoais continuam essenciais.', 'A verdade não muda com a tecnologia.'], versicosChave: ['Mateus 28:19-20', '1 Coríntios 9:22-23'], tags: ['digital', 'evangelismo', 'tecnologia'], fontes: ['A Igreja Digital - Ed Stetzer'] },
   // Estudos Comparativos
-  { id: 'comp-58', titulo: 'Cristianismo vs. Judaísmo', categoria: 'Estudos Comparativos', subcategoria: 'Religiões', conteudo: ['O cristianismo reconhece o AT e o NT.', 'O judaísmo não aceita Jesus como Messias.', 'Ambos compartilham o monoteísmo.', 'A aliança nova em Cristo é o ponto de divergência.', 'A salvação é pela fé em Cristo, não pela lei.'], versicosChave: ['Hebreus 8:6-13', 'Gálatas 3:24-25'], tags: ['judaismo', 'cristianismo', 'comparacao'], fontes: ['Cristianismo e Judaísmo - David Stern'] },
-  { id: 'comp-59', titulo: 'Cristianismo vs. Hinduísmo', categoria: 'Estudos Comparativos', subcategoria: 'Religiões', conteudo: ['O cristianismo: Deus pessoal; hinduísmo: multiplicidade de deuses.', 'A salvação no cristianismo é pela fé; no hinduísmo é por karma.', 'O cristianismo tem início e fim; o hinduísmo tem ciclos.', 'Jesus é o único caminho; há múltiplos caminhos no hinduísmo.', 'A criação é boa no cristianismo; ilusão (maya) no hinduísmo.'], versicosChave: ['João 14:6', 'Atos 4:12'], tags: ['hinduismo', 'comparacao', 'salvacao'], fontes: ['Cristianismo e Hinduísmo - Harold Netland'] },
-  { id: 'comp-60', titulo: 'Cristianismo vs. Espiritismo', categoria: 'Estudos Comparativos', subcategoria: 'Religiões', conteudo: ['O espiritismo nega a ressurreição corporal.', 'O cristianismo é baseado em Cristo; o espiritismo em mediuns.', 'A Bíblia é a autoridade no cristianismo.', 'O espiritismo aceita reencarnação.', 'A salvação é por Cristo, não por evolução espiritual.'], versicosChave: ['Hebreus 9:27', '1 Coríntios 15:12-19'], tags: ['espiritismo', 'reencarnacao', 'comparacao'], fontes: ['Cristianismo e Espiritismo - John Weldon'] },
+  { id: 'comp-58', titulo: 'Cristianismo vs. Judaísmo', categoria: 'Estudos Comparativos', subcategoria: 'Questões Contemporâneas', conteudo: ['O cristianismo reconhece o AT e o NT.', 'O judaísmo não aceita Jesus como Messias.', 'Ambos compartilham o monoteísmo.', 'A aliança nova em Cristo é o ponto de divergência.', 'A salvação é pela fé em Cristo, não pela lei.'], versicosChave: ['Hebreus 8:6-13', 'Gálatas 3:24-25'], tags: ['judaismo', 'cristianismo', 'comparacao'], fontes: ['Cristianismo e Judaísmo - David Stern'] },
+  { id: 'comp-59', titulo: 'Cristianismo vs. Hinduísmo', categoria: 'Estudos Comparativos', subcategoria: 'Questões Contemporâneas', conteudo: ['O cristianismo: Deus pessoal; hinduísmo: multiplicidade de deuses.', 'A salvação no cristianismo é pela fé; no hinduísmo é por karma.', 'O cristianismo tem início e fim; o hinduísmo tem ciclos.', 'Jesus é o único caminho; há múltiplos caminhos no hinduísmo.', 'A criação é boa no cristianismo; ilusão (maya) no hinduísmo.'], versicosChave: ['João 14:6', 'Atos 4:12'], tags: ['hinduismo', 'comparacao', 'salvacao'], fontes: ['Cristianismo e Hinduísmo - Harold Netland'] },
+  { id: 'comp-60', titulo: 'Cristianismo vs. Espiritismo', categoria: 'Estudos Comparativos', subcategoria: 'Questões Contemporâneas', conteudo: ['O espiritismo nega a ressurreição corporal.', 'O cristianismo é baseado em Cristo; o espiritismo em mediuns.', 'A Bíblia é a autoridade no cristianismo.', 'O espiritismo aceita reencarnação.', 'A salvação é por Cristo, não por evolução espiritual.'], versicosChave: ['Hebreus 9:27', '1 Coríntios 15:12-19'], tags: ['espiritismo', 'reencarnacao', 'comparacao'], fontes: ['Cristianismo e Espiritismo - John Weldon'] },
   // História da Igreja
-  { id: 'hist-53', titulo: 'Os Mártires da Igreja Primitiva', categoria: 'Historia da Igreja', subcategoria: 'Perseguição', conteudo: ['Estêvão foi o primeiro mártir cristão.', 'Pedro e Paulo foram martirizados em Roma.', 'Perseguições sob Nero, Domiciano e Diocleciano.', 'Os mártires testemunharam com seu sangue.', 'O sangue dos mártires é semente da igreja.'], versicosChave: ['Atos 7:54-60', 'Atos 12:1-3', 'Revelação 2:10'], tags: ['martyres', 'perseguicao', 'testemunho'], fontes: ['O Sangue dos Mártires - John Foxe'] },
-  { id: 'hist-54', titulo: 'A Expansão do Cristianismo nos primeiros 300 anos', categoria: 'Historia da Igreja', subcategoria: 'Missões', conteudo: ['O cristianismo se espalhou pelo Império Romano.', 'Missões seguiram rotas comerciais.', 'A tradução da Bíblia foi crucial.', 'A hospitalidade cristã era notável.', 'A fé venceu perseguições e conversões.'], versicosChave: ['Atos 1:8', 'Colossenses 1:6', 'Romanos 10:18'], tags: ['expansao', 'missoes', 'romano'], fontes: ['A Expansão do Cristianismo - Rodney Stark'] },
-  { id: 'hist-55', titulo: 'São Francisco de Assis', categoria: 'Historia da Igreja', subcategoria: 'Santos', conteudo: ['Francisco renunciou riquezas pela pobreza.', 'Cantou o Cântico das Criaturas.', 'Fundou a ordem franciscana.', 'Viajou para encontrar o sultão para evangelizar.', 'A vida de fraternidade e natureza inspira milhões.'], versicosChave: ['Mateus 19:21', 'Filipenses 2:5-8'], tags: ['francisco', 'pobreza', 'adoracao'], fontes: ['Francisco de Assis - G.K. Chesterton'] },
+  { id: 'hist-53', titulo: 'Os Mártires da Igreja Primitiva', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['Estêvão foi o primeiro mártir cristão.', 'Pedro e Paulo foram martirizados em Roma.', 'Perseguições sob Nero, Domiciano e Diocleciano.', 'Os mártires testemunharam com seu sangue.', 'O sangue dos mártires é semente da igreja.'], versicosChave: ['Atos 7:54-60', 'Atos 12:1-3', 'Revelação 2:10'], tags: ['martyres', 'perseguicao', 'testemunho'], fontes: ['O Sangue dos Mártires - John Foxe'] },
+  { id: 'hist-54', titulo: 'A Expansão do Cristianismo nos primeiros 300 anos', categoria: 'História da Igreja', subcategoria: 'Missiologia', conteudo: ['O cristianismo se espalhou pelo Império Romano.', 'Missões seguiram rotas comerciais.', 'A tradução da Bíblia foi crucial.', 'A hospitalidade cristã era notável.', 'A fé venceu perseguições e conversões.'], versicosChave: ['Atos 1:8', 'Colossenses 1:6', 'Romanos 10:18'], tags: ['expansao', 'missoes', 'romano'], fontes: ['A Expansão do Cristianismo - Rodney Stark'] },
+  { id: 'hist-55', titulo: 'São Francisco de Assis', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Francisco renunciou riquezas pela pobreza.', 'Cantou o Cântico das Criaturas.', 'Fundou a ordem franciscana.', 'Viajou para encontrar o sultão para evangelizar.', 'A vida de fraternidade e natureza inspira milhões.'], versicosChave: ['Mateus 19:21', 'Filipenses 2:5-8'], tags: ['francisco', 'pobreza', 'adoracao'], fontes: ['Francisco de Assis - G.K. Chesterton'] },
   // Hermenêutica
-  { id: 'herm-54', titulo: 'A Interpretação de Profecias', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['As profecias têm cumprimento parcial e total.', 'Devemos distinguir entre profecia e sua aplicação.', 'O contexto original é fundamental.', 'Algumas profecias são simbólicas.', 'A história confirma muitas profecias.'], versicosChave: ['Isaías 7:14', 'Miquéias 5:2', 'Daniel 9:24-27'], tags: ['profecia', 'interpretacao', 'cumprimento'], fontes: ['Como Profecias se Cumprem - Arnold Fruchtenbaum'] },
-  { id: 'herm-55', titulo: 'A Narrativa Bíblica', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['A Bíblia é uma história coerente de redenção.', 'A narrativa tem personagens, enredo e clímax.', 'Devemos ler como história, não como fábula.', 'Os personagens são reais, não fictícios.', 'O clímax da história é Cristo.'], versicosChave: ['Lucas 24:27', 'Hebreus 1:1-2'], tags: ['narrativa', 'historia', 'redencao'], fontes: ['A Narrativa Bíblica - Leland Ryken'] },
+  { id: 'herm-54', titulo: 'A Interpretação de Profecias', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['As profecias têm cumprimento parcial e total.', 'Devemos distinguir entre profecia e sua aplicação.', 'O contexto original é fundamental.', 'Algumas profecias são simbólicas.', 'A história confirma muitas profecias.'], versicosChave: ['Isaías 7:14', 'Miquéias 5:2', 'Daniel 9:24-27'], tags: ['profecia', 'interpretacao', 'cumprimento'], fontes: ['Como Profecias se Cumprem - Arnold Fruchtenbaum'] },
+  { id: 'herm-55', titulo: 'A Narrativa Bíblica', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A Bíblia é uma história coerente de redenção.', 'A narrativa tem personagens, enredo e clímax.', 'Devemos ler como história, não como fábula.', 'Os personagens são reais, não fictícios.', 'O clímax da história é Cristo.'], versicosChave: ['Lucas 24:27', 'Hebreus 1:1-2'], tags: ['narrativa', 'historia', 'redencao'], fontes: ['A Narrativa Bíblica - Leland Ryken'] },
   // Vida Cristã
-  { id: 'vida-007', titulo: 'A Vigília Espiritual', categoria: 'Vida Crista', subcategoria: 'Espiritualidade', conteudo: ['Devemos estar alertas contra as ciladas do diabo.', 'A oração é instrumento de vigília.', 'A Palavra de Deus é espada contra as tentações.', 'A comunhão com outros crentes fortalece.', 'Vigiar é esperar ativamente a volta de Cristo.'], versicosChave: ['1 Pedro 5:8', 'Efésios 6:18', 'Mateus 26:41'], tags: ['vigilia', 'alerta', 'oracao'], fontes: ['A Oração - E.M. Bounds'] },
-  { id: 'vida-008', titulo: 'A Humildade Cristã', categoria: 'Vida Crista', subcategoria: 'Caráter', conteudo: ['Jesus ensinou que o humilde será exaltado.', 'A humildade reconhece a dependência de Deus.', 'A humildade não é pensar menos de si mesmo.', 'A humildade se expressa em serviço.', 'Deus resiste aos soberbos, mas dá graça aos humildes.'], versicosChave: ['Filipenses 2:3-8', 'Tiago 4:6', '1 Pedro 5:5'], tags: ['humildade', 'carater', 'servico'], fontes: ['Humildade - Tim Keller'] },
-  { id: 'vida-009', titulo: 'A Alegria na Tribulação', categoria: 'Vida Crista', subcategoria: 'Sofrimento', conteudo: ['A alegria cristã não depende de circunstâncias.', 'O sofrimento produz perseverança.', 'Paulo cantava na prisão.', 'A alegria é fruto do Espírito Santo.', 'A esperança futura sustenta no presente.'], versicosChave: ['Romanos 5:3-5', 'Filipenses 4:4-7', 'Atos 16:25'], tags: ['alegria', 'sofrimento', 'perseveranca'], fontes: ['A Alegria da Fé - John Piper'] },
-  { id: 'vida-010', titulo: 'A Obediência à Palavra', categoria: 'Vida Crista', subcategoria: 'Discipulado', conteudo: ['Devemos ouvir e praticar a Palavra.', 'A obediência é evidência de amor a Deus.', 'A Palavra deve ser obeyida, não apenas ouvida.', 'A obediência traz bênção.', 'Cristo é nosso exemplo de obediência perfeita.'], versicosChave: ['Tiago 1:22-25', 'João 14:15', 'Filipenses 2:8'], tags: ['obediencia', 'discipulado', 'pratica'], fontes: ['Obediência - Charles Bridges'] },
+  { id: 'vida-007', titulo: 'A Vigília Espiritual', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Devemos estar alertas contra as ciladas do diabo.', 'A oração é instrumento de vigília.', 'A Palavra de Deus é espada contra as tentações.', 'A comunhão com outros crentes fortalece.', 'Vigiar é esperar ativamente a volta de Cristo.'], versicosChave: ['1 Pedro 5:8', 'Efésios 6:18', 'Mateus 26:41'], tags: ['vigilia', 'alerta', 'oracao'], fontes: ['A Oração - E.M. Bounds'] },
+  { id: 'vida-008', titulo: 'A Humildade Cristã', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Jesus ensinou que o humilde será exaltado.', 'A humildade reconhece a dependência de Deus.', 'A humildade não é pensar menos de si mesmo.', 'A humildade se expressa em serviço.', 'Deus resiste aos soberbos, mas dá graça aos humildes.'], versicosChave: ['Filipenses 2:3-8', 'Tiago 4:6', '1 Pedro 5:5'], tags: ['humildade', 'carater', 'servico'], fontes: ['Humildade - Tim Keller'] },
+  { id: 'vida-009', titulo: 'A Alegria na Tribulação', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A alegria cristã não depende de circunstâncias.', 'O sofrimento produz perseverança.', 'Paulo cantava na prisão.', 'A alegria é fruto do Espírito Santo.', 'A esperança futura sustenta no presente.'], versicosChave: ['Romanos 5:3-5', 'Filipenses 4:4-7', 'Atos 16:25'], tags: ['alegria', 'sofrimento', 'perseveranca'], fontes: ['A Alegria da Fé - John Piper'] },
+  { id: 'vida-010', titulo: 'A Obediência à Palavra', categoria: 'Vida Crista', subcategoria: 'Missiologia', conteudo: ['Devemos ouvir e praticar a Palavra.', 'A obediência é evidência de amor a Deus.', 'A Palavra deve ser obeyida, não apenas ouvida.', 'A obediência traz bênção.', 'Cristo é nosso exemplo de obediência perfeita.'], versicosChave: ['Tiago 1:22-25', 'João 14:15', 'Filipenses 2:8'], tags: ['obediencia', 'discipulado', 'pratica'], fontes: ['Obediência - Charles Bridges'] },
   // Eclesiologia
-  { id: 'ecles-005', titulo: 'A Missão da Igreja', categoria: 'Eclesiologia', subcategoria: 'Missão', conteudo: ['A igreja existe para glorificar a Deus.', 'A missão inclui evangelismo e discipulado.', 'A igreja é luz e sal do mundo.', 'A comunhão é essencial para a missão.', 'A missions é a alma da igreja.'], versicosChave: ['Mateus 5:13-16', 'Atos 1:8', 'Efésios 3:10'], tags: ['missao', 'evangelismo', 'discipulado'], fontes: ['A Igreja Missional - Ed Stetzer'] },
-  { id: 'ecles-006', titulo: 'A Disciplina na Igreja', categoria: 'Eclesiologia', subcategoria: 'Governança', conteudo: ['A disciplina é ato de amor, não vingança.', 'Jesus ensinou o processo de restauração.', 'O propósito é restaurar, não punir.', 'A disciplina protege o rebanho.', 'A restauração é o objetivo final.'], versicosChave: ['Mateus 18:15-17', '1 Coríntios 5:1-5', '2 Coríntios 2:5-8'], tags: ['disciplina', 'restauracao', 'amor'], fontes: ['A Disciplina na Igreja - Jay Adams'] },
+  { id: 'ecles-005', titulo: 'A Missão da Igreja', categoria: 'Eclesiologia', subcategoria: 'Missiologia', conteudo: ['A igreja existe para glorificar a Deus.', 'A missão inclui evangelismo e discipulado.', 'A igreja é luz e sal do mundo.', 'A comunhão é essencial para a missão.', 'A missions é a alma da igreja.'], versicosChave: ['Mateus 5:13-16', 'Atos 1:8', 'Efésios 3:10'], tags: ['missao', 'evangelismo', 'discipulado'], fontes: ['A Igreja Missional - Ed Stetzer'] },
+  { id: 'ecles-006', titulo: 'A Disciplina na Igreja', categoria: 'Eclesiologia', subcategoria: 'Eclesiologia', conteudo: ['A disciplina é ato de amor, não vingança.', 'Jesus ensinou o processo de restauração.', 'O propósito é restaurar, não punir.', 'A disciplina protege o rebanho.', 'A restauração é o objetivo final.'], versicosChave: ['Mateus 18:15-17', '1 Coríntios 5:1-5', '2 Coríntios 2:5-8'], tags: ['disciplina', 'restauracao', 'amor'], fontes: ['A Disciplina na Igreja - Jay Adams'] },
   // Pneumatologia
-  { id: 'pneum-007', titulo: 'O Preenchimento do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Vida Cristã', conteudo: ['O preenchimento é para todos os crentes.', 'É uma experiência contínua, não um evento único.', 'Envolve submissão à vontade de Deus.', 'Produz poder para testemunho e serviço.', 'Pode ser perdido por desobediência.'], versicosChave: ['Efésios 5:18', 'Atos 2:4', 'Efésios 3:19'], tags: ['preenchimento', 'espirito santo', 'poder'], fontes: ['O Espirito Santo - Sinclair Ferguson'] },
-  { id: 'pneum-008', titulo: 'Os Dons Proféticos', categoria: 'Pneumatologia', subcategoria: 'Dons', conteudo: ['A profecia na igreja primitiva era direta de Deus.', 'Os dons proféticos são para edificação.', 'O discernimento dos espíritos é essencial.', 'Nem toda profecia é de Deus.', 'O teste é se se cumpre e se glorifica a Cristo.'], versicosChave: ['1 Coríntios 14:1-40', '1 Tessalonicenses 5:19-21', 'Deuteronômio 18:22'], tags: ['profecia', 'dons', 'discernimento'], fontes: ['Os Dons Espirituais - John MacArthur'] },
+  { id: 'pneum-007', titulo: 'O Preenchimento do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Vida Crista', conteudo: ['O preenchimento é para todos os crentes.', 'É uma experiência contínua, não um evento único.', 'Envolve submissão à vontade de Deus.', 'Produz poder para testemunho e serviço.', 'Pode ser perdido por desobediência.'], versicosChave: ['Efésios 5:18', 'Atos 2:4', 'Efésios 3:19'], tags: ['preenchimento', 'espirito santo', 'poder'], fontes: ['O Espirito Santo - Sinclair Ferguson'] },
+  { id: 'pneum-008', titulo: 'Os Dons Proféticos', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['A profecia na igreja primitiva era direta de Deus.', 'Os dons proféticos são para edificação.', 'O discernimento dos espíritos é essencial.', 'Nem toda profecia é de Deus.', 'O teste é se se cumpre e se glorifica a Cristo.'], versicosChave: ['1 Coríntios 14:1-40', '1 Tessalonicenses 5:19-21', 'Deuteronômio 18:22'], tags: ['profecia', 'dons', 'discernimento'], fontes: ['Os Dons Espirituais - John MacArthur'] },
   // Teologia Própria
-  { id: 'teoprop-005', titulo: 'A Bondade de Deus', categoria: 'Teologia Proper', subcategoria: 'Atributos', conteudo: ['Deus é infinitamente bondoso.', 'A bondade de Deus é manifesta na criação.', 'A bondade de Deus se revela na salvação.', 'A bondade de Deus é inesgotável.', 'Devemos confiar na bondade de Deus mesmo na aflição.'], versicosChave: ['Salmo 27:13', 'Nahum 1:7', 'Romanos 2:4'], tags: ['bondade', 'bondoso', 'criacao'], fontes: ['Deus - J.I. Packer'] },
+  { id: 'teoprop-005', titulo: 'A Bondade de Deus', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['Deus é infinitamente bondoso.', 'A bondade de Deus é manifesta na criação.', 'A bondade de Deus se revela na salvação.', 'A bondade de Deus é inesgotável.', 'Devemos confiar na bondade de Deus mesmo na aflição.'], versicosChave: ['Salmo 27:13', 'Nahum 1:7', 'Romanos 2:4'], tags: ['bondade', 'bondoso', 'criacao'], fontes: ['Deus - J.I. Packer'] },
   // Escatologia
-  { id: 'escat-005', titulo: 'O Arrebatamento', categoria: 'Escatologia', subcategoria: 'Eventos Futuros', conteudo: ['O arrebatamento é a vinda secreta de Cristo.', 'Os mortos em Cristo ressuscitarão primeiro.', 'Os vivos serão transformados em um instante.', 'Seremos arrebatados para estar com o Senhor.', 'O timing é debatido entre os teólogos.'], versicosChave: ['1 Tessalonicenses 4:13-18', '1 Coríntios 15:51-53'], tags: ['arrebatamento', 'ressurreicao', 'transformacao'], fontes: ['A Segunda Vinda de Cristo - John Walvoord'] },
-  { id: 'escat-006', titulo: 'O Grande Tribulação', categoria: 'Escatologia', subcategoria: 'Eventos Futuros', conteudo: ['O período de sofrimento mencionado em Daniel e Mateus.', 'Há debate se a igreja passará pela tribulação.', 'Os 144.000 selados são de Israel.', 'O anti-cristro governará o mundo.', 'A tribulação culmina na volta de Cristo.'], versicosChave: ['Mateus 24:21', 'Daniel 12:1', 'Apocalipse 7:1-8'], tags: ['tribulacao', 'anti-cristro', 'apocalipse'], fontes: ['O Grande Tribulação - John Walvoord'] },
+  { id: 'escat-005', titulo: 'O Arrebatamento', categoria: 'Escatologia', subcategoria: 'Escatologia', conteudo: ['O arrebatamento é a vinda secreta de Cristo.', 'Os mortos em Cristo ressuscitarão primeiro.', 'Os vivos serão transformados em um instante.', 'Seremos arrebatados para estar com o Senhor.', 'O timing é debatido entre os teólogos.'], versicosChave: ['1 Tessalonicenses 4:13-18', '1 Coríntios 15:51-53'], tags: ['arrebatamento', 'ressurreicao', 'transformacao'], fontes: ['A Segunda Vinda de Cristo - John Walvoord'] },
+  { id: 'escat-006', titulo: 'O Grande Tribulação', categoria: 'Escatologia', subcategoria: 'Escatologia', conteudo: ['O período de sofrimento mencionado em Daniel e Mateus.', 'Há debate se a igreja passará pela tribulação.', 'Os 144.000 selados são de Israel.', 'O anti-cristro governará o mundo.', 'A tribulação culmina na volta de Cristo.'], versicosChave: ['Mateus 24:21', 'Daniel 12:1', 'Apocalipse 7:1-8'], tags: ['tribulacao', 'anti-cristro', 'apocalipse'], fontes: ['O Grande Tribulação - John Walvoord'] },
   // Apologética
-  { id: 'apol-005', titulo: 'A Confiança nos Manuscritos Bíblicos', categoria: 'Apologetica', subcategoria: 'Evidencias', conteudo: ['Temos mais de 5.800 manuscritos gregos do NT.', 'As variações textuais são mínimas e não afetam doutrinas.', 'Os manuscritos são mais numerosos que outros livros antigos.', 'As traduções são baseadas em manuscritos confiáveis.', 'A Bíblia é o livro mais bem preservado da história.'], versicosChave: ['2 Timóteo 3:16', '2 Pedro 1:21'], tags: ['manuscritos', 'textual', 'confianca'], fontes: ['O Texto do NT - Bruce Metzger'] },
+  { id: 'apol-005', titulo: 'A Confiança nos Manuscritos Bíblicos', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['Temos mais de 5.800 manuscritos gregos do NT.', 'As variações textuais são mínimas e não afetam doutrinas.', 'Os manuscritos são mais numerosos que outros livros antigos.', 'As traduções são baseadas em manuscritos confiáveis.', 'A Bíblia é o livro mais bem preservado da história.'], versicosChave: ['2 Timóteo 3:16', '2 Pedro 1:21'], tags: ['manuscritos', 'textual', 'confianca'], fontes: ['O Texto do NT - Bruce Metzger'] },
   // Ética Cristã
-  { id: 'etica-004', titulo: 'A Bioética Cristã', categoria: 'Etica Crista', subcategoria: 'Bioética', conteudo: ['A vida humana é sagrada desde a concepção.', 'A euthanásia contradiz a soberania de Deus.', 'A engenharia genética levanta questões éticas.', 'A dignidade humana vem de Deus.', 'Devemos agir com sabedoria e compaixão.'], versicosChave: ['Salmo 139:13-16', 'Jeremias 1:5', 'Gênesis 1:27'], tags: ['bioetica', 'vida', 'eugenica'], fontes: ['Ética Cristã - Wayne Grudem'] },
+  { id: 'etica-004', titulo: 'A Bioética Cristã', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['A vida humana é sagrada desde a concepção.', 'A euthanásia contradiz a soberania de Deus.', 'A engenharia genética levanta questões éticas.', 'A dignidade humana vem de Deus.', 'Devemos agir com sabedoria e compaixão.'], versicosChave: ['Salmo 139:13-16', 'Jeremias 1:5', 'Gênesis 1:27'], tags: ['bioetica', 'vida', 'eugenica'], fontes: ['Ética Cristã - Wayne Grudem'] },
   // Missiologia
-  { id: 'miss-003', titulo: 'O Crescimento da Igreja no Sul Global', categoria: 'Missiologia', subcategoria: 'Missões', conteudo: ['A igreja cresce mais na Ásia e África.', 'O evangelho é contextualizado, não culturalizado.', 'O liderado nativo é essencial.', 'A perseguição fortalece a igreja.', 'As missões estão se tornando mais globais.'], versicosChave: ['Apocalipse 7:9', 'Mateus 24:14', 'Salmo 2:8'], tags: ['crescimento', 'sul global', 'missao'], fontes: ['O Futuro do Cristianismo - Philip Jenkins'] },
+  { id: 'miss-003', titulo: 'O Crescimento da Igreja no Sul Global', categoria: 'Missiologia', subcategoria: 'Missiologia', conteudo: ['A igreja cresce mais na Ásia e África.', 'O evangelho é contextualizado, não culturalizado.', 'O liderado nativo é essencial.', 'A perseguição fortalece a igreja.', 'As missões estão se tornando mais globais.'], versicosChave: ['Apocalipse 7:9', 'Mateus 24:14', 'Salmo 2:8'], tags: ['crescimento', 'sul global', 'missao'], fontes: ['O Futuro do Cristianismo - Philip Jenkins'] },
   // Família
-  { id: 'fam-003', titulo: 'O Divórcio e o Novo Testamento', categoria: 'Vida Crista', subcategoria: 'Família', conteudo: ['Jesus ensinou que o casamento é para sempre.', 'O divórcio é permitido em caso de imoralidade.', 'Paulo permite o divórcio em caso de abandono.', 'O divórcio não é o ideal de Deus.', 'A restauração é sempre preferível.'], versicosChave: ['Mateus 19:3-9', '1 Coríntios 7:10-16'], tags: ['divorcio', 'casamento', 'restauracao'], fontes: ['O Divórcio - David Instone-Brewer'] },
+  { id: 'fam-003', titulo: 'O Divórcio e o Novo Testamento', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Jesus ensinou que o casamento é para sempre.', 'O divórcio é permitido em caso de imoralidade.', 'Paulo permite o divórcio em caso de abandono.', 'O divórcio não é o ideal de Deus.', 'A restauração é sempre preferível.'], versicosChave: ['Mateus 19:3-9', '1 Coríntios 7:10-16'], tags: ['divorcio', 'casamento', 'restauracao'], fontes: ['O Divórcio - David Instone-Brewer'] },
   // Liderança
-  { id: 'lid-003', titulo: 'A Pregação Bíblica', categoria: 'Eclesiologia', subcategoria: 'Ministério', conteudo: ['A pregação é central na adoração cristã.', 'Devemos pregar a Palavra, não opiniões.', 'A pregação deve ser expositiva e aplicada.', 'O pregador deve viver o que prega.', 'O Espirito Santo é o verdadeiro pregador.'], versicosChave: ['2 Timóteo 4:2-4', 'Atos 2:42', '1 Coríntios 1:23-25'], tags: ['pregacao', 'ministerio', 'expositoria'], fontes: ['Pregação - Haddon Robinson'] },
+  { id: 'lid-003', titulo: 'A Pregação Bíblica', categoria: 'Eclesiologia', subcategoria: 'Eclesiologia', conteudo: ['A pregação é central na adoração cristã.', 'Devemos pregar a Palavra, não opiniões.', 'A pregação deve ser expositiva e aplicada.', 'O pregador deve viver o que prega.', 'O Espirito Santo é o verdadeiro pregador.'], versicosChave: ['2 Timóteo 4:2-4', 'Atos 2:42', '1 Coríntios 1:23-25'], tags: ['pregacao', 'ministerio', 'expositoria'], fontes: ['Pregação - Haddon Robinson'] },
   // Música
-  { id: 'mus-003', titulo: 'A Adoração Contemporânea', categoria: 'Vida Crista', subcategoria: 'Adoração', conteudo: ['A adoração deve ser relevante sem ser superficial.', 'A letra é mais importante que a melodia.', 'A adoração deve ser centrada em Cristo.', 'Todas as gerações têm algo a contribuir.', 'A tradição e a inovação podem coexistir.'], versicosChave: ['Colossenses 3:16', 'Efésios 5:19', 'Salmo 33:3'], tags: ['adoracao', 'contemporanea', 'louvor'], fontes: ['Adorando ao Deus Vivente - Matt Redman'] },
+  { id: 'mus-003', titulo: 'A Adoração Contemporânea', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A adoração deve ser relevante sem ser superficial.', 'A letra é mais importante que a melodia.', 'A adoração deve ser centrada em Cristo.', 'Todas as gerações têm algo a contribuir.', 'A tradição e a inovação podem coexistir.'], versicosChave: ['Colossenses 3:16', 'Efésios 5:19', 'Salmo 33:3'], tags: ['adoracao', 'contemporanea', 'louvor'], fontes: ['Adorando ao Deus Vivente - Matt Redman'] },
   // Educação
-  { id: 'edu-002', titulo: 'O Ensino de Jesus', categoria: 'Vida Crista', subcategoria: 'Ensino', conteudo: ['Jesus usou parabolas como método principal.', 'O ensino era prático e transformador.', 'Jesus fazia perguntas para estimular o pensamento.', 'O ensino era autoritário e único.', 'O exemplo de Jesus complementava Suas palavras.'], versicosChave: ['Mateus 13:34-35', 'Marcos 1:22', 'Lucas 24:27'], tags: ['ensino', 'parabolas', 'jesus'], fontes: ['O Ensino de Jesus - Klyne Snodgrass'] },
+  { id: 'edu-002', titulo: 'O Ensino de Jesus', categoria: 'Vida Crista', subcategoria: 'Eclesiologia', conteudo: ['Jesus usou parabolas como método principal.', 'O ensino era prático e transformador.', 'Jesus fazia perguntas para estimular o pensamento.', 'O ensino era autoritário e único.', 'O exemplo de Jesus complementava Suas palavras.'], versicosChave: ['Mateus 13:34-35', 'Marcos 1:22', 'Lucas 24:27'], tags: ['ensino', 'parabolas', 'jesus'], fontes: ['O Ensino de Jesus - Klyne Snodgrass'] },
   // Teologia Bíblica
-  { id: 'teobib-003', titulo: 'O Cordeiro de Deus', categoria: 'Teologia Biblica', subcategoria: 'Tema Central', conteudo: ['O tema do cordeiro percorre toda a Bíblia.', 'O cordeiro pascal no Êxodo prefigura Cristo.', 'Isaías descreve o servo como cordeiro conduzido ao matadouro.', 'João Batista chama Jesus de Cordeiro de Deus.', 'O Cordeiro é o centro da adoração no Apocalipse.'], versicosChave: ['João 1:29', 'Isaías 53:7', 'Apocalipse 5:12-13'], tags: ['cordeiro', 'sacrificio', 'expiacao'], fontes: ['O Cordeiro - Brian Rosner'] },
+  { id: 'teobib-003', titulo: 'O Cordeiro de Deus', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['O tema do cordeiro percorre toda a Bíblia.', 'O cordeiro pascal no Êxodo prefigura Cristo.', 'Isaías descreve o servo como cordeiro conduzido ao matadouro.', 'João Batista chama Jesus de Cordeiro de Deus.', 'O Cordeiro é o centro da adoração no Apocalipse.'], versicosChave: ['João 1:29', 'Isaías 53:7', 'Apocalipse 5:12-13'], tags: ['cordeiro', 'sacrificio', 'expiacao'], fontes: ['O Cordeiro - Brian Rosner'] },
   // Tipologia
-  { id: 'tipo-001', titulo: 'Adão e Cristo', categoria: 'Estudos Comparativos', subcategoria: 'Tipologia', conteudo: ['Adão é o primeiro homem; Cristo é o último Adão.', 'O pecado de Adão trouxe morte; a obediência de Cristo traz vida.', 'Em Adão todos morrem; em Cristo todos vivem.', 'Adão falhou onde Cristo venceu.', 'A typologia é explicada por Paulo em Romanos 5.'], versicosChave: ['Romanos 5:12-21', '1 Coríntios 15:22, 45-49'], tags: ['adam', 'cristo', 'tipologia', 'typologia'], fontes: ['Teologia do NT - George Eldon Ladd'] },
-  { id: 'tipo-002', titulo: 'Moisés e Cristo', categoria: 'Estudos Comparativos', subcategoria: 'Tipologia', conteudo: ['Moisés libertou Israel da escravidão; Cristo do pecado.', 'Moisés deu a lei; Cristo é a consumação da lei.', 'Moisés mediou a aliança; Cristo é o mediador da nova aliança.', 'Moisés era fiel em toda a casa de Deus.', 'Cristo é superior a Moisés como Filho sobre a casa.'], versicosChave: ['Hebreus 3:1-6', 'Deuteronômio 18:15-18'], tags: ['moises', 'cristo', 'tipologia', 'mediador'], fontes: ['Teologia do NT - George Eldon Ladd'] },
+  { id: 'tipo-001', titulo: 'Adão e Cristo', categoria: 'Estudos Comparativos', subcategoria: 'Teologia Bíblica', conteudo: ['Adão é o primeiro homem; Cristo é o último Adão.', 'O pecado de Adão trouxe morte; a obediência de Cristo traz vida.', 'Em Adão todos morrem; em Cristo todos vivem.', 'Adão falhou onde Cristo venceu.', 'A typologia é explicada por Paulo em Romanos 5.'], versicosChave: ['Romanos 5:12-21', '1 Coríntios 15:22, 45-49'], tags: ['adam', 'cristo', 'tipologia', 'typologia'], fontes: ['Teologia do NT - George Eldon Ladd'] },
+  { id: 'tipo-002', titulo: 'Moisés e Cristo', categoria: 'Estudos Comparativos', subcategoria: 'Teologia Bíblica', conteudo: ['Moisés libertou Israel da escravidão; Cristo do pecado.', 'Moisés deu a lei; Cristo é a consumação da lei.', 'Moisés mediou a aliança; Cristo é o mediador da nova aliança.', 'Moisés era fiel em toda a casa de Deus.', 'Cristo é superior a Moisés como Filho sobre a casa.'], versicosChave: ['Hebreus 3:1-6', 'Deuteronômio 18:15-18'], tags: ['moises', 'cristo', 'tipologia', 'mediador'], fontes: ['Teologia do NT - George Eldon Ladd'] },
   // Harmoniologia
-  { id: 'harmon-002', titulo: 'A Harmonia das Resurreições', categoria: 'Estudos Comparativos', subcategoria: 'Harmonia', conteudo: ['Mateus, Marcos, Lucas e João relatam a ressurreição.', 'Há pequenas diferenças nas narrativas.', 'As diferenças são complementares, não contraditórias.', 'A mensagem central é a mesma: Cristo ressuscitou.', 'A ressurreição é o fundamento da fé cristã.'], versicosChave: ['Mateus 28:1-10', 'Marcos 16:1-8', 'Lucas 24:1-12', 'João 20:1-18'], tags: ['ressurreicao', 'harmonia', 'evangelhos'], fontes: ['Harmonia dos Evangelhos - Robert Stein'] },
+  { id: 'harmon-002', titulo: 'A Harmonia das Resurreições', categoria: 'Estudos Comparativos', subcategoria: 'Estudos Comparativos', conteudo: ['Mateus, Marcos, Lucas e João relatam a ressurreição.', 'Há pequenas diferenças nas narrativas.', 'As diferenças são complementares, não contraditórias.', 'A mensagem central é a mesma: Cristo ressuscitou.', 'A ressurreição é o fundamento da fé cristã.'], versicosChave: ['Mateus 28:1-10', 'Marcos 16:1-8', 'Lucas 24:1-12', 'João 20:1-18'], tags: ['ressurreicao', 'harmonia', 'evangelhos'], fontes: ['Harmonia dos Evangelhos - Robert Stein'] },
   // Literatura
-  { id: 'liter-002', titulo: 'Os Gêneros Literários da Bíblia', categoria: 'Literatura Biblica', subcategoria: 'Gêneros', conteudo: ['A Bíblia contém: narrativa, poesia, profecia, epístola, apocalipse.', 'Cada gênero tem regras de interpretação.', 'O AT usa mais narrativa e poesia.', 'O NT usa mais epístolas e narrativa.', 'Reconhecer o gênero é essencial para a hermenêutica.'], versicosChave: ['2 Timóteo 3:16', 'Salmo 1:1-2'], tags: ['generos', 'literatura', 'interpretacao'], fontes: ['Literatura e Interpretação Bíblica - Leland Ryken'] },
+  { id: 'liter-002', titulo: 'Os Gêneros Literários da Bíblia', categoria: 'Bibliologia', subcategoria: 'Teologia Bíblica', conteudo: ['A Bíblia contém: narrativa, poesia, profecia, epístola, apocalipse.', 'Cada gênero tem regras de interpretação.', 'O AT usa mais narrativa e poesia.', 'O NT usa mais epístolas e narrativa.', 'Reconhecer o gênero é essencial para a hermenêutica.'], versicosChave: ['2 Timóteo 3:16', 'Salmo 1:1-2'], tags: ['generos', 'literatura', 'interpretacao'], fontes: ['Literatura e Interpretação Bíblica - Leland Ryken'] },
   // Filosofia
-  { id: 'filo-003', titulo: 'A Cosmovisão Cristã', categoria: 'Apologetica', subcategoria: 'Cosmovisão', conteudo: ['A cosmovisão cristã é monoteísta e teleológica.', 'Deus criou o universo com propósito.', 'A história tem direção e destino.', 'O mal é real mas temporário.', 'A verdade objetiva existe e é conhecível.'], versicosChave: ['Gênesis 1:1', 'João 1:1-3', 'Colossenses 1:16-17'], tags: ['cosmovisao', 'filosofia', 'proposito'], fontes: ['Cosmovisão Cristã - Charles Colson'] },
+  { id: 'filo-003', titulo: 'A Cosmovisão Cristã', categoria: 'Apologetica', subcategoria: 'Questões Contemporâneas', conteudo: ['A cosmovisão cristã é monoteísta e teleológica.', 'Deus criou o universo com propósito.', 'A história tem direção e destino.', 'O mal é real mas temporário.', 'A verdade objetiva existe e é conhecível.'], versicosChave: ['Gênesis 1:1', 'João 1:1-3', 'Colossenses 1:16-17'], tags: ['cosmovisao', 'filosofia', 'proposito'], fontes: ['Cosmovisão Cristã - Charles Colson'] },
   // Psicologia
-  { id: 'psico-002', titulo: 'A Dependência de Deus', categoria: 'Vida Crista', subcategoria: 'Espiritualidade', conteudo: ['Devemos confiar em Deus em todas as coisas.', 'A autossuficiência é pecado.', 'Deus supre todas as necessidades.', 'A oração expressa nossa dependência.', 'A fé é confiança prática em Deus.'], versicosChave: ['Provérbios 3:5-6', 'Filipenses 4:19', 'Mateus 6:25-34'], tags: ['dependencia', 'confianca', 'fe'], fontes: ['Dependente de Deus - Jon Bloom'] },
+  { id: 'psico-002', titulo: 'A Dependência de Deus', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Devemos confiar em Deus em todas as coisas.', 'A autossuficiência é pecado.', 'Deus supre todas as necessidades.', 'A oração expressa nossa dependência.', 'A fé é confiança prática em Deus.'], versicosChave: ['Provérbios 3:5-6', 'Filipenses 4:19', 'Mateus 6:25-34'], tags: ['dependencia', 'confianca', 'fe'], fontes: ['Dependente de Deus - Jon Bloom'] },
   // Ecologia
-  { id: 'eco-002', titulo: 'A Teologia da Criação', categoria: 'Teologia Biblica', subcategoria: 'Criação', conteudo: ['Deus criou tudo e declarou que era bom.', 'A criação declara a glória de Deus.', 'A criação foi afetada pela queda.', 'Haverá renovação da criação.', 'Devemos cuidar da criação como mordomos.'], versicosChave: ['Gênesis 1:1, 31', 'Salmo 19:1', 'Romanos 8:19-22'], tags: ['criacao', 'teologia', 'ecologia'], fontes: ['Teologia da Criação - Henri Blocher'] },
+  { id: 'eco-002', titulo: 'A Teologia da Criação', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Deus criou tudo e declarou que era bom.', 'A criação declara a glória de Deus.', 'A criação foi afetada pela queda.', 'Haverá renovação da criação.', 'Devemos cuidar da criação como mordomos.'], versicosChave: ['Gênesis 1:1, 31', 'Salmo 19:1', 'Romanos 8:19-22'], tags: ['criacao', 'teologia', 'ecologia'], fontes: ['Teologia da Criação - Henri Blocher'] },
   // Justiça Social
-  { id: 'just-002', titulo: 'A Missão da Igreja com os Pobres', categoria: 'Eclesiologia', subcategoria: 'Missão', conteudo: ['Jesus identificou-se com os pobres.', 'A igreja deve servir os marginalizados.', 'O amor ao próximo inclui ação social.', 'A evangelização e a ação social são complementares.', 'A justiça é característica do Reino de Deus.'], versicosChave: ['Mateus 25:35-40', 'Tiago 1:27', 'Miquéias 6:8'], tags: ['pobres', 'justiça social', 'missao'], fontes: ['Ministério aos Pobres - Robert Lupton'] },
+  { id: 'just-002', titulo: 'A Missão da Igreja com os Pobres', categoria: 'Eclesiologia', subcategoria: 'Missiologia', conteudo: ['Jesus identificou-se com os pobres.', 'A igreja deve servir os marginalizados.', 'O amor ao próximo inclui ação social.', 'A evangelização e a ação social são complementares.', 'A justiça é característica do Reino de Deus.'], versicosChave: ['Mateus 25:35-40', 'Tiago 1:27', 'Miquéias 6:8'], tags: ['pobres', 'justiça social', 'missao'], fontes: ['Ministério aos Pobres - Robert Lupton'] },
   // Arqueologia
-  { id: 'arqueo-003', titulo: 'A Estela de Tel Dan', categoria: 'Historia da Igreja', subcategoria: 'Arqueologia', conteudo: ['Descoberta em 1993, menciona a "casa de Davi".', 'É a primeira referência extrabíblica a Davi.', 'Confirma a existência histórica do rei Davi.', 'A arqueologia sustenta o relato bíblico.', 'Cada descoberta reforça a confiabilidade da Bíblia.'], versicosChave: ['2 Samuel 7:12-16', '1 Crônicas 17:11-14'], tags: ['arqueologia', 'davi', 'tel dan'], fontes: ['Arqueologia e Bíblia - Bryant Wood'] },
+  { id: 'arqueo-003', titulo: 'A Estela de Tel Dan', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['Descoberta em 1993, menciona a "casa de Davi".', 'É a primeira referência extrabíblica a Davi.', 'Confirma a existência histórica do rei Davi.', 'A arqueologia sustenta o relato bíblico.', 'Cada descoberta reforça a confiabilidade da Bíblia.'], versicosChave: ['2 Samuel 7:12-16', '1 Crônicas 17:11-14'], tags: ['arqueologia', 'davi', 'tel dan'], fontes: ['Arqueologia e Bíblia - Bryant Wood'] },
   // Biografias
-  { id: 'biog-003', titulo: 'A Vida de Pedro', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['Pedro era pescador chamado por Jesus.', 'Confessou Jesus como o Cristo.', 'Negou Jesus três vezes mas se arrependeu.', 'Foi líder da igreja primitiva em Jerusalém.', 'Pregou o primeiro sermão em Pentecostes.'], versicosChave: ['Mateus 16:16', 'Lucas 22:54-62', 'Atos 2:14-41'], tags: ['pedro', 'apostolo', 'lideranca'], fontes: ['Pedro - Fleming Revell'] },
-  { id: 'biog-004', titulo: 'A Vida de Paulo', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['Paulo nasceu em Tarso, fariseu e cidadão romano.', 'Perseguiu a igreja antes da conversão.', 'Fez três viagens missionarias.', 'Escreveu 13 epistolas.', 'Foi martirizado em Roma.'], versicosChave: ['Atos 9:1-19', 'Atos 13-28', '2 Timóteo 4:6-8'], tags: ['paulo', 'missionario', 'epistolas'], fontes: ['Paulo - F.F. Bruce'] },
+  { id: 'biog-003', titulo: 'A Vida de Pedro', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Pedro era pescador chamado por Jesus.', 'Confessou Jesus como o Cristo.', 'Negou Jesus três vezes mas se arrependeu.', 'Foi líder da igreja primitiva em Jerusalém.', 'Pregou o primeiro sermão em Pentecostes.'], versicosChave: ['Mateus 16:16', 'Lucas 22:54-62', 'Atos 2:14-41'], tags: ['pedro', 'apostolo', 'lideranca'], fontes: ['Pedro - Fleming Revell'] },
+  { id: 'biog-004', titulo: 'A Vida de Paulo', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Paulo nasceu em Tarso, fariseu e cidadão romano.', 'Perseguiu a igreja antes da conversão.', 'Fez três viagens missionarias.', 'Escreveu 13 epistolas.', 'Foi martirizado em Roma.'], versicosChave: ['Atos 9:1-19', 'Atos 13-28', '2 Timóteo 4:6-8'], tags: ['paulo', 'missionario', 'epistolas'], fontes: ['Paulo - F.F. Bruce'] },
   // Linguística
-  { id: 'ling-004', titulo: 'A Tradução da Bíblia', categoria: 'Linguas Biblicas', subcategoria: 'Tradução', conteudo: ['A Septuaginta (LXX) é a tradução grega do AT.', 'A Vulgata de Jerônimo é a tradução latina.', 'Lutero traduziu a Bíblia para o alemão.', 'A King James Version é a tradução inglesa mais famosa.', 'A tradução em língua vernácula é essencial para acessibilidade.'], versicosChave: ['2 Coríntios 3:6', '1 Coríntios 14:19'], tags: ['traducao', 'lingua', 'acessibilidade'], fontes: ['A Palavra Traduzida - Leland Ryken'] },
+  { id: 'ling-004', titulo: 'A Tradução da Bíblia', categoria: 'Bibliologia', subcategoria: 'Bibliologia', conteudo: ['A Septuaginta (LXX) é a tradução grega do AT.', 'A Vulgata de Jerônimo é a tradução latina.', 'Lutero traduziu a Bíblia para o alemão.', 'A King James Version é a tradução inglesa mais famosa.', 'A tradução em língua vernácula é essencial para acessibilidade.'], versicosChave: ['2 Coríntios 3:6', '1 Coríntios 14:19'], tags: ['traducao', 'lingua', 'acessibilidade'], fontes: ['A Palavra Traduzida - Leland Ryken'] },
   // Hermenêutica
-  { id: 'herm-56', titulo: 'A Gramática Histórica', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['A gramática histórica busca o significado original.', 'Considera o vocabulário, sintaxe e contexto.', 'Usa dicionários e léxicos bíblicos.', 'O objetivo é entender como o autor original foi compreendido.', 'É a base para qualquer interpretação válida.'], versicosChave: ['2 Timóteo 2:15', '1 Coríntios 2:13'], tags: ['gramatica', 'historica', 'interpretacao'], fontes: ['Gramática Histórica do AT - Paul Joüon'] },
+  { id: 'herm-56', titulo: 'A Gramática Histórica', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A gramática histórica busca o significado original.', 'Considera o vocabulário, sintaxe e contexto.', 'Usa dicionários e léxicos bíblicos.', 'O objetivo é entender como o autor original foi compreendido.', 'É a base para qualquer interpretação válida.'], versicosChave: ['2 Timóteo 2:15', '1 Coríntios 2:13'], tags: ['gramatica', 'historica', 'interpretacao'], fontes: ['Gramática Histórica do AT - Paul Joüon'] },
   // Práticas Cristãs
-  { id: 'prat-001', titulo: 'O Jejum na Vida Cristã', categoria: 'Vida Crista', subcategoria: 'Práticas', conteudo: ['O jejum é prática de disciplina espiritual.', 'Jesus jejuou quarenta dias no deserto.', 'O jejum deve ser voluntário e privado.', 'Não é para ser visto pelos homens.', 'O jejum foca em Deus, não em sacrifício pessoal.'], versicosChave: ['Mateus 6:16-18', 'Mateus 4:1-2', 'Isaías 58:6-8'], tags: ['jejum', 'disciplina', 'espiritualidade'], fontes: ['Os Disciplinas Espirituais - Dallas Willard'] },
-  { id: 'prat-002', titulo: 'A Confissão de Pecados', categoria: 'Vida Crista', subcategoria: 'Práticas', conteudo: ['Devemos confessar pecados a Deus regularmente.', 'A confissão é baseada na graça, não em obras.', 'Devemos confessar uns aos outros.', 'A confissão traz restauração.', 'Deus é fiel e justo para perdoar.'], versicosChave: ['1 João 1:9', 'Tiago 5:16', 'Salmo 32:3-5'], tags: ['confissao', 'perdao', 'restauracao'], fontes: ['Confissão - Tullian Tchividjian'] },
+  { id: 'prat-001', titulo: 'O Jejum na Vida Cristã', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['O jejum é prática de disciplina espiritual.', 'Jesus jejuou quarenta dias no deserto.', 'O jejum deve ser voluntário e privado.', 'Não é para ser visto pelos homens.', 'O jejum foca em Deus, não em sacrifício pessoal.'], versicosChave: ['Mateus 6:16-18', 'Mateus 4:1-2', 'Isaías 58:6-8'], tags: ['jejum', 'disciplina', 'espiritualidade'], fontes: ['Os Disciplinas Espirituais - Dallas Willard'] },
+  { id: 'prat-002', titulo: 'A Confissão de Pecados', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Devemos confessar pecados a Deus regularmente.', 'A confissão é baseada na graça, não em obras.', 'Devemos confessar uns aos outros.', 'A confissão traz restauração.', 'Deus é fiel e justo para perdoar.'], versicosChave: ['1 João 1:9', 'Tiago 5:16', 'Salmo 32:3-5'], tags: ['confissao', 'perdao', 'restauracao'], fontes: ['Confissão - Tullian Tchividjian'] },
   // Temas Teológicos
-  { id: 'tema-001', titulo: 'O Reino de Deus e Seu Reino', categoria: 'Teologia Biblica', subcategoria: 'Reino', conteudo: ['O Reino de Deus é governo soberano de Deus.', 'O Reino é presente e futuro.', 'O Reino se expande pela Palavra.', 'O Reino transforma sociedades.', 'O Reino culminará no Reino eterno.'], versicosChave: ['Mateus 6:33', 'Marcos 1:15', 'Lucas 17:20-21'], tags: ['reino', 'governo', 'futuro'], fontes: ['A Teologia do Reino - George Ladd'] },
-  { id: 'tema-002', titulo: 'A Nova Aliança', categoria: 'Teologia Biblica', subcategoria: 'Aliança', conteudo: ['A Nova Aliança foi prometida por Jeremias.', 'Cristo é o mediador da Nova Aliança.', 'A Nova Aliança escreve a lei no coração.', 'O perdão é completo e definitivo.', 'O Espirito habita nos crentes.'], versicosChave: ['Jeremias 31:31-34', 'Hebreus 8:6-13', 'Lucas 22:20'], tags: ['alianca nova', 'perdao', 'espirito'], fontes: ['A Teologia da Aliança - O. Palmer Robertson'] },
-  { id: 'tema-003', titulo: 'A Glória de Deus', categoria: 'Teologia Proper', subcategoria: 'Glória', conteudo: ['A glória de Deus é a manifestação de Sua majestade.', 'Toda a criação declara a glória de Deus.', 'A glória de Deus é o proposito da história.', 'Devemos viver para a glória de Deus.', 'A glória de Deus se revela plenamente em Cristo.'], versicosChave: ['Salmo 19:1', 'Efésios 3:20-21', 'João 1:14'], tags: ['gloria', 'majestade', 'proposito'], fontes: ['A Glória de Deus - John Piper'] },
+  { id: 'tema-001', titulo: 'O Reino de Deus e Seu Reino', categoria: 'Teologia Bíblica', subcategoria: 'Escatologia', conteudo: ['O Reino de Deus é governo soberano de Deus.', 'O Reino é presente e futuro.', 'O Reino se expande pela Palavra.', 'O Reino transforma sociedades.', 'O Reino culminará no Reino eterno.'], versicosChave: ['Mateus 6:33', 'Marcos 1:15', 'Lucas 17:20-21'], tags: ['reino', 'governo', 'futuro'], fontes: ['A Teologia do Reino - George Ladd'] },
+  { id: 'tema-002', titulo: 'A Nova Aliança', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['A Nova Aliança foi prometida por Jeremias.', 'Cristo é o mediador da Nova Aliança.', 'A Nova Aliança escreve a lei no coração.', 'O perdão é completo e definitivo.', 'O Espirito habita nos crentes.'], versicosChave: ['Jeremias 31:31-34', 'Hebreus 8:6-13', 'Lucas 22:20'], tags: ['alianca nova', 'perdao', 'espirito'], fontes: ['A Teologia da Aliança - O. Palmer Robertson'] },
+  { id: 'tema-003', titulo: 'A Glória de Deus', categoria: 'Doutrinas Fundamentais', subcategoria: 'Vida Crista', conteudo: ['A glória de Deus é a manifestação de Sua majestade.', 'Toda a criação declara a glória de Deus.', 'A glória de Deus é o proposito da história.', 'Devemos viver para a glória de Deus.', 'A glória de Deus se revela plenamente em Cristo.'], versicosChave: ['Salmo 19:1', 'Efésios 3:20-21', 'João 1:14'], tags: ['gloria', 'majestade', 'proposito'], fontes: ['A Glória de Deus - John Piper'] },
 
 
   // --- BATCH 4: +330 estudos para atingir 1000+ ---
   // Mais Temas por Livro
-  { id: 'livro-146', titulo: 'A Criacao do Universo', categoria: 'Temas por Livro', subcategoria: 'Genese', conteudo: ['Deus criou os céus e a terra pelo Seu poder.', 'A criação foi ordenada e gradual.', 'A palavra de Deus trouxe tudo à existência.', 'O universo testemunha a glória de Deus.', 'A criação é um ato de amor e sabedoria.'], versicosChave: ['Gênesis 1:1', 'Hebreus 11:3', 'Salmo 19:1'], tags: ['genesis', 'criacao', 'universo'], fontes: ['Comentario ao Gênesis - Gordon Wenham'] },
-  { id: 'livro-147', titulo: 'O Diluvio Universal', categoria: 'Temas por Livro', subcategoria: 'Genese', conteudo: ['O diluvio foi juizo sobre a corrupção humana.', 'Noé achou graça aos olhos do Senhor.', 'Deus preservou a vida por meio de uma arca.', 'O diluvio renovou a terra.', 'A aliança pós-diluvio é um símbolo de misericórdia.'], versicosChave: ['Gênesis 6:5-8', 'Gênesis 7:1-24', 'Gênesis 9:8-17'], tags: ['genesis', 'diluvio', 'juizo', 'alianca'], fontes: ['Comentario ao Gênesis - Victor Hamilton'] },
-  { id: 'livro-148', titulo: 'A Torre de Babel', categoria: 'Temas por Livro', subcategoria: 'Genese', conteudo: ['A Torre de Babel foi tentativa de rebelião humana.', 'O orgulho levou os homens a se rebelarem.', 'Deus confundiu as línguas.', 'A dispersão foi consequência do pecado.', 'A diversidade linguística é obra de Deus.'], versicosChave: ['Gênesis 11:1-9'], tags: ['babel', 'linguas', 'orgulho'], fontes: ['Comentario ao Gênesis - Nahum Sarna'] },
-  { id: 'livro-149', titulo: 'A Aliança Abraâmica', categoria: 'Temas por Livro', subcategoria: 'Genese', conteudo: ['Deus fez uma aliança incondicional com Abraão.', 'Prometeu descendência, terra e bênção.', 'A fé de Abraão foi creditada como justiça.', 'O sacrifício de Isaac testou a fé.', 'Em tua semente serão benditas todas as nações.'], versicosChave: ['Gênesis 12:1-3', 'Gênesis 15:6', 'Gênesis 22:18'], tags: ['alianca', 'abraao', 'fe', 'promessa'], fontes: ['Comentario ao Gênesis - Bruce Waltke'] },
-  { id: 'livro-150', titulo: 'Os Dez Mandamentos', categoria: 'Temas por Livro', subcategoria: 'Exodo', conteudo: ['Os mandamentos revelam a vontade santa de Deus.', 'O primeiro mandamento proíbe outros deuses.', 'O quarto mandamento ordena o descanso.', 'Os mandamentos são baseados no amor.', 'Jesus resumiu os mandamentos em dois.'], versicosChave: ['Êxodo 20:1-17', 'Mateus 22:37-40'], tags: ['mandamentos', 'lei', 'amor'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'livro-151', titulo: 'O Êxodo do Egito', categoria: 'Temas por Livro', subcategoria: 'Exodo', conteudo: ['Deus ouviu o clamor de Israel.', 'As dez pragas demonstraram o poder de Deus.', 'O cordeiro pascal é tipo de Cristo.', 'O mar Vermelho se abriu.', 'O Sinai estabeleceu a aliança.'], versicosChave: ['Êxodo 3:7-8', 'Êxodo 12:1-14', 'Êxodo 14:21-31'], tags: ['exodo', 'libertacao', 'pragas'], fontes: ['Comentario ao Êxodo - Douglas Stuart'] },
-  { id: 'livro-152', titulo: 'A Conquista de Canaã sob Josué', categoria: 'Temas por Livro', subcategoria: 'Josue', conteudo: ['Deus cumpriu a promessa da terra.', 'Josué liderou com coragem.', 'A queda de Jericó demonstrou o poder de Deus.', 'A terra foi dividida entre as tribos.', 'Josué desafiou o povo a servir ao Senhor.'], versicosChave: ['Josué 1:9', 'Josué 6:1-27', 'Josué 24:14-15'], tags: ['josue', 'conquista', 'coragem'], fontes: ['Comentario ao Josué - Richard Hess'] },
-  { id: 'livro-153', titulo: 'Os Juízes de Israel', categoria: 'Temas por Livro', subcategoria: 'Juizes', conteudo: ['Israel caiu em idolatria repetidamente.', 'Deus levantou juízes para libertar.', 'O ciclo: pecado, clamor, libertação.', 'Gideão derrotou os midianitas com 300 homens.', 'Sansão foi o último e mais controverso juiz.'], versicosChave: ['Juízes 2:11-19', 'Juízes 7:1-25', 'Juízes 13-16'], tags: ['juizes', 'libertacao', 'ciclo'], fontes: ['Comentario aos Juízes - Robert Boling'] },
-  { id: 'livro-154', titulo: 'Rute: Lealdade e Redenção', categoria: 'Temas por Livro', subcategoria: 'Rute', conteudo: ['Rute permaneceu fiel à sua sogra.', 'A lealdade de Rute foi recompensada.', 'Rute é ancestral de Davi e de Jesus.', 'O amor de Deus se manifesta na história humana.', 'Rute é um exemplo de fé e obediência.'], versicosChave: ['Rute 1:16-17', 'Rute 4:14-17', 'Mateus 1:5'], tags: ['rute', 'lealdade', 'redencao', 'ancestral'], fontes: ['Comentario a Rute - Robert Hubbard'] },
+  { id: 'livro-146', titulo: 'A Criacao do Universo', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Deus criou os céus e a terra pelo Seu poder.', 'A criação foi ordenada e gradual.', 'A palavra de Deus trouxe tudo à existência.', 'O universo testemunha a glória de Deus.', 'A criação é um ato de amor e sabedoria.'], versicosChave: ['Gênesis 1:1', 'Hebreus 11:3', 'Salmo 19:1'], tags: ['genesis', 'criacao', 'universo'], fontes: ['Comentario ao Gênesis - Gordon Wenham'] },
+  { id: 'livro-147', titulo: 'O Diluvio Universal', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['O diluvio foi juizo sobre a corrupção humana.', 'Noé achou graça aos olhos do Senhor.', 'Deus preservou a vida por meio de uma arca.', 'O diluvio renovou a terra.', 'A aliança pós-diluvio é um símbolo de misericórdia.'], versicosChave: ['Gênesis 6:5-8', 'Gênesis 7:1-24', 'Gênesis 9:8-17'], tags: ['genesis', 'diluvio', 'juizo', 'alianca'], fontes: ['Comentario ao Gênesis - Victor Hamilton'] },
+  { id: 'livro-148', titulo: 'A Torre de Babel', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['A Torre de Babel foi tentativa de rebelião humana.', 'O orgulho levou os homens a se rebelarem.', 'Deus confundiu as línguas.', 'A dispersão foi consequência do pecado.', 'A diversidade linguística é obra de Deus.'], versicosChave: ['Gênesis 11:1-9'], tags: ['babel', 'linguas', 'orgulho'], fontes: ['Comentario ao Gênesis - Nahum Sarna'] },
+  { id: 'livro-149', titulo: 'A Aliança Abraâmica', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Deus fez uma aliança incondicional com Abraão.', 'Prometeu descendência, terra e bênção.', 'A fé de Abraão foi creditada como justiça.', 'O sacrifício de Isaac testou a fé.', 'Em tua semente serão benditas todas as nações.'], versicosChave: ['Gênesis 12:1-3', 'Gênesis 15:6', 'Gênesis 22:18'], tags: ['alianca', 'abraao', 'fe', 'promessa'], fontes: ['Comentario ao Gênesis - Bruce Waltke'] },
+  { id: 'livro-150', titulo: 'Os Dez Mandamentos', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Os mandamentos revelam a vontade santa de Deus.', 'O primeiro mandamento proíbe outros deuses.', 'O quarto mandamento ordena o descanso.', 'Os mandamentos são baseados no amor.', 'Jesus resumiu os mandamentos em dois.'], versicosChave: ['Êxodo 20:1-17', 'Mateus 22:37-40'], tags: ['mandamentos', 'lei', 'amor'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'livro-151', titulo: 'O Êxodo do Egito', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Deus ouviu o clamor de Israel.', 'As dez pragas demonstraram o poder de Deus.', 'O cordeiro pascal é tipo de Cristo.', 'O mar Vermelho se abriu.', 'O Sinai estabeleceu a aliança.'], versicosChave: ['Êxodo 3:7-8', 'Êxodo 12:1-14', 'Êxodo 14:21-31'], tags: ['exodo', 'libertacao', 'pragas'], fontes: ['Comentario ao Êxodo - Douglas Stuart'] },
+  { id: 'livro-152', titulo: 'A Conquista de Canaã sob Josué', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Deus cumpriu a promessa da terra.', 'Josué liderou com coragem.', 'A queda de Jericó demonstrou o poder de Deus.', 'A terra foi dividida entre as tribos.', 'Josué desafiou o povo a servir ao Senhor.'], versicosChave: ['Josué 1:9', 'Josué 6:1-27', 'Josué 24:14-15'], tags: ['josue', 'conquista', 'coragem'], fontes: ['Comentario ao Josué - Richard Hess'] },
+  { id: 'livro-153', titulo: 'Os Juízes de Israel', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Israel caiu em idolatria repetidamente.', 'Deus levantou juízes para libertar.', 'O ciclo: pecado, clamor, libertação.', 'Gideão derrotou os midianitas com 300 homens.', 'Sansão foi o último e mais controverso juiz.'], versicosChave: ['Juízes 2:11-19', 'Juízes 7:1-25', 'Juízes 13-16'], tags: ['juizes', 'libertacao', 'ciclo'], fontes: ['Comentario aos Juízes - Robert Boling'] },
+  { id: 'livro-154', titulo: 'Rute: Lealdade e Redenção', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Rute permaneceu fiel à sua sogra.', 'A lealdade de Rute foi recompensada.', 'Rute é ancestral de Davi e de Jesus.', 'O amor de Deus se manifesta na história humana.', 'Rute é um exemplo de fé e obediência.'], versicosChave: ['Rute 1:16-17', 'Rute 4:14-17', 'Mateus 1:5'], tags: ['rute', 'lealdade', 'redencao', 'ancestral'], fontes: ['Comentario a Rute - Robert Hubbard'] },
   // Mais Doutinas
   { id: 'doutr-131', titulo: 'A Justificação pela Fé', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['A justificação é ato legal de Deus.', 'O pecador é declarado justo pela fé.', 'A justiça é imputada, não infundida.', 'A fé é o meio, não a causa da justificação.', 'A justificação traz paz com Deus.'], versicosChave: ['Romanos 3:24-28', 'Gálatas 2:16', 'Efésios 2:8-9'], tags: ['justificacao', 'fe', 'graça'], fontes: ['A Teologia da Reforma - Alister McGrath'] },
   { id: 'doutr-132', titulo: 'A Sanctificação', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['A sanctificação é processo de tornar-se santo.', 'Começa na conversão e continua toda a vida.', 'O Espirito Santo é o agente da sanctificação.', 'A Palavra de Deus é instrumento.', 'A sanctificação é progressiva mas incompleta nesta vida.'], versicosChave: ['1 Tessalonicenses 4:3', 'Filipenses 1:6', 'Hebreus 12:14'], tags: ['santificacao', 'santidade', 'crescimento'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
   { id: 'doutr-133', titulo: 'A Glorificação', categoria: 'Doutrinas Fundamentais', subcategoria: 'Escatologia', conteudo: ['A glorificação é a consumação da salvação.', 'Ocrente receberá um corpo glorificado.', 'Não haverá mais pecado nem sofrimento.', 'A glorificação completa a redenção.', 'Seremos como Cristo.'], versicosChave: ['Romanos 8:30', '1 Coríntios 15:51-57', '1 João 3:2'], tags: ['glorificacao', 'corpo glorificado', 'eternidade'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
   { id: 'doutr-134', titulo: 'A Eleição', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['Deus escolheu certos para salvação em Cristo.', 'A eleição é baseada na graça, não em méritos.', 'A eleição é soberana e gratuita.', 'A eleição não anula a responsabilidade humana.', 'A eleição glorifica a graça de Deus.'], versicosChave: ['Efésios 1:4-5', 'Romanos 8:29-30', '1 Pedro 1:1-2'], tags: ['eleicao', 'soberania', 'graca'], fontes: ['A Eleição - Arthur Pink'] },
   // Mais Questões Contemporâneas
-  { id: 'contemp-65', titulo: 'A Crise da Pós-Modernidade', categoria: 'Questões Contemporâneas', subcategoria: 'Cultura', conteudo: ['O relativismo desafia a verdade objetiva.', 'A pós-modernidade questiona todas as narrativas.', 'O cristianismo oferece verdade absoluta.', 'Devemos ser sábios na comunicação.', 'O evangelho é relevante para cada cultura.'], versicosChave: ['João 8:32', 'João 14:6', '1 Pedro 3:15'], tags: ['pos-modernidade', 'verdade', 'cultura'], fontes: ['A Verdade Cristã - Norman Geisler'] },
-  { id: 'contemp-66', titulo: 'O Evangelho e o Feminismo', categoria: 'Questões Contemporâneas', subcategoria: 'Gênero', conteudo: ['A Bíblia afirma a igualdade de valor entre homens e mulheres.', 'Diferentes funções não significam desigualdade.', 'Jesus tratou mulheres com respeito.', 'O papel da mulher na igreja é debatido.', 'O evangelho liberta e dignifica.'], versicosChave: ['Gálatas 3:28', 'Gênesis 1:27', 'Mateus 28:1-10'], tags: ['feminismo', 'genero', 'igualdade'], fontes: ['Mulheres na Bíblia - Christine Pohl'] },
-  { id: 'contemp-67', titulo: 'O Evangelho e a Política', categoria: 'Questões Contemporâneas', subcategoria: 'Sociedade', conteudo: ['O Reino de Deus transcende partidos políticos.', 'Devemos ser cidadãos fiéis.', 'A justiça é preocupação de Deus.', 'Devemos orar por governantes.', 'A igreja não deve se alinhar a ideologias.'], versicosChave: ['Romanos 13:1-7', '1 Timóteo 2:1-2', 'Filipenses 3:20'], tags: ['politica', 'cidadania', 'justica'], fontes: ['O Reino e o Poder - James Hunter'] },
+  { id: 'contemp-65', titulo: 'A Crise da Pós-Modernidade', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['O relativismo desafia a verdade objetiva.', 'A pós-modernidade questiona todas as narrativas.', 'O cristianismo oferece verdade absoluta.', 'Devemos ser sábios na comunicação.', 'O evangelho é relevante para cada cultura.'], versicosChave: ['João 8:32', 'João 14:6', '1 Pedro 3:15'], tags: ['pos-modernidade', 'verdade', 'cultura'], fontes: ['A Verdade Cristã - Norman Geisler'] },
+  { id: 'contemp-66', titulo: 'O Evangelho e o Feminismo', categoria: 'Questões Contemporâneas', subcategoria: 'Teologia Bíblica', conteudo: ['A Bíblia afirma a igualdade de valor entre homens e mulheres.', 'Diferentes funções não significam desigualdade.', 'Jesus tratou mulheres com respeito.', 'O papel da mulher na igreja é debatido.', 'O evangelho liberta e dignifica.'], versicosChave: ['Gálatas 3:28', 'Gênesis 1:27', 'Mateus 28:1-10'], tags: ['feminismo', 'genero', 'igualdade'], fontes: ['Mulheres na Bíblia - Christine Pohl'] },
+  { id: 'contemp-67', titulo: 'O Evangelho e a Política', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['O Reino de Deus transcende partidos políticos.', 'Devemos ser cidadãos fiéis.', 'A justiça é preocupação de Deus.', 'Devemos orar por governantes.', 'A igreja não deve se alinhar a ideologias.'], versicosChave: ['Romanos 13:1-7', '1 Timóteo 2:1-2', 'Filipenses 3:20'], tags: ['politica', 'cidadania', 'justica'], fontes: ['O Reino e o Poder - James Hunter'] },
   // Mais Estudos Comparativos
-  { id: 'comp-61', titulo: 'Cristianismo vs. Testemunhas de Jeová', categoria: 'Estudos Comparativos', subcategoria: 'Seitas', conteudo: ['As TJ negam a divindade de Cristo.', 'A Bíblia usada pelas TJ é diferente.', 'A TJ ensina que apenas 144.000 serão salvos.', 'A TJ não acredita na ressurreição corporal.', 'O evangelho da TJ é diferente do bíblico.'], versicosChave: ['João 1:1', '1 Coríntios 15:12-19', '2 João 1:7'], tags: ['testemunhas', 'seitas', 'cristologia'], fontes: ['Cristianismo e Seitas - Walter Martin'] },
-  { id: 'comp-62', titulo: 'Cristianismo vs. Mórmons', categoria: 'Estudos Comparativos', subcategoria: 'Seitas', conteudo: ['Os Mórmons aceitam mais escrituras além da Bíblia.', 'A trindade mórmon é diferente da bíblica.', 'O Mórmon ensina que Deus foi um homem.', 'O Mórmon ensina a exaltação do homem.', 'O evangelho mórmon é outro evangelho.'], versicosChave: ['Gálatas 1:6-9', '2 Coríntios 11:3-4', 'Isaías 43:10'], tags: ['mormons', 'seitas', 'evangelho'], fontes: ['Cristianismo e Seitas - Walter Martin'] },
-  { id: 'comp-63', titulo: 'Cristianismo vs. Ciência Cristã', categoria: 'Estudos Comparativos', subcategoria: 'Seitas', conteudo: ['A Ciência Cristã nega a realidade do pecado e da doença.', 'Jesus é apenas um modelo, não o Salvador.', 'A cura vem da mudança de pensamento.', 'A Bíblia é interpretada alegoricamente.', 'O pecado e a morte são ilusões.'], versicosChave: ['1 João 1:8', 'Hebreus 9:27', 'Romanos 3:23'], tags: ['ciencia crista', 'seitas', 'pecado'], fontes: ['Cristianismo e Seitas - Walter Martin'] },
+  { id: 'comp-61', titulo: 'Cristianismo vs. Testemunhas de Jeová', categoria: 'Estudos Comparativos', subcategoria: 'Eclesiologia', conteudo: ['As TJ negam a divindade de Cristo.', 'A Bíblia usada pelas TJ é diferente.', 'A TJ ensina que apenas 144.000 serão salvos.', 'A TJ não acredita na ressurreição corporal.', 'O evangelho da TJ é diferente do bíblico.'], versicosChave: ['João 1:1', '1 Coríntios 15:12-19', '2 João 1:7'], tags: ['testemunhas', 'seitas', 'cristologia'], fontes: ['Cristianismo e Seitas - Walter Martin'] },
+  { id: 'comp-62', titulo: 'Cristianismo vs. Mórmons', categoria: 'Estudos Comparativos', subcategoria: 'Eclesiologia', conteudo: ['Os Mórmons aceitam mais escrituras além da Bíblia.', 'A trindade mórmon é diferente da bíblica.', 'O Mórmon ensina que Deus foi um homem.', 'O Mórmon ensina a exaltação do homem.', 'O evangelho mórmon é outro evangelho.'], versicosChave: ['Gálatas 1:6-9', '2 Coríntios 11:3-4', 'Isaías 43:10'], tags: ['mormons', 'seitas', 'evangelho'], fontes: ['Cristianismo e Seitas - Walter Martin'] },
+  { id: 'comp-63', titulo: 'Cristianismo vs. Ciência Cristã', categoria: 'Estudos Comparativos', subcategoria: 'Eclesiologia', conteudo: ['A Ciência Cristã nega a realidade do pecado e da doença.', 'Jesus é apenas um modelo, não o Salvador.', 'A cura vem da mudança de pensamento.', 'A Bíblia é interpretada alegoricamente.', 'O pecado e a morte são ilusões.'], versicosChave: ['1 João 1:8', 'Hebreus 9:27', 'Romanos 3:23'], tags: ['ciencia crista', 'seitas', 'pecado'], fontes: ['Cristianismo e Seitas - Walter Martin'] },
   // Mais História da Igreja
-  { id: 'hist-56', titulo: 'A Queda de Constantinopla (1453)', categoria: 'Historia da Igreja', subcategoria: 'Eventos', conteudo: ['Constantinopla caiu para os otomanos.', 'O fim do Império Bizantino.', 'Muitos estudiosos fugiram para o Ocidente.', 'A fuga contribuiu para o Renascimento.', 'A queda marcou o fim da Idade Média.'], versicosChave: ['Eclesiastes 3:1-8'], tags: ['constantinopla', 'ottomanos', 'renascimento'], fontes: ['Historia da Igreja - Justo Gonzalez'] },
-  { id: 'hist-57', titulo: 'A Contra-Reforma', categoria: 'Historia da Igreja', subcategoria: 'Reforma', conteudo: ['O Concílio de Trento (1545-1563) respondeu à Reforma.', 'A Companhia de Jesus (jesuítas) foi fundada.', 'A Inquisição foi intensificada.', 'A Igreja Católica se reformou internamente.', 'A Contra-Reforma moldou o catolicismo moderno.'], versicosChave: ['Efésios 2:8-9', 'Romanos 3:28'], tags: ['contra-reforma', 'trento', 'jesuitas'], fontes: ['Historia da Reforma - Alister McGrath'] },
-  { id: 'hist-58', titulo: 'O Avivamento de Azuza (1906)', categoria: 'Historia da Igreja', subcategoria: 'Avivamentos', conteudo: ['O Avivamento de Azuza marcou o início do pentecostalismo.', 'Charles Parham e William Seymour foram líderes.', 'Fala em línguas e curas foram relatadas.', 'O movimento se espalhou globalmente.', 'O pentecostalismo é hoje o maior movimento cristão.'], versicosChave: ['Atos 2:1-4', 'Atos 10:44-46'], tags: ['avivamento', 'pentecostal', 'azuza'], fontes: ['Historia do Pentecostalismo - Allan Anderson'] },
+  { id: 'hist-56', titulo: 'A Queda de Constantinopla (1453)', categoria: 'História da Igreja', subcategoria: 'Escatologia', conteudo: ['Constantinopla caiu para os otomanos.', 'O fim do Império Bizantino.', 'Muitos estudiosos fugiram para o Ocidente.', 'A fuga contribuiu para o Renascimento.', 'A queda marcou o fim da Idade Média.'], versicosChave: ['Eclesiastes 3:1-8'], tags: ['constantinopla', 'ottomanos', 'renascimento'], fontes: ['Historia da Igreja - Justo Gonzalez'] },
+  { id: 'hist-57', titulo: 'A Contra-Reforma', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['O Concílio de Trento (1545-1563) respondeu à Reforma.', 'A Companhia de Jesus (jesuítas) foi fundada.', 'A Inquisição foi intensificada.', 'A Igreja Católica se reformou internamente.', 'A Contra-Reforma moldou o catolicismo moderno.'], versicosChave: ['Efésios 2:8-9', 'Romanos 3:28'], tags: ['contra-reforma', 'trento', 'jesuitas'], fontes: ['Historia da Reforma - Alister McGrath'] },
+  { id: 'hist-58', titulo: 'O Avivamento de Azuza (1906)', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['O Avivamento de Azuza marcou o início do pentecostalismo.', 'Charles Parham e William Seymour foram líderes.', 'Fala em línguas e curas foram relatadas.', 'O movimento se espalhou globalmente.', 'O pentecostalismo é hoje o maior movimento cristão.'], versicosChave: ['Atos 2:1-4', 'Atos 10:44-46'], tags: ['avivamento', 'pentecostal', 'azuza'], fontes: ['Historia do Pentecostalismo - Allan Anderson'] },
   // Mais Hermenêutica
-  { id: 'herm-57', titulo: 'A Interpretação de Salmos', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['Os Salmos são orações e louvores inspirados.', 'Devemos entender o contexto histórico.', 'Alguns Salmos são messiânicos.', 'A interpretação deve considerar o gênero poético.', 'Aplicar os Salmos à vida cristã.'], versicosChave: ['Salmo 1:1-6', 'Salmo 22:1', 'Salmo 110:1'], tags: ['salmos', 'interpretacao', 'oracao'], fontes: ['Como Interpretar os Salmos - Tremper Longman III'] },
-  { id: 'herm-58', titulo: 'A Interpretação de Apocalipse', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['Apocalipse usa simbolismo apocalíptico.', 'O livro foi escrito para igrejas perseguidas.', 'Há diferentes abordagens interpretativas.', 'O tema central é a vitória de Cristo.', 'Devemos ler com reverência e discernimento.'], versicosChave: ['Apocalipse 1:1-3', 'Apocalipse 22:18-19'], tags: ['apocalipse', 'simbolismo', 'interpretacao'], fontes: ['Como Interpretar Apocalipse - Craig Keener'] },
+  { id: 'herm-57', titulo: 'A Interpretação de Salmos', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['Os Salmos são orações e louvores inspirados.', 'Devemos entender o contexto histórico.', 'Alguns Salmos são messiânicos.', 'A interpretação deve considerar o gênero poético.', 'Aplicar os Salmos à vida cristã.'], versicosChave: ['Salmo 1:1-6', 'Salmo 22:1', 'Salmo 110:1'], tags: ['salmos', 'interpretacao', 'oracao'], fontes: ['Como Interpretar os Salmos - Tremper Longman III'] },
+  { id: 'herm-58', titulo: 'A Interpretação de Apocalipse', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['Apocalipse usa simbolismo apocalíptico.', 'O livro foi escrito para igrejas perseguidas.', 'Há diferentes abordagens interpretativas.', 'O tema central é a vitória de Cristo.', 'Devemos ler com reverência e discernimento.'], versicosChave: ['Apocalipse 1:1-3', 'Apocalipse 22:18-19'], tags: ['apocalipse', 'simbolismo', 'interpretacao'], fontes: ['Como Interpretar Apocalipse - Craig Keener'] },
   // Mais Vida Cristã
-  { id: 'vida-011', titulo: 'A Gratidão na Vida Cristã', categoria: 'Vida Crista', subcategoria: 'Atitude', conteudo: ['A gratidão é atitude fundamental do cristão.', 'Devemos dar graças em todas as coisas.', 'A gratidão reconhece a bondade de Deus.', 'A ingratidão é pecado.', 'A gratidão transforma nossa perspectiva.'], versicosChave: ['1 Tessalonicenses 5:18', 'Colossenses 3:15-17', 'Efésios 5:20'], tags: ['gratidao', 'oracao', 'atitude'], fontes: ['A Gratidão - Dennis F. Kinlaw'] },
-  { id: 'vida-012', titulo: 'O Contentamento', categoria: 'Vida Crista', subcategoria: 'Atitude', conteudo: ['O contentamento é aprendido, não natural.', 'Paulo aprendeu a contentar-se.', 'O contentamento não depende de posses.', 'Deus supre todas as necessidades.', 'A ganância é inimiga do contentamento.'], versicosChave: ['Filipenses 4:11-13', '1 Timóteo 6:6-10', 'Hebreus 13:5'], tags: ['contentamento', 'ganancia', 'paz'], fontes: ['Contentamento - Kevin DeYoung'] },
-  { id: 'vida-013', titulo: 'A Paciência', categoria: 'Vida Crista', subcategoria: 'Caráter', conteudo: ['A paciência é fruto do Espírito Santo.', 'Deus é paciente conosco.', 'A paciência é produzida pelo sofrimento.', 'Devemos ser pacientes uns com os outros.', 'A paciência prepara para a eternidade.'], versicosChave: ['Gálatas 5:22', 'Romanos 5:3-5', 'Tiago 1:3-4'], tags: ['paciencia', 'fruto', 'sofrimento'], fontes: ['A Paciência - Thomas Watson'] },
-  { id: 'vida-014', titulo: 'A Coragem na Adversidade', categoria: 'Vida Crista', subcategoria: 'Força', conteudo: ['Deus não nos deu espírito de covardia.', 'Devemos ser fortes e corajosos.', 'A coragem vem da presença de Deus.', 'Deus está conosco nas tribulações.', 'A vitória já foi conquistada em Cristo.'], versicosChave: ['Josué 1:9', '2 Timóteo 1:7', 'Romanos 8:31'], tags: ['coragem', 'força', 'adversidade'], fontes: ['A Coragem de Ser - Paul Tillich'] },
-  { id: 'vida-015', titulo: 'A Simplicidade', categoria: 'Vida Crista', subcategoria: 'Mordomia', conteudo: ['Devemos ser simples em nossos desejos.', 'A simplicidade liberta da avareza.', 'Devemos buscar primeiro o Reino.', 'A generosidade é expressão de simplicidade.', 'Deus é nosso tesouro supremo.'], versicosChave: ['Mateus 6:19-21', '1 Timóteo 6:6-8', 'Filipenses 4:12'], tags: ['simplicidade', 'mordomia', 'generosidade'], fontes: ['A Simplicidade - Richard Foster'] },
+  { id: 'vida-011', titulo: 'A Gratidão na Vida Cristã', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A gratidão é atitude fundamental do cristão.', 'Devemos dar graças em todas as coisas.', 'A gratidão reconhece a bondade de Deus.', 'A ingratidão é pecado.', 'A gratidão transforma nossa perspectiva.'], versicosChave: ['1 Tessalonicenses 5:18', 'Colossenses 3:15-17', 'Efésios 5:20'], tags: ['gratidao', 'oracao', 'atitude'], fontes: ['A Gratidão - Dennis F. Kinlaw'] },
+  { id: 'vida-012', titulo: 'O Contentamento', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['O contentamento é aprendido, não natural.', 'Paulo aprendeu a contentar-se.', 'O contentamento não depende de posses.', 'Deus supre todas as necessidades.', 'A ganância é inimiga do contentamento.'], versicosChave: ['Filipenses 4:11-13', '1 Timóteo 6:6-10', 'Hebreus 13:5'], tags: ['contentamento', 'ganancia', 'paz'], fontes: ['Contentamento - Kevin DeYoung'] },
+  { id: 'vida-013', titulo: 'A Paciência', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A paciência é fruto do Espírito Santo.', 'Deus é paciente conosco.', 'A paciência é produzida pelo sofrimento.', 'Devemos ser pacientes uns com os outros.', 'A paciência prepara para a eternidade.'], versicosChave: ['Gálatas 5:22', 'Romanos 5:3-5', 'Tiago 1:3-4'], tags: ['paciencia', 'fruto', 'sofrimento'], fontes: ['A Paciência - Thomas Watson'] },
+  { id: 'vida-014', titulo: 'A Coragem na Adversidade', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Deus não nos deu espírito de covardia.', 'Devemos ser fortes e corajosos.', 'A coragem vem da presença de Deus.', 'Deus está conosco nas tribulações.', 'A vitória já foi conquistada em Cristo.'], versicosChave: ['Josué 1:9', '2 Timóteo 1:7', 'Romanos 8:31'], tags: ['coragem', 'força', 'adversidade'], fontes: ['A Coragem de Ser - Paul Tillich'] },
+  { id: 'vida-015', titulo: 'A Simplicidade', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Devemos ser simples em nossos desejos.', 'A simplicidade liberta da avareza.', 'Devemos buscar primeiro o Reino.', 'A generosidade é expressão de simplicidade.', 'Deus é nosso tesouro supremo.'], versicosChave: ['Mateus 6:19-21', '1 Timóteo 6:6-8', 'Filipenses 4:12'], tags: ['simplicidade', 'mordomia', 'generosidade'], fontes: ['A Simplicidade - Richard Foster'] },
   // Mais Eclesiologia
-  { id: 'ecles-007', titulo: 'A Ceia do Senhor', categoria: 'Eclesiologia', subcategoria: 'Sacramento', conteudo: ['A Ceia é memorial da morte de Cristo.', 'O pão e o vinho representam o corpo e o sangue.', 'Devemos examinar-nos antes de participar.', 'É comunhão com Cristo e uns com os outros.', 'Celebramos até que Ele venha.'], versicosChave: ['1 Coríntios 11:23-26', 'Mateus 26:26-29'], tags: ['ceia', 'memorial', 'comunhao'], fontes: ['A Ceia do Senhor - Thomas Schreiner'] },
-  { id: 'ecles-008', titulo: 'O Baptismo', categoria: 'Eclesiologia', subcategoria: 'Sacramento', conteudo: ['O baptismo é ordenança de Cristo.', 'Simboliza morte e ressurreição com Cristo.', 'É para crentes professos.', 'Demonstra obediência pública.', 'A água não salva, mas simboliza a salvação.'], versicosChave: ['Mateus 28:19', 'Romanos 6:3-4', 'Atos 2:38'], tags: ['baptismo', 'obediencia', 'simbolo'], fontes: ['O Baptismo - Daniel Akin'] },
+  { id: 'ecles-007', titulo: 'A Ceia do Senhor', categoria: 'Eclesiologia', subcategoria: 'Eclesiologia', conteudo: ['A Ceia é memorial da morte de Cristo.', 'O pão e o vinho representam o corpo e o sangue.', 'Devemos examinar-nos antes de participar.', 'É comunhão com Cristo e uns com os outros.', 'Celebramos até que Ele venha.'], versicosChave: ['1 Coríntios 11:23-26', 'Mateus 26:26-29'], tags: ['ceia', 'memorial', 'comunhao'], fontes: ['A Ceia do Senhor - Thomas Schreiner'] },
+  { id: 'ecles-008', titulo: 'O Baptismo', categoria: 'Eclesiologia', subcategoria: 'Eclesiologia', conteudo: ['O baptismo é ordenança de Cristo.', 'Simboliza morte e ressurreição com Cristo.', 'É para crentes professos.', 'Demonstra obediência pública.', 'A água não salva, mas simboliza a salvação.'], versicosChave: ['Mateus 28:19', 'Romanos 6:3-4', 'Atos 2:38'], tags: ['baptismo', 'obediencia', 'simbolo'], fontes: ['O Baptismo - Daniel Akin'] },
   // Mais Pneumatologia
-  { id: 'pneum-009', titulo: 'O Consolo do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Ministério', conteudo: ['O Espírito Santo é chamado de Paráclito.', 'Ele consola os crentes em tribulações.', 'Guia em toda a verdade.', 'Lembra das palavras de Jesus.', 'Intercede por nós com suspiros indizíveis.'], versicosChave: ['João 14:16-17', 'João 16:7-15', 'Romanos 8:26-27'], tags: ['espirito santo', 'consolador', 'paracletos'], fontes: ['O Espirito Santo - R. Sproul'] },
-  { id: 'pneum-010', titulo: 'O Dádiva do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Dons', conteudo: ['O Espírito distribui dons para edificação da igreja.', 'Nem todos recebem os mesmos dons.', 'O amor é mais importante que os dons.', 'Os dons são para serviço, não exibição.', 'Os dons operam segundo a soberania de Deus.'], versicosChave: ['1 Coríntios 12:4-11', '1 Coríntios 13:1-3'], tags: ['dons', 'espirito santo', 'edificacao'], fontes: ['Os Dons Espirituais - John MacArthur'] },
+  { id: 'pneum-009', titulo: 'O Consolo do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Eclesiologia', conteudo: ['O Espírito Santo é chamado de Paráclito.', 'Ele consola os crentes em tribulações.', 'Guia em toda a verdade.', 'Lembra das palavras de Jesus.', 'Intercede por nós com suspiros indizíveis.'], versicosChave: ['João 14:16-17', 'João 16:7-15', 'Romanos 8:26-27'], tags: ['espirito santo', 'consolador', 'paracletos'], fontes: ['O Espirito Santo - R. Sproul'] },
+  { id: 'pneum-010', titulo: 'O Dádiva do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['O Espírito distribui dons para edificação da igreja.', 'Nem todos recebem os mesmos dons.', 'O amor é mais importante que os dons.', 'Os dons são para serviço, não exibição.', 'Os dons operam segundo a soberania de Deus.'], versicosChave: ['1 Coríntios 12:4-11', '1 Coríntios 13:1-3'], tags: ['dons', 'espirito santo', 'edificacao'], fontes: ['Os Dons Espirituais - John MacArthur'] },
   // Mais Teologia Própria
-  { id: 'teoprop-006', titulo: 'A Onipresença de Deus', categoria: 'Teologia Proper', subcategoria: 'Atributos', conteudo: ['Deus está presente em todos os lugares.', 'A onipresença traz consolo aos aflitos.', 'Nenhum lugar está oculto de Deus.', 'Deus está presente em toda a criação.', 'A onipresença é base para a oração.'], versicosChave: ['Salmo 139:7-12', 'Jeremias 23:23-24', 'Mateus 28:20'], tags: ['onipresença', 'presença', 'oracao'], fontes: ['Deus - J.I. Packer'] },
-  { id: 'teoprop-007', titulo: 'A Imutabilidade de Deus', categoria: 'Teologia Proper', subcategoria: 'Atributos', conteudo: ['Deus não muda em Sua natureza.', 'Suas promessas são firmes.', 'Sua justiça e amor são constantes.', 'A imutabilidade é base da nossa segurança.', 'Deus é o mesmo ontem, hoje e sempre.'], versicosChave: ['Malaquias 3:6', 'Hebreus 13:8', 'Números 23:19'], tags: ['imutabilidade', 'constancia', 'firmesa'], fontes: ['Deus - A.W. Tozer'] },
+  { id: 'teoprop-006', titulo: 'A Onipresença de Deus', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['Deus está presente em todos os lugares.', 'A onipresença traz consolo aos aflitos.', 'Nenhum lugar está oculto de Deus.', 'Deus está presente em toda a criação.', 'A onipresença é base para a oração.'], versicosChave: ['Salmo 139:7-12', 'Jeremias 23:23-24', 'Mateus 28:20'], tags: ['onipresença', 'presença', 'oracao'], fontes: ['Deus - J.I. Packer'] },
+  { id: 'teoprop-007', titulo: 'A Imutabilidade de Deus', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['Deus não muda em Sua natureza.', 'Suas promessas são firmes.', 'Sua justiça e amor são constantes.', 'A imutabilidade é base da nossa segurança.', 'Deus é o mesmo ontem, hoje e sempre.'], versicosChave: ['Malaquias 3:6', 'Hebreus 13:8', 'Números 23:19'], tags: ['imutabilidade', 'constancia', 'firmesa'], fontes: ['Deus - A.W. Tozer'] },
   // Mais Escatologia
-  { id: 'escat-007', titulo: 'O Julgamento das Nações', categoria: 'Escatologia', subcategoria: 'Juizo', conteudo: ['Cristo julgará as nações na Sua volta.', 'As nações serão separadas como ovelhas e cabras.', 'O critério é o tratamento dado aos irmãos.', 'O julgamento será justo e imparcial.', 'As nações trarão suas honras à Nova Jerusalém.'], versicosChave: ['Mateus 25:31-46', 'Apocalipse 21:24-26'], tags: ['juizo', 'nacoes', 'ovelhas', 'cabras'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'escat-008', titulo: 'O Reino Milenar', categoria: 'Escatologia', subcategoria: 'Reino', conteudo: ['Cristo reinará na terra por 1.000 anos.', 'Satanás será preso durante o milênio.', 'Os santos ressuscitados reinarão com Cristo.', 'A terra será renovada parcialmente.', 'O Reino milenar antecede o Reino eterno.'], versicosChave: ['Apocalipse 20:1-6', 'Isaías 65:17-25'], tags: ['millenio', 'reino', 'reinado'], fontes: ['A Segunda Vinda de Cristo - John Walvoord'] },
+  { id: 'escat-007', titulo: 'O Julgamento das Nações', categoria: 'Escatologia', subcategoria: 'Escatologia', conteudo: ['Cristo julgará as nações na Sua volta.', 'As nações serão separadas como ovelhas e cabras.', 'O critério é o tratamento dado aos irmãos.', 'O julgamento será justo e imparcial.', 'As nações trarão suas honras à Nova Jerusalém.'], versicosChave: ['Mateus 25:31-46', 'Apocalipse 21:24-26'], tags: ['juizo', 'nacoes', 'ovelhas', 'cabras'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'escat-008', titulo: 'O Reino Milenar', categoria: 'Escatologia', subcategoria: 'Escatologia', conteudo: ['Cristo reinará na terra por 1.000 anos.', 'Satanás será preso durante o milênio.', 'Os santos ressuscitados reinarão com Cristo.', 'A terra será renovada parcialmente.', 'O Reino milenar antecede o Reino eterno.'], versicosChave: ['Apocalipse 20:1-6', 'Isaías 65:17-25'], tags: ['millenio', 'reino', 'reinado'], fontes: ['A Segunda Vinda de Cristo - John Walvoord'] },
   // Mais Apologética
-  { id: 'apol-006', titulo: 'A Existência de Deus e a Ciência', categoria: 'Apologetica', subcategoria: 'Evidências', conteudo: ['A ciência não contradiz necessariamente Deus.', 'O argumento do design é fortalecido pela ciência.', 'A origem do universo aponta para um Criador.', 'A complexidade da vida aponta para Inteligência.', 'A ciência e a fé podem coexistir.'], versicosChave: ['Romanos 1:20', 'Salmo 19:1', 'Hebreus 11:3'], tags: ['ciencia', 'design', 'criador'], fontes: ['Deus e a Ciência - Alister McGrath'] },
-  { id: 'apol-007', titulo: 'A Resurreição e a História', categoria: 'Apologetica', subcategoria: 'Evidências', conteudo: ['A ressurreição é o fato mais bem documentado.', 'Mais de 500 testemunhas.', 'A tumba estava vazia.', 'As aparições foram a grupos e indivíduos.', 'A transformação dos apóstolos é evidência.'], versicosChave: ['1 Coríntios 15:3-8', 'Lucas 24:36-49'], tags: ['ressurreicao', 'historia', 'testemunhas'], fontes: ['A Ressurreição do Filho de Deus - N.T. Wright'] },
+  { id: 'apol-006', titulo: 'A Existência de Deus e a Ciência', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['A ciência não contradiz necessariamente Deus.', 'O argumento do design é fortalecido pela ciência.', 'A origem do universo aponta para um Criador.', 'A complexidade da vida aponta para Inteligência.', 'A ciência e a fé podem coexistir.'], versicosChave: ['Romanos 1:20', 'Salmo 19:1', 'Hebreus 11:3'], tags: ['ciencia', 'design', 'criador'], fontes: ['Deus e a Ciência - Alister McGrath'] },
+  { id: 'apol-007', titulo: 'A Resurreição e a História', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['A ressurreição é o fato mais bem documentado.', 'Mais de 500 testemunhas.', 'A tumba estava vazia.', 'As aparições foram a grupos e indivíduos.', 'A transformação dos apóstolos é evidência.'], versicosChave: ['1 Coríntios 15:3-8', 'Lucas 24:36-49'], tags: ['ressurreicao', 'historia', 'testemunhas'], fontes: ['A Ressurreição do Filho de Deus - N.T. Wright'] },
   // Mais Ética
-  { id: 'etica-005', titulo: 'A Ética do Trabalho', categoria: 'Etica Crista', subcategoria: 'Trabalho', conteudo: ['O trabalho é dom de Deus.', 'Devemos trabalhar com excelência.', 'A honestidade é essencial.', 'O trabalho deve glorificar a Deus.', 'Devemos tratar trabalhadores com justiça.'], versicosChave: ['Colossenses 3:23', 'Provérbios 14:23', 'Efésios 4:28'], tags: ['trabalho', 'etica', 'honestidade'], fontes: ['O Chamado do Trabalho - Tim Keller'] },
-  { id: 'etica-006', titulo: 'A Ética da Comunicação', categoria: 'Etica Crista', subcategoria: 'Comunicação', conteudo: ['A mentira é pecado.', 'A verdade deve ser dita com amor.', 'Devemos ser pessoas de palavra.', 'A calúnia destrói relacionamentos.', 'A edificação deve ser o objetivo da comunicação.'], versicosChave: ['Efésios 4:25, 29', 'Colossenses 4:6', 'Provérbios 12:22'], tags: ['comunicacao', 'verdade', 'amor'], fontes: ['Palavras que Constroem - Gary Chapman'] },
+  { id: 'etica-005', titulo: 'A Ética do Trabalho', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['O trabalho é dom de Deus.', 'Devemos trabalhar com excelência.', 'A honestidade é essencial.', 'O trabalho deve glorificar a Deus.', 'Devemos tratar trabalhadores com justiça.'], versicosChave: ['Colossenses 3:23', 'Provérbios 14:23', 'Efésios 4:28'], tags: ['trabalho', 'etica', 'honestidade'], fontes: ['O Chamado do Trabalho - Tim Keller'] },
+  { id: 'etica-006', titulo: 'A Ética da Comunicação', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['A mentira é pecado.', 'A verdade deve ser dita com amor.', 'Devemos ser pessoas de palavra.', 'A calúnia destrói relacionamentos.', 'A edificação deve ser o objetivo da comunicação.'], versicosChave: ['Efésios 4:25, 29', 'Colossenses 4:6', 'Provérbios 12:22'], tags: ['comunicacao', 'verdade', 'amor'], fontes: ['Palavras que Constroem - Gary Chapman'] },
   // Mais Missiologia
-  { id: 'miss-004', titulo: 'A História das Missões', categoria: 'Missiologia', subcategoria: 'História', conteudo: ['As missões começaram no AT com Israel.', 'Jesus enviou os 72 discípulos.', 'Paulo é o maior missionário do NT.', 'As missões se expandiram na era moderna.', 'William Carey é o pai das missões modernas.'], versicosChave: ['Mateus 28:19-20', 'Atos 13:1-3', 'Romanos 10:14-15'], tags: ['missoes', 'historia', 'carey'], fontes: ['Historia das Missões - Stephen Neill'] },
-  { id: 'miss-005', titulo: 'A Missão na Cultura Pop', categoria: 'Missiologia', subcategoria: 'Contemporânea', conteudo: ['A cultura pop é campo missionário.', 'Devemos entender a cultura para comunicar o evangelho.', 'Jesus usou parabolas — linguagem da cultura.', 'O evangelho é relevante para toda cultura.', 'Devemos ser sábios, não ingênuos.'], versicosChave: ['1 Coríntios 9:19-23', 'Mateus 28:19'], tags: ['cultura pop', 'missao', 'contextualizacao'], fontes: ['A Igreja e a Cultura - David Wells'] },
+  { id: 'miss-004', titulo: 'A História das Missões', categoria: 'Missiologia', subcategoria: 'História da Igreja', conteudo: ['As missões começaram no AT com Israel.', 'Jesus enviou os 72 discípulos.', 'Paulo é o maior missionário do NT.', 'As missões se expandiram na era moderna.', 'William Carey é o pai das missões modernas.'], versicosChave: ['Mateus 28:19-20', 'Atos 13:1-3', 'Romanos 10:14-15'], tags: ['missoes', 'historia', 'carey'], fontes: ['Historia das Missões - Stephen Neill'] },
+  { id: 'miss-005', titulo: 'A Missão na Cultura Pop', categoria: 'Missiologia', subcategoria: 'Questões Contemporâneas', conteudo: ['A cultura pop é campo missionário.', 'Devemos entender a cultura para comunicar o evangelho.', 'Jesus usou parabolas — linguagem da cultura.', 'O evangelho é relevante para toda cultura.', 'Devemos ser sábios, não ingênuos.'], versicosChave: ['1 Coríntios 9:19-23', 'Mateus 28:19'], tags: ['cultura pop', 'missao', 'contextualizacao'], fontes: ['A Igreja e a Cultura - David Wells'] },
   // Mais Família
-  { id: 'fam-004', titulo: 'A Vida Cristã no Casamento', categoria: 'Vida Crista', subcategoria: 'Família', conteudo: ['O casamento é reflexo do amor de Cristo pela igreja.', 'A comunicação é essencial.', 'O perdão é indispensável.', 'O tempo juntos fortalece o casamento.', 'Deus é o centro do casamento cristão.'], versicosChave: ['Efésios 5:22-33', 'Colossenses 3:18-19', '1 Pedro 3:1-7'], tags: ['casamento', 'comunicacao', 'perdao'], fontes: ['O Casamento - Tim Keller'] },
-  { id: 'fam-005', titulo: 'A Família como Igreja Doméstica', categoria: 'Vida Crista', subcategoria: 'Família', conteudo: ['A família é a primeira unidade da igreja.', 'Os pais são sacerdotes no lar.', 'A adoração familiar é essencial.', 'A educação espiritual começa em casa.', 'A família é fortalecida pela comunhão.'], versicosChave: ['Deuteronômio 6:6-7', 'Efésios 6:1-4', 'Atos 16:31'], tags: ['familia', 'igreja domestica', 'adoracao'], fontes: ['A Igreja no Lar - Francis Schaeffer'] },
+  { id: 'fam-004', titulo: 'A Vida Cristã no Casamento', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['O casamento é reflexo do amor de Cristo pela igreja.', 'A comunicação é essencial.', 'O perdão é indispensável.', 'O tempo juntos fortalece o casamento.', 'Deus é o centro do casamento cristão.'], versicosChave: ['Efésios 5:22-33', 'Colossenses 3:18-19', '1 Pedro 3:1-7'], tags: ['casamento', 'comunicacao', 'perdao'], fontes: ['O Casamento - Tim Keller'] },
+  { id: 'fam-005', titulo: 'A Família como Igreja Doméstica', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A família é a primeira unidade da igreja.', 'Os pais são sacerdotes no lar.', 'A adoração familiar é essencial.', 'A educação espiritual começa em casa.', 'A família é fortalecida pela comunhão.'], versicosChave: ['Deuteronômio 6:6-7', 'Efésios 6:1-4', 'Atos 16:31'], tags: ['familia', 'igreja domestica', 'adoracao'], fontes: ['A Igreja no Lar - Francis Schaeffer'] },
   // Mais Liderança
-  { id: 'lid-004', titulo: 'A Liderança Feminina na Bíblia', categoria: 'Eclesiologia', subcategoria: 'Mulheres', conteudo: ['Deborah liderou Israel como juíza.', 'Priscila ensinou Apolós.', 'Nóe foi diaconisa na igreja.', 'As mulheres tinham papéis variados no NT.', 'O debate sobre liderança feminina continua.'], versicosChave: ['Juízes 4:4-5', 'Atos 18:26', 'Romanos 16:1-7'], tags: ['mulheres', 'lideranca', 'debate'], fontes: ['Mulheres na Bíblia - Wayne Grudem'] },
+  { id: 'lid-004', titulo: 'A Liderança Feminina na Bíblia', categoria: 'Eclesiologia', subcategoria: 'Vida Crista', conteudo: ['Deborah liderou Israel como juíza.', 'Priscila ensinou Apolós.', 'Nóe foi diaconisa na igreja.', 'As mulheres tinham papéis variados no NT.', 'O debate sobre liderança feminina continua.'], versicosChave: ['Juízes 4:4-5', 'Atos 18:26', 'Romanos 16:1-7'], tags: ['mulheres', 'lideranca', 'debate'], fontes: ['Mulheres na Bíblia - Wayne Grudem'] },
   // Mais Arqueologia
-  { id: 'arqueo-004', titulo: 'A Inscrição de Pilatos', categoria: 'Historia da Igreja', subcategoria: 'Arqueologia', conteudo: ['Uma inscrição com o nome de Pôncio Pilatos foi encontrada.', 'Confirma a existência histórica de Pilatos.', 'Sustenta o relato evangélico.', 'A arqueologia confirma detalhes bíblicos.', 'Cada descoberta aumenta a confiabilidade.'], versicosChave: ['Lucas 3:1', 'Atos 4:27'], tags: ['arqueologia', 'pilatos', 'historia'], fontes: ['Arqueologia e Bíblia - Kent Weeks'] },
+  { id: 'arqueo-004', titulo: 'A Inscrição de Pilatos', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['Uma inscrição com o nome de Pôncio Pilatos foi encontrada.', 'Confirma a existência histórica de Pilatos.', 'Sustenta o relato evangélico.', 'A arqueologia confirma detalhes bíblicos.', 'Cada descoberta aumenta a confiabilidade.'], versicosChave: ['Lucas 3:1', 'Atos 4:27'], tags: ['arqueologia', 'pilatos', 'historia'], fontes: ['Arqueologia e Bíblia - Kent Weeks'] },
   // Mais Biografias
-  { id: 'biog-005', titulo: 'A Vida de João, o Apóstolo', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['João era chamado de discípulo amado.', 'Escreveu o Evangelho, epistolas e Apocalipse.', 'Foi o único apóstolo que não foi martirizado.', 'Envelheceu e morreu em Éfeso.', 'Sua teologia é centrada no amor.'], versicosChave: ['João 13:23', 'João 21:20-24', '1 João 4:8'], tags: ['joao', 'apostolo', 'amor'], fontes: ['João - Leon Morris'] },
+  { id: 'biog-005', titulo: 'A Vida de João, o Apóstolo', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['João era chamado de discípulo amado.', 'Escreveu o Evangelho, epistolas e Apocalipse.', 'Foi o único apóstolo que não foi martirizado.', 'Envelheceu e morreu em Éfeso.', 'Sua teologia é centrada no amor.'], versicosChave: ['João 13:23', 'João 21:20-24', '1 João 4:8'], tags: ['joao', 'apostolo', 'amor'], fontes: ['João - Leon Morris'] },
   // Mais Teologia Bíblica
-  { id: 'teobib-004', titulo: 'O Servo Sofredor', categoria: 'Teologia Biblica', subcategoria: 'Messias', conteudo: ['Isaías 53 descreve o servo sofredor.', 'O servo carregará os pecados de muitos.', 'Será ferido e transgredido.', 'O servo será como ovelha ao matadouros.', 'Através de seu sofrimento, justificará muitos.'], versicosChave: ['Isaías 53:1-12', '1 Pedro 2:24-25'], tags: ['servo sofredor', 'messias', 'isaias 53'], fontes: ['Teologia do Antigo Testamento - E.J. Young'] },
-  { id: 'teobib-005', titulo: 'O Filho do Homem', categoria: 'Teologia Biblica', subcategoria: 'Messias', conteudo: ['Jesus se autodenominou Filho do Homem.', 'O título vem de Daniel 7:13-14.', 'Indica autoridade e identidade messiânica.', 'Filho do Homem enfatiza humanidade e divindade.', 'O Filho do Homem virá em glória.'], versicosChave: ['Daniel 7:13-14', 'Marcos 14:62', 'Mateus 26:64'], tags: ['filho do homem', 'messias', 'daniel'], fontes: ['Teologia do NT - George Eldon Ladd'] },
+  { id: 'teobib-004', titulo: 'O Servo Sofredor', categoria: 'Teologia Bíblica', subcategoria: 'Cristologia', conteudo: ['Isaías 53 descreve o servo sofredor.', 'O servo carregará os pecados de muitos.', 'Será ferido e transgredido.', 'O servo será como ovelha ao matadouros.', 'Através de seu sofrimento, justificará muitos.'], versicosChave: ['Isaías 53:1-12', '1 Pedro 2:24-25'], tags: ['servo sofredor', 'messias', 'isaias 53'], fontes: ['Teologia do Antigo Testamento - E.J. Young'] },
+  { id: 'teobib-005', titulo: 'O Filho do Homem', categoria: 'Teologia Bíblica', subcategoria: 'Cristologia', conteudo: ['Jesus se autodenominou Filho do Homem.', 'O título vem de Daniel 7:13-14.', 'Indica autoridade e identidade messiânica.', 'Filho do Homem enfatiza humanidade e divindade.', 'O Filho do Homem virá em glória.'], versicosChave: ['Daniel 7:13-14', 'Marcos 14:62', 'Mateus 26:64'], tags: ['filho do homem', 'messias', 'daniel'], fontes: ['Teologia do NT - George Eldon Ladd'] },
   // Mais Literatura
-  { id: 'liter-003', titulo: 'A Parábola do Filho Pródigo', categoria: 'Literatura Biblica', subcategoria: 'Parábolas', conteudo: ['A parábola mais conhecida de Jesus.', 'O filho mais novo desperdiça sua herança.', 'O pai o recebe de braços abertos.', 'Representa o amor de Deus pelos pecadores.', 'O filho mais velho representa a religiosidade farisaica.'], versicosChave: ['Lucas 15:11-32'], tags: ['parabola', 'filho prodigio', 'perdao'], fontes: ['O Deus Pródigo - Tim Keller'] },
-  { id: 'liter-004', titulo: 'A Parábola do Bom Samaritano', categoria: 'Literatura Biblica', subcategoria: 'Parábolas', conteudo: ['O samaritano ajudou o ferido, não os religiosos.', 'O amor ao próximo não tem limites.', 'A pergunta é: quem é o próximo?', 'Devemos agir com compaixão.', 'O samaritano é tipo de Cristo.'], versicosChave: ['Lucas 10:25-37'], tags: ['parabola', 'bom samaritano', 'amor'], fontes: ['O Deus Pródigo - Tim Keller'] },
+  { id: 'liter-003', titulo: 'A Parábola do Filho Pródigo', categoria: 'Bibliologia', subcategoria: 'Vida Crista', conteudo: ['A parábola mais conhecida de Jesus.', 'O filho mais novo desperdiça sua herança.', 'O pai o recebe de braços abertos.', 'Representa o amor de Deus pelos pecadores.', 'O filho mais velho representa a religiosidade farisaica.'], versicosChave: ['Lucas 15:11-32'], tags: ['parabola', 'filho prodigio', 'perdao'], fontes: ['O Deus Pródigo - Tim Keller'] },
+  { id: 'liter-004', titulo: 'A Parábola do Bom Samaritano', categoria: 'Bibliologia', subcategoria: 'Vida Crista', conteudo: ['O samaritano ajudou o ferido, não os religiosos.', 'O amor ao próximo não tem limites.', 'A pergunta é: quem é o próximo?', 'Devemos agir com compaixão.', 'O samaritano é tipo de Cristo.'], versicosChave: ['Lucas 10:25-37'], tags: ['parabola', 'bom samaritano', 'amor'], fontes: ['O Deus Pródigo - Tim Keller'] },
   // Mais Filosofia
-  { id: 'filo-004', titulo: 'A Ética Absoluta vs. Relativismo', categoria: 'Apologetica', subcategoria: 'Filosofia', conteudo: ['O relativismo afirma que não existem verdades absolutas.', 'O cristianismo afirma verdades absolutas em Deus.', 'O relativismo é autorrefutável.', 'Deus é o padrão de toda verdade.', 'A ética cristã é objetiva e universal.'], versicosChave: ['João 14:6', 'Gênesis 1:1', 'Salmo 119:160'], tags: ['etica', 'absoluta', 'relativismo'], fontes: ['Ética Cristã - Wayne Grudem'] },
+  { id: 'filo-004', titulo: 'A Ética Absoluta vs. Relativismo', categoria: 'Apologetica', subcategoria: 'Questões Contemporâneas', conteudo: ['O relativismo afirma que não existem verdades absolutas.', 'O cristianismo afirma verdades absolutas em Deus.', 'O relativismo é autorrefutável.', 'Deus é o padrão de toda verdade.', 'A ética cristã é objetiva e universal.'], versicosChave: ['João 14:6', 'Gênesis 1:1', 'Salmo 119:160'], tags: ['etica', 'absoluta', 'relativismo'], fontes: ['Ética Cristã - Wayne Grudem'] },
   // Mais Psicologia
-  { id: 'psico-003', titulo: 'A Resiliência na Fé', categoria: 'Vida Crista', subcategoria: 'Força', conteudo: ['A fé cristã é試ada pelo sofrimento.', 'Deus permite provas para fortalecer.', 'A perseverança produz caráter.', 'A esperança não confunde.', 'Deus está conosco na tempestade.'], versicosChave: ['Romanos 5:3-5', 'Tiago 1:2-4', '1 Pedro 1:6-7'], tags: ['resiliencia', 'sofrimento', 'perseveranca'], fontes: ['A Resiliência - Richard Genter'] },
+  { id: 'psico-003', titulo: 'A Resiliência na Fé', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A fé cristã é試ada pelo sofrimento.', 'Deus permite provas para fortalecer.', 'A perseverança produz caráter.', 'A esperança não confunde.', 'Deus está conosco na tempestade.'], versicosChave: ['Romanos 5:3-5', 'Tiago 1:2-4', '1 Pedro 1:6-7'], tags: ['resiliencia', 'sofrimento', 'perseveranca'], fontes: ['A Resiliência - Richard Genter'] },
   // Mais Ecologia
-  { id: 'eco-003', titulo: 'A Cura da Criação', categoria: 'Teologia Biblica', subcategoria: 'Criação', conteudo: ['A criação será restaurada.', 'Deus fará novos céus e nova terra.', 'O sofrimento da criação cessará.', 'A criação será libertada da corrupção.', 'Os redentores participarão da restauração.'], versicosChave: ['Romanos 8:19-23', 'Apocalipse 21:1-5', 'Isaías 65:17'], tags: ['curacao', 'criacao', 'restauracao'], fontes: ['Teologia da Criação - Henri Blocher'] },
+  { id: 'eco-003', titulo: 'A Cura da Criação', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['A criação será restaurada.', 'Deus fará novos céus e nova terra.', 'O sofrimento da criação cessará.', 'A criação será libertada da corrupção.', 'Os redentores participarão da restauração.'], versicosChave: ['Romanos 8:19-23', 'Apocalipse 21:1-5', 'Isaías 65:17'], tags: ['curacao', 'criacao', 'restauracao'], fontes: ['Teologia da Criação - Henri Blocher'] },
   // Mais Justiça Social
-  { id: 'just-003', titulo: 'A Igreja e os Refugiados', categoria: 'Eclesiologia', subcategoria: 'Missão', conteudo: ['A Bíblia ordena amar o estrangeiro.', 'Israel foi stranger no Egito.', 'Jesus era refugiado no Egito.', 'A igreja deve acolher refugiados.', 'O amor ao próximo inclui o migrante.'], versicosChave: ['Levítico 19:33-34', 'Mateus 25:35', 'Hebreus 13:2'], tags: ['refugiados', 'estrangeiro', 'amor'], fontes: ['A Igreja e os Refugiados - Matthew Soerens'] },
+  { id: 'just-003', titulo: 'A Igreja e os Refugiados', categoria: 'Eclesiologia', subcategoria: 'Missiologia', conteudo: ['A Bíblia ordena amar o estrangeiro.', 'Israel foi stranger no Egito.', 'Jesus era refugiado no Egito.', 'A igreja deve acolher refugiados.', 'O amor ao próximo inclui o migrante.'], versicosChave: ['Levítico 19:33-34', 'Mateus 25:35', 'Hebreus 13:2'], tags: ['refugiados', 'estrangeiro', 'amor'], fontes: ['A Igreja e os Refugiados - Matthew Soerens'] },
   // Mais Música
-  { id: 'mus-004', titulo: 'A Música no AT', categoria: 'Historia da Igreja', subcategoria: 'Música', conteudo: ['Davi instituiu o ministério da música.', 'Os levitas tocavam no templo.', 'Os Salmos eram cantados.', 'A música era parte essencial da adoração.', 'Instrumentos eram usados na adoração.'], versicosChave: ['1 Crônicas 15:16-22', 'Salmo 150', 'Colossenses 3:16'], tags: ['musica', 'at', 'salmos', 'levitas'], fontes: ['A História da Música na Igreja - Robert Weber'] },
+  { id: 'mus-004', titulo: 'A Música no AT', categoria: 'História da Igreja', subcategoria: 'Vida Crista', conteudo: ['Davi instituiu o ministério da música.', 'Os levitas tocavam no templo.', 'Os Salmos eram cantados.', 'A música era parte essencial da adoração.', 'Instrumentos eram usados na adoração.'], versicosChave: ['1 Crônicas 15:16-22', 'Salmo 150', 'Colossenses 3:16'], tags: ['musica', 'at', 'salmos', 'levitas'], fontes: ['A História da Música na Igreja - Robert Weber'] },
   // Mais Educação
-  { id: 'edu-003', titulo: 'O Ensino de Paulo', categoria: 'Vida Crista', subcategoria: 'Ensino', conteudo: ['Paulo foi o maior mestre do NT.', 'Ensinou doutrina e prática.', 'Usou cartas para instruir igrejas.', 'Ensinou com clareza e autoridade.', 'O exemplo de Paulo complementa seu ensino.'], versicosChave: ['2 Timóteo 2:2', 'Efésios 4:11-16', 'Colossenses 1:28'], tags: ['paulo', 'ensino', 'mestre'], fontes: ['O Ensino de Paulo - F.F. Bruce'] },
+  { id: 'edu-003', titulo: 'O Ensino de Paulo', categoria: 'Vida Crista', subcategoria: 'Eclesiologia', conteudo: ['Paulo foi o maior mestre do NT.', 'Ensinou doutrina e prática.', 'Usou cartas para instruir igrejas.', 'Ensinou com clareza e autoridade.', 'O exemplo de Paulo complementa seu ensino.'], versicosChave: ['2 Timóteo 2:2', 'Efésios 4:11-16', 'Colossenses 1:28'], tags: ['paulo', 'ensino', 'mestre'], fontes: ['O Ensino de Paulo - F.F. Bruce'] },
   // Mais Práticas Cristãs
-  { id: 'prat-003', titulo: 'O Jejum Cristão', categoria: 'Vida Crista', subcategoria: 'Disciplina', conteudo: ['O jejum é prática espiritual bíblica.', 'Jejuar fortalece a vida espiritual.', 'Jesus jejuou no deserto.', 'O jejum deve ser voluntário.', 'Não é para exibição, mas para Deus.'], versicosChave: ['Mateus 6:16-18', 'Mateus 4:1-2'], tags: ['jejum', 'disciplina', 'espiritualidade'], fontes: ['Os Disciplinas Espirituais - Dallas Willard'] },
-  { id: 'prat-004', titulo: 'A Leitura Bíblica Diária', categoria: 'Vida Crista', subcategoria: 'Disciplina', conteudo: ['Devemos ler a Bíblia todos os dias.', 'A Palavra é alimento para a alma.', 'A meditação traz sabedoria.', 'A leitura deve ser metódica.', 'A Bíblia é viva e eficaz.'], versicosChave: ['Salmo 1:1-3', '2 Timóteo 3:16-17', 'Josué 1:8'], tags: ['leitura biblica', 'disciplina', 'meditacao'], fontes: ['Como Estudar a Bíblia - Howard Hendricks'] },
+  { id: 'prat-003', titulo: 'O Jejum Cristão', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['O jejum é prática espiritual bíblica.', 'Jejuar fortalece a vida espiritual.', 'Jesus jejuou no deserto.', 'O jejum deve ser voluntário.', 'Não é para exibição, mas para Deus.'], versicosChave: ['Mateus 6:16-18', 'Mateus 4:1-2'], tags: ['jejum', 'disciplina', 'espiritualidade'], fontes: ['Os Disciplinas Espirituais - Dallas Willard'] },
+  { id: 'prat-004', titulo: 'A Leitura Bíblica Diária', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Devemos ler a Bíblia todos os dias.', 'A Palavra é alimento para a alma.', 'A meditação traz sabedoria.', 'A leitura deve ser metódica.', 'A Bíblia é viva e eficaz.'], versicosChave: ['Salmo 1:1-3', '2 Timóteo 3:16-17', 'Josué 1:8'], tags: ['leitura biblica', 'disciplina', 'meditacao'], fontes: ['Como Estudar a Bíblia - Howard Hendricks'] },
   // Mais Teologia
-  { id: 'tema-004', titulo: 'O Juízo e a Misericórdia', categoria: 'Teologia Biblica', subcategoria: 'Tema Central', conteudo: ['Deus é justo e misericordioso.', 'O juízo revela a justiça de Deus.', 'A misericórdia revela o amor de Deus.', 'Na cruz, juízo e misericórdia se encontram.', 'Devemos temer a Deus e confiar em Sua misericórdia.'], versicosChave: ['Salmo 85:10', 'Romanos 3:25-26', 'Salmo 103:8-14'], tags: ['juizo', 'misericordia', 'cruz'], fontes: ['Deus - J.I. Packer'] },
-  { id: 'tema-005', titulo: 'A Missão de Deus', categoria: 'Missiologia', subcategoria: 'Missão', conteudo: ['Deus é um Deus missionário.', 'A missão de Deus começa no Gênesis.', 'Israel foi chamado para ser bênção às nações.', 'Jesus veio para salvar o mundo.', 'A igreja continua a missão de Deus.'], versicosChave: ['Gênesis 12:1-3', 'João 3:16', 'Mateus 28:19-20'], tags: ['missao de deus', 'missao', 'redencao'], fontes: ['A Missão de Deus - John Piper'] },
+  { id: 'tema-004', titulo: 'O Juízo e a Misericórdia', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Deus é justo e misericordioso.', 'O juízo revela a justiça de Deus.', 'A misericórdia revela o amor de Deus.', 'Na cruz, juízo e misericórdia se encontram.', 'Devemos temer a Deus e confiar em Sua misericórdia.'], versicosChave: ['Salmo 85:10', 'Romanos 3:25-26', 'Salmo 103:8-14'], tags: ['juizo', 'misericordia', 'cruz'], fontes: ['Deus - J.I. Packer'] },
+  { id: 'tema-005', titulo: 'A Missão de Deus', categoria: 'Missiologia', subcategoria: 'Missiologia', conteudo: ['Deus é um Deus missionário.', 'A missão de Deus começa no Gênesis.', 'Israel foi chamado para ser bênção às nações.', 'Jesus veio para salvar o mundo.', 'A igreja continua a missão de Deus.'], versicosChave: ['Gênesis 12:1-3', 'João 3:16', 'Mateus 28:19-20'], tags: ['missao de deus', 'missao', 'redencao'], fontes: ['A Missão de Deus - John Piper'] },
 
 
   // --- BATCH 5: +260 estudos para atingir 1000+ ---
   // Mais Temas por Livro
-  { id: 'livro-155', titulo: 'A Adoração no Templo', categoria: 'Temas por Livro', subcategoria: 'Templo', conteudo: ['O templo era o centro da adoração em Israel.', 'O sacrifice diário mantinha a comunhão.', 'O véu rasgado na morte de Jesus.', 'A adoração passou a ser em espirito e verdade.', 'O templo terrestre é sombra do celestial.'], versicosChave: ['1 Reis 8:10-11', 'Mateus 27:51', 'Hebreus 9:1-14'], tags: ['templo', 'adoracao', 'sacrificio'], fontes: ['O Templo - David Petersen'] },
-  { id: 'livro-156', titulo: 'A Sabedoria de Salomão', categoria: 'Temas por Livro', subcategoria: 'Provérbios', conteudo: ['Salomão pediu sabedoria a Deus.', 'A sabedoria começa com o temor do Senhor.', 'Provérbios é livro prático de sabedoria.', 'A sabedoria se aplica à vida diária.', 'A sabedoria divina é diferente da mundana.'], versicosChave: ['1 Reis 3:5-14', 'Provérbios 1:7', 'Provérbios 31:1-9'], tags: ['salomao', 'sabedoria', 'proverbios'], fontes: ['Comentario aos Provéribios - Tremper Longman III'] },
-  { id: 'livro-157', titulo: 'O Livro de Jó', categoria: 'Temas por Livro', subcategoria: 'Poésia', conteudo: ['Jó sofreu injustamente mas permaneceu fiel.', 'Deus permite o sofrimento por propósitos.', 'Os amigos de Jó deram conselhos errados.', 'Deus respondeu Jó da tormenta.', 'O sofrimento não é necessariamente castigo.'], versicosChave: ['Jó 1:1-22', 'Jó 42:1-6'], tags: ['jo', 'sofrimento', 'providencia'], fontes: ['Comentario ao Jó - John Hartley'] },
-  { id: 'livro-158', titulo: 'Eclesiastes e o Sentido da Vida', categoria: 'Temas por Livro', subcategoria: 'Poésia', conteudo: ['Tudo é vaidade sob o sol.', 'O verdadeiro sentido está em temer a Deus.', 'O prazer, a sabedoria e o trabalho têm limites.', 'Deus colocou eternidade no coração.', 'O equilíbrio entre trabalho e descanso.'], versicosChave: ['Eclesiastes 1:2', 'Eclesiastes 3:11', 'Eclesiastes 12:13-14'], tags: ['eclesiastes', 'vaidade', 'sentido'], fontes: ['Comentario a Eclesiastes - Duane Garrett'] },
-  { id: 'livro-159', titulo: 'Isaías e o Messias', categoria: 'Temas por Livro', subcategoria: 'Profetas', conteudo: ['Isaías profetizou sobre o Messias sofredor.', 'A virgem conceberá e dará à luz.', 'O Servo Sofredor será ferido por nossas transgressões.', 'Isaías também profetizou sobre a nova criação.', 'Isaías é o mais citado profeta no NT.'], versicosChave: ['Isaías 7:14', 'Isaías 53:1-12', 'Isaías 65:17'], tags: ['isaias', 'messias', 'profecia'], fontes: ['Comentario a Isaías - John Oswalt'] },
-  { id: 'livro-160', titulo: 'Daniel e a Soberania de Deus', categoria: 'Temas por Livro', subcategoria: 'Profetas', conteudo: ['Daniel permaneceu fiel no exílio.', 'Deus é soberano sobre todas as nações.', 'As profecias de Daniel apontam para o Messias.', 'A visão das quatro bestas mostra a história.', 'A pedra que esmaga o reino mundial.'], versicosChave: ['Daniel 2:44', 'Daniel 7:13-14', 'Daniel 9:24-27'], tags: ['daniel', 'soberania', 'profecia'], fontes: ['Comentario a Daniel - Tremper Longman III'] },
-  { id: 'livro-161', titulo: 'Jeremias e o Novo Testamento', categoria: 'Temas por Livro', subcategoria: 'Profetas', conteudo: ['Jeremias profetizou sobre a Nova Aliança.', 'O coração de pedra será substituído por coração de carne.', 'Deus escreverá Sua lei no coração.', 'Jeremias é chamado de profeta das nações.', 'A esperança está além do exílio.'], versicosChave: ['Jeremias 31:31-34', 'Jeremias 33:3'], tags: ['jeremias', 'nova alianca', 'coracao'], fontes: ['Comentario a Jeremias - Jack Lundbom'] },
+  { id: 'livro-155', titulo: 'A Adoração no Templo', categoria: 'Teologia Bíblica', subcategoria: 'Eclesiologia', conteudo: ['O templo era o centro da adoração em Israel.', 'O sacrifice diário mantinha a comunhão.', 'O véu rasgado na morte de Jesus.', 'A adoração passou a ser em espirito e verdade.', 'O templo terrestre é sombra do celestial.'], versicosChave: ['1 Reis 8:10-11', 'Mateus 27:51', 'Hebreus 9:1-14'], tags: ['templo', 'adoracao', 'sacrificio'], fontes: ['O Templo - David Petersen'] },
+  { id: 'livro-156', titulo: 'A Sabedoria de Salomão', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Salomão pediu sabedoria a Deus.', 'A sabedoria começa com o temor do Senhor.', 'Provérbios é livro prático de sabedoria.', 'A sabedoria se aplica à vida diária.', 'A sabedoria divina é diferente da mundana.'], versicosChave: ['1 Reis 3:5-14', 'Provérbios 1:7', 'Provérbios 31:1-9'], tags: ['salomao', 'sabedoria', 'proverbios'], fontes: ['Comentario aos Provéribios - Tremper Longman III'] },
+  { id: 'livro-157', titulo: 'O Livro de Jó', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Jó sofreu injustamente mas permaneceu fiel.', 'Deus permite o sofrimento por propósitos.', 'Os amigos de Jó deram conselhos errados.', 'Deus respondeu Jó da tormenta.', 'O sofrimento não é necessariamente castigo.'], versicosChave: ['Jó 1:1-22', 'Jó 42:1-6'], tags: ['jo', 'sofrimento', 'providencia'], fontes: ['Comentario ao Jó - John Hartley'] },
+  { id: 'livro-158', titulo: 'Eclesiastes e o Sentido da Vida', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Tudo é vaidade sob o sol.', 'O verdadeiro sentido está em temer a Deus.', 'O prazer, a sabedoria e o trabalho têm limites.', 'Deus colocou eternidade no coração.', 'O equilíbrio entre trabalho e descanso.'], versicosChave: ['Eclesiastes 1:2', 'Eclesiastes 3:11', 'Eclesiastes 12:13-14'], tags: ['eclesiastes', 'vaidade', 'sentido'], fontes: ['Comentario a Eclesiastes - Duane Garrett'] },
+  { id: 'livro-159', titulo: 'Isaías e o Messias', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Isaías profetizou sobre o Messias sofredor.', 'A virgem conceberá e dará à luz.', 'O Servo Sofredor será ferido por nossas transgressões.', 'Isaías também profetizou sobre a nova criação.', 'Isaías é o mais citado profeta no NT.'], versicosChave: ['Isaías 7:14', 'Isaías 53:1-12', 'Isaías 65:17'], tags: ['isaias', 'messias', 'profecia'], fontes: ['Comentario a Isaías - John Oswalt'] },
+  { id: 'livro-160', titulo: 'Daniel e a Soberania de Deus', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Daniel permaneceu fiel no exílio.', 'Deus é soberano sobre todas as nações.', 'As profecias de Daniel apontam para o Messias.', 'A visão das quatro bestas mostra a história.', 'A pedra que esmaga o reino mundial.'], versicosChave: ['Daniel 2:44', 'Daniel 7:13-14', 'Daniel 9:24-27'], tags: ['daniel', 'soberania', 'profecia'], fontes: ['Comentario a Daniel - Tremper Longman III'] },
+  { id: 'livro-161', titulo: 'Jeremias e o Novo Testamento', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Jeremias profetizou sobre a Nova Aliança.', 'O coração de pedra será substituído por coração de carne.', 'Deus escreverá Sua lei no coração.', 'Jeremias é chamado de profeta das nações.', 'A esperança está além do exílio.'], versicosChave: ['Jeremias 31:31-34', 'Jeremias 33:3'], tags: ['jeremias', 'nova alianca', 'coracao'], fontes: ['Comentario a Jeremias - Jack Lundbom'] },
   // Mais Doutinas
   { id: 'doutr-135', titulo: 'A Inerrância da Bíblia', categoria: 'Doutrinas Fundamentais', subcategoria: 'Bibliologia', conteudo: ['A Bíblia é inspirada e sem erro no original.', 'Deus é verdadeiro e não pode mentir.', 'A inerrância se aplica ao que a Bíblia afirma.', 'Jesus afirmou a autoridade do AT.', 'O Espirito Santo é o autor final.'], versicosChave: ['2 Timóteo 3:16', '2 Pedro 1:20-21', 'João 10:35'], tags: ['inerrancia', 'inspiracao', 'biblia'], fontes: ['A Bíblia Inerrante - Roger Nicole'] },
   { id: 'doutr-136', titulo: 'A Autoridade da Bíblia', categoria: 'Doutrinas Fundamentais', subcategoria: 'Bibliologia', conteudo: ['A Bíblia é a Palavra de Deus.', 'Sua autoridade é suprema em fé e prática.', 'A Bíblia é suficiente para tudo que precisamos.', 'Não devemos adicionar nem subtrair da Palavra.', 'A autoridade bíblica é reconhecida pela igreja.'], versicosChave: ['2 Timóteo 3:16-17', 'Salmo 119:89', 'Isaías 40:8'], tags: ['autoridade', 'suficiencia', 'palavra'], fontes: ['A Palavra de Deus - E.J. Young'] },
   { id: 'doutr-137', titulo: 'A Suficiência da Bíblia', categoria: 'Doutrinas Fundamentais', subcategoria: 'Bibliologia', conteudo: ['A Bíblia contém tudo que precisamos para salvação.', 'Não precisamos de revelação adicional.', 'A Bíblia é regra de fé e prática.', 'A tradição tem valor, mas a Bíblia é suprema.', 'Devemos pregar toda a conselho de Deus.'], versicosChave: ['2 Timóteo 3:16-17', '2 Pedro 1:3', 'Apocalipse 22:18-19'], tags: ['suficiencia', 'autoridade', 'pratica'], fontes: ['Suficiência da Bíblia - B.B. Warfield'] },
   { id: 'doutr-138', titulo: 'A Unidade da Bíblia', categoria: 'Doutrinas Fundamentais', subcategoria: 'Bibliologia', conteudo: ['A Bíblia tem 66 livros, um só autor divino.', 'A história da redenção é o fio condutor.', 'De Gênesis a Apocalipse, tudo aponta para Cristo.', 'A unidade é miraculosa em variedade.', 'A Bíblia é um todo coerente e harmonioso.'], versicosChave: ['Lucas 24:27', 'Hebreus 1:1-2', '2 Pedro 1:20-21'], tags: ['unidade', 'redencao', 'cristo'], fontes: ['A Unidade da Bíblia - Henri Blocher'] },
   // Mais Questões
-  { id: 'contemp-68', titulo: 'A Crise da Juventude e a Fé', categoria: 'Questões Contemporâneas', subcategoria: 'Juventude', conteudo: ['Muitos jovens abandonam a fé.', 'A ciência e a tecnologia desafiam a fé.', 'A comunidade cristã é essencial.', 'A verdade deve ser comunicada com relevância.', 'A fé deve ser vivida, não apenas ensinada.'], versicosChave: ['Provérbios 22:6', 'Mateus 28:19-20'], tags: ['juventude', 'fe', 'evangelismo'], fontes: ['A Fé da Juventude - Mark Dever'] },
-  { id: 'contemp-69', titulo: 'O Evangelho e a Sexualidade', categoria: 'Questões Contemporâneas', subcategoria: 'Ética', conteudo: ['A Bíblia tem uma visão clara da sexualidade.', 'A sexualidade é dom de Deus no casamento.', 'O amor e a verdade devem coexistir.', 'Devemos falar com compaixão e clareza.', 'O evangelho transforma vidas.'], versicosChave: ['1 Coríntios 6:18-20', 'Gênesis 2:24', '1 Tessalonicenses 4:3-5'], tags: ['sexualidade', 'etica', 'evangelho'], fontes: ['A Verdade sobre a Sexualidade - Sam Allberry'] },
-  { id: 'contemp-70', titulo: 'A Crise da Autoridade', categoria: 'Questões Contemporâneas', subcategoria: 'Sociedade', conteudo: ['A pós-modernidade questiona toda autoridade.', 'Deus é a autoridade suprema.', 'A autoridade bíblica é relevante.', 'Devemos discernir autoridades legítimas.', 'A obediência a Deus é primazia.'], versicosChave: ['Romanos 13:1-7', 'Atos 5:29', 'Efésios 5:21'], tags: ['autoridade', 'sociedade', 'deus'], fontes: ['A Autoridade da Bíblia - John Stott'] },
+  { id: 'contemp-68', titulo: 'A Crise da Juventude e a Fé', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['Muitos jovens abandonam a fé.', 'A ciência e a tecnologia desafiam a fé.', 'A comunidade cristã é essencial.', 'A verdade deve ser comunicada com relevância.', 'A fé deve ser vivida, não apenas ensinada.'], versicosChave: ['Provérbios 22:6', 'Mateus 28:19-20'], tags: ['juventude', 'fe', 'evangelismo'], fontes: ['A Fé da Juventude - Mark Dever'] },
+  { id: 'contemp-69', titulo: 'O Evangelho e a Sexualidade', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['A Bíblia tem uma visão clara da sexualidade.', 'A sexualidade é dom de Deus no casamento.', 'O amor e a verdade devem coexistir.', 'Devemos falar com compaixão e clareza.', 'O evangelho transforma vidas.'], versicosChave: ['1 Coríntios 6:18-20', 'Gênesis 2:24', '1 Tessalonicenses 4:3-5'], tags: ['sexualidade', 'etica', 'evangelho'], fontes: ['A Verdade sobre a Sexualidade - Sam Allberry'] },
+  { id: 'contemp-70', titulo: 'A Crise da Autoridade', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['A pós-modernidade questiona toda autoridade.', 'Deus é a autoridade suprema.', 'A autoridade bíblica é relevante.', 'Devemos discernir autoridades legítimas.', 'A obediência a Deus é primazia.'], versicosChave: ['Romanos 13:1-7', 'Atos 5:29', 'Efésios 5:21'], tags: ['autoridade', 'sociedade', 'deus'], fontes: ['A Autoridade da Bíblia - John Stott'] },
   // Mais Comparativos
-  { id: 'comp-64', titulo: 'Cristianismo vs. Espiritualidade Nova Era', categoria: 'Estudos Comparativos', subcategoria: 'Seitas', conteudo: ['A Nova Era aceita tudo e rejeita tudo.', 'O cristianismo é exclusivista em Cristo.', 'A Nova Era é panteísta; o cristianismo, teísta.', 'A salvação é por Cristo, não por consciência cósmica.', 'A Bíblia é autoridade, não a experiência.'], versicosChave: ['João 14:6', 'Atos 4:12', '2 Coríntios 11:3-4'], tags: ['nova era', 'espiritualidade', 'comparacao'], fontes: ['Cristianismo e Nova Era - Ronald Enroth'] },
+  { id: 'comp-64', titulo: 'Cristianismo vs. Espiritualidade Nova Era', categoria: 'Estudos Comparativos', subcategoria: 'Eclesiologia', conteudo: ['A Nova Era aceita tudo e rejeita tudo.', 'O cristianismo é exclusivista em Cristo.', 'A Nova Era é panteísta; o cristianismo, teísta.', 'A salvação é por Cristo, não por consciência cósmica.', 'A Bíblia é autoridade, não a experiência.'], versicosChave: ['João 14:6', 'Atos 4:12', '2 Coríntios 11:3-4'], tags: ['nova era', 'espiritualidade', 'comparacao'], fontes: ['Cristianismo e Nova Era - Ronald Enroth'] },
   // Mais História
-  { id: 'hist-59', titulo: 'Os Cátaros e a Cruzadas Albigenses', categoria: 'Historia da Igreja', subcategoria: 'Herésias', conteudo: ['Os Cátaros rejeitaram a Igreja Católica.', 'Foram perseguidos nas Cruzadas Albigenses.', 'A Inquisição foi criada para combatê-los.', 'A história mostra os perigos da intolerância.', 'A verdade deve ser defendida com amor, não violência.'], versicosChave: ['Mateus 5:9', 'Romanos 12:17-21'], tags: ['cataros', 'heresias', 'inquisicao'], fontes: ['Historia da Igreja - Justo Gonzalez'] },
-  { id: 'hist-60', titulo: 'O Movimento de Santidade (séc. XIX)', categoria: 'Historia da Igreja', subcategoria: 'Movimentos', conteudo: ['O movimento de santidade surgiu nos EUA.', 'Phoebe Palmer foi líder influente.', 'Enfatizava a perfeição cristã.', 'Deu origem ao movimento pentecostal.', 'A busca pela santidade continua relevante.'], versicosChave: ['1 Pedro 1:15-16', 'Hebreus 12:14'], tags: ['santidade', 'movimento', 'perfeicao'], fontes: ['Historia do Pentecostalismo - Allan Anderson'] },
+  { id: 'hist-59', titulo: 'Os Cátaros e a Cruzadas Albigenses', categoria: 'História da Igreja', subcategoria: 'Eclesiologia', conteudo: ['Os Cátaros rejeitaram a Igreja Católica.', 'Foram perseguidos nas Cruzadas Albigenses.', 'A Inquisição foi criada para combatê-los.', 'A história mostra os perigos da intolerância.', 'A verdade deve ser defendida com amor, não violência.'], versicosChave: ['Mateus 5:9', 'Romanos 12:17-21'], tags: ['cataros', 'heresias', 'inquisicao'], fontes: ['Historia da Igreja - Justo Gonzalez'] },
+  { id: 'hist-60', titulo: 'O Movimento de Santidade (séc. XIX)', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['O movimento de santidade surgiu nos EUA.', 'Phoebe Palmer foi líder influente.', 'Enfatizava a perfeição cristã.', 'Deu origem ao movimento pentecostal.', 'A busca pela santidade continua relevante.'], versicosChave: ['1 Pedro 1:15-16', 'Hebreus 12:14'], tags: ['santidade', 'movimento', 'perfeicao'], fontes: ['Historia do Pentecostalismo - Allan Anderson'] },
   // Mais Hermenêutica
-  { id: 'herm-59', titulo: 'A Interpretação de Provérbios', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['Provérbios são provérbios, não promessas.', 'Devemos ler no contexto da sabedoria.', 'Nem toda situação tem um provérbio.', 'O provérbio orienta, não garante.', 'A sabedoria é mais que conhecimento.'], versicosChave: ['Provérbios 1:1-7', 'Provérbios 25:1-2'], tags: ['proverbios', 'interpretacao', 'sabedoria'], fontes: ['Como Interpretar Provérbios - Tremper Longman III'] },
-  { id: 'herm-60', titulo: 'A Interpretação de Narrativas', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['As narrativas bíblicas são históricas, não fictícias.', 'Devemos entender personagens, enredo e contexto.', 'As narrativas ensinam verdades teológicas.', 'Nem toda narrativa é exemplar.', 'O ponto teológico é mais importante que o detalhe.'], versicosChave: ['Lucas 1:1-4', 'Romanos 15:4'], tags: ['narrativas', 'interpretacao', 'historia'], fontes: ['Narrativa e História bíblica - Robert Alter'] },
+  { id: 'herm-59', titulo: 'A Interpretação de Provérbios', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['Provérbios são provérbios, não promessas.', 'Devemos ler no contexto da sabedoria.', 'Nem toda situação tem um provérbio.', 'O provérbio orienta, não garante.', 'A sabedoria é mais que conhecimento.'], versicosChave: ['Provérbios 1:1-7', 'Provérbios 25:1-2'], tags: ['proverbios', 'interpretacao', 'sabedoria'], fontes: ['Como Interpretar Provérbios - Tremper Longman III'] },
+  { id: 'herm-60', titulo: 'A Interpretação de Narrativas', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['As narrativas bíblicas são históricas, não fictícias.', 'Devemos entender personagens, enredo e contexto.', 'As narrativas ensinam verdades teológicas.', 'Nem toda narrativa é exemplar.', 'O ponto teológico é mais importante que o detalhe.'], versicosChave: ['Lucas 1:1-4', 'Romanos 15:4'], tags: ['narrativas', 'interpretacao', 'historia'], fontes: ['Narrativa e História bíblica - Robert Alter'] },
   // Mais Vida Cristã
-  { id: 'vida-016', titulo: 'A Oração Intercessora', categoria: 'Vida Crista', subcategoria: 'Oração', conteudo: ['A intercessão é orar pelos outros.', 'Jesus intercede por nós.', 'Devemos orar pelas autoridades.', 'A intercessão é ministerio de amor.', 'O Espirito intercede por nós.'], versicosChave: ['1 Timóteo 2:1-4', 'Hebreus 7:25', 'Romanos 8:26-27'], tags: ['intercessao', 'oracao', 'amor'], fontes: ['A Oração Intercessora - Daniel Henderson'] },
-  { id: 'vida-017', titulo: 'A Adoração no Lar', categoria: 'Vida Crista', subcategoria: 'Família', conteudo: ['A adoração familiar fortalece o lar.', 'Os pais devem liderar a adoração.', 'A Bíblia deve ser lida em família.', 'A oração em família é essencial.', 'O lar é a primeira escola de fé.'], versicosChave: ['Deuteronômio 6:6-7', 'Atos 16:31', 'Josué 24:15'], tags: ['adoracao', 'lar', 'familia'], fontes: ['A Adoração no Lar - Donald Whitney'] },
-  { id: 'vida-018', titulo: 'O Discipulado Cristão', categoria: 'Vida Crista', subcategoria: 'Discipulado', conteudo: ['Discipulado é seguir a Jesus.', 'Envolve mudança de vida.', 'O discípulo faz novos discípulos.', 'A comunhão é essencial.', 'A cruz é o caminho do discípulo.'], versicosChave: ['Mateus 16:24', 'Mateus 28:19-20', 'João 8:31-32'], tags: ['discipulado', 'seguir', 'cruz'], fontes: ['O Discipulado - Dietrich Bonhoeffer'] },
-  { id: 'vida-019', titulo: 'A Generosidade Cristã', categoria: 'Vida Crista', subcategoria: 'Mordomia', conteudo: ['Devemos dar generosamente.', 'Deus ama o dado alegre.', 'A generosidade é evidência de fé.', 'Devemos cuidar dos necessitados.', 'Deus abençoa quem dá com abundância.'], versicosChave: ['2 Coríntios 9:6-8', 'Lucas 6:38', 'Provérbios 11:25'], tags: ['generosidade', 'dizimo', 'mordomia'], fontes: ['A Mordomia da Vida - Randy Alcorn'] },
-  { id: 'vida-020', titulo: 'A Perseverança na Fé', categoria: 'Vida Crista', subcategoria: 'Crescimento', conteudo: ['Devemos perseverar até o fim.', 'A perseverança produz caráter.', 'Deus é fiel para sustentar.', 'A comunidade fortalece a perseverança.', 'A esperança é âncora da alma.'], versicosChave: ['Romanos 5:3-5', 'Hebreus 12:1-3', 'Tiago 1:12'], tags: ['perseveranca', 'fe', 'esperanca'], fontes: ['A Perseverança dos Santos - Ernest Reisinger'] },
+  { id: 'vida-016', titulo: 'A Oração Intercessora', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A intercessão é orar pelos outros.', 'Jesus intercede por nós.', 'Devemos orar pelas autoridades.', 'A intercessão é ministerio de amor.', 'O Espirito intercede por nós.'], versicosChave: ['1 Timóteo 2:1-4', 'Hebreus 7:25', 'Romanos 8:26-27'], tags: ['intercessao', 'oracao', 'amor'], fontes: ['A Oração Intercessora - Daniel Henderson'] },
+  { id: 'vida-017', titulo: 'A Adoração no Lar', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A adoração familiar fortalece o lar.', 'Os pais devem liderar a adoração.', 'A Bíblia deve ser lida em família.', 'A oração em família é essencial.', 'O lar é a primeira escola de fé.'], versicosChave: ['Deuteronômio 6:6-7', 'Atos 16:31', 'Josué 24:15'], tags: ['adoracao', 'lar', 'familia'], fontes: ['A Adoração no Lar - Donald Whitney'] },
+  { id: 'vida-018', titulo: 'O Discipulado Cristão', categoria: 'Vida Crista', subcategoria: 'Missiologia', conteudo: ['Discipulado é seguir a Jesus.', 'Envolve mudança de vida.', 'O discípulo faz novos discípulos.', 'A comunhão é essencial.', 'A cruz é o caminho do discípulo.'], versicosChave: ['Mateus 16:24', 'Mateus 28:19-20', 'João 8:31-32'], tags: ['discipulado', 'seguir', 'cruz'], fontes: ['O Discipulado - Dietrich Bonhoeffer'] },
+  { id: 'vida-019', titulo: 'A Generosidade Cristã', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Devemos dar generosamente.', 'Deus ama o dado alegre.', 'A generosidade é evidência de fé.', 'Devemos cuidar dos necessitados.', 'Deus abençoa quem dá com abundância.'], versicosChave: ['2 Coríntios 9:6-8', 'Lucas 6:38', 'Provérbios 11:25'], tags: ['generosidade', 'dizimo', 'mordomia'], fontes: ['A Mordomia da Vida - Randy Alcorn'] },
+  { id: 'vida-020', titulo: 'A Perseverança na Fé', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Devemos perseverar até o fim.', 'A perseverança produz caráter.', 'Deus é fiel para sustentar.', 'A comunidade fortalece a perseverança.', 'A esperança é âncora da alma.'], versicosChave: ['Romanos 5:3-5', 'Hebreus 12:1-3', 'Tiago 1:12'], tags: ['perseveranca', 'fe', 'esperanca'], fontes: ['A Perseverança dos Santos - Ernest Reisinger'] },
   // Mais Eclesiologia
-  { id: 'ecles-009', titulo: 'Os Dons de Música na Igreja', categoria: 'Eclesiologia', subcategoria: 'Ministério', conteudo: ['A música é essencial na adoração.', 'Devemos cantar salmos e hinos.', 'A música deve ser centrada em Cristo.', 'A excelência musical glorifica a Deus.', 'A música é ministerio, não entretenimento.'], versicosChave: ['Colossenses 3:16', 'Efésios 5:19', 'Salmo 150'], tags: ['musica', 'adoracao', 'ministerio'], fontes: ['A Música na Igreja - Hughes Oliphant Old'] },
-  { id: 'ecles-010', titulo: 'A Evangelização na Igreja', categoria: 'Eclesiologia', subcategoria: 'Missão', conteudo: ['A igreja existe para evangelizar.', 'Devemos pregar o evangelho a toda criatura.', 'A evangelização é responsabilidade de todos.', 'O método pode mudar, a mensagem não.', 'A evangelização deve ser feita com amor.'], versicosChave: ['Mateus 28:19-20', 'Marcos 16:15', 'Romanos 10:14-15'], tags: ['evangelismo', 'missao', 'pregacao'], fontes: ['A Evangelização Contemporânea - D. James Kennedy'] },
+  { id: 'ecles-009', titulo: 'Os Dons de Música na Igreja', categoria: 'Eclesiologia', subcategoria: 'Eclesiologia', conteudo: ['A música é essencial na adoração.', 'Devemos cantar salmos e hinos.', 'A música deve ser centrada em Cristo.', 'A excelência musical glorifica a Deus.', 'A música é ministerio, não entretenimento.'], versicosChave: ['Colossenses 3:16', 'Efésios 5:19', 'Salmo 150'], tags: ['musica', 'adoracao', 'ministerio'], fontes: ['A Música na Igreja - Hughes Oliphant Old'] },
+  { id: 'ecles-010', titulo: 'A Evangelização na Igreja', categoria: 'Eclesiologia', subcategoria: 'Missiologia', conteudo: ['A igreja existe para evangelizar.', 'Devemos pregar o evangelho a toda criatura.', 'A evangelização é responsabilidade de todos.', 'O método pode mudar, a mensagem não.', 'A evangelização deve ser feita com amor.'], versicosChave: ['Mateus 28:19-20', 'Marcos 16:15', 'Romanos 10:14-15'], tags: ['evangelismo', 'missao', 'pregacao'], fontes: ['A Evangelização Contemporânea - D. James Kennedy'] },
   // Mais Pneumatologia
-  { id: 'pneum-011', titulo: 'A União com Cristo pelo Espírito', categoria: 'Pneumatologia', subcategoria: 'União', conteudo: ['O Espírito nos une a Cristo.', 'A união com Cristo é a base de toda a salvação.', 'Em Cristo somos novas criaturas.', 'A união é real e transformadora.', 'O Espírito aplica os benefícios da união.'], versicosChave: ['Efésios 1:3-14', 'Romanos 6:1-11', 'Gálatas 2:20'], tags: ['uniao', 'cristo', 'espirito santo'], fontes: ['A União com Cristo - Sinclair Ferguson'] },
+  { id: 'pneum-011', titulo: 'A União com Cristo pelo Espírito', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['O Espírito nos une a Cristo.', 'A união com Cristo é a base de toda a salvação.', 'Em Cristo somos novas criaturas.', 'A união é real e transformadora.', 'O Espírito aplica os benefícios da união.'], versicosChave: ['Efésios 1:3-14', 'Romanos 6:1-11', 'Gálatas 2:20'], tags: ['uniao', 'cristo', 'espirito santo'], fontes: ['A União com Cristo - Sinclair Ferguson'] },
   // Mais Teologia Própria
-  { id: 'teoprop-008', titulo: 'A Justiça de Deus', categoria: 'Teologia Proper', subcategoria: 'Atributos', conteudo: ['Deus é perfeitamente justo.', 'Sua justiça se manifesta na salvação.', 'A justiça de Deus é satisfeita na cruz.', 'Deus não pode tolerar o pecado.', 'Devemos buscar a justiça.'], versicosChave: ['Romanos 3:25-26', 'Salmo 89:14', 'Mateus 6:33'], tags: ['justica', 'deus', 'cruz'], fontes: ['A Justiça de Deus - John Stott'] },
-  { id: 'teoprop-009', titulo: 'A Graça de Deus', categoria: 'Teologia Proper', subcategoria: 'Atributos', conteudo: ['A graça é favor imerecido de Deus.', 'Somos salvos pela graça, não por obras.', 'A graça é abundante e disponível.', 'A graça transforma vidas.', 'Devemos estender a graça aos outros.'], versicosChave: ['Efésios 2:8-9', '2 Coríntios 12:9', 'Tito 2:11-12'], tags: ['graca', 'salvacao', 'favor'], fontes: ['A Graça - Jerry Bridges'] },
+  { id: 'teoprop-008', titulo: 'A Justiça de Deus', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['Deus é perfeitamente justo.', 'Sua justiça se manifesta na salvação.', 'A justiça de Deus é satisfeita na cruz.', 'Deus não pode tolerar o pecado.', 'Devemos buscar a justiça.'], versicosChave: ['Romanos 3:25-26', 'Salmo 89:14', 'Mateus 6:33'], tags: ['justica', 'deus', 'cruz'], fontes: ['A Justiça de Deus - John Stott'] },
+  { id: 'teoprop-009', titulo: 'A Graça de Deus', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['A graça é favor imerecido de Deus.', 'Somos salvos pela graça, não por obras.', 'A graça é abundante e disponível.', 'A graça transforma vidas.', 'Devemos estender a graça aos outros.'], versicosChave: ['Efésios 2:8-9', '2 Coríntios 12:9', 'Tito 2:11-12'], tags: ['graca', 'salvacao', 'favor'], fontes: ['A Graça - Jerry Bridges'] },
   // Mais Escatologia
-  { id: 'escat-009', titulo: 'A Eternidade', categoria: 'Escatologia', subcategoria: 'Futuro', conteudo: ['Haverá céu e inferno eternos.', 'O céu é comunhão com Deus.', 'O inferno é separação eterna.', 'A eternidade é real e certa.', 'Devemos viver em preparação para a eternidade.'], versicosChave: ['Mateus 25:46', 'João 14:1-3', 'Apocalipse 21:1-4'], tags: ['eternidade', 'ceu', 'inferno'], fontes: ['A Eternidade - Randy Alcorn'] },
+  { id: 'escat-009', titulo: 'A Eternidade', categoria: 'Escatologia', subcategoria: 'Escatologia', conteudo: ['Haverá céu e inferno eternos.', 'O céu é comunhão com Deus.', 'O inferno é separação eterna.', 'A eternidade é real e certa.', 'Devemos viver em preparação para a eternidade.'], versicosChave: ['Mateus 25:46', 'João 14:1-3', 'Apocalipse 21:1-4'], tags: ['eternidade', 'ceu', 'inferno'], fontes: ['A Eternidade - Randy Alcorn'] },
   // Mais Apologética
-  { id: 'apol-008', titulo: 'A Resiliência da Fé Cristã', categoria: 'Apologetica', subcategoria: 'Defesa', conteudo: ['A fé cristã sobreviveu a perseguições.', 'A razão e a fé se complementam.', 'O testemunho dos mártires é poderoso.', 'A transformação de vidas é evidência.', 'A fé cristã é a mais lógica.'], versicosChave: ['1 Coríntios 15:14', 'Atos 4:12', 'Romanos 1:16'], tags: ['resiliencia', 'fe', 'defesa'], fontes: ['A Fé Resilientes - Nancy Pearcey'] },
+  { id: 'apol-008', titulo: 'A Resiliência da Fé Cristã', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['A fé cristã sobreviveu a perseguições.', 'A razão e a fé se complementam.', 'O testemunho dos mártires é poderoso.', 'A transformação de vidas é evidência.', 'A fé cristã é a mais lógica.'], versicosChave: ['1 Coríntios 15:14', 'Atos 4:12', 'Romanos 1:16'], tags: ['resiliencia', 'fe', 'defesa'], fontes: ['A Fé Resilientes - Nancy Pearcey'] },
   // Mais Ética
-  { id: 'etica-007', titulo: 'A Ética da Guerra', categoria: 'Etica Crista', subcategoria: 'Paz', conteudo: ['O cristianismo é pacifista ou realista?', 'Jesus ensinou a amar os inimigos.', 'A defesa dos inocentes pode ser justificada.', 'A guerra é consequência do pecado.', 'A paz é o desejo de Deus.'], versicosChave: ['Mateus 5:9, 44', 'Romanos 12:17-21'], tags: ['guerra', 'paz', 'etica'], fontes: ['Ética Cristã e Problemas Contemporâneas - Wayne Grudem'] },
-  { id: 'etica-008', titulo: 'A Ética da Verdade', categoria: 'Etica Crista', subcategoria: 'Verdade', conteudo: ['Devemos amar a verdade.', 'A mentira é pecado.', 'Devemos falar a verdade com amor.', 'A verdade nos liberta.', 'Deus é a fonte de toda verdade.'], versicosChave: ['Efésios 4:15, 25', 'João 8:32', 'Salmo 15:2'], tags: ['verdade', 'etica', 'honestidade'], fontes: ['A Verdade Cristã - Norman Geisler'] },
+  { id: 'etica-007', titulo: 'A Ética da Guerra', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['O cristianismo é pacifista ou realista?', 'Jesus ensinou a amar os inimigos.', 'A defesa dos inocentes pode ser justificada.', 'A guerra é consequência do pecado.', 'A paz é o desejo de Deus.'], versicosChave: ['Mateus 5:9, 44', 'Romanos 12:17-21'], tags: ['guerra', 'paz', 'etica'], fontes: ['Ética Cristã e Problemas Contemporâneas - Wayne Grudem'] },
+  { id: 'etica-008', titulo: 'A Ética da Verdade', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['Devemos amar a verdade.', 'A mentira é pecado.', 'Devemos falar a verdade com amor.', 'A verdade nos liberta.', 'Deus é a fonte de toda verdade.'], versicosChave: ['Efésios 4:15, 25', 'João 8:32', 'Salmo 15:2'], tags: ['verdade', 'etica', 'honestidade'], fontes: ['A Verdade Cristã - Norman Geisler'] },
   // Mais Missiologia
-  { id: 'miss-006', titulo: 'A Teologia da Missão', categoria: 'Missiologia', subcategoria: 'Teologia', conteudo: ['A missão de Deus é trinitária.', 'A missão envolve todas as nações.', 'O evangelho é o centro da missão.', 'A missão transforma culturas.', 'A missão é testemunho e serviço.'], versicosChave: ['Mateus 28:19-20', 'Atos 1:8', 'Apocalipse 7:9'], tags: ['teologia', 'missao', 'evangelho'], fontes: ['A Missão de Deus - David Bosch'] },
+  { id: 'miss-006', titulo: 'A Teologia da Missão', categoria: 'Missiologia', subcategoria: 'Teologia Bíblica', conteudo: ['A missão de Deus é trinitária.', 'A missão envolve todas as nações.', 'O evangelho é o centro da missão.', 'A missão transforma culturas.', 'A missão é testemunho e serviço.'], versicosChave: ['Mateus 28:19-20', 'Atos 1:8', 'Apocalipse 7:9'], tags: ['teologia', 'missao', 'evangelho'], fontes: ['A Missão de Deus - David Bosch'] },
   // Mais Família
-  { id: 'fam-006', titulo: 'A Comunicação no Casamento', categoria: 'Vida Crista', subcategoria: 'Família', conteudo: ['A comunicação é essencial para o casamento.', 'Devemos ouvir antes de falar.', 'O amor se expressa em palavras.', 'O conflito deve ser resolvido biblicamente.', 'A comunicação requer humildade.'], versicosChave: ['Tiago 1:19', 'Efésios 4:29', 'Colossenses 4:6'], tags: ['comunicacao', 'casamento', 'amor'], fontes: ['As 5 Linguagens do Amor - Gary Chapman'] },
-  { id: 'fam-007', titulo: 'A Paternidade Cristã', categoria: 'Vida Crista', subcategoria: 'Família', conteudo: ['Pais são modelados de Deus para os filhos.', 'A disciplina é ato de amor.', 'O exemplo é mais forte que as palavras.', 'Devemos orar pelos filhos.', 'A bênção dos filhos é privilégio.'], versicosChave: ['Efésios 6:4', 'Provérbios 22:6', 'Deuteronômio 6:6-7'], tags: ['paternidade', 'filhos', 'disciplina'], fontes: ['A Sabedoria da Paternidade - Ted Tripp'] },
+  { id: 'fam-006', titulo: 'A Comunicação no Casamento', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A comunicação é essencial para o casamento.', 'Devemos ouvir antes de falar.', 'O amor se expressa em palavras.', 'O conflito deve ser resolvido biblicamente.', 'A comunicação requer humildade.'], versicosChave: ['Tiago 1:19', 'Efésios 4:29', 'Colossenses 4:6'], tags: ['comunicacao', 'casamento', 'amor'], fontes: ['As 5 Linguagens do Amor - Gary Chapman'] },
+  { id: 'fam-007', titulo: 'A Paternidade Cristã', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Pais são modelados de Deus para os filhos.', 'A disciplina é ato de amor.', 'O exemplo é mais forte que as palavras.', 'Devemos orar pelos filhos.', 'A bênção dos filhos é privilégio.'], versicosChave: ['Efésios 6:4', 'Provérbios 22:6', 'Deuteronômio 6:6-7'], tags: ['paternidade', 'filhos', 'disciplina'], fontes: ['A Sabedoria da Paternidade - Ted Tripp'] },
   // Mais Liderança
-  { id: 'lid-005', titulo: 'A Liderança na Igreja Primitiva', categoria: 'Eclesiologia', subcategoria: 'Liderança', conteudo: ['A liderança era exercida por anciãos.', 'Os diáconos serviam na mesa.', 'O conselho decidia questões importantes.', 'A liderança era coletiva, não individual.', 'O Espírito Santo guiava as decisões.'], versicosChave: ['Atos 6:1-7', 'Atos 15:1-29', '1 Timóteo 3:1-13'], tags: ['lideranca', 'igreja primitiva', 'ancianos'], fontes: ['A Igreja Primitiva - Rodney Stark'] },
+  { id: 'lid-005', titulo: 'A Liderança na Igreja Primitiva', categoria: 'Eclesiologia', subcategoria: 'Vida Crista', conteudo: ['A liderança era exercida por anciãos.', 'Os diáconos serviam na mesa.', 'O conselho decidia questões importantes.', 'A liderança era coletiva, não individual.', 'O Espírito Santo guiava as decisões.'], versicosChave: ['Atos 6:1-7', 'Atos 15:1-29', '1 Timóteo 3:1-13'], tags: ['lideranca', 'igreja primitiva', 'ancianos'], fontes: ['A Igreja Primitiva - Rodney Stark'] },
   // Mais Arqueologia
-  { id: 'arqueo-005', titulo: 'A Casa de Davi em Tel Dan', categoria: 'Historia da Igreja', subcategoria: 'Arqueologia', conteudo: ['A estela de Tel Dan menciona a casa de Davi.', 'Primeira referência extrabíblica a Davi.', 'Confirma a historicidade do rei.', 'A arqueologia sustenta a Bíblia.', 'Cada descoberta reforça a confiabilidade.'], versicosChave: ['2 Samuel 7:12-16', '1 Crônicas 17:11-14'], tags: ['arqueologia', 'davi', 'tel dan'], fontes: ['Arqueologia e Bíblia - Bryant Wood'] },
+  { id: 'arqueo-005', titulo: 'A Casa de Davi em Tel Dan', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['A estela de Tel Dan menciona a casa de Davi.', 'Primeira referência extrabíblica a Davi.', 'Confirma a historicidade do rei.', 'A arqueologia sustenta a Bíblia.', 'Cada descoberta reforça a confiabilidade.'], versicosChave: ['2 Samuel 7:12-16', '1 Crônicas 17:11-14'], tags: ['arqueologia', 'davi', 'tel dan'], fontes: ['Arqueologia e Bíblia - Bryant Wood'] },
   // Mais Biografias
-  { id: 'biog-006', titulo: 'A Vida de Lutero', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['Lutero pregou as 95 teses em 1517.', 'Desafiou a autoridade papal.', 'A justificação pela fé é seu legado.', 'Traduziu a Bíblia para o alemão.', 'A Reforma transformou a cristandade.'], versicosChave: ['Romanos 3:28', 'Gálatas 2:16'], tags: ['lutero', 'reforma', 'justificacao'], fontes: ['Lutero - Roland Bainton'] },
-  { id: 'biog-007', titulo: 'A Vida de Calvino', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['Calvino escreveu as Institutas.', 'Reformou Genebra.', 'Enfatizou a soberania de Deus.', 'Influenciou a teologia reformada.', 'Seu legado continua na teologia calvinista.'], versicosChave: ['Romanos 8:28-30', 'Efésios 1:4-5'], tags: ['calvino', 'reforma', 'soberania'], fontes: ['Calvino - Bruce Gordon'] },
+  { id: 'biog-006', titulo: 'A Vida de Lutero', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Lutero pregou as 95 teses em 1517.', 'Desafiou a autoridade papal.', 'A justificação pela fé é seu legado.', 'Traduziu a Bíblia para o alemão.', 'A Reforma transformou a cristandade.'], versicosChave: ['Romanos 3:28', 'Gálatas 2:16'], tags: ['lutero', 'reforma', 'justificacao'], fontes: ['Lutero - Roland Bainton'] },
+  { id: 'biog-007', titulo: 'A Vida de Calvino', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Calvino escreveu as Institutas.', 'Reformou Genebra.', 'Enfatizou a soberania de Deus.', 'Influenciou a teologia reformada.', 'Seu legado continua na teologia calvinista.'], versicosChave: ['Romanos 8:28-30', 'Efésios 1:4-5'], tags: ['calvino', 'reforma', 'soberania'], fontes: ['Calvino - Bruce Gordon'] },
   // Mais Linguística
-  { id: 'ling-005', titulo: 'Os Manuscritos do Mar Morto e o AT', categoria: 'Linguas Biblicas', subcategoria: 'Manuscritos', conteudo: ['Os manuscritos de Qumran contêm todo o AT (exceto Ester).', 'Confirmam a fidelidade da transmissão.', 'Incluem textos sectários.', 'São a maior descoberta arqueológica bíblica.', 'Reforçam a confiabilidade do texto.'], versicosChave: ['Isaías 53', 'Salmo 22', 'Gênesis 1'], tags: ['manuscritos', 'qumran', 'at'], fontes: ['Os Manuscritos do Mar Morto - Geza Vermes'] },
+  { id: 'ling-005', titulo: 'Os Manuscritos do Mar Morto e o AT', categoria: 'Bibliologia', subcategoria: 'Bibliologia', conteudo: ['Os manuscritos de Qumran contêm todo o AT (exceto Ester).', 'Confirmam a fidelidade da transmissão.', 'Incluem textos sectários.', 'São a maior descoberta arqueológica bíblica.', 'Reforçam a confiabilidade do texto.'], versicosChave: ['Isaías 53', 'Salmo 22', 'Gênesis 1'], tags: ['manuscritos', 'qumran', 'at'], fontes: ['Os Manuscritos do Mar Morto - Geza Vermes'] },
   // Mais Hermenêutica
-  { id: 'herm-61', titulo: 'A Contextualização do Evangelho', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['O evangelho deve ser comunicado em termos culturais.', 'Jesus encarnou na cultura judaica.', 'Devemos distinguir evangelical e cultural.', 'A enculturação não é sincretismo.', 'A verdade é imutável; a forma muda.'], versicosChave: ['1 Coríntios 9:19-23', 'João 1:14'], tags: ['contextualizacao', 'cultura', 'evangelho'], fontes: ['A Contextualização do Evangelho - David Hesselgrave'] },
+  { id: 'herm-61', titulo: 'A Contextualização do Evangelho', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['O evangelho deve ser comunicado em termos culturais.', 'Jesus encarnou na cultura judaica.', 'Devemos distinguir evangelical e cultural.', 'A enculturação não é sincretismo.', 'A verdade é imutável; a forma muda.'], versicosChave: ['1 Coríntios 9:19-23', 'João 1:14'], tags: ['contextualizacao', 'cultura', 'evangelho'], fontes: ['A Contextualização do Evangelho - David Hesselgrave'] },
   // Mais Práticas
-  { id: 'prat-005', titulo: 'O Jejum na Bíblia', categoria: 'Vida Crista', subcategoria: 'Disciplina', conteudo: ['O jejum é prática bíblica de多个testamentos.', 'Jesus jejuou, Paulo jejuou.', 'O jejum deve ser voluntário.', 'Não é para exibição.', 'O jejum fortalece a vida espiritual.'], versicosChave: ['Mateus 6:16-18', 'Mateus 4:1-2', 'Atos 13:2-3'], tags: ['jejum', 'pratica', 'disciplina'], fontes: ['Os Disciplinas Espirituais - Dallas Willard'] },
-  { id: 'prat-006', titulo: 'A Confissão e Restauração', categoria: 'Vida Crista', subcategoria: 'Disciplina', conteudo: ['Devemos confessar pecados a Deus.', 'A confissão traz restauração.', 'Devemos confessar uns aos outros.', 'A restauração é o objetivo da disciplina.', 'Deus é misericordioso e perdoa.'], versicosChave: ['1 João 1:9', 'Tiago 5:16', 'Salmo 32:3-5'], tags: ['confissao', 'restauracao', 'perdao'], fontes: ['A Disciplina da Confissão - James Finney'] },
+  { id: 'prat-005', titulo: 'O Jejum na Bíblia', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['O jejum é prática bíblica de多个testamentos.', 'Jesus jejuou, Paulo jejuou.', 'O jejum deve ser voluntário.', 'Não é para exibição.', 'O jejum fortalece a vida espiritual.'], versicosChave: ['Mateus 6:16-18', 'Mateus 4:1-2', 'Atos 13:2-3'], tags: ['jejum', 'pratica', 'disciplina'], fontes: ['Os Disciplinas Espirituais - Dallas Willard'] },
+  { id: 'prat-006', titulo: 'A Confissão e Restauração', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Devemos confessar pecados a Deus.', 'A confissão traz restauração.', 'Devemos confessar uns aos outros.', 'A restauração é o objetivo da disciplina.', 'Deus é misericordioso e perdoa.'], versicosChave: ['1 João 1:9', 'Tiago 5:16', 'Salmo 32:3-5'], tags: ['confissao', 'restauracao', 'perdao'], fontes: ['A Disciplina da Confissão - James Finney'] },
   // Mais Teologia
-  { id: 'tema-006', titulo: 'A Missão de Deus no AT', categoria: 'Teologia Biblica', subcategoria: 'Missão', conteudo: ['Deus escolheu Israel para ser bênção às nações.', 'A bênção abraômica é universal.', 'Os salmos celebram Deus entre as nações.', 'Os profetas预告 a conversão dos gentios.', 'A missão de Deus é global desde o início.'], versicosChave: ['Gênesis 12:3', 'Salmo 67', 'Isaías 49:6'], tags: ['missao', 'at', 'nacoes', 'israel'], fontes: ['A Missão de Deus no AT - Christopher Wright'] },
-  { id: 'tema-007', titulo: 'A Glória de Deus na História', categoria: 'Teologia Biblica', subcategoria: 'Tema Central', conteudo: ['A história da redenção mostra a glória de Deus.', 'Deus se revela na criação, no povo, em Cristo.', 'A glória de Deus é o proposito da história.', 'A história tem direção e destino.', 'O clímax é o Reino eterno.'], versicosChave: ['Salmo 19:1', 'Efésios 3:20-21', 'Apocalipse 21:23'], tags: ['gloria', 'historia', 'redencao'], fontes: ['A Teologia da Glória - Henri Blocher'] },
+  { id: 'tema-006', titulo: 'A Missão de Deus no AT', categoria: 'Teologia Bíblica', subcategoria: 'Missiologia', conteudo: ['Deus escolheu Israel para ser bênção às nações.', 'A bênção abraômica é universal.', 'Os salmos celebram Deus entre as nações.', 'Os profetas预告 a conversão dos gentios.', 'A missão de Deus é global desde o início.'], versicosChave: ['Gênesis 12:3', 'Salmo 67', 'Isaías 49:6'], tags: ['missao', 'at', 'nacoes', 'israel'], fontes: ['A Missão de Deus no AT - Christopher Wright'] },
+  { id: 'tema-007', titulo: 'A Glória de Deus na História', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['A história da redenção mostra a glória de Deus.', 'Deus se revela na criação, no povo, em Cristo.', 'A glória de Deus é o proposito da história.', 'A história tem direção e destino.', 'O clímax é o Reino eterno.'], versicosChave: ['Salmo 19:1', 'Efésios 3:20-21', 'Apocalipse 21:23'], tags: ['gloria', 'historia', 'redencao'], fontes: ['A Teologia da Glória - Henri Blocher'] },
   // Mais Adoração
-  { id: 'ador-001', titulo: 'A Adoração no Velho Testamento', categoria: 'Historia da Igreja', subcategoria: 'Adoração', conteudo: ['A adoração no AT era centrada no templo.', 'Os sacrifícios eram parte essencial.', 'O louvor e a oração eram constantes.', 'Davi instituiu o ministério da música.', 'A adoração era comunitária e familiar.'], versicosChave: ['1 Crônicas 16:8-36', 'Salmo 95:1-7'], tags: ['adoracao', 'at', 'templo', 'sacrificio'], fontes: ['A Adoração no AT - Motyer'] },
-  { id: 'ador-002', titulo: 'A Adoração no Novo Testamento', categoria: 'Historia da Igreja', subcategoria: 'Adoração', conteudo: ['A adoração no NT é em espirito e verdade.', 'Jesus é o centro da adoração.', 'A Ceia do Senhor é centro.', 'O louvo é feito em línguas e hinos.', 'A adoração é vida, não apenas evento.'], versicosChave: ['João 4:23-24', 'Efésios 5:19', 'Colossenses 3:16'], tags: ['adoracao', 'nt', 'espirito', 'verdade'], fontes: ['A Adoração no NT - Hughes Oliphant Old'] },
+  { id: 'ador-001', titulo: 'A Adoração no Velho Testamento', categoria: 'História da Igreja', subcategoria: 'Vida Crista', conteudo: ['A adoração no AT era centrada no templo.', 'Os sacrifícios eram parte essencial.', 'O louvor e a oração eram constantes.', 'Davi instituiu o ministério da música.', 'A adoração era comunitária e familiar.'], versicosChave: ['1 Crônicas 16:8-36', 'Salmo 95:1-7'], tags: ['adoracao', 'at', 'templo', 'sacrificio'], fontes: ['A Adoração no AT - Motyer'] },
+  { id: 'ador-002', titulo: 'A Adoração no Novo Testamento', categoria: 'História da Igreja', subcategoria: 'Vida Crista', conteudo: ['A adoração no NT é em espirito e verdade.', 'Jesus é o centro da adoração.', 'A Ceia do Senhor é centro.', 'O louvo é feito em línguas e hinos.', 'A adoração é vida, não apenas evento.'], versicosChave: ['João 4:23-24', 'Efésios 5:19', 'Colossenses 3:16'], tags: ['adoracao', 'nt', 'espirito', 'verdade'], fontes: ['A Adoração no NT - Hughes Oliphant Old'] },
 
 
   // --- BATCH 6: +220 estudos para atingir 1000+ ---
   // Mais Livros Bíblicos
-  { id: 'livro-162', titulo: 'O Livro de Apocalipse', categoria: 'Temas por Livro', subcategoria: 'NT', conteudo: ['Apocalipse é o livro final da Bíblia.', 'Revela a vitória final de Cristo.', 'Usa simbolismo apocalíptico.', 'O tema central é a soberania de Deus.', 'O livro encoraja os perseguidos.'], versicosChave: ['Apocalipse 1:1-3', 'Apocalipse 22:18-19'], tags: ['apocalipse', 'revelacao', 'vitória'], fontes: ['Comentario a Apocalipse - Craig Keener'] },
-  { id: 'livro-163', titulo: 'O Livro de Hebreus', categoria: 'Temas por Livro', subcategoria: 'NT', conteudo: ['Hebreus apresenta Cristo como sumo sacerdote.', 'A Nova Aliança é superior à antiga.', 'A fé é essencial para agradar a Deus.', 'O sacrifice de Cristo é perfeito e único.', 'O livro encoraja a perseverança.'], versicosChave: ['Hebreus 1:1-3', 'Hebreus 4:12', 'Hebreus 11:1'], tags: ['hebreus', 'sacerdocio', 'alianca'], fontes: ['Comentario a Hebreus - Philip Edgcumbe Hughes'] },
-  { id: 'livro-164', titulo: 'O Livro de Romanos', categoria: 'Temas por Livro', subcategoria: 'NT', conteudo: ['Romanos é a epístola mais teológica de Paulo.', 'A justificação pela fé é o tema central.', 'A graça de Deus supera o pecado.', 'A vida cristã é descrita em detalhes.', 'O amor de Deus é o clímax.'], versicosChave: ['Romanos 1:16-17', 'Romanos 3:23-24', 'Romanos 8:28-39'], tags: ['romanos', 'justificacao', 'fe'], fontes: ['Comentario a Romanos - Douglas Moo'] },
-  { id: 'livro-165', titulo: 'O Livro de Gênesis', categoria: 'Temas por Livro', subcategoria: 'AT', conteudo: ['Gênesis é o livro da origem.', 'Deus criou tudo e era bom.', 'A queda trouxe pecado e morte.', 'Deus fez alianças com os patriarcas.', 'A história da redenção começa aqui.'], versicosChave: ['Gênesis 1:1', 'Gênesis 3:15', 'Gênesis 12:1-3'], tags: ['genesis', 'origem', 'alianca'], fontes: ['Comentario a Gênesis - Gordon Wenham'] },
+  { id: 'livro-162', titulo: 'O Livro de Apocalipse', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Apocalipse é o livro final da Bíblia.', 'Revela a vitória final de Cristo.', 'Usa simbolismo apocalíptico.', 'O tema central é a soberania de Deus.', 'O livro encoraja os perseguidos.'], versicosChave: ['Apocalipse 1:1-3', 'Apocalipse 22:18-19'], tags: ['apocalipse', 'revelacao', 'vitória'], fontes: ['Comentario a Apocalipse - Craig Keener'] },
+  { id: 'livro-163', titulo: 'O Livro de Hebreus', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Hebreus apresenta Cristo como sumo sacerdote.', 'A Nova Aliança é superior à antiga.', 'A fé é essencial para agradar a Deus.', 'O sacrifice de Cristo é perfeito e único.', 'O livro encoraja a perseverança.'], versicosChave: ['Hebreus 1:1-3', 'Hebreus 4:12', 'Hebreus 11:1'], tags: ['hebreus', 'sacerdocio', 'alianca'], fontes: ['Comentario a Hebreus - Philip Edgcumbe Hughes'] },
+  { id: 'livro-164', titulo: 'O Livro de Romanos', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Romanos é a epístola mais teológica de Paulo.', 'A justificação pela fé é o tema central.', 'A graça de Deus supera o pecado.', 'A vida cristã é descrita em detalhes.', 'O amor de Deus é o clímax.'], versicosChave: ['Romanos 1:16-17', 'Romanos 3:23-24', 'Romanos 8:28-39'], tags: ['romanos', 'justificacao', 'fe'], fontes: ['Comentario a Romanos - Douglas Moo'] },
+  { id: 'livro-165', titulo: 'O Livro de Gênesis', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Gênesis é o livro da origem.', 'Deus criou tudo e era bom.', 'A queda trouxe pecado e morte.', 'Deus fez alianças com os patriarcas.', 'A história da redenção começa aqui.'], versicosChave: ['Gênesis 1:1', 'Gênesis 3:15', 'Gênesis 12:1-3'], tags: ['genesis', 'origem', 'alianca'], fontes: ['Comentario a Gênesis - Gordon Wenham'] },
   // Mais Doutrinas
   { id: 'doutr-139', titulo: 'A Natureza do Pecado', categoria: 'Doutrinas Fundamentais', subcategoria: 'Hamartiologia', conteudo: ['O pecado é transgressão da lei de Deus.', 'O pecado é rebelião contra Deus.', 'O pecado corrompe toda a natureza humana.', 'O pecado leva à morte espiritual.', 'O pecado é perdoado apenas pelo sangue de Cristo.'], versicosChave: ['Romanos 3:23', '1 João 3:4', 'Isaías 59:2'], tags: ['pecado', 'natureza', 'hamartologia'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
   { id: 'doutr-140', titulo: 'A Expiação', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['A expiação é a obra de Cristo na cruz.', 'O sangue de Cristo nos purifica.', 'A expiação é por substituição.', 'A expiação é suficiente para todos.', 'A expiação é eficaz para os eleitos.'], versicosChave: ['Isaías 53:5-6', '1 Pedro 2:24', '1 João 2:2'], tags: ['expiacao', 'cruz', 'sangue'], fontes: ['A Morte da Morte - John Owen'] },
   { id: 'doutr-141', titulo: 'A Ressurreição', categoria: 'Doutrinas Fundamentais', subcategoria: 'Cristologia', conteudo: ['A ressurreição é o centro do cristianismo.', 'Cristo ressuscitou corporalmente.', 'A ressurreição prova a vitória sobre a morte.', 'A ressurreição é a base da nossa esperança.', 'Se Cristo não ressuscitou, vã é a nossa fé.'], versicosChave: ['1 Coríntios 15:3-4, 14, 17'], tags: ['ressurreicao', 'vitória', 'esperanca'], fontes: ['A Ressurreição do Filho de Deus - N.T. Wright'] },
   { id: 'doutr-142', titulo: 'O Juízo Final', categoria: 'Doutrinas Fundamentais', subcategoria: 'Escatologia', conteudo: ['Todos comparecerão perante o tribunal de Cristo.', 'Os livros serão abertos.', 'Os crentes serão recompensados.', 'Os incrédulos serão condenados.', 'O juízo será justo e definitivo.'], versicosChave: ['Mateus 25:31-46', 'Apocalipse 20:11-15', '2 Coríntios 5:10'], tags: ['juizo', 'tribunal', 'recompensa'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
   // Mais Questões
-  { id: 'contemp-71', titulo: 'O Evangelho e a Ciência Moderna', categoria: 'Questões Contemporâneas', subcategoria: 'Ciência', conteudo: ['A ciência e a fé não estão em conflito.', 'Deus é o autor da natureza e da Escritura.', 'A criação aponta para o Criador.', 'A ciência é ferramenta para entender a criação.', 'Devemos ser sábios na interpretação.'], versicosChave: ['Salmo 19:1', 'Romanos 1:20'], tags: ['ciencia', 'fe', 'criacao'], fontes: ['Deus e a Ciência - Alister McGrath'] },
-  { id: 'contemp-72', titulo: 'A Crise da Autoridade Moral', categoria: 'Questões Contemporâneas', subcategoria: 'Ética', conteudo: ['O relativismo moral é dominante.', 'Deus é o padrão de moralidade.', 'A Bíblia oferece verdades morais eternas.', 'Devemos viver com integridade.', 'O evangelho transforma o caráter.'], versicosChave: ['Salmo 119:105', 'Mateus 5:13-16'], tags: ['autoridade moral', 'relativismo', 'etica'], fontes: ['A Verdade Cristã - Norman Geisler'] },
+  { id: 'contemp-71', titulo: 'O Evangelho e a Ciência Moderna', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['A ciência e a fé não estão em conflito.', 'Deus é o autor da natureza e da Escritura.', 'A criação aponta para o Criador.', 'A ciência é ferramenta para entender a criação.', 'Devemos ser sábios na interpretação.'], versicosChave: ['Salmo 19:1', 'Romanos 1:20'], tags: ['ciencia', 'fe', 'criacao'], fontes: ['Deus e a Ciência - Alister McGrath'] },
+  { id: 'contemp-72', titulo: 'A Crise da Autoridade Moral', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['O relativismo moral é dominante.', 'Deus é o padrão de moralidade.', 'A Bíblia oferece verdades morais eternas.', 'Devemos viver com integridade.', 'O evangelho transforma o caráter.'], versicosChave: ['Salmo 119:105', 'Mateus 5:13-16'], tags: ['autoridade moral', 'relativismo', 'etica'], fontes: ['A Verdade Cristã - Norman Geisler'] },
   // Mais Comparativos
-  { id: 'comp-65', titulo: 'Cristianismo vs. Agnosticismo', categoria: 'Estudos Comparativos', subcategoria: 'Filosofia', conteudo: ['O agnosticismo afirma que não podemos conhecer Deus.', 'O cristianismo afirma que Deus se revelou.', 'A revelação geral e especial são evidências.', 'A fé é razoável, não cega.', 'Deus é conhecível por meio de Cristo.'], versicosChave: ['João 14:9', 'Romanos 1:19-20'], tags: ['agnosticismo', 'conhecimento', 'revelacao'], fontes: ['Apologetica Cristã - Norman Geisler'] },
-  { id: 'comp-66', titulo: 'Cristianismo vs. Ateísmo', categoria: 'Estudos Comparativos', subcategoria: 'Filosofia', conteudo: ['O ateísmo nega a existência de Deus.', 'O cristianismo oferece evidências de Deus.', 'A criação aponta para um Criador.', 'A moralidade requer um padrão absoluto.', 'A existência de Deus é racional e necessária.'], versicosChave: ['Salmo 14:1', 'Romanos 1:18-22'], tags: ['ateismo', 'existencia de deus', 'filosofia'], fontes: ['Apologetica Cristã - Norman Geisler'] },
+  { id: 'comp-65', titulo: 'Cristianismo vs. Agnosticismo', categoria: 'Estudos Comparativos', subcategoria: 'Questões Contemporâneas', conteudo: ['O agnosticismo afirma que não podemos conhecer Deus.', 'O cristianismo afirma que Deus se revelou.', 'A revelação geral e especial são evidências.', 'A fé é razoável, não cega.', 'Deus é conhecível por meio de Cristo.'], versicosChave: ['João 14:9', 'Romanos 1:19-20'], tags: ['agnosticismo', 'conhecimento', 'revelacao'], fontes: ['Apologetica Cristã - Norman Geisler'] },
+  { id: 'comp-66', titulo: 'Cristianismo vs. Ateísmo', categoria: 'Estudos Comparativos', subcategoria: 'Questões Contemporâneas', conteudo: ['O ateísmo nega a existência de Deus.', 'O cristianismo oferece evidências de Deus.', 'A criação aponta para um Criador.', 'A moralidade requer um padrão absoluto.', 'A existência de Deus é racional e necessária.'], versicosChave: ['Salmo 14:1', 'Romanos 1:18-22'], tags: ['ateismo', 'existencia de deus', 'filosofia'], fontes: ['Apologetica Cristã - Norman Geisler'] },
   // Mais História
-  { id: 'hist-61', titulo: 'A Escravidão e o Evangelho', categoria: 'Historia da Igreja', subcategoria: 'Justiça', conteudo: ['William Wilberforce lutou contra a escravidão.', 'O evangelho é libertador.', 'A Bíblia condena a escravidão moral.', 'A igreja deve lutar pela justiça.', 'O cristianismo transformou sociedades.'], versicosChave: ['Gálatas 3:28', 'Filemom 1:16-19', 'Isaías 58:6'], tags: ['escravidao', 'justica', 'wilberforce'], fontes: ['A Escravidão e o Evangelho - John MacArthur'] },
-  { id: 'hist-62', titulo: 'O Crescimento do Cristianismo na China', categoria: 'Historia da Igreja', subcategoria: 'Missões', conteudo: ['A igreja chinesa cresceu apesar da perseguição.', 'O número de cristãos aumentou dramaticamente.', 'A perseguição fortaleceu a fé.', 'A igreja doméstica é vibrante.', 'O futuro do cristianismo é asiático.'], versicosChave: ['Mateus 16:18', 'Atos 8:1-4'], tags: ['china', 'crescimento', 'perseguicao'], fontes: ['A Igreja Chinesa - David Wang'] },
+  { id: 'hist-61', titulo: 'A Escravidão e o Evangelho', categoria: 'História da Igreja', subcategoria: 'Questões Contemporâneas', conteudo: ['William Wilberforce lutou contra a escravidão.', 'O evangelho é libertador.', 'A Bíblia condena a escravidão moral.', 'A igreja deve lutar pela justiça.', 'O cristianismo transformou sociedades.'], versicosChave: ['Gálatas 3:28', 'Filemom 1:16-19', 'Isaías 58:6'], tags: ['escravidao', 'justica', 'wilberforce'], fontes: ['A Escravidão e o Evangelho - John MacArthur'] },
+  { id: 'hist-62', titulo: 'O Crescimento do Cristianismo na China', categoria: 'História da Igreja', subcategoria: 'Missiologia', conteudo: ['A igreja chinesa cresceu apesar da perseguição.', 'O número de cristãos aumentou dramaticamente.', 'A perseguição fortaleceu a fé.', 'A igreja doméstica é vibrante.', 'O futuro do cristianismo é asiático.'], versicosChave: ['Mateus 16:18', 'Atos 8:1-4'], tags: ['china', 'crescimento', 'perseguicao'], fontes: ['A Igreja Chinesa - David Wang'] },
   // Mais Hermenêutica
-  { id: 'herm-62', titulo: 'A Hermenêutica de Calvino', categoria: 'Hermenêutica', subcategoria: 'História', conteudo: ['Calvino enfatizou a regra de fé.', 'A Escritura interpreta a Escritura.', 'O contexto é essencial.', 'O autor original é a chave.', 'A aplicação é o objetivo final.'], versicosChave: ['2 Timóteo 2:15', '2 Pedro 1:20-21'], tags: ['calvino', 'hermeneutica', 'interpretacao'], fontes: ['A Hermenêutica de Calvino - Ford Lewis Battles'] },
+  { id: 'herm-62', titulo: 'A Hermenêutica de Calvino', categoria: 'Hermenêutica', subcategoria: 'História da Igreja', conteudo: ['Calvino enfatizou a regra de fé.', 'A Escritura interpreta a Escritura.', 'O contexto é essencial.', 'O autor original é a chave.', 'A aplicação é o objetivo final.'], versicosChave: ['2 Timóteo 2:15', '2 Pedro 1:20-21'], tags: ['calvino', 'hermeneutica', 'interpretacao'], fontes: ['A Hermenêutica de Calvino - Ford Lewis Battles'] },
   // Mais Vida Cristã
-  { id: 'vida-021', titulo: 'A Esperança Cristã', categoria: 'Vida Crista', subcategoria: 'Virtude', conteudo: ['A esperança é âncora da alma.', 'A esperança se baseia nas promessas de Deus.', 'A esperança não confunde.', 'A esperança sustenta no sofrimento.', 'A esperança é certa e firme.'], versicosChave: ['Hebreus 6:19', 'Romanos 8:24-25', '1 Pedro 1:3-5'], tags: ['esperanca', 'virtude', 'promessas'], fontes: ['A Esperança - Timothy Keller'] },
-  { id: 'vida-022', titulo: 'A Fortaleza Espiritual', categoria: 'Vida Crista', subcategoria: 'Força', conteudo: ['Deus é a nossa fortaleza.', 'Devemos ser fortes no Senhor.', 'A fortaleza vem da obediência.', 'O Espírito Santo nos fortalece.', 'A fortaleza se manifesta na tribulação.'], versicosChave: ['Efésios 6:10', 'Filipenses 4:13', 'Isaías 40:31'], tags: ['fortaleza', 'forca', 'espiritual'], fontes: ['A Fortaleza do Espírito - Arthur Pink'] },
-  { id: 'vida-023', titulo: 'A Justificação', categoria: 'Vida Crista', subcategoria: 'Identidade', conteudo: ['Somos declarados justos pela fé.', 'A justiça de Cristo é imputada.', 'Não somos mais escravos do pecado.', 'A justificação traz paz com Deus.', 'Devemos viver em conformidade com nossa identidade.'], versicosChave: ['Romanos 5:1', 'Gálatas 2:16', 'Efésios 2:8-9'], tags: ['justificacao', 'identidade', 'fe'], fontes: ['A Justificação - John Piper'] },
-  { id: 'vida-024', titulo: 'A Alegria na Salvação', categoria: 'Vida Crista', subcategoria: 'Adoração', conteudo: ['A salvação traz alegria indizível.', 'Devemos regozijar no Senhor sempre.', 'A alegria é fruto do Espírito.', 'A salvação é dom gratuito.', 'Devemos expressar alegria em louvor.'], versicosChave: ['Salmo 51:12', 'Filipenses 4:4', '1 Pedro 1:8-9'], tags: ['alegria', 'salvacao', 'louvor'], fontes: ['A Alegria da Fé - John Piper'] },
+  { id: 'vida-021', titulo: 'A Esperança Cristã', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A esperança é âncora da alma.', 'A esperança se baseia nas promessas de Deus.', 'A esperança não confunde.', 'A esperança sustenta no sofrimento.', 'A esperança é certa e firme.'], versicosChave: ['Hebreus 6:19', 'Romanos 8:24-25', '1 Pedro 1:3-5'], tags: ['esperanca', 'virtude', 'promessas'], fontes: ['A Esperança - Timothy Keller'] },
+  { id: 'vida-022', titulo: 'A Fortaleza Espiritual', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Deus é a nossa fortaleza.', 'Devemos ser fortes no Senhor.', 'A fortaleza vem da obediência.', 'O Espírito Santo nos fortalece.', 'A fortaleza se manifesta na tribulação.'], versicosChave: ['Efésios 6:10', 'Filipenses 4:13', 'Isaías 40:31'], tags: ['fortaleza', 'forca', 'espiritual'], fontes: ['A Fortaleza do Espírito - Arthur Pink'] },
+  { id: 'vida-023', titulo: 'A Justificação', categoria: 'Vida Crista', subcategoria: 'Antropologia', conteudo: ['Somos declarados justos pela fé.', 'A justiça de Cristo é imputada.', 'Não somos mais escravos do pecado.', 'A justificação traz paz com Deus.', 'Devemos viver em conformidade com nossa identidade.'], versicosChave: ['Romanos 5:1', 'Gálatas 2:16', 'Efésios 2:8-9'], tags: ['justificacao', 'identidade', 'fe'], fontes: ['A Justificação - John Piper'] },
+  { id: 'vida-024', titulo: 'A Alegria na Salvação', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A salvação traz alegria indizível.', 'Devemos regozijar no Senhor sempre.', 'A alegria é fruto do Espírito.', 'A salvação é dom gratuito.', 'Devemos expressar alegria em louvor.'], versicosChave: ['Salmo 51:12', 'Filipenses 4:4', '1 Pedro 1:8-9'], tags: ['alegria', 'salvacao', 'louvor'], fontes: ['A Alegria da Fé - John Piper'] },
   // Mais Eclesiologia
-  { id: 'ecles-011', titulo: 'A Missão Social da Igreja', categoria: 'Eclesiologia', subcategoria: 'Missão', conteudo: ['A igreja deve servir os necessitados.', 'O amor ao próximo inclui ação.', 'A justiça social é expressão do evangelho.', 'A igreja é luz do mundo.', 'A missão social é complementar à evangelização.'], versicosChave: ['Mateus 25:35-40', 'Tiago 1:27', 'Isaías 58:6-7'], tags: ['missao social', 'justica', 'servico'], fontes: ['A Igreja e a Justiça Social - Ron Sider'] },
+  { id: 'ecles-011', titulo: 'A Missão Social da Igreja', categoria: 'Eclesiologia', subcategoria: 'Missiologia', conteudo: ['A igreja deve servir os necessitados.', 'O amor ao próximo inclui ação.', 'A justiça social é expressão do evangelho.', 'A igreja é luz do mundo.', 'A missão social é complementar à evangelização.'], versicosChave: ['Mateus 25:35-40', 'Tiago 1:27', 'Isaías 58:6-7'], tags: ['missao social', 'justica', 'servico'], fontes: ['A Igreja e a Justiça Social - Ron Sider'] },
   // Mais Pneumatologia
-  { id: 'pneum-012', titulo: 'A Iluminação do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Ministério', conteudo: ['O Espírito ilumina a Palavra de Deus.', 'Sem iluminação, não podemos entender a Bíblia.', 'A iluminação é para todos os crentes.', 'O Espírito testifica com nossa mente.', 'A oração é essencial para a iluminação.'], versicosChave: ['1 Coríntios 2:10-14', 'Salmo 119:18', 'João 16:13'], tags: ['iluminacao', 'espirito santo', 'biblia'], fontes: ['A Obra do Espírito Santo - John Owen'] },
+  { id: 'pneum-012', titulo: 'A Iluminação do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Eclesiologia', conteudo: ['O Espírito ilumina a Palavra de Deus.', 'Sem iluminação, não podemos entender a Bíblia.', 'A iluminação é para todos os crentes.', 'O Espírito testifica com nossa mente.', 'A oração é essencial para a iluminação.'], versicosChave: ['1 Coríntios 2:10-14', 'Salmo 119:18', 'João 16:13'], tags: ['iluminacao', 'espirito santo', 'biblia'], fontes: ['A Obra do Espírito Santo - John Owen'] },
   // Mais Teologia Própria
-  { id: 'teoprop-010', titulo: 'A Paciência de Deus', categoria: 'Teologia Proper', subcategoria: 'Atributos', conteudo: ['Deus é paciente com os pecadores.', 'Sua paciência não é permissividade.', 'A paciência leva ao arrependimento.', 'Devemos ser pacientes como Deus.', 'A paciência de Deus é temporal, não eterna.'], versicosChave: ['2 Pedro 3:9', 'Romanos 2:4', 'Salmo 103:8-14'], tags: ['paciencia', 'deus', 'arrependimento'], fontes: ['Deus - J.I. Packer'] },
+  { id: 'teoprop-010', titulo: 'A Paciência de Deus', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['Deus é paciente com os pecadores.', 'Sua paciência não é permissividade.', 'A paciência leva ao arrependimento.', 'Devemos ser pacientes como Deus.', 'A paciência de Deus é temporal, não eterna.'], versicosChave: ['2 Pedro 3:9', 'Romanos 2:4', 'Salmo 103:8-14'], tags: ['paciencia', 'deus', 'arrependimento'], fontes: ['Deus - J.I. Packer'] },
   // Mais Escatologia
-  { id: 'escat-010', titulo: 'A Segunda Vinda e a Santificação', categoria: 'Escatologia', subcategoria: 'Vida Cristã', conteudo: ['A expectativa da volta santifica.', 'Devemos viver em santidade.', 'A volta é motivação para evangelismo.', 'A volta é consolo em sofrimentos.', 'A volta consumará a obra de Deus.'], versicosChave: ['1 João 3:2-3', '1 Tessalonicenses 4:7-8', '2 Pedro 3:11-14'], tags: ['segunda vinda', 'santificacao', 'vida'], fontes: ['A Segunda Vinda de Cristo - John Walvoord'] },
+  { id: 'escat-010', titulo: 'A Segunda Vinda e a Santificação', categoria: 'Escatologia', subcategoria: 'Vida Crista', conteudo: ['A expectativa da volta santifica.', 'Devemos viver em santidade.', 'A volta é motivação para evangelismo.', 'A volta é consolo em sofrimentos.', 'A volta consumará a obra de Deus.'], versicosChave: ['1 João 3:2-3', '1 Tessalonicenses 4:7-8', '2 Pedro 3:11-14'], tags: ['segunda vinda', 'santificacao', 'vida'], fontes: ['A Segunda Vinda de Cristo - John Walvoord'] },
   // Mais Apologética
-  { id: 'apol-009', titulo: 'A Consistência da Bíblia', categoria: 'Apologetica', subcategoria: 'Evidências', conteudo: ['66 livros, 40 autores, 1500 anos — coerência miraculosa.', 'A Bíblia não contradiz a si mesma.', 'A unidade é evidência da inspiração divina.', 'As profecias se cumpriram historicamente.', 'A Bíblia é confiável em todo aspecto.'], versicosChave: ['2 Timóteo 3:16', '2 Pedro 1:21'], tags: ['consistencia', 'unidade', 'inspiracao'], fontes: ['A Bíblia - F.F. Bruce'] },
+  { id: 'apol-009', titulo: 'A Consistência da Bíblia', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['66 livros, 40 autores, 1500 anos — coerência miraculosa.', 'A Bíblia não contradiz a si mesma.', 'A unidade é evidência da inspiração divina.', 'As profecias se cumpriram historicamente.', 'A Bíblia é confiável em todo aspecto.'], versicosChave: ['2 Timóteo 3:16', '2 Pedro 1:21'], tags: ['consistencia', 'unidade', 'inspiracao'], fontes: ['A Bíblia - F.F. Bruce'] },
   // Mais Ética
-  { id: 'etica-009', titulo: 'A Ética da Mentira', categoria: 'Etica Crista', subcategoria: 'Verdade', conteudo: ['A mentira é pecado aos olhos de Deus.', 'Devemos falar a verdade sempre.', 'A verdade deve ser dita com amor.', 'A mentira destrói a confiança.', 'Deus é a fonte de toda verdade.'], versicosChave: ['Efésios 4:25', 'Colossenses 3:9', 'Provérbios 12:22'], tags: ['mentira', 'verdade', 'etica'], fontes: ['A Verdade Cristã - Norman Geisler'] },
-  { id: 'etica-010', titulo: 'A Ética da Obediência', categoria: 'Etica Crista', subcategoria: 'Obediência', conteudo: ['A obediência é evidência de amor a Deus.', 'Deus obedece primeiro.', 'A obediência traz bênção.', 'A desobediência traz consequências.', 'Devemos obediência incondicional a Deus.'], versicosChave: ['João 14:15', '1 Samuel 15:22', 'Tiago 1:22-25'], tags: ['obediencia', 'amor', 'etica'], fontes: ['Obediência - Charles Bridges'] },
+  { id: 'etica-009', titulo: 'A Ética da Mentira', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['A mentira é pecado aos olhos de Deus.', 'Devemos falar a verdade sempre.', 'A verdade deve ser dita com amor.', 'A mentira destrói a confiança.', 'Deus é a fonte de toda verdade.'], versicosChave: ['Efésios 4:25', 'Colossenses 3:9', 'Provérbios 12:22'], tags: ['mentira', 'verdade', 'etica'], fontes: ['A Verdade Cristã - Norman Geisler'] },
+  { id: 'etica-010', titulo: 'A Ética da Obediência', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['A obediência é evidência de amor a Deus.', 'Deus obedece primeiro.', 'A obediência traz bênção.', 'A desobediência traz consequências.', 'Devemos obediência incondicional a Deus.'], versicosChave: ['João 14:15', '1 Samuel 15:22', 'Tiago 1:22-25'], tags: ['obediencia', 'amor', 'etica'], fontes: ['Obediência - Charles Bridges'] },
   // Mais Missiologia
-  { id: 'miss-007', titulo: 'A Evangelização Urbana', categoria: 'Missiologia', subcategoria: 'Contemporânea', conteudo: ['As cidades são centros de influência.', 'A evangelização urbana requer criatividade.', 'As megacidades são campo missionário.', 'A igreja deve ser relevante na cidade.', 'O evangelho é para toda a cidade.'], versicosChave: ['Mateus 28:19-20', 'Romanos 1:16'], tags: ['cidade', 'evangelizacao', 'missao'], fontes: ['Evangelização Urbana - Ray Bakke'] },
+  { id: 'miss-007', titulo: 'A Evangelização Urbana', categoria: 'Missiologia', subcategoria: 'Questões Contemporâneas', conteudo: ['As cidades são centros de influência.', 'A evangelização urbana requer criatividade.', 'As megacidades são campo missionário.', 'A igreja deve ser relevante na cidade.', 'O evangelho é para toda a cidade.'], versicosChave: ['Mateus 28:19-20', 'Romanos 1:16'], tags: ['cidade', 'evangelizacao', 'missao'], fontes: ['Evangelização Urbana - Ray Bakke'] },
   // Mais Família
-  { id: 'fam-008', titulo: 'A Paz no Casamento', categoria: 'Vida Crista', subcategoria: 'Família', conteudo: ['A paz é fruto do Espírito Santo.', 'Devemos buscar a paz no casamento.', 'O conflito deve ser resolvido biblicamente.', 'O perdão traz paz.', 'Deus é o autor da paz.'], versicosChave: ['Colossenses 3:15', 'Romanos 12:18', 'Efésios 4:26-27'], tags: ['paz', 'casamento', 'perdao'], fontes: ['A Paz - Timothy Keller'] },
+  { id: 'fam-008', titulo: 'A Paz no Casamento', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A paz é fruto do Espírito Santo.', 'Devemos buscar a paz no casamento.', 'O conflito deve ser resolvido biblicamente.', 'O perdão traz paz.', 'Deus é o autor da paz.'], versicosChave: ['Colossenses 3:15', 'Romanos 12:18', 'Efésios 4:26-27'], tags: ['paz', 'casamento', 'perdao'], fontes: ['A Paz - Timothy Keller'] },
   // Mais Liderança
-  { id: 'lid-006', titulo: 'A Liderança como Serviço', categoria: 'Eclesiologia', subcategoria: 'Liderança', conteudo: ['O maior é o servo de todos.', 'Jesus lavou os pés dos discípulos.', 'A liderança é sacrifício.', 'O exemplo é mais poderoso que as palavras.', 'Deus julga os líderes com mais rigor.'], versicosChave: ['João 13:14-17', 'Marcos 10:43-45', 'Tiago 3:1'], tags: ['lideranca', 'servicio', 'humildade'], fontes: ['O Líder Serviçal - Ken Blanchard'] },
+  { id: 'lid-006', titulo: 'A Liderança como Serviço', categoria: 'Eclesiologia', subcategoria: 'Vida Crista', conteudo: ['O maior é o servo de todos.', 'Jesus lavou os pés dos discípulos.', 'A liderança é sacrifício.', 'O exemplo é mais poderoso que as palavras.', 'Deus julga os líderes com mais rigor.'], versicosChave: ['João 13:14-17', 'Marcos 10:43-45', 'Tiago 3:1'], tags: ['lideranca', 'servicio', 'humildade'], fontes: ['O Líder Serviçal - Ken Blanchard'] },
   // Mais Arqueologia
-  { id: 'arqueo-006', titulo: 'A Inscrição de Caiaphas', categoria: 'Historia da Igreja', subcategoria: 'Arqueologia', conteudo: ['Ossuária com nome de Caifás encontrada em Jerusalém.', 'Caifás é sumo sacerdote que julgou Jesus.', 'A inscrição confirma detalhes bíblicos.', 'A arqueologia sustenta a historicidade.', 'Cada descoberta reforça a confiabilidade.'], versicosChave: ['Mateus 26:57-68'], tags: ['arqueologia', 'caifas', 'historia'], fontes: ['Arqueologia e Bíblia - Kent Weeks'] },
+  { id: 'arqueo-006', titulo: 'A Inscrição de Caiaphas', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['Ossuária com nome de Caifás encontrada em Jerusalém.', 'Caifás é sumo sacerdote que julgou Jesus.', 'A inscrição confirma detalhes bíblicos.', 'A arqueologia sustenta a historicidade.', 'Cada descoberta reforça a confiabilidade.'], versicosChave: ['Mateus 26:57-68'], tags: ['arqueologia', 'caifas', 'historia'], fontes: ['Arqueologia e Bíblia - Kent Weeks'] },
   // Mais Biografias
-  { id: 'biog-008', titulo: 'A Vida de João Calvino', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['Calvino nasceu na França e morreu em Genebra.', 'Escreveu as Institutas da Religião Cristã.', 'Reformou a igreja em Genebra.', 'Enfatizou a soberania de Deus.', 'Sua teologia influenciou o protestantismo.'], versicosChave: ['Romanos 8:28-30', 'Efésios 1:4-5'], tags: ['calvino', 'reforma', 'soberania'], fontes: ['Calvino - Bruce Gordon'] },
-  { id: 'biog-009', titulo: 'A Vida de Jonathan Edwards', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['Edwards foi líder do Grande Despertamento.', 'Seu sermão "Pecadores nas Mãos de um Deus Airado" é famoso.', 'Enfatizou a soberania de Deus e a graça.', 'Foi presidente da Universidade de Princeton.', 'Sua teologia influenciou o calvinismo moderno.'], versicosChave: ['Efésios 2:8-9', 'Romanos 9:16'], tags: ['edwards', 'avivamento', 'calvinismo'], fontes: ['Jonathan Edwards - George Marsden'] },
+  { id: 'biog-008', titulo: 'A Vida de João Calvino', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Calvino nasceu na França e morreu em Genebra.', 'Escreveu as Institutas da Religião Cristã.', 'Reformou a igreja em Genebra.', 'Enfatizou a soberania de Deus.', 'Sua teologia influenciou o protestantismo.'], versicosChave: ['Romanos 8:28-30', 'Efésios 1:4-5'], tags: ['calvino', 'reforma', 'soberania'], fontes: ['Calvino - Bruce Gordon'] },
+  { id: 'biog-009', titulo: 'A Vida de Jonathan Edwards', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Edwards foi líder do Grande Despertamento.', 'Seu sermão "Pecadores nas Mãos de um Deus Airado" é famoso.', 'Enfatizou a soberania de Deus e a graça.', 'Foi presidente da Universidade de Princeton.', 'Sua teologia influenciou o calvinismo moderno.'], versicosChave: ['Efésios 2:8-9', 'Romanos 9:16'], tags: ['edwards', 'avivamento', 'calvinismo'], fontes: ['Jonathan Edwards - George Marsden'] },
   // Mais Linguística
-  { id: 'ling-006', titulo: 'A Septuaginta (LXX)', categoria: 'Linguas Biblicas', subcategoria: 'Tradução', conteudo: ['A Septuaginta é a tradução grega do AT.', 'Foi feita em Alexandria, séc. III-II a.C.', 'Muitos NT citam a Septuaginta.', 'Facilitou a evangelização dos gentios.', 'É essencial para a crítica textual.'], versicosChave: ['Efésios 2:11-12'], tags: ['septuaginta', 'traducao', 'grego'], fontes: ['A Septuaginta - Rajak'] },
+  { id: 'ling-006', titulo: 'A Septuaginta (LXX)', categoria: 'Bibliologia', subcategoria: 'Bibliologia', conteudo: ['A Septuaginta é a tradução grega do AT.', 'Foi feita em Alexandria, séc. III-II a.C.', 'Muitos NT citam a Septuaginta.', 'Facilitou a evangelização dos gentios.', 'É essencial para a crítica textual.'], versicosChave: ['Efésios 2:11-12'], tags: ['septuaginta', 'traducao', 'grego'], fontes: ['A Septuaginta - Rajak'] },
   // Mais Hermenêutica
-  { id: 'herm-63', titulo: 'A Hermenêutica Reformada', categoria: 'Hermenêutica', subcategoria: 'História', conteudo: ['A hermenêutica reformada enfatiza a Escritura.', 'A Escritura interpreta a Escritura.', 'O autor original é a chave.', 'O contexto é essencial.', 'A aplicação é o objetivo.'], versicosChave: ['2 Timóteo 2:15', '2 Pedro 1:20-21'], tags: ['reformada', 'hermeneutica', 'interpretacao'], fontes: ['A Hermenêutica Reformada - W. Robert Godfrey'] },
+  { id: 'herm-63', titulo: 'A Hermenêutica Reformada', categoria: 'Hermenêutica', subcategoria: 'História da Igreja', conteudo: ['A hermenêutica reformada enfatiza a Escritura.', 'A Escritura interpreta a Escritura.', 'O autor original é a chave.', 'O contexto é essencial.', 'A aplicação é o objetivo.'], versicosChave: ['2 Timóteo 2:15', '2 Pedro 1:20-21'], tags: ['reformada', 'hermeneutica', 'interpretacao'], fontes: ['A Hermenêutica Reformada - W. Robert Godfrey'] },
   // Mais Práticas
-  { id: 'prat-007', titulo: 'A Adoração no Espírito', categoria: 'Vida Crista', subcategoria: 'Adoração', conteudo: ['A adoração deve ser em espirito e verdade.', 'O Espírito guia na adoração.', 'A adoração é vida, não apenas evento.', 'Devemos adorar com reverência.', 'A adoração glorifica a Deus.'], versicosChave: ['João 4:23-24', 'Efésios 5:18-19'], tags: ['adoracao', 'espirito', 'verdade'], fontes: ['A Adoração - James White'] },
-  { id: 'prat-008', titulo: 'A Comunhão dos Santos', categoria: 'Vida Crista', subcategoria: 'Comunidade', conteudo: ['A comunhão é essencial para a fé.', 'Devemos buscar a comunhão cristã.', 'A comunhão fortalece a fé.', 'A comunhão é expressão do amor.', 'A comunhão prepara para a eternidade.'], versicosChave: ['Hebreus 10:24-25', 'Atos 2:42-47'], tags: ['comunhao', 'comunidade', 'amor'], fontes: ['A Comunhão dos Santos - Dietrich Bonhoeffer'] },
+  { id: 'prat-007', titulo: 'A Adoração no Espírito', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A adoração deve ser em espirito e verdade.', 'O Espírito guia na adoração.', 'A adoração é vida, não apenas evento.', 'Devemos adorar com reverência.', 'A adoração glorifica a Deus.'], versicosChave: ['João 4:23-24', 'Efésios 5:18-19'], tags: ['adoracao', 'espirito', 'verdade'], fontes: ['A Adoração - James White'] },
+  { id: 'prat-008', titulo: 'A Comunhão dos Santos', categoria: 'Vida Crista', subcategoria: 'Eclesiologia', conteudo: ['A comunhão é essencial para a fé.', 'Devemos buscar a comunhão cristã.', 'A comunhão fortalece a fé.', 'A comunhão é expressão do amor.', 'A comunhão prepara para a eternidade.'], versicosChave: ['Hebreus 10:24-25', 'Atos 2:42-47'], tags: ['comunhao', 'comunidade', 'amor'], fontes: ['A Comunhão dos Santos - Dietrich Bonhoeffer'] },
   // Mais Teologia
-  { id: 'tema-008', titulo: 'A Coroa da Criação', categoria: 'Teologia Biblica', subcategoria: 'Antropologia', conteudo: ['O homem é a coroa da criação de Deus.', 'Feito à imagem e semelhança de Deus.', 'Dignidade humana vem de Deus.', 'O homem tem responsabilidade sobre a criação.', 'A queda afetou a imagem, mas não a dignidade.'], versicosChave: ['Gênesis 1:26-28', 'Salmo 8:5-8'], tags: ['homem', 'imagem de deus', 'dignidade'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'tema-009', titulo: 'A História da Salvação', categoria: 'Teologia Biblica', subcategoria: 'Redenção', conteudo: ['A história da salvação vai de Gênesis a Apocalipse.', 'Deus age na história para redimir.', 'O centro é Cristo.', 'A história tem direção e propósito.', 'O clíمانو é o Reino eterno.'], versicosChave: ['Lucas 24:27', 'Hebreus 1:1-2'], tags: ['historia', 'salvacao', 'redencao'], fontes: ['A História da Salvação - G.E. Ladd'] },
+  { id: 'tema-008', titulo: 'A Coroa da Criação', categoria: 'Teologia Bíblica', subcategoria: 'Antropologia', conteudo: ['O homem é a coroa da criação de Deus.', 'Feito à imagem e semelhança de Deus.', 'Dignidade humana vem de Deus.', 'O homem tem responsabilidade sobre a criação.', 'A queda afetou a imagem, mas não a dignidade.'], versicosChave: ['Gênesis 1:26-28', 'Salmo 8:5-8'], tags: ['homem', 'imagem de deus', 'dignidade'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'tema-009', titulo: 'A História da Salvação', categoria: 'Teologia Bíblica', subcategoria: 'Soteriologia', conteudo: ['A história da salvação vai de Gênesis a Apocalipse.', 'Deus age na história para redimir.', 'O centro é Cristo.', 'A história tem direção e propósito.', 'O clíمانو é o Reino eterno.'], versicosChave: ['Lucas 24:27', 'Hebreus 1:1-2'], tags: ['historia', 'salvacao', 'redencao'], fontes: ['A História da Salvação - G.E. Ladd'] },
   // Mais Adoração
-  { id: 'ador-003', titulo: 'A Adoração no Céu', categoria: 'Teologia Biblica', subcategoria: 'Escatologia', conteudo: ['A adoração no céu é eterna.', 'Anjos e santos adoram ao Cordeiro.', 'A adoração é perfeita e completa.', 'Não haverá mais lágrimas.', 'A adoração celeste é o modelo terrestre.'], versicosChave: ['Apocalipse 4:8-11', 'Apocalipse 5:11-14'], tags: ['adoracao', 'ceu', 'eternidade'], fontes: ['A Adoração no Céu - Hughes Oliphant Old'] },
+  { id: 'ador-003', titulo: 'A Adoração no Céu', categoria: 'Teologia Bíblica', subcategoria: 'Escatologia', conteudo: ['A adoração no céu é eterna.', 'Anjos e santos adoram ao Cordeiro.', 'A adoração é perfeita e completa.', 'Não haverá mais lágrimas.', 'A adoração celeste é o modelo terrestre.'], versicosChave: ['Apocalipse 4:8-11', 'Apocalipse 5:11-14'], tags: ['adoracao', 'ceu', 'eternidade'], fontes: ['A Adoração no Céu - Hughes Oliphant Old'] },
 
 
   // --- BATCH FINAL: +180 estudos para atingir 1000+ ---
   // Livros Bíblicos adicionais
-  { id: 'livro-166', titulo: 'O Livro de Lucas', categoria: 'Temas por Livro', subcategoria: 'Evangelhos', conteudo: ['Lucas é o evangelho da misericórdia.', 'Enfatiza Jesus como Salvador universal.', 'Inclui parabolas exclusivas.', 'A mulher samaritana é destaque.', 'O perdão é tema central.'], versicosChave: ['Lucas 1:1-4', 'Lucas 19:10', 'Lucas 15:11-32'], tags: ['lucas', 'misericordia', 'perdao'], fontes: ['Comentario a Lucas - Darrell Bock'] },
-  { id: 'livro-167', titulo: 'O Livro de Marcos', categoria: 'Temas por Livro', subcategoria: 'Evangelhos', conteudo: ['Marcos é o evangelho mais curto.', 'Enfatiza Jesus como Servo.', 'A narrativa é rápida e dinâmica.', 'Os milagres de Jesus são destaque.', 'Marcos é possivelmente o primeiro evangelho.'], versicosChave: ['Marcos 1:1', 'Marcos 10:45'], tags: ['marcos', 'servo', 'milagres'], fontes: ['Comentario a Marcos - James Edwards'] },
-  { id: 'livro-168', titulo: 'O Livro de Mateus', categoria: 'Temas por Livro', subcategoria: 'Evangelhos', conteudo: ['Mateus apresenta Jesus como o Messias.', 'Enfatiza o cumprimento do AT.', 'A genealogia conecta Jesus a Abraão e Davi.', 'O Sermão do Monte é central.', 'A Grande Comissão é o clímax.'], versicosChave: ['Mateus 1:1', 'Mateus 5:1-7:29', 'Mateus 28:19-20'], tags: ['mateus', 'messias', 'cumprimento'], fontes: ['Comentario a Mateus - R.T. France'] },
-  { id: 'livro-169', titulo: 'O Livro de João', categoria: 'Temas por Livro', subcategoria: 'Evangelhos', conteudo: ['João é o evangelho mais teológico.', 'Enfatiza a divindade de Cristo.', 'Os sete "Eu Sou" são centrais.', 'O Espirito Santo é prometido.', 'A vida eterna é tema principal.'], versicosChave: ['João 1:1-18', 'João 14:6', 'João 20:30-31'], tags: ['joao', 'divindade', 'vida eterna'], fontes: ['Comentario a João - Leon Morris'] },
+  { id: 'livro-166', titulo: 'O Livro de Lucas', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Lucas é o evangelho da misericórdia.', 'Enfatiza Jesus como Salvador universal.', 'Inclui parabolas exclusivas.', 'A mulher samaritana é destaque.', 'O perdão é tema central.'], versicosChave: ['Lucas 1:1-4', 'Lucas 19:10', 'Lucas 15:11-32'], tags: ['lucas', 'misericordia', 'perdao'], fontes: ['Comentario a Lucas - Darrell Bock'] },
+  { id: 'livro-167', titulo: 'O Livro de Marcos', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Marcos é o evangelho mais curto.', 'Enfatiza Jesus como Servo.', 'A narrativa é rápida e dinâmica.', 'Os milagres de Jesus são destaque.', 'Marcos é possivelmente o primeiro evangelho.'], versicosChave: ['Marcos 1:1', 'Marcos 10:45'], tags: ['marcos', 'servo', 'milagres'], fontes: ['Comentario a Marcos - James Edwards'] },
+  { id: 'livro-168', titulo: 'O Livro de Mateus', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Mateus apresenta Jesus como o Messias.', 'Enfatiza o cumprimento do AT.', 'A genealogia conecta Jesus a Abraão e Davi.', 'O Sermão do Monte é central.', 'A Grande Comissão é o clímax.'], versicosChave: ['Mateus 1:1', 'Mateus 5:1-7:29', 'Mateus 28:19-20'], tags: ['mateus', 'messias', 'cumprimento'], fontes: ['Comentario a Mateus - R.T. France'] },
+  { id: 'livro-169', titulo: 'O Livro de João', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['João é o evangelho mais teológico.', 'Enfatiza a divindade de Cristo.', 'Os sete "Eu Sou" são centrais.', 'O Espirito Santo é prometido.', 'A vida eterna é tema principal.'], versicosChave: ['João 1:1-18', 'João 14:6', 'João 20:30-31'], tags: ['joao', 'divindade', 'vida eterna'], fontes: ['Comentario a João - Leon Morris'] },
   // Mais Doutrinas
-  { id: 'doutr-143', titulo: 'A Regeneração e o Batismo', categoria: 'Doutrinas Fundamentais', subcategoria: 'Sacramentos', conteudo: ['A regeneração é obra do Espírito.', 'O batismo é ordenança, não meio de salvação.', 'A fé precede o batismo.', 'O batismo simboliza a morte e ressurreição.', 'O batismo é obediência, não mérito.'], versicosChave: ['Tito 3:5', 'Atos 2:38', 'Romanos 6:3-4'], tags: ['regeneracao', 'batismo', 'salvacao'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'doutr-144', titulo: 'A Ceia do Senhor', categoria: 'Doutrinas Fundamentais', subcategoria: 'Sacramentos', conteudo: ['A Ceia é memorial da morte de Cristo.', 'O pão e o vinho são símbolos.', 'Devemos examinar-nos antes de participar.', 'É comunhão com Cristo.', 'Celebramos até que Ele venha.'], versicosChave: ['1 Coríntios 11:23-26', 'Mateus 26:26-29'], tags: ['ceia', 'memorial', 'comunhao'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
+  { id: 'doutr-143', titulo: 'A Regeneração e o Batismo', categoria: 'Doutrinas Fundamentais', subcategoria: 'Eclesiologia', conteudo: ['A regeneração é obra do Espírito.', 'O batismo é ordenança, não meio de salvação.', 'A fé precede o batismo.', 'O batismo simboliza a morte e ressurreição.', 'O batismo é obediência, não mérito.'], versicosChave: ['Tito 3:5', 'Atos 2:38', 'Romanos 6:3-4'], tags: ['regeneracao', 'batismo', 'salvacao'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'doutr-144', titulo: 'A Ceia do Senhor', categoria: 'Doutrinas Fundamentais', subcategoria: 'Eclesiologia', conteudo: ['A Ceia é memorial da morte de Cristo.', 'O pão e o vinho são símbolos.', 'Devemos examinar-nos antes de participar.', 'É comunhão com Cristo.', 'Celebramos até que Ele venha.'], versicosChave: ['1 Coríntios 11:23-26', 'Mateus 26:26-29'], tags: ['ceia', 'memorial', 'comunhao'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
   { id: 'doutr-145', titulo: 'A Igreja Visível e Invisível', categoria: 'Doutrinas Fundamentais', subcategoria: 'Eclesiologia', conteudo: ['A igreja visível são as congregações locais.', 'A igreja invisível são todos os verdadeiros crentes.', 'Nem todos na igreja visível são realmente salvos.', 'A igreja invisível é conhecida apenas por Deus.', 'Devemos pertencer a ambas.'], versicosChave: ['Mateus 16:18', '2 Timóteo 2:19-21'], tags: ['igreja', 'visivel', 'invisivel'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
   // Mais Questões
-  { id: 'contemp-73', titulo: 'A Crise da Fé na Academia', categoria: 'Questões Contemporâneas', subcategoria: 'Educação', conteudo: ['O secularismo dominou as universidades.', 'A fé é desafiada pela razão.', 'Devemos ser sábios na defesa.', 'A verdade transcende a academia.', 'O evangelho é racional e relevante.'], versicosChave: ['1 Pedro 3:15', 'Colossenses 2:8'], tags: ['academia', 'fe', 'secularismo'], fontes: ['A Fé na Academia - Alvin Plantinga'] },
-  { id: 'contemp-74', titulo: 'O Evangelho e as Mídias Sociais', categoria: 'Questões Contemporâneas', subcategoria: 'Tecnologia', conteudo: ['As mídias sociais são campo missionário.', 'Devemos ser sábios na comunicação online.', 'A verdade deve ser comunicada com amor.', 'O evangelho é relevante na era digital.', 'Devemos ser luz nas redes.'], versicosChave: ['Mateus 5:13-16', '1 Coríntios 9:22-23'], tags: ['midia social', 'digital', 'missao'], fontes: ['A Igreja Digital - Ed Stetzer'] },
+  { id: 'contemp-73', titulo: 'A Crise da Fé na Academia', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['O secularismo dominou as universidades.', 'A fé é desafiada pela razão.', 'Devemos ser sábios na defesa.', 'A verdade transcende a academia.', 'O evangelho é racional e relevante.'], versicosChave: ['1 Pedro 3:15', 'Colossenses 2:8'], tags: ['academia', 'fe', 'secularismo'], fontes: ['A Fé na Academia - Alvin Plantinga'] },
+  { id: 'contemp-74', titulo: 'O Evangelho e as Mídias Sociais', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['As mídias sociais são campo missionário.', 'Devemos ser sábios na comunicação online.', 'A verdade deve ser comunicada com amor.', 'O evangelho é relevante na era digital.', 'Devemos ser luz nas redes.'], versicosChave: ['Mateus 5:13-16', '1 Coríntios 9:22-23'], tags: ['midia social', 'digital', 'missao'], fontes: ['A Igreja Digital - Ed Stetzer'] },
   // Mais Comparativos
-  { id: 'comp-67', titulo: 'Cristianismo vs. Paganismo Moderno', categoria: 'Estudos Comparativos', subcategoria: 'Espiritualidade', conteudo: ['O paganismo moderno é individualista.', 'O cristianismo é comunitário.', 'O paganismo aceita tudo; o cristianismo tem padrões.', 'O evangelho é exclusivista em Cristo.', 'A verdade transcende a cultura.'], versicosChave: ['João 14:6', 'Atos 4:12'], tags: ['paganismo', 'espiritualidade', 'comparacao'], fontes: ['Cristianismo e Paganismo - Harold O.J. Brown'] },
+  { id: 'comp-67', titulo: 'Cristianismo vs. Paganismo Moderno', categoria: 'Estudos Comparativos', subcategoria: 'Vida Crista', conteudo: ['O paganismo moderno é individualista.', 'O cristianismo é comunitário.', 'O paganismo aceita tudo; o cristianismo tem padrões.', 'O evangelho é exclusivista em Cristo.', 'A verdade transcende a cultura.'], versicosChave: ['João 14:6', 'Atos 4:12'], tags: ['paganismo', 'espiritualidade', 'comparacao'], fontes: ['Cristianismo e Paganismo - Harold O.J. Brown'] },
   // Mais História
-  { id: 'hist-63', titulo: 'O Avivamento da Grande Colheita (séc. XVIII)', categoria: 'Historia da Igreja', subcategoria: 'Avivamentos', conteudo: ['O Grande Despertamento transformou a América.', 'Whitefield e Edwards foram líderes.', 'Milhares se converteram.', 'A pregação era apaixonada e expositiva.', 'O avivamento influenciou a fundação dos EUA.'], versicosChave: ['Atos 2:1-4', '2 Crônicas 7:14'], tags: ['avivamento', 'despertamento', 'america'], fontes: ['Historia do Avivamento - J. Edwin Orr'] },
-  { id: 'hist-64', titulo: 'A Missão de William Carey', categoria: 'Historia da Igreja', subcategoria: 'Missões', conteudo: ['Carey é o pai das missões modernas.', 'Foi para a Índia em 1793.', 'Traduziu a Bíblia para várias línguas.', 'Enfrentou perseguição e dificuldades.', 'Sua frase: "Espere coisas grandiosas de Deus."'], versicosChave: ['Mateus 28:19-20', 'Salmo 2:8'], tags: ['carey', 'missoes', 'india'], fontes: ['William Carey - Timothy George'] },
+  { id: 'hist-63', titulo: 'O Avivamento da Grande Colheita (séc. XVIII)', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['O Grande Despertamento transformou a América.', 'Whitefield e Edwards foram líderes.', 'Milhares se converteram.', 'A pregação era apaixonada e expositiva.', 'O avivamento influenciou a fundação dos EUA.'], versicosChave: ['Atos 2:1-4', '2 Crônicas 7:14'], tags: ['avivamento', 'despertamento', 'america'], fontes: ['Historia do Avivamento - J. Edwin Orr'] },
+  { id: 'hist-64', titulo: 'A Missão de William Carey', categoria: 'História da Igreja', subcategoria: 'Missiologia', conteudo: ['Carey é o pai das missões modernas.', 'Foi para a Índia em 1793.', 'Traduziu a Bíblia para várias línguas.', 'Enfrentou perseguição e dificuldades.', 'Sua frase: "Espere coisas grandiosas de Deus."'], versicosChave: ['Mateus 28:19-20', 'Salmo 2:8'], tags: ['carey', 'missoes', 'india'], fontes: ['William Carey - Timothy George'] },
   // Mais Hermenêutica
-  { id: 'herm-64', titulo: 'A Interpretação de Salmos de Lamentação', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['Os salmos de lamentação expressam dor.', 'Devemos ler com empatia.', 'Deus acolhe o lamento legítimo.', 'O lamento é parte da adoração.', 'A esperança se manifesta no lamento.'], versicosChave: ['Salmo 22:1', 'Salmo 88:1-18', 'Lamentações 3:1-33'], tags: ['lamentacao', 'salmo', 'dor'], fontes: ['O Lamento dos Salmos - Walter Brueggemann'] },
+  { id: 'herm-64', titulo: 'A Interpretação de Salmos de Lamentação', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['Os salmos de lamentação expressam dor.', 'Devemos ler com empatia.', 'Deus acolhe o lamento legítimo.', 'O lamento é parte da adoração.', 'A esperança se manifesta no lamento.'], versicosChave: ['Salmo 22:1', 'Salmo 88:1-18', 'Lamentações 3:1-33'], tags: ['lamentacao', 'salmo', 'dor'], fontes: ['O Lamento dos Salmos - Walter Brueggemann'] },
   // Mais Vida Cristã
-  { id: 'vida-025', titulo: 'A Humildade Intelectual', categoria: 'Vida Crista', subcategoria: 'Sabedoria', conteudo: ['Devemos ser humildes em nosso conhecimento.', 'A sabedoria começa com o temor do Senhor.', 'Não sabemos tudo.', 'Devemos ser aprendizes contínuos.', 'A humildade intelectual é virtude.'], versicosChave: ['Provérbios 1:7', '1 Coríntios 8:1-2', 'Tiago 1:5'], tags: ['humildade', 'intelectual', 'sabedoria'], fontes: ['A Humildade - Tim Keller'] },
-  { id: 'vida-026', titulo: 'A Obediência Radical', categoria: 'Vida Crista', subcategoria: 'Discipulado', conteudo: ['Jesus pediu obediência total.', 'A obediência envolve custos.', 'A obediência demonstra amor.', 'A obediência traz alegria.', 'Devemos obediência incondicional a Deus.'], versicosChave: ['Lucas 9:23', 'Mateus 16:24', 'João 14:15'], tags: ['obediencia', 'radical', 'discipulado'], fontes: ['O Discipulado - Dietrich Bonhoeffer'] },
-  { id: 'vida-027', titulo: 'A Generosidade Radical', categoria: 'Vida Crista', subcategoria: 'Mordomia', conteudo: ['Devemos dar generosamente.', 'Deus abençoa quem dá.', 'A generosidade é evidência de fé.', 'Devemos cuidar dos necessitados.', 'A generosidade glorifica a Deus.'], versicosChave: ['2 Coríntios 9:6-8', 'Lucas 6:38', 'Mateus 6:19-21'], tags: ['generosidade', 'radical', 'mordomia'], fontes: ['A Mordomia Radical - Randy Alcorn'] },
-  { id: 'vida-028', titulo: 'A Pureza do Coração', categoria: 'Vida Crista', subcategoria: 'Santidade', conteudo: ['Deus busca o coração puro.', 'A pureza inclui pensamentos e desejos.', 'A pureza é dom do Espírito.', 'Devemos fugir da tentação.', 'A pureza se manifesta em ação.'], versicosChave: ['Mateus 5:8', 'Salmo 51:10', '1 Tessalonicenses 4:3-5'], tags: ['pureza', 'coracao', 'santidade'], fontes: ['A Pureza do Coração - Dallas Willard'] },
+  { id: 'vida-025', titulo: 'A Humildade Intelectual', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Devemos ser humildes em nosso conhecimento.', 'A sabedoria começa com o temor do Senhor.', 'Não sabemos tudo.', 'Devemos ser aprendizes contínuos.', 'A humildade intelectual é virtude.'], versicosChave: ['Provérbios 1:7', '1 Coríntios 8:1-2', 'Tiago 1:5'], tags: ['humildade', 'intelectual', 'sabedoria'], fontes: ['A Humildade - Tim Keller'] },
+  { id: 'vida-026', titulo: 'A Obediência Radical', categoria: 'Vida Crista', subcategoria: 'Missiologia', conteudo: ['Jesus pediu obediência total.', 'A obediência envolve custos.', 'A obediência demonstra amor.', 'A obediência traz alegria.', 'Devemos obediência incondicional a Deus.'], versicosChave: ['Lucas 9:23', 'Mateus 16:24', 'João 14:15'], tags: ['obediencia', 'radical', 'discipulado'], fontes: ['O Discipulado - Dietrich Bonhoeffer'] },
+  { id: 'vida-027', titulo: 'A Generosidade Radical', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Devemos dar generosamente.', 'Deus abençoa quem dá.', 'A generosidade é evidência de fé.', 'Devemos cuidar dos necessitados.', 'A generosidade glorifica a Deus.'], versicosChave: ['2 Coríntios 9:6-8', 'Lucas 6:38', 'Mateus 6:19-21'], tags: ['generosidade', 'radical', 'mordomia'], fontes: ['A Mordomia Radical - Randy Alcorn'] },
+  { id: 'vida-028', titulo: 'A Pureza do Coração', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Deus busca o coração puro.', 'A pureza inclui pensamentos e desejos.', 'A pureza é dom do Espírito.', 'Devemos fugir da tentação.', 'A pureza se manifesta em ação.'], versicosChave: ['Mateus 5:8', 'Salmo 51:10', '1 Tessalonicenses 4:3-5'], tags: ['pureza', 'coracao', 'santidade'], fontes: ['A Pureza do Coração - Dallas Willard'] },
   // Mais Eclesiologia
-  { id: 'ecles-012', titulo: 'A Ordem da Igreja', categoria: 'Eclesiologia', subcategoria: 'Governança', conteudo: ['A igreja deve ter ordem e disciplina.', 'Os anciãos governam a igreja.', 'Os diáconos servem.', 'A disciplina protege o rebanho.', 'A ordem glorifica a Deus.'], versicosChave: ['1 Coríntios 14:33, 40', '1 Timóteo 3:1-13'], tags: ['ordem', 'disciplina', 'governo'], fontes: ['A Ordem da Igreja - Edmund Clowney'] },
+  { id: 'ecles-012', titulo: 'A Ordem da Igreja', categoria: 'Eclesiologia', subcategoria: 'Eclesiologia', conteudo: ['A igreja deve ter ordem e disciplina.', 'Os anciãos governam a igreja.', 'Os diáconos servem.', 'A disciplina protege o rebanho.', 'A ordem glorifica a Deus.'], versicosChave: ['1 Coríntios 14:33, 40', '1 Timóteo 3:1-13'], tags: ['ordem', 'disciplina', 'governo'], fontes: ['A Ordem da Igreja - Edmund Clowney'] },
   // Mais Pneumatologia
-  { id: 'pneum-013', titulo: 'O Fruto do Espírito na Comunidade', categoria: 'Pneumatologia', subcategoria: 'Vida Cristã', conteudo: ['O fruto do Espírito se manifesta na comunidade.', 'Amor, alegria, paz são frutos relacionais.', 'A comunidade fortalece o fruto.', 'Devemos cultivar o fruto juntos.', 'O fruto é evidência da vida no Espírito.'], versicosChave: ['Gálatas 5:22-23', 'Efésios 5:9', 'Colossenses 1:10'], tags: ['fruto', 'comunidade', 'espirito'], fontes: ['O Fruto do Espírito - Francis Chan'] },
+  { id: 'pneum-013', titulo: 'O Fruto do Espírito na Comunidade', categoria: 'Pneumatologia', subcategoria: 'Vida Crista', conteudo: ['O fruto do Espírito se manifesta na comunidade.', 'Amor, alegria, paz são frutos relacionais.', 'A comunidade fortalece o fruto.', 'Devemos cultivar o fruto juntos.', 'O fruto é evidência da vida no Espírito.'], versicosChave: ['Gálatas 5:22-23', 'Efésios 5:9', 'Colossenses 1:10'], tags: ['fruto', 'comunidade', 'espirito'], fontes: ['O Fruto do Espírito - Francis Chan'] },
   // Mais Teologia Própria
-  { id: 'teoprop-011', titulo: 'A Fidelidade de Deus', categoria: 'Teologia Proper', subcategoria: 'Atributos', conteudo: ['Deus é fiel às Suas promessas.', 'A fidelidade de Deus é inabalável.', 'Deus nunca abandona os Seus.', 'A fidelidade de Deus é base da nossa segurança.', 'Devemos ser fiéis como Deus é fiel.'], versicosChave: ['2 Timóteo 2:13', 'Lamentações 3:22-23', 'Hebreus 10:23'], tags: ['fidelidade', 'promessas', 'seguranca'], fontes: ['Deus - J.I. Packer'] },
+  { id: 'teoprop-011', titulo: 'A Fidelidade de Deus', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['Deus é fiel às Suas promessas.', 'A fidelidade de Deus é inabalável.', 'Deus nunca abandona os Seus.', 'A fidelidade de Deus é base da nossa segurança.', 'Devemos ser fiéis como Deus é fiel.'], versicosChave: ['2 Timóteo 2:13', 'Lamentações 3:22-23', 'Hebreus 10:23'], tags: ['fidelidade', 'promessas', 'seguranca'], fontes: ['Deus - J.I. Packer'] },
   // Mais Escatologia
-  { id: 'escat-011', titulo: 'A Vitória Final', categoria: 'Escatologia', subcategoria: 'Consumação', conteudo: ['Cristo vencerá todos os inimigos.', 'A morte será destruída.', 'O pecado não existirá mais.', 'Deus será tudo em todos.', 'A vitória já foi garantida na cruz.'], versicosChave: ['1 Coríntios 15:24-28', 'Apocalipse 21:4', 'Filipenses 2:9-11'], tags: ['vitória', 'consumacao', 'eternidade'], fontes: ['A Vitória de Cristo - G.K. Beale'] },
+  { id: 'escat-011', titulo: 'A Vitória Final', categoria: 'Escatologia', subcategoria: 'Escatologia', conteudo: ['Cristo vencerá todos os inimigos.', 'A morte será destruída.', 'O pecado não existirá mais.', 'Deus será tudo em todos.', 'A vitória já foi garantida na cruz.'], versicosChave: ['1 Coríntios 15:24-28', 'Apocalipse 21:4', 'Filipenses 2:9-11'], tags: ['vitória', 'consumacao', 'eternidade'], fontes: ['A Vitória de Cristo - G.K. Beale'] },
   // Mais Apologética
-  { id: 'apol-010', titulo: 'A Transformação de Vidas', categoria: 'Apologetica', subcategoria: 'Evidências', conteudo: ['A transformação de vidas é evidência do evangelho.', 'Dez milhões de mártires testemunharam.', 'A mudança de caráter é real.', 'O amor cristão é notável.', 'A fé produz frutos.'], versicosChave: ['2 Coríntios 5:17', 'Gálatas 5:22-23'], tags: ['transformacao', 'evidencia', 'vida'], fontes: ['A Evidência da Fé - Alister McGrath'] },
+  { id: 'apol-010', titulo: 'A Transformação de Vidas', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['A transformação de vidas é evidência do evangelho.', 'Dez milhões de mártires testemunharam.', 'A mudança de caráter é real.', 'O amor cristão é notável.', 'A fé produz frutos.'], versicosChave: ['2 Coríntios 5:17', 'Gálatas 5:22-23'], tags: ['transformacao', 'evidencia', 'vida'], fontes: ['A Evidência da Fé - Alister McGrath'] },
   // Mais Ética
-  { id: 'etica-011', titulo: 'A Ética da Compixão', categoria: 'Etica Crista', subcategoria: 'Amor', conteudo: ['Devemos ter compaixão pelos sofredores.', 'Jesus teve compaixão das multidões.', 'A compaixão leva à ação.', 'Devemos servir os necessitados.', 'A compaixão é expressão do amor.'], versicosChave: ['Mateus 9:36', 'Lucas 10:30-37', 'Tiago 1:27'], tags: ['compaixao', 'amor', 'servico'], fontes: ['A Compixão - Henri Nouwen'] },
-  { id: 'etica-012', titulo: 'A Ética da Justiça', categoria: 'Etica Crista', subcategoria: 'Justiça', conteudo: ['Deus ama a justiça.', 'Devemos buscar a justiça.', 'A justiça se manifesta em ação.', 'Deus julgará com justiça.', 'Devemos ser agentes de justiça.'], versicosChave: ['Miquéias 6:8', 'Salmo 89:14', 'Mateus 6:33'], tags: ['justica', 'etica', 'acao'], fontes: ['A Justiça Cristã - Timothy Keller'] },
+  { id: 'etica-011', titulo: 'A Ética da Compixão', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['Devemos ter compaixão pelos sofredores.', 'Jesus teve compaixão das multidões.', 'A compaixão leva à ação.', 'Devemos servir os necessitados.', 'A compaixão é expressão do amor.'], versicosChave: ['Mateus 9:36', 'Lucas 10:30-37', 'Tiago 1:27'], tags: ['compaixao', 'amor', 'servico'], fontes: ['A Compixão - Henri Nouwen'] },
+  { id: 'etica-012', titulo: 'A Ética da Justiça', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['Deus ama a justiça.', 'Devemos buscar a justiça.', 'A justiça se manifesta em ação.', 'Deus julgará com justiça.', 'Devemos ser agentes de justiça.'], versicosChave: ['Miquéias 6:8', 'Salmo 89:14', 'Mateus 6:33'], tags: ['justica', 'etica', 'acao'], fontes: ['A Justiça Cristã - Timothy Keller'] },
   // Mais Missiologia
-  { id: 'miss-008', titulo: 'A Missão Cristã e a Cultura', categoria: 'Missiologia', subcategoria: 'Cultura', conteudo: ['O evangelho transcende a cultura.', 'Devemos contextualizar sem sincretismo.', 'A verdade é imutável; a forma muda.', 'Cada cultura tem algo a contribuir.', 'A missão é intercultural.'], versicosChave: ['1 Coríntios 9:19-23', 'Apocalipse 7:9'], tags: ['cultura', 'missao', 'contextualizacao'], fontes: ['A Missão e a Cultura - David Bosch'] },
+  { id: 'miss-008', titulo: 'A Missão Cristã e a Cultura', categoria: 'Missiologia', subcategoria: 'Questões Contemporâneas', conteudo: ['O evangelho transcende a cultura.', 'Devemos contextualizar sem sincretismo.', 'A verdade é imutável; a forma muda.', 'Cada cultura tem algo a contribuir.', 'A missão é intercultural.'], versicosChave: ['1 Coríntios 9:19-23', 'Apocalipse 7:9'], tags: ['cultura', 'missao', 'contextualizacao'], fontes: ['A Missão e a Cultura - David Bosch'] },
   // Mais Família
-  { id: 'fam-009', titulo: 'A Educação Cristã dos Filhos', categoria: 'Vida Crista', subcategoria: 'Família', conteudo: ['A educação cristã começa em casa.', 'Os pais são os primeiros mestres.', 'A Bíblia é a base.', 'O exemplo é mais poderoso que as palavras.', 'A oração é essencial.'], versicosChave: ['Deuteronômio 6:6-7', 'Provérbios 22:6', 'Efésios 6:4'], tags: ['educacao', 'filhos', 'familia'], fontes: ['A Sabedoria da Paternidade - Ted Tripp'] },
+  { id: 'fam-009', titulo: 'A Educação Cristã dos Filhos', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A educação cristã começa em casa.', 'Os pais são os primeiros mestres.', 'A Bíblia é a base.', 'O exemplo é mais poderoso que as palavras.', 'A oração é essencial.'], versicosChave: ['Deuteronômio 6:6-7', 'Provérbios 22:6', 'Efésios 6:4'], tags: ['educacao', 'filhos', 'familia'], fontes: ['A Sabedoria da Paternidade - Ted Tripp'] },
   // Mais Liderança
-  { id: 'lid-007', titulo: 'A Liderança Transformadora', categoria: 'Eclesiologia', subcategoria: 'Liderança', conteudo: ['A liderança cristã transforma vidas.', 'O líder deve ser exemplo.', 'A liderança é serviço, não poder.', 'O líder deve orar e buscar Deus.', 'A liderança requer humildade.'], versicosChave: ['Marcos 10:43-45', 'João 13:14-17', '1 Pedro 5:2-4'], tags: ['lideranca', 'transformacao', 'servico'], fontes: ['O Líder Transformador - Bill George'] },
+  { id: 'lid-007', titulo: 'A Liderança Transformadora', categoria: 'Eclesiologia', subcategoria: 'Vida Crista', conteudo: ['A liderança cristã transforma vidas.', 'O líder deve ser exemplo.', 'A liderança é serviço, não poder.', 'O líder deve orar e buscar Deus.', 'A liderança requer humildade.'], versicosChave: ['Marcos 10:43-45', 'João 13:14-17', '1 Pedro 5:2-4'], tags: ['lideranca', 'transformacao', 'servico'], fontes: ['O Líder Transformador - Bill George'] },
   // Mais Arqueologia
-  { id: 'arqueo-007', titulo: 'A Estela de Merneptá', categoria: 'Historia da Igreja', subcategoria: 'Arqueologia', conteudo: ['A estela de Merneptá (1208 a.C.) menciona Israel.', 'É a primeira referência extrabíblica a Israel.', 'Confirma a existência de Israel no século XIII a.C.', 'A arqueologia sustenta o relato bíblico.', 'Cada descoberta aumenta a confiabilidade.'], versicosChave: ['Êxodo 12:1-2'], tags: ['arqueologia', 'israel', 'mernepta'], fontes: ['Arqueologia e Bíblia - Bryant Wood'] },
+  { id: 'arqueo-007', titulo: 'A Estela de Merneptá', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['A estela de Merneptá (1208 a.C.) menciona Israel.', 'É a primeira referência extrabíblica a Israel.', 'Confirma a existência de Israel no século XIII a.C.', 'A arqueologia sustenta o relato bíblico.', 'Cada descoberta aumenta a confiabilidade.'], versicosChave: ['Êxodo 12:1-2'], tags: ['arqueologia', 'israel', 'mernepta'], fontes: ['Arqueologia e Bíblia - Bryant Wood'] },
   // Mais Biografias
-  { id: 'biog-010', titulo: 'A Vida de Charles Spurgeon', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['Spurgeon é o "Príncipe dos Pregadores".', 'Pregou para multidões em Londres.', 'Escreu海量 de sermones.', 'Enfatizou a graça de Deus.', 'Sua influência continua até hoje.'], versicosChave: ['2 Coríntios 4:5', '1 Coríntios 2:1-5'], tags: ['spurgeon', 'pregacao', 'graca'], fontes: ['Spurgeon - Arnold Dallimore'] },
+  { id: 'biog-010', titulo: 'A Vida de Charles Spurgeon', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Spurgeon é o "Príncipe dos Pregadores".', 'Pregou para multidões em Londres.', 'Escreu海量 de sermones.', 'Enfatizou a graça de Deus.', 'Sua influência continua até hoje.'], versicosChave: ['2 Coríntios 4:5', '1 Coríntios 2:1-5'], tags: ['spurgeon', 'pregacao', 'graca'], fontes: ['Spurgeon - Arnold Dallimore'] },
   // Mais Linguística
-  { id: 'ling-007', titulo: 'O Latim na História da Bíblia', categoria: 'Linguas Biblicas', subcategoria: 'Tradução', conteudo: ['A Vulgata de Jerônimo é a tradução latina.', 'Foi a Bíblia oficial por séculos.', 'Lutero desafiou sua autoridade.', 'A tradução para vernáculo é essencial.', 'O latim moldou a teologia ocidental.'], versicosChave: ['2 Coríntios 3:6'], tags: ['latim', 'vulgata', 'traducao'], fontes: ['A História da Bíblia - Bruce Metzger'] },
+  { id: 'ling-007', titulo: 'O Latim na História da Bíblia', categoria: 'Bibliologia', subcategoria: 'Bibliologia', conteudo: ['A Vulgata de Jerônimo é a tradução latina.', 'Foi a Bíblia oficial por séculos.', 'Lutero desafiou sua autoridade.', 'A tradução para vernáculo é essencial.', 'O latim moldou a teologia ocidental.'], versicosChave: ['2 Coríntios 3:6'], tags: ['latim', 'vulgata', 'traducao'], fontes: ['A História da Bíblia - Bruce Metzger'] },
   // Mais Hermenêutica
-  { id: 'herm-65', titulo: 'A Hermenêutica de Santo Agostinho', categoria: 'Hermenêutica', subcategoria: 'História', conteudo: ['Agostinho enfatizou o amor como regra.', 'A Escritura deve ser interpretada com caridade.', 'O sentido literal e espiritual coexistem.', 'A interpretação deve glorificar a Deus.', 'Agostinho influenciou a hermeneutica medieval.'], versicosChave: ['1 João 4:8', 'Mateus 22:37-40'], tags: ['agostinho', 'hermeneutica', 'amor'], fontes: ['A Hermenêutica de Agostinho - Henri-Irénée Marrou'] },
+  { id: 'herm-65', titulo: 'A Hermenêutica de Santo Agostinho', categoria: 'Hermenêutica', subcategoria: 'História da Igreja', conteudo: ['Agostinho enfatizou o amor como regra.', 'A Escritura deve ser interpretada com caridade.', 'O sentido literal e espiritual coexistem.', 'A interpretação deve glorificar a Deus.', 'Agostinho influenciou a hermeneutica medieval.'], versicosChave: ['1 João 4:8', 'Mateus 22:37-40'], tags: ['agostinho', 'hermeneutica', 'amor'], fontes: ['A Hermenêutica de Agostinho - Henri-Irénée Marrou'] },
   // Mais Práticas
-  { id: 'prat-009', titulo: 'A Oração de Fé', categoria: 'Vida Crista', subcategoria: 'Oração', conteudo: ['A oração deve ser feita em fé.', 'Devemos orar sem duvidar.', 'Deus responde orações.', 'A oração move montanhas.', 'A fé é essencial para a oração eficaz.'], versicosChave: ['Tiago 1:6-8', 'Marcos 11:22-24', 'Mateus 21:22'], tags: ['oracao', 'fe', 'resposta'], fontes: ['A Oração de Fé - Andrew Murray'] },
-  { id: 'prat-010', titulo: 'A Adoração Comunitária', categoria: 'Vida Crista', subcategoria: 'Adoração', conteudo: ['A adoração é comunitária.', 'Devemos adorar juntos.', 'A adoração fortalece a fé.', 'A adoração glorifica a Deus.', 'A adoração prepara para a eternidade.'], versicosChave: ['Hebreus 10:24-25', 'Atos 2:42-47'], tags: ['adoracao', 'comunidade', 'comunhao'], fontes: ['A Adoração Comunitária - Hughes Oliphant Old'] },
+  { id: 'prat-009', titulo: 'A Oração de Fé', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A oração deve ser feita em fé.', 'Devemos orar sem duvidar.', 'Deus responde orações.', 'A oração move montanhas.', 'A fé é essencial para a oração eficaz.'], versicosChave: ['Tiago 1:6-8', 'Marcos 11:22-24', 'Mateus 21:22'], tags: ['oracao', 'fe', 'resposta'], fontes: ['A Oração de Fé - Andrew Murray'] },
+  { id: 'prat-010', titulo: 'A Adoração Comunitária', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A adoração é comunitária.', 'Devemos adorar juntos.', 'A adoração fortalece a fé.', 'A adoração glorifica a Deus.', 'A adoração prepara para a eternidade.'], versicosChave: ['Hebreus 10:24-25', 'Atos 2:42-47'], tags: ['adoracao', 'comunidade', 'comunhao'], fontes: ['A Adoração Comunitária - Hughes Oliphant Old'] },
   // Mais Teologia
-  { id: 'tema-010', titulo: 'A Nova Criatura', categoria: 'Teologia Biblica', subcategoria: 'Salvação', conteudo: ['Em Cristo somos novas criaturas.', 'A velha natureza é crucificada.', 'A nova natureza se manifesta.', 'A mudança é real e progressiva.', 'A nova criatura glorifica a Deus.'], versicosChave: ['2 Coríntios 5:17', 'Gálatas 2:20', 'Efésios 4:22-24'], tags: ['nova criatura', 'transformacao', 'salvacao'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'tema-010', titulo: 'A Nova Criatura', categoria: 'Teologia Bíblica', subcategoria: 'Soteriologia', conteudo: ['Em Cristo somos novas criaturas.', 'A velha natureza é crucificada.', 'A nova natureza se manifesta.', 'A mudança é real e progressiva.', 'A nova criatura glorifica a Deus.'], versicosChave: ['2 Coríntios 5:17', 'Gálatas 2:20', 'Efésios 4:22-24'], tags: ['nova criatura', 'transformacao', 'salvacao'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
   // Mais Adoração
-  { id: 'ador-004', titulo: 'A Adoração e a Missão', categoria: 'Eclesiologia', subcategoria: 'Missão', conteudo: ['A adoração alimenta a missão.', 'A missão é expressão da adoração.', 'Devemos adorar e enviar.', 'A adoração é o centro da igreja.', 'A missão glorifica a Deus.'], versicosChave: ['Mateus 28:19-20', 'Salmo 96:1-10'], tags: ['adoracao', 'missao', 'igreja'], fontes: ['A Adoração e a Missão - John Piper'] },
+  { id: 'ador-004', titulo: 'A Adoração e a Missão', categoria: 'Eclesiologia', subcategoria: 'Missiologia', conteudo: ['A adoração alimenta a missão.', 'A missão é expressão da adoração.', 'Devemos adorar e enviar.', 'A adoração é o centro da igreja.', 'A missão glorifica a Deus.'], versicosChave: ['Mateus 28:19-20', 'Salmo 96:1-10'], tags: ['adoracao', 'missao', 'igreja'], fontes: ['A Adoração e a Missão - John Piper'] },
 
 
   // --- BATCH 8: +140 estudos para atingir 1000+ ---
   // Mais Livros
-  { id: 'livro-170', titulo: 'O Livro de Atos', categoria: 'Temas por Livro', subcategoria: 'NT', conteudo: ['Atos é a história da igreja primitiva.', 'O Espírito Santo é o protagonista.', 'A pregação e os milagres são centrais.', 'A missão se expande de Jerusalém ao mundo.', 'Paulo é o principal personagem.'], versicosChave: ['Atos 1:8', 'Atos 2:1-4', 'Atos 28:30-31'], tags: ['atos', 'igreja primitiva', 'espirito santo'], fontes: ['Comentario a Atos - Craig Keener'] },
-  { id: 'livro-171', titulo: 'O Livro de Gálatas', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['Gálatas defende a justificação pela fé.', 'Paulo confronta os judaizantes.', 'A liberdade em Cristo é tema central.', 'A fé opera pelo amor.', 'A graça não é licença para pecar.'], versicosChave: ['Gálatas 2:16', 'Gálatas 5:1, 13'], tags: ['galatas', 'justificacao', 'liberdade'], fontes: ['Comentario a Gálatas - Timothy Keller'] },
-  { id: 'livro-172', titulo: 'O Livro de Efésios', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['Efésios é a epístola dos céus.', 'A salvação é por graça, não por obras.', 'A igreja é o corpo de Cristo.', 'A armadura de Deus é essencial.', 'A unidade dos crentes é enfatizada.'], versicosChave: ['Efésios 2:8-9', 'Efésios 6:10-18'], tags: ['efesios', 'graca', 'armadura'], fontes: ['Comentario a Efésios - Peter O\u0027Brien'] },
-  { id: 'livro-173', titulo: 'O Livro de Filipenses', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['Filipenses é a epístola da alegria.', 'Paulo escreve da prisão.', 'A humildade de Cristo é modelo.', 'O contentamento é aprendido.', 'Devemos esquecer o que fica atrás.'], versicosChave: ['Filipenses 4:4-7, 11-13'], tags: ['filipenses', 'alegria', 'humildade'], fontes: ['Comentario a Filipenses - Gordon Fee'] },
+  { id: 'livro-170', titulo: 'O Livro de Atos', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Atos é a história da igreja primitiva.', 'O Espírito Santo é o protagonista.', 'A pregação e os milagres são centrais.', 'A missão se expande de Jerusalém ao mundo.', 'Paulo é o principal personagem.'], versicosChave: ['Atos 1:8', 'Atos 2:1-4', 'Atos 28:30-31'], tags: ['atos', 'igreja primitiva', 'espirito santo'], fontes: ['Comentario a Atos - Craig Keener'] },
+  { id: 'livro-171', titulo: 'O Livro de Gálatas', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Gálatas defende a justificação pela fé.', 'Paulo confronta os judaizantes.', 'A liberdade em Cristo é tema central.', 'A fé opera pelo amor.', 'A graça não é licença para pecar.'], versicosChave: ['Gálatas 2:16', 'Gálatas 5:1, 13'], tags: ['galatas', 'justificacao', 'liberdade'], fontes: ['Comentario a Gálatas - Timothy Keller'] },
+  { id: 'livro-172', titulo: 'O Livro de Efésios', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Efésios é a epístola dos céus.', 'A salvação é por graça, não por obras.', 'A igreja é o corpo de Cristo.', 'A armadura de Deus é essencial.', 'A unidade dos crentes é enfatizada.'], versicosChave: ['Efésios 2:8-9', 'Efésios 6:10-18'], tags: ['efesios', 'graca', 'armadura'], fontes: ['Comentario a Efésios - Peter O\u0027Brien'] },
+  { id: 'livro-173', titulo: 'O Livro de Filipenses', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Filipenses é a epístola da alegria.', 'Paulo escreve da prisão.', 'A humildade de Cristo é modelo.', 'O contentamento é aprendido.', 'Devemos esquecer o que fica atrás.'], versicosChave: ['Filipenses 4:4-7, 11-13'], tags: ['filipenses', 'alegria', 'humildade'], fontes: ['Comentario a Filipenses - Gordon Fee'] },
   // Mais Doutrinas
-  { id: 'doutr-146', titulo: 'A Trindade no AT', categoria: 'Doutrinas Fundamentais', subcategoria: 'Teologia Proper', conteudo: ['Embora o termo "Trindade" não esteja no AT, há pistas.', 'Deus é um, mas plural em linguagem.', 'A criação envolve Pai, Palavra e Espírito.', 'Os anjos dizem "Santo, santo, santo".', 'A revelação progressiva esclarece a Trindade.'], versicosChave: ['Gênesis 1:1-2', 'Isaías 6:3', 'Salmo 110:1'], tags: ['trindade', 'at', 'revelacao'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'doutr-146', titulo: 'A Trindade no AT', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['Embora o termo "Trindade" não esteja no AT, há pistas.', 'Deus é um, mas plural em linguagem.', 'A criação envolve Pai, Palavra e Espírito.', 'Os anjos dizem "Santo, santo, santo".', 'A revelação progressiva esclarece a Trindade.'], versicosChave: ['Gênesis 1:1-2', 'Isaías 6:3', 'Salmo 110:1'], tags: ['trindade', 'at', 'revelacao'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
   { id: 'doutr-147', titulo: 'A Expiação Substitutiva', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['Cristo morreu em nosso lugar.', 'A substituição é clara nas Escrituras.', 'O servo sofredor carregou nossos pecados.', 'O cordeiro pascal é tipo de Cristo.', 'A substituição é o centro do evangelho.'], versicosChave: ['Isaías 53:5-6', '1 Pedro 2:24', '1 Pedro 3:18'], tags: ['substituicao', 'expiacao', 'cruz'], fontes: ['A Morte de Cristo - John Murray'] },
   { id: 'doutr-148', titulo: 'A Ressurreição Corporal', categoria: 'Doutrinas Fundamentais', subcategoria: 'Escatologia', conteudo: ['A ressurreição é corporal, não apenas espiritual.', 'O corpo será transformado.', 'Cristo é o primeiro dos que ressuscitaram.', 'Haverá ressurreição de justos e injustos.', 'A ressurreição é a base da esperança.'], versicosChave: ['1 Coríntios 15:12-57', 'João 5:28-29'], tags: ['ressurreicao', 'corpo', 'transformacao'], fontes: ['A Ressurreição do Filho de Deus - N.T. Wright'] },
   // Mais Questões
-  { id: 'contemp-75', titulo: 'O Evangelho e o Sufismo', categoria: 'Questões Contemporâneas', subcategoria: 'Religião', conteudo: ['O sufismo é misticismo islâmico.', 'Enfatiza a experiência com Deus.', 'O cristianismo é baseado na verdade objetiva.', 'A experiência deve ser julgada pela Escritura.', 'O evangelho é claro e transformador.'], versicosChave: ['João 14:6', '1 João 4:1-3'], tags: ['sufismo', 'misticismo', 'comparacao'], fontes: ['Cristianismo e Sufismo - Ron Geivett'] },
-  { id: 'contemp-76', titulo: 'A Crise da Esperança', categoria: 'Questões Contemporâneas', subcategoria: 'Existencial', conteudo: ['Muitos vivem sem esperança.', 'A esperança cristã é real e certa.', 'Deus é a fonte de toda esperança.', 'A esperança se baseia nas promessas.', 'Devemos viver com esperança.'], versicosChave: ['Romanos 15:13', '1 Pedro 1:3-5', 'Hebreus 6:19'], tags: ['esperanca', 'crise', 'vida'], fontes: ['A Esperança - Timothy Keller'] },
+  { id: 'contemp-75', titulo: 'O Evangelho e o Sufismo', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['O sufismo é misticismo islâmico.', 'Enfatiza a experiência com Deus.', 'O cristianismo é baseado na verdade objetiva.', 'A experiência deve ser julgada pela Escritura.', 'O evangelho é claro e transformador.'], versicosChave: ['João 14:6', '1 João 4:1-3'], tags: ['sufismo', 'misticismo', 'comparacao'], fontes: ['Cristianismo e Sufismo - Ron Geivett'] },
+  { id: 'contemp-76', titulo: 'A Crise da Esperança', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['Muitos vivem sem esperança.', 'A esperança cristã é real e certa.', 'Deus é a fonte de toda esperança.', 'A esperança se baseia nas promessas.', 'Devemos viver com esperança.'], versicosChave: ['Romanos 15:13', '1 Pedro 1:3-5', 'Hebreus 6:19'], tags: ['esperanca', 'crise', 'vida'], fontes: ['A Esperança - Timothy Keller'] },
   // Mais Comparativos
-  { id: 'comp-68', titulo: 'Cristianismo vs. Ateísmo Agnóstico', categoria: 'Estudos Comparativos', subcategoria: 'Filosofia', conteudo: ['O agnosticismo afirma que não podemos conhecer.', 'O cristianismo afirma que Deus se revelou.', 'A revelação geral e especial são evidências.', 'A fé é razoável, não cega.', 'Deus é conhecível por meio de Cristo.'], versicosChave: ['João 14:9', 'Romanos 1:19-20'], tags: ['agnosticismo', 'ateismo', 'conhecimento'], fontes: ['Apologetica Cristã - Norman Geisler'] },
+  { id: 'comp-68', titulo: 'Cristianismo vs. Ateísmo Agnóstico', categoria: 'Estudos Comparativos', subcategoria: 'Questões Contemporâneas', conteudo: ['O agnosticismo afirma que não podemos conhecer.', 'O cristianismo afirma que Deus se revelou.', 'A revelação geral e especial são evidências.', 'A fé é razoável, não cega.', 'Deus é conhecível por meio de Cristo.'], versicosChave: ['João 14:9', 'Romanos 1:19-20'], tags: ['agnosticismo', 'ateismo', 'conhecimento'], fontes: ['Apologetica Cristã - Norman Geisler'] },
   // Mais História
-  { id: 'hist-65', titulo: 'O Crescimento da Igreja na Coréia do Sul', categoria: 'Historia da Igreja', subcategoria: 'Missões', conteudo: ['A igreja na Coréia cresceu exponencialmente.', 'O evangelho transformou a cultura.', 'A oração é a chave do crescimento.', 'A missão é um estilo de vida.', 'O futuro do cristianismo é global.'], versicosChave: ['Mateus 28:19-20', 'Atos 1:8'], tags: ['coreia', 'crescimento', 'oracao'], fontes: ['A Igreja na Coréia - David Lim'] },
-  { id: 'hist-66', titulo: 'A Conquista Islâmica e a Igreja', categoria: 'Historia da Igreja', subcategoria: 'Perseguição', conteudo: ['O Islã expandiu rapidamente.', 'A igreja no Oriente sofreu.', 'A perseguição fortaleceu alguns.', 'O evangelho continua a se espalhar.', 'Deus é soberano sobre a história.'], versicosChave: ['Mateus 16:18', 'Romanos 8:28'], tags: ['islã', 'perseguição', 'historia'], fontes: ['Historia da Igreja - Justo Gonzalez'] },
+  { id: 'hist-65', titulo: 'O Crescimento da Igreja na Coréia do Sul', categoria: 'História da Igreja', subcategoria: 'Missiologia', conteudo: ['A igreja na Coréia cresceu exponencialmente.', 'O evangelho transformou a cultura.', 'A oração é a chave do crescimento.', 'A missão é um estilo de vida.', 'O futuro do cristianismo é global.'], versicosChave: ['Mateus 28:19-20', 'Atos 1:8'], tags: ['coreia', 'crescimento', 'oracao'], fontes: ['A Igreja na Coréia - David Lim'] },
+  { id: 'hist-66', titulo: 'A Conquista Islâmica e a Igreja', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['O Islã expandiu rapidamente.', 'A igreja no Oriente sofreu.', 'A perseguição fortaleceu alguns.', 'O evangelho continua a se espalhar.', 'Deus é soberano sobre a história.'], versicosChave: ['Mateus 16:18', 'Romanos 8:28'], tags: ['islã', 'perseguição', 'historia'], fontes: ['Historia da Igreja - Justo Gonzalez'] },
   // Mais Hermenêutica
-  { id: 'herm-66', titulo: 'A Hermenêutica de Lutero', categoria: 'Hermenêutica', subcategoria: 'História', conteudo: ['Lutero enfatizou a Escritura contra a tradição.', 'A analogia da fé é regra.', 'Cristo é o centro de toda a Bíblia.', 'O sentido literal é primário.', 'A Escritura é clara para o crente.'], versicosChave: ['2 Timóteo 3:16', 'João 5:39'], tags: ['lutero', 'hermeneutica', 'escritura'], fontes: ['A Hermenêutica de Lutero - Timothy Lull'] },
+  { id: 'herm-66', titulo: 'A Hermenêutica de Lutero', categoria: 'Hermenêutica', subcategoria: 'História da Igreja', conteudo: ['Lutero enfatizou a Escritura contra a tradição.', 'A analogia da fé é regra.', 'Cristo é o centro de toda a Bíblia.', 'O sentido literal é primário.', 'A Escritura é clara para o crente.'], versicosChave: ['2 Timóteo 3:16', 'João 5:39'], tags: ['lutero', 'hermeneutica', 'escritura'], fontes: ['A Hermenêutica de Lutero - Timothy Lull'] },
   // Mais Vida Cristã
-  { id: 'vida-029', titulo: 'A Santidade do Coração', categoria: 'Vida Crista', subcategoria: 'Santidade', conteudo: ['Deus busca o coração santo.', 'A santidade começa no coração.', 'A santidade se manifesta em ação.', 'Devemos guardar o coração.', 'A santidade é progressiva.'], versicosChave: ['Provérbios 4:23', 'Mateus 5:8', '1 Tessalonicenses 4:3-5'], tags: ['santidade', 'coracao', 'guarda'], fontes: ['A Santidade - J.C. Ryle'] },
-  { id: 'vida-030', titulo: 'A Alegria na Tribulação', categoria: 'Vida Crista', subcategoria: 'Sofrimento', conteudo: ['A alegria cristã transcende circunstâncias.', 'O sofrimento produz perseverança.', 'Paulo cantava na prisão.', 'A alegria é fruto do Espírito.', 'A esperança futura sustenta no presente.'], versicosChave: ['Romanos 5:3-5', 'Filipenses 4:4-7', 'Atos 16:25'], tags: ['alegria', 'sofrimento', 'perseveranca'], fontes: ['A Alegria da Fé - John Piper'] },
-  { id: 'vida-031', titulo: 'A Paciência na Aflição', categoria: 'Vida Crista', subcategoria: 'Sofrimento', conteudo: ['A paciência é provada na aflição.', 'Deus permite provas para fortalecer.', 'A perseverança produz caráter.', 'Devemos ser pacientes uns com os outros.', 'A paciência prepara para a eternidade.'], versicosChave: ['Romanos 5:3-5', 'Tiago 1:2-4', '1 Pedro 1:6-7'], tags: ['paciencia', 'aflicao', 'perseveranca'], fontes: ['A Paciência - Thomas Watson'] },
+  { id: 'vida-029', titulo: 'A Santidade do Coração', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['Deus busca o coração santo.', 'A santidade começa no coração.', 'A santidade se manifesta em ação.', 'Devemos guardar o coração.', 'A santidade é progressiva.'], versicosChave: ['Provérbios 4:23', 'Mateus 5:8', '1 Tessalonicenses 4:3-5'], tags: ['santidade', 'coracao', 'guarda'], fontes: ['A Santidade - J.C. Ryle'] },
+  { id: 'vida-030', titulo: 'A Alegria na Tribulação', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A alegria cristã transcende circunstâncias.', 'O sofrimento produz perseverança.', 'Paulo cantava na prisão.', 'A alegria é fruto do Espírito.', 'A esperança futura sustenta no presente.'], versicosChave: ['Romanos 5:3-5', 'Filipenses 4:4-7', 'Atos 16:25'], tags: ['alegria', 'sofrimento', 'perseveranca'], fontes: ['A Alegria da Fé - John Piper'] },
+  { id: 'vida-031', titulo: 'A Paciência na Aflição', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A paciência é provada na aflição.', 'Deus permite provas para fortalecer.', 'A perseverança produz caráter.', 'Devemos ser pacientes uns com os outros.', 'A paciência prepara para a eternidade.'], versicosChave: ['Romanos 5:3-5', 'Tiago 1:2-4', '1 Pedro 1:6-7'], tags: ['paciencia', 'aflicao', 'perseveranca'], fontes: ['A Paciência - Thomas Watson'] },
   // Mais Eclesiologia
-  { id: 'ecles-013', titulo: 'A Comunhão dos Santos', categoria: 'Eclesiologia', subcategoria: 'Comunidade', conteudo: ['A comunhão é essencial para a fé.', 'Devemos buscar a comunhão cristã.', 'A comunhão fortalece a fé.', 'A comunhão é expressão do amor.', 'A comunhão prepara para a eternidade.'], versicosChave: ['Hebreus 10:24-25', 'Atos 2:42-47'], tags: ['comunhao', 'santos', 'comunidade'], fontes: ['A Comunhão dos Santos - Dietrich Bonhoeffer'] },
-  { id: 'ecles-014', titulo: 'A Unidade da Igreja', categoria: 'Eclesiologia', subcategoria: 'Comunidade', conteudo: ['A unidade é vontade de Deus.', 'Devemos buscar a unidade.', 'A unidade não é uniformidade.', 'A unidade se baseia em Cristo.', 'A unidade é testemunho ao mundo.'], versicosChave: ['João 17:20-23', 'Efésios 4:1-6'], tags: ['unidade', 'igreja', 'comunidade'], fontes: ['A Unidade da Igreja - Edmund Clowney'] },
+  { id: 'ecles-013', titulo: 'A Comunhão dos Santos', categoria: 'Eclesiologia', subcategoria: 'Eclesiologia', conteudo: ['A comunhão é essencial para a fé.', 'Devemos buscar a comunhão cristã.', 'A comunhão fortalece a fé.', 'A comunhão é expressão do amor.', 'A comunhão prepara para a eternidade.'], versicosChave: ['Hebreus 10:24-25', 'Atos 2:42-47'], tags: ['comunhao', 'santos', 'comunidade'], fontes: ['A Comunhão dos Santos - Dietrich Bonhoeffer'] },
+  { id: 'ecles-014', titulo: 'A Unidade da Igreja', categoria: 'Eclesiologia', subcategoria: 'Eclesiologia', conteudo: ['A unidade é vontade de Deus.', 'Devemos buscar a unidade.', 'A unidade não é uniformidade.', 'A unidade se baseia em Cristo.', 'A unidade é testemunho ao mundo.'], versicosChave: ['João 17:20-23', 'Efésios 4:1-6'], tags: ['unidade', 'igreja', 'comunidade'], fontes: ['A Unidade da Igreja - Edmund Clowney'] },
   // Mais Pneumatologia
-  { id: 'pneum-014', titulo: 'O Testemunho do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Ministério', conteudo: ['O Espírito testifica com nosso espírito.', 'Ele nos confirma como filhos de Deus.', 'O testemunho é interior e profundo.', 'A oração é facilitada pelo Espírito.', 'O testemunho é evidência da salvação.'], versicosChave: ['Romanos 8:16', 'Gálatas 4:6', '1 João 3:24'], tags: ['testemunho', 'espirito santo', 'salvacao'], fontes: ['O Espirito Santo - Sinclair Ferguson'] },
+  { id: 'pneum-014', titulo: 'O Testemunho do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Eclesiologia', conteudo: ['O Espírito testifica com nosso espírito.', 'Ele nos confirma como filhos de Deus.', 'O testemunho é interior e profundo.', 'A oração é facilitada pelo Espírito.', 'O testemunho é evidência da salvação.'], versicosChave: ['Romanos 8:16', 'Gálatas 4:6', '1 João 3:24'], tags: ['testemunho', 'espirito santo', 'salvacao'], fontes: ['O Espirito Santo - Sinclair Ferguson'] },
   // Mais Teologia Própria
-  { id: 'teoprop-012', titulo: 'A Bondade de Deus no Sofrimento', categoria: 'Teologia Proper', subcategoria: 'Problemas', conteudo: ['Deus é bom mesmo no sofrimento.', 'O sofrimento não anula a bondade de Deus.', 'Deus usa o sofrimento para nos amadurecer.', 'A bondade de Deus se manifesta na redenção.', 'Devemos confiar na bondade de Deus.'], versicosChave: ['Romanos 8:28', 'Salmo 27:13', 'Nahum 1:7'], tags: ['bondade', 'sofrimento', 'confianca'], fontes: ['Deus no Sofrimento - Tim Keller'] },
+  { id: 'teoprop-012', titulo: 'A Bondade de Deus no Sofrimento', categoria: 'Doutrinas Fundamentais', subcategoria: 'Questões Contemporâneas', conteudo: ['Deus é bom mesmo no sofrimento.', 'O sofrimento não anula a bondade de Deus.', 'Deus usa o sofrimento para nos amadurecer.', 'A bondade de Deus se manifesta na redenção.', 'Devemos confiar na bondade de Deus.'], versicosChave: ['Romanos 8:28', 'Salmo 27:13', 'Nahum 1:7'], tags: ['bondade', 'sofrimento', 'confianca'], fontes: ['Deus no Sofrimento - Tim Keller'] },
   // Mais Escatologia
-  { id: 'escat-012', titulo: 'A Nova Jerusalém', categoria: 'Escatologia', subcategoria: 'Eternidade', conteudo: ['A Nova Jerusalém descerá do céu.', 'Será a cidade de Deus.', 'Não haverá mais dor nem morte.', 'Deus habitará com os homens.', 'A eternidade será perfeita e eterna.'], versicosChave: ['Apocalipse 21:1-27', 'Hebreus 11:10, 16'], tags: ['nova jerusalem', 'eternidade', 'cidade'], fontes: ['A Eternidade - Randy Alcorn'] },
+  { id: 'escat-012', titulo: 'A Nova Jerusalém', categoria: 'Escatologia', subcategoria: 'Escatologia', conteudo: ['A Nova Jerusalém descerá do céu.', 'Será a cidade de Deus.', 'Não haverá mais dor nem morte.', 'Deus habitará com os homens.', 'A eternidade será perfeita e eterna.'], versicosChave: ['Apocalipse 21:1-27', 'Hebreus 11:10, 16'], tags: ['nova jerusalem', 'eternidade', 'cidade'], fontes: ['A Eternidade - Randy Alcorn'] },
   // Mais Apologética
-  { id: 'apol-011', titulo: 'A Profecia e a História', categoria: 'Apologetica', subcategoria: 'Evidências', conteudo: ['As profecias bíblicas se cumpriram.', 'Isaías profetizou 700 anos antes.', 'As profecias messiânicas são específicas.', 'O cumprimento é estatisticamente impossível por acaso.', 'A profecia confirma a origem divina da Bíblia.'], versicosChave: ['Isaías 7:14', 'Miquéias 5:2', 'Daniel 9:24-27'], tags: ['profecia', 'cumprimento', 'evidencia'], fontes: ['Profecias Messiânicas - Arnold Fruchtenbaum'] },
+  { id: 'apol-011', titulo: 'A Profecia e a História', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['As profecias bíblicas se cumpriram.', 'Isaías profetizou 700 anos antes.', 'As profecias messiânicas são específicas.', 'O cumprimento é estatisticamente impossível por acaso.', 'A profecia confirma a origem divina da Bíblia.'], versicosChave: ['Isaías 7:14', 'Miquéias 5:2', 'Daniel 9:24-27'], tags: ['profecia', 'cumprimento', 'evidencia'], fontes: ['Profecias Messiânicas - Arnold Fruchtenbaum'] },
   // Mais Ética
-  { id: 'etica-013', titulo: 'A Ética da Integridade', categoria: 'Etica Crista', subcategoria: 'Caráter', conteudo: ['A integridade é essencial para o cristão.', 'Devemos ser pessoas de palavra.', 'A integridade se manifesta em tudo.', 'Deus busca a integridade do coração.', 'A integridade é base da confiança.'], versicosChave: ['Salmo 15:1-2', 'Provérbios 10:9', 'Mateus 5:37'], tags: ['integridade', 'caráter', 'confiança'], fontes: ['A Integridade - Jerry Bridges'] },
-  { id: 'etica-014', titulo: 'A Ética do Perdão', categoria: 'Etica Crista', subcategoria: 'Relacionamentos', conteudo: ['Devemos perdoar como Deus nos perdoou.', 'O perdão é ato de vontade.', 'O perdão não significa esquecer.', 'O perdão libera do ódio.', 'Deus perdoou-nos infinitamente.'], versicosChave: ['Efésios 4:32', 'Mateus 18:21-22', 'Colossenses 3:13'], tags: ['perdão', 'ética', 'relacionamentos'], fontes: ['O Perdão - Tim Keller'] },
+  { id: 'etica-013', titulo: 'A Ética da Integridade', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['A integridade é essencial para o cristão.', 'Devemos ser pessoas de palavra.', 'A integridade se manifesta em tudo.', 'Deus busca a integridade do coração.', 'A integridade é base da confiança.'], versicosChave: ['Salmo 15:1-2', 'Provérbios 10:9', 'Mateus 5:37'], tags: ['integridade', 'caráter', 'confiança'], fontes: ['A Integridade - Jerry Bridges'] },
+  { id: 'etica-014', titulo: 'A Ética do Perdão', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['Devemos perdoar como Deus nos perdoou.', 'O perdão é ato de vontade.', 'O perdão não significa esquecer.', 'O perdão libera do ódio.', 'Deus perdoou-nos infinitamente.'], versicosChave: ['Efésios 4:32', 'Mateus 18:21-22', 'Colossenses 3:13'], tags: ['perdão', 'ética', 'relacionamentos'], fontes: ['O Perdão - Tim Keller'] },
   // Mais Missiologia
-  { id: 'miss-009', titulo: 'A Missão entre os Muçulmanos', categoria: 'Missiologia', subcategoria: 'Missões', conteudo: ['O campo muçulmano é imenso.', 'Devemos orar por muçulmanos.', 'O evangelho é relevante para eles.', 'A hospitalidade é culturalmente importante.', 'A verdade se manifesta em amor.'], versicosChave: ['Mateus 28:19-20', 'Romanos 10:14-15'], tags: ['islamismo', 'missao', 'evangelismo'], fontes: ['Missões entre Muçulmanos - Dudley Woodberry'] },
+  { id: 'miss-009', titulo: 'A Missão entre os Muçulmanos', categoria: 'Missiologia', subcategoria: 'Missiologia', conteudo: ['O campo muçulmano é imenso.', 'Devemos orar por muçulmanos.', 'O evangelho é relevante para eles.', 'A hospitalidade é culturalmente importante.', 'A verdade se manifesta em amor.'], versicosChave: ['Mateus 28:19-20', 'Romanos 10:14-15'], tags: ['islamismo', 'missao', 'evangelismo'], fontes: ['Missões entre Muçulmanos - Dudley Woodberry'] },
   // Mais Família
-  { id: 'fam-010', titulo: 'A Adoração Familiar', categoria: 'Vida Crista', subcategoria: 'Família', conteudo: ['A adoração familiar fortalece o lar.', 'Os pais devem liderar.', 'A Bíblia deve ser lida em família.', 'A oração é essencial.', 'O lar é a primeira escola de fé.'], versicosChave: ['Deuteronômio 6:6-7', 'Atos 16:31', 'Josué 24:15'], tags: ['adoracao', 'familia', 'lar'], fontes: ['A Adoração no Lar - Donald Whitney'] },
+  { id: 'fam-010', titulo: 'A Adoração Familiar', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A adoração familiar fortalece o lar.', 'Os pais devem liderar.', 'A Bíblia deve ser lida em família.', 'A oração é essencial.', 'O lar é a primeira escola de fé.'], versicosChave: ['Deuteronômio 6:6-7', 'Atos 16:31', 'Josué 24:15'], tags: ['adoracao', 'familia', 'lar'], fontes: ['A Adoração no Lar - Donald Whitney'] },
   // Mais Liderança
-  { id: 'lid-008', titulo: 'A Liderança pelo Exemplo', categoria: 'Eclesiologia', subcategoria: 'Liderança', conteudo: ['O líder deve ser exemplo.', 'A vida fala mais que as palavras.', 'A integridade é essencial.', 'O líder deve viver o que prega.', 'O exemplo inspira e transforma.'], versicosChave: ['1 Timóteo 4:12', '1 Pedro 5:2-3', '1 Coríntios 11:1'], tags: ['lideranca', 'exemplo', 'integridade'], fontes: ['Liderança pelo Exemplo - John Maxwell'] },
+  { id: 'lid-008', titulo: 'A Liderança pelo Exemplo', categoria: 'Eclesiologia', subcategoria: 'Vida Crista', conteudo: ['O líder deve ser exemplo.', 'A vida fala mais que as palavras.', 'A integridade é essencial.', 'O líder deve viver o que prega.', 'O exemplo inspira e transforma.'], versicosChave: ['1 Timóteo 4:12', '1 Pedro 5:2-3', '1 Coríntios 11:1'], tags: ['lideranca', 'exemplo', 'integridade'], fontes: ['Liderança pelo Exemplo - John Maxwell'] },
   // Mais Arqueologia
-  { id: 'arqueo-008', titulo: 'A Cidade de Davi', categoria: 'Historia da Igreja', subcategoria: 'Arqueologia', conteudo: ['Escavações em Jerusalém revelaram a Cidade de Davi.', 'Estruturas do século X a.C. foram encontradas.', 'Confirmam a existência de um reino em Jerusalém.', 'A arqueologia sustenta o relato bíblico.', 'Cada descoberta aumenta a confiabilidade.'], versicosChave: ['2 Samuel 5:6-9'], tags: ['arqueologia', 'davi', 'jerusalem'], fontes: ['Arqueologia e Bíblia - Eilat Mazar'] },
+  { id: 'arqueo-008', titulo: 'A Cidade de Davi', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['Escavações em Jerusalém revelaram a Cidade de Davi.', 'Estruturas do século X a.C. foram encontradas.', 'Confirmam a existência de um reino em Jerusalém.', 'A arqueologia sustenta o relato bíblico.', 'Cada descoberta aumenta a confiabilidade.'], versicosChave: ['2 Samuel 5:6-9'], tags: ['arqueologia', 'davi', 'jerusalem'], fontes: ['Arqueologia e Bíblia - Eilat Mazar'] },
   // Mais Biografias
-  { id: 'biog-011', titulo: 'A Vida de Agostinho', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['Agostinho (354-430) é um dos maiores teólogos.', 'Escreveu Confissões e A Cidade de Deus.', 'Enfatizou a graça e o pecado original.', 'Sua teologia influenciou a igreja ocidental.', 'Sua conversão é um dos relatos mais famosos.'], versicosChave: ['Romanos 5:12', 'Efésios 2:8-9'], tags: ['agostinho', 'teologia', 'graca'], fontes: ['Agostinho - Peter Brown'] },
+  { id: 'biog-011', titulo: 'A Vida de Agostinho', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Agostinho (354-430) é um dos maiores teólogos.', 'Escreveu Confissões e A Cidade de Deus.', 'Enfatizou a graça e o pecado original.', 'Sua teologia influenciou a igreja ocidental.', 'Sua conversão é um dos relatos mais famosos.'], versicosChave: ['Romanos 5:12', 'Efésios 2:8-9'], tags: ['agostinho', 'teologia', 'graca'], fontes: ['Agostinho - Peter Brown'] },
   // Mais Linguística
-  { id: 'ling-008', titulo: 'A Relevância do Aramaico', categoria: 'Linguas Biblicas', subcategoria: 'Línguas', conteudo: ['Jesus falava aramaico.', 'Alguns termos aramaicos estão no NT.', 'O aramaico é parente do hebraico.', 'Estudar aramaico enriquece o entendimento.', 'A lingua de Jesus é acessível.'], versicosChave: ['Marcos 5:41', 'Mateus 27:46'], tags: ['aramaico', 'lingua', 'jesus'], fontes: ['Aramaico Bíblico - Frank Cryer'] },
+  { id: 'ling-008', titulo: 'A Relevância do Aramaico', categoria: 'Bibliologia', subcategoria: 'Bibliologia', conteudo: ['Jesus falava aramaico.', 'Alguns termos aramaicos estão no NT.', 'O aramaico é parente do hebraico.', 'Estudar aramaico enriquece o entendimento.', 'A lingua de Jesus é acessível.'], versicosChave: ['Marcos 5:41', 'Mateus 27:46'], tags: ['aramaico', 'lingua', 'jesus'], fontes: ['Aramaico Bíblico - Frank Cryer'] },
   // Mais Hermenêutica
-  { id: 'herm-67', titulo: 'A Escatologia e a Hermenêutica', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['A escatologia afeta a interpretação.', 'Premilenialistas e amilenialistas interpretam diferentemente.', 'O contexto é essencial.', 'Devemos ser humildes nas diferenças.', 'O essencial é a volta de Cristo.'], versicosChave: ['Atos 1:7', 'Mateus 24:36'], tags: ['escatologia', 'hermeneutica', 'interpretacao'], fontes: ['A Escatologia - Craig Blomberg'] },
+  { id: 'herm-67', titulo: 'A Escatologia e a Hermenêutica', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A escatologia afeta a interpretação.', 'Premilenialistas e amilenialistas interpretam diferentemente.', 'O contexto é essencial.', 'Devemos ser humildes nas diferenças.', 'O essencial é a volta de Cristo.'], versicosChave: ['Atos 1:7', 'Mateus 24:36'], tags: ['escatologia', 'hermeneutica', 'interpretacao'], fontes: ['A Escatologia - Craig Blomberg'] },
   // Mais Práticas
-  { id: 'prat-011', titulo: 'A Oração pelo Poder do Espírito', categoria: 'Vida Crista', subcategoria: 'Oração', conteudo: ['O Espírito nos ajuda a orar.', 'Deus responde orações pelo Espírito.', 'A oração é fortalecida pelo Espírito.', 'Devemos orar no Espírito.', 'O Espírito intercede por nós.'], versicosChave: ['Romanos 8:26-27', 'Efésios 6:18', 'Judas 1:20'], tags: ['oracao', 'espirito', 'poder'], fontes: ['A Oração no Espírito - R. Sproul'] },
-  { id: 'prat-012', titulo: 'A Adoração em Espírito e Verdade', categoria: 'Vida Crista', subcategoria: 'Adoração', conteudo: ['A adoração deve ser em espirito e verdade.', 'O Espírito guia na adoração.', 'A verdade é a base.', 'A adoração é vida, não apenas evento.', 'A adoração glorifica a Deus.'], versicosChave: ['João 4:23-24', 'Efésios 5:18-19'], tags: ['adoracao', 'espirito', 'verdade'], fontes: ['A Adoração - James White'] },
+  { id: 'prat-011', titulo: 'A Oração pelo Poder do Espírito', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['O Espírito nos ajuda a orar.', 'Deus responde orações pelo Espírito.', 'A oração é fortalecida pelo Espírito.', 'Devemos orar no Espírito.', 'O Espírito intercede por nós.'], versicosChave: ['Romanos 8:26-27', 'Efésios 6:18', 'Judas 1:20'], tags: ['oracao', 'espirito', 'poder'], fontes: ['A Oração no Espírito - R. Sproul'] },
+  { id: 'prat-012', titulo: 'A Adoração em Espírito e Verdade', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A adoração deve ser em espirito e verdade.', 'O Espírito guia na adoração.', 'A verdade é a base.', 'A adoração é vida, não apenas evento.', 'A adoração glorifica a Deus.'], versicosChave: ['João 4:23-24', 'Efésios 5:18-19'], tags: ['adoracao', 'espirito', 'verdade'], fontes: ['A Adoração - James White'] },
   // Mais Teologia
-  { id: 'tema-011', titulo: 'A Coroa da Criação', categoria: 'Teologia Biblica', subcategoria: 'Antropologia', conteudo: ['O homem é a coroa da criação.', 'Feito à imagem de Deus.', 'Dignidade humana vem de Deus.', 'O homem tem responsabilidade.', 'A queda afetou a imagem, não a dignidade.'], versicosChave: ['Gênesis 1:26-28', 'Salmo 8:5-8'], tags: ['homem', 'imagem de deus', 'dignidade'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'tema-012', titulo: 'A Redenção Universal', categoria: 'Teologia Biblica', subcategoria: 'Salvação', conteudo: ['A redenção é para todas as nações.', 'Deus quer que todos sejam salvos.', 'A salvação é disponível a todos.', 'A missão é universal.', 'O amor de Deus é universal.'], versicosChave: ['1 Timóteo 2:4', '2 Pedro 3:9', 'João 3:16'], tags: ['redencao', 'universal', 'salvacao'], fontes: ['A Teologia da Salvação - Robert Yarbrough'] },
+  { id: 'tema-011', titulo: 'A Coroa da Criação', categoria: 'Teologia Bíblica', subcategoria: 'Antropologia', conteudo: ['O homem é a coroa da criação.', 'Feito à imagem de Deus.', 'Dignidade humana vem de Deus.', 'O homem tem responsabilidade.', 'A queda afetou a imagem, não a dignidade.'], versicosChave: ['Gênesis 1:26-28', 'Salmo 8:5-8'], tags: ['homem', 'imagem de deus', 'dignidade'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
+  { id: 'tema-012', titulo: 'A Redenção Universal', categoria: 'Teologia Bíblica', subcategoria: 'Soteriologia', conteudo: ['A redenção é para todas as nações.', 'Deus quer que todos sejam salvos.', 'A salvação é disponível a todos.', 'A missão é universal.', 'O amor de Deus é universal.'], versicosChave: ['1 Timóteo 2:4', '2 Pedro 3:9', 'João 3:16'], tags: ['redencao', 'universal', 'salvacao'], fontes: ['A Teologia da Salvação - Robert Yarbrough'] },
 
 
   // --- BATCH 9: +110 estudos para atingir 1000+ ---
   // Mais Livros
-  { id: 'livro-174', titulo: 'O Livro de 1 Coríntios', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['1 Coríntios aborda problemas práticos da igreja.', 'O amor é o tema do capítulo 13.', 'A ressurreição é o capítulo 15.', 'A Ceia do Senhor é regulamentada.', 'Os dons espirituais são explicados.'], versicosChave: ['1 Coríntios 13:1-13', '1 Coríntios 15:1-58'], tags: ['corintios', 'amor', 'ressurreicao'], fontes: ['Comentario a 1 Coríntios - Gordon Fee'] },
-  { id: 'livro-175', titulo: 'O Livro de 2 Coríntios', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['2 Coríntios é a epístola mais pessoal de Paulo.', 'A suficiência de Deus é tema central.', 'Paulo fala de suas fraquezas.', 'A nova criatura é enfatizada.', 'A generosidade é exortada.'], versicosChave: ['2 Coríntios 4:7-18', '2 Coríntios 5:17', '2 Coríntios 9:6-8'], tags: ['corintios', 'suficiencia', 'generosidade'], fontes: ['Comentario a 2 Coríntios - Philip Edgcumbe Hughes'] },
-  { id: 'livro-176', titulo: 'O Livro de 1 Tessalonicenses', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['1 Tessalonicenses é sobre a segunda vinda.', 'Paulo encoraja na perseverança.', 'A santidade é enfatizada.', 'A ressurreição dos mortos é explicada.', 'A volta de Cristo é certa.'], versicosChave: ['1 Tessalonicenses 4:13-18', '1 Tessalonicenses 5:16-18'], tags: ['tessalonicenses', 'segunda vinda', 'perseveranca'], fontes: ['Comentario a 1 Tessalonicenses - Charles Wanamaker'] },
-  { id: 'livro-177', titulo: 'O Livro de Tiago', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['Tiago enfatiza a fé em ação.', 'A fé sem obras é morta.', 'A língua é um grande desafio.', 'A sabedoria vem de Deus.', 'A oração é poderosa.'], versicosChave: ['Tiago 1:2-4', 'Tiago 2:14-26', 'Tiago 5:13-18'], tags: ['tiago', 'fe', 'obras', 'oracao'], fontes: ['Comentario a Tiago - Douglas Moo'] },
+  { id: 'livro-174', titulo: 'O Livro de 1 Coríntios', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['1 Coríntios aborda problemas práticos da igreja.', 'O amor é o tema do capítulo 13.', 'A ressurreição é o capítulo 15.', 'A Ceia do Senhor é regulamentada.', 'Os dons espirituais são explicados.'], versicosChave: ['1 Coríntios 13:1-13', '1 Coríntios 15:1-58'], tags: ['corintios', 'amor', 'ressurreicao'], fontes: ['Comentario a 1 Coríntios - Gordon Fee'] },
+  { id: 'livro-175', titulo: 'O Livro de 2 Coríntios', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['2 Coríntios é a epístola mais pessoal de Paulo.', 'A suficiência de Deus é tema central.', 'Paulo fala de suas fraquezas.', 'A nova criatura é enfatizada.', 'A generosidade é exortada.'], versicosChave: ['2 Coríntios 4:7-18', '2 Coríntios 5:17', '2 Coríntios 9:6-8'], tags: ['corintios', 'suficiencia', 'generosidade'], fontes: ['Comentario a 2 Coríntios - Philip Edgcumbe Hughes'] },
+  { id: 'livro-176', titulo: 'O Livro de 1 Tessalonicenses', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['1 Tessalonicenses é sobre a segunda vinda.', 'Paulo encoraja na perseverança.', 'A santidade é enfatizada.', 'A ressurreição dos mortos é explicada.', 'A volta de Cristo é certa.'], versicosChave: ['1 Tessalonicenses 4:13-18', '1 Tessalonicenses 5:16-18'], tags: ['tessalonicenses', 'segunda vinda', 'perseveranca'], fontes: ['Comentario a 1 Tessalonicenses - Charles Wanamaker'] },
+  { id: 'livro-177', titulo: 'O Livro de Tiago', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Tiago enfatiza a fé em ação.', 'A fé sem obras é morta.', 'A língua é um grande desafio.', 'A sabedoria vem de Deus.', 'A oração é poderosa.'], versicosChave: ['Tiago 1:2-4', 'Tiago 2:14-26', 'Tiago 5:13-18'], tags: ['tiago', 'fe', 'obras', 'oracao'], fontes: ['Comentario a Tiago - Douglas Moo'] },
   // Mais Doutrinas
   { id: 'doutr-149', titulo: 'A Justificação e a Santificação', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['A justificação é instantânea; a santificação é progressiva.', 'A justificação é declarativa; a santificação é transformadora.', 'Ambas são por graça.', 'A justificação é base da santificação.', 'A santificação é evidência da justificação.'], versicosChave: ['Romanos 5:1', '1 Tessalonicenses 4:3', 'Filipenses 1:6'], tags: ['justificacao', 'santificacao', 'salvacao'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'doutr-150', titulo: 'A Perseverança dos Santos', categoria: 'Doutrinas Fundamentais', subcategoria: 'Salvação', conteudo: ['Os verdadeiros crentes perseverarão até o fim.', 'Deus os guarda pelo Seu poder.', 'A perseverança é evidência de fé.', 'A segurança não é licença para pecar.', 'Deus é fiel para completar a obra.'], versicosChave: ['Filipenses 1:6', 'João 10:27-29', 'Romanos 8:28-39'], tags: ['perseveranca', 'seguranca', 'salvacao'], fontes: ['A Perseverança dos Santos - Ernest Reisinger'] },
+  { id: 'doutr-150', titulo: 'A Perseverança dos Santos', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['Os verdadeiros crentes perseverarão até o fim.', 'Deus os guarda pelo Seu poder.', 'A perseverança é evidência de fé.', 'A segurança não é licença para pecar.', 'Deus é fiel para completar a obra.'], versicosChave: ['Filipenses 1:6', 'João 10:27-29', 'Romanos 8:28-39'], tags: ['perseveranca', 'seguranca', 'salvacao'], fontes: ['A Perseverança dos Santos - Ernest Reisinger'] },
   // Mais Questões
-  { id: 'contemp-77', titulo: 'O Evangelho e o Transhumanismo', categoria: 'Questões Contemporâneas', subcategoria: 'Tecnologia', conteudo: ['O transhumanismo busca superar a condição humana.', 'O cristianismo afirma a dignidade humana.', 'Deus é o autor da vida.', 'A tecnologia deve servir, não dominar.', 'O evangelho é a verdadeira transformação.'], versicosChave: ['Gênesis 1:27', 'Salmo 139:13-16'], tags: ['transhumanismo', 'tecnologia', 'dignidade'], fontes: ['Transhumanismo e Fé - Ted Peters'] },
+  { id: 'contemp-77', titulo: 'O Evangelho e o Transhumanismo', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['O transhumanismo busca superar a condição humana.', 'O cristianismo afirma a dignidade humana.', 'Deus é o autor da vida.', 'A tecnologia deve servir, não dominar.', 'O evangelho é a verdadeira transformação.'], versicosChave: ['Gênesis 1:27', 'Salmo 139:13-16'], tags: ['transhumanismo', 'tecnologia', 'dignidade'], fontes: ['Transhumanismo e Fé - Ted Peters'] },
   // Mais Comparativos
-  { id: 'comp-69', titulo: 'Cristianismo vs. Racionalismo', categoria: 'Estudos Comparativos', subcategoria: 'Filosofia', conteudo: ['O racionalismo confia apenas na razão.', 'O cristianismo integra razão e fé.', 'A fé é razoável, não irracional.', 'A razão é dom de Deus.', 'A verdade transcende a razão humana.'], versicosChave: ['Romanos 12:1-2', '1 Coríntios 2:14-16'], tags: ['racionalismo', 'razao', 'fe'], fontes: ['Razão e Fé - Alvin Plantinga'] },
+  { id: 'comp-69', titulo: 'Cristianismo vs. Racionalismo', categoria: 'Estudos Comparativos', subcategoria: 'Questões Contemporâneas', conteudo: ['O racionalismo confia apenas na razão.', 'O cristianismo integra razão e fé.', 'A fé é razoável, não irracional.', 'A razão é dom de Deus.', 'A verdade transcende a razão humana.'], versicosChave: ['Romanos 12:1-2', '1 Coríntios 2:14-16'], tags: ['racionalismo', 'razao', 'fe'], fontes: ['Razão e Fé - Alvin Plantinga'] },
   // Mais História
-  { id: 'hist-67', titulo: 'A Escravidão e o Abolicionismo', categoria: 'Historia da Igreja', subcategoria: 'Justiça', conteudo: ['William Wilberforce lutou pela abolição.', 'O evangelho é libertador.', 'A Bíblia condena a escravidão moral.', 'A igreja deve lutar pela justiça.', 'O cristianismo transformou sociedades.'], versicosChave: ['Gálatas 3:28', 'Filemom 1:16-19'], tags: ['escravidao', 'wilberforce', 'justica'], fontes: ['A Escravidão e o Evangelho - John MacArthur'] },
+  { id: 'hist-67', titulo: 'A Escravidão e o Abolicionismo', categoria: 'História da Igreja', subcategoria: 'Questões Contemporâneas', conteudo: ['William Wilberforce lutou pela abolição.', 'O evangelho é libertador.', 'A Bíblia condena a escravidão moral.', 'A igreja deve lutar pela justiça.', 'O cristianismo transformou sociedades.'], versicosChave: ['Gálatas 3:28', 'Filemom 1:16-19'], tags: ['escravidao', 'wilberforce', 'justica'], fontes: ['A Escravidão e o Evangelho - John MacArthur'] },
   // Mais Hermenêutica
-  { id: 'herm-68', titulo: 'A Interpretação de Romanos', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['Romanos é a epístola mais teológica.', 'O tema central é a justificação pela fé.', 'O contexto histórico é essencial.', 'A estrutura argumentativa é clara.', 'A aplicação é prática e transformadora.'], versicosChave: ['Romanos 1:16-17', 'Romanos 3:23-24', 'Romanos 8:28-39'], tags: ['romanos', 'interpretacao', 'justificacao'], fontes: ['Como Interpretar Romanos - Douglas Moo'] },
+  { id: 'herm-68', titulo: 'A Interpretação de Romanos', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['Romanos é a epístola mais teológica.', 'O tema central é a justificação pela fé.', 'O contexto histórico é essencial.', 'A estrutura argumentativa é clara.', 'A aplicação é prática e transformadora.'], versicosChave: ['Romanos 1:16-17', 'Romanos 3:23-24', 'Romanos 8:28-39'], tags: ['romanos', 'interpretacao', 'justificacao'], fontes: ['Como Interpretar Romanos - Douglas Moo'] },
   // Mais Vida Cristã
-  { id: 'vida-032', titulo: 'A Obediência na Adversidade', categoria: 'Vida Crista', subcategoria: 'Sofrimento', conteudo: ['A obediência é provada na adversidade.', 'Deus é fiel mesmo quando é difícil.', 'A perseverança produz caráter.', 'Devemos confiar em Deus.', 'A obediência traz bênção.'], versicosChave: ['Tiago 1:2-4', '1 Pedro 1:6-7', 'Romanos 5:3-5'], tags: ['obediencia', 'adversidade', 'perseveranca'], fontes: ['A Obediência na Adversidade - Jerry Bridges'] },
-  { id: 'vida-033', titulo: 'A Humildade na Vitória', categoria: 'Vida Crista', subcategoria: 'Caráter', conteudo: ['A humildade é necessária na vitória.', 'Devemos reconhecer que tudo vem de Deus.', 'A vaidade é pecado.', 'A humildade mantém a perspectiva.', 'Deus resiste aos soberbos, mas dá graça aos humildes.'], versicosChave: ['Tiago 4:6', '1 Pedro 5:5-6', 'Provérbios 16:18'], tags: ['humildade', 'vitoria', 'caráter'], fontes: ['A Humildade - Tim Keller'] },
-  { id: 'vida-034', titulo: 'A Fortaleza na Fraqueza', categoria: 'Vida Crista', subcategoria: 'Força', conteudo: ['A fraqueza é oportunidade para Deus agir.', 'Paulo glorificou em suas fraquezas.', 'Deus é perfeito em fraqueza.', 'A fortaleza vem de Deus.', 'A fraqueza revela o poder de Deus.'], versicosChave: ['2 Coríntios 12:9-10', '1 Coríntios 1:25-27'], tags: ['fortaleza', 'fraqueza', 'poder'], fontes: ['A Fortaleza na Fraqueza - Joni Eareckson Tada'] },
+  { id: 'vida-032', titulo: 'A Obediência na Adversidade', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A obediência é provada na adversidade.', 'Deus é fiel mesmo quando é difícil.', 'A perseverança produz caráter.', 'Devemos confiar em Deus.', 'A obediência traz bênção.'], versicosChave: ['Tiago 1:2-4', '1 Pedro 1:6-7', 'Romanos 5:3-5'], tags: ['obediencia', 'adversidade', 'perseveranca'], fontes: ['A Obediência na Adversidade - Jerry Bridges'] },
+  { id: 'vida-033', titulo: 'A Humildade na Vitória', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A humildade é necessária na vitória.', 'Devemos reconhecer que tudo vem de Deus.', 'A vaidade é pecado.', 'A humildade mantém a perspectiva.', 'Deus resiste aos soberbos, mas dá graça aos humildes.'], versicosChave: ['Tiago 4:6', '1 Pedro 5:5-6', 'Provérbios 16:18'], tags: ['humildade', 'vitoria', 'caráter'], fontes: ['A Humildade - Tim Keller'] },
+  { id: 'vida-034', titulo: 'A Fortaleza na Fraqueza', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A fraqueza é oportunidade para Deus agir.', 'Paulo glorificou em suas fraquezas.', 'Deus é perfeito em fraqueza.', 'A fortaleza vem de Deus.', 'A fraqueza revela o poder de Deus.'], versicosChave: ['2 Coríntios 12:9-10', '1 Coríntios 1:25-27'], tags: ['fortaleza', 'fraqueza', 'poder'], fontes: ['A Fortaleza na Fraqueza - Joni Eareckson Tada'] },
   // Mais Eclesiologia
-  { id: 'ecles-015', titulo: 'A Missão da Igreja Local', categoria: 'Eclesiologia', subcategoria: 'Missão', conteudo: ['A igreja local existe para glorificar a Deus.', 'A missão inclui evangelismo e discipulado.', 'A comunhão é essencial.', 'A igreja é luz e sal do mundo.', 'A missão é a alma da igreja.'], versicosChave: ['Mateus 5:13-16', 'Atos 1:8'], tags: ['igreja local', 'missao', 'comunidade'], fontes: ['A Igreja Local - Francis Schaeffer'] },
+  { id: 'ecles-015', titulo: 'A Missão da Igreja Local', categoria: 'Eclesiologia', subcategoria: 'Missiologia', conteudo: ['A igreja local existe para glorificar a Deus.', 'A missão inclui evangelismo e discipulado.', 'A comunhão é essencial.', 'A igreja é luz e sal do mundo.', 'A missão é a alma da igreja.'], versicosChave: ['Mateus 5:13-16', 'Atos 1:8'], tags: ['igreja local', 'missao', 'comunidade'], fontes: ['A Igreja Local - Francis Schaeffer'] },
   // Mais Pneumatologia
-  { id: 'pneum-015', titulo: 'O Fruto do Espírito no Lar', categoria: 'Pneumatologia', subcategoria: 'Família', conteudo: ['O fruto do Espírito se manifesta no lar.', 'Amor, paciência e bondade são essenciais.', 'O lar é laboratório de fé.', 'O fruto fortalece os relacionamentos.', 'Devemos cultivar o fruto em família.'], versicosChave: ['Gálatas 5:22-23', 'Colossenses 3:12-15'], tags: ['fruto', 'lar', 'familia'], fontes: ['O Fruto no Lar - Douglas Wilson'] },
+  { id: 'pneum-015', titulo: 'O Fruto do Espírito no Lar', categoria: 'Pneumatologia', subcategoria: 'Vida Crista', conteudo: ['O fruto do Espírito se manifesta no lar.', 'Amor, paciência e bondade são essenciais.', 'O lar é laboratório de fé.', 'O fruto fortalece os relacionamentos.', 'Devemos cultivar o fruto em família.'], versicosChave: ['Gálatas 5:22-23', 'Colossenses 3:12-15'], tags: ['fruto', 'lar', 'familia'], fontes: ['O Fruto no Lar - Douglas Wilson'] },
   // Mais Teologia Própria
-  { id: 'teoprop-013', titulo: 'A Soberania de Deus no Sofrimento', categoria: 'Teologia Proper', subcategoria: 'Problemas', conteudo: ['Deus é soberano mesmo no sofrimento.', 'O sofrimento não é acidental.', 'Deus tem propósitos no sofrimento.', 'Deus consola no sofrimento.', 'Devemos confiar na soberania de Deus.'], versicosChave: ['Romanos 8:28', 'Jó 42:1-6', 'Salmo 115:3'], tags: ['soberania', 'sofrimento', 'proposito'], fontes: ['Deus no Sofrimento - Tim Keller'] },
+  { id: 'teoprop-013', titulo: 'A Soberania de Deus no Sofrimento', categoria: 'Doutrinas Fundamentais', subcategoria: 'Questões Contemporâneas', conteudo: ['Deus é soberano mesmo no sofrimento.', 'O sofrimento não é acidental.', 'Deus tem propósitos no sofrimento.', 'Deus consola no sofrimento.', 'Devemos confiar na soberania de Deus.'], versicosChave: ['Romanos 8:28', 'Jó 42:1-6', 'Salmo 115:3'], tags: ['soberania', 'sofrimento', 'proposito'], fontes: ['Deus no Sofrimento - Tim Keller'] },
   // Mais Escatologia
-  { id: 'escat-013', titulo: 'A Vita Eterna Começa Agora', categoria: 'Escatologia', subcategoria: 'Vida Cristã', conteudo: ['A vida eterna começa na conversão.', 'Não esperamos a eternidade para viver.', 'A vida eterna é qualidade, não apenas quantidade.', 'Devemos viver como cidadãos do céu.', 'A eternidade já começou em nós.'], versicosChave: ['João 5:24', 'João 17:3', 'Efésios 2:4-6'], tags: ['vida eterna', 'agora', 'eternidade'], fontes: ['A Vida Eterna - G.E. Ladd'] },
+  { id: 'escat-013', titulo: 'A Vita Eterna Começa Agora', categoria: 'Escatologia', subcategoria: 'Vida Crista', conteudo: ['A vida eterna começa na conversão.', 'Não esperamos a eternidade para viver.', 'A vida eterna é qualidade, não apenas quantidade.', 'Devemos viver como cidadãos do céu.', 'A eternidade já começou em nós.'], versicosChave: ['João 5:24', 'João 17:3', 'Efésios 2:4-6'], tags: ['vida eterna', 'agora', 'eternidade'], fontes: ['A Vida Eterna - G.E. Ladd'] },
   // Mais Apologética
-  { id: 'apol-012', titulo: 'A Coerência da Escritura', categoria: 'Apologetica', subcategoria: 'Evidências', conteudo: ['A Bíblia tem 66 livros, uma mensagem coerente.', 'A unidade é miraculosa.', 'As profecias se cumpriram.', 'A transformação de vidas é evidência.', 'A Bíblia é confiável em todo aspecto.'], versicosChave: ['2 Timóteo 3:16', '2 Pedro 1:21'], tags: ['coerencia', 'biblia', 'inspiracao'], fontes: ['A Bíblia - F.F. Bruce'] },
+  { id: 'apol-012', titulo: 'A Coerência da Escritura', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['A Bíblia tem 66 livros, uma mensagem coerente.', 'A unidade é miraculosa.', 'As profecias se cumpriram.', 'A transformação de vidas é evidência.', 'A Bíblia é confiável em todo aspecto.'], versicosChave: ['2 Timóteo 3:16', '2 Pedro 1:21'], tags: ['coerencia', 'biblia', 'inspiracao'], fontes: ['A Bíblia - F.F. Bruce'] },
   // Mais Ética
-  { id: 'etica-015', titulo: 'A Ética da Gratidão', categoria: 'Etica Crista', subcategoria: 'Atitude', conteudo: ['A gratidão é atitude cristã fundamental.', 'Devemos dar graças em tudo.', 'A gratidão reconhece a bondade.', 'A ingratidão é pecado.', 'A gratidão transforma nossa perspectiva.'], versicosChave: ['1 Tessalonicenses 5:18', 'Colossenses 3:15-17'], tags: ['gratidao', 'atitude', 'etica'], fontes: ['A Gratidão - Dennis Kinlaw'] },
-  { id: 'etica-016', titulo: 'A Ética da Paciência', categoria: 'Etica Crista', subcategoria: 'Caráter', conteudo: ['A paciência é fruto do Espírito.', 'Devemos ser pacientes uns com os outros.', 'A paciência é produzida pelo sofrimento.', 'Deus é paciente conosco.', 'A paciência prepara para a eternidade.'], versicosChave: ['Gálatas 5:22', 'Tiago 1:3-4', 'Romanos 5:3-5'], tags: ['paciencia', 'caráter', 'etica'], fontes: ['A Paciência - Thomas Watson'] },
+  { id: 'etica-015', titulo: 'A Ética da Gratidão', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['A gratidão é atitude cristã fundamental.', 'Devemos dar graças em tudo.', 'A gratidão reconhece a bondade.', 'A ingratidão é pecado.', 'A gratidão transforma nossa perspectiva.'], versicosChave: ['1 Tessalonicenses 5:18', 'Colossenses 3:15-17'], tags: ['gratidao', 'atitude', 'etica'], fontes: ['A Gratidão - Dennis Kinlaw'] },
+  { id: 'etica-016', titulo: 'A Ética da Paciência', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['A paciência é fruto do Espírito.', 'Devemos ser pacientes uns com os outros.', 'A paciência é produzida pelo sofrimento.', 'Deus é paciente conosco.', 'A paciência prepara para a eternidade.'], versicosChave: ['Gálatas 5:22', 'Tiago 1:3-4', 'Romanos 5:3-5'], tags: ['paciencia', 'caráter', 'etica'], fontes: ['A Paciência - Thomas Watson'] },
   // Mais Missiologia
-  { id: 'miss-010', titulo: 'A Missão entre os Indígenas', categoria: 'Missiologia', subcategoria: 'Missões', conteudo: ['Os povos indígenas são campo missionário.', 'O evangelho deve ser contextualizado.', 'A dignidade humana é essencial.', 'Devemos respeitar as culturas.', 'O amor transcende barreiras culturais.'], versicosChave: ['Mateus 28:19-20', 'Apocalipse 7:9'], tags: ['indigenas', 'missao', 'cultura'], fontes: ['Missões entre Indígenas - Don Richardson'] },
+  { id: 'miss-010', titulo: 'A Missão entre os Indígenas', categoria: 'Missiologia', subcategoria: 'Missiologia', conteudo: ['Os povos indígenas são campo missionário.', 'O evangelho deve ser contextualizado.', 'A dignidade humana é essencial.', 'Devemos respeitar as culturas.', 'O amor transcende barreiras culturais.'], versicosChave: ['Mateus 28:19-20', 'Apocalipse 7:9'], tags: ['indigenas', 'missao', 'cultura'], fontes: ['Missões entre Indígenas - Don Richardson'] },
   // Mais Família
-  { id: 'fam-011', titulo: 'A Graça no Lar', categoria: 'Vida Crista', subcategoria: 'Família', conteudo: ['A graça deve transbordar no lar.', 'O perdão é essencial.', 'A paciência é necessária.', 'O amor se expressa em atos.', 'Deus é o centro do lar.'], versicosChave: ['Efésios 4:32', 'Colossenses 3:12-15'], tags: ['graca', 'lar', 'perdao'], fontes: ['A Graça no Lar - Paul David Tripp'] },
+  { id: 'fam-011', titulo: 'A Graça no Lar', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A graça deve transbordar no lar.', 'O perdão é essencial.', 'A paciência é necessária.', 'O amor se expressa em atos.', 'Deus é o centro do lar.'], versicosChave: ['Efésios 4:32', 'Colossenses 3:12-15'], tags: ['graca', 'lar', 'perdao'], fontes: ['A Graça no Lar - Paul David Tripp'] },
   // Mais Liderança
-  { id: 'lid-009', titulo: 'A Liderança e a Oração', categoria: 'Eclesiologia', subcategoria: 'Liderança', conteudo: ['A oração é essencial para a liderança.', 'Devemos orar pelos liderados.', 'A oração guia decisões.', 'A oração fortalece.', 'O líder deve ser homem de oração.'], versicosChave: ['1 Timóteo 2:1-4', 'Tiago 1:5'], tags: ['lideranca', 'oracao', 'guia'], fontes: ['O Líder Ora - Elmer Towns'] },
+  { id: 'lid-009', titulo: 'A Liderança e a Oração', categoria: 'Eclesiologia', subcategoria: 'Vida Crista', conteudo: ['A oração é essencial para a liderança.', 'Devemos orar pelos liderados.', 'A oração guia decisões.', 'A oração fortalece.', 'O líder deve ser homem de oração.'], versicosChave: ['1 Timóteo 2:1-4', 'Tiago 1:5'], tags: ['lideranca', 'oracao', 'guia'], fontes: ['O Líder Ora - Elmer Towns'] },
   // Mais Arqueologia
-  { id: 'arqueo-009', titulo: 'Os Papiros de Nag Hammadi', categoria: 'Historia da Igreja', subcategoria: 'Textos', conteudo: ['Descobertos em 1945 no Egito.', 'Contêm textos gnósticos.', 'Confirmam que o gnosticismo era heresia.', 'A Bíblia canônica se distingue dos apócrifos.', 'A arqueologia esclarece a história do cânone.'], versicosChave: ['Gálatas 1:8-9', '2 Pedro 1:16-21'], tags: ['nag hammadi', 'gnosticismo', 'heresia'], fontes: ['Nag Hammadi - James Robinson'] },
+  { id: 'arqueo-009', titulo: 'Os Papiros de Nag Hammadi', categoria: 'História da Igreja', subcategoria: 'Bibliologia', conteudo: ['Descobertos em 1945 no Egito.', 'Contêm textos gnósticos.', 'Confirmam que o gnosticismo era heresia.', 'A Bíblia canônica se distingue dos apócrifos.', 'A arqueologia esclarece a história do cânone.'], versicosChave: ['Gálatas 1:8-9', '2 Pedro 1:16-21'], tags: ['nag hammadi', 'gnosticismo', 'heresia'], fontes: ['Nag Hammadi - James Robinson'] },
   // Mais Biografias
-  { id: 'biog-012', titulo: 'A Vida de Billy Graham', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['Graham foi o maior evangelista do séc. XX.', 'Pregou para milhões em todo o mundo.', 'Enfatizou o evangelho simples.', 'Influenciou presidentes e reis.', 'Seu legado continua pelas cruzadas.'], versicosChave: ['Romanos 1:16', 'João 14:6'], tags: ['graham', 'evangelismo', 'cruzadas'], fontes: ['Billy Graham - William Martin'] },
+  { id: 'biog-012', titulo: 'A Vida de Billy Graham', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Graham foi o maior evangelista do séc. XX.', 'Pregou para milhões em todo o mundo.', 'Enfatizou o evangelho simples.', 'Influenciou presidentes e reis.', 'Seu legado continua pelas cruzadas.'], versicosChave: ['Romanos 1:16', 'João 14:6'], tags: ['graham', 'evangelismo', 'cruzadas'], fontes: ['Billy Graham - William Martin'] },
   // Mais Linguística
-  { id: 'ling-009', titulo: 'A Transmissão do Texto Bíblico', categoria: 'Linguas Biblicas', subcategoria: 'Textual', conteudo: ['O texto bíblico foi transmitido fielmente.', 'Os manuscritos são numerosos e antigos.', 'As variantes textuais são mínimas.', 'A crítica textual garante confiabilidade.', 'A Bíblia é o livro mais bem preservado.'], versicosChave: ['2 Pedro 1:20-21', '2 Timóteo 3:16'], tags: ['transmissao', 'textual', 'manuscritos'], fontes: ['O Texto do NT - Bruce Metzger'] },
+  { id: 'ling-009', titulo: 'A Transmissão do Texto Bíblico', categoria: 'Bibliologia', subcategoria: 'Bibliologia', conteudo: ['O texto bíblico foi transmitido fielmente.', 'Os manuscritos são numerosos e antigos.', 'As variantes textuais são mínimas.', 'A crítica textual garante confiabilidade.', 'A Bíblia é o livro mais bem preservado.'], versicosChave: ['2 Pedro 1:20-21', '2 Timóteo 3:16'], tags: ['transmissao', 'textual', 'manuscritos'], fontes: ['O Texto do NT - Bruce Metzger'] },
   // Mais Hermenêutica
-  { id: 'herm-69', titulo: 'A Interpretação de Efésios', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['Efésios é a epístola dos céus.', 'A graça é o tema central.', 'A armadura de Deus é essencial.', 'A unidade dos crentes é enfatizada.', 'A aplicação é prática.'], versicosChave: ['Efésios 2:8-9', 'Efésios 6:10-18'], tags: ['efesios', 'interpretacao', 'graca'], fontes: ['Como Interpretar Efésios - Peter O\u0027Brien'] },
+  { id: 'herm-69', titulo: 'A Interpretação de Efésios', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['Efésios é a epístola dos céus.', 'A graça é o tema central.', 'A armadura de Deus é essencial.', 'A unidade dos crentes é enfatizada.', 'A aplicação é prática.'], versicosChave: ['Efésios 2:8-9', 'Efésios 6:10-18'], tags: ['efesios', 'interpretacao', 'graca'], fontes: ['Como Interpretar Efésios - Peter O\u0027Brien'] },
   // Mais Práticas
-  { id: 'prat-013', titulo: 'A Oração de Lamento', categoria: 'Vida Crista', subcategoria: 'Oração', conteudo: ['O lamento é forma legítima de oração.', 'Deus acolhe o lamento.', 'Devemos ser honestos com Deus.', 'O lamento é parte da fé.', 'Deus consola no lamento.'], versicosChave: ['Salmo 22:1', 'Salmo 88:1-18', 'Lamentações 3:1-33'], tags: ['lamentacao', 'oracao', 'dor'], fontes: ['O Lamento dos Salmos - Walter Brueggemann'] },
-  { id: 'prat-014', titulo: 'A Adoração na Natureza', categoria: 'Vida Crista', subcategoria: 'Adoração', conteudo: ['A natureza declara a glória de Deus.', 'Devemos adorar em toda a criação.', 'A adoração na natureza é bíblica.', 'A criação é templo de Deus.', 'Devemos cuidar da criação.'], versicosChave: ['Salmo 19:1', 'Salmo 148:1-10', 'Romanos 1:20'], tags: ['adoracao', 'natureza', 'criacao'], fontes: ['Adoração na Natureza - John Muir'] },
+  { id: 'prat-013', titulo: 'A Oração de Lamento', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['O lamento é forma legítima de oração.', 'Deus acolhe o lamento.', 'Devemos ser honestos com Deus.', 'O lamento é parte da fé.', 'Deus consola no lamento.'], versicosChave: ['Salmo 22:1', 'Salmo 88:1-18', 'Lamentações 3:1-33'], tags: ['lamentacao', 'oracao', 'dor'], fontes: ['O Lamento dos Salmos - Walter Brueggemann'] },
+  { id: 'prat-014', titulo: 'A Adoração na Natureza', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A natureza declara a glória de Deus.', 'Devemos adorar em toda a criação.', 'A adoração na natureza é bíblica.', 'A criação é templo de Deus.', 'Devemos cuidar da criação.'], versicosChave: ['Salmo 19:1', 'Salmo 148:1-10', 'Romanos 1:20'], tags: ['adoracao', 'natureza', 'criacao'], fontes: ['Adoração na Natureza - John Muir'] },
   // Mais Teologia
-  { id: 'tema-013', titulo: 'A Missão de Deus entre as Nações', categoria: 'Teologia Biblica', subcategoria: 'Missão', conteudo: ['Deus quer que todas as nações O conheçam.', 'Abraão foi chamado para ser bênção.', 'Os salmos celebram Deus entre as nações.', 'O mandamento final é para todas as nações.', 'A missão é o coração de Deus.'], versicosChave: ['Gênesis 12:3', 'Salmo 67', 'Mateus 28:19-20'], tags: ['nacoes', 'missao', 'universal'], fontes: ['A Missão de Deus - Christopher Wright'] },
+  { id: 'tema-013', titulo: 'A Missão de Deus entre as Nações', categoria: 'Teologia Bíblica', subcategoria: 'Missiologia', conteudo: ['Deus quer que todas as nações O conheçam.', 'Abraão foi chamado para ser bênção.', 'Os salmos celebram Deus entre as nações.', 'O mandamento final é para todas as nações.', 'A missão é o coração de Deus.'], versicosChave: ['Gênesis 12:3', 'Salmo 67', 'Mateus 28:19-20'], tags: ['nacoes', 'missao', 'universal'], fontes: ['A Missão de Deus - Christopher Wright'] },
 
 
   // --- BATCH 10: +80 estudos para atingir 1000+ ---
   // Mais Livros
-  { id: 'livro-178', titulo: 'O Livro de Colossenses', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['Colossenses enfatiza a supremacia de Cristo.', 'Cristo é a imagem do Deus invisível.', 'A plenitude de Deus habita nEle.', 'Devemos estar firmes na fé.', 'A vida cristã prática é enfatizada.'], versicosChave: ['Colossenses 1:15-20', 'Colossenses 2:6-7', 'Colossenses 3:1-4'], tags: ['colossenses', 'supremacia', 'cristo'], fontes: ['Comentario a Colossenses - Douglas Moo'] },
-  { id: 'livro-179', titulo: 'O Livro de Filemom', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['Filemom é a epístola do perdão.', 'Paulo pede o perdão de Onésimo.', 'O amor cristão transcende escravidão.', 'A reconciliação é possível.', 'O perdão restaura relacionamentos.'], versicosChave: ['Filemom 1:8-22'], tags: ['filemom', 'perdao', 'reconciliacao'], fontes: ['Comentario a Filemom - Douglas Moo'] },
-  { id: 'livro-180', titulo: 'O Livro de 1 Timóteo', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['1 Timóteo é pastoral.', 'Instruções para a igreja.', 'Qualificações para líderes.', 'A falsa doutrina deve ser combatida.', 'A piedade é essencial.'], versicosChave: ['1 Timóteo 3:1-13', '1 Timóteo 4:12', '1 Timóteo 6:10'], tags: ['timoteo', 'pastoral', 'lideranca'], fontes: ['Comentario a 1 Timóteo - George Knight'] },
-  { id: 'livro-181', titulo: 'O Livro de 2 Timóteo', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['2 Timóteo é a última epístola de Paulo.', 'Paulo encoraja a perseverança.', 'A Escritura é inspirada e útil.', 'Devemos ser obreiros aprovados.', 'Paulo parte, mas Cristo permanece.'], versicosChave: ['2 Timóteo 1:7', '2 Timóteo 2:15', '2 Timóteo 3:16-17', '2 Timóteo 4:6-8'], tags: ['timoteo', 'perseveranca', 'escritura'], fontes: ['Comentario a 2 Timóteo - Philip Edgcumbe Hughes'] },
+  { id: 'livro-178', titulo: 'O Livro de Colossenses', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Colossenses enfatiza a supremacia de Cristo.', 'Cristo é a imagem do Deus invisível.', 'A plenitude de Deus habita nEle.', 'Devemos estar firmes na fé.', 'A vida cristã prática é enfatizada.'], versicosChave: ['Colossenses 1:15-20', 'Colossenses 2:6-7', 'Colossenses 3:1-4'], tags: ['colossenses', 'supremacia', 'cristo'], fontes: ['Comentario a Colossenses - Douglas Moo'] },
+  { id: 'livro-179', titulo: 'O Livro de Filemom', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Filemom é a epístola do perdão.', 'Paulo pede o perdão de Onésimo.', 'O amor cristão transcende escravidão.', 'A reconciliação é possível.', 'O perdão restaura relacionamentos.'], versicosChave: ['Filemom 1:8-22'], tags: ['filemom', 'perdao', 'reconciliacao'], fontes: ['Comentario a Filemom - Douglas Moo'] },
+  { id: 'livro-180', titulo: 'O Livro de 1 Timóteo', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['1 Timóteo é pastoral.', 'Instruções para a igreja.', 'Qualificações para líderes.', 'A falsa doutrina deve ser combatida.', 'A piedade é essencial.'], versicosChave: ['1 Timóteo 3:1-13', '1 Timóteo 4:12', '1 Timóteo 6:10'], tags: ['timoteo', 'pastoral', 'lideranca'], fontes: ['Comentario a 1 Timóteo - George Knight'] },
+  { id: 'livro-181', titulo: 'O Livro de 2 Timóteo', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['2 Timóteo é a última epístola de Paulo.', 'Paulo encoraja a perseverança.', 'A Escritura é inspirada e útil.', 'Devemos ser obreiros aprovados.', 'Paulo parte, mas Cristo permanece.'], versicosChave: ['2 Timóteo 1:7', '2 Timóteo 2:15', '2 Timóteo 3:16-17', '2 Timóteo 4:6-8'], tags: ['timoteo', 'perseveranca', 'escritura'], fontes: ['Comentario a 2 Timóteo - Philip Edgcumbe Hughes'] },
   // Mais Doutrinas
   { id: 'doutr-151', titulo: 'A Justificação e a Regeneração', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['A regeneração é obra do Espírito.', 'A justificação é ato de Deus.', 'A regeneração precede a fé.', 'A justificação é pela fé.', 'Ambas são essenciais para a salvação.'], versicosChave: ['João 3:3-5', 'Romanos 3:24-28', 'Tito 3:5'], tags: ['justificacao', 'regeneracao', 'salvacao'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
   { id: 'doutr-152', titulo: 'A Adocão dos Filhos de Deus', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['A adocão é dom de Deus.', 'Somos filhos de Deus pela fé.', 'O Espírito testifica de nossa filiação.', 'A adocão traz privilegios e responsabilidades.', 'A adocão será consumada na eternidade.'], versicosChave: ['Efésios 1:5', 'Romanos 8:14-17', 'Gálatas 4:4-7'], tags: ['adocao', 'filhos de deus', 'salvacao'], fontes: ['Teologia Sistematica - Louis Berkhof'] },
   // Mais Questões
-  { id: 'contemp-78', titulo: 'A Crise da Solidão Digital', categoria: 'Questões Contemporâneas', subcategoria: 'Sociedade', conteudo: ['A tecnologia conecta mas isola.', 'A comunidade cristã é essencial.', 'Devemos buscar relacionamentos reais.', 'O evangelho é comunitário.', 'A solidão é desafio pastoral.'], versicosChave: ['Hebreus 10:24-25', 'Gênesis 2:18'], tags: ['solidao', 'digital', 'comunidade'], fontes: ['A Epidemia da Solidão - Vivek Murthy'] },
+  { id: 'contemp-78', titulo: 'A Crise da Solidão Digital', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['A tecnologia conecta mas isola.', 'A comunidade cristã é essencial.', 'Devemos buscar relacionamentos reais.', 'O evangelho é comunitário.', 'A solidão é desafio pastoral.'], versicosChave: ['Hebreus 10:24-25', 'Gênesis 2:18'], tags: ['solidao', 'digital', 'comunidade'], fontes: ['A Epidemia da Solidão - Vivek Murthy'] },
   // Mais Comparativos
-  { id: 'comp-70', titulo: 'Cristianismo vs. Secularismo', categoria: 'Estudos Comparativos', subcategoria: 'Cultura', conteudo: ['O secularismo exclui Deus.', 'O cristianismo inclui Deus em tudo.', 'O secularismo é relativista.', 'O cristianismo é absolutista.', 'O evangelho é relevante para o secularismo.'], versicosChave: ['Romanos 1:18-22', 'Salmo 14:1'], tags: ['secularismo', 'cultura', 'comparacao'], fontes: ['A Verdade Cristã - Norman Geisler'] },
+  { id: 'comp-70', titulo: 'Cristianismo vs. Secularismo', categoria: 'Estudos Comparativos', subcategoria: 'Questões Contemporâneas', conteudo: ['O secularismo exclui Deus.', 'O cristianismo inclui Deus em tudo.', 'O secularismo é relativista.', 'O cristianismo é absolutista.', 'O evangelho é relevante para o secularismo.'], versicosChave: ['Romanos 1:18-22', 'Salmo 14:1'], tags: ['secularismo', 'cultura', 'comparacao'], fontes: ['A Verdade Cristã - Norman Geisler'] },
   // Mais História
-  { id: 'hist-68', titulo: 'A Conquista Mongol e a Igreja', categoria: 'Historia da Igreja', subcategoria: 'Missões', conteudo: ['Os mongóis conquistaram grande parte do mundo.', 'A igreja sofreu perseguição.', 'Missionários cristãos foram aos mongóis.', 'O evangelho se espalhou apesar da conquista.', 'Deus é soberano sobre as nações.'], versicosChave: ['Mateus 28:19-20', 'Apocalipse 7:9'], tags: ['mongol', 'conquista', 'missao'], fontes: ['Historia da Missão Cristã - Stephen Neill'] },
+  { id: 'hist-68', titulo: 'A Conquista Mongol e a Igreja', categoria: 'História da Igreja', subcategoria: 'Missiologia', conteudo: ['Os mongóis conquistaram grande parte do mundo.', 'A igreja sofreu perseguição.', 'Missionários cristãos foram aos mongóis.', 'O evangelho se espalhou apesar da conquista.', 'Deus é soberano sobre as nações.'], versicosChave: ['Mateus 28:19-20', 'Apocalipse 7:9'], tags: ['mongol', 'conquista', 'missao'], fontes: ['Historia da Missão Cristã - Stephen Neill'] },
   // Mais Hermenêutica
-  { id: 'herm-70', titulo: 'A Interpretação de Provérbios 31', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['Provérbios 31 é sobre a mulher virtuosa.', 'Não é apenas um modelo feminino.', 'Representa a sabedoria personificada.', 'A aplicação é para homens e mulheres.', 'A virtude transcende o gênero.'], versicosChave: ['Provérbios 31:1-31'], tags: ['proverbios', 'mulher', 'sabedoria'], fontes: ['Como Interpretar Provérbios - Tremper Longman III'] },
+  { id: 'herm-70', titulo: 'A Interpretação de Provérbios 31', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['Provérbios 31 é sobre a mulher virtuosa.', 'Não é apenas um modelo feminino.', 'Representa a sabedoria personificada.', 'A aplicação é para homens e mulheres.', 'A virtude transcende o gênero.'], versicosChave: ['Provérbios 31:1-31'], tags: ['proverbios', 'mulher', 'sabedoria'], fontes: ['Como Interpretar Provérbios - Tremper Longman III'] },
   // Mais Vida Cristã
-  { id: 'vida-035', titulo: 'A Esperança na Perseguição', categoria: 'Vida Crista', subcategoria: 'Sofrimento', conteudo: ['A perseguição é real para muitos cristãos.', 'A esperança sustenta na perseguição.', 'Deus é fiel mesmo na adversidade.', 'A perseguição fortalece a fé.', 'A recompensa eterna é certa.'], versicosChave: ['Mateus 5:10-12', '1 Pedro 4:12-19', 'Romanos 8:35-37'], tags: ['perseguição', 'esperanca', 'sofrimento'], fontes: ['A Esperança na Perseguição - Paul Marshall'] },
-  { id: 'vida-036', titulo: 'A Alegria no Serviço', categoria: 'Vida Crista', subcategoria: 'Ministério', conteudo: ['O serviço cristão traz alegria.', 'Devemos servir com amor.', 'O serviço é expressão de gratidão.', 'Deus recompensa o serviço fiel.', 'O serviço glorifica a Deus.'], versicosChave: ['Mateus 25:21', '1 Pedro 4:10-11', 'Colossenses 3:23-24'], tags: ['servico', 'alegria', 'ministerio'], fontes: ['O Serviço Alegre - Gene Wilkes'] },
+  { id: 'vida-035', titulo: 'A Esperança na Perseguição', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A perseguição é real para muitos cristãos.', 'A esperança sustenta na perseguição.', 'Deus é fiel mesmo na adversidade.', 'A perseguição fortalece a fé.', 'A recompensa eterna é certa.'], versicosChave: ['Mateus 5:10-12', '1 Pedro 4:12-19', 'Romanos 8:35-37'], tags: ['perseguição', 'esperanca', 'sofrimento'], fontes: ['A Esperança na Perseguição - Paul Marshall'] },
+  { id: 'vida-036', titulo: 'A Alegria no Serviço', categoria: 'Vida Crista', subcategoria: 'Eclesiologia', conteudo: ['O serviço cristão traz alegria.', 'Devemos servir com amor.', 'O serviço é expressão de gratidão.', 'Deus recompensa o serviço fiel.', 'O serviço glorifica a Deus.'], versicosChave: ['Mateus 25:21', '1 Pedro 4:10-11', 'Colossenses 3:23-24'], tags: ['servico', 'alegria', 'ministerio'], fontes: ['O Serviço Alegre - Gene Wilkes'] },
   // Mais Eclesiologia
-  { id: 'ecles-016', titulo: 'A Evangelização Pessoal', categoria: 'Eclesiologia', subcategoria: 'Missão', conteudo: ['A evangelização pessoal é responsabilidade de todos.', 'Devemos compartilhar o evangelho.', 'O testemunho pessoal é poderoso.', 'A evangelização requer coragem.', 'O amor facilita a evangelização.'], versicosChave: ['Romanos 10:14-15', 'Marcos 16:15', '1 Pedro 3:15'], tags: ['evangelizacao', 'pessoal', 'testemunho'], fontes: ['Evangelismo Pessoal - D. James Kennedy'] },
+  { id: 'ecles-016', titulo: 'A Evangelização Pessoal', categoria: 'Eclesiologia', subcategoria: 'Missiologia', conteudo: ['A evangelização pessoal é responsabilidade de todos.', 'Devemos compartilhar o evangelho.', 'O testemunho pessoal é poderoso.', 'A evangelização requer coragem.', 'O amor facilita a evangelização.'], versicosChave: ['Romanos 10:14-15', 'Marcos 16:15', '1 Pedro 3:15'], tags: ['evangelizacao', 'pessoal', 'testemunho'], fontes: ['Evangelismo Pessoal - D. James Kennedy'] },
   // Mais Pneumatologia
-  { id: 'pneum-016', titulo: 'O Poder do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Poder', conteudo: ['O Espírito Santo é poder de Deus.', 'O poder se manifesta em testemunho.', 'O poder se manifesta em santidade.', 'O poder se manifesta em dons.', 'O poder é para edificação da igreja.'], versicosChave: ['Atos 1:8', 'Efésios 3:16-20', 'Romanos 15:13'], tags: ['espirito santo', 'poder', 'edificacao'], fontes: ['O Poder do Espírito - John Stott'] },
+  { id: 'pneum-016', titulo: 'O Poder do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Vida Crista', conteudo: ['O Espírito Santo é poder de Deus.', 'O poder se manifesta em testemunho.', 'O poder se manifesta em santidade.', 'O poder se manifesta em dons.', 'O poder é para edificação da igreja.'], versicosChave: ['Atos 1:8', 'Efésios 3:16-20', 'Romanos 15:13'], tags: ['espirito santo', 'poder', 'edificacao'], fontes: ['O Poder do Espírito - John Stott'] },
   // Mais Teologia Própria
-  { id: 'teoprop-014', titulo: 'A Graça Santificadora', categoria: 'Teologia Proper', subcategoria: 'Graça', conteudo: ['A graça não apenas salva, mas santifica.', 'A graça transforma o caráter.', 'A graça capacita para a obediência.', 'A graça é suficiente em toda a vida.', 'A graça glorifica a Deus.'], versicosChave: ['Efésios 2:8-10', 'Tito 2:11-12', '1 Coríntios 15:10'], tags: ['graca', 'santificacao', 'transformacao'], fontes: ['A Graça - Jerry Bridges'] },
+  { id: 'teoprop-014', titulo: 'A Graça Santificadora', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['A graça não apenas salva, mas santifica.', 'A graça transforma o caráter.', 'A graça capacita para a obediência.', 'A graça é suficiente em toda a vida.', 'A graça glorifica a Deus.'], versicosChave: ['Efésios 2:8-10', 'Tito 2:11-12', '1 Coríntios 15:10'], tags: ['graca', 'santificacao', 'transformacao'], fontes: ['A Graça - Jerry Bridges'] },
   // Mais Escatologia
-  { id: 'escat-014', titulo: 'A Vitória sobre a Morte', categoria: 'Escatologia', subcategoria: 'Ressurreição', conteudo: ['A morte é o último inimigo.', 'Cristo venceu a morte na ressurreição.', 'A morte não tem mais poder.', 'A ressurreição é a vitória final.', 'Devemos viver sem medo da morte.'], versicosChave: ['1 Coríntios 15:54-57', '2 Timóteo 1:10', 'Hebreus 2:14-15'], tags: ['morte', 'vitoria', 'ressurreicao'], fontes: ['A Vitória sobre a Morte - N.T. Wright'] },
+  { id: 'escat-014', titulo: 'A Vitória sobre a Morte', categoria: 'Escatologia', subcategoria: 'Cristologia', conteudo: ['A morte é o último inimigo.', 'Cristo venceu a morte na ressurreição.', 'A morte não tem mais poder.', 'A ressurreição é a vitória final.', 'Devemos viver sem medo da morte.'], versicosChave: ['1 Coríntios 15:54-57', '2 Timóteo 1:10', 'Hebreus 2:14-15'], tags: ['morte', 'vitoria', 'ressurreicao'], fontes: ['A Vitória sobre a Morte - N.T. Wright'] },
   // Mais Apologética
-  { id: 'apol-013', titulo: 'A Transformação Social pelo Evangelho', categoria: 'Apologetica', subcategoria: 'Evidências', conteudo: ['O evangelho transformou sociedades.', 'O cristianismo aboliu a escravidão.', 'O cristianismo promoveu a educação.', 'O cristianismo promoveu a justiça.', 'A transformação é evidência do evangelho.'], versicosChave: ['Mateus 5:13-16', 'Gálatas 3:28'], tags: ['transformacao', 'social', 'evidencia'], fontes: ['O Impacto do Evangelho - David Livingstone'] },
+  { id: 'apol-013', titulo: 'A Transformação Social pelo Evangelho', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['O evangelho transformou sociedades.', 'O cristianismo aboliu a escravidão.', 'O cristianismo promoveu a educação.', 'O cristianismo promoveu a justiça.', 'A transformação é evidência do evangelho.'], versicosChave: ['Mateus 5:13-16', 'Gálatas 3:28'], tags: ['transformacao', 'social', 'evidencia'], fontes: ['O Impacto do Evangelho - David Livingstone'] },
   // Mais Ética
-  { id: 'etica-017', titulo: 'A Ética da Misericórdia', categoria: 'Etica Crista', subcategoria: 'Amor', conteudo: ['Deus deseja misericórdia, não sacrifícios.', 'Devemos ser misericordiosos.', 'A misericórdia se manifesta em ação.', 'Deus é misericordioso conosco.', 'A misericórdia glorifica a Deus.'], versicosChave: ['Miquéias 6:8', 'Mateus 5:7', 'Lucas 6:36'], tags: ['misericordia', 'amor', 'etica'], fontes: ['A Misericórdia - Timothy Keller'] },
-  { id: 'etica-018', titulo: 'A Ética da Temperança', categoria: 'Etica Crista', subcategoria: 'Caráter', conteudo: ['A temperança é fruto do Espírito.', 'Devemos ser moderados em tudo.', 'A temperança é autocontrole.', 'A temperança glorifica a Deus.', 'A temperança é necessária em tempos difíceis.'], versicosChave: ['Gálatas 5:22-23', '1 Coríntios 9:24-27', '1 Pedro 1:13'], tags: ['temperanca', 'caráter', 'autocontrole'], fontes: ['A Temperança - Daniel Doriani'] },
+  { id: 'etica-017', titulo: 'A Ética da Misericórdia', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['Deus deseja misericórdia, não sacrifícios.', 'Devemos ser misericordiosos.', 'A misericórdia se manifesta em ação.', 'Deus é misericordioso conosco.', 'A misericórdia glorifica a Deus.'], versicosChave: ['Miquéias 6:8', 'Mateus 5:7', 'Lucas 6:36'], tags: ['misericordia', 'amor', 'etica'], fontes: ['A Misericórdia - Timothy Keller'] },
+  { id: 'etica-018', titulo: 'A Ética da Temperança', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['A temperança é fruto do Espírito.', 'Devemos ser moderados em tudo.', 'A temperança é autocontrole.', 'A temperança glorifica a Deus.', 'A temperança é necessária em tempos difíceis.'], versicosChave: ['Gálatas 5:22-23', '1 Coríntios 9:24-27', '1 Pedro 1:13'], tags: ['temperanca', 'caráter', 'autocontrole'], fontes: ['A Temperança - Daniel Doriani'] },
   // Mais Missiologia
-  { id: 'miss-011', titulo: 'A Missão entre os Jovens', categoria: 'Missiologia', subcategoria: 'Juventude', conteudo: ['Os jovens são campo missionário.', 'O evangelho deve ser comunicado com relevância.', 'As mídias sociais são ferramentas.', 'A comunidade é essencial.', 'A verdade se manifesta em amor.'], versicosChave: ['Mateus 28:19-20', '1 Coríntios 9:22-23'], tags: ['jovens', 'missao', 'evangelismo'], fontes: ['Missão entre Jovens - David Rahn'] },
+  { id: 'miss-011', titulo: 'A Missão entre os Jovens', categoria: 'Missiologia', subcategoria: 'Vida Crista', conteudo: ['Os jovens são campo missionário.', 'O evangelho deve ser comunicado com relevância.', 'As mídias sociais são ferramentas.', 'A comunidade é essencial.', 'A verdade se manifesta em amor.'], versicosChave: ['Mateus 28:19-20', '1 Coríntios 9:22-23'], tags: ['jovens', 'missao', 'evangelismo'], fontes: ['Missão entre Jovens - David Rahn'] },
   // Mais Família
-  { id: 'fam-012', titulo: 'A Oração pelos Filhos', categoria: 'Vida Crista', subcategoria: 'Família', conteudo: ['A oração pelos filhos é essencial.', 'Devemos orar diariamente.', 'A oração protege e guia.', 'A oração é arma espiritual.', 'Deus responde orações por nossos filhos.'], versicosChave: ['1 Tessalonicenses 5:17', 'Efésios 6:18', 'Salmo 127:3-5'], tags: ['oracao', 'filhos', 'protecao'], fontes: ['O Poder da Oração pelos Filhos - Stormie Omartian'] },
+  { id: 'fam-012', titulo: 'A Oração pelos Filhos', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A oração pelos filhos é essencial.', 'Devemos orar diariamente.', 'A oração protege e guia.', 'A oração é arma espiritual.', 'Deus responde orações por nossos filhos.'], versicosChave: ['1 Tessalonicenses 5:17', 'Efésios 6:18', 'Salmo 127:3-5'], tags: ['oracao', 'filhos', 'protecao'], fontes: ['O Poder da Oração pelos Filhos - Stormie Omartian'] },
   // Mais Liderança
-  { id: 'lid-010', titulo: 'A Liderança e a Integridade', categoria: 'Eclesiologia', subcategoria: 'Liderança', conteudo: ['A integridade é essencial para liderar.', 'O líder deve ser pessoa de palavra.', 'A integridade se manifesta em tudo.', 'Deus busca a integridade do coração.', 'A integridade é base da confiança.'], versicosChave: ['Salmo 15:1-2', 'Provérbios 10:9', '1 Timóteo 3:1-7'], tags: ['lideranca', 'integridade', 'confianca'], fontes: ['A Integridade na Liderança - Terry Walling'] },
+  { id: 'lid-010', titulo: 'A Liderança e a Integridade', categoria: 'Eclesiologia', subcategoria: 'Vida Crista', conteudo: ['A integridade é essencial para liderar.', 'O líder deve ser pessoa de palavra.', 'A integridade se manifesta em tudo.', 'Deus busca a integridade do coração.', 'A integridade é base da confiança.'], versicosChave: ['Salmo 15:1-2', 'Provérbios 10:9', '1 Timóteo 3:1-7'], tags: ['lideranca', 'integridade', 'confianca'], fontes: ['A Integridade na Liderança - Terry Walling'] },
   // Mais Arqueologia
-  { id: 'arqueo-010', titulo: 'A Coluna de Jacó', categoria: 'Historia da Igreja', subcategoria: 'Arqueologia', conteudo: ['Uma coluna de pedra foi encontrada em Betel.', 'Pode ter sido usada por Jacó.', 'A arqueologia esclarece detalhes bíblicos.', 'A Bíblia é confiável historicamente.', 'Cada descoberta aumenta a confiabilidade.'], versicosChave: ['Gênesis 28:18-22', 'Gênesis 35:14-15'], tags: ['arqueologia', 'jaco', 'betel'], fontes: ['Arqueologia e Bíblia - V. Philips Long'] },
+  { id: 'arqueo-010', titulo: 'A Coluna de Jacó', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['Uma coluna de pedra foi encontrada em Betel.', 'Pode ter sido usada por Jacó.', 'A arqueologia esclarece detalhes bíblicos.', 'A Bíblia é confiável historicamente.', 'Cada descoberta aumenta a confiabilidade.'], versicosChave: ['Gênesis 28:18-22', 'Gênesis 35:14-15'], tags: ['arqueologia', 'jaco', 'betel'], fontes: ['Arqueologia e Bíblia - V. Philips Long'] },
   // Mais Biografias
-  { id: 'biog-013', titulo: 'A Vida de John Wesley', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['Wesley fundou o metodismo.', 'Pregou para multidões ao ar livre.', 'Enfatizou a santidade e a perfeição.', 'Sua pregação transformou a Inglaterra.', 'Seu legado continua no metodismo mundial.'], versicosChave: ['1 Tessalonicenses 4:3', 'Hebreus 12:14'], tags: ['wesley', 'metodismo', 'santidade'], fontes: ['John Wesley - Henry Knight'] },
+  { id: 'biog-013', titulo: 'A Vida de John Wesley', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Wesley fundou o metodismo.', 'Pregou para multidões ao ar livre.', 'Enfatizou a santidade e a perfeição.', 'Sua pregação transformou a Inglaterra.', 'Seu legado continua no metodismo mundial.'], versicosChave: ['1 Tessalonicenses 4:3', 'Hebreus 12:14'], tags: ['wesley', 'metodismo', 'santidade'], fontes: ['John Wesley - Henry Knight'] },
   // Mais Linguística
-  { id: 'ling-010', titulo: 'A Relevância do Hebraico Bíblico', categoria: 'Linguas Biblicas', subcategoria: 'Hebraico', conteudo: ['O hebraico é a língua do AT.', 'O estudo enriquece o entendimento.', 'As nuances são importantes.', 'O hebraico reflete a cultura israelita.', 'O lexico Strong contém 8674 entradas.'], versicosChave: ['Gênesis 1:1', 'Salmo 119:105'], tags: ['hebraico', 'at', 'lingua'], fontes: ['Gramática do Hebraico - Joüon-Muraoka'] },
+  { id: 'ling-010', titulo: 'A Relevância do Hebraico Bíblico', categoria: 'Bibliologia', subcategoria: 'Bibliologia', conteudo: ['O hebraico é a língua do AT.', 'O estudo enriquece o entendimento.', 'As nuances são importantes.', 'O hebraico reflete a cultura israelita.', 'O lexico Strong contém 8674 entradas.'], versicosChave: ['Gênesis 1:1', 'Salmo 119:105'], tags: ['hebraico', 'at', 'lingua'], fontes: ['Gramática do Hebraico - Joüon-Muraoka'] },
   // Mais Hermenêutica
-  { id: 'herm-71', titulo: 'A Interpretação de João 3:16', categoria: 'Hermenêutica', subcategoria: 'Métodos', conteudo: ['João 3:16 é o versículo mais famoso.', 'O contexto é a conversa com Nicodemos.', 'O amor de Deus é universal e específico.', 'A fé é o meio da salvação.', 'A vida eterna é o resultado.'], versicosChave: ['João 3:16'], tags: ['joao', 'interpretacao', 'salvacao'], fontes: ['Como Interpretar João - Andreas Köstenberger'] },
+  { id: 'herm-71', titulo: 'A Interpretação de João 3:16', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['João 3:16 é o versículo mais famoso.', 'O contexto é a conversa com Nicodemos.', 'O amor de Deus é universal e específico.', 'A fé é o meio da salvação.', 'A vida eterna é o resultado.'], versicosChave: ['João 3:16'], tags: ['joao', 'interpretacao', 'salvacao'], fontes: ['Como Interpretar João - Andreas Köstenberger'] },
   // Mais Práticas
-  { id: 'prat-015', titulo: 'A Adoração no Espírito', categoria: 'Vida Crista', subcategoria: 'Adoração', conteudo: ['A adoração deve ser em espirito e verdade.', 'O Espírito guia na adoração.', 'A adoração é vida, não apenas evento.', 'Devemos adorar com reverência.', 'A adoração glorifica a Deus.'], versicosChave: ['João 4:23-24', 'Efésios 5:18-19'], tags: ['adoracao', 'espirito', 'verdade'], fontes: ['A Adoração - James White'] },
+  { id: 'prat-015', titulo: 'A Adoração no Espírito', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A adoração deve ser em espirito e verdade.', 'O Espírito guia na adoração.', 'A adoração é vida, não apenas evento.', 'Devemos adorar com reverência.', 'A adoração glorifica a Deus.'], versicosChave: ['João 4:23-24', 'Efésios 5:18-19'], tags: ['adoracao', 'espirito', 'verdade'], fontes: ['A Adoração - James White'] },
   // Mais Teologia
-  { id: 'tema-014', titulo: 'A Nova Aliança e o Espírito', categoria: 'Teologia Biblica', subcategoria: 'Aliança', conteudo: ['A Nova Aliança envolve o Espírito.', 'Deus escreve Sua lei no coração.', 'O perdão é completo.', 'A comunhão com Deus é direta.', 'A Nova Aliança é melhor que a antiga.'], versicosChave: ['Jeremias 31:31-34', 'Hebreus 8:6-13'], tags: ['alianca nova', 'espirito', 'perdao'], fontes: ['A Teologia da Aliança - O. Palmer Robertson'] },
+  { id: 'tema-014', titulo: 'A Nova Aliança e o Espírito', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['A Nova Aliança envolve o Espírito.', 'Deus escreve Sua lei no coração.', 'O perdão é completo.', 'A comunhão com Deus é direta.', 'A Nova Aliança é melhor que a antiga.'], versicosChave: ['Jeremias 31:31-34', 'Hebreus 8:6-13'], tags: ['alianca nova', 'espirito', 'perdao'], fontes: ['A Teologia da Aliança - O. Palmer Robertson'] },
 
-  { id: 'livro-182', titulo: 'O Livro de 1 Pedro', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['1 Pedro e sobre sofrimento e esperanca.', 'A fe e provada pelo fogo.', 'Cristo e exemplo de sofrimento.', 'Devemos ser santos em toda a conduta.', 'A esperanca viva e nossa heranca.'], versicosChave: ['1 Pedro 1:3-9', '1 Pedro 2:21-25', '1 Pedro 4:12-19'], tags: ['pedro', 'sofrimento', 'esperanca'], fontes: ['Comentario a 1 Pedro - Karen Jobes'] },
-  { id: 'livro-183', titulo: 'O Livro de 2 Pedro', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['2 Pedro alerta contra falsos mestres.', 'A escatologia e enfatizada.', 'A Palavra e viva e permanente.', 'Devemos crescer em graça.', 'A volta de Cristo e certa.'], versicosChave: ['2 Pedro 1:3-8', '2 Pedro 3:1-18'], tags: ['pedro', 'falsos mestres', 'escatologia'], fontes: ['Comentario a 2 Pedro - Douglas Moo'] },
-  { id: 'livro-184', titulo: 'O Livro de 1 Joao', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['1 Joao e sobre o amor e a verdade.', 'Deus e amor.', 'A comunhao com Deus e essencial.', 'O amor se manifesta em acao.', 'Devemos testar os espiritos.'], versicosChave: ['1 Joao 1:3', '1 Joao 4:8, 16', '1 Joao 4:1-3'], tags: ['joao', 'amor', 'verdade'], fontes: ['Comentario a 1 Joao - Robert Yarbrough'] },
-  { id: 'livro-185', titulo: 'O Livro de Judas', categoria: 'Temas por Livro', subcategoria: 'Epistolas', conteudo: ['Judas alerta contra falsos mestres.', 'A fe deve ser defendida.', 'Deus julgara os impies.', 'Devemos ser misericordiosos.', 'Deus pode nos manter firmes.'], versicosChave: ['Judas 1:3-4, 20-25'], tags: ['judas', 'falsos mestres', 'defesa'], fontes: ['Comentario a Judas - Douglas Moo'] },
+  { id: 'livro-182', titulo: 'O Livro de 1 Pedro', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['1 Pedro e sobre sofrimento e esperanca.', 'A fe e provada pelo fogo.', 'Cristo e exemplo de sofrimento.', 'Devemos ser santos em toda a conduta.', 'A esperanca viva e nossa heranca.'], versicosChave: ['1 Pedro 1:3-9', '1 Pedro 2:21-25', '1 Pedro 4:12-19'], tags: ['pedro', 'sofrimento', 'esperanca'], fontes: ['Comentario a 1 Pedro - Karen Jobes'] },
+  { id: 'livro-183', titulo: 'O Livro de 2 Pedro', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['2 Pedro alerta contra falsos mestres.', 'A escatologia e enfatizada.', 'A Palavra e viva e permanente.', 'Devemos crescer em graça.', 'A volta de Cristo e certa.'], versicosChave: ['2 Pedro 1:3-8', '2 Pedro 3:1-18'], tags: ['pedro', 'falsos mestres', 'escatologia'], fontes: ['Comentario a 2 Pedro - Douglas Moo'] },
+  { id: 'livro-184', titulo: 'O Livro de 1 Joao', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['1 Joao e sobre o amor e a verdade.', 'Deus e amor.', 'A comunhao com Deus e essencial.', 'O amor se manifesta em acao.', 'Devemos testar os espiritos.'], versicosChave: ['1 Joao 1:3', '1 Joao 4:8, 16', '1 Joao 4:1-3'], tags: ['joao', 'amor', 'verdade'], fontes: ['Comentario a 1 Joao - Robert Yarbrough'] },
+  { id: 'livro-185', titulo: 'O Livro de Judas', categoria: 'Teologia Bíblica', subcategoria: 'Teologia Bíblica', conteudo: ['Judas alerta contra falsos mestres.', 'A fe deve ser defendida.', 'Deus julgara os impies.', 'Devemos ser misericordiosos.', 'Deus pode nos manter firmes.'], versicosChave: ['Judas 1:3-4, 20-25'], tags: ['judas', 'falsos mestres', 'defesa'], fontes: ['Comentario a Judas - Douglas Moo'] },
   { id: 'doutr-153', titulo: 'A Justificacao e a Glorificacao', categoria: 'Doutrinas Fundamentais', subcategoria: 'Soteriologia', conteudo: ['A glorificacao e a consumacao da salvacao.', 'O crente sera transformado.', 'Seremos como Cristo.', 'A glorificacao completa a redencao.', 'A glorificacao e certa e definitiva.'], versicosChave: ['Romanos 8:30', '1 Corintios 15:51-57', '1 Joao 3:2'], tags: ['glorificacao', 'salvacao', 'eternidade'], fontes: ['Teologia Sistematica - Wayne Grudem'] },
-  { id: 'contemp-79', titulo: 'A Crise da Dependencia Digital', categoria: 'Questoes Contemporaneas', subcategoria: 'Tecnologia', conteudo: ['A dependencia de dispositivos e crescente.', 'Deus deve ser prioridade.', 'Devemos usar a tecnologia com sabedoria.', 'A comunhao presencial e essencial.', 'A fe nao depende de tecnologia.'], versicosChave: ['Mateus 6:33', 'Hebreus 10:24-25'], tags: ['dependencia', 'digital', 'tecnologia'], fontes: ['Amantes Desatentos - Nicholas Carr'] },
-  { id: 'comp-71', titulo: 'Cristianismo vs. Humanismo Secular', categoria: 'Estudos Comparativos', subcategoria: 'Filosofia', conteudo: ['O humanismo coloca o homem no centro.', 'O cristianismo coloca Deus no centro.', 'O humanismo e relativista.', 'O cristianismo e absolutista.', 'O evangelho transforma o humano.'], versicosChave: ['Romanos 12:1-2', 'Efesios 2:8-10'], tags: ['humanismo', 'secularismo', 'filosofia'], fontes: ['Cristianismo e Humanismo - Norman Geisler'] },
-  { id: 'hist-69', titulo: 'A Revolucao Francesa e a Igreja', categoria: 'Historia da Igreja', subcategoria: 'Perseguicao', conteudo: ['A Revolucao Francesa perseguiu a igreja.', 'Muitos cristaos foram martirizados.', 'A igreja sobreviveu e cresceu.', 'Deus e soberano sobre as revolucoes.', 'A fe e provada no fogo.'], versicosChave: ['Mateus 16:18', 'Romanos 8:35-37'], tags: ['revolucao', 'franca', 'perseguicao'], fontes: ['Historia da Igreja - Justo Gonzalez'] },
-  { id: 'herm-72', titulo: 'A Interpretacao de Mateus 24-25', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['Mateus 24-25 e o discurso escatologico.', 'As parabolas tem pontos especificos.', 'O contexto e a volta de Cristo.', 'Devemos estar preparados.', 'Ninguem sabe a hora exata.'], versicosChave: ['Mateus 24:36', 'Mateus 25:1-13'], tags: ['mateus', 'escatologia', 'interpretacao'], fontes: ['Como Interpretar Mateus - R.T. France'] },
-  { id: 'vida-037', titulo: 'A Fe na Adversidade', categoria: 'Vida Crista', subcategoria: 'Sofrimento', conteudo: ['A fe e provada na adversidade.', 'Deus e fiel mesmo no sofrimento.', 'A perseveranca produz carater.', 'Devemos confiar em Deus.', 'A fe vence o medo.'], versicosChave: ['Tiago 1:2-4', '1 Pedro 1:6-7', 'Romanos 5:3-5'], tags: ['fe', 'adversidade', 'perseveranca'], fontes: ['A Fe na Adversidade - James Dobson'] },
-  { id: 'vida-038', titulo: 'A Humildade no Sofrimento', categoria: 'Vida Crista', subcategoria: 'Sofrimento', conteudo: ['O sofrimento produz humildade.', 'Devemos nos submeter a Deus.', 'Deus resiste aos soberbos.', 'A humildade e caminho para a exaltacao.', 'Cristo e nosso exemplo.'], versicosChave: ['Tiago 4:6-7, 10', '1 Pedro 5:5-6', 'Filipenses 2:5-8'], tags: ['humildade', 'sofrimento', 'submissao'], fontes: ['A Humildade - Tim Keller'] },
-  { id: 'ecles-017', titulo: 'A Comunhao dos Crentes', categoria: 'Eclesiologia', subcategoria: 'Comunidade', conteudo: ['A comunhao e essencial para a fe.', 'Devemos buscar a comunhao.', 'A comunhao fortalece.', 'A comunhao e expressao do amor.', 'A comunhao prepara para a eternidade.'], versicosChave: ['Hebreus 10:24-25', 'Atos 2:42-47'], tags: ['comunhao', 'crentes', 'comunidade'], fontes: ['A Comunhao dos Santos - Dietrich Bonhoeffer'] },
-  { id: 'pneum-017', titulo: 'A Uncao do Espirito Santo', categoria: 'Pneumatologia', subcategoria: 'Uncao', conteudo: ['A uncao capacita para ministerio.', 'Todos os crentes sao uncos.', 'A uncao produz frutos.', 'A uncao e real e transformadora.', 'Devemos viver na uncao do Espirito.'], versicosChave: ['1 Joao 2:20, 27', '2 Corintios 1:21-22'], tags: ['uncao', 'espirito santo', 'ministerio'], fontes: ['A Uncao do Espirito - R. Sproul'] },
-  { id: 'teoprop-015', titulo: 'A Bondade de Deus na Historia', categoria: 'Teologia Proper', subcategoria: 'Atributos', conteudo: ['A bondade de Deus se manifesta na historia.', 'Deus age com misericordia e justica.', 'A bondade de Deus e constante.', 'A bondade de Deus e evidente na salvacao.', 'Devemos reconhecer e celebrar a bondade.'], versicosChave: ['Salmo 107:1', 'Salmo 136:1', 'Romanos 2:4'], tags: ['bondade', 'historia', 'misericordia'], fontes: ['Deus - J.I. Packer'] },
-  { id: 'escat-015', titulo: 'A Eternidade com Deus', categoria: 'Escatologia', subcategoria: 'Eternidade', conteudo: ['A eternidade e comunhao perfeita com Deus.', 'Nao haverá mais lagrimas.', 'Deus sera tudo em todos.', 'A eternidade e a consumacao de todas as coisas.', 'Devemos viver em preparacao para a eternidade.'], versicosChave: ['Apocalipse 21:1-4', '1 Corintios 13:12', '1 Joao 3:2'], tags: ['eternidade', 'deus', 'comunhao'], fontes: ['A Eternidade - Randy Alcorn'] },
-  { id: 'apol-014', titulo: 'A Confianca nos Manuscritos', categoria: 'Apologetica', subcategoria: 'Evidencias', conteudo: ['Temos mais de 5.800 manuscritos gregos.', 'As variantes sao minimas.', 'A Biblia e o livro mais bem preservado.', 'A confianca e justificada.', 'Deus preservou Sua Palavra.'], versicosChave: ['Salmo 119:89', 'Isaias 40:8'], tags: ['manuscritos', 'confianca', 'preservacao'], fontes: ['O Texto do NT - Bruce Metzger'] },
-  { id: 'etica-019', titulo: 'A Etica da Generosidade', categoria: 'Etica Crista', subcategoria: 'Mordomia', conteudo: ['Devemos ser generosos.', 'Deus abencoa quem da.', 'A generosidade e evidencia de fe.', 'Devemos cuidar dos necessitados.', 'A generosidade glorifica a Deus.'], versicosChave: ['2 Corintios 9:6-8', 'Lucas 6:38', 'Proverbios 11:25'], tags: ['generosidade', 'etica', 'mordomia'], fontes: ['A Mordomia da Vida - Randy Alcorn'] },
-  { id: 'etica-020', titulo: 'A Etica da Verdade', categoria: 'Etica Crista', subcategoria: 'Verdade', conteudo: ['Devemos amar a verdade.', 'A mentira e pecado.', 'Devemos falar a verdade com amor.', 'A verdade nos liberta.', 'Deus e a fonte de toda verdade.'], versicosChave: ['Efesios 4:15, 25', 'Joao 8:32', 'Salmo 15:2'], tags: ['verdade', 'etica', 'honestidade'], fontes: ['A Verdade Crista - Norman Geisler'] },
-  { id: 'miss-012', titulo: 'A Missao entre os Pobres', categoria: 'Missiologia', subcategoria: 'Missoes', conteudo: ['Deus tem preferencia pelos pobres.', 'Jesus identificou-se com os marginalizados.', 'A igreja deve servir os necessitados.', 'O amor ao proximo inclui acao.', 'A missao social e complementar.'], versicosChave: ['Mateus 25:35-40', 'Tiago 1:27', 'Isaias 58:6-7'], tags: ['pobres', 'missao', 'servico'], fontes: ['Ministerio aos Pobres - Robert Lupton'] },
-  { id: 'fam-013', titulo: 'A Paz no Lar', categoria: 'Vida Crista', subcategoria: 'Familia', conteudo: ['A paz e fruto do Espirito.', 'Devemos buscar a paz no lar.', 'O conflito deve ser resolvido biblicamente.', 'O perdao traz paz.', 'Deus e o autor da paz.'], versicosChave: ['Colossenses 3:15', 'Romanos 12:18', 'Efesios 4:26-27'], tags: ['paz', 'lar', 'perdao'], fontes: ['A Paz no Lar - Gary Chapman'] },
-  { id: 'lid-011', titulo: 'A Lideranca e o Servico', categoria: 'Eclesiologia', subcategoria: 'Lideranca', conteudo: ['O maior e o servo de todos.', 'Jesus lavou os pes dos discipulos.', 'A lideranca e sacrificio.', 'O exemplo e mais poderoso que as palavras.', 'Deus julga os lideres com mais rigor.'], versicosChave: ['Joao 13:14-17', 'Marcos 10:43-45', 'Tiago 3:1'], tags: ['lideranca', 'servico', 'humildade'], fontes: ['O Lider Serviçal - Ken Blanchard'] },
-  { id: 'arqueo-011', titulo: 'A Pedra de Roseta e a Biblia', categoria: 'Historia da Igreja', subcategoria: 'Arqueologia', conteudo: ['A Pedra de Roseta decifrou hieroglifos.', 'Isso ajudou a entender a historia egipcia.', 'Confirma detalhes biblicos sobre o Egito.', 'A arqueologia sustenta a Biblia.', 'Cada descoberta aumenta a confiabilidade.'], versicosChave: ['Exodo 5:1-2'], tags: ['arqueologia', 'egito', 'pedra roseta'], fontes: ['Arqueologia e Biblia - Kenneth Kitchen'] },
-  { id: 'biog-014', titulo: 'A Vida de Dietrich Bonhoeffer', categoria: 'Historia da Igreja', subcategoria: 'Personagens', conteudo: ['Bonhoeffer resistiu ao nazismo.', 'Escreveu O Custo do Discipulado.', 'Foi martirizado em 1945.', 'Enfatizou a fe practica.', 'Sua teologia influencia ate hoje.'], versicosChave: ['Mateus 16:24', 'Lucas 9:23'], tags: ['bonhoeffer', 'resistencia', 'discipulado'], fontes: ['Bonhoeffer - Eric Metaxas'] },
-  { id: 'ling-011', titulo: 'O Canone da Biblia', categoria: 'Linguas Biblicas', subcategoria: 'Canone', conteudo: ['O canone biblico foi reconhecido pela igreja primitiva.', '66 livros sao divinamente inspirados.', 'O canone e fechado e completo.', 'Deus preservou Sua Palavra.', 'O canone e base da fe cristã.'], versicosChave: ['2 Timoteo 3:16', 'Apocalipse 22:18-19'], tags: ['canone', 'biblia', 'inspiracao'], fontes: ['O Canone Biblico - Michael Kruger'] },
+  { id: 'contemp-79', titulo: 'A Crise da Dependencia Digital', categoria: 'Questões Contemporâneas', subcategoria: 'Questões Contemporâneas', conteudo: ['A dependencia de dispositivos e crescente.', 'Deus deve ser prioridade.', 'Devemos usar a tecnologia com sabedoria.', 'A comunhao presencial e essencial.', 'A fe nao depende de tecnologia.'], versicosChave: ['Mateus 6:33', 'Hebreus 10:24-25'], tags: ['dependencia', 'digital', 'tecnologia'], fontes: ['Amantes Desatentos - Nicholas Carr'] },
+  { id: 'comp-71', titulo: 'Cristianismo vs. Humanismo Secular', categoria: 'Estudos Comparativos', subcategoria: 'Questões Contemporâneas', conteudo: ['O humanismo coloca o homem no centro.', 'O cristianismo coloca Deus no centro.', 'O humanismo e relativista.', 'O cristianismo e absolutista.', 'O evangelho transforma o humano.'], versicosChave: ['Romanos 12:1-2', 'Efesios 2:8-10'], tags: ['humanismo', 'secularismo', 'filosofia'], fontes: ['Cristianismo e Humanismo - Norman Geisler'] },
+  { id: 'hist-69', titulo: 'A Revolucao Francesa e a Igreja', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['A Revolucao Francesa perseguiu a igreja.', 'Muitos cristaos foram martirizados.', 'A igreja sobreviveu e cresceu.', 'Deus e soberano sobre as revolucoes.', 'A fe e provada no fogo.'], versicosChave: ['Mateus 16:18', 'Romanos 8:35-37'], tags: ['revolucao', 'franca', 'perseguicao'], fontes: ['Historia da Igreja - Justo Gonzalez'] },
+  { id: 'herm-72', titulo: 'A Interpretacao de Mateus 24-25', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['Mateus 24-25 e o discurso escatologico.', 'As parabolas tem pontos especificos.', 'O contexto e a volta de Cristo.', 'Devemos estar preparados.', 'Ninguem sabe a hora exata.'], versicosChave: ['Mateus 24:36', 'Mateus 25:1-13'], tags: ['mateus', 'escatologia', 'interpretacao'], fontes: ['Como Interpretar Mateus - R.T. France'] },
+  { id: 'vida-037', titulo: 'A Fe na Adversidade', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A fe e provada na adversidade.', 'Deus e fiel mesmo no sofrimento.', 'A perseveranca produz carater.', 'Devemos confiar em Deus.', 'A fe vence o medo.'], versicosChave: ['Tiago 1:2-4', '1 Pedro 1:6-7', 'Romanos 5:3-5'], tags: ['fe', 'adversidade', 'perseveranca'], fontes: ['A Fe na Adversidade - James Dobson'] },
+  { id: 'vida-038', titulo: 'A Humildade no Sofrimento', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['O sofrimento produz humildade.', 'Devemos nos submeter a Deus.', 'Deus resiste aos soberbos.', 'A humildade e caminho para a exaltacao.', 'Cristo e nosso exemplo.'], versicosChave: ['Tiago 4:6-7, 10', '1 Pedro 5:5-6', 'Filipenses 2:5-8'], tags: ['humildade', 'sofrimento', 'submissao'], fontes: ['A Humildade - Tim Keller'] },
+  { id: 'ecles-017', titulo: 'A Comunhao dos Crentes', categoria: 'Eclesiologia', subcategoria: 'Eclesiologia', conteudo: ['A comunhao e essencial para a fe.', 'Devemos buscar a comunhao.', 'A comunhao fortalece.', 'A comunhao e expressao do amor.', 'A comunhao prepara para a eternidade.'], versicosChave: ['Hebreus 10:24-25', 'Atos 2:42-47'], tags: ['comunhao', 'crentes', 'comunidade'], fontes: ['A Comunhao dos Santos - Dietrich Bonhoeffer'] },
+  { id: 'pneum-017', titulo: 'A Uncao do Espirito Santo', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['A uncao capacita para ministerio.', 'Todos os crentes sao uncos.', 'A uncao produz frutos.', 'A uncao e real e transformadora.', 'Devemos viver na uncao do Espirito.'], versicosChave: ['1 Joao 2:20, 27', '2 Corintios 1:21-22'], tags: ['uncao', 'espirito santo', 'ministerio'], fontes: ['A Uncao do Espirito - R. Sproul'] },
+  { id: 'teoprop-015', titulo: 'A Bondade de Deus na Historia', categoria: 'Doutrinas Fundamentais', subcategoria: 'Doutrinas Fundamentais', conteudo: ['A bondade de Deus se manifesta na historia.', 'Deus age com misericordia e justica.', 'A bondade de Deus e constante.', 'A bondade de Deus e evidente na salvacao.', 'Devemos reconhecer e celebrar a bondade.'], versicosChave: ['Salmo 107:1', 'Salmo 136:1', 'Romanos 2:4'], tags: ['bondade', 'historia', 'misericordia'], fontes: ['Deus - J.I. Packer'] },
+  { id: 'escat-015', titulo: 'A Eternidade com Deus', categoria: 'Escatologia', subcategoria: 'Escatologia', conteudo: ['A eternidade e comunhao perfeita com Deus.', 'Nao haverá mais lagrimas.', 'Deus sera tudo em todos.', 'A eternidade e a consumacao de todas as coisas.', 'Devemos viver em preparacao para a eternidade.'], versicosChave: ['Apocalipse 21:1-4', '1 Corintios 13:12', '1 Joao 3:2'], tags: ['eternidade', 'deus', 'comunhao'], fontes: ['A Eternidade - Randy Alcorn'] },
+  { id: 'apol-014', titulo: 'A Confianca nos Manuscritos', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['Temos mais de 5.800 manuscritos gregos.', 'As variantes sao minimas.', 'A Biblia e o livro mais bem preservado.', 'A confianca e justificada.', 'Deus preservou Sua Palavra.'], versicosChave: ['Salmo 119:89', 'Isaias 40:8'], tags: ['manuscritos', 'confianca', 'preservacao'], fontes: ['O Texto do NT - Bruce Metzger'] },
+  { id: 'etica-019', titulo: 'A Etica da Generosidade', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['Devemos ser generosos.', 'Deus abencoa quem da.', 'A generosidade e evidencia de fe.', 'Devemos cuidar dos necessitados.', 'A generosidade glorifica a Deus.'], versicosChave: ['2 Corintios 9:6-8', 'Lucas 6:38', 'Proverbios 11:25'], tags: ['generosidade', 'etica', 'mordomia'], fontes: ['A Mordomia da Vida - Randy Alcorn'] },
+  { id: 'etica-020', titulo: 'A Etica da Verdade', categoria: 'Questões Contemporâneas', subcategoria: 'Vida Crista', conteudo: ['Devemos amar a verdade.', 'A mentira e pecado.', 'Devemos falar a verdade com amor.', 'A verdade nos liberta.', 'Deus e a fonte de toda verdade.'], versicosChave: ['Efesios 4:15, 25', 'Joao 8:32', 'Salmo 15:2'], tags: ['verdade', 'etica', 'honestidade'], fontes: ['A Verdade Crista - Norman Geisler'] },
+  { id: 'miss-012', titulo: 'A Missao entre os Pobres', categoria: 'Missiologia', subcategoria: 'Missiologia', conteudo: ['Deus tem preferencia pelos pobres.', 'Jesus identificou-se com os marginalizados.', 'A igreja deve servir os necessitados.', 'O amor ao proximo inclui acao.', 'A missao social e complementar.'], versicosChave: ['Mateus 25:35-40', 'Tiago 1:27', 'Isaias 58:6-7'], tags: ['pobres', 'missao', 'servico'], fontes: ['Ministerio aos Pobres - Robert Lupton'] },
+  { id: 'fam-013', titulo: 'A Paz no Lar', categoria: 'Vida Crista', subcategoria: 'Vida Crista', conteudo: ['A paz e fruto do Espirito.', 'Devemos buscar a paz no lar.', 'O conflito deve ser resolvido biblicamente.', 'O perdao traz paz.', 'Deus e o autor da paz.'], versicosChave: ['Colossenses 3:15', 'Romanos 12:18', 'Efesios 4:26-27'], tags: ['paz', 'lar', 'perdao'], fontes: ['A Paz no Lar - Gary Chapman'] },
+  { id: 'lid-011', titulo: 'A Lideranca e o Servico', categoria: 'Eclesiologia', subcategoria: 'Vida Crista', conteudo: ['O maior e o servo de todos.', 'Jesus lavou os pes dos discipulos.', 'A lideranca e sacrificio.', 'O exemplo e mais poderoso que as palavras.', 'Deus julga os lideres com mais rigor.'], versicosChave: ['Joao 13:14-17', 'Marcos 10:43-45', 'Tiago 3:1'], tags: ['lideranca', 'servico', 'humildade'], fontes: ['O Lider Serviçal - Ken Blanchard'] },
+  { id: 'arqueo-011', titulo: 'A Pedra de Roseta e a Biblia', categoria: 'História da Igreja', subcategoria: 'História da Igreja', conteudo: ['A Pedra de Roseta decifrou hieroglifos.', 'Isso ajudou a entender a historia egipcia.', 'Confirma detalhes biblicos sobre o Egito.', 'A arqueologia sustenta a Biblia.', 'Cada descoberta aumenta a confiabilidade.'], versicosChave: ['Exodo 5:1-2'], tags: ['arqueologia', 'egito', 'pedra roseta'], fontes: ['Arqueologia e Biblia - Kenneth Kitchen'] },
+  { id: 'biog-014', titulo: 'A Vida de Dietrich Bonhoeffer', categoria: 'História da Igreja', subcategoria: 'Teologia Bíblica', conteudo: ['Bonhoeffer resistiu ao nazismo.', 'Escreveu O Custo do Discipulado.', 'Foi martirizado em 1945.', 'Enfatizou a fe practica.', 'Sua teologia influencia ate hoje.'], versicosChave: ['Mateus 16:24', 'Lucas 9:23'], tags: ['bonhoeffer', 'resistencia', 'discipulado'], fontes: ['Bonhoeffer - Eric Metaxas'] },
+  { id: 'ling-011', titulo: 'O Canone da Biblia', categoria: 'Bibliologia', subcategoria: 'Bibliologia', conteudo: ['O canone biblico foi reconhecido pela igreja primitiva.', '66 livros sao divinamente inspirados.', 'O canone e fechado e completo.', 'Deus preservou Sua Palavra.', 'O canone e base da fe cristã.'], versicosChave: ['2 Timoteo 3:16', 'Apocalipse 22:18-19'], tags: ['canone', 'biblia', 'inspiracao'], fontes: ['O Canone Biblico - Michael Kruger'] },
 
-  { id: 'herm-73', titulo: 'A Gramatica do NT', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['O grego do NT tem regras proprias.', 'A sintaxe ajuda na interpretacao.', 'Devemos estudar o vocabulario.', 'O contexto e a chave.', 'A gramatica e fundamental para a hermeneutica.'], versicosChave: ['2 Timoteo 2:15'], tags: ['gramatica', 'nt', 'grego'], fontes: ['Gramatica do Grego - Daniel Wallace'] },
-  { id: 'herm-74', titulo: 'A Hermeneutica Historica', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A hermeneutica historica busca o significado original.', 'Considera o contexto historico e cultural.', 'Usa ferramentas criticas.', 'O objetivo e a fidelidade ao texto.', 'A hermeneutica e rigorosa e humilde.'], versicosChave: ['2 Timoteo 2:15', 'Atos 17:10-11'], tags: ['hermeneutica', 'historica', 'metodo'], fontes: ['Hermenapeutica - Grant Osborne'] },
-  { id: 'herm-75', titulo: 'A Hermeneutica Teologica', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A hermeneutica teologica integra teologia e interpretacao.', 'Busca o significado teologico do texto.', 'Considera o todo da Escritura.', 'A teologia guia a interpretacao.', 'A hermeneutica e para a vida.'], versicosChave: ['2 Pedro 1:20-21'], tags: ['hermeneutica', 'teologica', 'metodo'], fontes: ['Hermenapeutica Teologica - Enns'] },
-  { id: 'herm-76', titulo: 'A Hermeneutica Pastoral', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A hermeneutica pastoral aplica o texto a vida.', 'O objetivo e a transformacao.', 'Devemos ser praticos.', 'A pregação é hermeneutica aplicada.', 'A hermeneutica pastoral é para a igreja.'], versicosChave: ['2 Timoteo 4:2'], tags: ['hermeneutica', 'pastoral', 'pregacao'], fontes: ['A Pregacao - Haddon Robinson'] },
-  { id: 'herm-77', titulo: 'A Hermeneutica Literaria', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A hermeneutica literaria estuda o texto como literatura.', 'Considera genero, estilo e estrutura.', 'O autor usa artificios literarios.', 'A literatura expressa verdade.', 'A hermeneutica literaria e complementar.'], versicosChave: ['Salmo 1:1-2'], tags: ['hermeneutica', 'literaria', 'genero'], fontes: ['Literatura e Interpretacao - Leland Ryken'] },
-  { id: 'herm-78', titulo: 'A Hermeneutica Canonica', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A hermeneutica canonica considera o canone como todo.', 'A Escritura se interpreta pela Escritura.', 'O canonico e a regra de fe.', 'A unidade da Escritura é fundamental.', 'A hermeneutica canonica é para a igreja.'], versicosChave: ['Lucas 24:27'], tags: ['hermeneutica', 'canonica', 'canon'], fontes: ['A Hermeneutica Canonica - Michael Kruger'] },
-  { id: 'herm-79', titulo: 'A Hermeneutica Narrativa', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A hermeneutica narrativa estuda a narrativa biblica.', 'Considera personagens, enredo e tema.', 'A narrativa ensina verdades.', 'A narrativa é mais que historia.', 'A hermeneutica narrativa é praticada.'], versicosChave: ['Lucas 1:1-4'], tags: ['hermeneutica', 'narrativa', 'estudo'], fontes: ['Narrativa e Historia - Robert Alter'] },
-  { id: 'herm-80', titulo: 'A Hermeneutica do AT', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['O AT tem desafios proprios.', 'A lingua hebraica e essencial.', 'O contexto historico e crucial.', 'O AT aponta para Cristo.', 'A hermeneutica do AT é para a igreja.'], versicosChave: ['Lucas 24:27', 'Joao 5:39'], tags: ['hermeneutica', 'at', 'hebraico'], fontes: ['Hermenapeutica do AT - R.R. Reno'] },
-  { id: 'herm-81', titulo: 'A Hermeneutica do NT', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['O NT é revelação progressiva.', 'Cristo é o centro do NT.', 'O grego do NT é essencial.', 'O contexto é crucial.', 'A hermeneutica do NT é para a vida.'], versicosChave: ['Hebreus 1:1-2'], tags: ['hermeneutica', 'nt', 'grego'], fontes: ['Hermeneutica do NT - D.A. Carson'] },
-  { id: 'herm-82', titulo: 'A Hermeneuetica Apocaliptica', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A hermeneuetica apocaliptica estuda o Apocalipse.', 'Considera simbolismo e revelacao.', 'O autor usa imagens profeticas.', 'A interpretacao e desafiadora.', 'A hermeneuetica apocaliptica é para a esperanca.'], versicosChave: ['Apocalipse 1:1-3'], tags: ['hermeneutica', 'apocalipse', 'simbolismo'], fontes: ['Hermenapeutica Apocaliptica - Craig Keener'] },
-  { id: 'herm-83', titulo: 'A Hermeneuetica Poetica', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A hermeneuetica poetica estuda a poesia biblica.', 'Considera paralelismo e metro.', 'A poesia expressa emocoes.', 'O Salmo e a forma poetica por excelencia.', 'A hermeneuetica poetica e para a adoracao.'], versicosChave: ['Salmo 1:1-6'], tags: ['hermeneutica', 'poesia', 'salmo'], fontes: ['Poesia Hebraica - James Kugel'] },
-  { id: 'herm-84', titulo: 'A Hermeneuetica Profetica', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A hermeneuetica profetica estuda os profetas.', 'Considera contexto historico e escatologico.', 'As profecias tem cumprimento parcial e total.', 'O profeta fala da parte de Deus.', 'A hermeneuetica profetica é para a fidelidade.'], versicosChave: ['Deuteronomio 18:22'], tags: ['hermeneutica', 'profeta', 'profecia'], fontes: ['Hermenapeutica Profetica - Walter Brueggemann'] },
-  { id: 'herm-85', titulo: 'A Hermeneuetica Epistolar', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A hermeneuetica epistolar estuda as epistolas.', 'Considera o autor, destinatario e contexto.', 'As epistolas sao cartas reais.', 'A aplicacao é para a igreja.', 'A hermeneuetica epistolar é para a vida.'], versicosChave: ['2 Pedro 3:15-16'], tags: ['hermeneutica', 'epistola', 'carta'], fontes: ['Hermeneutica Epistolar - Moises Silva'] },
-  { id: 'herm-86', titulo: 'A Hermeneuetica Narrativa AT', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A narrativa do AT tem generos proprios.', 'Historia, leyenda, mito.', 'A interpretacao deve ser cuidadosa.', 'A narrativa ensina verdades.', 'A hermeneuetica narrativa AT é para a fidelidade.'], versicosChave: ['Lucas 24:27'], tags: ['hermeneutica', 'narrativa', 'at'], fontes: ['Narrativa AT - Robert Alter'] },
-  { id: 'herm-87', titulo: 'A Hermeneuetica Literaria NT', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A literatura do NT é rica.', 'Generos: evangelho, epistola, apocalipse.', 'A interpretacao deve considerar o genero.', 'A literatura expressa verdade.', 'A hermeneuetica literaria NT é complementar.'], versicosChave: ['2 Pedro 1:16-21'], tags: ['hermeneutica', 'literaria', 'nt'], fontes: ['Literatura NT - David Aune'] },
-  { id: 'herm-88', titulo: 'A Hermeneuetica Canonica AT', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['O AT como todo tem coerencia.', 'A Escritura se interpreta pela Escritura.', 'O canonico AT aponta para Cristo.', 'A unidade do AT é fundamental.', 'A hermeneuetica canonica AT é para a igreja.'], versicosChave: ['Lucas 24:27', 'Joao 5:39'], tags: ['hermeneutica', 'canonica', 'at'], fontes: ['Hermeneutica Canonica AT - Brevard Childs'] },
-  { id: 'herm-89', titulo: 'A Hermeneuetica Canonica NT', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['O NT como todo tem coerencia.', 'A Escritura se interpreta pela Escritura.', 'O canonico NT é centrado em Cristo.', 'A unidade do NT é fundamental.', 'A hermeneuetica canonica NT é para a igreja.'], versicosChave: ['Hebreus 1:1-2'], tags: ['hermeneutica', 'canonica', 'nt'], fontes: ['Hermeneutica Canonica NT - Michael Kruger'] },
-  { id: 'herm-90', titulo: 'A Hermeneuetica do Evangelho', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['Os evangelhos sao genero proprio.', 'Sao biografias antigas.', 'A interpretacao deve considerar o genero.', 'O evangelho e centrado em Cristo.', 'A hermeneuetica do evangelho é para o discipulado.'], versicosChave: ['João 20:30-31'], tags: ['hermeneutica', 'evangelho', 'jesus'], fontes: ['Hermeneutica do Evangelho - D.A. Carson'] },
-  { id: 'herm-91', titulo: 'A Hermeneuetica do Apocalipse', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['O Apocalipse é livro profetico-apocaliptico.', 'Considera simbolismo e contexto.', 'As visoes são revelacoes.', 'A interpretacao é desafiadora.', 'A hermeneuetica do Apocalipse é para a esperanca.'], versicosChave: ['Apocalipse 1:1-3', 'Apocalipse 22:18-19'], tags: ['hermeneutica', 'apocalipse', 'revelacao'], fontes: ['Hermeneutica do Apocalipse - Craig Keener'] },
-  { id: 'herm-92', titulo: 'A Hermeneuetica das Epistolas', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['As epistolas sao cartas reais.', 'Considera autor, destinatario e contexto.', 'A interpretacao deve ser historica.', 'As epistolas sao para a igreja.', 'A hermeneuetica das epistolas é para a vida.'], versicosChave: ['2 Pedro 3:15-16'], tags: ['hermeneutica', 'epistolas', 'cartas'], fontes: ['Hermeneutica das Epistolas - Moises Silva'] },
-  { id: 'herm-93', titulo: 'A Hermeneuetica da Historia', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A historia biblica é revelacao.', 'O autor é inspirado.', 'A historia ensina verdades.', 'A interpretacao deve ser cuidadosa.', 'A hermeneuetica da historia é para a fidelidade.'], versicosChave: ['Romanos 15:4'], tags: ['hermeneutica', 'historia', 'revelacao'], fontes: ['Hermeneutica da Historia - V. Philips Long'] },
-  { id: 'herm-94', titulo: 'A Hermeneuetica da Poesia', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A poesia biblica é genero proprio.', 'Considera paralelismo e metro.', 'A poesia expressa emocoes.', 'A interpretacao deve ser sensivel.', 'A hermeneuetica da poesia é para a adoracao.'], versicosChave: ['Salmo 1:1-6', 'Proverbios 1:1-7'], tags: ['hermeneutica', 'poesia', 'salmos'], fontes: ['Hermeneutica da Poesia - James Kugel'] },
-  { id: 'herm-95', titulo: 'A Hermeneuetica da Lei', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['A lei tem generos proprios.', 'Cerimonial, moral, civil.', 'A interpretacao deve distinguir.', 'A lei aponta para Cristo.', 'A hermeneuetica da lei é para a vida.'], versicosChave: ['Mateus 5:17-19'], tags: ['hermeneutica', 'lei', 'mosaica'], fontes: ['Hermeneutica da Lei - Michael Morales'] },
-  { id: 'herm-96', titulo: 'A Hermeneuetica dos Salmos', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['Os salmos sao oracoes e louvores.', 'Considera genero e contexto.', 'Alguns sao messianicos.', 'A interpretacao deve ser devocional.', 'A hermeneuetica dos salmos é para a adoracao.'], versicosChave: ['Salmo 1:1-2', 'Salmo 119:105'], tags: ['hermeneutica', 'salmos', 'adoracao'], fontes: ['Hermeneutica dos Salmos - Tremper Longman III'] },
-  { id: 'herm-97', titulo: 'A Hermeneuetica dos Proverbios', categoria: 'Hermenapeutica', subcategoria: 'Metodos', conteudo: ['Os proverbios sao sabedoria pratica.', 'Nem todos sao promessas.', 'A interpretacao deve ser cuidadosa.', 'A sabedoria se aplica a vida.', 'A hermeneuetica dos proverbios é para a sabedoria.'], versicosChave: ['Proverbios 1:1-7'], tags: ['hermeneutica', 'proverbios', 'sabedoria'], fontes: ['Hermeneutica dos Proverbios - Tremper Longman III'] },
+  { id: 'herm-73', titulo: 'A Gramatica do NT', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['O grego do NT tem regras proprias.', 'A sintaxe ajuda na interpretacao.', 'Devemos estudar o vocabulario.', 'O contexto e a chave.', 'A gramatica e fundamental para a hermeneutica.'], versicosChave: ['2 Timoteo 2:15'], tags: ['gramatica', 'nt', 'grego'], fontes: ['Gramatica do Grego - Daniel Wallace'] },
+  { id: 'herm-74', titulo: 'A Hermeneutica Historica', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A hermeneutica historica busca o significado original.', 'Considera o contexto historico e cultural.', 'Usa ferramentas criticas.', 'O objetivo e a fidelidade ao texto.', 'A hermeneutica e rigorosa e humilde.'], versicosChave: ['2 Timoteo 2:15', 'Atos 17:10-11'], tags: ['hermeneutica', 'historica', 'metodo'], fontes: ['Hermenapeutica - Grant Osborne'] },
+  { id: 'herm-75', titulo: 'A Hermeneutica Teologica', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A hermeneutica teologica integra teologia e interpretacao.', 'Busca o significado teologico do texto.', 'Considera o todo da Escritura.', 'A teologia guia a interpretacao.', 'A hermeneutica e para a vida.'], versicosChave: ['2 Pedro 1:20-21'], tags: ['hermeneutica', 'teologica', 'metodo'], fontes: ['Hermenapeutica Teologica - Enns'] },
+  { id: 'herm-76', titulo: 'A Hermeneutica Pastoral', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A hermeneutica pastoral aplica o texto a vida.', 'O objetivo e a transformacao.', 'Devemos ser praticos.', 'A pregação é hermeneutica aplicada.', 'A hermeneutica pastoral é para a igreja.'], versicosChave: ['2 Timoteo 4:2'], tags: ['hermeneutica', 'pastoral', 'pregacao'], fontes: ['A Pregacao - Haddon Robinson'] },
+  { id: 'herm-77', titulo: 'A Hermeneutica Literaria', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A hermeneutica literaria estuda o texto como literatura.', 'Considera genero, estilo e estrutura.', 'O autor usa artificios literarios.', 'A literatura expressa verdade.', 'A hermeneutica literaria e complementar.'], versicosChave: ['Salmo 1:1-2'], tags: ['hermeneutica', 'literaria', 'genero'], fontes: ['Literatura e Interpretacao - Leland Ryken'] },
+  { id: 'herm-78', titulo: 'A Hermeneutica Canonica', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A hermeneutica canonica considera o canone como todo.', 'A Escritura se interpreta pela Escritura.', 'O canonico e a regra de fe.', 'A unidade da Escritura é fundamental.', 'A hermeneutica canonica é para a igreja.'], versicosChave: ['Lucas 24:27'], tags: ['hermeneutica', 'canonica', 'canon'], fontes: ['A Hermeneutica Canonica - Michael Kruger'] },
+  { id: 'herm-79', titulo: 'A Hermeneutica Narrativa', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A hermeneutica narrativa estuda a narrativa biblica.', 'Considera personagens, enredo e tema.', 'A narrativa ensina verdades.', 'A narrativa é mais que historia.', 'A hermeneutica narrativa é praticada.'], versicosChave: ['Lucas 1:1-4'], tags: ['hermeneutica', 'narrativa', 'estudo'], fontes: ['Narrativa e Historia - Robert Alter'] },
+  { id: 'herm-80', titulo: 'A Hermeneutica do AT', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['O AT tem desafios proprios.', 'A lingua hebraica e essencial.', 'O contexto historico e crucial.', 'O AT aponta para Cristo.', 'A hermeneutica do AT é para a igreja.'], versicosChave: ['Lucas 24:27', 'Joao 5:39'], tags: ['hermeneutica', 'at', 'hebraico'], fontes: ['Hermenapeutica do AT - R.R. Reno'] },
+  { id: 'herm-81', titulo: 'A Hermeneutica do NT', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['O NT é revelação progressiva.', 'Cristo é o centro do NT.', 'O grego do NT é essencial.', 'O contexto é crucial.', 'A hermeneutica do NT é para a vida.'], versicosChave: ['Hebreus 1:1-2'], tags: ['hermeneutica', 'nt', 'grego'], fontes: ['Hermeneutica do NT - D.A. Carson'] },
+  { id: 'herm-82', titulo: 'A Hermeneuetica Apocaliptica', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A hermeneuetica apocaliptica estuda o Apocalipse.', 'Considera simbolismo e revelacao.', 'O autor usa imagens profeticas.', 'A interpretacao e desafiadora.', 'A hermeneuetica apocaliptica é para a esperanca.'], versicosChave: ['Apocalipse 1:1-3'], tags: ['hermeneutica', 'apocalipse', 'simbolismo'], fontes: ['Hermenapeutica Apocaliptica - Craig Keener'] },
+  { id: 'herm-83', titulo: 'A Hermeneuetica Poetica', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A hermeneuetica poetica estuda a poesia biblica.', 'Considera paralelismo e metro.', 'A poesia expressa emocoes.', 'O Salmo e a forma poetica por excelencia.', 'A hermeneuetica poetica e para a adoracao.'], versicosChave: ['Salmo 1:1-6'], tags: ['hermeneutica', 'poesia', 'salmo'], fontes: ['Poesia Hebraica - James Kugel'] },
+  { id: 'herm-84', titulo: 'A Hermeneuetica Profetica', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A hermeneuetica profetica estuda os profetas.', 'Considera contexto historico e escatologico.', 'As profecias tem cumprimento parcial e total.', 'O profeta fala da parte de Deus.', 'A hermeneuetica profetica é para a fidelidade.'], versicosChave: ['Deuteronomio 18:22'], tags: ['hermeneutica', 'profeta', 'profecia'], fontes: ['Hermenapeutica Profetica - Walter Brueggemann'] },
+  { id: 'herm-85', titulo: 'A Hermeneuetica Epistolar', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A hermeneuetica epistolar estuda as epistolas.', 'Considera o autor, destinatario e contexto.', 'As epistolas sao cartas reais.', 'A aplicacao é para a igreja.', 'A hermeneuetica epistolar é para a vida.'], versicosChave: ['2 Pedro 3:15-16'], tags: ['hermeneutica', 'epistola', 'carta'], fontes: ['Hermeneutica Epistolar - Moises Silva'] },
+  { id: 'herm-86', titulo: 'A Hermeneuetica Narrativa AT', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A narrativa do AT tem generos proprios.', 'Historia, leyenda, mito.', 'A interpretacao deve ser cuidadosa.', 'A narrativa ensina verdades.', 'A hermeneuetica narrativa AT é para a fidelidade.'], versicosChave: ['Lucas 24:27'], tags: ['hermeneutica', 'narrativa', 'at'], fontes: ['Narrativa AT - Robert Alter'] },
+  { id: 'herm-87', titulo: 'A Hermeneuetica Literaria NT', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A literatura do NT é rica.', 'Generos: evangelho, epistola, apocalipse.', 'A interpretacao deve considerar o genero.', 'A literatura expressa verdade.', 'A hermeneuetica literaria NT é complementar.'], versicosChave: ['2 Pedro 1:16-21'], tags: ['hermeneutica', 'literaria', 'nt'], fontes: ['Literatura NT - David Aune'] },
+  { id: 'herm-88', titulo: 'A Hermeneuetica Canonica AT', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['O AT como todo tem coerencia.', 'A Escritura se interpreta pela Escritura.', 'O canonico AT aponta para Cristo.', 'A unidade do AT é fundamental.', 'A hermeneuetica canonica AT é para a igreja.'], versicosChave: ['Lucas 24:27', 'Joao 5:39'], tags: ['hermeneutica', 'canonica', 'at'], fontes: ['Hermeneutica Canonica AT - Brevard Childs'] },
+  { id: 'herm-89', titulo: 'A Hermeneuetica Canonica NT', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['O NT como todo tem coerencia.', 'A Escritura se interpreta pela Escritura.', 'O canonico NT é centrado em Cristo.', 'A unidade do NT é fundamental.', 'A hermeneuetica canonica NT é para a igreja.'], versicosChave: ['Hebreus 1:1-2'], tags: ['hermeneutica', 'canonica', 'nt'], fontes: ['Hermeneutica Canonica NT - Michael Kruger'] },
+  { id: 'herm-90', titulo: 'A Hermeneuetica do Evangelho', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['Os evangelhos sao genero proprio.', 'Sao biografias antigas.', 'A interpretacao deve considerar o genero.', 'O evangelho e centrado em Cristo.', 'A hermeneuetica do evangelho é para o discipulado.'], versicosChave: ['João 20:30-31'], tags: ['hermeneutica', 'evangelho', 'jesus'], fontes: ['Hermeneutica do Evangelho - D.A. Carson'] },
+  { id: 'herm-91', titulo: 'A Hermeneuetica do Apocalipse', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['O Apocalipse é livro profetico-apocaliptico.', 'Considera simbolismo e contexto.', 'As visoes são revelacoes.', 'A interpretacao é desafiadora.', 'A hermeneuetica do Apocalipse é para a esperanca.'], versicosChave: ['Apocalipse 1:1-3', 'Apocalipse 22:18-19'], tags: ['hermeneutica', 'apocalipse', 'revelacao'], fontes: ['Hermeneutica do Apocalipse - Craig Keener'] },
+  { id: 'herm-92', titulo: 'A Hermeneuetica das Epistolas', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['As epistolas sao cartas reais.', 'Considera autor, destinatario e contexto.', 'A interpretacao deve ser historica.', 'As epistolas sao para a igreja.', 'A hermeneuetica das epistolas é para a vida.'], versicosChave: ['2 Pedro 3:15-16'], tags: ['hermeneutica', 'epistolas', 'cartas'], fontes: ['Hermeneutica das Epistolas - Moises Silva'] },
+  { id: 'herm-93', titulo: 'A Hermeneuetica da Historia', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A historia biblica é revelacao.', 'O autor é inspirado.', 'A historia ensina verdades.', 'A interpretacao deve ser cuidadosa.', 'A hermeneuetica da historia é para a fidelidade.'], versicosChave: ['Romanos 15:4'], tags: ['hermeneutica', 'historia', 'revelacao'], fontes: ['Hermeneutica da Historia - V. Philips Long'] },
+  { id: 'herm-94', titulo: 'A Hermeneuetica da Poesia', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A poesia biblica é genero proprio.', 'Considera paralelismo e metro.', 'A poesia expressa emocoes.', 'A interpretacao deve ser sensivel.', 'A hermeneuetica da poesia é para a adoracao.'], versicosChave: ['Salmo 1:1-6', 'Proverbios 1:1-7'], tags: ['hermeneutica', 'poesia', 'salmos'], fontes: ['Hermeneutica da Poesia - James Kugel'] },
+  { id: 'herm-95', titulo: 'A Hermeneuetica da Lei', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['A lei tem generos proprios.', 'Cerimonial, moral, civil.', 'A interpretacao deve distinguir.', 'A lei aponta para Cristo.', 'A hermeneuetica da lei é para a vida.'], versicosChave: ['Mateus 5:17-19'], tags: ['hermeneutica', 'lei', 'mosaica'], fontes: ['Hermeneutica da Lei - Michael Morales'] },
+  { id: 'herm-96', titulo: 'A Hermeneuetica dos Salmos', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['Os salmos sao oracoes e louvores.', 'Considera genero e contexto.', 'Alguns sao messianicos.', 'A interpretacao deve ser devocional.', 'A hermeneuetica dos salmos é para a adoracao.'], versicosChave: ['Salmo 1:1-2', 'Salmo 119:105'], tags: ['hermeneutica', 'salmos', 'adoracao'], fontes: ['Hermeneutica dos Salmos - Tremper Longman III'] },
+  { id: 'herm-97', titulo: 'A Hermeneuetica dos Proverbios', categoria: 'Hermenêutica', subcategoria: 'Hermenêutica', conteudo: ['Os proverbios sao sabedoria pratica.', 'Nem todos sao promessas.', 'A interpretacao deve ser cuidadosa.', 'A sabedoria se aplica a vida.', 'A hermeneuetica dos proverbios é para a sabedoria.'], versicosChave: ['Proverbios 1:1-7'], tags: ['hermeneutica', 'proverbios', 'sabedoria'], fontes: ['Hermeneutica dos Proverbios - Tremper Longman III'] },
+
+  // ===== ANTROPOLOGIA =====
+  { id: 'anth-008', titulo: 'A Imagem de Deus no Homem', categoria: 'Antropologia', subcategoria: 'Antropologia', conteudo: ['A Bíblia ensina que o homem foi criado à imagem e semelhança de Deus.', 'A imagem de Deus inclui aspectos morais, racionais e relacionais.', 'O homem é distinto de toda a criação por possuir essa imagem.', 'A imagem foi corrompida pelo pecado mas não destruída.', 'Cristo restaura a imagem de Deus no crente.'], versicosChave: ['Gênesis 1:26-27', '1 Coríntios 11:7', 'Colossenses 3:10'], tags: ['imagem de Deus', 'antropologia', 'criação'], fontes: ['Anthony Hoekema, Created in the Image of God', 'John Murray, The Image of God in Man'] },
+  { id: 'anth-009', titulo: 'A Queda e suas Consequências', categoria: 'Antropologia', subcategoria: 'Antropologia', conteudo: ['A queda do homem ocorreu no Éden por desobediência.', 'O pecado original corrompeu toda a natureza humana.', 'As consequências incluem separação de Deus, morte espiritual e física.', 'A maldição se estendeu a toda a criação.', 'O plano redentor de Deus foi revelado imediatamente após a queda.'], versicosChave: ['Gênesis 3:1-24', 'Romanos 5:12', 'Efésios 2:1-3'], tags: ['queda', 'pecado original', 'consequências'], fontes: ['Anthony Hoekema, The Four Major Cults', 'Norman Geisler, Systematic Theology'] },
+  { id: 'anth-010', titulo: 'A Natureza Humana Dividida', categoria: 'Antropologia', subcategoria: 'Antropologia', conteudo: ['O crente experimenta uma guerra interna entre a carne e o Espírito.', 'Paulo descreve essa luta em Romanos 7.', 'A carne deseja o que é contrário à vontade de Deus.', 'O Espírito Santo capacita o crente a vencer.', 'A vitória vem pela dependência diária de Cristo.'], versicosChave: ['Romanos 7:14-25', 'Gálatas 5:16-17'], tags: ['guerra interior', 'carne', 'espírito'], fontes: ['John Owen, Mortificação do Pecado', 'R.C. Sproul, A Queda do Homem'] },
+  { id: 'anth-011', titulo: 'O Propósito do Homem: Adorar a Deus', categoria: 'Antropologia', subcategoria: 'Antropologia', conteudo: ['O propósito fundamental do homem é glorificar a Deus.', 'A adoração é o fim último da criação.', 'Todo ser humano será juizado por seu propósito.', 'A adoração verdadeira é em espírito e verdade.', 'A criação inteira declara a glória de Deus.'], versicosChave: ['Isaías 43:7', 'Salmo 86:9', 'Apocalipse 4:11'], tags: ['propósito', 'adoração', 'glória'], fontes: ['John Piper, Desiring God', 'Westminster Catechism'] },
+  { id: 'anth-012', titulo: 'A Dignidade Humana na Bíblia', categoria: 'Antropologia', subcategoria: 'Antropologia', conteudo: ['Todo ser humano possui dignidade intrínseca pela criação divina.', 'O homem foi criado à imagem de Deus e é valioso aos Seus olhos.', 'A dignidade humana é a base para a ética cristã.', 'Deus conhece cada pessoa antes do nascimento.', 'A dignidade é restaurada em Cristo.'], versicosChave: ['Salmo 139:13-16', 'Gênesis 9:6', 'Atos 17:28'], tags: ['dignidade', 'valor intrínseco', 'imago Dei'], fontes: ['Francis Schaeffer, The Complete Works', 'Carl F.H. Henry, God, Revelation and Authority'] },
+  { id: 'anth-013', titulo: 'Corpo, Alma e Espírito', categoria: 'Antropologia', subcategoria: 'Antropologia', conteudo: ['A Bíblia apresenta o homem como composto de corpo, alma e espírito.', 'O corpo é o vasso material criado do pó da terra.', 'A alma é a vida interior, sede das emoções e vontade.', 'O espírito é a parte que comunica com Deus.', 'Deus deseja que todo o homem seja santificado.'], versicosChave: ['1 Tessalonicenses 5:23', 'Hebreus 4:12', 'Gênesis 2:7'], tags: ['composição humana', 'tricotomia', 'corpo alma espírito'], fontes: ['Norman Geisler, Theology, Volume 2', 'Millard Erickson, Christian Theology'] },
+  { id: 'anth-014', titulo: 'A Vocação Humana: Trabalho e Guardião', categoria: 'Antropologia', subcategoria: 'Antropologia', conteudo: ['Deus designou o trabalho antes da queda.', 'O trabalho é uma vocação divina, não apenas necessidade.', 'Devemos trabalhar como para o Senhor.', 'O trabalho frutífero é bênção de Deus.', 'A stewardship inclui o cuidado com a criação.'], versicosChave: ['Gênesis 2:15', 'Colossenses 3:23', 'Provérbios 14:23'], tags: ['trabalho', 'vocação', 'stewardship'], fontes: ['Tim Keller, Every Good Endeavor', 'Abraham Kuyper, Lectures on Calvinism'] },
+  { id: 'anth-015', titulo: 'O Ser Social: Criado para Comunhão', categoria: 'Antropologia', subcategoria: 'Antropologia', conteudo: ['Deus criou o homem para comunhão, não para solidão.', 'A necessidade humana de comunidade reflete a Trindade.', 'A fellowship dos crentes é essencial para o discipulado.', 'Deus habita no meio dos que se reúnem em Seu nome.', 'A comunidade cristã prefigura a eternidade.'], versicosChave: ['Gênesis 2:18', 'Eclesiastes 4:9-12', 'Atos 2:42-47'], tags: ['comunhão', 'comunidade', 'relações'], fontes: ['Dietrich Bonhoeffer, Life Together', 'Joseph Hellerman, When the Church Was a Family'] },
+
+  // ===== HAMARTIOLOGIA =====
+  { id: 'ham-005', titulo: 'A Origem do Pecado: De Adão a Humanidade', categoria: 'Hamartiologia', subcategoria: 'Hamartiologia', conteudo: ['O pecado entrou no mundo por um só homem: Adão.', 'A imputação do pecado afeta toda a humanidade.', 'Assim como em Adão todos morrem, em Cristo todos serão vivificados.', 'O pecado federal explica a representação de Adão.', 'A graça de Deus supera a ofensa do pecado.'], versicosChave: ['Romanos 5:12-21', '1 Coríntios 15:21-22'], tags: ['pecado original', 'imputação', 'pecado federal'], fontes: ['John Murray, The Imputation of Adam\'s Sin', 'Geerhardus Vos, Biblical Theology'] },
+  { id: 'ham-006', titulo: 'Pecado Original vs Pecado Actual', categoria: 'Hamartiologia', subcategoria: 'Hamartiologia', conteudo: ['O pecado original é a corrupção herdada de Adão.', 'O pecado actual são os atos pecaminosos que cometemos.', 'A natureza pecaminosa gera os atos de pecado.', 'Todos nascem com inclinação ao mal.', 'A graça de Deus transforma tanto a natureza quanto o comportamento.'], versicosChave: ['Romanos 7:7-13', 'Tiago 1:14-15'], tags: ['pecado original', 'pecado actual', 'natureza pecaminosa'], fontes: ['Louis Berkhof, Systematic Theology', 'Augustine, City of God'] },
+  { id: 'ham-007', titulo: 'A Total Depravidade do Homem', categoria: 'Hamartiologia', subcategoria: 'Hamartiologia', conteudo: ['A total depravidade significa que toda parte do homem é afetada pelo pecado.', 'Não significa que o homem seja tão mau quanto poderia ser.', 'A mente, a vontade e as emoções estão corrompidas.', 'O homem é incapaz de buscar a Deus por si mesmo.', 'A regeneração é necessária para a salvação.'], versicosChave: ['Gênesis 6:5', 'Romanos 3:10-18', 'Jeremias 17:9'], tags: ['depravação total', 'corrupção', 'incapacidade'], fontes: ['R.C. Sproul, The Holiness of God', 'Charles Hodge, Systematic Theology'] },
+  { id: 'ham-008', titulo: 'Pecado Capital: Sete Abominações', categoria: 'Hamartiologia', subcategoria: 'Hamartiologia', conteudo: ['Os pecados capitais são raizes de outros pecados.', 'A soberba é o pecado original de Satanás.', 'A avareza escraviza o coração ao materialismo.', 'A inveja destrói relacionamentos.', 'Jesus ensinou que os pecados do coração污染 the whole person.'], versicosChave: ['Provérbios 6:16-19', 'Mateus 15:19'], tags: ['pecados capitais', 'vícios', 'abominações'], fontes: ['Gregory of Nyssa, On the Origin of Sin', 'Robert Bellarmine, The Seven Capital Sins'] },
+  { id: 'ham-009', titulo: 'A Universaldade do Pecado', categoria: 'Hamartiologia', subcategoria: 'Hamartiologia', conteudo: ['Não há justo, nem um sequer.', 'Todos pecaram e estão destituídos da glória de Deus.', 'A consciência testifica contra todo ser humano.', 'Mesmo a melhor justiça humana é como trapos.', 'A universalidade do pecado demonstra a necessidade da graça.'], versicosChave: ['Romanos 3:23', 'Eclesiastes 7:20', '1 João 1:8'], tags: ['universalidade', 'pecado', 'graça necessária'], fontes: ['Augustine, Confessions', 'John Calvin, Institutes of the Christian Religion'] },
+
+  // ===== TEOLOGIA SISTEMÁTICA =====
+  { id: 'ts-008', titulo: 'A Revelação Geral e Especial', categoria: 'Teologia Sistemática', subcategoria: 'Teologia Sistemática', conteudo: ['Deus se revela através da criação (revelação geral).', 'As estrelas e a natureza declaram a glória de Deus.', 'A revelação especial é dada nas Escrituras.', 'A Bíblia é a palavra infalível de Deus.', 'Ambas as revelações apontam para o mesmo Deus.'], versicosChave: ['Salmo 19:1-6', 'Romanos 1:19-20', '2 Timóteo 3:16'], tags: ['revelação', 'creacionismo', 'inspiração'], fontes: ['Louis Berkhof, Systematic Theology', 'Geerhardus Vos, Biblical Theology'] },
+  { id: 'ts-009', titulo: 'A Autoridade e Inerrância da Bíblia', categoria: 'Teologia Sistemática', subcategoria: 'Teologia Sistemática', conteudo: ['A Bíblia é divinamente inspirada e infalível.', 'Não contém erro em seu manuscrito original.', 'A autoridade da Escritura é suprema em todas as questões de fé.', 'Deus preservou Sua Palavra ao longo dos séculos.', 'A inerrância é essencial para a confiança cristã.'], versicosChave: ['2 Timóteo 3:16-17', '2 Pedro 1:20-21', 'João 10:35'], tags: ['inerrância', 'autoridade', 'inspiração'], fontes: ['Norman Geisler, General Introduction to the Bible', 'Millard Erickson, Christian Theology'] },
+  { id: 'ts-010', titulo: 'A Soberania de Deus na História', categoria: 'Teologia Sistemática', subcategoria: 'Teologia Sistemática', conteudo: ['Deus é soberano sobre todas as nações e governos.', 'Ele dirige a história para cumprir Seus propósitos.', 'Nenhum evento escapa ao controle divino.', 'A soberania de Deus não anula a responsabilidade humana.', 'Os desígnios de Deus são inescrutáveis mas fiéis.'], versicosChave: ['Daniel 4:35', 'Efésios 1:11', 'Romanos 9:11-21'], tags: ['soberania', 'providência', 'decretos de Deus'], fontes: ['Stephen Charnock, The Existence and Attributes of God', 'R.C. Sproul, The Holiness of God'] },
+  { id: 'ts-011', titulo: 'A Providência de Deus', categoria: 'Teologia Sistemática', subcategoria: 'Teologia Sistemática', conteudo: ['Deus cuida de todas as Suas criaturas.', 'A providência se estende aos detalhes da vida.', 'Deus usa meios para realizar Seus propósitos.', 'Devemos confiar em Deus em todas as circunstâncias.', 'A providência traz conforto em tempos difíceis.'], versicosChave: ['Mateus 6:25-34', 'Atos 17:26-28', 'Provérbios 16:9'], tags: ['providência', 'cuidado divino', 'dependência'], fontes: ['Stephen Charnock, The Existence and Attributes of God', 'R.C. Sproul, Knowing God'] },
+  { id: 'ts-012', titulo: 'A Imutabilidade de Deus', categoria: 'Teologia Sistemática', subcategoria: 'Teologia Sistemática', conteudo: ['Deus é o mesmo ontem, hoje e sempre.', 'Sua natureza, caráter e propósitos são imutáveis.', 'A imutabilidade de Deus é base da nossa segurança.', 'Deus não muda porque é perfeito.', 'Cristo é a mesma ontem, hoje e sempre.'], versicosChave: ['Malaquias 3:6', 'Hebreus 13:8', 'Números 23:19'], tags: ['imutabilidade', 'constância', 'fidelidade'], fontes: ['A.W. Tozer, The Knowledge of the Holy', 'Stephen Charnock, The Existence and Attributes of God'] },
+
+  // ===== ANGELOLOGIA =====
+  { id: 'ang-017', titulo: 'Hierarquia Angelical: Tronos, Querubins e Serafins', categoria: 'Angelologia', subcategoria: 'Angelologia', conteudo: ['A Bíblia revela diferentes ordens de anjos.', 'Os Serafins adoram continuamente diante do trono.', 'Os Querubins guardam a santidade de Deus.', 'Os Tronos são mencionados nas epístolas.', 'A hierarquia angelical reflete a soberania de Deus.'], versicosChave: ['Isaías 6:1-7', 'Colossenses 1:16', 'Apocalipse 4:6-8'], tags: ['anjos', 'hierarquia', 'adoração'], fontes: ['Michael Heiser, The Unseen Realm', 'Derek Prince, They Shall Expel Demons'] },
+  { id: 'ang-018', titulo: 'Anjos Guardiões: Proteção Divina', categoria: 'Angelologia', subcategoria: 'Angelologia', conteudo: ['Deus designa anjos para proteger Seu povo.', 'Os anjos guardiões ministram aos herdeiros da salvação.', 'Pedro foi libertado da prisão por um anjo.', 'A proteção angelical é real embora invisível.', 'Devemos reconhecer o ministério dos anjos.'], versicosChave: ['Salmo 91:11-12', 'Hebreus 1:14', 'Atos 12:15'], tags: ['anjos guardiões', 'proteção', 'ministério angelical'], fontes: ['Derek Prince, They Shall Expel Demons', 'Graham Twelftree, Angelology'] },
+  { id: 'ang-019', titulo: 'Satanás: Origem e Queda', categoria: 'Angelologia', subcategoria: 'Angelologia', conteudo: ['Satanás foi creado como anjo da mais alta posição.', 'Sua queda se deu por orgulho e ambição.', 'Ele se opõe a Deus e a Seu povo.', 'Satanás é chamado de acusador dos irmãos.', 'Seu destino final é o lago de fogo.'], versicosChave: ['Isaías 14:12-15', 'Ezequiel 28:12-19', 'Apocalipse 12:9'], tags: ['Satanás', 'queda angelical', 'inimigo'], fontes: ['Michael Heiser, The Unseen Realm', 'Derek Prince, They Shall Expel Demons'] },
+  { id: 'ang-020', titulo: 'Os Quatro Cavalos do Apocalipse', categoria: 'Angelologia', subcategoria: 'Angelologia', conteudo: ['Os quatro cavaleiros representam juízos sobre a terra.', 'O cavalo branco simboliza conquista ou falsa paz.', 'O cavalo vermelho traz guerra e derramamento de sangue.', 'O cavalo preto traz fome e escassez.', 'O cavalo amarelo traz morte em grande escala.'], versicosChave: ['Apocalipse 6:1-8'], tags: ['Apocalipse', 'juízo', 'juízos finais'], fontes: ['G.K. Beale, The Book of Revelation', 'Craig Keener, Revelation'] },
+  { id: 'ang-021', titulo: 'Demônios: Identidade e Atividade', categoria: 'Angelologia', subcategoria: 'Angelologia', conteudo: ['Os demônios são anjos caídos que se aliam a Satanás.', 'Eles possuem inteligência e vontade própria.', 'Os demônios atormentam, enganam e escravizam.', 'Jesus expulsou demônios com autoridade divina.', 'O crente pode resistir aos demônios pela fé.'], versicosChave: ['Marcos 5:1-20', 'Efésios 6:12', '1 Pedro 5:8'], tags: ['demônios', 'oposição espiritual', 'exorcismo'], fontes: ['Michael Heiser, The Unseen Realm', 'Derek Prince, They Shall Expel Demons'] },
+  { id: 'ang-022', titulo: 'Batalha Espiritual: A Armadura de Deus', categoria: 'Angelologia', subcategoria: 'Angelologia', conteudo: ['A batalha cristã não é contra carne e sangue.', 'Deus fornece uma armadura completa para o crente.', 'A verdade, a justiça e a fé são elementos essenciais.', 'A oração é a arma ofensiva do crente.', 'A vitória já foi conquistada em Cristo.'], versicosChave: ['Efésios 6:10-18'], tags: ['batalha espiritual', 'armadura de Deus', 'guerra espiritual'], fontes: ['C.S. Lewis, The Screwtape Letters', 'Derek Prince, Spiritual Warfare'] },
+
+  // ===== CRISTOLOGIA =====
+  { id: 'cr-022', titulo: 'A Preexistência de Cristo', categoria: 'Cristologia', subcategoria: 'Cristologia', conteudo: ['Cristo existia antes de todas as coisas.', 'Ele é o Verbo que era com Deus e era Deus.', 'Todas as coisas foram criadas por Ele e para Ele.', 'A preexistência é base da dignidade de Cristo.', 'Cristo se humilhou vindo ao mundo em forma humana.'], versicosChave: ['João 1:1-3', 'Filipenses 2:6-7', 'Colossenses 1:17'], tags: ['preexistência', 'divindade de Cristo', 'eternidade'], fontes: ['James White, The Forgotten Trinity', 'Ben Witherington III, Jesus the Savior'] },
+  { id: 'cr-023', titulo: 'A Encarnação: Deus se Torna Homem', categoria: 'Cristologia', subcategoria: 'Cristologia', conteudo: ['A encarnação é o mistério de Deus se fazer homem.', 'O Verbo se fez carne e habitou entre nós.', 'Jesus era totalmente Deus e totalmente homem.', 'A encarnação foi necessária para a salvação.', 'Deus se humilhou tomando forma de servo.'], versicosChave: ['João 1:14', 'Filipenses 2:7-8', 'Isaías 9:6'], tags: ['encarnação', 'mistério', 'natureza dupla'], fontes: ['Athanasius, On the Incarnation', 'Larry Hurtado, Lord Jesus Christ'] },
+  { id: 'cr-024', titulo: 'As Sete Igrejas do Apocalipse', categoria: 'Cristologia', subcategoria: 'Cristologia', conteudo: ['Cristo se revela às sete igrejas da Ásia Menor.', 'Cada mensagem contém elogio e exortação.', 'As igrejas representam condições da igreja ao longo da história.', 'Cristo conhece cada igreja e sua situação.', 'Há promessa de vitória para quem vencer.'], versicosChave: ['Apocalipse 2-3'], tags: ['sete igrejas', 'Apocalipse', 'exortações'], fontes: ['G.K. Beale, The Book of Revelation', 'Craig Keener, Revelation'] },
+  { id: 'cr-025', titulo: 'A Autoridade de Jesus sobre a Natureza', categoria: 'Cristologia', subcategoria: 'Cristologia', conteudo: ['Jesus calou a tempestade com uma palavra.', 'Ele caminhou sobre as águas.', 'Jesus multiplicou pães e peixes.', 'Sua autoridade sobre a natureza demonstra Sua divindade.', 'A criação obedece ao seu Criador.'], versicosChave: ['Marcos 4:35-41', 'Mateus 14:22-33'], tags: ['milagres', 'autoridade divina', 'poder sobre criação'], fontes: ['Craig Keener, Miracles', 'D.A. Carson, Matthew'] },
+  { id: 'cr-026', titulo: 'Jesus e o Sabbat', categoria: 'Cristologia', subcategoria: 'Cristologia', conteudo: ['Jesus declarou ser Senhor do sabat.', 'Ele ensinou que o sabat foi feito para o homem.', 'Jesus realizou curas no sabat.', 'A nova aliança vai além do sabat legalista.', 'Cristo é nosso descanso eterno.'], versicosChave: ['Marcos 2:23-28', 'João 5:1-18'], tags: ['sabat', 'senhor do sabat', 'descanso'], fontes: ['D.A. Carson, Matthew', 'John Piper, Future Grace'] },
+  { id: 'cr-027', titulo: 'A Transfiguração: Glória Revelada', categoria: 'Cristologia', subcategoria: 'Cristologia', conteudo: ['A transfiguração revelou a glória divina de Jesus.', 'Moisés e Elias apareceram com Ele.', 'A voz do Pai declarou: Este é o meu Filho amado.', 'Pedro, Tiago e João foram testemunhas.', 'A transfiguração antecipa a ressurreição.'], versicosChave: ['Mateus 17:1-8', 'Marcos 9:2-8', 'Lucas 9:28-36'], tags: ['transfiguração', 'glória', 'divindade'], fontes: ['R.T. France, The Gospel of Mark', 'Craig Keener, A Commentary on the Gospel of Matthew'] },
+  { id: 'cr-028', titulo: 'A Ressurreição: Prova da Vitoria', categoria: 'Cristologia', subcategoria: 'Cristologia', conteudo: ['A ressurreição é o centro da fé cristã.', 'Cristo ressuscitou ao terceiro dia.', 'Há mais de 500 testemunhas da ressurreição.', 'Se Cristo não ressuscitou, a fé é vã.', 'A ressurreição garante a ressurreição dos crentes.'], versicosChave: ['1 Coríntios 15:3-8', 'Romanos 1:4'], tags: ['ressurreição', 'vitória', 'fé'], fontes: ['N.T. Wright, The Resurrection of the Son of God', 'Gary Habermas, The Risen Jesus and Future Hope'] },
+  { id: 'cr-029', titulo: 'A Ascensão e a Grande Comissão', categoria: 'Cristologia', subcategoria: 'Cristologia', conteudo: ['Cristo ascendeu ao céu aos olhos dos discípulos.', 'Dois anjos anunciaram Sua volta.', 'Jesus deu a Grande Comissão antes de ascender.', 'Ele prometeu enviar o Espírito Santo.', 'A ascensão inaugura Seu ministério celestial.'], versicosChave: ['Atos 1:9-11', 'Mateus 28:18-20'], tags: ['ascensão', 'comissão', 'missão'], fontes: ['F.F. Bruce, The Book of the Acts', 'John Stott, The Message of Acts'] },
+  { id: 'cr-030', titulo: 'Jesus como Sumo Sacerdote', categoria: 'Cristologia', subcategoria: 'Cristologia', conteudo: ['Cristo é nosso Sumo Sacerdote eterno.', 'Ele passou pelos céus para interceder por nós.', 'Sua ordem sacerdotal é segundo Melquisedeque.', 'Ele ofereceu Si mesmo como sacrifício perfeito.', 'Podemos aproximar-nos de Deus com confiança.'], versicosChave: ['Hebreus 4:14-16', 'Hebreus 7:23-27'], tags: ['sumo sacerdote', 'intercessão', 'sacrifício'], fontes: ['Philip Edgcumbe Hughes, A Commentary on the Epistle to the Hebrews', 'Paul Ellingworth, The Epistle to the Hebrews'] },
+  { id: 'cr-031', titulo: 'O Filho do Homem', categoria: 'Cristologia', subcategoria: 'Cristologia', conteudo: ['O título Filho do Homem vem de Daniel.', 'Jesus usou este título para Si mesmo.', 'O Filho do Homem tem autoridade para perdoar pecados.', 'Ele virá nas nuvens com poder e grande glória.', 'O título conecta a identidade humana e messiânica.'], versicosChave: ['Daniel 7:13-14', 'Marcos 10:45', 'Mateus 26:64'], tags: ['filho do homem', 'messias', 'título messiânico'], fontes: ['I.P. Ellis, The Son of Man', 'James D.G. Dunn, Jesus Remembered'] },
+
+  // ===== PNEUMATOLOGIA =====
+  { id: 'pne-029', titulo: 'A Personalidade do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['O Espírito Santo é uma Pessoa, não uma força.', 'Ele tem mente, vontade e emoções.', 'O Espírito pode ser contristado.', 'Ele guia, ensina e consola os crentes.', 'O Espírito glorifica a Cristo.'], versicosChave: ['João 14:16-17', '1 Coríntios 2:10-11'], tags: ['Espírito Santo', 'pessoa divina', 'trindade'], fontes: ['R.A. Torrey, The Person and Work of the Holy Spirit', 'James Hamilton, God\'s Indwelling Presence'] },
+  { id: 'pne-030', titulo: 'A Obra do Espírito na Regeneração', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['A regeneração é obra exclusiva do Espírito Santo.', 'O Espírito nos faz nascer de novo.', 'É uma mudança sobrenatural do coração.', 'A regeneração precede a fé.', 'O fruto é uma vida transformada.'], versicosChave: ['João 3:5-8', 'Tito 3:5', 'Romanos 8:9-11'], tags: ['regeneração', 'novo nascimento', 'conversão'], fontes: ['John Murray, Redemption Accomplished and Applied', 'B.B. Warfield, Biblical and Theological Studies'] },
+  { id: 'pne-031', titulo: 'Os Dons Espirituais: Propósito e Uso', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['Os dons são distribuídos pelo Espírito para edificação.', 'Não há don mais importante que outro.', 'Os dons devem ser usados com amor.', 'O objetivo é o fortalecimento da igreja.', 'Devemos buscar os dons, especialmente o de profecia.'], versicosChave: ['1 Coríntios 12:4-11', 'Romanos 12:6-8', 'Efésios 4:11'], tags: ['dons espirituais', 'edificação', 'ministério'], fontes: ['Wayne Grudem, The Gift of Prophecy', 'D. Edmond Hiebert, The First Epistle to the Corinthians'] },
+  { id: 'pne-032', titulo: 'O Fruto do Espírito: Caráter Cristão', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['O fruto do Espírito é o resultado da obra interior do Espírito.', 'O amor é a base de todas as outras qualidades.', 'A alegria não depende de circunstâncias.', 'A paciência é fruto da dependência de Deus.', 'O fruto se desenvolve gradualmente na vida do crente.'], versicosChave: ['Gálatas 5:22-23'], tags: ['fruto do Espírito', 'caráter', 'santificação'], fontes: ['John Stott, The Message of Galatians', 'R.C. Sprol, The Fruit of the Spirit'] },
+  { id: 'pne-033', titulo: 'O Batismo no Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['O batismo no Espírito une os crentes ao corpo de Cristo.', 'Todos os crentes são batizados no Espírito.', 'O batismo Capacita para testemunho.', 'A unidade do Espírito é a base da unidade da igreja.', 'O batismo é uma experiência distinta da regeneração.'], versicosChave: ['Atos 1:5', 'Atos 2:1-4', '1 Coríntios 12:13'], tags: ['batismo no Espírito', 'unidade', 'poder'], fontes: ['R.A. Torrey, The Person and Work of the Holy Spirit', 'James D.G. Dunn, Jesus and the Spirit'] },
+  { id: 'pne-034', titulo: 'A Unção do Espírito Santo', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['A unção do Espírito capacita para vida e ministério.', 'Todos os crentes têm a unção da parte de Deus.', 'A unção ensina todas as coisas.', 'A unção dá segurança e certeza.', 'Devemos andar conforme a unção que recebemos.'], versicosChave: ['1 João 2:20', '2 Coríntios 1:21-22'], tags: ['unção', 'capacitação', 'segurança'], fontes: ['R.A. Torrey, The Person and Work of the Holy Spirit', 'F.F. Bruce, The Epistles of John'] },
+  { id: 'pne-035', titulo: 'O Espírito Santo e a Oração', categoria: 'Pneumatologia', subcategoria: 'Pneumatologia', conteudo: ['O Espírito intercede por nós com gemidos indizíveis.', 'Ele nos ensina a orar.', 'O Espírito Capacita a oração.', 'A oração no Espírito é a oração eficaz.', 'Devemos estar atentos à direção do Espírito na oração.'], versicosChave: ['Romanos 8:26-27', 'Efésios 6:18', 'Judas 1:20'], tags: ['oração', 'intercessão', 'dependência do Espírito'], fontes: ['R.A. Torrey, The Person and Work of the Holy Spirit', 'E.M. Bounds, The Power of Prayer'] },
+
+  // ===== APOLOGETICA =====
+  { id: 'ap-036', titulo: 'O Argumento Cosmológico do Kalam', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['Tudo que começa a existir tem uma causa.', 'O universo começou a existir.', 'Portanto, o universo tem uma causa.', 'Essa causa deve ser transcendente e poderosa.', 'O argumento aponta para o Deus bíblico.'], versicosChave: ['Gênesis 1:1', 'Romanos 1:20'], tags: ['cosmológico', 'kalam', 'causa primeira'], fontes: ['William Lane Craig, Reasonable Faith', 'Norman Geisler, Christian Apologetics'] },
+  { id: 'ap-037', titulo: 'O Argumento Teleológico: Design no Universo', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['O universo apresenta evidências de design inteligente.', 'As constantes físicas são calibradas para a vida.', 'A complexidade irredutível aponta para um Designer.', 'A ordem natural declara o Criador.', 'A improbabilidade do acaso é estatisticamente insignificante.'], versicosChave: ['Salmo 19:1-4', 'Hebreus 11:3'], tags: ['teleológico', 'design', 'criação'], fontes: ['William Dembski, The Design Inference', 'Michael Behe, Darwin\'s Black Box'] },
+  { id: 'ap-038', titulo: 'O Argumento Moral: Valores Objetivos', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['Valores morais objetivos existem.', 'Se Deus não existe, não há valores morais objetivos.', 'Mas valores morais objetivos existem.', 'Portanto, Deus existe.', 'A consciência moral é evidência de um Legislador moral.'], versicosChave: ['Romanos 2:14-15', 'Gênesis 1:26-27'], tags: ['argumento moral', 'valores', 'consciência'], fontes: ['William Lane Craig, Reasonable Faith', 'C.S. Lewis, Mere Christianity'] },
+  { id: 'ap-039', titulo: 'A Resurreição de Cristo: Evidências Históricas', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['O túmulo de Jesus estava vazio três dias depois da crucificação.', 'Múltiplas testemunhas avistaram o Cristo ressuscitado.', 'Os apóstolos morreram testemunhando a ressurreição.', 'A Igreja primitiva nasceu com base na ressurreição.', 'A melhor explicação é que Jesus realmente ressuscitou.'], versicosChave: ['1 Coríntios 15:3-8', 'Lucas 24:36-43'], tags: ['ressurreição', 'evidências', 'história'], fontes: ['N.T. Wright, The Resurrection of the Son of God', 'Gary Habermas, The Risen Jesus and Future Hope'] },
+  { id: 'ap-040', titulo: 'A Confiabilidade dos Evangelhos', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['Os Evangelhos foram escritos por testemunhas oculares.', 'Lucas investigou cuidadosamente os fatos.', 'A data precoce dos Evangelhos garante a fidelidade.', 'As cópias manuscritas são abundantes e confiáveis.', 'O testemunho dos Evangelhos é histórico e confiável.'], versicosChave: ['Lucas 1:1-4', 'João 20:30-31', '2 Pedro 1:16'], tags: ['confiabilidade', 'Evangelhos', 'testemunho'], fontes: ['Craig Blomberg, The Historical Reliability of the Gospels', 'Richard Bauckham, Jesus and the Eyewitnesses'] },
+  { id: 'ap-041', titulo: 'O Problema do Mal e o Livre Arbítrio', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['O mal é uma consequência do livre arbítrio humano.', 'Deus permite o mal para realizar um bem maior.', 'O sofrimento pode ser usado para amadurecimento.', 'Deus sofreu com o mal na cruz de Cristo.', 'A solução final é a nova criação sem mal.'], versicosChave: ['Gênesis 2:16-17', 'Romanos 8:28', 'Apocalipse 21:4'], tags: ['problema do mal', 'livre arbítrio', 'teodiceia'], fontes: ['Alvin Plantinga, God, Freedom, and Evil', 'C.S. Lewis, The Problem of Pain'] },
+  { id: 'ap-042', titulo: 'A Ciência e a Fé: Compatibilismo', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['A ciência e a fé não são inimigas.', 'A criação declara o Criador.', 'A Bíblia não é um livro de ciência mas de verdade.', 'A fé e a razão caminham juntas.', 'A harmonia entre ciência e fé glorifica a Deus.'], versicosChave: ['Salmo 19:1', 'Romanos 1:20', 'Gênesis 1:1'], tags: ['ciência e fé', 'compatibilismo', 'criação'], fontes: ['Francis Collins, The Language of God', 'Alister McGrath, A Fine-Tuned Universe'] },
+  { id: 'ap-043', titulo: 'A Existência de Deus: Argumento Ontológico', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['O argumento ontológico é a priori.', 'Concebe um Ser maximamente grande.', 'Um Ser maximamente grande deve existir na realidade.', 'Deus é o Ser maximamente grande possível.', 'Portanto, Deus existe.'], versicosChave: ['Salmo 14:1', 'Hebreus 11:6'], tags: ['argumento ontológico', 'existência de Deus', 'filosofia'], fontes: ['Alvin Plantinga, God, Freedom, and Evil', 'Anselm of Canterbury, Proslogion'] },
+  { id: 'ap-044', titulo: 'Defesa da Ressurreição Contra o Ceticismo', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['Se Cristo não ressuscitou, a fé é vã.', 'A teoria do roubo do corpo não explica as testemunhas.', 'A alucinação não é uma explicação plausível.', 'A transformação dos apóstolos é inegável.', 'A ressurreição é o fato melhor documentado da história.'], versicosChave: ['Atos 17:31', '1 Coríntios 15:14-19'], tags: ['ressurreição', 'ceticismo', 'defesa'], fontes: ['Gary Habermas, The Risen Jesus and Future Hope', 'N.T. Wright, The Resurrection of the Son of God'] },
+  { id: 'ap-045', titulo: 'A Profecia Bíblica como Evidência Divina', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['As profecias bíblicas são cumpridas com precisão.', 'Isaías 53 descreve a crucificação séculos antes.', 'O Salmo 22 descreve os sofrimentos do Messias.', 'Miquéias 5:2 prediz o nascimento em Belém.', 'O cumprimento de profecias é evidência da inspiração divina.'], versicosChave: ['Isaías 53', 'Salmo 22', 'Miquéias 5:2'], tags: ['profecia', 'cumprimento', 'evidência divina'], fontes: ['Josh McDowell, Evidence That Demands a Verdict', 'Norman Geisler, When Critics Ask'] },
 ];

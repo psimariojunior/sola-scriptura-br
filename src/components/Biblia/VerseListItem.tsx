@@ -45,6 +45,7 @@ interface VerseListItemProps {
   onAprofundar?: () => void;
   onCompartilharSala?: () => void;
   onAbrirPainel?: (tab?: string) => void;
+  onDeselect?: () => void;
 }
 
 export const VerseListItem = memo(function VerseListItem({
@@ -84,6 +85,7 @@ export const VerseListItem = memo(function VerseListItem({
   onAprofundar,
   onCompartilharSala,
   onAbrirPainel,
+  onDeselect,
 }: VerseListItemProps) {
   const verseKey = `${livroAbreviacao}:${capitulo}:${numero}:${traducao}`;
   const marcaMarcador = getMarcador(livroAbreviacao, capitulo, numero, traducao);
@@ -152,6 +154,7 @@ export const VerseListItem = memo(function VerseListItem({
       onAprofundar={onAprofundar}
       onCompartilharSala={onCompartilharSala}
       onAbrirPainel={onAbrirPainel}
+      onDeselect={onDeselect}
     />
   );
 });

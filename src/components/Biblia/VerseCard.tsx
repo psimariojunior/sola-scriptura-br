@@ -42,6 +42,7 @@ export interface VerseCardProps {
   onAprofundar?: () => void;
   onCompartilharSala?: () => void;
   onAbrirPainel?: (tab?: string) => void;
+  onDeselect?: () => void;
   verseKey: string;
   showTranslationLabel: boolean;
   tradLabel: string;
@@ -82,6 +83,7 @@ export const VerseCard = memo(function VerseCard({
   onAprofundar,
   onCompartilharSala,
   onAbrirPainel,
+  onDeselect,
   verseKey,
   isCurrentAudioVerse = false,
   hasResources: hasResourcesProp = false,
@@ -109,7 +111,7 @@ export const VerseCard = memo(function VerseCard({
     const handler = (e: MouseEvent | TouchEvent) => {
       const target = e.target as Node;
       if (articleRef.current && !articleRef.current.contains(target)) {
-        onSelect();
+        onDeselect?.();
       }
     };
     document.addEventListener('mousedown', handler);
@@ -118,7 +120,7 @@ export const VerseCard = memo(function VerseCard({
       document.removeEventListener('mousedown', handler);
       document.removeEventListener('touchstart', handler);
     };
-  }, [isSelected, onSelect]);
+  }, [isSelected, onDeselect]);
 
   useEffect(() => {
     if (!showMobileColor) return;

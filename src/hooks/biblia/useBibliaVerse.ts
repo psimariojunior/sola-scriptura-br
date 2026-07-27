@@ -89,10 +89,14 @@ export function UseBibliaVerse({
 
   const handleSelectFromList = useCallback((livro: string, cap: number, ver: number, traducao: string, texto: string) => {
     try {
+      // Toggle: same verse = deselect
+      if (versiculoSelecionado?.livroAbreviacao === livro && versiculoSelecionado?.capitulo === cap && versiculoSelecionado?.versiculo === ver && versiculoSelecionado?.traducao === traducao) {
+        setVersiculoSelecionado(null);
+        return;
+      }
       const livroInfo = livroPorAbreviacao.get(livro);
       const livroNome = livroInfo?.nome || livro;
       setVersiculoSelecionado({ livro, livroNome, livroAbreviacao: livro, capitulo: cap, versiculo: ver, traducao, texto });
-      // No mobile (lg:), so abre MobileActionBar — SidePanel so abre no desktop
       if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
         setSidePanelTab('comentarios');
         setSidePanelWidth('half');
@@ -100,7 +104,7 @@ export function UseBibliaVerse({
     } catch (e) {
       console.error('Erro ao selecionar versículo:', e);
     }
-  }, [setSidePanelTab, setSidePanelWidth]);
+  }, [setSidePanelTab, setSidePanelWidth, versiculoSelecionado]);
 
   const copyVerse = useCallback(async (text: string, reference: string) => {
     await navigator.clipboard.writeText(`${reference}\n${text}`);

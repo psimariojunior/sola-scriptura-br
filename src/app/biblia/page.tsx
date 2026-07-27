@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, lazy, Suspense, useMemo, useEffect, useState } from 'react';
+import { useCallback, lazy, Suspense, useMemo, useEffect, useState, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
@@ -95,20 +95,13 @@ export default function BibliaPage() {
   const [painelVersiculoAberto, setPainelVersiculoAberto] = useState(false);
   const [painelTabInicial, setPainelTabInicial] = useState<string | undefined>(undefined);
   const [mobileToolbarMenuOpen, setMobileToolbarMenuOpen] = useState(false);
+  const mobileMenuBtnRef = useRef<HTMLButtonElement>(null);
+  const [mobileMenuPos, setMobileMenuPos] = useState<{ top: number; right: number }>({ top: 0, right: 0 });
 
-  // Scroll para o versículo selecionado quando o PainelDoVersiculo abre no mobile
-  useEffect(() => {
-    if (painelVersiculoAberto && verse.versiculoSelecionado && typeof window !== 'undefined' && window.innerWidth < 1024) {
-      const { versiculo, livroNome, capitulo } = verse.versiculoSelecionado;
-      requestAnimationFrame(() => {
-        const selector = `[aria-label*="Versículo ${versiculo} de ${livroNome} ${capitulo}"]`;
-        const verseEl = document.querySelector(selector);
-        if (verseEl) {
-          verseEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    }
-  }, [painelVersiculoAberto, verse.versiculoSelecionado]);
+  const handleDeselectVerse = useCallback(() => {
+    verse.setVersiculoSelecionado(null);
+  }, [verse.setVersiculoSelecionado]);
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleGoToBook = useCallback((idx: number, cap?: number) => { nav.goToBook(idx, cap); ui.setMobileMenu(false); ui.setChapterGridOpen(false); }, [nav.goToBook, ui.setMobileMenu, ui.setChapterGridOpen]);
 
@@ -204,11 +197,17 @@ export default function BibliaPage() {
                 <div className="flex-1" />
                 <TranslationDropdown open={ui.tradOpen} onToggle={() => { ui.setTradOpen(!ui.tradOpen); ui.setToolsOpen(false); }} onClose={() => ui.setTradOpen(false)} selectedTrads={nav.selectedTrads} onToggleTrad={nav.toggleTrad} viewMode={nav.viewMode} onViewModeChange={nav.setViewMode} />
                 <div className="md:hidden relative shrink-0">
-                  <button onClick={() => setMobileToolbarMenuOpen(!mobileToolbarMenuOpen)} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] active:scale-95 transition-transform" aria-label="Mais opções"><MoreVertical className="w-4 h-4" /></button>
+                  <button ref={mobileMenuBtnRef} onClick={() => {
+                    if (!mobileToolbarMenuOpen && mobileMenuBtnRef.current) {
+                      const rect = mobileMenuBtnRef.current.getBoundingClientRect();
+                      setMobileMenuPos({ top: rect.bottom + 4, right: window.innerWidth - rect.right });
+                    }
+                    setMobileToolbarMenuOpen(!mobileToolbarMenuOpen);
+                  }} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] active:scale-95 transition-transform" aria-label="Mais opções"><MoreVertical className="w-4 h-4" /></button>
                   {mobileToolbarMenuOpen && (
                     <>
                       <div className="fixed inset-0 z-30" onClick={() => setMobileToolbarMenuOpen(false)} />
-                      <div className="absolute right-0 top-full mt-1 z-40 w-56 rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] shadow-xl py-1 animate-scale-in origin-top-right">
+                      <div className="fixed z-40 w-56 rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] shadow-xl py-1 animate-scale-in origin-top-right" style={{ top: mobileMenuPos.top, right: mobileMenuPos.right }}>
                         <button onClick={() => { ui.setModoLeitura(ui.modoLeitura === 'foco' ? 'estudo' : 'foco'); nav.setViewMode('single'); panels.setSidePanelWidth('collapsed'); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><BookOpen className="w-4 h-4 text-[var(--content-muted)]" />Modo Leitura</button>
                         <button onClick={() => { ui.setShowInterlinear(!ui.showInterlinear); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><span className="font-hebrew text-sm text-[var(--brand-default)]">א</span>Interlinear</button>
                         <button onClick={() => { setShowDownloadManager(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><HardDrive className="w-4 h-4 text-[var(--content-muted)]" />Versões Offline</button>
@@ -285,6 +284,7 @@ export default function BibliaPage() {
                           estudoAbertoState={verse.estudoAberto} copyVerse={verse.copyVerse}
                           onApresentar={() => { ui.setMostrarApresentacao(true); }}
                           onCompartilharImagem={() => ui.setShareOpen(true)}
+                          onDeselect={handleDeselectVerse}
                           onAprofundar={() => {
                             if (!authService.temAcessoTotal()) { panels.setPaywallAprofundarAberto(true); return; }
                             window.open(`/estudo-ia?ref=${encodeURIComponent(`${nav.livro.nome} ${nav.capituloIdx + 1}:${v.numero}`)}`, '_blank');

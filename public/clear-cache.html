@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Limpar Cache - Sola Scriptura</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #0a0a14; color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .card { background: #1a1a2e; border: 1px solid #2a2a4a; border-radius: 16px; padding: 32px; max-width: 400px; width: 100%; text-align: center; }
+    h1 { font-size: 24px; margin-bottom: 8px; color: #d4a853; }
+    p { font-size: 14px; color: #888; margin-bottom: 24px; line-height: 1.5; }
+    .btn { display: block; width: 100%; padding: 16px; margin-bottom: 12px; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .btn-primary { background: linear-gradient(135deg, #d4a853, #b8922e); color: #000; }
+    .btn-primary:hover { transform: scale(1.02); }
+    .btn-secondary { background: #2a2a4a; color: #fff; border: 1px solid #3a3a5a; }
+    .btn-secondary:hover { background: #3a3a5a; }
+    .status { margin-top: 16px; padding: 12px; border-radius: 8px; font-size: 13px; display: none; }
+    .status.success { display: block; background: #10b98120; color: #10b981; border: 1px solid #10b98140; }
+    .status.error { display: block; background: #ef444420; color: #ef4444; border: 1px solid #ef444440; }
+    .status.info { display: block; background: #3b82f620; color: #3b82f6; border: 1px solid #3b82f640; }
+    .step { display: flex; align-items: center; gap: 12px; text-align: left; padding: 12px; background: #0f0f1f; border-radius: 8px; margin-bottom: 8px; }
+    .step-num { width: 28px; height: 28px; border-radius: 50%; background: #d4a853; color: #000; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+    .step-text { font-size: 13px; color: #ccc; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Limpar Cache</h1>
+    <p>Se o site não está atualizando, limpe o cache abaixo.</p>
+
+    <button class="btn btn-primary" onclick="clearAll()">Limpar Tudo e Recarregar</button>
+    <button class="btn btn-secondary" onclick="unregisterSW()">Apenas Remover Service Worker</button>
+
+    <div id="status"></div>
+
+    <div style="margin-top: 24px; text-align: left;">
+      <p style="font-size: 12px; color: #666; margin-bottom: 12px;">Se o botão acima não funcionar:</p>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Abra as configurações do Chrome</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Privacidade → Limpar dados de navegação</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">Marque "Imagens em cache" → Limpar</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showStatus(msg, type) {
+      const el = document.getElementById('status');
+      el.textContent = msg;
+      el.className = 'status ' + type;
+    }
+
+    async function clearAll() {
+      try {
+        showStatus('Limpando cache...', 'info');
+
+        // 1. Unregister all service workers
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          for (const reg of regs) {
+            await reg.unregister();
+          }
+          showStatus('Service Workers removidos: ' + regs.length, 'info');
+        }
+
+        // 2. Delete all caches
+        if ('caches' in window) {
+          const names = await caches.keys();
+          for (const name of names) {
+            await caches.delete(name);
+          }
+          showStatus('Caches removidos: ' + names.length + '. Recarregando...', 'success');
+        }
+
+        // 3. Clear localStorage
+        try { localStorage.clear(); } catch(e) {}
+
+        // 4. Reload after a short delay
+        setTimeout(() => {
+          window.location.href = '/biblia?nocache=' + Date.now();
+        }, 1000);
+
+      } catch (e) {
+        showStatus('Erro: ' + e.message, 'error');
+      }
+    }
+
+    async function unregisterSW() {
+      try {
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          for (const reg of regs) {
+            await reg.unregister();
+          }
+          showStatus('Service Worker removido! Recarregando...', 'success');
+          setTimeout(() => {
+            window.location.href = '/biblia?nocache=' + Date.now();
+          }, 1000);
+        }
+      } catch (e) {
+        showStatus('Erro: ' + e.message, 'error');
+      }
+    }
+  </script>
+</body>
+</html>

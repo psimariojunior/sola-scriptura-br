@@ -152,6 +152,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="manifest" href="/manifest.json" />
         <link rel="dns-prefetch" href="https://api.midvash.com" />
         <link rel="dns-prefetch" href="https://api.solascripturabr.com.br" />
+        <link rel="preconnect" href="https://api.midvash.com" crossOrigin="anonymous" />
+        <link rel="modulepreload" href="/_next/static/chunks/framework-react-*.js" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

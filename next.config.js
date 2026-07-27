@@ -4,11 +4,14 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   output: 'standalone',
+  compress: true,
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
   },
   images: {
     formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 dias
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },
   serverExternalPackages: ['node-edge-tts'],
   experimental: {
@@ -19,6 +22,7 @@ const nextConfig = {
       '@radix-ui/react-tabs', '@radix-ui/react-select', '@radix-ui/react-accordion',
       '@radix-ui/react-scroll-area', '@radix-ui/react-checkbox', '@radix-ui/react-label',
       '@radix-ui/react-progress', '@radix-ui/react-avatar', '@radix-ui/react-slot',
+      'i18next', 'react-i18next',
     ],
   },
   async headers() {

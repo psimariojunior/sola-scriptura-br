@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { VoiceSearchButton } from '@/components/VoiceSearchButton';
 import { expandirConsulta, correspondeSemanticamente, obterQueryExpandida } from '@/lib/sinonimos';
+import { useTranslation } from 'react-i18next';
 
 interface SearchResult {
   livroAbrev: string;
@@ -127,6 +128,7 @@ export default function PesquisaPage() {
   const [copiedResult, setCopiedResult] = useState<string | null>(null);
   const [buscaSemantica, setBuscaSemantica] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     Promise.all(TRAD_ESTATICAS.map((id) => carregarTraducao(id))).then(
@@ -299,8 +301,8 @@ export default function PesquisaPage() {
       <main className="pt-20 pb-24 sm:pb-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-8">
-            <h1 className="font-display text-3xl md:text-5xl font-light mb-2">Pesquisa Bíblica</h1>
-            <p className="text-muted-foreground">Busque por palavras-chave em todas as traduções disponíveis</p>
+            <h1 className="font-display text-3xl md:text-5xl font-light mb-2">{t('pesquisa.title')}</h1>
+            <p className="text-muted-foreground">{t('pesquisa.subtitle')}</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
@@ -308,12 +310,12 @@ export default function PesquisaPage() {
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-semibold text-xs uppercase tracking-wider text-muted-foreground flex items-center gap-2">
                   <Filter className="w-4 h-4" strokeWidth={1.5} />
-                  Filtros
+                  {t('pesquisa.filters')}
                 </h2>
                 <button
                   className="lg:hidden p-1 text-muted-foreground hover:text-foreground"
                   onClick={() => setMobileFilters(!mobileFilters)}
-                  aria-label="Alternar filtros"
+                  aria-label={t('pesquisa.toggleFilters')}
                 >
                   {mobileFilters ? <X className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </button>
@@ -322,7 +324,7 @@ export default function PesquisaPage() {
               <div className={`space-y-5 ${mobileFilters ? '' : 'hidden lg:block'}`}>
                 {/* Search Mode */}
                 <div>
-                  <label className="block text-xs font-medium text-muted-foreground mb-2">Modo de Busca</label>
+                  <label className="block text-xs font-medium text-muted-foreground mb-2">{t('pesquisa.searchMode')}</label>
                   <div className="grid grid-cols-2 gap-1.5">
                     {SEARCH_MODES.map((mode) => (
                       <button
@@ -333,10 +335,10 @@ export default function PesquisaPage() {
                             ? 'bg-primary text-primary-foreground'
                             : 'bg-muted text-muted-foreground hover:bg-muted/80'
                         }`}
-                        title={mode.description}
+                        title={mode.id === 'contains' ? t('pesquisa.containsDesc') : mode.id === 'exact' ? t('pesquisa.exactDesc') : mode.id === 'startsWith' ? t('pesquisa.startsWithDesc') : t('pesquisa.regexDesc')}
                       >
                         <mode.icon className="w-3 h-3" />
-                        {mode.label}
+                        {mode.id === 'contains' ? t('pesquisa.contains') : mode.id === 'exact' ? t('pesquisa.exact') : mode.id === 'startsWith' ? t('pesquisa.startsWith') : t('pesquisa.regex')}
                       </button>
                     ))}
                   </div>
@@ -353,7 +355,7 @@ export default function PesquisaPage() {
                     }`}
                   >
                     <Sparkles className="w-3.5 h-3.5" />
-                    <span className="font-semibold">Busca Semântica</span>
+                    <span className="font-semibold">{t('pesquisa.semanticSearch')}</span>
                     <span className={`ml-auto w-8 h-4 rounded-full relative transition-colors ${
                       buscaSemantica ? 'bg-primary' : 'bg-border'
                     }`}>
@@ -364,59 +366,59 @@ export default function PesquisaPage() {
                   </button>
                   {buscaSemantica && (
                     <p className="text-[10px] text-muted-foreground mt-1 px-1 leading-relaxed">
-                      Busca por conceitos relacionados: &ldquo;fé&rdquo; inclui &ldquo;crer&rdquo;, &ldquo;crença&rdquo;, etc.
+                      {t('pesquisa.semanticHint')}
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-muted-foreground mb-2">Tradução</label>
+                  <label className="block text-xs font-medium text-muted-foreground mb-2">{t('pesquisa.translation')}</label>
                   <div className="space-y-1.5">
-                    {TRAD_SELECIONAVEIS.map((t) => (
+                    {TRAD_SELECIONAVEIS.map((trad) => (
                       <label
-                        key={t.id}
+                        key={trad.id}
                         className="flex items-center gap-2 text-sm cursor-pointer hover:text-foreground transition-colors"
                       >
                         <input
                           type="checkbox"
-                          checked={tradSel.has(t.id)}
-                          onChange={() => alternarTrad(t.id)}
+                          checked={tradSel.has(trad.id)}
+                          onChange={() => alternarTrad(trad.id)}
                           className="accent-primary"
                         />
-                        <span className="font-medium">{t.nome}</span>
-                        <span className="text-xs text-muted-foreground hidden 2xl:inline">{t.descricao}</span>
+                        <span className="font-medium">{trad.nome}</span>
+                        <span className="text-xs text-muted-foreground hidden 2xl:inline">{trad.descricao}</span>
                       </label>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-muted-foreground mb-2">Testamento</label>
+                  <label className="block text-xs font-medium text-muted-foreground mb-2">{t('pesquisa.testament')}</label>
                   <div className="flex gap-1">
-                    {(['all', 'AT', 'NT'] as const).map((t) => (
+                    {(['all', 'AT', 'NT'] as const).map((test) => (
                       <button
-                        key={t}
-                        onClick={() => { setTestamento(t); setLivroFiltro('all'); setCapituloFiltro(null); }}
+                        key={test}
+                        onClick={() => { setTestamento(test); setLivroFiltro('all'); setCapituloFiltro(null); }}
                         className={`flex-1 text-xs py-2 rounded-sm transition-colors ${
-                          testamento === t
+                          testamento === test
                             ? 'bg-primary text-primary-foreground'
                             : 'bg-muted text-muted-foreground hover:bg-muted/80'
                         }`}
                       >
-                        {t === 'all' ? 'Todos' : t}
+                        {test === 'all' ? t('common.all') : test}
                       </button>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-muted-foreground mb-2">Livro</label>
+                  <label className="block text-xs font-medium text-muted-foreground mb-2">{t('pesquisa.book')}</label>
                   <select
                     value={livroFiltro}
                     onChange={(e) => { setLivroFiltro(e.target.value); setCapituloFiltro(null); }}
                     className="w-full px-3 py-2 text-sm bg-background border border-border rounded-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
                   >
-                    <option value="all">Todos os livros</option>
+                    <option value="all">{t('pesquisa.allBooks')}</option>
                     {livrosFiltrados.map((l) => (
                       <option key={l.abreviacao} value={l.abreviacao}>{l.nome}</option>
                     ))}
@@ -425,15 +427,15 @@ export default function PesquisaPage() {
 
                 {selectedBook && (
                   <div>
-                    <label className="block text-xs font-medium text-muted-foreground mb-2">Capítulo</label>
+                    <label className="block text-xs font-medium text-muted-foreground mb-2">{t('pesquisa.chapter')}</label>
                     <select
                       value={capituloFiltro ?? ''}
                       onChange={(e) => setCapituloFiltro(e.target.value ? Number(e.target.value) : null)}
                       className="w-full px-3 py-2 text-sm bg-background border border-border rounded-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
                     >
-                      <option value="">Todos os capítulos</option>
+                      <option value="">{t('pesquisa.allChapters')}</option>
                       {Array.from({ length: selectedBook.totalCapitulos }, (_, i) => i + 1).map((c) => (
-                        <option key={c} value={c}>Capítulo {c}</option>
+                        <option key={c} value={c}>{t('pesquisa.chapter')} {c}</option>
                       ))}
                     </select>
                   </div>
@@ -445,7 +447,7 @@ export default function PesquisaPage() {
                     className="w-full text-xs py-2 border border-border rounded-sm text-muted-foreground hover:bg-muted transition-colors flex items-center justify-center gap-1"
                   >
                     <X className="w-3 h-3" />
-                    Limpar filtros
+                    {t('pesquisa.clearFilters')}
                   </button>
                 )}
               </div>
@@ -460,7 +462,7 @@ export default function PesquisaPage() {
                     type="text"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Pesquisar nas Escrituras..."
+                    placeholder={t('pesquisa.searchPlaceholder')}
                     className="w-full pl-12 pr-14 sm:pr-24 py-3 bg-transparent text-lg font-serif-body focus:outline-none"
                     autoFocus
                   />
@@ -469,7 +471,7 @@ export default function PesquisaPage() {
                       <button
                         onClick={() => setQuery('')}
                         className="text-muted-foreground hover:text-foreground p-1"
-                        aria-label="Limpar busca"
+                        aria-label={t('pesquisa.clearSearch')}
                       >
                         <X className="w-4 h-4" />
                       </button>
@@ -488,16 +490,16 @@ export default function PesquisaPage() {
                   <div className="text-sm text-muted-foreground">
                     {resultados.length > 0 ? (
                       <span>
-                        <strong className="text-foreground">{resultados.length}</strong> resultado{resultados.length !== 1 ? 's' : ''} para &ldquo;<strong className="text-foreground">{debouncedQuery}</strong>&rdquo;
+                        <strong className="text-foreground">{resultados.length}</strong> {t('pesquisa.resultsFor')} &ldquo;<strong className="text-foreground">{debouncedQuery}</strong>&rdquo;
                         {buscaSemantica && (
                           <span className="ml-2 inline-flex items-center gap-1 text-[10px] text-primary/80 bg-primary/5 px-1.5 py-0.5 rounded-full">
                             <Sparkles className="w-2.5 h-2.5" />
-                            semântico
+                            {t('pesquisa.semantic')}
                           </span>
                         )}
                       </span>
                     ) : (
-                      <span>Nenhum resultado para &ldquo;<strong className="text-foreground">{debouncedQuery}</strong>&rdquo;</span>
+                      <span>{t('pesquisa.noResultsFor')} &ldquo;<strong className="text-foreground">{debouncedQuery}</strong>&rdquo;</span>
                     )}
                   </div>
                   {resultados.length > 0 && (
@@ -507,7 +509,7 @@ export default function PesquisaPage() {
                         className="flex items-center gap-1 px-3 py-1.5 text-xs border border-border rounded-sm hover:bg-muted transition-colors"
                       >
                         <Download className="w-3 h-3" />
-                        Exportar
+                        {t('pesquisa.export')}
                       </button>
                     </div>
                   )}
@@ -521,16 +523,16 @@ export default function PesquisaPage() {
                     <span className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0.15s]" />
                     <span className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0.3s]" />
                   </div>
-                  <p className="text-sm text-muted-foreground mt-3">{dataLoaded ? 'Buscando...' : 'Carregando textos bíblicos...'}</p>
+                  <p className="text-sm text-muted-foreground mt-3">{dataLoaded ? t('pesquisa.searching') : t('pesquisa.loadingTexts')}</p>
                 </div>
               )}
 
               {dataLoaded && !loading && !hasAnyInput && (
                 <div className="sola-card p-12 text-center">
                   <Search className="w-16 h-16 mx-auto mb-4 text-muted-foreground/20" strokeWidth={1} />
-                  <p className="font-display text-xl text-muted-foreground mb-1">Digite para pesquisar</p>
+                  <p className="font-display text-xl text-muted-foreground mb-1">{t('pesquisa.typeToSearch')}</p>
                   <p className="text-sm text-muted-foreground/70">
-                    Busque por palavras-chave em todas as Escrituras
+                    {t('pesquisa.typeDesc')}
                   </p>
                 </div>
               )}
@@ -538,9 +540,9 @@ export default function PesquisaPage() {
               {dataLoaded && !loading && hasAnyInput && resultados.length === 0 && (
                 <div className="sola-card p-12 text-center">
                   <BookOpen className="w-16 h-16 mx-auto mb-4 text-muted-foreground/30" strokeWidth={1} />
-                  <p className="font-display text-xl text-muted-foreground mb-1">Nenhum resultado encontrado</p>
+                  <p className="font-display text-xl text-muted-foreground mb-1">{t('pesquisa.noResults')}</p>
                   <p className="text-sm text-muted-foreground/70">
-                    Tente usar termos diferentes ou limpar os filtros
+                    {t('pesquisa.tryDifferent')}
                   </p>
                 </div>
               )}
@@ -587,10 +589,10 @@ export default function PesquisaPage() {
                               <button
                                 onClick={() => copyResult(r)}
                                 className="p-1.5 text-muted-foreground hover:text-foreground transition-colors rounded-sm"
-                                title="Copiar"
+                                title={t('pesquisa.copy')}
                               >
                                 {copiedResult === `${r.traducao}-${r.capitulo}-${r.versiculo}` ? (
-                                  <span className="text-green-500 text-xs">Copiado!</span>
+                                  <span className="text-green-500 text-xs">{t('pesquisa.copied')}</span>
                                 ) : (
                                   <Copy className="w-4 h-4" />
                                 )}
@@ -598,14 +600,14 @@ export default function PesquisaPage() {
                               <button
                                 onClick={() => shareResult(r)}
                                 className="p-1.5 text-muted-foreground hover:text-foreground transition-colors rounded-sm"
-                                title="Compartilhar"
+                                title={t('pesquisa.share')}
                               >
                                 <Share2 className="w-4 h-4" />
                               </button>
                               <Link
                                 href={`/biblia?livro=${r.livroAbrev}&capitulo=${r.capitulo}`}
                                 className="p-1.5 text-muted-foreground hover:text-foreground transition-colors rounded-sm"
-                                title="Ir para Bíblia"
+                                title={t('pesquisa.goToBible')}
                               >
                                 <ExternalLink className="w-4 h-4" />
                               </Link>

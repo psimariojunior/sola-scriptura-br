@@ -688,6 +688,7 @@ export default function PainelDoVersiculo({
   tabInicial,
 }: PainelDoVersiculoProps) {
   const [recursos, setRecursos] = useState<RecursoVersiculo[]>([]);
+  const [erro, setErro] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState(tabInicial || 'texto');
   const [isMobile, setIsMobile] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
@@ -703,7 +704,16 @@ export default function PainelDoVersiculo({
 
   useEffect(() => {
     setRecursos([]);
-    getRecursosVersiculo(livro, capitulo, versiculo).then(setRecursos);
+    setErro(null);
+    if (!livro || livro.trim() === '') {
+      return;
+    }
+    getRecursosVersiculo(livro, capitulo, versiculo)
+      .then(setRecursos)
+      .catch((err) => {
+        console.error('Erro ao carregar recursos do versículo:', err);
+        setErro('Erro ao carregar recursos. Tente novamente.');
+      });
     setActiveTab(tabInicial || 'texto');
     if (aberto && typeof window !== 'undefined') {
       requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
@@ -792,6 +802,28 @@ export default function PainelDoVersiculo({
         {/* Content */}
         <ScrollArea className="flex-1 min-h-0">
           <div className="p-4">
+            {erro ? (
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-3">
+                  <X className="w-6 h-6 text-red-500" />
+                </div>
+                <p className="text-sm text-red-400 mb-3">{erro}</p>
+                <button
+                  onClick={() => {
+                    setErro(null);
+                    setRecursos([]);
+                    getRecursosVersiculo(livro, capitulo, versiculo).then(setRecursos).catch((err) => {
+                      console.error('Erro ao recarregar recursos:', err);
+                      setErro('Erro ao carregar recursos. Tente novamente.');
+                    });
+                  }}
+                  className="px-4 py-2 text-xs font-medium rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-colors"
+                >
+                  Tentar novamente
+                </button>
+              </div>
+            ) : (
+            <>
             <TabsContent value="texto" className="mt-0">
               <Suspense fallback={<TextoSkeleton />}>
                 <TabTexto livro={livro} capitulo={capitulo} versiculo={versiculo} />
@@ -853,6 +885,8 @@ export default function PainelDoVersiculo({
             <TabsContent value="ia" className="mt-0">
               <TabIA livro={livro} capitulo={capitulo} versiculo={versiculo} />
             </TabsContent>
+            </>
+            )}
           </div>
         </ScrollArea>
       </Tabs>

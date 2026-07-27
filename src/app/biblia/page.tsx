@@ -110,10 +110,6 @@ export default function BibliaPage() {
   /* eslint-disable react-hooks/exhaustive-deps */
   const stableHandleSelectFromList = useCallback((livro: string, cap: number, ver: number, traducao: string, texto: string) => {
     verse.handleSelectFromList(livro, cap, ver, traducao, texto);
-    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-      setPainelTabInicial(undefined);
-      setPainelVersiculoAberto(true);
-    }
   }, [verse.handleSelectFromList]);
 
   const stableSetAnotandoVersiculo = useCallback((key: string) => {

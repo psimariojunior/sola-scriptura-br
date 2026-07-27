@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -64,14 +64,23 @@ export default function FavoritosPage() {
     carregarFavoritos();
   }, [carregarFavoritos]);
 
+  const syncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const triggerSync = useCallback(() => {
+    if (syncTimerRef.current) clearTimeout(syncTimerRef.current);
+    syncTimerRef.current = setTimeout(() => {
+      import('@/lib/supabaseSync').then(({ syncType }) => syncType('favoritos')).catch(() => {});
+    }, 2000);
+  }, []);
+
   const remover = useCallback((id: string) => {
     setFavoritos(prev => {
       const updated = prev.filter(f => f.id !== id);
       localStorage.setItem('ssb_favoritos', JSON.stringify(updated));
       saveFavoritesOffline(updated).catch(() => {});
+      triggerSync();
       return updated;
     });
-  }, []);
+  }, [triggerSync]);
 
   const exportar = useCallback(() => {
     const data = JSON.stringify(favoritos, null, 2);

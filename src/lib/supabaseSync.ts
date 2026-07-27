@@ -28,6 +28,13 @@ let autoSyncInterval: ReturnType<typeof setInterval> | null = null;
 export function getUserId(): string | null {
   try {
     if (typeof window === 'undefined') return null;
+    // Read from auth.ts format: { id, email, nome, ... }
+    const userStr = localStorage.getItem('usuario');
+    if (userStr) {
+      const user = JSON.parse(userStr);
+      if (user?.id) return String(user.id);
+    }
+    // Fallback: legacy key
     return localStorage.getItem('ssb_user_id');
   } catch {
     return null;
@@ -37,7 +44,7 @@ export function getUserId(): string | null {
 export function getAuthToken(): string | null {
   try {
     if (typeof window === 'undefined') return null;
-    return localStorage.getItem('ssb_token');
+    return localStorage.getItem('accessToken') || localStorage.getItem('ssb_token');
   } catch {
     return null;
   }

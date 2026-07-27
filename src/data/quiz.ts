@@ -1,8 +1,9 @@
-export type CategoriaQuiz = 'versiculos' | 'personagens' | 'doutrinas' | 'historia' | 'linguas';
+export type CategoriaQuiz = 'versiculos' | 'personagens' | 'doutrinas' | 'historia' | 'linguas' | 'teologia';
 export type NivelQuiz = 'facil' | 'medio' | 'dificil';
 export type TipoPergunta = 'multipla' | 'verdadeiro_falso' | 'completar' | 'ordenar' | 'referencia' | 'citacao';
 
 import { QUIZ_EXPANDIDO } from './_quiz_expandido';
+import { estudosGerados } from './estudosGerados';
 
 export interface PerguntaQuiz {
   id: string;
@@ -23,6 +24,7 @@ export const CATEGORIAS_QUIZ: Record<CategoriaQuiz, { label: string; icon: strin
   doutrinas: { label: 'Doutrinas', icon: '⛪', cor: 'bg-purple-500/10 text-purple-600 dark:text-purple-400' },
   historia: { label: 'História', icon: '🏛️', cor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' },
   linguas: { label: 'Línguas Originais', icon: '🔤', cor: 'bg-rose-500/10 text-rose-600 dark:text-rose-400' },
+  teologia: { label: 'Teologia', icon: '🎓', cor: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400' },
 };
 
 export const NIVEIS_QUIZ: Record<NivelQuiz, { label: string; cor: string }> = {
@@ -901,10 +903,70 @@ const perguntasExpansao: PerguntaQuiz[] = [
   q('p040',"Cidade onde Paulo naufragou e foi mordido por uma serpente?",["Malta","Chipre","Creta","Sicília"],0,"Atos 28:1-6 — Malta.", 'personagens','facil','multipla','Atos 28:1'),
 ];
 
+// Auto-generate theological quiz questions from studies
+function gerarPerguntasTeologicas(): PerguntaQuiz[] {
+  const perguntas: PerguntaQuiz[] = [];
+  const estudosComInterpretes = estudosGerados.filter(e => e.interpretacoes.length >= 2);
+
+  for (let i = 0; i < Math.min(estudosComInterpretes.length, 200); i++) {
+    const estudo = estudosComInterpretes[i];
+    const interpretes = estudo.interpretacoes;
+
+    // Question type 1: "What is the view of [theologian] on [theme]?"
+    if (interpretes.length >= 2) {
+      const idx = i % interpretes.length;
+      const int = interpretes[idx];
+      const outros = interpretes.filter((_, j) => j !== idx);
+      const erradas = outros.map(o => o.visao).slice(0, 3);
+      while (erradas.length < 3) erradas.push('Não há posição registrada');
+
+      perguntas.push({
+        id: `teo-${i}-a`,
+        enunciado: `Qual é a visão de ${int.teologo} sobre "${estudo.tema}" (${estudo.livro.toUpperCase()} ${estudo.capitulo}:${estudo.versiculo})?`,
+        opcoes: [int.visao, erradas[0], erradas[1], erradas[2]],
+        respostaCorreta: 0,
+        explicacao: `${int.teologo} (${int.periodo}, ${int.tradicao}): ${int.resumo}`,
+        categoria: 'teologia',
+        nivel: 'medio',
+        tipo: 'multipla',
+        referencia: `${estudo.livro.toUpperCase()} ${estudo.capitulo}:${estudo.versiculo}`,
+      });
+    }
+
+    // Question type 2: "Which theologian said [quote]?"
+    if (interpretes.length >= 2) {
+      const idx2 = (i * 3) % interpretes.length;
+      const int2 = interpretes[idx2];
+      const citacao = int2.citacao.replace(/[«»"]/g, '').slice(0, 80);
+      if (citacao.length > 20) {
+        const outrosNomes = interpretes.filter((_, j) => j !== idx2).map(o => o.teologo).slice(0, 3);
+        while (outrosNomes.length < 3) outrosNomes.push('Desconhecido');
+
+        perguntas.push({
+          id: `teo-${i}-b`,
+          enunciado: `Quem disse: "${citacao}..."?`,
+          opcoes: [int2.teologo, outrosNomes[0], outrosNomes[1], outrosNomes[2]],
+          respostaCorreta: 0,
+          explicacao: `${int2.teologo} (${int2.periodo}) — ${int2.visao}`,
+          categoria: 'teologia',
+          nivel: 'dificil',
+          tipo: 'citacao',
+          referencia: `${estudo.livro.toUpperCase()} ${estudo.capitulo}:${estudo.versiculo}`,
+        });
+      }
+    }
+  }
+
+  return perguntas;
+}
+
+const perguntasTeologicas = gerarPerguntasTeologicas();
+
 export const todasPerguntas: PerguntaQuiz[] = [
   ...perguntasFacis,
   ...perguntasMedias,
   ...perguntasDificeis,
   ...perguntasExpansao,
   ...QUIZ_EXPANDIDO,
+  ...perguntasTeologicas,
 ];

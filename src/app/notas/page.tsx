@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -44,6 +44,14 @@ export default function NotasPage() {
     carregarNotas();
   }, [carregarNotas]);
 
+  const syncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const triggerSync = useCallback(() => {
+    if (syncTimerRef.current) clearTimeout(syncTimerRef.current);
+    syncTimerRef.current = setTimeout(() => {
+      import('@/lib/supabaseSync').then(({ syncType }) => syncType('notas')).catch(() => {});
+    }, 2000);
+  }, []);
+
   const salvarNota = useCallback((nota: Nota) => {
     setNotas(prev => {
       const exists = prev.findIndex(n => n.id === nota.id);
@@ -54,9 +62,10 @@ export default function NotasPage() {
       saveNotesOffline(updated).catch(() => {});
       return updated;
     });
+    triggerSync();
     setView('list');
     setEditingNota(undefined);
-  }, []);
+  }, [triggerSync]);
 
   const excluirNota = useCallback((id: string) => {
     setNotas(prev => {
@@ -65,7 +74,8 @@ export default function NotasPage() {
       saveNotesOffline(updated).catch(() => {});
       return updated;
     });
-  }, []);
+    triggerSync();
+  }, [triggerSync]);
 
   const notasFiltradas = notas.filter(n => {
     if (!busca) return true;

@@ -1,10 +1,10 @@
-const CACHE_VERSION = 'v6';
+const CACHE_VERSION = 'v7';
 const STATIC_CACHE = `ssb-static-${CACHE_VERSION}`;
 const API_CACHE = `ssb-api-${CACHE_VERSION}`;
 const BIBLE_CACHE = `ssb-bible-${CACHE_VERSION}`;
 const PAGES_CACHE = `ssb-pages-${CACHE_VERSION}`;
 const VISITED_PAGES_CACHE = `ssb-visited-pages-${CACHE_VERSION}`;
-const BIBLE_OFFLINE_CACHE = `ssb-bible-offline-${CACHE_VERSION}`;
+const STUDIES_CACHE = `ssb-studies-${CACHE_VERSION}`;
 const DB_NAME = 'ssb_offline';
 const DB_VERSION = 2;
 const STORE_CHAPTERS = 'chapters';
@@ -27,6 +27,10 @@ const PRECACHE_URLS = [
   '/notas',
   '/exegese',
   '/personagens',
+  '/quiz',
+  '/flashcards',
+  '/palavras',
+  '/referencias',
   '/offline.html',
   '/manifest.json',
   '/icon-192.png',
@@ -82,7 +86,7 @@ self.addEventListener('activate', (event) => {
               key !== BIBLE_CACHE &&
               key !== PAGES_CACHE &&
               key !== VISITED_PAGES_CACHE &&
-              key !== BIBLE_OFFLINE_CACHE
+              key !== STUDIES_CACHE
             )
             .map((key) => caches.delete(key))
         )
@@ -112,6 +116,19 @@ self.addEventListener('fetch', (event) => {
 
   if (url.pathname.startsWith('/api/v1/biblia') || url.pathname.includes('/texto/')) {
     event.respondWith(cacheFirst(request, BIBLE_CACHE));
+    return;
+  }
+
+  // Cache study-related chunks (estudos, comentarios, cross-references, lexicon)
+  if (
+    url.pathname.includes('/estudos') ||
+    url.pathname.includes('/comentarios') ||
+    url.pathname.includes('/crossRef') ||
+    url.pathname.includes('/lexicon') ||
+    url.pathname.includes('/estudosGerados') ||
+    url.pathname.includes('/estudosTeologicos')
+  ) {
+    event.respondWith(cacheFirst(request, STUDIES_CACHE));
     return;
   }
 
@@ -242,6 +259,10 @@ self.addEventListener('message', (event) => {
   if (data.type === 'GET_OFFLINE_STATS') {
     event.waitUntil(getOfflineStats(event));
   }
+
+  if (data.type === 'PRELOAD_STUDIES') {
+    event.waitUntil(preloadStudies(data));
+  }
 });
 
 async function cacheTranslationFromClient(data) {
@@ -311,6 +332,33 @@ async function getOfflineStats(event) {
     const client = event.source;
     if (client) {
       client.postMessage({ type: 'OFFLINE_STATS', chaptersCount: count });
+    }
+  } catch {}
+}
+
+async function preloadStudies(data) {
+  const { urls } = data;
+  if (!urls || !Array.isArray(urls)) return;
+
+  try {
+    const cache = await caches.open(STUDIES_CACHE);
+    const results = [];
+    for (const url of urls) {
+      try {
+        const response = await fetch(url);
+        if (response.ok) {
+          await cache.put(url, response.clone());
+          results.push({ url, ok: true });
+        } else {
+          results.push({ url, ok: false, status: response.status });
+        }
+      } catch (e) {
+        results.push({ url, ok: false, error: e.message });
+      }
+    }
+    const client = event.source;
+    if (client) {
+      client.postMessage({ type: 'PRELOAD_STUDIES_DONE', results });
     }
   } catch {}
 }

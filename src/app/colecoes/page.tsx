@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -29,6 +30,7 @@ interface Colecao {
 }
 
 export default function ColecoesPage() {
+  const { t } = useTranslation();
   const [colecoes, setColecoes] = useState<Colecao[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [showCriar, setShowCriar] = useState(false);

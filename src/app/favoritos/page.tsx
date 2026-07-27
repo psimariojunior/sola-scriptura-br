@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -33,6 +34,7 @@ const CORES = [
 ];
 
 export default function FavoritosPage() {
+  const { t } = useTranslation();
   const [favoritos, setFavoritos] = useState<Favorito[]>([]);
   const [busca, setBusca] = useState('');
   const [filtroCor, setFiltroCor] = useState('all');
@@ -117,14 +119,14 @@ export default function FavoritosPage() {
                   <Heart className="w-5 h-5 text-red-500" />
                 </div>
                 <div>
-                  <h1 className="font-display text-3xl font-light">Favoritos</h1>
-                  <p className="text-sm text-muted-foreground">{favoritos.length} versículos salvos</p>
+                  <h1 className="font-display text-3xl font-light">{t('favoritos.title')}</h1>
+                  <p className="text-sm text-muted-foreground">{favoritos.length} {t('favoritos.subtitle')}</p>
                 </div>
               </div>
               {favoritos.length > 0 && (
                 <motion.button onClick={exportar} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                   className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border text-sm text-muted-foreground hover:bg-muted/50 transition-all">
-                  <Download className="w-4 h-4" /> Exportar
+                  <Download className="w-4 h-4" /> {t('favoritos.export')}
                 </motion.button>
               )}
             </div>
@@ -136,8 +138,8 @@ export default function FavoritosPage() {
                 <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4">
                   <Heart className="w-8 h-8 text-red-500/50" />
                 </div>
-                <h2 className="font-display text-xl font-light mb-2">Nenhum favorito</h2>
-                <p className="text-sm text-muted-foreground">Favorite versículos na Bíblia para encontrá-los facilmente.</p>
+                <h2 className="font-display text-xl font-light mb-2">{t('favoritos.empty')}</h2>
+                <p className="text-sm text-muted-foreground">{t('favoritos.emptyDesc')}</p>
               </div>
             </ScrollReveal>
           ) : (
@@ -147,7 +149,7 @@ export default function FavoritosPage() {
                   <div className="relative">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <input type="text" value={busca} onChange={e => setBusca(e.target.value)}
-                      placeholder="Buscar nos favoritos..."
+                      placeholder={t('favoritos.search')}
                       className="w-full pl-11 pr-10 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20" />
                     {busca && <button onClick={() => setBusca('')} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-muted/50">
                       <X className="w-4 h-4 text-muted-foreground" /></button>}
@@ -167,12 +169,12 @@ export default function FavoritosPage() {
                   <div className="flex items-center gap-2 flex-wrap">
                     <select value={filtroLivro} onChange={e => setFiltroLivro(e.target.value)}
                       className="px-3 py-1.5 rounded-lg text-xs border border-border bg-background">
-                      <option value="all">Todos os livros</option>
+                      <option value="all">{t('favoritos.allBooks')}</option>
                       {livrosComFavoritos.map(l => <option key={l.abreviacao} value={l.nome}>{l.nome}</option>)}
                     </select>
                     <button onClick={() => setSortBy(prev => prev === 'data' ? 'livro' : prev === 'livro' ? 'cor' : 'data')}
                       className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs border border-border text-muted-foreground hover:bg-muted/50">
-                      <ArrowUpDown className="w-3 h-3" /> {sortBy === 'data' ? 'Data' : sortBy === 'livro' ? 'Livro' : 'Cor'}
+                      <ArrowUpDown className="w-3 h-3" /> {sortBy === 'data' ? t('favoritos.sortByData') : sortBy === 'livro' ? t('favoritos.sortByLivro') : t('favoritos.sortByCor')}
                     </button>
                   </div>
                 </div>
@@ -204,9 +206,9 @@ export default function FavoritosPage() {
               </div>
 
               {busca && filtrados.length === 0 && (
-                <div className="text-center py-8"><p className="text-sm text-muted-foreground">Nenhum favorito encontrado</p></div>
+                <div className="text-center py-8"><p className="text-sm text-muted-foreground">{t('favoritos.notFound')}</p></div>
               )}
-              <p className="text-center text-xs text-muted-foreground mt-8">{filtrados.length} de {favoritos.length} favoritos</p>
+              <p className="text-center text-xs text-muted-foreground mt-8">{filtrados.length} {t('favoritos.of')} {favoritos.length} {t('favoritos.favorites')}</p>
             </>
           )}
         </div>

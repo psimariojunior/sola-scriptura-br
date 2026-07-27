@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -14,6 +15,7 @@ import { PullToRefreshWrapper } from '@/components/PullToRefresh';
 type View = 'list' | 'editor';
 
 export default function NotasPage() {
+  const { t } = useTranslation();
   const [notas, setNotas] = useState<Nota[]>([]);
   const [busca, setBusca] = useState('');
   const [carregado, setCarregado] = useState(false);
@@ -89,7 +91,7 @@ export default function NotasPage() {
           <div className="max-w-4xl mx-auto">
             <button onClick={() => { setView('list'); setEditingNota(undefined); }}
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4">
-              <ArrowLeft className="w-4 h-4" /> Voltar às notas
+              <ArrowLeft className="w-4 h-4" /> {t('notas.backToNotes')}
             </button>
             <div className="rounded-2xl border border-border/50 bg-card/50 p-6">
               <NotaEditor
@@ -120,14 +122,14 @@ export default function NotasPage() {
                   <FileText className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h1 className="font-display text-3xl font-light">Notas</h1>
-                  <p className="text-sm text-muted-foreground">Suas anotações pessoais de estudo</p>
+                  <h1 className="font-display text-3xl font-light">{t('notas.title')}</h1>
+                  <p className="text-sm text-muted-foreground">{t('notas.subtitle')}</p>
                 </div>
               </div>
               <motion.button onClick={() => { setEditingNota(undefined); setView('editor'); }}
                 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-medium text-sm shadow-lg shadow-primary/25">
-                <Plus className="w-4 h-4" /> Nova Nota
+                <Plus className="w-4 h-4" /> {t('notas.newNote')}
               </motion.button>
             </div>
           </ScrollReveal>
@@ -138,14 +140,14 @@ export default function NotasPage() {
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <FileText className="w-8 h-8 text-primary/50" />
                 </div>
-                <h2 className="font-display text-xl font-light mb-2">Nenhuma nota ainda</h2>
+                <h2 className="font-display text-xl font-light mb-2">{t('notas.empty')}</h2>
                 <p className="text-sm text-muted-foreground mb-6">
-                  Crie notas ricas com formatação, tags e histórico de versões.
+                  {t('notas.emptyDesc')}
                 </p>
                 <motion.button onClick={() => { setEditingNota(undefined); setView('editor'); }}
                   whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                   className="px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-medium">
-                  <Plus className="w-4 h-4 inline mr-2" /> Criar Primeira Nota
+                  <Plus className="w-4 h-4 inline mr-2" /> {t('notas.createFirst')}
                 </motion.button>
               </div>
             </ScrollReveal>
@@ -156,7 +158,7 @@ export default function NotasPage() {
                   <div className="relative">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <input type="text" value={busca} onChange={e => setBusca(e.target.value)}
-                      placeholder="Buscar notas..."
+                      placeholder={t('notas.search')}
                       className="w-full pl-11 pr-10 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" />
                     {busca && (
                       <button onClick={() => setBusca('')}
@@ -185,14 +187,14 @@ export default function NotasPage() {
                             <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-xl bg-primary/40" />
                             <div className="pl-3">
                               <div className="flex items-start justify-between mb-2">
-                                <h3 className="font-medium text-foreground">{nota.titulo || 'Sem título'}</h3>
+                                <h3 className="font-medium text-foreground">{nota.titulo || t('notas.untitled')}</h3>
                                 <div className="flex items-center gap-1 sm:opacity-0 sm:group-hover:opacity-100 opacity-100 transition-opacity">
                                   <button onClick={(e) => { e.stopPropagation(); setEditingNota(nota); setView('editor'); }}
-                                    className="p-1.5 rounded-lg hover:bg-primary/10 text-primary" title="Editar">
+                                    className="p-1.5 rounded-lg hover:bg-primary/10 text-primary" title={t('notas.edit')}>
                                     <Edit3 className="w-3.5 h-3.5" />
                                   </button>
                                   <button onClick={(e) => { e.stopPropagation(); excluirNota(nota.id); }}
-                                    className="p-1.5 rounded-lg hover:bg-red-500/10 text-red-500" title="Excluir">
+                                    className="p-1.5 rounded-lg hover:bg-red-500/10 text-red-500" title={t('notas.delete')}>
                                     <Trash2 className="w-3.5 h-3.5" />
                                   </button>
                                 </div>
@@ -218,12 +220,12 @@ export default function NotasPage() {
 
               {busca && notasFiltradas.length === 0 && (
                 <div className="text-center py-8">
-                  <p className="text-sm text-muted-foreground">Nenhuma nota encontrada para &ldquo;{busca}&rdquo;</p>
+                  <p className="text-sm text-muted-foreground">{t('notas.notFound')} &ldquo;{busca}&rdquo;</p>
                 </div>
               )}
 
               <p className="text-center text-xs text-muted-foreground mt-8">
-                {notasFiltradas.length} de {notas.length} notas
+                {notasFiltradas.length} {t('notas.of')} {notas.length} {t('notas.notes')}
               </p>
             </>
           )}

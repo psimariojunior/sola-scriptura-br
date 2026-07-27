@@ -10,6 +10,7 @@ import { Church, Search, ChevronDown, ExternalLink, Copy, Check, Sparkles, Layer
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
+import { useTranslation } from 'react-i18next';
 
 const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
   ssr: false,
@@ -53,6 +54,7 @@ function parseReferencia(ref: string): { livro: string; capitulo: number; versic
 }
 
 export default function TeologiaPage() {
+  const { t } = useTranslation();
   const [busca, setBusca] = useState('');
   const [filtroCategoria, setFiltroCategoria] = useState<string | null>(null);
   const [expandida, setExpandida] = useState<string | null>(null);
@@ -126,10 +128,10 @@ export default function TeologiaPage() {
                 <Church className="w-8 h-8 text-indigo-500" />
               </motion.div>
               <h1 className="font-display text-4xl md:text-5xl font-light mb-4">
-                Teologia <span className="italic text-primary">Sistemática</span>
+                {t('theology.titlePart1')} <span className="italic text-primary">{t('theology.titlePart2')}</span>
               </h1>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Doutrinas fundamentais da fé cristã bíblica, organizadas por categorias com referências e tradições.
+                {t('theology.description')}
               </p>
               <div className="ornament w-16 mx-auto mt-6" />
             </div>
@@ -142,7 +144,7 @@ export default function TeologiaPage() {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <input
                     type="text"
-                    placeholder="Buscar doutrina, definição ou referência..."
+                    placeholder={t('theology.searchPlaceholder')}
                     value={busca}
                     onChange={(e) => setBusca(e.target.value)}
                     className="w-full pl-10 pr-4 py-2.5 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
@@ -157,7 +159,7 @@ export default function TeologiaPage() {
                       !filtroCategoria ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-muted/80'
                     }`}
                   >
-                    Todas
+                    {t('theology.all')}
                   </motion.button>
                   {(abaAtiva === 'doutrinas' ? categorias : categoriasEstudos.slice(0, 20)).map(cat => {
                     const cores = getCoresCategoria(cat);
@@ -196,7 +198,7 @@ export default function TeologiaPage() {
                 }`}
               >
                 <Layers className="w-4 h-4" />
-                Doutrinas <span className="text-xs opacity-70">({doutrinas.length})</span>
+                {t('theology.doctrines')} <span className="text-xs opacity-70">({doutrinas.length})</span>
               </motion.button>
               <motion.button
                 onClick={() => { setAbaAtiva('estudos'); setFiltroCategoria(null); setBusca(''); }}
@@ -209,7 +211,7 @@ export default function TeologiaPage() {
                 }`}
               >
                 <GraduationCap className="w-4 h-4" />
-                Estudos Aprofundados <span className="text-xs opacity-70">({estudosTeologicosExpandidos.length})</span>
+                {t('theology.advancedStudies')} <span className="text-xs opacity-70">({estudosTeologicosExpandidos.length})</span>
               </motion.button>
             </div>
           </ScrollReveal>
@@ -217,10 +219,10 @@ export default function TeologiaPage() {
           <ScrollReveal delay={0.15}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               {[
-                { value: abaAtiva === 'doutrinas' ? doutrinas.length : estudosTeologicosExpandidos.length, label: abaAtiva === 'doutrinas' ? 'Doutrinas' : 'Estudos' },
-                { value: abaAtiva === 'doutrinas' ? categorias.length : categoriasEstudos.length, label: 'Categorias' },
-                { value: abaAtiva === 'doutrinas' ? doutrinas.reduce((acc, d) => acc + d.passagens.length, 0) : estudosTeologicosExpandidos.reduce((acc, e) => acc + e.versicosChave.length, 0), label: 'Referências' },
-                { value: 66, label: 'Livros Bíblicos' },
+                { value: abaAtiva === 'doutrinas' ? doutrinas.length : estudosTeologicosExpandidos.length, label: abaAtiva === 'doutrinas' ? t('theology.doctrines') : t('theology.studies') },
+                { value: abaAtiva === 'doutrinas' ? categorias.length : categoriasEstudos.length, label: t('theology.categories') },
+                { value: abaAtiva === 'doutrinas' ? doutrinas.reduce((acc, d) => acc + d.passagens.length, 0) : estudosTeologicosExpandidos.reduce((acc, e) => acc + e.versicosChave.length, 0), label: t('theology.references') },
+                { value: 66, label: t('theology.biblicalBooks') },
               ].map((stat, i) => (
                 <motion.div key={stat.label} className="sola-card p-4 text-center" whileHover={{ y: -2 }}>
                   <p className="font-display text-3xl font-light text-primary">{stat.value}</p>
@@ -295,7 +297,7 @@ export default function TeologiaPage() {
                                 >
                                   <div className="pt-4 border-t border-border/50">
                                     <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-                                      Passagens Bíblicas
+                                      {t('theology.biblicalPassages')}
                                     </h4>
                                     <div className="flex flex-wrap gap-2 mb-4">
                                       {d.passagens.map((ref) => {
@@ -329,7 +331,7 @@ export default function TeologiaPage() {
                                     {d.tradicoes && (
                                       <div>
                                         <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                                          Visão das Tradições
+                                          {t('theology.traditionsView')}
                                         </h4>
                                         <p className="text-xs text-foreground/70 leading-relaxed font-serif-body">
                                           {d.tradicoes}
@@ -425,7 +427,7 @@ export default function TeologiaPage() {
 
                                       <div>
                                         <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                                          Passagens Chave
+                                          {t('theology.keyPassages')}
                                         </h4>
                                         <div className="flex flex-wrap gap-2">
                                           {e.versicosChave.map((ref) => {
@@ -454,7 +456,7 @@ export default function TeologiaPage() {
                                       {e.fontes.length > 0 && (
                                         <div>
                                           <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                                            Fontes
+                                            {t('theology.sources')}
                                           </h4>
                                           <p className="text-xs text-foreground/60">{e.fontes.join(' · ')}</p>
                                         </div>
@@ -480,21 +482,21 @@ export default function TeologiaPage() {
               <div className="sola-card p-12 text-center">
                 <Search className="w-16 h-16 mx-auto mb-4 text-muted-foreground/20" strokeWidth={1} />
                 <p className="font-display text-xl text-muted-foreground mb-1">
-                  {abaAtiva === 'doutrinas' ? 'Nenhuma doutrina encontrada' : 'Nenhum estudo encontrado'}
+                  {abaAtiva === 'doutrinas' ? t('theology.noDoctrines') : t('theology.noStudies')}
                 </p>
-                <p className="text-sm text-muted-foreground/70">Tente usar termos diferentes ou limpar os filtros</p>
+                <p className="text-sm text-muted-foreground/70">{t('common.tryDifferent')}</p>
               </div>
             </ScrollReveal>
           )}
 
           <ScrollReveal delay={0.2}>
             <div className="mt-16">
-              <h2 className="font-display text-2xl font-light mb-6 text-primary">Tradições Teológicas</h2>
+              <h2 className="font-display text-2xl font-light mb-6 text-primary">{t('theology.theologicalTraditions')}</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
-                  { name: 'Reformada', desc: 'Sola Gratia, Sola Fide, Sola Scriptura, Solus Christus, Soli Deo Gloria. Soberania de Deus na salvação.', tags: ['Calvino', 'Lutero', 'Escolásticos'] },
-                  { name: 'Arminiana', desc: 'Liberdade humana, graça resistível, previsão condicional. Destaque para a responsabilidade humana.', tags: ['Arminio', 'Wesley', 'Metodista'] },
-                  { name: 'Batista', desc: 'Autoridade da Escritura, regeneração pessoal, credismo, separação igreja/estado.', tags: ['Spurgeon', 'Carson', 'Moderne'] },
+                  { name: t('theology.reformed'), desc: t('theology.reformedDesc'), tags: t('theology.reformedTags', { returnObjects: true }) as string[] },
+                  { name: t('theology.arminian'), desc: t('theology.arminianDesc'), tags: t('theology.arminianTags', { returnObjects: true }) as string[] },
+                  { name: t('theology.baptist'), desc: t('theology.baptistDesc'), tags: t('theology.baptistTags', { returnObjects: true }) as string[] },
                 ].map((trad, i) => (
                   <motion.div key={trad.name} className="sola-card p-6" whileHover={{ y: -4 }} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                     <h3 className="font-semibold mb-2">{trad.name}</h3>

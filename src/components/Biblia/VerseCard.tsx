@@ -111,6 +111,7 @@ export const VerseCard = memo(function VerseCard({
     const handler = (e: MouseEvent | TouchEvent) => {
       const target = e.target as Node;
       if (articleRef.current && !articleRef.current.contains(target)) {
+        if (target instanceof Element && (target.closest('[role="dialog"]') || target.closest('.painel-versiculo'))) return;
         onDeselect?.();
       }
     };

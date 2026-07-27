@@ -705,7 +705,10 @@ export default function PainelDoVersiculo({
     setRecursos([]);
     getRecursosVersiculo(livro, capitulo, versiculo).then(setRecursos);
     setActiveTab(tabInicial || 'texto');
-  }, [livro, capitulo, versiculo, tabInicial]);
+    if (aberto && typeof window !== 'undefined') {
+      requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+  }, [livro, capitulo, versiculo, tabInicial, aberto]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape' && aberto) onFechar?.();
@@ -727,7 +730,7 @@ export default function PainelDoVersiculo({
 
   const tabsDisponiveis = TAB_CONFIG.filter((tab) => {
     const count = contagemPorTipo(tab.value);
-    return count > 0 || tab.value === 'texto' || tab.value === 'critica' || tab.value === 'ia';
+    return count > 0 || tab.value === 'texto' || tab.value === 'critica' || tab.value === 'ia' || tab.value === 'estudo';
   });
 
   const panelContent = (

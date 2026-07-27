@@ -74,6 +74,7 @@ const SAMPLE_QUESTIONS: QuizQuestion[] = [
 
 export function CollaborativeStudy({ initialCode, compact = false }: CollaborativeStudyProps) {
   const [room, setRoom] = useState<StudyRoom | null>(null);
+  const [roomFull, setRoomFull] = useState<{ maxParticipants: number } | null>(null);
   const [joinCode, setJoinCode] = useState('');
   const [shareInput, setShareInput] = useState('');
   const [shareMessage, setShareMessage] = useState('');
@@ -146,6 +147,11 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     svc.onBibleNavigation((data) => setBibleSyncData(data));
     svc.onParticipants((participants) => {
       setRoom(prev => prev ? { ...prev, participants: participants.map(p => p.participantId) } : prev);
+    });
+
+    svc.onRoomFull((data) => {
+      setRoomFull({ maxParticipants: data.maxParticipants });
+      setRoom(null);
     });
 
     svc.onPresentationSync((data) => {
@@ -460,6 +466,11 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
             className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-gradient-to-r from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/25">
             <Plus className="w-5 h-5" /> Criar Nova Sala
           </motion.button>
+          {roomFull && (
+            <div className="px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm text-center">
+              Sala cheia! Máximo de {roomFull.maxParticipants} participantes.
+            </div>
+          )}
           <div className="relative">
             <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-[var(--border)]/40" /></div>
             <div className="relative flex justify-center text-xs"><span className="bg-[var(--surface-base)] px-3 text-[var(--content-muted)]">ou entre com código</span></div>

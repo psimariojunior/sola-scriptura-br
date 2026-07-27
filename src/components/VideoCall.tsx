@@ -198,7 +198,11 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
         ) : (
           <div className={cn(
             'grid gap-2 h-full',
-            totalPeers === 0 ? 'grid-cols-1' : totalPeers === 1 ? 'grid-cols-2' : 'grid-cols-2 grid-rows-2'
+            totalPeers === 0 ? 'grid-cols-1' :
+            totalPeers <= 1 ? 'grid-cols-2' :
+            totalPeers <= 4 ? 'grid-cols-2 grid-rows-2' :
+            totalPeers <= 9 ? 'grid-cols-3 grid-rows-3' :
+            'grid-cols-4 grid-rows-4'
           )}>
             {/* Local Video */}
             <div className="relative rounded-xl overflow-hidden bg-black/80 border border-[var(--border)]/20">

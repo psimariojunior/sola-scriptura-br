@@ -64,12 +64,19 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
     @MessageBody() data: { code: string; participantId: string; displayName: string },
   ) {
     const { code, participantId, displayName } = data;
+    const MAX_PARTICIPANTS = 20;
 
     if (!this.rooms.has(code)) {
       this.rooms.set(code, { code, participants: new Map() });
     }
 
     const room = this.rooms.get(code)!;
+
+    if (room.participants.size >= MAX_PARTICIPANTS) {
+      client.emit('room-full', { code, maxParticipants: MAX_PARTICIPANTS });
+      this.logger.warn(`${displayName} rejected from room ${code} (full: ${room.participants.size}/${MAX_PARTICIPANTS})`);
+      return;
+    }
 
     room.participants.set(client.id, {
       socketId: client.id,
@@ -81,11 +88,12 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
 
     const participantList = Array.from(room.participants.values());
 
-    this.logger.log(`${displayName} joined room ${code} (${participantList.length} participants)`);
+    this.logger.log(`${displayName} joined room ${code} (${participantList.length}/${MAX_PARTICIPANTS} participants)`);
 
     this.server.to(code).emit('room-participants', {
       code,
       participants: participantList,
+      maxParticipants: MAX_PARTICIPANTS,
     });
 
     const otherParticipants = participantList.filter(p => p.socketId !== client.id);

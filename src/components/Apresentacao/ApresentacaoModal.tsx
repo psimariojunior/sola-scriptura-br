@@ -13,6 +13,17 @@ import QRCode from './QRCode';
 
 type Tab = 'controle' | 'qr';
 
+function getPreviewFontClass(fontSize: number): string {
+  if (fontSize <= 2) return 'text-lg sm:text-xl md:text-2xl';
+  if (fontSize === 3) return 'text-xl sm:text-2xl md:text-3xl';
+  if (fontSize === 4) return 'text-2xl sm:text-3xl md:text-4xl';
+  if (fontSize === 5) return 'text-3xl sm:text-4xl md:text-5xl';
+  if (fontSize === 6) return 'text-4xl sm:text-5xl md:text-6xl';
+  if (fontSize === 7) return 'text-5xl sm:text-6xl md:text-7xl';
+  if (fontSize === 8) return 'text-6xl sm:text-7xl md:text-8xl';
+  return 'text-7xl sm:text-8xl md:text-9xl';
+}
+
 interface ApresentacaoModalProps {
   open: boolean;
   onClose: () => void;
@@ -229,7 +240,7 @@ export default function ApresentacaoModal({
                       <div className="text-xs text-amber-300/80 tracking-[0.2em] uppercase font-semibold mb-4">
                         {state ? `${nomeLivro(state.livro)} ${state.capitulo}:${state.versiculo}` : ''}
                       </div>
-                      <p className="text-xl sm:text-2xl md:text-3xl font-serif text-white leading-relaxed mb-6" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.4)' }}>
+                      <p className={`${getPreviewFontClass(state?.fontSize ?? 4)} font-serif text-white leading-relaxed mb-6`} style={{ textShadow: '0 2px 20px rgba(0,0,0,0.4)' }}>
                         <sup className="text-amber-400/60 text-sm font-bold mr-1">{state?.versiculo}</sup>
                         {currentVerse.texto}
                       </p>

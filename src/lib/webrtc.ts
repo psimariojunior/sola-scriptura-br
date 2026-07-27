@@ -102,6 +102,7 @@ export class WebRTCService {
   private onCallRejectCallback: ((data: { code: string; rejectorName: string }) => void) | null = null;
   private onPresentationSyncCallback: ((data: PresentationSyncEvent) => void) | null = null;
   private onBibleNavigationCallback: ((data: { livro: string; capitulo: number; traducao: string }) => void) | null = null;
+  private onRoomFullCallback: ((data: { code: string; maxParticipants: number }) => void) | null = null;
   private onQuizStartCallback: ((data: { questions: unknown[] }) => void) | null = null;
   private onQuizAnswerCallback: ((data: { answer: unknown }) => void) | null = null;
   private onQuizSyncCallback: ((data: { currentQuestion: number; status: string }) => void) | null = null;
@@ -152,6 +153,10 @@ export class WebRTCService {
 
     this.socket.on('room-participants', (data: { participants: SignalingParticipant[] }) => {
       this.onParticipantsCallback?.(data.participants);
+    });
+
+    this.socket.on('room-full', (data: { code: string; maxParticipants: number }) => {
+      this.onRoomFullCallback?.(data);
     });
 
     this.socket.on('existing-participants', async (participants: SignalingParticipant[]) => {
@@ -477,6 +482,10 @@ export class WebRTCService {
     this.onBibleNavigationCallback = cb;
   }
 
+  onRoomFull(cb: (data: { code: string; maxParticipants: number }) => void) {
+    this.onRoomFullCallback = cb;
+  }
+
   onCallInvite(cb: (data: CallInviteEvent) => void) {
     this.onCallInviteCallback = cb;
   }
@@ -513,6 +522,7 @@ export class WebRTCService {
     this.onCallAcceptCallback = null;
     this.onCallRejectCallback = null;
     this.onBibleNavigationCallback = null;
+    this.onRoomFullCallback = null;
     this.onPresentationSyncCallback = null;
     this.onQuizStartCallback = null;
     this.onQuizAnswerCallback = null;

@@ -1,4 +1,5 @@
 import { estudosTeologicosExpandidos, EstudoTeologico } from './estudosTeologicosExpandidos';
+import { estudosGerados } from './estudosGerados';
 
 export interface EstudoTeologo {
   teologo: string;
@@ -782,7 +783,7 @@ const estudosData: EstudoVersiculo[] = [
     ],
   },
   {
-    livro: 'mi', capitulo: 6, versiculo: 8,
+    livro: 'mq', capitulo: 6, versiculo: 8,
     tema: 'O que Deus requer — Justiça, misericórdia e humildade',
     contexto: 'Miquéias resume a exigência moral de Deus em três atitudes práticas.',
     interpretacoes: [
@@ -881,7 +882,7 @@ const estudosData: EstudoVersiculo[] = [
     ],
   },
   {
-    livro: 'so', capitulo: 3, versiculo: 17,
+    livro: 'sf', capitulo: 3, versiculo: 17,
     tema: 'Deus se alegra sobre Seu povo',
     contexto: 'Sofonias anuncia que o Senhor, no meio de Seu povo, se regozijará com amor.',
     interpretacoes: [
@@ -2044,6 +2045,14 @@ const estudosExtras: EstudoVersiculo[] = [
 ];
 
 for (const e of estudosExtras) {
+  const key = `${e.livro}:${e.capitulo}:${e.versiculo}`;
+  if (!byRefMap.has(key)) {
+    byRefMap.set(key, []);
+  }
+  byRefMap.get(key)!.push(e);
+}
+
+for (const e of estudosGerados) {
   const key = `${e.livro}:${e.capitulo}:${e.versiculo}`;
   if (!byRefMap.has(key)) {
     byRefMap.set(key, []);

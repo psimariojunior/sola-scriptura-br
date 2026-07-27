@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, BookOpen, Languages, MessageSquare, GraduationCap, StickyNote, Link2, Users, Shield, Clock, Map, ScrollText, FileText, Sparkles, ChevronRight, ExternalLink } from 'lucide-react';
+import { X, BookOpen, Languages, MessageSquare, GraduationCap, StickyNote, Link2, Users, Shield, Clock, Map, ScrollText, FileText, Sparkles, ChevronRight, ExternalLink, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -35,18 +35,18 @@ interface PainelDoVersiculoProps {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const TAB_CONFIG = [
+  { value: 'estudo', label: 'Estudo', icon: GraduationCap, color: 'bg-emerald-500' },
+  { value: 'comentarios', label: 'Comentários', icon: MessageSquare, color: 'bg-amber-500' },
   { value: 'texto', label: 'Texto', icon: BookOpen, color: 'bg-blue-500' },
   { value: 'lexico', label: 'Léxico', icon: Languages, color: 'bg-purple-500' },
-  { value: 'comentarios', label: 'Comentários', icon: MessageSquare, color: 'bg-amber-500' },
-  { value: 'estudo', label: 'Estudo', icon: GraduationCap, color: 'bg-emerald-500' },
+  { value: 'cross-refs', label: 'Ref. Cruzadas', icon: Link2, color: 'bg-cyan-500' },
   { value: 'notas', label: 'Notas', icon: StickyNote, color: 'bg-rose-500' },
-  { value: 'cross-refs', label: 'Cross-refs', icon: Link2, color: 'bg-cyan-500' },
   { value: 'personagens', label: 'Personagens', icon: Users, color: 'bg-orange-500' },
   { value: 'doutrinas', label: 'Doutrinas', icon: Shield, color: 'bg-indigo-500' },
   { value: 'cronologia', label: 'Cronologia', icon: Clock, color: 'bg-teal-500' },
   { value: 'mapa', label: 'Mapa', icon: Map, color: 'bg-lime-600' },
   { value: 'pericope', label: 'Perícope', icon: ScrollText, color: 'bg-fuchsia-500' },
-  { value: 'critica', label: 'Crítica Textual', icon: FileText, color: 'bg-slate-500' },
+  { value: 'critica', label: 'Crítica', icon: FileText, color: 'bg-slate-500' },
   { value: 'ia', label: 'IA', icon: Sparkles, color: 'bg-violet-500' },
 ] as const;
 
@@ -235,10 +235,19 @@ function TabLexico({ livro, capitulo, versiculo }: { livro: string; capitulo: nu
   );
 }
 
-function TabComentarios({ recursos }: { recursos: RecursoVersiculo[] }) {
-  const comentarios = recursos
+function TabComentarios({ recursos, busca = '' }: { recursos: RecursoVersiculo[]; busca?: string }) {
+  let comentarios = recursos
     .filter((r) => r.tipo === 'comentario')
     .map((r) => r.dados as RecursoComentario);
+
+  if (busca.trim()) {
+    const q = busca.toLowerCase();
+    comentarios = comentarios.filter(c =>
+      c.autor.toLowerCase().includes(q) ||
+      c.texto.toLowerCase().includes(q) ||
+      (c.tipo && c.tipo.toLowerCase().includes(q))
+    );
+  }
 
   const [expandido, setExpandido] = useState<number | null>(null);
 
@@ -295,15 +304,23 @@ function TabComentarios({ recursos }: { recursos: RecursoVersiculo[] }) {
   );
 }
 
-function TabEstudo({ recursos }: { recursos: RecursoVersiculo[] }) {
-  const estudos = recursos
+function TabEstudo({ recursos, busca = '' }: { recursos: RecursoVersiculo[]; busca?: string }) {
+  let estudos = recursos
     .filter((r) => r.tipo === 'estudo')
     .map((r) => r.dados as RecursoEstudo);
+
+  if (busca.trim()) {
+    const q = busca.toLowerCase();
+    estudos = estudos.filter(e =>
+      e.tema.toLowerCase().includes(q) ||
+      e.interpretes.some(i => i.nome.toLowerCase().includes(q) || i.resumo.toLowerCase().includes(q) || i.visao.toLowerCase().includes(q))
+    );
+  }
 
   if (estudos.length === 0) {
     return (
       <p className="text-sm text-muted-foreground text-center py-8">
-        Nenhum estudo multiteológico disponível para este versículo.
+        {busca ? 'Nenhum estudo encontrado para esta busca.' : 'Nenhum estudo multiteológico disponível para este versículo.'}
       </p>
     );
   }
@@ -372,7 +389,7 @@ function TabNotas({ recursos }: { recursos: RecursoVersiculo[] }) {
   );
 }
 
-function TabCrossRefs({ recursos, onVersiculoClick }: { recursos: RecursoVersiculo[]; onVersiculoClick?: (livro: string, cap: number, ver: number) => void }) {
+function TabCrossRefs({ recursos, onVersiculoClick, busca = '' }: { recursos: RecursoVersiculo[]; onVersiculoClick?: (livro: string, cap: number, ver: number) => void; busca?: string }) {
   const crossRefs = recursos
     .filter((r) => r.tipo === 'cross-ref')
     .map((r) => r.dados as RecursoCrossRef);
@@ -690,6 +707,7 @@ export default function PainelDoVersiculo({
   const [recursos, setRecursos] = useState<RecursoVersiculo[]>([]);
   const [erro, setErro] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState(tabInicial || 'texto');
+  const [busca, setBusca] = useState('');
   const [isMobile, setIsMobile] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
     return window.innerWidth < 768;
@@ -705,6 +723,7 @@ export default function PainelDoVersiculo({
   useEffect(() => {
     setRecursos([]);
     setErro(null);
+    setBusca('');
     if (!livro || livro.trim() === '') {
       return;
     }
@@ -746,32 +765,70 @@ export default function PainelDoVersiculo({
   const panelContent = (
     <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-border/50 shrink-0">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-            <BookOpen className="w-4 h-4 text-primary" />
+      <div className="px-4 py-3 border-b border-border/50 shrink-0">
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+              <BookOpen className="w-4 h-4 text-primary" />
+            </div>
+            <div>
+              <h2 className="font-display text-sm font-bold leading-tight">
+                {livro.toUpperCase()} {capitulo}:{versiculo}
+              </h2>
+              <p className="text-[10px] text-muted-foreground">
+                {recursos.length} recurso{recursos.length !== 1 ? 's' : ''} disponível{recursos.length !== 1 ? 'is' : ''}
+              </p>
+            </div>
           </div>
-          <div>
-            <h2 className="font-display text-sm font-bold leading-tight">
-              {livro.toUpperCase()} {capitulo}:{versiculo}
-            </h2>
-            <p className="text-[10px] text-muted-foreground">
-              {recursos.length} recurso{recursos.length !== 1 ? 's' : ''} disponível{recursos.length !== 1 ? 'is' : ''}
-            </p>
+          {onFechar && (
+            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={onFechar} aria-label="Fechar painel">
+              <X className="w-4 h-4" />
+            </Button>
+          )}
+        </div>
+        {/* Quick resource chips */}
+        <div className="flex flex-wrap gap-1.5">
+          {recursos.filter(r => r.tipo === 'estudo').length > 0 && (
+            <button onClick={() => setActiveTab('estudo')} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors">
+              <GraduationCap className="w-2.5 h-2.5" />
+              {recursos.filter(r => r.tipo === 'estudo').length} Estudo{recursos.filter(r => r.tipo === 'estudo').length !== 1 ? 's' : ''}
+            </button>
+          )}
+          {recursos.filter(r => r.tipo === 'comentario').length > 0 && (
+            <button onClick={() => setActiveTab('comentarios')} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 transition-colors">
+              <MessageSquare className="w-2.5 h-2.5" />
+              {recursos.filter(r => r.tipo === 'comentario').length} Comentário{recursos.filter(r => r.tipo === 'comentario').length !== 1 ? 's' : ''}
+            </button>
+          )}
+          {recursos.filter(r => r.tipo === 'cross-ref').length > 0 && (
+            <button onClick={() => setActiveTab('cross-refs')} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 hover:bg-cyan-500/20 transition-colors">
+              <Link2 className="w-2.5 h-2.5" />
+              {recursos.filter(r => r.tipo === 'cross-ref').length} Ref. Cruzadas
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Search bar */}
+      {recursos.length > 0 && (
+        <div className="px-4 py-2 border-b border-border/50 shrink-0">
+          <div className="relative">
+            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="Buscar neste versículo..."
+              value={busca}
+              onChange={(e) => setBusca(e.target.value)}
+              className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-border/50 bg-background/50 focus:outline-none focus:ring-1 focus:ring-primary/30 placeholder:text-muted-foreground/60"
+            />
+            {busca && (
+              <button onClick={() => setBusca('')} className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                <X className="w-3 h-3" />
+              </button>
+            )}
           </div>
         </div>
-        {onFechar && (
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8"
-            onClick={onFechar}
-            aria-label="Fechar painel"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        )}
-      </div>
+      )}
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-col flex-1 min-h-0">
@@ -836,12 +893,12 @@ export default function PainelDoVersiculo({
             </TabsContent>
             <TabsContent value="comentarios" className="mt-0">
               <Suspense fallback={<GenericSkeleton />}>
-                <TabComentarios recursos={recursos} />
+                <TabComentarios recursos={recursos} busca={busca} />
               </Suspense>
             </TabsContent>
             <TabsContent value="estudo" className="mt-0">
               <Suspense fallback={<GenericSkeleton />}>
-                <TabEstudo recursos={recursos} />
+                <TabEstudo recursos={recursos} busca={busca} />
               </Suspense>
             </TabsContent>
             <TabsContent value="notas" className="mt-0">
@@ -851,7 +908,7 @@ export default function PainelDoVersiculo({
             </TabsContent>
             <TabsContent value="cross-refs" className="mt-0">
               <Suspense fallback={<GenericSkeleton />}>
-                <TabCrossRefs recursos={recursos} onVersiculoClick={onVersiculoClick} />
+                <TabCrossRefs recursos={recursos} onVersiculoClick={onVersiculoClick} busca={busca} />
               </Suspense>
             </TabsContent>
             <TabsContent value="personagens" className="mt-0">

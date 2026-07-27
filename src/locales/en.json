@@ -867,5 +867,15 @@
     "close": "Close",
     "deepenAI": "Deepen with AI",
     "new": "NEW"
+  },
+  "ia": {
+    "loadingAssistant": "Loading assistant...",
+    "title": "Biblical Assistant",
+    "subtitle": "AI specialized in academic biblical studies",
+    "tradition": "Tradition",
+    "general": "General",
+    "paywallTitle": "AI Assistant requires Full Access",
+    "paywallDesc": "Pay R$20 once and unlock forever.",
+    "unlockAccess": "Unlock Full Access"
   }
 }

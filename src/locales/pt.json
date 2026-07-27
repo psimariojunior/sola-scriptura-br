@@ -867,5 +867,15 @@
     "close": "Fechar",
     "deepenAI": "Aprofundar com IA",
     "new": "NOVO"
+  },
+  "ia": {
+    "loadingAssistant": "Carregando assistente...",
+    "title": "Assistente Bíblico",
+    "subtitle": "IA especializada em estudos bíblicos acadêmicos",
+    "tradition": "Tradição",
+    "general": "Geral",
+    "paywallTitle": "Assistente de IA é do Acesso Total",
+    "paywallDesc": "Pague R$20 una vez e desbloqueie para sempre.",
+    "unlockAccess": "Desbloquear Acesso Total"
   }
 }

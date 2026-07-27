@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import Paywall from '@/components/Paywall';
@@ -35,6 +36,7 @@ const tradicoes = [
 ];
 
 export default function IaPage() {
+  const { t } = useTranslation();
   const [tradicao, setTradicao] = useState('');
   const [mostrarTradicoes, setMostrarTradicoes] = useState(false);
   const [temAcesso, setTemAcesso] = useState(true);
@@ -44,7 +46,7 @@ export default function IaPage() {
     setTemAcesso(authService.temAcessoTotal());
   }, []);
 
-  const tradicaoLabel = tradicoes.find(t => t.valor === tradicao)?.label || 'Geral';
+  const tradicaoLabel = tradicoes.find(trad => trad.valor === tradicao)?.label || t('ia.general');
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/10">
@@ -61,8 +63,8 @@ export default function IaPage() {
               >
                 <Sparkles className="w-7 h-7 text-primary" />
               </motion.div>
-              <h1 className="font-display text-3xl md:text-4xl font-light mb-1">Assistente Bíblico</h1>
-              <p className="text-muted-foreground text-sm">IA especializada em estudos bíblicos acadêmicos</p>
+              <h1 className="font-display text-3xl md:text-4xl font-light mb-1">{t('ia.title')}</h1>
+              <p className="text-muted-foreground text-sm">{t('ia.subtitle')}</p>
             </div>
           </ScrollReveal>
 
@@ -73,7 +75,7 @@ export default function IaPage() {
                 className="flex items-center gap-2 px-4 py-2 text-xs font-medium bg-card border border-border rounded-full hover:bg-muted transition-all duration-300"
               >
                 <BookOpen className="w-3.5 h-3.5" />
-                Tradição: {tradicaoLabel}
+                {t('ia.tradition')}: {tradicaoLabel}
                 <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${mostrarTradicoes ? 'rotate-180' : ''}`} />
               </button>
 
@@ -85,12 +87,12 @@ export default function IaPage() {
                     exit={{ opacity: 0, y: -8, scale: 0.96 }}
                     className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-20 bg-card border border-border rounded-xl shadow-xl p-2 flex flex-wrap justify-center gap-1 w-80 max-w-[calc(100vw-2rem)]"
                   >
-                    {tradicoes.map(t => (
-                      <button key={t.valor} onClick={() => { setTradicao(t.valor); setMostrarTradicoes(false); }}
+                    {tradicoes.map(trad => (
+                      <button key={trad.valor} onClick={() => { setTradicao(trad.valor); setMostrarTradicoes(false); }}
                         className={`text-xs px-3 py-1.5 rounded-full transition-all duration-300 ${
-                          tradicao === t.valor ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                          tradicao === trad.valor ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                         }`}>
-                        {t.label}
+                        {trad.label}
                       </button>
                     ))}
                   </motion.div>
@@ -109,14 +111,14 @@ export default function IaPage() {
                     <Sparkles className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <p className="font-semibold">Assistente de IA é do Acesso Total</p>
-                    <p className="text-sm text-muted-foreground mt-1">Pague R$20 una vez e desbloqueie para sempre.</p>
+                    <p className="font-semibold">{t('ia.paywallTitle')}</p>
+                    <p className="text-sm text-muted-foreground mt-1">{t('ia.paywallDesc')}</p>
                   </div>
                   <button
                     onClick={() => setPaywallAberto(true)}
                     className="px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700 text-white font-semibold rounded-xl shadow-lg shadow-amber-500/25 hover:shadow-xl transition-all"
                   >
-                    Desbloquear Acesso Total
+                    {t('ia.unlockAccess')}
                   </button>
                 </div>
               )}

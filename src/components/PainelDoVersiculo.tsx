@@ -9,9 +9,12 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getRecursosVersiculo, type RecursoVersiculo, type RecursoComentario, type RecursoEstudo, type RecursoNota, type RecursoCrossRef, type RecursoLexico, type RecursoMapa, type RecursoPersonagem, type RecursoDoutrina, type RecursoCronologia, type RecursoPericope, type TipoRecurso } from '@/data/biblia/versiculoRecursos';
-import { getStrongPorVersiculo, type PalavraStrong } from '@/data/biblia/strong';
 import { carregarTraducao, obterCapituloMulti, type CapituloComparado } from '@/data/biblia/texto/carregar';
 import { obterVariante, obterVariantesPorLivro } from '@/data/criticaTextual';
+
+// Lazy load heavy data (346KB strong lexicon)
+const loadStrongData = () => import('@/data/biblia/strong');
+type PalavraStrong = { strong: string; palavra: string; transliteracao: string; definicao: string; morfologia: string; idioma: 'grego' | 'hebraico' };
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // TYPES
@@ -172,10 +175,28 @@ function TabTexto({ livro, capitulo, versiculo }: { livro: string; capitulo: num
 
 function TabLexico({ livro, capitulo, versiculo }: { livro: string; capitulo: number; versiculo: number }) {
   const [palavras, setPalavras] = useState<PalavraStrong[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setPalavras(getStrongPorVersiculo(livro, capitulo, versiculo));
+    setLoading(true);
+    loadStrongData().then((mod) => {
+      setPalavras(mod.getStrongPorVersiculo(livro, capitulo, versiculo));
+      setLoading(false);
+    });
   }, [livro, capitulo, versiculo]);
+
+  if (loading) {
+    return (
+      <div className="space-y-2">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <div key={i} className="glass-card rounded-lg p-3 border border-border/50 animate-pulse">
+            <div className="h-4 bg-muted rounded w-1/3 mb-2" />
+            <div className="h-3 bg-muted rounded w-2/3" />
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   if (palavras.length === 0) {
     return (

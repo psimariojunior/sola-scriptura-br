@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 import { doutrinas, type Doutrina } from '@/data/biblia';
 import { estudosTeologicosExpandidos, type EstudoTeologico } from '@/data/estudosTeologicosExpandidos';
 import dynamic from 'next/dynamic';
-import { Church, Search, BookOpen, ChevronDown, ExternalLink, Share2, Copy, Check, Sparkles, X, Layers, GraduationCap } from 'lucide-react';
+import { Church, Search, ChevronDown, ExternalLink, Copy, Check, Sparkles, Layers, GraduationCap } from 'lucide-react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';

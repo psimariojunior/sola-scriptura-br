@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BarChart3, BookOpen, Heart, FileText, Brain, Flame, Target, Trophy, TrendingUp, Clock, Share2, Zap, Star, Globe } from 'lucide-react';
+import { BarChart3, BookOpen, Heart, FileText, Brain, Flame, Target, Share2, Zap } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
 import { ShareProgress } from '@/components/ShareProgress';

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 import '../config/constants.dart';
 import '../config/theme.dart';
 import '../services/webview_service.dart';
@@ -139,12 +143,36 @@ class _HomeScreenState extends State<HomeScreen> {
       if (text != null) {
         _share.shareText(text);
       }
+    } else if (url.startsWith('ssb-share-image://')) {
+      _handleShareImage(url);
     } else {
-      // External app deep link — launch natively
       launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication).catchError((e) {
         debugPrint('Failed to launch deep link: $e');
         return false;
       });
+    }
+  }
+
+  Future<void> _handleShareImage(String url) async {
+    try {
+      final withoutScheme = url.replaceFirst('ssb-share-image://', '');
+      final parts = withoutScheme.split('?name=');
+      final dataUrl = Uri.decodeComponent(parts[0]);
+      final filename = parts.length > 1 ? Uri.decodeComponent(parts[1]) : 'versiculo.png';
+
+      // Extract base64 data
+      final base64Data = dataUrl.split(',').last;
+      final bytes = base64Decode(base64Data);
+
+      // Save to temp file
+      final dir = await getTemporaryDirectory();
+      final file = File('${dir.path}/$filename');
+      await file.writeAsBytes(bytes);
+
+      // Share the image
+      await Share.shareXFiles([XFile(file.path)], text: '📖 Sola Scriptura\nhttps://solascripturabr.com.br');
+    } catch (e) {
+      debugPrint('Share image error: $e');
     }
   }
 

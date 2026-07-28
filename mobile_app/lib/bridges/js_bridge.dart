@@ -8,7 +8,7 @@ class JsBridge {
       if (window.__SSB_NATIVE) return;
       
       window.__SSB_NATIVE = true;
-      window.__SSB_VERSION = '1.1.0';
+      window.__SSB_VERSION = '1.2.0';
       window.__SSB_PLATFORM = 'flutter';
       
       window.__SSB_SHARE = function(text, url) {
@@ -16,6 +16,12 @@ class JsBridge {
         var shareUrl = url || window.location.href;
         var encoded = encodeURIComponent(shareText + ' ' + shareUrl);
         window.location.href = 'ssb-share://' + encoded;
+      };
+
+      window.__SSB_SHARE_IMAGE = function(dataUrl, filename) {
+        var encoded = encodeURIComponent(dataUrl);
+        var encodedName = encodeURIComponent(filename || 'image.png');
+        window.location.href = 'ssb-share-image://' + encoded + '?name=' + encodedName;
       };
       
       window.__SSB_READY = true;

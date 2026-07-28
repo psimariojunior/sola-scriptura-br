@@ -670,12 +670,19 @@ export function VerseImageCreator({ texto, referencia, onClose }: VerseImageCrea
     setBusy(true);
     try {
       const dataUrl = canvasRef.current.toDataURL('image/png', 0.9);
-      const link = document.createElement('a');
-      link.download = makeFilename();
-      link.href = dataUrl;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Try native bridge first
+      const w = window as unknown as Record<string, unknown>;
+      if (w.__SSB_SHARE_IMAGE) {
+        (w.__SSB_SHARE_IMAGE as (d: string, f: string) => void)(dataUrl, makeFilename());
+      } else {
+        // Fallback: download via link
+        const link = document.createElement('a');
+        link.download = makeFilename();
+        link.href = dataUrl;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
       setDownloaded(true);
       setTimeout(() => setDownloaded(false), 2500);
     } catch (e) {
@@ -686,7 +693,19 @@ export function VerseImageCreator({ texto, referencia, onClose }: VerseImageCrea
 
   const handleShare = async () => {
     if (!canvasRef.current) return;
-    handleDownload();
+    setBusy(true);
+    try {
+      const dataUrl = canvasRef.current.toDataURL('image/png', 0.9);
+      const w = window as unknown as Record<string, unknown>;
+      if (w.__SSB_SHARE_IMAGE) {
+        (w.__SSB_SHARE_IMAGE as (d: string, f: string) => void)(dataUrl, makeFilename());
+      } else {
+        handleDownload();
+      }
+    } catch (e) {
+      console.error('Share error:', e);
+    }
+    setBusy(false);
   };
 
   return (

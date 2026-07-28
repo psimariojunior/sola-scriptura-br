@@ -85,7 +85,7 @@ class WebViewService {
         }
 
         // Handle SSB custom schemes
-        if (url.startsWith('ssb-share://') || url.startsWith('ssb-download://')) {
+        if (url.startsWith('ssb-share://') || url.startsWith('ssb-download://') || url.startsWith('ssb-share-image://')) {
           onDeepLink?.call(url);
           return NavigationDecision.prevent;
         }

@@ -9,6 +9,7 @@ import { VerseActions } from './VerseActions';
 import { Heart, Palette, Copy, StickyNote, Languages, MessageSquare, Share2, Sparkles, ImageIcon, Users, BookOpen } from 'lucide-react';
 import { toggleFavorito } from '@/lib/estudos';
 import { setMarcador, removeMarcador, getMarcador, CORES, type CorMarcador } from '@/lib/marcadores';
+import { MobileVersePanel } from '@/components/MobileVersePanel';
 
 export interface VerseCardProps {
   numero: number;
@@ -96,6 +97,7 @@ export const VerseCard = memo(function VerseCard({
   const [showActions, setShowActions] = useState(false);
   const [showMobileColor, setShowMobileColor] = useState(false);
   const [showLongPressColor, setShowLongPressColor] = useState(false);
+  const [showMobilePanel, setShowMobilePanel] = useState(false);
   const mobileColorRef = useRef<HTMLDivElement>(null);
   const colorRef = useRef<HTMLDivElement>(null);
   const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -388,20 +390,36 @@ export const VerseCard = memo(function VerseCard({
                 <Share2 className="w-5 h-5" />
                 <span className="text-[10px] font-medium">Compart.</span>
               </button>
-              {onAbrirPainel && (
-                <button
-                  onClick={(e) => { e.stopPropagation(); onAbrirPainel('estudo'); }}
+              <button
+                  onClick={(e) => { e.stopPropagation(); setShowMobilePanel(true); }}
                   className="flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl bg-[var(--brand-subtle)] text-[var(--brand-default)] transition-all active:scale-95"
                   aria-label="Mais opções"
                 >
                   <BookOpen className="w-5 h-5" />
                   <span className="text-[10px] font-medium">Mais</span>
                 </button>
-              )}
             </div>
           </div>
         )}
       </div>
+
+      <MobileVersePanel
+        livro={livroNome}
+        livroAbrev={livroAbreviacao}
+        capitulo={capitulo}
+        versiculo={numero}
+        texto={texto}
+        traducao={traducao}
+        aberto={showMobilePanel}
+        onFechar={() => setShowMobilePanel(false)}
+        isFavorito={isFavorito}
+        onFavoritoChange={onFavoritoChange}
+        onAnotar={onAnotar}
+        onStrong={onStrong}
+        onComentarios={onComentarios}
+        copyVerse={copyVerse}
+        copiedVerse={copiedVerse}
+      />
     </Fragment>
   );
 });

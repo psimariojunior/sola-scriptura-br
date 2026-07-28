@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, memo } from 'react';
+import { createPortal } from 'react-dom';
 import { X, Heart, Copy, Share2, Languages, MessageSquare, GraduationCap, Link2, BookOpen, Palette, StickyNote } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toggleFavorito } from '@/lib/estudos';
@@ -66,10 +67,10 @@ export const MobileVersePanel = memo(function MobileVersePanel({
     { id: 'lexico', label: 'Léxico', icon: Languages },
   ];
 
-  return (
+  return createPortal((
     <>
-      <div className="fixed inset-0 z-40 bg-black/50" onClick={onFechar} />
-      <div className="fixed inset-x-0 bottom-0 z-50 bg-[var(--surface-raised)] rounded-t-2xl shadow-2xl flex flex-col" style={{ height: '80vh' }}>
+      <div className="fixed inset-0 z-[100] bg-black/50" onClick={onFechar} />
+      <div className="fixed inset-x-0 bottom-0 z-[101] bg-[var(--surface-raised)] rounded-t-2xl shadow-2xl flex flex-col" style={{ height: '80vh' }}>
         {/* Handle */}
         <div className="flex justify-center pt-2 pb-1 shrink-0">
           <div className="w-10 h-1 rounded-full bg-[var(--content-muted)]/30" />
@@ -247,5 +248,5 @@ export const MobileVersePanel = memo(function MobileVersePanel({
         </div>
       </div>
     </>
-  );
+  ), document.body);
 });

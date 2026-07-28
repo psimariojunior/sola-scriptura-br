@@ -195,12 +195,13 @@ export const MobileVersePanel = memo(function MobileVersePanel({
           {/* SUB-VIEW: IMAGEM */}
           {subView === 'imagem' && (
             <div className="h-full flex flex-col">
-              <div className="p-3 border-b border-[var(--border)]/30 shrink-0">
+              <div className="p-3 border-b border-[var(--border)]/30 shrink-0 flex items-center justify-between">
                 <button onClick={() => setSubView('main')} className="flex items-center gap-1 text-sm text-[var(--brand-default)]">
                   <ChevronLeft className="w-4 h-4" /> Voltar
                 </button>
+                <span className="text-xs text-[var(--content-muted)] font-semibold">Criar Imagem</span>
               </div>
-              <div className="flex-1 min-h-0">
+              <div className="flex-1 overflow-y-auto overscroll-contain pb-4">
                 <Suspense fallback={<div className="flex items-center justify-center h-40"><div className="w-6 h-6 border-2 border-[var(--brand-default)] border-t-transparent rounded-full animate-spin" /></div>}>
                   <VerseImageCreator texto={texto} referencia={ref} onClose={() => setSubView('main')} />
                 </Suspense>

@@ -671,12 +671,15 @@ export function VerseImageCreator({ texto, referencia, onClose }: VerseImageCrea
     const blob = await canvasToBlob(canvasRef.current);
     setBusy(false);
     if (!blob) return;
+
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.download = makeFilename();
     link.href = url;
+    document.body.appendChild(link);
     link.click();
-    URL.revokeObjectURL(url);
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
     setDownloaded(true);
     setTimeout(() => setDownloaded(false), 2500);
   };
@@ -688,8 +691,9 @@ export function VerseImageCreator({ texto, referencia, onClose }: VerseImageCrea
     setBusy(false);
     if (!blob) return;
 
-    if (navigator.share) {
-      const file = new File([blob], makeFilename(), { type: 'image/png' });
+    const file = new File([blob], makeFilename(), { type: 'image/png' });
+
+    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
       try {
         await navigator.share({
           title: referencia,
@@ -700,12 +704,7 @@ export function VerseImageCreator({ texto, referencia, onClose }: VerseImageCrea
         // usuario cancelou
       }
     } else {
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.download = makeFilename();
-      link.href = url;
-      link.click();
-      URL.revokeObjectURL(url);
+      handleDownload();
     }
   };
 

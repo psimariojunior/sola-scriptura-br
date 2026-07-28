@@ -668,44 +668,25 @@ export function VerseImageCreator({ texto, referencia, onClose }: VerseImageCrea
   const handleDownload = async () => {
     if (!canvasRef.current) return;
     setBusy(true);
-    const blob = await canvasToBlob(canvasRef.current);
+    try {
+      const dataUrl = canvasRef.current.toDataURL('image/png', 0.9);
+      const link = document.createElement('a');
+      link.download = makeFilename();
+      link.href = dataUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setDownloaded(true);
+      setTimeout(() => setDownloaded(false), 2500);
+    } catch (e) {
+      console.error('Download error:', e);
+    }
     setBusy(false);
-    if (!blob) return;
-
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.download = makeFilename();
-    link.href = url;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-    setDownloaded(true);
-    setTimeout(() => setDownloaded(false), 2500);
   };
 
   const handleShare = async () => {
     if (!canvasRef.current) return;
-    setBusy(true);
-    const blob = await canvasToBlob(canvasRef.current);
-    setBusy(false);
-    if (!blob) return;
-
-    const file = new File([blob], makeFilename(), { type: 'image/png' });
-
-    if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-      try {
-        await navigator.share({
-          title: referencia,
-          text: `"${texto}"\n\n— ${referencia}`,
-          files: [file],
-        });
-      } catch {
-        // usuario cancelou
-      }
-    } else {
-      handleDownload();
-    }
+    handleDownload();
   };
 
   return (

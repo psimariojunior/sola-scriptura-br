@@ -166,21 +166,21 @@ export const MobileVersePanel = memo(function MobileVersePanel({
               </button>
               <p className="text-sm text-[var(--content-secondary)] font-serif-body leading-relaxed mb-4 p-3 bg-[var(--surface-sunken)] rounded-xl">{ref} — {texto}</p>
               <div className="grid grid-cols-2 gap-2">
-                <button onClick={async () => {
-                  const url = `https://wa.me/?text=${encodeURIComponent(`${ref}\n\n${texto}`)}`;
-                  window.open(url, '_blank');
+                <button onClick={() => {
+                  const msg = encodeURIComponent(`${ref}\n\n${texto}`);
+                  window.location.href = `whatsapp://send?text=${msg}`;
                 }} className="flex items-center gap-3 p-4 rounded-xl bg-green-500/10 text-green-600 border border-green-500/20 active:scale-95 transition-transform">
                   <span className="text-xl">📱</span><span className="text-sm font-semibold">WhatsApp</span>
                 </button>
-                <button onClick={async () => {
-                  const url = `https://t.me/share/url?url=${encodeURIComponent(ref)}&text=${encodeURIComponent(texto)}`;
-                  window.open(url, '_blank');
+                <button onClick={() => {
+                  const msg = encodeURIComponent(`${ref}\n\n${texto}`);
+                  window.location.href = `tg://msg?text=${msg}`;
                 }} className="flex items-center gap-3 p-4 rounded-xl bg-blue-500/10 text-blue-600 border border-blue-500/20 active:scale-95 transition-transform">
                   <span className="text-xl">✈️</span><span className="text-sm font-semibold">Telegram</span>
                 </button>
-                <button onClick={async () => {
-                  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${ref} — ${texto}`)}`;
-                  window.open(url, '_blank');
+                <button onClick={() => {
+                  const msg = encodeURIComponent(`${ref} — ${texto}`);
+                  window.location.href = `https://twitter.com/intent/tweet?text=${msg}`;
                 }} className="flex items-center gap-3 p-4 rounded-xl bg-sky-500/10 text-sky-600 border border-sky-500/20 active:scale-95 transition-transform">
                   <span className="text-xl">🐦</span><span className="text-sm font-semibold">Twitter/X</span>
                 </button>

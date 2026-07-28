@@ -322,7 +322,7 @@ function drawPergaminho(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement
   ctx.fillText('\u201C', w / 2, 220);
 
   // Verse text
-  ctx.fillStyle = '#2C1810';
+  ctx.fillStyle = '#D4A853';
   ctx.font = `italic ${opts.fontSize}px Georgia, "Times New Roman", serif`;
   const lines = wrapText(ctx, opts.texto, MAX_TEXT_W - 20);
   const lineHeight = opts.fontSize * 1.5;
@@ -335,12 +335,12 @@ function drawPergaminho(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement
 
   // Reference
   if (opts.showRef) {
-    ctx.fillStyle = '#8B6914';
+    ctx.fillStyle = '#D4A853';
     ctx.font = '600 30px Georgia, serif';
     ctx.fillText(opts.referencia.toUpperCase(), w / 2, h - 175);
 
     // Ornamental separator
-    ctx.strokeStyle = '#8B6914';
+    ctx.strokeStyle = '#D4A853';
     ctx.lineWidth = 1;
     const sepY = h - 145;
     ctx.beginPath();

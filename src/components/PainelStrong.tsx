@@ -7,25 +7,50 @@ import type { PalavraHebraica } from '@/data/lexicon/hebraico';
 
 type Palavra = (PalavraGrega | PalavraHebraica) & { idioma: 'grego' | 'hebraico' };
 
-export default function PainelStrong({ onClose }: { onClose?: () => void }) {
+interface PainelStrongProps {
+  onClose?: () => void;
+  livro?: string;
+  capitulo?: number;
+  versiculo?: number;
+}
+
+export default function PainelStrong({ onClose, livro, capitulo, versiculo }: PainelStrongProps) {
   const [query, setQuery] = useState('');
   const [filtroIdioma, setFiltroIdioma] = useState<'todas' | 'grego' | 'hebraico'>('todas');
   const [todas, setTodas] = useState<Palavra[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const temVersiculo = !!(livro && capitulo && versiculo);
+
+  const [palavrasVersiculo, setPalavrasVersiculo] = useState<Array<{ strong: string; palavra: string; transliteracao: string; definicao: string; morfologia: string; idioma: string }>>([]);
+  const [loadingVersiculo, setLoadingVersiculo] = useState(false);
+
   useEffect(() => {
-    Promise.all([
-      import('@/data/lexicon/grego'),
-      import('@/data/lexicon/hebraico'),
-    ]).then(([gregoMod, hebraicoMod]) => {
-      const words: Palavra[] = [
-        ...gregoMod.palavrasGregas.map((p) => ({ ...p, idioma: 'grego' as const })),
-        ...hebraicoMod.palavrasHebraicas.map((p) => ({ ...p, idioma: 'hebraico' as const })),
-      ];
-      setTodas(words);
-      setLoading(false);
-    });
-  }, []);
+    if (!temVersiculo) {
+      Promise.all([
+        import('@/data/lexicon/grego'),
+        import('@/data/lexicon/hebraico'),
+      ]).then(([gregoMod, hebraicoMod]) => {
+        const words: Palavra[] = [
+          ...gregoMod.palavrasGregas.map((p) => ({ ...p, idioma: 'grego' as const })),
+          ...hebraicoMod.palavrasHebraicas.map((p) => ({ ...p, idioma: 'hebraico' as const })),
+        ];
+        setTodas(words);
+        setLoading(false);
+      });
+    }
+  }, [temVersiculo]);
+
+  useEffect(() => {
+    if (!temVersiculo) return;
+    setLoadingVersiculo(true);
+    setPalavrasVersiculo([]);
+    import('@/data/biblia/strong').then(mod => {
+      const palavras = mod.getStrongPorVersiculo(livro, capitulo, versiculo);
+      setPalavrasVersiculo(palavras);
+      setLoadingVersiculo(false);
+    }).catch(() => setLoadingVersiculo(false));
+  }, [livro, capitulo, versiculo, temVersiculo]);
 
   const resultados = useMemo(() => {
     let lista = todas;
@@ -41,12 +66,14 @@ export default function PainelStrong({ onClose }: { onClose?: () => void }) {
     );
   }, [query, filtroIdioma, todas]);
 
+  const verseLabel = temVersiculo ? `${livro!.toUpperCase()} ${capitulo}:${versiculo}` : '';
+
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center justify-between p-3 border-b border-border/50">
         <div className="flex items-center gap-2">
           <BookText className="w-4 h-4 text-gold" />
-          <h3 className="font-display text-lg font-medium">Léxico Strong</h3>
+          <h3 className="font-display text-lg font-medium">{temVersiculo ? `Léxico: ${verseLabel}` : 'Léxico Strong'}</h3>
         </div>
         {onClose && (
           <button onClick={onClose} className="p-1 text-muted-foreground hover:text-foreground">
@@ -55,71 +82,120 @@ export default function PainelStrong({ onClose }: { onClose?: () => void }) {
         )}
       </div>
 
-      <div className="p-3 border-b border-border/50 space-y-2">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <input
-            type="text"
-            placeholder="Buscar número Strong, palavra grega/hebraica..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 text-sm bg-transparent border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-gold/40"
-          />
-        </div>
-        <div className="flex gap-2">
-          {(['todas', 'grego', 'hebraico'] as const).map((t) => (
-            <button
-              key={t}
-              onClick={() => setFiltroIdioma(t)}
-              className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
-                filtroIdioma === t
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              {t === 'todas' ? 'Todas' : t === 'grego' ? 'Grego' : 'Hebraico'}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="flex-1 overflow-y-auto divide-y divide-border/30">
-        {resultados.length === 0 ? (
-          <div className="p-6 text-center text-muted-foreground text-sm">
-            Nenhuma palavra encontrada
-          </div>
-        ) : (
-          resultados.map((p) => (
-            <div key={p.strong} className="p-3 hover:bg-muted/30 transition-colors">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-mono bg-gold/10 text-gold-dark dark:text-gold-light px-1.5 py-0.5 rounded">
-                  {p.strong}
-                </span>
-                <span className="text-sm" lang={p.idioma === 'grego' ? 'el' : 'he'}>
-                  {p.palavra}
-                </span>
-                <span className="text-xs text-muted-foreground italic">{p.transliteracao}</span>
-                <span className={`ml-auto text-xs px-1.5 py-0.5 rounded-full ${
-                  p.idioma === 'grego'
-                    ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300'
-                    : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300'
-                }`}>
-                  {p.idioma}
-                </span>
-              </div>
-              <p className="text-sm text-foreground/80">{p.definicao}</p>
-              {(p as any).morfologia && (
-                <p className="text-xs text-muted-foreground mt-0.5">{(p as any).morfologia}</p>
-              )}
-              {p.frequencia !== undefined && (
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  Frequência no NT/AT: {p.frequencia}x
-                </p>
-              )}
+      {temVersiculo ? (
+        <div className="flex-1 overflow-y-auto divide-y divide-border/30">
+          {loadingVersiculo ? (
+            <div className="space-y-3 p-4">
+              {[1,2,3].map(i => (
+                <div key={i} className="animate-pulse flex gap-3 items-start">
+                  <div className="h-6 w-16 rounded-full bg-muted shrink-0" />
+                  <div className="flex-1 space-y-1">
+                    <div className="h-4 w-24 bg-muted rounded" />
+                    <div className="h-3 w-full bg-muted rounded" />
+                  </div>
+                </div>
+              ))}
             </div>
-          ))
-        )}
-      </div>
+          ) : palavrasVersiculo.length === 0 ? (
+            <div className="p-6 text-center text-muted-foreground text-sm">
+              Nenhuma palavra Strong disponível para este versículo.
+            </div>
+          ) : (
+            palavrasVersiculo.map((p, i) => (
+              <div key={i} className="p-3 hover:bg-muted/30 transition-colors">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-xs font-mono bg-gold/10 text-gold-dark dark:text-gold-light px-1.5 py-0.5 rounded">
+                    {p.strong}
+                  </span>
+                  <span className="text-sm" lang={p.idioma === 'grego' ? 'el' : 'he'}>
+                    {p.palavra}
+                  </span>
+                  <span className="text-xs text-muted-foreground italic">{p.transliteracao}</span>
+                  <span className={`ml-auto text-xs px-1.5 py-0.5 rounded-full ${
+                    p.idioma === 'grego'
+                      ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300'
+                      : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300'
+                  }`}>
+                    {p.idioma}
+                  </span>
+                </div>
+                <p className="text-sm text-foreground/80">{p.definicao}</p>
+                {p.morfologia && (
+                  <p className="text-xs text-muted-foreground mt-0.5">{p.morfologia}</p>
+                )}
+              </div>
+            ))
+          )}
+        </div>
+      ) : (
+        <>
+          <div className="p-3 border-b border-border/50 space-y-2">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Buscar número Strong, palavra grega/hebraica..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="w-full pl-9 pr-3 py-2 text-sm bg-transparent border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-gold/40"
+              />
+            </div>
+            <div className="flex gap-2">
+              {(['todas', 'grego', 'hebraico'] as const).map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setFiltroIdioma(t)}
+                  className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
+                    filtroIdioma === t
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {t === 'todas' ? 'Todas' : t === 'grego' ? 'Grego' : 'Hebraico'}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex-1 overflow-y-auto divide-y divide-border/30">
+            {resultados.length === 0 ? (
+              <div className="p-6 text-center text-muted-foreground text-sm">
+                Nenhuma palavra encontrada
+              </div>
+            ) : (
+              resultados.map((p) => (
+                <div key={p.strong} className="p-3 hover:bg-muted/30 transition-colors">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xs font-mono bg-gold/10 text-gold-dark dark:text-gold-light px-1.5 py-0.5 rounded">
+                      {p.strong}
+                    </span>
+                    <span className="text-sm" lang={p.idioma === 'grego' ? 'el' : 'he'}>
+                      {p.palavra}
+                    </span>
+                    <span className="text-xs text-muted-foreground italic">{p.transliteracao}</span>
+                    <span className={`ml-auto text-xs px-1.5 py-0.5 rounded-full ${
+                      p.idioma === 'grego'
+                        ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300'
+                        : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300'
+                    }`}>
+                      {p.idioma}
+                    </span>
+                  </div>
+                  <p className="text-sm text-foreground/80">{p.definicao}</p>
+                  {(p as any).morfologia && (
+                    <p className="text-xs text-muted-foreground mt-0.5">{(p as any).morfologia}</p>
+                  )}
+                  {p.frequencia !== undefined && (
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      Frequência no NT/AT: {p.frequencia}x
+                    </p>
+                  )}
+                </div>
+              ))
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }

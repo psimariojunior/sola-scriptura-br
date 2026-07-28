@@ -1,4 +1,4 @@
-import { STRONG_POR_VERSICULO } from './strong';
+import { STRONG_POR_VERSICULO, getStrongPorChave } from './strong';
 
 // Tipo reexportado
 export type { PalavraStrong } from './strong';
@@ -12,14 +12,17 @@ export interface EntradaConcordancia {
   ocorrencias: string[]; // array de "livro:cap:ver"
 }
 
-// Build the concordance index from strong data
+// Build the concordance index from strong data, using clean lexicon lookup
 function buildConcordancia(): Map<string, EntradaConcordancia> {
   const index = new Map<string, EntradaConcordancia>();
-  for (const [chave, palavras] of Object.entries(STRONG_POR_VERSICULO)) {
+  for (const [chave] of Object.entries(STRONG_POR_VERSICULO)) {
+    const palavras = getStrongPorChave(chave);
     for (const p of palavras) {
       const existing = index.get(p.strong);
       if (existing) {
-        existing.ocorrencias.push(chave);
+        if (!existing.ocorrencias.includes(chave)) {
+          existing.ocorrencias.push(chave);
+        }
       } else {
         index.set(p.strong, {
           strong: p.strong,

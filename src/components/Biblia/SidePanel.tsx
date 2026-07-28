@@ -313,7 +313,20 @@ export function SidePanel({
                         />
                       )
                     ) : activeTab === 'strong' ? (
-                      <PainelStrong onClose={() => onActiveTabChange(null)} />
+                      versiculo ? (
+                        <PainelStrong
+                          onClose={() => onActiveTabChange(null)}
+                          livro={livroAbreviacao}
+                          capitulo={capitulo}
+                          versiculo={versiculo}
+                        />
+                      ) : (
+                        <EmptyPanel
+                          icon={BookText}
+                          title="Léxico Strong"
+                          description="Selecione um versículo para ver as palavras originais em grego/hebraico com números de Strong."
+                        />
+                      )
                     ) : activeTab === 'notas' ? (
                       <PainelNotas livroAbrev={livroAbreviacao} capitulo={capitulo} />
                     ) : activeTab === 'estudos' ? (
@@ -519,7 +532,20 @@ export function SidePanel({
                     />
                   )
                 ) : activeTab === 'strong' ? (
-                  <PainelStrong onClose={() => onActiveTabChange(null)} />
+                  versiculo ? (
+                    <PainelStrong
+                      onClose={() => onActiveTabChange(null)}
+                      livro={livroAbreviacao}
+                      capitulo={capitulo}
+                      versiculo={versiculo}
+                    />
+                  ) : (
+                    <EmptyPanel
+                      icon={BookText}
+                      title="Léxico Strong"
+                      description="Selecione um versículo para ver as palavras originais em grego/hebraico com números de Strong."
+                    />
+                  )
                 ) : activeTab === 'notas' ? (
                   <PainelNotas livroAbrev={livroAbreviacao} capitulo={capitulo} />
                 ) : activeTab === 'estudos' ? (

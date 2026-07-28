@@ -7669,7 +7669,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Romanos é a carta mais sistemática de Paulo. Temas: justificação, graça, santificação, soberania de Deus, Israel, vida no Espírito.',
-      'Estrutura: Introduction (1:1-17), Condição humana (1:18-3:20), Justificação (3:21-5:21), Santificação (6-8), Soberania (9-11), Prática (12-16).',
+      'Estrutura: Introdução (1:1-17), Condição humana (1:18-3:20), Justificação (3:21-5:21), Santificação (6-8), Soberania (9-11), Prática (12-16).',
       'Romanos é o "evangelho segundo Paulo". Lutero o chamou de "a mais importante parte do NT". A justificação pela fé é tema central.',
       'O impacto na história: Agostinho, Lutero, Calvino, Wesley, todos foram transformados por Romanos. A Reforma Protestante nasceu de Romanos.',
       'A relevância contemporânea: a graça não é antinomianismo, mas transformação. A soberania de Deus não anula a responsabilidade humana.'

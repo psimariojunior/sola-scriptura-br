@@ -2696,27 +2696,90 @@ export const STRONG_POR_VERSICULO: Record<string, PalavraStrong[]> = {
 
 };
 
+// ─── Clean lexicon-backed lookup ──────────────────────────────────────────────
+// STRONG_POR_VERSICULO above has corrupted entries (mojibake, wrong idioma).
+// We use the validated lexicon data as authoritative source for word data.
+
+import { palavrasGregas } from '@/data/lexicon/grego';
+import { palavrasHebraicas } from '@/data/lexicon/hebraico';
+
+const STRONG_LEXICON: Record<string, PalavraStrong> = {};
+
+function buildLexicon(): void {
+  for (const g of palavrasGregas) {
+    STRONG_LEXICON[g.strong] = {
+      strong: g.strong,
+      palavra: g.palavra,
+      transliteracao: g.transliteracao,
+      definicao: g.definicao,
+      morfologia: g.morphologia || g.pronuncia || '',
+      idioma: 'grego',
+    };
+  }
+  for (const h of palavrasHebraicas) {
+    STRONG_LEXICON[h.strong] = {
+      strong: h.strong,
+      palavra: h.palavra,
+      transliteracao: h.transliteracao,
+      definicao: h.definicao,
+      morfologia: h.morfologia || '',
+      idioma: 'hebraico',
+    };
+  }
+}
+
+buildLexicon();
+
+function limparStrongs(raw: PalavraStrong[]): PalavraStrong[] {
+  return raw
+    .filter(p => STRONG_LEXICON[p.strong] !== undefined)
+    .map(p => ({ ...STRONG_LEXICON[p.strong] }));
+}
+
 export function getStrongPorVersiculo(livro: string, cap: number, ver: number): PalavraStrong[] {
   const chave = `${livro}:${cap}:${ver}`;
-  return STRONG_POR_VERSICULO[chave] || [];
+  return limparStrongs(STRONG_POR_VERSICULO[chave] || []);
+}
+
+export function getStrongPorChave(chave: string): PalavraStrong[] {
+  return limparStrongs(STRONG_POR_VERSICULO[chave] || []);
 }
 
 export function getTodasOcorrenciasStrong(strong: string): string[] {
+  const entry = STRONG_LEXICON[strong];
+  if (!entry) return [];
   return Object.entries(STRONG_POR_VERSICULO)
     .filter(([_, palavras]) => palavras.some(p => p.strong === strong))
     .map(([chave]) => chave);
 }
 
 export function buscarStrong(pesquisa: string): PalavraStrong[] {
-  const termo = pesquisa.toLowerCase();
+  const termo = pesquisa.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   const resultados: PalavraStrong[] = [];
+  const vistos = new Set<string>();
+  // Search across all verses to find matching strong numbers
   for (const palavras of Object.values(STRONG_POR_VERSICULO)) {
     for (const p of palavras) {
-      if (p.strong.toLowerCase().includes(termo) ||
-          p.palavra.toLowerCase().includes(termo) ||
-          p.transliteracao.toLowerCase().includes(termo) ||
-          p.definicao.toLowerCase().includes(termo)) {
-        resultados.push(p);
+      if (vistos.has(p.strong)) continue;
+      if (p.strong.toLowerCase().includes(termo)) {
+        const entry = STRONG_LEXICON[p.strong];
+        if (entry) {
+          resultados.push(entry);
+          vistos.add(p.strong);
+        }
+      }
+    }
+  }
+  // If no results by strong number, search the lexicon data directly
+  if (resultados.length === 0) {
+    for (const entry of Object.values(STRONG_LEXICON)) {
+      if (vistos.has(entry.strong)) continue;
+      const palavra = entry.palavra.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const translit = entry.transliteracao.toLowerCase();
+      const definicao = entry.definicao.toLowerCase();
+      if (palavra.includes(termo) || translit.includes(termo) || definicao.includes(termo)) {
+        resultados.push(entry);
+        vistos.add(entry.strong);
       }
     }
   }

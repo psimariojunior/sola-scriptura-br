@@ -1327,7 +1327,7 @@ const estudosExtras: EstudoVersiculo[] = [
   {
     livro: 'hb', capitulo: 12, versiculo: 1,
     tema: 'A corrida da fé',
-    contexto: 'O autor exorta os crentes a perseverarem, tendo como testemunhas os heróis da fé do capítulo 11 — uma cloud of witnesses.',
+    contexto: 'O autor exorta os crentes a perseverarem, tendo como testemunhas os heróis da fé do capítulo 11 — uma nuvem de testemunhas.',
     interpretacoes: [
       { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Comunhão dos santos', resumo: 'Os santos que já partiram nos observam e nos incentivam. A comunhão dos santos não é apenas terrena — é celestial.', citacao: '«A multidão dos santos nos cerca — somos espectadores e corredores ao mesmo tempo.»' },
       { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Perseverança', resumo: 'A corrida exige perseverança — não é para quem começa, mas para quem termina. Largamos o peso do pecado e corremos com olhos fixos em Cristo.', citacao: '«A perseverança é a marca dos verdadeiros crentes — eles correm até o fim.»' },
@@ -1755,7 +1755,7 @@ const estudosExtras: EstudoVersiculo[] = [
   {
     livro: 'cl', capitulo: 3, versiculo: 23,
     tema: 'Tudo o que fizerdes, fazei de todo o coração',
-    contexto: 'Paulo transforma o trabalho cotidiano em ato de worship — tudo é para o Senhor, não para patrões.',
+    contexto: 'Paulo transforma o trabalho cotidiano em ato de adoração — tudo é para o Senhor, não para patrões.',
     interpretacoes: [
       { teologo: 'Martinho Lutero', periodo: '1483-1564', tradicao: 'Reforma', visao: 'Vocação', resumo: 'Lutero reformou o conceito de trabalho: lavar louça é tão sagrado quanto pregar. Toda vocação é chamamento de Deus.', citacao: '«Não há trabalho pequeno diante de Deus — tudo é oportunidade de servir.»' },
       { teologo: 'Dorothy Sayers', periodo: '1893-1957', tradicao: 'Anglicana', visao: 'Trabalho', resumo: 'O trabalho não é apenas meio de subsistência — é expressão da criatividade humana feita à imagem de Deus. Fazer bem é glorificar a Deus.', citacao: '«O trabalho não é um meio para ganhar a vida — é a vida em si mesma, uma oportunidade de gloria.»' },

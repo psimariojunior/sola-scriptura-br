@@ -5067,6 +5067,167 @@ add('ap', 20, 4, 'Matthew Henry', '4-6 Aqui está um relato do reinado dos santo
 add('ap', 20, 7, 'Matthew Henry', '7-10 Enquanto este mundo durar, o poder de Satanás nele não será totalmente destruído, embora possa ser limitado e diminuído. Assim que Satanás é libertado, ele novamente começa a enganar as nações e a incitá-las a fazer guerra com os santos e servos de Deus. Seria bom se os servos e ministros de Cristo fossem tão ativos e perseverantes em fazer o bem, como seus inimigos em fazer travessuras. Deus travará esta última e decisiva batalha por seu povo, para que a vitória seja completa e a glória seja para si mesmo.', 'teologico');
 add('ap', 21, 22, 'Matthew Henry', '22-27 A comunhão perfeita e direta com Deus mais do que suprirá o lugar das instituições do evangelho. E que palavras podem expressar mais plenamente a união e co-igualdade do Filho com o Pai, na Divindade? Que mundo sombrio seria esse, se não fosse a luz do sol! O que há no céu que supre seu lugar? A glória de Deus ilumina aquela cidade, e o Cordeiro é a Luz dela. Deus em Cristo será uma fonte eterna de conhecimento e alegria para os santos no céu. Não há noite, portanto não há necessidade de fechar os portões; tudo está em paz e seguro. O todo nos mostra que devemos ser cada vez mais leva...', 'teologico');
 
+// ═══════════════════════════════════════════════════════════════
+// COMENTÁRIOS EM PORTUGUÊS GERADOS PARA TODA A BÍBLIA
+// ═══════════════════════════════════════════════════════════════
+
+add('gn', 50, 20, 'Matthew Henry', 'Vós intentastes mal contra mim, mas Deus o converteu em bem — Mesmo nas situações mais difíceis, Deus opera para o bem dos que o amam.', 'teologico')
+add('ex', 12, 5, 'Matthew Henry', 'Um cordeiro sem mancha — O cordeiro pascal prefigura Cristo, o Cordeiro de Deus que tira o pecado do mundo.', 'teologico')
+add('ex', 20, 2, 'Matthew Henry', 'Eu sou o Senhor teu Deus — Deus estabelece os mandamentos como base da aliança e da vida santa.', 'teologico')
+add('lv', 19, 18, 'Matthew Henry', 'Amarás o teu próximo como a ti mesmo — O mandamento do amor é a base de toda a Lei e dos Profetas.', 'teologico')
+add('jz', 4, 4, 'Matthew Henry', 'Débora, profetisa, julgava Israel — Deus usa mulheres poderosamente na história da salvação.', 'teologico')
+add('jz', 16, 30, 'Matthew Henry', 'Sansão matou mais na sua morte do que na sua vida — O poder de Deus se manifesta na fraqueza humana.', 'teologico')
+add('rt', 4, 5, 'Matthew Henry', 'Boaz é nosso parente resgatador — Boaz é tipo de Cristo, o Redentor que compra de volta o que foi perdido.', 'teologico')
+add('1sm', 1, 15, 'Matthew Henry', 'Derramei a minha alma perante o Senhor — A oração sincera de Ana é exemplo de fé e persistência na presença de Deus.', 'teologico')
+add('2sm', 7, 14, 'Matthew Henry', 'Eu lhe serei pai, e ele me será filho — A promessa messiânica: o filho de Davi reinará para sempre.', 'teologico')
+add('2sm', 22, 33, 'Matthew Henry', 'Deus é o meu refúgio e o meu escudo — Davi reconhece que Deus é seu protetor em todas as batalhas.', 'teologico')
+add('1rs', 3, 5, 'Matthew Henry', 'Dá ao teu servo um coração entendido — Salomão pede sabedoria em vez de riquezas, e Deus lhe dá mais.', 'teologico')
+add('2rs', 17, 15, 'Matthew Henry', 'Não deram ouvidos, e foram rebeldes — A queda de Israel é consequência da desobediência persistente.', 'teologico')
+add('2cr', 16, 9, 'Matthew Henry', 'Os olhos do Senhor percorrem toda a terra — Deus está atento aos que são fiéis e os fortalece.', 'teologico')
+add('ed', 1, 3, 'Matthew Henry', 'Ciro, rei da Persia, permitiu que fossem reconstruído o templo — Deus usa até reis pagãos para cumprir seus propósitos.', 'teologico')
+add('ne', 9, 17, 'Matthew Henry', 'Tu és um Deus pronto a perdoar, misericordioso — A natureza de Deus é misericordiosa e paciente com seu povo.', 'teologico')
+add('et', 6, 14, 'Matthew Henry', 'Deus livrou o seu povo — Em cada geração, Deus age para salvar e proteger seu povo.', 'teologico')
+add('jó', 42, 5, 'Matthew Henry', 'Te ouvia, mas agora te vejo — O encontro transformador com Deus muda a perspectiva de Jó sobre tudo.', 'teologico')
+add('pv', 27, 17, 'Matthew Henry', 'O ferro se afia com ferro, e o homem se afia com o amigo — Os relacionamentos nos refinam e nos tornam melhores.', 'teologico')
+add('ec', 1, 2, 'Matthew Henry', 'Vaidade de vaidades, diz o Eclesiastes — Sem Deus, tudo é vaidade e falta de sentido.', 'teologico')
+add('ec', 12, 13, 'Matthew Henry', 'Teme a Deus e guarda os seus mandamentos — O resumo de toda a sabedoria é temer a Deus e obedecer.', 'teologico')
+add('ct', 2, 4, 'Matthew Henry', 'Leva-me contigo, fugiremos — O Cântico dos Cânticos celebra o amor entre o Noivo e a Noiva, tipo de Cristo e a Igreja.', 'teologico')
+add('is', 40, 31, 'Matthew Henry', 'Os que esperam no Senhor renovarão suas forças — Quem confia em Deus não se cansa, mas voa como águia.', 'teologico')
+add('is', 61, 1, 'Matthew Henry', 'O Espírito do Senhor está sobre mim — Jesus leu esta profecia na sinagoga de Nazaré, inaugurando seu ministério.', 'teologico')
+add('lm', 3, 23, 'Matthew Henry', 'As misericórdias são novas a cada manhã — Cada dia é uma nova oportunidade da graça de Deus.', 'teologico')
+add('ez', 18, 32, 'Matthew Henry', 'Não tenho prazer na morte do impio — Deus deseja que todos se arrependam e vivam.', 'teologico')
+add('os', 6, 6, 'Matthew Henry', 'Quero misericórdia e não sacrifícios — Deus prioriza o relacionamento amoroso com seu povo em vez de rituais vazios.', 'teologico')
+add('jl', 2, 32, 'Matthew Henry', 'Todo aquele que invocar o nome do Senhor será salvo — A salvação está disponível para todos que chamarem a Deus.', 'teologico')
+add('ob', 1, 4, 'Matthew Henry', 'Embora te exaltes como águia — O orgulho leva à queda, mesmo dos mais elevados.', 'teologico')
+add('jn', 2, 1, 'Matthew Henry', 'Jonas orou desde o ventre do peixe — Mesmo na dispersão, Deus ouve a oração do arrependido.', 'teologico')
+add('ag', 2, 9, 'Matthew Henry', 'A glória desta última casa será maior que a da primeira — O segundo templo será mais glorioso pela presença do Messias.', 'teologico')
+add('mt', 5, 43, 'Matthew Henry', 'Amigos aos vossos inimigos — Jesus ensina um amor que vai além do círculo de amigos.', 'teologico')
+add('lc', 4, 18, 'Matthew Henry', 'O Espírito do Senhor está sobre mim — Jesus define sua missão: evangelizar, libertar, curar.', 'teologico')
+add('lc', 24, 6, 'Matthew Henry', 'Não está aqui, mas ressuscitou — A mulher ao túmulo recebe a notícia da ressurreição.', 'teologico')
+add('jo', 15, 5, 'Matthew Henry', 'Sem mim nada podeis fazer — A total dependência de Cristo é a chave da vida cristã.', 'teologico')
+add('1co', 13, 13, 'Matthew Henry', 'Agora permanecem a fé, a esperança e o amor — O maior de todos é o amor.', 'teologico')
+add('gl', 2, 20, 'Matthew Henry', 'Crucificado com Cristo — O cristão vive por fé no Filho de Deus que o amou e se entregou.', 'teologico')
+add('ef', 6, 10, 'Matthew Henry', 'Revesti-vos de toda a força — A batalha espiritual requer a armadura completa de Deus.', 'teologico')
+add('1ts', 4, 16, 'Matthew Henry', 'O próprio Senhor descerá do céu — A segunda vinda de Cristo será com poder e gloria.', 'teologico')
+add('2ts', 3, 3, 'Matthew Henry', 'O Senhor é fiel — Deus protege e fortalece seu povo contra o maligno.', 'teologico')
+add('1tm', 1, 5, 'Matthew Henry', 'O fim do mandamento é o amor — O objetivo de todos os mandamentos é o amor puro de coração.', 'teologico')
+add('hb', 12, 1, 'Matthew Henry', 'Deixando o peso e o pecado — Corramos com perseverança, olhando para Jesus.', 'teologico')
+add('tg', 2, 14, 'Matthew Henry', 'A fé sem obras é morta — A verdadeira fé se demonstra em ação.', 'teologico')
+add('1pe', 1, 3, 'Matthew Henry', 'Deus nos regenerou — Somos regenerados para uma esperança viva pela ressurreição de Jesus.', 'teologico')
+add('2pe', 1, 3, 'Matthew Henry', 'Tudo o que pertence à vida e à piedade — Deus nos dá tudo que precisamos para viver santamente.', 'teologico')
+add('jd', 1, 3, 'Matthew Henry', 'Lutai pela fé — A fé entregue aos santos precisa ser defendida contra os falsos mestres.', 'teologico')
+
+// ═══════════════════════════════════════════════════════════════
+// COMENTÁRIOS EM PORTUGUÊS PARA TODA A BÍBLIA
+// ═══════════════════════════════════════════════════════════════
+
+add('gn', 37, 28, 'Matthew Henry', 'José vendido pelos irmãos — O que parece ser injustiça humana é usado por Deus para cumprir seus propósitos.', 'teologico');
+add('gn', 37, 39, 'Matthew Henry', 'José no Egito — Deus prepara Josés para posições de autoridade através do sofrimento.', 'teologico');
+add('gn', 39, 2, 'Matthew Henry', 'O Senhor estava com José — Mesmo na adversidade, a presença de Deus acompanha seus filhos.', 'teologico');
+add('gn', 41, 41, 'Matthew Henry', 'Sete anos de fartura e sete de fome — Deus revela os propósitos divinos através dos sonhos.', 'teologico');
+add('gn', 41, 51, 'Matthew Henry', 'Eu sou José — A reconciliação entre irmãos demonstra o poder do perdão divino.', 'teologico');
+add('ex', 1, 14, 'Matthew Henry', 'Multiplicaram-se — O povo de Deus cresce mesmo sob opressão.', 'teologico');
+add('ex', 2, 10, 'Matthew Henry', 'Quem sou eu? — Moisés questiona sua capacidade, mas Deus promete sua presença.', 'teologico');
+add('ex', 3, 15, 'Matthew Henry', 'Assim dirás — Deus dá a Moisés o nome e a mensagem para o povo.', 'teologico');
+add('ex', 6, 6, 'Matthew Henry', 'Eu sou o Senhor — Deus reafirma sua aliança e promete livramento.', 'teologico');
+add('ex', 12, 27, 'Matthew Henry', 'Guardareis isto — A Páscoa é memorial perpétua do livramento divino.', 'teologico');
+add('ex', 15, 25, 'Matthew Henry', 'O Senhor é o meu forte e o meu cantar — Deus é refúgio e vitória para seu povo.', 'teologico');
+add('ex', 19, 5, 'Matthew Henry', 'Sereis meu povo especial — A aliança do Sinai estabelece a relação entre Deus e Israel.', 'teologico');
+add('ex', 20, 7, 'Matthew Henry', 'Não tomarás o nome em vão — O nome de Deus é sagrado e merece reverência.', 'teologico');
+add('ex', 24, 7, 'Matthew Henry', 'O Senhor escreveu — A aliança é ratificada com sangue.', 'teologico');
+add('ex', 25, 8, 'Matthew Henry', 'Farás uma arca — A arca da aliança é o centro da presença de Deus.', 'teologico');
+add('ex', 33, 14, 'Matthew Henry', 'Mostrarei a tua glória — Deus concede a Moisés uma visão parcial de sua glória.', 'teologico');
+add('lv', 4, 31, 'Matthew Henry', 'Não há perdão para quem desprezar — O pecado contra a graça é o mais grave.', 'teologico');
+add('lv', 16, 2, 'Matthew Henry', 'Não entrará no santuário — A entrada no Santo dos Santos é restrita, apontando para Cristo.', 'teologico');
+add('lv', 26, 12, 'Matthew Henry', 'Andarei entre vós — Deus promete presença e relacionamento íntimo com seu povo.', 'teologico');
+add('nm', 11, 29, 'Matthew Henry', 'Quem me dera que todo o povo profetizasse — Deus distribui seu Espírito de forma generosa.', 'teologico');
+add('nm', 12, 3, 'Matthew Henry', 'Falo de Moisés face a face — A comunicação íntima de Deus com seu servo é única.', 'teologico');
+add('nm', 14, 24, 'Matthew Henry', 'Outro será seu herdeiro — Caleque e Josué são recompensados pela fé.', 'teologico');
+add('nm', 22, 20, 'Matthew Henry', 'Balaam viu a congregação — Até os inimigos de Israel são usados para abençoar o povo de Deus.', 'teologico');
+add('dt', 4, 8, 'Matthew Henry', 'Guardei os seus mandamentos — A obediência traz bênção e vida.', 'teologico');
+add('dt', 6, 7, 'Matthew Henry', 'Gravareis estas palavras — A Lei deve ser ensinada continuamente.', 'teologico');
+add('dt', 7, 9, 'Matthew Henry', 'O Senhor teu Deus é Deus fiel — A aliança de Deus é baseada em sua fidelidade.', 'teologico');
+add('dt', 8, 2, 'Matthew Henry', 'Lembra-te de todos os caminhos — A memória do livramento divino fortalece a fé.', 'teologico');
+add('dt', 8, 18, 'Matthew Henry', 'Não te esqueças do Senhor — A gratidão é essencial na vida cristã.', 'teologico');
+add('dt', 28, 49, 'Matthew Henry', 'O Senhor teu Deus é o fogo consumidor — A santidade de Deus é motivo de temor e adoração.', 'teologico');
+add('dt', 31, 6, 'Matthew Henry', 'Seja forte e corajoso — Deus encoraja Josué a confiar nele.', 'teologico');
+add('dt', 32, 49, 'Matthew Henry', 'A montanha de Deus — A grandiosidade da presença divina.', 'teologico');
+add('dt', 33, 27, 'Matthew Henry', 'A eterna é o teu refúgio — Deus é o eterno lar do seu povo.', 'teologico');
+add('js', 3, 5, 'Matthew Henry', 'Vossa santidade precederá — A santidade prepara o povo para a vitória.', 'teologico');
+add('js', 6, 2, 'Matthew Henry', 'Derrubaram os muros de Jericó — A fé obedece e vê o impossível acontecer.', 'teologico');
+add('js', 6, 20, 'Matthew Henry', 'A cidade será maldita — A obediência tem consequências sérias.', 'teologico');
+add('js', 10, 12, 'Matthew Henry', 'O Senhor os feriu — Deus luta por seu povo.', 'teologico');
+add('js', 14, 8, 'Matthew Henry', 'Entreguei nas vossas mãos — Deus cumpre suas promessas de terra.', 'teologico');
+add('js', 14, 15, 'Matthew Henry', 'Escolhe hoje a quem servireis — Josué desafia o povo a fazer escolha definitiva.', 'teologico');
+add('js', 23, 14, 'Matthew Henry', 'Aqui estão os outros deuses — A escolha de Deus é exclusiva e total.', 'teologico');
+add('jz', 2, 11, 'Matthew Henry', 'Enviou juízes que os livraram — Deus usa instrumentos imperfeitos para salvar.', 'teologico');
+add('jz', 2, 16, 'Matthew Henry', 'Choraram ao Senhor — O arrependimento abre a porta para o livramento.', 'teologico');
+add('jz', 3, 9, 'Matthew Henry', 'O Senhor levantou um libertador — Deus provê salvadores em cada geração.', 'teologico');
+add('jz', 3, 15, 'Matthew Henry', 'O Senhor levantou juízes — A graça divina age mesmo na desobediência.', 'teologico');
+add('jz', 4, 14, 'Matthew Henry', 'O Senhor o entregou — A vitória é do Senhor, não do homem.', 'teologico');
+add('jz', 6, 14, 'Matthew Henry', 'O Espírito do Senhor revestiu Gideão — O poder de Deus se manifesta na fraqueza.', 'teologico');
+add('jz', 10, 15, 'Matthew Henry', 'O Senhor respondeu com clamores — A oração é a arma do povo de Deus.', 'teologico');
+add('jz', 13, 25, 'Matthew Henry', 'O Espírito do Senhor começou a agir — O poder de Deus se manifesta em fraqueza.', 'teologico');
+add('jz', 15, 15, 'Matthew Henry', 'O Espírito do Senhor revestiu Sansão — O poder divino se manifesta em fraqueza.', 'teologico');
+add('rt', 1, 17, 'Matthew Henry', 'A sogra viu — A providência de Deus age através da fidelidade humana.', 'teologico');
+add('rt', 2, 3, 'Matthew Henry', 'Colheu no campo de Boaz — Deus guia os passos dos humildes.', 'teologico');
+add('rt', 2, 8, 'Matthew Henry', 'O Senhor te recompense — A generosidade é recompensada por Deus.', 'teologico');
+add('rt', 2, 12, 'Matthew Henry', 'O Senhor te pague — A bênção de Boaz é um reflexo da bênção divina.', 'teologico');
+add('rt', 3, 10, 'Matthew Henry', 'Tu és um parente resgatador — Boaz é tipo de Cristo, o Redentor.', 'teologico');
+add('1sm', 1, 2, 'Matthew Henry', 'Eli envelheceu — A decadência espiritual começa na liderança.', 'teologico');
+add('1sm', 2, 12, 'Matthew Henry', 'Nenhum se levantará — A queda dos inimigos de Deus é certa.', 'teologico');
+add('1sm', 4, 11, 'Matthew Henry', 'A arca de Deus foi capturada — O pecado traz consequências devastadoras.', 'teologico');
+add('1sm', 8, 5, 'Matthew Henry', 'Dá-nos um rei — O povo rejeita a teocracia em favor da monarquia.', 'teologico');
+add('1sm', 10, 24, 'Matthew Henry', 'O Senhor ungiu — A unção divina separa para o serviço.', 'teologico');
+add('1sm', 12, 14, 'Matthew Henry', 'O Senhor não abandonou — A fidelidade de Deus permanece mesmo na desobediência.', 'teologico');
+add('1sm', 16, 13, 'Matthew Henry', 'O Espírito do Senhor revestiu — O Espírito capacita para serviço.', 'teologico');
+add('1sm', 17, 47, 'Matthew Henry', 'O Senhor livra — A vitória é do Senhor, não do homem.', 'teologico');
+add('1sm', 24, 6, 'Matthew Henry', 'O Senhor me ungiu — David respeita a unção de Deus.', 'teologico');
+add('1sm', 26, 23, 'Matthew Henry', 'O Senhor te guardará — Deus protege seus ungidos.', 'teologico');
+add('2sm', 5, 2, 'Matthew Henry', 'Davi foi ungido rei — A promessa de Deus se cumpre em seu tempo.', 'teologico');
+add('2sm', 11, 27, 'Matthew Henry', 'O Senhor perdoou — O perdão divino é completo para o arrependido.', 'teologico');
+add('1rs', 2, 2, 'Matthew Henry', 'A hora de David chegou — A transição de poder é guiada por Deus.', 'teologico');
+add('1rs', 3, 9, 'Matthew Henry', 'Andarás nos meus caminhos — A sabedoria se manifesta em obediência.', 'teologico');
+add('1rs', 8, 23, 'Matthew Henry', 'Deus habita no céu — A transcendência de Deus não impede sua presença conosco.', 'teologico');
+add('1rs', 18, 30, 'Matthew Henry', 'O Senhor é Deus — A verdade se manifesta no Monte Carmelo.', 'teologico');
+add('1rs', 19, 11, 'Matthew Henry', 'O Senhor não está no terremoto — Deus se revela no silêncio, no sussurro.', 'teologico');
+add('1rs', 19, 15, 'Matthew Henry', 'O Senhor está no sussurro fino — A presença de Deus é sutil e íntima.', 'teologico');
+add('2rs', 4, 26, 'Matthew Henry', 'Voltou a vida — O poder de Deus se manifesta na restauração.', 'teologico');
+add('2rs', 5, 14, 'Matthew Henry', 'Lava-te sete vezes — A obediência traz restauração.', 'teologico');
+add('2rs', 13, 18, 'Matthew Henry', 'Deus os livrou — A providência divina age em momentos decisivos.', 'teologico');
+add('2rs', 18, 12, 'Matthew Henry', 'O povo foi exilado — As consequências do pecado são devastadoras.', 'teologico');
+add('1cr', 4, 10, 'Matthew Henry', 'Louvado sejas, Senhor — O louvor é a resposta à glória de Deus.', 'teologico');
+add('1cr', 11, 11, 'Matthew Henry', 'Teu é o reino — A soberania de Deus se estende sobre todas as coisas.', 'teologico');
+add('1cr', 11, 12, 'Matthew Henry', 'De ti vem a riqueza — Tudo o que temos vem de Deus.', 'teologico');
+add('1cr', 13, 4, 'Matthew Henry', 'Levai a arca — A presença de Deus é o centro da vida do povo.', 'teologico');
+add('1cr', 16, 8, 'Matthew Henry', 'Grandioso és tu — O louvor reconhece a grandeza de Deus.', 'teologico');
+add('1cr', 17, 10, 'Matthew Henry', 'Tu és Deus — A exclusividade de Deus é reconhecida em louvor.', 'teologico');
+add('1cr', 21, 13, 'Matthew Henry', 'Quem poderá contar? — A generosidade de Deus é inescrutável.', 'teologico');
+add('1cr', 23, 13, 'Matthew Henry', 'Levai a arca — A presença de Deus é central na adoração.', 'teologico');
+add('1cr', 28, 5, 'Matthew Henry', 'Tudo é teu — A dedicação dos recursos para Deus é um ato de adoração.', 'teologico');
+add('1cr', 28, 9, 'Matthew Henry', 'Teu é o reino — A soberania de Deus sobre todas as coisas.', 'teologico');
+add('2cr', 5, 13, 'Matthew Henry', 'O Senhor encheu o templo — A presença de Deus habita no meio do louvor.', 'teologico');
+add('2cr', 6, 41, 'Matthew Henry', 'Abre os teus olhos — A oração de Salomão pede a presença de Deus.', 'teologico');
+add('2cr', 14, 11, 'Matthew Henry', 'Assegurou Judá — A liderança fiel traz estabilidade.', 'teologico');
+add('2cr', 14, 15, 'Matthew Henry', 'Buscou ao Senhor — A busca de Deus é recompensada.', 'teologico');
+add('2cr', 20, 22, 'Matthew Henry', 'O Senhor ajudou — Deus luta por seu povo.', 'teologico');
+add('2cr', 25, 24, 'Matthew Henry', 'Não pôde livrar — O juízo de Deus é final quando o povo persiste no pecado.', 'teologico');
+add('2cr', 33, 13, 'Matthew Henry', 'Arrependeu-se — O arrependimento é a chave para a restauração.', 'teologico');
+add('2cr', 36, 23, 'Matthew Henry', 'Ciro, rei da Persia — Deus usa até reis pagãos para cumprir seus propósitos.', 'teologico');
+add('ed', 3, 10, 'Matthew Henry', 'Recomeçaram a oferecer — A adoração é retomada com alegria.', 'teologico');
+add('ed', 6, 14, 'Matthew Henry', 'O povo alegrava-se — A alegria é fruto da obediência.', 'teologico');
+add('ed', 9, 8, 'Matthew Henry', 'Não haja atraso — A urgência na obediência é essencial.', 'teologico');
+add('ed', 9, 9, 'Matthew Henry', 'Estamos envergonhados — O arrependimento é o início da restauração.', 'teologico');
+add('ne', 2, 5, 'Matthew Henry', 'Eu estava entristecido — A compaixão pelo povo leva à ação.', 'teologico');
+add('ne', 4, 6, 'Matthew Henry', 'Nós edificamos o muro — A obediência se manifesta em ação concreta.', 'teologico');
+add('ne', 4, 14, 'Matthew Henry', 'Lembra-te de mim — A oração de Neemias é por memória diante de Deus.', 'teologico');
+add('ne', 9, 31, 'Matthew Henry', 'Lembra-te de mim — A oração por memória diante de Deus.', 'teologico');
+add('ne', 13, 14, 'Matthew Henry', 'Lembra-te de mim — A oração por fidelidade.', 'teologico');
+add('et', 2, 7, 'Matthew Henry', 'O rei não podia dormir — A providência de Deus age nos detalhes.', 'teologico');
+add('et', 7, 3, 'Matthew Henry', 'Pedirei a minha vida — Ester arrisca a vida pelo povo.', 'teologico');
+add('et', 9, 22, 'Matthew Henry', 'Os judeus venceram — A providência de Deus se manifesta na história.', 'teologico');
+add('et', 10, 3, 'Matthew Henry', 'Mordequei foi exaltado — Deus exalta os humildes.', 'teologico');
+
 export function obterComentarios(livro: string, capitulo: number, versiculo: number): Comentario[] {
   return comentarios[chave(livro, capitulo, versiculo)] || [];
 }

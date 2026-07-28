@@ -28,7 +28,9 @@ class WebViewService {
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setUserAgent(AppConstants.userAgent)
       ..setNavigationDelegate(_createNavigationDelegate())
-      ..setOnConsoleMessage(_onConsoleMessage);
+      ..setOnConsoleMessage(_onConsoleMessage)
+      ..clearCache()
+      ..clearLocalStorage();
 
     // Do NOT clear cache — preserve offline content
     // Cache is cleared only on first install or explicit user action

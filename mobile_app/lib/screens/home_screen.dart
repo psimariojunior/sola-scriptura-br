@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../config/constants.dart';
 import '../config/theme.dart';
 import '../services/webview_service.dart';
@@ -138,11 +139,12 @@ class _HomeScreenState extends State<HomeScreen> {
       if (text != null) {
         _share.shareText(text);
       }
-    } else if (url.startsWith('ssb-download://')) {
-      // Download handled by JS bridge
     } else {
-      // External app deep link (WhatsApp, Telegram, etc.)
-      _share.shareUrl(url);
+      // External app deep link — launch natively
+      launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication).catchError((e) {
+        debugPrint('Failed to launch deep link: $e');
+        return false;
+      });
     }
   }
 

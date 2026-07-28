@@ -358,10 +358,10 @@ export const VerseCard = memo(function VerseCard({
         {/* Mobile inline action panel - only show when PainelDoVersiculo is NOT open */}
         {isSelected && !hideMobileActions && (
           <div className="lg:hidden mt-2 pt-2 border-t border-[var(--border)]/20 animate-[slideDown_0.2s_ease-out]">
-            <div className="grid grid-cols-4 gap-1.5">
+            <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={(e) => { e.stopPropagation(); toggleFavorito(livroAbreviacao, capitulo, numero, traducao, texto); onFavoritoChange(); }}
-                className={cn('flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl transition-all active:scale-95', isFavorito ? 'text-white bg-red-500' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)]')}
+                className={cn('flex flex-col items-center justify-center gap-1 p-3 rounded-xl transition-all active:scale-95', isFavorito ? 'text-white bg-red-500' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)]')}
                 aria-label={isFavorito ? 'Remover favorito' : 'Favoritar'}
               >
                 <Heart className="w-5 h-5" fill={isFavorito ? 'currentColor' : 'none'} />
@@ -369,35 +369,20 @@ export const VerseCard = memo(function VerseCard({
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); copyVerse(texto, ref); }}
-                className={cn('flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl transition-all active:scale-95', copiedVerse === ref ? 'text-white bg-green-500' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)]')}
+                className={cn('flex flex-col items-center justify-center gap-1 p-3 rounded-xl transition-all active:scale-95', copiedVerse === ref ? 'text-white bg-green-500' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)]')}
                 aria-label="Copiar"
               >
                 <Copy className="w-5 h-5" />
                 <span className="text-[10px] font-medium">Copiar</span>
               </button>
               <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (navigator.share) {
-                    navigator.share({ title: ref, text: `${ref}\n\n${texto}` });
-                  } else {
-                    copyVerse(texto, ref);
-                  }
-                }}
-                className="flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] transition-all active:scale-95"
-                aria-label="Compartilhar"
+                onClick={(e) => { e.stopPropagation(); setShowMobilePanel(true); }}
+                className="flex flex-col items-center justify-center gap-1 p-3 rounded-xl bg-[var(--brand-subtle)] text-[var(--brand-default)] transition-all active:scale-95"
+                aria-label="Mais opções"
               >
-                <Share2 className="w-5 h-5" />
-                <span className="text-[10px] font-medium">Compart.</span>
+                <BookOpen className="w-5 h-5" />
+                <span className="text-[10px] font-medium">Mais</span>
               </button>
-              <button
-                  onClick={(e) => { e.stopPropagation(); setShowMobilePanel(true); }}
-                  className="flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl bg-[var(--brand-subtle)] text-[var(--brand-default)] transition-all active:scale-95"
-                  aria-label="Mais opções"
-                >
-                  <BookOpen className="w-5 h-5" />
-                  <span className="text-[10px] font-medium">Mais</span>
-                </button>
             </div>
           </div>
         )}

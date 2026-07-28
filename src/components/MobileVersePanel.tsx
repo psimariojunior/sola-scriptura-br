@@ -2,7 +2,7 @@
 
 import { useState, useEffect, memo } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Heart, Copy, Share2, Languages, MessageSquare, GraduationCap, Link2, BookOpen, Palette, StickyNote } from 'lucide-react';
+import { X, Heart, Copy, Share2, Languages, MessageSquare, GraduationCap, Link2, BookOpen, Palette, StickyNote, ImageIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toggleFavorito } from '@/lib/estudos';
 import { CORES, setMarcador, removeMarcador, getMarcador, type CorMarcador } from '@/lib/marcadores';
@@ -40,6 +40,8 @@ export const MobileVersePanel = memo(function MobileVersePanel({
   const [recursos, setRecursos] = useState<RecursoVersiculo[]>([]);
   const [loading, setLoading] = useState(false);
   const [showColor, setShowColor] = useState(false);
+  const [lexicoPalavras, setLexicoPalavras] = useState<Array<{ strong: string; palavra: string; transliteracao: string; definicao: string; morfologia: string; idioma: string }>>([]);
+  const [lexicoLoading, setLexicoLoading] = useState(false);
   const ref = `${livro} ${capitulo}:${versiculo}`;
   const corAtual = getMarcador(livroAbrev, capitulo, versiculo, traducao)?.cor ?? null;
 
@@ -47,6 +49,7 @@ export const MobileVersePanel = memo(function MobileVersePanel({
     if (!aberto || !livroAbrev) return;
     setLoading(true);
     setActiveTab('acoes');
+    setLexicoPalavras([]);
     import('@/data/biblia/versiculoRecursos').then(mod => {
       mod.getRecursosBasicos(livroAbrev, capitulo, versiculo).then(r => {
         setRecursos(r);
@@ -54,6 +57,16 @@ export const MobileVersePanel = memo(function MobileVersePanel({
       }).catch(() => setLoading(false));
     }).catch(() => setLoading(false));
   }, [aberto, livroAbrev, capitulo, versiculo]);
+
+  useEffect(() => {
+    if (activeTab !== 'lexico' || !livroAbrev) return;
+    setLexicoLoading(true);
+    import('@/data/biblia/strong').then(mod => {
+      const palavras = mod.getStrongPorVersiculo(livroAbrev, capitulo, versiculo);
+      setLexicoPalavras(palavras);
+      setLexicoLoading(false);
+    }).catch(() => setLexicoLoading(false));
+  }, [activeTab, livroAbrev, capitulo, versiculo]);
 
   if (!aberto) return null;
 
@@ -125,10 +138,25 @@ export const MobileVersePanel = memo(function MobileVersePanel({
                   <Copy className="w-5 h-5" />
                   <span className="text-[10px] font-medium">{copiedVerse === ref ? 'Copiado!' : 'Copiar'}</span>
                 </button>
-                <button onClick={() => navigator.share?.({ title: ref, text: `${ref}\n\n${texto}` }).catch(() => copyVerse(texto, ref))}
+                <button onClick={async () => {
+                  try {
+                    if (navigator.share) {
+                      await navigator.share({ title: ref, text: `${ref}\n\n${texto}` });
+                    } else {
+                      copyVerse(texto, ref);
+                    }
+                  } catch { /* user cancelled */ }
+                }}
                   className="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] transition-all active:scale-95">
                   <Share2 className="w-5 h-5" />
                   <span className="text-[10px] font-medium">Compartilhar</span>
+                </button>
+                <button onClick={() => {
+                  window.open(`/compartilhar?livro=${encodeURIComponent(livro)}&cap=${capitulo}&ver=${versiculo}&texto=${encodeURIComponent(texto)}`, '_blank');
+                }}
+                  className="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] transition-all active:scale-95">
+                  <ImageIcon className="w-5 h-5" />
+                  <span className="text-[10px] font-medium">Imagem</span>
                 </button>
                 <button onClick={() => setShowColor(!showColor)}
                   className={cn('flex flex-col items-center gap-1.5 p-3 rounded-xl transition-all active:scale-95',
@@ -238,11 +266,31 @@ export const MobileVersePanel = memo(function MobileVersePanel({
           {/* TAB: LÉXICO */}
           {activeTab === 'lexico' && (
             <div className="p-4">
-              <button onClick={onStrong}
-                className="w-full flex items-center justify-center gap-2 p-4 rounded-xl bg-purple-500/10 text-purple-600 border border-purple-500/20 transition-all active:scale-95">
-                <Languages className="w-5 h-5" />
-                <span className="text-sm font-semibold">Abrir Léxico Strong</span>
-              </button>
+              {lexicoLoading ? (
+                <div className="space-y-3">
+                  {[1,2,3].map(i => <div key={i} className="h-16 bg-[var(--surface-sunken)] rounded-lg animate-pulse" />)}
+                </div>
+              ) : lexicoPalavras.length === 0 ? (
+                <div className="text-center py-8">
+                  <Languages className="w-10 h-10 mx-auto text-[var(--content-muted)]/30 mb-3" />
+                  <p className="text-sm text-[var(--content-muted)]">Nenhuma palavra Strong disponível.</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {lexicoPalavras.map((p, i) => (
+                    <div key={i} className="bg-[var(--surface-sunken)] rounded-xl p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${p.idioma === 'grego' ? 'bg-purple-500/20 text-purple-600' : 'bg-amber-500/20 text-amber-600'}`}>{p.strong}</span>
+                        <span className="text-xs text-[var(--content-muted)]">{p.idioma}</span>
+                      </div>
+                      <p className="text-base font-bold text-[var(--content-primary)] mb-0.5">{p.palavra}</p>
+                      <p className="text-xs text-[var(--content-muted)] italic mb-1">{p.transliteracao}</p>
+                      <p className="text-sm text-[var(--content-secondary)] leading-relaxed">{p.definicao}</p>
+                      {p.morfologia && <p className="text-[11px] text-[var(--content-muted)] mt-1">Morfologia: {p.morfologia}</p>}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>

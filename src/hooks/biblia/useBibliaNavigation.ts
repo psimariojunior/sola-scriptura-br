@@ -40,8 +40,28 @@ export interface UseBibliaNavigationReturn {
 }
 
 export function UseBibliaNavigation(): UseBibliaNavigationReturn {
-  const [livroIdx, setLivroIdx] = useState(0);
-  const [capituloIdx, setCapituloIdx] = useState(0);
+  const [livroIdx, setLivroIdx] = useState(() => {
+    if (typeof window === 'undefined') return 0;
+    const params = new URLSearchParams(window.location.search);
+    const livroParam = params.get('livro');
+    if (livroParam) {
+      const idx = TODOS_LIVROS.findIndex(l =>
+        l.abreviacao === livroParam || l.nome.toLowerCase() === livroParam.toLowerCase()
+      );
+      if (idx >= 0) return idx;
+    }
+    return 0;
+  });
+  const [capituloIdx, setCapituloIdx] = useState(() => {
+    if (typeof window === 'undefined') return 0;
+    const params = new URLSearchParams(window.location.search);
+    const capParam = params.get('capitulo');
+    if (capParam) {
+      const cap = parseInt(capParam, 10);
+      if (!isNaN(cap) && cap > 0) return cap - 1;
+    }
+    return 0;
+  });
   const [chapterDirection, setChapterDirection] = useState<'next' | 'prev'>('next');
   const [selectedTrads, setSelectedTrads] = useState<string[]>(['arc']);
   const [viewMode, setViewMode] = useState<ViewMode>('single');

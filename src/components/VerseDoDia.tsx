@@ -122,11 +122,23 @@ export default function VerseDoDia() {
   const { livro, capitulo } = parseReferencia(versoAtual.referencia);
   const bibliaUrl = `/biblia?livro=${livro}&capitulo=${capitulo}`;
 
-  const handleCopy = async () => {
-    const texto = `"${versoAtual.texto}" — ${versoAtual.referencia}`;
-    await navigator.clipboard.writeText(texto);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleShare = async () => {
+    const texto = `"${versoAtual.texto}" — ${versoAtual.referencia}\n\n📖 Sola Scriptura\nhttps://solascripturabr.com.br`;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: versoAtual.referencia, text: texto });
+      } else {
+        await navigator.clipboard.writeText(texto);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
+    } catch {
+      const a = document.createElement('a');
+      a.href = `ssb-share://${encodeURIComponent(texto)}`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
   };
 
   const handleSurpreendaMe = () => {
@@ -171,20 +183,11 @@ export default function VerseDoDia() {
             {/* Actions */}
             <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
               <button
-                onClick={handleCopy}
+                onClick={handleShare}
                 className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl border border-primary/30 bg-primary/5 text-primary hover:bg-primary/10 transition-all duration-200 cursor-pointer"
               >
-                {copied ? (
-                  <>
-                    <Check className="w-4 h-4" />
-                    Copiado!
-                  </>
-                ) : (
-                  <>
-                    <Share2 className="w-4 h-4" />
-                    Compartilhar
-                  </>
-                )}
+                <Share2 className="w-4 h-4" />
+                Compartilhar
               </button>
 
               <button

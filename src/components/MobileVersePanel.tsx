@@ -142,8 +142,10 @@ export const MobileVersePanel = memo(function MobileVersePanel({
                   try {
                     if (navigator.share) {
                       await navigator.share({ title: ref, text: `${ref}\n\n${texto}` });
+                    } else if ((window as unknown as Record<string, unknown>).__SSB_SHARE) {
+                      ((window as unknown as Record<string, unknown>).__SSB_SHARE as (t: string) => void)(`${ref}\n\n${texto}`);
                     } else {
-                      copyVerse(texto, ref);
+                      await navigator.clipboard.writeText(`${ref}\n\n${texto}`);
                     }
                   } catch { /* user cancelled */ }
                 }}
@@ -151,9 +153,7 @@ export const MobileVersePanel = memo(function MobileVersePanel({
                   <Share2 className="w-5 h-5" />
                   <span className="text-[10px] font-medium">Compartilhar</span>
                 </button>
-                <button onClick={() => {
-                  window.open(`/compartilhar?livro=${encodeURIComponent(livro)}&cap=${capitulo}&ver=${versiculo}&texto=${encodeURIComponent(texto)}`, '_blank');
-                }}
+                <button onClick={(e) => { e.stopPropagation(); onFechar(); }}
                   className="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] transition-all active:scale-95">
                   <ImageIcon className="w-5 h-5" />
                   <span className="text-[10px] font-medium">Imagem</span>

@@ -42,8 +42,41 @@ export const MobileVersePanel = memo(function MobileVersePanel({
   const [showColor, setShowColor] = useState(false);
   const [lexicoPalavras, setLexicoPalavras] = useState<Array<{ strong: string; palavra: string; transliteracao: string; definicao: string; morfologia: string; idioma: string }>>([]);
   const [lexicoLoading, setLexicoLoading] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
   const ref = `${livro} ${capitulo}:${versiculo}`;
   const corAtual = getMarcador(livroAbrev, capitulo, versiculo, traducao)?.cor ?? null;
+
+  const showToast = (msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(null), 2000);
+  };
+
+  const copiarTexto = async (textoParaCopiar: string) => {
+    try {
+      await navigator.clipboard.writeText(textoParaCopiar);
+      showToast('Copiado!');
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = textoParaCopiar;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); showToast('Copiado!'); } catch { showToast('Erro ao copiar'); }
+      document.body.removeChild(ta);
+    }
+  };
+
+  const compartilhar = async () => {
+    const textoCompleto = `${ref}\n\n${texto}`;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: ref, text: textoCompleto });
+      } else {
+        await copiarTexto(textoCompleto);
+      }
+    } catch { /* user cancelled */ }
+  };
 
   useEffect(() => {
     if (!aberto || !livroAbrev) return;
@@ -132,28 +165,18 @@ export const MobileVersePanel = memo(function MobileVersePanel({
                   <Heart className="w-5 h-5" fill={isFavorito ? 'currentColor' : 'none'} />
                   <span className="text-[10px] font-medium">{isFavorito ? 'Favoritado' : 'Favoritar'}</span>
                 </button>
-                <button onClick={() => copyVerse(texto, ref)}
+                <button onClick={() => copiarTexto(texto)}
                   className={cn('flex flex-col items-center gap-1.5 p-3 rounded-xl transition-all active:scale-95',
                     copiedVerse === ref ? 'bg-green-500 text-white' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)]')}>
                   <Copy className="w-5 h-5" />
                   <span className="text-[10px] font-medium">{copiedVerse === ref ? 'Copiado!' : 'Copiar'}</span>
                 </button>
-                <button onClick={async () => {
-                  try {
-                    if (navigator.share) {
-                      await navigator.share({ title: ref, text: `${ref}\n\n${texto}` });
-                    } else if ((window as unknown as Record<string, unknown>).__SSB_SHARE) {
-                      ((window as unknown as Record<string, unknown>).__SSB_SHARE as (t: string) => void)(`${ref}\n\n${texto}`);
-                    } else {
-                      await navigator.clipboard.writeText(`${ref}\n\n${texto}`);
-                    }
-                  } catch { /* user cancelled */ }
-                }}
+                <button onClick={compartilhar}
                   className="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] transition-all active:scale-95">
                   <Share2 className="w-5 h-5" />
                   <span className="text-[10px] font-medium">Compartilhar</span>
                 </button>
-                <button onClick={(e) => { e.stopPropagation(); onFechar(); }}
+                <button onClick={() => { onFechar(); window.open(`/compartilhar?livro=${encodeURIComponent(livro)}&cap=${capitulo}&ver=${versiculo}&texto=${encodeURIComponent(texto)}`, '_blank'); }}
                   className="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] transition-all active:scale-95">
                   <ImageIcon className="w-5 h-5" />
                   <span className="text-[10px] font-medium">Imagem</span>
@@ -295,6 +318,13 @@ export const MobileVersePanel = memo(function MobileVersePanel({
           )}
         </div>
       </div>
+
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-[200] bg-[var(--content-primary)] text-[var(--surface-raised)] px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-[fadeIn_0.2s_ease-out]">
+          {toast}
+        </div>
+      )}
     </>
   ), document.body);
 });

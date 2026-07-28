@@ -72,7 +72,8 @@ export default function BibliaPage() {
   const { t } = useTranslation();
   useEffect(() => {
     const trads = ['arc', 'nvi', 'ara', 'acf', 'kjv', 'web'];
-    requestIdleCallback(() => {
+    const ric = typeof requestIdleCallback !== 'undefined' ? requestIdleCallback : (cb: () => void) => setTimeout(cb, 0);
+    ric(() => {
       trads.forEach(t => { carregarTraducao(t); });
     });
   }, []);

@@ -109,12 +109,14 @@ export const MobileVersePanel = memo(function MobileVersePanel({
 
   const estudos = recursos.filter(r => r.tipo === 'estudo');
   const comentarios = recursos.filter(r => r.tipo === 'comentario');
+  const crossRefs = recursos.filter(r => r.tipo === 'cross-ref');
 
   const tabs = [
     { id: 'acoes', label: 'Ações', icon: BookOpen },
     { id: 'estudo', label: 'Estudo', icon: GraduationCap, count: estudos.length },
     { id: 'comentarios', label: 'Coment.', icon: MessageSquare, count: comentarios.length },
     { id: 'lexico', label: 'Léxico', icon: Languages },
+    { id: 'cross-refs', label: 'Refs', icon: Link2, count: crossRefs.length },
   ];
 
   return createPortal((
@@ -299,10 +301,40 @@ export const MobileVersePanel = memo(function MobileVersePanel({
                   })}
                 </div>
               )}
+              <button onClick={() => { onFechar(); window.open(`/estudo-ia?ref=${encodeURIComponent(`${livro} ${capitulo}:${versiculo}`)}`, '_blank'); }}
+                className="w-full mt-4 flex items-center justify-center gap-2 p-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 text-white font-semibold text-sm active:scale-[0.98] transition-transform">
+                <GraduationCap className="w-4 h-4" /> Aprofundar com IA
+              </button>
             </div>
           )}
 
-          {/* TAB: COMENTÁRIOS */}
+          {/* TAB: REFERÊNCIAS CRUZADAS */}
+          {activeTab === 'cross-refs' && (
+            <div className="p-4">
+              {loading ? (
+                <div className="space-y-3">
+                  {[1,2,3].map(i => <div key={i} className="h-12 bg-[var(--surface-sunken)] rounded-lg animate-pulse" />)}
+                </div>
+              ) : crossRefs.length === 0 ? (
+                <div className="text-center py-8">
+                  <Link2 className="w-10 h-10 mx-auto text-[var(--content-muted)]/30 mb-3" />
+                  <p className="text-sm text-[var(--content-muted)]">Nenhuma referência cruzada.</p>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  {crossRefs.map((r, i) => {
+                    const dados = r.dados as unknown as { refs: string[] };
+                    return dados.refs?.map((ref, j) => (
+                      <div key={`${i}-${j}`} className="bg-[var(--surface-sunken)] rounded-lg p-3 flex items-center gap-2">
+                        <Link2 className="w-3.5 h-3.5 text-cyan-500 shrink-0" />
+                        <span className="text-sm text-[var(--content-secondary)]">{ref}</span>
+                      </div>
+                    ));
+                  })}
+                </div>
+              )}
+            </div>
+          )}
           {activeTab === 'comentarios' && (
             <div className="p-4">
               {loading ? (

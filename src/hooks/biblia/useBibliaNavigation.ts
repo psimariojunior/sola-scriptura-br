@@ -136,8 +136,9 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
           recordReading(livroAbrev, cap);
           setStatsData(getStats());
           mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
-          requestIdleCallback(() => { prefetchAdjacent(livroAbrev, cap); });
         }
+        const ric = typeof requestIdleCallback !== 'undefined' ? requestIdleCallback : (cb: () => void) => setTimeout(cb, 0);
+        ric(() => { prefetchAdjacent(livroAbrev, cap); });
       } finally {
         setLoading(false);
       }

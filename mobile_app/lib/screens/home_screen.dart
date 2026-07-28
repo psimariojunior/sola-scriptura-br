@@ -105,6 +105,10 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     };
 
+    _webView.onDeepLink = (url) {
+      _handleDeepLink(url);
+    };
+
     _connectivity.initialize();
     _connectivity.statusStream.listen((status) {
       if (!mounted) return;
@@ -126,6 +130,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _loadWebsite() async {
     final url = _resolveInitialUrl();
     await _webView.loadUrl(url);
+  }
+
+  void _handleDeepLink(String url) {
+    if (url.startsWith('ssb-share://')) {
+      final text = _share.extractShareText(url);
+      if (text != null) {
+        _share.shareText(text);
+      }
+    } else if (url.startsWith('ssb-download://')) {
+      // Download handled by JS bridge
+    } else {
+      // External app deep link (WhatsApp, Telegram, etc.)
+      _share.shareUrl(url);
+    }
   }
 
   Future<void> _handleRetry() async {

@@ -19,6 +19,7 @@ class WebViewService {
   void Function(bool isLoading)? onLoadingChanged;
   void Function(String? error)? onError;
   void Function(String url)? onPageLoaded;
+  void Function(String url)? onDeepLink;
 
   Future<void> initialize() async {
     if (_isInitialized) return;
@@ -66,7 +67,28 @@ class WebViewService {
         }
       },
       onNavigationRequest: (request) async {
-        final uri = Uri.parse(request.url);
+        final url = request.url;
+
+        // Handle deep links to external apps
+        if (url.startsWith('whatsapp://') ||
+            url.startsWith('tg://') ||
+            url.startsWith('twitter://') ||
+            url.startsWith('fb://') ||
+            url.startsWith('instagram://') ||
+            url.startsWith('mailto:') ||
+            url.startsWith('tel:') ||
+            url.startsWith('sms:')) {
+          onDeepLink?.call(url);
+          return NavigationDecision.prevent;
+        }
+
+        // Handle SSB custom schemes
+        if (url.startsWith('ssb-share://') || url.startsWith('ssb-download://')) {
+          onDeepLink?.call(url);
+          return NavigationDecision.prevent;
+        }
+
+        final uri = Uri.parse(url);
         final allowed = AppConstants.allowedDomains.any(
           (domain) => uri.host == domain || uri.host.endsWith('.$domain'),
         );

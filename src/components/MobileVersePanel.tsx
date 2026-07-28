@@ -1,12 +1,14 @@
 'use client';
 
-import { useState, useEffect, memo } from 'react';
+import { useState, useEffect, memo, lazy, Suspense } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Heart, Copy, Share2, Languages, MessageSquare, GraduationCap, Link2, BookOpen, Palette, StickyNote, ImageIcon } from 'lucide-react';
+import { X, Heart, Copy, Share2, Languages, MessageSquare, GraduationCap, Link2, BookOpen, Palette, StickyNote, ImageIcon, ChevronLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toggleFavorito } from '@/lib/estudos';
 import { CORES, setMarcador, removeMarcador, getMarcador, type CorMarcador } from '@/lib/marcadores';
 import type { RecursoVersiculo } from '@/data/biblia/versiculoRecursos';
+
+const VerseImageCreator = lazy(() => import('@/components/VerseImageCreator').then(m => ({ default: m.VerseImageCreator })));
 
 interface MobileVersePanelProps {
   livro: string;
@@ -43,6 +45,7 @@ export const MobileVersePanel = memo(function MobileVersePanel({
   const [lexicoPalavras, setLexicoPalavras] = useState<Array<{ strong: string; palavra: string; transliteracao: string; definicao: string; morfologia: string; idioma: string }>>([]);
   const [lexicoLoading, setLexicoLoading] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const [subView, setSubView] = useState<'main' | 'imagem' | 'compartilhar'>('main');
   const ref = `${livro} ${capitulo}:${versiculo}`;
   const corAtual = getMarcador(livroAbrev, capitulo, versiculo, traducao)?.cor ?? null;
 
@@ -83,6 +86,7 @@ export const MobileVersePanel = memo(function MobileVersePanel({
     setLoading(true);
     setActiveTab('acoes');
     setLexicoPalavras([]);
+    setSubView('main');
     import('@/data/biblia/versiculoRecursos').then(mod => {
       mod.getRecursosBasicos(livroAbrev, capitulo, versiculo).then(r => {
         setRecursos(r);
@@ -154,6 +158,58 @@ export const MobileVersePanel = memo(function MobileVersePanel({
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto overscroll-contain">
+          {/* SUB-VIEW: COMPARTILHAR */}
+          {subView === 'compartilhar' && (
+            <div className="p-4">
+              <button onClick={() => setSubView('main')} className="flex items-center gap-1 text-sm text-[var(--brand-default)] mb-4">
+                <ChevronLeft className="w-4 h-4" /> Voltar
+              </button>
+              <p className="text-sm text-[var(--content-secondary)] font-serif-body leading-relaxed mb-4 p-3 bg-[var(--surface-sunken)] rounded-xl">{ref} — {texto}</p>
+              <div className="grid grid-cols-2 gap-2">
+                <button onClick={async () => {
+                  const url = `https://wa.me/?text=${encodeURIComponent(`${ref}\n\n${texto}`)}`;
+                  window.open(url, '_blank');
+                }} className="flex items-center gap-3 p-4 rounded-xl bg-green-500/10 text-green-600 border border-green-500/20 active:scale-95 transition-transform">
+                  <span className="text-xl">📱</span><span className="text-sm font-semibold">WhatsApp</span>
+                </button>
+                <button onClick={async () => {
+                  const url = `https://t.me/share/url?url=${encodeURIComponent(ref)}&text=${encodeURIComponent(texto)}`;
+                  window.open(url, '_blank');
+                }} className="flex items-center gap-3 p-4 rounded-xl bg-blue-500/10 text-blue-600 border border-blue-500/20 active:scale-95 transition-transform">
+                  <span className="text-xl">✈️</span><span className="text-sm font-semibold">Telegram</span>
+                </button>
+                <button onClick={async () => {
+                  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${ref} — ${texto}`)}`;
+                  window.open(url, '_blank');
+                }} className="flex items-center gap-3 p-4 rounded-xl bg-sky-500/10 text-sky-600 border border-sky-500/20 active:scale-95 transition-transform">
+                  <span className="text-xl">🐦</span><span className="text-sm font-semibold">Twitter/X</span>
+                </button>
+                <button onClick={() => { copiarTexto(`${ref}\n\n${texto}`); setSubView('main'); }}
+                  className="flex items-center gap-3 p-4 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] border border-[var(--border)] active:scale-95 transition-transform">
+                  <Copy className="w-5 h-5" /><span className="text-sm font-semibold">Copiar texto</span>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* SUB-VIEW: IMAGEM */}
+          {subView === 'imagem' && (
+            <div className="h-full flex flex-col">
+              <div className="p-3 border-b border-[var(--border)]/30 shrink-0">
+                <button onClick={() => setSubView('main')} className="flex items-center gap-1 text-sm text-[var(--brand-default)]">
+                  <ChevronLeft className="w-4 h-4" /> Voltar
+                </button>
+              </div>
+              <div className="flex-1 min-h-0">
+                <Suspense fallback={<div className="flex items-center justify-center h-40"><div className="w-6 h-6 border-2 border-[var(--brand-default)] border-t-transparent rounded-full animate-spin" /></div>}>
+                  <VerseImageCreator texto={texto} referencia={ref} onClose={() => setSubView('main')} />
+                </Suspense>
+              </div>
+            </div>
+          )}
+
+          {/* MAIN VIEW */}
+          {subView === 'main' && (<>
           {/* TAB: AÇÕES */}
           {activeTab === 'acoes' && (
             <div className="p-4">
@@ -171,12 +227,12 @@ export const MobileVersePanel = memo(function MobileVersePanel({
                   <Copy className="w-5 h-5" />
                   <span className="text-[10px] font-medium">{copiedVerse === ref ? 'Copiado!' : 'Copiar'}</span>
                 </button>
-                <button onClick={compartilhar}
+                <button onClick={() => setSubView('compartilhar')}
                   className="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] transition-all active:scale-95">
                   <Share2 className="w-5 h-5" />
                   <span className="text-[10px] font-medium">Compartilhar</span>
                 </button>
-                <button onClick={() => { onFechar(); window.open(`/compartilhar?livro=${encodeURIComponent(livro)}&cap=${capitulo}&ver=${versiculo}&texto=${encodeURIComponent(texto)}`, '_blank'); }}
+                <button onClick={() => setSubView('imagem')}
                   className="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] transition-all active:scale-95">
                   <ImageIcon className="w-5 h-5" />
                   <span className="text-[10px] font-medium">Imagem</span>
@@ -315,6 +371,8 @@ export const MobileVersePanel = memo(function MobileVersePanel({
                 </div>
               )}
             </div>
+          )}
+          </>
           )}
         </div>
       </div>

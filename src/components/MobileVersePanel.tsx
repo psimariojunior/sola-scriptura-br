@@ -122,7 +122,7 @@ export const MobileVersePanel = memo(function MobileVersePanel({
   return createPortal((
     <>
       <div className="fixed inset-0 z-[100] bg-black/50" onClick={onFechar} />
-      <div className="fixed inset-x-0 bottom-0 z-[101] bg-[var(--surface-raised)] rounded-t-2xl shadow-2xl flex flex-col" style={{ height: '80vh' }}>
+      <div role="dialog" className="fixed inset-x-0 bottom-0 z-[101] bg-[var(--surface-raised)] rounded-t-2xl shadow-2xl flex flex-col" style={{ height: '80vh' }}>
         {/* Handle */}
         <div className="flex justify-center pt-2 pb-1 shrink-0">
           <div className="w-10 h-1 rounded-full bg-[var(--content-muted)]/30" />

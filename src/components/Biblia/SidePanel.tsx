@@ -159,6 +159,7 @@ export function SidePanel({
           onClick={onClose}
         />
         <motion.aside
+          role="dialog"
           initial={{ y: '100%' }}
           animate={{ y: 0 }}
           exit={{ y: '100%' }}
@@ -358,6 +359,7 @@ export function SidePanel({
 
   return (
     <motion.aside
+      role="dialog"
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20 }}

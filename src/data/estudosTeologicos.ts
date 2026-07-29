@@ -2043,6 +2043,158 @@ const estudosExtras: EstudoVersiculo[] = [
       { teologo: 'Spurgeon', periodo: '-', tradicao: 'Batista', visao: 'Pastoral', resumo: 'O pastor caminha conosco no vale — não nos promete evitar o vale, mas promete estar conosco nele.', citacao: '«O pastor não nos livra do vale — mas caminha conosco através dele.»' },
     ],
   },
+  // ═══════════════════════════════════════════════════════════════════════
+  // NOVOS ESTUDOS — Versículos fundamentais que faltavam
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'gn', capitulo: 15, versiculo: 6,
+    tema: 'Justificação pela fé — Abram creu em Deus',
+    contexto: 'Abram acredita na promessa de Deus de que teria descendência numerosa, e isso lhe foi creditado como justiça. Este é o fundamento da doutrina da justificação pela fé.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Graça', resumo: 'A fé de Abram não era mérito próprio — era resposta à graça de Deus. A justiça sempre vem de Deus para o homem, nunca do homem para Deus.', citacao: '«A fé é um dom de Deus — não uma conquista do homem.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola fide', resumo: 'Este versículo é o心脏 da Reforma: o homem é justificado pela fé, sem as obras da lei. Abram creu e isso bastou.', citacao: '«A fé alone justifica — esta é a verdade que liberta a consciência.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Imputação', resumo: 'A justiça de Cristo é imputada ao crente pela fé. Não é justiça própria, mas justiça recebida por graça.', citacao: '«Deus imputa a justiça de Cristo ao que crê — como se nunca tivesse pecado.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Nova Perspectiva', visao: 'Aliança', resumo: 'A fé de Abram é confiança na fidelidade de Deus à Sua aliança. Justificação é declarations de que pertencemos ao povo da aliança.', citacao: '«A fé é confiança na fidelidade de Deus — não apenas aceite de doutrinas.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 50, versiculo: 20,
+    tema: 'Soberania de Deus sobre o mal',
+    contexto: 'José revela a seus irmãos que o que eles quizeram para o mal, Deus o tornou em bem — uma das declarações mais poderosas sobre a soberania divina.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Providência', resumo: 'Deus permite o mal sem ser autor dele. Ele transforma as intenções más em Seus propósitos bondosos.', citacao: '«Deus permite o mal, mas dele tira um bem maior.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania total', resumo: 'Nada acontece fora do controle de Deus — nem a traição dos irmãos de José. A soberania de Deus governa até mesmo o pecado.', citacao: '«A soberania de Deus se estende até sobre o pecado dos homens.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Anglicana', visao: 'Livre-arbítrio', resumo: 'Deus permite o mal porque pode transformá-lo em bem maior. A história de José é o exemplo perfeito disso.', citacao: '『Deus permite o mal porque pode extrair dele um bem maior.』' },
+    ],
+  },
+  {
+    livro: 'ex', capitulo: 20, versiculo: 1,
+    tema: 'Os Dez Mandamentos — Lei de Deus',
+    contexto: 'Deus entrega os Dez Mandamentos no Monte Sinai, estabelecendo a base da moralidade e da aliança com Israel.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor', resumo: 'Os mandamentos se resumem em amar a Deus e ao próximo. O amor é a plenitude da lei.', citacao: '«Ama e faz o que quiseres — se amas, não farás nada que destrua o amor.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Lei e Evangelho', resumo: 'A lei revela o pecado e conduz ao evangelho. Os mandamentos mostram nossa incapacidade e apontam para Cristo.', citacao: '«A lei é o espelho que nos mostra nosso pecado — para nos conduzir a Cristo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Liame', resumo: 'A lei não é meio de salvação — é guia para a vida cristã. Ela mostra como viver para a glória de Deus.', citacao: '«A lei é o liame dos santos — não para salvá-los, mas para guiá-los.»' },
+    ],
+  },
+  {
+    livro: 'dt', capitulo: 6, versiculo: 4,
+    tema: 'Shema — Ouve, Israel',
+    contexto: 'A declaração central da fé judaica: "Ouve, Israel: o Senhor nosso Deus é o único Senhor". O fundamento do monoteísmo bíblico.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Unidade de Deus', resumo: 'Deus é uno — não há divisão na natureza divina. O Shema é a base de toda a teologia bíblica.', citacao: '«Deus é uno — e este é o primeiro e maior mandamento.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola Deus', resumo: 'O Shema é o fundamento de tudo: um Deus, um povo, uma fé. Fora disso, tudo é idolatria.', citacao: '«Ouve, Israel — este é o primeiro e mais importante mandamento.»' },
+      { teologo: 'Rashi', periodo: '1040-1105', tradicao: 'Rabínica', visao: 'Judaísmo', resumo: 'O Shema é a profissão de fé diária do judeu. Cada palavra é carregada de significado: Deus é um, e Sua unidade é perfeita.', citacao: '«Ouve, Israel — este versículo é o resumo de toda a Torá.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 51, versiculo: 10,
+    tema: 'Cria em mim um coração puro',
+    contexto: 'O salmo de arrependimento de Davi após seu pecado com Bate-Seba — a mais profunda expressão de contrição do Antigo Testamento.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Arrependimento', resumo: 'O arrependimento verdadeiro começa no coração. Davi não pede apenas perdão — pede transformação interior.', citacao: '«Cria em mim um coração puro — porque eu não posso purificá-lo sozinho.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça renovadora', resumo: 'A pureza do coração é obra do Espírito Santo. O crente não se auto-purifica — pede a Deus que crie um coração novo.', citacao: '«Davi reconhece que a purificação vem de Deus — não do próprio esforço.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Devocional', resumo: 'Este salmo é o modelo de arrependimento para todos os tempos. A honestidade diante de Deus é o primeiro passo da restauração.', citacao: '«A confissão sincera é o início da restauração — Deus não rejeita um coração contrito.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 3, versiculo: 23,
+    tema: 'Todos pecaram — Universalidade do pecado',
+    contexto: 'Paulo estabelece que todos, sem exceção, pecaram e ficam aquém da glória de Deus — o diagnóstico universal da condição humana.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Pecado original', resumo: 'O pecado afeta a todos — não há exceção. Mesmo os mais religiosos pecam contra a glória de Deus.', citacao: '«Todos pecaram — não há um justo, nem um sequer.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Depravação total', resumo: 'O homem é incapaz de cumprir a lei de Deus por si mesmo. Todos estão sob a condenação — é preciso um Salvador.', citacao: '«O homem não é apenas pecador — é pecado em toda a sua existência.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Total depravity', resumo: 'O pecado corrompeu tudo — mente, vontade, emoções. Não há parte do ser humano que esteja intacta.', citacao: '«O pecado corrompeu tudo em nós — até mesmo as nossas melhores obras são manchadas.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 6, versiculo: 23,
+    tema: 'Salário do pecado é a morte',
+    contexto: 'Paulo contrasta o salário do pecado (morte) com o dom de Deus (vida eterna) — a mais clara declaração sobre condenação e salvação.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Morte espiritual', resumo: 'A morte aqui é espiritual — separação de Deus. O pecado paga seu salário: eterna separação do Criador.', citacao: '«O pecado paga seu salário — e o salário é a morte eterna.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Lei e graça', resumo: 'A lei mostra o salário do pecado, mas o evangelho mostra o dom gratuito de Deus. Morte vs. vida eterna.', citacao: '«O pecado paga a morte — mas Deus dá a vida eterna como dom.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Evangelho', resumo: 'Este versículo é o evangelho em miniatura: dois contrastes — morte vs. vida, salário vs. dom, pecado vs. Cristo.', citacao: '«A cruz é o lugar onde o salário do pecado foi pago pelo dom de Deus.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 10, versiculo: 9,
+    tema: 'Confessar e crer — Salvação',
+    contexto: 'Paulo explica que se confessarmos Jesus como Senhor e crermos que Deus o ressuscitou dos mortos, seremos salvos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fé confessada', resumo: 'A fé não é apenas intelectual — é confessada publicamente. Reconhecer Jesus como Senhor é submeter toda a vida a Ele.', citacao: '«Confessar com a boca é declarar publicamente o que a fé crê internamente.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola fide', resumo: 'A salvação vem pela fé na ressurreição de Cristo. Não há outra via — nem obras, nem méritos, nem religião.', citacao: '«A fé que crê na ressurreição é a fé que salva — nada mais, nada menos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eficácia', resumo: 'A confissão e a fé são evidências da graça de Deus. Deus não apenas declara — Ele transforma.', citacao: '«A fé que salva é a fé que confessa — porque a graça transforma o coração.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 6, versiculo: 33,
+    tema: 'Buscai primeiro o Reino de Deus',
+    contexto: 'Jesus ensina sobre prioridades: buscar primeiro o Reino de Deus e Sua justiça, e todas as outras coisas serão acrescentadas.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor ordenado', resumo: 'O amor a Deus deve vir antes de tudo — quando amamos a Deus primeiro, tudo mais se ordena.', citacao: '«Busca primeiro a Deus — e tudo mais será ordenado pelo amor.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Deus sabe do que precisamos antes que peçamos. Quando priorizamos o Reino, Deus cuida do resto.', citacao: '«Deus não é devedor — quando buscamos o Reino, Ele supre todas as nossas necessidades.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Prático', resumo: 'A ansiedade vem de buscar primeiro as coisas terrenas. O Reino de Deus deve ser a prioridade absoluta.', citacao: '«O antídoto contra a ansiedade é buscar primeiro o Reino de Deus.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 3, versiculo: 3,
+    tema: 'Nascido de novo',
+    contexto: 'Jesus diz a Nicodemos que é preciso nascer de novo (de cima) para ver o Reino de Deus — o início do diálogo mais famoso sobre salvação.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Regeneração', resumo: 'Nascer de novo é obra do Espírito Santo — não é decisão humana. Deus regenera o coração para que possa crer.', citacao: '«Nascer de novo é receber uma nova natureza — obra exclusiva do Espírito.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Graça', resumo: 'Nicodemos pensava que a salvação vinha pelo conhecimento religioso. Jesus mostra que é preciso uma transformação divina.', citacao: '«O homem não pode se regenerar — é preciso nascer de novo pelo Espírito de Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição', resumo: 'Nascer de novo é um dom soberano de Deus. Ele escolhe quem regenera — não é mérito humano.', citacao: '«A regeneração é dom de Deus — Ele escolhe aquecer o coração que está morto.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 2, versiculo: 8,
+    tema: 'Salvos pela graça mediante a fé',
+    contexto: 'Paulo resume toda a teologia da salvação: é dom de Deus, não de obras, para que ninguém se glorie.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Graça', resumo: 'A salvação é totalmente graça de Deus — desde a eleição até a glória final. Não há mérito humano.', citacao: '«A graça de Deus é suficiente — não precisamos de obras para ser salvos.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola gratia', resumo: 'A salvação é pela graça alone, mediante a fé alone, em Cristo alone. Nada de obras humanas.', citacao: '«Somos salvos pela graça de Deus — não pelas nossas obras ou méritos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça irresistível', resumo: 'A graça de Deus é irresistível — Ele regenera e mantém os Seus. A fé é também dom de Deus.', citacao: '«A graça de Deus é irresistível — Ele nos atrai e nos sustenta.»' },
+    ],
+  },
+  {
+    livro: 'cl', capitulo: 1, versiculo: 15,
+    tema: 'Cristo imagem de Deus invisível',
+    contexto: 'Paulo declara que Cristo é a imagem visível do Deus invisível — a mais elevada declaração cristológica do Novo Testamento.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'União pessoal', resumo: 'Em Cristo habita toda a plenitude da divindade — Ele é Deus em carne humana.', citacao: '«Cristo é a imagem de Deus invisível — nele vemos o Pai.»' },
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Cristológico', resumo: 'Cristo é a imagem perfeita de Deus porque Ele é o Filho unigênito — não por participação, mas por natureza.', citacao: '«Cristo é imagem de Deus não por semelhança, mas por identidade de natureza.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'Em Cristo, Deus se revela completamente — não há Deus além do que se mostra em Jesus.', citacao: '«Cristo é a revelação de Deus — não há Deus além dEle.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 4, versiculo: 12,
+    tema: 'A Palavra de Deus viva e eficaz',
+    contexto: 'O autor de Hebreus descreve a Palavra de Deus como viva, eficaz, mais cortante que qualquer espada de dois gumes.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Poder da Palavra', resumo: 'A Palavra de Deus não é texto morto — é viva e age no coração do ouvinte.', citacao: '«A Palavra de Deus é viva — ela age onde é recebida com fé.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola Scriptura', resumo: 'A Escritura é a arma mais poderosa contra o pecado e o erro. Ela penetra onde nenhuma outra coisa chega.', citacao: '«A Palavra de Deus é a espada do Espírito — mais poderosa que qualquer exército.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Autoridade', resumo: 'A Escritura tem autoridade absoluta — ela julga, corrige e instrui com poder divino.', citacao: '«A Palavra de Deus é o julgador dos pensamentos e intenções do coração.»' },
+    ],
+  },
+  {
+    livro: '1jo', capitulo: 4, versiculo: 8,
+    tema: 'Deus é amor',
+    contexto: 'João declara que o amor é a essência da natureza de Deus — quem não ama não conhece a Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor trinitário', resumo: 'O amor de Deus é eterno — existe entre o Pai, o Filho e o Espírito Santo. Criamos porque fomos amados.', citacao: '«Deus é amor — e quem não ama não conhece a Deus.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Anglicana', visao: 'Amor', resumo: 'O amor de Deus não é um sentimento — é uma ação. Deus nos amou primeiro, e nós respondemos ao Seu amor.', citacao: '«Deus nos ama — não porque somos amáveis, mas porque Ele é amor.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 21, versiculo: 4,
+    tema: 'Novos céus e nova terra',
+    contexto: 'A promessa final da Bíblia: Deus enxugará toda lágrima, e não haverá mais morte, nem pranto, nem dor.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Escatologia', resumo: 'A nova criação é a restauração perfeita — Deus fará todas as coisas novas. A esperança cristã é corporal e eterna.', citacao: '«Deus enxugará toda lágrima — esta é a promessa final da Escritura.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Nova criação', resumo: 'A esperança cristã não é apenas espiritual — é a restauração de toda a criação. O sofrimento terá fim.', citacao: '«Deus promete uma nova criação — não apenas um novo céu, mas uma nova terra.»' },
+    ],
+  },
 ];
 
 for (const e of estudosExtras) {

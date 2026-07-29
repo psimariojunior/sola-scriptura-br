@@ -35,16 +35,12 @@ function openDB(): Promise<IDBDatabase> {
   });
 }
 
-async function getStore(storeName: string, mode: IDBTransactionMode = 'readonly'): Promise<IDBObjectStore> {
-  const db = await openDB();
-  const tx = db.transaction(storeName, mode);
-  return tx.objectStore(storeName);
-}
-
 async function getItem<T>(storeName: string, key: string): Promise<T | null> {
   try {
-    const store = await getStore(storeName);
+    const db = await openDB();
     return new Promise((resolve, reject) => {
+      const tx = db.transaction(storeName, 'readonly');
+      const store = tx.objectStore(storeName);
       const request = store.get(key);
       request.onsuccess = () => resolve(request.result?.data ?? null);
       request.onerror = () => reject(request.error);
@@ -54,8 +50,10 @@ async function getItem<T>(storeName: string, key: string): Promise<T | null> {
 
 async function setItem<T>(storeName: string, key: string, data: T): Promise<void> {
   try {
-    const store = await getStore(storeName, 'readwrite');
-    return new Promise((resolve, reject) => {
+    const db = await openDB();
+    return new Promise<void>((resolve, reject) => {
+      const tx = db.transaction(storeName, 'readwrite');
+      const store = tx.objectStore(storeName);
       const request = store.put({ key, data, timestamp: Date.now() });
       request.onsuccess = () => resolve();
       request.onerror = () => reject(request.error);
@@ -65,8 +63,10 @@ async function setItem<T>(storeName: string, key: string, data: T): Promise<void
 
 async function removeItem(storeName: string, key: string): Promise<void> {
   try {
-    const store = await getStore(storeName, 'readwrite');
-    return new Promise((resolve, reject) => {
+    const db = await openDB();
+    return new Promise<void>((resolve, reject) => {
+      const tx = db.transaction(storeName, 'readwrite');
+      const store = tx.objectStore(storeName);
       const request = store.delete(key);
       request.onsuccess = () => resolve();
       request.onerror = () => reject(request.error);
@@ -76,8 +76,10 @@ async function removeItem(storeName: string, key: string): Promise<void> {
 
 async function getAllKeys(storeName: string): Promise<string[]> {
   try {
-    const store = await getStore(storeName);
+    const db = await openDB();
     return new Promise((resolve, reject) => {
+      const tx = db.transaction(storeName, 'readonly');
+      const store = tx.objectStore(storeName);
       const request = store.getAllKeys();
       request.onsuccess = () => resolve(request.result as string[]);
       request.onerror = () => reject(request.error);

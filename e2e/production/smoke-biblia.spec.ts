@@ -15,7 +15,7 @@ test.describe('Smoke - Bíblia Page', () => {
   test('verses are displayed', async ({ page }) => {
     await page.goto('/biblia', { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(5000);
-    const verseNumbers = page.locator('sup.text-primary.font-bold');
+    const verseNumbers = page.locator('span.font-bold.tabular-nums');
     await expect(verseNumbers.first()).toBeVisible({ timeout: 15000 });
     const count = await verseNumbers.count();
     expect(count).toBeGreaterThan(0);

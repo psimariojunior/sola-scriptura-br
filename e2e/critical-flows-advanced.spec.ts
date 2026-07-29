@@ -6,7 +6,7 @@ test.describe('Fluxo Crítico: Leitura Bíblica', () => {
     await page.waitForTimeout(3000);
 
     // Versículos visíveis
-    const verses = page.locator('sup.text-primary.font-bold');
+    const verses = page.locator('span.font-bold.tabular-nums');
     await expect(verses.first()).toBeVisible({ timeout: 15000 });
     const count = await verses.count();
     expect(count).toBeGreaterThan(5);

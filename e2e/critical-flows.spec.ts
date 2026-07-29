@@ -16,7 +16,7 @@ import { test, expect, type Page } from '@playwright/test';
 
 /** Wait for the Bible page to be fully loaded with verse content visible. */
 async function waitForBibleLoaded(page: Page) {
-  await expect(page.locator('sup.text-primary.font-bold').first()).toBeVisible({
+  await expect(page.locator('span.font-bold.tabular-nums').first()).toBeVisible({
     timeout: 30000,
   });
 }
@@ -52,7 +52,7 @@ test.describe('1. Bible Reading Flow', () => {
     await expect(page.getByText('1 /', { exact: false }).first()).toBeVisible();
 
     // At least one verse rendered.
-    const verses = page.locator('sup.text-primary.font-bold');
+    const verses = page.locator('span.font-bold.tabular-nums');
     const count = await verses.count();
     expect(count).toBeGreaterThan(0);
   });
@@ -146,7 +146,7 @@ test.describe('1. Bible Reading Flow', () => {
     await nviButton.click();
     await page.waitForTimeout(2000);
     // Verse count should remain > 0 with both translations.
-    const verses = page.locator('sup.text-primary.font-bold');
+    const verses = page.locator('span.font-bold.tabular-nums');
     const count = await verses.count();
     expect(count).toBeGreaterThan(0);
   });

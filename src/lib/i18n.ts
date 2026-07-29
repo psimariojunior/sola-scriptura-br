@@ -12,6 +12,11 @@ i18n
     resources: { pt: { translation: pt }, en: { translation: en } },
     fallbackLng: 'pt',
     interpolation: { escapeValue: false },
+    detection: {
+      order: ['localStorage'],
+      lookupLocalStorage: 'ssb_lang',
+      caches: ['localStorage'],
+    },
   });
 
 export default i18n;

@@ -4,7 +4,7 @@ import { type Page, type Expect } from '@playwright/test';
  * Espera que a Bíblia carregue (versículos visíveis)
  */
 export async function waitForBibleLoaded(page: Page) {
-  await page.waitForSelector('sup.text-\\[var\\(--brand-default\\)\\]', { timeout: 15000 });
+  await page.waitForSelector('span.font-bold.tabular-nums', { timeout: 15000 });
 }
 
 /**

@@ -1,6 +1,6 @@
-import { STRONG_POR_VERSICULO, getStrongPorChave } from './strong';
+import { getStrongPorChave, getVersiculosComStrong } from './strong';
+import type { PalavraStrong } from './strong';
 
-// Tipo reexportado
 export type { PalavraStrong } from './strong';
 
 export interface EntradaConcordancia {
@@ -9,13 +9,15 @@ export interface EntradaConcordancia {
   transliteracao: string;
   definicao: string;
   idioma: 'grego' | 'hebraico';
-  ocorrencias: string[]; // array de "livro:cap:ver"
+  ocorrencias: string[];
 }
 
-// Build the concordance index from strong data, using clean lexicon lookup
+let _concordancia: Map<string, EntradaConcordancia> | null = null;
+
 function buildConcordancia(): Map<string, EntradaConcordancia> {
   const index = new Map<string, EntradaConcordancia>();
-  for (const [chave] of Object.entries(STRONG_POR_VERSICULO)) {
+  const versiculos = getVersiculosComStrong();
+  for (const chave of versiculos) {
     const palavras = getStrongPorChave(chave);
     for (const p of palavras) {
       const existing = index.get(p.strong);
@@ -38,15 +40,20 @@ function buildConcordancia(): Map<string, EntradaConcordancia> {
   return index;
 }
 
-const concordancia = buildConcordancia();
+function getConcordancia(): Map<string, EntradaConcordancia> {
+  if (!_concordancia) {
+    _concordancia = buildConcordancia();
+  }
+  return _concordancia;
+}
 
 export function getEntradaConcordancia(strong: string): EntradaConcordancia | undefined {
-  return concordancia.get(strong);
+  return getConcordancia().get(strong);
 }
 
 export function buscarConcordancia(pesquisa: string): EntradaConcordancia[] {
   const termo = pesquisa.toLowerCase();
-  return Array.from(concordancia.values()).filter(e =>
+  return Array.from(getConcordancia().values()).filter(e =>
     e.strong.toLowerCase().includes(termo) ||
     e.palavra.toLowerCase().includes(termo) ||
     e.transliteracao.toLowerCase().includes(termo) ||
@@ -55,7 +62,7 @@ export function buscarConcordancia(pesquisa: string): EntradaConcordancia[] {
 }
 
 export function getConcordanciaPorIdioma(idioma: 'grego' | 'hebraico'): EntradaConcordancia[] {
-  return Array.from(concordancia.values()).filter(e => e.idioma === idioma);
+  return Array.from(getConcordancia().values()).filter(e => e.idioma === idioma);
 }
 
 export function getPalavrasMaisFrequentes(idioma: 'grego' | 'hebraico', limite: number = 20): EntradaConcordancia[] {

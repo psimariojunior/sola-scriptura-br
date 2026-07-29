@@ -63,11 +63,13 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
   const hasMultiple = allResults && allResults.length > 1;
 
   return (
-    <div
-      ref={ref}
-      className="fixed z-50 w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] p-4 shadow-[var(--shadow-lg)] animate-scale-in"
-      style={{ left: adjustedPos.x, top: adjustedPos.y }}
-    >
+    <>
+      <div className="fixed inset-0 z-40 bg-black/40 md:hidden" onClick={onClose} />
+      <div
+        ref={ref}
+        className="fixed z-50 w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] p-4 shadow-2xl animate-scale-in"
+        style={{ left: adjustedPos.x, top: adjustedPos.y }}
+      >
       {/* Header */}
       <div className="mb-3 flex items-start justify-between gap-2">
         <div className="flex-1 min-w-0">
@@ -170,5 +172,6 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
         </Link>
       </div>
     </div>
+    </>
   );
 }

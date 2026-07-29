@@ -3,7 +3,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, BookOpen } from 'lucide-react';
-import { getStrongPorVersiculo } from '@/data/biblia/strong';
+import { getStrongPorVersiculo, type PalavraStrong } from '@/data/biblia/strong';
 import { getStrongByNumber } from '@/lib/lexiconSearch';
 
 interface VersiculoInput {
@@ -28,25 +28,57 @@ interface PalavraInterlinear {
   idioma: 'grego' | 'hebraico' | null;
 }
 
-function normalizeForMatch(s: string): string {
-  return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
-}
+function alignSequences(ptWords: string[], strongs: PalavraStrong[]): (number | null)[] {
+  const n = ptWords.length;
+  const m = strongs.length;
+  if (m === 0) return ptWords.map(() => null);
+  if (n === 0) return [];
 
-function similarity(a: string, b: string): number {
-  const na = normalizeForMatch(a);
-  const nb = normalizeForMatch(b);
-  if (na === nb) return 1;
-  if (na.startsWith(nb) || nb.startsWith(na)) return 0.85;
-  if (na.includes(nb) || nb.includes(na)) return 0.7;
-  const maxLen = Math.max(na.length, nb.length);
-  if (maxLen === 0) return 0;
-  let matches = 0;
-  for (let i = 0; i < Math.min(na.length, nb.length); i++) {
-    if (na[i] === nb[i]) matches++;
-    else break;
+  const GAP_PENALTY = 1;
+
+  const dp: number[][] = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
+  const trace: number[][][] = Array.from({ length: n + 1 }, () =>
+    Array.from({ length: m + 1 }, () => [0, 0, 0])
+  );
+
+  for (let i = 0; i <= n; i++) { dp[i][0] = i * GAP_PENALTY; trace[i][0] = [0, 1, 0]; }
+  for (let j = 0; j <= m; j++) { dp[0][j] = j * GAP_PENALTY; trace[0][j] = [0, 0, 1]; }
+
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= m; j++) {
+      const match = dp[i - 1][j - 1];
+      const gapPt = dp[i - 1][j] + GAP_PENALTY;
+      const gapStrong = dp[i][j - 1] + GAP_PENALTY;
+
+      if (match <= gapPt && match <= gapStrong) {
+        dp[i][j] = match;
+        trace[i][j] = [1, 0, 0];
+      } else if (gapPt <= gapStrong) {
+        dp[i][j] = gapPt;
+        trace[i][j] = [0, 1, 0];
+      } else {
+        dp[i][j] = gapStrong;
+        trace[i][j] = [0, 0, 1];
+      }
+    }
   }
-  if (matches >= 3) return 0.5 + (matches / maxLen) * 0.3;
-  return 0;
+
+  const alignment: (number | null)[] = new Array(n).fill(null);
+  let i = n, j = m;
+  while (i > 0 || j > 0) {
+    if (i > 0 && j > 0 && trace[i][j][0]) {
+      alignment[i - 1] = j - 1;
+      i--; j--;
+    } else if (i > 0 && trace[i][j][1]) {
+      i--;
+    } else if (j > 0 && trace[i][j][2]) {
+      j--;
+    } else {
+      break;
+    }
+  }
+
+  return alignment;
 }
 
 function mapearVersiculo(livro: string, capitulo: number, verNumero: number, textoPt: string): PalavraInterlinear[] {
@@ -57,33 +89,15 @@ function mapearVersiculo(livro: string, capitulo: number, verNumero: number, tex
     }));
   }
   const words = textoPt.split(/\s+/);
-  const mapped: PalavraInterlinear[] = [];
-  const usedStrong = new Set<number>();
-  for (const w of words) {
-    const clean = w.replace(/[,;.:!?()[\]{}'"]/g, '');
-    if (clean.length === 0) {
-      mapped.push({ texto: w, strong: null, palavraOriginal: null, transliteracao: null, definicao: null, morfologia: null, idioma: null });
-      continue;
+  const alignment = alignSequences(words, strongs);
+  return words.map((w, i) => {
+    const idx = alignment[i];
+    if (idx !== null && idx !== undefined && idx >= 0 && idx < strongs.length) {
+      const s = strongs[idx];
+      return { texto: w, strong: s.strong, palavraOriginal: s.palavra, transliteracao: s.transliteracao, definicao: s.definicao, morfologia: s.morfologia, idioma: s.idioma };
     }
-    let bestIdx = -1;
-    let bestScore = 0;
-    for (let i = 0; i < strongs.length; i++) {
-      if (usedStrong.has(i)) continue;
-      const s = strongs[i];
-      const scoreTransl = s.transliteracao ? similarity(clean, s.transliteracao) : 0;
-      const scoreOrig = s.palavra ? similarity(clean, s.palavra) : 0;
-      const score = Math.max(scoreTransl, scoreOrig);
-      if (score > bestScore) { bestScore = score; bestIdx = i; }
-    }
-    if (bestIdx >= 0 && bestScore >= 0.4) {
-      usedStrong.add(bestIdx);
-      const s = strongs[bestIdx];
-      mapped.push({ texto: w, strong: s.strong, palavraOriginal: s.palavra, transliteracao: s.transliteracao, definicao: s.definicao, morfologia: s.morfologia, idioma: s.idioma });
-    } else {
-      mapped.push({ texto: w, strong: null, palavraOriginal: null, transliteracao: null, definicao: null, morfologia: null, idioma: null });
-    }
-  }
-  return mapped;
+    return { texto: w, strong: null, palavraOriginal: null, transliteracao: null, definicao: null, morfologia: null, idioma: null };
+  });
 }
 
 function DetalhePalavra({ strong, onClose }: { strong: string; onClose: () => void }) {

@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, BookOpen } from 'lucide-react';
+import { motion, AnimatePresence, PanInfo } from 'framer-motion';
+import { X, BookOpen, ChevronDown } from 'lucide-react';
 import { getStrongByNumber } from '@/lib/lexiconSearch';
 
 interface InterlinearModalProps {
@@ -15,7 +15,6 @@ export function InterlinearModal({ strong, onClose }: InterlinearModalProps) {
   if (!entry) return null;
 
   const isHebrew = strong.toUpperCase().startsWith('H');
-
   const definicao = 'definicao' in entry ? (entry as { definicao: string }).definicao : '';
   const definicaoResumida = 'definicaoResumida' in entry ? (entry as { definicaoResumida: string }).definicaoResumida : '';
   const categoria = 'categoria' in entry ? (entry as { categoria: string }).categoria : '';
@@ -23,51 +22,68 @@ export function InterlinearModal({ strong, onClose }: InterlinearModalProps) {
   const uso = 'uso' in entry ? (entry as { uso: string }).uso : '';
   const frequencia = 'frequencia' in entry ? (entry as { frequencia: number }).frequencia : undefined;
 
+  const handleDragEnd = (_: unknown, info: PanInfo) => {
+    if (info.offset.y > 100) onClose();
+  };
+
   return (
     <AnimatePresence>
       {strong && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
-          onClick={onClose}
-        >
+        <>
+          {/* Overlay */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            transition={{ duration: 0.2 }}
-            className="bg-[var(--surface-raised)] rounded-2xl border border-[var(--border)] shadow-2xl w-full max-w-lg overflow-hidden max-h-[85vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/40"
+            onClick={onClose}
+          />
+
+          {/* Bottom sheet — mobile | centered modal — desktop */}
+          <motion.div
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            drag="y"
+            dragConstraints={{ top: 0 }}
+            dragElastic={0.2}
+            onDragEnd={handleDragEnd}
+            className="fixed bottom-0 left-0 right-0 z-50 bg-[var(--surface-raised)] rounded-t-2xl border-t border-[var(--border)] shadow-2xl max-h-[80vh] overflow-y-auto md:bottom-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-2xl md:max-w-md md:border md:border-[var(--border)]"
           >
+            {/* Drag handle (mobile only) */}
+            <div className="flex justify-center pt-3 pb-1 md:hidden">
+              <div className="w-10 h-1 rounded-full bg-[var(--content-muted)]/30" />
+            </div>
+
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border)]/50 sticky top-0 bg-[var(--surface-raised)] z-10">
-              <div className="flex items-center gap-3">
-                <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${isHebrew ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300' : 'bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300'}`}>
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border)]/50 sticky top-0 bg-[var(--surface-raised)] z-10">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${isHebrew ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300' : 'bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300'}`}>
                   {strong}
                 </span>
-                <span className="text-sm text-[var(--content-muted)]">
+                <span className="text-xs text-[var(--content-muted)]">
                   {isHebrew ? 'Hebraico' : 'Grego'}
                 </span>
                 {frequencia !== undefined && frequencia > 0 && (
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--surface-sunken)] text-[var(--content-muted)]">
-                    {frequencia}x na Bíblia
+                  <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-[var(--surface-sunken)] text-[var(--content-muted)]">
+                    {frequencia}x
                   </span>
                 )}
               </div>
               <button
                 onClick={onClose}
                 className="p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-muted)] hover:text-[var(--content-primary)] transition-colors"
+                aria-label="Fechar"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="p-5 space-y-4">
-              {/* Palavra original grande */}
+            <div className="p-4 space-y-3 pb-safe">
+              {/* Palavra original */}
               <div className="text-center">
-                <p className={`text-4xl font-bold mb-1 ${isHebrew ? 'font-hebrew' : 'font-greek'}`}>
+                <p className={`text-3xl font-bold mb-1 ${isHebrew ? 'font-hebrew' : 'font-greek'}`}>
                   {entry.palavra}
                 </p>
                 <p className="text-sm text-[var(--content-muted)] italic">
@@ -77,14 +93,14 @@ export function InterlinearModal({ strong, onClose }: InterlinearModalProps) {
 
               {/* Categorias */}
               {(categoria || morphologia) && (
-                <div className="flex gap-2 flex-wrap justify-center">
+                <div className="flex gap-1.5 flex-wrap justify-center">
                   {categoria && (
-                    <span className="text-xs px-3 py-1 rounded-full bg-[var(--brand-subtle)] text-[var(--brand-default)] font-medium">
+                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-[var(--brand-subtle)] text-[var(--brand-default)] font-medium">
                       {categoria}
                     </span>
                   )}
                   {morphologia && (
-                    <span className="text-xs px-3 py-1 rounded-full bg-[var(--surface-sunken)] text-[var(--content-secondary)]">
+                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-[var(--surface-sunken)] text-[var(--content-secondary)]">
                       {morphologia}
                     </span>
                   )}
@@ -93,9 +109,9 @@ export function InterlinearModal({ strong, onClose }: InterlinearModalProps) {
 
               {/* Definição resumida */}
               {definicaoResumida && (
-                <div className="bg-[var(--brand-subtle)]/30 rounded-xl p-4 border border-[var(--brand-default)]/10">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <BookOpen className="w-3.5 h-3.5 text-[var(--brand-default)]" />
+                <div className="bg-[var(--brand-subtle)]/30 rounded-xl p-3 border border-[var(--brand-default)]/10">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <BookOpen className="w-3 h-3 text-[var(--brand-default)]" />
                     <h4 className="text-[10px] font-semibold uppercase tracking-wider text-[var(--brand-default)]">
                       Definição
                     </h4>
@@ -108,11 +124,11 @@ export function InterlinearModal({ strong, onClose }: InterlinearModalProps) {
 
               {/* Definição completa */}
               {definicao && definicao !== definicaoResumida && (
-                <div className="bg-[var(--surface-sunken)] rounded-xl p-4">
-                  <h4 className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-1.5">
-                    Definição Completa
+                <div className="bg-[var(--surface-sunken)] rounded-xl p-3">
+                  <h4 className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-1">
+                    Completa
                   </h4>
-                  <p className="text-sm text-[var(--content-primary)] leading-relaxed">
+                  <p className="text-xs text-[var(--content-primary)] leading-relaxed">
                     {definicao}
                   </p>
                 </div>
@@ -120,18 +136,18 @@ export function InterlinearModal({ strong, onClose }: InterlinearModalProps) {
 
               {/* Uso bíblico */}
               {uso && (
-                <div className="bg-[var(--surface-sunken)] rounded-xl p-4">
-                  <h4 className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-1.5">
+                <div className="bg-[var(--surface-sunken)] rounded-xl p-3">
+                  <h4 className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-1">
                     Uso Bíblico
                   </h4>
-                  <p className="text-xs text-[var(--content-secondary)] leading-relaxed">
+                  <p className="text-[11px] text-[var(--content-secondary)] leading-relaxed">
                     {uso}
                   </p>
                 </div>
               )}
             </div>
           </motion.div>
-        </motion.div>
+        </>
       )}
     </AnimatePresence>
   );

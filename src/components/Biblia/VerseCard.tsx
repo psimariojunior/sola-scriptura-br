@@ -10,6 +10,7 @@ import { Heart, Palette, Copy, StickyNote, Languages, MessageSquare, Share2, Spa
 import { toggleFavorito } from '@/lib/estudos';
 import { setMarcador, removeMarcador, getMarcador, CORES, type CorMarcador } from '@/lib/marcadores';
 import { MobileVersePanel } from '@/components/MobileVersePanel';
+import { ClickableVerse } from './ClickableVerse';
 
 export interface VerseCardProps {
   numero: number;
@@ -271,13 +272,12 @@ export const VerseCard = memo(function VerseCard({
           </span>
 
           <div className="flex-1 min-w-0">
-            {/* Verse text - clean reading */}
-            <p
+            {/* Verse text - clickable words for lexicon */}
+            <ClickableVerse
+              text={texto}
               className="font-serif-body text-[var(--content-primary)] leading-[1.8] sm:leading-[1.9]"
               style={{ fontSize: `${fontSize}px` }}
-            >
-              {texto}
-            </p>
+            />
 
             {/* Subtle reference + resource indicator */}
             <div className="flex items-center gap-2 mt-1">

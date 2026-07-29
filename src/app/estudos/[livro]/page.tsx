@@ -95,6 +95,13 @@ export default function EstudoLivroPage() {
                 <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
                   {infoLivro.testamento}
                 </span>
+                <Link
+                  href={`/biblia?livro=${slug}&capitulo=1`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium hover:bg-emerald-500/20 transition-colors"
+                >
+                  <BookOpen className="w-3.5 h-3.5" />
+                  Ler na Bíblia
+                </Link>
               </div>
             </div>
           </ScrollReveal>
@@ -167,7 +174,7 @@ export default function EstudoLivroPage() {
               </h2>
               <div className="space-y-3">
                 {estudo.versiculosChave.map((v, i) => (
-                  <VersiculoChaveCard key={i} versiculo={v} index={i} />
+                  <VersiculoChaveCard key={i} versiculo={v} index={i} slug={slug} />
                 ))}
               </div>
             </section>
@@ -234,8 +241,17 @@ export default function EstudoLivroPage() {
   );
 }
 
-function VersiculoChaveCard({ versiculo, index }: { versiculo: { referencia: string; texto: string; explicacao: string }; index: number }) {
+function VersiculoChaveCard({ versiculo, index, slug }: { versiculo: { referencia: string; texto: string; explicacao: string }; index: number; slug: string }) {
   const [expandido, setExpandido] = useState(false);
+  
+  // Parse reference to create Bible link (e.g., "Gênesis 1:1" -> "/biblia?livro=gn&capitulo=1")
+  const parseRef = (ref: string) => {
+    const match = ref.match(/(\d+):(\d+)/);
+    if (match) {
+      return `/biblia?livro=${slug}&capitulo=${match[1]}`;
+    }
+    return `/biblia?livro=${slug}`;
+  };
 
   return (
     <motion.div layout className="sola-card overflow-hidden">
@@ -245,7 +261,16 @@ function VersiculoChaveCard({ versiculo, index }: { versiculo: { referencia: str
       >
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
-            <p className="font-display text-sm font-medium text-primary mb-1">{versiculo.referencia}</p>
+            <div className="flex items-center gap-2 mb-1">
+              <p className="font-display text-sm font-medium text-primary">{versiculo.referencia}</p>
+              <Link
+                href={parseRef(versiculo.referencia)}
+                className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Ler na Bíblia
+              </Link>
+            </div>
             <p className="text-sm italic leading-relaxed">&ldquo;{versiculo.texto}&rdquo;</p>
           </div>
           <motion.div

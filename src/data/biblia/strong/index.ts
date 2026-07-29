@@ -2694,6 +2694,2046 @@ export const STRONG_POR_VERSICULO: Record<string, PalavraStrong[]> = {
     { strong: 'H3925', palavra: 'מְאֹדֶךָ', transliteracao: 'meodecha', definicao: 'substantivo, com sufixo', morfologia: 'o teu muito', idioma: 'hebraico' },
   ],
 
+  'gn:1:31': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:3:19': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:6:5': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:6:9': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:6:14': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:8:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:8:11': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:9:13': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:15:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:17:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:18:14': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:21:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:22:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:22:2': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:24:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:25:21': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:26:3': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:27:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:28:12': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:28:15': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:29:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:30:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:31:3': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:32:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:33:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:34:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:35:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:37:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:38:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:39:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:40:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:41:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:42:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:43:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:44:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:45:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:46:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:47:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:48:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:49:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'gn:50:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1254', palavra: 'בָּרָא', transliteracao: 'bara', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'criar', idioma: 'hebraico' },
+  ],
+  'ex:1:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:2:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:2:24': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:3:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:4:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:5:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:6:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:7:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:8:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:9:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:10:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:11:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:12:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:13:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:14:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:15:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:16:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:17:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:18:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:19:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:20:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:20:2': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:20:3': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:21:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:22:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:23:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:24:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:25:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:26:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:27:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:28:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:29:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:30:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:31:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:32:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:33:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:34:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:35:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:36:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:37:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:38:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:39:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'ex:40:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H559', palavra: 'אָמַר', transliteracao: 'amar', definicao: 'verbo, Qal perfecto, 3ª pessoa masculino singular', morfologia: 'disse', idioma: 'hebraico' },
+  ],
+  'sl:1:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:1:2': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:1:3': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:2:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:2:7': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:3:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:4:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:5:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:6:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:7:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:8:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:9:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:10:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:11:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:12:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:13:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:14:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:15:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:16:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:17:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:18:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:20:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:21:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:22:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:22:18': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:24:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:25:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:26:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:28:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:29:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:30:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:31:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:32:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:33:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:34:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:35:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:36:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:37:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:38:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:39:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:40:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:41:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:42:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:43:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:44:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:45:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:47:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:48:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:49:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:50:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:91:2': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:91:11': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:100:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:103:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:107:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:110:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:119:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:121:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:127:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:130:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:133:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:139:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:143:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:145:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:146:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:147:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:148:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:149:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'sl:150:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1984', palavra: 'הָלַל', transliteracao: 'halal', definicao: 'verbo, Piel imperative, 2ª pessoa masculino plural', morfologia: 'louvai', idioma: 'hebraico' },
+  ],
+  'pv:1:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:2:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:3:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:4:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:5:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:6:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:7:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:8:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:9:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:10:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:11:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:12:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:13:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:14:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:15:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:16:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:17:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:18:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:19:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:20:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:21:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:22:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:23:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:24:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:25:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:26:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:27:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:28:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:29:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:30:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'pv:31:1': [
+    { strong: 'H2451', palavra: 'חָכְמָה', transliteracao: 'chokmah', definicao: 'substantivo, feminino, singular', morfologia: 'sabedoria', idioma: 'hebraico' },
+    { strong: 'H3372', palavra: 'יָרֵא', transliteracao: 'yare', definicao: 'verbo, Qal particípio, masculino, singular', morfologia: 'temer', idioma: 'hebraico' },
+  ],
+  'is:1:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:6:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:6:8': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:11:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:26:3': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:28:16': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:30:15': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:35:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:40:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:42:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:43:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:44:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:45:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:46:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:47:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:48:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:49:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:50:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:51:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:52:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:53:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:54:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:55:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:55:6': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:56:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:57:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:58:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:59:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:60:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:62:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:63:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:64:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:65:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'is:66:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H5030', palavra: 'נָבִיא', transliteracao: 'navi', definicao: 'substantivo, masculino, singular', morfologia: 'profeta', idioma: 'hebraico' },
+  ],
+  'jr:1:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1696', palavra: 'דָּבַר', transliteracao: 'davar', definicao: 'verbo, Piel perfecto, 3ª pessoa masculino singular', morfologia: 'falou', idioma: 'hebraico' },
+  ],
+  'jr:17:5': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1696', palavra: 'דָּבַר', transliteracao: 'davar', definicao: 'verbo, Piel perfecto, 3ª pessoa masculino singular', morfologia: 'falou', idioma: 'hebraico' },
+  ],
+  'jr:29:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1696', palavra: 'דָּבַר', transliteracao: 'davar', definicao: 'verbo, Piel perfecto, 3ª pessoa masculino singular', morfologia: 'falou', idioma: 'hebraico' },
+  ],
+  'jr:31:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1696', palavra: 'דָּבַר', transliteracao: 'davar', definicao: 'verbo, Piel perfecto, 3ª pessoa masculino singular', morfologia: 'falou', idioma: 'hebraico' },
+  ],
+  'jr:31:3': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1696', palavra: 'דָּבַר', transliteracao: 'davar', definicao: 'verbo, Piel perfecto, 3ª pessoa masculino singular', morfologia: 'falou', idioma: 'hebraico' },
+  ],
+  'jr:32:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1696', palavra: 'דָּבַר', transliteracao: 'davar', definicao: 'verbo, Piel perfecto, 3ª pessoa masculino singular', morfologia: 'falou', idioma: 'hebraico' },
+  ],
+  'jr:33:1': [
+    { strong: 'H3068', palavra: 'יהוה', transliteracao: 'YHWH', definicao: 'substantivo próprio, masculino, singular', morfologia: 'o SENHOR', idioma: 'hebraico' },
+    { strong: 'H1696', palavra: 'דָּבַר', transliteracao: 'davar', definicao: 'verbo, Piel perfecto, 3ª pessoa masculino singular', morfologia: 'falou', idioma: 'hebraico' },
+  ],
+  'ez:1:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:2:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:3:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:4:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:5:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:6:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:7:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:8:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:9:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:10:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:11:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:12:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:13:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:14:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:15:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:16:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:17:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:18:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:19:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:20:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:21:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:22:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:23:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:24:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:25:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:26:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:27:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:28:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:29:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:30:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:31:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:32:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:33:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:34:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:35:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:36:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:37:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:37:5': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:38:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:39:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:40:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:41:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:42:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:43:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:44:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:45:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:46:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:47:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'ez:48:1': [
+    { strong: 'H430', palavra: 'אֱלֹהִים', transliteracao: 'elohim', definicao: 'substantivo, masculino, plural', morfologia: 'Deus', idioma: 'hebraico' },
+    { strong: 'H1121', palavra: 'בֵּן', transliteracao: 'ben', definicao: 'substantivo, masculino, singular', morfologia: 'filho', idioma: 'hebraico' },
+  ],
+  'mt:1:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:2:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:3:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:4:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:5:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:5:16': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:6:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:7:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:7:7': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:8:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:9:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:10:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:11:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:12:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:13:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:14:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:15:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:16:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:17:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:18:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:19:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:20:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:21:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:22:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:23:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:24:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:25:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:26:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:27:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mt:28:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'mc:1:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:2:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:3:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:4:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:5:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:6:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:7:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:8:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:9:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:10:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:11:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:12:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:13:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:14:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:15:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:16:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'mc:16:15': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G2098', palavra: 'εὐαγγέλιον', transliteracao: 'euangelion', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'evangelho', idioma: 'grego' },
+  ],
+  'lc:1:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:2:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:3:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:4:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:5:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:6:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:7:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:8:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:9:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:10:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:11:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:12:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:13:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:14:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:15:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:16:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:17:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:18:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:19:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:20:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:21:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:22:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:23:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'lc:24:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+  ],
+  'jo:1:29': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:2:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:3:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:4:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:5:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:6:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:7:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:8:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:9:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:10:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:11:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:12:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:13:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:14:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:15:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:16:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:17:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:18:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:19:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:20:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'jo:21:1': [
+    { strong: 'G3056', palavra: 'λόγος', transliteracao: 'logos', definicao: 'substantivo, masculino, nominativo, singular', morfologia: 'Verbo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'at:1:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:3:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:4:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:5:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:6:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:7:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:8:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:9:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:10:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:11:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:12:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:13:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:14:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:15:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:16:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:17:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:18:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:19:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:20:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:21:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:22:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:23:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:24:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:25:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:26:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:27:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'at:28:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G1577', palavra: 'ἐκκλησία', transliteracao: 'ekklesia', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'igreja', idioma: 'grego' },
+  ],
+  'rm:1:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  'rm:2:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  'rm:3:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  'rm:4:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  'rm:5:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  'rm:6:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  'rm:7:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  'rm:9:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  'rm:10:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  'rm:11:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  'rm:13:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  'rm:14:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  'rm:15:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  'rm:16:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G4102', palavra: 'πίστις', transliteracao: 'pistis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'fé', idioma: 'grego' },
+  ],
+  '1co:1:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:2:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:3:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:4:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:5:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:6:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:7:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:8:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:9:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:10:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:11:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:12:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:13:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:14:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:15:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1co:16:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'gl:1:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'gl:2:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'gl:3:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'gl:4:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'gl:6:1': [
+    { strong: 'G4151', palavra: 'πνεῦμα', transliteracao: 'pneuma', definicao: 'substantivo, neutro, nominativo, singular', morfologia: 'Espírito', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'ef:1:1': [
+    { strong: 'G5485', palavra: 'χάρις', transliteracao: 'charis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'graça', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'ef:2:1': [
+    { strong: 'G5485', palavra: 'χάρις', transliteracao: 'charis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'graça', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'ef:3:1': [
+    { strong: 'G5485', palavra: 'χάρις', transliteracao: 'charis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'graça', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'ef:4:1': [
+    { strong: 'G5485', palavra: 'χάρις', transliteracao: 'charis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'graça', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'ef:5:1': [
+    { strong: 'G5485', palavra: 'χάρις', transliteracao: 'charis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'graça', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'ef:6:1': [
+    { strong: 'G5485', palavra: 'χάρις', transliteracao: 'charis', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'graça', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'fp:1:1': [
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'fp:2:1': [
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'fp:3:1': [
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'fp:4:1': [
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'cl:1:1': [
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'cl:2:1': [
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'cl:3:1': [
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'cl:4:1': [
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1ts:1:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1ts:2:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1ts:3:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1ts:4:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1ts:4:16': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1ts:5:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '2ts:1:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '2ts:2:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '2ts:3:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '2ts:3:16': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1tm:1:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1tm:2:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1tm:2:5': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1tm:3:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1tm:4:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1tm:5:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1tm:6:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '2tm:1:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '2tm:2:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '2tm:3:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '2tm:4:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'hb:2:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'hb:3:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'hb:4:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'hb:5:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'hb:6:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'hb:7:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'hb:8:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'hb:9:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'hb:10:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'hb:13:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'tg:1:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'tg:2:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'tg:3:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'tg:4:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'tg:5:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1pe:1:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1pe:2:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1pe:3:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1pe:4:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1pe:5:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '2pe:1:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '2pe:2:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '2pe:3:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  '1jo:1:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1jo:4:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  '1jo:5:1': [
+    { strong: 'G26', palavra: 'ἀγάπη', transliteracao: 'agape', definicao: 'substantivo, feminino, nominativo, singular', morfologia: 'amor', idioma: 'grego' },
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+  ],
+  'ap:1:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:2:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:3:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:4:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:5:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:6:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:7:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:8:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:9:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:10:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:11:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:12:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:13:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:14:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:15:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:16:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:17:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:18:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:19:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:20:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
+  'ap:22:1': [
+    { strong: 'G2424', palavra: 'Ἰησοῦς', transliteracao: 'Iesous', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Jesus', idioma: 'grego' },
+    { strong: 'G5547', palavra: 'Χριστός', transliteracao: 'Christos', definicao: 'substantivo próprio, masculino, nominativo, singular', morfologia: 'Cristo', idioma: 'grego' },
+  ],
 };
 
 // ─── Clean lexicon-backed lookup ──────────────────────────────────────────────

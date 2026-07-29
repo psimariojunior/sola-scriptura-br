@@ -304,7 +304,7 @@ function TabComentarios({ recursos, busca = '' }: { recursos: RecursoVersiculo[]
   );
 }
 
-function TabEstudo({ recursos, busca = '' }: { recursos: RecursoVersiculo[]; busca?: string }) {
+function TabEstudo({ recursos, busca = '', livro, capitulo, versiculo }: { recursos: RecursoVersiculo[]; busca?: string; livro?: string; capitulo?: number; versiculo?: number }) {
   let estudos = recursos
     .filter((r) => r.tipo === 'estudo')
     .map((r) => r.dados as RecursoEstudo);
@@ -317,39 +317,58 @@ function TabEstudo({ recursos, busca = '' }: { recursos: RecursoVersiculo[]; bus
     );
   }
 
-  if (estudos.length === 0) {
-    return (
-      <p className="text-sm text-muted-foreground text-center py-8">
-        {busca ? 'Nenhum estudo encontrado para esta busca.' : 'Nenhum estudo multiteológico disponível para este versículo.'}
-      </p>
-    );
-  }
+  // Link para estudo completo
+  const estudoLink = livro && capitulo && versiculo 
+    ? `/estudo?ref=${encodeURIComponent(`${livro} ${capitulo}:${versiculo}`)}`
+    : null;
 
   return (
     <div className="space-y-4">
-      {estudos.map((e, i) => (
-        <div key={i} className="glass-card rounded-lg p-4 border border-border/50">
-          <h4 className="font-display text-sm font-bold mb-3">{e.tema}</h4>
-          <div className="space-y-3">
-            {e.interpretes.map((int, j) => (
-              <div key={j} className="pl-3 border-l-2 border-primary/30">
-                <div className="flex items-center gap-2 mb-1 flex-wrap">
-                  <span className="text-xs font-semibold">{int.nome}</span>
-                  <Badge variant="outline" className="text-[10px] px-1 py-0">{int.periodo}</Badge>
-                  <Badge variant="secondary" className="text-[10px] px-1 py-0">{int.tradicao}</Badge>
-                </div>
-                <p className="text-[11px] font-medium text-primary mb-1">{int.visao}</p>
-                <p className="text-sm text-foreground/80 leading-relaxed">{int.resumo}</p>
-                {int.citacao && (
-                  <blockquote className="text-xs text-muted-foreground italic mt-1 border-l-2 border-muted pl-2">
-                    &ldquo;{int.citacao}&rdquo;
-                  </blockquote>
-                )}
+      {/* Link para estudo completo */}
+      {estudoLink && (
+        <a
+          href={estudoLink}
+          className="flex items-center gap-2 p-3 rounded-lg bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 hover:border-emerald-500/40 transition-all group"
+        >
+          <GraduationCap className="w-4 h-4 text-emerald-500" />
+          <span className="text-sm font-medium text-emerald-700 dark:text-emerald-300">
+            Estudo completo deste versículo
+          </span>
+          <ChevronRight className="w-4 h-4 text-emerald-500 ml-auto group-hover:translate-x-1 transition-transform" />
+        </a>
+      )}
+
+      {estudos.length === 0 ? (
+        <p className="text-sm text-muted-foreground text-center py-8">
+          {busca ? 'Nenhum estudo encontrado para esta busca.' : 'Nenhum estudo multiteológico disponível para este versículo.'}
+        </p>
+      ) : (
+        <div className="space-y-4">
+          {estudos.map((e, i) => (
+            <div key={i} className="glass-card rounded-lg p-4 border border-border/50">
+              <h4 className="font-display text-sm font-bold mb-3">{e.tema}</h4>
+              <div className="space-y-3">
+                {e.interpretes.map((int, j) => (
+                  <div key={j} className="pl-3 border-l-2 border-primary/30">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <span className="text-xs font-semibold">{int.nome}</span>
+                      <Badge variant="outline" className="text-[10px] px-1 py-0">{int.periodo}</Badge>
+                      <Badge variant="secondary" className="text-[10px] px-1 py-0">{int.tradicao}</Badge>
+                    </div>
+                    <p className="text-[11px] font-medium text-primary mb-1">{int.visao}</p>
+                    <p className="text-sm text-foreground/80 leading-relaxed">{int.resumo}</p>
+                    {int.citacao && (
+                      <blockquote className="text-xs text-muted-foreground italic mt-1 border-l-2 border-muted pl-2">
+                        &ldquo;{int.citacao}&rdquo;
+                      </blockquote>
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 }
@@ -898,7 +917,7 @@ export default function PainelDoVersiculo({
             </TabsContent>
             <TabsContent value="estudo" className="mt-0">
               <Suspense fallback={<GenericSkeleton />}>
-                <TabEstudo recursos={recursos} busca={busca} />
+                <TabEstudo recursos={recursos} busca={busca} livro={livro} capitulo={capitulo} versiculo={versiculo} />
               </Suspense>
             </TabsContent>
             <TabsContent value="notas" className="mt-0">

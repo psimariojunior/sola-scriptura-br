@@ -919,54 +919,74 @@ export async function getRecursosVersiculo(
     });
   }
 
-  // 5. Léxico (palavras gregas e hebraicas associadas)
-  // Palavras gregas relacionadas ao versículo
-  const gregosRelevantes = _palavrasGregas!.filter((p) => {
-    const nomeLower = normalizarPalavra(p.palavra);
-    return referenciaContemVersiculo(
-      `${livroLower}:${capitulo}:${versiculo}`,
-      livroLower,
-      capitulo,
-      versiculo,
-    );
-  });
-  for (const g of gregosRelevantes) {
-    recursos.push({
-      tipo: 'lexico',
-      dados: {
-        tipo: 'lexico' as const,
-        strong: g.strong,
-        palavra: g.palavra,
-        transliteracao: g.transliteracao,
-        definicao: g.definicao,
-        morfologia: (g as any).morfologia || (g as any).morphologia || '',
-        idioma: 'grego' as const,
-      } as RecursoLexico,
-    });
-  }
+  // 5. Léxico — usar dados Strong do versiculo (em portugues) quando disponivel,
+  //    senao filtrar do lexico geral pelas referencias em versiculos[]
+  const { getStrongPorVersiculo } = await import('./strong');
+  const strongDoVersiculo = getStrongPorVersiculo(livroLower, capitulo, versiculo);
 
-  // Palavras hebraicas relacionadas ao versículo
-  const hebraicosRelevantes = _palavrasHebraicas!.filter((p) => {
-    return referenciaContemVersiculo(
-      `${livroLower}:${capitulo}:${versiculo}`,
-      livroLower,
-      capitulo,
-      versiculo,
-    );
-  });
-  for (const h of hebraicosRelevantes) {
-    recursos.push({
-      tipo: 'lexico',
-      dados: {
-        tipo: 'lexico' as const,
-        strong: h.strong,
-        palavra: h.palavra,
-        transliteracao: h.transliteracao,
-        definicao: h.definicao,
-        morfologia: h.morfologia || '',
-        idioma: 'hebraico' as const,
-      } as RecursoLexico,
+  if (strongDoVersiculo.length > 0) {
+    // Tem dados Strong curados em portugues para este versiculo
+    for (const s of strongDoVersiculo) {
+      recursos.push({
+        tipo: 'lexico',
+        dados: {
+          tipo: 'lexico' as const,
+          strong: s.strong,
+          palavra: s.palavra,
+          transliteracao: s.transliteracao,
+          definicao: s.morfologia || s.definicao,
+          morfologia: s.definicao,
+          idioma: s.idioma,
+        } as RecursoLexico,
+      });
+    }
+  } else {
+    // Fallback: buscar palavras do lexico geral cujas referencias incluem este versiculo
+    const converterRef = (ref: string): string => {
+      const partes = ref.split(' ');
+      if (partes.length !== 2) return ref.toLowerCase();
+      return `${partes[0].toLowerCase()}:${partes[1]}`;
+    };
+    const chaveAtual = `${livroLower}:${capitulo}:${versiculo}`;
+
+    const gregosRelevantes = _palavrasGregas!.filter((p) => {
+      if (!p.versiculos || p.versiculos.length === 0) return false;
+      return p.versiculos.some((ref) => converterRef(ref) === chaveAtual);
     });
+    for (const g of gregosRelevantes) {
+      recursos.push({
+        tipo: 'lexico',
+        dados: {
+          tipo: 'lexico' as const,
+          strong: g.strong,
+          palavra: g.palavra,
+          transliteracao: g.transliteracao,
+          definicao: g.definicao,
+          morfologia: (g as any).morfologia || (g as any).morphologia || '',
+          idioma: 'grego' as const,
+        } as RecursoLexico,
+      });
+    }
+
+    const hebraicosRelevantes = _palavrasHebraicas!.filter((p) => {
+      const versiculos = (p as any).versiculos as string[] | undefined;
+      if (!versiculos || versiculos.length === 0) return false;
+      return versiculos.some((ref: string) => converterRef(ref) === chaveAtual);
+    });
+    for (const h of hebraicosRelevantes) {
+      recursos.push({
+        tipo: 'lexico',
+        dados: {
+          tipo: 'lexico' as const,
+          strong: h.strong,
+          palavra: h.palavra,
+          transliteracao: h.transliteracao,
+          definicao: h.definicao,
+          morfologia: h.morfologia || '',
+          idioma: 'hebraico' as const,
+        } as RecursoLexico,
+      });
+    }
   }
 
   // 6. Locais bíblicos

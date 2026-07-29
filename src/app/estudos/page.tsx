@@ -141,9 +141,34 @@ export default function EstudosPage() {
 
   const livrosComEstudo = useMemo(() => {
     if (!dadosCarregados) return [];
+    // Mapear abreviacoes para slugs de paginas hardcoded quando existem
+    const PAGINAS_HARDCODED: Record<string, string> = {
+      'gn': 'genesis', 'ex': 'exodo', 'lv': 'levitico', 'nm': 'numeros', 'dt': 'deuteronomio',
+      'js': 'josue', 'jz': 'juizes', 'rt': 'rute', '1sm': '1samuel', '2sm': '2samuel',
+      '1rs': '1reis', '2rs': '2reis', '1cr': '1cronicas', '2cr': '2cronicas',
+      'ed': 'esdras', 'ne': 'neemias', 'et': 'ester', 'sl': 'salmos',
+      'pv': 'proverbios', 'ec': 'eclesiastes', 'ct': 'cantares', 'is': 'isaias',
+      'jr': 'jeremias', 'lm': 'lamentacoes', 'ez': 'ezequiel', 'dn': 'daniel',
+      'os': 'oseias', 'jl': 'joel', 'am': 'amos', 'ob': 'obadias', 'jn': 'jonas',
+      'mq': 'miqueias', 'na': 'naum', 'hc': 'habacuque', 'sf': 'sofonias',
+      'ag': 'ageu', 'zc': 'zacarias', 'ml': 'malaquias',
+      'mt': 'mateus', 'mc': 'marcos', 'lc': 'lucas', 'jo': 'joao', 'atos': 'atos',
+      'rm': 'romanos', '1co': '1corintios', '2co': '2corintios', 'gl': 'galatas',
+      'ef': 'efesios', 'fp': 'filipenses', 'cl': 'colossenses', '1ts': '1tessalonicenses',
+      '2ts': '2tessalonicenses', '1tm': '1timoteo', '2tm': '2timoteo', 'tt': 'tito',
+      'fm': 'filemom', 'hb': 'hebreus', 'tg': 'tiago', '1pe': '1pedro', '2pe': '2pedro',
+      '1jo': '1joao', '2jo': '2joao', '3jo': '3joao', 'jd': 'judas', 'ap': 'apocalipse',
+    };
     return Object.keys(estudosPorLivro).map(slug => {
       const info = livroPorAbreviacao.get(slug);
-      return { slug, titulo: info?.nome || slug, estudo: estudosPorLivro[slug], testamento: info?.testamento || 'AT' };
+      const paginaHardcoded = PAGINAS_HARDCODED[slug];
+      return { 
+        slug, 
+        titulo: info?.nome || slug, 
+        estudo: estudosPorLivro[slug], 
+        testamento: info?.testamento || 'AT',
+        href: paginaHardcoded ? `/estudos/${paginaHardcoded}` : `/estudos/${slug}`,
+      };
     }).sort((a, b) => a.titulo.localeCompare(b.titulo, 'pt-BR'));
   }, [estudosPorLivro, dadosCarregados]);
 
@@ -177,13 +202,30 @@ export default function EstudosPage() {
 
   const estudosTeologicos = useMemo(() => {
     if (!obterEstudosFn) return [];
+    // Usar indice leve para buscar apenas versiculos que tem estudo (126 keys)
+    // em vez de iterar495.000 combinacoes possiveis
+    const { temEstudo } = require('@/data/estudos-index');
     const estudos: EstudoVersiculo[] = [];
     const seen = new Set<string>();
+    
+    // Iterar apenas sobre os livros que tem estudos
     for (const livro of TODOS_LIVROS) {
       for (let cap = 1; cap <= livro.totalCapitulos; cap++) {
+        // Verificar rapidamente se algum versiculo deste capitulo tem estudo
+        let capituloTemEstudo = false;
+        for (let v = 1; v <= 50; v++) {
+          if (temEstudo(livro.abreviacao, cap, v)) {
+            capituloTemEstudo = true;
+            break;
+          }
+        }
+        if (!capituloTemEstudo) continue;
+        
+        // So buscar estudos para versiculos que tem estudo
         for (let v = 1; v <= 50; v++) {
           const key = `${livro.abreviacao}:${cap}:${v}`;
           if (seen.has(key)) continue;
+          if (!temEstudo(livro.abreviacao, cap, v)) continue;
           const e = obterEstudosFn(livro.abreviacao, cap, v);
           if (e.length > 0) {
             seen.add(key);
@@ -395,7 +437,7 @@ export default function EstudosPage() {
                         return (
                           <ScrollReveal key={l.slug} delay={Math.min(i * 0.02, 0.3)}>
                             <Link
-                              href={`/estudos/${l.slug}`}
+                              href={l.href}
                               className="block sola-card rounded-xl overflow-hidden hover:shadow-lg transition-all group"
                             >
                               {/* Header com gradiente — BibleProject style */}

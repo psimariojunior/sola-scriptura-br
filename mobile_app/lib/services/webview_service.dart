@@ -59,6 +59,25 @@ class WebViewService {
         } catch (e) {
           debugPrint('JS bridge injection error: $e');
         }
+
+        // Clear old SW caches if version changed
+        try {
+          await controller.runJavaScript('''
+            (async () => {
+              if ('caches' in window) {
+                const keys = await caches.keys();
+                const stale = keys.filter(k => k.includes('ssb-') && !k.includes('v9'));
+                for (const k of stale) { await caches.delete(k); }
+              }
+              if ('serviceWorker' in navigator) {
+                const regs = await navigator.serviceWorker.getRegistrations();
+                for (const reg of regs) { await reg.unregister(); }
+              }
+            })();
+          ''');
+        } catch (e) {
+          debugPrint('SW cache clear error: $e');
+        }
       },
       onWebResourceError: (error) {
         if (error.isForMainFrame ?? true) {
@@ -119,7 +138,11 @@ class WebViewService {
         headers: {'Cache-Control': 'max-stale=31536000'},
       );
     } else {
-      await controller.loadRequest(Uri.parse(url));
+      // Force revalidation to pick up new SW/cache version
+      await controller.loadRequest(
+        Uri.parse(url),
+        headers: {'Cache-Control': 'no-cache, no-store, must-revalidate'},
+      );
     }
   }
 

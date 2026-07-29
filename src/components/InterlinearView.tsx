@@ -114,7 +114,6 @@ function DetalhePalavra({ strong, onClose }: { strong: string; onClose: () => vo
       className="overflow-hidden"
     >
       <div className="mx-2 mb-2 p-3 rounded-xl bg-[var(--surface-sunken)] border border-[var(--border)]/30 shadow-sm">
-        {/* Header com Strong badge e fechar */}
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${isHebrew ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300' : 'bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300'}`}>
@@ -130,13 +129,11 @@ function DetalhePalavra({ strong, onClose }: { strong: string; onClose: () => vo
           </button>
         </div>
 
-        {/* Palavra + transliteração */}
         <div className="text-center mb-2">
           <p className={`text-2xl font-bold ${isHebrew ? 'font-hebrew' : 'font-greek'}`}>{entry.palavra}</p>
           <p className="text-xs text-[var(--content-muted)] italic">{entry.transliteracao}</p>
         </div>
 
-        {/* Categorias */}
         {(categoria || morphologia) && (
           <div className="flex gap-1 flex-wrap justify-center mb-2">
             {categoria && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--brand-subtle)] text-[var(--brand-default)] font-medium">{categoria}</span>}
@@ -144,11 +141,10 @@ function DetalhePalavra({ strong, onClose }: { strong: string; onClose: () => vo
           </div>
         )}
 
-        {/* Definição */}
         {definicaoResumida && (
-          <div className="bg-[var(--brand-subtle)]/20 rounded-lg p-2 mb-1.5 border border-[var(--brand-default)]/10">
-            <div className="flex items-center gap-1 mb-0.5">
-              <BookOpen className="w-2.5 h-2.5 text-[var(--brand-default)]" />
+          <div className="bg-[var(--brand-subtle)]/20 rounded-lg p-2.5 mb-1.5 border border-[var(--brand-default)]/10">
+            <div className="flex items-center gap-1 mb-1">
+              <BookOpen className="w-3 h-3 text-[var(--brand-default)]" />
               <span className="text-[9px] font-semibold uppercase tracking-wider text-[var(--brand-default)]">Definição</span>
             </div>
             <p className="text-xs font-medium text-[var(--brand-default)] leading-relaxed">{definicaoResumida}</p>
@@ -159,7 +155,6 @@ function DetalhePalavra({ strong, onClose }: { strong: string; onClose: () => vo
           <p className="text-[11px] text-[var(--content-secondary)] leading-relaxed mb-1.5">{definicao}</p>
         )}
 
-        {/* Uso */}
         {uso && (
           <p className="text-[10px] text-[var(--content-muted)] leading-relaxed mt-1 pt-1 border-t border-[var(--border)]/20">
             <span className="font-medium">Uso:</span> {uso}
@@ -195,44 +190,70 @@ export function InterlinearView({ versiculos, livro, capitulo }: InterlinearView
 
         return (
           <div key={versiculo.numero} className="border-b border-[var(--border)]/15 last:border-b-0">
-            {/* Linha interlinear — palavras clicáveis */}
             {palavrasComStrong.length > 0 && (
-              <div className="flex flex-wrap items-baseline gap-x-0 gap-y-0 py-1">
-                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)] text-[9px] font-bold shrink-0 mr-1">
-                  {versiculo.numero}
-                </span>
-                {versiculo.palavras.map((p, wi) => (
-                  <span key={wi} className="inline-flex flex-col items-center px-px">
-                    {p.strong ? (
+              <div className="py-2 px-1">
+                {/* Texto PT primeiro — grande, legível */}
+                <div className="flex items-start gap-2 mb-1.5">
+                  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)] text-[9px] font-bold shrink-0 mt-0.5">
+                    {versiculo.numero}
+                  </span>
+                  <div className="flex flex-wrap gap-x-1 gap-y-0 leading-relaxed font-serif-body text-[var(--content-primary)]" style={{ fontSize: '14px' }}>
+                    {versiculo.palavras.map((p, wi) => (
                       <span
-                        className={`text-[10px] leading-none text-center cursor-pointer transition-colors font-medium ${
+                        key={wi}
+                        className={`cursor-pointer transition-colors relative ${
                           selectedStrong?.verso === versiculo.numero && selectedStrong?.strong === p.strong
-                            ? 'text-[var(--brand-default)] font-bold'
-                            : 'text-[var(--content-secondary)] active:text-[var(--brand-default)]'
+                            ? 'text-[var(--brand-default)] font-semibold'
+                            : p.strong ? 'hover:text-[var(--brand-default)]' : ''
                         }`}
                         onClick={() => p.strong && handleWordClick(versiculo.numero, p.strong)}
-                        role="button"
-                        tabIndex={0}
+                        role={p.strong ? 'button' : undefined}
+                        tabIndex={p.strong ? 0 : undefined}
                       >
-                        {p.palavraOriginal || '\u00A0'}
+                        {p.texto}
+                        {p.strong && (
+                          <span className="absolute -bottom-px left-0 right-0 h-px bg-[var(--brand-default)]/30 scale-x-0 hover:scale-x-100 transition-transform origin-left rounded-full" />
+                        )}
                       </span>
-                    ) : (
-                      <span className="text-[10px] text-transparent select-none">·</span>
-                    )}
-                  </span>
-                ))}
+                    ))}
+                  </div>
+                </div>
+
+                {/* Linha original compacta abaixo */}
+                <div className="flex flex-wrap items-baseline gap-x-0 gap-y-0 ml-7">
+                  {versiculo.palavras.map((p, wi) => (
+                    <span key={wi} className="inline-flex flex-col items-center px-px">
+                      {p.strong ? (
+                        <span
+                          className={`text-[9px] leading-none text-center cursor-pointer transition-colors ${
+                            selectedStrong?.verso === versiculo.numero && selectedStrong?.strong === p.strong
+                              ? 'text-[var(--brand-default)] font-bold'
+                              : 'text-[var(--content-muted)] hover:text-[var(--brand-default)]'
+                          }`}
+                          onClick={() => p.strong && handleWordClick(versiculo.numero, p.strong)}
+                          role="button"
+                          tabIndex={0}
+                        >
+                          {p.palavraOriginal || '\u00A0'}
+                        </span>
+                      ) : (
+                        <span className="text-[9px] text-transparent select-none">·</span>
+                      )}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Detalhe inline */}
+                <AnimatePresence>
+                  {selectedStrong?.verso === versiculo.numero && (
+                    <DetalhePalavra
+                      strong={selectedStrong.strong}
+                      onClose={() => setSelectedStrong(null)}
+                    />
+                  )}
+                </AnimatePresence>
               </div>
             )}
-
-            {/* Detalhe inline — aparece ali mesmo */}
-            <AnimatePresence>
-              {selectedStrong?.verso === versiculo.numero && (
-                <DetalhePalavra
-                  strong={selectedStrong.strong}
-                  onClose={() => setSelectedStrong(null)}
-                />
-              )}
-            </AnimatePresence>
           </div>
         );
       })}

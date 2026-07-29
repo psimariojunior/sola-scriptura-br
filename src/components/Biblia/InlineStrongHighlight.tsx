@@ -1,29 +1,17 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-
 import Link from 'next/link';
+import { X, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { RecursoLexico } from '@/data/biblia/versiculoRecursos';
 
-/**
- * Interface para as props do componente de destaque inline do léxico de Strong.
- * Exibe palavras com sublinhado pontilhado que, ao serem clicadas, mostram
- * um popover com informações do léxico grego/hebraico.
- */
 interface InlineStrongHighlightProps {
-  /** Lista de recursos léxico disponíveis para o versículo */
   lexicoRecursos: RecursoLexico[];
-  /** Texto original do versículo */
   textoVersiculo: string;
-  /** Tamanho da fonte herdado do VerseCard */
   fontSize: number;
 }
 
-/**
- * Mapa de cores para os tipos de palavras léxicas.
- * Usado para diferenciar visualmente substantivos, verbos, etc.
- */
 const corCategoriaMap: Record<string, string> = {
   substantivo: 'text-blue-600 dark:text-blue-400',
   verbo: 'text-emerald-600 dark:text-emerald-400',
@@ -37,18 +25,6 @@ const corCategoriaMap: Record<string, string> = {
   interjeição: 'text-red-600 dark:text-red-400',
 };
 
-/**
- * Componente que exibe palavras com destaque para o léxico de Strong.
- * Quando dados léxico estão disponíveis, exibe um indicador sutil (sublinhado pontilhado)
- * nas palavras que possuem números Strong associados.
- *
- * Ao clicar no indicador, abre um popover com:
- * - Palavra original (grego/hebraico)
- * - Transliteração
- * - Número Strong
- * - Definição
- * - Link para a página de idiomas
- */
 export function InlineStrongHighlight({
   lexicoRecursos,
   textoVersiculo,
@@ -57,7 +33,6 @@ export function InlineStrongHighlight({
   const [palavraAtiva, setPalavraAtiva] = useState<RecursoLexico | null>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
 
-  // Fechar popover ao clicar fora
   useEffect(() => {
     if (!palavraAtiva) return;
     const handler = (e: MouseEvent) => {
@@ -69,12 +44,10 @@ export function InlineStrongHighlight({
     return () => document.removeEventListener('mousedown', handler);
   }, [palavraAtiva]);
 
-  // Se não há dados léxico, não renderiza nada
   if (!lexicoRecursos || lexicoRecursos.length === 0) return null;
 
   return (
     <div className="relative mt-1">
-      {/* Indicador de léxico disponível —小botão discreto */}
       <button
         onClick={(e) => {
           e.stopPropagation();
@@ -95,60 +68,74 @@ export function InlineStrongHighlight({
         <span className="text-[9px] opacity-70">({lexicoRecursos.length})</span>
       </button>
 
-      {/* Popover com detalhes do léxico */}
       {palavraAtiva && (
+        <>
+          {/* Overlay escuro no mobile para fechar */}
+          <div className="fixed inset-0 z-30 bg-black/30 md:hidden" onClick={() => setPalavraAtiva(null)} />
+
           <div
             ref={popoverRef}
             className={cn(
               'absolute left-0 top-full mt-1 z-40',
               'bg-[var(--surface-raised)] border border-[var(--border)]',
-              'rounded-lg shadow-xl p-3 min-w-[220px] max-w-[300px]',
+              'rounded-xl shadow-2xl p-4 min-w-[260px] max-w-[320px]',
               'animate-scale-in'
             )}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Cabeçalho com palavra e idioma */}
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-1.5">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)]">
-                  {palavraAtiva.idioma === 'grego' ? '🇬🇷 Grego' : '🇮🇱 Hebraico'}
-                </span>
-                <span className="text-[9px] px-1 py-0.5 rounded bg-[var(--brand-subtle)] text-[var(--brand-default)] font-mono">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <span className={cn(
+                  'text-[10px] font-bold px-2 py-0.5 rounded-full',
+                  palavraAtiva.idioma === 'grego'
+                    ? 'bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300'
+                    : 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300'
+                )}>
                   {palavraAtiva.strong}
+                </span>
+                <span className="text-[10px] text-[var(--content-muted)]">
+                  {palavraAtiva.idioma === 'grego' ? 'Grego' : 'Hebraico'}
                 </span>
               </div>
               <button
                 onClick={() => setPalavraAtiva(null)}
-                className="text-[var(--content-muted)] hover:text-[var(--content-primary)] text-xs"
+                className="p-1 rounded-md hover:bg-[var(--surface-sunken)] text-[var(--content-muted)]"
                 aria-label="Fechar"
               >
-                ✕
+                <X className="w-3.5 h-3.5" />
               </button>
             </div>
 
             {/* Palavra original */}
-            <p className="text-lg font-serif-body text-[var(--content-primary)] mb-0.5">
+            <p className={`text-2xl font-bold text-center mb-0.5 ${palavraAtiva.idioma === 'grego' ? 'font-greek' : 'font-hebrew'}`}>
               {palavraAtiva.palavra}
             </p>
 
             {/* Transliteração */}
-            <p className="text-xs text-[var(--content-muted)] italic mb-1.5">
+            <p className="text-xs text-[var(--content-muted)] italic text-center mb-2">
               {palavraAtiva.transliteracao}
             </p>
 
             {/* Definição */}
-            <p className="text-xs text-[var(--content-secondary)] leading-relaxed mb-2">
-              {palavraAtiva.definicao}
-            </p>
+            <div className="bg-[var(--brand-subtle)]/20 rounded-lg p-2.5 mb-2 border border-[var(--brand-default)]/10">
+              <div className="flex items-center gap-1 mb-1">
+                <BookOpen className="w-3 h-3 text-[var(--brand-default)]" />
+                <span className="text-[9px] font-semibold uppercase tracking-wider text-[var(--brand-default)]">Definição</span>
+              </div>
+              <p className="text-xs font-medium text-[var(--brand-default)] leading-relaxed">
+                {palavraAtiva.definicao}
+              </p>
+            </div>
 
-            {/* Morfologia (se disponível) */}
+            {/* Morfologia */}
             {palavraAtiva.morfologia && (
               <p className="text-[10px] text-[var(--content-muted)] mb-2">
                 <span className="font-semibold">Morfologia:</span> {palavraAtiva.morfologia}
               </p>
             )}
 
-            {/* Link para a página de idiomas */}
+            {/* Link */}
             <Link
               href={`/idiomas?strong=${palavraAtiva.strong.replace(/[GH]/, '')}`}
               onClick={(e) => e.stopPropagation()}
@@ -160,7 +147,7 @@ export function InlineStrongHighlight({
               Ver no léxico completo →
             </Link>
 
-            {/* Lista de outras palavras disponíveis */}
+            {/* Outras palavras */}
             {lexicoRecursos.length > 1 && (
               <div className="mt-2 pt-2 border-t border-[var(--border)]">
                 <p className="text-[9px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-1">
@@ -195,6 +182,7 @@ export function InlineStrongHighlight({
               </div>
             )}
           </div>
+        </>
       )}
     </div>
   );

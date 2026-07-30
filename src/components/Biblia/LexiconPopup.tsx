@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import type { LexiconEntry } from '@/lib/lexiconSearch';
 import type { LexiconResult } from '@/lib/lexiconSearch';
@@ -17,9 +18,15 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
   const ref = useRef<HTMLDivElement>(null);
   const [adjustedPos, setAdjustedPos] = useState(position);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
   const currentEntry = allResults && allResults.length > 1 
     ? allResults[selectedIndex]?.entry ?? entry 
     : entry;
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -61,35 +68,60 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
   const langLabel = isHebrew ? 'Hebraico' : 'Grego';
   const hasMultiple = allResults && allResults.length > 1;
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <>
-      <div className="fixed inset-0 z-40 bg-black/40 md:hidden" onClick={onClose} />
+      <div
+        onClick={onClose}
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 9998,
+          background: 'rgba(0,0,0,0.4)',
+        }}
+        className="md:hidden"
+      />
       <div
         ref={ref}
-        className="fixed z-50 w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] p-4 shadow-2xl animate-scale-in"
-        style={{ left: adjustedPos.x, top: adjustedPos.y }}
+        style={{
+          position: 'fixed',
+          zIndex: 9999,
+          left: adjustedPos.x,
+          top: adjustedPos.y,
+          width: '20rem',
+          maxWidth: 'calc(100vw - 2rem)',
+          borderRadius: '0.75rem',
+          border: '1px solid var(--border)',
+          backgroundColor: 'var(--surface-raised)',
+          padding: '1rem',
+          boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
+          animation: 'scaleIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
+        }}
       >
       {/* Header */}
       <div className="mb-3 flex items-start justify-between gap-2">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-mono font-semibold tracking-wide text-[var(--brand-default)]">
+            <span className="text-xs font-mono font-semibold tracking-wide" style={{ color: 'var(--brand-default)' }}>
               {currentEntry.strong}
             </span>
-            <span className={`text-[10px] font-medium uppercase tracking-wider ${isHebrew ? 'text-blue-500' : 'text-purple-500'}`}>
+            <span className="text-[10px] font-medium uppercase tracking-wider" style={{ color: isHebrew ? '#3b82f6' : '#a855f7' }}>
               {langLabel}
             </span>
           </div>
           <p
             dir={isHebrew ? 'rtl' : 'ltr'}
-            className="text-lg font-semibold text-[var(--content-primary)] leading-tight truncate"
+            className="text-lg font-semibold leading-tight truncate"
+            style={{ color: 'var(--content-primary)' }}
           >
             {currentEntry.palavra}
           </p>
         </div>
         <button
           onClick={onClose}
-          className="flex-shrink-0 rounded-md p-1 text-[var(--content-muted)] hover:bg-[var(--surface-sunken)] hover:text-[var(--content-primary)] transition-colors"
+          className="flex-shrink-0 rounded-md p-1 transition-colors"
+          style={{ color: 'var(--content-muted)' }}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M18 6L6 18M6 6l12 12" />
@@ -100,24 +132,24 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
       {/* Content */}
       <div className="space-y-2">
         <div className="flex items-center gap-2">
-          <span className="text-xs text-[var(--content-muted)]">Transliteração:</span>
-          <span className="text-sm italic text-[var(--content-primary)]">
+          <span className="text-xs" style={{ color: 'var(--content-muted)' }}>Transliteração:</span>
+          <span className="text-sm italic" style={{ color: 'var(--content-primary)' }}>
             {currentEntry.transliteracao}
           </span>
         </div>
 
-        <p className="text-sm text-[var(--content-secondary)] leading-relaxed border-t border-[var(--border)] pt-2">
+        <p className="text-sm leading-relaxed pt-2" style={{ color: 'var(--content-secondary)', borderTop: '1px solid var(--border)' }}>
           {currentEntry.definicao}
         </p>
 
         {/* Category/Frequency */}
         {'categoria' in currentEntry && (
           <div className="flex flex-wrap gap-1.5 pt-1">
-            <span className="inline-flex items-center rounded-full bg-[var(--brand-subtle)] px-2 py-0.5 text-[10px] font-medium text-[var(--brand-default)]">
+            <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ backgroundColor: 'var(--brand-subtle)', color: 'var(--brand-default)' }}>
               {currentEntry.categoria}
             </span>
             {'frequencia' in currentEntry && currentEntry.frequencia != null && (
-              <span className="inline-flex items-center rounded-full bg-[var(--surface-sunken)] px-2 py-0.5 text-[10px] font-medium text-[var(--content-muted)] border border-[var(--border)]/30">
+              <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ backgroundColor: 'var(--surface-sunken)', color: 'var(--content-muted)', border: '1px solid var(--border)' }}>
                 ×{currentEntry.frequencia}
               </span>
             )}
@@ -126,7 +158,7 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
 
         {!('categoria' in currentEntry) && 'frequencia' in currentEntry && currentEntry.frequencia != null && (
           <div className="flex gap-1.5 pt-1">
-            <span className="inline-flex items-center rounded-full bg-[var(--surface-sunken)] px-2 py-0.5 text-[10px] font-medium text-[var(--content-muted)] border border-[var(--border)]/30">
+            <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ backgroundColor: 'var(--surface-sunken)', color: 'var(--content-muted)', border: '1px solid var(--border)' }}>
               ×{currentEntry.frequencia}
             </span>
           </div>
@@ -134,8 +166,8 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
 
         {/* Multiple results selector */}
         {hasMultiple && (
-          <div className="border-t border-[var(--border)] pt-2 mt-2">
-            <p className="text-[10px] text-[var(--content-muted)] mb-1.5">
+          <div className="pt-2 mt-2" style={{ borderTop: '1px solid var(--border)' }}>
+            <p className="text-[10px] mb-1.5" style={{ color: 'var(--content-muted)' }}>
               {allResults!.length} resultados encontrados:
             </p>
             <div className="flex flex-wrap gap-1">
@@ -143,11 +175,11 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
                 <button
                   key={r.entry.strong}
                   onClick={() => setSelectedIndex(i)}
-                  className={`text-[10px] px-2 py-0.5 rounded-full transition-colors ${
-                    i === selectedIndex
-                      ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]'
-                      : 'bg-[var(--surface-sunken)] text-[var(--content-muted)] hover:bg-[var(--surface-overlay)] border border-[var(--border)]/30'
-                  }`}
+                  className="text-[10px] px-2 py-0.5 rounded-full transition-colors"
+                  style={i === selectedIndex
+                    ? { backgroundColor: 'var(--brand-default)', color: 'var(--brand-contrast)' }
+                    : { backgroundColor: 'var(--surface-sunken)', color: 'var(--content-muted)', border: '1px solid var(--border)' }
+                  }
                 >
                   {r.entry.strong}
                 </button>
@@ -158,11 +190,12 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
       </div>
 
       {/* Link to full lexicon */}
-      <div className="mt-3 pt-2 border-t border-[var(--border)]">
+      <div className="mt-3 pt-2" style={{ borderTop: '1px solid var(--border)' }}>
         <Link
           href={`/idiomas?strong=${currentEntry.strong}`}
           onClick={(e) => e.stopPropagation()}
-          className="inline-flex items-center gap-1 text-xs font-medium text-[var(--brand-default)] hover:underline"
+          className="inline-flex items-center gap-1 text-xs font-medium hover:underline"
+          style={{ color: 'var(--brand-default)' }}
         >
           Ver léxico completo
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -171,6 +204,7 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
         </Link>
       </div>
     </div>
-    </>
+    </>,
+    document.body
   );
 }

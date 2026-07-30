@@ -127,52 +127,65 @@ function DetalhePalavra({ strong, onClose }: { strong: string; onClose: () => vo
       transition={{ duration: 0.2 }}
       className="overflow-hidden"
     >
-      <div className="mx-2 mb-3 p-4 rounded-xl bg-[var(--surface-raised)] border border-[var(--border)] shadow-lg shadow-black/5 relative">
-        <div className="absolute top-0 left-0 w-1 h-full rounded-l-xl bg-[var(--brand-default)]" />
+      <div
+        className="mx-2 mb-3 p-4 rounded-xl relative"
+        style={{
+          backgroundColor: 'var(--surface-raised)',
+          border: '1px solid var(--border)',
+          boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05)',
+        }}
+      >
+        <div className="absolute top-0 left-0 w-1 h-full rounded-l-xl" style={{ backgroundColor: 'var(--brand-default)' }} />
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${isHebrew ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)]' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)] border border-[var(--border)]/30'}`}>
+            <span
+              className="text-[10px] font-bold px-2 py-0.5 rounded-full"
+              style={isHebrew
+                ? { backgroundColor: 'var(--brand-subtle)', color: 'var(--brand-default)' }
+                : { backgroundColor: 'var(--surface-sunken)', color: 'var(--content-secondary)', border: '1px solid var(--border)' }
+              }
+            >
               {strong}
             </span>
-            <span className="text-[10px] text-[var(--content-muted)] font-medium">{isHebrew ? 'Hebraico' : 'Grego'}</span>
+            <span className="text-[10px] font-medium" style={{ color: 'var(--content-muted)' }}>{isHebrew ? 'Hebraico' : 'Grego'}</span>
             {frequencia !== undefined && frequencia > 0 && (
-              <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-[var(--surface-sunken)] text-[var(--content-muted)] border border-[var(--border)]/30">{frequencia}x</span>
+              <span className="text-[9px] px-1.5 py-0.5 rounded-full" style={{ backgroundColor: 'var(--surface-sunken)', color: 'var(--content-muted)', border: '1px solid var(--border)' }}>{frequencia}x</span>
             )}
           </div>
-          <button onClick={onClose} className="p-1 rounded-md hover:bg-[var(--surface-sunken)] text-[var(--content-muted)]" aria-label="Fechar">
+          <button onClick={onClose} className="p-1 rounded-md" style={{ color: 'var(--content-muted)' }} aria-label="Fechar">
             <X className="w-3.5 h-3.5" />
           </button>
         </div>
 
         <div className="text-center mb-3">
-          <p className={`text-2xl font-bold ${isHebrew ? 'font-hebrew' : 'font-greek'} text-[var(--content-primary)]`}>{entry.palavra}</p>
-          <p className="text-xs text-[var(--content-muted)] italic">{entry.transliteracao}</p>
+          <p className={`text-2xl font-bold ${isHebrew ? 'font-hebrew' : 'font-greek'}`} style={{ color: 'var(--content-primary)' }}>{entry.palavra}</p>
+          <p className="text-xs italic" style={{ color: 'var(--content-muted)' }}>{entry.transliteracao}</p>
         </div>
 
         {(categoria || morphologia) && (
           <div className="flex gap-1 flex-wrap justify-center mb-3">
-            {categoria && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--brand-subtle)] text-[var(--brand-default)] font-semibold">{categoria}</span>}
-            {morphologia && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--surface-sunken)] text-[var(--content-secondary)] border border-[var(--border)]/30">{morphologia}</span>}
+            {categoria && <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold" style={{ backgroundColor: 'var(--brand-subtle)', color: 'var(--brand-default)' }}>{categoria}</span>}
+            {morphologia && <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ backgroundColor: 'var(--surface-sunken)', color: 'var(--content-secondary)', border: '1px solid var(--border)' }}>{morphologia}</span>}
           </div>
         )}
 
         {definicaoResumida && (
-          <div className="bg-[var(--surface-sunken)] rounded-lg p-3 mb-2 border border-[var(--border)]/40">
+          <div className="rounded-lg p-3 mb-2" style={{ backgroundColor: 'var(--surface-sunken)', border: '1px solid var(--border)' }}>
             <div className="flex items-center gap-1 mb-1">
-              <BookOpen className="w-3 h-3 text-[var(--brand-default)]" />
-              <span className="text-[9px] font-semibold uppercase tracking-wider text-[var(--brand-default)]">Definição</span>
+              <BookOpen className="w-3 h-3" style={{ color: 'var(--brand-default)' }} />
+              <span className="text-[9px] font-semibold uppercase tracking-wider" style={{ color: 'var(--brand-default)' }}>Definição</span>
             </div>
-            <p className="text-xs font-medium text-[var(--content-primary)] leading-relaxed">{definicaoResumida}</p>
+            <p className="text-xs font-medium leading-relaxed" style={{ color: 'var(--content-primary)' }}>{definicaoResumida}</p>
           </div>
         )}
 
         {definicao && definicao !== definicaoResumida && (
-          <p className="text-[11px] text-[var(--content-secondary)] leading-relaxed mb-2">{definicao}</p>
+          <p className="text-[11px] leading-relaxed mb-2" style={{ color: 'var(--content-secondary)' }}>{definicao}</p>
         )}
 
         {uso && (
-          <p className="text-[10px] text-[var(--content-muted)] leading-relaxed mt-2 pt-2 border-t border-[var(--border)]/30">
-            <span className="font-semibold text-[var(--content-secondary)]">Uso:</span> {uso}
+          <p className="text-[10px] leading-relaxed mt-2 pt-2" style={{ color: 'var(--content-muted)', borderTop: '1px solid var(--border)' }}>
+            <span className="font-semibold" style={{ color: 'var(--content-secondary)' }}>Uso:</span> {uso}
           </p>
         )}
       </div>

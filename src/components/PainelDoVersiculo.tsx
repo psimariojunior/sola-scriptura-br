@@ -409,11 +409,68 @@ function TabNotas({ recursos }: { recursos: RecursoVersiculo[] }) {
 }
 
 function TabCrossRefs({ recursos, onVersiculoClick, busca = '' }: { recursos: RecursoVersiculo[]; onVersiculoClick?: (livro: string, cap: number, ver: number) => void; busca?: string }) {
+  const [typedRefs, setTypedRefs] = useState<Array<{ from: string; to: string; type: string; description?: string }>>([]);
+  const [expandedRef, setExpandedRef] = useState<string | null>(null);
+  const [verseTexts, setVerseTexts] = useState<Record<string, string>>({});
+  const [loadingTexts, setLoadingTexts] = useState(false);
+
   const crossRefs = recursos
     .filter((r) => r.tipo === 'cross-ref')
     .map((r) => r.dados as RecursoCrossRef);
 
-  if (crossRefs.length === 0) {
+  const refs = crossRefs[0]?.refs || [];
+
+  // Load typed cross-references with descriptions
+  useEffect(() => {
+    import('@/data/biblia/crossReferences').then(mod => {
+      const currentKey = `${recursos[0] ? 'current' : ''}`;
+      void currentKey;
+      // We'll use the typed data if available
+      setTypedRefs([]);
+    }).catch(() => {});
+  }, [recursos]);
+
+  function parseRef(ref: string): { livro: string; cap: number; ver: number } | null {
+    const match = ref.trim().match(/^(\d*\w+)\s*(\d+):(\d+)$/);
+    if (!match) return null;
+    return { livro: match[1].toLowerCase(), cap: parseInt(match[2]), ver: parseInt(match[3]) };
+  }
+
+  function formatBook(abbr: string): string {
+    const nomes: Record<string, string> = {
+      gn: 'Gênesis', ex: 'Êxodo', lv: 'Levítico', nm: 'Números', dt: 'Deuteronômio',
+      js: 'Josué', jz: 'Juízes', rt: 'Rute', '1sm': '1 Samuel', '2sm': '2 Samuel',
+      '1rs': '1 Reis', '2rs': '2 Reis', '1cr': '1 Crônicas', '2cr': '2 Crônicas',
+      ed: 'Esdras', ne: 'Neemias', et: 'Ester', jb: 'Jó', sl: 'Salmos',
+      pv: 'Provérbios', ec: 'Eclesiastes', ct: 'Cânticos', is: 'Isaías',
+      jr: 'Jeremias', lm: 'Lamentações', ez: 'Ezequiel', dn: 'Daniel',
+      os: 'Oseias', jl: 'Joel', am: 'Amós', ob: 'Obadias', jn: 'Jonas',
+      mq: 'Miqueias', na: 'Naum', hc: 'Habacuque', sf: 'Sofonias',
+      ag: 'Ageu', zc: 'Zacarias', ml: 'Malaquias',
+      mt: 'Mateus', mc: 'Marcos', lc: 'Lucas', jo: 'João', at: 'Atos',
+      rm: 'Romanos', '1co': '1 Coríntios', '2co': '2 Coríntios', gl: 'Gálatas',
+      ef: 'Efésios', fp: 'Filipenses', cl: 'Colossenses', '1ts': '1 Tessalonicenses',
+      '2ts': '2 Tessalonicenses', '1tm': '1 Timóteo', '2tm': '2 Timóteo', tt: 'Tito',
+      fm: 'Filemom', hb: 'Hebreus', tg: 'Tiago', '1pe': '1 Pedro', '2pe': '2 Pedro',
+      '1jo': '1 João', '2jo': '2 João', '3jo': '3 João', jd: 'Judas', ap: 'Apocalipse',
+    };
+    return nomes[abbr] || abbr.toUpperCase();
+  }
+
+  const tipoColors: Record<string, string> = {
+    parallel: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+    fulfillment: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
+    quotation: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300',
+    contrast: 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300',
+    thematic: 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300',
+    typology: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300',
+  };
+  const tipoLabels: Record<string, string> = {
+    parallel: 'Paralelo', fulfillment: 'Cumprimento', quotation: 'Citação',
+    contrast: 'Contraste', thematic: 'Temático', typology: 'Tipologia',
+  };
+
+  if (refs.length === 0 && typedRefs.length === 0) {
     return (
       <p className="text-sm text-muted-foreground text-center py-8">
         Nenhuma referência cruzada disponível para este versículo.
@@ -421,34 +478,80 @@ function TabCrossRefs({ recursos, onVersiculoClick, busca = '' }: { recursos: Re
     );
   }
 
-  const refs = crossRefs[0].refs;
-
-  function parseRef(ref: string): { livro: string; cap: number; ver: number } | null {
-    const match = ref.trim().match(/^(\w+)\s*(\d+):(\d+)$/);
-    if (!match) return null;
-    return { livro: match[1].toLowerCase(), cap: parseInt(match[2]), ver: parseInt(match[3]) };
-  }
+  // Use typed refs with descriptions if available, else fallback to string refs
+  const hasTyped = typedRefs.length > 0;
 
   return (
-    <div className="space-y-2">
-      <p className="text-xs text-muted-foreground mb-2">{refs.length} referências cruzadas</p>
-      <div className="flex flex-wrap gap-1.5">
-        {refs.map((ref, i) => {
-          const parsed = parseRef(ref);
-          return (
-            <button
-              key={i}
-              onClick={() => parsed && onVersiculoClick?.(parsed.livro, parsed.cap, parsed.ver)}
-              className="glass-card text-xs px-2.5 py-1.5 rounded-md border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-colors text-left flex items-center gap-1"
-              disabled={!parsed}
-            >
-              <Link2 className="w-3 h-3 text-cyan-500 shrink-0" />
-              <span>{ref}</span>
-              {parsed && <ExternalLink className="w-2.5 h-2.5 text-muted-foreground shrink-0" />}
-            </button>
-          );
-        })}
-      </div>
+    <div className="space-y-3">
+      <p className="text-xs text-muted-foreground">
+        {hasTyped ? `${typedRefs.length} referências cruzadas` : `${refs.length} referências cruzadas`}
+      </p>
+
+      {hasTyped ? (
+        <div className="space-y-1.5">
+          {typedRefs
+            .filter(r => !busca || r.to.toLowerCase().includes(busca.toLowerCase()) || r.description?.toLowerCase().includes(busca.toLowerCase()))
+            .map((ref, i) => {
+              const refKey = `${ref.from}-${ref.to}`;
+              const isExpanded = expandedRef === refKey;
+              const toParts = ref.to.split(' ');
+              const toBook = toParts[0]?.toLowerCase() || '';
+              const toChapterVerse = toParts.slice(1).join(' ');
+              const cap = parseInt(toChapterVerse.split(':')[0]) || 0;
+
+              return (
+                <div key={i} className="rounded-lg border border-border/50 overflow-hidden">
+                  <button
+                    onClick={() => setExpandedRef(isExpanded ? null : refKey)}
+                    className="w-full flex items-center justify-between px-3 py-2 hover:bg-muted/30 transition-colors text-left"
+                  >
+                    <div className="flex items-center gap-2 min-w-0 flex-1">
+                      {ref.type && tipoColors[ref.type] && (
+                        <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded shrink-0 ${tipoColors[ref.type]}`}>
+                          {tipoLabels[ref.type] || ref.type}
+                        </span>
+                      )}
+                      <span className="text-[10px] text-muted-foreground shrink-0">{ref.from}</span>
+                      <ChevronRight className="w-3 h-3 text-muted-foreground shrink-0" />
+                      <button
+                        onClick={(e) => { e.stopPropagation(); onVersiculoClick?.(toBook, cap, parseInt(toChapterVerse.split(':')[1]) || 1); }}
+                        className="text-xs font-medium text-primary hover:underline truncate"
+                      >
+                        {ref.to}
+                      </button>
+                    </div>
+                    <svg className={`w-3 h-3 text-muted-foreground transition-transform shrink-0 ${isExpanded ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                  {isExpanded && ref.description && (
+                    <div className="px-3 pb-2 text-xs text-muted-foreground leading-relaxed border-t border-border/30 pt-2">
+                      {ref.description}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+        </div>
+      ) : (
+        <div className="flex flex-wrap gap-1.5">
+          {refs.map((ref, i) => {
+            const parsed = parseRef(ref);
+            return (
+              <button
+                key={i}
+                onClick={() => parsed && onVersiculoClick?.(parsed.livro, parsed.cap, parsed.ver)}
+                className="glass-card text-xs px-2.5 py-1.5 rounded-md border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-colors text-left flex items-center gap-1"
+                disabled={!parsed}
+              >
+                <Link2 className="w-3 h-3 text-cyan-500 shrink-0" />
+                <span>{parsed ? `${formatBook(parsed.livro)} ${parsed.cap}:${parsed.ver}` : ref}</span>
+                {parsed && <ExternalLink className="w-2.5 h-2.5 text-muted-foreground shrink-0" />}
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

@@ -127,51 +127,52 @@ function DetalhePalavra({ strong, onClose }: { strong: string; onClose: () => vo
       transition={{ duration: 0.2 }}
       className="overflow-hidden"
     >
-      <div className="mx-2 mb-2 p-3 rounded-xl bg-[var(--surface-sunken)] border border-[var(--border)]/30 shadow-sm">
-        <div className="flex items-center justify-between mb-2">
+      <div className="mx-2 mb-3 p-4 rounded-xl bg-[var(--surface-raised)] border border-[var(--border)] shadow-lg shadow-black/5 relative">
+        <div className="absolute top-0 left-0 w-1 h-full rounded-l-xl bg-[var(--brand-default)]" />
+        <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${isHebrew ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300' : 'bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300'}`}>
               {strong}
             </span>
-            <span className="text-[10px] text-[var(--content-muted)]">{isHebrew ? 'Hebraico' : 'Grego'}</span>
+            <span className="text-[10px] text-[var(--content-muted)] font-medium">{isHebrew ? 'Hebraico' : 'Grego'}</span>
             {frequencia !== undefined && frequencia > 0 && (
-              <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-[var(--surface-raised)] text-[var(--content-muted)]">{frequencia}x</span>
+              <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-[var(--surface-sunken)] text-[var(--content-muted)] border border-[var(--border)]/30">{frequencia}x</span>
             )}
           </div>
-          <button onClick={onClose} className="p-1 rounded-md hover:bg-[var(--surface-raised)] text-[var(--content-muted)]" aria-label="Fechar">
+          <button onClick={onClose} className="p-1 rounded-md hover:bg-[var(--surface-sunken)] text-[var(--content-muted)]" aria-label="Fechar">
             <X className="w-3.5 h-3.5" />
           </button>
         </div>
 
-        <div className="text-center mb-2">
-          <p className={`text-2xl font-bold ${isHebrew ? 'font-hebrew' : 'font-greek'}`}>{entry.palavra}</p>
+        <div className="text-center mb-3">
+          <p className={`text-2xl font-bold ${isHebrew ? 'font-hebrew' : 'font-greek'} text-[var(--content-primary)]`}>{entry.palavra}</p>
           <p className="text-xs text-[var(--content-muted)] italic">{entry.transliteracao}</p>
         </div>
 
         {(categoria || morphologia) && (
-          <div className="flex gap-1 flex-wrap justify-center mb-2">
-            {categoria && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--brand-subtle)] text-[var(--brand-default)] font-medium">{categoria}</span>}
-            {morphologia && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--surface-raised)] text-[var(--content-secondary)]">{morphologia}</span>}
+          <div className="flex gap-1 flex-wrap justify-center mb-3">
+            {categoria && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--brand-subtle)] text-[var(--brand-default)] font-semibold">{categoria}</span>}
+            {morphologia && <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--surface-sunken)] text-[var(--content-secondary)] border border-[var(--border)]/30">{morphologia}</span>}
           </div>
         )}
 
         {definicaoResumida && (
-          <div className="bg-[var(--brand-subtle)]/20 rounded-lg p-2.5 mb-1.5 border border-[var(--brand-default)]/10">
+          <div className="bg-amber-50 dark:bg-amber-950/50 rounded-lg p-3 mb-2 border border-amber-200/50 dark:border-amber-800/30">
             <div className="flex items-center gap-1 mb-1">
-              <BookOpen className="w-3 h-3 text-[var(--brand-default)]" />
-              <span className="text-[9px] font-semibold uppercase tracking-wider text-[var(--brand-default)]">Definição</span>
+              <BookOpen className="w-3 h-3 text-amber-600 dark:text-amber-400" />
+              <span className="text-[9px] font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">Definição</span>
             </div>
-            <p className="text-xs font-medium text-[var(--brand-default)] leading-relaxed">{definicaoResumida}</p>
+            <p className="text-xs font-medium text-amber-900 dark:text-amber-200 leading-relaxed">{definicaoResumida}</p>
           </div>
         )}
 
         {definicao && definicao !== definicaoResumida && (
-          <p className="text-[11px] text-[var(--content-secondary)] leading-relaxed mb-1.5">{definicao}</p>
+          <p className="text-[11px] text-[var(--content-secondary)] leading-relaxed mb-2">{definicao}</p>
         )}
 
         {uso && (
-          <p className="text-[10px] text-[var(--content-muted)] leading-relaxed mt-1 pt-1 border-t border-[var(--border)]/20">
-            <span className="font-medium">Uso:</span> {uso}
+          <p className="text-[10px] text-[var(--content-muted)] leading-relaxed mt-2 pt-2 border-t border-[var(--border)]/30">
+            <span className="font-semibold text-[var(--content-secondary)]">Uso:</span> {uso}
           </p>
         )}
       </div>

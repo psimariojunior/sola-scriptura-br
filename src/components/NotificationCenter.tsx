@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bell, BellOff, Clock, Flame, BookOpen, Sparkles, Check, Settings, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -99,10 +100,11 @@ export function NotificationCenter() {
         )}
       </button>
 
+      {typeof document !== 'undefined' && createPortal(
       <AnimatePresence>
         {isOpen && (
           <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}
-            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-black/60"
+            className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center p-4 bg-black/60"
             onClick={() => setIsOpen(false)}>
             <motion.div initial={{opacity:0,scale:0.95}} animate={{opacity:1,scale:1}} exit={{opacity:0,scale:0.95}}
               onClick={e => e.stopPropagation()}
@@ -221,7 +223,9 @@ export function NotificationCenter() {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+      )}
     </>
   );
 }

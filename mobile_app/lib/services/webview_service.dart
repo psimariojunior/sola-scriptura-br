@@ -64,7 +64,7 @@ class WebViewService {
             (async () => {
               if ('caches' in window) {
                 const keys = await caches.keys();
-                const stale = keys.filter(k => k.includes('ssb-') && !k.includes('v9'));
+                const stale = keys.filter(k => k.includes('ssb-') && !k.includes('v10'));
                 for (const k of stale) { await caches.delete(k); }
               }
               if ('serviceWorker' in navigator) {

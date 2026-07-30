@@ -67,6 +67,8 @@ const PASSAGENS_DRAMATICAS: Record<string, { titulo: string; subtitulo: string; 
 
 import { carregarTraducao } from '@/data/biblia/texto/carregar';
 import { trackEvent } from '@/lib/gamificationTracker';
+import { useChapterSwipe } from '@/hooks/useSwipe';
+import { useMicroInteracoes } from '@/hooks/useMicroInteracoes';
 
 export default function BibliaPage() {
   const { t } = useTranslation();
@@ -101,6 +103,34 @@ export default function BibliaPage() {
   const mobileMenuBtnRef = useRef<HTMLButtonElement>(null);
   const [mobileMenuPos, setMobileMenuPos] = useState<{ top: number; right: number }>({ top: 0, right: 0 });
 
+  const { vibrate } = useMicroInteracoes();
+
+  const handlePrevChapter = useCallback(() => {
+    if (nav.capituloIdx > 0) {
+      vibrate('light');
+      nav.changeChapter(nav.capituloIdx - 1);
+    } else if (nav.livroIdx > 0) {
+      vibrate('light');
+      const prevBook = TODOS_LIVROS[nav.livroIdx - 1];
+      nav.goToBook(nav.livroIdx - 1, prevBook.totalCapitulos - 1);
+    }
+  }, [nav.capituloIdx, nav.livroIdx, nav.changeChapter, nav.goToBook, vibrate]);
+
+  const handleNextChapter = useCallback(() => {
+    if (nav.capituloIdx < nav.livro.totalCapitulos - 1) {
+      vibrate('light');
+      nav.changeChapter(nav.capituloIdx + 1);
+    } else if (nav.livroIdx < TODOS_LIVROS.length - 1) {
+      vibrate('light');
+      nav.goToBook(nav.livroIdx + 1, 0);
+    }
+  }, [nav.capituloIdx, nav.livro.totalCapitulos, nav.livroIdx, nav.changeChapter, nav.goToBook, vibrate]);
+
+  const { handlers: swipeHandlers, offset: swipeOffset, progress: swipeProgress, canGoPrev, canGoNext } = useChapterSwipe({
+    onPrevChapter: handlePrevChapter,
+    onNextChapter: handleNextChapter,
+  });
+
   const handleDeselectVerse = useCallback(() => {
     verse.setVersiculoSelecionado(null);
   }, [verse.setVersiculoSelecionado]);
@@ -127,9 +157,27 @@ export default function BibliaPage() {
   }, [verse.setEstudoAberto]);
   /* eslint-enable react-hooks/exhaustive-deps */
 
-  // Scroll to top when chapter changes
+  // Scroll to top when chapter changes + save/restore scroll position
+  const scrollKeyRef = useRef('');
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    const key = `${nav.livro.abreviacao}-${nav.capituloIdx}`;
+    const prevKey = scrollKeyRef.current;
+    // Save scroll position of previous chapter
+    if (prevKey && typeof window !== 'undefined') {
+      try { sessionStorage.setItem(`ssb_scroll_${prevKey}`, String(window.scrollY)); } catch {}
+    }
+    scrollKeyRef.current = key;
+    // Restore or scroll to top
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = sessionStorage.getItem(`ssb_scroll_${key}`);
+        if (saved) {
+          setTimeout(() => window.scrollTo({ top: parseInt(saved, 10), behavior: 'instant' }), 50);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+      } catch { window.scrollTo({ top: 0, behavior: 'instant' }); }
+    }
     if (nav.temDados && nav.data[0]?.versiculos) {
       const verseCount = nav.data[0].versiculos.length;
       if (verseCount > 0) {
@@ -137,7 +185,7 @@ export default function BibliaPage() {
         trackEvent('capitulo_lido', 1);
       }
     }
-  }, [nav.capituloIdx, nav.livroIdx, nav.temDados, nav.data]);
+  }, [nav.capituloIdx, nav.livroIdx, nav.temDados, nav.data, nav.livro.abreviacao]);
 
   if (ui.zenMode && nav.temDados) {
     return (
@@ -189,9 +237,9 @@ export default function BibliaPage() {
                   <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform"><ChevronLeft className="w-4 h-4" /></button>
                   <div className="relative">
                     <button onClick={() => ui.setChapterGridOpen(!ui.chapterGridOpen)} className="px-2.5 py-1 rounded-md bg-[var(--surface-sunken)] border border-[var(--border)]/40 min-w-[80px] max-w-[130px] sm:min-w-[120px] sm:max-w-none text-center hover:bg-[var(--surface-raised)] transition-colors cursor-pointer truncate">
-                      <span className="text-xs font-semibold text-[var(--content-primary)]">{nav.livro.nome}</span>
+                      <span className="text-sm font-semibold text-[var(--content-primary)]">{nav.livro.nome}</span>
                       <span className="text-[var(--brand-default)] font-bold ml-1.5 tabular-nums">{nav.capituloIdx + 1}</span>
-                      <span className="text-[var(--content-muted)] font-normal text-[10px] ml-1">/{nav.livro.totalCapitulos}</span>
+                      <span className="text-[var(--content-muted)] font-normal text-xs ml-1">/{nav.livro.totalCapitulos}</span>
                     </button>
                     <ChapterGrid open={ui.chapterGridOpen} onClose={() => ui.setChapterGridOpen(false)} totalCapitulos={nav.livro.totalCapitulos} capituloAtual={nav.capituloIdx} onSelect={(idx) => nav.changeChapter(idx)} />
                   </div>
@@ -253,8 +301,8 @@ export default function BibliaPage() {
               </div>
               <SettingsPanel open={ui.showSettings} fontSize={ui.fontSize} onFontSizeChange={ui.setFontSize} showDiff={ui.showDiff} onToggleDiff={() => ui.setShowDiff(!ui.showDiff)} showComparison={nav.viewMode === 'comparison' && nav.data.length >= 2} fontFamily={ui.fontFamily} onFontFamilyChange={ui.setFontFamily} lineSpacing={ui.lineSpacing} onLineSpacingChange={ui.setLineSpacing} />
             </div>
-            <div ref={nav.mainRef} className="flex-1 overflow-y-auto">
-              <div className="max-w-[min(900px,100%-2rem)] mx-auto px-4 sm:px-6 py-6 sm:py-10 pb-24 md:pb-10">
+            <div ref={nav.mainRef} className="flex-1 overflow-y-auto" {...swipeHandlers}>
+              <div className="max-w-[min(900px,100%-2rem)] mx-auto px-4 sm:px-6 py-6 sm:py-10 pb-24 md:pb-10" style={{ transform: `translateX(${swipeOffset}px)`, transition: swipeOffset === 0 ? 'transform 0.3s ease' : 'none' }}>
                 {ui.showPlan && <ReadingPlanBanner />}
                 {nav.loading && !nav.temDados ? (
                   <div className="space-y-4 chapter-enter"><div className="skeleton skeleton-title w-48 mx-auto animate-pulse" /><div className="ornament w-20 mx-auto mb-8 opacity-30" />
@@ -266,6 +314,14 @@ export default function BibliaPage() {
                     <div role="article" aria-label={`${nav.livro.nome} capítulo ${nav.capituloIdx + 1}`}>
                     {nav.loading && nav.temDados && (<div className="fixed top-0 left-0 right-0 z-20 h-0.5 bg-[var(--brand-default)]/20"><div className="h-full bg-[var(--brand-default)] animate-loading-bar" /></div>)}
                     <ChapterHeader livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} totalCapitulos={nav.livro.totalCapitulos} totalVersiculos={nav.data[0]?.versiculos?.length ?? 0} />
+                    {/* Swipe indicators */}
+                    {swipeProgress > 0 && (
+                      <div className="fixed top-1/2 -translate-y-1/2 z-10 pointer-events-none" style={{ [canGoPrev ? 'left' : 'right']: '8px', opacity: swipeProgress }}>
+                        <div className="w-10 h-10 rounded-full bg-[var(--brand-default)]/20 flex items-center justify-center backdrop-blur-sm">
+                          {canGoPrev ? <ChevronLeft className="w-5 h-5 text-[var(--brand-default)]" /> : <ChevronRight className="w-5 h-5 text-[var(--brand-default)]" />}
+                        </div>
+                      </div>
+                    )}
                     {ui.showInterlinear && nav.data[0] && (<div className="mb-8"><div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/40"><span className="font-hebrew text-lg text-[var(--brand-default)]">א</span><span className="text-sm font-semibold text-[var(--content-primary)]">{t('biblia.interlinearView')}</span></div><InterlinearView versiculos={nav.data[0].versiculos} livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} traducao={nav.data[0].traducao} /></div>)}
                     {(ui.modoLeitura === 'foco' || ui.modoLeitura === 'estudo') && nav.data.map((item) => (<div key={item.traducao} className="mb-6">
                       {nav.selectedTrads.length > 1 && (<div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/40"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span>{ui.modoLeitura === 'foco' && <span className="text-xs text-[var(--content-muted)]">{nomeMap[item.traducao]}</span>}</div>)}

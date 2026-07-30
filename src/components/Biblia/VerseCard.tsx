@@ -360,7 +360,7 @@ export const VerseCard = memo(function VerseCard({
           <div className="lg:hidden mt-2 pt-2 border-t border-[var(--border)]/20 animate-[slideDown_0.2s_ease-out]">
             <div className="grid grid-cols-3 gap-2">
               <button
-                onClick={(e) => { e.stopPropagation(); toggleFavorito(livroAbreviacao, capitulo, numero, traducao, texto); onFavoritoChange(); }}
+                onClick={(e) => { e.stopPropagation(); toggleFavorito(livroAbreviacao, capitulo, numero, traducao, texto); if (navigator?.vibrate) navigator.vibrate([10, 50, 10]); onFavoritoChange(); }}
                 className={cn('flex flex-col items-center justify-center gap-1 p-3 rounded-xl transition-all active:scale-95', isFavorito ? 'text-white bg-red-500' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)]')}
                 aria-label={isFavorito ? 'Remover favorito' : 'Favoritar'}
               >

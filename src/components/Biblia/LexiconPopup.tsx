@@ -33,17 +33,25 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
     const rect = ref.current.getBoundingClientRect();
     const vw = window.innerWidth;
     const vh = window.innerHeight;
+    const isMobile = vw < 768;
 
-    // Center popup horizontally on the clicked word
-    let x = position.x - rect.width / 2;
-    let y = position.y;
+    let x: number;
+    let y: number;
 
-    // Clamp to viewport
-    if (x + rect.width > vw - 16) x = vw - rect.width - 16;
-    if (x < 16) x = 16;
-    // If near bottom, show above the word
-    if (y + rect.height > vh - 16) y = position.y - rect.height - 8;
-    if (y < 16) y = 16;
+    if (isMobile) {
+      // Mobile: center on screen as a bottom-sheet style card
+      x = (vw - rect.width) / 2;
+      y = vh - rect.height - 24;
+      if (y < 24) y = 24;
+    } else {
+      // Desktop: center horizontally on the clicked word
+      x = position.x - rect.width / 2;
+      y = position.y;
+      if (x + rect.width > vw - 16) x = vw - rect.width - 16;
+      if (x < 16) x = 16;
+      if (y + rect.height > vh - 16) y = position.y - rect.height - 8;
+      if (y < 16) y = 16;
+    }
 
     setAdjustedPos({ x, y });
   }, [position]);
@@ -92,7 +100,7 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
           zIndex: 9999,
           left: adjustedPos.x,
           top: adjustedPos.y,
-          width: '20rem',
+          width: typeof window !== 'undefined' && window.innerWidth < 768 ? 'calc(100vw - 2rem)' : '20rem',
           maxWidth: 'calc(100vw - 2rem)',
           borderRadius: '0.75rem',
           border: '1px solid var(--border)',

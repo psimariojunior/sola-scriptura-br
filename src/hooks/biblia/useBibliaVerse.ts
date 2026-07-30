@@ -109,6 +109,7 @@ export function UseBibliaVerse({
   const copyVerse = useCallback(async (text: string, reference: string) => {
     await navigator.clipboard.writeText(`${reference}\n${text}`);
     setCopiedVerse(reference);
+    if (navigator?.vibrate) navigator.vibrate([10, 50, 10]);
     setTimeout(() => setCopiedVerse(null), 2000);
   }, []);
 

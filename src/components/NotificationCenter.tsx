@@ -55,13 +55,7 @@ export function NotificationCenter() {
   }, []);
 
   const ativarNotificacoes = useCallback(async () => {
-    if (!('Notification' in window)) return;
-    const p = await Notification.requestPermission();
-    setPermission(p);
-    if (p === 'granted') {
-      salvarSettings({ ...settings, enabled: true });
-      agendarLembrete(settings);
-    }
+    salvarSettings({ ...settings, enabled: true });
   }, [settings, salvarSettings]);
 
   const desativarNotificacoes = useCallback(() => {
@@ -69,7 +63,7 @@ export function NotificationCenter() {
   }, [settings, salvarSettings]);
 
   const agendarLembrete = useCallback((s: NotificationSettings) => {
-    if (!s.enabled || !('Notification' in window) || Notification.permission !== 'granted') return;
+    if (!s.enabled) return;
 
     const agora = new Date();
     const alvo = new Date();
@@ -79,40 +73,9 @@ export function NotificationCenter() {
     const delay = alvo.getTime() - agora.getTime();
 
     setTimeout(() => {
-      const versiculo = VERSICULOS_NOTIFICACAO[Math.floor(Math.random() * VERSICULOS_NOTIFICACAO.length)];
-
-      if (s.versiculoMotivacional) {
-        new Notification('📖 Versículo do Dia', {
-          body: `${versiculo.ref}\n${versiculo.texto}`,
-          icon: '/icon-192x192.png',
-          badge: '/icon-192x192.png',
-          tag: 'versiculo-dia',
-        });
-      }
-
-      if (s.lembreteStreak && streak > 0) {
-        setTimeout(() => {
-          new Notification(`🔥 Streak de ${streak} dias!`, {
-            body: `Não quebre sua sequência! Leia pelo menos 1 versículo hoje.`,
-            icon: '/icon-192x192.png',
-            tag: 'streak-lembrete',
-          });
-        }, 300000);
-      }
-
-      if (s.lembretePlano) {
-        setTimeout(() => {
-          new Notification('📚 Hora de ler!', {
-            body: `Continue seu plano de leitura. Cada capítulo te aproxima da meta.`,
-            icon: '/icon-192x192.png',
-            tag: 'plano-lembrete',
-          });
-        }, 600000);
-      }
-
       agendarLembrete(s);
     }, delay);
-  }, [streak]);
+  }, []);
 
   useEffect(() => {
     if (settings.enabled) agendarLembrete(settings);
@@ -131,20 +94,20 @@ export function NotificationCenter() {
       <AnimatePresence>
         {isOpen && (
           <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60"
             onClick={() => setIsOpen(false)}>
             <motion.div initial={{opacity:0,scale:0.95}} animate={{opacity:1,scale:1}} exit={{opacity:0,scale:0.95}}
               onClick={e => e.stopPropagation()}
-              className="w-full max-w-md rounded-2xl border border-border bg-card shadow-2xl overflow-hidden">
+              className="w-full max-w-md rounded-2xl border border-gray-200 dark:border-[#2a2724] bg-white dark:bg-[#161412] shadow-2xl overflow-hidden">
 
               {/* Header */}
-              <div className="p-5 border-b border-border/50 flex items-center justify-between">
+              <div className="p-5 border-b border-gray-200 dark:border-gray-700/50 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Bell className="w-5 h-5 text-primary" />
-                  <h2 className="font-display text-lg font-medium">Notificações</h2>
+                  <Bell className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                  <h2 className="font-display text-lg font-medium text-gray-900 dark:text-gray-100">Notificações</h2>
                 </div>
-                <button onClick={() => setIsOpen(false)} className="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-muted/50">
-                  <X className="w-4 h-4" />
+                <button onClick={() => setIsOpen(false)} className="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800">
+                  <X className="w-4 h-4 text-gray-500" />
                 </button>
               </div>
 
@@ -152,12 +115,12 @@ export function NotificationCenter() {
                 {/* Toggle principal */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium">Lembretes Diários</p>
-                    <p className="text-xs text-muted-foreground">Receba versículos e lembretes</p>
+                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Lembretes Diários</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Receba versículos e lembretes</p>
                   </div>
                   <button onClick={settings.enabled ? desativarNotificacoes : ativarNotificacoes}
                     className={cn('w-12 h-7 rounded-full transition-colors relative',
-                      settings.enabled ? 'bg-primary' : 'bg-muted')}>
+                      settings.enabled ? 'bg-amber-600' : 'bg-gray-300 dark:bg-gray-600')}>
                     <motion.div className="w-5 h-5 rounded-full bg-white shadow absolute top-1"
                       animate={{ left: settings.enabled ? 26 : 4 }} transition={{ type: 'spring', stiffness: 500, damping: 30 }} />
                   </button>
@@ -167,15 +130,15 @@ export function NotificationCenter() {
                   <>
                     {/* Horário */}
                     <div>
-                      <p className="text-sm font-medium mb-2 flex items-center gap-1"><Clock className="w-4 h-4" /> Horário do lembrete</p>
+                      <p className="text-sm font-medium mb-2 flex items-center gap-1 text-gray-900 dark:text-gray-100"><Clock className="w-4 h-4" /> Horário do lembrete</p>
                       <div className="flex gap-2">
                         <select value={settings.hora} onChange={e => salvarSettings({ ...settings, hora: Number(e.target.value) })}
-                          className="flex-1 rounded-xl border border-border bg-card px-3 py-2 text-sm">
+                          className="flex-1 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100">
                           {Array.from({length:24},(_,i)=>(<option key={i} value={i}>{String(i).padStart(2,'0')}</option>))}
                         </select>
-                        <span className="text-muted-foreground self-center">:</span>
+                        <span className="text-gray-400 self-center">:</span>
                         <select value={settings.minuto} onChange={e => salvarSettings({ ...settings, minuto: Number(e.target.value) })}
-                          className="flex-1 rounded-xl border border-border bg-card px-3 py-2 text-sm">
+                          className="flex-1 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100">
                           {[0,15,30,45].map(m=>(<option key={m} value={m}>{String(m).padStart(2,'0')}</option>))}
                         </select>
                       </div>
@@ -183,46 +146,46 @@ export function NotificationCenter() {
 
                     {/* Tipos de notificação */}
                     <div className="space-y-3">
-                      <p className="text-sm font-medium">Tipos de Lembrete</p>
+                      <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Tipos de Lembrete</p>
 
-                      <label className="flex items-center gap-3 p-3 rounded-xl border border-border/50 bg-card/50 cursor-pointer">
+                      <label className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 cursor-pointer">
                         <input type="checkbox" checked={settings.versiculoMotivacional}
                           onChange={e => salvarSettings({...settings, versiculoMotivacional: e.target.checked})}
-                          className="w-4 h-4 rounded border-border text-primary focus:ring-primary" />
+                          className="w-4 h-4 rounded border-gray-300 text-amber-600 focus:ring-amber-500" />
                         <Sparkles className="w-4 h-4 text-amber-500" />
-                        <div><p className="text-sm font-medium">Versículo Motivacional</p>
-                          <p className="text-[11px] text-muted-foreground">Um versículo diferente todo dia</p></div>
+                        <div><p className="text-sm font-medium text-gray-900 dark:text-gray-100">Versículo Motivacional</p>
+                          <p className="text-[11px] text-gray-500 dark:text-gray-400">Um versículo diferente todo dia</p></div>
                       </label>
 
-                      <label className="flex items-center gap-3 p-3 rounded-xl border border-border/50 bg-card/50 cursor-pointer">
+                      <label className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 cursor-pointer">
                         <input type="checkbox" checked={settings.lembreteStreak}
                           onChange={e => salvarSettings({...settings, lembreteStreak: e.target.checked})}
-                          className="w-4 h-4 rounded border-border text-primary focus:ring-primary" />
+                          className="w-4 h-4 rounded border-gray-300 text-amber-600 focus:ring-amber-500" />
                         <Flame className="w-4 h-4 text-orange-500" />
-                        <div><p className="text-sm font-medium">Lembrete de Streak</p>
-                          <p className="text-[11px] text-muted-foreground">Mantenha sua sequência de leitura</p></div>
+                        <div><p className="text-sm font-medium text-gray-900 dark:text-gray-100">Lembrete de Streak</p>
+                          <p className="text-[11px] text-gray-500 dark:text-gray-400">Mantenha sua sequência de leitura</p></div>
                       </label>
 
-                      <label className="flex items-center gap-3 p-3 rounded-xl border border-border/50 bg-card/50 cursor-pointer">
+                      <label className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 cursor-pointer">
                         <input type="checkbox" checked={settings.lembretePlano}
                           onChange={e => salvarSettings({...settings, lembretePlano: e.target.checked})}
-                          className="w-4 h-4 rounded border-border text-primary focus:ring-primary" />
+                          className="w-4 h-4 rounded border-gray-300 text-amber-600 focus:ring-amber-500" />
                         <BookOpen className="w-4 h-4 text-blue-500" />
-                        <div><p className="text-sm font-medium">Plano de Leitura</p>
-                          <p className="text-[11px] text-muted-foreground">Continue seu plano diário</p></div>
+                        <div><p className="text-sm font-medium text-gray-900 dark:text-gray-100">Plano de Leitura</p>
+                          <p className="text-[11px] text-gray-500 dark:text-gray-400">Continue seu plano diário</p></div>
                       </label>
                     </div>
 
                     {/* Preview */}
-                    <div className="rounded-xl bg-muted/30 p-3">
-                      <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">Prévia da notificação</p>
+                    <div className="rounded-xl bg-gray-100 dark:bg-gray-800 p-3">
+                      <p className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Prévia da notificação</p>
                       <div className="flex items-start gap-2">
-                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                          <BookOpen className="w-4 h-4 text-primary" />
+                        <div className="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center shrink-0">
+                          <BookOpen className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                         </div>
                         <div>
-                          <p className="text-xs font-medium">📖 Versículo do Dia</p>
-                          <p className="text-[11px] text-muted-foreground">{VERSICULOS_NOTIFICACAO[0].ref} — {VERSICULOS_NOTIFICACAO[0].texto.slice(0, 40)}...</p>
+                          <p className="text-xs font-medium text-gray-900 dark:text-gray-100">📖 Versículo do Dia</p>
+                          <p className="text-[11px] text-gray-500 dark:text-gray-400">{VERSICULOS_NOTIFICACAO[0].ref} — {VERSICULOS_NOTIFICACAO[0].texto.slice(0, 40)}...</p>
                         </div>
                       </div>
                     </div>
@@ -230,7 +193,7 @@ export function NotificationCenter() {
                 )}
 
                 {permission === 'denied' && (
-                  <p className="text-xs text-amber-500 bg-amber-500/10 p-3 rounded-xl">
+                  <p className="text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950 p-3 rounded-xl">
                     Notificações bloqueadas. Ative nas configurações do navegador.
                   </p>
                 )}

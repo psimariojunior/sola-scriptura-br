@@ -140,22 +140,6 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(staleWhileRevalidate(request, STATIC_CACHE));
 });
 
-async function navigationFirst(request) {
-  try {
-    const response = await fetch(request);
-    if (response.ok) {
-      const cache = await caches.open(STATIC_CACHE);
-      cache.put(request, response.clone());
-    }
-    return response;
-  } catch {
-    const cached = await caches.match(request);
-    if (cached) return cached;
-    const offline = await caches.match('/offline.html');
-    return offline || new Response('Offline', { status: 503, headers: { 'Content-Type': 'text/html' } });
-  }
-}
-
 async function pageCacheFirst(request) {
   try {
     const response = await fetch(request);
@@ -165,6 +149,11 @@ async function pageCacheFirst(request) {
 
       const visitedCache = await caches.open(VISITED_PAGES_CACHE);
       visitedCache.put(response.url, response.clone());
+
+      const keys = await visitedCache.keys();
+      if (keys.length > 50) {
+        await visitedCache.delete(keys[0]);
+      }
     }
     return response;
   } catch {

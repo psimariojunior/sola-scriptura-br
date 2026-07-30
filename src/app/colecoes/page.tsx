@@ -298,9 +298,9 @@ export default function ColecoesPage() {
                   className="text-center py-20"
                 >
                   <Folder className="w-16 h-16 text-[var(--muted-fg)] mx-auto mb-6 opacity-30" />
-                  <h2 className="text-xl font-display text-[var(--fg)] mb-2">Nenhuma coleção ainda</h2>
+                  <h2 className="text-xl font-display text-[var(--fg)] mb-2">{t('colecoes.emptyTitle')}</h2>
                   <p className="text-[var(--muted-fg)] mb-6 max-w-sm mx-auto text-sm">
-                    Crie coleções para organizar seus versículos favoritos por tema, estudo ou projeto.
+                    {t('colecoes.emptyDesc')}
                   </p>
                   <motion.button
                     onClick={() => setShowCriar(true)}
@@ -308,7 +308,7 @@ export default function ColecoesPage() {
                     whileTap={{ scale: 0.95 }}
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white hover:bg-primary/90 transition-colors"
                   >
-                    <Plus className="w-5 h-5" /> Criar primeira coleção
+                    <Plus className="w-5 h-5" /> {t('colecoes.createFirst')}
                   </motion.button>
                 </motion.div>
               ) : (

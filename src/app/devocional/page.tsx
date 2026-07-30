@@ -7,9 +7,11 @@ import { devocionais, getDevocionalDoDia } from '@/data/devocional';
 import { ChevronLeft, ChevronRight, Share2, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 
 export default function DevocionalPage() {
+  const { t } = useTranslation();
   const hoje = Math.floor((new Date().getTime() - new Date(new Date().getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24));
   const [diaAtual, setDiaAtual] = useState(hoje);
   const devocional = getDevocionalDoDia(diaAtual);
@@ -38,7 +40,7 @@ export default function DevocionalPage() {
           >
             <div className="text-center mb-10">
               <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--muted-fg)] mb-2">
-                Devocional Diário
+                {t('devocional.title')}
               </p>
               <h1 className="font-display text-4xl md:text-5xl font-light text-[var(--fg)]">
                 {devocional.titulo}
@@ -57,12 +59,12 @@ export default function DevocionalPage() {
               </div>
 
               <div className="mb-8">
-                <h2 className="text-sm font-semibold text-[var(--muted-fg)] uppercase tracking-wider mb-3">Reflexão</h2>
+                <h2 className="text-sm font-semibold text-[var(--muted-fg)] uppercase tracking-wider mb-3">{t('devocional.reflection')}</h2>
                 <div className="text-[var(--fg)] leading-relaxed whitespace-pre-line">{devocional.reflexao}</div>
               </div>
 
               <div className="bg-[var(--bg)] rounded-xl p-6">
-                <h2 className="text-sm font-semibold text-[var(--muted-fg)] uppercase tracking-wider mb-3">Oração</h2>
+                <h2 className="text-sm font-semibold text-[var(--muted-fg)] uppercase tracking-wider mb-3">{t('devocional.prayer')}</h2>
                 <p className="text-[var(--fg)] leading-relaxed italic">&ldquo;{devocional.oracao}&rdquo;</p>
               </div>
             </div>

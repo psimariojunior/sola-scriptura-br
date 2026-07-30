@@ -9,20 +9,28 @@ import { cn } from '@/lib/utils';
 import { ShareProgress } from '@/components/ShareProgress';
 import { getSummary, getWeeklyStats, getMonthlyHeatmap, type GamificationSummary } from '@/lib/gamificationTracker';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
-const CONQUISTAS = [
-  { id: 'primeiro_passo', titulo: 'Primeiro Passo', descricao: 'Leu o primeiro capitulo', icone: '📖', requisito: (s: GamificationSummary) => s.totalCapitulos >= 1 },
-  { id: 'estudante_dedicado', titulo: 'Estudante Dedicado', descricao: 'Leu 10 capitulos', icone: '🎓', requisito: (s: GamificationSummary) => s.totalCapitulos >= 10 },
-  { id: 'explorador', titulo: 'Explorador', descricao: 'Estudou 50 palavras', icone: '🔍', requisito: (s: GamificationSummary) => s.totalPalavras >= 50 },
-  { id: 'sabio', titulo: 'Sábio', descricao: 'Completou 5 quizzes', icone: '🧠', requisito: (s: GamificationSummary) => s.totalQuizzes >= 5 },
-  { id: 'persistente', titulo: 'Persistente', descricao: 'Streak de 7 dias', icone: '🔥', requisito: (s: GamificationSummary) => s.melhorStreak >= 7 },
-  { id: 'colecionador', titulo: 'Colecionador', descricao: 'Salvou 10 favoritos', icone: '⭐', requisito: (s: GamificationSummary) => s.totalFavoritos >= 10 },
-  { id: 'escrevidor', titulo: 'Escrevidor', descricao: 'Criou 5 notas', icone: '✍️', requisito: (s: GamificationSummary) => s.totalAnotacoes >= 5 },
-  { id: 'missionario', titulo: 'Missionário', descricao: 'Compartilhou 3 versiculos', icone: '📤', requisito: (s: GamificationSummary) => s.totalCompartilhamentos >= 3 },
-  { id: 'exegeta', titulo: 'Exegeta', descricao: 'Fez 3 exegeses', icone: '📜', requisito: (s: GamificationSummary) => s.totalExegese >= 3 },
-  { id: 'incansavel', titulo: 'Incansável', descricao: 'Streak de 30 dias', icone: '💎', requisito: (s: GamificationSummary) => s.melhorStreak >= 30 },
-  { id: 'erudito', titulo: 'Erudito', descricao: 'Leu 100 capitulos', icone: '📚', requisito: (s: GamificationSummary) => s.totalCapitulos >= 100 },
-  { id: 'mestre', titulo: 'Mestre', descricao: 'Completou 20 quizzes', icone: '🏆', requisito: (s: GamificationSummary) => s.totalQuizzes >= 20 },
+const CONQUISTAS_KEYS = [
+  'primeiro_passo', 'estudante_dedicado', 'explorador', 'sabio', 'persistente',
+  'colecionador', 'escrevidor', 'missionario', 'exegeta', 'incansavel', 'erudito', 'mestre',
+] as const;
+
+const CONQUISTAS_ICONS = ['📖', '🎓', '🔍', '🧠', '🔥', '⭐', '✍️', '📤', '📜', '💎', '📚', '🏆'];
+
+const CONQUISTAS_REQUISITOS: ((s: GamificationSummary) => boolean)[] = [
+  (s) => s.totalCapitulos >= 1,
+  (s) => s.totalCapitulos >= 10,
+  (s) => s.totalPalavras >= 50,
+  (s) => s.totalQuizzes >= 5,
+  (s) => s.melhorStreak >= 7,
+  (s) => s.totalFavoritos >= 10,
+  (s) => s.totalAnotacoes >= 5,
+  (s) => s.totalCompartilhamentos >= 3,
+  (s) => s.totalExegese >= 3,
+  (s) => s.melhorStreak >= 30,
+  (s) => s.totalCapitulos >= 100,
+  (s) => s.totalQuizzes >= 20,
 ];
 
 function ProgressRing({ value, max, size = 80, strokeWidth = 6, color = 'var(--primary)', label }: {
@@ -105,6 +113,7 @@ function HeatmapCalendar({ data }: { data: Record<string, number> }) {
 }
 
 export default function DashboardPage() {
+  const { t } = useTranslation();
   const [showShare, setShowShare] = useState(false);
   const [favoritos, setFavoritos] = useState<any[]>([]);
   const [notas, setNotas] = useState<any[]>([]);
@@ -145,7 +154,7 @@ export default function DashboardPage() {
 
   const conquistasDesbloqueadas = useMemo(() => {
     if (!summary) return [];
-    return CONQUISTAS.filter(c => c.requisito(summary));
+    return CONQUISTAS_KEYS.filter((_, i) => CONQUISTAS_REQUISITOS[i](summary));
   }, [summary]);
 
   const totalAcoes = stats.chapters + stats.verses + stats.quizzes + stats.estudos + stats.palavras;
@@ -237,7 +246,7 @@ export default function DashboardPage() {
               <ProgressRing value={stats.verses} max={31102} size={90} strokeWidth={7} color="hsl(38, 90%, 50%)" label="Versículos lidos" />
               <ProgressRing value={stats.palavras} max={14200} size={90} strokeWidth={7} color="hsl(280, 60%, 50%)" label="Palavras estudadas" />
               <ProgressRing value={stats.favoritos} max={100} size={90} strokeWidth={7} color="hsl(0, 70%, 55%)" label="Favoritos" />
-              <ProgressRing value={conquistasDesbloqueadas.length} max={CONQUISTAS.length} size={90} strokeWidth={7} color="hsl(45, 90%, 50%)" label="Conquistas" />
+              <ProgressRing value={conquistasDesbloqueadas.length} max={CONQUISTAS_KEYS.length} size={90} strokeWidth={7} color="hsl(45, 90%, 50%)" label={t('dashboard.achievements')} />
             </div>
           </motion.div>
 
@@ -293,14 +302,14 @@ export default function DashboardPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
             className="rounded-2xl border border-border/50 bg-card/50 p-6 mb-8">
             <h2 className="font-display text-lg font-medium mb-1 flex items-center gap-2">
-              <Trophy className="w-5 h-5 text-primary" /> Conquistas
+              <Trophy className="w-5 h-5 text-primary" /> {t('dashboard.achievements')}
             </h2>
-            <p className="text-xs text-muted-foreground mb-5">{conquistasDesbloqueadas.length} de {CONQUISTAS.length} desbloqueadas</p>
+            <p className="text-xs text-muted-foreground mb-5">{conquistasDesbloqueadas.length} de {CONQUISTAS_KEYS.length} {t('dashboard.unlocked')}</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-              {CONQUISTAS.map((c, i) => {
-                const desbloqueada = conquistasDesbloqueadas.some(cd => cd.id === c.id);
+              {CONQUISTAS_KEYS.map((key, i) => {
+                const desbloqueada = conquistasDesbloqueadas.includes(key);
                 return (
-                  <motion.div key={c.id} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
+                  <motion.div key={key} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.7 + i * 0.04 }}
                     className={cn(
                       'rounded-xl border p-3 text-center transition-all',
@@ -308,9 +317,9 @@ export default function DashboardPage() {
                         ? 'bg-gradient-to-b from-primary/10 to-primary/5 border-primary/30 shadow-sm shadow-primary/10'
                         : 'bg-muted/20 border-border/30 opacity-40 grayscale'
                     )}>
-                    <div className="text-3xl mb-2">{c.icone}</div>
-                    <p className="text-xs font-semibold leading-tight">{c.titulo}</p>
-                    <p className="text-[10px] text-muted-foreground mt-1 leading-tight">{c.descricao}</p>
+                    <div className="text-3xl mb-2">{CONQUISTAS_ICONS[i]}</div>
+                    <p className="text-xs font-semibold leading-tight">{t(`dashboard.conquista_${key}`)}</p>
+                    <p className="text-[10px] text-muted-foreground mt-1 leading-tight">{t(`dashboard.conquista_${key}_desc`)}</p>
                   </motion.div>
                 );
               })}

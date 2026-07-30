@@ -234,12 +234,12 @@ function BottomNavBarInner() {
                   onClick={toggleMore}
                   aria-label="Mais opcoes"
                   aria-expanded={showMore}
-                  className={`relative flex flex-col items-center justify-center flex-1 h-full transition-colors ${
+                  className={`relative flex flex-col items-center justify-center flex-1 min-h-[44px] py-2 transition-colors ${
                     active ? 'text-primary' : 'text-muted-foreground'
                   }`}
                 >
-                  <tab.icon className="w-5 h-5 mb-1" strokeWidth={active ? 2 : 1.5} />
-<span className="text-[11px] font-medium">{tab.label}</span>
+                  <tab.icon className="w-5 h-5 mb-0.5" strokeWidth={active ? 2 : 1.5} />
+<span className="text-[11px] font-medium leading-tight">{tab.label}</span>
                   {active && (
                     <div className="absolute top-0 w-8 h-[2px] bg-primary rounded-full" />
                   )}
@@ -252,12 +252,12 @@ function BottomNavBarInner() {
                 key={tab.href}
                 href={tab.href}
                 aria-label={tab.label}
-                className={`relative flex flex-col items-center justify-center flex-1 h-full transition-colors ${
+                className={`relative flex flex-col items-center justify-center flex-1 min-h-[44px] py-2 transition-colors ${
                   active ? 'text-primary' : 'text-muted-foreground'
                 }`}
               >
-                <tab.icon className="w-5 h-5 mb-1" strokeWidth={active ? 2 : 1.5} />
-                <span className="text-[10px] font-medium">{tab.label}</span>
+                <tab.icon className="w-5 h-5 mb-0.5" strokeWidth={active ? 2 : 1.5} />
+                <span className="text-[11px] font-medium leading-tight">{tab.label}</span>
                 {active && (
                   <div className="absolute top-0 w-8 h-[2px] bg-primary rounded-full" />
                 )}

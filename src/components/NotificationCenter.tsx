@@ -102,11 +102,11 @@ export function NotificationCenter() {
       <AnimatePresence>
         {isOpen && (
           <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60"
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-black/60"
             onClick={() => setIsOpen(false)}>
             <motion.div initial={{opacity:0,scale:0.95}} animate={{opacity:1,scale:1}} exit={{opacity:0,scale:0.95}}
               onClick={e => e.stopPropagation()}
-              className="w-full max-w-md rounded-2xl border border-gray-200 dark:border-[#2a2724] bg-white dark:bg-[#161412] shadow-2xl overflow-hidden">
+              className="w-full max-w-md rounded-2xl border border-gray-200 dark:border-[#2a2724] bg-white dark:bg-[#161412] shadow-2xl overflow-hidden max-h-[85vh] overflow-y-auto">
 
               {/* Header */}
               <div className="p-5 border-b border-gray-200 dark:border-gray-700/50 flex items-center justify-between">

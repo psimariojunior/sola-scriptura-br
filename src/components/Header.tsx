@@ -68,6 +68,7 @@ const maisGrupos: NavGroup[] = [
       { href: '/cronologia', label: 'Cronologia', icon: History },
       { href: '/personagens', label: 'Personagens', icon: User },
       { href: '/atlas', label: 'Atlas Bíblico', icon: Map },
+      { href: '/explorador', label: 'Explorador de Conceitos', icon: Sparkles },
     ],
   },
   {

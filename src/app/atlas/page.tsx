@@ -1,341 +1,323 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { MapPin, BookOpen, Globe, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ScrollReveal from '@/components/ScrollReveal';
-import Link from 'next/link';
+import { MapPin, Filter, Clock, Route, ChevronDown, ChevronUp, X, BookOpen, Users, Search } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { cn } from '@/lib/utils';
+import { localizacoesBiblicas, rotasBiblicas, periodosHistoricos, type LocalizacaoBiblica, type RotaBiblica } from '@/data/atlasBiblico';
 
-interface LocalBiblico {
-  nome: string;
-  descricao: string;
-  referencia: string;
-  localizacaoAtual: string;
-  lat: number;
-  lng: number;
-  categoria: string;
-}
+const BiblicalMap = dynamic(() => import('@/components/BiblicalMap'), { ssr: false, loading: () => (
+  <div className="w-full h-[500px] md:h-[600px] rounded-2xl bg-muted/30 animate-pulse flex items-center justify-center">
+    <MapPin className="w-8 h-8 text-muted-foreground animate-bounce" />
+  </div>
+)});
 
-const locais: LocalBiblico[] = [
-  {
-    nome: 'Jerusalém',
-    descricao: 'Cidade sagrada, centro do culto no Templo. Local da Paixão, Morte e Ressurreição de Jesus.',
-    referencia: '1 Reis 6:1 · Mateus 21:1 · Atos 1:8',
-    localizacaoAtual: 'Jerusalém, Israel',
-    lat: 31.7683,
-    lng: 35.2137,
-    categoria: 'AT & NT',
-  },
-  {
-    nome: 'Nazaré',
-    descricao: 'Cidade onde Jesus cresceu. Local da Anunciação a Maria e da rejeição de Jesus na sinagoga.',
-    referencia: 'Lucas 1:26-38 · Lucas 4:16-30',
-    localizacaoAtual: 'Nazaré, Israel',
-    lat: 32.6996,
-    lng: 35.3035,
-    categoria: 'NT',
-  },
-  {
-    nome: 'Belém',
-    descricao: 'Cidade natal de Jesus Cristo. Local do nascimento e adoração dos pastores e magos.',
-    referencia: 'Miquéias 5:2 · Mateus 2:1 · Lucas 2:4-7',
-    localizacaoAtual: 'Belém, Palestina',
-    lat: 31.7054,
-    lng: 35.2024,
-    categoria: 'AT & NT',
-  },
-  {
-    nome: 'Roma',
-    descricao: 'Capital do Império Romano. Local onde Paulo foi martirizado e onde a igreja primitiva se firmou.',
-    referencia: 'Atos 28:14-31 · Romanos 1:7',
-    localizacaoAtual: 'Roma, Itália',
-    lat: 41.9028,
-    lng: 12.4964,
-    categoria: 'NT',
-  },
-  {
-    nome: 'Éfeso',
-    descricao: 'Grande cidade comercial da Ásia Menor. Paulo pregou lá por 3 anos; João escreveu o Apocalipse.',
-    referencia: 'Atos 19:1-41 · Efésios 1:1 · Apocalipse 1:11',
-    localizacaoAtual: 'Selçuk, Turquia',
-    lat: 37.9411,
-    lng: 27.3414,
-    categoria: 'NT',
-  },
-  {
-    nome: 'Corinto',
-    descricao: 'Centro mercantil romano. Paulo fundou a igreja e escreveu duas epístolas aos Coríntios.',
-    referencia: 'Atos 18:1-18 · 1 Coríntios 1:2',
-    localizacaoAtual: 'Corinto, Grécia',
-    lat: 37.9088,
-    lng: 22.8758,
-    categoria: 'NT',
-  },
-  {
-    nome: 'Antioquia',
-    descricao: 'Primeiro centro de missões cristãs. Paulo e Barnabé partiram daqui para as missões.',
-    referencia: 'Atos 11:19-26 · Atos 13:1-3',
-    localizacaoAtual: 'Antakya, Turquia',
-    lat: 36.2319,
-    lng: 36.1611,
-    categoria: 'NT',
-  },
-  {
-    nome: 'Damasco',
-    descricao: 'Local da conversão de Saulo (Paulo) na estrada. Fugiu por uma cesta pelas muralhas.',
-    referencia: 'Atos 9:1-25 · 2 Coríntios 11:32-33',
-    localizacaoAtual: 'Damasco, Síria',
-    lat: 33.5138,
-    lng: 36.2765,
-    categoria: 'NT',
-  },
-  {
-    nome: 'Alexandria',
-    descricao: 'Grande centro intelectual. Biblioteca de Alexandria. Lugar onde Apolos ensinava.',
-    referencia: 'Atos 18:24-25',
-    localizacaoAtual: 'Alexandria, Egito',
-    lat: 31.2001,
-    lng: 29.9187,
-    categoria: 'NT',
-  },
-  {
-    nome: 'Cesaréia',
-    descricao: 'Porto romano. Pedro batizou Cornélio aqui. Paulo foi preso e apelou a César.',
-    referencia: 'Atos 10:1-48 · Atos 23:33-25:1',
-    localizacaoAtual: 'Caesarea, Israel',
-    lat: 32.4982,
-    lng: 34.8904,
-    categoria: 'NT',
-  },
-  {
-    nome: 'Samaria',
-    descricao: 'Região entre Galileia e Judeia. Jesus falou com a mulher samaritana no poço.',
-    referencia: 'João 4:1-42 · Atos 1:8',
-    localizacaoAtual: 'Nablus, Palestina',
-    lat: 32.2213,
-    lng: 35.2544,
-    categoria: 'AT & NT',
-  },
-  {
-    nome: 'Galileia',
-    descricao: 'Região onde Jesus cresceu e realizou a maioria de seus milagres e ensinos.',
-    referencia: 'Mateus 4:12-17 · Marcos 1:14-15',
-    localizacaoAtual: 'Norte de Israel',
-    lat: 32.8550,
-    lng: 35.4780,
-    categoria: 'NT',
-  },
-  {
-    nome: 'Judeia',
-    descricao: 'Região ao sul da Galileia. Local da vida pública de Jesus e do ministério em Jerusalém.',
-    referencia: 'Lucas 1:5 · Mateus 2:1 · João 3:22',
-    localizacaoAtual: 'Sul de Israel / Palestina',
-    lat: 31.5000,
-    lng: 35.1000,
-    categoria: 'AT & NT',
-  },
-  {
-    nome: 'Deserto do Sinai',
-    descricao: 'Peregrinação de Israel por 40 anos. Local de provações e mana do céu.',
-    referencia: 'Êxodo 16:1-35 · Números 14:33-34',
-    localizacaoAtual: 'Península do Sinai, Egito',
-    lat: 29.5000,
-    lng: 33.8000,
-    categoria: 'AT',
-  },
-  {
-    nome: 'Monte Sinai',
-    descricao: 'Local onde Moisés recebeu os Dez Mandamentos e a Lei de Deus.',
-    referencia: 'Êxodo 19:1-25 · Êxodo 20:1-17',
-    localizacaoAtual: 'Península do Sinai, Egito',
-    lat: 28.5392,
-    lng: 33.9753,
-    categoria: 'AT',
-  },
-  {
-    nome: 'Monte das Oliveiras',
-    descricao: 'Local do ensino escatológico de Jesus, sua ascensão e futuro local da segunda vinda.',
-    referencia: 'Mateus 24:3 · Lucas 24:50-51 · Atos 1:9-12',
-    localizacaoAtual: 'Jerusalém, Israel',
-    lat: 31.7785,
-    lng: 35.2436,
-    categoria: 'AT & NT',
-  },
-  {
-    nome: 'Vale de Elom',
-    descricao: 'Local do confronto entre Davi e Golias, um dos episódios mais icônicos do AT.',
-    referencia: '1 Samuel 17:1-54',
-    localizacaoAtual: 'Socó, Israel',
-    lat: 31.6700,
-    lng: 34.9300,
-    categoria: 'AT',
-  },
-  {
-    nome: 'Rio Jordão',
-    descricao: 'Local do batismo de Jesus por João Batista. Os israelitas cruzaram na Conquista.',
-    referencia: 'Josué 3:14-17 · Mateus 3:13-17',
-    localizacaoAtual: 'Vale do Jordão, Israel/Jordânia',
-    lat: 31.8500,
-    lng: 35.5500,
-    categoria: 'AT & NT',
-  },
-  {
-    nome: 'Mar Morto',
-    descricao: 'Lago salgado mais baixo do mundo. Local de Sodoma e Gomorra. Descobertas do Pergaminho do Mar Morto.',
-    referencia: 'Gênesis 14:3 · Êxodo 14:27 · 2 Crônicas 20:2',
-    localizacaoAtual: 'Israel / Jordânia',
-    lat: 31.5000,
-    lng: 35.5000,
-    categoria: 'AT',
-  },
-  {
-    nome: 'Mar da Galileia',
-    descricao: 'Lago onde Jesus andou sobre as águas, acalmou a tempestade e chamou os pescadores.',
-    referencia: 'Mateus 14:22-33 · Lucas 5:1-11',
-    localizacaoAtual: 'Lago Tiberíades, Israel',
-    lat: 32.8333,
-    lng: 35.5833,
-    categoria: 'NT',
-  },
+const CATEGORIAS: { id: LocalizacaoBiblica['categoria']; label: string; icone: string; cor: string }[] = [
+  { id: 'cidade', label: 'Cidades', icone: '🏛', cor: '#3b82f6' },
+  { id: 'montanha', label: 'Montanhas', icone: '⛰', cor: '#a16207' },
+  { id: 'rio', label: 'Rios', icone: '🏞', cor: '#0284c7' },
+  { id: 'mar', label: 'Mares', icone: '🌊', cor: '#0891b2' },
+  { id: 'deserto', label: 'Desertos', icone: '🏜', cor: '#d97706' },
+  { id: 'vale', label: 'Vales', icone: '🌿', cor: '#65a30d' },
+  { id: 'porto', label: 'Portos', icone: '⚓', cor: '#0369a1' },
+  { id: 'santuario', label: 'Santuários', icone: '✝', cor: '#dc2626' },
+  { id: 'pais', label: 'Países', icone: '🗺', cor: '#7c3aed' },
+  { id: 'regiao', label: 'Regiões', icone: '📍', cor: '#059669' },
 ];
 
-const categorias = ['Todos', 'AT', 'NT', 'AT & NT'];
-
 export default function AtlasPage() {
-  const [filtro, setFiltro] = useState('Todos');
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [catFiltro, setCatFiltro] = useState<Set<string>>(new Set(CATEGORIAS.map(c => c.id)));
+  const [periodoFiltro, setPeriodoFiltro] = useState<string | null>(null);
+  const [rotaAtiva, setRotaAtiva] = useState<string | null>(null);
+  const [localSel, setLocalSel] = useState<LocalizacaoBiblica | null>(null);
+  const [busca, setBusca] = useState('');
+  const [mostrarFiltros, setMostrarFiltros] = useState(false);
 
-  const locaisFiltrados = filtro === 'Todos' ? locais : locais.filter((l) => l.categoria === filtro);
+  const locaisFiltrados = useMemo(() => {
+    return localizacoesBiblicas.filter(l => {
+      if (!catFiltro.has(l.categoria)) return false;
+      if (periodoFiltro && l.periodo !== periodoFiltro && l.periodo !== 'ambos') return false;
+      if (busca) {
+        const q = busca.toLowerCase();
+        return l.nome.toLowerCase().includes(q) || l.nomeHebraico?.toLowerCase().includes(q) || l.nomeGriego?.toLowerCase().includes(q);
+      }
+      return true;
+    });
+  }, [catFiltro, periodoFiltro, busca]);
+
+  const rotasFiltradas = useMemo(() => {
+    if (!rotaAtiva) return [];
+    return rotasBiblicas.filter(r => r.id === rotaAtiva);
+  }, [rotaAtiva]);
+
+  const toggleCat = useCallback((cat: string) => {
+    setCatFiltro(prev => {
+      const next = new Set(prev);
+      if (next.has(cat)) next.delete(cat); else next.add(cat);
+      return next;
+    });
+  }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen flex flex-col">
       <Header />
+      <main className="flex-1 pt-20 pb-8 px-4">
+        <div className="max-w-7xl mx-auto">
 
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-background via-primary/5 to-background pt-12 pb-16 md:pt-20 md:pb-24">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
-          backgroundImage: 'radial-gradient(circle at 30% 50%, hsl(var(--primary)) 0%, transparent 50%), radial-gradient(circle at 70% 50%, hsl(var(--primary)) 0%, transparent 50%)',
-        }} />
-        <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <MapPin className="w-4 h-4" />
-              Atlas Bíblico Interativo
+          {/* ═══ HERO ═══ */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+            className="mb-6">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 flex items-center justify-center border border-emerald-500/20">
+                <MapPin className="w-5 h-5 text-emerald-600" />
+              </div>
+              <div>
+                <h1 className="font-display text-2xl md:text-3xl font-light">
+                  Atlas <span className="text-primary italic">Bíblico</span>
+                </h1>
+                <p className="text-xs text-muted-foreground">{localizacoesBiblicas.length} locais · {rotasBiblicas.length} rotas · 12 períodos históricos</p>
+              </div>
             </div>
-            <h1 className="text-3xl md:text-5xl font-display font-bold mb-4">
-              Locais Sagrados da{' '}
-              <span className="text-primary">Escritura</span>
-            </h1>
-            <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-              Explore os lugares que moldaram a história bíblica — desde as cidades do Antigo Testamento
-              até as igrejas do Novo Testamento.
-            </p>
           </motion.div>
-        </div>
-      </section>
 
-      {/* Filtros */}
-      <section className="max-w-7xl mx-auto px-4 md:px-6 mb-8">
-        <div className="flex flex-wrap gap-2 justify-center">
-          {categorias.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setFiltro(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                filtro === cat
-                  ? 'bg-primary text-primary-foreground shadow-md'
-                  : 'bg-card text-muted-foreground hover:bg-card/80 border border-border'
-              }`}
-            >
-              {cat}
+          {/* ═══ TOOLBAR ═══ */}
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+            className="flex flex-wrap items-center gap-2 mb-4">
+            {/* Busca */}
+            <div className="relative flex-1 min-w-[200px] max-w-sm">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input value={busca} onChange={e => setBusca(e.target.value)}
+                placeholder="Buscar local..."
+                className="w-full pl-9 pr-3 py-2 rounded-xl border border-border/50 bg-card/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            </div>
+            {/* Filtros toggle */}
+            <button onClick={() => setMostrarFiltros(!mostrarFiltros)}
+              className={cn('flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-medium transition-all',
+                mostrarFiltros ? 'bg-primary/10 border-primary/30 text-primary' : 'border-border/50 bg-card/50 hover:bg-muted/50')}>
+              <Filter className="w-4 h-4" /> Filtros
+              {mostrarFiltros ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
             </button>
-          ))}
-        </div>
-      </section>
+            {/* Rotas */}
+            <div className="relative group">
+              <button className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border/50 bg-card/50 text-sm font-medium hover:bg-muted/50 transition-all">
+                <Route className="w-4 h-4" /> Rotas
+              </button>
+              <div className="absolute right-0 top-full mt-1 w-72 rounded-xl border border-border bg-card shadow-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                <button onClick={() => setRotaAtiva(null)}
+                  className={cn('w-full text-left px-3 py-2 rounded-lg text-sm transition-colors', !rotaAtiva ? 'bg-primary/10 text-primary' : 'hover:bg-muted/50')}>
+                  Nenhuma rota
+                </button>
+                {rotasBiblicas.map(r => (
+                  <button key={r.id} onClick={() => setRotaAtiva(r.id)}
+                    className={cn('w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center gap-2',
+                      rotaAtiva === r.id ? 'bg-primary/10 text-primary' : 'hover:bg-muted/50')}>
+                    <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: r.cor }} />
+                    <span className="truncate">{r.nome}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
 
-      {/* Grid de Locais */}
-      <section className="max-w-7xl mx-auto px-4 md:px-6 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {locaisFiltrados.map((local, idx) => (
-            <ScrollReveal key={local.nome} delay={idx * 0.05}>
-              <motion.div
-                className="group relative bg-card border border-border rounded-xl p-6 hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
-                onMouseEnter={() => setHoveredIdx(idx)}
-                onMouseLeave={() => setHoveredIdx(null)}
-                whileHover={{ y: -3 }}
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
-                      <MapPin className="w-5 h-5 text-primary" />
+          {/* ═══ FILTROS EXPANDÍVEIS ═══ */}
+          <AnimatePresence>
+            {mostrarFiltros && (
+              <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
+                className="overflow-hidden mb-4">
+                <div className="rounded-2xl border border-border/50 bg-card/50 p-4 space-y-4">
+                  {/* Categorias */}
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Categorias</p>
+                    <div className="flex flex-wrap gap-2">
+                      {CATEGORIAS.map(cat => (
+                        <button key={cat.id} onClick={() => toggleCat(cat.id)}
+                          className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border transition-all',
+                            catFiltro.has(cat.id)
+                              ? 'border-primary/30 bg-primary/10 text-primary'
+                              : 'border-border/50 bg-muted/20 text-muted-foreground opacity-50')}>
+                          <span>{cat.icone}</span> {cat.label}
+                        </button>
+                      ))}
                     </div>
-                    <div>
-                      <h3 className="font-display font-semibold text-lg">{local.nome}</h3>
-                      <span className="text-xs text-muted-foreground bg-muted/50 px-2 py-0.5 rounded-full">
-                        {local.categoria}
-                      </span>
+                  </div>
+                  {/* Períodos */}
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Período Histórico</p>
+                    <div className="flex flex-wrap gap-2">
+                      <button onClick={() => setPeriodoFiltro(null)}
+                        className={cn('px-3 py-1.5 rounded-full text-xs font-medium border transition-all',
+                          !periodoFiltro ? 'border-primary/30 bg-primary/10 text-primary' : 'border-border/50 bg-muted/20 text-muted-foreground')}>
+                        Todos
+                      </button>
+                      {periodosHistoricos.map(p => (
+                        <button key={p.id} onClick={() => setPeriodoFiltro(p.id)}
+                          className={cn('px-3 py-1.5 rounded-full text-xs font-medium border transition-all',
+                            periodoFiltro === p.id ? 'border-primary/30 bg-primary/10 text-primary' : 'border-border/50 bg-muted/20 text-muted-foreground')}>
+                          {p.nome}
+                        </button>
+                      ))}
                     </div>
                   </div>
                 </div>
-
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                  {local.descricao}
-                </p>
-
-                <div className="flex items-center gap-2 mb-3 text-xs text-primary/80">
-                  <BookOpen className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>{local.referencia}</span>
-                </div>
-
-                <div className="flex items-center gap-2 text-xs text-muted-foreground border-t border-border pt-3">
-                  <Globe className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>{local.localizacaoAtual}</span>
-                </div>
-
-                <a
-                  href={`https://www.google.com/maps?q=${local.lat},${local.lng}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
-                >
-                  Ver no Google Maps
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </a>
               </motion.div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
+            )}
+          </AnimatePresence>
 
-      {/* Mapa Embedado (Leaflet/OpenStreetMap) */}
-      <section className="max-w-7xl mx-auto px-4 md:px-6 pb-20">
-        <ScrollReveal>
-          <div className="bg-card border border-border rounded-xl overflow-hidden">
-            <div className="p-4 border-b border-border">
-              <h2 className="font-display font-semibold text-lg flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-primary" />
-                Mapa dos Locais Bíblicos
-              </h2>
-            </div>
-            <div className="relative w-full" style={{ height: '500px' }}>
-              <iframe
-                src="https://www.openstreetmap.org/export/embed.html?bbox=10%2C25%2C45%2C40&amp;layer=mapnik"
-                className="w-full h-full border-0"
-                title="Mapa de Locais Bíblicos"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-background/20 to-transparent" />
-            </div>
+          {/* ═══ MAPA ═══ */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+            className="rounded-2xl border border-border/50 overflow-hidden shadow-lg mb-6">
+            <BiblicalMap
+              locais={locaisFiltrados}
+              rotas={rotasFiltradas}
+              selectedId={localSel?.id ?? null}
+              onSelect={(id) => setLocalSel(id ? localizacoesBiblicas.find(l => l.id === id) ?? null : null)}
+              visibleCategories={catFiltro as Set<LocalizacaoBiblica['categoria']>}
+              visibleRotas={new Set(rotasFiltradas.map(r => r.id))}
+            />
+          </motion.div>
+
+          {/* ═══ LEGENDA ═══ */}
+          <div className="flex flex-wrap gap-3 mb-6 text-[11px] text-muted-foreground">
+            {CATEGORIAS.filter(c => catFiltro.has(c.id)).map(c => (
+              <span key={c.id} className="flex items-center gap-1">
+                <span className="w-3 h-3 rounded-full" style={{ backgroundColor: c.cor }} />
+                {c.icone} {c.label}
+              </span>
+            ))}
           </div>
-        </ScrollReveal>
-      </section>
 
+          {/* ═══ DETALHE DO LOCAL SELECIONADO ═══ */}
+          <AnimatePresence>
+            {localSel && (
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}
+                className="rounded-2xl border border-primary/20 bg-gradient-to-b from-primary/5 to-card/50 p-5 mb-6 relative">
+                <button onClick={() => setLocalSel(null)}
+                  className="absolute top-3 right-3 w-7 h-7 rounded-full bg-muted/50 flex items-center justify-center hover:bg-muted transition-colors">
+                  <X className="w-4 h-4" />
+                </button>
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
+                    style={{ backgroundColor: `${CATEGORIAS.find(c => c.id === localSel.categoria)?.cor}20` }}>
+                    {CATEGORIAS.find(c => c.id === localSel.categoria)?.icone}
+                  </div>
+                  <div>
+                    <h3 className="font-display text-xl font-medium">{localSel.nome}</h3>
+                    {localSel.nomeHebraico && <p className="text-sm text-muted-foreground">{localSel.nomeHebraico}</p>}
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{localSel.descricao}</p>
+
+                {/* Versículos */}
+                {localSel.versiculos.length > 0 && (
+                  <div className="mb-4">
+                    <p className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1">
+                      <BookOpen className="w-3 h-3" /> Referências
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {localSel.versiculos.slice(0, 8).map((v, i) => (
+                        <span key={i} className="px-2 py-1 rounded-lg bg-primary/10 text-primary text-xs font-medium">{v}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Eventos */}
+                {localSel.eventos.length > 0 && (
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1">
+                      <Users className="w-3 h-3" /> Eventos Históricos
+                    </p>
+                    <div className="space-y-2">
+                      {localSel.eventos.slice(0, 4).map((ev, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                          <div>
+                            <p className="text-sm font-medium">{ev.titulo}</p>
+                            <p className="text-xs text-muted-foreground">{ev.descricao}</p>
+                            {ev.versiculos.length > 0 && (
+                              <p className="text-[10px] text-primary mt-0.5">{ev.versiculos.join(' · ')}</p>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* ═══ TIMELINE ═══ */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
+            className="rounded-2xl border border-border/50 bg-card/50 p-6 mb-6">
+            <h2 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
+              <Clock className="w-5 h-5 text-primary" /> Linha do Tempo Bíblica
+            </h2>
+            <div className="relative">
+              {/* Linha central */}
+              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/40 via-primary/20 to-transparent" />
+              <div className="space-y-6">
+                {periodosHistoricos.map((p, i) => (
+                  <motion.div key={p.id} initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+                    animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 + i * 0.05 }}
+                    className={cn('relative flex items-start gap-4', i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse')}>
+                    <div className="hidden md:block flex-1" />
+                    <div className="w-8 h-8 rounded-full border-2 flex items-center justify-center shrink-0 z-10 bg-card"
+                      style={{ borderColor: p.cor }}>
+                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: p.cor }} />
+                    </div>
+                    <div className="flex-1">
+                      <button onClick={() => setPeriodoFiltro(periodoFiltro === p.id ? null : p.id)}
+                        className={cn('w-full text-left rounded-xl border p-3 transition-all',
+                          periodoFiltro === p.id ? 'border-primary/30 bg-primary/5' : 'border-border/30 hover:border-primary/20 hover:bg-muted/30')}>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-xs font-bold" style={{ color: p.cor }}>{p.inicio > 0 ? `${p.inicio} a.C.` : `${Math.abs(p.inicio)} a.C.`}</span>
+                          <span className="text-sm font-semibold">{p.nome}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{p.descricao}</p>
+                      </button>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ═══ GRID DE LOCAIS ═══ */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
+            className="mb-8">
+            <h2 className="font-display text-lg font-medium mb-4">
+              {locaisFiltrados.length} Locais Encontrados
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {locaisFiltrados.slice(0, 30).map((local, i) => {
+                const catInfo = CATEGORIAS.find(c => c.id === local.categoria);
+                return (
+                  <motion.button key={local.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 + i * 0.02 }}
+                    onClick={() => setLocalSel(local)}
+                    className={cn('text-left rounded-xl border p-3 transition-all hover:scale-[1.01]',
+                      localSel?.id === local.id ? 'border-primary/30 bg-primary/5' : 'border-border/30 hover:border-primary/20 bg-card/50')}>
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <span className="text-lg">{catInfo?.icone}</span>
+                      <span className="font-medium text-sm">{local.nome}</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">{local.descricao}</p>
+                    <div className="flex flex-wrap gap-1 mt-2">
+                      {local.versiculos.slice(0, 3).map((v, vi) => (
+                        <span key={vi} className="text-[10px] px-1.5 py-0.5 rounded bg-primary/10 text-primary">{v}</span>
+                      ))}
+                    </div>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </motion.div>
+        </div>
+      </main>
       <Footer />
     </div>
   );

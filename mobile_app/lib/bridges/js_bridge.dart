@@ -23,6 +23,12 @@ class JsBridge {
         var encodedName = encodeURIComponent(filename || 'image.png');
         window.location.href = 'ssb-share-image://' + encoded + '?name=' + encodedName;
       };
+
+      window.__SSB_NOTIFICATION = function(enabled, hour, minute) {
+        if (window.SSBNotification) {
+          window.SSBNotification.postMessage(enabled + '|' + hour + '|' + minute);
+        }
+      };
       
       window.__SSB_READY = true;
       window.dispatchEvent(new CustomEvent('ssb:ready', { detail: { platform: 'flutter' } }));

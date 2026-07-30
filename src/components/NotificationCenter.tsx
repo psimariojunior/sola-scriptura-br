@@ -55,11 +55,19 @@ export function NotificationCenter() {
   }, []);
 
   const ativarNotificacoes = useCallback(async () => {
-    salvarSettings({ ...settings, enabled: true });
+    const newSettings = { ...settings, enabled: true };
+    salvarSettings(newSettings);
+    if (typeof window !== 'undefined' && typeof (window as unknown as Record<string, unknown>).__SSB_NOTIFICATION === 'function') {
+      (window as unknown as Record<string, (a: string, b: number, c: number) => void>).__SSB_NOTIFICATION('true', newSettings.hora, newSettings.minuto);
+    }
   }, [settings, salvarSettings]);
 
   const desativarNotificacoes = useCallback(() => {
-    salvarSettings({ ...settings, enabled: false });
+    const newSettings = { ...settings, enabled: false };
+    salvarSettings(newSettings);
+    if (typeof window !== 'undefined' && typeof (window as unknown as Record<string, unknown>).__SSB_NOTIFICATION === 'function') {
+      (window as unknown as Record<string, (a: string, b: number, c: number) => void>).__SSB_NOTIFICATION('false', 0, 0);
+    }
   }, [settings, salvarSettings]);
 
   const agendarLembrete = useCallback((s: NotificationSettings) => {
@@ -132,12 +140,24 @@ export function NotificationCenter() {
                     <div>
                       <p className="text-sm font-medium mb-2 flex items-center gap-1 text-gray-900 dark:text-gray-100"><Clock className="w-4 h-4" /> Horário do lembrete</p>
                       <div className="flex gap-2">
-                        <select value={settings.hora} onChange={e => salvarSettings({ ...settings, hora: Number(e.target.value) })}
+                        <select value={settings.hora} onChange={e => {
+                          const newSettings = { ...settings, hora: Number(e.target.value) };
+                          salvarSettings(newSettings);
+                          if (typeof window !== 'undefined' && typeof (window as unknown as Record<string, unknown>).__SSB_NOTIFICATION === 'function') {
+                            (window as unknown as Record<string, (a: string, b: number, c: number) => void>).__SSB_NOTIFICATION(newSettings.enabled ? 'true' : 'false', newSettings.hora, newSettings.minuto);
+                          }
+                        }}
                           className="flex-1 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100">
                           {Array.from({length:24},(_,i)=>(<option key={i} value={i}>{String(i).padStart(2,'0')}</option>))}
                         </select>
                         <span className="text-gray-400 self-center">:</span>
-                        <select value={settings.minuto} onChange={e => salvarSettings({ ...settings, minuto: Number(e.target.value) })}
+                        <select value={settings.minuto} onChange={e => {
+                          const newSettings = { ...settings, minuto: Number(e.target.value) };
+                          salvarSettings(newSettings);
+                          if (typeof window !== 'undefined' && typeof (window as unknown as Record<string, unknown>).__SSB_NOTIFICATION === 'function') {
+                            (window as unknown as Record<string, (a: string, b: number, c: number) => void>).__SSB_NOTIFICATION(newSettings.enabled ? 'true' : 'false', newSettings.hora, newSettings.minuto);
+                          }
+                        }}
                           className="flex-1 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-gray-100">
                           {[0,15,30,45].map(m=>(<option key={m} value={m}>{String(m).padStart(2,'0')}</option>))}
                         </select>

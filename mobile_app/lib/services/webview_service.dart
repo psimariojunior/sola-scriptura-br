@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../config/constants.dart';
 import '../bridges/js_bridge.dart';
+import 'notification_service.dart';
 
 class WebViewService {
   late final WebViewController controller;
@@ -29,11 +30,9 @@ class WebViewService {
       ..setUserAgent(AppConstants.userAgent)
       ..setNavigationDelegate(_createNavigationDelegate())
       ..setOnConsoleMessage(_onConsoleMessage)
+      ..addJavaScriptChannel('SSBNotification', onMessageReceived: _onNotificationMessage)
       ..clearCache()
       ..clearLocalStorage();
-
-    // Do NOT clear cache — preserve offline content
-    // Cache is cleared only on first install or explicit user action
 
     _isInitialized = true;
   }
@@ -122,6 +121,27 @@ class WebViewService {
 
   void _onConsoleMessage(JavaScriptConsoleMessage message) {
     debugPrint('WebView Console [${message.level.name}]: ${message.message}');
+  }
+
+  void _onNotificationMessage(JavaScriptMessage message) {
+    try {
+      final data = message.message.split('|');
+      final action = data[0];
+      final enabled = data[1] == 'true';
+      final hour = int.tryParse(data[2]) ?? 8;
+      final minute = int.tryParse(data[3]) ?? 0;
+
+      debugPrint('[WebViewService] Notification: $action enabled=$enabled hour=$hour');
+
+      final notifService = NotificationService();
+      if (enabled) {
+        notifService.scheduleDailyVerseReminder(hour: hour, minute: minute);
+      } else {
+        notifService.cancelDailyVerseReminder();
+      }
+    } catch (e) {
+      debugPrint('[WebViewService] Notification message error: $e');
+    }
   }
 
   void setOnlineStatus(bool isOnline) {

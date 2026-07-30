@@ -175,7 +175,6 @@ export function checkAndUnlock(event: {
   switch (event.type) {
     case 'lesson_completed':
       tryUnlock('first_lesson_completed');
-      tryIncrement('fast_learner', 1);
       break;
 
     case 'module_completed':
@@ -196,7 +195,7 @@ export function checkAndUnlock(event: {
 
     case 'lessons_today': {
       const count = (event.data?.count as number) || 0;
-      if (count >= 3) tryUnlock('fast_learner');
+      tryIncrement('fast_learner', count);
       break;
     }
 
@@ -216,11 +215,13 @@ export function checkAndUnlock(event: {
     }
   }
 
-  // Check streak achievements after every event
-  const streak = incrementStreak();
-  if (streak >= 3) tryUnlock('streak_3');
-  if (streak >= 7) tryUnlock('streak_7');
-  if (streak >= 30) tryUnlock('streak_30');
+  // Check streak achievements only for study-related events
+  if (event.type === 'lesson_completed' || event.type === 'study_time') {
+    const streak = incrementStreak();
+    if (streak >= 3) tryUnlock('streak_3');
+    if (streak >= 7) tryUnlock('streak_7');
+    if (streak >= 30) tryUnlock('streak_30');
+  }
 
   return newlyUnlocked;
 }

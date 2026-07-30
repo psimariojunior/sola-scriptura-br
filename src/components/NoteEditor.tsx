@@ -46,6 +46,16 @@ export function NoteEditor({ lessonId, existingNote, className }: NoteEditorProp
     [lessonId]
   );
 
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        const text = textareaRef.current?.value;
+        if (text) saveNote(lessonId, text);
+      }
+    };
+  }, [lessonId]);
+
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       const value = e.target.value;

@@ -176,8 +176,10 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               <PageTransition><ErrorBoundary>{children}</ErrorBoundary></PageTransition>
               <BackToTop />
               <FloatingDonateButton />
-              <Suspense fallback={null}>
+              <Suspense fallback={<div className="fixed bottom-0 left-0 right-0 h-16 bg-[var(--surface-raised)] border-t border-[var(--border)] sm:hidden" />}>
                 <BottomNavBar />
+              </Suspense>
+              <Suspense fallback={null}>
                 <AIPainelLateral />
                 <AIMiniPainel />
               </Suspense>

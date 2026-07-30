@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { GraduationCap, BookOpen, CheckCircle2, Clock, ChevronRight, Award, Play, FileText, HelpCircle, ArrowLeft, Download, Share2, RotateCcw, Users, BarChart3, ClipboardCheck, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -90,6 +90,8 @@ export function BibleCourses() {
     salvarResultadoQuiz(cursoId, aulaId, pontuacao, total, aprovado);
     marcarAulaCompleta(cursoId, aulaId);
     refreshProgress(cursoId);
+    checkAndUnlock({ type: 'lesson_completed' });
+    checkAndUnlock({ type: 'study_time' });
     if (aprovado) {
       const curso = getCurso(cursoId);
       if (curso) {
@@ -98,6 +100,7 @@ export function BibleCourses() {
         if (prog && prog.aulasCompletas.length >= totalAulas) {
           marcarCursoConcluido(cursoId);
           refreshProgress(cursoId);
+          checkAndUnlock({ type: 'course_completed' });
         }
       }
       setState({ tela: 'certificado', cursoId });
@@ -147,25 +150,13 @@ export function BibleCourses() {
     const curso = getCurso(state.cursoId);
     if (!curso) return null;
     return (
-      <div className="flex flex-col h-full items-center justify-center p-6 text-center">
-        <div className="animate-scale-in">
-          <Award className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
-          <h2 className="text-xl font-bold mb-2">Parabéns!</h2>
-          <p className="text-sm text-[var(--content-muted)] mb-6">Você concluiu o curso <strong>{curso.título}</strong></p>
-          <canvas ref={canvasRef} width={540} height={420} className="rounded-lg shadow-2xl mb-4 max-w-full" />
-          <div className="flex gap-3 justify-center flex-wrap">
-            <Button onClick={() => handleBaixarCertificado(curso.título)} className="bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
-              <Download className="w-4 h-4 mr-2" /> Baixar Certificado
-            </Button>
-            <Button variant="outline" onClick={() => handleCompartilharCertificado(curso.título)}>
-              <Share2 className="w-4 h-4 mr-2" /> Compartilhar
-            </Button>
-            <Button variant="outline" onClick={() => setState({ tela: 'lista' })}>
-              <ArrowLeft className="w-4 h-4 mr-2" /> Voltar
-            </Button>
-          </div>
-        </div>
-      </div>
+      <CertificadoView
+        curso={curso}
+        canvasRef={canvasRef}
+        onBaixar={() => handleBaixarCertificado(curso.título)}
+        onCompartilhar={() => handleCompartilharCertificado(curso.título)}
+        onVoltar={() => setState({ tela: 'lista' })}
+      />
     );
   }
 
@@ -305,6 +296,38 @@ export function BibleCourses() {
           })}
         </div>
       </ScrollArea>
+    </div>
+  );
+}
+
+function CertificadoView({ curso, canvasRef, onBaixar, onCompartilhar, onVoltar }: { curso: Curso; canvasRef: React.RefObject<HTMLCanvasElement | null>; onBaixar: () => void; onCompartilhar: () => void; onVoltar: () => void }) {
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    import('@/lib/certificado').then(({ gerarCertificado }) => {
+      gerarCertificado(canvas, 'Estudante da Bíblia', curso.título, new Date().toISOString()).catch(() => {});
+    });
+  }, [curso.título, canvasRef]);
+
+  return (
+    <div className="flex flex-col h-full items-center justify-center p-6 text-center">
+      <div className="animate-scale-in">
+        <Award className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
+        <h2 className="text-xl font-bold mb-2">Parabéns!</h2>
+        <p className="text-sm text-[var(--content-muted)] mb-6">Você concluiu o curso <strong>{curso.título}</strong></p>
+        <canvas ref={canvasRef} width={540} height={420} className="rounded-lg shadow-2xl mb-4 max-w-full" />
+        <div className="flex gap-3 justify-center flex-wrap">
+          <Button onClick={onBaixar} className="bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
+            <Download className="w-4 h-4 mr-2" /> Baixar Certificado
+          </Button>
+          <Button variant="outline" onClick={onCompartilhar}>
+            <Share2 className="w-4 h-4 mr-2" /> Compartilhar
+          </Button>
+          <Button variant="outline" onClick={onVoltar}>
+            <ArrowLeft className="w-4 h-4 mr-2" /> Voltar
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

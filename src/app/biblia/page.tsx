@@ -258,7 +258,7 @@ export default function BibliaPage() {
                 {ui.showPlan && <ReadingPlanBanner />}
                 {nav.loading && !nav.temDados ? (
                   <div className="space-y-4 chapter-enter"><div className="skeleton skeleton-title w-48 mx-auto animate-pulse" /><div className="ornament w-20 mx-auto mb-8 opacity-30" />
-                    {Array.from({ length: 10 }).map((_, i) => (<div key={i} className="flex gap-3 items-center" style={{ animationDelay: `${i * 50}ms` }}><div className="skeleton skeleton-text w-10 h-10 shrink-0 rounded-lg" /><div className="skeleton skeleton-text flex-1 rounded" style={{ width: `${60 + Math.random() * 40}%` }} /></div>))}
+                    {Array.from({ length: 10 }).map((_, i) => (<div key={i} className="flex gap-3 items-center" style={{ animationDelay: `${i * 50}ms` }}><div className="skeleton skeleton-text w-10 h-10 shrink-0 rounded-lg" /><div className="skeleton skeleton-text flex-1 rounded" style={{ width: `${[75, 85, 65, 90, 70, 80, 60, 95, 72, 88][i]}%` }} /></div>))}
                   </div>
                 ) : nav.offlineUnavailable ? (
                   <div className="text-center py-20"><WifiOff className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} /><p className="text-lg text-[var(--content-muted)]">{t('biblia.chapterOffline')}</p><p className="text-sm text-[var(--content-muted)] mt-2">{t('biblia.connectOrDownload')}</p></div>

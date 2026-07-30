@@ -180,8 +180,11 @@ export function gerarCertificado(canvas: HTMLCanvasElement, nomeAluno: string, n
   ctx.font = '11px Inter, sans-serif';
   ctx.fillText('solascripturabr.com.br', W / 2, H - 50);
 
-  return new Promise((resolve) => {
-    canvas.toBlob((blob) => resolve(blob!), 'image/png', 0.95);
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) resolve(blob);
+      else reject(new Error('Falha ao gerar imagem do certificado'));
+    }, 'image/png', 0.95);
   });
 }
 
@@ -195,6 +198,8 @@ export function baixarCertificado(canvas: HTMLCanvasElement, nomeAluno: string, 
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  }).catch(() => {
+    alert('Não foi possível gerar o certificado. Tente novamente.');
   });
 }
 

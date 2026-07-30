@@ -79,7 +79,6 @@ function drawCertificate(
   ctx.font = 'bold 14px "Inter", "Segoe UI", sans-serif';
   ctx.fillStyle = '#d4af37';
   ctx.textAlign = 'center';
-  ctx.letterSpacing = '6px';
   ctx.fillText('S O L A   S C R I P T U R A', width / 2, 110);
 
   // Subtitle

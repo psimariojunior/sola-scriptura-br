@@ -131,7 +131,7 @@ function DetalhePalavra({ strong, onClose }: { strong: string; onClose: () => vo
         <div className="absolute top-0 left-0 w-1 h-full rounded-l-xl bg-[var(--brand-default)]" />
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${isHebrew ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300' : 'bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300'}`}>
+            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${isHebrew ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)]' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)] border border-[var(--border)]/30'}`}>
               {strong}
             </span>
             <span className="text-[10px] text-[var(--content-muted)] font-medium">{isHebrew ? 'Hebraico' : 'Grego'}</span>
@@ -157,12 +157,12 @@ function DetalhePalavra({ strong, onClose }: { strong: string; onClose: () => vo
         )}
 
         {definicaoResumida && (
-          <div className="bg-amber-50 dark:bg-amber-950/50 rounded-lg p-3 mb-2 border border-amber-200/50 dark:border-amber-800/30">
+          <div className="bg-[var(--surface-sunken)] rounded-lg p-3 mb-2 border border-[var(--border)]/40">
             <div className="flex items-center gap-1 mb-1">
-              <BookOpen className="w-3 h-3 text-amber-600 dark:text-amber-400" />
-              <span className="text-[9px] font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">Definição</span>
+              <BookOpen className="w-3 h-3 text-[var(--brand-default)]" />
+              <span className="text-[9px] font-semibold uppercase tracking-wider text-[var(--brand-default)]">Definição</span>
             </div>
-            <p className="text-xs font-medium text-amber-900 dark:text-amber-200 leading-relaxed">{definicaoResumida}</p>
+            <p className="text-xs font-medium text-[var(--content-primary)] leading-relaxed">{definicaoResumida}</p>
           </div>
         )}
 

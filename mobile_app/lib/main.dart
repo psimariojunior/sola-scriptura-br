@@ -121,6 +121,8 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
       if (_appLock.isEnabled && !_appLock.isAuthenticated) {
         _authenticate();
       }
+      // Reschedule notifications on every resume (handles alarm loss)
+      NotificationService().rescheduleFromPrefs();
     }
   }
 

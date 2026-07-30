@@ -31,8 +31,7 @@ class WebViewService {
       ..setNavigationDelegate(_createNavigationDelegate())
       ..setOnConsoleMessage(_onConsoleMessage)
       ..addJavaScriptChannel('SSBNotification', onMessageReceived: _onNotificationMessage)
-      ..clearCache()
-      ..clearLocalStorage();
+      ..clearCache();
 
     _isInitialized = true;
   }

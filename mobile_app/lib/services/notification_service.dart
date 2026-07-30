@@ -194,6 +194,7 @@ class NotificationService {
     await prefs.setInt(_prefsKeyHour, hour);
     await prefs.setInt(_prefsKeyMinute, minute);
     await prefs.setBool(_prefsKeyEnabled, true);
+    await prefs.setBool('ssb_needs_reschedule', false);
 
     // Cancel any previous scheduled notification
     await _localNotifications.cancel(_scheduledKeyId);
@@ -229,25 +230,42 @@ class NotificationService {
       scheduled = scheduled.add(const Duration(days: 1));
     }
 
-    debugPrint('[NotificationService] Scheduling for: $scheduled (now=$now, hour=$hour, minute=$minute)');
+    debugPrint('[NotificationService] Scheduling for: $scheduled (now=$now, hour=$hour, minute=$minute, tz=${tz.local.name})');
+
+    // Check if exact alarms are allowed (Android 12+)
+    bool canUseExact = true;
+    try {
+      final androidPlugin = _localNotifications
+          .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+      // This will throw if SCHEDULE_EXACT_ALARM is not granted
+      canUseExact = await androidPlugin?.canScheduleExactNotifications() ?? true;
+    } catch (e) {
+      debugPrint('[NotificationService] Cannot check exact alarm permission: $e');
+      canUseExact = false;
+    }
+
+    final scheduleMode = canUseExact
+        ? AndroidScheduleMode.exactAllowWhileIdle
+        : AndroidScheduleMode.inexactAllowWhileIdle;
+
+    debugPrint('[NotificationService] Using schedule mode: $scheduleMode (canUseExact=$canUseExact)');
 
     try {
-      // Try exact alarm first
       await _localNotifications.zonedSchedule(
         _scheduledKeyId,
         title,
         body,
         scheduled,
         details,
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        androidScheduleMode: scheduleMode,
         uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
         matchDateTimeComponents: DateTimeComponents.time,
         payload: '/biblia',
       );
-      debugPrint('[NotificationService] Scheduled OK for $hour:${minute.toString().padLeft(2, '0')}');
+      debugPrint('[NotificationService] ✅ Scheduled OK for $hour:${minute.toString().padLeft(2, '0')} (mode=$scheduleMode)');
     } catch (e) {
-      debugPrint('[NotificationService] Exact alarm failed: $e');
-      // Fallback: try without exact alarm
+      debugPrint('[NotificationService] ❌ Schedule failed: $e');
+      // Last resort: try inexact
       try {
         await _localNotifications.zonedSchedule(
           _scheduledKeyId,
@@ -260,9 +278,9 @@ class NotificationService {
           matchDateTimeComponents: DateTimeComponents.time,
           payload: '/biblia',
         );
-        debugPrint('[NotificationService] Scheduled (inexact) for $hour:${minute.toString().padLeft(2, '0')}');
+        debugPrint('[NotificationService] ✅ Scheduled (inexact fallback) for $hour:${minute.toString().padLeft(2, '0')}');
       } catch (e2) {
-        debugPrint('[NotificationService] Inexact alarm also failed: $e2');
+        debugPrint('[NotificationService] ❌ All schedule attempts failed: $e2');
       }
     }
 
@@ -296,10 +314,13 @@ class NotificationService {
   Future<void> rescheduleFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     final enabled = prefs.getBool(_prefsKeyEnabled) ?? false;
-    if (!enabled) return;
+    final needsReschedule = prefs.getBool('ssb_needs_reschedule') ?? false;
+    
+    if (!enabled && !needsReschedule) return;
 
     final hour = prefs.getInt(_prefsKeyHour) ?? 8;
     final minute = prefs.getInt(_prefsKeyMinute) ?? 0;
+    debugPrint('[NotificationService] Rescheduling from prefs: $hour:${minute.toString().padLeft(2, '0')} (enabled=$enabled, needsReschedule=$needsReschedule)');
     await scheduleDailyVerseReminder(hour: hour, minute: minute);
   }
 

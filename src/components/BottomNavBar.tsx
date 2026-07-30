@@ -55,7 +55,7 @@ function BottomNavBarInner() {
   const tabs: TabItem[] = useMemo(() => [
     { href: '/', label: t('bottomBar.home'), icon: Home },
     { href: '/biblia', label: t('bottomBar.bible'), icon: BookOpen },
-    { href: '/estudos', label: t('bottomBar.studies'), icon: GraduationCap },
+    { href: '/seminario', label: t('bottomBar.seminary', 'Seminário'), icon: GraduationCap },
     { href: '/pesquisa', label: t('bottomBar.search'), icon: Search },
     { href: '#more', label: t('bottomBar.more'), icon: MoreHorizontal },
   ], [t]);
@@ -82,7 +82,7 @@ function BottomNavBarInner() {
     {
       titulo: t('bottomBar.groupPractice'),
       links: [
-        { href: '/cursos', label: t('bottomBar.seminary'), icon: GraduationCap },
+        { href: '/estudos', label: t('bottomBar.studies'), icon: BookOpen },
         { href: '/planos', label: t('bottomBar.plans'), icon: Calendar },
         { href: '/devocional', label: t('bottomBar.devotional'), icon: Heart },
         { href: '/flashcards', label: t('bottomBar.flashcards'), icon: BookMarked },

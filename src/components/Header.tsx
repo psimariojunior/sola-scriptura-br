@@ -40,8 +40,9 @@ interface NavLinkSpec {
 const navLinksStatic: NavLinkSpec[] = [
   { href: '/biblia', label: 'Bíblia', icon: BookOpen },
   { href: '/pesquisa', label: 'Pesquisa', icon: Search },
+  { href: '/seminario', label: 'Seminário', icon: GraduationCap },
   { href: '/teologia', label: 'Teologia', icon: Library },
-  { href: '/estudos', label: 'Estudos', icon: GraduationCap },
+  { href: '/estudos', label: 'Estudos', icon: BookOpen },
   { href: '/ia', label: 'IA', icon: Brain },
 ];
 
@@ -72,7 +73,6 @@ const maisGrupos: NavGroup[] = [
   {
     titulo: 'Prática',
     links: [
-      { href: '/cursos', label: 'Seminário Bíblico', icon: GraduationCap },
       { href: '/planos', label: 'Planos de Leitura', icon: Calendar },
       { href: '/devocional', label: 'Devocional', icon: Heart },
       { href: '/flashcards', label: 'Flashcards', icon: BookMarked },
@@ -143,7 +143,7 @@ function HeaderInner() {
 
   const navLinks = useMemo(() => navLinksStatic.map(l => ({
     ...l,
-    label: l.href === '/biblia' ? t('nav.bible') : l.href === '/pesquisa' ? t('nav.search') : l.href === '/teologia' ? t('nav.theology') : l.href === '/estudos' ? t('nav.myStudies') : l.href === '/ia' ? t('nav.ai') : l.label,
+    label: l.href === '/biblia' ? t('nav.bible') : l.href === '/pesquisa' ? t('nav.search') : l.href === '/seminario' ? t('nav.seminary', 'Seminário') : l.href === '/teologia' ? t('nav.theology') : l.href === '/estudos' ? t('nav.myStudies') : l.href === '/ia' ? t('nav.ai') : l.label,
   })), [t]);
   const [idioma, setIdioma] = useState<'pt' | 'en'>(() => {
     if (typeof window !== 'undefined') {

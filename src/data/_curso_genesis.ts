@@ -1209,11 +1209,942 @@ De Gênesis a Apocalipse, a Bíblia conta uma história: **Deus criou, o ser hum
               explicação: 'O arco-íris é o sinal da aliança: "E o arco estará nas nuvens, e eu o verei e me lembrarei da aliança eterna" (Gn 9:16).',
             },
             {
-              id: 'genesis-q10',
-              pergunta: 'Qual tribo de Israel receberia o "cetro" — a linhagem real?',
-              opções: ['Rúben', 'José', 'Judá', 'Benjamim'],
+              id: 'genesis-q11',
+              pergunta: 'Quantos dias Deus levou para criar tudo?',
+              opções: ['3 dias', '5 dias', '6 dias', '7 dias'],
               respostaCorreta: 2,
-              explicação: 'Gênesis 49:10: "Não se tirará o cetro de Judá... até que venha Siló" — profecia que se cumpriu em Davi e em Jesus.',
+              explicação: 'Deus criou em 6 dias e descansou no 7º dia (Gênesis 1-2). O 7º dia não foi de criação, mas de conclusão.',
+            },
+            {
+              id: 'genesis-q12',
+              pergunta: 'Quem construiu a arca que sobreviveu ao dilúvio?',
+              opções: ['Abraão', 'Noé', 'Moisés', 'Jacó'],
+              respostaCorreta: 1,
+              explicação: 'Noé obedeceu a Deus e construiu a arca conforme as instruções exatas dadas em Gênesis 6.',
+            },
+            {
+              id: 'genesis-q13',
+              pergunta: 'O que a torre de Babel representa na história humana?',
+              opções: ['Engenharia avançada', 'Rebeldia e orgulho humano contra Deus', 'Adoração a Deus', 'Uma construção religiosa'],
+              respostaCorreta: 1,
+              explicação: 'A torre de Babel simboliza a tentativa humana de alcançar os céus por自己的 forças, sem Deus.',
+            },
+            {
+              id: 'genesis-q14',
+              pergunta: 'Qual foi a primeira promessa de Deus a Abraão?',
+              opções: ['Riquezas', 'Uma nação grande e bênção para todas as nações', 'Um filho imediato', 'A terra do Egito'],
+              respostaCorreta: 1,
+              explicação: 'Em Gênesis 12:2-3, Deus promete: "Eu farei de ti uma grande nação; e te abençoarei... e em ti serão benditas todas as famílias da terra."',
+            },
+            {
+              id: 'genesis-q15',
+              pergunta: 'Por que Deus pediu que Abraão sacrificasse Isaque?',
+              opções: ['Para punir Abraão', 'Para testar sua fé e obediência', 'Porque Deus era cruel', 'Para ver se Abraão era corajoso'],
+              respostaCorreta: 1,
+              explicação: 'Deus testou a fé de Abraão para ver se ele confiaria em Deus mesmo quando não entendesse os caminhos divinos.',
+            },
+            {
+              id: 'genesis-q16',
+              pergunta: 'O que Jacob recebeu de Labão depois de trabalhar 14 anos?',
+              opções: ['Dinheiro', 'As filhas Lia e Raquel', 'Uma terra', 'Um exército'],
+              respostaCorreta: 1,
+              explicação: 'Jacob trabalhou 7 anos para Raquel, mas recebeu Lia; depois trabalhou mais 7 anos para finalmente casar com Raquel.',
+            },
+            {
+              id: 'genesis-q17',
+              pergunta: 'Qual ato de fé de Abraão é mencionado em Hebreus 11?',
+              opções: ['Deixar sua terra', 'Oferecer Isaque', 'Construir um altar', 'Lutar com um anjo'],
+              respostaCorreta: 1,
+              explicação: 'Hebreus 11:17-19 destaca que Abraão, pela fé, ofereceu Isaque, crendo que Deus poderia até ressuscitá-lo.',
+            },
+            {
+              id: 'genesis-q18',
+              pergunta: 'O que a "semente da mulher" em Gênesis 3:15 representa?',
+              opções: ['A descendência de Eva', 'O Messias / Jesus Cristo', 'Os anjos', 'Os patriarcas'],
+              respostaCorreta: 1,
+              explicação: 'A "semente da mulher" é uma profecia messiânica: Jesus, nascido de mulher, esmagaria a cabeça da serpente (Satanás).',
+            },
+            {
+              id: 'genesis-q19',
+              pergunta: 'Por que José foi colocado no poço pelos irmãos?',
+              opções: ['Para brincar', 'Por inveja do favoritismo do pai', 'Para ensiná-lo lição', 'Por acidente'],
+              respostaCorreta: 1,
+              explicação: 'José era o filho preferido de Jacó (filho de Raquel), e os irmãos sentiam inveja e ódio dele.',
+            },
+            {
+              id: 'genesis-q20',
+              pergunta: 'Qual é o tema central de Gênesis?',
+              opções: ['A guerra', 'A criação, queda e redenção de Deus', 'A geografia', 'A política'],
+              respostaCorreta: 1,
+              explicação: 'Gênesis apresenta a criação perfeita, a queda do homem e o início da obra redentora de Deus através dos patriarcas.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'genesis-mod-4',
+      título: 'Os Patriarcas: Promessa e Fé',
+      descrição: 'Gênesis 12-25: A aliança de Deus com Abraão, o sacrifício de Isaque e a continuidade da promessa através de Isaque e Jacó',
+      ícone: '⭐',
+      aulas: [
+        {
+          id: 'genesis-4-1',
+          título: 'A aliança de Deus com Abraão e sua fé inabalável',
+          tipo: 'texto',
+          duração: '18 min',
+          conteúdo: `## A aliança de Deus com Abraão e sua fé inabalável
+
+A chamada de Abraão em Gênesis 12 marca o ponto de virada mais significativo da história bíblica até aqui. Após a criação perfeita, a queda catastrófica, o dilúvio devastador e a dispersão de Babel, Deus age de forma unilateral e graciosa: escolhe um homem — Abrão, de Ur dos caldeus — para iniciar um plano de redenção que abençoaria todas as nações da terra. Essa escolha não se baseou no mérito de Abraão, mas na soberania e na graça de Deus.
+
+### O contexto histórico e teológico
+
+Ur dos caldeus era uma das grandes cidades da Mesopotâmia, centro de cultura e comércio, mas também de idolatria. Josué 24:2 revela que a família de Abraão servia a "outros deuses" antes da chamada divina. Deus não buscou um homem já piedoso — Ele transformou um idólatra no pai da fé. Isso estabelece um princípio fundamental da graça: Deus toma a iniciativa, não o homem.
+
+A narrativa de Gênesis 12:1-3 contém sete promessas interligadas que formam o cerne da aliança abraâmica:
+
+1. **"Saí da tua terra"** — Abraão deveria deixar tudo o que era familiar: cultura, segurança, identidade social. A fé exige abandono do conhecido.
+2. **"Da tua parentela"** — Separar-se da rede de apoio familiar, algo impensável no Oriente Antigo.
+3. **"Da casa de teu pai"** — Romper laços de dependência e lealdade tribal.
+4. **"Para a terra que eu te mostrarei"** — Deus não revelou o destino final; a obediência deveria preceder o entendimento.
+5. **"Far-te-ei uma grande nação"** — Promessa de descendência numérica, impossível dado que Abraão era idoso e Sara estéril.
+6. **"Abençoar-te-ei e engrandecerei o teu nome"** — Bênção pessoal que se estenderia aos outros.
+7. **"Em ti serão benditas todas as famílias da terra"** — A promessa universal: através de Abraão, Deus redimiria toda a humanidade.
+
+### A resposta da fé: Hebreus 11:8-12
+
+O autor de Hebreus comenta a obediência de Abraão com profundidade teológica: "Pela fé Abraão, sendo chamado, obedeceu, para sair para um lugar que devia receber por herança; e saiu sem saber para onde ia" (Hb 11:8). A fé abraâmica não era cega — era baseada no caráter de Deus, não nas circunstâncias. Abraão não sabia para onde ia, mas sabia quem o estava chamando.
+
+Hebreus 11:9-10 acrescenta que Abraão "peregrinou na terra da promessa como em terra alheia, habitando em tendas com Isaque e Jacó, co-herdeiros da mesma promessa; porque esperava a cidade que tem fundamentos, cujo arquiteto e constructor é Deus." A fé abraâmica olhava além do imediato — Abraão vivia em tendas, mas esperava uma cidade eterna.
+
+### A justificação pela fé: Gênesis 15:6
+
+O versículo mais teologicamente denso da história de Abraão é Gênesis 15:6: "Ele creu no Senhor, e isso lhe foi contado por justiça." Paulo usa extensivamente esse versículo em Romanos 4 e Gálatas 3 para estabelecer a doutrina da justificação pela fé. Abraão não foi justificado por circuncisão (que veio depois), nem pela lei (que veio séculos depois com Moisés), mas pela fé na promessa de Deus.
+
+Martinho Lutero chamou Gênesis 15:6 de "o versículo que derruba o papado", porque ele estabelece que a justificação é por fé alone, não por obras. João Calvino escreveu que "a fé é a mão que recebe o que Deus oferece gratuitamente." A fé abraâmica é o modelo para todo o povo de Deus — aceitar a promessa divina sem merecê-la.
+
+### A aliança incondicional de Gênesis 15
+
+O ritual da aliança em Gênesis 15:9-17 é um dos mais impressionantes do Antigo Testamento. Abraão dividiu animais ao meio e colocou as metades opostas. No Oriente Antigo, ambas as partes de uma aliança passavam entre as metades, dizendo: "Que eu seja feito como esses animais se quebrar esta aliança."
+
+Mas em Gênesis 15:17, apenas Deus passa entre as metades — na forma de um forno de fumaça e uma tocha de fogo. Isso significa que esta é uma aliança incondicional: Deus assume toda a responsabilidade pelo cumprimento. O êxodo, a terra prometida, a descendência — tudo depende da fidelidade de Deus, não da obediência de Abraão.
+
+### A fé provada: o sacrifício de Isaque
+
+O ponto culminante da fé abraâmica é Gênesis 22. Deus pede: "Toma agora o teu filho, o teu único filho, Isaque, a quem amas, e vai-te à terra de Moriá; e oferece-o ali em holocausto" (Gn 22:2). Hebreus 11:17-19 explica a lógica da fé de Abraão: "Pela fé Abraão, quando provado, ofereceu Isaque; sim, aquele que recebera as promessas ofereceu o seu único filho, dizendo: Em Isaque te será chamada descendência. Ele considerou que Deus era poderoso até para ressuscitar dentre os mortos."
+
+Abraão creu que, mesmo se sacrificasse Isaque, Deus o ressuscitaria. Sua fé estava no Deus que cumpre promessas impossíveis. O teólogo John Stott comentou: "A fé abraâmica não era uma fé em alguma coisa, mas em alguém — no Deus que é fiel."
+
+### A bênção de Melquisedeque
+
+Após resgatar Ló de uma coalizão de reis, Abraão encontra Melquisedeque, rei de Salem e sacerdote do Deus Altíssimo (Gn 14:18-20). Melquisedeque traz pão e vinho — uma cena que antecipa a Ceia do Senhor. Hebreus 7 explica que Melquisedeque é um tipo de Cristo: sacerdote eterno, sem genealogia, que abençoou Abraão (o menor é abençoado pelo maior). A priesthood de Melquisedeque é superior à de Levi porque precede e abençoa o patriarca.
+
+### Aplicação prática
+
+A fé abraômica ensina que:
+1. **Deus toma a iniciativa** — não fomos nós que O buscamos; Ele nos achou
+2. **A fé exige ação** — crer sem obedecer não é fé verdadeira
+3. **A fé persiste apesar do silêncio** — Abraão esperou 25 anos por Isaque
+4. **A fé olha além do visível** — Abraão vivia em tendas, mas esperava uma cidade
+5. **A fé é contada por justiça** — não por mérito, mas pela graça receptiva
+
+A aliança abraâmica é o alicerce de toda a teologia da salvação. Nela, Deus revela que Seu plano de redenção é gracioso, soberano e universal — não para um povo apenas, mas para todas as famílias da terra.`,
+          versículosChave: [
+            { ref: 'Gênesis 12:1-3', texto: 'Saí da tua terra... e em ti serão benditas todas as famílias da terra.' },
+            { ref: 'Gênesis 15:6', texto: 'Ele creu no Senhor, e isso lhe foi contado por justiça.' },
+            { ref: 'Hebreus 11:8', texto: 'Pela fé Abraão, sendo chamado, obedeceu.' },
+            { ref: 'Gálatas 3:8', texto: 'A Escritura, prevendo que Deus justificaria pela fé os gentios.' },
+          ],
+        },
+        {
+          id: 'genesis-4-2',
+          título: 'O sacrifício de Isaque: O mais grande teste de fé',
+          tipo: 'texto',
+          duração: '18 min',
+          conteúdo: `## O sacrifício de Isaque: O mais grande teste de fé
+
+Gênesis 22 é, sem dúvida, o capítulo mais dramático e teologicamente denso de todo o Antigo Testamento. É chamado de *Akedah* — "o ato de amarrar" — na tradição judaica, e tem sido estudado por teólogos ao longo de dois milênios. Neste capítulo, Deus testa a fé de Abraão de forma suprema, pedindo o sacrifício de Isaque, o filho da promessa.
+
+### O contexto do teste
+
+Isaque havia nascido quando Abraão tinha 100 anos e Sara 90 (Gn 21:5). Era o filho impossível, a prova viva de que Deus cumpre Suas promessas. Durante décadas, Abraão esperou por esse filho, e agora Deus pede que ele o entregue. A ironia é devastadora: o Deus que deu o filho impossível agora pede que Abraão o sacrifice.
+
+O texto hebraico de Gênesis 22:1 é revelador: "E sucedeu que, depois dessas coisas, Deus provou a Abraão." A palavra "provou" (*nissah*) significa testar, refinar, como o ouro é provado no fogo. O teste não era para Deus descobrir algo — Ele já sabia o coração de Abraão. O teste era para que Abraão descobrisse a profundidade de sua própria fé.
+
+### A jornada de três dias
+
+Abraão se levantou de madrugada (Gn 22:3) — sem hesitação, sem discussão, sem pedido de esclarecimento. A obediência imediata contrasta com as dúvidas anteriores (Gn 15:2-3; 17:17). A jornada até Moriá durou três dias. Três dias de caminhar com o filho amado, sabendo o que faria.
+
+Hebreus 11:19 nos dá acesso ao pensamento de Abraão: "Ele considerou que Deus era poderoso até para ressuscitar dentre os mortos." Abraão não entendia como Deus cumpriria Suas promessas se Isaque morresse, mas confiava que o Deus que ressuscita os mortos encontraria um caminho. A fé não exige compreensão completa — exige confiança no caráter de Deus.
+
+### "Deus proverá para si o cordeiro"
+
+Quando Isaque perguntou: "Onde está o cordeiro para o holocausto?" (Gn 22:7), Abraão respondeu com uma das frases mais profetas da Bíblia: "Deus proverá para si o cordeiro para o holocausto, meu filho" (Gn 22:8). A expressão hebraica *yireh YHWH* — "o Senhor verá/proverá" — deu nome ao local: Moriá, que se tornou o Monte do Templo em Jerusalém.
+
+Abraão não estava apenas confortando Isaque — estava proferindo uma verdade teológica que se cumpriria séculos depois. O cordeiro substituto de Gênesis 22:13 prefigura o Cordeiro de Deus que tira o pecado do mundo (João 1:29). A provisão divina sempre precede a demanda divina.
+
+### O ato de fé supremo
+
+"Abraão estendeu a mão e tomou o cutelo para sacrificar o seu filho" (Gn 22:10). João Crisóstomo comentou: "Abraão não hesitou, não olhou para trás, não buscou desculpas. Sua obediência foi completa." O cutelo na mão de Abraão é o símbolo máximo da submissão à vontade de Deus.
+
+Mas "o anjo do Senhor o chamou dos céus e disse: Abraão! Abraão! Não estendas a mão sobre o menino" (Gn 22:11-12). Deus interveio no último momento — não porque ia deixar Isaque morrer, mas porque queria ver a fé de Abraão em sua plenitude. "Agora sei que temes a Deus, visto que não me negaste o teu filho, o teu único filho" (Gn 22:12).
+
+### O cordeiro substituto
+
+"Abraão levantou os olhos e viu um carneiro detrás, preso pelos chifres em um sarçal. Foi Abraão, tomou o carneiro e ofereceu-o em holocausto, em lugar de seu filho" (Gn 22:13). O carneiro estava lá o tempo todo — Abraão apenas não o tinha visto antes. A provisão de Deus era anterior à provação.
+
+Esse padrão de substituição é o fio vermelho de toda a Escritura:
+- O cordeiro pascal no Êxodo 12 — o sangue do cordeiro poupa a casa
+- Os sacrifícios diários do Templo — substituição contínua
+- Isaías 53:5 — "Ele foi ferido pelas nossas transgressões, esmagado pelas nossas iniquidades"
+- João 1:29 — "Eis o Cordeiro de Deus, que tira o pecado do mundo"
+- 1 Pedro 2:24 — "Ele mesmo, em seu corpo, levou os nossos pecados sobre o madeiro"
+
+### O juramento solene
+
+Após o teste, Deus jura por si mesmo (pois não há ninguém maior por quem jurar) e renova as promessas com juramento: "Por mim mesmo juro, diz o Senhor: porquanto fizeste isso e não me negaste o teu único filho, abençoar-te-ei grandemente e multiplicarei grandemente a tua descendência como as estrelas dos céus e como a areia que está à beira do mar" (Gn 22:16-17).
+
+O teólogo Gerhard von Rad observou que o juramento de Deus em Gênesis 22 transforma a aliança de uma promessa em um compromisso eterno. Deus não apenas promete — Ele Se compromete com Seu próprio caráter.
+
+### Tipologia cristológica
+
+Gênesis 22 é um dos capítulos mais cristológicos do Antigo Testamento:
+
+| Gênesis 22 | Cumprimento em Cristo |
+|------------|----------------------|
+| Pai entrega o filho único | Deus Pai entrega Jesus (João 3:16) |
+| Filho carrega a lenha | Jesus carrega a cruz (João 19:17) |
+| Três dias de jornada | Três dias na tumba |
+| Filho obedece voluntariamente | Jesus se entrega (Filipenses 2:8) |
+| Substituição (carneiro por Isaque) | Substituição (Cristo por nós) |
+| Monte Moriá | Monte Calvário (Jerusalém) |
+| "Deus proverá o cordeiro" | "Eis o Cordeiro de Deus" |
+
+O paralelo entre Isaque e Jesus é impressionante: ambos são filhos unigênitos, amados pelo pai, carregam a lenha de seu próprio sacrifício, e são entregues no mesmo local (Moriá/Jerusalém). A diferença crucial: Isaque foi poupado; Jesus não foi. O cordeiro de Gênesis 22 foi um substituto temporário; Jesus é o sacrifício definitivo e eterno.
+
+### Aplicação para o crente
+
+O teste de Abraão nos ensina que:
+1. **A fé é provada, não apenas declarada** — A fé sem obras é morta (Tiago 2:17)
+2. **Deus nunca nos pede o que Ele não deu primeiro** — Ele deu o Filho antes de pedir nossos filhos
+3. **A obediência precede o entendimento** — Abraão obedeceu antes de compreender
+4. **Deus proverá** — A provisão divina sempre antecede a provação
+5. **A fé que Deus testa é a fé que Ele recompensa** — A bênção veio após o teste
+
+O pastor Charles Spurgeon disse: "A fé que nunca foi tentada nunca foi verdadeira fé." O sacrifício de Isaque é o modelo supremo da fé que confia em Deus mesmo quando não entende Seus caminhos.`,
+          versículosChave: [
+            { ref: 'Gênesis 22:2', texto: 'Toma agora o teu filho, o teu único filho, Isaque, a quem amas.' },
+            { ref: 'Gênesis 22:8', texto: 'Deus proverá para si o cordeiro para o holocausto, meu filho.' },
+            { ref: 'Gênesis 22:14', texto: 'No monte do Senhor se proverá.' },
+            { ref: 'Hebreus 11:17-19', texto: 'Pela fé Abraão ofereceu Isaque... considerando que Deus era poderoso até para ressuscitar.' },
+          ],
+        },
+        {
+          id: 'genesis-4-3',
+          título: 'Isaque e Jacó: A continuidade da promessa',
+          tipo: 'texto',
+          duração: '16 min',
+          conteúdo: `## Isaque e Jacó: A continuidade da promessa
+
+A história da aliança divina continua através de Isaque e Jacó, dois patriarcas profundamente imperfeitos que, não obstante, são usados por Deus para manter vivo o fio da promessa messiânica. Gênesis 25-36 apresenta a transição da aliança de uma geração para a seguinte, revelando que o plano de Deus não depende da perfeição humana, mas da soberania divina.
+
+### Isaque: O patriarca silencioso
+
+Isaque é o patriarca menos discutido de Gênesis — sua vida é narrada em apenas dois capítulos (25-27), e ele raramente fala. Mas sua obscuridade não diminui sua importância: ele é o elo entre Abraão e Jacó, o portador da promessa em sua geração. O nome "Isaque" (*Yitschaq*) significa "ele ri" — uma lembrança permanente da incredulidade de Abraão transformada em alegria quando Deus cumpriu Sua promessa.
+
+Isaque casou-se com Rebeca aos 40 anos (Gn 25:20). O casamento foi providenciado por Deus através do servo de Abraão — uma das primeiras histórias de casamento na Bíblia que demonstra orientação divina. Rebeca, como Sara e depois Raquel e Ana, era estéril — um padrão intencional que revela que os filhos da promessa são obra de Deus, não de esforço humano. "Isaque orou ao Senhor em favor de sua mulher, porque ela era estéril; e o Senhor lhe atendeu as orações" (Gn 25:21).
+
+### A luta pré-natal e a soberania divina
+
+Durante a gravidez de Rebeca, os gêmeos lutavam dentro dela. "Se isto devia ser assim, por que isto assim?" perguntou Rebeca (Gn 25:22). A resposta de Deus é surpreendente: "Duas nações há no teu ventre; dois povos se separarão das tuas entranhas; um povo será mais forte do que o outro; o maior servirá o menor" (Gn 25:23).
+
+Essa é uma das passagens mais importantes sobre a soberania divina no Antigo Testamento. Antes do nascimento, antes de qualquer ação boa ou má, Deus estabelece Seu propósito soberano. Paulo cita essa passagem em Romanos 9:10-13 para explicar que a eleição divina não se baseia no mérito humano: "Sem que os gêmeos tivessem ainda nascido, nem tivessem praticado o bem ou o mal — para que o propósito de Deus, conforme a eleição, permanecesse, não por obras, mas por aquele que chama."
+
+### Esaú e Jacó: Caracteres opostos
+
+Os gêmeos eram opostos desde o nascimento:
+- **Esaú** (*'Esav*): peludo, homem do campo, caçador, impulsivo. Seu nome significa "peludo". Era o primogênito, mas não o escolhido.
+- **Jacó** (*Ya'aqov*): liso, homem das tendas, estrategista, ambicioso. Seu nome pode significar "suplantador" ou "aquele que segura o calcanhar".
+
+A rivalidade começou antes do nascimento e marcou toda a vida deles. Gênesis 25:27-28 revela o favoritismo dos pais: "Isaque amava Esaú, porque a caça lhe era saborosa; mas Rebeca amava Jacó."
+
+### O prato de lentilhas: O desprezo pela aliança
+
+"Voltou Esaú do campo e estava ele com fome. Disse a Jacó: Deixa-me comer desse guizado vermelho, pois estou com fome. Por isso se chamou Edom a Esaú" (Gn 25:29-30). Jacó propôs: "Vende-me hoje a tua primogenitura." Esaú respondeu: "Eis que vou morrer; para que me servirá a primogenitura?" (Gn 25:32).
+
+O teólogo Victor Hamilton observa que a primogenitura no Oriente Antigo incluía três privilégios: o dobro da herança, a liderança da família e, no caso dos patriarcas, a bênção da aliança. Esaú trocou tudo isso por uma refeição. O texto comenta: "Esaú desprezou a primogenitura" (Gn 25:34) — a palavra "desprezou" (*naats*) indica um ato deliberado de rejeição. Esaú não estava apenas com fome — ele estava desprezando a herança sagrada.
+
+Hebreus 12:16-17 adverte: "Não haja entre vós nenhum profano, como Esaú, que por uma refeição vendeu a sua primogenitura. Sabeis que, depois que quis receber a bênção, foi rejeitado; porque, embora com lágrimas buscasse o direito de primogenitura, não a achou."
+
+### A bênção de Jacó: Engano e providência
+
+Gênesis 27 é um dos capítulos mais conturbados de Gênesis. Isaque, velho e quase cego, decide abençoar Esaú antes de morrer. Rebeca, ouvindo a conversa, elabora um plano enganoso: vestir Jacó com as roupas de Esaú e cobrir seus braços com peles de cabrito.
+
+Jacó aceita o plano, mas hesita: "Mas meu pai me palpará, e serei como um mentiroso aos seus olhos" (Gn 27:12). Rebeca responde: "Sobre mim sejam as maldições, meu filho; apenas obedece" (Gn 27:13). Jacó obedece e recebe a bênção.
+
+A bênção é poderosa e irreversível: "Que os povos te sirvam e que as nações se prostrem diante de ti; senhor dos teus irmãos sejas, e os filhos de tua mãe se prosteem perante ti. Amaldiçoado seja todo aquele que te amaldiçoar, e abençoado todo aquele que te abençoar" (Gn 27:29). Essa bênção se cumpriria em Israel — e, messiânicoamente, em Cristo.
+
+### As consequências do engano
+
+Quando Esaú descobriu a fraude, chorou amargamente: "Não tem ele porventura o nome de Jacó? Já duas vezes me suplantou. Tirou-me a primogenitura, e agora tirou-me a bênção" (Gn 27:36). A palavra "suplantou" (*shaqal*) brinca com o nome de Jacó.
+
+Esaú jurou matar Jacó após a morte de Isaque (Gn 27:41). Rebeca mandou Jacó fugir para Harã, na casa de Labão — uma fuga que duraria 20 anos. O engano de Jacó teve consequências reais e duradouras.
+
+### A teologia da soberania divina
+
+Romanos 9:10-23 usa a história de Esaú e Jacó para explicar o mistério da soberania divina e da eleição. "O maior servirá o menor" foi decidido antes do nascimento, não por obras. Paulo argumenta: "Quem és tu, ó homem, que discutes com Deus? A coisa formada dirá ao que a formou: Por que me fizeste assim?" (Rm 9:20).
+
+Isso não significa que Deus seja injusto — significa que Deus é soberano e tem o direito de escolher segundo Seu propósito. A graça de Deus não é uma recompensa por mérito; é um dom soberano.
+
+### Aplicação prática
+
+A história de Isaque e Jacó nos ensina:
+1. **Deus cumpre Suas promessas através de gerações** — A aliança não depende de uma pessoa
+2. **O favoritismo parental causa danos profundos** — Isaque amou Esaú; Rebeca amou Jacó
+3. **A primogenitura é preciosa** — Não devemos desprezar as bênçãos espirituais
+4. **Deus é soberano sobre Suas escolhas** — Nossos méritos não determinam Sua graça
+5. **Mesmo no engano, Deus prevalece** — O pecado humano não frustra o plano divino
+
+O teólogo G.K. Chesterton escreveu: "A graça é a virtude que sobrevive à queda." A história de Jacó demonstra que Deus usa pessoas falhas para cumprir Seus propósitos perfeitos.`,
+          versículosChave: [
+            { ref: 'Gênesis 25:23', texto: 'O maior servirá o menor.' },
+            { ref: 'Gênesis 25:34', texto: 'Esaú desprezou a primogenitura.' },
+            { ref: 'Romanos 9:13', texto: 'A Jacó amei, mas a Esaú aborreci.' },
+            { ref: 'Gênesis 27:29', texto: 'Amaldiçoado seja todo aquele que te amaldiçoar.' },
+          ],
+        },
+        {
+          id: 'genesis-4-4',
+          título: 'A escada de Jacó e Betel: Encontros divinos',
+          tipo: 'texto',
+          duração: '16 min',
+          conteúdo: `## A escada de Jacó e Betel: Encontros divinos
+
+Gênesis 28:10-22 registra um dos encontros mais marcantes entre Deus e o ser humano: a visão da escada celestial em Betel. Fugindo de Esaú, sozinho no deserto, com uma pedra como travesseiro, Jacó — o enganador — tem um encontro que transforma sua vida e estabelece um dos lugares mais sagrados da história de Israel.
+
+### O contexto da fuga
+
+Jacó partiu de Beer-Sheba e rumou para Harã (Gn 28:10). Ele estava fugindo da ira de Esaú, sem proteção, sem planos claros, apenas com as roupas do corpo. O homem que havia obtido a bênção por engano agora estava desamparado e vulnerável.
+
+"Tomou uma das pedras do lugar e a pôs por travesseiro e deitou-se naquele lugar" (Gn 28:11). A pedra como travesseiro é uma imagem poderosa: Jacó, acostumado às tendas confortáveis de sua mãe, agora dormia no chão duro, sem conforto algum. É no fundo do poço que Deus muitas vezes nos encontra.
+
+### A escada celestial
+
+"Sonhou; e eis que estava posta na terra uma escada, cujo topo tocava no céu; e eis que os anjos de Deus subiam e desciam por ela" (Gn 28:12). A imagem é extraordinária:
+
+**1. A escada conecta o céu à terra** — Deus não está distante ou inacessível. A separação causada pela queda está sendo temporariamente superada por uma visão de acesso.
+
+**2. Os anjos subiam e desciam** — Há comunicação ativa entre o céu e a terra. Os anjos são mensageiros e servos que executam a vontade divina. João 1:51 conecta essa imagem a Jesus: "Vereis o céu aberto e os anjos de Deus subindo e descindo sobre o Filho do Homem."
+
+**3. Deus estava no topo** — A soberania divina é o ponto focal. A escada não é uma tentativa humana de alcançar os céus (como Babel), mas um meio divino de alcançar a terra.
+
+### A promessa renovada
+
+"O Senhor estava sobre ela e disse: Eu sou o Senhor, Deus de Abraão, teu pai, e o Deus de Isaque" (Gn 28:13). Deus se identifica como o Deus da aliança — o mesmo Deus que fez promessas a Abraão e as renovou com Isaque. A identificação do Deus da aliança é crucial: não é um deus novo ou local, mas o Deus eterno e fiel.
+
+As promessas renovadas são:
+1. **A terra**: "A terra em que estás deitado te darei a ti e à tua descendência"
+2. **Descendência**: "A tua descendência será como o pó da terra"
+3. **Expansão**: "Espalhar-se-á para o ocidente e para o oriente, para o norte e para o sul"
+4. **Bênção universal**: "Em ti e na tua descendência serão benditas todas as famílias da terra"
+5. **Presença**: "Eis que estou contigo e te guardareis por onde quer que fores"
+
+A promessa da presença divina é a mais consoladora: "Eu estou contigo" (*'Anoki 'immakh*). Mesmo quando fugimos de Deus, Ele nos encontra. Mesmo quando estamos no deserto da desobediência, a presença de Deus nos alcança.
+
+### A resposta de Jacó
+
+Jacó acordou assustado: "Que terrível é este lugar! Não é outro senão a casa de Deus, e a porta dos céus" (Gn 28:17). A palavra "terrível" (*yare'*) pode significar "assustador" ou "sagrado". Jacó reconhece que tocou o sagrado — que o transcendente invadiu o imanente.
+
+Ele ergueu a pedra que usara como travesseiro, a colocou como coluna e derramou azeite sobre ela (Gn 28:18). Essa ação transforma um objeto comum em um memorial sagrado. O teólogo Walter Brueggemann observa que "Deus sacraliza o cotidiano" — a pedra que era travesseiro agora é altar.
+
+### O voto de Jacó
+
+"Se Deus for comigo e me guardar nesta jornada que faço e me der pão para comer e vestes para vestir, e eu em paz voltar à casa de meu pai, então o Senhor será o meu Deus" (Gn 28:20-21). Esse voto é frequentemente criticado como uma barganha — "se Deus fizer isso, eu farei aquilo".
+
+Mas há nuances importantes: o voto de Jacó é o início de sua transformação. Ele reconhece que precisa de Deus, que depende da providência divina. O "então" (*wehayah*) indica uma resposta grata, não uma condição egoísta. O pastor Timothy Keller observa: "Jacó ainda não entende a graça — mas está no caminho. A fé começa como uma centelha, não como um incêndio."
+
+### Betel: A casa de Deus
+
+Jacó chamou o lugar de "Betel" — "casa de Deus" (*Beth-'El*). Esse nome se tornaria um dos mais significativos da história de Israel. Mais tarde, Deus encontraria novamente com Jacó em Betel (Gn 35:1-15), e ali Ele renovaria o nome de Jacó para Israel e as promessas da aliança.
+
+Betel se tornou um centro de adoração no reino do norte (1 Reis 12:29-32), embora posteriormente tenha sido corrompido por idolatria (Amós 4:4; Oséias 10:5). O contraste entre o Betel de Jacó (encontro genuíno com Deus) e o Betel posterior (idolatria institucionalizada) é uma advertência permanente sobre a decadência espiritual.
+
+### A tipologia cristológica
+
+Jesus usou explicitamente a imagem de Jacó para descrever a si mesmo: "Vereis o céu aberto e os anjos de Deus subindo e descendo sobre o Filho do Homem" (João 1:51). A escada de Jacó é um tipo cristológico — uma sombra do Mediador divino-humano:
+
+- **A escada conecta o céu à terra** — Jesus é o mediador entre Deus e os homens (1 Timóteo 2:5)
+- **Os anjos subem e descem** — O ministério angelical serve ao redentor
+- **Deus está no topo** — A autoridade divina sustenta a obra redentora
+- **O lugar é sagrado** — Em Cristo, todo lugar se torna sagrado
+
+O teólogo Karl Barth escreveu: "Jesus Cristo é o verdadeiro Betel — o lugar onde o céu e a terra se encontram, onde Deus e o homem se reconciliam."
+
+### A segunda visita a Betel
+
+Gênesis 35:1-15 registra o retorno de Jacó a Betel. Deus lhe disse: "Levanta-te, sobe a Betel e mora ali; e faze ali um altar ao Deus que te apareceu quando fugias da face de Esau, teu irmão" (Gn 35:1).
+
+Jacó preparou sua família: removeu os ídolos estrangeiros, purificou-se e partiu. "Deus pôs terror nas cidades que estavam ao redor deles, e não perseguiram os filhos de Jacó" (Gn 35:5). A obediência de Jacó trouxe proteção divina.
+
+Em Betel, Deus apareceu novamente e mudou o nome de Jacó para Israel — uma confirmação da identidade que havia sido dada no Jiboque (Gn 32:28). A renovação do nome em Betel é uma renovação da aliança.
+
+### Aplicação prática
+
+A história da escada de Jacó nos ensina:
+1. **Deus encontra pessoas nos lugares mais improváveis** — Jacó estava fugindo e sozinho
+2. **Deus não depende da nossa perfeição** — Ele abençoou o enganador
+3. **A presença de Deus transforma lugares** — Uma pedra se tornou altar
+4. **A fé começa pequena e cresce** — O voto imperfeito de Jacó era o início
+5. **Jesus é a escada** — O único caminho entre o céu e a terra
+
+O missionário Hudson Taylor disse: "Deus tem dois planos para nossas vidas: o seu e o nosso. Infelizmente, há um terceiro plano: o nosso, que insistimos em impor a Deus." A história de Betel mostra que Deus convida, mas espera resposta — e Jacó respondeu.`,
+          versículosChave: [
+            { ref: 'Gênesis 28:12', texto: 'Uma escada cujo topo tocava no céu; e os anjos de Deus subiam e desciam por ela.' },
+            { ref: 'Gênesis 28:15', texto: 'Eis que estou contigo e te guardareis por onde quer que fores.' },
+            { ref: 'Gênesis 28:17', texto: 'Que terrível é este lugar! Não é outro senão a casa de Deus.' },
+            { ref: 'João 1:51', texto: 'Vereis o céu aberto e os anjos de Deus subindo e descindo sobre o Filho do Homem.' },
+          ],
+        },
+        {
+          id: 'genesis-quiz-4',
+          título: 'Quiz — Os Patriarcas: Promessa e Fé',
+          tipo: 'quiz',
+          duração: '12 min',
+          perguntas: [
+            {
+              id: 'genesis-4-q1',
+              pergunta: 'Quantas promessas Deus fez a Abraão em Gênesis 12:1-3?',
+              opções: ['Três promessas', 'Cinco promessas', 'Sete promessas', 'Dez promessas'],
+              respostaCorreta: 2,
+              explicação: 'Deus fez sete promessas interligadas: terra, nação grande, bênção pessoal, grande nome, ser uma bênção, bênção para quem o abençoar e bênção para todas as famílias da terra.',
+            },
+            {
+              id: 'genesis-4-q2',
+              pergunta: 'O que Gênesis 15:6 estabelece teologicamente?',
+              opções: ['A necessidade da circuncisão', 'A justificação pela fé', 'A obediência à lei', 'O sacrifício animal'],
+              respostaCorreta: 1,
+              explicação: '"Ele creu no Senhor, e isso lhe foi contado por justiça" é a primeira menção da justificação pela fé na Bíblia, base da teologia de Paulo em Romanos e Gálatas.',
+            },
+            {
+              id: 'genesis-4-q3',
+              pergunta: 'O que Abraão considerou que Deus poderia fazer com Isaque?',
+              opções: ['Protegê-lo da dor', 'Ressuscitá-lo dentre os mortos', 'Enviar um anjo', 'Desviar o cutelo'],
+              respostaCorreta: 1,
+              explicação: 'Hebreus 11:19 diz que Abraão "considerou que Deus era poderoso até para ressuscitar dentre os mortos" — a base de sua obediência no sacrifício de Isaque.',
+            },
+            {
+              id: 'genesis-4-q4',
+              pergunta: 'O que significa o nome "Isaque" em hebraico?',
+              opções: ['Filho da promessa', 'Ele ri', 'Suplantador', 'Deus luta'],
+              respostaCorreta: 1,
+              explicação: 'Isaque (Yitschaq) significa "ele ri" — uma lembrança da incredulidade de Abraão e Sara transformada em alegria quando Deus cumpriu Sua promessa.',
+            },
+            {
+              id: 'genesis-4-q5',
+              pergunta: 'Por que Esaú desprezou a primogenitura?',
+              opções: ['Por medo de responsabilidade', 'Porque a trocou por uma refeição', 'Por ordem de Deus', 'Porque não acreditava na aliança'],
+              respostaCorreta: 1,
+              explicação: 'Esaú trocou sua primogenitura por um prato de lentilhas quando estava com fome. O texto diz que "Esaú desprezou a primogenitura" (Gn 25:34).',
+            },
+            {
+              id: 'genesis-4-q6',
+              pergunta: 'O que a bênção de Jacó em Gênesis 49:10 profetiza?',
+              opções: ['O Êxodo do Egito', 'A vinda do Messias de Judá', 'A construção do Templo', 'O exílio na Babilônia'],
+              respostaCorreta: 1,
+              explicação: '"Não se tirará o cetro de Judá até que venha Siló" — uma profecia sobre a linhagem real de Judá que culmina em Davi e Jesus Cristo.',
+            },
+            {
+              id: 'genesis-4-q7',
+              pergunta: 'Quem era Melquisedeque?',
+              opções: ['Rei de Egipto', 'Rei de Salem e sacerdote do Deus Altíssimo', 'Pai de Abraão', 'Um profeta falso'],
+              respostaCorreta: 1,
+              explicação: 'Melquisedeque era rei de Salem e sacerdote do Deus Altíssimo. Hebreus 7 o apresenta como tipo de Cristo — sacerdote eterno, anterior a Levi.',
+            },
+            {
+              id: 'genesis-4-q8',
+              pergunta: 'O que a aliança de Gênesis 15 revela sobre o caráter de Deus?',
+              opções: ['Deus é exigente', 'Deus é incondicional e soberano', 'Deus é distante', 'Deus é arbitrário'],
+              respostaCorreta: 1,
+              explicação: 'Apenas Deus passou entre as metades dos animais, mostrando que a aliança é incondicional — o cumprimento depende inteiramente de Deus.',
+            },
+            {
+              id: 'genesis-4-q9',
+              pergunta: 'Qual é a principal lição da escada de Jacó em Betel?',
+              opções: ['Deus é inaccessible', 'Deus conecta o céu à terra e nos encontra no desespero', 'Deus está apenas no templo', 'Deus não ouve orações'],
+              respostaCorreta: 1,
+              explicação: 'A escada celestial mostra que Deus não está distante — Ele desce até nós. Jesus é a verdadeira escada que conecta o céu à terra (João 1:51).',
+            },
+            {
+              id: 'genesis-4-q10',
+              pergunta: 'Qual é o tema teológico central da história dos patriarcas?',
+              opções: ['A riqueza material', 'A graça soberana de Deus em cumprir promessas impossíveis', 'A importância da lei', 'O poder humano'],
+              respostaCorreta: 1,
+              explicação: 'Os patriarcas revelam que Deus cumpre Suas promessas por graça, não por mérito. Abraão, Isaque e Jacó eram imperfeitos, mas Deus foi fiel.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'genesis-mod-5',
+      título: 'José: Providência e Perdão',
+      descrição: 'Gênesis 37-50: A história completa de José — dos sonhos divinos ao perdão transformador, revelando a soberania de Deus sobre todas as circunstâncias',
+      ícone: '🌟',
+      aulas: [
+        {
+          id: 'genesis-5-1',
+          título: 'José e os sonhos de Deus: Do poço ao palácio',
+          tipo: 'texto',
+          duração: '18 min',
+          conteúdo: `## José e os sonhos de Deus: Do poço ao palácio
+
+A história de José em Gênesis 37-50 é uma das narrativas mais bem construídas da literatura mundial. Não é apenas uma biografia — é um drama teológico que revela como Deus transforma o mal em bem, a traição em salvação, e o poço em palácio. José é o tipo mais completo de Cristo no Antigo Testamento: filho amado, rejeitado pelos irmãos, vendido por prata, sofredor injustamente, exaltado ao mais alto poder, e instrumento de salvação para muitos.
+
+### O contexto familiar
+
+Jacó (agora Israel) amava José mais que todos os filhos — porque era filho da velhice e de Raquel, a esposa amada (Gn 37:3). Esse favoritismo gerou uma rivalidade que se transformou em ódio mortal. O teólogo Gordon Wenham observa que o favoritismo de Jacó repetiu o erro de Isaac com Esaú e de Rebeca com Jacó — a história familiar se repete em padrões destrutivos.
+
+A túnica de "muitas cores" (ou talvez "túnica longa de mangas", segundo some traduções) era um símbolo de distinção social — indicava que José era destinado à liderança, não ao trabalho manual. Para os irmãos, cada costura daquela túnica era uma lembrança de que o pai os tratava de forma desigual.
+
+### Os sonhos de José
+
+José teve dois sonhos que antecipavam sua exaltação:
+
+**Primeiro sonho** (Gn 37:7): Doze feixes de trigo no campo se curvaram diante do feixe de José. Os irmãos entenderam: "Acaso hás de reinar sobre nós?"
+
+**Segundo sonho** (Gn 37:9): O sol, a lua e onze estrelas se curvaram diante de José. Dessa vez, até Jacó repreendeu: "Acaso haveremos de curvar-nos diante de ti?" Mas "guardou o dito" (Gn 37:11), reconhecendo que os sonhos eram proféticos.
+
+Os sonhos não eram vaidade de José — eram a revelação do plano divino. Deus estava comunicando que José seria o instrumento de preservação da família. Mas o timing de Deus colidiu com o orgulho humano e a inveja fraternal.
+
+### A traição
+
+Jacó enviou José para verificar os irmãos no pastoreio (Gn 37:13-14). Quando viram José de longe, conspiraram: "Eis que vem o sonhador. Vinde, agora, e matemo-lo" (Gn 37:19). O texto revela o coração dos irmãos: eles não viam um irmão — viam um rival.
+
+Rúben, o primogênito, interveio: "Não derrameis sangue" (Gn 37:22). Ele planejava resgatar José secretamente. Mas quando Rúben saiu, os outros irmãos jogaram José numa cisterna seca.
+
+Então mercadores ismaelitas passaram. Judá propôs: "Que ganho há em matarmos nosso irmão? Vinde, e vendamo-lo aos ismaelitas" (Gn 37:26-27). José foi vendido por vinte moedas de prata — o preço de um escravo (Gn 37:28), e o mesmo preço que seria pago por Jesus séculos depois (Mateus 26:15).
+
+### A túnica ensanguentada
+
+Os irmãos mergulharam a túnica de José em sangue de cabrito e a levaram a Jacó. "Conhece, agora, se é ou não a túnica de teu filho" (Gn 37:32). A ironia é devastadora: eles usaram a própria túnica do favoritismo como "prova" da morte.
+
+Jacó reconheceu: "É a túnica de meu filho; um animal mau o devorou; José foi, sem dúvida, despedaçado" (Gn 37:33). Sua dor foi inconsolável: "Descerei saudoso meu filho até a sepultura" (Gn 37:35). A mentira dos irmãos causou décadas de sofrimento ao pai — uma dor que só terminou quando José se revelou vivo (Gn 45:28).
+
+### José no poço e na escravidão
+
+A cisterna seca (Gn 37:24) era um lugar de morte — sem água, sem saída. Para os irmãos, o poço era o fim de José. Para Deus, era o início do caminho para o palácio. O teólogo Derek Kidner observa: "Deus trabalha nos lugares mais baixos antes de elevar."
+
+José foi vendido a Potifar, oficial de Faraó (Gn 37:36). De filho preferido a escravo estrangeiro. A queda foi total — mas a providência divina estava no controle. Gênesis 39:2 declara: "O Senhor era com José, e ele foi homem próspero." A presença de Deus não depende das circunstâncias — ela as transcende.
+
+### A tipologia cristã
+
+José é o tipo mais completo de Cristo no Antigo Testamento:
+
+| José | Cristo |
+|------|--------|
+| Filho amado do pai | Filho unigênito de Deus |
+| Rejeitado pelos irmãos | Rejeitado por Israel |
+| Vendido por 20 moedas | Traído por 30 moedas de prata |
+| Sofreu injustamente | Sofreu sem culpa |
+| Foi exaltado ao poder | Está à direita do Pai |
+| Foi instrumento de salvação | É o Salvador do mundo |
+
+O paralelo é impressionante: até mesmo o detalhe da prata se repete. A história de José é um预告 (foreshadowing) da obra redentora de Cristo.
+
+### A soberania divina na traição
+
+Gênesis 50:20 é o versículo que resume toda a teologia de José: "Vós bem pensastes mal contra mim; porém Deus o encaminhou para bem, para fazer como se vê neste dia, para conservar muita gente com vida."
+
+O mal humano é real — os irmãos agiram por inveja e crueldade. Mas Deus não é derrotado pelo pecado humano. Ele incorpora até mesmo as piores ações humanas em Seu plano soberano. Isso não justifica o mal — mostra que Deus é maior que o mal.
+
+O teólogo Augustinho de Hipona escreveu: "Deus é tão poderoso que até do mal Ele tira o bem." Essa é a essência da providência divina: não uma desculpa para o pecado, mas uma garantia de que Deus prevalecerá.
+
+### Aplicação prática
+
+1. **O favoritismo destrói** — O amor parcial gera rivalidade e ódio
+2. **Os sonhos de Deus se cumprem** — Mesmo quando o caminho é doloroso
+3. **Deus está conosco no poço** — A presença divina não depende de circunstâncias favoráveis
+4. **O mal não frustra o plano de Deus** — Ele transforma traição em salvação
+5. **A paciência é essencial** — José esperou 13 anos antes de ser exaltado
+
+A história de José é uma carta de consolação para todos que sofrem injustamente: Deus está trabalhando, mesmo quando não vemos.`,
+          versículosChave: [
+            { ref: 'Gênesis 37:5', texto: 'José teve um sonho e o contou a seus irmãos.' },
+            { ref: 'Gênesis 37:28', texto: 'Venderam José aos ismaelitas por vinte moedas de prata.' },
+            { ref: 'Gênesis 39:2', texto: 'O Senhor era com José, e ele foi homem próspero.' },
+            { ref: 'Gênesis 50:20', texto: 'Vós bem pensastes mal contra mim; porém Deus o encaminhou para bem.' },
+          ],
+        },
+        {
+          id: 'genesis-5-2',
+          título: 'José no Egito: Integridade na tentação',
+          tipo: 'texto',
+          duração: '18 min',
+          conteúdo: `## José no Egito: Integridade na tentação
+
+Gênesis 39-41 apresenta José em meio às maiores provações: tentação sexual, falsa acusação e prisão injusta. Em cada uma dessas situações, José mantém sua integridade — e Deus o eleva. A narrativa revela que a fidelidade em pequenas coisas precede a responsabilidade em coisas maiores.
+
+### José na casa de Potifar
+
+José foi comprado por Potifar, "um oficial de Faraó, chefe dos guardas" (Gn 39:1). A expressão "o Senhor era com José" aparece três vezes em Gênesis 39 (vv. 2, 3, 21), enfatizando que a presença divina é o fator decisivo em qualquer circunstância.
+
+Potifar reconheceu que "o Senhor era com ele, e que o Senhor fazia prosperar tudo o que fazia nas mãos de José" (Gn 39:3). A prosperidade de José não era acaso — era evidência da bênção divina. Potifar o colocou como administrador de toda a sua casa — o escravo se tornou o gerente.
+
+Aqui vemos um princípio bíblico: "Quem é fiel no pouco, também no muito é fiel" (Lucas 16:10). José não reclamou de ser escravo, não se revoltou contra o sistema, não desistiu. Ele cumpriu seu papel com excelência — e Deus o elevou.
+
+### A tentação da esposa de Potifar
+
+"A esposa de seus senhores pôs os seus olhos sobre José e disse: Deita-te comigo" (Gn 39:7). A tentação foi direta, repetida e pressionada. O texto hebraico sugere que a mulher não fazia uma única proposta — "dia após dia" (Gn 39:10) ela insistia.
+
+A resposta de José é um modelo de integridade:
+
+"Eis que o meu senhor não sabe comigo o que há nesta casa, e tudo o que tem confiou à minha mão. Nesta casa, ninguém é maior do que eu, e nada me reservou senão a ti, porque és sua esposa. Como, pois, faria eu tamanho mal e pecaria contra Deus?" (Gn 39:8-9)
+
+José recusou por três razões interligadas:
+
+**1. Confiança quebrada** — Potifar confiou nele com tudo. A traição seria uma violação dessa confiança.
+
+**2. Abuso de autoridade** — José tinha poder sobre a casa, mas não o usaria para seu próprio benefício. A autoridade é dada para servir, não para explorar.
+
+**3. Pecado contra Deus** — Essa é a razão mais profunda. José não diz "pecaria contra meu senhor" ou "pecaria contra minha consciência" — ele diz "pecaria contra Deus." Para José, o pecado não era apenas dano social — era ofensa ao Criador.
+
+O teólogo Charles Spurgeon comentou: "José viu mais do que a tentação — viu o Deus que estava observando." A consciência da presença de Deus é o maior antídoto contra a tentação.
+
+### A fuga
+
+Quando a esposa de Potifar o agarrou pela roupa, José fugiu — literalmente, deixando a veste nas mãos dela (Gn 39:12). Essa fuga é o modelo bíblico para lidar com a tentação: "Fugi da concupiscência da juventude" (2 Timóteo 2:22). José não negociou, não argumentou, não "testou seus limites" — ele fugiu.
+
+A roupa de José nas mãos dela se torna um símbolo irônico: a mesma veste que representava sua autoridade agora era a "prova" falsa contra ele. A verdadeira integridade às vezes parece fraqueza aos olhos do mundo.
+
+### A falsa acusação
+
+A esposa de Potifar usou a veste como "prova" e acusou José publicamente: "O escravo hebreu que nosso senhor trouxe veio para zombar de mim" (Gn 39:14). A acusação é duplamente injusta: José era hebreu (estigma social) e escravo (vulnerabilidade legal).
+
+Potifar acreditou na esposa — não porque tinha provas, mas porque a posição social dela era mais alta que a de José. A injustiça social é um tema recorrente nas Escrituras: "Não há parcialidade com Deus" (Romanos 2:11), mas os homens frequentemente a praticam.
+
+José foi preso — não por ter feito algo errado, mas por ter feito algo certo. Essa é a paradoxia da fé: a obediência a Deus às vezes leva a consequências terrenas negativas. Jesus advertiu: "No mundo tereis aflições" (João 16:33).
+
+### Na prisão: A presença que persiste
+
+"O Senhor era com José e estendeu a ele benignidade" (Gn 39:21). A mesma frase que descrevia sua prosperidade em Potifar agora descreve sua situação na prisão. A presença de Deus não depende de circunstâncias favoráveis — Ela persiste mesmo na adversidade.
+
+O carcereiro confiou a José a administração da prisão (Gn 39:22-23). Mais uma vez, a fidelidade de José foi reconhecida. O teólogo F.F. Bruce observa: "Deus não livrou José da prisão — Ele o sustentou dentro dela."
+
+### Os sonhos no cárcere
+
+Na prisão, José encontrou dois oficiais de Faraó: o copeiro-chefe e o padeiro-chefe (Gn 40:1-3). Ambos sonharam, e José interpretou os sonhos com sabedoria dada por Deus:
+
+**O copeiro**: Três sarmentos em uma videira significavam que, em três dias, Faraó o restauraria ao cargo.
+
+**O padeiro**: Três cestos de pães sobre sua cabeça significavam que, em três dias, Faraó o enforcaria.
+
+Ambos se cumpriram exatamente. José pediu ao copeiro: "Lembra-te de mim" (Gn 40:14). Mas o copeiro se esqueceu — por dois anos (Gn 40:23; 41:1). José ficou na prisão, fiel a Deus, sem entender por quê.
+
+O silêncio de Deus é uma das maiores provações da fé. Por que Deus não interveio imediatamente? Por que dois anos de espera? A resposta está no propósito divino: José precisava ser humilhado completamente antes de ser exaltado ao poder máximo.
+
+### Os sonhos de Faraó
+
+"Dois anos depois, Faraó sonhou" (Gn 41:1). Ninguém no Egito podia interpretar os sonhos. O copeiro finalmente se lembrou de José. O ex-prisioneiro foi trazido diante do governador do mundo antigo.
+
+José interpretou os sonhos de Faraó: sete anos de abundância seguidos de sete anos de fome devastadora. Mas José não se limitou a interpretar — ele propôs um plano de ação: armazenar grãos durante os anos de abundância (Gn 41:33-36).
+
+Faraó ficou impressionado: "Acharemos outro homem como este, em quem esteja o espírito de Deus?" (Gn 41:38). José, com 30 anos, foi nomeado vice-rei do Egito — o segundo homem mais poderoso do mundo antigo.
+
+### A teologia da integridade
+
+1. **A integridade é testada, não apenas declarada** — José provou sua fé na tentação, não no conforto
+2. **A fuga é a melhor estratégia** — Não se negocia com a tentação
+3. **O pecado é contra Deus** — A consciência da presença divina é o maior escudo
+4. **Deus sustenta na prisão** — A presença divina não depende de liberdade física
+5. **O timing de Deus é perfeito** — José esperou 13 anos entre o sonho e a exaltação
+
+O puritano Matthew Henry escreveu: "A mesma Deus que estava com José em Potifar e na prisão estava com ele no palácio. A companhia de Deus é o maior tesouro, seja onde for."
+
+### Aplicação prática
+
+A história de José nos desafia a:
+1. Manter a integridade quando ninguém está vendo
+2. Fugir da tentação em vez de confrontá-la
+3. Lembrar que o pecado é ofensa a Deus, não apenas dano social
+4. Confiar no timing divino mesmo quando Deus parece silencioso
+5. Usar a autoridade para servir, não para explorar
+
+A integridade de José não era perfeição humana — era fé no Deus que recompensa a fidelidade, mesmo quando a recompensa demora.`,
+          versículosChave: [
+            { ref: 'Gênesis 39:9', texto: 'Como faria eu tamanho mal e pecaria contra Deus?' },
+            { ref: 'Gênesis 39:21', texto: 'O Senhor era com José e estendeu a ele benignidade.' },
+            { ref: 'Gênesis 41:38', texto: 'Em quem esteja o espírito de Deus?' },
+            { ref: '2 Timóteo 2:22', texto: 'Fuge da concupiscência da juventude.' },
+          ],
+        },
+        {
+          id: 'genesis-5-3',
+          título: 'A fome e a reunificação da família',
+          tipo: 'texto',
+          duração: '18 min',
+          conteúdo: `## A fome e a reunificação da família
+
+Gênesis 42-47 narra o clímax da história de José: os irmãos que o venderam vêm ao Egito buscar alimento e, sem saber, se curvam diante dele. É uma das narrativas mais emocionantes e teologicamente ricas da Bíblia — um drama de reconhecimento, arrependimento, graça e reconciliação que aponta para o próprio evangelho.
+
+### A fome global
+
+"Começou a fome na terra, como José tinha predito" (Gn 41:54). A fome afetou todo o Egito e as nações vizinhas. O plano de José — armazenar grãos durante os sete anos de abundância — salvou milhões de vidas. A sabedoria de José não era apenas humana — era dada por Deus.
+
+Jacó mandou seus dez filhos mais velhos ao Egito para comprar grãos (Gn 42:1-3). Benjamim, o mais novo, ficou em casa — Jacó não queria perdê-lo também, depois da "perda" de José. A proteção de Jacó por Benjamim é compreensível, mas revela que o velho patriarca ainda carregava o trauma da perda anterior.
+
+### O primeiro encontro: Reconhecimento e teste
+
+Quando os irmãos chegaram e se prostraram diante de José, ele os reconheceu imediatamente — mas eles não o reconheceram (Gn 42:7). José tinha agora cerca de 39 anos, vestido com as roupas egípcias. A barba raspada, o maquiagem, a linguagem corporal — tudo era diferente.
+
+José cumpriu parcialmente seu sonho: os irmãos se curvaram sem saber (Gn 42:6). Mas o reconhecimento não trouxe imediata alegria — trouxe um teste. José precisava saber se os irmãos haviam mudado.
+
+José os tratou com dureza: acusou-os de serem espiões (Gn 42:7-9), reteve Simeão como refém (Gn 42:24), e exigiu que trouxessem Benjamim (Gn 42:20). Não era crueldade — era um processo de revelação. José queria saber se seus irmãos seriam fiéis ao irmão mais novo, da mesma forma que foram infiéis a ele.
+
+### A culpa dos irmãos
+
+Enquanto estavam detidos, os irmãos disseram uns aos outros: "Com certeza somos culpados, porque vimos a angústia da sua alma quando nos rogou e não ouvimos" (Gn 42:21). Eles não sabiam que José os ouvia — mas sua culpa se revelou.
+
+Rúben acrescentou: "Não vos disse eu: Não peque contra o menino? Mas não ouvistes" (Gn 42:22). O texto revela que Rúben tentou salvar José na ocasião original (Gn 39:21-22), mas não foi ouvido. A culpa dos irmãos era real e profunda — eles sabiam que tinham agido malignamente.
+
+José "se afastou deles e chorou" (Gn 42:24). A primeira vez que José chora no texto. O homem que controlava o poder mais grande do mundo antigo não podia conter suas lágrimas ao ver a dor de seus irmãos.
+
+### O retorno a Jacó
+
+Os irmãos voltaram a Jacó e contaram tudo. Jacó ficou devastado: "José já não está, nem Simeão; e levarás também a Benjamim? Tudo isso vem contra mim" (Gn 42:36). A fala de Jacó revela um pai quebrantado — um homem que perdeu um filho e agora teme perder mais dois.
+
+Quando o alimento acabou, a fome persistiu. Judá assumiu a responsabilidade — o mesmo Judá que propôs vender José anos antes. "Eu mesmo darei fiador dele; da minha mão o buscarás. Se eu não o trouxer... ficarei culpado diante de ti para sempre" (Gn 43:8-9). A mudança de Judá é notável: de quem propôs vender o irmão para quem se oferece como fiador.
+
+Jacó finalmente consentiu, enviando presentes e oração: "Deus Todo-Poderoso vos conceda misericórdia diante desse homem" (Gn 43:14). A oração de Jacó é significativa — pela primeira vez, ele usa o título "El Shaddai" (Deus Todo-Poderoso), o mesmo usado por Deus a Abraão (Gn 17:1).
+
+### O banquete de José
+
+José viu Benjamim e ficou emocionado: "Seu ímpeto era tal que procurou onde chorar; entrou no quarto e ali chorou" (Gn 43:30). José se compadeceu do irmão mais novo — o único outro filho de Raquel.
+
+Preparou um banquete para os irmãos, mas os sentou em ordem de nascimento (Gn 43:33) — algo que os surpreendeu. Serviu porções especiais a Benjamim, cinco vezes mais que aos outros (Gn 43:34). José não conseguia esconder completamente sua identidade — suas ações revelavam um conhecimento que não deveria ter.
+
+### O teste final: O copo escondido
+
+José ordenou que seu copeiro escondesse seu copo de prata no saco de Benjamim (Gn 44:2). Quando os irmãos partiram, José os mandou perseguir. O copo foi encontrado.
+
+José declarou: "Aquele em cujo saco se achar o copo será meu servo" (Gn 44:10). A proposta era absurda: um príncipe egípcio querendo o menor dos irmãos hebreus. Mas o teste era profundo: os irmãos escolheriam entre salvar a si mesmos e salvar Benjamim.
+
+### O discurso de Judá
+
+Gênesis 44:18-34 contém o discurso mais emocionante de toda a narrativa. Judá, que havia proposto vender José por vinte moedas, agora se oferece como escravo no lugar de Benjamim:
+
+"Portanto, agora, peço-te que o teu servo fique em lugar do rapaz, como servo do meu senhor, e o rapaz suba com seus irmãos. Porque como subirei a meu pai, se o rapaz não estiver comigo? Para que eu não veja o mal que venha a atingir o meu pai!" (Gn 44:33-34)
+
+O contraste é devastador: o mesmo Judá que não tinha compaixão para vender José agora se sacrifica para proteger Benjamim. O arrependimento é real — ele se manifesta em ação, não apenas em palavras.
+
+### A revelação
+
+José não conseguiu mais se controlar: "Fazei sair toda a gente de sobre mim" (Gn 45:1). Chorou tão alto que os egípcios ouviram (Gn 45:2).
+
+"Eu sou José! Meu pai ainda vive?" (Gn 45:3). Os irmãos ficaram aterrorizados — a surpresa, a culpa, o medo de represálias. Mas José os tranquilizou:
+
+"Não vos entristeçais, nem se vos afigure duro que me vendestes para cá; porque, para conservação da vida, me enviou Deus diante de vós. Porque, já há dois anos, vem havendo fome na terra; e ainda restam cinco anos, nos quais não ceifarei nem colherei. Deus me enviou diante de vós, para vos conservar um remanescente na terra e para vos preservar a vida por um grande livramento." (Gn 45:5-7)
+
+### A teologia da reconciliação
+
+1. **A graça supera o mérito** — José perdoou sem exigir penitência prévia
+2. **A providência divina é soberana** — Deus usou o mal para o bem
+3. **O arrependimento é real** — Judá se ofereceu como sacrifício
+4. **A verdade liberta** — A mentira de 20 anos foi revelada
+5. **A família pode ser restaurada** — O pecado não é o fim da história
+
+O teólogo Dietrich Bonhoeffer escreveu: "A graça barata é a graça sem o discipulado, a graça sem a cruz." A reconciliação de José não foi "barata" — custou lágrimas, sofrimento e 20 anos de espera.
+
+### Aplicação prática
+
+A história da reconciliação nos ensina:
+1. **O perdão não esquece — mas escolhe não guardar rancor**
+2. **A graça não depende do mérito do ofensor**
+3. **Deus pode usar as piores situações para o bem**
+4. **A família pode ser restaurada — mesmo após traições graves**
+5. **A verdade é necessária para a reconciliação genuína**
+
+A história de José é um retrato do evangelho: Deus perdoa, restaura e usa até mesmo nossos erros para cumprir Seus propósitos.`,
+          versículosChave: [
+            { ref: 'Gênesis 45:5', texto: 'Não vos entristeçais... Deus me enviou diante de vós para conservação da vida.' },
+            { ref: 'Gênesis 45:7', texto: 'Deus me enviou diante de vós, para vos conservar um remanescente na terra.' },
+            { ref: 'Gênesis 45:1', texto: 'Eu sou José!' },
+            { ref: 'Gênesis 44:33', texto: 'Peço-te que o teu servo fique em lugar do rapaz.' },
+          ],
+        },
+        {
+          id: 'genesis-5-4',
+          título: 'O perdão de José: Deus transforma o mal em bem',
+          tipo: 'texto',
+          duração: '16 min',
+          conteúdo: `## O perdão de José: Deus transforma o mal em bem
+
+Gênesis 50 encerra a história de José com o verso teológico mais poderoso de todo o livro: "Vós bem pensastes mal contra mim; porém Deus o encaminhou para bem, para fazer como se vê neste dia, para conservar muita gente com vida" (Gn 50:20). Essa frase é o resumo de toda a teologia de Gênesis — e uma das declarações mais profundas sobre a soberania divina em toda a Escritura.
+
+### A morte de Jacó e o medo dos irmãos
+
+Jacó morreu com 147 anos (Gn 47:28). O velho patriarca foi embalsamado e levado em procissão solene ao túmulo dos patriarcas na gruta de Macpela (Gn 49:29-32). José cumprira a palavra dada ao pai — não o enterraria no Egito, mas na terra da promessa.
+
+Após o funeral, os irmãos ficaram aterrorizados: "Talvez José nos odeie e nos retribua todo o mal que lhe fizemos" (Gn 50:15). O medo é compreensível — o pai era o protetor, e agora ele estava morto. O que impediria José de vingar-se?
+
+### A mentira dos irmãos
+
+Os irmãos mandaram um recado a José, dizendo que Jacó havia pedido que José perdoasse: "Perdoa, peço-te, a transgressão dos teus irmãos e do seu pecado; porque te fizeram mal" (Gn 50:17). O texto não confirma se Jacó realmente disse isso, ou se os irmãos estavam usando o nome do pai para obter perdão.
+
+Há uma ironia profunda aqui: os mesmos irmãos que mentiram a Jacó sobre a morte de José agora usam a morte de Jacó para tentar obter o perdão de José. A hipocrisia humana não desaparece com o tempo — mas a graça de Deus persiste mesmo assim.
+
+### O choro de José
+
+"José chorou quando lhe falaram isso" (Gn 50:17). Essa é a terceira vez que José chora na narrativa:
+1. **Quando reconheceu os irmãos** (Gn 42:24) — choro de emoção mista com dor
+2. **Quando viu Benjamim** (Gn 43:30) — choro de alegria e compaixão
+3. **Quando os irmãos pediram perdão** (Gn 50:17) — choro de comoção diante da fragilidade humana
+
+O choro de José é o choro de um homem que entende a graça. Ele não está com raiva — está movediço diante da incapacidade humana de confiar em Deus.
+
+### A declaração suprema
+
+"Não tenhais receio; pois estarei eu no lugar de Deus? Vós bem pensastes mal contra mim; porém Deus o encaminhou para bem, para fazer como se vê neste dia, para conservar muita gente com vida. Portanto, não tenhais receio; eu sustentarei a vós e a vossos filhos" (Gn 50:19-21).
+
+Essa declaração contém três verdades teológicas fundamentais:
+
+**1. "Estarei eu no lugar de Deus?"** — José reconhece que a vingança é prerrogativa divina, não humana. "A mim pertence a vingança; eu retribuirei, diz o Senhor" (Romanos 12:19). José se coloca na posição de servo, não de juiz.
+
+**2. "Deus o encaminhou para bem"** — O mal humano é real, mas Deus não é derrotado por ele. Ele incorpora até mesmo as piores ações humanas em Seu plano soberano. Isso não justifica o mal — mostra que Deus é maior que o mal.
+
+**3. "Para conservar muita gente com vida"** — O propósito de Deus era universal: não apenas preservar a família de Jacó, mas todas as nações afetadas pela fome. O plano divino sempre foi maior que o nacionalismo israelita.
+
+### A teologia do perdão
+
+O perdão de José é um dos mais profundos exemplos de graça no Antigo Testamento:
+
+**1. O perdão é uma escolha, não uma emoção** — José chorou (emoção), mas depois falou com firmeza (decisão). O perdão não é um sentimento — é uma vontade de não guardar rancor.
+
+**2. O perdão não minimiza o mal** — José reconhece: "Vós bem pensastes mal contra mim." Ele não diz "não foi nada" ou "tudo bem". O mal foi real — mas Deus foi maior.
+
+**3. O perdão liberta tanto o perdoado quanto o perdoador** — José não carregou ódio por 20 anos. O peso do ressentimento é mais pesado que o da ofensa.
+
+**4. O perdão é modelado no perdão divino** — José perdoa como Deus perdoa: gratuitamente, sem exigir penitência prévia, restabelecendo o relacionamento.
+
+### A providência divina: Mal, bondade e propósito
+
+A frase "Deus o encaminhou para bem" (*we'elohim shallachô le'hayet*) é teologicamente densa. O verbo "encaminhou" (*shalach*) significa "enviou, direcionou, colocou no caminho". José não diz que Deus "permitiu" — Ele diz que Deus "enviou". Isso não significa que Deus é autor do mal, mas que Ele tem o poder de redirecionar o mal para Seus propósitos.
+
+O teólogo C.S. Lewis escreveu: "Deus encontrou um lugar para Si mesmo dentro das piores circunstâncias possíveis." A história de José é a ilustração perfeita desse princípio. O poço, a escravidão, a prisão, a等待 — tudo foi "encaminhado" por Deus para um propósito maior.
+
+Isso não é fatalismo — é providência. Fatalismo diz: "Não importa o que faço, tudo é predeterminado." Providência diz: "Deus é tão grande que pode usar até mesmo meus erros para cumprir Seus propósitos." A diferença é crucial: o fatalismo remove a responsabilidade humana; a providência a mantém.
+
+### O fio condutor de Gênesis 50
+
+José morreu com 110 anos (Gn 50:22). Foi embalsamado e posto num caixão no Egito (Gn 50:26). Ele pediu que seus ossos fossem levados quando Israel saísse do Egito (Gn 50:25). Essa promessa se cumpriu no Êxodo: "Moisés levou consigo os ossos de José" (Êxodo 13:19).
+
+Gênesis termina com uma promessa pendente: a família de Deus está no Egito, mas não na Terra Prometida. Os ossos de José aguardam o cumprimento. A história de Gênesis não termina com um ponto final — termina com uma vírgula. A narrativa continua no Êxodo.
+
+### A estrutura de Gênesis
+
+Gênesis se divide em duas grandes partes:
+1. **Gênesis 1-11**: História universal — criação, queda, dilúvio, Babel
+2. **Gênesis 12-50**: História da aliança — Abraão, Isaque, Jacó, José
+
+A primeira parte mostra a necessidade de salvação; a segunda mostra Deus iniciando Seu plano de redenção. O fio condutor é claro: **Deus criou, o ser humano caiu, Deus começa a redimir**.
+
+### Aplicação prática
+
+O perdão de José nos ensina:
+1. **O perdão é um ato de fé** — Confiar que Deus é justo, mesmo quando não somos
+2. **O perdão não é esquecimento** — José se lembrou do que fizeram, mas escolheu não punir
+3. **Deus transforma o mal em bem** — Não desiste de Deus nas adversidades
+4. **A vingança pertence a Deus** — Não somos juizes, somos servos
+5. **A família pode ser restaurada** — O perdão reconstrói o que o pecado destruiu
+
+O reformador João Calvino escreveu: "Deus tem o hábito de fazer brilhar sua luz nas trevas, e de trazer a ordem onde havia confusão." A história de José é a prova viva desse princípio.
+
+### O fio messiânico
+
+De Gênesis a Apocalipse, a Bíblia conta uma história: **Deus criou, o ser humano caiu, Deus redimirá.** Gênesis planta as sementes que florescem em toda a Escritura — e encontram seu pleno cumprimento em Jesus Cristo, o verdadeiro Filho rejeitado que se tornou o Salvador do mundo.
+
+> "Porque Deus tanto amou o mundo que deu o seu Filho unigênito, para que todo o que nele crê não pereça, mas tenha a vida eterna." — João 3:16`,
+          versículosChave: [
+            { ref: 'Gênesis 50:20', texto: 'Vós bem pensastes mal contra mim; porém Deus o encaminhou para bem.' },
+            { ref: 'Gênesis 50:19', texto: 'Não tenhais receio; pois estarei eu no lugar de Deus?' },
+            { ref: 'Gênesis 50:21', texto: 'Eu sustentarei a vós e a vossos filhos.' },
+            { ref: 'Romanos 8:28', texto: 'Todas as coisas cooperam para o bem daqueles que amam a Deus.' },
+          ],
+        },
+        {
+          id: 'genesis-quiz-5',
+          título: 'Quiz — José: Providência e Perdão',
+          tipo: 'quiz',
+          duração: '12 min',
+          perguntas: [
+            {
+              id: 'genesis-5-q1',
+              pergunta: 'Por que Jacó amava José mais que seus outros filhos?',
+              opções: ['Porque José era o mais inteligente', 'Porque José era filho da velhice e de Raquel, a esposa amada', 'Porque José ajudava mais no trabalho', 'Porque era o primogênito'],
+              respostaCorreta: 1,
+              explicação: 'Gênesis 37:3 diz que Jacó amava José "porque era filho da velhice" e porque era filho de Raquel, a esposa que ele amava mais que Lia.',
+            },
+            {
+              id: 'genesis-5-q2',
+              pergunta: 'Qual era o preço pelo qual os irmãos venderam José?',
+              opções: ['Dez moedas de ouro', 'Vinte moedas de prata', 'Trinta moedas de prata', 'Cinquenta moedas de bronze'],
+              respostaCorreta: 1,
+              explicação: 'José foi vendido aos ismaelitas por vinte moedas de prata (Gn 37:28) — o preço de um escravo. Jesus seria traído pelo triplo desse valor.',
+            },
+            {
+              id: 'genesis-5-q3',
+              pergunta: 'Qual foi a resposta de José à tentação da esposa de Potifar?',
+              opções: ['Ele cedeu', 'Ele fugiu, deixando a veste nas mãos dela', 'Ele contou a Potifar', 'Ele aceitou em segredo'],
+              respostaCorreta: 1,
+              explicação: 'José fugiu literalmente, deixando a veste nas mãos da mulher (Gn 39:12). A fuga é o modelo bíblico para lidar com a tentação.',
+            },
+            {
+              id: 'genesis-5-q4',
+              pergunta: 'Quantos anos José ficou no Egito antes de ser exaltado?',
+              opções: ['3 anos', '7 anos', '13 anos', '20 anos'],
+              respostaCorreta: 2,
+              explicação: 'José tinha 17 anos quando foi vendido (Gn 37:2) e 30 quando foi exaltado (Gn 41:46) — 13 anos de sofrimento e espera.',
+            },
+            {
+              id: 'genesis-5-q5',
+              pergunta: 'O que os sonhos de Faraó significavam?',
+              opções: ['A guerra即将 acontecer', 'Sete anos de abundância seguidos de sete anos de fome', 'A morte de Faraó', 'A vinda de um novo rei'],
+              respostaCorreta: 1,
+              explicação: 'Os sete vacas gordas e as sete espigas cheias representavam sete anos de abundância, seguidos de sete anos de fome devastadora (Gn 41:25-27).',
+            },
+            {
+              id: 'genesis-5-q6',
+              pergunta: 'Por que Judá se ofereceu como fiador de Benjamim?',
+              opções: ['Para impressionar o pai', 'Por arrependimento e mudança de coração', 'Porque era o primogênito', 'Por ordem de Deus'],
+              respostaCorreta: 1,
+              explicação: 'Judá, que havia proposto vender José, agora se oferece como escravo no lugar de Benjamim (Gn 43:8-9) — uma mudança profunda que revela arrependimento real.',
+            },
+            {
+              id: 'genesis-5-q7',
+              pergunta: 'O que significa "Deus o encaminhou para bem" em Gênesis 50:20?',
+              opções: ['Deus causou o mal intencionalmente', 'Deus usou o mal humano para cumprir Seus propósitos de salvação', 'Deus não se importou com o mal', 'O mal não existiu de verdade'],
+              respostaCorreta: 1,
+              explicação: 'Deus não causa o mal, mas tem o poder de redirecionar o mal para Seus propósitos. O mal dos irmãos foi usado para preservar muita gente.',
+            },
+            {
+              id: 'genesis-5-q8',
+              pergunta: 'Por que José chorou quando seus irmãos pediram perdão?',
+              opções: ['De raiva', 'De emoção diante da fragilidade humana e da graça divina', 'De medo', 'De orgulho'],
+              respostaCorreta: 1,
+              explicação: 'José chorou de comoção — vendo a mudança em seus irmãos e reconhecendo que Deus havia cumprido Seu propósito apesar de tudo.',
+            },
+            {
+              id: 'genesis-5-q9',
+              pergunta: 'O que José pediu antes de morrer?',
+              opções: ['Que o enterrassem no Egito', 'Que seus ossos fossem levados quando Israel saísse do Egito', 'Que vingassem sua morte', 'Que construíssem um monumento'],
+              respostaCorreta: 1,
+              explicação: 'José fez jurar os filhos de Israel que, quando Deus os visitasse, levariam seus ossos da terra do Egito (Gn 50:25). Isso se cumpriu no Êxodo.',
+            },
+            {
+              id: 'genesis-5-q10',
+              pergunta: 'Qual é a mensagem central da história de José?',
+              opções: ['A importância da riqueza', 'Deus é soberano e transforma o mal em bem para cumprir Seus propósitos', 'A vingança é justa', 'O destino é imutável'],
+              respostaCorreta: 1,
+              explicação: 'A história de José é a maior ilustração de que Deus é soberano sobre todas as circunstâncias e usa até mesmo as piores ações humanais para o bem.',
             },
           ],
         },

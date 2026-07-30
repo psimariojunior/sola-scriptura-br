@@ -691,5 +691,453 @@ João oferece uma perspectiva independente e profundamente teológica. Cada sina
         },
       ],
     },
+    {
+      id: 'joao-mod-4',
+      título: 'A Teologia de João',
+      descrição: 'João 1, 6-10, 14-17: O Verbo eterno, os "Eu sou" e os discursos de despedida — a teologia profunda do quarto Evangelho',
+      ícone: '📖',
+      aulas: [
+        {
+          id: 'joao-4-1',
+          título: 'O Prólogo joanine: O Verbo eterno que se fez carne',
+          tipo: 'texto',
+          duração: '15 min',
+          conteúdo: `## O Prólogo joanine: O Verbo eterno que se fez carne
+
+João 1:1-18 constitui um dos textos teológicos mais densos e profundos de toda a Escritura Sagrada. Diferente dos outros evangelhos que começam com a vida terrena de Jesus, João inicia sua narrativa na eternidade, no próprio âmago da pré-existência divina. O prólogo joanine não é meramente uma introdução poética — é uma declaração cristológica que estabelece as bases para todo o restante do evangelho.
+
+### O Verbo (Logos) na eternidade
+
+As primeiras palavras do texto joanine ecoam deliberadamente o início de Gênesis: "No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus" (João 1:1). A escolha lexical do termo grego *Logos* não é arbitrária. Para o ouvinte judeu, *Logos* evocava a Sabedoria personificada de Provérbios 8, que estava ao lado de Deus na criação e participava ativamente na formação do mundo. Para o ouvinte grego, *Logos* remetia ao princípio racional e ordenador do universo, a força cósmica que dava coerência à realidade visível. João se apropria desse termo carregado de significado em ambas as tradições culturais e o transforma: o *Logos* não é uma abstração filosófica nem uma força impessoal — é uma Pessoa, o Filho eterno de Deus.
+
+As três afirmações do versículo 1.1 formam um triângulo cristológico perfeito. "No princípio era o Verbo" estabelece a eternidade — não "no princípio o Verbo começou a existir", mas "era", com o verbo no tempo imperfeito grego, indicando existência contínua sem início. "O Verbo estava com Deus" declara a distinção de pessoas — o *pros* grego indica relación face a face, intimidade pessoal, não mera proximidade. "O Verbo era Deus" afirma a unidade de essência — não "era um deus", mas *theos ēn ho logos*, com *theos* no nominativo absoluto, indicando plena divindade.
+
+### A participação na criação
+
+"Nele estava a vida, e a vida era a luz dos homens" (João 1:4). O Verbo não é apenas eterno — é o autor e sustentador de toda a existência. João 1:3 declara explicitamente: "Todas as coisas foram feitas por meio dele, e nada do que foi feito foi feito sem ele." Essa afirmação é radical: não existe nada na criação que não tenha tido origem no Verbo. Colossenses 1:15-17 confirma essa verdade: "Ele é a imagem do Deus invisível, o primogênito de toda a criação, porque nele foram criadas todas as coisas que há nos céus e na terra, visíveis e invisíveis." Filipenses 2:5-8 complementa ao descrever o vazio que o Verbo deixou ao se encarnar, esvaziando-se a si mesmo, tomando a forma de servo.
+
+### A rejeição e a graça
+
+O prólogo joanine também introduz o tema da rejeição: "Veio para o que era seu, e os seus não o receberam" (João 1:11). A humanidade, que deveria reconhecer o seu Criador, preferiu as trevas. No entanto, a soberania de Deus não é frustrada pela incredulidade humana: "A todos quantos o receberam, deu-lhes o poder de serem feitos filhos de Deus" (João 1:12). A recepção de Cristo é o meio pelo qual o ser humano recupera sua identidade filial. A fé não é um mérito humano — é o canal da graça divina.
+
+### A encarnação: O véu da carne
+
+"E o Verbo se fez carne e habitou entre nós, cheio de graça e de verdade" (João 1:14). A palavra grega *eskēnōsen* significa literalmente "plantou sua tenda", ecoando o tabernáculo do deserto onde a glória de Deus habitava entre Israel. A encarnação não é uma diminuição do Verbo — é uma união hipostática, a coexistência perfeita de duas naturezas em uma pessoa. O Verbo não deixou de ser Deus ao se tornar humano; assumiu a humanidade em si mesmo sem confusão, sem divisão, sem alteração. Essa é a base de toda a cristologia ortodoxa e o fundamento da salvação.
+
+"Deus, ninguém jamais o viu; o Filho unigênito, que está no seio do Pai, esse o fez conhecido" (João 1:18). O Prólogo termina onde a revelação começa: o invisível se torna visível no Filho. João não escreveu apenas história — escreveu teologia. O prólogo é a chave que abre todas as portas do seu evangelho.`,
+          versículosChave: [
+            { ref: 'João 1:1', texto: 'No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus.' },
+            { ref: 'João 1:14', texto: 'E o Verbo se fez carne e habitou entre nós, cheio de graça e de verdade.' },
+            { ref: 'João 1:18', texto: 'Deus, ninguém jamais o viu; o Filho unigênito, que está no seio do Pai, esse o fez conhecido.' },
+            { ref: 'Colossenses 1:15-17', texto: 'Ele é a imagem do Deus invisível, o primogênito de toda a criação.' },
+            { ref: 'Filipenses 2:5-8', texto: 'Aniquilou a si mesmo, tomando a forma de servo, fazendo-se semelhante aos homens.' },
+          ],
+        },
+        {
+          id: 'joao-4-2',
+          título: 'Os sete "Eu sou" de Jesus: Revelação da divindade',
+          tipo: 'texto',
+          duração: '15 min',
+          conteúdo: `## Os sete "Eu sou" de Jesus: Revelação da divindade
+
+No Evangelho de João, Jesus faz sete declarações solenes introduzidas pela fórmula "Eu sou" (*egō eimi* em grego). Essas afirmações não são meras metáforas — são revelações deliberadas da identidade divina de Cristo. Cada uma delas está enraizada no Antigo Testamento e aponta para a plenitude da obra messiânica. O estudo sistemático dessas declarações revela quem Jesus realmente é e o que Ele veio realizar.
+
+### 1. Eu sou o Pão da Vida (João 6:35)
+
+"Eu sou o pão da vida; quem vem a mim não terá fome, e quem crer em mim nunca terá sede" (João 6:35). Essa declaração foi proferida no dia seguinte à multiplicação dos pães, quando a multidão O procurava por causa do pão material. Jesus redireciona a busca: o verdadeiro alimento não é o que satisfaz o estômago, mas o que sustenta a alma. O pão remete ao maná do deserto (Êxodo 16), mas Jesus vai além: o maná alimentava temporariamente e os pais morreram; Ele é o pão que dá vida eterna. "Eu sou o pão vivo que desceu do céu" (João 6:51). A fé em Cristo é a nourritura espiritual que satisfaz a fome mais profunda da alma humana.
+
+### 2. Eu sou a Luz do Mundo (João 8:12)
+
+"Eu sou a luz do mundo; quem me segue não andará em trevas, mas terá a luz da vida" (João 8:12). Jesus declara isso durante a Festa dos Tabernáculos, quando grandes candelabros iluminavam o Templo, lembrando a coluna de fogo que guiava Israel no deserto. A luz é símbolo universal de verdade, pureza e presença divina. "A luz resplandece nas trevas, e as trevas não prevaleceram contra ela" (João 1:5). Jesus não é uma luz entre muitas — é a fonte de toda luz espiritual. Sem Ele, a humanidade vagueia em escuridão existencial, incapaz de encontrar o caminho de volta ao Pai.
+
+### 3. Eu sou a Porta (João 10:7, 9)
+
+"Eu sou a porta; se alguém entrar por mim, será salvo" (João 10:9). A imagem do pastor e das ovelhas era familiar na cultura pastoral de Israel. A porta do redil controlava o acesso — todas as ovelhas entravam por um único ponto. Jesus declara ser o único caminho de acesso a Deus. Não há múltiplos caminhos, não há alternativas religiosas equivalentes. "Ninguém vem ao Pai, senão por mim" (João 14:6). A exclusividade de Cristo não é arrogância — é a verdade revelada. A porta também protege: quem entra por Cristo encontra segurança e pastoreio.
+
+### 4. Eu sou o Bom Pastor (João 10:11, 14)
+
+"Eu sou o bom pastor; o bom pastor dá a sua vida pelas ovelhas" (João 10:11). O contraste é direto: o mercenário foge quando vem o lobo, pois as ovelhas não são dele. Jesus conhece cada ovelha pelo nome, assim como o Pai O conhece. A relação é pessoal e recíproca. A morte do Bom Pastor não é acidental — é voluntária: "Ninguém me tira a vida; eu a dou de mim mesmo. Tenho poder para a dar, e tenho poder para tornar a tomá-la" (João 10:18). O pastor judeu costumava se posicionar entre o rebanho e o perigo; Jesus faz mais — Ele toma o golpe em lugar das ovelhas.
+
+### 5. Eu sou a Ressurreição e a Vida (João 11:25)
+
+"Eu sou a ressurreição e a vida; quem crê em mim, ainda que morra, viverá" (João 11:25). Jesus não disse "eu dou a ressurreição" — disse "eu sou". A ressurreição não é apenas um evento futuro — é uma Pessoa presente. Marta confessou a fé em Israel: "Eu creio que ressuscitarás na ressurreição, no último dia." Jesus expande: a ressurreição não está confinada ao fim dos tempos — está disponível agora, n'Ele. Essa declaração foi o prelúdio da ressurreição de Lázaro, o maior sinal do evangelho.
+
+### 6. Eu sou o Caminho, a Verdade e a Vida (João 14:6)
+
+"Eu sou o caminho, a verdade e a vida; ninguém vem ao Pai, senão por mim" (João 14:6). Três afirmações exclusivas que se complementam. O caminho indica a direção; a verdade revela a realidade; a vida é o destino. Não é uma das muitas verdades — é A Verdade. Não é um dos muitos caminhos — é O Caminho. Essa declaração é a mais polêmica no contexto do relativismo pós-moderno, mas continua sendo a afirmação mais clara sobre a exclusividade de Cristo.
+
+### 7. Eu sou a Videira Verdadeira (João 15:1, 5)
+
+"Eu sou a videira verdadeira, e o meu Pai é o lavrador" (João 15:1). A imagem da videira é ricamente agricultural. Israel era chamada videira no AT (Isaías 5, Salmos 80), mas falhou em produzir fruto. Jesus é a videira perfeita que cumpre o que Israel não conseguiu. "Sem mim nada podeis fazer" (João 15:5). A união com Cristo é vital — não meramente jurídica. O ramo não dá fruto por esforço próprio; dá fruto porque está conectado à fonte de vida. A oração, a obediência e o amor são frutos naturais dessa união vital.`,
+          versículosChave: [
+            { ref: 'João 6:35', texto: 'Eu sou o pão da vida; quem vem a mim não terá fome.' },
+            { ref: 'João 8:12', texto: 'Eu sou a luz do mundo; quem me segue não andará em trevas.' },
+            { ref: 'João 10:11', texto: 'Eu sou o bom pastor; o bom pastor dá a sua vida pelas ovelhas.' },
+            { ref: 'João 11:25', texto: 'Eu sou a ressurreição e a vida; quem crê em mim, ainda que morra, viverá.' },
+            { ref: 'João 14:6', texto: 'Eu sou o caminho, a verdade e a vida; ninguém vem ao Pai, senão por mim.' },
+            { ref: 'João 15:1', texto: 'Eu sou a videira verdadeira, e o meu Pai é o lavrador.' },
+          ],
+        },
+        {
+          id: 'joao-4-3',
+          título: 'O Discurso de Despedida: João 14-17',
+          tipo: 'texto',
+          duração: '18 min',
+          conteúdo: `## O Discurso de Despedida: João 14-17
+
+João 14-17 contém os últimos ensinamentos de Jesus antes da Sua paixão e morte. São quatro capítulos de intensa intimidade teológica, onde o Verbo Encarnado prepara os Seus discípulos para a Sua ausência física e para a vinda do Espírito Santo. Esse discurso de despedida é considerado por muitos estudiosos como o coração do Evangelho de João e um dos trechos mais profundos de toda a Escritura.
+
+### João 14: A preparação para a ausência
+
+"Não se turbe o vosso coração; crdes em Deus, também em mim credes" (João 14:1). Jesus começa o discurso abordando a ansiedade dos discípulos. Eles estavam perplexos, com medo do que estava por vir. Jesus os convida à fé, não como sentimento, mas como confiança concreta no Seu plano soberano.
+
+"Na casa de meu Pai há muitas moradas; se não fosse assim, eu vos teria dito" (João 14:2). A promessa não é apenas de um lugar — é de preparação pessoal. Jesus não está apenas indo à frente — está preparando um lugar para cada um. A imagem é de hospitalidade oriental: o anfitrião prepara tudo antes de convidar os hóspedes.
+
+A declaração central é "Eu sou o caminho, a verdade e a vida" (João 14:6). Através de Filipe, que pediu "Mostra-nos o Pai", Jesus revela: "Quem me vê vê o Pai" (João 14:9). A revelação de Deus não é abstrata — é pessoal, encarnada em Cristo.
+
+### A promessa do Espírito Santo
+
+"Eu rogarei ao Pai, e ele vos dará outro Consolador, para que fique convosco para sempre — o Espírito da verdade" (João 14:16-17). O termo *Paraklētos* (Consolador, Defensor, Advogado) é riquíssimo. É o mesmo nome dado ao próprio Jesus em outras partes do NT (1 João 2:1). O Espírito Santo não é um substituto inferior — é outro da mesma natureza, que habitará nos crentes de forma interna e permanente.
+
+"Mas o Consolador, o Espírito Santo, a quem o Pai enviará em meu nome, esse vos ensinará todas as coisas e vos fará lembrar de tudo o que eu vos disse" (João 14:26). O Espírito é o mestre interior que ilumina as Escrituras, recorda as palavras de Jesus e guia os discípulos em toda a verdade.
+
+### João 15: A videira e os ramos
+
+"Eu sou a videira verdadeira, e o meu Pai é o lavrador" (João 15:1). A metáfora da videira revela a natureza da relação entre Cristo e os Seus. Não é uma relação de escravidão — é de união vital. O ramo não produz fruto por esforço próprio; produz porque está conectado à fonte de vida.
+
+"Permanecei em mim, e eu permanecerei em vós" (João 15:4). A permanência é mútua e dinâmica. Não é passividade — é dependência ativa, alimentada pela oração, pela obediência e pelo amor.
+
+"Este é o meu mandamento: que vos ameis uns aos outros, assim como eu vos amei" (João 15:12). O amor cristão não é sentimentalismo — é sacrifício voluntário, imitando o modelo de Cristo. "Ninguém tem maior amor do que este: que um ponto a vida pelos seus amigos" (João 15:13). O amor se prova na ação, não nas palavras.
+
+### João 16: A obra do Espírito
+
+"Eu vos digo a verdade: É para vosso proveito que eu vá" (João 16:7). Para os discípulos, isso soou como abandono. Mas Jesus explica: a ausência física permite a presença espiritual universal. O Espírito não estará limitado a um lugar — estará em todo crente, em todo tempo, em todo lugar.
+
+"Quando ele vier, convencerá o mundo de pecado, de justiça e de juízo" (João 16:8-9). A obra do Espírito é tripla: convence de pecado (a necessidade de salvação), de justiça (a perfeição de Cristo) e de juízo (a condenação do pecado). O Espírito não é apenas confortador — é também revelador da verdade.
+
+"Muitas coisas ainda tenho para vos dizer, mas vós não podeis suportá-las agora. Quando vier o Espírito da verdade, ele vos guará a toda a verdade" (João 16:12-13). A revelação não terminou com a ascensão de Jesus — continua pelo Espírito, guia dos discípulos ao longo dos séculos.
+
+### João 17: A oração sacerdotal
+
+João 17 é a oração de Jesus antes da paixão — a mais longa oração registrada nas Escrituras. Ela se divide em três partes: Jesus ora por Si mesmo (vv. 1-5), pelos discípulos (vv. 6-19) e por todos os crentes futuros (vv. 20-26).
+
+"Pai, chegou a hora; glorifica o teu Filho, para que o Filho te glorifique a ti" (João 17:1). A glória pedida não é espetáculo — é a realização do plano eterno de redenção. A glorificação do Filho na cruz é a maior revelação da glória do Pai.
+
+"Não rogo somente por estes, mas também por aqueles que hão de crer em mim pela palavra deles" (João 17:20). Jesus orou por você. Essa oração sacerdotal transcende o tempo — conecta cada crente com a intercessão eterna de Cristo. A unidade dos crentes é testemunho ao mundo: "Para que o mundo creia que me enviaste" (João 17:21).
+
+A oração termina com a pedra angular da teologia joanine: "Eu lhes dei a glória que me deste, para que sejam um, como nós somos um" (João 17:22). A unidade dos crentes reflete a unidade do próprio Deus — é o testemunho supremo da realidade do evangelho.`,
+          versículosChave: [
+            { ref: 'João 14:1-3', texto: 'Não se turbe o vosso corazón; crdes em Deus, também em mim credes.' },
+            { ref: 'João 14:26', texto: 'O Espírito Santo vos ensinará todas as coisas e vos fará lembrar de tudo.' },
+            { ref: 'João 16:7-15', texto: 'É para vosso proveito que eu vá; o Espírito vos guará a toda a verdade.' },
+            { ref: 'João 17:1-26', texto: 'Pai, chegou a hora; glorifica o teu Filho.' },
+          ],
+        },
+        {
+          id: 'joao-quiz-4',
+          título: 'Avaliação — A Teologia de João',
+          tipo: 'quiz',
+          duração: '12 min',
+          perguntas: [
+            {
+              id: 'joao-q4-1',
+              pergunta: 'O que significa o termo grego "Logos" no prólogo de João?',
+              opções: ['Um anjo criado', 'A razão e palavra eterna de Deus', 'Uma força cósmica impessoal', 'O Espírito Santo'],
+              respostaCorreta: 1,
+              explicação: 'Logos significa "Verbo" ou "Palavra", mas também carrega o sentido de "Razão" e "Princípio". João o usa para identificar Jesus como o Verbo eterno, presente desde antes da criação.',
+            },
+            {
+              id: 'joao-q4-2',
+              pergunta: 'Qual é a primeira declaração "Eu sou" de Jesus no Evangelho de João?',
+              opções: ['Eu sou a luz do mundo', 'Eu sou o pão da vida', 'Eu sou a porta', 'Eu sou o bom pastor'],
+              respostaCorreta: 1,
+              explicação: 'A primeira declaração "Eu sou" occurs in João 6:35, where Jesus declares: "Eu sou o pão da vida; quem vem a mim não terá fome."',
+            },
+            {
+              id: 'joao-q4-3',
+              pergunta: 'Quantas declarações "Eu sou" Jesus faz no Evangelho de João?',
+              opções: ['Cinco', 'Seis', 'Sete', 'Oito'],
+              respostaCorreta: 2,
+              explicação: 'Jesus faz sete declarações "Eu sou" no evangelho de João: Pão da Vida, Luz do Mundo, Porta, Bom Pastor, Ressurreição e Vida, Caminho/Verdade/Vida, e Videira Verdadeira.',
+            },
+            {
+              id: 'joao-q4-4',
+              pergunta: 'O que o termo grego "Paraklētos" significa?',
+              opções: ['Criador', 'Consolador / Defensor / Advogado', 'Profeta', 'Rei'],
+              respostaCorreta: 1,
+              explicação: 'Paraklētos é traduzido como Consolador, Defensor ou Advogado. É o nome dado ao Espírito Santo, que Jesus promete enviar aos discípulos.',
+            },
+            {
+              id: 'joao-q4-5',
+              pergunta: 'Por que Jesus disse que era "proveito" que Ele fosse embora?',
+              opções: ['Porque Ele estava cansado', 'Porque o Espírito Santo seria enviado em Seu lugar', 'Porque os discípulos não precisavam mais Dele', 'Porque a obra estava completa na terra'],
+              respostaCorreta: 1,
+              explicação: 'Jesus explicou que a Sua ausência física permitiria a presença espiritual universal do Espírito Santo, que estaria em todo crente, em todo tempo.',
+            },
+            {
+              id: 'joao-q4-6',
+              pergunta: 'Em João 17, por quem Jesus orou?',
+              opções: ['Apenas por Si mesmo', 'Por Si mesmo, pelos discípulos e pelos futuros crentes', 'Apenas por Pedro e João', 'Pela nação de Israel'],
+              respostaCorreta: 1,
+              explicação: 'A oração sacerdotal de João 17 abrange três grupos: Jesus ora por Si mesmo (vv. 1-5), pelos discípulos (vv. 6-19) e por todos os crentes futuros (vv. 20-26).',
+            },
+            {
+              id: 'joao-q4-7',
+              pergunta: 'Qual imagem Jesus usou para descrever a relação entre Ele e os discípulos?',
+              opções: ['Rei e súditos', 'Mestre e alunos', 'Videira e ramos', 'Pai e filhos'],
+              respostaCorreta: 2,
+              explicação: 'Em João 15, Jesus usa a imagem da videira e dos ramos para descrever a união vital entre Ele e os Seus seguidores.',
+            },
+            {
+              id: 'joao-q4-8',
+              pergunta: 'O que significa "Eu sou" no contexto bíblico?',
+              opções: ['Uma expressão de humildade', 'A declaração do nome divino de Deus', 'Uma identificação cultural', 'Uma fórmula de cortesia'],
+              respostaCorreta: 1,
+              explicação: 'A expressão "Eu sou" (egō eimi) é uma referência direta ao nome de Deus revelado a Moisés em Êxodo 3:14 — "Eu Sou o que Sou". Ao usar essa fórmula, Jesus está afirmando Sua divindade.',
+            },
+            {
+              id: 'joao-q4-9',
+              pergunta: 'Qual é o tema central do prólogo joanine?',
+              opções: ['A genealogia de Jesus', 'A encarnação do Verbo eterno', 'A paixão e morte de Jesus', 'A ressurreição de Lázaro'],
+              respostaCorreta: 1,
+              explicação: 'O prólogo de João (1:1-18) apresenta a natureza pré-existente, eterna e divina do Verbo, que se encarnou em Jesus Cristo.',
+            },
+            {
+              id: 'joao-q4-10',
+              pergunta: 'Qual é o versículo que declara que "o Verbo era Deus"?',
+              opções: ['João 1:14', 'João 1:1', 'João 1:12', 'João 1:18'],
+              respostaCorreta: 1,
+              explicação: 'João 1:1 declara: "No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus." Essa é a afirmação explícita da divindade do Verbo.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'joao-mod-5',
+      título: 'A Paixão e Ressurreição em João',
+      descrição: 'João 18-21: A prisão, julgamento, crucificação, morte e ressurreição de Jesus — a consumação da obra redentora',
+      ícone: '✝️',
+      aulas: [
+        {
+          id: 'joao-5-1',
+          título: 'A prisão e o julgamento de Jesus',
+          tipo: 'texto',
+          duração: '15 min',
+          conteúdo: `## A prisão e o julgamento de Jesus
+
+João 18-19 narra os eventos que levaram Jesus da oração no Getsêmani à crucificação no Gólgota. Diferente dos outros sinóticos, João apresenta Jesus não como vítima passiva, mas como o Rei soberano que entrega a Sua vida voluntariamente. O julgamento de Jesus diante de Pilatos é um dos trechos mais dramáticos e teologicamente ricos de todo o evangelho.
+
+### A prisão no Getsêmani
+
+João 18:1-11: Jesus e os discípulos atravessaram o ribeiro de Cedrom e entraram num horto. Judas, o traidor, chegou com uma coorte de soldados e servos dos fariseus. "A quem buscais?" — "Jesus Nazareno." — "EU SOU" (João 18:5-6). O nome divino, pronunciado com autoridade, derrubou os soldados no chão. Essa cena é profundamente simbólica: diante do nome revelado a Moisés, toda a força humana cai prostrada. Jesus não precisou usar poder — bastou Sua palavra.
+
+Pedro sacou a espada e cortou a orelha de Malco, servo do sumo sacerdote. Jesus o repreendeu: "Embainha a tua espada! Não haverei de beber o cálice que o Pai me deu?" (João 18:11). A prisão não foi um fracasso — foi a primeira etapa do cumprimento do plano eterno de redenção. O cálice da ira divina estava sendo preparado, e Jesus o beberia até as últimas gotas.
+
+### A negação de Pedro
+
+João 18:15-27: Pedro seguiu Jesus até o pátio do sumo sacerdote. Três vezes negou conhecê-Lo: "Não sou discípulo dele" (João 18:17, 25, 27). O galo cantou. Pedro lembrou das palavras de Jesus: "Antes que o galo cante, tu me hás de negar três vezes" (João 13:38). A negação de Pedro revela a fragilidade humana diante da tentação — mas também a misericórdia divina que restaura. João não registra o choro de Pedro aqui, mas sabemos pelos outros evangelhos que ele saiu e chorou amargamente.
+
+### Diante de Anás e Caifás
+
+Jesus foi levado primeiro a Anás, sogro de Caifás (João 18:13). Anás interrogou Jesus sobre os Seus discípulos e ensinos. Jesus respondeu com dignidade: "Eu falei abertamente ao mundo; eu sempre ensinei na sinagoga e no templo, onde todos os judeus se reúnem; nada falei às escondidas" (João 18:20). Um dos servos deu um tapa em Jesus: "Assim respondes ao sumo sacerdote?" A paciência de Jesus diante da injustiça é exemplar.
+
+### Diante de Pilatos
+
+A cena diante de Pilatos é o cerne teológico da paixão joanine. Pilatos perguntou: "Tu és o Rei dos Judeus?" (João 18:33). A pergunta é política — mas a resposta de Jesus é transcendente: "O meu reino não é deste mundo. Se o meu reino fosse deste mundo, os meus servos pelejariam para que eu não fosse entregue aos judeus; mas o meu reino não é daqui" (João 18:36).
+
+Pilatos três vezes declarou: "Não acho culpa neste homem" (João 18:38, 19:4, 19:6). A inocência de Jesus foi reconhecida mesmo pelo governador romano. No entanto, a multidão, manipulada pelos líderes religiosos, preferiu Barrabás — um criminoso — ao Salvador do mundo. A escolha entre Jesus e Barrabás é paradigmática: a humanidade sempre escolhe o pecado em vez da salvação.
+
+### A crucificação
+
+João 19:16-30: Jesus foi crucificado. A inscrição colocada na cruz dizia: "Jesus Nazareno, o Rei dos Judeus" (João 19:19). Os sumos sacerdotes protestaram: "Não escrevas: O Rei dos Judeus, mas que ele se disse rei dos Judeus." Pilatos respondeu: "O que escrevi, escrevi" (João 19:22). A ironia é magnífica: o governador romano, sem saber, proclamou a verdade sobre Jesus — Ele é o Rei.
+
+"Estando Jesus безопасн ali, para que se cumprisse a Escritura, disse: Tenho sede" (João 19:28). A sede do Criador do universo é um dos paradoxos mais profundos da encarnação. O infinito experimenta a finitude. O eterno suporta o temporal.
+
+"Está consumado!" (*Tetelestai* — João 19:30). A palavra grega significa "está pago", "está completo", "está perfeito". A obra da salvação estava acabada. Não faltou nada — o preço foi integralmente pago. Jesus não foi derrotado na cruz — venceu. A cruz não é um fracasso — é o trono da vitória.`,
+          versículosChave: [
+            { ref: 'João 18:5-6', texto: 'EU SOU. E, dizendo isto, caíram por terra.' },
+            { ref: 'João 18:36', texto: 'O meu reino não é deste mundo.' },
+            { ref: 'João 19:22', texto: 'O que escrevi, escrevi.' },
+            { ref: 'João 19:30', texto: 'Está consumado!' },
+          ],
+        },
+        {
+          id: 'joao-5-2',
+          título: 'As últimas palavras da cruz e o sepultamento',
+          tipo: 'texto',
+          duração: '12 min',
+          conteúdo: `## As últimas palavras da cruz e o sepultamento
+
+João 19 registra as últimas palavras de Jesus na cruz e o Seu sepultamento. Diferente dos outros evangelhos, João narra menos palavras da cruz, mas cada uma delas carrega peso teológico extraordinário. As últimas palavras de um moribundo são sempre significativas — as de Jesus são eternas.
+
+### As palavras da cruz no Evangelho de João
+
+Embora os quatro evangelhos juntos registrem sete palavras da cruz, João foca em três momentos cruciais:
+
+**1. "Mulher, eis o teu filho. Filho, eis a tua mãe" (João 19:26-27)**
+
+Jesus olhou para Maria, Sua mãe, e para o discípulo amado: "Mulher, eis o teu filho." Depois disse ao discípulo: "Eis a tua mãe." A partir daquele hora, o discípulo a recebeu em sua casa. Essa é a última intervenção de Jesus no cuidado humano — Ele providenciou para Sua própria mãe. Mesmo na agonia da cruz, Jesus pensou nos outros. A entrega da mãe ao discípulo é também um gesto simbólico: a nova família de Deus se forma na cruz, unida não pelo sangue, mas pela fé.
+
+**2. "Tenho sede" (João 19:28)**
+
+"Depois disso, sabendo Jesus que já tudo se havia cumprido, para que se cumprisse a Escritura, disse: Tenho sede." A sede de Jesus na cruz é um dos dados mais realistas da paixão. O Criador dos mares e oceanos experimenta a secura da água. A sede física aponta para algo mais profondo: a sede espiritual do Filho de Deus separado do Pai pelo pecado da humanidade. Isaías 53:3 profetizou: "Desprezado e rejeitado dos homens." A sede é a manifestação física do sofrimento espiritual.
+
+**3. "Está consumado" (João 19:30)**
+
+"E, inclinando a cabeça, entregou o espírito." O verbo grego *teleoō* (consumar, completar) está no perfecto indicativo — *tetelestai* — uma forma verbal que indica ação passada com resultados presentes e permanentes. Não é apenas "acabou" — é "está consumado de uma vez por todas, para sempre". A obra da redenção não precisa ser repetida, complementada ou melhorada. Está perfeita.
+
+### A lança e o sangue
+
+"Mas, vindo eles a Jesus, como o viram já morto, não lhe quebraram as pernas; mas um dos soldados lhe abriu o lado com uma lança, e logo saiu sangue e água" (João 19:33-34). O detalhe do sangue e água é teologicamente carregado. A água simboliza purificação e regeneração; o sangue simboliza expiação e redenção. João interpreta isso como testemunho ocular: "E o que o viu dá testemunho, e o seu testemunho é verdadeiro" (João 19:35). A dupla natureza da morte de Cristo é revelada: Ele é o Cordeiro que purifica e o Sacrifício que redime.
+
+### O sepultamento
+
+"Depois disto, José de Arimateia, que era discípulo de Jesus, porém oculto por medo dos judeus, pediu a Pilatos que lhe permitisse tirar o corpo de Jesus" (João 19:38). Nicodemos também ajudou, trazendo uma mistura de mirra e aloes, cerca de trinta quilos. Eles envolveram o corpo em lençóis com as especiarias, de acordo com o costume de sepultamento dos judeus.
+
+"No lugar onde fora crucificado havia um horto, e no horto um sepulcro novo, em que ninguém fora ainda posto" (João 19:41). O sepulcro novo de Jesus cumpre a profecia de Isaías 53:9: "Pôs a sua sepultura com os ímpios, mas com o rico haverá a sua sepultura." O Criador do universo recebeu um túmulo emprestado — mas não por muito tempo.`,
+          versículosChave: [
+            { ref: 'João 19:26-27', texto: 'Mulher, eis o teu filho. Filho, eis a tua mãe.' },
+            { ref: 'João 19:28', texto: 'Tenho sede.' },
+            { ref: 'João 19:30', texto: 'Está consumado. E, inclinando a cabeça, entregou o espírito.' },
+            { ref: 'João 19:34', texto: 'Um dos soldados lhe abriu o lado com uma lança, e logo saiu sangue e água.' },
+          ],
+        },
+        {
+          id: 'joao-5-3',
+          título: 'A ressurreição: Provas e significado',
+          tipo: 'texto',
+          duração: '15 min',
+          conteúdo: `## A ressurreição: Provas e significado
+
+João 20-21 narra o evento mais importante da história cristã: a ressurreição de Jesus dos mortos. Diferente dos outros evangelhos, João enfatiza não apenas o fato da ressurreição, mas as suas implicações teológicas e práticas. A narração joanine é cuidadosa, detalhada e profundamente pessoal.
+
+### O túmulo vazio
+
+"Maria Madalena foi ao túmulo de manhã cedo, sendo ainda escuro, e viu que a pedra fora tirada do túmulo" (João 20:1). Maria Madalena correu até Pedro e João: "Levaram o Senhor do túmulo, e não sabemos onde o puseram!" (João 20:2). Pedro e João correram até o túmulo. João chegou primeiro, olhou para dentro, viu os lençóis dobrados e o sudário de cabeça à parte. "Então entrou também o outro discípulo, que chegara primeiro ao túmulo, e viu e creu" (João 20:8). O que João viu? Um túmulo arrumado — não o caos de um roubo. O sudário dobrado separadamente indicava ordem e propósito.
+
+### Maria encontra o Ressuscitado
+
+"Jesus disse-lhe: Maria! E, virando-se ela, disse-lhe: Raboni! (que quer dizer Mestre)" (João 20:16). O reconhecimento veio pelo nome. Jesus a chamou pessoalmente, individualmente. Maria Madalena seria a primeira testemunha da ressurreição — um privilégio extraordinário numa cultura em que o testemunho de mulheres não era aceito nos tribunais. Deus escolheu as marginais para proclamar a notícia mais importante da história.
+
+### Jesus aparece aos discípulos
+
+"E, ditas estas coisas, mostrou-lhes as mãos e o lado. E os discípulos se alegraram, vendo o Senhor" (João 20:20). As marcas da crucificação não desapareceram — elas permanecem como lembretes eternos do sacrifício. O Cristo ressurreto é o mesmo Cristo crucificado.
+
+"Disse-lhes Jesus outra vez: Paz a vós; como o Pai me enviou, também eu vos envio a vós. E, dizendo isto, soprou e disse-lhes: Recebei o Espírito Santo" (João 20:21-22). A comissão é duplicada: como o Pai enviou Jesus, Jesus envia os discípulos. O soprar do Espírito ecoa Gênesis 2:7, quando Deus soprou o fôlego de vida em Adão. Uma nova criação está começando.
+
+### A fé de Tomé
+
+Tomé, um dos doze, não estava presente na primeira aparição. Quando lhe contaram, disse: "Se eu não vir nele as marcas dos cravos, e meter o meu dedo no lugar dos cravos, e meter a minha mão no seu lado, de maneira nenhuma crerei" (João 20:25). Oito dias depois, Jesus apareceu novamente: "Chega aqui o teu dedo e vê as minhas mãos; e chega aqui a tua mão e mete-a no meu lado; e não seas incrédulo, mas crente" (João 20:27).
+
+A resposta de Tomé é a confissão mais alta de toda a Escritura: "Meu Senhor e meu Deus!" (João 20:28). Tomé não disse "Rabi" ou "Messias" — disse "Senhor" (*kurios*, o título grego para YHWH) e "Deus" (*theos*). Nenhuma outra confissão nos evangelhos alcança essa altura teológica.
+
+"Bem-aventurados os que não viram e creram" (João 20:29). Jesus abençoou a fé que não depende de evidências sensoriais — a fé baseada na Palavra. A fé é o meio pelo qual recebemos a salvação.
+
+### A pesca dos 153 peixes
+
+João 21:1-14: Jesus apareceu aos discípulos no mar da Galileia. Pedro, que voltou à pesca, passou a noite sem sucesso. "Lançai a rede à direita do barco, e achareis" (João 21:6). Lançaram e não conseguiam puxar pela quantidade de peixes — 153. João reconheceu: "É o Senhor!" Pedro mergulhou no mar para chegar primeiro.
+
+O número 153 tem gerado muita especulação. Alguns veem simbolismo nos números (153 = soma dos números de 1 a 17); outros veem alusão à profecia de Ezequiel 47:10 (peixes de muitas espécies). independentemente do significado numérico, o número exato indica que o evento é histórico — um pescador conta seus peixes com precisão.
+
+### A restauração de Pedro
+
+A cena mais emotiva da ressurreição é a restauração de Pedro. Três vezes Jesus perguntou: "Simão, tu me amas?" — uma pergunta para cada negação. Três vezes Pedro respondeu: "Tu sabes que te amo." Três confissões anulam três negações.
+
+"Apaascenta os meus cordeiros... Apascenta as minhas ovelhas... Apascenta as minhas ovelhas" (João 21:15-17). A restauração não é apenas perdão — é missão. Pedro é restabelecido como líder do rebanho.
+
+"Quando envelheceres, estenderás as tuas mãos, e outro te cingirá e te levará para onde não queres" (João 21:18). Jesus profetizou a morte de Pedro — não para amedrontá-lo, mas para prepará-lo. "Segue-me" (João 21:19). O mesmo chamado do início. O discipulado começa e termina em seguimento.
+
+### O propósito do evangelho
+
+"Mas estas foram escritos para que creiais que Jesus é o Cristo, o Filho de Deus, e para que, crendo, tenhais vida em seu nome" (João 20:31). Todo o evangelho converge para esse objetivo: fé em Jesus como o Cristo, o Filho de Deus, que dá vida eterna.`,
+          versículosChave: [
+            { ref: 'João 20:28', texto: 'Meu Senhor e meu Deus!' },
+            { ref: 'João 20:29', texto: 'Bem-aventurados os que não viram e creram.' },
+            { ref: 'João 20:31', texto: 'Estas foram escritos para que creiais que Jesus é o Cristo, o Filho de Deus.' },
+            { ref: 'João 21:17', texto: 'Senhor, tu sabes tudo; tu bem sabes que te amo.' },
+            { ref: 'João 21:19', texto: 'Segue-me.' },
+          ],
+        },
+        {
+          id: 'joao-quiz-5',
+          título: 'Avaliação — A Paixão e Ressurreição em João',
+          tipo: 'quiz',
+          duração: '12 min',
+          perguntas: [
+            {
+              id: 'joao-q5-1',
+              pergunta: 'O que Jesus disse quando os soldados vieram prendê-Lo no Getsêmani?',
+              opções: ['Não me prendam', 'EU SOU', 'Onde está Judas?', 'Pai, perdoa-lhes'],
+              respostaCorreta: 1,
+              explicação: 'Jesus disse "EU SOU", usando o nome divino revelado a Moisés, e os soldados caíram por terra (João 18:5-6).',
+            },
+            {
+              id: 'joao-q5-2',
+              pergunta: 'Quantas vezes Pilatos declarou que não achava culpa em Jesus?',
+              opções: ['Duas vezes', 'Três vezes', 'Quatro vezes', 'Uma vez'],
+              respostaCorreta: 1,
+              explicação: 'Pilatos declarou três vezes: "Não acho culpa neste homem" (João 18:38, 19:4, 19:6).',
+            },
+            {
+              id: 'joao-q5-3',
+              pergunta: 'O que significava a palavra grega "Tetelestai"?',
+              opções: ['Meu Deus, por que me abandonaste?', 'Está consumado / Está pago', 'Pai, perdoa-lhes', 'Tenho sede'],
+              respostaCorreta: 1,
+              explicação: 'Tetelestai significa "está consumado" ou "está pago" — a obra da salvação foi completamente realizada na cruz.',
+            },
+            {
+              id: 'joao-q5-4',
+              pergunta: 'Quem foi a primeira pessoa a ver Jesus ressurreto?',
+              opções: ['Pedro', 'João', 'Maria Madalena', 'Tomé'],
+              respostaCorreta: 2,
+              explicação: 'Maria Madalena foi a primeira testemunha da ressurreição (João 20:1-18).',
+            },
+            {
+              id: 'joao-q5-5',
+              pergunta: 'O que saiu do lado de Jesus quando o soldado O feriu?',
+              opções: ['Ar e poeira', 'Sangue e água', 'Luz e fogo', 'Óleo e vinho'],
+              respostaCorreta: 1,
+              explicação: 'Um dos soldados abriu o lado de Jesus com uma lança, e saiu sangue e água (João 19:34), simbolizando purificação e redenção.',
+            },
+            {
+              id: 'joao-q5-6',
+              pergunta: 'Quantos peixeros foram pescados na pesca milagrosa?',
+              opções: ['100', '120', '153', '200'],
+              respostaCorreta: 2,
+              explicação: 'Os discípulos pescaram 153 peixes grandes na pesca milagrosa registrada em João 21:11.',
+            },
+            {
+              id: 'joao-q5-7',
+              pergunta: 'Quantas vezes Jesus perguntou a Pedro "Tu me amas?"',
+              opções: ['Uma vez', 'Duas vezes', 'Três vezes', 'Quatro vezes'],
+              respostaCorreta: 2,
+              explicação: 'Três vezes — uma para cada negação de Pedro. A restauração foi completa e específica.',
+            },
+            {
+              id: 'joao-q5-8',
+              pergunta: 'Qual foi a confissão de Tomé quando viu Jesus ressurreto?',
+              opções: ['Tu és o Messias', 'Meu Senhor e meu Deus!', 'Tu és o Profeta', 'Tu és o Rei'],
+              respostaCorreta: 1,
+              explicação: '"Meu Senhor e meu Deus!" (João 20:28) é a confissão mais alta de divindade de Jesus em todo o Novo Testamento.',
+            },
+            {
+              id: 'joao-q5-9',
+              pergunta: 'Por que Pilatos escreveu a inscrição na cruz em hebraico, latim e grego?',
+              opções: ['Por diversão', 'Para que todos pudessem ler', 'Para zombar de Jesus', 'Por ordem do imperador'],
+              respostaCorreta: 1,
+              explicação: 'Pilatos escreveu em três idiomas para que todos os presentes pudessem ler a inscrição: "Jesus Nazareno, o Rei dos Judeus" (João 19:19-20).',
+            },
+            {
+              id: 'joao-q5-10',
+              pergunta: 'Qual é o propósito declarado do Evangelho de João?',
+              opções: ['Registrar a história de Jesus', 'Ensinar filosofia grega', 'Para que creiais que Jesus é o Cristo, o Filho de Deus', 'Condenar os pecadores'],
+              respostaCorreta: 2,
+              explicação: 'João 20:31 declara: "Estas foram escritos para que creiais que Jesus é o Cristo, o Filho de Deus, e para que, crendo, tenhais vida em seu nome."',
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

@@ -1347,5 +1347,575 @@ A Trindade é o fundamento de tudo o que cremos e vivemos como cristãos.`,
         },
       ],
     },
+    {
+      id: 'mod-biblia-palavra-de-deus',
+      título: 'A Bíblia: Palavra de Deus',
+      descrição: 'Estude a inspiração, o cânon, a transmissão e a tradução das Escrituras. Entenda por que a Bíblia é confiável e como ela chegou até nós.',
+      ícone: '📖',
+      aulas: [
+        {
+          id: 'aula-5-1',
+          título: 'Origem e Inspiração das Escrituras',
+          tipo: 'texto',
+          duração: '15 min',
+          conteúdo: `## Origem e Inspiração das Escrituras
+
+A Bíblia não é um livro comum. Ela não nasceu da imaginação humana, da tradição religiosa ou de uma busca filosófica por sentido. Ela é Palavra de Deus — revelada, inspirada e preservada pelo próprio Criador.
+
+### O que é Inspiração Bíblica?
+
+A inspiração bíblica é o processo pelo qual Deus usou autores humanos, com suas personalidades, estilos e contextos culturais, para produzir exatamente o que Ele quis comunicar, sem erro em suas palavras originais.
+
+> "Toda a Escritura é inspirada por Deus e útil para o ensino, para a repreensão, para a correção, para a educação na justiça, a fim de que o homem de Deus seja completo e perfeitamente aparelhado para toda boa obra." — 2 Timóteo 3:16-17
+
+A palavra grega usada por Paulo é *theopneustos* (θεοπνευστος), que significa literalmente "soprada por Deus". Não é "inspirada" no sentido de que alguém teve uma boa ideia. É "soprada" — Deus deu o fôlego, o sopro, o conteúdo mesmo das palavras.
+
+### Três Características da Inspiração
+
+**1. Inspiração Verbal**
+
+A inspiração se estende às próprias palavras, não apenas às ideias gerais. Jesus disse: "Não pensareis que eu vim revogar a Lei ou os Profetas; não vim revogar, mas cumprir. Porque em verdade vos digo que, até que o céu e a terra passem, nem uma jota, nem um traço passará da Lei, até que tudo se cumpra" (Mateus 5:17-18). Até a menor letra hebraica (jota) é mantida por Deus.
+
+**2. Inspiração Plenária**
+
+"Toda a Escritura" — não apenas partes dela. Não apenas os mandamentos, não apenas as profecias, não apenas as histórias. Tudo. O livro de Jó, a genealogia de Mateus, a cantiga de Salomão — tudo é inspirado por Deus e tem propósito.
+
+**3. Inspiração Inerrante**
+
+Se Deus é verdadeiro (Números 23:19) e suas palavras são verdadeiras (Salmo 12:6), então as Escrituras são inerrantes — não contêm erro em seus manuscritos originais. Isso não significa que a Bíblia é um livro de ciência ou história no sentido moderno. Significa que, no que ela afirma, ela não erra.
+
+### A Inspiração não é Ditado Mecânico
+
+Deus não "posicionou a mão" dos autores como um fantasma escrevendo em um papel. Ele usou a personalidade de Paulo, o estilo de Lucas, a poesia de Davi, a sabedoria de Salomão. Cada autor escreveu com seu próprio vocabulário e estrutura — mas o resultado final é exatamente o que Deus queria comunicar.
+
+Pedro afirma: "Nenhuma profecia da Escritura é de interpretação própria, porque a profecia jamais foi produzida por vontade de homens, mas homens santos falaram da parte de Deus, inspirados pelo Espírito Santo" (2 Pedro 1:20-21). A fonte é divina; o canal é humano.
+
+### A Bíblia se Auto-Atestua
+
+A Bíblia é o único livro que se declara Palavra de Deus. Não depende de uma autoridade externa para validá-la. Paulo diz: "Porque a palavra de Deus é viva e eficaz, e mais cortante do que qualquer espada de dois gumes, e penetrante até ao ponto de separar alma e espírito, juntas e medulas, e apta para discernir os pensamentos e propósitos do coração" (Hebreus 4:12).
+
+Essa auto-afirmação não é arrogância — é consistência. A Bíblia cumpre o que anuncia, transforma vidas e resiste ao tempo há milênios.
+
+### Por que isso importa
+
+Se a Bíblia é realmente Palavra de Deus inspirada, ela tem autoridade sobre a nossa vida. Não é um livro de sugestões ou sabedoria humana — é a revelação de como Deus quer que vivamos, como podemos conhecê-lo, e o que Ele preparou para o futuro. A inspiração bíblica é o fundamento de toda a fé cristã.`,
+          versículosChave: [
+            { ref: '2 Timóteo 3:16', texto: 'Toda a Escritura é inspirada por Deus e útil para o ensino.' },
+            { ref: '2 Pedro 1:20-21', texto: 'Homens santos falaram da parte de Deus, inspirados pelo Espírito Santo.' },
+            { ref: 'Mateus 5:18', texto: 'Nem uma jota, nem um traço passará da Lei, até que tudo se cumpra.' },
+            { ref: 'Hebreus 4:12', texto: 'A palavra de Deus é viva e eficaz.' },
+          ],
+        },
+        {
+          id: 'aula-5-2',
+          título: 'Canon e Autenticidade: Por que esses 66 livros?',
+          tipo: 'texto',
+          duração: '15 min',
+          conteúdo: `## Canon e Autenticidade: Por que esses 66 livros?
+
+A Bíblia protestante contém 66 livros — 39 no Antigo Testamento e 27 no Novo Testamento. Mas por que exatamente esses livros? Por que não outros? O processo de formação do cânon bíblico é um dos temas mais importantes da história da igreja.
+
+### O que é Cânon?
+
+A palavra "cânon" vem do grego *kanon* (κανών), que significa "régua" ou "padrão". O cânon bíblico é a lista dos livros reconhecidos como inspirados por Deus, autoritativos para a fé e a prática cristã. Um livro entra no cânon quando a igreja primitiva reconhece nele a voz de Deus.
+
+### O Cânon do Antigo Testamento
+
+O AT foi formado ao longo de séculos. O Pentateuco (Gênesis a Deuteronômio), escrito por Moisés, foi aceito desde o século V a.C. Os livros históricos e poéticos foram sendo reconhecidos gradualmente. Os profetas foram aceitos no século II a.C., quando o cânon hebraico começou a se fechar.
+
+No Concílio de Jamnia (aproximadamente 90 d.C.), os judeus discutiram a extensão do cânon, mas a maioria dos livros já era amplamente aceita. Os 39 livros do AT protestante correspondem exatamente ao cânon hebraico.
+
+A Septuaginta (tradução grega do AT, século III a.C.) incluía livros adicionais (deuterocanônicos), que a igreja católica romana mantém, mas que a Reforma Protestante removeu por não terem sido escritos em hebraico e por não serem reconhecidos como inspirados pelos judeus.
+
+### O Cânon do Novo Testamento
+
+O NT foi formado mais rapidamente. A igreja primitiva usou três critérios fundamentais para aceitar um livro:
+
+**1. Origem Apostólica**
+
+O livro deveria ser escrito por um apóstolo ou por alguém muito próximo a um. Marcos era companheiro de Pedro; Lucas era companheiro de Paulo. A conexão apostólica garantia autenticidade.
+
+**2. Uso Universal na Igreja**
+
+O livro deveria ser lido e aceito nas igrejas desde o início. Não bastava ser popular em uma região — deveria ser reconhecido amplamente.
+
+**3. Consistência Doutrinária**
+
+O livro deveria estar de acordo com a doutrina já recebida. Se contradizia o evangelho pregado pelos apóstolos, não era aceito.
+
+### Livros Rejeitados
+
+Vários livros circulavam na igreja antiga, mas não foram incluídos no cânon: O Pastor de Hermas, a Epístola de Barnabas, o Didache, o Apocalipse de Pedro e outros. Eram úteis para estudo, mas não tinham a autoridade divina dos livros canônicos.
+
+### A Autenticidade das Escrituras
+
+A autenticidade bíblica é sustentada por várias evidências:
+
+- **Evidência manuscrita** — temos mais de 5.800 manuscritos gregos do NT, mais de qualquer outro livro da antiguidade
+- **Evidência interna** — a coerência da mensagem ao longo de 1.500 anos e 40 autores
+- **Evidência externa** — citações dos Pais da Igreja e descobertas arqueológicas
+- **Evidência transformadora** — a Bíblia transformou bilhões de vidas ao longo da história
+
+### Por que isso importa
+
+O cânon nos dá segurança. Sabemos que temos exatamente o que Deus quis comunicar — nem mais, nem menos. A Bíblia é um livro fechado e completo. Não precisamos de outros livros, revelações privadas ou tradições humanas para completar o que Deus já revelou. A Sola Scriptura — a Escritura como única autoridade final — depende da integridade do cânon.`,
+          versículosChave: [
+            { ref: 'Apocalipse 22:18-19', texto: 'Se alguém acrescentar alguma coisa... Deus o castigará com os pragas.' },
+            { ref: 'Lucas 1:1-4', texto: 'Assim também eu resolvi escrever-te, ó excelente Teófilo.' },
+            { ref: '1 Tessalonicenses 2:13', texto: 'Recebestes a palavra de Deus, que ouvistes de nós.' },
+            { ref: 'Gálatas 1:8', texto: 'Mesmo que nós ou um anjo do céu vos anuncie outro evangelho.' },
+          ],
+        },
+        {
+          id: 'aula-5-3',
+          título: 'Transmissão e Tradução: Da manuscrito à nossa Bíblia',
+          tipo: 'texto',
+          duração: '12 min',
+          conteúdo: `## Transmissão e Tradução: Da manuscrito à nossa Bíblia
+
+A Bíblia que temos hoje não caiu do céu pronta. Ela passou por um longo processo de cópia, tradução e preservação ao longo de mais de 3.000 anos. Entender esse processo nos dá confiança de que temos uma tradução fiel ao original.
+
+### Os Manuscritos Originais
+
+Os autores bíblicos escrevam em pergaminho, papiro ou outros materiais. Infelizmente, nenhum manuscrito original (*autógrafo*) sobreviveu. O que temos são cópias — milhares de cópias feitas por escribas ao longo dos séculos.
+
+A boa notícia é que temos mais de 5.800 manuscritos gregos do Novo Testamento, além de milhares de traduções antigas (latim, siríaco, copto, etíope). Para efeito de comparação, temos apenas 10 manuscritos de César e 7 de Tácito — e ninguém questiona a autenticidade desses autores.
+
+### O Textus Receptus e o Crítico Textual
+
+O *Textus Receptus* é o texto grego que foi usado para as primeiras traduções da Bíblia, incluindo a King James (1611). Ele foi compilado por Erasmo de Roterdã a partir de manuscritos medievais.
+
+O *texto crítico* (ou *texto-novo*) é a melhor reconstrução do original, feita por estudiosos modernos que compararam milhares de manuscritos, incluindo os mais antigos (o Papiro P75, do século III, e o Códice Sinaitico, do século IV).
+
+Ambos são extremamente fiéis. As diferenças entre eles são mínimas — nenhuma afeta doutrina essential.
+
+### As Grandes Traduções da História
+
+A Bíblia já foi traduzida para mais de 700 idiomas completos e mais de 1.600 parcialmente. Veja as traduções mais importantes:
+
+**Septuaginta (século III a.C.)**
+
+A primeira grande tradução da Bíblia — do hebraico para o grego. Foi usada pelos judeus helenizados e citada pelos apóstolos no Novo Testamento. Mais de 80% das citações do AT no NT são da Septuaginta.
+
+**Vulgata Latina (século IV d.C.)**
+
+Traduzida por Jerônimo, foi a Bíblia da igreja ocidental por mais de 1.000 anos. A Reforma Protestante dependia da Vulgata, mas voltou aos originais hebraico e grego.
+
+**Bíblia de Lutero (1522-1534)**
+
+Martinho Lutero traduziu a Bíblia para o alemão, democratizando o acesso às Escrituras. Foi uma das primeiras traduções modernas baseadas nos originais.
+
+**King James Version (1611)**
+
+Encomendada pelo rei Jaime I da Inglaterra, é uma das traduções mais influentes da história. Durante séculos, foi a Bíblia padrão do mundo anglófono.
+
+**Traduções Modernas em Português**
+
+As principais traduções em português incluem a Almeida Revista e Atualizada (ARA), a Nova Versão Internacional (NVI), a King James Atualizada (KJA) e a Nova Bíblia do Dia (NBV). Cada uma tem seu público e estilo, mas todas são fiéis ao original.
+
+### O Desafio da Tradução
+
+Traduzir a Bíblia é um desafio enorme. Palavras hebraicas como *hesed* ("amor", "bondade", "misericórdia") não têm equivalente perfeito em português. Estruturas gramaticais do grego precisam ser adaptadas. O tradutor sempre precisa escolher entre fidelidade ao original e clareza para o leitor.
+
+### Por que isso importa
+
+Podemos ter confiança de que a Bíblia que temos hoje é fiel aos originais. Não perfeição absoluta dos manuscritos, mas uma transmissão extraordinariamente precisa. Deus providenciou que sua Palavra fosse preservada através dos séculos, para que pudéssemos conhecê-la, amá-la e obedecê-la.`,
+          versículosChave: [
+            { ref: 'Isaías 40:8', texto: 'A relva seca, a sua floração cai, mas a palavra do nosso Deus subsistirá sempre.' },
+            { ref: 'Mateus 24:35', texto: 'O céu e a terra passarão, mas as minhas palavras não passarão.' },
+            { ref: '1 Pedro 1:25', texto: 'Mas a palavra do Senhor subsiste para sempre.' },
+            { ref: 'Salmos 119:89', texto: 'Para sempre, ó Senhor, está firme a tua palavra nos céus.' },
+          ],
+        },
+        {
+          id: 'aula-quiz-biblia',
+          título: 'Quiz: A Bíblia — Palavra de Deus',
+          tipo: 'quiz',
+          duração: '10 min',
+          perguntas: [
+            {
+              id: 'q5-1',
+              pergunta: 'O que significa a palavra grega "theopneustos" usada em 2 Timóteo 3:16?',
+              opções: ['Escrita por homens santos', 'Soprada por Deus', 'Antiga e sagrada', 'Completa e perfeita'],
+              respostaCorreta: 1,
+              explicação: 'Theopneustos (θεοπνευστος) significa literalmente "soprada por Deus", indicando que as Escrituras vieram por inspiração divina direta.',
+            },
+            {
+              id: 'q5-2',
+              pergunta: 'Quantos livros tem a Bíblia protestante?',
+              opções: ['73 livros', '66 livros', '60 livros', '72 livros'],
+              respostaCorreta: 1,
+              explicação: 'A Bíblia protestante contém 66 livros: 39 no Antigo Testamento e 27 no Novo Testamento.',
+            },
+            {
+              id: 'q5-3',
+              pergunta: 'O que significa "inspiração plenária"?',
+              opções: ['Apenas as profecias são inspiradas', 'Toda a Escritura é inspirada', 'Apenas o Novo Testamento é inspirado', 'Apenas os livros de Moisés são inspirados'],
+              respostaCorreta: 1,
+              explicação: 'Inspiração plenária significa que "toda a Escritura" é inspirada por Deus — não apenas partes dela.',
+            },
+            {
+              id: 'q5-4',
+              pergunta: 'Quais são os três critérios usados pela igreja primitiva para aceitar um livro no cânon do NT?',
+              opções: ['Origem apostólica, uso na igreja e consistência doutrinária', 'Antiguidade, popularidade e milagres', 'Profecia, sabedoria e histórica', 'Língua, local e data'],
+              respostaCorreta: 0,
+              explicação: 'A igreja primitiva usou origem apostólica, uso universal na igreja e consistência doutrinária como critérios para aceitar livros no cânon.',
+            },
+            {
+              id: 'q5-5',
+              pergunta: 'Quantos manuscritos gregos do Novo Testamento sobrevivem?',
+              opções: ['Cerca de 100', 'Cerca de 500', 'Mais de 5.800', 'Mais de 10.000'],
+              respostaCorreta: 2,
+              explicação: 'Existem mais de 5.800 manuscritos gregos do NT, mais de qualquer outro livro da antiguidade, sustentando a fiabilidade do texto.',
+            },
+            {
+              id: 'q5-6',
+              pergunta: 'Qual tradução grega do Antigo Testamento foi usada pelos apóstolos?',
+              opções: ['Vulgata', 'Textus Receptus', 'Septuaginta', 'Peshitta'],
+              respostaCorreta: 2,
+              explicação: 'A Septuaginta (século III a.C.) é a tradução grega do AT usada amplamente pelos judeus hellenizados e citada pelos apóstolos no NT.',
+            },
+            {
+              id: 'q5-7',
+              pergunta: 'O que 2 Pedro 1:20-21 afirma sobre a origem das profecias?',
+              opções: ['Foram escritas por vontade humana', 'Foram produzidas por homens santos movidos pelo Espírito Santo', 'Foram inventadas pelos sacerdotes', 'Foram copiadas de religiões antigas'],
+              respostaCorreta: 1,
+              explicação: 'Pedro afirma que "homens santos falaram da parte de Deus, inspirados pelo Espírito Santo" — a fonte é divina, o canal é humano.',
+            },
+            {
+              id: 'q5-8',
+              pergunta: 'O que é o Textus Receptus?',
+              opções: ['Uma tradução latina medieval', 'O texto grego usado para as primeiras traduções modernas', 'Um comentário sobre o AT', 'Uma edição católica da Bíblia'],
+              respostaCorreta: 1,
+              explicação: 'O Textus Receptus é o texto grego compilado por Erasmo, usado como base para a King James e outras traduções Reformadas.',
+            },
+            {
+              id: 'q5-9',
+              pergunta: 'Por que a Septuaginta é importante para o estudo do NT?',
+              opções: ['É a única tradução antiga', 'Mais de 80% das citações do AT no NT vêm dela', 'Foi escrita pelos apóstolos', 'É mais precisa que o original hebraico'],
+              respostaCorreta: 1,
+              explicação: 'A Septuaginta é citada amplamente pelos apóstolos — mais de 80% das referências do AT no NT vêm dessa tradução grega.',
+            },
+            {
+              id: 'q5-10',
+              pergunta: 'O que Mateus 24:35 afirma sobre as palavras de Jesus?',
+              opções: ['Elas são temporárias', 'Elas passarão com o tempo', 'Elas não passarão jamais', 'Elas serão esquecidas'],
+              respostaCorreta: 2,
+              explicação: 'Jesus declara: "O céu e a terra passarão, mas as minhas palavras não passarão" — a Palavra de Deus é eterna e inabalável.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'mod-igreja-corpo-de-cristo',
+      título: 'A Igreja: Corpo de Cristo',
+      descrição: 'Estude a eclesiologia: a natureza da igreja, os sacramentos e a missão cristã. Entenda o que é a igreja e qual é o seu propósito no mundo.',
+      ícone: '⛪',
+      aulas: [
+        {
+          id: 'aula-6-1',
+          título: 'Natureza da Igreja: Universal e Local',
+          tipo: 'texto',
+          duração: '15 min',
+          conteúdo: `## Natureza da Igreja: Universal e Local
+
+A palavra "igreja" pode gerar confusão. Quando pensamos em igreja, logo imaginamos um prédio, um culto aos domingos, ou uma organização religiosa. Mas o que a Bíblia realmente ensina sobre a igreja é muito mais profundo e dinâmico.
+
+### O que significa "Igreja"?
+
+A palavra grega é *ekklēsia* (ἐκκλησία), que significa literalmente "assembleia" ou "congregação convocada". Não se refere a um edifício — refere-se a um grupo de pessoas chamadas por Deus.
+
+No AT, o termo hebraico *qahal* (קָהָל) é usado para a assembleia do povo de Israel diante de Deus. No NT, *ekklēsia* é usado tanto para a igreja universal quanto para congregações locais.
+
+### A Igreja Universal
+
+A igreja universal é o conjunto de todos os crentes em Jesus Cristo, de todas as épocas, lugares e denominações. É invisível — somente Deus conhece todos os seus membros.
+
+> "E ele é a cabeça do corpo que é a igreja, o qual é o princípio, o primogênito dentre os mortos, para que em todas as coisas tenha a primazia." — Colossenses 1:18
+
+> "Porque assim como o corpo é um e tem muitos membros, e todos os membros do corpo, sendo muitos, são um corpo, assim também Cristo." — 1 Coríntios 12:12
+
+A igreja universal não depende de uma organização, denominação ou liderança humana. Ela é o Corpo de Cristo — uma realidade espiritual que transcende fronteiras, culturas e tempos.
+
+### A Igreja Local
+
+A igreja local é uma congregação de crentes em um lugar específico, reunidos para adorar, ensinar, fellowship e cumprir a Grande Comissão. É visível — tem reuniões, liderança e organização.
+
+> "À igreja de Deus que está em Corinto, aos santificados em Cristo Jesus, chamados para ser santos, com todos os que em todo lugar invocam o nome do nosso Senhor Jesus Cristo, Senhor deles e nosso." — 1 Coríntios 1:2
+
+Paulo escreve "à igreja... que está em Corinto" — uma congregação local específica. Cada igreja local é uma manifestação da igreja universal.
+
+### A Relação entre Universal e Local
+
+A igreja universal se manifesta em igrejas locais. Assim como um corpo tem muitos membros, a igreja universal tem muitas congregações locais. Nenhuma igreja local é a igreja inteira — mas cada uma é parte dela.
+
+### Os Membros e o Corpo
+
+> "Mas agora são muitos os membros, porém um só corpo." — 1 Coríntios 12:20
+
+Cada crente é um membro do corpo de Cristo. O olho não pode dizer ao pé "não te preciso" (1 Coríntios 12:21). A interdependência é essencial:
+- **Diversidade** — cada membro tem dons e funções diferentes
+- **Unidade** — todos são parte do mesmo corpo
+- **Dependência** — todos precisam uns dos outros
+- **Cabeça** — Cristo é a cabeça que governa todo o corpo
+
+### A Igreja Visível e Invisível
+
+A teologia reformada distingue:
+- **Igreja invisível** — o conjunto real de eleitos, conhecidos apenas por Deus
+- **Igreja visível** — as congregações que podemos ver e participar
+
+Nem todos que participam da igreja visível são realmente salvos (parábola do trigo e o joio, Mateus 13:24-30). Mas todos que são da igreja invisível participam, em algum grau, da igreja visível.
+
+### A Importância da Comunidade
+
+> "Não devemos abandonar a nossa reunião, como é costume de alguns, mas devemos animar-nos uns aos outros, e tanto mais quanto vês que o Dia se aproxima." — Hebreus 10:25
+
+A vida cristã não foi feita para ser vivida no isolamento. A igreja local é o lugar onde aprendemos, crescemos, servimos e amamos uns aos outros.`,
+          versículosChave: [
+            { ref: 'Colossenses 1:18', texto: 'Ele é a cabeça do corpo que é a igreja.' },
+            { ref: '1 Coríntios 12:12', texto: 'Assim como o corpo é um e tem muitos membros, assim também Cristo.' },
+            { ref: 'Efésios 1:22-23', texto: 'Deus pôs todas as coisas debaixo dos seus pés e o deu como cabeça sobre todas as coisas à igreja.' },
+            { ref: 'Hebreus 10:24-25', texto: 'Não abandonemos a nossa reunião, mas anime-mo-nos.' },
+          ],
+        },
+        {
+          id: 'aula-6-2',
+          título: 'Os Sacramentos: Batismo e Ceia do Senhor',
+          tipo: 'texto',
+          duração: '15 min',
+          conteúdo: `## Os Sacramentos: Batismo e Ceia do Senhor
+
+A Bíblia reconhece dois sacramentos (ou ordenanças): o batismo e a Ceia do Senhor. Embora a prática desses sacramentos seja unânime, há diferenças significativas na interpretação do seu significado e eficácia.
+
+### O Batismo
+
+O batismo é o ato de mergulhar (ou aspergir) água sobre uma pessoa, em nome do Pai, do Filho e do Espírito Santo (Mateus 28:19). Jesus foi batizado no Jordão (Mateus 3:13-17), e ordenou que seus discípulos batizassem.
+
+**As diferentes visões do batismo:**
+
+**1. Batismo Infantil (Paedobaptismo)**
+
+Igrejas católicas, luteranas, reformadas, anglicanas e metodistas praticam o batismo de crianças. Os argumentos incluem:
+- A substituição da circuncisão pelo batismo (Colossenses 2:11-12)
+- O exemplo de batismos de famílias inteiras (Atos 16:33 — a casa de Lídia)
+- A continuidade da aliança com as crianças (Atos 2:39 — "a promessa é para vós e para os vossos filhos")
+
+**2. Batismo de Crentes (Credobaptismo)**
+
+Igrejas batistas, pentecostais e许多 outras praticam o batismo apenas de crentes. Os argumentos incluem:
+- O modelo bíblico de "crer e ser batizado" (Atos 2:41, 8:36-37)
+- O batismo como testemunho público da fé, o que requer compreensão
+- A ausência de exemplos claros de batismo infantil no NT
+
+**3. Aspersão ou Imersão?**
+
+- **Imersão** — mergulhar completamente na água (o mais comum no NT)
+- **Aspersão** — jogar água sobre a cabeça (prática católica)
+- **Aspersão** — derramar água (prática em alguns protestantes)
+
+A palavra grega *baptizō* significa "mergulhar", o que favorece a imersão como prática original.
+
+### A Ceia do Senhor
+
+A Ceia do Senhor (Eucaristia, Santa Ceia) é a relembrança da morte de Jesus, instituída na Última Ceia (Mateus 26:26-29). Jesus tomou o pão, partiu e disse: "Isto é o meu corpo". Tomou o cálice e disse: "Isto é o meu sangue".
+
+**As diferentes visões sobre a Ceia:**
+
+**1. Presença Real (Católica Romana)**
+
+A hetroousi (transubstanciação) ensina que o pão e o vinho se tornam, em substância, o corpo e o sangue de Cristo, mantendo apenas as aparências. Não é uma transformação física — é uma mudança da substância invisível.
+
+**2. Consubstanciação (Luterana)**
+
+Cristo está presente "em, com e sob" os elementos. O pão e o vinho permanecem, mas Cristo está verdadeiramente presente junto com eles.
+
+**3. Visão Espiritual (Calvinista)**
+
+Cristo está presente espiritualmente, não fisicamente. O crente se alimenta de Cristo pela fé, não pelos dentes. O Espírito Santo é o meio da presença.
+
+**4. Memória (Zwingliana)**
+
+A Ceia é uma recordação simbólica da morte de Cristo. O pão e o vinho representam, mas não são o corpo e o sangue. É um memorial, não um sacrifício.
+
+**5. Visão Congregacionalista**
+
+Assembleias de Deus e igrejas não-denominacionais geralmente seguem a visão memorial, enfatizando a proclamação da morte do Senhor até que Ele venha (1 Coríntios 11:26).
+
+### A Unidade nos Sacramentos
+
+Apesar das diferenças, há unidade:
+- O batismo e a Ceia são ordenados por Jesus
+- São atos públicos de obediência
+- São sinais visíveis de uma realidade espiritual
+- São praticados pela igreja local ao longo da história
+
+### Por que isso importa
+
+Os sacramentos não salvam — Cristo salva. Mas eles são meios de graça que fortalecem a fé, comunitam a igreja e testemunham ao mundo o que Cristo fez por nós.`,
+          versículosChave: [
+            { ref: 'Mateus 28:19', texto: 'Batizando-os em nome do Pai, do Filho e do Espírito Santo.' },
+            { ref: '1 Coríntios 11:23-26', texto: 'Isto é o meu corpo... Isto é o meu sangue... Fazei isto em memória de mim.' },
+            { ref: 'Atos 2:41', texto: 'Receberam a sua palavra e foram batizados.' },
+            { ref: 'Romanos 6:4', texto: 'Fomos batizados com ele na morte.' },
+          ],
+        },
+        {
+          id: 'aula-6-3',
+          título: 'Missões e Evangelismo: A Grande Comissão',
+          tipo: 'texto',
+          duração: '12 min',
+          conteúdo: `## Missões e Evangelismo: A Grande Comissão
+
+A igreja não existe para si mesma. Ela tem uma missão: levar o evangelho a todas as nações, fazendo discípulos de Jesus Cristo. Essa missão é o coração pulsante da vida cristã.
+
+### A Grande Comissão
+
+> "E, indo Jesus, falou-lhes nestas palavras: Foi-me dada toda a autoridade no céu e na terra. Portanto, ide, fazei discípulos de todas as nações, batizando-os em nome do Pai, do Filho e do Espírito Santo, ensinando-os a guardar todas as coisas que vos tenho mandado. E eis que eu convosco estarei todos os dias, até a consumação do século." — Mateus 28:18-20
+
+Essa passagem contém cinco elementos essenciais:
+
+1. **Autoridade** — "Toda a autoridade me foi dada" — Jesus governa
+2. **Ir** — "Ide" — é um mandato ativo, não passivo
+3. **Fazer discípulos** — "Fazei discípulos" — o objetivo é transformação, não apenas informação
+4. **Batizar e ensinar** — "Batizando-os... ensinando-os" — o discipulado é contínuo
+5. **Promessa** — "Eu convosco estarei" — Jesus está presente na missão
+
+### Atos 1:8: O Poder para Testemunhar
+
+> "Mas recebereis poder, quando o Espírito Santo descer sobre vós; e sereis minhas testemunhas em Jerusalém, em toda a Judéia e Samaria, e até os confins da terra." — Atos 1:8
+
+Jesus não nos mandou sozinhos. O Espírito Santo é quem nos capacita para testemunhar. A missão depende do poder divino, não da nossa eloquência ou estratégia.
+
+A progressão geográfica é significativa:
+- **Jerusalem** — o local próximo, a nossa cidade
+- **Judéia e Samaria** — a região, o nosso país
+- **Confins da terra** — o mundo inteiro
+
+### A Teologia da Missão
+
+**1. Missão Dei (Missão de Deus)**
+
+A missão não começa com a igreja — começa com Deus. Deus é missions: Ele enviou seu Filho (João 3:16), enviou o Espírito (João 16:7) e envia a igreja (Mateus 28:19). A igreja participa da missão de Deus.
+
+**2. Urgência Escatológica**
+
+Jesus voltará. O tempo é curto. "A ceifa é grande, mas os obreiros são poucos. Portanto, rogai ao Senhor da ceifa que mande obreiros para a sua ceifa" (Mateus 9:37-38). A missão tem urgência porque a eternidade está em jogo.
+
+**3. Universalidade do Evangelho**
+
+"Deus não quer que ninguém pereça, mas que todos se arrependam" (2 Pedro 3:9). O evangelho é para todas as nações, tribos e línguas (Apocalipse 7:9). Nenhum povo deve ser esquecido.
+
+### Evangelismo Pessoal
+
+O evangelismo pessoal é a responsabilidade de cada crente:
+
+> "Porque não me envergonho do evangelho, porque é o poder de Deus para a salvação de todo aquele que crê, primeiro do judeu e também do grego." — Romanos 1:16
+
+Evangelismo envolve:
+- **Viver** — uma vida que reflete Cristo (Mateus 5:16)
+- **Falar** — compartilhar a história de como Cristo transformou a sua vida
+- **Ensinar** — apresentar os fundamentos do evangelho com clareza
+- **Oração** — interceder por aqueles que ainda não conhecem a Cristo
+
+### Missões Internacionais
+
+A missão internacional envolve:
+- **Ir** — missionaries que deixam o seu país para servir em outro
+- **Enviar** — igrejas que apoiam financeira e espiritualmente
+- **Orar** — interceder por nações e trabalhadores
+- **Aprender** — conhecer outras culturas e línguas
+
+### Por que isso importa
+
+A missão não é uma opção — é uma ordem. Se Cristo é Senhor, Ele tem autoridade para nos mandar. Se o evangelho é verdadeiro, ele precisa ser compartilhado. Se a eternidade é real, a missão é urgente.`,
+          versículosChave: [
+            { ref: 'Mateus 28:18-20', texto: 'Ide, fazei discípulos de todas as nações, batizando-os em nome do Pai, do Filho e do Espírito Santo.' },
+            { ref: 'Atos 1:8', texto: 'Recebereis poder, quando o Espírito Santo descer sobre vós.' },
+            { ref: 'Romanos 1:16', texto: 'Não me envergonho do evangelho, porque é o poder de Deus para a salvação.' },
+            { ref: '2 Pedro 3:9', texto: 'Deus não quer que ninguém pereça, mas que todos se arrependam.' },
+          ],
+        },
+        {
+          id: 'aula-quiz-igreja',
+          título: 'Quiz: A Igreja — Corpo de Cristo',
+          tipo: 'quiz',
+          duração: '10 min',
+          perguntas: [
+            {
+              id: 'q6-1',
+              pergunta: 'O que significa a palavra grega "ekklēsia"?',
+              opções: ['Edifício sagrado', 'Assembleia convocada', 'Organização religiosa', 'Templo de pedra'],
+              respostaCorreta: 1,
+              explicação: 'Ekklēsia (ἐκκλησία) significa "assembleia" ou "congregação convocada". Refere-se ao povo, não ao prédio.',
+            },
+            {
+              id: 'q6-2',
+              pergunta: 'Qual é a diferença entre a igreja universal e a local?',
+              opções: ['A universal é invisível (todos os crentes); a local é visível (congregação específica)', 'A universal é católica; a local é protestante', 'A universal é antiga; a local é moderna', 'Não há diferença'],
+              respostaCorreta: 0,
+              explicação: 'A igreja universal é o conjunto de todos os crentes, conhecido apenas por Deus. A igreja local é uma congregação específica e visível.',
+            },
+            {
+              id: 'q6-3',
+              pergunta: 'Em Mateus 28:19, qual é a fórmula do batismo?',
+              opções: ['Em nome de Jesus apenas', 'Em nome do Pai, do Filho e do Espírito Santo', 'Em nome da igreja', 'Em nome dos apóstolos'],
+              respostaCorreta: 1,
+              explicação: 'Jesus ordenou: "Batizando-os em nome do Pai, do Filho e do Espírito Santo" — a fórmula trinitária.',
+            },
+            {
+              id: 'q6-4',
+              pergunta: 'Qual das seguintes visões sobre a Ceia ensina que Cristo está presente espiritualmente, não fisicamente?',
+              opções: ['Presença Real católica', 'Consubstanciação luterana', 'Visão espiritual calvinista', 'Memória zwingliana'],
+              respostaCorreta: 2,
+              explicação: 'A visão calvinista ensina que Cristo está presente espiritualmente, não fisicamente — o crente se alimenta pela fé.',
+            },
+            {
+              id: 'q6-5',
+              pergunta: 'Segundo Atos 1:8, de onde o poder para testemunhar vem?',
+              opções: ['Da própria igreja', 'Do Espírito Santo', 'Dos líderes religiosos', 'Dos governos'],
+              respostaCorreta: 1,
+              explicação: 'Jesus afirma: "Recebereis poder, quando o Espírito Santo descer sobre vós." O poder para testemunhar é do Espírito.',
+            },
+            {
+              id: 'q6-6',
+              pergunta: 'O que "Missão Dei" significa?',
+              opções: ['A missão da igreja é criar prédios', 'A missão começa com Deus, não com a igreja', 'A missão é apenas para pastores', 'A missão é opcional'],
+              respostaCorreta: 1,
+              explicação: 'Missão Dei reconhece que Deus é missions — Ele enviou o Filho, o Espírito e a igreja. Nós participamos da missão dEle.',
+            },
+            {
+              id: 'q6-7',
+              pergunta: 'Qual profeta ensinou que "a relva seca, mas a palavra de Deus subsiste"?',
+              opções: ['Jeremias', 'Isaías', 'Daniel', 'Ezequiel'],
+              respostaCorreta: 1,
+              explicação: 'Isaías 40:8 afirma: "A relva seca, a sua floração cai, mas a palavra do nosso Deus subsistirá sempre."',
+            },
+            {
+              id: 'q6-8',
+              pergunta: 'Quantos sacramentos (ou ordenanças) a Bíblia reconhece?',
+              opções: ['Sete', 'Dois', 'Cinco', 'Um'],
+              respostaCorreta: 1,
+              explicação: 'A Bíblia reconhece dois sacramentos: o batismo e a Ceia do Senhor. Outros rituais católicos não têm base bíblica clara.',
+            },
+            {
+              id: 'q6-9',
+              pergunta: 'Por que a urgência da missão é tão importante?',
+              opções: ['Porque Deus gosta de pressa', 'Porque a eternidade está em jogo e Jesus voltará', 'Porque a igreja precisa de dinheiro', 'Porque os pastores mandam'],
+              respostaCorreta: 1,
+              explicação: 'A missão é urgente porque há pessoas que precisam ouvir o evangelho antes que Jesus volte. A eternidade de cada pessoa está em jogo.',
+            },
+            {
+              id: 'q6-10',
+              pergunta: 'Qual é o objetivo da Grande Comissão?',
+              opções: ['Construir prédios', 'Fazer discípulos de todas as nações', 'Aumentar o número de membros', 'Criar denominações'],
+              respostaCorreta: 1,
+              explicação: 'Mateus 28:19 é claro: "Fazei discípulos de todas as nações." O objetivo é formar seguidores de Cristo, não apenas contabilizar membros.',
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

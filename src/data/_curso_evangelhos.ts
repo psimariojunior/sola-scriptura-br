@@ -1512,5 +1512,537 @@ João escolheu esses sete porque cada um é um ícone teológico — uma janela 
         },
       ],
     },
+    {
+      id: 'mod-vida-publica-sinoticos',
+      título: 'A Vida Pública de Jesus nos Sinóticos',
+      descrição: 'O ministério público de Jesus na Galileia: batismo, tentações, parábolas, milagres e transfiguração — comparando os três evangelhos sinóticos.',
+      ícone: '⚡',
+      aulas: [
+        {
+          id: 'aula-ev-5-1',
+          título: 'O Batismo e a Tentação: A preparação do Messias',
+          tipo: 'texto',
+          duração: '15 min',
+          versículosChave: [
+            { ref: 'Mateus 3:17', texto: 'Este é o meu Filho amado, em quem me complazo.' },
+            { ref: 'Mateus 4:11', texto: 'Então o diabo o deixou, e eis que anjos vieram e o serviram.' },
+            { ref: 'Lucas 3:22', texto: 'Tu és o meu Filho amado; em ti me complazo.' },
+          ],
+          conteúdo: `## O Batismo e a Tentação: A preparação do Messias
+
+O batismo de Jesus e a tentação no deserto são dois eventos que inauguram o ministério público do Messias. Todos os três evangelhos sinóticos — Mateus, Marcos e Lucas — registram esses acontecimentos, embora com ênfases diferentes, revelando camadas profundas de significado teológico.
+
+### O relato batismal: Três perspectivas
+
+**Mateus (3:13-17)** apresenta um diálogo entre Jesus e João Batista, onde Jesus insiste em ser batizado para "cumprir toda a justiça". Essa expressão é teologicamente densa — Jesus não precisava de arrepeniança, mas escolheu identificar-se com a humanidade pecadora, anticipando sua morte vicária. A cena se encerra com a Trindade se manifestando: o Espírito descende como pomba, e a voz do Pai declara: "Este é o meu Filho amado".
+
+**Marcos (1:9-11)** é mais conciso, mas inclui um detalhe crucial: Jesus viu "os céus se rasgando". A palavra grega "schizomenous" (σχιζομένους) sugere uma ruptura violenta, uma abertura do próprio céu para permitir a descida do Espírito. Para Marcos, o batismo é o momento em que a barreira entre Deus e a humanidade é rompida na pessoa de Jesus.
+
+**Lucas (3:21-22)** acrescenta que Jesus estava orando quando o céu se abriu, e cita uma variação da declaração divina baseada no Salmo 2:7: "Tu és o meu Filho amado; em ti me complazo". A ênfase na oração de Jesus antes do batismo é típica de Lucas, que retrata Jesus como alguém dependente do Pai em oração constante.
+
+### O confronto com Satanás no deserto
+
+Após o batismo, os três evangelhos narram a tentação de Jesus no deserto, mas com detalhes significativos:
+
+**Marcos (1:12-13)** oferece o relato mais breve — apenas dois versículos. Marcos usa o verbo "ekballei" (ἐκβάλλει), "expulsou", sugerindo que o Espírito empurrou Jesus para o deserto, não como punição, mas como preparação. Marcos também menciona que Jesus estava com as feras e que anjos o serviam, lembrando a harmonia paradisíaca do Gênesis e antecipando a vitória sobre Satanás.
+
+**Mateus (4:1-11)** e **Lucas (4:1-13)** apresentam as três tentações na mesma sequência, mas com uma diferença crucial: Mateus as ordena temporalmente (pão → templo → montanha), enquanto Lucas as reorganiza (pão → montanha → templo). A maioria dos estudiosos acredita que Mateus preserva a ordem cronológica.
+
+### As três tentações e seu significado
+
+A primeira tentação (transformar pedras em pão) ataca a identidade messiânica: "Se tu és o Filho de Deus...". A resposta de Jesus — "Não só de pão vive o homem" (Dt 8:3) — afirma que a obediência a Deus é mais essencial que a satisfação das necessidades físicas.
+
+A segunda tentação (lançar-se do templo) testa a confiança em Deus como espetáculo público. Jesus responde: "Não tentarás o Senhor teu Deus" (Dt 6:16). A verdadeira fé não demanda provas espectaculares.
+
+A terceira tentação (adorar Satanás em troca de todos os reinos) é a mais direta — oferece ao Messias o caminho rápido para a soberania universal sem a cruz. Jesus rejeita com vigor: "AoS teu Senhor Deus adorarás, e só a ele servirás" (Dt 6:13). Esse é o conflito central: Jesus rejeita a soberania que não vem pelo caminho da cruz.
+
+### O significado teológico unitário
+
+O batismo e a tentação formam um arco narrativo perfeito: Jesus recebe a confirmação da identidade divina ("Tu és o meu Filho") e imediatamente enfrenta o questionamento dessa identidade ("Se tu és o Filho de Deus"). A vitória nas tentações demonstra que Jesus é o Filho obediente que Adão e Israel falharam em ser. Enquanto Adão cedeu à tentação no jardim, Jesus vence no deserto. Enquanto Israel falhou no deserto de 40 dias, Jesus persevera por 40 dias. A preparação do Messias é completa: ele está pronto para iniciar a proclamação do Reino.`,
+        },
+        {
+          id: 'aula-ev-5-2',
+          título: 'As Parábolas do Reino: Ensinos sobre o Reino de Deus',
+          tipo: 'texto',
+          duração: '18 min',
+          versículosChave: [
+            { ref: 'Mateus 13:11', texto: 'A vocês é dado conhecer os mistérios do Reino dos céus.' },
+            { ref: 'Marcos 4:30-32', texto: 'A que compararemos o Reino de Deus? É como um grão de mostarda.' },
+            { ref: 'Lucas 15:7', texto: 'Assim haverá mais alegria no céu por um pecador que se arrepende.' },
+          ],
+          conteúdo: `## As Parábolas do Reino: Ensinos sobre o Reino de Deus
+
+As parábolas de Jesus são uma das formas mais poderosas de ensino do Novo Testamento. Nos sinóticos, elas revelam a natureza do Reino de Deus de maneiras que desafiam as expectativas religiosas e sociais da época. Mateus 13, Marcos 4 e Lucas 13-15 concentram a maioria dessas parábolas, cada evangelho organizando-as de forma distinta para seu público específico.
+
+### A Parábola do Semeador (Mt 13:3-23; Mc 4:3-20; Lc 8:5-15)
+
+Esta é a parábola "mãe" de todas as outras — Jesus inclusive fornece sua explicação aos discípulos, algo que faz com poucas parábolas. O semeador semente cai em quatro tipos de solo: caminho, pedras, espinhos e terra boa.
+
+Mateus detalha o significado espiritual de cada solo, refletindo sua preocupação pastoral com a comunidade judaica cristã. Marcos enfatiza que o semeador semeia sem distinção — a palavra de Deus é indiscriminada em sua generosidade. Lucas acrescenta que o semeador semeia "a palavra de Deus", tornando explícito o que é a semente.
+
+O ensino central é que a receptividade da palavra depende do coração do ouvinte, não da qualidade da semente. O mesmo evangelho que transforma vidas pode ser rejeitado por diferentes razões: endurecimento superficial, profundidade falsa, ou preocupações que sufocam o crescimento.
+
+### Joio e Trigo (Mt 13:24-30, 36-43)
+
+Exclusiva de Mateus, esta parábola retrata o Reino misturado com o mal até o julgamento final. O servo quer arrancar o joio, mas o dono proíbe: "Não aconteça que, colhendo o joio, arranqueis também o trigo". A separação só acontecerá na colheita, representada como "o fim do mundo".
+
+Para a comunidade judaica-cristã de Mateus, essa parábola oferecia consolo: os falsos professos e os perseguidores não impedem o plano de Deus. A paciência divina não é fraqueza — é sabedoria que espera o tempo certo da justiça.
+
+### A Parábola da Semente Crescendo Secretamente (Mc 4:26-29)
+
+Marcos preserva essa parábola que não aparece nos outros evangelhos. Ela retrata o crescimento misterioso do Reino: o semeador semeia, dorme e acorda, e a semente cresce "sem que ele saiba como". O mistério está no poder intrínseco da palavra de Deus — ela opera mesmo quando o crente não percebe.
+
+Essa perspectiva é particularmente consoladora para missionários e pastores que trabalham sem ver resultados imediatos. O Reino não depende da nossa eficiência — depende do poder de Deus na semente que plantamos.
+
+### A Semente de Mostarda e o Fermento (Mt 13:31-33; Mc 4:30-32; Lc 13:18-21)
+
+A semente de mostarda, mencionada nos três sinóticos, inverte a expectativa messiânica: o Reino começa como algo microscopico — menor que todas as sementes — e se torna um arbusto onde as aves fazem ninho. O Reino não explode com poder imperial; ele cresce organicamente, de maneira aparentemente insignificante.
+
+Mateus e Lucas adicionam a parábola do fermento: três medidas de farinha fermentam inteiramente. O fermento simboliza a influência transformadora do Reino que penetra toda a massa da sociedade. Não é reforma superficial — é transformação completa.
+
+### O Tesouro e a Pérola (Mt 13:44-46)
+
+Mateus inclui duas parábolas concisas que retratam o valor incomparável do Reino: um homem encontra um tesouro escondido num campo e vende tudo para comprá-lo; um mercador encontra uma pérola de grande preço e faz o mesmo.
+
+Essas parábolas ensinam que o Reino não é uma adição à vida — é uma revolução total. O que possuímos antes torna-se sem valor quando comparado com o que Deus oferece. A alegria de encontrar o tesouro justifica o sacrifício total, não como perda, mas como a melhor troca já feita.
+
+### A Parábola da Ovelha Perdida (Mt 18:12-14; Lc 15:3-7)
+
+Mateus e Lucas registram essa parábola com ênfases diferentes. Mateus foca no pastor que busca "até que a encontre", retratando a persistência de Deus. Lucas enfatiza a alegria no céu quando um pecador se arrepende — um tema central de seu evangelho. Para Lucas, essa parábola responde aos fariseus que criticavam Jesus por comer com pecadores.
+
+### Relevância para a vida cristã
+
+As parábolas do Reino nos lembram que Deus opera de formas surpreendentes: através de pequenos começos, de crescimento paciente, de transformação silenciosa e de encontros que mudam tudo. O Reino não é um sistema de poder humano — é a irrupção do governo de Deus na história, começando no coração humilde que acolhe a semente da palavra.`,
+        },
+        {
+          id: 'aula-ev-5-3',
+          título: 'Os Milagres de Jesus: Poder e Compaixão',
+          tipo: 'texto',
+          duração: '15 min',
+          versículosChave: [
+            { ref: 'Mateus 8:27', texto: 'Que homem é este, que até os ventos e o mar lhe obedecem?' },
+            { ref: 'Marcos 1:32', texto: 'Quando era tarde, depois do sol-posto, trouxeram-lhe todos os enfermos e endemoninhados.' },
+            { ref: 'Lucas 7:22', texto: 'Os cegos vêem, os coxos andam, os leprosos são purificados, os surdos ouvem.' },
+          ],
+          conteúdo: `## Os Milagres de Jesus: Poder e Compaixão
+
+Os milagres de Jesus constituem uma parte substancial dos evangelhos sinóticos — aproximadamente um terço de Mateus e Marcos é dedicado a relatos de milagres. Eles não são meros eventos sobrenaturais para impressionar plateias; são manifestações teológicas do Reino de Deus rompendo na história humana. Cada tipo de milagre comunica algo distinto sobre quem Jesus é e qual é a natureza de seu ministério.
+
+### Classificação dos milagres
+
+Os estudiosos bíblicos classificam os milagres de Jesus em quatro grandes categorias, cada uma presente nos três sinóticos:
+
+**1. Milagres sobre a natureza (poder cósmico):** Jesus calmou a tempestade (Mt 8:23-27; Mc 4:35-41; Lc 8:22-25), andou sobre as águas (Mt 14:22-33; Mc 6:45-52; Lc 6:16-21), multiplicou pães e peixes ( Mt 14:13-21; Mc 6:30-44; Lc 9:10-17), e transformou água em vinho nas bodas de Caná (exclusiva de João, mas paradigmática). Esses milagres revelam Jesus como Senhor da criação, ecoando Deus no Gênesis que domava as águas do caos.
+
+**2. Exorcismos (poder sobre o mal):** Marcos dedica especial atenção a esses milagres — o endemoninhado da sinagoga de Cafarnaum (Mc 1:21-28), o geraseno (Mc 5:1-20), e o menino epilético (Mc 9:14-29). Para Marcos, os exorcismos são a prova central de que o Reino de Deus está avançando contra o reino de Satanás: "Se eu expulso demônios pelo Espírito de Deus, então o Reino de Deus já chegou a vocês" (Mt 12:28).
+
+**3. Cura de doenças (poder sobre o sofrimento):** A leprosa (Mt 8:1-4; Mc 1:40-45; Lc 5:12-14), a sogra de Pedro (Mt 8:14-15; Mc 1:29-31; Lc 4:38-39), o paralítico da capernaumita (Mt 9:1-8; Mc 2:1-12; Lc 5:17-26), a mulher com fluxo de sangue (Mt 9:20-22; Mc 5:25-34; Lc 8:43-48) e Bartimeu (Mt 9:27-31; Mc 10:46-52; Lc 18:35-43). Mateus enfatiza o cumprimento das profecias messiânicas (Isaías 35:5-6), Lucas mostra a compaixão social de Jesus, e Marcos retrata o poder imediato e autoritativo.
+
+**4. Ressurreição de mortos (poder sobre a morte):** A filha de Jairo (Mt 9:18-26; Mc 5:21-43; Lc 8:40-56), o jovem de Nina (Lc 7:11-17) e Lázaro (João 11) são os três casos. A ressurreição da filha de Jairo é compartilhada pelos três sinóticos e é especialmente significativa: Jesus toca a menina morta — algo que ritualmente o contaminaria — e diz: "Talita, kum!" (menina, levanta-te!).
+
+### Análise de milagres específicos
+
+**A cura do leproso (Mt 8:1-4; Mc 1:40-45; Lc 5:12-14):** Marcos registra que Jesus, movido por compaixão (splagchnizomai), estendeu a mão e tocou o leproso — gesto proibido pela Lei. Mateus acrescenta que Jesus ordenou ao leproso que mostrasse-se ao sacerdote "para testemunho", indicando que o milagre não era anti-Lei, mas seu cumprimento.
+
+**O endemoninhado da Gadara (Mt 8:28-34; Mc 5:1-20; Lc 8:26-39):** Marcos fornece o relato mais detalhado: o homem vivia entre os túmulos, era indomável e gritava dia e noite. Jesus pergunta: "Qual é o teu nome?" e ele responde: "Legião, porque somos muitos". O nome coletivo sugere opressão romana (a legião era a unidade militar), criando um paralelo entre a escravidão política e espiritual. A expulsão dos demônios para os porcos demonstra o poder absoluto de Jesus sobre as forças do mal.
+
+**A cura da mulher com fluxo de sangue (Mt 9:20-22; Mc 5:25-34; Lc 8:43-48):** Marcos detalha que a mulher sofreu há 12 anos, gastou tudo com médicos e piorou. Ela toca no "fundo do manto" de Jesus e é curada imediatamente. Jesus para o cortejo funeral, busca a mulher e declara: "A tua fé te salvou". Mateus acrescenta que Jesus a chamou "filha" e Lucas registra sua "alegria" ao ser tocada.
+
+### A teologia dos milagres
+
+Os milagres de Jesus não são demonstrações arbitrárias de poder. Elos são: (1) sinais messiânicos que cumprem profecias do AT; (2) manifestações do Reino que restaura a criação caída; (3) atos de compaixão que dignificam os marginalizados; e (4) revelações da identidade de Jesus como Filho de Deus. Marcos 2:12 resume a resposta correta: "Nunca vimos coisa assim!".`,
+        },
+        {
+          id: 'aula-ev-5-4',
+          título: 'A Transfiguração: Glória revelada',
+          tipo: 'texto',
+          duração: '12 min',
+          versículosChave: [
+            { ref: 'Mateus 17:2', texto: 'Transfigurou-se diante deles, e o seu rosto resplandeceu como o sol, e as suas vestes se fizeram brancas como a luz.' },
+            { ref: 'Marcos 9:2', texto: 'Jesus tomou consigo a Pedro, Tiago e João, e os levou, só a eles, a um lugar apartado.' },
+            { ref: 'Lucas 9:35', texto: 'E, falando a voz do céu, dizia: Este é o meu Filho amado; a ele ouvi.' },
+          ],
+          conteúdo: `## A Transfiguração: Glória revelada
+
+A Transfiguração é um dos eventos mais marcantes dos evangelhos sinóticos — um momento em que a glória divina de Jesus se manifesta plenamente antes da cruz. Registrada em Mateus 17:1-8, Marcos 9:2-8 e Lucas 9:28-36, esta passagem serve como ponte entre o ministério público de Jesus em Galileia e sua jornada rumo a Jerusalém e à paixão.
+
+### O contexto narrativo
+
+Todos os três sinóticos situam a Transfiguraçãologo após a primeira previsão da paixão de Jesus. Mateus registra que Jesus disse: "O Filho do Homem deve sofrer muito, ser rejeitado pelos anciãos, pelos sumos sacerdotes e escribas, ser morto e ressuscitar ao terceiro dia" (Mt 16:21). Marcos e Lucas relatam a mesma declaração. A Transfiguração é, portanto, uma resposta divina à cruz: antes de descrever o sofrimento, Deus revela a glória.
+
+Pedro, Tiago e João são escolhidos como testemunhas — os mesmos três que estarão presentes na agonia no Getsêmani. Marcos acrescenta que Jesus "os levou, só a eles, a um lugar apartado", enfatizando o caráter intimista e privilegiado do evento.
+
+### A manifestação da glória
+
+O relato é descrito com linguagem luminosa: "O rosto de Jesus resplandeceu como o sol" (Mt 17:2) — uma alusão direta à face de Moisés após receber os mandamentos no Sinai (Êxodo 34:29-35). "Suas vestes se fizeram brancas como a luz" (Mt) ou "tão brancas que nenhuma lavadeira na terra poderia assim embranquecê-las" (Mc 9:3). Essa imagem de brancura sobrenatural remete às vestes angelicais e à pureza divina.
+
+Marcos acrescenta um detalhe único: "apareceram-lhe Elias e Moisés, e conversavam com ele" (Mc 9:4). A presença de Moisés (representando a Lei) e Elias (representando os Profetas) indica que toda a Escritura hebraica aponta para Jesus. Lucas registra o conteúdo da conversa: "Falavam da sua partida, que ia consumar em Jerusalém" (Lc 9:31). O tema da conversa é a paixão — a "exodus" (ἐξοδον) de Jesus, o êxodo definitivo que libertará a humanidade.
+
+### A reação de Pedro
+
+Pedro, sem saber o que dizer — e Marcos destaca explicitamente essa hesitação: "SabiaJesus o que dizer, pois estavam atemorizados" — propõe construir três tendas. Mateus e Marcos registram que "ainda estava falando quando uma nuvem luminosa os cobriu", interrompendo o oferecimento de Pedro.
+
+A reação de Pedro é compreensível: ele quer preservar o momento de glória. Mas a Transfiguração não é para ser capturada — é para ser testemunhada. A nuvem luminosa, símbolo da presença divina (shekiná), confirma que o evento tem origem celestial, não terrena.
+
+### A voz do Pai
+
+A declaração do Pai é registrada com uma variação sutil entre os evangelhos: "Este é o meu Filho amado, em quem me complazo" (Mt, Mc) — acrescentando "a ele ouvi" (Mc, Lc), uma referência ao Deuteronômio 18:15 sobre o profeta que Deus levantará. "Este é o meu Filho, o escolhido" (Lc) — usando a palavra "eklektos" (ἐκλεκτός), destacando a eleição divina. Mateus registra "ouvi" como "ouvi-o", sugerindo que Jesus é a Palavra que deve ser escutada.
+
+A exortação final — "Ouvi-o!" — é o comando que resume toda a Teofania: Jesus não é apenas um profeta ou um mestre — é o Filho de Deus cuja autoridade deve ser obedecida. A Transfiguração é um momento de revelação (epifaneia): Deus mostra quem Jesus realmente é para que os discípulos suportem o escândalo da cruz.
+
+### O significado teológico profundo
+
+A Transfiguração comunica verdades fundamentais:
+
+1. **A divindade de Jesus:** A glória que emanava de seu rosto não era refletida — era emanada. Jesus não recebia luz de Deus; Ele era a fonte da luz, igual ao Pai.
+
+2. **A continuidade da história da salvação:** Moisés e Elias testemunham que a Lei e os Profetas se cumprem em Jesus. Não há contradição entre os Testamentos — há continuidade.
+
+3. **A prioridade da cruz:** O conteúdo da conversa é a paixão. A glória não substitui o sofrimento; ela o precede e o sustenta.
+
+4. **A esperança da ressurreição:** O mesmo corpo que será crucificado será transfigurado — a glória que os discípulos veem é a glória da ressurreição que virá.
+
+5. **A autoridade de Jesus:** A voz do Pai estabelece Jesus como o centro da revelação divina: "Ouvi-o!"
+
+A Transfiguração nos lembra que, mesmo no meio do sofrimento e da confusão, a glória de Deus está presente. A cruz não é o fim — é o caminho para a glória. E a glória que vemos na Transfiguração é a mesma glória que um dia será revelada em todos os que creem.`,
+        },
+        {
+          id: 'aula-ev-5-5',
+          título: 'Quiz: A Vida Pública de Jesus nos Sinóticos',
+          tipo: 'quiz',
+          duração: '10 min',
+          perguntas: [
+            {
+              id: 'qf-ev-5-1',
+              pergunta: 'O que Jesus quis dizer com "é necessário cumprir toda a justiça" ao ser batizado?',
+              opções: ['Jesus era pecador e precisava de purificação', 'Jesus se identificava com a humanidade pecadora e cumpria o plano de Deus', 'Jesus estava sendo batizado como ato político', 'Jesus seguia a tradição judaica sem significado profundo'],
+              respostaCorreta: 1,
+              explicação: 'Jesus não tinha pecado pessoal, mas ao ser batizado ele se identificava com a humanidade pecadora, antecipando sua morte vicária e cumprindo o plano divino de redenção.',
+            },
+            {
+              id: 'qf-ev-5-2',
+              pergunta: 'Qual evangelho apresenta o relato mais breve da tentação de Jesus no deserto?',
+              opções: ['Mateus', 'Lucas', 'Marcos', 'Todos são iguais'],
+              respostaCorreta: 2,
+              explicação: 'Marcos dedica apenas dois versículos (1:12-13) à tentação, focando mais nas consequências do batismo do que no confronto detalhado com Satanás.',
+            },
+            {
+              id: 'qf-ev-5-3',
+              pergunta: 'Na Parábola do Semeador, o que representam os espinhos?',
+              opções: ['A perseguição do mundo', 'As preocupações desta vida, a sedução das riquezas', 'O diabo que rouba a semente', 'A falta de preparo do ouvinte'],
+              respostaCorreta: 1,
+              explicação: 'Jesus explica que os espinhos representam "as preocupações desta vida, a sedução das riquezas e os desejos de outras coisas" que sufocam a palavra (Mc 4:19).',
+            },
+            {
+              id: 'qf-ev-5-4',
+              pergunta: 'Por que Jesus tocou o leproso antes de curá-lo?',
+              opções: ['Para criar espetáculo', 'Para demonstrar que a Lei não o limitava', 'Por compaixão, quebrando a barreira ritual', 'Não há explicação no texto'],
+              respostaCorreta: 2,
+              explicação: 'Marcos destaca que Jesus foi movido por compaixão (splagchnizomai) e tocou o leproso, algo proibido pela Lei — demonstrando que o amor de Deus ultrapassa as barreiras religiosas.',
+            },
+            {
+              id: 'qf-ev-5-5',
+              pergunta: 'O que a parábola da semente de mostarda ensina sobre o Reino de Deus?',
+              opções: ['O Reino será dominante como um império', 'O Reino começa pequeno e cresce de forma surpreendente', 'O Reino é irrelevante para a sociedade', 'O Reino depende do poder humano'],
+              respostaCorreta: 1,
+              explicação: 'A semente de mostarda é a menor das sementes, mas se torna um arbusto grande. Assim é o Reino: começa de forma aparentemente insignificante e se expande de maneiras que surpreendem todos.',
+            },
+            {
+              id: 'qf-ev-5-6',
+              pergunta: 'Na Transfiguração, quem apareceu conversando com Jesus?',
+              opções: ['Abel e Noé', 'Moisés e Elias', 'Pedro e João', 'Davi e Salomão'],
+              respostaCorreta: 1,
+              explicação: 'Moisés (representando a Lei) e Elias (representando os Profetas) apareceram, confirmando que toda a Escritura hebraica aponta para Jesus.',
+            },
+            {
+              id: 'qf-ev-5-7',
+              pergunta: 'Qual era o conteúdo da conversa entre Jesus, Moisés e Elias na Transfiguração?',
+              opções: ['O futuro do império romano', 'A paixão de Jesus em Jerusalém', 'A criação do mundo', 'A Lei de Moisés'],
+              respostaCorreta: 1,
+              explicação: 'Lucas 9:31 registra que falavam "da sua partida (exodus), que ia consumar em Jerusalém" — referindo-se à paixão e morte de Jesus.',
+            },
+            {
+              id: 'qf-ev-5-8',
+              pergunta: 'Na terceira tentação, Satanás ofereceu a Jesus todos os reinos do mundo em troca de quê?',
+              opções: ['O poder sobre os anjos', 'Adoração e rendição', 'Sabedoria infinita', 'Riqueza material'],
+              respostaCorreta: 1,
+              explicação: 'Satanás pediu que Jesus o adorasse (Mt 4:9). Era um atalho para a soberania universal sem passar pela cruz — exatamente o caminho que Jesus recusou.',
+            },
+            {
+              id: 'qf-ev-5-9',
+              pergunta: 'O que a voz do Pai diz na Transfiguração, segundo Marcos 9:7?',
+              opções: ['"Servi a este homem"', '"Ouvi-o!"', '"Este é o meu servo"', '"Sê o meu profeta"'],
+              respostaCorreta: 1,
+              explicação: 'A voz do céu declara: "Este é o meu Filho amado; a ele ouvi." O comando final — "Ouvi-o!" — estabelece Jesus como a autoridade suprema que deve ser obedecida.',
+            },
+            {
+              id: 'qf-ev-5-10',
+              pergunta: 'Qual parábola retrata o crescimento misterioso do Reino, sem que o ser humano entenda como acontece?',
+              opções: ['A Pérola', 'O Tesouro Escondido', 'A Semente Crescendo Secretamente', 'Joio e Trigo'],
+              respostaCorreta: 2,
+              explicação: 'A parábola exclusiva de Marcos (4:26-29) descreve um homem que semeia, dorme e acorda, e a semente cresce "sem que ele saiba como" — o mistério do poder de Deus na palavra.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'mod-marcos-serviço',
+      título: 'O Evangelho de Marcos: Serviço e Soberania',
+      descrição: 'A dinâmica narrativa de Marcos: Jesus como Servo Sofredor, o evangelho da ação, as previsões da paixão e o chamado à missão.',
+      ícone: '🏃',
+      aulas: [
+        {
+          id: 'aula-ev-6-1',
+          título: 'Marcos: O evangelho da ação',
+          tipo: 'texto',
+          duração: '15 min',
+          versículosChave: [
+            { ref: 'Marcos 1:22', texto: 'E estavam pasmados com o seu ensino, porque os ensinava como quem tem autoridade.' },
+            { ref: 'Marcos 1:41', texto: 'Jesus, movido de compaixão, estendeu a mão, tocou nele e disse: Quero, sê limpo.' },
+            { ref: 'Marcos 10:45', texto: 'Porque o Filho do Homem não veio para ser servido, mas para servir, e dar a sua vida em resgate por muitos.' },
+          ],
+          conteúdo: `## Marcos: O evangelho da ação
+
+Marcos é o mais curto dos quatro evangelhos — apenas 16 capítulos, cerca de 11.000 palavras no original grego — e, paradoxalmente, é provavelmente o mais dinâmico. Seu ritmo acelerado, seu vocabulário repetitivo e sua estrutura narrativa revelam um autor que quer que seus leitores experimentem Jesus não como um filósofo que ensina longos discursos, mas como um homem de ação que transforma vidas com autoridade incomum.
+
+### Autor e contexto
+
+O autor é João Marcos, mencionado no Atos dos Apóstolos (12:12, 25; 15:37-39). Tradição antiga, baseada em Papias (bispo de Hierápolis, ~100 d.C.), afirma que Marcos foi intérprete de Pedro em Roma. Essa conexão explicaria por que o evangelho reflete uma perspectiva petrina — relatos que Pedro provavelmente testemunhou em primeira mão.
+
+O público-alvo são cristãos gentios (não-judeus), provavelmente romanos. Isso se evidencia pela explicação de costumes judaicos (Mc 7:3-4), pela tradução de termos aramaicos como "Talitha kum" (Mc 5:41) e "Ephphatha" (Mc 7:34), e pela ausência de genealogias que interessariam a um público judeu.
+
+### Características únicas de Marcos
+
+**1. O ritmo da narrativa:** Marcos usa a palavra grega "euthus" (εὐθύς), que significa "imediatamente", "logo em seguida", pelo menos 41 vezes — mais que todos os outros evangelhos juntos. Esse advérbio cria um senso de urgência: Jesus age com rapidez e sem hesitação. Não há tempo para filosofar — a ação é imediata.
+
+**2. A brevidade dos discursos:** Enquanto Mateus preserva longos discursos (Sermão do Monte, caps. 5-7), Marcos resume os ensinos de Jesus em frases curtas e memoráveis. O Sermão do Monte é condensado em poucos versículos. Marcos prefere mostrar Jesus agindo, não falando.
+
+**3. A ênfase nos milagres:** Aproximadamente 40% do evangelho é dedicado a milagres — uma proporção maior que em Mateus ou Lucas. Marcos narra mais exorcismos que qualquer outro evangelho, retratando Jesus como o Senhor que derrota Satanás e restaura a humanidade.
+
+**4. O "segredo messiânico":** Após cada milagre ou revelação, Jesus ordena que ninguém divulgue o que aconteceu (Mc 1:44; 5:43; 7:36; 8:30). Esse mistério tem dois propósitos: (1) proteger Jesus de expectativas políticas erradas — o Messias que o povo queria não era o Messias que Deus enviou; e (2) preparar os discípulos para o choque da cruz — a identidade de Jesus só será plenamente compreendida após a ressurreição.
+
+**5. A humanidade de Jesus:** Marcos retrata Jesus com uma humanidade vívida: ele se indigna (Mc 3:5), tem compaixão (Mc 1:41), sente raiva (Mc 10:14), chora (Mc 14:35), e até mesmo se surpreende com a fé do centurião (Mc 6:34). Jesus não é um ser abstrato — é um homem que experimenta as emoções humanas.
+
+### A estrutura do evangelho
+
+A maioria dos estudiosos divide Marcos em duas grandes partes:
+
+**Parte 1 (caps. 1-8):** O ministério de Jesus na Galileia — batismo, curas, exorcismos, ensinos, controvérsias com os fariseus, e a pergunta dos discípulos: "Quem dizem os homens que eu sou?"
+
+**Parte 2 (caps. 8-16):** A jornada rumo a Jerusalém, a paixão, morte e ressurreição — começando com a confissão de Pedro ("Tu és o Cristo") e terminando com o túmulo vazio.
+
+A virada central está em 8:27-30, a confissão de Pedro em Cesareia de Filipe, que divide o evangelho exatamente ao meio. Tudo o que veio antes aponta para esse reconhecimento; tudo o que vem depois prepara para a cruz.
+
+### Marcos e o discipulado
+
+Marcos apresenta o discipulado de forma realista — sem idealizar os apóstolos. Os discípulos de Jesus são retratados como frequentemente incompreensivos (Mc 4:13), cobardes (Mc 14:50-51) e até mesmo traidores (Judas). Essa honestidade é encorajadora: se os íntimos de Jesus falharam, nossas falhas não nos excluem da graça.
+
+O versículo central de todo o evangelho — Marcos 10:45 — sintetiza a missão de Jesus: "O Filho do Homem não veio para ser servido, mas para servir, e dar a sua vida em resgate por muitos." Esse é o modelo que os discípulos são chamados a seguir: serviço que custa tudo.
+
+### Relevância para hoje
+
+Marcos nos convida a ser cristãos de ação — não apenas pessoas que ensinam, mas pessoas que fazem. O Reino de Deus não avança por discursos bonitos, mas por atos de amor, poder e compaixão que transformam vidas. Marcos nos lembra que a fé que não se move é uma fé que ainda não entendeu quem é Jesus.`,
+        },
+        {
+          id: 'aula-ev-6-2',
+          título: 'O Servo Sofredor: Profecias de Marcos',
+          tipo: 'texto',
+          duração: '15 min',
+          versículosChave: [
+            { ref: 'Marcos 8:31', texto: 'E começou a ensinar-lhes que era necessário que o Filho do Homem padecesse muito.' },
+            { ref: 'Marcos 9:31', texto: 'O Filho do Homem está sendo entregue nas mãos dos homens, e o matarão.' },
+            { ref: 'Marcos 10:33-34', texto: 'Eis que subimos a Jerusalém, e o Filho do Homem será entregue aos principais sacerdotes.' },
+          ],
+          conteúdo: `## O Servo Sofredor: Profecias de Marcos
+
+Marcos é o evangelho da paixão. Mais da metade de seu conteúdo (caps. 8-16) é dedicado aos eventos que levam à cruz e à ressurreição. No centro desse movimento estão as três previsões da paixão de Jesus — profecias que os discípulos não conseguem ou não querem compreender, mas que revelam a identidade mais profunda de Jesus como o Servo Sofredor de Isaías.
+
+### As três previsões
+
+**A primeira previsão (Mc 8:31):** "E começou a ensinar-lhes que era necessário (dei) que o Filho do Homem padecesse muito, fosse rejeitado pelos anciãos, pelos sumos sacerdotes e pelos escribas, fosse morto e ressuscitasse ao terceiro dia."
+
+Essa previsão vem imediatamente após a confissão de Pedro em Cesareia de Filipe. O verbo "dei" (δεῖ) em grego é teologicamente carregado — significa não apenas "era necessário", mas "era imperative divino". A paixão de Jesus não é um acidente trágico — é o cumprimento do plano eterno de Deus.
+
+A reação de Pedro é dramática: "Petero, puxando-o, começou a repreendê-lo" (Mc 8:32). Pedro não aceita um Messias que sofre — ele quer um Messias que conquiste. A resposta de Jesus é severa: "Vai-te detrás de mim, Satanás!" (Mc 8:33). O adversário da cruz é, paradoxalmente, o mais fiel dos discípulos.
+
+**A segunda previsão (Mc 9:31):** "O Filho do Homem está sendo entregue (paradidomi — no presente, indicando processo contínuo) nas mãos dos homens, e o matarão; mas, depois de ressuscitado, no terceiro dia."
+
+Marcos usa o verbo no presente — "está sendo entregue" — sugerindo que o processo já está em andamento. A traição não é um evento futuro; é uma realidade presente. Diferente da primeira previsão, Marcos não registra reação dos discípulos, mas menciona que "eles não entenderam essa palavra e temiam perguntar-lhe" (Mc 9:32). O silêncio é mais eloquente que a resistência de Pedro.
+
+**A terceira previsão (Mc 10:33-34):** "Eis que subimos a Jerusalém, e o Filho do Homem será entregue aos principais sacerdotes e aos escribas; eles o condenarão à morte e o entregarão aos gentios. Zombarão dele, cospirão nele, o açoitam e o matarão; mas, ao terceiro dia, ressuscitará."
+
+Essa é a previsão mais detalhada: inclui a traição, o julgamento, a condenação, a crucificação pelos gentios (romanos), a humilhação e a ressurreição. A progressão das três previsões é clara: cada uma é mais específica que a anterior, como se Jesus quisesse que os discípulus não tivessem dúvidas sobre o que estava por vir.
+
+### O discípulo e a cruz
+
+Marcos não apresenta a paixão como algo que acontece apenas com Jesus — é um padrão que se aplica a todos que O seguem. Imediatamente após a terceira previsão, Tiago e João pedem para sentar-se à direita e à esquerda de Jesus no Reino. A resposta de Jesus é direta: "Não sabeis o que pedis. Podeis beber do cálice que eu beberei, ou ser batizados com o batismo com que eu serei batizado?" (Mc 10:38-39).
+
+O "cálice" e o "batismo" são imagens de sofrimento. Jesus não rejeita o pedido — ele o transforma em uma pergunta sobre compromisso. "Podeis beber?" A resposta é um convite ao discipulado radical: seguir Jesus significa compartilhar de sua paixão, não apenas de sua glória.
+
+### A Paixão como narrativa
+
+Os caps. 14-15 de Marcos são o clímax literário do evangelho. Marcos os estrutura como um paralelo preciso com a Última Ceia:
+
+**No Getsêmani (Mc 14:32-42):** Jesus pede que os discípulos "vigiem" (grégorein) três vezes, mas eles adormecem. O verbo "vigiar" é o mesmo usado na parábola do serviço (Mc 13:34-37), criando um contraste trágico: o Mestre ordena vigiar, os servos dormem.
+
+**A prisão (Mc 14:43-52):** Um detalhe único de Marcos — "um jovem que trazia apenas um lençol sobre o corpo nua fugiu, deixando-o" (Mc 14:51-52). Muitos estudiosos identificam esse jovem como o próprio Marcos, inserindo-se sutilmente na narrativa. É o primeiro testemunho ocular: "Eu estava lá".
+
+**O julgamento (Mc 14:53-15:1):** O julgamento é uma farsa jurídica — as testemunhas contradizem-se, o sumo sacerdote rasga suas vestes (sinal de blasfêmia, mas sem direito de condenar à morte), e Jesus é condenado por blasfêmia quando afirma ser o Filho do Homem sentado à direita do Poder.
+
+**A crucificação (Mc 15:22-39):** Marcos relata em apenas 17 versículos a crucificação, o que é extraordinariamente conciso. A brevidade é eloquente — o sofrimento fala por si mesmo. Os três horários de trevas (6ª à 9ª hora) ecoam a escuridão do Sinai (Êxodo 20:21).
+
+**O véu rasgado (Mc 15:38):** O véu do templo rasga-se de cima para baixo — não de baixo para cima como o homem faria. A acessibilidade a Deus não é conquistada por esforço humano; é concedida por misericórdia divina.
+
+### A teologia do Servo Sofredor
+
+Marcos 10:45 é a chave hermenêutica de todo o evangelho. A expressão "em resgate por muitos" (anti pollon, ἀντὶ πολλῶν) usa a preposição "anti" que indica substituição — Jesus morre "no lugar de" muitos. Essa é a teologia da substituição vicária em sua forma mais pura: o Servo sofre pelos outros, não por si mesmo.
+
+A paixão em Marcos não é um fracasso — é a consumação do serviço. O Servo Sofredor dá sua vida "em resgate" (lytron, λύτρον) — uma palavra que remete à liberação de escravos. O que Marcos retrata é um Êxodo definitivo: Jesus liberta a humanidade da escravidão do pecado pelo preço de sua própria vida.`,
+        },
+        {
+          id: 'aula-ev-6-3',
+          título: 'Marcos e a Missionologia: Rumo às nações',
+          tipo: 'texto',
+          duração: '12 min',
+          versículosChave: [
+            { ref: 'Marcos 16:15', texto: 'Ide por todo o mundo e pregai o evangelho a toda criatura.' },
+            { ref: 'Marcos 13:10', texto: 'É necessário que o evangelho seja pregado antes a todas as nações.' },
+            { ref: 'Marcos 10:45', texto: 'O Filho do Homem não veio para ser servido, mas para servir, e dar a sua vida em resgate por muitos.' },
+          ],
+          conteúdo: `## Marcos e a Missionologia: Rumo às nações
+
+Embora Marcos seja o evangelho mais curto do Novo Testamento, ele contém uma das teologias missionárias mais densas e práticas da Bíblia. A compreensão de Marcos sobre a missão de Deus — que se estende das fronteiras de Israel ao mundo inteiro — moldou o cristianismo primitivo e continua inspirando igrejas e missionários hoje.
+
+### O contexto romano de Marcos
+
+Marcos foi escrito para cristãos gentios em Roma — a capital do império mundial. Esse contexto é fundamental: o evangelho que apresenta Jesus como Servo Sofredor é dirigido a pessoas que viviam no centro do poder imperial. A mensagem de Marcos é subversiva: o verdadeiro Rei não é César, mas Jesus, e sua soberania se exercita pelo serviço e pelo sacrifício.
+
+Para os cristãos romanos, perseguidos e marginalizados, Marcos oferece um evangelho de resistência: o Reino de Deus avança não pela força militar, mas pela palavra, pela compaixão e pela fidelidade até a morte. É um evangelho para minorias que改变am o mundo sem violência.
+
+### O evangelismo no ministério de Jesus
+
+Marcos retrata Jesus como um evangelista itinerante que percorre a Galileia "pregando o evangelho de Deus" (Mc 1:14). O verbo "kerusso" (κηρύσσω) — pregar publicamente — aparece mais em Marcos que nos outros sinóticos, enfatizando a natureza proclamadora do ministério de Jesus.
+
+O evangelho que Jesus prega é simples: "O Reino de Deus está próximo; arrependei-vos e crede no evangelho" (Mc 1:15). Dois elementos: (1) a iminência do Reino — Deus está agindo na história agora; e (2) a necessidade de resposta — arrependimento (mudança de direção) e fé (confiança em Deus).
+
+Marcos retrata Jesus como alguém que evangeliza em múltiplos contextos: na sinagoga (Mc 1:21), na praça pública (Mc 2:1), na beira do mar (Mc 4:1), na montanha (Mc 3:13), em casas particulares (Mc 2:15), e até mesmo na beira da estrada (Mc 10:46). O evangelho não é confinado a locais sagrados — ele invade todos os espaços da vida.
+
+### A Grande Comissão em Marcos
+
+O final de Marcos é um dos textos mais discutidos da Bíblia. Os versículos 9-20 (a "Grande Comissão" de Marcos) são considerados por muitos estudiosos como uma adição posterior ao evangelho original, que terminaria em 16:8: "pois tinham medo."
+
+Independentemente dessa questão textual, o conteúdo teológico dos versículos 15-18 é profético:
+
+**"Ide por todo o mundo e pregai o evangelho a toda criatura" (Mc 16:15):** A missão não tem fronteiras geográficas ("todo o mundo") nem étnicas ("toda criatura"). O termo "ktisis" (κτίσις) — criatura — sugere que o evangelho é para toda a criação, não apenas para os judeus. Marcos antecipa a universalidade da Grande Comissão de Mateus 28:19.
+
+**"Quem crer e for batizado será salvo; quem não crer será condenado" (Mc 16:16):** O evangelho de Marcos é inclusivo (para quem crê) e exclusivo (para quem rejeita). A salvação depende da resposta pessoal ao evangelho.
+
+**"Esses sinais seguirão os que crerem" (Mc 16:17):** A missão é acompanhada de poder sobrenatural — não como espetáculo, mas como confirmação da palavra. Marcos apresenta a missão como uma aventura com Deus, não como uma tarefa humana solitária.
+
+### A dispersão dos discípulos
+
+Um tema recorrente em Marcos é o envio dos discípulos em missão. Em Mc 6:7-13, Jesus envia os doze em pares com autoridade sobre os espíritos imundos e instruções práticas: sem provision, sem dinheiro extra, sem sapatos extras, mas com poder para curar e expulsar demônios.
+
+Em Mc 6:30-34, os discípulos voltam e relatam seus feitos. Jesus os leva para descansar — o equilíbrio entre ação e contemplação. Mas a multidão os encontra, e Jesus tem compaixão porque "estavam como ovelhas sem pastor". O descanso é interrompido pela necessidade — o modelo missionário de Marcos inclui sacrifício pessoal.
+
+A dispersão dos discípulos prepara o terreno para a dispersão da igreja primitiva. O livro de Atos narra exatamente isso: os discípulos de Jesus, que começaram na Galileia, levam o evangelho a Jerusalém, Samaria, Antioquia, Roma e além. Marcos documenta o início desse movimento.
+
+### A teologia missionária de Marcos
+
+Marcos apresenta uma teologia missionária coerente e prática:
+
+**1. Missão centrada no evangelho:** O centro não é a igreja, não é a cultura, não é a política — é a mensagem de que o Reino de Deus está próximo em Jesus.
+
+**2. Missão encarnacional:** Jesus não ficou no céu pregando — ele veio à terra, viveu entre os homens, comeu com pecadores e tocou os impuros. A missão é encarnacional quando nos incarnamos nos contextos que servimos.
+
+**3. Missão de serviço:** O versículo central (Mc 10:45) define a missão: servir e dar a vida. Não é uma missão de poder, mas de sacrifício voluntário.
+
+**4. Missão para todos:** Marcos não restringe a missão a uma elite religiosa. A Grande Comissão é para "toda criatura" — sem distinção de raça, classe ou gênero.
+
+**5. Missão com poder:** A missão não é apenas verbal — é acompanhada de sinais que confirmam a autoridade do evangelho.
+
+Marcos nos lembra que a missão não é uma atividade opcional da igreja — é sua razão de existir. O evangelho que recebemos não é para ser guardado, mas compartilhado. E o modelo de Jesus é claro: servir até a morte, e deixar que Deus traga a ressurreição.`,
+        },
+        {
+          id: 'aula-ev-6-4',
+          título: 'Quiz: O Evangelho de Marcos',
+          tipo: 'quiz',
+          duração: '10 min',
+          perguntas: [
+            {
+              id: 'qf-ev-6-1',
+              pergunta: 'Qual é o público-alvo principal do evangelho de Marcos?',
+              opções: ['Judeus religiosos', 'Cristãos gentios em Roma', 'Fariseus', 'Escolas filosóficas gregas'],
+              respostaCorreta: 1,
+              explicação: 'Marcos escreve para cristãos gentios, provavelmente em Roma. Isso se evidencia pelas explicações de costumes judaicos, tradução de termos aramaicos e pela ausência de genealogias.',
+            },
+            {
+              id: 'qf-ev-6-2',
+              pergunta: 'Qual palavra grega Marcos usa repetidamente para criar um senso de urgência na narrativa?',
+              opções: ['Logos', 'Euthus (imediatamente)', 'Agape', 'Pneuma'],
+              respostaCorreta: 1,
+              explicação: 'Marcos usa "euthus" (εὐθύς) pelo menos 41 vezes — mais que todos os outros evangelhos juntos — criando ritmo acelerado e urgência narrativa.',
+            },
+            {
+              id: 'qf-ev-6-3',
+              pergunta: 'O que o "segredo messiânico" em Marcos significa?',
+              opções: ['Jesus não queria ser conhecido', 'Jesus protegia a identidade messiânica até a cruz', 'Os discípulos eram burros', 'Era uma prova de humildade'],
+              respostaCorreta: 1,
+              explicação: 'O "segredo messiânico" protege Jesus de expectativas políticas erradas e prepara os discípulos para o choque da cruz — a identidade divina só será plenamente compreendida após a ressurreição.',
+            },
+            {
+              id: 'qf-ev-6-4',
+              pergunta: 'Qual é o versículo central de todo o evangelho de Marcos?',
+              opções: ['Marcos 1:15', 'Marcos 8:29', 'Marcos 10:45', 'Marcos 16:15'],
+              respostaCorreta: 2,
+              explicação: 'Marcos 10:45 — "O Filho do Homem não veio para ser servido, mas para servir, e dar a sua vida em resgate por muitos" — é o tema central de todo o evangelho.',
+            },
+            {
+              id: 'qf-ev-6-5',
+              pergunta: 'Quantas vezes Jesus prevê sua paixão em Marcos?',
+              opções: ['Uma', 'Duas', 'Três', 'Quatro'],
+              respostaCorreta: 2,
+              explicação: 'Jesus faz três previsões da paixão em Marcos (8:31, 9:31, 10:33-34), cada uma mais detalhada que a anterior.',
+            },
+            {
+              id: 'qf-ev-6-6',
+              pergunta: 'Qual reação Pedro tem à primeira previsão da paixão?',
+              opções: ['Aceita com fé', 'Chora amargamente', 'Repreende Jesus', 'Silencia'],
+              respostaCorreta: 2,
+              explicação: 'Pedro "puxou Jesus e começou a repreendê-lo" (Mc 8:32), não aceitando um Messias que sofre. A resposta de Jesus foi: "Vai-te detrás de mim, Satanás!"',
+            },
+            {
+              id: 'qf-ev-6-7',
+              pergunta: 'Qual evento marca a virada central do evangelho de Marcos?',
+              opções: ['O batismo', 'A Transfiguração', 'A confissão de Pedro em Cesareia', 'A Última Ceia'],
+              respostaCorreta: 2,
+              explicação: 'A confissão de Pedro em Cesareia de Filipe (Mc 8:27-30) divide o evangelho em duas partes iguais: ministério na Galileia (caps. 1-8) e jornada rumo à cruz (caps. 8-16).',
+            },
+            {
+              id: 'qf-ev-6-8',
+              pergunta: 'O que representa o véu rasgado no templo na crucificação?',
+              opções: ['A destruição de Jerusalém', 'O acesso direto a Deus através de Jesus', 'O fim da Lei', 'A morte de César'],
+              respostaCorreta: 1,
+              explicação: 'O véu rasga-se de cima para baixo — a acessibilidade a Deus não é conquistada por esforço humano, mas concedida por misericórdia divina através da morte de Jesus.',
+            },
+            {
+              id: 'qf-ev-6-9',
+              pergunta: 'O que o jovem que foge na prisão de Jesus representa?',
+              opções: ['Um anjo', 'O próprio Marcos como testemunha ocular', 'Um fariseu', 'Um escriba'],
+              respostaCorreta: 1,
+              explicação: 'Muitos estudiosos identificam o jovem de Mc 14:51-52 como o próprio Marcos, inserindo-se sutilmente na narrativa como testemunha ocular do evento.',
+            },
+            {
+              id: 'qf-ev-6-10',
+              pergunta: 'Segundo Marcos, qual é a relação entre o evangelho e as nações?',
+              opções: ['O evangelho é apenas para judeus', 'O evangelho deve ser pregado antes a todas as nações', 'As nações não precisam do evangelho', 'O evangelho será esquecido pelas nações'],
+              respostaCorreta: 1,
+              explicação: 'Mc 13:10 declara: "É necessário que o evangelho seja pregado antes a todas as nações" — a missão universal é parte do plano de Deus.',
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

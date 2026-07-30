@@ -3,266 +3,178 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, CheckCircle2, Circle, Bell, BellOff, Clock, BookOpen, ChevronRight, Play, Pause, RotateCcw } from 'lucide-react';
-import ScrollReveal from '@/components/ScrollReveal';
+import { motion } from 'framer-motion';
+import { Calendar, CheckCircle2, BookOpen, ChevronRight, Flame, ArrowRight, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { PlanReminderButton } from '@/components/PlanReminder';
+import Link from 'next/link';
+import { trackEvent, getSummary } from '@/lib/gamificationTracker';
 
-interface PlanoLeitura {
-  id: string;
-  titulo: string;
-  descricao: string;
-  duracao: number; // dias
-  categoria: string;
-  nivel: 'iniciante' | 'intermediario' | 'avancado';
-  dias: DiaLeitura[];
-}
+interface DiaLeitura { dia: number; titulo: string; passagens: { livro: string; capitulo: number }[]; }
+interface PlanoLeitura { id: string; titulo: string; descricao: string; duracao: number; nivel: string; icone: string; dias: DiaLeitura[]; }
 
-interface DiaLeitura {
-  dia: number;
-  titulo: string;
-  passagens: string[];
+function gerarPlanoBiblia1Ano(): DiaLeitura[] {
+  const livros: { a: string; c: number }[] = [
+    {a:'Gn',c:50},{a:'Ex',c:40},{a:'Lv',c:27},{a:'Nm',c:36},{a:'Dt',c:34},{a:'Js',c:24},{a:'Jz',c:21},{a:'Rt',c:4},
+    {a:'1Sm',c:31},{a:'2Sm',c:24},{a:'1Rs',c:22},{a:'2Rs',c:25},{a:'1Cr',c:29},{a:'2Cr',c:36},{a:'Ed',c:10},{a:'Ne',c:13},
+    {a:'Et',c:10},{a:'Jó',c:42},{a:'Sl',c:150},{a:'Pv',c:31},{a:'Ec',c:12},{a:'Ct',c:8},{a:'Is',c:66},{a:'Jr',c:52},
+    {a:'Lm',c:5},{a:'Ez',c:48},{a:'Dn',c:12},{a:'Os',c:14},{a:'Jl',c:3},{a:'Am',c:9},{a:'Ob',c:1},{a:'Jn',c:4},
+    {a:'Mq',c:7},{a:'Na',c:3},{a:'Hc',c:3},{a:'Sf',c:3},{a:'Ag',c:2},{a:'Zc',c:14},{a:'Ml',c:4},
+    {a:'Mt',c:28},{a:'Mc',c:16},{a:'Lc',c:24},{a:'Jo',c:21},{a:'At',c:28},{a:'Rm',c:16},{a:'1Co',c:16},{a:'2Co',c:13},
+    {a:'Gl',c:6},{a:'Ef',c:6},{a:'Fp',c:4},{a:'Cl',c:4},{a:'1Ts',c:5},{a:'2Ts',c:3},{a:'1Tm',c:6},{a:'2Tm',c:4},
+    {a:'Tt',c:3},{a:'Fm',c:1},{a:'Hb',c:13},{a:'Tg',c:5},{a:'1Pe',c:5},{a:'2Pe',c:3},{a:'1Jo',c:5},{a:'2Jo',c:1},
+    {a:'3Jo',c:1},{a:'Jd',c:1},{a:'Ap',c:22},
+  ];
+  const total = livros.reduce((s, l) => s + l.c, 0);
+  const capsPorDia = Math.ceil(total / 365);
+  const dias: DiaLeitura[] = [];
+  let cap = 0;
+  for (let d = 1; d <= 365; d++) {
+    const pass: { livro: string; capitulo: number }[] = [];
+    let rest = capsPorDia;
+    while (rest > 0 && cap < total) {
+      let acc = 0;
+      for (const l of livros) {
+        if (acc + l.c > cap) { pass.push({ livro: l.a, capitulo: cap - acc + 1 }); cap++; rest--; break; }
+        acc += l.c;
+      }
+    }
+    dias.push({ dia: d, titulo: d === 1 ? 'O Início' : d === 365 ? 'O Fim da Jornada' : `Dia ${d}`, passagens: pass });
+  }
+  return dias;
 }
 
 const PLANOS: PlanoLeitura[] = [
-  {
-    id: 'biblia-1-ano',
-    titulo: 'Bíblia em 1 Ano',
-    descricao: 'Leia toda a Bíblia em 365 dias com um plano equilibrado entre AT e NT.',
-    duracao: 365, categoria: 'Anual', nivel: 'intermediario',
-    dias: Array.from({ length: 365 }, (_, i) => ({
-      dia: i + 1, titulo: `Dia ${i + 1}`,
-      passagens: [`${['Gênesis', 'Êxodo', 'Levítico', 'Números', 'Deuteronômio'][i % 5]} ${Math.floor(i / 5) + 1}`],
-    })),
-  },
-  {
-    id: 'nt-90-dias',
-    titulo: 'Novo Testamento em 90 Dias',
-    descricao: 'Leia todo o Novo Testamento em 3 meses.',
-    duracao: 90, categoria: 'Trimestral', nivel: 'iniciante',
-    dias: Array.from({ length: 90 }, (_, i) => ({
-      dia: i + 1, titulo: `Dia ${i + 1}`,
-      passagens: [`${['Mateus', 'Marcos', 'Lucas', 'João', 'Atos', 'Romanos'][i % 6]} ${Math.floor(i / 6) + 1}`],
-    })),
-  },
-  {
-    id: 'atos-30-dias',
-    titulo: 'Atos dos Apóstolos em 30 Dias',
-    descricao: 'Estude o livro de Atos em profundidade, um capítulo por dia.',
-    duracao: 30, categoria: 'Mensal', nivel: 'iniciante',
-    dias: Array.from({ length: 28 }, (_, i) => ({
-      dia: i + 1, titulo: `Atos ${i + 1}`,
-      passagens: [`Atos ${i + 1}`],
-    })),
-  },
-  {
-    id: 'salmos-30-dias',
-    titulo: 'Salmos de Louvor em 30 Dias',
-    descricao: '5 Salmos por dia durante 30 dias de adoração e reflexão.',
-    duracao: 30, categoria: 'Mensal', nivel: 'iniciante',
-    dias: Array.from({ length: 30 }, (_, i) => ({
-      dia: i + 1, titulo: `Salmos ${i * 5 + 1}-${(i + 1) * 5}`,
-      passagens: Array.from({ length: 5 }, (_, j) => `Salmos ${i * 5 + j + 1}`),
-    })),
-  },
-  {
-    id: 'proverbios-31-dias',
-    titulo: 'Provérbios em 31 Dias',
-    descricao: 'Um capítulo de Provérbios por dia — sabedoria para cada manhã.',
-    duracao: 31, categoria: 'Mensal', nivel: 'iniciante',
-    dias: Array.from({ length: 31 }, (_, i) => ({
-      dia: i + 1, titulo: `Provérbios ${i + 1}`,
-      passagens: [`Provérbios ${i + 1}`],
-    })),
-  },
-  {
-    id: 'evangelhos-60-dias',
-    titulo: 'Os 4 Evangelhos em 60 Dias',
-    descricao: 'Estude Mateus, Marcos, Lucas e João em profundidade.',
-    duracao: 60, categoria: 'Bimestral', nivel: 'intermediario',
-    dias: Array.from({ length: 60 }, (_, i) => ({
-      dia: i + 1, titulo: `Dia ${i + 1}`,
-      passagens: [`${['Mateus', 'Marcos', 'Lucas', 'João'][i % 4]} ${Math.floor(i / 4) + 1}`],
-    })),
-  },
+  { id: 'biblia-1-ano', titulo: 'Bíblia em 1 Ano', descricao: '365 dias, ~3-4 capítulos/dia', duracao: 365, nivel: 'intermediario', icone: '📖', dias: gerarPlanoBiblia1Ano() },
+  { id: 'nt-90', titulo: 'Novo Testamento em 90 Dias', descricao: '3 capítulos/dia', duracao: 90, nivel: 'iniciante', icone: '✝️', dias: Array.from({length:90},(_,i)=>({dia:i+1,titulo:`Dia ${i+1}`,passagens:[{livro:'Mt',capitulo:i+1}]})) },
+  { id: 'evangelhos-60', titulo: '4 Evangelhos em 60 Dias', descricao: '1-2 capítulos/dia', duracao: 60, nivel: 'iniciante', icone: '🌿', dias: Array.from({length:60},(_,i)=>({dia:i+1,titulo:`Dia ${i+1}`,passagens:[{livro:['Mt','Mc','Lc','Jo'][i%4],capitulo:Math.floor(i/4)+1}]})) },
+  { id: 'salmos-30', titulo: 'Salmos em 30 Dias', descricao: '5 salmos/dia', duracao: 30, nivel: 'iniciante', icone: '🎵', dias: Array.from({length:30},(_,i)=>({dia:i+1,titulo:`Dia ${i+1}`,passagens:Array.from({length:5},(_,j)=>({livro:'Sl',capitulo:i*5+j+1}))})) },
 ];
 
-type View = 'list' | 'plano';
-
 export default function PlanosPage() {
-  const [view, setView] = useState<View>('list');
-  const [selectedPlano, setSelectedPlano] = useState<PlanoLeitura | null>(null);
-  const [planoAtivo, setPlanoAtivo] = useState<string | null>(null);
-  const [diaAtual, setDiaAtual] = useState(1);
+  const [planoSel, setPlanoSel] = useState<PlanoLeitura | null>(null);
   const [diasConcluidos, setDiasConcluidos] = useState<Set<number>>(new Set());
-  const [pushEnabled, setPushEnabled] = useState(false);
+  const [streak, setStreak] = useState(0);
 
   useEffect(() => {
-    try {
-      const p = localStorage.getItem('ssb_plano_ativo');
-      const d = localStorage.getItem('ssb_plano_dia');
-      const c = localStorage.getItem('ssb_plano_concluidos');
-      const push = localStorage.getItem('ssb_plano_push');
-      if (p) { setPlanoAtivo(p); setView('plano'); }
-      if (d) setDiaAtual(parseInt(d));
-      if (c) setDiasConcluidos(new Set(JSON.parse(c)));
-      if (push) setPushEnabled(JSON.parse(push));
-    } catch {}
-  }, []);
+    if (planoSel) {
+      const s = localStorage.getItem(`ssb_plano_${planoSel.id}`);
+      if (s) setDiasConcluidos(new Set(JSON.parse(s)));
+    }
+  }, [planoSel]);
 
-  const plano = useMemo(() => PLANOS.find(p => p.id === planoAtivo), [planoAtivo]);
-
-  const startPlano = useCallback((id: string) => {
-    setPlanoAtivo(id);
-    setDiaAtual(1);
-    setDiasConcluidos(new Set());
-    localStorage.setItem('ssb_plano_ativo', id);
-    localStorage.setItem('ssb_plano_dia', '1');
-    localStorage.setItem('ssb_plano_concluidos', '[]');
-    setView('plano');
-  }, []);
+  useEffect(() => { setStreak(getSummary().streakAtual); }, []);
 
   const toggleDia = useCallback((dia: number) => {
     setDiasConcluidos(prev => {
-      const n = new Set(prev);
-      if (n.has(dia)) n.delete(dia); else n.add(dia);
-      localStorage.setItem('ssb_plano_concluidos', JSON.stringify([...n]));
-      return n;
+      const next = new Set(prev);
+      if (next.has(dia)) next.delete(dia); else next.add(dia);
+      if (planoSel) localStorage.setItem(`ssb_plano_${planoSel.id}`, JSON.stringify([...next]));
+      trackEvent('plano_lido', 1, { plano: planoSel?.id, dia });
+      return next;
     });
-  }, []);
+  }, [planoSel]);
 
-  const stopPlano = useCallback(() => {
-    setPlanoAtivo(null);
-    setDiaAtual(1);
-    setDiasConcluidos(new Set());
-    localStorage.removeItem('ssb_plano_ativo');
-    localStorage.removeItem('ssb_plano_dia');
-    localStorage.removeItem('ssb_plano_concluidos');
-    setView('list');
-  }, []);
+  const progresso = useMemo(() => planoSel ? Math.round((diasConcluidos.size / planoSel.duracao) * 100) : 0, [diasConcluidos, planoSel]);
+  const diaAtual = useMemo(() => {
+    if (!planoSel) return 1;
+    for (let i = 1; i <= planoSel.duracao; i++) if (!diasConcluidos.has(i)) return i;
+    return planoSel.duracao;
+  }, [diasConcluidos, planoSel]);
 
-  const progresso = plano ? (diasConcluidos.size / plano.duracao) * 100 : 0;
+  if (planoSel) {
+    return (
+      <div className="min-h-screen"><Header />
+        <main className="pt-20 pb-32 px-4"><div className="max-w-3xl mx-auto">
+          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} className="mb-6">
+            <button onClick={()=>setPlanoSel(null)} className="text-sm text-muted-foreground hover:text-primary mb-3 flex items-center gap-1">← Voltar</button>
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">{planoSel.icone}</span>
+              <div><h1 className="font-display text-2xl font-light">{planoSel.titulo}</h1>
+                <p className="text-sm text-muted-foreground">{planoSel.descricao}</p></div>
+            </div>
+          </motion.div>
+
+          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:0.1}}
+            className="rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/5 to-amber-500/5 p-5 mb-6">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-3">
+                <div className="relative"><svg width="60" height="60">
+                  <circle cx="30" cy="30" r="25" fill="none" stroke="var(--border)" strokeWidth="5" opacity={0.3} />
+                  <motion.circle cx="30" cy="30" r="25" fill="none" stroke="hsl(var(--primary))" strokeWidth="5"
+                    strokeLinecap="round" strokeDasharray={157}
+                    initial={{strokeDashoffset:157}} animate={{strokeDashoffset:157-(progresso/100)*157}}
+                    transition={{duration:1,ease:'easeOut'}} transform="rotate(-90 30 30)" />
+                </svg><div className="absolute inset-0 flex items-center justify-center"><span className="text-sm font-bold">{progresso}%</span></div></div>
+                <div><p className="text-lg font-bold">{diasConcluidos.size} / {planoSel.duracao}</p><p className="text-xs text-muted-foreground">dias concluídos</p></div>
+              </div>
+              <div className="text-right"><div className="flex items-center gap-1 text-orange-500"><Flame className="w-4 h-4" /><span className="text-sm font-bold">{streak} dias</span></div><p className="text-[10px] text-muted-foreground">streak</p></div>
+            </div>
+            <div className="h-2 bg-muted/30 rounded-full overflow-hidden">
+              <motion.div className="h-full bg-gradient-to-r from-primary to-amber-500 rounded-full" initial={{width:0}} animate={{width:`${progresso}%`}} transition={{duration:1}} />
+            </div>
+          </motion.div>
+
+          {diaAtual <= planoSel.duracao && (
+            <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:0.2}}
+              className="rounded-2xl border border-primary/30 bg-primary/5 p-5 mb-6">
+              <div className="flex items-center gap-2 mb-2"><Sparkles className="w-5 h-5 text-primary" /><h2 className="font-display text-lg font-medium">Hoje — Dia {diaAtual}</h2></div>
+              <div className="space-y-2">{planoSel.dias[diaAtual-1]?.passagens.map((p,i)=>(
+                <Link key={i} href={`/biblia?livro=${p.livro}&capitulo=${p.capitulo}`}
+                  className="flex items-center gap-2 p-2.5 rounded-xl bg-card/50 border border-border/30 hover:border-primary/30 transition-all group">
+                  <BookOpen className="w-4 h-4 text-primary shrink-0" /><span className="text-sm font-medium">{p.livro} {p.capitulo}</span>
+                  <ChevronRight className="w-4 h-4 text-muted-foreground ml-auto group-hover:text-primary transition-colors" /></Link>
+              ))}</div>
+              <button onClick={()=>toggleDia(diaAtual)}
+                className="mt-3 w-full py-2.5 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                <CheckCircle2 className="w-4 h-4" /> Marcar dia {diaAtual} como concluído</button>
+            </motion.div>
+          )}
+
+          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:0.3}}>
+            <h2 className="font-display text-lg font-medium mb-3">Todos os Dias</h2>
+            <div className="space-y-2 max-h-[50vh] overflow-y-auto pr-1">{planoSel.dias.map(dia=>{
+              const c=diasConcluidos.has(dia.dia), a=dia.dia===diaAtual;
+              return (<motion.button key={dia.dia} onClick={()=>toggleDia(dia.dia)}
+                className={cn('w-full text-left rounded-xl border p-3 transition-all flex items-center gap-3',
+                  c?'bg-primary/5 border-primary/20':a?'border-primary/30 bg-primary/5 ring-1 ring-primary/20':'border-border/30 hover:border-primary/20 bg-card/50')}>
+                <div className={cn('w-8 h-8 rounded-full flex items-center justify-center shrink-0',
+                  c?'bg-primary text-white':a?'bg-primary/10 text-primary':'bg-muted/30 text-muted-foreground')}>
+                  {c?<CheckCircle2 className="w-4 h-4"/>:<span className="text-xs font-bold">{dia.dia}</span>}</div>
+                <div className="flex-1 min-w-0"><p className={cn('text-sm font-medium',c&&'text-primary')}>{dia.titulo}</p>
+                  <p className="text-[11px] text-muted-foreground truncate">{dia.passagens.map(p=>`${p.livro} ${p.capitulo}`).join(' · ')}</p></div>
+                {a&&!c&&<ArrowRight className="w-4 h-4 text-primary shrink-0"/>}</motion.button>);
+            })}</div>
+          </motion.div>
+        </div></main><Footer /></div>
+      );
+  }
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-24 pb-16 px-6">
-        <div className="max-w-3xl mx-auto">
-          <ScrollReveal>
-            <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
-                  <Calendar className="w-5 h-5 text-green-500" />
-                </div>
-                <div>
-                  <h1 className="font-display text-3xl font-light">Planos de <span className="text-primary italic">Leitura</span></h1>
-                  <p className="text-sm text-muted-foreground">Organize seu estudo bíblico com um plano diário</p>
-                </div>
-              </div>
+    <div className="min-h-screen"><Header />
+      <main className="pt-20 pb-16 px-4"><div className="max-w-4xl mx-auto">
+        <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} className="mb-8">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-500/5 flex items-center justify-center border border-amber-500/20">
+              <Calendar className="w-5 h-5 text-amber-600" /></div>
+            <div><h1 className="font-display text-2xl md:text-3xl font-light">Planos de <span className="text-primary italic">Leitura</span></h1>
+              <p className="text-xs text-muted-foreground">Escolha um plano e comece sua jornada</p></div>
+          </div>
+        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">{PLANOS.map((plano,i)=>(
+          <motion.button key={plano.id} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:i*0.08}}
+            onClick={()=>setPlanoSel(plano)}
+            className="text-left rounded-2xl border border-border/50 bg-card/50 p-5 hover:border-primary/30 transition-all group">
+            <div className="flex items-start gap-3 mb-3">
+              <span className="text-3xl">{plano.icone}</span>
+              <div><h3 className="font-display text-lg font-medium group-hover:text-primary transition-colors">{plano.titulo}</h3>
+                <p className="text-xs text-muted-foreground mt-1">{plano.descricao}</p></div>
             </div>
-          </ScrollReveal>
-
-          {view === 'list' && (
-            <div className="space-y-4">
-              {PLANOS.map((p, idx) => (
-                <motion.div key={p.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.05 }}
-                  className="rounded-2xl border border-border/50 bg-card/50 p-5 hover:border-primary/30 transition-all cursor-pointer"
-                  onClick={() => startPlano(p.id)}>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                      <BookOpen className="w-6 h-6 text-green-500" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-medium">{p.titulo}</h3>
-                        <span className={cn('text-[10px] px-2 py-0.5 rounded-full font-medium',
-                          p.nivel === 'iniciante' ? 'bg-green-500/10 text-green-600' :
-                          p.nivel === 'intermediario' ? 'bg-amber-500/10 text-amber-600' : 'bg-red-500/10 text-red-600')}>
-                          {p.nivel}
-                        </span>
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-2">{p.descricao}</p>
-                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                        <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {p.duracao} dias</span>
-                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {p.categoria}</span>
-                      </div>
-                    </div>
-                    <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                  </div>
-                </motion.div>
-              ))}
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">{plano.duracao} dias</span>
+              <span className="capitalize">{plano.nivel}</span>
             </div>
-          )}
-
-          {view === 'plano' && plano && (
-            <div>
-              <button onClick={() => setView('list')} className="text-sm text-muted-foreground hover:text-foreground mb-4">
-                ← Voltar aos planos
-              </button>
-
-              <div className="rounded-2xl border border-border/50 bg-card/50 p-6 mb-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h2 className="font-display text-2xl font-light">{plano.titulo}</h2>
-                    <p className="text-sm text-muted-foreground">{plano.descricao}</p>
-                  </div>
-                  <button onClick={stopPlano} className="text-xs text-red-500 hover:text-red-600">
-                    <RotateCcw className="w-4 h-4 inline mr-1" /> Recomeçar
-                  </button>
-                </div>
-
-                <div className="mb-4">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm text-muted-foreground">Progresso</span>
-                    <span className="text-sm font-medium">{diasConcluidos.size}/{plano.duracao} dias</span>
-                  </div>
-                  <div className="h-2.5 bg-muted rounded-full overflow-hidden">
-                    <motion.div className="h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"
-                      animate={{ width: `${progresso}%` }} transition={{ duration: 0.5 }} />
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <PlanReminderButton planoId={plano.id} planoTitulo={plano.titulo} />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                {plano.dias.slice(0, 30).map((dia) => {
-                  const concluido = diasConcluidos.has(dia.dia);
-                  const atual = dia.dia === Math.max(...[...diasConcluidos].map(Number), 0) + 1;
-                  return (
-                    <motion.div key={dia.dia} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }}
-                      className={cn('flex items-center gap-3 p-3 rounded-xl border transition-all',
-                        concluido ? 'border-green-500/30 bg-green-500/5' :
-                        atual ? 'border-primary/50 bg-primary/5' : 'border-border/50')}>
-                      <button onClick={() => toggleDia(dia.dia)}
-                        className={cn('w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-all',
-                          concluido ? 'bg-green-500 text-white' : 'border-2 border-border hover:border-primary')}>
-                        {concluido && <CheckCircle2 className="w-4 h-4" />}
-                      </button>
-                      <div className="flex-1 min-w-0">
-                        <p className={cn('text-sm font-medium', concluido && 'line-through opacity-60')}>{dia.titulo}</p>
-                        <p className="text-xs text-muted-foreground">{dia.passagens.join(', ')}</p>
-                      </div>
-                      {atual && <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">Hoje</span>}
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              {plano.duracao > 30 && (
-                <p className="text-center text-xs text-muted-foreground mt-6">
-                  Mostrando 30 de {plano.duracao} dias
-                </p>
-              )}
-            </div>
-          )}
-        </div>
-      </main>
-      <Footer />
-    </div>
+          </motion.button>
+        ))}</div>
+      </div></main><Footer /></div>
   );
 }

@@ -15,6 +15,7 @@ import { authService } from '@/lib/auth';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 import { BuscaGlobal } from '@/components/BuscaGlobal';
+import { NotificationCenter } from '@/components/NotificationCenter';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { Input } from '@/components/ui/input';
 import { getStats } from '@/lib/estatisticas';
@@ -651,6 +652,7 @@ function HeaderInner() {
                 <p>Buscar (Ctrl+K)</p>
               </TooltipContent>
             </Tooltip>
+            <NotificationCenter />
             {isAutenticado && (
               <Link href="/conta" className="relative inline-flex">
                 <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center text-sm font-semibold text-primary mr-1">

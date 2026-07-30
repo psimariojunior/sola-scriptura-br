@@ -4,16 +4,14 @@ import { useState, useEffect, useMemo, Suspense } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { GraduationCap, BookOpen, Clock, Award, ChevronRight, Star, Lock, CheckCircle2, Play, Trophy, Target, Flame, Brain, Lightbulb, Cross, Church, Scroll } from 'lucide-react';
+import { GraduationCap, BookOpen, Clock, Award, ChevronRight, Star, Lock, CheckCircle2, Play, Trophy, Target, Flame, Brain, Lightbulb, Cross, Church, ScrollText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { CURSOS, type Curso } from '@/data/cursos';
 import dynamic from 'next/dynamic';
+import { obterProgressoCursos, obterProgressoCurso } from '@/lib/cursoProgress';
 
 const ProgressChart = dynamic(() => import('./ProgressChart'), { ssr: false, loading: () => <div className="h-64 animate-pulse bg-[var(--surface-sunken)] rounded-xl" /> });
-import { getCursoProgresso } from '@/lib/cursoProgress';
-import dynamic from 'next/dynamic';
-
 const BibleCourses = dynamic(() => import('@/components/BibleCourses').then(m => ({ default: m.BibleCourses })), { ssr: false });
 
 interface NivelFormacao {
@@ -70,7 +68,7 @@ export default function SeminarioPage() {
   useEffect(() => {
     const progresso: Record<string, number> = {};
     for (const curso of CURSOS) {
-      const p = getCursoProgresso(curso.id);
+      const p = obterProgressoCurso(curso.id);
       if (p) {
         const totalAulas = curso.módulos.reduce((acc, m) => acc + m.aulas.length, 0);
         const aulasCompletas = p.aulasCompletas?.length || 0;

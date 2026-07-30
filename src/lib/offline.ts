@@ -589,3 +589,148 @@ export async function cancelDownload(): Promise<void> {
     tx.oncomplete = () => resolve();
   });
 }
+
+// ── Per-book download (YouVersion-style) ──────────────────────────
+
+import { LIVROS_AT, LIVROS_NT, type LivroInfo } from '@/data/biblia/livros';
+
+export const ALL_BOOKS: LivroInfo[] = [...LIVROS_AT, ...LIVROS_NT];
+
+export async function cacheBook(
+  traducao: string,
+  bookAbrev: string,
+  onProgress?: (current: number, total: number) => void
+): Promise<void> {
+  const book = ALL_BOOKS.find(b => b.abreviacao === bookAbrev);
+  if (!book) return;
+
+  const mod = await import(`@/data/biblia/texto/${traducao}/index`);
+  const data = mod.default as Record<string, Record<number, string[]>>;
+  const bookData = data[bookAbrev];
+  if (!bookData) return;
+
+  const chapters = Object.entries(bookData);
+  let count = 0;
+  for (const [capStr, verses] of chapters) {
+    await saveChapterDB(bookAbrev, Number(capStr), traducao, verses);
+    count++;
+    onProgress?.(count, chapters.length);
+  }
+}
+
+export async function cacheTestament(
+  traducao: string,
+  testamento: 'AT' | 'NT',
+  onProgress?: (book: string, current: number, total: number) => void
+): Promise<void> {
+  const books = testamento === 'AT' ? LIVROS_AT : LIVROS_NT;
+  let globalCount = 0;
+  const totalChapters = books.reduce((acc, b) => acc + b.totalCapitulos, 0);
+
+  const mod = await import(`@/data/biblia/texto/${traducao}/index`);
+  const data = mod.default as Record<string, Record<number, string[]>>;
+
+  for (const book of books) {
+    const bookData = data[book.abreviacao];
+    if (!bookData) continue;
+    for (const [capStr, verses] of Object.entries(bookData)) {
+      await saveChapterDB(book.abreviacao, Number(capStr), traducao, verses);
+      globalCount++;
+      onProgress?.(book.nome, globalCount, totalChapters);
+    }
+  }
+}
+
+export type BookDownloadStatus = {
+  abreviacao: string;
+  nome: string;
+  totalCapitulos: number;
+  downloadedChapters: number;
+  isComplete: boolean;
+};
+
+export async function getBookDownloadStatus(
+  traducao: string
+): Promise<BookDownloadStatus[]> {
+  try {
+    const db = await openDB();
+    return new Promise((resolve) => {
+      const tx = db.transaction(STORE_CHAPTERS, 'readonly');
+      const req = tx.objectStore(STORE_CHAPTERS).openCursor();
+      const chapterCounts: Record<string, number> = {};
+
+      req.onsuccess = () => {
+        const cursor = req.result;
+        if (cursor) {
+          const val = cursor.value as { traducao: string; livro: string };
+          if (val.traducao === traducao) {
+            chapterCounts[val.livro] = (chapterCounts[val.livro] || 0) + 1;
+          }
+          cursor.continue();
+        } else {
+          resolve(
+            ALL_BOOKS.map(book => ({
+              abreviacao: book.abreviacao,
+              nome: book.nome,
+              totalCapitulos: book.totalCapitulos,
+              downloadedChapters: chapterCounts[book.abreviacao] || 0,
+              isComplete: (chapterCounts[book.abreviacao] || 0) >= book.totalCapitulos,
+            }))
+          );
+        }
+      };
+      req.onerror = () => resolve([]);
+    });
+  } catch {
+    return [];
+  }
+}
+
+export async function removeBook(traducao: string, bookAbrev: string): Promise<void> {
+  try {
+    const db = await openDB();
+    return new Promise((resolve) => {
+      const tx = db.transaction(STORE_CHAPTERS, 'readwrite');
+      const store = tx.objectStore(STORE_CHAPTERS);
+      const req = store.openCursor();
+      req.onsuccess = () => {
+        const cursor = req.result;
+        if (cursor) {
+          const val = cursor.value as { traducao: string; livro: string };
+          if (val.traducao === traducao && val.livro === bookAbrev) {
+            cursor.delete();
+          }
+          cursor.continue();
+        }
+      };
+      tx.oncomplete = () => resolve();
+    });
+  } catch {}
+}
+
+export async function getDownloadedBooks(traducao: string): Promise<Set<string>> {
+  try {
+    const db = await openDB();
+    return new Promise((resolve) => {
+      const tx = db.transaction(STORE_CHAPTERS, 'readonly');
+      const req = tx.objectStore(STORE_CHAPTERS).openCursor();
+      const downloaded = new Set<string>();
+
+      req.onsuccess = () => {
+        const cursor = req.result;
+        if (cursor) {
+          const val = cursor.value as { traducao: string; livro: string };
+          if (val.traducao === traducao) {
+            downloaded.add(val.livro);
+          }
+          cursor.continue();
+        } else {
+          resolve(downloaded);
+        }
+      };
+      req.onerror = () => resolve(new Set());
+    });
+  } catch {
+    return new Set();
+  }
+}

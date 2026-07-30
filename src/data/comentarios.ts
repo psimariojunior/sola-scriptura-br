@@ -5228,6 +5228,53 @@ add('et', 7, 3, 'Matthew Henry', 'Pedirei a minha vida — Ester arrisca a vida 
 add('et', 9, 22, 'Matthew Henry', 'Os judeus venceram — A providência de Deus se manifesta na história.', 'teologico');
 add('et', 10, 3, 'Matthew Henry', 'Mordequei foi exaltado — Deus exalta os humildes.', 'teologico');
 
+// DANIEL
+add('dn', 2, 44, 'Calvino', 'Um Deus do céu estabelecerá um reino — O reino de Deus substituirá todos os impérios humanos. Nenhuma potência terrena pode resistir ao Seu decreto.', 'teologico');
+add('dn', 2, 44, 'Tomás de Aquino', 'A pedra que esmagou a estátua — Cristo é a pedra que cresce e se torna um grande monte. O Seu reino cresce até preencher toda a terra.', 'escatologico');
+add('dn', 7, 13, 'Lutero', 'Veio um como Filho do Homem — A visão de Daniel é a mais clara profecia messiânica do Antigo Testamento. Cristo é o Filho do Homem que recebe domínio eterno.', 'teologico');
+add('dn', 7, 14, 'Agostinho', 'Foi-lhe dado domínio — O reino de Cristo é universal, eterno e inabalável. Todos os povos e línguas O servirão.', 'escatologico');
+
+// EZEQUIEL
+add('ez', 37, 5, 'Calvino', 'Farei subir sobre vós tendões — O Espírito Santo é a fonte da vida espiritual. Onde há morte espiritual, Deus pode dar vida.', 'teologico');
+add('ez', 37, 5, 'Tomás de Aquino', 'Ossos secos — A visão mostra a ressurreição dos mortos e a restauração de Israel. Deus faz o impossível para cumprir Suas promessas.', 'escatologico');
+add('ez', 37, 9, 'Spurgeon', 'Profeta, sopra sobre estes ossos — A pregação é o instrumento pelo qual Deus traz vida aos mortos espirituais.', 'aplicacao');
+
+// JEREMIAS
+add('jr', 29, 11, 'Tomás de Aquino', 'Pensamentos de paz — Deus tem um plano perfeito para Seu povo. Os Seus propósitos não são de destruição mas de salvação.', 'teologico');
+add('jr', 29, 11, 'Spurgeon', 'Eu bem sei os pensamentos — Deus conhece cada detalhe do Seu plano para nós. Podemos confiar nEle mesmo quando não compreendemos.', 'aplicacao');
+add('jr', 29, 11, 'Matthew Henry', 'Pensamentos de paz e não de mal — Mesmo no exílio, Deus estava trabalhando para o bem de Israel. A aflição não é o fim da história.', 'teologico');
+add('jr', 31, 33, 'Calvino', 'Porei a minha lei no íntimo — A nova aliança é a graça interior que transforma o coração. Deus não apenas ordena — Ele capacita.', 'teologico');
+add('jr', 31, 33, 'Wesley', 'A lei gravada no coração — A obra do Espírito Santo é tornar a vontade de Deus desejável, não apenas obrigatória.', 'aplicacao');
+
+// 1 SAMUEL
+add('1sm', 16, 7, 'Tomás de Aquino', 'Deus olha para o coração — A dignidade humana não está na aparência mas na alma criada à imagem de Deus.', 'teologico');
+add('1sm', 16, 7, 'Lutero', 'Deus não olha para a aparência — O mundo valoriza a força e a beleza, mas Deus valoriza a fé e a obediência humilde.', 'aplicacao');
+add('1sm', 16, 7, 'Spurgeon', 'Deus escolhe o que o mundo despreza — O ministério de David começou no campo, não no palácio. Deus usa os insignificantes.', 'aplicacao');
+add('1sm', 17, 45, 'Matthew Henry', 'Eu venho contra ti — David enfrenta o gigante não com armas mas com o nome do Senhor. A fé é mais poderosa que a espada.', 'aplicacao');
+
+// JOSUÉ
+add('js', 1, 9, 'Tomás de Aquino', 'Esforça-te e tem bom ânimo — A coragem cristã não é ausência de medo mas confiança na presença de Deus.', 'aplicacao');
+add('js', 1, 9, 'Calvino', 'Não pasmes nem te espantes — Deus comanda a coragem porque Ele mesmo está presente. A obediência gera confiança.', 'teologico');
+add('js', 1, 9, 'Spurgeon', 'O Senhor teu Deus é contigo — A presença de Deus é a fonte de toda a coragem. Se Deus está connosco, quem estará contra nós?', 'aplicacao');
+add('js', 24, 15, 'Matthew Henry', 'Escolhei hoje a quem servireis — A decisão é pessoal e inadiável. Cada geração deve escolher por si mesma.', 'aplicacao');
+
+// RUTE
+add('rt', 1, 16, 'Tomás de Aquino', 'Onde fores, eu irei — A fidelidade de Rute é modelo de aliança. Ela escolhe lealdade ao invés de conveniência.', 'teologico');
+add('rt', 1, 16, 'Calvino', 'O teu povo será o meu povo — Rute, gentia, se incorpora ao povo de Deus pela fé. A graça ultrapassa fronteiras.', 'teologico');
+add('rt', 1, 16, 'Spurgeon', 'Não me peças que te deixe — A fidelidade nos relacionamentos é sinal da fé em Deus. Rute é um retrato de Cristo.', 'aplicacao');
+
+// JUÍZES
+add('jz', 21, 25, 'Agostinho', 'Cada um fazia o que era certo aos seus olhos — Sem a autoridade de Deus, o homem cai na anarquia moral. A liberdade sem lei é escravidão ao pecado.', 'teologico');
+add('jz', 21, 25, 'Calvino', 'Não havia rei em Israel — O livro de Juízes aponta para a necessidade de um Rei perfeito — Cristo.', 'escatologico');
+add('jz', 21, 25, 'Matthew Henry', 'Cada um fazia o que parecia certo — O relativismo moral é antigo. Juízes mostra as consequências de substituir a lei de Deus pela opinião humana.', 'teologico');
+
+// 2 CORÍNTIOS
+add('2co', 5, 17, 'Tomás de Aquino', 'Nova criatura — A regeneração pelo Espírito Santo transforma radicalmente a pessoa. O velho homem morre, o novo nasce.', 'teologico');
+add('2co', 5, 17, 'Calvino', 'As coisas velhas passaram — A conversão é uma ruptura radical com o passado. O cristão não é apenas reformado — é renovado.', 'teologico');
+add('2co', 5, 17, 'Wesley', 'Tudo se fez novo — A graça transformadora de Deus atinge cada área da vida: pensamentos, desejos, ações e relacionamentos.', 'aplicacao');
+add('2co', 12, 9, 'Tomás de Aquino', 'A minha graça te basta — A graça divina não remove a fraqueza mas a transforma em oportunidade para a glória de Deus.', 'teologico');
+add('2co', 12, 9, 'Spurgeon', 'A minha graça é suficiente — Deus não nos livra de todas as dificuldades, mas nos dá graça suficiente para enfrentá-las.', 'aplicacao');
+
 export function obterComentarios(livro: string, capitulo: number, versiculo: number): Comentario[] {
   return comentarios[chave(livro, capitulo, versiculo)] || [];
 }

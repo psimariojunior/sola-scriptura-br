@@ -11,7 +11,7 @@ import { carregarTraducao } from '@/data/biblia/texto/carregar';
 import { livroPorAbreviacao } from '@/data/biblia/livros';
 import { getSummary } from '@/lib/gamificationTracker';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, RotateCcw, Check, X, BookOpen, BarChart3, ArrowRight, Sparkles, Plus, Trash2, Flame, Clock, Star, Lightbulb, Dices } from 'lucide-react';
+import { Brain, RotateCcw, Check, X, BookOpen, BarChart3, ArrowRight, Sparkles, Plus, Trash2, Flame, Clock, Star, Lightbulb, Dices, Bookmark } from 'lucide-react';
 
 const QUALITY_BUTTONS = [
   { quality: 1, label: 'Errei', sub: 'Repetir', color: 'text-red-500', bg: 'bg-red-500/10 hover:bg-red-500/20', border: 'border-red-500/30' },
@@ -21,7 +21,7 @@ const QUALITY_BUTTONS = [
 ];
 
 export default function FlashcardsPage() {
-  const { cards, dueCards, dueCount, totalCards, stats, learnedStreak, addCardManual, removeCard, review, getVerseData } = useFlashcards();
+  const { cards, dueCards, dueCount, totalCards, stats, learnedStreak, addCardManual, removeCard, review, getVerseData, autoPopulateFromBookmarks } = useFlashcards();
   const [currentIdx, setCurrentIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [showStats, setShowStats] = useState(false);
@@ -34,6 +34,7 @@ export default function FlashcardsPage() {
   const [carregandoFav, setCarregandoFav] = useState(false);
   const [adicionados, setAdicionados] = useState<Set<string>>(new Set());
   const [sugestoes, setSugestoes] = useState<Array<{ ref: string; texto: string; motivo: string }>>([]);
+  const [autoPopMsg, setAutoPopMsg] = useState<string | null>(null);
 
   // Referências já existentes como card manual
   const chavesExistentes = useMemo(
@@ -120,6 +121,16 @@ export default function FlashcardsPage() {
     setFavoritos(favs);
     setCarregandoFav(false);
   }, []);
+
+  const handleAutoPopulate = useCallback(() => {
+    const added = autoPopulateFromBookmarks();
+    if (added > 0) {
+      setAutoPopMsg(`${added} flashcards criados dos seus marcadores!`);
+    } else {
+      setAutoPopMsg('Nenhum marcador novo encontrado.');
+    }
+    setTimeout(() => setAutoPopMsg(null), 3000);
+  }, [autoPopulateFromBookmarks]);
 
   const referenciaDe = (m: MarcaBiblia): string => {
     const nome = livroPorAbreviacao.get(m.livro)?.nome || m.livro;
@@ -266,6 +277,9 @@ export default function FlashcardsPage() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
+                <button onClick={handleAutoPopulate} className="p-2 rounded-lg hover:bg-[var(--bg)] transition-colors" title="Criar flashcards dos marcadores">
+                  <Bookmark className="w-4 h-4 text-[var(--muted-fg)]" />
+                </button>
                 <button onClick={abrirFavoritos} className="p-2 rounded-lg hover:bg-[var(--bg)] transition-colors" title="Adicionar dos favoritos">
                   <Star className="w-4 h-4 text-[var(--muted-fg)]" />
                 </button>
@@ -278,6 +292,16 @@ export default function FlashcardsPage() {
               </div>
             </div>
           </ScrollReveal>
+
+          {/* Auto-populate message */}
+          <AnimatePresence>
+            {autoPopMsg && (
+              <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+                className="mb-4 p-3 rounded-xl bg-[var(--brand-subtle)] border border-[var(--brand-default)]/20 text-sm text-[var(--brand-default)] font-medium text-center">
+                {autoPopMsg}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Add form */}
           <AnimatePresence>

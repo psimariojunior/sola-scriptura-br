@@ -2195,6 +2195,117 @@ const estudosExtras: EstudoVersiculo[] = [
       { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Nova criação', resumo: 'A esperança cristã não é apenas espiritual — é a restauração de toda a criação. O sofrimento terá fim.', citacao: '«Deus promete uma nova criação — não apenas um novo céu, mas uma nova terra.»' },
     ],
   },
+  // ═══════════════════════════════════════════════════════════════════════
+  // DANIEL — Profecias e Apocalipse
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'dn', capitulo: 2, versiculo: 44,
+    tema: 'Reino de Deus eterno',
+    contexto: 'Daniel interpreta o sonho de Nabucodonosor: uma pedra destrói todas os impérios mundanos e se torna um grande monte.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Teologia da história', resumo: 'Os quatro impérios representam as eras da história humana. O reino de Deus substitui todos os impérios terrenos. A Igreja é esse reino invisível que cresce até o juízo final.', citacao: '«O reino de Deus começou com a humildade e crescerá até dominar todo o mundo.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Reino espiritual', resumo: 'A pedra cortada sem mãos é Cristo, que destrói todos os reinos mundanos pela Sua palavra. O reino de Deus não é político mas espiritual.', citacao: '«Cristo é a pedra que esmagará todos os reinos da terra.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania divina', resumo: 'Deus controla a história dos impérios. Nenhum poder humano pode resistir ao Seu decreto. A pedra é o reino eterno que Deus estabelecerá.', citacao: '«Deus humilha os orgulhosos e exalta os humildes através da história.»' },
+    ],
+  },
+  {
+    livro: 'dn', capitulo: 7, versiculo: 13,
+    tema: 'Filho do Homem',
+    contexto: 'Daniel vê em visão o Filho do Homem vindo com as nuvens do céu para receber domínio eterno.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristologia', resumo: 'O Filho do Homem é Cristo que recebe o reino eterno dos santos do Altíssimo. A visão prefigura a Segunda Vinda e o juízo final.', citacao: '«A Cristo foram dados domínio, honra e reino — e todos O servirão.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'O Filho do Homem é o Homem para os outros — Deus que se revela em Jesus Cristo. A visão é apocalíptica e escatológica.', citacao: '«Jesus Cristo é o homem que Deus é e o Deus que o homem é.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Nova Perspectiva', visao: 'Escatologia inaugurada', resumo: 'Daniel 7 é a chave para entender o auto-título de Jesus como Filho do Homem. O reino de Deus é inaugurado em Jesus mas consumado na Parousia.', citacao: '«O Filho do Homem de Daniel é o rei messiânico que receberá o reino de Deus.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // EZEQUIEL — Visões e Profecias
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ez', capitulo: 37, versiculo: 5,
+    tema: 'Vale de ossos secos — Ressurreição',
+    contexto: 'Deus mostra a Ezequiel um vale cheio de ossos secos e ordena que profetize para que revivam.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Tipologia da ressurreição', resumo: 'Os ossos secos representam Israel no exílio, mas também a humanidade morta em pecado. A profecia mostra que Deus pode dar vida onde há morte.', citacao: '«Deus abre os túmulos — Ele pode ressuscitar o que está morto.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Restauração de Israel', resumo: 'A visão mostra a restauração literal de Israel do exílio babilônico. Deus cumprirá Suas promessas apesar da aparente impossibilidade.', citacao: '«Deus pode fazer reviver o que os homens consideram perdido para sempre.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Ressurreição', resumo: 'A visão prefigura a ressurreição dos mortos em Cristo. O Espírito Santo é a fonte da vida — onde Ele está, há vida.', citacao: '«O mesmo Espírito que ressuscitou a Jesus ressuscitará os que creem Nele.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // JEREMIAS — Profecias e Lamentos
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'jr', capitulo: 29, versiculo: 11,
+    tema: 'Planos de paz e esperança',
+    contexto: 'Deus fala ao povo exilado na Babilônia: os Seus planos não são de mal, mas de paz e futuro esperançoso.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Providência divina', resumo: 'Deus governa a história com sabedoria e amor. Mesmo no sofrimento, Ele está trabalhando para o bem do Seu povo.', citacao: '«Deus não abandona os que Ele escolheu — Ele os guia até o fim.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania e aliança', resumo: 'O versículo é uma promessa de aliança: Deus tem planos específicos para Seu povo. A esperança não é na situação atual mas no propósito eterno de Deus.', citacao: '«Deus não promete ausência de sofrimento, mas propósito no sofrimento.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessante', visao: 'Custo da discipleship', resumo: 'A esperança em Deus não é otimismo vago — é confiança concreta no Deus que cumpre Suas promessas, mesmo quando tudo parece perdido.', citacao: '«Deus não nos dá os nossos sonhos, mas os Seus.»' },
+    ],
+  },
+  {
+    livro: 'jr', capitulo: 31, versiculo: 33,
+    tema: 'Nova aliança',
+    contexto: 'Deus promete uma nova aliança diferente daquela feita no Sinai — Sua lei será escrita no coração do povo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Graça interior', resumo: 'A nova aliança é a transformação interior pelo Espírito Santo. Deus não apenas ordena — Ele capacita a obediência.', citacao: '«Deus não apenas dá a lei — Ele dá o desejo de cumpri-la.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Nova aliança em Cristo', resumo: 'Esta profecia se cumpre em Cristo. A lei de Deus é gravada no coração dos crentes pelo Espírito Santo. A salvação é pela graça, não pela letra da lei.', citacao: '«A nova aliança é a graça que transforma o coração, não apenas o comportamento.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Relacional', resumo: 'A nova aliança é personal — «eu serei o Deus deles, e eles serão o meu povo». A relação com Deus é íntima e direta.', citacao: '«O grande dom da nova aliança é a presença de Deus connosco.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // 1 SAMUEL — Reis e Profetas
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: '1sm', capitulo: 16, versiculo: 7,
+    tema: 'Deus olha para o coração',
+    contexto: 'Samuel unje David como rei. Deus rejeita a aparência externa e escolhe o menor dos filhos de Jessé.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Interioridade', resumo: 'Deus vê além da aparência — Ele examina o coração. A verdadeira grandeza não está no exterior mas na disposição interior para Deus.', citacao: '«Deus não se impressiona com aparências — Ele vê a verdade do coração.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição soberana', resumo: 'Deus escolhe pelo Seu próprio critério, não pelos padrões humanos. A eleição é pela graça, não pelo mérito ou aparência.', citacao: '«Deus escolhe o que o mundo despreza — assim é o reino de Deus.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Anglicana', visao: 'Moralidade', resumo: 'A moralidade de Deus é mais profunda que a nossa — Ele valoriza a humildade, a obediência e o caráter, não a força ou beleza.', citacao: '«Deus olha para onde nós não olhamos — para a coragem escondida, o amor silencioso, a fé constante.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // JOSUÉ — Conquista e Obediência
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'js', capitulo: 1, versiculo: 9,
+    tema: 'Coragem e presença de Deus',
+    contexto: 'Deus encoraja Josué antes da conquista da Terra Prometida: não temas, porque eu sou contigo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Coragem divina', resumo: 'A coragem não vem de nós mesmos — vem da promessa de que Deus está conosco. A obediência gera confiança.', citacao: '«Deus não promete ausência de batalhas, mas presença nas batalhas.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Confiança na promessa', resumo: 'Deus comanda coragem porque Ele mesmo está presente. A fé não é sentimento mas confiança na Palavra de Deus.', citacao: '«Deus não está longe — Ele está presente, e isso basta para a coragem.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Missões', resumo: 'O mandamento de coragem é para a missão — Deus envia e Deus acompanha. Não há chamado sem presença divina.', citacao: '«Não temas — é o mandamento mais repetido da Bíblia. Deus sabe que tememos.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // RUTE — Fidelidade e Redenção
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'rt', capitulo: 1, versiculo: 16,
+    tema: 'Fidelidade e aliança',
+    contexto: 'Rute se recusa a deixar sua sogra Noemi e professa lealdade: onde fores, eu irei.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Tipologia cristã', resumo: 'A fidelidade de Rute prefigura a fidelidade de Deus ao Seu povo. Rute, gentia, entra na linha de Cristo — as nações são incluídas na aliança.', citacao: '«Rute gentia se torna ancestral do Messias — a graça de Deus ultrapassa fronteiras.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Providência', resumo: 'Deus usa as decisões fiéis dos indivíduos para cumprir Seus propósitos eternos. Rute não sabia que seria ancestral do Messias.', citacao: '«Deus dirige os passos dos humildes para cumprir Seus eternos desígnios.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Nova Perspectiva', visao: 'Missão de Israel', resumo: 'Rute é moabita — a outsiders é incluída no povo de Deus. A história bíblica é de inclusão, não de exclusão.', citacao: '«Deus sempre quis que as nações viessem à luz — Rute é prova disso.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // JUÍZES — Ciclo de Pecado e Graça
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'jz', capitulo: 21, versiculo: 25,
+    tema: 'Anarquia espiritual',
+    contexto: 'O livro de Juízes termina com uma frase sombria: cada um fazia o que parecia certo aos seus olhos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Consequências do pecado', resumo: 'Sem a lei de Deus, o homem cai em anarquia moral. Juízes mostra o ciclo: pecado, opressão, clamor, libertação, repetição.', citacao: '«Quando cada um faz o que quer, ninguém faz o que é bom.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Necessidade da lei', resumo: 'O livro inteiro é uma demonstração de que Israel precisava de um rei — e aponta para Cristo, o Rei perfeito.', citacao: '«Juízes mostra que sem governo divino, a humanidade se autodestrói.»' },
+      { teologo: 'G.K. Chesterton', periodo: '1874-1936', tradicao: 'Anglicana', visao: 'Originalidade do pecado', resumo: '«Cada um fazia o que era certo aos seus olhos» — o pecado original é a recusa de submeter o julgamento pessoal a um padrão objetivo.', citacao: '«O homem moderno não é rebelde — é o próprio juiz da sua própria causa.»' },
+    ],
+  },
 ];
 
 for (const e of estudosExtras) {

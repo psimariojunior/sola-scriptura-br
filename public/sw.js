@@ -539,7 +539,63 @@ self.addEventListener('sync', (event) => {
   if (event.tag === 'sync-all-data') {
     event.waitUntil(syncAllData());
   }
+  if (event.tag === 'sync-chapters') {
+    event.waitUntil(syncDownloadedChapters());
+  }
 });
+
+async function syncDownloadedChapters() {
+  try {
+    const db = await openDB();
+    const tx = db.transaction(STORE_CHAPTERS, 'readonly');
+    const store = tx.objectStore(STORE_CHAPTERS);
+    const req = store.openCursor();
+    const staleKeys = [];
+
+    await new Promise((resolve) => {
+      req.onsuccess = () => {
+        const cursor = req.result;
+        if (cursor) {
+          const age = Date.now() - (cursor.value.timestamp || 0);
+          if (age > 7 * 24 * 60 * 60 * 1000) {
+            staleKeys.push(cursor.value.key);
+          }
+          cursor.continue();
+        } else {
+          resolve();
+        }
+      };
+      req.onerror = () => resolve();
+    });
+
+    db.close();
+
+    for (const key of staleKeys.slice(0, 5)) {
+      const [, livro, cap] = key.split(':');
+      try {
+        const res = await fetch(`/api/v1/biblia/versos/${livro}/${cap}`);
+        if (res.ok) {
+          const data = await res.json();
+          const verses = data?.data?.verses || data?.verses || [];
+          if (verses.length > 0) {
+            const db2 = await openDB();
+            const tx2 = db2.transaction(STORE_CHAPTERS, 'readwrite');
+            tx2.objectStore(STORE_CHAPTERS).put({
+              key,
+              livro,
+              capitulo: Number(cap),
+              traducao: key.split(':')[0],
+              verses,
+              timestamp: Date.now(),
+            });
+            await new Promise((r) => { tx2.oncomplete = () => r(); });
+            db2.close();
+          }
+        }
+      } catch {}
+    }
+  } catch {}
+}
 
 const DAILY_VERSES = [
   { ref: 'João 3:16', text: 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.' },

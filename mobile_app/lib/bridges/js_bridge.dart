@@ -26,7 +26,7 @@ class JsBridge {
 
       window.__SSB_NOTIFICATION = function(enabled, hour, minute) {
         if (window.SSBNotification) {
-          window.SSBNotification.postMessage(enabled + '|' + hour + '|' + minute);
+          window.SSBNotification.postMessage('schedule|' + enabled + '|' + hour + '|' + minute);
         }
       };
       

@@ -81,6 +81,17 @@ class NotificationService {
       );
 
       tz_data.initializeTimeZones();
+
+      // Request POST_NOTIFICATIONS permission on Android 13+
+      try {
+        final notifPermPlugin = _localNotifications
+            .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+        final granted = await notifPermPlugin?.requestNotificationsPermission();
+        debugPrint('[NotificationService] POST_NOTIFICATIONS permission: $granted');
+      } catch (e) {
+        debugPrint('[NotificationService] Permission request error (non-critical): $e');
+      }
+
       _initialized = true;
       debugPrint('[NotificationService] Initialized');
     } catch (e) {

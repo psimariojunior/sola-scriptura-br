@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'config/theme.dart';
@@ -18,6 +19,39 @@ const platform = MethodChannel('com.solascriptura/deeplink');
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
+
+  final notif = message.notification;
+  if (notif != null) {
+    final androidPlugin = FlutterLocalNotificationsPlugin()
+        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+
+    const channel = AndroidNotificationChannel(
+      'ssb_fcm',
+      'Sola Scriptura BR',
+      description: 'Notificações do aplicativo',
+      importance: Importance.high,
+    );
+    await androidPlugin?.createNotificationChannel(channel);
+
+    const details = NotificationDetails(
+      android: AndroidNotificationDetails(
+        'ssb_fcm',
+        'Sola Scriptura BR',
+        channelDescription: 'Notificações do aplicativo',
+        importance: Importance.high,
+        priority: Priority.high,
+        icon: '@mipmap/ic_launcher',
+      ),
+    );
+
+    await FlutterLocalNotificationsPlugin().show(
+      DateTime.now().millisecondsSinceEpoch.remainder(100000),
+      notif.title ?? 'Sola Scriptura BR',
+      notif.body ?? '',
+      details,
+      payload: message.data['route'] ?? '/',
+    );
+  }
 }
 
 void main() async {
@@ -42,7 +76,9 @@ void main() async {
   );
 
   AppLockService().init();
-  NotificationService().initialize();
+  final notifService = NotificationService();
+  await notifService.initialize();
+  await notifService.rescheduleFromPrefs();
   VerseWidgetService.updateWithDailyVerse();
 
   runApp(const SolaScripturaApp());
@@ -149,9 +185,9 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
       if (token != null) {
         try {
           final response = await http.post(
-            Uri.parse('https://api.solascripturabr.com.br/api/v1/notifications/register'),
+            Uri.parse('https://solascripturabr.com.br/api/notifications/register'),
             headers: {'Content-Type': 'application/json'},
-            body: jsonEncode({'token': token, 'platform': 'android'}),
+            body: jsonEncode({'fcmToken': token, 'platform': 'android'}),
           );
           debugPrint('FCM token registered: ${response.statusCode}');
         } catch (e) {
@@ -159,17 +195,39 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
         }
       }
 
-      messaging.onTokenRefresh.listen((newToken) {
+      messaging.onTokenRefresh.listen((newToken) async {
         debugPrint('FCM Token refreshed: $newToken');
+        try {
+          await http.post(
+            Uri.parse('https://solascripturabr.com.br/api/notifications/register'),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({'fcmToken': newToken, 'platform': 'android'}),
+          );
+        } catch (_) {}
       });
     }
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      debugPrint('Foreground message: ${message.notification?.title}');
+      debugPrint('Foreground FCM: ${message.notification?.title}');
+      final notif = message.notification;
+      if (notif != null) {
+        NotificationService().showNotificationFromFCM(
+          title: notif.title ?? 'Sola Scriptura BR',
+          body: notif.body ?? '',
+          payload: message.data['route'] ?? '/',
+        );
+      }
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       debugPrint('Notification opened: ${message.data}');
+      final route = message.data['route'];
+      if (route != null && route is String && mounted) {
+        _navigatorKey.currentState?.pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => SplashScreen(initialPath: route)),
+          (route) => false,
+        );
+      }
     });
   }
 

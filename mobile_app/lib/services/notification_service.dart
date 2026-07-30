@@ -1,5 +1,7 @@
+import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz_data;
 
@@ -11,6 +13,36 @@ class NotificationService {
   final FlutterLocalNotificationsPlugin _localNotifications = FlutterLocalNotificationsPlugin();
   bool _initialized = false;
 
+  static const _dailyVerseChannel = 'ssb_daily_verse';
+  static const _fcmChannel = 'ssb_fcm';
+  static const _scheduledKeyId = 0;
+  static const _prefsKeyHour = 'ssb_notif_hour';
+  static const _prefsKeyMinute = 'ssb_notif_minute';
+  static const _prefsKeyEnabled = 'ssb_daily_notif_enabled';
+
+  static const _dailyVerses = [
+    {'ref': 'João 3:16', 'text': 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.'},
+    {'ref': 'Filipenses 4:13', 'text': 'Posso todas as coisas naquele que me fortalece.'},
+    {'ref': 'Jeremias 29:11', 'text': 'Porque eu bem sei os pensamentos que tenho a vosso respeito, diz o SENHOR; pensamentos de paz, e não de mal, para vos dar o fim que esperais.'},
+    {'ref': 'Salmos 23:1', 'text': 'O SENHOR é o meu pastor; nada me faltará.'},
+    {'ref': 'Romanos 8:28', 'text': 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito.'},
+    {'ref': 'Isaías 41:10', 'text': 'Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus; eu te fortaleço, e te ajudo, e te sustento com a destra da minha justiça.'},
+    {'ref': 'Provérbios 3:5-6', 'text': 'Confia no SENHOR de todo o teu coração, e não te estribes no teu próprio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitará as tuas veredas.'},
+    {'ref': 'Mateus 11:28', 'text': 'Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei.'},
+    {'ref': '2 Timóteo 1:7', 'text': 'Porque Deus não nos deu o espírito de temor, mas de fortaleza, e de amor, e de moderação.'},
+    {'ref': 'Hebreus 11:1', 'text': 'Ora, a fé é o firme fundamento das coisas que se esperam, e a prova das coisas que se não veem.'},
+    {'ref': 'Salmos 46:10', 'text': 'Aquietai-vos, e sabei que eu sou Deus; serei exaltado entre os gentios; serei exaltado sobre a terra.'},
+    {'ref': 'Efésios 2:8-9', 'text': 'Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus. Não vem das obras, para que ninguém se glorie.'},
+    {'ref': 'Romanos 12:2', 'text': 'E não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento, para que experimenteis qual seja a boa, agradável, e perfeita vontade de Deus.'},
+    {'ref': 'Lamentações 3:22-23', 'text': 'As misericórdias do SENHOR são a causa de não sermos consumidos, porque as suas misericórdias não têm fim; novas são cada manhã. Grande é a tua fidelidade.'},
+    {'ref': '1 Coríntios 10:13', 'text': 'Nenhuma tentação vos sobreveio, senão humana; mas Deus é fiel, que não vos deixará ser tentados acima do que podeis; mas fará também, juntamente com a tentação, o caminho da saída, para que a possais suportar.'},
+    {'ref': 'Salmos 91:1-2', 'text': 'Aquele que habita no esconderijo do Altíssimo, à sombra do Onipotente descansará. Direi do SENHOR: Ele é o meu Deus, o meu refúgio, a minha fortaleza, e nele confiarei.'},
+    {'ref': 'Josué 1:9', 'text': 'Não to mandei eu? Esforça-te e tem bom ânimo; não pasmes, nem te espantes; porque o SENHOR teu Deus é contigo, por onde quer que andares.'},
+    {'ref': 'Gálatas 5:22-23', 'text': 'Mas o fruto do Espírito é: amor, gozo, paz, longanimidade, benignidade, bondade, fé, mansidão, temperança. Contra estas coisas não há lei.'},
+    {'ref': 'Mateus 6:33', 'text': 'Mas, buscai primeiro o reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas.'},
+    {'ref': 'Apocalipse 21:4', 'text': 'E enxugará toda lágrima dos seus olhos; e a morte não haverá mais, nem haverá mais luto, nem clamor, nem dor; porque já as primeiras coisas passaram.'},
+  ];
+
   Future<void> initialize() async {
     if (_initialized) return;
 
@@ -21,41 +53,59 @@ class NotificationService {
         requestBadgePermission: true,
         requestSoundPermission: true,
       );
-      const initSettings = InitializationSettings(android: androidSettings, iOS: iosSettings);
+      final initSettings = InitializationSettings(
+        android: androidSettings,
+        iOS: iosSettings,
+      );
       await _localNotifications.initialize(initSettings);
 
-      // Create notification channel for Android
-      const androidChannel = AndroidNotificationChannel(
-        'ssb_channel',
-        'Sola Scriptura BR',
-        description: 'Notificações do Sola Scriptura BR',
-        importance: Importance.high,
+      final androidPlugin = _localNotifications
+          .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+
+      await androidPlugin?.createNotificationChannel(
+        const AndroidNotificationChannel(
+          _dailyVerseChannel,
+          'Versículo do Dia',
+          description: 'Lembrete diário para ler um versículo',
+          importance: Importance.high,
+        ),
       );
-      await _localNotifications
-          .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
-          ?.createNotificationChannel(androidChannel);
+
+      await androidPlugin?.createNotificationChannel(
+        const AndroidNotificationChannel(
+          _fcmChannel,
+          'Sola Scriptura BR',
+          description: 'Notificações do aplicativo',
+          importance: Importance.high,
+        ),
+      );
 
       tz_data.initializeTimeZones();
       _initialized = true;
-      debugPrint('Notification service initialized');
+      debugPrint('[NotificationService] Initialized');
     } catch (e) {
-      debugPrint('Notification service init error: $e');
+      debugPrint('[NotificationService] Init error: $e');
     }
   }
 
-  Future<void> showNotification({
+  void _onNotificationTapped(NotificationResponse response) {
+    debugPrint('[NotificationService] Tapped: ${response.payload}');
+  }
+
+  Future<void> showNotificationFromFCM({
     required String title,
     required String body,
-    Map<String, dynamic>? data,
+    String? payload,
   }) async {
     if (!_initialized) return;
 
     const androidDetails = AndroidNotificationDetails(
-      'ssb_channel',
+      _fcmChannel,
       'Sola Scriptura BR',
-      channelDescription: 'Notificações do Sola Scriptura BR',
+      channelDescription: 'Notificações do aplicativo',
       importance: Importance.high,
       priority: Priority.high,
+      icon: '@mipmap/ic_launcher',
     );
     const details = NotificationDetails(android: androidDetails);
     await _localNotifications.show(
@@ -63,68 +113,97 @@ class NotificationService {
       title,
       body,
       details,
+      payload: payload,
     );
   }
 
-  Future<void> scheduleDailyVerse({
-    required String title,
-    required String body,
-    int hour = 8,
-    int minute = 0,
-  }) async {
+  Future<void> showDailyVerseNotification() async {
     if (!_initialized) return;
 
-    // Schedule daily notification at specified time
-    // This is a simplified version - in production, use timezone-aware scheduling
-    debugPrint('Daily verse scheduled for $hour:$minute');
-  }
-
-  Future<void> scheduleDailyVerseReminder() async {
-    if (!_initialized) return;
+    final verse = _dailyVerses[Random().nextInt(_dailyVerses.length)];
 
     const androidDetails = AndroidNotificationDetails(
-      'ssb_daily_verse',
+      _dailyVerseChannel,
+      'Versículo do Dia',
+      channelDescription: 'Lembrete diário para ler um versículo',
+      importance: Importance.high,
+      priority: Priority.high,
+      icon: '@mipmap/ic_launcher',
+      styleInformation: BigTextStyleInformation(''),
+    );
+    const details = NotificationDetails(android: androidDetails);
+    await _localNotifications.show(
+      _scheduledKeyId,
+      '📖 ${verse['ref']}',
+      verse['text'],
+      details,
+      payload: '/biblia',
+    );
+  }
+
+  Future<void> scheduleDailyVerseReminder({int hour = 8, int minute = 0}) async {
+    if (!_initialized) return;
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_prefsKeyHour, hour);
+    await prefs.setInt(_prefsKeyMinute, minute);
+    await prefs.setBool(_prefsKeyEnabled, true);
+
+    final now = tz.TZDateTime.now(tz.local);
+    var scheduled = tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minute);
+    if (scheduled.isBefore(now)) {
+      scheduled = scheduled.add(const Duration(days: 1));
+    }
+
+    final verse = _dailyVerses[Random().nextInt(_dailyVerses.length)];
+
+    const androidDetails = AndroidNotificationDetails(
+      _dailyVerseChannel,
       'Versículo do Dia',
       channelDescription: 'Lembrete diário para ler um versículo',
       importance: Importance.high,
       priority: Priority.high,
       icon: '@mipmap/ic_launcher',
     );
-
-    const iosDetails = DarwinNotificationDetails(
-      presentAlert: true,
-      presentBadge: true,
-      presentSound: true,
-    );
-
     const details = NotificationDetails(
       android: androidDetails,
-      iOS: iosDetails,
+      iOS: DarwinNotificationDetails(
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true,
+      ),
     );
 
     await _localNotifications.zonedSchedule(
-      0,
-      'Versículo do Dia',
-      'Comece seu dia com a Palavra de Deus! Toque para ler.',
-      _nextInstanceOf8AM(),
+      _scheduledKeyId,
+      '📖 ${verse['ref']}',
+      verse['text'],
+      scheduled,
       details,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
+      payload: '/biblia',
     );
+
+    debugPrint('[NotificationService] Daily verse scheduled for $hour:${minute.toString().padLeft(2, '0')}');
   }
 
-  tz.TZDateTime _nextInstanceOf8AM() {
-    final now = tz.TZDateTime.now(tz.local);
-    var scheduledDate = tz.TZDateTime(tz.local, now.year, now.month, now.day, 8, 0);
-    if (scheduledDate.isBefore(now)) {
-      scheduledDate = scheduledDate.add(const Duration(days: 1));
-    }
-    return scheduledDate;
+  Future<void> rescheduleFromPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    final enabled = prefs.getBool(_prefsKeyEnabled) ?? false;
+    if (!enabled) return;
+
+    final hour = prefs.getInt(_prefsKeyHour) ?? 8;
+    final minute = prefs.getInt(_prefsKeyMinute) ?? 0;
+    await scheduleDailyVerseReminder(hour: hour, minute: minute);
   }
 
   Future<void> cancelDailyVerseReminder() async {
-    await _localNotifications.cancel(0);
+    await _localNotifications.cancel(_scheduledKeyId);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_prefsKeyEnabled, false);
+    debugPrint('[NotificationService] Daily verse cancelled');
   }
 
   Future<void> cancelAll() async {

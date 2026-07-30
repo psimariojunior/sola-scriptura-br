@@ -77,7 +77,7 @@ export function InlineStrongHighlight({
             ref={popoverRef}
             className={cn(
               'absolute left-0 top-full mt-1 z-40',
-              'bg-[var(--surface-raised)] border border-[var(--border)]',
+              'bg-white dark:bg-[#161412] border border-gray-200 dark:border-[#2a2724]',
               'rounded-xl shadow-2xl p-4 min-w-[260px] max-w-[320px]',
               'animate-scale-in'
             )}
@@ -89,18 +89,18 @@ export function InlineStrongHighlight({
                 <span className={cn(
                   'text-[10px] font-bold px-2 py-0.5 rounded-full',
                   palavraAtiva.idioma === 'grego'
-                    ? 'bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300'
-                    : 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300'
+                    ? 'bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-300'
+                    : 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300'
                 )}>
                   {palavraAtiva.strong}
                 </span>
-                <span className="text-[10px] text-[var(--content-muted)]">
+                <span className="text-[10px] text-gray-500 dark:text-gray-400">
                   {palavraAtiva.idioma === 'grego' ? 'Grego' : 'Hebraico'}
                 </span>
               </div>
               <button
                 onClick={() => setPalavraAtiva(null)}
-                className="p-1 rounded-md hover:bg-[var(--surface-sunken)] text-[var(--content-muted)]"
+                className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-400 dark:text-gray-500"
                 aria-label="Fechar"
               >
                 <X className="w-3.5 h-3.5" />
@@ -108,29 +108,29 @@ export function InlineStrongHighlight({
             </div>
 
             {/* Palavra original */}
-            <p className={`text-2xl font-bold text-center mb-0.5 ${palavraAtiva.idioma === 'grego' ? 'font-greek' : 'font-hebrew'}`}>
+            <p className={`text-2xl font-bold text-center mb-0.5 text-gray-900 dark:text-gray-100 ${palavraAtiva.idioma === 'grego' ? 'font-greek' : 'font-hebrew'}`}>
               {palavraAtiva.palavra}
             </p>
 
             {/* Transliteração */}
-            <p className="text-xs text-[var(--content-muted)] italic text-center mb-2">
+            <p className="text-xs text-gray-500 dark:text-gray-400 italic text-center mb-2">
               {palavraAtiva.transliteracao}
             </p>
 
             {/* Definição */}
-            <div className="bg-[var(--brand-subtle)]/20 rounded-lg p-2.5 mb-2 border border-[var(--brand-default)]/10">
+            <div className="bg-amber-50 dark:bg-amber-950 rounded-lg p-2.5 mb-2 border border-amber-200 dark:border-amber-800">
               <div className="flex items-center gap-1 mb-1">
-                <BookOpen className="w-3 h-3 text-[var(--brand-default)]" />
-                <span className="text-[9px] font-semibold uppercase tracking-wider text-[var(--brand-default)]">Definição</span>
+                <BookOpen className="w-3 h-3 text-amber-700 dark:text-amber-400" />
+                <span className="text-[9px] font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-400">Definição</span>
               </div>
-              <p className="text-xs font-medium text-[var(--brand-default)] leading-relaxed">
+              <p className="text-xs font-medium text-amber-900 dark:text-amber-200 leading-relaxed">
                 {palavraAtiva.definicao}
               </p>
             </div>
 
             {/* Morfologia */}
             {palavraAtiva.morfologia && (
-              <p className="text-[10px] text-[var(--content-muted)] mb-2">
+              <p className="text-[10px] text-gray-500 dark:text-gray-400 mb-2">
                 <span className="font-semibold">Morfologia:</span> {palavraAtiva.morfologia}
               </p>
             )}
@@ -141,7 +141,7 @@ export function InlineStrongHighlight({
               onClick={(e) => e.stopPropagation()}
               className={cn(
                 'inline-flex items-center gap-1 text-[10px] font-semibold',
-                'text-[var(--brand-default)] hover:underline'
+                'text-amber-700 dark:text-amber-400 hover:underline'
               )}
             >
               Ver no léxico completo →
@@ -149,8 +149,8 @@ export function InlineStrongHighlight({
 
             {/* Outras palavras */}
             {lexicoRecursos.length > 1 && (
-              <div className="mt-2 pt-2 border-t border-[var(--border)]">
-                <p className="text-[9px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-1">
+              <div className="mt-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+                <p className="text-[9px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1">
                   Outras palavras:
                 </p>
                 <div className="flex flex-wrap gap-1">
@@ -163,18 +163,17 @@ export function InlineStrongHighlight({
                       }}
                       className={cn(
                         'text-[9px] px-1.5 py-0.5 rounded',
-                        'border border-[var(--border)] hover:border-[var(--brand-default)]',
-                        'transition-colors duration-150',
+                        'border transition-colors duration-150',
                         palavraAtiva.strong === lex.strong
-                          ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)]'
-                          : 'text-[var(--content-secondary)]'
+                          ? 'bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-700'
+                          : 'text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:border-amber-400 dark:hover:border-amber-600'
                       )}
                     >
                       {lex.palavra}
                     </button>
                   ))}
                   {lexicoRecursos.length > 6 && (
-                    <span className="text-[9px] text-[var(--content-muted)] self-center">
+                    <span className="text-[9px] text-gray-400 dark:text-gray-500 self-center">
                       +{lexicoRecursos.length - 6}
                     </span>
                   )}

@@ -1,7 +1,7 @@
 name: sola_scriptura_app
 description: "Sola Scriptura BR — Estudo Bíblico Completo"
 publish_to: 'none'
-version: 1.1.0+2
+version: 1.2.0+3
 
 environment:
   sdk: ^3.12.2
@@ -23,6 +23,7 @@ dependencies:
   firebase_messaging: ^15.2.1
   http: ^1.2.0
   home_widget: ^0.7.0
+  timezone: ^0.10.0
 
 dev_dependencies:
   flutter_test:

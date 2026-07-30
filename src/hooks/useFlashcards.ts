@@ -187,8 +187,24 @@ export function useFlashcards() {
     };
   }, []);
 
+  // Auto-populate flashcards from saved bookmarks
+  const autoPopulateFromBookmarks = useCallback(() => {
+    const marks = listarMarcas() as MarcaBiblia[];
+    let added = 0;
+    for (const mark of marks) {
+      const verseKey = `${mark.livro}:${mark.capitulo}:${mark.versiculo}:${mark.traducao}`;
+      if (!cards.find(c => c.verseKey === verseKey)) {
+        const livroNome = livroPorAbreviacao.get(mark.livro)?.nome || mark.livro;
+        addCard(verseKey, mark.texto, `${livroNome} ${mark.capitulo}:${mark.versiculo}`);
+        added++;
+      }
+    }
+    return added;
+  }, [cards, addCard]);
+
   return {
     cards, dueCards, dueCount, totalCards, stats, learnedStreak,
     addCard, addCardManual, removeCard, answer, review, getVerseData,
+    autoPopulateFromBookmarks,
   };
 }

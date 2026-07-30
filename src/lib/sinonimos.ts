@@ -97,6 +97,22 @@ const grupos: GrupoSinonimos[] = [
   { conceito: 'perdão', termos: ['perdão', 'perdoar', 'indulgência', 'remissão', 'absolvição'] },
   { conceito: 'reconciliação', termos: ['reconciliação', 'reconciliar', 'unir', 'harmonia', 'paz'] },
   { conceito: 'unidade', termos: ['unidade', 'unir', 'juntar', 'congregar', 'associação'] },
+
+  // Termos originais hebraicos/gregos (transliteração)
+  { conceito: 'agape', termos: ['agape', 'agápe', 'amor incondicional', 'amor sacrificial'] },
+  { conceito: 'pistis', termos: ['pistis', 'fé', 'confiança', 'convicção'] },
+  { conceito: 'charis', termos: ['charis', 'graça', 'favor', 'dádiva'] },
+  { conceito: 'logos', termos: ['logos', 'palavra', 'razão', 'verbo'] },
+  { conceito: 'ekklesia', termos: ['ekklesia', 'igreja', 'assembleia', 'congregação'] },
+  { conceito: 'basileia', termos: ['basileia', 'reino', 'reinado', 'governo'] },
+  { conceito: 'dikaiosyne', termos: ['dikaiosyne', 'justiça', 'retidão', 'justificação'] },
+  { conceito: 'hamartia', termos: ['hamartia', 'pecado', 'transgressão', 'erro'] },
+  { conceito: 'metanoia', termos: ['metanoia', 'arrependimento', 'conversão', 'mudança'] },
+  { conceito: 'soteria', termos: ['soteria', 'salvação', 'libertação', 'segurança'] },
+  { conceito: 'shalom', termos: ['shalom', 'paz', 'completude', 'bem-estar'] },
+  { conceito: 'chesed', termos: ['chesed', 'misericórdia', 'bondade', 'fidelidade'] },
+  { conceito: 'abba', termos: ['abba', 'pai', 'pai querido', 'pai amado'] },
+  { conceito: 'maranatha', termos: ['maranatha', 'venha o Senhor', 'retorno de Cristo'] },
 ];
 
 // Mapa invertido: termo -> todos os termos do mesmo grupo

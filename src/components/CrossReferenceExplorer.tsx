@@ -45,11 +45,11 @@ const NOMES_LIVROS: Record<string, string> = {
   gn: 'Gênesis', ex: 'Êxodo', lv: 'Levítico', nm: 'Números', dt: 'Deuteronômio',
   js: 'Josué', jz: 'Juízes', rt: 'Rute', '1sm': '1 Samuel', '2sm': '2 Samuel',
   '1rs': '1 Reis', '2rs': '2 Reis', '1cr': '1 Crônicas', '2cr': '2 Crônicas',
-  ed: 'Esdras', ne: 'Neemias', et: 'Ester', jó: 'Jó', sl: 'Salmos',
+  ed: 'Esdras', ne: 'Neemias', et: 'Ester', jb: 'Jó', sl: 'Salmos',
   pv: 'Provérbios', ec: 'Eclesiastes', ct: 'Cânticos', is: 'Isaías', jr: 'Jeremias',
   lm: 'Lamentações', ez: 'Ezequiel', dn: 'Daniel', os: 'Oséias', jl: 'Joel',
-  am: 'Amós', ob: 'Obadias', ion: 'Jonas', mq: 'Miquéias', na: 'Naum',
-  hc: 'Habacuque', sf: 'Sofonias', age: 'Ageu', zc: 'Zacarias', ml: 'Malaquias',
+  am: 'Amós', ob: 'Obadias', jn: 'Jonas', mq: 'Miquéias', na: 'Naum',
+  hc: 'Habacuque', sf: 'Sofonias', ag: 'Ageu', zc: 'Zacarias', ml: 'Malaquias',
   mt: 'Mateus', mc: 'Marcos', lc: 'Lucas', jo: 'João', at: 'Atos',
   rm: 'Romanos', '1co': '1 Coríntios', '2co': '2 Coríntios', gl: 'Gálatas',
   ef: 'Efésios', fp: 'Filipenses', cl: 'Colossenses', '1ts': '1 Tessalonicenses',
@@ -59,8 +59,15 @@ const NOMES_LIVROS: Record<string, string> = {
 };
 
 function extrairLivroCapitulo(ref: string): { livro: string; capitulo: number; verso?: number } {
+  const match = ref.trim().match(/^([\d]?\s*\w+)\s+(\d+):(\d+)/);
+  if (match) {
+    const livro = match[1].replace(/\s+/g, '').toLowerCase();
+    const capitulo = parseInt(match[2], 10);
+    const verso = parseInt(match[3], 10);
+    return { livro, capitulo, verso };
+  }
   const partes = ref.split(' ');
-  const livro = partes[0];
+  const livro = partes[0].toLowerCase();
   const capVerso = partes.slice(1).join(' ').split(':');
   const capitulo = parseInt(capVerso[0], 10);
   const verso = capVerso[1] ? parseInt(capVerso[1].split('-')[0], 10) : undefined;

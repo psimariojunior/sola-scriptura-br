@@ -824,7 +824,20 @@
     "notSupported": "Seu navegador não suporta notificações push.",
     "permissionDenied": "Permissão negada. Ative nas configurações do navegador.",
     "activated": "Notificações ativadas!",
-    "deactivated": "Notificações desativadas"
+    "deactivated": "Notificações desativadas",
+    "dailyReminders": "Lembretes Diários",
+    "dailyRemindersDesc": "Receba versículos e lembretes",
+    "reminderTime": "Horário do lembrete",
+    "typesOfReminder": "Tipos de Lembrete",
+    "motivationalVerseShort": "Versículo Motivacional",
+    "motivationalVerseShortDesc": "Um versículo diferente todo dia",
+    "streakReminderShort": "Lembrete de Streak",
+    "streakReminderShortDesc": "Mantenha sua sequência de leitura",
+    "planReminderShort": "Plano de Leitura",
+    "planReminderShortDesc": "Continue seu plano diário",
+    "notificationPreview": "Prévia da notificação",
+    "verseOfDay": "Versículo do Dia",
+    "blocked": "Notificações bloqueadas. Ative nas configurações do navegador."
   },
   "palavras": {
     "title": "Palavras Originais",
@@ -887,7 +900,24 @@
     "tradition": "Tradição",
     "general": "Geral",
     "paywallTitle": "Assistente de IA é do Acesso Total",
-    "paywallDesc": "Pague R$20 una vez e desbloqueie para sempre.",
+    "paywallDesc": "Pague R$20 uma vez e desbloqueie para sempre.",
     "unlockAccess": "Desbloquear Acesso Total"
+  },
+  "sidePanel": {
+    "comments": "Comentários",
+    "lexicon": "Léxico",
+    "notes": "Notas",
+    "studies": "Estudos",
+    "crossRefs": "Ref. Cruzadas",
+    "context": "Contexto",
+    "selectVerseComments": "Selecione um versículo para ver comentários teológicos.",
+    "selectVerseLexicon": "Selecione um versículo para ver as palavras originais em grego/hebraico com números de Strong.",
+    "selectVerseStudies": "Selecione um versículo para ver os estudos teológicos com visões de múltiplos teólogos.",
+    "selectVerseCrossRefs": "Selecione um versículo para ver referências cruzadas temáticas, paralelos e cumprimentos.",
+    "panel": "Painel",
+    "expand": "Expandir",
+    "fullscreen": "Tela cheia",
+    "collapse": "Recolher",
+    "closePanel": "Fechar painel"
   }
 }

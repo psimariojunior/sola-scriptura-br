@@ -15,8 +15,9 @@ const PainelStrong = dynamic(() => import('@/components/PainelStrong'), { ssr: f
 const PainelNotas = dynamic(() => import('@/components/PainelNotas'), { ssr: false });
 const PainelComentarios = dynamic(() => import('@/components/PainelComentarios'), { ssr: false });
 const PainelEstudosSidePanel = dynamic(() => import('@/components/PainelEstudosSidePanel'), { ssr: false });
+const CrossReferencePanel = dynamic(() => import('@/components/Biblia/CrossReferencePanel'), { ssr: false });
 
-type TabValue = 'comentarios' | 'strong' | 'notas' | 'estudos' | 'contexto';
+type TabValue = 'comentarios' | 'strong' | 'notas' | 'estudos' | 'contexto' | 'referencias';
 
 export type SidePanelWidth = 'collapsed' | 'half' | 'full';
 
@@ -41,6 +42,7 @@ const tabs: { value: TabValue; label: string; icon: typeof BookOpen }[] = [
   { value: 'strong', label: 'Léxico', icon: BookText },
   { value: 'notas', label: 'Notas', icon: StickyNote },
   { value: 'estudos', label: 'Estudos', icon: GraduationCap },
+  { value: 'referencias', label: 'Ref. Cruzadas', icon: Link2 },
   { value: 'contexto', label: 'Contexto', icon: History },
 ];
 
@@ -271,10 +273,18 @@ export function SidePanel({
                     </button>
                   )}
                   {crossRefs.length > 0 && (
-                    <span className="inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-full bg-[var(--surface-sunken)] text-[var(--content-muted)] font-medium">
+                    <button
+                      onClick={() => onActiveTabChange('referencias')}
+                      className={cn(
+                        'inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-full font-medium transition-colors',
+                        activeTab === 'referencias'
+                          ? 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300'
+                          : 'bg-[var(--surface-sunken)] text-[var(--content-muted)] hover:bg-cyan-50 dark:hover:bg-cyan-900/20'
+                      )}
+                    >
                       <Link2 className="w-3 h-3" />
                       {crossRefs.length} ref{crossRefs.length !== 1 ? 's' : ''} cruzada{crossRefs.length !== 1 ? 's' : ''}
-                    </span>
+                    </button>
                   )}
                   {estudos.length > 0 && (
                     <button
@@ -353,6 +363,22 @@ export function SidePanel({
                       )
                     ) : activeTab === 'contexto' ? (
                       <PainelContexto livro={livroAbreviacao} capitulo={capitulo} />
+                    ) : activeTab === 'referencias' ? (
+                      versiculo ? (
+                        <CrossReferencePanel
+                          book={livroAbreviacao}
+                          chapter={capitulo}
+                          verse={versiculo}
+                          bookName={livroNome}
+                          onClose={() => onActiveTabChange(null)}
+                        />
+                      ) : (
+                        <EmptyPanel
+                          icon={Link2}
+                          title="Referências Cruzadas"
+                          description="Selecione um versículo para ver referências cruzadas temáticas, paralelos e cumprimentos."
+                        />
+                      )
                     ) : null}
                   </Suspense>
                 </motion.div>
@@ -485,10 +511,18 @@ export function SidePanel({
                 </button>
               )}
               {crossRefs.length > 0 && (
-                <span className="inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-full bg-[var(--surface-sunken)] text-[var(--content-muted)] font-medium">
+                <button
+                  onClick={() => onActiveTabChange('referencias')}
+                  className={cn(
+                    'inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-full font-medium transition-colors',
+                    activeTab === 'referencias'
+                      ? 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300'
+                      : 'bg-[var(--surface-sunken)] text-[var(--content-muted)] hover:bg-cyan-50 dark:hover:bg-cyan-900/20'
+                  )}
+                >
                   <Link2 className="w-3 h-3" />
                   {crossRefs.length} ref{crossRefs.length !== 1 ? 's' : ''} cruzada{crossRefs.length !== 1 ? 's' : ''}
-                </span>
+                </button>
               )}
               {estudos.length > 0 && (
                 <button
@@ -573,6 +607,22 @@ export function SidePanel({
                   )
                 ) : activeTab === 'contexto' ? (
                   <PainelContexto livro={livroAbreviacao} capitulo={capitulo} />
+                ) : activeTab === 'referencias' ? (
+                  versiculo ? (
+                    <CrossReferencePanel
+                      book={livroAbreviacao}
+                      chapter={capitulo}
+                      verse={versiculo}
+                      bookName={livroNome}
+                      onClose={() => onActiveTabChange(null)}
+                    />
+                  ) : (
+                    <EmptyPanel
+                      icon={Link2}
+                      title="Referências Cruzadas"
+                      description="Selecione um versículo para ver referências cruzadas temáticas, paralelos e cumprimentos."
+                    />
+                  )
                 ) : null}
               </Suspense>
             </motion.div>

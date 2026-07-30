@@ -72,6 +72,9 @@ const BG_COLORS: BgColorOption[] = [
   { id: 'azul-escuro', nome: 'Azul', hex: '#0A1628' },
   { id: 'verde-escuro', nome: 'Verde', hex: '#1A3C2A' },
   { id: 'roxo', nome: 'Roxo', hex: '#1E1038' },
+  { id: 'creme', nome: 'Creme', hex: '#F5F0E0' },
+  { id: 'branco', nome: 'Branco', hex: '#FFFFFF' },
+  { id: 'dourado', nome: 'Dourado', hex: '#2C1810' },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -126,6 +129,7 @@ function darkenHex(hex: string, amount: number): string {
   return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }
 
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // TEMPLATE DRAWING FUNCTIONS
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -133,6 +137,7 @@ function darkenHex(hex: string, amount: number): string {
 function drawClassico(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, opts: DrawOptions) {
   const w = canvas.width;
   const h = canvas.height;
+  const light = isLightBg(opts.bgColor);
 
   // Background
   const bg = hexToRgba(opts.bgColor, opts.bgOpacity / 100);
@@ -141,20 +146,20 @@ function drawClassico(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, 
 
   // Subtle gradient overlay
   const grad = ctx.createRadialGradient(w * 0.3, h * 0.25, 40, w * 0.3, h * 0.25, w * 0.8);
-  grad.addColorStop(0, 'rgba(212,168,67,0.15)');
+  grad.addColorStop(0, light ? 'rgba(180,140,40,0.08)' : 'rgba(212,168,67,0.15)');
   grad.addColorStop(1, 'transparent');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, w, h);
 
   // Gold decorative border
   const framePad = 56;
-  ctx.strokeStyle = 'rgba(212,168,67,0.25)';
+  ctx.strokeStyle = light ? 'rgba(160,120,30,0.3)' : 'rgba(212,168,67,0.25)';
   ctx.lineWidth = 2;
   roundRect(ctx, framePad, framePad, w - framePad * 2, h - framePad * 2, 24);
   ctx.stroke();
 
   // Outer glow
-  ctx.strokeStyle = 'rgba(212,168,67,0.08)';
+  ctx.strokeStyle = light ? 'rgba(160,120,30,0.12)' : 'rgba(212,168,67,0.08)';
   ctx.lineWidth = 1;
   roundRect(ctx, framePad - 8, framePad - 8, w - (framePad - 8) * 2, h - (framePad - 8) * 2, 28);
   ctx.stroke();
@@ -166,7 +171,7 @@ function drawClassico(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, 
   ctx.fillText('\u201C', w / 2, 220);
 
   // Verse text
-  ctx.fillStyle = '#F5F0E0';
+  ctx.fillStyle = light ? '#2C1810' : '#F5F0E0';
   ctx.font = `italic ${opts.fontSize}px Georgia, "Times New Roman", serif`;
   const lines = wrapText(ctx, opts.texto, MAX_TEXT_W);
   const lineHeight = opts.fontSize * 1.5;

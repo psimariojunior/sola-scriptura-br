@@ -824,7 +824,20 @@
     "notSupported": "Your browser does not support push notifications.",
     "permissionDenied": "Permission denied. Enable in your browser settings.",
     "activated": "Notifications enabled!",
-    "deactivated": "Notifications disabled"
+    "deactivated": "Notifications disabled",
+    "dailyReminders": "Daily Reminders",
+    "dailyRemindersDesc": "Receive verses and reminders",
+    "reminderTime": "Reminder Time",
+    "typesOfReminder": "Types of Reminder",
+    "motivationalVerseShort": "Motivational Verse",
+    "motivationalVerseShortDesc": "A different verse every day",
+    "streakReminderShort": "Streak Reminder",
+    "streakReminderShortDesc": "Keep your reading streak",
+    "planReminderShort": "Reading Plan",
+    "planReminderShortDesc": "Continue your daily plan",
+    "notificationPreview": "Notification Preview",
+    "verseOfDay": "Verse of the Day",
+    "blocked": "Notifications blocked. Enable in your browser settings."
   },
   "palavras": {
     "title": "Original Words",
@@ -889,5 +902,22 @@
     "paywallTitle": "AI Assistant requires Full Access",
     "paywallDesc": "Pay R$20 once and unlock forever.",
     "unlockAccess": "Unlock Full Access"
+  },
+  "sidePanel": {
+    "comments": "Comments",
+    "lexicon": "Lexicon",
+    "notes": "Notes",
+    "studies": "Studies",
+    "crossRefs": "Cross References",
+    "context": "Context",
+    "selectVerseComments": "Select a verse to see theological comments.",
+    "selectVerseLexicon": "Select a verse to see original Greek/Hebrew words with Strong numbers.",
+    "selectVerseStudies": "Select a verse to see theological studies with multiple theologian views.",
+    "selectVerseCrossRefs": "Select a verse to see thematic cross-references, parallels and fulfillments.",
+    "panel": "Panel",
+    "expand": "Expand",
+    "fullscreen": "Fullscreen",
+    "collapse": "Collapse",
+    "closePanel": "Close panel"
   }
 }

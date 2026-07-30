@@ -50,7 +50,7 @@ export interface UseBibliaVerseReturn {
 }
 
 interface UseBibliaVerseParams {
-  setSidePanelTab: React.Dispatch<React.SetStateAction<'comentarios' | 'strong' | 'notas' | 'estudos' | 'contexto' | null>>;
+  setSidePanelTab: React.Dispatch<React.SetStateAction<'comentarios' | 'strong' | 'notas' | 'estudos' | 'contexto' | 'referencias' | null>>;
   setSidePanelWidth: React.Dispatch<React.SetStateAction<SidePanelWidth>>;
 }
 

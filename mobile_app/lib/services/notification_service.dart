@@ -57,7 +57,10 @@ class NotificationService {
         android: androidSettings,
         iOS: iosSettings,
       );
-      await _localNotifications.initialize(initSettings);
+      await _localNotifications.initialize(
+        initSettings,
+        onDidReceiveNotificationResponse: _onNotificationTapped,
+      );
 
       final androidPlugin = _localNotifications
           .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
@@ -68,6 +71,8 @@ class NotificationService {
           'Versículo do Dia',
           description: 'Lembrete diário para ler um versículo',
           importance: Importance.high,
+          enableVibration: true,
+          enableLights: true,
         ),
       );
 
@@ -77,6 +82,8 @@ class NotificationService {
           'Sola Scriptura BR',
           description: 'Notificações do aplicativo',
           importance: Importance.high,
+          enableVibration: true,
+          enableLights: true,
         ),
       );
 
@@ -89,14 +96,22 @@ class NotificationService {
         final granted = await notifPermPlugin?.requestNotificationsPermission();
         debugPrint('[NotificationService] POST_NOTIFICATIONS permission: $granted');
       } catch (e) {
-        debugPrint('[NotificationService] Permission request error (non-critical): $e');
+        debugPrint('[NotificationService] Permission request error: $e');
       }
 
       _initialized = true;
-      debugPrint('[NotificationService] Initialized');
+      debugPrint('[NotificationService] Initialized OK');
     } catch (e) {
       debugPrint('[NotificationService] Init error: $e');
     }
+  }
+
+  Future<bool> checkPermission() async {
+    final androidPlugin = _localNotifications
+        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+    final granted = await androidPlugin?.areNotificationsEnabled();
+    debugPrint('[NotificationService] Permission check: $granted');
+    return granted ?? false;
   }
 
   void _onNotificationTapped(NotificationResponse response) {
@@ -153,20 +168,39 @@ class NotificationService {
   }
 
   Future<void> scheduleDailyVerseReminder({int hour = 8, int minute = 0}) async {
-    if (!_initialized) return;
+    if (!_initialized) {
+      await initialize();
+    }
+    if (!_initialized) {
+      debugPrint('[NotificationService] Cannot schedule: not initialized');
+      return;
+    }
+
+    // Check permission first
+    final hasPermission = await checkPermission();
+    if (!hasPermission) {
+      debugPrint('[NotificationService] No notification permission! Requesting...');
+      final notifPermPlugin = _localNotifications
+          .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+      final granted = await notifPermPlugin?.requestNotificationsPermission();
+      debugPrint('[NotificationService] Permission re-request result: $granted');
+      if (granted != true) {
+        debugPrint('[NotificationService] Permission denied - cannot schedule');
+        return;
+      }
+    }
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(_prefsKeyHour, hour);
     await prefs.setInt(_prefsKeyMinute, minute);
     await prefs.setBool(_prefsKeyEnabled, true);
 
-    final now = tz.TZDateTime.now(tz.local);
-    var scheduled = tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minute);
-    if (scheduled.isBefore(now)) {
-      scheduled = scheduled.add(const Duration(days: 1));
-    }
+    // Cancel any previous scheduled notification
+    await _localNotifications.cancel(_scheduledKeyId);
 
     final verse = _dailyVerses[Random().nextInt(_dailyVerses.length)];
+    final title = '📖 ${verse['ref']}';
+    final body = verse['text'];
 
     const androidDetails = AndroidNotificationDetails(
       _dailyVerseChannel,
@@ -175,29 +209,88 @@ class NotificationService {
       importance: Importance.high,
       priority: Priority.high,
       icon: '@mipmap/ic_launcher',
+      enableVibration: true,
+      enableLights: true,
+      largeIcon: DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
     );
     const details = NotificationDetails(
       android: androidDetails,
-      iOS: DarwinNotificationDetails(
+      iOS: const DarwinNotificationDetails(
         presentAlert: true,
         presentBadge: true,
         presentSound: true,
       ),
     );
 
-    await _localNotifications.zonedSchedule(
-      _scheduledKeyId,
-      '📖 ${verse['ref']}',
-      verse['text'],
-      scheduled,
-      details,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
-      matchDateTimeComponents: DateTimeComponents.time,
-      payload: '/biblia',
-    );
+    // Calculate next occurrence
+    final now = tz.TZDateTime.now(tz.local);
+    var scheduled = tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minute);
+    if (scheduled.isBefore(now) || scheduled.isAtSameMomentAs(now)) {
+      scheduled = scheduled.add(const Duration(days: 1));
+    }
 
-    debugPrint('[NotificationService] Daily verse scheduled for $hour:${minute.toString().padLeft(2, '0')}');
+    debugPrint('[NotificationService] Scheduling for: $scheduled (now=$now, hour=$hour, minute=$minute)');
+
+    try {
+      // Try exact alarm first
+      await _localNotifications.zonedSchedule(
+        _scheduledKeyId,
+        title,
+        body,
+        scheduled,
+        details,
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+        matchDateTimeComponents: DateTimeComponents.time,
+        payload: '/biblia',
+      );
+      debugPrint('[NotificationService] Scheduled OK for $hour:${minute.toString().padLeft(2, '0')}');
+    } catch (e) {
+      debugPrint('[NotificationService] Exact alarm failed: $e');
+      // Fallback: try without exact alarm
+      try {
+        await _localNotifications.zonedSchedule(
+          _scheduledKeyId,
+          title,
+          body,
+          scheduled,
+          details,
+          androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+          uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+          matchDateTimeComponents: DateTimeComponents.time,
+          payload: '/biblia',
+        );
+        debugPrint('[NotificationService] Scheduled (inexact) for $hour:${minute.toString().padLeft(2, '0')}');
+      } catch (e2) {
+        debugPrint('[NotificationService] Inexact alarm also failed: $e2');
+      }
+    }
+
+    // Show a test notification immediately to confirm it works
+    await _showTestNotification(hour, minute);
+  }
+
+  Future<void> _showTestNotification(int hour, int minute) async {
+    try {
+      const androidDetails = AndroidNotificationDetails(
+        _dailyVerseChannel,
+        'Versículo do Dia',
+        channelDescription: 'Lembrete diário para ler um versículo',
+        importance: Importance.high,
+        priority: Priority.high,
+        icon: '@mipmap/ic_launcher',
+      );
+      const details = NotificationDetails(android: androidDetails);
+      await _localNotifications.show(
+        99999,
+        '✅ Notificação ativada!',
+        'Você receberá um versículo todo dia às $hour:${minute.toString().padLeft(2, '0')}',
+        details,
+      );
+      debugPrint('[NotificationService] Test notification sent');
+    } catch (e) {
+      debugPrint('[NotificationService] Test notification failed: $e');
+    }
   }
 
   Future<void> rescheduleFromPrefs() async {

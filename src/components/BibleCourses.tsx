@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { GraduationCap, BookOpen, CheckCircle2, Clock, ChevronRight, Award, Play, FileText, HelpCircle, ArrowLeft, Download, Share2, RotateCcw, Users, BarChart3, ClipboardCheck } from 'lucide-react';
+import { GraduationCap, BookOpen, CheckCircle2, Clock, ChevronRight, Award, Play, FileText, HelpCircle, ArrowLeft, Download, Share2, RotateCcw, Users, BarChart3, ClipboardCheck, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
@@ -9,6 +9,11 @@ import { cn } from '@/lib/utils';
 import { CURSOS, type Curso, type CursoModulo, type CursoAula, type QuizQuestion } from '@/data/cursos';
 import { matricularCurso, marcarAulaCompleta, salvarResultadoQuiz, obterProgressoCurso, calcularProgresso, estaConcluido, marcarCursoConcluido, type CursoProgresso } from '@/lib/cursoProgress';
 import { gerarCertificado } from '@/lib/certificado';
+import { TextToSpeechButton } from '@/components/TextToSpeechButton';
+import { NoteEditor } from '@/components/NoteEditor';
+import { ShareNoteModal } from '@/components/ShareNoteModal';
+import { getNote } from '@/lib/seminaryNotes';
+import { checkAndUnlock } from '@/lib/achievements';
 
 const LEVEL_COLORS = {
   iniciante: 'text-green-500 bg-green-500/10',
@@ -66,6 +71,8 @@ export function BibleCourses() {
   const handleConcluirAula = useCallback((cursoId: string, aulaId: string) => {
     marcarAulaCompleta(cursoId, aulaId);
     refreshProgress(cursoId);
+    checkAndUnlock({ type: 'lesson_completed' });
+    checkAndUnlock({ type: 'study_time' });
     const curso = getCurso(cursoId);
     if (curso) {
       const prog = obterProgressoCurso(cursoId);
@@ -73,6 +80,7 @@ export function BibleCourses() {
       if (prog && prog.aulasCompletas.length >= total) {
         marcarCursoConcluido(cursoId);
         refreshProgress(cursoId);
+        checkAndUnlock({ type: 'course_completed' });
       }
     }
   }, [getCurso, getTotalAulas, refreshProgress]);
@@ -178,8 +186,10 @@ export function BibleCourses() {
   if (state.tela === 'aula') {
     const curso = getCurso(state.cursoId);
     if (!curso) return null;
-    const aula = curso.módulos.flatMap(m => m.aulas).find(a => a.id === state.aulaId);
+    const allLessons = curso.módulos.flatMap(m => m.aulas);
+    const aula = allLessons.find(a => a.id === state.aulaId);
     if (!aula) return null;
+    const currentIdx = allLessons.findIndex(a => a.id === state.aulaId);
     return (
       <AulaView
         curso={curso}
@@ -188,6 +198,16 @@ export function BibleCourses() {
         onStartQuiz={() => setState({ tela: 'quiz', cursoId: state.cursoId, aulaId: state.aulaId })}
         onBack={() => setState({ tela: 'curso', cursoId: state.cursoId })}
         progresso={progressos[state.cursoId]}
+        lessonIndex={currentIdx}
+        totalLessons={allLessons.length}
+        onNextLesson={currentIdx < allLessons.length - 1 ? () => {
+          const nextLesson = allLessons[currentIdx + 1];
+          handleAbrirAula(state.cursoId, nextLesson.id);
+        } : undefined}
+        onPrevLesson={currentIdx > 0 ? () => {
+          const prevLesson = allLessons[currentIdx - 1];
+          handleAbrirAula(state.cursoId, prevLesson.id);
+        } : undefined}
       />
     );
   }
@@ -375,8 +395,18 @@ function CursoDetailView({ curso, progresso, onAulaClick, onBack, onCertificado 
   );
 }
 
-function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso }: { curso: Curso; aula: CursoAula; onComplete: () => void; onStartQuiz: () => void; onBack: () => void; progresso?: CursoProgresso }) {
+function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso, onNextLesson, onPrevLesson, lessonIndex, totalLessons }: { curso: Curso; aula: CursoAula; onComplete: () => void; onStartQuiz: () => void; onBack: () => void; progresso?: CursoProgresso; onNextLesson?: () => void; onPrevLesson?: () => void; lessonIndex?: number; totalLessons?: number }) {
   const completa = progresso?.aulasCompletas.includes(aula.id) || false;
+  const [notasExpandidas, setNotasExpandidas] = useState(false);
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [noteText, setNoteText] = useState('');
+
+  const lessonText = aula.conteúdo || '';
+
+  useEffect(() => {
+    const note = getNote(aula.id);
+    if (note) setNoteText(note.text);
+  }, [aula.id]);
 
   return (
     <div className="flex flex-col h-full">
@@ -384,11 +414,18 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso }: {
         <button onClick={onBack} className="text-xs text-[var(--brand)] mb-2 flex items-center gap-1 hover:underline">
           <ArrowLeft className="w-3 h-3" /> Voltar ao curso
         </button>
-        <h2 className="font-bold text-lg">{aula.título}</h2>
-        <div className="flex items-center gap-3 mt-2">
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--surface-sunken)] text-[var(--content-muted)]">{curso.título}</span>
-          <span className="text-[10px] text-[var(--content-muted)] flex items-center gap-1"><Clock className="w-3 h-3" />{aula.duração}</span>
-          {completa && <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-500">Concluída</span>}
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1">
+            <h2 className="font-bold text-lg">{aula.título}</h2>
+            <div className="flex items-center gap-3 mt-2">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--surface-sunken)] text-[var(--content-muted)]">{curso.título}</span>
+              <span className="text-[10px] text-[var(--content-muted)] flex items-center gap-1"><Clock className="w-3 h-3" />{aula.duração}</span>
+              {completa && <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-500">Concluída</span>}
+            </div>
+          </div>
+          {aula.tipo !== 'quiz' && lessonText && (
+            <TextToSpeechButton text={lessonText} variant="ghost" size="sm" label="Ouvir" />
+          )}
         </div>
       </div>
       <ScrollArea>
@@ -399,10 +436,10 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso }: {
             </div>
           )}
           {aula.tipo === 'video' && aula.videoUrl && (
-            <div className="space-y-4">
-              <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black">
+            <div className="space-y-3">
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black ring-1 ring-[var(--border)]/20">
                 <iframe
-                  src={aula.videoUrl.replace('watch?v=', 'embed/')}
+                  src={`${aula.videoUrl.replace('watch?v=', 'embed/')}?rel=0&modestbranding=1`}
                   title={aula.videoTítulo || aula.título}
                   className="absolute inset-0 w-full h-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -410,13 +447,23 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso }: {
                 />
               </div>
               {aula.videoTítulo && (
-                <div className="flex items-center gap-2 text-xs text-[var(--content-muted)]">
-                  <Play className="w-3 h-3" />
-                  <span>{aula.videoTítulo}</span>
+                <div className="flex items-center justify-between gap-2 px-1">
+                  <div className="flex items-center gap-2 text-xs text-[var(--content-muted)]">
+                    <Play className="w-3 h-3 text-[var(--brand-default)]" />
+                    <span className="font-medium">{aula.videoTítulo}</span>
+                  </div>
+                  <a
+                    href={aula.videoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] text-[var(--brand-default)] hover:underline flex items-center gap-1"
+                  >
+                    Abrir no YouTube ↗
+                  </a>
                 </div>
               )}
               {aula.conteúdo && (
-                <div className="prose prose-sm dark:prose-invert max-w-none mt-4">
+                <div className="prose prose-sm dark:prose-invert max-w-none mt-2">
                   <MarkdownRenderer content={aula.conteúdo} />
                 </div>
               )}
@@ -450,18 +497,80 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso }: {
         </div>
       </ScrollArea>
       {aula.tipo !== 'quiz' && (
-        <div className="p-4 border-t border-[var(--border)]/40">
-          {completa ? (
-            <div className="flex items-center gap-2 text-green-500 text-sm">
-              <CheckCircle2 className="w-4 h-4" /> Aula concluída
+        <div className="border-t border-[var(--border)]/40">
+          <button
+            onClick={() => setNotasExpandidas(!notasExpandidas)}
+            className="w-full flex items-center justify-between px-4 py-3 text-xs font-medium text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] transition-colors"
+          >
+            <span className="flex items-center gap-2">
+              <FileText className="w-3.5 h-3.5" />
+              Minhas Anotações
+            </span>
+            <ChevronDown className={cn('w-4 h-4 transition-transform', notasExpandidas && 'rotate-180')} />
+          </button>
+          {notasExpandidas && (
+            <div className="px-4 pb-4">
+              <NoteEditor
+                lessonId={aula.id}
+                className="w-full"
+              />
             </div>
-          ) : (
-            <Button onClick={onComplete} className="w-full bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
-              Marcar como Concluída
-            </Button>
           )}
+          <div className="p-4">
+            {completa ? (
+              <div className="flex items-center gap-2 text-green-500 text-sm">
+                <CheckCircle2 className="w-4 h-4" /> Aula concluída
+              </div>
+            ) : (
+              <Button onClick={onComplete} className="w-full bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
+                Marcar como Concluída
+              </Button>
+            )}
+          </div>
         </div>
       )}
+      {/* Playlist Navigation */}
+      {aula.tipo !== 'quiz' && (onNextLesson || onPrevLesson) && (
+        <div className="border-t border-[var(--border)]/40 px-4 py-3 flex items-center justify-between gap-2">
+          <button
+            onClick={onPrevLesson}
+            disabled={!onPrevLesson}
+            className={cn(
+              'flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all',
+              onPrevLesson
+                ? 'bg-[var(--surface-sunken)] text-[var(--content-primary)] hover:bg-[var(--surface-raised)]'
+                : 'opacity-30 cursor-not-allowed text-[var(--content-muted)]'
+            )}
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Anterior
+          </button>
+          {lessonIndex != null && totalLessons != null && (
+            <span className="text-[10px] text-[var(--content-muted)] tabular-nums">
+              {lessonIndex + 1} / {totalLessons}
+            </span>
+          )}
+          <button
+            onClick={onNextLesson}
+            disabled={!onNextLesson}
+            className={cn(
+              'flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all',
+              onNextLesson
+                ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] hover:opacity-90'
+                : 'opacity-30 cursor-not-allowed text-[var(--content-muted)]'
+            )}
+          >
+            Próxima
+            <ChevronRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+      <ShareNoteModal
+        isOpen={shareModalOpen}
+        onClose={() => setShareModalOpen(false)}
+        noteText={noteText}
+        lessonId={aula.id}
+      />
     </div>
   );
 }

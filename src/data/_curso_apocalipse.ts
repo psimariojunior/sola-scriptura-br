@@ -32,8 +32,10 @@ export const CURSO_APOCALIPSE: Curso = {
         {
           id: 'aula-apo-1-2',
           título: 'A visão de Cristo (Ap 1:9-20)',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '15 min',
+          videoUrl: 'https://www.youtube.com/watch?v=BLQEAe9VDUQ',
+          videoTítulo: 'Apocalipse 1-11 || BibleProject Português',
           conteúdo: '## A visão de Cristo\n\nJoão vê Cristo glorificado no meio das sete candelabros. A visão é impressionante e teológica.\n\n### A descrição\n\nCabelos brancos como lã (sabedoria e eternidade). Olhos como chamas de fogo (juízo e conhecimento). Pés como bronze refinado (solidez e justiça). Voz como águas caudalosas (poder e autoridade).\n\n### Os sete candelabros\n\nRepresentam as sete igrejas. Cristo anda no meio delas. Ele está presente na Sua igreja.\n\n### As sete estrelas\n\nSão os anjos (mensageiros) das sete igrejas. Cristo as tem na Sua mão direita. Ele tem autoridade sobre as igrejas.\n\n### Eu sou o primeiro e o último\n\nCristo é o Alfa e o Omega, o que era, o que é e o que há de vir. Ele é soberano sobre toda a história.',
           versículosChave: [
             { ref: 'Apocalipse 1:12-13', texto: 'Vi sete candelabros de ouro... e no meio dos candelabros, um como o Filho do Homem.' },
@@ -105,8 +107,10 @@ export const CURSO_APOCALIPSE: Curso = {
         {
           id: 'aula-apo-2-2',
           título: 'Os sete selos (Ap 6-8:1)',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '15 min',
+          videoUrl: 'https://www.youtube.com/watch?v=BLQEAe9VDUQ',
+          videoTítulo: 'Apocalipse 1-11 – BibleProject Português',
           conteúdo: '## Os sete selos\n\nO Cordeiro abre os selos do pergaminho, e o julgamento começa.\n\n### Os quatro cavaleiros\n\n1. Cavaleiro branco — conquista (ou o evangelho)\n2. Cavaleiro vermelho — guerra\n3. Cavaleiro preto — fome\n4. Cavaleiro pálido — morte\n\n### Os selos 5-7\n\nO quinto selo revela os mártires clamando por justiça. O sexto selo traz terremotos e desastres. O sétimo selo traz silêncio por meia hora — o mais temível dos sinais.\n\n### O significado\n\nOs selos revelam o julgamento de Deus sobre o mal. Não é arbitrário — é a consequência do pecado e a defesa dos oprimidos.\n\n### A esperança\n\nMesmo no meio do julgamento, os mártres recebem brancos vestidos e são consolados. Deus não esquece os que sofreram.',
           versículosChave: [
             { ref: 'Apocalipse 6:1', texto: 'E vi quando o Cordeiro abriu um dos sete selos.' },
@@ -165,8 +169,10 @@ export const CURSO_APOCALIPSE: Curso = {
         {
           id: 'aula-apo-3-1',
           título: 'O milênio (Ap 20:1-6)',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '14 min',
+          videoUrl: 'https://www.youtube.com/watch?v=eizPQBawrsU',
+          videoTítulo: 'Apocalipse 12-22 – BibleProject Português',
           conteúdo: '## O milênio\n\nO capítulo 20 é um dos mais debatidos da Bíblia: o reino de 1.000 anos de Cristo na terra.\n\n### As três visões principais\n\n**Premilenarismo**: Cristo retorna antes dos 1.000 anos. O milênio é literal.\n\n**Amilenarismo**: Os 1.000 anos são simbólicos. Representam a era da igreja.\n\n**Pós-milenarismo**: A igreja transforma o mundo antes do retorno de Cristo.\n\n### O que todos concordam\n\nIndependentemente da posição, todos concordam que:\n- Satanás será preso\n- Cristo reinará\n- Os santos participarão do reino\n- Haverá julgamento final\n\n### Satanás preso\n\nSatanás será lançado no abismo e selado por 1.000 anos (20:2-3). O mal é contido. A justiça reina.\n\n### Os mártres reinarão\n\nOs que foram mortos pela fé reinarão com Cristo (20:4). A perseguição não é o fim da história.',
           versículosChave: [
             { ref: 'Apocalipse 20:1-2', texto: 'E vi um anjo descendo do céu, tendo a chave do abismo, e uma grande cadeia na sua mão.' },
@@ -202,8 +208,10 @@ export const CURSO_APOCALIPSE: Curso = {
         {
           id: 'aula-apo-3-4',
           título: 'A mensagem do Apocalipse para hoje',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '12 min',
+          videoUrl: 'https://www.youtube.com/watch?v=eizPQBawrsU',
+          videoTítulo: 'Apocalipse 12-22 – BibleProject Português',
           conteúdo: '## A mensagem do Apocalipse para hoje\n\nO Apocalipse não é apenas sobre o futuro — é uma mensagem para o presente.\n\n### Perseverança\n\nA mensagem central é: permanecei fiéis. A perseguição e o sofrimento são temporários. A vitória é eterna.\n\n### Esperança\n\nEm meio ao caos do mundo, o Apocalipse mostra que Deus está no controle. O trono não está vazio.\n\n### Justiça\n\nO Apocalipse assegura que toda injustiça será julgada. Os mártres receberão justiça. Os opressores serão responsabilizados.\n\n### Louvor\n\nO Apocalipse é o livro mais cheio de louvor da Bíblia. Mesmo no meio do julgamento, há adoração. O louvor é a resposta eterna ao amor de Deus.\n\n### Missão\n\nO Apocalipse nos envia ao mundo com a mensagem do evangelho. Há um convite aberto: Vem! (22:17).',
           versículosChave: [
             { ref: 'Apocalipse 2:10', texto: 'Sê fiel até a morte, e eu te darei a coroa da vida.' },

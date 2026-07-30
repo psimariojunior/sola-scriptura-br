@@ -162,8 +162,10 @@ export const CURSO_ROMANOS: Curso = {
         {
           id: 'aula-rom-3-1',
           título: 'Mortos para o pecado (Rom 6:1-14)',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '15 min',
+          videoUrl: 'https://www.youtube.com/watch?v=w5rkwQb3cFM',
+          videoTítulo: 'Romanos 5-16 – BibleProject Português',
           conteúdo: '## Mortos para o pecado\n\nPaulo antecipa uma objeção: se a graça abunda, devemos pecar mais? De jeito nenhum!\n\n### Unidos com Cristo na morte e ressurreição\n\nBatizados em Cristo, fomos sepultados com Ele e ressuscitamos com Ele (6:3-4). O batismo simboliza a nossa morte para o pecado e a nossa nova vida em Cristo.\n\n### Libertação do pecado\n\nO pecado não terá domínio sobre vocês (6:14). A Lei ainda reina? Não. A graça reina. Estamos livres do domínio do pecado.\n\n### A entrega\n\nEntregai-vos a Deus como vivos, dentre os mortos, e os vossos membros a Deus para instrumentos de justiça (6:13). A vida cristã é uma entrega diária.',
           versículosChave: [
             { ref: 'Romanos 6:6', texto: 'O nosso velho homem foi crucificado com ele, para que o corpo do pecado fosse desfeito.' },
@@ -245,8 +247,10 @@ export const CURSO_ROMANOS: Curso = {
         {
           id: 'aula-rom-4-1',
           título: 'O plano para Israel (Rom 9-11)',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '14 min',
+          videoUrl: 'https://www.youtube.com/watch?v=w5rkwQb3cFM',
+          videoTítulo: 'Romanos 5-16 || Bible Project Português ||',
           conteúdo: '## O plano para Israel\n\nPaulo dedica três capítulos a questão de Israel: por que muitos judeus rejeitaram o Messias?\n\n### A dor de Paulo\n\nTenho grande tristeza e contínua dor no meu coração pelos meus irmãos segundo a carne (9:2). Paulo ama Israel e se entristece pela sua incredulidade.\n\n### A soberania de Deus\n\nNão é a palavra de Deus falhou? (9:6). Não! Deus é soberano sobre Suas promessas. Nem todo Israel é Israel (9:6).\n\n### O barro e o oleiro\n\nDeus tem direito de fazer vasos para honra e para desonra (9:21). Isso não é injustiça — é soberania.\n\n### O mistério\n\nParte de Israel endureceu para que a salvação fosse aos gentios, e depois todo Israel será salvo (11:25-26). O plano de Deus inclui todos.',
           versículosChave: [
             { ref: 'Romanos 9:6', texto: 'Não caiu por terra a palavra de Deus.' },

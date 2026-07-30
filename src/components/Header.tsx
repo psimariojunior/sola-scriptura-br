@@ -8,7 +8,7 @@ import {
   Menu, X, BookOpen, Search, Sun, Moon, User, LogOut, Languages, BookMarked,
   Command, Settings, ChevronDown, ScrollText, Brain, Map,
   Sparkles, GraduationCap, MessageCircle, Library, Crown, Heart, History, HelpCircle, Download,
-  Users, Target, BarChart3, GitBranch, Calendar, Tag,
+  Users, Target, BarChart3, GitBranch, Calendar, Tag, RotateCw,
 } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { authService } from '@/lib/auth';
@@ -107,6 +107,8 @@ const temaIcons: Record<string, React.ReactNode> = {
   escuro: <Moon className="w-4 h-4" />,
   sepia: <BookOpen className="w-4 h-4" />,
   noturno: <Moon className="w-4 h-4" strokeWidth={1.5} />,
+  dim: <Moon className="w-4 h-4" strokeWidth={1} />,
+  auto: <RotateCw className="w-4 h-4" />,
 };
 
 function DailyChallengeDot() {

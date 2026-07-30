@@ -75,8 +75,10 @@ Muitos cristãos debatem se os "dias" de Gênesis 1 são dias literais de 24 hor
         {
           id: 'genesis-1-2',
           título: 'O ser humano: A coroa da criação',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '12 min',
+          videoUrl: 'https://www.youtube.com/watch?v=GtBfR5b1X5Y',
+          videoTítulo: 'Gênesis 1-11 – BibleProject Português',
           conteúdo: `## O ser humano: A coroa da criação
 
 Gênesis 1:26-31 apresenta o momento mais solene da criação: a formação do ser humano. Diferente de tudo o que havia criado antes, Deus faz uma declaração deliberada: "Façamos o homem à nossa imagem, conforme a nossa semelhança."
@@ -398,8 +400,10 @@ Noé saiu da arca e ofereceu sacrifícios. Deus fez uma promessa: "Não tornarei
         {
           id: 'genesis-2-1',
           título: 'A chamada de Abraão',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '15 min',
+          videoUrl: 'https://www.youtube.com/watch?v=VaZdOfekgo8',
+          videoTítulo: 'Gênesis 12-50 || Bible Project Português ||',
           conteúdo: `## A chamada de Abraão
 
 Gênesis 12 marca um divisor de águas na história bíblica. Deus escolhe um homem — Abrão (depois Abraão) — para iniciar um plano que culminaria na vinda do Messias e na salvação de todas as nações.

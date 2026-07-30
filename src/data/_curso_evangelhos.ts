@@ -89,8 +89,10 @@ Estudar Mateus é entender que Jesus não veio apenas para salvar — veio para 
         {
           id: 'aula-ev-1-2',
           título: 'Genealogia e nascimento: Cumprimento de profecias',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '15 min',
+          videoUrl: 'https://www.youtube.com/watch?v=ubXUcaXu8bQ',
+          videoTítulo: 'Lucas 1-9 || BibleProject Português',
           conteúdo: `## Genealogia e nascimento: Cumprimento de profecias
 
 A genealogia de Jesus em Mateus 1:1-17 e o relato de seu nascimento em Mateus 1:18-25 não são meros dados biográficos — são argumentos teológicos poderosos. Mateus está apresentando evidências de que Jesus é o Messias prometido.
@@ -160,8 +162,10 @@ Estudar a genealogia e o nascimento de Jesus não é tarefa tediosa — é mergu
         {
           id: 'aula-ev-1-3',
           título: 'O Sermão do Monte (caps. 5-7)',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '20 min',
+          videoUrl: 'https://www.youtube.com/watch?v=1sKMqP2vzQY',
+          videoTítulo: 'Mateus 14-28 – BibleProject Português',
           conteúdo: `## O Sermão do Monte (caps. 5-7)
 
 O Sermão do Monte, em Mateus 5-7, é o mais famoso discurso de Jesus e uma das preleções mais conhecidas da história da humanidade. É a "declaração de intenções" do Reino de Deus — a constituição ética do governo do Rei.
@@ -449,8 +453,10 @@ Estudar Marcos é ver Jesus em movimento — e ser desafiado a se mover também.
         {
           id: 'aula-ev-2-2',
           título: 'O serviço de Jesus (Marcos 10:45)',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '15 min',
+          videoUrl: 'https://www.youtube.com/watch?v=EOT1Mo_YERM',
+          videoTítulo: 'Evangelho de Marcos – BibleProject Português',
           conteúdo: `## O serviço de Jesus (Marcos 10:45)
 
 Marcos 10:45 é o versículo-chave de todo o evangelho: "Porque o Filho do Homem não veio para ser servido, mas para servir, e dar a sua vida em resgate por muitos." Se Mateus tem a Grande Comissão e João tem a glorificação do Filho, Marcos tem esta frase — a declaração central da missão de Jesus.
@@ -629,8 +635,10 @@ José de Arimateia pede o corpo de Jesus e o sepulta em um túmulo novo, onde ni
         {
           id: 'aula-ev-2-5',
           título: 'A ressurreição e ascensão (cap. 16)',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '15 min',
+          videoUrl: 'https://www.youtube.com/watch?v=EOT1Mo_YERM',
+          videoTítulo: 'Evangelho de Marcos – BibleProject Português',
           conteúdo: `## A ressurreição e ascensão (cap. 16)
 
 Marcos 16 é um dos capítulos mais debatidos da Bíblia. A versão mais antiga dos manuscritos (como o Código Sinaiticus e o Vaticano) termina em 16:8, com as mulheres fugindo do túmulo com medo. Versões posteriores acrescentam aparições e a ascensão. Vamos estudar o que Marcos realmente escreveu.

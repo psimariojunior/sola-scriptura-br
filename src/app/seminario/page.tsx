@@ -4,12 +4,21 @@ import { useState, useEffect, useMemo, Suspense } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { GraduationCap, BookOpen, Clock, Award, ChevronRight, Star, Lock, CheckCircle2, Play, Trophy, Target, Flame, Brain, Lightbulb, Cross, Church, ScrollText } from 'lucide-react';
+import { GraduationCap, BookOpen, Clock, Award, ChevronRight, Star, Lock, CheckCircle2, Play, Trophy, Target, Flame, Brain, Lightbulb, Cross, Church, ScrollText, Heart, Medal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { CURSOS, type Curso } from '@/data/cursos';
 import dynamic from 'next/dynamic';
 import { obterProgressoCursos, obterProgressoCurso } from '@/lib/cursoProgress';
+import { getFavoritos, toggleCursoFavorito, type SeminaryFavorites } from '@/lib/seminaryFavorites';
+import { getAllAchievements, checkAndUnlock, type Achievement } from '@/lib/achievements';
+import { AchievementBadge } from '@/components/AchievementBadge';
+import { CertificateGenerator } from '@/components/CertificateGenerator';
+
+const JourneyMap = dynamic(() => import('@/components/JourneyMap').then(m => ({ default: m.JourneyMap })), {
+  ssr: false,
+  loading: () => <div className="h-64 animate-pulse bg-[var(--surface-sunken)] rounded-2xl" />,
+});
 
 const ProgressChart = dynamic(() => import('./ProgressChart'), { ssr: false, loading: () => <div className="h-64 animate-pulse bg-[var(--surface-sunken)] rounded-xl" /> });
 const BibleCourses = dynamic(() => import('@/components/BibleCourses').then(m => ({ default: m.BibleCourses })), { ssr: false });
@@ -63,7 +72,9 @@ const STATS_ICONS = { tempo: Clock, conquistas: Trophy, sequencia: Flame, quiz: 
 export default function SeminarioPage() {
   const [nivelAtivo, setNivelAtivo] = useState<string | null>(null);
   const [cursosInscritos, setCursosInscritos] = useState<Record<string, number>>({});
-  const [tabAtiva, setTabAtiva] = useState<'trilha' | 'catalogo' | 'progresso'>('trilha');
+  const [tabAtiva, setTabAtiva] = useState<'trilha' | 'catalogo' | 'progresso' | 'favoritos'>('trilha');
+  const [favoritos, setFavoritos] = useState<SeminaryFavorites>({ aulas: [], modulos: [], cursos: [] });
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
 
   useEffect(() => {
     const progresso: Record<string, number> = {};
@@ -76,7 +87,38 @@ export default function SeminarioPage() {
       }
     }
     setCursosInscritos(progresso);
+    setFavoritos(getFavoritos());
+    setAchievements(getAllAchievements());
   }, []);
+
+  const journeyData = useMemo(() => {
+    return TRILHA_FORMACAO.map((nivel) => ({
+      id: nivel.id,
+      titulo: nivel.titulo,
+      subtitulo: nivel.subtitulo,
+      cor: nivel.cor,
+      icone: nivel.icone,
+      cursos: nivel.cursosIds.map((id) => {
+        const curso = CURSOS.find((c) => c.id === id);
+        return {
+          id,
+          nome: curso?.título || id,
+          progresso: cursosInscritos[id] || 0,
+        };
+      }),
+      requisitos: nivel.requisitos,
+    }));
+  }, [cursosInscritos]);
+
+  const cursosCompletos = useMemo(() => {
+    return Object.entries(cursosInscritos)
+      .filter(([, p]) => p >= 100)
+      .map(([id]) => {
+        const curso = CURSOS.find((c) => c.id === id);
+        return curso ? { id: curso.id, titulo: curso.título } : null;
+      })
+      .filter(Boolean) as { id: string; titulo: string }[];
+  }, [cursosInscritos]);
 
   const statsGlobais = useMemo(() => {
     const inscritos = Object.keys(cursosInscritos).length;
@@ -154,6 +196,7 @@ export default function SeminarioPage() {
               { id: 'trilha' as const, label: 'Formação Teológica', icon: GraduationCap },
               { id: 'catalogo' as const, label: 'Todos os Cursos', icon: BookOpen },
               { id: 'progresso' as const, label: 'Meu Progresso', icon: Trophy },
+              { id: 'favoritos' as const, label: 'Favoritos', icon: Heart },
             ].map(tab => (
               <button
                 key={tab.id}
@@ -184,6 +227,11 @@ export default function SeminarioPage() {
                 <div className="mb-6">
                   <h2 className="font-display text-2xl font-bold text-[var(--content-primary)] mb-2">Trilha de Formação Teológica</h2>
                   <p className="text-[var(--content-secondary)] text-sm">Complete os níveis em ordem para obter sua formação completa</p>
+                </div>
+
+                <div className="mb-8 p-6 rounded-2xl bg-[var(--surface-raised)] border border-[var(--border)]/30">
+                  <h3 className="font-display text-lg font-bold text-[var(--content-primary)] mb-4">Mapa da Jornada</h3>
+                  <JourneyMap niveis={journeyData} />
                 </div>
 
                 <div className="space-y-6">
@@ -257,7 +305,10 @@ export default function SeminarioPage() {
                                       if (!curso) return null;
                                       const prog = cursosInscritos[id] || 0;
                                       return (
-                                        <CursoCardMini key={id} curso={curso} progresso={prog} />
+                                        <CursoCardMini key={id} curso={curso} progresso={prog} favoritos={favoritos} onToggleFavorito={(cursoId) => {
+                                          toggleCursoFavorito(cursoId);
+                                          setFavoritos(getFavoritos());
+                                        }} />
                                       );
                                     })}
                                   </div>
@@ -312,6 +363,11 @@ export default function SeminarioPage() {
                       curso={curso}
                       progresso={cursosInscritos[curso.id] || 0}
                       index={idx}
+                      favoritos={favoritos}
+                      onToggleFavorito={(cursoId) => {
+                        toggleCursoFavorito(cursoId);
+                        setFavoritos(getFavoritos());
+                      }}
                     />
                   ))}
                 </div>
@@ -376,6 +432,39 @@ export default function SeminarioPage() {
                   })}
                 </div>
 
+                {/* Conquistas */}
+                <div className="mb-8">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Medal className="w-5 h-5 text-[var(--brand-default)]" />
+                    <h3 className="font-display text-lg font-bold text-[var(--content-primary)]">Conquistas</h3>
+                  </div>
+                  <div className="p-6 rounded-2xl bg-[var(--surface-raised)] border border-[var(--border)]/30">
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6">
+                      {achievements.map((a) => (
+                        <AchievementBadge key={a.id} achievement={a} size="md" />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Certificados */}
+                {cursosCompletos.length > 0 && (
+                  <div className="mb-8">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Award className="w-5 h-5 text-amber-500" />
+                      <h3 className="font-display text-lg font-bold text-[var(--content-primary)]">Certificados</h3>
+                    </div>
+                    <div className="space-y-6">
+                      {cursosCompletos.map(({ id, titulo }) => (
+                        <div key={id} className="p-6 rounded-2xl bg-[var(--surface-raised)] border border-[var(--border)]/30">
+                          <h4 className="font-semibold text-sm text-[var(--content-primary)] mb-4">{titulo}</h4>
+                          <CertificateGenerator cursoNome={titulo} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Cursos com progresso */}
                 <div className="space-y-3">
                   <h3 className="font-display text-lg font-bold text-[var(--content-primary)]">Cursos em Andamento</h3>
@@ -409,6 +498,115 @@ export default function SeminarioPage() {
                     })
                   )}
                 </div>
+              </motion.div>
+            )}
+
+            {/* Favoritos */}
+            {tabAtiva === 'favoritos' && (
+              <motion.div
+                key="favoritos"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.25 }}
+              >
+                <div className="mb-6">
+                  <h2 className="font-display text-2xl font-bold text-[var(--content-primary)] mb-2">Meus Favoritos</h2>
+                  <p className="text-[var(--content-secondary)] text-sm">Cursos e módulos salvos para acesso rápido</p>
+                </div>
+
+                {favoritos.cursos.length === 0 && favoritos.modulos.length === 0 && favoritos.aulas.length === 0 ? (
+                  <div className="text-center py-16 rounded-2xl bg-[var(--surface-sunken)]">
+                    <Heart className="w-12 h-12 mx-auto mb-3 text-[var(--content-muted)]" strokeWidth={1} />
+                    <p className="text-[var(--content-muted)]">Nenhum favorito ainda</p>
+                    <p className="text-[var(--content-muted)] text-sm mt-1">Toque no ícone de coração nos cursos para salvar aqui</p>
+                  </div>
+                ) : (
+                  <div className="space-y-8">
+                    {favoritos.cursos.length > 0 && (
+                      <div>
+                        <h3 className="font-display text-lg font-bold text-[var(--content-primary)] mb-3">Cursos</h3>
+                        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                          {favoritos.cursos.map(id => {
+                            const curso = CURSOS.find(c => c.id === id);
+                            if (!curso) return null;
+                            return (
+                              <CursoCardCompleto
+                                key={curso.id}
+                                curso={curso}
+                                progresso={cursosInscritos[curso.id] || 0}
+                                index={0}
+                                favoritos={favoritos}
+                                onToggleFavorito={(cursoId) => {
+                                  toggleCursoFavorito(cursoId);
+                                  setFavoritos(getFavoritos());
+                                }}
+                              />
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {favoritos.modulos.length > 0 && (
+                      <div>
+                        <h3 className="font-display text-lg font-bold text-[var(--content-primary)] mb-3">Módulos</h3>
+                        <div className="space-y-3">
+                          {favoritos.modulos.map(modId => {
+                            for (const curso of CURSOS) {
+                              const mod = curso.módulos.find(m => m.id === modId);
+                              if (mod) {
+                                return (
+                                  <div key={modId} className="flex items-center gap-4 p-4 rounded-xl bg-[var(--surface-sunken)] hover:bg-[var(--surface-raised)] transition-colors">
+                                    <div className="w-10 h-10 rounded-xl bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0">
+                                      <BookOpen className="w-5 h-5 text-[var(--brand-default)]" />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                      <span className="font-semibold text-sm text-[var(--content-primary)] block truncate">{mod.título}</span>
+                                      <span className="text-xs text-[var(--content-muted)]">{curso.título} · {mod.aulas.length} aulas</span>
+                                    </div>
+                                    <ChevronRight className="w-4 h-4 text-[var(--content-muted)]" />
+                                  </div>
+                                );
+                              }
+                            }
+                            return null;
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {favoritos.aulas.length > 0 && (
+                      <div>
+                        <h3 className="font-display text-lg font-bold text-[var(--content-primary)] mb-3">Aulas</h3>
+                        <div className="space-y-3">
+                          {favoritos.aulas.map(aulaId => {
+                            for (const curso of CURSOS) {
+                              for (const mod of curso.módulos) {
+                                const aula = mod.aulas.find(a => a.id === aulaId);
+                                if (aula) {
+                                  return (
+                                    <div key={aulaId} className="flex items-center gap-4 p-4 rounded-xl bg-[var(--surface-sunken)] hover:bg-[var(--surface-raised)] transition-colors">
+                                      <div className="w-10 h-10 rounded-xl bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0">
+                                        <Play className="w-5 h-5 text-[var(--brand-default)]" />
+                                      </div>
+                                      <div className="flex-1 min-w-0">
+                                        <span className="font-semibold text-sm text-[var(--content-primary)] block truncate">{aula.título}</span>
+                                        <span className="text-xs text-[var(--content-muted)]">{curso.título} · {mod.título}</span>
+                                      </div>
+                                      <ChevronRight className="w-4 h-4 text-[var(--content-muted)]" />
+                                    </div>
+                                  );
+                                }
+                              }
+                            }
+                            return null;
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
               </motion.div>
             )}
           </AnimatePresence>
@@ -447,17 +645,27 @@ function FilterButton({ active, onClick, children }: { active: boolean; onClick:
   );
 }
 
-function CursoCardMini({ curso, progresso }: { curso: Curso; progresso: number }) {
+function CursoCardMini({ curso, progresso, favoritos, onToggleFavorito }: { curso: Curso; progresso: number; favoritos?: SeminaryFavorites; onToggleFavorito?: (id: string) => void }) {
   const nivelCor = curso.nível === 'iniciante' ? 'text-emerald-500' : curso.nível === 'intermediário' ? 'text-blue-500' : 'text-purple-500';
   const totalAulas = curso.módulos.reduce((acc, m) => acc + m.aulas.length, 0);
+  const isFav = favoritos?.cursos.includes(curso.id) ?? false;
 
   return (
-    <div className="p-4 rounded-xl bg-[var(--surface-sunken)] hover:bg-[var(--surface-raised)] transition-colors cursor-pointer group">
+    <div className="p-4 rounded-xl bg-[var(--surface-sunken)] hover:bg-[var(--surface-raised)] transition-colors cursor-pointer group relative">
+      {onToggleFavorito && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onToggleFavorito(curso.id); }}
+          className="absolute top-3 right-3 p-1 rounded-full hover:bg-[var(--surface-sunken)] transition-colors z-10"
+          aria-label={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+        >
+          <Heart className={cn('w-4 h-4', isFav ? 'fill-[var(--brand-default)] text-[var(--brand-default)]' : 'text-[var(--content-muted)]')} />
+        </button>
+      )}
       <div className="flex items-center gap-2 mb-2">
         <span className={cn('text-[10px] font-bold uppercase tracking-wider', nivelCor)}>{curso.nível}</span>
         {progresso >= 100 && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />}
       </div>
-      <h4 className="font-semibold text-sm text-[var(--content-primary)] group-hover:text-[var(--brand-default)] transition-colors line-clamp-2">{curso.título}</h4>
+      <h4 className="font-semibold text-sm text-[var(--content-primary)] group-hover:text-[var(--brand-default)] transition-colors line-clamp-2 pr-6">{curso.título}</h4>
       <p className="text-xs text-[var(--content-muted)] mt-1">{totalAulas} aulas · {curso.duração}</p>
       {progresso > 0 && (
         <div className="mt-2 flex items-center gap-2">
@@ -471,19 +679,29 @@ function CursoCardMini({ curso, progresso }: { curso: Curso; progresso: number }
   );
 }
 
-function CursoCardCompleto({ curso, progresso, index }: { curso: Curso; progresso: number; index: number }) {
+function CursoCardCompleto({ curso, progresso, index, favoritos, onToggleFavorito }: { curso: Curso; progresso: number; index: number; favoritos?: SeminaryFavorites; onToggleFavorito?: (id: string) => void }) {
   const nivelCor = curso.nível === 'iniciante' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' :
     curso.nível === 'intermediário' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400' :
     'bg-purple-500/10 text-purple-600 dark:text-purple-400';
   const totalAulas = curso.módulos.reduce((acc, m) => acc + m.aulas.length, 0);
+  const isFav = favoritos?.cursos.includes(curso.id) ?? false;
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
-      className="rounded-2xl border border-[var(--border)]/40 bg-[var(--surface-raised)] overflow-hidden hover:shadow-lg transition-all group"
+      className="rounded-2xl border border-[var(--border)]/40 bg-[var(--surface-raised)] overflow-hidden hover:shadow-lg transition-all group relative"
     >
+      {onToggleFavorito && (
+        <button
+          onClick={(e) => { e.stopPropagation(); onToggleFavorito(curso.id); }}
+          className="absolute top-4 right-4 p-2 rounded-full hover:bg-[var(--surface-sunken)] transition-colors z-10"
+          aria-label={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+        >
+          <Heart className={cn('w-5 h-5', isFav ? 'fill-[var(--brand-default)] text-[var(--brand-default)]' : 'text-[var(--content-muted)]')} />
+        </button>
+      )}
       <div className="p-5">
         <div className="flex items-center gap-2 mb-3">
           <span className={cn('text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full', nivelCor)}>
@@ -491,7 +709,7 @@ function CursoCardCompleto({ curso, progresso, index }: { curso: Curso; progress
           </span>
           <span className="text-[10px] text-[var(--content-muted)]">{curso.categoria}</span>
         </div>
-        <h3 className="font-display text-lg font-bold text-[var(--content-primary)] group-hover:text-[var(--brand-default)] transition-colors mb-2">
+        <h3 className="font-display text-lg font-bold text-[var(--content-primary)] group-hover:text-[var(--brand-default)] transition-colors mb-2 pr-8">
           {curso.título}
         </h3>
         <p className="text-sm text-[var(--content-secondary)] line-clamp-2 mb-4">{curso.descrição}</p>

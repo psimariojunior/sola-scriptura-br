@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, createContext, useContext, type ReactNode } from 'react';
 
-export type TemaNome = 'light' | 'dim' | 'escuro' | 'sepia' | 'noturno';
+export type TemaNome = 'light' | 'dim' | 'escuro' | 'sepia' | 'noturno' | 'auto';
 
 export interface TemaConfig {
   nome: TemaNome;
@@ -36,9 +36,38 @@ const TEMAS: Record<TemaNome, TemaConfig> = {
     label: 'Noturno',
     icone: '🌑',
   },
+  auto: {
+    nome: 'auto',
+    label: 'Automático',
+    icone: '🔄',
+  },
 };
 
 const STORAGE_KEY = 'ssb_theme';
+
+function resolverAuto(): TemaNome {
+  const h = new Date().getHours();
+  return h >= 6 && h < 18 ? 'light' : 'escuro';
+}
+
+function aplicarClasses(tema: TemaNome) {
+  const root = document.documentElement;
+  root.classList.remove('dark', 'dim', 'sepia', 'noturno');
+  const resolved = tema === 'auto' ? resolverAuto() : tema;
+  if (resolved === 'escuro' || resolved === 'noturno') {
+    root.classList.add('dark');
+  }
+  if (resolved === 'dim') {
+    root.classList.add('dark');
+    root.classList.add('dim');
+  }
+  if (resolved === 'noturno') {
+    root.classList.add('noturno');
+  }
+  if (resolved === 'sepia') {
+    root.classList.add('sepia');
+  }
+}
 
 interface TemaContextType {
   tema: TemaNome;
@@ -66,36 +95,32 @@ export function TemaProvider({ children }: { children: ReactNode }) {
     const saved = localStorage.getItem(STORAGE_KEY) as TemaNome | null;
     const initial = saved && TEMAS[saved] ? saved : 'escuro';
     setTemaState(initial);
+    aplicarClasses(initial);
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (tema !== 'auto') return;
+    const id = setInterval(() => {
+      aplicarClasses('auto');
+    }, 5 * 60 * 1000);
+    return () => clearInterval(id);
+  }, [tema]);
 
   const setTema = useCallback((novo: TemaNome) => {
     setTemaState(novo);
     localStorage.setItem(STORAGE_KEY, novo);
-    const root = document.documentElement;
-    root.classList.remove('dark', 'dim', 'sepia', 'noturno');
-    if (novo === 'escuro' || novo === 'noturno') {
-      root.classList.add('dark');
-    }
-    if (novo === 'dim') {
-      root.classList.add('dark');
-      root.classList.add('dim');
-    }
-    if (novo === 'noturno') {
-      root.classList.add('noturno');
-    }
-    if (novo === 'sepia') {
-      root.classList.add('sepia');
-    }
-    // light: no class added, uses :root defaults
+    aplicarClasses(novo);
   }, []);
+
+  const resolved = tema === 'auto' ? resolverAuto() : tema;
 
   if (!mounted) {
     return <>{children}</>;
   }
 
   return (
-    <TemaContext.Provider value={{ tema, setTema, temaAtual: TEMAS[tema], temasDisponiveis: Object.values(TEMAS) }}>
+    <TemaContext.Provider value={{ tema, setTema, temaAtual: TEMAS[resolved], temasDisponiveis: Object.values(TEMAS) }}>
       {children}
     </TemaContext.Provider>
   );

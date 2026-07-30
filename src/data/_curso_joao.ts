@@ -72,8 +72,10 @@ A palavra grega *eskēnōsen* ("habitou") significa literalmente "armou sua tend
         {
           id: 'joao-1-2',
           título: 'Os primeiros discípulos',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '12 min',
+          videoUrl: 'https://www.youtube.com/watch?v=x2Q23ddS1TM',
+          videoTítulo: 'João 1-12 || Bible Project Brasil ||',
           conteúdo: `## Os primeiros discípulos
 
 João 1:35-51 narra o chamado dos primeiros seguidores de Jesus. Diferente dos outros Evangelhos, João mostra um processo gradual de reconhecimento.
@@ -111,8 +113,10 @@ Jesus prometeu: "Vereis o céu aberto e os anjos de Deus subindo e descindo sobr
         {
           id: 'joao-1-3',
           título: 'As bodas de Caná: O primeiro sinal',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '12 min',
+          videoUrl: 'https://www.youtube.com/watch?v=x2Q23ddS1TM',
+          videoTítulo: 'João 1-12 – BibleProject Brasil',
           conteúdo: `## As bodas de Caná: O primeiro sinal
 
 João 2:1-11 narra o primeiro "sinal" de Jesus. João usa "sinal" em vez de "milagre" — indicando significado teológico.
@@ -144,8 +148,10 @@ Maria não discutiu. Disse: "Fazei tudo o que ele vos disser." Essa é a postura
         {
           id: 'joao-1-4',
           título: 'Nicodemos: Nascer de novo',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '15 min',
+          videoUrl: 'https://www.youtube.com/watch?v=x2Q23ddS1TM',
+          videoTítulo: 'João 1-12 – BibleProject Brasil',
           conteúdo: `## Nicodemos: Nascer de novo
 
 João 3 contém o diálogo entre Jesus e Nicodemos — e o versículo mais conhecido do cristianismo.
@@ -185,8 +191,10 @@ Jesus conectou com Números 21: "Assim como Moisés levantou a serpente no deser
         {
           id: 'joao-1-5',
           título: 'A mulher samaritana',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '15 min',
+          videoUrl: 'https://www.youtube.com/watch?v=x2Q23ddS1TM',
+          videoTítulo: 'João 1-12 – BibleProject Brasil',
           conteúdo: `## A mulher samaritana
 
 João 4 narra um encontro que quebrou barreiras: Jesus conversou com uma mulher samaritana no poço de Jacó.
@@ -223,8 +231,10 @@ A mulher deixou seu cântaro e foi missionária. Muitos samaritanos creram.`,
         {
           id: 'joao-1-6',
           título: 'O pão da vida',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '15 min',
+          videoUrl: 'https://www.youtube.com/watch?v=x2Q23ddS1TM',
+          videoTítulo: 'João 1-12 – BibleProject Brasil',
           conteúdo: `## O pão da vida
 
 João 6 contém o Sermão do Pão da Vida. Após multiplicar pães para 5.000 pessoas, Jesus declara ser o Pão que desceu do céu.

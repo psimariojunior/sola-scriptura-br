@@ -19,8 +19,10 @@ export const CURSO_FUNDAMENTOS: Curso = {
         {
           id: 'aula-1-1',
           título: 'A Natureza de Deus: Santidade, Amor e Justiça',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '15 min',
+          videoUrl: 'https://www.youtube.com/watch?v=EEf8lGwWr2k',
+          videoTítulo: 'Santidade – BibleProject Português',
           conteúdo: `## A Natureza de Deus: Santidade, Amor e Justiça
 
 Para entendermos o evangelho, precisamos primeiro entender quem é Deus. A Bíblia revela um Deus que é ao mesmo tempo santo, amor e justo — e essas qualidades não se contradizem, mas se harmonizam perfeitamente.
@@ -152,8 +154,10 @@ Entender a gravidade do pecado é essencial para apreciar a grandeza da salvaç�
         {
           id: 'aula-1-3',
           título: 'A Solução em Cristo: Substituição e Expição',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '15 min',
+          videoUrl: 'https://www.youtube.com/watch?v=EEf8lGwWr2k',
+          videoTítulo: 'Santidade – BibleProject Português',
           conteúdo: `## A Solução em Cristo: Substituição e Expição
 
 Se o problema da humanidade é o pecado com suas consequências de morte e separação, a solução não veio através de esforços humanos, religiões ou filosofias. A solução veio através de uma pessoa: Jesus Cristo.
@@ -217,8 +221,10 @@ A cruz sem a ressurreição seria tragédia. A ressurreição transforma a cruz 
         {
           id: 'aula-1-4',
           título: 'O que é Fé?',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '12 min',
+          videoUrl: 'https://www.youtube.com/watch?v=zxWizbQwD08',
+          videoTítulo: 'Metanoia e Fé – BibleProject Português',
           conteúdo: `## O que é Fé?
 
 A fé é o pilar da vida cristã. Sem fé, é impossível agradar a Deus (Hebreus 11:6). Mas o que é fé biblicamente? Não é cega, não é irracional, não é apenas "sentir" algo. A fé bíblica tem conteúdo, fundamento e objeto.

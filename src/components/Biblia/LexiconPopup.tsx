@@ -34,11 +34,14 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
     const vw = window.innerWidth;
     const vh = window.innerHeight;
 
-    let x = position.x;
+    // Center popup horizontally on the clicked word
+    let x = position.x - rect.width / 2;
     let y = position.y;
 
+    // Clamp to viewport
     if (x + rect.width > vw - 16) x = vw - rect.width - 16;
     if (x < 16) x = 16;
+    // If near bottom, show above the word
     if (y + rect.height > vh - 16) y = position.y - rect.height - 8;
     if (y < 16) y = 16;
 

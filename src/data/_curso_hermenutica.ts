@@ -131,8 +131,10 @@ Quando aplicamos esse princípio corretamente, descobrimos algo maravilhoso: a B
         {
           id: 'aula-herm-1-3',
           título: 'Contexto histórico e cultural',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '15 min',
+          videoUrl: 'https://www.youtube.com/watch?v=sAl1sYsN3eM',
+          videoTítulo: 'Estilos literários na Bíblia – BibleProject',
           conteúdo: `## Contexto histórico e cultural
 
 A Bíblia foi escrita em momentos históricos específicos, por pessoas que viviam em culturas muito diferentes da nossa. Ignorar esse fato é como assistir ao último episódio de uma série sem ter visto os anteriores — você até entende algo, mas perde a maior parte do significado.
@@ -529,8 +531,10 @@ A chave é sempre perguntar: "O autor estava sendo literal ou figurado? Como eu 
         {
           id: 'aula-herm-2-3',
           título: 'Literatura profética',
-          tipo: 'texto',
+          tipo: 'video',
           duração: '14 min',
+          videoUrl: 'https://www.youtube.com/watch?v=sAl1sYsN3eM',
+          videoTítulo: 'Estilos literários na Bíblia – BibleProject',
           conteúdo: `## Literatura profética
 
 A literatura profética é uma das mais mal compreendidas da Bíblia. Muita gente abre o livro de Apocalipse ou Isaías e se perde em símbolos, visões e linguagem apocalíptica. Entender os gêneros proféticos é a chave para destrancar esses livros.

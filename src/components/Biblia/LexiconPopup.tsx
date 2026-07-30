@@ -16,7 +16,7 @@ interface LexiconPopupProps {
 
 export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPopupProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [adjustedPos, setAdjustedPos] = useState(position);
+  const [adjustedPos, setAdjustedPos] = useState<{ x: number; y: number } | null>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
   const currentEntry = allResults && allResults.length > 1 
@@ -28,33 +28,42 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
     return () => setMounted(false);
   }, []);
 
+  // Calculate correct position after first render (ref is now attached)
   useEffect(() => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-    const isMobile = vw < 768;
+    if (!mounted) return;
+    // Use rAF to ensure DOM has painted with the initial position
+    const raf = requestAnimationFrame(() => {
+      if (!ref.current) {
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        setAdjustedPos({ x: (vw - Math.min(vw - 32, 320)) / 2, y: vh / 2 - 100 });
+        return;
+      }
+      const rect = ref.current.getBoundingClientRect();
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const isMobile = vw < 768;
 
-    let x: number;
-    let y: number;
+      let x: number;
+      let y: number;
 
-    if (isMobile) {
-      // Mobile: center on screen as a bottom-sheet style card
-      x = (vw - rect.width) / 2;
-      y = vh - rect.height - 24;
-      if (y < 24) y = 24;
-    } else {
-      // Desktop: center horizontally on the clicked word
-      x = position.x - rect.width / 2;
-      y = position.y;
-      if (x + rect.width > vw - 16) x = vw - rect.width - 16;
-      if (x < 16) x = 16;
-      if (y + rect.height > vh - 16) y = position.y - rect.height - 8;
-      if (y < 16) y = 16;
-    }
+      if (isMobile) {
+        x = (vw - rect.width) / 2;
+        y = vh - rect.height - 24;
+        if (y < 24) y = 24;
+      } else {
+        x = position.x - rect.width / 2;
+        y = position.y;
+        if (x + rect.width > vw - 16) x = vw - rect.width - 16;
+        if (x < 16) x = 16;
+        if (y + rect.height > vh - 16) y = position.y - rect.height - 8;
+        if (y < 16) y = 16;
+      }
 
-    setAdjustedPos({ x, y });
-  }, [position]);
+      setAdjustedPos({ x, y });
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [position, mounted]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -81,6 +90,9 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
 
   if (!mounted) return null;
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const isReady = adjustedPos !== null;
+
   return createPortal(
     <>
       <div
@@ -98,16 +110,19 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
         style={{
           position: 'fixed',
           zIndex: 9999,
-          left: adjustedPos.x,
-          top: adjustedPos.y,
-          width: typeof window !== 'undefined' && window.innerWidth < 768 ? 'calc(100vw - 2rem)' : '20rem',
+          left: isReady ? adjustedPos.x : position.x,
+          top: isReady ? adjustedPos.y : position.y,
+          width: isMobile ? 'calc(100vw - 2rem)' : '20rem',
           maxWidth: 'calc(100vw - 2rem)',
           borderRadius: '0.75rem',
           border: '1px solid var(--border)',
           backgroundColor: 'var(--surface-raised)',
           padding: '1rem',
           boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
-          animation: 'scaleIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
+          opacity: isReady ? 1 : 0,
+          pointerEvents: isReady ? 'auto' : 'none',
+          animation: isReady ? 'scaleIn 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) both' : 'none',
+          transformOrigin: isMobile ? 'bottom center' : 'top left',
         }}
       >
       {/* Header */}

@@ -1,25 +1,15 @@
 import { NextRequest } from 'next/server';
-import { getLLMConfig } from '@/lib/llm-config';
-import { rateLimit, getClientIP, RATE_LIMITS, buildRateLimitHeaders } from '@/lib/rate-limit';
+import { streamWithAI } from '@/lib/ai-provider';
+import { AI_CONFIG } from '@/lib/ai-config';
 
 export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
-  // Rate limit: 20/min por IP
-  const ip = getClientIP(request);
-  const rl = rateLimit(ip, 'ia:stream', RATE_LIMITS.IA_STREAM);
-  if (!rl.allowed) {
-    return new Response(JSON.stringify({ erro: 'Muitas requisicoes. Tente novamente em alguns segundos.' }), {
-      status: 429,
-      headers: { 'Content-Type': 'application/json', ...buildRateLimitHeaders(rl) },
-    });
-  }
-
   let body: Record<string, unknown>;
   try {
     body = await request.json();
   } catch {
-    return new Response(JSON.stringify({ erro: 'JSON inválido' }), {
+    return new Response(JSON.stringify({ erro: 'JSON invalido' }), {
       status: 400,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -28,15 +18,14 @@ export async function POST(request: NextRequest) {
   const pergunta = typeof body.pergunta === 'string' ? body.pergunta : '';
   const tradicao = typeof body.tradicao === 'string' ? body.tradicao : undefined;
   const contexto = typeof body.contexto === 'string' ? body.contexto : undefined;
+  const userId = typeof body.userId === 'string' ? body.userId : undefined;
 
   if (!pergunta?.trim()) {
-    return new Response(JSON.stringify({ erro: 'Pergunta é obrigatória' }), {
+    return new Response(JSON.stringify({ erro: 'Pergunta e obrigatoria' }), {
       status: 400,
       headers: { 'Content-Type': 'application/json' },
     });
   }
-
-  const { apiKey, baseUrl, model } = getLLMConfig();
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
@@ -46,20 +35,23 @@ export async function POST(request: NextRequest) {
       };
 
       try {
-        if (apiKey) {
-          await streamDirectLLM(pergunta, tradicao, contexto, send, controller, encoder, apiKey, baseUrl, model);
-        } else {
-          await streamLocal(pergunta, tradicao, send, controller, encoder);
+        send('status', { message: 'Gerando resposta...', etapa: 'ai' });
+
+        for await (const chunk of streamWithAI({
+          question: pergunta,
+          context: contexto,
+          tradicao,
+          userId,
+        })) {
+          if (chunk.done) {
+            send('completo', { pergunta, provider: chunk.provider });
+          } else if (chunk.token) {
+            send('token', { token: chunk.token, provider: chunk.provider });
+          }
         }
       } catch (erro: unknown) {
         const mensagem = erro instanceof Error ? erro.message : String(erro);
-        // Fallback para modo local se creditos acabarem (402) ou LLM indisponivel
-        if (mensagem === 'credits_missing' || mensagem.includes('LLM indispon')) {
-          send('status', { message: 'Modo local ativado...', etapa: 'local' });
-          await streamLocal(pergunta, tradicao, send, controller, encoder);
-        } else {
-          send('erro', { message: mensagem || 'Erro ao processar pergunta' });
-        }
+        send('erro', { message: mensagem || 'Erro ao processar pergunta' });
       } finally {
         controller.close();
       }

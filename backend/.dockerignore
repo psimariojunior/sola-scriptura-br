@@ -2,10 +2,8 @@ node_modules
 dist
 .env
 .env.*
-docker/.env
-.git
 *.log
-Dockerfile
-docker-compose.yml
-nginx
-package-lock.json
+.git
+.gitignore
+coverage
+.nyc_output

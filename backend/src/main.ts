@@ -12,10 +12,14 @@ import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
+import { initSentry } from './infra/sentry';
+import { createLogger } from './infra/logging/pino-logger';
 
 async function bootstrap() {
+  initSentry();
+
   const app = await NestFactory.create(AppModule, {
-    logger: ['error', 'warn', 'log'],
+    logger: createLogger(),
   });
   const configService = app.get(ConfigService);
   const logger = new Logger('SolaScriptura');

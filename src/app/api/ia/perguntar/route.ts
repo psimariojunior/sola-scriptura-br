@@ -1,55 +1,72 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getLLMConfig } from '@/lib/llm-config';
+import { chatWithAI } from '@/lib/ai-provider';
 import { construirContextoRAG } from '@/lib/ragGrounding';
-import { rateLimit, getClientIP, RATE_LIMITS, buildRateLimitHeaders } from '@/lib/rate-limit';
+import { AI_CONFIG } from '@/lib/ai-config';
 
 export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
-  // Rate limit: 20/min por IP
-  const ip = getClientIP(request);
-  const rl = rateLimit(ip, 'ia:perguntar', RATE_LIMITS.IA_CHAT);
-  if (!rl.allowed) {
-    return NextResponse.json(
-      { erro: 'Muitas requisicoes. Tente novamente em alguns segundos.' },
-      { status: 429, headers: buildRateLimitHeaders(rl) }
-    );
-  }
-
   let body: Record<string, unknown>;
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ erro: 'JSON inválido' }, { status: 400 });
+    return NextResponse.json({ erro: 'JSON invalido' }, { status: 400 });
   }
 
   const consulta = typeof body.consulta === 'string' ? body.consulta : '';
   const tradicao = typeof body.tradicao === 'string' ? body.tradicao : undefined;
   const contexto = typeof body.contexto === 'string' ? body.contexto : undefined;
+  const userId = typeof body.userId === 'string' ? body.userId : undefined;
 
   if (!consulta?.trim()) {
-    return NextResponse.json({ erro: 'Pergunta é obrigatória' }, { status: 400 });
+    return NextResponse.json({ erro: 'Pergunta e obrigatoria' }, { status: 400 });
   }
 
-  const { apiKey, baseUrl, model } = getLLMConfig();
+  const inicio = Date.now();
 
-  if (apiKey) {
-    try {
-      const rag = await construirContextoRAG(consulta);
-      const contextoRAG = rag?.temContexto
-        ? `${contexto ? contexto + '\n\n' : ''}Materiais de estudo (use como base primária e cite as fontes):\n${rag.blocos.join('\n\n')}`
-        : contexto;
-      return await chamarLLM(consulta, tradicao, contextoRAG, apiKey, baseUrl, model, rag?.fontes);
-    } catch (erro: unknown) {
-      const mensagem = erro instanceof Error ? erro.message : String(erro);
-      if (mensagem === 'credits_missing') {
-        return NextResponse.json(gerarRespostaLocal(consulta, tradicao));
-      }
-      console.error('LLM falhou, usando resposta local:', mensagem, erro instanceof Error ? erro.cause : undefined);
-    }
+  try {
+    // Build RAG context for grounding
+    const rag = await construirContextoRAG(consulta);
+    const contextoRAG = rag?.temContexto
+      ? `${contexto ? contexto + '\n\n' : ''}Materiais de estudo (use como base primaria e cite as fontes):\n${rag.blocos.join('\n\n')}`
+      : contexto;
+
+    const resultado = await chatWithAI({
+      question: consulta,
+      context: contextoRAG,
+      tradicao,
+      userId,
+    });
+
+    return NextResponse.json({
+      pergunta: consulta,
+      resposta: resultado.content,
+      fontes: rag?.fontes && rag.fontes.length > 0
+        ? rag.fontes.map((f) => ({ referencia: f, tipo: 'comentario' }))
+        : [],
+      fundamentado: !!(rag?.fontes && rag.fontes.length > 0),
+      tradicaoTeologica: tradicao || 'geral',
+      fonte: resultado.provider,
+      metadados: {
+        modelo: resultado.model,
+        tokens: resultado.tokens?.total,
+        tempoMs: Date.now() - inicio,
+        cached: resultado.cached,
+      },
+    });
+  } catch (erro: unknown) {
+    const mensagem = erro instanceof Error ? erro.message : String(erro);
+    console.error('AI provider falhou:', mensagem);
+
+    return NextResponse.json({
+      pergunta: consulta,
+      resposta: `## Assistente Biblico\n\nSua pergunta: **${consulta}**\n\nNo momento, os provedores de IA estao indisponiveis. Por favor, tente novamente em alguns instantes.\n\nEnquanto isso, acesse:\n- [Teologia](/teologia) — doutrinas sistematicas\n- [Pesquisa](/pesquisa) — busca avancada\n- [Exegese](/exegese) — analise versiculo a versiculo`,
+      fontes: [],
+      fonte: 'fallback',
+      tradicaoTeologica: tradicao || 'geral',
+      metadados: { tempoMs: Date.now() - inicio },
+    });
   }
-
-  return NextResponse.json(gerarRespostaLocal(consulta, tradicao));
 }
 
 async function chamarLLM(

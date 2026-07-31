@@ -1,9 +1,10 @@
-import { Controller, Get, HttpCode, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpException, HttpStatus, Inject, Optional } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { Publico } from '../common/decorators/publico.decorator';
 import { HealthCheckResponse } from '../common/dto/health-check.dto';
+import { REDIS_CLIENT } from '../infra/cache/redis.constants';
 
 @ApiTags('Saúde')
 @Controller('health')
@@ -11,6 +12,9 @@ export class SaudeController {
   constructor(
     @InjectDataSource()
     private readonly dataSource: DataSource,
+    @Optional()
+    @Inject(REDIS_CLIENT)
+    private readonly redis: any,
   ) {}
 
   @Publico()
@@ -21,6 +25,16 @@ export class SaudeController {
   async health(): Promise<HealthCheckResponse> {
     const mem = process.memoryUsage();
     const dbCheck = await this.checkDatabase();
+    const redisCheck = await this.checkRedis();
+
+    const dependencies: Record<string, { status: 'healthy' | 'unhealthy' | 'unknown'; latencyMs?: number; message?: string }> = {};
+    if (redisCheck.status !== 'not_configured') {
+      dependencies.redis = {
+        status: redisCheck.status as 'healthy' | 'unhealthy',
+        latencyMs: redisCheck.latencyMs,
+        message: redisCheck.message,
+      };
+    }
 
     if (dbCheck.status !== 'connected') {
       throw new HttpException({
@@ -30,6 +44,7 @@ export class SaudeController {
         environment: process.env.NODE_ENV || 'production',
         uptime: process.uptime(),
         database: dbCheck,
+        dependencies,
       }, HttpStatus.SERVICE_UNAVAILABLE);
     }
 
@@ -46,7 +61,7 @@ export class SaudeController {
         external: `${(mem.external / 1024 / 1024).toFixed(2)} MB`,
       },
       database: dbCheck,
-      dependencies: {},
+      dependencies,
     };
   }
 
@@ -85,6 +100,25 @@ export class SaudeController {
       return {
         status: 'error',
         message: error.message || 'Database connection failed',
+      };
+    }
+  }
+
+  private async checkRedis(): Promise<{ status: 'healthy' | 'unhealthy' | 'not_configured'; latencyMs?: number; message?: string }> {
+    if (!this.redis) {
+      return { status: 'not_configured' };
+    }
+    try {
+      const start = Date.now();
+      await this.redis.ping();
+      return {
+        status: 'healthy',
+        latencyMs: Date.now() - start,
+      };
+    } catch (error: any) {
+      return {
+        status: 'unhealthy',
+        message: error.message || 'Redis connection failed',
       };
     }
   }

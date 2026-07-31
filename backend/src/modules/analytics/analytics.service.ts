@@ -11,7 +11,7 @@ interface TrackEventDto {
   userAgent?: string;
 }
 
-interface AnalyticsSummary {
+export interface AnalyticsSummary {
   totalEvents: number;
   eventsByType: Record<string, number>;
   dailyEvents: Record<string, number>;

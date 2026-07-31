@@ -199,7 +199,7 @@ export default function BibliaPage() {
     <div className="min-h-screen bg-[var(--bg)]">
       <Header /><OfflineBanner />
       <main id="main-content" className="pt-16">
-        <div className="hidden sm:block px-4 sm:px-6 py-2 bg-[var(--surface-raised)]/80 border-b border-[var(--border)]/40 backdrop-blur-sm"><Breadcrumbs items={[{ label: 'Início', href: '/' }, { label: 'Bíblia' }]} /></div>
+        <div className="hidden sm:block px-4 sm:px-6 py-2 bg-[var(--surface-raised)]/80 border-b border-[var(--border)]/40 backdrop-blur-sm"><Breadcrumbs items={[{ label: t('bottomBar.home'), href: '/' }, { label: t('nav.bible') }]} /></div>
         <div className="flex min-h-[100dvh] md:h-[calc(100vh-7rem-40px)] relative overflow-hidden">
           <BibleSidebar
             nav={nav}

@@ -1,5 +1,7 @@
 import { Controller, Post, Get, Body, Query, Req } from '@nestjs/common';
 import { AnalyticsService } from './analytics.service';
+import { Publico } from '../../common/decorators/publico.decorator';
+import { Roles } from '../../common/decorators/roles.decorator';
 import { Request } from 'express';
 
 interface TrackEventDto {
@@ -16,6 +18,7 @@ interface TrackBatchDto {
 export class AnalyticsController {
   constructor(private readonly analyticsService: AnalyticsService) {}
 
+  @Publico()
   @Post('events')
   async trackEvent(@Body() dto: TrackEventDto, @Req() req: Request) {
     const ip =
@@ -32,6 +35,7 @@ export class AnalyticsController {
     });
   }
 
+  @Publico()
   @Post('events/batch')
   async trackBatch(@Body() dto: TrackBatchDto, @Req() req: Request) {
     const ip =
@@ -50,12 +54,14 @@ export class AnalyticsController {
     return this.analyticsService.trackBatch(events);
   }
 
+  @Roles('admin')
   @Get('summary')
   async getSummary(@Query('days') days?: string) {
     const d = days ? parseInt(days, 10) : 30;
     return this.analyticsService.getSummary(d);
   }
 
+  @Roles('admin')
   @Get('events')
   async getRecentEvents(@Query('limit') limit?: string) {
     const l = limit ? parseInt(limit, 10) : 100;

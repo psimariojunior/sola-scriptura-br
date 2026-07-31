@@ -39,12 +39,12 @@ interface NavLinkSpec {
 }
 
 const navLinksStatic: NavLinkSpec[] = [
-  { href: '/biblia', label: 'Bíblia', icon: BookOpen },
-  { href: '/pesquisa', label: 'Pesquisa', icon: Search },
-  { href: '/seminario', label: 'Seminário', icon: GraduationCap },
-  { href: '/teologia', label: 'Teologia', icon: Library },
-  { href: '/estudos', label: 'Estudos', icon: BookOpen },
-  { href: '/ia', label: 'IA', icon: Brain },
+  { href: '/biblia', label: 'nav.bible', icon: BookOpen },
+  { href: '/pesquisa', label: 'nav.search', icon: Search },
+  { href: '/seminario', label: 'nav.seminary', icon: GraduationCap },
+  { href: '/teologia', label: 'nav.theology', icon: Library },
+  { href: '/estudos', label: 'nav.myStudies', icon: BookOpen },
+  { href: '/ia', label: 'nav.ai', icon: Brain },
 ];
 
 interface NavGroup {
@@ -54,50 +54,50 @@ interface NavGroup {
 
 const maisGrupos: NavGroup[] = [
   {
-    titulo: 'Ferramentas',
+    titulo: 'header.tools',
     links: [
-      { href: '/idiomas', label: 'Língua Original', icon: Languages },
-      { href: '/referencias', label: 'Referências Cruzadas', icon: GitBranch },
-      { href: '/topicos', label: 'Índice Tópico', icon: Tag },
-      { href: '/ferramentas', label: 'Ferramentas', icon: Sparkles },
+      { href: '/idiomas', label: 'header.originalLanguage', icon: Languages },
+      { href: '/referencias', label: 'header.crossReferences', icon: GitBranch },
+      { href: '/topicos', label: 'header.topicalIndex', icon: Tag },
+      { href: '/ferramentas', label: 'header.tools', icon: Sparkles },
     ],
   },
   {
-    titulo: 'Contexto Bíblico',
+    titulo: 'header.biblicalContext',
     links: [
-      { href: '/historia', label: 'História', icon: Map },
-      { href: '/cronologia', label: 'Cronologia', icon: History },
-      { href: '/personagens', label: 'Personagens', icon: User },
-      { href: '/atlas', label: 'Atlas Bíblico', icon: Map },
-      { href: '/explorador', label: 'Explorador de Conceitos', icon: Sparkles },
+      { href: '/historia', label: 'header.history', icon: Map },
+      { href: '/cronologia', label: 'header.chronology', icon: History },
+      { href: '/personagens', label: 'header.characters', icon: User },
+      { href: '/atlas', label: 'header.biblicalAtlas', icon: Map },
+      { href: '/explorador', label: 'header.conceptExplorer', icon: Sparkles },
     ],
   },
   {
-    titulo: 'Prática',
+    titulo: 'header.practice',
     links: [
-      { href: '/planos', label: 'Planos de Leitura', icon: Calendar },
-      { href: '/devocional', label: 'Devocional', icon: Heart },
-      { href: '/flashcards', label: 'Flashcards', icon: BookMarked },
-      { href: '/memorizacao', label: 'Memorização', icon: Brain },
-      { href: '/ofertas', label: 'Oferecer', icon: Heart },
+      { href: '/planos', label: 'header.readingPlans', icon: Calendar },
+      { href: '/devocional', label: 'header.devotional', icon: Heart },
+      { href: '/flashcards', label: 'header.flashcards', icon: BookMarked },
+      { href: '/memorizacao', label: 'header.memorization', icon: Brain },
+      { href: '/ofertas', label: 'header.give', icon: Heart },
     ],
   },
   {
-    titulo: 'Comparar & Analisar',
+    titulo: 'header.compareAndAnalyze',
     links: [
-      { href: '/exegese', label: 'Exegese', icon: ScrollText },
-      { href: '/comparar', label: 'Comparar Traduções', icon: Languages },
-      { href: '/comparar-comentarios', label: 'Comentários', icon: MessageCircle },
-      { href: '/relacoes', label: 'Relações Bíblicas', icon: Users },
+      { href: '/exegese', label: 'header.exegesis', icon: ScrollText },
+      { href: '/comparar', label: 'header.compareTranslations', icon: Languages },
+      { href: '/comparar-comentarios', label: 'header.commentaries', icon: MessageCircle },
+      { href: '/relacoes', label: 'header.biblicalRelations', icon: Users },
     ],
   },
   {
-    titulo: 'Comunidade & Progresso',
+    titulo: 'header.communityAndProgress',
     links: [
-      { href: '/dashboard', label: 'Meu Dashboard', icon: BarChart3 },
-      { href: '/comunidade', label: 'Comunidade', icon: MessageCircle },
-      { href: '/quiz', label: 'Quiz Bíblico', icon: HelpCircle },
-      { href: '/desafios', label: 'Desafios', icon: Target },
+      { href: '/dashboard', label: 'header.myDashboard', icon: BarChart3 },
+      { href: '/comunidade', label: 'header.community', icon: MessageCircle },
+      { href: '/quiz', label: 'header.biblicalQuiz', icon: HelpCircle },
+      { href: '/desafios', label: 'header.challenges', icon: Target },
     ],
   },
 ];
@@ -147,7 +147,7 @@ function HeaderInner() {
 
   const navLinks = useMemo(() => navLinksStatic.map(l => ({
     ...l,
-    label: l.href === '/biblia' ? t('nav.bible') : l.href === '/pesquisa' ? t('nav.search') : l.href === '/seminario' ? t('nav.seminary', 'Seminário') : l.href === '/teologia' ? t('nav.theology') : l.href === '/estudos' ? t('nav.myStudies') : l.href === '/ia' ? t('nav.ai') : l.label,
+    label: t(l.label),
   })), [t]);
   const [idioma, setIdioma] = useState<'pt' | 'en'>(() => {
     if (typeof window !== 'undefined') {
@@ -354,7 +354,7 @@ function HeaderInner() {
                   }`}
                 >
                   <span className="relative z-10 flex items-center gap-1">
-                    Mais
+                    {t('header.more')}
                     <ChevronDown className="w-3 h-3" />
                   </span>
                   {isMoreActive && (
@@ -370,7 +370,7 @@ function HeaderInner() {
                 {maisGrupos.map((grupo) => (
                   <div key={grupo.titulo} className="mb-2">
                     <div className="px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60">
-                      {grupo.titulo}
+                      {t(grupo.titulo)}
                     </div>
                     <div className="grid grid-cols-2 gap-0.5">
                       {grupo.links.map((link) => {
@@ -390,7 +390,7 @@ function HeaderInner() {
                               <span className="w-7 h-7 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
                                 <Icon className="w-3.5 h-3.5" strokeWidth={1.75} />
                               </span>
-                              <span className="text-[13px] font-medium leading-tight">{link.label}</span>
+                              <span className="text-[13px] font-medium leading-tight">{t(link.label)}</span>
                             </Link>
                           </DropdownMenuItem>
                         );
@@ -421,8 +421,8 @@ function HeaderInner() {
               onChange={(e) => setHeaderSearchValue(e.target.value)}
               onFocus={() => setHeaderSearchFocused(true)}
               onBlur={() => setHeaderSearchFocused(false)}
-              placeholder="Buscar versículos, teólogos, tópicos…"
-              aria-label="Buscar"
+              placeholder={t('header.searchPlaceholder')}
+              aria-label={t('common.search')}
               className="header-search"
             />
             <kbd className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 hidden xl:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-mono text-muted-foreground/70 border border-border/40 rounded bg-muted/30">
@@ -443,7 +443,7 @@ function HeaderInner() {
                 </button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>{idioma === 'pt' ? 'Mudar para Inglês' : 'Switch to Portuguese'}</p>
+                <p>{idioma === 'pt' ? t('header.switchToEnglish') : 'Switch to Portuguese'}</p>
               </TooltipContent>
             </Tooltip>
 
@@ -453,14 +453,14 @@ function HeaderInner() {
                   <Link
                     href="/admin"
                     className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs text-amber-600 dark:text-amber-400 hover:bg-amber-500/10 rounded-lg transition-all duration-300 font-medium"
-                    aria-label="Painel administrativo"
+                    aria-label={t('header.adminPanel')}
                   >
                     <Settings className="w-3.5 h-3.5" />
                     <span>Admin</span>
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Painel administrativo</p>
+                  <p>{t('header.adminPanel')}</p>
                 </TooltipContent>
               </Tooltip>
             )}
@@ -511,14 +511,14 @@ function HeaderInner() {
                       <DropdownMenuItem asChild>
                         <Link href="/conta" className="flex items-center gap-2 cursor-pointer">
                           <User className="w-4 h-4" />
-                          Minha Conta
+                          {t('header.myAccount')}
                         </Link>
                       </DropdownMenuItem>
                       {isAdmin && (
                         <DropdownMenuItem asChild>
                           <Link href="/admin" className="flex items-center gap-2 cursor-pointer">
                             <Settings className="w-4 h-4" />
-                            Painel Admin
+                            {t('header.adminPanel')}
                           </Link>
                         </DropdownMenuItem>
                       )}
@@ -528,7 +528,7 @@ function HeaderInner() {
                         className="flex items-center gap-2 cursor-pointer text-destructive focus:text-destructive"
                       >
                         <LogOut className="w-4 h-4" />
-                        Sair
+                        {t('header.signOut')}
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -548,14 +548,14 @@ function HeaderInner() {
                   <Link
                     href="/auth/login"
                     className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
-                    aria-label="Entrar na conta"
+                    aria-label={t('header.signInTooltip')}
                   >
                     <User className="w-4 h-4" />
-                    <span>Entrar</span>
+                    <span>{t('header.signIn')}</span>
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Entrar na conta</p>
+                  <p>{t('header.signInTooltip')}</p>
                 </TooltipContent>
               </Tooltip>
             )}
@@ -565,14 +565,14 @@ function HeaderInner() {
                 <Link
                   href="/ofertas"
                   className="flex items-center gap-1 px-2 py-1.5 text-xs font-medium text-amber-500 hover:text-amber-400 rounded-lg transition-colors duration-300"
-                  aria-label="Apoie o projeto"
+                  aria-label={t('header.support')}
                 >
                   <Heart className="w-3.5 h-3.5 fill-current" />
-                  <span>Apoie</span>
+                  <span>{t('header.support')}</span>
                 </Link>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Apoie o projeto voluntariamente</p>
+                <p>{t('header.supportTooltip')}</p>
               </TooltipContent>
             </Tooltip>
 
@@ -582,13 +582,13 @@ function HeaderInner() {
                   <DropdownMenuTrigger asChild>
                     <button
                       className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
-                      aria-label="Temas"
-                    >
-                      {temaIcons[tema] || <Moon className="w-4 h-4" />}
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-44">
-                    <DropdownMenuLabel>Temas</DropdownMenuLabel>
+                    aria-label={t('header.themes')}
+                  >
+                    {temaIcons[tema] || <Moon className="w-4 h-4" />}
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-44">
+                  <DropdownMenuLabel>{t('header.themes')}</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     {temasDisponiveis.map((t) => (
                       <DropdownMenuItem
@@ -613,13 +613,13 @@ function HeaderInner() {
                 <button
                   onClick={() => setBuscaOpen(true)}
                   className="p-2 lg:hidden text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-300"
-                  aria-label="Abrir busca"
+                  aria-label={t('header.openSearch')}
                 >
                   <Search className="w-4 h-4" />
                 </button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Buscar (Ctrl+K)</p>
+                <p>{t('header.searchTooltip')}</p>
               </TooltipContent>
             </Tooltip>
           </div>
@@ -631,13 +631,13 @@ function HeaderInner() {
                 <button
                   onClick={toggleIdioma}
                   className="px-2.5 py-2 min-h-[40px] text-[11px] font-semibold rounded-lg border border-border hover:bg-muted/50 transition-all duration-300 uppercase tracking-wider"
-                  aria-label={idioma === 'pt' ? 'Mudar idioma para inglês' : 'Mudar idioma para português'}
+                  aria-label={idioma === 'pt' ? t('header.changeLangToEnglish') : t('header.changeLangToPortuguese')}
                 >
                   {idioma === 'pt' ? 'EN' : 'PT'}
                 </button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>{idioma === 'pt' ? 'Mudar para Inglês' : 'Switch to Portuguese'}</p>
+                <p>{idioma === 'pt' ? t('header.switchToEnglish') : 'Switch to Portuguese'}</p>
               </TooltipContent>
             </Tooltip>
             <Tooltip>
@@ -645,13 +645,13 @@ function HeaderInner() {
                 <button
                   onClick={() => setBuscaOpen(true)}
                   className="p-2.5 min-h-[40px] min-w-[40px] hover:bg-muted/50 rounded-lg transition-all duration-300"
-                  aria-label="Buscar"
+                  aria-label={t('common.search')}
                 >
                   <Search className="w-5 h-5" />
                 </button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Buscar (Ctrl+K)</p>
+                <p>{t('header.searchTooltip')}</p>
               </TooltipContent>
             </Tooltip>
             <NotificationCenter />
@@ -669,13 +669,13 @@ function HeaderInner() {
                   <button
                     onClick={install}
                     className="p-2.5 min-h-[40px] min-w-[40px] hover:bg-muted/50 rounded-lg transition-all duration-300 text-primary"
-                    aria-label="Instalar o aplicativo"
+                    aria-label={t('header.installApp')}
                   >
                     <Download className="w-5 h-5" />
                   </button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Instalar o app</p>
+                  <p>{t('header.installAppTooltip')}</p>
                 </TooltipContent>
               </Tooltip>
             )}
@@ -684,7 +684,7 @@ function HeaderInner() {
               onClick={() => setOpen(!open)}
               aria-expanded={open}
               aria-controls="mobile-menu"
-              aria-label={open ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
+              aria-label={open ? t('header.closeNavMenu') : t('header.openNavMenu')}
             >
               <motion.span
                 animate={open ? { rotate: 90 } : { rotate: 0 }}
@@ -719,7 +719,7 @@ function HeaderInner() {
               >
                 <nav
                   className="flex flex-col px-5 py-4 gap-1 max-h-[75vh] overflow-y-auto"
-                  aria-label="Navegação mobile"
+                  aria-label={t('header.mobileNav')}
                 >
                   {/* Mobile search */}
                   <form onSubmit={handleHeaderSearchSubmit} className="relative mb-2" role="search">
@@ -728,8 +728,8 @@ function HeaderInner() {
                       type="search"
                       value={headerSearchValue}
                       onChange={(e) => setHeaderSearchValue(e.target.value)}
-                      placeholder="Buscar…"
-                      aria-label="Buscar"
+                      placeholder={t('common.searchPlaceholder')}
+                      aria-label={t('common.search')}
                       className="header-search"
                     />
                   </form>
@@ -769,7 +769,7 @@ function HeaderInner() {
                   {maisGrupos.map((grupo) => (
                     <div key={grupo.titulo}>
                       <div className="px-3 pt-3 pb-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60">
-                        {grupo.titulo}
+                        {t(grupo.titulo)}
                       </div>
                       {grupo.links.map((link, i) => {
                         const Icon = link.icon;
@@ -792,7 +792,7 @@ function HeaderInner() {
                               onClick={() => setOpen(false)}
                             >
                               <Icon className="w-4 h-4" strokeWidth={1.75} />
-                              {link.label}
+                              {t(link.label)}
                             </Link>
                           </motion.div>
                         );
@@ -809,7 +809,7 @@ function HeaderInner() {
                     transition={{ delay: (navLinks.length + maisGrupos.length) * 0.04 }}
                     className="px-3 py-2"
                   >
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60 mb-2 block">Tema</span>
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60 mb-2 block">{t('header.theme')}</span>
                     <div className="flex gap-1.5">
                       {temasDisponiveis.map((t) => (
                         <button
@@ -843,7 +843,7 @@ function HeaderInner() {
                         onClick={() => setOpen(false)}
                       >
                         <Settings className="w-4 h-4" />
-                        Painel Admin
+                        {t('header.adminPanel')}
                       </Link>
                     </motion.div>
                   )}
@@ -864,7 +864,7 @@ function HeaderInner() {
                         <div className="flex flex-col">
                           <span className="text-sm font-medium">{usuario?.nome}</span>
                           <span className="text-[11px] text-muted-foreground">
-                            {xp} XP · 🔥 {streak} dias
+                            {xp} XP · 🔥 {streak} {t('header.days')}
                           </span>
                         </div>
                       </motion.div>
@@ -878,7 +878,7 @@ function HeaderInner() {
                           onClick={() => setOpen(false)}
                         >
                           <User className="w-4 h-4" />
-                          Minha Conta
+                          {t('header.myAccount')}
                         </Link>
                       </motion.div>
                       <motion.div
@@ -890,7 +890,7 @@ function HeaderInner() {
                           className="flex items-center gap-2 text-sm font-medium text-destructive hover:bg-destructive/10 px-3 py-2.5 rounded-lg transition-all w-full min-h-[44px]"
                         >
                           <LogOut className="w-4 h-4" />
-                          Sair
+                          {t('header.signOut')}
                         </button>
                       </motion.div>
                     </>
@@ -906,7 +906,7 @@ function HeaderInner() {
                         onClick={() => setOpen(false)}
                       >
                         <User className="w-4 h-4" />
-                        Entrar
+                        {t('header.signIn')}
                       </Link>
                     </motion.div>
                   )}
@@ -929,6 +929,7 @@ function QuickBookSwitcher({
   onSelect: (abrev: string) => void;
   currentPath: string;
 }) {
+  const { t } = useTranslation();
   const [testamento, setTestamento] = useState<'AT' | 'NT'>('AT');
   const [query, setQuery] = useState('');
 
@@ -956,8 +957,8 @@ function QuickBookSwitcher({
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Buscar livro…"
-            aria-label="Buscar livro"
+            placeholder={t('header.searchBook')}
+            aria-label={t('header.searchBook')}
             autoFocus
             className="w-full h-8 pl-8 pr-2 text-xs rounded-md border border-border/60 bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all"
           />
@@ -982,7 +983,7 @@ function QuickBookSwitcher({
 
       <div className="overflow-y-auto p-2 max-h-[420px]">
         {livrosFiltrados.length === 0 ? (
-          <p className="text-xs text-muted-foreground text-center py-6">Nenhum livro encontrado.</p>
+          <p className="text-xs text-muted-foreground text-center py-6">{t('header.noBooksFound')}</p>
         ) : (
           <div className="grid grid-cols-3 gap-0.5">
             {livrosFiltrados.map((l) => {

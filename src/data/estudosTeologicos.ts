@@ -941,6 +941,338 @@ const estudosData: EstudoVersiculo[] = [
       { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Sola Scriptura', resumo: 'A Palavra entregue é a regra invariável; a igreja a guarda, não a reinventa.', citacao: '«A fé foi entregue de uma vez; não cabe acrescentar nem tirar.»' },
     ],
   },
+  // ═══════════════════════════════════════════════════════════════════════
+  // ROMANOS 5-8 — JUSTIFICAÇÃO E SANTIFICAÇÃO
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'rm', capitulo: 5, versiculo: 1,
+    tema: 'Paz com Deus pela justificação',
+    contexto: 'Paulo declara que, tendo sido justificados pela fé, temos paz com Deus por meio de Jesus Cristo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Paz interior', resumo: 'A paz com Deus não é ausência de conflito externo, mas reconciliação interior. O coração inquieto encontra repouso em Deus.', citacao: '«Fizeste-nos para Ti, Senhor, e inquieto está o nosso coração enquanto não repousar em Ti.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Justificação pela fé', resumo: 'A paz com Deus não vem por obras nem por mérito — vem pela fé em Cristo. É o artigo pelo qual a igreja se sustenta ou cai.', citacao: '«Justificados pela fé, temos paz — não por nossos esforços, mas pela graça de Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Reconciliação', resumo: 'A justificação remove a inimizade entre Deus e o homem. A paz é fruto da reconciliação objetiva operada por Cristo na cruz.', citacao: '«A paz com Deus é o fundamento de toda bênção — sem justificação, não há paz.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Segurança', resumo: 'A paz com Deus é um estado permanente, não um sentimento passageiro. É a certeza de que estamos reconciliados com o Criador.', citacao: '«A paz com Deus é a maior necessidade do homem — e a maior dádiva do evangelho.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 5, versiculo: 12,
+    tema: 'Pecado original — Por um homem entrou o pecado',
+    contexto: 'Paulo explica que por um só homem (Adão) o pecado entrou no mundo, e pelo pecado a morte, afetando todos os homens.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Pecado original', resumo: 'O pecado de Adão contaminou toda a humanidade. Nascemos com uma natureza caída que nos inclina ao mal. A morte é consequência universal do pecado.', citacao: '«Em Adão todos pecaram — o pecado não é apenas ato, é condição herdada.»' },
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Natureza ferida', resumo: 'O pecado original não destruiu a natureza humana, mas a feriu. A razão está obscurecida, a vontade enfraquecida — mas a imagem de Deus permanece.', citacao: '«A natureza humana foi ferida, não destruída — a imagem de Deus permanece, embora deformada.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Depravação total', resumo: 'O pecado de Adão afetou todas as faculdades humanas. Nada em nós escapa ao pecado — somos total e completamente dependentes da graça.', citacao: '«O pecado original é a corrupção da nossa natureza que nos torna culpados diante de Deus.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Nova Perspectiva', visao: 'Adão como tipo', resumo: 'Adão é tipo da humanidade — seu pecado representa o pecado de todos. Assim como em Adão todos morrem, em Cristo todos serão vivificados.', citacao: '«Adão é o tipo daquele que havia de vir — Cristo é o novo Adão que desfaz o mal do primeiro.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 6, versiculo: 6,
+    tema: 'O homem velho foi crucificado com Cristo',
+    contexto: 'Paulo ensina que nosso homem velho foi crucificado com Cristo para que o corpo do pecado fosse destruído.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Morte do pecado', resumo: 'A crucificação do homem velho não é eliminação completa do pecado, mas perda de seu domínio. O pecado ainda habita em nós, mas não reina.', citacao: '«O pecado está em nós, mas não reina — a cruz de Cristo quebrou seu poder.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Simul iustus et peccator', resumo: 'Somos simultaneamente justos e pecadores. O homem velho morre diariamente pela fé, mas a santificação é processo contínuo.', citacao: '«O homem velho é crucificado diariamente — mas a ressurreição é o destino final.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Santificação', resumo: 'A morte do homem velho é o início da santificação. Não é perfeição instantânea, mas direção nova — livres do domínio do pecado.', citacao: '«A santificação é a obra do Espírito que nos liberta gradualmente do domínio do pecado.»' },
+      { teologo: 'John Owen', periodo: '1616-1683', tradicao: 'Puritana', visao: 'Mortificação', resumo: 'O crente deve mortificar diariamente as obras da carne. A cruz não é apenas evento passado — é realidade presente que transforma.', citacao: '«Se o pecado não for mortificado diariamente, ele mortificará o crente.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 7, versiculo: 15,
+    tema: 'O bem que quero não faço — Conflito interior',
+    contexto: 'Paulo descreve o conflito interior do crente entre a lei da mente e a lei do pecado nos membros.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Conflito espiritual', resumo: 'O conflito entre o bem e o mal é a experiência universal do crente. A graça não elimina a luta — dá forças para vencê-la.', citacao: '«O homem justo luta contra o pecado — mas a graça lhe dá a vitória.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Simul iustus et peccator', resumo: 'Este versículo descreve a condição cristã real: queremos o bem, mas fazemos o mal. A solução não é perfeição própria, mas Cristo.', citacao: '«Em mim, isto é, na minha carne, não habita bem algum — mas Cristo habita em mim.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Dependência da graça', resumo: 'O conflito de Paulo nos ensina humildade. Nenhum crente é perfeito — todos dependem diariamente da graça de Deus.', citacao: '«O conflito interior nos mantém humildes e dependentes da graça — sem ela, não podemos fazer nada.»' },
+      { teologo: 'John Wesley', periodo: '1703-1791', tradicao: 'Metodista', visao: 'Santificação progressiva', resumo: 'O conflito de Romanos 7 não precisa ser permanente. A santificação progressiva nos leva a uma vida de vitória sobre o pecado.', citacao: '«A graça não apenas perdoa — ela transforma. O conflito pode diminuir à medida que crescemos em santidade.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 1,
+    tema: 'Nenhuma condenação para os que estão em Cristo',
+    contexto: 'Paulo declara que não há condenação para os que estão em Cristo Jesus — a absolvição definitiva do crente.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Liberdade', resumo: 'A condenação foi removida não porque não somos pecadores, mas porque Cristo foi condenado em nosso lugar. A liberdade é real e total.', citacao: '«Não há condenação — não porque não pecamos, mas porque Cristo pagou o preço.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Justiça imputada', resumo: 'A absolvição do crente é judicial — Deus declara justo quem crê em Cristo. Não é justiça própria, mas justiça recebida.', citacao: '«Diante do tribunal de Deus, o crente é absolvido — não por seus méritos, mas pela fé em Cristo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Segurança eterna', resumo: 'A condenação foi removida definitivamente. Quem está em Cristo não pode ser condenado — a sentença foi cumprida na cruz.', citacao: '«Quem está em Cristo é livre da condenação — a sentença foi executada na cruz, não sobre o crente.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Identidade', resumo: 'Em Cristo temos uma nova identidade — não somos mais definidos por nossos fracassos, mas pela graça de Deus.', citacao: '«A identidade do crente não é baseada no que faz, mas no que Cristo fez por ele.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 14,
+    tema: 'Guiados pelo Espírito de Deus',
+    contexto: 'Paulo afirma que todos os que são guiados pelo Espírito de Deus são filhos de Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Filhos de Deus', resumo: 'A filiação divina não é status legal — é realidade viva. O Espírito nos guia, consola e transforma em filhos semelhantes ao Filho.', citacao: '«O Espírito nos faz filhos — não por adoção legal apenas, mas por transformação real.»' },
+      { teologo: 'John Wesley', periodo: '1703-1791', tradicao: 'Metodista', visao: 'Testemunho do Espírito', resumo: 'O Espírito testifica com o nosso espírito que somos filhos de Deus — é uma certeza interior que vai além da razão.', citacao: '«O Espírito Santo nos garante interiormente que somos filhos de Deus — esta é a certeza cristã.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Direção divina', resumo: 'A guia do Espírito é o distintivo dos filhos de Deus. Quem não é guiado pelo Espírito não pode reivindicar filiação.', citacao: '«A guia do Espírito é a marca do cristão — sem ela, não há filiação.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 15,
+    tema: 'Espírito de adoção — Aba, Pai',
+    contexto: 'Paulo declara que recebemos não espírito de escravidão, mas de adoção, pelo qual clamamos: Aba, Pai.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Intimidade', resumo: 'O clamor "Aba" é a expressão mais íntima da relação com Deus. Não é medo servil — é confiança filial.', citacao: '«Chamar Deus de Pai é o privilégio máximo do cristão — é intimidade com o Criador.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Liberdade', resumo: 'O espírito de adoção nos liberta do medo. Não somos escravos — somos filhos. A oração é conversa com o Pai, não súplica ao juiz.', citacao: '«Em Cristo, deixamos de ser escravos para nos tornarmos filhos — e o Espírito nos ensina a chamar Deus de Pai.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Graça', resumo: 'A adoção é graça pura — não merecemos ser filhos. Deus nos adota em Cristo, e o Espírito nos garante essa filiação.', citacao: '«A adoção é o ato mais livre de Deus — Ele nos escolhe como filhos sem que tenhamos direito.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 26,
+    tema: 'O Espírito intercede por nós',
+    contexto: 'Paulo ensina que o Espírito Santo intercede por nós com gemidos inexprimíveis quando não sabemos como orar.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Intercessão', resumo: 'O Espírito supre nossa fraqueza na oração. Quando não sabemos pedir, Ele intercede com gemidos que vão além das palavras.', citacao: '«O Espírito ora em nós quando não sabemos orar — Ele é o consolador que supre nossa fraqueza.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Auxílio divino', resumo: 'A oração cristã não depende de nossa eloquência — o Espírito aperfeiçoa nossas súplicas. Nenhuma oração sincera é desperdiçada.', citacao: '«O Espírito corrige e aperfeiçoa nossas orações — nenhuma sincera é rejeitada.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Consolo', resumo: 'A intercessão do Espírito é consolo para os momentos de escuridão. Mesmo quando não sentimos nada, o Espírito está orando por nós.', citacao: '«Quando as palavras falham, o Espírito fala — e suas palavras são perfeitas.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 35,
+    tema: 'Quem nos separará do amor de Cristo?',
+    contexto: 'Paulo pergunta retórica: tribulação, angústia, perseguição, fome, nudez, perigo ou espada — nada nos separará do amor de Cristo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Perseverança', resumo: 'Nenhuma força criada pode separar o crente do amor de Cristo. A segurança não está em nossa força, mas no amor inabalável de Deus.', citacao: '«Nem tribulação, nem angústia, nem perseguição nos separará — o amor de Cristo é mais forte que tudo.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Segurança', resumo: 'A lista de Paulo inclui todas as formas de sofrimento — e conclui que nenhuma tem poder para nos arrancar das mãos de Deus.', citacao: '«Cristo nos segura com mão firme — nenhuma força do universo pode nos arrancar dEle.»' },
+      { teologo: 'John Piper', periodo: '1946-', tradicao: 'Reformada', visao: 'Supremacia', resumo: 'O amor de Cristo é supremo sobre todas as circunstâncias. Mesmo na morte, estamos seguros — porque Cristo venceu a morte.', citacao: '«O amor de Cristo é invencível — nada no céu, na terra ou debaixo da terra pode vencê-lo.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // EFÉSIOS 6 — ARMADURA ESPIRITUAL
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ef', capitulo: 6, versiculo: 11,
+    tema: 'Revesti-vos da armadura de Deus',
+    contexto: 'Paulo exorta os crentes a vestir toda a armadura de Deus para resistir às ciladas do diabo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Guerra espiritual', resumo: 'A armadura é Cristo mesmo — cada peça representa uma virtude que recebemos Dele. A força vem de Deus, não de nós mesmos.', citacao: '«Revesti-vos de Cristo — Ele é a armadura que nos protege de todo mal.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola Scriptura', resumo: 'A Espada do Espírito é a Palavra de Deus — a única arma ofensiva. Lutero escreveu o hino "Uma Fortaleza é o nosso Deus" meditando neste texto.', citacao: '«A Palavra de Deus é a espada que corta todas as mentiras e acusações do inimigo.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Vida cristã', resumo: 'A guerra espiritual não é contra pessoas — é contra princípios e potestades. A armadura protege toda a pessoa: verdade, justiça, paz, fé, salvação e Palavra.', citacao: '«O inimigo não é carne e sangue — são as forças espirituais da maldade.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Anglicana', visao: 'Espiritual', resumo: 'A guerra espiritual é real, mas o resultado já está decidido. Cristo venceu na cruz — nós lutamos a partir da vitória, não por ela.', citacao: '«O inimigo é forte, mas já foi derrotado — nossa luta é a da celebração.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 6, versiculo: 13,
+    tema: 'Toma toda a armadura de Deus',
+    contexto: 'Paulo detalha a armadura: cinto da verdade, couraça da justiça, pés calçados com o evangelho, escudo da fé, capacete da salvação e espada do Espírito.',
+    interpretacoes: [
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Virtudes', resumo: 'Cada peça da armadura corresponde a uma virtude teologal: verdade (fé), justiça (esperança), evangelho (caridade), fé (escudo), salvação (capacete).', citacao: '«A armadura de Deus são as virtudes infundidas pelo Espírito — cada uma protege uma parte da alma.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Equipamento', resumo: 'Cada cristão deve vestir TODA a armadura — não apenas parte. A negligência em uma área abre espaço para o ataque.', citacao: '«A armadura é completa — quem negligencia uma peça expõe todo o corpo ao inimigo.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Espada', resumo: 'A espada do Espírito é a única arma ofensiva — a Palavra de Deus. Sem ela, apenas nos defendemos; com ela, avançamos.', citacao: '«A Palavra de Deus é a espada que vence o inimigo — sem ela, somos vulneráveis.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // APOCALIPSE 21-22 — NOVOS CÉUS E NOVA TERRA
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ap', capitulo: 21, versiculo: 1,
+    tema: 'Novos céus e nova terra',
+    contexto: 'João vislumbra a criação renovada — novos céus e nova terra, pois os primeiros passaram.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cidade de Deus', resumo: 'A nova criação é a consumação da Cidade de Deus — onde Deus habita com Seu povo para sempre. Não é fuga do mundo, mas transformação.', citacao: '«A cidade de Deus desce do céu — é Deus vindo habitar conosco, não nós fugindo para Ele.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Restauração', resumo: 'A criação será renovada, não destruída. Deus restaurará todas as coisas — a esperança cristã é de restauração, não aniquilação.', citacao: '«Deus não destruirá a criação — Ele a renovará para que reflita Sua glória original.»' },
+      { teologo: 'Jürgen Moltmann', periodo: '1926-2024', tradicao: 'Teologia da Esperança', visao: 'Transformação', resumo: 'A esperança cristã não é fuga para o céu — é transformação da terra. Deus se compromete com o futuro da criação.', citacao: '«A esperança cristã não é escapar do mundo — é ver o mundo transformado pela glória de Deus.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Anglicana', visao: 'Nova criação', resumo: 'O céu e a terra se encontram — não vamos para o céu, o céu vem para a terra. A realidade final é a fusão dos dois mundos.', citacao: '«O destino final não é ir ao céu — é o céu vir à terra. Deus habitará conosco aqui.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 21, versiculo: 3,
+    tema: 'Eis o tabernáculo de Deus com os homens',
+    contexto: 'O anúncio central da escatologia: Deus habitará com os homens, e eles serão Seu povo, e Deus mesmo estará com eles.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Comunhão eterna', resumo: 'O sonho mais antigo de Deus se cumpre: habitar com Seu povo face a face. A história da salvação culmina na comunhão perfeita.', citacao: '«Deus habitará conosco — é o cumprimento de toda promessa e de toda esperança.»' },
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Visão beatífica', resumo: 'A felicidade final é a visão direta de Deus — habitar com Ele face a face, sem mediação, sem véu.', citacao: '«A visão beatífica é ver Deus como Ele é — face a face, sem sombras.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Presença plena', resumo: 'O tabernáculo do AT era sombra — a realidade é a presença plena de Deus com Seu povo. Não haverá mais templo, porque Deus mesmo é o templo.', citacao: '«Deus será o templo — não precisaremos de edifícios, porque Sua presença será total.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 21, versiculo: 5,
+    tema: 'Eis que faço novas todas as coisas',
+    contexto: 'Aquele que está assentado no trono declara que faz novas todas as coisas — a renovação cósmica final.',
+    interpretacoes: [
+      { teologo: 'Jürgen Moltmann', periodo: '1926-2024', tradicao: 'Teologia da Esperança', visao: 'Nova criação', resumo: 'Deus não apenas consola — Ele renova. A promessa de novas coisas é a base da esperança cristã para o mundo.', citacao: '«A esperança cristã é certeza de que Deus fará todas as coisas novas — não apenas consolará, mas transformará.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Anglicana', visao: 'Continuidade', resumo: 'As coisas novas não substituem as velhas — as transformam. Há continuidade entre a criação presente e a renovada.', citacao: '«Deus não descarta — Ele renova. A nova criação brota da velha como a borboleta da crisálida.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Esperança', resumo: 'Toda injustiça, dor e morte serão desfeitas. A renovação é total — não apenas espiritual, mas cósmica.', citacao: '«Deus não apenas perdoa o passado — Ele reescreve o futuro. Todas as coisas serão feitas novas.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 22, versiculo: 1,
+    tema: 'O rio da vida',
+    contexto: 'João vê um rio de água da vida, límpido como cristal, que sai do trono de Deus e do Cordeiro.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Plenitude', resumo: 'O rio da vida é o Espírito Santo que emana de Deus e irriga toda a criação renovada. É a plenitude da vida divina compartilhada.', citacao: '«O rio da vida é o Espírito que flui do trono de Deus — dando vida eterna a todos os que bebem.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Restauração', resumo: 'O rio de Ezequiel 47 se cumpre aqui — a cura e a restauração que Deus prometeu se realizam plenamente na nova criação.', citacao: '«O rio da vida cumpre a profecia de Ezequiel — onde ele chega, tudo floresce e revive.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Anglicana', visao: 'Nova criação', resumo: 'O rio da vida não é metáfora — é realidade. A nova criação é material e espiritual, física e divina.', citacao: '«A nova criação não é apenas espiritual — é material, física, real. O rio flui, as árvores frutificam.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 22, versiculo: 3,
+    tema: 'Servirão a Deus face a face',
+    contexto: 'Na nova criação, os servos de Deus O servirão face a face, verão Seu rosto, e Seu nome estará em suas frontes.',
+    interpretacoes: [
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Visão beatífica', resumo: 'Ver o rosto de Deus é a felicidade suprema — a realização de todo desejo humano. Nada pode ser comparado a esta visão.', citacao: '«A felicidade final consiste na visão da essência divina — ver Deus face a face.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Intimidade', resumo: 'O serviço na nova criação não é servidão — é adoração livre e alegre. Ver o rosto de Deus é o privilégio dos redimidos.', citacao: '«Servir a Deus face a face é o maior privilégio — é adoração sem véu, sem medo, sem pecado.»' },
+      { teologo: 'Jürgen Moltmann', periodo: '1926-2024', tradicao: 'Teologia da Esperança', visao: 'Comunhão', resumo: 'A comunhão com Deus na nova criação é a realização plena do propósito da criação — Deus e homem juntos para sempre.', citacao: '«A comunhão eterna com Deus é o destino da criação — é o paraíso restaurado.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // SALMOS — CONFORTO, PROTEÇÃO E PALAVRA
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'sl', capitulo: 91, versiculo: 1,
+    tema: 'Debaixo das asas de Deus — Refúgio',
+    contexto: 'O Salmo 91 é o salmo da proteção divina — quem habita no esconderijo do Altíssimo repousa sob Suas asas.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Proteção', resumo: 'Deus é refúgio e fortaleza. A proteção divina não elimina o perigo, mas nos guarda no meio dele. Habitar em Deus é estar seguro.', citacao: '«Quem repousa em Deus está seguro — não porque não há perigo, mas porque Deus é maior que todo perigo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Confiança', resumo: 'O salmo 91 é o salmo da confiança absoluta. Quem se abriga no Altíssimo não teme pestilência nem seta — porque Deus é seu escudo.', citacao: '«A sombra do Altíssimo é o lugar mais seguro do universo — ali, nenhum mal nos alcança.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessante', visao: 'Fé', resumo: 'A proteção de Deus não é garantia de ausência de sofrimento — é garantia de Sua presença no sofrimento. Mesmo na morte, estamos seguros.', citacao: '«Deus nos protege não do sofrimento, mas no sofrimento — e é isso que importa.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 91, versiculo: 4,
+    tema: 'Cobrir-te-á com as suas penas',
+    contexto: 'Deus nos cobre com Suas penas — imagem maternal de proteção, como a galinha cobre seus pintinhos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cuidado maternal', resumo: 'Deus nos protege como mãe protege seus filhos. A metáfora das penas revela ternura, proximidade e cuidado íntimo.', citacao: '«Deus nos cobre com Suas penas — é o cuidado maternal do Criador sobre Suas criaturas.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Providência', resumo: 'A proteção de Deus é pessoal — Ele não cuida da humanidade em abstrato, mas de cada crente individualmente.', citacao: '«Deus cobre cada crente com Suas penas — é cuidado pessoal, não geral.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Conforto', resumo: 'As penas de Deus são nosso refúgio. Quando o mundo é hostil, encontramos abrigo sob as asas do Altíssimo.', citacao: '«Sob as asas de Deus há segurança — ali, o trovão se transforma em canção de ninar.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 91, versiculo: 11,
+    tema: 'Anjos guardiões — Proteção celestial',
+    contexto: 'Deus ordenará Seus anjos para nos guardarem em todos os nossos caminhos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Anjos', resumo: 'Os anjos são mensageiros e protetores de Deus. Eles nos guardam não por nosso mérito, mas por mandamento divino.', citacao: '«Deus ordena Seus anjos para nos guardarem — é Sua bondade, não nosso merecimento.»' },
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Anjos guardiões', resumo: 'Cada crente tem anjo guardião que vê a face de Deus e nos protege. A guarda angélica é parte da providência divina.', citacao: '«O anjo guardião vê a face de Deus e nos protege — é Sua providência sobre cada alma.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'A proteção angélica é instrumento da soberania de Deus. Os anjos servem aos crentes por mandamento divino.', citacao: '«Os anjos são servos de Deus que nos guardam — mas a proteção vem dEle, não deles.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // PROVÉRBIOS 3:5-6 — CONFIANÇA
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'pv', capitulo: 3, versiculo: 5,
+    tema: 'Confia no SENHOR de todo o teu coração',
+    contexto: 'Salomão ensina que a verdadeira sabedoria começa com confiança total em Deus, sem confiar no próprio entendimento.',
+    interpretacoes: [
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Virtude', resumo: 'A confiança em Deus é virtude teologal — não é cegueira, mas reconhecimento de que Deus sabe mais que nós. A razão é útil, mas limitada.', citacao: '«Confiar em Deus é ato de humildade — reconhecer que Sua sabedoria transcende a nossa.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Fé', resumo: 'Confiar de todo o coração significa não confiar em parte em Deus e em parte em si mesmo. É abandono total da autoconfiança.', citacao: '«A fé não divide lealdade — ela a concentra toda em Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Confiar no Senhor é reconhecer Sua soberania sobre todas as coisas. O próprio entendimento é limitado — Deus é infinito.', citacao: '«O coração humano é enganoso — mas Deus é fiel. Confiar nEle é a única segurança.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Confessante', visao: 'Cruz', resumo: 'A confiança plena em Deus muitas vezes significa aceitar o que não entendemos. É na escuridão que a fé se prova verdadeira.', citacao: '«Quando Deus nos chama, Ele nos leva aonde nossa compreensão falha — e é aí que a fé começa.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 3, versiculo: 6,
+    tema: 'Reconhece-O em todos os teus caminhos',
+    contexto: 'A continuação: reconhecer a Deus em todos os caminhos, e Ele endireitará as veredas.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Orientação', resumo: 'Reconhecer a Deus é convidáLo a ser Senhor de todas as áreas da vida — não apenas da espiritualidade, mas do trabalho, dos relacionamentos, das decisões.', citacao: '«Reconhecer a Deus em todos os caminhos é fazer Dele o centro de toda a vida.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Providência', resumo: 'Deus endireita as veredas de quem O reconhece. A orientação divina não é automática — é resposta à submissão do coração.', citacao: '«Quem reconhece a Deus encontra o caminho — Ele endireita o que está torto.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Reconhecer a Deus não é apenas orar antes de comer — é envolver Deus em cada decisão, cada planejamento, cada passo.', citacao: '«Reconhecer a Deus é fazer Dele o GPS da vida — Ele conhece o caminho que não conhecemos.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // FILIPENSES 4:13 — FORÇA EM CRISTO
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'fp', capitulo: 4, versiculo: 13,
+    tema: 'Posso todas as coisas naquele que me fortalece',
+    contexto: 'Paulo escreve da prisão — não é sobre conquista pessoal, mas sobre contentamento em qualquer circunstância pela força de Cristo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Dependência', resumo: 'A força não vem de nós — vem de Cristo. Não é "posso tudo sozinho", mas "posso tudo porque Cristo me fortalece".', citacao: '«Posso todas as coisas — não por mim mesmo, mas por Cristo que habita em mim.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Contentamento', resumo: 'O contentamento é aprendido — e a força para aprender vem de Cristo. Não é resignação, mas confiança ativa.', citacao: '«O segredo do contentamento é a força de Cristo — sem Ele, não podemos suportar.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Este versículo não é para conquistar riquezas — é para perseverar nas dificuldades. Cristo dá força para sofrer, não apenas para prosperar.', citacao: '«Posso todas as coisas — até mesmo suportar a cruz, até mesmo morrer bem.»' },
+      { teologo: 'Timothy Keller', periodo: '1950-2023', tradicao: 'Reformada', visao: 'Contentamento', resumo: 'Paulo não diz "posso tudo" — diz "posso todas as coisas naquele que me fortalece". A força vem de Cristo, não de nós mesmos.', citacao: '«O segredo não é ter tudo — é ter a Cristo em tudo.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // JEREMIAS 29:11 — PLANOS DE DEUS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'jr', capitulo: 29, versiculo: 11,
+    tema: 'Planos de paz e futuro — Esperança no exílio',
+    contexto: 'Deus promete ao povo exilado que tem planos de paz e não de mal, para dar-lhes futuro e esperança.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Providência', resumo: 'Mesmo no exílio — consequência da desobediência — Deus mantém planos de bem. A disciplina divina não é abandono.', citacao: '«Deus não abandona Seu povo no exílio — Ele transforma o castigo em restauração.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Os planos de Deus são soberanos — mesmo quando o povo sofre as consequências de suas escolhas, Deus tem um propósito redentor.', citacao: '«Deus não é surpreendido pelo exílio — Seus planos de bem permanecem mesmo quando falhamos.»' },
+      { teologo: 'Jürgen Moltmann', periodo: '1926-2024', tradicao: 'Teologia da Esperança', visao: 'Esperança', resumo: 'A promessa de futuro não é apenas para Israel — é para toda a criação. Deus é o Deus do futuro — a esperança cristã é certeza do que virá.', citacao: '«A esperança cristã não é fuga do presente — é engajamento no futuro de Deus.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // ISAÍAS 40:31 — RENOVAÇÃO DE FORÇAS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'is', capitulo: 40, versiculo: 31,
+    tema: 'Renovarão as forças — Espera no Senhor',
+    contexto: 'Isaías promete que os que esperam no Senhor renovarão suas forças — subirão com asas como águias.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Esperança', resumo: 'A espera no Senhor não é passividade — é confiança ativa. A renovação vem para quem deposita sua esperança em Deus.', citacao: '«A espera em Deus não cansa — ela renova. Quem confia no Senhor recebe forças novas.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Renovação', resumo: 'A força humana é limitada — a de Deus é infinita. Quem espera em Deus recebe forças que ultrapassam a capacidade natural.', citacao: '«Os que esperam no Senhor renovarão as forças — porque Deus é a fonte inesgotável de energia.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'A águia renova suas penas arrancando as velhas. Às vezes Deus permite a dor para nos renovar.', citacao: '«A águia não voa alto porque é forte — voa alto porque confia no vento. Assim é com Deus.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Anglicana', visao: 'Restauração', resumo: 'A renovação de forças não é apenas espiritual — é restauração completa. Deus não apenas consola, Ele restaura a dignidade e o propósito.', citacao: '«Deus não nos devolve ao estado anterior — Ele nos leva a algo maior.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // 2 TIMÓTEO 3:16 — INSPIRAÇÃO DAS ESCRITURAS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: '2tm', capitulo: 3, versiculo: 16,
+    tema: 'Toda Escritura é inspirada por Deus',
+    contexto: 'Paulo declara a origem divina de toda a Escritura e sua utilidade para ensino, repreensão, correção e instrução em justiça.',
+    interpretacoes: [
+      { teologo: 'Atanásio', periodo: '296-373', tradicao: 'Patrística', visao: 'Autoridade canônica', resumo: 'Toda a Escritura provém de Deus e é suficiente para a fé e o ministério. Não precisamos de revelação extra — a Bíblia basta.', citacao: '«As divinas Escrituras bastam para a piedade e para toda a edificação.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola Scriptura', resumo: 'A Bíblia é a autoridade suprema para fé e prática. Não depende da aprovação da Igreja — é autêntica por si mesma.', citacao: '«A Escritura é a rainha — a Igreja é a serva. A Palavra tem autoridade sobre a tradição.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Clareza e suficiência', resumo: 'A Bíblia é a regra infalível de fé; seu testemunho é confirmado pelo Espírito. É clara o suficiente para o crente comum.', citacao: '«A Escritura é a escola do Espírito Santo, onde aprendemos a Deus perfeitamente.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Autoridade', resumo: 'A inspiração não é ditado mecânico — Deus usou personalidades, culturas e estilos humanos, mas garantiu a verdade.', citacao: '«A Bíblia é simultaneamente Palavra de Deus e palavra humana — divina em origem, humana em expressão.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // HEBREUS 11 — HALL DA FÉ
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'hb', capitulo: 11, versiculo: 1,
+    tema: 'A fé é a certeza das coisas que se esperam',
+    contexto: 'A definição clássica de fé no Novo Testamento: certeza das coisas que se esperam e prova das que não se veem.',
+    interpretacoes: [
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Fé e razão', resumo: 'A fé não é cegueira — é certeza fundada na verdade de Deus. A razão prepara o terreno, mas a fé é o ato de adesão ao invisível.', citacao: '«A fé é o início de toda a vida eterna em nós — nos faz ver o que ainda não vemos.»' },
+      { teologo: 'Martinho Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Fiducia', resumo: 'A fé verdadeira não é apenas conhecimento (notitia), mas também confiança pessoal (fiducia). Crer é confiar em Cristo.', citacao: '«A fé é um conhecimento firme da bondade de Deus para conosco.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Certeza', resumo: 'A fé não é probabilidade — é certeza. Não porque temos provas científicas, mas porque Deus é digno de confiança.', citacao: '«A fé é uma convicção firme e segura da verdade de Deus — acima de toda incerteza humana.»' },
+      { teologo: 'Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'A fé é resposta à Palavra de Deus. Não é invenção humana — é Deus quem Se revela e chama.', citacao: '«A fé é a mão aberta que recebe o que Deus dá — e o que Deus dá é Ele mesmo.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 11, versiculo: 6,
+    tema: 'Sem fé é impossível agradar a Deus',
+    contexto: 'O autor de Hebreus declara que sem fé é impossível agradar a Deus — é necessário crer que Ele existe e que recompensa os que O buscam.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fé', resumo: 'A fé é o fundamento da relação com Deus. Sem ela, não podemos sequer nos aproximar — quanto mais agradar.', citacao: '«A fé é o passo primeiro — sem ela, não há caminho para Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Recompensa', resumo: 'Deus recompensa os que O buscam sinceramente. A fé não é mérito — mas Deus graciosamente recompensa quem confia nEle.', citacao: '«A fé não é mérito — mas Deus a recompensa. É Sua bondade, não nosso direito.»' },
+      { teologo: 'John Piper', periodo: '1946-', tradicao: 'Reformada', visao: 'Deus-centrado', resumo: 'Agradar a Deus é o propósito da vida — e a fé é o meio. Sem fé, buscamos nossa glória; com fé, buscamos a dEle.', citacao: '«A fé é buscar a glória de Deus acima da nossa — e nisso Ele se agrada.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 11, versiculo: 13,
+    tema: 'Estrangeiros e peregrinos na terra',
+    contexto: 'Os heróis da fé morreram sem receber as promessas — viram de longe e as saudaram, confessando que eram estrangeiros na terra.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Peregrinação', resumo: 'O cristão é peregrino neste mundo — sua pátria é celestial. A fé nos faz estrangeiros aqui e cidadãos do céu.', citacao: '«Somos peregrinos — nossa pátria não é aqui, mas no céu. A fé nos faz caminhar para casa.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Esperança', resumo: 'Os santos antigos morreram sem ver o cumprimento — mas viram de longe. A fé é ver o futuro prometido como se já fosse presente.', citacao: '«A fé vê de longe o que ainda não chegou — e se alegra como se já tivesse chegado.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Anglicana', visao: 'Aliança', resumo: 'Os heróis da fé viveram entre duas alianças — viram a promessa, mas não seu cumprimento. Nós vivemos no cumprimento — quanto mais devemos crer.', citacao: '«Eles viram de longe — nós vemos de perto. Nossa responsabilidade é maior.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 11, versiculo: 6,
+    tema: 'Oração dos anciãos — Cura pela fé',
+    contexto: 'Tiago instrui os doentes a chamar os anciãos da igreja para orar e ungir com óleo — a oração da fé salvará o enfermo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cura', resumo: 'A cura divina é real — mas não é automática. A oração da fé é instrumento de Deus, não garantia de cura imediata.', citacao: '«Deus pode curar — e muitas vezes cura através da oração da fé.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Comunidade', resumo: 'A cura não é assunto individual — envolve a comunidade. Os anciãos representam a igreja intercedendo pelo enfermo.', citacao: '«A oração da igreja é poderosa — Deus atende quando Seu povo intercede com fé.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Prático', resumo: 'O óleo pode ter valor medicinal (Tiago não exclui medicina), mas a oração é o elemento essencial. Fé e medicina não se excluem.', citacao: '«A fé não exclui a medicina — a oração e o tratamento andam juntos.»' },
+    ],
+  },
 ];
 
 // Índices para busca rápida
@@ -2304,6 +2636,499 @@ const estudosExtras: EstudoVersiculo[] = [
       { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Consequências do pecado', resumo: 'Sem a lei de Deus, o homem cai em anarquia moral. Juízes mostra o ciclo: pecado, opressão, clamor, libertação, repetição.', citacao: '«Quando cada um faz o que quer, ninguém faz o que é bom.»' },
       { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Necessidade da lei', resumo: 'O livro inteiro é uma demonstração de que Israel precisava de um rei — e aponta para Cristo, o Rei perfeito.', citacao: '«Juízes mostra que sem governo divino, a humanidade se autodestrói.»' },
       { teologo: 'G.K. Chesterton', periodo: '1874-1936', tradicao: 'Anglicana', visao: 'Originalidade do pecado', resumo: '«Cada um fazia o que era certo aos seus olhos» — o pecado original é a recusa de submeter o julgamento pessoal a um padrão objetivo.', citacao: '«O homem moderno não é rebelde — é o próprio juiz da sua própria causa.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // ROMANOS 5-8 — DOUTRINA CENTRAL DA SALVAÇÃO
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'rm', capitulo: 5, versiculo: 1,
+    tema: 'Justificados pela fé — Paz com Deus',
+    contexto: 'Paulo declara que a justificação pela fé traz paz com Deus e acesso à graça.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Paz interior', resumo: 'A justificação não é apenas um decreto legal — é uma realidade transformadora que traz paz profunda entre Deus e o crente.', citacao: '«A paz com Deus não é ausência de conflito, mas reconciliação plena.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola fide', resumo: 'A justificação é pela fé somente — não há obras que possam acrescentar ao que Cristo já fez. A paz é resultado direto da fé.', citacao: '«A fé justificante nos traz paz — não porque somos perfeitos, mas porque Cristo é suficiente.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Posição', resumo: 'A justificação é uma declaração judicial de que o crente é considerado justo diante de Deus. A paz é consequência desta posição.', citacao: '«Deus nos declara justos — e esta declaração é a base da nossa paz eterna.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 5, versiculo: 3,
+    tema: 'Sofrimento produz perseverança',
+    contexto: 'Paulo ensina que o sofrimento gera perseverança, que produz caráter, que gera esperança.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Provação', resumo: 'O sofrimento não é acidente — Deus o usa para amadurecer a fé. Cada trial é uma oportunidade de crescimento espiritual.', citacao: '«O sofrimento é a forja onde Deus forma o caráter do crente.»' },
+      { teologo: 'Bonhoeffer', periodo: '1906-1945', tradicao: 'Luterana', visao: 'Custo da graça', resumo: 'A graça de Deus não elimina o sofrimento — ela o transforma em ferramenta de santificação. O discípulo sofre porque Cristo sofreu.', citacao: '«O sofrimento cristão não é inútil — é o caminho da maturidade espiritual.»' },
+      { teologo: 'N.T. Wright', periodo: 'Contemporâneo', tradicao: 'Anglicana', visao: 'Renovação', resumo: 'O sofrimento atual é temporário e comparativo — a glória futura supera qualquer dor presente. A perseverança produz esperança viva.', citacao: '«O sofrimento é passageiro; a esperança que dele nasce é eterna.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 5, versiculo: 10,
+    tema: 'Reconciliados pela morte do Filho',
+    contexto: 'Paulo argumenta que, sendo inimigos, fomos reconciliados pela morte de Cristo, quanto mais seremos salvos por Sua vida.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Reconciliação', resumo: 'A reconciliação é obra unilateral de Deus — nós éramos inimigos, mas Ele agiu primeiro pela cruz.', citacao: '«Deus nos reconciliou quando éramos inimigos — quanto mais agora que somos amigos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Expiação', resumo: 'A morte de Cristo remove a raiva divina contra o pecado. A vida de Cristo intercede por nós — dupla garantia de salvação.', citacao: '«A cruz é a base da reconciliação; a ressurreição é a garantia da salvação.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 6, versiculo: 4,
+    tema: 'Batismo na morte e ressurreição de Cristo',
+    contexto: 'Paulo ensina que o batismo simboliza a morte do homem velho e o início de uma nova vida em Cristo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Morte e ressurreição', resumo: 'O batismo é sepultura do homem velho. Assim como Cristo morreu e ressuscitou, o crente participa desta realidade.', citacao: '«O batismo é morte e vida — morremos para o pecado e ressuscitamos para Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Sinal da aliança', resumo: 'O batismo é sinal visível da graça invisível. Não é merely simbólico — é participação na morte e ressurreição de Cristo.', citacao: '«O batismo nos assegura que fomos sepultados com Cristo para vivermos uma nova vida.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 6, versiculo: 14,
+    tema: 'Não sob a Lei, sob a graça',
+    contexto: 'Paulo declara que os crentes não estão mais sob a condenação da Lei, mas sob a graça libertadora.',
+    interpretacoes: [
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Lei e graça', resumo: 'A Lei condena, mas a graça liberta. O crente não vive por mérito, mas pela graça que transforma.', citacao: '«A Lei mostra o que Deus exige; a graça dá o que Deus promete.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Terceiro uso da lei', resumo: 'A graça não anula a Lei — ela a cumpre em nós. O crente obedece não para ser salvo, mas porque já é salvo.', citacao: '«A graça não é licença para pecar — é poder para viver em santidade.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 7, versiculo: 15,
+    tema: 'O conflito entre a carne e o espírito',
+    contexto: 'Paulo descreve a luta interna entre o desejo de fazer o bem e a tendência para o pecado.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Pecado original', resumo: 'Mesmo regenerado, o crente ainda luta contra a carne. A graça não elimina a inclinação para o pecado — ela o controla.', citacao: '«Não faço o que quero, mas o que odeio — esta é a condição do regenerado.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Simul iustus et peccator', resumo: 'O crente é ao mesmo tempo justo e pecador. A justificação é completa, mas a santificação é progressiva.', citacao: '«Somos justos e pecadores ao mesmo tempo — a justiça vem de Cristo, o pecado de nós.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Guerra espiritual', resumo: 'A guerra entre carne e espírito é real e contínua. A vitória não é perfeição, mas perseverança na fé.', citacao: '«O crente nunca para de lutar — mas a vitória pertence a Cristo.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 7, versiculo: 25,
+    tema: 'Gratidão pela libertação em Cristo',
+    contexto: 'Paulo conclui sua reflexão declarando gratidão por Jesus Cristo, nosso Senhor, que nos livra do corpo da morte.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Libertação', resumo: 'A libertação do pecado é obra completa de Cristo. Não é esforço humano — é graça divina que nos livra.', citacao: '«Deus me livra do corpo desta morte — graças a Jesus Cristo nosso Senhor.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Agradecimento', resumo: 'A gratidão é a resposta natural à graça. Reconhecemos que Cristo é a única fonte de libertação.', citacao: '«Toda a glória é de Cristo — Ele nos livra onde não podemos nos livrar.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 1,
+    tema: 'Nenhuma condenação em Cristo Jesus',
+    contexto: 'Paulo declara que para os que estão em Cristo Jesus não há condenação — a mais completa declaração de segurança eterna.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Segurança', resumo: 'A condenação foi absorvida por Cristo na cruz. Para os que creem, não há mais veredicto de culpa.', citacao: '«Nenhuma condenação — porque Cristo pagou o preço completo.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Justificação', resumo: 'A justificação é completa e irrevogável. O diabo pode acusar, mas Deus já declarou justos os que creem.', citacao: '«O veredicto de Deus é final: não há condenação para quem está em Cristo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'União com Cristo', resumo: 'A união com Cristo é a base da segurança. Quem está nEle partilha Sua justiça e Sua vitória sobre o pecado.', citacao: '«Em Cristo somos justos — não por obras, mas por união com Ele.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 18,
+    tema: 'As sofrimentos presentes não se comparam à glória futura',
+    contexto: 'Paulo compara as aflições presentes com a glória que será revelada — uma perspectiva escatológica do sofrimento.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Esperança', resumo: 'O sofrimento atual é temporário e insignificante comparado à glória eterna. A perspectiva muda tudo.', citacao: '«Os sofrimentos deste tempo não são dignos de serem comparados com a glória vindoura.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Anglicana', visao: 'Esperança', resumo: 'Se as coisas piores que nos acontecessem fossem as piores possíveis, não teríamos motivo de esperança. Mas há glória à frente.', citacao: '«Se o universo não tem esperança, é porque nós é que não a vimos ainda.»' },
+      { teologo: 'Jürgen Moltmann', periodo: '1926-2024', tradicao: 'Teologia da Esperança', visao: 'Escatologia', resumo: 'A esperança cristã é certeza do que virá. A glória futura transforma o significado do sofrimento presente.', citacao: '«A esperança não é otimismo — é certeza de que Deus restaurará todas as coisas.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 26,
+    tema: 'O Espírito Santo intercede em nossas fraquezas',
+    contexto: 'Paulo ensina que o Espírito Santo auxilia nossa oração quando não sabemos como orar.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Intercessão', resumo: 'O Espírito traduz nossas suspiros em oração aceitável a Deus. Mesmo em silêncio, Ele intercede.', citacao: '«O Espírito ora por nós com suspiros inexprimíveis — Deus entende o que não podemos dizer.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Auxílio divino', resumo: 'A oração não depende de nossas capacidades — o Espírito capacita e guia nossa comunhão com Deus.', citacao: '«Deus não nos abandona na oração — Ele mesmo nos ensina a orar pelo Seu Espírito.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 29,
+    tema: 'Predestinados para sermos conformados à imagem de Cristo',
+    contexto: 'Paulo revela que Deus nos predestinou para sermos conformados à imagem de Seu Filho.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Predestinação', resumo: 'Deus nos escolheu antes da fundação do mundo para sermos como Cristo. A predestinação tem um propósito: conformidade com Cristo.', citacao: '«Deus nos predestinou para sermos o espelho da imagem de Seu Filho.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'A predestinação é ato soberano de Deus — Ele escolhe, chama, justifica e glorifica. Todo o processo é Sua obra.', citacao: '«Deus faz todas as coisas segundo o Seu eterno decreto — sem erro, sem fracasso.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 31,
+    tema: 'Deus por nós — Ninguém contra nós',
+    contexto: 'Paulo declara que se Deus é por nós, quem será contra nós? A mais forte declaração de segurança.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Soberania', resumo: 'Deus é mais poderoso que qualquer inimigo. Se Ele está do nosso lado, nenhum adversário pode nos vencer.', citacao: '«Se Deus é por nós, quem será contra nós? Ninguém pode nos separar do Seu amor.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Coragem', resumo: 'Esta é a base da coragem cristã — não confiamos em nossas forças, mas no Deus que é por nós.', citacao: '«Deus é por nós — esta é a mais grande e confortadora declaração de toda a Bíblia.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 37,
+    tema: 'Mais que vencedores em Cristo',
+    contexto: 'Paulo declara que somos mais do que vencedores por meio dAquele que nos amou.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vitória', resumo: 'Não apenas sobrevivemos ao sofrimento — vencemos nele. A vitória não é nossa, mas de Cristo em nós.', citacao: '«Nossa vitória não vem de nós mesmos — vem dAquele que nos amou.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Perseverança', resumo: 'A vitória é certa porque Deus é fiel. Nada pode nos separar do amor de Cristo — nem sofrimento, nem morte.', citacao: '«Somos mais do que vencedores — porque Cristo já venceu por nós.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 8, versiculo: 38,
+    tema: 'Nada pode nos separar do amor de Deus',
+    contexto: 'Paulo lista tudo que poderia nos separar do amor de Cristo — nada consegue. A culminação da segurança eterna.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor incondicional', resumo: 'Nem morte, nem vida, nem anjos, nem potestades podem nos separar do amor de Deus em Cristo Jesus.', citacao: '«Nada, absolutamente nada, pode nos separar do amor de Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Segurança eterna', resumo: 'A segurança do crente não depende de sua fidelidade, mas da fidelidade de Deus. O amor divino é inquebrantável.', citacao: '«A segurança eterna é garantida pelo amor de Deus — não pela nossa capacidade.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Consolo', resumo: 'Nem a nossa fraqueza, nem os nossos inimigos, nem as forças cósmicas podem nos arrancar das mãos de Deus.', citacao: '«A mão que nos segura é mais forte do que todas as forças que tentam nos arrancar.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // EFÉSIOS 6 — ARMADURA ESPIRITUAL
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ef', capitulo: 6, versiculo: 10,
+    tema: 'Fortalecer-se no Senhor',
+    contexto: 'Paulo exorta os crentes a se fortalecerem no Senhor e na força do Seu poder para a batalha espiritual.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Dependência', resumo: 'A força vem do Senhor — não de nós mesmos. O crente não luta com armas humanas, mas com o poder divino.', citacao: '«A fortaleza do crente não está em si mesmo — está no Senhor.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Batalha espiritual', resumo: 'A vida cristã é guerra espiritual. A vitória não vem de esforço próprio, mas de dependência do poder de Deus.', citacao: '«Não lutamos pela vitória — lutamos a partir da vitória que Cristo já obteve.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 6, versiculo: 11,
+    tema: 'Revestir-se de toda a armadura de Deus',
+    contexto: 'Paulo instrui os crentes a usarem toda a armadura divina para resistir às ciladas do diabo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Proteção espiritual', resumo: 'A armadura é de Deus — não é construída pelo homem. Cada peça representa uma verdade espiritual que nos protege.', citacao: '«A armadura é divina — não a fabricamos, mas a recebemos de Deus.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Guerra espiritual', resumo: 'O diabo é real e astuto. A armadura de Deus é a única defesa eficaz contra seus ataques.', citacao: '«O diabo não dorme — mas a armadura de Deus é mais forte que qualquer ataque.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 6, versiculo: 12,
+    tema: 'Nossa luta não é contra carne e sangue',
+    contexto: 'Paulo revela que a verdadeira batalha é contra principados e potestades espirituais, não contra pessoas.',
+    interpretacoes: [
+      { teologo: 'Epheso (trad.)', periodo: 'Séc. I d.C.', tradicao: 'Bíblica', visao: 'Guerra cósmica', resumo: 'O crente enfrenta forças espirituais que operam nos bastidores da história. A batalha é real, mas a vitória já foi conquistada.', citacao: '«Não lutamos contra homens — lutamos contra forças espirituais da maldade.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Discernimento', resumo: 'Devemos discernir entre o inimigo real (Satanás) e as pessoas que são instrumentos seus. Odiar pessoas é lutar no campo errado.', citacao: '«Nossa luta não é contra os homens — é contra as forças espirituais que os manipulam.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 6, versiculo: 14,
+    tema: 'Cingir os lombos com a verdade e a couraça da justiça',
+    contexto: 'Paulo descreve as primeiras peças da armadura: a verdade que cinge e a justiça que protege o coração.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Verdade e justiça', resumo: 'A verdade de Deus é o cinto que nos mantém firmes. A justiça de Cristo é a couraça que protege nosso coração.', citacao: '«A verdade nos cinge — a justiça nos protege. Sem elas, estamos vulneráveis.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Integridade', resumo: 'A verdade não é apenas doutrina — é vida íntegra. A justiça não é auto-atribuída — é recebida de Cristo.', citacao: '«A verdade é integridade de vida; a justiça é dom de Deus pela fé.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 6, versiculo: 17,
+    tema: 'O capacete da salvação e a espada do Espírito',
+    contexto: 'Paulo completa a armadura com o capacete da salvação e a espada do Espírito, que é a Palavra de Deus.',
+    interpretacoes: [
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Palavra de Deus', resumo: 'A Palavra de Deus é a arma mais poderosa contra Satanás. É a única ofensiva na armadura — ataca as mentiras do inimigo.', citacao: '«A Palavra de Deus é a espada do Espírito — contra ela, nenhuma mentira prospera.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Sola Scriptura', resumo: 'O capacete protege a mente — a salvação garante nossa identidade em Cristo. A espada é a Bíblia, nossa arma ofensiva.', citacao: '«A salvação é o capacete que protege nossa mente; a Palavra é a espada que vence o inimigo.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 6, versiculo: 18,
+    tema: 'Orar em todo tempo no Espírito',
+    contexto: 'Paulo conclui a passagem sobre a armadura com a exortação à oração contínua em todo o tempo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Oração contínua', resumo: 'A oração é a atmosfera da guerra espiritual. Sem ela, a armadura é inútil — a comunhão com Deus é essencial.', citacao: '«Orem sempre — a oração mantém a alma em comunhão com Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Dependência', resumo: 'A oração não é uma das peças — é o elemento que mantém todas as outras. Sem oração, a armadura cai.', citacao: '«A oração é o fio que conecta o crente ao poder de Deus.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // APOCALIPSE — TEMAS ESCATOLÓGICOS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ap', capitulo: 1, versiculo: 8,
+    tema: 'Eu sou o Alfa e o Ômega — Soberania de Cristo',
+    contexto: 'Cristo declara ser o Alfa e o Ômega, o Primeiro e o Derradeiro — início e fim de toda a história.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Eternidade', resumo: 'Cristo é o início e o fim de tudo. Sua soberania se estende sobre toda a criação e toda a história.', citacao: '«Cristo é o Alfa e o Ômega — tudo começa e termina nEle.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'Cristo é a Palavra de Deus que sustenta toda a realidade. Ele é o centro da história e da criação.', citacao: '«Deus falou — e esta Palavra é Cristo, o Alfa e o Ômega.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 3, versiculo: 20,
+    tema: 'Eis que estou à porta e chamo',
+    contexto: 'Cristo se apresenta como um visitante que bate à porta do coração, convidando à comunhão íntima.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Convite', resumo: 'Cristo não força entrada — Ele convida. A porta é o coração humano, e Ele respeita a liberdade.', citacao: '«Cristo bate à porta — mas só entra se abrirmos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Relacionamento', resumo: 'O convite é para comunhão íntima — Cristo quer jantar conosco, não apenas batizar. É chamado ao relacionamento pessoal.', citacao: '«Cristo não quer estar do lado de fora — Ele quer habitar em nós.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 12, versiculo: 11,
+    tema: 'Venceram pelo sangue do Cordeiro e pela palavra do testemunho',
+    contexto: 'A vitória da igreja sobre Satanás se dá pelo sacrifício de Cristo e pela fidelidade até a morte.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vitória', resumo: 'A vitória não é militar mas espiritual. O sangue do Cordeiro é a base, e o testemunho fiel é a evidência.', citacao: '«Venceram pelo sangue do Cordeiro — a cruz é a arma suprema contra o mal.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Martírio', resumo: 'O testemunho fiel até a morte é a forma suprema de vitória. A Igreja vence não pela força, mas pela fidelidade.', citacao: '«O martírio é a vitória suprema — morrer por Cristo é vencer o mundo.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 19, versiculo: 11,
+    tema: 'O cavalo branco — Segunda Vinda de Cristo',
+    contexto: 'Cristo retorna como juiz e rei, montado em cavalo branco, vitorioso em justiça.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Juízo', resumo: 'A segunda vinda de Cristo será visível e gloriosa. Ele virá como juiz justo para recompensar os fiéis e punir os ímpios.', citacao: '«O cavalo branco é o símbolo da vitória — Cristo virá como Rei vitorioso.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Escatologia', resumo: 'A volta de Cristo consumará todas as promessas. A vitória final é certa — o mal será derrotado para sempre.', citacao: '«Cristo virá como juiz — e Sua justiça será perfeita.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 21, versiculo: 3,
+    tema: 'Eis o tabernáculo de Deus com os homens',
+    contexto: 'A visão final: Deus habitará face a face com os homens, sem mais templo intermediário.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Comunhão eterna', resumo: 'O sonho mais antigo de Deus se cumpre: habitar com Seu povo face a face, sem mediação de templo.', citacao: '«Deus habitará com os homens — esta é a consumação de toda a história.»' },
+      { teologo: 'N.T. Wright', periodo: 'Contemporâneo', tradicao: 'Anglicana', visao: 'Nova criação', resumo: 'O céu e a terra se encontram — Deus não nos leva para o céu, mas traz o céu para a terra.', citacao: '«O destino final não é ir ao céu — é o céu vir à terra.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 22, versiculo: 20,
+    tema: 'Amém; vem, Senhor Jesus',
+    contexto: 'A oração mais breve e mais escatológica da igreja — anseio pela volta de Cristo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Esperança', resumo: 'A oração da Igreja é simples: vem, Senhor Jesus. É o anseio mais profundo da alma crente.', citacao: '«Vem, Senhor Jesus — esta é a oração final da Escritura e da Igreja.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Escatologia', resumo: 'A volta de Cristo é certa — Ele mesmo disse: Sim, venho em breve. A Igreja anseia pela consumação.', citacao: '«A oração da Igreja é: vem, Senhor Jesus — e Ele responde: venho em breve.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // SALMOS — LOUVOR, ADORAÇÃO E CONFIANÇA
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'sl', capitulo: 1, versiculo: 1,
+    tema: 'Bem-aventurança do justo',
+    contexto: 'O Salmo 1 abre o hinário com a declaração de bem-aventurança para quem não anda nos conselhos dos ímpios.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Caminhos', resumo: 'Há dois caminhos: o do justo que medita na Palavra, e o do ímpio que perece. A bem-aventurança vem da separação do mal.', citacao: '«Bem-aventurado o homem que não anda no conselho dos ímpios — ele é como árvore plantada.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Meditação', resumo: 'A meditação na Palavra de Deus é o caminho para a felicidade. O justo é aquele que pondera a Escritura dia e noite.', citacao: '«A Palavra de Deus é a fonte de toda bem-aventurança — medite nela continuamente.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 22, versiculo: 1,
+    tema: 'Deus meu, por que me desamparaste?',
+    contexto: 'O salmo messiânico mais citado por Jesus na cruz — a queixa do justo abandonado.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Profecia', resumo: 'Davi profetiza a Paixão de Cristo. As palavras de abandono são as mesmas que Jesus pronunciou na cruz.', citacao: '«Deus meu, por que me desamparaste? — o grito de Cristo na cruz é o grito de todo justo que sofre.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Teologia da cruz', resumo: 'Deus se esconde na cruz — é o paradoxo da fé. O abandono aparente é na verdade a forma mais profunda de presença.', citacao: '«Deus está mais presente onde parece estar mais ausente — na cruz.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 46, versiculo: 10,
+    tema: 'Aquietai-vos e sabei que eu sou Deus',
+    contexto: 'O salmo convida ao silêncio reverente diante da soberania de Deus em meio ao caos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Quietude', resumo: 'O silêncio é a linguagem de Deus. A quietação não é passividade — é reconhecimento da soberania divina.', citacao: '«Aquietai-vos — parem de lutar e reconheçam que Deus é Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'A quietação é cessar de tentar controlar as circunstâncias e reconhecer que Deus governa tudo.', citacao: '«Parem — e saibam que eu sou Deus. A soberania de Deus é nossa paz.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 51, versiculo: 1,
+    tema: 'Misericórdia de Deus — Arrependimento de Davi',
+    contexto: 'O salmo de arrependimento de Davi após seu pecado com Bate-Seba — o mais profundo pedido de perdão.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Arrependimento', resumo: 'Davi reconhece que o pecado é contra Deus antes de ser contra os homens. O arrependimento começa na presença divina.', citacao: '«Contra ti somente pequei — o pecado é sempre uma ofensa a Deus.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Perdão', resumo: 'A misericórdia de Deus é maior que qualquer pecado. Davi encontrou perdão — e todo pecador arrependido também encontrará.', citacao: '«Lava-me彻底mente da minha iniquidade — o perdão de Deus é completo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Novo coração', resumo: 'Cria em mim um coração puro — o pedido é por regeneração. Deus não apenas perdoa — Ele transforma.', citacao: '«O verdadeiro arrependimento pede não apenas perdão, mas um novo coração.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 103, versiculo: 8,
+    tema: 'O Senhor é misericordioso e compassivo',
+    contexto: 'Davi louva o caráter de Deus: misericordioso, paciente, abundante em bondade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Caráter divino', resumo: 'A misericórdia é o atributo mais glorioso de Deus. Ele não nos trata como pecados merecemos, mas com bondade infinita.', citacao: '«O Senhor é misericordioso — não nos trata conforme merecemos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'A misericórdia de Deus não tem limites. Ele perdoa todas as nossas transgressões e cura todas as nossas enfermidades.', citacao: '«Deus remove os nossos pecados como o oriente remove as nuvens — completamente.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 119, versiculo: 9,
+    tema: 'Como se purificará o jovem?',
+    contexto: 'O salmista pergunta como um jovem manterá puro o caminho, e responde: guardando a Palavra de Deus.',
+    interpretacoes: [
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Sola Scriptura', resumo: 'A Palavra de Deus é o purificador da vida. A santidade vem pela meditação e obediência à Escritura.', citacao: '«A Palavra de Deus purifica a vida — é o meio da santificação.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Guarda da Palavra', resumo: 'O jovem é purificado pela obediência à Palavra. A Escritura é guia e protetor do coração.', citacao: '«Guardei a tua Palavra — a obediência à Escritura é o caminho da pureza.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // PROVÉRBIOS — SABEDORIA PRÁTICA
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'pv', capitulo: 1, versiculo: 7,
+    tema: 'O temor do SENHOR é o princípio do conhecimento',
+    contexto: 'O versículo temático de Provérbios: a reverência a Deus é o início de toda sabedoria.',
+    interpretacoes: [
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Sapiencial', resumo: 'O temor de Deus é a virtude que ordena todas as outras. Sem reverência divina, todo conhecimento é vaidade.', citacao: '«O temor do Senhor é o princípio — sem ele, tudo o mais é loucura.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Temor filial', resumo: 'O temor não é escravidão mas reverência. O sabedoria começa quando reconhecemos nossa dependência de Deus.', citacao: '«O temor do Senhor é o começo — quem começa aqui, vai longe.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 3, versiculo: 5,
+    tema: 'Confia no SENHOR de todo o teu coração',
+    contexto: 'O provérbio mais conhecido: confiança absoluta em Deus, sem confiar no próprio entendimento.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Confiança', resumo: 'A confiança em Deus é total — não parcial. Não confiar no próprio entendimento é reconhecer a limitação humana.', citacao: '«Confia no Senhor com todo o teu coração — não dividas tua confiança.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'A sabedoria não vem da razão humana, mas da submissão ao Senhor. Deus guia os que confiam nEle.', citacao: '«Não confie em sua própria compreensão — confie em Deus, e Ele endireitará seus passos.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 4, versiculo: 23,
+    tema: 'Guarda o teu coração',
+    contexto: 'O provérbio mais importante sobre a vida interior: o coração é a fonte de tudo o que somos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Interioridade', resumo: 'O coração é o centro de onde procedem todos os pensamentos e ações. Guardá-lo é guardar toda a vida.', citacao: '«Guarda o teu coração — dele procedem os torrentes da vida.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Vigilância', resumo: 'O coração é enganoso e desesperadamente corrupto — precisa ser vigiado constantemente pela Palavra de Deus.', citacao: '«O coração humano é uma fábrica de ídolos — vigie-o pela Palavra de Deus.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 9, versiculo: 10,
+    tema: 'O temor do SENHOR é princípio da sabedoria',
+    contexto: 'A sabedoria e o conhecimento começam no temor de Deus — reverência que leva à obediência.',
+    interpretacoes: [
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Virtude', resumo: 'O temor de Deus é a virtude cardeal — dele decorrem todas as outras. É o fundamento da vida espiritual.', citacao: '«O temor do Senhor é o princípio da sabedoria porque ordena todas as virtudes.»' },
+      { teologo: 'Jonathan Edwards', periodo: '1703-1758', tradicao: 'Puritana', visao: 'Afeições', resumo: 'O temor não é medo servil mas reverência amorosa. É a afeição mais sublime — combina admiração, amor e temor.', citacao: '«A verdadeira religião consiste em afeições santificadas — e o temor de Deus é a mais sublime.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 16, versiculo: 9,
+    tema: 'O SENHOR endireita os passos',
+    contexto: 'O homem planeja seus caminhos, mas é o Senhor quem determina os passos — soberania sobre os planos humanos.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Podemos planejar, mas Deus dirige. A soberania divina não anula a responsabilidade humana — a complementa.', citacao: '«O homem planeja, mas Deus decide — e Sua decisão é sempre melhor.»' },
+      { teologo: 'Provérbios (trad.)', periodo: '~950 a.C.', tradicao: 'Bíblica', visao: 'Sabedoria', resumo: 'O equilíbrio entre planejamento humano e direção divina é a essência da sabedoria prática.', citacao: '«O coração do homem planeja o seu caminho, mas o Senhor lhe dirige os passos.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 22, versiculo: 6,
+    tema: 'Instrui o menino no caminho',
+    contexto: 'O provérbio sobre educação: instruir a criança desde cedo, e quando velho não se desviará.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Educação', resumo: 'A educação cristã começa na infância. O caráter se forma cedo — a instrução no caminho do Senhor é responsabilidade dos pais.', citacao: '«Instrui o menino no caminho — e quando velho, não se desviará.»' },
+      { teologo: 'John Wesley', periodo: '1703-1791', tradicao: 'Metodista', visao: 'Formação', resumo: 'A formação espiritual na infância é fundamental. O que se planta cedo, colhe-se para sempre.', citacao: '«Dê-me um menino até os sete anos, e lhe darei um homem.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 27, versiculo: 17,
+    tema: 'O ferro afia o ferro',
+    contexto: 'Provérbio sobre o poder das relações saudáveis: o homem afia o semblante do seu amigo.',
+    interpretacoes: [
+      { teologo: 'Provérbios (trad.)', periodo: '~950 a.C.', tradicao: 'Bíblica', visao: 'Relações', resumo: 'A comunhão cristã é essencial para o crescimento. Ninguém cresce sozinho — precisamos uns dos outros.', citacao: '«O ferro afia o ferro — assim o homem afia o semblante do seu amigo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Comunhão', resumo: 'A comunhão entre irmãos é instrumento de Deus para o crescimento mútuo. O estímulo e a correção são ferramentas de aperfeiçoamento.', citacao: '«Nossos amigos são as ferramentas de Deus para nos aperfeiçoar.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // OUTROS LIVROS — VERSÍCULOS ESSENCIAIS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'is', capitulo: 40, versiculo: 31,
+    tema: 'Os que esperam renovam suas forças',
+    contexto: 'Isaías encoraja os exilados com a promessa de renovação para aqueles que esperam no Senhor.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Esperança', resumo: 'A esperança em Deus não decepciona. Quem espera nEle recebe forças novas — não apenas renovadas, mas sobrenaturais.', citacao: '«Os que esperam no Senhor renovarão as suas forças — como águias.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Consolo', resumo: 'A exaustão espiritual é real, mas Deus promete renovação. A espera não é passividade — é confiança ativa.', citacao: '«Quando estiver cansado, espere no Senhor — Ele renovará suas forças como as da águia.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 11, versiculo: 28,
+    tema: 'Vinde a mim, todos os cansados',
+    contexto: 'O convite mais suave de Jesus:Ele recebe os cansados e oprimidos, dando-lhes descanso.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Descanso', resumo: 'O descanso de Cristo não é physically — é espiritual. É descansar do esforço de salvar-se pelas próprias obras.', citacao: '«Vinde a mim — eu sou o descanso que buscavam.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'O jugo de Cristo é suave porque Ele carrega o peso conosco. A graça elimina o esforço auto-salvador.', citacao: '«O jugo de Cristo é suave — porque Ele carrega o fardo conosco.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 22, versiculo: 37,
+    tema: 'Amarás o Senhor teu Deus de todo o teu coração',
+    contexto: 'Jesus resume toda a Lei em dois mandamentos: amar a Deus e amar ao próximo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor ordenado', resumo: 'O amor a Deus é o princípio e o fim de toda a Lei. Quando amamos a Deus primeiro, tudo mais se ordena.', citacao: '«Ama a Deus de todo o teu coração — e tudo o mais virá naturalmente.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Resumo da Lei', resumo: 'Todo o dever do homem se resume em amar a Deus completamente e ao próximo como a si mesmo.', citacao: '«O amor a Deus e ao próximo é todo o cumprimento da Lei.»' },
+    ],
+  },
+  {
+    livro: 'mc', capitulo: 8, versiculo: 34,
+    tema: 'Negue a si mesmo e tome a sua cruz',
+    contexto: 'Jesus chama ao discipulado radical: negar a si mesmo, tomar a cruz e segui-Lo.',
+    interpretacoes: [
+      { teologo: 'Bonhoeffer', periodo: '1906-1945', tradicao: 'Luterana', visao: 'Custo da graça', resumo: 'A graça custa a vida do homem. Seguir a Cristo é morrer para si mesmo — não é conforto, mas cruz.', citacao: '«Quando Cristo chama um homem, chama-o para morrer.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Discipulado', resumo: 'A cruz não é sofrimento aleatório — é sofrimento por causa de Cristo. Negar a si mesmo é submeter a vontade ao Senhor.', citacao: '«Seguir a Cristo é perder a vida para encontrá-la — o paradoxo do evangelho.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 10, versiculo: 10,
+    tema: 'Vida em abundância',
+    contexto: 'Jesus declara que veio para dar vida abundante, em contraste com o ladrão que vem para roubar.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vida plena', resumo: 'A vida abundância não é prosperidade material — é vida em comunhão com Deus, plena de significado e propósito.', citacao: '«Cristo veio para dar vida — não apenas existência, mas vida em abundância.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Propósito', resumo: 'A vida abundância é viver para a glória de Deus. O ladrão rouba a verdadeira vida; Cristo a dá em plenitude.', citacao: '«A vida abundância é viver para Deus — tudo o mais é roubo do ladrão.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 15, versiculo: 5,
+    tema: 'Sem mim nada podeis fazer',
+    contexto: 'Jesus ensina que somos ramos dependentes da videira — sem Ele, não podemos produzir fruto.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Dependência', resumo: 'A união com Cristo é vital — sem ela, somos ramos secos. O fruto é evidência da união, não mérito.', citacao: '«Sem mim nada podeis — a dependência de Cristo é total e constante.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Perseverança', resumo: 'Permanecer na videira é condição para frutificar. A perseverança não é obra humana — é dom divino.', citacao: '«Permaneçam em mim — e eu permaneçamos em vós. A união é a chave do fruto.»' },
+    ],
+  },
+  {
+    livro: 'gl', capitulo: 2, versiculo: 20,
+    tema: 'Estou crucificado com Cristo',
+    contexto: 'Paulo declara sua identidade em Cristo: crucificado, mas vivendo pela fé no Filho de Deus.',
+    interpretacoes: [
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Morte e vida', resumo: 'O crente morre para o pecado e vive para Cristo. A identidade antiga é substituída pela nova em Cristo.', citacao: '«Estou crucificado com Cristo — já não sou eu que vivo, mas Cristo vive em mim.»' },
+      { teologo: 'Bonhoeffer', periodo: '1906-1945', tradicao: 'Luterana', visao: 'Discipulado', resumo: 'A cruz é o centro da vida cristã. Viver é morrer diariamente para si mesmo e viver para Cristo.', citacao: '«A vida cristã é uma cruz — morrer para si mesmo todos os dias.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 12, versiculo: 2,
+    tema: 'Olhando para Jesus, autor e consumador da fé',
+    contexto: 'O autor de Hebreus encoraja a perseverança olhando para Jesus como modelo e consumador da fé.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Perseverança', resumo: 'A fé começa e termina em Cristo. Ele é tanto o iniciador quanto o aperfeiçoador de toda a fé.', citacao: '«Olhando para Jesus — Ele é o autor e consumador da fé.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Centro', resumo: 'Jesus é o centro de toda a fé cristã. O olhar deve ser fixo nEle — não nas circunstâncias, mas no Salvador.', citacao: '«Olhe para Jesus — não para as tempestades, não para as dunhas, mas para o Salvador.»' },
+    ],
+  },
+  {
+    livro: 'tg', capitulo: 1, versiculo: 5,
+    tema: 'Pedir sabedoria a Deus',
+    contexto: 'Tiago ensina que a sabedoria divina está disponível para todos que pedem com fé.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Sabedoria', resumo: 'Deus não recusa sabedoria a quem pede de coração sincero. A sabedoria divina é um dom, não um mérito.', citacao: '«Se alguém tem falta de sabedoria, peça-a a Deus — Ele a dá liberalmente.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Oração', resumo: 'A oração é o meio pelo qual recebemos sabedoria. Deus não censura quem pede — Ele responde com generosidade.', citacao: '«Deus dá sabedoria a todos sem distinção — é dom de Sua graça.»' },
+    ],
+  },
+  {
+    livro: 'tg', capitulo: 4, versiculo: 7,
+    tema: 'Sujeitai-vos a Deus; resisti ao diabo',
+    contexto: 'Tiago ensina a ordem correta: primeiro submeter-se a Deus, depois resistir ao diabo.',
+    interpretacoes: [
+      { teologo: 'Tiago (trad.)', periodo: 'Séc. I d.C.', tradicao: 'Bíblica', visao: 'Guerra espiritual', resumo: 'A resistência ao diabo só é eficaz quando precedida da submissão a Deus. A ordem é essential.', citacao: '«Sujeitai-vos primeiro a Deus — depois resisti ao diabo, e fugirá.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Dependência', resumo: 'A vitória sobre Satanás não vem de força própria — vem da submissão total a Deus. A submissão é a chave.', citacao: '«Não resistimos ao diabo com nossas forças — mas com o poder de Deus que habita em nós.»' },
+    ],
+  },
+  {
+    livro: '1co', capitulo: 10, versiculo: 13,
+    tema: 'Tentação tem saída',
+    contexto: 'Paulo assegura que Deus é fiel e não permite tentação acima do que podemos suportar, preparando sempre uma saída.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Proteção', resumo: 'Deus limita a tentação — Ele nunca permite que sejamos tentados além de nossa capacidade. A saída é sempre fornecida.', citacao: '«Deus é fiel — não permite tentação acima do que podemos suportar.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Providência', resumo: 'Deus controla a tentação — Ele a permite para testar, não para destruir. A saída é o caminho de fuga que Deus prepara.', citacao: '«Deus prepare um caminho de saída — mas é preciso escolhê-lo.»' },
+    ],
+  },
+  {
+    livro: '2co', capitulo: 5, versiculo: 17,
+    tema: 'Nova criatura em Cristo',
+    contexto: 'Paulo declara que quem está em Cristo é nova criatura — as coisas velhas passaram.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Regeneração', resumo: 'A conversão é uma nova criação real — não apenas reforma, mas transformação completa da natureza.', citacao: '«Se alguém está em Cristo, nova criatura é — tudo se torna novo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Identidade', resumo: 'A identidade do crente é transformada — a velha natureza morre e uma nova nasce. É obra de Deus, não de esforço humano.', citacao: '«A nova criação é obra de Deus — Ele faz todas as coisas novas em Cristo.»' },
+    ],
+  },
+  {
+    livro: 'cl', capitulo: 3, versiculo: 23,
+    tema: 'Tudo o que fizerdes, fazei como ao Senhor',
+    contexto: 'Paulo ensina que o trabalho e o serviço devem ser feitos como se servissemos diretamente ao Senhor.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Vocação', resumo: 'Todo trabalho é vocação quando feito para a glória de Deus. Não há distinção entre sagrado e secular.', citacao: '«Tudo o que fizerdes, fazei como ao Senhor — Ele é o verdadeiro patrão.»' },
+      { teologo: 'Dietrich Bonhoeffer', periodo: '1906-1945', tradicao: 'Luterana', visao: 'Vida cotidiana', resumo: 'A vida cristã é vivida no cotidiano — no trabalho, nos relacionamentos, nas tarefas simples. Tudo é para Deus.', citacao: '«A graça de Deus não é o conforto — é o chamado a viver para Ele em tudo.»' },
     ],
   },
 ];

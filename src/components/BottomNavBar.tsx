@@ -155,7 +155,7 @@ function BottomNavBarInner() {
             className="fixed bottom-[calc(60px+env(safe-area-inset-bottom,0px))] left-2 right-2 z-[61] bg-card border border-border rounded-xl shadow-xl overflow-hidden animate-[slideUp_0.2s_ease-out]"
             role="dialog"
             aria-modal="true"
-            aria-label="Mais opcoes de navegacao"
+            aria-label={t('header.moreNavOptions')}
             style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
           >
             <div className="flex items-center justify-between px-4 py-3 border-b border-border">
@@ -163,7 +163,7 @@ function BottomNavBarInner() {
               <button
                 onClick={closeMore}
                 className="p-1 rounded-lg hover:bg-muted transition-colors"
-                aria-label="Fechar menu"
+                aria-label={t('header.closeMenu')}
               >
                 <X className="w-4 h-4" />
               </button>
@@ -216,7 +216,7 @@ function BottomNavBarInner() {
 
       {/* Barra inferior */}
       <nav
-        aria-label="Navegacao mobile"
+        aria-label={t('header.mobileNav')}
         className={`fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-background/95 backdrop-blur-xl transition-transform duration-300 ${hidden ? 'translate-y-full' : 'translate-y-0'}`}
         style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       >
@@ -232,7 +232,7 @@ function BottomNavBarInner() {
                 <button
                   key={tab.href}
                   onClick={toggleMore}
-                  aria-label="Mais opcoes"
+                  aria-label={t('header.more')}
                   aria-expanded={showMore}
                   className={`relative flex flex-col items-center justify-center flex-1 min-h-[44px] py-2 transition-colors ${
                     active ? 'text-primary' : 'text-muted-foreground'

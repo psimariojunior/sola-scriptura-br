@@ -24,7 +24,13 @@ interface SignalingRoom {
 
 @WebSocketGateway({
   cors: {
-    origin: '*',
+    origin: [
+      'https://solascripturabr.com.br',
+      'https://www.solascripturabr.com.br',
+      'https://sola-scriptura-br.vercel.app',
+      'http://localhost:3000',
+    ],
+    credentials: true,
     methods: ['GET', 'POST'],
   },
   path: '/socket.io/',

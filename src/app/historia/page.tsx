@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { cronologia, type EventoCronologia } from '@/data/biblia';
@@ -96,6 +97,7 @@ function agruparPorPeriodo(eventos: EventoCronologia[]): Map<string, EventoCrono
 // ═══════════════════════════════════════════════════════════════════════════════
 
 export default function HistoriaPage() {
+  const { t } = useTranslation();
   const [aba, setAba] = useState<'periodos' | 'timeline' | 'civilizacoes'>('periodos');
   const [periodoExpandido, setPeriodoExpandido] = useState<string | null>(null);
   const [painelVersiculo, setPainelVersiculo] = useState<{
@@ -129,13 +131,13 @@ export default function HistoriaPage() {
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
                 <Globe className="w-4 h-4" />
-                Contexto Histórico das Escrituras
+                {t('historia.badge')}
               </div>
               <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-light mb-4">
-                História <span className="text-primary italic">Bíblica</span>
+                {t('historia.title1')} <span className="text-primary italic">{t('historia.title2')}</span>
               </h1>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                {cronologia.length} eventos cronológicos reais — viaje através dos tempos bíblicos
+                {t('historia.eventCount', { count: cronologia.length })}
               </p>
             </div>
           </ScrollReveal>
@@ -144,9 +146,9 @@ export default function HistoriaPage() {
             <div className="glass-card p-1.5 mb-8 rounded-2xl">
               <div className="flex">
                 {([
-                  { id: 'periodos' as const, label: 'Períodos', icon: BookOpen },
-                  { id: 'timeline' as const, label: 'Linha do Tempo', icon: CalendarDays },
-                  { id: 'civilizacoes' as const, label: 'Civilizações', icon: Globe },
+                  { id: 'periodos' as const, label: t('historia.periods'), icon: BookOpen },
+                  { id: 'timeline' as const, label: t('historia.timeline'), icon: CalendarDays },
+                  { id: 'civilizacoes' as const, label: t('historia.civilizations'), icon: Globe },
                 ]).map(({ id, label, icon: Icon }) => (
                   <button
                     key={id}
@@ -189,8 +191,8 @@ export default function HistoriaPage() {
                               <div className="flex flex-wrap items-center gap-3">
                                 <h2 className="text-xl font-display text-white font-semibold">{p.nome}</h2>
                                 <span className="text-xs font-medium text-white/80 bg-white/20 px-3 py-1 rounded-full">
-                                  {p.eventos.length} eventos
-                                </span>
+                                   {p.eventos.length} {t('historia.eventCountShort')}
+                                 </span>
                               </div>
                               {p.eventos.length > 0 && (
                                 <p className="text-sm text-white/80 mt-1">

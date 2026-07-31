@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { linkificarReferenciasHTML } from '@/components/VersiculoLink';
 
 interface Mensagem {
@@ -93,6 +94,7 @@ function iconTipoFonte(tipo: string): string {
 }
 
 export default function AIChat({ className = '', tradicao: tradicaoExterna, onTradicaoChange }: AIChatProps) {
+  const { t } = useTranslation();
   const [mensagens, setMensagens] = useState<Mensagem[]>([]);
   const [input, setInput] = useState('');
   const [tradicaoInterna, setTradicaoInterna] = useState('');
@@ -244,7 +246,7 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
             ? {
                 ...m,
                 status: 'erro',
-                conteudo: m.conteudo || 'Desculpe, ocorreu um erro ao processar sua pergunta. Tente novamente.',
+                conteudo: m.conteudo || t('aiChat.error'),
               }
             : m,
         ),
@@ -283,9 +285,9 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
 
   const exportarConversa = useCallback(() => {
     const linhas = mensagens.map(m => {
-      const prefix = m.role === 'user' ? '## Você' : '## Assistente IA';
+      const prefix = m.role === 'user' ? `## ${t('aiChat.you')}` : `## ${t('aiChat.assistant')}`;
       const fontes = m.fontes?.length
-        ? `\n\n*Fontes: ${m.fontes.map(f => f.referencia).join(', ')}*`
+        ? `\n\n*${t('aiChat.sources')} ${m.fontes.map(f => f.referencia).join(', ')}*`
         : '';
       return `${prefix}\n\n${m.conteudo}${fontes}`;
     });
@@ -294,10 +296,10 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `conversa-ia-${new Date().toISOString().slice(0, 10)}.md`;
+    a.download = `${t('aiChat.exportFilename')}-${new Date().toISOString().slice(0, 10)}.md`;
     a.click();
     URL.revokeObjectURL(url);
-  }, [mensagens]);
+  }, [mensagens, t]);
 
   const limparConversa = useCallback(() => {
     setMensagens([]);
@@ -314,10 +316,10 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
           </div>
           <div>
             <h3 className="font-semibold text-sm text-gray-900 dark:text-gray-100">
-              Assistente Bíblico
+              {t('aiChat.title')}
             </h3>
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              Powered by GPT-4o + RAG
+              {t('aiChat.subtitle')}
             </p>
           </div>
         </div>
@@ -339,7 +341,7 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
             onClick={exportarConversa}
             disabled={mensagens.length === 0}
             className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 transition-colors"
-            title="Exportar conversa"
+            title={t('aiChat.exportChat')}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -349,7 +351,7 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
             onClick={limparConversa}
             disabled={mensagens.length === 0}
             className="p-1.5 rounded-lg text-gray-400 hover:text-red-500 dark:hover:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 transition-colors"
-            title="Limpar conversa"
+            title={t('aiChat.clearChat')}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -368,13 +370,13 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
               </svg>
             </div>
             <p className="font-medium text-gray-600 dark:text-gray-300 mb-1">
-              Assistente Bíblico com IA
+              {t('aiChat.emptyTitle')}
             </p>
             <p className="text-sm max-w-xs">
-              Faça perguntas sobre teologia, exegese, personagens bíblicos, línguas originais e mais.
+              {t('aiChat.emptyDesc')}
             </p>
             <div className="flex flex-wrap gap-2 mt-4 justify-center">
-              {['O que é graça?', 'Quem foi Paulo?', 'Analise João 3:16'].map(sugestao => (
+              {(t('aiChat.suggestions', { returnObjects: true }) as string[]).map(sugestao => (
                 <button
                   key={sugestao}
                   onClick={() => { setInput(sugestao); inputRef.current?.focus(); }}
@@ -409,13 +411,13 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
 
               {msg.role === 'assistant' && msg.fontes && msg.fontes.length > 0 && (
                 <div className="mt-3 pt-2 border-t border-gray-200 dark:border-gray-700">
-                  <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Fontes:</p>
+                  <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">{t('aiChat.sources')}</p>
                   <div className="flex flex-wrap gap-1">
                     {msg.fontes.map((fonte, i) => (
                       <span
                         key={i}
                         className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300"
-                        title={`Relevância: ${Math.round(fonte.relevancia * 100)}%`}
+                        title={`${t('aiChat.relevance')} ${Math.round(fonte.relevancia * 100)}%`}
                       >
                         <span>{iconTipoFonte(fonte.tipo)}</span>
                         <span>{fonte.referencia}</span>
@@ -439,7 +441,7 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
                   <button
                     onClick={() => copiarMensagem(msg.conteudo)}
                     className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                    title="Copiar"
+                    title={t('aiChat.copy')}
                   >
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -470,7 +472,7 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Faça sua pergunta bíblica... (Enter para enviar)"
+            placeholder={t('aiChat.placeholder')}
             rows={1}
             className="flex-1 resize-none rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent max-h-32"
             style={{ minHeight: '42px' }}
@@ -485,7 +487,7 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
             <button
               onClick={pararGeracao}
               className="flex items-center justify-center w-10 h-10 rounded-xl bg-red-500 text-white hover:bg-red-600 transition-colors flex-shrink-0"
-              title="Parar geração"
+              title={t('aiChat.stop')}
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <rect x="6" y="6" width="12" height="12" rx="2" />
@@ -496,7 +498,7 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
               onClick={enviarPergunta}
               disabled={!input.trim()}
               className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex-shrink-0"
-              title="Enviar (Enter)"
+              title={t('aiChat.send')}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -505,8 +507,8 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
           )}
         </div>
         <p className="text-xs text-gray-400 dark:text-gray-500 mt-1.5 text-center">
-          Pressione <kbd className="px-1 py-0.5 rounded border border-gray-300 dark:border-gray-600 text-[10px]">/</kbd> para focar &middot;{' '}
-          <kbd className="px-1 py-0.5 rounded border border-gray-300 dark:border-gray-600 text-[10px]">Shift+Enter</kbd> nova linha
+          {t('aiChat.pressSlash')} <kbd className="px-1 py-0.5 rounded border border-gray-300 dark:border-gray-600 text-[10px]">/</kbd> {t('aiChat.toFocus')} &middot;{' '}
+          <kbd className="px-1 py-0.5 rounded border border-gray-300 dark:border-gray-600 text-[10px]">Shift+Enter</kbd> {t('aiChat.newLine')}
         </p>
       </div>
     </div>

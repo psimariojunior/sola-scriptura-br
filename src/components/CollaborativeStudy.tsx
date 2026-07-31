@@ -183,10 +183,38 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [room?.code]);
 
-  // Auto-join via initialCode — conectar ao WebSocket imediatamente
+  // Auto-join via initialCode — buscar estado do backend e conectar ao WebSocket
   useEffect(() => {
     if (initialCode && initialCode.length === 6) {
-      setRoom({ id: `room-${Date.now()}`, code: initialCode, participants: [participantId], createdAt: Date.now(), verses: [] });
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
+      fetch(`${API_BASE}/colaborativo/rooms/${initialCode}`)
+        .then(res => res.ok ? res.json() : null)
+        .then(serverRoom => {
+          const roomId = serverRoom?.id || `room-${Date.now()}`;
+          setRoom({ id: roomId, code: initialCode, participants: [participantId], createdAt: Date.now(), verses: [] });
+          if (serverRoom?.messages) {
+            const chatMsgs = serverRoom.messages
+              .filter((m: { type: string }) => m.type === 'chat')
+              .map((m: { id: string; userId: string; userName: string; text: string; timestamp: string }) => ({
+                id: m.id, participantId: m.userId, displayName: m.userName,
+                message: m.text, timestamp: new Date(m.timestamp).getTime(),
+              }));
+            if (chatMsgs.length > 0) setChatMessages(chatMsgs);
+
+            const verseMsgs = serverRoom.messages
+              .filter((m: { type: string }) => m.type === 'verse')
+              .map((m: { id: string; userId: string; userName: string; text: string; timestamp: string }) => ({
+                id: m.id, participantId: m.userId, displayName: m.userName,
+                verse: m.text.split(' - ')[0] || '', livro: '', capitulo: 0, versiculo: 0,
+                texto: m.text.split(' - ').slice(1).join(' - ') || m.text,
+                timestamp: new Date(m.timestamp).getTime(),
+              }));
+            if (verseMsgs.length > 0) setWsVerses(verseMsgs);
+          }
+        })
+        .catch(() => {
+          setRoom({ id: `room-${Date.now()}`, code: initialCode, participants: [participantId], createdAt: Date.now(), verses: [] });
+        });
     }
   }, [initialCode, participantId]);
 
@@ -220,18 +248,73 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     if (bibleSyncData) prefetchAdjacent(bibleSyncData.livro, bibleSyncData.capitulo);
   }, [bibleSyncData, prefetchAdjacent]);
 
-  const handleCreate = useCallback(() => {
+  const handleCreate = useCallback(async () => {
     const code = Math.floor(100000 + Math.random() * 900000).toString();
-    setRoom({ id: `room-${Date.now()}`, code, participants: [participantId], createdAt: Date.now(), verses: [] });
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1'}/colaborativo/rooms`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, name: `Sala ${code}`, hostUserId: participantId }),
+      });
+      if (res.ok) {
+        const saved = await res.json();
+        setRoom({ id: saved.id, code, participants: [participantId], createdAt: Date.now(), verses: [] });
+      } else {
+        setRoom({ id: `room-${Date.now()}`, code, participants: [participantId], createdAt: Date.now(), verses: [] });
+      }
+    } catch {
+      setRoom({ id: `room-${Date.now()}`, code, participants: [participantId], createdAt: Date.now(), verses: [] });
+    }
     setShowEntrance(true);
   }, [participantId]);
 
-  const handleJoin = useCallback(() => {
+  const handleJoin = useCallback(async () => {
     if (joinCode.length !== 6) return;
-    setRoom({ id: `room-${Date.now()}`, code: joinCode, participants: [participantId], createdAt: Date.now(), verses: [] });
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
+    let serverRoom: { id: string; participants: Array<{ id: string; name: string }>; messages: Array<{ id: string; userId: string; userName: string; text: string; timestamp: string; type: string }>; sharedNotes: Record<string, string> } | null = null;
+    try {
+      const res = await fetch(`${API_BASE}/colaborativo/rooms/${joinCode}`);
+      if (res.ok) serverRoom = await res.json();
+    } catch {}
+
+    const roomId = serverRoom?.id || `room-${Date.now()}`;
+    const existingMessages: ChatMessage[] = (serverRoom?.messages || [])
+      .filter((m: { type: string }) => m.type === 'chat')
+      .map((m: { id: string; userId: string; userName: string; text: string; timestamp: string }) => ({
+        id: m.id,
+        participantId: m.userId,
+        displayName: m.userName,
+        message: m.text,
+        timestamp: new Date(m.timestamp).getTime(),
+      }));
+
+    const existingVerses: VerseSharedEvent[] = (serverRoom?.messages || [])
+      .filter((m: { type: string }) => m.type === 'verse')
+      .map((m: { id: string; userId: string; userName: string; text: string; timestamp: string }) => ({
+        id: m.id,
+        participantId: m.userId,
+        displayName: m.userName,
+        verse: m.text.split(' - ')[0] || '',
+        livro: '', capitulo: 0, versiculo: 0,
+        texto: m.text.split(' - ').slice(1).join(' - ') || m.text,
+        timestamp: new Date(m.timestamp).getTime(),
+      }));
+
+    setRoom({ id: roomId, code: joinCode, participants: [participantId], createdAt: Date.now(), verses: [] });
+    if (existingMessages.length > 0) setChatMessages(existingMessages);
+    if (existingVerses.length > 0) setWsVerses(existingVerses);
+
+    try {
+      await fetch(`${API_BASE}/colaborativo/rooms/${joinCode}/participants`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: participantId, name: participantName, joinedAt: new Date().toISOString() }),
+      });
+    } catch {}
+
     setJoinCode('');
     setShowEntrance(true);
-  }, [joinCode, participantId]);
+  }, [joinCode, participantId, participantName]);
 
   const handleShare = useCallback(() => {
     if (!room || !shareInput.trim()) return;
@@ -252,7 +335,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     setShareInput(''); setShareMessage(''); setVerseInput({ livro: '', capitulo: '', versiculo: '', texto: '' }); setShowShare(false);
   }, [room, shareInput, shareMessage, verseInput, participantId, participantName]);
 
-  const handleShareBibleVerse = useCallback((ref: string, text: string) => {
+  const handleShareBibleVerse = useCallback(async (ref: string, text: string) => {
     if (!room) return;
     const verseData: VerseSharedEvent = {
       id: `v-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
@@ -261,9 +344,21 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     };
     setWsVerses(prev => [...prev, verseData]);
     chatServiceRef.current?.sendVerseShared(verseData);
+
+    try {
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
+      await fetch(`${API_BASE}/colaborativo/rooms/${room.code}/messages`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: verseData.id, userId: participantId, userName: participantName,
+          text: `${ref} - ${text}`, timestamp: new Date(verseData.timestamp).toISOString(), type: 'verse',
+        }),
+      });
+    } catch {}
   }, [room, participantId, participantName]);
 
-  const handleSendMessage = useCallback(() => {
+  const handleSendMessage = useCallback(async () => {
     if (!room || !shareMessage.trim()) return;
     const msg: ChatMessage = {
       id: `msg-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
@@ -271,6 +366,19 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     };
     setChatMessages(prev => [...prev, msg]);
     chatServiceRef.current?.sendChatMessage(msg.id, participantId, participantName, shareMessage);
+
+    try {
+      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
+      await fetch(`${API_BASE}/colaborativo/rooms/${room.code}/messages`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: msg.id, userId: participantId, userName: participantName,
+          text: shareMessage, timestamp: new Date(msg.timestamp).toISOString(), type: 'chat',
+        }),
+      });
+    } catch {}
+
     setShareMessage('');
     chatServiceRef.current?.sendTypingStop(participantId);
   }, [room, shareMessage, participantId, participantName]);
@@ -455,18 +563,47 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   }, [room]);
 
   // Shared notes handlers
-  const handleAddNote = useCallback((content: string, verseRef?: string) => {
+  const handleAddNote = useCallback(async (content: string, verseRef?: string) => {
     const colors = ['#fef9c3', '#dbeafe', '#dcfce7', '#fce7f3', '#f3e8ff', '#fed7aa'];
-    setSharedNotes(prev => [...prev, {
+    const newNote: SharedNote = {
       id: `note-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
       authorId: participantId, authorName: participantName, content, verseRef, timestamp: Date.now(),
-      color: colors[prev.length % colors.length],
-    }]);
-  }, [participantId, participantName]);
+      color: colors[sharedNotes.length % colors.length],
+    };
+    const updated = [...sharedNotes, newNote];
+    setSharedNotes(updated);
 
-  const handleDeleteNote = useCallback((id: string) => {
-    setSharedNotes(prev => prev.filter(n => n.id !== id));
-  }, []);
+    if (room) {
+      try {
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
+        const notesMap: Record<string, string> = {};
+        updated.forEach(n => { notesMap[n.id] = JSON.stringify(n); });
+        await fetch(`${API_BASE}/colaborativo/rooms/${room.code}/notes`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ notes: notesMap }),
+        });
+      } catch {}
+    }
+  }, [participantId, participantName, sharedNotes, room]);
+
+  const handleDeleteNote = useCallback(async (id: string) => {
+    const updated = sharedNotes.filter(n => n.id !== id);
+    setSharedNotes(updated);
+
+    if (room) {
+      try {
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
+        const notesMap: Record<string, string> = {};
+        updated.forEach(n => { notesMap[n.id] = JSON.stringify(n); });
+        await fetch(`${API_BASE}/colaborativo/rooms/${room.code}/notes`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ notes: notesMap }),
+        });
+      } catch {}
+    }
+  }, [sharedNotes, room]);
 
   const handleUpdateNote = useCallback((id: string, content: string) => {
     setSharedNotes(prev => prev.map(n => n.id === id ? { ...n, content } : n));
@@ -584,7 +721,15 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           <button onClick={() => setShowSettings(true)} className="p-2 hover:bg-[var(--surface-raised)] rounded-lg transition-colors text-[var(--content-muted)]">
             <Settings className="w-4 h-4" />
           </button>
-          <button onClick={() => { setRoom(null); setIsCallActive(false); wsConnectedRef.current = false; }}
+          <button onClick={async () => {
+            if (room) {
+              try {
+                const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
+                await fetch(`${API_BASE}/colaborativo/rooms/${room.code}/participants/${participantId}/leave`, { method: 'POST' });
+              } catch {}
+            }
+            setRoom(null); setIsCallActive(false); wsConnectedRef.current = false;
+          }}
             className="p-2 hover:bg-[var(--surface-raised)] rounded-lg transition-colors text-[var(--content-muted)]"><X className="w-4 h-4" /></button>
         </div>
       </div>

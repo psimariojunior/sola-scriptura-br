@@ -3,11 +3,17 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { motion } from 'framer-motion';
-import { Calendar, CheckCircle2, BookOpen, ChevronRight, Flame, ArrowRight, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, CheckCircle2, BookOpen, ChevronRight, Flame, ArrowRight, Sparkles, Plus, Share2, Trash2, Copy, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { trackEvent, getSummary } from '@/lib/gamificationTracker';
+import PlanoPersonalizadoCriar, {
+  encodePlano,
+  type PlanoPersonalizadoData,
+  carregarPlanosCustom,
+  salvarPlanosCustom,
+} from '@/components/PlanoPersonalizadoCriar';
 
 interface DiaLeitura { dia: number; titulo: string; passagens: { livro: string; capitulo: number }[]; }
 interface PlanoLeitura { id: string; titulo: string; descricao: string; duracao: number; nivel: string; icone: string; dias: DiaLeitura[]; }
@@ -50,10 +56,34 @@ const PLANOS: PlanoLeitura[] = [
   { id: 'salmos-30', titulo: 'Salmos em 30 Dias', descricao: '5 salmos/dia', duracao: 30, nivel: 'iniciante', icone: '🎵', dias: Array.from({length:30},(_,i)=>({dia:i+1,titulo:`Dia ${i+1}`,passagens:Array.from({length:5},(_,j)=>({livro:'Sl',capitulo:i*5+j+1}))})) },
 ];
 
+function customToPlanoLeitura(c: PlanoPersonalizadoData): PlanoLeitura {
+  return {
+    id: `custom-${c.id}`,
+    titulo: c.titulo,
+    descricao: c.descricao || `${c.dias.length} dias`,
+    duracao: c.dias.length,
+    nivel: c.nivel,
+    icone: '✏️',
+    dias: c.dias.map((d, i) => ({
+      dia: i + 1,
+      titulo: d.titulo,
+      passagens: d.passagens,
+    })),
+  };
+}
+
 export default function PlanosPage() {
   const [planoSel, setPlanoSel] = useState<PlanoLeitura | null>(null);
   const [diasConcluidos, setDiasConcluidos] = useState<Set<number>>(new Set());
   const [streak, setStreak] = useState(0);
+  const [planosCustom, setPlanosCustom] = useState<PlanoPersonalizadoData[]>([]);
+  const [showCriarModal, setShowCriarModal] = useState(false);
+  const [editandoPlano, setEditandoPlano] = useState<PlanoPersonalizadoData | null>(null);
+  const [copiado, setCopiado] = useState<string | null>(null);
+
+  useEffect(() => {
+    setPlanosCustom(carregarPlanosCustom());
+  }, []);
 
   useEffect(() => {
     if (planoSel) {
@@ -81,6 +111,35 @@ export default function PlanosPage() {
     return planoSel.duracao;
   }, [diasConcluidos, planoSel]);
 
+  const handleSalvarCustom = useCallback((plano: PlanoPersonalizadoData) => {
+    setPlanosCustom(prev => {
+      const idx = prev.findIndex(p => p.id === plano.id);
+      const next = idx >= 0 ? prev.map((p, i) => i === idx ? plano : p) : [...prev, plano];
+      salvarPlanosCustom(next);
+      return next;
+    });
+  }, []);
+
+  const handleRemoverCustom = useCallback((id: string) => {
+    setPlanosCustom(prev => {
+      const next = prev.filter(p => p.id !== id);
+      salvarPlanosCustom(next);
+      return next;
+    });
+    setPlanoSel(null);
+  }, []);
+
+  const handleCompartilhar = useCallback((plano: PlanoLeitura) => {
+    const custom = planosCustom.find(c => `custom-${c.id}` === plano.id);
+    if (!custom) return;
+    const encoded = encodePlano(custom);
+    const url = `${window.location.origin}/planos/compartilhar?id=${encoded}`;
+    navigator.clipboard.writeText(url).then(() => {
+      setCopiado(plano.id);
+      setTimeout(() => setCopiado(null), 2000);
+    });
+  }, [planosCustom]);
+
   if (planoSel) {
     return (
       <div className="min-h-screen"><Header />
@@ -89,8 +148,26 @@ export default function PlanosPage() {
             <button onClick={()=>setPlanoSel(null)} className="text-sm text-muted-foreground hover:text-primary mb-3 flex items-center gap-1">← Voltar</button>
             <div className="flex items-center gap-3">
               <span className="text-3xl">{planoSel.icone}</span>
-              <div><h1 className="font-display text-2xl font-light">{planoSel.titulo}</h1>
+              <div className="flex-1"><h1 className="font-display text-2xl font-light">{planoSel.titulo}</h1>
                 <p className="text-sm text-muted-foreground">{planoSel.descricao}</p></div>
+              {planoSel.id.startsWith('custom-') && (
+                <div className="flex gap-2">
+                  <button onClick={() => {
+                    const c = planosCustom.find(p => `custom-${p.id}` === planoSel.id);
+                    if (c) { setEditandoPlano(c); setPlanoSel(null); setShowCriarModal(true); }
+                  }} className="p-2 rounded-lg bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors text-xs">
+                    Editar
+                  </button>
+                  <button onClick={() => handleCompartilhar(planoSel)}
+                    className="p-2 rounded-lg bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors">
+                    {copiado === planoSel.id ? <Check className="w-4 h-4 text-emerald-500" /> : <Share2 className="w-4 h-4" />}
+                  </button>
+                  <button onClick={() => handleRemoverCustom(planoSel.id.replace('custom-', ''))}
+                    className="p-2 rounded-lg bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-red-500 transition-colors">
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
             </div>
           </motion.div>
 
@@ -156,10 +233,15 @@ export default function PlanosPage() {
           <div className="flex items-center gap-3 mb-2">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-500/5 flex items-center justify-center border border-amber-500/20">
               <Calendar className="w-5 h-5 text-amber-600" /></div>
-            <div><h1 className="font-display text-2xl md:text-3xl font-light">Planos de <span className="text-primary italic">Leitura</span></h1>
-              <p className="text-xs text-muted-foreground">Escolha um plano e comece sua jornada</p></div>
+            <div className="flex-1"><h1 className="font-display text-2xl md:text-3xl font-light">Planos de <span className="text-primary italic">Leitura</span></h1>
+              <p className="text-xs text-muted-foreground">Escolha um plano ou crie o seu próprio</p></div>
+            <button onClick={() => { setEditandoPlano(null); setShowCriarModal(true); }}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors">
+              <Plus className="w-4 h-4" /> Criar Plano
+            </button>
           </div>
         </motion.div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">{PLANOS.map((plano,i)=>(
           <motion.button key={plano.id} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:i*0.08}}
             onClick={()=>setPlanoSel(plano)}
@@ -175,6 +257,67 @@ export default function PlanosPage() {
             </div>
           </motion.button>
         ))}</div>
-      </div></main><Footer /></div>
+
+        {planosCustom.length > 0 && (
+          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} className="mt-10">
+            <h2 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-primary" /> Meus Planos Personalizados
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {planosCustom.map((c) => {
+                const pl = customToPlanoLeitura(c);
+                return (
+                  <motion.div key={c.id} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}}
+                    className="text-left rounded-2xl border border-border/50 bg-card/50 p-5 hover:border-primary/30 transition-all group">
+                    <div className="flex items-start gap-3 mb-3">
+                      <span className="text-3xl">✏️</span>
+                      <div className="flex-1">
+                        <button onClick={() => setPlanoSel(pl)} className="w-full text-left">
+                          <h3 className="font-display text-lg font-medium group-hover:text-primary transition-colors">{c.titulo}</h3>
+                          <p className="text-xs text-muted-foreground mt-1">{c.descricao || `${c.dias.length} dias`}</p>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+                      <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">{c.dias.length} dias</span>
+                      <span className="capitalize">{c.nivel}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <button onClick={() => setPlanoSel(pl)}
+                        className="flex-1 py-1.5 rounded-lg bg-primary/10 text-primary text-xs font-medium hover:bg-primary/20 transition-colors">
+                        Abrir
+                      </button>
+                      <button onClick={() => handleCompartilhar(pl)}
+                        className="p-1.5 rounded-lg bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
+                        title="Compartilhar">
+                        {copiado === pl.id ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+                      </button>
+                      <button onClick={() => { setEditandoPlano(c); setShowCriarModal(true); }}
+                        className="p-1.5 rounded-lg bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors text-xs">
+                        Editar
+                      </button>
+                      <button onClick={() => handleRemoverCustom(c.id)}
+                        className="p-1.5 rounded-lg bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-red-500 transition-colors">
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </div></main><Footer />
+
+      <AnimatePresence>
+        {showCriarModal && (
+          <PlanoPersonalizadoCriar
+            onFechar={() => { setShowCriarModal(false); setEditandoPlano(null); }}
+            planoExistente={editandoPlano}
+            aoSalvar={handleSalvarCustom}
+          />
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

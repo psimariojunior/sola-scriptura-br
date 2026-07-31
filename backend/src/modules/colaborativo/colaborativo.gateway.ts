@@ -9,6 +9,7 @@ import {
 } from '@nestjs/websockets';
 import { Logger } from '@nestjs/common';
 import { Server, Socket } from 'socket.io';
+import { ColaborativoService } from './colaborativo.service';
 
 interface RoomParticipant {
   socketId: string;
@@ -36,6 +37,8 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
   private rooms = new Map<string, SignalingRoom>();
   private typingTimers = new Map<string, ReturnType<typeof setTimeout>>();
 
+  constructor(private readonly colaborativoService: ColaborativoService) {}
+
   handleConnection(client: Socket) {
     this.logger.log(`Client connected: ${client.id}`);
   }
@@ -59,7 +62,7 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
   }
 
   @SubscribeMessage('join-room')
-  handleJoinRoom(
+  async handleJoinRoom(
     @ConnectedSocket() client: Socket,
     @MessageBody() data: { code: string; participantId: string; displayName: string },
   ) {
@@ -100,14 +103,24 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
     if (otherParticipants.length > 0) {
       client.emit('existing-participants', otherParticipants);
     }
+
+    await this.colaborativoService.addParticipant(code, {
+      id: participantId,
+      name: displayName,
+      joinedAt: new Date(),
+    });
   }
 
   @SubscribeMessage('leave-room')
-  handleLeaveRoom(
+  async handleLeaveRoom(
     @ConnectedSocket() client: Socket,
-    @MessageBody() data: { code: string },
+    @MessageBody() data: { code: string; participantId?: string },
   ) {
     this.removeParticipantFromRoom(client, data.code);
+
+    if (data.participantId) {
+      await this.colaborativoService.removeParticipant(data.code, data.participantId);
+    }
   }
 
   @SubscribeMessage('signal')
@@ -128,7 +141,7 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
   }
 
   @SubscribeMessage('chat-message')
-  handleChatMessage(
+  async handleChatMessage(
     @ConnectedSocket() client: Socket,
     @MessageBody() data: {
       code: string;
@@ -140,10 +153,19 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
     },
   ) {
     client.to(data.code).emit('chat-message', data);
+
+    await this.colaborativoService.addMessage(data.code, {
+      id: data.id,
+      userId: data.participantId,
+      userName: data.displayName,
+      text: data.message,
+      timestamp: new Date(data.timestamp),
+      type: 'chat',
+    });
   }
 
   @SubscribeMessage('verse-shared-ws')
-  handleVerseSharedWs(
+  async handleVerseSharedWs(
     @ConnectedSocket() client: Socket,
     @MessageBody() data: {
       code: string;
@@ -160,6 +182,15 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
     },
   ) {
     client.to(data.code).emit('verse-shared-ws', data);
+
+    await this.colaborativoService.addMessage(data.code, {
+      id: data.id,
+      userId: data.participantId,
+      userName: data.displayName,
+      text: `${data.verse} - ${data.texto}${data.message ? `\n${data.message}` : ''}`,
+      timestamp: new Date(data.timestamp),
+      type: 'verse',
+    });
   }
 
   @SubscribeMessage('typing-start')

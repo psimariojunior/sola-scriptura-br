@@ -6,6 +6,7 @@ import type { useAudioNatural } from '@/hooks/useAudioNatural';
 import type { useVerseAudio } from '@/hooks/useVerseAudio';
 import type { useFlashcards } from '@/hooks/useFlashcards';
 import { VerseActions } from './VerseActions';
+import { VerseComments, CommentBadge } from './VerseComments';
 import { Heart, Palette, Copy, StickyNote, Languages, MessageSquare, Share2, Sparkles, ImageIcon, Users, BookOpen } from 'lucide-react';
 import { toggleFavorito } from '@/lib/estudos';
 import { setMarcador, removeMarcador, getMarcador, CORES, type CorMarcador } from '@/lib/marcadores';
@@ -99,6 +100,8 @@ export const VerseCard = memo(function VerseCard({
   const [showMobileColor, setShowMobileColor] = useState(false);
   const [showLongPressColor, setShowLongPressColor] = useState(false);
   const [showMobilePanel, setShowMobilePanel] = useState(false);
+  const [showComments, setShowComments] = useState(false);
+  const [commentsRefreshKey, setCommentsRefreshKey] = useState(0);
   const mobileColorRef = useRef<HTMLDivElement>(null);
   const colorRef = useRef<HTMLDivElement>(null);
   const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -303,7 +306,15 @@ export const VerseCard = memo(function VerseCard({
             'shrink-0 transition-all duration-150 hidden lg:block',
             (showActions || isSelected) ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
           )}>
-            <VerseActions
+            <div className="flex items-center gap-0.5">
+              <CommentBadge
+                livroAbreviacao={livroAbreviacao}
+                capitulo={capitulo}
+                versiculo={numero}
+                onClick={(e) => { e.stopPropagation(); setShowComments(true); }}
+                refreshKey={commentsRefreshKey}
+              />
+              <VerseActions
               livro={livroNome}
               livroNome={livroNome}
               livroAbreviacao={livroAbreviacao}
@@ -326,6 +337,7 @@ export const VerseCard = memo(function VerseCard({
               copiedVerse={copiedVerse}
               verseKey={verseKey}
             />
+            </div>
           </div>
         </div>
 
@@ -407,6 +419,14 @@ export const VerseCard = memo(function VerseCard({
         onComentarios={onComentarios}
         copyVerse={copyVerse}
         copiedVerse={copiedVerse}
+      />
+
+      <VerseComments
+        livroAbreviacao={livroAbreviacao}
+        capitulo={capitulo}
+        versiculo={numero}
+        open={showComments}
+        onFechar={() => { setShowComments(false); setCommentsRefreshKey((k) => k + 1); }}
       />
     </Fragment>
   );

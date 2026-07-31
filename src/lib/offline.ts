@@ -66,10 +66,10 @@ export function cacheChapter(livro: string, capitulo: number, traducao: string, 
     const store: CacheStore = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
     store[chapterKey(livro, capitulo, traducao)] = { data: verses, timestamp: Date.now() };
     localStorage.setItem(CACHE_KEY, JSON.stringify(store));
-  } catch {}
+  } catch (e) { console.error('[offline:cache-chapter-localStorage]', e); }
   try {
     void saveChapterDB(livro, capitulo, traducao, verses);
-  } catch {}
+  } catch (e) { console.error('[offline:cache-chapter-IDB]', e); }
 }
 
 export function getCachedChapter(livro: string, capitulo: number, traducao: string): string[] | null {
@@ -82,7 +82,7 @@ export function getCachedChapter(livro: string, capitulo: number, traducao: stri
         return entry.data;
       }
     }
-  } catch {}
+  } catch (e) { console.error('[offline:get-cached-chapter]', e); }
   return null;
 }
 
@@ -119,7 +119,7 @@ export async function hasOfflineData(
 export function clearCache() {
   try {
     localStorage.removeItem(CACHE_KEY);
-  } catch {}
+  } catch (e) { console.error('[offline:clear-cache]', e); }
 }
 
 export async function saveChapterDB(
@@ -143,7 +143,7 @@ export async function saveChapterDB(
       tx.oncomplete = () => resolve();
       tx.onerror = () => reject(tx.error);
     });
-  } catch {}
+  } catch (e) { console.error('[offline:save-chapter-IDB]', e); }
 }
 
 export async function getChapterDB(
@@ -173,7 +173,7 @@ export async function saveMeta(key: string, value: unknown): Promise<void> {
       tx.oncomplete = () => resolve();
       tx.onerror = () => reject(tx.error);
     });
-  } catch {}
+  } catch (e) { console.error('[offline:save-meta-IDB]', e); }
 }
 
 export async function getMeta(key: string): Promise<unknown | null> {
@@ -185,7 +185,8 @@ export async function getMeta(key: string): Promise<unknown | null> {
       req.onsuccess = () => resolve(req.result?.value ?? null);
       req.onerror = () => resolve(null);
     });
-  } catch {
+  } catch (e) {
+    console.error('[offline:get-meta-IDB]', e);
     return null;
   }
 }
@@ -215,14 +216,14 @@ export async function cacheTranslation(
     }
 
     await saveMeta(`sync:${traducao}`, Date.now());
-  } catch {}
+  } catch (e) { console.error('[offline:cache-translation]', e); }
 }
 
 export async function isTranslationDownloaded(traducao: string): Promise<boolean> {
   try {
     const stats = await getOfflineStats();
     return (stats.translations[traducao] || 0) > 0;
-  } catch { return false; }
+  } catch (e) { console.error('[offline:is-translation-downloaded]', e); return false; }
 }
 
 export async function removeTranslation(traducao: string): Promise<void> {
@@ -244,7 +245,7 @@ export async function removeTranslation(traducao: string): Promise<void> {
         resolve();
       };
     });
-  } catch {}
+  } catch (e) { console.error('[offline:remove-translation]', e); }
 }
 
 export async function cacheAllTranslations(
@@ -267,7 +268,7 @@ export async function cacheAllTranslations(
       }
 
       await saveMeta(`sync:${traducao}`, Date.now());
-    } catch {}
+    } catch (e) { console.error('[offline:cache-all-translations]', e); }
   }
   await saveMeta('lastFullSync', Date.now());
 }
@@ -348,7 +349,7 @@ export async function clearOfflineCache(): Promise<void> {
       tx.oncomplete = () => resolve();
       tx.onerror = () => reject(tx.error);
     });
-  } catch {}
+  } catch (e) { console.error('[offline:clear-offline-cache-IDB]', e); }
   clearCache();
 }
 
@@ -391,7 +392,7 @@ export async function queueNoteForSync(note: {
       tx.oncomplete = () => resolve();
       tx.onerror = () => reject(tx.error);
     });
-  } catch {}
+  } catch (e) { console.error('[offline:queue-note-for-sync]', e); }
 }
 
 export async function getPendingNotes(): Promise<Array<{
@@ -413,7 +414,8 @@ export async function getPendingNotes(): Promise<Array<{
       }>) || []);
       req.onerror = () => resolve([]);
     });
-  } catch {
+  } catch (e) {
+    console.error('[offline:get-pending-notes]', e);
     return [];
   }
 }
@@ -427,7 +429,7 @@ export async function clearPendingNotes(): Promise<void> {
       tx.oncomplete = () => resolve();
       tx.onerror = () => reject(tx.error);
     });
-  } catch {}
+  } catch (e) { console.error('[offline:clear-pending-notes]', e); }
 }
 
 const MIDVASH_API = 'https://api.midvash.com/v1';
@@ -519,7 +521,8 @@ async function fetchMidvashChapter(traducao: string, slug: string, capitulo: num
       if (texto?.trim()) out.push(texto.trim());
     }
     return out.length > 0 ? out : null;
-  } catch {
+  } catch (e) {
+    console.error('[offline:fetch-midvash-chapter]', e);
     return null;
   }
 }
@@ -578,7 +581,7 @@ async function flushBatch(batch: Array<{ key: string; livro: string; capitulo: n
       tx.oncomplete = () => resolve();
       tx.onerror = () => reject(tx.error);
     });
-  } catch {}
+  } catch (e) { console.error('[offline:flush-batch]', e); }
 }
 
 export async function cancelDownload(): Promise<void> {
@@ -681,7 +684,8 @@ export async function getBookDownloadStatus(
       };
       req.onerror = () => resolve([]);
     });
-  } catch {
+  } catch (e) {
+    console.error('[offline:get-book-download-status]', e);
     return [];
   }
 }
@@ -705,7 +709,7 @@ export async function removeBook(traducao: string, bookAbrev: string): Promise<v
       };
       tx.oncomplete = () => resolve();
     });
-  } catch {}
+  } catch (e) { console.error('[offline:remove-book]', e); }
 }
 
 export async function getDownloadedBooks(traducao: string): Promise<Set<string>> {
@@ -730,7 +734,8 @@ export async function getDownloadedBooks(traducao: string): Promise<Set<string>>
       };
       req.onerror = () => resolve(new Set());
     });
-  } catch {
+  } catch (e) {
+    console.error('[offline:get-downloaded-books]', e);
     return new Set();
   }
 }

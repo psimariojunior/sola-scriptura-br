@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion } from 'framer-motion';
@@ -24,6 +25,7 @@ function getRefsForVerse(ref: string): string[] {
 }
 
 export default function CadeiaRefPage() {
+  const { t } = useTranslation();
   const [searchRef, setSearchRef] = useState('');
   const [chain, setChain] = useState<ChainNode[]>([]);
   const [maxDepth, setMaxDepth] = useState(3);
@@ -72,9 +74,9 @@ export default function CadeiaRefPage() {
               <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-indigo-500/20 to-blue-500/20 flex items-center justify-center border border-indigo-500/20">
                 <GitBranch className="w-10 h-10 text-indigo-500" />
               </div>
-              <h1 className="font-display text-4xl font-light mb-3">Cadeia de <span className="text-primary italic">Referências</span></h1>
+              <h1 className="font-display text-4xl font-light mb-3">{t('referencias.title1')} <span className="text-primary italic">{t('referencias.title2')}</span></h1>
               <p className="text-muted-foreground max-w-lg mx-auto">
-            {allRefs.length.toLocaleString()} referências cruzadas TSK — siga fios teológicos entre versículos
+            {t('referencias.subtitle', { numRefs: allRefs.length.toLocaleString() })}
           </p>
             </div>
           </ScrollReveal>
@@ -83,7 +85,7 @@ export default function CadeiaRefPage() {
             <div className="relative mb-3">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input type="text" value={searchRef} onChange={e => setSearchRef(e.target.value)}
-                placeholder="Digite uma referência (ex: Gn 1:1, Jo 3:16)..."
+                placeholder={t('referencias.searchPlaceholder')}
                 className="w-full pl-11 pr-10 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20" />
               {searchRef && <button onClick={() => { setSearchRef(''); setChain([]); }}
                 className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-muted/50">
@@ -102,7 +104,7 @@ export default function CadeiaRefPage() {
             )}
 
             <div className="flex items-center gap-3">
-              <label className="text-xs text-muted-foreground">Profundidade:</label>
+              <label className="text-xs text-muted-foreground">{t('referencias.depth')}</label>
               <div className="flex gap-1">
                 {[2, 3, 4, 5].map(d => (
                   <button key={d} onClick={() => setMaxDepth(d)}
@@ -118,7 +120,7 @@ export default function CadeiaRefPage() {
           {chain.length > 0 && (
             <div className="rounded-2xl border border-border/50 bg-card/50 p-6">
               <h2 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
-                <Layers className="w-4 h-4 text-primary" /> Cadeia de Referências
+                <Layers className="w-4 h-4 text-primary" /> {t('referencias.referenceChain')}
               </h2>
               <div className="space-y-3">
                 {chain.filter(n => n.depth === 0).map(node => (
@@ -131,7 +133,7 @@ export default function CadeiaRefPage() {
           {chain.length === 0 && (
             <div className="text-center py-12">
               <GitBranch className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
-              <p className="text-muted-foreground text-sm">Digite uma referência bíblica para explorar suas conexões</p>
+              <p className="text-muted-foreground text-sm">{t('referencias.emptyState')}</p>
               <div className="flex flex-wrap gap-2 justify-center mt-4">
                 {['Jo 3:16', 'Rm 8:28', 'Sl 23:1', 'Ef 2:8', 'Fp 4:13', 'Gn 1:1'].map(ref => {
                   if (allRefs.includes(ref)) {

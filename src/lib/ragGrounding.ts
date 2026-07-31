@@ -178,7 +178,7 @@ export async function construirContextoRAG(
   const palavras = extrairPalavrasChave(texto);
   const achadosLex = new Set<string>();
   for (const pal of palavras.slice(0, 6)) {
-    const resultados = findWordInText(pal).slice(0, 2);
+    const resultados = (await findWordInText(pal)).slice(0, 2);
     for (const r of resultados) {
       const e = r.entry;
       const tag = e.strong;
@@ -195,7 +195,7 @@ export async function construirContextoRAG(
   const strongMatch = texto.match(/\b[GH]\d{2,4}\b/gi);
   if (strongMatch) {
     for (const s of strongMatch.slice(0, 4)) {
-      const entry = getStrongByNumber(s);
+      const entry = await getStrongByNumber(s);
       if (entry) {
         const idioma = entry.strong.toUpperCase().startsWith('H') ? 'hebraico' : 'grego';
         blocos.push(

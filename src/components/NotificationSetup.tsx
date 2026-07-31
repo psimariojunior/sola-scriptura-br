@@ -10,6 +10,7 @@ import {
   enablePush,
   disablePush,
   reschedulePushFromStorage,
+  scheduleSmartNotifications,
 } from '@/lib/pushNotifications';
 
 export function NotificationSetup() {
@@ -25,6 +26,7 @@ export function NotificationSetup() {
 
     if (isPushEnabled() && Notification.permission === 'granted') {
       reschedulePushFromStorage();
+      scheduleSmartNotifications();
     }
   }, []);
 

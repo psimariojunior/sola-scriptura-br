@@ -34,7 +34,8 @@ function loadAchievements(): Achievement[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? JSON.parse(raw) : [];
-  } catch {
+  } catch (e) {
+    console.error('[achievements:load]', e);
     return [];
   }
 }
@@ -42,7 +43,7 @@ function loadAchievements(): Achievement[] {
 function saveAchievements(achievements: Achievement[]): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(achievements));
-  } catch {}
+  } catch (e) { console.error('[achievements:save]', e); }
 }
 
 export function getAllAchievements(): Achievement[] {
@@ -122,7 +123,7 @@ function loadStreak(): StreakData {
 function saveStreak(data: StreakData): void {
   try {
     localStorage.setItem(STREAK_KEY, JSON.stringify(data));
-  } catch {}
+  } catch (e) { console.error('[achievements:save-streak]', e); }
 }
 
 export function getLastStudyDate(): string | null {

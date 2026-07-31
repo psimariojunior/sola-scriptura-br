@@ -101,13 +101,13 @@ function useAudioCapituloImpl(
             try {
               const data = JSON.parse(line.slice(6));
               if (data.tipo === 'audio' && data.audio) audioBase64 = data.audio;
-            } catch {}
+            } catch (e) { console.error('[audio:parse-stream-line]', e); }
           }
         }
       }
       if (!audioBase64) return null;
       return `data:audio/mpeg;base64,${audioBase64}`;
-    } catch { return null; }
+    } catch (e) { console.error('[audio:gerar-audio-capitulo]', e); return null; }
   }, [voz, velocidade]);
 
   const playVersiculo = useCallback(async (v: VersiculoAudio): Promise<void> => {

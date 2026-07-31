@@ -30,8 +30,7 @@ class WebViewService {
       ..setUserAgent(AppConstants.userAgent)
       ..setNavigationDelegate(_createNavigationDelegate())
       ..setOnConsoleMessage(_onConsoleMessage)
-      ..addJavaScriptChannel('SSBNotification', onMessageReceived: _onNotificationMessage)
-      ..clearCache();
+      ..addJavaScriptChannel('SSBNotification', onMessageReceived: _onNotificationMessage);
 
     _isInitialized = true;
   }
@@ -58,23 +57,22 @@ class WebViewService {
           debugPrint('JS bridge injection error: $e');
         }
 
-        // Clear old SW caches if version changed
+        // Only update SW registration — never unregister (preserves offline cache)
         try {
           await controller.runJavaScript('''
             (async () => {
-              if ('caches' in window) {
-                const keys = await caches.keys();
-                const stale = keys.filter(k => k.includes('ssb-') && !k.includes('v11'));
-                for (const k of stale) { await caches.delete(k); }
-              }
               if ('serviceWorker' in navigator) {
                 const regs = await navigator.serviceWorker.getRegistrations();
-                for (const reg of regs) { await reg.unregister(); }
+                for (const reg of regs) {
+                  if (reg.installing) {
+                    reg.installing.postMessage({ type: 'SKIP_WAITING' });
+                  }
+                }
               }
             })();
           ''');
         } catch (e) {
-          debugPrint('SW cache clear error: $e');
+          debugPrint('SW update check error: $e');
         }
       },
       onWebResourceError: (error) {
@@ -157,11 +155,8 @@ class WebViewService {
         headers: {'Cache-Control': 'max-stale=31536000'},
       );
     } else {
-      // Force revalidation to pick up new SW/cache version
-      await controller.loadRequest(
-        Uri.parse(url),
-        headers: {'Cache-Control': 'no-cache, no-store, must-revalidate'},
-      );
+      // Use normal cache policy — let SW handle caching
+      await controller.loadRequest(Uri.parse(url));
     }
   }
 

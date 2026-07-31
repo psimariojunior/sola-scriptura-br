@@ -36,7 +36,7 @@ export function getActivePlan(): PlanoLeitura | null {
     if (!raw) return null;
     const plan = JSON.parse(raw);
     if (plan?.capitulos?.length > 0) return plan;
-  } catch {}
+  } catch (e) { console.error('[push-plan:load-plan]', e); }
   return null;
 }
 

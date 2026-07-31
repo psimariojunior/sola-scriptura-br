@@ -1,86 +1,81 @@
 import type { Metadata } from 'next';
-import { generateBreadcrumbSchema, generateWebAppSchema } from '@/lib/seo';
 
-const SITE_URL = 'https://solascripturabr.com.br';
+const siteUrl = 'https://solascripturabr.com.br';
 
 export const metadata: Metadata = {
-  title: 'Bíblia Sagrada — 12 Traduções',
-  description:
-    'Leia a Bíblia Sagrada em 12 traduções: ARC, ARA, ACF, KJV, NVI, WEB, NVT, KJA, AA, NBV, NTLH e NAA. Estudo paralelo, áudio com narração, anotações pessoais, versículos favoritos, referências cruzadas, interlinear hebraico/grego com léxico Strong e comparação de versões. Ferramenta gratuita de estudo bíblico.',
-  keywords: [
-    'bíblia sagrada',
-    'bíblia online',
-    'leitura bíblica',
-    'ARC',
-    'ARA',
-    'ACF',
-    'KJV',
-    'NVI',
-    'WEB',
-    'NVT',
-    'KJA',
-    'AA',
-    'NBV',
-    'NTLH',
-    'NAA',
-    'múltiplas traduções',
-    'estudo bíblico',
-    'bíblia paralela',
-    'áudio bíblia',
-    'narração bíblica',
-    'referências cruzadas',
-    'interlinear hebraico grego',
-    'léxico strong',
-  ],
+  title: 'Bíblia — Leitura Online com Comentários e Strong\'s | Sola Scriptura BR',
+  description: 'Leia a Bíblia com 10 traduções simultâneas (ARC, ARA, ACF, KJV, NVI, WEB), léxico hebraico e grego com Strong\'s, comentários de teólogos clássicos e referências cruzadas.',
+  keywords: ['Bíblia online', 'leitura bíblica', 'comentários bíblicos', 'Strong\'s', 'léxico hebraico', 'léxico grego', 'referências cruzadas', 'ARC', 'ARA', 'NVI', 'KJV'],
+  authors: [{ name: 'Sola Scriptura BR' }],
+  creator: 'Sola Scriptura BR',
+  publisher: 'Sola Scriptura BR',
+  metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: `${siteUrl}/biblia`,
+  },
   openGraph: {
-    title: 'Bíblia Sagrada — 12 Traduções | Sola Scriptura BR',
-    description:
-      'Leia a Bíblia em 12 traduções com estudo paralelo, áudio, anotações, referências cruzadas e interlinear hebraico/grego. Gratuito.',
-    url: `${SITE_URL}/biblia`,
+    type: 'website',
+    locale: 'pt_BR',
+    url: `${siteUrl}/biblia`,
+    title: 'Bíblia — Leitura Online com Comentários e Strong\'s | Sola Scriptura BR',
+    description: 'Leia a Bíblia com 10 traduções simultâneas, léxico hebraico e grego com Strong\'s, comentários e referências cruzadas.',
     siteName: 'Sola Scriptura BR',
     images: [
       {
-        url: `${SITE_URL}/og-biblia.png`,
+        url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'Bíblia Sagrada — Leitura Multi-Tradução | Sola Scriptura BR',
+        alt: 'Bíblia — Sola Scriptura BR',
       },
     ],
-    locale: 'pt_BR',
-    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bíblia Sagrada — 12 Traduções | Sola Scriptura BR',
-    description:
-      'Leia a Bíblia em 12 traduções com ferramentas de estudo avançadas. Gratuito.',
-    images: [`${SITE_URL}/og-biblia.png`],
+    title: 'Bíblia — Leitura Online com Comentários e Strong\'s | Sola Scriptura BR',
+    description: 'Leia a Bíblia com 10 traduções simultâneas, léxico hebraico e grego com Strong\'s, comentários e referências cruzadas.',
+    images: [`${siteUrl}/og-image.png`],
   },
-  alternates: {
-    canonical: `${SITE_URL}/biblia`,
-    languages: {
-      'pt-BR': `${SITE_URL}/biblia`,
-    },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
-export default function BibliaLayout({ children }: { children: React.ReactNode }) {
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Início', url: '/' },
-    { name: 'Bíblia Sagrada', url: '/biblia' },
-  ]);
-
-  const webAppSchema = generateWebAppSchema();
-
+export default function BibliaLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: 'Bíblia — Leitura Online',
+            description: 'Leia a Bíblia com 10 traduções simultâneas, léxico hebraico e grego com Strong\'s, comentários e referências cruzadas.',
+            url: `${siteUrl}/biblia`,
+            isPartOf: {
+              '@type': 'WebSite',
+              name: 'Sola Scriptura BR',
+              url: siteUrl,
+            },
+            about: {
+              '@type': 'Thing',
+              name: 'Bíblia',
+              description: 'Livro sagrado cristão',
+            },
+            inLanguage: 'pt-BR',
+            isAccessibleForFree: true,
+            provider: {
+              '@type': 'Organization',
+              name: 'Sola Scriptura BR',
+              url: siteUrl,
+            },
+          }),
+        }}
       />
       {children}
     </>

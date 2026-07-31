@@ -38,11 +38,11 @@ function carregar(): GamificationEvent[] {
   try {
     const raw = localStorage.getItem(TRACKER_KEY);
     return raw ? JSON.parse(raw) : [];
-  } catch { return []; }
+  } catch (e) { console.error('[gamification:carregar-events]', e); return []; }
 }
 
 function salvar(events: GamificationEvent[]) {
-  try { localStorage.setItem(TRACKER_KEY, JSON.stringify(events)); } catch {}
+  try { localStorage.setItem(TRACKER_KEY, JSON.stringify(events)); } catch (e) { console.error('[gamification:salvar-events]', e); }
   saveGamificationOffline(events).catch(() => {});
 }
 

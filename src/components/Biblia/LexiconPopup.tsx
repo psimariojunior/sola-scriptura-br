@@ -15,14 +15,18 @@ interface LexiconPopupProps {
 }
 
 const POPUP_MAX_WIDTH = 320;
-const POPUP_PADDING = 16;
-const VIEWPORT_MARGIN = 12;
 
 export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPopupProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [viewportSize, setViewportSize] = useState({ w: 0, h: 0 });
-  const [isMobile, setIsMobile] = useState(false);
+  const [viewportSize, setViewportSize] = useState(() => {
+    if (typeof window === 'undefined') return { w: 0, h: 0 };
+    return { w: window.innerWidth, h: window.innerHeight };
+  });
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768;
+  });
 
   const currentEntry = allResults && allResults.length > 1
     ? allResults[selectedIndex]?.entry ?? entry
@@ -33,7 +37,6 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
       setViewportSize({ w: window.innerWidth, h: window.innerHeight });
       setIsMobile(window.innerWidth < 768);
     }
-    update();
     window.addEventListener('resize', update);
     return () => window.removeEventListener('resize', update);
   }, []);
@@ -197,42 +200,28 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
           {popupContent}
         </div>
       ) : (
-        /* Desktop: position near clicked word with viewport clamping */
-        (() => {
-          const x = Math.max(VIEWPORT_MARGIN, Math.min(
-            position.x - POPUP_MAX_WIDTH / 2,
-            viewportSize.w - POPUP_MAX_WIDTH - VIEWPORT_MARGIN
-          ));
-          let y = position.y;
-          if (y + 400 > viewportSize.h - VIEWPORT_MARGIN) {
-            y = position.y - 408;
-          }
-          y = Math.max(VIEWPORT_MARGIN, y);
-
-          return (
-            <div
-              ref={ref}
-              style={{
-                position: 'fixed',
-                zIndex: 9999,
-                left: x,
-                top: y,
-                width: POPUP_MAX_WIDTH,
-                borderRadius: '0.75rem',
-                border: '1px solid var(--border)',
-                backgroundColor: 'var(--surface-raised)',
-                padding: '1rem',
-                boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
-                maxHeight: '80vh',
-                overflowY: 'auto',
-                animation: 'scaleIn 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
-                transformOrigin: 'top center',
-              }}
-            >
-              {popupContent}
-            </div>
-          );
-        })()
+        /* Desktop: position near clicked word */
+        <div
+          ref={ref}
+          style={{
+            position: 'fixed',
+            zIndex: 9999,
+            left: position.x,
+            top: position.y,
+            width: POPUP_MAX_WIDTH,
+            borderRadius: '0.75rem',
+            border: '1px solid var(--border)',
+            backgroundColor: 'var(--surface-raised)',
+            padding: '1rem',
+            boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
+            maxHeight: '80vh',
+            overflowY: 'auto',
+            animation: 'scaleIn 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
+            transformOrigin: 'top center',
+          }}
+        >
+          {popupContent}
+        </div>
       )}
     </>,
     document.body

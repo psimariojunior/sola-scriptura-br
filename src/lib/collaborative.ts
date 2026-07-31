@@ -41,19 +41,21 @@ function loadRooms(): Record<string, StudyRoom> {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     return saved ? JSON.parse(saved) : {};
-  } catch {
+  } catch (e) {
+    console.error('[collaborative:load-rooms]', e);
     return {};
   }
 }
 
 function saveRooms(rooms: Record<string, StudyRoom>) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(rooms)); } catch {}
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(rooms)); } catch (e) { console.error('[collaborative:save-rooms]', e); }
 }
 
 function getChannel(code: string): BroadcastChannel | null {
   try {
     return new BroadcastChannel(`${CHANNEL_PREFIX}${code}`);
-  } catch {
+  } catch (e) {
+    console.error('[collaborative:get-channel]', e);
     return null;
   }
 }

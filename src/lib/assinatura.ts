@@ -82,7 +82,8 @@ export async function verificarPagamento(
     );
     if (!res.ok) return null;
     return await res.json();
-  } catch {
+  } catch (e) {
+    console.error('[assinatura:verificar]', e);
     return null;
   }
 }

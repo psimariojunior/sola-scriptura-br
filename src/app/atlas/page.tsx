@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -29,6 +30,7 @@ const CATEGORIAS: { id: LocalizacaoBiblica['categoria']; label: string; icone: s
 ];
 
 export default function AtlasPage() {
+  const { t } = useTranslation();
   const [catFiltro, setCatFiltro] = useState<Set<string>>(new Set(CATEGORIAS.map(c => c.id)));
   const [periodoFiltro, setPeriodoFiltro] = useState<string | null>(null);
   const [rotaAtiva, setRotaAtiva] = useState<string | null>(null);
@@ -78,7 +80,7 @@ export default function AtlasPage() {
                 <h1 className="font-display text-2xl md:text-3xl font-light">
                   Atlas <span className="text-primary italic">Bíblico</span>
                 </h1>
-                <p className="text-xs text-muted-foreground">{localizacoesBiblicas.length} locais · {rotasBiblicas.length} rotas · 12 períodos históricos</p>
+                <p className="text-xs text-muted-foreground">{localizacoesBiblicas.length} {t('atlas.places')} · {rotasBiblicas.length} {t('atlas.routes')} · 12 {t('atlas.historicalPeriods')}</p>
               </div>
             </div>
           </motion.div>
@@ -90,25 +92,25 @@ export default function AtlasPage() {
             <div className="relative flex-1 min-w-[200px] max-w-sm">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input value={busca} onChange={e => setBusca(e.target.value)}
-                placeholder="Buscar local..."
+                placeholder={t('atlas.searchPlaceholder')}
                 className="w-full pl-9 pr-3 py-2 rounded-xl border border-border/50 bg-card/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
             </div>
             {/* Filtros toggle */}
             <button onClick={() => setMostrarFiltros(!mostrarFiltros)}
               className={cn('flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-medium transition-all',
                 mostrarFiltros ? 'bg-primary/10 border-primary/30 text-primary' : 'border-border/50 bg-card/50 hover:bg-muted/50')}>
-              <Filter className="w-4 h-4" /> Filtros
+              <Filter className="w-4 h-4" /> {t('atlas.filters')}
               {mostrarFiltros ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
             </button>
             {/* Rotas */}
             <div className="relative group">
               <button className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border/50 bg-card/50 text-sm font-medium hover:bg-muted/50 transition-all">
-                <Route className="w-4 h-4" /> Rotas
+                <Route className="w-4 h-4" /> {t('atlas.routesBtn')}
               </button>
               <div className="absolute right-0 top-full mt-1 w-72 rounded-xl border border-border bg-card shadow-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
                 <button onClick={() => setRotaAtiva(null)}
                   className={cn('w-full text-left px-3 py-2 rounded-lg text-sm transition-colors', !rotaAtiva ? 'bg-primary/10 text-primary' : 'hover:bg-muted/50')}>
-                  Nenhuma rota
+                  {t('atlas.noRoute')}
                 </button>
                 {rotasBiblicas.map(r => (
                   <button key={r.id} onClick={() => setRotaAtiva(r.id)}
@@ -130,7 +132,7 @@ export default function AtlasPage() {
                 <div className="rounded-2xl border border-border/50 bg-card/50 p-4 space-y-4">
                   {/* Categorias */}
                   <div>
-                    <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Categorias</p>
+                    <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">{t('atlas.categories')}</p>
                     <div className="flex flex-wrap gap-2">
                       {CATEGORIAS.map(cat => (
                         <button key={cat.id} onClick={() => toggleCat(cat.id)}
@@ -145,12 +147,12 @@ export default function AtlasPage() {
                   </div>
                   {/* Períodos */}
                   <div>
-                    <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Período Histórico</p>
+                    <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">{t('atlas.historicalPeriod')}</p>
                     <div className="flex flex-wrap gap-2">
                       <button onClick={() => setPeriodoFiltro(null)}
                         className={cn('px-3 py-1.5 rounded-full text-xs font-medium border transition-all',
                           !periodoFiltro ? 'border-primary/30 bg-primary/10 text-primary' : 'border-border/50 bg-muted/20 text-muted-foreground')}>
-                        Todos
+                        {t('common.all')}
                       </button>
                       {periodosHistoricos.map(p => (
                         <button key={p.id} onClick={() => setPeriodoFiltro(p.id)}
@@ -214,7 +216,7 @@ export default function AtlasPage() {
                 {localSel.versiculos.length > 0 && (
                   <div className="mb-4">
                     <p className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1">
-                      <BookOpen className="w-3 h-3" /> Referências
+                      <BookOpen className="w-3 h-3" /> {t('atlas.references')}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {localSel.versiculos.slice(0, 8).map((v, i) => (
@@ -228,7 +230,7 @@ export default function AtlasPage() {
                 {localSel.eventos.length > 0 && (
                   <div>
                     <p className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1">
-                      <Users className="w-3 h-3" /> Eventos Históricos
+                      <Users className="w-3 h-3" /> {t('atlas.historicalEvents')}
                     </p>
                     <div className="space-y-2">
                       {localSel.eventos.slice(0, 4).map((ev, i) => (
@@ -254,7 +256,7 @@ export default function AtlasPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
             className="rounded-2xl border border-border/50 bg-card/50 p-6 mb-6">
             <h2 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
-              <Clock className="w-5 h-5 text-primary" /> Linha do Tempo Bíblica
+              <Clock className="w-5 h-5 text-primary" /> {t('atlas.biblicalTimeline')}
             </h2>
             <div className="relative">
               {/* Linha central */}
@@ -290,7 +292,7 @@ export default function AtlasPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
             className="mb-8">
             <h2 className="font-display text-lg font-medium mb-4">
-              {locaisFiltrados.length} Locais Encontrados
+              {locaisFiltrados.length} {t('atlas.placesFound')}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {locaisFiltrados.slice(0, 30).map((local, i) => {

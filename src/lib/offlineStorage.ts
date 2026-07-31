@@ -58,7 +58,7 @@ async function setItem<T>(storeName: string, key: string, data: T): Promise<void
       request.onsuccess = () => resolve();
       request.onerror = () => reject(request.error);
     });
-  } catch {}
+  } catch (e) { console.error('[offline-storage:set-item]', e); }
 }
 
 async function removeItem(storeName: string, key: string): Promise<void> {
@@ -71,7 +71,7 @@ async function removeItem(storeName: string, key: string): Promise<void> {
       request.onsuccess = () => resolve();
       request.onerror = () => reject(request.error);
     });
-  } catch {}
+  } catch (e) { console.error('[offline-storage:remove-item]', e); }
 }
 
 async function getAllKeys(storeName: string): Promise<string[]> {
@@ -114,7 +114,7 @@ export async function clearOfflineChapters(): Promise<void> {
     const db = await openDB();
     const tx = db.transaction(STORES.chapters, 'readwrite');
     tx.objectStore(STORES.chapters).clear();
-  } catch {}
+  } catch (e) { console.error('[offline-storage:clear-chapters]', e); }
 }
 
 // Favorites

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -15,6 +16,7 @@ type Idioma = 'grego' | 'hebraico';
 type SortBy = 'strong' | 'frequencia' | 'palavra';
 
 export default function PalavrasOriginaisPage() {
+  const { t } = useTranslation();
   const [idioma, setIdioma] = useState<Idioma>('grego');
   const [busca, setBusca] = useState('');
   const [expandedStrong, setExpandedStrong] = useState<string | null>(null);
@@ -88,9 +90,9 @@ export default function PalavrasOriginaisPage() {
               <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-rose-500/20 to-pink-500/20 flex items-center justify-center border border-rose-500/20">
                 <Languages className="w-10 h-10 text-rose-500" />
               </div>
-              <h1 className="font-display text-4xl font-light mb-3">Palavras <span className="text-primary italic">Originais</span></h1>
+              <h1 className="font-display text-4xl font-light mb-3">{t('palavras.title1')} <span className="text-primary italic">{t('palavras.title2')}</span></h1>
               <p className="text-muted-foreground max-w-lg mx-auto">
-                Estude o grego do Novo Testamento ({carregando ? '...' : palavrasGregas.length} palavras) e o hebraico do Antigo Testamento ({carregando ? '...' : palavrasHebraicas.length} palavras)
+                {t('palavras.pageSubtitle', { greekCount: carregando ? '...' : palavrasGregas.length, hebrewCount: carregando ? '...' : palavrasHebraicas.length })}
               </p>
             </div>
           </ScrollReveal>
@@ -100,21 +102,21 @@ export default function PalavrasOriginaisPage() {
             <div className="flex rounded-xl border border-border overflow-hidden">
               <button onClick={() => setIdioma('grego')}
                 className={cn('px-4 py-2.5 text-sm font-medium transition-all', idioma === 'grego' ? 'bg-primary text-primary-foreground' : 'bg-background text-muted-foreground')}>
-                🇬🇷 Grego NT ({palavrasGregas.length})
+                🇬🇷 {t('palavras.greekNT')} ({palavrasGregas.length})
               </button>
               <button onClick={() => setIdioma('hebraico')}
                 className={cn('px-4 py-2.5 text-sm font-medium transition-all border-l border-border', idioma === 'hebraico' ? 'bg-primary text-primary-foreground' : 'bg-background text-muted-foreground')}>
-                🇮🇱 Hebraico AT ({palavrasHebraicas.length})
+                🇮🇱 {t('palavras.hebrewAT')} ({palavrasHebraicas.length})
               </button>
             </div>
             <div className="flex rounded-xl border border-border overflow-hidden ml-auto">
               <button onClick={() => setView('list')}
                 className={cn('px-3 py-2 text-xs font-medium transition-all', view === 'list' ? 'bg-primary text-primary-foreground' : 'bg-background text-muted-foreground')}>
-                <Hash className="w-3.5 h-3.5 inline mr-1" />Lista
+                <Hash className="w-3.5 h-3.5 inline mr-1" />{t('palavras.listView')}
               </button>
               <button onClick={() => setView('frequency')}
                 className={cn('px-3 py-2 text-xs font-medium transition-all border-l border-border', view === 'frequency' ? 'bg-primary text-primary-foreground' : 'bg-background text-muted-foreground')}>
-                <BarChart3 className="w-3.5 h-3.5 inline mr-1" />Frequência
+                <BarChart3 className="w-3.5 h-3.5 inline mr-1" />{t('palavras.frequencyView')}
               </button>
             </div>
           </div>
@@ -124,7 +126,7 @@ export default function PalavrasOriginaisPage() {
             <div className="relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input type="text" value={busca} onChange={e => setBusca(e.target.value)}
-                placeholder={idioma === 'grego' ? 'Buscar palavra grega (ex: agape, logos, pistis)...' : 'Buscar palavra hebraica (ex: shalom, berith)...'}
+                    placeholder={idioma === 'grego' ? t('palavras.searchGreek') : t('palavras.searchHebrew')}
                 className="w-full pl-11 pr-10 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20" />
               {busca && <button onClick={() => setBusca('')} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-muted/50">
                 <X className="w-4 h-4" /></button>}
@@ -138,7 +140,7 @@ export default function PalavrasOriginaisPage() {
                   <button onClick={() => setFiltroCategoria('all')}
                     className={cn('px-3 py-1.5 rounded-lg text-xs font-medium transition-all',
                       filtroCategoria === 'all' ? 'bg-primary text-primary-foreground' : 'border border-border text-muted-foreground')}>
-                    Todas
+                    {t('palavras.allWords')}
                   </button>
                   {categorias.map(cat => (
                     <button key={cat} onClick={() => setFiltroCategoria(cat)}
@@ -151,7 +153,7 @@ export default function PalavrasOriginaisPage() {
               )}
               <div className="ml-auto flex items-center gap-1">
                 <SortAsc className="w-3.5 h-3.5 text-muted-foreground" />
-                {([['strong', 'Strong'], ['frequencia', 'Frequência'], ['palavra', 'A–Z']] as const).map(([val, label]) => (
+                {([['strong', t('palavras.sortStrong')], ['frequencia', t('palavras.sortFrequency')], ['palavra', t('palavras.sortAZ')]] as [SortBy, string][]).map(([val, label]) => (
                   <button key={val} onClick={() => setSortBy(val)}
                     className={cn('px-2.5 py-1 rounded-lg text-xs font-medium transition-all',
                       sortBy === val ? 'bg-primary text-primary-foreground' : 'border border-border text-muted-foreground')}>
@@ -168,7 +170,7 @@ export default function PalavrasOriginaisPage() {
               className="rounded-2xl border border-border/50 bg-card/50 p-6 mb-6">
               <h3 className="font-semibold mb-4 flex items-center gap-2">
                 <BarChart3 className="w-4 h-4 text-primary" />
-                Top 20 Palavras Mais Frequentes {idioma === 'grego' ? 'no Novo Testamento' : 'no Antigo Testamento'}
+                {t('palavras.topFrequency')} {idioma === 'grego' ? t('palavras.greekNTFull') : t('palavras.hebrewATFull')}
               </h3>
               <div className="space-y-2">
                 {topFrequent.map((p, i) => {
@@ -201,7 +203,7 @@ export default function PalavrasOriginaisPage() {
                 })}
               </div>
               {topFrequent.length === 0 && (
-                <p className="text-center text-sm text-muted-foreground py-8">Nenhuma palavra com frequência registrada</p>
+                <p className="text-center text-sm text-muted-foreground py-8">{t('palavras.noFrequency')}</p>
               )}
             </motion.div>
           )}
@@ -215,7 +217,7 @@ export default function PalavrasOriginaisPage() {
                   <span className="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:0.15s]" />
                   <span className="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:0.3s]" />
                 </div>
-                <p className="text-sm text-muted-foreground mt-4">Carregando léxico...</p>
+                <p className="text-sm text-muted-foreground mt-4">{t('palavras.loadingLexicon')}</p>
               </div>
             ) : (
               filtradas.map((p) => {
@@ -255,34 +257,34 @@ export default function PalavrasOriginaisPage() {
                           {idioma === 'grego' && 'definicao' in p && (
                             <>
                               <div>
-                                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Definição</p>
+                                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">{t('palavras.definition')}</p>
                                 <p className="text-sm leading-relaxed">{(p as PalavraGrega).definicao}</p>
                               </div>
                               <div className="grid grid-cols-2 gap-3">
                                 <div className="rounded-lg bg-muted/50 p-3">
-                                  <p className="text-[10px] font-semibold text-muted-foreground uppercase">Categoria</p>
+                                  <p className="text-[10px] font-semibold text-muted-foreground uppercase">{t('palavras.category')}</p>
                                   <p className="text-sm font-medium capitalize">{(p as PalavraGrega).categoria}</p>
                                 </div>
                                 <div className="rounded-lg bg-muted/50 p-3">
-                                  <p className="text-[10px] font-semibold text-muted-foreground uppercase">Morfologia</p>
+                                  <p className="text-[10px] font-semibold text-muted-foreground uppercase">{t('palavras.morphology')}</p>
                                   <p className="text-sm font-medium">{(p as PalavraGrega).morphologia}</p>
                                 </div>
                               </div>
                               {(p as PalavraGrega).pronuncia && (
                                 <div className="rounded-lg bg-muted/50 p-3">
-                                  <p className="text-[10px] font-semibold text-muted-foreground uppercase">Pronúncia</p>
+                                  <p className="text-[10px] font-semibold text-muted-foreground uppercase">{t('palavras.pronunciation')}</p>
                                   <p className="text-sm font-medium">{(p as PalavraGrega).pronuncia}</p>
                                 </div>
                               )}
                               {(p as PalavraGrega).uso && (
                                 <div>
-                                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Uso</p>
+                                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">{t('palavras.usage')}</p>
                                   <p className="text-sm">{(p as PalavraGrega).uso}</p>
                                 </div>
                               )}
                               {(p as PalavraGrega).notas && (
                                 <div className="rounded-lg bg-primary/5 border border-primary/10 p-3">
-                                  <p className="text-[10px] font-semibold text-primary uppercase tracking-wider mb-1">Notas</p>
+                                  <p className="text-[10px] font-semibold text-primary uppercase tracking-wider mb-1">{t('palavras.notes')}</p>
                                   <p className="text-sm">{(p as PalavraGrega).notas}</p>
                                 </div>
                               )}
@@ -290,7 +292,7 @@ export default function PalavrasOriginaisPage() {
                                 <div>
                                   <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1 flex items-center gap-1.5">
                                     <Link2 className="w-3 h-3" />
-                                    Concordância — {idioma === 'grego' ? 'Versículos' : 'Ocorrências'} ({(p as PalavraGrega).versiculos!.length})
+                                    {t('palavras.concordance')} — {idioma === 'grego' ? t('palavras.verses') : t('palavras.occurrences')} ({(p as PalavraGrega).versiculos!.length})
                                   </p>
                                   <div className="flex flex-wrap gap-1.5">
                                     {(p as PalavraGrega).versiculos!.map((v, i) => (
@@ -304,7 +306,7 @@ export default function PalavrasOriginaisPage() {
                               )}
                               {freq > 0 && (
                                 <div className="rounded-lg bg-amber-500/5 border border-amber-500/10 p-3">
-                                  <p className="text-[10px] font-semibold text-amber-600 uppercase tracking-wider mb-1">Frequência no NT</p>
+                                  <p className="text-[10px] font-semibold text-amber-600 uppercase tracking-wider mb-1">{t('palavras.frequencyNT')}</p>
                                   <div className="flex items-center gap-3">
                                     <div className="flex-1 h-3 bg-muted/50 rounded-full overflow-hidden">
                                       <div className="h-full bg-gradient-to-r from-amber-500/60 to-amber-500 rounded-full"
@@ -319,12 +321,12 @@ export default function PalavrasOriginaisPage() {
                           {idioma === 'hebraico' && (
                             <>
                               <div>
-                                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Definição</p>
+                                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">{t('palavras.definition')}</p>
                                 <p className="text-sm leading-relaxed">{(p as PalavraHebraica).definicao}</p>
                               </div>
                               {(p as PalavraHebraica).morfologia && (
                                 <div className="rounded-lg bg-muted/50 p-3">
-                                  <p className="text-[10px] font-semibold text-muted-foreground uppercase">Morfologia / Pronúncia</p>
+                                  <p className="text-[10px] font-semibold text-muted-foreground uppercase">{t('palavras.morphologyPronunciation')}</p>
                                   <p className="text-sm font-medium">{(p as PalavraHebraica).morfologia}</p>
                                 </div>
                               )}
@@ -341,7 +343,7 @@ export default function PalavrasOriginaisPage() {
           </div>
 
           <p className="text-center text-xs text-muted-foreground mt-8">
-            {filtradas.length} de {idioma === 'grego' ? palavrasGregas.length : palavrasHebraicas.length} palavras
+            {t('palavras.showing', { filtered: filtradas.length, total: idioma === 'grego' ? palavrasGregas.length : palavrasHebraicas.length })}
           </p>
         </div>
       </main>

@@ -127,7 +127,7 @@ function estadoInicial(): GamificacaoState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) return JSON.parse(raw);
-  } catch {}
+  } catch (e) { console.error('[gamificacao:load-state]', e); }
   return {
     xpTotal: 0,
     conquistasDesbloqueadas: [],

@@ -44,13 +44,13 @@ function carregarLocal(): EstudosData {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? JSON.parse(raw) : { marcas: {}, planos: [] };
-  } catch { return { marcas: {}, planos: [] }; }
+  } catch (e) { console.error('[estudos:carregar-local]', e); return { marcas: {}, planos: [] }; }
 }
 
 function salvarLocal(data: EstudosData) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  } catch {}
+  } catch (e) { console.error('[estudos:salvar-local]', e); }
 }
 
 function obterToken(): string | null {
@@ -88,7 +88,9 @@ async function syncWithBackend(marcas: Record<string, MarcaBiblia>): Promise<Rec
         return merged;
       }
     }
-  } catch {}
+  } catch (e) {
+    console.error('[estudos:sync-with-backend]', e);
+  }
 
   return marcas;
 }
@@ -103,7 +105,7 @@ async function pushToBackend(marcas: Record<string, MarcaBiblia>) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ items }),
     });
-  } catch {}
+  } catch (e) { console.error('[estudos:push-to-backend]', e); }
 }
 
 // Initialize: sync from backend on first load

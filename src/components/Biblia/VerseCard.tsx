@@ -275,6 +275,9 @@ export const VerseCard = memo(function VerseCard({
             {/* Verse text - clickable words for lexicon */}
             <ClickableVerse
               text={texto}
+              livroAbreviacao={livroAbreviacao}
+              capitulo={capitulo}
+              numero={numero}
               className="font-serif-body text-[var(--content-primary)] leading-[1.8] sm:leading-[1.9]"
               style={{ fontSize: `${fontSize}px` }}
             />

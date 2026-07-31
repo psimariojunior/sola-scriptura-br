@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -17,15 +18,15 @@ import type { ParaleloSinotico } from '@/data/biblia/sinopticos';
 type Categoria = ParaleloSinotico['categoria'] | 'todas';
 type Visao = 'colunas' | 'lista';
 
-const CATEGORIAS: { valor: Categoria; label: string }[] = [
-  { valor: 'todas', label: 'Todas' },
-  { valor: 'narrativa', label: 'Narrativa' },
-  { valor: 'parabola', label: 'Parábola' },
-  { valor: 'milagre', label: 'Milagre' },
-  { valor: 'discurso', label: 'Discurso' },
-  { valor: 'ensino', label: 'Ensino' },
-  { valor: 'paixao', label: 'Paixão' },
-  { valor: 'pos-ressurreicao', label: 'Pós-Ressurreição' },
+const CATEGORIAS: { valor: Categoria; labelKey: string }[] = [
+  { valor: 'todas', labelKey: 'harmonia.catAll' },
+  { valor: 'narrativa', labelKey: 'harmonia.catNarrative' },
+  { valor: 'parabola', labelKey: 'harmonia.catParable' },
+  { valor: 'milagre', labelKey: 'harmonia.catMiracle' },
+  { valor: 'discurso', labelKey: 'harmonia.catDiscourse' },
+  { valor: 'ensino', labelKey: 'harmonia.catTeaching' },
+  { valor: 'paixao', labelKey: 'harmonia.catPassion' },
+  { valor: 'pos-ressurreicao', labelKey: 'harmonia.catPostResurrection' },
 ];
 
 const CATEGORIA_COR: Record<string, string> = {
@@ -115,6 +116,7 @@ function ColunaEvangelho({
   expandido: string | null;
   onToggle: (id: string) => void;
 }) {
+  const { t } = useTranslation();
   const comPassagem = paralelos.filter((p) => getRefs(p, evangelho.chave).length > 0);
 
   return (
@@ -129,7 +131,7 @@ function ColunaEvangelho({
       <div className="border border-t-0 rounded-b-xl border-border/50 divide-y divide-border/30 bg-card/50">
         {comPassagem.length === 0 ? (
           <div className="p-6 text-center text-xs text-muted-foreground/50">
-            Sem paralelos
+            {t('harmonia.noParallelsForGospel')}
           </div>
         ) : (
           comPassagem.map((p) => {
@@ -246,6 +248,7 @@ function MobileTabs({
 }
 
 export default function HarmoniaPage() {
+  const { t } = useTranslation();
   const [busca, setBusca] = useState('');
   const [filtroCategoria, setFiltroCategoria] = useState<Categoria>('todas');
   const [expandido, setExpandido] = useState<string | null>(null);
@@ -299,10 +302,10 @@ export default function HarmoniaPage() {
                 <Columns3 className="w-8 h-8 text-primary" />
               </motion.div>
               <h1 className="font-display text-4xl md:text-5xl font-light mb-4">
-                Harmonia <span className="italic text-primary">Sinótica</span>
+                {t('harmonia.title1')} <span className="italic text-primary">{t('harmonia.title2')}</span>
               </h1>
               <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-                Compare paralelos entre os quatro Evangelhos lado a lado. Identifique fontes, categorias e harmonize os relatos do ministério de Jesus.
+                {t('harmonia.subtitle')}
               </p>
               <div className="ornament w-16 mx-auto mt-6" />
             </div>
@@ -318,7 +321,7 @@ export default function HarmoniaPage() {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <input
                     type="text"
-                    placeholder="Buscar paralelos..."
+                    placeholder={t('harmonia.searchPlaceholder')}
                     value={busca}
                     onChange={(e) => setBusca(e.target.value)}
                     className="w-full pl-10 pr-4 py-2.5 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
@@ -333,10 +336,10 @@ export default function HarmoniaPage() {
                   <button
                     onClick={() => setVisao(visao === 'colunas' ? 'lista' : 'colunas')}
                     className="px-3 py-2 text-xs font-medium rounded-lg bg-secondary/50 text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
-                    title={visao === 'colunas' ? 'Ver como lista' : 'Ver como colunas'}
+                    title={visao === 'colunas' ? t('harmonia.viewAsList') : t('harmonia.viewAsColumns')}
                   >
                     {visao === 'colunas' ? <Layers className="w-3.5 h-3.5" /> : <Columns3 className="w-3.5 h-3.5" />}
-                    <span className="hidden sm:inline">{visao === 'colunas' ? 'Lista' : 'Colunas'}</span>
+                    <span className="hidden sm:inline">{visao === 'colunas' ? t('harmonia.listView') : t('harmonia.columnsView')}</span>
                   </button>
                 </div>
               </div>
@@ -353,7 +356,7 @@ export default function HarmoniaPage() {
                         : 'bg-muted text-muted-foreground hover:bg-muted/80'
                     }`}
                   >
-                    {cat.label}
+                    {t(cat.labelKey)}
                   </motion.button>
                 ))}
               </div>
@@ -364,10 +367,10 @@ export default function HarmoniaPage() {
           <ScrollReveal delay={0.12}>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
               {[
-                { value: stats.total, label: 'Paralelos', color: 'text-primary' },
-                { value: stats.categorias, label: 'Categorias', color: 'text-amber-500' },
-                { value: stats.triplice, label: 'Tríplice', color: 'text-emerald-500' },
-                { value: stats.quatro, label: '4 Evangelhos', color: 'text-purple-500' },
+                { value: stats.total, label: t('harmonia.statParallels'), color: 'text-primary' },
+                { value: stats.categorias, label: t('harmonia.statCategories'), color: 'text-amber-500' },
+                { value: stats.triplice, label: t('harmonia.statTriplet'), color: 'text-emerald-500' },
+                { value: stats.quatro, label: t('harmonia.statFourGospels'), color: 'text-purple-500' },
               ].map((stat) => (
                 <motion.div key={stat.label} className="sola-card p-3 text-center" whileHover={{ y: -2 }}>
                   <p className={`font-display text-2xl font-light ${stat.color}`}>{stat.value}</p>
@@ -387,7 +390,7 @@ export default function HarmoniaPage() {
             ))}
             <div className="flex items-center gap-1.5 ml-auto">
               <Clock className="w-3 h-3 text-muted-foreground/50" />
-              <span className="text-[10px] text-muted-foreground/50">Clique para expandir</span>
+              <span className="text-[10px] text-muted-foreground/50">{t('harmonia.clickToExpand')}</span>
             </div>
           </div>
 
@@ -495,8 +498,8 @@ export default function HarmoniaPage() {
             <ScrollReveal>
               <div className="text-center py-16">
                 <BookOpen className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                <p className="font-display text-xl text-muted-foreground">Nenhum paralelo encontrado</p>
-                <p className="text-sm text-muted-foreground/60 mt-2">Tente ajustar os filtros ou a busca</p>
+                <p className="font-display text-xl text-muted-foreground">{t('harmonia.noParallels')}</p>
+                <p className="text-sm text-muted-foreground/60 mt-2">{t('harmonia.tryAdjust')}</p>
               </div>
             </ScrollReveal>
           )}

@@ -187,7 +187,7 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
       if (token != null) {
         try {
           final response = await http.post(
-            Uri.parse('https://solascripturabr.com.br/api/notifications/register'),
+            Uri.parse('https://api.solascripturabr.com.br/api/notifications/register'),
             headers: {'Content-Type': 'application/json'},
             body: jsonEncode({'fcmToken': token, 'platform': 'android'}),
           );
@@ -201,7 +201,7 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
         debugPrint('FCM Token refreshed: $newToken');
         try {
           await http.post(
-            Uri.parse('https://solascripturabr.com.br/api/notifications/register'),
+            Uri.parse('https://api.solascripturabr.com.br/api/notifications/register'),
             headers: {'Content-Type': 'application/json'},
             body: jsonEncode({'fcmToken': newToken, 'platform': 'android'}),
           );

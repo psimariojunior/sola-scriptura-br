@@ -17,11 +17,11 @@ function carregar(): Record<string, Marca> {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? JSON.parse(raw) : {};
-  } catch { return {}; }
+  } catch (e) { console.error('[marcadores:carregar]', e); return {}; }
 }
 
 function salvar(data: Record<string, Marca>) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) { console.error('[marcadores:salvar]', e); }
 }
 
 function chave(livro: string, capitulo: number, versiculo: number, traducao: string): string {

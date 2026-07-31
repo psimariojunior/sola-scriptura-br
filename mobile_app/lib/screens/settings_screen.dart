@@ -81,7 +81,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             children: [
               const ListTile(
                 title: Text('Versão', style: TextStyle(color: Colors.white)),
-                subtitle: Text('1.1.0', style: TextStyle(color: Colors.white54)),
+                subtitle: const Text('1.2.0', style: TextStyle(color: Colors.white54)),
               ),
               const ListTile(
                 title: Text('Desenvolvido com', style: TextStyle(color: Colors.white)),

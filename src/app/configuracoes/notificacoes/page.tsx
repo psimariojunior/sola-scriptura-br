@@ -15,6 +15,8 @@ import {
   getSmartPushSettings,
   saveSmartPushSettings,
   reschedulePushFromStorage,
+  scheduleSmartNotifications,
+  sendTestNotification,
   type SmartPushSettings,
 } from '@/lib/pushNotifications';
 
@@ -30,6 +32,7 @@ export default function NotificacoesPage() {
     versiculoMotivacional: true,
   });
   const [toast, setToast] = useState<string | null>(null);
+  const [testLoading, setTestLoading] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -38,6 +41,7 @@ export default function NotificacoesPage() {
     setSettings(getSmartPushSettings());
     if (isPushEnabled() && Notification.permission === 'granted') {
       reschedulePushFromStorage();
+      scheduleSmartNotifications();
     }
   }, []);
 
@@ -85,7 +89,26 @@ export default function NotificacoesPage() {
     setSettings(next);
     saveSmartPushSettings(next);
     if (enabled) {
-      enablePush(next.hora, next.minuto);
+      // Reschedule with new settings
+      enablePush(next.hora, next.minuto).then(() => {
+        scheduleSmartNotifications();
+      });
+    }
+  };
+
+  const handleTestNotification = async () => {
+    setTestLoading(true);
+    try {
+      const ok = await sendTestNotification();
+      if (ok) {
+        showToast('Notificação de teste enviada! Verifique sua barra de notificações.');
+      } else {
+        showToast('Erro ao enviar teste. Verifique as permissões do navegador.');
+      }
+    } catch {
+      showToast('Erro ao enviar teste.');
+    } finally {
+      setTestLoading(false);
     }
   };
 
@@ -163,6 +186,23 @@ export default function NotificacoesPage() {
                     onChange={e => updateSetting('minuto', Math.min(59, Math.max(0, Number(e.target.value))))}
                     className="w-20 px-3 py-2 text-center rounded-lg border border-border bg-background text-lg font-mono" />
                   <span className="text-sm text-muted-foreground ml-2">({horaFormatada})</span>
+                </div>
+                <div className="mt-4 pt-4 border-t border-border/30">
+                  <button
+                    onClick={handleTestNotification}
+                    disabled={testLoading}
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-medium border border-primary/30 text-primary hover:bg-primary/5 transition-colors disabled:opacity-50"
+                  >
+                    {testLoading ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <Bell className="w-4 h-4" />
+                    )}
+                    {testLoading ? 'Enviando...' : 'Testar Notificação Agora'}
+                  </button>
+                  <p className="text-center text-[10px] text-muted-foreground mt-2">
+                    Envia uma notificação de teste para verificar se está funcionando
+                  </p>
                 </div>
               </div>
 

@@ -76,7 +76,8 @@ async function getSWRegistration(): Promise<ServiceWorkerRegistration | null> {
   if (typeof navigator === 'undefined' || !navigator.serviceWorker) return null;
   try {
     return await navigator.serviceWorker.ready;
-  } catch {
+  } catch (e) {
+    console.error('[push:get-sw-registration]', e);
     return null;
   }
 }
@@ -148,7 +149,7 @@ export function getStoredSubscription(): PushSubscriptionJSON | null {
   try {
     const raw = localStorage.getItem(PUSH_SUBSCRIPTION_KEY);
     if (raw) return JSON.parse(raw);
-  } catch {}
+  } catch (e) { console.error('[push:get-stored-subscription]', e); }
   return null;
 }
 
@@ -210,6 +211,7 @@ export async function enablePush(hour: number = 7, minute: number = 0): Promise<
 
   setPushEnabled(true);
   await scheduleDailyPush(hour, minute);
+  scheduleSmartNotifications();
   return true;
 }
 
@@ -230,15 +232,17 @@ export async function reschedulePushFromStorage(): Promise<void> {
       if (delay > 0) {
         setTimeout(async () => {
           await sendDailyVerseNotification();
-          scheduleDailyPush(schedule.hour, schedule.minute);
+          scheduleDailyPush(schedule.hour ?? 7, schedule.minute ?? 0);
         }, delay);
       } else {
+        // Time already passed — schedule for next occurrence using stored hour/minute
         scheduleDailyPush(schedule.hour ?? 7, schedule.minute ?? 0);
       }
     } else {
       scheduleDailyPush(7, 0);
     }
-  } catch {
+  } catch (e) {
+    console.error('[push:configure-smart-schedule]', e);
     scheduleDailyPush(7, 0);
   }
 }
@@ -256,13 +260,13 @@ export function getSmartPushSettings(): SmartPushSettings {
   try {
     const raw = localStorage.getItem(PUSH_SMART_KEY);
     if (raw) return JSON.parse(raw);
-  } catch {}
+  } catch (e) { console.error('[push:get-smart-settings]', e); }
   return { hora: 7, minuto: 0, lembreteStreak: true, lembretePlano: true, versiculoMotivacional: true };
 }
 
 export function saveSmartPushSettings(settings: SmartPushSettings) {
   if (typeof window === 'undefined') return;
-  try { localStorage.setItem(PUSH_SMART_KEY, JSON.stringify(settings)); } catch {}
+  try { localStorage.setItem(PUSH_SMART_KEY, JSON.stringify(settings)); } catch (e) { console.error('[push:save-smart-settings]', e); }
 }
 
 const STREAK_REMINDER_VERSES = [
@@ -325,6 +329,36 @@ export async function sendStreakRiskNotification(streak: number): Promise<void> 
     } as NotificationOptions);
   } catch (err) {
     console.error('[Push] Streak risk notification failed:', err);
+  }
+}
+
+export async function sendTestNotification(): Promise<boolean> {
+  if (!isPushSupported()) return false;
+  if (Notification.permission !== 'granted') {
+    const perm = await requestNotificationPermission();
+    if (perm !== 'granted') return false;
+  }
+
+  const reg = await getSWRegistration();
+  if (!reg) return false;
+
+  try {
+    await reg.showNotification('✅ Notificação de Teste', {
+      body: 'Se você está vendo isto, as notificações estão funcionando!',
+      tag: 'ssb-test-notification',
+      icon: '/icon-192.png',
+      badge: '/icon-192.png',
+      data: { url: '/configuracoes/notificacoes' },
+      actions: [
+        { action: 'open-bible', title: 'Abrir Bíblia' },
+        { action: 'dismiss', title: 'Dispensar' },
+      ],
+      vibrate: [200, 100, 200],
+    } as NotificationOptions);
+    return true;
+  } catch (err) {
+    console.error('[Push] Test notification failed:', err);
+    return false;
   }
 }
 

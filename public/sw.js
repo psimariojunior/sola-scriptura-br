@@ -252,6 +252,24 @@ self.addEventListener('message', (event) => {
   if (data.type === 'PRELOAD_STUDIES') {
     event.waitUntil(preloadStudies(data));
   }
+
+  if (data.type === 'SCHEDULE_NOTIFICATION') {
+    const notif = data.notification;
+    if (notif && self.registration) {
+      self.registration.showNotification(notif.title || 'Sola Scriptura', {
+        body: notif.body || '',
+        icon: '/icon-192.png',
+        badge: '/icon-192.png',
+        tag: notif.tag || 'ssb-scheduled',
+        data: { url: notif.url || '/biblia' },
+        actions: [
+          { action: 'open-bible', title: 'Abrir Bíblia' },
+          { action: 'dismiss', title: 'Dispensar' },
+        ],
+        vibrate: [200, 100, 200],
+      });
+    }
+  }
 });
 
 async function cacheTranslationFromClient(data) {

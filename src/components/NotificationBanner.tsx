@@ -4,17 +4,17 @@ import { useState, useEffect } from 'react';
 import { Bell, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  isNotificationsEnabled,
+  isPushEnabled,
   requestNotificationPermission,
-  scheduleDailyNotification,
-} from '@/lib/notificacoes';
+  enablePush,
+} from '@/lib/pushNotifications';
 
 export function NotificationBanner() {
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!isNotificationsEnabled()) {
+    if (!isPushEnabled()) {
       setVisible(true);
     }
   }, []);
@@ -23,7 +23,7 @@ export function NotificationBanner() {
     setLoading(true);
     const granted = await requestNotificationPermission();
     if (granted) {
-      scheduleDailyNotification(7, 0);
+      await enablePush();
     }
     setVisible(false);
     setLoading(false);

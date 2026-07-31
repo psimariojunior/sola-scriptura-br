@@ -13,7 +13,8 @@ function carregarNotasLocal(): Nota[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? JSON.parse(raw) : [];
-  } catch {
+  } catch (e) {
+    console.error('[notas:carregar-local]', e);
     return [];
   }
 }
@@ -21,7 +22,7 @@ function carregarNotasLocal(): Nota[] {
 function salvarNotasLocal(notas: Nota[]) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(notas));
-  } catch { /* storage full */ }
+  } catch (e) { console.error('[notas:salvar-local]', e); }
 }
 
 async function sincronizarComBackend(notas: Nota[]): Promise<Nota[]> {
@@ -46,7 +47,9 @@ async function sincronizarComBackend(notas: Nota[]): Promise<Nota[]> {
         return merged;
       }
     }
-  } catch { /* offline or error */ }
+  } catch (e) {
+    console.error('[notas:sincronizar-backend]', e);
+  }
 
   return notas;
 }
@@ -61,7 +64,7 @@ async function salvarNoBackend(nota: Nota): Promise<void> {
       body: JSON.stringify(nota),
       signal: AbortSignal.timeout(3000),
     });
-  } catch { /* offline */ }
+  } catch (e) { console.error('[notas:salvar-backend]', e); }
 }
 
 async function excluirNoBackend(id: string): Promise<void> {
@@ -72,7 +75,7 @@ async function excluirNoBackend(id: string): Promise<void> {
       method: 'DELETE',
       signal: AbortSignal.timeout(3000),
     });
-  } catch { /* offline */ }
+  } catch (e) { console.error('[notas:excluir-backend]', e); }
 }
 
 export function useNotas() {

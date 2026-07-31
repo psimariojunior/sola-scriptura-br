@@ -91,7 +91,7 @@ export default function EstudosPage() {
         const info = livroPorAbreviacao.get(ultimo[0]);
         if (info) setRetomar({ livro: ultimo[0], titulo: info.nome, capitulo: 1 });
       }
-    } catch {}
+    } catch (e) { console.error('[estudos:load-stats]', e); }
 
     Promise.all([
       import('@/data/estudosPorLivro'),

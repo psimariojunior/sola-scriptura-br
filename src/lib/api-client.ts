@@ -124,13 +124,13 @@ export interface Capitulo {
 }
 
 export interface PesquisaResult {
-  livroAbrev: string;
-  livroNome: string;
-  testamento: 'AT' | 'NT';
-  capitulo: number;
-  versiculo: number;
-  texto: string;
-  traducao: string;
+  tipo: string;
+  titulo: string;
+  subtitulo?: string;
+  referencia?: string;
+  trecho: string;
+  relevancia: number;
+  metadata?: Record<string, any>;
 }
 
 // ── Theology types ───────────────────────────────────────────────────────
@@ -227,8 +227,8 @@ export const biblia = {
   getLivros: () => get<Livro[]>('/biblia/livros'),
   getCapitulos: (livroId: string) => get<Capitulo[]>(`/biblia/livros/${livroId}/capitulos`),
   getVersiculos: (capituloId: string) => get<Versiculo[]>(`/biblia/capitulos/${capituloId}/versiculos`),
-  pesquisar: (query: string, options?: { traducao?: string; livro?: string; capitulo?: number }) =>
-    get<PesquisaResult[]>('/biblia/pesquisa', { params: { q: query, ...options } }),
+  pesquisar: (query: string, options?: { traducao?: string; livro?: string; testamento?: string; capitulo?: number; limite?: number }) =>
+    get<PesquisaResult[]>('/pesquisa/versiculos', { params: { q: query, ...options } }),
 };
 
 export const teologia = {

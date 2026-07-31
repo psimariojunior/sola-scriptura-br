@@ -1,8 +1,9 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { X, BookOpen } from 'lucide-react';
-import { getStrongByNumber } from '@/lib/lexiconSearch';
+import { getStrongByNumber, type LexiconEntry } from '@/lib/lexiconSearch';
 
 interface InterlinearModalProps {
   strong: string | null;
@@ -10,9 +11,16 @@ interface InterlinearModalProps {
 }
 
 export function InterlinearModal({ strong, onClose }: InterlinearModalProps) {
-  if (!strong) return null;
-  const entry = getStrongByNumber(strong);
-  if (!entry) return null;
+  const [entry, setEntry] = useState<LexiconEntry | null>(null);
+
+  useEffect(() => {
+    if (!strong) { setEntry(null); return; }
+    let cancelled = false;
+    getStrongByNumber(strong).then(e => { if (!cancelled) setEntry(e); });
+    return () => { cancelled = true; };
+  }, [strong]);
+
+  if (!strong || !entry) return null;
 
   const isHebrew = strong.toUpperCase().startsWith('H');
   const definicao = 'definicao' in entry ? (entry as { definicao: string }).definicao : '';

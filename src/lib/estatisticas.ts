@@ -29,11 +29,11 @@ function carregar(): StatsData {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return { leituras: {}, streak: 0, ultimaLeitura: null, totalCapitulos: 0, livrosLidos: {} };
     return JSON.parse(raw);
-  } catch { return { leituras: {}, streak: 0, ultimaLeitura: null, totalCapitulos: 0, livrosLidos: {} }; }
+  } catch (e) { console.error('[estatisticas:carregar]', e); return { leituras: {}, streak: 0, ultimaLeitura: null, totalCapitulos: 0, livrosLidos: {} }; }
 }
 
 function salvar(data: StatsData) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) { console.error('[estatisticas:salvar]', e); }
 }
 
 export function recordReading(livro: string, capitulo: number) {

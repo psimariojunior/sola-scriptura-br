@@ -28,7 +28,7 @@ async function getCached(texto: string, voz: string): Promise<ArrayBuffer | null
     const key = `${voz}:${texto}`;
     const res = await cache.match(key);
     if (res) return await res.arrayBuffer();
-  } catch {}
+  } catch (e) { console.error('[edge-tts:get-cached]', e); }
   return null;
 }
 
@@ -38,7 +38,7 @@ async function setCached(texto: string, voz: string, buffer: ArrayBuffer): Promi
     const cache = await caches.open(CACHE_NAME);
     const key = `${voz}:${texto}`;
     await cache.put(key, new Response(buffer, { headers: { 'Content-Type': 'audio/mpeg' } }));
-  } catch {}
+  } catch (e) { console.error('[edge-tts:set-cached]', e); }
 }
 
 export async function gerarAudioEdge(opts: EdgeTTSOptions): Promise<ArrayBuffer> {

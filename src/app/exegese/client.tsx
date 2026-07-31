@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
@@ -133,6 +134,7 @@ const tradBg: Record<string, string> = {
 };
 
 export function ExegeseClient() {
+  const { t } = useTranslation();
   const [livroAbrev, setLivroAbrev] = useState('');
   const [capituloNum, setCapituloNum] = useState<number | null>(null);
   const [data, setData] = useState<Record<string, LivroData>>({});
@@ -229,14 +231,13 @@ export function ExegeseClient() {
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
                 <Sparkles className="w-4 h-4" />
-                Análise Profunda das Escrituras
+                {t('exegesis.heroBadge')}
               </div>
               <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-light mb-4">
                 Exegese <span className="text-primary italic">Bíblica</span>
               </h1>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Ferramenta interativa de análise contextual, gramatical e teológica — 
-                estude as Escrituras com profundidade acadêmica
+                {t('exegesis.heroSubtitle')}
               </p>
             </div>
           </ScrollReveal>
@@ -248,7 +249,7 @@ export function ExegeseClient() {
                 <span className="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:0.15s]" />
                 <span className="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:0.3s]" />
               </div>
-              <p className="text-sm text-muted-foreground mt-4">Carregando textos bíblicos...</p>
+              <p className="text-sm text-muted-foreground mt-4">{t('exegesis.loadingTexts')}</p>
             </div>
           ) : (
             <>
@@ -257,13 +258,13 @@ export function ExegeseClient() {
                 <div className="glass-card p-6 rounded-2xl mb-8">
                   <div className="flex flex-wrap items-end gap-4">
                     <div className="flex-1 min-w-[200px]">
-                      <label className="block text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">Livro</label>
+                      <label className="block text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">{t('exegesis.bookLabel')}</label>
                       <select
                         value={livroAbrev}
                         onChange={(e) => { setLivroAbrev(e.target.value); setCapituloNum(null); }}
                         className="w-full px-4 py-3 bg-background/50 border border-border/50 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all"
                       >
-                        <option value="">Selecionar livro...</option>
+                        <option value="">{t('exegesis.selectBook')}</option>
                         {TODOS_LIVROS.map((l) => (
                           <option key={l.abreviacao} value={l.abreviacao}>{l.nome}</option>
                         ))}
@@ -271,14 +272,14 @@ export function ExegeseClient() {
                     </div>
 
                     <div className="w-40">
-                      <label className="block text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">Capítulo</label>
+                      <label className="block text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">{t('exegesis.chapterLabel')}</label>
                       <select
                         value={capituloNum ?? ''}
                         onChange={(e) => setCapituloNum(e.target.value ? Number(e.target.value) : null)}
                         disabled={!livro}
                         className="w-full px-4 py-3 bg-background/50 border border-border/50 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all disabled:opacity-60"
                       >
-                        <option value="">Selecionar...</option>
+                        <option value="">{t('exegesis.selectChapter')}</option>
                         {Array.from({ length: totalCaps }, (_, i) => i + 1).map((c) => (
                           <option key={c} value={c}>{c}</option>
                         ))}
@@ -290,7 +291,7 @@ export function ExegeseClient() {
                         onClick={handleLimpar}
                         className="px-4 py-3 text-xs border border-border/50 rounded-xl text-muted-foreground hover:bg-muted/50 transition-all"
                       >
-                        Limpar
+                        {t('common.clear')}
                       </button>
                     )}
                   </div>
@@ -303,9 +304,9 @@ export function ExegeseClient() {
                     <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
                       <Search className="w-10 h-10 text-primary/40" strokeWidth={1} />
                     </div>
-                    <p className="font-display text-2xl text-muted-foreground mb-2">Selecione um livro e capítulo</p>
+                    <p className="font-display text-2xl text-muted-foreground mb-2">{t('exegesis.selectBookAndChapter')}</p>
                     <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                      Escolha uma passagem bíblica acima para iniciar a análise exegética completa
+                      {t('exegesis.selectBookAndChapterDesc')}
                     </p>
                   </div>
                 </ScrollReveal>
@@ -319,10 +320,10 @@ export function ExegeseClient() {
                       <div className="glass-card p-1.5 mb-6 rounded-2xl">
                         <div className="flex">
                           {([
-                            { id: 'texto' as TabId, label: 'Texto', icon: BookOpen },
-                            { id: 'contexto' as TabId, label: 'Contexto', icon: Globe },
-                            { id: 'palavras' as TabId, label: 'Palavras', icon: Languages },
-                            { id: 'teologia' as TabId, label: 'Teologia', icon: Crosshair },
+                            { id: 'texto' as TabId, label: t('exegesis.tabText'), icon: BookOpen },
+                            { id: 'contexto' as TabId, label: t('exegesis.tabContext'), icon: Globe },
+                            { id: 'palavras' as TabId, label: t('exegesis.tabWords'), icon: Languages },
+                            { id: 'teologia' as TabId, label: t('exegesis.tabTheology'), icon: Crosshair },
                           ]).map(({ id, label, icon: Icon }) => (
                             <button
                               key={id}
@@ -399,7 +400,7 @@ export function ExegeseClient() {
                                   {generoInfo.icone}
                                 </div>
                                 <div>
-                                  <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wider">Gênero Literário</h3>
+                                  <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wider">{t('exegesis.literaryGenre')}</h3>
                                   <p className="text-xl font-display text-primary">{generoInfo.genero}</p>
                                 </div>
                               </div>
@@ -413,51 +414,51 @@ export function ExegeseClient() {
                             <div className="glass-card p-6 rounded-2xl">
                               <h3 className="font-semibold text-sm mb-4 flex items-center gap-2 text-muted-foreground uppercase tracking-wider">
                                 <Globe className="w-4 h-4" strokeWidth={1.5} />
-                                Contexto Histórico
+                                {t('exegesis.historicalContext')}
                               </h3>
                               <div className="grid grid-cols-2 gap-4 mb-4">
                                 <div className="p-3 bg-muted/30 rounded-xl">
-                                  <span className="text-xs text-muted-foreground block mb-1">Período</span>
+                                   <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.period')}</span>
                                   <p className="text-sm font-semibold">{histInfo.periodo}</p>
                                 </div>
                                 <div className="p-3 bg-muted/30 rounded-xl">
-                                  <span className="text-xs text-muted-foreground block mb-1">Autor</span>
+                                   <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.author')}</span>
                                   <p className="text-sm font-semibold">{histInfo.autor}</p>
                                 </div>
                                 <div className="p-3 bg-muted/30 rounded-xl">
-                                  <span className="text-xs text-muted-foreground block mb-1">Data</span>
+                                   <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.date')}</span>
                                   <p className="text-sm font-semibold">{histInfo.data}</p>
                                 </div>
                                 <div className="p-3 bg-muted/30 rounded-xl">
-                                  <span className="text-xs text-muted-foreground block mb-1">Local</span>
+                                   <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.location')}</span>
                                   <p className="text-sm font-semibold">{histInfo.local}</p>
                                 </div>
                                 <div className="p-3 bg-muted/30 rounded-xl">
-                                  <span className="text-xs text-muted-foreground block mb-1">Público</span>
+                                   <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.audience')}</span>
                                   <p className="text-sm font-semibold">{histInfo.publico}</p>
                                 </div>
                               </div>
                               <div className="p-4 bg-primary/5 rounded-xl border border-primary/10 mb-4">
-                                <span className="text-xs text-muted-foreground block mb-1">Propósito</span>
+                                 <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.purpose')}</span>
                                 <p className="text-sm">{histInfo.proposito}</p>
                               </div>
                               <div className="space-y-3 mb-4">
                                 <div className="p-3 bg-muted/30 rounded-xl">
-                                  <span className="text-xs text-muted-foreground block mb-1">Contexto Político</span>
+                                   <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.politicalContext')}</span>
                                   <p className="text-sm">{histInfo.contextoPolitico}</p>
                                 </div>
                                 <div className="p-3 bg-muted/30 rounded-xl">
-                                  <span className="text-xs text-muted-foreground block mb-1">Contexto Cultural</span>
+                                   <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.culturalContext')}</span>
                                   <p className="text-sm">{histInfo.contextoCultural}</p>
                                 </div>
                                 <div className="p-3 bg-muted/30 rounded-xl">
-                                  <span className="text-xs text-muted-foreground block mb-1">Contexto Religioso</span>
+                                   <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.religiousContext')}</span>
                                   <p className="text-sm">{histInfo.contextoReligioso}</p>
                                 </div>
                               </div>
                               {histInfo.fatosChave && histInfo.fatosChave.length > 0 && (
                                 <div>
-                                  <h4 className="font-semibold text-xs text-muted-foreground uppercase tracking-wider mb-3">Fatos Chave</h4>
+                                  <h4 className="font-semibold text-xs text-muted-foreground uppercase tracking-wider mb-3">{t('exegesis.keyFacts')}</h4>
                                   <ul className="space-y-2">
                                     {histInfo.fatosChave.map((fato, i) => (
                                       <li key={i} className="flex items-start gap-2 text-sm">
@@ -475,9 +476,9 @@ export function ExegeseClient() {
                             <div className="glass-card p-6 rounded-2xl">
                               <h3 className="font-semibold text-sm mb-2 flex items-center gap-2 text-muted-foreground uppercase tracking-wider">
                                 <Globe className="w-4 h-4" strokeWidth={1.5} />
-                                Contexto Histórico
+                                {t('exegesis.historicalContext')}
                               </h3>
-                              <p className="text-muted-foreground">Informações históricas detalhadas sendo preparadas para este livro.</p>
+                              <p className="text-muted-foreground">{t('exegesis.historyUnavailable')}</p>
                             </div>
                           </ScrollReveal>
                         )}
@@ -487,12 +488,12 @@ export function ExegeseClient() {
                             <div className="glass-card p-6 rounded-2xl">
                               <h3 className="font-semibold text-sm mb-4 flex items-center gap-2 text-muted-foreground uppercase tracking-wider">
                                 <BookOpen className="w-4 h-4" strokeWidth={1.5} />
-                                Análise da Passagem
+                                {t('exegesis.passageAnalysis')}
                               </h3>
                               <div className="grid grid-cols-3 gap-4">
                                 <div className="p-4 bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl text-center">
                                   <p className="font-display text-3xl font-light text-primary">{textoMulti[0].versiculos.length}</p>
-                                  <p className="text-xs text-muted-foreground mt-1">Versículos</p>
+                                  <p className="text-xs text-muted-foreground mt-1">{t('exegesis.verses')}</p>
                                 </div>
                                 <div className="p-4 bg-gradient-to-br from-amber-500/5 to-amber-500/10 rounded-xl text-center">
                                   <p className="font-display text-3xl font-light text-amber-600">{capituloNum}</p>
@@ -500,7 +501,7 @@ export function ExegeseClient() {
                                 </div>
                                 <div className="p-4 bg-gradient-to-br from-emerald-500/5 to-emerald-500/10 rounded-xl text-center">
                                   <p className="font-display text-3xl font-light text-emerald-600">{Math.round((capituloNum / totalCaps) * 100)}%</p>
-                                  <p className="text-xs text-muted-foreground mt-1">Do Livro</p>
+                                  <p className="text-xs text-muted-foreground mt-1">{t('exegesis.ofBook')}</p>
                                 </div>
                               </div>
                             </div>
@@ -522,10 +523,10 @@ export function ExegeseClient() {
                           <div className="glass-card p-6 rounded-2xl">
                             <h3 className="font-semibold text-sm mb-4 flex items-center gap-2 text-muted-foreground uppercase tracking-wider">
                               <Languages className="w-4 h-4" strokeWidth={1.5} />
-                              Palavras Originais
+                              {t('exegesis.originalWords')}
                             </h3>
                             <p className="text-xs text-muted-foreground mb-6">
-                              Palavras-chave em {livro?.testamento === 'NT' ? 'grego' : 'hebraico'} relacionadas ao livro selecionado.
+                              {t('exegesis.keywordsIn', { lang: livro?.testamento === 'NT' ? t('languages.greek').toLowerCase() : t('languages.hebrew').toLowerCase() })}
                             </p>
                             <div className="space-y-4">
                               {palavrasRelacionadas.length > 0 ? (
@@ -550,7 +551,7 @@ export function ExegeseClient() {
                                   </div>
                                 ))
                               ) : (
-                                <p className="text-sm text-muted-foreground text-center py-8">Palavras originais em desenvolvimento para este livro.</p>
+                                <p className="text-sm text-muted-foreground text-center py-8">{t('exegesis.originalWordsPending')}</p>
                               )}
                             </div>
                           </div>
@@ -572,7 +573,7 @@ export function ExegeseClient() {
                             <div className="glass-card p-6 rounded-2xl">
                               <h3 className="font-semibold text-sm mb-4 flex items-center gap-2 text-muted-foreground uppercase tracking-wider">
                                 <Crosshair className="w-4 h-4" strokeWidth={1.5} />
-                                Doutrinas Relacionadas
+                                {t('exegesis.relatedDoctrines')}
                               </h3>
                               <div className="space-y-4">
                                 {doutrinasRelacionadas.map((d, i) => (
@@ -598,20 +599,20 @@ export function ExegeseClient() {
                           <div className="glass-card p-6 rounded-2xl">
                             <h3 className="font-semibold text-sm mb-4 flex items-center gap-2 text-muted-foreground uppercase tracking-wider">
                               <BookOpen className="w-4 h-4" strokeWidth={1.5} />
-                              Conexões Bíblicas
+                              {t('exegesis.biblicalConnections')}
                             </h3>
                             <div className="space-y-3">
                               <div className="p-4 bg-gradient-to-r from-primary/5 to-transparent rounded-xl border-l-4 border-primary">
-                                <p className="font-semibold text-sm mb-1">Aliança</p>
-                                <p className="text-sm text-muted-foreground">O tema da aliança perpassa toda a Escritura, desde Abraão até a Nova Aliança em Cristo.</p>
+                                <p className="font-semibold text-sm mb-1">{t('exegesis.covenant')}</p>
+                                <p className="text-sm text-muted-foreground">{t('exegesis.covenantDesc')}</p>
                               </div>
                               <div className="p-4 bg-gradient-to-r from-amber-500/5 to-transparent rounded-xl border-l-4 border-amber-500">
-                                <p className="font-semibold text-sm mb-1">Promessa e Cumprimento</p>
-                                <p className="text-sm text-muted-foreground">As profecias e promessas do AT encontram cumprimento no NT.</p>
+                                <p className="font-semibold text-sm mb-1">{t('exegesis.promiseFulfillment')}</p>
+                                <p className="text-sm text-muted-foreground">{t('exegesis.promiseFulfillmentDesc')}</p>
                               </div>
                               <div className="p-4 bg-gradient-to-r from-emerald-500/5 to-transparent rounded-xl border-l-4 border-emerald-500">
-                                <p className="font-semibold text-sm mb-1">Tipo e Antítipo</p>
-                                <p className="text-sm text-muted-foreground">Pessoas e eventos do AT (Moisés, Templo, cordeiro pascal) prefiguram Cristo.</p>
+                                <p className="font-semibold text-sm mb-1">{t('exegesis.typeAntitype')}</p>
+                                <p className="text-sm text-muted-foreground">{t('exegesis.typeAntitypeDesc')}</p>
                               </div>
                             </div>
                           </div>
@@ -625,29 +626,29 @@ export function ExegeseClient() {
                   <aside className="space-y-4">
                     <ScrollReveal>
                       <div className="glass-card p-5 rounded-2xl">
-                        <h3 className="font-semibold text-xs uppercase tracking-wider text-muted-foreground mb-4">Sobre o Livro</h3>
+                        <h3 className="font-semibold text-xs uppercase tracking-wider text-muted-foreground mb-4">{t('exegesis.aboutBook')}</h3>
                         <div className="space-y-4">
                           <div className="p-3 bg-muted/30 rounded-xl">
-                            <span className="text-xs text-muted-foreground block mb-1">Nome</span>
+                            <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.name')}</span>
                             <p className="font-semibold">{livro?.nome}</p>
                           </div>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="p-3 bg-muted/30 rounded-xl">
-                              <span className="text-xs text-muted-foreground block mb-1">Abreviação</span>
+                              <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.abbreviation')}</span>
                               <p className="font-mono text-sm font-semibold">{livro?.abreviacao}</p>
                             </div>
                             <div className="p-3 bg-muted/30 rounded-xl">
-                              <span className="text-xs text-muted-foreground block mb-1">Testamento</span>
+                              <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.testament')}</span>
                               <p className="text-sm font-semibold">{livro?.testamento}</p>
                             </div>
                           </div>
                           <div className="p-3 bg-muted/30 rounded-xl">
-                            <span className="text-xs text-muted-foreground block mb-1">Total de Capítulos</span>
+                              <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.totalChapters')}</span>
                             <p className="font-semibold">{totalCaps}</p>
                           </div>
                           {generoInfo && (
                             <div className="p-3 bg-primary/5 rounded-xl border border-primary/20">
-                              <span className="text-xs text-muted-foreground block mb-1">Gênero</span>
+                              <span className="text-xs text-muted-foreground block mb-1">{t('exegesis.genre')}</span>
                               <p className="font-semibold text-primary">{generoInfo.genero}</p>
                             </div>
                           )}
@@ -657,23 +658,23 @@ export function ExegeseClient() {
 
                     <ScrollReveal delay={100}>
                       <div className="glass-card p-5 rounded-2xl">
-                        <h3 className="font-semibold text-xs uppercase tracking-wider text-muted-foreground mb-3">Dica de Exegese</h3>
+                        <h3 className="font-semibold text-xs uppercase tracking-wider text-muted-foreground mb-3">{t('exegesis.tipTitle')}</h3>
                         <div className="space-y-3 text-sm text-muted-foreground">
                           <div className="flex items-start gap-2">
                             <span className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
-                            <p>Leia o capítulo em múltiplas traduções (ARC, KJV, WEB) para identificar nuances.</p>
+                            <p>{t('exegesis.tip1')}</p>
                           </div>
                           <div className="flex items-start gap-2">
                             <span className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
-                            <p>Análise o contexto histórico e literário na aba &quot;Contexto&quot;.</p>
+                            <p>{t('exegesis.tip2')}</p>
                           </div>
                           <div className="flex items-start gap-2">
                             <span className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
-                            <p>Estude as palavras-chave no original na aba &quot;Palavras&quot;.</p>
+                            <p>{t('exegesis.tip3')}</p>
                           </div>
                           <div className="flex items-start gap-2">
                             <span className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center shrink-0 mt-0.5">4</span>
-                            <p>Identifique conexões teológicas na aba &quot;Teologia&quot;.</p>
+                            <p>{t('exegesis.tip4')}</p>
                           </div>
                         </div>
                       </div>

@@ -36,7 +36,8 @@ export function getUserId(): string | null {
     }
     // Fallback: legacy key
     return localStorage.getItem('ssb_user_id');
-  } catch {
+  } catch (e) {
+    console.error('[supabase:get-user-id]', e);
     return null;
   }
 }
@@ -45,7 +46,8 @@ export function getAuthToken(): string | null {
   try {
     if (typeof window === 'undefined') return null;
     return localStorage.getItem('accessToken') || localStorage.getItem('ssb_token');
-  } catch {
+  } catch (e) {
+    console.error('[supabase:get-auth-token]', e);
     return null;
   }
 }
@@ -61,7 +63,8 @@ export function getLocalData(type: SyncDataType): unknown[] {
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed : [];
-  } catch {
+  } catch (e) {
+    console.error('[supabase:get-local-data]', e);
     return [];
   }
 }
@@ -70,7 +73,7 @@ export function saveLocalData(type: SyncDataType, data: unknown[]): void {
   try {
     const key = STORAGE_KEYS[type];
     localStorage.setItem(key, JSON.stringify(data));
-  } catch {}
+  } catch (e) { console.error('[supabase:save-local-data]', e); }
 }
 
 export async function pushToCloud(type: SyncDataType): Promise<SyncResult> {
@@ -215,14 +218,15 @@ export async function syncAll(): Promise<SyncResult[]> {
     try {
       const result = await syncType(type);
       results.push(result);
-    } catch {
+    } catch (e) {
+      console.error('[supabase:sync-all-type]', e);
       results.push({ ok: false, erro: 'Erro inesperado', timestamp: Date.now() });
     }
   }
 
   try {
     localStorage.setItem('ssb_last_sync', String(Date.now()));
-  } catch {}
+  } catch (e) { console.error('[supabase:save-last-sync]', e); }
 
   return results;
 }
@@ -273,7 +277,8 @@ export function getLastSyncTime(): number | null {
     if (!raw) return null;
     const num = Number(raw);
     return isNaN(num) ? null : num;
-  } catch {
+  } catch (e) {
+    console.error('[supabase:get-last-sync-time]', e);
     return null;
   }
 }

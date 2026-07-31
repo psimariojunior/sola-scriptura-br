@@ -101,7 +101,16 @@ export function UseBibliaUI({
   const [showSettings, setShowSettings] = useState(false);
   const [showDiff, setShowDiff] = useState(true);
   const [fontSize, setFontSize] = useState(() => {
-    if (typeof window !== 'undefined' && window.innerWidth < 640) return 17;
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('ssb_accessibility');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.fontSize && typeof parsed.fontSize === 'number') return parsed.fontSize;
+        }
+      } catch {}
+      if (window.innerWidth < 640) return 17;
+    }
     return 18;
   });
   const [zenMode, setZenMode] = useState(false);
@@ -129,6 +138,13 @@ export function UseBibliaUI({
   });
   const [lineSpacing, setLineSpacing] = useState(() => {
     if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('ssb_accessibility');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.lineHeight && typeof parsed.lineHeight === 'number') return parsed.lineHeight;
+        }
+      } catch {}
       return parseFloat(localStorage.getItem('ssb_line_spacing') || '1.8');
     }
     return 1.8;
@@ -217,6 +233,26 @@ export function UseBibliaUI({
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
+
+  useEffect(() => {
+    const loadAccessibility = () => {
+      try {
+        const saved = localStorage.getItem('ssb_accessibility');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.fontSize && typeof parsed.fontSize === 'number') setFontSize(parsed.fontSize);
+          if (parsed.lineHeight && typeof parsed.lineHeight === 'number') setLineSpacing(parsed.lineHeight);
+        }
+      } catch {}
+    };
+    window.addEventListener('ssb_accessibility_changed', loadAccessibility);
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'ssb_accessibility') loadAccessibility();
+    });
+    return () => {
+      window.removeEventListener('ssb_accessibility_changed', loadAccessibility);
+    };
+  }, []);
 
   useEffect(() => {
     let touchStartX = 0;
@@ -335,12 +371,12 @@ export function UseBibliaUI({
     fontFamily,
     setFontFamily: (font: 'serif' | 'sans') => {
       setFontFamily(font);
-      try { localStorage.setItem('ssb_font_family', font); } catch {}
+      try { localStorage.setItem('ssb_font_family', font); } catch (e) { console.error('[biblia:save-font]', e); }
     },
     lineSpacing,
     setLineSpacing: (spacing: number) => {
       setLineSpacing(spacing);
-      try { localStorage.setItem('ssb_line_spacing', String(spacing)); } catch {}
+      try { localStorage.setItem('ssb_line_spacing', String(spacing)); } catch (e) { console.error('[biblia:save-line-spacing]', e); }
     },
     chapterAnimProps,
   };

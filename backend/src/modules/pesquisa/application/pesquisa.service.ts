@@ -281,6 +281,8 @@ export class PesquisaService {
       livro?: string;
       testamento?: string;
       traducao?: string;
+      capitulo?: number;
+      limite?: number;
     },
   ): Promise<ItemPesquisaDto[]> {
     const query = this.versiculoRepo
@@ -290,10 +292,14 @@ export class PesquisaService {
       .where('v.texto ILIKE :q', { q: `%${q}%` });
 
     if (filtros?.livro) {
-      query.andWhere('l.slug = :livro OR l.nome ILIKE :livroFuzzy', {
-        livro: filtros.livro,
-        livroFuzzy: `%${filtros.livro}%`,
-      });
+      query.andWhere(
+        'l.slug = :livro OR l.nome ILIKE :livroFuzzy OR l.nome_abreviado ILIKE :livroAbrev',
+        {
+          livro: filtros.livro,
+          livroFuzzy: `%${filtros.livro}%`,
+          livroAbrev: filtros.livro,
+        },
+      );
     }
     if (filtros?.testamento) {
       query.andWhere('v.testamentoId = :testamento', {
@@ -301,12 +307,24 @@ export class PesquisaService {
       });
     }
     if (filtros?.traducao) {
-      query.andWhere('v.traducaoId = :traducao', {
-        traducao: filtros.traducao,
+      const traducoes = filtros.traducao
+        .split(',')
+        .map((t) => t.trim())
+        .filter(Boolean);
+      if (traducoes.length === 1) {
+        query.andWhere('v.traducaoId = :traducao', { traducao: traducoes[0] });
+      } else if (traducoes.length > 1) {
+        query.andWhere('v.traducaoId IN (:...traducoes)', { traducoes });
+      }
+    }
+    if (filtros?.capitulo) {
+      query.andWhere('v.capituloNumero = :capitulo', {
+        capitulo: filtros.capitulo,
       });
     }
 
-    const versiculos = await query.take(20).getMany();
+    const limite = filtros?.limite || 100;
+    const versiculos = await query.take(limite).getMany();
 
     return versiculos.map((v) => ({
       tipo: 'versiculo',
@@ -318,6 +336,12 @@ export class PesquisaService {
       metadata: {
         id: v.id,
         livroId: v.livroId,
+        livroAbrev: v.capitulo?.livro?.nomeAbreviado || '',
+        livroNome: v.capitulo?.livro?.nome || '',
+        testamento:
+          v.testamentoId === 'AT' || v.testamentoId === 'NT'
+            ? v.testamentoId
+            : undefined,
         capituloNumero: v.capituloNumero,
         numero: v.numero,
         traducaoId: v.traducaoId,

@@ -12,7 +12,8 @@ function getAllNotesMap(): Record<string, SeminaryNote> {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? JSON.parse(raw) : {};
-  } catch {
+  } catch (e) {
+    console.error('[seminary:load-notes]', e);
     return {};
   }
 }

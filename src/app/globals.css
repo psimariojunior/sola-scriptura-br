@@ -2729,3 +2729,53 @@ button, a, [role="button"] {
     0 16px 32px rgba(0, 0, 0, 0.15);
 }
 
+/* Accessibility classes (set by AccessibilityPanel via document.documentElement) */
+.font-dyslexia,
+.font-dyslexia * {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', cursive !important;
+  letter-spacing: 0.05em;
+  word-spacing: 0.15em;
+}
+
+.reduce-motion,
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-mode body {
+  font-size: 18px;
+  line-height: 2;
+}
+
+.sr-mode .verse-number::before {
+  content: 'Verse ' attr(data-verse-number) ' ';
+}
+
+.sr-mode [aria-hidden="true"] {
+  display: none !important;
+}
+
+/* Bible reading uses these CSS custom properties from AccessibilityPanel */
+.bible-verse-text {
+  font-size: var(--bible-font-size, 18px);
+  line-height: var(--bible-line-height, 1.8);
+  letter-spacing: var(--bible-letter-spacing, 0em);
+}
+

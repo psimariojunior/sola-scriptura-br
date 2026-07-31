@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import dynamic from 'next/dynamic';
@@ -60,6 +61,7 @@ const TIPO_ICONS: Record<string, string> = {
 };
 
 export default function MapasPage() {
+  const { t } = useTranslation();
   const [busca, setBusca] = useState('');
   const [filtroCat, setFiltroCat] = useState<string>('all');
   const [filtroTipo, setFiltroTipo] = useState<string>('all');
@@ -86,33 +88,33 @@ export default function MapasPage() {
               <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
                 <Map className="w-4 h-4 text-emerald-500" />
               </div>
-              <h1 className="font-display text-xl font-light">Atlas <span className="text-primary italic">Bíblico</span></h1>
-              <span className="text-xs text-muted-foreground">{filtrados.length} locais</span>
+              <h1 className="font-display text-xl font-light">{t('mapas.title1')} <span className="text-primary italic">{t('mapas.title2')}</span></h1>
+              <span className="text-xs text-muted-foreground">{filtrados.length} {t('mapas.places')}</span>
             </div>
             <div className="flex gap-2 flex-wrap">
               <div className="relative flex-1 min-w-[200px]">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
                 <input type="text" value={busca} onChange={e => setBusca(e.target.value)}
-                  placeholder="Buscar local..."
+                  placeholder={t('mapas.searchPlaceholder')}
                   className="w-full pl-9 pr-8 py-2 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20" />
                 {busca && <button onClick={() => setBusca('')} className="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 rounded-full hover:bg-muted/50">
                   <X className="w-3 h-3" /></button>}
               </div>
               <select value={filtroCat} onChange={e => setFiltroCat(e.target.value)}
                 className="px-3 py-2 text-sm border border-border rounded-lg bg-background">
-                <option value="all">Todos</option>
-                <option value="AT">Antigo Testamento</option>
-                <option value="NT">Novo Testamento</option>
-                <option value="AT & NT">Ambos</option>
+                <option value="all">{t('common.all')}</option>
+                <option value="AT">{t('mapas.oldTestament')}</option>
+                <option value="NT">{t('mapas.newTestament')}</option>
+                <option value="AT & NT">{t('mapas.both')}</option>
               </select>
               <select value={filtroTipo} onChange={e => setFiltroTipo(e.target.value)}
                 className="px-3 py-2 text-sm border border-border rounded-lg bg-background">
-                <option value="all">Todos os tipos</option>
-                <option value="cidade">Cidades</option>
-                <option value="montanha">Montanhas</option>
-                <option value="rio">Rios</option>
-                <option value="mar">Mares</option>
-                <option value="regiao">Regiões</option>
+                <option value="all">{t('mapas.allTypes')}</option>
+                <option value="cidade">{t('mapas.cities')}</option>
+                <option value="montanha">{t('mapas.mountains')}</option>
+                <option value="rio">{t('mapas.rivers')}</option>
+                <option value="mar">{t('mapas.seas')}</option>
+                <option value="regiao">{t('mapas.regions')}</option>
               </select>
             </div>
           </div>
@@ -159,7 +161,7 @@ export default function MapasPage() {
                   <p className="text-[10px] text-primary mt-1">{local.referencia}</p>
                   {selectedLocal?.nome === local.nome && (
                     <div className="mt-2 pt-2 border-t border-border/50">
-                      <p className="text-[10px] text-muted-foreground mb-1">Eventos:</p>
+                      <p className="text-[10px] text-muted-foreground mb-1">{t('mapas.events')}</p>
                       <div className="flex flex-wrap gap-1">
                         {local.eventos.map((e, j) => (
                           <span key={j} className="text-[9px] px-1.5 py-0.5 rounded bg-muted">{e}</span>

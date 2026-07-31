@@ -5,8 +5,7 @@ import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
-import { carregarTraducao } from '@/data/biblia/texto/carregar';
-import { biblia, type PesquisaResult as ApiPesquisaResult } from '@/lib/api-client';
+import { biblia } from '@/lib/api-client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, X, BookOpen, Filter, ChevronDown, 
@@ -14,7 +13,7 @@ import {
   Copy, Share2, ExternalLink, Sparkles
 } from 'lucide-react';
 import { VoiceSearchButton } from '@/components/VoiceSearchButton';
-import { expandirConsulta, correspondeSemanticamente, obterQueryExpandida } from '@/lib/sinonimos';
+import { obterQueryExpandida } from '@/lib/sinonimos';
 import { useTranslation } from 'react-i18next';
 
 interface SearchResult {
@@ -35,8 +34,6 @@ const TRAD_SELECIONAVEIS = [
   { id: 'kjv', nome: 'KJV', descricao: 'King James Version' },
   { id: 'web', nome: 'WEB', descricao: 'World English Bible' },
 ];
-
-const TRAD_ESTATICAS = ['arc', 'kjv', 'web'];
 
 const SEARCH_MODES = [
   { id: 'contains', label: 'Contém', icon: AlignLeft, description: 'Busca parcial' },
@@ -77,31 +74,6 @@ function highlightText(text: string, query: string, mode: string) {
   }
 }
 
-type LivroData = Record<string, Record<number, string[]>>;
-
-function buildSearchIndex(data: LivroData, traducao: string): SearchResult[] {
-  const index: SearchResult[] = [];
-  for (const livro of TODOS_LIVROS) {
-    const livroData = data[livro.abreviacao];
-    if (!livroData) continue;
-    for (const [capStr, versiculos] of Object.entries(livroData)) {
-      const cap = Number(capStr);
-      versiculos.forEach((texto, i) => {
-        index.push({
-          livroAbrev: livro.abreviacao,
-          livroNome: livro.nome,
-          testamento: livro.testamento,
-          capitulo: cap,
-          versiculo: i + 1,
-          texto,
-          traducao,
-        });
-      });
-    }
-  }
-  return index;
-}
-
 const COR_TRADUCAO: Record<string, string> = {
   arc: 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300',
   nvi: 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300',
@@ -119,29 +91,13 @@ export default function PesquisaPage() {
   const [livroFiltro, setLivroFiltro] = useState('all');
   const [capituloFiltro, setCapituloFiltro] = useState<number | null>(null);
   const [tradSel, setTradSel] = useState<Set<string>>(new Set(['arc', 'nvi', 'ara', 'acf', 'kjv', 'web']));
-  const [searchIndex, setSearchIndex] = useState<SearchResult[]>([]);
   const [apiResults, setApiResults] = useState<SearchResult[] | null>(null);
-  const [dataLoaded, setDataLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [mobileFilters, setMobileFilters] = useState(false);
-  const [showAdvanced, setShowAdvanced] = useState(false);
   const [copiedResult, setCopiedResult] = useState<string | null>(null);
   const [buscaSemantica, setBuscaSemantica] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const { t } = useTranslation();
-
-  useEffect(() => {
-    Promise.all(TRAD_ESTATICAS.map((id) => carregarTraducao(id))).then(
-      (todos) => {
-        const index: SearchResult[] = [];
-        TRAD_ESTATICAS.forEach((id, i) => {
-          index.push(...buildSearchIndex(todos[i], id));
-        });
-        setSearchIndex(index);
-        setDataLoaded(true);
-      }
-    );
-  }, []);
 
   const alternarTrad = useCallback((id: string) => {
     setTradSel((prev) => {
@@ -152,15 +108,36 @@ export default function PesquisaPage() {
     });
   }, []);
 
-  const tryApiSearch = useCallback(async (q: string): Promise<ApiPesquisaResult[] | null> => {
+  const tryApiSearch = useCallback(async (q: string): Promise<SearchResult[] | null> => {
     if (!q || q.length < 2) return null;
     try {
       const traducao = [...tradSel].join(',');
-      return await biblia.pesquisar(q, { traducao });
+      let searchQuery = q;
+
+      if (buscaSemantica) {
+        const expandida = obterQueryExpandida(q);
+        if (expandida && expandida !== q) {
+          searchQuery = expandida;
+        }
+      }
+
+      const data = await biblia.pesquisar(searchQuery, { traducao });
+      if (!data || data.length === 0) return null;
+      return data
+        .filter((r) => r.tipo === 'versiculo' && r.metadata)
+        .map((r) => ({
+          livroAbrev: r.metadata!.livroAbrev || r.subtitulo || '',
+          livroNome: r.metadata!.livroNome || r.titulo.split(' ').slice(0, -1).join(' '),
+          testamento: (r.metadata!.testamento as 'AT' | 'NT') || 'NT',
+          capitulo: r.metadata!.capituloNumero || 0,
+          versiculo: r.metadata!.numero || 0,
+          texto: r.trecho,
+          traducao: r.metadata!.traducaoId || '',
+        }));
     } catch {
       return null;
     }
-  }, [tradSel]);
+  }, [tradSel, buscaSemantica]);
 
   useEffect(() => {
     setLoading(true);
@@ -169,16 +146,7 @@ export default function PesquisaPage() {
       if (q && q.length >= 2) {
         const apiData = await tryApiSearch(q);
         if (apiData && apiData.length > 0) {
-          const mapped: SearchResult[] = apiData.map((r) => ({
-            livroAbrev: r.livroAbrev,
-            livroNome: r.livroNome,
-            testamento: r.testamento,
-            capitulo: r.capitulo,
-            versiculo: r.versiculo,
-            texto: r.texto,
-            traducao: r.traducao,
-          }));
-          setApiResults(mapped);
+          setApiResults(apiData);
         } else {
           setApiResults(null);
         }
@@ -189,7 +157,7 @@ export default function PesquisaPage() {
       setLoading(false);
     }, 300);
     return () => clearTimeout(t);
-  }, [query, tryApiSearch]);
+  }, [query, tryApiSearch, buscaSemantica]);
 
   const livrosFiltrados = useMemo(
     () => TODOS_LIVROS.filter((l) => testamento === 'all' || l.testamento === testamento),
@@ -205,51 +173,14 @@ export default function PesquisaPage() {
     const q = debouncedQuery.trim();
     if (!q && testamento === 'all' && livroFiltro === 'all' && capituloFiltro === null && tradSel.size === 6) return [];
 
-    if (apiResults) {
-      let r = apiResults;
-      if (testamento !== 'all') r = r.filter((item) => item.testamento === testamento);
-      if (livroFiltro !== 'all') r = r.filter((item) => item.livroAbrev === livroFiltro);
-      if (capituloFiltro !== null) r = r.filter((item) => item.capitulo === capituloFiltro);
-      return r;
-    }
+    let r = apiResults || [];
 
-    let r = searchIndex;
-
-    if (tradSel.size < 3) r = r.filter((item) => tradSel.has(item.traducao));
-    
-    if (q) {
-      r = r.filter((item) => {
-        const textoLower = item.texto.toLowerCase();
-        const queryLower = q.toLowerCase();
-        
-        if (buscaSemantica) {
-          return correspondeSemanticamente(item.texto, q, true);
-        }
-        
-        switch (searchMode) {
-          case 'exact':
-            return textoLower.includes(queryLower);
-          case 'startsWith':
-            return textoLower.split(/\s+/).some(word => word.startsWith(queryLower));
-          case 'regex':
-            try {
-              const regex = new RegExp(q, 'gi');
-              return regex.test(item.texto);
-            } catch {
-              return false;
-            }
-          default: // contains
-            return textoLower.includes(queryLower);
-        }
-      });
-    }
-    
     if (testamento !== 'all') r = r.filter((item) => item.testamento === testamento);
     if (livroFiltro !== 'all') r = r.filter((item) => item.livroAbrev === livroFiltro);
     if (capituloFiltro !== null) r = r.filter((item) => item.capitulo === capituloFiltro);
 
     return r;
-  }, [debouncedQuery, testamento, livroFiltro, capituloFiltro, searchIndex, tradSel, searchMode, apiResults, buscaSemantica]);
+  }, [debouncedQuery, testamento, livroFiltro, capituloFiltro, tradSel, apiResults]);
 
   const hasFilters = testamento !== 'all' || livroFiltro !== 'all' || capituloFiltro !== null || tradSel.size !== 6;
   const hasAnyInput = !!debouncedQuery || hasFilters;
@@ -516,18 +447,18 @@ export default function PesquisaPage() {
                 </div>
               )}
 
-              {(!dataLoaded || loading) && (
+              {loading && (
                 <div className="sola-card p-12 text-center">
                   <div className="inline-flex gap-1.5">
                     <span className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0s]" />
                     <span className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0.15s]" />
                     <span className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0.3s]" />
                   </div>
-                  <p className="text-sm text-muted-foreground mt-3">{dataLoaded ? t('pesquisa.searching') : t('pesquisa.loadingTexts')}</p>
+                  <p className="text-sm text-muted-foreground mt-3">{t('pesquisa.searching')}</p>
                 </div>
               )}
 
-              {dataLoaded && !loading && !hasAnyInput && (
+              {!loading && !hasAnyInput && (
                 <div className="sola-card p-12 text-center">
                   <Search className="w-16 h-16 mx-auto mb-4 text-muted-foreground/20" strokeWidth={1} />
                   <p className="font-display text-xl text-muted-foreground mb-1">{t('pesquisa.typeToSearch')}</p>
@@ -537,7 +468,7 @@ export default function PesquisaPage() {
                 </div>
               )}
 
-              {dataLoaded && !loading && hasAnyInput && resultados.length === 0 && (
+              {!loading && hasAnyInput && resultados.length === 0 && (
                 <div className="sola-card p-12 text-center">
                   <BookOpen className="w-16 h-16 mx-auto mb-4 text-muted-foreground/30" strokeWidth={1} />
                   <p className="font-display text-xl text-muted-foreground mb-1">{t('pesquisa.noResults')}</p>
@@ -548,7 +479,7 @@ export default function PesquisaPage() {
               )}
 
               <AnimatePresence mode="wait">
-                {dataLoaded && !loading && resultados.length > 0 && (
+                {!loading && resultados.length > 0 && (
                   <motion.div
                     key={`${debouncedQuery}-${searchMode}-${testamento}-${livroFiltro}-${capituloFiltro}-${[...tradSel].sort().join(',')}`}
                     initial={{ opacity: 0 }}

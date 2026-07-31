@@ -11,7 +11,8 @@ function load(): SeminaryFavorites {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? JSON.parse(raw) : { aulas: [], modulos: [], cursos: [] };
-  } catch {
+  } catch (e) {
+    console.error('[seminary:load-favorites]', e);
     return { aulas: [], modulos: [], cursos: [] };
   }
 }

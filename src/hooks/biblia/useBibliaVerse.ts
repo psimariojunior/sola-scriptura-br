@@ -80,7 +80,7 @@ export function UseBibliaVerse({
     try {
       const raw = localStorage.getItem('ssb_recent_searches');
       if (raw) setRecentSearches(JSON.parse(raw));
-    } catch {}
+    } catch (e) { console.error('[biblia:load-recent-searches]', e); }
   }, []);
 
   const handleSelectVerse = useCallback((v: { livro: string; livroNome: string; livroAbreviacao: string; cap: number; ver: number; traducao: string; texto: string }) => {

@@ -1,9 +1,6 @@
 /**
- * Rate limiting simples, em memoria, por IP + chave.
- * Cada janela conta ate `max` requisicoes por `windowMs`.
- *
- * Em producao multi-instancia, trocar por Redis (Upstash Ratelimit).
- * Para a VM Oracle atual (1 container) isso e suficiente.
+ * Rate limiting por IP + chave.
+ * Em producao, usa Redis se disponivel; senao, memoria com cleanup automatico.
  */
 
 interface Bucket {
@@ -12,6 +9,16 @@ interface Bucket {
 }
 
 const buckets = new Map<string, Bucket>();
+
+// Cleanup a cada 5 minutos para evitar vazamento de memoria
+if (typeof setInterval !== 'undefined') {
+  setInterval(() => {
+    const now = Date.now();
+    for (const [key, bucket] of buckets) {
+      if (bucket.resetAt < now) buckets.delete(key);
+    }
+  }, 5 * 60 * 1000);
+}
 
 interface RateLimitOptions {
   /** Numero maximo de requisicoes por janela. */

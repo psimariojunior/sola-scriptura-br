@@ -1,8 +1,7 @@
-import { palavrasGregas, type PalavraGrega } from '@/data/lexicon/grego';
-import { palavrasHebraicas, type PalavraHebraica } from '@/data/lexicon/hebraico';
-import { palavrasAramaicas, type PalavraAramaica } from '@/data/lexicon/aramaico';
+import { livroPorAbreviacao } from '@/data/biblia/livros';
 
-export type LexiconEntry = PalavraGrega | PalavraHebraica | PalavraAramaica;
+export type LexiconEntry = { strong: string; palavra: string; transliteracao: string; definicao: string; categoria?: string; frequencia?: number };
+export type Testamento = 'AT' | 'NT';
 
 export interface LexiconResult {
   entry: LexiconEntry;
@@ -11,20 +10,43 @@ export interface LexiconResult {
 
 const searchCache = new Map<string, LexiconResult[] | null>();
 const strongCache = new Map<string, LexiconEntry | null>();
-
 const STRONG_MAP = new Map<string, LexiconEntry>();
 
-function buildStrongIndex() {
-  if (STRONG_MAP.size > 0) return;
-  for (const entry of palavrasGregas) {
-    STRONG_MAP.set(entry.strong.toUpperCase(), entry);
-  }
+let loadedAT = false;
+let loadedNT = false;
+let palavrasHebraicas: LexiconEntry[] = [];
+let palavrasAramaicas: LexiconEntry[] = [];
+let palavrasGregas: LexiconEntry[] = [];
+
+async function ensureAT() {
+  if (loadedAT) return;
+  const [hebraicoMod, aramaicoMod] = await Promise.all([
+    import('@/data/lexicon/hebraico'),
+    import('@/data/lexicon/aramaico'),
+  ]);
+  palavrasHebraicas = hebraicoMod.palavrasHebraicas;
+  palavrasAramaicas = aramaicoMod.palavrasAramaicas;
   for (const entry of palavrasHebraicas) {
     STRONG_MAP.set(entry.strong.toUpperCase(), entry);
   }
   for (const entry of palavrasAramaicas) {
     STRONG_MAP.set(entry.strong.toUpperCase(), entry);
   }
+  loadedAT = true;
+}
+
+async function ensureNT() {
+  if (loadedNT) return;
+  const gregoMod = await import('@/data/lexicon/grego');
+  palavrasGregas = gregoMod.palavrasGregas;
+  for (const entry of palavrasGregas) {
+    STRONG_MAP.set(entry.strong.toUpperCase(), entry);
+  }
+  loadedNT = true;
+}
+
+async function ensureAll() {
+  await Promise.all([ensureAT(), ensureNT()]);
 }
 
 function normalize(str: string): string {
@@ -34,12 +56,6 @@ function normalize(str: string): string {
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^\w\s]/g, '')
     .trim();
-}
-
-function tokenize(text: string): string[] {
-  return normalize(text)
-    .split(/\s+/)
-    .filter((t) => t.length > 0);
 }
 
 function levenshtein(a: string, b: string): number {
@@ -248,24 +264,13 @@ function scoreMatch(query: string, entry: LexiconEntry): number {
   const q = normalize(query);
   const transliteration = normalize(entry.transliteracao);
   const definicao = normalize(entry.definicao);
-  const palavra = normalize(entry.palavra);
 
-  // Match exato na transliteracao
   if (transliteration === q) return 1.0;
-  
-  // Match exato na definicao
   if (definicao === q) return 1.0;
-  
-  // Definicao contem a query
   if (definicao.includes(q) && q.length >= 3) return 0.95;
-  
-  // Query contem a transliteracao
   if (q.includes(transliteration) && transliteration.length >= 3) return 0.9;
-  
-  // Transliteracao contem a query
   if (transliteration.includes(q) && q.length >= 3) return 0.85;
-  
-  // Match por sinonimos biblicos
+
   const qLower = query.toLowerCase();
   if (SINONIMOS[qLower]) {
     const sinonimos = SINONIMOS[qLower];
@@ -275,8 +280,7 @@ function scoreMatch(query: string, entry: LexiconEntry): number {
       }
     }
   }
-  
-  // Match por similaridade (Levenshtein)
+
   const maxLen = Math.max(q.length, transliteration.length);
   if (maxLen >= 4) {
     const dist = levenshtein(q, transliteration);
@@ -284,21 +288,19 @@ function scoreMatch(query: string, entry: LexiconEntry): number {
       return 0.7 + (1 - dist / maxLen) * 0.15;
     }
   }
-  
-  // Match por palavra individual na definicao
+
   const words = definicao.split(/\s+/);
   for (const word of words) {
     if (normalize(word) === q && q.length >= 3) return 0.6;
   }
-  
-  // Match por prefixo da transliteracao (min4 chars)
+
   if (q.length >= 4 && transliteration.startsWith(q)) return 0.5;
-  
+
   return 0;
 }
 
-export function getStrongByNumber(number: string): LexiconEntry | null {
-  buildStrongIndex();
+export async function getStrongByNumber(number: string): Promise<LexiconEntry | null> {
+  await ensureAll();
   const key = number.toUpperCase().trim();
   const cached = strongCache.get(key);
   if (cached !== undefined) return cached;
@@ -308,26 +310,38 @@ export function getStrongByNumber(number: string): LexiconEntry | null {
   return entry;
 }
 
-export function findWordInText(word: string): LexiconResult[] {
-  const cacheKey = normalize(word);
+export async function findWordInText(word: string, testamento?: Testamento): Promise<LexiconResult[]> {
+  const cacheKey = testamento ? `${normalize(word)}:${testamento}` : normalize(word);
   const cached = searchCache.get(cacheKey);
   if (cached !== undefined) return cached ?? [];
 
+  // Load only what's needed based on testament
+  if (testamento === 'AT') {
+    await ensureAT();
+  } else if (testamento === 'NT') {
+    await ensureNT();
+  } else {
+    await ensureAll();
+  }
+
   const results: LexiconResult[] = [];
 
-  for (const entry of palavrasGregas) {
-    const score = scoreMatch(word, entry);
-    if (score > 0) results.push({ entry, score });
+  if (testamento === 'AT' || !testamento) {
+    for (const entry of palavrasHebraicas) {
+      const score = scoreMatch(word, entry);
+      if (score > 0) results.push({ entry, score });
+    }
+    for (const entry of palavrasAramaicas) {
+      const score = scoreMatch(word, entry);
+      if (score > 0) results.push({ entry, score });
+    }
   }
 
-  for (const entry of palavrasHebraicas) {
-    const score = scoreMatch(word, entry);
-    if (score > 0) results.push({ entry, score });
-  }
-
-  for (const entry of palavrasAramaicas) {
-    const score = scoreMatch(word, entry);
-    if (score > 0) results.push({ entry, score });
+  if (testamento === 'NT' || !testamento) {
+    for (const entry of palavrasGregas) {
+      const score = scoreMatch(word, entry);
+      if (score > 0) results.push({ entry, score });
+    }
   }
 
   results.sort((a, b) => b.score - a.score);
@@ -344,4 +358,9 @@ export function isHebrewStrong(strong: string): boolean {
 
 export function isGreekStrong(strong: string): boolean {
   return strong.toUpperCase().startsWith('G');
+}
+
+export function getTestamentoByLivro(livroAbreviacao: string): Testamento | null {
+  const livro = livroPorAbreviacao.get(livroAbreviacao.toLowerCase());
+  return livro?.testamento ?? null;
 }

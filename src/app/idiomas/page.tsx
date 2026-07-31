@@ -6,6 +6,7 @@ import { Languages, Search, BookOpen, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
 import { useState, useMemo, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface LexiconWord {
   strong: string;
@@ -21,6 +22,7 @@ interface LexiconWord {
 }
 
 export default function IdiomasPage() {
+  const { t } = useTranslation();
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<'all' | 'grego' | 'hebraico'>('all');
   const [allWords, setAllWords] = useState<LexiconWord[]>([]);
@@ -61,7 +63,7 @@ export default function IdiomasPage() {
         <Header />
         <main className="pt-24 pb-16 px-6">
           <div className="max-w-6xl mx-auto text-center py-20">
-            <div className="animate-pulse text-muted-foreground">Carregando léxico...</div>
+            <div className="animate-pulse text-muted-foreground">{t('languages.loadingLexicon')}</div>
           </div>
         </main>
         <Footer />
@@ -85,10 +87,10 @@ export default function IdiomasPage() {
                 <Languages className="w-8 h-8 text-rose-500" />
               </motion.div>
               <h1 className="font-display text-4xl md:text-5xl font-light mb-4">
-                Línguas <span className="italic text-primary">Originais</span>
+                {t('languages.pageTitle1')} <span className="italic text-primary">{t('languages.pageTitle2')}</span>
               </h1>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Estude o texto bíblico nas línguas originais: Grego Koiné do Novo Testamento e Hebraico Bíblico do Antigo Testamento.
+                {t('languages.pageDescription')}
               </p>
               <div className="ornament w-16 mx-auto mt-6" />
             </div>
@@ -99,15 +101,15 @@ export default function IdiomasPage() {
             <div className="grid grid-cols-3 gap-4 mb-8">
               <div className="sola-card p-4 text-center">
                 <p className="font-display text-3xl font-light text-primary">{gregoCount + hebraicoCount}</p>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Total</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">{t('languages.total')}</p>
               </div>
               <div className="sola-card p-4 text-center">
                 <p className="font-display text-3xl font-light text-blue-500">{gregoCount}</p>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Grego</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">{t('languages.greek')}</p>
               </div>
               <div className="sola-card p-4 text-center">
                 <p className="font-display text-3xl font-light text-amber-500">{hebraicoCount}</p>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">Hebraico</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider">{t('languages.hebrew')}</p>
               </div>
             </div>
           </ScrollReveal>
@@ -119,7 +121,7 @@ export default function IdiomasPage() {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Buscar por palavra, transliteração, definição ou Strong..."
+                  placeholder={t('languages.searchPlaceholderFull')}
                   value={search}
                   onChange={e => setSearch(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 text-sm bg-card border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
@@ -127,9 +129,9 @@ export default function IdiomasPage() {
               </div>
               <div className="flex gap-2">
                 {[
-                  { value: 'all' as const, label: 'Todos' },
-                  { value: 'grego' as const, label: 'Grego' },
-                  { value: 'hebraico' as const, label: 'Hebraico' },
+                  { value: 'all' as const, label: t('common.all') },
+                  { value: 'grego' as const, label: t('languages.greek') },
+                  { value: 'hebraico' as const, label: t('languages.hebrew') },
                 ].map(f => (
                   <motion.button
                     key={f.value}
@@ -189,7 +191,7 @@ export default function IdiomasPage() {
 
           {filtered.length > 100 && (
             <p className="text-center text-sm text-muted-foreground mt-8">
-              Mostrando 100 de {filtered.length} palavras
+              {t('languages.showing', { shown: 100, total: filtered.length })}
             </p>
           )}
         </div>

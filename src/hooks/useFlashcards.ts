@@ -98,7 +98,7 @@ export function useFlashcards() {
       if (!raw) return [];
       const parsed = JSON.parse(raw) as FlashcardState[];
       return Array.isArray(parsed) ? parsed : [];
-    } catch { return []; }
+    } catch (e) { console.error('[flashcards:load-cards]', e); return []; }
   });
 
   useEffect(() => {

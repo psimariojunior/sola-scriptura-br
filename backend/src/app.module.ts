@@ -35,6 +35,7 @@ import { ElasticsearchModule } from './infra/busca/elasticsearch.module';
 import { RabbitMQModule } from './infra/mensageria/rabbitmq.module';
 import { ColaborativoModule } from './modules/colaborativo/colaborativo.module';
 import { UserDataModule } from './modules/user-data/user-data.module';
+import { AnalyticsModule } from './modules/analytics/analytics.module';
 import { SaudeController } from './modules/saude.controller';
 
 @Module({
@@ -114,6 +115,7 @@ import { SaudeController } from './modules/saude.controller';
     RabbitMQModule,
     ColaborativoModule,
     UserDataModule,
+    AnalyticsModule,
   ],
   controllers: [SaudeController],
   providers: [

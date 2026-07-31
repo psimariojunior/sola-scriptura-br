@@ -55,6 +55,7 @@ export function AccessibilityPanel() {
 
   useEffect(() => {
     localStorage.setItem('ssb_accessibility', JSON.stringify(settings));
+    window.dispatchEvent(new Event('ssb_accessibility_changed'));
 
     const root = document.documentElement;
     root.style.setProperty('--bible-font-size', `${settings.fontSize}px`);

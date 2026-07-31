@@ -551,8 +551,8 @@ export function useAudioNatural() {
           document.body.removeChild(a);
           URL.revokeObjectURL(url);
           return;
-        } catch {
-          // Fall through
+        } catch (e) {
+          console.error('[audio-natural:download]', e);
         }
       }
 

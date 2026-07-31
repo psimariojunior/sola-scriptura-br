@@ -339,6 +339,10 @@ function CursoDetailView({ curso, progresso, onAulaClick, onBack, onCertificado 
   const progressoPct = totalAulas > 0 ? Math.round((aulasCompletas / totalAulas) * 100) : 0;
   const concluido = estaConcluido(curso.id);
 
+  // Find quiz lessons for quick access
+  const quizAulas = curso.módulos.flatMap(m => m.aulas.filter(a => a.tipo === 'quiz'));
+  const quizCompleto = quizAulas.length > 0 && quizAulas.every(a => progresso?.aulasCompletas.includes(a.id));
+
   return (
     <div className="flex flex-col h-full">
       <div className="p-4 border-b border-[var(--border)]/40">
@@ -361,6 +365,23 @@ function CursoDetailView({ curso, progresso, onAulaClick, onBack, onCertificado 
         {concluido && (
           <Button onClick={onCertificado} size="sm" className="mt-3 bg-yellow-500 hover:bg-yellow-600 text-black text-xs">
             <Award className="w-3 h-3 mr-1" /> Ver Certificado
+          </Button>
+        )}
+        {quizAulas.length > 0 && !concluido && (
+          <Button
+            onClick={() => {
+              const quizAula = quizAulas[0];
+              if (progresso?.aulasCompletas.includes(quizAula.id)) {
+                onAulaClick(quizAula.id);
+              } else {
+                onAulaClick(quizAula.id);
+              }
+            }}
+            size="sm"
+            className="mt-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs"
+          >
+            <HelpCircle className="w-3 h-3 mr-1" />
+            {quizCompleto ? 'Ver Avaliação' : 'Fazer Avaliação Final'}
           </Button>
         )}
       </div>

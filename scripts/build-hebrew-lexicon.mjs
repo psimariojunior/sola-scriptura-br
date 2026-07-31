@@ -2,33 +2,32 @@
 /**
  * build-hebrew-lexicon.mjs
  *
- * Lê STRONG_POR_VERSICULO de src/data/biblia/strong/index.ts,
- * extrai todas as palavras hebraicas, deduplica por número Strong,
- * calcula frequência e gera src/data/lexicon/hebraico.ts.
+ * Reads STRONG_CODES from strong/index.ts (compact format),
+ * extracts all unique Hebrew Strong's codes, gets word data from morphhb,
+ * calculates frequency and generates src/data/lexicon/hebraico.ts.
  */
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
+const require = createRequire(import.meta.url);
 
-// ─── 1. Ler e parsear o arquivo strong/index.ts ──────────────────────────────
+// ─── 1. Parse STRONG_CODES from strong/index.ts ─────────────────────────────
 
 const strongPath = resolve(ROOT, 'src/data/biblia/strong/index.ts');
 const raw = readFileSync(strongPath, 'utf8');
 
-// Extrair apenas o bloco do objeto STRONG_POR_VERSICULO = { ... }
-// Encontrar o início do valor do objeto (após o '= {')
-const objStart = raw.indexOf("STRONG_POR_VERSICULO: Record<string, PalavraStrong[]> = {");
-if (objStart === -1) {
-  console.error('Não encontrei STRONG_POR_VERSICULO no arquivo.');
+const codesStart = raw.indexOf('const STRONG_CODES: Record<string, [string[], string[]]> = {');
+if (codesStart === -1) {
+  console.error('Could not find STRONG_CODES in strong/index.ts');
   process.exit(1);
 }
-const blockStart = raw.indexOf('{', objStart);
+const blockStart = raw.indexOf('{', codesStart);
 
-// Encontrar o fim do objeto –contar chaves
 let depth = 0;
 let blockEnd = -1;
 for (let i = blockStart; i < raw.length; i++) {
@@ -37,106 +36,111 @@ for (let i = blockStart; i < raw.length; i++) {
   if (depth === 0) { blockEnd = i + 1; break; }
 }
 if (blockEnd === -1) {
-  console.error('Não consegui encontrar o fim do objeto STRONG_POR_VERSICULO.');
+  console.error('Could not find end of STRONG_CODES object');
   process.exit(1);
 }
 
 const objBlock = raw.slice(blockStart, blockEnd);
 
-// Extrair pares chave: valor manualmente usando regex por entrada
-// Formato: 'chave': [ { ... }, { ... } ],
-const verses = new Map(); // chave -> PalavraStrong[]
-
-// Regex para cada entrada do objeto
-const entryRe = /'([^']+)'\s*:\s*\[([\s\S]*?)\]\s*,?/g;
+// Parse each entry: 'key': [["H123","H456",...], ["morph1","morph2",...]]
+const verseEntries = new Map();
+const entryRe = /'([^']+)'\s*:\s*\[\s*(\[.*?\])\s*,\s*(\[.*?\])\s*\]/g;
 let match;
 while ((match = entryRe.exec(objBlock)) !== null) {
   const verseKey = match[1];
-  const arrBlock = match[2];
-
-  // Extrair cada objeto { ... } do array
-  const objRe = /\{([^}]+)\}/g;
-  let objMatch;
-  const palavras = [];
-  while ((objMatch = objRe.exec(arrBlock)) !== null) {
-    const props = objMatch[1];
-
-    const get = (name) => {
-      const m = props.match(new RegExp(`${name}\\s*:\\s*'([^']*)'`));
-      return m ? m[1] : '';
-    };
-
-    const strong = get('strong');
-    if (!strong) continue;
-
-    palavras.push({
-      strong,
-      palavra: get('palavra'),
-      transliteracao: get('transliteracao'),
-      definicao: get('definicao'),
-      morfologia: get('morfologia'),
-      idioma: get('idioma'),
-    });
-  }
-  if (palavras.length > 0) {
-    verses.set(verseKey, palavras);
-  }
+  const strongs = JSON.parse(match[2]);
+  const morphs = JSON.parse(match[3]);
+  verseEntries.set(verseKey, { strongs, morphs });
 }
 
-console.log(`✅ Versículos parseados: ${verses.size}`);
+console.log(`Parsed ${verseEntries.size} verses from STRONG_CODES`);
 
-// ─── 2. Filtrar apenas hebraicos e deduplicar ─────────────────────────────────
+// ─── 2. Build frequency map of Hebrew Strong's codes ────────────────────────
 
-// Mapa: strong -> { dados mais completo, ocorrencias: Set, frequencia }
-const byStrong = new Map();
+const strongFreq = new Map(); // strong -> { count, verses: Set }
 
-for (const [verseKey, palavras] of verses) {
-  for (const p of palavras) {
-    if (p.idioma !== 'hebraico') continue;
-
-    const ref = verseKey; // ex: "gn:1:1"
-    const existing = byStrong.get(p.strong);
-
-    if (!existing) {
-      byStrong.set(p.strong, {
-        strong: p.strong,
-        palavra: p.palavra,
-        transliteracao: p.transliteracao,
-        definicao: p.definicao,
-        morfologia: p.morfologia,
-        ocorrencias: new Set([ref]),
-      });
+for (const [verseKey, { strongs }] of verseEntries) {
+  for (const code of strongs) {
+    if (!code.startsWith('H')) continue;
+    const existing = strongFreq.get(code);
+    if (existing) {
+      existing.count++;
+      existing.verses.add(verseKey);
     } else {
-      existing.ocorrencias.add(ref);
-      // Manter o mais completo: se o novo tiver mais dados, sobrescrever
-      if (p.palavra && !existing.palavra) existing.palavra = p.palavra;
-      if (p.transliteracao && !existing.transliteracao) existing.transliteracao = p.transliteracao;
-      if (p.definicao && p.definicao.length > existing.definicao.length) existing.definicao = p.definicao;
-      if (p.morfologia && !existing.morfologia) existing.morfologia = p.morfologia;
+      strongFreq.set(code, { count: 1, verses: new Set([verseKey]) });
     }
   }
 }
 
-const entries = Array.from(byStrong.values()).map((e) => ({
-  strong: e.strong,
-  palavra: e.palavra,
-  transliteracao: e.transliteracao,
-  definicao: e.definicao,
-  morfologia: e.morfologia || undefined,
-  frequencia: e.ocorrencias.size,
-  ocorrencias: Array.from(e.ocorrencias).sort(),
-}));
+console.log(`Unique Hebrew Strong's codes: ${strongFreq.size}`);
 
-// Ordenar por número Strong (extrair o número)
+// ─── 3. Get word data from morphhb ──────────────────────────────────────────
+
+const morphhb = require('morphhb');
+
+// Build a map: strongNumber -> { palavra, transliteracao }
+const OT_BOOK_MAP = {
+  'Genesis': 'gn', 'Exodus': 'ex', 'Leviticus': 'lv', 'Numbers': 'nm',
+  'Deuteronomy': 'dt', 'Joshua': 'js', 'Judges': 'jz', 'Ruth': 'rt',
+  'I Samuel': '1sm', 'II Samuel': '2sm', 'I Kings': '1rs', 'II Kings': '2rs',
+  'I Chronicles': '1cr', 'II Chronicles': '2cr', 'Ezra': 'ed', 'Nehemiah': 'ne',
+  'Esther': 'et', 'Job': 'jó', 'Psalms': 'sl', 'Proverbs': 'pv',
+  'Ecclesiastes': 'ec', 'Song of Solomon': 'ct', 'Isaiah': 'is',
+  'Jeremiah': 'jr', 'Lamentations': 'lm', 'Ezekiel': 'ez', 'Daniel': 'dn',
+  'Hosea': 'os', 'Joel': 'jl', 'Amos': 'am', 'Obadiah': 'ob',
+  'Jonah': 'jn', 'Micah': 'mq', 'Nahum': 'na', 'Habakkuk': 'hc',
+  'Zephaniah': 'sf', 'Haggai': 'ag', 'Zechariah': 'zc', 'Malachi': 'ml',
+};
+
+// Collect first occurrence of each strong number for word data
+const wordData = new Map(); // strongNumber -> { palavra, transliteracao }
+
+for (const [bookName, chapters] of Object.entries(morphhb)) {
+  for (let c = 0; c < chapters.length; c++) {
+    const chapter = chapters[c];
+    for (let v = 0; v < chapter.length; v++) {
+      const words = chapter[v];
+      for (const [wordStr, lemma, morphCode] of words) {
+        let strong = lemma;
+        if (strong.includes('/')) strong = strong.split('/').pop();
+        if (!strong.startsWith('H')) strong = 'H' + strong;
+
+        if (!wordData.has(strong)) {
+          wordData.set(strong, {
+            palavra: wordStr || '',
+            transliteracao: '', // morphhb doesn't provide transliteration
+          });
+        }
+      }
+    }
+  }
+}
+
+// ─── 4. Merge frequency + word data, generate output ────────────────────────
+
+const entries = [];
+for (const [strong, { count, verses }] of strongFreq) {
+  const wd = wordData.get(strong);
+  entries.push({
+    strong,
+    palavra: wd?.palavra || '',
+    transliteracao: wd?.transliteracao || '',
+    definicao: '', // Definitions come from lexicon curation
+    frequencia: count,
+  });
+}
+
+// Sort by Strong's number
 entries.sort((a, b) => {
   const numA = parseInt(a.strong.replace('H', ''), 10);
   const numB = parseInt(b.strong.replace('H', ''), 10);
   return numA - numB;
 });
 
-// ─── 3. Gerar o arquivo TypeScript ────────────────────────────────────────────
+// ─── 5. Generate TypeScript ─────────────────────────────────────────────────
 
 function escapeTS(s) {
+  if (!s) return '';
   return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 }
 
@@ -159,9 +163,6 @@ for (const e of entries) {
     `transliteracao: '${escapeTS(e.transliteracao)}'`,
     `definicao: '${escapeTS(e.definicao)}'`,
   ];
-  if (e.morfologia) {
-    parts.push(`morfologia: '${escapeTS(e.morfologia)}'`);
-  }
   if (e.frequencia) {
     parts.push(`frequencia: ${e.frequencia}`);
   }
@@ -174,23 +175,19 @@ lines.push(``);
 const outPath = resolve(ROOT, 'src/data/lexicon/hebraico.ts');
 writeFileSync(outPath, lines.join('\n'), 'utf8');
 
-// ─── 4. Estatísticas ─────────────────────────────────────────────────────────
+// ─── 6. Statistics ──────────────────────────────────────────────────────────
 
 const total = entries.length;
-const withTranslit = entries.filter((e) => e.transliteracao).length;
-const withDef = entries.filter((e) => e.definicao).length;
-const withMorf = entries.filter((e) => e.morfologia).length;
-const totalOcorrencias = entries.reduce((s, e) => s + e.frequencia, 0);
+const withPalavra = entries.filter(e => e.palavra).length;
+const totalFreq = entries.reduce((s, e) => s + e.frequencia, 0);
 const top10 = [...entries].sort((a, b) => b.frequencia - a.frequencia).slice(0, 10);
 
-console.log(`\n📊 Estatísticas do léxico hebraico:`);
-console.log(`   Total de entradas únicas: ${total}`);
-console.log(`   Com transliteração: ${withTranslit}`);
-console.log(`   Com definição: ${withDef}`);
-console.log(`   Com morfologia: ${withMorf}`);
-console.log(`   Total de ocorrências (soma): ${totalOcorrencias}`);
-console.log(`\n   Top 10 palavras mais frequentes:`);
+console.log(`\n📊 Hebrew lexicon statistics:`);
+console.log(`   Unique entries: ${total}`);
+console.log(`   With word form: ${withPalavra}`);
+console.log(`   Total occurrences: ${totalFreq}`);
+console.log(`\n   Top 10 most frequent:`);
 for (const e of top10) {
-  console.log(`     ${e.strong} ${e.palavra} (${e.transliteracao}) — ${e.frequencia}×`);
+  console.log(`     ${e.strong} ${e.palavra} — ${e.frequencia}×`);
 }
-console.log(`\n✅ Arquivo gerado: ${outPath}`);
+console.log(`\n✅ Generated: ${outPath}`);

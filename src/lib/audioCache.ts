@@ -127,7 +127,8 @@ export async function obterAudioCapitulo(
     });
 
     return result;
-  } catch {
+  } catch (e) {
+    console.error('[audio:get-capitulo]', e);
     return null;
   }
 }
@@ -180,8 +181,8 @@ export async function limparCache(
         txRemove.onerror = () => reject(txRemove.error);
       });
     }
-  } catch {
-    // Silent fail
+  } catch (e) {
+    console.error('[audio:limpar-cache]', e);
   }
 
   db.close();
@@ -200,8 +201,8 @@ export async function limparCacheCompleto(): Promise<void> {
       txMeta.oncomplete = () => resolve();
       txMeta.onerror = () => reject(txMeta.error);
     });
-  } catch {
-    // Silent fail
+  } catch (e) {
+    console.error('[audio:limpar-cache-completo]', e);
   }
   db.close();
 }
@@ -228,8 +229,8 @@ export async function tamanhoCache(): Promise<{
       };
       request.onerror = () => reject(request.error);
     });
-  } catch {
-    // Silent fail
+  } catch (e) {
+    console.error('[audio:tamanho-cache]', e);
   }
 
   db.close();
@@ -251,7 +252,8 @@ export async function listarCacheCapitulos(): Promise<CacheMeta[]> {
       };
       request.onerror = () => { db.close(); reject(request.error); };
     });
-  } catch {
+  } catch (e) {
+    console.error('[audio:listar-cache-capitulos]', e);
     return [];
   }
 }
@@ -328,7 +330,7 @@ export async function precarregarAudioVersiculos(
                 rate: opts.rateStr || '+0%',
               });
             }
-          } catch {}
+          } catch (e) { console.error('[audio:precarregar-edge-tts]', e); }
         }
 
         if (!buffer && (opts.motor === 'elevenlabs' || opts.motor === 'auto')) {
@@ -338,13 +340,13 @@ export async function precarregarAudioVersiculos(
               const audio = await gerarAudio(texto, { voiceId: opts.voiceId });
               buffer = audio.audio;
             }
-          } catch {}
+          } catch (e) { console.error('[audio:precarregar-elevenlabs]', e); }
         }
 
         if (buffer && buffer.byteLength > 0) {
           versePreloadCache.set(key, buffer);
         }
-      } catch {}
+      } catch (e) { console.error('[audio:precarregar-versiculo]', e); }
     }
   };
 
@@ -394,8 +396,8 @@ export async function evictLRU(keepCount: number): Promise<number> {
       txRemove.oncomplete = () => resolve();
       txRemove.onerror = () => reject(txRemove.error);
     });
-  } catch {
-    // Silent fail
+  } catch (e) {
+    console.error('[audio:evict-lru]', e);
   }
 
   db.close();

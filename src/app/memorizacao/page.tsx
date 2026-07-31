@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -61,6 +62,7 @@ function sm2(card: Flashcard, quality: number): Flashcard {
 type View = 'list' | 'study' | 'add';
 
 export default function MemorizacaoPage() {
+  const { t } = useTranslation();
   const [cards, setCards] = useState<Flashcard[]>([]);
   const [view, setView] = useState<View>('list');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -129,14 +131,14 @@ export default function MemorizacaoPage() {
                   <Brain className="w-5 h-5 text-purple-500" />
                 </div>
                 <div>
-                  <h1 className="font-display text-3xl font-light">Memorização</h1>
-                  <p className="text-sm text-muted-foreground">Sistema de repetição espaçada (SM-2)</p>
+                  <h1 className="font-display text-3xl font-light">{t('memorizacao.title')}</h1>
+                  <p className="text-sm text-muted-foreground">{t('memorizacao.subtitle')}</p>
                 </div>
               </div>
               {view === 'list' && (
                 <motion.button onClick={() => setView('add')} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-500 to-violet-500 text-white font-medium text-sm shadow-lg">
-                  <Plus className="w-4 h-4" /> Novo Card
+                  <Plus className="w-4 h-4" /> {t('memorizacao.newCard')}
                 </motion.button>
               )}
             </div>
@@ -147,15 +149,15 @@ export default function MemorizacaoPage() {
             <div className="grid grid-cols-3 gap-3 mb-8">
               <div className="rounded-xl border border-border/50 bg-card/50 p-4 text-center">
                 <p className="text-2xl font-bold text-primary">{dueCards.length}</p>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Para revisar</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{t('memorizacao.toReview')}</p>
               </div>
               <div className="rounded-xl border border-border/50 bg-card/50 p-4 text-center">
                 <p className="text-2xl font-bold text-green-500">{streak}</p>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Sequência</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{t('memorizacao.streak')}</p>
               </div>
               <div className="rounded-xl border border-border/50 bg-card/50 p-4 text-center">
                 <p className="text-2xl font-bold text-amber-500">{totalStudied}</p>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Estudados</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{t('memorizacao.studied')}</p>
               </div>
             </div>
           )}
@@ -164,23 +166,23 @@ export default function MemorizacaoPage() {
           {view === 'add' && (
             <ScrollReveal>
               <div className="rounded-2xl border border-border/50 bg-card/50 p-6">
-                <h2 className="font-display text-xl mb-4">Novo Flashcard</h2>
+                <h2 className="font-display text-xl mb-4">{t('memorizacao.newFlashcard')}</h2>
                 <div className="space-y-4">
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Referência</label>
-                    <input type="text" value={newRef} onChange={e => setNewRef(e.target.value)} placeholder="ex: João 3:16"
+                    <label className="text-xs font-medium text-muted-foreground mb-1 block">{t('memorizacao.reference')}</label>
+                    <input type="text" value={newRef} onChange={e => setNewRef(e.target.value)} placeholder={t('memorizacao.refPlaceholder')}
                       className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20" />
                   </div>
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground mb-1 block">Versículo</label>
-                    <textarea value={newVerso} onChange={e => setNewVerso(e.target.value)} placeholder="Texto do versículo para memorizar..."
+                    <label className="text-xs font-medium text-muted-foreground mb-1 block">{t('memorizacao.verse')}</label>
+                    <textarea value={newVerso} onChange={e => setNewVerso(e.target.value)} placeholder={t('memorizacao.versePlaceholder')}
                       rows={4} className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none" />
                   </div>
                   <div className="flex gap-3">
-                    <button onClick={() => setView('list')} className="flex-1 py-3 rounded-xl border border-border font-medium hover:bg-muted/50">Cancelar</button>
+                    <button onClick={() => setView('list')} className="flex-1 py-3 rounded-xl border border-border font-medium hover:bg-muted/50">{t('common.cancel')}</button>
                     <motion.button onClick={addCard} disabled={!newVerso.trim() || !newRef.trim()} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                       className={cn('flex-1 py-3 rounded-xl font-semibold', newVerso.trim() && newRef.trim() ? 'bg-gradient-to-r from-purple-500 to-violet-500 text-white' : 'opacity-50 bg-muted')}>
-                      Adicionar
+                      {t('memorizacao.add')}
                     </motion.button>
                   </div>
                 </div>
@@ -194,7 +196,7 @@ export default function MemorizacaoPage() {
               <div className="flex items-center justify-between mb-6">
                 <span className="text-sm text-muted-foreground">{currentIndex + 1}/{dueCards.length}</span>
                 <button onClick={() => { setView('list'); setCurrentIndex(0); }} className="text-sm text-muted-foreground hover:text-foreground">
-                  <X className="w-4 h-4 inline mr-1" /> Sair
+                  <X className="w-4 h-4 inline mr-1" /> {t('memorizacao.exit')}
                 </button>
               </div>
 
@@ -206,19 +208,19 @@ export default function MemorizacaoPage() {
                   {!showAnswer ? (
                     <div>
                       <p className="text-2xl font-display font-light mb-4">{currentCard.referencia}</p>
-                      <p className="text-sm text-muted-foreground">Toque para revelar</p>
+                      <p className="text-sm text-muted-foreground">{t('memorizacao.tapToReveal')}</p>
                     </div>
                   ) : (
                     <div>
                       <p className="text-lg leading-relaxed mb-6">{currentCard.verso}</p>
                       <div className="space-y-2">
-                        <p className="text-xs text-muted-foreground mb-3">Como foi?</p>
+                        <p className="text-xs text-muted-foreground mb-3">{t('memorizacao.howWasIt')}</p>
                         <div className="flex gap-2 justify-center flex-wrap">
                           {[
-                            { q: 0, label: 'Esqueci', color: 'bg-red-500 text-white' },
-                            { q: 2, label: 'Difícil', color: 'bg-orange-500 text-white' },
-                            { q: 3, label: 'Bom', color: 'bg-green-500 text-white' },
-                            { q: 5, label: 'Fácil', color: 'bg-blue-500 text-white' },
+                            { q: 0, label: t('memorizacao.forgot'), color: 'bg-red-500 text-white' },
+                            { q: 2, label: t('memorizacao.hard'), color: 'bg-orange-500 text-white' },
+                            { q: 3, label: t('memorizacao.good'), color: 'bg-green-500 text-white' },
+                            { q: 5, label: t('memorizacao.easy'), color: 'bg-blue-500 text-white' },
                           ].map(({ q, label, color }) => (
                             <button key={q} onClick={(e) => { e.stopPropagation(); handleRate(q); }}
                               className={cn('px-4 py-2 rounded-xl font-medium text-sm', color)}>
@@ -241,7 +243,7 @@ export default function MemorizacaoPage() {
                 <motion.button onClick={() => { setView('study'); setCurrentIndex(0); setShowAnswer(false); }}
                   whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                   className="w-full mb-6 py-4 rounded-xl bg-gradient-to-r from-purple-500 to-violet-500 text-white font-semibold shadow-lg shadow-purple-500/25 flex items-center justify-center gap-2">
-                  <Play className="w-5 h-5" /> Estudar {dueCards.length} cards
+                  <Play className="w-5 h-5" /> {t('memorizacao.studyCards', { count: dueCards.length })}
                 </motion.button>
               )}
 
@@ -257,8 +259,8 @@ export default function MemorizacaoPage() {
                           <p className="font-medium text-sm mb-1">{card.referencia}</p>
                           <p className="text-xs text-muted-foreground line-clamp-2">{card.verso}</p>
                           <div className="flex items-center gap-3 mt-2 text-[10px] text-muted-foreground">
-                            <span>Repetições: {card.repetition}</span>
-                            <span>Intervalo: {card.interval}d</span>
+                            <span>{t('memorizacao.repetitions')}: {card.repetition}</span>
+                            <span>{t('memorizacao.interval')}: {card.interval}d</span>
                             <span>{isDue ? '⏳ Agora' : `📅 ${daysUntil}d`}</span>
                           </div>
                         </div>
@@ -275,7 +277,7 @@ export default function MemorizacaoPage() {
               {cards.length === 0 && (
                 <div className="text-center py-12">
                   <Brain className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
-                  <p className="text-muted-foreground">Nenhum flashcard ainda. Crie um para começar!</p>
+                  <p className="text-muted-foreground">{t('memorizacao.empty')}</p>
                 </div>
               )}
             </>

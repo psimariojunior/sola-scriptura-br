@@ -26,7 +26,8 @@ function getVisitCount(): number {
   if (typeof window === 'undefined') return 0;
   try {
     return parseInt(localStorage.getItem(VISIT_COUNT_KEY) || '0', 10);
-  } catch {
+  } catch (e) {
+    console.error('[pwa:get-visit-count]', e);
     return 0;
   }
 }
@@ -35,7 +36,7 @@ function incrementVisitCount(): number {
   const count = getVisitCount() + 1;
   try {
     localStorage.setItem(VISIT_COUNT_KEY, String(count));
-  } catch {}
+  } catch (e) { console.error('[pwa:increment-visit-count]', e); }
   return count;
 }
 
@@ -47,7 +48,8 @@ function isBannerDismissed(): boolean {
     const dismissedAt = parseInt(dismissed, 10);
     const thirtyDays = 30 * 24 * 60 * 60 * 1000;
     return Date.now() - dismissedAt < thirtyDays;
-  } catch {
+  } catch (e) {
+    console.error('[pwa:is-banner-dismissed]', e);
     return false;
   }
 }
@@ -125,7 +127,8 @@ export function usePWA(): UsePWAReturn {
       const { outcome } = await deferredPrompt.userChoice;
       setDeferredPrompt(null);
       return outcome === 'accepted';
-    } catch {
+    } catch (e) {
+      console.error('[pwa:install]', e);
       return false;
     }
   }, [deferredPrompt]);
@@ -144,7 +147,7 @@ export function usePWA(): UsePWAReturn {
   const dismissBanner = useCallback(() => {
     try {
       localStorage.setItem(BANNER_DISMISS_KEY, String(Date.now()));
-    } catch {}
+    } catch (e) { console.error('[pwa:dismiss-banner]', e); }
     setBannerDismissed(true);
   }, []);
 

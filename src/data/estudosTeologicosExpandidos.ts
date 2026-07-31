@@ -11,17 +11,17 @@
 
 export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   // ———————————————————————————————————————————————————————————————————————————
-  // 1. DOUTRINAS FUNDAMENTAIS —” TEOLOGIA PROPER (50 estudos)
+  // 1. DOUTRINAS FUNDAMENTAIS — TEOLOGIA PROPER (50 estudos)
   // ———————————————————————————————————————————————————————————————————————————
 
   {
     id: 'dp-001',
-    titulo: 'A Existência de Deus —” Argumentos Clássicos',
+    titulo: 'A Existência de Deus — Argumentos Clássicos',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A questão da existência de Deus é uma das mais debatidas na história da filosofia e da teologia. Os argumentos clássicos buscam demonstrar a existência de Deus pela razão humana.',
-      'O argumento cosmológico parte do fato de que tudo que começa a existir tem uma causa. Ao retrocedermos na cadeia causal, chegamos a uma Primeira Causa não causada —” Deus.',
+      'O argumento cosmológico parte do fato de que tudo que começa a existir tem uma causa. Ao retrocedermos na cadeia causal, chegamos a uma Primeira Causa não causada — Deus.',
       'O argumento teleológico observa a ordem e o propósito na criação como evidência de um Designer inteligente. A complexidade do universo aponta para um Criador sábio.',
       'O argumento ontológico, formulado por Anselmo, parte da concepção de Deus como o Ser maior do que o qual nada pode ser pensado. Se Deus existe apenas na mente, poderíamos conceber um ser maior.',
       'O argumento moral postula que a existência de valores morais objetivos exige um fundamento transcendente. Sem Deus, os valores morais são meramente convenções sociais.'
@@ -32,14 +32,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-002',
-    titulo: 'A Trindade —” Mistério Central da Fé',
+    titulo: 'A Trindade — Mistério Central da Fé',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
-      'A doutrina da Trindade é o mistério central da fé cristã: um único Deus em três pessoas —” Pai, Filho e Espírito Santo. Cada pessoa é plenamente Deus.',
+      'A doutrina da Trindade é o mistério central da fé cristã: um único Deus em três pessoas — Pai, Filho e Espírito Santo. Cada pessoa é plenamente Deus.',
       'A formulação trinitária emergiu dos debates cristológicos dos séculos III e IV. O Concílio de Nicéia estabeleceu que o Filho é homoousios com o Pai.',
       'Agostinho desenvolveu a analogia psicológica: a mente se conhece e se ama, gerando verbo e amor. Assim, o Pai gera o Filho, e o Espírito procede do amor mútuo.',
-      'A Trindade não é contradição lógica —” é paradoxo que transcende a razão. Deus não é três pessoas no sentido humano, mas três relações pessoais em uma essência divina.',
+      'A Trindade não é contradição lógica — é paradoxo que transcende a razão. Deus não é três pessoas no sentido humano, mas três relações pessoais em uma essência divina.',
       'A economia da Trindade se manifesta na salvação: o Pai planeja, o Filho executa, o Espírito aplica. Na criação, o Pai cria pelo Filho no Espírito.'
     ],
     versicosChave: ['Mateus 28:19', '2 Coríntios 13:14', 'Gênesis 1:26', 'João 1:1-3'],
@@ -53,7 +53,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'Deus é ao mesmo tempo infinitamente distinto da criação (transcendente) e profundamente presente nela (imanente). Este paradoxo é fundamental para compreender Deus.',
-      'A transcendência significa que Deus está além de todas as limitações criadas —” tempo, espaço, matéria. Ã‰ o Deus que habita a luz inacessível.',
+      'A transcendência significa que Deus está além de todas as limitações criadas — tempo, espaço, matéria. Ã‰ o Deus que habita a luz inacessível.',
       'A imanência significa que Deus está presente em todos os lugares, sustentando a existência do universo. Atos 17:28 declara: Nele vivemos, nos movemos e existimos.',
       'O equilíbrio entre transcendência e imanência evita o panteísmo e o deísmo. O Deus bíblico é pessoal e próximo, mas também sagrado e transcendente.',
       'A transcendência gera reverência e adoração, enquanto a imanência gera intimidade e confiança. A oração é possível porque Deus é imanente.'
@@ -68,7 +68,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
-      'A onisciência de Deus significa que Ele sabe todas as coisas —” passado, presente e futuro —” de forma perfeita e simultânea.',
+      'A onisciência de Deus significa que Ele sabe todas as coisas — passado, presente e futuro — de forma perfeita e simultânea.',
       'Deus conhece todas as possibilidades e atualidades. Ele sabe o que é, o que foi, o que será e o que poderia ser.',
       'A questão do livre-arbítrio parece conflitar com a onisciência. Se Deus sabe o que faremos, somos realmente livres? A resposta clássica é que Deus sabe sem causar.',
       'A teologia processual propõe que Deus conhece o futuro como possibilidades, não como certezas absolutas.',
@@ -100,7 +100,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
-      'A santidade de Deus é Seu atributo mais elevado —” a separação absoluta de tudo o que é impuro e a perfeição moral absoluta.',
+      'A santidade de Deus é Seu atributo mais elevado — a separação absoluta de tudo o que é impuro e a perfeição moral absoluta.',
       'A santidade implica Sua justiça: Ele não pode tolerar o pecado. A lei moral é reflexo da Sua santidade.',
       'A ira santa de Deus não é emoção humana, mas Sua oposição moral ao pecado. Ã‰ expressão de Sua santidade em confronto com o que é mau.',
       'A santidade se manifesta em Sua transcendência e em Sua imanência. O Espírito Santo é o Santo de Deus que habita no crente.',
@@ -136,7 +136,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'Misericórdia é não nos dar o que merecemos; graça é nos dar o que não merecemos. Ambas são expressões do amor divino.',
       'A graça tem dimensões: preveniente, regeneradora, justificante, santificadora e glorificadora.',
       'Sola gratia é principio reformado: a salvação é pela graça de Deus, não pelas obras humanas.',
-      'A graça não anula a responsabilidade humana —” ela a capacita. A graça é gratuita mas não custosa: custou a vida do Filho.'
+      'A graça não anula a responsabilidade humana — ela a capacita. A graça é gratuita mas não custosa: custou a vida do Filho.'
     ],
     versicosChave: ['Efésios 2:4-5', 'Tito 3:5', 'Romanos 5:8', '1 Pedro 1:10'],
     tags: ['graça', 'misericórdia', 'sola gratia', 'graça preveniente', 'graça regeneradora'],
@@ -148,9 +148,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
-      'Deus é eterno —” não tem começo nem fim. O tempo é criação de Deus, mas Ele não está sujeito ao tempo.',
+      'Deus é eterno — não tem começo nem fim. O tempo é criação de Deus, mas Ele não está sujeito ao tempo.',
       'A imutabilidade significa que Ele não muda em Sua natureza, caráter, propósitos ou promessas.',
-      'A imutabilidade não é estagnação —” é perfeição constante. Deus não precisa mudar porque é perfeito.',
+      'A imutabilidade não é estagnação — é perfeição constante. Deus não precisa mudar porque é perfeito.',
       'A eternidade é fonte de consolação: Suas promessas são eternas, Seu amor não falha.',
       'A imutabilidade é fundamento de esperança: em um mundo de mudança, Deus é a rocha imóvel.'
     ],
@@ -180,9 +180,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
-      'O amor de Deus é o atributo que fundamenta todos os outros. Deus não apenas ama —” Ele é amor (1 João 4:8).',
+      'O amor de Deus é o atributo que fundamenta todos os outros. Deus não apenas ama — Ele é amor (1 João 4:8).',
       'O amor divino é incondicional, inesgotável e universal. Ele amou o mundo de tal maneira que deu o Seu Filho.',
-      'O amor de Deus não depende da dignidade do objeto —” Ele ama os pecadores. Deus nos amou quando ainda éramos inimigos.',
+      'O amor de Deus não depende da dignidade do objeto — Ele ama os pecadores. Deus nos amou quando ainda éramos inimigos.',
       'O amor se manifesta na criação, na providência, na redenção e na glificação final.',
       'O crente é chamado a refletir o amor divino: amar a Deus e ao próximo como a si mesmo.'
     ],
@@ -199,7 +199,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A fidelidade de Deus significa que Ele cumpre todas as Suas promessas. Ele é fiel mesmo quando somos infiéis.',
       'A aliança de Deus com Israel é modelo de fidelidade: apesar da desobediência do povo, Deus mantém Suas promessas.',
       'A fidelidade divina é a base da confiança do crente: podemos confiar porque Deus é fiel.',
-      'A fidelidade se estende a todas as promessas —” desde a criação até a consumação final.',
+      'A fidelidade se estende a todas as promessas — desde a criação até a consumação final.',
       'Aå“åº” à fidelidade de Deus é obediência e adoração. O crente responde ao amor com amor, à fidelidade com lealdade.'
     ],
     versicosChave: ['Deuteronômio 7:9', 'Lamentações 3:22-23', '2 Timóteo 2:13', '1 Coríntios 1:9'],
@@ -215,7 +215,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A graça comum é a bondade de Deus para com todos os seres humanos, independentemente de sua fé.',
       'Ela se manifesta na providência: chuva, sol, alimento, governos, cultura, conhecimento.',
       'A graça comum limita os efeitos do pecado e permite que a civilização exista.',
-      'Ela é distinta da graça salvífica —” não salva, mas sustenta e beneficia.',
+      'Ela é distinta da graça salvífica — não salva, mas sustenta e beneficia.',
       'Calvino enfatizou a graça comum como base para engajamento cultural e transformação social.'
     ],
     versicosChave: ['Mateus 5:45', 'Atos 14:17', 'Romanos 2:4', 'Gênesis 9:1-3'],
@@ -230,8 +230,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A graça especial é a obra redentora de Deus que salva os eleitos do pecado e da morte.',
       'Ela inclui: chamado eficaz, regeneração, fé, arrependimento, justificação, santificação e glorificação.',
-      'A graça especial é soberana —” Deus a confere a quem Ele deseja, não por mérito humano.',
-      'Ela é suficiente e eficaz —” não pode ser resistida quando Deus a aplica.',
+      'A graça especial é soberana — Deus a confere a quem Ele deseja, não por mérito humano.',
+      'Ela é suficiente e eficaz — não pode ser resistida quando Deus a aplica.',
       'A graça especial é o fundamento da certeza da salvação: Deus guardará aqueles que Ele chamou.'
     ],
     versicosChave: ['Efésios 2:8-9', 'Tito 3:5', 'Romanos 8:29-30', 'João 6:44'],
@@ -247,7 +247,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A predestinação é o decreto eterno de Deus de salvar uns e condenar outros. Ã‰ tema central no debate calvinista-arminiano.',
       'O calvinismo sustenta a predestinação incondicional: Deus escolhe antes da fundação do mundo, sem referência ao mérito.',
       'O arminianismo sustenta a predestinação condicional: Deus prevê quem crerá e os predestina baseado na Sua presciência.',
-      'A predestinação não anula a responsabilidade humana —” ambos são verdadeiros na Bíblia.',
+      'A predestinação não anula a responsabilidade humana — ambos são verdadeiros na Bíblia.',
       'A predestinação é fonte de humildade e gratidão: a salvação é dom de Deus, não conquista humana.'
     ],
     versicosChave: ['Efésios 1:4-5', 'Romanos 8:29-30', '1 Pedro 1:1-2', 'Atos 13:48'],
@@ -262,7 +262,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A providência de Deus é Seu governo contínuo de todas as coisas para realizar Seus propósitos.',
       'Deus governa tudo: nações, natureza, história, destinos individuais. Nada escapa ao Seu controle.',
-      'A providência não é fatalismo —” Deus usa meios humanos. O crente ora e age porque Deus governa através de instrumentos.',
+      'A providência não é fatalismo — Deus usa meios humanos. O crente ora e age porque Deus governa através de instrumentos.',
       'A providência inclui permissão do mal: Deus permite o pecado sem causá-lo, para um bem maior.',
       'A providência é fonte de paz: nada acontece por acaso. Tudo está sob o controle de Deus.'
     ],
@@ -278,7 +278,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A revelação geral é o conhecimento de Deus disponível a todos os seres humanos através da criação e da consciência.',
       'Romanos 1:19-20 declara que a criação revela a existência e os atributos de Deus de forma clara e inescusável.',
-      'A consciência moral é evidência de Deus no coração humano —” o senso de certo e errado aponta para um Legislador divino.',
+      'A consciência moral é evidência de Deus no coração humano — o senso de certo e errado aponta para um Legislador divino.',
       'A revelação geral é suficiente para condenação (deixando o homem sem desculpa) mas não para salvação.',
       'A revelação especial (Escritura e Cristo) é necessária para conhecimento salvífico de Deus.'
     ],
@@ -288,12 +288,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-018',
-    titulo: 'A Revelação Especial —” Escritura e Cristo',
+    titulo: 'A Revelação Especial — Escritura e Cristo',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
-      'A revelação especial é Deus se comunicando diretamente —” através da Escritura e da pessoa de Jesus Cristo.',
-      'Cristo é a Palavra definitiva de Deus —” a revelação plena e final. Deus falou de muitas maneiras, mas agora pelo Filho.',
+      'A revelação especial é Deus se comunicando diretamente — através da Escritura e da pessoa de Jesus Cristo.',
+      'Cristo é a Palavra definitiva de Deus — a revelação plena e final. Deus falou de muitas maneiras, mas agora pelo Filho.',
       'A Escritura é Palavra de Deus inspirada, inerrante e suficiente. Ã‰ regra de fé e prática.',
       'A Escritura e Cristo são inseparáveis: a Bíblia testifica de Cristo, e Cristo autoriza a Bíblia.',
       'A revelação especial é necessária porque a revelação geral é insuficiente para salvação.'
@@ -309,9 +309,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'O livre-arbítrio é a capacidade humana de escolher entre alternativas. A graça de Deus opera na escolha humana.',
-      'O calvinismo sustenta que o livre-arbítrio é escravo —” o homem caído não pode escolher a Deus sem a graça regeneradora.',
-      'O arminianismo sustenta que a graça preveniente capacita a escolha humana —” Deus antecipa Sua graça.',
-      'O debate não é se Deus é soberano ou se o homem é livre —” ambos são verdadeiros. O mistério permanece.',
+      'O calvinismo sustenta que o livre-arbítrio é escravo — o homem caído não pode escolher a Deus sem a graça regeneradora.',
+      'O arminianismo sustenta que a graça preveniente capacita a escolha humana — Deus antecipa Sua graça.',
+      'O debate não é se Deus é soberano ou se o homem é livre — ambos são verdadeiros. O mistério permanece.',
       'A prática cristã pressupõe a responsabilidade humana: arrependei-vos, crede, obedecei.'
     ],
     versicosChave: ['Deuteronômio 30:19', 'João 7:17', 'Efésios 2:8-9', 'Filipenses 2:12-13'],
@@ -324,8 +324,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
-      'O pecado é rebelião contra Deus —” transgressão da Sua lei e ofensa à Sua santidade.',
-      'O pecado tem origem na queda (Gênesis 3) —” a humanidade herdou uma natureza corrupta.',
+      'O pecado é rebelião contra Deus — transgressão da Sua lei e ofensa à Sua santidade.',
+      'O pecado tem origem na queda (Gênesis 3) — a humanidade herdou uma natureza corrupta.',
       'O pecado é universal: todos pecaram e estão destituídos da glória de Deus.',
       'O pecado afeta toda a pessoa: mente (cegueira espiritual), coração (desejos distorcidos), vontade (incapacidade moral), corpo (mortalidade).',
       'O pecado é grave porque ofende a um Deus santo e separa o homem de Deus.'
@@ -340,11 +340,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
-      'A maldição do pecado é a consequência da desobediência humana —” morte, sofrimento, separação de Deus.',
-      'A maldição se estende a toda a criação —” a terra foi amaldiçoada por causa do pecado humano.',
+      'A maldição do pecado é a consequência da desobediência humana — morte, sofrimento, separação de Deus.',
+      'A maldição se estende a toda a criação — a terra foi amaldiçoada por causa do pecado humano.',
       'Cristo resgatou a humanidade da maldição da lei, fazendo-se maldição por nós na cruz.',
-      'A maldição é superada pela bênção em Cristo —” a redenção restaura a comunhão com Deus.',
-      'A maldição final é o lago de fogo —” separação eterna de Deus para os que rejeitam a salvação.'
+      'A maldição é superada pela bênção em Cristo — a redenção restaura a comunhão com Deus.',
+      'A maldição final é o lago de fogo — separação eterna de Deus para os que rejeitam a salvação.'
     ],
     versicosChave: ['Gênesis 3:14-19', 'Gálatas 3:13', 'Romanos 8:20-22', 'Apocalipse 20:10'],
     tags: ['maldição', 'consequências do pecado', 'Gênesis 3', 'redenção da maldição'],
@@ -372,10 +372,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Escatologia',
     conteudo: [
-      'A ressurreição dos mortos é doutrina central —” Cristo ressuscitou, e nós também ressuscitaremos.',
+      'A ressurreição dos mortos é doutrina central — Cristo ressuscitou, e nós também ressuscitaremos.',
       'A nova criação é a promessa final: novos céus e nova terra, onde a justiça habita.',
-      'A ressurreição não é imaterialidade —” é transformação corporal. Cristo ressuscitou com corpo glorificado.',
-      'A nova criação não é destruição mas restauração —” Deus renovará todas as coisas.',
+      'A ressurreição não é imaterialidade — é transformação corporal. Cristo ressuscitou com corpo glorificado.',
+      'A nova criação não é destruição mas restauração — Deus renovará todas as coisas.',
       'A esperança escatológica motiva santificação: se temos esta esperança, purificamo-nos.'
     ],
     versicosChave: ['1 Coríntios 15:20-28', 'Apocalipse 21:1-4', 'Romanos 8:18-25', 'Filipenses 3:20-21'],
@@ -389,8 +389,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Escatologia',
     conteudo: [
       'O juízo final é certeza bíblica: todos comparecerão diante do tribunal de Cristo.',
-      'Para os crentes, o juízo é de recompensa —” não de condenação. Cristo é o juiz justo que recompensa a fidelidade.',
-      'Para os incrédulos, o juízo é de condenação eterna —” separação de Deus.',
+      'Para os crentes, o juízo é de recompensa — não de condenação. Cristo é o juiz justo que recompensa a fidelidade.',
+      'Para os incrédulos, o juízo é de condenação eterna — separação de Deus.',
       'O juízo é justo: Deus julga conforme as obras, mas a salvação é por graça.',
       'O juízo é motivo de vigilância: vivamos de modo que não tenhamos vergonha na Sua vinda.'
     ],
@@ -404,11 +404,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Escatologia',
     conteudo: [
-      'O inferno é realidade bíblica —” separação eterna de Deus para os que rejeitam a salvação.',
+      'O inferno é realidade bíblica — separação eterna de Deus para os que rejeitam a salvação.',
       'Existem diferentes visões: tortura eterna (tradição predominante), aniquilação (destruição final), universalismo (todos serão salvos).',
-      'A Bíblia descreve o inferno como fogo, trevas, gemidos —” símbolos de sofrimento e separação.',
+      'A Bíblia descreve o inferno como fogo, trevas, gemidos — símbolos de sofrimento e separação.',
       'O inferno é resultado da justiça de Deus: o pecado exige punição. Mas Deus não deseja a morte do ímpio.',
-      'A salvação é offers a todos —” Deus quer que todos sejam salvos. O inferno é a escolha humana, não o desejo divino.'
+      'A salvação é offers a todos — Deus quer que todos sejam salvos. O inferno é a escolha humana, não o desejo divino.'
     ],
     versicosChave: ['Mateus 25:46', 'Apocalipse 20:10', '2 Tessalonicenses 1:9', '1 Timóteo 2:3-4'],
     tags: ['inferno', 'morte eterna', 'juízo', 'condenação', 'universalismo'],
@@ -420,10 +420,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Escatologia',
     conteudo: [
-      'O céu é a comunhão eterna com Deus —” a realização de todo desejo humano.',
-      'A glorificação é a transformação final dos crentes —” corpos glorificados, sem pecado, sem sofrimento.',
-      'O céu não é nuvens e harpas —” é a presença de Deus. Estar com Cristo é o céu.',
-      'A nova terra é parte da esperança cristã —” Deus renovará a criação, não a destruirá.',
+      'O céu é a comunhão eterna com Deus — a realização de todo desejo humano.',
+      'A glorificação é a transformação final dos crentes — corpos glorificados, sem pecado, sem sofrimento.',
+      'O céu não é nuvens e harpas — é a presença de Deus. Estar com Cristo é o céu.',
+      'A nova terra é parte da esperança cristã — Deus renovará a criação, não a destruirá.',
       'A esperança do céu motiva a santidade: se temos esta herança, vivamos de modo digno.'
     ],
     versicosChave: ['Apocalipse 21:1-4', '1 Coríntios 15:42-57', 'Filipenses 3:20-21', 'João 14:1-3'],
@@ -432,7 +432,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-027',
-    titulo: 'A Escatologia Presente —” Já mas Ainda Não',
+    titulo: 'A Escatologia Presente — Já mas Ainda Não',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -440,7 +440,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'O Reino já está presente em Cristo: Ele venceu Satanás, inaugurou o Reino, enviou o Espírito.',
       'O Reino ainda não se consumou: o pecado, a morte e o sofrimento ainda existem.',
       'A Igreja vive nesta tensão: já salvos mas ainda esperando a plena salvação.',
-      'Esta tensão é.fonte de esperança e missionarismo —” proclamamos o Reino que já começou e aguardamos o que virá.'
+      'Esta tensão é.fonte de esperança e missionarismo — proclamamos o Reino que já começou e aguardamos o que virá.'
     ],
     versicosChave: ['Mateus 12:28', 'Marcos 1:15', 'Romanos 8:23', '1 Coríntios 15:20-26'],
     tags: ['já mas ainda não', 'Reino presente', 'escatologia', 'tensão escatológica'],
@@ -448,12 +448,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-028',
-    titulo: 'Analogia Fidei —” A Escritura Interpreta a Escritura',
+    titulo: 'Analogia Fidei — A Escritura Interpreta a Escritura',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Bibliologia',
     conteudo: [
       'A analogia da fé é princípio hermenêutico: partes da Bíblia devem ser interpretadas à luz de outras partes.',
-      'A Bíblia tem unidade —” Deus é o autor único de todas as Escrituras. Não há contradição real.',
+      'A Bíblia tem unidade — Deus é o autor único de todas as Escrituras. Não há contradição real.',
       'Os textos mais claros devem guiar a interpretação dos mais difíceis.',
       'A analogia da fé evita interpretações isoladas que contradizem o ensino bíblico como um todo.',
       'Este princípio é fundamental para a hermenêutica reformada e para a ecumenicidade.'
@@ -471,7 +471,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A historicidade da ressurreição é questão central para a fé cristã. Se Cristo não ressuscitou, vã é a fé.',
       'As evidências incluem: túmulo vazio, aparições múltiplas, transformação dos discípulos e origem da Igreja.',
       'As aparições foram a diversas pessoas: Pedro, os doze, mais de 500, Tiago, Paulo.',
-      'A transformação dos discípulos é evidência poderosa —” de Covardes a Mártires.',
+      'A transformação dos discípulos é evidência poderosa — de Covardes a Mártires.',
       'Nenhuma explicação alternativa satisfaz todos os fatos: roubo do corpo, alucinação, mito.'
     ],
     versicosChave: ['1 Coríntios 15:3-8', 'Mateus 28:1-10', 'Lucas 24:13-35', 'João 20:24-29'],
@@ -487,7 +487,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A segunda vinda de Cristo é promessa certa: Assim como o viram subir, assim voltarão.',
       'Será visível, gloriosa, poderosa e inesperada. Todos verão a vinda do Filho do Homem.',
       'Os sinais incluem: evangelização mundial, guerras, terremotes, apostasia, persegução.',
-      'A segunda vinda é consumação da história —” Cristo estabelecerá o Reino pleno.',
+      'A segunda vinda é consumação da história — Cristo estabelecerá o Reino pleno.',
       'Vigiar e orar é a resposta adequada: não sabemos o dia nem a hora.'
     ],
     versicosChave: ['Mateus 24:30-31', '1 Tessalonicenses 4:16-17', 'Atos 1:11', 'Apocalipse 1:7'],
@@ -496,15 +496,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-031',
-    titulo: 'O Milênio —” Reino Milenar de Cristo',
+    titulo: 'O Milênio — Reino Milenar de Cristo',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Escatologia',
     conteudo: [
       'O milênio é o período de 1000 anos mencionado em Apocalipse 20. Existem três visões principais.',
       'O pré-milenarismo sustenta que Cristo voltará antes do milênio, estabelecendo Seu reino visível na terra.',
       'O pós-milenarismo sustenta que o mundo será cristianizado antes do retorno de Cristo.',
-      'O amilenarismo sustenta que o milênio é período espiritual simbólico —” o reinho atual de Cristo no céu.',
-      'A Bíblia não é clara sobre a ordem dos eventos —” a unidade na fé é mais importante que acordo cronológico.'
+      'O amilenarismo sustenta que o milênio é período espiritual simbólico — o reinho atual de Cristo no céu.',
+      'A Bíblia não é clara sobre a ordem dos eventos — a unidade na fé é mais importante que acordo cronológico.'
     ],
     versicosChave: ['Apocalipse 20:1-6', 'Isaías 11:6-9', 'Revelação 20:4', '2 Pedro 3:10-13'],
     tags: ['milênio', 'pré-milenarismo', 'pós-milenarismo', 'amilenarismo'],
@@ -517,10 +517,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Eclesiologia',
     conteudo: [
       'A comunhão dos santos é a unidade espiritual de todos os crentes em Cristo, vivos e mortos.',
-      'Não há separação entre Igreja terrena e celestial —” todos são um em Cristo.',
+      'Não há separação entre Igreja terrena e celestial — todos são um em Cristo.',
       'A comunhão se manifesta na oração, na adoração, no testemunho e na partilha de dons.',
-      'Os santos falecidos continuam conosco em Cristo —” não estão ausentes, mas presentes no Senhor.',
-      'Esta comunhão é.fonte de fortalecimento: não estamos sozinhos —” somos multidão de testemunhas.'
+      'Os santos falecidos continuam conosco em Cristo — não estão ausentes, mas presentes no Senhor.',
+      'Esta comunhão é.fonte de fortalecimento: não estamos sozinhos — somos multidão de testemunhas.'
     ],
     versicosChave: ['Hebreus 12:1', 'Efésios 4:4-6', 'Romanos 12:4-5', '1 Coríntios 12:12-27'],
     tags: ['comunhão dos santos', 'Igreja invisível', 'unidade espiritual'],
@@ -528,13 +528,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-033',
-    titulo: 'A Oração —” Comunhão com Deus',
+    titulo: 'A Oração — Comunhão com Deus',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Vida Crista',
     conteudo: [
-      'A oração é comunhão direta com Deus —” falar e ouvir, pedir e agradecer, confessar e adorar.',
-      'O modelo de oração é o Pai Nosso (Mateus 6:9-13) —” adoração, petição, confissão, proteção.',
-      'A oração não muda Deus —” muda a pessoa que ora. Ela é meio de graça pelo qual crescemos em comunhão.',
+      'A oração é comunhão direta com Deus — falar e ouvir, pedir e agradecer, confessar e adorar.',
+      'O modelo de oração é o Pai Nosso (Mateus 6:9-13) — adoração, petição, confissão, proteção.',
+      'A oração não muda Deus — muda a pessoa que ora. Ela é meio de graça pelo qual crescemos em comunhão.',
       'A oração deve ser constante (1 Tessalonicenses 5:17), cheia de fé (Tiago 1:6) e submissa à vontade de Deus.',
       'O Espírito Santo intercede por nós com gemidos inexprimíveis (Romanos 8:26-27).'
     ],
@@ -544,15 +544,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-034',
-    titulo: 'A Adoração —” O Propósito da Vida',
+    titulo: 'A Adoração — O Propósito da Vida',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Vida Crista',
     conteudo: [
       'A adoração é reconhecer o valor supremo de Deus e responder com reverência, amor e obediência.',
-      'A adoração não é apenas música —” é toda a vida vivida para a glória de Deus.',
-      'A adoração espiritual é em espírito e em verdade (João 4:23-24) —” autêntica e fundamentada na verdade bíblica.',
-      'A adoração coletiva na Igreja é central —” não é opcional mas necessária.',
-      'O céu é adoração eterna —” a vida cristã é preparação para a adoração final.'
+      'A adoração não é apenas música — é toda a vida vivida para a glória de Deus.',
+      'A adoração espiritual é em espírito e em verdade (João 4:23-24) — autêntica e fundamentada na verdade bíblica.',
+      'A adoração coletiva na Igreja é central — não é opcional mas necessária.',
+      'O céu é adoração eterna — a vida cristã é preparação para a adoração final.'
     ],
     versicosChave: ['João 4:23-24', 'Romanos 12:1-2', 'Salmos 95:6', 'Apocalipse 4:8-11'],
     tags: ['adoração', 'culto', 'glória de Deus', 'vida cristã'],
@@ -560,15 +560,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-035',
-    titulo: 'O Discipulado —” Seguindo a Cristo',
+    titulo: 'O Discipulado — Seguindo a Cristo',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Vida Crista',
     conteudo: [
-      'O discipulado é seguir a Cristo como Senhor —” não apenas crer, mas obedecer e transformar-se.',
+      'O discipulado é seguir a Cristo como Senhor — não apenas crer, mas obedecer e transformar-se.',
       'Jesus chamou para seguir: Venhe depois de mim. O discipulado é relacionamento pessoal com Cristo.',
       'O custo do discipulado é alto: negar-se a si mesmo, tomar a cruz, perder a vida para encontrá-la.',
-      'O discipulado é comunitário —” não é individualismo. Fazemos discípulos em comunhão.',
-      'O discipulado é processo de transformação à imagem de Cristo —” crescer em graça e conhecimento.'
+      'O discipulado é comunitário — não é individualismo. Fazemos discípulos em comunhão.',
+      'O discipulado é processo de transformação à imagem de Cristo — crescer em graça e conhecimento.'
     ],
     versicosChave: ['Mateus 16:24', 'Lucas 9:23', 'Mateus 28:19-20', '2 Coríntios 3:18'],
     tags: ['discipulado', 'seguir a Cristo', 'cruz', 'transformação', 'comunidade'],
@@ -576,15 +576,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-036',
-    titulo: 'A Consciência —” Guia Moral Interior',
+    titulo: 'A Consciência — Guia Moral Interior',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A consciência é a faculdade moral que distingue certo de errado. Ã‰ dom de Deus, mas pode ser educada.',
-      'A consciência não é infalível —” pode ser corrompida pelo pecado, pela cultura, pela falsa religião.',
-      'A consciência deve ser formada pela Palavra de Deus —” não apenas pela tradição ou sentimento.',
+      'A consciência não é infalível — pode ser corrompida pelo pecado, pela cultura, pela falsa religião.',
+      'A consciência deve ser formada pela Palavra de Deus — não apenas pela tradição ou sentimento.',
       'Paulo distingue boa consciência (formada pela verdade) de má consciência (defeituosa).',
-      'A liberdade de consciência é direito cristão —” ninguém deve ser forçado contra sua consciência.'
+      'A liberdade de consciência é direito cristão — ninguém deve ser forçado contra sua consciência.'
     ],
     versicosChave: ['Romanos 2:14-15', '1 Timóteo 1:5', 'Hebreus 9:14', '1 Coríntios 8:7'],
     tags: ['consciência', 'ética', 'liberdade de consciência', 'moralidade'],
@@ -597,9 +597,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Soteriologia',
     conteudo: [
       'A santificação progressiva é o crescimento contínuo em santidade pela graça de Deus.',
-      'Não é perfeição instantânea mas processo gradual —” morrer para o pecado e viver para a justiça.',
+      'Não é perfeição instantânea mas processo gradual — morrer para o pecado e viver para a justiça.',
       'O meio da santificação inclui: Palavra de Deus, oração, comunhão dos santos, sacramentos, obediência.',
-      'O Espírito Santo é o agente da santificação —” Ele transforma a vida do crente.',
+      'O Espírito Santo é o agente da santificação — Ele transforma a vida do crente.',
       'A santificação é cooperativa: Deus opera, o crente obedece.'
     ],
     versicosChave: ['1 Tessalonicenses 4:3', 'Filipenses 2:12-13', 'Hebreus 12:14', '2 Coríntios 3:18'],
@@ -608,12 +608,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-038',
-    titulo: 'A Justificação —” Declaração de Justiça',
+    titulo: 'A Justificação — Declaração de Justiça',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Soteriologia',
     conteudo: [
       'A justificação é declaração judicial de Deus de que o pecador é justo pela fé em Cristo.',
-      'Não é transformação moral (isso é santificação) —” é mudança de status diante de Deus.',
+      'Não é transformação moral (isso é santificação) — é mudança de status diante de Deus.',
       'A imputação é central: a justiça de Cristo é creditada ao crente; o pecado é creditado a Cristo.',
       'A fé é meio, não mérito. Somos justificados pela fé sem as obras da lei.',
       'A justificação é certeza: quem crê tem justiça de Deus e não será condenado.'
@@ -624,11 +624,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-039',
-    titulo: 'A adoção —” Filhos de Deus',
+    titulo: 'A adoção — Filhos de Deus',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Soteriologia',
     conteudo: [
-      'A adoção é o ato pelo qual Deus nos torna Seus filhos —” não por natureza, mas por graça.',
+      'A adoção é o ato pelo qual Deus nos torna Seus filhos — não por natureza, mas por graça.',
       'A adoção inclui: perdão, nova identidade, herança, acesso direto a Deus, assistência do Espírito.',
       'O Espírito Santo testifica com nosso espírito de que somos filhos de Deus (Romanos 8:16).',
       'A adoção é presente e futura: já somos filhos, mas aguardamos a plena manifestação.',
@@ -640,13 +640,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-040',
-    titulo: 'A Redenção —” Compra da Liberdade',
+    titulo: 'A Redenção — Compra da Liberdade',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Soteriologia',
     conteudo: [
       'A redenção é o ato pelo qual Cristo nos resgatou da escravidão do pecado pelo Seu sangue.',
-      'A metáfora redentora vem do mercado de escravos —” Cristo pagou o preço para nos libertar.',
-      'O preço foi Sua própria vida —” o sangue precioso de Cristo.',
+      'A metáfora redentora vem do mercado de escravos — Cristo pagou o preço para nos libertar.',
+      'O preço foi Sua própria vida — o sangue precioso de Cristo.',
       'A redenção é completa: passada (libertados do poder do pecado), presente (libertados da escravidão), futura (libertados da presença do pecado).',
       'A redenção é universal em offer mas eficaz nos eleitos.'
     ],
@@ -656,14 +656,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-041',
-    titulo: 'A Reconciliação —” Restauração da Amizade',
+    titulo: 'A Reconciliação — Restauração da Amizade',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Soteriologia',
     conteudo: [
       'A reconciliação é a restauração da relação entre Deus e os homens, que estava quebrada pelo pecado.',
-      'O homem era inimigo de Deus —” a reconciliação remove a hostilidade e restaura a amizade.',
+      'O homem era inimigo de Deus — a reconciliação remove a hostilidade e restaura a amizade.',
       'Cristo é o meio da reconciliação: pela cruz, Ele satisfez a justiça divina e removeu o obstáculo.',
-      'A reconciliação é iniciativa divina —” Deus nos reconciliou consigo em Cristo.',
+      'A reconciliação é iniciativa divina — Deus nos reconciliou consigo em Cristo.',
       'A reconciliação implica reconciliação mútua: reconciliados com Deus, devemos reconciliar uns com os outros.'
     ],
     versicosChave: ['2 Coríntios 5:18-20', 'Romanos 5:10', 'Efésios 2:14-16', 'Colossenses 1:19-22'],
@@ -672,15 +672,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-042',
-    titulo: 'A Glorificação —” Plenitude Final',
+    titulo: 'A Glorificação — Plenitude Final',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Soteriologia',
     conteudo: [
-      'A glorificação é a etapa final da salvação —” transformação completa à imagem de Cristo.',
+      'A glorificação é a etapa final da salvação — transformação completa à imagem de Cristo.',
       'Inclui: corpos glorificados, ausência total de pecado, plena presença de Deus.',
-      'A glorificação é certa para todos os crentes —” Deus começará e completará a boa obra.',
-      'A glorificação é simultânea com a ressurreição —” transformação instantânea.',
-      'A glorificação é o culminar da obra redentora —” a criação restaurada em plenitude.'
+      'A glorificação é certa para todos os crentes — Deus começará e completará a boa obra.',
+      'A glorificação é simultânea com a ressurreição — transformação instantânea.',
+      'A glorificação é o culminar da obra redentora — a criação restaurada em plenitude.'
     ],
     versicosChave: ['Romanos 8:30', '1 Coríntios 15:51-57', 'Filipenses 3:20-21', '1 João 3:2'],
     tags: ['glorificação', 'transformação', 'corpo glorificado', 'consumação'],
@@ -688,15 +688,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-043',
-    titulo: 'A Fé —” Confiança em Deus',
+    titulo: 'A Fé — Confiança em Deus',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Soteriologia',
     conteudo: [
-      'A fé é confiança pessoal em Deus e em Sua Palavra —” não apenas conhecimento intelectual.',
+      'A fé é confiança pessoal em Deus e em Sua Palavra — não apenas conhecimento intelectual.',
       'A fé inclui: conhecimento (assentimento), confiança (fidúcia) e compromisso (obediência).',
-      'A fé é dom de Deus, não mérito humano —” Deus a concede para que creiamos.',
-      'A fé se prova pelas obras —” não é sentimento subjetivo mas vida transformada.',
-      'A fé é meio da salvação —” pela fé recebemos a justiça de Cristo.'
+      'A fé é dom de Deus, não mérito humano — Deus a concede para que creiamos.',
+      'A fé se prova pelas obras — não é sentimento subjetivo mas vida transformada.',
+      'A fé é meio da salvação — pela fé recebemos a justiça de Cristo.'
     ],
     versicosChave: ['Hebreus 11:1', 'Romanos 10:17', 'Efésios 2:8-9', 'Tiago 2:14-26'],
     tags: ['fé', 'confiança', 'crença', 'obediência', 'dom de Deus'],
@@ -704,12 +704,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-044',
-    titulo: 'O Arrependimento —” Volta para Deus',
+    titulo: 'O Arrependimento — Volta para Deus',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Soteriologia',
     conteudo: [
-      'O arrependimento é mudança de mente que resulta em mudança de direção —” voltar-se de Deus para o pecado.',
-      'O arrependimento é obra do Espírito Santo —” Ele convence do pecado e conduz ao arrependimento.',
+      'O arrependimento é mudança de mente que resulta em mudança de direção — voltar-se de Deus para o pecado.',
+      'O arrependimento é obra do Espírito Santo — Ele convence do pecado e conduz ao arrependimento.',
       'O arrependimento verdadeiro inclui: reconhecimento do pecado, arrependimento, confissão e abandono do pecado.',
       'O arrependimento não é sentimento passageiro mas mudança de vida.',
       'O arrependimento é chamado constante: Arrependei-vos, porque é chegado o Reino.'
@@ -725,8 +725,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Soteriologia',
     conteudo: [
       'A perseverança dos santos sustenta que todos os que são verdadeiramente regenerados perseverarão até o fim.',
-      'Deus guarda os Seus eleitos —” ninguém pode arrancá-los das Suas mãos.',
-      'A perseverança não é presunção —” é confiança na fidelidade de Deus, manifestada em obediência.',
+      'Deus guarda os Seus eleitos — ninguém pode arrancá-los das Suas mãos.',
+      'A perseverança não é presunção — é confiança na fidelidade de Deus, manifestada em obediência.',
       'Os que apostatam provam que nunca foram verdadeiramente regenerados.',
       'A perseverança é motivada pela esperança: Deus é fiel e completará o que começou.'
     ],
@@ -741,9 +741,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Eclesiologia',
     conteudo: [
       'A unidade da Igreja é vontade de Cristo: Para que todos sejam um.',
-      'A unidade não é uniformidade —” pode haver diversidade sem comprometimento da unidade essencial.',
+      'A unidade não é uniformidade — pode haver diversidade sem comprometimento da unidade essencial.',
       'A divisão da Igreja é escândalo que fere o testemunho cristão.',
-      'A unidade é escatológica —” será plena no céu. Na terra, buscamos sem comprometer a verdade.',
+      'A unidade é escatológica — será plena no céu. Na terra, buscamos sem comprometer a verdade.',
       'O diálogo ecumênico deve ser conduzido com amor e verdade.'
     ],
     versicosChave: ['João 17:20-23', 'Efésios 4:1-6', '1 Coríntios 1:10', 'Filipenses 2:1-4'],
@@ -758,9 +758,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A disciplina eclesiástica é responsabilidade da Igreja de manter a pureza doutrinal e moral.',
       'A disciplina tem dois tipos: formativa (ensino correto) e corretiva (repreensão e restauração)',
-      'O objetivo não é punição mas restauração —” trazer o pecador de volta.',
+      'O objetivo não é punição mas restauração — trazer o pecador de volta.',
       'Mateus 18:15-20 é o modelo bíblico: confronto privado, testemunhas, igreja, excomunhão.',
-      'A disciplina é ato de amor —” proteger a Igreja e buscar o bem do pecador.'
+      'A disciplina é ato de amor — proteger a Igreja e buscar o bem do pecador.'
     ],
     versicosChave: ['Mateus 18:15-20', '1 Coríntios 5:1-13', '2 Tessalonicenses 3:6-15', 'Gálatas 6:1'],
     tags: ['disciplina', 'restauração', 'pureza da Igreja', 'excomunhão'],
@@ -773,9 +773,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Eclesiologia',
     conteudo: [
       'A Igreja universal é o corpo de Cristo composto por todos os crentes de todos os tempos e lugares.',
-      'A Igreja local é a expressão concreta da Igreja em um lugar específico —” assembleia de crentes.',
-      'A Igreja local é imagem da universal —” não substitui mas representa.',
-      'A Igreja local deve buscar pureza, verdade e amor —” reflexo da Igreja perfeita.',
+      'A Igreja local é a expressão concreta da Igreja em um lugar específico — assembleia de crentes.',
+      'A Igreja local é imagem da universal — não substitui mas representa.',
+      'A Igreja local deve buscar pureza, verdade e amor — reflexo da Igreja perfeita.',
       'A comunhão entre Igrejas locais é expressão da unidade universal.'
     ],
     versicosChave: ['Efésios 4:4-6', 'Hebreus 10:24-25', 'Mateus 16:18', 'Efésios 2:19-22'],
@@ -784,15 +784,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-049',
-    titulo: 'Os Sacramentos —” Batismo',
+    titulo: 'Os Sacramentos — Batismo',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Eclesiologia',
     conteudo: [
-      'O batismo é sinal externo de graça interna —” identificação com Cristo na morte e ressurreição.',
+      'O batismo é sinal externo de graça interna — identificação com Cristo na morte e ressurreição.',
       'Sepultados com Ele no batismo. O batismo é ato de obediência e testemunho público.',
       'A questão batismal divide: pedobatismo (crentes e filhos) versus credobatismo (apenas crentes).',
-      'O batismo não salva —” é sinal de salvação já recebida pela fé.',
-      'O batismo é marca de pertença à Igreja —” incorporação ao corpo de Cristo.'
+      'O batismo não salva — é sinal de salvação já recebida pela fé.',
+      'O batismo é marca de pertença à Igreja — incorporação ao corpo de Cristo.'
     ],
     versicosChave: ['Mateus 28:19', 'Romanos 6:3-4', 'Atos 2:38', 'Colossenses 2:12'],
     tags: ['batismo', 'sacramento', 'pedobatismo', 'credobatismo', 'identificação'],
@@ -800,15 +800,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-050',
-    titulo: 'Os Sacramentos —” Ceia do Senhor',
+    titulo: 'Os Sacramentos — Ceia do Senhor',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Eclesiologia',
     conteudo: [
       'A Ceia do Senhor é commemoração da morte de Cristo e antecipação daCeia celestial.',
       'Fazei isto em memória de mim. A Ceia é memorial, comunhão e antecipação.',
       'As visões variam: transubstanciação (católica), consubstanciação (luterana), memorialismo (Zwinglio).',
-      'A Ceia não é sacrifício repetido —” é commemoração do sacrifício único de Cristo.',
-      'A Ceia é ato comunitário —” celebração da Igreja em comunhão com Cristo e uns com os outros.'
+      'A Ceia não é sacrifício repetido — é commemoração do sacrifício único de Cristo.',
+      'A Ceia é ato comunitário — celebração da Igreja em comunhão com Cristo e uns com os outros.'
     ],
     versicosChave: ['1 Coríntios 11:23-26', 'Mateus 26:26-29', 'Lucas 22:19-20', 'João 6:53-56'],
     tags: ['Ceia do Senhor', 'Eucaristia', 'comunhão', 'memorial', 'sacramento'],
@@ -827,8 +827,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'Os anjos são seres espirituais criados por Deus para servi-Lo e servir aos homens.',
       'A hierarquia inclui querubins, serafins, arcanjos e anjos da presença.',
-      'Os anjos são pessoais —” têm nomes, inteligência, vontade e emoções.',
-      'A Bíblia não apoia a adoração de anjos —” eles são servos, não objeto de culto.',
+      'Os anjos são pessoais — têm nomes, inteligência, vontade e emoções.',
+      'A Bíblia não apoia a adoração de anjos — eles são servos, não objeto de culto.',
       'O estudo dos anjos revela a realidade espiritual invisível.'
     ],
     versicosChave: ['Hebreus 1:14', 'Efésios 6:12', 'Apocalipse 4:8', 'Lucas 1:26-38'],
@@ -864,9 +864,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A inspiração significa que Deus é o autor último das Escrituras, usando homens como instrumentos.',
       'A inspiração verbal plenária sustenta que cada palavra é inspirada.',
-      'A inspiração não é ditado mecânico —” Deus usou personalidade e estilo de cada autor.',
+      'A inspiração não é ditado mecânico — Deus usou personalidade e estilo de cada autor.',
       'A inerrância sustenta que a Bíblia, no original, é verdadeira em tudo.',
-      'A teologia liberal reduz a Bíblia a documento humano —” a ortodoxia sustenta a superintendência divina.'
+      'A teologia liberal reduz a Bíblia a documento humano — a ortodoxia sustenta a superintendência divina.'
     ],
     versicosChave: ['2 Timóteo 3:16', '2 Pedro 1:20-21', 'Hebreus 4:12', 'Salmos 19:7'],
     tags: ['inspiração', 'inerrância', 'infalibilidade', 'verbal plenária'],
@@ -881,8 +881,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A autoridade da Escritura significa que a Bíblia é Palavra de Deus com direito de governar fé e prática.',
       'Sola Scriptura é principio reformado: a Bíblia é autoridade infalível.',
       'A autoridade não vem da Igreja, mas de Deus que a inspirou.',
-      'A autoridade se estende a toda a Escritura —” Antigo e Novo Testamento.',
-      'A secularização desafia a Bíblia —” a resposta é hermenêutica madura.'
+      'A autoridade se estende a toda a Escritura — Antigo e Novo Testamento.',
+      'A secularização desafia a Bíblia — a resposta é hermenêutica madura.'
     ],
     versicosChave: ['2 Pedro 1:20-21', 'João 10:35', 'Isaías 40:8', 'Mateus 24:35'],
     tags: ['autoridade bíblica', 'sola Scriptura', 'inerrância'],
@@ -896,7 +896,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A hermenêutica é a arte de interpretar a Bíblia. Princípios fundamentais incluem contextualização e analogia da fé.',
       'A interpretação literal (gramatical-histórica) busca o sentido que o autor quis comunicar.',
-      'O AT deve ser interpretado à luz do NT —” Cristo é o centro.',
+      'O AT deve ser interpretado à luz do NT — Cristo é o centro.',
       'Os gêneros literários requerem métodos diferentes.',
       'A interpretação depende da tradição da Igreja.'
     ],
@@ -911,15 +911,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'tl-001',
-    titulo: 'Gênesis —” Criação e Ordem Cósmica',
+    titulo: 'Gênesis — Criação e Ordem Cósmica',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Gênesis 1-2 apresenta a criação do universo por Deus com ordem, propósito e bondade.',
-      'Deus cria pela Sua palavra e mostra-se pessoal. O homem é a culminação —” criado à imagem de Deus.',
+      'Deus cria pela Sua palavra e mostra-se pessoal. O homem é a culminação — criado à imagem de Deus.',
       'O relato não é livro científico mas teológico. Responde a quem e por quê.',
-      'A criação é gratuita —” criou por amor, para comunhão.',
-      'O descanso no sétimo dia é padrão criacional —” ritmo de trabalho e descanso.'
+      'A criação é gratuita — criou por amor, para comunhão.',
+      'O descanso no sétimo dia é padrão criacional — ritmo de trabalho e descanso.'
     ],
     versicosChave: ['Gênesis 1:1-31', 'Gênesis 2:1-3', 'Colossenses 1:16'],
     tags: ['Gênesis', 'criação', 'imagem de Deus', 'sábado'],
@@ -927,14 +927,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-002',
-    titulo: 'Gênesis —” A Queda e o Pecado',
+    titulo: 'Gênesis — A Queda e o Pecado',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Gênesis 3 narra a queda: tentação, desobediência e consequências.',
-      'O pecado é rebelião —” querer ser como Deus. Ã‰ a raiz de todo mal.',
+      'O pecado é rebelião — querer ser como Deus. Ã‰ a raiz de todo mal.',
       'As consequências são universais: morte, corrupção, maldição.',
-      'Gênesis 3:15 é o proto-evangelium —” primeira promessa messiânica.',
+      'Gênesis 3:15 é o proto-evangelium — primeira promessa messiânica.',
       'A graça está presente mesmo no julgamento.'
     ],
     versicosChave: ['Gênesis 3:1-24', 'Romanos 5:12', 'Gênesis 3:15'],
@@ -943,14 +943,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-003',
-    titulo: 'Gênesis —” Aliança e Promessa',
+    titulo: 'Gênesis — Aliança e Promessa',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O tema da aliança percorre Gênesis: Adão, Noé, Abraão, Isaac, Jacó.',
       'A aliança com Abraão é central: promessa de terra, descendência e bênção universal.',
       'A aliança é incondicional em suas promessas.',
-      'A descendência é singular e plural —” há A descendência que é Cristo.',
+      'A descendência é singular e plural — há A descendência que é Cristo.',
       'As alianças são fiéis embora o homem falhe.'
     ],
     versicosChave: ['Gênesis 12:1-3', 'Gênesis 15:6', 'Gálatas 3:16'],
@@ -959,11 +959,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-004',
-    titulo: 'ÃŠxodo —” Libertação e Páscoa',
+    titulo: 'ÃŠxodo — Libertação e Páscoa',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
-      'O ÃŠxodo é evento fundante —” libertação da escravidão por Deus.',
+      'O ÃŠxodo é evento fundante — libertação da escravidão por Deus.',
       'A Páscoa é sacrifício central: o cordeiro imolado protege da sentença.',
       'As dez pragas são julgamento contra os deuses do Egito.',
       'A travessia do Mar Vermelho é batismo de Israel.',
@@ -975,7 +975,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-005',
-    titulo: 'ÃŠxodo —” A Lei e os Dez Mandamentos',
+    titulo: 'ÃŠxodo — A Lei e os Dez Mandamentos',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -991,11 +991,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-006',
-    titulo: 'Salmos —” Adoração e Louvor',
+    titulo: 'Salmos — Adoração e Louvor',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
-      'Os Salmos são o hinário de Israel —” 150 cânticos que expressam toda a gama de emoções.',
+      'Os Salmos são o hinário de Israel — 150 cânticos que expressam toda a gama de emoções.',
       'O louvor é resposta à grandeza de Deus. Não depende de circunstâncias.',
       'O lamento é expressão honesta de dor diante de Deus. 1/3 dos Salmos são de lamento.',
       'O Salmo 23 expressa confiança em Deus como pastor.',
@@ -1007,13 +1007,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-007',
-    titulo: 'Livro de Jó —” Sofrimento e Soberania',
+    titulo: 'Livro de Jó — Sofrimento e Soberania',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Jó é a mais profunda reflexão sobre o sofrimento do inocente.',
-      'Os amigos oferecem teologia da retribuição —” mas Jó é justo.',
-      'Deus fala do redemoinho —” não responde diretamente mas revela Sua soberania.',
+      'Os amigos oferecem teologia da retribuição — mas Jó é justo.',
+      'Deus fala do redemoinho — não responde diretamente mas revela Sua soberania.',
       'O tema é: Deus governa com sabedoria mesmo quando não entendemos.',
       'O sofrimento pode ser instrumento de Deus para aprofundar a fé.'
     ],
@@ -1023,7 +1023,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-008',
-    titulo: 'Provérbios —” Sabedoria Prática',
+    titulo: 'Provérbios — Sabedoria Prática',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1039,11 +1039,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-009',
-    titulo: 'Isaías —” O Profeta Messiânico',
+    titulo: 'Isaías — O Profeta Messiânico',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
-      'Isaías é o evangelho do AT —” profecias messiânicas mais detalhadas.',
+      'Isaías é o evangelho do AT — profecias messiânicas mais detalhadas.',
       'Os Serviços do Senhor descrevem a obra redentora do Messias.',
       'Isaías 53 descreve a morte substitutiva.',
       'A visão do templo revela a santidade de Deus.',
@@ -1055,13 +1055,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-010',
-    titulo: 'Jeremias —” Nova Aliança e Restauração',
+    titulo: 'Jeremias — Nova Aliança e Restauração',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Jeremias profetizou nos últimos anos antes do exílio.',
       'Jeremias 29:11 é promessa de futuro.',
-      'A nova aliança de Jeremias 31 é central —” Deus escreverá Sua lei nos corações.',
+      'A nova aliança de Jeremias 31 é central — Deus escreverá Sua lei nos corações.',
       'Jeremias é o profeta do choro.',
       'A mensagem é: julgamento é real, mas restauração é possível.'
     ],
@@ -1071,7 +1071,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-011',
-    titulo: 'Daniel —” Soberania e Escatologia',
+    titulo: 'Daniel — Soberania e Escatologia',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1087,7 +1087,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-012',
-    titulo: 'Mateus —” O Evangelho do Reino',
+    titulo: 'Mateus — O Evangelho do Reino',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1103,7 +1103,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-013',
-    titulo: 'Marcos —” O Evangelho da Ação',
+    titulo: 'Marcos — O Evangelho da Ação',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1119,7 +1119,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-014',
-    titulo: 'Lucas —” O Evangelho Universal',
+    titulo: 'Lucas — O Evangelho Universal',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1135,7 +1135,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-015',
-    titulo: 'João —” O Evangelho da Divindade',
+    titulo: 'João — O Evangelho da Divindade',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1151,7 +1151,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-016',
-    titulo: 'Atos —” A Igreja em Expansão',
+    titulo: 'Atos — A Igreja em Expansão',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1167,7 +1167,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-017',
-    titulo: 'Romanos —” O Evangelho Sistemático',
+    titulo: 'Romanos — O Evangelho Sistemático',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1183,7 +1183,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-018',
-    titulo: '1 e 2 Coríntios —” A Igreja Imperfeita',
+    titulo: '1 e 2 Coríntios — A Igreja Imperfeita',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1199,7 +1199,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-019',
-    titulo: 'Gálatas —” Liberdade na Graça',
+    titulo: 'Gálatas — Liberdade na Graça',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1215,7 +1215,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-020',
-    titulo: 'Efésios —” A Igreja, Corpo de Cristo',
+    titulo: 'Efésios — A Igreja, Corpo de Cristo',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1231,7 +1231,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-021',
-    titulo: 'Filipenses —” Alegria na Adversidade',
+    titulo: 'Filipenses — Alegria na Adversidade',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1247,7 +1247,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-022',
-    titulo: 'Colossenses —” A Supremacia de Cristo',
+    titulo: 'Colossenses — A Supremacia de Cristo',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1263,7 +1263,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-023',
-    titulo: '1 Tessalonicenses —” A Esperança da Volta de Cristo',
+    titulo: '1 Tessalonicenses — A Esperança da Volta de Cristo',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1279,7 +1279,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-024',
-    titulo: 'Hebreus —” A Superioridade de Cristo',
+    titulo: 'Hebreus — A Superioridade de Cristo',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1295,7 +1295,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-025',
-    titulo: 'Tiago —” Fé Viva e Obras',
+    titulo: 'Tiago — Fé Viva e Obras',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1311,7 +1311,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-026',
-    titulo: '1 Pedro —” Sofrimento e Esperança',
+    titulo: '1 Pedro — Sofrimento e Esperança',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1327,7 +1327,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-027',
-    titulo: '1 João —” Amor e Verdade',
+    titulo: '1 João — Amor e Verdade',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1343,7 +1343,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-028',
-    titulo: 'Apocalipse —” Revelação e Esperança',
+    titulo: 'Apocalipse — Revelação e Esperança',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -1359,12 +1359,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-029',
-    titulo: 'Números —” Peregrinação e Desobediência',
+    titulo: 'Números — Peregrinação e Desobediência',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Números narra a peregrinação de Israel no deserto.',
-      'A desobediência gera julgamento —” 40 anos de deserto.',
+      'A desobediência gera julgamento — 40 anos de deserto.',
       'A serpente de bronze é tipo de Cristo.',
       'Balaão e as bênçãos inesperadas.',
       'Deus fiel apesar da infidelidade humana.'
@@ -1375,7 +1375,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-030',
-    titulo: 'Deuteronômio —” Renovação da Aliança',
+    titulo: 'Deuteronômio — Renovação da Aliança',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -1391,7 +1391,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-031',
-    titulo: 'Josué —” Conquista e Fidelidade',
+    titulo: 'Josué — Conquista e Fidelidade',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -1407,12 +1407,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-032',
-    titulo: 'Juízes —” Círculo de Desobediência',
+    titulo: 'Juízes — Círculo de Desobediência',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
       'Juízes mostra o ciclo: pecado, julgamento, clamor, libertação.',
-      'Não havia rei em Israel —” cada um fazia o que parecia certo.',
+      'Não havia rei em Israel — cada um fazia o que parecia certo.',
       'Deus levanta libertadores imperfeitos.',
       'A graça de Deus mesmo no julgamento.',
       'A necessidade de um Rei perfeito.'
@@ -1423,13 +1423,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-033',
-    titulo: 'Rute —” Graça e Redenção',
+    titulo: 'Rute — Graça e Redenção',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
       'Rute é história de graça e lealdade.',
       'A gentia Rute entra no povo de Deus.',
-      'Boaz é redentor —” tipo de Cristo.',
+      'Boaz é redentor — tipo de Cristo.',
       'A linhagem de Davi e de Cristo.',
       'A providência de Deus no cotidiano.'
     ],
@@ -1439,7 +1439,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-034',
-    titulo: '1 Samuel —” Realeza e Profecia',
+    titulo: '1 Samuel — Realeza e Profecia',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -1455,7 +1455,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-035',
-    titulo: '2 Samuel —” A Aliança Davídica',
+    titulo: '2 Samuel — A Aliança Davídica',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -1471,7 +1471,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-036',
-    titulo: '1 Reis —” O Templo e a Divisão',
+    titulo: '1 Reis — O Templo e a Divisão',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -1487,7 +1487,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-037',
-    titulo: '2 Reis —” Exílio e Julgamento',
+    titulo: '2 Reis — Exílio e Julgamento',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -1503,7 +1503,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-038',
-    titulo: 'Crônicas —” Revisão Teológica',
+    titulo: 'Crônicas — Revisão Teológica',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -1519,7 +1519,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-039',
-    titulo: 'Esdras e Neemias —” Restauração',
+    titulo: 'Esdras e Neemias — Restauração',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -1535,7 +1535,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-040',
-    titulo: 'Ester —” Providência e Coragem',
+    titulo: 'Ester — Providência e Coragem',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -1551,7 +1551,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
 
   // ———————————————————————————————————————————————————————————————————————————
-  // 3. QUESTÃ•ES CONTEMPORÃ‚NEAS (50+ estudos)
+  // 3. QUESTÕES CONTEMPORÂNEAS (50+ estudos)
   // ———————————————————————————————————————————————————————————————————————————
 
   {
@@ -1562,7 +1562,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A ética cristã se fundamenta na natureza de Deus e na Sua Palavra.',
       'O relativismo moral contemporâneo desafia a noção de verdade absoluta.',
-      'A Bíblia apresenta padrões morais universais —” não convenções culturais.',
+      'A Bíblia apresenta padrões morais universais — não convenções culturais.',
       'A ética cristã é baseada no amor: a Deus e ao próximo.',
       'A consciência formada pela Palavra é guia moral.'
     ],
@@ -1572,7 +1572,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'qc-002',
-    titulo: 'Bioética —” Vida, Morte e Dignidade',
+    titulo: 'Bioética — Vida, Morte e Dignidade',
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
@@ -1580,7 +1580,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'O aborto é rejeitado pela tradição cristã como interrupção injustificada da vida.',
       'A eutanásia contradiz a soberania de Deus sobre a vida e a morte.',
       'A engenharia genética levanta questões sobre manipulação da criação.',
-      'A cura de doenças é chamado —” mas a dignidade humana é sagrada.'
+      'A cura de doenças é chamado — mas a dignidade humana é sagrada.'
     ],
     versicosChave: ['Salmos 139:13-16', 'Jeremias 1:5', 'Deuteronômio 32:39'],
     tags: ['bioética', 'aborto', 'eutanásia', 'dignidade', 'vida'],
@@ -1588,11 +1588,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'qc-003',
-    titulo: 'Justiça Social —” Pobres e Oprimidos',
+    titulo: 'Justiça Social — Pobres e Oprimidos',
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
-      'A justiça social é chamamento bíblico —” Deus defende os oprimidos.',
+      'A justiça social é chamamento bíblico — Deus defende os oprimidos.',
       'Os profetas denunciam a exploração dos pobres.',
       'Jesus trouxe boa notícia aos pobres.',
       'A Igreja é chamada a ser voz dos sem voz.',
@@ -1604,14 +1604,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'qc-004',
-    titulo: 'Cuidado com a Criação —” Ecologia Cristã',
+    titulo: 'Cuidado com a Criação — Ecologia Cristã',
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
-      'A criação é dom de Deus —” somos mordomos, não donos.',
+      'A criação é dom de Deus — somos mordomos, não donos.',
       'O mandato de dominar não é exploração mas cuidado responsável.',
       'A destruição ambiental é desobediência ao chamado de cuidar.',
-      'O futuro é nova criação —” Deus restaurará todas as coisas.',
+      'O futuro é nova criação — Deus restaurará todas as coisas.',
       'A responsabilidade ambiental é fé em ação.'
     ],
     versicosChave: ['Gênesis 1:28', 'Gênesis 2:15', 'Romanos 8:19-22', 'Apocalipse 21:1'],
@@ -1620,14 +1620,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'qc-005',
-    titulo: 'Religião e Ciência —” Fé e Razão',
+    titulo: 'Religião e Ciência — Fé e Razão',
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Fé e ciência não são necessariamente conflitantes.',
       'A ciência responde ao como; a fé ao por quê.',
       'O criacionismo, o design inteligente e a evolução teísta são posições cristãs.',
-      'A Bíblia não é livro científico —” é revelação de Deus.',
+      'A Bíblia não é livro científico — é revelação de Deus.',
       'A razão é dom de Deus para ser usada em serviço da fé.'
     ],
     versicosChave: ['Romanos 1:20', 'Provérbios 25:2', 'Salmos 19:1'],
@@ -1668,13 +1668,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'qc-008',
-    titulo: 'Cultura Cristã —” Engajamento Cultural',
+    titulo: 'Cultura Cristã — Engajamento Cultural',
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A Igreja deve engajar a cultura sem ser absorvida por ela.',
       'A anticultura cristã é withdraw; a aculturação é compromisso.',
-      'A transformação cultural é chamado —” sal da terra e luz do mundo.',
+      'A transformação cultural é chamado — sal da terra e luz do mundo.',
       'As artes, ciências e política são esferas de influência cristã.',
       'O discernimento cultural é necessário.'
     ],
@@ -1704,7 +1704,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
-      'A fé cristã tem implicações políticas —” mas não é partidária.',
+      'A fé cristã tem implicações políticas — mas não é partidária.',
       'O Reino de Deus transcende partidos e ideologias.',
       'Os cristãos devem buscar justiça em todas as esferas.',
       'A lealdade máxima é a Cristo, não a partido.',
@@ -1737,12 +1737,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-002',
-    titulo: 'Santo Agostinho —” Graça e Cidade de Deus',
+    titulo: 'Santo Agostinho — Graça e Cidade de Deus',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
       'Agostinho é o pai do Ocidente cristão. Suas Confissões são autobiografia espiritual.',
-      'A graça soberana é tema central —” Deus precede o homem em tudo.',
+      'A graça soberana é tema central — Deus precede o homem em tudo.',
       'A Cidade de Deus contrasta com a cidade dos homens.',
       'O pecado original é herança de Adão.',
       'A predestinação e a perseverança dos santos.'
@@ -1758,10 +1758,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Eclesiologia',
     conteudo: [
       'Os concílios definiram a doutrina cristã contra heresias.',
-      'Nicéia (325) —” divindade de Cristo contra o arianismo.',
-      'Constantinopla (381) —” divindade do Espírito Santo.',
-      'Ã‰feso (431) —” Maria como Theotokos.',
-      'Calcedônia (451) —” duas naturezas de Cristo.'
+      'Nicéia (325) — divindade de Cristo contra o arianismo.',
+      'Constantinopla (381) — divindade do Espírito Santo.',
+      'Ã‰feso (431) — Maria como Theotokos.',
+      'Calcedônia (451) — duas naturezas de Cristo.'
     ],
     versicosChave: ['Efésios 2:20', '1 Timóteo 3:15', 'Judas 1:3'],
     tags: ['concílios', 'Nicéia', 'Constantinopla', 'Calcedônia', 'doutrina'],
@@ -1769,7 +1769,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-004',
-    titulo: 'São Tomás de Aquino —” Fé e Razão',
+    titulo: 'São Tomás de Aquino — Fé e Razão',
     categoria: 'História da Igreja',
     subcategoria: 'Teologia Sistemática',
     conteudo: [
@@ -1801,7 +1801,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-006',
-    titulo: 'João Calvino —” Soberania e Reforma',
+    titulo: 'João Calvino — Soberania e Reforma',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -1823,7 +1823,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'Wesley é fundador do metodismo. Sua teologia enfatiza a santificação.',
       'A graça preveniente capacita a resposta humana.',
-      'A perfeição cristã é meta —” amor perfeito.',
+      'A perfeição cristã é meta — amor perfeito.',
       'O método metodista incluía pequenos grupos e disciplina.',
       'O avivamento metodista transformou a Inglaterra.'
     ],
@@ -1833,12 +1833,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-008',
-    titulo: 'Dietrich Bonhoeffer —” Graça Custosa',
+    titulo: 'Dietrich Bonhoeffer — Graça Custosa',
     categoria: 'História da Igreja',
     subcategoria: 'Teologia Sistemática',
     conteudo: [
       'Bonhoeffer é teólogo luterano martirizado pelo nazismo.',
-      'A graça custosa é semipreço —” Deus nos chama a seguir.',
+      'A graça custosa é semipreço — Deus nos chama a seguir.',
       'O discipulado radical é central em sua teologia.',
       'A Comunidade Eclesiástica é experiência de fé compartilhada.',
       'A resistência ao mal é responsabilidade cristã.'
@@ -1849,13 +1849,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-009',
-    titulo: 'Karl Barth —” Teologia Dialética',
+    titulo: 'Karl Barth — Teologia Dialética',
     categoria: 'História da Igreja',
     subcategoria: 'Teologia Sistemática',
     conteudo: [
       'Barth é o maior teólogo do século XX.',
       'Deus é totalmente diferente (totaliter aliter) e totalmente próximo.',
-      'Cristo é a Palavra de Deus —” a Bíblia é testemunha.',
+      'Cristo é a Palavra de Deus — a Bíblia é testemunha.',
       'A teologia dialética contrapõe a razão humana à revelação divina.',
       'O Evangelho contra a cultura.'
     ],
@@ -1871,7 +1871,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'O pentecostalismo nasceu no início do século XX (Azusa Street, 1906).',
       'Enfatiza: batismo no Espírito, dons espirituais, cura divina.',
-      'A experiência espiritual é central —” línguas como evidência.',
+      'A experiência espiritual é central — línguas como evidência.',
       'O pentecostalismo é o movimento cristão de maior crescimento.',
       'Desafios: teologia da prosperidade, emocionalismo.'
     ],
@@ -1881,12 +1881,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-011',
-    titulo: 'As Cruzadas —” Fé e Violência',
+    titulo: 'As Cruzadas — Fé e Violência',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
       'As cruzadas foram expedições militares para recuperar a Terra Santa.',
-      'A motivação era religiosa —” libertar os locais sagrados.',
+      'A motivação era religiosa — libertar os locais sagrados.',
       'A violência das cruzadas é contrária ao evangelho.',
       'O diálogo cristão-islâmico sofreu com as cruzadas.',
       'A lição: a fé não pode ser imposta pela força.'
@@ -1897,7 +1897,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-012',
-    titulo: 'A Inquisição —” Fé e Poder',
+    titulo: 'A Inquisição — Fé e Poder',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -1937,7 +1937,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'Liderado por Evan Roberts, jovem de 26 anos.',
       'A oração e a confissão de pecados foram centrais.',
       'Milhares foram convertidos.',
-      'O avivamento teve impacto social —” redução da criminalidade.'
+      'O avivamento teve impacto social — redução da criminalidade.'
     ],
     versicosChave: ['2 Crônicas 7:14', 'Joel 2:28-29', 'Atos 2:17'],
     tags: ['avivamento', 'Gales', 'Evan Roberts', 'oração'],
@@ -1953,7 +1953,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A Grande Comissão é o fundamento da missão.',
       'O séc. XIX viu explosão missionária mundial.',
       'A contextualização é desafio constante.',
-      'O missionarismo moderno é holístico —” palavra e obra.'
+      'O missionarismo moderno é holístico — palavra e obra.'
     ],
     versicosChave: ['Mateus 28:19-20', 'Atos 1:8', 'Romanos 10:14-15'],
     tags: ['missionarismo', 'William Carey', 'contextualização', 'Grande Comissão'],
@@ -1961,7 +1961,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-016',
-    titulo: 'O Concílio de Trento —” Resposta Católica',
+    titulo: 'O Concílio de Trento — Resposta Católica',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -1977,12 +1977,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-017',
-    titulo: 'Soren Kierkegaard —” Fé e Existência',
+    titulo: 'Soren Kierkegaard — Fé e Existência',
     categoria: 'História da Igreja',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'Kierkegaard é pai do existencialismo cristão.',
-      'A fé é salto paradoxal —” não racionalidade.',
+      'A fé é salto paradoxal — não racionalidade.',
       'O cavaleiro da fé obedece incondicionalmente.',
       'A angústia existencial é realidade humana.',
       'A comunicação indireta é método teológico.'
@@ -1993,7 +1993,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-018',
-    titulo: 'A Escatologia do Milênio —” Debate Histórico',
+    titulo: 'A Escatologia do Milênio — Debate Histórico',
     categoria: 'História da Igreja',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -2025,7 +2025,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-020',
-    titulo: 'A Igreja Primitiva —” Vida e Organização',
+    titulo: 'A Igreja Primitiva — Vida e Organização',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -2041,7 +2041,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-021',
-    titulo: 'São Francisco de Assis —” Pobreza e Amor',
+    titulo: 'São Francisco de Assis — Pobreza e Amor',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -2089,12 +2089,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-024',
-    titulo: 'A Igreja Ortodoxa —” Tradição e Liturgia',
+    titulo: 'A Igreja Ortodoxa — Tradição e Liturgia',
     categoria: 'História da Igreja',
     subcategoria: 'Eclesiologia',
     conteudo: [
       'A Igreja Ortodoxa preserva a tradição dos primeiros séculos.',
-      'A liturgia é central —” a Divina Liturgia é mistério.',
+      'A liturgia é central — a Divina Liturgia é mistério.',
       'A iconografia é teologia visual.',
       'A theosis (divinização) é meta da vida cristã.',
       'A unidade entre Igreja Ortodoxa e Católica é buscada.'
@@ -2130,8 +2130,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Estudos Comparativos',
     subcategoria: 'Estudos Comparativos',
     conteudo: [
-      'Mateus, Marcos e Lucas são sinóticos —” narram a mesma história com ênfases diferentes.',
-      'João é distinto —” apresentação teológica mais elevada.',
+      'Mateus, Marcos e Lucas são sinóticos — narram a mesma história com ênfases diferentes.',
+      'João é distinto — apresentação teológica mais elevada.',
       'Mateus enfatiza Jesus como Messias; Marcos como servo; Lucas como Salvador universal.',
       'João declara a divindade de Cristo no prólogo.',
       'As harmonias buscam unificar os relatos.'
@@ -2150,7 +2150,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'Existem múltiplas interpretações: literal, literária, framework.',
       'A ciência moderna desafia interpretações literalistas.',
       'A teologia da criação não depende de cronologia.',
-      'Deus é autor da natureza e da Escritura —” não pode haver conflito real.'
+      'Deus é autor da natureza e da Escritura — não pode haver conflito real.'
     ],
     versicosChave: ['Gênesis 1:1', 'Salmos 19:1', 'Romanos 1:20'],
     tags: ['criação', 'Gênesis', 'ciência', 'evolução', 'framework'],
@@ -2174,7 +2174,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-004',
-    titulo: 'Temas Mesianos —” AT e NT',
+    titulo: 'Temas Mesianos — AT e NT',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Cristologia',
     conteudo: [
@@ -2213,7 +2213,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A relação entre Lei e Evangelho é central no cristianismo.',
       'A Lei revela o pecado; o Evangelho mostra o Salvador.',
       'A Lei não é anulada mas cumprida em Cristo.',
-      'Graça não é antinomianismo —” a obediência continua.',
+      'Graça não é antinomianismo — a obediência continua.',
       'A Lei moral permanece; as cerimônias se cumprem.'
     ],
     versicosChave: ['Mateus 5:17-20', 'Romanos 7:7-12', 'Gálatas 3:24'],
@@ -2238,7 +2238,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-008',
-    titulo: 'Tipologias Bíblicas —” Tipos e Antitipos',
+    titulo: 'Tipologias Bíblicas — Tipos e Antitipos',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -2260,9 +2260,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A adoração no AT incluía templo, sacrifícios, festas.',
       'No NT, a adoração é em espírito e verdade.',
-      'Cristo é o novo templo —” comunhão direta com Deus.',
+      'Cristo é o novo templo — comunhão direta com Deus.',
       'A Ceia do Senhor substitui os sacrifícios.',
-      'A adoração é holística —” toda a vida.'
+      'A adoração é holística — toda a vida.'
     ],
     versicosChave: ['João 4:23-24', 'Hebreus 9:11-14', 'Romanos 12:1-2'],
     tags: ['adoração', 'templo', 'sacrifícios', 'espírito e verdade'],
@@ -2286,7 +2286,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-011',
-    titulo: 'Sacramentos —” Prefigurações no AT',
+    titulo: 'Sacramentos — Prefigurações no AT',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Eclesiologia',
     conteudo: [
@@ -2325,7 +2325,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A misericórdia de Deus é tema que percorre toda a Bíblia.',
       'No AT: Deus se arrepende, perdoa, restaura.',
       'No NT: Cristo é a misericórdia encarnada.',
-      'A misericórdia não anula a justiça —” é cumprida nela.',
+      'A misericórdia não anula a justiça — é cumprida nela.',
       'Somos chamados a ser misericordiosos.'
     ],
     versicosChave: ['Salmos 103:8-13', 'Lucas 6:36', 'Tiago 2:13'],
@@ -2350,12 +2350,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-015',
-    titulo: 'Adoração —” Templo e Igreja',
+    titulo: 'Adoração — Templo e Igreja',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Eclesiologia',
     conteudo: [
       'O templo do AT era centro de adoração e sacrifício.',
-      'A Igreja é o novo templo —” construída de pedras vivas.',
+      'A Igreja é o novo templo — construída de pedras vivas.',
       'Cristo é o novo Sumo Sacerdote.',
       'Os sacrifícios foram cumpridos na cruz.',
       'A Igreja é sacerdócio real.'
@@ -2370,8 +2370,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Estudos Comparativos',
     subcategoria: 'Escatologia',
     conteudo: [
-      'A esperança no AT é messiânica —” espera do Messias.',
-      'A esperança no NT é escatológica —” espera da volta de Cristo.',
+      'A esperança no AT é messiânica — espera do Messias.',
+      'A esperança no NT é escatológica — espera da volta de Cristo.',
       'A continuidade: Deus cumprirá Suas promessas.',
       'A superança: o Reino já começou.',
       'A esperança é certeza, não wishful thinking.'
@@ -2382,14 +2382,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-017',
-    titulo: 'Pecado e Redenção —” Narrativa Bíblica',
+    titulo: 'Pecado e Redenção — Narrativa Bíblica',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Soteriologia',
     conteudo: [
       'A narrativa bíblica é: criação â†’ queda â†’ redenção â†’ consumação.',
       'O pecado corrompe tudo; a redenção restaura tudo.',
       'Cristo é o centro da narrativa redentora.',
-      'A história não é cíclica —” é linear e teleológica.',
+      'A história não é cíclica — é linear e teleológica.',
       'O fim é restauração completa.'
     ],
     versicosChave: ['Gênesis 3:15', 'Romanos 5:12-21', 'Apocalipse 21:1-4'],
@@ -2414,7 +2414,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-019',
-    titulo: 'Sofrimento de Cristo —” Profecia e Cumprimento',
+    titulo: 'Sofrimento de Cristo — Profecia e Cumprimento',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Cristologia',
     conteudo: [
@@ -2430,11 +2430,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-020',
-    titulo: 'Deus como Pai —” AT e NT',
+    titulo: 'Deus como Pai — AT e NT',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
-      'Deus é chamado de Pai no AT —” geralmente como criador e provedor.',
+      'Deus é chamado de Pai no AT — geralmente como criador e provedor.',
       'No NT, Jesus intensifica a relação: Abba, Pai.',
       'A paternidade de Deus é amor, cuidado, autoridade.',
       'A adoção nos torna filhos.',
@@ -2478,7 +2478,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-023',
-    titulo: 'Lei Moral —” Permanência e Aplicação',
+    titulo: 'Lei Moral — Permanência e Aplicação',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
@@ -2494,7 +2494,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-024',
-    titulo: 'Salvação —” Liberdade do Egito e em Cristo',
+    titulo: 'Salvação — Liberdade do Egito e em Cristo',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Soteriologia',
     conteudo: [
@@ -2531,15 +2531,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'he-001',
-    titulo: 'Interpretação Literal —” Método Gramatical-Histórico',
+    titulo: 'Interpretação Literal — Método Gramatical-Histórico',
     categoria: 'Hermenêutica',
     subcategoria: 'Hermenêutica',
     conteudo: [
       'O método literal busca o sentido que o autor quis comunicar ao leitor original.',
       'Respeita o contexto, o gênero literário e a linguagem.',
-      'Não é literalismo —” reconhece metáforas, alegorias, parábolas.',
+      'Não é literalismo — reconhece metáforas, alegorias, parábolas.',
       'Ã‰ o método predominante na Reforma Protestantista.',
-      'A Bíblia é interpreta por ela mesma —” analogia da fé.'
+      'A Bíblia é interpreta por ela mesma — analogia da fé.'
     ],
     versicosChave: ['2 Timóteo 2:15', '2 Pedro 1:20-21'],
     tags: ['literal', 'gramatical-histórico', 'método', 'contexto'],
@@ -2579,12 +2579,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-004',
-    titulo: 'Línguas Originais —” Hebraico e Grego',
+    titulo: 'Línguas Originais — Hebraico e Grego',
     categoria: 'Hermenêutica',
     subcategoria: 'Bibliologia',
     conteudo: [
-      'O hebraico é a língua do AT —” rica em imagens e paradoxos.',
-      'O grego do NT é koiné —” língua comum do império romano.',
+      'O hebraico é a língua do AT — rica em imagens e paradoxos.',
+      'O grego do NT é koiné — língua comum do império romano.',
       'O aramaico aparece em Daniel e palavras de Jesus.',
       'Estudar as línguas originais é útil mas não indispensável.',
       'Traduções fiéis são confiáveis para a maioria dos crentes.'
@@ -2595,12 +2595,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-005',
-    titulo: 'Crítica Textual —” Manuscritos e Variantes',
+    titulo: 'Crítica Textual — Manuscritos e Variantes',
     categoria: 'Hermenêutica',
     subcategoria: 'Bibliologia',
     conteudo: [
       'A crítica textual busca estabelecer o texto original das Escrituras.',
-      'Temos milhares de manuscritos —” mais do que qualquer outro documento antigo.',
+      'Temos milhares de manuscritos — mais do que qualquer outro documento antigo.',
       'As variantes são poucas e não afetam doutrinas essenciais.',
       'O Novo Testamento é o documento mais bem atestado da antiguidade.',
       'A tradução Reina-Valera é baseada em manuscritos confiáveis.'
@@ -2611,13 +2611,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-006',
-    titulo: 'Interpretação Alegórica —” Uso e Limites',
+    titulo: 'Interpretação Alegórica — Uso e Limites',
     categoria: 'Hermenêutica',
     subcategoria: 'Hermenêutica',
     conteudo: [
       'A interpretação alegórica busca significados além do literal.',
       'Foi predominante nos Padres da Igreja (Orígenes, Clemente).',
-      'O perigo é subjetividade —” cada um vê o que quer.',
+      'O perigo é subjetividade — cada um vê o que quer.',
       'A alegoria legítima é aquela que o texto permite.',
       'O método literal é mais confiável.'
     ],
@@ -2627,12 +2627,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-007',
-    titulo: 'Tipologia —” Prefigurações Bíblicas',
+    titulo: 'Tipologia — Prefigurações Bíblicas',
     categoria: 'Hermenêutica',
     subcategoria: 'Hermenêutica',
     conteudo: [
       'A tipologia estuda prefigurações no AT que se cumprem no NT.',
-      'Ã‰ diferente de alegoria —” é baseada no texto bíblico.',
+      'Ã‰ diferente de alegoria — é baseada no texto bíblico.',
       'Exemplos: Adão-Cristo, Arca-Batismo, Páscoa-Ceia.',
       'A tipologia é legítima quando o NT confirma.',
       'Enriquece a compreensão bíblica.'
@@ -2643,13 +2643,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-008',
-    titulo: 'Narrativa Bíblica —” Interpretação Narrativa',
+    titulo: 'Narrativa Bíblica — Interpretação Narrativa',
     categoria: 'Hermenêutica',
     subcategoria: 'Hermenêutica',
     conteudo: [
       'A interpretação narrativa respeita a narrativa como gênero.',
       'Personagens, enredo, tema e cenário são elementos-chave.',
-      'A narrativa bíblica tem unidade —” aponta para Cristo.',
+      'A narrativa bíblica tem unidade — aponta para Cristo.',
       'A moral da história deve ser extraída com cuidado.',
       'A Bíblia é história que se torna teologia.'
     ],
@@ -2659,7 +2659,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-009',
-    titulo: 'Poesia Hebraica —” Paralelismo e Imagem',
+    titulo: 'Poesia Hebraica — Paralelismo e Imagem',
     categoria: 'Hermenêutica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -2675,7 +2675,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-010',
-    titulo: 'Profecia —” Literal e Simbólica',
+    titulo: 'Profecia — Literal e Simbólica',
     categoria: 'Hermenêutica',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -2691,12 +2691,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-011',
-    titulo: 'Parábolas de Jesus —” Interpretação',
+    titulo: 'Parábolas de Jesus — Interpretação',
     categoria: 'Hermenêutica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'As parábolas são histórias com lição moral ou espiritual.',
-      'Cada parábola tem ponto central —” não devemos detalhar demais.',
+      'Cada parábola tem ponto central — não devemos detalhar demais.',
       'O contexto revela o significado.',
       'As parábolas são sobre o Reino de Deus.',
       'Devemos buscar o significado do autor, não inventar.'
@@ -2707,7 +2707,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-012',
-    titulo: 'Hebreus —” Hermenêutica do Novo Testamento',
+    titulo: 'Hebreus — Hermenêutica do Novo Testamento',
     categoria: 'Hermenêutica',
     subcategoria: 'Hermenêutica',
     conteudo: [
@@ -2723,7 +2723,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-013',
-    titulo: 'Paulo e a Lei —” Hermenêutica Paulina',
+    titulo: 'Paulo e a Lei — Hermenêutica Paulina',
     categoria: 'Hermenêutica',
     subcategoria: 'Hermenêutica',
     conteudo: [
@@ -2739,7 +2739,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-014',
-    titulo: 'Cristologia da Escritura —” Unidade e Diversidade',
+    titulo: 'Cristologia da Escritura — Unidade e Diversidade',
     categoria: 'Hermenêutica',
     subcategoria: 'Cristologia',
     conteudo: [
@@ -2759,7 +2759,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Hermenêutica',
     subcategoria: 'Escatologia',
     conteudo: [
-      'O Apocalipse é gênero apocalíptico —” símbolos e visões.',
+      'O Apocalipse é gênero apocalíptico — símbolos e visões.',
       'Existem quatro abordagens: preterista, historicista, futurista, idealista.',
       'O símbolo deve ser interpretado pelo contexto.',
       'A mensagem é de esperança e juízo.',
@@ -2775,10 +2775,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Hermenêutica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
-      'Eclesiastes é gênero sapiencial —” reflexão sobre a vida.',
+      'Eclesiastes é gênero sapiencial — reflexão sobre a vida.',
       'O tema é a vanidade (hevel) de tudo sob o sol.',
       'A conclusão: temer a Deus e guardar os mandamentos.',
-      'O pessimismo é aparente —” é realismo fé.',
+      'O pessimismo é aparente — é realismo fé.',
       'A relevância para a vida contemporânea.'
     ],
     versicosChave: ['Eclesiastes 1:2', 'Eclesiastes 12:13'],
@@ -2787,13 +2787,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-017',
-    titulo: 'Salmos de Lamento —” Interpretação',
+    titulo: 'Salmos de Lamento — Interpretação',
     categoria: 'Hermenêutica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Os Salmos de lamento expressam dor e busca por Deus.',
       'Estrutura: invocação, queixa, confiança, petição, louvor.',
-      'Lamentar não é falta de fé —” é fé honesta.',
+      'Lamentar não é falta de fé — é fé honesta.',
       'O louvor no final é resposta de fé.',
       'Relevância para o sofrimento humano.'
     ],
@@ -2803,7 +2803,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-018',
-    titulo: 'Profecias Messiânicas —” Hermenêutica',
+    titulo: 'Profecias Messiânicas — Hermenêutica',
     categoria: 'Hermenêutica',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -2819,7 +2819,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-019',
-    titulo: 'Ã‰tica no AT e NT —” Continuidade',
+    titulo: 'Ã‰tica no AT e NT — Continuidade',
     categoria: 'Hermenêutica',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
@@ -2835,7 +2835,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'he-020',
-    titulo: 'Hermenêutica Reformada —” Princípios',
+    titulo: 'Hermenêutica Reformada — Princípios',
     categoria: 'Hermenêutica',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -2851,7 +2851,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
 
   // ———————————————————————————————————————————————————————————————————————————
-  // MAIS ESTUDOS —” TEOLOGIA PROPER
+  // MAIS ESTUDOS — TEOLOGIA PROPER
   // ———————————————————————————————————————————————————————————————————————————
 
   {
@@ -2861,8 +2861,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'Deus está presente em todos os lugares ao mesmo tempo.',
-      'Não há lugar onde Deus não esteja —” nem o céu nem o inferno.',
-      'A omnipresença não é panteísmo —” Deus está em toda parte mas não é tudo.',
+      'Não há lugar onde Deus não esteja — nem o céu nem o inferno.',
+      'A omnipresença não é panteísmo — Deus está em toda parte mas não é tudo.',
       'Para o crente, a omnipresença é consolo: Deus está presente na dor e na alegria.',
       'Para o ímpio, é temor: não há esconderijo do olhar divino.'
     ],
@@ -2878,8 +2878,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A graça irresistível é a capacitação divina que inclina o coração humano para aceitar o evangelho.',
       'Quando Deus chama eficazmente, o homem responde positivamente.',
-      'Não é coerção —” é transformação do desejo.',
-      'A graça não anula a liberdade —” ela a restaura.',
+      'Não é coerção — é transformação do desejo.',
+      'A graça não anula a liberdade — ela a restaura.',
       'A pessoa regenerada deseja a Deus porque sua natureza foi transformada.'
     ],
     versicosChave: ['João 6:37', 'João 6:44', 'Filipenses 2:13', 'Romanos 9:16'],
@@ -2895,7 +2895,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A eleição incondicional sustenta que Deus escolhe os eleitos sem referência a mérito ou fé prevista.',
       'A escolha é baseada no bom prazer da Sua vontade.',
       'A eleição é para salvação e santificação.',
-      'A reprovação é justa —” os réus são culpados.',
+      'A reprovação é justa — os réus são culpados.',
       'A eleição humilha o orgulho e exalta a graça.'
     ],
     versicosChave: ['Efésios 1:4-5', 'Romanos 9:11-13', '1 Pedro 1:1-2', '2 Timóteo 1:9'],
@@ -2909,7 +2909,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Soteriologia',
     conteudo: [
       'A substituição penal sustenta que Cristo sofreu o castigo que nós merecíamos.',
-      'Ele morreu em nosso lugar —” assumindo a ira divina.',
+      'Ele morreu em nosso lugar — assumindo a ira divina.',
       'A satisfação plena foi oferecida na cruz.',
       'O pecado foi transferido a Cristo; a justiça a nós.',
       'Esta é a compreensão predominante da expiação.'
@@ -2924,7 +2924,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Cristologia',
     conteudo: [
-      'O credo declara que Cristo desceu aos infernos —” interpretado como descida aos mortos.',
+      'O credo declara que Cristo desceu aos infernos — interpretado como descida aos mortos.',
       'Não é sofrimento adicional mas proclamação de vitória.',
       'Cristo pregou aos espíritos em prisão (1 Pedro 3:19).',
       'A descida completa a condição humana.',
@@ -2958,7 +2958,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A volta de Cristo será visível, literal, pessoal e gloriosa.',
       'Todos verão a vinda do Filho do Homem.',
-      'A volta é certa —” não é possibility mas certeza.',
+      'A volta é certa — não é possibility mas certeza.',
       'Os sinais precedem a volta, mas o dia e hora são desconhecidos.',
       'A volta é motivação para santidade e missionarismo.'
     ],
@@ -2972,9 +2972,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Escatologia',
     conteudo: [
-      'A ressurreição dos mortos é certeza —” todos ressuscitarão.',
+      'A ressurreição dos mortos é certeza — todos ressuscitarão.',
       'A dos justos é para vida eterna; a dos injustos para condenação.',
-      'A ressurreição é corporal —” corpos transformados.',
+      'A ressurreição é corporal — corpos transformados.',
       'Cristo é o primeiro dos que dormem.',
       'A ressurreição é fundamento da esperança cristã.'
     ],
@@ -2989,7 +2989,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Escatologia',
     conteudo: [
       'A consumação final é a restauração de todas as coisas.',
-      'Novos céus e nova terra —” não destruição mas renovação.',
+      'Novos céus e nova terra — não destruição mas renovação.',
       'Deus habitará com os homens.',
       'Não haverá mais morte, dor nem choro.',
       'A esperança cristã é restauração completa.'
@@ -3016,17 +3016,17 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
 
   // ———————————————————————————————————————————————————————————————————————————
-  // MAIS ESTUDOS —” TEMAS POR LIVRO
+  // MAIS ESTUDOS — TEMAS POR LIVRO
   // ———————————————————————————————————————————————————————————————————————————
 
   {
     id: 'tl-041',
-    titulo: 'Levítico —” Santidade e Sacrificação',
+    titulo: 'Levítico — Santidade e Sacrificação',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
-      'Levítico é o livro da santidade —” como o povo se aproxima de Deus santo.',
-      'Os sacrifícios apontam para Cristo —” cordeiro imolado.',
+      'Levítico é o livro da santidade — como o povo se aproxima de Deus santo.',
+      'Os sacrifícios apontam para Cristo — cordeiro imolado.',
       'As leis de pureza revelam a santidade de Deus.',
       'O Dia da Expiação é tipo de redenção em Cristo.',
       'A santidade é chamado para todo o povo.'
@@ -3037,7 +3037,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-042',
-    titulo: 'Juízes —” Círculo de Pecado',
+    titulo: 'Juízes — Círculo de Pecado',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -3045,7 +3045,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'Cada juiz é instrumento imperfeito de Deus.',
       'A ausência de rei leva a anarquia moral.',
       'Deus não desiste do Seu povo.',
-      'A necessidade de um Rei perfeito —” Cristo.'
+      'A necessidade de um Rei perfeito — Cristo.'
     ],
     versicosChave: ['Juízes 2:11-19', 'Juízes 21:25', '1 Samuel 8:5-7'],
     tags: ['Juízes', 'ciclo', 'pecado', 'libertadores'],
@@ -3053,13 +3053,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-043',
-    titulo: 'Rute —” Graça Gentia',
+    titulo: 'Rute — Graça Gentia',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
       'Rute, moabita, entra no povo de Deus pela graça.',
       'A lealdade de Rute é exemplar.',
-      'Boaz é redentor —” tipo de Cristo.',
+      'Boaz é redentor — tipo de Cristo.',
       'A linhagem messiânica inclui gentios.',
       'A providência de Deus no cotidiano.'
     ],
@@ -3069,7 +3069,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-044',
-    titulo: '1 Crônicas —” Adoração e Genealogias',
+    titulo: '1 Crônicas — Adoração e Genealogias',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -3085,7 +3085,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-045',
-    titulo: 'Esdras —” Reforma e Leitura da Lei',
+    titulo: 'Esdras — Reforma e Leitura da Lei',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -3101,7 +3101,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-046',
-    titulo: 'Neemias —” Reconstrução e Oração',
+    titulo: 'Neemias — Reconstrução e Oração',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -3117,13 +3117,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-047',
-    titulo: 'Ester —” Providência Divina',
+    titulo: 'Ester — Providência Divina',
     categoria: 'Teologia Bíblica',
     subcategoria: 'História da Igreja',
     conteudo: [
       'O nome de Deus não aparece mas Sua providência é evidente.',
       'Ester arriscam a vida por Seu povo.',
-      'Mardoqueu e Hamã —” o conflito entre bem e mal.',
+      'Mardoqueu e Hamã — o conflito entre bem e mal.',
       'Purim é celebração da libertação.',
       'Deus usa circunstâncias para cumprir propósitos.'
     ],
@@ -3133,11 +3133,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-048',
-    titulo: 'Eclesiastes —” Vanidade e Sentido',
+    titulo: 'Eclesiastes — Vanidade e Sentido',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
-      'Tudo sob o sol é vaidade —” não pessimismo mas realismo.',
+      'Tudo sob o sol é vaidade — não pessimismo mas realismo.',
       'A busca pelo sentido da vida.',
       'O contentamento nos dons de Deus.',
       'A mortalidade é realidade.',
@@ -3149,7 +3149,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-049',
-    titulo: 'Cânticos —” Amor e Relacionamento',
+    titulo: 'Cânticos — Amor e Relacionamento',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3165,7 +3165,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-050',
-    titulo: 'Lamentações —” Dor e Esperança',
+    titulo: 'Lamentações — Dor e Esperança',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3181,7 +3181,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-051',
-    titulo: 'Oséias —” Amor Infinito',
+    titulo: 'Oséias — Amor Infinito',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3197,7 +3197,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-052',
-    titulo: 'Amós —” Justiça Social',
+    titulo: 'Amós — Justiça Social',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3213,7 +3213,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-053',
-    titulo: 'Miqueias —” Justiça, Misericórdia e Humildade',
+    titulo: 'Miqueias — Justiça, Misericórdia e Humildade',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3229,11 +3229,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-054',
-    titulo: 'Jonas —” Misericórdia Universal',
+    titulo: 'Jonas — Misericórdia Universal',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
-      'Jonas resiste à missão —” mas Deus persiste.',
+      'Jonas resiste à missão — mas Deus persiste.',
       'Nínive se arrepende e Deus se arrepende do julgamento.',
       'A misericórdia de Deus transcende fronteiras.',
       'Jonas ensina sobre a universalidade da graça.',
@@ -3245,7 +3245,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-055',
-    titulo: 'Habacuque —” Fé no Meio do Caos',
+    titulo: 'Habacuque — Fé no Meio do Caos',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3253,7 +3253,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'Deus responde: o justo viverá pela fé.',
       'A fé transcende as circunstâncias.',
       'A confiança em meio ao sofrimento.',
-      'O julgamento é certo —” mas a fé persiste.'
+      'O julgamento é certo — mas a fé persiste.'
     ],
     versicosChave: ['Habacuque 2:4', 'Habacuque 3:17-19', 'Romanos 1:17'],
     tags: ['Habacuque', 'fé', 'injustiça', 'esperança'],
@@ -3261,7 +3261,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-056',
-    titulo: 'Zacarias —” Profecias Messiânicas',
+    titulo: 'Zacarias — Profecias Messiânicas',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3277,7 +3277,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-057',
-    titulo: 'Malaquias —” A Ãšltima Profecia',
+    titulo: 'Malaquias — A Ãšltima Profecia',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3293,7 +3293,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-058',
-    titulo: 'Mateus —” Sermão da Montanha',
+    titulo: 'Mateus — Sermão da Montanha',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3309,15 +3309,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-059',
-    titulo: 'Mateus —” Parábolas do Reino',
+    titulo: 'Mateus — Parábolas do Reino',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Mateus 13 contém as principais parábolas.',
-      'O semeador —” diferentes receptividades.',
-      'O joio —” coexistência de bons e maus.',
-      'O grão de mostarda —” crescimento gradual.',
-      'O fermento —” transformação oculta.'
+      'O semeador — diferentes receptividades.',
+      'O joio — coexistência de bons e maus.',
+      'O grão de mostarda — crescimento gradual.',
+      'O fermento — transformação oculta.'
     ],
     versicosChave: ['Mateus 13:1-52', 'Mateus 13:31-33', 'Mateus 13:44-46'],
     tags: ['parábolas', 'Reino', 'crescimento', 'transformação'],
@@ -3325,7 +3325,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-060',
-    titulo: 'Marcos —” A Paixão de Cristo',
+    titulo: 'Marcos — A Paixão de Cristo',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3333,7 +3333,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A ceia do Senhor é estabelecida.',
       'O getsêmani revela o sofrimento.',
       'A crucificação e morte.',
-      'O túmulo vazio —” início da vitória.'
+      'O túmulo vazio — início da vitória.'
     ],
     versicosChave: ['Marcos 14:22-25', 'Marcos 15:33-39', 'Marcos 16:1-8'],
     tags: ['Paixão', 'ceia', 'crucificação', 'túmulo vazio'],
@@ -3341,7 +3341,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-061',
-    titulo: 'Lucas —” Magnificat e Cânticos',
+    titulo: 'Lucas — Magnificat e Cânticos',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3357,15 +3357,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-062',
-    titulo: 'Lucas —” Parábolas da Misericórdia',
+    titulo: 'Lucas — Parábolas da Misericórdia',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Lucas enfatiza as parábolas da misericórdia.',
-      'O Bom Samaritano —” amor ao próximo.',
-      'O Filho Pródigo —” misericórdia paterna.',
-      'A ovelha perdida —” busca divina.',
-      'A dracma perdida —” valor do que é perdido.'
+      'O Bom Samaritano — amor ao próximo.',
+      'O Filho Pródigo — misericórdia paterna.',
+      'A ovelha perdida — busca divina.',
+      'A dracma perdida — valor do que é perdido.'
     ],
     versicosChave: ['Lucas 10:25-37', 'Lucas 15:11-32', 'Lucas 15:1-7'],
     tags: ['parábolas', 'misericórdia', 'Bom Samaritano', 'Filho Pródigo'],
@@ -3373,7 +3373,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-063',
-    titulo: 'João —” Sete Milagres (Sinais)',
+    titulo: 'João — Sete Milagres (Sinais)',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3389,7 +3389,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-064',
-    titulo: 'João —” Disursos de Despedida',
+    titulo: 'João — Disursos de Despedida',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3405,7 +3405,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-065',
-    titulo: 'Atos —” O Espírito Santo na Igreja',
+    titulo: 'Atos — O Espírito Santo na Igreja',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3421,7 +3421,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-066',
-    titulo: 'Atos —” A Perseguição e a Missão',
+    titulo: 'Atos — A Perseguição e a Missão',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3437,7 +3437,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-067',
-    titulo: 'Romanos —” A Queda e a Graça',
+    titulo: 'Romanos — A Queda e a Graça',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3453,7 +3453,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-068',
-    titulo: 'Romanos —” Israel e os Gentios',
+    titulo: 'Romanos — Israel e os Gentios',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3469,7 +3469,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-069',
-    titulo: '1 Coríntios —” Dons Espirituais',
+    titulo: '1 Coríntios — Dons Espirituais',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3485,7 +3485,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-070',
-    titulo: '2 Coríntios —” Consolação e Força',
+    titulo: '2 Coríntios — Consolação e Força',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3501,7 +3501,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-071',
-    titulo: 'Efésios —” As Bênçãos Espirituais',
+    titulo: 'Efésios — As Bênçãos Espirituais',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3517,7 +3517,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-072',
-    titulo: 'Filipenses —” A Kenosis de Cristo',
+    titulo: 'Filipenses — A Kenosis de Cristo',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3533,7 +3533,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-073',
-    titulo: 'Colossenses —” Cristo, Image de Deus',
+    titulo: 'Colossenses — Cristo, Image de Deus',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3549,7 +3549,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-074',
-    titulo: '1 Tessalonicenses —” A Volta de Cristo',
+    titulo: '1 Tessalonicenses — A Volta de Cristo',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3565,7 +3565,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-075',
-    titulo: '2 Tessalonicenses —” A Volta e a Vigilância',
+    titulo: '2 Tessalonicenses — A Volta e a Vigilância',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3581,7 +3581,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-076',
-    titulo: '1 Timóteo —” Pastoral e Liderança',
+    titulo: '1 Timóteo — Pastoral e Liderança',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3597,7 +3597,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-077',
-    titulo: '2 Timóteo —” A Coroa da Justiça',
+    titulo: '2 Timóteo — A Coroa da Justiça',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3613,7 +3613,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-078',
-    titulo: 'Tito —” A Sã Doutrina',
+    titulo: 'Tito — A Sã Doutrina',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3629,7 +3629,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-079',
-    titulo: 'Filemom —” Perdão e Reconciliação',
+    titulo: 'Filemom — Perdão e Reconciliação',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3645,7 +3645,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-080',
-    titulo: 'Hebreus —” O Novo Testamento',
+    titulo: 'Hebreus — O Novo Testamento',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3661,7 +3661,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-081',
-    titulo: 'Hebreus 11 —” A Galeria da Fé',
+    titulo: 'Hebreus 11 — A Galeria da Fé',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3677,7 +3677,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-082',
-    titulo: 'Tiago —” Fé e Obras',
+    titulo: 'Tiago — Fé e Obras',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3693,7 +3693,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-083',
-    titulo: '1 Pedro —” Sofrimento e Glória',
+    titulo: '1 Pedro — Sofrimento e Glória',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3709,12 +3709,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-084',
-    titulo: '2 Pedro —” A Volta Certa',
+    titulo: '2 Pedro — A Volta Certa',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       '2 Pedro combate céticos sobre a volta.',
-      'O Senhor é paciente —” não deseja que pereça.',
+      'O Senhor é paciente — não deseja que pereça.',
       'Haverá novos céus e nova terra.',
       'A Palavra de Deus é eterna.',
       'Crescei na graça e no conhecimento.'
@@ -3725,11 +3725,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-085',
-    titulo: '1 João —” Amor e Verdade',
+    titulo: '1 João — Amor e Verdade',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
-      'Deus é amor —” a mais profunda definição.',
+      'Deus é amor — a mais profunda definição.',
       'O amor se prova em ação.',
       'Andar na luz é andar em obediência.',
       'A vitória sobre o mundo pela fé.',
@@ -3741,7 +3741,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-086',
-    titulo: '2 e 3 João —” Verdade e Hospitalidade',
+    titulo: '2 e 3 João — Verdade e Hospitalidade',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3757,7 +3757,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-087',
-    titulo: 'Judas —” Contenda pela Fé',
+    titulo: 'Judas — Contenda pela Fé',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -3773,7 +3773,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-088',
-    titulo: 'Apocalipse —” As Sete Igrejas',
+    titulo: 'Apocalipse — As Sete Igrejas',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -3792,7 +3792,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-089',
-    titulo: 'Apocalipse —” O Cordeiro e o Trono',
+    titulo: 'Apocalipse — O Cordeiro e o Trono',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -3808,7 +3808,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-090',
-    titulo: 'Apocalipse —” O Julgamento Final',
+    titulo: 'Apocalipse — O Julgamento Final',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -3824,7 +3824,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
 
   // ———————————————————————————————————————————————————————————————————————————
-  // MAIS ESTUDOS —” QUESTÃ•ES CONTEMPORÃ‚NEAS
+  // MAIS ESTUDOS — QUESTÕES CONTEMPORÂNEAS
   // ———————————————————————————————————————————————————————————————————————————
 
   {
@@ -3845,7 +3845,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'qc-012',
-    titulo: 'Ciência e Criação —” Perspectivas Cristãs',
+    titulo: 'Ciência e Criação — Perspectivas Cristãs',
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
@@ -3914,7 +3914,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O uso de drogas é contrário ao chamado de santificação.',
-      'A dependência é escravidão —” Cristo liberta.',
+      'A dependência é escravidão — Cristo liberta.',
       'A Igreja deve acolher e ajudar dependentes.',
       'O corpo é templo do Espírito Santo.',
       'A libertação é possível pela graça.'
@@ -4012,7 +4012,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A pobreza é consequência do pecado e da injustiça.',
       'Deus defende os pobres.',
       'A Igreja tem responsabilidade social.',
-      'A caridade não basta —” a justiça é necessária.',
+      'A caridade não basta — a justiça é necessária.',
       'A opção pelos pobres é bíblica.'
     ],
     versicosChave: ['Miqueias 6:8', 'Mateus 25:31-46', 'Tiago 2:15-17'],
@@ -4029,7 +4029,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A não-violência é ideal, mas há exceções (legítima defesa, governo).',
       'Cristo é o modelo de não-violência.',
       'A paz é fruto da justiça.',
-      'A guerra é tragédia —” último recurso.'
+      'A guerra é tragédia — último recurso.'
     ],
     versicosChave: ['Mateus 5:38-48', 'Romanos 12:17-21', 'Romanos 13:1-7'],
     tags: ['violência', 'não-violência', 'paz', 'guerra'],
@@ -4041,7 +4041,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
-      'A morte é inimigo —” mas Cristo a venceu.',
+      'A morte é inimigo — mas Cristo a venceu.',
       'O luto é legítimo e necessário.',
       'A esperança cristã não anula a dor.',
       'A comunhão dos santos consola.',
@@ -4057,7 +4057,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
-      'O suicídio é tragédia —” não é condenação eterna.',
+      'O suicídio é tragédia — não é condenação eterna.',
       'A doença mental é realidade humana.',
       'Deus tem misericórdia de todos.',
       'A Igreja deve acolher e não julgar.',
@@ -4075,7 +4075,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A cultura da morte inclui aborto, eutanásia, pena de morte.',
       'A cultura da vida defende a dignidade humana.',
-      'Cristo é a vida —” Ele veio para que tenhamos vida em abundância.',
+      'Cristo é a vida — Ele veio para que tenhamos vida em abundância.',
       'A Igreja é defensora da vida.',
       'Cada vida é dom de Deus.'
     ],
@@ -4138,7 +4138,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A globalização traz desafios e oportunidades.',
-      'O evangelho é universal —” transcende culturas.',
+      'O evangelho é universal — transcende culturas.',
       'O pluralismo religioso aumenta.',
       'A missão é cada vez mais necessária.',
       'A identidade cristã não é cultural mas transcendente.'
@@ -4155,7 +4155,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'O transhumanismo busca melhorar o ser humano pela tecnologia.',
       'A dignidade humana não pode ser melhorada artificialmente.',
-      'Deus é o criador —” não devemos nos tornar deuses.',
+      'Deus é o criador — não devemos nos tornar deuses.',
       'A tecnologia é ferramenta, não salvação.',
       'O limites éticos devem ser respeitados.'
     ],
@@ -4169,7 +4169,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
-      'O trabalho é chamado de Deus —” não maldição.',
+      'O trabalho é chamado de Deus — não maldição.',
       'A ética trabalhista é exigência bíblica.',
       'A honestidade no trabalho é virtude.',
       'O descanso semanal é mandamento.',
@@ -4229,12 +4229,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
 
   // ———————————————————————————————————————————————————————————————————————————
-  // MAIS ESTUDOS —” HISTÃ“RIA DA IGREJA
+  // MAIS ESTUDOS — HISTÃ“RIA DA IGREJA
   // ———————————————————————————————————————————————————————————————————————————
 
   {
     id: 'hi-026',
-    titulo: 'Orígenes —” Filosofia e Teologia',
+    titulo: 'Orígenes — Filosofia e Teologia',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -4250,7 +4250,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-027',
-    titulo: 'São Basílio —” O Espírito Santo',
+    titulo: 'São Basílio — O Espírito Santo',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -4266,7 +4266,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-028',
-    titulo: 'Gregório de Nissa —” Contemplação',
+    titulo: 'Gregório de Nissa — Contemplação',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -4282,7 +4282,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-029',
-    titulo: 'Agostinho —” Graça e Conversão',
+    titulo: 'Agostinho — Graça e Conversão',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -4298,7 +4298,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-030',
-    titulo: 'Pedro Lombardo —” Sentenças',
+    titulo: 'Pedro Lombardo — Sentenças',
     categoria: 'História da Igreja',
     subcategoria: 'Teologia Sistemática',
     conteudo: [
@@ -4314,7 +4314,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-031',
-    titulo: 'Bernardo de Claraval —” Amor e Contemplação',
+    titulo: 'Bernardo de Claraval — Amor e Contemplação',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -4330,7 +4330,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-032',
-    titulo: 'Francisco de Assis —” Pobreza e Cantico',
+    titulo: 'Francisco de Assis — Pobreza e Cantico',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -4346,7 +4346,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-033',
-    titulo: 'Tomás de Aquino —” Fé e Razão',
+    titulo: 'Tomás de Aquino — Fé e Razão',
     categoria: 'História da Igreja',
     subcategoria: 'Teologia Sistemática',
     conteudo: [
@@ -4410,7 +4410,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-037',
-    titulo: 'Melanchton —” O Professor da Reforma',
+    titulo: 'Melanchton — O Professor da Reforma',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -4442,7 +4442,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-039',
-    titulo: 'Jonathan Edwards —” Avivamento e Graça',
+    titulo: 'Jonathan Edwards — Avivamento e Graça',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -4458,7 +4458,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-040',
-    titulo: 'Charles Spurgeon —” Príncipe dos Pregadores',
+    titulo: 'Charles Spurgeon — Príncipe dos Pregadores',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -4474,7 +4474,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-041',
-    titulo: 'Oxford Movement —” Renovação Anglo-Católica',
+    titulo: 'Oxford Movement — Renovação Anglo-Católica',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -4522,7 +4522,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-044',
-    titulo: 'Mother Teresa —” Serviço aos Pobres',
+    titulo: 'Mother Teresa — Serviço aos Pobres',
     categoria: 'História da Igreja',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -4538,7 +4538,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-045',
-    titulo: 'Billy Graham —” Evangelista Global',
+    titulo: 'Billy Graham — Evangelista Global',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -4554,7 +4554,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-046',
-    titulo: 'Corrie ten Boom —” Perdão e Resistência',
+    titulo: 'Corrie ten Boom — Perdão e Resistência',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -4570,7 +4570,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-047',
-    titulo: 'Martyn Lloyd-Jones —” Pregação Expositiva',
+    titulo: 'Martyn Lloyd-Jones — Pregação Expositiva',
     categoria: 'História da Igreja',
     subcategoria: 'História da Igreja',
     conteudo: [
@@ -4586,7 +4586,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'hi-048',
-    titulo: 'John Stott —” Teologia Evangélica',
+    titulo: 'John Stott — Teologia Evangélica',
     categoria: 'História da Igreja',
     subcategoria: 'Teologia Sistemática',
     conteudo: [
@@ -4634,12 +4634,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
 
   // ———————————————————————————————————————————————————————————————————————————
-  // MAIS ESTUDOS —” ESTUDOS COMPARATIVOS
+  // MAIS ESTUDOS — ESTUDOS COMPARATIVOS
   // ———————————————————————————————————————————————————————————————————————————
 
   {
     id: 'ec-026',
-    titulo: 'Pedro e Paulo —” Dois Ministérios',
+    titulo: 'Pedro e Paulo — Dois Ministérios',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Estudos Comparativos',
     conteudo: [
@@ -4655,7 +4655,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-027',
-    titulo: 'Maria e Eva —” Tipologia Feminina',
+    titulo: 'Maria e Eva — Tipologia Feminina',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -4671,12 +4671,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-028',
-    titulo: 'Adão e Cristo —” Dois Representantes',
+    titulo: 'Adão e Cristo — Dois Representantes',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Adão é representante da humanidade caída.',
-      'Cristo é o novo Adão —” restaura o que Adão perdeu.',
+      'Cristo é o novo Adão — restaura o que Adão perdeu.',
       'A morte veio por um; a vida pelo outro.',
       'O paralelo é central em Romanos 5.',
       'Ajustificação pela obediência de um.'
@@ -4772,7 +4772,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O templo era centro de adoração e presença divina.',
-      'A Igreja é novo templo —” pedras vivas.',
+      'A Igreja é novo templo — pedras vivas.',
       'Cristo é o novo Sumo Sacerdote.',
       'A Ceia substitui os sacrifícios.',
       'O crente é templo do Espírito.'
@@ -4783,7 +4783,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-035',
-    titulo: 'Moisés e Cristo —” Mediadores',
+    titulo: 'Moisés e Cristo — Mediadores',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -4799,7 +4799,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-036',
-    titulo: 'Davi e Cristo —” Rei e Messias',
+    titulo: 'Davi e Cristo — Rei e Messias',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -4815,7 +4815,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-037',
-    titulo: 'Salomão e Cristo —” Sabedoria',
+    titulo: 'Salomão e Cristo — Sabedoria',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -4883,7 +4883,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Estudos Comparativos',
     subcategoria: 'Vida Crista',
     conteudo: [
-      'A oração não muda Deus —” muda a nós.',
+      'A oração não muda Deus — muda a nós.',
       'A providência governa todas as coisas.',
       'A oração é meio de graça.',
       'Deus usa oração como instrumento.',
@@ -4915,7 +4915,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Estudos Comparativos',
     subcategoria: 'Cristologia',
     conteudo: [
-      'A cruz é derrota aparente —” vitória real.',
+      'A cruz é derrota aparente — vitória real.',
       'A ressurreição é confirmação da vitória.',
       'A cruz precede a glória.',
       'O sofrimento é caminho para a exaltação.',
@@ -4933,7 +4933,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A graça precede a obediência.',
       'A obediência é fruto da graça.',
-      'Não é legalismo —” é gratidão.',
+      'Não é legalismo — é gratidão.',
       'A fé se prova pelas obras.',
       'A graça capacita a obediência.'
     ],
@@ -4975,7 +4975,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-047',
-    titulo: 'Fé e Ciência —” Harmonia',
+    titulo: 'Fé e Ciência — Harmonia',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
@@ -4996,7 +4996,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O cristianismo nasce do judaísmo.',
-      'Jesus é judeu —” os apóstolos são judeus.',
+      'Jesus é judeu — os apóstolos são judeus.',
       'O NT é interpretação do AT.',
       'A continuidade é tema.',
       'O diálogo cristão-judaico é necessário.'
@@ -5028,7 +5028,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'O hinduísmo é politeísta; o cristianismo é monoteísta.',
-      'A encarnação é única —” não reencarnação.',
+      'A encarnação é única — não reencarnação.',
       'A salvação é por graça, não por karma.',
       'O amor é distintivo.',
       'O diálogo é respeitoso.'
@@ -5103,7 +5103,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ec-055',
-    titulo: 'Missão Universal —” AT e NT',
+    titulo: 'Missão Universal — AT e NT',
     categoria: 'Estudos Comparativos',
     subcategoria: 'Missiologia',
     conteudo: [
@@ -5119,7 +5119,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
 
   // ———————————————————————————————————————————————————————————————————————————
-  // MAIS ESTUDOS —” HERMENÃŠUTICA
+  // MAIS ESTUDOS — HERMENÃŠUTICA
   // ———————————————————————————————————————————————————————————————————————————
 
   {
@@ -5128,7 +5128,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Hermenêutica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
-      'Efésios é epístola circular —” não endereçada a uma igreja.',
+      'Efésios é epístola circular — não endereçada a uma igreja.',
       'O tema é a Igreja, corpo de Cristo.',
       'As bênçãos espirituais são centrais.',
       'A unidade da Igreja é enfatizada.',
@@ -5290,7 +5290,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'Gênesis 1-3 é teológico, não científico.',
       'A criação é ato deliberado de Deus.',
-      'A queda é real —” não mito.',
+      'A queda é real — não mito.',
       'O proto-evangelium é promessa.',
       'A interpretação deve respeitar o gênero.'
     ],
@@ -5630,7 +5630,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Vida Crista',
     conteudo: [
       'Todo crente é chamado por Deus para servir.',
-      'A vocação não é apenas ministerial —” é toda a vida.',
+      'A vocação não é apenas ministerial — é toda a vida.',
       'O chamado precede a capacitação.',
       'A obediência é resposta ao chamado.',
       'A vocação é para a glória de Deus.'
@@ -5641,14 +5641,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'extra-003',
-    titulo: 'A Oração do Senhor —” Modelo de Oração',
+    titulo: 'A Oração do Senhor — Modelo de Oração',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Vida Crista',
     conteudo: [
       'O Pai Nosso é o modelo de oração.',
       'Inclui: adoração, petição, confissão, proteção.',
       'A oração é comunhão com Deus.',
-      'Deus é Pai —” intimidade e reverência.',
+      'Deus é Pai — intimidade e reverência.',
       'A oração é essencial para vida cristã.'
     ],
     versicosChave: ['Mateus 6:9-13', 'Lucas 11:1-4'],
@@ -5657,13 +5657,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'extra-004',
-    titulo: 'A Humildade —” Virtude Cristã',
+    titulo: 'A Humildade — Virtude Cristã',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A humildade é reconhecer nossa dependência de Deus.',
       'Cristo é modelo de humildade.',
-      'A humildade não é fraqueza —” é força.',
+      'A humildade não é fraqueza — é força.',
       'Deus resiste aos soberbos e dá graça aos humildes.',
       'A humildade é fruto do Espírito.'
     ],
@@ -5727,7 +5727,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A disciplina é caminho para a santidade.',
       'Inclui: oração, jejum, leitura da Bíblia, partilha.',
-      'A disciplina não é legalismo —” é graça.',
+      'A disciplina não é legalismo — é graça.',
       'Deus disciplina os filhos.',
       'A disciplina é para crescimento.'
     ],
@@ -5774,7 +5774,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A obediência é resposta ao amor de Deus.',
-      'Não é legalismo —” é gratidão.',
+      'Não é legalismo — é gratidão.',
       'A obediência é prueba de fé.',
       'Deus obedece pelo Espírito.',
       'A obediência traz bênção.'
@@ -5824,7 +5824,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A bondade é fruto do Espírito.',
       'Deus é bondade em essência.',
       'A bondade se manifesta em ação.',
-      'Bondade não é fraqueza —” é força moral.',
+      'Bondade não é fraqueza — é força moral.',
       'A bondade transforma relacionamentos.'
     ],
     versicosChave: ['Gálatas 5:22', 'Efésios 5:9', 'Romanos 12:21'],
@@ -5838,7 +5838,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
       'A fidelidade é compromisso com Deus e com os outros.',
-      'Deus é fiel —” podemos confiar.',
+      'Deus é fiel — podemos confiar.',
       'A fidelidade no pequeno leva ao grande.',
       'A fidelidade é testemunho.',
       'Deus recompensa a fidelidade.'
@@ -5887,7 +5887,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A paz é fruto do Espírito.',
       'Cristo é nosso paz.',
-      'A paz não é ausência de conflito —” é presença de justiça.',
+      'A paz não é ausência de conflito — é presença de justiça.',
       'Os pacificadores são bem-aventurados.',
       'A paz é missão da Igreja.'
     ],
@@ -5904,7 +5904,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'O perdão é essencial para o cristão.',
       'Deus perdoa em Cristo.',
       'Somos chamados a perdoar.',
-      'O perdão não é esquecimento —” é libertação.',
+      'O perdão não é esquecimento — é libertação.',
       'O perdão restaura relacionamentos.'
     ],
     versicosChave: ['Efésios 4:32', 'Mateus 6:14-15', 'Colossenses 3:13'],
@@ -5985,7 +5985,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'Pastores, mestres, evangelistas são dons para a Igreja.',
       'O ministério é serviço, não poder.',
       'A qualificação é caráter, não habilidade.',
-      'O ministério é temporário —” o Reino é eterno.'
+      'O ministério é temporário — o Reino é eterno.'
     ],
     versicosChave: ['Efésios 4:11-12', '1 Pedro 5:1-4', '1 Timóteo 3:1-13'],
     tags: ['ministério', 'vocação', 'liderança', 'serviço'],
@@ -6013,7 +6013,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
-      'Deus é Criador —” a criatividade é reflexo divino.',
+      'Deus é Criador — a criatividade é reflexo divino.',
       'A arte é forma de adoração.',
       'A cultura é campo de missão.',
       'O cristão deve criar com excelência.',
@@ -6029,7 +6029,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
-      'A tecnologia é ferramenta —” neutra em si.',
+      'A tecnologia é ferramenta — neutra em si.',
       'Pode ser usada para o bem ou para o mal.',
       'O discernimento é necessário.',
       'A tecnologia não substitui relacionamentos.',
@@ -6579,7 +6579,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'trin-001',
-    titulo: 'A Doutrina da Trindade —” Fundamentos Bíblicos',
+    titulo: 'A Doutrina da Trindade — Fundamentos Bíblicos',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
@@ -6595,7 +6595,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'trin-002',
-    titulo: 'A Trindade na História da Igreja —” Concílios e Definições',
+    titulo: 'A Trindade na História da Igreja — Concílios e Definições',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
@@ -6611,13 +6611,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'trin-003',
-    titulo: 'A Trindade e a Vida Cristã —” Aplicações Práticas',
+    titulo: 'A Trindade e a Vida Cristã — Aplicações Práticas',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'A doutrina da Trindade não é mera especulação acadêmica; ela molda toda a vida cristã. A experiência de salvação é trinitária: o Pai planeja a redenção, o Filho a executa na cruz, o Espírito a aplica nos corações.',
       'Na oração, entramos em comunhão com o Deus triúno. Pelo Espírito, oramos ao Pai em nome do Filho. A Trindade é o contexto eterno da vida devocional. A oração de Jesus em João 17 revela a intimidade trinitária que somos convidados a participar.',
-      'A comunidade cristã é imagem da Trindade. Assim como as pessoas divinas vivem em comunhão de amor, a Igreja é chamada a viver em koinonia —” comunhão, participação, mutualidade. A solidão é anti-trinitária.',
+      'A comunidade cristã é imagem da Trindade. Assim como as pessoas divinas vivem em comunhão de amor, a Igreja é chamada a viver em koinonia — comunhão, participação, mutualidade. A solidão é anti-trinitária.',
       'O amor cristão tem seu modelo na Trindade. O Pai ama o Filho, o Filho ama o Pai, e o Espírito é o vínculo desse amor. Quando amamos, participamos do amor eterno que circula na vida divina. Todo amor genuíno é reflexo do amor trinitário.',
       'A missão é trinitária: somos enviados pelo Filho como o Filho foi enviado pelo Pai, no poder do Espírito (Jo 20:21). A Grande Comissão é obra da Trindade. Evangelizar é convidar pessoas a entrar na comunhão com o Deus triúno.'
     ],
@@ -6632,7 +6632,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'exp-001',
-    titulo: 'A Expiação Substitutiva —” O Coração do Evangelho',
+    titulo: 'A Expiação Substitutiva — O Coração do Evangelho',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Cristologia',
     conteudo: [
@@ -6669,14 +6669,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'ele-001',
-    titulo: 'A Eleição Incondicional —” O Decreto Eterno de Deus',
+    titulo: 'A Eleição Incondicional — O Decreto Eterno de Deus',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Soteriologia',
     conteudo: [
       'A eleição é o ato eterno de Deus de escolher, em Cristo, alguns para a salvação, antes da fundação do mundo. Paulo afirma: "nos escolheu nele antes da fundação do mundo" (Ef 1:4). A eleição é incondicional, não baseada em obras previstas.',
       'A base da eleição é a livre soberania de Deus, não a fé prevista nem as obras meritórias. Romanos 9:11-13 mostra que Jacó foi escolhido antes de nascer, "para que o propósito de Deus segundo a eleição permanecesse".',
       'A eleição é em Cristo: "nos escolheu nele". Não é uma seleção arbitrária, mas a escolha de pessoas para serem conformadas à imagem do Filho (Rm 8:29). Cristo é o fundamento e o critério da eleição.',
-      'A objeção calvinista ao arminianismo: a fé não pode ser a causa da eleição, porque a fé é dom de Deus (Ef 2:8). Logo, se a fé é dom, e a fé é condição da eleição, então Deus escolhe com base em algo que Ele mesmo dá —” o que torna a escolha arbitrária de qualquer forma.',
+      'A objeção calvinista ao arminianismo: a fé não pode ser a causa da eleição, porque a fé é dom de Deus (Ef 2:8). Logo, se a fé é dom, e a fé é condição da eleição, então Deus escolhe com base em algo que Ele mesmo dá — o que torna a escolha arbitrária de qualquer forma.',
       'Implicações pastorais: a eleição é fonte de segurança, não de orgulho. O crente não se gloria em ter sido escolhido, mas no Deus que escolheu. A eleição é mistério que humilha e consola: não somos salvos por nossa decisão, mas pelo decreto eterno.'
     ],
     versicosChave: ['Efésios 1:4-5', 'Romanos 9:11-13', '2 Tessalonicenses 2:13', '1 Pedro 1:2', 'João 15:16'],
@@ -6685,15 +6685,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ele-002',
-    titulo: 'Eleição e Evangelização —” O Equilíbrio Bíblico',
+    titulo: 'Eleição e Evangelização — O Equilíbrio Bíblico',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Soteriologia',
     conteudo: [
       'A eleição e a evangelização não se contradizem; ambas são ensinadas na Escritura. Deus elege soberanamente, mas também ordena que o evangelho seja pregado a toda criatura. O crente na eleição não é passivo na missão.',
       'Jesus une os dois: "Não fostes vós que me escolhestes a mim; pelo contrário, eu vos escolhi a vós outros e vos designei para que vades e deis fruto" (Jo 15:16). A escolha precede a missão, mas a missão é o fruto da escolha.',
       'A eleição não anula a responsabilidade humana. Paulo, sabendo-se enviado aos eleitos, pregava a todos (At 18:9-10). A soberania divina e a instrumentalidade humana coexistem na economia da salvação.',
-      'O arminianismo vê a eleição como condicional —” Deus elege com base na fé prevista. Isto preserva a liberdade humana, mas enfraquece a soberania divina. O calvinismo vê a eleição como incondicional —” Deus elege soberanamente, e a fé é o fruto, não a causa.',
-      'Praticamente, a doutrina da eleição deve produzir zelo missionário, não apatia. Se Deus elegeu, há eleitos em todo lugar —” nossa tarefa é buscá-los pelo evangelho. Os puritanos, que criam na eleição incondicional, foram os maiores missionários de sua época.'
+      'O arminianismo vê a eleição como condicional — Deus elege com base na fé prevista. Isto preserva a liberdade humana, mas enfraquece a soberania divina. O calvinismo vê a eleição como incondicional — Deus elege soberanamente, e a fé é o fruto, não a causa.',
+      'Praticamente, a doutrina da eleição deve produzir zelo missionário, não apatia. Se Deus elegeu, há eleitos em todo lugar — nossa tarefa é buscá-los pelo evangelho. Os puritanos, que criam na eleição incondicional, foram os maiores missionários de sua época.'
     ],
     versicosChave: ['João 15:16', 'Atos 18:9-10', 'Romanos 10:14-15', '2 Timóteo 2:10', '1 Tessalonicenses 1:4-5'],
     tags: ['eleição', 'evangelização', 'missão', 'livre arbítrio', 'cooperação'],
@@ -6706,7 +6706,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'pers-001',
-    titulo: 'A Perseverança dos Santos —” Segurança Eterna do Crente',
+    titulo: 'A Perseverança dos Santos — Segurança Eterna do Crente',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Soteriologia',
     conteudo: [
@@ -6727,7 +6727,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'bat-001',
-    titulo: 'O Batismo Cristão —” Significado e Modo',
+    titulo: 'O Batismo Cristão — Significado e Modo',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Eclesiologia',
     conteudo: [
@@ -6743,7 +6743,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'bat-002',
-    titulo: 'O Batismo de Crianças —” Debate Histórico-Teológico',
+    titulo: 'O Batismo de Crianças — Debate Histórico-Teológico',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Eclesiologia',
     conteudo: [
@@ -6764,12 +6764,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'ceia-001',
-    titulo: 'A Ceia do Senhor —” Instituição e Significado',
+    titulo: 'A Ceia do Senhor — Instituição e Significado',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Eclesiologia',
     conteudo: [
       'A Ceia do Senhor (Eucaristia, Santa Ceia, Comunhão) foi instituída por Cristo na noite da Páscoa, pouco antes de Sua crucifixão. "Isto é o meu corpo... isto é o meu sangue" (Mt 26:26-28) é a declaração central do sacramento.',
-      'O pão representa o corpo de Cristo, partido por nós. O vinho representa o sangue da nova aliança, derramado para remissão dos pecados. Os elementos são sinais visíveis de uma graça invisível —” o sacrifício de Cristo aplicado ao crente.',
+      'O pão representa o corpo de Cristo, partido por nós. O vinho representa o sangue da nova aliança, derramado para remissão dos pecados. Os elementos são sinais visíveis de uma graça invisível — o sacrifício de Cristo aplicado ao crente.',
       'A Ceia é memorial: "Fazei isto em memória de mim" (1 Co 11:24). A Igreja recorda a morte salvífica de Cristo toda vez que parte o pão. A Ceia não acrescenta nada ao sacrifício de Cristo, mas o atualiza na experiência dos fiéis.',
       'A Ceia é comunhão: "O pão que partimos não é porventura a comunhão do corpo de Cristo?" (1 Co 10:16). Participamos da morte de Cristo pela fé, e somos unidos a Ele e aos irmãos. A Ceia é comunhão vertical e horizontal.',
       'A Ceia é proclamação: "Porque todas as vezes que comerdes deste pão e beberdes deste cálice, anunciais a morte do Senhor" (1 Co 11:26). Cada celebração é um sermão visível do evangelho, até que Ele venha. A Ceia tem dimensão escatológica.'
@@ -6780,7 +6780,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'ceia-002',
-    titulo: 'A Presença de Cristo na Ceia —” Visões Históricas',
+    titulo: 'A Presença de Cristo na Ceia — Visões Históricas',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Eclesiologia',
     conteudo: [
@@ -6801,7 +6801,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'esc-001',
-    titulo: 'O Arrebatamento da Igreja —” Pré, Mid ou Pós-Tribulacionismo',
+    titulo: 'O Arrebatamento da Igreja — Pré, Mid ou Pós-Tribulacionismo',
     categoria: 'Escatologia',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -6817,7 +6817,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'esc-002',
-    titulo: 'A Grande Tribulação —” Período de Angústia e Purificação',
+    titulo: 'A Grande Tribulação — Período de Angústia e Purificação',
     categoria: 'Escatologia',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -6833,7 +6833,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'esc-003',
-    titulo: 'O Milênio —” Amilenismo, Pré-milenismo e Pós-milenismo',
+    titulo: 'O Milênio — Amilenismo, Pré-milenismo e Pós-milenismo',
     categoria: 'Escatologia',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -6854,7 +6854,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'dev-001',
-    titulo: 'A Oração —” Comunhão com o Pai',
+    titulo: 'A Oração — Comunhão com o Pai',
     categoria: 'Vida Crista',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -6870,14 +6870,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dev-002',
-    titulo: 'A Leitura Bíblica —” A Palavra como Pão Diário',
+    titulo: 'A Leitura Bíblica — A Palavra como Pão Diário',
     categoria: 'Vida Crista',
     subcategoria: 'Vida Crista',
     conteudo: [
       'A leitura regular da Bíblia é essencial para a vida cristã. Jesus respondeu à tentação com "Está escrito" (Mt 4:4). A Palavra de Deus é o pão do espírito, a espada do crente, o espelho da alma, e o combustível da fé.',
       'Como ler a Bíblia com proveito: 1) Ore antes de ler, pedindo iluminação do Espírito; 2) Leia com reverência, como Palavra de Deus; 3) Leia com regularidade, em plano sistemático; 4) Leia com atenção, meditando no texto; 5) Leia com obediência, aplicando à vida.',
       'A leitura devocional difere do estudo exegético. A primeira visa comunhão com Deus; o segundo, entendimento do texto. Ambas são necessárias, mas têm objetivos distintos. A leitura devocional não substitui o estudo aprofundado, e vice-versa.',
-      'Os benefícios da leitura bíblica regular: 1) Santificação —” "santifica-os na verdade" (Jo 17:17); 2) Consolação —” "para que tenhais esperança" (Rm 15:4); 3) Direção —” "lâmpada para os meus pés" (Sl 119:105); 4) Defesa —” contra o erro e o pecado.',
+      'Os benefícios da leitura bíblica regular: 1) Santificação — "santifica-os na verdade" (Jo 17:17); 2) Consolação — "para que tenhais esperança" (Rm 15:4); 3) Direção — "lâmpada para os meus pés" (Sl 119:105); 4) Defesa — contra o erro e o pecado.',
       'A leitura em comunidade é igualmente importante. A leitura pública da Palavra (1 Tm 4:13) era prática da Igreja primitiva. Grupos pequenos que se reúnem para estudar a Escritura crescem na fé de modo orgânico e edificam-se mutuamente.'
     ],
     versicosChave: ['Salmos 119:105', '2 Timóteo 3:16-17', 'Josué 1:8', 'Hebreus 4:12', 'João 17:17'],
@@ -6891,12 +6891,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'lov-001',
-    titulo: 'A Natureza da Adoração —” Espírito e Verdade',
+    titulo: 'A Natureza da Adoração — Espírito e Verdade',
     categoria: 'Vida Crista',
     subcategoria: 'Vida Crista',
     conteudo: [
       'Jesus definiu a adoração autêntica: "Ã‰ necessário adorar o Pai em espírito e em verdade" (Jo 4:23). A adoração não se limita a um lugar (Sião, Gerizim) ou forma exterior; é questão do coração, movido pelo Espírito.',
-      'A adoração é resposta à revelação de Deus. Quando contemplamos Quem Ele é —” santo, soberano, gracioso, fiel —” nosso coração explode em louvor. A adoração é obra do Espírito Santo, que nos capacita a reconhecer e exaltar a Deus.',
+      'A adoração é resposta à revelação de Deus. Quando contemplamos Quem Ele é — santo, soberano, gracioso, fiel — nosso coração explode em louvor. A adoração é obra do Espírito Santo, que nos capacita a reconhecer e exaltar a Deus.',
       'Os elementos da adoração cristã: louvor (por quem Deus é), ação de graças (pelo que Ele fez), confissão (pelo que somos), confissão de fé (no que cremos), entrega (de nós mesmos). A liturgia celestial em Apocalipse 4-5 é o modelo eterno.',
       'A música é meio privilegiado, mas não exclusivo. Cânticos, hinos, salmos (Cl 3:16) servem para ensinar, exortar e edificar. A música litúrgica deve ser teologicamente sólida, emocionalmente sincera e congregacionalmente acessível.',
       'A adoração é também serviço e vida. "Adorar" em grego (proskuneo) significa prostrar-se. A vida inteira é ato de adoração quando oferecida a Deus (Rm 12:1). O culto dominical e a vida cotidiana se integram na adoração cristã.'
@@ -6907,7 +6907,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'lov-002',
-    titulo: 'A Música na Igreja —” Cânticos, Hinos e Salmos',
+    titulo: 'A Música na Igreja — Cânticos, Hinos e Salmos',
     categoria: 'Vida Crista',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -6928,7 +6928,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'mis-001',
-    titulo: 'A Grande Comissão —” Mandato Missionário da Igreja',
+    titulo: 'A Grande Comissão — Mandato Missionário da Igreja',
     categoria: 'Missiologia',
     subcategoria: 'Missiologia',
     conteudo: [
@@ -6944,13 +6944,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
 
   // ———————————————————————————————————————————————————————————————————————————
-  // 50 NOVOS ESTUDOS —” PAULINAS, JOÃƒO, AP, AT, SISTEMÁTICA
+  // 50 NOVOS ESTUDOS — PAULINAS, JOÃƒO, AP, AT, SISTEMÁTICA
   // ———————————————————————————————————————————————————————————————————————————
 
   // --- EPÍSTOLAS PAULINAS ---
   {
     id: 'tl-091',
-    titulo: 'Romanos 6 —” Morte e Ressurreição com Cristo',
+    titulo: 'Romanos 6 — Morte e Ressurreição com Cristo',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -6966,11 +6966,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-092',
-    titulo: 'Romanos 7 —” A Luta contra o Pecado',
+    titulo: 'Romanos 7 — A Luta contra o Pecado',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
-      'Romanos 7:1-6 estabelece a liberdade da Lei. O crente morreu para a Lei pelo corpo de Cristo, para pertencer a outro —” ao que ressuscitou dos mortos. O fruto deve ser para a santificação, não para a condenação.',
+      'Romanos 7:1-6 estabelece a liberdade da Lei. O crente morreu para a Lei pelo corpo de Cristo, para pertencer a outro — ao que ressuscitou dos mortos. O fruto deve ser para a santificação, não para a condenação.',
       'O versículo 7 é crucial: "Acaso, pois, a lei é pecado? De modo nenhum!" (7:7). A Lei é santa, justa e boa. O problema não está na Lei, mas no pecado que habita no ser humano. A Lei é o espelho que revela a corrupção.',
       'A experiência descrita em 7:14-25 é uma das mais dramáticas da Bíblia. "O que faço não é o que quero, mas o que aborreço, isso pratico" (7:15). Paulo descreve a luta interna do crente entre o desejo do bem e a inclinação para o mal.',
       'Quem fala em primeira pessoa? Há debate: é o crente antes da conversão, o crente em experiências de fracasso, ou a experiência de Israel sob a Lei. A maioria dos reformadores vê aqui a experiência do crente em luta.',
@@ -6982,7 +6982,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-093',
-    titulo: 'Romanos 8 —” A Vida no Espírito Santo',
+    titulo: 'Romanos 8 — A Vida no Espírito Santo',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -6998,7 +6998,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-094',
-    titulo: '1 Coríntios 12 —” Dons Espirituais e o Corpo',
+    titulo: '1 Coríntios 12 — Dons Espirituais e o Corpo',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7014,7 +7014,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-095',
-    titulo: '1 Coríntios 13 —” O Amor Superior',
+    titulo: '1 Coríntios 13 — O Amor Superior',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7022,7 +7022,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'As qualidades negativas do amor: não é invejoso, não se vangloria, não se ensoberbece, não procede com indecência, não busca seus interesses, não se ira facilmente, não guarda rancor (13:4-5). O amor é descrito mais pelo que não faz do que pelo que faz.',
       'As qualidades positivas: "se alegra com a verdade, tudo sofre, tudo crê, tudo espera, tudo suporta" (13:6-7). O amor é ativo, não passivo. Ã‰ virtude que se expressa em ação, não apenas sentimento.',
       'A superioridade do amor sobre os dons: "Agora, pois, permanecem a fé, a esperança e o amor, estes três, mas o maior destes é o amor" (13:13). A fé dará lugar à visão; a esperança à posse; o amor permanece para sempre.',
-      'O "amor" grego aqui é agape —” amor sacrificial, incondicional, divino. Não é eros (romântico), philia (amizade) ou storge (afeto familiar). Ã‰ o amor de Deus manifestado em Cristo, que se expressa na vida do crente pelo Espírito.'
+      'O "amor" grego aqui é agape — amor sacrificial, incondicional, divino. Não é eros (romântico), philia (amizade) ou storge (afeto familiar). Ã‰ o amor de Deus manifestado em Cristo, que se expressa na vida do crente pelo Espírito.'
     ],
     versicosChave: ['1 Coríntios 13:1-13', '1 Coríntios 13:4-7', '1 Coríntios 13:13'],
     tags: ['amor', 'agape', 'dons espirituais', 'edificação', 'eternidade'],
@@ -7030,7 +7030,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-096',
-    titulo: '1 Coríntios 15 —” A Ressurreição dos Mortos',
+    titulo: '1 Coríntios 15 — A Ressurreição dos Mortos',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7046,14 +7046,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-097',
-    titulo: 'Gálatas 5 —” A Liberdade Cristã',
+    titulo: 'Gálatas 5 — A Liberdade Cristã',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Gálatas 5 é o coração ético da carta. "Para a liberdade Cristo nos libertou" (5:1). A liberdade não é licença, mas capacidade de servir uns aos outros pelo amor. A Lei não é caminho para a salvação.',
       'A advertência solene: "Se vos circuncidais, Cristo de nada vos aproveitará" (5:2-3). A volta à Lei anula a graça. Não é questão de rito, mas de mentalidade: buscar justiça pelas obras em vez da fé.',
-      'A fé opera pelo amor (5:6). Nem circumcision nem incircuncisão valem algo, mas a fé que se expressa em amor. A justificação pela fé não é passividade —” é atividade movida pelo amor, não pela obediência à Lei.',
-      'A lista dos frutos do Espírito (5:22-23) é uma das mais conhecidas: "amor, gozo, paz, longanimidade, benignidade, bondade, fé, mansidão, temperança". São frutos —” resultado natural da vida no Espírito, não fruto (singular: o Espírito produz tudo isso junto).',
+      'A fé opera pelo amor (5:6). Nem circumcision nem incircuncisão valem algo, mas a fé que se expressa em amor. A justificação pela fé não é passividade — é atividade movida pelo amor, não pela obediência à Lei.',
+      'A lista dos frutos do Espírito (5:22-23) é uma das mais conhecidas: "amor, gozo, paz, longanimidade, benignidade, bondade, fé, mansidão, temperança". São frutos — resultado natural da vida no Espírito, não fruto (singular: o Espírito produz tudo isso junto).',
       'O contraste entre obras da carne e frutos do Espírito: "A carne deseja contra o Espírito, e o Espírito contra a carne" (5:17). A guerra interior é real. A vitória não vem pela repressão, mas pela caminhada no Espírito (5:16).'
     ],
     versicosChave: ['Gálatas 5:1', 'Gálatas 5:6', 'Gálatas 5:22-23'],
@@ -7062,7 +7062,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-098',
-    titulo: 'Efésios 4 —” A Unidade do Corpo',
+    titulo: 'Efésios 4 — A Unidade do Corpo',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7078,15 +7078,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-099',
-    titulo: 'Efésios 6 —” A Armadura de Deus',
+    titulo: 'Efésios 6 — A Armadura de Deus',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Efésios 6:10-20 apresenta a armadura de Deus como metáfora da proteção espiritual. "Estai fortes no Senhor e na força do seu poder" (6:10). A batalha não é contra carne e sangue, mas contra potestades espirituais (6:12).',
-      'As peças da armadura: cinto da verdade (6:14), couraça da justiça (6:14), escudo da fé (6:16), capacete da salvação (6:17), espírito do Espírito —” a Palavra de Deus (6:17). Cada peça corresponde a uma verdade teológica.',
-      'A oração é complemento essencial: "Em todo tempo, orai em espírito" (6:18). A armadura não substitui a oração —” a oração é o meio pelo qual a armadura é eficaz. A vigilância e a perseverança na oração são mandamentos.',
-      'O contexto militar romano é evidente: o soldado equipado é modelo do crente. A verdade é cinto —” dá firmeza. A justiça é couraça —” protege o coração. A fé é escudo —” apaga as setas do maligno.',
-      'A batalha espiritual não é opcional —” é realidade. "Porque a nossa luta não é contra carne e sangue, mas... contra os espíritos da maldade celestial" (6:12). A vitória já foi conquistada na cruz; a Igreja aplica essa vitória na história.'
+      'As peças da armadura: cinto da verdade (6:14), couraça da justiça (6:14), escudo da fé (6:16), capacete da salvação (6:17), espírito do Espírito — a Palavra de Deus (6:17). Cada peça corresponde a uma verdade teológica.',
+      'A oração é complemento essencial: "Em todo tempo, orai em espírito" (6:18). A armadura não substitui a oração — a oração é o meio pelo qual a armadura é eficaz. A vigilância e a perseverança na oração são mandamentos.',
+      'O contexto militar romano é evidente: o soldado equipado é modelo do crente. A verdade é cinto — dá firmeza. A justiça é couraça — protege o coração. A fé é escudo — apaga as setas do maligno.',
+      'A batalha espiritual não é opcional — é realidade. "Porque a nossa luta não é contra carne e sangue, mas... contra os espíritos da maldade celestial" (6:12). A vitória já foi conquistada na cruz; a Igreja aplica essa vitória na história.'
     ],
     versicosChave: ['Efésios 6:10-18', 'Efésios 6:12', 'Efésios 6:17'],
     tags: ['armadura de Deus', 'batalha espiritual', 'oração', 'verdade', 'fé'],
@@ -7094,7 +7094,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-100',
-    titulo: 'Filipenses 2 —” A Kenosis de Cristo',
+    titulo: 'Filipenses 2 — A Kenosis de Cristo',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7112,13 +7112,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   // --- EVANGELHO DE JOÃƒO ---
   {
     id: 'tl-101',
-    titulo: 'João 1 —” O Prólogo e a Encarnação',
+    titulo: 'João 1 — O Prólogo e a Encarnação',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O prólogo de João (1:1-18) é a declaração mais elevada da divindade de Cristo no NT. "No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus" (1:1). A retroação ao Gênesis 1:1 é intencional: Cristo está além do tempo.',
       'O Verbo (Logos) é conceito grego e hebraico: para os gregos, o princípio racional do universo; para os hebraicos, a Palavra criadora de Deus (Salmos 33:6). João baptiza ambos os conceitos em Cristo.',
-      'A encarnação é o evento central: "E o Verbo se fez carne e habitou entre nós" (1:14). A palavra grega "eskênôsen" (tabernaculou) remete ao tabernáculo do AT —” Deus habita no meio do Seu povo. A glória é a shekinah agora visível em Cristo.',
+      'A encarnação é o evento central: "E o Verbo se fez carne e habitou entre nós" (1:14). A palavra grega "eskênôsen" (tabernaculou) remete ao tabernáculo do AT — Deus habita no meio do Seu povo. A glória é a shekinah agora visível em Cristo.',
       'João Batista é testemunha: "Aquele que vem depois de mim... não era digno de lhe desatar a correa das sandálias" (1:27). O testemunho do Batista prepara o caminho. "Eis o Cordeiro de Deus, que tira o pecado do mundo!" (1:29).',
       'As primeiras chamadas de discípulos: "Que queres?" (1:38). "Vem e vê" (1:39). A fé começa com curiosidade, passa por encontro pessoal, e resulta em testemunho: "Achamos o Messias" (1:41).'
     ],
@@ -7128,11 +7128,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-102',
-    titulo: 'João 3 —” Nicodemos e o Novo Nascer',
+    titulo: 'João 3 — Nicodemos e o Novo Nascer',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
-      'A entrevista de Jesus com Nicodemos (3:1-21) é uma das mais importantes do NT. Nicodemos é fariseu, membro do Sinédrio, mestre de Israel —” e vem de noite, talvez por timidez ou por buscar luz nas trevas.',
+      'A entrevista de Jesus com Nicodemos (3:1-21) é uma das mais importantes do NT. Nicodemos é fariseu, membro do Sinédrio, mestre de Israel — e vem de noite, talvez por timidez ou por buscar luz nas trevas.',
       '"Necessário é nascer de novo" (3:7). A palavra grega "anôthen" significa tanto "de cima" quanto "de novo". A dualidade é intencional: o novo nascimento é divino e transformador. Não é decisão humana, mas obra do Espírito.',
       'A serpente de bronze (3:14-15) é tipo de Cristo: "Assim como Moisés levantou a serpente no deserto, assim é necessário que o Filho do Homem seja levantado". A cura dos israelitas pelo olhar prefigura a salvação pela fé em Cristo.',
       'João 3:16 é o versículo mais conhecido da Bíblia: "Deus amou o mundo de tal maneira que deu o seu Filho unigênito". A universalidade do amor divino, a singularidade do Filho, a gratuidade da salvação, a condition da fé, a certeza da salvação.',
@@ -7144,7 +7144,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-103',
-    titulo: 'João 6 —” O Pão da Vida',
+    titulo: 'João 6 — O Pão da Vida',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7160,7 +7160,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-104',
-    titulo: 'João 10 —” O Bom Pastor',
+    titulo: 'João 10 — O Bom Pastor',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7176,7 +7176,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-105',
-    titulo: 'João 14-17 —” Os Discursos de Despedida',
+    titulo: 'João 14-17 — Os Discursos de Despedida',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7194,14 +7194,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   // --- ATOSS E APOCALIPSE ---
   {
     id: 'tl-106',
-    titulo: 'Atos 2 —” Pentecostes e o Nascimento da Igreja',
+    titulo: 'Atos 2 — Pentecostes e o Nascimento da Igreja',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Atos 2 é o relato de Pentecostes, o nascimento da Igreja. "Baixou do céu um som, como de um vento veemente" (2:2). Os sinais sonoros e visíveis (línguas de fogo) marcam a efusão do Espírito.',
       'A pregação de Pedro resulta em 3000 conversiones (2:41). O tema é o cumprimento da profecia: "Nos últimos dias, derramarei do meu Espírito sobre toda a carne" (2:17, citando Joel 2:28-32). O que era promessa agora é realidade.',
       'A vida da comunidade primitiva: "Todos os que creram estavam juntos, e tinham tudo comum" (2:44). A comunhão, a fração do pão, as orações (2:42). Não era comunismo, mas generosidade voluntária movida pelo Espírito.',
-      'O batismo: "Arrependei-vos, e cada um de vós seja batizado" (2:38). O batismo é resposta ao evangelho —” não pré-condição para salvação, mas obediência imediata que segue a fé. 3000 almas foram batizadas.',
+      'O batismo: "Arrependei-vos, e cada um de vós seja batizado" (2:38). O batismo é resposta ao evangelho — não pré-condição para salvação, mas obediência imediata que segue a fé. 3000 almas foram batizadas.',
       'A Igreja nascente é modelo para todas as épocas: ensino dos apóstolos, comunhão, fracao do pao, oração. A simplicidade e a profundidade caminham juntas. O foco é Cristo ressuscitado.'
     ],
     versicosChave: ['Atos 2:1-4', 'Atos 2:38', 'Atos 2:42'],
@@ -7210,7 +7210,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-107',
-    titulo: 'Atos 7 —” O Testemunho de Estêvão',
+    titulo: 'Atos 7 — O Testemunho de Estêvão',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7226,7 +7226,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-108',
-    titulo: 'Atos 10 —” A Visão de Cornélio e os Gentios',
+    titulo: 'Atos 10 — A Visão de Cornélio e os Gentios',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7242,13 +7242,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-109',
-    titulo: 'Atos 13-14 —” A Primeira Viagem Missionária',
+    titulo: 'Atos 13-14 — A Primeira Viagem Missionária',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Atos 13-14 registra a primeira viagem missionária de Paulo e Barnabé. A Igreja em Antioquia envia, sob guia do Espírito Santo (13:2-4). A missão começa com obediência à voz do Espírito.',
       'A pregação em Pisídia de Antioquia (13:16-41) é modelo de evangelismo: contexto histórico (Israel), centralidade de Cristo (ressurreição), chamada à fé. "Anunciamos-vos o evangelho destas coisas que a vossos pais foram prometidas" (13:32).',
-      'A oposição surge: "Encheram-se de inveja, e blasfemaram" (13:45). A reação ao evangelho é polarização: alguns creem, outros rejeitam. Paulo e Barnabé "sacudiram o pó dos seus pés" (13:51) —” testemunho contra a incredulidade.',
+      'A oposição surge: "Encheram-se de inveja, e blasfemaram" (13:45). A reação ao evangelho é polarização: alguns creem, outros rejeitam. Paulo e Barnabé "sacudiram o pó dos seus pés" (13:51) — testemunho contra a incredulidade.',
       'O curador coxo em Listra (14:8-10) leva o povo a querer adorá-los como deuses. "Homens, por que fazeis isto? Nós somos homens como vós" (14:14). A tentação da idolatropia é real. Os missionários recusam a glória.',
       'A volta a Antioquia: "Relataram tudo o que Deus fizera com eles, e como abrira aos gentios a porta da fé" (14:27). A Igreja aprende com a experiência missionária. A porta aberta é oportunidade e responsabilidade.'
     ],
@@ -7258,15 +7258,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-110',
-    titulo: 'Apocalipse 1-3 —” As Sete Cartas às Igrejas',
+    titulo: 'Apocalipse 1-3 — As Sete Cartas às Igrejas',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Escatologia',
     conteudo: [
       'Apocalipse 1-3 apresenta Cristo glorificado e sete cartas às igrejas da Ásia Menor. A visão de Cristo (1:12-18) é alicerce: "Eu sou o Primeiro e o Derradeiro, o que vive, e estive morto, eis que estou vivo por todos os séculos" (1:18).',
-      'Cada carta tem estrutura: endereçamento, autodescrição de Cristo, elogio, acusação, ameaça/promoção, ouvinte vence. Cristo conhece cada igreja intimamente. Não há igreja perfeita —” todas têm problemas.',
+      'Cada carta tem estrutura: endereçamento, autodescrição de Cristo, elogio, acusação, ameaça/promoção, ouvinte vence. Cristo conhece cada igreja intimamente. Não há igreja perfeita — todas têm problemas.',
       'Efésso: "Perdeste o teu primeiro amor" (2:4). A ortodoxia sem paixão é espiritualidade morta. Esmirna: pobreza material mas riqueza espiritual (2:9). Pérgamo: compromisso com o mundo (2:14). Tiatira: tolerância ao falso profetismo (2:20).',
-      'Sardes: "Tu tens o nome de que vives, e estás morto" (3:1). A aparência sem realidade. Filadélfia: "Tiveste pouca força" (3:8) —” mas Cristo não censura. A fidelidade sem poder é valorizada.',
-      'Laodiceia: "Nem quente nem frio" (3:15). A prosperidade material gera complacência espiritual. "Eu estou à porta e bato" (3:20) —” Cristo busca comunhão, mas a Igreja precisa abrir. A invitacao é pessoal e urgente.'
+      'Sardes: "Tu tens o nome de que vives, e estás morto" (3:1). A aparência sem realidade. Filadélfia: "Tiveste pouca força" (3:8) — mas Cristo não censura. A fidelidade sem poder é valorizada.',
+      'Laodiceia: "Nem quente nem frio" (3:15). A prosperidade material gera complacência espiritual. "Eu estou à porta e bato" (3:20) — Cristo busca comunhão, mas a Igreja precisa abrir. A invitacao é pessoal e urgente.'
     ],
     versicosChave: ['Apocalipse 1:17-18', 'Apocalipse 2-3', 'Apocalipse 3:20'],
     tags: ['sete igrejas', 'Cristo glorificado', 'fidelidade', 'juízo', 'arrependimento'],
@@ -7274,7 +7274,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-111',
-    titulo: 'Apocalipse 12 —” A Mulher, o Dragão e o Filho',
+    titulo: 'Apocalipse 12 — A Mulher, o Dragão e o Filho',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -7290,11 +7290,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-112',
-    titulo: 'Apocalipse 19-22 —” A Consumação Final',
+    titulo: 'Apocalipse 19-22 — A Consumação Final',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Escatologia',
     conteudo: [
-      'Apocalipse 19 celebra a vitória: "Aleluia! Pois o Senhor nosso Deus, o Todo-Poderoso, reina!" (19:6). As bodas do Cordeiro são celebradas —” Cristo e a Igreja se encontram definitivamente.',
+      'Apocalipse 19 celebra a vitória: "Aleluia! Pois o Senhor nosso Deus, o Todo-Poderoso, reina!" (19:6). As bodas do Cordeiro são celebradas — Cristo e a Igreja se encontram definitivamente.',
       'A segunda vinda: "O céu se abriu, e eis um cavalo branco, e aquele que o montava se chama Fiel e Verdadeiro" (19:11). O julgamento é justo. O Anti-Cristo e o falso profeta são lançados no lago de fogo (19:20).',
       'O milênio (20:1-6) é tema de debate: pré-milenarismo, pós-milenarismo, amilenarismo. Cada posição tem defensores fiéis. O texto é figurativo e literário, não necessariamente cronológico.',
       'O grande julgamento (20:11-15): o grande trono branco, os livros abertos, o livro da vida. "Se alguém não foi achado escrito no livro da vida, esse foi lançado no lago de fogo" (20:15). O julgamento é individual e final.',
@@ -7308,11 +7308,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   // --- TEOLOGIA DO AT ---
   {
     id: 'tl-113',
-    titulo: 'ÃŠxodo 20 —” Os Dez Mandamentos',
+    titulo: 'ÃŠxodo 20 — Os Dez Mandamentos',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
-      'Os Dez Mandamentos (ÃŠxodo 20:1-17) são a base da aliança Sinai. "Eu sou o Senhor teu Deus, que te tirei da terra do Egito" (20:2). A graça precede a Lei —” Deus liberta antes de ordenar.',
+      'Os Dez Mandamentos (ÃŠxodo 20:1-17) são a base da aliança Sinai. "Eu sou o Senhor teu Deus, que te tirei da terra do Egito" (20:2). A graça precede a Lei — Deus liberta antes de ordenar.',
       'Os quatro primeiros mandamentos tratam da relação com Deus: não ter outros deuses, não fazer imagens, não tomar o nome em vão, lembrar do sábado. A prioridade é vertical: Deus primeiro.',
       'Os seis últimos tratam da relação com o próximo: honrar pais, não matar, não adulterar, não furtar, não calar falsos testemunhos, não cobiçar. A ética social se funda no Decálogo.',
       'A permanência da Lei moral é debate entre tradições. Os reformadores ensinam que a Lei moral (Decálogo) permanece; as leis cerimoniais se cumprem em Cristo; as leis civis são contextuais.',
@@ -7324,14 +7324,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-114',
-    titulo: 'Salmos 23 —” O Senhor é o Meu Pastor',
+    titulo: 'Salmos 23 — O Senhor é o Meu Pastor',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'O Salmo 23 é o mais amado e conhecido dos salmos. David, que conhece a vida pastoral, aplica-a à relação com Deus. "O Senhor é o meu pastor; nada me faltará" (23:1). A confiança é absoluta.',
       'Os pastos verdes e águas tranquilas (23:2) são imagem de provisão e descanso. Deus supre necessidades físicas e espirituais. "Conduz-me pelas veredas da justiça, por amor do seu nome" (23:3). A direção divina é por Sua causa.',
-      'O vale da sombra da morte (23:4) não é evitado —” é enfrentado. "Embora eu ande pelo vale da sombra da morte, não temerei mal algum, porque tu estás comigo". A presença de Deus é consolo na escuridão.',
-      'A mesa preparada no meio dos inimigos (23:5) é vitória e honra. O óleo que unta a cabeça é unção —” preparação para o futuro. O cálice transbordante é abundância.',
+      'O vale da sombra da morte (23:4) não é evitado — é enfrentado. "Embora eu ande pelo vale da sombra da morte, não temerei mal algum, porque tu estás comigo". A presença de Deus é consolo na escuridão.',
+      'A mesa preparada no meio dos inimigos (23:5) é vitória e honra. O óleo que unta a cabeça é unção — preparação para o futuro. O cálice transbordante é abundância.',
       'O Salmo termina com certeza: "Bondade e misericórdia me seguirão todos os dias da minha vida; e habitarei na casa do Senhor por longos dias" (23:6). A fidelidade divina é promessa.'
     ],
     versicosChave: ['Salmos 23:1-6'],
@@ -7340,7 +7340,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-115',
-    titulo: 'Provérbios 31 —” A Mulher Virtuosa',
+    titulo: 'Provérbios 31 — A Mulher Virtuosa',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7356,14 +7356,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-116',
-    titulo: 'Isaías 53 —” O Servo Sofredor',
+    titulo: 'Isaías 53 — O Servo Sofredor',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Isaías 53 é a profecia mais clara sobre a morte substitutiva do Messias. "Quem crer na nossa pregação?" (53:1). A incredulidade é tema: a salvação é rejeitada pelos que deveriam recebê-la.',
       'A aparência humilde: "Não tinha formosura nem formosura que nos atraísse" (53:2). O Messias não vem com esplendor, mas em humildade. O valor não está na aparência, mas no caráter.',
       'O sofrimento substitutivo: "Ele foi ferido pelos nossos pecados, e moido pelas nossas iniquidades" (53:5). "O castigo que nos trazia a paz caiu sobre ele" (53:5). A satisfação vicária é clara.',
-      'A morte e sepultamento: "Foi posta a sua vida com os ímpios, e com os ricos na sua morte" (53:9). A morte é real —” não há docetismo. Cristo morreu como homem.',
+      'A morte e sepultamento: "Foi posta a sua vida com os ímpios, e com os ricos na sua morte" (53:9). A morte é real — não há docetismo. Cristo morreu como homem.',
       'A ressurreição e justificação: "Verá a descendência, prolongará os seus dias" (53:10). "Muitos justificará" (53:11). A ressurreição é pressuposta. O sofrimento tem fruto: a salvação de muitos.'
     ],
     versicosChave: ['Isaías 53:3-7', 'Isaías 53:10-12'],
@@ -7372,7 +7372,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-117',
-    titulo: 'Daniel 7 —” O Filho do Homem',
+    titulo: 'Daniel 7 — O Filho do Homem',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7390,13 +7390,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   // --- SISTEMÁTICA ---
   {
     id: 'dp-061',
-    titulo: 'Cristologia —” A Pessoa de Cristo',
+    titulo: 'Cristologia — A Pessoa de Cristo',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Cristologia',
     conteudo: [
-      'A cristologia estuda quem é Jesus Cristo. Ele é 100% Deus e 100% humano —” duas naturezas, uma pessoa. O Concílio de Calcedônia (451) definiu: "Sem confusão, sem mudança, sem divisão, sem separação".',
+      'A cristologia estuda quem é Jesus Cristo. Ele é 100% Deus e 100% humano — duas naturezas, uma pessoa. O Concílio de Calcedônia (451) definiu: "Sem confusão, sem mudança, sem divisão, sem separação".',
       'A divindade de Cristo é ensinada no NT: João 1:1 ("o Verbo era Deus"), Colossenses 1:16 ("todas as coisas foram criadas por ele"), Hebreus 1:3 ("imagem exata da substância de Deus"), Filipenses 2:6 ("sendo em forma de Deus").',
-      'A humanidade de Cristo: nasceu, comeu, chorou, dormiu, morreu. A encarnação é real —” não é aparência. Cristo é "o mediador entre Deus e os homens" (1 Tm 2:5) porque é ambos.',
+      'A humanidade de Cristo: nasceu, comeu, chorou, dormiu, morreu. A encarnação é real — não é aparência. Cristo é "o mediador entre Deus e os homens" (1 Tm 2:5) porque é ambos.',
       'As implicações: como Deus, seu sacrifício tem valor infinito; como homem, pode representar a humanidade. A satisfação vicária depende da plenitude de sua pessoa.',
       'A cristologia é teste de fidelidade. Negar a divindade é heresia (Arrius, Testemunhas de Jeová). Negar a humanidade é heresia (Docetismo, Gnosticismo). A ortodoxia mantém o equilíbrio.'
     ],
@@ -7406,11 +7406,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-062',
-    titulo: 'Pneumatologia —” A Pessoa e Obra do Espírito Santo',
+    titulo: 'Pneumatologia — A Pessoa e Obra do Espírito Santo',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Pneumatologia',
     conteudo: [
-      'A pneumatologia estuda o Espírito Santo. Ele é a terceira pessoa da Trindade —” pessoa, não força ou influência. "O Espírito é Deus" (Atos 5:3-4). A personalidade é evidenciada: fala, guia, ensina, convence.',
+      'A pneumatologia estuda o Espírito Santo. Ele é a terceira pessoa da Trindade — pessoa, não força ou influência. "O Espírito é Deus" (Atos 5:3-4). A personalidade é evidenciada: fala, guia, ensina, convence.',
       'As obras do Espírito: regeneração (João 3:5-6), convicção do pecado (João 16:8), habitação no crente (1 Co 6:19), selo da salvação (Ef 1:13-14), dons espirituais (1 Co 12), frutos (Gl 5:22-23), intercessão (Rm 8:26).',
       'O ministério do Espírito é cristocêntrico: "Ele me glorificará, porque recebe do que é meu e vo-lo fará saber" (João 16:14). O Espírito não traz atenção a si mesmo, mas a Cristo.',
       'A plenitude do Espírito é mandamento: "Não vos embriagueis com vinho... mas enchei-vos do Espírito" (Ef 5:18). A enche-não é experiência única, mas andar continuado de submissão ao Espírito.',
@@ -7422,7 +7422,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-063',
-    titulo: 'Escatologia —” As Ãšltimas Coisas',
+    titulo: 'Escatologia — As Ãšltimas Coisas',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -7438,7 +7438,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-064',
-    titulo: 'Eclesiologia —” A Natureza da Igreja',
+    titulo: 'Eclesiologia — A Natureza da Igreja',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Eclesiologia',
     conteudo: [
@@ -7470,14 +7470,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-066',
-    titulo: 'Soteriologia —” A Doutrina da Salvação',
+    titulo: 'Soteriologia — A Doutrina da Salvação',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Soteriologia',
     conteudo: [
       'A soteriologia é o estudo da salvação. A salvação é obra de Deus, não mérito humano. "Porque pela graça sois salvos, por meio da fé" (Ef 2:8). A fé e a graça são inseparáveis.',
       'Os aspectos da salvação: justificação (declaração de justiça), regeneração (novo nascimento), adoção (filhos de Deus), santificação (transformação moral), glorificação (consumação final).',
       'A justificação é forense: Deus declara justo o crente, imputando-lhe a justiça de Cristo. "Aquele que não conheceu pecado, por nós o fez pecado, para que nós fôssemos feitos justiça de Deus" (2 Co 5:21).',
-      'A salvação é por graça porque é imerecida; por fé porque é recebida; em Cristo porque é mediada; para boas obras porque é transformadora. A graça não anula a obediência —” a motiva.',
+      'A salvação é por graça porque é imerecida; por fé porque é recebida; em Cristo porque é mediada; para boas obras porque é transformadora. A graça não anula a obediência — a motiva.',
       'A segurança do crente: "Ninguém os arrebata da minha mão" (João 10:28). A perseverança dos santos é resultado da preservação divina. A certeza não é presunção, mas confiança na promessa de Deus.'
     ],
     versicosChave: ['Efésios 2:8-9', 'Romanos 5:1', 'João 10:28-29'],
@@ -7488,7 +7488,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   // --- MAIS ESTUDOS PAULINAS E ATOS ---
   {
     id: 'tl-118',
-    titulo: 'Romanos 9 —” A Soberania de Deus na Salvação',
+    titulo: 'Romanos 9 — A Soberania de Deus na Salvação',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7504,7 +7504,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-119',
-    titulo: 'Romanos 12 —” A Vida Cristã Prática',
+    titulo: 'Romanos 12 — A Vida Cristã Prática',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7520,13 +7520,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-120',
-    titulo: '1 Coríntios 11 —” A Ceia do Senhor',
+    titulo: '1 Coríntios 11 — A Ceia do Senhor',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       '1 Coríntios 11:17-34 trata da Ceia do Senhor. A comunidade coríntia estava dividida: os ricos comiam antes, os pobres passavam fome. ACeia era ceia de amor, não de vergonha.',
       'A instituição: "Isto é o meu corpo, que é dado por vós" (11:24). "Este é o meu sangue da nova aliança, que é derramado por muitos" (11:25). A linguagem é simbólica, mas a realidade é espiritual.',
-      'O discernimento corporal: "Quem come e bebe sem discernir o corpo, come e bebe para sua própria condenação" (11:29). ACeia não é ritual mágico —” requer fé e examinação.',
+      'O discernimento corporal: "Quem come e bebe sem discernir o corpo, come e bebe para sua própria condenação" (11:29). ACeia não é ritual mágico — requer fé e examinação.',
       'As disciplinas: "Por isso há entre vós muitos enfermos e adormecidos" (11:30). A desobediência tem consequências. Mas "quando fomos julgados, somos corrigidos pelo Senhor" (11:32).',
       'A instrução prática: "Esperai uns pelos outros" (11:33). A Ceia é ato comunitário, não individual. A communhão com Cristo e entre os crentes é inseparável.'
     ],
@@ -7536,7 +7536,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-121',
-    titulo: '2 Coríntios 3 —” O ministério do Espírito',
+    titulo: '2 Coríntios 3 — O ministério do Espírito',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7552,12 +7552,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-122',
-    titulo: 'Efésios 1 —” As Bênçãos Espirituais',
+    titulo: 'Efésios 1 — As Bênçãos Espirituais',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Efésios 1:3-14 é uma bênção (berakah) em três partes: Pai (3-6), Filho (7-12), Espírito (13-14). Cada Pessoa da Trindade é mencionada.',
-      'Escolhidos antes da fundação do mundo (1:4): a eleição é pré-temporal. "Para sermos santos e sem mancha" —” a eleição é para santificação, não imoralidade.',
+      'Escolhidos antes da fundação do mundo (1:4): a eleição é pré-temporal. "Para sermos santos e sem mancha" — a eleição é para santificação, não imoralidade.',
       'Redimidos pelo sangue (1:7): "Temos a redenção pelo seu sangue, o perdão dos pecados". A redenção tem preço: o sangue de Cristo. Ã‰ gratuita para nós, custou tudo a Ele.',
       'Selados com o Espírito Santo (1:13-14): o selo é garantia de propriedade e preservação. O Espírito é arras (garantia) da herança futura.',
       'O louvor da glória da graça (1:6, 12, 14): oç›®çš„æ˜¯ louvor. A salvação é para a glória de Deus, não apenas para nosso benefício.'
@@ -7568,7 +7568,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-123',
-    titulo: 'Colossenses 1 —” Cristo, Senhor da Criação',
+    titulo: 'Colossenses 1 — Cristo, Senhor da Criação',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7584,15 +7584,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-124',
-    titulo: 'Atos 8 —” Filipe e o Eunuco Etíope',
+    titulo: 'Atos 8 — Filipe e o Eunuco Etíope',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
       'Atos 8:26-40 registra o encontro de Filipe com o eunuco etíope. Um official de Candace, rainha dos Etíopes, que administrava todo o seu tesouro (8:27). A providência de Deus.',
       'O eunuco lia Isaías 53: "Levará Ele o nosso sofrimento?" (8:32-33). Filipe explica a Escritura: Cristo é o Servo Sofredor. A evangelização é explicação da Escritura.',
       'A confissão de fé: "Creio que Jesus Cristo é o Filho de Deus" (8:37). A fé é confessada antes do batismo. O batismo é resposta à fé, não condição para ela.',
-      'O batismo no deserto (8:38-39): "Desceram ambos à água... subiram da água". A imersão é praticada, mas o modo não é o ponto —” o ponto é a obediência.',
-      'O eunuco segue seu caminho "com alegria" (8:39). A salvação traz alegria. Um etíope é o primeiro gentio registrado a receber o evangelho —” prefigurando a missão universal.'
+      'O batismo no deserto (8:38-39): "Desceram ambos à água... subiram da água". A imersão é praticada, mas o modo não é o ponto — o ponto é a obediência.',
+      'O eunuco segue seu caminho "com alegria" (8:39). A salvação traz alegria. Um etíope é o primeiro gentio registrado a receber o evangelho — prefigurando a missão universal.'
     ],
     versicosChave: ['Atos 8:30-35', 'Atos 8:37', 'Atos 8:38-39'],
     tags: ['Filipe', 'eunuco', 'evangelismo', 'batismo', 'Isaías 53'],
@@ -7600,7 +7600,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-125',
-    titulo: 'Atos 13 —” Paulo e Barnabé em Antioquia',
+    titulo: 'Atos 13 — Paulo e Barnabé em Antioquia',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7608,7 +7608,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A pregação em Pisídia de Antioquia (13:16-41) é modelo: resumo da história de Israel (13:17-22), centralidade de Cristo (13:23-31), chamado à fé (13:38-39).',
       'A justificação pela fé: "Porque é por meio dele que se anuncia o perdão dos pecados. De tudo aquilo de que a lei de Moisés não vos pôde justificar, todo aquele que crê é justificado" (13:38-39).',
       'A rejeição e aceitação: "Foi necessário que se vos anunciasse primeiro a palavra de Deus" (13:46). Paulo e Barnabé se voltam para os gentios quando os judeus rejeitam.',
-      'A alegria dos discípulos: "Encheram-se de gozo e do Espírito Santo" (13:52). A rejeição não paralisa —” o Espírito traz alegria mesmo na oposição.'
+      'A alegria dos discípulos: "Encheram-se de gozo e do Espírito Santo" (13:52). A rejeição não paralisa — o Espírito traz alegria mesmo na oposição.'
     ],
     versicosChave: ['Atos 13:2-3', 'Atos 13:38-39'],
     tags: ['missão', 'justificação', 'Paulo', 'Barnabé', 'gentios'],
@@ -7616,14 +7616,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-126',
-    titulo: 'Apocalipse 4-5 —” A Visão do Trono',
+    titulo: 'Apocalipse 4-5 — A Visão do Trono',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Escatologia',
     conteudo: [
       'Apocalipse 4-5 é a visão central do louvor celestial. "Sobre o trono, uma aparência de jaspe e de cornalina" (4:3). A majestade de Deus é inexprimível.',
-      'Os 24 anciãos (4:4): representam a totalidade do povo de Deus (12 tribos + 12 apóstolos). Eles lançam suas coroas diante do trono —” a autoridade humana se curva diante da divina.',
+      'Os 24 anciãos (4:4): representam a totalidade do povo de Deus (12 tribos + 12 apóstolos). Eles lançam suas coroas diante do trono — a autoridade humana se curva diante da divina.',
       'O livro com sete selos (5:1): quem é digno de abri-lo? "Ninguém... nem no céu, nem na terra" (5:3). A crise cósmica: quem é digno?',
-      'O Cordeiro imolado (5:6-7): "Um cordeiro que parece ter sido morto". A chaga é marca de vitória, não fraqueza. O Cordeiro toma o livro —” a história está em Suas mãos.',
+      'O Cordeiro imolado (5:6-7): "Um cordeiro que parece ter sido morto". A chaga é marca de vitória, não fraqueza. O Cordeiro toma o livro — a história está em Suas mãos.',
       'O louvor universal (5:9-14): "Digno és de tomar o livro e de abrir os seus selos". Uma multidão que ninguém pode contar, de toda nação, louva o Cordeiro. A adoração é eterna.'
     ],
     versicosChave: ['Apocalipse 5:6-9', 'Apocalipse 5:13'],
@@ -7632,7 +7632,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-127',
-    titulo: 'Apocalipse 13 —” A Besta e o Falso Profeta',
+    titulo: 'Apocalipse 13 — A Besta e o Falso Profeta',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -7648,7 +7648,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'tl-128',
-    titulo: 'Apocalipse 19-20 —” A Vitória e o Milênio',
+    titulo: 'Apocalipse 19-20 — A Vitória e o Milênio',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -7664,7 +7664,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-067',
-    titulo: 'Estudos por Livro —” Romanos',
+    titulo: 'Estudos por Livro — Romanos',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7680,7 +7680,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-068',
-    titulo: 'Teologia do Novo Testamento —” Unidade e Diversidade',
+    titulo: 'Teologia do Novo Testamento — Unidade e Diversidade',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7696,7 +7696,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-069',
-    titulo: 'Teologia do Antigo Testamento —” Aliança e Promessa',
+    titulo: 'Teologia do Antigo Testamento — Aliança e Promessa',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7712,7 +7712,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-070',
-    titulo: 'Ã‰tica Cristã —” Princípios Fundamentais',
+    titulo: 'Ã‰tica Cristã — Princípios Fundamentais',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
@@ -7728,7 +7728,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-071',
-    titulo: 'Estudos por Livro —” Gênesis',
+    titulo: 'Estudos por Livro — Gênesis',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -7744,7 +7744,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'dp-072',
-    titulo: 'Estudos por Livro —” Apocalipse',
+    titulo: 'Estudos por Livro — Apocalipse',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -7760,7 +7760,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
 
   // ———————————————————————————————————————————————————————————————————————————
-  // 50 NOVOS ESTUDOS —” TEOLOGOS CLASSICOS E CONTEMPORANEOS
+  // 50 NOVOS ESTUDOS — TEOLOGOS CLASSICOS E CONTEMPORANEOS
   // ———————————————————————————————————————————————————————————————————————————
 
   // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -7769,7 +7769,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'novo-001',
-    titulo: 'Charles Spurgeon —” A Soberania de Deus',
+    titulo: 'Charles Spurgeon — A Soberania de Deus',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Bibliologia',
     conteudo: [
@@ -7785,7 +7785,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-002',
-    titulo: 'Charles Spurgeon —” O Poder da Oração',
+    titulo: 'Charles Spurgeon — O Poder da Oração',
     categoria: 'Vida Crista',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -7801,7 +7801,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-003',
-    titulo: 'Charles Spurgeon —” Evangelismo e Conversão',
+    titulo: 'Charles Spurgeon — Evangelismo e Conversão',
     categoria: 'Missiologia',
     subcategoria: 'Missiologia',
     conteudo: [
@@ -7817,7 +7817,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-004',
-    titulo: 'Charles Spurgeon —” Sofrimento e Consolo Divino',
+    titulo: 'Charles Spurgeon — Sofrimento e Consolo Divino',
     categoria: 'Vida Crista',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -7833,7 +7833,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-005',
-    titulo: 'Charles Spurgeon —” A Graça Sovina e Incondicional',
+    titulo: 'Charles Spurgeon — A Graça Sovina e Incondicional',
     categoria: 'Soteriologia',
     subcategoria: 'Soteriologia',
     conteudo: [
@@ -7849,7 +7849,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-006',
-    titulo: 'Charles Spurgeon —” A Cruz de Cristo como Centro da Fé',
+    titulo: 'Charles Spurgeon — A Cruz de Cristo como Centro da Fé',
     categoria: 'Cristologia',
     subcategoria: 'Cristologia',
     conteudo: [
@@ -7865,7 +7865,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-007',
-    titulo: 'Charles Spurgeon —” A Arte e a Teologia da Pregação',
+    titulo: 'Charles Spurgeon — A Arte e a Teologia da Pregação',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Hermenêutica',
     conteudo: [
@@ -7881,7 +7881,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-008',
-    titulo: 'Charles Spurgeon —” Fé e Confiança em Deus',
+    titulo: 'Charles Spurgeon — Fé e Confiança em Deus',
     categoria: 'Vida Crista',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -7902,7 +7902,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'novo-009',
-    titulo: 'A.W. Tozer —” O Conhecimento de Deus',
+    titulo: 'A.W. Tozer — O Conhecimento de Deus',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
@@ -7918,7 +7918,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-010',
-    titulo: 'A.W. Tozer —” A Adoração Verdadeira',
+    titulo: 'A.W. Tozer — A Adoração Verdadeira',
     categoria: 'Vida Crista',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -7934,7 +7934,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-011',
-    titulo: 'A.W. Tozer —” A Vida Interior e a Comunhão com Deus',
+    titulo: 'A.W. Tozer — A Vida Interior e a Comunhão com Deus',
     categoria: 'Vida Crista',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -7950,7 +7950,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-012',
-    titulo: 'A.W. Tozer —” A Idolatria Moderna',
+    titulo: 'A.W. Tozer — A Idolatria Moderna',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Hamartiologia',
     conteudo: [
@@ -7966,7 +7966,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-013',
-    titulo: 'A.W. Tozer —” O Espírito Santo na Vida Cristã',
+    titulo: 'A.W. Tozer — O Espírito Santo na Vida Cristã',
     categoria: 'Pneumatologia',
     subcategoria: 'Pneumatologia',
     conteudo: [
@@ -7982,7 +7982,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-014',
-    titulo: 'A.W. Tozer —” Simplicidade Espiritual',
+    titulo: 'A.W. Tozer — Simplicidade Espiritual',
     categoria: 'Vida Crista',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -8003,7 +8003,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'novo-015',
-    titulo: 'R.C. Sproul —” A Santidade de Deus',
+    titulo: 'R.C. Sproul — A Santidade de Deus',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -8019,7 +8019,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-016',
-    titulo: 'R.C. Sproul —” A Justificação pela Fé',
+    titulo: 'R.C. Sproul — A Justificação pela Fé',
     categoria: 'Soteriologia',
     subcategoria: 'Soteriologia',
     conteudo: [
@@ -8035,7 +8035,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-017',
-    titulo: 'R.C. Sproul —” Soberania Divina e Responsabilidade Humana',
+    titulo: 'R.C. Sproul — Soberania Divina e Responsabilidade Humana',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -8051,7 +8051,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-018',
-    titulo: 'R.C. Sproul —” A Inerrância Bíblica',
+    titulo: 'R.C. Sproul — A Inerrância Bíblica',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Bibliologia',
     conteudo: [
@@ -8067,7 +8067,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-019',
-    titulo: 'R.C. Sproul —” Os Sacramentos como Meios de Graça',
+    titulo: 'R.C. Sproul — Os Sacramentos como Meios de Graça',
     categoria: 'Eclesiologia',
     subcategoria: 'Eclesiologia',
     conteudo: [
@@ -8083,7 +8083,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-020',
-    titulo: 'R.C. Sproul —” A Graça Irresistível e a Vontade do Homem',
+    titulo: 'R.C. Sproul — A Graça Irresistível e a Vontade do Homem',
     categoria: 'Soteriologia',
     subcategoria: 'Soteriologia',
     conteudo: [
@@ -8104,7 +8104,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'novo-021',
-    titulo: 'John Piper —” A Alegria em Deus como Fim Supremo',
+    titulo: 'John Piper — A Alegria em Deus como Fim Supremo',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -8120,7 +8120,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-022',
-    titulo: 'John Piper —” Missões e a Glória de Deus',
+    titulo: 'John Piper — Missões e a Glória de Deus',
     categoria: 'Missiologia',
     subcategoria: 'Missiologia',
     conteudo: [
@@ -8136,7 +8136,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-023',
-    titulo: 'John Piper —” Provisão Divina e o Sustento do Crente',
+    titulo: 'John Piper — Provisão Divina e o Sustento do Crente',
     categoria: 'Vida Crista',
     subcategoria: 'Teologia Bíblica',
     conteudo: [
@@ -8152,7 +8152,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-024',
-    titulo: 'John Piper —” Casamento para a Glória de Deus',
+    titulo: 'John Piper — Casamento para a Glória de Deus',
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -8168,7 +8168,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-025',
-    titulo: 'John Piper —” Deus e o Prazer Eterno do Crente',
+    titulo: 'John Piper — Deus e o Prazer Eterno do Crente',
     categoria: 'Escatologia',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -8189,7 +8189,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'novo-026',
-    titulo: 'Dietrich Bonhoeffer —” O Discipulado Radical',
+    titulo: 'Dietrich Bonhoeffer — O Discipulado Radical',
     categoria: 'Vida Crista',
     subcategoria: 'Missiologia',
     conteudo: [
@@ -8205,7 +8205,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-027',
-    titulo: 'Dietrich Bonhoeffer —” Comunhão Cristã e Vida em Comunidade',
+    titulo: 'Dietrich Bonhoeffer — Comunhão Cristã e Vida em Comunidade',
     categoria: 'Eclesiologia',
     subcategoria: 'Eclesiologia',
     conteudo: [
@@ -8221,7 +8221,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-028',
-    titulo: 'Dietrich Bonhoeffer —” Ã‰tica Cristã e Responsabilidade',
+    titulo: 'Dietrich Bonhoeffer — Ã‰tica Cristã e Responsabilidade',
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
@@ -8237,7 +8237,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-029',
-    titulo: 'Dietrich Bonhoeffer —” A Graça Barata e a Graça Custosa',
+    titulo: 'Dietrich Bonhoeffer — A Graça Barata e a Graça Custosa',
     categoria: 'Soteriologia',
     subcategoria: 'Soteriologia',
     conteudo: [
@@ -8253,7 +8253,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-030',
-    titulo: 'Dietrich Bonhoeffer —” Resistência ao Mal Institucionalizado',
+    titulo: 'Dietrich Bonhoeffer — Resistência ao Mal Institucionalizado',
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -8274,7 +8274,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'novo-031',
-    titulo: 'C.S. Lewis —” Dor e Sofrimento no Plano de Deus',
+    titulo: 'C.S. Lewis — Dor e Sofrimento no Plano de Deus',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -8290,7 +8290,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-032',
-    titulo: 'C.S. Lewis —” A Razão da Fé Cristã',
+    titulo: 'C.S. Lewis — A Razão da Fé Cristã',
     categoria: 'Apologetica',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
@@ -8306,7 +8306,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-033',
-    titulo: 'C.S. Lewis —” Milagres e o Sobrenatural',
+    titulo: 'C.S. Lewis — Milagres e o Sobrenatural',
     categoria: 'Apologetica',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -8322,7 +8322,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-034',
-    titulo: 'C.S. Lewis —” A Natureza Humana e o Problema do Pecado',
+    titulo: 'C.S. Lewis — A Natureza Humana e o Problema do Pecado',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Antropologia',
     conteudo: [
@@ -8338,7 +8338,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-035',
-    titulo: 'C.S. Lewis —” O Céu e a Realidade Eterna',
+    titulo: 'C.S. Lewis — O Céu e a Realidade Eterna',
     categoria: 'Escatologia',
     subcategoria: 'Escatologia',
     conteudo: [
@@ -8359,7 +8359,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'novo-036',
-    titulo: 'Tim Keller —” Fé e Cultura Contemporânea',
+    titulo: 'Tim Keller — Fé e Cultura Contemporânea',
     categoria: 'Apologetica',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
@@ -8375,7 +8375,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-037',
-    titulo: 'Tim Keller —” Idolatria no Mundo Moderno',
+    titulo: 'Tim Keller — Idolatria no Mundo Moderno',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Hamartiologia',
     conteudo: [
@@ -8391,7 +8391,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-038',
-    titulo: 'Tim Keller —” Justiça Social e o Evangelho',
+    titulo: 'Tim Keller — Justiça Social e o Evangelho',
     categoria: 'Questões Contemporâneas',
     subcategoria: 'Questões Contemporâneas',
     conteudo: [
@@ -8407,7 +8407,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-039',
-    titulo: 'Tim Keller —” O Perdão Radical no Evangelho',
+    titulo: 'Tim Keller — O Perdão Radical no Evangelho',
     categoria: 'Vida Crista',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -8423,7 +8423,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-040',
-    titulo: 'Tim Keller —” Urbanidade e Missão Urbana',
+    titulo: 'Tim Keller — Urbanidade e Missão Urbana',
     categoria: 'Missiologia',
     subcategoria: 'Missiologia',
     conteudo: [
@@ -8444,7 +8444,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'novo-041',
-    titulo: 'Jonathan Edwards —” O Desejo de Deus como Fim Supremo',
+    titulo: 'Jonathan Edwards — O Desejo de Deus como Fim Supremo',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -8460,13 +8460,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-042',
-    titulo: 'Jonathan Edwards —” Avivamento e a Presença Divina',
+    titulo: 'Jonathan Edwards — Avivamento e a Presença Divina',
     categoria: 'Eclesiologia',
     subcategoria: 'História da Igreja',
     conteudo: [
       'Edwards foi o principal teólogo do Grande Desertamento (1730-1740), o primeiro avivamento de alcance nacional na América. Para ele, o avivamento é obra soberana do Espírito Santo.',
       'Edwards argumentava que o avivamento não é fabricado por técnicas humanas, mas derramado por Deus. A preparação espiritual, a oração e a pregação fiel são meios, mas o resultado é de Deus.',
-      'Para Edwards, o avivamento é precedido por humilhação, arrependimento e busca fervorosa de Deus. A religião verdadeira é "afeições santificadas" —” emoções que nascem da compreensão da verdade.',
+      'Para Edwards, o avivamento é precedido por humilhação, arrependimento e busca fervorosa de Deus. A religião verdadeira é "afeições santificadas" — emoções que nascem da compreensão da verdade.',
       'Edwards via o avivamento como retorno às fontes do cristianismo primitivo. Em meio à formalidade religiosa, Deus desperta Seu povo para uma experiência viva de Sua presença.',
       'O legado de Edwards sobre avivamento é um chamado para que a Igreja busque a presença de Deus com humildade e fervor. O avivamento não é passado; é promessa para todos os tempos.'
     ],
@@ -8476,7 +8476,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-043',
-    titulo: 'Jonathan Edwards —” A Natureza da Verdadeira Conversão',
+    titulo: 'Jonathan Edwards — A Natureza da Verdadeira Conversão',
     categoria: 'Soteriologia',
     subcategoria: 'Soteriologia',
     conteudo: [
@@ -8492,7 +8492,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-044',
-    titulo: 'Jonathan Edwards —” A Beleza da Santidade',
+    titulo: 'Jonathan Edwards — A Beleza da Santidade',
     categoria: 'Vida Crista',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -8513,7 +8513,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'novo-045',
-    titulo: 'J.I. Packer —” Conhecer a Deus Pessoalmente',
+    titulo: 'J.I. Packer — Conhecer a Deus Pessoalmente',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
@@ -8529,7 +8529,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-046',
-    titulo: 'J.I. Packer —” A Orientação Divina na Vida do Crente',
+    titulo: 'J.I. Packer — A Orientação Divina na Vida do Crente',
     categoria: 'Vida Crista',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -8545,7 +8545,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-047',
-    titulo: 'J.I. Packer —” A Soberania de Deus e o Sofrimento Humano',
+    titulo: 'J.I. Packer — A Soberania de Deus e o Sofrimento Humano',
     categoria: 'Teologia Bíblica',
     subcategoria: 'Vida Crista',
     conteudo: [
@@ -8566,7 +8566,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 
   {
     id: 'novo-048',
-    titulo: 'John Stott —” A Cruz de Cristo e a Reconciliação',
+    titulo: 'John Stott — A Cruz de Cristo e a Reconciliação',
     categoria: 'Cristologia',
     subcategoria: 'Cristologia',
     conteudo: [
@@ -8582,7 +8582,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-049',
-    titulo: 'John Stott —” A Autoridade da Escritura na Vida da Igreja',
+    titulo: 'John Stott — A Autoridade da Escritura na Vida da Igreja',
     categoria: 'Doutrinas Fundamentais',
     subcategoria: 'Bibliologia',
     conteudo: [
@@ -8598,7 +8598,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   },
   {
     id: 'novo-050',
-    titulo: 'John Stott —” A Missão da Igreja no Mundo',
+    titulo: 'John Stott — A Missão da Igreja no Mundo',
     categoria: 'Missiologia',
     subcategoria: 'Missiologia',
     conteudo: [
@@ -8650,7 +8650,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'conteudo': [
     'A regeneração é a obra sobrenatural do Espírito Santo que transforma a natureza espiritual do pecador, capacitando-o a crer em Cristo.',
     'Jesus ensinou que é necessário nascer de novo (João 3:3-7), e que esse nascimento vem do Espírito Santo.',
-    'A regeneração precede a fé —” o pecador não pode crer até que o Espírito Santo lhe dé vida espiritual.',
+    'A regeneração precede a fé — o pecador não pode crer até que o Espírito Santo lhe dé vida espiritual.',
     'A tradição reformada ensina a regeneração eficaz, enquanto a tradição arminiana enfatiza a graça resistível.',
     'A regeneração é instantânea, secreta e irresistível no que diz respeito à sua eficácia.'
   ],
@@ -8674,7 +8674,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'pn-003',
-  'titulo': 'Os Dons Espirituais —” Cessacionismo vs. Continuismo',
+  'titulo': 'Os Dons Espirituais — Cessacionismo vs. Continuismo',
   'categoria': 'Pneumatologia',
   'subcategoria': 'Dons Espirituais',
   'conteudo': [
@@ -8712,7 +8712,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'conteudo': [
     'O batismo no Espírito Santo é a experiência de ser imerso na presença e poder do Espírito de Deus.',
     'Na teologia pentecostal, o batismo no Espírito é uma experiência posterior à regeneração, frequentemente acompanhada de línguas.',
-    'Na teologia reformada, o batismo no Espírito é simultâneo à regeneração —” todo crente já foi batizado no Espírito.',
+    'Na teologia reformada, o batismo no Espírito é simultâneo à regeneração — todo crente já foi batizado no Espírito.',
     'Atos mostra múltiplas ocasiões em que o Espírito Santo veio sobre os crentes (Atos 2, 8, 10, 19).',
     'O propósito do batismo no Espírito é capacitamento para testemunho e serviço, não salvação.'
   ],
@@ -8743,7 +8743,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     'Os nove aspectos do fruto formam um todo integrado: amor, gozo, paz, longanimidade, benignidade, bondade, fé, mansidão, temperança.',
     'O fruto não é fruto de esforço humano, mas resultado da obra do Espírito no crente que se rende.',
     'Diferente dos dons (distribuídos individualmente), o fruto é produzido em todos os crentes.',
-    'O fruto é evidência madura da vida cristã —” leva tempo para amadurecer, como uma árvore que dá fruto em sua estação.'
+    'O fruto é evidência madura da vida cristã — leva tempo para amadurecer, como uma árvore que dá fruto em sua estação.'
   ],
   'versicosChave': [
     'Gálatas 5:22-23',
@@ -8771,8 +8771,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'conteudo': [
     'A unção do Espírito Santo é a equipagem sobrenatural para serviço, especialmente para pregação e ministério.',
     'Jesus foi unido pelo Espírito Santo no batismo (Lucas 3:22) e essa unção qualificou Seu ministério terreno.',
-    '1 João 2:20 fala de uma unção que todos os crentes recebem —” \'vocês têm uma unção da parte dAquele que é santo\'.',
-    'A unção não é o mesmo que batismo no Espírito —” é mais específica para service e ministério.',
+    '1 João 2:20 fala de uma unção que todos os crentes recebem — \'vocês têm uma unção da parte dAquele que é santo\'.',
+    'A unção não é o mesmo que batismo no Espírito — é mais específica para service e ministério.',
     'A unção capacitante não deve ser confundida com a unção para salvação (regeneração).'
   ],
   'versicosChave': [
@@ -8799,9 +8799,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Oração',
   'conteudo': [
     'Romanos 8:26-27 ensina que o Espírito Santo intercede por nós com \'gemidos inexprimíveis\'.',
-    'A intercessão do Espírito é uma obra secreta e infalível —” Ele ora de acordo com a vontade de Deus.',
+    'A intercessão do Espírito é uma obra secreta e infalível — Ele ora de acordo com a vontade de Deus.',
     'Mesmo quando não sabemos como orar, o Espírito ora por nós.',
-    'A intercessão do Espírito complementa a intercessão de Cristo (Hebreus 7:25) —” Cristo ora como Sumo Sacerdote, o Espírito ora em nosso íntimo.',
+    'A intercessão do Espírito complementa a intercessão de Cristo (Hebreus 7:25) — Cristo ora como Sumo Sacerdote, o Espírito ora em nosso íntimo.',
     'Essa verdade deveria trazer grande consolo aos crentes que se sentem inadequados na oração.'
   ],
   'versicosChave': [
@@ -8830,9 +8830,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'conteudo': [
     'A santificação é a obra progressiva do Espírito Santo que transforma o crente à imagem de Cristo.',
     'O Espírito opera em dupla dimensão: nos declara santos (justificação) e nos faz santos (santificação).',
-    'A santificação é cooperativa —” o crente trabalha com o Espírito (Filipenses 2:12-13).',
+    'A santificação é cooperativa — o crente trabalha com o Espírito (Filipenses 2:12-13).',
     'O fruto do Espírito é a evidência da santificação progressiva.',
-    'A santificação nunca será completa nesta vida —” a glorificação é o consumação final.'
+    'A santificação nunca será completa nesta vida — a glorificação é o consumação final.'
   ],
   'versicosChave': [
     '2 Coríntios 3:18',
@@ -8858,11 +8858,11 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'categoria': 'Pneumatologia',
   'subcategoria': 'Revelação',
   'conteudo': [
-    'O Espírito Santo é o autor inspirador das Escrituras —” toda Escritura é inspirada por Deus (2 Timóteo 3:16).',
+    'O Espírito Santo é o autor inspirador das Escrituras — toda Escritura é inspirada por Deus (2 Timóteo 3:16).',
     'O Espírito ilumina a mente do crente para compreender as Escrituras (1 Coríntios 2:10-14).',
     'A inspiração bíblica é plenária (toda a Bíblia), verbal (as palavras), e dinâmica (Deus atuando nos autores).',
     'A iluminação do Espírito não substitui o estudo diligente, mas o capacita.',
-    'O mesmo Espírito que inspirou as Escrituras é o que as interpreta —” a Escritura é sua própria intérprete.'
+    'O mesmo Espírito que inspirou as Escrituras é o que as interpreta — a Escritura é sua própria intérprete.'
   ],
   'versicosChave': [
     '2 Timóteo 3:16',
@@ -8920,7 +8920,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     'Os anjos são seres criados espirituais, inteligentes e pessoais, designados para servir a Deus e aos homens.',
     'A Bíblia descreve uma hierarquia angelical: querubins, serafins, thronos, dominações, potestades (Efésios 6:12, Colossenses 1:16).',
     'Os anjos não têm corpos materiais, mas podem assumir forma humana quando necessário (Hebreus 13:2).',
-    'Os anjos são criados para adorar e servir a Deus —” \'Santos, santos, santos é o Senhor dos Exércitos\' (Isaías 6:3).',
+    'Os anjos são criados para adorar e servir a Deus — \'Santos, santos, santos é o Senhor dos Exércitos\' (Isaías 6:3).',
     'A tradição judaica e cristã desenvolveu detalhes sobre ordens angelicais, embora a Bíblia seja limitada nesse assunto.'
   ],
   'versicosChave': [
@@ -8943,7 +8943,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'an-002',
-  'titulo': 'Anjos da Guarda —” Proteção Divina',
+  'titulo': 'Anjos da Guarda — Proteção Divina',
   'categoria': 'Angelologia',
   'subcategoria': 'Ministério',
   'conteudo': [
@@ -8977,7 +8977,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Demonologia',
   'conteudo': [
     'Satanás é um anjo caído, originalmente criado como querubim ungido (Ezequiel 28:14).',
-    'A queda de Satanás ocorreu por orgulho —” ele quis se igualar a Deus (Isaías 14:12-15).',
+    'A queda de Satanás ocorreu por orgulho — ele quis se igualar a Deus (Isaías 14:12-15).',
     'Um terço dos anjos caiu com Satanás e se tornaram demônios (Apocalipse 12:4).',
     'Satanás é chamado de \'deus deste século\' (2 Coríntios 4:4) e \'príncipe deste mundo\' (João 14:30).',
     'A derrota final de Satanás está garantida pela cruz de Cristo (Colossenses 2:15) e se cumprirá no lago de fogo (Apocalipse 20:10).'
@@ -9002,15 +9002,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'an-004',
-  'titulo': 'A Guerra Espiritual —” Efésios 6:10-18',
+  'titulo': 'A Guerra Espiritual — Efésios 6:10-18',
   'categoria': 'Angelologia',
   'subcategoria': 'Guerra Espiritual',
   'conteudo': [
-    'A guerra espiritual é uma realidade —” nossos inimigos não são de carne e sangue, mas principados e potestades.',
+    'A guerra espiritual é uma realidade — nossos inimigos não são de carne e sangue, mas principados e potestades.',
     'A armadura de Deus inclui: verdade, justiça, evangelho, fé, salvação, Palavra e oração.',
     'Cada peça da armadura corresponde a uma verdade doutrinária que o crente deve vestir pela fé.',
-    'A oração é a arma ofensiva na guerra espiritual —” ela invoca o poder de Deus.',
-    'Vitória já foi conquistada na cruz —” a guerra espiritual é aplicação dessa vitória.'
+    'A oração é a arma ofensiva na guerra espiritual — ela invoca o poder de Deus.',
+    'Vitória já foi conquistada na cruz — a guerra espiritual é aplicação dessa vitória.'
   ],
   'versicosChave': [
     'Efésios 6:10-18',
@@ -9061,7 +9061,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'at-001',
-  'titulo': 'A Natureza Humana —” Corpo, Alma e Espírito',
+  'titulo': 'A Natureza Humana — Corpo, Alma e Espírito',
   'categoria': 'Antropologia',
   'subcategoria': 'Composição',
   'conteudo': [
@@ -9069,7 +9069,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     'O dualismo grego (corpo vs. alma) contrasta com a visão bíblica da unidade da pessoa.',
     'O corpo não é prisão da alma, mas templo do Espírito Santo (1 Coríntios 6:19).',
     'A morte é a separação entre corpo e alma, mas não é aniquilação.',
-    'A ressurreição envolverá tanto o corpo quanto a alma —” a totalidade da pessoa.'
+    'A ressurreição envolverá tanto o corpo quanto a alma — a totalidade da pessoa.'
   ],
   'versicosChave': [
     '1 Tessalonicenses 5:23',
@@ -9099,7 +9099,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     'Adão e Eva foram criados perfeitos mas com a possibilidade de cair (posse non posse non peccare).',
     'A Queda foi uma rebelião consciente contra o comando de Deus (Gênesis 3:6).',
     'O pecado original é a corrupção transmitida a todos os descendentes de Adão (Romanos 5:12).',
-    'Agostinho ensinou que o pecado original é transmitida pela concupiscência —” o desejo desordenado.',
+    'Agostinho ensinou que o pecado original é transmitida pela concupiscência — o desejo desordenado.',
     'A Queda afetou todas as faculdades humanas: razão, vontade, emoções, corpo.',
     'Sem a graça regeneradora, o ser humano é incapaz de buscar a Deus (Romanos 3:10-18).'
   ],
@@ -9128,10 +9128,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Debate',
   'conteudo': [
     'O ser humano possui livre-arbítrio genuíno para agir de acordo com sua natureza.',
-    'A Queda corrompeu a vontade humana —” o pecador é livre para escolher, mas não livre para crer sem graça.',
-    'A Soberania de Deus não anula a responsabilidade humana —” ambos são verdadeiros.',
+    'A Queda corrompeu a vontade humana — o pecador é livre para escolher, mas não livre para crer sem graça.',
+    'A Soberania de Deus não anula a responsabilidade humana — ambos são verdadeiros.',
     'O calvinismo enfatiza a soberania absoluta; o arminianismo enfatiza a responsabilidade humana.',
-    'O compatibilismo defende que soberania e livre-arbítrio são compatíveis —” Deus governa sem coagir.'
+    'O compatibilismo defende que soberania e livre-arbítrio são compatíveis — Deus governa sem coagir.'
   ],
   'versicosChave': [
     'Deuteronômio 30:19',
@@ -9159,8 +9159,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'conteudo': [
     'O ser humano foi criado à imagem e semelhança de Deus (Gênesis 1:26-27).',
     'A imagem de Deus inclui: racionalidade, moralidade, relacionalidade, criatividade, domínio.',
-    'A Queda corrompeu a imagem, mas não a destruiu —” todo ser humano tem dignidade inerente.',
-    'A imagem é restaurada em Cristo —” \'renovados para o conhecimento, conforme à imagem daquele que o criou\' (Colossenses 3:10).',
+    'A Queda corrompeu a imagem, mas não a destruiu — todo ser humano tem dignidade inerente.',
+    'A imagem é restaurada em Cristo — \'renovados para o conhecimento, conforme à imagem daquele que o criou\' (Colossenses 3:10).',
     'A dignidade humana é a base da ética cristã e dos direitos humanos.'
   ],
   'versicosChave': [
@@ -9187,10 +9187,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'categoria': 'Antropologia',
   'subcategoria': 'Escatologia',
   'conteudo': [
-    'A morte é a consequência do pecado —” \'no dia em que comerdes, certamente morrereis\' (Gênesis 2:17).',
+    'A morte é a consequência do pecado — \'no dia em que comerdes, certamente morrereis\' (Gênesis 2:17).',
     'Há duas mortes: a física (separação alma-corpo) e a eterna (separação de Deus).',
     'Após a morte, os crentes estão com Cristo (2 Coríntios 5:8), os incrédulos sofrem antecipadamente.',
-    'A ressurreição dos mortos é uma doutrina central —” Jesus ressuscitou e promete ressurreição aos Seus.',
+    'A ressurreição dos mortos é uma doutrina central — Jesus ressuscitou e promete ressurreição aos Seus.',
     'O juízo final determinará o destino eterno: vida eterna ou condenação.'
   ],
   'versicosChave': [
@@ -9218,10 +9218,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Definição',
   'conteudo': [
     'Pecado é toda falta de conformidade com a Lei de Deus, tanto por ação quanto por omissão (Tiago 4:17).',
-    'A palavra grega \'hamartia\' significa errar o alvo —” o pecado é falhar no propósito para o qual fomos criados.',
-    'O pecado é primariamente contra Deus —” \'contra Ti somente pequei\' (Salmo 51:4).',
-    'O pecado é universal —” \'não há justo, nem um sequer\' (Romanos 3:10).',
-    'O pecado é radical —” afeta todas as faculdades e dimensões da existência humana.'
+    'A palavra grega \'hamartia\' significa errar o alvo — o pecado é falhar no propósito para o qual fomos criados.',
+    'O pecado é primariamente contra Deus — \'contra Ti somente pequei\' (Salmo 51:4).',
+    'O pecado é universal — \'não há justo, nem um sequer\' (Romanos 3:10).',
+    'O pecado é radical — afeta todas as faculdades e dimensões da existência humana.'
   ],
   'versicosChave': [
     'Romanos 3:10',
@@ -9243,14 +9243,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'hm-002',
-  'titulo': 'A Penalidade do Pecado —” Morte e Condenação',
+  'titulo': 'A Penalidade do Pecado — Morte e Condenação',
   'categoria': 'Hamartiologia',
   'subcategoria': 'Penalidade',
   'conteudo': [
-    'A penalidade do pecado é a morte —” \'o salário do pecado é a morte\' (Romanos 6:23).',
+    'A penalidade do pecado é a morte — \'o salário do pecado é a morte\' (Romanos 6:23).',
     'A morte inclui três dimensões: espiritual (separação de Deus), física (separação alma-corpo), eterna (lago de fogo).',
-    'A justiça de Deus exige punição —” Deus não pode tolerar o pecado sem penalidade.',
-    'A penalidade é proporcional à ofensa —” ofender o Deus eterno merece punição eterna.',
+    'A justiça de Deus exige punição — Deus não pode tolerar o pecado sem penalidade.',
+    'A penalidade é proporcional à ofensa — ofender o Deus eterno merece punição eterna.',
     'Somente a graça de Deus pode livrar o pecador da penalidade merecida.'
   ],
   'versicosChave': [
@@ -9273,16 +9273,16 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'hm-003',
-  'titulo': 'A Expiação —” O Morreu pelos Pecados',
+  'titulo': 'A Expiação — O Morreu pelos Pecados',
   'categoria': 'Hamartiologia',
   'subcategoria': 'Expiação',
   'conteudo': [
     'A expiação é o ato de Cristo em morrer na cruz para satisfazer a justiça de Deus e reconciliar os pecadores com Ele.',
-    'A satisfação vicária (Anselmo) —” Cristo morreu como substituto, satisfazendo a honra de Deus.',
-    'A substituição penal —” Cristo assumiu as penalidades que merecíamos (Isaías 53:5-6).',
-    'A propiciação —” a ira de Deus contra o pecado foi derramada sobre Cristo (1 João 2:2).',
+    'A satisfação vicária (Anselmo) — Cristo morreu como substituto, satisfazendo a honra de Deus.',
+    'A substituição penal — Cristo assumiu as penalidades que merecíamos (Isaías 53:5-6).',
+    'A propiciação — a ira de Deus contra o pecado foi derramada sobre Cristo (1 João 2:2).',
     'A expiação é limitada na extensão (somente para os eleitos) mas ilimitada no valor (suficiente para todos).',
-    'A cruz é o centro da história e da redenção —” tudo aponta para ela.'
+    'A cruz é o centro da história e da redenção — tudo aponta para ela.'
   ],
   'versicosChave': [
     'Isaías 53:5-6',
@@ -9304,15 +9304,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'hm-004',
-  'titulo': 'A Redenção —” Comprado com Preço',
+  'titulo': 'A Redenção — Comprado com Preço',
   'categoria': 'Hamartiologia',
   'subcategoria': 'Redenção',
   'conteudo': [
     'Redenção é o ato de Deus de nos comprar da escravidão do pecado pelo sangue de Cristo.',
-    'A metáfora da redenção vem do mercado de escravos —” fomos comprados com o precioso sangue de Cristo (1 Pedro 1:18-19).',
+    'A metáfora da redenção vem do mercado de escravos — fomos comprados com o precioso sangue de Cristo (1 Pedro 1:18-19).',
     'A redenção inclui: justificação, regeneração, santificação e glorificação.',
-    'O preço pago foi o sangue de Cristo —” valor infinito que satisfez a justiça divina.',
-    'A redenção é completa —” nada pode ser adicionado à obra consumada na cruz.'
+    'O preço pago foi o sangue de Cristo — valor infinito que satisfez a justiça divina.',
+    'A redenção é completa — nada pode ser adicionado à obra consumada na cruz.'
   ],
   'versicosChave': [
     '1 Pedro 1:18-19',
@@ -9334,15 +9334,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'hm-005',
-  'titulo': 'A Justificação —” Declarado Justo',
+  'titulo': 'A Justificação — Declarado Justo',
   'categoria': 'Hamartiologia',
   'subcategoria': 'Justificação',
   'conteudo': [
     'A justificação é o ato judicial de Deus de declarar o pecador justo pela fé em Cristo.',
-    'Ã‰ por fé somente (sola fide) —” não por obras da lei (Romanos 3:28).',
-    'A justificação é imputação —” a justiça de Cristo é creditada ao crente (2 Coríntios 5:21).',
-    'Lutero a chamou de \'a artigo da igreja que se sustenta ou cai\' —” é a doutrina da Reforma.',
-    'A justificação é simultânea à fé —” não é um processo gradual.',
+    'Ã‰ por fé somente (sola fide) — não por obras da lei (Romanos 3:28).',
+    'A justificação é imputação — a justiça de Cristo é creditada ao crente (2 Coríntios 5:21).',
+    'Lutero a chamou de \'a artigo da igreja que se sustenta ou cai\' — é a doutrina da Reforma.',
+    'A justificação é simultânea à fé — não é um processo gradual.',
     'Frutos de justiça são evidências, não requisitos, da justificação.'
   ],
   'versicosChave': [
@@ -9428,7 +9428,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Simbolismo',
   'conteudo': [
     'Apocalipse menciona \'os sete espíritos de Deus\' (Apocalipse 1:4, 4:5, 5:6).',
-    'O número sete representa completude —” o Espírito Santo em Sua plenitude.',
+    'O número sete representa completude — o Espírito Santo em Sua plenitude.',
     'Isaías 11:2 descreve sete manifestações do Espírito sobre o Messias.',
     'Os sete espíritos podem representar as sete faculdades do Espírito: sabedoria, entendimento, conselho, fortaleza, conhecimento, piedade, temor do Senhor.',
     'A vela de sete pavios no candelabro de Apocalipse 4:5 representa o Espírito em plenitude.'
@@ -9511,12 +9511,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'an-006',
-  'titulo': 'Miguel —” O Arcanjo Guerreiro',
+  'titulo': 'Miguel — O Arcanjo Guerreiro',
   'categoria': 'Angelologia',
   'subcategoria': 'Anjos Especiais',
   'conteudo': [
     'Miguel é o único anjo chamado de \'arcanjo\' na Bíblia (Judas 1:9).',
-    'Seu nome significa \'Quem é como Deus?\' —” uma declaração de humildade.',
+    'Seu nome significa \'Quem é como Deus?\' — uma declaração de humildade.',
     'Miguel é retratado como guerreiro que combate Satanás e seus anjos.',
     'Daniel 10-12 mostra Miguel como protetor de Israel.',
     'Apocalipse 12:7 descreve Miguel liderando a batalha contra o dragão.'
@@ -9540,7 +9540,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'an-007',
-  'titulo': 'Gabriel —” O Mensageiro de Deus',
+  'titulo': 'Gabriel — O Mensageiro de Deus',
   'categoria': 'Angelologia',
   'subcategoria': 'Anjos Especiais',
   'conteudo': [
@@ -9548,7 +9548,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     'Seu nome significa \'Deus é meu guerreiro\'.',
     'Gabriel apareceu a Daniel para revelar o plano profético (Daniel 8:16).',
     'Gabriel anunciou o nascimento de João Batista (Lucas 1:19) e de Jesus (Lucas 1:26-38).',
-    'Gabriel é descrito como \'que se apresentou diante de Deus\' —” um anjo de alta posição.'
+    'Gabriel é descrito como \'que se apresentou diante de Deus\' — um anjo de alta posição.'
   ],
   'versicosChave': [
     'Daniel 8:16',
@@ -9569,7 +9569,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'an-008',
-  'titulo': 'Os Querubins —” Guardiões da Glória de Deus',
+  'titulo': 'Os Querubins — Guardiões da Glória de Deus',
   'categoria': 'Angelologia',
   'subcategoria': 'Hierarquia',
   'conteudo': [
@@ -9598,12 +9598,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'an-009',
-  'titulo': 'Serafins —” Adoradores da Santidade de Deus',
+  'titulo': 'Serafins — Adoradores da Santidade de Deus',
   'categoria': 'Angelologia',
   'subcategoria': 'Hierarquia',
   'conteudo': [
     'Os serafins são mencionados apenas em Isaías 6:1-7.',
-    'Seu nome significa \'ardentes\' —” refletem o fogo da santidade divina.',
+    'Seu nome significa \'ardentes\' — refletem o fogo da santidade divina.',
     'Têm seis asas: duas para cobrir o rosto, duas para cobrir os pés, duas para voar.',
     'Cantam \'Santos, santos, santos é o Senhor dos Exércitos; toda a terra está cheia da Sua glória\'.',
     'Um serafim tocou os lábios de Isaías com brasa, purificando-o para o ministério profético.'
@@ -9625,13 +9625,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'an-010',
-  'titulo': 'Os Demônios —” Organização e Atividade',
+  'titulo': 'Os Demônios — Organização e Atividade',
   'categoria': 'Angelologia',
   'subcategoria': 'Demonologia',
   'conteudo': [
     'Os demônios são anjos caídos que servem a Satanás contra o propósito de Deus.',
-    'Eles são organizados em hierarquia (Efésios 6:12 —” principados, potestades).',
-    'Os demônios podem possuir pessoas (Marcos 5:1-20 —” o endemoninhado geraseno).',
+    'Eles são organizados em hierarquia (Efésios 6:12 — principados, potestades).',
+    'Os demônios podem possuir pessoas (Marcos 5:1-20 — o endemoninhado geraseno).',
     'Eles causam doenças, cegueira espiritual e engano doutrinário.',
     'Os demônios tremem diante de Cristo (Marcos 1:23-24) e serão julgados no final.'
   ],
@@ -9654,14 +9654,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'at-006',
-  'titulo': 'A Alma Imortal —” Debate Teológico',
+  'titulo': 'A Alma Imortal — Debate Teológico',
   'categoria': 'Antropologia',
   'subcategoria': 'Natureza',
   'conteudo': [
     'O debate sobre a imortalidade da alma tem raízes gregas e bíblicas.',
-    'Platão ensinava a imortalidade natural da alma —” a alma sobrevive à morte por natureza.',
-    'A Bíblia ensina a imortalidade condicional —” a alma sobrevive pela graça de Deus.',
-    'Os adventistas defendem o condicionalismo —” os mortos dormem até a ressurreição.',
+    'Platão ensinava a imortalidade natural da alma — a alma sobrevive à morte por natureza.',
+    'A Bíblia ensina a imortalidade condicional — a alma sobrevive pela graça de Deus.',
+    'Os adventistas defendem o condicionalismo — os mortos dormem até a ressurreição.',
     'A maioria dos cristãos defende a imortalidade da alma como doutrina bíblica.',
     'A verdade bíblica central é que Deus é o senhor da vida e da morte.'
   ],
@@ -9685,13 +9685,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'at-007',
-  'titulo': 'A Criação do Homem —” Adão e Eva',
+  'titulo': 'A Criação do Homem — Adão e Eva',
   'categoria': 'Antropologia',
   'subcategoria': 'Criação',
   'conteudo': [
     'Adão foi formado do pó da terra e recebeu o sopro de vida (Gênesis 2:7).',
-    'Eva foi criada da costela de Adão —” não da cabeça (para dominá-la) nem dos pés (para pisá-la).',
-    'O casamento foi instituído antes da Queda —” é criação de Deus, não invenção humana.',
+    'Eva foi criada da costela de Adão — não da cabeça (para dominá-la) nem dos pés (para pisá-la).',
+    'O casamento foi instituído antes da Queda — é criação de Deus, não invenção humana.',
     'A igualdade entre homem e mulher se baseia na imagem de Deus em ambos.',
     'A complementaridade dos sexos reflete a riqueza da imagem divina.'
   ],
@@ -9715,16 +9715,16 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'at-008',
-  'titulo': 'A Queda —” Consequências e Cursed',
+  'titulo': 'A Queda — Consequências e Cursed',
   'categoria': 'Antropologia',
   'subcategoria': 'Hamartiologia',
   'conteudo': [
     'A Queda trouxe maldições sobre a serpente, sobre a terra, e sobre a humanidade.',
-    'A maldição sobre a serpente —” rastejar e ter inimizade com a descendência da mulher.',
-    'A maldição sobre a terra —” esforço e suor para produzir alimento.',
-    'A maldição sobre a mulher —” dor na concepção e no parto.',
-    'A maldição sobre o homem —” trabalhar com suor até voltar à terra.',
-    'A promessa da redenção está na \'descendência da mulher\' (Gênesis 3:15) —” proto-evangelho.'
+    'A maldição sobre a serpente — rastejar e ter inimizade com a descendência da mulher.',
+    'A maldição sobre a terra — esforço e suor para produzir alimento.',
+    'A maldição sobre a mulher — dor na concepção e no parto.',
+    'A maldição sobre o homem — trabalhar com suor até voltar à terra.',
+    'A promessa da redenção está na \'descendência da mulher\' (Gênesis 3:15) — proto-evangelho.'
   ],
   'versicosChave': [
     'Gênesis 3:14-19',
@@ -9746,13 +9746,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'at-009',
-  'titulo': 'A Vocação Humana —” Trabalho e Domínio',
+  'titulo': 'A Vocação Humana — Trabalho e Domínio',
   'categoria': 'Antropologia',
   'subcategoria': 'Vocação',
   'conteudo': [
     'Deus deu ao ser humano a vocação de \'cultivar e guardar\' o jardim (Gênesis 2:15).',
-    'O trabalho não é maldição da Queda, mas vocação original —” Deus trabalhou na criação.',
-    'O domínio sobre a criação é delegado, não absoluto —” somos mayordomos, não donos.',
+    'O trabalho não é maldição da Queda, mas vocação original — Deus trabalhou na criação.',
+    'O domínio sobre a criação é delegado, não absoluto — somos mayordomos, não donos.',
     'A vocação humana inclui criatividade, responsabilidade e stewardship.',
     'A dignidade do trabalho se baseia em Deus ser trabalhador.'
   ],
@@ -9776,15 +9776,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-012',
-  'titulo': 'A Dupla Natureza de Cristo —” Deus e Homem',
+  'titulo': 'A Dupla Natureza de Cristo — Deus e Homem',
   'categoria': 'Cristologia',
   'subcategoria': 'Natureza',
   'conteudo': [
-    'Cristo é plenamente Deus e plenamente homem —” o mistério da encarnação.',
+    'Cristo é plenamente Deus e plenamente homem — o mistério da encarnação.',
     'O Concílio de Calcedônia (451 d.C.) definiu: duas naturezas, sem confusão, sem mudança, sem divisão, sem separação.',
-    'Nestório separava as duas naturezas —” foi condenado como heresia.',
-    'Eutiques confundia as naturezas —” monofisismo —” também condenado.',
-    'A união hipostática —” as duas naturezas se unem em uma pessoa divina.',
+    'Nestório separava as duas naturezas — foi condenado como heresia.',
+    'Eutiques confundia as naturezas — monofisismo — também condenado.',
+    'A união hipostática — as duas naturezas se unem em uma pessoa divina.',
     'A compreensão correta da pessoa de Cristo é essencial para a salvação.'
   ],
   'versicosChave': [
@@ -9807,7 +9807,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-013',
-  'titulo': 'A Obra de Cristo —” Profeta, Sacerdote e Rei',
+  'titulo': 'A Obra de Cristo — Profeta, Sacerdote e Rei',
   'categoria': 'Cristologia',
   'subcategoria': 'Ofícios',
   'conteudo': [
@@ -9815,7 +9815,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     'Como profeto, Cristo é o último e supremo revelador de Deus (Hebreus 1:1-2).',
     'Como sacerdote, Cristo ofereceu Si mesmo como sacrifício e intercede por nós (Hebreus 7:23-27).',
     'Como rei, Cristo governa a igreja e o universo com autoridade soberana.',
-    'Os três ofícios são inseparáveis —” um ofício qualifica os outros.'
+    'Os três ofícios são inseparáveis — um ofício qualifica os outros.'
   ],
   'versicosChave': [
     'Deuteronômio 18:15',
@@ -9837,15 +9837,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-014',
-  'titulo': 'A Ressurreição de Cristo —” Realidade Histórica',
+  'titulo': 'A Ressurreição de Cristo — Realidade Histórica',
   'categoria': 'Cristologia',
   'subcategoria': 'Ressurreição',
   'conteudo': [
-    'A ressurreição de Cristo é o fato central da fé cristã —” sem ela, a fé é vã.',
+    'A ressurreição de Cristo é o fato central da fé cristã — sem ela, a fé é vã.',
     'A evidência histórica inclui: túmulo vazio, múltiplas aparições, transformação dos discípulos.',
     'As aparições ressurretas foram a 12 pessoas e grupos ao longo de 40 dias.',
-    'A Igreja primitiva testificou a ressurreição sob risco de morte —” ninguém morre por algo que sabe ser falso.',
-    'A ressurreição é uma obra sobrenatural de Deus —” não é uma metáfora ou experiência subjetiva.'
+    'A Igreja primitiva testificou a ressurreição sob risco de morte — ninguém morre por algo que sabe ser falso.',
+    'A ressurreição é uma obra sobrenatural de Deus — não é uma metáfora ou experiência subjetiva.'
   ],
   'versicosChave': [
     '1 Coríntios 15:3-8',
@@ -9867,13 +9867,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-015',
-  'titulo': 'A Ascensão de Cristo —” Exaltação e Intercessão',
+  'titulo': 'A Ascensão de Cristo — Exaltação e Intercessão',
   'categoria': 'Cristologia',
   'subcategoria': 'Exaltação',
   'conteudo': [
     'A ascensão de Cristo foi Sua exaltação à direita do Pai.',
-    'Atos 1:9-11 descreve a ascensão —” Cristo foi recebido em uma nuvem.',
-    'A ascensão não é desaparecimento —” Cristo continua presente pelo Espírito.',
+    'Atos 1:9-11 descreve a ascensão — Cristo foi recebido em uma nuvem.',
+    'A ascensão não é desaparecimento — Cristo continua presente pelo Espírito.',
     'Cristo ascendeu como Sumo Sacerdote que ofereceu Si mesmo.',
     'A ascensão garante Sua intercessão contínua por nós (Hebreus 7:25).'
   ],
@@ -9896,15 +9896,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-016',
-  'titulo': 'A Segunda Vinda de Cristo —” Parusia',
+  'titulo': 'A Segunda Vinda de Cristo — Parusia',
   'categoria': 'Cristologia',
   'subcategoria': 'Escatologia',
   'conteudo': [
     'Cristo voltará pessoalmente, visivelmente e gloriamente (Atos 1:11).',
-    'A parusia será inesperada —” como um ladrão na noite (1 Tessalonicenses 5:2).',
+    'A parusia será inesperada — como um ladrão na noite (1 Tessalonicenses 5:2).',
     'Haverá sinais antes da volta: guerras, fomes, terremotos, apostasia.',
     'A volta de Cristo trará consumação do reino, ressurreição dos mortos e juízo final.',
-    'Vivemos na era da igreja, entre a primeira e a segunda vinda —” \'já mas ainda não\'.'
+    'Vivemos na era da igreja, entre a primeira e a segunda vinda — \'já mas ainda não\'.'
   ],
   'versicosChave': [
     'Atos 1:11',
@@ -9926,15 +9926,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'so-034',
-  'titulo': 'A Regeneração —” Nova Criatura em Cristo',
+  'titulo': 'A Regeneração — Nova Criatura em Cristo',
   'categoria': 'Soteriologia',
   'subcategoria': 'Ordo Salutis',
   'conteudo': [
     'A regeneração é a obra do Espírito Santo que nos faz nascer de novo.',
-    'Ã‰ um ato divino, não humano —” o homem não pode regenerar a si mesmo.',
-    'A regeneração produz fé e arrependimento —” não é resultado deles.',
-    'Somos \'nova criatura\' —” o velho passou, eis que tudo se fez novo (2 Coríntios 5:17).',
-    'A regeneração é instantaneous e irreversível —” uma vez regenerado, sempre regenerado.'
+    'Ã‰ um ato divino, não humano — o homem não pode regenerar a si mesmo.',
+    'A regeneração produz fé e arrependimento — não é resultado deles.',
+    'Somos \'nova criatura\' — o velho passou, eis que tudo se fez novo (2 Coríntios 5:17).',
+    'A regeneração é instantaneous e irreversível — uma vez regenerado, sempre regenerado.'
   ],
   'versicosChave': [
     'João 3:3-7',
@@ -9955,16 +9955,16 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'so-035',
-  'titulo': 'A Eleição —” Escolhidos pela Graça de Deus',
+  'titulo': 'A Eleição — Escolhidos pela Graça de Deus',
   'categoria': 'Soteriologia',
   'subcategoria': 'Doutrina',
   'conteudo': [
     'A eleição é a escolha soberana de Deus de salvar indivíduos para Si.',
-    'Efésios 1:4 —” \'nos escolheu Nele antes da fundação do mundo\'.',
+    'Efésios 1:4 — \'nos escolheu Nele antes da fundação do mundo\'.',
     'A eleição é baseada na graça, não nos méritos humanos.',
-    'O calvinismo ensina eleição incondicional —” Deus escolhe sem referência à fé prevista.',
-    'O arminianismo ensina eleição condicional —” Deus escolhe baseado na presciência da fé.',
-    'A eleição não anula a responsabilidade humana —” Deus usa meios (pregação, evangelismo).'
+    'O calvinismo ensina eleição incondicional — Deus escolhe sem referência à fé prevista.',
+    'O arminianismo ensina eleição condicional — Deus escolhe baseado na presciência da fé.',
+    'A eleição não anula a responsabilidade humana — Deus usa meios (pregação, evangelismo).'
   ],
   'versicosChave': [
     'Efésios 1:4-5',
@@ -9986,15 +9986,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'so-036',
-  'titulo': 'A Glorificação —” O Destino Final do Crente',
+  'titulo': 'A Glorificação — O Destino Final do Crente',
   'categoria': 'Soteriologia',
   'subcategoria': 'Ordo Salutis',
   'conteudo': [
-    'A glorificação é a consumação final da salvação —” ser feito semelhante a Cristo.',
-    'Romanos 8:30 —” \'aos que justificou, esses também glorificou\'.',
+    'A glorificação é a consumação final da salvação — ser feito semelhante a Cristo.',
+    'Romanos 8:30 — \'aos que justificou, esses também glorificou\'.',
     'A glorificação inclui a ressurreição do corpo e a Transformação total.',
     'Seremos como Cristo porque O viremos como Ele é (1 João 3:2).',
-    'A glorificação é a etapa final do ordo salutis —” aperfeiçoamento completo.'
+    'A glorificação é a etapa final do ordo salutis — aperfeiçoamento completo.'
   ],
   'versicosChave': [
     'Romanos 8:30',
@@ -10015,14 +10015,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'ap-004',
-  'titulo': 'O Argumento do Design —” Teleologia',
+  'titulo': 'O Argumento do Design — Teleologia',
   'categoria': 'Apologetica',
   'subcategoria': 'Argumentos',
   'conteudo': [
     'O argumento teleológico observa a ordem e propósito na criação como evidência de um Designer.',
     'A complexidade irredutível dos sistemas biológicos aponta para design inteligente.',
     'O ajuste fino dos constantes cósmicos (gravidade, força nuclear) sugere um Criador.',
-    'William Paley popularizou o argumento do relojoeiro —” um relógio implica um relojoeiro.',
+    'William Paley popularizou o argumento do relojoeiro — um relógio implica um relojoeiro.',
     'O argumento não prova o Deus bíblico, mas estabelece a existência de um Designer.'
   ],
   'versicosChave': [
@@ -10045,7 +10045,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'ap-005',
-  'titulo': 'A Resurreição —” Evidência Histórica',
+  'titulo': 'A Resurreição — Evidência Histórica',
   'categoria': 'Apologetica',
   'subcategoria': 'Evidência',
   'conteudo': [
@@ -10053,7 +10053,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     'As evidências incluem: túmulo vazio, aparições, mudança dos discípulos, origem da igreja.',
     'O túmulo vazio é atestado por fontes hostis (relato da guarda em Mateus 28:11-15).',
     'As aparições foram a múltiplas pessoas, em diferentes ocasiões, ao longo de 40 dias.',
-    'A transformação dos discípulos —” de covardes a mártires —” é inexplicável sem a ressurreição.',
+    'A transformação dos discípulos — de covardes a mártires — é inexplicável sem a ressurreição.',
     'A origem da igreja no Judaísmo é impossível sem a ressurreição.'
   ],
   'versicosChave': [
@@ -10080,10 +10080,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Princípios',
   'conteudo': [
     'A regra de ouro: interprete sempre pela Escritura mais clara.',
-    'O princípio da analogia da fé —” passagens obscuras devem ser interpretadas pelas claras.',
+    'O princípio da analogia da fé — passagens obscuras devem ser interpretadas pelas claras.',
     'Nenhuma passagem pode ensinar algo que contradiga o ensino bíblico claro.',
     'O contexto imediato (versículo, capítulo) e o remoto (livro, Bíblia) são importantes.',
-    'A interpretação literal é a regra geral —” só se recorre ao sentido figurado quando o contexto exige.'
+    'A interpretação literal é a regra geral — só se recorre ao sentido figurado quando o contexto exige.'
   ],
   'versicosChave': [
     '2 Pedro 1:20-21',
@@ -10105,15 +10105,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'hm-007',
-  'titulo': 'Tipologia Bíblica —” Sombra e Realidade',
+  'titulo': 'Tipologia Bíblica — Sombra e Realidade',
   'categoria': 'Hermenêutica',
   'subcategoria': 'Métodos',
   'conteudo': [
-    'Tipologia é o estudo de tipos —” pessoas, eventos ou instituições do AT que prefiguram realidades no NT.',
-    'Adão é tipo de Cristo (Romanos 5:14) —” a queda de um, a redenção do outro.',
+    'Tipologia é o estudo de tipos — pessoas, eventos ou instituições do AT que prefiguram realidades no NT.',
+    'Adão é tipo de Cristo (Romanos 5:14) — a queda de um, a redenção do outro.',
     'O sacrifício do cordeiro pascal prefigura Cristo, o Cordeiro de Deus.',
     'O tabernáculo e o templo são sombras da realidade celestial.',
-    'A tipologia não é alegoria —” os tipos têm fundamento histórico e se cumprirão literalmente.'
+    'A tipologia não é alegoria — os tipos têm fundamento histórico e se cumprirão literalmente.'
   ],
   'versicosChave': [
     'Romanos 5:14',
@@ -10135,13 +10135,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'et-025',
-  'titulo': 'A Bioética Cristã —” Aborto, Eutanásia e Engenharia Genética',
+  'titulo': 'A Bioética Cristã — Aborto, Eutanásia e Engenharia Genética',
   'categoria': 'Ã‰tica Cristã',
   'subcategoria': 'Contemporâneo',
   'conteudo': [
     'A bioética cristã aplica princípios bíblicos a questões modernas de vida.',
-    'Aborto: a vida humana começa na concepção (Salmo 139:13-16) —” é vida preciosa.',
-    'Eutanásia: a vida é dom de Deus —” nós não somos donos dela.',
+    'Aborto: a vida humana começa na concepção (Salmo 139:13-16) — é vida preciosa.',
+    'Eutanásia: a vida é dom de Deus — nós não somos donos dela.',
     'Engenharia genética: manipular a criação de Deus levanta questões éticas profundas.',
     'Células-tronco: a dignidade humana deve ser respeitada em qualquer pesquisa.',
     'A base ética é a imagem de Deus em todo ser humano.'
@@ -10165,15 +10165,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'et-026',
-  'titulo': 'A Ã‰tica do Trabalho —” Honestidade e Excelência',
+  'titulo': 'A Ã‰tica do Trabalho — Honestidade e Excelência',
   'categoria': 'Ã‰tica Cristã',
   'subcategoria': 'Prática',
   'conteudo': [
-    'O trabalho é vocação divina —” feito para a glória de Deus (1 Coríntios 10:31).',
-    'A honestidade no trabalho é mandamento —” \'não furtarás\' inclui roubar tempo.',
-    'A excelência no trabalho é testemunho —” \'tudo quanto fizerdes, fazei de coração\' (Colossenses 3:23).',
-    'A ganância é idolatria —” o dinheiro não pode ser o alvo da vida.',
-    'O descanso semanal é mandamento —” Deus descansou e nos ordena fazer o mesmo.'
+    'O trabalho é vocação divina — feito para a glória de Deus (1 Coríntios 10:31).',
+    'A honestidade no trabalho é mandamento — \'não furtarás\' inclui roubar tempo.',
+    'A excelência no trabalho é testemunho — \'tudo quanto fizerdes, fazei de coração\' (Colossenses 3:23).',
+    'A ganância é idolatria — o dinheiro não pode ser o alvo da vida.',
+    'O descanso semanal é mandamento — Deus descansou e nos ordena fazer o mesmo.'
   ],
   'versicosChave': [
     '1 Coríntios 10:31',
@@ -10194,14 +10194,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'mi-017',
-  'titulo': 'A Grande Comissão —” Mandato Missionário',
+  'titulo': 'A Grande Comissão — Mandato Missionário',
   'categoria': 'Missiologia',
   'subcategoria': 'Fundamento',
   'conteudo': [
-    'Mateus 28:18-20 é a Grande Comissão —” o mandato de Cristo para a Igreja.',
+    'Mateus 28:18-20 é a Grande Comissão — o mandato de Cristo para a Igreja.',
     'A autoridade de Cristo é a base: \'Toda autoridade me é dada\'.',
-    'O alvo é universal: \'todas as nações\' —” sem exceção.',
-    'O método é relacional: \'fazendo discípulos\' —” não apenas convertidos.',
+    'O alvo é universal: \'todas as nações\' — sem exceção.',
+    'O método é relacional: \'fazendo discípulos\' — não apenas convertidos.',
     'A-promessa é presence: \'estarei convosco todos os dias\'.',
     'A obediência à Grande Comissão é teste de amor a Cristo.'
   ],
@@ -10224,15 +10224,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'mi-018',
-  'titulo': 'A Urgência da Salvação —” Evangelismo',
+  'titulo': 'A Urgência da Salvação — Evangelismo',
   'categoria': 'Missiologia',
   'subcategoria': 'Prática',
   'conteudo': [
     'O evangelismo é urgente porque as almas estão perdidas sem Cristo.',
-    'Romanos 10:14-15 —” \'como crerão naquele em quem não creram? Como crerão naquele de quem não ouviram?\'',
+    'Romanos 10:14-15 — \'como crerão naquele em quem não creram? Como crerão naquele de quem não ouviram?\'',
     'A mensagem é simples: arrependimento e fé em Cristo.',
     'O método deve ser contextualizado sem comprometer a verdade.',
-    'O fruto do evangelismo é a glória de Deus —” não números.'
+    'O fruto do evangelismo é a glória de Deus — não números.'
   ],
   'versicosChave': [
     'Romanos 10:14-15',
@@ -10259,10 +10259,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Cultura Digital',
   'conteudo': [
     'As redes sociais são ferramentas que podem ser usadas para o evangelho.',
-    'O perigo da \'fé de Instagram\' —” superficialidade e aparência.',
+    'O perigo da \'fé de Instagram\' — superficialidade e aparência.',
     'A comunidade online pode complementar, mas não substituir a igreja local.',
-    'O cuidado com a língua nas redes —” \'nenhuma palavra corrupta saia da boca\'.',
-    'A internet como campo missionário —” oportunidades para proclamar Cristo.'
+    'O cuidado com a língua nas redes — \'nenhuma palavra corrupta saia da boca\'.',
+    'A internet como campo missionário — oportunidades para proclamar Cristo.'
   ],
   'versicosChave': [
     'Efésios 4:29',
@@ -10283,16 +10283,16 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cc-062',
-  'titulo': 'Cristianismo e Ciência —” Harmonia ou Conflito?',
+  'titulo': 'Cristianismo e Ciência — Harmonia ou Conflito?',
   'categoria': 'Questões Contemporâneas',
   'subcategoria': 'Fé e Ciência',
   'conteudo': [
-    'A relação entre fé e ciência é complexa —” há conflito, independência e integração.',
-    'O conflito (Dawkins, Hitchens) —” ciência explica tudo, Deus é desnecessário.',
-    'A independência (Gould) —” ciência e fé respondem a perguntas diferentes.',
-    'A integração (Polkinghorne) —” ciência e fé se complementam na busca da verdade.',
-    'A Bíblia não é livro de ciência —” é revelação de Deus sobre como ter relação com Ele.',
-    'A criação testifica a Deus —” \'os céus declaram a glória de Deus\' (Salmo 19:1).'
+    'A relação entre fé e ciência é complexa — há conflito, independência e integração.',
+    'O conflito (Dawkins, Hitchens) — ciência explica tudo, Deus é desnecessário.',
+    'A independência (Gould) — ciência e fé respondem a perguntas diferentes.',
+    'A integração (Polkinghorne) — ciência e fé se complementam na busca da verdade.',
+    'A Bíblia não é livro de ciência — é revelação de Deus sobre como ter relação com Ele.',
+    'A criação testifica a Deus — \'os céus declaram a glória de Deus\' (Salmo 19:1).'
   ],
   'versicosChave': [
     'Salmo 19:1',
@@ -10314,16 +10314,16 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'ty-013',
-  'titulo': 'O Tabernáculo —” Tipo de Cristo',
+  'titulo': 'O Tabernáculo — Tipo de Cristo',
   'categoria': 'Tipologia',
   'subcategoria': 'AT',
   'conteudo': [
     'O tabernáculo é um dos mais ricos tipos de Cristo no AT.',
-    'A porta do tabernáculo —” \'Eu sou a porta\' (João 10:7).',
-    'O altar do Holocausto —” Cristo é o sacrifício perfeito.',
-    'A mesa dos pães da proposição —” Cristo é o pão da vida.',
-    'O candelabro —” Cristo é a luz do mundo.',
-    'O propiciatório —” Cristo é nossa propiciação.'
+    'A porta do tabernáculo — \'Eu sou a porta\' (João 10:7).',
+    'O altar do Holocausto — Cristo é o sacrifício perfeito.',
+    'A mesa dos pães da proposição — Cristo é o pão da vida.',
+    'O candelabro — Cristo é a luz do mundo.',
+    'O propiciatório — Cristo é nossa propiciação.'
   ],
   'versicosChave': [
     'ÃŠxodo 25-27',
@@ -10344,16 +10344,16 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'ty-014',
-  'titulo': 'José —” Tipo de Cristo',
+  'titulo': 'José — Tipo de Cristo',
   'categoria': 'Tipologia',
   'subcategoria': 'AT',
   'conteudo': [
     'José é um dos tipos mais completos de Cristo no AT.',
-    'Amado pelo pai, odiado pelos irmãos —” Cristo rejeitado por Israel.',
-    'Vendido por 20 peças de prata —” Judas traiu Cristo por 30.',
-    'Desceu ao Egito (morte) e ressurgiu à glória —” ressurreição.',
-    'Proveu alimento para os irmãos —” Cristo é o pão da vida.',
-    'No final, os irmãos se prostraram —” todo joelho se dobrará.'
+    'Amado pelo pai, odiado pelos irmãos — Cristo rejeitado por Israel.',
+    'Vendido por 20 peças de prata — Judas traiu Cristo por 30.',
+    'Desceu ao Egito (morte) e ressurgiu à glória — ressurreição.',
+    'Proveu alimento para os irmãos — Cristo é o pão da vida.',
+    'No final, os irmãos se prostraram — todo joelho se dobrará.'
   ],
   'versicosChave': [
     'Gênesis 37-50',
@@ -10373,16 +10373,16 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'lp-011',
-  'titulo': 'Jó —” O Problema do Sofrimento',
+  'titulo': 'Jó — O Problema do Sofrimento',
   'categoria': 'Livros Poéticos',
   'subcategoria': 'Jó',
   'conteudo': [
     'Jó é a resposta bíblica ao problema do sofrimento do inocente.',
-    'Jó não sofreu por causa de pecado —” Deus o testemunhou como justo.',
-    'Os conselheiros de Jó ofereceram teologia retributiva —” sofrimento = pecado.',
-    'Deus respondeu do redemoinho —” não explicou o sofrimento, mas revelou Sua soberania.',
+    'Jó não sofreu por causa de pecado — Deus o testemunhou como justo.',
+    'Os conselheiros de Jó ofereceram teologia retributiva — sofrimento = pecado.',
+    'Deus respondeu do redemoinho — não explicou o sofrimento, mas revelou Sua soberania.',
     'A lição final: Deus é soberano, e nós somos limitados para compreender Seus caminhos.',
-    'Jó é tipo de Cristo —” sofreu injustamente e foi restaurado.'
+    'Jó é tipo de Cristo — sofreu injustamente e foi restaurado.'
   ],
   'versicosChave': [
     'Jó 1:1',
@@ -10409,9 +10409,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Natureza',
   'conteudo': [
     'A inerrância bíblica afirma que as Escrituras são verdadeiras em tudo o que afirmam.',
-    'A Bíblia é infalível em tudo o que ensina —” não pode errar em doutrina, história ou ciência.',
-    'A inerrância se baseia na natureza de Deus —” Ele não pode mentir (Hebreus 6:18).',
-    'A Bíblia é a palavra de Deus, mas foi escrita por homens —” inspiração divina e humanidade simultâneas.',
+    'A Bíblia é infalível em tudo o que ensina — não pode errar em doutrina, história ou ciência.',
+    'A inerrância se baseia na natureza de Deus — Ele não pode mentir (Hebreus 6:18).',
+    'A Bíblia é a palavra de Deus, mas foi escrita por homens — inspiração divina e humanidade simultâneas.',
     'A inerrância não significa que a Bíblia seja um livro de ciência ou história completa.'
   ],
   'versicosChave': [
@@ -10438,7 +10438,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Canon',
   'conteudo': [
     'O cânon bíblico é a lista dos livros reconhecidos como inspirados por Deus.',
-    'O AT foi reconhecido gradualmente —” a maioria dos livros era aceita no século I.',
+    'O AT foi reconhecido gradualmente — a maioria dos livros era aceita no século I.',
     'O NT foi reconhecido por critérios: apostolicidade, ortodoxia, uso litúrgico.',
     'O Concílio de Hipona (393 d.C.) confirmou o cânon do NT.',
     'O Espírito Santo guiou a Igreja no reconhecimento dos livros canônicos.'
@@ -10461,14 +10461,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'bi-008',
-  'titulo': 'A Tradução Bíblica —” Princípios e Desafios',
+  'titulo': 'A Tradução Bíblica — Princípios e Desafios',
   'categoria': 'Bibliologia',
   'subcategoria': 'Tradução',
   'conteudo': [
     'A tradução bíblica é essencial para que todos os povos ouçam a Palavra.',
     'Existem duas filosofias: formalismo (sentença a sentença) e dinamicismo (pensão a pensão).',
     'A KJV é formal; a NVI é mais dinâmica. Ambas têm valor.',
-    'Nenhuma tradução é perfeita —” todas são approximations da verdade original.',
+    'Nenhuma tradução é perfeita — todas são approximations da verdade original.',
     'A tradução deve respeitar: fidelidade ao original, compreensibilidade no idioma, estilo natural.'
   ],
   'versicosChave': [
@@ -10494,8 +10494,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Interpretação',
   'conteudo': [
     'O Espírito Santo ilumina a mente do crente para compreender as Escrituras.',
-    'A iluminação não substitui o estudo —” capacita o estudo.',
-    '1 Coríntios 2:10-14 —” \'o homem natural não compreende as coisas do Espírito\'.',
+    'A iluminação não substitui o estudo — capacita o estudo.',
+    '1 Coríntios 2:10-14 — \'o homem natural não compreende as coisas do Espírito\'.',
     'A iluminação é necessária porque oäººå¿ƒ pecador é hostil à verdade divina.',
     'O estudo bíblico deve ser feito com oração, dependência do Espírito e humildade.'
   ],
@@ -10517,15 +10517,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'bi-010',
-  'titulo': 'A Autoridade da Bíblia —” Sola Scriptura',
+  'titulo': 'A Autoridade da Bíblia — Sola Scriptura',
   'categoria': 'Bibliologia',
   'subcategoria': 'Autoridade',
   'conteudo': [
     'Sola Scriptura é o princípio reformado de que a Bíblia é a autoridade suprema.',
-    'A Bíblia é a norma normans non normata —” a norma que normatiza e não é normatizada.',
+    'A Bíblia é a norma normans non normata — a norma que normatiza e não é normatizada.',
     'A tradição tem valor, mas está sujeita à Escritura.',
     'O magistério da Igreja é útil, mas não infalível.',
-    'A autoridade da Bíblia é auto-testemunhada —” ela claims ser Palavra de Deus.'
+    'A autoridade da Bíblia é auto-testemunhada — ela claims ser Palavra de Deus.'
   ],
   'versicosChave': [
     '2 Timóteo 3:16-17',
@@ -10550,7 +10550,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'categoria': 'Bibliologia',
   'subcategoria': 'Natureza',
   'conteudo': [
-    'A Palavra de Deus é viva e eficaz —” mais afiada que espada de dois gumes.',
+    'A Palavra de Deus é viva e eficaz — mais afiada que espada de dois gumes.',
     'As Escrituras não podem ser quebradas (João 10:35).',
     'A Palavra de Deus dura para sempre (Isaías 40:8).',
     'O céu e a terra passarão, mas as palavras de Jesus não passarão.',
@@ -10575,15 +10575,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'so-037',
-  'titulo': 'A Propiciação —” A Ira de Deus Satisfeita',
+  'titulo': 'A Propiciação — A Ira de Deus Satisfeita',
   'categoria': 'Soteriologia',
   'subcategoria': 'Expiação',
   'conteudo': [
     'A propiciação é a satisfação da ira de Deus pelo sacrifício de Cristo.',
-    'Romanos 3:25 —” Deus propiciou a Si mesmo através de Cristo.',
-    'A propiciação não é Deus sendo satisfeito —” é Deus satisfez Sua própria justiça.',
-    'O termo \'propiciação\' é controverso —” alguns preferem \'expição\'.',
-    'A propiciação é particular —” Cristo morreu por Seu povo.'
+    'Romanos 3:25 — Deus propiciou a Si mesmo através de Cristo.',
+    'A propiciação não é Deus sendo satisfeito — é Deus satisfez Sua própria justiça.',
+    'O termo \'propiciação\' é controverso — alguns preferem \'expição\'.',
+    'A propiciação é particular — Cristo morreu por Seu povo.'
   ],
   'versicosChave': [
     'Romanos 3:25',
@@ -10604,15 +10604,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'so-038',
-  'titulo': 'A Adoção —” Filhos de Deus',
+  'titulo': 'A Adoção — Filhos de Deus',
   'categoria': 'Soteriologia',
   'subcategoria': 'Benefícios',
   'conteudo': [
     'A adoção é o ato de Deus de nos tornar Seus filhos.',
-    'Gálatas 4:4-7 —” \'enviou Deus o Seu Filho... para que recibamos a adoção de filhos\'.',
-    'A adoção é por graça —” não por mérito.',
+    'Gálatas 4:4-7 — \'enviou Deus o Seu Filho... para que recibamos a adoção de filhos\'.',
+    'A adoção é por graça — não por mérito.',
     'Como filhos, temos: acesso a Deus, herança eterna, assistência do Espírito.',
-    'A adoção é consumada na ressurreição —” \'sabemos que seremos como Ele\' (1 João 3:2).'
+    'A adoção é consumada na ressurreição — \'sabemos que seremos como Ele\' (1 João 3:2).'
   ],
   'versicosChave': [
     'Gálatas 4:4-7',
@@ -10638,10 +10638,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Doutrina',
   'conteudo': [
     'A perseverança dos santos é a doutrina de que os verdadeiros crentes perseverarão até o fim.',
-    'João 10:28-29 —” \'ninguém os arrebata da Minha mão\'.',
+    'João 10:28-29 — \'ninguém os arrebata da Minha mão\'.',
     'A perseverança não é dependente do poder humano, mas da fidelidade de Deus.',
     'Os eleitos podem cair temporariamente, mas serão restaurados.',
-    'A perseverança é certeza —” não é presunção.'
+    'A perseverança é certeza — não é presunção.'
   ],
   'versicosChave': [
     'João 10:28-29',
@@ -10667,10 +10667,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Ordo Salutis',
   'conteudo': [
     'A vocação eficaz é o chamado de Deus que traz o pecador à fé.',
-    'Romanos 8:30 —” \'aos que chamou, esses também justificou\'.',
+    'Romanos 8:30 — \'aos que chamou, esses também justificou\'.',
     'A vocação é externa (pregação) e interna (operação do Espírito).',
-    'A vocação eficaz é irresistible —” Deus muda o coração para crer.',
-    'A vocação é o elo entre a eleição e a fé —” Deus efetivamente chama os eleitos.'
+    'A vocação eficaz é irresistible — Deus muda o coração para crer.',
+    'A vocação é o elo entre a eleição e a fé — Deus efetivamente chama os eleitos.'
   ],
   'versicosChave': [
     'Romanos 8:30',
@@ -10690,14 +10690,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'so-041',
-  'titulo': 'A Satisfação Vicária —” Anselmo',
+  'titulo': 'A Satisfação Vicária — Anselmo',
   'categoria': 'Soteriologia',
   'subcategoria': 'Expiação',
   'conteudo': [
     'A teoria da satisfação vicária (Anselmo) é a mais influente na teologia cristã.',
-    'A honra de Deus foi ofendida pelo pecado —” exige satisfação.',
+    'A honra de Deus foi ofendida pelo pecado — exige satisfação.',
     'Cristo, como Deus-homem, ofereceu satisfação perfeita e infinita.',
-    'A satisfação não é um comercial —” é um ato de amor e justiça.',
+    'A satisfação não é um comercial — é um ato de amor e justiça.',
     'Calvino aperfeiçoou a teoria: Cristo morreu como substituto e propiciação.'
   ],
   'versicosChave': [
@@ -10718,14 +10718,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-017',
-  'titulo': 'A Encarnação de Cristo —” Deus se faz Homem',
+  'titulo': 'A Encarnação de Cristo — Deus se faz Homem',
   'categoria': 'Cristologia',
   'subcategoria': 'Encarnação',
   'conteudo': [
-    'A encarnação é o mistério central da fé —” o Verbo se fez carne (João 1:14).',
-    'Cristo nasceu de mulher (Gálatas 4:4) —” verdadeiramente humano.',
-    'Cristo nasceu de virgem —” miraculamente, sem pai humano.',
-    'A encarnação não é Deus habitando um corpo —” é Deus se tornando humano.',
+    'A encarnação é o mistério central da fé — o Verbo se fez carne (João 1:14).',
+    'Cristo nasceu de mulher (Gálatas 4:4) — verdadeiramente humano.',
+    'Cristo nasceu de virgem — miraculamente, sem pai humano.',
+    'A encarnação não é Deus habitando um corpo — é Deus se tornando humano.',
     'Cristo é uma pessoa com duas naturezas: divina e humana.'
   ],
   'versicosChave': [
@@ -10747,14 +10747,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-018',
-  'titulo': 'A Tentação de Cristo —” Sem Pecado',
+  'titulo': 'A Tentação de Cristo — Sem Pecado',
   'categoria': 'Cristologia',
   'subcategoria': 'Vida',
   'conteudo': [
     'Cristo foi tentado em todas as coisas, como nós, porém sem pecado (Hebreus 4:15).',
     'A tentação no deserto (Mateus 4:1-11) mostra Cristo como o novo Adão.',
-    'Cristo resistiu pela Palavra de Deus —” \'está escrito\'.',
-    'Cristo não podia pecar —” Sua natureza divina era impecável.',
+    'Cristo resistiu pela Palavra de Deus — \'está escrito\'.',
+    'Cristo não podia pecar — Sua natureza divina era impecável.',
     'A tentação de Cristo qualifica Ele para ser nosso Sumo Sacerdote misericordioso.'
   ],
   'versicosChave': [
@@ -10775,7 +10775,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-019',
-  'titulo': 'A Autoridade de Cristo —” Senhor de Tudo',
+  'titulo': 'A Autoridade de Cristo — Senhor de Tudo',
   'categoria': 'Cristologia',
   'subcategoria': 'Soberania',
   'conteudo': [
@@ -10804,15 +10804,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'es-024',
-  'titulo': 'O Milênio —” Amilenarismo, Premilenarismo e Pós-milenarismo',
+  'titulo': 'O Milênio — Amilenarismo, Premilenarismo e Pós-milenarismo',
   'categoria': 'Escatologia',
   'subcategoria': 'Debate',
   'conteudo': [
     'O milênio (Apocalipse 20:1-6) é o período de 1000 anos mencionado na Bíblia.',
-    'O amilenarismo ensina que o milênio é simbólico —” a era atual da igreja.',
+    'O amilenarismo ensina que o milênio é simbólico — a era atual da igreja.',
     'O premilenarismo ensina que Cristo voltará antes do milênio literal.',
     'O pós-milenarismo ensina que a igreja trará o milênio antes da volta de Cristo.',
-    'A maioria dos reformados é amilenarista —” Calvino, Warfield, Hoekema.'
+    'A maioria dos reformados é amilenarista — Calvino, Warfield, Hoekema.'
   ],
   'versicosChave': [
     'Apocalipse 20:1-6',
@@ -10838,8 +10838,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Eventos',
   'conteudo': [
     'O juízo final é o tribunal de Cristo onde todos prestarão contas.',
-    'Mateus 25:31-46 —” separação das ovelhas e dos bodes.',
-    'Apocalipse 20:11-15 —” o Livro da Vida e o Livro das Obras.',
+    'Mateus 25:31-46 — separação das ovelhas e dos bodes.',
+    'Apocalipse 20:11-15 — o Livro da Vida e o Livro das Obras.',
     'O juízo dos crentes não é para salvação (já salvo), mas para recompensa.',
     'O juízo dos incrédulos é condenação eterna.'
   ],
@@ -10866,7 +10866,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'categoria': 'Hermenêutica',
   'subcategoria': 'Métodos',
   'conteudo': [
-    'As parábolas são histórias com um ponto principal —” não são alegorias detalhadas.',
+    'As parábolas são histórias com um ponto principal — não são alegorias detalhadas.',
     'A regra de ouro: encontre o ponto principal do narrador.',
     'Cada parábola tem um contexto que determina seu significado.',
     'As parábolas foram feitas para revelar verdade aos que tinham ouvidos.',
@@ -10894,7 +10894,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'categoria': 'Hermenêutica',
   'subcategoria': 'Princípios',
   'conteudo': [
-    'A Bíblia foi escrita em contextos específicos —” precisamos entender esses contextos.',
+    'A Bíblia foi escrita em contextos específicos — precisamos entender esses contextos.',
     'A cultura do Antigo Oriente Próximo ajuda a entender o AT.',
     'O judaísmo do segundo templo é essencial para entender o NT.',
     'A língua original (hebraico, aramaico, grego) é fundamental.',
@@ -10917,12 +10917,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'et-027',
-  'titulo': 'A Ã‰tica Sexual —” Pureza e Castidade',
+  'titulo': 'A Ã‰tica Sexual — Pureza e Castidade',
   'categoria': 'Ã‰tica Cristã',
   'subcategoria': 'Moral',
   'conteudo': [
     'A sexualidade é dom de Deus, destinada ao casamento.',
-    'A imoralidade sexual é pecado —” \'fugi da imoralidade sexual\' (1 Coríntios 6:18).',
+    'A imoralidade sexual é pecado — \'fugi da imoralidade sexual\' (1 Coríntios 6:18).',
     'A castidade não é repressão, mas expressão ordenada do desejo.',
     'O adultério, a pornografia e a homossexualidade prática são contrários à Bíblia.',
     'A graça de Deus capacita a santificação sexual.'
@@ -10946,15 +10946,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'et-028',
-  'titulo': 'A Ã‰tica Econômica —” Justiça e Generosidade',
+  'titulo': 'A Ã‰tica Econômica — Justiça e Generosidade',
   'categoria': 'Ã‰tica Cristã',
   'subcategoria': 'Social',
   'conteudo': [
     'A Bíblia condena a avareza e a exploração.',
     'A décima parte e a oferta são princípios de generosidade.',
     'O dízimo não é lei para o NT, mas o princípio de dar com alegria.',
-    'A justiça social é mandamento —” \'pratica a justiça, ama a misericórdia\'.',
-    'O cristão é mordomo, não dono —” tudo pertence a Deus.'
+    'A justiça social é mandamento — \'pratica a justiça, ama a misericórdia\'.',
+    'O cristão é mordomo, não dono — tudo pertence a Deus.'
   ],
   'versicosChave': [
     'Miquéias 6:8',
@@ -10975,15 +10975,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'et-029',
-  'titulo': 'A Ã‰tica da Verdade —” Honestidade e Integridade',
+  'titulo': 'A Ã‰tica da Verdade — Honestidade e Integridade',
   'categoria': 'Ã‰tica Cristã',
   'subcategoria': 'Moral',
   'conteudo': [
-    'Deus é verdadeiro —” não pode mentir (Hebreus 6:18).',
-    'A mentira é pecado —” Satanás é o pai da mentira (João 8:44).',
-    'A honestidade é virtude cristã —” \'não mintam uns aos outros\' (Colossenses 3:9).',
+    'Deus é verdadeiro — não pode mentir (Hebreus 6:18).',
+    'A mentira é pecado — Satanás é o pai da mentira (João 8:44).',
+    'A honestidade é virtude cristã — \'não mintam uns aos outros\' (Colossenses 3:9).',
     'A verdade deve ser dita com amor (Efésios 4:15).',
-    'A integridade é testemunho —” o cristão deve ser confiável.'
+    'A integridade é testemunho — o cristão deve ser confiável.'
   ],
   'versicosChave': [
     'Hebreus 6:18',
@@ -11009,10 +11009,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Estratégia',
   'conteudo': [
     'Paulo tinha uma estratégia clara: ir às cidades, pregar, estabelecer igrejas, seguir adiante.',
-    'Ele focava nas cidades estratégicas —” Jerusalém, Antioquia, Ã‰feso, Corinto, Roma.',
+    'Ele focava nas cidades estratégicas — Jerusalém, Antioquia, Ã‰feso, Corinto, Roma.',
     'O método incluía: sinagoga, praça, casa, escola.',
-    'Paulo usava o que já existia —” estradas romanas, língua grega, sinagogas.',
-    'Ele delegava liderança —” nunca ficava como líder permanente.'
+    'Paulo usava o que já existia — estradas romanas, língua grega, sinagogas.',
+    'Ele delegava liderança — nunca ficava como líder permanente.'
   ],
   'versicosChave': [
     'Atos 13-28',
@@ -11038,9 +11038,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'conteudo': [
     'A contextualização é adaptar a apresentação do evangelho sem alterar o conteúdo.',
     'Paulo se tornou \'judeu entre os judeus\' para ganhar judeus (1 Coríntios 9:20-22).',
-    'A contextualização não é sincretismo —” é tradução cultural.',
+    'A contextualização não é sincretismo — é tradução cultural.',
     'O perigo é contextualizar tanto que o evangelho se perde.',
-    'A contextualização é necessária —” o evangelho precisa ser compreendido em cada cultura.'
+    'A contextualização é necessária — o evangelho precisa ser compreendido em cada cultura.'
   ],
   'versicosChave': [
     '1 Coríntios 9:19-23',
@@ -11065,9 +11065,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Sociedade',
   'conteudo': [
     'A relação entre cristianismo e política é complexa e controversa.',
-    'Jesus não veio para ser rei político —” \'meu reino não é deste mundo\'.',
-    'A Igreja deve ser profética —” denunciar injustiças e proclamar a verdade.',
-    'O perigo do nacionalismo religioso —” confundir nação com reino de Deus.',
+    'Jesus não veio para ser rei político — \'meu reino não é deste mundo\'.',
+    'A Igreja deve ser profética — denunciar injustiças e proclamar a verdade.',
+    'O perigo do nacionalismo religioso — confundir nação com reino de Deus.',
     'A política pode ser meio de serviço, mas não de idolatria.'
   ],
   'versicosChave': [
@@ -11095,8 +11095,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'conteudo': [
     'A Bíblia tem muito a dizer sobre pobreza e justiça.',
     '\'Os pobres vocês sempre terão convosco\' (Mateus 26:11).',
-    'Deus é defensor dos pobres —” \'o Senhor é o seu refúgio\'.',
-    'A Igreja deve ajudar os pobres —” não apenas com palavras, mas com ações.',
+    'Deus é defensor dos pobres — \'o Senhor é o seu refúgio\'.',
+    'A Igreja deve ajudar os pobres — não apenas com palavras, mas com ações.',
     'O perigo é transformar evangelismo em apenas assistencialismo.'
   ],
   'versicosChave': [
@@ -11123,10 +11123,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Eclesiologia',
   'conteudo': [
     'O Espírito Santo é o autor da unidade na Igreja.',
-    'Efésios 4:3 —” \'esforçando-vos por preservar a unidade do Espírito\'.',
-    'A unidade não é uniformidade —” é diversidade na harmonia.',
+    'Efésios 4:3 — \'esforçando-vos por preservar a unidade do Espírito\'.',
+    'A unidade não é uniformidade — é diversidade na harmonia.',
     'O Espírito distribui dons diferentes para um mesmo corpo.',
-    'A unidade é um testemunho ao mundo —” \'para que o mundo creia\' (João 17:21).'
+    'A unidade é um testemunho ao mundo — \'para que o mundo creia\' (João 17:21).'
   ],
   'versicosChave': [
     'Efésios 4:3-6',
@@ -11153,7 +11153,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     'Os anjos adoram continuamente a Deus no céu.',
     'Os serafins cantam \'Santos, santos, santos\' (Isaías 6:3).',
     'Os 24 anciãos se prostram diante do trono (Apocalipse 4:10).',
-    'A adoração angélica é dirigida a Deus —” não aos anjos.',
+    'A adoração angélica é dirigida a Deus — não aos anjos.',
     'A Igreja se une à adoração angélica na worship.'
   ],
   'versicosChave': [
@@ -11174,7 +11174,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'ty-015',
-  'titulo': 'O Ã‰xodo —” Tipo de Salvação',
+  'titulo': 'O Ã‰xodo — Tipo de Salvação',
   'categoria': 'Tipologia',
   'subcategoria': 'AT',
   'conteudo': [
@@ -11232,14 +11232,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'lp-012',
-  'titulo': 'Salmos —” O Livro de Orações da Igreja',
+  'titulo': 'Salmos — O Livro de Orações da Igreja',
   'categoria': 'Livros Poéticos',
   'subcategoria': 'Salmos',
   'conteudo': [
-    'Os Salmos são o hymnbook da Igreja —” mais de 50% do AT em poesia.',
+    'Os Salmos são o hymnbook da Igreja — mais de 50% do AT em poesia.',
     'Cada salmo tem um contexto, autor e propósito específicos.',
     'Os salmos cobrem todas as emoções humanas: louvor, lamento, gratidão, súplica.',
-    'Jesus citou os salmos frequentemente —” especialmente o Salmo 22 na cruz.',
+    'Jesus citou os salmos frequentemente — especialmente o Salmo 22 na cruz.',
     'Os salmos são modelo de oração para a Igreja.'
   ],
   'versicosChave': [
@@ -11261,13 +11261,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'lp-013',
-  'titulo': 'Provérbios —” Sabedoria Prática',
+  'titulo': 'Provérbios — Sabedoria Prática',
   'categoria': 'Livros Poéticos',
   'subcategoria': 'Provérbios',
   'conteudo': [
     'Provérbios é o livro de sabedoria prática para a vida diária.',
     'O temor do Senhor é o princípio da sabedoria (Provérbios 1:7).',
-    'Os provérbios não são promessas absolutas —” são generalizações.',
+    'Os provérbios não são promessas absolutas — são generalizações.',
     'O tema do pecado vs. sabedoria percorre todo o livro.',
     'Provérbios é especialmente relevante para jovens em formação.'
   ],
@@ -11290,15 +11290,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'ev-026',
-  'titulo': 'João 3:16 —” O Versículo Mais Conhecido',
+  'titulo': 'João 3:16 — O Versículo Mais Conhecido',
   'categoria': 'Evangelhos',
   'subcategoria': 'João',
   'conteudo': [
     'João 3:16 é o versículo mais conhecido e memorizado da Bíblia.',
     'Resume todo o evangelho: amor, dá, Filho, crer, não pereça, vida eterna.',
     'O contexto é a conversa de Jesus com Nicodemos.',
-    '\'Tanto amou Deus o mundo\' —” o mundo é o objeto do amor divino.',
-    '\'Deu o seu Filho unigênito\' —” o custo da salvação.'
+    '\'Tanto amou Deus o mundo\' — o mundo é o objeto do amor divino.',
+    '\'Deu o seu Filho unigênito\' — o custo da salvação.'
   ],
   'versicosChave': [
     'João 3:16',
@@ -11318,15 +11318,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'ev-027',
-  'titulo': 'Mateus 28:19-20 —” A Grande Comissão',
+  'titulo': 'Mateus 28:19-20 — A Grande Comissão',
   'categoria': 'Evangelhos',
   'subcategoria': 'Mateus',
   'conteudo': [
-    'Mateus 28:19-20 é a Grande Comissão —” o mandato da Igreja.',
-    'A autoridade de Cristo é a base —” \'Toda autoridade me é dada\'.',
-    'O alvo é universal —” \'todas as nações\'.',
-    'O método é disciple-making —” \'fazendo discípulos\'.',
-    'A-promessa é presence —” \'estarei convosco todos os dias\'.'
+    'Mateus 28:19-20 é a Grande Comissão — o mandato da Igreja.',
+    'A autoridade de Cristo é a base — \'Toda autoridade me é dada\'.',
+    'O alvo é universal — \'todas as nações\'.',
+    'O método é disciple-making — \'fazendo discípulos\'.',
+    'A-promessa é presence — \'estarei convosco todos os dias\'.'
   ],
   'versicosChave': [
     'Mateus 28:18-20',
@@ -11351,10 +11351,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Natureza',
   'conteudo': [
     'Cristo é perfeito em todas as Sua qualidades: sabedoria, poder, amor, justiça.',
-    'Ele não pecou —” é o Cordeiro imaculado.',
-    'Sua perfeição é a base da nossa salvação —” somente um perfeito pode satisfazer a justiça.',
+    'Ele não pecou — é o Cordeiro imaculado.',
+    'Sua perfeição é a base da nossa salvação — somente um perfeito pode satisfazer a justiça.',
     'Cristo é perfeito como profeto, sacerdote e rei.',
-    'A perfeição de Cristo é eterna —” não diminui nem aumenta.'
+    'A perfeição de Cristo é eterna — não diminui nem aumenta.'
   ],
   'versicosChave': [
     'Hebreus 4:15',
@@ -11380,10 +11380,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Paixão',
   'conteudo': [
     'A humilhação de Cristo inclui: encarnação, vida terrena, morte, descenso aos infernos.',
-    'Filipenses 2:6-8 —” \'despojou-se a si mesmo, tomando a forma de servo\'.',
-    'A cruz é o ápice da humilhação —” morte de escravo.',
+    'Filipenses 2:6-8 — \'despojou-se a si mesmo, tomando a forma de servo\'.',
+    'A cruz é o ápice da humilhação — morte de escravo.',
     'O descenso aos infernos é o mais misterioso dos artigos.',
-    'A humilhação é voluntária —” Cristo deu Sua vida por Si mesmo.'
+    'A humilhação é voluntária — Cristo deu Sua vida por Si mesmo.'
   ],
   'versicosChave': [
     'Filipenses 2:6-8',
@@ -11409,7 +11409,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Glorificação',
   'conteudo': [
     'A exaltação de Cristo inclui: ressurreição, ascensão, sentado à direita do Pai.',
-    'Filipenses 2:9-11 —” \'Deus o exaltou soberanamente e lhe deu o nome que é acima de todo nome\'.',
+    'Filipenses 2:9-11 — \'Deus o exaltou soberanamente e lhe deu o nome que é acima de todo nome\'.',
     'Cristo é agora Senhor de todos.',
     'Ele intercede por nós como Sumo Sacerdote.',
     'A exaltação será consumada na segunda vinda.'
@@ -11463,10 +11463,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Autoridade',
   'conteudo': [
     'O Espírito Santo testifica em nosso espírito que a Bíblia é Palavra de Deus.',
-    'A Escritura não precisa de prova externa —” ela carrega sua própria autoridade.',
+    'A Escritura não precisa de prova externa — ela carrega sua própria autoridade.',
     'A fé na Escritura é racional e espiritual.',
     'O testemunho do Espírito confirma a verdade da Bíblia.',
-    'A autoridade da Bíblia é Autoctônica —” vem de dentro dela.'
+    'A autoridade da Bíblia é Autoctônica — vem de dentro dela.'
   ],
   'versicosChave': [
     '1 Coríntios 2:10-14',
@@ -11489,10 +11489,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'categoria': 'Bibliologia',
   'subcategoria': 'Contemporâneo',
   'conteudo': [
-    'A Bíblia não é um livro de ciência —” é revelação de Deus.',
+    'A Bíblia não é um livro de ciência — é revelação de Deus.',
     'Quando a Bíblia fala de temas científicos, é precisa no que afirma.',
     'A hermenêutica bíblica deve respeitar o gênero literário.',
-    'A ciência e a fé não são inimigas —” ambas buscam a verdade.',
+    'A ciência e a fé não são inimigas — ambas buscam a verdade.',
     'O criacionismo, design inteligente e evolução teísta são posições cristãs.'
   ],
   'versicosChave': [
@@ -11513,14 +11513,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-023',
-  'titulo': 'A Cidade de Deus —” Agostinho',
+  'titulo': 'A Cidade de Deus — Agostinho',
   'categoria': 'Cristologia',
   'subcategoria': 'Augustinismo',
   'conteudo': [
-    'A Cidade de Deus é a obra-prima de Agostinho —” história da salvação.',
+    'A Cidade de Deus é a obra-prima de Agostinho — história da salvação.',
     'A Cidade de Deus se opõe à Cidade dos Homens.',
     'A Cidade de Deus é formada pelos amantes de Deus; a dos Homens, pelos amantes de si mesmos.',
-    'A história é linear —” criação, queda, redenção, consumação.',
+    'A história é linear — criação, queda, redenção, consumação.',
     'Agostinho influenciou profundamente a teologia ocidental.'
   ],
   'versicosChave': [
@@ -11545,7 +11545,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Ã‰tica',
   'conteudo': [
     'Cristo não aboliu a Lei, mas a cumpriu perfeitamente.',
-    'Mateus 5:17-19 —” \'não vim para abrogar a Lei, mas para cumprir\'.',
+    'Mateus 5:17-19 — \'não vim para abrogar a Lei, mas para cumprir\'.',
     'A Lei moral (10 Mandamentos) continua válida como norma de vida.',
     'A Lei civil e cerimonial foram cumpridas em Cristo.',
     'A Lei é espelho que nos mostra nosso pecado e nos conduz a Cristo.'
@@ -11569,15 +11569,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-025',
-  'titulo': 'O Reino de Deus —” Já e Ainda Não',
+  'titulo': 'O Reino de Deus — Já e Ainda Não',
   'categoria': 'Cristologia',
   'subcategoria': 'Escatologia',
   'conteudo': [
     'O Reino de Deus é central no ensino de Jesus.',
-    'O Reino já começou com a vinda de Cristo —” \'o Reino de Deus está perto\'.',
-    'O Reino ainda não se consumou —” esperamos a volta de Cristo.',
+    'O Reino já começou com a vinda de Cristo — \'o Reino de Deus está perto\'.',
+    'O Reino ainda não se consumou — esperamos a volta de Cristo.',
     'A tensão \'já e ainda não\' define a era da igreja.',
-    'O Reino de Deus cresce como semente de mostarda —” pequeno, mas se expande.'
+    'O Reino de Deus cresce como semente de mostarda — pequeno, mas se expande.'
   ],
   'versicosChave': [
     'Marcos 1:15',
@@ -11597,14 +11597,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-026',
-  'titulo': 'A Morte de Cristo —” Expiação Universal vs. Particular',
+  'titulo': 'A Morte de Cristo — Expiação Universal vs. Particular',
   'categoria': 'Cristologia',
   'subcategoria': 'Expiação',
   'conteudo': [
     'A expiação universal sustenta que Cristo morreu por todos.',
     'A expiação particular sustenta que Cristo morreu somente pelos eleitos.',
-    'Calvino defendia a expiação particular —” \'Cristo morreu pelo Seu povo\'.',
-    'Os arminianos defendem a expiação universal —” \'mundo\' significa todos.',
+    'Calvino defendia a expiação particular — \'Cristo morreu pelo Seu povo\'.',
+    'Os arminianos defendem a expiação universal — \'mundo\' significa todos.',
     'Ambas as posições são aceitas dentro do protestantismo.'
   ],
   'versicosChave': [
@@ -11631,8 +11631,8 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Bibliologia',
   'conteudo': [
     'A inspiração verbal significa que Deus inspirou cada palavra da Bíblia.',
-    'A inspiração plenária significa que toda a Bíblia é inspirada —” não apenas partes.',
-    'A inspiração não é ditado —” Deus usou a personalidade e estilo de cada autor.',
+    'A inspiração plenária significa que toda a Bíblia é inspirada — não apenas partes.',
+    'A inspiração não é ditado — Deus usou a personalidade e estilo de cada autor.',
     'A inerrância se baseia na inspiração plenária.',
     'A Bíblia é a palavra de Deus em palavras humanas.'
   ],
@@ -11658,9 +11658,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Doutrina',
   'conteudo': [
     'A graça irresistível é a doutrina de que Deus efetivamente chama os eleitos.',
-    'A graça não é coativa —” ela muda o coração para querer a Deus.',
-    'João 6:44 —” \'ninguém pode vir a Mim se o Pai que Me enviou não o atrair\'.',
-    'A graça irresistível não anula a liberdade —” o crente escolhe livremente em Cristo.',
+    'A graça não é coativa — ela muda o coração para querer a Deus.',
+    'João 6:44 — \'ninguém pode vir a Mim se o Pai que Me enviou não o atrair\'.',
+    'A graça irresistível não anula a liberdade — o crente escolhe livremente em Cristo.',
     'Todos os eleitos responderão positivamente ao chamado de Deus.'
   ],
   'versicosChave': [
@@ -11715,10 +11715,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Reforma',
   'conteudo': [
     'Sola fide é o princípio de que a fé é o único meio de justificação.',
-    'A fé não é obra —” é o instrumento pela qual recebemos a graça.',
-    'A fé verdadeira produz boas obras —” mas as obras não salvam.',
+    'A fé não é obra — é o instrumento pela qual recebemos a graça.',
+    'A fé verdadeira produz boas obras — mas as obras não salvam.',
     'Lutero chamou a justificação pela fé de \'artigo da igreja que se sustenta ou cai\'.',
-    'A justificação é forensic —” Deus declara justo, não nos torna justos.'
+    'A justificação é forensic — Deus declara justo, não nos torna justos.'
   ],
   'versicosChave': [
     'Romanos 3:28',
@@ -11774,7 +11774,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     'O pacifismo sustenta que os cristãos não devem participar de guerras.',
     'A guerra justa (Agostinho, Tomás de Aquino) estabelece critérios para guerra legítima.',
     'O realismo cristão (Niebuhr) aceita a guerra como mal necessário.',
-    'A Bíblia ensina amor ao inimigo —” mas também proteção dos inocentes.'
+    'A Bíblia ensina amor ao inimigo — mas também proteção dos inocentes.'
   ],
   'versicosChave': [
     'Mateus 5:38-48',
@@ -11799,7 +11799,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Mentalidade',
   'conteudo': [
     'A Bíblia tem muito a dizer sobre como pensar.',
-    'Filipenses 4:8 —” \'pensai nessas coisas: verdade, honestidade, justiça, pureza\'.',
+    'Filipenses 4:8 — \'pensai nessas coisas: verdade, honestidade, justiça, pureza\'.',
     'A renovação da mente é mandamento (Romanos 12:2).',
     'O pensamento cristão deve ser capturado por Cristo.',
     'A meditação bíblica é pensamento guiado pela Palavra.'
@@ -11827,7 +11827,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'categoria': 'Missiologia',
   'subcategoria': 'Fundamento',
   'conteudo': [
-    'A missão não começou no NT —” Deus sempre teve um povo para Si.',
+    'A missão não começou no NT — Deus sempre teve um povo para Si.',
     'Israel era chamado para ser \'luz das nações\' (Isaías 49:6).',
     'Abraão foi abençoado para ser bênção a todos os povos.',
     'Os salmos celebram a universalidade do reinado de Deus.',
@@ -11880,15 +11880,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'so-045',
-  'titulo': 'A Obediência Cristã —” Fruto da Graça',
+  'titulo': 'A Obediência Cristã — Fruto da Graça',
   'categoria': 'Soteriologia',
   'subcategoria': 'Vida Cristã',
   'conteudo': [
     'A obediência é fruto da salvação, não causa dela.',
-    'Efésios 2:8-10 —” somos salvos por graça, mas criados para boas obras.',
+    'Efésios 2:8-10 — somos salvos por graça, mas criados para boas obras.',
     'A obediência cristã é motivada por amor, não por medo.',
     'A desobediência não anula a salvação, mas a prejudica.',
-    'A obediência é.progressiva —” crescemos em santidade ao longo da vida.'
+    'A obediência é.progressiva — crescemos em santidade ao longo da vida.'
   ],
   'versicosChave': [
     'Efésios 2:8-10',
@@ -11909,13 +11909,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'lp-014',
-  'titulo': 'Eclesiastes —” O Sentido da Vida',
+  'titulo': 'Eclesiastes — O Sentido da Vida',
   'categoria': 'Livros Poéticos',
   'subcategoria': 'Eclesiastes',
   'conteudo': [
-    'Eclesiastes é o livro mais existencial da Bíblia —” \'vaidade de vaidades\'.',
+    'Eclesiastes é o livro mais existencial da Bíblia — \'vaidade de vaidades\'.',
     'O Autor (Salomão?) testa tudo: sabedoria, prazer, trabalho, riqueza.',
-    'Tudo é \'vaidade\' —” vapor, efêmero, sem sentido final.',
+    'Tudo é \'vaidade\' — vapor, efêmero, sem sentido final.',
     'A conclusão: \'teme a Deus e guarda os Seus mandamentos\'.',
     'O evangelho responde o que Eclesiastes pergunta: o sentido está em Deus.'
   ],
@@ -11998,7 +11998,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Doutrina',
   'conteudo': [
     'O chamado eterno é a ordem lógica da salvação na mente de Deus.',
-    'Romanos 8:29-30 —” \'aos que de antemão conhecceu, também predestinou... e aos que predestinou, esses também chamou\'.',
+    'Romanos 8:29-30 — \'aos que de antemão conhecceu, também predestinou... e aos que predestinou, esses também chamou\'.',
     'O chamado eterno é anterior à criação do mundo.',
     'Ele inclui: eleição, predestinação, chamado, justificação, glorificação.',
     'Tudo é obra da graça soberana de Deus.'
@@ -12026,10 +12026,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Escatologia',
   'conteudo': [
     'A glorificação é a consumação final da salvação.',
-    'Romanos 8:30 —” \'aos que justificou, esses também glorificou\'.',
+    'Romanos 8:30 — \'aos que justificou, esses também glorificou\'.',
     'A glorificação inclui a ressurreição do corpo e a Transformação total.',
     'Seremos como Cristo porque O viremos como Ele é.',
-    'A glorificação é certeza —” Deus promete e cumpre.'
+    'A glorificação é certeza — Deus promete e cumpre.'
   ],
   'versicosChave': [
     'Romanos 8:30',
@@ -12053,9 +12053,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Hamartiologia',
   'conteudo': [
     'A maldição do pecado é a condenação que recai sobre todo ser humano.',
-    'Romanos 3:23 —” \'todos pecaram e estão destituídos da glória de Deus\'.',
-    'Romanos 6:23 —” \'o salário do pecado é a morte\'.',
-    'A maldição é universal —” atinge a todos sem exceção.',
+    'Romanos 3:23 — \'todos pecaram e estão destituídos da glória de Deus\'.',
+    'Romanos 6:23 — \'o salário do pecado é a morte\'.',
+    'A maldição é universal — atinge a todos sem exceção.',
     'Somente Cristo pode redimir da maldição (Gálatas 3:13).'
   ],
   'versicosChave': [
@@ -12080,10 +12080,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Benefícios',
   'conteudo': [
     'A redenção é o ato de Deus de nos comprar da escravidão do pecado.',
-    'Efésios 1:7 —” \'nEle temos a redenção pelo Seu sangue\'.',
-    'O preço foi o sangue de Cristo —” valor infinito.',
+    'Efésios 1:7 — \'nEle temos a redenção pelo Seu sangue\'.',
+    'O preço foi o sangue de Cristo — valor infinito.',
     'A redenção inclui: justificação, regeneração, santificação.',
-    'A redenção é completa —” nada pode ser adicionado à obra consumada.'
+    'A redenção é completa — nada pode ser adicionado à obra consumada.'
   ],
   'versicosChave': [
     'Efésios 1:7',
@@ -12107,9 +12107,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Expiação',
   'conteudo': [
     'Cristo removeu a maldição ao se tornar maldição por nós.',
-    'Gálatas 3:13 —” \'Cristo nos resgatou da maldição da lei, fazendo-se maldição por nós\'.',
+    'Gálatas 3:13 — \'Cristo nos resgatou da maldição da lei, fazendo-se maldição por nós\'.',
     'A cruz é o meio pelo qual a maldição foi suportada.',
-    'A satisfação vicária —” Cristo pagou o que nós devíamos.',
+    'A satisfação vicária — Cristo pagou o que nós devíamos.',
     'A maldição foi removida de uma vez para sempre.'
   ],
   'versicosChave': [
@@ -12134,7 +12134,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Pecado',
   'conteudo': [
     'O pecado contra o Espírito Santo é atribuir a obra do Espírito a Satanás.',
-    'Mateus 12:31-32 —” \'todo pecado e blasfêmia serão perdoados... mas a blasfêmia contra o Espírito não será perdoada\'.',
+    'Mateus 12:31-32 — \'todo pecado e blasfêmia serão perdoados... mas a blasfêmia contra o Espírito não será perdoada\'.',
     'Este pecado é rejeição deliberada e consciente da verdade.',
     'Ã‰ a rebelião final e irrecuperável contra Deus.',
     'A maioria dos teólogos diz que um cristão verdadeiro não pode cometer este pecado.'
@@ -12156,15 +12156,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'so-052',
-  'titulo': 'A Vida Eterna —” Presente e Futura',
+  'titulo': 'A Vida Eterna — Presente e Futura',
   'categoria': 'Soteriologia',
   'subcategoria': 'Escatologia',
   'conteudo': [
     'A vida eterna é tanto presente quanto futura.',
-    'João 5:24 —” \'quem ouve a Minha palavra... tem a vida eterna e não entrará em juízo\'.',
+    'João 5:24 — \'quem ouve a Minha palavra... tem a vida eterna e não entrará em juízo\'.',
     'A vida eterna presente é relação com Deus (João 17:3).',
     'A vida eterna futura é gozo eterno na presença de Deus.',
-    'A vida eterna é dom de Deus —” não é conquistada.'
+    'A vida eterna é dom de Deus — não é conquistada.'
   ],
   'versicosChave': [
     'João 5:24',
@@ -12183,15 +12183,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-027',
-  'titulo': 'Cristo —” O Novo Adão',
+  'titulo': 'Cristo — O Novo Adão',
   'categoria': 'Cristologia',
   'subcategoria': 'Tipologia',
   'conteudo': [
     'Cristo é o novo Adão que obedece onde Adão desobedeceu.',
-    'Romanos 5:12-21 —” contraste entre Adão e Cristo.',
+    'Romanos 5:12-21 — contraste entre Adão e Cristo.',
     'Onde Adão trouxe pecado e morte, Cristo trouxe justiça e vida.',
     'A obediência de Cristo é perfeita e completa.',
-    'A justificação é por obediência de um só —” Cristo.'
+    'A justificação é por obediência de um só — Cristo.'
   ],
   'versicosChave': [
     'Romanos 5:12-21',
@@ -12209,12 +12209,12 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-028',
-  'titulo': 'Cristo —” O Bom Pastor',
+  'titulo': 'Cristo — O Bom Pastor',
   'categoria': 'Cristologia',
   'subcategoria': 'Metáfora',
   'conteudo': [
     'Jesus se declara o Bom Pastor que dá Sua vida pelas ovelhas.',
-    'João 10:11 —” \'Eu sou o Bom Pastor; o Bom Pastor dá a Sua vida pelas ovelhas\'.',
+    'João 10:11 — \'Eu sou o Bom Pastor; o Bom Pastor dá a Sua vida pelas ovelhas\'.',
     'O pastor conhece suas ovelhas e elas conhecem sua voz.',
     'Cristo tem outras ovelhas que ainda não conhece.',
     'A segurança das ovelhas está na mão do Pai e na mão do Filho.'
@@ -12236,14 +12236,14 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-029',
-  'titulo': 'Cristo —” O Cordeiro de Deus',
+  'titulo': 'Cristo — O Cordeiro de Deus',
   'categoria': 'Cristologia',
   'subcategoria': 'Metáfora',
   'conteudo': [
     'Jesus é o Cordeiro de Deus que tira o pecado do mundo.',
-    'João 1:29 —” \'eis o Cordeiro de Deus, que tira o pecado do mundo\'.',
+    'João 1:29 — \'eis o Cordeiro de Deus, que tira o pecado do mundo\'.',
     'A metáfora do cordeiro aponta para o sacrifício pascal.',
-    'Cristo é o Cordeiro imaculado —” sem pecado.',
+    'Cristo é o Cordeiro imaculado — sem pecado.',
     'O cordeiro foi morto desde a fundação do mundo (Apocalipse 13:8).'
   ],
   'versicosChave': [
@@ -12263,15 +12263,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-030',
-  'titulo': 'Cristo —” A Rocha',
+  'titulo': 'Cristo — A Rocha',
   'categoria': 'Cristologia',
   'subcategoria': 'Metáfora',
   'conteudo': [
     'Cristo é a Rocha que sustenta o crente.',
-    '1 Coríntios 10:4 —” \'a Rocha era Cristo\'.',
-    'A rocha no desertoä¾›æ°´ä»¥è‰²åˆ— —” Cristo nos dá vida.',
+    '1 Coríntios 10:4 — \'a Rocha era Cristo\'.',
+    'A rocha no desertoä¾›æ°´ä»¥è‰²åˆ— — Cristo nos dá vida.',
     'Cristo é a Rocha sobre a qual a igreja é edificada.',
-    'Os inimigos tropeçam na Rocha —” ela é pedra de tropeço e de sustentação.'
+    'Os inimigos tropeçam na Rocha — ela é pedra de tropeço e de sustentação.'
   ],
   'versicosChave': [
     '1 Coríntios 10:4',
@@ -12290,15 +12290,15 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-031',
-  'titulo': 'Cristo —” O Caminho, a Verdade e a Vida',
+  'titulo': 'Cristo — O Caminho, a Verdade e a Vida',
   'categoria': 'Cristologia',
   'subcategoria': 'Metáfora',
   'conteudo': [
     'Jesus é o único caminho para Deus.',
-    'João 14:6 —” \'Eu sou o caminho, a verdade e a vida; ninguém vem ao Pai senão por Mim\'.',
-    'Não há múltiplos caminhos —” há um só.',
-    'Cristo é a verdade —” não apenas ensina verdade, é a verdade.',
-    'Cristo é a vida —” sem Ele, não há vida eterna.'
+    'João 14:6 — \'Eu sou o caminho, a verdade e a vida; ninguém vem ao Pai senão por Mim\'.',
+    'Não há múltiplos caminhos — há um só.',
+    'Cristo é a verdade — não apenas ensina verdade, é a verdade.',
+    'Cristo é a vida — sem Ele, não há vida eterna.'
   ],
   'versicosChave': [
     'João 14:6',
@@ -12316,13 +12316,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
 },
   {
   'id': 'cr-032',
-  'titulo': 'Cristo —” O Mediador da Nova Aliança',
+  'titulo': 'Cristo — O Mediador da Nova Aliança',
   'categoria': 'Cristologia',
   'subcategoria': 'Aliança',
   'conteudo': [
     'Cristo é o mediador da nova aliança entre Deus e os homens.',
-    '1 Timóteo 2:5 —” \'um só é o Mediador entre Deus e os homens, o homem Cristo Jesus\'.',
-    'A nova aliança é melhor que a antiga —” escrita no coração.',
+    '1 Timóteo 2:5 — \'um só é o Mediador entre Deus e os homens, o homem Cristo Jesus\'.',
+    'A nova aliança é melhor que a antiga — escrita no coração.',
     'Cristo intercede por nós continuamente.',
     'A mediação de Cristo é eficaz e eterna.'
   ],
@@ -12348,7 +12348,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Eclesiologia',
   'conteudo': [
     'O Espírito Santo promove a unidade na verdade.',
-    'Efésios 4:3-6 —” \'um só Espírito... uma só fé\'.',
+    'Efésios 4:3-6 — \'um só Espírito... uma só fé\'.',
     'A unidade não é apenas organizational, mas espiritual.',
     'O Espírito nos guia em toda a verdade.',
     'A unidade é testemunho ao mundo da realidade de Cristo.'
@@ -12374,7 +12374,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Poder',
   'conteudo': [
     'O Espírito Santo é o poder da ressurreição.',
-    'Romanos 8:11 —” \'o Espírito... que ressuscitou a Jesus dentre os mortos\'.',
+    'Romanos 8:11 — \'o Espírito... que ressuscitou a Jesus dentre os mortos\'.',
     'O mesmo poder que ressuscitou Cristo habita em nós.',
     'A ressurreição é obra da Trindade.',
     'O Espírito nos dá vida nova agora e na ressurreição.'
@@ -12400,10 +12400,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Obras',
   'conteudo': [
     'O Espírito Santo atua na consciência humana.',
-    'João 16:8 —” \'convencerá o mundo de pecado, de justiça e de juízo\'.',
-    'O Espírito convence do pecado —” mostra nossa necessidade de salvação.',
-    'O Espírito convence da justiça —” mostra que Cristo é a nossa justiça.',
-    'O Espírito convence do juízo —” mostra que Satanás foi julgado.'
+    'João 16:8 — \'convencerá o mundo de pecado, de justiça e de juízo\'.',
+    'O Espírito convence do pecado — mostra nossa necessidade de salvação.',
+    'O Espírito convence da justiça — mostra que Cristo é a nossa justiça.',
+    'O Espírito convence do juízo — mostra que Satanás foi julgado.'
   ],
   'versicosChave': [
     'João 16:8-11'
@@ -12452,7 +12452,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'conteudo': [
     'Os salmos requerem atenção ao gênero literário.',
     'Os salmos de louvo são diferentes dos de lamento.',
-    'Alguns salmos são messiânicos —” apontam para Cristo.',
+    'Alguns salmos são messiânicos — apontam para Cristo.',
     'O salmo deve ser interpretado em seu contexto histórico.',
     'Os salmos são modelo de oração para a Igreja.'
   ],
@@ -12477,10 +12477,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Prática',
   'conteudo': [
     'A Bíblia tem muito a dizer sobre como nos comunicamos.',
-    'Efésios 4:29 —” \'nenhuma palavra corrupta saia da boca\'.',
+    'Efésios 4:29 — \'nenhuma palavra corrupta saia da boca\'.',
     'A língua é pequena, mas causa grandes danos (Tiago 3:1-12).',
     'A comunicação cristã deve ser: verdadeira, amorosa, necessária, oportuna.',
-    'A mentira é pecado —” a verdade é virtude.'
+    'A mentira é pecado — a verdade é virtude.'
   ],
   'versicosChave': [
     'Efésios 4:29',
@@ -12503,10 +12503,10 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'categoria': 'Ã‰tica Cristã',
   'subcategoria': 'Social',
   'conteudo': [
-    'A família é instituição divina —” Deus a criou antes da Igreja.',
-    'Efésios 5:22-33 —” maridos e mulheres se amam como Cristo e a igreja.',
-    'Provérbios 22:6 —” \'ensina ao menino o caminho em que deve andar\'.',
-    'A família é a base da sociedade —” quando a família se desfaz, a sociedade desmorona.',
+    'A família é instituição divina — Deus a criou antes da Igreja.',
+    'Efésios 5:22-33 — maridos e mulheres se amam como Cristo e a igreja.',
+    'Provérbios 22:6 — \'ensina ao menino o caminho em que deve andar\'.',
+    'A família é a base da sociedade — quando a família se desfaz, a sociedade desmorona.',
     'A família cristã deve ser testemunho do evangelho.'
   ],
   'versicosChave': [
@@ -12531,7 +12531,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Criação',
   'conteudo': [
     'A Bíblia ensina responsabilidade sobre a criação.',
-    'Gênesis 2:15 —” \'cultivar e guardar\' o jardim.',
+    'Gênesis 2:15 — \'cultivar e guardar\' o jardim.',
     'A criação clama por redenção (Romanos 8:19-22).',
     'O cristão deve ser mordomo responsável da criação.',
     'A exploração da criação é contrária ao mandamento divino.'
@@ -12583,7 +12583,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'categoria': 'Questões Contemporâneas',
   'subcategoria': 'Cultura',
   'conteudo': [
-    'A tecnologia é ferramenta —” pode ser usada para bem ou para mal.',
+    'A tecnologia é ferramenta — pode ser usada para bem ou para mal.',
     'A IA e a automação levantam questões éticas.',
     'A vigilância digital pode ser usada para controle social.',
     'O cristão deve ser sábio no uso da tecnologia.',
@@ -12609,9 +12609,9 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'categoria': 'Questões Contemporâneas',
   'subcategoria': 'Criação',
   'conteudo': [
-    'A crise ambiental é real —” o cristão deve responder.',
-    'O consumismo é idolatria —” \'não acumuleis tesouros na terra\'.',
-    'A criação é boa —” Deus a criou e a sustenta.',
+    'A crise ambiental é real — o cristão deve responder.',
+    'O consumismo é idolatria — \'não acumuleis tesouros na terra\'.',
+    'A criação é boa — Deus a criou e a sustenta.',
     'A responsabilidade sobre a criação é mandamento.',
     'A esperança cristã inclui a renovação de toda a criação.'
   ],
@@ -12662,7 +12662,7 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   'subcategoria': 'Interpretação',
   'conteudo': [
     'A Bíblia é suficientemente clara para que qualquer pessoa possa entender a mensagem central.',
-    'A claridade não significa facilidade —” a Bíblia tem passagens difíceis.',
+    'A claridade não significa facilidade — a Bíblia tem passagens difíceis.',
     'O Espírito Santo ilumina a mente para compreender.',
     'A oração e o estudo são necessários.',
     'A perspicuidade é um princípio reformado.'

@@ -70,7 +70,9 @@ export async function syncFavorites(): Promise<SyncResult> {
         await saveFavoritesOffline(merged);
         return { success: true, message: 'Favoritos sincronizados', timestamp: Date.now() };
       }
-    } catch {}
+    } catch (e) {
+      console.error('[sync:favorites-pull]', e);
+    }
 
     // If server fails, just save local
     if (localFavorites.length > 0) {
@@ -106,7 +108,9 @@ export async function syncNotes(): Promise<SyncResult> {
         await saveNotesOffline(merged);
         return { success: true, message: 'Notas sincronizadas', timestamp: Date.now() };
       }
-    } catch {}
+    } catch (e) {
+      console.error('[sync:notes-pull]', e);
+    }
 
     if (localNotes.length > 0) {
       await apiCall('notes', 'POST', { dados: localNotes });

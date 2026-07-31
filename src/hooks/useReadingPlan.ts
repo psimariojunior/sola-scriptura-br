@@ -16,7 +16,7 @@ export function useReadingPlan() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) return JSON.parse(raw);
-    } catch {}
+    } catch (e) { console.error('[reading-plan:load-state]', e); }
     return { planId: null, currentDay: 1, completedDays: [], startDate: null };
   });
 

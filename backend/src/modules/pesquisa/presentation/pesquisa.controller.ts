@@ -108,13 +108,23 @@ export class PesquisaController {
   @ApiQuery({ name: 'livro', required: false, type: String })
   @ApiQuery({ name: 'testamento', required: false, type: String })
   @ApiQuery({ name: 'traducao', required: false, type: String })
+  @ApiQuery({ name: 'capitulo', required: false, type: Number })
+  @ApiQuery({ name: 'limite', required: false, type: Number })
   buscarVersiculos(
     @Query('q') q: string,
     @Query('livro') livro?: string,
     @Query('testamento') testamento?: string,
     @Query('traducao') traducao?: string,
+    @Query('capitulo') capitulo?: number,
+    @Query('limite') limite?: number,
   ) {
-    return this.pesquisaService.buscarVersiculos(q, { livro, testamento, traducao });
+    return this.pesquisaService.buscarVersiculos(q, {
+      livro,
+      testamento,
+      traducao,
+      capitulo,
+      limite,
+    });
   }
 
   @Publico()

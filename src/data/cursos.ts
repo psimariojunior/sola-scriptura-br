@@ -47,6 +47,8 @@ import { CURSO_ROMANOS } from './_curso_romanos';
 import { CURSO_APOCALIPSE } from './_curso_apocalipse';
 import { CURSO_GENESIS } from './_curso_genesis';
 import { CURSO_JOAO } from './_curso_joao';
+import { CURSO_TEOLOGIA_SISTEMATICA } from './_curso_teologia_sistematica';
+import { CURSO_VIDA_DE_JESUS } from './_curso_vida_de_jesus';
 
 export const CURSOS: Curso[] = [
   {
@@ -427,4 +429,6 @@ O objetivo do estudo bíblico não é acumular informação — é conhecer a De
   CURSO_APOCALIPSE,
   CURSO_GENESIS,
   CURSO_JOAO,
+  CURSO_TEOLOGIA_SISTEMATICA,
+  CURSO_VIDA_DE_JESUS,
 ];

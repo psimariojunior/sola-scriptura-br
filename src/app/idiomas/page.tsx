@@ -34,7 +34,7 @@ export default function IdiomasPage() {
       import('@/data/lexicon/hebraico'),
     ]).then(([gregoMod, hebraicoMod]) => {
       const words: LexiconWord[] = [
-        ...gregoMod.palavrasGregas.map(w => ({ ...w, lingua: 'grego' as const })),
+        ...gregoMod.GREGO.map(w => ({ ...w, lingua: 'grego' as const })),
         ...hebraicoMod.palavrasHebraicas.map(w => ({ ...w, lingua: 'hebraico' as const })),
       ];
       setAllWords(words);

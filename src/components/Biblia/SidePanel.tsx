@@ -6,7 +6,7 @@ import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { MessageSquare, BookText, StickyNote, GraduationCap, History, X, ChevronLeft, ChevronRight, BookOpen, Link2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { obterContexto, obterContextoCapitulo } from '@/data/contextoHistorico';
-import { obterComentarios } from '@/data/comentarios';
+import { getComentariosLazy } from '@/data/lazy/comentarios';
 import { getCrossReferencesByVerse } from '@/data/biblia/crossReferences';
 import { obterEstudos } from '@/data/estudosTeologicos';
 
@@ -127,11 +127,20 @@ export function SidePanel({
     }
   }, [onClose]);
 
-  // Get resource counts for the selected verse (memoized, with error handling)
+  // Get resource counts for the selected verse (lazy: evita inflar o bundle do client)
+  const [comentariosLazy, setComentariosLazy] = useState<any[]>([]);
+  useEffect(() => {
+    if (!versiculo) return;
+    let cancelled = false;
+    getComentariosLazy(livroAbreviacao, capitulo, versiculo).then((res) => {
+      if (!cancelled) setComentariosLazy(res);
+    });
+    return () => { cancelled = true; };
+  }, [livroAbreviacao, capitulo, versiculo]);
   const resourceData = useMemo(() => {
     if (!versiculo) return { comentarios: [], crossRefs: [], tiposRecursos: [], estudos: [] };
     try {
-      const comps = obterComentarios(livroAbreviacao, capitulo, versiculo);
+      const comps = comentariosLazy;
       const ests = obterEstudos(livroAbreviacao, capitulo, versiculo);
       const xrefs = getCrossReferencesByVerse(livroAbreviacao, capitulo, versiculo);
       const tipos = new Set<string>();

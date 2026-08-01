@@ -1,10 +1,14 @@
 import { NextRequest } from 'next/server';
 import { streamWithAI } from '@/lib/ai-provider';
 import { AI_CONFIG } from '@/lib/ai-config';
+import { applyRateLimit } from '@/lib/api-rate-limit';
 
 export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
+  const blocked = await applyRateLimit(request, 'IA_STREAM');
+  if (blocked) return blocked;
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();

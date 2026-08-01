@@ -2,7 +2,7 @@
 
 import { memo, useCallback, useState, useRef, useMemo, useEffect } from 'react';
 import { findWordInText, getStrongByNumber, getTestamentoByLivro, type LexiconEntry, type LexiconResult } from '@/lib/lexiconSearch';
-import { alinharVersiculo, type PalavraAlinhada } from '@/lib/wordAlignment';
+import type { PalavraAlinhada } from '@/lib/wordAlignment';
 import { LexiconPopup } from './LexiconPopup';
 
 interface ClickableVerseProps {
@@ -42,9 +42,21 @@ export const ClickableVerse = memo(function ClickableVerse({
   const testamento = livroAbreviacao ? getTestamentoByLivro(livroAbreviacao) : undefined;
 
   // Pre-compute Strong's alignment when verse context is available
-  const palavrasAlinhadas = useMemo<PalavraAlinhada[] | null>(() => {
-    if (!livroAbreviacao || capitulo == null || numero == null) return null;
-    return alinharVersiculo(livroAbreviacao, capitulo, numero, text);
+  const [palavrasAlinhadas, setPalavrasAlinhadas] = useState<PalavraAlinhada[] | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    if (!livroAbreviacao || capitulo == null || numero == null) {
+      setPalavrasAlinhadas(null);
+      return;
+    }
+    (async () => {
+      const mod = await import('@/lib/wordAlignment');
+      const result = await mod.alinharVersiculo(livroAbreviacao, capitulo, numero, text);
+      if (!cancelled) setPalavrasAlinhadas(result);
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, [livroAbreviacao, capitulo, numero, text]);
 
   // Map word index to PalavraAlinhada for quick lookup

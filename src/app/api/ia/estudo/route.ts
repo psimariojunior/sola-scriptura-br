@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateStudy } from '@/lib/ai-provider';
 import { construirContextoRAG } from '@/lib/ragGrounding';
+import { applyRateLimit } from '@/lib/api-rate-limit';
 
 export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
+  const blocked = await applyRateLimit(request, 'IA_ESTUDO');
+  if (blocked) return blocked;
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();

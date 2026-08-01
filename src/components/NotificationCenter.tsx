@@ -107,7 +107,7 @@ export function NotificationCenter() {
 
   useEffect(() => {
     if (settings.enabled) agendarLembrete(settings);
-  }, [settings.enabled]);
+  }, [settings.enabled, agendarLembrete, settings]);
 
   const aplicarPreset = useCallback((preset: typeof HORARIO_PRESETS[0]) => {
     const newSettings = { ...settings, hora: preset.hora, minuto: preset.minuto };

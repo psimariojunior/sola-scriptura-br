@@ -1,6 +1,6 @@
 import jsPDF from 'jspdf';
-import { getStrongPorVersiculo, type PalavraStrong } from '@/data/biblia/strong';
-import { getCrossReferencesByVerse, formatReference, type CrossReference } from '@/data/biblia/crossReferences';
+import type { PalavraStrong } from '@/data/biblia/strong';
+import type { CrossReference } from '@/data/biblia/crossReferences';
 
 export interface StudyData {
   livroNome: string;
@@ -27,7 +27,11 @@ const TEMAS = {
   },
 };
 
-export function exportStudyPDF(study: StudyData): void {
+function formatReference(ref: string): string {
+  return ref.replace(/:(\d+)/g, ':$1').replace(/\s+/g, ' ').trim();
+}
+
+export async function exportStudyPDF(study: StudyData): Promise<void> {
   const cores = TEMAS.light;
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
   const pw = doc.internal.pageSize.getWidth();
@@ -80,9 +84,13 @@ export function exportStudyPDF(study: StudyData): void {
   doc.setTextColor(120, 100, 70);
   doc.text('solascripturabr.com.br', pw / 2, ph - 30, { align: 'center' });
 
-  // ── Buscar dados ──
-  const strongs: PalavraStrong[] = getStrongPorVersiculo(study.livroAbreviacao, study.capitulo, study.versiculo);
-  const refs: CrossReference[] = getCrossReferencesByVerse(study.livroAbreviacao, study.capitulo, study.versiculo);
+  // ── Buscar dados (lazy: nao sincrono para nao inflar bundle) ──
+  const [strongsMod, refsMod] = await Promise.all([
+    import('@/data/biblia/strong'),
+    import('@/data/biblia/crossReferences'),
+  ]);
+  const strongs: PalavraStrong[] = strongsMod.getStrongPorVersiculo(study.livroAbreviacao, study.capitulo, study.versiculo) ?? [];
+  const refs: CrossReference[] = refsMod.getCrossReferencesByVerse ? refsMod.getCrossReferencesByVerse(study.livroAbreviacao, study.capitulo, study.versiculo) : [];
 
   // ── Página do Versículo ──
   doc.addPage();

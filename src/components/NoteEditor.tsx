@@ -50,7 +50,8 @@ export function NoteEditor({ lessonId, existingNote, className }: NoteEditorProp
     return () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
-        const text = textareaRef.current?.value;
+        const node = textareaRef.current;
+        const text = node?.value;
         if (text) saveNote(lessonId, text);
       }
     };

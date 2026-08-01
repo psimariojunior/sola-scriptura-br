@@ -1,4 +1,4 @@
-import { getStrongPorVersiculo, type PalavraStrong } from '@/data/biblia/strong';
+import type { PalavraStrong } from '@/data/biblia/strong';
 
 export interface PalavraAlinhada {
   texto: string;
@@ -63,8 +63,9 @@ export function alignSequences(ptWords: string[], strongs: PalavraStrong[]): (nu
   return alignment;
 }
 
-export function alinharVersiculo(livro: string, capitulo: number, verNumero: number, textoPt: string): PalavraAlinhada[] {
-  const strongs = getStrongPorVersiculo(livro, capitulo, verNumero);
+export async function alinharVersiculo(livro: string, capitulo: number, verNumero: number, textoPt: string): Promise<PalavraAlinhada[]> {
+  const mod = await import('@/data/biblia/strong');
+  const strongs = mod.getStrongPorVersiculo(livro, capitulo, verNumero) ?? [];
   const words = textoPt.split(/\s+/);
   if (strongs.length === 0) {
     return words.map(w => ({

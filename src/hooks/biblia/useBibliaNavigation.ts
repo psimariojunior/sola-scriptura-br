@@ -75,10 +75,12 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
   const { prefetchAdjacent } = useChapterPrefetch(selectedTrads[0] || 'arc');
 
   const livro = TODOS_LIVROS[livroIdx];
+  const livroAbrev = livro?.abreviacao ?? '';
+  const totalCapitulos = Number.isFinite(livro?.totalCapitulos) ? livro.totalCapitulos : 1;
 
   const loadChapter = useCallback(() => {
-    const livroAbrev = livro.abreviacao;
-    const cap = capituloIdx + 1;
+    if (!livroAbrev || !Number.isFinite(capituloIdx)) return;
+    const cap = Math.max(1, Math.min(totalCapitulos, capituloIdx + 1));
 
     // FAST PATH: try in-memory cache synchronously (instant after first load)
     const TRADUCOES_LOCAIS = ['arc', 'kjv', 'web', 'nvi', 'ara', 'acf'];
@@ -143,7 +145,7 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
         setLoading(false);
       }
     })();
-  }, [livro.abreviacao, capituloIdx, selectedTrads, prefetchAdjacent]);
+  }, [livroAbrev, totalCapitulos, capituloIdx, selectedTrads, prefetchAdjacent]);
 
   useEffect(() => { loadChapter(); }, [loadChapter]);
 
@@ -151,20 +153,22 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
     const params = new URLSearchParams(window.location.search);
     const livroParam = params.get('livro');
     const capituloParam = params.get('capitulo') || params.get('cap');
-    const versiculoParam = params.get('versiculo') || params.get('v');
     const tradsParam = params.get('trads');
     if (livroParam) {
       const idx = TODOS_LIVROS.findIndex((l) => l.abreviacao.toLowerCase() === livroParam.toLowerCase());
       if (idx >= 0) {
         setLivroIdx(idx);
-        if (capituloParam) setCapituloIdx(Math.max(0, Number(capituloParam) - 1));
+        if (capituloParam) {
+          const n = Number(capituloParam);
+          if (Number.isFinite(n) && n > 0) setCapituloIdx(n - 1);
+        }
       }
     }
     if (tradsParam) {
       const t = tradsParam.split(',').filter((x) => (TRAD_IDS as readonly string[]).includes(x));
       if (t.length > 0) setSelectedTrads(t);
     }
-   
+
   }, []);
 
   useEffect(() => {
@@ -206,15 +210,18 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
   }, [livro.abreviacao, capituloIdx]);
 
   const goToBook = useCallback((idx: number, cap?: number) => {
+    if (idx < 0 || idx >= TODOS_LIVROS.length) return;
     setLivroIdx(idx);
-    setCapituloIdx(cap ?? 0);
+    setCapituloIdx(Math.max(0, cap ?? 0));
   }, []);
 
   const changeChapter = useCallback((newIdx: number) => {
-    const clamped = Math.max(0, Math.min(livro.totalCapitulos - 1, newIdx));
+    if (!Number.isFinite(newIdx)) return;
+    const max = Math.max(0, totalCapitulos - 1);
+    const clamped = Math.max(0, Math.min(max, Math.floor(newIdx)));
     setChapterDirection(clamped > capituloIdx ? 'next' : 'prev');
     setCapituloIdx(clamped);
-  }, [livro.totalCapitulos, capituloIdx]);
+  }, [totalCapitulos, capituloIdx]);
 
   return {
     livroIdx,

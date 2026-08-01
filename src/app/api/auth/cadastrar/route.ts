@@ -1,7 +1,11 @@
 import { NextRequest } from 'next/server';
 import { proxyToBackend } from '../proxy';
+import { applyRateLimit } from '@/lib/api-rate-limit';
 
 export async function POST(request: NextRequest) {
+  const blocked = await applyRateLimit(request, 'AUTH_CADASTRAR');
+  if (blocked) return blocked;
+
   const body = await request.text();
   return proxyToBackend('/auth/cadastrar', 'POST', body);
 }

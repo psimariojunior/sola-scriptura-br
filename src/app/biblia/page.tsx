@@ -94,12 +94,14 @@ export default function BibliaPage() {
     } else if (nav.livroIdx > 0) {
       vibrate('light');
       const prevBook = TODOS_LIVROS[nav.livroIdx - 1];
-      nav.goToBook(nav.livroIdx - 1, prevBook.totalCapitulos - 1);
+      const lastCap = Number.isFinite(prevBook?.totalCapitulos) ? prevBook.totalCapitulos - 1 : 0;
+      nav.goToBook(nav.livroIdx - 1, lastCap);
     }
   }, [nav.capituloIdx, nav.livroIdx, nav.changeChapter, nav.goToBook, vibrate]);
 
   const handleNextChapter = useCallback(() => {
-    if (nav.capituloIdx < nav.livro.totalCapitulos - 1) {
+    const maxCap = Number.isFinite(nav.livro.totalCapitulos) ? nav.livro.totalCapitulos - 1 : 0;
+    if (nav.capituloIdx < maxCap) {
       vibrate('light');
       nav.changeChapter(nav.capituloIdx + 1);
     } else if (nav.livroIdx < TODOS_LIVROS.length - 1) {

@@ -224,19 +224,29 @@ function useAudioCapituloImpl(
   };
 }
 
+function extrairArgs(
+  livroAbreviacaoOrOptions: string | UseAudioCapituloOptions,
+  capitulo?: number,
+  versiculos?: VersiculoAudio[],
+  options?: { voz?: 'feminina' | 'masculina'; velocidade?: number }
+): { livro: string; cap: number; vers: VersiculoAudio[]; opts: { voz?: 'feminina' | 'masculina'; velocidade?: number } } {
+  if (typeof livroAbreviacaoOrOptions === 'string') {
+    return { livro: livroAbreviacaoOrOptions, cap: capitulo ?? 1, vers: versiculos ?? [], opts: options ?? {} };
+  }
+  return {
+    livro: livroAbreviacaoOrOptions.livroAbreviacao,
+    cap: livroAbreviacaoOrOptions.capitulo,
+    vers: livroAbreviacaoOrOptions.versiculos,
+    opts: { voz: livroAbreviacaoOrOptions.voz, velocidade: livroAbreviacaoOrOptions.velocidade },
+  };
+}
+
 export function useAudioCapitulo(
   livroAbreviacaoOrOptions: string | UseAudioCapituloOptions,
   capitulo?: number,
   versiculos?: VersiculoAudio[],
   options?: { voz?: 'feminina' | 'masculina'; velocidade?: number }
 ): UseAudioCapituloReturn {
-  if (typeof livroAbreviacaoOrOptions === 'string') {
-    return useAudioCapituloImpl(livroAbreviacaoOrOptions, capitulo ?? 1, versiculos ?? [], options);
-  }
-  return useAudioCapituloImpl(
-    livroAbreviacaoOrOptions.livroAbreviacao,
-    livroAbreviacaoOrOptions.capitulo,
-    livroAbreviacaoOrOptions.versiculos,
-    { voz: livroAbreviacaoOrOptions.voz, velocidade: livroAbreviacaoOrOptions.velocidade }
-  );
+  const { livro, cap, vers, opts } = extrairArgs(livroAbreviacaoOrOptions, capitulo, versiculos, options);
+  return useAudioCapituloImpl(livro, cap, vers, opts);
 }

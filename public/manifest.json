@@ -47,19 +47,52 @@
       "name": "Bíblia",
       "short_name": "Bíblia",
       "url": "/biblia",
-      "description": "Leitura bíblica multi-tradução"
+      "description": "Leitura bíblica multi-tradução",
+      "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
     },
     {
       "name": "Pesquisa",
       "short_name": "Pesquisa",
       "url": "/pesquisa",
-      "description": "Pesquisa avançada"
+      "description": "Pesquisa avançada",
+      "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
     },
     {
       "name": "Assistente IA",
       "short_name": "IA",
       "url": "/ia",
-      "description": "Assistente de estudo bíblico"
+      "description": "Assistente de estudo bíblico",
+      "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Cursos",
+      "short_name": "Cursos",
+      "url": "/estudos",
+      "description": "Cursos com certificado",
+      "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Quiz",
+      "short_name": "Quiz",
+      "url": "/quiz",
+      "description": "Quiz bíblico interativo",
+      "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Sola Scriptura - Estudo Bíblico"
+    },
+    {
+      "src": "/screenshot-narrow.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Sola Scriptura - Estudo Bíblico"
     }
   ]
 }

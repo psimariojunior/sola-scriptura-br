@@ -4,6 +4,7 @@ import { unlink } from 'fs/promises';
 import path from 'path';
 import { tmpdir } from 'os';
 import { randomUUID } from 'crypto';
+import { applyRateLimit } from '@/lib/api-rate-limit';
 
 export const maxDuration = 60;
 export const runtime = 'nodejs';
@@ -29,6 +30,9 @@ interface AudioEdgeRequest {
 }
 
 export async function POST(request: NextRequest) {
+  const blocked = await applyRateLimit(request, 'AUDIO_EDGE');
+  if (blocked) return blocked;
+
   let body: AudioEdgeRequest;
   try {
     body = await request.json();

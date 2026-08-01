@@ -8647,5 +8647,5 @@ export const palavrasHebraicas: PalavraHebraica[] = [
   { strong: 'H8666', palavra: 'ו/ל/תשובת', transliteracao: 'תְּשׁוּבָה', definicao: 'retornar', frequencia: 8 },
   { strong: 'H8668', palavra: 'תשועת', transliteracao: 'תְּשׁוּעָה', definicao: 'salvação', frequencia: 34 },
   { strong: 'H8670', palavra: 'ו/תשורה', transliteracao: 'תְּשׁוּרָה', definicao: 'presente', frequencia: 1 },
-  { strong: 'H8674', palavra: 'תתני', transliteracao: 'תַּתְּנַי', definicao: 'Tattenai', frequencia: 4 }
+  { strong: 'H8674', palavra: 'תתני', transliteracao: 'תַּתְּנַי', definicao: 'Tattenai', frequencia: 4 },
 ];

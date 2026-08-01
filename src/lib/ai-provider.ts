@@ -215,7 +215,8 @@ async function callGroq(
   },
 ): Promise<{ content: string; tokens: { prompt: number; completion: number; total: number } }> {
   const { groq } = AI_CONFIG;
-  if (!groq.apiKey) throw new Error('Groq API key not configured');
+  const apiKey = groq.getKey();
+  if (!apiKey) throw new Error('Groq API key not configured');
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), groq.timeout);
@@ -225,7 +226,7 @@ async function callGroq(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${groq.apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
         'HTTP-Referer': 'https://solascripturabr.com.br',
         'X-Title': 'Sola Scriptura BR',
       },
@@ -268,13 +269,14 @@ async function* streamGroq(
   systemPrompt: string,
 ): AsyncGenerator<{ token: string; done: boolean }> {
   const { groq } = AI_CONFIG;
-  if (!groq.apiKey) throw new Error('Groq API key not configured');
+  const apiKey = groq.getKey();
+  if (!apiKey) throw new Error('Groq API key not configured');
 
   const res = await fetch(`${groq.baseUrl}/chat/completions`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${groq.apiKey}`,
+      Authorization: `Bearer ${apiKey}`,
       'HTTP-Referer': 'https://solascripturabr.com.br',
       'X-Title': 'Sola Scriptura BR',
     },
@@ -633,9 +635,9 @@ export async function getAIStatus(): Promise<{
       model: AI_CONFIG.ollama.model,
     },
     groq: {
-      available: AI_CONFIG.groq.enabled && !!AI_CONFIG.groq.apiKey,
+      available: AI_CONFIG.groq.enabled && !!AI_CONFIG.groq.getKey(),
       model: AI_CONFIG.groq.model,
-      hasApiKey: !!AI_CONFIG.groq.apiKey,
+      hasApiKey: !!AI_CONFIG.groq.getKey(),
     },
     cache: cacheStats,
   };

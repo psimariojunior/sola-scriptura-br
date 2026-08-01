@@ -3,8 +3,6 @@ import {
   obterEstudoCapitulo,
   obterEstudoLivro,
 } from '@/lib/estudosLoader';
-import { obterComentarios } from '@/data/comentarios';
-import { crossReferences } from '@/data/crossReferences';
 import { findWordInText, getStrongByNumber } from '@/lib/lexiconSearch';
 import { TODOS_LIVROS, livroPorAbreviacao } from '@/data/biblia/livros';
 
@@ -152,8 +150,9 @@ export async function construirContextoRAG(
       fontes.add(`Estudo de ${referencia.livroNome} ${referencia.capitulo}:${referencia.versiculo}`);
     }
 
-    // 3b. Comentários de teólogos
-    const comentarios = obterComentarios(
+    // 3b. Comentários de teólogos (lazy para nao inflar o bundle do servidor)
+    const comentariosMod = await import('@/data/comentarios');
+    const comentarios = comentariosMod.obterComentarios(
       referencia.livro,
       referencia.capitulo,
       referencia.versiculo,
@@ -166,9 +165,10 @@ export async function construirContextoRAG(
       comentarios.forEach((cm) => fontes.add(cm.autor));
     }
 
-    // 3c. Referências cruzadas
+    // 3c. Referências cruzadas (lazy)
+    const refsMod = await import('@/data/crossReferences');
     const crKey = `${referencia.livro}:${referencia.capitulo}:${referencia.versiculo}`;
-    const cr = crossReferences[crKey];
+    const cr = refsMod.crossReferences[crKey];
     if (cr && cr.length > 0) {
       blocos.push(`REFERÊNCIAS CRUZADAS: ${cr.join(', ')}`);
     }

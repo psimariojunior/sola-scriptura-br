@@ -119,12 +119,23 @@ function DetalhePalavra({ strong, onClose }: { strong: string; onClose: () => vo
 
 export function InterlinearView({ versiculos, livro, capitulo }: InterlinearViewProps) {
   const [selectedStrong, setSelectedStrong] = useState<{ verso: number; strong: string } | null>(null);
+  const [dados, setDados] = useState<{ numero: number; palavras: PalavraAlinhada[] }[]>([]);
 
-  const dados = useMemo(() => {
-    return versiculos.map(v => ({
-      numero: v.numero,
-      palavras: alinharVersiculo(livro, capitulo, v.numero, v.texto),
-    }));
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const mod = await import('@/lib/wordAlignment');
+      const result = await Promise.all(
+        versiculos.map(async (v) => ({
+          numero: v.numero,
+          palavras: await mod.alinharVersiculo(livro, capitulo, v.numero, v.texto),
+        })),
+      );
+      if (!cancelled) setDados(result);
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, [versiculos, livro, capitulo]);
 
   const handleWordClick = (verso: number, strong: string) => {

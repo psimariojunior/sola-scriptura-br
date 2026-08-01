@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { getUserFromRequest } from '@/lib/session';
 
-const PUBLIC_PREFIXES = [
-  '/api/',
+const PROTECTED_PREFIXES = ['/admin', '/conta'];
+const PUBLIC_ASSET_PREFIXES = [
   '/_next/',
   '/favicon',
   '/icon',
@@ -12,46 +13,48 @@ const PUBLIC_PREFIXES = [
   '/screenshots/',
   '/patterns/',
   '/sounds/',
-  '/audio/',
-  '/estudos/',
-  '/ferramentas/',
 ];
 
-const PROTECTED_PREFIXES = [
-  '/admin',
-  '/conta',
-];
-
-function getTokenFromRequest(request: NextRequest): string | null {
-  const cookieToken = request.cookies.get('ssb_token')?.value;
-  if (cookieToken) return cookieToken;
-
-  const urlToken = request.nextUrl.searchParams.get('token');
-  if (urlToken) return urlToken;
-
-  const authHeader = request.headers.get('x-ssb-token');
-  if (authHeader) return authHeader;
-
-  return null;
-}
-
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (PUBLIC_PREFIXES.some(prefix => pathname.startsWith(prefix))) {
+  // Recursos estaticos nao exigem sessao
+  if (PUBLIC_ASSET_PREFIXES.some((p) => pathname.startsWith(p))) {
     return NextResponse.next();
   }
 
-  if (PROTECTED_PREFIXES.some(prefix => pathname.startsWith(prefix))) {
-    const token = getTokenFromRequest(request);
-    if (!token) {
-      const loginUrl = new URL('/auth', request.url);
-      loginUrl.searchParams.set('redirect', pathname);
-      return NextResponse.redirect(loginUrl);
+  // /admin requer role admin; /conta requer usuario autenticado
+  const needsAdmin = pathname.startsWith('/admin');
+  const needsAuth = needsAdmin || pathname.startsWith('/conta');
+
+  if (!needsAuth) return NextResponse.next();
+
+  const user = await getUserFromRequest(request);
+  if (!user) {
+    const loginUrl = new URL('/auth', request.url);
+    loginUrl.searchParams.set('redirect', pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  // Para /admin exige role de admin — confia no email allowlist local
+  // (a checagem real de role e feita no server-side do admin).
+  if (needsAdmin) {
+    const ADMIN_EMAILS = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || '')
+      .split(',')
+      .map((e) => e.trim().toLowerCase())
+      .filter(Boolean);
+    const isAdmin =
+      user.email && ADMIN_EMAILS.includes(user.email.toLowerCase());
+    if (!isAdmin) {
+      return NextResponse.redirect(new URL('/conta', request.url));
     }
   }
 
-  return NextResponse.next();
+  // Disponibiliza o user para a pagina via header (nao confiar no client)
+  const res = NextResponse.next();
+  res.headers.set('x-ssb-user-id', user.id);
+  if (user.email) res.headers.set('x-ssb-user-email', user.email);
+  return res;
 }
 
 export const config = {

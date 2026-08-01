@@ -1,7 +1,6 @@
 import { getVersiculoEstudo, versiculosPorLivro, type VersicoEstudo } from '@/data/versiculosEstudo';
 import { obterEstudos } from '@/data/estudosTeologicos';
-import { obterComentarios } from '@/data/comentarios';
-import { getCrossReferencesByVerse, type CrossReference } from '@/data/biblia/crossReferences';
+import type { CrossReference } from '@/data/biblia/crossReferences';
 import { obterEstudoCapitulo } from '@/lib/estudosLoader';
 
 export type TipoEstudo = 'versiculo' | 'capitulo' | 'livro';
@@ -111,8 +110,10 @@ export async function sintetizarEstudo(
 
     const vsPromise = getVersiculoEstudo(livro, capitulo, versiculo);
     const teologicos = obterEstudos(livro, capitulo, versiculo);
-    const comentarios = obterComentarios(livro, capitulo, versiculo);
-    const refs = mapearReferencias(getCrossReferencesByVerse(livro, capitulo, versiculo));
+    const comentariosMod = await import('@/data/comentarios');
+    const refsMod = await import('@/data/biblia/crossReferences');
+    const comentarios = comentariosMod.obterComentarios(livro, capitulo, versiculo);
+    const refs = mapearReferencias(refsMod.getCrossReferencesByVerse(livro, capitulo, versiculo));
     const vs = await vsPromise;
 
     let titulo = `${livro} ${capitulo}:${versiculo}`;
@@ -200,10 +201,11 @@ export async function sintetizarEstudo(
   if (livroCompleto) {
     fontes.add('Estudo por Versículo');
     const prefixo = `${capitulo}:`;
+    const refsModLivro = await import('@/data/biblia/crossReferences');
     for (const chave of Object.keys(livroCompleto)) {
       if (!chave.startsWith(prefixo)) continue;
       const v = livroCompleto[chave];
-      const refs = mapearReferencias(getCrossReferencesByVerse(livro, capitulo, v.versiculo));
+      const refs = mapearReferencias(refsModLivro.getCrossReferencesByVerse(livro, capitulo, v.versiculo));
       versiculosDoCap.push({
         numero: v.versiculo,
         titulo: v.titulo,

@@ -1,26 +1,31 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-export function useCrossReferencesLazy(referencia: string) {
+export function useCrossReferencesLazy(livro: string, capitulo: number, versiculo: number) {
   const [refs, setRefs] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    import('@/data/crossReferences').then(mod => {
+    import('@/data/crossReferences').then((mod) => {
       if (cancelled) return;
-      setRefs(mod.crossReferences[referencia] || []);
+      try {
+        const result = mod.getCrossReferences(livro, capitulo, versiculo) ?? [];
+        setRefs(result);
+      } catch {
+        setRefs([]);
+      }
       setLoading(false);
     });
-    return () => { cancelled = true; };
-  }, [referencia]);
-
+    return () => {
+      cancelled = true;
+    };
+  }, [livro, capitulo, versiculo]);
   return { refs, loading };
 }
 
-export async function getCrossReferencesLazy(referencia: string): Promise<string[]> {
+export async function getCrossReferencesLazy(livro: string, capitulo: number, versiculo: number): Promise<string[]> {
   const mod = await import('@/data/crossReferences');
-  return mod.crossReferences[referencia] || [];
+  return mod.getCrossReferences(livro, capitulo, versiculo) ?? [];
 }

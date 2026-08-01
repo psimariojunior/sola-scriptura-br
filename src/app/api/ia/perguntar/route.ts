@@ -2,10 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { chatWithAI } from '@/lib/ai-provider';
 import { construirContextoRAG } from '@/lib/ragGrounding';
 import { AI_CONFIG } from '@/lib/ai-config';
+import { applyRateLimit, withRateLimitHeaders } from '@/lib/api-rate-limit';
+import { getClientIP, rateLimit, RATE_LIMITS, buildRateLimitHeaders } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
+  const blocked = await applyRateLimit(request, 'IA_CHAT');
+  if (blocked) return blocked;
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();

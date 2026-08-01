@@ -40,7 +40,7 @@ function StudyExportButtonInner({
         traducao,
       };
 
-      exportStudyPDF(studyData);
+      await exportStudyPDF(studyData);
     } catch (err) {
       console.error('[studyExport]', err);
     } finally {

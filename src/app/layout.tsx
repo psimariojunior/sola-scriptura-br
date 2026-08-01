@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import LayoutWrapper from '@/components/LayoutWrapper';
 import './globals.css';
@@ -103,6 +103,7 @@ export const metadata: Metadata = {
       { url: '/favicon.svg', type: 'image/svg+xml' },
       { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
       { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+      { url: '/icon-maskable-512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: '/icon-192.png',
     shortcut: '/favicon.svg',
@@ -118,12 +119,24 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fafaf7' },
+    { media: '(prefers-color-scheme: dark)', color: '#0c0a09' },
+  ],
+};
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
   name: 'Sola Scriptura BR',
   url: 'https://solascripturabr.com.br',
-  description: 'Plataforma completa de estudo bíblico acadêmico com IA. Bíblia em 10 traduções, Grego e Hebraico com léxico Strong, Exegese automática, Teologia Sistemática e ferramentas avançadas.',
+  description:
+    'Plataforma completa de estudo bíblico acadêmico com IA. Bíblia em 10 traduções, Grego e Hebraico com léxico Strong, Exegese automática, Teologia Sistemática e ferramentas avançadas.',
   applicationCategory: 'EducationalApplication',
   operatingSystem: 'Web',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },
@@ -136,64 +149,67 @@ const jsonLd = {
     'Concordância bíblica',
     'Comentários de teólogos',
     'Referências cruzadas',
-    'Átlas bíblico interativo',
+    'Atlas bíblico interativo',
     'Harmonia sinótica',
     'Planos de leitura personalizados',
   ],
   author: { '@type': 'Organization', name: 'Sola Scriptura BR', url: 'https://solascripturabr.com.br' },
 };
 
+// Script inline para evitar flash de tema (FOUC). Carrega antes do CSS.
+const themeInitScript = `
+(function() {
+  try {
+    var t = localStorage.getItem('ssb_theme') || '';
+    var theme = t;
+    if (!theme) {
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      theme = prefersDark ? 'escuro' : 'claro';
+    }
+    var root = document.documentElement;
+    root.setAttribute('data-theme', theme);
+    root.classList.add('theme-' + theme);
+    if (theme === 'escuro' || theme === 'noturno' || theme === 'sepia' || theme === 'dim') {
+      root.classList.add('dark');
+    }
+    if (theme === 'noturno') root.classList.add('noturno');
+    if (theme === 'sepia') root.classList.add('sepia');
+    if (theme === 'dim') root.classList.add('dim');
+  } catch (_) {
+    document.documentElement.classList.add('dark');
+  }
+})();
+`.trim();
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning className={`${cormorant.variable} ${inter.variable} ${spectral.variable}`}>
+    <html
+      lang="pt-BR"
+      suppressHydrationWarning
+      className={`${cormorant.variable} ${inter.variable} ${spectral.variable}`}
+    >
       <head>
-        <meta name="theme-color" content="#d4a843" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="dns-prefetch" href="https://api.midvash.com" />
         <link rel="dns-prefetch" href="https://api.solascripturabr.com.br" />
         <link rel="preconnect" href="https://api.midvash.com" crossOrigin="anonymous" />
-        <link rel="modulepreload" href="/_next/static/chunks/framework-react-*.js" />
+        <link rel="preconnect" href="https://api.solascripturabr.com.br" crossOrigin="anonymous" />
+        <script
+          dangerouslySetInnerHTML={{ __html: themeInitScript }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var theme = localStorage.getItem('ssb_theme');
-                  if (!theme) {
-                    /* Sem tema salvo — respeitar preferencia do sistema */
-                    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    theme = prefersDark ? 'escuro' : 'claro';
-                  }
-                  if (theme === 'escuro' || theme === 'noturno' || theme === 'sepia' || theme === 'dim') {
-                    document.documentElement.classList.add('dark');
-                  }
-                  if (theme === 'noturno') {
-                    document.documentElement.classList.add('noturno');
-                  }
-                  if (theme === 'sepia') {
-                    document.documentElement.classList.add('sepia');
-                  }
-                  if (theme === 'dim') {
-                    document.documentElement.classList.add('dim');
-                  }
-                } catch(e) {
-                  document.documentElement.classList.add('dark');
-                }
-              })();
-            `,
-          }}
-        />
-
       </head>
       <body className="antialiased bg-background text-foreground">
-        <LayoutWrapper>
-          {children}
-        </LayoutWrapper>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-amber-500 focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+        >
+          Pular para o conteúdo principal
+        </a>
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );

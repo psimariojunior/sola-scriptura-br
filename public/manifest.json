@@ -1,8 +1,8 @@
 {
   "id": "https://solascripturabr.com.br",
-  "name": "Sola Scriptura - Estudo Biblico Gratuito",
+  "name": "Sola Scriptura - Estudo Bíblico Acadêmico com IA",
   "short_name": "Sola Scriptura",
-  "description": "Plataforma completa de estudo biblico com 24 traducoes, 1150+ perguntas de quiz, cursos com certificado e muito mais.",
+  "description": "Plataforma completa de estudo bíblico acadêmico com IA. Bíblia em 10 traduções, Grego e Hebraico com léxico Strong, Exegese automática, Teologia Sistemática e ferramentas avançadas de pesquisa.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0A0908",
@@ -47,28 +47,35 @@
       "name": "Bíblia",
       "short_name": "Bíblia",
       "url": "/biblia",
-      "description": "Leitura bíblica multi-tradução",
+      "description": "Leitura bíblica multi-tradução com 10 traduções",
       "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
     },
     {
       "name": "Pesquisa",
       "short_name": "Pesquisa",
       "url": "/pesquisa",
-      "description": "Pesquisa avançada",
+      "description": "Pesquisa avançada com busca semântica",
       "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
     },
     {
       "name": "Assistente IA",
       "short_name": "IA",
       "url": "/ia",
-      "description": "Assistente de estudo bíblico",
+      "description": "Assistente de estudo bíblico com IA",
       "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
     },
     {
-      "name": "Cursos",
-      "short_name": "Cursos",
-      "url": "/estudos",
-      "description": "Cursos com certificado",
+      "name": "Modo Imersão",
+      "short_name": "Imersão",
+      "url": "/imersao",
+      "description": "Leitura imersiva sem distrações",
+      "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Léxico",
+      "short_name": "Léxico",
+      "url": "/idiomas",
+      "description": "Grego e Hebraico com Strong's",
       "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
     },
     {
@@ -85,14 +92,14 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Sola Scriptura - Estudo Bíblico"
+      "label": "Sola Scriptura - Estudo Bíblico Acadêmico"
     },
     {
       "src": "/screenshot-narrow.png",
       "sizes": "720x1280",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Sola Scriptura - Estudo Bíblico"
+      "label": "Sola Scriptura - Estudo Bíblico Acadêmico"
     }
   ]
 }

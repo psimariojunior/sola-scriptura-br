@@ -28,6 +28,7 @@ const MobilePerformanceMonitor = lazy(() => import('@/components/MobilePerforman
 const BottomNavBar = lazy(() => import('@/components/BottomNavBar'));
 const VoiceCommands = lazy(() => import('@/components/VoiceCommands').then(m => ({ default: m.VoiceCommands })));
 const AccessibilityPanel = lazy(() => import('@/components/AccessibilityPanel').then(m => ({ default: m.AccessibilityPanel })));
+const PerformanceMonitor = lazy(() => import('@/components/PerformanceMonitor').then(m => ({ default: m.PerformanceMonitor })));
 
 const AIPainelLateral = lazy(() => import('@/components/AIPainelLateral').then(m => ({ default: m.AIPainelLateral })));
 const AIMiniPainel = lazy(() => import('@/components/AIMiniPainel').then(m => ({ default: m.AIMiniPainel })));
@@ -184,6 +185,9 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               <GlobalHotkeys />
               <Suspense fallback={null}>
                 <AccessibilityPanel />
+              </Suspense>
+              <Suspense fallback={null}>
+                <PerformanceMonitor />
               </Suspense>
               {process.env.NODE_ENV === 'development' && (
                 <Suspense fallback={null}>

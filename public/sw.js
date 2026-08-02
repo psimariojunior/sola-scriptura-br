@@ -1,36 +1,62 @@
-const CACHE_VERSION = 'v11';
+const CACHE_VERSION = 'v12';
 const STATIC_CACHE = `ssb-static-${CACHE_VERSION}`;
 const API_CACHE = `ssb-api-${CACHE_VERSION}`;
 const BIBLE_CACHE = `ssb-bible-${CACHE_VERSION}`;
 const PAGES_CACHE = `ssb-pages-${CACHE_VERSION}`;
 const VISITED_PAGES_CACHE = `ssb-visited-pages-${CACHE_VERSION}`;
 const STUDIES_CACHE = `ssb-studies-${CACHE_VERSION}`;
+const DATA_CACHE = `ssb-data-${CACHE_VERSION}`;
 const DB_NAME = 'ssb_offline';
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 const STORE_CHAPTERS = 'chapters';
 const STORE_META = 'meta';
 const STORE_FAVORITES = 'favorites';
 const STORE_NOTES = 'notes';
+const STORE_LEXICON = 'lexicon';
 
-// Precache otimizado: apenas as 12 paginas mais visitadas
-// As demais serao cacheadas na primeira navegacao via pageCacheFirst
+// Precache completo: todas as paginas essenciais
 const PRECACHE_URLS = [
   '/',
   '/biblia',
   '/pesquisa',
   '/idiomas',
+  '/palavras',
   '/teologia',
   '/historia',
   '/ia',
   '/estudos',
-  '/favoritos',
-  '/notas',
   '/exegese',
   '/personagens',
-  '/quiz',
-  '/flashcards',
-  '/palavras',
+  '/cronologia',
+  '/atlas',
   '/referencias',
+  '/harmonia',
+  '/favoritos',
+  '/notas',
+  '/colecoes',
+  '/planos',
+  '/devocional',
+  '/flashcards',
+  '/memorizacao',
+  '/quiz',
+  '/comparar',
+  '/comparar-comentarios',
+  '/parabolas',
+  '/milagres',
+  '/topicos',
+  '/estatisticas',
+  '/imersao',
+  '/sermon-builder',
+  '/relatorio-exegese',
+  '/textos-extrabiblicos',
+  '/mapa-ocorrencias',
+  '/explorador',
+  '/relacoes',
+  '/word-study',
+  '/seminario',
+  '/comunidade',
+  '/desafios',
+  '/dashboard',
   '/offline.html',
   '/manifest.json',
   '/icon-192.png',
@@ -52,6 +78,9 @@ function openDB() {
       }
       if (!db.objectStoreNames.contains(STORE_NOTES)) {
         db.createObjectStore(STORE_NOTES, { keyPath: 'key' });
+      }
+      if (!db.objectStoreNames.contains(STORE_LEXICON)) {
+        db.createObjectStore(STORE_LEXICON, { keyPath: 'key' });
       }
     };
     req.onsuccess = () => resolve(req.result);
@@ -253,6 +282,10 @@ self.addEventListener('message', (event) => {
     event.waitUntil(preloadStudies(data));
   }
 
+  if (data.type === 'PRELOAD_LEXICON') {
+    event.waitUntil(preloadLexicon(data));
+  }
+
   if (data.type === 'SCHEDULE_NOTIFICATION') {
     const notif = data.notification;
     if (notif && self.registration) {
@@ -366,6 +399,48 @@ async function preloadStudies(data) {
     const client = event.source;
     if (client) {
       client.postMessage({ type: 'PRELOAD_STUDIES_DONE', results });
+    }
+  } catch {}
+}
+
+async function preloadLexicon(data) {
+  const { language } = data;
+  const urls = language === 'hebrew'
+    ? ['/data/lexicon/hebraico.js']
+    : language === 'greek'
+    ? ['/data/lexicon/grego.js']
+    : ['/data/lexicon/hebraico.js', '/data/lexicon/grego.js'];
+
+  try {
+    const cache = await caches.open(DATA_CACHE);
+    const results = [];
+    for (const url of urls) {
+      try {
+        const response = await fetch(url);
+        if (response.ok) {
+          await cache.put(url, response.clone());
+          results.push({ url, ok: true });
+        } else {
+          results.push({ url, ok: false, status: response.status });
+        }
+      } catch (e) {
+        results.push({ url, ok: false, error: e.message });
+      }
+    }
+
+    // Armazenar no IndexedDB para acesso offline rápido
+    const db = await openDB();
+    const tx = db.transaction(STORE_LEXICON, 'readwrite');
+    const store = tx.objectStore(STORE_LEXICON);
+    store.put({
+      key: `lexicon:${language || 'all'}`,
+      data: results,
+      timestamp: Date.now(),
+    });
+
+    const client = event.source;
+    if (client) {
+      client.postMessage({ type: 'PRELOAD_LEXICON_DONE', results });
     }
   } catch {}
 }

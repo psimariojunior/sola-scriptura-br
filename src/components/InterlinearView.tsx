@@ -83,7 +83,7 @@ function DetalhePalavra({ strong, onClose }: { strong: string; onClose: () => vo
         </div>
 
         <div className="text-center mb-3">
-          <p className="text-2xl font-bold ${isHebrew ? 'font-hebrew' : 'font-greek'}" style={{ color: 'var(--content-primary)' }}>{entry.palavra}</p>
+          <p className={`text-2xl font-bold ${isHebrew ? 'font-hebrew' : 'font-greek'}`} style={{ color: 'var(--content-primary)' }}>{entry.palavra}</p>
           <p className="text-xs italic" style={{ color: 'var(--content-muted)' }}>
             {isHebrew ? romanizeHebrew(entry.transliteracao || entry.palavra) : entry.transliteracao}
           </p>

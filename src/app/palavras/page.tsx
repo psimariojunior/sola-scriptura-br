@@ -9,6 +9,7 @@ import { Languages, Search, X, BookOpen, ArrowRight, Hash, ChevronDown, ChevronU
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
 import { carregarLexicoGrego, carregarLexicoHebraico } from '@/lib/lexicon-lazy';
+import { romanizeHebrew } from '@/lib/hebrewRomanize';
 import type { PalavraGrega } from '@/data/lexicon/grego';
 import type { PalavraHebraica } from '@/data/lexicon/hebraico';
 
@@ -44,11 +45,15 @@ export default function PalavrasOriginaisPage() {
 
   const filtradas = useMemo(() => {
     let result = palavras;
+    if (idioma === 'hebraico') {
+      result = result.filter(p => p.transliteracao || p.definicao);
+    }
     if (busca) {
       const termo = busca.toLowerCase();
       result = result.filter(p =>
         p.palavra.toLowerCase().includes(termo) ||
         p.transliteracao.toLowerCase().includes(termo) ||
+        romanizeHebrew(p.transliteracao).toLowerCase().includes(termo) ||
         ('definicaoResumida' in p && p.definicaoResumida?.toLowerCase().includes(termo)) ||
         ('definicao' in p && p.definicao?.toLowerCase().includes(termo)) ||
         p.strong.toLowerCase().includes(termo)
@@ -57,7 +62,13 @@ export default function PalavrasOriginaisPage() {
     if (filtroCategoria !== 'all' && idioma === 'grego') {
       result = result.filter(p => 'categoria' in p && p.categoria === filtroCategoria);
     }
-    if (sortBy === 'frequencia') {
+    if (sortBy === 'strong') {
+      result = [...result].sort((a, b) => {
+        const numA = parseInt(a.strong.slice(1), 10);
+        const numB = parseInt(b.strong.slice(1), 10);
+        return numA - numB;
+      });
+    } else if (sortBy === 'frequencia') {
       result = [...result].sort((a, b) => ((b as PalavraGrega).frequencia || 0) - ((a as PalavraGrega).frequencia || 0));
     } else if (sortBy === 'palavra') {
       result = [...result].sort((a, b) => a.palavra.localeCompare(b.palavra));
@@ -183,7 +194,7 @@ export default function PalavrasOriginaisPage() {
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
                           <span className="text-sm font-medium">{p.palavra}</span>
-                          <span className="text-xs text-muted-foreground">({p.transliteracao})</span>
+                          <span className="text-xs text-muted-foreground">({idioma === 'hebraico' ? romanizeHebrew(p.transliteracao || p.palavra) : p.transliteracao})</span>
                           <span className="text-xs text-primary font-mono">{p.strong}</span>
                         </div>
                         <div className="h-2 bg-muted/50 rounded-full overflow-hidden">
@@ -234,7 +245,7 @@ export default function PalavrasOriginaisPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="text-lg">{p.palavra}</span>
-                        <span className="text-sm text-muted-foreground">({p.transliteracao})</span>
+                        <span className="text-sm text-muted-foreground">({idioma === 'hebraico' ? romanizeHebrew(p.transliteracao || p.palavra) : p.transliteracao})</span>
                         {freq > 0 && (
                           <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 font-medium">×{freq}</span>
                         )}

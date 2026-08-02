@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, BookOpen } from 'lucide-react';
 import { getStrongByNumber, type LexiconEntry } from '@/lib/lexiconSearch';
 import { alinharVersiculo, type PalavraAlinhada } from '@/lib/wordAlignment';
+import { romanizeHebrew } from '@/lib/hebrewRomanize';
 
 interface VersiculoInput {
   numero: number;
@@ -82,8 +83,10 @@ function DetalhePalavra({ strong, onClose }: { strong: string; onClose: () => vo
         </div>
 
         <div className="text-center mb-3">
-          <p className={`text-2xl font-bold ${isHebrew ? 'font-hebrew' : 'font-greek'}`} style={{ color: 'var(--content-primary)' }}>{entry.palavra}</p>
-          <p className="text-xs italic" style={{ color: 'var(--content-muted)' }}>{entry.transliteracao}</p>
+          <p className="text-2xl font-bold ${isHebrew ? 'font-hebrew' : 'font-greek'}" style={{ color: 'var(--content-primary)' }}>{entry.palavra}</p>
+          <p className="text-xs italic" style={{ color: 'var(--content-muted)' }}>
+            {isHebrew ? romanizeHebrew(entry.transliteracao || entry.palavra) : entry.transliteracao}
+          </p>
         </div>
 
         {(categoria || morphologia) && (

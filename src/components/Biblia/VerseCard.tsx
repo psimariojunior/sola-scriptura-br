@@ -7,11 +7,12 @@ import type { useVerseAudio } from '@/hooks/useVerseAudio';
 import type { useFlashcards } from '@/hooks/useFlashcards';
 import { VerseActions } from './VerseActions';
 import { VerseComments, CommentBadge } from './VerseComments';
-import { Heart, Palette, Copy, StickyNote, Languages, MessageSquare, Share2, Sparkles, ImageIcon, Users, BookOpen } from 'lucide-react';
+import { Heart, Palette, Copy, StickyNote, Languages, MessageSquare, Share2, Sparkles, ImageIcon, Users, BookOpen, Maximize2 } from 'lucide-react';
 import { toggleFavorito } from '@/lib/estudos';
 import { setMarcador, removeMarcador, getMarcador, CORES, type CorMarcador } from '@/lib/marcadores';
 import { MobileVersePanel } from '@/components/MobileVersePanel';
 import { ClickableVerse } from './ClickableVerse';
+import { VerseFocusOverlay } from './VerseFocusOverlay';
 
 export interface VerseCardProps {
   numero: number;
@@ -101,6 +102,7 @@ export const VerseCard = memo(function VerseCard({
   const [showLongPressColor, setShowLongPressColor] = useState(false);
   const [showMobilePanel, setShowMobilePanel] = useState(false);
   const [showComments, setShowComments] = useState(false);
+  const [showFocusOverlay, setShowFocusOverlay] = useState(false);
   const [commentsRefreshKey, setCommentsRefreshKey] = useState(0);
   const mobileColorRef = useRef<HTMLDivElement>(null);
   const colorRef = useRef<HTMLDivElement>(null);
@@ -373,7 +375,7 @@ export const VerseCard = memo(function VerseCard({
         {/* Mobile inline action panel - only show when PainelDoVersiculo is NOT open */}
         {isSelected && !hideMobileActions && (
           <div className="lg:hidden mt-2 pt-2 border-t border-[var(--border)]/20 animate-[slideDown_0.2s_ease-out]">
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-4 gap-2">
               <button
                 onClick={(e) => { e.stopPropagation(); toggleFavorito(livroAbreviacao, capitulo, numero, traducao, texto); if (navigator?.vibrate) navigator.vibrate([10, 50, 10]); onFavoritoChange(); }}
                 className={cn('flex flex-col items-center justify-center gap-1 p-3 rounded-xl transition-all active:scale-95', isFavorito ? 'text-white bg-red-500' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)]')}
@@ -391,14 +393,29 @@ export const VerseCard = memo(function VerseCard({
                 <span className="text-[10px] font-medium">Copiar</span>
               </button>
               <button
-                onClick={(e) => { e.stopPropagation(); setShowMobilePanel(true); }}
+                onClick={(e) => { e.stopPropagation(); setShowFocusOverlay(true); }}
                 className="flex flex-col items-center justify-center gap-1 p-3 rounded-xl bg-[var(--brand-subtle)] text-[var(--brand-default)] transition-all active:scale-95"
+                aria-label="Visão completa"
+              >
+                <Maximize2 className="w-5 h-5" />
+                <span className="text-[10px] font-medium">Estudar</span>
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); setShowMobilePanel(true); }}
+                className="flex flex-col items-center justify-center gap-1 p-3 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] transition-all active:scale-95"
                 aria-label="Mais opções"
               >
                 <BookOpen className="w-5 h-5" />
                 <span className="text-[10px] font-medium">Mais</span>
               </button>
             </div>
+            {/* Focus overlay button - desktop only */}
+            <button
+              onClick={(e) => { e.stopPropagation(); setShowFocusOverlay(true); }}
+              className="hidden lg:flex items-center gap-1.5 mt-2 w-full justify-center py-2 rounded-lg bg-[var(--brand-subtle)]/50 text-[var(--brand-default)] text-[10px] font-semibold hover:bg-[var(--brand-subtle)] transition-colors"
+            >
+              <Maximize2 className="w-3 h-3" />Visão Completa do Versículo
+            </button>
           </div>
         )}
       </div>
@@ -427,6 +444,17 @@ export const VerseCard = memo(function VerseCard({
         versiculo={numero}
         open={showComments}
         onFechar={() => { setShowComments(false); setCommentsRefreshKey((k) => k + 1); }}
+      />
+
+      <VerseFocusOverlay
+        open={showFocusOverlay}
+        onClose={() => setShowFocusOverlay(false)}
+        livroAbreviacao={livroAbreviacao}
+        livroNome={livroNome}
+        capitulo={capitulo}
+        versiculo={numero}
+        texto={texto}
+        traducao={traducao}
       />
     </Fragment>
   );

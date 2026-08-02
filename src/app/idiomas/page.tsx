@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
 import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { romanizeHebrew } from '@/lib/hebrewRomanize';
 
 interface LexiconWord {
   strong: string;
@@ -48,9 +49,10 @@ export default function IdiomasPage() {
       const matchSearch = !search || 
         w.palavra.toLowerCase().includes(search.toLowerCase()) ||
         w.transliteracao?.toLowerCase().includes(search.toLowerCase()) ||
+        romanizeHebrew(w.transliteracao).toLowerCase().includes(search.toLowerCase()) ||
         w.definicao.toLowerCase().includes(search.toLowerCase()) ||
         String(w.strong).includes(search);
-      return matchLang && matchSearch;
+      return matchLang && matchSearch && (w.transliteracao || w.definicao);
     });
   }, [search, filter, allWords]);
 
@@ -153,7 +155,7 @@ export default function IdiomasPage() {
 
           {/* Words grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filtered.slice(0, 100).map((word, i) => (
+            {filtered.slice(0, 200).map((word, i) => (
               <ScrollReveal key={`${word.lingua}-${word.strong}`} delay={Math.min(i * 0.02, 0.5)}>
                 <motion.div
                   className="glass-card p-5 h-full group"
@@ -163,7 +165,7 @@ export default function IdiomasPage() {
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <span className="text-2xl font-serif">{word.palavra}</span>
-                      <p className="text-sm text-muted-foreground italic">{word.transliteracao}</p>
+                      <p className="text-sm text-muted-foreground italic">{word.lingua === 'hebraico' ? romanizeHebrew(word.transliteracao || word.palavra) : word.transliteracao}</p>
                     </div>
                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
                       word.lingua === 'grego' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400' : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'
@@ -189,9 +191,9 @@ export default function IdiomasPage() {
             ))}
           </div>
 
-          {filtered.length > 100 && (
+          {filtered.length > 200 && (
             <p className="text-center text-sm text-muted-foreground mt-8">
-              {t('languages.showing', { shown: 100, total: filtered.length })}
+              {t('languages.showing', { shown: 200, total: filtered.length })}
             </p>
           )}
         </div>

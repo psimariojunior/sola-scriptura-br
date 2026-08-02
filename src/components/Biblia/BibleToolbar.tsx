@@ -8,6 +8,7 @@ import { TranslationDropdown } from './TranslationDropdown';
 import { ToolsDropdown } from './ToolsDropdown';
 import { ChapterGrid } from './ChapterGrid';
 import { ModoLeitura } from './ModoLeitura';
+import { ReadingModeBar, type ReadingMode } from './ReadingModeBar';
 import type { UseBibliaNavigationReturn } from '@/hooks/biblia/useBibliaNavigation';
 import type { UseBibliaUIReturn } from '@/hooks/biblia/useBibliaUI';
 import type { UseBibliaPanelsReturn } from '@/hooks/biblia/useBibliaPanels';
@@ -35,6 +36,7 @@ export function BibleToolbar({
 }: BibleToolbarProps) {
   const { t } = useTranslation();
   const [mobileToolbarMenuOpen, setMobileToolbarMenuOpen] = useState(false);
+  const [readingMode, setReadingMode] = useState<ReadingMode>('leitura');
   const mobileMenuBtnRef = useRef<HTMLButtonElement>(null);
   const [mobileMenuPos, setMobileMenuPos] = useState<{ top: number; right: number }>({ top: 0, right: 0 });
 
@@ -56,6 +58,8 @@ export function BibleToolbar({
           <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform"><ChevronRight className="w-4 h-4" /></button>
         </div>
         <div className="flex-1" />
+        <ReadingModeBar mode={readingMode} onModeChange={setReadingMode} />
+        <div className="flex-1 sm:flex-none" />
         <TranslationDropdown open={ui.tradOpen} onToggle={() => { ui.setTradOpen(!ui.tradOpen); ui.setToolsOpen(false); }} onClose={() => ui.setTradOpen(false)} selectedTrads={nav.selectedTrads} onToggleTrad={nav.toggleTrad} viewMode={nav.viewMode} onViewModeChange={nav.setViewMode} />
         <div className="md:hidden relative shrink-0">
           <button ref={mobileMenuBtnRef} onClick={() => {

@@ -9,7 +9,7 @@ import android.net.Uri
 import android.content.Intent
 import android.app.PendingIntent
 
-class VerseWidgetProvider : AppWidgetProvider() {
+class ProgressWidgetProvider : AppWidgetProvider() {
 
     override fun onUpdate(
         context: Context,
@@ -23,17 +23,17 @@ class VerseWidgetProvider : AppWidgetProvider() {
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
-        if (intent.action == ACTION_UPDATE_WIDGET) {
+        if (intent.action == ACTION_UPDATE_PROGRESS) {
             val appWidgetManager = AppWidgetManager.getInstance(context)
             val ids = appWidgetManager.getAppWidgetIds(
-                android.content.ComponentName(context, VerseWidgetProvider::class.java)
+                android.content.ComponentName(context, ProgressWidgetProvider::class.java)
             )
             onUpdate(context, appWidgetManager, ids)
         }
     }
 
     companion object {
-        const val ACTION_UPDATE_WIDGET = "com.solascriptura.UPDATE_WIDGET"
+        const val ACTION_UPDATE_PROGRESS = "com.solascriptura.UPDATE_PROGRESS"
 
         fun updateWidget(
             context: Context,
@@ -41,20 +41,23 @@ class VerseWidgetProvider : AppWidgetProvider() {
             appWidgetId: Int
         ) {
             val prefs: SharedPreferences = context.getSharedPreferences("widget_verses", Context.MODE_PRIVATE)
-            val verse = prefs.getString("verse_text", "Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito") ?: "Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito"
-            val reference = prefs.getString("verse_reference", "João 3:16") ?: "João 3:16"
             val streak = prefs.getInt("streak_count", 0)
+            val bestStreak = prefs.getInt("best_streak", 0)
+            val totalDays = prefs.getInt("total_days", 0)
 
-            val views = RemoteViews(context.packageName, R.layout.widget_verse)
-            views.setTextViewText(R.id.widget_verse_text, "\"$verse\"")
-            views.setTextViewText(R.id.widget_verse_reference, "— $reference")
+            val views = RemoteViews(context.packageName, R.layout.widget_progress)
+            views.setTextViewText(R.id.widget_progress_streak, streak.toString())
+            views.setTextViewText(R.id.widget_progress_best, bestStreak.toString())
+            views.setTextViewText(R.id.widget_progress_total, totalDays.toString())
 
-            if (streak > 0) {
-                views.setTextViewText(R.id.widget_streak, "🔥 $streak dias")
-                views.setViewVisibility(R.id.widget_streak, android.view.View.VISIBLE)
-            } else {
-                views.setViewVisibility(R.id.widget_streak, android.view.View.GONE)
+            val motivation = when {
+                streak == 0 -> "Comece sua jornada!"
+                streak == 1 -> "Primeiro dia!"
+                streak < 7 -> "$streak dias!"
+                streak < 30 -> "Incrível!"
+                else -> "Lenda!"
             }
+            views.setTextViewText(R.id.widget_progress_label, motivation)
 
             val intent = Intent(context, MainActivity::class.java)
             intent.action = Intent.ACTION_VIEW
@@ -63,17 +66,21 @@ class VerseWidgetProvider : AppWidgetProvider() {
                 context, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
-            views.setOnClickPendingIntent(R.id.widget_container, pendingIntent)
+            views.setOnClickPendingIntent(R.id.widget_progress_container, pendingIntent)
 
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }
 
-        fun updateStreak(context: Context, streak: Int) {
+        fun updateStats(context: Context, streak: Int, bestStreak: Int, totalDays: Int) {
             val prefs: SharedPreferences = context.getSharedPreferences("widget_verses", Context.MODE_PRIVATE)
-            prefs.edit().putInt("streak_count", streak).apply()
+            prefs.edit()
+                .putInt("streak_count", streak)
+                .putInt("best_streak", bestStreak)
+                .putInt("total_days", totalDays)
+                .apply()
 
-            val intent = Intent(context, VerseWidgetProvider::class.java)
-            intent.action = ACTION_UPDATE_WIDGET
+            val intent = Intent(context, ProgressWidgetProvider::class.java)
+            intent.action = ACTION_UPDATE_PROGRESS
             context.sendBroadcast(intent)
         }
     }

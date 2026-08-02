@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'verse_widget_service.dart';
 
 class StreakService {
   static const _streakKey = 'ssb_streak_count';
@@ -34,6 +35,8 @@ class StreakService {
     final today = DateTime(now.year, now.month, now.day).toIso8601String();
     final lastRead = prefs.getString(_lastReadKey);
 
+    int newStreak = 1;
+
     if (lastRead != null) {
       final lastDate = DateTime.parse(lastRead);
       final lastDay = DateTime(lastDate.year, lastDate.month, lastDate.day);
@@ -44,21 +47,23 @@ class StreakService {
         return prefs.getInt(_streakKey) ?? 0;
       }
       if (diff == 1) {
-        final newStreak = (prefs.getInt(_streakKey) ?? 0) + 1;
-        await prefs.setInt(_streakKey, newStreak);
-        await prefs.setString(_lastReadKey, today);
-        await _updateBestStreak(newStreak);
-        await _updateTotalDays();
-        await _recordHistoryEntry(now);
-        return newStreak;
+        newStreak = (prefs.getInt(_streakKey) ?? 0) + 1;
       }
     }
 
-    await prefs.setInt(_streakKey, 1);
+    await prefs.setInt(_streakKey, newStreak);
     await prefs.setString(_lastReadKey, today);
+    await _updateBestStreak(newStreak);
     await _updateTotalDays();
     await _recordHistoryEntry(now);
-    return 1;
+
+    try {
+      await VerseWidgetService.updateStreakWidget();
+    } catch (e) {
+      print('Failed to update widget: $e');
+    }
+
+    return newStreak;
   }
 
   static Future<void> _updateBestStreak(int current) async {

@@ -18,6 +18,7 @@ import 'services/app_lock_service.dart';
 import 'services/verse_widget_service.dart';
 import 'services/streak_service.dart';
 import 'services/streak_notification_service.dart';
+import 'services/background_update_service.dart';
 
 const platform = MethodChannel('com.solascriptura/deeplink');
 
@@ -98,6 +99,9 @@ void main() async {
   final streakNotifService = StreakNotificationService();
   await streakNotifService.initialize();
   await streakNotifService.scheduleStreakReminders();
+
+  await BackgroundUpdateService.initialize();
+  await BackgroundUpdateService.schedulePeriodicUpdate();
 
   VerseWidgetService.updateWithDailyVerse();
 

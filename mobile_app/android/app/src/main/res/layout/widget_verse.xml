@@ -15,6 +15,18 @@
         android:alpha="0.6" />
 
     <TextView
+        android:id="@+id/widget_streak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:text="🔥 7 dias"
+        android:textColor="#FFA17A2C"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <TextView
         android:id="@+id/widget_verse_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

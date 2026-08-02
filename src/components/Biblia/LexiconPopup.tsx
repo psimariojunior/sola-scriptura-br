@@ -6,6 +6,7 @@ import Link from 'next/link';
 import type { LexiconEntry } from '@/lib/lexiconSearch';
 import type { LexiconResult } from '@/lib/lexiconSearch';
 import { isHebrewStrong } from '@/lib/lexiconSearch';
+import { AudioPronunciation } from '@/components/AudioPronunciation';
 
 interface LexiconPopupProps {
   entry: LexiconEntry;
@@ -85,12 +86,19 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
         </button>
       </div>
 
-      {/* Transliteration */}
+      {/* Transliteration + Audio */}
       <div className="flex items-center gap-2">
         <span className="text-xs" style={{ color: 'var(--content-muted)' }}>Transliteração:</span>
         <span className="text-sm italic" style={{ color: 'var(--content-primary)' }}>
           {currentEntry.transliteracao}
         </span>
+        <AudioPronunciation
+          palavra={currentEntry.palavra}
+          strong={currentEntry.strong}
+          lingua={isHebrew ? 'hebraico' : 'grego'}
+          transliteracao={currentEntry.transliteracao}
+          size="sm"
+        />
       </div>
 
       {/* Definition */}

@@ -71,6 +71,7 @@ const NAV_COMMANDS: { label: string; href: string; icon: typeof BookOpen; grupo:
   { label: 'Gerador de Sermão', href: '/sermon-builder', icon: Sparkles, grupo: 'Ferramentas' },
   { label: 'Relatório Exegético', href: '/relatorio-exegese', icon: FileText, grupo: 'Ferramentas' },
   { label: 'Textos Extrabíblicos', href: '/textos-extrabiblicos', icon: FileText, grupo: 'Ferramentas' },
+  { label: 'Mapa de Ocorrências', href: '/mapa-ocorrencias', icon: Tag, grupo: 'Ferramentas' },
   { label: 'Concordância', href: '/ferramentas/concordancia', icon: Tag, grupo: 'Ferramentas' },
   { label: 'Crítica Textual', href: '/ferramentas/critica-textual', icon: FileText, grupo: 'Ferramentas' },
   { label: 'Introduções', href: '/ferramentas/introducoes', icon: BookOpen, grupo: 'Ferramentas' },

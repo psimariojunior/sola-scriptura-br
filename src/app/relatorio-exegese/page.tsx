@@ -190,6 +190,63 @@ export default function RelatorioExegesePage() {
     URL.revokeObjectURL(url);
   }, [secoes, livro, capitulo, versiculo, traducao]);
 
+  const handleExportarPDF = useCallback(() => {
+    let html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório Exegético — ${livro} ${capitulo}:${versiculo}</title>
+  <style>
+    @page { margin: 2cm; size: A4; }
+    body { font-family: Georgia, 'Times New Roman', serif; font-size: 11pt; color: #1a1a1a; line-height: 1.6; max-width: 100%; margin: 0; padding: 0; }
+    h1 { font-size: 20pt; color: #2c2416; border-bottom: 2px solid #8b6914; padding-bottom: 8px; margin-bottom: 16px; }
+    h2 { font-size: 14pt; color: #2c2416; margin-top: 24px; margin-bottom: 12px; border-bottom: 1px solid #e5e5e5; padding-bottom: 4px; }
+    .meta { color: #666; font-style: italic; margin-bottom: 24px; font-size: 10pt; }
+    .section { margin-bottom: 20px; padding: 12px 16px; background: #f9f7f4; border-left: 3px solid #8b6914; border-radius: 4px; page-break-inside: avoid; }
+    .section p { margin-bottom: 8px; }
+    .items { margin-top: 8px; padding-left: 20px; }
+    .items li { margin-bottom: 4px; font-size: 10pt; }
+    .header-line { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .badge { display: inline-block; background: #8b6914; color: white; font-size: 8pt; padding: 2px 8px; border-radius: 10px; font-weight: bold; }
+    .footer { margin-top: 40px; padding-top: 12px; border-top: 1px solid #ccc; color: #999; font-size: 8pt; text-align: center; }
+    .watermark { text-align: center; color: #ccc; font-size: 7pt; margin-top: 20px; }
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Relatório Exegético</h1>
+  <p class="meta"><strong>${livro.toUpperCase()} ${capitulo}:${versiculo}</strong> — Tradução: ${traducao.toUpperCase()} — Data: ${new Date().toLocaleDateString('pt-BR')}</p>\n`;
+
+    for (const s of secoes) {
+      html += `  <div class="section">\n    <h2>${s.titulo}</h2>\n    <p>${s.conteudo}</p>\n`;
+      if (s.itens) {
+        html += `    <ul class="items">\n`;
+        for (const item of s.itens) {
+          html += `      <li>${item}</li>\n`;
+        }
+        html += `    </ul>\n`;
+      }
+      html += `  </div>\n`;
+    }
+
+    html += `  <div class="watermark">Este documento foi gerado automaticamente pelo Sola Scriptura BR</div>\n`;
+    html += `  <div class="footer">Sola Scriptura BR — solascripturabr.com.br — ${new Date().toLocaleDateString('pt-BR')}</div>\n`;
+    html += `</body>\n</html>`;
+
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.write(html);
+      printWindow.document.close();
+      printWindow.focus();
+      setTimeout(() => {
+        printWindow.print();
+      }, 500);
+    }
+  }, [secoes, livro, capitulo, versiculo, traducao]);
+
   return (
     <div className="min-h-screen bg-[var(--bg)]">
       <Header />
@@ -300,6 +357,13 @@ export default function RelatorioExegesePage() {
               >
                 <FileDown className="w-4 h-4" />
                 Exportar HTML
+              </button>
+              <button
+                onClick={handleExportarPDF}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 transition-colors text-sm font-medium text-red-600 dark:text-red-400"
+              >
+                <FileDown className="w-4 h-4" />
+                Exportar PDF
               </button>
             </div>
 

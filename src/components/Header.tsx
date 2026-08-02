@@ -8,7 +8,7 @@ import {
   Menu, X, BookOpen, Search, Sun, Moon, User, LogOut, Languages, BookMarked,
   Command, Settings, ChevronDown, ScrollText, Brain, Map,
   Sparkles, GraduationCap, MessageCircle, Library, Crown, Heart, History, HelpCircle, Download,
-  Users, Target, BarChart3, GitBranch, Calendar, Tag, RotateCw,
+  Users, Target, BarChart3, GitBranch, Calendar, Tag, RotateCw, Hash,
 } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { authService } from '@/lib/auth';
@@ -101,6 +101,7 @@ const maisGrupos: NavGroup[] = [
       { href: '/desafios', label: 'header.challenges', icon: Target },
       { href: '/sermon-builder', label: 'Gerador de Sermão', icon: Sparkles },
       { href: '/relatorio-exegese', label: 'Relatório Exegético', icon: ScrollText },
+      { href: '/mapa-ocorrencias', label: 'Mapa de Ocorrências', icon: Hash },
     ],
   },
   {

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { X, BookOpen } from 'lucide-react';
 import { getStrongByNumber, type LexiconEntry } from '@/lib/lexiconSearch';
+import { AudioPronunciation } from '@/components/AudioPronunciation';
 
 interface InterlinearModalProps {
   strong: string | null;
@@ -113,9 +114,18 @@ export function InterlinearModal({ strong, onClose }: InterlinearModalProps) {
                 <p className={`text-3xl font-bold mb-1 ${isHebrew ? 'font-hebrew' : 'font-greek'}`} style={{ color: 'var(--content-primary)' }}>
                   {entry.palavra}
                 </p>
-                <p className="text-sm italic" style={{ color: 'var(--content-muted)' }}>
-                  {entry.transliteracao}
-                </p>
+                <div className="flex items-center justify-center gap-2">
+                  <p className="text-sm italic" style={{ color: 'var(--content-muted)' }}>
+                    {entry.transliteracao}
+                  </p>
+                  <AudioPronunciation
+                    palavra={entry.palavra}
+                    strong={entry.strong}
+                    lingua={isHebrew ? 'hebraico' : 'grego'}
+                    transliteracao={entry.transliteracao}
+                    size="md"
+                  />
+                </div>
               </div>
 
               {/* Categorias */}

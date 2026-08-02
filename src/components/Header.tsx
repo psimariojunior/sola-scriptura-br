@@ -89,6 +89,7 @@ const maisGrupos: NavGroup[] = [
       { href: '/comparar', label: 'header.compareTranslations', icon: Languages },
       { href: '/comparar-comentarios', label: 'header.commentaries', icon: MessageCircle },
       { href: '/relacoes', label: 'header.biblicalRelations', icon: Users },
+      { href: '/textos-extrabiblicos', label: 'Textos Extrabíblicos', icon: ScrollText },
     ],
   },
   {
@@ -98,6 +99,14 @@ const maisGrupos: NavGroup[] = [
       { href: '/comunidade', label: 'header.community', icon: MessageCircle },
       { href: '/quiz', label: 'header.biblicalQuiz', icon: HelpCircle },
       { href: '/desafios', label: 'header.challenges', icon: Target },
+      { href: '/sermon-builder', label: 'Gerador de Sermão', icon: Sparkles },
+      { href: '/relatorio-exegese', label: 'Relatório Exegético', icon: ScrollText },
+    ],
+  },
+  {
+    titulo: 'Modo Imersão',
+    links: [
+      { href: '/imersao', label: 'Modo Imersão', icon: BookOpen },
     ],
   },
 ];

@@ -8,7 +8,7 @@ export interface CapituloComparado {
   versiculos: VersiculoData[];
 }
 
-type LivroData = Record<string, Record<number, string[]>>;
+export type LivroData = Record<string, Record<number, string[]>>;
 
 export const TRADUCOES_DISPONIVEIS = ['arc', 'nvi', 'ara', 'acf', 'naa', 'ntlh', 'kjv', 'web', 'nvt', 'kja', 'aa', 'nbv', 'as21', 'jfaa', 'kjf', 'msgpt', 'bpm', 'nva', 'esv', 'niv', 'nkjv', 'nlt', 'rvr1960', 'lsg'] as const;
 export type TraducaoId = (typeof TRADUCOES_DISPONIVEIS)[number];

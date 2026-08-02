@@ -8,7 +8,7 @@ class JsBridge {
       if (window.__SSB_NATIVE) return;
       
       window.__SSB_NATIVE = true;
-      window.__SSB_VERSION = '1.2.0';
+      window.__SSB_VERSION = '1.3.0';
       window.__SSB_PLATFORM = 'flutter';
       
       window.__SSB_SHARE = function(text, url) {
@@ -27,6 +27,50 @@ class JsBridge {
       window.__SSB_NOTIFICATION = function(enabled, hour, minute) {
         if (window.SSBNotification) {
           window.SSBNotification.postMessage('schedule|' + enabled + '|' + hour + '|' + minute);
+        }
+      };
+
+      window.__SSB_STREAK = {
+        recordReading: function() {
+          if (window.SSBStreak) {
+            window.SSBStreak.postMessage('record');
+          }
+        },
+        getStats: function() {
+          return new Promise(function(resolve) {
+            window.__SSB_STREAK_RESOLVE = resolve;
+            if (window.SSBStreak) {
+              window.SSBStreak.postMessage('getStats');
+            } else {
+              resolve({ currentStreak: 0, bestStreak: 0, totalDays: 0 });
+            }
+          });
+        },
+        showScreen: function() {
+          window.location.href = 'ssb-streak://';
+        }
+      };
+
+      window.__SSB_OFFLINE = {
+        cacheChapter: function(translation, book, chapter, data) {
+          if (window.SSBOffline) {
+            window.SSBOffline.postMessage('cache|' + translation + '|' + book + '|' + chapter + '|' + JSON.stringify(data));
+          }
+        },
+        getCachedChapter: function(translation, book, chapter) {
+          return new Promise(function(resolve) {
+            window.__SSB_OFFLINE_RESOLVE = resolve;
+            if (window.SSBOffline) {
+              window.SSBOffline.postMessage('get|' + translation + '|' + book + '|' + chapter);
+            } else {
+              resolve(null);
+            }
+          });
+        },
+        sync: function() {
+          if (window.SSBOffline) {
+            window.SSBOffline.postMessage('sync');
+          }
         }
       };
       

@@ -11,10 +11,13 @@ import 'dart:convert';
 import 'config/theme.dart';
 import 'screens/splash_screen.dart';
 import 'screens/settings_screen.dart';
+import 'screens/streak_screen.dart';
 import 'widgets/onboarding_tour.dart';
 import 'services/notification_service.dart';
 import 'services/app_lock_service.dart';
 import 'services/verse_widget_service.dart';
+import 'services/streak_service.dart';
+import 'services/streak_notification_service.dart';
 
 const platform = MethodChannel('com.solascriptura/deeplink');
 
@@ -91,6 +94,11 @@ void main() async {
   final notifService = NotificationService();
   await notifService.initialize();
   await notifService.rescheduleFromPrefs();
+
+  final streakNotifService = StreakNotificationService();
+  await streakNotifService.initialize();
+  await streakNotifService.scheduleStreakReminders();
+
   VerseWidgetService.updateWithDailyVerse();
 
   runApp(const SolaScripturaApp());
@@ -254,6 +262,7 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
       navigatorKey: _navigatorKey,
       routes: {
         '/settings': (_) => const SettingsScreen(),
+        '/streak': (_) => const StreakScreen(),
       },
       home: _showOnboarding
           ? OnboardingTour(onComplete: _completeOnboarding)

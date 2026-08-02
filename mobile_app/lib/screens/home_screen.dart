@@ -11,6 +11,8 @@ import '../config/theme.dart';
 import '../services/webview_service.dart';
 import '../services/connectivity_service.dart';
 import '../services/share_service.dart';
+import '../services/streak_service.dart';
+import '../services/offline_sync_service.dart';
 import '../widgets/offline_banner.dart';
 import '../widgets/error_screen.dart';
 import '../widgets/loading_indicator.dart';
@@ -145,6 +147,11 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     } else if (url.startsWith('ssb-share-image://')) {
       _handleShareImage(url);
+    } else if (url.startsWith('ssb-streak://')) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const StreakScreen()),
+      );
     } else {
       launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication).catchError((e) {
         debugPrint('Failed to launch deep link: $e');

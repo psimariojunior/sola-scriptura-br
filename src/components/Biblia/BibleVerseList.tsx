@@ -68,9 +68,12 @@ export function BibleVerseList({
 }: BibleVerseListProps) {
   const { t } = useTranslation();
 
+  const isModoLeitura = ui.modoLeitura === 'foco';
+  const isModoEstudo = ui.modoLeitura === 'estudo';
+
   return (
     <div ref={nav.mainRef} className="flex-1 overflow-y-auto" {...swipeHandlers}>
-      <div className="max-w-[min(900px,100%-2rem)] mx-auto px-4 sm:px-6 py-6 sm:py-10 pb-24 md:pb-10" style={{ transform: `translateX(${swipeOffset}px)`, transition: swipeOffset === 0 ? 'transform 0.3s ease' : 'none' }}>
+      <div className="bible-reading-column px-4 sm:px-6 py-6 sm:py-10 pb-24 md:pb-10" style={{ transform: `translateX(${swipeOffset}px)`, transition: swipeOffset === 0 ? 'transform 0.3s ease' : 'none' }}>
         {ui.showPlan && <ReadingPlanBanner />}
         {nav.loading && !nav.temDados ? (
           <div className="space-y-4 chapter-enter"><div className="skeleton skeleton-title w-48 mx-auto animate-pulse" /><div className="ornament w-20 mx-auto mb-8 opacity-30" />
@@ -79,22 +82,24 @@ export function BibleVerseList({
         ) : nav.offlineUnavailable ? (
           <div className="text-center py-20"><WifiOff className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} /><p className="text-lg text-[var(--content-muted)]">{t('biblia.chapterOffline')}</p><p className="text-sm text-[var(--content-muted)] mt-2">{t('biblia.connectOrDownload')}</p></div>
         ) : nav.temDados ? (
-            <div role="article" aria-label={`${nav.livro.nome} capítulo ${nav.capituloIdx + 1}`}>
+            <div role="article" aria-label={`${nav.livro.nome} capítulo ${nav.capituloIdx + 1}`} className={cn(isModoLeitura && 'reading-mode-leitura', isModoEstudo && 'reading-mode-estudo')}>
             {nav.loading && nav.temDados && (<div className="fixed top-0 left-0 right-0 z-20 h-0.5 bg-[var(--brand-default)]/20"><div className="h-full bg-[var(--brand-default)] animate-loading-bar" /></div>)}
             <ChapterHeader livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} totalCapitulos={nav.livro.totalCapitulos} totalVersiculos={nav.data[0]?.versiculos?.length ?? 0} />
-            {nav.estudoCapitulo && (<div className="mb-6 p-3 sm:p-4 rounded-xl border border-[var(--brand-default)]/20 bg-[var(--brand-subtle)]/50">
-              <button onClick={() => ui.setEstudoCapituloAberto(o => !o)} className="w-full flex items-center gap-2.5 text-left group" aria-expanded={ui.estudoCapituloAberto}>
-                <div className="w-8 h-8 rounded-lg bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0"><BookOpen className="w-4 h-4 text-[var(--brand-default)]" /></div>
-                <div className="flex-1 min-w-0">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-default)] block">{t('biblia.chapterStudy')}</span>
-                  <span className="text-xs text-[var(--content-muted)] truncate block">{nav.estudoCapitulo.titulo}</span>
-                </div>
-                {ui.estudoCapituloAberto ? <ChevronUp className="w-4 h-4 text-[var(--content-muted)] shrink-0" /> : <ChevronDown className="w-4 h-4 text-[var(--content-muted)] shrink-0" />}
-              </button>
-              {ui.estudoCapituloAberto && (<div className="panel-expand-enter overflow-hidden">
-                <Suspense fallback={<PanelFallback />}><PainelEstudosCapitulo livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} nomeLivro={nav.livro.nome} /></Suspense>
-              </div>)}
-            </div>)}
+            {nav.estudoCapitulo && (
+              <div className={cn("mb-6 rounded-xl border border-[var(--brand-default)]/20 bg-[var(--brand-subtle)]/50 transition-all", ui.estudoCapituloAberto ? "p-4" : "p-3")}>
+                <button onClick={() => ui.setEstudoCapituloAberto(o => !o)} className="w-full flex items-center gap-2.5 text-left group" aria-expanded={ui.estudoCapituloAberto}>
+                  <div className="w-8 h-8 rounded-lg bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0"><BookOpen className="w-4 h-4 text-[var(--brand-default)]" /></div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-default)] block">{t('biblia.chapterStudy')}</span>
+                    <span className="text-xs text-[var(--content-muted)] truncate block">{nav.estudoCapitulo.titulo}</span>
+                  </div>
+                  {ui.estudoCapituloAberto ? <ChevronUp className="w-4 h-4 text-[var(--content-muted)] shrink-0" /> : <ChevronDown className="w-4 h-4 text-[var(--content-muted)] shrink-0" />}
+                </button>
+                {ui.estudoCapituloAberto && (<div className="panel-expand-enter overflow-hidden mt-3">
+                  <Suspense fallback={<PanelFallback />}><PainelEstudosCapitulo livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} nomeLivro={nav.livro.nome} /></Suspense>
+                </div>)}
+              </div>
+            )}
             {swipeProgress > 0 && (
               <div className="fixed top-1/2 -translate-y-1/2 z-10 pointer-events-none" style={{ [canGoPrev ? 'left' : 'right']: '8px', opacity: swipeProgress }}>
                 <div className="w-10 h-10 rounded-full bg-[var(--brand-default)]/20 flex items-center justify-center backdrop-blur-sm">
@@ -105,14 +110,14 @@ export function BibleVerseList({
             {ui.showInterlinear && nav.data[0] && (<div className="mb-8"><div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/40"><span className="font-hebrew text-lg text-[var(--brand-default)]">א</span><span className="text-sm font-semibold text-[var(--content-primary)]">{t('biblia.interlinearView')}</span></div><InterlinearView versiculos={nav.data[0].versiculos} livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} traducao={nav.data[0].traducao} /></div>)}
             {(ui.modoLeitura === 'foco' || ui.modoLeitura === 'estudo') && nav.data.map((item) => (<div key={item.traducao} className="mb-6">
               {nav.selectedTrads.length > 1 && (<div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/40"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span>{ui.modoLeitura === 'foco' && <span className="text-xs text-[var(--content-muted)]">{nomeMap[item.traducao]}</span>}</div>)}
-              <div className={cn('space-y-1', ui.modoLeitura === 'foco' && 'divide-y divide-[var(--brand-default)]/5')}>{item.versiculos.map((v) => {
+              <div className="space-y-0">{item.versiculos.map((v) => {
                 const isSelected = verse.versiculoSelecionado?.versiculo === v.numero && verse.versiculoSelecionado?.traducao === item.traducao;
                 const isPlaying = audio.isVersePlaying(v.numero);
                 const isCurrentAudioVerse = capituloAudio.state.isPlaying && capituloAudio.state.currentVerseIndex === v.numero - 1;
                 const fav = isFavorito(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao);
                 const estudoAbertoNeste = verse.estudoAberto === v.numero && item.traducao === nav.data[0]?.traducao;
                 return (
-                  <div key={`${item.traducao}-${v.numero}`}>
+                  <div key={`${item.traducao}-${v.numero}`} className="bible-verse-spacer">
                     <VerseListItem numero={v.numero} texto={v.texto} livroAbreviacao={nav.livro.abreviacao} livroNome={nav.livro.nome} capitulo={nav.capituloIdx + 1} traducao={item.traducao} fontSize={ui.fontSize}
                       isSelected={isSelected} isPlaying={isPlaying} isHighlighted={ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero} isFocused={ui.focusedVerse === v.numero} isFavorito={fav} copiedVerse={verse.copiedVerse}
                       audioNatural={audioNatural} audio={audio} flashcards={flashcards} estudoAberto={verse.estudoAberto === v.numero}
@@ -156,7 +161,7 @@ export function BibleVerseList({
             {ui.modoLeitura === 'comparacao' && nav.viewMode === 'parallel' && (<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">{nav.data.map((item) => (
               <div key={item.traducao} className="border border-[var(--border)]/40 rounded-xl p-3 sm:p-5 hover:shadow-md transition-shadow">
                 <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/30"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold">{labelMap[item.traducao]}</span></div>
-                {item.versiculos.map(v => (<p key={v.numero} className="mb-2 leading-[1.7] font-serif-body" style={{ fontSize: `${Math.max(ui.fontSize - 2, 14)}px` }}><sup className="text-[var(--brand-default)] font-bold text-[10px] mr-1 select-none tabular-nums">{v.numero}</sup>{v.texto}</p>))}
+                {item.versiculos.map(v => (<p key={v.numero} className="mb-2 bible-reading-text font-serif-body" style={{ fontSize: `${Math.max(ui.fontSize - 2, 14)}px` }}><span className="bible-verse-number">{v.numero}</span>{v.texto}</p>))}
               </div>))}</div>)}
             {ui.modoLeitura === 'comparacao' && nav.viewMode === 'comparison' && nav.data.length >= 2 && (<ComparisonTable data={nav.data} fontSize={ui.fontSize} showDiff={ui.showDiff} highlightedVerse={ui.highlightedVerse} onHighlight={ui.setHighlightedVerse} maxVersiculos={nav.maxVersiculos} tradBadgeColors={tradBadgeColors} labelMap={labelMap} />)}
             <div className="flex items-center justify-center gap-3 sm:gap-4 mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">

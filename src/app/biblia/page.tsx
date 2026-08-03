@@ -202,7 +202,7 @@ export default function BibliaPage() {
       <Header /><OfflineBanner />
       <main id="main-content" className="pt-16">
         <div className="hidden sm:block px-4 sm:px-6 py-2 bg-[var(--surface-raised)]/80 border-b border-[var(--border)]/40 backdrop-blur-sm"><Breadcrumbs items={[{ label: t('bottomBar.home'), href: '/' }, { label: t('nav.bible') }]} /></div>
-        <div className="flex min-h-[100dvh] md:h-[calc(100vh-7rem-40px)] relative overflow-hidden">
+        <div className="bible-layout md:h-[calc(100vh-7rem-40px)]">
           <BibleSidebar
             nav={nav}
             ui={ui}
@@ -210,7 +210,7 @@ export default function BibliaPage() {
             verse={verse}
             handleGoToBook={handleGoToBook}
           />
-          <div className="flex-1 flex flex-col min-w-0 relative">
+          <div className="bible-content-area">
             <BibleToolbar
               nav={nav}
               ui={ui}

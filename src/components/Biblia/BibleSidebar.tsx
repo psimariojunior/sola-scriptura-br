@@ -15,7 +15,7 @@ const SidePanel = dynamic(() => import('./SidePanel').then(m => ({ default: m.Si
 
 interface BibleSidebarProps {
   nav: Pick<UseBibliaNavigationReturn, 'livroIdx' | 'searchQuery' | 'setSearchQuery' | 'livrosFiltrados' | 'livro' | 'capituloIdx' | 'data'>;
-  ui: Pick<UseBibliaUIReturn, 'sidebarOpen'>;
+  ui: Pick<UseBibliaUIReturn, 'sidebarOpen' | 'setSidebarOpen'>;
   panels: UseBibliaPanelsReturn;
   verse: Pick<UseBibliaVerseReturn, 'versiculoSelecionado' | 'setVersiculoSelecionado' | 'comentarioVersiculo'>;
   handleGoToBook: (idx: number) => void;
@@ -27,12 +27,16 @@ export function BibleSidebar({ nav, ui, panels, verse, handleGoToBook }: BibleSi
   return (
     <>
       {ui.sidebarOpen && (
-        <aside className="sidebar-enter hidden lg:block w-64 border-r border-[var(--border)] bg-[var(--surface-raised)] overflow-y-auto shrink-0">
-          <div className="p-4 h-full flex flex-col">
-            <div className="relative mb-3"><Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--content-muted)]" /><input type="text" placeholder={t('biblia.searchBook')} value={nav.searchQuery} onChange={e => nav.setSearchQuery(e.target.value)} className="w-full pl-9 pr-3 py-2 text-sm bg-[var(--surface-sunken)] border border-[var(--border)]/60 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/30 transition-all duration-200" /></div>
-            <div className="flex-1 overflow-y-auto space-y-0.5">{nav.livrosFiltrados.map((l) => { const idx = TODOS_LIVROS.indexOf(l); return (<button key={l.abreviacao} onClick={() => handleGoToBook(idx)} className={cn('w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 flex items-center gap-2 group', idx === nav.livroIdx ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] font-semibold' : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] hover:text-[var(--content-primary)]')}><span className="truncate">{l.nome}</span><span className="ml-auto text-[10px] opacity-0 group-hover:opacity-50 transition-opacity tabular-nums">{l.totalCapitulos}c</span></button>); })}</div>
-          </div>
-        </aside>
+        <>
+          {/* Mobile/tablet overlay */}
+          <div className="lg:hidden fixed inset-0 z-30 bg-black/40 backdrop-blur-sm" onClick={() => ui.setSidebarOpen(false)} />
+          <aside className="sidebar-enter fixed lg:sticky top-16 left-0 z-40 lg:z-auto w-72 lg:w-64 h-[calc(100vh-4rem)] border-r border-[var(--border)] bg-[var(--surface-raised)] overflow-y-auto shrink-0 shadow-xl lg:shadow-none">
+            <div className="p-4 h-full flex flex-col">
+              <div className="relative mb-3"><Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--content-muted)]" /><input type="text" placeholder={t('biblia.searchBook')} value={nav.searchQuery} onChange={e => nav.setSearchQuery(e.target.value)} className="w-full pl-9 pr-3 py-2 text-sm bg-[var(--surface-sunken)] border border-[var(--border)]/60 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/30 transition-all duration-200" /></div>
+              <div className="flex-1 overflow-y-auto space-y-0.5">{nav.livrosFiltrados.map((l) => { const idx = TODOS_LIVROS.indexOf(l); return (<button key={l.abreviacao} onClick={() => { handleGoToBook(idx); if (window.innerWidth < 1024) ui.setSidebarOpen(false); }} className={cn('w-full text-left px-3 py-2 text-sm rounded-lg transition-all duration-200 flex items-center gap-2 group', idx === nav.livroIdx ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] font-semibold' : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] hover:text-[var(--content-primary)]')}><span className="truncate">{l.nome}</span><span className="ml-auto text-[10px] opacity-0 group-hover:opacity-50 transition-opacity tabular-nums">{l.totalCapitulos}c</span></button>); })}</div>
+            </div>
+          </aside>
+        </>
       )}
       {panels.sidePanelOpen && (
         <>

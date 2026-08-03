@@ -8,12 +8,12 @@ import { Footer } from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import {
   BookOpen, Map, Brain, ScrollText, ArrowRight, Sparkles, Columns2,
-  Globe, Shield, Heart, MonitorPlay, Music, Zap, Play,
+  Globe, Shield, Heart, MonitorPlay, Music, Zap,
   CheckCircle2, ChevronDown, Tv, Smartphone, Cast, Languages,
-  BookMarked, GraduationCap, WifiOff, Share2, Gift, GitCompareArrows,
-  Star, Bell,
+  BookMarked, GraduationCap, WifiOff, Share2, GitCompareArrows,
+  Bell,
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 
@@ -26,18 +26,28 @@ const WordOfDayWidget = dynamic(() => import('@/components/WordOfDay').then(m =>
 const InstallBanner = dynamic(() => import('@/components/InstallBanner'), { ssr: false });
 const NotificationSetup = dynamic(() => import('@/components/NotificationSetup').then(m => ({ default: m.NotificationSetup })), { ssr: false });
 
-const featuresStatic = [
-  { icon: Columns2, featureKey: 'multiTranslation', accent: 'amber' },
-  { icon: ScrollText, featureKey: 'exegesis', accent: 'emerald' },
-  { icon: Brain, featureKey: 'ai', accent: 'purple' },
+type FeatureVariant = 'default' | 'stat' | 'icon-large' | 'mockup';
+
+const featuresStatic: {
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
+  featureKey: string;
+  accent: string;
+  highlight?: boolean;
+  variant?: FeatureVariant;
+  statNumber?: string;
+  statLabel?: string;
+}[] = [
+  { icon: Columns2, featureKey: 'multiTranslation', accent: 'amber', variant: 'mockup' },
+  { icon: ScrollText, featureKey: 'exegesis', accent: 'emerald', variant: 'stat', statNumber: '4.9k', statLabel: 'Comentários' },
+  { icon: Brain, featureKey: 'ai', accent: 'purple', variant: 'icon-large' },
   { icon: Map, featureKey: 'atlas', accent: 'sky' },
-  { icon: Music, featureKey: 'audio', accent: 'rose' },
-  { icon: MonitorPlay, featureKey: 'presentation', accent: 'gold', highlight: true },
-  { icon: Languages, featureKey: 'originalLanguages', accent: 'violet' },
+  { icon: Music, featureKey: 'audio', accent: 'rose', variant: 'stat', statNumber: '10', statLabel: 'Traduções' },
+  { icon: MonitorPlay, featureKey: 'presentation', accent: 'gold', highlight: true, variant: 'icon-large' },
+  { icon: Languages, featureKey: 'originalLanguages', accent: 'violet', variant: 'stat', statNumber: '14.2k', statLabel: 'Verbetes' },
   { icon: Brain, featureKey: 'concordance', accent: 'cyan' },
   { icon: BookMarked, featureKey: 'flashcards', accent: 'rose' },
   { icon: GraduationCap, featureKey: 'readingPlans', accent: 'emerald' },
-  { icon: WifiOff, featureKey: 'offline', accent: 'slate' },
+  { icon: WifiOff, featureKey: 'offline', accent: 'slate', variant: 'icon-large' },
   { icon: Share2, featureKey: 'share', accent: 'amber' },
 ];
 
@@ -120,36 +130,95 @@ function SectionHeading({ eyebrow, title, highlight, align = 'center' }: { eyebr
   );
 }
 
+function MultiTranslationMockup() {
+  return (
+    <div className="w-full rounded-xl border border-border/30 bg-black/20 dark:bg-white/5 p-4 mt-4 mb-2 space-y-2.5">
+      {[
+        { ref: 'João 3:16', text: 'Porque Deus amou o mundo...', tx: 'ARA', active: true },
+        { ref: 'João 3:16', text: 'Porque de tal maneira...', tx: 'ARC', active: false },
+        { ref: 'John 3:16', text: 'For God so loved the...', tx: 'KJV', active: false },
+      ].map((v) => (
+        <div key={v.tx} className={`flex items-start gap-2.5 p-2 rounded-lg text-[11px] leading-snug ${v.active ? 'bg-primary/10 border border-primary/20' : 'opacity-50'}`}>
+          <span className="shrink-0 font-bold text-primary/70 mt-0.5">{v.tx}</span>
+          <div className="min-w-0">
+            <span className="text-muted-foreground block">{v.ref}</span>
+            <span className="text-foreground/80">{v.text}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function FeatureCard({ feature, index, t }: { feature: typeof featuresStatic[number]; index: number; t: (key: string) => string }) {
   const Icon = feature.icon;
   const title = t(`landing.features.${feature.featureKey}.title`);
   const desc = t(`landing.features.${feature.featureKey}.desc`);
+  const variant = feature.variant || 'default';
+
   return (
-    <ScrollReveal delay={index * 0.08}>
-      <motion.div
-        whileHover={{ y: -4 }}
-        transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className={`feature-card group relative h-full p-7 sm:p-8 rounded-2xl border bg-card/50 backdrop-blur-sm overflow-hidden ${
-          feature.highlight ? 'border-amber-500/30 shadow-[var(--shadow-glow)]' : 'border-border/40'
-        }`}
-      >
-        {feature.highlight && (
-          <span className="absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-black shadow-sm">
-            <Sparkles className="w-2.5 h-2.5" /> Novo
-          </span>
+    <motion.div
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className={`feature-card group relative h-full p-7 sm:p-8 rounded-2xl border bg-card/50 backdrop-blur-sm overflow-hidden ${
+        feature.highlight ? 'border-amber-500/30 shadow-[var(--shadow-glow)]' : 'border-border/40'
+      }`}
+    >
+      {feature.highlight && (
+        <span className="absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-black shadow-sm z-20">
+          <Sparkles className="w-2.5 h-2.5" /> Novo
+        </span>
+      )}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{ background: 'radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.08) 0%, transparent 60%)' }} />
+
+      <div className="relative z-10">
+        {variant === 'stat' && (
+          <>
+            <p className="font-display text-4xl sm:text-5xl font-light text-primary/80 tracking-tight leading-none mb-3">
+              {feature.statNumber}
+            </p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-5">{feature.statLabel}</p>
+            <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{title}</h3>
+            <p className="text-[13px] text-muted-foreground leading-relaxed">{desc}</p>
+          </>
         )}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{ background: 'radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.08) 0%, transparent 60%)' }} />
-        <div className="relative z-10">
-          <p className="step-number">{String(index + 1).padStart(2, '0')}</p>
-          <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-300">
-            <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
+
+        {variant === 'icon-large' && (
+          <div className="flex flex-col items-start gap-5">
+            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-300">
+              <Icon className="w-8 h-8 text-primary" strokeWidth={1.25} />
+            </div>
+            <div>
+              <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{title}</h3>
+              <p className="text-[13px] text-muted-foreground leading-relaxed">{desc}</p>
+            </div>
           </div>
-          <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{title}</h3>
-          <p className="text-[13px] text-muted-foreground leading-relaxed">{desc}</p>
-        </div>
-      </motion.div>
-    </ScrollReveal>
+        )}
+
+        {variant === 'mockup' && (
+          <div className="flex flex-col items-start">
+            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-300">
+              <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
+            </div>
+            <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{title}</h3>
+            <p className="text-[13px] text-muted-foreground leading-relaxed">{desc}</p>
+            <MultiTranslationMockup />
+          </div>
+        )}
+
+        {variant === 'default' && (
+          <>
+            <p className="step-number">{String(index + 1).padStart(2, '0')}</p>
+            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-300">
+              <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
+            </div>
+            <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{title}</h3>
+            <p className="text-[13px] text-muted-foreground leading-relaxed">{desc}</p>
+          </>
+        )}
+      </div>
+    </motion.div>
   );
 }
 
@@ -171,57 +240,31 @@ export default function HomeClient() {
           <HeroParticles disabled={prefersReducedMotion} />
 
           <motion.div style={{ opacity: heroOpacity, y: heroY }} className="max-w-6xl mx-auto text-center relative z-10 w-full">
-            <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05, duration: 0.6 }} className="inline-flex items-center gap-2 mb-5">
-              <span className="relative inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/15 to-emerald-500/5 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300">
-                <Gift className="w-3.5 h-3.5" />
-                <span className="text-[11px] font-bold tracking-[0.12em] uppercase">Acesso Livre</span>
-                <span className="text-[11px] font-medium text-emerald-700/70 dark:text-emerald-300/70">·</span>
-                <span className="text-[11px] font-semibold tracking-[0.05em]">Sem anúncios</span>
-              </span>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }} className="inline-flex items-center gap-2 mb-7 px-3.5 py-1.5 rounded-full border border-primary/15 bg-primary/[0.04]">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">Estudo Bíblico</span>
-            </motion.div>
-
-            <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="wordmark text-[2rem] leading-[0.95] sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] mb-7 heading-premium">
+            <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="wordmark text-[2rem] leading-[0.95] sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] mb-6 heading-premium">
               <span className="block">{t('landing.heroTitle1')}</span>
               <span className="block"><span className="gradient-text-animated">{t('landing.heroTitle2')}</span><span className="text-foreground">,</span></span>
               <span className="block italic text-foreground/85">{t('landing.heroTitle3')}</span>
             </motion.h1>
 
-            <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.8 }}
+            <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45, duration: 0.8 }}
               className="font-sans text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8 px-2">
               {t('landing.heroDescription')}
             </motion.p>
 
-            {/* Social proof badges */}
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.6 }}
-              className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
-              <span className="proof-badge"><BookOpen className="w-3.5 h-3.5" /> {t('landing.socialProof.translations')}</span>
-              <span className="proof-badge"><Languages className="w-3.5 h-3.5" /> {t('landing.socialProof.entries')}</span>
-              <span className="proof-badge"><Brain className="w-3.5 h-3.5" /> {t('landing.socialProof.ai')}</span>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.6 }}
-              className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-14">
-              <Link href="/biblia" className="group relative inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-[15px] font-semibold rounded-xl overflow-hidden transition-all duration-300"
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.6 }}
+              className="flex justify-center mb-10 sm:mb-12">
+              <Link href="/biblia" className="group relative inline-flex items-center gap-2.5 px-8 sm:px-10 py-3.5 sm:py-4 text-sm sm:text-[15px] font-semibold rounded-xl overflow-hidden transition-all duration-300"
                 style={{ background: 'linear-gradient(135deg, #f5cd6b 0%, #d4a843 50%, #b88a30 100%)', color: '#1c1300', boxShadow: '0 0 24px -4px rgba(212,168,67,0.4), 0 0 40px -8px rgba(212,168,67,0.2)' }}>
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                 <span className="relative">{t('landing.startStudy')}</span>
                 <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
-              <Link href="/apresentar" className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-[15px] font-semibold rounded-xl border border-border/60 hover:border-primary/40 hover:bg-primary/[0.04] transition-all duration-300">
-                <Play className="w-4 h-4 fill-current" /> {t('landing.presentationSection.cta')}
-              </Link>
-              <Link href="/ia" className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-[15px] font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] hover:bg-primary/[0.12] hover:border-primary/50 transition-all duration-300">
-                <Brain className="w-4 h-4 text-primary" strokeWidth={1.75} /> {t('landing.consultAI')}
-              </Link>
             </motion.div>
 
-            <RotatingVerse />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.0, duration: 1.2 }}>
+              <RotatingVerse />
+            </motion.div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} transition={{ delay: 1.6, duration: 1 }} className="absolute bottom-6 left-1/2 -translate-x-1/2">
@@ -279,33 +322,49 @@ export default function HomeClient() {
             {/* Bento grid irregular — BibleProject style */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
               {/* Card grande — 2 colunas */}
-              <div className="sm:col-span-2 lg:col-span-2">
+              <ScrollReveal delay={0} direction="up" className="sm:col-span-2 lg:col-span-2">
                 <FeatureCard feature={featuresStatic[0]} index={0} t={t} />
-              </div>
+              </ScrollReveal>
               {/* Cards normais */}
-              <FeatureCard feature={featuresStatic[1]} index={1} t={t} />
-              <FeatureCard feature={featuresStatic[2]} index={2} t={t} />
+              <ScrollReveal delay={0.08} direction="left">
+                <FeatureCard feature={featuresStatic[1]} index={1} t={t} />
+              </ScrollReveal>
+              <ScrollReveal delay={0.16} direction="scale">
+                <FeatureCard feature={featuresStatic[2]} index={2} t={t} />
+              </ScrollReveal>
               {/* Card grande — 2 colunas */}
-              <div className="sm:col-span-2 lg:col-span-2">
+              <ScrollReveal delay={0.1} direction="right" className="sm:col-span-2 lg:col-span-2">
                 <FeatureCard feature={featuresStatic[3]} index={3} t={t} />
-              </div>
+              </ScrollReveal>
               {/* Cards normais */}
-              <FeatureCard feature={featuresStatic[4]} index={4} t={t} />
-              <FeatureCard feature={featuresStatic[5]} index={5} t={t} />
+              <ScrollReveal delay={0.18} direction="scale">
+                <FeatureCard feature={featuresStatic[4]} index={4} t={t} />
+              </ScrollReveal>
+              <ScrollReveal delay={0.24} direction="up">
+                <FeatureCard feature={featuresStatic[5]} index={5} t={t} />
+              </ScrollReveal>
               {/* Card grande — destaque */}
-              <div className="sm:col-span-2 lg:col-span-2">
+              <ScrollReveal delay={0.15} direction="left" className="sm:col-span-2 lg:col-span-2">
                 <FeatureCard feature={featuresStatic[6]} index={6} t={t} />
-              </div>
+              </ScrollReveal>
               {/* Cards normais */}
-              <FeatureCard feature={featuresStatic[7]} index={7} t={t} />
-              <FeatureCard feature={featuresStatic[8]} index={8} t={t} />
+              <ScrollReveal delay={0.22} direction="up">
+                <FeatureCard feature={featuresStatic[7]} index={7} t={t} />
+              </ScrollReveal>
+              <ScrollReveal delay={0.28} direction="right">
+                <FeatureCard feature={featuresStatic[8]} index={8} t={t} />
+              </ScrollReveal>
               {/* Card grande — 2 colunas */}
-              <div className="sm:col-span-2 lg:col-span-2">
+              <ScrollReveal delay={0.2} direction="scale" className="sm:col-span-2 lg:col-span-2">
                 <FeatureCard feature={featuresStatic[9]} index={9} t={t} />
-              </div>
+              </ScrollReveal>
               {/* Cards normais */}
-              <FeatureCard feature={featuresStatic[10]} index={10} t={t} />
-              <FeatureCard feature={featuresStatic[11]} index={11} t={t} />
+              <ScrollReveal delay={0.26} direction="left">
+                <FeatureCard feature={featuresStatic[10]} index={10} t={t} />
+              </ScrollReveal>
+              <ScrollReveal delay={0.32} direction="up">
+                <FeatureCard feature={featuresStatic[11]} index={11} t={t} />
+              </ScrollReveal>
             </div>
           </div>
         </section>

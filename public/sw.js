@@ -6,13 +6,25 @@ const PAGES_CACHE = `ssb-pages-${CACHE_VERSION}`;
 const VISITED_PAGES_CACHE = `ssb-visited-pages-${CACHE_VERSION}`;
 const STUDIES_CACHE = `ssb-studies-${CACHE_VERSION}`;
 const DATA_CACHE = `ssb-data-${CACHE_VERSION}`;
-const DB_NAME = 'ssb_offline';
-const DB_VERSION = 3;
+
+const CACHE_LIMITS = {
+  [PAGES_CACHE]: { maxEntries: 50 },
+  [STUDIES_CACHE]: { maxBytes: 20 * 1024 * 1024 },
+  [BIBLE_CACHE]: { maxBytes: 50 * 1024 * 1024 },
+};
+const DB_NAME = 'sola-scriptura-offline';
+const DB_VERSION = 2;
 const STORE_CHAPTERS = 'chapters';
 const STORE_META = 'meta';
 const STORE_FAVORITES = 'favorites';
 const STORE_NOTES = 'notes';
 const STORE_LEXICON = 'lexicon';
+const STORE_PLANS = 'plans';
+const STORE_SETTINGS = 'settings';
+const STORE_COLLECTIONS = 'collections';
+const STORE_FLASHCARDS = 'flashcards';
+const STORE_GAMIFICATION = 'gamification';
+const STORE_MARCAS = 'marcas';
 
 // Precache completo: todas as paginas essenciais
 const PRECACHE_URLS = [
@@ -62,25 +74,53 @@ const PRECACHE_URLS = [
   '/icon-192.png',
 ];
 
+async function limitCacheEntries(cacheName, maxEntries) {
+  const cache = await caches.open(cacheName);
+  const keys = await cache.keys();
+  if (keys.length <= maxEntries) return;
+  const toDelete = keys.length - maxEntries;
+  for (let i = 0; i < toDelete; i++) {
+    await cache.delete(keys[i]);
+  }
+}
+
+async function limitCacheSize(cacheName, maxBytes) {
+  const cache = await caches.open(cacheName);
+  const keys = await cache.keys();
+  let totalSize = 0;
+  const entries = [];
+  for (const req of keys) {
+    const res = await cache.match(req);
+    if (res) {
+      const blob = await res.blob();
+      const size = blob.size;
+      totalSize += size;
+      entries.push({ req, size });
+    }
+  }
+  if (totalSize <= maxBytes) return;
+  entries.sort((a, b) => a.size - b.size);
+  for (const entry of entries) {
+    if (totalSize <= maxBytes) break;
+    await cache.delete(entry.req);
+    totalSize -= entry.size;
+  }
+}
+
 function openDB() {
   return new Promise((resolve, reject) => {
     const req = indexedDB.open(DB_NAME, DB_VERSION);
     req.onupgradeneeded = () => {
       const db = req.result;
-      if (!db.objectStoreNames.contains(STORE_CHAPTERS)) {
-        db.createObjectStore(STORE_CHAPTERS, { keyPath: 'key' });
-      }
-      if (!db.objectStoreNames.contains(STORE_META)) {
-        db.createObjectStore(STORE_META, { keyPath: 'key' });
-      }
-      if (!db.objectStoreNames.contains(STORE_FAVORITES)) {
-        db.createObjectStore(STORE_FAVORITES, { keyPath: 'key' });
-      }
-      if (!db.objectStoreNames.contains(STORE_NOTES)) {
-        db.createObjectStore(STORE_NOTES, { keyPath: 'key' });
-      }
-      if (!db.objectStoreNames.contains(STORE_LEXICON)) {
-        db.createObjectStore(STORE_LEXICON, { keyPath: 'key' });
+      const allStores = [
+        STORE_CHAPTERS, STORE_META, STORE_FAVORITES, STORE_NOTES,
+        STORE_LEXICON, STORE_PLANS, STORE_SETTINGS, STORE_COLLECTIONS,
+        STORE_FLASHCARDS, STORE_GAMIFICATION, STORE_MARCAS,
+      ];
+      for (const store of allStores) {
+        if (!db.objectStoreNames.contains(store)) {
+          db.createObjectStore(store, { keyPath: 'key' });
+        }
       }
     };
     req.onsuccess = () => resolve(req.result);
@@ -120,6 +160,17 @@ self.addEventListener('activate', (event) => {
             .map((key) => caches.delete(key))
         )
       )
+      .then(async () => {
+        const limits = Object.entries(CACHE_LIMITS);
+        for (const [cacheName, limit] of limits) {
+          if (limit.maxEntries) {
+            await limitCacheEntries(cacheName, limit.maxEntries);
+          }
+          if (limit.maxBytes) {
+            await limitCacheSize(cacheName, limit.maxBytes);
+          }
+        }
+      })
       .then(() => self.clients.claim())
   );
 });
@@ -244,49 +295,51 @@ self.addEventListener('message', (event) => {
   const { data } = event;
   if (!data) return;
 
-  if (data.type === 'CACHE_TRANSLATION') {
+  const message = typeof data === 'string' ? data : data.type;
+
+  if (message === 'CACHE_TRANSLATION') {
     event.waitUntil(cacheTranslationFromClient(data));
   }
 
-  if (data.type === 'CLEAR_CACHE') {
+  if (message === 'CLEAR_CACHE') {
     event.waitUntil(
       caches.keys().then((keys) => Promise.all(keys.map((k) => caches.delete(k))))
     );
   }
 
-  if (data.type === 'SYNC_NOTES') {
+  if (message === 'SYNC_NOTES') {
     event.waitUntil(syncPendingNotes());
   }
 
-  if (data.type === 'STORE_FAVORITE_OFFLINE') {
+  if (message === 'STORE_FAVORITE_OFFLINE') {
     event.waitUntil(storeFavoriteOffline(data));
   }
 
-  if (data.type === 'STORE_NOTE_OFFLINE') {
+  if (message === 'STORE_NOTE_OFFLINE') {
     event.waitUntil(storeNoteOffline(data));
   }
 
-  if (data.type === 'SKIP_WAITING') {
+  if (message === 'SKIP_WAITING') {
     self.skipWaiting();
   }
 
-  if (data.type === 'DOWNLOAD_BIBLE_CHAPTER') {
+  if (message === 'DOWNLOAD_BIBLE_CHAPTER') {
     event.waitUntil(downloadBibleChapter(data));
   }
 
-  if (data.type === 'GET_OFFLINE_STATS') {
+  if (message === 'GET_OFFLINE_STATS') {
     event.waitUntil(getOfflineStats(event));
   }
 
-  if (data.type === 'PRELOAD_STUDIES') {
+  if (message === 'PRELOAD_STUDIES') {
     event.waitUntil(preloadStudies(data));
   }
 
-  if (data.type === 'PRELOAD_LEXICON') {
+  if (message === 'PRELOAD_LEXICON') {
     event.waitUntil(preloadLexicon(data));
   }
 
-  if (data.type === 'SCHEDULE_NOTIFICATION') {
+  if (message === 'SCHEDULE_NOTIFICATION') {
     const notif = data.notification;
     if (notif && self.registration) {
       self.registration.showNotification(notif.title || 'Sola Scriptura', {
@@ -302,6 +355,15 @@ self.addEventListener('message', (event) => {
         vibrate: [200, 100, 200],
       });
     }
+  }
+
+  if (message === 'CLIENTS_READY') {
+    const clients = self.clients.matchAll();
+    clients.then((all) => {
+      for (const client of all) {
+        client.postMessage({ type: 'UPDATE_AVAILABLE' });
+      }
+    });
   }
 });
 

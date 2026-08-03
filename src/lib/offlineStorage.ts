@@ -1,7 +1,7 @@
 'use client';
 
 const DB_NAME = 'sola-scriptura-offline';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 
 const STORES = {
   chapters: 'chapters',
@@ -13,6 +13,8 @@ const STORES = {
   flashcards: 'flashcards',
   gamification: 'gamification',
   marcas: 'marcas',
+  meta: 'meta',
+  lexicon: 'lexicon',
 } as const;
 
 function openDB(): Promise<IDBDatabase> {

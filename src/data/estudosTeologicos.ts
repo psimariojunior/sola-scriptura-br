@@ -5795,6 +5795,165 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
       { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Louvor', resumo: 'Louvor na adversidade — fé verdadeira.»', citacao: 'Louvor na adversidade — fé verdadeira.»' },
     ],
   },
+  // ═══════════════════════════════════════════════════════════════════════
+  // JÓ — SOFRIMENTO, SOBERANIA E SABEDORIA
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'jb', capitulo: 1, versiculo: 21,
+    tema: 'O Senhor o deu, o Senhor o tomou',
+    contexto: 'Jó perde todos os bens, filhos e saúde, mas não blasfema contra Deus. Sua resposta é um modelo de submissão soberana.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Providência divina', resumo: 'A resposta de Jó demonstra que Deus é autor de tudo — tanto o dar quanto o tomar. A submissão a Deus mesmo na perda é a essência da fé verdadeira. Agostinho via em Jó o protótipo do crente que aceita a vontade divina sem compreender.', citacao: '«Jó não disse ‘o Senhor me deu e o Senhor me tirou’ — ele disse ‘o Senhor DEU, o Senhor TOMOU’. Tudo vem de Deus, até a perda.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Virtude da caridade', resumo: 'Jó pratica a virtude da caridade ao amar Deus independentemente dos bens recebidos. Aquino argumenta que a verdadeira devoção não é mercantil — não se ama Deus pelos dons, mas pelo próprio Deus.', citacao: '«O justo não serve a Deus por causa dos bens temporais, mas pelo amor ao próprio Deus, que é a beatitude última.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Sola Deo gloria', resumo: 'Calvino enfatiza que Jó reconhece a soberania absoluta de Deus sobre todas as coisas. Não há acaso — tudo está nas mãos de Deus. A bênção e a adversidade são ambas instrumentos do propósito divino.', citacao: '«Jó ensina que não devemos receber apenas de Deus o que nos agrada, mas também suportar o que nos aflige, pois tudo vem da mão do Pai.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação na crise', resumo: 'Barth vê em Jó o momento em que o homem encontra o Deus vivo — não um conceito abstrato. A crise de Jó revela um Deus que transcende toda teologia humana e se impõe como o Verdadeiro.', citacao: '«O Deus de Jó não é um deus fácil — é o Deus que se encontra quando tudo o que sabemos sobre Ele é destruído.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Exemplo de fé', resumo: 'Jó é o exemplo supremo de fé incondicional. Stott enfatiza que a fé não é um contrato com Deus — é confiança na bondade de Deus mesmo quando não entendemos os caminhos divinos.', citacao: '«A fé de Jó nos ensina que amamos Deus não pelo que Ele nos dá, mas pelo que Ele é.»' },
+    ],
+  },
+  {
+    livro: 'jb', capitulo: 3, versiculo: 3,
+    tema: 'Pereça o dia em que nasci',
+    contexto: 'Jó prange o dia do seu nascimento em um lamento que é um dos mais comoventes da Escritura. Não é suicídio, mas expressão de profundo sofrimento.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Lamento legítimo', resumo: 'Agostinho defende que o lamento de Jó é legítimo — Deus não condena a dor honesta. O sofrimento não anula a piedade, mas a purifica. O crente pode chorar diante de Deus sem pecar.', citacao: '«As lágrimas de Jó são orações — Deus não despreza o pranto do justo.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Dor como purificação', resumo: 'Aquino vê no lamento de Jó a dimensão purificadora do sofrimento. A dor não é castigo — é caminho de santificação. Jó, ao lutar com Deus, se aproxima Dele.', citacao: '«O sofrimento do justo não é vingança divina, mas provação que aperfeiçoa a virtude.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Sinceridade diante de Deus', resumo: 'Calvino elogia a sinceridade de Jó — ele não finge piedade. A honestidade diante de Deus é mais valiosa que a resignação superficial. Deus prefere a dor sincera à hipocrisia.', citacao: '«Jó não se esconde atrás de máscaras — ele derrama sua alma diante de Deus com honestidade brutal.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Protesto teológico', resumo: 'Barth interpreta o lamento de Jó como um protesto legítimo contra o sofrimento injusto. O crente tem o direito de questionar Deus — e Deus responde ao questionamento, não ao silêncio.', citacao: '«O lamento de Jó é mais teológico que muitas confissões de fé — porque é honesto.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Dor e esperança', resumo: 'Stott vê em Jó 3 a tensão entre dor e esperança. Jó lamenta, mas não renega Deus. A diferença entre desespero e fé é que a fé lamenta diante de Deus, não longe Dele.', citacao: '«Mesmo em seu lamento mais sombrio, Jó continua falando com Deus — e isso é fé.»' },
+    ],
+  },
+  {
+    livro: 'jb', capitulo: 7, versiculo: 17,
+    tema: 'Que é o homem para que dele te lembres?',
+    contexto: 'Jó questiona a Deus sobre a condição humana — por que Deus se importa tanto com seres tão frágeis e temporais?',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Dignidade humana', resumo: 'Agostinho vê aqui o paradoxo da dignidade humana: somos insignificantes em comparação com Deus, e ainda assim Ele se lembra de nós. Essa é a graça — Deus escolhe se importar com o frágil.', citacao: '«Deus se lembra do homem não porque ele é grande, mas porque Deus é infinitamente misericordioso.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Providência particular', resumo: 'A pergunta de Jó revela a doutrina da providência particular — Deus governa cada detalhe da vida humana, mesmo os mais insignificantes. Não há acaso no universo.', citacao: '«A providência divina se estende ao menor dos seres — pois Deus é causa de todas as coisas.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Humildade humana', resumo: 'Calvino enfatiza a humildade que a pergunta exige. O homem não tem direito de exigir explicações de Deus — mas Deus, em sua bondade, as oferece. A pergunta é retórica: Deus se lembra por amor.', citacao: '«Somos worms diante de Deus — e ainda assim Ele nos sustenta com Sua mão poderosa.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Relação criador-criatura', resumo: 'Barth vê em Jó 7:17 a relação fundamental entre Deus e o homem — não é distância mas proximidade escolhida. Deus não está distante; Ele está presente no sofrimento.', citacao: '«Deus não é o deus distante — é o Deus que se inclina sobre o homem frágil.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Valor do homem', resumo: 'Stott enfatiza que a pergunta de Jó revela o valor infinito do ser humano diante de Deus. Somos frágeis, mas amados. Essa é a base da dignidade humana.', citacao: '«Deus se lembra de nós não porque somos importantes, mas porque Ele é amor.»' },
+    ],
+  },
+  {
+    livro: 'jb', capitulo: 9, versiculo: 33,
+    tema: 'Haja um árbitro entre nós',
+    contexto: 'Jó clama por um mediador — alguém que possa ficar entre ele e Deus para fazer justiça. Uma profecia messiânica involuntária.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Tipologia cristológica', resumo: 'Agostinho vê em Jó 9:33 uma profecia de Cristo, o único Mediador entre Deus e os homens. Jó não sabia, mas clamava pelo Redentor que viria.', citacao: '«Jó não encontrou na terra quem pusesse a mão sobre ambos — mas o céu enviou o Filho de Deus como Mediador.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Necessidade de mediação', resumo: 'Aquino argumenta que a pergunta de Jó revela a impossibilidade de o homem justificar-se a si mesmo. A mediação é necessária porque Deus é justo e o homem é pecador.', citacao: '«Nenhum homem pode ser seu próprio advogado diante de Deus — é preciso um Mediador justo.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Christus Mediator', resumo: 'Calvino vê aqui a necessidade absoluta de Cristo como Mediador. Sem Ele, não há acesso a Deus. Jó antecipa a doutrina da intercessão de Cristo.', citacao: '«O desejo de Jó encontra resposta completa em Cristo, que é nosso Advogado junto ao Pai.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação progressiva', resumo: 'Barth vê em Jó 9:33 um momento de revelação progressiva — o homem descobre que precisa de um mediador divino, e esse mediador é revelado em Cristo.', citacao: '«O clame de Jó por um árbitro é o grito da humanidade por Deus — e Deus responde em Jesus Cristo.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Necessidade de intercessão', resumo: 'Stott enfatiza que Jó articula a necessidade humana de um intercessor. Essa necessidade é suprida em Cristo, que vive sempre para interceder por nós.', citacao: '«Jó não encontrou o mediador — nós o encontramos em Jesus Cristo, que está à destra do Pai.»' },
+    ],
+  },
+  {
+    livro: 'jb', capitulo: 14, versiculo: 14,
+    tema: 'Se um homem morrer, tornará a viver?',
+    contexto: 'Jó questiona a ressurreição — em meio ao sofrimento, ele vislumbra a possibilidade de uma vida além da morte.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ressurreição', resumo: 'Agostinho vê em Jó 14:14 uma das primeiras expressões da esperança da ressurreição no Antigo Testamento. Jó vislumbra que a morte não é o fim.', citacao: '«Jó antecipa a ressurreição — mesmo na escuridão, uma luz de esperança se acende.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Beatitudo futura', resumo: 'Aquino interpreta este versículo como uma referência à beatitude futura — Jó espera que, após a morte, haverá uma espera feliz até a consumação das promessas divinas.', citacao: '«A esperança de Jó é que, mesmo na morte, Deus não abandona o justo — há uma vida que transcende a morte.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Esperança incipiente', resumo: 'Calvino reconhece que Jó não tem uma doutrina clara da ressurreição, mas sua intuição aponta para a vida eterna. A fé busca Deus mesmo quando não compreende.', citacao: '«Jó não sabe explicar a ressurreição, mas sua fé a pressente — Deus não pode perder aquele que é seu.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Promessa escatológica', resumo: 'Barth vê em Jó 14:14 o grito escatológico da humanidade — a esperança de que Deus vai além da morte. Essa esperança se cumpre em Cristo ressuscitado.', citacao: '«A pergunta de Jó é a pergunta da humanidade — e a resposta é o túmulo vazio de Páscoa.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Esperança cristã', resumo: 'Stott vê em Jó 14:14 a semente da esperança cristã na ressurreição. A morte não é o fim — é uma porta para a vida eterna com Deus.', citacao: '«Jó pergunta se o homem tornará a viver — e Cristo ressuscitado responde: sim, para sempre.»' },
+    ],
+  },
+  {
+    livro: 'jb', capitulo: 19, versiculo: 25,
+    tema: 'Eu sei que o meu Redentor vive',
+    contexto: 'No auge do sofrimento, Jó declara sua fé inabalável num Redentor que viverá eternamente — uma das declarações mais poderosas do Antigo Testamento.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristologia profética', resumo: 'Agostinho vê em Jó 19:25 uma profecia direta de Cristo. O Redentor (Goel) é o próprio Deus que virá resgatar o homem. É uma das declarações messiânicas mais antigas.', citacao: '«Jó vê além da morte — ele vê o Redentor vivo, que há de se levantar sobre a terra.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Redenção divina', resumo: 'Aquino interpreta o Redentor como Cristo, que é ao mesmo tempo Deus e homem. Jó declara que há um defensor que viverá para sempre e que se levantará na terra.', citacao: '«O Redentor é Cristo, que morre uma vez mas vive para sempre, e há de se manifestar na terra final.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Certeza da fé', resumo: 'Calvino enfatiza a certeza de Jó — «EU SEIO». Não é especulação, é convicção. No meio do sofrimento, a fé se torna certeza. O Redentor vive, e isso muda tudo.', citacao: '«Jó não diz ‘talvez’ ou ‘espero’ — ele diz ‘EU SEIO que o meu Redentor vive’. Essa é a fé em sua forma mais pura.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Deus contra a morte', resumo: 'Barth vê em Jó 19:25 a declaração de que Deus vence a morte. O Redentor vivo é o Deus que se opõe à morte e ao sofrimento, e該使用者finalmente vence.', citacao: '«O Redentor de Jó é o Deus que diz não à morte — e sua palavra é mais forte que o túmulo.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Vitória final', resumo: 'Stott vê em Jó 19:25 a antecipação da vitória de Cristo sobre a morte. O Redentor vive, e isso garante que o sofrimento não é o fim da história.', citacao: '«A declaração de Jó é o hino da esperança cristã — o Redentor vive, e nós viveremos com Ele.»' },
+    ],
+  },
+  {
+    livro: 'jb', capitulo: 23, versiculo: 10,
+    tema: 'Mas Ele sabe o caminho que eu trilho',
+    contexto: 'Jó declara que, embora não veja Deus, confia que Ele conhece seu caminho e que ele sairá provado como o ouro.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Provação divina', resumo: 'Agostinho vê aqui o conceito de provação como purificação — Deus permite o sofrimento para refinar o justo como o ouro é refinado pelo fogo.', citacao: '«Deus conhece o caminho do justo — e o prova para purificar, não para destruir.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Providência omnisciente', resumo: 'Aquino enfatiza a omniscência divina — Deus sabe tudo sobre o caminho de cada pessoa. Nada escapa ao Seu conhecimento, e isso é motivo de consolo, não de temor.', citacao: '«Deus sabe perfeitamente o caminho de cada homem — e isso é a base da confiança do justo.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania e conhecimento', resumo: 'Calvino vê em Jó 23:10 a junção perfeita entre soberania e conhecimento divinos. Deus não apenas governa — Ele conhece intimamente cada passo do crente.', citacao: '«Mesmo quando Deus parece distante, Ele está mais perto que nossos próprios pés — pois Ele sabe o caminho.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Deus que conhece', resumo: 'Barth vê em Jó a declaração de que Deus não é uma abstração — Ele é o Deus que sabe, que conhece, que está presente. O conhecimento divino é pessoal, não impessoal.', citacao: '«Deus não é um observador distante — Ele é o Deus que conhece o caminho do homem porque Ele mesmo o percorre.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Confiança na provação', resumo: 'Stott vê em Jó 23:10 o modelo de confiança em meio à provação. Jó não compreende, mas confia — e essa fé é mais valiosa que a compreensão.', citacao: '«A fé de Jó nos ensina que não precisamos entender tudo para confiar em Deus — basta saber que Ele sabe.»' },
+    ],
+  },
+  {
+    livro: 'jb', capitulo: 28, versiculo: 12,
+    tema: 'Mas a sabedoria onde se achará?',
+    contexto: 'O poema sobre a sabedoria — Jó investiga onde se encontra a sabedoria verdadeira, e conclui que ela está em Deus.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Sabedoria divina', resumo: 'Agostinho vê em Jó 28 a busca pela sabedoria que só pode ser encontrada em Deus. A sabedoria não está nas profundezas da terra ou nos oceanos — está no coração de Deus.', citacao: '«A sabedoria não se compra com ouro — ela é dom de Deus para aqueles que O temem.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Sapientia Dei', resumo: 'Aquino interpreta este poema como a busca pela sabedoria divina — a sapientia que está acima de toda ciência humana. A sabedoria verdadeira é conhecer a Deus.', citacao: '«A sabedoria humana é limitada — a sabedoria divina é infinita e se encontra no temor do Senhor.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Limitação humana', resumo: 'Calvino enfatiza que o poema mostra os limites da sabedoria humana. O homem pode escavar a terra, mas não encontra a sabedoria — porque ela é revelação divina.', citacao: '«O homem pode tudo escavar menos a sabedoria — pois ela não está na terra, mas no céu.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação da sabedoria', resumo: 'Barth vê em Jó 28 a preparação para a revelação de Deus. A sabedoria não é conquista humana — é dádiva divina que se revela em Cristo.', citacao: '«A sabedoria de Deus não é encontrada pelo homem — ela vem ao homem em Jesus Cristo.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Temor do Senhor', resumo: 'Stott vê em Jó 28:28 a conclusão do poema — o temor do Senhor é a sabedoria. Não é conhecimento acadêmico, mas reverência diante de Deus.', citacao: '«A sabedoria não está em sabiologia — está no temor do Senhor, que é o princípio de toda sabedoria.»' },
+    ],
+  },
+  {
+    livro: 'jb', capitulo: 33, versiculo: 14,
+    tema: 'Deus fala de um modo, e de outro',
+    contexto: 'Elihu revela que Deus se comunica de diversas maneiras — através de sonhos, visões e sofrimento — para chamar a atenção do homem.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Revelação múltipla', resumo: 'Agostinho vê em Jó 33 a doutrina da revelação generalizada — Deus fala através da natureza, da consciência e dos eventos. O homem precisa ouvir.', citacao: '«Deus não se cala — Ele fala através de todas as coisas, mas o homem nem sempre ouve.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Comunicação divina', resumo: 'Aquino interpreta os modos de comunicação divina como meios de graça — sonhos, visões e sofrimento são instrumentos pelos quais Deus chama o homem à conversão.', citacao: '«Deus se comunica de múltiplas formas para que o homem não tenha desculpas para ignorá-Lo.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Palavra e Espírito', resumo: 'Calvino enfatiza que Deus fala através da Palavra e do Espírito. O sofrimento pode ser um modo de Deus falar — não para castigar, mas para despertar.', citacao: '«Deus fala duas vezes — pela Sua Palavra e pelo Seu Espírito. O sofrimento pode ser o altifalante de Deus.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Palavra de Deus', resumo: 'Barth vê em Jó 33 a preparação para a doutrina da Palavra de Deus. Deus fala — e quando fala, Ele se revela. A revelação não é ideia, mas evento.', citacao: '«Deus não é mudo — Ele fala, e quando fala, tudo muda.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Voz de Deus', resumo: 'Stott vê em Jó 33 a insistência de que Deus se comunica pessoalmente. Ele não é uma força distante — é um Pai que fala com seus filhos através de vários meios.', citacao: '«Deus fala através da Escritura, da oração, da comunidade e até do sofrimento — Ele nunca para de falar.»' },
+    ],
+  },
+  {
+    livro: 'jb', capitulo: 38, versiculo: 4,
+    tema: 'Onde estavas tu quando eu fundei a terra?',
+    contexto: 'Deus responde a Jó do redemoinho com uma série de perguntas retóricas que revelam Sua soberania sobre toda a criação.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Transcendência divina', resumo: 'Agostinho vê em Jó 38 a demonstração da transcendência de Deus — o homem não estava presente na criação, então não pode questionar o Criador. A humildade é a resposta ao mistério.', citacao: '«Deus não responde às perguntas de Jó — Ele faz perguntas que nenhum homem pode responder.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Causa primeira', resumo: 'Aquino argumenta que Jó 38 demonstra Deus como causa primeira de tudo. O homem é criatura — depende completamente do Criador para existir.', citacao: '«Deus é o fundamento de todo ser — sem Ele, nada existe, nem mesmo a pergunta.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania absoluta', resumo: 'Calvino vê em Jó 38 a declaração definitiva da soberania de Deus. Deus governa tudo — desde as constelações até os animais selvagens. Nenhuma detalhe escapa ao Seu controle.', citacao: '«Deus governa tudo com perfeita sabedoria — e o homem não tem direito de questionar o que não compreende.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Deus incontrolável', resumo: 'Barth vê em Jó 38 o Deus que não pode ser controlado ou domesticado pelo pensamento humano. Deus é livre — e essa liberdade é o âmago de Sua soberania.', citacao: '«Deus não é um deus que o homem pode colocar em sua caixa de teologia — Ele é o Deus que vem do redemoinho.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Admirável criação', resumo: 'Stott vê em Jó 38 a maravilha da criação como testemunho da sabedoria de Deus. Cada detalhe da natureza é uma lição de soberania divina.', citacao: '«As perguntas de Deus em Jó 38 são as lições mais profundas de teologia natural — a criação revela o Criador.»' },
+    ],
+  },
+  {
+    livro: 'jb', capitulo: 40, versiculo: 2,
+    tema: 'Acusarás o Todo-Poderoso?',
+    contexto: 'Deus desafia Jó a considerar se ele realmente pode contestar o Juiz de toda a terra. A pergunta é retórica: quem é o homem para acusar a Deus?',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Justiça divina', resumo: 'Agostinho vê aqui a reafirmação da justiça de Deus — o homem não pode acusar a Deus porque Deus é perfeitamente justo. O que parece injusto aos nossos olhos é justo aos olhos de Deus.', citacao: '«Deus não pode ser acusado — pois Ele é a própria justiça. O que parece injusto é na verdade sabedoria infinita.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Juiz supremo', resumo: 'Aquino argumenta que Deus é o juiz supremo e não pode ser julgado pelo homem. A criação é prova da justiça divina — Deus governa com perfeição.', citacao: '«O homem é parte da criação — como pode julgar o Criador? A submissão é a resposta racional.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania e humildade', resumo: 'Calvino enfatiza que a pergunta de Deus é um chamado à humildade. Não se acusa o Todo-Poderoso — se O adora. A adoração é a resposta ao mistério.', citacao: '«A resposta ao sofrimento não é acusação — é adoração diante da majestade de Deus.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Deus como juiz', resumo: 'Barth vê em Jó 40 o Deus que se apresenta como juiz — não para condenar Jó, mas para revelar que Ele é o único apto para julgar. O homem é réu, não juiz.', citacao: '«Deus não é acusado — Ele acusa. E quando acusa, é misericórdia, não vingança.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Submissão reverente', resumo: 'Stott vê em Jó 40 o chamado à submissão reverente. Não devemos acusar Deus, mas confiar em sua sabedoria, mesmo quando não compreendemos.', citacao: '«A submissão a Deus não é passividade — é reconhecer que Ele é Deus e nós não somos.»' },
+    ],
+  },
+  {
+    livro: 'jb', capitulo: 42, versiculo: 5,
+    tema: 'Eu te conhecia de ouvir, mas agora te vejo',
+    contexto: 'Jó finalmente encontra Deus face a face. Seu conhecimento passa de segunda mão (ouvir) para experiência direta (ver).',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Conhecimento experimental', resumo: 'Agostinho vê em Jó 42:5 o culminar da jornada espiritual — o conhecimento de Deus que vem da experiência, não do raciocínio. Jó passou de ouvir falar de Deus a conhecê-Lo pessoalmente.', citacao: '«O verdadeiro conhecimento de Deus não vem dos livros, mas do encontro pessoal com Ele.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Visão beatífica', resumo: 'Aquino interpreta «ver» como antecipação da visão beatífica — o conhecimento direto de Deus que é a felicidade última. Jó experimentou um prelúdio da glória eterna.', citacao: '«Ver Deus face a face é a beatitude última — e Jó teve um vislumbre dessa realidade.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Conhecimento vivencial', resumo: 'Calvino enfatiza a transformação que o conhecimento vivencial de Deus produz. Jó não apenas sabia de Deus — ele O encontrou. E esse encontro muda tudo.', citacao: '«Há diferença entre falar de Deus e falar COM Deus — Jó fez a transição.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Encontro com Deus', resumo: 'Barth vê em Jó 42:5 o momento do encontro — o kairós divino. Deus não é conceito; é realidade viva que se impõe ao homem. O encontro destrói os ídolos teológicos.', citacao: '«O conhecimento de Deus não é informação — é encontro. E no encontro, tudo é destruído e reconstruído.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Relação pessoal', resumo: 'Stott vê em Jó 42:5 a essência da fé cristã — não é religião de rituais, mas relação pessoal com Deus. Jó deixou de ser religioso para ser devoto.', citacao: '«A fé não é saber sobre Deus — é conhecê-Lo. E quando O conhecemos, nunca mais somos os mesmos.»' },
+    ],
+  },
+  {
+    livro: 'jb', capitulo: 42, versiculo: 10,
+    tema: 'O Senhor restaurou a Jó',
+    contexto: 'Após interceder por seus amigos, Jó recebe o dobro de tudo o que havia perdido. A restauração divina é o epílogo da história.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Restauração divina', resumo: 'Agostinho vê na restauração de Jó um prelúdio da restauração escatológica — Deus restaurará tudo o que o sofrimento roubou. A justiça divina será plenamente revelada.', citacao: '«Deus não apenas devolve — Ele restaura em dobro. A graça supera a perda.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Retribuição futura', resumo: 'Aquino interpreta a restauração como antecipação da recompensa futura — Deus compensará todo sofrimento do justo na vida eterna. O sofrimento presente é momentâneo.', citacao: '«A restauração de Jó é imagem da recompensa eterna — Deus não fica em dívida com o justo.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça e misericórdia', resumo: 'Calvino enfatiza que a restauração é graça, não merecimento. Jó não fez nada para merecer o dobro — Deus, em Sua misericórdia, restaurou tudo.', citacao: '«A restauração de Jó é pura graça — Deus dá porque é bom, não porque somos dignos.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Novo começo', resumo: 'Barth vê na restauração de Jó o sinal de que Deus sempre dá um novo começo. O passado não define o futuro — Deus pode transformar tudo.', citacao: '«Deus é o Deus dos novos começos — e a restauração de Jó é prova disso.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Fidelidade divina', resumo: 'Stott vê em Jó 42:10 a fidelidade de Deus em cumprir Suas promessas. Deus não abandona os que Sua — Ele restaura, renova e abençoa.', citacao: '«A história de Jó é a história da fidelidade de Deus — Ele nunca abandona os seus.»' },
+    ],
+  },
 ];
 }
 

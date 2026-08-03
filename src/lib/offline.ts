@@ -1,9 +1,18 @@
 const CACHE_KEY = 'ssb_cache';
 const CACHE_EXPIRY = 24 * 60 * 60 * 1000;
-const DB_NAME = 'ssb_offline';
+const DB_NAME = 'sola-scriptura-offline';
 const DB_VERSION = 2;
 const STORE_CHAPTERS = 'chapters';
 const STORE_META = 'meta';
+const STORE_FAVORITES = 'favorites';
+const STORE_NOTES = 'notes';
+const STORE_LEXICON = 'lexicon';
+const STORE_PLANS = 'plans';
+const STORE_SETTINGS = 'settings';
+const STORE_COLLECTIONS = 'collections';
+const STORE_FLASHCARDS = 'flashcards';
+const STORE_GAMIFICATION = 'gamification';
+const STORE_MARCAS = 'marcas';
 
 interface CacheEntry {
   data: string[];
@@ -31,11 +40,15 @@ function openDB(): Promise<IDBDatabase> {
     const req = indexedDB.open(DB_NAME, DB_VERSION);
     req.onupgradeneeded = () => {
       const db = req.result;
-      if (!db.objectStoreNames.contains(STORE_CHAPTERS)) {
-        db.createObjectStore(STORE_CHAPTERS, { keyPath: 'key' });
-      }
-      if (!db.objectStoreNames.contains(STORE_META)) {
-        db.createObjectStore(STORE_META, { keyPath: 'key' });
+      const allStores = [
+        STORE_CHAPTERS, STORE_META, STORE_FAVORITES, STORE_NOTES,
+        STORE_LEXICON, STORE_PLANS, STORE_SETTINGS, STORE_COLLECTIONS,
+        STORE_FLASHCARDS, STORE_GAMIFICATION, STORE_MARCAS,
+      ];
+      for (const store of allStores) {
+        if (!db.objectStoreNames.contains(store)) {
+          db.createObjectStore(store, { keyPath: 'key' });
+        }
       }
     };
     req.onsuccess = () => resolve(req.result);

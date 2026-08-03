@@ -98,7 +98,28 @@ export function usePWA(): UsePWAReturn {
     window.matchMedia('(display-mode: standalone)').addEventListener('change', handleDisplayModeChange);
 
     if ('serviceWorker' in navigator) {
-      const handleControllerChange = () => setUpdateAvailable(true);
+      navigator.serviceWorker.getRegistration().then((reg) => {
+        if (reg) {
+          if (reg.waiting) {
+            setUpdateAvailable(true);
+          }
+          reg.addEventListener('updatefound', () => {
+            const newSW = reg.installing;
+            if (newSW) {
+              newSW.addEventListener('statechange', () => {
+                if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+                  setUpdateAvailable(true);
+                  newSW.postMessage({ type: 'CLIENTS_READY' });
+                }
+              });
+            }
+          });
+        }
+      });
+
+      const handleControllerChange = () => {
+        setUpdateAvailable(false);
+      };
       navigator.serviceWorker.addEventListener('controllerchange', handleControllerChange);
 
       return () => {
@@ -137,8 +158,7 @@ export function usePWA(): UsePWAReturn {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.getRegistration().then((reg) => {
         if (reg?.waiting) {
-          reg.waiting.postMessage('skipWaiting');
-          window.location.reload();
+          reg.waiting.postMessage({ type: 'SKIP_WAITING' });
         }
       });
     }

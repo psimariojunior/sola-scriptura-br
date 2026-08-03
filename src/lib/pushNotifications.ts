@@ -1,4 +1,5 @@
 const VAPID_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || '';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1';
 const PUSH_ENABLED_KEY = 'ssb_push_enabled';
 const PUSH_SUBSCRIPTION_KEY = 'ssb_push_subscription';
 const DAILY_VERSE_TAG = 'ssb-daily-verse-push';
@@ -37,6 +38,86 @@ const DAILY_VERSES = [
   { ref: 'Filipenses 4:6-7', text: 'Não vos preocupeis com coisa alguma; mas em tudo sejam conhecidas, diante de Deus, as vossas petições, pela oração e súplicas, com ações de graças.' },
   { ref: 'Salmos 119:105', text: 'Lâmpada para os meus pés é tua palavra, e luz para o meu caminho.' },
 ];
+
+async function obterTokenAuth(): Promise<string | null> {
+  if (typeof window === 'undefined') return null;
+  try {
+    const cookies = document.cookie.split(';');
+    const tokenCookie = cookies.find((c) => c.trim().startsWith('ssb_token='));
+    if (tokenCookie) return tokenCookie.split('=')[1];
+    return localStorage.getItem('ssb_token');
+  } catch {
+    return null;
+  }
+}
+
+async function enviarSubscriptionBackend(subscription: PushSubscription): Promise<boolean> {
+  const token = await obterTokenAuth();
+  if (!token) {
+    console.warn('[Push] Usuário não autenticado, subscription não enviada ao backend');
+    return false;
+  }
+
+  const json = subscription.toJSON();
+  if (!json.endpoint || !json.keys) return false;
+
+  try {
+    const response = await fetch(`${API_URL}/notifications/subscribe`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        endpoint: json.endpoint,
+        p256dh: json.keys.p256dh,
+        auth: json.keys.auth,
+        userAgent: navigator.userAgent,
+        plataforma: detectarPlataforma(),
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('[Push] Erro ao enviar subscription ao backend:', response.status);
+      return false;
+    }
+
+    console.log('[Push] Subscription enviada ao backend com sucesso');
+    return true;
+  } catch (err) {
+    console.error('[Push] Falha ao comunicar com backend:', err);
+    return false;
+  }
+}
+
+async function removerSubscriptionBackend(endpoint: string): Promise<void> {
+  const token = await obterTokenAuth();
+  if (!token) return;
+
+  try {
+    await fetch(`${API_URL}/notifications/unsubscribe`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({ endpoint }),
+    });
+  } catch (err) {
+    console.error('[Push] Erro ao remover subscription do backend:', err);
+  }
+}
+
+function detectarPlataforma(): string {
+  if (typeof navigator === 'undefined') return 'unknown';
+  const ua = navigator.userAgent.toLowerCase();
+  if (/android/.test(ua)) return 'android';
+  if (/iphone|ipad|ipod/.test(ua)) return 'ios';
+  if (/windows/.test(ua)) return 'windows';
+  if (/macintosh|mac os x/.test(ua)) return 'macos';
+  if (/linux/.test(ua)) return 'linux';
+  return 'other';
+}
 
 function urlBase64ToUint8Array(base64String: string): ArrayBuffer {
   const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
@@ -108,6 +189,7 @@ export async function subscribeToPush(): Promise<PushSubscription | null> {
     const existingSubscription = await reg.pushManager.getSubscription();
     if (existingSubscription) {
       localStorage.setItem(PUSH_SUBSCRIPTION_KEY, JSON.stringify(existingSubscription.toJSON()));
+      await enviarSubscriptionBackend(existingSubscription);
       return existingSubscription;
     }
 
@@ -118,6 +200,8 @@ export async function subscribeToPush(): Promise<PushSubscription | null> {
 
     localStorage.setItem(PUSH_SUBSCRIPTION_KEY, JSON.stringify(subscription.toJSON()));
     setPushEnabled(true);
+
+    await enviarSubscriptionBackend(subscription);
 
     return subscription;
   } catch (err) {
@@ -133,7 +217,11 @@ export async function unsubscribeFromPush(): Promise<boolean> {
   try {
     const subscription = await reg.pushManager.getSubscription();
     if (subscription) {
+      const json = subscription.toJSON();
       await subscription.unsubscribe();
+      if (json.endpoint) {
+        await removerSubscriptionBackend(json.endpoint);
+      }
     }
     localStorage.removeItem(PUSH_SUBSCRIPTION_KEY);
     setPushEnabled(false);

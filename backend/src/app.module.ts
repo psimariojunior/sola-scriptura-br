@@ -36,6 +36,7 @@ import { RabbitMQModule } from './infra/mensageria/rabbitmq.module';
 import { ColaborativoModule } from './modules/colaborativo/colaborativo.module';
 import { UserDataModule } from './modules/user-data/user-data.module';
 import { AnalyticsModule } from './modules/analytics/analytics.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
 import { SaudeController } from './modules/saude.controller';
 
 @Module({
@@ -116,6 +117,7 @@ import { SaudeController } from './modules/saude.controller';
     ColaborativoModule,
     UserDataModule,
     AnalyticsModule,
+    NotificationsModule,
   ],
   controllers: [SaudeController],
   providers: [

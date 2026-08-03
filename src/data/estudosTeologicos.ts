@@ -680,7 +680,7 @@ const estudosData: EstudoVersiculo[] = [
     ],
   },
   {
-    livro: 'ed', capitulo: 7, versiculo: 10,
+    livro: 'ezr', capitulo: 7, versiculo: 10,
     tema: 'Dedicação de Esdras — Estudo e ensino da Lei',
     contexto: 'Esdras prepara o coração para buscar, cumprir e ensinar a Lei do Senhor em Jerusalém.',
     interpretacoes: [
@@ -773,7 +773,7 @@ const estudosData: EstudoVersiculo[] = [
     ],
   },
   {
-    livro: 'jn', capitulo: 3, versiculo: 10,
+    livro: 'jon', capitulo: 3, versiculo: 10,
     tema: 'Arrependimento de Nínive — Misericórdia universal',
     contexto: 'A cidade gentílica de Nínive se arrepende à pregação de Jonas, e Deus perdoa.',
     interpretacoes: [
@@ -2204,7 +2204,7 @@ const estudosExtras: EstudoVersiculo[] = [
     ],
   },
   {
-    livro: 'co', capitulo: 1, versiculo: 15,
+    livro: 'cl', capitulo: 1, versiculo: 15,
     tema: 'Cristo, imagem do Deus invisível',
     contexto: 'Paulo apresenta o hino cristológico mais elevado do NT — Cristo é a imagem visível do Deus invisível.',
     interpretacoes: [
@@ -3965,7 +3965,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jn', capitulo: 1, versiculo: 17,
+    livro: 'jon', capitulo: 1, versiculo: 17,
     tema: 'O grande peixe engoliu Jonas',
     contexto: 'Juízo e misericórdia no mesmo ato.',
     interpretacoes: [
@@ -3975,7 +3975,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jn', capitulo: 4, versiculo: 11,
+    livro: 'jon', capitulo: 4, versiculo: 11,
     tema: 'Porque eu sabia que Tu és clemente',
     contexto: 'Jonas entende a misericórdia — por isso foge.',
     interpretacoes: [
@@ -3985,7 +3985,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'mic', capitulo: 5, versiculo: 2,
+    livro: 'mq', capitulo: 5, versiculo: 2,
     tema: 'De ti sairá o governador',
     contexto: 'Profecia messiânica — Belém.',
     interpretacoes: [
@@ -3995,7 +3995,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'mic', capitulo: 6, versiculo: 8,
+    livro: 'mq', capitulo: 6, versiculo: 8,
     tema: 'Ele te declarou, ó homem, o que é bom',
     contexto: 'Resumo da vontade de Deus.',
     interpretacoes: [
@@ -5566,7 +5566,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'ed', capitulo: 1, versiculo: 3,
+    livro: 'ezr', capitulo: 1, versiculo: 3,
     tema: 'Suba aquele cujo Deus está em Jerusalém',
     contexto: 'Retorno — obediência.',
     interpretacoes: [
@@ -5576,7 +5576,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'ed', capitulo: 9, versiculo: 8,
+    livro: 'ezr', capitulo: 9, versiculo: 8,
     tema: 'A mão do Senhor nosso Deus foi sobre nós para nos livrar',
     contexto: 'Proteção divina — livramento.',
     interpretacoes: [
@@ -5799,7 +5799,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
   // JÓ — SOFRIMENTO, SOBERANIA E SABEDORIA
   // ═══════════════════════════════════════════════════════════════════════
   {
-    livro: 'jb', capitulo: 1, versiculo: 21,
+    livro: 'jó', capitulo: 1, versiculo: 21,
     tema: 'O Senhor o deu, o Senhor o tomou',
     contexto: 'Jó perde todos os bens, filhos e saúde, mas não blasfema contra Deus. Sua resposta é um modelo de submissão soberana.',
     interpretacoes: [
@@ -5811,7 +5811,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jb', capitulo: 3, versiculo: 3,
+    livro: 'jó', capitulo: 3, versiculo: 3,
     tema: 'Pereça o dia em que nasci',
     contexto: 'Jó prange o dia do seu nascimento em um lamento que é um dos mais comoventes da Escritura. Não é suicídio, mas expressão de profundo sofrimento.',
     interpretacoes: [
@@ -5823,7 +5823,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jb', capitulo: 7, versiculo: 17,
+    livro: 'jó', capitulo: 7, versiculo: 17,
     tema: 'Que é o homem para que dele te lembres?',
     contexto: 'Jó questiona a Deus sobre a condição humana — por que Deus se importa tanto com seres tão frágeis e temporais?',
     interpretacoes: [
@@ -5835,7 +5835,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jb', capitulo: 9, versiculo: 33,
+    livro: 'jó', capitulo: 9, versiculo: 33,
     tema: 'Haja um árbitro entre nós',
     contexto: 'Jó clama por um mediador — alguém que possa ficar entre ele e Deus para fazer justiça. Uma profecia messiânica involuntária.',
     interpretacoes: [
@@ -5847,7 +5847,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jb', capitulo: 14, versiculo: 14,
+    livro: 'jó', capitulo: 14, versiculo: 14,
     tema: 'Se um homem morrer, tornará a viver?',
     contexto: 'Jó questiona a ressurreição — em meio ao sofrimento, ele vislumbra a possibilidade de uma vida além da morte.',
     interpretacoes: [
@@ -5859,7 +5859,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jb', capitulo: 19, versiculo: 25,
+    livro: 'jó', capitulo: 19, versiculo: 25,
     tema: 'Eu sei que o meu Redentor vive',
     contexto: 'No auge do sofrimento, Jó declara sua fé inabalável num Redentor que viverá eternamente — uma das declarações mais poderosas do Antigo Testamento.',
     interpretacoes: [
@@ -5871,7 +5871,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jb', capitulo: 23, versiculo: 10,
+    livro: 'jó', capitulo: 23, versiculo: 10,
     tema: 'Mas Ele sabe o caminho que eu trilho',
     contexto: 'Jó declara que, embora não veja Deus, confia que Ele conhece seu caminho e que ele sairá provado como o ouro.',
     interpretacoes: [
@@ -5883,7 +5883,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jb', capitulo: 28, versiculo: 12,
+    livro: 'jó', capitulo: 28, versiculo: 12,
     tema: 'Mas a sabedoria onde se achará?',
     contexto: 'O poema sobre a sabedoria — Jó investiga onde se encontra a sabedoria verdadeira, e conclui que ela está em Deus.',
     interpretacoes: [
@@ -5895,7 +5895,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jb', capitulo: 33, versiculo: 14,
+    livro: 'jó', capitulo: 33, versiculo: 14,
     tema: 'Deus fala de um modo, e de outro',
     contexto: 'Elihu revela que Deus se comunica de diversas maneiras — através de sonhos, visões e sofrimento — para chamar a atenção do homem.',
     interpretacoes: [
@@ -5907,7 +5907,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jb', capitulo: 38, versiculo: 4,
+    livro: 'jó', capitulo: 38, versiculo: 4,
     tema: 'Onde estavas tu quando eu fundei a terra?',
     contexto: 'Deus responde a Jó do redemoinho com uma série de perguntas retóricas que revelam Sua soberania sobre toda a criação.',
     interpretacoes: [
@@ -5919,7 +5919,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jb', capitulo: 40, versiculo: 2,
+    livro: 'jó', capitulo: 40, versiculo: 2,
     tema: 'Acusarás o Todo-Poderoso?',
     contexto: 'Deus desafia Jó a considerar se ele realmente pode contestar o Juiz de toda a terra. A pergunta é retórica: quem é o homem para acusar a Deus?',
     interpretacoes: [
@@ -5931,7 +5931,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jb', capitulo: 42, versiculo: 5,
+    livro: 'jó', capitulo: 42, versiculo: 5,
     tema: 'Eu te conhecia de ouvir, mas agora te vejo',
     contexto: 'Jó finalmente encontra Deus face a face. Seu conhecimento passa de segunda mão (ouvir) para experiência direta (ver).',
     interpretacoes: [
@@ -5943,7 +5943,7 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
   {
-    livro: 'jb', capitulo: 42, versiculo: 10,
+    livro: 'jó', capitulo: 42, versiculo: 10,
     tema: 'O Senhor restaurou a Jó',
     contexto: 'Após interceder por seus amigos, Jó recebe o dobro de tudo o que havia perdido. A restauração divina é o epílogo da história.',
     interpretacoes: [
@@ -5952,6 +5952,822 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
       { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça e misericórdia', resumo: 'Calvino enfatiza que a restauração é graça, não merecimento. Jó não fez nada para merecer o dobro — Deus, em Sua misericórdia, restaurou tudo.', citacao: '«A restauração de Jó é pura graça — Deus dá porque é bom, não porque somos dignos.»' },
       { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Novo começo', resumo: 'Barth vê na restauração de Jó o sinal de que Deus sempre dá um novo começo. O passado não define o futuro — Deus pode transformar tudo.', citacao: '«Deus é o Deus dos novos começos — e a restauração de Jó é prova disso.»' },
       { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Fidelidade divina', resumo: 'Stott vê em Jó 42:10 a fidelidade de Deus em cumprir Suas promessas. Deus não abandona os que Sua — Ele restaura, renova e abençoa.', citacao: '«A história de Jó é a história da fidelidade de Deus — Ele nunca abandona os seus.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // NAUM
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'na', capitulo: 1, versiculo: 2,
+    tema: 'O Deus zeloso e vingador',
+    contexto: 'Naum anuncia a queda de Nínive, capital do império Assírio, que destruiu o reino do norte de Israel em 722 a.C.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Justiça divina', resumo: 'Agostinho vê em Naum a revelação da justiça divina — Deus é paciente mas não eterno em Sua tolerância.', citacao: '«Deus é paciente, mas não eterno em Sua paciência — o pecado encontrará seu fim.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Providência divina', resumo: 'Aquino interpreta a vingança de Deus como expressão da providência — Deus usa nações como instrumentos para cumprir Seus propósitos.', citacao: '«A vingança de Deus não é arbítrio — é a ordem da providência se cumprindo.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania absoluta', resumo: 'Calvino enfatiza que Deus é soberano sobre todas as nações — Nínive caiu porque Deus assim determinou.', citacao: '«Deus é senhor de todas as nações — Nínive cai porque Ele assim quis.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação divina', resumo: 'Barth vê em Naum a revelação do Deus que se opõe ao poder opressor — Deus está do lado dos oprimidos.', citacao: '«O Deus de Naum é o Deus que se opõe ao poder opressor.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Fidelidade às promessas', resumo: 'Stott vê em Naum a fidelidade de Deus em cumprir as maldições da aliança.', citacao: '«Deus cumpre tanto as bênçãos quanto as maldições da Sua aliança.»' },
+    ],
+  },
+  {
+    livro: 'na', capitulo: 1, versiculo: 7,
+    tema: 'Refúgio no dia da aflição',
+    contexto: 'No meio da tempestade do julgamento, Naum oferece uma palavra de consolo: Deus é um refúgio para os que Nele confiam.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Deus como rocha', resumo: 'Agostinho vê em Deus o refúgio permanente — quando tudo desmorona, Deus é a rocha que não se move.', citacao: '«Deus é a rocha que não se move — mesmo quando o mundo desmorona.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Virtude da esperança', resumo: 'Aquino vê neste versículo a virtude da esperança — Deus é refúgio não apenas do perigo físico, mas de todo mal.', citacao: '«A esperança é a virtude que nos leva a Deus como refúgio de todo mal.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Proteção divina', resumo: 'Calvino enfatiza que Deus protege Seu povo mesmo no meio do julgamento.', citacao: '«Deus protege Seu povo mesmo no meio do julgamento.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Graça no julgamento', resumo: 'Barth vê em Deus o refúgio que está presente mesmo no julgamento.', citacao: '«Deus está presente até no julgamento — Ele é o refúgio do crente.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Segurança em Deus', resumo: 'Stott vê em Deus o refúgio seguro — mesmo quando o mundo é perigoso, Nele encontramos proteção.', citacao: '«Em Deus encontramos proteção e paz mesmo no meio do perigo.»' },
+    ],
+  },
+  {
+    livro: 'na', capitulo: 1, versiculo: 15,
+    tema: 'Alegria pela libertação',
+    contexto: 'Naum anuncia que os oprimidos podem se alegrar porque Deus vai julgar Nínive e libertar Seu povo.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Libertação escatológica', resumo: 'Agostinho vê neste versículo uma antecipação da libertação final — Deus julgará todos os opressores.', citacao: '«A alegria do crente é antecipação da vitória final de Deus.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Beatitude', resumo: 'Aquino vê na alegria a realização da beatitude — Deus é a causa última de toda alegria verdadeira.', citacao: '«A verdadeira alegria vem de Deus — Ele é a causa da nossa felicidade.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Libertação do pecado', resumo: 'Calvino vê na alegria não apenas libertação política, mas espiritual — Deus liberta do pecado e da morte.', citacao: '«A maior libertação é do pecado — e isso é motivo de alegria eterna.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Evangelho', resumo: 'Barth vê em Naum 1:15 um anúncio do evangelho — Deus liberta e chama à alegria.', citacao: '«Naum é um anúncio do evangelho — Deus liberta e chama à alegria.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Celebração da justiça', resumo: 'Stott vê na alegria a celebração da justiça de Deus.', citacao: '«Quando Deus age, o povo se alegra porque vê Sua fidelidade.»' },
+    ],
+  },
+  {
+    livro: 'na', capitulo: 2, versiculo: 2,
+    tema: 'Deus restaura o que foi roubado',
+    contexto: 'Nínive será destruída porque roubou e destruiu Israel. Deus promete restaurar o que foi tirado.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Restauração divina', resumo: 'Agostinho vê em Deus o restaurador de tudo — o que o pecado roubou, Deus devolve.', citacao: '«Deus restaura tudo o que o pecado roubou — sua justiça é completa.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Retribuição', resumo: 'Aquino vê na destruição de Nínive a retribuição divina — Deus paga com a mesma moeda aos que oprimem.', citacao: '«Deus retribui segundo as obras — quem oprime será oprimido.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Providência', resumo: 'Calvino vê na restauração a providência divina — Deus cuida do Seu povo.', citacao: '«Deus cuida do Seu povo e não permite que o mal prevaleça.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Novo começo', resumo: 'Barth vê na restauração o sinal de que Deus sempre dá um novo começo.', citacao: '«Deus é o Deus dos novos começos — Ele restaura o que foi destruído.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Fidelidade', resumo: 'Stott vê na restauração a fidelidade de Deus em cumprir Suas promessas.', citacao: '«Deus cumpre Suas promessas de restauração para os oprimidos.»' },
+    ],
+  },
+  {
+    livro: 'na', capitulo: 2, versiculo: 13,
+    tema: 'A espada devoradora do Senhor',
+    contexto: 'Deus usa Nínive como instrumento de julgamento contra Israel, mas agora Ele vai julgar a própria Nínive.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Julgamento duplo', resumo: 'Agostinho vê aqui o princípio do julgamento duplo — Deus usa nações para disciplinar, mas depois julga as nações.', citacao: '«Deus usa nações como instrumentos, mas depois as julga por seus pecados.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Providência', resumo: 'Aquino vê na espada divina a expressão da providência — Deus controla até os impérios.', citacao: '«Deus controla até os impérios para cumprir Seus propósitos.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Calvino enfatiza a soberania de Deus sobre todas as nações — Nínive pensava ser invencível.', citacao: '«Nenhum império é invencível — Deus é mais poderoso que todos.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Julgamento dos poderosos', resumo: 'Barth vê em Deus o juiz dos poderosos — os que exercem violência serão julgados.', citacao: '«Deus é o juiz dos poderosos — a violência será julgada.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Justiça divina', resumo: 'Stott vê na espada divina a justiça de Deus.', citacao: '«Deus não permite que o pecado fique sem punição — Sua justiça é perfeita.»' },
+    ],
+  },
+  {
+    livro: 'na', capitulo: 3, versiculo: 5,
+    tema: 'Deus expõe a impiedade',
+    contexto: 'Deus vai expor publicamente os pecados de Nínive — suas mentiras, roubos e violência serão revelados.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Luz da verdade', resumo: 'Agostinho vê em Deus a luz que expõe as trevas — nada fica escondido do Seu olhar.', citacao: '«Deus é a luz que expõe as trevas — nada fica escondido do Seu olhar.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Justiça', resumo: 'Aquino vê na exposição divina a expressão da justiça — Deus não permite que o pecado fique escondido.', citacao: '«A justiça de Deus exige que o pecado seja exposto.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Verdade', resumo: 'Calvino enfatiza que Deus é a verdade e expõe todas as mentiras.', citacao: '«Deus é a verdade e expõe todas as mentiras.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'Barth vê em Deus o revelador — Ele expõe o que está escondido e chama à verdade.', citacao: '«Deus revela e confronta — Ele expõe o que está escondido.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Verdade divina', resumo: 'Stott vê em Deus a verdade que expõe o engano.', citacao: '«Deus é a verdade que expõe todo engano.»' },
+    ],
+  },
+  {
+    livro: 'na', capitulo: 3, versiculo: 19,
+    tema: 'Consolo para os aflitos',
+    contexto: 'Apesar da destruição de Nínive, Deus traz consolo para os aflitos. Ele cura os feridos e restaura o que foi quebrado.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cura divina', resumo: 'Agostinho vê em Deus o curador das almas — Ele cura as feridas do pecado.', citacao: '«Deus cura as feridas do pecado e restaura a paz interior.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Misericórdia', resumo: 'Aquino vê no consolo a misericórdia divina — Deus não apenas julga, mas também consola.', citacao: '«A misericórdia de Deus se manifesta no consolo aos aflitos.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Calvino enfatiza que Deus é fonte de toda consolação.', citacao: '«Deus é a fonte de toda consolação — Ele restaura a esperança.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Esperança', resumo: 'Barth vê em Deus a esperança para os desesperançados.', citacao: '«Deus traz consolo no meio da destruição — Ele é a esperança.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Restauração', resumo: 'Stott vê em Deus o restaurador — Ele não apenas consola, mas restaura.', citacao: '«Deus restaura o que foi perdido — Ele é o consolo dos aflitos.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // SOFONIAS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'sf', capitulo: 1, versiculo: 2,
+    tema: 'Deus varrerá tudo com vassoura de destruição',
+    contexto: 'Sofonias propheta a julgamento total sobre Judá e Jerusalém. A ira de Deus será derramada sobre todos — idólatras, apóstatas e os tranquilos.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Julgamento universal', resumo: 'Agostinho vê em Sofonias o anúncio do julgamento que atinge todos — ninguém escapa da justiça divina.', citacao: '«A vassoura de Deus varre todos — ninguém escapa da Sua justiça.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Punição do pecado', resumo: 'Aquino vê na destruição a punição pelo pecado — Deus não tolera a idolatria e a rebelião.', citacao: '«Deus pune o pecado porque é santo — a destruição é consequência da idolatria.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania divina', resumo: 'Calvino enfatiza que Deus é soberano sobre o julgamento — Ele varre o que é impuro porque é santo.', citacao: '«Deus varre o impuro porque é santo — Sua soberania se manifesta no julgamento.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Confronto divino', resumo: 'Barth vê em Sofonias o confronto de Deus com a complacência humana — Deus não aceita a indiferença.', citacao: '«Deus não aceita a complacência — Ele confronta a indiferença.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Santidade divina', resumo: 'Stott vê no julgamento a expressão da santidade de Deus — Ele não pode tolerar o pecado.', citacao: '«A santidade de Deus exige o julgamento do pecado.»' },
+    ],
+  },
+  {
+    livro: 'sf', capitulo: 1, versiculo: 14,
+    tema: 'O dia do Senhor se aproxima',
+    contexto: 'Sofonias descreve o "dia do Senhor" como um dia de trevas e aflição, não de luz. É um aviso urgente de que o julgamento está próximo.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Escatologia', resumo: 'Agostinho vê no dia do Senhor a antecipação do julgamento final — o dia em que Deus julgará todos.', citacao: '«O dia do Senhor é o dia do julgamento final — e ele se aproxima.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Alerta', resumo: 'Aquino vê no dia do Senhor um alerta para a conversão — Deus chama os pecados ao arrependimento.', citacao: '«O dia do Senhor é um chamado à conversão — antes que seja tarde.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Certeza do julgamento', resumo: 'Calvino enfatiza a certeza do julgamento — o dia do Senhor virá, e os pecados serão julgados.', citacao: '«O dia do Senhor é certo — os pecados serão julgados.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Kairos', resumo: 'Barth vê no dia do Senhor o kairos — o momento decisivo de Deus que transforma a história.', citacao: '«O dia do Senhor é o kairos — o momento decisivo de Deus.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Preparação', resumo: 'Stott vê no dia do Senhor um chamado à preparação — devemos viver prontos para Sua vinda.', citacao: '«Devemos viver prontos para o dia do Senhor — ele pode chegar a qualquer momento.»' },
+    ],
+  },
+  {
+    livro: 'sf', capitulo: 2, versiculo: 3,
+    tema: 'Busquem ao Senhor, todos os mansos',
+    contexto: 'No meio do julgamento, Sofonias faz um apelo: busquem ao Senhor, os mansos da terra, que buscam a justiça. Talvez sejam escondidos no dia da ira.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Misericórdia no julgamento', resumo: 'Agostinho vê neste versículo a misericórdia de Deus no meio do julgamento — há chance de arrependimento.', citacao: '«Deus oferece misericórdia mesmo no julgamento — há chance de arrependimento.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Humildade', resumo: 'Aquino vê nos mansos os humildes que reconhecem sua dependência de Deus — eles serão protegidos.', citacao: '«Os humildes são protegidos porque reconhecem sua dependência de Deus.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição', resumo: 'Calvino vê nos mansos os eleitos de Deus — eles serão escondidos no dia do julgamento.', citacao: '«Os eleitos de Deus serão escondidos no dia do julgamento.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Graça', resumo: 'Barth vê neste versículo a graça de Deus que busca os mansos — Deus não quer a destruição, mas a salvação.', citacao: '«Deus busca os mansos — Ele não quer a destruição, mas a salvação.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Busca de Deus', resumo: 'Stott vê neste versículo o chamado à busca de Deus — devemos buscá-Lo com humildade.', citacao: '«Deus chama os mansos a buscá-Lo — e Ele se faz encontrar.»' },
+    ],
+  },
+  {
+    livro: 'sf', capitulo: 3, versiculo: 9,
+    tema: 'Deus purificará os lábios do povo',
+    contexto: 'Sofonias anuncia que Deus purificará os lábios do povo para que invoquem Seu nome e O sirvam de comum acordo.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Purificação interior', resumo: 'Agostinho vê na purificação dos lábios a transformação interior — Deus muda o coração para que a língua declare Sua glória.', citacao: '«Deus purifica o coração primeiro, e a língua segue — a mudança é interior.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Graça santificante', resumo: 'Aquino vê na purificação a graça santificante — Deus transforma o homem para que possa servi-Lo.', citacao: '«A graça santificante transforma o homem para que possa servir a Deus.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Regeneração', resumo: 'Calvino vê na purificação a regeneração — Deus cria um novo povo com lápios que declaram Sua glória.', citacao: '«Deus regenera o povo para que declare Sua glória com lápios puros.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Novo começo', resumo: 'Barth vê na purificação o novo começo que Deus oferece — Ele não destrói, mas transforma.', citacao: '«Deus não destrói — Ele transforma e oferece um novo começo.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Unidade', resumo: 'Stott vê na purificação dos lábios a unidade do povo de Deus — lápios puros levam à adoração em comunhão.', citacao: '«Lápios puros levam à adoração em comunhão — Deus purifica para unir.»' },
+    ],
+  },
+  {
+    livro: 'sf', capitulo: 3, versiculo: 17,
+    tema: 'O Senhor teu Deus está no meio de ti',
+    contexto: 'Uma das promessas mais bonitas de Sofonias: Deus está no meio do Seu povo, guerreiro que salva, e se alegra sobre eles com cânticos.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Presença divina', resumo: 'Agostinho vê na presença de Deus no meio do povo a réalidade da encarnação — Deus se faz próximo.', citacao: '«Deus está no meio do povo — Ele se faz próximo e guerreiro que salva.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Providência', resumo: 'Aquino vê na presença divina a providência — Deus não abandona Seu povo, mas está presente para salvá-lo.', citacao: '«Deus está presente para salvar — Sua providência não falha.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Alegria divina', resumo: 'Calvino vê em Deus que se alegra sobre o povo a Sua alegria em salvar — Deus não salva por obrigação, mas por amor.', citacao: '«Deus se alegra em salvar — Ele não salva por obrigação, mas por amor.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Graça presente', resumo: 'Barth vê em Deus presente no meio do povo a graça que já chegou — Deus não é futuro, é presente.', citacao: '«Deus já está no meio do povo — a graça é presente, não apenas futuro.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Comunhão', resumo: 'Stott vê na presença de Deus a comunhão — Ele está no meio do povo para estar em relação com eles.', citacao: '«Deus está no meio do povo para estar em relação — a comunhão é Sua vontade.»' },
+    ],
+  },
+  {
+    livro: 'sf', capitulo: 3, versiculo: 20,
+    tema: 'Deus reunirá e restaurará o povo',
+    contexto: 'Sofonias encerra com a promessa de que Deus reunirá o povo disperso e trará de volta os exilados. A restauração é certa.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Reunião escatológica', resumo: 'Agostinho vê na reunião do povo a antecipação da reunião final — Deus juntará todos os Seus no fim dos tempos.', citacao: '«Deus juntará todos os Seus — a reunião final é certa.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Restauração', resumo: 'Aquino vê na restauração a promessa de Deus de devolver o que foi perdido — Deus é fiel.', citacao: '«Deus é fiel e restaura o que foi perdido — Sua promessa é certa.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição', resumo: 'Calvino vê na reunião a reunião dos eleitos — Deus chama de todas as nações os que são dEle.', citacao: '«Deus chama os eleitos de todas as nações — a reunião é universal.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Nova aliança', resumo: 'Barth vê na restauração a nova aliança — Deus faz tudo novo e reúne o povo em comunhão.', citacao: '«Deus faz tudo novo — a restauração é a nova aliança.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Fidelidade', resumo: 'Stott vê na restauração a fidelidade de Deus em cumprir Suas promessas — Ele não abandona os Seus.', citacao: '«Deus cumpre Suas promessas de restauração — Ele nunca abandona os Seus.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // LEVÍTICO
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'lv', capitulo: 1, versiculo: 3,
+    tema: 'Holocausto: offering que sobe como aroma agradável',
+    contexto: 'Levítico abre com as instruções para os sacrifícios. O holocausto é a oferta mais completa — o animal é queimado inteiro, representando a entrega total a Deus.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Alegoria cristológica', resumo: 'Agostinho vê no holocausto a figura de Cristo que se ofereceu completamente por nós — o aroma agradável é a obediência perfeita de Cristo.', citacao: '«Cristo é o holocausto perfeito — Sua obediência é aroma agradável a Deus.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Sacrifício propiciatório', resumo: 'Aquino vê no holocausto a satisfação da honra de Deus — o pecado ofende a Deus, e o sacrifício satisfaz essa ofensa.', citacao: '«O holocausto satisfaz a honra de Deus ofendida pelo pecado.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Tipologia', resumo: 'Calvino vê no holocausto uma sombra das realidades celestiais — o sacrifício terrestre aponta para o sacrifício celestial de Cristo.', citacao: '«O holocausto é sombra — Cristo é a realidade.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Reconciliação', resumo: 'Barth vê no holocausto o ato de reconciliação — Deus aceita o sacrifício e se reconcilia com o povo.', citacao: '«O holocausto é o ato de reconciliação — Deus aceita e se reconcilia.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Substituição', resumo: 'Stott vê no holocausto o princípio da substituição — o animal morre no lugar do pecador, apontando para Cristo.', citacao: '«O holocausto ensina a substituição — o animal morre no lugar do pecador.»' },
+    ],
+  },
+  {
+    livro: 'lv', capitulo: 16, versiculo: 30,
+    tema: 'O Dia da Expiação (Yom Kippur)',
+    contexto: 'O versículo central de Levítico — no décimo dia do sétimo mês, o sacerdote faz expiação por todo Israel. É o dia mais sagrado do calendário judaico.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Purificação universal', resumo: 'Agostinho vê no Yom Kippur a figura da purificação universal que Cristo realizou — Ele purificou não apenas Israel, mas todo o mundo.', citacao: '«Cristo é nosso Yom Kippur — Ele purificou todo o mundo.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Satisfação', resumo: 'Aquino vê no dia da expiação a satisfação plena — o pecado é removido completamente pela graça de Deus.', citacao: '«A expiação é satisfação plena — o pecado é removido pela graça.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Expiação definitiva', resumo: 'Calvino vê no Yom Kippur a expiação definitiva de Cristo — não há mais necessidade de sacrifícios anuais.', citacao: '«Cristo é a expiação definitiva — não há mais necessidade de sacrifícios.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Reconciliação total', resumo: 'Barth vê no dia da expiação a reconciliação total — Deus não apenas perdoa, mas se reconcilia completamente.', citacao: '«A expiação é reconciliação total — Deus se reconcilia plenamente.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Substituição vicária', resumo: 'Stott vê no Yom Kippur a substituição vicária — o bode emissário leva os pecados para longe, como Cristo.', citacao: '«O bode emissário leva os pecados para longe — Cristo faz o mesmo por nós.»' },
+    ],
+  },
+  {
+    livro: 'lv', capitulo: 19, versiculo: 18,
+    tema: 'Amarás o teu próximo como a ti mesmo',
+    contexto: 'O mandamento mais citado por Jesus — amar o próximo como a si mesmo. É o resumo da Lei e da Profecias, e o fundamento da ética cristã.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor como Lei', resumo: 'Agostinho vê neste mandamento o resumo de toda a Lei — quem ama, cumpre tudo. O amor é o fundamento.', citacao: '«Ame, e faça o que quiser — se amar, não fará o que é proibido.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Lei natural', resumo: 'Aquino vê no amor ao próximo a lei natural gravada no coração — todos os homens conhecem esse mandamento.', citacao: '«Amar o próximo é lei natural — todos os homens a conhecem.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Summa da Lei', resumo: 'Calvino vê neste mandamento a summa da Lei — Deus e o próximo são os dois pilares da vida cristã.', citacao: '«A Lei se resume em dois pilares: Deus e o próximo.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Humanidade reconciliada', resumo: 'Barth vê no amor ao próximo a humanidade reconciliada — em Cristo, todos são irmãos.', citacao: '«Em Cristo, todos são irmãos — o amor ao próximo é a humanidade reconciliada.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Ética cristã', resumo: 'Stott vê neste mandamento o fundamento da ética cristã — o amor prático ao próximo é a marca do discípulo.', citacao: '«O amor prático ao próximo é a marca do discípulo de Cristo.»' },
+    ],
+  },
+  {
+    livro: 'lv', capitulo: 20, versiculo: 8,
+    tema: 'Santos porque o Senhor é santo',
+    contexto: 'Deus comanda santidade porque Ele é santo. A santidade não é opcional — é o propósito da aliança. Deus separa o povo para Si.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Santificação', resumo: 'Agostinho vê na santidade o objetivo da criação — Deus criou o homem para ser santo, à Sua imagem.', citacao: '«Deus criou o homem para ser santo — a santidade é o propósito da criação.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Graça santificante', resumo: 'Aquino vê na santidade o fruto da graça santificante — Deus dá a graça para que o homem seja santo.', citacao: '«A graça santificante é o meio Deus usa para tornar o homem santo.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Santificação_progressiva', resumo: 'Calvino vê na santidade um processo — o crente é santificado gradualmente pela Palavra e pelo Espírito.', citacao: '«A santificação é um processo — o crente cresce em santidade pela Palavra e pelo Espírito.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Reino de Deus', resumo: 'Barth vê na santidade a vida no Reino de Deus — ser santo é viver na realidade do Reino presente.', citacao: '«Ser santo é viver na realidade do Reino de Deus presente.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Chamado à santidade', resumo: 'Stott vê na santidade um chamado — Deus não apenas pede santidade, mas dá os meios para alcançá-la.', citacao: '«Deus não apenas pede santidade — Ele dá os meios para alcançá-la.»' },
+    ],
+  },
+  {
+    livro: 'lv', capitulo: 25, versiculo: 10,
+    tema: 'Ano do Jubileu: liberdade e restauração',
+    contexto: 'A cada 50 anos, o Jubileu: escravos são libertos, terras retornam aos proprietários originais, dívidas são perdoadas. Uma revolução social e econômica.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Libertação espiritual', resumo: 'Agostinho vê no Jubileu a figura da libertação que Cristo traz — Ele liberta escravos do pecado e restaura a dignidade.', citacao: '«Cristo é nosso Jubileu — Ele liberta e restaura a dignidade perdida.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Justiça social', resumo: 'Aquino vê no Jubileu a justiça social — Deus não aceita desigualdade extrema, e o Jubileu corrige as distorções.', citacao: '«O Jubileu é justiça social — Deus corrige as distorções da economia.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Calvino vê no Jubileu a graça de Deus que restaura — Deus não abandona os caídos, mas os levanta.', citacao: '«O Jubileu é graça restauradora — Deus levanta os caídos.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Libertação', resumo: 'Barth vê no Jubileu a libertação dos oprimidos — Deus se pronuncia contra toda forma de escravidão.', citacao: '«Deus se pronuncia contra toda escravidão — o Jubileu é libertação.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Restauração', resumo: 'Stott vê no Jubileu a restauração completa — Deus restaura tudo: liberdade, propriedade e dignidade.', citacao: '«O Jubileu restaura tudo — liberdade, propriedade e dignidade.»' },
+    ],
+  },
+  {
+    livro: 'lv', capitulo: 26, versiculo: 12,
+    tema: 'Eu andarei entre vós',
+    contexto: 'Deus promete caminhar no meio do Seu povo, ser seu Deus e eles serão Seu povo. É a essência da aliança: presença divina.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Deus connosco', resumo: 'Agostinho vê na promessa de Deus andar entre o povo a anticipate da encarnação — Deus se faz presente entre os homens.', citacao: '«Deus anda entre nós — a aliança é presença divina.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Habitação divina', resumo: 'Aquino vê na habitação de Deus entre o povo a Sua generosidade — Deus se faz presente por amor.', citacao: '«Deus habita entre o povo por amor — Sua presença é dom.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aliança', resumo: 'Calvino vê na promessa a essência da aliança — Deus se compromete a estar presente com Seu povo.', citacao: '«A aliança é compromisso de presença — Deus está conosco.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Reconciliação presente', resumo: 'Barth vê em Deus andando entre o povo a reconciliação presente — Deus já está conosco, não apenas promete estar.', citacao: '«Deus já está conosco — a reconciliação é presente, não apenas futuro.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Comunhão', resumo: 'Stott vê na promessa a comunhão — Deus quer estar em relação íntima com Seu povo.', citacao: '«Deus quer comunhão — Ele anda entre nós para estar em relação.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // NÚMEROS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'nm', capitulo: 6, versiculo: 24-26,
+    tema: 'A bênção de Arão',
+    contexto: 'A bênção sacerdotal mais antiga de Israel — "O Senhor te abençoe e te guarde" — usada até hoje na sinagoga e na igreja.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Graça trina', resumo: 'Agostinho vê na bênção de Arão uma revelação da Trindade — três versículos, três pessoas, uma bênção.', citacao: '«A bênção de Arão é trina — três versículos revelam um Deus que abençoa em três.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Graça eficiente', resumo: 'Aquino vê na bênção a graça eficiente — Deus não apenas deseja abençoar, mas efetivamente abençoa.', citacao: '«A bênção de Deus é eficiente — Ele não apenas deseja, mas realiza.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Promessa', resumo: 'Calvino vê na bênção uma promessa — Deus se compromete a abençoar e guardar Seu povo.', citacao: '«A bênção é promessa — Deus se compromete a abençoar e guardar.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Graça', resumo: 'Barth vê na bênção a graça que precede — Deus abençoa antes que o homem peça.', citacao: '«Deus abençoa antes que peçamos — Sua graça precede.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Bênção completa', resumo: 'Stott vê na bênção três dimensões: proteção (guarde), presença (face brilhe) e paz (rosto volto).', citacao: '«A bênção tem três dimensões: proteção, presença e paz.»' },
+    ],
+  },
+  {
+    livro: 'nm', capitulo: 11, versiculo: 29,
+    tema: 'Todos profetizarão',
+    contexto: 'Moisés, ao saber que setenta anciãos receberam o Espírito, expressa seu desejo de que todo o povo profetizasse. Marcos é punido por profetizar no acampamento.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Democratização do Espírito', resumo: 'Agostinho vê neste versículo a democratização do Espírito — Deus distribui Seus dons livremente.', citacao: '«Deus distribui Seus dons livremente — todos podem receber o Espírito.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Carismas', resumo: 'Aquino vê nos dons espirituais a graça distribuída — cada um recebe segundo a necessidade da comunidade.', citacao: '«Os dons são graça distribuída — cada um recebe para o bem da comunidade.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania do Espírito', resumo: 'Calvino vê no desejo de Moisés a soberania do Espírito — Ele distribui como quer, não como queremos.', citacao: '«O Espírito distribui como quer — não como os homens desejam.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Profecia universal', resumo: 'Barth vê em "todos profetizarão" a profecia universal — Deus fala por meio de todos os crentes.', citacao: '«Deus fala por todos os crentes — a profecia é universal.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Sacerdócio universal', resumo: 'Stott vê neste versículo o sacerdócio universal — todos têm acesso direto a Deus e ao Seu Espírito.', citacao: '«Todos têm acesso a Deus — o sacerdócio é universal.»' },
+    ],
+  },
+  {
+    livro: 'nm', capitulo: 14, versiculo: 4,
+    tema: 'Deixemo-nos e voltemos para o Egito',
+    contexto: 'Após os espias relatarem gigantes em Canaã, o povo reclama e quer voltar ao Egito. A incredulidade gera rebelião.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Incredulidade', resumo: 'Agostinho vê na rebelião o poder da incredulidade — o povo viu os milagres, mas esqueceu tudo diante do medo.', citacao: '«A incredulidade faz o povo esquecer os milagres — o medo é mais forte que a memória.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Pecado contra a fé', resumo: 'Aquino vê na rebelião um pecado contra a fé — o povo não confiou nas promessas de Deus.', citacao: '«A rebelião é pecado contra a fé — não confiar nas promessas de Deus.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Desobediência', resumo: 'Calvino vê na vontade de voltar ao Egito a desobediência pura — o povo preferiu a escravidão à liberdade.', citacao: '«O povo preferiu a escravidão à liberdade — desobediência é preferir o Egito.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Medo vs fé', resumo: 'Barth vê no medo do povo a antítese da fé — o medo paralisa, mas a fé liberta.', citacao: '«O medo paralisa — a fé liberta. O povo escolheu o medo.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Escolha', resumo: 'Stott vê no versículo uma escolha — o povo poderia confiar em Deus, mas escolheu a rebelião.', citacao: '«A fé é uma escolha — o povo poderia confiar, mas escolheu rebelar-se.»' },
+    ],
+  },
+  {
+    livro: 'nm', capitulo: 21, versiculo: 8-9,
+    tema: 'A serpente de bronze',
+    contexto: 'Deus ordena que Moisés faça uma serpente de bronze e a coloque num poste — quem olhar para ela será curado. Jesus cita este evento em João 3:14.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Tipologia cristológica', resumo: 'Agostinho vê na serpente de bronze a figura de Cristo — assim como a serpente curava quem olhava, Cristo salva quem O contempla.', citacao: '«Cristo é nossa serpente de bronze — quem O contempla é salvo.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Fé visual', resumo: 'Aquino vê na serpente o ato de fé — o povo precisava olhar, e o olhar era ato de fé em Deus.', citacao: '«Olhar para a serpente era ato de fé — a fé se manifesta na ação.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Calvino vê na serpente a graça gratuita — Deus cura sem mérito, apenas pela fé no que Ele ordenou.', citacao: '«Deus cura gratuitamente — a serpente é graça, não merecimento.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Cristo elevado', resumo: 'Barth vê na serpente elevada a cruz de Cristo — assim como a serpente foi erguida, Cristo foi elevado para salvar.', citacao: '«Cristo é a serpente erguida — Ele é elevado para salvar.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Substituição', resumo: 'Stott vê na serpente a substituição — o povo merecia morrer, mas Deus ofereceu um meio de salvação.', citacao: '«O povo merecia morrer, mas Deus ofereceu salvação — a serpente é substituição.»' },
+    ],
+  },
+  {
+    livro: 'nm', capitulo: 22, versiculo: 28,
+    tema: 'Balaam e a jumenta que falou',
+    contexto: 'Balaam, profeta pagão, é contratabal por Balac para amaldiçoar Israel. Uma jumenta vê o anjo do Senhor e fala — uma das cenas mais surpreendentes da Bíblia.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Souverania de Deus', resumo: 'Agostinho vê na jumenta que fala a soberania de Deus — até os animais obedecem a Deus quando os homens se rebelam.', citacao: '«Até a jumenta obedece a Deus quando o profeta se rebela — Sua soberania é total.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Providência', resumo: 'Aquino vê na jumenta o instrumento da providência — Deus usa meios inusitados para alcançar Seus propósitos.', citacao: '«Deus usa meios inusitados — até uma jumenta é instrumento da providência.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Cegueira espiritual', resumo: 'Calvino vê em Balaam a cegueira espiritual — o profeta via a jumenta, mas não via o anjo.', citacao: '«Balaam via a jumenta, mas não via o anjo — a cegueira espiritual é cega.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'Barth vê na jumenta a revelação que vem de onde não se espera — Deus pode falar por qualquer meio.', citacao: '«Deus pode falar por qualquer meio — até por uma jumenta.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Advertência', resumo: 'Stott vê em Balaam uma advertência — o profeta foi guerreiro por dinheiro, mas Deus o usou para abençoar.', citacao: '«Balaam foi profeta por dinheiro — mas Deus o usou para abençoar.»' },
+    ],
+  },
+  {
+    livro: 'nm', capitulo: 27, versiculo: 18,
+    tema: 'Joshué, homem de espírito',
+    contexto: 'Deus escolhe Joshué para suceder Moisés — um homem em quem há espírito. É a transição de liderança no deserto.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Espírito Santo', resumo: 'Agostinho vê em Joshué a manifestação do Espírito — Deus escolhe quem tem Seu Espírito para liderar.', citacao: '«Deus escolhe quem tem Seu Espírito — o Espírito é a marca da liderança.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Autoridade', resumo: 'Aquino vê em Joshué a autoridade delegada — Deus delega autoridade para liderar o povo.', citacao: '«Deus delega autoridade — Joshué recebeu para liderar.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição', resumo: 'Calvino vê em Joshué a eleição divina — Deus escolheu antes que o povo soubesse.', citacao: '«Deus escolheu Joshué antes que o povo soubesse — a eleição é divina.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Chamado', resumo: 'Barth vê em Joshué o chamado divino — Deus chama e equipec com Seu Espírito.', citacao: '«Deus chama e equipec — Joshué recebeu o Espírito para cumprir.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Liderança', resumo: 'Stott vê em Joshué o modelo de liderança — liderar com o Espírito e a obediência.', citacao: '«Liderar é ter o Espírito e a obediência — Joshué é o modelo.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // 1 REIS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: '1rs', capitulo: 3, versiculo: 9,
+    tema: 'Sábio coração para julgar',
+    contexto: 'Salomão pede a Deus um coração sábio para julgar o povo. Deus se agrada e lhe dá não apenas sabedoria, mas também riqueza e gloria.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Sabedoria divina', resumo: 'Agostinho vê no pedido de Salomão a sabedoria que vem de Deus — não é sabedoria humana, mas divina.', citacao: '«A sabedoria verdadeira vem de Deus — Salomão pediu o que é mais importante.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Virtude da sabedoria', resumo: 'Aquino vê na sabedoria a virtude intelectual que ordena todas as coisas ao fim último — Deus.', citacao: '«A sabedoria ordena tudo a Deus — é a virtude suprema.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Calvino vê na sabedoria de Salomão um dom de graça — Deus dá porque quer, não porque merecemos.', citacao: '«A sabedoria é dom de graça — Deus dá porque é bom.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'Barth vê na sabedoria a revelação de Deus — o homem só é sábio quando recebe de Deus.', citacao: '«A sabedoria é revelação — o homem só é sábio quando recebe de Deus.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Prioridades', resumo: 'Stott vê no pedido de Salomão as prioridades corretas — ele pediu sabedoria em vez de riqueza.', citacao: '«Salomão pediu sabedoria — as prioridades certas levam às bênçãos.»' },
+    ],
+  },
+  {
+    livro: '1rs', capitulo: 8, versiculo: 27,
+    tema: 'Deus não habita em templos feitos por mãos',
+    contexto: 'Na dedicação do templo, Salomão reconhece que nem os céus dos céus podem conter a Deus — quanto mais este templo.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Transcendência', resumo: 'Agostinho vê na declaração de Salomão a transcendência de Deus — Ele é maior que qualquer criação.', citacao: '«Deus é maior que toda criação — o templo é símbolo, não contenção.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Infinidade', resumo: 'Aquino vê na declaração a infinidade de Deus — Ele não pode ser contido em nenhum lugar.', citacao: '«Deus é infinito — nenhum templo O contém.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Presença', resumo: 'Calvino vê no templo o símbolo da presença — Deus está presente, mas não limitado ao templo.', citacao: '«Deus está presente no templo, mas não é limitado por ele.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Mistério', resumo: 'Barth vê na declaração o mistério de Deus — Ele se revela, mas nunca é totalmente compreendido.', citacao: '«Deus é mistério — se revela, mas nunca é totalmente compreendido.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Adoração', resumo: 'Stott vê no templo o lugar de adoração — não porque Deus precisa, mas porque o homem precisa.', citacao: '«O templo é para o homem adorar — Deus não precisa, mas o homem sim.»' },
+    ],
+  },
+  {
+    livro: '1rs', capitulo: 11, versiculo: 4,
+    tema: 'O coração de Salomão se desviou',
+    contexto: 'Salomão, o mais sábio dos reis, caiu em idolatria por causa de suas mulheres estrangeiras. O aviso é claro: até os sábios podem cair.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fragilidade humana', resumo: 'Agostinho vê na queda de Salomão a fragilidade humana — até o mais sábio pode cair se não vigiar.', citacao: '«Até o mais sábio pode cair — a vigilância é necessária sempre.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Pecado', resumo: 'Aquino vê na idolatria de Salomão o pecado de concupiscência — o desejo desordenado o afastou de Deus.', citacao: '«O desejo desordenado afasta de Deus — Salomão caiu pela concupiscência.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Advertência', resumo: 'Calvino vê em Salomão uma advertência — ninguém está seguro cair, mesmo os mais espirituais.', citacao: '«Ninguém está seguro — Salomão é advertência para todos.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Gravidade do pecado', resumo: 'Barth vê na queda de Salomão a gravidade do pecado — ele destrói até os mais sábios.', citacao: '«O pecado é grave — ele destrói até os mais sábios.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Vigilância', resumo: 'Stott vê em Salomão o chamado à vigilância — devemos guardar nossos corações.', citacao: '«Devemos guardar nossos corações — Salomão não guardou e caiu.»' },
+    ],
+  },
+  {
+    livro: '1rs', capitulo: 17, versiculo: 1,
+    tema: 'Elias e a seca',
+    contexto: 'Elias anuncia a seca em Israel como julgamento pela idolatria de Acabe e Jezabel. O profeta se esconde na ravina do Querite.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Julgamento', resumo: 'Agostinho vê na seca o julgamento de Deus — a idolatria tem consequências sobre a terra.', citacao: '«A idolatria tem consequências — a seca é julgamento de Deus.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Providência', resumo: 'Aquino vê na provisão no Querite a providência — Deus cuida de Elias mesmo no meio do julgamento.', citacao: '«Deus cuida de Elias no meio do julgamento — Sua providência não falha.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Calvino vê na seca a soberania de Deus — Ele controla a chuva e a terra.', citacao: '«Deus é soberano sobre a chuva e a terra — a seca é Sua vontade.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Profecia', resumo: 'Barth vê em Elias o profeta que confronta — Ele desafia o rei e a religião falsa.', citacao: '«Elias confronta o rei e a religião falsa — a profecia é confronto.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Coragem', resumo: 'Stott vê em Elias o modelo de coragem — ele desafiou o rei e confiou em Deus.', citacao: '«Elias é modelo de coragem — desafiou o rei e confiou em Deus.»' },
+    ],
+  },
+  {
+    livro: '1rs', capitulo: 19, versiculo: 12,
+    tema: 'A voz da brisa suave',
+    contexto: 'Elias está na caverna, fugindo de Jezabel. Deus não está no terremoto, no fogo, mas na brisa suave. A presença de Deus é sutil.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Presença sutil', resumo: 'Agostinho vê na brisa suave a presença de Deus que se comunica no silêncio — Deus fala quando o homem cala.', citacao: '«Deus fala no silêncio — a brisa suave é Sua presença sutil.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Contemplação', resumo: 'Aquino vê na brisa o momento da contemplação — Deus se revela ao alma em silêncio e amor.', citacao: '«A contemplação é o momento em que Deus se revela — a brisa é contemplação.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Calvino vê na brisa suave a graça de Deus que vem gentle — Ele não força, mas convida.', citacao: '«Deus vem gentle — a brisa suave é Sua graça convidando.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'Barth vê na brisa a revelação de Deus — Ele se revela no que é pequeno e humilde.', citacao: '«Deus se revela no pequeno e humilde — a brisa é Sua revelação.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Descanso', resumo: 'Stott vê na brisa o convite ao descanso — Deus chama Elias a descansar nEle.', citacao: '«Deus convida ao descanso — a brisa suave é Sua chamada.»' },
+    ],
+  },
+  {
+    livro: '1rs', capitulo: 22, versiculo: 14,
+    tema: 'Micaias profetizará a verdade',
+    contexto: 'Micaias é o único profeta que ousa falar a verdade contra Acabe. Enquanto 400 profetas mentem, ele fala a palavra do Senhor.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Verdade', resumo: 'Agostinho vê em Micaias o profeta da verdade — mesmo contra a multidão, ele fala o que Deus diz.', citacao: '«A verdade não depende da multidão — Micaias falou sozinho.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Coragem', resumo: 'Aquino vê em Micaias a coragem do profeta — ele enfrenta o rei e a multidão de falsos profetas.', citacao: '«Micaias tem a coragem de enfrentar o rei — o profeta fala a verdade.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Calvino vê em Micaias a soberania de Deus — Deus revela Sua vontade através do profeta fiel.', citacao: '«Deus revela Sua vontade pelo profeta fiel — Micaias é instrumento.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Profecia', resumo: 'Barth vê em Micaias o modelo de profecia — falar a verdade mesmo quando é impopular.', citacao: '«Profetizar é falar a verdade mesmo quando impopular — Micaias é modelo.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Fidelidade', resumo: 'Stott vê em Micaias a fidelidade à palavra de Deus — ele não compromete a verdade por popularidade.', citacao: '«Micaias não compromete a verdade — a fidelidade é mais importante que a popularidade.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // LAMENTAÇÕES
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'lm', capitulo: 1, versiculo: 1,
+    tema: 'Como é solidã a cidade',
+    contexto: 'Jeremias lamenta a destruição de Jerusalém. A cidade que era cheia de gente agora está vazia, viúva e escrava.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Tristeza profunda', resumo: 'Agostinho vê no lamento a tristeza profunda de Deus pela destruição da cidade — Deus também chora.', citacao: '«Deus chora com os que choram — a solidão de Jerusalém é Sua tristeza.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Julgamento', resumo: 'Aquino vê na solidão o resultado do julgamento — a cidade que rejeitou Deus ficou vazia.', citacao: '«A solidão é resultado do julgamento — a cidade que rejeitou Deus ficou vazia.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Consequência', resumo: 'Calvino vê na solidão a consequência do pecado — Jerusalém pagou o preço de sua rebeldia.', citacao: '«A solidão é consequência do pecado — Jerusalém pagou o preço.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Dor de Deus', resumo: 'Barth vê no lamento a dor de Deus — Ele sofre com os que sofrem, mesmo quando são culpados.', citacao: '«Deus sofre com os que sofrem — mesmo quando são culpados.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Empatia', resumo: 'Stott vê no lamento a empatia de Deus — Ele não é indiferente à dor humana.', citacao: '«Deus não é indiferente — Ele empathize com nossa dor.»' },
+    ],
+  },
+  {
+    livro: 'lm', capitulo: 2, versiculo: 19,
+    tema: 'Levanta-te e clama na noite',
+    contexto: 'Jeremias exorta Jerusalém a clamar a Deus na noite — levantar como água no início da vigília. A oração é o caminho da restauração.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Oração', resumo: 'Agostinho vê na exortação o poder da oração — mesmo no meio da destruição, a oração alcança Deus.', citacao: '«A oração alcança Deus mesmo no meio da destruição — clamar é a chave.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Perseverança', resumo: 'Aquino vê na exortação a perseverança na oração — devemos clamar sem desistir.', citacao: '«A perseverança na oração é necessária — clamar sem desistir.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Dependência', resumo: 'Calvino vê na exortação a dependência de Deus — o homem precisa clamar porque depende dEle.', citacao: '«O homem clama porque depende de Deus — a oração é dependência.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Resposta', resumo: 'Barth vê na exortação a confiança de que Deus responde — Ele ouve o clamor do abismo.', citacao: '«Deus ouve o clamor do abismo — Ele responde à oração.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Esperança', resumo: 'Stott vê na exortação a esperança — mesmo na noite mais escura, a oração traz luz.', citacao: '«A oração traz luz na noite mais escura — é esperança em ação.»' },
+    ],
+  },
+  {
+    livro: 'lm', capitulo: 3, versiculo: 22-23,
+    tema: 'As misericórdias de Deus se renovam',
+    contexto: 'O versículo mais conhecido de Lamentações — as misericórdias de Deus não acabam, e Sua bondade se renova a cada manhã. Uma ilha de esperança no meio do desespero.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Graça renovada', resumo: 'Agostinho vê nas misericórdias que se renovam a graça de Deus que nunca se esgota — cada manhã é nova graça.', citacao: '«As misericórdias de Deus são como a manhã — sempre novas, sempre frescas.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Bondade infinita', resumo: 'Aquino vê na renovação a bondade infinita de Deus — Sua bondade não tem fim.', citacao: '«A bondade de Deus é infinita — Sua misericórdia nunca se esgota.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fidelidade', resumo: 'Calvino vê na renovação a fidelidade de Deus — Ele é fiel todos os dias.', citacao: '«Deus é fiel todos os dias — Sua misericórdia se renova.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Graça', resumo: 'Barth vê na renovação a graça que nunca falha — Deus sempre dá nova chance.', citacao: '«A graça nunca falha — Deus sempre dá nova chance.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Esperança', resumo: 'Stott vê na renovação a esperança — cada manhã é oportunidade de recomeçar com Deus.', citacao: '«Cada manhã é oportunidade de recomeçar — as misericórdias se renovam.»' },
+    ],
+  },
+  {
+    livro: 'lm', capitulo: 3, versiculo: 25,
+    tema: 'O Senhor é bom para quem Nele espera',
+    contexto: 'No meio do desespero, Jeremias declara que Deus é bom para aqueles que esperam Nele. A esperança em Deus é o antídoto contra o desespero.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Bondade divina', resumo: 'Agostinho vê na bondade de Deus a razão da esperança — Deus é bom mesmo quando tudo é mau.', citacao: '«Deus é bom mesmo quando tudo é mau — Sua bondade é a razão da esperança.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Virtude da esperança', resumo: 'Aquino vê na esperança a virtude que nos leva a Deus — Ele recompensa quem espera nEle.', citacao: '«A esperança é virtude que nos leva a Deus — Ele recompensa quem espera.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Confiança', resumo: 'Calvino vê na bondade de Deus a razão da confiança — devemos confiar porque Ele é bom.', citacao: '«A bondade de Deus é razão da confiança — devemos confiar porque Ele é bom.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Bondade', resumo: 'Barth vê na bondade de Deus a realidade que sustenta — Ele é bom e fiel.', citacao: '«Deus é bom e fiel — Sua bondade sustenta a esperança.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Esperança', resumo: 'Stott vê na bondade de Deus a fonte da esperança — ela não depende das circunstâncias, mas de Deus.', citacao: '«A esperança não depende das circunstâncias — depende da bondade de Deus.»' },
+    ],
+  },
+  {
+    livro: 'lm', capitulo: 3, versiculo: 40,
+    tema: 'Examinemos os nossos caminhos',
+    contexto: 'Jeremias chama o povo ao autoexame — devemos voltar ao Senhor e examinar nossos caminhos. O arrependimento é o caminho da restauração.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Conversão', resumo: 'Agostinho vê no autoexame o início da conversão — o homem precisa se reconhecer pecador para se converter.', citacao: '«O autoexame é o início da conversão — reconhecer o pecado é o primeiro passo.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Penitência', resumo: 'Aquino vê no exame a penitência — devemos examinar nossos pecados e arrepender-nos.', citacao: '«O exame é penitência — devemos examinar e arrepender-nos.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Arrependimento', resumo: 'Calvino vê no exame o arrependimento — devemos voltar a Deus examinando nossa vida.', citacao: '«O exame leva ao arrependimento — devemos voltar a Deus.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revisão de vida', resumo: 'Barth vê no exame a revisão de vida — devemos nos perguntar se estamos no caminho de Deus.', citacao: '«O exame é revisão de vida — estamos no caminho de Deus?»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Autoavaliação', resumo: 'Stott vê no exame a autoavaliação espiritual — devemos nos conhecer para crescer.', citacao: '«A autoavaliação éecessária para crescer — o exame é ferramenta.»' },
+    ],
+  },
+  {
+    livro: 'lm', capitulo: 5, versiculo: 21,
+    tema: 'Restaura-nos, Senhor, para que sejamos restaurados',
+    contexto: 'A última oração de Lamentações — um pedido desesperado de restauração. O povo reconhece que só Deus pode restaurá-los.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Dependência total', resumo: 'Agostinho vê na oração a dependência total de Deus — o homem não pode se restaurar, só Deus.', citacao: '«O homem não pode se restaurar — só Deus pode restaurar.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Graça', resumo: 'Aquino vê na oração o pedido de graça — Deus dá a graça da restauração.', citacao: '«A restauração é graça — Deus dá o que o homem não pode conquistar.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Calvino vê na oração a submissão à soberania de Deus — só Ele pode restaurar.', citacao: '«A restauração depende da soberania de Deus — só Ele pode restaurar.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Esperança', resumo: 'Barth vê na oração a esperança — mesmo no desespero, há esperança em Deus.', citacao: '«Mesmo no desespero, há esperança — a oração é expressão dessa esperança.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Renovação', resumo: 'Stott vê na oração o pedido de renovação — Deus renova os que se voltam para Ele.', citacao: '«Deus renova os que se voltam para Ele — a oração é o caminho.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // OSÉIAS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'os', capitulo: 1, versiculo: 2,
+    tema: 'Deus ordena que Oséias case com uma prostituta',
+    contexto: 'Deus ordena que Oséias se case com Gômer, uma prostituta, como símbolo da infidelidade de Israel. O profeta vivencia a dor de Deus.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Alegoria', resumo: 'Agostinho vê no casamento de Oséias a alegoria de Deus e Israel — Deus é fiel, mas Israel é infiel.', citacao: '«O casamento de Oséias é imagem de Deus e Israel — fidelidade contra infidelidade.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Símbolo', resumo: 'Aquino vê no casamento o símbolo da aliança — Deus casou com Israel, mas Israel traiu.', citacao: '«O casamento é símbolo da aliança — Israel traiu o Deus que o amava.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Profecia', resumo: 'Calvino vê no casamento uma profecia — Deus mostra como Israel O traiu através do casamento de Oséias.', citacao: '«O casamento é profecia — Deus mostra a infidelidade de Israel.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Dor de Deus', resumo: 'Barth vê no casamento a dor de Deus — Ele sofre com a infidelidade do povo.', citacao: '«Deus sofre com a infidelidade — o casamento é Sua dor.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Sacrifício', resumo: 'Stott vê no casamento o sacrifício do profeta — Oséias aceita a dor para cumprir o propósito de Deus.', citacao: '«O profeta aceita a dor — o casamento é sacrifício pelo propósito de Deus.»' },
+    ],
+  },
+  {
+    livro: 'os', capitulo: 2, versiculo: 14,
+    tema: 'Eu a seduzirei e a levarei ao deserto',
+    contexto: 'Deus promete seduzir e levar Israel ao deserto para falar ao seu coração — uma imagem de amor e restauração.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor divino', resumo: 'Agostinho vê na sedução o amor de Deus que busca o pecador — Ele não desiste, mas seduz com bondade.', citacao: '«Deus seduz com bondade — Ele busca o pecador com amor.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Misericórdia', resumo: 'Aquino vê na sedução a misericórdia de Deus — Ele recupera o que se perdeu.', citacao: '«A sedução é misericórdia — Deus recupera o que se perdeu.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Calvino vê na sedução a graça de Deus que busca o pecador — Ele não abandona.', citacao: '«Deus busca com graça — Ele não abandona o pecador.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Amor', resumo: 'Barth vê na sedução o amor de Deus que se entrega — Ele se dá completamente ao pecador.', citacao: '«Deus se entrega — o amor é sedução divina.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Restauração', resumo: 'Stott vê na sedução a restauração — Deus seduz para restaurar a relação quebrada.', citacao: '«Deus seduz para restaurar — a relação quebrada é restaurada pelo amor.»' },
+    ],
+  },
+  {
+    livro: 'os', capitulo: 3, versiculo: 1,
+    tema: 'Ama de novo',
+    contexto: 'Deus ordena que Oséias ame novamente Gômer, mesmo depois de ela ter sido vendida como escrava. Um retrato do amor incondicional de Deus.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor incondicional', resumo: 'Agostinho vê no amor de Oséias o amor incondicional de Deus — Ele ama mesmo quando somos indignos.', citacao: '«Deus ama mesmo quando somos indignos — o amor é incondicional.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Graça', resumo: 'Aquino vê no amor a graça que vai além do merecimento — Deus ama sem条件.', citacao: '«O amor de Deus vai além do merecimento — é graça pura.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição', resumo: 'Calvino vê no amor a eleição — Deus escolhe amar mesmo quando não somos dignos.', citacao: '«Deus escolhe amar — a eleição é amor gratuito.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Graça', resumo: 'Barth vê no amor a graça que se entrega — Deus se dá completamente ao pecador.', citacao: '«A graça se entrega — Deus ama sem条件.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Redenção', resumo: 'Stott vê no amor a redenção — Deus resgata o que está perdido.', citacao: '«Deus redime o que está perdido — o amor é redenção.»' },
+    ],
+  },
+  {
+    livro: 'os', capitulo: 6, versiculo: 6,
+    tema: 'Misericórdia e não sacrifício',
+    contexto: 'Deus prefere a misericórdia ao sacrifício. Jesus cita este versículo duas vezes nos Evangelhos — é central para entender o coração de Deus.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Misericórdia', resumo: 'Agostinho vê na misericórdia o coração de Deus — Ele prefere a misericórdia ao ritual.', citacao: '«O coração de Deus é misericórdia — Ele prefere o amor ao ritual.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Amor', resumo: 'Aquino vê na misericórdia o amor em ação — o sacrifício sem amor é vazio.', citacao: '«O sacrifício sem amor é vazio — a misericórdia é amor em ação.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Interior', resumo: 'Calvino vê na misericórdia o culto interior — Deus olha para o coração, não para o ritual.', citacao: '«Deus olha para o coração — o culto interior é o que importa.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Reconciliação', resumo: 'Barth vê na misericórdia a reconciliação — Deus reconcilia pelo amor, não pelo sacrifício.', citacao: '«A reconciliação vem pelo amor — a misericórdia é reconciliação.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Prática', resumo: 'Stott vê na misericórdia a prática cristã — devemos praticar misericórdia, não apenas oferecer sacrifícios.', citacao: '«A prática cristã é misericórdia — devemos amar, não apenas adorar.»' },
+    ],
+  },
+  {
+    livro: 'os', capitulo: 11, versiculo: 1,
+    tema: 'Quando Israel era menino, eu o amei',
+    contexto: 'Deus lembra do amor que teve por Israel desde o Egito — como um pai que ensina seu filho a andar. Uma das imagens mais ternas de Deus no Antigo Testamento.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor paterno', resumo: 'Agostinho vê no amor de Deus por Israel o amor de um pai — Deus ensina, guia e protege.', citacao: '«Deus é pai que ensina — Seu amor por Israel é amor paterno.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Bondade', resumo: 'Aquino vê no amor a bondade de Deus — Ele amou Israel desde o início.', citacao: '«Deus amou desde o início — Sua bondade é anterior ao pecado.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição', resumo: 'Calvino vê no amor a eleição — Deus escolheu amar Israel antes que ele existisse.', citacao: '«Deus escolheu amar — a eleição é anterior à existência.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Amor', resumo: 'Barth vê no amor de Deus por Israel o amor que precede — Deus ama antes que o homem exista.', citacao: '«Deus ama antes que existamos — Seu amor é anterior.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Paternidade', resumo: 'Stott vê em Deus o pai que cuida — Ele ensina Israel a andar como um pai ensina o filho.', citacao: '«Deus é pai que cuida — Ele ensina como um pai ao filho.»' },
+    ],
+  },
+  {
+    livro: 'os', capitulo: 13, versiculo: 14,
+    tema: 'Ó morte, onde estão tuas pragas?',
+    contexto: 'Deus desafia a morte — onde estão tuas pragas? Paul cita este versículo em 1 Coríntios 15:55. A morte foi derrotada pela ressurreição.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vitória sobre a morte', resumo: 'Agostinho vê no desafio a vitória de Deus sobre a morte — Cristo venceu a morte na cruz.', citacao: '«Deus venceu a morte — Cristo é a vitória sobre as pragas.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Ressurreição', resumo: 'Aquino vê no desafio a ressurreição — a morte não tem poder sobre os que crêem.', citacao: '«A morte não tem poder — a ressurreição é a vitória.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Derrota', resumo: 'Calvino vê na morte derrotada — Cristo derrotou a morte e deu vida eterna.', citacao: '«A morte foi derrotada — Cristo deu vida eterna.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Novo começo', resumo: 'Barth vê na derrota da morte o novo começo — a morte não é o fim, mas o início.', citacao: '«A morte é início — o novo começo pela ressurreição.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Esperança', resumo: 'Stott vê no desafio à morte a esperança cristã — a morte foi vencida por Cristo.', citacao: '«A morte foi vencida — a esperança cristã é a ressurreição.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // ECLESIASTES
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ec', capitulo: 1, versiculo: 2,
+    tema: 'Vaidade de vaidades, tudo é vaidade',
+    contexto: 'Eclesiastes abre com a declaração mais famosa da literatura sapiencial — tudo é vaidade, um vapor que passa. O Preletor busca sentido na vida.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vanidade', resumo: 'Agostinho vê na vaidade a busca humana por satisfação — nada satisfaz plenamente senão Deus.', citacao: '«Nada satisfaz plenamente senão Deus — tudo é vaidade sem Ele.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Bens temporais', resumo: 'Aquino vê na vaidade a limitação dos bens temporais — eles não dão felicidade plena.', citacao: '«Os bens temporais são limitados — não dão felicidade plena.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Sentido', resumo: 'Calvino vê na vaidade a busca de sentido — o homem busca, mas só encontra em Deus.', citacao: '«O homem busca sentido — só encontra em Deus.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Absurdo', resumo: 'Barth vê na vaidade o absurdo da vida sem Deus — tudo é vapor sem Ele.', citacao: '«Sem Deus, tudo é vapor — a vida é absurda sem sentido.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Realismo', resumo: 'Stott vê na vaidade o realismo — o Preletor encara a realidade sem ilusões.', citacao: '«O Preletor é realista — encara a vida sem ilusões.»' },
+    ],
+  },
+  {
+    livro: 'ec', capitulo: 3, versiculo: 1,
+    tema: 'Há tempo para tudo',
+    contexto: 'Eclesiastes ensina que há um tempo para cada coisa — nascer, morrer, plantar, colher. A vida tem ritmos que Deus estabeleceu.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ordem divina', resumo: 'Agostinho vê nos tempos a ordem divina — Deus estabeleceu ritmos para tudo.', citacao: '«Deus estabeleceu tempos — há ordem em tudo.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Providência', resumo: 'Aquino vê nos tempos a providência — Deus controla os tempos da vida.', citacao: '«Deus controla os tempos — a providência está em tudo.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Calvino vê nos tempos a soberania de Deus — Ele determina cada momento.', citacao: '«Deus determina cada momento — Sua soberania é total.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Kairos', resumo: 'Barth vê nos tempos o kairos — o momento oportuno de Deus.', citacao: '«Há um tempo de Deus — o kairos é o momento oportuno.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Paciência', resumo: 'Stott vê nos tempos o chamado à paciência — devemos esperar o tempo de Deus.', citacao: '«Devemos esperar o tempo de Deus — a paciência é necessária.»' },
+    ],
+  },
+  {
+    livro: 'ec', capitulo: 3, versiculo: 11,
+    tema: 'Deus fez tudo formoso em seu tempo',
+    contexto: 'Deus fez tudo formoso e pôs a eternidade no coração do homem — há um desejo de infinito que nada satisfaz senão Deus.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Eternidade', resumo: 'Agostinho vê na eternidade no coração o desejo de Deus — o coração humano é inquieto até repousar em Deus.', citacao: '«O coração é inquieto até repousar em Deus — a eternidade é Sua marca.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Beatitude', resumo: 'Aquino vê na eternidade o desejo de beatitude — o homem busca a felicidade eterna.', citacao: '«O homem busca a felicidade eterna — a eternidade no coração é desejo de beatitude.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Conhecimento', resumo: 'Calvino vê na eternidade o desejo de conhecimento de Deus — o homem busca conhecer a Deus.', citacao: '«O homem busca conhecer Deus — a eternidade é desejo de conhecimento.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Felicidade', resumo: 'Barth vê na eternidade o desejo de felicidade — só Deus satisfaz esse desejo.', citacao: '«Só Deus satisfaz o desejo de felicidade — a eternidade é Sua resposta.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Propósito', resumo: 'Stott vê na eternidade o propósito de Deus — Ele colocou em nós o desejo de eternidade.', citacao: '«Deus colocou em nós o desejo de eternidade — é Sua marca.»' },
+    ],
+  },
+  {
+    livro: 'ec', capitulo: 7, versiculo: 14,
+    tema: 'No dia da prosperidade, goza; no dia da adversidade, reflete',
+    contexto: 'Eclesiastes ensina equilíbrio — gozar quando as coisas vão bem, e refletir quando vão mal. Ambos são de Deus.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Equilíbrio', resumo: 'Agostinho vê no equilíbrio a sabedoria — devemos gozar e refletir em seus tempos.', citacao: '«A sabedoria é equilíbrio — gozar e refletir em seus tempos.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Providência', resumo: 'Aquino vê no equilíbrio a providência — Deus dá prosperidade e adversidade para nosso crescimento.', citacao: '«Deus usa prosperidade e adversidade — ambos são para nosso crescimento.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Calvino vê no equilíbrio a soberania — Deus determina os altos e baixos da vida.', citacao: '«Deus determina os altos e baixos — Sua soberania é em tudo.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Mistério', resumo: 'Barth vê no equilíbrio o mistério de Deus — Ele dá os dois lados da vida.', citacao: '«Deus dá os dois lados — o mistério está na diversidade.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Maturidade', resumo: 'Stott vê no equilíbrio a maturidade espiritual — amadurecemos ao enfrentar os dois lados.', citacao: '«A maturidade vem ao enfrentar prosperidade e adversidade — o equilíbrio é crescimento.»' },
+    ],
+  },
+  {
+    livro: 'ec', capitulo: 12, versiculo: 13,
+    tema: 'Teme a Deus e guarda Seus mandamentos',
+    contexto: 'A conclusão de Eclesiastes — o fim de tudo é temer a Deus e guardar Seus mandamentos. É o resumo da sabedoria.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Temo de Deus', resumo: 'Agostinho vê no temor de Deus o princípio da sabedoria — quem teme a Deus começa a ser sábio.', citacao: '«O temor de Deus é princípio da sabedoria — sem Ele, tudo é vaidade.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Virtude', resumo: 'Aquino vê no temor de Deus a virtude que ordena a vida — ele dá sentido a tudo.', citacao: '«O temor de Deus ordena a vida — é a virtude que dá sentido.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Conclusão', resumo: 'Calvino vê na conclusão o resumo de toda a vida — temer Deus e guardar Seus mandamentos.', citacao: '«O resumo da vida é temer Deus e guardar Seus mandamentos.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Resposta', resumo: 'Barth vê no temor a resposta ao Deus que se revela — Deus se revela, e o homem responde com temor.', citacao: '«Deus se revela, e o homem responde — o temor é resposta à revelação.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Prática', resumo: 'Stott vê no temor a prática diária — devemos temer a Deus e obeyecer todos os dias.', citacao: '«O temor de Deus é prática diária — devemos obeyecer todos os dias.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // CÂNTICO DOS CÂNTICOS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ct', capitulo: 2, versiculo: 14,
+    tema: 'A pomba nos furos da rocha',
+    contexto: 'O amado chama a amada para sair dos esconderijos — uma imagem de intimidade e vulnerabilidade no amor.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristo e a Igreja', resumo: 'Agostinho vê no amado a Cristo e na amada a Igreja — Ele chama a Igreja para intimidade.', citacao: '«Cristo chama a Igreja para intimidade — a pomba é a alma que O busca.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Amor místico', resumo: 'Aquino vê no chamado o amor místico — Deus chama a alma para união.', citacao: '«Deus chama a alma para união — o amor místico é Sua vontade.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aliança', resumo: 'Calvino vê no chamado a aliança amorosa — Deus chama o povo para relação.', citacao: '«O chamado é aliança — Deus chama para relação amorosa.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Encontro', resumo: 'Barth vê no chamado o encontro — Deus se encontra com o homem em intimidade.', citacao: '«O encontro é intimidade — Deus se encontra com o homem.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Relação', resumo: 'Stott vê no chamado a relação — Deus quer relação íntima com cada crente.', citacao: '«Deus quer relação íntima — o chamado é para intimidade.»' },
+    ],
+  },
+  {
+    livro: 'ct', capitulo: 4, versiculo: 7,
+    tema: 'Tu és toda formosa, meu amor',
+    contexto: 'O amado declara que a amada é perfeita — sem mancha. Uma declaração de amor incondicional que aponta para o amor de Deus por Israel/Igreja.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Perfeição', resumo: 'Agostinho vê na declaração a perfeição da Igreja aos olhos de Deus — Ele a vê sem mancha.', citacao: '«Deus vê a Igreja sem mancha — ela é perfeita aos Seus olhos.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Beleza', resumo: 'Aquino vê na beleza da amada a beleza da graça — Deus enfeita a alma com Sua graça.', citacao: '«A beleza da alma vem da graça — Deus a enfeita.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição', resumo: 'Calvino vê na declaração a eleição — Deus escolhe e vê perfeição onde outros veem pecado.', citacao: '«Deus escolhe e vê perfeição — a eleição é amor que vê além.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Amor', resumo: 'Barth vê na declaração o amor que transforma — Deus ama e transforma.', citacao: '«Deus ama e transforma — o amor é a força que muda tudo.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Aceitação', resumo: 'Stott vê na declaração a aceitação — Deus aceita o crente como é, mas o transforma.', citacao: '«Deus aceita e transforma — o amor é aceitação que muda.»' },
+    ],
+  },
+  {
+    livro: 'ct', capitulo: 6, versiculo: 3,
+    tema: 'Eu sou do meu amado, e o meu é meu',
+    contexto: 'A reciprocidade do amor — eu sou do amado, e o amado é meu. Uma declaração de pertencimento mútuo que reflete a aliança.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Pertencimento', resumo: 'Agostinho vê na reciprocidade o pertencimento mútuo — Deus pertence ao povo e o povo pertence a Deus.', citacao: '«Deus pertence ao povo e o povo pertence a Deus — é pertencimento mútuo.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Aliança', resumo: 'Aquino vê na reciprocidade a aliança — Deus se compromete e o povo se entrega.', citacao: '«A aliança é compromisso mútuo — Deus se compromete e o povo se entrega.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Calvino vê na reciprocidade a graça — Deus primeiro amou, e o povo responde.', citacao: '«Deus primeiro amou — a reciprocidade é graça que responde.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Comunhão', resumo: 'Barth vê na reciprocidade a comunhão — Deus e o povo em relação mutua.', citacao: '«A comunhão é relação mutua — Deus e o povo em reciprocidade.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Relação', resumo: 'Stott vê na reciprocidade a relação — Deus quer relação mútua com Seu povo.', citacao: '«Deus quer relação mútua — a reciprocidade é Sua vontade.»' },
+    ],
+  },
+  {
+    livro: 'ct', capitulo: 8, versiculo: 6,
+    tema: 'O amor é forte como a morte',
+    contexto: 'O versículo mais poderoso do Cântico — o amor é forte como a morte, e as águas grandes não o podem apagar. Uma declaração da força do amor divino.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Força do amor', resumo: 'Agostinho vê no amor forte como a morte a força do amor divino — Ele ama com intensidade inabalável.', citacao: '«O amor de Deus é forte como a morte — nada O pode apagar.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Perseverança', resumo: 'Aquino vê no amor que resiste às águas a perseverança do amor — Ele não desiste.', citacao: '«O amor persevera — as águas não O apagam.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Inabalável', resumo: 'Calvino vê no amor inabalável a segurança do crente — nada pode separá-lo do amor de Deus.', citacao: '«Nada pode separar do amor de Deus — Ele é inabalável.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Vitória', resumo: 'Barth vê no amor que vence a morte a vitória do amor — Ele vence tudo.', citacao: '«O amor vence tudo — até a morte.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Eternidade', resumo: 'Stott vê no amor eterno a marca de Deus — Ele ama para sempre.', citacao: '«O amor de Deus é eterno — Ele ama para sempre.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // MALAQUIAS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'ml', capitulo: 1, versiculo: 6,
+    tema: 'Onde está o meu honra?',
+    contexto: 'Deus acusa Israel de desonrá-Lo — os sacerdotes oferecem sacrifícios impuros e o povo não dá o dízimo. Deus pergunta: onde está a Minha honra?',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Honra divina', resumo: 'Agostinho vê na pergunta a exigência da honra divina — Deus merece ser honrado.', citacao: '«Deus merece honra — a pergunta é exigência de Sua dignidade.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Justiça', resumo: 'Aquino vê na acusação a injustiça humana — o homem falha em dar a Deus o que Lhe é devido.', citacao: '«O homem falha em dar o que é devido — a injustiça é contra Deus.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Advertência', resumo: 'Calvino vê na pergunta uma advertência — devemos honrar a Deus acima de tudo.', citacao: '«A pergunta é advertência — devemos honrar a Deus acima de tudo.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Exigência', resumo: 'Barth vê na pergunta a exigência divina — Deus não aceita ser desonrado.', citacao: '«Deus não aceita ser desonrado — Sua exigência é absoluta.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Prioridades', resumo: 'Stott vê na pergunta as prioridades erradas — o povo honrava a si mesmo, não a Deus.', citacao: '«As prioridades erradas levam à desonra — Deus deve ser primeiro.»' },
+    ],
+  },
+  {
+    livro: 'ml', capitulo: 3, versiculo: 10,
+    tema: 'Trazei todos os dízimos',
+    contexto: 'O único versículo da Bíblia que "testa" a Deus — trazei o dízimo e vede se Eu não abrirei as janelas dos céus. Uma promessa de bênção para quem dá.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Generosidade', resumo: 'Agostinho vê no dízimo a generosidade que abre as bênçãos — Deus retribui quem dá.', citacao: '«A generosidade abre as bênçãos — Deus retribui quem dá.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Graça', resumo: 'Aquino vê no dízimo a graça de Deus que se multiplica — Ele dá mais do que recebemos.', citacao: '«Deus dá mais do que recebemos — o dízimo é graça que se multiplica.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Promessa', resumo: 'Calvino vê no dízimo uma promessa — Deus promete abençoar quem O honra com seus bens.', citacao: '«O dízimo é promessa — Deus abençoa quem O honra.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Teste', resumo: 'Barth vê no dízimo o teste de fé — Deus convida a testar Sua fidelidade.', citacao: '«Deus convida a testar Sua fidelidade — o dízimo é teste de fé.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Prática', resumo: 'Stott vê no dízimo a prática da fidelidade — dar é ato de obediência e fé.', citacao: '«Dar é obediência e fé — o dízimo é prática de fidelidade.»' },
+    ],
+  },
+  {
+    livro: 'ml', capitulo: 3, versiculo: 1,
+    tema: 'O mensageiro da aliança',
+    contexto: 'Deus anuncia o envio do mensageiro que preparará o caminho — João Batista citado em Mateus 11:10. A preparação para o Messias.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'João Batista', resumo: 'Agostinho vê no mensageiro João Batista — ele prepara o caminho para Cristo.', citacao: '«João Batista é o mensageiro — ele prepara o caminho para Cristo.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Preparação', resumo: 'Aquino vê no mensageiro a preparação para a vinda do Messias — algo grande está chegando.', citacao: '«O mensageiro prepara para o Messias — algo grande está chegando.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Promessa', resumo: 'Calvino vê no mensageiro a promessa cumprida — Deus envia quem prepara o caminho.', citacao: '«Deus cumpre a promessa — o mensageiro é envio divino.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'Barth vê no mensageiro a revelação que se aproxima — Cristo está chegando.', citacao: '«O mensageiro anuncia a revelação — Cristo está chegando.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Cumprimento', resumo: 'Stott vê no mensageiro o cumprimento profético — Malaquias profetizou João Batista.', citacao: '«Malaquias profetizou João Batista — a profecia se cumpre.»' },
+    ],
+  },
+  {
+    livro: 'ml', capitulo: 4, versiculo: 2,
+    tema: 'O sol da justiça nascerá',
+    contexto: 'A última profecia do Antigo Testamento — o sol da justiça nascerá com cura em suas asas. Uma promessa de luz e cura para os que temem a Deus.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristo', resumo: 'Agostinho vê no sol da justiça Cristo — Ele é a luz que traz cura e justiça.', citacao: '«Cristo é o sol da justiça — Ele traz luz e cura.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Justiça', resumo: 'Aquino vê no sol a justiça divina — Deus trará justiça e cura aos fiéis.', citacao: '«O sol da justiça é Deus trazendo justiça e cura.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Esperança', resumo: 'Calvino vê no sol a esperança — para os que temem a Deus, há luz e cura.', citacao: '«A esperança é o sol — para os que temem a Deus, há luz e cura.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Vinda', resumo: 'Barth vê no sol a vinda de Cristo — Ele é a luz que está por vir.', citacao: '«O sol da justiça é Cristo que está por vir — a vinda é certa.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Cura', resumo: 'Stott vê no sol a cura — Cristo traz cura para os feridos.', citacao: '«Cristo é o sol que cura — Ele traz cura para os feridos.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // 2 CRÔNICAS
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: '2cr', capitulo: 7, versiculo: 14,
+    tema: 'Se o meu povo se humilhar',
+    contexto: 'O versículo mais citado de 2 Crônicas — se o povo se humilhar, orar, buscar a face de Deus e se desviar dos caminhos maus, Deus perdoará e curará a terra.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Arrependimento', resumo: 'Agostinho vê no versículo o caminho do arrependimento — humilhação, oração e busca de Deus.', citacao: '«O arrependimento é humilhação, oração e busca — é o caminho para Deus.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Perdão', resumo: 'Aquino vê no versículo a promessa de perdão — Deus perdoa quando o homem se humilha.', citacao: '«Deus perdoa quando o homem se humilha — a promessa é certa.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Condição', resumo: 'Calvino vê no versículo a condição para a bênção — Deus perdoa se o povo se humilhar.', citacao: '«A bênção tem condição — Deus perdoa se o povo se humilhar.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Graça', resumo: 'Barth vê no versículo a graça — Deus perdoa mesmo quando o povo não merece.', citacao: '«O perdão é graça — Deus perdoa sem merecimento.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Cura', resumo: 'Stott vê no versículo a cura da terra — o arrependimento leva à restauração.', citacao: '«O arrependimento cura a terra — a restauração vem pela humilhação.»' },
+    ],
+  },
+  {
+    livro: '2cr', capitulo: 15, versiculo: 7,
+    tema: 'Não desanimeis, porque há recompensa',
+    contexto: 'Azarias exorta o rei Asa — não desanime, pois há recompensa para o que busca Deus. Uma palavra de encorajamento para a perseverança.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Recompensa', resumo: 'Agostinho vê na recompensa a promessa de Deus — Ele retribui quem busca.', citacao: '«Deus retribui quem busca — a recompensa é certa.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Perseverança', resumo: 'Aquino vê na exortação a perseverança — devemos continuar busca mesmo quando difícil.', citacao: '«A perseverança é necessária — devemos continuar busca.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Estímulo', resumo: 'Calvino vê no versículo um estímulo — Deus encoraja a não desistir.', citacao: '«Deus encoraja — não devemos desistir.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Fidelidade', resumo: 'Barth vê na exortação a fidelidade — Deus é fiel e recompensará.', citacao: '«Deus é fiel e recompensará — a fidelidade tem recompensa.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Encorajamento', resumo: 'Stott vê no versículo encorajamento — não desanime, há recompensa.', citacao: '«Não desanime — há recompensa para quem busca Deus.»' },
+    ],
+  },
+  {
+    livro: '2cr', capitulo: 16, versiculo: 9,
+    tema: 'Os olhos do Senhor percorrem toda a terra',
+    contexto: 'Deus fortaleceu os corações dos que Nele confiavam — Seus olhos percorrem toda a terra para mostrar Seu poder a favor dos que são íntegros.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Olhar divino', resumo: 'Agostinho vê nos olhos de Deus o olhar que vigia — Deus vê tudo e age em favor dos fiéis.', citacao: '«Deus vê tudo e age — Seus olhos percorrem a terra.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Providência', resumo: 'Aquino vê nos olhos a providência — Deus observa e intervém a favor dos que são íntegros.', citacao: '«Deus observa e intervém — Sua providência percorre a terra.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Calvino vê nos olhos a soberania — Deus vê e governa tudo.', citacao: '«Deus vê e governa — Sua soberania percorre toda a terra.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Vigilância', resumo: 'Barth vê nos olhos a vigilância divina — Deus não dorme nem cochila.', citacao: '«Deus vige — Ele não dorme nem cochila.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Proteção', resumo: 'Stott vê nos olhos a proteção — Deus protege os que são íntegros.', citacao: '«Deus protege os íntegros — Seus olhos os guardam.»' },
+    ],
+  },
+  {
+    livro: '2cr', capitulo: 20, versiculo: 15,
+    tema: 'Não temais, nem vos assusteis',
+    contexto: 'Josafá enfrenta exércitos vastos. Deus diz: não temais — a batalha é do Senhor. Uma das maiores histórias de fé no Antigo Testamento.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Guerreira', resumo: 'Agostinho vê na batalha a guerra espiritual — Deus luta por Seu povo.', citacao: '«Deus luta por Seu povo — a batalha é dEle.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Fé', resumo: 'Aquino vê no chamado à fé — devemos confiar em Deus mesmo quando o inimigo é grande.', citacao: '«A fé é confiança em Deus — devemos confiar mesmo quando o inimigo é grande.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Calvino vê na batalha a soberania de Deus — Ele controla até as guerras.', citacao: '«Deus é soberano até nas guerras — a batalha é dEle.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Vitória', resumo: 'Barth vê na batalha a vitória de Deus — Ele já venceu.', citacao: '«Deus já venceu — a batalha é vitória certa.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Coragem', resumo: 'Stott vê no chamado à coragem — não devemos temer porque Deus está conosco.', citacao: '«Não temamos — Deus está conosco e a batalha é dEle.»' },
+    ],
+  },
+  {
+    livro: '2cr', capitulo: 26, versiculo: 5,
+    tema: 'Uzias buscou a Deus',
+    contexto: 'Uzias foi um bom rei enquanto buscou a Deus — Deus o prosperou. Mas quando se orgulhou, foi punido com lepra. Uma lição sobre humildade.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Humildade', resumo: 'Agostinho vê na história de Uzias a importância da humildade — o orgulho destrói.', citacao: '«A humildade é caminho — o orgulho destrói.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Pecado', resumo: 'Aquino vê no orgulho o pecado que precede a queda — Uzias se orgulhou e caiu.', citacao: '«O orgulho precede a queda — Uzias é exemplo.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Advertência', resumo: 'Calvino vê na história uma advertência — devemos manter a humildade mesmo quando prosperamos.', citacao: '«A prosperidade não deve gerar orgulho — a humildade é necessária sempre.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Gravidade', resumo: 'Barth vê na queda de Uzias a gravidade do orgulho — ele é pecado grave.', citacao: '«O orgulho é pecado grave — Uzias é exemplo da sua gravidade.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Exemplo', resumo: 'Stott vê em Uzias um exemplo — devemos manter a humildade mesmo quando bem-sucedidos.', citacao: '«Uzias é exemplo — a humildade é necessária mesmo no sucesso.»' },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════════════════
+  // JOEL
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    livro: 'jl', capitulo: 2, versiculo: 28,
+    tema: 'Derramarei do meu Espírito',
+    contexto: 'A promessa mais famosa de Joel — Deus derramará Seu Espírito sobre toda carne. Pedro cita este versículo no Pentecostes (Atos 2:17).',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Pentecostes', resumo: 'Agostinho vê na promessa o Pentecostes — o Espírito é derramado sobre todos.', citacao: '«O Pentecostes é o cumprimento — o Espírito é derramado sobre todos.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Dons', resumo: 'Aquino vê no derramamento a distribuição dos dons — Deus dá dons a todos.', citacao: '«Deus distribui dons a todos — o derramamento é graça universal.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Nova aliança', resumo: 'Calvino vê no derramamento a nova aliança — Deus escreve Sua Lei nos corações.', citacao: '«A nova aliança é Espírito nos corações — Deus escreve Sua Lei em nós.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Universalidade', resumo: 'Barth vê no derramamento a universalidade — o Espírito é para todos, sem distinção.', citacao: '«O Espírito é para todos — a promessa é universal.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Missões', resumo: 'Stott vê no derramamento o início das missões — o Espírito capacita para testemunhar.', citacao: '«O derramamento é início das missões — o Espírito capacita para testemunhar.»' },
+    ],
+  },
+  {
+    livro: 'jl', capitulo: 2, versiculo: 32,
+    tema: 'Todo aquele que invocar o nome do Senhor será salvo',
+    contexto: 'Uma das primeiras declarações de salvação pela fé — quem invocar o nome do Senhor será salvo. Pedro cita em Atos 2:21.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Salvação', resumo: 'Agostinho vê na invocação o caminho da salvação — basta chamar o nome do Senhor.', citacao: '«A salvação é pela invocação — basta chamar o nome do Senhor.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Fé', resumo: 'Aquino vê na invocação o ato de fé — invocar é crer.', citacao: '«Invocar é crer — a fé se manifesta na invocação.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Promessa', resumo: 'Calvino vê na salvação uma promessa — Deus salva todos que O chamam.', citacao: '«A salvação é promessa — Deus salva todos que O chamam.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Graça', resumo: 'Barth vê na invocação a graça — Deus salva por graça, não por obras.', citacao: '«A salvação é graça — Deus salva sem obras.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Universalidade', resumo: 'Stott vê na salvação a universalidade — todos podem ser salvos.', citacao: '«A salvação é para todos — todos podem ser salvos.»' },
+    ],
+  },
+  {
+    livro: 'jl', capitulo: 2, versiculo: 13,
+    tema: 'Rasgai o vosso coração, e não as vossas vestes',
+    contexto: 'Deus pede arrependimento genuíno — não rasgar vestes (ritual), mas rasgar o coração (sinceridade). O culto exterior sem coração não vale.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Interioridade', resumo: 'Agostinho vê no arrependimento a interioridade — Deus olha para o coração, não para a aparência.', citacao: '«Deus olha para o coração — o arrependimento é interior.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Sinceridade', resumo: 'Aquino vê no rasgar do coração a sinceridade — Deus aceita apenas o que é sincero.', citacao: '«Deus aceita apenas o sincero — o ritual sem coração é vazio.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Interior', resumo: 'Calvino vê no versículo o culto interior — Deus não aceita rituais sem-heart.', citacao: '«Deus não aceita rituais sem-heart — o culto é interior.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Autenticidade', resumo: 'Barth vê no rasgar do coração a autenticidade — Deus quer autenticidade, não performance.', citacao: '«Deus quer autenticidade — o rasgar do coração é real.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Arrependimento', resumo: 'Stott vê no versículo o arrependimento genuíno — ele começa no coração.', citacao: '«O arrependimento genuíno começa no coração — não na aparência.»' },
+    ],
+  },
+  {
+    livro: 'jl', capitulo: 3, versiculo: 14,
+    tema: 'Santificai guerreiros',
+    contexto: 'Deus convoca guerreiros para o vale de Josafá — o julgamento das nações. É um chamado à ação para os que seguem a Deus.',
+    interpretacoes: [
+      { teologo: 'Agostinho de Hipona', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Guerra espiritual', resumo: 'Agostinho vê no chamado a guerra espiritual — Deus convoca para lutar contra o mal.', citacao: '«Deus convoca para a guerra espiritual — devemos lutar contra o mal.»' },
+      { teologo: 'Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Justiça', resumo: 'Aquino vê no chamado a justiça — Deus convoca para proclamar Sua justiça.', citacao: '«Deus convoca para a justiça — devemos proclamar Sua justiça.»' },
+      { teologo: 'João Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Calvino vê no chamado a soberania — Deus convoca porque é Ele quem lidera.', citacao: '«Deus lidera — o chamado é Sua soberania em ação.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Pró-atividade', resumo: 'Barth vê no chamado a pró-atividade — Deus convoca à ação, não à passividade.', citacao: '«Deus convoca à ação — não devemos ser passivos.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Discipulado', resumo: 'Stott vê no chamado o discipulado — ser discípulo é estar pronto para agir.', citacao: '«Ser discípulo é estar pronto para agir — o chamado é para ação.»' },
     ],
   },
 ];

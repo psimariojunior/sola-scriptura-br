@@ -66,5 +66,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSWidgetBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER).VerseWidget</string>
 </dict>
 </plist>

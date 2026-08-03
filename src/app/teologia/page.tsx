@@ -1,16 +1,29 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { doutrinas, type Doutrina } from '@/data/biblia';
-import { estudosTeologicosExpandidos, type EstudoTeologico } from '@/data/estudosTeologicosExpandidos';
+import { doutrinas } from '@/data/biblia';
 import dynamic from 'next/dynamic';
-import { Church, Search, ChevronDown, ExternalLink, Copy, Check, Sparkles, Layers, GraduationCap } from 'lucide-react';
-import Link from 'next/link';
+import { Church, Search, ChevronDown, ExternalLink, Copy, Check, Layers, GraduationCap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
 import { useTranslation } from 'react-i18next';
+
+const EstudosTeologicosAba = dynamic(() => import('@/components/EstudosTeologicosAba'), {
+  ssr: false,
+  loading: () => (
+    <div className="space-y-4">
+      {[1, 2, 3].map((i) => (
+        <div key={i} className="sola-card p-6 animate-pulse">
+          <div className="h-5 bg-muted rounded w-1/3 mb-3" />
+          <div className="h-3 bg-muted rounded w-full mb-2" />
+          <div className="h-3 bg-muted rounded w-2/3" />
+        </div>
+      ))}
+    </div>
+  ),
+});
 
 const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
   ssr: false,
@@ -60,7 +73,6 @@ export default function TeologiaPage() {
   const [expandida, setExpandida] = useState<string | null>(null);
   const [copiedRef, setCopiedRef] = useState<string | null>(null);
   const [abaAtiva, setAbaAtiva] = useState<'doutrinas' | 'estudos'>('doutrinas');
-  const [estudoExpandido, setEstudoExpandido] = useState<string | null>(null);
 
   const [painelVersiculo, setPainelVersiculo] = useState<{
     livro: string;
@@ -68,24 +80,24 @@ export default function TeologiaPage() {
     versiculo: number;
   } | null>(null);
 
+  const [estudosMeta, setEstudosMeta] = useState<{
+    total: number;
+    categorias: string[];
+    totalVersiculos: number;
+  }>({ total: 0, categorias: [], totalVersiculos: 0 });
+
+  useEffect(() => {
+    import('@/data/estudosTeologicosExpandidos').then((mod) => {
+      const estudos = mod.estudosTeologicosExpandidos;
+      setEstudosMeta({
+        total: estudos.length,
+        categorias: [...new Set(estudos.map((e) => e.categoria))].sort(),
+        totalVersiculos: estudos.reduce((acc, e) => acc + e.versicosChave.length, 0),
+      });
+    });
+  }, []);
+
   const categorias = useMemo(() => [...new Set(doutrinas.map((d) => d.categoria))].sort(), []);
-
-  const categoriasEstudos = useMemo(() => [...new Set(estudosTeologicosExpandidos.map((e) => e.categoria))].sort(), []);
-
-  const estudosFiltrados = useMemo(() => {
-    let lista = estudosTeologicosExpandidos;
-    if (filtroCategoria) lista = lista.filter(e => e.categoria === filtroCategoria);
-    if (busca.trim()) {
-      const q = busca.toLowerCase();
-      lista = lista.filter(e =>
-        e.titulo.toLowerCase().includes(q) ||
-        e.conteudo.some(c => c.toLowerCase().includes(q)) ||
-        e.versicosChave.some(v => v.toLowerCase().includes(q)) ||
-        e.tags.some(t => t.toLowerCase().includes(q))
-      );
-    }
-    return lista;
-  }, [busca, filtroCategoria]);
 
   const doutrinasFiltradas = useMemo(() => {
     let lista = doutrinas;
@@ -161,7 +173,7 @@ export default function TeologiaPage() {
                   >
                     {t('theology.all')}
                   </motion.button>
-                  {(abaAtiva === 'doutrinas' ? categorias : categoriasEstudos.slice(0, 20)).map(cat => {
+                  {(abaAtiva === 'doutrinas' ? categorias : estudosMeta.categorias.slice(0, 20)).map(cat => {
                     const cores = getCoresCategoria(cat);
                     return (
                       <motion.button
@@ -211,7 +223,7 @@ export default function TeologiaPage() {
                 }`}
               >
                 <GraduationCap className="w-4 h-4" />
-                {t('theology.advancedStudies')} <span className="text-xs opacity-70">({estudosTeologicosExpandidos.length})</span>
+                {t('theology.advancedStudies')} <span className="text-xs opacity-70">({estudosMeta.total})</span>
               </motion.button>
             </div>
           </ScrollReveal>
@@ -219,9 +231,9 @@ export default function TeologiaPage() {
           <ScrollReveal delay={0.15}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               {[
-                { value: abaAtiva === 'doutrinas' ? doutrinas.length : estudosTeologicosExpandidos.length, label: abaAtiva === 'doutrinas' ? t('theology.doctrines') : t('theology.studies') },
-                { value: abaAtiva === 'doutrinas' ? categorias.length : categoriasEstudos.length, label: t('theology.categories') },
-                { value: abaAtiva === 'doutrinas' ? doutrinas.reduce((acc, d) => acc + d.passagens.length, 0) : estudosTeologicosExpandidos.reduce((acc, e) => acc + e.versicosChave.length, 0), label: t('theology.references') },
+                { value: abaAtiva === 'doutrinas' ? doutrinas.length : estudosMeta.total, label: abaAtiva === 'doutrinas' ? t('theology.doctrines') : t('theology.studies') },
+                { value: abaAtiva === 'doutrinas' ? categorias.length : estudosMeta.categorias.length, label: t('theology.categories') },
+                { value: abaAtiva === 'doutrinas' ? doutrinas.reduce((acc, d) => acc + d.passagens.length, 0) : estudosMeta.totalVersiculos, label: t('theology.references') },
                 { value: 66, label: t('theology.biblicalBooks') },
               ].map((stat, i) => (
                 <motion.div key={stat.label} className="sola-card p-4 text-center" whileHover={{ y: -2 }}>
@@ -352,132 +364,17 @@ export default function TeologiaPage() {
                 </>
               ) : (
                 <>
-                  {categoriasEstudos.map((cat) => {
-                  const estudosCat = estudosFiltrados.filter(e => e.categoria === cat);
-                  if (estudosCat.length === 0) return null;
-                  const cores = getCoresCategoria(cat);
-
-                  return (
-                    <motion.div
-                      key={cat}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                    >
-                      <h2 className="font-display text-2xl font-light mb-6 text-primary flex items-center gap-3">
-                        <span className={`w-3 h-3 rounded-full ${cores.dot}`} />
-                        {cat}
-                        <span className="text-sm font-normal text-muted-foreground">({estudosCat.length})</span>
-                      </h2>
-                      <div className="space-y-4">
-                        {estudosCat.map((e, i) => (
-                          <ScrollReveal key={e.id} delay={i * 0.03}>
-                            <motion.div
-                              className="sola-card p-6"
-                              whileHover={{ y: -2 }}
-                              layout
-                            >
-                              <div className="flex items-start justify-between gap-4 mb-3">
-                                <div className="flex-1">
-                                  <h3 className="font-semibold text-lg mb-1">{e.titulo}</h3>
-                                  <div className="flex flex-wrap gap-1.5 mb-2">
-                                    {e.subcategoria && (
-                                      <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${cores.bg} ${cores.text}`}>
-                                        {e.subcategoria}
-                                      </span>
-                                    )}
-                                    {e.tags.slice(0, 3).map(tag => (
-                                      <span key={tag} className="text-[10px] px-2 py-0.5 bg-muted rounded-full text-muted-foreground">
-                                        {tag}
-                                      </span>
-                                    ))}
-                                  </div>
-                                </div>
-                                <motion.button
-                                  onClick={() => setEstudoExpandido(estudoExpandido === e.id ? null : e.id)}
-                                  whileHover={{ scale: 1.1 }}
-                                  whileTap={{ scale: 0.9 }}
-                                  className="p-1 text-muted-foreground hover:text-foreground transition-colors"
-                                >
-                                  <motion.div animate={{ rotate: estudoExpandido === e.id ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                                    <ChevronDown className="w-4 h-4" />
-                                  </motion.div>
-                                </motion.button>
-                              </div>
-
-                              <p className="text-sm text-foreground/70 leading-relaxed line-clamp-2 mb-3">
-                                {e.conteudo[0]}
-                              </p>
-
-                              <AnimatePresence>
-                                {estudoExpandido === e.id && (
-                                  <motion.div
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: 'auto' }}
-                                    exit={{ opacity: 0, height: 0 }}
-                                    transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                                    className="overflow-hidden"
-                                  >
-                                    <div className="pt-4 border-t border-border/50 space-y-4">
-                                      {e.conteudo.map((paragrafo, pi) => (
-                                        <p key={pi} className="text-sm text-foreground/80 leading-relaxed font-serif-body">
-                                          {paragrafo}
-                                        </p>
-                                      ))}
-
-                                      <div>
-                                        <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                                          {t('theology.keyPassages')}
-                                        </h4>
-                                        <div className="flex flex-wrap gap-2">
-                                          {e.versicosChave.map((ref) => {
-                                            const parsed = parseReferencia(ref);
-                                            return (
-                                              <div key={ref} className="flex items-center gap-1">
-                                                {parsed ? (
-                                                  <button
-                                                    onClick={() => handleVersiculoClick(parsed.livro, parsed.capitulo, parsed.versiculo)}
-                                                    className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-sm hover:bg-primary/20 transition-colors flex items-center gap-1"
-                                                  >
-                                                    {ref}
-                                                    <ExternalLink className="w-3 h-3" />
-                                                  </button>
-                                                ) : (
-                                                  <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-sm">
-                                                    {ref}
-                                                  </span>
-                                                )}
-                                              </div>
-                                            );
-                                          })}
-                                        </div>
-                                      </div>
-
-                                      {e.fontes.length > 0 && (
-                                        <div>
-                                          <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                                            {t('theology.sources')}
-                                          </h4>
-                                          <p className="text-xs text-foreground/60">{e.fontes.join(' · ')}</p>
-                                        </div>
-                                      )}
-                                    </div>
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
-                            </motion.div>
-                          </ScrollReveal>
-                        ))}
-                      </div>
-                    </motion.div>
-                  );
-                })}
+                  <EstudosTeologicosAba
+                    filtroCategoria={filtroCategoria}
+                    busca={busca}
+                    onVersiculoClick={handleVersiculoClick}
+                  />
                 </>
               )}
             </AnimatePresence>
           </div>
 
-          {((abaAtiva === 'doutrinas' && doutrinasFiltradas.length === 0) || (abaAtiva === 'estudos' && estudosFiltrados.length === 0)) && (
+          {(abaAtiva === 'doutrinas' && doutrinasFiltradas.length === 0) && (
             <ScrollReveal>
               <div className="sola-card p-12 text-center">
                 <Search className="w-16 h-16 mx-auto mb-4 text-muted-foreground/20" strokeWidth={1} />

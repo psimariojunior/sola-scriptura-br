@@ -1710,7 +1710,7 @@ Igrejas católicas, luteranas, reformadas, anglicanas e metodistas praticam o ba
 
 **2. Batismo de Crentes (Credobaptismo)**
 
-Igrejas batistas, pentecostais e许多 outras praticam o batismo apenas de crentes. Os argumentos incluem:
+Igrejas batistas, pentecostais e muitas outras praticam o batismo apenas de crentes. Os argumentos incluem:
 - O modelo bíblico de "crer e ser batizado" (Atos 2:41, 8:36-37)
 - O batismo como testemunho público da fé, o que requer compreensão
 - A ausência de exemplos claros de batismo infantil no NT

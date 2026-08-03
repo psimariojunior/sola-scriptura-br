@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Brain, RotateCcw, Check, X, ChevronRight, Sparkles, Clock, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -82,7 +82,7 @@ const QUALITY_LABELS = [
   { quality: 5, label: 'Perfeito', emoji: '🎯', color: 'bg-purple-500 hover:bg-purple-600' },
 ];
 
-export function FlashcardSystem({ cards, onStatsUpdate }: FlashcardSystemProps) {
+export const FlashcardSystem = memo(function FlashcardSystem({ cards, onStatsUpdate }: FlashcardSystemProps) {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [sessionCards, setSessionCards] = useState<Flashcard[]>([]);
@@ -168,13 +168,13 @@ export function FlashcardSystem({ cards, onStatsUpdate }: FlashcardSystemProps) 
     }, 300);
   }, [currentCard, currentCardIndex, sessionCards.length, cards]);
 
-  const restart = () => {
+  const restart = useCallback(() => {
     setSessionCards(dueCards.slice(0, 20));
     setCurrentCardIndex(0);
     setIsFlipped(false);
     setIsComplete(false);
     setSessionStats({ reviewed: 0, correct: 0, wrong: 0 });
-  };
+  }, [dueCards]);
 
   // No cards due
   if (dueCards.length === 0 && !isComplete) {
@@ -315,7 +315,7 @@ export function FlashcardSystem({ cards, onStatsUpdate }: FlashcardSystemProps) 
       )}
     </div>
   );
-}
+});
 
 // Sample cards for demo
 export const SAMPLE_FLASHCARDS: Flashcard[] = [

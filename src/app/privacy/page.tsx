@@ -1,149 +1,145 @@
 export const metadata = {
-  title: "Política de Privacidade — Sola Scriptura BR",
-  description: "Política de privacidade do aplicativo Sola Scriptura BR",
+  title: "Privacy Policy — Sola Scriptura BR",
+  description: "Privacy policy for the Sola Scriptura BR application",
 };
 
 export default function PrivacyPolicyPage() {
   return (
     <main className="max-w-3xl mx-auto px-4 py-12 prose prose-lg dark:prose-invert">
-      <h1>Política de Privacidade</h1>
+      <h1>Privacy Policy</h1>
       <p className="text-sm text-muted-foreground">
-        Última atualização: 31 de julho de 2026
+        Last updated: July 31, 2026
       </p>
 
-      <h2>1. Introdução</h2>
+      <h2>1. Introduction</h2>
       <p>
-        A Sola Scriptura BR valoriza a privacidade dos seus usuários. Esta
-        Política de Privacidade descreve como coletamos, usamos e protegemos
-        informações quando você utiliza nosso aplicativo móvel e site.
+        Sola Scriptura BR values the privacy of its users. This
+        Privacy Policy describes how we collect, use, and protect
+        information when you use our mobile application and website.
       </p>
 
-      <h2>2. Dados Coletados</h2>
+      <h2>2. Data Collected</h2>
       <p>
-        Nosso aplicativo foi projetado para funcionar com o mínimo de dados
-        possível. A maioria dos seus dados permanece <strong>armazenada
-        localmente no seu dispositivo</strong> e nunca é enviada para nossos
-        servidores.
+        Our application is designed to function with minimal data. Most of your data remains <strong>stored
+        locally on your device</strong> and is never sent to our servers.
       </p>
 
-      <h3>2.1 Dados Armazenados Localmente (no seu dispositivo)</h3>
+      <h3>2.1 Data Stored Locally (on your device)</h3>
       <ul>
-        <li><strong>Favoritos</strong> — Versículos que você marcou como favoritos</li>
-        <li><strong>Notas pessoais</strong> — Anotações vinculadas a versículos</li>
-        <li><strong>Coleções</strong> — Listas personalizadas de versículos</li>
-        <li><strong>Progresso de leitura</strong> — Capítulos e versículos lidos</li>
-        <li><strong>Planos de leitura</strong> — Seus planos personalizados</li>
-        <li><strong>Configurações</strong> — Tema, idioma, preferências</li>
-        <li><strong>Flashcards</strong> — Cartões de memorização</li>
-        <li><strong>Dados de gamificação</strong> — Conquistas e streaks</li>
+        <li><strong>Favorites</strong> — Verses you marked as favorites</li>
+        <li><strong>Personal notes</strong> — Annotations linked to verses</li>
+        <li><strong>Collections</strong> — Custom verse lists</li>
+        <li><strong>Reading progress</strong> — Chapters and verses read</li>
+        <li><strong>Reading plans</strong> — Your personal plans</li>
+        <li><strong>Settings</strong> — Theme, language, preferences</li>
+        <li><strong>Flashcards</strong> — Memorization cards</li>
+        <li><strong>Gamification data</strong> — Achievements and streaks</li>
       </ul>
       <p>
-        Esses dados são armazenados exclusivamente no dispositivo using
-        SharedPreferences e IndexedDB. Eles <strong>não são enviados</strong>
-        para nossos servidores nem para terceiros.
+        This data is stored exclusively on the device using
+        SharedPreferences and IndexedDB. It is <strong>not sent</strong>
+        to our servers or to third parties.
       </p>
 
-      <h3>2.2 Dados Enviados Para Nossos Servidores</h3>
+      <h3>2.2 Data Sent to Our Servers</h3>
       <ul>
         <li>
-          <strong>Token FCM (Firebase Cloud Messaging)</strong> — Usado
-          exclusivamente para enviar notificações push que você optou por
-          receber. O token é necessário para o funcionamento do sistema de
-          notificações.
+          <strong>FCM Token (Firebase Cloud Messaging)</strong> — Used
+          exclusively to send push notifications that you opted in to
+          receive. The token is necessary for the notification system.
         </li>
         <li>
-          <strong>Perguntas ao Assistente IA</strong> — Quando você utiliza o
-          chat com IA, suas perguntas são processadas via API Groq para gerar
-          respostas sobre estudo bíblico. Essas perguntas não são armazenadas
-          permanentemente.
+          <strong>AI Assistant Questions</strong> — When you use the
+          AI chat, your questions are processed via the Groq API to generate
+          Bible study responses. These questions are not permanently stored.
         </li>
       </ul>
 
       <h3>2.3 Analytics</h3>
       <p>
-        Utilizamos o <strong>Firebase Analytics</strong> para coletar dados
-        anônimos de uso do aplicativo, como telas visitadas, duração de sessão
-        e erros发生idos. Esses dados ajudam-nos a melhorar a experiência dos
-        usuários. Nenhum dado pessoal identificável é coletado via analytics.
+        We use <strong>Firebase Analytics</strong> to collect
+        anonymous usage data, such as screens visited, session duration,
+        and errors that occurred. This data helps us improve the user
+        experience. No personally identifiable information is collected via analytics.
       </p>
 
-      <h2>3. Como Usamos os Dados</h2>
+      <h2>3. How We Use Data</h2>
       <ul>
-        <li>Para fornecer e manter o funcionamento do aplicativo</li>
-        <li>Para enviar notificações push que você solicitou</li>
-        <li>Para melhorar a experiência de estudo bíblico</li>
-        <li>Para detectar e corrigir erros (Crashlytics)</li>
-        <li>Para entender como o aplicativo é utilizado (analytics anônimo)</li>
+        <li>To provide and maintain the application</li>
+        <li>To send push notifications you requested</li>
+        <li>To improve the Bible study experience</li>
+        <li>To detect and fix errors (Crashlytics)</li>
+        <li>To understand how the application is used (anonymous analytics)</li>
       </ul>
 
-      <h2>4. Compartilhamento de Dados</h2>
+      <h2>4. Data Sharing</h2>
       <p>
-        <strong>Não vendemos, alugamos ou compartilhamos seus dados pessoais
-        com terceiros.</strong>
+        <strong>We do not sell, rent, or share your personal data
+        with third parties.</strong>
       </p>
       <p>
-        Os únicos serviços externos utilizados são:
-      </p>
-      <ul>
-        <li><strong>Firebase (Google)</strong> — Para notificações push, analytics
-          anônimo e monitoramento de erros</li>
-        <li><strong>Groq</strong> — Para processamento de perguntas ao assistente
-          de IA</li>
-      </ul>
-      <p>
-        Ambos operam conforme suas próprias políticas de privacidade.
-      </p>
-
-      <h2>5. Publicidade</h2>
-      <p>
-        <strong>O Sola Scriptura BR não contém anúncios.</strong> Não exibimos
-        publicidade de nenhum tipo no aplicativo.
-      </p>
-
-      <h2>6. Segurança</h2>
-      <p>
-        Implementamos medidas de segurança técnicas e organizacionais para
-        proteger seus dados, incluindo criptografia em trânsito (HTTPS/TLS)
-        e armazenamento seguro de chaves de acesso.
-      </p>
-
-      <h2>7. Privacidade de Crianças</h2>
-      <p>
-        Nosso aplicativo não é direcionado a crianças menores de 13 anos. Não
-        coletamos intencionalmente dados de crianças.
-      </p>
-
-      <h2>8. Seus Direitos</h2>
-      <p>
-        Como todos os dados principais são armazenados localmente no seu
-        dispositivo, você tem total controle sobre eles. Você pode:
+        The only external services used are:
       </p>
       <ul>
-        <li>Excluir favoritos, notas e coleções a qualquer momento pelo
-          aplicativo</li>
-        <li>Desinstalar o aplicativo para remover todos os dados locais</li>
-        <li>Desativar notificações push nas configurações do dispositivo</li>
+        <li><strong>Firebase (Google)</strong> — For push notifications, anonymous
+          analytics, and error monitoring</li>
+        <li><strong>Groq</strong> — For processing questions to the AI
+          assistant</li>
+      </ul>
+      <p>
+        Both operate under their own privacy policies.
+      </p>
+
+      <h2>5. Advertising</h2>
+      <p>
+        <strong>Sola Scriptura BR does not contain ads.</strong> We do not display
+        any type of advertising in the application.
+      </p>
+
+      <h2>6. Security</h2>
+      <p>
+        We implement technical and organizational security measures to
+        protect your data, including encryption in transit (HTTPS/TLS)
+        and secure storage of access keys.
+      </p>
+
+      <h2>7. Children&apos;s Privacy</h2>
+      <p>
+        Our application is not directed at children under 13. We do not
+        knowingly collect data from children.
+      </p>
+
+      <h2>8. Your Rights</h2>
+      <p>
+        Since all main data is stored locally on your device, you have
+        full control over it. You can:
+      </p>
+      <ul>
+        <li>Delete favorites, notes, and collections at any time through
+          the application</li>
+        <li>Uninstall the application to remove all local data</li>
+        <li>Disable push notifications in your device settings</li>
       </ul>
 
-      <h2>9. Alterações nesta Política</h2>
+      <h2>9. Changes to This Policy</h2>
       <p>
-        Podemos atualizar esta Política de Privacidade periodicamente. Notas
-        sobre alterações significativas serão disponibilizadas no aplicativo.
+        We may update this Privacy Policy periodically. Notes
+        about significant changes will be made available in the application.
       </p>
 
-      <h2>10. Contato</h2>
+      <h2>10. Contact</h2>
       <p>
-        Se você tiver dúvidas sobre esta Política de Privacidade, entre em
-        contato conosco:
+        If you have questions about this Privacy Policy, please
+        contact us:
       </p>
       <p>
-        <strong>E-mail:</strong>{" "}
+        <strong>Email:</strong>{" "}
         <a href="mailto:contato@solascripturabr.com.br">
           contato@solascripturabr.com.br
         </a>
       </p>
       <p>
-        <strong>Site:</strong>{" "}
+        <strong>Website:</strong>{" "}
         <a href="https://solascripturabr.com.br">
           solascripturabr.com.br
         </a>

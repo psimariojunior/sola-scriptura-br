@@ -226,7 +226,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   final confirm = await showDialog<bool>(
                     context: context,
                     builder: (context) => AlertDialog(
-                      backgroundColor: AppTheme.surfaceDark,
+                      backgroundColor: AppTheme.surfaceLight,
                       title: const Text('Limpar Cache?', style: TextStyle(color: Colors.white)),
                       content: const Text('Isso removerá todos os capítulos salvos offline.', style: TextStyle(color: Colors.white70)),
                       actions: [

@@ -824,7 +824,7 @@ export const localizacoesBiblicas: LocalizacaoBiblica[] = [
     nome: 'Monte das Oliveiras',
     nomeHebraico: 'Har HaZeitim',
     nomeGriego: 'Elaiōn',
-    descricao: 'Monte对面Jerusalém. Local da ascensão de Jesus e profecia escatológica.',
+    descricao: 'Monte oposto a Jerusalém. Local da ascensão de Jesus e profecia escatológica.',
     categoria: 'montanha',
     periodo: 'nt',
     testamento: 'novo',
@@ -1081,7 +1081,7 @@ export const localizacoesBiblicas: LocalizacaoBiblica[] = [
 
   // ═══════════════════════════════ VALES ═══════════════════════════════
   {
-    id: 'vale_ejロン',
+    id: 'vale_elom',
     nome: 'Vale de Elom',
     nomeHebraico: 'Emek HaElon',
     descricao: 'Vale mencionado na história de Rebeca e Jacó.',
@@ -1728,7 +1728,7 @@ export const localizacoesBiblicas: LocalizacaoBiblica[] = [
   },
   {
     id: 'pergamo',
-    nome: 'Per game',
+    nome: 'Pérgamo',
     nomeGriego: 'Pergamon',
     descricao: 'Cidade da Ásia Menor. Local do "trono de Satanás" mencionado em Apocalipse.',
     categoria: 'cidade',
@@ -2212,7 +2212,7 @@ export const localizacoesBiblicas: LocalizacaoBiblica[] = [
     id: 'tiberias',
     nome: 'Tiberias',
     nomeGriego: 'Tiberias',
-    descricao: 'Cidade greguímpica na Galileia, construída por Herodes Antipas.',
+    descricao: 'Cidade helenística na Galileia, construída por Herodes Antipas.',
     categoria: 'cidade',
     periodo: 'nt',
     testamento: 'novo',
@@ -2747,7 +2747,7 @@ export const rotasBiblicas: RotaBiblica[] = [
   {
     id: 'viagem_roma_paulo',
     nome: 'Viagem de Paulo a Roma',
-    descricao: 'Paulo foi levado prisioneiro a Roma, passando por许多as ilhas e cidades do Mediterrâneo.',
+    descricao: 'Paulo foi levado prisioneiro a Roma, passando por muitas ilhas e cidades do Mediterrâneo.',
     personagem: 'Paulo',
     versiculos: ['At 27:1-28:16'],
     pontos: [

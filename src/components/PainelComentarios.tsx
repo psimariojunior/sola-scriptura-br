@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { BookOpen, ChevronDown, ChevronUp, Volume2, ExternalLink } from 'lucide-react';
-import { obterComentarios, type Comentario } from '@/data/comentarios';
+import { temComentario } from '@/data/comentarios-index';
+import type { Comentario } from '@/data/comentarios';
 import { getTeologo, type Teologo } from '@/data/teologos';
 import { useComentarioAudio } from '@/hooks/useComentarioAudio';
 import { cn } from '@/lib/utils';
@@ -57,8 +58,23 @@ function getAvatarColor(name: string): string {
 
 export default function PainelComentarios({ livro, capitulo, versiculo, onClose }: Props) {
   const [expandido, setExpandido] = useState<number | null>(null);
-  const comentarios = obterComentarios(livro, capitulo, versiculo);
+  const [comentarios, setComentarios] = useState<Comentario[]>([]);
+  const [carregando, setCarregando] = useState(true);
   const audio = useComentarioAudio();
+
+  const tem = temComentario(livro, capitulo, versiculo);
+
+  useEffect(() => {
+    if (!tem) { setCarregando(false); return; }
+    let cancelado = false;
+    import('@/data/comentarios').then(mod => {
+      if (!cancelado) {
+        setComentarios(mod.obterComentarios(livro, capitulo, versiculo));
+        setCarregando(false);
+      }
+    });
+    return () => { cancelado = true; };
+  }, [livro, capitulo, versiculo, tem]);
 
   // Enrich comments with theologian data
   const comentariosEnriquecidos = useMemo(() => {
@@ -69,6 +85,17 @@ export default function PainelComentarios({ livro, capitulo, versiculo, onClose 
       return { ...c, teologo };
     });
   }, [comentarios]);
+
+  if (carregando) {
+    return (
+      <div className="text-center py-12 px-4">
+        <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[var(--brand-subtle)] text-[var(--brand-default)] mb-3 animate-pulse">
+          <BookOpen className="w-5 h-5" />
+        </div>
+        <p className="text-sm text-[var(--content-muted)]">Carregando comentários...</p>
+      </div>
+    );
+  }
 
   if (comentarios.length === 0) {
     return (

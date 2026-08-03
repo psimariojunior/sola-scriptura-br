@@ -1,10 +1,11 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { GraduationCap, BookOpen, Users, ChevronRight } from 'lucide-react';
 import { obterEstudos, type EstudoVersiculo } from '@/data/estudosTeologicos';
-import { obterComentarios, type Comentario } from '@/data/comentarios';
+import { temComentario } from '@/data/comentarios-index';
+import type { Comentario } from '@/data/comentarios';
 import { livroPorAbreviacao } from '@/data/biblia/livros';
 import { estudosPorLivro } from '@/data/estudosPorLivro';
 
@@ -16,7 +17,18 @@ interface Props {
 
 export default function PainelEstudosSidePanel({ livro, capitulo, versiculo }: Props) {
   const estudos = useMemo(() => obterEstudos(livro, capitulo, versiculo), [livro, capitulo, versiculo]);
-  const comentarios = useMemo(() => obterComentarios(livro, capitulo, versiculo), [livro, capitulo, versiculo]);
+  const [comentarios, setComentarios] = useState<Comentario[]>([]);
+  const tem = temComentario(livro, capitulo, versiculo);
+
+  useEffect(() => {
+    if (!tem) return;
+    let cancelado = false;
+    import('@/data/comentarios').then(mod => {
+      if (!cancelado) setComentarios(mod.obterComentarios(livro, capitulo, versiculo));
+    });
+    return () => { cancelado = true; };
+  }, [livro, capitulo, versiculo, tem]);
+
   const livroInfo = livroPorAbreviacao.get(livro);
   const estudoLivro = estudosPorLivro[livro];
 

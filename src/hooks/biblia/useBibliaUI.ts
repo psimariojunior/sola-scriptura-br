@@ -129,7 +129,7 @@ export function UseBibliaUI({
   const [mostrarNarracaoCapitulo, setMostrarNarracaoCapitulo] = useState(false);
   const [mostrarApresentacao, setMostrarApresentacao] = useState(false);
   const [mostrarQualidadeAudio, setMostrarQualidadeAudio] = useState(false);
-  const [estudoCapituloAberto, setEstudoCapituloAberto] = useState(false);
+  const [estudoCapituloAberto, setEstudoCapituloAberto] = useState(true);
   const [fontFamily, setFontFamily] = useState<'serif' | 'sans'>(() => {
     if (typeof window !== 'undefined') {
       return (localStorage.getItem('ssb_font_family') as 'serif' | 'sans') || 'serif';

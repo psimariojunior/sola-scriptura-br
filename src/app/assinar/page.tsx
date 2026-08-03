@@ -18,7 +18,7 @@ const BENEFICIOS = [
   { icon: Languages, titulo: 'Línguas originais', desc: 'Grego e hebraico com Strong\'s aprofundados' },
   { icon: Map, titulo: 'Atlas bíblico', desc: 'Mapas interativos e geografia sagrada' },
   { icon: Layers, titulo: 'Flashcards & Quiz', desc: 'Estudo ativo ilimitado' },
-  { icon: Download, titulo: 'Offline & multi-tradução', desc: '6 traduções, acesso vitalício' },
+  { icon: Download, titulo: 'Offline & multi-tradução', desc: '10 traduções, acesso vitalício' },
 ];
 
 function AssinarContent() {
@@ -195,7 +195,7 @@ function AssinarContent() {
                 <BookOpen className="w-4 h-4 text-primary" /> O que é gratuito?
               </h3>
               <p>
-                A leitura da Bíblia (6 traduções), anotações, favoritos, flashcards,
+                A leitura da Bíblia (10 traduções), anotações, favoritos, flashcards,
                 concordância e o conteúdo de estudo local permanecem <strong className="text-foreground">gratuitos</strong>.
                 O Acesso Total desbloqueia os recursos de nuvem com IA e o conteúdo premium avançado.
               </p>

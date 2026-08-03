@@ -20,7 +20,6 @@ class BackgroundUpdateService {
           requiresCharging: false,
           requiresStorageNotLow: false,
           requiresDeviceIdle: false,
-          requiredNetworkType: BackgroundFetchConfig.NETWORK_ANY,
         ),
         _onBackgroundFetch,
         _onBackgroundFetchTimeout,

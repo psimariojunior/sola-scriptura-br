@@ -18,7 +18,7 @@ const TOUR_STEPS: TourStep[] = [
   {
     id: 'biblia',
     titulo: 'Bem-vindo ao Sola Scriptura!',
-    descricao: 'Comece pela Bíblia em 6 traduções — ARC, ARA, ACF, KJV, NVI e WEB.',
+    descricao: 'Comece pela Bíblia em 10 traduções — ARC, ARA, ACF, KJV, NVI, WEB, NVT, KJA, AA e NBV.',
     targetSelector: 'a[href="/biblia"]',
     position: 'bottom',
   },

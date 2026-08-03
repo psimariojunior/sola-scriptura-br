@@ -17,7 +17,6 @@ import { useAuth } from '@/contexts/AuthContext';
 import { BuscaGlobal } from '@/components/BuscaGlobal';
 import { NotificationCenter } from '@/components/NotificationCenter';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
-import { Input } from '@/components/ui/input';
 import { getStats } from '@/lib/estatisticas';
 import { LIVROS_AT, LIVROS_NT } from '@/data/biblia/livros';
 import { usePWA } from '@/hooks/usePWA';
@@ -725,7 +724,7 @@ function HeaderInner() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="lg:hidden border-t border-gray-200 dark:border-[#2a2724] bg-white dark:bg-[#161412] overflow-hidden relative z-[56] shadow-lg"
+                className="lg:hidden border-t border-border bg-card overflow-hidden relative z-[56] shadow-lg"
               >
                 <nav
                   className="flex flex-col px-5 py-4 gap-1 max-h-[75vh] overflow-y-auto"

@@ -59,7 +59,7 @@ const referenciadoPor = ['Seminários Teológicos', 'Escolas Bíblicas', 'Igreja
 
 const provasSociais = [
   { icon: BookOpen, label: '66 livros' },
-  { icon: Languages, label: '6 traduções' },
+  { icon: Languages, label: '10 traduções' },
   { icon: Brain, label: 'IA teológica' },
   { icon: Smartphone, label: 'Modo offline' },
 ];

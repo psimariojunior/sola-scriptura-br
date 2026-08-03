@@ -13,6 +13,7 @@ import '../services/connectivity_service.dart';
 import '../services/share_service.dart';
 import '../services/streak_service.dart';
 import '../services/offline_sync_service.dart';
+import 'streak_screen.dart';
 import '../widgets/offline_banner.dart';
 import '../widgets/error_screen.dart';
 import '../widgets/loading_indicator.dart';
@@ -150,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
     } else if (url.startsWith('ssb-streak://')) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) => const StreakScreen()),
+        MaterialPageRoute(builder: (_) => StreakScreen()),
       );
     } else {
       launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication).catchError((e) {

@@ -397,6 +397,226 @@ export const VARIANTES_TEXTUAIS: VarianteTextual[] = [
     manuscritos: ['Sinaitico (01)', 'Alexandrino (02)'],
     evidenciaExterna: 'fraca',
     notas: 'Esta variante aparece no Sinaitico em lugar diferente do relato de João.'
+  },
+  {
+    id: 'vt-036',
+    referencia: 'mc:1:1',
+    pericope: 'O Início do Evangelho',
+    tipo: 'omissao',
+    descricao: 'Alguns manuscritos omitem "Filho de Deus" (υἱοῦ θεοῦ). O Sinaitico original lê apenas "Filho de Deus" sem "Jesus Cristo".',
+    manuscritos: ['Sinaitico (01) — original', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Inclui "Filho de Deus", mas com nota de dúvida.',
+    notas: 'A leitura mais curta ("Início do evangelho de Jesus Cristo") pode ser original.'
+  },
+  {
+    id: 'vt-037',
+    referencia: 'lc:22:19b-20',
+    pericope: 'A Ceia do Senhor',
+    tipo: 'adicao',
+    descricao: 'A segunda parte da instituição da Ceia ("Isto é o meu corpo... este cálice é a nova aliança no meu sangue") está ausente do Dideque e de alguns manuscritos.',
+    manuscritos: ['Dideque', 'Justino Mártir'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'O texto mais longo é incluído, mas a evidência é dividida.',
+    notas: 'A versão curta pode refletir uma tradição mais antiga da Ceia.'
+  },
+  {
+    id: 'vt-038',
+    referencia: 'jo:5:3b-4',
+    pericope: 'A Piscina de Betesda',
+    tipo: 'adicao',
+    descricao: 'A descrição do anjo que agitava a água da piscina está ausente dos manuscritos mais antigos.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)', 'Papiro 66', 'Papiro 75'],
+    evidenciaExterna: 'fraca',
+    recomendacaoNA28: 'Os versos 3b-4 são omitidos na NA28.',
+    notas: 'A adição explica por que os doentes esperavam na piscina.'
+  },
+  {
+    id: 'vt-039',
+    referencia: 'at:8:37',
+    pericope: 'O Eunuco Etiópico',
+    tipo: 'adicao',
+    descricao: 'A confissão de fé do eunuco ("Creio que Jesus Cristo é o Filho de Deus") e a resposta de Filipe estão ausentes dos manuscritos mais antigos.',
+    manuscritos: ['Códice de Beza (05)', 'Manuscritos latinos'],
+    evidenciaExterna: 'fraca',
+    recomendacaoNA28: 'O versículo é omitido na NA28, colocado em notas de rodapé.',
+    notas: 'A confissão pode ter sido adicionada como fórmula batismal primitiva.'
+  },
+  {
+    id: 'vt-040',
+    referencia: 'mt:6:13',
+    pericope: 'O Pai Nosso',
+    tipo: 'adicao',
+    descricao: 'A doxologia final ("Porque teu é o reino, e o poder, e a glória, para sempre. Amém") está ausente dos manuscritos mais antigos.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)', 'Alexandrino (02)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'A doxologia é omitida no texto principal, aparecendo em notas.',
+    notas: 'A doxologia provavelmente veio da liturgia cristã primitiva.'
+  },
+  {
+    id: 'vt-041',
+    referencia: 'rm:8:16',
+    pericope: 'O Testemunho do Espírito',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "o próprio Espírito testifica" (τὸ πνεῦμα αὐτὸ συμμαρτυρεῖ) e "o Espírito testifica conosco" (τῷ πνεύματι ἡμῶν).',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Lê "o próprio Espírito".',
+    notas: 'A leitura "conosco" pode ser mais original por ser mais difícil.'
+  },
+  {
+    id: 'vt-042',
+    referencia: '1co:15:47',
+    pericope: 'O Último Adão',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "o primeiro homem, Adão" e "o primeiro homem" (sem o nome Adão) — o nome pode ser uma glossa explicativa.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Inclui "Adão", mas com nota.',
+    notas: 'A leitura sem "Adão" é mais provável por ser mais difícil.'
+  },
+  {
+    id: 'vt-043',
+    referencia: '2co:4:14',
+    pericope: 'A Ressurreição',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "o Senhor Jesus" e "Jesus" — a adição "Senhor" pode ser uma glossa cristológica.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Lê "o Senhor Jesus".',
+    notas: 'A leitura mais curta é mais provável.'
+  },
+  {
+    id: 'vt-044',
+    referencia: 'gl:1:8',
+    pericope: 'O Outro Evangelho',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "nós" (ἡμεῖς) e "um anjo do céu" (ἀγγέλος ἐξ οὐρανοῦ) — a ordem pode variar.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'forte',
+    recomendacaoNA28: 'Lê "um anjo do céu" primeiro.',
+    notas: 'A ordem "anjo... nós" é mais provável por ser mais difícil.'
+  },
+  {
+    id: 'vt-045',
+    referencia: 'ef:5:32',
+    pericope: 'O Mistério do Matrimônio',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "mistério" (μυστήριον) e "sacramento" (μυστήριον/sacramentum) — a tradução latina influenciou a teologia do sacramento.',
+    manuscritos: ['Vulgata', 'Manuscritos latinos'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Lê "mistério" no grego.',
+    notas: 'A tradução "sacramento" da Vulgata influenciou a teologia católica romana.'
+  },
+  {
+    id: 'vt-046',
+    referencia: '1tm:3:16',
+    pericope: 'O Mistério da Piedade',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "Deus" (θεός) e "isto" (ὅ) — "Deus se manifestou em carne" vs "isto se manifestou em carne".',
+    manuscritos: ['Sinaitico (01) — original', 'Vaticano (03)'],
+    evidenciaExterna: 'forte',
+    recomendacaoNA28: 'Lê "isto" (ὅ), não "Deus".',
+    notas: 'A leitura "Deus" provavelmente surgiu por confusão entre ΟΣ e ΘΣ em letras maiúsculas.'
+  },
+  {
+    id: 'vt-047',
+    referencia: 'hb:4:15',
+    pericope: 'O Sumo Sacerdote Compassivo',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "tentado em tudo como nós" e "tentado em todas as coisas como nós, porém sem pecado".',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Inclui "porém sem pecado".',
+    notas: 'A adição "porém sem pecado" pode ser uma glossa anti-docética.'
+  },
+  {
+    id: 'vt-048',
+    referencia: '1jo:2:22-23',
+    pericope: 'O Negador do Filho',
+    tipo: 'adicao',
+    descricao: 'O versículo 2:23 contém uma adição tardia: "Quem confessa o Filho tem o Pai também" — pode ser uma glossa.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'A segunda parte do v.23 está em notas.',
+    notas: 'A adição pode ter sido inspirada em 1 João 2:23.'
+  },
+  {
+    id: 'vt-049',
+    referencia: 'mt:27:24',
+    pericope: 'A Inocência de Pilatos',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "inocente" (ἀθῷος) e "justo" (δίκαιος) — "Eu sou inocente deste sangue" vs "Eu sou justo".',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Lê "inocente".',
+    notas: 'A leitura "justo" pode ser mais original.'
+  },
+  {
+    id: 'vt-050',
+    referencia: 'mc:15:34',
+    pericope: 'O Grito da Cruz',
+    tipo: 'mudanca',
+    descricao: 'A variante na transcrição aramaica: "Eloi, Eloi, lama sabachthani" (meu Deus, meu Deus, por que me desamparaste?) — a grafia varia entre manuscritos.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'forte',
+    recomendacaoNA28: 'Lê "Eloi".',
+    notas: 'Mateus 27:46 escreve "Eli" — a diferença reflete dialetos aramaicos.'
+  },
+  {
+    id: 'vt-051',
+    referencia: 'jo:1:14',
+    pericope: 'O Verbo Encarnado',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "cheio de graça e de verdade" (χάριτος καὶ ἀληθείας) e "cheio de graça e verdade" (sem a segunda preposição).',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)', 'Papiro 66'],
+    evidenciaExterna: 'forte',
+    recomendacaoNA28: 'Lê com a segunda preposição.',
+    notas: 'A leitura mais curta pode ser original.'
+  },
+  {
+    id: 'vt-052',
+    referencia: 'ap:22:14',
+    pericope: 'A Bênção Final',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "lavam suas vestes" (πλύνοντες τὰς στολὰς αὐτῶν) e "têm direito à árvore da vida" (ἐπὶ τῷ ξύλῳ τῆς ζωῆς).',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Lê "lavam suas vestes".',
+    notas: 'A leitura "árvore da vida" pode ser mais original.'
+  },
+  {
+    id: 'vt-053',
+    referencia: 'mt:13:35',
+    pericope: 'Os Tesouros Escondidos',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "o profeta" e "Isaías, o profeta" — Mateus pode ter atribuído falsamente o salmo a Isaías.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Lê "o profeta" (sem nome).',
+    notas: 'Alguns manuscritos adicionam "Isaías" para corrigir a atribuição.'
+  },
+  {
+    id: 'vt-054',
+    referencia: 'lc:2:33',
+    pericope: 'Simeão e a Criança',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "o pai e a mãe" (ὁ πατὴρ καὶ ἡ μήτηρ) e "José e a mãe dele" — Lucas evita chamar José de "pai" de Jesus.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'forte',
+    recomendacaoNA28: 'Lê "José e a mãe".',
+    notas: 'A leitura "pai e mãe" pode ser mais original, mas foi alterada por razões cristológicas.'
+  },
+  {
+    id: 'vt-055',
+    referencia: 'jo:19:14',
+    pericope: 'A Sentença de Pilatos',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "sexta-feira" (παρασκευή) e "preparação" (ἡ παρασκευὴ τοῦ πάσχα) — João pode ter usado "preparação" em sentido técnico.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'forte',
+    recomendacaoNA28: 'Lê "preparação do páscoa".',
+    notas: 'A discordância sinóptica sobre o dia da crucificação pode ser resolvida por esta variante.'
   }
 ];
 

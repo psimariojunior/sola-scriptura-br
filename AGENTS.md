@@ -361,3 +361,20 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
 | Glassmorphism premium | ❌ | ❌ | ✅ |
 | Bottom tab bar mobile | ✅ | ✅ | ✅ |
 | Ofertas voluntarias PIX | ✅ | ✅ | ✅ |
+
+## TODO (03/08/2026)
+### Prioridade Alta
+- [ ] **Build do APK** — Rodar `cd mobile_app && flutter build apk --release` para gerar o APK com as Fases 1-3
+- [ ] **Testar no celular** — Instalar APK e verificar: widgets, streak, notificações, offline
+- [ ] **iOS Widget** — Criar widget para iPhone/iPad (SwiftUI)
+- [ ] **Apple Watch** — Complication de streak
+
+### Prioridade Média
+- [ ] **Siri Shortcuts** — "Hey Siri, qual o versículo do dia?"
+- [ ] **App Clips** — Experiência leve sem instalar
+- [ ] **Testes E2E** — Playwright para novas páginas (imersao, sermon-builder, etc)
+
+### Features das Fases (resumo)
+- **Fase 1**: Performance (Web Vitals), SEO (sitemap+robots), Acessibilidade, Offline (SW v12)
+- **Fase 2**: Streak inteligente, Notificações motivacionais, Offline sync, Settings completo
+- **Fase 3**: Widgets Android (versículo+progresso), Background fetch, Compartilhamento nativo

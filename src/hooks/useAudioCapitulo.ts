@@ -97,12 +97,13 @@ function useAudioCapituloImpl(
         if (done) break;
         const chunk = decoder.decode(value, { stream: true });
         for (const line of chunk.split('\n')) {
-          if (line.startsWith('data: ')) {
-            try {
-              const data = JSON.parse(line.slice(6));
-              if (data.tipo === 'audio' && data.audio) audioBase64 = data.audio;
-            } catch (e) { console.error('[audio:parse-stream-line]', e); }
-          }
+          const trimmed = line.trim();
+          if (!trimmed) continue;
+          try {
+            const data = JSON.parse(trimmed);
+            if (data.tipo === 'audio' && data.base64) audioBase64 = data.base64;
+            else if (data.tipo === 'audio' && data.audio) audioBase64 = data.audio;
+          } catch (e) { /* linha não-JSON, ignorar */ }
         }
       }
       if (!audioBase64) return null;

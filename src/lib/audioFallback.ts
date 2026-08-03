@@ -23,24 +23,38 @@ export async function playAudioWithFallback(options: AudioFallbackOptions): Prom
       });
 
       if (response.ok) {
-        const blob = await response.blob();
-        const url = URL.createObjectURL(blob);
-        const audio = new Audio(url);
+        // Parse SSE stream (server sends JSON lines)
+        const reader = response.body?.getReader();
+        if (!reader) throw new Error('No body');
+        const decoder = new TextDecoder();
+        let audioBase64 = '';
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          const chunk = decoder.decode(value, { stream: true });
+          for (const line of chunk.split('\n')) {
+            const trimmed = line.trim();
+            if (!trimmed) continue;
+            try {
+              const data = JSON.parse(trimmed);
+              if (data.tipo === 'audio' && data.base64) audioBase64 = data.base64;
+              else if (data.tipo === 'audio' && data.audio) audioBase64 = data.audio;
+            } catch { /* linha não-JSON */ }
+          }
+        }
+        if (!audioBase64) throw new Error('No audio received');
+        const audio = new Audio(`data:audio/mpeg;base64,${audioBase64}`);
 
-        return new Promise((resolve, reject) => {
+        return new Promise<void>((resolve) => {
           audio.onended = () => {
-            URL.revokeObjectURL(url);
             onEnd?.();
             resolve();
           };
           audio.onerror = () => {
-            URL.revokeObjectURL(url);
-            // Fallback to Web Speech API
             playWithWebSpeech(texto, rate, onEnd, onError);
             resolve();
           };
           audio.play().catch(() => {
-            URL.revokeObjectURL(url);
             playWithWebSpeech(texto, rate, onEnd, onError);
             resolve();
           });

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { linkificarReferenciasHTML } from '@/components/VersiculoLink';
 
@@ -93,7 +93,7 @@ function iconTipoFonte(tipo: string): string {
   return icones[tipo] || '📄';
 }
 
-export default function AIChat({ className = '', tradicao: tradicaoExterna, onTradicaoChange }: AIChatProps) {
+const AIChat = memo(function AIChat({ className = '', tradicao: tradicaoExterna, onTradicaoChange }: AIChatProps) {
   const { t } = useTranslation();
   const [mensagens, setMensagens] = useState<Mensagem[]>([]);
   const [input, setInput] = useState('');
@@ -513,4 +513,6 @@ export default function AIChat({ className = '', tradicao: tradicaoExterna, onTr
       </div>
     </div>
   );
-}
+});
+
+export default AIChat;

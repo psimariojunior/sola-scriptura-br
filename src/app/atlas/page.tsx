@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Filter, Clock, Route, ChevronDown, ChevronUp, X, BookOpen, Users, Search } from 'lucide-react';
+import { MapPin, Filter, Clock, Route, ChevronDown, ChevronUp, X, BookOpen, Users, Search, Layers, Globe, BarChart3 } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { cn } from '@/lib/utils';
 import { localizacoesBiblicas, rotasBiblicas, periodosHistoricos, type LocalizacaoBiblica, type RotaBiblica } from '@/data/atlasBiblico';
@@ -29,6 +29,15 @@ const CATEGORIAS: { id: LocalizacaoBiblica['categoria']; label: string; icone: s
   { id: 'regiao', label: 'Regiões', icone: '📍', cor: '#059669' },
 ];
 
+const REGIOES_ZOOM: { id: string; label: string; emoji: string; center: [number, number]; zoom: number }[] = [
+  { id: 'israel', label: 'Israel', emoji: '🇮🇱', center: [31.5, 35.0], zoom: 8 },
+  { id: 'grecia', label: 'Grécia', emoji: '🇬🇷', center: [39.0, 22.0], zoom: 6 },
+  { id: 'roma', label: 'Roma', emoji: '🏛', center: [41.9, 12.5], zoom: 6 },
+  { id: 'egito', label: 'Egito', emoji: '🇪🇬', center: [26.8, 30.8], zoom: 6 },
+  { id: 'mesopotamia', label: 'Mesopotâmia', emoji: '🏺', center: [33.3, 44.4], zoom: 5 },
+  { id: 'anatolia', label: 'Anatólia', emoji: '🏔', center: [39.0, 32.0], zoom: 5 },
+];
+
 export default function AtlasPage() {
   const { t } = useTranslation();
   const [catFiltro, setCatFiltro] = useState<Set<string>>(new Set(CATEGORIAS.map(c => c.id)));
@@ -37,6 +46,8 @@ export default function AtlasPage() {
   const [localSel, setLocalSel] = useState<LocalizacaoBiblica | null>(null);
   const [busca, setBusca] = useState('');
   const [mostrarFiltros, setMostrarFiltros] = useState(false);
+  const [legendaExpandida, setLegendaExpandida] = useState(true);
+  const [flyTo, setFlyTo] = useState<{ center: [number, number]; zoom: number } | null>(null);
 
   const locaisFiltrados = useMemo(() => {
     return localizacoesBiblicas.filter(l => {
@@ -55,12 +66,28 @@ export default function AtlasPage() {
     return rotasBiblicas.filter(r => r.id === rotaAtiva);
   }, [rotaAtiva]);
 
+  const stats = useMemo(() => {
+    const byCat: Record<string, number> = {};
+    for (const l of locaisFiltrados) {
+      byCat[l.categoria] = (byCat[l.categoria] || 0) + 1;
+    }
+    const atCount = locaisFiltrados.filter(l => l.periodo === 'at' || l.periodo === 'ambos').length;
+    const ntCount = locaisFiltrados.filter(l => l.periodo === 'nt' || l.periodo === 'ambos').length;
+    const topCat = Object.entries(byCat).sort((a, b) => b[1] - a[1])[0];
+    return { total: locaisFiltrados.length, byCat, atCount, ntCount, topCat };
+  }, [locaisFiltrados]);
+
   const toggleCat = useCallback((cat: string) => {
     setCatFiltro(prev => {
       const next = new Set(prev);
       if (next.has(cat)) next.delete(cat); else next.add(cat);
       return next;
     });
+  }, []);
+
+  const handleEventoClick = useCallback((local: LocalizacaoBiblica, eventoIdx: number) => {
+    setLocalSel(local);
+    setFlyTo({ center: local.coordenadas, zoom: 11 });
   }, []);
 
   return (
@@ -70,8 +97,7 @@ export default function AtlasPage() {
         <div className="max-w-7xl mx-auto">
 
           {/* ═══ HERO ═══ */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-            className="mb-6">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 flex items-center justify-center border border-emerald-500/20">
                 <MapPin className="w-5 h-5 text-emerald-600" />
@@ -80,7 +106,7 @@ export default function AtlasPage() {
                 <h1 className="font-display text-2xl md:text-3xl font-light">
                   Atlas <span className="text-primary italic">Bíblico</span>
                 </h1>
-                <p className="text-xs text-muted-foreground">{localizacoesBiblicas.length} {t('atlas.places')} · {rotasBiblicas.length} {t('atlas.routes')} · 12 {t('atlas.historicalPeriods')}</p>
+                <p className="text-xs text-muted-foreground">{localizacoesBiblicas.length} locais · {rotasBiblicas.length} rotas · 12 períodos históricos</p>
               </div>
             </div>
           </motion.div>
@@ -88,29 +114,26 @@ export default function AtlasPage() {
           {/* ═══ TOOLBAR ═══ */}
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
             className="flex flex-wrap items-center gap-2 mb-4">
-            {/* Busca */}
             <div className="relative flex-1 min-w-[200px] max-w-sm">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input value={busca} onChange={e => setBusca(e.target.value)}
-                placeholder={t('atlas.searchPlaceholder')}
+                placeholder="Buscar local, evento ou pessoa..."
                 className="w-full pl-9 pr-3 py-2 rounded-xl border border-border/50 bg-card/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
             </div>
-            {/* Filtros toggle */}
             <button onClick={() => setMostrarFiltros(!mostrarFiltros)}
               className={cn('flex items-center gap-2 px-3 py-2 rounded-xl border text-sm font-medium transition-all',
                 mostrarFiltros ? 'bg-primary/10 border-primary/30 text-primary' : 'border-border/50 bg-card/50 hover:bg-muted/50')}>
-              <Filter className="w-4 h-4" /> {t('atlas.filters')}
+              <Filter className="w-4 h-4" /> Filtros
               {mostrarFiltros ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
             </button>
-            {/* Rotas */}
             <div className="relative group">
               <button className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border/50 bg-card/50 text-sm font-medium hover:bg-muted/50 transition-all">
-                <Route className="w-4 h-4" /> {t('atlas.routesBtn')}
+                <Route className="w-4 h-4" /> Rotas
               </button>
               <div className="absolute right-0 top-full mt-1 w-72 rounded-xl border border-border bg-card shadow-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
                 <button onClick={() => setRotaAtiva(null)}
                   className={cn('w-full text-left px-3 py-2 rounded-lg text-sm transition-colors', !rotaAtiva ? 'bg-primary/10 text-primary' : 'hover:bg-muted/50')}>
-                  {t('atlas.noRoute')}
+                  Sem rota
                 </button>
                 {rotasBiblicas.map(r => (
                   <button key={r.id} onClick={() => setRotaAtiva(r.id)}
@@ -130,9 +153,8 @@ export default function AtlasPage() {
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
                 className="overflow-hidden mb-4">
                 <div className="rounded-2xl border border-border/50 bg-card/50 p-4 space-y-4">
-                  {/* Categorias */}
                   <div>
-                    <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">{t('atlas.categories')}</p>
+                    <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Categorias</p>
                     <div className="flex flex-wrap gap-2">
                       {CATEGORIAS.map(cat => (
                         <button key={cat.id} onClick={() => toggleCat(cat.id)}
@@ -145,14 +167,13 @@ export default function AtlasPage() {
                       ))}
                     </div>
                   </div>
-                  {/* Períodos */}
                   <div>
-                    <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">{t('atlas.historicalPeriod')}</p>
+                    <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">Período Histórico</p>
                     <div className="flex flex-wrap gap-2">
                       <button onClick={() => setPeriodoFiltro(null)}
                         className={cn('px-3 py-1.5 rounded-full text-xs font-medium border transition-all',
                           !periodoFiltro ? 'border-primary/30 bg-primary/10 text-primary' : 'border-border/50 bg-muted/20 text-muted-foreground')}>
-                        {t('common.all')}
+                        Todos
                       </button>
                       {periodosHistoricos.map(p => (
                         <button key={p.id} onClick={() => setPeriodoFiltro(p.id)}
@@ -171,25 +192,119 @@ export default function AtlasPage() {
           {/* ═══ MAPA ═══ */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
             className="rounded-2xl border border-border/50 overflow-hidden shadow-lg mb-6">
-            <BiblicalMap
-              locais={locaisFiltrados}
-              rotas={rotasFiltradas}
-              selectedId={localSel?.id ?? null}
-              onSelect={(id) => setLocalSel(id ? localizacoesBiblicas.find(l => l.id === id) ?? null : null)}
-              visibleCategories={catFiltro as Set<LocalizacaoBiblica['categoria']>}
-              visibleRotas={new Set(rotasFiltradas.map(r => r.id))}
-            />
+            <div className="w-full h-[500px] md:h-[600px]">
+              <BiblicalMap
+                locais={locaisFiltrados}
+                rotas={rotasFiltradas}
+                selectedId={localSel?.id ?? null}
+                onSelect={(id) => setLocalSel(id ? localizacoesBiblicas.find(l => l.id === id) ?? null : null)}
+                visibleCategories={catFiltro as Set<LocalizacaoBiblica['categoria']>}
+                visibleRotas={new Set(rotasFiltradas.map(r => r.id))}
+                flyToRegion={flyTo}
+              />
+            </div>
           </motion.div>
 
-          {/* ═══ LEGENDA ═══ */}
-          <div className="flex flex-wrap gap-3 mb-6 text-[11px] text-muted-foreground">
-            {CATEGORIAS.filter(c => catFiltro.has(c.id)).map(c => (
-              <span key={c.id} className="flex items-center gap-1">
-                <span className="w-3 h-3 rounded-full" style={{ backgroundColor: c.cor }} />
-                {c.icone} {c.label}
-              </span>
+          {/* ═══ ZOOM POR REGIÃO ═══ */}
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
+            className="flex flex-wrap items-center gap-2 mb-4">
+            <span className="text-xs font-medium text-muted-foreground flex items-center gap-1">
+              <Globe className="w-3.5 h-3.5" /> Zoom rápido:
+            </span>
+            {REGIOES_ZOOM.map(r => (
+              <button key={r.id} onClick={() => setFlyTo(r)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-border/50 bg-card/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all">
+                <span>{r.emoji}</span> {r.label}
+              </button>
             ))}
-          </div>
+          </motion.div>
+
+          {/* ═══ LEGENDA EXPANSÍVEL + ESTATÍSTICAS ═══ */}
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+            className="rounded-2xl border border-border/50 bg-card/50 mb-6 overflow-hidden">
+            <button onClick={() => setLegendaExpandida(!legendaExpandida)}
+              className="w-full flex items-center justify-between px-4 py-3 hover:bg-muted/30 transition-colors">
+              <div className="flex items-center gap-3">
+                <Layers className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium">Legenda e Estatísticas</span>
+                <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">{stats.total} locais</span>
+              </div>
+              {legendaExpandida ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+            </button>
+
+            <AnimatePresence>
+              {legendaExpandida && (
+                <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                  className="overflow-hidden">
+                  <div className="px-4 pb-4 space-y-3">
+                    {/* Categorias com contadores */}
+                    <div>
+                      <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">Categorias</p>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-1.5">
+                        {CATEGORIAS.filter(c => catFiltro.has(c.id)).map(c => {
+                          const count = stats.byCat[c.id] || 0;
+                          const pct = stats.total > 0 ? Math.round((count / stats.total) * 100) : 0;
+                          return (
+                            <div key={c.id} className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-muted/30 border border-border/30">
+                              <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: c.cor }} />
+                              <div className="min-w-0">
+                                <p className="text-[11px] font-medium truncate">{c.icone} {c.label}</p>
+                                <p className="text-[10px] text-muted-foreground">{count} ({pct}%)</p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Estatísticas gerais */}
+                    <div className="flex flex-wrap gap-3 pt-2 border-t border-border/30">
+                      <div className="flex items-center gap-1.5 text-[11px]">
+                        <BarChart3 className="w-3 h-3 text-primary" />
+                        <span className="font-medium">Total:</span>
+                        <span className="text-primary font-semibold">{stats.total}</span>
+                      </div>
+                      <div className="text-[11px]">
+                        <span className="text-muted-foreground">AT:</span>{' '}
+                        <span className="font-semibold">{stats.atCount}</span>
+                      </div>
+                      <div className="text-[11px]">
+                        <span className="text-muted-foreground">NT:</span>{' '}
+                        <span className="font-semibold">{stats.ntCount}</span>
+                      </div>
+                      {stats.topCat && (
+                        <div className="text-[11px]">
+                          <span className="text-muted-foreground">Mais comum:</span>{' '}
+                          <span className="font-semibold">
+                            {CATEGORIAS.find(c => c.id === stats.topCat[0])?.icone}{' '}
+                            {CATEGORIAS.find(c => c.id === stats.topCat[0])?.label} ({stats.topCat[1]})
+                          </span>
+                        </div>
+                      )}
+                      <div className="text-[11px]">
+                        <span className="text-muted-foreground">Rotas ativas:</span>{' '}
+                        <span className="font-semibold">{rotasFiltradas.length}</span>
+                      </div>
+                    </div>
+
+                    {/* Barras de proporção */}
+                    <div className="space-y-1.5 pt-2 border-t border-border/30">
+                      <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Proporção por categoria</p>
+                      <div className="flex h-3 rounded-full overflow-hidden bg-muted/30">
+                        {CATEGORIAS.filter(c => catFiltro.has(c.id) && (stats.byCat[c.id] || 0) > 0).map(c => {
+                          const pct = stats.total > 0 ? ((stats.byCat[c.id] || 0) / stats.total) * 100 : 0;
+                          return (
+                            <div key={c.id} className="h-full transition-all duration-500" style={{ width: `${pct}%`, backgroundColor: c.cor }}
+                              title={`${c.label}: ${stats.byCat[c.id] || 0}`} />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
 
           {/* ═══ DETALHE DO LOCAL SELECIONADO ═══ */}
           <AnimatePresence>
@@ -212,11 +327,10 @@ export default function AtlasPage() {
                 </div>
                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{localSel.descricao}</p>
 
-                {/* Versículos */}
                 {localSel.versiculos.length > 0 && (
                   <div className="mb-4">
                     <p className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1">
-                      <BookOpen className="w-3 h-3" /> {t('atlas.references')}
+                      <BookOpen className="w-3 h-3" /> Referências
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {localSel.versiculos.slice(0, 8).map((v, i) => (
@@ -226,24 +340,24 @@ export default function AtlasPage() {
                   </div>
                 )}
 
-                {/* Eventos */}
                 {localSel.eventos.length > 0 && (
                   <div>
                     <p className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1">
-                      <Users className="w-3 h-3" /> {t('atlas.historicalEvents')}
+                      <Users className="w-3 h-3" /> Eventos Históricos
                     </p>
                     <div className="space-y-2">
-                      {localSel.eventos.slice(0, 4).map((ev, i) => (
-                        <div key={i} className="flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                      {localSel.eventos.map((ev, i) => (
+                        <button key={i} onClick={() => handleEventoClick(localSel, i)}
+                          className="w-full text-left flex items-start gap-2 group/event hover:bg-primary/5 rounded-lg p-1.5 -m-1.5 transition-colors">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0 group-hover/event:scale-150 transition-transform" />
                           <div>
-                            <p className="text-sm font-medium">{ev.titulo}</p>
+                            <p className="text-sm font-medium group-hover/event:text-primary transition-colors">{ev.titulo}</p>
                             <p className="text-xs text-muted-foreground">{ev.descricao}</p>
                             {ev.versiculos.length > 0 && (
                               <p className="text-[10px] text-primary mt-0.5">{ev.versiculos.join(' · ')}</p>
                             )}
                           </div>
-                        </div>
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -256,10 +370,9 @@ export default function AtlasPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
             className="rounded-2xl border border-border/50 bg-card/50 p-6 mb-6">
             <h2 className="font-display text-lg font-medium mb-4 flex items-center gap-2">
-              <Clock className="w-5 h-5 text-primary" /> {t('atlas.biblicalTimeline')}
+              <Clock className="w-5 h-5 text-primary" /> Linha do Tempo Bíblica
             </h2>
             <div className="relative">
-              {/* Linha central */}
               <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/40 via-primary/20 to-transparent" />
               <div className="space-y-6">
                 {periodosHistoricos.map((p, i) => (
@@ -292,7 +405,7 @@ export default function AtlasPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
             className="mb-8">
             <h2 className="font-display text-lg font-medium mb-4">
-              {locaisFiltrados.length} {t('atlas.placesFound')}
+              {locaisFiltrados.length} locais encontrados
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {locaisFiltrados.slice(0, 30).map((local, i) => {
@@ -300,7 +413,7 @@ export default function AtlasPage() {
                 return (
                   <motion.button key={local.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.7 + i * 0.02 }}
-                    onClick={() => setLocalSel(local)}
+                    onClick={() => { setLocalSel(local); setFlyTo({ center: local.coordenadas, zoom: 11 }); }}
                     className={cn('text-left rounded-xl border p-3 transition-all hover:scale-[1.01]',
                       localSel?.id === local.id ? 'border-primary/30 bg-primary/5' : 'border-border/30 hover:border-primary/20 bg-card/50')}>
                     <div className="flex items-center gap-2 mb-1.5">

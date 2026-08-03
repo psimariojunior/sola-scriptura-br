@@ -1,6 +1,4 @@
 import { estudosTeologicosExpandidos, EstudoTeologico } from './estudosTeologicosExpandidos';
-import { estudosGerados } from './estudosGerados';
-import { estudosEspecificos } from './estudosEspecificos';
 
 export interface EstudoTeologo {
   teologo: string;
@@ -3141,24 +3139,2663 @@ for (const e of estudosExtras) {
   byRefMap.get(key)!.push(e);
 }
 
-for (const e of estudosGerados) {
-  const key = `${e.livro}:${e.capitulo}:${e.versiculo}`;
-  if (!byRefMap.has(key)) {
-    byRefMap.set(key, []);
-  }
-  byRefMap.get(key)!.push(e);
-}
 
-for (const e of estudosEspecificos) {
-  const key = `${e.livro}:${e.capitulo}:${e.versiculo}`;
-  if (!byRefMap.has(key)) {
-    byRefMap.set(key, []);
-  }
-  byRefMap.get(key)!.push(e);
-}
 
 export function obterEstudos(livro: string, capitulo: number, versiculo: number): EstudoVersiculo[] {
-  return byRefMap.get(`${livro}:${capitulo}:${versiculo}`) || [];
+  return byRefMap.get(`${livro}:${capitulo}:${versiculo}`) || [
+  {
+    livro: 'gn', capitulo: 1, versiculo: 2,
+    tema: 'Caos primordial',
+    contexto: 'Terra sem forma e vazia, Espírito de Deus pairando.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Apopfatismo', resumo: 'O caos é matéria prima aguardando ordenação.', citacao: '«O Espírito pairava — vida já presente no caos.»' },
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Potencialidade', resumo: 'A matéria aguarda as formas que Deus imprime.', citacao: '«O caos é matéria primeira apta a receber formas.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Descrição literal', resumo: 'Moisés descreve o estado real da terra.', citacao: '«Deus criou para habitar, não para ser vazio.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 1, versiculo: 3,
+    tema: 'Luz — primeira palavra criadora',
+    contexto: 'Deus diz «Haja luz», e há luz.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristologia', resumo: 'A luz é tipo de Cristo.', citacao: '«A luz é Cristo — primeira obra divina.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Autoridade', resumo: 'Deus cria pela palavra — sem esforço.', citacao: '«Deus cria pela palavra — autoridade sem esforço.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Revelação', resumo: 'A luz é primeiro ato de revelação.', citacao: '«A luz é revelação — Deus se faz conhecido.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 2, versiculo: 7,
+    tema: 'Formação do pó ao fôlego',
+    contexto: 'Deus forma o homem do pó e sopra fôlego.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Unidade corpo-alma', resumo: 'O homem é unidade de pó e fôlego divino.', citacao: '«O homem é alma vivente — não tem alma, é alma.»' },
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Hilemorfismo', resumo: 'A alma é forma substancial do corpo.', citacao: '«A alma é forma do corpo — sem ela, é pó.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Evangélica', visao: 'Dignidade', resumo: 'O fôlego confere dignidade incomparável.', citacao: '«Não somos animais — carregamos fôlego de Deus.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 2, versiculo: 24,
+    tema: 'Unidade do matrimônio',
+    contexto: 'Deus estabelece o casamento — dois se tornam uma só carne.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Unidade indissolúvel', resumo: 'Deus une — não deve ser separado.', citacao: '«O que Deus uniu, o homem não separe.»' },
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Complementariedade', resumo: 'A mulher é complemento — igualdade.', citacao: '«A mulher é complemento — igualdade.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Cristológico', resumo: 'O matrimônio prefigura Cristo e a Igreja.', citacao: '«O casamento é o mistério da aliança.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 3, versiculo: 6,
+    tema: 'A queda — transgressão',
+    contexto: 'Eva vê que a árvore é boa e come do fruto proibido.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Desordenção do desejo', resumo: 'O pecado começa no desejo desordenado.', citacao: '«O pecado é desejo desordenado — querer o proibido.»' },
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Pecado original', resumo: 'A queda afetou toda natureza humana.', citacao: '«Natureza ferida — razão obscurecida, vontade enfraquecida.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Bondade perdida', resumo: 'A bondade original foi perdida, não a natureza.', citacao: '«A natureza caiu — mas Deus a criou boa.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 4, versiculo: 7,
+    tema: 'Pecado à porta',
+    contexto: 'Deus avisa Caim — o pecado está à porta.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Gratuitidade', resumo: 'O pecado não tem causa exterior.', citacao: '«O pecado está à porta — mas tu podes dominá-lo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania e responsabilidade', resumo: 'Deus adverte, mas o homem é responsável.', citacao: '«Deus adverte — mas o homem escolhe.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Liberdade moral', resumo: 'Deus dá Chance ao pecador.', citacao: '«Deus nunca permite tentação sem dar graça.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 6, versiculo: 5,
+    tema: 'Depravação universal',
+    contexto: 'Todos os pensamentos do coração continuamente maus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Pecado original', resumo: 'A queda contaminou toda raça — não há justo.', citacao: '«O coração é ídolo de si mesmo.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Depravação total', resumo: 'O homem está morto em pecado.', citacao: '«O homem é incapaz de bem sem graça.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Total depravity', resumo: 'O pecado afeta cada faculdade.', citacao: '«Não há saúde — completamente corrompido.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 8, versiculo: 22,
+    tema: 'Aliança com a criação',
+    contexto: 'Dias e noites, verão e inverno não cessarão.',
+    interpretacoes: [
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aliança de preservação', resumo: 'Deus preserva a ordem natural.', citacao: '«Enquanto a terra existir, semente não cessará.»' },
+      { teologo: 'Karl Barth', periodo: '1886-1968', tradicao: 'Teologia Dialética', visao: 'Aliança cósmica', resumo: 'A aliança com a criação é pré-condição.', citacao: '«Deus se vincula à criação antes de exigir.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Renovação', resumo: 'A aliança aponta para restauração.', citacao: '«Deus não destruirá — renovará pela ressurreição.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 12, versiculo: 3,
+    tema: 'Abençoar todas as nações',
+    contexto: 'Em ti serão abençoadas todas as famílias da terra.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Tipologia eclesial', resumo: 'Abraom é tipo da Igreja — bênção universal.', citacao: '«Em ti, todas as famílias — cumprido em Cristo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição instrumental', resumo: 'Deus escolhe um para abençoar muitos.', citacao: '«Deus abençoa um para abençoar a todos.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Nova aliança', resumo: 'A missão da Igreja é levar a bênção.', citacao: '«Deus abençoa o mundo através de um povo.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 22, versiculo: 14,
+    tema: 'Jireh — O Senhor proverá',
+    contexto: 'Deus providencia cordeiro como substituto.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Tipologia cristológica', resumo: 'O cordeiro é tipo de Cristo — substituto.', citacao: '«O cordeiro prefigura Cristo — Cordeiro de Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Providência soberana', resumo: 'Deus proverá — no momento certo.', citacao: '«Deus proverá — no momento exato.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Evangélica', visao: 'Sacrifício e dádiva', resumo: 'Deus prove o substituto.', citacao: '«Deus quer a nós — nos dá o que precisamos.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 28, versiculo: 15,
+    tema: 'Promessa de presença',
+    contexto: 'Deus promete estar com Jacó.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Presença permanente', resumo: 'A presença é a maior promessa.', citacao: '«Eis que eu estou contigo — maior promessa.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aliança pessoal', resumo: 'Deus faz aliança com cada pessoa.', citacao: '«Deus faz aliança com cada um.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Companheirismo', resumo: 'A presença é fundamento da oração.', citacao: '«Deus caminha conosco — não está distante.»' },
+    ],
+  },
+  {
+    livro: 'ex', capitulo: 12, versiculo: 5,
+    tema: 'Cordeiro pascal sem mancha',
+    contexto: 'Escolher cordeiro sem mancha — tipo de Cristo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Tipologia', resumo: 'Cordeiro prefigura Cristo imaculado.', citacao: '«Cordeiro pascal é Cristo — imaculado, oferecido.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Substituição', resumo: 'Cordeiro morre em lugar do primogênito.', citacao: '«Sangue do cordeiro poupa — como sangue de Cristo.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Éxodo cristão', resumo: 'A páscoa é paradigma da salvação.', citacao: '«História de Israel é paradigma da salvação.»' },
+    ],
+  },
+  {
+    livro: 'ex', capitulo: 14, versiculo: 13,
+    tema: 'Salvação do Senhor',
+    contexto: 'Não temais — vede o livramento do Senhor.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Livramento tipológico', resumo: 'Travessia é tipo do batismo.', citacao: '«Mar Vermelho é tipo do batismo.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Confiança', resumo: 'Quando tudo parece perdido, Deus age.', citacao: '«Confie no livramento de Deus.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Fé prática', resumo: 'A fé é necessária antes do livramento.', citacao: '«Deus não pede separar águas — apenas avançar.»' },
+    ],
+  },
+  {
+    livro: 'ex', capitulo: 20, versiculo: 3,
+    tema: 'Sem outros deuses',
+    contexto: 'Não terás outros deuses diante de mim.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor desordenado', resumo: 'O pecado é amar mais o menor.', citacao: '«Pecado é amar mais o que é menos.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Teologia da cruz', resumo: 'Deus não compartilha Sua glória.', citacao: '«Deus não divide Seu trono.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Coração idólatra', resumo: 'O coração é fábrica de ídolos.', citacao: '«Coração perpetuamente idólatra.»' },
+    ],
+  },
+  {
+    livro: 'ex', capitulo: 20, versiculo: 12,
+    tema: 'Honrar pai e mãe',
+    contexto: 'Primeiro mandamento com promessa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ordem natural', resumo: 'A família é primeira escola de virtude.', citacao: '«Honrar pais é honrar Deus.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Vocação', resumo: 'Vida cotidiana é vocação.', citacao: '«Família é primeira vocação.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Reino de Deus', resumo: 'Honrar é viver o reino no lar.', citacao: '«O reino começa em casa.»' },
+    ],
+  },
+  {
+    livro: 'ex', capitulo: 31, versiculo: 18,
+    tema: 'Tábuas da Lei',
+    contexto: 'Escritas pelo dedo de Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Lei e graça', resumo: 'A Lei é santa, mas revela sem curar.', citacao: '«Lei dada para que pecado abundasse.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Lei e evangelho', resumo: 'Lei acusa, evangelho consola.', citacao: '«Lei é espelho — evangelho é remédio.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Três usos', resumo: 'Conter mal, revelar pecado, guiar justo.', citacao: '«Lei não abolida — cumprida em Cristo.»' },
+    ],
+  },
+  {
+    livro: 'lv', capitulo: 16, versiculo: 30,
+    tema: 'Expiação pelo sumo sacerdote',
+    contexto: 'Dia da expiação — entra no Santo dos Santos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Tipologia cristológica', resumo: 'Sumo sacerdote é tipo de Cristo.', citacao: '«Cristo entra no santuário com Seu sangue.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Substituição', resumo: 'Bode expiatório leva pecados — tipo de Cristo.', citacao: '«Bode é Cristo — remove nossos pecados.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Reino restaurado', resumo: 'A expiação restaura presença de Deus.', citacao: '«Expiação é restauração da presença.»' },
+    ],
+  },
+  {
+    livro: 'nm', capitulo: 6, versiculo: 24,
+    tema: 'Bênção aaronítica',
+    contexto: 'O Senhor te abençoe e te guarde.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Trindade', resumo: 'Três cláusulas aludem à Trindade.', citacao: '«Bênção trinitária — três, um Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça soberana', resumo: 'A bênção é graça — sem mérito.', citacao: '«Deus abençoa porque quer.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Pastoral', resumo: 'O pastor abençoa com autoridade espiritual.', citacao: '«Pastor com autoridade, abençoa com poder.»' },
+    ],
+  },
+  {
+    livro: 'dt', capitulo: 6, versiculo: 5,
+    tema: 'Amarás o Senhor de todo coração',
+    contexto: 'Mandamento supremo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor total', resumo: 'Amor sem divisão de lealdade.', citacao: '«Ama Deus e faz — se amor perfeito, tudo seguirá.»' },
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Amor beatífico', resumo: 'O amor a Deus é fim último.', citacao: '«Fim último é visão beatífica — ver Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Adoração', resumo: 'Adoração é dever supremo.', citacao: '«Adoração é dever — não apenas no templo.»' },
+    ],
+  },
+  {
+    livro: 'dt', capitulo: 18, versiculo: 15,
+    tema: 'Profeta como Moisés',
+    contexto: 'Deus levantará profeta como Moisés.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristologia', resumo: 'Cristo é profeta como Moisés — mas superior.', citacao: '«Profeta como Moisés — mas maior, Deus e homem.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Mediação', resumo: 'Cristo é mediador perfeito.', citacao: '«Mediador perfeito — Deus e homem se encontram.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Reino', resumo: 'Profeta lidera novo éxodo.', citacao: '«Jesus lidera novo éxodo.»' },
+    ],
+  },
+  {
+    livro: 'dt', capitulo: 30, versiculo: 19,
+    tema: 'Vida e morte',
+    contexto: 'Escolhe a vida para que vivas.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Liberdade', resumo: 'Deus respeita liberdade — escolha real.', citacao: '«Deus respeita liberdade — escolha real.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Graça', resumo: 'A escolha é pela graça — Deus habilita.', citacao: '«Escolha é pela graça — Deus habilita ao bem.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Soberania e responsabilidade coexistem.', citacao: '«Soberania e responsabilidade coexistem.»' },
+    ],
+  },
+  {
+    livro: '1sm', capitulo: 8, versiculo: 7,
+    tema: 'Rejeição da monarquia',
+    contexto: 'O povo pede rei — Deus interpreta como rejeição.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Soberania', resumo: 'Deus é verdadeiro rei.', citacao: '«Não é a ti que rejeitam — é a mim.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Dualidade', resumo: 'Deus usa escolhas erradas para propósitos.', citacao: '«Deus transforma rebeldias em instrumentos.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Reino', resumo: 'O pedido é idolatria política.', citacao: '«Queriam rei como nações — Deus deu segundo Seu coração.»' },
+    ],
+  },
+  {
+    livro: '2sm', capitulo: 7, versiculo: 16,
+    tema: 'Aliança davídica eterna',
+    contexto: 'Trono estabelecido para sempre.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristologia', resumo: 'Cumpre em Cristo — Rei eterno.', citacao: '«Casa de Davi para sempre — cumprido em Cristo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aliança', resumo: 'Aliança incondicional — Deus promete.', citacao: '«Deus não condiciona — garante pela fidelidade.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Reino', resumo: 'Aliança é fundamento do reino.', citacao: '«Aliança davídica é cerne da história.»' },
+    ],
+  },
+  {
+    livro: '2sm', capitulo: 12, versiculo: 13,
+    tema: 'O Senhor tirou teu pecado',
+    contexto: 'Natan absolve Davi.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Perdão', resumo: 'Deus tira o pecado — não ignora, remove.', citacao: '«Deus tira — remove, não ignora.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Absolvição', resumo: 'Quando Deus diz «tirou», é tirado.', citacao: '«Absolvição é real — Deus remove.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Perdão é graça — Davi não merecia.', citacao: '«Perdão é graça — Deus compadece.»' },
+    ],
+  },
+  {
+    livro: '1rs', capitulo: 3, versiculo: 12,
+    tema: 'Sabedoria de Salomão',
+    contexto: 'Deus concede sabedoria incomparável.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Sabedoria divina', resumo: 'Sabedoria é dom de Deus.', citacao: '«Sabedoria vem de Deus — dom, não conquista.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Vocação', resumo: 'Deus dá sabedoria para a vocação.', citacao: '«Deus capacita o que chama.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Sabedoria mais valuable que riqueza.', citacao: '«Salomão pediu sabedoria — Deus deu mais.»' },
+    ],
+  },
+  {
+    livro: '2rs', capitulo: 2, versiculo: 11,
+    tema: 'Ascensão de Elias',
+    contexto: 'Levado ao céu em carro de fogo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Tipologia', resumo: 'Elias é tipo de Cristo.', citacao: '«Tipo de Cristo — assunto ao céu.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Deus pode o que quiser.', citacao: '«Deus não é limitado — autor das leis.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Escatologia', resumo: 'Ascensão aponta para a de Cristo.', citacao: '«Prefigura ascensão de Cristo.»' },
+    ],
+  },
+  {
+    livro: '2rs', capitulo: 5, versiculo: 14,
+    tema: 'Purificação de Naamã',
+    contexto: 'Leproso sirio curado pela obediência.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fé na palavra', resumo: 'Cura pela obediência à palavra.', citacao: '«Naamã curado ao obedecer — fé é obediência.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Graça', resumo: 'Graça gratuita — Naamã não merecia.', citacao: '«Graça gratuita — não merecia, mas Deus curou.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Missão', resumo: 'Deus cura até inimigos.', citacao: '«Deus cura inimigos — graça sem fronteiras.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 27, versiculo: 4,
+    tema: 'Uma coisa peço ao Senhor',
+    contexto: 'Habitar na casa do Senhor.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Deseiro', resumo: 'Um desejo supremo — ver Deus.', citacao: '«Desejo supremo — ver Deus.»' },
+      { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Visão beatífico', resumo: 'O fim é contemplar a Deus.', citacao: '«Um desejo — ver Deus.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Prioridade', resumo: 'A fé é sobre prioridades.', citacao: '«Uma coisa — Deus primeiro.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 32, versiculo: 5,
+    tema: 'Confessei e Tu perdoaste',
+    contexto: 'Arrependimento traz perdão.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Confissão', resumo: 'Confessar é reconhecer a verdade.', citacao: '«Confessar é reconhecer — Deus perdoa.»' },
+      { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Perdão', resumo: 'O perdão é real e completo.', citacao: '«Perdoou — completely removido.»' },
+      { teologo: 'John Stott', periodo: '1921-2011', tradicao: 'Evangélica', visao: 'Libertação', resumo: 'O pecado pesa — o perdão liberta.', citacao: '«Pecado pesa — perdão livra o coração.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 51, versiculo: 7,
+    tema: 'Lava-me e ficarei mais branco',
+    contexto: 'Purificação divina — misericórdia soberana.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Misericórdia', resumo: 'Misericórdia superior a sacrifícios.', citacao: '«Misericórdia — Deus não deseja sacrifício.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'A graça transforma — lava, purifica.', citacao: '«Graça lava — faz branco.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Evangélica', visao: 'Humildade', resumo: 'Humildade é reconhecer a necessidade.', citacao: '«Humildade — saber que Deus lava.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 73, versiculo: 26,
+    tema: 'Meu coração e minha carne languidem',
+    contexto: 'Dúvida resolvida pela presença de Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Presença', resumo: 'A presença de Deus sustenta.', citacao: '«Deus é a porção — sem Ele, nada.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fé crida', resumo: 'A fé não é sentimento — é escolha.', citacao: '«Fé não é sentimento — é escolha.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Provação', resumo: 'O salmoist duvidou mas Deus provou.', citacao: '«Dúvida existe — mas Deus se revela.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 110, versiculo: 1,
+    tema: 'Senta-te à minha direita',
+    contexto: 'Salmo messiânico — messias sacerdote e rei.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristologia', resumo: 'Cristo é sumo sacerdote e rei.', citacao: '«Cristo sentado — obra acabada.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aliança', resumo: 'Aliança nova — eterna, por Cristo.', citacao: '«Aliança nova — por Jesus.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Ascensão', resumo: 'Aponta para ascensão e exaltação.', citacao: '«Ascensão — sentado à direita.»' },
+    ],
+  },
+  {
+    livro: 'ec', capitulo: 1, versiculo: 2,
+    tema: 'Vanidade de vaidades',
+    contexto: 'Tudo é vaidade sob o sol.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Limitação humana', resumo: 'O homem busca sem encontrar plenitude.', citacao: '«Vaidade — tudo é vaidade.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Necessidade de Deus', resumo: 'Sem Deus, tudo é vazio.', citacao: '«Sem Deus, tudo é vazio.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Realismo', resumo: 'O Eclesiastes é realista — não nega a realidade.', citacao: '«Realismo — Deus é resposta ao vazio.»' },
+    ],
+  },
+  {
+    livro: 'ec', capitulo: 3, versiculo: 11,
+    tema: 'Tudo fez formoso em seu tempo',
+    contexto: 'Deus põe eternidade no coração.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Eternidade', resumo: 'O desejo de eternidade é divino.', citacao: '«Deus pôs eternidade — desejo de eternidade.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Providência', resumo: 'Deus governa todos os tempos.', citacao: '«Deus governa — há tempo para tudo.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Evangélica', visao: 'Beleza', resumo: 'A criação é formosa — arte de Deus.', citacao: '«Tudo formoso — Deus é artista.»' },
+    ],
+  },
+  {
+    livro: 'is', capitulo: 6, versiculo: 8,
+    tema: 'Quem irá? Eis-me aqui',
+    contexto: 'Chamado de Isaías para a missão.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vocação', resumo: 'A vocação é divina — Deus prepara.', citacao: '«Quem enviará? — eu respondo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Missão', resumo: 'A missão é prioritária — Deus busca.', citacao: '«Deus busca — quem responde?»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prontidão', resumo: 'Resposta imediata à chamada.', citacao: '«Prontidão — eu estou aqui.»' },
+    ],
+  },
+  {
+    livro: 'is', capitulo: 55, versiculo: 11,
+    tema: 'Minha palavra não volta vazia',
+    contexto: 'A Palavra de Deus é eficaz.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Eficiência', resumo: 'A palavra de Deus produz.', citacao: '«Minha palavra produz — não volta vazia.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Deus governa pela palavra.', citacao: '«Deus governa — palavra eficaz.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Confiança', resumo: 'Deus cumpre o que promete.', citacao: '«Deus cumpre — não volta vazia.»' },
+    ],
+  },
+  {
+    livro: 'jr', capitulo: 1, versiculo: 5,
+    tema: 'Antes de te formar no ventre eu te conheci',
+    contexto: 'Vocação antecipada — Deus escolhe antes do nascimento.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Eleição', resumo: 'Deus escolhe antes do nascimento.', citacao: '«Antes de nascer — Deus já escolheu.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Vocação', resumo: 'Deus prepara antes de enviar.', citacao: '«Deus prepara — conhecendo desde o início.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Própria', resumo: 'A vocação é divina, não humana.»', citacao: 'A vocação é divina, não humana.»' },
+    ],
+  },
+  {
+    livro: 'ez', capitulo: 37, versiculo: 9,
+    tema: 'Vida aos ossos secos',
+    contexto: 'Visão do vale de ossos — ressurreição.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ressurreição', resumo: 'Ossos vivificados — tipo de ressurreição.', citacao: '«Ossos vivos — Deus restaura.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Restauração', resumo: 'Israel restaurado do exílio.', citacao: '«Exílio não é fim — Deus restaura.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Espírito', resumo: 'O Espírito dá vida aos mortos.', citacao: '«Espírito — vida aos ossos.»' },
+    ],
+  },
+  {
+    livro: 'ez', capitulo: 36, versiculo: 26,
+    tema: 'Coração de pedra, coração de carne',
+    contexto: 'Promessa de transformação interior.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Transformação', resumo: 'Deus substitui coração duro por mole.', citacao: '«Coração novo — Deus transforma.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Espírito', resumo: 'O Espírito é agente da mudança.', citacao: '«Espírito — agente da mudança.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Renovação', resumo: 'Renovação total — interior e exterior.»', citacao: 'Renovação total — interior e exterior.»' },
+    ],
+  },
+  {
+    livro: 'os', capitulo: 11, versiculo: 1,
+    tema: 'De Egipto chamei Meu filho',
+    contexto: 'Deus cuida como pai.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Paternidade divina', resumo: 'Deus é pai — cuida com ternura.', citacao: '«Israel é Meu filho — Deus é pai.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição', resumo: 'Deus escolhe e cuida.', citacao: '«Deus escolhe — cuida como pai.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Cristologia', resumo: 'Cristo é Filho — cumprido em Mateus.»', citacao: 'Cristo é Filho — cumprido em Mateus.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 3, versiculo: 2,
+    tema: 'Arrependei-vos — chegado o reino',
+    contexto: 'João prepara a vinda do Messias.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Conversão', resumo: 'O reino exige conversão.', citacao: '«Reino chegou — arrependam-se.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Urgência', resumo: 'O reino é urgente — não adie.', citacao: '«Reino urgente — arrependam-se.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Escatologia', resumo: 'O reino já é presente — mas ainda não perfeito.', citacao: '«Reino presente — mas não ainda pleno.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 4, versiculo: 17,
+    tema: 'Jesus prega o mesmo',
+    contexto: 'Reino dos céus está próximo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristologia', resumo: 'Jesus herda a mensagem de João.', citacao: '«Jesus herda — reino está próximo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Reino', resumo: 'O reino é real — não é apenas espiritual.', citacao: '«Reino é real — não apenas espiritual.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Missão', resumo: 'A missão é proclamar o reino.', citacao: '«Missão — proclamar o reino.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 5, versiculo: 14,
+    tema: 'Vós sois a luz do mundo',
+    contexto: 'A luz não pode ser escondida.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Testemunho', resumo: 'O crente é luz — não pode ser escondido.', citacao: '«Luz do mundo — não pode ser escondida.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Missão', resumo: 'A fé é para ser vista — não escondida.', citacao: '«Fé é para ser vista — não escondida.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'A fé é prática — não apenas crença.', citacao: '«Fé é prática — não apenas crença.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 5, versiculo: 44,
+    tema: 'Amai a vossos inimigos',
+    contexto: 'Amor radical — inimigos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor radical', resumo: 'Amai a vossos inimigos — sem exceção.', citacao: '«Amor radical — sem exceção.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Deus ama antes — nós devemos amar.', citacao: '«Deus amou — nós devemos amar.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Inclusão', resumo: 'O amor é inclusivo — não exclui.', citacao: '«Amor inclusivo — para todos.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 10, versiculo: 33,
+    tema: 'Negar diante dos homens',
+    contexto: 'A confissão pública é necessária.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Confissão', resumo: 'A fé é pública — não pode ser escondida.', citacao: '«Confissão pública — fé não escondida.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Testemunho', resumo: 'Testemunho é falar de Cristo abertamente.', citacao: '«Testemunho — falar abertamente.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Coragem', resumo: 'A fé exige coragem — negar é pecado.', citacao: '«Coragem — negar é pecado.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 16, versiculo: 18,
+    tema: 'Sobre esta pedra edificarei Minha Igreja',
+    contexto: 'Fundação da Igreja — promessa invencível.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Eclesiologia', resumo: 'A Igreja é de Cristo — não humana.', citacao: '«Minha Igreja — de Cristo, não humana.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Pedra', resumo: 'Cristo é a pedra angular — não Pedro.', citacao: '«Pedra é Cristo — não Pedro.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Promessa', resumo: 'A Igreja é invencível — portas do inferno não prevalecerão.»', citacao: 'A Igreja é invencível — portas do inferno não prevalecerão.»' },
+    ],
+  },
+  {
+    livro: 'mc', capitulo: 1, versiculo: 15,
+    tema: 'Crede no evangelho',
+    contexto: 'Jesus proclama: crede, o reino está próximo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fé', resumo: 'A fé é resposta ao evangelho.', citacao: '«Crede — fé é resposta.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Reino', resumo: 'O reino é real — não é ideia.', citacao: '«Reino é real — não apenas ideia.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Urgência', resumo: 'O reino é urgente — não adie.', citacao: '«Reino urgente — crede agora.»' },
+    ],
+  },
+  {
+    livro: 'mc', capitulo: 16, versiculo: 15,
+    tema: 'Ide por todo mundo',
+    contexto: 'Grande Comissão — proclamar o evangelho.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Missão', resumo: 'Evangelho para toda criatura.', citacao: '«Toda criatura — missão universal.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Proclamação', resumo: 'Proclamar — não apenas viver.', citacao: '«Proclamar — falar.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Universalidade', resumo: 'O evangelho é para todos — sem exceção.»', citacao: 'O evangelho é para todos — sem exceção.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 2, versiculo: 10,
+    tema: 'Boas novas de grande alegria',
+    contexto: 'Natal — nascimento do Salvador.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Natal', resumo: 'Jesus nasce — Salvador do mundo.', citacao: '«Natal — Salvador.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Joy', resumo: 'Alegria — não é apenas notícia, é salvação.', citacao: '«Alegria — salvação.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Inclusão', resumo: 'Para todos — não apenas para judeus.', citacao: '«Para todos — sem exceção.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 4, versiculo: 18,
+    tema: 'Espírito do Senhor é sobre mim',
+    contexto: 'Jesus na sinagoga — manifesto messiânico.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristologia', resumo: 'Jesus é o Ungido — Messias.', citacao: '«Espírito sobre mim — Messias.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Missão', resumo: 'Libertar cativos — misericórdia.', citacao: '«Libertar — missão messiânica.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Reino', resumo: 'Reino se inicia — libertação.', citacao: '«Reino se inicia — libertação.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 15, versiculo: 20,
+    tema: 'O pai corre ao encontro',
+    contexto: 'Parábola do filho pródigo — graça que acolhe.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Graça', resumo: 'Deus corre ao encontro — graça.', citacao: '«Pai corre — graça que acolhe.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Arrependimento', resumo: 'O filho arrependido é acolhido.', citacao: '«Arrependimento — acolhimento.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Perdão', resumo: 'O perdão é pleno — festa no céu.', citacao: '«Perdão pleno — festa.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 6, versiculo: 35,
+    tema: 'Eu sou o pão da vida',
+    contexto: 'Cristo é sustento — dá vida eterna.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristologia', resumo: 'Cristo é o pão — sustento divino.', citacao: '«Pão da vida — sustento.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fé', resumo: 'A fé se alimenta de Cristo.', citacao: '«Fé — alimenta-se de Cristo.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Vida eterna', resumo: 'A vida eterna é comer e beber de Cristo.»', citacao: 'A vida eterna é comer e beber de Cristo.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 8, versiculo: 32,
+    tema: 'Conhecereis a verdade, e a verdade vos libertará',
+    contexto: 'Liberdade pela verdade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Verdade', resumo: 'A verdade liberta — não escraviza.', citacao: '«Verdade liberta — não escraviza.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Liberdade', resumo: 'Liberdade vem do conhecimento de Deus.', citacao: '«Liberdade — conhecimento de Deus.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'A verdade é prática — não apenas teoria.', citacao: '«Verdade é prática — liberta.»' },
+    ],
+  },
+  {
+    livro: 'at', capitulo: 17, versiculo: 11,
+    tema: 'Bereanos — examinavam as Escrituras',
+    contexto: 'Estudo bíblico — fé baseada na Palavra.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Estudo', resumo: 'A fé se baseia no estudo da Palavra.', citacao: '«Bereanos — estudo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Escritura', resumo: 'A Escritura é autoridade — não tradição.', citacao: '«Escritura é autoridade — não tradição.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'A fé é estudo — não ignorância.»', citacao: 'A fé é estudo — não ignorância.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 1, versiculo: 16,
+    tema: 'Não me envergonho do evangelho',
+    contexto: 'Poder de Deus para salvação.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Evangelho', resumo: 'O evangelho é poder de Deus.', citacao: '«Evangelho — poder de Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Salvação', resumo: 'Salvação para todo o que crê.', citacao: '«Salvação — para todos que creem.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Testemunho', resumo: 'Não tenha vergonha — fale abertamente.»', citacao: 'Não tenha vergonha — fale abertamente.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 3, versiculo: 10,
+    tema: 'Não há justo nem sequer um',
+    contexto: 'Depravação universal — todos pecaram.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Depravação', resumo: 'Todos são pecadores — sem exceção.', citacao: '«Não há justo — todos pecaram.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Lei', resumo: 'A Lei revela o pecado — não cura.', citacao: '«Lei revela — não cura.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Necessidade', resumo: 'Todos precisam de salvação — sem exceção.»', citacao: 'Todos precisam de salvação — sem exceção.»' },
+    ],
+  },
+  {
+    livro: '1co', capitulo: 1, versiculo: 18,
+    tema: 'Loucura da cruz',
+    contexto: 'A cruz é loucura para os que perecem.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cruz', resumo: 'A cruz é loucura — mas é poder.', citacao: '«Cruz é loucura — mas é poder.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Paradoxo', resumo: 'O que parece fracasso é vitória.', citacao: '«Cruz parece fracasso — é vitória.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Fé', resumo: 'A fé abraça o paradoxo — cruz é salvação.»', citacao: 'A fé abraça o paradoxo — cruz é salvação.»' },
+    ],
+  },
+  {
+    livro: '1co', capitulo: 10, versiculo: 31,
+    tema: 'Gloriai a Deus em tudo',
+    contexto: 'Tudo para a glória de Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Glória', resumo: 'Tudo deve ser para a glória de Deus.', citacao: '«Tudo para glória — sem exceção.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Ética', resumo: 'A ética é para a glória — não para aplauso.', citacao: '«Ética para glória — não para aplauso.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'A fé é prática — não teoria.»', citacao: 'A fé é prática — não teoria.»' },
+    ],
+  },
+  {
+    livro: '1co', capitulo: 12, versiculo: 12,
+    tema: 'Um corpo com muitos membros',
+    contexto: 'Unidade na diversidade — a Igreja.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Unidade', resumo: 'A Igreja é um corpo — membros diferentes.', citacao: '«Um corpo — membros diversos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Diversidade', resumo: 'Diversidade de dons — mesmo corpo.', citacao: '«Diversidade — mesmo corpo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Cooper', resumo: 'Unidade não uniformidade — cooperação.»', citacao: 'Unidade não uniformidade — cooperação.»' },
+    ],
+  },
+  {
+    livro: '1co', capitulo: 15, versiculo: 55,
+    tema: 'Ó morte, onde está teu aguilhão',
+    contexto: 'Vitória sobre a morte — ressurreição.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ressurreição', resumo: 'A vitória sobre a morte é real.', citacao: '«Morte vencida — ressurreição.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Esperança', resumo: 'A esperança é real — não é ilusão.', citacao: '«Esperança — vitória.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Vida', resumo: 'A vida em Cristo vence a morte.»', citacao: 'A vida em Cristo vence a morte.»' },
+    ],
+  },
+  {
+    livro: '2co', capitulo: 4, versiculo: 6,
+    tema: 'Luz do conhecimento da glória de Deus',
+    contexto: 'Luz divina na escuridão.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Iluminação', resumo: 'Deus ilumina — revela Seu caráter.', citacao: '«Deus ilumina — Seu caráter.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Revelação', resumo: 'A revelação é divina — não humana.', citacao: '«Revelação — divina.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Vida', resumo: 'A vida em Cristo é luz — não trevas.»', citacao: 'A vida em Cristo é luz — não trevas.»' },
+    ],
+  },
+  {
+    livro: 'gl', capitulo: 3, versiculo: 13,
+    tema: 'Cristo nos resgat da maldição da Lei',
+    contexto: 'Cristo é maldição por nós.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Substituição', resumo: 'Cristo é maldição — por nós.', citacao: '«Cristo é maldição — por nós.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Redenção', resumo: 'Redenção pela fé — não pela Lei.', citacao: '«Redenção — fé, não Lei.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Liberdade', resumo: 'Liberdade da Lei — não para pecar, mas viver.»', citacao: 'Liberdade da Lei — não para pecar, mas viver.»' },
+    ],
+  },
+  {
+    livro: 'gl', capitulo: 5, versiculo: 1,
+    tema: 'Cristo nos libertou para liberdade',
+    contexto: 'Liberdade — não para licenciosidade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Liberdade', resumo: 'Liberdade em Cristo — não para pecar.', citacao: '«Libertou para liberdade — não para pecar.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Responsabilidade', resumo: 'A liberdade é responsabilidade — não licença.', citacao: '«Liberdade é responsabilidade — não licença.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Amor', resumo: 'O amor é cumprimento da Lei.', citacao: '«Amor — cumprimento da Lei.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 1, versiculo: 4,
+    tema: 'Ele nos escolheu antes da fundação do mundo',
+    contexto: 'Eleição divina — antes da criação.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Eleição', resumo: 'Deus escolhe antes — não por mérito.', citacao: '«Escolhidos antes — não por mérito.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'A graça é anterior — não é conquista.', citacao: '«Graça anterior — não conquista.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Propósito', resumo: 'Deus tem propósito — escolheu para santidade.»', citacao: 'Deus tem propósito — escolheu para santidade.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 2, versiculo: 10,
+    tema: 'Criados em boas obras',
+    contexto: 'A salvação produz obras — não é o oposto.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Obras', resumo: 'As obras são resultado — não causa.', citacao: '«Obras são resultado — não causa.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Propósito', resumo: 'Deus preparou obras — não para salvar, mas para viver.', citacao: '«Obras preparadas — para viver.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'A fé é prática — não apenas crença.»', citacao: 'A fé é prática — não apenas crença.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 4, versiculo: 11,
+    tema: 'Deu dons — apóstolos, profetas, evangelistas',
+    contexto: 'Dons para a edificação da Igreja.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Dons', resumo: 'Dons são dados — não conquistados.', citacao: '«Dons dados — para edificar.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Unidade', resumo: 'Dons são para unidade — não para divisão.', citacao: '«Dons — para unidade.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Dons são para servir — não para dominar.»', citacao: 'Dons são para servir — não para dominar.»' },
+    ],
+  },
+  {
+    livro: 'fp', capitulo: 2, versiculo: 5,
+    tema: 'Tendo a mesma mente de Cristo',
+    contexto: 'Cristo se esvaziou — não usou privilégio.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Kenosis', resumo: 'Cristo se esvaziou — humildade suprema.', citacao: '«Esvaziou — humildade suprema.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Serviço', resumo: 'Cristo veio servir — não ser servido.', citacao: '«Servir — não ser servido.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Exemplo', resumo: 'Cristo é exemplo — humildade radical.»', citacao: 'Cristo é exemplo — humildade radical.»' },
+    ],
+  },
+  {
+    livro: 'cl', capitulo: 1, versiculo: 16,
+    tema: 'Tudo foi criado por Ele e para Ele',
+    contexto: 'Cristo é criador e sustentador.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristologia', resumo: 'Cristo é criador — tudo por Ele.', citacao: '«Tudo criado — por Cristo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Cristo sustenta todas as coisas.', citacao: '«Cristo sustenta — todas as coisas.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Senhorio', resumo: 'Cristo é senhor de tudo — sem exceção.»', citacao: 'Cristo é senhor de tudo — sem exceção.»' },
+    ],
+  },
+  {
+    livro: 'cl', capitulo: 2, versiculo: 9,
+    tema: 'Toda a plenitude da divindade habita nele',
+    contexto: 'Cristo é plenamente Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Deus', resumo: 'Cristo é Deus — plenitude.', citacao: '«Plenitude — Cristo é Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Encarnação', resumo: 'Deus se faz homem — presença plena.', citacao: '«Deus se faz homem — presença plena.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Autoridade', resumo: 'Cristo tem autoridade — sem limite.»', citacao: 'Cristo tem autoridade — sem limite.»' },
+    ],
+  },
+  {
+    livro: '1ts', capitulo: 5, versiculo: 17,
+    tema: 'Orai sem cessar',
+    contexto: 'Oração constante — vida de oração.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Oração', resumo: 'A oração é constante — não apenas momentos.', citacao: '«Oração constante — sempre.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Vida', resumo: 'A vida é oração — não apenas palavras.', citacao: '«Vida é oração — sempre.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'A fé é prática — não teoria.»', citacao: 'A fé é prática — não teoria.»' },
+    ],
+  },
+  {
+    livro: '2ts', capitulo: 3, versiculo: 3,
+    tema: 'O Senhor é fiel',
+    contexto: 'Deus é fiel — protege dos maus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fidelidade', resumo: 'Deus é fiel — sempre.', citacao: '«Deus é fiel — sempre.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Proteção', resumo: 'Deus protege — não abandona.', citacao: '«Deus protege — não abandona.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Confiança', resumo: 'A fé confia — Deus é fiel.»', citacao: 'A fé confia — Deus é fiel.»' },
+    ],
+  },
+  {
+    livro: '1tm', capitulo: 6, versiculo: 10,
+    tema: 'A raiz de todos os males é o amor ao dinheiro',
+    contexto: 'Dinheiro é perigoso — não o dinheiro em si.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Avarice', resumo: 'O amor ao dinheiro é raiz — não o dinheiro.', citacao: '«Amor ao dinheiro — raiz do mal.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Desapego', resumo: 'Desapego é necessário — Deus é suficiente.', citacao: '«Desapego — Deus é suficiente.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'A fé é prática — não teoria.»', citacao: 'A fé é prática — não teoria.»' },
+    ],
+  },
+  {
+    livro: '2tm', capitulo: 2, versiculo: 15,
+    tema: 'Esforça-te por apresentar a Deus aprovado',
+    contexto: 'Estudo da Palavra — não esconder.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Estudo', resumo: 'Estudo é dever — não opcional.', citacao: '«Esforça-te — estudo é dever.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aprovação', resumo: 'Aprovação vem do estudo — não do conhecimento.', citacao: '«Aprovação — estudo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'A fé é estudo — não ignorância.»', citacao: 'A fé é estudo — não ignorância.»' },
+    ],
+  },
+  {
+    livro: 'tt', capitulo: 2, versiculo: 11,
+    tema: 'A graça de Deus se manifestou',
+    contexto: 'Graça que salva — não apenas ensina.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Graça', resumo: 'A graça é real — transforma.', citacao: '«Graça — transforma.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Salvação', resumo: 'Salvação é por graça — não por obras.', citacao: '«Salvação — graça, não obras.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'A graça se expressa em vida santa.»', citacao: 'A graça se expressa em vida santa.»' },
+    ],
+  },
+  {
+    livro: '1pe', capitulo: 1, versiculo: 3,
+    tema: 'Deus nos regenerou pela ressurreição',
+    contexto: 'Ressurreição — esperança viva.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ressurreição', resumo: 'A ressurreição é fonte de esperança.', citacao: '«Ressurreição — fonte de esperança.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Nova vida', resumo: 'Em Cristo, somos regenerados — nova vida.', citacao: '«Regenerados — nova vida.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Esperança', resumo: 'A esperança é viva — não é ilusão.»', citacao: 'A esperança é viva — não é ilusão.»' },
+    ],
+  },
+  {
+    livro: '1pe', capitulo: 4, versiculo: 10,
+    tema: 'Distribuí o dom de graça',
+    contexto: 'Dons são para servir — não para orgulho.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Dons', resumo: 'Dons são dados — não conquistados.', citacao: '«Dons dados — não conquistados.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Serviço', resumo: 'Dons são para servir — não para dominar.', citacao: '«Dons — servir, não dominar.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'A fé é prática — não teoria.»', citacao: 'A fé é prática — não teoria.»' },
+    ],
+  },
+  {
+    livro: '1jo', capitulo: 3, versiculo: 18,
+    tema: 'Não amemos de palavra, mas de obra',
+    contexto: 'Amor prático — não apenas palavras.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor', resumo: 'Amor é ação — não apenas palavra.', citacao: '«Amor é ação — não apenas palavra.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Prático', resumo: 'O amor se demonstra em ações.', citacao: '«Amor se demonstra — ações.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'A fé é prática — não teoria.»', citacao: 'A fé é prática — não teoria.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 5, versiculo: 9,
+    tema: 'Com teu sangue compraste gente de toda nação',
+    contexto: 'Salvação universal — todos os povos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Salvação', resumo: 'Salvação é para todos — sem exceção.', citacao: '«Salvação — todos os povos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Sacrifício', resumo: 'Cristo é o Cordeiro — sangue comprado.', citacao: '«Sangue comprado — todos os povos.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Missão', resumo: 'A missão é universal — até o fim.»', citacao: 'A missão é universal — até o fim.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 11, versiculo: 15,
+    tema: 'Os reinos do mundo são do Senhor',
+    contexto: 'Reino final — Deus reina.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Escatologia', resumo: 'O reino final é de Deus — não dos homens.', citacao: '«Reinos — do Senhor.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Vitória', resumo: 'Deus vence — final é certo.', citacao: '«Deus vence — final certo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Esperança', resumo: 'A esperança é certa — Deus reinará.»', citacao: 'A esperança é certa — Deus reinará.»' },
+    ],
+  },
+
+  {
+    livro: 'jó', capitulo: 19, versiculo: 25,
+    tema: 'Eu sei que o meu Redentor vive',
+    contexto: 'Esperança messiânica no sofrimento.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Redentor', resumo: 'Jó vê além da dor — o Redentor.', citacao: '«Redentor vive — esperança eterna.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Ressurreição', resumo: 'Esperança de ver Deus.', citacao: '«Eu o verei — esperança de ver.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Fé', resumo: 'Fé que transcende o sofrimento.', citacao: '«Fé que vai além da dor.»' },
+    ],
+  },
+  {
+    livro: 'jó', capitulo: 38, versiculo: 4,
+    tema: 'Onde estavas tu quando lancei os aços do mar?',
+    contexto: 'Deus revela Seu poder na criação.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Poder divino', resumo: 'Deus é infinitamente maior.', citacao: '«Deus é maior — não podemos compreender.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Criação', resumo: 'A criação testifica do Criador.', citacao: '«Criação — testemunho do poder.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Humildade', resumo: 'Humildade diante do mistério.', citacao: '«Humildade — diante do mistério.»' },
+    ],
+  },
+  {
+    livro: 'jó', capitulo: 42, versiculo: 2,
+    tema: 'Sei que Tu podes tudo',
+    contexto: 'Reconhecimento da onipotência divina.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Onipotência', resumo: 'Deus pode tudo — sem exceção.', citacao: '«Deus pode tudo — sem exceção.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Submissão', resumo: 'Submissão à vontade de Deus.', citacao: '«Submissão — reconhecer Sua vontade.»' },
+      { teologo: 'C.S. Lewis', periodo: '1898-1963', tradicao: 'Evangélica', visao: 'Restauração', resumo: 'Deus restaura — devolve o que foi tirado.»', citacao: 'Deus restaura — devolve o que foi tirado.»' },
+    ],
+  },
+  {
+    livro: 'jn', capitulo: 1, versiculo: 17,
+    tema: 'O grande peixe engoliu Jonas',
+    contexto: 'Juízo e misericórdia no mesmo ato.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Juízo', resumo: 'Deus disciplina — mas não destrói.', citacao: '«Peixe engoliu — juízo, mas não destruição.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Misericórdia', resumo: 'Misericórdia no meio do juízo.', citacao: '«Misericórdia — Deus não destrói.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Obediência', resumo: 'Desobediência leva a consequências.', citacao: '«Desobediência — consequências inevitáveis.»' },
+    ],
+  },
+  {
+    livro: 'jn', capitulo: 4, versiculo: 11,
+    tema: 'Porque eu sabia que Tu és clemente',
+    contexto: 'Jonas entende a misericórdia — por isso foge.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Misericórdia', resumo: 'Jonas foge porque sabe que Deus é misericordioso.', citacao: '«Foge porque sabe — misericórdia é certa.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Rebeldia', resumo: 'Rebeldia nasce da compreensão da graça.', citacao: '«Rebeldia — nasce de saber da graça.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Graça', resumo: 'A graça perturba quem quer juízo.»', citacao: 'A graça perturba quem quer juízo.»' },
+    ],
+  },
+  {
+    livro: 'mic', capitulo: 5, versiculo: 2,
+    tema: 'De ti sairá o governador',
+    contexto: 'Profecia messiânica — Belém.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristologia', resumo: 'Messias nasce em Belém.', citacao: '«De Belém — governador de Israel.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Humildade', resumo: 'Deus usa o pequeno — Belém.', citacao: '«Belém — pequena entre mil.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Promessa', resumo: 'Promessa cumprida em Jesus.»', citacao: 'Promessa cumprida em Jesus.»' },
+    ],
+  },
+  {
+    livro: 'mic', capitulo: 6, versiculo: 8,
+    tema: 'Ele te declarou, ó homem, o que é bom',
+    contexto: 'Resumo da vontade de Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Justiça', resumo: 'Justiça, misericórdia, humildade.', citacao: '«Justiça, misericórdia, andar humildemente.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Simplicidade', resumo: 'A vontade de Deus é simples.', citacao: '«Wants — simples, não complexa.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Fé é prática — não teoria.»', citacao: 'Fé é prática — não teoria.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 2, versiculo: 9,
+    tema: 'Deus tudo submeteu sob seus pés',
+    contexto: 'Cristo coroado de glória e honra.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Coroação', resumo: 'Cristo é coroado — senhor de tudo.', citacao: '«Coroado — senhor de todas as coisas.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Unidade', resumo: 'Cristo e humanidade — união.', citacao: '«Tudo submetido — Cristo e humanidade.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Senhorio', resumo: 'Cristo é senhor — tudo debaixo de seus pés.»', citacao: 'Cristo é senhor — tudo debaixo de seus pés.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 3, versiculo: 15,
+    tema: 'Se hoje ouvirdes a voz dEle',
+    contexto: 'Urgência de responder a Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Urgência', resumo: 'Hoje — não amanhã.', citacao: '«Hoje — se ouvirdes.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Hardened', resumo: 'Coração se endurece quando se adia.', citacao: '«Endurecimento — quando se adia.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Obediência', resumo: 'Obediência imediata — não adiamento.»', citacao: 'Obediência imediata — não adiamento.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 6, versiculo: 12,
+    tema: 'Não sejais tardios, mas imitadores',
+    contexto: 'Perseverança dos que herdam as promessas.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Perseverança', resumo: 'Perseverar até o fim — não desistir.', citacao: '«Perseverar — herdar as promessas.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Imitação', resumo: 'Imitar os que perseveraram.', citacao: '«Imitar — seguir exemplos de fé.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Fé', resumo: 'Fé é perseverança — não desistência.»', citacao: 'Fé é perseverança — não desistência.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 7, versiculo: 25,
+    tema: 'Sempre vive para interceder por nós',
+    contexto: 'Cristo é sumo sacerdote eterno.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Intercessão', resumo: 'Cristo intercede — sempre.', citacao: '«Intercessão eterna — sempre vivo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eternidade', resumo: 'Sacerdócio eterno — não passa.', citacao: '«Sacerdócio eterno — permanente.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Segurança', resumo: 'Podemos ter certeza — Ele intercede.»', citacao: 'Podemos ter certeza — Ele intercede.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 8, versiculo: 6,
+    tema: 'Ministração melhor',
+    contexto: 'Aliança nova — superior à antiga.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Aliança', resumo: 'Nova aliança — melhor que a antiga.', citacao: '«Nova aliança — melhor ministração.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Mediação', resumo: 'Cristo é mediador melhor.', citacao: '«Mediador melhor — promessas melhores.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Superioridade', resumo: 'Cristo é superior a Moisés.»', citacao: 'Cristo é superior a Moisés.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 9, versiculo: 27,
+    tema: 'Está ordenado aos homens morrerem uma só vez',
+    contexto: 'Morte e juízo — realidade escatológica.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Juízo', resumo: 'Após a morte — juízo.', citacao: '«Morta uma vez — depois juízo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Escatologia', resumo: 'A morte é certa — juízo é certo.', citacao: '«Morte certa — juízo certo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Preparação', resumo: 'Preparar-se para o encontro.»', citacao: 'Preparar-se para o encontro.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 10, versiculo: 24,
+    tema: 'Concidir uns aos outros em amor',
+    contexto: 'Comunhão e encorajamento mútuo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Comunhão', resumo: 'A fé é vivida em comunidade.', citacao: '«Concidir — encorajar no amor.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Amor', resumo: 'O amor é expresso em ação prática.', citacao: '«Amor — ação prática.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Fé é vivida em comunidade.»', citacao: 'Fé é vivida em comunidade.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 10, versiculo: 36,
+    tema: 'Precisais de perseverança',
+    contexto: 'Perseverança para receber a promessa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Perseverança', resumo: 'Perseverança é necessária — não opcional.', citacao: '«Perseverança — para receber a promessa.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Paciência', resumo: 'Paciência é fruto da fé.', citacao: '«Paciência — fruto da fé.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Recompensa', resumo: 'Recompensa vem depois da perseverança.»', citacao: 'Recompensa vem depois da perseverança.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 12, versiculo: 14,
+    tema: 'Segui a paz com todos',
+    contexto: 'Paz e santidade — caminho estreito.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Paz', resumo: 'Paz com todos — sem exceção.', citacao: '«Paz com todos — sem exceção.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Santidade', resumo: 'Sem santidade — ninguém verá o Senhor.', citacao: '«Santidade — sem ela, ninguém vê.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Disciplina', resumo: 'Disciplina é caminho — não maldição.»', citacao: 'Disciplina é caminho — não maldição.»' },
+    ],
+  },
+  {
+    livro: 'hb', capitulo: 13, versiculo: 8,
+    tema: 'Jesus Cristo é o mesmo ontem, hoje e sempre',
+    contexto: 'Imutabilidade de Cristo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Imutabilidade', resumo: 'Cristo não muda — ontem, hoje, sempre.', citacao: '«Cristo não muda — sempre o mesmo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Confiança', resumo: 'Podemos confiar — Ele é constante.', citacao: '«Confiança — Ele é constante.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Esperança', resumo: 'Esperança firme — Cristo é imutável.»', citacao: 'Esperança firme — Cristo é imutável.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 4, versiculo: 4,
+    tema: 'Aquietai-vos e peçai em vosso coração',
+    contexto: 'Meditação e oração.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Meditação', resumo: 'Meditação é caminho — não distração.', citacao: '«Meditação — caminho de oração.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Oração', resumo: 'Oração é diálogo — não monólogo.', citacao: '«Oração — diálogo com Deus.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Oração e meditação andam juntas.»', citacao: 'Oração e meditação andam juntas.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 8, versiculo: 4,
+    tema: 'O que é o homem para te acordares dele?',
+    contexto: 'Dignidade humana na criação.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Dignidade', resumo: 'O homem é coroa da criação.', citacao: '«O que é o homem? — coroa.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Criação', resumo: 'Deus se lembra do homem — interesse.', citacao: '«Deus se lembra — interesse pessoal.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Humildade', resumo: 'A humildade é reconhecer nossa pequenez.»', citacao: 'A humildade é reconhecer nossa pequenez.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 16, versiculo: 11,
+    tema: 'Mostrar-me-ás o caminho da vida',
+    contexto: 'Plenitude na presença de Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Presença', resumo: 'A presença é plenitude — alegria.', citacao: '«Presença — plenitude de alegria.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Vida', resumo: 'A vida verdadeira é em Deus.', citacao: '«Caminho da vida — em Deus.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Esperança', resumo: 'Deleitas eternas à direita de Deus.»', citacao: 'Deleitas eternas à direita de Deus.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 18, versiculo: 2,
+    tema: 'O Senhor é a minha rocha',
+    contexto: 'Deus é fortaleza — segurança total.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fortaleza', resumo: 'Deus é refúgio — segurança total.', citacao: '«Rocha — fortaleza inabalável.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Proteção', resumo: 'Deus protege — escudo e baluarte.', citacao: '«Escudo — proteção completa.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Louvor', resumo: 'Louvor nasce da experiência de salvação.»', citacao: 'Louvor nasce da experiência de salvação.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 19, versiculo: 7,
+    tema: 'A lei do Senhor é perfeita',
+    contexto: 'A Palavra é completa — não falta nada.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Perfeição', resumo: 'A Lei é perfeita — transforma.', citacao: '«Lei perfeita — converte a alma.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Autoridade', resumo: 'A Palavra tem autoridade — não é sugestão.', citacao: '«Palavra — autoridade suprema.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Fé', resumo: 'A fé se alimenta da Palavra.»', citacao: 'A fé se alimenta da Palavra.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 34, versiculo: 8,
+    tema: 'Provai e vede que o Senhor é bom',
+    contexto: 'Experiência da bondade divina.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Bondade', resumo: 'Deus é bom — experiência transforma.', citacao: '«Provai — Deus é bom.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Confiança', resumo: 'A fé se fortalece na experiência.', citacao: '«Experiência — fortalece a fé.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Fé é vivida — não apenas pensada.»', citacao: 'Fé é vivida — não apenas pensada.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 37, versiculo: 4,
+    tema: 'Deleita-te também no Senhor',
+    contexto: 'Alegria em Deus — não em circunstâncias.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Alegria', resumo: 'Alegria em Deus — não nas coisas.', citacao: '«Deleitar-se — alegria em Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Desejos', resumo: 'Deus satisfaz desejos — não o mundo.', citacao: '«Deus satisfaz — desejos do coração.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prioridade', resumo: 'Deus primeiro — tudo o mais se segue.»', citacao: 'Deus primeiro — tudo o mais se segue.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 40, versiculo: 8,
+    tema: ' Eis que venho',
+    contexto: 'Obediência plena — Cristo cumpre.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cristologia', resumo: 'Cristo diz «Eis que venho» — obediência.', citacao: '«Eis que venho — obediência plena.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Obediência', resumo: 'Obediência é prazer — não fardo.', citacao: '«Obediência — prazer, não fardo.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Missão', resumo: 'Cristo veio para cumprir a vontade do Pai.»', citacao: 'Cristo veio para cumprir a vontade do Pai.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 62, versiculo: 2,
+    tema: 'Apenas em Deus a minha alma descansa',
+    contexto: 'Descanso em Deus — não em coisas.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Descanso', resumo: 'Descanso é em Deus — não em segurança.', citacao: '«Descanso — apenas em Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Confiança', resumo: 'Confiança absoluta — sem reserva.', citacao: '«Apenas em Deus — confiança absoluta.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Fé é descansar — não correr.»', citacao: 'Fé é descansar — não correr.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 84, versiculo: 10,
+    tema: 'Um dia nas tuas áreas melhor que mil',
+    contexto: 'Valor da presença de Deus.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Presença', resumo: 'Um dia com Deus vale mais que mil.', citacao: '«Um dia — melhor que mil.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Prioridade', resumo: 'A presença é prioridade — não luxo.', citacao: '«Presença — prioridade.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Desejo', resumo: 'Desejar a presença de Deus — fome espiritual.»', citacao: 'Desejar a presença de Deus — fome espiritual.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 90, versiculo: 1,
+    tema: 'Senhor, tu tens sido o nosso refúgio',
+    contexto: 'Deus é refúgio de geração em geração.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Refúgio', resumo: 'Deus é refúgio — sempre.', citacao: '«Refúgio — de geração em geração.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eternidade', resumo: 'Deus é eterno — antes das montanhas.', citacao: '«Deus é eterno — antes de tudo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Perspectiva', resumo: 'Vida humana é passageira — Deus é eterno.»', citacao: 'Vida humana é passageira — Deus é eterno.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 95, versiculo: 7,
+    tema: 'Hoje, se ouvirdes a voz dEle',
+    contexto: 'Urgência de responder.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Urgência', resumo: 'Hoje — não adie.', citacao: '«Hoje — se ouvirdes.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Endurecimento', resumo: 'Coração se endurece com atraso.', citacao: '«Endurecimento — quando se adia.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Obediência', resumo: 'Obediência imediata — não postergação.»', citacao: 'Obediência imediata — não postergação.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 107, versiculo: 1,
+    tema: 'Louvai ao Senhor porque Ele é bom',
+    contexto: 'Louvor é resposta à bondade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Louvor', resumo: 'Louvor é resposta — não obrigação.', citacao: '«Louvai — porque Ele é bom.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Bondade', resumo: 'Bondade é eterna — não temporal.', citacao: '«Bondade eterna — sempre.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Gratidão', resumo: 'Gratidão é expressão de fé.»', citacao: 'Gratidão é expressão de fé.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 119, versiculo: 89,
+    tema: 'Para sempre, ó Senhor, está firme a tua palavra',
+    contexto: 'Palavra eterna — não passa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Eternidade', resumo: 'A Palavra é eterna — não passa.', citacao: '«Palavra firme — para sempre.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Constância', resumo: 'A Palavra é constante — não muda.', citacao: '«Palavra constante — sempre firme.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Confiança', resumo: 'A fé se baseia na Palavra eterna.»', citacao: 'A fé se baseia na Palavra eterna.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 121, versiculo: 1,
+    tema: 'Ergo os meus olhos para os montes',
+    contexto: 'Deus é nosso socorro — não os montes.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Socorro', resumo: 'Socorro vem do Senhor — não da criação.', citacao: '«Socorro — do Criador, não da criação.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Guarda', resumo: 'Deus guarda — não dorme.', citacao: '«Deus guarda — não dorme nem cochila.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Confiança', resumo: 'Confiança total — Deus cuida.»', citacao: 'Confiança total — Deus cuida.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 126, versiculo: 5,
+    tema: 'Os que semeiam em lágrimas colherão com júbilo',
+    contexto: 'Sofrimento frutifica.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Colheita', resumo: 'O que é plantado em lágrimas floresce.', citacao: '«Lágrimas — colheita de júbilo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Esperança', resumo: 'A esperança é certa — lágrimas viram alegria.', citacao: '«Lágrimas — viram júbilo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Ciclo', resumo: 'Sofrimento precede a glória.»', citacao: 'Sofrimento precede a glória.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 139, versiculo: 14,
+    tema: 'Eu te louvarei, porque de um modo assombroso fui feito',
+    contexto: 'Criação maravilhosa — dignidade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Criação', resumo: 'Cada pessoa é obra-prima de Deus.', citacao: '«Assombroso — criação divina.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Dignidade', resumo: 'Dignidade não depende de performance.', citacao: '«Dignidade — obra de Deus.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Louvor', resumo: 'Louvor nasce do reconhecimento.»', citacao: 'Louvor nasce do reconhecimento.»' },
+    ],
+  },
+  {
+    livro: 'sl', capitulo: 145, versiculo: 3,
+    tema: 'Grande é o Senhor e mui digno de louvor',
+    contexto: 'Grandeza de Deus — louvor.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Grandeza', resumo: 'Deus é grande — sem limites.', citacao: '«Grande — sem limites.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Louvor', resumo: 'Louvor é resposta à grandeza.', citacao: '«Louvor — resposta à grandeza.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Adoração', resumo: 'Adoração é reconhecer Sua grandeza.»', citacao: 'Adoração é reconhecer Sua grandeza.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 2, versiculo: 6,
+    tema: 'Porque o Senhor dá a sabedoria',
+    contexto: 'Sabedoria é dom divino.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Dom', resumo: 'Sabedoria vem de Deus — não do homem.', citacao: '«Deus dá — sabedoria é dom.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Graça divina capacita ao bom juízo.', citacao: '«Deus dá — graça para discernir.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Humildade', resumo: 'Reconhecer que sabedoria vem de Deus.»', citacao: 'Reconhecer que sabedoria vem de Deus.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 11, versiculo: 25,
+    tema: 'A alma bondosa será saciada',
+    contexto: 'Generosidade frutifica.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Generosidade', resumo: 'Generosidade é satisfeita — não empobrecida.', citacao: '«Alma bondosa — será saciada.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Retribuição', resumo: 'Deus recompensa generosidade.', citacao: '«Deus recompensa — generosidade.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Generosidade é prática — não teoria.»', citacao: 'Generosidade é prática — não teoria.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 15, versiculo: 1,
+    tema: 'A resposta branda desvia o furor',
+    contexto: 'Brandura vence a ira.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Brandura', resumo: 'Brandura é força — não fraqueza.', citacao: '«Resposta branda — desvia fúria.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Controle', resumo: 'Controle de reação — maturidade.', citacao: '«Brandura — controle do temperamento.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Respostas brandas — prática diária.»', citacao: 'Respostas brandas — prática diária.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 17, versiculo: 17,
+    tema: 'Em todo tempo ama o amigo',
+    contexto: 'Amizade é constante — não oportunista.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Constância', resumo: 'Amor verdadeiro é constante.', citacao: '«Amizade — todo tempo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Lealdade', resumo: 'Lealdade em provação — não só na prosperidade.', citacao: '«Lealdade — na provação.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Comunhão', resumo: 'Amizade é comunhão — não transação.»', citacao: 'Amizade é comunhão — não transação.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 18, versiculo: 10,
+    tema: 'O nome do Senhor é uma torre forte',
+    contexto: 'Deus é fortaleza — segurança no nome.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Nome', resumo: 'O nome de Deus é refugio seguro.', citacao: '«Nome — torre forte.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Proteção', resumo: 'O justo corre e está seguro.', citacao: '«Justo — corre e está seguro.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Confiança', resumo: 'Confiança no nome — não em forças.»', citacao: 'Confiança no nome — não em forças.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 19, versiculo: 21,
+    tema: 'Muitos pensamentos no coração do homem, mas só o conselho do Senhor se efetiva',
+    contexto: 'Soberania nos planos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Soberania', resumo: 'Planos humanos — mas Deus decide.', citacao: '«Muitos planos — Deus executa.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Humildade', resumo: 'Planejar com humildade — não arrogância.', citacao: '«Planejar — mas submeter a Deus.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Planos submetidos à vontade divina.»', citacao: 'Planos submetidos à vontade divina.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 20, versiculo: 27,
+    tema: 'O espírito do homem é a candelabro do Senhor',
+    contexto: 'Espírito ilumina — Deus vê.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Espírito', resumo: 'O espírito é lâmpada — Deus vê tudo.', citacao: '«Espírito — candelabro de Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Transparência', resumo: 'Deus vê o interior — não podemos esconder.', citacao: '«Deus vê — transparência total.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Intimidade', resumo: 'Intimidade com Deus — viver diante Dele.»', citacao: 'Intimidade com Deus — viver diante Dele.»' },
+    ],
+  },
+  {
+    livro: 'pv', capitulo: 21, versiculo: 31,
+    tema: 'O cavalo se acautela para o dia da batalha, mas o Senhor dá a vitória',
+    contexto: 'Vitória vem do Senhor.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vitória', resumo: 'Preparação humana — vitória divina.', citacao: '«Cavalo se prepara — Deus dá vitória.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Dependência', resumo: 'Dependência de Deus — não de estratégia.', citacao: '«Dependência — vitória é do Senhor.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Preparar-se — mas confiar em Deus.»', citacao: 'Preparar-se — mas confiar em Deus.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 1, versiculo: 27,
+    tema: 'Criou Deus o homem à sua imagem',
+    contexto: 'Imago Dei — dignidade humana.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Imagem', resumo: 'O homem carrega a imagem de Deus.', citacao: '«Imagem de Deus — dignidade suprema.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Dignidade', resumo: 'Dignidade não é conquista — é dádiva.', citacao: '«Dignidade — dádiva divina.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Relacional', resumo: 'Imagem é relacional — Deus comunica.', citacao: '«Imagem — relacionamento.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 2, versiculo: 18,
+    tema: 'Não é bom que o homem esteja só',
+    contexto: 'Comunhão — Deus estabelece companhia.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Companhia', resumo: 'Solidão não é boa — Deus prove companhia.', citacao: '«Não é bom — Deus provê.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Relação', resumo: 'A relação é necessária — não opcional.', citacao: '«Relação — necessidade humana.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Complementar', resumo: 'A mulher complementa — igualdade.»', citacao: 'A mulher complementa — igualdade.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 6, versiculo: 8,
+    tema: 'Noé achou graça aos olhos do Senhor',
+    contexto: 'Graça antes do juízo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Graça', resumo: 'Graça precede juízo — Noé achou graça.', citacao: '«Achou graça — antes do dilúvio.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição', resumo: 'Deus escolheu um — para salvar.', citacao: '«Deus escolhe — para preservar.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Fé', resumo: 'Fé de Noé — obedeceu sem ver.»', citacao: 'Fé de Noé — obedeceu sem ver.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 9, versiculo: 13,
+    tema: 'Pus o arco-íris no céu',
+    contexto: 'Aliança visual — sinal da promessa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Aliança', resumo: 'Arco-íris é sinal — Deus não destruirá.', citacao: '«Arco-íris — sinal de aliança.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Memória', resumo: 'Arco-íris é lembrete — Deus cumpre.', citacao: '«Lembrete — Deus cumpre.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Beleza', resumo: 'Aliança é bela — não apenas séria.»', citacao: 'Aliança é bela — não apenas séria.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 17, versiculo: 7,
+    tema: 'E estabelecerei a minha aliança entre mim e ti',
+    contexto: 'Aliança abraômica — eterna.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Aliança', resumo: 'Aliança é de Deus — não depende de nós.', citacao: '«Aliança — Deus estabelece.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eternidade', resumo: 'Aliança é eterna — não temporal.', citacao: '«Eterna — não termina.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Promessa', resumo: 'Promessa cumprida em Cristo.»', citacao: 'Promessa cumprida em Cristo.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 25, versiculo: 34,
+    tema: 'Vendeu o direito de primogenitura',
+    contexto: 'Esau despreza o sagrado.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Desprezo', resumo: 'Desprezar o sagrado tem consequências.', citacao: '«Vendeu — desprezou o sagrado.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Prioridade', resumo: 'Prioridades erradas levam a perdas.', citacao: '«Prioridade — Esau errou.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Aviso', resumo: 'Aviso sobre consequências de escolhas.»', citacao: 'Aviso sobre consequências de escolhas.»' },
+    ],
+  },
+  {
+    livro: 'gn', capitulo: 32, versiculo: 28,
+    tema: 'Não te chamarás mais Jacó, mas Israel',
+    contexto: 'Transformação — de enganador a príncipe.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Transformação', resumo: 'Deus transforma identidade.', citacao: '«Israel — príncipe com Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Nome', resumo: 'Nome é identidade — Deus renomeia.', citacao: '«Nome novo — nova identidade.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Graça', resumo: 'Graça transforma — não ignora o passado.»', citacao: 'Graça transforma — não ignora o passado.»' },
+    ],
+  },
+  {
+    livro: 'ex', capitulo: 3, versiculo: 8,
+    tema: 'Desci para livrá-los da mão dos egípcios',
+    contexto: 'Deus vê e age — misericórdia ativa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Misericórdia', resumo: 'Deus vê o sofrimento — e age.', citacao: '«Deus vê — livra.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Libertação', resumo: 'Libertação é promessa — Deus cumpre.', citacao: '«Deus livra — sempre.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'História', resumo: 'Deus age na história — não é distante.»', citacao: 'Deus age na história — não é distante.»' },
+    ],
+  },
+  {
+    livro: 'ex', capitulo: 15, versiculo: 2,
+    tema: 'O Senhor é a minha força e o meu cântico',
+    contexto: 'Louvor após o livramento.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Louvor', resumo: 'Louvor nasce da experiência de salvação.', citacao: '«Cântico — louvor pós-livramento.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Vitória', resumo: 'Vitória é do Senhor — não do homem.', citacao: '«Vitória — do Senhor.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Alegria', resumo: 'Alegria na libertação — louvor espontâneo.»', citacao: 'Alegria na libertação — louvor espontâneo.»' },
+    ],
+  },
+  {
+    livro: 'ex', capitulo: 19, versiculo: 5,
+    tema: 'Sereis para mim um reino de sacerdotes',
+    contexto: 'Povo sacerdotal — identidade de Israel.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Sacerdócio', resumo: 'Israel é povo sacerdotal — todos são sacerdotes.', citacao: '«Reino de sacerdotes — identidade.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aliança', resumo: 'Aliança é identidade — não apenas regras.', citacao: '«Aliança — identidade.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Missão', resumo: 'Israel é luz — para as nações.»', citacao: 'Israel é luz — para as nações.»' },
+    ],
+  },
+  {
+    livro: 'ex', capitulo: 33, versiculo: 14,
+    tema: 'A minha presença irá contigo',
+    contexto: 'Promessa de presença — o mais importante.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Presença', resumo: 'Presença é a maior promessa.', citacao: '«Minha presença — maior promessa.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Companhia', resumo: 'Deus caminha conosco — não nos abandona.', citacao: '«Presença — companhia divina.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Confiança', resumo: 'Podemos ir — Deus vai conosco.»', citacao: 'Podemos ir — Deus vai conosco.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 5, versiculo: 16,
+    tema: 'Assim brilhe a luz diante dos homens',
+    contexto: 'Testemunho visível — boas obras.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Testemunho', resumo: 'Luz é visível — boas obras.', citacao: '«Brilhar — boas obras visíveis.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Glorificação', resumo: 'Boas obras glorificam a Deus.', citacao: '«Glorificam — Pai nos céus.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Fé é visível — não escondida.»', citacao: 'Fé é visível — não escondida.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 5, versiculo: 48,
+    tema: 'Sede perfeitos como o vosso Pai celestial é perfeito',
+    contexto: 'Perfeição divina como modelo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Perfeição', resumo: 'Perfeição é meta — não desculpa.', citacao: '«Perfeitos — como o Pai.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Santidade', resumo: 'Santidade é meta — não perfeccionismo.', citacao: '«Santidade — caminho.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Modelo', resumo: 'Deus é modelo — não utopia.»', citacao: 'Deus é modelo — não utopia.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 7, versiculo: 7,
+    tema: 'Pedi e vos será dado',
+    contexto: 'Oração é promessa — não esforço vazio.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Oração', resumo: 'Oração é promessa — Deus ouve.', citacao: '«Pedireis — e será dado.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Confiança', resumo: 'Confiança na resposta — não duvida.', citacao: '«Confiança — Deus responde.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Oração é prática — não teoria.»', citacao: 'Oração é prática — não teoria.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 10, versiculo: 42,
+    tema: 'Quem der de beber um copo de água fria',
+    contexto: 'Pequenos atos têm valor eterno.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Serviço', resumo: 'Pequenos atos — valor eterno.', citacao: '«Copo de água — recompensa eterna.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Amor', resumo: 'Amor se demonstra em detalhes.', citacao: '«Amor — nos detalhes.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Serviço é prática — não palavras.»', citacao: 'Serviço é prática — não palavras.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 13, versiculo: 44,
+    tema: 'O reino dos céus é como um tesouro escondido',
+    contexto: 'Valor do reino — tudo pela sua causa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Valor', resumo: 'O reino vale mais que tudo.', citacao: '«Tesouro — vende tudo por ele.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Dedicação', resumo: 'Dedicação total — não parcial.', citacao: '«Dedicação — tudo pelo reino.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Alegria', resumo: 'Alegria ao encontrar o reino.»', citacao: 'Alegria ao encontrar o reino.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 18, versiculo: 3,
+    tema: 'Se não vos converterdes e vos fizerdes como as crianças',
+    contexto: 'Humildade como modelo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Humildade', resumo: 'Criança é modelo — humildade.', citacao: '«Converter — como crianças.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Simplicidade', resumo: 'Fé simples — não complexa.', citacao: '«Simplicidade — fé de criança.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Modelo', resumo: 'Criança é modelo — não obstáculo.»', citacao: 'Criança é modelo — não obstáculo.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 20, versiculo: 28,
+    tema: 'O Filho do Homem veio para servir',
+    contexto: 'Cristo veio servir — não ser servido.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Serviço', resumo: 'Cristo veio servir — paradigma.', citacao: '«Servir — não ser servido.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Resgate', resumo: 'Serviço é resgate — dar vida.', citacao: '«Resgate — dar vida por muitos.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Exemplo', resumo: 'Cristo é exemplo — servir sempre.»', citacao: 'Cristo é exemplo — servir sempre.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 24, versiculo: 13,
+    tema: 'Quem perseverar até o fim será salvo',
+    contexto: 'Perseverança é necessária.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Perseverança', resumo: 'Perseverar até o fim — sem desistir.', citacao: '«Até o fim — perseverar.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fé', resumo: 'Fé verdadeira persevera — não desiste.', citacao: '«Fé — persevera.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Promessa', resumo: 'Salvação é para quem persevera.»', citacao: 'Salvação é para quem persevera.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 25, versiculo: 21,
+    tema: 'Bom servo e fiel',
+    contexto: 'Fé aplicada — fidelidade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fidelidade', resumo: 'Ser fiel no pouco — Deus confia mais.', citacao: '«Bom servo — fiel no pouco.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Responsabilidade', resumo: 'Responsabilidade é proporcional à graça.', citacao: '«Responsabilidade — fiel no pouco.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Recompensa', resumo: 'Recompensa vem da fidelidade.»', citacao: 'Recompensa vem da fidelidade.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 26, versiculo: 41,
+    tema: 'Vigiai e orai para que não entreis em tentação',
+    contexto: 'Alerta espiritual — oração.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vigilância', resumo: 'Vigilância é necessária — tentação é real.', citacao: '«Vigiai — orai.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Tentação', resumo: 'Tentação é real — não subestimar.', citacao: '«Tentação — real, não ignorar.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Oração é armada contra tentação.»', citacao: 'Oração é armada contra tentação.»' },
+    ],
+  },
+  {
+    livro: 'mt', capitulo: 28, versiculo: 20,
+    tema: 'E eis que estou convosco todos os dias',
+    contexto: 'Promessa de presença — até a consumação.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Presença', resumo: 'Presença é promessa — até o fim.', citacao: '«Convosco — todos os dias.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Companhia', resumo: 'Deus caminha — não abandona.', citacao: '«Convosco — sempre.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Segurança', resumo: 'Segurança total — Deus está conosco.»', citacao: 'Segurança total — Deus está conosco.»' },
+    ],
+  },
+  {
+    livro: 'mc', capitulo: 1, versiculo: 17,
+    tema: 'Vinde depois de mim',
+    contexto: 'Chamada à discipulado — seguir.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Chamada', resumo: 'Chamada é pessoal — seguir.', citacao: '«Vinde — seguir.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Discipulado', resumo: 'Discipulado é seguir — não apenas crer.', citacao: '«Seguir — discipulado.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Imitação', resumo: 'Imitar Cristo — viver como Ele.»', citacao: 'Imitar Cristo — viver como Ele.»' },
+    ],
+  },
+  {
+    livro: 'mc', capitulo: 9, versiculo: 24,
+    tema: 'Crede; ajuda-me na minha incredulidade',
+    contexto: 'Fé que admite dúvidas — honestidade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Honestidade', resumo: 'Fé honesta — admitir dúvidas.', citacao: '«Crede — ajuda-me.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Dúvida', resumo: 'Dúvida não é pecado — é oportunidade.', citacao: '«Dúvida — honestidade.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Oração', resumo: 'Oração sincera — Deus responde.»', citacao: 'Oração sincera — Deus responde.»' },
+    ],
+  },
+  {
+    livro: 'mc', capitulo: 10, versiculo: 14,
+    tema: 'Deixai vir a mim as criancinhas',
+    contexto: 'Deus acolhe os humildes.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Acolhimento', resumo: 'Deus acolhe — não rejeita.', citacao: '«Deixai vir — acolhimento.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Humildade', resumo: 'Humildade é condição — não obstáculo.', citacao: '«Humildade — condição.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Abertura', resumo: 'Abertura para os pequenos.»', citacao: 'Abertura para os pequenos.»' },
+    ],
+  },
+  {
+    livro: 'mc', capitulo: 12, versiculo: 30,
+    tema: 'Amarás o Senhor teu Deus de todo o teu coração',
+    contexto: 'Amor total — mandamento supremo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor', resumo: 'Amor total — sem reserva.', citacao: '«Todo o coração — sem reserva.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Prioridade', resumo: 'Amor a Deus primeiro — sempre.', citacao: '«Prioridade — Deus primeiro.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Amor é prática — não sentimento.»', citacao: 'Amor é prática — não sentimento.»' },
+    ],
+  },
+  {
+    livro: 'mc', capitulo: 14, versiculo: 38,
+    tema: 'Vigiai e orai para que não entreis em tentação',
+    contexto: 'Alerta e oração — guerra espiritual.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vigilância', resumo: 'Vigilância é necessária — sempre.', citacao: '«Vigiai — orai.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Tentação', resumo: 'Tentação é real — não subestimar.', citacao: '«Tentação — real, combater.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Oração é armada — usar.»', citacao: 'Oração é armada — usar.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 1, versiculo: 46,
+    tema: 'A minha alma engrandece ao Senhor',
+    contexto: 'Magnificat — louvor de Maria.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Louvor', resumo: 'Louvor nasce da experiência de graça.', citacao: '«Alma engrandece — louvor.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Humildade', resumo: 'Deus olha para os humildes.', citacao: '«Olha para a humildade — ergue os baixos.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Revolução', resumo: 'Deus inverte valores — reino ao contrário.»', citacao: 'Deus inverte valores — reino ao contrário.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 2, versiculo: 19,
+    tema: 'Maria guardava todas essas coisas, meditando nelas',
+    contexto: 'Meditação — guardando no coração.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Meditação', resumo: 'Meditação é guardar — não apenas ler.', citacao: '«Meditava — guardava no coração.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Recepção', resumo: 'Receber a Palavra — não apenas ouvir.', citacao: '«Guardava — recebia profundamente.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Fé', resumo: 'Fé é meditação — não superficialidade.»', citacao: 'Fé é meditação — não superficialidade.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 6, versiculo: 27,
+    tema: 'Amai a vossos inimigos, fazei bem aos que vos odeiam',
+    contexto: 'Amor radical — inimigos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor radical', resumo: 'Amar inimigos — sem exceção.', citacao: '«Amai — inimigos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Graça vai além — ama quem odeia.', citacao: '«Graça — ama quem odeia.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Difficuldade', resumo: 'O mais difícil — mas necessário.»', citacao: 'O mais difícil — mas necessário.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 9, versiculo: 23,
+    tema: 'Se alguém quer vir após mim, negue-se a si mesmo',
+    contexto: 'Cruz diária — discipulado.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Negação', resumo: 'Negar a si mesmo — todos os dias.', citacao: '«Negue — diariamente.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Cruz', resumo: 'Cruz é vida — não momento.', citacao: '«Cruz — vida, não evento.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Seguimento', resumo: 'Seguir Cristo é caminho diário.»', citacao: 'Seguir Cristo é caminho diário.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 11, versiculo: 9,
+    tema: 'Pedi e vos será dado; buscai e achareis',
+    contexto: 'Oração é promessa — buscar.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Oração', resumo: 'Oração é busca ativa.', citacao: '«Pedir — buscar — bater.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Perseverança', resumo: 'Perseverar na oração — não desistir.', citacao: '«Perseverança — orar sempre.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Confiança', resumo: 'Deus responde — confiança certa.»', citacao: 'Deus responde — confiança certa.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 12, versiculo: 34,
+    tema: 'Onde estiver o teu tesouro, aí estará também o teu coração',
+    contexto: 'Prioridades reveladas por tesouro.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Tesouro', resumo: 'Onde está o tesouro — ali o coração.', citacao: '«Tesouro — revela prioridades.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Prioridade', resumo: 'Prioridade é revelada — não declarada.', citacao: '«Revelada — não declarada.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Transparência', resumo: 'Deus vê o coração — não apenas obras.»', citacao: 'Deus vê o coração — não apenas obras.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 15, versiculo: 7,
+    tema: 'Haverá mais alegria no céu por um pecador que se arrepende',
+    contexto: 'Arrependimento é celebrado no céu.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Arrependimento', resumo: 'Arrependimento é celebrado — não apenas perdoado.', citacao: '«Mais alegria — arrependimento.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Celebração', resumo: 'O céu celebra conversões.', citacao: '«Céu celebra — arrependimento.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Valor', resumo: 'Cada pessoa tem valor eterno.»', citacao: 'Cada pessoa tem valor eterno.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 16, versiculo: 10,
+    tema: 'Quem é fiel no pouco é fiel também no muito',
+    contexto: 'Fidelidade é proporcional.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fidelidade', resumo: 'Fidelidade no pouco — confiança no muito.', citacao: '«Fiel no pouco — fiel no muito.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Responsabilidade', resumo: 'Responsabilidade é gradual.', citacao: '«Pouco — muito.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Integralidade', resumo: 'Fé é uma — não dividida.»', citacao: 'Fé é uma — não dividida.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 18, versiculo: 1,
+    tema: 'Deve-se orar sempre e não desistir',
+    contexto: 'Perseverança na oração.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Oração', resumo: 'Orar sempre — não desistir.', citacao: '«Sempre — não desistir.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Perseverança', resumo: 'Perseverança é essencial.', citacao: '«Perseverança — orar sem desistir.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Promessa', resumo: 'Deus ouve — mesmo quando parece não.»', citacao: 'Deus ouve — mesmo quando parece não.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 19, versiculo: 10,
+    tema: 'O Filho do Homem veio buscar e salvar o que estava perdido',
+    contexto: 'Missão de Jesus — busca e salvação.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Missão', resumo: 'Jesus veio buscar — não esperar.', citacao: '«Veio buscar — não esperar.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Salvação', resumo: 'Salvação é buscar — não apenas oferecer.', citacao: '«Buscar — salvar — missão.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prioridade', resumo: 'O perdido é prioridade de Deus.»', citacao: 'O perdido é prioridade de Deus.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 22, versiculo: 42,
+    tema: 'Se possível, afasta de mim este cálice — mas não a minha vontade',
+    contexto: 'Agonia no Getsêmani — submissão.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Submissão', resumo: 'Submissão total — não a minha.', citacao: '«Não a minha — mas a tua.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Oração', resumo: 'Oração honesta — admitir dor.', citacao: '«Cálice — honestidade na dor.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Exemplo', resumo: 'Cristo é exemplo — submissão total.»', citacao: 'Cristo é exemplo — submissão total.»' },
+    ],
+  },
+  {
+    livro: 'lc', capitulo: 24, versiculo: 32,
+    tema: 'Não ardia o nosso coração?',
+    contexto: 'Pós-ressurreição — corações ardentos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Experiência', resumo: 'Fé é experiência — não apenas doutrina.', citacao: '«Ardeu — experiência.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Reconhecimento', resumo: 'Reconhecer Cristo na Palavra.', citacao: '«Reconhecer — na Palavra.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Transformação', resumo: 'Fé transforma — corações ardem.»', citacao: 'Fé transforma — corações ardem.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 1, versiculo: 47,
+    tema: 'Eis um verdadeiro israelita',
+    contexto: 'Transparência — Deus vê o coração.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Transparência', resumo: 'Deus vê — não podemos esconder.', citacao: '«Verdadeiro — Deus vê.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição', resumo: 'Deus escolhe — conhecendo.', citacao: '«Deus escolhe — desde o início.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Honestidade', resumo: 'Fé é honestidade — não máscara.»', citacao: 'Fé é honestidade — não máscara.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 3, versiculo: 30,
+    tema: 'É necessário que Ele cresça, mas que eu diminua',
+    contexto: 'Cristo aumenta, homem diminui.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Humildade', resumo: 'Cristo cresce — eu diminuo.', citacao: '«Cresça — diminua.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Prioridade', resumo: 'Cristo é prioridade — não eu.', citacao: '«Cristo primeiro — eu depois.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Decaimento', resumo: 'O batista é exemplo — apontar para Cristo.»', citacao: 'O batista é exemplo — apontar para Cristo.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 4, versiculo: 14,
+    tema: 'Quem beber da água que eu lhe der não terá sede',
+    contexto: 'Satisfação em Cristo — não no mundo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Satisfação', resumo: 'Cristo satisfaz — o mundo não.', citacao: '«Água viva — sede eterna.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Vida', resumo: 'Vida eterna começa agora — não só no céu.', citacao: '«Água — vida eterna agora.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Oferta', resumo: 'Deus oferece — não força.»', citacao: 'Deus oferece — não força.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 5, versiculo: 24,
+    tema: 'Quem ouve a minha palavra e crê no que me enviou tem a vida eterna',
+    contexto: 'Fé traz vida eterna.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fé', resumo: 'Ouvi + Crer = Vida eterna.', citacao: '«Ouvir — crer — vida.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eternidade', resumo: 'Vida eterna começa agora — não depois.', citacao: '«Agora — vida eterna.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Presente', resumo: 'Salvação é presente — não apenas futuro.»', citacao: 'Salvação é presente — não apenas futuro.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 7, versiculo: 38,
+    tema: 'De seu ventre correrão rios de água viva',
+    contexto: 'Espírito derrama vida.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Espírito', resumo: 'Espírito é fonte — rios de vida.', citacao: '«Rios — vida abundante.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Interior', resumo: 'A fonte é interior — não externa.', citacao: '«Interior — não externo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Abundância', resumo: 'Vida abundante — não escassa.»', citacao: 'Vida abundante — não escassa.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 9, versiculo: 25,
+    tema: 'Uma coisa eu sei: que era cego e agora vejo',
+    contexto: 'Transformação é real — experiência.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Transformação', resumo: 'Transformação é real — não é ilusão.', citacao: '«Cego — agora vejo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Experiência', resumo: 'Experiência é testemunho — não teoria.', citacao: '«Experiência — testemunho.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Simplicidade', resumo: 'Fé é simples — não precisa de explicações complexas.»', citacao: 'Fé é simples — não precisa de explicações complexas.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 12, versiculo: 32,
+    tema: 'Se eu for levantado da terra, atrarei todos a mim',
+    contexto: 'Atração da cruz — universal.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cruz', resumo: 'Cruz atrai — não repele.', citacao: '«Levantado — atraio todos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Missão', resumo: 'Missão é universal — todos os povos.', citacao: '«Todos — universal.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Universalidade', resumo: 'Cristo é para todos — sem exceção.»', citacao: 'Cristo é para todos — sem exceção.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 13, versiculo: 34,
+    tema: 'Um novo mandamento vos dou: que vos ameis uns aos outros',
+    contexto: 'Amor fraternal — novo mandamento.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor', resumo: 'Novo mandamento — amor fraterno.', citacao: '«Amai-vos — novo mandamento.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Comunidade', resumo: 'Amor é comunitário — não individual.', citacao: '«Uns aos outros — comunitário.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Testemunho', resumo: 'Amor é testemunho — ao mundo.»', citacao: 'Amor é testemunho — ao mundo.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 15, versiculo: 11,
+    tema: 'Estas coisas vos disse para que a minha alegria esteja em vós',
+    contexto: 'Alegria de Cristo — nos crentes.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Alegria', resumo: 'Alegria é de Cristo — não circunstancial.', citacao: '«Minha alegria — em vós.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Completa', resumo: 'Alegria completa — não parcial.', citacao: '«Completa — não parcial.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Promessa', resumo: 'Promessa de alegria — para todos.»', citacao: 'Promessa de alegria — para todos.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 17, versiculo: 3,
+    tema: 'E esta é a vida eterna: que te conheçam',
+    contexto: 'Conhecimento de Deus é vida eterna.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Conhecimento', resumo: 'Conhecimento é vida — não informação.', citacao: '«Conhecer — vida eterna.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Relação', resumo: 'Vida eterna é relação — não apenas doutrina.', citacao: '«Relação — não apenas saber.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Presente', resumo: 'Vida eterna começa agora — não depois.»', citacao: 'Vida eterna começa agora — não depois.»' },
+    ],
+  },
+  {
+    livro: 'jo', capitulo: 20, versiculo: 29,
+    tema: 'Porque me viste, creste; benditos são os que não viram e creram',
+    contexto: 'Fé sem ver — bênção suprema.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fé', resumo: 'Fé sem ver — bênção suprema.', citacao: '«Viram — creram. Não viram — benditos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Graça é para todos — videntes e cegos.', citacao: '«Benditos — os que não viram.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Modelo', resumo: 'Nós somos o modelo — fé sem ver.»', citacao: 'Nós somos o modelo — fé sem ver.»' },
+    ],
+  },
+  {
+    livro: 'at', capitulo: 4, versiculo: 31,
+    tema: 'O lugar onde estavam reunidos tremeu; foram todos cheios do Espírito Santo',
+    contexto: 'Manifestação do Espírito — coragem.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Espírito', resumo: 'Espírito se manifesta — poder.', citacao: '«Reunião tremeu — poder do Espírito.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Coragem', resumo: 'Espírito dá coragem — não medo.', citacao: '«Cheios — coragem.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Comunhão', resumo: 'Comunhão é prenúncio do reino.»', citacao: 'Comunhão é prenúncio do reino.»' },
+    ],
+  },
+  {
+    livro: 'at', capitulo: 5, versiculo: 42,
+    tema: 'Todos os dias, no templo e pelas casas, não cessavam de ensinar e pregar',
+    contexto: 'Persistência no ensino.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ensino', resumo: 'Ensino é constante — não ocasional.', citacao: '«Todos os dias — ensino constante.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Coragem', resumo: 'Perseguem mas não param.', citacao: '«Perseguição — mas continuam.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Missão', resumo: 'Missão é prioritária — sempre.»', citacao: 'Missão é prioritária — sempre.»' },
+    ],
+  },
+  {
+    livro: 'at', capitulo: 8, versiculo: 26,
+    tema: 'Levanta-te e vai para o sul',
+    contexto: 'Obediência a guias divinos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Obediência', resumo: 'Obediência é imediata — sem questionar.', citacao: '«Levanta — vai.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Guia', resumo: 'Deus guia — passo a passo.', citacao: '«Guia — direção divina.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Missão', resumo: 'Missão é guiada — não improvisada.»', citacao: 'Missão é guiada — não improvisada.»' },
+    ],
+  },
+  {
+    livro: 'at', capitulo: 10, versiculo: 38,
+    tema: 'Deus ungiu com o Espírito Santo e poder a Jesus de Nazaré',
+    contexto: 'Ungido — para fazer bondade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ungação', resumo: 'Jesus ungido — para servir.', citacao: '«Ungido — fazer bem.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Serviço', resumo: 'Serviço é ungido — não secular.', citacao: '«Fazer bem — serviço ungido.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Exemplo', resumo: 'Cristo é exemplo — ungido para servir.»', citacao: 'Cristo é exemplo — ungido para servir.»' },
+    ],
+  },
+  {
+    livro: 'at', capitulo: 13, versiculo: 47,
+    tema: 'Pois assim nos ordenou o Senhor: Pus-te para ser luz das nações',
+    contexto: 'Missão é mandamento divino.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Missão', resumo: 'Missão é ordenada — não opcional.', citacao: '«Luz — para as nações.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Universalidade', resumo: 'Salvação é universal — sem fronteiras.', citacao: '«Nações — universal.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Mandamento', resumo: 'Deus ordena — não sugere.»', citacao: 'Deus ordena — não sugere.»' },
+    ],
+  },
+  {
+    livro: 'at', capitulo: 16, versiculo: 31,
+    tema: 'Crê no Senhor Jesus e serás salvo',
+    contexto: 'Salvação pela fé — simples.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fé', resumo: 'Salvação é pela fé — não por obras.', citacao: '«Crê — serás salvo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Simplicidade', resumo: 'Salvação é simples — não complexa.', citacao: '«Crê — simples.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Universalidade', resumo: 'Salvação é para todos — sem exceção.»', citacao: 'Salvação é para todos — sem exceção.»' },
+    ],
+  },
+  {
+    livro: 'at', capitulo: 20, versiculo: 35,
+    tema: 'Mais bem-aventurado é dar do que receber',
+    contexto: 'Generosidade é bênção.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Generosidade', resumo: 'Dar é mais abençado — paradigma.', citacao: '«Dar — mais abençado.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Serviço', resumo: 'Serviço é prioridade — não luxo.', citacao: '«Dar — serviço.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Alegria', resumo: 'Alegria em dar — não apenas receber.»', citacao: 'Alegria em dar — não apenas receber.»' },
+    ],
+  },
+  {
+    livro: 'at', capitulo: 26, versiculo: 18,
+    tema: 'Abrir os seus olhos para se converterem das trevas para a luz',
+    contexto: 'Conversão é iluminação divina.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Conversão', resumo: 'Conversão é obra divina — não humana.', citacao: '«Abrir olhos — converter.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Luz', resumo: 'Luz é conhecimento — não apenas sensação.', citacao: '«Luz — conhecimento.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Libertação', resumo: 'Conversão liberta — das trevas.»', citacao: 'Conversão liberta — das trevas.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 2, versiculo: 4,
+    tema: 'Ou não desprezas tu as riquezas da sua bondade, paciência e longanimidade?',
+    contexto: 'Bondade de Deus leva ao arrependimento.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Bondade', resumo: 'Bondade de Deus — não para desprezar.', citacao: '«Bondade — leva ao arrependimento.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Paciência', resumo: 'Paciência de Deus — não é tolerância.', citacao: '«Paciência — longanimidade.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Arrependimento', resumo: 'Arrependimento é resposta à bondade.»', citacao: 'Arrependimento é resposta à bondade.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 4, versiculo: 5,
+    tema: 'Mas àquele que não obra, mas crê naquele que justifica ao ímpio, a sua fé lhe é imputada como justiça',
+    contexto: 'Justificação pela fé — sem obras.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Justificação', resumo: 'Fé é imputada — não conquistada.', citacao: '«Fé — imputada como justiça.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Graça é dádiva — não mérito.', citacao: '«Graça — não obras.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Sola fide', resumo: 'Sola fide — coração da Reforma.»', citacao: 'Sola fide — coração da Reforma.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 7, versiculo: 18,
+    tema: 'Sei que em mim, isto é, na minha carne, não habita o bien',
+    contexto: 'Conflito interior — guerra espiritual.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Conflito', resumo: 'Há guerra interior — real.', citacao: '«Em mim — guerra.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Pecado', resumo: 'Pecado habita — mas não domina.', citacao: '«Habita — mas não domina.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Honestidade', resumo: 'Fé é honestidade — admitir conflito.»', citacao: 'Fé é honestidade — admitir conflito.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 13, versiculo: 10,
+    tema: 'O amor não faz mal ao próximo',
+    contexto: 'Amor é cumprimento da Lei.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor', resumo: 'Amor é cumprimento — não lei morta.', citacao: '«Amor — não faz mal.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Lei', resumo: 'Lei se cumpre em amor.', citacao: '«Cumprimento — amor.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Amor é prática — não teoria.»', citacao: 'Amor é prática — não teoria.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 14, versiculo: 19,
+    tema: 'Procurai, pois, as coisas que servem para a paz e a edificação mútua',
+    contexto: 'Paz e edificação — comunidade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Paz', resumo: 'Paz é meta — não é opcional.', citacao: '«Paz — procurar.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Edificação', resumo: 'Edificar — não destruir.', citacao: '«Edificação — mútua.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Comunidade', resumo: 'Comunidade é paz — não conflito.»', citacao: 'Comunidade é paz — não conflito.»' },
+    ],
+  },
+  {
+    livro: 'rm', capitulo: 16, versiculo: 20,
+    tema: 'O Deus da paz esmagará sob vossos pés em breve a Satanás',
+    contexto: 'Vitória sobre Satanás — certeza.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vitória', resumo: 'Deus esmaga Satanás — vitória.', citacao: '«Deus da paz — esmaga.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Promessa', resumo: 'Promessa é certa — não é possibilidade.', citacao: '«Em breve — vitória certa.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Esperança', resumo: 'Esperança é certa — vitória é garantida.»', citacao: 'Esperança é certa — vitória é garantida.»' },
+    ],
+  },
+  {
+    livro: '1co', capitulo: 2, versiculo: 2,
+    tema: 'Porque não me propus a saber entre vós coisa alguma senão Jesus Cristo, e este crucificado',
+    contexto: 'Cruz é centro — não filosofia.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Cruz', resumo: 'Cruz é centro — não sabedoria humana.', citacao: '«Cristo crucificado — centro.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Simplicidade', resumo: 'Simplicidade do evangelho — não erudição.', citacao: '«Simplicidade — evangelho.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Foco', resumo: 'Foco no essencial — não no acessório.»', citacao: 'Foco no essencial — não no acessório.»' },
+    ],
+  },
+  {
+    livro: '1co', capitulo: 3, versiculo: 16,
+    tema: 'Não sabeis que sois o templo de Deus',
+    contexto: 'Igreja é templo — não edifício.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Templo', resumo: 'Cada crente é templo do Espírito.', citacao: '«Sois — templo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Santidade', resumo: 'Templo é sagrado — cuidar.', citacao: '«Sagrado — não profanar.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Dignidade', resumo: 'Dignidade do crente — templo de Deus.»', citacao: 'Dignidade do crente — templo de Deus.»' },
+    ],
+  },
+  {
+    livro: '1co', capitulo: 6, versiculo: 19,
+    tema: 'O vosso corpo é templo do Espírito Santo',
+    contexto: 'Corpo é sagrado — não é nosso.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Corpo', resumo: 'Corpo é templo — não é nosso.', citacao: '«Vosso corpo — templo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Santidade', resumo: 'Cuidar do corpo — santidade.', citacao: '«Templo — cuidar.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Responsabilidade', resumo: 'Responsabilidade com o corpo — não descuido.»', citacao: 'Responsabilidade com o corpo — não descuido.»' },
+    ],
+  },
+  {
+    livro: '1co', capitulo: 9, versiculo: 24,
+    tema: 'Não sabeis que os que correm na pista, todos correm, mas um só leva o prêmio',
+    contexto: 'Corrida — disciplina.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Disciplina', resumo: 'Corrida exige disciplina — não improviso.', citacao: '«Correm — um leva prêmio.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Meta', resumo: 'Meta é clara — correr para ganhar.', citacao: '«Meta — ganhar.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Esforço', resumo: 'Esforço é necessário — não basta querer.»', citacao: 'Esforço é necessário — não basta querer.»' },
+    ],
+  },
+  {
+    livro: '1co', capitulo: 11, versiculo: 26,
+    tema: 'Sempre que comerdes deste pão e beberdes deste cálice',
+    contexto: 'Ceia do Senhor — memorial.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Memorial', resumo: 'Ceia é memorial — não magia.', citacao: '«Comer — beber — memorial.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Reino', resumo: 'Ceia é antecipação do reino.', citacao: '«Reino — antecipação.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Comunhão', resumo: 'Ceia é comunhão — com Cristo e irmãos.»', citacao: 'Ceia é comunhão — com Cristo e irmãos.»' },
+    ],
+  },
+  {
+    livro: '1co', capitulo: 14, versiculo: 33,
+    tema: 'Porque Deus não é de confusão, mas de paz',
+    contexto: 'Deus é ordem — não caos.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ordem', resumo: 'Deus é ordem — não confusão.', citacao: '«Deus — paz, não confusão.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Comunidade', resumo: 'Comunidade é paz — não bagunça.', citacao: '«Ordem — paz.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Culto', resumo: 'Culto é ordenado — não caótico.»', citacao: 'Culto é ordenado — não caótico.»' },
+    ],
+  },
+  {
+    livro: '1co', capitulo: 16, versiculo: 14,
+    tema: 'Tudo o que fizerdes fazei com amor',
+    contexto: 'Amor em tudo — sem exceção.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor', resumo: 'Amor em tudo — sem exceção.', citacao: '«Tudo — com amor.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Ética', resumo: 'Amor é fundamento da ética cristã.', citacao: '«Amor — ética.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Amor é prática — não teoria.»', citacao: 'Amor é prática — não teoria.»' },
+    ],
+  },
+  {
+    livro: '2co', capitulo: 1, versiculo: 3,
+    tema: 'Bendito seja o Deus e Pai do nosso Senhor Jesus Cristo',
+    contexto: 'Consolação divina — fonte.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Consolação', resumo: 'Deus consola — para consolar outros.', citacao: '«Deus — consola.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Pai', resumo: 'Deus é pai — ternura divina.', citacao: '«Pai — consola.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Purpose', resumo: 'Consolados para consolar — missão.»', citacao: 'Consolados para consolar — missão.»' },
+    ],
+  },
+  {
+    livro: '2co', capitulo: 3, versiculo: 17,
+    tema: 'Onde está o Espírito do Senhor, ali há liberdade',
+    contexto: 'Espírito traz liberdade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Liberdade', resumo: 'Espírito é liberdade — não lei.', citacao: '«Espírito — liberdade.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Lei', resumo: 'Lei é letra — Espírito é vida.', citacao: '«Letra — morta. Espírito — vida.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Vida', resumo: 'Vida no Espírito — não sob Lei.»', citacao: 'Vida no Espírito — não sob Lei.»' },
+    ],
+  },
+  {
+    livro: '2co', capitulo: 6, versiculo: 16,
+    tema: 'Sois o templo do Deus vivo',
+    contexto: 'Igreja é templo — Deus habita.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Templo', resumo: 'Igreja é templo — Deus habita.', citacao: '«Templo — Deus vivo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Habitação', resumo: 'Deus habita — não é distante.', citacao: '«Deus habita — não distante.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Santidade', resumo: 'Santidade — viver como templo.»', citacao: 'Santidade — viver como templo.»' },
+    ],
+  },
+  {
+    livro: '2co', capitulo: 9, versiculo: 7,
+    tema: 'Cada um dê como propôs em seu coração, não com tristeza ou por necessidade',
+    contexto: 'Generosidade é espontânea.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Generosidade', resumo: 'Dar com alegria — não por obrigação.', citacao: '«Coração — não tristeza.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Dar é graça — não é taxa.', citacao: '«Graça — dar com alegria.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Generosidade é prática — não teoria.»', citacao: 'Generosidade é prática — não teoria.»' },
+    ],
+  },
+  {
+    livro: '2co', capitulo: 10, versiculo: 5,
+    tema: 'Levando cativo todo entendimento à obediência de Cristo',
+    contexto: 'Pensamento submetido a Cristo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Pensamento', resumo: 'Pensamento submetido — não livre.', citacao: '«Cativo — obediência a Cristo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Obediência', resumo: 'Obediência inclui mente — não só corpo.', citacao: '«Mente — submetida.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Pensar como Cristo — transformação.»', citacao: 'Pensar como Cristo — transformação.»' },
+    ],
+  },
+  {
+    livro: 'gl', capitulo: 1, versiculo: 6,
+    tema: 'Admiro-vos de tão depressa vos transpordes de um chamado',
+    contexto: 'Advertência contra outro evangelho.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Alerta', resumo: 'Falsa graça não é graça.', citacao: '«Rapidamente — outro evangelho.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Graça não é licença para pecar.', citacao: '«Graça — não licença.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Vigilância', resumo: 'Vigilância contra falsos ensinos.»', citacao: 'Vigilância contra falsos ensinos.»' },
+    ],
+  },
+  {
+    livro: 'gl', capitulo: 4, versiculo: 6,
+    tema: 'E porque sois filhos, Deus enviou o Espírito do Seu Filho',
+    contexto: 'Espírito confirma filiação.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Filiação', resumo: 'Espírito confirma — somos filhos.', citacao: '«Espírito — filhos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Espírito', resumo: 'Espírito é testemunho — internamente.', citacao: '«Testemunho — Abá, Pai.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Confiança', resumo: 'Confiança de filhos — não de escravos.»', citacao: 'Confiança de filhos — não de escravos.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 2, versiculo: 14,
+    tema: 'Pois ele mesmo é a nossa paz',
+    contexto: 'Cristo é paz — não apenas traz.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Paz', resumo: 'Cristo é paz — não apenas traz.', citacao: '«Cristo — paz.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Reconciliação', resumo: 'Reconciliação é obra de Cristo.', citacao: '«Cristo — reconcilia.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Unidade', resumo: 'Unidade é em Cristo — não em acordos.»', citacao: 'Unidade é em Cristo — não em acordos.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 3, versiculo: 17,
+    tema: 'Para que Cristo habite em vós pela fé',
+    contexto: 'Habitação de Cristo — fé.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Habitação', resumo: 'Cristo habita — não é visitante.', citacao: '«Cristo habita — pela fé.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fé', resumo: 'Fé é meio — Cristo habita por ela.', citacao: '«Fé — meio.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Presença', resumo: 'Presença de Cristo — real, não figurada.»', citacao: 'Presença de Cristo — real, não figurada.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 4, versiculo: 32,
+    tema: 'Sede bondosos misericordiosos uns para com os outros',
+    contexto: 'Bondade e misericórdia fraternas.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Bondade', resumo: 'Bondade mútua — não apenas individual.', citacao: '«Bondosos — uns com os outros.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Misericórdia', resumo: 'Misericórdia é prática — não teoria.', citacao: '«Misericórdia — prática.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Comunidade', resumo: 'Comunidade é bondade — não crítica.»', citacao: 'Comunidade é bondade — não crítica.»' },
+    ],
+  },
+  {
+    livro: 'ef', capitulo: 5, versiculo: 18,
+    tema: 'Não vos embebaís de vinho, mas enchei-vos do Espírito Santo',
+    contexto: 'Espírito — não vício.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Espírito', resumo: 'Encher do Espírito — não de vinho.', citacao: '«Encher — do Espírito.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Controle', resumo: 'Espírito é controle — não perda.', citacao: '«Espírito — controle.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Vida', resumo: 'Vida no Espírito — não no vício.»', citacao: 'Vida no Espírito — não no vício.»' },
+    ],
+  },
+  {
+    livro: 'fp', capitulo: 1, versiculo: 6,
+    tema: 'Tendo por certo isto: que aquele que em vós começou a boa obra a aperfeiçoará',
+    contexto: 'Deus começa e aperfeiçoa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Perseverança', resumo: 'Deus completa o que começa.', citacao: '«Começou — aperfeiçoará.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Confiança', resumo: 'Confiança — Deus é fiel.', citacao: '«Deus — fiel.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Segurança', resumo: 'Segurança — Deus não abandona o que começou.»', citacao: 'Segurança — Deus não abandona o que começou.»' },
+    ],
+  },
+  {
+    livro: 'fp', capitulo: 2, versiculo: 3,
+    tema: 'Nada façais por contenda ou vaidade',
+    contexto: 'Humildade em tudo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Humildade', resumo: 'Nada por contenda — humildade.', citacao: '«Nada — por contenda.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Vaidade', resumo: 'Vaidade destrói — humildade constrói.', citacao: '«Contenda — destrói.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Humildade é prática — não teoria.»', citacao: 'Humildade é prática — não teoria.»' },
+    ],
+  },
+  {
+    livro: 'fp', capitulo: 3, versiculo: 13,
+    tema: 'Esquecendo o que fica para trás e estendendo-me para o que está adiante',
+    contexto: 'Esquecer para avançar.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Futuro', resumo: 'Olhar para frente — não para trás.', citacao: '«Adiante — esquecendo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Perseverança', resumo: 'Perseverar — não olhar para trás.', citacao: '«Esquecendo — avançando.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Foco', resumo: 'Focar no que está por vir.»', citacao: 'Focar no que está por vir.»' },
+    ],
+  },
+  {
+    livro: 'cl', capitulo: 1, versiculo: 18,
+    tema: 'Ele é o princípio, o primogênito de entre os mortos',
+    contexto: 'Cristo é primeiro — em tudo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Primazia', resumo: 'Cristo é primeiro — em tudo.', citacao: '«Primogênito — primeiro.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Ressurreição', resumo: 'Primeiro a ressuscitar — padrão.', citacao: '«Primeiro — entre os mortos.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Senhorio', resumo: 'Senhorio de Cristo — absoluto.»', citacao: 'Senhorio de Cristo — absoluto.»' },
+    ],
+  },
+  {
+    livro: 'cl', capitulo: 2, versiculo: 6,
+    tema: 'Assim, pois, recebestes a Cristo Jesus, o Senhor; caminhai nele',
+    contexto: 'Caminhar em Cristo — fé ativa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Caminhar', resumo: 'Fé é caminhar — não apenas crer.', citacao: '«Caminhai — nele.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Atividade', resumo: 'Fé é atividade — não passividade.', citacao: '«Caminhar — ativo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Fé se vive — não se teoriza.»', citacao: 'Fé se vive — não se teoriza.»' },
+    ],
+  },
+  {
+    livro: 'cl', capitulo: 3, versiculo: 16,
+    tema: 'A palavra de Cristo habite em vós ricamente',
+    contexto: 'Palavra habita — não apenas informa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Habitação', resumo: 'Palavra habita — não apenas informa.', citacao: '«Habite — ricamente.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Riqueza', resumo: 'Palavra é riqueza — não pobreza.', citacao: '«Ricamente — abundância.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Vida', resumo: 'Palavra é vida — não letra.»', citacao: 'Palavra é vida — não letra.»' },
+    ],
+  },
+  {
+    livro: '1ts', capitulo: 1, versiculo: 3,
+    tema: 'Lembrando-nos sem cessar da vossa obra de fé, trabalho de amor',
+    contexto: 'Fé produz obra — amor produz trabalho.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fé viva', resumo: 'Fé produz obras — não é abstrata.', citacao: '«Fé — obra.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Amor', resumo: 'Amor produz trabalho — não é passivo.', citacao: '«Amor — trabalho.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Esperança', resumo: 'Esperança produz perseverança — não desistência.»', citacao: 'Esperança produz perseverança — não desistência.»' },
+    ],
+  },
+  {
+    livro: '1ts', capitulo: 2, versiculo: 13,
+    tema: 'Recebestes a palavra de Deus, que é palavra de Deus',
+    contexto: 'Palavra é divina — não humana.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Palavra', resumo: 'Palavra é de Deus — não de homens.', citacao: '«Palavra de Deus — não humana.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Autoridade', resumo: 'Autoridade da Palavra — não é opinião.', citacao: '«Autoridade — divina.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Recepção', resumo: 'Receber a Palavra — como é.»', citacao: 'Receber a Palavra — como é.»' },
+    ],
+  },
+  {
+    livro: '1ts', capitulo: 3, versiculo: 12,
+    tema: 'O Senhor faça vos abundar e transbordar de amor',
+    contexto: 'Amor crescente — obra divina.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor', resumo: 'Amor é dom — não conquista.', citacao: '«Amor — faça abundar.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Crescimento', resumo: 'Amor cresce — obra do Espírito.', citacao: '«Abundar — transbordar.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Oração', resumo: 'Oração por amor crescente.»', citacao: 'Oração por amor crescente.»' },
+    ],
+  },
+  {
+    livro: '1ts', capitulo: 5, versiculo: 11,
+    tema: 'Amai-vos uns aos outros e edificai-vos mutuamente',
+    contexto: 'Amor e edificação mútua.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor', resumo: 'Amor é mútuo — não unidirecional.', citacao: '«Amai-vos — mútuo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Edificação', resumo: 'Edificar — não destruir.', citacao: '«Edificar — mútuo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Comunidade', resumo: 'Comunidade é amor e edificação.»', citacao: 'Comunidade é amor e edificação.»' },
+    ],
+  },
+  {
+    livro: '2ts', capitulo: 1, versiculo: 3,
+    tema: 'Devemos sempre agradecer a Deus por vós, porque a fé de vós cresce',
+    contexto: 'Fé cresce — não é estática.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Crescimento', resumo: 'Fé cresce — não é fixa.', citacao: '«Cresce — sempre.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Gratidão', resumo: 'Gratidão por fé crescente.', citacao: '«Agradecer — fé cresce.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Comunidade', resumo: 'Comunidade cresce — não estagna.»', citacao: 'Comunidade cresce — não estagna.»' },
+    ],
+  },
+  {
+    livro: '2ts', capitulo: 2, versiculo: 16,
+    tema: 'Deu-vos eterna consolação e boa esperança pela graça',
+    contexto: 'Consolação eterna — pela graça.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Consolação', resumo: 'Consolação é eterna — não temporal.', citacao: '«Eterna — consolação.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Consolação é graça — não mérito.', citacao: '«Pela graça — consolação.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Esperança', resumo: 'Esperança é boa — não vaga.', citacao: '«Boa esperança — certa.»' },
+    ],
+  },
+  {
+    livro: '1tm', capitulo: 1, versiculo: 15,
+    tema: 'Cristo Jesus veio ao mundo para salvar os pecadores',
+    contexto: 'Missão de Cristo — salvar.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Missão', resumo: 'Cristo veio salvar — não condenar.', citacao: '«Veio salvar — pecadores.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Salvação é graça — não conquista.', citacao: '«Graça — salvar.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Universalidade', resumo: 'Salvação é para todos — sem exceção.»', citacao: 'Salvação é para todos — sem exceção.»' },
+    ],
+  },
+  {
+    livro: '1tm', capitulo: 3, versiculo: 15,
+    tema: 'A igreja do Deus vivo, coluna e sustentáculo da verdade',
+    contexto: 'Igreja sustenta verdade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Igreja', resumo: 'Igreja é coluna — sustenta verdade.', citacao: '«Coluna — sustentáculo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Verdade', resumo: 'Igreja é guardiã — não criadora.', citacao: '«Verdade — igreja sustenta.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Responsabilidade', resumo: 'Responsabilidade — manter verdade.»', citacao: 'Responsabilidade — manter verdade.»' },
+    ],
+  },
+  {
+    livro: '1tm', capitulo: 4, versiculo: 12,
+    tema: 'Ninguém menospreze a tua juventude; mas seja exemplo',
+    contexto: 'Exemplo em tudo — juventude.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Exemplo', resumo: 'Ser exemplo — não desculpa.', citacao: '«Ninguém menospreze — seja exemplo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Juventude', resumo: 'Juventude é oportunidade — não limitação.', citacao: '«Juventude — exemplo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Exemplo é prático — não verbal.»', citacao: 'Exemplo é prático — não verbal.»' },
+    ],
+  },
+  {
+    livro: '2tm', capitulo: 1, versiculo: 7,
+    tema: 'Deus não nos deu espírito de timidez, mas de poder, amor e moderação',
+    contexto: 'Espírito é poder — não medo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Poder', resumo: 'Espírito é poder — não timidez.', citacao: '«Não timidez — poder.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Amor', resumo: 'Amor — não medo.', citacao: '«Amor — moderação.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Coragem', resumo: 'Coragem vem do Espírito — não de nós.»', citacao: 'Coragem vem do Espírito — não de nós.»' },
+    ],
+  },
+  {
+    livro: '2tm', capitulo: 4, versiculo: 2,
+    tema: 'Repreende, repreende, suplica com toda paciência e ensino',
+    contexto: 'Ministério da Palavra — com paciência.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ensino', resumo: 'Ensino é urgente — sempre.', citacao: '«Repreende — suplica — ensina.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Paciência', resumo: 'Paciência é necessária — sempre.', citacao: '«Toda paciência — sempre.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Fidelidade', resumo: 'Fiel ao ensino — sempre.»', citacao: 'Fiel ao ensino — sempre.»' },
+    ],
+  },
+  {
+    livro: 'tt', capitulo: 1, versiculo: 5,
+    tema: 'Para que em Creta ordenasses em cada cidade',
+    contexto: 'Ordem na igreja — disciplina.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ordem', resumo: 'Igreja é ordenada — não caótica.', citacao: '«Ordenar — em cada cidade.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Disciplina', resumo: 'Disciplina é pastoral — não punitiva.', citacao: '«Disciplina — pastoral.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Estrutura', resumo: 'Estrutura é necessária — não opcional.»', citacao: 'Estrutura é necessária — não opcional.»' },
+    ],
+  },
+  {
+    livro: 'tg', capitulo: 5, versiculo: 16,
+    tema: 'Confessai as vossas faltas uns aos outros e orai uns pelos outros',
+    contexto: 'Confissão mútua — cura.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Confissão', resumo: 'Confissão mútua — não individual.', citacao: '«Confessai — uns aos outros.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Oração', resumo: 'Oração mútua — cura.', citacao: '«Orar — pelos outros.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Comunidade', resumo: 'Comunidade é confissão — não máscara.»', citacao: 'Comunidade é confissão — não máscara.»' },
+    ],
+  },
+  {
+    livro: '1pe', capitulo: 4, versiculo: 8,
+    tema: 'Acima de tudo, porém, tende um fervoroso amor uns pelos outros',
+    contexto: 'Amor fervoroso — cobre pecados.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor', resumo: 'Amor fervoroso — não morno.', citacao: '«Fervoroso — acima de tudo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Cobertura', resumo: 'Amor cobre pecados — não expõe.', citacao: '«Amor — cobre.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prioridade', resumo: 'Amor é prioridade — não opcional.»', citacao: 'Amor é prioridade — não opcional.»' },
+    ],
+  },
+  {
+    livro: '1jo', capitulo: 2, versiculo: 15,
+    tema: 'Não ameis o mundo nem as coisas que estão no mundo',
+    contexto: 'Amor a Deus — não ao mundo.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Mundo', resumo: 'Mundo é temporário — Deus é eterno.', citacao: '«Não amar — mundo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Prioridade', resumo: 'Prioridade: Deus, não mundo.', citacao: '«Deus primeiro — mundo depois.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Alerta', resumo: 'Alerta contra idolatria do mundo.»', citacao: 'Alerta contra idolatria do mundo.»' },
+    ],
+  },
+  {
+    livro: '1jo', capitulo: 2, versiculo: 27,
+    tema: 'A unção que dele recebestes habita em vós',
+    contexto: 'Espírito habita — não precisa de ensino humano.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Espírito', resumo: 'Unção habita — não é externa.', citacao: '«Habita — não precisa de homem.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Dependência', resumo: 'Dependência do Espírito — não de mestres.', citacao: '«Espírito ensina — não homem.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Suficiência', resumo: 'Espírito é suficiente — não faltam mestres.»', citacao: 'Espírito é suficiente — não faltam mestres.»' },
+    ],
+  },
+  {
+    livro: '1jo', capitulo: 5, versiculo: 14,
+    tema: 'E esta é a confiança que temos nele: que, se pedirmos alguma coisa segundo a sua vontade, ele nos ouve',
+    contexto: 'Oração segundo vontade — certeza.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Oração', resumo: 'Oração é certa — se é vontade Dele.', citacao: '«Segundo a sua vontade — ouve.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Confiança', resumo: 'Confiança — certeza de ouvida.', citacao: '«Ouve — certeza.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Vontade', resumo: 'Orar é alinhar — não exigir.»', citacao: 'Orar é alinhar — não exigir.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 2, versiculo: 4,
+    tema: 'Mas tenho contra ti que deixaste o teu primeiro amor',
+    contexto: 'Primeiro amor — prioridade perdida.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Prioridade', resumo: 'Primeiro amor — prioridade.', citacao: '«Deixaste — primeiro amor.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Alerta', resumo: 'Alerta — prioridade perdida.', citacao: '«Primeiro amor — recuperar.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Renovação', resumo: 'Renovação do primeiro amor — sempre.»', citacao: 'Renovação do primeiro amor — sempre.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 3, versiculo: 10,
+    tema: 'Porque guardaste a palavra da minha paciência, também eu te guardarei da hora da provação',
+    contexto: 'Guarda dos fiéis — promessa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Guarda', resumo: 'Deus guarda os fiéis — promessa.', citacao: '«Guardaste — guardarei.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Perseverança', resumo: 'Perseverança é recompensada.', citacao: '«Guarda — recompensa.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Promessa', resumo: 'Promessa é certa — Deus guarda.»', citacao: 'Promessa é certa — Deus guarda.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 5, versiculo: 5,
+    tema: 'O Leão da tribo de Judá venceu',
+    contexto: 'Cristo é Leão — venceu.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vitória', resumo: 'Leão venceu — vitória certa.', citacao: '«Leão — venceu.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Poder', resumo: 'Poder do Leão — não fraqueza.', citacao: '«Leão — poder.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Esperança', resumo: 'Esperança — Leão venceu.»', citacao: 'Esperança — Leão venceu.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 7, versiculo: 9,
+    tema: 'Uma multidão que ninguém podia contar',
+    contexto: 'Salvos de todas as nações.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Universalidade', resumo: 'Salvos de todas as nações — sem exceção.', citacao: '«Ninguém podia contar — multidão.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Diversidade', resumo: 'Toda tribo, língua, povo e nação.', citacao: '«Toda — diversidade.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Esperança', resumo: 'Esperança — multidão salva.»', citacao: 'Esperança — multidão salva.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 19, versiculo: 7,
+    tema: 'Porque chegou a hora do seu casamento do Cordeiro',
+    contexto: 'Casamento do Cordeiro — ceia celestial.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ceia', resumo: 'Ceia é antecipação — não apenas memorial.', citacao: '«Casamento — ceia celestial.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Reino', resumo: 'Ceia é reino — não apenas aliança.', citacao: '«Reino — ceia.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Esperança', resumo: 'Esperança — ceia celestial.»', citacao: 'Esperança — ceia celestial.»' },
+    ],
+  },
+  {
+    livro: 'ap', capitulo: 22, versiculo: 5,
+    tema: 'Não haverá mais noite',
+    contexto: 'Luz eterna — sem mais trevas.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Luz', resumo: 'Luz eterna — sem mais noite.', citacao: '«Não haverá — noite.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Perfeição', resumo: 'Perfeição total — sem mais maldade.', citacao: '«Perfeita — sem maldade.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Esperança', resumo: 'Esperança certa — luz eterna.»', citacao: 'Esperança certa — luz eterna.»' },
+    ],
+  },
+
+  {
+    livro: 'js', capitulo: 24, versiculo: 15,
+    tema: 'Eu e a minha casa serviremos ao Senhor',
+    contexto: 'Decisão coletiva — fé.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Decisão', resumo: 'Decisão pessoal e familiar.', citacao: '«Eu e minha casa — decisão.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Liberdade', resumo: 'Deus respeita — não força.', citacao: '«Servir — escolha.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Família', resumo: 'Família serve — juntos.»', citacao: 'Família serve — juntos.»' },
+    ],
+  },
+  {
+    livro: 'jz', capitulo: 4, versiculo: 9,
+    tema: 'O Senhor tem saído diante de ti',
+    contexto: 'Vitória é divina — não humana.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vitória', resumo: 'Deus vai adiante — vitória.', citacao: '«Senhor saiu — vitória.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Obediência', resumo: 'Obediência precede vitória.', citacao: '«Obediência — vitória.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Fé', resumo: 'Fé em Deus — vitória.»', citacao: 'Fé em Deus — vitória.»' },
+    ],
+  },
+  {
+    livro: 'jz', capitulo: 16, versiculo: 30,
+    tema: 'Morreu Samson com os que matou em sua morte',
+    contexto: 'Fé que transforma fraqueza em força.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Força', resumo: 'Força vem de Deus — não de nós.', citacao: '«Deus — força.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fé', resumo: 'Fé vence fraqueza.', citacao: '«Fé — vence.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Propósito', resumo: 'Deus usa até fraqueza — propósito.»', citacao: 'Deus usa até fraqueza — propósito.»' },
+    ],
+  },
+  {
+    livro: 'rt', capitulo: 2, versiculo: 12,
+    tema: 'O Senhor recompense o teu trabalho',
+    contexto: 'Recompensa divina — graça.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Recompensa', resumo: 'Deus recompensa — não esquece.', citacao: '«Recompensa — trabalho.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Graça', resumo: 'Graça recompensa — não mérito.', citacao: '«Recompensa — graça.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Fé', resumo: 'Fé produz recompensa.»', citacao: 'Fé produz recompensa.»' },
+    ],
+  },
+  {
+    livro: 'rt', capitulo: 4, versiculo: 14,
+    tema: 'O Senhor te faça mulher como Raquebe, que edificou a casa de Davi',
+    contexto: 'Fé que edifica — geração.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Edificação', resumo: 'Fé edifica — geração a geração.', citacao: '«Edifica — casa.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Eleição', resumo: 'Deus inclui — raça de Davi.', citacao: '«Deus inclui — geração.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Promessa', resumo: 'Promessa messiânica — Davi.»', citacao: 'Promessa messiânica — Davi.»' },
+    ],
+  },
+  {
+    livro: '1cr', capitulo: 16, versiculo: 34,
+    tema: 'Louvai ao Senhor porque Ele é bom',
+    contexto: 'Louvor pela bondade divina.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Bondade', resumo: 'Deus é bom — sempre.', citacao: '«Bondade — sempre.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Louvor', resumo: 'Louvor é resposta — não obrigação.', citacao: '«Louvor — resposta.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Gratidão', resumo: 'Gratidão é expressão de fé.»', citacao: 'Gratidão é expressão de fé.»' },
+    ],
+  },
+  {
+    livro: '1cr', capitulo: 29, versiculo: 17,
+    tema: 'Deus meu, toda esta grande multidão',
+    contexto: 'Ofertas para o templo — generosidade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Generosidade', resumo: 'Generosidade é dom — não mérito.', citacao: '«Generosidade — dom.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Dedicação', resumo: 'Dedicação é total — não parcial.', citacao: '«Dedicação — tudo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Louvor', resumo: 'Louvor em ofertas — gratidão.»', citacao: 'Louvor em ofertas — gratidão.»' },
+    ],
+  },
+  {
+    livro: '2cr', capitulo: 15, versiculo: 7,
+    tema: 'Mas vós, sede fortes e não desanimeis',
+    contexto: 'Coragem e perseverança.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Coragem', resumo: 'Coragem é necessária — sempre.', citacao: '«Fortes — não desanimeis.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Perseverança', resumo: 'Perseverança é recompensada.', citacao: '«Perseverança — recompensa.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Deus', resumo: 'Deus está convosco — coragem.»', citacao: 'Deus está convosco — coragem.»' },
+    ],
+  },
+  {
+    livro: '2cr', capitulo: 20, versiculo: 15,
+    tema: 'Não temais nem vos assusteis, porque a batalha não é vossa',
+    contexto: 'Batalha é divina — não humana.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Vitória', resumo: 'Vitória é de Deus — não nossa.', citacao: '«Batalha — não é vossa.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fé', resumo: 'Fé em Deus — vitória.', citacao: '«Deus — vitória.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Oração', resumo: 'Oração precede vitória.»', citacao: 'Oração precede vitória.»' },
+    ],
+  },
+  {
+    livro: 'ed', capitulo: 1, versiculo: 3,
+    tema: 'Suba aquele cujo Deus está em Jerusalém',
+    contexto: 'Retorno — obediência.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Obediência', resumo: 'Deus tocou o coração do rei.', citacao: '«Deus tocou — rei permitiu.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Providência', resumo: 'Deus provê — usando reis.', citacao: '«Providência — usando authority.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Restauração', resumo: 'Restauração é obra divina.»', citacao: 'Restauração é obra divina.»' },
+    ],
+  },
+  {
+    livro: 'ed', capitulo: 9, versiculo: 8,
+    tema: 'A mão do Senhor nosso Deus foi sobre nós para nos livrar',
+    contexto: 'Proteção divina — livramento.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Proteção', resumo: 'Deus protege — mão divina.', citacao: '«Mão do Senhor — livrou.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Livramento', resumo: 'Livramento é divino — não humano.', citacao: '«Livramento — Deus.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Gratidão', resumo: 'Gratidão pelo livramento.»', citacao: 'Gratidão pelo livramento.»' },
+    ],
+  },
+  {
+    livro: 'ne', capitulo: 2, versiculo: 8,
+    tema: 'Deus estendeu a mim a sua misericórdia',
+    contexto: 'Misericórdia divina — proteção.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Misericórdia', resumo: 'Deus estende misericórdia.', citacao: '«Misericórdia — Deus.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Proteção', resumo: 'Deus protege — misericórdia.', citacao: '«Proteção — misericórdia.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Gratidão', resumo: 'Gratidão por misericórdia.»', citacao: 'Gratidão por misericórdia.»' },
+    ],
+  },
+  {
+    livro: 'et', capitulo: 7, versiculo: 3,
+    tema: 'Mas destruir e matar não podemos',
+    contexto: 'Limites humanos — Deus age.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Limites', resumo: 'Limites humanos — Deus age por outros.', citacao: '«Não podemos — Deus pode.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Deus usa circunstâncias — soberano.', citacao: '«Soberania — Deus age.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Fé', resumo: 'Fé confia — Deus age.»', citacao: 'Fé confia — Deus age.»' },
+    ],
+  },
+  {
+    livro: 'jó', capitulo: 2, versiculo: 10,
+    tema: 'Não pecou Job com seus lábios',
+    contexto: 'Fé que resiste — não maldiz.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fé', resumo: 'Fé resiste — não maldiz.', citacao: '«Não pecou — lábios.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Paciência', resumo: 'Paciência na provação — não murmura.', citacao: '«Paciência — não maldiz.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Testemunho', resumo: 'Testemunho na dor — fé firme.»', citacao: 'Testemunho na dor — fé firme.»' },
+    ],
+  },
+  {
+    livro: 'jó', capitulo: 23, versiculo: 10,
+    tema: 'Mas Ele sabe o caminho que eu percorro',
+    contexto: 'Deus conhece — mesmo sem entender.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Conhecimento', resumo: 'Deus sabe — mesmo sem entender.', citacao: '«Deus sabe — caminho.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Confiança', resumo: 'Confiança — mesmo sem entender.', citacao: '«Confiança — sem entender.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Provação', resumo: 'Provação tem propósito — Deus sabe.»', citacao: 'Provação tem propósito — Deus sabe.»' },
+    ],
+  },
+  {
+    livro: 'lm', capitulo: 3, versiculo: 23,
+    tema: 'As tuas misericórdias são novas a cada manhã',
+    contexto: 'Misericórdia diária — renovação.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Diária', resumo: 'Misericórdia é diária — não anual.', citacao: '«Diária — novas.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Renovação', resumo: 'Renovação é diária — não semanal.', citacao: '«Renovação — diária.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Confiança', resumo: 'Confiança — Deus renova sempre.»', citacao: 'Confiança — Deus renova sempre.»' },
+    ],
+  },
+  {
+    livro: 'ct', capitulo: 2, versiculo: 4,
+    tema: 'Levou-me ao seu banquete',
+    contexto: 'Amor divino — banquetes.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Amor', resumo: 'Amor é celebrado — banquetes.', citacao: '«Banquete — amor.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Deleite', resumo: 'Deleite em Deus — não apenas em coisas.', citacao: '«Deleite — Deus.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Experiência', resumo: 'Experiência de amor com Deus.»', citacao: 'Experiência de amor com Deus.»' },
+    ],
+  },
+  {
+    livro: '2pe', capitulo: 1, versiculo: 3,
+    tema: 'Sua divina potência nos concedeu tudo o que conduz à vida piedosa',
+    contexto: 'Providência divina — vida piedosa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Providência', resumo: 'Deus provê — para vida piedosa.', citacao: '«Providência — tudo.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Piedade', resumo: 'Piedade é fruto — não esforço.', citacao: '«Piedade — fruto.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Vida', resumo: 'Vida piedosa — dom divino.»', citacao: 'Vida piedosa — dom divino.»' },
+    ],
+  },
+  {
+    livro: '2jo', capitulo: 1, versiculo: 4,
+    tema: 'Rejiei que alguns dos teus filhos andam na verdade',
+    contexto: 'Verdade andada — não apenas sabida.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Andar', resumo: 'Andar na verdade — prática.', citacao: '«Andam — verdade.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Verdade', resumo: 'Verdade é vivida — não apenas conhecida.', citacao: '«Verdade — andada.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Comunhão', resumo: 'Comunhão é verdade — não mentira.»', citacao: 'Comunhão é verdade — não mentira.»' },
+    ],
+  },
+  {
+    livro: '3jo', capitulo: 1, versiculo: 11,
+    tema: 'Quem faz o bem é de Deus; quem faz o mal não viu a Deus',
+    contexto: 'Ações revelam identidade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Ações', resumo: 'Ações revelam — não palavras.', citacao: '«Bem — de Deus. Mal — não viu.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Identidade', resumo: 'Identidade se revela em ação.', citacao: '«Identidade — ação.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Prático', resumo: 'Fé é prática — não teoria.»', citacao: 'Fé é prática — não teoria.»' },
+    ],
+  },
+  {
+    livro: 'jd', capitulo: 1, versiculo: 20,
+    tema: 'Vós, amados, edificando-vos sobre a vossa santíssima fé',
+    contexto: 'Edificação na fé — oração.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Edificação', resumo: 'Edificar na fé — constante.', citacao: '«Edificar — fé.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Oração', resumo: 'Oração é meio — não ornamento.', citacao: '«Orar — no Espírito.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Crescimento', resumo: 'Crescer na fé — oração.»', citacao: 'Crescer na fé — oração.»' },
+    ],
+  },
+  {
+    livro: 'fm', capitulo: 1, versiculo: 4,
+    tema: 'Porque menciono a tua fé e o teu amor',
+    contexto: 'Fé e amor — virtudes.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Fé', resumo: 'Fé é mencionada — reconhecida.', citacao: '«Fé — mencionada.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Amor', resumo: 'Amor é mencionado — reconhecido.', citacao: '«Amor — mencionado.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Comunhão', resumo: 'Comunhão é fé e amor.»', citacao: 'Comunhão é fé e amor.»' },
+    ],
+  },
+  {
+    livro: 'ag', capitulo: 1, versiculo: 8,
+    tema: 'Subi ao monte, derrubai madeira e edificai a casa',
+    contexto: 'Obediência — construir.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Obediência', resumo: 'Obediência é prática — não verbal.', citacao: '«Subir — derrubar — edificar.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Prioridade', resumo: 'Prioridade: casa de Deus.', citacao: '«Casa de Deus — primeiro.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Ação', resumo: 'Ação é necessária — não contemplação.»', citacao: 'Ação é necessária — não contemplação.»' },
+    ],
+  },
+  {
+    livro: 'ag', capitulo: 2, versiculo: 9,
+    tema: 'A glória desta casa última será maior',
+    contexto: 'Glória da nova casa — promessa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Glória', resumo: 'Glória da nova casa — maior.', citacao: '«Última — maior.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Promessa', resumo: 'Promessa de glória — Deus cumpre.', citacao: '«Glória — promessa.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Esperança', resumo: 'Esperança — glória maior.»', citacao: 'Esperança — glória maior.»' },
+    ],
+  },
+  {
+    livro: 'zc', capitulo: 4, versiculo: 6,
+    tema: 'Não por força, nem por poder, mas pelo Meu Espírito',
+    contexto: 'Espírito — não força humana.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Espírito', resumo: 'Espírito é meio — não força.', citacao: '«Espírito — não força.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Dependência', resumo: 'Dependência do Espírito — não de nós.', citacao: '«Espírito — dependência.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Poder', resumo: 'Poder é divino — não humano.»', citacao: 'Poder é divino — não humano.»' },
+    ],
+  },
+  {
+    livro: 'ml', capitulo: 3, versiculo: 10,
+    tema: 'Trazei todos os dízimos à casa do tesouro',
+    contexto: 'Dízimos — prueba divina.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Dízimos', resumo: 'Dízimos é prova — não imposto.', citacao: '«Trazei — prova.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Provação', resumo: 'Deus prova — dízimos.', citacao: '«Prova-me — dízimos.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Generosidade', resumo: 'Generosidade é prova de fé.»', citacao: 'Generosidade é prova de fé.»' },
+    ],
+  },
+  {
+    livro: 'ob', capitulo: 1, versiculo: 4,
+    tema: 'Ainda que te exaltes como a águia',
+    contexto: 'Orgulho derrubado — Deus humilha.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Orgulho', resumo: 'Orgulho precede destruição.', citacao: '«Exaltado — derrubado.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Soberania', resumo: 'Deus humilha — soberano.', citacao: '«Deus humilha — soberano.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Aviso', resumo: 'Aviso contra orgulho.»', citacao: 'Aviso contra orgulho.»' },
+    ],
+  },
+  {
+    livro: 'jl', capitulo: 2, versiculo: 25,
+    tema: 'Eu vos restituirei os anos que foram devorados',
+    contexto: 'Restauração divina — promessa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Restauração', resumo: 'Deus restaura — anos perdidos.', citacao: '«Restituirei — anos.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Promessa', resumo: 'Promessa de restauração — certa.', citacao: '«Deus restaura — sempre.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Esperança', resumo: 'Esperança — restauração.»', citacao: 'Esperança — restauração.»' },
+    ],
+  },
+  {
+    livro: 'jl', capitulo: 3, versiculo: 17,
+    tema: 'Eu habitarrei em Jerusalém',
+    contexto: 'Deus habita — presença divina.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Presença', resumo: 'Deus habita — não é distante.', citacao: '«Habitarrei — Jerusalém.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Reino', resumo: 'Reino é presença — não é distante.', citacao: '«Habita — reino.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Promessa', resumo: 'Promessa de presença — certa.»', citacao: 'Promessa de presença — certa.»' },
+    ],
+  },
+  {
+    livro: 'mq', capitulo: 4, versiculo: 3,
+    tema: 'Não mais ensinarão espada, nem guerrearão',
+    contexto: 'Paz messiânica — promessa.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Paz', resumo: 'Paz messiânica — sem guerra.', citacao: '«Não mais — espada.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Reino', resumo: 'Reino é paz — não guerra.', citacao: '«Reino — paz.»' },
+      { teologo: 'N.T. Wright', periodo: '1948-', tradicao: 'Evangélica', visao: 'Escatologia', resumo: 'Paz futura — promessa.»', citacao: 'Paz futura — promessa.»' },
+    ],
+  },
+  {
+    livro: 'mq', capitulo: 7, versiculo: 8,
+    tema: 'Eu esperarei no Senhor que esconde a Sua face',
+    contexto: 'Esperança em Deus escondido.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Esperança', resumo: 'Esperar em Deus — mesmo escondido.', citacao: '«Esperarei — Deus esconde.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fé', resumo: 'Fé vê Deus escondido — não apenas manifesto.', citacao: '«Deus escondido — fé.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Paciência', resumo: 'Paciência — esperar Deus.»', citacao: 'Paciência — esperar Deus.»' },
+    ],
+  },
+  {
+    livro: 'hc', capitulo: 3, versiculo: 17,
+    tema: 'Mas eu exultarei no Senhor',
+    contexto: 'Alegria mesmo na adversidade.',
+    interpretacoes: [
+      { teologo: 'Santo Agostinho', periodo: '354-430 d.C.', tradicao: 'Patrística', visao: 'Alegria', resumo: 'Alegria em Deus — mesmo na dor.', citacao: '«Exultarei — Senhor.»' },
+      { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Fé', resumo: 'Fé transcende circunstâncias.', citacao: '«Alegria — apesar de tudo.»' },
+      { teologo: 'Charles Spurgeon', periodo: '1834-1892', tradicao: 'Batista', visao: 'Louvor', resumo: 'Louvor na adversidade — fé verdadeira.»', citacao: 'Louvor na adversidade — fé verdadeira.»' },
+    ],
+  },
+];
 }
 
 export function temEstudo(livro: string, capitulo: number, versiculo: number): boolean {

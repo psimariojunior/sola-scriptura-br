@@ -843,22 +843,32 @@ export default function PainelDoVersiculo({
   }, []);
 
   useEffect(() => {
-    setRecursos([]);
+    const abortController = new AbortController();
     setErro(null);
     setBusca('');
     if (!livro || livro.trim() === '') {
+      setRecursos([]);
       return;
     }
     getRecursosVersiculo(livro, capitulo, versiculo)
-      .then(setRecursos)
+      .then((data) => {
+        if (!abortController.signal.aborted) {
+          setRecursos(data);
+        }
+      })
       .catch((err) => {
-        console.error('Erro ao carregar recursos do versículo:', err);
-        setErro('Erro ao carregar recursos. Tente novamente.');
+        if (!abortController.signal.aborted) {
+          console.error('Erro ao carregar recursos do versículo:', err);
+          setErro('Erro ao carregar recursos. Tente novamente.');
+        }
       });
     setActiveTab(tabInicial || 'texto');
     if (aberto && typeof window !== 'undefined') {
       requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
+    return () => {
+      abortController.abort();
+    };
   }, [livro, capitulo, versiculo, tabInicial, aberto]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -881,7 +891,7 @@ export default function PainelDoVersiculo({
 
   const tabsDisponiveis = TAB_CONFIG.filter((tab) => {
     const count = contagemPorTipo(tab.value);
-    return count > 0 || tab.value === 'texto' || tab.value === 'critica' || tab.value === 'ia' || tab.value === 'estudo';
+    return count > 0 || tab.value === 'texto' || tab.value === 'critica' || tab.value === 'ia';
   });
 
   const panelContent = (

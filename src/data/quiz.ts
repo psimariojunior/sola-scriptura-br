@@ -3,7 +3,7 @@ export type NivelQuiz = 'facil' | 'medio' | 'dificil';
 export type TipoPergunta = 'multipla' | 'verdadeiro_falso' | 'completar' | 'ordenar' | 'referencia' | 'citacao';
 
 import { QUIZ_EXPANDIDO } from './_quiz_expandido';
-import { estudosGerados } from './estudosGerados';
+import { listarTodosEstudos } from './estudosTeologicos';
 
 export interface PerguntaQuiz {
   id: string;
@@ -906,7 +906,7 @@ const perguntasExpansao: PerguntaQuiz[] = [
 // Auto-generate theological quiz questions from studies
 function gerarPerguntasTeologicas(): PerguntaQuiz[] {
   const perguntas: PerguntaQuiz[] = [];
-  const estudosComInterpretes = estudosGerados.filter(e => e.interpretacoes.length >= 2);
+  const estudosComInterpretes = listarTodosEstudos().filter(e => e.interpretacoes.length >= 2);
 
   for (let i = 0; i < Math.min(estudosComInterpretes.length, 200); i++) {
     const estudo = estudosComInterpretes[i];

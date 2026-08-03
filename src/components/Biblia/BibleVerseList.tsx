@@ -23,6 +23,7 @@ import dynamic from 'next/dynamic';
 
 const InterlinearView = dynamic(() => import('@/components/InterlinearView').then(m => ({ default: m.InterlinearView })), { ssr: false });
 const PainelEstudosCapitulo = dynamic(() => import('./PainelEstudosCapitulo'));
+const PainelEstudosInline = dynamic(() => import('@/components/PainelEstudosInline'));
 
 function PanelFallback() {
   return (<div className="flex items-center justify-center py-8"><div className="flex gap-1.5"><span className="w-2 h-2 bg-[var(--brand-default)] rounded-full animate-bounce [animation-delay:0s]" /><span className="w-2 h-2 bg-[var(--brand-default)] rounded-full animate-bounce [animation-delay:0.15s]" /><span className="w-2 h-2 bg-[var(--brand-default)] rounded-full animate-bounce [animation-delay:0.3s]" /></div></div>);
@@ -81,6 +82,19 @@ export function BibleVerseList({
             <div role="article" aria-label={`${nav.livro.nome} capítulo ${nav.capituloIdx + 1}`}>
             {nav.loading && nav.temDados && (<div className="fixed top-0 left-0 right-0 z-20 h-0.5 bg-[var(--brand-default)]/20"><div className="h-full bg-[var(--brand-default)] animate-loading-bar" /></div>)}
             <ChapterHeader livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} totalCapitulos={nav.livro.totalCapitulos} totalVersiculos={nav.data[0]?.versiculos?.length ?? 0} />
+            {nav.estudoCapitulo && (<div className="mb-6 p-3 sm:p-4 rounded-xl border border-[var(--brand-default)]/20 bg-[var(--brand-subtle)]/50">
+              <button onClick={() => ui.setEstudoCapituloAberto(o => !o)} className="w-full flex items-center gap-2.5 text-left group" aria-expanded={ui.estudoCapituloAberto}>
+                <div className="w-8 h-8 rounded-lg bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0"><BookOpen className="w-4 h-4 text-[var(--brand-default)]" /></div>
+                <div className="flex-1 min-w-0">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-default)] block">{t('biblia.chapterStudy')}</span>
+                  <span className="text-xs text-[var(--content-muted)] truncate block">{nav.estudoCapitulo.titulo}</span>
+                </div>
+                {ui.estudoCapituloAberto ? <ChevronUp className="w-4 h-4 text-[var(--content-muted)] shrink-0" /> : <ChevronDown className="w-4 h-4 text-[var(--content-muted)] shrink-0" />}
+              </button>
+              {ui.estudoCapituloAberto && (<div className="panel-expand-enter overflow-hidden">
+                <Suspense fallback={<PanelFallback />}><PainelEstudosCapitulo livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} nomeLivro={nav.livro.nome} /></Suspense>
+              </div>)}
+            </div>)}
             {swipeProgress > 0 && (
               <div className="fixed top-1/2 -translate-y-1/2 z-10 pointer-events-none" style={{ [canGoPrev ? 'left' : 'right']: '8px', opacity: swipeProgress }}>
                 <div className="w-10 h-10 rounded-full bg-[var(--brand-default)]/20 flex items-center justify-center backdrop-blur-sm">
@@ -96,31 +110,47 @@ export function BibleVerseList({
                 const isPlaying = audio.isVersePlaying(v.numero);
                 const isCurrentAudioVerse = capituloAudio.state.isPlaying && capituloAudio.state.currentVerseIndex === v.numero - 1;
                 const fav = isFavorito(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao);
-                return (<VerseListItem key={`${item.traducao}-${v.numero}`} numero={v.numero} texto={v.texto} livroAbreviacao={nav.livro.abreviacao} livroNome={nav.livro.nome} capitulo={nav.capituloIdx + 1} traducao={item.traducao} fontSize={ui.fontSize}
-                  isSelected={isSelected} isPlaying={isPlaying} isHighlighted={ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero} isFocused={ui.focusedVerse === v.numero} isFavorito={fav} copiedVerse={verse.copiedVerse}
-                  audioNatural={audioNatural} audio={audio} flashcards={flashcards} estudoAberto={verse.estudoAberto === v.numero}
-                  isCurrentAudioVerse={isCurrentAudioVerse} hasResources={verseResources.hasResources(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero)}
-                  selectedTradsCount={nav.selectedTrads.length}
-                  onSelectFromList={stableHandleSelectFromList} onFavoritoChange={refresh}
-                  onSetAnotandoVersiculo={stableSetAnotandoVersiculo} onSetAnotacaoTexto={verse.setAnotacaoTexto}
-                  onSetSidePanelWidth={panels.setSidePanelWidth} onSetSidePanelTab={panels.setSidePanelTab}
-                  onSetComentarioVersiculo={stableSetComentarioVersiculo} onSetEstudoAberto={stableSetEstudoAberto}
-                  estudoAbertoState={verse.estudoAberto} copyVerse={verse.copyVerse}
-                  onApresentar={() => { onSetMostrarApresentacao(true); }}
-                  onCompartilharImagem={() => onSetShareOpen(true)}
-                  onDeselect={handleDeselectVerse}
-                  onAprofundar={() => {
-                    if (!authService.temAcessoTotal()) { panels.setPaywallAprofundarAberto(true); return; }
-                    window.open(`/estudo-ia?ref=${encodeURIComponent(`${nav.livro.nome} ${nav.capituloIdx + 1}:${v.numero}`)}`, '_blank');
-                  }}
-                  onCompartilharSala={() => {
-                    const data = { livro: nav.livro.nome, livroAbrev: nav.livro.abreviacao, capitulo: nav.capituloIdx + 1, versiculo: v.numero, texto: v.texto, traducao: item.traducao };
-                    try { localStorage.setItem('ssb_collab_share_pending', JSON.stringify(data)); } catch {}
-                    window.location.href = '/estudo-colaborativo';
-                  }}
-                  onAbrirPainel={(tab?: string) => { setPainelTabInicial(tab); setPainelVersiculoAberto(true); }}
-                  painelVersiculoAberto={painelVersiculoAberto}
-                  />);
+                const estudoAbertoNeste = verse.estudoAberto === v.numero && item.traducao === nav.data[0]?.traducao;
+                return (
+                  <div key={`${item.traducao}-${v.numero}`}>
+                    <VerseListItem numero={v.numero} texto={v.texto} livroAbreviacao={nav.livro.abreviacao} livroNome={nav.livro.nome} capitulo={nav.capituloIdx + 1} traducao={item.traducao} fontSize={ui.fontSize}
+                      isSelected={isSelected} isPlaying={isPlaying} isHighlighted={ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero} isFocused={ui.focusedVerse === v.numero} isFavorito={fav} copiedVerse={verse.copiedVerse}
+                      audioNatural={audioNatural} audio={audio} flashcards={flashcards} estudoAberto={verse.estudoAberto === v.numero}
+                      isCurrentAudioVerse={isCurrentAudioVerse} hasResources={verseResources.hasResources(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero)}
+                      selectedTradsCount={nav.selectedTrads.length}
+                      onSelectFromList={stableHandleSelectFromList} onFavoritoChange={refresh}
+                      onSetAnotandoVersiculo={stableSetAnotandoVersiculo} onSetAnotacaoTexto={verse.setAnotacaoTexto}
+                      onSetSidePanelWidth={panels.setSidePanelWidth} onSetSidePanelTab={panels.setSidePanelTab}
+                      onSetComentarioVersiculo={stableSetComentarioVersiculo} onSetEstudoAberto={stableSetEstudoAberto}
+                      estudoAbertoState={verse.estudoAberto} copyVerse={verse.copyVerse}
+                      onApresentar={() => { onSetMostrarApresentacao(true); }}
+                      onCompartilharImagem={() => onSetShareOpen(true)}
+                      onDeselect={handleDeselectVerse}
+                      onAprofundar={() => {
+                        if (!authService.temAcessoTotal()) { panels.setPaywallAprofundarAberto(true); return; }
+                        window.open(`/estudo-ia?ref=${encodeURIComponent(`${nav.livro.nome} ${nav.capituloIdx + 1}:${v.numero}`)}`, '_blank');
+                      }}
+                      onCompartilharSala={() => {
+                        const data = { livro: nav.livro.nome, livroAbrev: nav.livro.abreviacao, capitulo: nav.capituloIdx + 1, versiculo: v.numero, texto: v.texto, traducao: item.traducao };
+                        try { localStorage.setItem('ssb_collab_share_pending', JSON.stringify(data)); } catch {}
+                        window.location.href = '/estudo-colaborativo';
+                      }}
+                      onAbrirPainel={(tab?: string) => { setPainelTabInicial(tab); setPainelVersiculoAberto(true); }}
+                      painelVersiculoAberto={painelVersiculoAberto}
+                      />
+                    {estudoAbertoNeste && (
+                      <Suspense fallback={<PanelFallback />}>
+                        <PainelEstudosInline
+                          livro={nav.livro.abreviacao}
+                          capitulo={nav.capituloIdx + 1}
+                          versiculo={v.numero}
+                          nomeLivro={nav.livro.nome}
+                          onClose={() => stableSetEstudoAberto(null)}
+                        />
+                      </Suspense>
+                    )}
+                  </div>
+                );
               })}</div>
             </div>))}
             {ui.modoLeitura === 'comparacao' && nav.viewMode === 'parallel' && (<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">{nav.data.map((item) => (
@@ -129,16 +159,6 @@ export function BibleVerseList({
                 {item.versiculos.map(v => (<p key={v.numero} className="mb-2 leading-[1.7] font-serif-body" style={{ fontSize: `${Math.max(ui.fontSize - 2, 14)}px` }}><sup className="text-[var(--brand-default)] font-bold text-[10px] mr-1 select-none tabular-nums">{v.numero}</sup>{v.texto}</p>))}
               </div>))}</div>)}
             {ui.modoLeitura === 'comparacao' && nav.viewMode === 'comparison' && nav.data.length >= 2 && (<ComparisonTable data={nav.data} fontSize={ui.fontSize} showDiff={ui.showDiff} highlightedVerse={ui.highlightedVerse} onHighlight={ui.setHighlightedVerse} maxVersiculos={nav.maxVersiculos} tradBadgeColors={tradBadgeColors} labelMap={labelMap} />)}
-            {nav.estudoCapitulo && (<div className="mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">
-              <button onClick={() => ui.setEstudoCapituloAberto(o => !o)} className="w-full flex items-center gap-2 text-left group" aria-expanded={ui.estudoCapituloAberto}>
-                <BookOpen className="w-4 h-4 text-[var(--primary)]" /><span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted-fg)] group-hover:text-[var(--fg)] transition-colors">{t('biblia.chapterStudy')}</span>
-                <span className="text-xs text-[var(--primary)] font-medium">{nav.estudoCapitulo.titulo}</span><div className="flex-1" />
-                {ui.estudoCapituloAberto ? <ChevronUp className="w-4 h-4 text-[var(--muted-fg)]" /> : <ChevronDown className="w-4 h-4 text-[var(--muted-fg)]" />}
-              </button>
-              {ui.estudoCapituloAberto && (<div className="panel-expand-enter overflow-hidden">
-                <Suspense fallback={<PanelFallback />}><PainelEstudosCapitulo livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} nomeLivro={nav.livro.nome} /></Suspense>
-              </div>)}
-            </div>)}
             <div className="flex items-center justify-center gap-3 sm:gap-4 mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">
               <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-all active:scale-98 min-h-[44px]"><ChevronLeft className="w-4 h-4" /> {t('biblia.previous')}</button>
               <div className="hidden sm:flex flex-col items-center gap-1.5 min-w-[120px]"><span className="text-[10px] text-[var(--content-muted)] font-mono tabular-nums">{nav.capituloIdx + 1} / {nav.livro.totalCapitulos}</span><ProgressBar value={nav.capituloIdx + 1} total={nav.livro.totalCapitulos} className="w-24" /></div>

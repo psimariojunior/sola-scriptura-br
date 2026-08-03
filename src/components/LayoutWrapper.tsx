@@ -26,7 +26,6 @@ import '@/lib/i18n';
 
 const MobilePerformanceMonitor = lazy(() => import('@/components/MobilePerformanceMonitor'));
 const BottomNavBar = lazy(() => import('@/components/BottomNavBar'));
-const VoiceCommands = lazy(() => import('@/components/VoiceCommands').then(m => ({ default: m.VoiceCommands })));
 const AccessibilityPanel = lazy(() => import('@/components/AccessibilityPanel').then(m => ({ default: m.AccessibilityPanel })));
 const PerformanceMonitor = lazy(() => import('@/components/PerformanceMonitor').then(m => ({ default: m.PerformanceMonitor })));
 

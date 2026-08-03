@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Atlas Bíblico — Mapa Interativo',
-  description: 'Explore locais bíblicos em um mapa interativo com 50+ locais mapeados. Cidades, regiões, montes, mares e rios das Escrituras.',
-  keywords: ['atlas bíblico', 'mapa bíblico', 'locais bíblicos', 'geografia bíblica', 'mapa interativo', 'terra santa'],
+  title: 'Ferramentas Bíblicas — Estudo, Busca e Aprendizado',
+  description: 'Explore todas as ferramentas de estudo bíblico: concordância, exegese com IA, harmonia sinótica, referências cruzadas e muito mais. Tudo gratuito.',
+  keywords: ['ferramentas bíblicas', 'estudo bíblico', 'concordância', 'exegese', 'harmonia sinótica', 'lexicon'],
   openGraph: {
-    title: 'Atlas Bíblico — Mapa Interativo | Sola Scriptura BR',
-    description: 'Explore locais bíblicos em um mapa interativo.',
+    title: 'Ferramentas Bíblicas | Sola Scriptura BR',
+    description: 'Explore todas as ferramentas de estudo bíblico.',
   },
 };
 

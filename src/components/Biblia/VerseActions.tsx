@@ -18,7 +18,6 @@ import { cn } from '@/lib/utils';
 import { CORES, setMarcador, removeMarcador, getMarcador, type CorMarcador } from '@/lib/marcadores';
 import { toggleFavorito, obterMarca } from '@/lib/estudos';
 import { temComentario } from '@/data/comentarios-index';
-import { temEstudo } from '@/data/estudos-index';
 import VersiculoAudioNatural from '@/components/VersiculoAudioNatural';
 import { CompartilharVersiculo } from '@/components/CompartilharVersiculo';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
@@ -271,17 +270,15 @@ function VerseActionsInner({
         />
       )}
 
-      {temEstudo(livroAbreviacao, capitulo, versiculo) && (
-        <ActionButton
-          icon={GraduationCap}
-          label="Estudo"
-          onClick={(e) => {
-            e.stopPropagation();
-            onEstudos();
-          }}
-          ariaLabel={`Estudos teológicos do versículo ${versiculo}`}
-        />
-      )}
+      <ActionButton
+        icon={GraduationCap}
+        label="Estudo"
+        onClick={(e) => {
+          e.stopPropagation();
+          onEstudos();
+        }}
+        ariaLabel={`Estudos teológicos do versículo ${versiculo}`}
+      />
 
       <ActionButton
         icon={Brain}

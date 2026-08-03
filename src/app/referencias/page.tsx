@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { GitBranch, Search, X, ChevronRight, Layers } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
-import { crossReferencesMap } from '@/data/biblia/crossReferences';
+import { crossReferencesMap, type CrossReference } from '@/data/biblia/crossReferences';
 
 interface ChainNode {
   ref: string;
@@ -19,9 +19,26 @@ interface ChainNode {
 // Build a simple lookup from the crossReferencesMap
 const allRefs = Object.keys(crossReferencesMap);
 
-function getRefsForVerse(ref: string): string[] {
-  const refs = crossReferencesMap[ref] || [];
-  return refs.map(r => r.to);
+const TYPE_LABELS: Record<CrossReference['type'], string> = {
+  parallel: 'Paralelos',
+  fulfillment: 'Cumprimento',
+  quotation: 'Citação',
+  contrast: 'Contraste',
+  thematic: 'Temático',
+  typology: 'Tipologia',
+};
+
+const TYPE_COLORS: Record<CrossReference['type'], string> = {
+  parallel: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300',
+  fulfillment: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300',
+  quotation: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300',
+  contrast: 'bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-300',
+  thematic: 'bg-violet-100 text-violet-800 dark:bg-violet-900/30 dark:text-violet-300',
+  typology: 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300',
+};
+
+function getRefsForVerse(ref: string): CrossReference[] {
+  return crossReferencesMap[ref] || [];
 }
 
 export default function CadeiaRefPage() {
@@ -38,7 +55,7 @@ export default function CadeiaRefPage() {
 
   const buildChain = useCallback((startRef: string, depth: number = 0): ChainNode => {
     const refs = getRefsForVerse(startRef);
-    return { ref: startRef, children: refs.slice(0, 5), depth };
+    return { ref: startRef, children: refs.slice(0, 5).map(r => r.to), depth };
   }, []);
 
   const startChain = useCallback((ref: string) => {
@@ -50,7 +67,7 @@ export default function CadeiaRefPage() {
       const nextLevel: string[] = [];
       for (const r of currentLevel) {
         const refs = getRefsForVerse(r);
-        for (const child of refs.slice(0, 3)) {
+        for (const child of refs.slice(0, 3).map(r => r.to)) {
           if (!chainNodes.find(n => n.ref === child)) {
             chainNodes.push(buildChain(child, d));
             nextLevel.push(child);
@@ -162,6 +179,9 @@ function ChainNodeComponent({ node, chain, depth, maxDepth, onSelect }: {
   const [expanded, setExpanded] = useState(depth < 2);
   const children = chain.filter(n => node.children.includes(n.ref));
 
+  const refs = getRefsForVerse(node.ref);
+  const types = [...new Set(refs.map(r => r.type))];
+
   return (
     <div className={cn('pl-4', depth > 0 && 'border-l-2 border-primary/20 ml-2')}>
       <div className={cn('flex items-center gap-2 px-3 py-2 rounded-lg transition-all',
@@ -171,6 +191,15 @@ function ChainNodeComponent({ node, chain, depth, maxDepth, onSelect }: {
           {depth > 0 && <ChevronRight className="w-3 h-3" />}
           {node.ref}
         </button>
+        {types.length > 0 && depth > 0 && (
+          <div className="flex gap-1 flex-wrap">
+            {types.slice(0, 2).map(t => (
+              <span key={t} className={`text-[9px] px-1.5 py-0.5 rounded-full font-medium ${TYPE_COLORS[t]}`}>
+                {TYPE_LABELS[t]}
+              </span>
+            ))}
+          </div>
+        )}
         {children.length > 0 && (
           <button onClick={() => setExpanded(!expanded)} className="text-xs text-muted-foreground ml-auto">
             {expanded ? '−' : '+'} {children.length}

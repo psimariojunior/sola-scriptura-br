@@ -65,12 +65,8 @@ void main() async {
 
   await Firebase.initializeApp();
 
-  // Crashlytics: catch Flutter errors and platform errors
+  // Crashlytics: catch Flutter errors
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-  PlatformDispatcher.instance.onError = (error, stack) {
-    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-    return true;
-  };
 
   // Analytics
   final analytics = FirebaseAnalytics.instance;

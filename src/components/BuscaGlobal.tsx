@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, memo } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -88,7 +88,7 @@ const RECENT_KEY = 'ssb_recent_searches';
 const MAX_RECENT = 6;
 const MAX_RESULTS = 20;
 
-export function BuscaGlobal({ open, onOpenChange }: BuscaGlobalProps) {
+export const BuscaGlobal = memo(function BuscaGlobal({ open, onOpenChange }: BuscaGlobalProps) {
   const [query, setQuery] = useState('');
   const [resultados, setResultados] = useState<BuscaResultado[]>([]);
   const [carregando, setCarregando] = useState(false);
@@ -448,4 +448,4 @@ export function BuscaGlobal({ open, onOpenChange }: BuscaGlobalProps) {
       )}
     </AnimatePresence>
   );
-}
+});

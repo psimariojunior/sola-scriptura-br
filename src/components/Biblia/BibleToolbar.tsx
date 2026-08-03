@@ -36,15 +36,28 @@ export function BibleToolbar({
 }: BibleToolbarProps) {
   const { t } = useTranslation();
   const [mobileToolbarMenuOpen, setMobileToolbarMenuOpen] = useState(false);
-  const [readingMode, setReadingMode] = useState<ReadingMode>('leitura');
   const mobileMenuBtnRef = useRef<HTMLButtonElement>(null);
   const [mobileMenuPos, setMobileMenuPos] = useState<{ top: number; right: number }>({ top: 0, right: 0 });
+
+  const readingMode: ReadingMode = ui.showInterlinear ? 'interlinear' : ui.modoLeitura === 'foco' ? 'leitura' : ui.modoLeitura === 'estudo' ? 'estudo' : ui.modoLeitura === 'apresentacao' ? 'apresentacao' : 'leitura';
+  const handleReadingModeChange = (mode: ReadingMode) => {
+    if (mode === 'interlinear') {
+      ui.setShowInterlinear(true);
+      ui.setModoLeitura('foco');
+    } else {
+      ui.setShowInterlinear(false);
+      if (mode === 'leitura') { ui.setModoLeitura('foco'); nav.setViewMode('single'); panels.setSidePanelWidth('collapsed'); }
+      else if (mode === 'estudo') { ui.setModoLeitura('estudo'); panels.setSidePanelWidth('half'); panels.setSidePanelTab('comentarios'); }
+      else if (mode === 'apresentacao') { ui.setMostrarApresentacao(true); }
+    }
+  };
 
   return (
     <div className="border-b border-[var(--border)]/40 bg-[var(--surface-raised)]/95 backdrop-blur-sm sticky top-0 z-20">
       <div className="px-3 sm:px-4 py-2.5 flex items-center gap-1.5 sm:gap-3 overflow-x-auto scrollbar-hide">
         <button onClick={() => ui.setMobileMenu(true)} className="lg:hidden touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] shrink-0" aria-label="Abrir menu de livros"><BookOpen className="w-4 h-4" /></button>
         <button onClick={() => ui.setSidebarOpen(!ui.sidebarOpen)} className="hidden lg:flex touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] shrink-0"><ListFilter className="w-4 h-4" /></button>
+        <button onClick={() => ui.setQuickSearchOpen(true)} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] shrink-0" aria-label={t('biblia.search')} title={t('biblia.search')}><Search className="w-4 h-4" /></button>
         <div className="flex items-center gap-1 shrink-0">
           <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform"><ChevronLeft className="w-4 h-4" /></button>
           <div className="relative">
@@ -58,7 +71,7 @@ export function BibleToolbar({
           <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform"><ChevronRight className="w-4 h-4" /></button>
         </div>
         <div className="flex-1" />
-        <ReadingModeBar mode={readingMode} onModeChange={setReadingMode} />
+        <ReadingModeBar mode={readingMode} onModeChange={handleReadingModeChange} />
         <div className="flex-1 sm:flex-none" />
         <TranslationDropdown open={ui.tradOpen} onToggle={() => { ui.setTradOpen(!ui.tradOpen); ui.setToolsOpen(false); }} onClose={() => ui.setTradOpen(false)} selectedTrads={nav.selectedTrads} onToggleTrad={nav.toggleTrad} viewMode={nav.viewMode} onViewModeChange={nav.setViewMode} />
         <div className="md:hidden relative shrink-0">

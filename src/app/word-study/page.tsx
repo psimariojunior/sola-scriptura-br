@@ -1,14 +1,15 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Search, X, Hash, TrendingUp, BarChart3, Languages, Volume2, ChevronDown, ChevronUp } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
-import { palavrasGregas, type PalavraGrega } from '@/data/lexicon/grego';
-import { palavrasHebraicas, type PalavraHebraica } from '@/data/lexicon/hebraico';
+import { carregarLexicoGrego, carregarLexicoHebraico } from '@/lib/lexicon-lazy';
+import type { PalavraGrega } from '@/data/lexicon/grego';
+import type { PalavraHebraica } from '@/data/lexicon/hebraico';
 
 type Idioma = 'grego' | 'hebraico';
 
@@ -17,8 +18,19 @@ export default function WordStudyPage() {
   const [busca, setBusca] = useState('');
   const [selectedWord, setSelectedWord] = useState<PalavraGrega | PalavraHebraica | null>(null);
   const [expandedSection, setExpandedSection] = useState<string | null>('definicao');
+  const [palavrasGregas, setPalavrasGregas] = useState<PalavraGrega[]>([]);
+  const [palavrasHebraicas, setPalavrasHebraicas] = useState<PalavraHebraica[]>([]);
+  const [carregando, setCarregando] = useState(true);
 
-  const palavras = useMemo(() => idioma === 'grego' ? palavrasGregas : palavrasHebraicas, [idioma]);
+  useEffect(() => {
+    Promise.all([carregarLexicoGrego(), carregarLexicoHebraico()]).then(([g, h]) => {
+      setPalavrasGregas(g);
+      setPalavrasHebraicas(h);
+      setCarregando(false);
+    });
+  }, []);
+
+  const palavras = useMemo(() => idioma === 'grego' ? palavrasGregas : palavrasHebraicas, [idioma, palavrasGregas, palavrasHebraicas]);
 
   const filtradas = useMemo(() => {
     if (!busca || busca.length < 2) return [];
@@ -53,6 +65,16 @@ export default function WordStudyPage() {
             </div>
           </ScrollReveal>
 
+          {carregando ? (
+            <div className="text-center py-16">
+              <div className="inline-flex gap-2">
+                <span className="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:0s]" />
+                <span className="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:0.15s]" />
+                <span className="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:0.3s]" />
+              </div>
+              <p className="text-sm text-muted-foreground mt-4">Carregando léxico...</p>
+            </div>
+          ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Search Panel */}
             <div className="lg:col-span-1">
@@ -277,6 +299,7 @@ export default function WordStudyPage() {
               )}
             </div>
           </div>
+          )}
         </div>
       </main>
       <Footer />

@@ -398,10 +398,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 @layer components {
   .font-display { font-family: 'Cormorant Garamond', Georgia, serif; }
   .font-serif-body { font-family: 'Spectral', Georgia, serif; }
@@ -567,7 +563,8 @@ html {
   animation: skeletonShimmer 1.8s ease-in-out infinite;
   border-radius: 6px;
 }
-.skeleton-text { height: 14px; margin-bottom: 8px; }
+
+.skeleton-text { height: 1em; border-radius: 0.25em; background-color: var(--muted, rgba(0, 0, 0, 0.08)); }
 .skeleton-title { height: 22px; width: 60%; margin-bottom: 12px; }
 
 .animate-fade-in { animation: fadeIn 0.5s ease-out; }
@@ -576,7 +573,7 @@ html {
 .animate-slide-down { animation: slideDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 .animate-scale-in { animation: scaleIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
 .animate-expand-vertical { animation: expandVertical 0.2s ease-out forwards; overflow: hidden; }
-.animate-shimmer { background: linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.08) 50%, transparent 100%); background-size: 200% 100%; animation: shimmer 2s ease-in-out infinite; }
+.animate-shimmer { animation: shimmer 2s ease-in-out infinite; }
 .animate-float { animation: float 3s ease-in-out infinite; }
 .animate-glow { animation: glow 2.5s ease-in-out infinite; }
 .animate-text-glow { animation: textGlow 3s ease-in-out infinite; }
@@ -737,14 +734,6 @@ html {
 .animate-border-glow, .animate-spin-slow, .animate-spin,
 [style*="animation"] {
   transition-property: none !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
 }
 
 @media print {
@@ -1187,28 +1176,6 @@ html {
   outline: 2px solid hsl(var(--primary));
   outline-offset: 2px;
   border-radius: 4px;
-}
-
-/* Selection color */
-::selection {
-  background: hsl(var(--primary) / 0.25);
-  color: hsl(var(--foreground));
-}
-
-/* Scrollbar — thin and elegant */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground) / 0.3);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground) / 0.5);
 }
 
 /* Divider ornament */
@@ -2350,16 +2317,7 @@ textarea:focus-visible,
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Verse stagger animation */
-.verse-stagger {
-  animation: verseFadeIn 0.3s ease forwards;
-  opacity: 0;
-}
 
-@keyframes verseFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
 
 /* Floating label effect */
 .floating-label {
@@ -2781,31 +2739,8 @@ button, a, [role="button"] {
 
 /* ════════════════════════════════════════════════════════════════════════════
    PREMIUM DESIGN SYSTEM v2
-   - Focus rings visíveis (WCAG)
-   - Glassmorphism v2 (backdrop-blur premium)
-   - Animações suaves (transições refinadas)
    - Safe areas (mobile notch/home indicator)
-   - Reduced motion respeitado
-   - High contrast respeitado
    ════════════════════════════════════════════════════════════════════════════ */
-
-/* Focus rings acessíveis (visíveis só com teclado, não com clique) */
-*:focus-visible {
-  outline: 2px solid var(--brand-default, #A17A2C);
-  outline-offset: 2px;
-  border-radius: 4px;
-  transition: outline-offset 0.15s ease;
-}
-*:focus:not(:focus-visible) {
-  outline: none;
-}
-
-/* Botão primary e elementos interativos com anel premium */
-button:not(:disabled),
-[role="button"]:not([aria-disabled="true"]),
-a {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
 
 /* Safe area helpers (notch + home indicator) */
 .pb-safe { padding-bottom: max(env(safe-area-inset-bottom), 1rem); }
@@ -2813,17 +2748,7 @@ a {
 .pl-safe { padding-left: max(env(safe-area-inset-left), 1rem); }
 .pr-safe { padding-right: max(env(safe-area-inset-right), 1rem); }
 
-/* Glassmorphism v2 — mais refinado, blur adaptativo */
-.glass-card {
-  background: var(--surface-overlay);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid var(--border, rgba(255, 255, 255, 0.1));
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.05),
-    0 10px 25px -5px rgba(0, 0, 0, 0.08);
-  border-radius: var(--radius, 0.625rem);
-}
+/* Glass card elevated variant (complementa .glass-card base) */
 .glass-card-elevated {
   background: var(--surface-overlay);
   backdrop-filter: blur(24px) saturate(200%);
@@ -2833,29 +2758,6 @@ a {
     0 10px 30px -5px rgba(0, 0, 0, 0.12),
     0 20px 60px -15px rgba(0, 0, 0, 0.18);
   border-radius: var(--radius, 0.625rem);
-}
-
-/* Loading shimmer (esqueleto dourado) */
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-.shimmer {
-  background: linear-gradient(
-    90deg,
-    var(--surface-sunken, rgba(0, 0, 0, 0.04)) 0%,
-    var(--surface-overlay, rgba(0, 0, 0, 0.08)) 50%,
-    var(--surface-sunken, rgba(0, 0, 0, 0.04)) 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s ease-in-out infinite;
-}
-
-/* Skeleton text */
-.skeleton-text {
-  height: 1em;
-  border-radius: 0.25em;
-  background-color: var(--muted, rgba(0, 0, 0, 0.08));
 }
 
 /* Animated fade-in-up (entrada suave) */
@@ -2882,18 +2784,6 @@ a {
 /* Smooth scroll (respeitando reduced motion) */
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
-}
-
-/* Reduced motion: remove animações longas */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
 }
 
 /* High contrast (forçar visibilidade em modo de alto contraste) */
@@ -2979,6 +2869,104 @@ a {
 .verse-stagger {
   opacity: 0;
   animation: staggerIn 0.3s ease-out forwards;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   ATLAS BÍBLICO — Map markers, pulse, animated routes
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.atlas-marker-pulse {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  animation: atlasPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.atlas-marker-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  animation: atlasPulseRing 2s ease-out infinite;
+  opacity: 0;
+}
+
+@keyframes atlasPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.85; }
+}
+
+@keyframes atlasPulseRing {
+  0% { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.atlas-marker-selected .atlas-marker-pulse {
+  animation: atlasPulseSelected 1s ease-in-out infinite;
+}
+
+@keyframes atlasPulseSelected {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.atlas-animated-route {
+  animation: atlasDashMove 1.5s linear infinite;
+}
+
+@keyframes atlasDashMove {
+  to { stroke-dashoffset: -40; }
+}
+
+.atlas-tooltip {
+  position: absolute;
+  z-index: 9999;
+  pointer-events: none;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 10px;
+  padding: 8px 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  transform: translateX(-50%) translateY(-100%);
+}
+
+.atlas-tooltip.visible {
+  opacity: 1;
+}
+
+.atlas-tooltip .tooltip-cat {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Leaflet popup custom styling */
+.atlas-map .leaflet-popup-content-wrapper {
+  border-radius: 14px !important;
+  border: 1px solid hsl(var(--border) / 0.5) !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12) !important;
+  padding: 0 !important;
+}
+
+.atlas-map .leaflet-popup-content {
+  margin: 0 !important;
+  padding: 14px !important;
+  font-family: inherit !important;
+}
+
+.atlas-map .leaflet-popup-tip {
+  border-top-color: hsl(var(--card)) !important;
 }
 
 /* Print styles */

@@ -130,10 +130,17 @@ export default function QuizMultiplayerPage() {
       });
 
       svc.onQuizAnswer((data) => {
-        const answer = data.answer as QuizAnswer;
         setAnswers(prev => {
-          if (prev.some(a => a.questionId === answer.questionId && a.playerId === answer.playerId)) return prev;
-          return [...prev, answer];
+          if (prev.some(a => a.questionId === data.questionId && a.playerId === data.participantId)) return prev;
+          return [...prev, {
+            questionId: data.questionId,
+            playerId: data.participantId,
+            playerName: data.participantName,
+            selectedIndex: data.selectedIndex,
+            timeSpent: data.timeSpent,
+            isCorrect: data.isCorrect,
+            points: data.isCorrect ? Math.max(0, 1000 - data.timeSpent * 10) : 0,
+          }];
         });
       });
 

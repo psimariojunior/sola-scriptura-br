@@ -704,10 +704,24 @@ export function VerseImageCreator({ texto, referencia, onClose }: VerseImageCrea
       const w = window as unknown as Record<string, unknown>;
       if (w.__SSB_SHARE_IMAGE) {
         (w.__SSB_SHARE_IMAGE as (d: string, f: string) => void)(dataUrl, makeFilename());
+      } else if (navigator.share && navigator.canShare) {
+        // Convert data URL to blob for native share
+        const res = await fetch(dataUrl);
+        const blob = await res.blob();
+        const file = new File([blob], makeFilename(), { type: 'image/png' });
+        const shareData = { title: referencia, files: [file] };
+        if (navigator.canShare(shareData)) {
+          await navigator.share(shareData);
+        } else {
+          // Fallback: share text only
+          await navigator.share({ title: referencia, text: `${referencia}\n\n${texto}\n\nSola Scriptura BR` });
+        }
       } else {
         handleDownload();
       }
     } catch (e) {
+      // User cancelled share — ignore
+      if (e instanceof DOMException && e.name === 'AbortError') return;
       console.error('Share error:', e);
     }
     setBusy(false);

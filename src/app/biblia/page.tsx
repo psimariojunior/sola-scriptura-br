@@ -26,6 +26,7 @@ import { UseBibliaPanels } from '@/hooks/biblia/useBibliaPanels';
 import { BibleToolbar } from '@/components/Biblia/BibleToolbar';
 import { BibleVerseList } from '@/components/Biblia/BibleVerseList';
 import { BibleSidebar } from '@/components/Biblia/BibleSidebar';
+import { SplitNotesPanel } from '@/components/Biblia/SplitNotesPanel';
 import OfflineBanner from '@/components/OfflineBanner';
 import type { CenaDramatica, PersonagemVoz } from '@/components/NarracaoDramatica';
 import Paywall from '@/components/Paywall';
@@ -172,7 +173,7 @@ export default function BibliaPage() {
   if (ui.zenMode && nav.temDados) {
     return (
       <div className="fixed inset-0 z-50 bg-[var(--bg)] overflow-y-auto">
-        <div className="max-w-[700px] mx-auto px-4 sm:px-6 py-12 sm:py-16 pb-safe">
+        <div className="max-w-[850px] mx-auto px-4 sm:px-6 py-12 sm:py-16 pb-safe">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
               <button onClick={() => ui.setZenMode(false)} className="p-2 rounded-lg text-[var(--content-muted)] hover:text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors" title={t('biblia.exitZen')}><X className="w-5 h-5" /></button>
@@ -220,34 +221,74 @@ export default function BibliaPage() {
               verse={verse}
               onShowDownloadManager={setShowDownloadManager}
             />
-            <BibleVerseList
-              nav={nav}
-              ui={ui}
-              verse={verse}
-              panels={panels}
-              audio={audio}
-              audioNatural={audioNatural}
-              flashcards={flashcards}
-              verseResources={verseResources}
-              capituloAudio={capituloAudio}
-              isFavorito={isFavorito}
-              refresh={refresh}
-              swipeHandlers={swipeHandlers}
-              swipeOffset={swipeOffset}
-              swipeProgress={swipeProgress}
-              canGoPrev={canGoPrev}
-              canGoNext={canGoNext}
-              handleDeselectVerse={handleDeselectVerse}
-              stableHandleSelectFromList={stableHandleSelectFromList}
-              stableSetAnotandoVersiculo={stableSetAnotandoVersiculo}
-              stableSetComentarioVersiculo={stableSetComentarioVersiculo}
-              stableSetEstudoAberto={stableSetEstudoAberto}
-              painelVersiculoAberto={painelVersiculoAberto}
-              setPainelVersiculoAberto={setPainelVersiculoAberto}
-              setPainelTabInicial={setPainelTabInicial}
-              onSetMostrarApresentacao={ui.setMostrarApresentacao}
-              onSetShareOpen={ui.setShareOpen}
-            />
+            <div className="flex-1 flex overflow-hidden">
+              <div className="flex-1 overflow-y-auto" style={ui.modoLeitura === 'split' ? { flex: `0 0 ${ui.splitRatio}%` } : undefined}>
+                <BibleVerseList
+                  nav={nav}
+                  ui={ui}
+                  verse={verse}
+                  panels={panels}
+                  audio={audio}
+                  audioNatural={audioNatural}
+                  flashcards={flashcards}
+                  verseResources={verseResources}
+                  capituloAudio={capituloAudio}
+                  isFavorito={isFavorito}
+                  refresh={refresh}
+                  swipeHandlers={swipeHandlers}
+                  swipeOffset={swipeOffset}
+                  swipeProgress={swipeProgress}
+                  canGoPrev={canGoPrev}
+                  canGoNext={canGoNext}
+                  handleDeselectVerse={handleDeselectVerse}
+                  stableHandleSelectFromList={stableHandleSelectFromList}
+                  stableSetAnotandoVersiculo={stableSetAnotandoVersiculo}
+                  stableSetComentarioVersiculo={stableSetComentarioVersiculo}
+                  stableSetEstudoAberto={stableSetEstudoAberto}
+                  painelVersiculoAberto={painelVersiculoAberto}
+                  setPainelVersiculoAberto={setPainelVersiculoAberto}
+                  setPainelTabInicial={setPainelTabInicial}
+                  onSetMostrarApresentacao={ui.setMostrarApresentacao}
+                  onSetShareOpen={ui.setShareOpen}
+                />
+              </div>
+
+              {/* Split view resize handle */}
+              {ui.modoLeitura === 'split' && (
+                <div
+                  className="w-1.5 cursor-col-resize hover:bg-[var(--brand-default)]/30 active:bg-[var(--brand-default)]/50 transition-colors relative group hidden md:block"
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    const startX = e.clientX;
+                    const startRatio = ui.splitRatio;
+                    const container = (e.target as HTMLElement).parentElement;
+                    const containerWidth = container?.getBoundingClientRect().width || 1;
+
+                    const onMove = (ev: MouseEvent) => {
+                      const delta = ev.clientX - startX;
+                      const newRatio = Math.min(80, Math.max(20, startRatio + (delta / containerWidth) * 100));
+                      ui.setSplitRatio(Math.round(newRatio));
+                    };
+                    const onUp = () => {
+                      document.removeEventListener('mousemove', onMove);
+                      document.removeEventListener('mouseup', onUp);
+                    };
+                    document.addEventListener('mousemove', onMove);
+                    document.addEventListener('mouseup', onUp);
+                  }}
+                >
+                  <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px bg-[var(--border)]/40 group-hover:bg-[var(--brand-default)]/50" />
+                </div>
+              )}
+
+              {/* Split view notes panel */}
+              {ui.modoLeitura === 'split' && (
+                <div className="hidden md:flex flex-col overflow-hidden" style={{ flex: `0 0 ${100 - ui.splitRatio}%` }}>
+                  <SplitNotesPanel verse={verse} ui={ui} />
+                </div>
+              )}
+            </div>
+
             <MobileBookMenu open={ui.mobileMenu} onClose={() => ui.setMobileMenu(false)} livroIdx={nav.livroIdx} onSelect={(idx) => handleGoToBook(idx)} onSelectChapter={(idx, cap) => handleGoToBook(idx, cap)} />
           </div>
         </div>

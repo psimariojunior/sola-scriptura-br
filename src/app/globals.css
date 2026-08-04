@@ -1099,7 +1099,7 @@ html {
 
 /* Reading mode — book-like typography */
 .reading-mode {
-  max-width: 680px;
+  max-width: 800px;
   margin: 0 auto;
   font-size: 20px;
   line-height: 2;
@@ -1853,7 +1853,7 @@ textarea:focus-visible,
 }
 
 .bible-reading-column {
-  max-width: 680px;
+  max-width: 800px;
   margin: 0 auto;
   width: 100%;
 }
@@ -1867,12 +1867,12 @@ textarea:focus-visible,
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Desktop: 18px / 1.8 */
+/* Desktop: 20px / 1.85 */
 @media (min-width: 768px) {
   .bible-reading-text {
-    font-size: 18px;
-    line-height: 1.8;
-    letter-spacing: 0.01em;
+    font-size: 20px;
+    line-height: 1.85;
+    letter-spacing: 0.015em;
   }
   .bible-verse-spacer {
     margin-bottom: 16px;
@@ -2861,9 +2861,9 @@ button, a, [role="button"] {
 
 /* Bible reading uses these CSS custom properties from AccessibilityPanel */
 .bible-verse-text {
-  font-size: var(--bible-font-size, 18px);
-  line-height: var(--bible-line-height, 1.8);
-  letter-spacing: var(--bible-letter-spacing, 0em);
+  font-size: var(--bible-font-size, 20px);
+  line-height: var(--bible-line-height, 1.85);
+  letter-spacing: var(--bible-letter-spacing, 0.01em);
 }
 
 /* ════════════════════════════════════════════════════════════════════════════

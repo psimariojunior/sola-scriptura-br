@@ -4,6 +4,7 @@ import { memo, useCallback } from 'react';
 import { VerseCard } from './VerseCard';
 import { labelMap, tradBadgeColors } from './TranslationDropdown';
 import { getMarcador } from '@/lib/marcadores';
+import { obterMarca } from '@/lib/estudos';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
 import type { useVerseAudio } from '@/hooks/useVerseAudio';
 import type { useFlashcards } from '@/hooks/useFlashcards';
@@ -91,6 +92,8 @@ export const VerseListItem = memo(function VerseListItem({
 }: VerseListItemProps) {
   const verseKey = `${livroAbreviacao}:${capitulo}:${numero}:${traducao}`;
   const marcaMarcador = getMarcador(livroAbreviacao, capitulo, numero, traducao);
+  const marcaEstudo = obterMarca(livroAbreviacao, capitulo, numero, traducao);
+  const temAnotacao = !!marcaEstudo?.anotacao?.texto;
 
   const handleSelect = useCallback(() => {
     onSelectFromList(livroAbreviacao, capitulo, numero, traducao, texto);
@@ -131,7 +134,7 @@ export const VerseListItem = memo(function VerseListItem({
       isFocused={isFocused}
       isFavorito={isFavorito}
       corMarca={marcaMarcador?.cor ?? null}
-      temAnotacao={false}
+      temAnotacao={temAnotacao}
       copiedVerse={copiedVerse}
       audioNatural={audioNatural}
       audio={audio}

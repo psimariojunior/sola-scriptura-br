@@ -46,6 +46,15 @@ export interface ChatMessage {
   participantId: string;
   displayName: string;
   message: string;
+  channel?: string;
+  timestamp: number;
+}
+
+export interface CursorMoveEvent {
+  participantId: string;
+  displayName: string;
+  x: number;
+  y: number;
   timestamp: number;
 }
 
@@ -86,6 +95,100 @@ export interface PresentationSyncEvent {
   presentedBy?: string;
 }
 
+export interface QuizStartEvent {
+  quizId: string;
+  questions: QuizQuestion[];
+  hostId: string;
+  timePerQuestion: number;
+}
+
+export interface QuizAnswerEvent {
+  quizId: string;
+  participantId: string;
+  participantName: string;
+  questionId: string;
+  selectedIndex: number;
+  timeSpent: number;
+  isCorrect: boolean;
+}
+
+export interface QuizSyncEvent {
+  quizId: string;
+  currentQuestionIndex: number;
+  status: 'active' | 'finished';
+}
+
+export interface QuizAnswerUpdateEvent {
+  quizId: string;
+  participantId: string;
+  participantName: string;
+  questionId: string;
+  selectedIndex: number;
+  timeSpent: number;
+  isCorrect: boolean;
+  answers: QuizAnswerEvent[];
+}
+
+export interface QuizRankingEvent {
+  quizId: string;
+  currentQuestionIndex: number;
+  status: 'active' | 'finished';
+  rankings: QuizScore[];
+}
+
+export interface QuizQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctIndex: number;
+  category: string;
+  difficulty: 'facil' | 'medio' | 'dificil';
+}
+
+export interface QuizAnswerEvent {
+  participantId: string;
+  participantName: string;
+  questionId: string;
+  selectedIndex: number;
+  timeSpent: number;
+  isCorrect: boolean;
+}
+
+export interface QuizScore {
+  participantId: string;
+  participantName: string;
+  score: number;
+  correctAnswers: number;
+  totalAnswered: number;
+  avgTime: number;
+}
+
+export type NoteSyncAction = 'add' | 'update' | 'delete';
+
+export interface NoteSyncEvent {
+  action: NoteSyncAction;
+  noteId: string;
+  participantId: string;
+  participantName: string;
+  content?: string;
+  verseRef?: string;
+  color?: string;
+  timestamp: number;
+}
+
+export interface NoteTypingEvent {
+  participantId: string;
+  participantName: string;
+  noteId?: string;
+}
+
+export interface ThemeSyncEvent {
+  themeId: string;
+  participantId: string;
+  participantName: string;
+  timestamp: number;
+}
+
 export class WebRTCService {
   private socket: Socket | null = null;
   private peers = new Map<string, RTCPeerConnection>();
@@ -103,9 +206,12 @@ export class WebRTCService {
   private onPresentationSyncCallback: ((data: PresentationSyncEvent) => void) | null = null;
   private onBibleNavigationCallback: ((data: { livro: string; capitulo: number; traducao: string }) => void) | null = null;
   private onRoomFullCallback: ((data: { code: string; maxParticipants: number }) => void) | null = null;
-  private onQuizStartCallback: ((data: { questions: unknown[] }) => void) | null = null;
-  private onQuizAnswerCallback: ((data: { answer: unknown }) => void) | null = null;
-  private onQuizSyncCallback: ((data: { currentQuestion: number; status: string }) => void) | null = null;
+  private onQuizStartCallback: ((data: QuizStartEvent) => void) | null = null;
+  private onQuizAnswerCallback: ((data: QuizAnswerUpdateEvent) => void) | null = null;
+  private onQuizSyncCallback: ((data: QuizRankingEvent) => void) | null = null;
+  private onNoteSyncCallback: ((data: NoteSyncEvent) => void) | null = null;
+  private onNoteTypingCallback: ((data: NoteTypingEvent) => void) | null = null;
+  private onThemeSyncCallback: ((data: ThemeSyncEvent) => void) | null = null;
   private peerStreams: PeerStream[] = [];
   private mySocketId = '';
   private roomCode = '';
@@ -215,16 +321,28 @@ export class WebRTCService {
       this.onPresentationSyncCallback?.(data);
     });
 
-    this.socket.on('quiz-start', (data: { questions: unknown[] }) => {
+    this.socket.on('quiz-start', (data: QuizStartEvent) => {
       this.onQuizStartCallback?.(data);
     });
 
-    this.socket.on('quiz-answer', (data: { answer: unknown }) => {
+    this.socket.on('quiz-answer', (data: QuizAnswerUpdateEvent) => {
       this.onQuizAnswerCallback?.(data);
     });
 
-    this.socket.on('quiz-sync', (data: { currentQuestion: number; status: string }) => {
+    this.socket.on('quiz-sync', (data: QuizRankingEvent) => {
       this.onQuizSyncCallback?.(data);
+    });
+
+    this.socket.on('note-sync', (data: NoteSyncEvent) => {
+      this.onNoteSyncCallback?.(data);
+    });
+
+    this.socket.on('note-typing', (data: NoteTypingEvent) => {
+      this.onNoteTypingCallback?.(data);
+    });
+
+    this.socket.on('theme-sync', (data: ThemeSyncEvent) => {
+      this.onThemeSyncCallback?.(data);
     });
   }
 
@@ -309,16 +427,43 @@ export class WebRTCService {
     this.socket.emit('quiz-sync', { code: this.roomCode, ...data });
   }
 
+  sendNoteSync(data: NoteSyncEvent) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('note-sync', { ...data, code: this.roomCode });
+  }
+
+  sendNoteTyping(data: NoteTypingEvent) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('note-typing', { ...data, code: this.roomCode });
+  }
+
+  sendThemeSync(data: ThemeSyncEvent) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('theme-sync', { ...data, code: this.roomCode });
+  }
+
   onQuizStart(cb: (data: { questions: unknown[] }) => void) {
     this.onQuizStartCallback = cb;
   }
 
-  onQuizAnswer(cb: (data: { answer: unknown }) => void) {
+  onQuizAnswer(cb: (data: QuizAnswerUpdateEvent) => void) {
     this.onQuizAnswerCallback = cb;
   }
 
-  onQuizSync(cb: (data: { currentQuestion: number; status: string }) => void) {
+  onQuizSync(cb: (data: QuizRankingEvent) => void) {
     this.onQuizSyncCallback = cb;
+  }
+
+  onNoteSync(cb: (data: NoteSyncEvent) => void) {
+    this.onNoteSyncCallback = cb;
+  }
+
+  onNoteTyping(cb: (data: NoteTypingEvent) => void) {
+    this.onNoteTypingCallback = cb;
+  }
+
+  onThemeSync(cb: (data: ThemeSyncEvent) => void) {
+    this.onThemeSyncCallback = cb;
   }
 
   private async createOffer(targetSocketId: string) {

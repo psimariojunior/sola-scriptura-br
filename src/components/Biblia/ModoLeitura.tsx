@@ -1,10 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Eye, BookOpen, Columns2, Presentation, type LucideIcon } from 'lucide-react';
+import { Eye, BookOpen, Columns2, Presentation } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import type { LucideIcon } from 'lucide-react';
 
-export type ModoLeituraValue = 'foco' | 'estudo' | 'comparacao' | 'apresentacao';
+export type ModoLeituraValue = 'foco' | 'estudo' | 'comparacao' | 'apresentacao' | 'split';
 
 interface ModoLeituraProps {
   value: ModoLeituraValue;
@@ -13,10 +14,18 @@ interface ModoLeituraProps {
   size?: 'sm' | 'md';
 }
 
-const modes: { value: ModoLeituraValue; label: string; icon: LucideIcon; shortcut?: string }[] = [
+const SplitIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="3" width="18" height="18" rx="2" />
+    <line x1="12" y1="3" x2="12" y2="21" />
+  </svg>
+);
+
+const modes: { value: ModoLeituraValue; label: string; icon: LucideIcon | React.ComponentType<{ className?: string }>; shortcut?: string }[] = [
   { value: 'foco', label: 'Foco', icon: Eye },
   { value: 'estudo', label: 'Estudo', icon: BookOpen },
   { value: 'comparacao', label: 'Comparação', icon: Columns2, shortcut: 'C' },
+  { value: 'split', label: 'Split', icon: SplitIcon, shortcut: 'S' },
   { value: 'apresentacao', label: 'Apresentar', icon: Presentation },
 ];
 

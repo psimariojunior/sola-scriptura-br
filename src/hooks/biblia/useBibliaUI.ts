@@ -16,9 +16,11 @@ export interface UseBibliaUIReturn {
   showDiff: boolean;
   setShowDiff: React.Dispatch<React.SetStateAction<boolean>>;
   fontSize: number;
-  setFontSize: React.Dispatch<React.SetStateAction<number>>;
+  setFontSize: (size: number | ((prev: number) => number)) => void;
   zenMode: boolean;
   setZenMode: React.Dispatch<React.SetStateAction<boolean>>;
+  splitRatio: number;
+  setSplitRatio: React.Dispatch<React.SetStateAction<number>>;
   showInterlinear: boolean;
   setShowInterlinear: React.Dispatch<React.SetStateAction<boolean>>;
   showPlan: boolean;
@@ -108,12 +110,21 @@ export function UseBibliaUI({
           const parsed = JSON.parse(saved);
           if (parsed.fontSize && typeof parsed.fontSize === 'number') return parsed.fontSize;
         }
+        const savedSize = localStorage.getItem('ssb_font_size');
+        if (savedSize) return Number(savedSize);
       } catch {}
-      if (window.innerWidth < 640) return 17;
+      // Auto-fit: ajusta fonte baseado na largura da tela
+      const w = window.innerWidth;
+      if (w < 360) return 16;
+      if (w < 480) return 17;
+      if (w < 640) return 18;
+      if (w < 768) return 19;
+      return 20;
     }
-    return 18;
+    return 20;
   });
   const [zenMode, setZenMode] = useState(false);
+  const [splitRatio, setSplitRatio] = useState(55);
   const [showInterlinear, setShowInterlinear] = useState(false);
   const [showPlan, setShowPlan] = useState(false);
   const [modoLeitura, setModoLeitura] = useState<ModoLeituraValue>('foco');
@@ -175,7 +186,9 @@ export function UseBibliaUI({
   const mostrarNarracaoCapituloRef = useRef(mostrarNarracaoCapitulo);
   mostrarNarracaoCapituloRef.current = mostrarNarracaoCapitulo;
   const zenModeRef = useRef(zenMode);
+  const quickSearchOpenRef = useRef(quickSearchOpen);
   zenModeRef.current = zenMode;
+  quickSearchOpenRef.current = quickSearchOpen;
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); setQuickSearchOpen(p => !p); return; }
@@ -184,6 +197,11 @@ export function UseBibliaUI({
 
     if (e.key === '/') { e.preventDefault(); setQuickSearchOpen(true); return; }
     if (e.key === 'z' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); setZenMode(p => !p); return; }
+    if (e.key === 's' && !e.ctrlKey && !e.metaKey && !quickSearchOpenRef.current) {
+      e.preventDefault();
+      setModoLeitura(p => p === 'split' ? 'foco' : 'split');
+      return;
+    }
 
     const curCapituloIdx = capituloIdxRef.current;
     const curLivroTotalCapitulos = livroTotalCapitulosRef.current;
@@ -251,6 +269,31 @@ export function UseBibliaUI({
     });
     return () => {
       window.removeEventListener('ssb_accessibility_changed', loadAccessibility);
+    };
+  }, []);
+
+  // Auto-fit: ajusta fonte quando orientação/largura da tela mudam
+  useEffect(() => {
+    let userHasAdjusted = false;
+    const onAdjust = () => { userHasAdjusted = true; };
+    window.addEventListener('ssb_font_size_adjusted', onAdjust);
+
+    const mql = window.matchMedia('(orientation: portrait)');
+    const onResize = () => {
+      if (userHasAdjusted) return;
+      const w = window.innerWidth;
+      let newSize: number;
+      if (w < 360) newSize = 16;
+      else if (w < 480) newSize = 17;
+      else if (w < 640) newSize = 18;
+      else if (w < 768) newSize = 19;
+      else newSize = 20;
+      setFontSize(newSize);
+    };
+    mql.addEventListener('change', onResize);
+    return () => {
+      mql.removeEventListener('change', onResize);
+      window.removeEventListener('ssb_font_size_adjusted', onAdjust);
     };
   }, []);
 
@@ -333,9 +376,22 @@ export function UseBibliaUI({
     showDiff,
     setShowDiff,
     fontSize,
-    setFontSize,
+    setFontSize: (sizeOrFn: number | ((prev: number) => number)) => {
+      const newSize = typeof sizeOrFn === 'function' ? sizeOrFn(fontSize) : sizeOrFn;
+      setFontSize(newSize);
+      try {
+        const saved = localStorage.getItem('ssb_accessibility');
+        const parsed = saved ? JSON.parse(saved) : {};
+        parsed.fontSize = newSize;
+        localStorage.setItem('ssb_accessibility', JSON.stringify(parsed));
+        localStorage.setItem('ssb_font_size', String(newSize));
+        window.dispatchEvent(new Event('ssb_font_size_adjusted'));
+      } catch (e) { console.error('[biblia:save-font-size]', e); }
+    },
     zenMode,
     setZenMode,
+    splitRatio,
+    setSplitRatio,
     showInterlinear,
     setShowInterlinear,
     showPlan,

@@ -18,6 +18,8 @@ import {
   Trash2,
   Sun,
   Languages,
+  Mic,
+  Search,
 } from 'lucide-react';
 import {
   Command,
@@ -29,6 +31,8 @@ import {
   CommandShortcut,
 } from '@/components/ui/command';
 import { useAI } from '@/hooks/useAI';
+import { VoiceSearchButton } from '@/components/VoiceSearchButton';
+import { Command as CommandPrimitive } from 'cmdk';
 
 interface BuscaResultado {
   id: string;
@@ -255,12 +259,21 @@ export const BuscaGlobal = memo(function BuscaGlobal({ open, onOpenChange }: Bus
           >
             <div className="rounded-2xl border border-border/40 bg-background/95 backdrop-blur-xl shadow-2xl overflow-hidden">
               <Command label="Busca global" shouldFilter={false}>
-                <CommandInput
-                  value={query}
-                  onValueChange={setQuery}
-                  placeholder="Buscar versículos, doutrinas, personagens ou comandos…"
-                  wrapperClassName="border-b border-border/30"
-                />
+                <div className="flex items-center border-b border-border/30 px-4">
+                  <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+                  <CommandPrimitive.Input
+                    value={query}
+                    onValueChange={setQuery}
+                    placeholder="Buscar versículos, doutrinas, personagens ou comandos…"
+                    className="flex h-12 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                  />
+                  <VoiceSearchButton
+                    onResult={(text) => {
+                      setQuery(text);
+                    }}
+                    size="sm"
+                  />
+                </div>
                 <CommandList>
                   {carregando && (
                     <div className="flex items-center justify-center py-8">

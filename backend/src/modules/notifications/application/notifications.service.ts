@@ -2,6 +2,7 @@ import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, LessThan } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import * as webpush from 'web-push';
 import { PushSubscription } from '../domain/push-subscription.entity';
 
@@ -187,6 +188,7 @@ export class NotificationsService implements OnModuleInit {
     }
   }
 
+  @Cron(CronExpression.EVERY_DAY_AT_8AM)
   async enviarVersiculoDiario(usuarioId?: string): Promise<{ enviados: number; falhas: number }> {
     const subscriptions = usuarioId
       ? await this.listarSubscriptionsPorUsuario(usuarioId)

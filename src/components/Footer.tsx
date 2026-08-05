@@ -54,13 +54,13 @@ function FooterInner() {
             </p>
 
             <div className="flex items-center gap-3">
-              <a href="mailto:contato@solascripura.com" className="text-muted-foreground hover:text-foreground transition-colors duration-200" aria-label="Enviar email de contato">
+              <a href="mailto:contato@solascripturabr.com.br" className="text-muted-foreground hover:text-foreground transition-colors duration-200" aria-label="Enviar email de contato">
                 <Mail className="w-4 h-4" />
               </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-200" aria-label="GitHub">
+              <a href="https://github.com/psimariojunior/sola-scriptura-br" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-200" aria-label="GitHub">
                 <ExternalLink className="w-4 h-4" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-200" aria-label="Twitter">
+              <a href="https://twitter.com/solascriptura_br" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-200" aria-label="Twitter">
                 <X className="w-4 h-4" />
               </a>
             </div>

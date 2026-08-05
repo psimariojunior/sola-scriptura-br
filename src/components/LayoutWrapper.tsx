@@ -185,9 +185,11 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               <Suspense fallback={null}>
                 <AccessibilityPanel />
               </Suspense>
-              <Suspense fallback={null}>
-                <PerformanceMonitor />
-              </Suspense>
+              {process.env.NODE_ENV === 'development' && (
+                <Suspense fallback={null}>
+                  <PerformanceMonitor />
+                </Suspense>
+              )}
               {process.env.NODE_ENV === 'development' && (
                 <Suspense fallback={null}>
                   <MobilePerformanceMonitor />

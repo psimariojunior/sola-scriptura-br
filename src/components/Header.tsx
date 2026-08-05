@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import {
   Menu, X, BookOpen, Search, Sun, Moon, User, LogOut, Languages, BookMarked,
@@ -141,9 +141,10 @@ function HeaderInner() {
   const [open, setOpen] = useState(false);
   const [buscaOpen, setBuscaOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hasDailyChallenge, setHasDailyChallenge] = useState(true);
+  const [hasDailyChallenge, setHasDailyChallenge] = useState(false);
   const [headerSearchValue, setHeaderSearchValue] = useState('');
   const [headerSearchFocused, setHeaderSearchFocused] = useState(false);
+  const [pendingSearchQuery, setPendingSearchQuery] = useState('');
   const [xp, setXp] = useState(0);
   const [streak, setStreak] = useState(0);
   const [temAcessoTotal, setTemAcessoTotal] = useState(false);
@@ -152,6 +153,8 @@ function HeaderInner() {
   const { i18n, t } = useTranslation();
   const pathname = usePathname();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentLivro = searchParams.get('livro');
   const headerSearchRef = useRef<HTMLInputElement>(null);
 
   const navLinks = useMemo(() => navLinksStatic.map(l => ({
@@ -184,6 +187,9 @@ function HeaderInner() {
     const stats = getStats();
     setXp(stats.totalChapters * 50 + stats.streak * 10);
     setStreak(stats.streak);
+    const today = new Date().toDateString();
+    const lastQuiz = localStorage.getItem('ssb_last_quiz_date');
+    setHasDailyChallenge(lastQuiz !== today);
   }, [pathname]);
 
   useEffect(() => {
@@ -241,6 +247,7 @@ function HeaderInner() {
       setBuscaOpen(true);
       return;
     }
+    setPendingSearchQuery(q);
     setBuscaOpen(true);
     setHeaderSearchValue('');
   };
@@ -257,7 +264,7 @@ function HeaderInner() {
 
   return (
     <>
-      <BuscaGlobal open={buscaOpen} onOpenChange={setBuscaOpen} />
+      <BuscaGlobal open={buscaOpen} onOpenChange={setBuscaOpen} initialQuery={pendingSearchQuery} />
       <motion.header
         animate={{ y: hidden ? '-100%' : '0%' }}
         transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -348,7 +355,7 @@ function HeaderInner() {
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-[min(640px,calc(100vw-2rem))] p-0" sideOffset={8}>
-                <QuickBookSwitcher onSelect={handleQuickBook} currentPath={pathname} />
+                <QuickBookSwitcher onSelect={handleQuickBook} activeBook={currentLivro} />
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -933,10 +940,10 @@ export const Header = memo(HeaderInner);
 
 function QuickBookSwitcher({
   onSelect,
-  currentPath,
+  activeBook,
 }: {
   onSelect: (abrev: string) => void;
-  currentPath: string;
+  activeBook: string | null;
 }) {
   const { t } = useTranslation();
   const [testamento, setTestamento] = useState<'AT' | 'NT'>('AT');
@@ -950,12 +957,6 @@ function QuickBookSwitcher({
       (l) => l.nome.toLowerCase().includes(q) || l.abreviacao.toLowerCase().includes(q)
     );
   }, [livros, query]);
-
-  const activeBook = useMemo(() => {
-    if (!currentPath.startsWith('/biblia')) return null;
-    const params = new URLSearchParams(currentPath.split('?')[1] || '');
-    return params.get('livro');
-  }, [currentPath]);
 
   return (
     <div className="flex flex-col max-h-[70vh]">

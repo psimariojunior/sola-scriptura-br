@@ -9,6 +9,9 @@ import {
 } from '../application/dto/pesquisa.dto';
 import { Publico } from '../../../common/decorators/publico.decorator';
 import { UsuarioAtual } from '../../../common/decorators/usuario-atual.decorator';
+import { Roles } from '../../../common/decorators/roles.decorator';
+import { JwtAuthGuard } from '../../../common/guards/jwt-auth.guard';
+import { RolesGuard } from '../../../common/guards/roles.guard';
 
 @ApiTags('Pesquisa')
 @Controller('pesquisa')
@@ -200,7 +203,8 @@ export class PesquisaController {
     return this.pesquisaService.buscaCompleta(q, page || 1, limit || 20);
   }
 
-  @Publico()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
   @Post('indexar')
   @ApiOperation({
     summary: 'Indexa todos os dados no Elasticsearch',
@@ -210,7 +214,8 @@ export class PesquisaController {
     return this.indexService.indexarTudo();
   }
 
-  @Publico()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
   @Post('recriar-indices')
   @ApiOperation({
     summary: 'Deleta e recria todos os índices do Elasticsearch',

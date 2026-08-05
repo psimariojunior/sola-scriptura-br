@@ -1,6 +1,6 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, MoreThanOrEqual, LessThanOrEqual } from 'typeorm';
+import { Repository, MoreThanOrEqual, LessThanOrEqual, Between } from 'typeorm';
 import { Livro } from '../domain/livro.entity';
 import { Capitulo } from '../domain/capitulo.entity';
 import { Versiculo } from '../domain/versiculo.entity';
@@ -65,7 +65,7 @@ export class BibliaService {
       livroId, capituloNumero: capitulo,
     };
     if (fim) {
-      where.numero = MoreThanOrEqual(inicio) && LessThanOrEqual(fim);
+      where.numero = Between(inicio, fim);
     } else {
       where.numero = inicio;
     }

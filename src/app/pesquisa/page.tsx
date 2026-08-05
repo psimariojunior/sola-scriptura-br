@@ -16,6 +16,9 @@ import { VoiceSearchButton } from '@/components/VoiceSearchButton';
 import { obterQueryExpandida } from '@/lib/sinonimos';
 import { useTranslation } from 'react-i18next';
 
+const lexiconHebraico = () => import('@/data/lexicon/hebraico');
+const lexiconGrego = () => import('@/data/lexicon/grego');
+
 interface SearchResult {
   livroAbrev: string;
   livroNome: string;
@@ -40,6 +43,7 @@ const SEARCH_MODES = [
   { id: 'exact', label: 'Exato', icon: Type, description: 'Frase exata' },
   { id: 'startsWith', label: 'Começa com', icon: Hash, description: 'Início da frase' },
   { id: 'regex', label: 'Regex', icon: Settings, description: 'Padrão regular' },
+  { id: 'strongs', label: "Strong's", icon: Hash, description: 'Número Strong' },
 ];
 
 function highlightText(text: string, query: string, mode: string) {
@@ -96,6 +100,7 @@ export default function PesquisaPage() {
   const [mobileFilters, setMobileFilters] = useState(false);
   const [copiedResult, setCopiedResult] = useState<string | null>(null);
   const [buscaSemantica, setBuscaSemantica] = useState(true);
+  const [lexiconResults, setLexiconResults] = useState<any[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const { t } = useTranslation();
 
@@ -141,23 +146,51 @@ export default function PesquisaPage() {
 
   useEffect(() => {
     setLoading(true);
+    setLexiconResults([]);
     const t = setTimeout(async () => {
       const q = query.trim();
       if (q && q.length >= 2) {
-        const apiData = await tryApiSearch(q);
-        if (apiData && apiData.length > 0) {
-          setApiResults(apiData);
+        if (searchMode === 'strongs') {
+          const normalized = q.toUpperCase().replace(/^(H|G)/, '');
+          const prefix = /^G/i.test(q) ? 'G' : /^H/i.test(q) ? 'H' : '';
+          try {
+            const [hebraicoMod, gregoMod] = await Promise.all([
+              lexiconHebraico(),
+              lexiconGrego(),
+            ]);
+            const hebData = (hebraicoMod.palavrasHebraicas || Object.values(hebraicoMod)) as any[];
+            const grkData = (gregoMod.palavrasGregas || gregoMod.GREGO || Object.values(gregoMod)) as any[];
+            const allEntries = [
+              ...hebData.map((e: any) => ({ ...e, idioma: 'hebraico' as const })),
+              ...grkData.map((e: any) => ({ ...e, idioma: 'grego' as const })),
+            ];
+            const filtered = allEntries.filter((entry: any) => {
+              const entryNum = String(entry.strong || entry.strongs || entry.numero || '').toUpperCase();
+              if (prefix === 'H') return entryNum === `H${normalized}` || entryNum === normalized;
+              if (prefix === 'G') return entryNum === `G${normalized}` || entryNum === normalized;
+              return entryNum.includes(normalized);
+            });
+            setLexiconResults(filtered.slice(0, 50));
+          } catch {
+            setLexiconResults([]);
+          }
         } else {
-          setApiResults(null);
+          const apiData = await tryApiSearch(q);
+          if (apiData && apiData.length > 0) {
+            setApiResults(apiData);
+          } else {
+            setApiResults(null);
+          }
         }
       } else {
         setApiResults(null);
+        setLexiconResults([]);
       }
       setDebouncedQuery(query);
       setLoading(false);
     }, 300);
     return () => clearTimeout(t);
-  }, [query, tryApiSearch, buscaSemantica]);
+  }, [query, tryApiSearch, buscaSemantica, searchMode]);
 
   const livrosFiltrados = useMemo(
     () => TODOS_LIVROS.filter((l) => testamento === 'all' || l.testamento === testamento),
@@ -193,6 +226,7 @@ export default function PesquisaPage() {
     setCapituloFiltro(null);
     setTradSel(new Set(['arc', 'nvi', 'ara', 'acf', 'kjv', 'web']));
     setSearchMode('contains');
+    setLexiconResults([]);
     inputRef.current?.focus();
   };
 
@@ -256,7 +290,7 @@ export default function PesquisaPage() {
                 {/* Search Mode */}
                 <div>
                   <label className="block text-xs font-medium text-muted-foreground mb-2">{t('pesquisa.searchMode')}</label>
-                  <div className="grid grid-cols-2 gap-1.5">
+                  <div className="grid grid-cols-3 gap-1.5">
                     {SEARCH_MODES.map((mode) => (
                       <button
                         key={mode.id}
@@ -393,7 +427,7 @@ export default function PesquisaPage() {
                     type="text"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    placeholder={t('pesquisa.searchPlaceholder')}
+                    placeholder={searchMode === 'strongs' ? 'Ex: H1234, G3056, 1234...' : t('pesquisa.searchPlaceholder')}
                     className="w-full pl-12 pr-14 sm:pr-24 py-3 bg-transparent text-lg font-serif-body focus:outline-none"
                     autoFocus
                   />
@@ -422,12 +456,16 @@ export default function PesquisaPage() {
                     {resultados.length > 0 ? (
                       <span>
                         <strong className="text-foreground">{resultados.length}</strong> {t('pesquisa.resultsFor')} &ldquo;<strong className="text-foreground">{debouncedQuery}</strong>&rdquo;
-                        {buscaSemantica && (
+                        {buscaSemantica && searchMode !== 'strongs' && (
                           <span className="ml-2 inline-flex items-center gap-1 text-[10px] text-primary/80 bg-primary/5 px-1.5 py-0.5 rounded-full">
                             <Sparkles className="w-2.5 h-2.5" />
                             {t('pesquisa.semantic')}
                           </span>
                         )}
+                      </span>
+                    ) : searchMode === 'strongs' && lexiconResults.length > 0 ? (
+                      <span>
+                        <strong className="text-foreground">{lexiconResults.length}</strong> entrada{lexiconResults.length !== 1 ? 's' : ''} no lexicon para &ldquo;<strong className="text-foreground">{debouncedQuery}</strong>&rdquo;
                       </span>
                     ) : (
                       <span>{t('pesquisa.noResultsFor')} &ldquo;<strong className="text-foreground">{debouncedQuery}</strong>&rdquo;</span>
@@ -468,13 +506,77 @@ export default function PesquisaPage() {
                 </div>
               )}
 
-              {!loading && hasAnyInput && resultados.length === 0 && (
+              {!loading && hasAnyInput && resultados.length === 0 && !(searchMode === 'strongs' && lexiconResults.length > 0) && (
                 <div className="sola-card p-12 text-center">
                   <BookOpen className="w-16 h-16 mx-auto mb-4 text-muted-foreground/30" strokeWidth={1} />
                   <p className="font-display text-xl text-muted-foreground mb-1">{t('pesquisa.noResults')}</p>
                   <p className="text-sm text-muted-foreground/70">
                     {t('pesquisa.tryDifferent')}
                   </p>
+                </div>
+              )}
+
+              {searchMode === 'strongs' && !loading && lexiconResults.length > 0 && (
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-sm font-semibold text-muted-foreground">
+                      Lexicon ({lexiconResults.length} resultado{lexiconResults.length !== 1 ? 's' : ''})
+                    </h3>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {lexiconResults.map((entry, i) => (
+                      <motion.div
+                        key={`${entry.idioma}-${entry.strong || entry.strongs || entry.numero}-${i}`}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: Math.min(i * 0.03, 0.4), duration: 0.2 }}
+                      >
+                        <div className="sola-card p-4 h-full flex flex-col">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className={`text-[10px] font-bold uppercase px-1.5 py-0.5 rounded-sm ${
+                              entry.idioma === 'hebraico'
+                                ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300'
+                                : 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300'
+                            }`}>
+                              {entry.idioma === 'hebraico' ? 'Hebraico' : 'Grego'}
+                            </span>
+                            <span className="text-xs font-mono text-primary font-semibold">
+                              {entry.strong || entry.strongs || entry.numero}
+                            </span>
+                          </div>
+                          <p className="font-serif-body text-lg font-semibold mb-0.5" dir={entry.idioma === 'hebraico' ? 'rtl' : 'ltr'}>
+                            {entry.palavra || entry.word || entry.hebrew || entry.greek}
+                          </p>
+                          {(entry.transliteracao || entry.transliteration) && (
+                            <p className="text-xs text-muted-foreground italic mb-1">
+                              {entry.transliteracao || entry.transliteration}
+                            </p>
+                          )}
+                          {(entry.morfologia || entry.morphology) && (
+                            <p className="text-[10px] text-muted-foreground/80 mb-1.5">
+                              {entry.morfologia || entry.morphology}
+                            </p>
+                          )}
+                          <p className="text-sm text-muted-foreground leading-relaxed flex-1 line-clamp-4">
+                            {entry.definicao || entry.definition || entry.meaning}
+                          </p>
+                          <button
+                            onClick={() => {
+                              const word = entry.palavra || entry.word || entry.hebrew || entry.greek || '';
+                              if (word) {
+                                setQuery(word);
+                                setSearchMode('contains');
+                              }
+                            }}
+                            className="mt-3 text-xs text-primary hover:text-primary/80 font-medium flex items-center gap-1 transition-colors"
+                          >
+                            <BookOpen className="w-3 h-3" />
+                            Ver versículos
+                          </button>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               )}
 

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Mic, Volume2, ListFilter, HardDrive, MoreVertical } from 'lucide-react';
+import { BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Mic, Volume2, ListFilter, HardDrive, MoreVertical, Maximize2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TranslationDropdown } from './TranslationDropdown';
 import { ToolsDropdown } from './ToolsDropdown';
@@ -93,6 +93,7 @@ export function BibleToolbar({
                 <div className="h-px bg-[var(--border)]/40 my-1" />
                 <button onClick={() => { ui.setToolsOpen(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Sparkles className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.tools')}</button>
                 <button onClick={() => { ui.setMostrarApresentacao(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-semibold text-[var(--brand-default)] hover:bg-[var(--brand-subtle)] transition-colors"><Sparkles className="w-4 h-4" />{t('biblia.present')}</button>
+                <button onClick={() => { ui.setImmersiveMode(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Maximize2 className="w-4 h-4 text-[var(--content-muted)]" />Modo Imersivo</button>
               </div>
             </>
           )}
@@ -123,6 +124,11 @@ export function BibleToolbar({
           <button onClick={() => ui.setMostrarApresentacao(true)}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-[var(--brand-contrast)] bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] shadow-md shadow-[var(--brand-default)]/30 hover:shadow-lg hover:shadow-[var(--brand-default)]/40 transition-all active:scale-97 hover:scale-105">
             <Sparkles className="w-3.5 h-3.5" />{t('biblia.present')}<span className="inline-flex items-center px-1 py-0 rounded text-[8px] font-extrabold bg-white/20">{t('biblia.new')}</span>
+          </button>
+          <button onClick={() => ui.setImmersiveMode(true)}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20 transition-all"
+            title="Modo Imersivo">
+            <Maximize2 className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>

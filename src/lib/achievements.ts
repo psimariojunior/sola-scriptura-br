@@ -108,15 +108,24 @@ function incrementProgress(id: string, amount: number): Achievement | null {
 interface StreakData {
   lastStudyDate: string | null;
   streak: number;
+  freezesAvailable: number;
+  freezesUsed: number;
 }
 
 function loadStreak(): StreakData {
-  if (typeof window === 'undefined') return { lastStudyDate: null, streak: 0 };
+  if (typeof window === 'undefined') return { lastStudyDate: null, streak: 0, freezesAvailable: 0, freezesUsed: 0 };
   try {
     const raw = localStorage.getItem(STREAK_KEY);
-    return raw ? JSON.parse(raw) : { lastStudyDate: null, streak: 0 };
+    if (!raw) return { lastStudyDate: null, streak: 0, freezesAvailable: 0, freezesUsed: 0 };
+    const parsed = JSON.parse(raw);
+    return {
+      lastStudyDate: parsed.lastStudyDate || null,
+      streak: parsed.streak || 0,
+      freezesAvailable: parsed.freezesAvailable || 0,
+      freezesUsed: parsed.freezesUsed || 0,
+    };
   } catch {
-    return { lastStudyDate: null, streak: 0 };
+    return { lastStudyDate: null, streak: 0, freezesAvailable: 0, freezesUsed: 0 };
   }
 }
 
@@ -144,7 +153,26 @@ export function incrementStreak(): number {
     const last = new Date(data.lastStudyDate);
     const now = new Date(today);
     const diff = Math.floor((now.getTime() - last.getTime()) / (1000 * 60 * 60 * 24));
-    data.streak = diff === 1 ? data.streak + 1 : 1;
+
+    if (diff === 1) {
+      // Dia seguinte — incrementa streak
+      data.streak += 1;
+    } else if (diff === 2 && data.freezesAvailable > 0) {
+      // Faltou 1 dia e tem freeze disponível — usa o freeze
+      data.freezesAvailable -= 1;
+      data.freezesUsed += 1;
+      data.streak += 1;
+    } else {
+      // Perdeu o streak
+      data.streak = 1;
+      // Reseta freezes baseado no novo streak
+      data.freezesAvailable = 0;
+    }
+
+    // A cada 7 dias de streak, ganha 1 freeze
+    if (data.streak > 0 && data.streak % 7 === 0) {
+      data.freezesAvailable += 1;
+    }
   } else {
     data.streak = 1;
   }
@@ -152,6 +180,20 @@ export function incrementStreak(): number {
   data.lastStudyDate = today;
   saveStreak(data);
   return data.streak;
+}
+
+export function getStreakFreezes(): { available: number; used: number } {
+  const data = loadStreak();
+  return { available: data.freezesAvailable, used: data.freezesUsed };
+}
+
+export function useStreakFreeze(): boolean {
+  const data = loadStreak();
+  if (data.freezesAvailable <= 0) return false;
+  data.freezesAvailable -= 1;
+  data.freezesUsed += 1;
+  saveStreak(data);
+  return true;
 }
 
 // --- Check and unlock achievements based on events ---

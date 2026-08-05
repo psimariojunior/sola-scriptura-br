@@ -25,8 +25,10 @@ if (!apiKey) {
 }
 
 const API_URL = 'https://api.groq.com/openai/v1/chat/completions';
-const BATCH_SIZE = 20; // Smaller batches
-const DELAY_MS = 2000; // 2 seconds between batches
+const BATCH_SIZE = 15;
+const DELAY_MS = 4000; // 4 seconds between batches
+const MAX_RETRIES = 3;
+const BACKOFF_MS = 15000; // 15s backoff on 429
 
 // ─── 1. Load lexicon line by line ────────────────────────────────────────────
 
@@ -81,7 +83,7 @@ console.log(`💾 Cache entries: ${Object.keys(cache).length}`);
 
 // ─── 4. Translate in batches ─────────────────────────────────────────────────
 
-async function translateBatch(batch) {
+async function translateBatch(batch, retryCount = 0) {
   const definitions = batch.map((e, i) => `${i + 1}|${e.strong}|${e.definicao}`).join('\n');
   
   const prompt = `Traduza estas definições do léxico hebraico bíblico (Strong's) para português brasileiro.
@@ -109,7 +111,12 @@ ${definitions}`;
     });
 
     if (!response.ok) {
-      const error = await response.text();
+      if (response.status === 429 && retryCount < MAX_RETRIES) {
+        const wait = BACKOFF_MS * (retryCount + 1);
+        console.log(` ⏳ Rate limited, waiting ${wait/1000}s...`);
+        await new Promise(r => setTimeout(r, wait));
+        return translateBatch(batch, retryCount + 1);
+      }
       console.error(`❌ API error: ${response.status}`);
       return null;
     }
@@ -117,7 +124,6 @@ ${definitions}`;
     const data = await response.json();
     const content = data.choices[0]?.message?.content || '';
     
-    // Parse "NUMBER|TRANSLATION" format
     const translations = new Map();
     for (const line of content.split('\n')) {
       const parts = line.split('|');
@@ -165,7 +171,7 @@ for (let i = 0; i < toTranslate.length; i += BATCH_SIZE) {
   if (translations && translations.size > 0) {
     for (let j = 0; j < batch.length; j++) {
       const tr = translations.get(j + 1);
-      if (tr) {
+      if (tr && tr !== batch[j].definicao) {
         batch[j].definicaoPT = tr;
         cache[batch[j].definicao] = tr;
         translated++;
@@ -179,10 +185,8 @@ for (let i = 0; i < toTranslate.length; i += BATCH_SIZE) {
     console.log(` ❌ (failed)`);
   }
   
-  // Save cache periodically
-  if ((batchNum % 5 === 0) || i + BATCH_SIZE >= toTranslate.length) {
-    writeFileSync(cachePath, JSON.stringify(cache, null, 2), 'utf8');
-  }
+  // Save cache after every batch to preserve progress
+  writeFileSync(cachePath, JSON.stringify(cache, null, 2), 'utf8');
   
   // Delay between batches
   if (i + BATCH_SIZE < toTranslate.length) {

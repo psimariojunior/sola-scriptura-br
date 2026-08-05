@@ -44,6 +44,7 @@ const ShareVerseModal = dynamic(() => import('@/components/Biblia/ShareVerseModa
 const NarracaoDramaticaLazy = dynamic(() => import('@/components/NarracaoDramatica'));
 const NarrationPanel = dynamic(() => import('@/components/Biblia/NarrationPanel').then(m => ({ default: m.NarrationPanel })));
 const OfflineDownloadManager = dynamic(() => import('@/components/Biblia/OfflineDownloadManager').then(m => ({ default: m.OfflineDownloadManager })), { ssr: false });
+const ImmersiveModeLazy = dynamic(() => import('@/components/Biblia/ImmersiveMode').then(m => ({ default: m.ImmersiveMode })), { ssr: false });
 
 const PASSAGENS_DRAMATICAS: Record<string, { titulo: string; subtitulo: string; cenas: CenaDramatica[]; personagens: PersonagemVoz[] }> = {
   'gn-1': { titulo: 'A Criação do Mundo', subtitulo: 'Gênesis 1', cenas: [], personagens: [] },
@@ -310,5 +311,14 @@ export default function BibliaPage() {
       <ShareVerseModal open={ui.shareOpen} onClose={() => ui.setShareOpen(false)} verse={verse.versiculoSelecionado ? { livroNome: verse.versiculoSelecionado.livroNome, capitulo: verse.versiculoSelecionado.capitulo, versiculo: verse.versiculoSelecionado.versiculo, texto: verse.versiculoSelecionado.texto, traducao: verse.versiculoSelecionado.traducao } : null} />
       <Paywall aberto={panels.paywallAprofundarAberto} onFechar={() => panels.setPaywallAprofundarAberto(false)} />
       {showDownloadManager && <OfflineDownloadManager open={showDownloadManager} onClose={() => setShowDownloadManager(false)} />}
+      {ui.immersiveMode && nav.data[0]?.versiculos && (
+        <ImmersiveModeLazy
+          livroNome={nav.livro.nome}
+          capitulo={nav.capituloIdx + 1}
+          versiculos={nav.data[0].versiculos.map(v => ({ numero: v.numero, texto: v.texto }))}
+          traducao={nav.selectedTrads[0] || 'arc'}
+          onClose={() => ui.setImmersiveMode(false)}
+        />
+      )}
     </div>);
 }

@@ -84,7 +84,7 @@ function readLegacySession(): { token: string | null; refresh: string | null; us
   return { token, refresh, usuario };
 }
 
-const ADMIN_EMAILS = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || 'psi_mariojunior@hotmail.com')
+const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || 'psi_mariojunior@hotmail.com')
   .split(',')
   .map((e) => e.trim().toLowerCase())
   .filter(Boolean);
@@ -372,10 +372,16 @@ class AuthService {
 
   private setCookie(name: string, value: string): void {
     try {
-      const expirar = 60 * 60 * 24 * 30;
-      const secure = typeof window !== 'undefined' && window.location.protocol === 'https:';
-      const secureFlag = secure ? '; Secure' : '';
-      document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${expirar}; SameSite=Lax${secureFlag}`;
+      fetch('/api/auth/cookie/set', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, value }),
+      }).catch(() => {
+        // Fallback: set via document.cookie se a API route falhar
+        const expirar = 60 * 60 * 24 * 30;
+        const secure = window.location.protocol === 'https:';
+        document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${expirar}; SameSite=Lax${secure ? '; Secure' : ''}`;
+      });
     } catch { /* ignore */ }
   }
 
@@ -390,10 +396,17 @@ class AuthService {
         localStorage.removeItem(REFRESH_KEY);
         localStorage.removeItem(USER_KEY);
       } catch { /* ignore */ }
-      try {
-        document.cookie = 'ssb_token=; path=/; max-age=0';
-        document.cookie = 'ssb_usuario=; path=/; max-age=0';
-      } catch { /* ignore */ }
+      // Limpa cookies via API route (HttpOnly)
+      ['ssb_token', 'ssb_usuario'].forEach((name) => {
+        fetch('/api/auth/cookie/clear', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name }),
+        }).catch(() => {
+          // Fallback
+          document.cookie = `${name}=; path=/; max-age=0`;
+        });
+      });
     }
 
     this.notifyListeners();

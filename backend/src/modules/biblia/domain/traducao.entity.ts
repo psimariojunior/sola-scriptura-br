@@ -41,7 +41,7 @@ export class Traducao {
   @JoinColumn({ name: 'livro_id' })
   livro: Livro;
 
-  @OneToMany(() => Versiculo, (versiculo) => versiculo.capitulo)
+  @OneToMany(() => Versiculo, (versiculo) => versiculo.traducaoId)
   versiculos: Versiculo[];
 
   @CreateDateColumn({ name: 'criado_em' })

@@ -54,7 +54,6 @@ export const metadata: Metadata = {
     canonical: 'https://solascripturabr.com.br',
     languages: {
       'pt-BR': 'https://solascripturabr.com.br',
-      'en-US': 'https://solascripturabr.com.br/en',
     },
   },
   openGraph: {
@@ -69,7 +68,7 @@ export const metadata: Metadata = {
     emails: ['contato@solascriptura.app'],
     images: [
       {
-        url: '/opengraph-image',
+        url: 'https://solascripturabr.com.br/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Sola Scriptura BR — Toda a biblioteca teológica',
@@ -84,7 +83,7 @@ export const metadata: Metadata = {
     title: 'Sola Scriptura BR — Toda a biblioteca teológica',
     description:
       'Bíblia em 10 traduções, Grego e Hebraico, Exegese com IA, Teologia e ferramentas avançadas de pesquisa bíblica.',
-    images: ['/opengraph-image'],
+    images: ['https://solascripturabr.com.br/opengraph-image'],
   },
   robots: {
     index: true,

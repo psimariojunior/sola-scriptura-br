@@ -8,6 +8,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:io';
 import 'config/theme.dart';
 import 'screens/splash_screen.dart';
 import 'screens/settings_screen.dart';
@@ -209,7 +210,7 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
           final response = await http.post(
             Uri.parse('https://api.solascripturabr.com.br/api/notifications/register'),
             headers: {'Content-Type': 'application/json'},
-            body: jsonEncode({'fcmToken': token, 'platform': 'android'}),
+            body: jsonEncode({'fcmToken': token, 'platform': Platform.isIOS ? 'ios' : 'android'}),
           );
           debugPrint('FCM token registered: ${response.statusCode}');
         } catch (e) {

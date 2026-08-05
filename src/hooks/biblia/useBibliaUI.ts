@@ -51,6 +51,8 @@ export interface UseBibliaUIReturn {
   setMostrarApresentacao: React.Dispatch<React.SetStateAction<boolean>>;
   mostrarQualidadeAudio: boolean;
   setMostrarQualidadeAudio: React.Dispatch<React.SetStateAction<boolean>>;
+  immersiveMode: boolean;
+  setImmersiveMode: React.Dispatch<React.SetStateAction<boolean>>;
   estudoCapituloAberto: boolean;
   setEstudoCapituloAberto: React.Dispatch<React.SetStateAction<boolean>>;
   fontFamily: 'serif' | 'sans';
@@ -140,6 +142,7 @@ export function UseBibliaUI({
   const [mostrarNarracaoCapitulo, setMostrarNarracaoCapitulo] = useState(false);
   const [mostrarApresentacao, setMostrarApresentacao] = useState(false);
   const [mostrarQualidadeAudio, setMostrarQualidadeAudio] = useState(false);
+  const [immersiveMode, setImmersiveMode] = useState(false);
   const [estudoCapituloAberto, setEstudoCapituloAberto] = useState(true);
   const [fontFamily, setFontFamily] = useState<'serif' | 'sans'>(() => {
     if (typeof window !== 'undefined') {
@@ -422,6 +425,8 @@ export function UseBibliaUI({
     setMostrarApresentacao,
     mostrarQualidadeAudio,
     setMostrarQualidadeAudio,
+    immersiveMode,
+    setImmersiveMode,
     estudoCapituloAberto,
     setEstudoCapituloAberto,
     fontFamily,

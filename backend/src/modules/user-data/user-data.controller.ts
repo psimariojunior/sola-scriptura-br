@@ -1,27 +1,65 @@
-import { Controller, Get, Post, Delete, Body, Param, Headers, UnauthorizedException } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Body, Param, UseGuards } from '@nestjs/common';
 import { UserDataService } from './user-data.service';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { UsuarioAtual } from '../../common/decorators/usuario-atual.decorator';
 
 @Controller('api/v1/user-data')
+@UseGuards(JwtAuthGuard)
 export class UserDataController {
   constructor(private readonly service: UserDataService) {}
 
-  private getUserId(auth: string): string {
-    if (!auth) throw new UnauthorizedException('Token required');
-    return auth.replace('Bearer ', '');
+  @Get('favorites')
+  getFavorites(@UsuarioAtual('id') userId: string) {
+    return this.service.getFavorites(userId);
   }
 
-  @Get('favorites') getFavorites(@Headers('authorization') auth: string) { return this.service.getFavorites(this.getUserId(auth)); }
-  @Post('favorites') addFavorite(@Headers('authorization') auth: string, @Body() body: any) { return this.service.addFavorite(this.getUserId(auth), body); }
-  @Delete('favorites/:id') removeFavorite(@Headers('authorization') auth: string, @Param('id') id: string) { return this.service.removeFavorite(this.getUserId(auth), id); }
+  @Post('favorites')
+  addFavorite(@UsuarioAtual('id') userId: string, @Body() body: any) {
+    return this.service.addFavorite(userId, body);
+  }
 
-  @Get('notes') getNotes(@Headers('authorization') auth: string) { return this.service.getNotes(this.getUserId(auth)); }
-  @Post('notes') saveNote(@Headers('authorization') auth: string, @Body() body: any) { return this.service.saveNote(this.getUserId(auth), body); }
-  @Delete('notes/:id') deleteNote(@Headers('authorization') auth: string, @Param('id') id: string) { return this.service.deleteNote(this.getUserId(auth), id); }
+  @Delete('favorites/:id')
+  removeFavorite(@UsuarioAtual('id') userId: string, @Param('id') id: string) {
+    return this.service.removeFavorite(userId, id);
+  }
 
-  @Get('collections') getCollections(@Headers('authorization') auth: string) { return this.service.getCollections(this.getUserId(auth)); }
-  @Post('collections') saveCollection(@Headers('authorization') auth: string, @Body() body: any) { return this.service.saveCollection(this.getUserId(auth), body); }
-  @Delete('collections/:id') deleteCollection(@Headers('authorization') auth: string, @Param('id') id: string) { return this.service.deleteCollection(this.getUserId(auth), id); }
+  @Get('notes')
+  getNotes(@UsuarioAtual('id') userId: string) {
+    return this.service.getNotes(userId);
+  }
 
-  @Get('progress') getProgress(@Headers('authorization') auth: string) { return this.service.getProgress(this.getUserId(auth)); }
-  @Post('progress') saveProgress(@Headers('authorization') auth: string, @Body() body: any) { return this.service.saveProgress(this.getUserId(auth), body); }
+  @Post('notes')
+  saveNote(@UsuarioAtual('id') userId: string, @Body() body: any) {
+    return this.service.saveNote(userId, body);
+  }
+
+  @Delete('notes/:id')
+  deleteNote(@UsuarioAtual('id') userId: string, @Param('id') id: string) {
+    return this.service.deleteNote(userId, id);
+  }
+
+  @Get('collections')
+  getCollections(@UsuarioAtual('id') userId: string) {
+    return this.service.getCollections(userId);
+  }
+
+  @Post('collections')
+  saveCollection(@UsuarioAtual('id') userId: string, @Body() body: any) {
+    return this.service.saveCollection(userId, body);
+  }
+
+  @Delete('collections/:id')
+  deleteCollection(@UsuarioAtual('id') userId: string, @Param('id') id: string) {
+    return this.service.deleteCollection(userId, id);
+  }
+
+  @Get('progress')
+  getProgress(@UsuarioAtual('id') userId: string) {
+    return this.service.getProgress(userId);
+  }
+
+  @Post('progress')
+  saveProgress(@UsuarioAtual('id') userId: string, @Body() body: any) {
+    return this.service.saveProgress(userId, body);
+  }
 }

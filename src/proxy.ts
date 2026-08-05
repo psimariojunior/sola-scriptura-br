@@ -39,7 +39,7 @@ export async function proxy(request: NextRequest) {
   // Para /admin exige role de admin — confia no email allowlist local
   // (a checagem real de role e feita no server-side do admin).
   if (needsAdmin) {
-    const ADMIN_EMAILS = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || '')
+    const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || '')
       .split(',')
       .map((e) => e.trim().toLowerCase())
       .filter(Boolean);

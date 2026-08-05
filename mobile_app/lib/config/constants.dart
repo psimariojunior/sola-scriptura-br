@@ -11,6 +11,9 @@ class AppConstants {
     'api.solascripturabr.com.br',
     'accounts.google.com',
     'google.com',
+    'googleapis.com',
+    'googleusercontent.com',
+    'supabase.co',
     'github.com',
     'midvash.com',
   ];

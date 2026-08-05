@@ -87,7 +87,6 @@ export class IaController {
     return this.iaService.compararPassagens(dados.passagens);
   }
 
-  @Publico()
   @Post('embeddings')
   @ApiOperation({ summary: 'Gera embedding para um texto' })
   async gerarEmbedding(@Body() dados: EmbeddingTextoDto) {
@@ -99,7 +98,6 @@ export class IaController {
     };
   }
 
-  @Publico()
   @Post('embeddings/batch')
   @ApiOperation({ summary: 'Gera embeddings em batch para entidades' })
   async gerarEmbeddingsBatch(@Body() dados: GerarEmbeddingsDto) {
@@ -109,7 +107,6 @@ export class IaController {
     return this.iaService.popularEmbeddings(dados.tipo);
   }
 
-  @Publico()
   @Get('embeddings/status')
   @ApiOperation({ summary: 'Status dos embeddings por tipo de entidade' })
   async statusEmbeddings() {
@@ -134,7 +131,6 @@ export class IaController {
     return this.iaService.estatisticasGrafo();
   }
 
-  @Publico()
   @Get('custo')
   @ApiOperation({ summary: 'Estatísticas de custo da IA' })
   estatisticasCusto() {

@@ -45,6 +45,7 @@ interface BuscaResultado {
 interface BuscaGlobalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  initialQuery?: string;
 }
 
 const CATEGORIAS: Record<string, { label: string; icon: typeof BookOpen }> = {
@@ -92,7 +93,7 @@ const RECENT_KEY = 'ssb_recent_searches';
 const MAX_RECENT = 6;
 const MAX_RESULTS = 20;
 
-export const BuscaGlobal = memo(function BuscaGlobal({ open, onOpenChange }: BuscaGlobalProps) {
+export const BuscaGlobal = memo(function BuscaGlobal({ open, onOpenChange, initialQuery }: BuscaGlobalProps) {
   const [query, setQuery] = useState('');
   const [resultados, setResultados] = useState<BuscaResultado[]>([]);
   const [carregando, setCarregando] = useState(false);
@@ -112,10 +113,10 @@ export const BuscaGlobal = memo(function BuscaGlobal({ open, onOpenChange }: Bus
 
   useEffect(() => {
     if (open) {
-      setQuery('');
+      setQuery(initialQuery || '');
       setResultados([]);
     }
-  }, [open]);
+  }, [open, initialQuery]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

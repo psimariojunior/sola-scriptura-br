@@ -11,6 +11,40 @@ import { ExportModal } from '@/components/ExportModal';
 import type { ConteudoExport } from '@/lib/exportPdf';
 import { useToast } from '@/hooks/useToast';
 
+function sanitizarHTML(html: string): string {
+  if (!html) return '';
+  const tagsPermitidas = ['b', 'i', 'u', 's', 'em', 'strong', 'h2', 'h3', 'blockquote', 'ul', 'ol', 'li', 'a', 'code', 'pre', 'br', 'p', 'img', 'span'];
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  const limpar = (el: Element) => {
+    for (const child of [...el.children]) {
+      const tag = child.tagName.toLowerCase();
+      if (!tagsPermitidas.includes(tag)) {
+        child.replaceWith(document.createTextNode(child.textContent || ''));
+        continue;
+      }
+      for (const attr of [...child.attributes]) {
+        if (attr.name === 'href') {
+          const v = attr.value.trim().toLowerCase();
+          if (!v.startsWith('http://') && !v.startsWith('https://') && !v.startsWith('#')) {
+            child.removeAttribute(attr.name);
+          }
+        } else if (attr.name === 'src') {
+          const v = attr.value.trim().toLowerCase();
+          if (!v.startsWith('http://') && !v.startsWith('https://') && !v.startsWith('data:')) {
+            child.removeAttribute(attr.name);
+          }
+        } else if (attr.name.startsWith('on')) {
+          child.removeAttribute(attr.name);
+        }
+      }
+      limpar(child);
+    }
+  };
+  limpar(div);
+  return div.innerHTML;
+}
+
 export interface Nota {
   id: string;
   titulo: string;
@@ -355,7 +389,7 @@ export function NotaEditor({
           contentEditable
           onInput={handleEditorInput}
           onFocus={() => setEditando(true)}
-          dangerouslySetInnerHTML={{ __html: nota.conteudo }}
+          dangerouslySetInnerHTML={{ __html: sanitizarHTML(nota.conteudo) }}
           className="min-h-[200px] max-h-[60vh] overflow-y-auto py-2 text-sm leading-relaxed focus:outline-none prose prose-sm max-w-none [&_h2]:text-base [&_h2]:font-display [&_h2]:font-medium [&_h2]:mt-4 [&_h3]:text-sm [&_h3]:font-display [&_h3]:font-medium [&_h3]:mt-3 [&_blockquote]:border-l-2 [&_blockquote]:border-primary/30 [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_a]:text-primary [&_a]:underline [&_img]:max-w-full [&_img]:rounded-lg [&_pre]:bg-muted/30 [&_pre]:p-3 [&_pre]:rounded-lg [&_pre]:font-mono [&_pre]:text-xs"
         />
         {!nota.conteudo && (

@@ -27,6 +27,11 @@ const BibleInfographics = dynamic(() => import('@/components/BibleInfographics')
   loading: () => <div className="sola-card p-6 animate-pulse"><div className="h-64 bg-muted/30 rounded-lg" /></div>,
 });
 
+const ReadingHeatmap = dynamic(() => import('@/components/ReadingHeatmap').then(m => ({ default: m.ReadingHeatmap })), {
+  ssr: false,
+  loading: () => <div className="sola-card p-6 animate-pulse"><div className="h-48 bg-muted/30 rounded-lg" /></div>,
+});
+
 interface Stats {
   streak: number;
   chaptersThisWeek: number;
@@ -139,6 +144,17 @@ export default function EstatisticasPage() {
               booksChartData={booksChartData}
               streakLineData={streakLineData}
             />
+
+            {/* Reading Heatmap */}
+            <div className="mt-10">
+              <div className="flex items-center gap-2 mb-4">
+                <BookOpen className="w-5 h-5 text-[var(--brand)]" />
+                <h2 className="font-display text-2xl font-light text-[var(--fg)]">Mapa de Leitura</h2>
+              </div>
+              <div className="sola-card p-6">
+                <ReadingHeatmap />
+              </div>
+            </div>
 
             {/* Bible DNA */}
             <div className="mt-10">

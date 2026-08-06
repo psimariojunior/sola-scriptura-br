@@ -2,7 +2,7 @@
 
 import { Suspense, useState, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, WifiOff, Heart, Copy, Share2 } from 'lucide-react';
+import { BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, WifiOff, Heart, Copy, Share2, Bookmark } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ChapterHeader } from './ChapterHeader';
 import { VerseListItem } from './VerseListItem';
@@ -98,10 +98,68 @@ export function BibleVerseList({
   const isModoLeitura = ui.modoLeitura === 'foco';
   const isModoEstudo = ui.modoLeitura === 'estudo';
 
+  // Last read position
+  const [lastRead, setLastRead] = useState<{ livro: string; capitulo: number } | null>(null);
+  const [showLastRead, setShowLastRead] = useState(false);
+
+  // Check if current view is the last read position
+  const isCurrentLastRead = lastRead?.livro === nav.livro.abreviacao && lastRead?.capitulo === nav.capituloIdx;
+
+  // Load last read on mount
+  useState(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const raw = localStorage.getItem('ssb_last_read');
+      if (raw) {
+        const data = JSON.parse(raw);
+        setLastRead(data);
+        // Show banner only if we're NOT already at that position
+        if (data.livro !== nav.livro.abreviacao || data.capitulo !== nav.capituloIdx) {
+          setShowLastRead(true);
+        }
+      }
+    } catch {}
+  });
+
+  const getLivroNome = (abrev: string) => {
+    const { LIVROS_AT, LIVROS_NT } = require('@/data/biblia/livros');
+    const all = [...LIVROS_AT, ...LIVROS_NT];
+    return all.find((l: { abreviacao: string }) => l.abreviacao === abrev)?.nome || abrev;
+  };
+
   return (
     <div ref={nav.mainRef} className="flex-1 overflow-y-auto" {...swipeHandlers}>
       <div className="bible-reading-column px-4 sm:px-6 py-6 sm:py-10 pb-24 md:pb-10" style={{ transform: `translateX(${swipeOffset}px)`, transition: swipeOffset === 0 ? 'transform 0.3s ease' : 'none' }}>
         {ui.showPlan && <ReadingPlanBanner />}
+        {showLastRead && lastRead && !isCurrentLastRead && (
+          <div className="mb-4 p-3 rounded-xl bg-[var(--brand-subtle)]/50 border border-[var(--brand-default)]/15 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0">
+              <Bookmark className="w-4 h-4 text-[var(--brand-default)]" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-[var(--brand-default)]">Continuar lendo</p>
+              <p className="text-[11px] text-[var(--content-muted)] truncate">
+                {getLivroNome(lastRead.livro)} {lastRead.capitulo + 1}
+              </p>
+            </div>
+            <button
+              onClick={() => {
+                const { LIVROS_AT, LIVROS_NT } = require('@/data/biblia/livros');
+                const all = [...LIVROS_AT, ...LIVROS_NT];
+                const idx = all.findIndex((l: { abreviacao: string }) => l.abreviacao === lastRead.livro);
+                if (idx !== -1) nav.goToBook(idx, lastRead.capitulo);
+                setShowLastRead(false);
+              }}
+              className="px-3 py-1.5 rounded-lg bg-[var(--brand-default)] text-[var(--brand-contrast)] text-xs font-medium hover:opacity-90 transition-opacity flex items-center gap-1"
+            >
+              Ir <ChevronRight className="w-3 h-3" />
+            </button>
+            <button onClick={() => setShowLastRead(false)} className="p-1 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-muted)]">
+              <span className="sr-only">Fechar</span>
+              ×
+            </button>
+          </div>
+        )}
         {nav.loading && !nav.temDados ? (
           <div className="space-y-4 chapter-enter"><div className="skeleton skeleton-title w-48 mx-auto animate-pulse" /><div className="ornament w-20 mx-auto mb-8 opacity-30" />
             {Array.from({ length: 10 }).map((_, i) => (<div key={i} className="flex gap-3 items-center" style={{ animationDelay: `${i * 50}ms` }}><div className="skeleton skeleton-text w-10 h-10 shrink-0 rounded-lg" /><div className="skeleton skeleton-text flex-1 rounded" style={{ width: `${[75, 85, 65, 90, 70, 80, 60, 95, 72, 88][i]}%` }} /></div>))}

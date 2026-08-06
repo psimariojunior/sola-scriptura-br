@@ -275,6 +275,11 @@ export default function EstudosPage() {
               <p className="text-muted-foreground ml-0 sm:ml-13 text-sm">
                 {t('estudos.subtitle')}
               </p>
+              <Link href="/estudos/academico" className="inline-flex items-center gap-2 mt-4 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[var(--brand-default)]/10 to-[var(--brand-default)]/5 border border-[var(--brand-default)]/20 text-sm font-medium text-[var(--brand-default)] hover:border-[var(--brand-default)]/40 transition-all">
+                <GraduationCap className="w-4 h-4" />
+                Estudos Acadêmicos — Nível Seminário
+                <ChevronRight className="w-4 h-4" />
+              </Link>
             </div>
           </ScrollReveal>
 

@@ -13,11 +13,11 @@ import 'config/theme.dart';
 import 'screens/splash_screen.dart';
 import 'screens/settings_screen.dart';
 import 'screens/streak_screen.dart';
+import 'screens/offline_translations_screen.dart';
 import 'widgets/onboarding_tour.dart';
 import 'services/notification_service.dart';
 import 'services/app_lock_service.dart';
 import 'services/verse_widget_service.dart';
-import 'services/streak_service.dart';
 import 'services/streak_notification_service.dart';
 import 'services/background_update_service.dart';
 
@@ -70,7 +70,7 @@ void main() async {
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
   // Analytics
-  final analytics = FirebaseAnalytics.instance;
+  FirebaseAnalytics.instance;
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
@@ -83,8 +83,9 @@ void main() async {
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light,
-      systemNavigationBarColor: AppTheme.bgDark,
+      systemNavigationBarColor: Colors.transparent,
       systemNavigationBarIconBrightness: Brightness.light,
+      systemNavigationBarDividerColor: Colors.transparent,
     ),
   );
 
@@ -264,6 +265,7 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
       routes: {
         '/settings': (_) => const SettingsScreen(),
         '/streak': (_) => const StreakScreen(),
+        '/offline-translations': (_) => const OfflineTranslationsScreen(),
       },
       home: _showOnboarding
           ? OnboardingTour(onComplete: _completeOnboarding)

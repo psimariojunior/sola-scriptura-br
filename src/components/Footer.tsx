@@ -28,7 +28,6 @@ function FooterInner() {
     { href: '/cronologia', label: t('nav.chronology') },
     { href: '/personagens', label: t('nav.characters') },
     { href: '/atlas', label: t('footer.biblicalAtlas') },
-    { href: '/ia', label: t('footer.aiAssistant') },
   ];
 
   return (

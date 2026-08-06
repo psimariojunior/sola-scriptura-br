@@ -287,7 +287,7 @@ export default function HarmoniaPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-pattern-wave">
       <Header />
       <main className="pt-20 pb-16">
         <ScrollReveal>

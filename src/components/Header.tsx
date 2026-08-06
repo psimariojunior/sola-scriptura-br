@@ -7,8 +7,8 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-
 import {
   Menu, X, BookOpen, Search, Sun, Moon, User, LogOut, Languages, BookMarked,
   Command, Settings, ChevronDown, ScrollText, Brain, Map,
-  Sparkles, GraduationCap, MessageCircle, Library, Crown, Heart, History, HelpCircle, Download,
-  Users, Target, BarChart3, GitBranch, Calendar, Tag, RotateCw, Hash,
+  Sparkles, Library, Crown, Heart, History, HelpCircle, Download,
+  Calendar, RotateCw, MessageCircle,
 } from 'lucide-react';
 import { useTema, type TemaNome } from '@/lib/temas';
 import { authService } from '@/lib/auth';
@@ -39,11 +39,8 @@ interface NavLinkSpec {
 
 const navLinksStatic: NavLinkSpec[] = [
   { href: '/biblia', label: 'nav.bible', icon: BookOpen },
-  { href: '/pesquisa', label: 'nav.search', icon: Search },
-  { href: '/seminario', label: 'nav.seminary', icon: GraduationCap },
+  { href: '/estudar', label: 'nav.study', icon: Search },
   { href: '/teologia', label: 'nav.theology', icon: Library },
-  { href: '/estudos', label: 'nav.myStudies', icon: BookOpen },
-  { href: '/ia', label: 'nav.ai', icon: Brain },
 ];
 
 interface NavGroup {
@@ -53,22 +50,12 @@ interface NavGroup {
 
 const maisGrupos: NavGroup[] = [
   {
-    titulo: 'header.tools',
-    links: [
-      { href: '/idiomas', label: 'header.originalLanguage', icon: Languages },
-      { href: '/referencias', label: 'header.crossReferences', icon: GitBranch },
-      { href: '/topicos', label: 'header.topicalIndex', icon: Tag },
-      { href: '/ferramentas', label: 'header.tools', icon: Sparkles },
-    ],
-  },
-  {
     titulo: 'header.biblicalContext',
     links: [
       { href: '/historia', label: 'header.history', icon: Map },
       { href: '/cronologia', label: 'header.chronology', icon: History },
       { href: '/personagens', label: 'header.characters', icon: User },
       { href: '/atlas', label: 'header.biblicalAtlas', icon: Map },
-      { href: '/explorador', label: 'header.conceptExplorer', icon: Sparkles },
     ],
   },
   {
@@ -77,7 +64,7 @@ const maisGrupos: NavGroup[] = [
       { href: '/planos', label: 'header.readingPlans', icon: Calendar },
       { href: '/devocional', label: 'header.devotional', icon: Heart },
       { href: '/flashcards', label: 'header.flashcards', icon: BookMarked },
-      { href: '/memorizacao', label: 'header.memorization', icon: Brain },
+      { href: '/quiz', label: 'header.biblicalQuiz', icon: HelpCircle },
       { href: '/ofertas', label: 'header.give', icon: Heart },
     ],
   },
@@ -87,26 +74,6 @@ const maisGrupos: NavGroup[] = [
       { href: '/exegese', label: 'header.exegesis', icon: ScrollText },
       { href: '/comparar', label: 'header.compareTranslations', icon: Languages },
       { href: '/comparar-comentarios', label: 'header.commentaries', icon: MessageCircle },
-      { href: '/relacoes', label: 'header.biblicalRelations', icon: Users },
-      { href: '/textos-extrabiblicos', label: 'Textos Extrabíblicos', icon: ScrollText },
-    ],
-  },
-  {
-    titulo: 'header.communityAndProgress',
-    links: [
-      { href: '/dashboard', label: 'header.myDashboard', icon: BarChart3 },
-      { href: '/comunidade', label: 'header.community', icon: MessageCircle },
-      { href: '/quiz', label: 'header.biblicalQuiz', icon: HelpCircle },
-      { href: '/desafios', label: 'header.challenges', icon: Target },
-      { href: '/sermon-builder', label: 'Gerador de Sermão', icon: Sparkles },
-      { href: '/relatorio-exegese', label: 'Relatório Exegético', icon: ScrollText },
-      { href: '/mapa-ocorrencias', label: 'Mapa de Ocorrências', icon: Hash },
-    ],
-  },
-  {
-    titulo: 'Modo Imersão',
-    links: [
-      { href: '/imersao', label: 'Modo Imersão', icon: BookOpen },
     ],
   },
 ];

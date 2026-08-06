@@ -256,7 +256,7 @@ export default function EstudosPage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-pattern-diamond">
       <Header />
       <main id="main-content" className="pt-20 pb-24 md:pb-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">

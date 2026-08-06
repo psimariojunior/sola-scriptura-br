@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Comentario } from '@/data/comentarios';
+import { renderizarReferencias } from '@/components/VersiculoLink';
 
 // Lazy-load do módulo de comentários (2.5MB)
 const comentariosModulePromise = import('@/data/comentarios');
@@ -113,7 +114,7 @@ function ComentarioCard({ comentario, truncado }: { comentario: Comentario; trun
         </span>
       </div>
       <p className="text-xs text-[var(--content-secondary)] leading-relaxed font-serif-body">
-        {expandidoTexto || !precisaTruncar ? comentario.texto : textoCurto}
+        {renderizarReferencias(expandidoTexto || !precisaTruncar ? comentario.texto : textoCurto, `comentario-${comentario.autor}`)}
         {precisaTruncar && (
           <button
             onClick={(e) => {

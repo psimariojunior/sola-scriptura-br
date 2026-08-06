@@ -8,7 +8,7 @@ class JsBridge {
       if (window.__SSB_NATIVE) return;
       
       window.__SSB_NATIVE = true;
-      window.__SSB_VERSION = '1.3.0';
+      window.__SSB_VERSION = '1.4.0';
       window.__SSB_PLATFORM = 'flutter';
       
       window.__SSB_SHARE = function(text, url) {
@@ -71,6 +71,65 @@ class JsBridge {
           if (window.SSBOffline) {
             window.SSBOffline.postMessage('sync');
           }
+        }
+      };
+
+      window.__SSB_FAVORITES = {
+        save: function(book, chapter, verse, translation, text, reference, color) {
+          if (window.SSBFavorite) {
+            window.SSBFavorite.postMessage('save|' + book + '|' + chapter + '|' + verse + '|' + translation + '|' + text + '|' + reference + '|' + (color || '#A17A2C'));
+          }
+        },
+        getAll: function() {
+          return new Promise(function(resolve) {
+            window.__SSB_FAVORITES_RESOLVE = resolve;
+            if (window.SSBFavorite) {
+              window.SSBFavorite.postMessage('getAll');
+            } else {
+              resolve([]);
+            }
+          });
+        },
+        remove: function(id) {
+          if (window.SSBFavorite) {
+            window.SSBFavorite.postMessage('remove|' + id);
+          }
+        }
+      };
+
+      window.__SSB_NOTES = {
+        save: function(book, chapter, verse, translation, title, content, tags) {
+          if (window.SSBNote) {
+            window.SSBNote.postMessage('save|' + book + '|' + chapter + '|' + (verse || '') + '|' + (translation || '') + '|' + (title || '') + '|' + content + '|' + (tags || ''));
+          }
+        },
+        getAll: function(book, chapter) {
+          return new Promise(function(resolve) {
+            window.__SSB_NOTES_RESOLVE = resolve;
+            if (window.SSBNote) {
+              window.SSBNote.postMessage('getAll|' + (book || '') + '|' + (chapter || ''));
+            } else {
+              resolve([]);
+            }
+          });
+        },
+        remove: function(id) {
+          if (window.SSBNote) {
+            window.SSBNote.postMessage('remove|' + id);
+          }
+        }
+      };
+
+      window.__SSB_DB = {
+        isOnline: function() {
+          return navigator.onLine;
+        },
+        getDeviceInfo: function() {
+          return {
+            platform: 'flutter',
+            version: '1.4.0',
+            offline: !navigator.onLine
+          };
         }
       };
       

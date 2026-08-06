@@ -1,8 +1,8 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useState, useRef, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, WifiOff } from 'lucide-react';
+import { BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, WifiOff, Heart, Copy, Share2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ChapterHeader } from './ChapterHeader';
 import { VerseListItem } from './VerseListItem';
@@ -23,6 +23,8 @@ import dynamic from 'next/dynamic';
 
 const InterlinearView = dynamic(() => import('@/components/InterlinearView').then(m => ({ default: m.InterlinearView })), { ssr: false });
 const PainelEstudosCapitulo = dynamic(() => import('./PainelEstudosCapitulo'));
+import { useLongPress } from '@/hooks/useLongPress';
+import { toggleFavorito } from '@/lib/estudos';
 const PainelEstudosInline = dynamic(() => import('@/components/PainelEstudosInline'));
 
 function PanelFallback() {
@@ -67,6 +69,31 @@ export function BibleVerseList({
   onSetMostrarApresentacao, onSetShareOpen,
 }: BibleVerseListProps) {
   const { t } = useTranslation();
+
+  const [longPressMenu, setLongPressMenu] = useState<{
+    livroAbrev: string; capitulo: number; versiculo: number;
+    traducao: string; texto: string; x: number; y: number;
+  } | null>(null);
+  const longPressVerseRef = useRef<{
+    livroAbrev: string; capitulo: number; versiculo: number;
+    traducao: string; texto: string;
+  } | null>(null);
+  const longPressPosRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+
+  const handleLongPress = useCallback(() => {
+    if (longPressVerseRef.current) {
+      setLongPressMenu({
+        ...longPressVerseRef.current,
+        x: longPressPosRef.current.x,
+        y: longPressPosRef.current.y,
+      });
+    }
+  }, []);
+
+  const longPress = useLongPress({
+    delay: 500,
+    onLongPress: handleLongPress,
+  });
 
   const isModoLeitura = ui.modoLeitura === 'foco';
   const isModoEstudo = ui.modoLeitura === 'estudo';
@@ -117,7 +144,27 @@ export function BibleVerseList({
                 const fav = isFavorito(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao);
                 const estudoAbertoNeste = verse.estudoAberto === v.numero && item.traducao === nav.data[0]?.traducao;
                 return (
-                  <div key={`${item.traducao}-${v.numero}`} className="bible-verse-spacer">
+                  <div
+                    key={`${item.traducao}-${v.numero}`}
+                    className="bible-verse-spacer"
+                    onMouseDown={(e) => {
+                      setLongPressMenu(null);
+                      longPressVerseRef.current = { livroAbrev: nav.livro.abreviacao, capitulo: nav.capituloIdx + 1, versiculo: v.numero, traducao: item.traducao, texto: v.texto };
+                      longPressPosRef.current = { x: e.clientX, y: e.clientY };
+                      longPress.onMouseDown(e);
+                    }}
+                    onMouseUp={longPress.onMouseUp}
+                    onMouseLeave={longPress.onMouseLeave}
+                    onTouchStart={(e) => {
+                      setLongPressMenu(null);
+                      longPressVerseRef.current = { livroAbrev: nav.livro.abreviacao, capitulo: nav.capituloIdx + 1, versiculo: v.numero, traducao: item.traducao, texto: v.texto };
+                      const touch = e.touches[0];
+                      longPressPosRef.current = { x: touch.clientX, y: touch.clientY };
+                      longPress.onTouchStart(e);
+                    }}
+                    onTouchEnd={longPress.onTouchEnd}
+                    onTouchMove={longPress.onTouchMove}
+                  >
                     <VerseListItem numero={v.numero} texto={v.texto} livroAbreviacao={nav.livro.abreviacao} livroNome={nav.livro.nome} capitulo={nav.capituloIdx + 1} traducao={item.traducao} fontSize={ui.fontSize}
                       isSelected={isSelected} isPlaying={isPlaying} isHighlighted={ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero} isFocused={ui.focusedVerse === v.numero} isFavorito={fav} copiedVerse={verse.copiedVerse}
                       audioNatural={audioNatural} audio={audio} flashcards={flashcards} estudoAberto={verse.estudoAberto === v.numero}
@@ -173,6 +220,54 @@ export function BibleVerseList({
         ) : (<div className="text-center py-20"><BookOpen className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} /><p className="text-lg text-[var(--content-muted)]">{t('biblia.selectBookChapter')}</p></div>)}
       </div>
       <NotesPanelSection open={ui.mostrarNotas} onClose={() => ui.setMostrarNotas(false)} notas={verse.notas} notaAtiva={verse.notaAtiva} onSalvar={(nota) => { verse.setNotaAtiva(nota); verse.salvarNotaHook(nota.id, nota.conteudo); }} onExcluir={(id) => { verse.excluirNota(id); verse.setNotaAtiva(null); ui.setMostrarNotas(false); }} />
+
+      {longPressMenu && (
+        <>
+          <div className="fixed inset-0 z-40" onClick={() => setLongPressMenu(null)} onTouchStart={() => setLongPressMenu(null)} />
+          <div
+            className="fixed z-50 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-xl p-1.5 flex gap-1"
+            style={{ left: Math.min(Math.max(longPressMenu.x, 80), typeof window !== 'undefined' ? window.innerWidth - 80 : 300), top: Math.max(longPressMenu.y - 60, 8) }}
+          >
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorito(longPressMenu.livroAbrev, longPressMenu.capitulo, longPressMenu.versiculo, longPressMenu.traducao, longPressMenu.texto);
+                refresh();
+                setLongPressMenu(null);
+              }}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-[var(--surface-sunken)] text-sm transition-colors"
+            >
+              <Heart className="w-4 h-4" /> Favoritar
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                verse.copyVerse(longPressMenu.texto, `${nav.livro.nome} ${longPressMenu.capitulo}:${longPressMenu.versiculo}`);
+                setLongPressMenu(null);
+              }}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-[var(--surface-sunken)] text-sm transition-colors"
+            >
+              <Copy className="w-4 h-4" /> Copiar
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                const ref = `${nav.livro.nome} ${longPressMenu.capitulo}:${longPressMenu.versiculo}`;
+                const text = `${longPressMenu.texto} — ${ref}`;
+                if (navigator.share) {
+                  navigator.share({ title: ref, text });
+                } else {
+                  navigator.clipboard?.writeText(text);
+                }
+                setLongPressMenu(null);
+              }}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-[var(--surface-sunken)] text-sm transition-colors"
+            >
+              <Share2 className="w-4 h-4" /> Compartilhar
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }

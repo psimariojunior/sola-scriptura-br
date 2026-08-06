@@ -211,13 +211,20 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
       clearTimeout(this.typingTimers.get(key)!);
     }
     this.typingTimers.set(key, setTimeout(() => {
-      this.handleTypingStop(data.code, data.participantId);
+      this.emitTypingStop(data.code, data.participantId);
       this.typingTimers.delete(key);
     }, 3000));
   }
 
   @SubscribeMessage('typing-stop')
-  handleTypingStop(code: string, participantId: string) {
+  handleTypingStopWs(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { code: string; participantId: string },
+  ) {
+    this.server.to(data.code).emit('typing-stop', { code: data.code, participantId: data.participantId });
+  }
+
+  private emitTypingStop(code: string, participantId: string) {
     this.server.to(code).emit('typing-stop', { code, participantId });
   }
 
@@ -227,7 +234,7 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
       if (room) {
         const participant = room.participants.get(client.id);
         if (participant) {
-          this.handleTypingStop(code, participant.participantId);
+          this.emitTypingStop(code, participant.participantId);
           const key = `${code}:${participant.participantId}`;
           if (this.typingTimers.has(key)) {
             clearTimeout(this.typingTimers.get(key)!);
@@ -321,6 +328,14 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
       currentQuestion: data.currentQuestion,
       status: data.status,
     });
+  }
+
+  @SubscribeMessage('note-sync')
+  handleNoteSync(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { code: string; notes: unknown },
+  ) {
+    client.to(data.code).emit('note-sync', { notes: data.notes });
   }
 
   private removeParticipantFromRoom(client: Socket, code: string) {

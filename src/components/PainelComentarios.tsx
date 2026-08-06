@@ -7,6 +7,7 @@ import type { Comentario } from '@/data/comentarios';
 import { getTeologo, type Teologo } from '@/data/teologos';
 import { useComentarioAudio } from '@/hooks/useComentarioAudio';
 import { cn } from '@/lib/utils';
+import { renderizarReferencias } from '@/components/VersiculoLink';
 
 interface Props {
   livro: string;
@@ -210,7 +211,7 @@ export default function PainelComentarios({ livro, capitulo, versiculo, onClose 
             {isExpanded && (
               <div className="px-3 pb-3 border-t border-[var(--border)]/30">
                 <p className="text-[13px] text-[var(--content-secondary)] leading-[1.7] mt-3 font-serif-body">
-                  {c.texto}
+                  {renderizarReferencias(c.texto, `comentario-panel-${i}`)}
                 </p>
                 {c.teologo?.obrasChave && c.teologo.obrasChave.length > 0 && (
                   <div className="mt-3 pt-2 border-t border-[var(--border)]/20">

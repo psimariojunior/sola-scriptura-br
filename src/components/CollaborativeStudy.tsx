@@ -104,10 +104,10 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   const [showSettings, setShowSettings] = useState(false);
   const [roomTheme, setRoomTheme] = useState('default');
   const [sharedNotes, setSharedNotes] = useState<SharedNote[]>([]);
-  const [quizStarted, setQuizStarted] = useState(false);
   const [quizIndex, setQuizIndex] = useState(0);
   const [quizAnswers, setQuizAnswers] = useState<Array<{ participantId: string; participantName: string; questionId: string; selectedIndex: number; timeSpent: number; isCorrect: boolean }>>([]);
   const [quizScores, setQuizScores] = useState<Array<{ participantId: string; participantName: string; score: number; correctAnswers: number; totalAnswered: number; avgTime: number }>>([]);
+  const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>(SAMPLE_QUESTIONS);
   const [showBiblePanel, setShowBiblePanel] = useState(false);
   const [currentVerseIndex, setCurrentVerseIndex] = useState(-1);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -170,6 +170,30 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
         setPresentedVerse({ texto: data.texto, referencia: data.livro ? `${data.livro} ${data.capitulo}:${data.versiculo}` : '', apresentadoPor: data.presentedBy || '' });
       } else if (data.action === 'fontSize' && data.fontSize) setPresentationFontSize(data.fontSize);
       else if (data.action === 'mirror' && data.mirror !== undefined) setPresentationMirror(data.mirror!);
+    });
+
+    svc.onNoteSync?.((data: { notes?: Record<string, string>; action?: string; noteId?: string; participantId?: string; content?: string }) => {
+      if (data.notes) {
+        const parsed: SharedNote[] = Object.values(data.notes).map(v => JSON.parse(v as string));
+        setSharedNotes(parsed);
+      } else if (data.action === 'add' && data.noteId && data.participantId) {
+        // Single note added — reload
+      } else if (data.action === 'delete' && data.noteId) {
+        setSharedNotes(prev => prev.filter(n => n.id !== data.noteId));
+      }
+    });
+
+    svc.onQuizStart?.((data: { questions: unknown[] }) => {
+      const qs = data.questions as QuizQuestion[];
+      setQuizQuestions(qs);
+      setQuizIndex(0);
+      setQuizAnswers([]);
+      setQuizScores([]);
+      setActiveTab('quiz');
+    });
+
+    svc.onQuizAnswer?.((answer: { participantId: string; participantName: string; questionId: string; selectedIndex: number; isCorrect: boolean }) => {
+      setQuizAnswers(prev => prev.some(a => a.questionId === answer.questionId && a.participantId === answer.participantId) ? prev : [...prev, { ...answer, timeSpent: 0 }]);
     });
 
     svc.getLocalStream(false, false).catch(() => {});
@@ -584,6 +608,11 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           body: JSON.stringify({ notes: notesMap }),
         });
       } catch {}
+      // Broadcast via WebSocket
+      chatServiceRef.current?.sendNoteSync({
+        action: 'add', noteId: newNote.id, participantId, participantName,
+        content, verseRef, color: newNote.color, timestamp: newNote.timestamp,
+      });
     }
   }, [participantId, participantName, sharedNotes, room]);
 
@@ -602,31 +631,41 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           body: JSON.stringify({ notes: notesMap }),
         });
       } catch {}
+      chatServiceRef.current?.sendNoteSync({
+        action: 'delete', noteId: id, participantId, participantName, timestamp: Date.now(),
+      });
     }
   }, [sharedNotes, room]);
 
   const handleUpdateNote = useCallback((id: string, content: string) => {
     setSharedNotes(prev => prev.map(n => n.id === id ? { ...n, content } : n));
-  }, []);
+    if (room) {
+      chatServiceRef.current?.sendNoteSync({
+        action: 'update', noteId: id, participantId, participantName, content, timestamp: Date.now(),
+      });
+    }
+  }, [room, sharedNotes, participantId, participantName]);
 
   // Quiz handlers
   const handleQuizAnswer = useCallback((questionId: string, selectedIndex: number) => {
-    const question = SAMPLE_QUESTIONS.find(q => q.id === questionId);
+    const question = quizQuestions.find(q => q.id === questionId);
     if (!question) return;
-    setQuizAnswers(prev => [...prev, {
+    const answer = {
       participantId, participantName, questionId, selectedIndex,
       timeSpent: 0, isCorrect: selectedIndex === question.correctIndex,
-    }]);
-  }, [participantId, participantName]);
+    };
+    setQuizAnswers(prev => [...prev, answer]);
+    // Broadcast via WebSocket
+    if (room) chatServiceRef.current?.sendQuizAnswer(answer);
+  }, [participantId, participantName, quizQuestions, room]);
 
   const handleNextQuestion = useCallback(() => {
-    if (quizIndex < SAMPLE_QUESTIONS.length - 1) setQuizIndex(prev => prev + 1);
+    if (quizIndex < quizQuestions.length - 1) setQuizIndex(prev => prev + 1);
     else {
-      // Calculate scores
       const scores = [{ participantId, participantName, score: quizAnswers.filter(a => a.isCorrect).length * 10, correctAnswers: quizAnswers.filter(a => a.isCorrect).length, totalAnswered: quizAnswers.length, avgTime: 0 }];
       setQuizScores(scores);
     }
-  }, [quizIndex, quizAnswers, participantId, participantName]);
+  }, [quizIndex, quizAnswers, participantId, participantName, quizQuestions]);
 
   const themeClasses = getRoomThemeClasses(roomTheme);
 
@@ -674,7 +713,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   }
 
   return (
-    <div ref={containerRef} className={cn('flex flex-col h-full', isFullscreen && 'fixed inset-0 z-50 bg-[var(--surface-base)]')}>
+    <div ref={containerRef} className={cn('flex flex-col h-full', isFullscreen && 'fixed inset-0 z-50 bg-[var(--surface-base)]', themeClasses)}>
       {/* Room Entrance Animation */}
       <AnimatePresence>
         {showEntrance && (
@@ -850,9 +889,9 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           ) : activeTab === 'notes' ? (
             <SharedNotes notes={sharedNotes} currentUserId={participantId} onAdd={handleAddNote} onDelete={handleDeleteNote} onUpdate={handleUpdateNote} />
           ) : activeTab === 'quiz' ? (
-            <LiveQuiz questions={SAMPLE_QUESTIONS} answers={quizAnswers} scores={quizScores} currentQuestionIndex={quizIndex}
+            <LiveQuiz questions={quizQuestions} answers={quizAnswers} scores={quizScores} currentQuestionIndex={quizIndex}
               currentUserId={participantId} isHost={room.participants[0] === participantId}
-              onAnswer={handleQuizAnswer} onNextQuestion={handleNextQuestion} onEndQuiz={() => { setQuizStarted(false); setQuizIndex(0); setQuizAnswers([]); setQuizScores([]); }} />
+              onAnswer={handleQuizAnswer} onNextQuestion={handleNextQuestion} onEndQuiz={() => { setQuizIndex(0); setQuizAnswers([]); setQuizScores([]); setQuizQuestions(SAMPLE_QUESTIONS); }} />
           ) : (
             <div className="space-y-3 p-4">
               {chatMessages.length === 0 ? (

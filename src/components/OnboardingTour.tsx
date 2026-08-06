@@ -30,13 +30,6 @@ const TOUR_STEPS: TourStep[] = [
     position: 'bottom',
   },
   {
-    id: 'ia',
-    titulo: 'IA para seus estudos',
-    descricao: 'Faça perguntas teológicas e receba respostas fundamentadas na Escritura.',
-    targetSelector: 'a[href="/ia"]',
-    position: 'bottom',
-  },
-  {
     id: 'gratis',
     titulo: 'Tudo grátis',
     descricao: 'Todas as ferramentas são 100% gratuitas. Sem assinatura, sem limites.',

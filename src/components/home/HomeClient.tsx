@@ -22,6 +22,7 @@ const RotatingVerse = dynamic(() => import('@/components/home/RotatingVerse').th
 const AnimatedCounter = dynamic(() => import('@/components/home/AnimatedCounter').then(m => ({ default: m.AnimatedCounter })), { ssr: false });
 const VerseDoDia = dynamic(() => import('@/components/VerseDoDia'), { ssr: false });
 const ContinuarLeitura = dynamic(() => import('@/components/ContinuarLeitura'), { ssr: false });
+const StreakCard = dynamic(() => import('@/components/StreakCard').then(m => ({ default: m.StreakCard })), { ssr: false });
 const WordOfDayWidget = dynamic(() => import('@/components/WordOfDay').then(m => ({ default: m.WordOfDay })), { ssr: false });
 const InstallBanner = dynamic(() => import('@/components/InstallBanner'), { ssr: false });
 const NotificationSetup = dynamic(() => import('@/components/NotificationSetup').then(m => ({ default: m.NotificationSetup })), { ssr: false });
@@ -160,7 +161,7 @@ function FeatureCard({ feature, index, t }: { feature: typeof featuresStatic[num
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`feature-card group relative h-full p-7 sm:p-8 rounded-2xl border bg-card/50 backdrop-blur-sm overflow-hidden ${
+      className={`feature-card card-tilt group relative h-full p-7 sm:p-8 rounded-2xl border bg-card/50 backdrop-blur-sm overflow-hidden ${
         feature.highlight ? 'border-amber-500/30 shadow-[var(--shadow-glow)]' : 'border-border/40'
       }`}
     >
@@ -230,7 +231,7 @@ export default function HomeClient() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden bg-pattern-cross">
       <Header />
       <main id="main-content" className="relative">
         <section className="relative pt-28 sm:pt-32 pb-20 sm:pb-24 px-4 sm:px-6 overflow-hidden">
@@ -277,6 +278,9 @@ export default function HomeClient() {
 
         <VerseDoDia />
         <ContinuarLeitura />
+        <div className="px-4 sm:px-6 max-w-3xl mx-auto -mt-2 mb-4">
+          <StreakCard />
+        </div>
         <WordOfDayWidget />
 
         <section className="relative py-6 sm:py-8 px-4 sm:px-6" aria-label="Destaques do Sola Scriptura">
@@ -579,7 +583,7 @@ export default function HomeClient() {
                   <BookOpen className="relative w-4 h-4" /><span className="relative">{t('landing.ctaSection.cta1')}</span>
                   <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
-                <Link href="/ia" className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] hover:bg-primary/[0.12] hover:border-primary/50 transition-all duration-300">
+                <Link href="/estudar" className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] hover:bg-primary/[0.12] hover:border-primary/50 transition-all duration-300">
                   <Brain className="w-4 h-4 text-primary" strokeWidth={1.75} /> {t('landing.ctaSection.cta2')}
                 </Link>
               </div>

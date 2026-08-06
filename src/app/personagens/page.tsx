@@ -72,7 +72,7 @@ export default function PersonagensPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-pattern-olive">
       <Header />
       <main id="main-content" className="pt-24 pb-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">

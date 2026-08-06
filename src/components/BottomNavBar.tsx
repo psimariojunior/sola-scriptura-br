@@ -7,24 +7,20 @@ import { useTranslation } from 'react-i18next';
 import {
   Home,
   BookOpen,
-  GraduationCap,
   Search,
   MoreHorizontal,
   X,
-  ScrollText,
-  Brain,
-  Map,
-  BookMarked,
-  Globe,
-  Heart,
+  GraduationCap,
   Languages,
-  Wrench,
-  Tag,
   GitBranch,
+  Tag,
+  Wrench,
+  ScrollText,
+  Heart,
+  Map,
   Calendar,
+  BookMarked,
   HelpCircle,
-  BarChart3,
-  MessageCircle,
   ChevronDown,
 } from 'lucide-react';
 
@@ -37,7 +33,7 @@ interface TabItem {
 interface ExtraLink {
   href: string;
   label: string;
-  icon: typeof Globe;
+  icon: typeof Home;
 }
 
 interface NavGroup {
@@ -55,46 +51,45 @@ function BottomNavBarInner() {
   const tabs: TabItem[] = useMemo(() => [
     { href: '/', label: t('bottomBar.home'), icon: Home },
     { href: '/biblia', label: t('bottomBar.bible'), icon: BookOpen },
-    { href: '/seminario', label: t('bottomBar.seminary', 'Seminário'), icon: GraduationCap },
-    { href: '/pesquisa', label: t('bottomBar.search'), icon: Search },
+    { href: '/estudar', label: t('bottomBar.study', 'Estudar'), icon: Search },
     { href: '#more', label: t('bottomBar.more'), icon: MoreHorizontal },
   ], [t]);
 
   const grupos: NavGroup[] = useMemo(() => [
     {
-      titulo: t('bottomBar.groupFerramentas'),
+      titulo: t('bottomBar.groupBibleTools', 'Ferramentas Bíblicas'),
       links: [
         { href: '/idiomas', label: t('bottomBar.languages'), icon: Languages },
         { href: '/referencias', label: t('bottomBar.references'), icon: GitBranch },
-        { href: '/topicos', label: t('bottomBar.topics'), icon: Tag },
-        { href: '/ferramentas', label: t('bottomBar.tools'), icon: Wrench },
+        { href: '/harmonia', label: t('bottomBar.harmony', 'Harmonia'), icon: GitBranch },
+        { href: '/comparar', label: t('bottomBar.compare', 'Comparar'), icon: BookOpen },
       ],
     },
     {
-      titulo: t('bottomBar.groupContext'),
+      titulo: t('bottomBar.groupContext', 'Contexto & História'),
       links: [
-        { href: '/historia', label: t('bottomBar.history'), icon: Globe },
-        { href: '/cronologia', label: t('bottomBar.chronology'), icon: ScrollText },
+        { href: '/historia', label: t('bottomBar.history'), icon: ScrollText },
+        { href: '/cronologia', label: t('bottomBar.chronology'), icon: Calendar },
         { href: '/personagens', label: t('bottomBar.characters'), icon: Heart },
         { href: '/atlas', label: t('bottomBar.atlas'), icon: Map },
       ],
     },
     {
-      titulo: t('bottomBar.groupPractice'),
+      titulo: t('bottomBar.groupDeep', 'Aprofundar'),
       links: [
-        { href: '/estudos', label: t('bottomBar.studies'), icon: BookOpen },
-        { href: '/planos', label: t('bottomBar.plans'), icon: Calendar },
-        { href: '/devocional', label: t('bottomBar.devotional'), icon: Heart },
-        { href: '/flashcards', label: t('bottomBar.flashcards'), icon: BookMarked },
+        { href: '/teologia', label: t('bottomBar.theology', 'Teologia'), icon: BookMarked },
+        { href: '/ferramentas', label: t('bottomBar.tools'), icon: Wrench },
+        { href: '/topicos', label: t('bottomBar.topics'), icon: Tag },
+        { href: '/estudos', label: t('bottomBar.studies'), icon: GraduationCap },
       ],
     },
     {
-      titulo: t('bottomBar.groupStudy'),
+      titulo: t('bottomBar.groupPractice', 'Prática'),
       links: [
+        { href: '/planos', label: t('bottomBar.plans'), icon: Calendar },
+        { href: '/devocional', label: t('bottomBar.devotional'), icon: Heart },
+        { href: '/flashcards', label: t('bottomBar.flashcards'), icon: BookMarked },
         { href: '/quiz', label: t('bottomBar.quizzes'), icon: HelpCircle },
-        { href: '/comunidade', label: t('bottomBar.community'), icon: MessageCircle },
-        { href: '/ia', label: t('bottomBar.aiAssistant'), icon: Brain },
-        { href: '/dashboard', label: t('bottomBar.statistics'), icon: BarChart3 },
       ],
     },
   ], [t]);
@@ -141,6 +136,7 @@ function BottomNavBarInner() {
   if (!isMobile) return null;
 
   const isMoreActive = pathname && grupos.some((g) => g.links.some((l) => pathname.startsWith(l.href)));
+  const isEstudarActive = pathname === '/estudar' || pathname?.startsWith('/estudar/');
 
   return (
     <>
@@ -225,7 +221,9 @@ function BottomNavBarInner() {
             const isMore = tab.href === '#more';
             const active = isMore
               ? isMoreActive
-              : pathname === tab.href || (tab.href !== '/' && pathname?.startsWith(tab.href));
+              : tab.href === '/estudar'
+                ? isEstudarActive
+                : pathname === tab.href || (tab.href !== '/' && pathname?.startsWith(tab.href));
 
             if (isMore) {
               return (
@@ -239,7 +237,7 @@ function BottomNavBarInner() {
                   }`}
                 >
                   <tab.icon className="w-5 h-5 mb-0.5" strokeWidth={active ? 2 : 1.5} />
-<span className="text-[11px] font-medium leading-tight">{tab.label}</span>
+                  <span className="text-[11px] font-medium leading-tight">{tab.label}</span>
                   {active && (
                     <div className="absolute top-0 w-8 h-[2px] bg-primary rounded-full" />
                   )}

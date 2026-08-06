@@ -88,11 +88,11 @@ function AssinarContent() {
               Obrigado! Seu acesso vitalício está ativo. Aproveite todos os recursos.
             </p>
             <div className="flex flex-col gap-2">
-              <Link href="/ia" className="py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-all">
-                Abrir Assistente de IA
+              <Link href="/biblia" className="py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-all">
+                Abrir Bíblia
               </Link>
-              <Link href="/estudo-ia" className="py-3 border border-border rounded-xl hover:bg-muted/50 transition-all">
-                Gerar Estudo com IA
+              <Link href="/estudar" className="py-3 border border-border rounded-xl hover:bg-muted/50 transition-all">
+                Explorar Ferramentas
               </Link>
             </div>
           </motion.div>

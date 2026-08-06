@@ -11,8 +11,6 @@ import '../config/theme.dart';
 import '../services/webview_service.dart';
 import '../services/connectivity_service.dart';
 import '../services/share_service.dart';
-import '../services/streak_service.dart';
-import '../services/offline_sync_service.dart';
 import 'streak_screen.dart';
 import '../widgets/offline_banner.dart';
 import '../widgets/error_screen.dart';

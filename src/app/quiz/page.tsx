@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { LIVROS_BIBLIA, todasPerguntas, type PerguntaQuiz } from '@/data/quiz';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { trackEvent } from '@/lib/gamificationTracker';
+import { Confetti } from '@/components/Confetti';
 
 const MODOS = [
   {
@@ -254,7 +255,7 @@ export default function QuizPage() {
   const corTimer = tempoRestante <= 2 ? 'bg-red-500' : tempoRestante <= 3 ? 'bg-amber-500' : 'bg-emerald-500';
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-pattern-ripple">
       <Header />
       <main className="pt-24 pb-16 px-6">
         <div className="max-w-3xl mx-auto">
@@ -481,7 +482,9 @@ export default function QuizPage() {
             )}
 
             {tela === 'resultado' && (
-              <motion.div key="resultado" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
+              <>
+                <Confetti active={tela === 'resultado'} duration={4000} />
+                <motion.div key="resultado" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
                 <div className="text-center mb-8">
                   <motion.div initial={{ scale: 0, rotate: -180 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', duration: 0.8, delay: 0.2 }} className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                     <Award className="w-10 h-10 text-primary" />
@@ -597,6 +600,7 @@ export default function QuizPage() {
                   </motion.div>
                 )}
               </motion.div>
+              </>
             )}
           </AnimatePresence>
         </div>

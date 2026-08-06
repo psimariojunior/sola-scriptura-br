@@ -5,8 +5,10 @@ import '../services/notification_service.dart';
 import '../services/streak_service.dart';
 import '../services/streak_notification_service.dart';
 import '../services/offline_sync_service.dart';
+import '../services/bible_offline_service.dart';
 import '../config/theme.dart';
 import 'streak_screen.dart';
+import 'offline_translations_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -29,6 +31,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   int _cachedChapters = 0;
   DateTime? _lastSync;
   int _currentStreak = 0;
+  int _offlineTranslations = 0;
 
   @override
   void initState() {
@@ -42,6 +45,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final cached = await OfflineSyncService.getCachedChapterCount();
     final lastSync = await OfflineSyncService.getLastSyncTime();
     final streak = await StreakService.getCurrentStreak();
+    final downloadedTranslations = await BibleOfflineService.instance.getDownloadedTranslations();
 
     setState(() {
       _appLockEnabled = prefs.getBool('ssb_app_lock_enabled') ?? false;
@@ -56,6 +60,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       _cachedChapters = cached;
       _lastSync = lastSync;
       _currentStreak = streak;
+      _offlineTranslations = downloadedTranslations.length;
     });
   }
 
@@ -193,6 +198,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
           _buildSection(
             title: 'Offline',
             children: [
+              ListTile(
+                leading: const Icon(Icons.language, color: AppTheme.goldPrimary),
+                title: const Text('Traduções Offline', style: TextStyle(color: Colors.white)),
+                subtitle: Text(
+                  '$_offlineTranslations traduções baixadas',
+                  style: const TextStyle(color: Colors.white54),
+                ),
+                trailing: const Icon(Icons.chevron_right, color: AppTheme.goldPrimary),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const OfflineTranslationsScreen()),
+                  );
+                },
+              ),
               ListTile(
                 leading: const Icon(Icons.cloud_download, color: AppTheme.goldPrimary),
                 title: const Text('Capítulos em Cache', style: TextStyle(color: Colors.white)),

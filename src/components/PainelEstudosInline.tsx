@@ -5,6 +5,7 @@ import { BookOpen, User, ChevronDown, ChevronUp, GraduationCap, Quote, Eye, Ligh
 import { motion, AnimatePresence } from 'framer-motion';
 import { obterEstudoVersiculo, type EstudoVersiculoUnificado } from '@/lib/estudosLoader';
 import { tradicaoCores } from '@/lib/tradicaoCores';
+import { VersiculoLink, extrairReferencias } from '@/components/VersiculoLink';
 
 interface Props {
   livro: string;
@@ -82,11 +83,21 @@ function BlocoVersiculo({ estudo }: { estudo: EstudoVersiculoUnificado }) {
 
       {detalhe.versiculosConexoes.length > 0 && (
         <div className="mt-3 flex flex-wrap gap-1.5">
-          {detalhe.versiculosConexoes.map((v, i) => (
-            <span key={i} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] text-[10px] font-medium">
-              <Link2 className="w-2.5 h-2.5" /> {v}
-            </span>
-          ))}
+          {detalhe.versiculosConexoes.map((v, i) => {
+            const refs = extrairReferencias(v);
+            const ref = refs[0];
+            return ref ? (
+              <VersiculoLink key={i} referencia={ref}>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] text-[10px] font-medium hover:bg-[var(--primary)]/20 transition-colors cursor-pointer">
+                  <Link2 className="w-2.5 h-2.5" /> {v}
+                </span>
+              </VersiculoLink>
+            ) : (
+              <span key={i} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] text-[10px] font-medium">
+                <Link2 className="w-2.5 h-2.5" /> {v}
+              </span>
+            );
+          })}
         </div>
       )}
     </>

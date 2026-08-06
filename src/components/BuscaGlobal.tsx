@@ -61,8 +61,6 @@ const NAV_COMMANDS: { label: string; href: string; icon: typeof BookOpen; grupo:
   { label: 'Pesquisa', href: '/pesquisa', icon: Compass, grupo: 'Páginas' },
   { label: 'Teologia Sistemática', href: '/teologia', icon: Church, grupo: 'Páginas' },
   { label: 'Estudos', href: '/estudos', icon: FileText, grupo: 'Páginas' },
-  { label: 'Estudo com IA', href: '/estudo-ia', icon: Sparkles, grupo: 'Páginas' },
-  { label: 'Assistente IA', href: '/ia', icon: Sparkles, grupo: 'Páginas' },
   { label: 'Línguas Originais', href: '/idiomas', icon: Brain, grupo: 'Páginas' },
   { label: 'Exegese', href: '/exegese', icon: BookOpen, grupo: 'Páginas' },
   { label: 'História Bíblica', href: '/historia', icon: History, grupo: 'Páginas' },

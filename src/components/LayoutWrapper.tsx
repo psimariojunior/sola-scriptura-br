@@ -28,6 +28,8 @@ const MobilePerformanceMonitor = lazy(() => import('@/components/MobilePerforman
 const BottomNavBar = lazy(() => import('@/components/BottomNavBar'));
 const AccessibilityPanel = lazy(() => import('@/components/AccessibilityPanel').then(m => ({ default: m.AccessibilityPanel })));
 const PerformanceMonitor = lazy(() => import('@/components/PerformanceMonitor').then(m => ({ default: m.PerformanceMonitor })));
+const FloatingActionButton = lazy(() => import('@/components/FloatingActionButton').then(m => ({ default: m.FloatingActionButton })));
+const NowPlayingBar = lazy(() => import('@/components/NowPlayingBar').then(m => ({ default: m.NowPlayingBar })));
 
 const AIPainelLateral = lazy(() => import('@/components/AIPainelLateral').then(m => ({ default: m.AIPainelLateral })));
 const AIMiniPainel = lazy(() => import('@/components/AIMiniPainel').then(m => ({ default: m.AIMiniPainel })));
@@ -174,6 +176,12 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               <PageTransition><ErrorBoundary>{children}</ErrorBoundary></PageTransition>
               <BackToTop />
               <FloatingDonateButton />
+              <Suspense fallback={null}>
+                <FloatingActionButton />
+              </Suspense>
+              <Suspense fallback={null}>
+                <NowPlayingBar />
+              </Suspense>
               <Suspense fallback={<div className="fixed bottom-0 left-0 right-0 h-16 bg-[var(--surface-raised)] border-t border-[var(--border)] sm:hidden" />}>
                 <BottomNavBar />
               </Suspense>

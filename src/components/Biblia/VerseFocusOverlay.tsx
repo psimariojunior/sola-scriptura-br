@@ -252,14 +252,11 @@ export function VerseFocusOverlay({
                 </div>
                 <div className="rounded-xl bg-[var(--surface-sunken)]/50 p-4">
                   <h4 className="text-[10px] font-bold uppercase tracking-wider text-[var(--content-muted)] mb-2 flex items-center gap-1.5">
-                    <Sparkles className="w-3 h-3" />Estudo com IA
+                    <Sparkles className="w-3 h-3" />Referências
                   </h4>
                   <p className="text-xs text-[var(--content-secondary)] leading-relaxed">
-                    Use o assistente de IA para uma análise exegetica, hermenêutica ou teológica deste versículo.
+                    Explore referências cruzadas e estudos relacionados a este versículo.
                   </p>
-                  <a href="/ia" className="inline-flex items-center gap-1 mt-2 text-[10px] font-medium text-[var(--brand-default)] hover:underline">
-                    Perguntar à IA →
-                  </a>
                 </div>
               </div>
             )}

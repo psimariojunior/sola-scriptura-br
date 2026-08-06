@@ -111,6 +111,21 @@ export async function getOfflineChapterCount(): Promise<number> {
   return keys.length;
 }
 
+export async function getCachedChaptersForBook(abreviacao: string, translation: string): Promise<Set<number>> {
+  const keys = await getAllKeys(STORES.chapters);
+  const prefix = `${abreviacao}:`;
+  const suffix = `:${translation}`;
+  const chapters = new Set<number>();
+  for (const key of keys) {
+    if (key.startsWith(prefix) && key.endsWith(suffix)) {
+      const chapterStr = key.slice(prefix.length, key.length - suffix.length);
+      const num = parseInt(chapterStr, 10);
+      if (!isNaN(num)) chapters.add(num);
+    }
+  }
+  return chapters;
+}
+
 export async function clearOfflineChapters(): Promise<void> {
   try {
     const db = await openDB();

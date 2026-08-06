@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TODOS_LIVROS, LIVROS_AT, LIVROS_NT } from '@/data/biblia/livros';
+import { getCachedChaptersForBook } from '@/lib/offlineStorage';
 
 interface MobileBookMenuProps {
   open: boolean;
@@ -12,14 +13,25 @@ interface MobileBookMenuProps {
   livroIdx: number;
   onSelect: (idx: number) => void;
   onSelectChapter?: (idx: number, cap: number) => void;
+  translation?: string;
 }
 
-export function MobileBookMenu({ open, onClose, livroIdx, onSelect, onSelectChapter }: MobileBookMenuProps) {
+export function MobileBookMenu({ open, onClose, livroIdx, onSelect, onSelectChapter, translation = 'ARC' }: MobileBookMenuProps) {
   const [selectedBookIdx, setSelectedBookIdx] = useState<number | null>(null);
   const [atExpanded, setAtExpanded] = useState(true);
   const [ntExpanded, setNtExpanded] = useState(false);
+  const [cachedChapters, setCachedChapters] = useState<Set<number>>(new Set());
 
   const selectedBook = selectedBookIdx !== null ? TODOS_LIVROS[selectedBookIdx] : null;
+
+  useEffect(() => {
+    if (!selectedBook) { setCachedChapters(new Set()); return; }
+    let cancelled = false;
+    getCachedChaptersForBook(selectedBook.abreviacao, translation).then(chs => {
+      if (!cancelled) setCachedChapters(chs);
+    });
+    return () => { cancelled = true; };
+  }, [selectedBook, translation]);
 
   const handleClose = () => {
     setSelectedBookIdx(null);
@@ -122,13 +134,14 @@ export function MobileBookMenu({ open, onClose, livroIdx, onSelect, onSelectChap
                     key={num}
                     onClick={() => handleSelectChapter(num - 1)}
                     className={cn(
-                      'w-full aspect-square rounded-lg text-xs font-semibold transition-all',
+                      'relative w-full aspect-square rounded-lg text-xs font-semibold transition-all flex items-center justify-center',
                       num - 1 === (selectedBookIdx === livroIdx ? /* current chapter */ 0 : -1)
                         ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]'
                         : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] hover:text-[var(--content-primary)]'
                     )}
                   >
                     {num}
+                    {cachedChapters.has(num) && <span className="offline-cached-dot absolute top-1 right-1" />}
                   </button>
                 ))}
               </div>

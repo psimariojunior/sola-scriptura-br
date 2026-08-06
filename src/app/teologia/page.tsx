@@ -245,7 +245,6 @@ export default function TeologiaPage() {
           </ScrollReveal>
 
           <div className="space-y-8">
-            <AnimatePresence mode="wait">
               {abaAtiva === 'doutrinas' ? (
                 <>
                   {categorias.map((cat) => {
@@ -371,7 +370,6 @@ export default function TeologiaPage() {
                   />
                 </>
               )}
-            </AnimatePresence>
           </div>
 
           {(abaAtiva === 'doutrinas' && doutrinasFiltradas.length === 0) && (

@@ -9,6 +9,11 @@ description: Comunicar sempre em portugues brasileiro. Traduzir termos tecnicos 
 - Traduza termos tecnicos quando ajudar na compreensao
 - Se o usuario falar em ingles, responda em portugues
 
+## Deploy automático
+- SEMPRE faça `git add -A && git commit` + `git push` ao terminar de fazer alterações
+- O Vercel faz deploy automático ao push no branch main
+- NÃO espere o usuario pedir para commitar — faça sempre após completar tarefas
+
 ## Terminologia tecnica em portugues
 - commit = commit / lancamento
 - push = enviar / subir

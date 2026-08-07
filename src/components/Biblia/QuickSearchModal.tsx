@@ -82,12 +82,12 @@ export function QuickSearchModal({ open, onClose, onGoToResult, recentSearches }
       <motion.div initial={{ scale: 0.95, opacity: 0, y: -20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: -20 }}
         transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="relative w-full max-w-lg mx-4 bg-[var(--surface-raised)] border border-[var(--border)] rounded-2xl shadow-2xl overflow-hidden">
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--border)]">
-          <Search className="w-5 h-5 text-[var(--content-muted)] shrink-0" />
-          <input ref={inputRef} autoFocus type="text" placeholder="Buscar versículos ou livro..." value={query}
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-[var(--border)]">
+          <Search className="w-5 h-5 text-[var(--brand-default)] shrink-0" />
+          <input ref={inputRef} autoFocus type="text" placeholder="Buscar versículos, livros ou palavras..." value={query}
             onChange={e => handleSearch(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter' && autoComplete.length > 0) { goToResult({ livro: autoComplete[0].livro, nome: autoComplete[0].nome, cap: 1 }); } }}
-            className="flex-1 bg-transparent text-sm outline-none" />
+            className="flex-1 bg-transparent text-sm outline-none placeholder:text-[var(--content-muted)]/60" />
           <VoiceSearchButton
             onResult={(text) => {
               setQuery(text);
@@ -95,7 +95,7 @@ export function QuickSearchModal({ open, onClose, onGoToResult, recentSearches }
             }}
             size="sm"
           />
-          <kbd className="text-[10px] bg-[var(--surface-sunken)] px-1.5 py-0.5 rounded text-[var(--content-muted)]">ESC</kbd>
+          <kbd className="text-[10px] bg-[var(--surface-sunken)] px-2 py-1 rounded-md text-[var(--content-muted)] border border-[var(--border)]/50">ESC</kbd>
         </div>
         <div className="max-h-96 overflow-y-auto">
           {autoComplete.length > 0 && query.length >= 2 && results.length === 0 && (
@@ -129,9 +129,9 @@ export function QuickSearchModal({ open, onClose, onGoToResult, recentSearches }
 
           {results.length > 0 ? (
             <div className="p-2">
-              <div className="flex items-center justify-between px-3 py-1">
+              <div className="flex items-center justify-between px-3 py-1.5">
                 <p className="text-[10px] text-[var(--content-muted)] uppercase tracking-wider font-semibold">Resultados ({results.length})</p>
-                <span className="text-[10px] text-[var(--content-muted)]">ARC</span>
+                <span className="text-[10px] text-[var(--content-muted)] px-2 py-0.5 bg-[var(--surface-sunken)] rounded-full">ARC</span>
               </div>
               {results.map((r, i) => {
                 const qLower = query.toLowerCase();
@@ -142,14 +142,13 @@ export function QuickSearchModal({ open, onClose, onGoToResult, recentSearches }
                 return (
                   <motion.button key={i} onClick={() => goToResult(r)}
                     initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.02 }}
-                    className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--surface-sunken)] transition-colors group">
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <span className="text-xs font-semibold text-[var(--brand-default)]">{r.nome} {r.cap}:{r.versiculo}</span>
-                      <span className="text-[9px] px-1 py-0.5 bg-[var(--surface-sunken)] rounded text-[var(--content-muted)]">{r.traducao}</span>
+                    className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-[var(--brand-subtle)]/50 transition-all duration-200 group">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-xs font-bold text-[var(--brand-default)]">{r.nome} {r.cap}:{r.versiculo}</span>
                     </div>
-                    <p className="text-xs text-[var(--content-muted)] line-clamp-2 group-hover:text-[var(--content-primary)] transition-colors">
+                    <p className="text-xs text-[var(--content-muted)] line-clamp-2 group-hover:text-[var(--content-primary)] transition-colors leading-relaxed">
                       {before && <span>{before}</span>}
-                      {match && <mark className="bg-[var(--brand-subtle)] text-[var(--brand-default)] rounded-sm px-0.5">{match}</mark>}
+                      {match && <mark className="bg-[var(--brand-default)]/20 text-[var(--brand-default)] rounded-sm px-0.5 font-semibold">{match}</mark>}
                       {after && <span>{after}</span>}
                     </p>
                   </motion.button>

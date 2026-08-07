@@ -220,10 +220,11 @@ class AuthService {
     if (!nomeLimpo) throw new Error('Nome é obrigatório');
     if (senhaLimpa.length < 8) throw new Error('A senha deve ter pelo menos 8 caracteres');
 
-    const res = await fetch('https://api.solascripturabr.com.br/api/v1/auth/cadastrar', {
+    const res = await fetch('/api/auth/cadastrar', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nome: nomeLimpo, email: emailNorm, senha: senhaLimpa }),
+      signal: AbortSignal.timeout(15000),
     });
 
     const data = await res.json();
@@ -250,10 +251,11 @@ class AuthService {
     const emailNorm = normalizeEmail(email);
     const senhaLimpa = senha || '';
 
-    const res = await fetch('https://api.solascripturabr.com.br/api/v1/auth/login', {
+    const res = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: emailNorm, senha: senhaLimpa }),
+      signal: AbortSignal.timeout(15000),
     });
 
     const data = await res.json();
@@ -313,10 +315,11 @@ class AuthService {
   async refreshAccessToken(): Promise<boolean> {
     if (!this.refreshToken) return false;
     try {
-      const res = await fetch('https://api.solascripturabr.com.br/api/v1/auth/refresh', {
+      const res = await fetch('/api/auth/refresh', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ refreshToken: this.refreshToken }),
+        signal: AbortSignal.timeout(10000),
       });
       if (!res.ok) return false;
       const data = await res.json();
@@ -372,16 +375,10 @@ class AuthService {
 
   private setCookie(name: string, value: string): void {
     try {
-      fetch('/api/auth/cookie/set', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, value }),
-      }).catch(() => {
-        // Fallback: set via document.cookie se a API route falhar
-        const expirar = 60 * 60 * 24 * 30;
-        const secure = window.location.protocol === 'https:';
-        document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${expirar}; SameSite=Lax${secure ? '; Secure' : ''}`;
-      });
+      // Set cookie synchronously via document.cookie (middleware reads this)
+      const expirar = 60 * 60 * 24 * 30; // 30 days
+      const secure = typeof window !== 'undefined' && window.location.protocol === 'https:';
+      document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${expirar}; SameSite=Lax${secure ? '; Secure' : ''}`;
     } catch { /* ignore */ }
   }
 

@@ -2,11 +2,12 @@
 
 // Privacy-first analytics — localStorage + backend sync
 // LocalStorage serves as offline fallback; backend enables cross-device tracking
+// Routes through Next.js API proxy to avoid CORS/rate-limit issues
 
 const ANALYTICS_KEY = 'ssb_analytics';
 const SESSION_KEY = 'ssb_analytics_session';
 const SYNC_QUEUE_KEY = 'ssb_analytics_sync_queue';
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
+const MAX_RETRIES = 3;
 
 export type AnalyticsEventType =
   | 'page_view'
@@ -73,12 +74,12 @@ function saveEvents(events: AnalyticsEvent[]): void {
   }
 }
 
-// Send event to backend (fire-and-forget, with retry queue)
+// Send event to backend via Next.js API proxy (fire-and-forget, with retry queue)
 async function syncToBackend(event: AnalyticsEvent): Promise<void> {
-  if (!API_BASE || typeof window === 'undefined') return;
+  if (typeof window === 'undefined') return;
 
   try {
-    const res = await fetch(`${API_BASE}/analytics/events`, {
+    const res = await fetch('/api/analytics/events', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -89,7 +90,9 @@ async function syncToBackend(event: AnalyticsEvent): Promise<void> {
     });
 
     if (!res.ok) {
-      // Queue for retry
+      // Don't retry 401/403 (permanent failure) or 4xx client errors
+      if (res.status >= 400 && res.status < 500) return;
+      // Queue for retry on 5xx or network errors
       queueForRetry(event);
     }
   } catch {
@@ -98,14 +101,18 @@ async function syncToBackend(event: AnalyticsEvent): Promise<void> {
   }
 }
 
+interface QueuedEvent extends AnalyticsEvent {
+  retries?: number;
+}
+
 function queueForRetry(event: AnalyticsEvent): void {
   if (typeof window === 'undefined') return;
   try {
     const raw = localStorage.getItem(SYNC_QUEUE_KEY);
-    const queue: AnalyticsEvent[] = raw ? JSON.parse(raw) : [];
-    queue.push(event);
-    // Keep max 200 queued events
-    if (queue.length > 200) queue.splice(0, queue.length - 200);
+    const queue: QueuedEvent[] = raw ? JSON.parse(raw) : [];
+    queue.push({ ...event, retries: 0 });
+    // Keep max 100 queued events (reduced from 200)
+    if (queue.length > 100) queue.splice(0, queue.length - 100);
     localStorage.setItem(SYNC_QUEUE_KEY, JSON.stringify(queue));
   } catch {
     // Silently fail
@@ -114,22 +121,33 @@ function queueForRetry(event: AnalyticsEvent): void {
 
 // Process retry queue (called on page load)
 async function processRetryQueue(): Promise<void> {
-  if (typeof window === 'undefined' || !API_BASE) return;
+  if (typeof window === 'undefined') return;
 
   try {
     const raw = localStorage.getItem(SYNC_QUEUE_KEY);
     if (!raw) return;
-    const queue: AnalyticsEvent[] = JSON.parse(raw);
+    const queue: QueuedEvent[] = JSON.parse(raw);
     if (queue.length === 0) return;
 
-    const res = await fetch(`${API_BASE}/analytics/events/batch`, {
+    // Filter out events that have exceeded max retries
+    const validEvents = queue.filter(e => (e.retries || 0) < MAX_RETRIES);
+    if (validEvents.length === 0) {
+      localStorage.removeItem(SYNC_QUEUE_KEY);
+      return;
+    }
+
+    const res = await fetch('/api/analytics/events/batch', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ events: queue.map((e) => ({ type: e.type, sessionId: e.sessionId, data: e.data })) }),
+      body: JSON.stringify({ events: validEvents.map((e) => ({ type: e.type, sessionId: e.sessionId, data: e.data })) }),
     });
 
     if (res.ok) {
       localStorage.removeItem(SYNC_QUEUE_KEY);
+    } else {
+      // Increment retry count and keep queue for next load
+      const updatedQueue = validEvents.map(e => ({ ...e, retries: (e.retries || 0) + 1 }));
+      localStorage.setItem(SYNC_QUEUE_KEY, JSON.stringify(updatedQueue));
     }
   } catch {
     // Will retry on next page load

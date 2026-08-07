@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
         const tts = new EdgeTTS({
           voice: vozFinal,
           lang: 'pt-BR',
-          outputFormat: 'audio-24khz-48kbitrate-mono-mp3',
+          outputFormat: 'audio-24khz-96kbitrate-mono-mp3',
           rate,
           pitch,
           volume,

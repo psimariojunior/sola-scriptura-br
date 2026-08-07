@@ -69,13 +69,13 @@ export function AudioMiniPlayer({
       className="fixed bottom-20 left-4 right-4 lg:left-auto lg:right-6 lg:bottom-6 lg:w-80 z-50"
     >
       <motion.div
-        className="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl bg-opacity-95"
+        className="bg-gradient-to-r from-[var(--surface-raised)] to-[var(--surface-raised)] border border-[var(--border)]/50 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl"
         animate={{ scale: isPlaying ? 1 : 0.98 }}
       >
         {/* Vibrating progress bar */}
         <div className="h-1 bg-[var(--border)]/30 overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-[var(--primary)]/60 to-[var(--primary)]"
+            className="h-full bg-gradient-to-r from-[var(--brand-default)]/60 to-[var(--brand-default)]"
             animate={isPlaying ? {
               width: `${((currentVerse + 1) / totalVerses) * 100}%`,
               opacity: [0.7, 1, 0.7],
@@ -90,9 +90,9 @@ export function AudioMiniPlayer({
             onClick={onStop}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="w-8 h-8 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] flex items-center justify-center shrink-0 hover:bg-[var(--primary)]/20 transition-all"
+            className="w-9 h-9 rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)] flex items-center justify-center shrink-0 hover:bg-[var(--brand-default)]/20 transition-all"
           >
-            {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
+            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
           </motion.button>
 
           {/* Verse info */}

@@ -7,6 +7,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import {
   BookOpen, Search, Brain, Map, Languages, ArrowRight,
   Heart, BookMarked, Clock, TrendingUp, Compass, Mic,
+  Users, User, StickyNote,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -115,18 +116,23 @@ export default function HomeClient() {
 
           {/* Acesso rápido */}
           <ScrollReveal delay={0.3}>
-            <div className="grid grid-cols-4 gap-3">
-              {[
-                { href: '/favoritos', icon: Heart, label: 'Favoritos' },
-                { href: '/notas', icon: BookMarked, label: 'Notas' },
-                { href: '/planos', icon: Clock, label: 'Planos' },
-                { href: '/dashboard', icon: TrendingUp, label: 'Progresso' },
-              ].map((a) => (
-                <Link key={a.href} href={a.href} className="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-card/60 transition-colors group">
-                  <a.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                  <span className="text-[11px] text-muted-foreground font-medium">{a.label}</span>
-                </Link>
-              ))}
+            <div className="mb-8">
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Meu Espaço</h2>
+              <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+                {[
+                  { href: '/favoritos', icon: Heart, label: 'Favoritos', cor: 'text-red-500' },
+                  { href: '/notas', icon: StickyNote, label: 'Notas', cor: 'text-amber-500' },
+                  { href: '/colecoes', icon: BookMarked, label: 'Coleções', cor: 'text-blue-500' },
+                  { href: '/social', icon: Users, label: 'Social', cor: 'text-emerald-500' },
+                  { href: '/planos', icon: Clock, label: 'Planos', cor: 'text-purple-500' },
+                  { href: '/conta', icon: User, label: 'Conta', cor: 'text-primary' },
+                ].map((a) => (
+                  <Link key={a.href} href={a.href} className="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-card/60 transition-colors group">
+                    <a.icon className={`w-5 h-5 ${a.cor} group-hover:scale-110 transition-transform`} />
+                    <span className="text-[11px] text-muted-foreground font-medium">{a.label}</span>
+                  </Link>
+                ))}
+              </div>
             </div>
           </ScrollReveal>
 

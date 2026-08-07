@@ -1,676 +1,138 @@
 'use client';
 
-import { useReducedMotion } from '@/hooks/useReducedMotion';
-import { useScroll, useTransform } from 'framer-motion';
-import dynamic from 'next/dynamic';
+import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import {
-  BookOpen, Map, Brain, ScrollText, ArrowRight, Sparkles, Columns2,
-  Globe, Shield, Heart, MonitorPlay, Music, Zap,
-  CheckCircle2, ChevronDown, Tv, Smartphone, Cast, Languages,
-  BookMarked, GraduationCap, WifiOff, Share2, GitCompareArrows,
-  Bell,
+  BookOpen, Search, Brain, Map, Languages, ArrowRight,
+  Heart, BookMarked, Clock, TrendingUp, Compass, Mic,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import dynamic from 'next/dynamic';
 
-const HeroParticles = dynamic(() => import('@/components/home/HeroParticles').then(m => ({ default: m.HeroParticles })), { ssr: false });
-const RotatingVerse = dynamic(() => import('@/components/home/RotatingVerse').then(m => ({ default: m.RotatingVerse })), { ssr: false });
-const AnimatedCounter = dynamic(() => import('@/components/home/AnimatedCounter').then(m => ({ default: m.AnimatedCounter })), { ssr: false });
 const VerseDoDia = dynamic(() => import('@/components/VerseDoDia'), { ssr: false });
 const ContinuarLeitura = dynamic(() => import('@/components/ContinuarLeitura'), { ssr: false });
 const StreakCard = dynamic(() => import('@/components/StreakCard').then(m => ({ default: m.StreakCard })), { ssr: false });
-const WordOfDayWidget = dynamic(() => import('@/components/WordOfDay').then(m => ({ default: m.WordOfDay })), { ssr: false });
-const InstallBanner = dynamic(() => import('@/components/InstallBanner'), { ssr: false });
-const NotificationSetup = dynamic(() => import('@/components/NotificationSetup').then(m => ({ default: m.NotificationSetup })), { ssr: false });
 
-type FeatureVariant = 'default' | 'stat' | 'icon-large' | 'mockup';
-
-const featuresStatic: {
-  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
-  featureKey: string;
-  accent: string;
-  highlight?: boolean;
-  variant?: FeatureVariant;
-  statNumber?: string;
-  statLabel?: string;
-}[] = [
-  { icon: Columns2, featureKey: 'multiTranslation', accent: 'amber', variant: 'mockup' },
-  { icon: ScrollText, featureKey: 'exegesis', accent: 'emerald', variant: 'stat', statNumber: '4.9k', statLabel: 'Comentários' },
-  { icon: Brain, featureKey: 'ai', accent: 'purple', variant: 'icon-large' },
-  { icon: Map, featureKey: 'atlas', accent: 'sky' },
-  { icon: Music, featureKey: 'audio', accent: 'rose', variant: 'stat', statNumber: '10', statLabel: 'Traduções' },
-  { icon: MonitorPlay, featureKey: 'presentation', accent: 'gold', highlight: true, variant: 'icon-large' },
-  { icon: Languages, featureKey: 'originalLanguages', accent: 'violet', variant: 'stat', statNumber: '14.2k', statLabel: 'Verbetes' },
-  { icon: Brain, featureKey: 'concordance', accent: 'cyan' },
-  { icon: BookMarked, featureKey: 'flashcards', accent: 'rose' },
-  { icon: GraduationCap, featureKey: 'readingPlans', accent: 'emerald' },
-  { icon: WifiOff, featureKey: 'offline', accent: 'slate', variant: 'icon-large' },
-  { icon: Share2, featureKey: 'share', accent: 'amber' },
+const FERRAMENTAS = [
+  { href: '/biblia', icon: BookOpen, label: 'Bíblia', desc: '10 traduções, áudio, karaoke', cor: 'from-blue-500/15 to-blue-600/5' },
+  { href: '/pesquisa', icon: Search, label: 'Pesquisa', desc: 'Busca semântica e avançada', cor: 'from-emerald-500/15 to-emerald-600/5' },
+  { href: '/idiomas', icon: Languages, label: 'Grego/Hebraico', desc: '14.200 verbetes Strong\'s', cor: 'from-violet-500/15 to-violet-600/5' },
+  { href: '/exegese', icon: Brain, label: 'Exegese', desc: 'Análise com IA gratuita', cor: 'from-purple-500/15 to-purple-600/5' },
+  { href: '/atlas', icon: Map, label: 'Atlas', desc: 'Mapas interativos', cor: 'from-amber-500/15 to-amber-600/5' },
+  { href: '/comparar', icon: Compass, label: 'Comparar', desc: 'Lado a lado com diff', cor: 'from-rose-500/15 to-rose-600/5' },
 ];
 
-const comoEstudarStatic = [
-  { step: '01', key: 'step1', icon: Columns2 },
-  { step: '02', key: 'step2', icon: Languages },
-  { step: '03', key: 'step3', icon: Brain },
+const LEITURAS = [
+  { titulo: 'Salmos para Ansiedade', dias: 7, cor: 'bg-blue-500/10 text-blue-600' },
+  { titulo: 'Evangelhos em 7 Dias', dias: 7, cor: 'bg-emerald-500/10 text-emerald-600' },
+  { titulo: 'Fundamentos da Fé', dias: 21, cor: 'bg-amber-500/10 text-amber-600' },
+  { titulo: 'Provérbios da Sabedoria', dias: 31, cor: 'bg-purple-500/10 text-purple-600' },
 ];
-
-const comoFuncionaStatic = [
-  { step: '01', key: 'step1' },
-  { step: '02', key: 'step2' },
-  { step: '03', key: 'step3' },
-];
-
-const depoimentos: { texto: string; autor: string; cargo: string }[] = [];
-
-const referenciadoPor = ['Seminários Teológicos', 'Escolas Bíblicas', 'Igrejas Locais', 'Pastores e Líderes', 'Estudantes', 'Missionários'];
-
-const provasSociais = [
-  { icon: BookOpen, label: '66 livros' },
-  { icon: Languages, label: '10 traduções' },
-  { icon: Brain, label: 'IA teológica' },
-  { icon: Smartphone, label: 'Modo offline' },
-];
-
-const stats = [
-  { value: 66, labelKey: 'landing.stats.books', suffix: '' },
-  { value: 6, labelKey: 'landing.stats.translations', suffix: '' },
-  { value: 31102, labelKey: 'landing.stats.verses', suffix: '' },
-  { value: 29266, labelKey: 'landing.stats.crossRefs', suffix: '' },
-  { value: 4911, labelKey: 'landing.stats.commentaries', suffix: '' },
-  { value: 14200, labelKey: 'landing.stats.entries', suffix: '' },
-];
-
-function ApresentacaoMockup() {
-  return (
-    <div className="mockup-screen">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-8 bg-black/40 flex items-center px-4 gap-2">
-          <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/70" />
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70" />
-          </div>
-          <span className="text-[10px] text-white/40 ml-2 tracking-wider">sola-scriptura.app/apresentar</span>
-        </div>
-      </div>
-      <div className="mockup-screen-content pt-8">
-        <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.3em] text-amber-400/80 mb-3">
-          <Tv className="w-3 h-3" />
-          Modo Apresentação
-        </div>
-        <p className="mockup-verse">
-          Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito
-        </p>
-        <p className="mockup-ref">— João 3:16</p>
-        <div className="mt-6 flex items-center gap-4 text-[10px] text-white/50">
-          <span className="flex items-center gap-1.5">
-            <Cast className="w-3 h-3" /> Projetando
-          </span>
-          <span className="flex items-center gap-1.5">
-            <Smartphone className="w-3 h-3" /> QR Conectado
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SectionHeading({ eyebrow, title, highlight, align = 'center' }: { eyebrow: string; title: React.ReactNode; highlight: React.ReactNode; align?: 'center' | 'left' }) {
-  return (
-    <div className={`mb-14 sm:mb-16 ${align === 'center' ? 'text-center' : ''}`}>
-      <p className="eyebrow-label">{eyebrow}</p>
-      <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light heading-premium">
-        {title} <span className="italic text-primary">{highlight}</span>
-      </h2>
-      <div className={`h-px mt-6 bg-gradient-to-r from-transparent via-primary/30 to-transparent ${align === 'center' ? 'mx-auto w-20' : 'w-20'}`} />
-    </div>
-  );
-}
-
-function MultiTranslationMockup() {
-  return (
-    <div className="w-full rounded-xl border border-border/30 bg-black/20 dark:bg-white/5 p-4 mt-4 mb-2 space-y-2.5">
-      {[
-        { ref: 'João 3:16', text: 'Porque Deus amou o mundo...', tx: 'ARA', active: true },
-        { ref: 'João 3:16', text: 'Porque de tal maneira...', tx: 'ARC', active: false },
-        { ref: 'John 3:16', text: 'For God so loved the...', tx: 'KJV', active: false },
-      ].map((v) => (
-        <div key={v.tx} className={`flex items-start gap-2.5 p-2 rounded-lg text-[11px] leading-snug ${v.active ? 'bg-primary/10 border border-primary/20' : 'opacity-50'}`}>
-          <span className="shrink-0 font-bold text-primary/70 mt-0.5">{v.tx}</span>
-          <div className="min-w-0">
-            <span className="text-muted-foreground block">{v.ref}</span>
-            <span className="text-foreground/80">{v.text}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function FeatureCard({ feature, index, t }: { feature: typeof featuresStatic[number]; index: number; t: (key: string) => string }) {
-  const Icon = feature.icon;
-  const title = t(`landing.features.${feature.featureKey}.title`);
-  const desc = t(`landing.features.${feature.featureKey}.desc`);
-  const variant = feature.variant || 'default';
-
-  return (
-    <motion.div
-      whileHover={{ y: -6, scale: 1.01 }}
-      transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`feature-card group relative h-full p-7 sm:p-8 rounded-2xl border bg-card/60 backdrop-blur-sm overflow-hidden transition-all duration-500 ${
-        feature.highlight 
-          ? 'border-primary/25 shadow-lg shadow-primary/[0.06] hover:shadow-xl hover:shadow-primary/[0.1]' 
-          : 'border-border/40 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/[0.04]'
-      }`}
-    >
-      {feature.highlight && (
-        <span className="absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-black shadow-sm z-20">
-          <Sparkles className="w-2.5 h-2.5" /> Novo
-        </span>
-      )}
-      
-      {/* Hover gradient overlay */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-        style={{ background: 'radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.06) 0%, transparent 60%)' }} />
-
-      <div className="relative z-10">
-        {variant === 'stat' && (
-          <>
-            <p className="font-display text-4xl sm:text-5xl font-light text-primary/70 tracking-tight leading-none mb-3">
-              {feature.statNumber}
-            </p>
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-5">{feature.statLabel}</p>
-            <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{title}</h3>
-            <p className="text-[13px] text-muted-foreground leading-relaxed">{desc}</p>
-          </>
-        )}
-
-        {variant === 'icon-large' && (
-          <div className="flex flex-col items-start gap-5">
-            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-500">
-              <Icon className="w-8 h-8 text-primary" strokeWidth={1.25} />
-            </div>
-            <div>
-              <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{title}</h3>
-              <p className="text-[13px] text-muted-foreground leading-relaxed">{desc}</p>
-            </div>
-          </div>
-        )}
-
-        {variant === 'mockup' && (
-          <div className="flex flex-col items-start">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-500">
-              <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-            </div>
-            <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{title}</h3>
-            <p className="text-[13px] text-muted-foreground leading-relaxed">{desc}</p>
-            <MultiTranslationMockup />
-          </div>
-        )}
-
-        {variant === 'default' && (
-          <>
-            <p className="step-number">{String(index + 1).padStart(2, '0')}</p>
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-500">
-              <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-            </div>
-            <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{title}</h3>
-            <p className="text-[13px] text-muted-foreground leading-relaxed">{desc}</p>
-          </>
-        )}
-      </div>
-    </motion.div>
-  );
-}
 
 export default function HomeClient() {
   const { t } = useTranslation();
-  const { scrollY } = useScroll();
-  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const heroY = useTransform(scrollY, [0, 400], [0, 60]);
-  const prefersReducedMotion = useReducedMotion();
+  const [busca, setBusca] = useState('');
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <main id="main-content" className="relative">
-        {/* ═══════ HERO SECTION — Full viewport premium ═══════ */}
-        <section className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center px-4 sm:px-6 overflow-hidden">
-          {/* Animated gradient background */}
-          <div className="absolute inset-0" aria-hidden="true">
-            <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/[0.03]" />
-            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-primary/[0.04] blur-[120px] animate-[float_8s_ease-in-out_infinite]" />
-            <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-amber-500/[0.03] blur-[100px] animate-[float_10s_ease-in-out_infinite_1s]" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.02] blur-[150px]" />
-          </div>
-          
-          {/* Subtle grid pattern */}
-          <div className="absolute inset-0 opacity-[0.015]" aria-hidden="true"
-            style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, hsl(var(--primary)) 1px, transparent 0)', backgroundSize: '48px 48px' }} />
+      <main id="main-content" className="pt-20 pb-24 px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto">
 
-          <HeroParticles disabled={prefersReducedMotion} />
-
-          <motion.div style={{ opacity: heroOpacity, y: heroY }} className="max-w-5xl mx-auto text-center relative z-10 w-full py-20">
-            {/* Premium badge */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.8 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/15 bg-primary/[0.04] mb-8 backdrop-blur-sm">
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-muted-foreground">100% Gratuito &bull; Sem Anúncios &bull; Offline</span>
-            </motion.div>
-
-            {/* Main heading — massive, dramatic */}
-            <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="wordmark text-[2.5rem] leading-[0.9] sm:text-7xl md:text-8xl lg:text-[6.5rem] xl:text-[7.5rem] mb-8 heading-premium">
-              <span className="block text-foreground/90">{t('landing.heroTitle1')}</span>
-              <span className="block"><span className="gradient-text-animated">{t('landing.heroTitle2')}</span><span className="text-foreground/90">,</span></span>
-              <span className="block italic text-foreground/70">{t('landing.heroTitle3')}</span>
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.8 }}
-              className="font-sans text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-12 px-4">
-              {t('landing.heroDescription')}
-            </motion.p>
-
-            {/* CTA Buttons — massive, premium */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-              <Link href="/biblia" 
-                className="group relative inline-flex items-center gap-3 px-10 sm:px-12 py-4 sm:py-5 text-base sm:text-lg font-semibold rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
-                style={{ background: 'linear-gradient(135deg, #f5cd6b 0%, #d4a843 50%, #b88a30 100%)', color: '#1c1300', boxShadow: '0 8px 40px -8px rgba(212,168,67,0.5), 0 0 80px -20px rgba(212,168,67,0.3)' }}>
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                <BookOpen className="relative w-5 h-5" />
-                <span className="relative">Abrir a Bíblia</span>
-                <ArrowRight className="relative w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Link>
-              <Link href="/estudar"
-                className="group inline-flex items-center gap-3 px-10 sm:px-12 py-4 sm:py-5 text-base sm:text-lg font-semibold rounded-2xl border-2 border-primary/20 bg-primary/[0.03] hover:bg-primary/[0.08] hover:border-primary/40 transition-all duration-500 backdrop-blur-sm hover:scale-[1.02]">
-                <Sparkles className="w-5 h-5 text-primary" />
-                <span>Explorar Estudos</span>
-              </Link>
-            </motion.div>
-
-            {/* Rotating verse */}
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.0, duration: 1.2 }}>
-              <RotatingVerse />
-            </motion.div>
-          </motion.div>
-
-          {/* Scroll indicator */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.6 }} transition={{ delay: 2.0, duration: 1 }} className="absolute bottom-8 left-1/2 -translate-x-1/2">
-            <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }} className="flex flex-col items-center gap-2">
-              <span className="text-[9px] uppercase tracking-[0.4em] text-muted-foreground font-medium">Explorar</span>
-              <div className="w-6 h-10 rounded-full border-2 border-border/40 flex items-start justify-center p-1.5">
-                <motion.div animate={{ y: [0, 12, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }} className="w-1.5 h-1.5 rounded-full bg-primary/60" />
+          {/* Busca rápida */}
+          <ScrollReveal>
+            <Link href="/pesquisa" className="block mb-6">
+              <div className="flex items-center gap-3 px-4 py-3.5 rounded-2xl border border-border/50 bg-card/60 backdrop-blur-sm hover:border-primary/30 hover:bg-card/80 transition-all duration-300 group">
+                <Search className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                <span className="text-sm text-muted-foreground">Buscar versículos, livros ou palavras...</span>
+                <kbd className="ml-auto text-[10px] bg-muted/50 px-2 py-0.5 rounded-md text-muted-foreground">/</kbd>
               </div>
-            </motion.div>
-          </motion.div>
-        </section>
+            </Link>
+          </ScrollReveal>
 
-        {/* ═══════ VERSE + READING SECTION ═══════ */}
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/[0.01] to-background pointer-events-none" />
-          <VerseDoDia />
-          <ContinuarLeitura />
-          <div className="px-4 sm:px-6 max-w-3xl mx-auto -mt-2 mb-4 relative z-10">
-            <StreakCard />
-          </div>
-          <WordOfDayWidget />
-        </div>
+          {/* Versículo do dia — destaque principal */}
+          <ScrollReveal delay={0.05}>
+            <VerseDoDia />
+          </ScrollReveal>
 
-        {/* ═══════ SOCIAL PROOF — trust indicators ═══════ */}
-        <section className="relative py-10 sm:py-14 px-4 sm:px-6" aria-label="Destaques do Sola Scriptura">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent pointer-events-none" />
-          <div className="max-w-5xl mx-auto relative z-10">
-            <ScrollReveal>
-              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 sm:gap-x-12">
-                {provasSociais.map((p, i) => {
-                  const Icon = p.icon;
-                  return (
-                    <motion.div key={p.label} initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.1 + i * 0.1, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                      className="flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/30 bg-card/40 backdrop-blur-sm">
-                      <Icon className="w-4 h-4 text-primary" strokeWidth={1.75} />
-                      <span className="text-sm font-semibold tracking-tight">{p.label}</span>
+          {/* Continuar lendo */}
+          <ScrollReveal delay={0.1}>
+            <ContinuarLeitura />
+          </ScrollReveal>
+
+          {/* Streak */}
+          <ScrollReveal delay={0.15}>
+            <div className="mb-6">
+              <StreakCard />
+            </div>
+          </ScrollReveal>
+
+          {/* Ferramentas — grid funcional */}
+          <ScrollReveal delay={0.2}>
+            <div className="mb-8">
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Ferramentas</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {FERRAMENTAS.map((f, i) => (
+                  <Link key={f.href} href={f.href}>
+                    <motion.div
+                      whileHover={{ y: -2, scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`p-4 rounded-xl bg-gradient-to-br ${f.cor} border border-border/30 hover:border-primary/25 transition-all duration-300 group`}
+                    >
+                      <f.icon className="w-5 h-5 text-primary mb-2 group-hover:scale-110 transition-transform" />
+                      <p className="text-sm font-semibold text-foreground">{f.label}</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">{f.desc}</p>
                     </motion.div>
-                  );
-                })}
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-
-        {/* ═══════ STATS — dramatic counters ═══════ */}
-        <section className="relative py-20 sm:py-28 px-4 sm:px-6 overflow-hidden" aria-label="Estatísticas do Sola Scriptura">
-          <div className="absolute inset-0" aria-hidden="true">
-            <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/[0.03] to-background" />
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-          </div>
-          <div className="max-w-6xl mx-auto relative z-10">
-            <ScrollReveal>
-              <div className="text-center mb-14">
-                <p className="eyebrow-label">Recursos</p>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light heading-premium">
-                  Tudo que você precisa para <span className="italic text-primary">estudar a Bíblia</span>
-                </h2>
-              </div>
-            </ScrollReveal>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
-              {stats.map((stat, i) => (
-                <ScrollReveal key={stat.labelKey} delay={i * 0.08}>
-                  <div className="text-center p-6 sm:p-7 rounded-2xl border border-border/30 bg-card/50 backdrop-blur-sm relative group hover:border-primary/25 hover:bg-card/70 hover:shadow-xl hover:shadow-primary/[0.04] transition-all duration-500">
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-2xl"
-                      style={{ background: 'radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.08) 0%, transparent 60%)' }} />
-                    <p className="font-display text-3xl sm:text-4xl md:text-5xl font-light tracking-tight relative text-primary/80 mb-2">
-                      <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                    </p>
-                    <p className="text-[11px] sm:text-xs text-muted-foreground uppercase tracking-wider font-medium">{t(stat.labelKey)}</p>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-24 sm:py-32 px-4 sm:px-6 relative" aria-label="Recursos">
-          <div className="max-w-6xl mx-auto">
-            <ScrollReveal>              <SectionHeading eyebrow={t('landing.resources')} title={t('landing.resourcesTitle1')} highlight={t('landing.resourcesTitle2')} /></ScrollReveal>
-            {/* Bento grid irregular — BibleProject style */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-              {/* Card grande — 2 colunas */}
-              <ScrollReveal delay={0} direction="up" className="sm:col-span-2 lg:col-span-2">
-                <FeatureCard feature={featuresStatic[0]} index={0} t={t} />
-              </ScrollReveal>
-              {/* Cards normais */}
-              <ScrollReveal delay={0.08} direction="left">
-                <FeatureCard feature={featuresStatic[1]} index={1} t={t} />
-              </ScrollReveal>
-              <ScrollReveal delay={0.16} direction="scale">
-                <FeatureCard feature={featuresStatic[2]} index={2} t={t} />
-              </ScrollReveal>
-              {/* Card grande — 2 colunas */}
-              <ScrollReveal delay={0.1} direction="right" className="sm:col-span-2 lg:col-span-2">
-                <FeatureCard feature={featuresStatic[3]} index={3} t={t} />
-              </ScrollReveal>
-              {/* Cards normais */}
-              <ScrollReveal delay={0.18} direction="scale">
-                <FeatureCard feature={featuresStatic[4]} index={4} t={t} />
-              </ScrollReveal>
-              <ScrollReveal delay={0.24} direction="up">
-                <FeatureCard feature={featuresStatic[5]} index={5} t={t} />
-              </ScrollReveal>
-              {/* Card grande — destaque */}
-              <ScrollReveal delay={0.15} direction="left" className="sm:col-span-2 lg:col-span-2">
-                <FeatureCard feature={featuresStatic[6]} index={6} t={t} />
-              </ScrollReveal>
-              {/* Cards normais */}
-              <ScrollReveal delay={0.22} direction="up">
-                <FeatureCard feature={featuresStatic[7]} index={7} t={t} />
-              </ScrollReveal>
-              <ScrollReveal delay={0.28} direction="right">
-                <FeatureCard feature={featuresStatic[8]} index={8} t={t} />
-              </ScrollReveal>
-              {/* Card grande — 2 colunas */}
-              <ScrollReveal delay={0.2} direction="scale" className="sm:col-span-2 lg:col-span-2">
-                <FeatureCard feature={featuresStatic[9]} index={9} t={t} />
-              </ScrollReveal>
-              {/* Cards normais */}
-              <ScrollReveal delay={0.26} direction="left">
-                <FeatureCard feature={featuresStatic[10]} index={10} t={t} />
-              </ScrollReveal>
-              <ScrollReveal delay={0.32} direction="up">
-                <FeatureCard feature={featuresStatic[11]} index={11} t={t} />
-              </ScrollReveal>
-            </div>
-          </div>
-        </section>
-
-        {/* Carrossel horizontal de planos — YouVersion style */}
-        <section className="py-20 sm:py-24 px-4 sm:px-6" aria-label="Planos de leitura em destaque">
-          <div className="max-w-6xl mx-auto">
-            <ScrollReveal>
-              <div className="flex items-center justify-between mb-8">
-                <div>
-                  <p className="eyebrow-label text-left">{t('landing.readingPlansSection.eyebrow')}</p>
-                  <h2 className="font-display text-2xl sm:text-3xl font-light heading-premium">{t('landing.readingPlansSection.title')}</h2>
-                </div>
-                <Link href="/planos" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
-                  {t('landing.readingPlansSection.viewAll')} <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </ScrollReveal>
-            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
-              {[
-                { title: 'Salmos para Ansiedade', days: 7, category: 'Paz', color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400' },
-                { title: 'Versículos de Esperança', days: 14, category: 'Esperança', color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' },
-                { title: 'Fundamentos da Fé', days: 21, category: 'Fé', color: 'bg-amber-500/10 text-amber-600 dark:text-amber-400' },
-                { title: 'Amor em Ação', days: 10, category: 'Amor', color: 'bg-rose-500/10 text-rose-600 dark:text-rose-400' },
-                { title: 'Cura Interior', days: 14, category: 'Cura', color: 'bg-purple-500/10 text-purple-600 dark:text-purple-400' },
-                { title: 'Sabedoria Provérbios', days: 31, category: 'Sabedoria', color: 'bg-orange-500/10 text-orange-600 dark:text-orange-400' },
-              ].map((plano) => (
-                <Link key={plano.title} href="/planos" className="flex-shrink-0 w-56 snap-start group">
-                  <div className="h-32 rounded-xl bg-gradient-to-br from-primary/5 to-primary/10 border border-border/40 p-5 flex flex-col justify-between group-hover:border-primary/30 transition-all duration-300">
-                    <span className={`inline-flex self-start px-2.5 py-1 rounded-full text-[10px] font-semibold ${plano.color}`}>
-                      {plano.category}
-                    </span>
-                    <div>
-                      <h3 className="font-semibold text-sm mb-1 line-clamp-2">{plano.title}</h3>
-                      <p className="text-[11px] text-muted-foreground">{plano.days} dias</p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-20 sm:py-24 px-4 sm:px-6 border-y border-border/30 bg-card/20 relative overflow-hidden" aria-label="Recursos do Sola Scriptura">
-          <div className="max-w-6xl mx-auto relative z-10">
-            <ScrollReveal>
-              <div className="text-center mb-10">
-                <p className="eyebrow-label">{t('landing.dataSection.eyebrow')}</p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-3xl mx-auto">
-                  {[
-                    { labelKey: 'landing.dataSection.commentaries.label', descKey: 'landing.dataSection.commentaries.desc' },
-                    { labelKey: 'landing.dataSection.lexicon.label', descKey: 'landing.dataSection.lexicon.desc' },
-                    { labelKey: 'landing.dataSection.crossRefs.label', descKey: 'landing.dataSection.crossRefs.desc' },
-                    { labelKey: 'landing.dataSection.translations.label', descKey: 'landing.dataSection.translations.desc' },
-                  ].map((item) => (
-                    <div key={item.labelKey} className="text-center p-4">
-                      <p className="text-sm font-semibold text-foreground mb-1.5">{t(item.labelKey)}</p>
-                      <p className="text-[11px] text-muted-foreground leading-relaxed">{t(item.descKey)}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-
-        <section className="py-24 sm:py-32 px-4 sm:px-6 relative" aria-label="Como estudar">
-          <div className="max-w-6xl mx-auto">
-            <ScrollReveal><SectionHeading eyebrow={t('landing.howToStudy eyebrow')} title={t('landing.howToStudyTitle1')} highlight={t('landing.howToStudyTitle2')} /></ScrollReveal>
-            <div className="grid md:grid-cols-3 gap-5 sm:gap-6">
-              {comoEstudarStatic.map((step, i) => {
-                const Icon = step.icon;
-                return (
-                  <ScrollReveal key={step.step} delay={i * 0.12}>
-                    <motion.div whileHover={{ y: -8, scale: 1.02 }} transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                      className="group relative h-full p-7 rounded-2xl border border-border/40 bg-card/60 backdrop-blur-sm hover:border-primary/25 hover:shadow-xl hover:shadow-primary/[0.04] transition-all duration-500 overflow-hidden">
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-                        style={{ background: 'radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.08) 0%, transparent 60%)' }} />
-                      <div className="relative z-10">
-                        <div className="flex items-center gap-3 mb-5">
-                          <span className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-500">
-                            <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                          </span>
-                          <span className="step-badge">{step.step}</span>
-                        </div>
-                        <h3 className="font-display text-xl sm:text-2xl font-medium mb-2 leading-tight">{t(`landing.howToStudy.${step.key}.title`)}</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{t(`landing.howToStudy.${step.key}.desc`)}</p>
-                      </div>
-                    </motion.div>
-                  </ScrollReveal>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-24 sm:py-32 px-4 sm:px-6 relative bg-card/30 border-y border-border/30" aria-label="Como funciona">
-          <div className="max-w-5xl mx-auto">
-            <ScrollReveal><SectionHeading eyebrow={t('landing.howItWorks eyebrow')} title={t('landing.howItWorksTitle1')} highlight={t('landing.howItWorksTitle2')} /></ScrollReveal>
-            <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
-              {comoFuncionaStatic.map((step, i) => (
-                <ScrollReveal key={step.step} delay={i * 0.1}>
-                  <div className="relative h-full p-7 sm:p-8 rounded-2xl border border-border/40 bg-card/60 backdrop-blur-sm hover:border-primary/25 hover:shadow-lg hover:shadow-primary/[0.03] transition-all duration-500 group">
-                    <div className="flex items-center gap-3 mb-5">
-                      <span className="step-badge">{step.step}</span>
-                      {i < comoFuncionaStatic.length - 1 && (
-                        <span className="hidden md:block flex-1 h-px" style={{ background: 'linear-gradient(90deg, hsl(var(--primary) / 0.3), transparent)' }} aria-hidden="true" />
-                      )}
-                    </div>
-                    <h3 className="font-display text-xl sm:text-2xl font-medium mb-2.5 leading-tight">{t(`landing.howItWorks.${step.key}.title`)}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{t(`landing.howItWorks.${step.key}.desc`)}</p>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden" aria-label="Modo Apresentação para grupos"
-          style={{ background: 'linear-gradient(180deg, transparent 0%, hsl(var(--primary) / 0.04) 50%, transparent 100%)' }}>
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-amber-500/[0.06] blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-orange-500/[0.05] blur-3xl" />
-          </div>
-          <div className="max-w-6xl mx-auto relative z-10">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-              <div>
-                <ScrollReveal>
-                  <p className="eyebrow-label text-amber-600 dark:text-amber-400 flex items-center gap-2">
-                    <MonitorPlay className="w-3.5 h-3.5" /> {t('landing.presentationSection.eyebrow')}
-                  </p>
-                  <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light heading-premium mb-6">
-                    {t('landing.presentationSection.title1')}<br /><span className="italic text-primary">{t('landing.presentationSection.title2')}</span>
-                  </h2>
-                  <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg">
-                    {t('landing.presentationSection.desc')}
-                  </p>
-                  <ul className="space-y-3 mb-9">
-                    {[t('landing.presentationSection.item1'), t('landing.presentationSection.item2'), t('landing.presentationSection.item3')].map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-sm sm:text-[15px]">
-                        <span className="mt-0.5 w-5 h-5 rounded-full bg-primary/15 text-primary flex items-center justify-center shrink-0"><CheckCircle2 className="w-3.5 h-3.5" /></span>
-                        <span className="text-foreground/90">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="flex flex-wrap gap-3">
-                    <Link href="/apresentar" className="group relative inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl overflow-hidden transition-all duration-300"
-                      style={{ background: 'linear-gradient(135deg, #f5cd6b 0%, #d4a843 50%, #b88a30 100%)', color: '#1c1300', boxShadow: '0 8px 24px -6px rgba(212,168,67,0.45)' }}>
-                      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                      <span className="relative">{t('landing.presentationSection.cta')}</span>
-                      <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                    </Link>
-                    <Link href="/biblia" className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border border-border/60 hover:border-primary/40 hover:bg-primary/[0.04] rounded-xl transition-all duration-300">
-                      <BookOpen className="w-4 h-4" /> {t('landing.presentationSection.openBible')}
-                    </Link>
-                  </div>
-                </ScrollReveal>
-              </div>
-              <ScrollReveal direction="right">
-                <div className="relative">
-                  <ApresentacaoMockup />
-                  <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-amber-500/20 blur-2xl -z-10" />
-                  <div className="absolute -top-4 -left-4 w-20 h-20 rounded-full bg-amber-500/15 blur-2xl -z-10" />
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-20 sm:py-24 px-4 sm:px-6 relative" aria-label="Compare traduções">
-          <div className="max-w-6xl mx-auto">
-            <ScrollReveal>
-              <Link href="/comparar" className="group relative block overflow-hidden rounded-3xl border border-border/40 bg-card/50 backdrop-blur-sm hover:border-primary/40 transition-all duration-300 p-8 sm:p-12">
-                <div className="absolute inset-0 opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{ background: 'radial-gradient(circle at 85% 15%, hsl(var(--primary) / 0.12) 0%, transparent 55%)' }} />
-                <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-300">
-                    <GitCompareArrows className="w-6 h-6 text-primary" strokeWidth={1.5} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="eyebrow-label text-primary/80">{t('landing.compareSection.eyebrow')}</p>
-                    <h3 className="font-display text-2xl sm:text-3xl font-light heading-premium mb-2">{t('landing.compareSection.title1')} <span className="italic text-primary">{t('landing.compareSection.title2')}</span></h3>
-                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl">{t('landing.compareSection.desc')}</p>
-                  </div>
-                  <span className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] group-hover:bg-primary/[0.12] group-hover:border-primary/50 transition-all duration-300 shrink-0">
-                    {t('landing.compareSection.cta')} <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-                </div>
-              </Link>
-            </ScrollReveal>
-          </div>
-        </section>
-
-        <section className="py-24 sm:py-32 px-4 sm:px-6 border-t border-border/30 relative overflow-hidden" aria-label="Comece a estudar">
-          <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 20% 80%, hsl(var(--primary)) 0%, transparent 40%), radial-gradient(circle at 80% 20%, hsl(var(--primary)) 0%, transparent 40%)' }} />
-          </div>
-          <div className="max-w-3xl mx-auto text-center relative z-10">
-            <ScrollReveal>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/15 bg-primary/[0.04] mb-8">
-                <Zap className="w-3.5 h-3.5 text-primary" />
-                <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">{t('landing.ctaSection.badge')}</span>
-              </div>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light heading-premium mb-6">
-                {t('landing.ctaSection.title1')}<br /><span className="italic gradient-text-animated">{t('landing.ctaSection.title2')}</span>
-              </h2>
-              <p className="text-sm sm:text-base text-muted-foreground mb-10 max-w-lg mx-auto leading-relaxed">
-                {t('landing.ctaSection.desc')}
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center mb-14">
-                <Link href="/biblia" className="cta-gradient group relative inline-flex items-center gap-2 px-8 sm:px-10 py-3.5 sm:py-4 text-sm font-semibold rounded-xl">
-                  <BookOpen className="relative w-4 h-4" /><span className="relative">{t('landing.ctaSection.cta1')}</span>
-                  <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-                <Link href="/estudar" className="group inline-flex items-center gap-2 px-8 sm:px-10 py-3.5 sm:py-4 text-sm font-semibold rounded-xl border border-primary/25 bg-primary/[0.04] hover:bg-primary/[0.08] hover:border-primary/40 transition-all duration-300">
-                  <Brain className="w-4 h-4 text-primary" strokeWidth={1.75} /> {t('landing.ctaSection.cta2')}
-                </Link>
-              </div>
-              <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
-                {[{ label: t('landing.ctaSection.noAds'), icon: Shield }, { label: t('landing.ctaSection.openSource'), icon: Globe }, { label: t('landing.ctaSection.private'), icon: Heart }].map((badge) => (
-                  <div key={badge.label} className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <badge.icon className="w-4 h-4 text-primary/60" />{badge.label}
-                  </div>
+                  </Link>
                 ))}
               </div>
-            </ScrollReveal>
-          </div>
-        </section>
-        <section className="py-16 sm:py-20 px-4 sm:px-6 border-t border-border/30 relative" aria-label="Notificações">
-          <div className="max-w-md mx-auto text-center">
-            <ScrollReveal>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/15 bg-primary/[0.04] mb-6">
-                <Bell className="w-3.5 h-3.5 text-primary" />
-                <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">{t('landing.notificationsSection.badge')}</span>
+            </div>
+          </ScrollReveal>
+
+          {/* Planos de leitura */}
+          <ScrollReveal delay={0.25}>
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Planos de Leitura</h2>
+                <Link href="/planos" className="text-[11px] text-primary hover:text-primary/80 font-medium">Ver todos</Link>
               </div>
-              <p className="text-sm text-muted-foreground mb-6 max-w-sm mx-auto">
-                {t('landing.notificationsSection.desc')}
-              </p>
-              <NotificationSetup />
-            </ScrollReveal>
-          </div>
-        </section>
+              <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                {LEITURAS.map((l) => (
+                  <Link key={l.titulo} href="/planos" className="flex-shrink-0 w-48">
+                    <div className="p-4 rounded-xl bg-card/60 border border-border/30 hover:border-primary/25 transition-all">
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${l.cor}`}>{l.dias} dias</span>
+                      <p className="text-sm font-medium mt-2 line-clamp-2">{l.titulo}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Acesso rápido */}
+          <ScrollReveal delay={0.3}>
+            <div className="grid grid-cols-4 gap-3">
+              {[
+                { href: '/favoritos', icon: Heart, label: 'Favoritos' },
+                { href: '/notas', icon: BookMarked, label: 'Notas' },
+                { href: '/planos', icon: Clock, label: 'Planos' },
+                { href: '/dashboard', icon: TrendingUp, label: 'Progresso' },
+              ].map((a) => (
+                <Link key={a.href} href={a.href} className="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-card/60 transition-colors group">
+                  <a.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <span className="text-[11px] text-muted-foreground font-medium">{a.label}</span>
+                </Link>
+              ))}
+            </div>
+          </ScrollReveal>
+
+        </div>
       </main>
       <Footer />
-      <InstallBanner />
     </div>
   );
 }

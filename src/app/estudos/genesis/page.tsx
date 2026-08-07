@@ -25,6 +25,7 @@ import {
   AlertTriangle,
   Map,
   Shield,
+  ExternalLink,
 } from 'lucide-react';
 
 const secoes = [
@@ -36,6 +37,40 @@ const secoes = [
   { id: 'mapa', label: 'Mapa dos Patriarcas' },
   { id: 'aplicação', label: 'Aplicação' },
   { id: 'perguntas', label: 'Perguntas' },
+  { id: 'quiz', label: 'Quiz' },
+];
+
+const quizPerguntas = [
+  {
+    pergunta: 'Qual o nome hebraico de Gênesis e o que significa?',
+    opcoes: ['Bereshit — "No princípio"', 'Exodus — "Saída"', 'Leviticus — "Levi"', 'Devarim — "Palavras"'],
+    correta: 0,
+    explicacao: 'Bereshit significa "No princípio" e é o primeiro palavra do livro em hebraico.',
+  },
+  {
+    pergunta: 'Quantas "gerações" (toledot) estruturam o livro de Gênesis?',
+    opcoes: ['5', '7', '10', '12'],
+    correta: 2,
+    explicacao: '10 toledot ("gerações") dividem o livro: de Adão a Noé (5), de Noé a Abraão (5), e de Abraão em diante.',
+  },
+  {
+    pergunta: 'O que é o Protoevangelium?',
+    opcoes: ['O primeiro sacrifício animal', 'A primeira promessa de um Salvador em Gn 3:15', 'O nome do primeiro templo', 'A primeira lei de Israel'],
+    correta: 1,
+    explicacao: 'Em Gn 3:15, Deus promete que a descendência da mulher ferirá a cabeça da serpente — a primeira promessa do Redentor.',
+  },
+  {
+    pergunta: 'O queAbraão creu e lhe foi imputado como justiça?',
+    opcoes: ['As obras que fez', 'A promessa de descendência de Deus', 'A Lei de Moisés', 'O sacrifício de Isaac'],
+    correta: 1,
+    explicacao: 'Gênesis 15:6 — Abraão creu na promessa de Deus de que teria descendência numerosa, e isso lhe foi imputado como justiça.',
+  },
+  {
+    pergunta: 'Qual a relação entre o sacrifício de Isaac e a cruz de Cristo?',
+    opcoes: ['Não há relação', 'Isaac foi morto de fato', 'Ambos envolvem o filho único e o cordeiro substituto', 'Isaac representava o pecado'],
+    correta: 2,
+    explicacao: 'Gênesis 22 é tipologia de Cristo: filho único, cordeiro substituto (o carneiro preso no mato), no Monte Moriá (onde ficará Jerusalém).',
+  },
 ];
 
 const capitulos = [
@@ -120,6 +155,9 @@ const patriarcas = [
 export default function GenesisPage() {
   const [seçãoAtiva, setSecaoAtiva] = useState('intro');
   const [capituloExpandido, setCapituloExpandido] = useState<number | null>(null);
+  const [quizRespondidas, setQuizRespondidas] = useState<Record<number, number>>({});
+  const [quizExplicacoes, setQuizExplicacoes] = useState<Record<number, boolean>>({});
+  const [quizFinalizado, setQuizFinalizado] = useState(false);
 
   return (
     <div className="min-h-screen">
@@ -282,6 +320,13 @@ export default function GenesisPage() {
                           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
                             <div className="px-4 pb-4 border-t border-border/50 pt-3">
                               <p className="text-sm text-muted-foreground leading-relaxed">{c.resumo}</p>
+                              <Link
+                                href={`/biblia?livro=GEN&capitulo=${c.cap}`}
+                                className="inline-flex items-center gap-1.5 mt-3 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
+                              >
+                                <ExternalLink className="w-3 h-3" />
+                                Ler capítulo {c.cap} na Bíblia
+                              </Link>
                             </div>
                           </motion.div>
                         )}
@@ -422,6 +467,75 @@ export default function GenesisPage() {
                     ))}
                   </ol>
                 </div>
+              </section>
+            </ScrollReveal>
+          )}
+
+          {/* Secao: Quiz */}
+          {seçãoAtiva === 'quiz' && (
+            <ScrollReveal>
+              <section className="mb-8">
+                <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
+                  <HelpCircle className="w-5 h-5 text-primary" />
+                  Quiz de Gênesis
+                </h2>
+                <div className="space-y-4">
+                  {quizPerguntas.map((q, i) => {
+                    const respondida = quizRespondidas[i] !== undefined;
+                    const acertou = respondida && quizRespondidas[i] === q.correta;
+                    return (
+                      <div key={i} className="sola-card p-5">
+                        <p className="text-sm font-medium mb-3">
+                          <span className="text-primary mr-2">{i + 1}.</span>
+                          {q.pergunta}
+                        </p>
+                        <div className="space-y-2">
+                          {q.opcoes.map((op, j) => {
+                            const selecionada = quizRespondidas[i] === j;
+                            const correta = j === q.correta;
+                            let estilo = 'border-border/60 hover:border-primary/40 bg-card/40';
+                            if (respondida && correta) estilo = 'border-green-500/60 bg-green-500/10';
+                            else if (respondida && selecionada && !acertou) estilo = 'border-red-500/60 bg-red-500/10';
+                            return (
+                              <button
+                                key={j}
+                                disabled={respondida}
+                                onClick={() => setQuizRespondidas(prev => ({ ...prev, [i]: j }))}
+                                className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-all ${estilo} ${respondida ? 'cursor-default' : 'cursor-pointer'}`}
+                              >
+                                <span className="font-medium mr-2">{String.fromCharCode(65 + j)}.</span>
+                                {op}
+                              </button>
+                            );
+                          })}
+                        </div>
+                        {respondida && quizExplicacoes[i] && (
+                          <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-xs text-muted-foreground mt-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
+                            {q.explicacao}
+                          </motion.p>
+                        )}
+                        {respondida && !quizExplicacoes[i] && (
+                          <button
+                            onClick={() => setQuizExplicacoes(prev => ({ ...prev, [i]: true }))}
+                            className="text-xs text-primary mt-2 hover:underline"
+                          >
+                            Ver explicação
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+                {Object.keys(quizRespondidas).length === quizPerguntas.length && !quizFinalizado && (
+                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="sola-card p-6 mt-4 text-center">
+                    <p className="text-lg font-display font-medium mb-1">
+                      Você acertou {Object.entries(quizRespondidas).filter(([k, v]) => quizPerguntas[Number(k)].correta === v).length} de {quizPerguntas.length}
+                    </p>
+                    <button onClick={() => { setQuizRespondidas({}); setQuizExplicacoes({}); setQuizFinalizado(false); }} className="text-sm text-primary hover:underline mt-2">
+                      Tentar novamente
+                    </button>
+                  </motion.div>
+                )}
               </section>
             </ScrollReveal>
           )}

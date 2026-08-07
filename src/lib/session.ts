@@ -28,25 +28,46 @@ export function getTokenFromRequest(request: NextRequest): string | null {
  * Decodifica JWT localmente (sem verificar assinatura) para checar o campo exp
  * e evitar chamadas desnecessarias ao Supabase em tokens obviamente expirados.
  */
-function isJwtExpired(token: string): boolean {
+function decodeJwtPayload(token: string): Record<string, unknown> | null {
   const parts = token.split('.');
-  if (parts.length !== 3) return true;
+  if (parts.length !== 3) return null;
   try {
-    const payload = JSON.parse(
+    return JSON.parse(
       Buffer.from(parts[1].replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf8'),
     );
-    if (typeof payload.exp !== 'number') return false;
-    return payload.exp * 1000 < Date.now();
   } catch {
-    return false;
+    return null;
   }
+}
+
+function isJwtExpired(token: string): boolean {
+  const payload = decodeJwtPayload(token);
+  if (!payload || typeof payload.exp !== 'number') return false;
+  return payload.exp * 1000 < Date.now();
+}
+
+/**
+ * Tenta extrair usuario de um JWT NestJS (payload: { sub, email }).
+ * Retorna null se nao for um token NestJS valido.
+ */
+function tryNestJwt(token: string): SessionUser | null {
+  const payload = decodeJwtPayload(token);
+  if (!payload) return null;
+  // NestJS tokens have { sub: userId, email: string }
+  if (!payload.sub || !payload.email) return null;
+  return {
+    id: String(payload.sub),
+    email: String(payload.email),
+    role: 'authenticated',
+    exp: typeof payload.exp === 'number' ? payload.exp : undefined,
+  };
 }
 
 /**
  * Valida o JWT contra o endpoint /auth/v1/user do Supabase.
  * Retorna o user real (id, email) ou null se token invalido/expirado.
  */
-export async function validateSupabaseToken(token: string): Promise<SessionUser | null> {
+async function validateSupabaseToken(token: string): Promise<SessionUser | null> {
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return null;
   try {
     const res = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
@@ -72,10 +93,17 @@ export async function validateSupabaseToken(token: string): Promise<SessionUser 
 
 /**
  * Valida token combinando verificacao local de expiracao + checagem no Supabase.
+ * Suporta tanto tokens Supabase quanto JWTs do NestJS backend.
  */
 export async function getUserFromRequest(request: NextRequest): Promise<SessionUser | null> {
   const token = getTokenFromRequest(request);
   if (!token) return null;
   if (isJwtExpired(token)) return null;
+
+  // 1) Tenta como token NestJS (decode local, rapido)
+  const nestUser = tryNestJwt(token);
+  if (nestUser) return nestUser;
+
+  // 2) Tenta como token Supabase (chamada remota)
   return validateSupabaseToken(token);
 }

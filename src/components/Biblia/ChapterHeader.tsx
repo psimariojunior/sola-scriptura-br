@@ -77,19 +77,20 @@ export function ChapterHeader({
 
       <div className={`${expandido ? 'block' : 'hidden'} md:block`}>
         <div className="animate-scale-in text-center mt-4 md:mt-0">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[var(--brand-subtle)] border border-[var(--brand-default)]/15 mb-4">
-            <BookMarked className="w-3 h-3 text-[var(--brand-default)]" />
-            <span className="text-[10px] sm:text-[11px] font-semibold text-[var(--brand-default)] tracking-[0.18em] uppercase">
-              Capítulo {capitulo}
+          {/* Elegant chapter number */}
+          <div className="relative inline-block mb-4">
+            <span className="text-[120px] sm:text-[160px] font-display font-light text-[var(--brand-default)]/8 leading-none select-none" aria-hidden="true">
+              {capitulo}
             </span>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-[var(--content-muted)] font-semibold mb-1">
+                {livroNome}
+              </span>
+              <span className="text-3xl sm:text-4xl font-display font-light text-[var(--content-primary)]">
+                Capítulo {capitulo}
+              </span>
+            </div>
           </div>
-
-          <h1
-            className="animate-slide-up font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-[var(--brand-default)] leading-[1.05] tracking-tight"
-            style={{ animationDelay: '0.1s' }}
-          >
-            {livroNome}
-          </h1>
 
           <Ornament />
 

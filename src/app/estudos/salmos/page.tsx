@@ -19,6 +19,40 @@ const secoes = [
   { id: 'messi', label: 'Salmos Messiânicos' },
   { id: 'oracao', label: 'Usos na Oração' },
   { id: 'momentos', label: 'Momentos Específicos' },
+  { id: 'quiz', label: 'Quiz' },
+];
+
+const quizPerguntas = [
+  {
+    pergunta: 'Qual é o tipo mais comum de salmo?',
+    opcoes: ['Louvor', 'Lamentação', 'Sabedoria', 'Real'],
+    correta: 1,
+    explicacao: 'A maioria dos salmos é de lamentação — expressam dor, pedidos de socorro e questionamentos diante do sofrimento.',
+  },
+  {
+    pergunta: 'Qual salmo é conhecido como "O Salmo do Bom Pastor"?',
+    opcoes: ['Salmo 22', 'Salmo 23', 'Salmo 51', 'Salmo 91'],
+    correta: 1,
+    explicacao: 'Salmo 23 é o mais amado da Bíblia — "O Senhor é o meu pastor" — retrata Deus guiando, protegendo e sustentando.',
+  },
+  {
+    pergunta: 'Qual salmo é o grande salmo de arrependimento de Davi?',
+    opcoes: ['Salmo 1', 'Salmo 23', 'Salmo 51', 'Salmo 100'],
+    correta: 2,
+    explicacao: 'Salmo 51 — "Cria em mim, ó Deus, um coração puro" — Davi após o pecado com Bate-Seba.',
+  },
+  {
+    pergunta: 'Qual salmo profetiza com mais precisão a crucificação de Jesus?',
+    opcoes: ['Salmo 2', 'Salmo 22', 'Salmo 45', 'Salmo 72'],
+    correta: 1,
+    explicacao: 'Salmo 22 — "Meu Deus, por que me abandonaste?" — descreve detalhes da crucificação séculos antes dela.',
+  },
+  {
+    pergunta: 'Como a Bíblia classifica os salmos?',
+    opcoes: ['Por autor', 'Por tema (Louvor, Lamentação, etc.)', 'Por ordem alfabética', 'Por tamanho'],
+    correta: 1,
+    explicacao: 'Os salmos são classificados por tipo/tema: Louvor, Lamentação, Ação de Graças, Sabedoria e Real.',
+  },
 ];
 
 const classificacoes = [
@@ -102,6 +136,8 @@ const momentosSalmos = [
 export default function SalmosPage() {
   const [seçãoAtiva, setSecaoAtiva] = useState('intro');
   const [salmoExpandido, setSalmoExpandido] = useState<number | null>(null);
+  const [quizRespondidas, setQuizRespondidas] = useState<Record<number, number>>({});
+  const [quizExplicacoes, setQuizExplicacoes] = useState<Record<number, boolean>>({});
 
   return (
     <div className="min-h-screen">
@@ -323,6 +359,75 @@ export default function SalmosPage() {
                     </div>
                   ))}
                 </div>
+              </section>
+            </ScrollReveal>
+          )}
+
+          {/* Secao: Quiz */}
+          {seçãoAtiva === 'quiz' && (
+            <ScrollReveal>
+              <section className="mb-8">
+                <h2 className="font-display text-2xl font-medium mb-4 flex items-center gap-2">
+                  <HelpCircle className="w-5 h-5 text-primary" />
+                  Quiz de Salmos
+                </h2>
+                <div className="space-y-4">
+                  {quizPerguntas.map((q, i) => {
+                    const respondida = quizRespondidas[i] !== undefined;
+                    const acertou = respondida && quizRespondidas[i] === q.correta;
+                    return (
+                      <div key={i} className="sola-card p-5">
+                        <p className="text-sm font-medium mb-3">
+                          <span className="text-primary mr-2">{i + 1}.</span>
+                          {q.pergunta}
+                        </p>
+                        <div className="space-y-2">
+                          {q.opcoes.map((op, j) => {
+                            const selecionada = quizRespondidas[i] === j;
+                            const correta = j === q.correta;
+                            let estilo = 'border-border/60 hover:border-primary/40 bg-card/40';
+                            if (respondida && correta) estilo = 'border-green-500/60 bg-green-500/10';
+                            else if (respondida && selecionada && !acertou) estilo = 'border-red-500/60 bg-red-500/10';
+                            return (
+                              <button
+                                key={j}
+                                disabled={respondida}
+                                onClick={() => setQuizRespondidas(prev => ({ ...prev, [i]: j }))}
+                                className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-all ${estilo} ${respondida ? 'cursor-default' : 'cursor-pointer'}`}
+                              >
+                                <span className="font-medium mr-2">{String.fromCharCode(65 + j)}.</span>
+                                {op}
+                              </button>
+                            );
+                          })}
+                        </div>
+                        {respondida && quizExplicacoes[i] && (
+                          <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="text-xs text-muted-foreground mt-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
+                            {q.explicacao}
+                          </motion.p>
+                        )}
+                        {respondida && !quizExplicacoes[i] && (
+                          <button
+                            onClick={() => setQuizExplicacoes(prev => ({ ...prev, [i]: true }))}
+                            className="text-xs text-primary mt-2 hover:underline"
+                          >
+                            Ver explicação
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+                {Object.keys(quizRespondidas).length === quizPerguntas.length && (
+                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="sola-card p-6 mt-4 text-center">
+                    <p className="text-lg font-display font-medium mb-1">
+                      Você acertou {Object.entries(quizRespondidas).filter(([k, v]) => quizPerguntas[Number(k)].correta === v).length} de {quizPerguntas.length}
+                    </p>
+                    <button onClick={() => { setQuizRespondidas({}); setQuizExplicacoes({}); }} className="text-sm text-primary hover:underline mt-2">
+                      Tentar novamente
+                    </button>
+                  </motion.div>
+                )}
               </section>
             </ScrollReveal>
           )}

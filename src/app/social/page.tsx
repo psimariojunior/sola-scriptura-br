@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   BookOpen, Heart, MessageCircle, Share2, Trophy, Users, Target,
-  Flame, Search, UserPlus, Crown, Medal, Star, CheckCircle2, Clock,
+  Flame, Search, User, Crown, Medal, Star, CheckCircle2, Clock,
 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
@@ -288,7 +288,7 @@ export default function SocialPage() {
 
                   <div className="glass-card p-5">
                     <div className="flex items-center gap-2 mb-4">
-                      <UserPlus className="w-5 h-5 text-primary" />
+                      <User className="w-5 h-5 text-primary" />
                       <h3 className="font-medium text-sm">Sugestoes</h3>
                     </div>
                     <div className="space-y-3">
@@ -303,7 +303,7 @@ export default function SocialPage() {
                             </p>
                           </div>
                           <button className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-primary text-primary-foreground text-xs font-medium hover:opacity-90 transition-all">
-                            <UserPlus className="w-3 h-3" /> Adicionar
+                            <User className="w-3 h-3" /> Adicionar
                           </button>
                         </motion.div>
                       ))}

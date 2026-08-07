@@ -16,16 +16,6 @@ export async function obterEstudoVersiculo(
   capitulo: number,
   versiculo: number
 ): Promise<EstudoVersiculoUnificado | null> {
-  const teologicos = obterEstudos(livro, capitulo, versiculo);
-  if (teologicos.length > 0) {
-    return {
-      fonte: 'teologico',
-      tema: teologicos[0].tema,
-      contexto: teologicos[0].contexto,
-      interpretacoes: teologicos[0].interpretacoes,
-    };
-  }
-
   const vs = await getVersiculoEstudo(livro, capitulo, versiculo);
   if (vs) {
     return {
@@ -33,6 +23,16 @@ export async function obterEstudoVersiculo(
       tema: vs.titulo,
       contexto: vs.contextoHistorico,
       detalhe: vs,
+    };
+  }
+
+  const teologicos = obterEstudos(livro, capitulo, versiculo);
+  if (teologicos.length > 0) {
+    return {
+      fonte: 'teologico',
+      tema: teologicos[0].tema,
+      contexto: teologicos[0].contexto,
+      interpretacoes: teologicos[0].interpretacoes,
     };
   }
 

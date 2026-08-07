@@ -77,19 +77,21 @@ export function ChapterHeader({
 
       <div className={`${expandido ? 'block' : 'hidden'} md:block`}>
         <div className="animate-scale-in text-center mt-4 md:mt-0">
-          {/* Elegant chapter number */}
-          <div className="relative inline-block mb-4">
-            <span className="text-[120px] sm:text-[160px] font-display font-light text-[var(--brand-default)]/8 leading-none select-none" aria-hidden="true">
+          {/* Chapter number — watermarked background */}
+          <div className="relative mb-6">
+            <span className="block text-[100px] sm:text-[140px] font-display font-light text-[var(--brand-default)]/6 leading-none select-none" aria-hidden="true">
               {capitulo}
             </span>
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-[var(--content-muted)] font-semibold mb-1">
-                {livroNome}
-              </span>
-              <span className="text-3xl sm:text-4xl font-display font-light text-[var(--content-primary)]">
-                Capítulo {capitulo}
-              </span>
-            </div>
+          </div>
+
+          {/* Book name and chapter title — clearly separated */}
+          <div className="-mt-16 sm:-mt-20 relative z-10">
+            <span className="block text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-[var(--content-muted)] font-semibold mb-1">
+              {livroNome}
+            </span>
+            <span className="text-3xl sm:text-4xl font-display font-light text-[var(--content-primary)]">
+              Capítulo {capitulo}
+            </span>
           </div>
 
           <Ornament />

@@ -107,12 +107,14 @@ function BlocoVersiculo({ estudo }: { estudo: EstudoVersiculoUnificado }) {
 export default function PainelEstudosInline({ livro, capitulo, versiculo, nomeLivro, onClose }: Props) {
   const [expandido, setExpandido] = useState<number | null>(null);
   const [estudo, setEstudo] = useState<EstudoVersiculoUnificado | null>(null);
+  const [teologicos, setTeologicos] = useState<EstudoVersiculoUnificado | null>(null);
   const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
     let ativo = true;
     setCarregando(true);
     setEstudo(null);
+    setTeologicos(null);
     obterEstudoVersiculo(livro, capitulo, versiculo)
       .then((res) => {
         if (!ativo) return;

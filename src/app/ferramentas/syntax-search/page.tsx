@@ -323,7 +323,7 @@ export default function SyntaxSearchPage() {
                       {r.palavra.versiculos.length > 0 && (
                         <div className="shrink-0">
                           <a href={`/biblia/${r.palavra.versiculos[0].toLowerCase().replace(/ /g, ':')}`}
-                            className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener">
+                            className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noreferrer">
                             <ExternalLink className="w-4 h-4" />
                           </a>
                         </div>

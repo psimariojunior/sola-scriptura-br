@@ -159,10 +159,12 @@ function FeatureCard({ feature, index, t }: { feature: typeof featuresStatic[num
 
   return (
     <motion.div
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`feature-card card-tilt group relative h-full p-7 sm:p-8 rounded-2xl border bg-card/50 backdrop-blur-sm overflow-hidden ${
-        feature.highlight ? 'border-amber-500/30 shadow-[var(--shadow-glow)]' : 'border-border/40'
+      whileHover={{ y: -6, scale: 1.01 }}
+      transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className={`feature-card group relative h-full p-7 sm:p-8 rounded-2xl border bg-card/60 backdrop-blur-sm overflow-hidden transition-all duration-500 ${
+        feature.highlight 
+          ? 'border-primary/25 shadow-lg shadow-primary/[0.06] hover:shadow-xl hover:shadow-primary/[0.1]' 
+          : 'border-border/40 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/[0.04]'
       }`}
     >
       {feature.highlight && (
@@ -170,13 +172,15 @@ function FeatureCard({ feature, index, t }: { feature: typeof featuresStatic[num
           <Sparkles className="w-2.5 h-2.5" /> Novo
         </span>
       )}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{ background: 'radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.08) 0%, transparent 60%)' }} />
+      
+      {/* Hover gradient overlay */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+        style={{ background: 'radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.06) 0%, transparent 60%)' }} />
 
       <div className="relative z-10">
         {variant === 'stat' && (
           <>
-            <p className="font-display text-4xl sm:text-5xl font-light text-primary/80 tracking-tight leading-none mb-3">
+            <p className="font-display text-4xl sm:text-5xl font-light text-primary/70 tracking-tight leading-none mb-3">
               {feature.statNumber}
             </p>
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-5">{feature.statLabel}</p>
@@ -187,7 +191,7 @@ function FeatureCard({ feature, index, t }: { feature: typeof featuresStatic[num
 
         {variant === 'icon-large' && (
           <div className="flex flex-col items-start gap-5">
-            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-300">
+            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-500">
               <Icon className="w-8 h-8 text-primary" strokeWidth={1.25} />
             </div>
             <div>
@@ -199,7 +203,7 @@ function FeatureCard({ feature, index, t }: { feature: typeof featuresStatic[num
 
         {variant === 'mockup' && (
           <div className="flex flex-col items-start">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-300">
+            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-500">
               <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
             </div>
             <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{title}</h3>
@@ -211,7 +215,7 @@ function FeatureCard({ feature, index, t }: { feature: typeof featuresStatic[num
         {variant === 'default' && (
           <>
             <p className="step-number">{String(index + 1).padStart(2, '0')}</p>
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-105 group-hover:bg-primary/15 transition-all duration-300">
+            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-500">
               <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
             </div>
             <h3 className="font-semibold text-[15px] mb-2.5 text-foreground">{title}</h3>
@@ -304,15 +308,20 @@ export default function HomeClient() {
         </section>
 
         <section className="relative py-16 sm:py-20 px-4 sm:px-6 border-y border-border/30 bg-card/30" aria-label="Estatísticas do Sola Scriptura">
-          <div className="max-w-6xl mx-auto">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.03) 0%, transparent 70%)' }} />
+          </div>
+          <div className="max-w-6xl mx-auto relative z-10">
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-4">
               {stats.map((stat, i) => (
                 <ScrollReveal key={stat.labelKey} delay={i * 0.06}>
-                  <div className="stat-card text-center p-3 sm:p-4 rounded-xl border border-border/30 bg-card/40 relative group">
-                    <p className="font-display text-2xl sm:text-3xl md:text-4xl font-light tracking-tight relative">
+                  <div className="stat-card text-center p-4 sm:p-5 rounded-2xl border border-border/30 bg-card/50 backdrop-blur-sm relative group hover:border-primary/20 hover:bg-card/70 transition-all duration-500">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
+                      style={{ background: 'radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.06) 0%, transparent 60%)' }} />
+                    <p className="font-display text-2xl sm:text-3xl md:text-4xl font-light tracking-tight relative text-primary/80">
                       <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                     </p>
-                    <p className="text-[10px] sm:text-[11px] text-muted-foreground uppercase tracking-wider mt-1.5 font-medium">{t(stat.labelKey)}</p>
+                    <p className="text-[10px] sm:text-[11px] text-muted-foreground uppercase tracking-wider mt-2 font-medium">{t(stat.labelKey)}</p>
                   </div>
                 </ScrollReveal>
               ))}
@@ -443,13 +452,13 @@ export default function HomeClient() {
                 const Icon = step.icon;
                 return (
                   <ScrollReveal key={step.step} delay={i * 0.12}>
-                    <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.3 }}
-                      className="group relative h-full p-7 rounded-2xl border border-border/40 bg-card/50 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 overflow-hidden">
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                        style={{ background: 'radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.1) 0%, transparent 60%)' }} />
+                    <motion.div whileHover={{ y: -8, scale: 1.02 }} transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      className="group relative h-full p-7 rounded-2xl border border-border/40 bg-card/60 backdrop-blur-sm hover:border-primary/25 hover:shadow-xl hover:shadow-primary/[0.04] transition-all duration-500 overflow-hidden">
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                        style={{ background: 'radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.08) 0%, transparent 60%)' }} />
                       <div className="relative z-10">
                         <div className="flex items-center gap-3 mb-5">
-                          <span className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-300">
+                          <span className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-primary/15 transition-all duration-500">
                             <Icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
                           </span>
                           <span className="step-badge">{step.step}</span>
@@ -471,7 +480,7 @@ export default function HomeClient() {
             <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
               {comoFuncionaStatic.map((step, i) => (
                 <ScrollReveal key={step.step} delay={i * 0.1}>
-                  <div className="relative h-full p-7 sm:p-8 rounded-2xl border border-border/40 bg-card/50 hover:border-primary/30 transition-all duration-300">
+                  <div className="relative h-full p-7 sm:p-8 rounded-2xl border border-border/40 bg-card/60 backdrop-blur-sm hover:border-primary/25 hover:shadow-lg hover:shadow-primary/[0.03] transition-all duration-500 group">
                     <div className="flex items-center gap-3 mb-5">
                       <span className="step-badge">{step.step}</span>
                       {i < comoFuncionaStatic.length - 1 && (
@@ -568,29 +577,29 @@ export default function HomeClient() {
           </div>
           <div className="max-w-3xl mx-auto text-center relative z-10">
             <ScrollReveal>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/15 bg-primary/[0.04] mb-7">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/15 bg-primary/[0.04] mb-8">
                 <Zap className="w-3.5 h-3.5 text-primary" />
                 <span className="text-[10.5px] font-medium tracking-[0.18em] uppercase text-muted-foreground">{t('landing.ctaSection.badge')}</span>
               </div>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light heading-premium mb-5">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light heading-premium mb-6">
                 {t('landing.ctaSection.title1')}<br /><span className="italic gradient-text-animated">{t('landing.ctaSection.title2')}</span>
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground mb-10 max-w-lg mx-auto leading-relaxed">
                 {t('landing.ctaSection.desc')}
               </p>
-              <div className="flex flex-wrap gap-3 justify-center mb-12">
-                <Link href="/biblia" className="cta-gradient group relative inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold rounded-xl">
+              <div className="flex flex-wrap gap-4 justify-center mb-14">
+                <Link href="/biblia" className="cta-gradient group relative inline-flex items-center gap-2 px-8 sm:px-10 py-3.5 sm:py-4 text-sm font-semibold rounded-xl">
                   <BookOpen className="relative w-4 h-4" /><span className="relative">{t('landing.ctaSection.cta1')}</span>
                   <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
-                <Link href="/estudar" className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-semibold rounded-xl border border-primary/30 bg-primary/[0.06] hover:bg-primary/[0.12] hover:border-primary/50 transition-all duration-300">
+                <Link href="/estudar" className="group inline-flex items-center gap-2 px-8 sm:px-10 py-3.5 sm:py-4 text-sm font-semibold rounded-xl border border-primary/25 bg-primary/[0.04] hover:bg-primary/[0.08] hover:border-primary/40 transition-all duration-300">
                   <Brain className="w-4 h-4 text-primary" strokeWidth={1.75} /> {t('landing.ctaSection.cta2')}
                 </Link>
               </div>
-              <div className="flex flex-wrap justify-center gap-x-6 gap-y-2.5">
+              <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
                 {[{ label: t('landing.ctaSection.noAds'), icon: Shield }, { label: t('landing.ctaSection.openSource'), icon: Globe }, { label: t('landing.ctaSection.private'), icon: Heart }].map((badge) => (
-                  <div key={badge.label} className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <badge.icon className="w-3.5 h-3.5 text-primary" />{badge.label}
+                  <div key={badge.label} className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <badge.icon className="w-4 h-4 text-primary/60" />{badge.label}
                   </div>
                 ))}
               </div>

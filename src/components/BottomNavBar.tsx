@@ -140,38 +140,44 @@ function BottomNavBarInner() {
 
   return (
     <>
-      {/* Menu "Mais" overlay */}
+      {/* Menu "Mais" overlay — Premium glass style */}
       {showMore && (
         <>
           <div
-            className="fixed inset-0 bg-black/50 z-[60] animate-[fadeIn_0.15s_ease-out]"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] animate-[fadeIn_0.2s_ease-out]"
             onClick={closeMore}
           />
           <div
-            className="fixed bottom-[calc(60px+env(safe-area-inset-bottom,0px))] left-2 right-2 z-[61] bg-card border border-border rounded-xl shadow-xl overflow-hidden animate-[slideUp_0.2s_ease-out]"
+            className="fixed bottom-[calc(64px+env(safe-area-inset-bottom,0px))] left-3 right-3 z-[61] bg-card/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl overflow-hidden animate-[slideUp_0.25s_ease-out]"
             role="dialog"
             aria-modal="true"
             aria-label={t('header.moreNavOptions')}
             style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
           >
-            <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-              <span className="text-sm font-semibold">{t('nav.more')}</span>
+            {/* Premium header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-border/30">
+              <div>
+                <span className="text-sm font-semibold block">{t('nav.more')}</span>
+                <span className="text-[10px] text-muted-foreground">Explore todas as ferramentas</span>
+              </div>
               <button
                 onClick={closeMore}
-                className="p-1 rounded-lg hover:bg-muted transition-colors"
+                className="p-2 rounded-xl hover:bg-muted/50 transition-colors text-muted-foreground"
                 aria-label={t('header.closeMenu')}
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
-            <div className="max-h-[60vh] overflow-y-auto">
+            
+            {/* Scrollable content */}
+            <div className="max-h-[60vh] overflow-y-auto overscroll-contain">
               {grupos.map((grupo) => {
                 const expanded = expandedGroups[grupo.titulo];
                 return (
-                  <div key={grupo.titulo} className="border-b border-border/30 last:border-b-0">
+                  <div key={grupo.titulo} className="border-b border-border/20 last:border-b-0">
                     <button
                       onClick={() => toggleGroup(grupo.titulo)}
-                      className="w-full flex items-center justify-between px-4 py-2.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60 bg-muted/20 hover:bg-muted/40 transition-colors"
+                      className="w-full flex items-center justify-between px-5 py-3 text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60 hover:bg-muted/30 transition-colors"
                       aria-expanded={expanded}
                     >
                       <span>{grupo.titulo}</span>
@@ -182,20 +188,20 @@ function BottomNavBarInner() {
                       />
                     </button>
                     {expanded && (
-                      <div className="grid grid-cols-2 gap-1 p-3">
+                      <div className="grid grid-cols-2 gap-1.5 p-3 pt-0">
                         {grupo.links.map((link) => {
                           const active = pathname === link.href || pathname.startsWith(link.href + '/');
                           return (
                             <Link
                               key={link.href}
                               href={link.href}
-                              className={`flex items-center gap-2 p-2.5 rounded-lg transition-colors ${
+                              className={`flex items-center gap-2.5 p-3 rounded-xl transition-all duration-200 ${
                                 active
-                                  ? 'bg-primary/10 text-primary'
-                                  : 'text-muted-foreground hover:bg-muted/50'
+                                  ? 'bg-primary/10 text-primary shadow-sm'
+                                  : 'text-muted-foreground hover:bg-muted/50 active:scale-[0.97]'
                               }`}
                             >
-                              <link.icon className="w-4 h-4" strokeWidth={1.5} />
+                              <link.icon className={`w-4 h-4 ${active ? 'text-primary' : 'text-muted-foreground/60'}`} strokeWidth={1.5} />
                               <span className="text-[12px] font-medium">{link.label}</span>
                             </Link>
                           );
@@ -210,58 +216,66 @@ function BottomNavBarInner() {
         </>
       )}
 
-      {/* Barra inferior */}
+      {/* Barra inferior — Premium iOS-style */}
       <nav
         aria-label={t('header.mobileNav')}
-        className={`fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-background/95 backdrop-blur-xl transition-transform duration-300 ${hidden ? 'translate-y-full' : 'translate-y-0'}`}
+        className={`fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300 ${hidden ? 'translate-y-full' : 'translate-y-0'}`}
         style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       >
-        <div className="flex items-center justify-around h-[60px]">
-          {tabs.map((tab) => {
-            const isMore = tab.href === '#more';
-            const active = isMore
-              ? isMoreActive
-              : tab.href === '/estudar'
-                ? isEstudarActive
-                : pathname === tab.href || (tab.href !== '/' && pathname?.startsWith(tab.href));
+        <div className="relative border-t border-border/40 bg-background/80 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/60">
+          {/* Subtle top glow */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+          
+          <div className="flex items-center justify-around h-[64px] px-2">
+            {tabs.map((tab) => {
+              const isMore = tab.href === '#more';
+              const active = isMore
+                ? isMoreActive
+                : tab.href === '/estudar'
+                  ? isEstudarActive
+                  : pathname === tab.href || (tab.href !== '/' && pathname?.startsWith(tab.href));
 
-            if (isMore) {
+              if (isMore) {
+                return (
+                  <button
+                    key={tab.href}
+                    onClick={toggleMore}
+                    aria-label={t('header.more')}
+                    aria-expanded={showMore}
+                    className={`relative flex flex-col items-center justify-center flex-1 min-h-[48px] py-2 rounded-2xl transition-all duration-200 ${
+                      active 
+                        ? 'text-primary bg-primary/[0.08]' 
+                        : 'text-muted-foreground active:bg-muted/50'
+                    }`}
+                  >
+                    <div className="relative">
+                      <tab.icon className={`w-5 h-5 mb-0.5 transition-all duration-200 ${active ? 'scale-110' : ''}`} strokeWidth={active ? 2.2 : 1.5} />
+                      {active && (
+                        <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-primary animate-pulse" />
+                      )}
+                    </div>
+                    <span className={`text-[10px] font-medium leading-tight mt-0.5 transition-all duration-200 ${active ? 'font-semibold' : ''}`}>{tab.label}</span>
+                  </button>
+                );
+              }
+
               return (
-                <button
+                <Link
                   key={tab.href}
-                  onClick={toggleMore}
-                  aria-label={t('header.more')}
-                  aria-expanded={showMore}
-                  className={`relative flex flex-col items-center justify-center flex-1 min-h-[44px] py-2 transition-colors ${
-                    active ? 'text-primary' : 'text-muted-foreground'
+                  href={tab.href}
+                  aria-label={tab.label}
+                  className={`relative flex flex-col items-center justify-center flex-1 min-h-[48px] py-2 rounded-2xl transition-all duration-200 ${
+                    active 
+                      ? 'text-primary bg-primary/[0.08]' 
+                      : 'text-muted-foreground active:bg-muted/50'
                   }`}
                 >
-                  <tab.icon className="w-5 h-5 mb-0.5" strokeWidth={active ? 2 : 1.5} />
-                  <span className="text-[11px] font-medium leading-tight">{tab.label}</span>
-                  {active && (
-                    <div className="absolute top-0 w-8 h-[2px] bg-primary rounded-full" />
-                  )}
-                </button>
+                  <tab.icon className={`w-5 h-5 mb-0.5 transition-all duration-200 ${active ? 'scale-110' : ''}`} strokeWidth={active ? 2.2 : 1.5} />
+                  <span className={`text-[10px] font-medium leading-tight mt-0.5 transition-all duration-200 ${active ? 'font-semibold' : ''}`}>{tab.label}</span>
+                </Link>
               );
-            }
-
-            return (
-              <Link
-                key={tab.href}
-                href={tab.href}
-                aria-label={tab.label}
-                className={`relative flex flex-col items-center justify-center flex-1 min-h-[44px] py-2 transition-colors ${
-                  active ? 'text-primary' : 'text-muted-foreground'
-                }`}
-              >
-                <tab.icon className="w-5 h-5 mb-0.5" strokeWidth={active ? 2 : 1.5} />
-                <span className="text-[11px] font-medium leading-tight">{tab.label}</span>
-                {active && (
-                  <div className="absolute top-0 w-8 h-[2px] bg-primary rounded-full" />
-                )}
-              </Link>
-            );
-          })}
+            })}
+          </div>
         </div>
       </nav>
     </>

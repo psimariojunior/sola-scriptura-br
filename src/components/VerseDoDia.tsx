@@ -157,59 +157,70 @@ export default function VerseDoDia() {
     >
       <div className="max-w-3xl mx-auto">
         <div
-          className="relative rounded-2xl border-2 border-primary/40 bg-gradient-to-br from-primary/[0.04] via-card to-primary/[0.06] shadow-lg shadow-primary/[0.06] overflow-hidden"
+          className="relative rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/[0.03] via-card to-primary/[0.05] shadow-xl shadow-primary/[0.04] overflow-hidden group hover:shadow-2xl hover:shadow-primary/[0.08] transition-all duration-500"
         >
-          {/* Decorative top accent */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent" />
+          {/* Decorative top accent — premium gradient line */}
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+          
+          {/* Subtle background glow on hover */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+            style={{ background: 'radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.06) 0%, transparent 60%)' }} />
 
-          <div className="p-8 sm:p-12 text-center">
-            {/* Label */}
-            <p className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-primary/70 mb-6">
-              Versículo do Dia
-            </p>
+          <div className="relative p-8 sm:p-12 text-center">
+            {/* Label — premium eyebrow */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/15 bg-primary/[0.04] mb-8">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <p className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.25em] text-primary/80">
+                Versículo do Dia
+              </p>
+            </div>
 
-            {/* Verse text */}
-            <blockquote className="font-serif-body text-lg sm:text-xl md:text-2xl italic font-light text-content-secondary dark:text-foreground/85 leading-relaxed">
-              <span aria-hidden="true" className="text-primary/30 text-2xl sm:text-3xl mr-1">&ldquo;</span>
+            {/* Verse text — premium typography */}
+            <blockquote className="font-serif-body text-xl sm:text-2xl md:text-[1.75rem] italic font-light text-content-secondary dark:text-foreground/90 leading-[1.8] max-w-2xl mx-auto">
+              <span aria-hidden="true" className="text-primary/20 text-3xl sm:text-4xl mr-1.5 font-display">&ldquo;</span>
               {versoAtual.texto}
-              <span aria-hidden="true" className="text-primary/30 text-2xl sm:text-3xl ml-1">&rdquo;</span>
+              <span aria-hidden="true" className="text-primary/20 text-3xl sm:text-4xl ml-1.5 font-display">&rdquo;</span>
             </blockquote>
 
-            {/* Reference */}
-            <p className="mt-5 text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase text-primary">
-              — {versoAtual.referencia}
-            </p>
+            {/* Reference — elegant divider */}
+            <div className="flex items-center justify-center gap-3 mt-8">
+              <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary/30" />
+              <p className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-primary">
+                {versoAtual.referencia}
+              </p>
+              <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary/30" />
+            </div>
 
-            {/* Actions */}
+            {/* Actions — premium buttons */}
             <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
               <button
                 onClick={handleShare}
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl border border-primary/30 bg-primary/5 text-primary hover:bg-primary/10 transition-all duration-200 cursor-pointer"
+                className="btn-premium inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl border border-primary/25 bg-primary/[0.04] text-primary hover:bg-primary/[0.08] hover:border-primary/40 transition-all duration-300"
               >
-                <Share2 className="w-4 h-4" />
+                <Share2 className="w-3.5 h-3.5" />
                 Compartilhar
               </button>
 
               <button
                 onClick={handleSurpreendaMe}
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl border border-primary/30 bg-primary/5 text-primary hover:bg-primary/10 transition-all duration-200 cursor-pointer"
+                className="btn-premium inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl border border-primary/25 bg-primary/[0.04] text-primary hover:bg-primary/[0.08] hover:border-primary/40 transition-all duration-300"
               >
-                <Dices className="w-4 h-4" />
+                <Dices className="w-3.5 h-3.5" />
                 Surpreenda-me!
               </button>
 
               <Link
                 href={bibliaUrl}
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl bg-primary/10 text-primary hover:bg-primary/15 transition-all duration-200"
+                className="btn-premium inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-xl bg-primary/10 text-primary hover:bg-primary/15 transition-all duration-300"
               >
-                <BookOpen className="w-4 h-4" />
+                <BookOpen className="w-3.5 h-3.5" />
                 Ler capítulo
               </Link>
             </div>
           </div>
 
           {/* Decorative bottom accent */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         </div>
       </div>
     </motion.section>

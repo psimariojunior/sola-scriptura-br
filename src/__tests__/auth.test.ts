@@ -6,14 +6,15 @@
 import { authService, AuthService } from '@/lib/auth';
 
 const ADMIN = 'psi_mariojunior@hotmail.com';
+process.env.NEXT_PUBLIC_ADMIN_EMAILS = ADMIN;
 
-function mockFetchLogin(nome: string, email: string) {
+function mockFetchLogin(nome: string, email: string, role?: string) {
   (global as any).fetch = jest.fn(async (url: string) => {
     if (String(url).includes('/auth/login')) {
       return {
         ok: true,
         json: async () => ({
-          data: { accessToken: 'tok_123', refreshToken: 'ref_123', usuario: { id: 'u1', nome, email } },
+          data: { accessToken: 'tok_123', refreshToken: 'ref_123', usuario: { id: 'u1', nome, email, role } },
         }),
       };
     }
@@ -21,7 +22,22 @@ function mockFetchLogin(nome: string, email: string) {
       return {
         ok: true,
         json: async () => ({
-          data: { accessToken: 'tok_123', refreshToken: 'ref_123', usuario: { id: 'u1', nome, email } },
+          data: { accessToken: 'tok_123', refreshToken: 'ref_123', usuario: { id: 'u1', nome, email, role } },
+        }),
+      };
+    }
+    if (String(url).includes('/auth/cookie/clear')) {
+      try {
+        document.cookie = `ssb_token=; path=/; max-age=0`;
+        document.cookie = `ssb_usuario=; path=/; max-age=0`;
+      } catch {}
+      return { ok: true, json: async () => ({ message: 'ok' }) };
+    }
+    if (String(url).includes('/auth/refresh')) {
+      return {
+        ok: true,
+        json: async () => ({
+          data: { accessToken: 'tok_123', refreshToken: 'ref_123' },
         }),
       };
     }
@@ -49,7 +65,7 @@ describe('auth.ts', () => {
   });
 
   test('email de admin recebe role admin', async () => {
-    mockFetchLogin('Admin', ADMIN);
+    mockFetchLogin('Admin', ADMIN, 'admin');
     await authService.login(ADMIN, 'senha123');
     expect(authService.isAdmin()).toBe(true);
     expect(authService.getUsuario()?.role).toBe('admin');
@@ -77,6 +93,8 @@ describe('auth.ts', () => {
     await authService.login('teste@exemplo.com', 'senha123');
     expect(authService.isAutenticado()).toBe(true);
     await authService.logout();
+    // flush microtasks para que o .catch() do fetch fire-and-forget limpe os cookies
+    await new Promise(r => setTimeout(r, 0));
     expect(authService.isAutenticado()).toBe(false);
     expect(localStorage.getItem('accessToken')).toBeNull();
     expect(document.cookie).not.toContain('ssb_token=tok');

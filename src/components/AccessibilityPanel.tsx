@@ -78,7 +78,7 @@ export function AccessibilityPanel() {
 
   return (
     <>
-      <Button variant="ghost" size="icon" onClick={() => setIsOpen(true)} className="h-8 w-8">
+      <Button variant="ghost" size="icon" onClick={() => setIsOpen(true)} className="h-8 w-8" aria-label="Painel de acessibilidade">
         <Accessibility className="w-4 h-4" />
       </Button>
 
@@ -93,7 +93,7 @@ export function AccessibilityPanel() {
                 <Accessibility className="w-5 h-5 text-[var(--brand)]" />
                 <h3 className="font-semibold">Acessibilidade</h3>
               </div>
-              <button onClick={() => setIsOpen(false)} className="p-1.5 rounded-full hover:bg-[var(--surface-raised)]">
+              <button onClick={() => setIsOpen(false)} className="p-1.5 rounded-full hover:bg-[var(--surface-raised)]" aria-label="Fechar painel de acessibilidade">
                 <span className="text-lg">×</span>
               </button>
             </div>

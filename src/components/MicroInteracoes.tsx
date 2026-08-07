@@ -107,7 +107,7 @@ export function LikeButton({ liked: initialLiked = false, onToggle, count: initi
   };
 
   return (
-    <button className={`relative inline-flex items-center gap-1.5 ${className}`} onClick={toggle} aria-label={liked ? 'Unlike' : 'Like'}>
+    <button className={`relative inline-flex items-center gap-1.5 ${className}`} onClick={toggle} aria-label={liked ? 'Remover curtida' : 'Curtir'}>
       <div className="relative">
         <motion.div animate={liked ? { scale: [1, 1.4, 1] } : { scale: 1 }} transition={{ duration: 0.3, ease: 'easeOut' }}>
           <Heart className={`${size <= 16 ? 'w-4 h-4' : 'w-5 h-5'} transition-colors ${liked ? 'fill-rose-500 text-rose-500' : 'text-muted-foreground'}`} />
@@ -147,7 +147,7 @@ export function ShareButton({ onShare, className = '' }: ShareButtonProps) {
   };
 
   return (
-    <button className={`relative overflow-hidden inline-flex items-center justify-center w-9 h-9 rounded-lg hover:bg-muted/50 transition-colors ${className}`} onClick={handleClick} aria-label="Share">
+    <button className={`relative overflow-hidden inline-flex items-center justify-center w-9 h-9 rounded-lg hover:bg-muted/50 transition-colors ${className}`} onClick={handleClick} aria-label="Compartilhar">
       <Share2 className="w-4 h-4 text-muted-foreground" />
       <AnimatePresence>
         {ripples.map(r => (
@@ -211,7 +211,7 @@ export function StarRating({ value: initial = 0, onChange, max = 5, size = 20, r
   };
 
   return (
-    <div className={`inline-flex gap-0.5 ${readOnly ? '' : 'cursor-pointer'}`} role="radiogroup" aria-label="Rating">
+    <div className={`inline-flex gap-0.5 ${readOnly ? '' : 'cursor-pointer'}`} role="radiogroup" aria-label="Avaliação">
       {Array.from({ length: max }, (_, i) => (
         <motion.button
           key={i}
@@ -347,7 +347,7 @@ export function Toast({ message, type = 'info', visible, onClose, duration = 300
           {config.icon}
           <span>{message}</span>
           {onClose && (
-            <button onClick={onClose} className="ml-2 p-0.5 rounded hover:bg-black/10 transition-colors" aria-label="Close">
+            <button onClick={onClose} className="ml-2 p-0.5 rounded hover:bg-black/10 transition-colors" aria-label="Fechar">
               <X className="w-3.5 h-3.5" />
             </button>
           )}

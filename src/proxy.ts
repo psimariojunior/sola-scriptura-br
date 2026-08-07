@@ -15,7 +15,7 @@ const PUBLIC_ASSET_PREFIXES = [
   '/sounds/',
 ];
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Recursos estaticos nao exigem sessao

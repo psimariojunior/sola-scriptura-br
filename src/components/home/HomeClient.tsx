@@ -235,70 +235,107 @@ export default function HomeClient() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden bg-pattern-cross">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Header />
       <main id="main-content" className="relative">
-        <section className="relative pt-28 sm:pt-32 pb-20 sm:pb-24 px-4 sm:px-6 overflow-hidden">
-          <div className="hero-particles" aria-hidden="true" />
-          <div className="hero-aurora" aria-hidden="true" />
-          <div className="hero-divine-overlay" aria-hidden="true" />
+        {/* ═══════ HERO SECTION — Full viewport premium ═══════ */}
+        <section className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center px-4 sm:px-6 overflow-hidden">
+          {/* Animated gradient background */}
+          <div className="absolute inset-0" aria-hidden="true">
+            <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/[0.03]" />
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-primary/[0.04] blur-[120px] animate-[float_8s_ease-in-out_infinite]" />
+            <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-amber-500/[0.03] blur-[100px] animate-[float_10s_ease-in-out_infinite_1s]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.02] blur-[150px]" />
+          </div>
+          
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 opacity-[0.015]" aria-hidden="true"
+            style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, hsl(var(--primary)) 1px, transparent 0)', backgroundSize: '48px 48px' }} />
+
           <HeroParticles disabled={prefersReducedMotion} />
 
-          <motion.div style={{ opacity: heroOpacity, y: heroY }} className="max-w-6xl mx-auto text-center relative z-10 w-full">
-            <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="wordmark text-[2rem] leading-[0.95] sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] mb-6 heading-premium">
-              <span className="block">{t('landing.heroTitle1')}</span>
-              <span className="block"><span className="gradient-text-animated">{t('landing.heroTitle2')}</span><span className="text-foreground">,</span></span>
-              <span className="block italic text-foreground/85">{t('landing.heroTitle3')}</span>
+          <motion.div style={{ opacity: heroOpacity, y: heroY }} className="max-w-5xl mx-auto text-center relative z-10 w-full py-20">
+            {/* Premium badge */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.8 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/15 bg-primary/[0.04] mb-8 backdrop-blur-sm">
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-muted-foreground">100% Gratuito &bull; Sem Anúncios &bull; Offline</span>
+            </motion.div>
+
+            {/* Main heading — massive, dramatic */}
+            <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="wordmark text-[2.5rem] leading-[0.9] sm:text-7xl md:text-8xl lg:text-[6.5rem] xl:text-[7.5rem] mb-8 heading-premium">
+              <span className="block text-foreground/90">{t('landing.heroTitle1')}</span>
+              <span className="block"><span className="gradient-text-animated">{t('landing.heroTitle2')}</span><span className="text-foreground/90">,</span></span>
+              <span className="block italic text-foreground/70">{t('landing.heroTitle3')}</span>
             </motion.h1>
 
-            <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45, duration: 0.8 }}
-              className="font-sans text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8 px-2">
+            {/* Subtitle */}
+            <motion.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.8 }}
+              className="font-sans text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-12 px-4">
               {t('landing.heroDescription')}
             </motion.p>
 
-            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.6 }}
-              className="flex justify-center mb-10 sm:mb-12">
-              <Link href="/biblia" className="group relative inline-flex items-center gap-2.5 px-8 sm:px-10 py-3.5 sm:py-4 text-sm sm:text-[15px] font-semibold rounded-xl overflow-hidden transition-all duration-300"
-                style={{ background: 'linear-gradient(135deg, #f5cd6b 0%, #d4a843 50%, #b88a30 100%)', color: '#1c1300', boxShadow: '0 0 24px -4px rgba(212,168,67,0.4), 0 0 40px -8px rgba(212,168,67,0.2)' }}>
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                <span className="relative">{t('landing.startStudy')}</span>
-                <ArrowRight className="relative w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            {/* CTA Buttons — massive, premium */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+              <Link href="/biblia" 
+                className="group relative inline-flex items-center gap-3 px-10 sm:px-12 py-4 sm:py-5 text-base sm:text-lg font-semibold rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
+                style={{ background: 'linear-gradient(135deg, #f5cd6b 0%, #d4a843 50%, #b88a30 100%)', color: '#1c1300', boxShadow: '0 8px 40px -8px rgba(212,168,67,0.5), 0 0 80px -20px rgba(212,168,67,0.3)' }}>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                <BookOpen className="relative w-5 h-5" />
+                <span className="relative">Abrir a Bíblia</span>
+                <ArrowRight className="relative w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+              <Link href="/estudar"
+                className="group inline-flex items-center gap-3 px-10 sm:px-12 py-4 sm:py-5 text-base sm:text-lg font-semibold rounded-2xl border-2 border-primary/20 bg-primary/[0.03] hover:bg-primary/[0.08] hover:border-primary/40 transition-all duration-500 backdrop-blur-sm hover:scale-[1.02]">
+                <Sparkles className="w-5 h-5 text-primary" />
+                <span>Explorar Estudos</span>
               </Link>
             </motion.div>
 
+            {/* Rotating verse */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.0, duration: 1.2 }}>
               <RotatingVerse />
             </motion.div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} transition={{ delay: 1.6, duration: 1 }} className="absolute bottom-6 left-1/2 -translate-x-1/2">
-            <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }} className="flex flex-col items-center gap-1">
-              <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Scroll</span>
-              <ChevronDown className="w-4 h-4 text-muted-foreground" />
+          {/* Scroll indicator */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.6 }} transition={{ delay: 2.0, duration: 1 }} className="absolute bottom-8 left-1/2 -translate-x-1/2">
+            <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }} className="flex flex-col items-center gap-2">
+              <span className="text-[9px] uppercase tracking-[0.4em] text-muted-foreground font-medium">Explorar</span>
+              <div className="w-6 h-10 rounded-full border-2 border-border/40 flex items-start justify-center p-1.5">
+                <motion.div animate={{ y: [0, 12, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }} className="w-1.5 h-1.5 rounded-full bg-primary/60" />
+              </div>
             </motion.div>
           </motion.div>
         </section>
 
-        <VerseDoDia />
-        <ContinuarLeitura />
-        <div className="px-4 sm:px-6 max-w-3xl mx-auto -mt-2 mb-4">
-          <StreakCard />
+        {/* ═══════ VERSE + READING SECTION ═══════ */}
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/[0.01] to-background pointer-events-none" />
+          <VerseDoDia />
+          <ContinuarLeitura />
+          <div className="px-4 sm:px-6 max-w-3xl mx-auto -mt-2 mb-4 relative z-10">
+            <StreakCard />
+          </div>
+          <WordOfDayWidget />
         </div>
-        <WordOfDayWidget />
 
-        <section className="relative py-6 sm:py-8 px-4 sm:px-6" aria-label="Destaques do Sola Scriptura">
-          <div className="max-w-5xl mx-auto">
+        {/* ═══════ SOCIAL PROOF — trust indicators ═══════ */}
+        <section className="relative py-10 sm:py-14 px-4 sm:px-6" aria-label="Destaques do Sola Scriptura">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent pointer-events-none" />
+          <div className="max-w-5xl mx-auto relative z-10">
             <ScrollReveal>
-              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-10">
+              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 sm:gap-x-12">
                 {provasSociais.map((p, i) => {
                   const Icon = p.icon;
                   return (
-                    <motion.div key={p.label} initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 + i * 0.08, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-                      className="flex items-center gap-2 text-muted-foreground">
+                    <motion.div key={p.label} initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.1 + i * 0.1, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      className="flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/30 bg-card/40 backdrop-blur-sm">
                       <Icon className="w-4 h-4 text-primary" strokeWidth={1.75} />
-                      <span className="text-sm font-medium tracking-tight">{p.label}</span>
+                      <span className="text-sm font-semibold tracking-tight">{p.label}</span>
                     </motion.div>
                   );
                 })}
@@ -307,21 +344,32 @@ export default function HomeClient() {
           </div>
         </section>
 
-        <section className="relative py-16 sm:py-20 px-4 sm:px-6 border-y border-border/30 bg-card/30" aria-label="Estatísticas do Sola Scriptura">
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.03) 0%, transparent 70%)' }} />
+        {/* ═══════ STATS — dramatic counters ═══════ */}
+        <section className="relative py-20 sm:py-28 px-4 sm:px-6 overflow-hidden" aria-label="Estatísticas do Sola Scriptura">
+          <div className="absolute inset-0" aria-hidden="true">
+            <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/[0.03] to-background" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
           </div>
           <div className="max-w-6xl mx-auto relative z-10">
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-4">
+            <ScrollReveal>
+              <div className="text-center mb-14">
+                <p className="eyebrow-label">Recursos</p>
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light heading-premium">
+                  Tudo que você precisa para <span className="italic text-primary">estudar a Bíblia</span>
+                </h2>
+              </div>
+            </ScrollReveal>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
               {stats.map((stat, i) => (
-                <ScrollReveal key={stat.labelKey} delay={i * 0.06}>
-                  <div className="stat-card text-center p-4 sm:p-5 rounded-2xl border border-border/30 bg-card/50 backdrop-blur-sm relative group hover:border-primary/20 hover:bg-card/70 transition-all duration-500">
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
-                      style={{ background: 'radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.06) 0%, transparent 60%)' }} />
-                    <p className="font-display text-2xl sm:text-3xl md:text-4xl font-light tracking-tight relative text-primary/80">
+                <ScrollReveal key={stat.labelKey} delay={i * 0.08}>
+                  <div className="text-center p-6 sm:p-7 rounded-2xl border border-border/30 bg-card/50 backdrop-blur-sm relative group hover:border-primary/25 hover:bg-card/70 hover:shadow-xl hover:shadow-primary/[0.04] transition-all duration-500">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-2xl"
+                      style={{ background: 'radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.08) 0%, transparent 60%)' }} />
+                    <p className="font-display text-3xl sm:text-4xl md:text-5xl font-light tracking-tight relative text-primary/80 mb-2">
                       <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                     </p>
-                    <p className="text-[10px] sm:text-[11px] text-muted-foreground uppercase tracking-wider mt-2 font-medium">{t(stat.labelKey)}</p>
+                    <p className="text-[11px] sm:text-xs text-muted-foreground uppercase tracking-wider font-medium">{t(stat.labelKey)}</p>
                   </div>
                 </ScrollReveal>
               ))}

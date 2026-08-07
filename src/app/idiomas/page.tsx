@@ -2,12 +2,48 @@
 
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { Languages, Search, BookOpen, Sparkles } from 'lucide-react';
+import { Languages, Search, BookOpen, Sparkles, Volume2, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { romanizeHebrew } from '@/lib/hebrewRomanize';
+
+interface LexiconWord {
+  strong: string;
+  palavra: string;
+  transliteracao: string;
+  definicao: string;
+  lingua: 'grego' | 'hebraico';
+  definicaoResumida?: string;
+  categoria?: string;
+  morphologia?: string;
+  morfologia?: string;
+  frequencia?: number;
+}
+
+function usePronunciation() {
+  const [speaking, setSpeaking] = useState<string | null>(null);
+
+  const pronounce = useCallback((text: string, lang: 'grego' | 'hebraico') => {
+    if (!('speechSynthesis' in window)) return;
+    
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang === 'grego' ? 'el-GR' : 'he-IL';
+    utterance.rate = 0.7;
+    utterance.pitch = 1;
+    
+    const id = `${lang}-${text}`;
+    setSpeaking(id);
+    utterance.onend = () => setSpeaking(null);
+    utterance.onerror = () => setSpeaking(null);
+    
+    window.speechSynthesis.speak(utterance);
+  }, []);
+
+  return { speaking, pronounce };
+}
 
 interface LexiconWord {
   strong: string;
@@ -28,6 +64,7 @@ export default function IdiomasPage() {
   const [filter, setFilter] = useState<'all' | 'grego' | 'hebraico'>('all');
   const [allWords, setAllWords] = useState<LexiconWord[]>([]);
   const [loading, setLoading] = useState(true);
+  const { speaking, pronounce } = usePronunciation();
 
   useEffect(() => {
     Promise.all([
@@ -163,9 +200,21 @@ export default function IdiomasPage() {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="flex items-start justify-between mb-3">
-                    <div>
+                    <div className="flex items-center gap-3">
                       <span className="text-2xl font-serif">{word.palavra}</span>
-                      <p className="text-sm text-muted-foreground italic">{word.lingua === 'hebraico' ? romanizeHebrew(word.transliteracao || word.palavra) : word.transliteracao}</p>
+                      <button
+                        onClick={() => pronounce(word.palavra, word.lingua)}
+                        disabled={speaking === `${word.lingua}-${word.palavra}`}
+                        className="p-1.5 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-200 disabled:opacity-50"
+                        aria-label={`Ouvir pronúncia de ${word.palavra}`}
+                        title="Ouvir pronúncia"
+                      >
+                        {speaking === `${word.lingua}-${word.palavra}` ? (
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        ) : (
+                          <Volume2 className="w-3.5 h-3.5" />
+                        )}
+                      </button>
                     </div>
                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
                       word.lingua === 'grego' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400' : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'
@@ -173,6 +222,7 @@ export default function IdiomasPage() {
                       {word.lingua === 'grego' ? 'GREGO' : 'HEBRAICO'}
                     </span>
                   </div>
+                  <p className="text-sm text-muted-foreground italic mb-2">{word.lingua === 'hebraico' ? romanizeHebrew(word.transliteracao || word.palavra) : word.transliteracao}</p>
                   <p className="text-sm text-foreground/80 leading-relaxed mb-3">{word.definicao}</p>
                   <div className="flex items-center gap-3 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">

@@ -10,6 +10,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
 import { carregarLexicoGrego, carregarLexicoHebraico } from '@/lib/lexicon-lazy';
 import { romanizeHebrew } from '@/lib/hebrewRomanize';
+import { AudioPronunciation } from '@/components/AudioPronunciation';
 import type { PalavraGrega } from '@/data/lexicon/grego';
 import type { PalavraHebraica } from '@/data/lexicon/hebraico';
 
@@ -101,7 +102,7 @@ export default function PalavrasOriginaisPage() {
               <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-rose-500/20 to-pink-500/20 flex items-center justify-center border border-rose-500/20">
                 <Languages className="w-10 h-10 text-rose-500" />
               </div>
-              <h1 className="font-display text-4xl font-light mb-3">{t('palavras.title1')} <span className="text-primary italic">{t('palavras.title2')}</span></h1>
+              <h1 className="font-display text-2xl sm:text-4xl font-light mb-3">{t('palavras.title1')} <span className="text-primary italic">{t('palavras.title2')}</span></h1>
               <p className="text-muted-foreground max-w-lg mx-auto">
                 {t('palavras.pageSubtitle', { greekCount: carregando ? '...' : palavrasGregas.length, hebrewCount: carregando ? '...' : palavrasHebraicas.length })}
               </p>
@@ -245,6 +246,13 @@ export default function PalavrasOriginaisPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="text-lg">{p.palavra}</span>
+                        <AudioPronunciation
+                          palavra={p.palavra}
+                          strong={p.strong}
+                          lingua={idioma === 'hebraico' ? 'hebraico' : 'grego'}
+                          transliteracao={p.transliteracao}
+                          size="sm"
+                        />
                         <span className="text-sm text-muted-foreground">({idioma === 'hebraico' ? romanizeHebrew(p.transliteracao || p.palavra) : p.transliteracao})</span>
                         {freq > 0 && (
                           <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 font-medium">×{freq}</span>

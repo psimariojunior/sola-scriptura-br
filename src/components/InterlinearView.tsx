@@ -6,6 +6,7 @@ import { X, BookOpen } from 'lucide-react';
 import { getStrongByNumber, type LexiconEntry } from '@/lib/lexiconSearch';
 import { alinharVersiculo, type PalavraAlinhada } from '@/lib/wordAlignment';
 import { romanizeHebrew } from '@/lib/hebrewRomanize';
+import { AudioPronunciation } from '@/components/AudioPronunciation';
 
 interface VersiculoInput {
   numero: number;
@@ -84,9 +85,18 @@ function DetalhePalavra({ strong, onClose }: { strong: string; onClose: () => vo
 
         <div className="text-center mb-3">
           <p className={`text-2xl font-bold ${isHebrew ? 'font-hebrew' : 'font-greek'}`} style={{ color: 'var(--content-primary)' }}>{entry.palavra}</p>
-          <p className="text-xs italic" style={{ color: 'var(--content-muted)' }}>
-            {isHebrew ? romanizeHebrew(entry.transliteracao || entry.palavra) : entry.transliteracao}
-          </p>
+          <div className="flex items-center justify-center gap-2 mt-1">
+            <p className="text-xs italic" style={{ color: 'var(--content-muted)' }}>
+              {isHebrew ? romanizeHebrew(entry.transliteracao || entry.palavra) : entry.transliteracao}
+            </p>
+            <AudioPronunciation
+              palavra={entry.palavra}
+              strong={strong}
+              lingua={isHebrew ? 'hebraico' : 'grego'}
+              transliteracao={entry.transliteracao}
+              size="sm"
+            />
+          </div>
         </div>
 
         {(categoria || morphologia) && (

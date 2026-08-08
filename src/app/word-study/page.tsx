@@ -8,6 +8,7 @@ import { BookOpen, Search, X, Hash, TrendingUp, BarChart3, Languages, Volume2, C
 import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
 import { carregarLexicoGrego, carregarLexicoHebraico } from '@/lib/lexicon-lazy';
+import { AudioPronunciation } from '@/components/AudioPronunciation';
 import type { PalavraGrega } from '@/data/lexicon/grego';
 import type { PalavraHebraica } from '@/data/lexicon/hebraico';
 
@@ -60,7 +61,7 @@ export default function WordStudyPage() {
               <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center border border-violet-500/20">
                 <BookOpen className="w-10 h-10 text-violet-500" />
               </div>
-              <h1 className="font-display text-4xl font-light mb-3">Word <span className="text-primary italic">Study</span></h1>
+              <h1 className="font-display text-2xl sm:text-4xl font-light mb-3">Word <span className="text-primary italic">Study</span></h1>
               <p className="text-muted-foreground max-w-lg mx-auto">Estudo completo de palavras originais — ocorrências, frequência, morfologia e uso bíblico</p>
             </div>
           </ScrollReveal>
@@ -133,7 +134,16 @@ export default function WordStudyPage() {
                   <div className="px-6 py-5 border-b border-border/40 bg-muted/20">
                     <div className="flex items-start justify-between">
                       <div>
-                        <h2 className="text-3xl font-display font-light mb-1">{selectedWord.palavra}</h2>
+                        <div className="flex items-center gap-3 mb-1">
+                          <h2 className="text-3xl font-display font-light">{selectedWord.palavra}</h2>
+                          <AudioPronunciation
+                            palavra={selectedWord.palavra}
+                            strong={selectedWord.strong}
+                            lingua={idioma === 'hebraico' ? 'hebraico' : 'grego'}
+                            transliteracao={selectedWord.transliteracao}
+                            size="sm"
+                          />
+                        </div>
                         <p className="text-sm text-muted-foreground">{selectedWord.transliteracao}</p>
                       </div>
                       <div className="text-right">

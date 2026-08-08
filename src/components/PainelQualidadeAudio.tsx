@@ -19,12 +19,14 @@ interface PainelQualidadeAudioProps {
 }
 
 const TEXTO_TESTE = 'No princípio, Deus criou os céus e a terra. A terra era sem forma e vazia, e o Espírito de Deus pairava sobre as águas.';
+const TEXTO_TESTE_EN = 'In the beginning, God created the heavens and the earth. The earth was without form and void, and darkness was over the face of the deep.';
 
 export function PainelQualidadeAudio({ open, onOpenChange }: PainelQualidadeAudioProps) {
   const [vozes, setVozes] = useState<SpeechSynthesisVoice[]>([]);
   const [vozSelecionada, setVozSelecionada] = useState<string>('');
   const [config, setConfig] = useState<VozConfig>(obterConfigVoz());
   const [tocando, setTocando] = useState(false);
+  const [linguaTeste, setLinguaTeste] = useState<'pt' | 'en'>('pt');
   const synthRef = useRef<SpeechSynthesis | null>(null);
 
   useEffect(() => {
@@ -55,10 +57,12 @@ export function PainelQualidadeAudio({ open, onOpenChange }: PainelQualidadeAudi
         setTocando(true);
         const vozGenero = config.preferGender === 'masculino' ? 'masculina' : 'feminina';
         const rateStr = config.rate >= 1 ? `+${Math.round((config.rate - 1) * 100)}%` : `-${Math.round((1 - config.rate) * 100)}%`;
+        const textoTesteLingua = linguaTeste === 'en' ? TEXTO_TESTE_EN : TEXTO_TESTE;
         const buffer = await gerarAudioEdge({
-          texto: TEXTO_TESTE,
+          texto: textoTesteLingua,
           voz: vozGenero,
           vozCustom: config.vozEdgeTTS !== 'pt-BR-FranciscaNeural' ? config.vozEdgeTTS : undefined,
+          lingua: linguaTeste,
           rate: rateStr,
         });
         const blob = new Blob([buffer], { type: 'audio/mpeg' });
@@ -89,7 +93,7 @@ export function PainelQualidadeAudio({ open, onOpenChange }: PainelQualidadeAudi
     utter.onerror = () => setTocando(false);
 
     synthRef.current.speak(utter);
-  }, [vozSelecionada, config, vozes]);
+  }, [vozSelecionada, config, vozes, linguaTeste]);
 
   const parar = useCallback(() => {
     if (synthRef.current) {
@@ -297,10 +301,10 @@ export function PainelQualidadeAudio({ open, onOpenChange }: PainelQualidadeAudi
               <div>
                 <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-1.5">
                   <Sparkles className="w-4 h-4" />
-                  Voz Edge TTS (Neural)
+                  Voz Edge TTS (Neural) — Português
                 </h3>
                 <p className="text-xs text-muted-foreground mb-3">
-                  Vozes neurais Microsoft de alta qualidade, gratuitas.
+                  Vozes neurais Microsoft de alta qualidade, gratuitas para PT-BR.
                 </p>
                 <div className="grid grid-cols-2 gap-2">
                   {[
@@ -308,6 +312,39 @@ export function PainelQualidadeAudio({ open, onOpenChange }: PainelQualidadeAudi
                     { id: 'pt-BR-ThalitaNeural', label: 'Thalita', desc: 'Feminina, jovem' },
                     { id: 'pt-BR-AntonioNeural', label: 'Antonio', desc: 'Masculino, sereno' },
                     { id: 'pt-BR-DonatoNeural', label: 'Donato', desc: 'Masculino, formal' },
+                  ].map((v) => (
+                    <button
+                      key={v.id}
+                      onClick={() => salvarConfig({ vozEdgeTTS: v.id })}
+                      className={`p-3 rounded-lg border text-left transition-all ${
+                        config.vozEdgeTTS === v.id
+                          ? 'border-primary bg-primary/10'
+                          : 'border-border hover:border-primary/30'
+                      }`}
+                    >
+                      <div className="text-sm font-medium">{v.label}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">{v.desc}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {(config.motor === 'edge-tts' || config.motor === 'auto') && (
+              <div>
+                <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-1.5">
+                  <Sparkles className="w-4 h-4" />
+                  Voz Edge TTS (Neural) — Inglês
+                </h3>
+                <p className="text-xs text-muted-foreground mb-3">
+                  Vozes neurais Microsoft para traduções KJV e WEB.
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { id: 'en-US-JennyNeural', label: 'Jenny', desc: 'Feminina, clara' },
+                    { id: 'en-US-AriaNeural', label: 'Aria', desc: 'Feminina, expressiva' },
+                    { id: 'en-US-GuyNeural', label: 'Guy', desc: 'Masculino, natural' },
+                    { id: 'en-US-ChristopherNeural', label: 'Christopher', desc: 'Masculino, profundo' },
                   ].map((v) => (
                     <button
                       key={v.id}
@@ -337,6 +374,21 @@ export function PainelQualidadeAudio({ open, onOpenChange }: PainelQualidadeAudi
           </div>
 
           <div className="flex items-center gap-2 p-4 border-t border-border bg-muted/30">
+            <div className="flex items-center gap-1 bg-muted rounded-lg p-1">
+              {(['pt', 'en'] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLinguaTeste(l)}
+                  className={`px-3 py-1.5 text-xs rounded-md transition-all ${
+                    linguaTeste === l
+                      ? 'bg-primary text-primary-foreground font-medium'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {l === 'pt' ? 'PT-BR' : 'EN-US'}
+                </button>
+              ))}
+            </div>
             <button
               onClick={tocando ? parar : testarVoz}
               className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm transition-all ${

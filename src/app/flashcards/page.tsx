@@ -213,7 +213,7 @@ export default function FlashcardsPage() {
                   { label: 'Domínio', value: stats.known, color: 'text-green-500', bg: 'bg-green-500/10' },
                 ].map(s => (
                   <div key={s.label} className={`${s.bg} rounded-xl p-5 text-center`}>
-                    <p className={`font-display text-4xl font-light ${s.color}`}>{s.value}</p>
+                    <p className={`font-display text-2xl sm:text-4xl font-light ${s.color}`}>{s.value}</p>
                     <p className="text-xs text-[var(--muted-fg)] mt-1">{s.label}</p>
                   </div>
                 ))}

@@ -2774,8 +2774,11 @@ textarea:focus-visible,
   main {
     padding-bottom: max(var(--mobile-bottom-offset), 1rem);
   }
-  /* Sobrescrever pb-16 nas paginas para incluir espaco do BottomNavBar + safe area */
-  main[class*="pb-16"] {
+  /* Sobrescrever pb-16, pb-20, pb-24, pb-32 nas paginas para incluir espaco do BottomNavBar + safe area */
+  main[class*="pb-16"],
+  main[class*="pb-20"],
+  main[class*="pb-24"],
+  main[class*="pb-32"] {
     padding-bottom: var(--mobile-bottom-offset) !important;
   }
 }

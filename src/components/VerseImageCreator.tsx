@@ -108,6 +108,51 @@ function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: numbe
   ctx.closePath();
 }
 
+function drawLogo(ctx: CanvasRenderingContext2D, x: number, y: number, size: number, color: string) {
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.strokeStyle = color;
+  ctx.lineWidth = size * 0.06;
+  ctx.lineCap = 'round';
+
+  // Book shape
+  const bw = size * 0.7;
+  const bh = size * 0.5;
+  const bx = x - bw / 2;
+  const by = y - bh / 2;
+
+  // Book cover
+  ctx.beginPath();
+  ctx.moveTo(bx + bw * 0.05, by);
+  ctx.lineTo(bx + bw * 0.48, by);
+  ctx.quadraticCurveTo(bx + bw * 0.5, by + bh * 0.08, bx + bw * 0.48, by + bh * 0.15);
+  ctx.lineTo(bx + bw * 0.05, by + bh);
+  ctx.quadraticCurveTo(bx, by + bh * 0.92, bx + bw * 0.05, by);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.moveTo(bx + bw * 0.95, by);
+  ctx.lineTo(bx + bw * 0.52, by);
+  ctx.quadraticCurveTo(bx + bw * 0.5, by + bh * 0.08, bx + bw * 0.52, by + bh * 0.15);
+  ctx.lineTo(bx + bw * 0.95, by + bh);
+  ctx.quadraticCurveTo(bx + bw, by + bh * 0.92, bx + bw * 0.95, by);
+  ctx.fill();
+
+  // Cross on the book
+  const crossSize = size * 0.22;
+  const cx = x;
+  const cy = y + bh * 0.05;
+  ctx.lineWidth = size * 0.05;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - crossSize * 0.5);
+  ctx.lineTo(cx, cy + crossSize * 0.5);
+  ctx.moveTo(cx - crossSize * 0.35, cy - crossSize * 0.1);
+  ctx.lineTo(cx + crossSize * 0.35, cy - crossSize * 0.1);
+  ctx.stroke();
+
+  ctx.restore();
+}
+
 function hexToRgba(hex: string, alpha: number): string {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
@@ -198,11 +243,14 @@ function drawClassico(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, 
     ctx.stroke();
   }
 
-  // Watermark
+  // Watermark with logo
   if (opts.showLogo) {
+    drawLogo(ctx, w / 2, h - 125, 36, 'rgba(212,168,67,0.5)');
     ctx.fillStyle = 'rgba(212,168,67,0.5)';
-    ctx.font = '600 20px -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif';
-    ctx.fillText('SOLA SCRIPTURA', w / 2, h - 110);
+    ctx.font = '600 16px -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif';
+    ctx.fillText('SOLA SCRIPTURA', w / 2, h - 95);
+    ctx.font = '400 11px -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif';
+    ctx.fillText('solascripturabr.com.br', w / 2, h - 78);
   }
 }
 
@@ -258,11 +306,15 @@ function drawMinimalista(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElemen
   ctx.lineTo(w / 2 + 60, h - 120);
   ctx.stroke();
 
-  // Watermark
+  // Watermark with logo
   if (opts.showLogo) {
-    ctx.fillStyle = hexToRgba(opts.bgColor, 0.25);
-    ctx.font = '500 18px "Helvetica Neue", Helvetica, Arial, sans-serif';
-    ctx.fillText('SOLA SCRIPTURA', w / 2, h - 85);
+    const watermarkColor = hexToRgba(opts.bgColor, 0.25);
+    drawLogo(ctx, w / 2, h - 100, 28, watermarkColor);
+    ctx.fillStyle = watermarkColor;
+    ctx.font = '500 14px "Helvetica Neue", Helvetica, Arial, sans-serif';
+    ctx.fillText('SOLA SCRIPTURA', w / 2, h - 75);
+    ctx.font = '400 10px "Helvetica Neue", Helvetica, Arial, sans-serif';
+    ctx.fillText('solascripturabr.com.br', w / 2, h - 60);
   }
 }
 
@@ -361,11 +413,14 @@ function drawPergaminho(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement
     ctx.stroke();
   }
 
-  // Watermark
+  // Watermark with logo
   if (opts.showLogo) {
+    drawLogo(ctx, w / 2, h - 120, 28, 'rgba(139,105,20,0.4)');
     ctx.fillStyle = 'rgba(139,105,20,0.4)';
-    ctx.font = '600 18px Georgia, serif';
-    ctx.fillText('SOLA SCRIPTURA', w / 2, h - 105);
+    ctx.font = '600 14px Georgia, serif';
+    ctx.fillText('SOLA SCRIPTURA', w / 2, h - 95);
+    ctx.font = '400 10px Georgia, serif';
+    ctx.fillText('solascripturabr.com.br', w / 2, h - 80);
   }
 }
 
@@ -438,11 +493,14 @@ function drawGradient(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, 
     ctx.stroke();
   }
 
-  // Watermark
+  // Watermark with logo
   if (opts.showLogo) {
+    drawLogo(ctx, w / 2, h - 120, 28, 'rgba(255,255,255,0.35)');
     ctx.fillStyle = 'rgba(255,255,255,0.35)';
-    ctx.font = '600 18px -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif';
-    ctx.fillText('SOLA SCRIPTURA', w / 2, h - 105);
+    ctx.font = '600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif';
+    ctx.fillText('SOLA SCRIPTURA', w / 2, h - 95);
+    ctx.font = '400 10px -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif';
+    ctx.fillText('solascripturabr.com.br', w / 2, h - 80);
   }
 }
 
@@ -539,11 +597,14 @@ function drawNatureza(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, 
     ctx.stroke();
   }
 
-  // Watermark
+  // Watermark with logo
   if (opts.showLogo) {
+    drawLogo(ctx, w / 2, h - 120, 28, 'rgba(134,239,172,0.4)');
     ctx.fillStyle = 'rgba(134,239,172,0.4)';
-    ctx.font = '600 18px -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif';
-    ctx.fillText('SOLA SCRIPTURA', w / 2, h - 105);
+    ctx.font = '600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif';
+    ctx.fillText('SOLA SCRIPTURA', w / 2, h - 95);
+    ctx.font = '400 10px -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif';
+    ctx.fillText('solascripturabr.com.br', w / 2, h - 80);
   }
 }
 

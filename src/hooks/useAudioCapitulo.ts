@@ -13,6 +13,7 @@ interface UseAudioCapituloOptions {
   versiculos: VersiculoAudio[];
   voz?: 'feminina' | 'masculina';
   velocidade?: number;
+  traducao?: string;
 }
 
 interface AudioState {
@@ -50,11 +51,13 @@ interface UseAudioCapituloReturn {
   setAnnounceVerseNumbers: (v: boolean) => void;
 }
 
+const TRADUCOES_EN = new Set(['KJV', 'WEB']);
+
 function useAudioCapituloImpl(
   livroAbreviacao: string,
   capitulo: number,
   versiculos: VersiculoAudio[],
-  options?: { voz?: 'feminina' | 'masculina'; velocidade?: number }
+  options?: { voz?: 'feminina' | 'masculina'; velocidade?: number; traducao?: string }
 ): UseAudioCapituloReturn {
   const [state, setState] = useState<AudioState>({
     status: 'idle',
@@ -76,6 +79,8 @@ function useAudioCapituloImpl(
   const isPlayingRef = useRef(false);
   const queueRef = useRef<VersiculoAudio[]>([]);
 
+  const lingua = options?.traducao && TRADUCOES_EN.has(options.traducao.toUpperCase()) ? 'en' : 'pt';
+
   const gerarAudio = useCallback(async (texto: string): Promise<string | null> => {
     try {
       const res = await fetch('/api/audio/edge', {
@@ -84,6 +89,7 @@ function useAudioCapituloImpl(
         body: JSON.stringify({
           texto,
           voz,
+          lingua,
           rate: velocidade === 1 ? '+0%' : velocidade < 1 ? `-${Math.round((1 - velocidade) * 100)}%` : `+${Math.round((velocidade - 1) * 100)}%`,
         }),
       });
@@ -109,7 +115,7 @@ function useAudioCapituloImpl(
       if (!audioBase64) return null;
       return `data:audio/mpeg;base64,${audioBase64}`;
     } catch (e) { console.error('[audio:gerar-audio-capitulo]', e); return null; }
-  }, [voz, velocidade]);
+  }, [voz, velocidade, lingua]);
 
   const playVersiculo = useCallback(async (v: VersiculoAudio): Promise<void> => {
     if (!isPlayingRef.current) return;
@@ -229,8 +235,8 @@ function extrairArgs(
   livroAbreviacaoOrOptions: string | UseAudioCapituloOptions,
   capitulo?: number,
   versiculos?: VersiculoAudio[],
-  options?: { voz?: 'feminina' | 'masculina'; velocidade?: number }
-): { livro: string; cap: number; vers: VersiculoAudio[]; opts: { voz?: 'feminina' | 'masculina'; velocidade?: number } } {
+  options?: { voz?: 'feminina' | 'masculina'; velocidade?: number; traducao?: string }
+): { livro: string; cap: number; vers: VersiculoAudio[]; opts: { voz?: 'feminina' | 'masculina'; velocidade?: number; traducao?: string } } {
   if (typeof livroAbreviacaoOrOptions === 'string') {
     return { livro: livroAbreviacaoOrOptions, cap: capitulo ?? 1, vers: versiculos ?? [], opts: options ?? {} };
   }
@@ -238,7 +244,11 @@ function extrairArgs(
     livro: livroAbreviacaoOrOptions.livroAbreviacao,
     cap: livroAbreviacaoOrOptions.capitulo,
     vers: livroAbreviacaoOrOptions.versiculos,
-    opts: { voz: livroAbreviacaoOrOptions.voz, velocidade: livroAbreviacaoOrOptions.velocidade },
+    opts: {
+      voz: livroAbreviacaoOrOptions.voz,
+      velocidade: livroAbreviacaoOrOptions.velocidade,
+      traducao: livroAbreviacaoOrOptions.traducao,
+    },
   };
 }
 
@@ -246,7 +256,7 @@ export function useAudioCapitulo(
   livroAbreviacaoOrOptions: string | UseAudioCapituloOptions,
   capitulo?: number,
   versiculos?: VersiculoAudio[],
-  options?: { voz?: 'feminina' | 'masculina'; velocidade?: number }
+  options?: { voz?: 'feminina' | 'masculina'; velocidade?: number; traducao?: string }
 ): UseAudioCapituloReturn {
   const { livro, cap, vers, opts } = extrairArgs(livroAbreviacaoOrOptions, capitulo, versiculos, options);
   return useAudioCapituloImpl(livro, cap, vers, opts);

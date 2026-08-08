@@ -20,6 +20,17 @@ const VOZES_PT = {
   ],
 };
 
+const VOZES_EN = {
+  feminina: [
+    'en-US-JennyNeural',
+    'en-US-AriaNeural',
+  ],
+  masculina: [
+    'en-US-GuyNeural',
+    'en-US-ChristopherNeural',
+  ],
+};
+
 interface AudioEdgeRequest {
   texto: string;
   voz?: 'feminina' | 'masculina';
@@ -27,6 +38,7 @@ interface AudioEdgeRequest {
   rate?: string;
   pitch?: string;
   volume?: string;
+  lingua?: 'pt' | 'en';
 }
 
 export async function POST(request: NextRequest) {
@@ -43,7 +55,7 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  const { texto, voz = 'feminina', vozCustom, rate = '+0%', pitch = '+0Hz', volume = '+0%' } = body;
+  const { texto, voz = 'feminina', vozCustom, rate = '+0%', pitch = '+0Hz', volume = '+0%', lingua = 'pt' } = body;
 
   if (!texto || texto.trim().length < 1) {
     return new Response(JSON.stringify({ erro: 'Texto vazio' }), {
@@ -59,7 +71,10 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  const vozFinal = vozCustom || (voz === 'masculina' ? 'pt-BR-AntonioNeural' : 'pt-BR-FranciscaNeural');
+  const vozFinal = vozCustom || (lingua === 'en'
+    ? (voz === 'masculina' ? VOZES_EN.masculina[0] : VOZES_EN.feminina[0])
+    : (voz === 'masculina' ? VOZES_PT.masculina[0] : VOZES_PT.feminina[0])
+  );
 
   const tempId = randomUUID();
   const tempFile = path.join(tmpdir(), `edge-tts-${tempId}.mp3`);
@@ -76,7 +91,7 @@ export async function POST(request: NextRequest) {
 
         const tts = new EdgeTTS({
           voice: vozFinal,
-          lang: 'pt-BR',
+          lang: lingua === 'en' ? 'en-US' : 'pt-BR',
           outputFormat: 'audio-24khz-96kbitrate-mono-mp3',
           rate,
           pitch,
@@ -142,10 +157,16 @@ export async function GET() {
   return new Response(
     JSON.stringify({
       servico: 'Microsoft Edge TTS (Streaming)',
-      descricao: 'TTS neural de alta qualidade em PT-BR, com streaming SSE',
+      descricao: 'TTS neural de alta qualidade em PT-BR e EN-US, com streaming SSE',
       vozes: {
-        feminina: VOZES_PT.feminina,
-        masculina: VOZES_PT.masculina,
+        pt: {
+          feminina: VOZES_PT.feminina,
+          masculina: VOZES_PT.masculina,
+        },
+        en: {
+          feminina: VOZES_EN.feminina,
+          masculina: VOZES_EN.masculina,
+        },
       },
       parametros: {
         texto: 'string (obrigatório, máx 5000 chars)',
@@ -154,10 +175,11 @@ export async function GET() {
         rate: 'string (ex: "+10%", "-20%")',
         pitch: 'string (ex: "+5Hz", "-10Hz")',
         volume: 'string (ex: "+10%", "-50%")',
+        lingua: "'pt' | 'en' (padrão: 'pt')",
       },
       formato_resposta: 'text/event-stream com eventos: status, progresso, audio, fim, erro',
       gratuito: true,
-      nota: 'Usa as vozes neurais do Microsoft Edge. Sem chave de API.',
+      nota: 'Usa as vozes neurais do Microsoft Edge. Sem chave de API. Suporta PT-BR e EN-US.',
     }),
     { headers: { 'Content-Type': 'application/json' } }
   );

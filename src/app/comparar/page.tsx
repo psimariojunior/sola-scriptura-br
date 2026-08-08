@@ -129,7 +129,7 @@ export default function CompararPage() {
               <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center border border-cyan-500/20">
                 <Languages className="w-10 h-10 text-cyan-500" />
               </div>
-              <h1 className="font-display text-4xl font-light mb-3">Comparar <span className="text-primary italic">Traduções</span></h1>
+              <h1 className="font-display text-2xl sm:text-4xl font-light mb-3">Comparar <span className="text-primary italic">Traduções</span></h1>
               <p className="text-muted-foreground max-w-lg mx-auto">Veja o mesmo versículo em diferentes traduções lado a lado</p>
             </div>
           </ScrollReveal>

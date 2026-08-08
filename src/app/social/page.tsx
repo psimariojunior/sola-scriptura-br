@@ -119,7 +119,7 @@ export default function SocialPage() {
               <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center border border-purple-500/20">
                 <Users className="w-10 h-10 text-purple-500" />
               </div>
-              <h1 className="font-display text-4xl font-light mb-3">Leitura <span className="text-primary italic">Social</span></h1>
+              <h1 className="font-display text-2xl sm:text-4xl font-light mb-3">Leitura <span className="text-primary italic">Social</span></h1>
               <p className="text-muted-foreground max-w-lg mx-auto">Conecte-se com outros estudantes da Palavra</p>
             </div>
           </ScrollReveal>

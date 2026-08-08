@@ -7,6 +7,7 @@ interface EdgeTTSOptions {
   rate?: string;
   pitch?: string;
   volume?: string;
+  lingua?: 'pt' | 'en';
   signal?: AbortSignal;
   onProgress?: (bytes: number) => void;
   onStatus?: (msg: string) => void;
@@ -42,9 +43,12 @@ async function setCached(texto: string, voz: string, buffer: ArrayBuffer): Promi
 }
 
 export async function gerarAudioEdge(opts: EdgeTTSOptions): Promise<ArrayBuffer> {
-  const { texto, voz = 'feminina', vozCustom, rate = '+0%', pitch = '+0Hz', volume = '+0%', signal, onProgress, onStatus } = opts;
+  const { texto, voz = 'feminina', vozCustom, rate = '+0%', pitch = '+0Hz', volume = '+0%', lingua = 'pt', signal, onProgress, onStatus } = opts;
 
-  const vozFinal = vozCustom || (voz === 'masculina' ? 'pt-BR-AntonioNeural' : 'pt-BR-FranciscaNeural');
+  const vozFinal = vozCustom || (lingua === 'en'
+    ? (voz === 'masculina' ? 'en-US-GuyNeural' : 'en-US-JennyNeural')
+    : (voz === 'masculina' ? 'pt-BR-AntonioNeural' : 'pt-BR-FranciscaNeural')
+  );
 
   const cached = await getCached(texto, vozFinal);
   if (cached) {
@@ -55,7 +59,7 @@ export async function gerarAudioEdge(opts: EdgeTTSOptions): Promise<ArrayBuffer>
   const res = await fetch('/api/audio/edge', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ texto, voz, vozCustom, rate, pitch, volume }),
+    body: JSON.stringify({ texto, voz, vozCustom, lingua, rate, pitch, volume }),
     signal,
   });
 

@@ -45,7 +45,6 @@ interface NavGroup {
 function BottomNavBarInner() {
   const { t } = useTranslation();
   const pathname = usePathname();
-  const [isMobile, setIsMobile] = useState(false);
   const [showMore, setShowMore] = useState(false);
   const [hidden, setHidden] = useState(false);
 
@@ -103,13 +102,6 @@ function BottomNavBarInner() {
   }, [grupos]);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
-
-  useEffect(() => {
     let lastScrollY = window.scrollY;
     const onScroll = () => {
       const currentY = window.scrollY;
@@ -135,8 +127,6 @@ function BottomNavBarInner() {
     setExpandedGroups((prev) => ({ ...prev, [titulo]: !prev[titulo] }));
   }, []);
 
-  if (!isMobile) return null;
-
   const isMoreActive = pathname && grupos.some((g) => g.links.some((l) => pathname.startsWith(l.href)));
   const isEstudarActive = pathname === '/estudar' || pathname?.startsWith('/estudar/');
 
@@ -146,11 +136,11 @@ function BottomNavBarInner() {
       {showMore && (
         <>
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] animate-[fadeIn_0.2s_ease-out]"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] animate-[fadeIn_0.2s_ease-out] md:hidden"
             onClick={closeMore}
           />
           <div
-            className="fixed bottom-[calc(64px+env(safe-area-inset-bottom,0px))] left-3 right-3 z-[61] bg-card/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl overflow-hidden animate-[slideUp_0.25s_ease-out]"
+            className="fixed bottom-[calc(64px+env(safe-area-inset-bottom,0px))] left-3 right-3 z-[61] bg-card/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl overflow-hidden animate-[slideUp_0.25s_ease-out] md:hidden"
             role="dialog"
             aria-modal="true"
             aria-label={t('header.moreNavOptions')}
@@ -221,7 +211,7 @@ function BottomNavBarInner() {
       {/* Barra inferior — Premium iOS-style */}
       <nav
         aria-label={t('header.mobileNav')}
-        className={`fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300 ${hidden ? 'translate-y-full' : 'translate-y-0'}`}
+        className={`fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300 md:hidden ${hidden ? 'translate-y-full' : 'translate-y-0'}`}
         style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       >
         <div className="relative border-t border-border/40 bg-background/80 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/60">

@@ -47,7 +47,7 @@ function ComparisonTableComponent({
 }: ComparisonTableProps) {
   return (
     <div className="border border-[var(--border)]/40 rounded-xl overflow-x-auto -mx-3 sm:mx-0">
-      <div className="min-w-[400px]">
+      <div className="min-w-[320px] sm:min-w-[400px]">
         <div className="bg-[var(--surface-sunken)]/50 px-4 py-2 border-b border-[var(--border)]/30 flex items-center justify-between">
           <span className="text-xs font-semibold text-[var(--content-muted)] uppercase tracking-wider">Comparação</span>
         </div>

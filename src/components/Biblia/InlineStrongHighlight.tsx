@@ -76,9 +76,9 @@ export function InlineStrongHighlight({
           <div
             ref={popoverRef}
             className={cn(
-              'absolute left-0 top-full mt-1 z-40',
+              'fixed md:absolute left-2 md:left-0 top-auto md:top-full mt-1 z-40',
               'bg-[var(--surface-raised)] border border-[var(--border)]',
-              'rounded-xl shadow-2xl p-4 min-w-[260px] max-w-[320px]',
+              'rounded-xl shadow-2xl p-4 w-[calc(100vw-16px)] md:w-auto md:min-w-[260px] md:max-w-[320px]',
               'animate-scale-in'
             )}
             onClick={(e) => e.stopPropagation()}

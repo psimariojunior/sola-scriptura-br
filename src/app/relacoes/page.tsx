@@ -92,7 +92,7 @@ export default function RelacoesBiblicasPage() {
               <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center border border-violet-500/20">
                 <Network className="w-10 h-10 text-violet-500" />
               </div>
-              <h1 className="font-display text-4xl font-light mb-3">Relações <span className="text-primary italic">Bíblicas</span></h1>
+              <h1 className="font-display text-2xl sm:text-4xl font-light mb-3">Relações <span className="text-primary italic">Bíblicas</span></h1>
               <p className="text-muted-foreground max-w-lg mx-auto">Mapa interativo de conexões entre personagens da Bíblia</p>
             </div>
           </ScrollReveal>

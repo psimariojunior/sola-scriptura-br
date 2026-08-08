@@ -267,7 +267,7 @@ export default function QuizPage() {
                     <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', duration: 0.6 }} className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
                       <Brain className="w-8 h-8 text-primary" />
                     </motion.div>
-                    <h1 className="font-display text-4xl font-light mb-3">Quiz Bíblico</h1>
+                    <h1 className="font-display text-2xl sm:text-4xl font-light mb-3">Quiz Bíblico</h1>
                     <p className="text-muted-foreground max-w-md mx-auto">750+ perguntas em 5 categorias. Teste seus conhecimentos das Escrituras de várias formas.</p>
                   </div>
                 </ScrollReveal>

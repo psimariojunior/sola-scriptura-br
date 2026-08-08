@@ -1,4 +1,21 @@
-﻿export interface EstudoTeologico {
+﻿export interface ReferenciaCruzada {
+  referencia: string;
+  descricao: string;
+}
+
+export interface LeituraAdicional {
+  titulo: string;
+  tipo: 'estudo' | 'artigo' | 'livro';
+  descricao: string;
+}
+
+export interface ContextoHistorico {
+  periodo: string;
+  evento: string;
+  descricao: string;
+}
+
+export interface EstudoTeologico {
   id: string;
   titulo: string;
   categoria: string;
@@ -7,6 +24,10 @@
   versicosChave: string[];
   tags: string[];
   fontes: string[];
+  referenciasCruzadas: ReferenciaCruzada[];
+  leituraAdicional: LeituraAdicional[];
+  aplicacaoPratica: string;
+  contextoHistorico: ContextoHistorico;
 }
 
 export const estudosTeologicosExpandidos: EstudoTeologico[] = [
@@ -24,11 +45,26 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'O argumento cosmológico parte do fato de que tudo que começa a existir tem uma causa. Ao retrocedermos na cadeia causal, chegamos a uma Primeira Causa não causada — Deus.',
       'O argumento teleológico observa a ordem e o propósito na criação como evidência de um Designer inteligente. A complexidade do universo aponta para um Criador sábio.',
       'O argumento ontológico, formulado por Anselmo, parte da concepção de Deus como o Ser maior do que o qual nada pode ser pensado. Se Deus existe apenas na mente, poderíamos conceber um ser maior.',
-      'O argumento moral postula que a existência de valores morais objetivos exige um fundamento transcendente. Sem Deus, os valores morais são meramente convenções sociais.'
+      'O argumento moral postula que a existência de valores morais objetivos exige um fundamento transcendente. Sem Deus, os valores morais são meramente convenções sociais.',
+      'Os argumentos não substituem a fé mas a precedem racionalmente — a razão prepara o caminho para a revelação.'
     ],
     versicosChave: ['Romanos 1:20', 'Salmos 14:1', 'Hebreus 11:6', 'Atos 17:28'],
     tags: ['existência de Deus', 'argumentos cosmológico', 'argumento ontológico', 'argumento teleológico', 'apologética'],
-    fontes: ['Tomás de Aquino, Suma Teológica', 'Anselmo, Proslogion', 'C.S. Lewis, Credo', 'Alvin Plantinga, God and Other Minds']
+    fontes: ['Tomás de Aquino, Suma Teológica', 'Anselmo, Proslogion', 'C.S. Lewis, Credo', 'Alvin Plantinga, God and Other Minds', 'Hugo Grotius, De Veritate', 'Valdir Cruz, Apologética Cristã'],
+    referenciasCruzadas: [
+      { referencia: 'Isaías 40:28-29', descricao: 'Deus eterno e onisciente, Criador dos confins da terra' },
+      { referencia: 'Atos 14:17', descricao: 'Deus testifica de Si mesmo por meio de benefícios — chuva e frutos' },
+      { referencia: 'Salmos 19:1-4', descricao: 'Os céus declaram a glória de Deus — revelação na criação' },
+      { referencia: 'Romanos 2:14-15', descricao: 'A consciência moral como evidência interna de Deus' },
+      { referencia: 'Hebreus 3:4', descricao: 'Todo prédio tem um construtor — analogia de causa inteligente' }
+    ],
+    leituraAdicional: [
+      { titulo: 'A Trindade — Mistério Central da Fé', tipo: 'estudo', descricao: 'Estudo complementar sobre como o Deus demonstrado pela razão se revela como Trindade pessoal' },
+      { titulo: 'A Revelação Geral de Deus', tipo: 'estudo', descricao: 'Aprofundamento sobre como Deus se revela através da criação e da consciência' },
+      { titulo: 'Existential Warrant for Belief, Alvin Plantinga', tipo: 'livro', descricao: 'Análise filosófica contemporânea dos warrant racional para crer em Deus' }
+    ],
+    aplicacaoPratica: 'Quando alguém questiona sua fé, não se intimide — a razão e a fé se complementam. Estude os argumentos clássicos para estar preparado a dar razão da sua esperança (1 Pedro 3:15). Use a criação como testemunho: a ordem do universo aponta para um Criador. Compartilhe esses argumentos com gentileza e respeito, reconhecendo que a fé é um dom, mas a razão prepara o terreno.',
+    contextoHistorico: { periodo: 'Séc. II-III d.C.', evento: 'Apologética dos Pais da Igreja', descricao: 'Justino Mártir (100-165) e Tertuliano (155-220) desenvolveram os primeiros argumentos racionais pela existência de Deus, dialogando com filósofos gregos. Tomás de Aquino (1225-1274) sistematizou as Cinco Vias na Suma Teológica. O argumento ontológico foi reformulado por Descartes, Leibniz e, no séc. XX, por Alvin Plantinga com lógica modal.' }
   },
   {
     id: 'dp-002',
@@ -40,11 +76,26 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A formulação trinitária emergiu dos debates cristológicos dos séculos III e IV. O Concílio de Nicéia estabeleceu que o Filho é homoousios com o Pai.',
       'Agostinho desenvolveu a analogia psicológica: a mente se conhece e se ama, gerando verbo e amor. Assim, o Pai gera o Filho, e o Espírito procede do amor mútuo.',
       'A Trindade não é contradição lógica — é paradoxo que transcende a razão. Deus não é três pessoas no sentido humano, mas três relações pessoais em uma essência divina.',
-      'A economia da Trindade se manifesta na salvação: o Pai planeja, o Filho executa, o Espírito aplica. Na criação, o Pai cria pelo Filho no Espírito.'
+      'A economia da Trindade se manifesta na salvação: o Pai planeja, o Filho executa, o Espírito aplica. Na criação, o Pai cria pelo Filho no Espírito.',
+      'A doutrina trinitária distingue o cristianismo de todas as outras religiões monoteístas — o Deus cristão é comunhão de amor.'
     ],
     versicosChave: ['Mateus 28:19', '2 Coríntios 13:14', 'Gênesis 1:26', 'João 1:1-3'],
     tags: ['trindade', 'pneumatologia', 'cristologia', 'homoousios', 'Niceia'],
-    fontes: ['Agostinho, De Trinitate', 'Atanásio, Contra os Arianos', 'Karl Barth, Church Dogmatics I/1']
+    fontes: ['Agostinho, De Trinitate', 'Atanásio, Contra os Arianos', 'Karl Barth, Church Dogmatics I/1', 'Neiva Gurgel, Teologia Sistemática', 'Gonzalo Baén, Teologia do Novo Testamento'],
+    referenciasCruzadas: [
+      { referencia: 'João 1:1-3', descricao: 'O Logos é Deus e estava com Deus — distinção e unidade no Filho' },
+      { referencia: 'João 15:26', descricao: 'O Espírito Santo procede do Pai e testifica do Filho' },
+      { referencia: '2 Coríntios 1:21-22', descricao: 'Deus ungiu, selou e deu o penhor do Espírito' },
+      { referencia: '1 Pedro 1:2', descricao: 'Eleitos pela presciência do Pai, para a santificação do Espírito' },
+      { referencia: 'Gênesis 18:1-3', descricao: 'Três visitantes a Abraão — tipo trinitário debateado' }
+    ],
+    leituraAdicional: [
+      { titulo: 'A Transcendência e Imanência de Deus', tipo: 'estudo', descricao: 'Como Deus pode ser ao mesmo tempo distinto da criação e presente nela' },
+      { titulo: 'O Espírito Santo — Terceira Pessoa da Trindade', tipo: 'estudo', descricao: 'Estudo aprofundado sobre a pessoa e obra do Espírito Santo' },
+      { titulo: 'De Trinitate, Agostinho', tipo: 'livro', descricao: 'A obra fundamental que sistematizou a doutrina trinitária no Ocidente' }
+    ],
+    aplicacaoPratica: 'A Trindade não é apenas uma doutrina abstrata — ela molda como oramos (ao Pai, pelo Filho, no Espírito), como vivemos em comunhão (refletindo a unidade trinitária) e como entendemos o amor (Deus é comunhão de amor em Si mesmo). Estude a Trindade não para resolver um quebra-cabeça lógico, mas para adorar o Deus vivo que é maior que nossa compreensão.',
+    contextoHistorico: { periodo: 'Séc. IV d.C.', evento: 'Concílios de Nicéia (325) e Constantinopla (381)', descricao: 'O arianismo negava a divindade plena do Filho. Atanásio de Alexandria defendeu a ortodoxia trinitária. O Concílio de Nicéia definiu que o Filho é homoousios (da mesma substância) com o Pai. Constantinopla adicionou a divindade do Espírito Santo. No séc. IV, o Dribleto Cappadócios (Basílio, Gregório de Nissa, Gregório de Nazianzo) refinou a terminologia trinitária.' }
   },
   {
     id: 'dp-003',
@@ -53,14 +104,28 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     subcategoria: 'Doutrinas Fundamentais',
     conteudo: [
       'Deus é ao mesmo tempo infinitamente distinto da criação (transcendente) e profundamente presente nela (imanente). Este paradoxo é fundamental para compreender Deus.',
-      'A transcendência significa que Deus está além de todas as limitações criadas — tempo, espaço, matéria. Ã‰ o Deus que habita a luz inacessível.',
+      'A transcendência significa que Deus está além de todas as limitações criadas — tempo, espaço, matéria. É o Deus que habita a luz inacessível.',
       'A imanência significa que Deus está presente em todos os lugares, sustentando a existência do universo. Atos 17:28 declara: Nele vivemos, nos movemos e existimos.',
       'O equilíbrio entre transcendência e imanência evita o panteísmo e o deísmo. O Deus bíblico é pessoal e próximo, mas também sagrado e transcendente.',
       'A transcendência gera reverência e adoração, enquanto a imanência gera intimidade e confiança. A oração é possível porque Deus é imanente.'
     ],
     versicosChave: ['Jeremias 23:23-24', 'Salmos 139:7-12', 'Isaías 57:15', 'Atos 17:28'],
     tags: ['transcendência', 'imanência', 'panteísmo', 'deísmo', 'apofatismo'],
-    fontes: ['Agostinho, Confissões', 'Pseudo-Dionísio, Nomes Divinos', 'Paul Tillich, Systematic Theology']
+    fontes: ['Agostinho, Confissões', 'Pseudo-Dionísio, Nomes Divinos', 'Paul Tillich, Systematic Theology', 'Valdir Cruz, Teologia Sistemática'],
+    referenciasCruzadas: [
+      { referencia: '1 Reis 8:27', descricao: 'Solomão reconhece que nem os céus mais altos contêm a Deus' },
+      { referencia: 'Salmos 139:1-4', descricao: 'Deus conhece cada pensamento e passo — imanência pessoal' },
+      { referencia: 'Isaías 66:1-2', descricao: 'O céu é o trono, a terra o escabelo — mas Deus olha para o humilde' },
+      { referencia: 'João 1:14', descricao: 'O Verbo se fez carne — a transcendência se tornou imanência plena' },
+      { referencia: 'Efésios 4:6', descricao: 'Um Deus e Pai de todos, que é sobre todos, por todos e em todos' }
+    ],
+    leituraAdicional: [
+      { titulo: 'A Onisciência de Deus', tipo: 'estudo', descricao: 'Como Deus pode saber tudo e ao mesmo tempo estar presente em tudo' },
+      { titulo: 'A Encarnação — Deus se torna homem', tipo: 'estudo', descricao: 'O momento supremo em que a transcendência assume imanência plena' },
+      { titulo: 'Mística Cristã Moderna, Pseudo-Dionísio', tipo: 'livro', descricao: 'Exploração da via negativa — como Deus transcende toda linguagem humana' }
+    ],
+    aplicacaoPratica: 'Na oração, lembre-se de que o Deus a quem você se dirige está simultaneamente acima de todas as coisas e dentro de você. Isso torna a oração ao mesmo tempo solene (reverência ao Transcendente) e íntima (confiança no Deus que habita connosco). Evite dois extremos: tratar Deus como um amigo qualquer (perdendo a reverência) ou como uma força distante (perdendo a intimidade).',
+    contextoHistorico: { periodo: 'Séc. V-VI d.C.', evento: 'Teologia Apofática de Pseudo-Dionísio', descricao: 'Pseudo-Dionísio (séc. V-VI) desenvolveu a teologia negativa: Deus é melhor descrito pelo que NÃO é do pelo que é, preservando Sua transcendência. No séc. XX, Paul Tillich sistematizou a tensão entre transcendência e imanência em sua "theology of correlation". A teologia da libertação latino-americana enfatizou a imanência de Deus nos pobres e oprimidos.' }
   },
   {
     id: 'dp-004',
@@ -72,11 +137,25 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'Deus conhece todas as possibilidades e atualidades. Ele sabe o que é, o que foi, o que será e o que poderia ser.',
       'A questão do livre-arbítrio parece conflitar com a onisciência. Se Deus sabe o que faremos, somos realmente livres? A resposta clássica é que Deus sabe sem causar.',
       'A teologia processual propõe que Deus conhece o futuro como possibilidades, não como certezas absolutas.',
-      'A onisciência é fonte de consolação: Ele conhece nossas necessidades antes que as peçamos. Ã‰ também fonte de temor: nada se esconde dEle.'
+      'A onisciência é fonte de consolação: Ele conhece nossas necessidades antes que as peçamos. É também fonte de temor: nada se esconde dEle.'
     ],
     versicosChave: ['Salmos 139:1-6', '1 João 3:20', 'Isaías 46:9-10', 'Hebreus 4:13'],
     tags: ['onisciência', 'omnisciência', 'livre-arbítrio', 'soberania', 'conhecimento de Deus'],
-    fontes: ['Agostinho, Confissões', 'Calvino, Institutas I.1', 'Charles Hartshorne, The Divine Relativity']
+    fontes: ['Agostinho, Confissões', 'Calvino, Institutas I.1', 'Charles Hartshorne, The Divine Relativity', 'Neiva Gurgel, Teologia Sistemática'],
+    referenciasCruzadas: [
+      { referencia: '1 Crônicas 28:9', descricao: 'Deus examina corações e entende todos os propósitos do pensamento' },
+      { referencia: 'Job 38:4-7', descricao: 'Deus estava presente na fundação do mundo — conhece desde o início' },
+      { referencia: 'Mateus 6:8', descricao: 'O Pai sabe do que tendes necessidade antes que lhe peçais' },
+      { referencia: 'Atos 15:18', descricao: 'Deus sabe desde o início os seus pensamentos' },
+      { referencia: 'Romanos 11:33-34', descricao: 'Profundezas da riqueza, sabedoria e conhecimento de Deus — indagáveis seus juízos' }
+    ],
+    leituraAdicional: [
+      { titulo: 'A Soberania de Deus', tipo: 'estudo', descricao: 'Como o conhecimento perfeito de Deus se relaciona com Seu governo sobre todas as coisas' },
+      { titulo: 'A Oração — Comunhão com Deus', tipo: 'estudo', descricao: 'Se Deus sabe tudo, por que orar? A oração como comunhão, não como informação' },
+      { titulo: 'Knowing God, J.I. Packer', tipo: 'livro', descricao: 'Exploração pastoral do conhecimento de Deus e seu impacto na vida cristã' }
+    ],
+    aplicacaoPratica: 'A onisciência de Deus é antídoto contra a ansiedade — Ele já sabe do que você precisa e já preparou a resposta. Quando enfrentar incerteza, lembre-se de que Deus não está surpreso. Isso também gera responsabilidade: nada passa despercebido, então viva com integridade, sabendo que Deus vê o coração.',
+    contextoHistorico: { periodo: 'Séc. V d.C.', evento: 'Dei Civitate Dei de Agostinho', descricao: 'Agostinho (354-430) desenvolveu a doutrina da presciência divina em resposta ao fatalismo maniqueísta. O debate entre agostinianos e pelagianos (séc. V) aprofundou a relação entre conhecimento divino e liberdade humana. No séc. XX, o debate entre calvinismo e arminianismo reavivou a questão, com teólogos processuais (Hartshorne, Whitehead) propondo um Deus que "sofre" com a criação.' }
   },
   {
     id: 'dp-005',
@@ -92,7 +171,21 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     ],
     versicosChave: ['Jeremias 32:17', 'Efésios 1:19-20', 'Lucas 1:37', 'Gênesis 18:14'],
     tags: ['omnipotência', 'poder de Deus', 'teodiceia', 'problema do mal', 'creatio ex nihilo'],
-    fontes: ['Tomás de Aquino, Suma Teológica I, q.25', 'C.S. Lewis, O Problema do Sofrimento']
+    fontes: ['Tomás de Aquino, Suma Teológica I, q.25', 'C.S. Lewis, O Problema do Sofrimento', 'Valdir Cruz, Teologia Sistemática'],
+    referenciasCruzadas: [
+      { referencia: 'Jó 42:2', descricao: 'Nenhum desígnio pode ser frustrado diante de Deus' },
+      { referencia: 'Isaías 40:28-31', descricao: 'O Deus eterno não se cansa — fonte de poder para os cansados' },
+      { referencia: 'Efésios 3:20', descricao: 'Deus pode fazer infinitamente mais do que pedimos ou pensamos' },
+      { referencia: 'Apocalipse 19:6', descricao: 'O Senhor Deus Todo-Poderoso reinou — onipotência soberana' },
+      { referencia: 'Mateus 19:26', descricao: 'Para Deus, todas as coisas são possíveis' }
+    ],
+    leituraAdicional: [
+      { titulo: 'A Misericórdia e Graça de Deus', tipo: 'estudo', descricao: 'O poder de Deus se manifesta não em arbitrariedade, mas em graça e misericórdia' },
+      { titulo: 'A Natureza do Pecado', tipo: 'estudo', descricao: 'Por que o Deus Todo-Poderoso permite a existência do pecado' },
+      { titulo: 'O Problema do Sofrimento, C.S. Lewis', tipo: 'livro', descricao: 'Análise cristã do problema do mal à luz da omnipotência divina' }
+    ],
+    aplicacaoPratica: 'Quando enfrentar impossíveis — doença terminal, crise familiar, dificuldade financeira — lembre-se de que para Deus nada é impossível. Isso não significa que Ele fará tudo o que pedimos, mas que Ele tem poder para agir. Concentre-se no que Ele prometeu, não no que você deseja. A omnipotência de Deus é garantia de que Seus propósitos se cumprirão.',
+    contextoHistorico: { periodo: 'Séc. XIII', evento: 'Suma Teológica de Tomás de Aquino', descricao: 'Aquino (1225-1274) distinguiu omnipotência absoluta (poder sobre todas as coisas) e omnipotência ordenada (poder que age conforme a sabedoria). O Concílio de Viena (1311-1312) confirmou que Deus pode tudo exceto o logicamente impossível. C.S. Lewis (1898-1963) popularizou essa distinção em "O Problema do Sofrimento" (1940).' }
   },
   {
     id: 'dp-006',
@@ -102,13 +195,27 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     conteudo: [
       'A santidade de Deus é Seu atributo mais elevado — a separação absoluta de tudo o que é impuro e a perfeição moral absoluta.',
       'A santidade implica Sua justiça: Ele não pode tolerar o pecado. A lei moral é reflexo da Sua santidade.',
-      'A ira santa de Deus não é emoção humana, mas Sua oposição moral ao pecado. Ã‰ expressão de Sua santidade em confronto com o que é mau.',
+      'A ira santa de Deus não é emoção humana, mas Sua oposição moral ao pecado. É expressão de Sua santidade em confronto com o que é mau.',
       'A santidade se manifesta em Sua transcendência e em Sua imanência. O Espírito Santo é o Santo de Deus que habita no crente.',
       'A reverência é a resposta adequada. O temor do Senhor não é medo servil, mas admiração mista com temor, reconhecendo a grandeza divina.'
     ],
     versicosChave: ['Isaías 6:3', '1 Pedro 1:15-16', 'Hebreus 12:14', 'Apocalipse 4:8'],
     tags: ['santidade de Deus', 'justiça divina', 'ira santa', 'serafins', 'santificação'],
-    fontes: ['Rudolf Otto, O Sagrado', 'Gordon Kaufman, God the Problem', 'John Murray, Redemption Accomplished']
+    fontes: ['Rudolf Otto, O Sagrado', 'Gordon Kaufman, God the Problem', 'John Murray, Redemption Accomplished', 'Valdir Cruz, Teologia Sistemática'],
+    referenciasCruzadas: [
+      { referencia: 'Habacuque 1:13', descricao: 'Deus é de olhos puros para contemplar o mal — Sua santidade é incompatível com pecado' },
+      { referencia: 'Isaías 59:2', descricao: 'Os pecados de vós criaram separação entre vós e vosso Deus' },
+      { referencia: 'Levíticos 19:2', descricao: 'Santos, porque eu, o Senhor vosso Deus, sou santo' },
+      { referencia: '1 Samuel 2:2', descricao: 'Ninguém é santo como o Senhor — nenhum outro há além de Ti' },
+      { referencia: 'Apocalipse 15:4', descricao: 'Quem não Te temerá, ó Senhor, e glorificará o Teu nome?' }
+    ],
+    leituraAdicional: [
+      { titulo: 'A Justiça de Deus', tipo: 'estudo', descricao: 'Como a santidade se manifesta na justiça divina perante o pecado' },
+      { titulo: 'A Santificação Progressiva', tipo: 'estudo', descricao: 'Como o crente é chamado a refletir a santidade de Deus na vida diária' },
+      { titulo: 'The Holiness of God, R.C. Sproul', tipo: 'livro', descricao: 'Exploração clássica do significado da santidade de Deus para a vida cristã' }
+    ],
+    aplicacaoPratica: 'A santidade de Deus deve produzir em nós duas respostas: humildade (reconhecendo nossa impureza diante dEle) e desejo de santidade (buscando ser como Ele). Na adoração, approach a Deus com reverência — não como um buddy, mas como o Ser Santo que é. Isso transforma como vivemos: se Deus é santo, nós também devemos ser.',
+    contextoHistorico: { periodo: 'Séc. VIII a.C. / Séc. XX d.C.', evento: 'Chamado de Isaías (740 a.C.) e Renovação da Doutrina no séc. XX', descricao: 'Isaías 6 registra a experiência profética com a santidade divina, que se tornou paradigmática. Rudolf Otto (1869-1937) revitalizou o estudo da santidade como "numinoso" em "O Sagrado" (1917). R.C. Sproul (1939-2017) popularizou a doutrina no evangelicalismo americano com "The Holiness of God" (1985).' }
   },
   {
     id: 'dp-007',
@@ -124,7 +231,21 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     ],
     versicosChave: ['Romanos 3:21-26', 'Salmos 89:14', 'Isaías 61:8', 'Atos 17:31'],
     tags: ['justiça de Deus', 'justificação', 'propiciação', 'imputação', 'juízo final'],
-    fontes: ['Agostinho, De Spiritu et Littera', 'John Stott, The Cross of Christ']
+    fontes: ['Agostinho, De Spiritu et Littera', 'John Stott, The Cross of Christ', 'Valdir Cruz, Teologia Sistemática'],
+    referenciasCruzadas: [
+      { referencia: 'Deuteronômio 32:4', descricao: 'Deus é a rocha — toda a Sua obra é perfeita, justo é o Seu juízo' },
+      { referencia: 'Salmos 116:5', descricao: 'Justo e misericordioso é o Senhor, o nosso Deus é compassivo' },
+      { referencia: 'Gênesis 18:25', descricao: 'Juiz de toda a terra não fará justiça?' },
+      { referencia: 'Jeremias 9:24', descricao: 'Deus se glorifica em praticar justiça e retidão na terra' },
+      { referencia: 'Apocalipse 16:7', descricao: 'Verdadeiro e justo são os Teus juízos, ó Senhor' }
+    ],
+    leituraAdicional: [
+      { titulo: 'A Expiação de Cristo', tipo: 'estudo', descricao: 'Como a justiça de Deus foi satisfeita na cruz de Cristo' },
+      { titulo: 'A Misericórdia e Graça de Deus', tipo: 'estudo', descricao: 'Como justiça e misericórdia se reconciliam em Deus' },
+      { titulo: 'Justificada por Fé, Martin Luther', tipo: 'livro', descricao: 'O reformador sobre como a justiça de Deus é recebida pela fé' }
+    ],
+    aplicacaoPratica: 'A justiça de Deus garante que nenhum sofrimento será em vão — tudo será endireitado. Isso liberta do desejo de vingança pessoal: Deus é justo, então confie Nele. Ao mesmo tempo, a justiça de Deus nos convoca a buscar justiça social: se Deus é justo, nós também devemos ser, especialmente para com os oprimidos.',
+    contextoHistorico: { periodo: 'Séc. I d.C.', evento: 'A Reforma Protestante e a Redescoberta da Justiça de Deus (1517)', descricao: 'Lutero (1483-1546) descobriu que a justiça de Deus em Romanos 1:17 não é a justiça com a qual Deus pune, mas a justiça que Ele imputa ao crente. Essa descoberta desencadeou a Reforma. O Concílio de Trento (1545-1563) reafirmou a posição católica de que a justiça é infundida (não apenas imputada) no crente.' }
   },
   {
     id: 'dp-008',
@@ -140,7 +261,21 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     ],
     versicosChave: ['Efésios 2:4-5', 'Tito 3:5', 'Romanos 5:8', '1 Pedro 1:10'],
     tags: ['graça', 'misericórdia', 'sola gratia', 'graça preveniente', 'graça regeneradora'],
-    fontes: ['Agostinho, De Gratia et Libero Arbitrio', 'Lutero, De servo arbitrio']
+    fontes: ['Agostinho, De Gratia et Libero Arbitrio', 'Lutero, De servo arbitrio', 'Valdir Cruz, Teologia Sistemática'],
+    referenciasCruzadas: [
+      { referencia: 'Efésios 2:8-9', descricao: 'Pela graça sois salvos, por meio da fé — não de vós mesmos' },
+      { referencia: 'Romanos 3:24', descricao: 'Sendo justificados gratuitamente pela Sua graça' },
+      { referencia: 'Tiago 2:13', descricao: 'A misericórdia triunfa sobre o juízo' },
+      { referencia: '2 Coríntios 12:9', descricao: 'A minha graça é suficiente para ti, porque o meu poder se aperfeiçoa na fraqueza' },
+      { referencia: 'Lamentações 3:22-23', descricao: 'As misericórdias do Senhor se renovam a cada manhã' }
+    ],
+    leituraAdicional: [
+      { titulo: 'A Justiça de Deus', tipo: 'estudo', descricao: 'Como a graça de Deus se harmoniza com Sua justiça perfeita' },
+      { titulo: 'A Expiação de Cristo', tipo: 'estudo', descricao: 'O custo da graça — o que Deus pagou para nos resgatar' },
+      { titulo: 'Crazy Love, Francis Chan', tipo: 'livro', descricao: 'Uma exploração apaixonada do amor incondicional de Deus' }
+    ],
+    aplicacaoPratica: 'Reconheça que tudo o que você tem é dom — não mérito. Isso produz humildade (nada para se gabar) e gratidão (tudo para agradecer). A graça não é licença para pecar, mas poder para viver differently. Quando alguém te magoar, lembre-se de que você também recebeu misericórdia — perdoe como foi perdoado.',
+    contextoHistorico: { periodo: 'Séc. IV-V d.C.', evento: 'Controvérsia Agostinho-Pelágio (410-431 d.C.)', descricao: 'Pelágio (354-420) ensinava que o homem pode escolher o bem sem graça especial. Agostinho (354-430) defendeu que a graça é necessária até para o primeiro passo da fé. O Concílio de Éfeso (431) condenou o pelagianismo. Lutero (1483-1546) redescobriu a graça solo na Reforma, e o Concílio de Trento (1545-1563) respondeu com a doutrina da cooperação humana com a graça.' }
   },
   {
     id: 'dp-009',
@@ -156,7 +291,21 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     ],
     versicosChave: ['Malaquias 3:6', 'Hebreus 13:8', 'Salmos 90:2', 'Isaías 40:28'],
     tags: ['eternidade', 'imutabilidade', 'imortalidade', 'perfeição divina'],
-    fontes: ['Agostinho, Confissões XI', 'A.W. Tozer, The Knowledge of the Holy']
+    fontes: ['Agostinho, Confissões XI', 'A.W. Tozer, The Knowledge of the Holy', 'Valdir Cruz, Teologia Sistemática'],
+    referenciasCruzadas: [
+      { referencia: 'Números 23:19', descricao: 'Deus não é homem para que minta, nem filho do homem para que se arrependa' },
+      { referencia: 'Salmos 102:25-27', descricao: 'No princípio fundaste a terra — os céus perecerão, mas Tu permaneces' },
+      { referencia: 'Tiago 1:17', descricao: 'Toda dádiva vem do alto — Deus não muda como sombras mutáveis' },
+      { referencia: 'Apocalipse 1:8', descricao: 'Eu sou o Alfa e o Ômega, o princípio e o fim, diz o Senhor' },
+      { referencia: 'Salmo 46:1', descricao: 'Deus é o nosso refúgio e fortaleza — socorro bem presente nas tribulações' }
+    ],
+    leituraAdicional: [
+      { titulo: 'A Soberania de Deus', tipo: 'estudo', descricao: 'Como a imutabilidade se relaciona com o governo soberano de Deus' },
+      { titulo: 'A Onisciência de Deus', tipo: 'estudo', descricao: 'Deus eterno conhece todas as coisas desde a eternidade' },
+      { titulo: 'The Knowledge of the Holy, A.W. Tozer', tipo: 'livro', descricao: 'Exploração clássica dos atributos divinos e seu impacto na vida cristã' }
+    ],
+    aplicacaoPratica: 'Em um mundo onde tudo muda — relacionamentos, trabalho, saúde — Deus é a âncora. As promessas de Deus não expiram. Quando enfrentar incerteza, declare: "O Deus que prometeu é fiel." A imutabilidade de Deus não é uma doutrina fria — é a garantia de que o amor dEle por você não diminui e os Seus planos não falham.',
+    contextoHistorico: { periodo: 'Séc. IV-V d.C.', evento: 'Confissões de Agostinho e definições dogmáticas', descricao: 'Agostinho (354-430) explorou a eternidade de Deus em "Confissões" XI, distinguindo eternidade (Deus), tempo (criação) e eternidade participada (almas). O Concílio de Latrão IV (1215) definiu que Deus é "imutável e simples e imprevisível". A.W. Tozer (1897-1963) popularizou essas doutrinas no evangelicalismo com "The Knowledge of the Holy" (1961).' }
   },
   {
     id: 'dp-010',
@@ -172,7 +321,21 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     ],
     versicosChave: ['Efésios 1:11', 'Romanos 9:19-24', 'Salmos 115:3', 'Daniel 4:35'],
     tags: ['soberania', 'providência', 'decreto divino', 'calvinismo', 'arminianismo'],
-    fontes: ['Calvino, Institutas I.16', 'R.C. Sproul, The Holiness of God']
+    fontes: ['Calvino, Institutas I.16', 'R.C. Sproul, The Holiness of God', 'Valdir Cruz, Teologia Sistemática'],
+    referenciasCruzadas: [
+      { referencia: 'Salmos 103:19', descricao: 'O Senhor estabeleceu o Seu trono nos céus — o Seu domínio governa todas as coisas' },
+      { referencia: 'Provérbios 21:1', descricao: 'O coração do rei está na mão do Senhor — Ele o dirige como canais d\'água' },
+      { referencia: 'Isaías 46:10', descricao: 'Meu conselho se firmará, e farei toda a minha vontade' },
+      { referencia: 'Efésios 1:11', descricao: 'Tudo opera conforme o conselho da Sua vontade' },
+      { referencia: 'Atos 4:27-28', descricao: 'Herodes e Pôncio Pilatos fizeram o que a Sua mão e conselho haviam determinado' }
+    ],
+    leituraAdicional: [
+      { titulo: 'A Predestinação', tipo: 'estudo', descricao: 'Como a soberania se manifesta na escolha divina antes da fundação do mundo' },
+      { titulo: 'A Oração — Comunhão com Deus', tipo: 'estudo', descricao: 'Se Deus é soberano, por que orar? A oração como meio de Sua providência' },
+      { titulo: 'Desiring God, John Piper', tipo: 'livro', descricao: 'A soberania de Deus como fundamento da satisfeição em Deus' }
+    ],
+    aplicacaoPratica: 'A soberania de Deus é o maior antídoto contra a ansiedade e o desespero. Quando o mundo parece caótico, lembre-se: nada escapou do controle de Deus. Isso não remove a dor, mas dá significado a ela. Busque entender o que Deus está fazendo, não apenas o que Ele permite. A soberania é razão para adoração, não para passividade — Deus soberano chama Seu povo à ação.',
+    contextoHistorico: { periodo: 'Séc. XVI', evento: 'A Reforma Protestante e o Debate Calvinista-Arminiano (1610-1618)', descricao: 'Calvino (1509-1564) sistematizou a soberania divina em "Institutas". Arminio (1560-1609) desafiou o calvinismo, sustentando condicionalismo na eleição. O Sínodo de Dort (1618-1619) reafirmou os cinco pontos do calvinismo (TULIP). No Brasil, o debate continua relevante, especialmente no contexto da teologia da prosperidade.' }
   },
   {
     id: 'dp-011',

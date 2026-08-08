@@ -218,8 +218,10 @@ export const VerseCard = memo(function VerseCard({
     <Fragment>
       <div
         ref={articleRef}
+        role="article"
+        aria-current={isCurrentAudioVerse ? 'true' : undefined}
         tabIndex={-1}
-        aria-label={`Versículo ${numero} de ${livroNome} ${capitulo}${isSelected ? ' (selecionado)' : ''}`}
+        aria-label={`Versículo ${numero} de ${livroNome} ${capitulo}${isSelected ? ' (selecionado)' : ''}${isCurrentAudioVerse ? ' (reproduzindo áudio)' : ''}`}
         onClick={onSelect}
         onClickCapture={handleClickCapture}
         onPointerDown={handlePointerDown}

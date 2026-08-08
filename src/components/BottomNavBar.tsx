@@ -138,6 +138,7 @@ function BottomNavBarInner() {
           <div
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] animate-[fadeIn_0.2s_ease-out] md:hidden"
             onClick={closeMore}
+            role="presentation"
           />
           <div
             className="fixed bottom-[calc(64px+env(safe-area-inset-bottom,0px))] left-3 right-3 z-[61] bg-card/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl overflow-hidden animate-[slideUp_0.25s_ease-out] md:hidden"
@@ -187,6 +188,7 @@ function BottomNavBarInner() {
                             <Link
                               key={link.href}
                               href={link.href}
+                              aria-label={link.label}
                               className={`flex items-center gap-2.5 p-3 rounded-xl transition-all duration-200 ${
                                 active
                                   ? 'bg-primary/10 text-primary shadow-sm'

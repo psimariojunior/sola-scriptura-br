@@ -277,7 +277,7 @@ function HeaderInner() {
           </Link>
 
           {/* Nav (lg+) */}
-          <nav className="hidden lg:flex items-center gap-0.5 ml-2" aria-label="Navegação principal">
+          <nav id="main-nav" className="hidden lg:flex items-center gap-0.5 ml-2" aria-label="Navegação principal">
             {navLinks.map((link) => {
               const active = isActive(link.href);
               return (

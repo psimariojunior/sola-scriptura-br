@@ -31084,35 +31084,49 @@ const STRONG_CODES: Record<string, [string[], string[]]> = {
   'ap:22:21': [["G5999","G5485","G5999","G2962","G2424","G3326","G3956"], ["artigo definido, nom, sing, fem","substantivo, nom, sing, fem","artigo definido, gen, sing, masc","substantivo, gen, sing, masc","substantivo, gen, sing, masc","preposição","adjetivo, gen, plur, masc"]],
 };
 
-import { palavrasHebraicas } from '@/data/lexicon/hebraico';
-import { palavrasGregas } from '@/data/lexicon/grego';
+import type { PalavraHebraica } from '@/data/lexicon/hebraico';
+import type { PalavraGrega } from '@/data/lexicon/grego';
 
-let _hebLookup: Record<string, typeof palavrasHebraicas[0]> | null = null;
-let _grkLookup: Record<string, typeof palavrasGregas[0]> | null = null;
+let _hebLookup: Record<string, PalavraHebraica> | null = null;
+let _grkLookup: Record<string, PalavraGrega> | null = null;
+let _hebPromise: Promise<typeof import('@/data/lexicon/hebraico')> | null = null;
+let _grkPromise: Promise<typeof import('@/data/lexicon/grego')> | null = null;
 
-function getHebLookup() {
+async function loadHebraico() {
+  if (!_hebPromise) _hebPromise = import('@/data/lexicon/hebraico');
+  return _hebPromise;
+}
+
+async function loadGrego() {
+  if (!_grkPromise) _grkPromise = import('@/data/lexicon/grego');
+  return _grkPromise;
+}
+
+async function getHebLookup() {
   if (!_hebLookup) {
+    const mod = await loadHebraico();
     _hebLookup = {};
-    for (const p of palavrasHebraicas) _hebLookup[p.strong] = p;
+    for (const p of mod.palavrasHebraicas) _hebLookup[p.strong] = p;
   }
   return _hebLookup;
 }
 
-function getGrkLookup() {
+async function getGrkLookup() {
   if (!_grkLookup) {
+    const mod = await loadGrego();
     _grkLookup = {};
-    for (const p of palavrasGregas) _grkLookup[p.strong] = p;
+    for (const p of mod.palavrasGregas) _grkLookup[p.strong] = p;
   }
   return _grkLookup;
 }
 
-export function getStrongPorVersiculo(livro: string, capitulo: number, versiculo: number): PalavraStrong[] {
+export async function getStrongPorVersiculo(livro: string, capitulo: number, versiculo: number): Promise<PalavraStrong[]> {
   const key = `${livro}:${capitulo}:${versiculo}`;
   const entry = STRONG_CODES[key];
   if (!entry) return [];
   const [codes, morphs] = entry;
-  const heb = getHebLookup();
-  const grk = getGrkLookup();
+  const heb = await getHebLookup();
+  const grk = await getGrkLookup();
   return codes.map((code, i) => {
     const isHeb = code.startsWith('H');
     const lex = isHeb ? heb[code] : grk[code];
@@ -31127,13 +31141,13 @@ export function getStrongPorVersiculo(livro: string, capitulo: number, versiculo
   });
 }
 
-export function buscarVersiculoComStrong(livro: string, capitulo: number, versiculo: number): PalavraStrong[] {
+export async function buscarVersiculoComStrong(livro: string, capitulo: number, versiculo: number): Promise<PalavraStrong[]> {
   return getStrongPorVersiculo(livro, capitulo, versiculo);
 }
 
-export function buscarPalavraStrong(codigo: string): PalavraStrong | null {
+export async function buscarPalavraStrong(codigo: string): Promise<PalavraStrong | null> {
   const isHeb = codigo.startsWith('H');
-  const lex = isHeb ? getHebLookup()[codigo] : getGrkLookup()[codigo];
+  const lex = isHeb ? (await getHebLookup())[codigo] : (await getGrkLookup())[codigo];
   if (!lex) return null;
   return {
     strong: codigo,
@@ -31149,12 +31163,12 @@ export function getVersiculosComStrong(): string[] {
   return Object.keys(STRONG_CODES);
 }
 
-export function getStrongPorChave(key: string): PalavraStrong[] {
+export async function getStrongPorChave(key: string): Promise<PalavraStrong[]> {
   const entry = STRONG_CODES[key];
   if (!entry) return [];
   const [codes, morphs] = entry;
-  const heb = getHebLookup();
-  const grk = getGrkLookup();
+  const heb = await getHebLookup();
+  const grk = await getGrkLookup();
   return codes.map((code, i) => {
     const isHeb = code.startsWith('H');
     const lex = isHeb ? heb[code] : grk[code];
@@ -31169,11 +31183,11 @@ export function getStrongPorChave(key: string): PalavraStrong[] {
   });
 }
 
-export function buscarStrong(termo: string): PalavraStrong[] {
+export async function buscarStrong(termo: string): Promise<PalavraStrong[]> {
   const termoLower = termo.toLowerCase();
   const results: PalavraStrong[] = []
-  const heb = getHebLookup();
-  const grk = getGrkLookup();
+  const heb = await getHebLookup();
+  const grk = await getGrkLookup();
   if (termo.startsWith('H') || termo.startsWith('G')) {
     const lex = termo.startsWith('H') ? heb[termo] : grk[termo];
     if (lex) {

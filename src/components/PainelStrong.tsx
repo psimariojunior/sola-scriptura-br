@@ -45,8 +45,8 @@ export default function PainelStrong({ onClose, livro, capitulo, versiculo }: Pa
     if (!temVersiculo) return;
     setLoadingVersiculo(true);
     setPalavrasVersiculo([]);
-    import('@/data/biblia/strong').then(mod => {
-      const palavras = mod.getStrongPorVersiculo(livro, capitulo, versiculo);
+    import('@/data/biblia/strong').then(async mod => {
+      const palavras = await mod.getStrongPorVersiculo(livro, capitulo, versiculo);
       setPalavrasVersiculo(palavras);
       setLoadingVersiculo(false);
     }).catch(() => setLoadingVersiculo(false));

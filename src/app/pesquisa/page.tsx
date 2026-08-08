@@ -502,15 +502,18 @@ export default function PesquisaPage() {
             <div>
               <div className="sola-card p-4 mb-6">
                 <div className="relative flex items-center gap-2">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" strokeWidth={1.5} />
+                  <label htmlFor="pesquisa-input" className="sr-only">{t('pesquisa.searchPlaceholder', 'Pesquisar na Bíblia')}</label>
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
                   <input
                     ref={inputRef}
+                    id="pesquisa-input"
                     type="text"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder={searchMode === 'strongs' ? 'Ex: H1234, G3056, 1234...' : t('pesquisa.searchPlaceholder')}
                     className="w-full pl-12 pr-14 sm:pr-24 py-3 bg-transparent text-lg font-serif-body focus:outline-none"
                     autoFocus
+                    aria-describedby="pesquisa-results-count"
                   />
                   <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
                     {query && (
@@ -532,7 +535,7 @@ export default function PesquisaPage() {
 
               {/* Results header */}
               {!!debouncedQuery && !loading && (
-                <div className="mb-4 flex items-center justify-between">
+                <div className="mb-4 flex items-center justify-between" aria-live="polite" aria-atomic="true" id="pesquisa-results-count">
                   <div className="text-sm text-muted-foreground">
                     {resultados.length > 0 ? (
                       <span>
@@ -559,6 +562,7 @@ export default function PesquisaPage() {
                       <button
                         onClick={exportResults}
                         className="flex items-center gap-1 px-3 py-1.5 text-xs border border-border rounded-sm hover:bg-muted transition-colors"
+                        aria-label={t('pesquisa.export', 'Exportar resultados')}
                       >
                         <Download className="w-3 h-3" />
                         {t('pesquisa.export')}
@@ -569,8 +573,8 @@ export default function PesquisaPage() {
               )}
 
               {loading && (
-                <div className="sola-card p-12 text-center">
-                  <div className="inline-flex gap-1.5">
+                <div className="sola-card p-12 text-center" role="status" aria-live="polite">
+                  <div className="inline-flex gap-1.5" aria-hidden="true">
                     <span className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0s]" />
                     <span className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0.15s]" />
                     <span className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:0.3s]" />
@@ -706,6 +710,7 @@ export default function PesquisaPage() {
                                 onClick={() => copyResult(r)}
                                 className="p-1.5 text-muted-foreground hover:text-foreground transition-colors rounded-sm"
                                 title={t('pesquisa.copy')}
+                                aria-label={t('pesquisa.copy', 'Copiar versículo')}
                               >
                                 {copiedResult === `${r.traducao}-${r.capitulo}-${r.versiculo}` ? (
                                   <span className="text-green-500 text-xs">{t('pesquisa.copied')}</span>
@@ -717,6 +722,7 @@ export default function PesquisaPage() {
                                 onClick={() => shareResult(r)}
                                 className="p-1.5 text-muted-foreground hover:text-foreground transition-colors rounded-sm"
                                 title={t('pesquisa.share')}
+                                aria-label={t('pesquisa.share', 'Compartilhar versículo')}
                               >
                                 <Share2 className="w-4 h-4" />
                               </button>

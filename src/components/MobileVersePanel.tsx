@@ -98,8 +98,8 @@ export const MobileVersePanel = memo(function MobileVersePanel({
   useEffect(() => {
     if (activeTab !== 'lexico' || !livroAbrev) return;
     setLexicoLoading(true);
-    import('@/data/biblia/strong').then(mod => {
-      const palavras = mod.getStrongPorVersiculo(livroAbrev, capitulo, versiculo);
+    import('@/data/biblia/strong').then(async mod => {
+      const palavras = await mod.getStrongPorVersiculo(livroAbrev, capitulo, versiculo);
       setLexicoPalavras(palavras);
       setLexicoLoading(false);
     }).catch(() => setLexicoLoading(false));

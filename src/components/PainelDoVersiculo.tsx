@@ -179,8 +179,8 @@ function TabLexico({ livro, capitulo, versiculo }: { livro: string; capitulo: nu
 
   useEffect(() => {
     setLoading(true);
-    loadStrongData().then((mod) => {
-      setPalavras(mod.getStrongPorVersiculo(livro, capitulo, versiculo));
+    loadStrongData().then(async (mod) => {
+      setPalavras(await mod.getStrongPorVersiculo(livro, capitulo, versiculo));
       setLoading(false);
     });
   }, [livro, capitulo, versiculo]);

@@ -9,10 +9,10 @@ export function useStrongLazy(livro: string, capitulo: number, versiculo: number
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    import('@/data/biblia/strong').then((mod) => {
+    import('@/data/biblia/strong').then(async (mod) => {
       if (cancelled) return;
       try {
-        setPalavras(mod.getStrongPorVersiculo(livro, capitulo, versiculo) ?? []);
+        setPalavras(await mod.getStrongPorVersiculo(livro, capitulo, versiculo) ?? []);
       } catch {
         setPalavras([]);
       }

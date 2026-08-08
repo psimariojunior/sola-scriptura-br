@@ -89,7 +89,7 @@ export async function exportStudyPDF(study: StudyData): Promise<void> {
     import('@/data/biblia/strong'),
     import('@/data/biblia/crossReferences'),
   ]);
-  const strongs: PalavraStrong[] = strongsMod.getStrongPorVersiculo(study.livroAbreviacao, study.capitulo, study.versiculo) ?? [];
+  const strongs: PalavraStrong[] = await strongsMod.getStrongPorVersiculo(study.livroAbreviacao, study.capitulo, study.versiculo) ?? [];
   const refs: CrossReference[] = refsMod.getCrossReferencesByVerse ? refsMod.getCrossReferencesByVerse(study.livroAbreviacao, study.capitulo, study.versiculo) : [];
 
   // ── Página do Versículo ──

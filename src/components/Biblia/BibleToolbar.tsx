@@ -56,19 +56,19 @@ export function BibleToolbar({
     <div className="border-b border-[var(--border)]/40 bg-[var(--surface-raised)]/95 backdrop-blur-sm sticky top-0 z-20">
       <div className="px-3 sm:px-4 py-2.5 flex items-center gap-1.5 sm:gap-3 overflow-x-auto scrollbar-hide">
         <button onClick={() => ui.setMobileMenu(true)} className="lg:hidden touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] shrink-0" aria-label="Abrir menu de livros"><BookOpen className="w-4 h-4" /></button>
-        <button onClick={() => ui.setSidebarOpen(!ui.sidebarOpen)} className="hidden lg:flex touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] shrink-0"><ListFilter className="w-4 h-4" /></button>
+        <button onClick={() => ui.setSidebarOpen(!ui.sidebarOpen)} className="hidden lg:flex touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] shrink-0" aria-label={t('biblia.toggleSidebar', 'Alternar barra lateral')} aria-expanded={ui.sidebarOpen}><ListFilter className="w-4 h-4" /></button>
         <button onClick={() => ui.setQuickSearchOpen(true)} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] shrink-0" aria-label={t('biblia.search')} title={t('biblia.search')}><Search className="w-4 h-4" /></button>
         <div className="flex items-center gap-1 shrink-0">
-          <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform"><ChevronLeft className="w-4 h-4" /></button>
+          <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform" aria-label={t('biblia.previousChapter', 'Capítulo anterior')}><ChevronLeft className="w-4 h-4" /></button>
           <div className="relative">
-            <button onClick={() => ui.setChapterGridOpen(!ui.chapterGridOpen)} className="px-2.5 py-1 rounded-md bg-[var(--surface-sunken)] border border-[var(--border)]/40 min-w-[80px] max-w-[130px] sm:min-w-[120px] sm:max-w-none text-center hover:bg-[var(--surface-raised)] transition-colors cursor-pointer truncate">
+            <button onClick={() => ui.setChapterGridOpen(!ui.chapterGridOpen)} className="px-2.5 py-1 rounded-md bg-[var(--surface-sunken)] border border-[var(--border)]/40 min-w-[80px] max-w-[130px] sm:min-w-[120px] sm:max-w-none text-center hover:bg-[var(--surface-raised)] transition-colors cursor-pointer truncate" aria-label={`${nav.livro.nome} ${nav.capituloIdx + 1}/${nav.livro.totalCapitulos} — ${t('biblia.selectChapter', 'Selecionar capítulo')}`} aria-expanded={ui.chapterGridOpen}>
               <span className="text-sm font-semibold text-[var(--content-primary)]">{nav.livro.nome}</span>
               <span className="text-[var(--brand-default)] font-bold ml-1.5 tabular-nums">{nav.capituloIdx + 1}</span>
               <span className="text-[var(--content-muted)] font-normal text-xs ml-1">/{nav.livro.totalCapitulos}</span>
             </button>
             <ChapterGrid open={ui.chapterGridOpen} onClose={() => ui.setChapterGridOpen(false)} totalCapitulos={nav.livro.totalCapitulos} capituloAtual={nav.capituloIdx} onSelect={(idx) => nav.changeChapter(idx)} />
           </div>
-          <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform"><ChevronRight className="w-4 h-4" /></button>
+          <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform" aria-label={t('biblia.nextChapter', 'Próximo capítulo')}><ChevronRight className="w-4 h-4" /></button>
         </div>
         <div className="flex-1" />
         <ReadingModeBar mode={readingMode} onModeChange={handleReadingModeChange} />
@@ -101,20 +101,21 @@ export function BibleToolbar({
         <div className="hidden md:flex items-center gap-2">
           <ModoLeitura value={ui.modoLeitura} onChange={(v) => { ui.setModoLeitura(v); if (v === 'comparacao') nav.setViewMode('parallel'); else if (v === 'estudo') { panels.setSidePanelWidth('half'); panels.setSidePanelTab('comentarios'); } else if (v === 'apresentacao') ui.setMostrarApresentacao(true); else { nav.setViewMode('single'); panels.setSidePanelWidth('collapsed'); } }} size="sm" />
           <div className="w-px h-6 bg-[var(--border)]/60" />
-          <button onClick={() => ui.setShowInterlinear(!ui.showInterlinear)} className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all', ui.showInterlinear ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20' : 'bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20')} title={t('biblia.showOriginalText')}>
+          <button onClick={() => ui.setShowInterlinear(!ui.showInterlinear)} className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all', ui.showInterlinear ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20' : 'bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20')} title={t('biblia.showOriginalText')} aria-label={t('biblia.toggleInterlinear', 'Alternar vista interlinear')} aria-pressed={ui.showInterlinear}>
             <span className="font-hebrew" style={{ fontSize: '11px' }}>א</span>Interlinear
           </button>
-          <button onClick={() => onShowDownloadManager(true)} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20 transition-all" title={t('biblia.manageOffline')}>
+          <button onClick={() => onShowDownloadManager(true)} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20 transition-all" title={t('biblia.manageOffline')} aria-label={t('biblia.offlineVersions', 'Versões offline')}>
             <HardDrive className="w-3.5 h-3.5" />Versões
           </button>
           <div className="w-px h-6 bg-[var(--border)]/60" />
           <div className="flex items-center gap-0.5">
             <button onClick={() => { if (ui.mostrarNarracaoCapitulo) { ui.setMostrarNarracaoCapitulo(false); capituloAudio.stop(); } if (capituloAudio.state.isPlaying || capituloAudio.state.isPaused) capituloAudio.stop(); else capituloAudio.play(); }}
-              className={cn('flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold transition-all active:scale-95 hover:scale-105', capituloAudio.state.isPlaying ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20' : 'bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20')}>
+              className={cn('flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold transition-all active:scale-95 hover:scale-105', capituloAudio.state.isPlaying ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20' : 'bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20')}
+              aria-label={capituloAudio.state.isPlaying ? t('biblia.stopAudio', 'Parar áudio') : t('biblia.playAudio', 'Reproduzir áudio do capítulo')}>
               {capituloAudio.state.isLoading ? <span className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin" /> : capituloAudio.state.isPlaying ? <span className="flex gap-0.5"><span className="w-0.5 h-3 bg-current rounded-full" /><span className="w-0.5 h-3 bg-current rounded-full" /></span> : <Play className="w-3.5 h-3.5 fill-current" />}
               <Volume2 className="w-3.5 h-3.5" />
             </button>
-            <button onClick={() => ui.setMostrarQualidadeAudio(true)} className="p-1.5 rounded-full text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] active:scale-95 transition-transform" title={t('biblia.audioQuality')}><Mic className="w-3.5 h-3.5" /></button>
+            <button onClick={() => ui.setMostrarQualidadeAudio(true)} className="p-1.5 rounded-full text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] active:scale-95 transition-transform" title={t('biblia.audioQuality')} aria-label={t('biblia.audioQuality', 'Qualidade do áudio')}><Mic className="w-3.5 h-3.5" /></button>
           </div>
           <ToolsDropdown open={ui.toolsOpen} onToggle={() => { ui.setToolsOpen(!ui.toolsOpen); ui.setTradOpen(false); }} onClose={() => ui.setToolsOpen(false)} bookName={nav.livro.nome} chapter={nav.capituloIdx + 1} data={nav.data} hasDramatica={!!passagemDramatica}
             onNotas={() => { if (!ui.mostrarNotas && !verse.notaAtiva) { verse.setNotaAtiva(verse.criarNota(`${nav.livro.nome} ${nav.capituloIdx + 1}`)); } ui.setMostrarNotas(!ui.mostrarNotas); ui.setToolsOpen(false); }}
@@ -122,7 +123,8 @@ export function BibleToolbar({
             onNarracaoDramatica={() => { ui.setMostrarNarracao(true); ui.setToolsOpen(false); }} onNarrarCapitulo={() => { capituloAudio.stop(); ui.setMostrarNarracaoCapitulo(true); ui.setToolsOpen(false); }}
             onConfiguracoes={() => { ui.setShowSettings(!ui.showSettings); ui.setToolsOpen(false); }} />
           <button onClick={() => ui.setMostrarApresentacao(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-[var(--brand-contrast)] bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] shadow-md shadow-[var(--brand-default)]/30 hover:shadow-lg hover:shadow-[var(--brand-default)]/40 transition-all active:scale-97 hover:scale-105">
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-[var(--brand-contrast)] bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] shadow-md shadow-[var(--brand-default)]/30 hover:shadow-lg hover:shadow-[var(--brand-default)]/40 transition-all active:scale-97 hover:scale-105"
+            aria-label={t('biblia.present', 'Apresentar')}>
             <Sparkles className="w-3.5 h-3.5" />{t('biblia.present')}<span className="inline-flex items-center px-1 py-0 rounded text-[8px] font-extrabold bg-white/20">{t('biblia.new')}</span>
           </button>
           <button onClick={() => ui.setImmersiveMode(true)}

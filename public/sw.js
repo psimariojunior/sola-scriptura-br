@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v12';
+const CACHE_VERSION = 'v13';
 const STATIC_CACHE = `ssb-static-${CACHE_VERSION}`;
 const API_CACHE = `ssb-api-${CACHE_VERSION}`;
 const BIBLE_CACHE = `ssb-bible-${CACHE_VERSION}`;
@@ -6,11 +6,16 @@ const PAGES_CACHE = `ssb-pages-${CACHE_VERSION}`;
 const VISITED_PAGES_CACHE = `ssb-visited-pages-${CACHE_VERSION}`;
 const STUDIES_CACHE = `ssb-studies-${CACHE_VERSION}`;
 const DATA_CACHE = `ssb-data-${CACHE_VERSION}`;
+const LEXICON_CACHE = `ssb-lexicon-${CACHE_VERSION}`;
+const OFFLINE_QUEUE = 'ssb-offline-queue';
+const API_TTL = 5 * 60 * 1000;
 
 const CACHE_LIMITS = {
   [PAGES_CACHE]: { maxEntries: 50 },
   [STUDIES_CACHE]: { maxBytes: 20 * 1024 * 1024 },
   [BIBLE_CACHE]: { maxBytes: 50 * 1024 * 1024 },
+  [LEXICON_CACHE]: { maxBytes: 10 * 1024 * 1024 },
+  [API_CACHE]: { maxEntries: 100 },
 };
 const DB_NAME = 'sola-scriptura-offline';
 const DB_VERSION = 2;
@@ -115,11 +120,15 @@ function openDB() {
       const allStores = [
         STORE_CHAPTERS, STORE_META, STORE_FAVORITES, STORE_NOTES,
         STORE_LEXICON, STORE_PLANS, STORE_SETTINGS, STORE_COLLECTIONS,
-        STORE_FLASHCARDS, STORE_GAMIFICATION, STORE_MARCAS,
+        STORE_FLASHCARDS, STORE_GAMIFICATION, STORE_MARCAS, OFFLINE_QUEUE,
       ];
       for (const store of allStores) {
         if (!db.objectStoreNames.contains(store)) {
-          db.createObjectStore(store, { keyPath: 'key' });
+          if (store === OFFLINE_QUEUE) {
+            db.createObjectStore(store, { keyPath: 'key' });
+          } else {
+            db.createObjectStore(store, { keyPath: 'key' });
+          }
         }
       }
     };
@@ -155,7 +164,9 @@ self.addEventListener('activate', (event) => {
               key !== BIBLE_CACHE &&
               key !== PAGES_CACHE &&
               key !== VISITED_PAGES_CACHE &&
-              key !== STUDIES_CACHE
+              key !== STUDIES_CACHE &&
+              key !== DATA_CACHE &&
+              key !== LEXICON_CACHE
             )
             .map((key) => caches.delete(key))
         )
@@ -182,7 +193,7 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET') return;
 
   if (url.pathname.startsWith('/api/')) {
-    event.respondWith(networkFirst(request, API_CACHE));
+    event.respondWith(apiWithTTL(request));
     return;
   }
 
@@ -195,16 +206,23 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (url.pathname.startsWith('/api/v1/biblia') || url.pathname.includes('/texto/')) {
-    event.respondWith(cacheFirst(request, BIBLE_CACHE));
+    event.respondWith(cacheBibleChapter(request));
     return;
   }
 
-  // Cache study-related chunks (estudos, comentarios, cross-references, lexicon)
+  if (
+    url.pathname.includes('/lexicon') ||
+    url.pathname.includes('/hebraico') ||
+    url.pathname.includes('/grego')
+  ) {
+    event.respondWith(cacheFirst(request, LEXICON_CACHE));
+    return;
+  }
+
   if (
     url.pathname.includes('/estudos') ||
     url.pathname.includes('/comentarios') ||
     url.pathname.includes('/crossRef') ||
-    url.pathname.includes('/lexicon') ||
     url.pathname.includes('/estudosGerados') ||
     url.pathname.includes('/estudosTeologicos')
   ) {
@@ -291,6 +309,152 @@ async function staleWhileRevalidate(request, cacheName) {
   }
 }
 
+async function cacheBibleChapter(request) {
+  const cached = await caches.match(request);
+  if (cached) return cached;
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      const cache = await caches.open(BIBLE_CACHE);
+      cache.put(request, response.clone());
+      const url = new URL(request.url);
+      const pathParts = url.pathname.split('/');
+      const livro = pathParts[pathParts.length - 2];
+      const cap = pathParts[pathParts.length - 1];
+      if (livro && cap) {
+        try {
+          const data = await response.clone().json();
+          const verses = data?.data?.verses || data?.verses || [];
+          if (verses.length > 0) {
+            const db = await openDB();
+            const tx = db.transaction(STORE_CHAPTERS, 'readwrite');
+            tx.objectStore(STORE_CHAPTERS).put({
+              key: `auto:${livro}:${cap}`,
+              livro,
+              capitulo: Number(cap),
+              traducao: 'auto',
+              verses,
+              timestamp: Date.now(),
+            });
+            await new Promise((resolve, reject) => {
+              tx.oncomplete = () => resolve();
+              tx.onerror = () => reject(tx.error);
+            });
+            db.close();
+          }
+        } catch {}
+      }
+    }
+    return response;
+  } catch {
+    return new Response(JSON.stringify({ error: 'Offline' }), {
+      status: 503,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}
+
+async function apiWithTTL(request) {
+  const cache = await caches.open(API_CACHE);
+  const cached = await cache.match(request);
+  if (cached) {
+    const dateHeader = cached.headers.get('sw-cached-at');
+    if (dateHeader) {
+      const cachedAt = Number(dateHeader);
+      if (Date.now() - cachedAt < API_TTL) {
+        return cached;
+      }
+    }
+  }
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      const headers = new Headers(response.headers);
+      headers.set('sw-cached-at', String(Date.now()));
+      const timedResponse = new Response(await response.clone().blob(), {
+        status: response.status,
+        statusText: response.statusText,
+        headers,
+      });
+      cache.put(request, timedResponse.clone());
+    }
+    return response;
+  } catch {
+    if (cached) return cached;
+    return new Response(JSON.stringify({ error: 'Offline' }), {
+      status: 503,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}
+
+async function queueOfflineAction(action) {
+  const db = await openDB();
+  const tx = db.transaction(OFFLINE_QUEUE, 'readwrite');
+  const store = tx.objectStore(OFFLINE_QUEUE);
+  store.put({
+    key: `action-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    ...action,
+    timestamp: Date.now(),
+    synced: false,
+  });
+  await new Promise((resolve, reject) => {
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+  db.close();
+}
+
+async function processOfflineQueue() {
+  const db = await openDB();
+  const tx = db.transaction(OFFLINE_QUEUE, 'readonly');
+  const store = tx.objectStore(OFFLINE_QUEUE);
+  const all = await new Promise((resolve) => {
+    const req = store.getAll();
+    req.onsuccess = () => resolve(req.result || []);
+    req.onerror = () => resolve([]);
+  });
+  db.close();
+
+  const unsynced = all.filter((item) => !item.synced);
+  if (!unsynced.length) return;
+
+  const grouped = {};
+  for (const item of unsynced) {
+    if (!grouped[item.type]) grouped[item.type] = [];
+    grouped[item.type].push(item);
+  }
+
+  for (const [type, items] of Object.entries(grouped)) {
+    const endpoint = type === 'favorite' ? '/api/v1/favoritos' :
+                     type === 'note' ? '/api/v1/notas' :
+                     type === 'collection' ? '/api/v1/colecoes' : null;
+    if (!endpoint) continue;
+
+    for (const item of items) {
+      try {
+        await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(item.payload),
+        });
+        const db2 = await openDB();
+        const tx2 = db2.transaction(OFFLINE_QUEUE, 'readwrite');
+        tx2.objectStore(OFFLINE_QUEUE).put({ ...item, synced: true });
+        await new Promise((r) => { tx2.oncomplete = () => r(); });
+        db2.close();
+      } catch {
+        break;
+      }
+    }
+  }
+
+  const clients = await self.clients.matchAll();
+  for (const client of clients) {
+    client.postMessage({ type: 'SYNC_COMPLETE' });
+  }
+}
+
 self.addEventListener('message', (event) => {
   const { data } = event;
   if (!data) return;
@@ -319,6 +483,14 @@ self.addEventListener('message', (event) => {
     event.waitUntil(storeNoteOffline(data));
   }
 
+  if (message === 'QUEUE_OFFLINE_ACTION') {
+    event.waitUntil(queueOfflineAction(data.action));
+  }
+
+  if (message === 'PROCESS_OFFLINE_QUEUE') {
+    event.waitUntil(processOfflineQueue());
+  }
+
   if (message === 'SKIP_WAITING') {
     self.skipWaiting();
   }
@@ -329,6 +501,10 @@ self.addEventListener('message', (event) => {
 
   if (message === 'GET_OFFLINE_STATS') {
     event.waitUntil(getOfflineStats(event));
+  }
+
+  if (message === 'GET_RECENT_CHAPTERS') {
+    event.waitUntil(getRecentChapters(event));
   }
 
   if (message === 'PRELOAD_STUDIES') {
@@ -438,6 +614,28 @@ async function getOfflineStats(event) {
   } catch {}
 }
 
+async function getRecentChapters(event) {
+  try {
+    const db = await openDB();
+    const chapters = await new Promise((resolve) => {
+      const tx = db.transaction(STORE_CHAPTERS, 'readonly');
+      const store = tx.objectStore(STORE_CHAPTERS);
+      const req = store.getAll();
+      req.onsuccess = () => {
+        const all = req.result || [];
+        all.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+        resolve(all.slice(0, 10));
+      };
+      req.onerror = () => resolve([]);
+    });
+    db.close();
+    const client = event.source;
+    if (client) {
+      client.postMessage({ type: 'RECENT_CHAPTERS', chapters });
+    }
+  } catch {}
+}
+
 async function preloadStudies(data) {
   const { urls } = data;
   if (!urls || !Array.isArray(urls)) return;
@@ -474,7 +672,7 @@ async function preloadLexicon(data) {
     : ['/data/lexicon/hebraico.js', '/data/lexicon/grego.js'];
 
   try {
-    const cache = await caches.open(DATA_CACHE);
+    const cache = await caches.open(LEXICON_CACHE);
     const results = [];
     for (const url of urls) {
       try {
@@ -490,7 +688,6 @@ async function preloadLexicon(data) {
       }
     }
 
-    // Armazenar no IndexedDB para acesso offline rápido
     const db = await openDB();
     const tx = db.transaction(STORE_LEXICON, 'readwrite');
     const store = tx.objectStore(STORE_LEXICON);
@@ -560,6 +757,15 @@ async function storeFavoriteOffline(data) {
       tx.onerror = () => reject(tx.error);
     });
     db.close();
+
+    await queueOfflineAction({
+      type: 'favorite',
+      payload: data,
+    });
+
+    if ('sync' in self.registration) {
+      await self.registration.sync.register('sync-offline-queue');
+    }
   } catch {}
 }
 
@@ -578,6 +784,15 @@ async function storeNoteOffline(data) {
       tx.onerror = () => reject(tx.error);
     });
     db.close();
+
+    await queueOfflineAction({
+      type: 'note',
+      payload: data,
+    });
+
+    if ('sync' in self.registration) {
+      await self.registration.sync.register('sync-offline-queue');
+    }
   } catch {}
 }
 
@@ -685,6 +900,9 @@ self.addEventListener('sync', (event) => {
   }
   if (event.tag === 'sync-chapters') {
     event.waitUntil(syncDownloadedChapters());
+  }
+  if (event.tag === 'sync-offline-queue') {
+    event.waitUntil(processOfflineQueue());
   }
 });
 

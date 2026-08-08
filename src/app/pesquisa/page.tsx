@@ -46,31 +46,40 @@ const SEARCH_MODES = [
   { id: 'strongs', label: "Strong's", icon: Hash, description: 'Número Strong' },
 ];
 
-function highlightText(text: string, query: string, mode: string) {
+function highlightText(text: string, query: string, mode: string, isExactPhrase: boolean) {
   if (!query.trim()) return text;
   
   try {
     let pattern: string;
     
-    switch (mode) {
-      case 'exact':
-        pattern = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        break;
-      case 'startsWith':
-        pattern = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\S*';
-        break;
-      case 'regex':
-        pattern = query;
-        break;
-      default:
-        pattern = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    if (isExactPhrase) {
+      pattern = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    } else {
+      switch (mode) {
+        case 'exact':
+          pattern = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          break;
+        case 'startsWith':
+          pattern = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\S*';
+          break;
+        case 'regex':
+          pattern = query;
+          break;
+        default:
+          const words = query.trim().split(/\s+/).filter(w => w.length > 1);
+          if (words.length > 1) {
+            pattern = words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+          } else {
+            pattern = words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+          }
+      }
     }
     
     const regex = new RegExp(`(${pattern})`, 'gi');
     const parts = text.split(regex);
     return parts.map((part, i) =>
       i % 2 === 1
-        ? <mark key={i} className="bg-primary/20 text-foreground px-0.5 rounded-sm">{part}</mark>
+        ? <mark key={i} className="bg-primary/20 text-foreground px-0.5 rounded-sm font-medium">{part}</mark>
         : part
     );
   } catch {
@@ -94,6 +103,8 @@ export default function PesquisaPage() {
   const [testamento, setTestamento] = useState<'all' | 'AT' | 'NT'>('all');
   const [livroFiltro, setLivroFiltro] = useState('all');
   const [capituloFiltro, setCapituloFiltro] = useState<number | null>(null);
+  const [capituloDe, setCapituloDe] = useState<number | null>(null);
+  const [capituloAte, setCapituloAte] = useState<number | null>(null);
   const [tradSel, setTradSel] = useState<Set<string>>(new Set(['arc', 'nvi', 'ara', 'acf', 'kjv', 'web']));
   const [apiResults, setApiResults] = useState<SearchResult[] | null>(null);
   const [loading, setLoading] = useState(false);
@@ -101,6 +112,8 @@ export default function PesquisaPage() {
   const [copiedResult, setCopiedResult] = useState<string | null>(null);
   const [buscaSemantica, setBuscaSemantica] = useState(true);
   const [lexiconResults, setLexiconResults] = useState<any[]>([]);
+  const [isExactPhrase, setIsExactPhrase] = useState(false);
+  const [searchTime, setSearchTime] = useState<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const { t } = useTranslation();
 
@@ -119,7 +132,7 @@ export default function PesquisaPage() {
       const traducao = [...tradSel].join(',');
       let searchQuery = q;
 
-      if (buscaSemantica) {
+      if (buscaSemantica && !isExactPhrase) {
         const expandida = obterQueryExpandida(q);
         if (expandida && expandida !== q) {
           searchQuery = expandida;
@@ -142,11 +155,12 @@ export default function PesquisaPage() {
     } catch {
       return null;
     }
-  }, [tradSel, buscaSemantica]);
+  }, [tradSel, buscaSemantica, isExactPhrase]);
 
   useEffect(() => {
     setLoading(true);
     setLexiconResults([]);
+    const startTime = Date.now();
     const t = setTimeout(async () => {
       const q = query.trim();
       if (q && q.length >= 2) {
@@ -187,10 +201,11 @@ export default function PesquisaPage() {
         setLexiconResults([]);
       }
       setDebouncedQuery(query);
+      setSearchTime(Date.now() - startTime);
       setLoading(false);
     }, 300);
     return () => clearTimeout(t);
-  }, [query, tryApiSearch, buscaSemantica, searchMode]);
+  }, [query, tryApiSearch, buscaSemantica, searchMode, isExactPhrase]);
 
   const livrosFiltrados = useMemo(
     () => TODOS_LIVROS.filter((l) => testamento === 'all' || l.testamento === testamento),
@@ -204,18 +219,26 @@ export default function PesquisaPage() {
 
   const resultados = useMemo(() => {
     const q = debouncedQuery.trim();
-    if (!q && testamento === 'all' && livroFiltro === 'all' && capituloFiltro === null && tradSel.size === 6) return [];
+    if (!q && testamento === 'all' && livroFiltro === 'all' && capituloFiltro === null && tradSel.size === 6 && !capituloDe && !capituloAte) return [];
 
     let r = apiResults || [];
 
     if (testamento !== 'all') r = r.filter((item) => item.testamento === testamento);
     if (livroFiltro !== 'all') r = r.filter((item) => item.livroAbrev === livroFiltro);
-    if (capituloFiltro !== null) r = r.filter((item) => item.capitulo === capituloFiltro);
+    if (capituloFiltro !== null) {
+      r = r.filter((item) => item.capitulo === capituloFiltro);
+    } else if (capituloDe !== null && capituloAte !== null) {
+      r = r.filter((item) => item.capitulo >= capituloDe && item.capitulo <= capituloAte);
+    } else if (capituloDe !== null) {
+      r = r.filter((item) => item.capitulo >= capituloDe);
+    } else if (capituloAte !== null) {
+      r = r.filter((item) => item.capitulo <= capituloAte);
+    }
 
     return r;
-  }, [debouncedQuery, testamento, livroFiltro, capituloFiltro, tradSel, apiResults]);
+  }, [debouncedQuery, testamento, livroFiltro, capituloFiltro, capituloDe, capituloAte, tradSel, apiResults]);
 
-  const hasFilters = testamento !== 'all' || livroFiltro !== 'all' || capituloFiltro !== null || tradSel.size !== 6;
+  const hasFilters = testamento !== 'all' || livroFiltro !== 'all' || capituloFiltro !== null || capituloDe !== null || capituloAte !== null || tradSel.size !== 6 || isExactPhrase;
   const hasAnyInput = !!debouncedQuery || hasFilters;
 
   const limpar = () => {
@@ -224,8 +247,12 @@ export default function PesquisaPage() {
     setTestamento('all');
     setLivroFiltro('all');
     setCapituloFiltro(null);
+    setCapituloDe(null);
+    setCapituloAte(null);
     setTradSel(new Set(['arc', 'nvi', 'ara', 'acf', 'kjv', 'web']));
     setSearchMode('contains');
+    setIsExactPhrase(false);
+    setSearchTime(null);
     setLexiconResults([]);
     inputRef.current?.focus();
   };
@@ -287,6 +314,33 @@ export default function PesquisaPage() {
               </div>
 
               <div className={`space-y-5 ${mobileFilters ? '' : 'hidden lg:block'}`}>
+                {/* Exact Phrase Toggle */}
+                <div>
+                  <button
+                    onClick={() => setIsExactPhrase(!isExactPhrase)}
+                    className={`w-full flex items-center gap-2 px-3 py-2 text-xs rounded-sm transition-all ${
+                      isExactPhrase
+                        ? 'bg-primary/10 text-primary border border-primary/30'
+                        : 'bg-muted text-muted-foreground hover:bg-muted/80 border border-border'
+                    }`}
+                  >
+                    <Type className="w-3.5 h-3.5" />
+                    <span className="font-semibold">Busca por frase exata</span>
+                    <span className={`ml-auto w-8 h-4 rounded-full relative transition-colors ${
+                      isExactPhrase ? 'bg-primary' : 'bg-border'
+                    }`}>
+                      <span className={`absolute top-0.5 w-3 h-3 rounded-full bg-white shadow transition-transform ${
+                        isExactPhrase ? 'translate-x-4' : 'translate-x-0.5'
+                      }`} />
+                    </span>
+                  </button>
+                  {isExactPhrase && (
+                    <p className="text-[10px] text-muted-foreground mt-1 px-1 leading-relaxed">
+                      Busca pela frase exata como digitada. Desative para buscar palavra por palavra.
+                    </p>
+                  )}
+                </div>
+
                 {/* Search Mode */}
                 <div>
                   <label className="block text-xs font-medium text-muted-foreground mb-2">{t('pesquisa.searchMode')}</label>
@@ -392,17 +446,44 @@ export default function PesquisaPage() {
 
                 {selectedBook && (
                   <div>
-                    <label className="block text-xs font-medium text-muted-foreground mb-2">{t('pesquisa.chapter')}</label>
-                    <select
-                      value={capituloFiltro ?? ''}
-                      onChange={(e) => setCapituloFiltro(e.target.value ? Number(e.target.value) : null)}
-                      className="w-full px-3 py-2 text-sm bg-background border border-border rounded-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
-                    >
-                      <option value="">{t('pesquisa.allChapters')}</option>
-                      {Array.from({ length: selectedBook.totalCapitulos }, (_, i) => i + 1).map((c) => (
-                        <option key={c} value={c}>{t('pesquisa.chapter')} {c}</option>
-                      ))}
-                    </select>
+                    <label className="block text-xs font-medium text-muted-foreground mb-2">{t('pesquisa.chapter')} (intervalo)</label>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="number"
+                        min={1}
+                        max={selectedBook.totalCapitulos}
+                        placeholder="De"
+                        value={capituloDe ?? ''}
+                        onChange={(e) => {
+                          const val = e.target.value ? Number(e.target.value) : null;
+                          setCapituloDe(val);
+                          setCapituloFiltro(null);
+                        }}
+                        className="flex-1 px-2 py-1.5 text-sm bg-background border border-border rounded-sm focus:outline-none focus:ring-2 focus:ring-primary/20 min-w-0"
+                      />
+                      <span className="text-muted-foreground text-xs">até</span>
+                      <input
+                        type="number"
+                        min={1}
+                        max={selectedBook.totalCapitulos}
+                        placeholder="Até"
+                        value={capituloAte ?? ''}
+                        onChange={(e) => {
+                          const val = e.target.value ? Number(e.target.value) : null;
+                          setCapituloAte(val);
+                          setCapituloFiltro(null);
+                        }}
+                        className="flex-1 px-2 py-1.5 text-sm bg-background border border-border rounded-sm focus:outline-none focus:ring-2 focus:ring-primary/20 min-w-0"
+                      />
+                    </div>
+                    {(capituloDe !== null || capituloAte !== null) && (
+                      <button
+                        onClick={() => { setCapituloDe(null); setCapituloAte(null); }}
+                        className="text-[10px] text-muted-foreground hover:text-foreground mt-1 px-1"
+                      >
+                        Limpar intervalo
+                      </button>
+                    )}
                   </div>
                 )}
 
@@ -455,7 +536,9 @@ export default function PesquisaPage() {
                   <div className="text-sm text-muted-foreground">
                     {resultados.length > 0 ? (
                       <span>
-                        <strong className="text-foreground">{resultados.length}</strong> {t('pesquisa.resultsFor')} &ldquo;<strong className="text-foreground">{debouncedQuery}</strong>&rdquo;
+                        <strong className="text-foreground">{resultados.length}</strong> resultado{resultados.length !== 1 ? 's' : ''} encontrado{resultados.length !== 1 ? 's' : ''} em{' '}
+                        <strong className="text-foreground">{searchTime !== null ? (searchTime / 1000).toFixed(1) : '0.0'}s</strong>
+                        {' '}&mdash;{' '}&ldquo;<strong className="text-foreground">{debouncedQuery}</strong>&rdquo;
                         {buscaSemantica && searchMode !== 'strongs' && (
                           <span className="ml-2 inline-flex items-center gap-1 text-[10px] text-primary/80 bg-primary/5 px-1.5 py-0.5 rounded-full">
                             <Sparkles className="w-2.5 h-2.5" />
@@ -615,7 +698,7 @@ export default function PesquisaPage() {
                               </div>
                               <p className="font-serif-body text-base leading-relaxed">
                                 <sup className="text-primary font-semibold text-xs mr-1">{r.versiculo}</sup>
-                                {highlightText(r.texto, debouncedQuery, searchMode)}
+                                {highlightText(r.texto, debouncedQuery, searchMode, isExactPhrase)}
                               </p>
                             </Link>
                             <div className="flex items-center gap-1 opacity-100 sm:opacity-0 sm:group-hover:sm:opacity-100 transition-opacity">

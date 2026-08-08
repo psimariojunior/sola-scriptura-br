@@ -300,6 +300,90 @@
       transform: rotate(180deg);
     }
 
+    .recent-chapters {
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .recent-title {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .chapter-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .chapter-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .chapter-item:hover {
+      border-color: rgba(212,168,67,0.3);
+      background: rgba(212,168,67,0.04);
+    }
+
+    .chapter-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(212,168,67,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .chapter-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--gold);
+    }
+
+    .chapter-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .chapter-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chapter-meta {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .no-chapters {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
     .footer-text {
       margin-top: 2rem;
       font-size: 0.7rem;
@@ -400,6 +484,11 @@
       </div>
     </div>
 
+    <div class="recent-chapters" id="recentChapters" style="display:none">
+      <p class="recent-title">Últimos capítulos lidos</p>
+      <div class="chapter-list" id="chapterList"></div>
+    </div>
+
     <button class="retry-btn" onclick="window.location.reload()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
@@ -410,5 +499,68 @@
 
     <p class="footer-text">Sola Scriptura BR</p>
   </div>
+
+  <script>
+    const DB_NAME = 'sola-scriptura-offline';
+    const DB_VERSION = 2;
+
+    function openLocalDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, DB_VERSION);
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function loadRecentChapters() {
+      try {
+        const db = await openLocalDB();
+        if (!db.objectStoreNames.contains('chapters')) {
+          db.close();
+          return;
+        }
+        const tx = db.transaction('chapters', 'readonly');
+        const store = tx.objectStore('chapters');
+        const all = await new Promise((resolve) => {
+          const req = store.getAll();
+          req.onsuccess = () => resolve(req.result || []);
+          req.onerror = () => resolve([]);
+        });
+        db.close();
+
+        all.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+        const recent = all.slice(0, 5);
+        if (!recent.length) return;
+
+        const container = document.getElementById('recentChapters');
+        const list = document.getElementById('chapterList');
+        if (!container || !list) return;
+
+        container.style.display = 'block';
+        list.innerHTML = '';
+
+        for (const ch of recent) {
+          const item = document.createElement('a');
+          item.className = 'chapter-item';
+          item.href = '/biblia/' + (ch.livro || '') + '/' + (ch.capitulo || '');
+          item.innerHTML = `
+            <div class="chapter-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+            </div>
+            <div class="chapter-info">
+              <div class="chapter-name">${ch.livro || ''} ${ch.capitulo || ''}</div>
+              <div class="chapter-meta">${ch.traducao ? ch.traducao.toUpperCase() : ''} · ${(ch.verses || []).length} versículos</div>
+            </div>
+          `;
+          list.appendChild(item);
+        }
+      } catch {}
+    }
+
+    loadRecentChapters();
+  </script>
 </body>
 </html>

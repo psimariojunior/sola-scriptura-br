@@ -107,3 +107,22 @@ export function obterVariante(livro: string, capitulo: number, versiculo: number
 export function obterVariantesPorLivro(livro: string): VarianteTextual[] {
   return variantesTextuais.filter((v) => v.livro === livro);
 }
+
+// Merge expanded textual criticism (new entries only)
+import { variantesTextuaisExpandidas } from './criticaTextualExpandida';
+
+const chavesExistentes = new Set(variantesTextuais.map(v => `${v.livro}:${v.capitulo}:${v.versiculo}`));
+variantesTextuaisExpandidas.forEach(v => {
+  const chave = `${v.livro}:${v.capitulo}:${v.versiculo}`;
+  if (!chavesExistentes.has(chave)) {
+    variantesTextuais.push({
+      livro: v.livro,
+      capitulo: v.capitulo,
+      versiculo: v.versiculo,
+      titulo: v.titulo,
+      descricao: v.descricao,
+      testemunhas: v.manuscritos || v.textoRecebido,
+      avaliacao: v.avaliacao,
+    });
+  }
+});

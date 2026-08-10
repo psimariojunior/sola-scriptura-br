@@ -13697,3 +13697,13 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
   { id: 'ap-044', titulo: 'Defesa da Ressurreição Contra o Ceticismo', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['Se Cristo não ressuscitou, a fé é vã.', 'A teoria do roubo do corpo não explica as testemunhas.', 'A alucinação não é uma explicação plausível.', 'A transformação dos apóstolos é inegável.', 'A ressurreição é o fato melhor documentado da história.'], versicosChave: ['Atos 17:31', '1 Coríntios 15:14-19'], tags: ['ressurreição', 'ceticismo', 'defesa'], fontes: ['Gary Habermas, The Risen Jesus and Future Hope', 'N.T. Wright, The Resurrection of the Son of God'] },
   { id: 'ap-045', titulo: 'A Profecia Bíblica como Evidência Divina', categoria: 'Apologetica', subcategoria: 'Apologetica', conteudo: ['As profecias bíblicas são cumpridas com precisão.', 'Isaías 53 descreve a crucificação séculos antes.', 'O Salmo 22 descreve os sofrimentos do Messias.', 'Miquéias 5:2 prediz o nascimento em Belém.', 'O cumprimento de profecias é evidência da inspiração divina.'], versicosChave: ['Isaías 53', 'Salmo 22', 'Miquéias 5:2'], tags: ['profecia', 'cumprimento', 'evidência divina'], fontes: ['Josh McDowell, Evidence That Demands a Verdict', 'Norman Geisler, When Critics Ask'] },
 ];
+
+// Merge expanded studies (existing entries take precedence by id)
+import { estudosTeologicosNovos } from './estudosTeologicosExpandidosNovos';
+
+const idsExistentes = new Set(estudosTeologicosExpandidos.map(e => e.id));
+estudosTeologicosNovos.forEach(estudo => {
+  if (!idsExistentes.has(estudo.id)) {
+    estudosTeologicosExpandidos.push(estudo);
+  }
+});

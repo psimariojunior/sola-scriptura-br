@@ -26,24 +26,24 @@ export class StudyRoom {
   @Column()
   name: string;
 
-  @Column({ nullable: true })
+  @Column({ name: 'host_user_id', nullable: true })
   hostUserId: string;
 
-  @Column('jsonb', { default: '[]' })
+  @Column('jsonb', { name: 'participants', default: '[]' })
   participants: RoomParticipant[];
 
-  @Column('jsonb', { default: '[]' })
+  @Column('jsonb', { name: 'messages', default: '[]' })
   messages: RoomMessage[];
 
-  @Column('jsonb', { default: '{}' })
+  @Column('jsonb', { name: 'shared_notes', default: '{}' })
   sharedNotes: Record<string, string>;
 
-  @Column({ default: true })
+  @Column({ name: 'is_active', default: true })
   isActive: boolean;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 }

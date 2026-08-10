@@ -1771,11 +1771,27 @@ add('ap', 22, 21, 'A Graça do Senhor Jesus',
 // ====================================================================
 
 import { comentariosNovos } from './comentariosExpandidosNovos';
+import comentariosAcademicos from './comentariosAcademicosExpandidos';
 
 // Merge new commentaries (existing entries take precedence)
 Object.keys(comentariosNovos).forEach(key => {
   if (!comentariosExpandidos[key]) {
     comentariosExpandidos[key] = comentariosNovos[key];
+  }
+});
+
+// Merge academic commentaries (existing entries take precedence, new entries add theologian diversity)
+Object.keys(comentariosAcademicos).forEach(key => {
+  if (!comentariosExpandidos[key]) {
+    comentariosExpandidos[key] = comentariosAcademicos[key];
+  } else {
+    // Add new theologians to existing entries (avoid duplicates)
+    const existentes = new Set(comentariosExpandidos[key].comentarios.map(c => c.teologo));
+    comentariosAcademicos[key].comentarios.forEach((novo: ComentarioTeologico) => {
+      if (!existentes.has(novo.teologo)) {
+        comentariosExpandidos[key].comentarios.push(novo);
+      }
+    });
   }
 });
 

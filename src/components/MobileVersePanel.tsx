@@ -388,7 +388,30 @@ export const MobileVersePanel = memo(function MobileVersePanel({
                       <p className="text-base font-bold text-[var(--content-primary)] mb-0.5">{p.palavra}</p>
                       <p className="text-xs text-[var(--content-muted)] italic mb-1">{p.transliteracao}</p>
                       <p className="text-sm text-[var(--content-secondary)] leading-relaxed">{p.definicao}</p>
-                      {p.morfologia && <p className="text-[11px] text-[var(--content-muted)] mt-1">Morfologia: {p.morfologia}</p>}
+                      {(p as any).morfologiaEstruturada?.label ? (
+                        <div className="flex flex-wrap gap-1 mt-1">
+                          {(p as any).morfologiaEstruturada.tipo && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/15 text-indigo-600">{(p as any).morfologiaEstruturada.tipo}</span>
+                          )}
+                          {(p as any).morfologiaEstruturada.tempo && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-600">{(p as any).morfologiaEstruturada.tempo}</span>
+                          )}
+                          {(p as any).morfologiaEstruturada.voz && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600">{(p as any).morfologiaEstruturada.voz}</span>
+                          )}
+                          {(p as any).morfologiaEstruturada.numero && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/15 text-cyan-600">{(p as any).morfologiaEstruturada.numero}</span>
+                          )}
+                          {(p as any).morfologiaEstruturada.genero && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-violet-500/15 text-violet-600">{(p as any).morfologiaEstruturada.genero}</span>
+                          )}
+                          {(p as any).morfologiaEstruturada.raiz && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-500/15 text-green-600">raiz: {(p as any).morfologiaEstruturada.raiz}</span>
+                          )}
+                        </div>
+                      ) : p.morfologia ? (
+                        <p className="text-[11px] text-[var(--content-muted)] mt-1">Morfologia: {p.morfologia}</p>
+                      ) : null}
                     </div>
                   ))}
                 </div>

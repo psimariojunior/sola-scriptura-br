@@ -226,7 +226,51 @@ function TabLexico({ livro, capitulo, versiculo }: { livro: string; capitulo: nu
           <p className="text-base font-semibold mb-0.5">{p.palavra}</p>
           <p className="text-xs text-muted-foreground italic mb-1">{p.transliteracao}</p>
           <p className="text-sm text-foreground/80">{p.definicao}</p>
-          {p.morfologia && (
+          {(p as any).morfologiaEstruturada?.label && (
+            <div className="flex flex-wrap gap-1 mt-1.5">
+              {(p as any).morfologiaEstruturada.tipo && (
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-indigo-500/15 text-indigo-600 dark:text-indigo-400">
+                  {(p as any).morfologiaEstruturada.tipo}
+                </span>
+              )}
+              {(p as any).morfologiaEstruturada.tempo && (
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-500/15 text-amber-600 dark:text-amber-400">
+                  {(p as any).morfologiaEstruturada.tempo}
+                </span>
+              )}
+              {(p as any).morfologiaEstruturada.voz && (
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                  {(p as any).morfologiaEstruturada.voz}
+                </span>
+              )}
+              {(p as any).morfologiaEstruturada.pessoa && (
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-pink-500/15 text-pink-600 dark:text-pink-400">
+                  {(p as any).morfologiaEstruturada.pessoa}
+                </span>
+              )}
+              {(p as any).morfologiaEstruturada.numero && (
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-cyan-500/15 text-cyan-600 dark:text-cyan-400">
+                  {(p as any).morfologiaEstruturada.numero}
+                </span>
+              )}
+              {(p as any).morfologiaEstruturada.genero && (
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-violet-500/15 text-violet-600 dark:text-violet-400">
+                  {(p as any).morfologiaEstruturada.genero}
+                </span>
+              )}
+              {(p as any).morfologiaEstruturada.caso && (
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-red-500/15 text-red-600 dark:text-red-400">
+                  {(p as any).morfologiaEstruturada.caso}
+                </span>
+              )}
+              {(p as any).morfologiaEstruturada.raiz && (
+                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-green-500/15 text-green-600 dark:text-green-400">
+                  raiz: {(p as any).morfologiaEstruturada.raiz}
+                </span>
+              )}
+            </div>
+          )}
+          {!(p as any).morfologiaEstruturada?.label && p.morfologia && (
             <p className="text-[11px] text-muted-foreground mt-1">Morfologia: {p.morfologia}</p>
           )}
         </div>

@@ -673,20 +673,9 @@ function TabMapa({ recursos }: { recursos: RecursoVersiculo[] }) {
     );
   }
 
-  const centerLat = locais.reduce((s, l) => s + l.lat, 0) / locais.length;
-  const centerLng = locais.reduce((s, l) => s + l.lng, 0) / locais.length;
-
   return (
     <div className="space-y-3">
-      <div className="glass-card rounded-lg overflow-hidden border border-border/50 h-48 relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-blue-50 dark:from-emerald-950/20 dark:to-blue-950/20 flex items-center justify-center">
-          <div className="text-center">
-            <Map className="w-8 h-8 text-primary/40 mx-auto mb-2" />
-            <p className="text-xs text-muted-foreground">Mapa interativo</p>
-            <p className="text-[10px] text-muted-foreground">{locais.length} local(ais)</p>
-          </div>
-        </div>
-      </div>
+      <MapaVersiculo locais={locais} />
       <div className="space-y-1.5">
         {locais.map((l, i) => (
           <div key={i} className="glass-card rounded-md p-2 border border-border/50 flex items-center gap-2">
@@ -696,6 +685,46 @@ function TabMapa({ recursos }: { recursos: RecursoVersiculo[] }) {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+function MapaVersiculo({ locais }: { locais: RecursoMapa[] }) {
+  const [MapContainer, setMapContainer] = useState<React.ComponentType<Record<string, unknown>> | null>(null);
+  const [TileLayer, setTileLayer] = useState<React.ComponentType<Record<string, unknown>> | null>(null);
+  const [MarkerEl, setMarkerEl] = useState<React.ComponentType<Record<string, unknown>> | null>(null);
+  const [PopupEl, setPopupEl] = useState<React.ComponentType<Record<string, unknown>> | null>(null);
+
+  useEffect(() => {
+    import('react-leaflet').then(mod => {
+      setMapContainer(() => mod.MapContainer as React.ComponentType<Record<string, unknown>>);
+      setTileLayer(() => mod.TileLayer as unknown as React.ComponentType<Record<string, unknown>>);
+      setMarkerEl(() => mod.Marker as unknown as React.ComponentType<Record<string, unknown>>);
+      setPopupEl(() => mod.Popup as unknown as React.ComponentType<Record<string, unknown>>);
+    });
+  }, []);
+
+  if (!MapContainer || !TileLayer || !MarkerEl || !PopupEl) {
+    return (
+      <div className="glass-card rounded-lg overflow-hidden border border-border/50 h-48 flex items-center justify-center">
+        <div className="animate-pulse text-xs text-muted-foreground">Carregando mapa...</div>
+      </div>
+    );
+  }
+
+  const centerLat = locais.reduce((s, l) => s + l.lat, 0) / locais.length;
+  const centerLng = locais.reduce((s, l) => s + l.lng, 0) / locais.length;
+
+  return (
+    <div className="glass-card rounded-lg overflow-hidden border border-border/50 h-48">
+      <MapContainer center={[centerLat, centerLng]} zoom={8} className="h-full w-full z-0" zoomControl={false}>
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap" />
+        {locais.map((l, i) => (
+          <MarkerEl key={i} position={[l.lat, l.lng]}>
+            <PopupEl>{l.lugar}</PopupEl>
+          </MarkerEl>
+        ))}
+      </MapContainer>
     </div>
   );
 }

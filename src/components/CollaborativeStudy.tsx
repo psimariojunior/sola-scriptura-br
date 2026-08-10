@@ -172,12 +172,26 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       else if (data.action === 'mirror' && data.mirror !== undefined) setPresentationMirror(data.mirror!);
     });
 
-    svc.onNoteSync?.((data: { notes?: Record<string, string>; action?: string; noteId?: string; participantId?: string; content?: string }) => {
+    svc.onNoteSync?.((data: { notes?: Record<string, string>; action?: string; noteId?: string; participantId?: string; participantName?: string; content?: string; verseRef?: string; timestamp?: number }) => {
       if (data.notes) {
         const parsed: SharedNote[] = Object.values(data.notes).map(v => JSON.parse(v as string));
         setSharedNotes(parsed);
       } else if (data.action === 'add' && data.noteId && data.participantId) {
-        // Single note added — reload
+        setSharedNotes(prev => {
+          if (prev.some(n => n.id === data.noteId)) return prev;
+          const colors = ['#f59e0b', '#3b82f6', '#10b981', '#8b5cf6', '#ef4444', '#06b6d4'];
+          return [...prev, {
+            id: data.noteId!,
+            authorId: data.participantId!,
+            authorName: data.participantName || 'Anônimo',
+            content: data.content || '',
+            verseRef: data.verseRef,
+            timestamp: data.timestamp || Date.now(),
+            color: colors[prev.length % colors.length],
+          }];
+        });
+      } else if (data.action === 'update' && data.noteId && data.content) {
+        setSharedNotes(prev => prev.map(n => n.id === data.noteId ? { ...n, content: data.content! } : n));
       } else if (data.action === 'delete' && data.noteId) {
         setSharedNotes(prev => prev.filter(n => n.id !== data.noteId));
       }

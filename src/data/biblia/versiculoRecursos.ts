@@ -10,6 +10,7 @@ let _notasData: Record<string, any> = {};
 
 import { locaisBiblicos } from './locais';
 import { doutrinas, personagens, cronologia } from '../biblia';
+import { parsearMorfologia, paraLabelMorfologia } from '@/lib/morphologiaParser';
 
 // Granular loaders — each loads only its specific module
 async function ensureComentarios() {
@@ -155,6 +156,17 @@ export interface RecursoLexico {
   definicao: string;
   morfologia: string;
   idioma: 'grego' | 'hebraico';
+  morfologiaEstruturada?: {
+    tipo?: string;
+    tempo?: string;
+    voz?: string;
+    pessoa?: string;
+    numero?: string;
+    genero?: string;
+    caso?: string;
+    raiz?: string;
+    label?: string;
+  };
 }
 
 export interface RecursoMapa {
@@ -927,6 +939,8 @@ export async function getRecursosVersiculo(
   if (strongDoVersiculo.length > 0) {
     // Tem dados Strong curados em portugues para este versiculo
     for (const s of strongDoVersiculo) {
+      const morfologiaRaw = s.morfologia || s.definicao;
+      const morfParsed = parsearMorfologia(morfologiaRaw, s.idioma);
       recursos.push({
         tipo: 'lexico',
         dados: {
@@ -937,6 +951,17 @@ export async function getRecursosVersiculo(
           definicao: s.morfologia || s.definicao,
           morfologia: s.definicao,
           idioma: s.idioma,
+          morfologiaEstruturada: {
+            tipo: morfParsed.tipo,
+            tempo: morfParsed.tempo,
+            voz: morfParsed.voz,
+            pessoa: morfParsed.pessoa,
+            numero: morfParsed.numero,
+            genero: morfParsed.genero,
+            caso: morfParsed.caso,
+            raiz: morfParsed.raiz,
+            label: paraLabelMorfologia(morfParsed),
+          },
         } as RecursoLexico,
       });
     }
@@ -954,6 +979,8 @@ export async function getRecursosVersiculo(
       return p.versiculos.some((ref) => converterRef(ref) === chaveAtual);
     });
     for (const g of gregosRelevantes) {
+      const morfologiaRaw = (g as any).morfologia || (g as any).morphologia || '';
+      const morfParsed = parsearMorfologia(morfologiaRaw, 'grego');
       recursos.push({
         tipo: 'lexico',
         dados: {
@@ -962,8 +989,19 @@ export async function getRecursosVersiculo(
           palavra: g.palavra,
           transliteracao: g.transliteracao,
           definicao: g.definicao,
-          morfologia: (g as any).morfologia || (g as any).morphologia || '',
+          morfologia: morfologiaRaw,
           idioma: 'grego' as const,
+          morfologiaEstruturada: {
+            tipo: morfParsed.tipo,
+            tempo: morfParsed.tempo,
+            voz: morfParsed.voz,
+            pessoa: morfParsed.pessoa,
+            numero: morfParsed.numero,
+            genero: morfParsed.genero,
+            caso: morfParsed.caso,
+            raiz: morfParsed.raiz,
+            label: paraLabelMorfologia(morfParsed),
+          },
         } as RecursoLexico,
       });
     }
@@ -974,6 +1012,8 @@ export async function getRecursosVersiculo(
       return versiculos.some((ref: string) => converterRef(ref) === chaveAtual);
     });
     for (const h of hebraicosRelevantes) {
+      const morfologiaRaw = h.morfologia || '';
+      const morfParsed = parsearMorfologia(morfologiaRaw, 'hebraico');
       recursos.push({
         tipo: 'lexico',
         dados: {
@@ -982,8 +1022,19 @@ export async function getRecursosVersiculo(
           palavra: h.palavra,
           transliteracao: h.transliteracao,
           definicao: h.definicao,
-          morfologia: h.morfologia || '',
+          morfologia: morfologiaRaw,
           idioma: 'hebraico' as const,
+          morfologiaEstruturada: {
+            tipo: morfParsed.tipo,
+            tempo: morfParsed.tempo,
+            voz: morfParsed.voz,
+            pessoa: morfParsed.pessoa,
+            numero: morfParsed.numero,
+            genero: morfParsed.genero,
+            caso: morfParsed.caso,
+            raiz: morfParsed.raiz,
+            label: paraLabelMorfologia(morfParsed),
+          },
         } as RecursoLexico,
       });
     }

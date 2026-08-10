@@ -65,7 +65,7 @@ export function alignSequences(ptWords: string[], strongs: PalavraStrong[]): (nu
 
 export async function alinharVersiculo(livro: string, capitulo: number, verNumero: number, textoPt: string): Promise<PalavraAlinhada[]> {
   const mod = await import('@/data/biblia/strong');
-  const strongs = mod.getStrongPorVersiculo(livro, capitulo, verNumero) ?? [];
+  const strongs = await mod.getStrongPorVersiculo(livro, capitulo, verNumero) ?? [];
   const words = textoPt.split(/\s+/);
   if (strongs.length === 0) {
     return words.map(w => ({

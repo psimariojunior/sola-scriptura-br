@@ -922,7 +922,7 @@ export async function getRecursosVersiculo(
   // 5. Léxico — usar dados Strong do versiculo (em portugues) quando disponivel,
   //    senao filtrar do lexico geral pelas referencias em versiculos[]
   const { getStrongPorVersiculo } = await import('./strong');
-  const strongDoVersiculo = getStrongPorVersiculo(livroLower, capitulo, versiculo);
+  const strongDoVersiculo = await getStrongPorVersiculo(livroLower, capitulo, versiculo);
 
   if (strongDoVersiculo.length > 0) {
     // Tem dados Strong curados em portugues para este versiculo

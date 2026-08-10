@@ -14,11 +14,11 @@ export interface EntradaConcordancia {
 
 let _concordancia: Map<string, EntradaConcordancia> | null = null;
 
-function buildConcordancia(): Map<string, EntradaConcordancia> {
+async function buildConcordancia(): Promise<Map<string, EntradaConcordancia>> {
   const index = new Map<string, EntradaConcordancia>();
   const versiculos = getVersiculosComStrong();
   for (const chave of versiculos) {
-    const palavras = getStrongPorChave(chave);
+    const palavras = await getStrongPorChave(chave);
     for (const p of palavras) {
       const existing = index.get(p.strong);
       if (existing) {
@@ -40,20 +40,21 @@ function buildConcordancia(): Map<string, EntradaConcordancia> {
   return index;
 }
 
-function getConcordancia(): Map<string, EntradaConcordancia> {
+async function getConcordancia(): Promise<Map<string, EntradaConcordancia>> {
   if (!_concordancia) {
-    _concordancia = buildConcordancia();
+    _concordancia = await buildConcordancia();
   }
   return _concordancia;
 }
 
-export function getEntradaConcordancia(strong: string): EntradaConcordancia | undefined {
-  return getConcordancia().get(strong);
+export async function getEntradaConcordancia(strong: string): Promise<EntradaConcordancia | undefined> {
+  return (await getConcordancia()).get(strong);
 }
 
-export function buscarConcordancia(pesquisa: string): EntradaConcordancia[] {
+export async function buscarConcordancia(pesquisa: string): Promise<EntradaConcordancia[]> {
   const termo = pesquisa.toLowerCase();
-  return Array.from(getConcordancia().values()).filter(e =>
+  const concordancia = await getConcordancia();
+  return Array.from(concordancia.values()).filter(e =>
     e.strong.toLowerCase().includes(termo) ||
     e.palavra.toLowerCase().includes(termo) ||
     e.transliteracao.toLowerCase().includes(termo) ||
@@ -61,12 +62,13 @@ export function buscarConcordancia(pesquisa: string): EntradaConcordancia[] {
   );
 }
 
-export function getConcordanciaPorIdioma(idioma: 'grego' | 'hebraico'): EntradaConcordancia[] {
-  return Array.from(getConcordancia().values()).filter(e => e.idioma === idioma);
+export async function getConcordanciaPorIdioma(idioma: 'grego' | 'hebraico'): Promise<EntradaConcordancia[]> {
+  const concordancia = await getConcordancia();
+  return Array.from(concordancia.values()).filter(e => e.idioma === idioma);
 }
 
-export function getPalavrasMaisFrequentes(idioma: 'grego' | 'hebraico', limite: number = 20): EntradaConcordancia[] {
-  return getConcordanciaPorIdioma(idioma)
+export async function getPalavrasMaisFrequentes(idioma: 'grego' | 'hebraico', limite: number = 20): Promise<EntradaConcordancia[]> {
+  return (await getConcordanciaPorIdioma(idioma))
     .sort((a, b) => b.ocorrencias.length - a.ocorrencias.length)
     .slice(0, limite);
 }

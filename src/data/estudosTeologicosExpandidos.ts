@@ -351,7 +351,21 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
     ],
     versicosChave: ['1 João 4:8', 'João 3:16', 'Romanos 5:8', 'Efésios 3:17-19'],
     tags: ['amor de Deus', 'agape', 'amor incondicional', 'amor sacrificial'],
-    fontes: ['Anders Nygren, Agape and Eros', 'C.S. Lewis, The Four Loves']
+    fontes: ['Anders Nygren, Agape and Eros', 'C.S. Lewis, The Four Loves', 'Valdir Cruz, Teologia Sistemática'],
+    referenciasCruzadas: [
+      { referencia: 'Jeremias 31:3', descricao: 'Com amor eterno te amei, por isso prolonguei a tua misericórdia' },
+      { referencia: 'Deuteronômio 7:7-8', descricao: 'O Senhor vos amou e vos escolheu — não pelo vosso número, mas pelo amor' },
+      { referencia: '1 João 3:1', descricao: 'Vede que tipo de amor o Pai nos deu — somos filhos de Deus' },
+      { referencia: 'Romanos 8:35-39', descricao: 'Nada poderá nos separar do amor de Deus em Cristo Jesus' },
+      { referencia: '1 Coríntios 13:4-7', descricao: 'O amor é paciente, o amor é bondoso — o amor divino como modelo' }
+    ],
+    leituraAdicional: [
+      { titulo: 'A Misericórdia e Graça de Deus', tipo: 'estudo', descricao: 'Como o amor se manifesta em misericórdia e graça perante a pecaminosidade humana' },
+      { titulo: 'A Santidade de Deus', tipo: 'estudo', descricao: 'Como o amor santo se relaciona com a justiça divina' },
+      { titulo: 'The Four Loves, C.S. Lewis', tipo: 'livro', descricao: 'Exploração dos quatro tipos de amor — storge, philia, eros, agape' }
+    ],
+    aplicacaoPratica: 'O amor de Deus não é baseado no seu desempenho — Ele te ama porque Ele é, não porque você é digno. Isso liberta da busca desesperada por aprovação humana. Quando sentir rejeição, lembre-se: o Deus do universo te ama com amor eterno. Deixe esse amor transbordar para os outros — ame como foi amado.',
+    contextoHistorico: { periodo: 'Séc. V d.C.', evento: 'De Trinitate de Agostinho e debates sobre o amor divino', descricao: 'Agostinho (354-430) identificou o amor como a essência da Trindade — o Pai ama o Filho, o Filho ama o Pai, e o Espírito é o amor mútuo. Anders Nygren (1892-1978) contragostou agape grego (amor incondicional) com eros grego (amor por possessão) em "Agape and Eros" (1930-36). No Brasil, o amor de Deus é central na teologia da prosperidade, embora muitas vezes distorcido.' }
   },
   {
     id: 'dp-012',
@@ -363,11 +377,25 @@ export const estudosTeologicosExpandidos: EstudoTeologico[] = [
       'A aliança de Deus com Israel é modelo de fidelidade: apesar da desobediência do povo, Deus mantém Suas promessas.',
       'A fidelidade divina é a base da confiança do crente: podemos confiar porque Deus é fiel.',
       'A fidelidade se estende a todas as promessas — desde a criação até a consumação final.',
-      'Aå“åº” à fidelidade de Deus é obediência e adoração. O crente responde ao amor com amor, à fidelidade com lealdade.'
+      'A响应 à fidelidade de Deus é obediência e adoração. O crente responde ao amor com amor, à fidelidade com lealdade.'
     ],
     versicosChave: ['Deuteronômio 7:9', 'Lamentações 3:22-23', '2 Timóteo 2:13', '1 Coríntios 1:9'],
     tags: ['fidelidade', 'aliança', 'promessas de Deus', 'confiabilidade'],
-    fontes: ['O. Palmer Robertson, The Christ of the Covenants', 'J.I. Packer, Knowing God']
+    fontes: ['O. Palmer Robertson, The Christ of the Covenants', 'J.I. Packer, Knowing God', 'Valdir Cruz, Teologia Sistemática'],
+    referenciasCruzadas: [
+      { referencia: 'Salmo 89:1-8', descricao: 'A fidelidade de Deus é celebrada — o Senhor é fiel em todas as suas palavras' },
+      { referencia: 'Josué 21:45', descricao: 'Nenhuma palavra de todas as boas promessas falhou' },
+      { referencia: '1 Tessalonicenses 5:24', descricao: 'Fiel é o vosso chamador, que também o fará' },
+      { referencia: 'Hebreus 10:23', descricao: 'Firmes na confissão da nossa esperança, pois fiel é aquele que prometeu' },
+      { referencia: '2 Pedro 3:9', descricao: 'O Senhor é paciente para convosco, não quer que nenhum pereça' }
+    ],
+    leituraAdicional: [
+      { titulo: 'A Aliança de Deus com o Homem', tipo: 'estudo', descricao: 'Como a fidelidade se manifesta no pacto de Deus com a humanidade' },
+      { titulo: 'A Perseverança dos Santos', tipo: 'estudo', descricao: 'A fidelidade de Deus garante que Ele completará a obra começada' },
+      { titulo: 'Knowing God, J.I. Packer', tipo: 'livro', descricao: 'Exploração pastoral dos atributos divinos, incluindo a fidelidade' }
+    ],
+    aplicacaoPratica: 'Quando você sentir que Deus está distante ou que Ele esqueceu suas promessas, lembre-se: Deus é fiel, mesmo quando sua fé oscila. As promessas de Deus não dependem do seu sentimento. Recorra às Escrituras — declare as promessas dEle em voz alta. A fidelidade de Deus é razão para persistir na oração e na obediência, mesmo quando os resultados tardam.',
+    contextoHistorico: { periodo: 'Séc. XVI-XVII', evento: 'Teologia da Aliança (Cocceius, Witsius)', descricao: 'A teologia da alição reformada desenvolveu a noção de pactum salutis (pacto de salvação) e foedus operum (pacto de obras). O. Palmer Robertson (séc. XX) sistematizou a teologia da aliança em "The Christ of the Covenants" (1980). No Brasil, a fidelidade de Deus é frequentemente testemunhada no contexto de perseguição e pobreza.' }
   },
   {
     id: 'dp-013',

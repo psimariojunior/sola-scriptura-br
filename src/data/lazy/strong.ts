@@ -27,5 +27,5 @@ export function useStrongLazy(livro: string, capitulo: number, versiculo: number
 
 export async function getStrongPorVersiculoLazy(livro: string, capitulo: number, versiculo: number): Promise<PalavraStrong[]> {
   const mod = await import('@/data/biblia/strong');
-  return mod.getStrongPorVersiculo(livro, capitulo, versiculo) ?? [];
+  return await mod.getStrongPorVersiculo(livro, capitulo, versiculo) ?? [];
 }

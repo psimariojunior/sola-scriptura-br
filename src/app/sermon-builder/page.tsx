@@ -38,6 +38,48 @@ const SUGESTOES = [
   { titulo: 'Apocalipse 21 — Nova Criatura', referencia: 'Apocalipse 21:1-8', tema: 'Esperança da eternidade' },
 ];
 
+const PROMPT_SERMAO = (referencia: string, tema: string) => `Gere um sermão cristão completo e profundo sobre a passagem "${referencia}" com o tema "${tema}".
+
+IMPORTANTE: Responda EXATAMENTE neste formato Markdown, sem alterar a estrutura:
+
+# Título do Sermão
+
+## Introdução
+[Parágrafo de introdução cativante, com contexto da passagem e gancho para o ouvinte. 3-4 frases.]
+
+## Proposição
+[Uma frase clara e memorável que resume a tese central do sermão.]
+
+## Seção 1: [Título da Seção]
+[Desenvolvimento exegético com análise do texto. Cite versículos específicos da passagem. 4-6 frases.]
+**Ref:** [referência(s) específica(s)]
+
+## Seção 2: [Título da Seção]
+[Continuação da análise teológica ou prática. Pode incluir ilustração histórica ou cultural. 4-6 frases.]
+**Ref:** [referência(s) específica(s)]
+
+## Seção 3: [Título da Seção]
+[Aplicação teológica profunda, conectando com o cotidiano do crente. 4-6 frases.]
+**Ref:** [referência(s) específica(s)]
+
+## Seção 4: [Título da Seção]
+[Seção adicional com aplicação prática ou ilustração. Pode ser omitida se o tema já estiver coberto. 3-5 frases.]
+
+## Ilustrações
+- [Ilustração 1: história, parábola, analogia ou exemplo do cotidiano que ilustra o tema]
+- [Ilustração 2: segundo exemplo complementar]
+
+## Aplicações
+1. [Aplicação prática 1 — ação concreta para esta semana]
+2. [Aplicação prática 2 — mudança de atitude ou perspectiva]
+3. [Aplicação prática 3 — desafio espiritual para crescer na fé]
+
+## Conclusão
+[Conclusão poderosa que resume os pontos principais e faz um apelo final. 3-4 frases.]
+
+---
+Dicas: Use linguagem acessível mas teologicamente sólida. Cite os versículos corretamente. As aplicações devem ser práticas e específicas, não genéricas.`;
+
 function gerarSermaoLocal(referencia: string, tema: string): Sermao {
   const secoes: SermaoSecao[] = [
     {
@@ -83,12 +125,138 @@ function gerarSermaoLocal(referencia: string, tema: string): Sermao {
   };
 }
 
+function parsearSermaoAI(markdown: string, tema: string): Sermao {
+  const linhas = markdown.split('\n');
+  let titulo = '';
+  let introducao = '';
+  let proposicao = '';
+  let conclusao = '';
+  const ilustracoes: string[] = [];
+  const aplicacoes: string[] = [];
+  const secoes: SermaoSecao[] = [];
+
+  let secaoAtual: { titulo: string; conteudo: string; versiculos: string[] } | null = null;
+  let secaoAtualIdx = -1;
+
+  const limparLinha = (l: string) => l.replace(/^[-*]\s*/, '').replace(/\*\*/g, '').trim();
+
+  for (let i = 0; i < linhas.length; i++) {
+    const linha = linhas[i].trim();
+
+    if (linha.startsWith('# ') && !linha.startsWith('## ')) {
+      titulo = limparLinha(linha.replace(/^#\s+/, ''));
+      continue;
+    }
+
+    if (linha.startsWith('## ')) {
+      if (secaoAtual) {
+        secoes.push(secaoAtual as SermaoSecao);
+      }
+      const tituloSecao = limparLinha(linha.replace(/^##\s+/, '')).replace(/^[^\w]*/, '');
+      const tituloLower = tituloSecao.toLowerCase();
+
+      if (tituloLower.includes('introdução') || tituloLower.includes('introducao')) {
+        secaoAtual = null;
+        secaoAtualIdx = 0;
+      } else if (tituloLower.includes('proposição') || tituloLower.includes('proposicao')) {
+        secaoAtual = null;
+        secaoAtualIdx = 1;
+      } else if (tituloLower.includes('ilustra')) {
+        secaoAtual = null;
+        secaoAtualIdx = 2;
+      } else if (tituloLower.includes('aplica') || tituloLower.includes('aplicacao')) {
+        secaoAtual = null;
+        secaoAtualIdx = 3;
+      } else if (tituloLower.includes('conclusão') || tituloLower.includes('conclusao')) {
+        secaoAtual = null;
+        secaoAtualIdx = 4;
+      } else {
+        secaoAtual = { titulo: tituloSecao, conteudo: '', versiculos: [] };
+        secaoAtualIdx = 5;
+      }
+      continue;
+    }
+
+    if (linha.startsWith('---')) {
+      if (secaoAtual) {
+        secoes.push(secaoAtual as SermaoSecao);
+        secaoAtual = null;
+      }
+      continue;
+    }
+
+    if (!linha) continue;
+
+    const conteudoLimpo = limparLinha(linha);
+
+    if (secaoAtualIdx === 0 && !introducao) {
+      introducao = conteudoLimpo;
+      continue;
+    }
+
+    if (secaoAtualIdx === 1 && !proposicao) {
+      proposicao = conteudoLimpo;
+      continue;
+    }
+
+    if (secaoAtualIdx === 2 && linha.startsWith('- ')) {
+      ilustracoes.push(conteudoLimpo);
+      continue;
+    }
+
+    if (secaoAtualIdx === 3) {
+      const matchNumerado = linha.match(/^\d+\.\s*(.*)/);
+      if (matchNumerado) {
+        aplicacoes.push(limparLinha(matchNumerado[1]));
+        continue;
+      }
+      if (linha.startsWith('- ')) {
+        aplicacoes.push(conteudoLimpo);
+        continue;
+      }
+    }
+
+    if (secaoAtualIdx === 4 && !conclusao) {
+      conclusao = conteudoLimpo;
+      continue;
+    }
+
+    if (secaoAtualIdx === 5 && secaoAtual) {
+      if (linha.startsWith('**Ref:**') || linha.startsWith('**Refs:**')) {
+        const refs = linha.replace(/\*\*Ref(s)?:\*\*/i, '').trim();
+        if (refs) secaoAtual.versiculos.push(refs);
+      } else {
+        secaoAtual.conteudo += (secaoAtual.conteudo ? ' ' : '') + conteudoLimpo;
+      }
+    }
+  }
+
+  if (secaoAtual) {
+    secoes.push(secaoAtual as SermaoSecao);
+  }
+
+  return {
+    titulo: titulo || `${tema} — Sermão`,
+    introducao: introducao || `Estudo sobre ${tema}.`,
+    proposicao: proposicao || `Tese central: ${tema}.`,
+    ilustracoes: ilustracoes.length > 0 ? ilustracoes : ['Nenhuma ilustração gerada.'],
+    aplicacoes: aplicacoes.length > 0 ? aplicacoes : ['Aplique o aprendizado na prática diária.'],
+    conclusao: conclusao || 'Que Deus nos abençoe.',
+    secoes: secoes.length > 0 ? secoes : [{ titulo: 'Desenvolvimento', conteudo: 'Conteúdo não disponível.', versiculos: [] }],
+    tempoEstimado: `${Math.max(15, 15 + secoes.length * 5)} minutos`,
+    publicoAlvo: 'Todos os crentes',
+    temaCentral: tema,
+  };
+}
+
 export default function SermonBuilderPage() {
   const [referencia, setReferencia] = useState('');
   const [tema, setTema] = useState('');
   const [sermao, setSermao] = useState<Sermao | null>(null);
   const [gerando, setGerando] = useState(false);
   const [secaoAtiva, setSecaoAtiva] = useState<number | null>(null);
+  const [erro, setErro] = useState('');
+  const [viaFallback, setViaFallback] = useState(false);
 
   const handleGerar = useCallback(async (ref?: string, t?: string) => {
     const r = ref || referencia;
@@ -97,13 +265,36 @@ export default function SermonBuilderPage() {
 
     setGerando(true);
     setSermao(null);
+    setErro('');
+    setViaFallback(false);
 
-    // Simular delay de IA
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const res = await fetch('/api/ia/estudo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          passagem: PROMPT_SERMAO(r, tm || 'Tema central'),
+          tipo: 'sermao',
+        }),
+      });
 
-    const resultado = gerarSermaoLocal(r, tm || 'Tema central');
-    setSermao(resultado);
-    setGerando(false);
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.erro || 'Erro ao gerar sermão');
+      }
+
+      const resultado = parsearSermaoAI(data.estudo || '', tm || 'Tema central');
+      setSermao(resultado);
+    } catch (err) {
+      console.warn('API falhou, usando geração local:', err);
+      setErro('Falha na API — usando geração local.');
+      setViaFallback(true);
+      const resultado = gerarSermaoLocal(r, tm || 'Tema central');
+      setSermao(resultado);
+    } finally {
+      setGerando(false);
+    }
   }, [referencia, tema]);
 
   const handleCopiar = useCallback(() => {
@@ -211,6 +402,14 @@ export default function SermonBuilderPage() {
           </div>
         </ScrollReveal>
 
+        {/* Erro (fallback) */}
+        {erro && sermao && viaFallback && (
+          <div className="mb-6 px-4 py-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-sm text-amber-700 dark:text-amber-300 flex items-center gap-2">
+            <RefreshCw className="w-4 h-4 shrink-0" />
+            {erro}
+          </div>
+        )}
+
         {/* Resultado */}
         {sermao && (
           <motion.div
@@ -223,7 +422,9 @@ export default function SermonBuilderPage() {
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h2 className="text-xl font-bold text-[var(--content-primary)] mb-1">{sermao.titulo}</h2>
-                  <p className="text-xs text-[var(--content-muted)]">Sermão gerado por IA</p>
+                  <p className="text-xs text-[var(--content-muted)]">
+                    {viaFallback ? 'Sermão gerado localmente (API indisponível)' : 'Sermão gerado por IA'}
+                  </p>
                 </div>
                 <div className="flex gap-2">
                   <button onClick={handleCopiar} className="p-2 rounded-lg bg-[var(--surface-sunken)] hover:bg-[var(--brand-subtle)] transition-colors" title="Copiar texto">

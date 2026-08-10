@@ -24,10 +24,10 @@ export interface EstudoTeologico {
   versicosChave: string[];
   tags: string[];
   fontes: string[];
-  referenciasCruzadas: ReferenciaCruzada[];
-  leituraAdicional: LeituraAdicional[];
-  aplicacaoPratica: string;
-  contextoHistorico: ContextoHistorico;
+  referenciasCruzadas?: ReferenciaCruzada[];
+  leituraAdicional?: LeituraAdicional[];
+  aplicacaoPratica?: string;
+  contextoHistorico?: ContextoHistorico;
 }
 
 export const estudosTeologicosExpandidos: EstudoTeologico[] = [

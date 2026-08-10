@@ -9,6 +9,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { cn } from '@/lib/utils';
 import { carregarLexicoGrego, carregarLexicoHebraico } from '@/lib/lexicon-lazy';
 import { AudioPronunciation } from '@/components/AudioPronunciation';
+import { parsearMorfologia } from '@/lib/morphologiaParser';
 import type { PalavraGrega } from '@/data/lexicon/grego';
 import type { PalavraHebraica } from '@/data/lexicon/hebraico';
 
@@ -199,19 +200,74 @@ export default function WordStudyPage() {
                       </button>
                       {expandedSection === 'morfologia' && (
                         <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} className="mt-3">
-                          <div className="grid grid-cols-2 gap-3">
-                            {'morfologia' in selectedWord && (
-                              <div className="rounded-lg bg-muted/50 p-3">
-                                <p className="text-[10px] font-semibold text-muted-foreground uppercase">Raiz</p>
-                                <p className="text-sm font-medium">{(selectedWord as PalavraGrega).morphologia || '—'}</p>
-                              </div>
-                            )}
-                            {'pronuncia' in selectedWord && (
-                              <div className="rounded-lg bg-muted/50 p-3">
-                                <p className="text-[10px] font-semibold text-muted-foreground uppercase">Pronúncia</p>
-                                <p className="text-sm font-medium">{(selectedWord as PalavraGrega).pronuncia || '—'}</p>
-                              </div>
-                            )}
+                          <div className="space-y-3">
+                            {(() => {
+                              const morfRaw = ('morphologia' in selectedWord ? (selectedWord as PalavraGrega).morphologia : '') ||
+                                              ('morfologia' in selectedWord ? (selectedWord as any).morfologia : '') || '';
+                              const lingua = idioma === 'grego' ? 'grego' : 'hebraico';
+                              const morf = parsearMorfologia(morfRaw, lingua);
+                              return (
+                                <>
+                                  <div className="flex flex-wrap gap-1.5">
+                                    {morf.tipo && (
+                                      <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-indigo-500/15 text-indigo-600 dark:text-indigo-400">
+                                        {morf.tipo}
+                                      </span>
+                                    )}
+                                    {morf.tempo && (
+                                      <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-amber-500/15 text-amber-600 dark:text-amber-400">
+                                        {morf.tempo}
+                                      </span>
+                                    )}
+                                    {morf.voz && (
+                                      <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
+                                        {morf.voz}
+                                      </span>
+                                    )}
+                                    {morf.pessoa && (
+                                      <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-pink-500/15 text-pink-600 dark:text-pink-400">
+                                        {morf.pessoa}
+                                      </span>
+                                    )}
+                                    {morf.numero && (
+                                      <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-cyan-500/15 text-cyan-600 dark:text-cyan-400">
+                                        {morf.numero}
+                                      </span>
+                                    )}
+                                    {morf.genero && (
+                                      <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-violet-500/15 text-violet-600 dark:text-violet-400">
+                                        {morf.genero}
+                                      </span>
+                                    )}
+                                    {morf.caso && (
+                                      <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-red-500/15 text-red-600 dark:text-red-400">
+                                        {morf.caso}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="grid grid-cols-2 gap-3">
+                                    {morf.raiz && (
+                                      <div className="rounded-lg bg-muted/50 p-3">
+                                        <p className="text-[10px] font-semibold text-muted-foreground uppercase">Raiz</p>
+                                        <p className="text-sm font-medium">{morf.raiz}</p>
+                                      </div>
+                                    )}
+                                    {'pronuncia' in selectedWord && (
+                                      <div className="rounded-lg bg-muted/50 p-3">
+                                        <p className="text-[10px] font-semibold text-muted-foreground uppercase">Pronúncia</p>
+                                        <p className="text-sm font-medium">{(selectedWord as PalavraGrega).pronuncia || '—'}</p>
+                                      </div>
+                                    )}
+                                    {morfRaw && (
+                                      <div className="col-span-2 rounded-lg bg-muted/50 p-3">
+                                        <p className="text-[10px] font-semibold text-muted-foreground uppercase">Código Original</p>
+                                        <p className="text-sm font-medium font-mono">{morfRaw}</p>
+                                      </div>
+                                    )}
+                                  </div>
+                                </>
+                              );
+                            })()}
                             {'palavrasDerivadas' in selectedWord && (selectedWord as PalavraGrega).palavrasDerivadas && (
                               <div className="col-span-2 rounded-lg bg-muted/50 p-3">
                                 <p className="text-[10px] font-semibold text-muted-foreground uppercase">Palavras Derivadas</p>

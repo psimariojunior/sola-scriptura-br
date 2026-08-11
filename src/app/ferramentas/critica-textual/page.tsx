@@ -187,12 +187,13 @@ export default function CriticaTextualPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.15}>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
               {[
                 { value: variantes.length, label: 'Variantes' },
                 { value: variantes.filter((v) => v.tipo === 'adicao').length, label: 'Adições' },
                 { value: variantes.filter((v) => v.tipo === 'omissao').length, label: 'Omissões' },
                 { value: variantes.filter((v) => v.evidenciaExterna === 'forte').length, label: 'Evidência Forte' },
+                { value: new Set(variantes.flatMap(v => v.manuscritos)).size, label: 'Manuscritos' },
               ].map((stat) => (
                 <motion.div key={stat.label} className="sola-card p-4 text-center" whileHover={{ y: -2 }}>
                   <p className="font-display text-3xl font-light text-primary">{stat.value}</p>

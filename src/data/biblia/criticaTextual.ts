@@ -617,7 +617,172 @@ export const VARIANTES_TEXTUAIS: VarianteTextual[] = [
     evidenciaExterna: 'forte',
     recomendacaoNA28: 'Lê "preparação do páscoa".',
     notas: 'A discordância sinóptica sobre o dia da crucificação pode ser resolvida por esta variante.'
-  }
+  },
+  {
+    id: 'vt-056',
+    referencia: 'mt:24:36',
+    pericope: 'O Dia e a Hora',
+    tipo: 'omissao',
+    descricao: 'As palavras "nem o Filho" (οὐδὲ ὁ υἱός) sobre o conhecimento do dia do juízo estão ausentes de alguns manuscritos.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)', 'Alexandrino (02)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Incluído, mas com nota de divisão.',
+    notas: 'Alguns omitiram por razões cristológicas (o Filho deveria saber tudo).'
+  },
+  {
+    id: 'vt-057',
+    referencia: 'mc:9:44',
+    pericope: 'O Fogo Inextinguível',
+    tipo: 'omissao',
+    descricao: 'Os versículos 9:44 e 46 repetem 9:48 e podem ter sido adicionados por escribas.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Omitidos na edição NA28.',
+    notas: 'A repetição tripla (v.44, 46, 48) pode ser uma expandôncia homilética.'
+  },
+  {
+    id: 'vt-058',
+    referencia: 'jo:1:18',
+    pericope: 'O Filho Unigênito',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "Deus" (θεός) e "Filho" (υἱός) — o único que está no seio do Pai.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)', 'Alexandrino (02)'],
+    evidenciaExterna: 'forte',
+    recomendacaoNA28: 'Lê "Deus" (θεός).',
+    notas: 'A leitura "Filho" pode ser uma harmonização com 3:16.'
+  },
+  {
+    id: 'vt-059',
+    referencia: 'ef:3:9',
+    pericope: 'O Mistério Escondido',
+    tipo: 'omissao',
+    descricao: 'As palavras "em Cristo Jesus" (ἐν Χριστῷ Ἰησοῦ) estão ausentes de alguns manuscritos.',
+    manuscritos: ['Alexandrino (02)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Omitido na edição NA28.',
+    notas: 'Possível harmonização com outros passos paulinos.'
+  },
+  {
+    id: 'vt-060',
+    referencia: '1tm:3:16',
+    pericope: 'O Mistério da Piedade',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "Deus" (θεός) e "quem" (ὅς) — "Deus foi manifestado na carne".',
+    manuscritos: ['Alexandrino (02)', 'Vaticano (03)'],
+    evidenciaExterna: 'forte',
+    recomendacaoNA28: 'Lê "quem" (ὅς).',
+    notas: 'A leitura "Deus" é uma corrupção antiga por cambio de grafia (ΟΣ → ΘΣ).'
+  },
+  {
+    id: 'vt-061',
+    referencia: 'hb:2:9',
+    pericope: 'O Sofrimento de Jesus',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "exceto Jesus" (χωρὶς Ἰησοῦ) e "por graça de Deus" (χάριτι θεοῦ).',
+    manuscritos: ['Alexandrino (02)', 'Vaticano (03)'],
+    evidenciaExterna: 'forte',
+    recomendacaoNA28: 'Lê "por graça de Deus".',
+    notas: 'A leitura "exceto Jesus" pode refletir uma tradição interpretativa mais antiga.'
+  },
+  {
+    id: 'vt-062',
+    referencia: '1pe:5:10',
+    pericope: 'A Graça Eterna',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "Cristo" (Χριστοῦ) e "Jesus" (Ἰησοῦ) — a chamada de graça.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Lê "Cristo Jesus".',
+    notas: 'A forma abreviada pode ser original, com expansão posterior.'
+  },
+  {
+    id: 'vt-063',
+    referencia: 'ap:1:8',
+    pericope: 'Alfa e Ômega',
+    tipo: 'mudanca',
+    descricao: 'A atribuição das palavras "Alfa e Ômega" — é Deus (v.8) ou Cristo (v.11)?',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'No v.8, as palavras são de Deus; no v.11, omitidas por alguns.',
+    notas: 'A atribuição ao Cristo glorificado é tema debatido na cristologia joanina.'
+  },
+  {
+    id: 'vt-064',
+    referencia: 'mt:5:22',
+    pericope: 'A Raiva',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "sem causa" (εἰκῆ) e a omissão — alguns manuscritos omitem a restrição.',
+    manuscritos: ['Alexandrino (02)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Incluído "sem causa", mas com nota.',
+    notas: 'A omissão pode ser original (leitura mais dura), com "sem causa" sendo uma suavização.'
+  },
+  {
+    id: 'vt-065',
+    referencia: 'mc:15:28',
+    pericope: 'A Profecia de Isaías',
+    tipo: 'omissao',
+    descricao: 'O versículo "E foi cumprida a Escritura que diz: E foi contado com os transgressores" está ausente dos manuscritos mais antigos.',
+    manuscritos: ['Sinaitico (01)', 'Vaticano (03)'],
+    evidenciaExterna: 'forte',
+    recomendacaoNA28: 'O versículo é omitido na edição NA28.',
+    notas: 'Interpolação de Isaías 53:12 no contexto da crucificação.'
+  },
+  {
+    id: 'vt-066',
+    referencia: 'jo:3:13',
+    pericope: 'O Filho do Homem',
+    tipo: 'omissao',
+    descricao: 'As palavras "que está nos céus" (ὁ ὢν ἐν τῷ οὐρανῷ) estão ausentes de alguns manuscritos antigos.',
+    manuscritos: ['Papiro 66', 'Sinaitico (01)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Incluído, mas com nota.',
+    notas: 'Pode ser uma adição cristológica posterior para enfatizar a preexistência.'
+  },
+  {
+    id: 'vt-067',
+    referencia: 'rm:8:1',
+    pericope: 'Sem Condenação',
+    tipo: 'omissao',
+    descricao: 'As palavras "em Cristo Jesus" (ἐν Χριστῷ Ἰησοῦ) e "depois do Espírito" estão em diferentes configurações.',
+    manuscritos: ['Alexandrino (02)', 'Vaticano (03)'],
+    evidenciaExterna: 'forte',
+    recomendacaoNA28: 'Lê "em Cristo Jesus" após "condenados".',
+    notas: 'A ordem das palavras varia significativamente entre as tradições.'
+  },
+  {
+    id: 'vt-068',
+    referencia: 'cl:1:14',
+    pericope: 'O Sangue de Cristo',
+    tipo: 'omissao',
+    descricao: 'As palavras "pelo seu sangue" (διὰ τοῦ αἵματος αὐτοῦ) estão ausentes de alguns manuscritos.',
+    manuscritos: ['Alexandrino (02)', 'Vaticano (03)'],
+    evidenciaExterna: 'moderada',
+    recomendacaoNA28: 'Omitido na edição NA28.',
+    notas: 'Harmonização com Ef 1:7.'
+  },
+  {
+    id: 'vt-069',
+    referencia: '2co:5:17',
+    pericope: 'A Nova Criatura',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "quem está em Cristo" (τῷ ἐν Χριστῷ) e "quem é em Cristo".',
+    manuscritos: ['Alexandrino (02)', 'Vaticano (03)'],
+    evidenciaExterna: 'forte',
+    recomendacaoNA28: 'Lê "se alguém está em Cristo".',
+    notas: 'A construção grega varia entre participio e condicional.'
+  },
+  {
+    id: 'vt-070',
+    referencia: 'gl:3:1',
+    pericope: 'A Cruz de Cristo',
+    tipo: 'mudanca',
+    descricao: 'A variante entre "provar" (πείθω) e "encantar" (ἐβάσκανε) — " quem vos fascinou para não obedeceis à verdade?"',
+    manuscritos: ['Alexandrino (02)', 'Vaticano (03)'],
+    evidenciaExterna: 'forte',
+    recomendacaoNA28: 'Lê "provar".',
+    notas: 'A palavra rara ἐβάskaine pode ser original (hapax legomenon).'
+  },
 ];
 
 export function getVariantePorReferencia(ref: string): VarianteTextual[] {

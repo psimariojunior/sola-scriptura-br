@@ -107,6 +107,33 @@ const FERRAMENTAS: Ferramenta[] = [
     href: '/referencias-explorer',
     categoria: 'estudo',
   },
+  {
+    id: 'comparar-traducoes',
+    titulo: 'Comparar Traduções',
+    descricao: '6 traduções lado a lado com modo foco e interlinear',
+    icone: <Languages className="w-6 h-6" />,
+    cor: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',
+    href: '/comparar-traducoes',
+    categoria: 'estudo',
+  },
+  {
+    id: 'quiz-biblico',
+    titulo: 'Quiz Bíblico',
+    descricao: 'Flashcards e quiz de vocabulário grego/hebraico',
+    icone: <Brain className="w-6 h-6" />,
+    cor: 'bg-pink-500/10 text-pink-600 dark:text-pink-400',
+    href: '/quiz-biblico',
+    categoria: 'aprendizado',
+  },
+  {
+    id: 'dashboard',
+    titulo: 'Dashboard de Estudo',
+    descricao: 'Progresso, conquistas e atividade recente',
+    icone: <BarChart3 className="w-6 h-6" />,
+    cor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
+    href: '/dashboard',
+    categoria: 'aprendizado',
+  },
   // Busca
   {
     id: 'pesquisa',

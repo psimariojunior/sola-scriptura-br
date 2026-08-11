@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import type { WebRTCService } from '@/lib/webrtc';
 
 interface CursorData {
   participantId: string;
@@ -86,29 +87,45 @@ export function RealtimeCursors({ cursors, currentUserId, verses }: RealtimeCurs
 }
 
 interface UseRealtimeCursorsOptions {
-  roomCode: string;
   participantId: string;
   participantName: string;
+  service: WebRTCService | null;
   enabled?: boolean;
 }
 
 export function useRealtimeCursors({
-  roomCode,
   participantId,
   participantName,
+  service,
   enabled = true,
 }: UseRealtimeCursorsOptions) {
   const [cursors, setCursors] = useState<CursorData[]>([]);
+  const throttleRef = useRef(0);
 
-  const broadcastCursor = (verseIndex: number) => {
-    if (!enabled) return;
+  useEffect(() => {
+    if (!service) return;
+
+    service.onCursorMove((data) => {
+      setCursors(prev => {
+        const filtered = prev.filter(c => c.participantId !== data.participantId);
+        return [...filtered, { ...data, timestamp: data.timestamp || Date.now() }];
+      });
+    });
+  }, [service]);
+
+  const broadcastCursor = useCallback((verseIndex: number) => {
+    if (!enabled || !service) return;
+
+    const now = Date.now();
+    if (now - throttleRef.current < 300) return;
+    throttleRef.current = now;
 
     const cursor: CursorData = {
       participantId,
       participantName,
       color: getParticipantColor(participantId),
       verseIndex,
-      timestamp: Date.now(),
+      timestamp: now,
     };
 
     setCursors(prev => {
@@ -116,28 +133,14 @@ export function useRealtimeCursors({
       return [...filtered, cursor];
     });
 
-    // Broadcast via WebSocket (using existing service)
-    if (typeof window !== 'undefined') {
-      const event = new CustomEvent('cursor-move', {
-        detail: { roomCode, cursor },
-      });
-      window.dispatchEvent(event);
-    }
-  };
-
-  useEffect(() => {
-    const handleCursorMove = (e: CustomEvent) => {
-      if (e.detail?.roomCode === roomCode && e.detail?.cursor) {
-        setCursors(prev => {
-          const filtered = prev.filter(c => c.participantId !== e.detail.cursor.participantId);
-          return [...filtered, e.detail.cursor];
-        });
-      }
-    };
-
-    window.addEventListener('cursor-move', handleCursorMove as EventListener);
-    return () => window.removeEventListener('cursor-move', handleCursorMove as EventListener);
-  }, [roomCode]);
+    service.sendCursorMove({
+      participantId,
+      participantName,
+      color: getParticipantColor(participantId),
+      verseIndex,
+      timestamp: now,
+    });
+  }, [enabled, service, participantId, participantName]);
 
   return { cursors, broadcastCursor };
 }

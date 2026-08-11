@@ -280,7 +280,7 @@ export const MobileVersePanel = memo(function MobileVersePanel({
               ) : (
                 <div className="space-y-4">
                   {estudos.map((e, i) => {
-                    const dados = e.dados as unknown as { tema: string; interpretes: Array<{ nome: string; periodo: string; tradicao: string; visao: string; resumo: string }> };
+                    const dados = e.dados as unknown as { tema: string; interpretes: Array<{ nome: string; periodo: string; tradicao: string; visao: string; resumo: string; citacaoFonte?: string }> };
                     return (
                       <div key={i} className="bg-[var(--surface-sunken)] rounded-xl p-4">
                         <h3 className="text-sm font-bold text-[var(--content-primary)] mb-3">{dados.tema}</h3>

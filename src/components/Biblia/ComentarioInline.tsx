@@ -103,6 +103,9 @@ function ComentarioCard({ comentario, truncado }: { comentario: Comentario; trun
     escatologico: 'Escatológico',
   };
 
+  const fonteLabel = comentario.fonte === 'resumo' ? ' (resumo)' :
+    comentario.fonte === 'dominio-publico' ? ' (domínio público)' : '';
+
   return (
     <div className="bg-[var(--surface-sunken)]/60 rounded-lg px-3 py-2 border border-[var(--brand-default)]/10">
       <div className="flex items-center gap-2 mb-1">
@@ -111,6 +114,7 @@ function ComentarioCard({ comentario, truncado }: { comentario: Comentario; trun
         </span>
         <span className="text-[10px] font-semibold text-[var(--content-secondary)]">
           {comentario.autor}
+          {fonteLabel && <span className="text-[var(--content-muted)] font-normal">{fonteLabel}</span>}
         </span>
       </div>
       <p className="text-xs text-[var(--content-secondary)] leading-relaxed font-serif-body">

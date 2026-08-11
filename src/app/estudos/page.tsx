@@ -609,7 +609,13 @@ export default function EstudosPage() {
                                 <span className="text-[10px] text-muted-foreground">({interp.periodo})</span>
                                 <span className="text-[10px] px-1.5 py-0.5 rounded bg-muted text-muted-foreground">{interp.tradicao}</span>
                               </div>
-                              <p className="text-xs text-muted-foreground italic mb-1">{interp.citacao}</p>
+                              <p className="text-xs text-muted-foreground italic mb-1">
+                                {interp.citacaoFonte === 'resumo' ? (
+                                  <><span className="text-muted-foreground/60 not-italic">Paráfrase: </span>{interp.citacao.replace(/[«»]/g, '')}</>
+                                ) : (
+                                  interp.citacao
+                                )}
+                              </p>
                               <p className="text-xs text-foreground/70">{interp.resumo}</p>
                             </div>
                           ))}

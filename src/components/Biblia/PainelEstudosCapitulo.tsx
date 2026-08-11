@@ -149,7 +149,11 @@ function BlocoTeologo({ teologo }: { teologo: TeologoCapitulo }) {
                           <div className="flex items-start gap-1.5">
                             <Quote className="w-2.5 h-2.5 text-[var(--primary)] mt-0.5 shrink-0" />
                             <p className="text-[11px] text-[var(--fg)] italic leading-relaxed font-serif-body">
-                              {interp.citacao}
+                              {interp.citacaoFonte === 'resumo' ? (
+                                <><span className="text-[var(--fg-muted)] not-italic">Paráfrase: </span>{interp.citacao.replace(/[«»]/g, '')}</>
+                              ) : (
+                                interp.citacao
+                              )}
                             </p>
                           </div>
                         </div>

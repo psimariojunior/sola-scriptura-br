@@ -22,7 +22,7 @@ const FERRAMENTAS = [
   { href: '/biblia', icon: BookOpen, label: 'Bíblia', desc: '10 traduções, áudio, karaoke', cor: 'from-blue-500/15 to-blue-600/5' },
   { href: '/pesquisa', icon: Search, label: 'Pesquisa', desc: 'Busca semântica e avançada', cor: 'from-emerald-500/15 to-emerald-600/5' },
   { href: '/idiomas', icon: Languages, label: 'Grego/Hebraico', desc: '14.200 verbetes Strong\'s', cor: 'from-violet-500/15 to-violet-600/5' },
-  { href: '/exegese', icon: Brain, label: 'Exegese', desc: 'Análise com IA gratuita', cor: 'from-purple-500/15 to-purple-600/5' },
+  { href: '/exegese', icon: Brain, label: 'Estudo Bíblico', desc: 'Análise com IA gratuita', cor: 'from-purple-500/15 to-purple-600/5' },
   { href: '/atlas', icon: Map, label: 'Atlas', desc: 'Mapas interativos', cor: 'from-amber-500/15 to-amber-600/5' },
   { href: '/comparar', icon: Compass, label: 'Comparar', desc: 'Lado a lado com diff', cor: 'from-rose-500/15 to-rose-600/5' },
 ];

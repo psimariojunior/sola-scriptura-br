@@ -28,7 +28,8 @@ function sleep(ms) {
 
 function parseExistingComments(content) {
   const comentarios = [];
-  const regex = /add\('([^']+)',\s*(\d+),\s*(\d+),\s*'([^']+)',\s*'((?:[^'\\]|\\.)*)',\s*'([^']+)'\)/g;
+  // Suporta 5 args (antigo) e 6 args (novo com fonte)
+  const regex = /add\('([^']+)',\s*(\d+),\s*(\d+),\s*'([^']+)',\s*'((?:[^'\\]|\\.)*)',\s*'([^']+)'(?:,\s*'([^']+)')?\)/g;
   let match;
   
   while ((match = regex.exec(content)) !== null) {
@@ -38,7 +39,8 @@ function parseExistingComments(content) {
       versiculo: parseInt(match[3]),
       autor: match[4],
       texto: match[5].replace(/\\'/g, "'"),
-      tipo: match[6]
+      tipo: match[6],
+      fonte: match[7] || 'resumo'
     });
   }
   
@@ -158,6 +160,7 @@ export interface Comentario {
   autor: string;
   texto: string;
   tipo: 'historico' | 'teologico' | 'gramatical' | 'cultural' | 'aplicacao' | 'escatologico';
+  fonte?: 'resumo' | 'citacao' | 'dominio-publico';
 }
 
 const comentarios: Record<string, Comentario[]> = {};
@@ -166,10 +169,10 @@ function chave(livro: string, capitulo: number, versiculo: number): string {
   return \`\${livro}:\${capitulo}:\${versiculo}\`;
 }
 
-function add(livro: string, cap: number, v: number, autor: string, texto: string, tipo: Comentario['tipo']) {
+function add(livro: string, cap: number, v: number, autor: string, texto: string, tipo: Comentario['tipo'], fonte: Comentario['fonte'] = 'resumo') {
   const k = chave(livro, cap, v);
   if (!comentarios[k]) comentarios[k] = [];
-  comentarios[k].push({ livro, capitulo: cap, versiculo: v, autor, texto, tipo });
+  comentarios[k].push({ livro, capitulo: cap, versiculo: v, autor, texto, tipo, fonte });
 }
 
 `;
@@ -207,7 +210,8 @@ function add(livro: string, cap: number, v: number, autor: string, texto: string
           .replace(/\n/g, '\\n')       // quebras de linha
           .replace(/\r/g, '\\r')       // retorno de carro
           .replace(/\t/g, '\\t');      // tab
-        output += `add('${c.livro}', ${c.capitulo}, ${c.versiculo}, '${c.autor}', '${escapedText}', '${c.tipo}');\n`;
+        const fonte = manualKeys.has(generateCommentaryKey(c)) ? 'resumo' : 'dominio-publico';
+        output += `add('${c.livro}', ${c.capitulo}, ${c.versiculo}, '${c.autor}', '${escapedText}', '${c.tipo}', '${fonte}');\n`;
       }
       
       output += '\n';

@@ -14,6 +14,7 @@ export const tradicaoCores: Record<string, string> = {
   'Metodista': 'bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-300',
   'Puritana': 'bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300',
   'Católica': 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+  'Ortodoxa': 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200',
   'Anglicana': 'bg-pink-100 text-pink-700 dark:bg-pink-900/40 dark:text-pink-300',
   'Estudo judaico': 'bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-300',
   'Missionologia': 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300',

@@ -22,7 +22,7 @@ import { PresentationInline } from '@/components/Apresentacao/PresentationInline
 import { BibleBrowser } from '@/components/BibleBrowser';
 import { SharedNotes } from '@/components/SharedNotes';
 import { LiveQuiz } from '@/components/LiveQuiz';
-import { RealtimeCursors } from '@/components/RealtimeCursors';
+import { RealtimeCursors, useRealtimeCursors } from '@/components/RealtimeCursors';
 import { RoomEntrance } from '@/components/RoomEntrance';
 import { RoomThemeSelector, getRoomThemeClasses } from '@/components/RoomThemes';
 import { BottomSheet } from '@/components/BottomSheet';
@@ -95,7 +95,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   } | null>(null);
   const [presentationFontSize, setPresentationFontSize] = useState(48);
   const [presentationMirror, setPresentationMirror] = useState(false);
-  const [chapterVerses, setChapterVerses] = useState<Array<{ texto: string; referencia: string }>>([]);
+  const [chapterVerses, setChapterVerses] = useState<Array<{ numero: number; texto: string; referencia: string }>>([]);
   const [chapterVerseIndex, setChapterVerseIndex] = useState(-1);
   const [autoAdvance, setAutoAdvance] = useState(false);
   const autoAdvanceTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -113,12 +113,18 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatServiceRef = useRef<WebRTCService | null>(null);
+  const [chatServiceState, setChatServiceState] = useState<WebRTCService | null>(null);
   const typingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const wsConnectedRef = useRef(false);
   const participantId = getParticipantId();
   const participantName = getParticipantLabel(participantId);
   const { containerRef, isFullscreen, toggleFullscreen } = useFullscreen();
   const { prefetchAdjacent } = useChapterPrefetch();
+  const { cursors: realtimeCursors, broadcastCursor } = useRealtimeCursors({
+    participantId,
+    participantName,
+    service: chatServiceState,
+  });
 
   // Conectar serviço WebSocket
   useEffect(() => {
@@ -126,6 +132,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     wsConnectedRef.current = true;
     const svc = createWebRTCService();
     chatServiceRef.current = svc;
+    setChatServiceState(svc);
 
     svc.onChatMessage((msg) => {
       setChatMessages(prev => prev.some(m => m.id === msg.id) ? prev : [...prev, msg]);
@@ -448,6 +455,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           const verses = await carregarCapitulo(livroAbrev, capitulo, 'nvi');
           if (verses && verses.length > 0) {
             const chapterVersesData = verses.map(v => ({
+              numero: v.numero,
               texto: v.texto,
               referencia: `${livroNome} ${capitulo}:${v.numero}`,
             }));
@@ -469,7 +477,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
             });
           } else {
             // Fallback: use provided text
-            setChapterVerses([{ texto: text || '', referencia: verseOrRef }]);
+            setChapterVerses([{ numero: parseInt(refMatch?.[3] || '0'), texto: text || '', referencia: verseOrRef }]);
             setChapterVerseIndex(0);
             setPresentedVerse({ texto: text || '', referencia: verseOrRef, apresentadoPor: participantName });
             chatServiceRef.current?.sendPresentationSync({
@@ -483,7 +491,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           }
         } catch {
           // Fallback: use provided text
-          setChapterVerses([{ texto: text || '', referencia: verseOrRef }]);
+          setChapterVerses([{ numero: 1, texto: text || '', referencia: verseOrRef }]);
           setChapterVerseIndex(0);
           setPresentedVerse({ texto: text || '', referencia: verseOrRef, apresentadoPor: participantName });
           chatServiceRef.current?.sendPresentationSync({
@@ -497,7 +505,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
         }
       } else {
         // Can't parse reference, use text as-is
-        setChapterVerses([{ texto: text || '', referencia: verseOrRef }]);
+        setChapterVerses([{ numero: 1, texto: text || '', referencia: verseOrRef }]);
         setChapterVerseIndex(0);
         setPresentedVerse({ texto: text || '', referencia: verseOrRef, apresentadoPor: participantName });
         chatServiceRef.current?.sendPresentationSync({ action: 'navigate', texto: text || '', presentedBy: participantName });
@@ -537,15 +545,16 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       setChapterVerseIndex(newIndex);
     }
     setPresentedVerse({ texto: verse.texto, referencia: verse.referencia, apresentadoPor: participantName });
+    broadcastCursor(newIndex);
     const refMatch = verse.referencia.match(/^(.+?)\s+(\d+):(\d+)$/);
     const livro = refMatch ? refMatch[1] : undefined;
     const capitulo = refMatch ? parseInt(refMatch[2]) : undefined;
     const versiculo = refMatch ? parseInt(refMatch[3]) : undefined;
     chatServiceRef.current?.sendPresentationSync({ action: 'navigate', livro, capitulo, versiculo, texto: verse.texto, presentedBy: participantName });
-  }, [wsVerses, chapterVerses, currentVerseIndex, chapterVerseIndex, participantName]);
+  }, [wsVerses, chapterVerses, currentVerseIndex, chapterVerseIndex, participantName, broadcastCursor]);
 
   const navigateToVerse = useCallback((index: number) => {
-    const verses = wsVerses.length > 0 ? wsVerses.map(v => ({ texto: v.texto, referencia: v.verse })) : chapterVerses;
+    const verses = wsVerses.length > 0 ? wsVerses.map(v => ({ texto: v.texto, referencia: v.verse, numero: 0 })) : chapterVerses;
     if (index < 0 || index >= verses.length) return;
     const verse = verses[index];
     if (wsVerses.length > 0) {
@@ -554,12 +563,13 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       setChapterVerseIndex(index);
     }
     setPresentedVerse({ texto: verse.texto, referencia: verse.referencia, apresentadoPor: participantName });
+    broadcastCursor(index);
     const refMatch = verse.referencia.match(/^(.+?)\s+(\d+):(\d+)$/);
     const livro = refMatch ? refMatch[1] : undefined;
     const capitulo = refMatch ? parseInt(refMatch[2]) : undefined;
     const versiculo = refMatch ? parseInt(refMatch[3]) : undefined;
     chatServiceRef.current?.sendPresentationSync({ action: 'navigate', livro, capitulo, versiculo, texto: verse.texto, presentedBy: participantName });
-  }, [wsVerses, chapterVerses, participantName]);
+  }, [wsVerses, chapterVerses, participantName, broadcastCursor]);
 
   // Auto-advance timer
   useEffect(() => {
@@ -822,7 +832,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
         {/* Apresentação: ocupa tela toda quando sem bible panel, senão 40% */}
         {presentedVerse && (
           <div className={cn('relative bg-[#0a0a14] flex-shrink-0 transition-all duration-300', showBiblePanel ? 'h-[40%] min-h-[180px]' : 'flex-1')}>
-            <RealtimeCursors cursors={[]} currentUserId={participantId} verses={[]} />
+            <RealtimeCursors cursors={realtimeCursors} currentUserId={participantId} verses={chapterVerses} />
             <PresentationInline texto={presentedVerse.texto} referencia={presentedVerse.referencia} apresentadoPor={presentedVerse.apresentadoPor}
               fontSize={presentationFontSize} mirror={presentationMirror} isController={true}
               onFontSizeChange={handlePresentationFontSize} onMirrorChange={handlePresentationMirror} onStop={handleStopPresentation} />

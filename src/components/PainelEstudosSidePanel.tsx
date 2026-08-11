@@ -96,7 +96,13 @@ export default function PainelEstudosSidePanel({ livro, capitulo, versiculo }: P
                       <span className="text-[10px] text-muted-foreground">({interp.periodo})</span>
                     </div>
                     <span className="text-[10px] px-1.5 py-0.5 rounded bg-muted text-muted-foreground mb-1 inline-block">{interp.tradicao}</span>
-                    <p className="text-[11px] text-foreground/70 italic mb-1">{interp.citacao}</p>
+                    <p className="text-[11px] text-foreground/70 italic mb-1">
+                      {interp.citacaoFonte === 'resumo' ? (
+                        <><span className="text-muted-foreground/60 not-italic">Paráfrase: </span>{interp.citacao.replace(/[«»]/g, '')}</>
+                      ) : (
+                        interp.citacao
+                      )}
+                    </p>
                     <p className="text-[11px] text-muted-foreground leading-relaxed">{interp.resumo}</p>
                   </div>
                 ))}

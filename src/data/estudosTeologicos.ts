@@ -7,6 +7,7 @@ export interface EstudoTeologo {
   visao: string;
   resumo: string;
   citacao: string;
+  citacaoFonte?: 'resumo' | 'citacao-real';
 }
 
 export interface EstudoVersiculo {

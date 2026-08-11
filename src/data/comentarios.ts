@@ -10,6 +10,7 @@ export interface Comentario {
   autor: string;
   texto: string;
   tipo: 'historico' | 'teologico' | 'gramatical' | 'cultural' | 'aplicacao' | 'escatologico';
+  fonte?: 'resumo' | 'citacao' | 'dominio-publico';
 }
 
 const comentarios: Record<string, Comentario[]> = {};
@@ -18,10 +19,10 @@ function chave(livro: string, capitulo: number, versiculo: number): string {
   return `${livro}:${capitulo}:${versiculo}`;
 }
 
-function add(livro: string, cap: number, v: number, autor: string, texto: string, tipo: Comentario['tipo']) {
+function add(livro: string, cap: number, v: number, autor: string, texto: string, tipo: Comentario['tipo'], fonte: Comentario['fonte'] = 'resumo') {
   const k = chave(livro, cap, v);
   if (!comentarios[k]) comentarios[k] = [];
-  comentarios[k].push({ livro, capitulo: cap, versiculo: v, autor, texto, tipo });
+  comentarios[k].push({ livro, capitulo: cap, versiculo: v, autor, texto, tipo, fonte });
 }
 
 // GN (265 comentários)

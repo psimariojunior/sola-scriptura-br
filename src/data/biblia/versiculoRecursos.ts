@@ -132,6 +132,7 @@ export interface RecursoEstudo {
     visao: string;
     resumo: string;
     citacao?: string;
+    citacaoFonte?: 'resumo' | 'citacao-real';
   }>;
 }
 
@@ -796,7 +797,7 @@ export async function getRecursosBasicos(
   }
   const estudos = _obterEstudos!(livroLower, capitulo, versiculo);
   for (const e of estudos) {
-    recursos.push({ tipo: 'estudo', dados: { tipo: 'estudo' as const, tema: e.tema, interpretes: e.interpretacoes.map((i) => ({ nome: i.teologo, periodo: i.periodo, tradicao: i.tradicao, visao: i.visao, resumo: i.resumo, citacao: i.citacao })) } as RecursoEstudo });
+    recursos.push({ tipo: 'estudo', dados: { tipo: 'estudo' as const, tema: e.tema, interpretes: e.interpretacoes.map((i) => ({ nome: i.teologo, periodo: i.periodo, tradicao: i.tradicao, visao: i.visao, resumo: i.resumo, citacao: i.citacao, citacaoFonte: i.citacaoFonte })) } as RecursoEstudo });
   }
   return recursos;
 }
@@ -867,6 +868,7 @@ export async function getRecursosVersiculo(
           visao: i.visao,
           resumo: i.resumo,
           citacao: i.citacao,
+          citacaoFonte: i.citacaoFonte,
         })),
       } as RecursoEstudo,
     });
@@ -1208,6 +1210,7 @@ export async function getRecursosPorLivro(livro: string): Promise<RecursoVersicu
           visao: i.visao,
           resumo: i.resumo,
           citacao: i.citacao,
+          citacaoFonte: i.citacaoFonte,
         })),
       } as RecursoEstudo,
     });

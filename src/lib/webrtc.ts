@@ -212,6 +212,7 @@ export class WebRTCService {
   private onNoteSyncCallback: ((data: NoteSyncEvent) => void) | null = null;
   private onNoteTypingCallback: ((data: NoteTypingEvent) => void) | null = null;
   private onThemeSyncCallback: ((data: ThemeSyncEvent) => void) | null = null;
+  private onCursorMoveCallback: ((data: { participantId: string; participantName: string; color: string; verseIndex: number; timestamp: number }) => void) | null = null;
   private peerStreams: PeerStream[] = [];
   private mySocketId = '';
   private roomCode = '';
@@ -344,6 +345,10 @@ export class WebRTCService {
     this.socket.on('theme-sync', (data: ThemeSyncEvent) => {
       this.onThemeSyncCallback?.(data);
     });
+
+    this.socket.on('cursor-move', (data: { participantId: string; participantName: string; color: string; verseIndex: number; timestamp: number }) => {
+      this.onCursorMoveCallback?.(data);
+    });
   }
 
   sendChatMessage(id: string, participantId: string, displayName: string, message: string) {
@@ -464,6 +469,15 @@ export class WebRTCService {
 
   onThemeSync(cb: (data: ThemeSyncEvent) => void) {
     this.onThemeSyncCallback = cb;
+  }
+
+  sendCursorMove(data: { participantId: string; participantName: string; color: string; verseIndex: number; timestamp: number }) {
+    if (!this.socket || !this.roomCode) return;
+    this.socket.emit('cursor-move', { ...data, code: this.roomCode });
+  }
+
+  onCursorMove(cb: (data: { participantId: string; participantName: string; color: string; verseIndex: number; timestamp: number }) => void) {
+    this.onCursorMoveCallback = cb;
   }
 
   private async createOffer(targetSocketId: string) {

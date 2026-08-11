@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import { ExegeseClient } from './client';
 
 export const metadata: Metadata = {
-  title: 'Exegese Bíblica — Análise Automática',
-  description: 'Ferramenta de exegese automática com análise contextual, gramatical e teológica das Escrituras. Interpretação aprofundada de versículos.',
-  keywords: ['exegese', 'exegese bíblica', 'análise bíblica', 'interpretação', 'contexto bíblico', 'gramática', 'teologia'],
+  title: 'Estudo Bíblico Multirreferencial — Análise Integrada',
+  description: 'Ferramenta de estudo bíblico com análise contextual, gramatical e teológica das Escrituras. Integra texto, contexto histórico, léxico e doutrinas.',
+  keywords: ['estudo bíblico', 'análise bíblica', 'interpretação', 'contexto bíblico', 'gramática', 'teologia', 'léxico'],
   openGraph: {
-    title: 'Exegese Bíblica | Sola Scriptura BR',
+    title: 'Estudo Bíblico Multirreferencial | Sola Scriptura BR',
     description: 'Análise contextual, gramatical e teológica das Escrituras.',
   },
 };

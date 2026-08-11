@@ -7,7 +7,7 @@ import {
   BookOpen, Search, Map, Brain, MessageSquare, Languages, 
   Calendar, Users, Lightbulb, FileText, Compass, BookMarked,
   Globe, Mic, BarChart3, GraduationCap, Edit3, BookText,
-  Sparkles, ChevronRight
+  Sparkles, ChevronRight, GitBranch
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -80,12 +80,31 @@ const FERRAMENTAS: Ferramenta[] = [
     categoria: 'estudo',
   },
   {
+    id: 'idiomas-ferramentas',
+    titulo: 'Ferramentas de Línguas',
+    descricao: 'Paradigmas completos, léxico e concordância grego/hebraico',
+    icone: <Languages className="w-6 h-6" />,
+    cor: 'bg-teal-500/10 text-teal-600 dark:text-teal-400',
+    href: '/idiomas/ferramentas',
+    categoria: 'estudo',
+    novo: true,
+  },
+  {
     id: 'comparar-comentarios',
     titulo: 'Comparar Comentários',
     descricao: '8 teólogos lado a lado para cada versículo',
     icone: <MessageSquare className="w-6 h-6" />,
     cor: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
     href: '/comparar-comentarios',
+    categoria: 'estudo',
+  },
+  {
+    id: 'referencias-explorer',
+    titulo: 'Referências Cruzadas',
+    descricao: 'Exploração visual de 29K conexões AT-NT por tipo teológico',
+    icone: <GitBranch className="w-6 h-6" />,
+    cor: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400',
+    href: '/referencias-explorer',
     categoria: 'estudo',
   },
   // Busca

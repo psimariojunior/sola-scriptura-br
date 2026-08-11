@@ -12,10 +12,14 @@ import type { VarianteTextual } from '@/data/biblia/criticaTextual';
 
 const TIPOS = [
   { valor: 'todos', label: 'Todos' },
-  { valor: 'adicao', label: 'Adição' },
-  { valor: 'omissao', label: 'Omissão' },
-  { valor: 'mudanca', label: 'Mudança' },
-  { valor: 'transposicao', label: 'Transposição' },
+  { valor: 'letras_similares', label: 'Letras Similares' },
+  { valor: 'adicao_omissao', label: 'Adição/Omissão' },
+  { valor: 'ordem_palavras', label: 'Ordem de Palavras' },
+  { valor: 'substituicao_sinonimos', label: 'Substituição Sinônimos' },
+  { valor: 'teologica', label: 'Teológica' },
+  { valor: 'relato', label: 'Relato' },
+  { valor: 'numerica', label: 'Numérica' },
+  { valor: 'pontuacao', label: 'Pontuação' },
 ];
 
 const EVIDENCIA = [
@@ -26,17 +30,25 @@ const EVIDENCIA = [
 ];
 
 const TIPO_COR: Record<string, string> = {
-  adicao: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300',
-  omissao: 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300',
-  mudanca: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
-  transposicao: 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300',
+  letras_similares: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
+  adicao_omissao: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300',
+  ordem_palavras: 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300',
+  substituicao_sinonimos: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+  teologica: 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300',
+  relato: 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300',
+  numerica: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/40 dark:text-cyan-300',
+  pontuacao: 'bg-gray-100 text-gray-700 dark:bg-gray-900/40 dark:text-gray-300',
 };
 
 const TIPO_ICONE: Record<string, React.ReactNode> = {
-  adicao: <CheckCircle className="w-3.5 h-3.5" />,
-  omissao: <XCircle className="w-3.5 h-3.5" />,
-  mudanca: <AlertTriangle className="w-3.5 h-3.5" />,
-  transposicao: <MinusCircle className="w-3.5 h-3.5" />,
+  letras_similares: <AlertTriangle className="w-3.5 h-3.5" />,
+  adicao_omissao: <CheckCircle className="w-3.5 h-3.5" />,
+  ordem_palavras: <MinusCircle className="w-3.5 h-3.5" />,
+  substituicao_sinonimos: <AlertTriangle className="w-3.5 h-3.5" />,
+  teologica: <XCircle className="w-3.5 h-3.5" />,
+  relato: <CheckCircle className="w-3.5 h-3.5" />,
+  numerica: <MinusCircle className="w-3.5 h-3.5" />,
+  pontuacao: <AlertTriangle className="w-3.5 h-3.5" />,
 };
 
 const EVIDENCIA_COR: Record<string, string> = {
@@ -52,6 +64,18 @@ function parseRef(ref: string): { livro: string; capitulo: string } {
   return { livro: parts[0] || 'mt', capitulo: parts[1] || '1' };
 }
 
+function getPrimeiraClassificacao(v: VarianteTextual): string {
+  return v.variantes?.[0]?.classificacao ?? 'moderada';
+}
+
+function getManuscritosFlat(v: VarianteTextual): string[] {
+  return v.variantes?.flatMap((va) => va.manuscritos) ?? [];
+}
+
+function getPrimeiraLeitura(v: VarianteTextual): string | undefined {
+  return v.variantes?.[0]?.leitura;
+}
+
 export default function CriticaTextualPage() {
   const [busca, setBusca] = useState('');
   const [filtroTipo, setFiltroTipo] = useState('todos');
@@ -62,15 +86,15 @@ export default function CriticaTextualPage() {
   const variantes = useMemo(() => {
     let lista = filtroLivro ? getVariantePorLivro(filtroLivro) : VARIANTES_TEXTUAIS;
     if (filtroTipo !== 'todos') lista = lista.filter((v) => v.tipo === filtroTipo);
-    if (filtroEvidencia !== 'todos') lista = lista.filter((v) => v.evidenciaExterna === filtroEvidencia);
+    if (filtroEvidencia !== 'todos') lista = lista.filter((v) => getPrimeiraClassificacao(v) === filtroEvidencia);
     if (busca.trim()) {
       const q = busca.toLowerCase();
       lista = lista.filter(
         (v) =>
           v.referencia.toLowerCase().includes(q) ||
-          v.descricao.toLowerCase().includes(q) ||
-          v.pericope.toLowerCase().includes(q) ||
-          v.manuscritos.some((m) => m.toLowerCase().includes(q))
+          v.explicacao.toLowerCase().includes(q) ||
+          v.pericope?.toLowerCase().includes(q) ||
+          getManuscritosFlat(v).some((m) => m.toLowerCase().includes(q))
       );
     }
     return lista;
@@ -190,10 +214,10 @@ export default function CriticaTextualPage() {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
               {[
                 { value: variantes.length, label: 'Variantes' },
-                { value: variantes.filter((v) => v.tipo === 'adicao').length, label: 'Adições' },
-                { value: variantes.filter((v) => v.tipo === 'omissao').length, label: 'Omissões' },
-                { value: variantes.filter((v) => v.evidenciaExterna === 'forte').length, label: 'Evidência Forte' },
-                { value: new Set(variantes.flatMap(v => v.manuscritos)).size, label: 'Manuscritos' },
+                { value: variantes.filter((v) => v.tipo === 'adicao_omissao').length, label: 'Adições/Omissões' },
+                { value: variantes.filter((v) => v.tipo === 'letras_similares').length, label: 'Letras Similares' },
+                { value: variantes.filter((v) => getPrimeiraClassificacao(v) === 'forte').length, label: 'Evidência Forte' },
+                { value: new Set(variantes.flatMap((v) => getManuscritosFlat(v))).size, label: 'Manuscritos' },
               ].map((stat) => (
                 <motion.div key={stat.label} className="sola-card p-4 text-center" whileHover={{ y: -2 }}>
                   <p className="font-display text-3xl font-light text-primary">{stat.value}</p>
@@ -223,10 +247,10 @@ export default function CriticaTextualPage() {
                         <div className="flex items-center gap-2 mb-2 flex-wrap">
                           <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full flex items-center gap-1 ${TIPO_COR[v.tipo]}`}>
                             {TIPO_ICONE[v.tipo]}
-                            {v.tipo}
+                            {v.tipo.replace(/_/g, ' ')}
                           </span>
-                          <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full ${EVIDENCIA_COR[v.evidenciaExterna]}`}>
-                            Evidência: {v.evidenciaExterna}
+                          <span className={`px-2 py-0.5 text-[10px] font-medium rounded-full ${EVIDENCIA_COR[getPrimeiraClassificacao(v)]}`}>
+                            Evidência: {getPrimeiraClassificacao(v)}
                           </span>
                           {v.recomendacaoNA28 && (
                             <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300">
@@ -235,8 +259,8 @@ export default function CriticaTextualPage() {
                           )}
                         </div>
                         <h3 className="font-display text-lg font-semibold mb-1">{v.referencia}</h3>
-                        <p className="text-xs text-primary font-medium mb-1">{v.pericope}</p>
-                        <p className="text-sm text-muted-foreground line-clamp-2">{v.descricao}</p>
+                        {v.pericope && <p className="text-xs text-primary font-medium mb-1">{v.pericope}</p>}
+                        <p className="text-sm text-muted-foreground line-clamp-2">{v.explicacao}</p>
                       </div>
                       <ChevronRight className={`w-5 h-5 text-muted-foreground transition-transform flex-shrink-0 mt-1 ${expandido === v.id ? 'rotate-90' : ''}`} />
                     </div>
@@ -251,8 +275,8 @@ export default function CriticaTextualPage() {
                         >
                           <div className="pt-4 border-t border-border mt-4 space-y-3">
                             <div>
-                              <h4 className="text-xs font-bold text-primary mb-1">DESCRIÇÃO</h4>
-                              <p className="text-sm text-muted-foreground leading-relaxed">{v.descricao}</p>
+                              <h4 className="text-xs font-bold text-primary mb-1">EXPLICAÇÃO</h4>
+                              <p className="text-sm text-muted-foreground leading-relaxed">{v.explicacao}</p>
                             </div>
 
                             {v.recomendacaoNA28 && (
@@ -263,27 +287,30 @@ export default function CriticaTextualPage() {
                             )}
 
                             <div>
-                              <h4 className="text-xs font-bold text-primary mb-1">MANUSCRITOS</h4>
-                              <div className="flex flex-wrap gap-1.5">
-                                {v.manuscritos.map((m) => (
-                                  <span key={m} className="text-[11px] px-2 py-0.5 rounded bg-muted text-muted-foreground">
-                                    {m}
-                                  </span>
+                              <h4 className="text-xs font-bold text-primary mb-1">VARIANTES</h4>
+                              <div className="space-y-2">
+                                {v.variantes.map((variante, idx) => (
+                                  <div key={idx} className="p-3 rounded-lg bg-muted/50 border border-border">
+                                    <p className="text-sm font-medium mb-1">{variante.leitura}</p>
+                                    <div className="flex flex-wrap gap-1.5">
+                                      {variante.manuscritos.map((m) => (
+                                        <span key={m} className="text-[11px] px-2 py-0.5 rounded bg-background text-muted-foreground">
+                                          {m}
+                                        </span>
+                                      ))}
+                                    </div>
+                                    <span className={`inline-block mt-1 text-[10px] px-2 py-0.5 rounded-full font-medium ${EVIDENCIA_COR[variante.classificacao]}`}>
+                                      {variante.classificacao}
+                                    </span>
+                                  </div>
                                 ))}
                               </div>
                             </div>
 
-                            {v.textoRecebido && (
+                            {getPrimeiraLeitura(v) && (
                               <div>
                                 <h4 className="text-xs font-bold text-primary mb-1">TEXTO RECEBIDO</h4>
-                                <p className="text-sm text-muted-foreground italic leading-relaxed">{v.textoRecebido}</p>
-                              </div>
-                            )}
-
-                            {v.notas && (
-                              <div>
-                                <h4 className="text-xs font-bold text-primary mb-1">NOTAS</h4>
-                                <p className="text-xs text-muted-foreground leading-relaxed">{v.notas}</p>
+                                <p className="text-sm text-muted-foreground italic leading-relaxed">{getPrimeiraLeitura(v)}</p>
                               </div>
                             )}
 

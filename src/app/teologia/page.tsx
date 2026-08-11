@@ -4,8 +4,9 @@ import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { doutrinas } from '@/data/biblia';
+import { getTodosTemas, getEstatisticasTeologia, type TemaTeologico } from '@/data/teologiaSistematica';
 import dynamic from 'next/dynamic';
-import { Church, Search, ChevronDown, ExternalLink, Copy, Check, Layers, GraduationCap } from 'lucide-react';
+import { Church, Search, ChevronDown, ExternalLink, Copy, Check, Layers, GraduationCap, BookOpen } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
 import { useTranslation } from 'react-i18next';
@@ -72,7 +73,7 @@ export default function TeologiaPage() {
   const [filtroCategoria, setFiltroCategoria] = useState<string | null>(null);
   const [expandida, setExpandida] = useState<string | null>(null);
   const [copiedRef, setCopiedRef] = useState<string | null>(null);
-  const [abaAtiva, setAbaAtiva] = useState<'doutrinas' | 'estudos'>('doutrinas');
+  const [abaAtiva, setAbaAtiva] = useState<'doutrinas' | 'estudos' | 'sistematica'>('doutrinas');
 
   const [painelVersiculo, setPainelVersiculo] = useState<{
     livro: string;
@@ -86,6 +87,9 @@ export default function TeologiaPage() {
     totalVersiculos: number;
   }>({ total: 0, categorias: [], totalVersiculos: 0 });
 
+  const [temasSistematica, setTemasSistematica] = useState<TemaTeologico[]>([]);
+  const [expandidaSistematica, setExpandidaSistematica] = useState<string | null>(null);
+
   useEffect(() => {
     import('@/data/estudosTeologicosExpandidos').then((mod) => {
       const estudos = mod.estudosTeologicosExpandidos;
@@ -95,9 +99,15 @@ export default function TeologiaPage() {
         totalVersiculos: estudos.reduce((acc, e) => acc + e.versicosChave.length, 0),
       });
     });
+    setTemasSistematica(getTodosTemas());
   }, []);
 
-  const categorias = useMemo(() => [...new Set(doutrinas.map((d) => d.categoria))].sort(), []);
+  const categorias = useMemo(() => {
+    if (abaAtiva === 'sistematica') {
+      return [...new Set(temasSistematica.map(t => t.categoria))].sort();
+    }
+    return [...new Set(doutrinas.map((d) => d.categoria))].sort();
+  }, [abaAtiva, temasSistematica]);
 
   const doutrinasFiltradas = useMemo(() => {
     let lista = doutrinas;
@@ -113,6 +123,21 @@ export default function TeologiaPage() {
     }
     return lista;
   }, [busca, filtroCategoria]);
+
+  const temasSistematicaFiltrados = useMemo(() => {
+    let lista = temasSistematica;
+    if (filtroCategoria) lista = lista.filter(t => t.categoria === filtroCategoria);
+    if (busca.trim()) {
+      const q = busca.toLowerCase();
+      lista = lista.filter(t =>
+        t.titulo.toLowerCase().includes(q) ||
+        t.descricao.toLowerCase().includes(q) ||
+        t.resumo.toLowerCase().includes(q) ||
+        t.versiculosChave.some(v => v.toLowerCase().includes(q))
+      );
+    }
+    return lista;
+  }, [busca, filtroCategoria, temasSistematica]);
 
   const copyRef = async (ref: string) => {
     await navigator.clipboard.writeText(ref);
@@ -225,15 +250,37 @@ export default function TeologiaPage() {
                 <GraduationCap className="w-4 h-4" />
                 {t('theology.advancedStudies')} <span className="text-xs opacity-70">({estudosMeta.total})</span>
               </motion.button>
+              <motion.button
+                onClick={() => { setAbaAtiva('sistematica'); setFiltroCategoria(null); setBusca(''); }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg transition-all duration-300 ${
+                  abaAtiva === 'sistematica'
+                    ? 'bg-primary text-primary-foreground shadow-md'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                }`}
+              >
+                <BookOpen className="w-4 h-4" />
+                Sistemática <span className="text-xs opacity-70">({temasSistematica.length})</span>
+              </motion.button>
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.15}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               {[
-                { value: abaAtiva === 'doutrinas' ? doutrinas.length : estudosMeta.total, label: abaAtiva === 'doutrinas' ? t('theology.doctrines') : t('theology.studies') },
-                { value: abaAtiva === 'doutrinas' ? categorias.length : estudosMeta.categorias.length, label: t('theology.categories') },
-                { value: abaAtiva === 'doutrinas' ? doutrinas.reduce((acc, d) => acc + d.passagens.length, 0) : estudosMeta.totalVersiculos, label: t('theology.references') },
+                { 
+                  value: abaAtiva === 'doutrinas' ? doutrinas.length : abaAtiva === 'estudos' ? estudosMeta.total : temasSistematica.length, 
+                  label: abaAtiva === 'doutrinas' ? t('theology.doctrines') : abaAtiva === 'estudos' ? t('theology.studies') : 'Temas' 
+                },
+                { 
+                  value: abaAtiva === 'doutrinas' ? categorias.length : abaAtiva === 'estudos' ? estudosMeta.categorias.length : [...new Set(temasSistematica.map(t => t.categoria))].length, 
+                  label: t('theology.categories') 
+                },
+                { 
+                  value: abaAtiva === 'doutrinas' ? doutrinas.reduce((acc, d) => acc + d.passagens.length, 0) : abaAtiva === 'estudos' ? estudosMeta.totalVersiculos : temasSistematica.reduce((acc, t) => acc + t.versiculosChave.length, 0), 
+                  label: t('theology.references') 
+                },
                 { value: 66, label: t('theology.biblicalBooks') },
               ].map((stat, i) => (
                 <motion.div key={stat.label} className="sola-card p-4 text-center" whileHover={{ y: -2 }}>
@@ -245,7 +292,7 @@ export default function TeologiaPage() {
           </ScrollReveal>
 
           <div className="space-y-8">
-              {abaAtiva === 'doutrinas' ? (
+              {abaAtiva === 'doutrinas' && (
                 <>
                   {categorias.map((cat) => {
                     const doutrinasCat = doutrinasFiltradas.filter(d => d.categoria === cat);
@@ -361,18 +408,177 @@ export default function TeologiaPage() {
                 );
               })}
                 </>
-              ) : (
+              )}
+
+              {abaAtiva === 'estudos' && (
+                <EstudosTeologicosAba
+                  filtroCategoria={filtroCategoria}
+                  busca={busca}
+                  onVersiculoClick={handleVersiculoClick}
+                />
+              )}
+
+              {abaAtiva === 'sistematica' && (
                 <>
-                  <EstudosTeologicosAba
-                    filtroCategoria={filtroCategoria}
-                    busca={busca}
-                    onVersiculoClick={handleVersiculoClick}
-                  />
+                  {categorias.map((cat) => {
+                    const temasCat = temasSistematicaFiltrados.filter(t => t.categoria === cat);
+                    if (temasCat.length === 0) return null;
+                    const cores = getCoresCategoria(cat);
+
+                    return (
+                      <motion.div
+                        key={cat}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                      >
+                        <h2 className="font-display text-2xl font-light mb-6 text-primary flex items-center gap-3">
+                          <span className={`w-3 h-3 rounded-full ${cores.dot}`} />
+                          {cat}
+                          <span className="text-sm font-normal text-muted-foreground">({temasCat.length})</span>
+                        </h2>
+                        <div className="space-y-4">
+                          {temasCat.map((tema, i) => (
+                            <ScrollReveal key={tema.id} delay={i * 0.03}>
+                              <motion.div
+                                className="sola-card p-6"
+                                whileHover={{ y: -2 }}
+                                layout
+                              >
+                                <div className="flex items-start justify-between gap-4 mb-3">
+                                  <div className="flex-1">
+                                    <h3 className="font-semibold text-lg mb-1">{tema.titulo}</h3>
+                                    <p className="text-sm text-muted-foreground">{tema.descricao}</p>
+                                  </div>
+                                  <motion.button
+                                    onClick={() => setExpandidaSistematica(expandidaSistematica === tema.id ? null : tema.id)}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className="p-1 text-muted-foreground hover:text-foreground transition-colors"
+                                  >
+                                    <motion.div animate={{ rotate: expandidaSistematica === tema.id ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                                      <ChevronDown className="w-4 h-4" />
+                                    </motion.div>
+                                  </motion.button>
+                                </div>
+
+                                <p className="font-serif-body text-sm leading-relaxed text-foreground/80 mb-3">
+                                  {tema.resumo}
+                                </p>
+
+                                <div className="flex flex-wrap gap-2 mb-3">
+                                  {tema.versiculosChave.slice(0, 3).map((ref) => {
+                                    const parsed = parseReferencia(ref);
+                                    return (
+                                      <div key={ref} className="flex items-center gap-1">
+                                        {parsed ? (
+                                          <button
+                                            onClick={() => handleVersiculoClick(parsed.livro, parsed.capitulo, parsed.versiculo)}
+                                            className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-sm hover:bg-primary/20 transition-colors flex items-center gap-1"
+                                          >
+                                            {ref}
+                                            <ExternalLink className="w-3 h-3" />
+                                          </button>
+                                        ) : (
+                                          <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-sm">
+                                            {ref}
+                                          </span>
+                                        )}
+                                      </div>
+                                    );
+                                  })}
+                                  {tema.versiculosChave.length > 3 && (
+                                    <span className="text-xs text-muted-foreground">+{tema.versiculosChave.length - 3} mais</span>
+                                  )}
+                                </div>
+
+                                <AnimatePresence>
+                                  {expandidaSistematica === tema.id && (
+                                    <motion.div
+                                      initial={{ opacity: 0, height: 0 }}
+                                      animate={{ opacity: 1, height: 'auto' }}
+                                      exit={{ opacity: 0, height: 0 }}
+                                      transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                                      className="overflow-hidden"
+                                    >
+                                      <div className="pt-4 border-t border-border/50 space-y-4">
+                                        <div>
+                                          <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                                            Conteúdo Acadêmico
+                                          </h4>
+                                          <p className="text-sm text-foreground/80 leading-relaxed font-serif-body whitespace-pre-line">
+                                            {tema.conteudo}
+                                          </p>
+                                        </div>
+
+                                        {tema.autoresClassicos && tema.autoresClassicos.length > 0 && (
+                                          <div>
+                                            <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                                              Autores Clássicos
+                                            </h4>
+                                            <div className="flex flex-wrap gap-2">
+                                              {tema.autoresClassicos.map((autor) => (
+                                                <span key={autor} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                                                  {autor}
+                                                </span>
+                                              ))}
+                                            </div>
+                                          </div>
+                                        )}
+
+                                        {tema.debateContemporaneo && (
+                                          <div>
+                                            <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                                              Debate Contemporâneo
+                                            </h4>
+                                            <p className="text-sm text-foreground/70 leading-relaxed font-serif-body">
+                                              {tema.debateContemporaneo}
+                                            </p>
+                                          </div>
+                                        )}
+
+                                        {tema.aplicacao && (
+                                          <div>
+                                            <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                                              Aplicação
+                                            </h4>
+                                            <p className="text-sm text-foreground/70 leading-relaxed font-serif-body">
+                                              {tema.aplicacao}
+                                            </p>
+                                          </div>
+                                        )}
+
+                                        {tema.perguntas && tema.perguntas.length > 0 && (
+                                          <div>
+                                            <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                                              Para Reflexão
+                                            </h4>
+                                            <ul className="space-y-2">
+                                              {tema.perguntas.map((pergunta, idx) => (
+                                                <li key={idx} className="text-sm text-foreground/70 flex items-start gap-2">
+                                                  <span className="text-primary mt-1">•</span>
+                                                  {pergunta}
+                                                </li>
+                                              ))}
+                                            </ul>
+                                          </div>
+                                        )}
+                                      </div>
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
+                              </motion.div>
+                            </ScrollReveal>
+                          ))}
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </>
               )}
           </div>
 
-          {(abaAtiva === 'doutrinas' && doutrinasFiltradas.length === 0) && (
+          {((abaAtiva === 'doutrinas' && doutrinasFiltradas.length === 0) || (abaAtiva === 'sistematica' && temasSistematicaFiltrados.length === 0)) && (
             <ScrollReveal>
               <div className="sola-card p-12 text-center">
                 <Search className="w-16 h-16 mx-auto mb-4 text-muted-foreground/20" strokeWidth={1} />

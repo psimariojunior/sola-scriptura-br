@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, X, BookOpen, Filter, ChevronDown, 
   Settings, Hash, Type, AlignLeft, Download,
-  Copy, Share2, ExternalLink, Sparkles
+  Copy, Share2, ExternalLink, Sparkles, Languages
 } from 'lucide-react';
 import { VoiceSearchButton } from '@/components/VoiceSearchButton';
 import { obterQueryExpandida } from '@/lib/sinonimos';
@@ -44,7 +44,43 @@ const SEARCH_MODES = [
   { id: 'startsWith', label: 'Começa com', icon: Hash, description: 'Início da frase' },
   { id: 'regex', label: 'Regex', icon: Settings, description: 'Padrão regular' },
   { id: 'strongs', label: "Strong's", icon: Hash, description: 'Número Strong' },
+  { id: 'morphology', label: 'Morfologia', icon: Languages, description: 'Busca gramatical' },
 ];
+
+const MORPHOLOGY_FILTERS = {
+  tipo: {
+    label: 'Tipo',
+    options: ['substantivo', 'verbo', 'adjetivo', 'advérbio', 'preposição', 'conjunção', 'pronome', 'numeral', 'partícula', 'interjeição'],
+  },
+  tempo: {
+    label: 'Tempo Verbal',
+    options: ['presente', 'pretérito', 'imperfeito', 'aoristo', 'futuro', 'perfeito', 'pluperfeito'],
+  },
+  voz: {
+    label: 'Voz',
+    options: ['ativa', 'passiva', 'média', 'passiva/média'],
+  },
+  modo: {
+    label: 'Modo',
+    options: ['indicativo', 'subjuntivo', 'imperativo', 'optativo', 'infinitivo', 'particípio'],
+  },
+  pessoa: {
+    label: 'Pessoa',
+    options: ['1ª', '2ª', '3ª'],
+  },
+  numero: {
+    label: 'Número',
+    options: ['singular', 'plural'],
+  },
+  genero: {
+    label: 'Gênero',
+    options: ['masculino', 'feminino', 'neutro', 'comum'],
+  },
+  caso: {
+    label: 'Caso',
+    options: ['nominativo', 'genitivo', 'dativo', 'acusativo', 'vocativo'],
+  },
+};
 
 function highlightText(text: string, query: string, mode: string, isExactPhrase: boolean) {
   if (!query.trim()) return text;
@@ -114,6 +150,7 @@ export default function PesquisaPage() {
   const [lexiconResults, setLexiconResults] = useState<any[]>([]);
   const [isExactPhrase, setIsExactPhrase] = useState(false);
   const [searchTime, setSearchTime] = useState<number | null>(null);
+  const [morphFilters, setMorphFilters] = useState<Record<string, string>>({});
   const inputRef = useRef<HTMLInputElement>(null);
   const { t } = useTranslation();
 
@@ -188,6 +225,52 @@ export default function PesquisaPage() {
           } catch {
             setLexiconResults([]);
           }
+        } else if (searchMode === 'morphology') {
+          try {
+            const [hebraicoMod, gregoMod] = await Promise.all([
+              lexiconHebraico(),
+              lexiconGrego(),
+            ]);
+            const hebData = (hebraicoMod.palavrasHebraicas || Object.values(hebraicoMod)) as any[];
+            const grkData = (gregoMod.palavrasGregas || gregoMod.GREGO || Object.values(gregoMod)) as any[];
+            const allEntries = [
+              ...hebData.map((e: any) => ({ ...e, idioma: 'hebraico' as const })),
+              ...grkData.map((e: any) => ({ ...e, idioma: 'grego' as const })),
+            ];
+            const activeFilters = Object.entries(morphFilters).filter(([, v]) => v);
+            const filtered = allEntries.filter((entry: any) => {
+              const morph = (entry.morphologia || entry.morfologia || '').toLowerCase();
+              if (!morph) return false;
+              for (const [campo, valor] of activeFilters) {
+                if (campo === 'caso') {
+                  if (!morph.includes(valor.toLowerCase())) return false;
+                } else if (campo === 'tipo') {
+                  if (!morph.includes(valor.toLowerCase())) return false;
+                } else if (campo === 'tempo') {
+                  if (!morph.includes(valor.toLowerCase())) return false;
+                } else if (campo === 'voz') {
+                  if (!morph.includes(valor.toLowerCase())) return false;
+                } else if (campo === 'modo') {
+                  if (!morph.includes(valor.toLowerCase())) return false;
+                } else if (campo === 'pessoa') {
+                  if (!morph.includes(`${valor} pessoa`) && !morph.includes(`${valor}a pessoa`) && !morph.includes(`${valor}st person`) && !morph.includes(`${valor}nd person`) && !morph.includes(`${valor}rd person`)) return false;
+                } else if (campo === 'numero') {
+                  if (!morph.includes(valor.toLowerCase())) return false;
+                } else if (campo === 'genero') {
+                  if (!morph.includes(valor.toLowerCase())) return false;
+                }
+              }
+              if (q && q.length >= 2) {
+                const termo = q.toLowerCase();
+                const matchText = (entry.palavra || '').toLowerCase() + ' ' + (entry.transliteracao || '').toLowerCase() + ' ' + (entry.definicao || '').toLowerCase();
+                if (!matchText.includes(termo)) return false;
+              }
+              return true;
+            });
+            setLexiconResults(filtered.slice(0, 100));
+          } catch {
+            setLexiconResults([]);
+          }
         } else {
           const apiData = await tryApiSearch(q);
           if (apiData && apiData.length > 0) {
@@ -205,7 +288,7 @@ export default function PesquisaPage() {
       setLoading(false);
     }, 300);
     return () => clearTimeout(t);
-  }, [query, tryApiSearch, buscaSemantica, searchMode, isExactPhrase]);
+  }, [query, tryApiSearch, buscaSemantica, searchMode, isExactPhrase, morphFilters]);
 
   const livrosFiltrados = useMemo(
     () => TODOS_LIVROS.filter((l) => testamento === 'all' || l.testamento === testamento),
@@ -254,6 +337,7 @@ export default function PesquisaPage() {
     setIsExactPhrase(false);
     setSearchTime(null);
     setLexiconResults([]);
+    setMorphFilters({});
     inputRef.current?.focus();
   };
 
@@ -354,10 +438,10 @@ export default function PesquisaPage() {
                             ? 'bg-primary text-primary-foreground'
                             : 'bg-muted text-muted-foreground hover:bg-muted/80'
                         }`}
-                        title={mode.id === 'contains' ? t('pesquisa.containsDesc') : mode.id === 'exact' ? t('pesquisa.exactDesc') : mode.id === 'startsWith' ? t('pesquisa.startsWithDesc') : t('pesquisa.regexDesc')}
+                        title={mode.description}
                       >
                         <mode.icon className="w-3 h-3" />
-                        {mode.id === 'contains' ? t('pesquisa.contains') : mode.id === 'exact' ? t('pesquisa.exact') : mode.id === 'startsWith' ? t('pesquisa.startsWith') : t('pesquisa.regex')}
+                        <span className="truncate">{mode.label}</span>
                       </button>
                     ))}
                   </div>
@@ -389,6 +473,39 @@ export default function PesquisaPage() {
                     </p>
                   )}
                 </div>
+
+                {/* Morphology Filters */}
+                {searchMode === 'morphology' && (
+                  <div className="space-y-3 p-3 rounded-lg bg-muted/30 border border-border/50">
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1">
+                      <Languages className="w-3 h-3" />
+                      Filtros Morfológicos
+                    </p>
+                    {Object.entries(MORPHOLOGY_FILTERS).map(([campo, config]) => (
+                      <div key={campo}>
+                        <label className="block text-[10px] font-medium text-muted-foreground mb-1">{config.label}</label>
+                        <select
+                          value={morphFilters[campo] || ''}
+                          onChange={(e) => setMorphFilters(prev => ({ ...prev, [campo]: e.target.value }))}
+                          className="w-full px-2 py-1.5 text-xs bg-background border border-border rounded-sm focus:outline-none focus:ring-1 focus:ring-primary/20"
+                        >
+                          <option value="">Todos</option>
+                          {config.options.map(opt => (
+                            <option key={opt} value={opt}>{opt}</option>
+                          ))}
+                        </select>
+                      </div>
+                    ))}
+                    {Object.values(morphFilters).some(v => v) && (
+                      <button
+                        onClick={() => setMorphFilters({})}
+                        className="w-full text-[10px] text-muted-foreground hover:text-foreground transition-colors py-1"
+                      >
+                        Limpar filtros
+                      </button>
+                    )}
+                  </div>
+                )}
 
                 <div>
                   <label className="block text-xs font-medium text-muted-foreground mb-2">{t('pesquisa.translation')}</label>

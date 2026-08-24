@@ -6,6 +6,9 @@
  * Lê:
  * - src/data/comentarios.ts (comentários manuais existentes)
  * - src/data/comentarios-reais/raw/*.ts (comentários reais baixados)
+ * - src/data/comentarios-reais/matthew-henry.ts (Matthew Henry curado)
+ * - src/data/comentarios-reais/jamieson-fausset-brown.ts (JFB curado)
+ * - src/data/comentarios-reais/albert-barnes.ts (Barnes curado)
  * 
  * Gera:
  * - src/data/comentarios.ts (arquivo consolidado final)
@@ -20,6 +23,7 @@ const __dirname = dirname(__filename);
 
 const COMENTARIOS_PATH = join(__dirname, '..', 'src', 'data', 'comentarios.ts');
 const RAW_DIR = join(__dirname, '..', 'src', 'data', 'comentarios-reais', 'raw');
+const CURATED_DIR = join(__dirname, '..', 'src', 'data', 'comentarios-reais');
 const OUTPUT_PATH = COMENTARIOS_PATH;
 
 function sleep(ms) {
@@ -55,14 +59,40 @@ async function parseRawFile(filePath) {
   const content = await readFile(filePath, 'utf-8');
   
   // Extrair array de comentários do arquivo TypeScript
-  const match = content.match(/export const comentarios[\w\u00C0-\u017F]+: Comentario\[\] = (\[[\s\S]*?\]);/);
+  const match = content.match(/export const \w+: Comentario\[\] = (\[[\s\S]*?\]);/);
   if (!match) return [];
   
+  const arrayStr = match[1];
+  
+  // Tentar JSON.parse primeiro (formato raw BibliaPlus com chaves duplas)
   try {
-    return JSON.parse(match[1]);
+    return JSON.parse(arrayStr);
   } catch {
-    // Se falhar o JSON, tentar extrair manualmente
-    return [];
+    // Se falhar, converter formato TypeScript para JSON
+    try {
+      // Separar em blocos de objetos e converter cada um
+      const results = [];
+      const objectMatches = arrayStr.match(/\{[^{}]+\}/g) || [];
+      for (const objStr of objectMatches) {
+        try {
+          // Converter chaves sem aspas: palavra: → "palavra":
+          let json = objStr.replace(/(\w+)\s*:/g, '"$1":');
+          // Converter aspas simples em valores: 'texto' → "texto"
+          // Mas preservar aspas duplas internas e escapar
+          json = json.replace(/'((?:[^'\\]|\\.)*)'/g, (_, val) => {
+            return '"' + val.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
+          });
+          // Remover trailing commas antes de }
+          json = json.replace(/,\s*\}/g, '}');
+          results.push(JSON.parse(json));
+        } catch {
+          // skip malformed object
+        }
+      }
+      return results;
+    } catch {
+      return [];
+    }
   }
 }
 
@@ -96,7 +126,29 @@ async function main() {
     console.log('   Diretório raw não encontrado ou vazio');
   }
   
-  console.log(`\n   Total de comentários reais: ${realComments.length}\n`);
+  console.log(`\n   Total de comentários reais (raw): ${realComments.length}\n`);
+  
+  // 3. Ler comentários curados (Matthew Henry, JFB, Barnes)
+  console.log('📚 Lendo comentários curados...');
+  const curatedComments = [];
+  const curatedFiles = [
+    'matthew-henry.ts',
+    'jamieson-fausset-brown.ts',
+    'albert-barnes.ts',
+  ];
+  
+  for (const file of curatedFiles) {
+    const filePath = join(CURATED_DIR, file);
+    try {
+      const comments = await parseRawFile(filePath);
+      curatedComments.push(...comments);
+      console.log(`  📄 ${file}: ${comments.length} versículos`);
+    } catch {
+      console.log(`  ⚠️  ${file}: não encontrado ou erro ao ler`);
+    }
+  }
+  
+  console.log(`\n   Total de comentários curados: ${curatedComments.length}\n`);
   
   // 3. Merge sem duplicatas
   console.log('🔄 Merging comentários...');
@@ -126,7 +178,22 @@ async function main() {
     }
   }
   
-  console.log(`   Adicionados: ${addedReal} novos comentários reais`);
+  // Adicionar comentários curados (sem sobrescrever existentes)
+  let addedCurated = 0;
+  
+  for (const c of curatedComments) {
+    const key = generateCommentaryKey(c);
+    
+    if (!allComments.has(key)) {
+      allComments.set(key, c);
+      addedCurated++;
+    } else {
+      duplicatesSkipped++;
+    }
+  }
+  
+  console.log(`   Adicionados: ${addedReal} novos comentários reais (raw)`);
+  console.log(`   Adicionados: ${addedCurated} novos comentários curados`);
   console.log(`   Duplicatas ignoradas: ${duplicatesSkipped}`);
   console.log(`   Total final: ${allComments.size}\n`);
   
@@ -151,7 +218,7 @@ async function main() {
   let output = `// Comentários Bíblicos - Arquivo Consolidado
 // Gerado automaticamente por scripts/merge-all-commentaries.mjs
 // Data: ${new Date().toISOString()}
-// Total: ${allComments.size} comentários (${manualComments.length} manuais + ${addedReal} reais)
+// Total: ${allComments.size} comentários (${manualComments.length} manuais + ${addedReal} reais + ${addedCurated} curados)
 
 export interface Comentario {
   livro: string;
@@ -247,6 +314,7 @@ export function obterAutoresComentarios(): string[] {
     timestamp: new Date().toISOString(),
     totalManual: manualComments.length,
     totalReal: addedReal,
+    totalCurated: addedCurated,
     totalFinal: allComments.size,
     duplicatesSkipped,
     byBook: statsByBook

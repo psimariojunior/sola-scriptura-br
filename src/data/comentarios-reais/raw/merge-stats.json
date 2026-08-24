@@ -1,209 +1,210 @@
 {
-  "timestamp": "2026-07-18T13:44:33.261Z",
-  "totalManual": 4911,
+  "timestamp": "2026-08-24T17:47:30.328Z",
+  "totalManual": 5841,
   "totalReal": 135,
-  "totalFinal": 5046,
-  "duplicatesSkipped": 3408,
+  "totalCurated": 2,
+  "totalFinal": 5978,
+  "duplicatesSkipped": 3501,
   "byBook": {
     "gn": {
-      "manual": 265,
+      "manual": 559,
       "real": 0,
-      "total": 265
+      "total": 559
     },
     "ex": {
-      "manual": 149,
+      "manual": 192,
       "real": 0,
-      "total": 149
+      "total": 192
     },
     "lv": {
-      "manual": 97,
+      "manual": 131,
       "real": 0,
-      "total": 97
+      "total": 131
     },
     "nm": {
-      "manual": 120,
+      "manual": 172,
       "real": 0,
-      "total": 120
+      "total": 172
     },
     "dt": {
-      "manual": 115,
+      "manual": 162,
       "real": 0,
-      "total": 115
+      "total": 162
     },
     "js": {
-      "manual": 79,
+      "manual": 108,
       "real": 0,
-      "total": 79
+      "total": 108
     },
     "jz": {
-      "manual": 78,
+      "manual": 108,
       "real": 0,
-      "total": 78
+      "total": 108
     },
     "rt": {
-      "manual": 15,
+      "manual": 21,
       "real": 0,
-      "total": 15
+      "total": 21
     },
     "1sm": {
-      "manual": 112,
+      "manual": 122,
       "real": 0,
-      "total": 112
+      "total": 122
     },
     "2sm": {
-      "manual": 84,
+      "manual": 88,
       "real": 0,
-      "total": 84
+      "total": 88
     },
     "1rs": {
-      "manual": 80,
+      "manual": 93,
       "real": 0,
-      "total": 80
+      "total": 93
     },
     "2rs": {
-      "manual": 84,
+      "manual": 92,
       "real": 0,
-      "total": 84
+      "total": 92
     },
     "1cr": {
-      "manual": 71,
+      "manual": 61,
       "real": 0,
-      "total": 71
+      "total": 61
     },
     "2cr": {
-      "manual": 85,
+      "manual": 76,
       "real": 0,
-      "total": 85
+      "total": 76
     },
     "ed": {
-      "manual": 28,
+      "manual": 36,
       "real": 0,
-      "total": 28
+      "total": 36
     },
     "ne": {
-      "manual": 35,
+      "manual": 46,
       "real": 0,
-      "total": 35
+      "total": 46
     },
     "et": {
-      "manual": 22,
+      "manual": 31,
       "real": 0,
-      "total": 22
+      "total": 31
     },
     "jó": {
-      "manual": 137,
+      "manual": 153,
       "real": 0,
-      "total": 137
+      "total": 153
     },
     "sl": {
-      "manual": 488,
+      "manual": 581,
       "real": 0,
-      "total": 488
+      "total": 581
     },
     "pv": {
-      "manual": 541,
+      "manual": 560,
       "real": 0,
-      "total": 541
+      "total": 560
     },
     "ec": {
-      "manual": 45,
+      "manual": 67,
       "real": 0,
-      "total": 45
+      "total": 67
     },
     "ct": {
-      "manual": 27,
+      "manual": 40,
       "real": 0,
-      "total": 27
+      "total": 40
     },
     "is": {
-      "manual": 211,
+      "manual": 246,
       "real": 0,
-      "total": 211
+      "total": 246
     },
     "jr": {
-      "manual": 173,
+      "manual": 199,
       "real": 0,
-      "total": 173
+      "total": 199
     },
     "lm": {
-      "manual": 16,
-      "real": 0,
-      "total": 16
-    },
-    "ez": {
-      "manual": 109,
-      "real": 0,
-      "total": 109
-    },
-    "dn": {
-      "manual": 52,
-      "real": 0,
-      "total": 52
-    },
-    "os": {
-      "manual": 37,
-      "real": 0,
-      "total": 37
-    },
-    "jl": {
-      "manual": 10,
-      "real": 0,
-      "total": 10
-    },
-    "am": {
-      "manual": 27,
-      "real": 0,
-      "total": 27
-    },
-    "ob": {
-      "manual": 4,
-      "real": 0,
-      "total": 4
-    },
-    "jn": {
-      "manual": 6,
-      "real": 0,
-      "total": 6
-    },
-    "mq": {
       "manual": 23,
       "real": 0,
       "total": 23
     },
-    "na": {
-      "manual": 7,
+    "ez": {
+      "manual": 136,
       "real": 0,
-      "total": 7
+      "total": 136
+    },
+    "dn": {
+      "manual": 69,
+      "real": 0,
+      "total": 69
+    },
+    "os": {
+      "manual": 47,
+      "real": 0,
+      "total": 47
+    },
+    "jl": {
+      "manual": 18,
+      "real": 0,
+      "total": 18
+    },
+    "am": {
+      "manual": 38,
+      "real": 0,
+      "total": 38
+    },
+    "ob": {
+      "manual": 9,
+      "real": 0,
+      "total": 9
+    },
+    "jn": {
+      "manual": 18,
+      "real": 0,
+      "total": 18
+    },
+    "mq": {
+      "manual": 28,
+      "real": 0,
+      "total": 28
+    },
+    "na": {
+      "manual": 17,
+      "real": 0,
+      "total": 17
     },
     "hc": {
-      "manual": 14,
+      "manual": 21,
       "real": 0,
-      "total": 14
+      "total": 21
     },
     "sf": {
-      "manual": 12,
+      "manual": 19,
       "real": 0,
-      "total": 12
+      "total": 19
     },
     "ag": {
-      "manual": 6,
+      "manual": 21,
       "real": 0,
-      "total": 6
+      "total": 21
     },
     "zc": {
-      "manual": 39,
+      "manual": 49,
       "real": 0,
-      "total": 39
+      "total": 49
     },
     "ml": {
-      "manual": 11,
+      "manual": 24,
       "real": 0,
-      "total": 11
+      "total": 24
     },
     "mt": {
       "manual": 169,
-      "real": 0,
-      "total": 169
+      "real": 1,
+      "total": 170
     },
     "mc": {
       "manual": 84,
@@ -211,9 +212,9 @@
       "total": 84
     },
     "lc": {
-      "manual": 138,
+      "manual": 140,
       "real": 0,
-      "total": 138
+      "total": 140
     },
     "jo": {
       "manual": 148,
@@ -231,14 +232,14 @@
       "total": 99
     },
     "1co": {
-      "manual": 85,
+      "manual": 77,
       "real": 0,
-      "total": 85
+      "total": 77
     },
     "2co": {
-      "manual": 46,
+      "manual": 43,
       "real": 0,
-      "total": 46
+      "total": 43
     },
     "gl": {
       "manual": 37,
@@ -261,29 +262,29 @@
       "total": 28
     },
     "1ts": {
-      "manual": 19,
+      "manual": 18,
       "real": 0,
-      "total": 19
+      "total": 18
     },
     "2ts": {
+      "manual": 12,
+      "real": 0,
+      "total": 12
+    },
+    "1tm": {
+      "manual": 22,
+      "real": 0,
+      "total": 22
+    },
+    "2tm": {
+      "manual": 18,
+      "real": 0,
+      "total": 18
+    },
+    "tt": {
       "manual": 11,
       "real": 0,
       "total": 11
-    },
-    "1tm": {
-      "manual": 24,
-      "real": 0,
-      "total": 24
-    },
-    "2tm": {
-      "manual": 20,
-      "real": 0,
-      "total": 20
-    },
-    "tt": {
-      "manual": 13,
-      "real": 0,
-      "total": 13
     },
     "fm": {
       "manual": 5,
@@ -301,24 +302,24 @@
       "total": 24
     },
     "1pe": {
-      "manual": 29,
-      "real": 0,
-      "total": 29
+      "manual": 23,
+      "real": 1,
+      "total": 24
     },
     "2pe": {
-      "manual": 17,
+      "manual": 13,
       "real": 0,
-      "total": 17
+      "total": 13
     },
     "1jo": {
-      "manual": 37,
+      "manual": 26,
       "real": 0,
-      "total": 37
+      "total": 26
     },
     "2jo": {
-      "manual": 7,
+      "manual": 5,
       "real": 0,
-      "total": 7
+      "total": 5
     },
     "3jo": {
       "manual": 6,
@@ -326,9 +327,9 @@
       "total": 6
     },
     "jd": {
-      "manual": 5,
+      "manual": 6,
       "real": 0,
-      "total": 5
+      "total": 6
     },
     "ap": {
       "manual": 87,

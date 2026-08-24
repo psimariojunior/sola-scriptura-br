@@ -4,7 +4,7 @@ const siteUrl = 'https://solascripturabr.com.br';
 
 export function generateMetadata({
   title = 'Sola Scriptura BR',
-  description = 'Estudo bíblico com 6 traduções, comentários de teólogos clássicos, léxico grego e hebraico, referências cruzadas e IA teológica.',
+  description = 'Estudo bíblico com 10+ traduções, comentários de teólogos clássicos, léxico grego e hebraico, referências cruzadas e IA teológica.',
   path = '',
   image = '/og-image.png',
 }: {

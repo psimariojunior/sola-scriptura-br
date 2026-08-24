@@ -10,7 +10,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 1,
     versiculo: 1,
     autor: 'Matthew Henry',
-    texto: 'In the beginning God created the heaven and the earth. This is the foundation of all religion, and the first article of our creed. Before we can know God as our Father, our Friend, our Benefactor, we must know him as our Creator. The beginning of all things is God. He is before all things, and in him all things consist. The heaven and the earth were made by him; the visible and invisible creatures are all the work of his hands. He that is the former of all things is the owner of all things, and may dispose of all things as he pleases. Let us acknowledge God in all his works, and pay our homage to him as the great Creator.',
+    texto: 'No princípio Deus criou os céus e a terra. Este é o fundamento de toda religião e o primeiro artigo de nosso credo. Antes de conhecermos Deus como nosso Pai, nosso Amigo, nosso Benefador, devemos conhecê-lo como nosso Criador. O princípio de todas as coisas é Deus. Ele é anterior a todas as coisas, e nele tudo subsiste. Os céus e a terra foram feitos por Ele; as criaturas visíveis e invisíveis são todas obra de Suas mãos. Aquele que é o formador de todas as coisas é o proprietário de todas as coisas, e pode dispor de tudo como bem entender. Que reconheçamos Deus em todas as Suas obras e rendamos nossa homenagem a Ele como o grande Criador.',
     tipo: 'teologico',
   },
   {
@@ -18,7 +18,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 1,
     versiculo: 3,
     autor: 'Matthew Henry',
-    texto: 'And God said, Let there be light: and there was light. The first of all visible beings which God created was light. Not that by it he himself might see to work (for the darkness and the light are both alike to him), but that by it we might see his works and his glory in them, and might work our works while it is day. Light is the great beauty and blessing of the universe. Like the first-born, it does, of all visible beings, most resemble its great Parent in purity and power, brightness and beneficence; it is of great affinity with a spirit, and is next to it. The first thing that God made was light; which intimates that light is the most excellent of all visible beings, and that the God of light is light, and in him is no darkness at all.',
+    texto: 'E Deus disse: Haja luz; e houve luz. O primeiro de todos os seres visíveis que Deus criou foi a luz. Não para que Ele próprio pudesse ver ao trabalhar (pois trevas e luz são iguais para Ele), mas para que nós pudéssemos ver Suas obras e Sua glória nelas, e pudéssemos realizar nossas obras enquanto houver luz. A luz é a grande beleza e bênção do universo. Como o primogênito, ela se assemelha mais a seu grande Pai em pureza e poder, brilho e beneficência, dentre todos os seres visíveis; possui grande afinidade com um espírito, e está logo abaixo dele. A primeira coisa que Deus fez foi a luz; o que indica que a luz é o mais excelente dentre os seres visíveis, e que o Deus da luz é luz, e n'Ele não há trevas alguma.',
     tipo: 'teologico',
   },
   {
@@ -26,7 +26,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 1,
     versiculo: 26,
     autor: 'Matthew Henry',
-    texto: 'And God said, Let us make man in our image, after our likeness. We have here the second part of the sixth day\'s work, the creation of man, which we are, in a special manner, concerned to take notice of, that we may know ourselves. Man was made last of all the creatures, that it might not be suspected that he had been, any way, a helper to God in the creation of the world. Yet it was both an honour and a favour to him that he was made last: an honour, for the method of the creation was to advance from that which was less perfect to that which was more so; and a favour, for it was not fit he should be lodged in the palace designed for him till it was completely fitted up and furnished for his reception. Observe, 1. That man was made in God\'s image, after his likeness, which denotes something more than the blessed corruptions of his nature. It is a noble and excellent creature, bearing in his face, as it were, the print of his Maker\'s hand, and the stamp of his glory.',
+    texto: 'E Deus disse: Façamos o homem à nossa imagem, conforme a nossa semelhança. Temos aqui a segunda parte da obra do sexto dia, a criação do homem, da qual devemos, de maneira especial, tomar conhecimento, para que possamos nos conhecer a nós mesmos. O homem foi feito por último de todas as criaturas, para que não se suspeitasse que ele havia sido, de alguma forma, ajudante de Deus na criação do mundo. Essa questão deve ser para sempre humilhante e mortificante para ele: Onde estavas tu, ou algum dos teus, quando lancei os alicerces da terra? (Jó 38:4). No entanto, foi tanto uma honra quanto um favor ter sido feito por último: uma honra, pois o método da criação era avançar do menos perfeito ao mais perfeito; e um favor, pois não era adequado que ele fosse colocado no palácio destinado a ele até que estivesse completamente aparelhado e mobiliado para sua recepção. Observe: 1. Que o homem foi feito à imagem de Deus, à Sua semelhança, o que denota algo mais do que as bênçãos corrompidas de sua natureza. Ele é uma criatura nobre e excelente, carregando em seu rosto, como que a marca da mão de seu Criador, e o selo de Sua glória.',
     tipo: 'teologico',
   },
   {
@@ -34,7 +34,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 1,
     versiculo: 31,
     autor: 'Matthew Henry',
-    texto: 'And God saw every thing that he had made, and behold, it was very good. We have here the approbation and conclusion of the whole work of creation. As for God, his work is perfect; and if he begin he will also make an end, in providence and grace, as well as here in creation. Observe, I. The review God took of his work: He saw every thing that he had made. So he does still; all the works of his hands are under his eye. He that made all sees us; he that formed us knows us. Known unto God are all his works. But this was the Eternal Mind\'s solemn reflection upon the copies of its own wisdom and the products of its own power. II. The testimony he gave of it: It was very good. All that he made was good; and he was not only satisfied with it, but pleased with it.',
+    texto: 'E viu Deus tudo quanto fizera, e eis que era muito bom. Temos aqui a aprovação e conclusão de toda a obra da criação. Quanto a Deus, Sua obra é perfeita; e se Ele começar, também fará um fim, na providência e na graça, assim como aqui na criação. Observe: I. A revisão que Deus fez de Sua obra: Ele viu tudo quanto fizera. Assim faz Ele ainda hoje; todas as obras de Suas mãos estão sob Seu olhar. Aquele que fez tudo vê tudo; Aquele que nos fez nos vê (Sl 139:1-16). A onisciência não pode ser separada da onipotência. Todas as Suas obras são conhecidas por Deus (Atos 15:18). Mas esta foi a solene reflexão da Mente Eterna sobre as cópias de Sua própria sabedoria e os frutos de Seu próprio poder. Deus nos deu aqui um exemplo de revisarmos nossas obras. Tendo-nos dado o poder de reflexão, Ele espera que usemos esse poder, para vermos o nosso caminho (Jer 2:23) e pensarmos...',
     tipo: 'teologico',
   },
   {
@@ -42,7 +42,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 3,
     versiculo: 15,
     autor: 'Matthew Henry',
-    texto: 'And I will put enmity between thee and the woman, and between thy seed and her seed; it shall bruise thy head, and thou shalt bruise his heel. This is the first gospel, the first prophecy of the Redeemer. Here are the seeds of a great war between the kingdom of God and the kingdom of Satan. The seed of the woman is Christ, the promised Messias, who should in the fullness of time come forth from the loins of the woman, and who, by assuming our nature, took it into union with himself. He is here compared to a seed or grain, small in itself, but of great benefit and productivity. The serpent\'s head was to be bruised by him, which denotes a complete victory: the head is the seat of the serpent\'s power, and by breaking that, the whole power is broken. The Messiah was to destroy the works of the devil.',
+    texto: 'Porei inimizade entre ti e a mulher, entre a tua semente e a semente dela; esta te ferirá a cabeça, e tu lhe ferirás o calcanhar. Este é o primeiro evangelho, a primeira profecia do Redentor. Aqui estão as sementes de uma grande guerra entre o reino de Deus e o reino de Satanás. A semente da mulher é Cristo, o Messias prometido, que deveria, na plenitude dos tempos, sair das entranhas da mulher, e que, ao assumir nossa natureza, a uniu a si mesmo. Ele é comparado aqui a uma semente ou grão, pequeno em si mesmo, mas de grande benefício e produtividade. A cabeça da serpente deveria ser esmagada por Ele, o que denota uma vitória completa: a cabeça é a sede do poder da serpente, e ao quebrá-la, todo o poder é quebrado. O Messias deveria destruir as obras do diabo.',
     tipo: 'teologico',
   },
   {
@@ -50,7 +50,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 3,
     versiculo: 21,
     autor: 'Matthew Henry',
-    texto: 'Unto Adam also and to his wife did the Lord God make coats of skins, and clothed them. This is the first instance of God\'s care concerning our first parents, notwithstanding their sin. Though he corrects his disobedient children, and puts them under marks of his displeasure, yet he does not forsake them. God made them coats of skins: not only to screen them from the cold, but to cover their nakedness, which, since their eyes were opened, they were ashamed of. This was a plain indication of God\'s tender mercy toward them, and a type of the clothing of the soul with the righteousness of Christ, when by faith we put on the Lord Jesus. The coats of skins were made by the death of some innocent creature, which typified the sacrifice of Christ, by which alone we are covered from the shame of our sins.',
+    texto: 'E fez o Senhor Deus a Adão e à sua mulher túnicas de peles, e os revestiu. Este é o primeiro exemplo do cuidado de Deus para com nossos primeiros pais, apesar de seu pecado. Embora Ele corrija seus filhos desobedientes e os coloque sob marcas de Sua desaprovação, Ele não os abandona. Deus fez túnicas de peles: não apenas para protegê-los do frio, mas para cobrir sua nudez, que, desde que seus olhos se abriram, lhes envergonhava. Esta foi uma indicação clara da terna misericórdia de Deus para com eles, e um tipo do vestimento da alma com a justiça de Cristo, quando pela fé vestimos o Senhor Jesus. As túnicas de peles foram feitas pela morte de alguma criatura inocente, o que tipificava o sacrifício de Cristo, pelo qual somos cobertos da vergonha de nossos pecados.',
     tipo: 'teologico',
   },
   {
@@ -58,7 +58,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 23,
     versiculo: 1,
     autor: 'Matthew Henry',
-    texto: 'The Lord is my shepherd; I shall not want. This psalm is a hymn of praise and thanksgiving, and it may well be called a pastoral psalm, for it presents the Lord as the good Shepherd of his people. David, who had been a shepherd himself, knew how to set forth the duties and the comforts of that relation. The Lord is my shepherd — This is a personal appropriation of the covenant relation. David does not say, The Lord is a shepherd, but my shepherd, which denotes a special interest in God\'s care and protection. I shall not want — He will supply all my need, according to his riches in glory by Christ Jesus. He that has God for his shepherd has enough, has all things: and he that has not God for his shepherd is destitute of the chief good.',
+    texto: 'O Senhor é o meu pastor; nada me faltará. Este salmo é um hino de louvor e ação de graças, e pode muito bem ser chamado de salmo pastoral, pois apresenta o Senhor como o bom Pastor de Seu povo. Davi, que havia sido pastor, sabia como apresentar os deveres e os confortos dessa relação. O Senhor é o meu pastor — esta é uma apropriação pessoal da relação de aliança. Davi não diz: O Senhor é um pastor, mas meu pastor, o que denota um interesse especial no cuidado e proteção de Deus. Nada me faltará — Ele suprirá todas as minhas necessidades, de acordo com Suas riquezas em glória por Cristo Jesus. Aquele que tem Deus como seu pastor tem o bastante, tem todas as coisas; e aquele que não tem Deus como pastor está destituído do bem principal.',
     tipo: 'aplicacao',
   },
   {
@@ -66,7 +66,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 23,
     versiculo: 4,
     autor: 'Matthew Henry',
-    texto: 'Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me. Even in the darkest valley of death, the believer may walk without fear. The valley of the shadow of death is a place of darkness and terror, but it is through it, not in it, that we walk; it is a passage, not a dwelling. And the presence of God is with us there; his rod and his staff are our comfort. The rod and the staff are the same thing — the shepherd\'s crook, used both to guide and to correct the sheep. God\'s word and his providence are his rod and staff to his people, by which he guides them in the right way and corrects them when they go astray.',
+    texto: 'Ainda que eu ande pelo vale da sombra da morte, não temerei mal algum, porque tu estás comigo; a tua vara e o teu cajado me consolam. Mesmo no vale mais escuro da morte, o crente pode andar sem temor. O vale da sombra da morte é um lugar de trevas e terror, mas é através dele, e não nele, que andamos; é uma passagem, não uma morada. E a presença de Deus está conosco ali; Sua vara e Seu cajado são nosso conforto. A vara e o cajado são a mesma coisa — o cajado do pastor, usado tanto para guiar quanto para corrigir as ovelhas. A palavra de Deus e Sua providência são Sua vara e Seu cajado para Seu povo, pelas quais Ele os guia no caminho certo e os corrige quando se desviam.',
     tipo: 'aplicacao',
   },
   {
@@ -74,7 +74,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 23,
     versiculo: 6,
     autor: 'Matthew Henry',
-    texto: 'Surely goodness and mercy shall follow me all the days of my life: and I will dwell in the house of the Lord for ever. Goodness and mercy are the companions of the saints, and they shall follow them all the days of their life. Goodness is God\'s kindness, and mercy is his forgiveness; both are the portion of God\'s people. And when this life is over, they shall dwell in the house of the Lord for ever — in heaven, where God dwells with his people, and they with him, world without end. This is the sum total of the believer\'s happiness: to be with God, and to be like him, for ever.',
+    texto: 'Certamente que a bondade e a misericórdia me seguirão todos os dias da minha vida; e habitarei na casa do Senhor para sempre. Bondade e misericórdia são os companheiros dos santos, e os seguirão todos os dias de suas vidas. Bondade é a bondade de Deus, e misericórdia é Seu perdão; ambos são a porção do povo de Deus. E quando esta vida terminar, habitarão na casa do Senhor para sempre — no céu, onde Deus habita com Seu povo, e eles com Ele, para todo o sempre. Esta é a soma total da felicidade do crente: estar com Deus, e ser como Ele, para sempre.',
     tipo: 'aplicacao',
   },
   {
@@ -82,7 +82,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 91,
     versiculo: 1,
     autor: 'Matthew Henry',
-    texto: 'He that dwelleth in the secret place of the most High shall abide under the shadow of the Almighty. This psalm is a declaration of the safety of those who trust in God. He that dwelleth in the secret place of the most High — not only visits it occasionally, but dwells there, makes it his constant abode. To dwell in God\'s presence is to live in the exercise of faith and communion with him. Shall abide under the shadow of the Almighty — shall be constantly protected and preserved by his almighty power. The shadow of the Almighty is a metaphor for divine protection, as a mother bird shelters her young under her wings.',
+    texto: 'Aquele que habita no esconderijo do Altíssimo, à sombra do Onipotente descansará. Este salmo é uma declaração da segurança daqueles que confiam em Deus. Aquele que habita no esconderijo do Altíssimo — não apenas o visita ocasionalmente, mas habita ali, faz dele sua morada constante. Habitar na presença de Deus é viver no exercício da fé e comunhão com Ele. À sombra do Onipotente descansará — será constantemente protegido e preservado por Seu poder onipotente. A sombra do Onipotente é uma metáfora para a proteção divina, como uma ave mãe protege seus filhos sob suas asas.',
     tipo: 'aplicacao',
   },
   {
@@ -90,7 +90,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 91,
     versiculo: 11,
     autor: 'Matthew Henry',
-    texto: 'For he shall give his angels charge over thee, to keep thee in all thy ways. God commissions his angels to keep his people. The angels are ministering spirits, sent forth to minister for those who shall be heirs of salvation. They are charged with the care of God\'s people, to guard them from all evil and to guide them in all their ways. This does not mean that the believer is exempt from all danger or suffering, but that nothing can happen to him without God\'s knowledge and permission, and that all things shall work together for his good.',
+    texto: 'Por aos seus anjos dará ordens a teu respeito, para te guardarem em todos os teus caminhos. Deus comissiona Seus anjos para guardar Seu povo. Os anjos são espíritos ministrantes, enviados para ministrar aos que serão herdeiros da salvação. Eles são encarregados do cuidado do povo de Deus, para protegê-los de todo mal e guiá-los em todos os seus caminhos. Isso não significa que o crente está isento de todo perigo ou sofrimento, mas que nada pode acontecer a ele sem o conhecimento e a permissão de Deus, e que todas as coisas contribuirão para o seu bem.',
     tipo: 'aplicacao',
   },
   {
@@ -98,7 +98,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 119,
     versiculo: 105,
     autor: 'Matthew Henry',
-    texto: 'Thy word is a lamp unto my feet, and a light unto my path. The word of God is the believer\'s guide and comfort in this world. It is a lamp to our feet — it shows us the way we should go, and a light to our path — it illuminates the road before us. The word of God is not only a light to direct us, but a lamp to cheer us in the darkest places. It is sufficient for every step of the way, even if it does not show us the whole road at once. We need not know what is before us, if we know that God\'s word directs our present path.',
+    texto: 'Lâmpada para os meus pés é tua palavra, e luz para o meu caminho. A palavra de Deus é o guia e o conforto do crente neste mundo. É uma lâmpada para nossos pés — nos mostra o caminho que devemos seguir, e uma luz para nosso caminho — ilumina a estrada diante de nós. A palavra de Deus não é apenas uma luz para nos dirigir, mas uma lâmpada para nos alegrar nos lugares mais escuros. É suficiente para cada passo do caminho, mesmo que não nos mostre toda a estrada de uma vez. Não precisamos saber o que está diante de nós, se sabemos que a palavra de Deus dirige nosso caminho presente.',
     tipo: 'aplicacao',
   },
   {
@@ -106,7 +106,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 119,
     versiculo: 11,
     autor: 'Matthew Henry',
-    texto: 'Thy word have I hid in mine heart, that I might not sin against thee. The best preservative against sin is the word of God treasured up in the heart. Thy word have I hid in mine heart — not only in my memory, but in my affections and desires. It is not enough to know the word; we must love it, delight in it, and make it the rule of our lives. When the word is thus hid in the heart, it becomes a shield against temptation and a source of strength in the day of trial.',
+    texto: 'No meu coração guardei tua palavra, para não pecar contra ti. O melhor preservativo contra o pecado é a palavra de Deus guardada no coração. No meu coração guardei tua palavra — não apenas na minha memória, mas nos meus afetos e desejos. Não basta conhecer a palavra; devemos amá-la, deleitar-nos dela, e fazê-la a regra de nossas vidas. Quando a palavra é assim guardada no coração, torna-se um escudo contra a tentação e uma fonte de força no dia da provação.',
     tipo: 'aplicacao',
   },
   {
@@ -114,7 +114,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 31,
     versiculo: 10,
     autor: 'Matthew Henry',
-    texto: 'Who can find a virtuous woman? for her price is far above rubies. This chapter contains the portrait of a virtuous woman, which has been the pattern of excellent women in every age. Who can find a virtuous woman? — It implies that such a woman is rare and precious. Her price is far above rubies — no earthly treasure can be compared to her worth. The virtuous woman is here described as one who is industrious, prudent, liberal, and devout. She is a help to her husband, a blessing to her children, and an honour to her profession.',
+    texto: 'Quem achará uma mulher virtuosa? O seu valor muito excede o das pedras de preço. Este capítulo contém o retrato de uma mulher virtuosa, que tem sido o padrão de mulheres excelentes em todas as eras. Quem achará uma mulher virtuosa? — Isso implica que tal mulher é rara e preciosa. O seu valor muito excede o das pedras de preço — nenhuma riqueza terrestre pode ser comparada ao seu valor. A mulher virtuosa é descrita aqui como trabalhadora, prudente, liberal e devota. Ela é uma ajuda para seu marido, uma bênção para seus filhos e uma honra para sua profissão.',
     tipo: 'aplicacao',
   },
   {
@@ -122,7 +122,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 31,
     versiculo: 25,
     autor: 'Matthew Henry',
-    texto: 'Strength and honour are her clothing; and she shall rejoice in time to come. The virtuous woman is clothed with strength and dignity. She is not fearful of the future, but rejoices in the prospect of it. Her confidence is in God, and her hope is sure. She knows that her labour in the Lord is not in vain, and that she shall reap in due season if she faint not. This is the description of a woman who fears the Lord, and whose faith and works go together.',
+    texto: 'Força e dignidade são o seu traje, e ela se alegra no tempo vindouro. A mulher virtuosa está vestida com força e dignidade. Ela não teme o futuro, mas se alegra com a perspectiva dele. Sua confiança está em Deus, e sua esperança é certa. Ela sabe que seu trabalho no Senhor não é em vão, e que colherá no devido tempo se não desfalecer. Esta é a descrição de uma mulher que teme ao Senhor, e cujas obras e fé caminham juntas.',
     tipo: 'aplicacao',
   },
   {
@@ -130,7 +130,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 31,
     versiculo: 30,
     autor: 'Matthew Henry',
-    texto: 'Favour is deceitful, and beauty is vain: but a woman that feareth the Lord, she shall be praised. External beauty is temporary and unreliable, but the fear of the Lord is the beginning of wisdom and the foundation of true worth. A woman who fears the Lord will be praised not only by her husband and children, but by God himself. This is the highest honour that any creature can receive — the praise of the Almighty.',
+    texto: 'A graça é enganosa, e a vaidade é vã; mas a mulher que teme ao Senhor, essa será louvada. A beleza externa é temporária e pouco confiável, mas o temor do Senhor é o princípio da sabedoria e o fundamento do verdadeiro valor. Uma mulher que teme ao Senhor será louvada não apenas por seu marido e filhos, mas pelo próprio Deus. Esta é a maior honra que qualquer criatura pode receber — o louvor do Onipotente.',
     tipo: 'aplicacao',
   },
   {
@@ -138,7 +138,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 53,
     versiculo: 3,
     autor: 'Matthew Henry',
-    texto: 'He is despised and rejected of men; a man of sorrows, and acquainted with grief. This is one of the most remarkable prophecies in the Old Testament, describing the sufferings of the Messiah. He is despised and rejected of men — the very people for whom he came to save rejected him. A man of sorrows, and acquainted with grief — he not only sympathized with the sorrows of others, but was himself a man of deep and constant sorrow. He was acquainted with grief as a friend, as one who had intimate and daily conversation with it. This was the condition of the Son of God when he tabernacled among us.',
+    texto: 'Ele era desprezado e rejeitado dos homens; homem de dores, e que sabe o que é enfermidade. Esta é uma das profecias mais notáveis do Antigo Testamento, descrevendo os sofrimentos do Messias. Ele era desprezado e rejeitado dos homens — o próprio povo para o qual Ele veio salvá-Lo rejeitou-O. Homem de dores, e que sabe o que é enfermidade — Ele não apenas simpatizou com as dores dos outros, mas foi Ele próprio um homem de profunda e constante tristeza. Ele esteve familiarizado com a enfermidade como um amigo, como alguém que tinha íntima e diária conversação com ela. Esta foi a condição do Filho de Deus quando tabernaculou entre nós.',
     tipo: 'teologico',
   },
   {
@@ -146,7 +146,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 53,
     versiculo: 5,
     autor: 'Matthew Henry',
-    texto: 'But he was wounded for our transgressions, he was bruised for our iniquities: the chastisement of our peace was upon him; and with his stripes we are healed. This is the heart of the gospel: Christ suffered for our sins. He was wounded for our transgressions — the wounds he bore were not for his own sins, but for ours. He was bruised for our iniquities — the breaking he endured was the punishment due to our guilt. The chastisement of our peace was upon him — the suffering that should have been ours was laid upon him. And with his stripes we are healed — the wounds he received are the means of our healing. This is the great exchange: he took our sins, and we receive his righteousness.',
+    texto: 'Mas ele foi ferido por causa das nossas transgressões, e moido por causa das nossas iniquidades; o castigo que nos trazia a paz estava sobre ele, e pelas suas chagas fomos sarados. Este é o cerne do evangelho: Cristo sofreu por nossos pecados. Ele foi ferido por causa das nossas transgressões — as feridas que Ele suportou não foram por Seus próprios pecados, mas por nossos. Ele foi moido por causa das nossas iniquidades — a esmagação que Ele suportou foi o castigo devido à nossa culpa. O castigo que nos trazia a paz estava sobre ele — o sofrimento que deveria ser nosso foi colocado sobre Ele. E pelas suas chagas fomos sarados — as feridas que Ele recebeu são o meio de nossa cura. Esta é a grande troca: Ele tomou nossos pecados, e nós recebemos Sua justiça.',
     tipo: 'teologico',
   },
   {
@@ -154,7 +154,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 53,
     versiculo: 10,
     autor: 'Matthew Henry',
-    texto: 'Yet it pleased the Lord to bruise him; he hath put him to grief. This verse shows that the suffering of Christ was not merely a tragedy, but a sacrifice ordained by God the Father. It pleased the Lord to bruise him — not that God takes pleasure in suffering, but that he was pleased with the result of Christ\'s suffering, which was the redemption of his people. He has put him to grief — the Father laid on the Son the iniquity of us all. The death of Christ was not an accident, but a divine appointment, planned from eternity for the salvation of the world.',
+    texto: 'Porém ao Senhor agradou esmagá-lo; Ele o feriu de enfermidade. Este versículo mostra que o sofrimento de Cristo não foi apenas uma tragédia, mas um sacrifício ordenado por Deus Pai. Ao Senhor agradou esmagá-lo — não que Deus se deleite no sofrimento, mas que Ele se agradou do resultado do sofrimento de Cristo, que foi a redenção de Seu povo. Ele o feriu de enfermidade — o Pai pôs sobre o Filho a iniquidade de nós todos. A morte de Cristo não foi um acidente, mas um divino compromisso, planejado desde a eternidade para a salvação do mundo.',
     tipo: 'teologico',
   },
   {
@@ -162,7 +162,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 5,
     versiculo: 3,
     autor: 'Matthew Henry',
-    texto: 'Blessed are the poor in spirit: for theirs is the kingdom of heaven. This is the first of the beatitudes, and it is the foundation of all the rest. The poor in spirit are those who recognize their spiritual poverty, who know that they are sinners and cannot save themselves. They are not self-righteous or self-sufficient, but they come to God with empty hands and humble hearts. For theirs is the kingdom of heaven — they shall inherit the kingdom of God, not because they deserve it, but because God, in his grace, gives it to them. Humility is the first step toward heaven.',
+    texto: 'Bem-aventurados os pobres de espírito, porque deles é o reino dos céus. Esta é a primeira das bem-aventuranças, e é o fundamento de todas as demais. Os pobres de espírito são aqueles que reconhecem sua pobreza espiritual, que sabem que são pecadores e não podem se salvar a si mesmos. Não são justos por si mesmos nem autosuficientes, mas vêm a Deus com as mãos vazias e o coração humilde. Porque deles é o reino dos céus — herdarão o reino de Deus, não porque mereçam, mas porque Deus, em Sua graça, lhes dá. A humildade é o primeiro passo em direção ao céu.',
     tipo: 'aplicacao',
   },
   {
@@ -170,7 +170,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 5,
     versiculo: 9,
     autor: 'Matthew Henry',
-    texto: 'Blessed are the peacemakers: for they shall be called the children of God. The peacemakers are those who seek to promote peace among others, who use their influence to reconcile those who are at variance, and who live peaceably with all men. They shall be called the children of God — they bear the likeness of their Heavenly Father, who is the God of peace, and who sent his Son to make peace through the blood of his cross. The peacemaker is doing the work of God in the world.',
+    texto: 'Bem-aventurados os pacificadores, porque eles serão chamados filhos de Deus. Os pacificadores são aqueles que buscam promover a paz entre os outros, que usam sua influência para reconciliar os que estão em discórdia, e que vivem pacificamente com todos os homens. Eles serão chamados filhos de Deus — carregam a semelhança de seu Pai celestial, que é o Deus da paz, e que enviou Seu Filho para fazer a paz pelo sangue de Sua cruz. O pacificador está fazendo a obra de Deus no mundo.',
     tipo: 'aplicacao',
   },
   {
@@ -178,7 +178,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 5,
     versiculo: 16,
     autor: 'Matthew Henry',
-    texto: 'Let your light so shine before men, that they may see your good works, and glorify your Father which is in heaven. The Christian\'s life should be a light to the world. Let your light so shine — not to be seen of men, but that men may see your good works and glorify your Father. The good works of believers should be such as to commend the gospel, and to lead others to glorify God. We are the light of the world; and if we are faithful, our light will shine and draw others to Christ.',
+    texto: 'Assim brilhe a vossa luz diante dos homens, para que vejam as vossas boas obras e glorifiquem o vosso Pai que está nos céus. A vida do cristão deve ser uma luz para o mundo. Assim brilhe a vossa luz — não para ser vista dos homens, mas para que os homens vejam vossas boas obras e glorifiquem vosso Pai. As boas obras dos crentes devem ser tais que recomendem o evangelho, e conduzam outros a glorificarmos Deus. Nós somos a luz do mundo; e se formos fiéis, nossa luz brilhará e atrairá outros a Cristo.',
     tipo: 'aplicacao',
   },
   {
@@ -186,7 +186,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 6,
     versiculo: 33,
     autor: 'Matthew Henry',
-    texto: 'But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you. This is the great rule of Christian prudence: seek first the kingdom of God. The things of this world are not to be our primary concern; we are to seek God\'s kingdom and his righteousness above all else. And all these things shall be added unto you — God will provide for our temporal needs if we put him first. We cannot serve God and mammon; we must choose which master we will serve.',
+    texto: 'Mas, buscai primeiro o reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas. Esta é a grande regra da prudência cristã: buscai primeiro o reino de Deus. As coisas deste mundo não devem ser nossa preocupação principal; devemos buscar o reino de Deus e Sua justiça acima de tudo. E todas estas coisas vos serão acrescentadas — Deus suprirá nossas necessidades temporais se o colocarmos em primeiro lugar. Não podemos servir a Deus e ao dinheiro; devemos escolher a quem serviremos.',
     tipo: 'aplicacao',
   },
   {
@@ -194,7 +194,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 7,
     versiculo: 7,
     autor: 'Matthew Henry',
-    texto: 'Ask, and it shall be given you; seek, and ye shall find; knock, and it shall be opened unto you. This is a promise of answered prayer. Ask, and it shall be given you — God is willing to give good things to those who ask him. Seek, and ye shall find — if we earnestly seek God, we shall find him. Knock, and it shall be opened unto you — if we persist in prayer, the door of mercy will be opened. The three verbs — ask, seek, knock — suggest increasing earnestness and urgency in prayer.',
+    texto: 'Pedi, e dar-se-vos-á; buscai, e achareis; batei, e abrir-se-vos-á. Esta é uma promessa de oração atendida. Pedi, e dar-se-vos-á — Deus está disposto a dar boas coisas a quem Lhe pede. Buscai, e achareis — se buscarmos earnestemente a Deus, O encontraremos. Batei, e abrir-se-vos-á — se persistirmos em oração, a porta da misericórdia se abrirá. Os três verbos — pedir, buscar, bater — sugerem crescente earnestness e urgência na oração.',
     tipo: 'aplicacao',
   },
   {
@@ -202,7 +202,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 1,
     versiculo: 1,
     autor: 'Matthew Henry',
-    texto: 'In the beginning was the Word, and the Word was with God, and the Word was God. This is one of the most majestic declarations in all of Scripture. The Word was with God — he was distinct from the Father, yet he was God. He was in the beginning — before all created things, he existed. This verse establishes both the eternality and the deity of Christ. He is not a created being, but the Creator of all things. The Word is the second Person of the Trinity, the Son of God, who was with God from eternity and was himself God.',
+    texto: 'No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus. Esta é uma das declarações mais majestosas de toda a Escritura. O Verbo estava com Deus — Ele era distinto do Pai, mas era Deus. Ele estava no princípio — antes de todas as coisas criadas, Ele existia. Este versículo estabelece tanto a eternidade quanto a divindade de Cristo. Ele não é uma criatura, mas o Criador de todas as coisas. O Verbo é a segunda Pessoa da Trindade, o Filho de Deus, que estava com Deus desde a eternidade e era Ele próprio Deus.',
     tipo: 'teologico',
   },
   {
@@ -210,7 +210,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 1,
     versiculo: 14,
     autor: 'Matthew Henry',
-    texto: 'And the Word was made flesh, and dwelt among us, (and we beheld his glory, the glory as of the only begotten of the Father,) full of grace and truth. This is the incarnation: the eternal Word became man. He was made flesh — he took on our nature, with all its limitations and weaknesses (except sin). He dwelt among us — he lived as a man among men, experiencing the trials and temptations of human life. And we beheld his glory — the apostles witnessed the glory of Christ in his miracles, his transfiguration, and his resurrection. He was full of grace and truth — grace in his person and work, and truth in his doctrine and life.',
+    texto: 'E o Verbo se fez carne, e habitou entre nós (e vimos a sua glória, glória como de unigênito do Pai), cheio de graça e de verdade. Esta é a encarnação: o Verbo eterno se tornou homem. Ele se fez carne — assumiu nossa natureza, com todas as suas limitações e fraquezas (exceto o pecado). Habitou entre nós — viveu como homem entre os homens, experimentando as provações e tentações da vida humana. E vimos a sua glória — os apóstolos testemunharam a glória de Cristo em Seus milagres, Sua transfiguração e Sua ressurreição. Ele era cheio de graça e de verdade — graça em Sua pessoa e obra, e verdade em Sua doutrina e vida.',
     tipo: 'teologico',
   },
   {
@@ -218,7 +218,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 3,
     versiculo: 16,
     autor: 'Matthew Henry',
-    texto: 'For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life. This is the gospel in a nutshell. God so loved the world — not just the Jewish nation, but the whole world of sinful humanity. He gave his only begotten Son — the greatest gift that heaven could give. That whosoever believeth in him should not perish — faith in Christ is the condition of salvation. But have everlasting life — the reward of faith is eternal life with God. This verse contains the motivation (God\'s love), the means (Christ\'s giving), the condition (faith), and the result (eternal life).',
+    texto: 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna. Esta é a síntese do evangelho. Deus amou o mundo — não apenas a nação judaica, mas todo o mundo da humanidade pecaminosa. Deu o seu Filho unigênito — o maior presente que o céu poderia dar. Para que todo aquele que nele crê não pereça — a fé em Cristo é a condição da salvação. Mas tenha a vida eterna — a recompensa da fé é a vida eterna com Deus. Este versículo contém a motivação (o amor de Deus), o meio (a dádiva de Cristo), a condição (a fé) e o resultado (a vida eterna).',
     tipo: 'teologico',
   },
   {
@@ -226,7 +226,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 14,
     versiculo: 6,
     autor: 'Matthew Henry',
-    texto: 'Jesus saith unto him, I am the way, the truth, and the life: no man cometh unto the Father, but by me. Christ is the only way to God. I am the way — he is the mediator between God and man. I am the truth — he is the revelation of God\'s truth. I am the life — he is the source of all spiritual life. No man cometh unto the Father but by me — there is no other name under heaven given among men by which we must be saved. Christ is not one of many ways; he is the only way.',
+    texto: 'Jesus disse-lhe: Eu sou o caminho, e a verdade, e a vida; ninguém vem ao Pai senão por mim. Cristo é o único caminho para Deus. Eu sou o caminho — Ele é o mediador entre Deus e o homem. Eu sou a verdade — Ele é a revelação da verdade de Deus. Eu sou a vida — Ele é a fonte de toda vida espiritual. Ninguém vem ao Pai senão por mim — não há outro nome debaixo do céu dado entre os homens pelo qual devamos ser salvos. Cristo não é um dos muitos caminhos; Ele é o único caminho.',
     tipo: 'teologico',
   },
   {
@@ -234,7 +234,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 14,
     versiculo: 27,
     autor: 'Matthew Henry',
-    texto: 'Peace I leave with you, my peace I give unto you: not as the world giveth, give I unto you. Let not your heart be troubled, neither let it be afraid. The peace that Christ gives is not the peace of the world, which is merely the absence of trouble, but the peace of God, which is the presence of God in the midst of trouble. This peace passes all understanding, and it keeps the heart and mind in Christ Jesus. The world cannot give this peace, and the world cannot take it away. It is the gift of Christ to his people, and it is a permanent gift.',
+    texto: 'Deixo-vos a paz, a minha paz vos dou; não vo-la dou como o mundo a dá. Não se turbe o vosso coração, nem se atemorize. A paz que Cristo dá não é a paz do mundo, que é apenas a ausência de problemas, mas a paz de Deus, que é a presença de Deus no meio das dificuldades. Esta paz excede todo entendimento, e guarda o coração e a mente em Cristo Jesus. O mundo não pode dar esta paz, e o mundo não pode tirá-la. É um dom de Cristo para Seu povo, e é um dom permanente.',
     tipo: 'aplicacao',
   },
   {
@@ -242,7 +242,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 3,
     versiculo: 23,
     autor: 'Matthew Henry',
-    texto: 'For all have sinned, and come short of the glory of God. This is one of the most important verses in the Bible for understanding the doctrine of sin. All have sinned — no one is righteous, no not one. We have all fallen short of God\'s glory, which is the standard of perfection. Sin is not just the breaking of God\'s law, but the failing to reach God\'s glory. We are all sinners, and we all need a Savior. This verse is the foundation of the gospel: because all have sinned, all need the grace of God in Christ.',
+    texto: 'Porque todos pecaram e estão destituídos da glória de Deus. Este é um dos versículos mais importantes da Bíblia para se compreender a doutrina do pecado. Todos pecaram — ninguém é justo, nem um sequer. Todos nós caímos aquém da glória de Deus, que é o padrão de perfeição. O pecado não é apenas a transgressão da lei de Deus, mas a falha em alcançar a glória de Deus. Todos somos pecadores, e todos precisamos de um Salvador. Este versículo é o fundamento do evangelho: porque todos pecaram, todos precisam da graça de Deus em Cristo.',
     tipo: 'teologico',
   },
   {
@@ -250,7 +250,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 3,
     versiculo: 24,
     autor: 'Matthew Henry',
-    texto: 'Being justified freely by his grace through the redemption that is in Christ Jesus. Justification is the act of God by which he declares the sinner righteous, not on the basis of the sinner\'s own works, but on the basis of Christ\'s finished work on the cross. It is free — it costs us nothing, because Christ paid the price. It is by grace — it is unmerited favor. Through the redemption that is in Christ Jesus — Christ has redeemed us from the curse of the law, having been made a curse for us. This is the heart of the gospel: we are justified by grace alone, through faith alone, in Christ alone.',
+    texto: 'Sendo justificados gratuitamente pela sua graça, pela redenção que há em Cristo Jesus. A justificação é o ato de Deus pelo qual Ele declara o pecador justo, não com base nas obras do próprio pecador, mas com base na obra consumada de Cristo na cruz. É gratuita — não nos custa nada, porque Cristo pagou o preço. É pela graça — é favor imerecido. Pela redenção que há em Cristo Jesus — Cristo nos resgatou da maldição da lei, tendo se tornado maldição por nós. Este é o cerne do evangelho: somos justificados somente pela graça, somente pela fé, somente em Cristo.',
     tipo: 'teologico',
   },
   {
@@ -258,7 +258,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 5,
     versiculo: 1,
     autor: 'Matthew Henry',
-    texto: 'Therefore being justified by faith, we have peace with God through our Lord Jesus Christ. Justification by faith brings peace with God. Before justification, we were enemies of God, at enmity with him because of our sin. But through faith in Christ, we are reconciled to God, and we have peace with him. This peace is not merely a feeling, but a settled state of reconciliation. We are no longer under condemnation, but we are accepted in the Beloved.',
+    texto: 'Portanto, sendo justificados pela fé, temos paz com Deus por meio de nosso Senhor Jesus Cristo. A justificação pela fé traz paz com Deus. Antes da justificação, éramos inimigos de Deus, em inimizade com Ele por causa de nosso pecado. Mas pela fé em Cristo, somos reconciliados com Deus, e temos paz com Ele. Esta paz não é apenas um sentimento, mas um estado firme de reconciliação. Não estamos mais sob condenação, mas somos aceitos no Amado.',
     tipo: 'teologico',
   },
   {
@@ -266,7 +266,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 5,
     versiculo: 8,
     autor: 'Matthew Henry',
-    texto: 'But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us. This verse shows the greatness of God\'s love: it is not a love for the lovely, but a love for the unlovely. God commendeth his love — he proves and displays his love in the most wonderful way possible. While we were yet sinners — before we repented, before we believed, before we did anything to deserve his love — Christ died for us. This is the supreme demonstration of divine love.',
+    texto: 'Mas Deus prova o seu amor por nós em que, sendo nós ainda pecadores, Cristo morreu por nós. Este versículo mostra a grandeza do amor de Deus: não é um amor pelos amáveis, mas um amor pelos que não o são. Deus prova o seu amor — Ele demonstra e exibe Seu amor da maneira mais maravilhosa possível. Sendo nós ainda pecadores — antes de nos arrependermos, antes de crermos, antes de fazermos qualquer coisa para merecermos Seu amor — Cristo morreu por nós. Esta é a suprema demonstração do amor divino.',
     tipo: 'teologico',
   },
   {
@@ -274,7 +274,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 8,
     versiculo: 28,
     autor: 'Matthew Henry',
-    texto: 'And we know that all things work together for good to them that love God, to them who are the called according to his purpose. This is one of the most comforting promises in the Bible. All things work together for good — not that all things are good in themselves, but that God overrules all things for the ultimate good of his people. To them that love God — this promise is for those who love God and are called according to his purpose. It does not mean that we will be exempt from suffering, but that our suffering will be turned to good.',
+    texto: 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito. Esta é uma das promessas mais consoladoras da Bíblia. Todas as coisas contribuem juntamente para o bem — não que todas as coisas sejam boas em si mesmas, mas que Deus governa todas as coisas para o bem último de Seu povo. Daqueles que amam a Deus — esta promessa é para aqueles que amam a Deus e são chamados segundo Seu propósito. Isso não significa que seremos isentos de sofrimento, mas que nosso sofrimento será transformado em bem.',
     tipo: 'aplicacao',
   },
   {
@@ -282,7 +282,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 8,
     versiculo: 38,
     autor: 'Matthew Henry',
-    texto: 'For I am persuaded, that neither death, nor life, nor angels, nor principalities, nor powers, nor things present, nor things to come, nor height, nor depth, nor any other creature, shall be able to separate us from the love of God, which is in Christ Jesus our Lord. This is the grand conclusion of the great chapter on the believer\'s security. Nothing can separate us from the love of God in Christ Jesus. Not death, not life, not angels, not demons, not the present, not the future, not any power, not anything in all creation. The love of God in Christ is an indestructible bond that nothing can break.',
+    texto: 'Porque estou certo de que, nem a morte, nem a vida, nem os anjos, nem os principados, nem as potestades, nem o presente, nem o porvir, nem a altura, nem a profundidade, nem alguma outra criatura nos poderá separar do amor de Deus, que está em Cristo Jesus nosso Senhor. Esta é a grandiosa conclusão do grande capítulo sobre a segurança do crente. Nada pode nos separar do amor de Deus em Cristo Jesus. Nem a morte, nem a vida, nem os anjos, nem os demônios, nem o presente, nem o futuro, nem nenhum poder, nem nada em toda a criação. O amor de Deus em Cristo é um vínculo indestrutível que nada pode quebrar.',
     tipo: 'aplicacao',
   },
   {
@@ -290,7 +290,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 12,
     versiculo: 1,
     autor: 'Matthew Henry',
-    texto: 'I beseech you therefore, brethren, by the mercies of God, that ye present your bodies a living sacrifice, holy, acceptable unto God, which is your reasonable service. This is the practical application of all the doctrine that Paul has been teaching. Present your bodies a living sacrifice — not a dead sacrifice like those of the Old Testament, but a living sacrifice, a sacrifice of our whole selves, our bodies and souls, to God. Holy — set apart for God\'s service. Acceptable unto God — pleasing to him. This is your reasonable service — it is the least we can do in response to God\'s mercies.',
+    texto: 'Rogo-vos, pois, irmãos, pelas misericórdias de Deus, que presentes os vossos corpos em sacrifício vivo, santo e agradável a Deus, que é o vosso culto racional. Esta é a aplicação prática de toda a doutrina que Paulo vinha ensinando. Apresentai os vossos corpos em sacrifício vivo — não um sacrifício morto como os do Antigo Testamento, mas um sacrifício vivo, um sacrifício de nós mesmos por completo, nossos corpos e almas, a Deus. Santo — separado para o serviço de Deus. Agradável a Deus — que Lhe agrada. Este é o vosso culto racional — é o menos que podemos fazer em resposta às misericórdias de Deus.',
     tipo: 'aplicacao',
   },
   {
@@ -298,7 +298,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 12,
     versiculo: 2,
     autor: 'Matthew Henry',
-    texto: 'And be not conformed to this world: but be ye transformed by the renewing of your mind, that ye may prove what is that good, and acceptable, and perfect, will of God. The Christian must not be shaped by the world, but must be transformed by the renewal of the mind. The world tries to squeeze us into its mold, but we must resist this pressure and allow the Holy Spirit to transform our thinking. The renewing of the mind is the work of the Holy Spirit, who changes our desires, our attitudes, and our values, so that we may prove what is the good, acceptable, and perfect will of God.',
+    texto: 'E não vos conformeis com este mundo, mas transformai-vos pela renovação do vosso entendimento, para que experimenteis qual seja a boa, agradável, e perfeita vontade de Deus. O cristão não deve ser moldado pelo mundo, mas deve ser transformado pela renovação do entendimento. O mundo tenta nos espremer em seu molde, mas devemos resistir a essa pressão e permitir que o Espírito Santo transforme nosso pensar. A renovação do entendimento é a obra do Espírito Santo, que muda nossos desejos, nossas atitudes e nossos valores, para que possamos experimentar qual seja a boa, agradável e perfeita vontade de Deus.',
     tipo: 'aplicacao',
   },
   {
@@ -306,7 +306,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 2,
     versiculo: 8,
     autor: 'Matthew Henry',
-    texto: 'For by grace are ye saved through faith; and that not of yourselves: it is the gift of God. This is one of the clearest statements of the doctrine of salvation by grace. We are saved by grace — by the unmerited favor of God — not by our own works or merits. Through faith — faith is the instrument by which we receive God\'s grace, but even faith is a gift of God. Not of yourselves — salvation is entirely of God; we contribute nothing to it. It is the gift of God — the whole package, grace and faith and salvation, is a free gift from God.',
+    texto: 'Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus. Esta é uma das afirmações mais claras da doutrina da salvação pela graça. Somos salvos pela graça — pelo favor imerecido de Deus — não pelas nossas próprias obras ou méritos. Por meio da fé — a fé é o instrumento pelo qual recebemos a graça de Deus, mas até mesmo a fé é um dom de Deus. Não vem de vós — a salvação é inteiramente de Deus; não contribuímos com nada. É dom de Deus — todo o pacote, graça e fé e salvação, é um dom gratuito de Deus.',
     tipo: 'teologico',
   },
   {
@@ -314,7 +314,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 2,
     versiculo: 9,
     autor: 'Matthew Henry',
-    texto: 'Not of works, lest any man should boast. Salvation is not the result of human effort or achievement. If we could save ourselves by our good works, we would have reason to boast. But God has abolished all boasting by making salvation a free gift. We have nothing to boast about except what God has done for us in Christ. This is the gospel: salvation is by grace alone, through faith alone, in Christ alone, for the glory of God alone.',
+    texto: 'Não é das obras, para que ninguém se glorie. A salvação não é o resultado do esforço ou conquista humana. Se pudéssemos nos salvar pelas nossas boas obras, teríamos motivo para gloriar-nos. Mas Deus aboliu toda gloria, tornando a salvação um dom gratuito. Não temos do que gloriar-nos, exceto o que Deus fez por nós em Cristo. Este é o evangelho: a salvação é somente pela graça, somente pela fé, somente em Cristo, somente para a glória de Deus.',
     tipo: 'teologico',
   },
   {
@@ -322,7 +322,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 6,
     versiculo: 10,
     autor: 'Matthew Henry',
-    texto: 'Finally, my brethren, be strong in the Lord, and in the power of his might. The Christian life is a warfare, and we need the strength of God to fight the good fight. Be strong in the Lord — not in our own strength, but in the strength that God provides. The power of his might — God\'s almighty power is available to us through prayer and faith. We cannot fight spiritual battles with worldly weapons; we need the armor of God and the power of the Holy Spirit.',
+    texto: 'No demais, irmãos meus, fortalecei-vos no Senhor e na força do seu poder. A vida cristã é uma guerra, e precisamos da força de Deus para lutar a boa batalha. Fortalecei-vos no Senhor — não na nossa própria força, mas na força que Deus fornece. A força do seu poder — o poder onipotente de Deus está disponível para nós por meio da oração e da fé. Não podemos lutar batalhas espirituais com armas mundanas; precisamos da armadura de Deus e do poder do Espírito Santo.',
     tipo: 'aplicacao',
   },
   {
@@ -330,7 +330,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 21,
     versiculo: 1,
     autor: 'Matthew Henry',
-    texto: 'And I saw a new heaven and a new earth: for the first heaven and the first earth were passed away; and there was no more sea. This is the grand vision of the new creation. The first heaven and the first earth have passed away — this present world, with all its sin and sorrow, will be completely transformed. And there was no more sea — the sea, which in the Old Testament often represents chaos and evil, will be no more. The new creation will be a place of perfect peace and order, where God dwells with his people.',
+    texto: 'E vi um novo céu e uma nova terra; porque o primeiro céu e a primeira terra passaram, e o mar não existe mais. Esta é a grandiosa visão da nova criação. O primeiro céu e a primeira terra passaram — este mundo presente, com todo o seu pecado e tristeza, será completamente transformado. E o mar não existe mais — o mar, que no Antigo Testamento frequentemente representa o caos e o mal, não existirá mais. A nova criação será um lugar de perfeita paz e ordem, onde Deus habita com Seu povo.',
     tipo: 'escatologico',
   },
   {
@@ -338,7 +338,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 21,
     versiculo: 4,
     autor: 'Matthew Henry',
-    texto: 'And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: for the former things are passed away. This is the consummation of all things: God will wipe away every tear from our eyes. There shall be no more death — the last enemy will be destroyed. Neither sorrow, nor crying — all the sadness of this world will be replaced by eternal joy. The former things are passed away — all the pain and suffering of this life will be forgotten in the glory of heaven.',
+    texto: 'E enxugará toda a lágrima dos seus olhos; e a morte não existirá mais; nem haverá mais luto, nem choro, nem dor, porque as primeiras coisas passaram. Esta é a consumação de todas as coisas: Deus enxugará toda lágrima dos nossos olhos. A morte não existirá mais — o último inimigo será destruído. Nem haverá mais luto, nem choro — toda a tristeza deste mundo será substituída por eterna alegria. As primeiras coisas passaram — toda a dor e sofrimento desta vida serão esquecidos na glória do céu.',
     tipo: 'escatologico',
   },
   {
@@ -346,7 +346,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 22,
     versiculo: 5,
     autor: 'Matthew Henry',
-    texto: 'And there shall be no night there; and they need no candle, neither light of the sun; for the Lord God giveth them light: and they shall reign for ever and ever. In the new creation, there will be no night — no darkness, no sin, no sorrow. The Lord God will be their light — Christ himself will be the light of heaven, and his glory will illuminate all things. And they shall reign for ever and ever — the saints will share in Christ\'s glory and reign with him for eternity. This is the ultimate destiny of all who trust in Christ.',
+    texto: 'E não haverá mais noite; e não necessitarão de lâmpada nem de luz do sol, porque o Senhor Deus os ilumina; e reinarão para todo o sempre. Na nova criação, não haverá noite — sem trevas, sem pecado, sem tristeza. O Senhor Deus será sua luz — Cristo Himself será a luz do céu, e Sua glória iluminará todas as coisas. E reinarão para todo o sempre — os santos compartilharão da glória de Cristo e reinarão com Ele por toda a eternidade. Este é o destino final de todos os que confiam em Cristo.',
     tipo: 'escatologico',
   },
 ];

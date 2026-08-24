@@ -20,7 +20,7 @@ const LOADERS: Record<string, () => Promise<{ obra: ObraConteudo }>> = {
   'calvino-institutas': () => import('./obras/calvino-institutas'),
   'imitacao-cristo': () => import('./obras/imitacao-cristo'),
   'presenca-deus': () => import('./obras/presenca-deus'),
-  'josefo-queda-jerusalem': () => import('./obras/josefo-quaeda-jerusalem'),
+  'josefo-quaeda-jerusalem': () => import('./obras/josefo-quaeda-jerusalem'),
 };
 
 export async function getObraConteudo(id: string): Promise<ObraConteudo | null> {

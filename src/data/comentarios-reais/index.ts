@@ -1,9 +1,10 @@
 // Barrel file — Comentários Reais de Domínio Público
-// Reúne todas as coleções de comentários scholars para facilitar importação
+// Reúne todas as coleções de comentários de estudiosos para facilitar importação
 
 export { comentariosMatthewHenry } from './matthew-henry';
 export { comentariosJFB } from './jamieson-fausset-brown';
 export { comentariosBarnes } from './albert-barnes';
+export { comentariosgn } from './gn-matthew-henry';
 
 // Tipos e interfaces reutilizáveis
 import type { Comentario } from '../comentarios';
@@ -20,6 +21,7 @@ export const metadadosComentarios = {
     morte: 1714,
     dominioPublico: true,
     descricao: 'Comentário versículo a versículo, clássico da hermenêutica protestante. Henry era um puritano galês, ministro da Igreja da Inglaterra.',
+    label: 'Comentário de Matthew Henry',
   },
   jamiesonFaussetBrown: {
     autor: 'Robert Jamieson, A.R. Fausset, David Brown',
@@ -28,6 +30,7 @@ export const metadadosComentarios = {
     morte: 'Todos falecidos há 200+ anos',
     dominioPublico: true,
     descricao: 'Comentário crítico e experimental, combinando erudição com aplicação prática. Uma das obras mais concisas e úteis.',
+    label: 'Comentário Jamieson-Fausset-Brown',
   },
   albertBarnes: {
     autor: 'Albert Barnes',
@@ -37,5 +40,14 @@ export const metadadosComentarios = {
     morte: 1870,
     dominioPublico: true,
     descricao: 'Notas explicativas e didáticas, ideais para estudo devocional e acadêmico. Barnes era um presbiteriano americano.',
+    label: 'Notas de Albert Barnes',
+  },
+  matthewHenryGn: {
+    autor: 'Matthew Henry',
+    obra: 'Matthew Henry\'s Commentary on the Whole Bible (Gênesis)',
+    fonte: 'HelloAO Bible API',
+    dominioPublico: true,
+    descricao: 'Comentários detalhados de Matthew Henry sobre o livro de Gênesis, extraídos da HelloAO Bible API.',
+    label: 'Comentário de Matthew Henry (Gênesis)',
   },
 } as const;

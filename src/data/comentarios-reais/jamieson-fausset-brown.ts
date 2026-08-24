@@ -10,7 +10,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 1,
     versiculo: 1,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'In the beginning God created the heaven and the earth. The first verse of the Bible is the foundation of all theology. "In the beginning" — not a point of time only, but the commencement of the whole system of created things. "God" — the Hebrew word Elohim is plural, suggesting the Trinity, though the verb "created" is singular, indicating the unity of the Godhead. "Created" — the Hebrew word bara means to create from nothing; it is never used of making anything out of pre-existing materials. "The heaven and the earth" — this is a comprehensive expression for the entire universe; the visible and invisible creation are all the work of God\'s hands.',
+    texto: 'No princípio Deus criou os céus e a terra. O primeiro versículo da Bíblia é o fundamento de toda a teologia. "No princípio" — não apenas um ponto no tempo, mas o início de todo o sistema de coisas criadas. "Deus" — a palavra hebraica Elohim é plural, sugerindo a Trindade, embora o verbo "criou" seja singular, indicando a unidade da natureza divina. "Criou" — a palavra hebraica bara significa criar do nada; nunca é usada para fazer algo a partir de materiais preexistentes. "Os céus e a terra" — esta é uma expressão abrangente para todo o universo; a criação visível e invisível são todas obra das mãos de Deus.',
     tipo: 'teologico',
   },
   {
@@ -18,7 +18,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 3,
     versiculo: 15,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'And I will put enmity between thee and the woman, and between thy seed and her seed; it shall bruise thy head, and thou shalt bruise his heel. This is the Protevangelium, the first gospel promise. The "seed of the woman" is the Messiah, who, through his incarnation, was to be the offspring of a woman. The "seed of the serpent" represents all who are children of the devil by wicked works. The "bruising of the head" signifies a fatal and decisive blow to the power of Satan; the "bruising of the heel" indicates a temporary and non-fatal wound to the Messiah through his suffering. The promise looks forward to the cross, where Christ destroyed the works of the devil.',
+    texto: 'Porei inimizade entre ti e a mulher, entre a tua semente e a semente dela; esta te ferirá a cabeça, e tu lhe ferirás o calcanhar. Esta é o Protoevangelium, a primeira promessa do evangelho. A "semente da mulher" é o Messias, que, por meio de Sua encarnação, deveria ser descendente de uma mulher. A "semente da serpente" representa todos aqueles que são filhos do diabo por obras más. O "esmagamento da cabeça" significa um golpe fatal e decisivo contra o poder de Satanás; o "ferimento do calcanhar" indica uma ferida temporária e não fatal ao Messias por meio de Seus sofrimentos. A promessa olha para a cruz, onde Cristo destruiu as obras do diabo.',
     tipo: 'teologico',
   },
   {
@@ -26,7 +26,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 23,
     versiculo: 1,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'The Lord is my shepherd; I shall not want. "My shepherd" — the personal pronoun indicates an individual appropriation of God\'s care. David, who had been a shepherd, recognized in God\'s care for him the same tenderness and provision that a good shepherd shows for his flock. "I shall not want" — this does not mean the absence of all desire, but the supply of all need. The sheep of God\'s pasture shall lack no good thing.',
+    texto: 'O Senhor é o meu pastor; nada me faltará. "Meu pastor" — o pronome pessoal indica uma apropriação individual do cuidado de Deus. Davi, que havia sido pastor, reconheceu no cuidado de Deus por ele a mesma ternura e provisão que um bom pastor demonstra por seu rebanho. "Nada me faltará" — isso não significa a ausência de todo desejo, mas o suprimento de todas as necessidades. As ovelhas do pasto de Deus não faltarão de coisa alguma.',
     tipo: 'aplicacao',
   },
   {
@@ -34,7 +34,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 23,
     versiculo: 4,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me. The "valley of the shadow of death" is a deep, dark valley through which the shepherd must lead his sheep. It represents the darkest experiences of life, including the approach of death itself. "I will fear no evil" — the presence of the shepherd removes all fear. "Thy rod and thy staff" — the rod was used to protect the sheep from wild animals, and the staff was used to guide and support them. Both are instruments of the shepherd\'s care.',
+    texto: 'Ainda que eu ande pelo vale da sombra da morte, não temerei mal algum, porque tu estás comigo; a tua vara e o teu cajado me consolam. O "vale da sombra da morte" é um vale profundo e escuro pelo qual o pastor deve guiar suas ovelhas. Ele representa as experiências mais sombrias da vida, incluindo a aproximação da própria morte. "Não temerei mal algum" — a presença do pastor remove todo temor. "A tua vara e o teu cajado" — a vara era usada para proteger as ovelhas de animais selvagens, e o cajado era usado para guiá-las e apoiá-las. Ambos são instrumentos do cuidado do pastor.',
     tipo: 'aplicacao',
   },
   {
@@ -42,7 +42,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 53,
     versiculo: 5,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'But he was wounded for our transgressions, he was bruised for our iniquities: the chastisement of our peace was upon him; and with his stripes we are healed. "Wounded for our transgressions" — the Hebrew word for "wounded" literally means "pierced through," suggesting the violence of Christ\'s suffering. "Bruised for our iniquities" — the crushing weight of our sins was borne by him. "The chastisement of our peace was upon him" — the punishment that should have been ours was laid upon the Messiah, so that we might have peace with God. "With his stripes we are healed" — the wounds of Christ are the means of our spiritual healing from the disease of sin.',
+    texto: 'Mas ele foi ferido por causa das nossas transgressões, e moido por causa das nossas iniquidades; o castigo que nos trazia a paz estava sobre ele, e pelas suas chagas fomos sarados. "Ferido por causa das nossas transgressões" — a palavra hebraica para "ferido" literalmente significa "perfurada", sugerindo a violência do sofrimento de Cristo. "Moido por causa das nossas iniquidades" — o peso esmagador de nossos pecados foi suportado por Ele. "O castigo que nos trazia a paz estava sobre ele" — o castigo que deveria ser nosso foi colocado sobre o Messias, para que pudéssemos ter paz com Deus. "Pelas suas chagas fomos sarados" — as feridas de Cristo são o meio de nossa cura espiritual da doença do pecado.',
     tipo: 'teologico',
   },
   {
@@ -50,7 +50,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 53,
     versiculo: 6,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'All we like sheep have gone astray; we have turned every one to his own way; and the Lord hath laid on him the iniquity of us all. This verse contains a universal confession of sin and a declaration of the substitutionary atonement. "All we like sheep" — the comparison of humans to sheep suggests both our tendency to wander and our helplessness. "The Lord hath laid on him" — this is the great exchange: our sins were transferred to the Messiah. "The iniquity of us all" — the entire burden of human sin was borne by Christ alone.',
+    texto: 'Todos nós, como ovelhas, nos descaminhamos; cada um se desviou para o seu caminho; e o Senhor carregou sobre ele a iniquidade de todos nós. Este versículo contém uma confissão universal de pecado e uma declaração da expiação substitutiva. "Todos nós, como ovelhas" — a comparação dos humanos com ovelhas sugere tanto nossa tendência a nos desviarmos quanto nossa impotência. "O Senhor carregou sobre ele" — esta é a grande troca: nossos pecados foram transferidos para o Messias. "A iniquidade de todos nós" — todo o fardo do pecado humano foi suportado por Cristo sozinho.',
     tipo: 'teologico',
   },
   {
@@ -58,7 +58,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 5,
     versiculo: 3,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'Blessed are the poor in spirit: for theirs is the kingdom of heaven. "Poor in spirit" — not merely poor in earthly possessions, but those who recognize their spiritual poverty and total dependence on God. The "kingdom of heaven" belongs to such people because they come to God with empty hands, ready to receive his grace. This beatitude is the foundation of all the others; without humility, there can be no progress in the Christian life.',
+    texto: 'Bem-aventurados os pobres de espírito, porque deles é o reino dos céus. "Pobres de espírito" — não apenas pobres em bens terrenos, mas aqueles que reconhecem sua pobreza espiritual e total dependência de Deus. O "reino dos céus" pertence a essas pessoas porque vêm a Deus com as mãos vazias, prontas para receber Sua graça. Esta bem-aventurança é o fundamento de todas as outras; sem humildade, não pode haver progresso na vida cristã.',
     tipo: 'aplicacao',
   },
   {
@@ -66,7 +66,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 6,
     versiculo: 33,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you. "Seek first" — this implies priority and urgency. The things of this world are not to be our primary concern. "The kingdom of God" — God\'s rule and reign in our hearts and in the world. "His righteousness" — the righteousness that comes from God through faith in Christ. "All these things shall be added" — God will provide for our temporal needs when we put him first. This is a promise of divine provision for those who seek God\'s kingdom above all else.',
+    texto: 'Mas buscai primeiro o reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas. "Buscai primeiro" — isso implica prioridade e urgência. As coisas deste mundo não devem ser nossa preocupação principal. "O reino de Deus" — o reino e o governo de Deus em nossos corações e no mundo. "A sua justiça" — a justiça que vem de Deus por meio da fé em Cristo. "Todas estas coisas vos serão acrescentadas" — Deus suprirá nossas necessidades temporais quando O colocarmos em primeiro lugar. Esta é uma promessa de provisão divina para aqueles que buscam o reino de Deus acima de tudo.',
     tipo: 'aplicacao',
   },
   {
@@ -74,7 +74,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 1,
     versiculo: 1,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'In the beginning was the Word, and the Word was with God, and the Word was God. "The Word" — the Greek word Logos denotes both reason and speech; it was a term well known to both Jewish and Greek readers. For the Jews, it represented the creative word of God (Psalm 33:6); for the Greeks, it represented the divine reason that governs the universe. "Was with God" — the Word was distinct from God the Father, yet he was God. "The Word was God" — this is a direct declaration of the deity of Christ, leaving no room for the Arian heresy that the Son is a created being.',
+    texto: 'No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus. "O Verbo" — a palavra grega Logos denota razão e fala; era um termo bem conhecido tanto pelos leitores judeus quanto gregos. Para os judeus, representava a palavra criadora de Deus (Salmo 33:6); para os gregos, representava a razão divina que governa o universo. "Estava com Deus" — o Verbo era distinto do Pai, mas era Deus. "O Verbo era Deus" — esta é uma declaração direta da divindade de Cristo, não deixando espaço para a heresia ariana de que o Filho é uma criatura.',
     tipo: 'teologico',
   },
   {
@@ -82,7 +82,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 3,
     versiculo: 16,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life. "God so loved the world" — the greatness of God\'s love is measured by its object (the sinful world) and its gift (his only Son). "His only begotten Son" — this does not mean "created," but "unique" or "one of a kind." The Son is of the same essence as the Father, begotten from eternity. "Whosoever believeth" — faith is the condition of salvation, and it is offered to all without exception. "Should not perish, but have everlasting life" — the alternative is clearly stated: perishing or eternal life.',
+    texto: 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna. "Deus amou o mundo" — a grandeza do amor de Deus é medida por seu objeto (o mundo pecaminoso) e sua dádiva (seu Filho unigênito). "O seu Filho unigênito" — isso não significa "criado", mas "único" ou "singular". O Filho é da mesma essência que o Pai, gerado desde a eternidade. "Todo aquele que nele crê" — a fé é a condição da salvação, e é oferecida a todos sem exceção. "Não pereça, mas tenha a vida eterna" — a alternativa está claramente declarada: perecer ou vida eterna.',
     tipo: 'teologico',
   },
   {
@@ -90,7 +90,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 14,
     versiculo: 6,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'Jesus saith unto him, I am the way, the truth, and the life: no man cometh unto the Father, but by me. "I am the way" — Christ is the only road to God. "The truth" — he is the embodiment of all divine truth. "The life" — he is the source of all spiritual and eternal life. "No man cometh unto the Father, but by me" — this excludes all other mediators and all other paths to God. Christ is the exclusive way of salvation. This is not intolerance, but a statement of fact: God has provided only one way of access to himself.',
+    texto: 'Jesus disse-lhe: Eu sou o caminho, e a verdade, e a vida; ninguém vem ao Pai senão por mim. "Eu sou o caminho" — Cristo é a única estrada para Deus. "A verdade" — Ele é a encarnação de toda verdade divina. "A vida" — Ele é a fonte de toda vida espiritual e eterna. "Ninguém vem ao Pai senão por mim" — isso exclui todos os outros mediadores e todos os outros caminhos para Deus. Cristo é o caminho exclusivo da salvação. Isso não é intolerância, mas uma declaração de fato: Deus providenciou apenas um caminho de acesso a Ele mesmo.',
     tipo: 'teologico',
   },
   {
@@ -98,7 +98,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 3,
     versiculo: 23,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'For all have sinned, and come short of the glory of God. "All have sinned" — this is a universal declaration; no one is excluded. "Come short of the glory of God" — the standard is God\'s perfect glory, and all humanity falls short. Sin is not merely the violation of a law, but the failure to reach God\'s standard of perfection. This verse is the basis of the gospel: because all are sinners, all need the grace of God in Christ.',
+    texto: 'Porque todos pecaram e estão destituídos da glória de Deus. "Todos pecaram" — esta é uma declaração universal; ninguém é excluído. "Estão destituídos da glória de Deus" — o padrão é a perfeita glória de Deus, e toda a humanidade cai aquém. O pecado não é apenas a violação de uma lei, mas a falha em alcançar o padrão de perfeição de Deus. Este versículo é a base do evangelho: porque todos são pecadores, todos precisam da graça de Deus em Cristo.',
     tipo: 'teologico',
   },
   {
@@ -106,7 +106,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 5,
     versiculo: 8,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us. "Commendeth" — God proves and demonstrates his love in the most powerful way possible. "While we were yet sinners" — Christ did not die for us when we were worthy, but when we were unworthy. This is the supreme demonstration of divine love: it is not a response to our goodness, but a gift to our wickedness. "Christ died for us" — the death of Christ is the objective basis of our salvation.',
+    texto: 'Mas Deus prova o seu amor por nós em que, sendo nós ainda pecadores, Cristo morreu por nós. "Prova" — Deus demonstra e exibe Seu amor da maneira mais poderosa possível. "Sendo nós ainda pecadores" — Cristo não morreu por nós quando éramos dignos, mas quando éramos indignos. Esta é a suprema demonstração do amor divino: não é uma resposta à nossa bondade, mas um presente à nossa maldade. "Cristo morreu por nós" — a morte de Cristo é o objetivo base de nossa salvação.',
     tipo: 'teologico',
   },
   {
@@ -114,7 +114,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 8,
     versiculo: 28,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'And we know that all things work together for good to them that love God, to them who are the called according to his purpose. "All things work together for good" — not that all things are good in themselves, but that God overrules all things for the ultimate good of his people. "To them that love God" — this promise is limited to believers. "The called according to his purpose" — God\'s electing purpose is the foundation of this promise. This does not mean that believers will be exempt from suffering, but that their suffering will be turned to good.',
+    texto: 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito. "Todas as coisas contribuem juntamente para o bem" — não que todas as coisas sejam boas em si mesmas, mas que Deus governa todas as coisas para o bem último de Seu povo. "Daqueles que amam a Deus" — esta promessa é limitada aos crentes. "Os chamados segundo o seu propósito" — o propósito eleito de Deus é o fundamento desta promessa. Isso não significa que os crentes serão isentos de sofrimento, mas que seu sofrimento será transformado em bem.',
     tipo: 'aplicacao',
   },
   {
@@ -122,7 +122,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 8,
     versiculo: 38,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'For I am persuaded, that neither death, nor life, nor angels, nor principalities, nor powers, nor things present, nor things to come, nor height, nor depth, nor any other creature, shall be able to separate us from the love of God, which is in Christ Jesus our Lord. "Neither death, nor life" — neither the terrors of death nor the temptations of life. "Nor angels, nor principalities, nor powers" — neither good angels (who serve us) nor evil angels (who oppose us). "Nor things present, nor things to come" — neither present trials nor future fears. "Nor height, nor depth" — neither the highest prosperity nor the deepest adversity. The love of God in Christ is an unbreakable bond.',
+    texto: 'Porque estou certo de que, nem a morte, nem a vida, nem os anjos, nem os principados, nem as potestades, nem o presente, nem o porvir, nem a altura, nem a profundidade, nem alguma outra criatura nos poderá separar do amor de Deus, que está em Cristo Jesus nosso Senhor. "Nem a morte, nem a vida" — nem os terrores da morte nem as tentações da vida. "Nem os anjos, nem os principados, nem as potestades" — nem os anjos bons (que nos servem) nem os anjos maus (que nos opõem). "Nem o presente, nem o porvir" — nem as provações presentes nem os temores futuros. "Nem a altura, nem a profundidade" — nem a mais alta prosperidade nem a mais profunda adversidade. O amor de Deus em Cristo é um vínculo inquebrável.',
     tipo: 'aplicacao',
   },
   {
@@ -130,7 +130,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 2,
     versiculo: 8,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'For by grace are ye saved through faith; and that not of yourselves: it is the gift of God. "By grace" — the source of salvation is God\'s unmerited favor. "Through faith" — faith is the instrument by which we receive grace, but it is not the meritorious cause of salvation. "Not of yourselves" — salvation is entirely of God; we contribute nothing to it. "The gift of God" — even the faith by which we believe is a gift of God\'s grace. This verse excludes all boasting and all human merit from the work of salvation.',
+    texto: 'Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus. "Pela graça" — a fonte da salvação é o favor imerecido de Deus. "Por meio da fé" — a fé é o instrumento pelo qual recebemos a graça, mas não é a causa meritória da salvação. "Não vem de vós" — a salvação é inteiramente de Deus; não contribuímos com nada. "Dom de Deus" — até mesmo a fé pela qual cremos é um dom da graça de Deus. Este versículo exclui toda gloriação e todo mérito humano da obra da salvação.',
     tipo: 'teologico',
   },
   {
@@ -138,7 +138,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 2,
     versiculo: 9,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'Not of works, lest any man should boast. Salvation is not the result of human effort or achievement. If we could save ourselves by our good works, we would have reason to boast. But God has abolished all boasting by making salvation a free gift. We have nothing to boast about except what God has done for us in Christ. This is the heart of the gospel: salvation is by grace alone, through faith alone, in Christ alone, for the glory of God alone.',
+    texto: 'Não é das obras, para que ninguém se glorie. A salvação não é o resultado do esforço ou conquista humana. Se pudéssemos nos salvar pelas nossas boas obras, teríamos motivo para gloriar-nos. Mas Deus aboliu toda gloriação, tornando a salvação um dom gratuito. Não temos do que gloriar-nos, exceto o que Deus fez por nós em Cristo. Este é o cerne do evangelho: a salvação é somente pela graça, somente pela fé, somente em Cristo, somente para a glória de Deus.',
     tipo: 'teologico',
   },
   {
@@ -146,7 +146,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 21,
     versiculo: 1,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'And I saw a new heaven and a new earth: for the first heaven and the first earth were passed away; and there was no more sea. "A new heaven and a new earth" — not the annihilation of the present world, but its complete renewal and transformation. The Greek word for "new" (kainos) means new in quality, not in origin. "There was no more sea" — in the Old Testament, the sea often represents chaos, evil, and the nations in turmoil. In the new creation, all disorder and evil will be removed.',
+    texto: 'E vi um novo céu e uma nova terra; porque o primeiro céu e a primeira terra passaram, e o mar não existe mais. "Um novo céu e uma nova terra" — não a aniquilação do mundo presente, mas sua completa renovação e transformação. A palavra grega para "novo" (kainos) significa novo em qualidade, não em origem. "O mar não existe mais" — no Antigo Testamento, o mar frequentemente representa o caos, o mal e as nações em tumulto. Na nova criação, toda desordem e todo mal serão removidos.',
     tipo: 'escatologico',
   },
   {
@@ -154,7 +154,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 21,
     versiculo: 4,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: for the former things are passed away. "God shall wipe away all tears" — this is a gesture of tender compassion and personal care. "No more death" — the last enemy will be destroyed. "Neither sorrow, nor crying" — all the sadness of this world will be replaced by eternal joy. "The former things are passed away" — the entire order of sin and suffering will be abolished.',
+    texto: 'E enxugará toda a lágrima dos seus olhos; e a morte não existirá mais; nem haverá mais luto, nem choro, nem dor, porque as primeiras coisas passaram. "Deus enxugará toda a lágrima" — este é um gesto de terna compaixão e cuidado pessoal. "A morte não existirá mais" — o último inimigo será destruído. "Nem haverá mais luto, nem choro" — toda a tristeza deste mundo será substituída por eterna alegria. "As primeiras coisas passaram" — toda a ordem do pecado e do sofrimento será abolido.',
     tipo: 'escatologico',
   },
   {
@@ -162,7 +162,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 22,
     versiculo: 5,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'And there shall be no night there; and they need no candle, neither light of the sun; for the Lord God giveth them light: and they shall reign for ever and ever. "No night there" — in the new creation, there will be no darkness, no sin, no sorrow. "The Lord God giveth them light" — Christ himself will be the light of heaven, and his glory will illuminate all things. "They shall reign for ever and ever" — the saints will share in Christ\'s glory and reign with him for eternity. This is the ultimate destiny of all who trust in Christ.',
+    texto: 'E não haverá mais noite; e não necessitarão de lâmpada nem de luz do sol, porque o Senhor Deus os ilumina; e reinarão para todo o sempre. "Não haverá mais noite" — na nova criação, não haverá trevas, nem pecado, nem tristeza. "O Senhor Deus os ilumina" — Cristo Himself será a luz do céu, e Sua glória iluminará todas as coisas. "Reinarão para todo o sempre" — os santos compartilharão da glória de Cristo e reinarão com Ele por toda a eternidade. Este é o destino final de todos os que confiam em Cristo.',
     tipo: 'escatologico',
   },
   {
@@ -170,7 +170,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 20,
     versiculo: 3,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'Thou shalt have no other gods before me. This is the first commandment, and it is the foundation of all the others. It prohibits the worship of any other god besides Jehovah. "Before me" — literally, "in my presence," meaning that no other god should even be considered alongside the true God. This commandment establishes the exclusive worship of the one true God and prohibits all forms of idolatry.',
+    texto: 'Não terás outros deuses diante de mim. Este é o primeiro mandamento, e é o fundamento de todos os outros. Ele proíbe a adoração de qualquer outro deus além de Jeová. "Diante de mim" — literalmente, "na minha presença", significando que nenhum outro deus deveria ser sequer considerado ao lado do verdadeiro Deus. Este mandamento estabelece a adoração exclusiva do único verdadeiro Deus e proíbe todas as formas de idolatria.',
     tipo: 'teologico',
   },
   {
@@ -178,7 +178,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 29,
     versiculo: 11,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'For I know the thoughts that I think toward you, saith the Lord, thoughts of peace, and not of evil, to give you an expected end. "I know the thoughts" — God is not indifferent to his people\'s situation; he has specific plans and purposes for them. "Thoughts of peace, and not of evil" — God\'s intentions toward his people are benevolent, not malicious. "To give you an expected end" — to give you a future and a hope. This promise was given to the exiles in Babylon, assuring them that their captivity was temporary and that God had plans for their restoration.',
+    texto: 'Porque eu bem sei os pensamentos que tenho a vosso respeito, diz o Senhor; pensamentos de paz, e não de mal, para vos dar o fim que esperais. "Eu bem sei os pensamentos" — Deus não é indiferente à situação de Seu povo; Ele tem planos e propósitos específicos para eles. "Pensamentos de paz, e não de mal" — as intenções de Deus para com Seu povo são benevolentes, não maliciosas. "Para vos dar o fim que esperais" — para dar um futuro e uma esperança. Esta promessa foi dada aos exilados na Babilônia, assegurando-lhes que sua cativeiro era temporário e que Deus tinha planos para sua restauração.',
     tipo: 'aplicacao',
   },
   {
@@ -186,7 +186,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 5,
     versiculo: 7,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'Casting all your care upon him; he careth for you. "Casting all your care upon him" — this is an invitation to cast every anxiety, every worry, every burden upon the Lord. "He careth for you" — God is not indifferent to our needs; he cares for us with a father\'s love. This verse is an encouragement to trust God in the midst of trials and difficulties. If God cares for us, we need not be anxious about anything.',
+    texto: 'Lançando sobre ele todo o vosso cuidado, porque ele cuida de vós. "Lançando sobre ele todo o vosso cuidado" — este é um convite para lançar toda ansiedade, todo temor, todo fardo sobre o Senhor. "Porque ele cuida de vós" — Deus não é indiferente às nossas necessidades; Ele cuida de nós com o amor de um pai. Este versículo é um encorajamento para confiar em Deus no meio de provações e dificuldades. Se Deus cuida de nós, não precisamos nos preocupar com nada.',
     tipo: 'aplicacao',
   },
   {
@@ -194,7 +194,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 4,
     versiculo: 13,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'I can do all things through Christ which strengtheneth me. "I can do all things" — this does not mean that Paul could do anything he wanted, but that he could endure all things through Christ\'s strength. "Through Christ which strengtheneth me" — the source of Paul\'s strength is not his own ability, but Christ\'s power working in him. This verse is a declaration of complete dependence on Christ for all things.',
+    texto: 'Posso todas as coisas naquele que me fortalece. "Posso todas as coisas" — isso não significa que Paulo podia fazer o que quisesse, mas que podia suportar todas as coisas pela força de Cristo. "Naquele que me fortalece" — a fonte da força de Paulo não era sua própria habilidade, mas o poder de Cristo operando nele. Este versículo é uma declaração de completa dependência de Cristo para todas as coisas.',
     tipo: 'aplicacao',
   },
   {
@@ -202,7 +202,7 @@ export const comentariosJFB: Comentario[] = [
     capitulo: 13,
     versiculo: 4,
     autor: 'Jamieson-Fausset-Brown',
-    texto: 'Charity suffereth long, and is kind; charity envieth not; charity vaunteth not itself, is not puffed up. "Charity" (love) is patient and kind. It does not envy, it does not boast, it is not proud. This verse describes the character of true love. Love is not merely a feeling, but an active principle that expresses itself in patient endurance and kind deeds. It is the opposite of selfishness and pride.',
+    texto: 'O amor é sofredor, é benigno; o amor não é invejoso; o amor não trata com leviandade, não se ensoberbece. "O amor" (caridade) é paciente e bondoso. Não inveja, não se vangloria, não é orgulhoso. Este versículo descreve o caráter do verdadeiro amor. O amor não é apenas um sentimento, mas um princípio ativo que se expressa em paciência e boas obras. É o oposto do egoísmo e do orgulho.',
     tipo: 'aplicacao',
   },
 ];

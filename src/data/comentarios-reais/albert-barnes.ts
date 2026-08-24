@@ -10,7 +10,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 1,
     versiculo: 1,
     autor: 'Albert Barnes',
-    texto: 'In the beginning God created the heaven and the earth. This verse is the first proposition of the Bible, and contains the germ of all that follows. "In the beginning" — this is not the beginning of God, but the beginning of creation. God is before all things, and he created all things by his word. "God created" — the Hebrew word bara signifies to create from nothing, a work that only God can accomplish. "The heaven and the earth" — this is a comprehensive expression for the entire created universe. The first verse of the Bible thus establishes the existence of God as the Creator of all things, and lays the foundation for all subsequent revelation.',
+    texto: 'No princípio Deus criou os céus e a terra. Este versículo é a primeira proposição da Bíblia, e contém o germe de tudo o que se segue. "No princípio" — não é o princípio de Deus, mas o princípio da criação. Deus é anterior a todas as coisas, e Ele criou todas as coisas por Sua palavra. "Deus criou" — a palavra hebraica bara significa criar do nada, uma obra que apenas Deus pode realizar. "Os céus e a terra" — esta é uma expressão abrangente para todo o universo criado. O primeiro versículo da Bíblia estabelece assim a existência de Deus como o Criador de todas as coisas, e lança o fundamento para toda a revelação subsequente.',
     tipo: 'teologico',
   },
   {
@@ -18,7 +18,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 3,
     versiculo: 15,
     autor: 'Albert Barnes',
-    texto: 'And I will put enmity between thee and the woman, and between thy seed and her seed; it shall bruise thy head, and thou shalt bruise his heel. This is the first promise of redemption, and it is called the Protevangelium. "Enmity between thee and the woman" — the conflict between good and evil was now introduced into the world. "Thy seed" — the posterity of the serpent, all who are children of the devil by wicked works. "Her seed" — the Messiah, who was to be born of a woman. "It shall bruise thy head" — the Messiah shall give a fatal blow to the power of Satan. "Thou shalt bruise his heel" — Satan shall cause temporary suffering to the Messiah, but it shall not be fatal.',
+    texto: 'Porei inimizade entre ti e a mulher, entre a tua semente e a semente dela; esta te ferirá a cabeça, e tu lhe ferirás o calcanhar. Esta é a primeira promessa de redenção, e é chamada de Protoevangelium. "Inimizade entre ti e a mulher" — o conflito entre o bem e o mal foi agora introduzido no mundo. "A tua semente" — a progênie da serpente, todos aqueles que são filhos do diabo por obras más. "A semente dela" — o Messias, que deveria nascer de uma mulher. "Esta te ferirá a cabeça" — o Messias dará um golpe fatal ao poder de Satanás. "Tu lhe ferirás o calcanhar" — Satanás causará sofrimento temporário ao Messias, mas não será fatal.',
     tipo: 'teologico',
   },
   {
@@ -26,7 +26,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 23,
     versiculo: 1,
     autor: 'Albert Barnes',
-    texto: 'The Lord is my shepherd; I shall not want. This is one of the most beautiful and beloved psalms in the Bible. "The Lord is my shepherd" — the relationship between God and his people is compared to that between a shepherd and his flock. The shepherd provides food, water, protection, and guidance for his sheep. "I shall not want" — the sheep of God\'s pasture shall lack no good thing. This is a declaration of complete trust in God\'s providence and care.',
+    texto: 'O Senhor é o meu pastor; nada me faltará. Este é um dos mais belos e amados salmos da Bíblia. "O Senhor é o meu pastor" — a relação entre Deus e Seu povo é comparada àquela entre um pastor e seu rebanho. O pastor fornece alimento, água, proteção e orientação para suas ovelhas. "Nada me faltará" — as ovelhas do pasto de Deus não faltarão de coisa alguma. Esta é uma declaração de completa confiança na providência e cuidado de Deus.',
     tipo: 'aplicacao',
   },
   {
@@ -34,7 +34,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 23,
     versiculo: 4,
     autor: 'Albert Barnes',
-    texto: 'Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me. "The valley of the shadow of death" — this is a figure for the darkest and most dangerous experiences of life. Even in the face of death, the believer need not fear, because God is with him. "Thy rod and thy staff" — the rod was used to defend the sheep from wild animals, and the staff was used to guide and support them. Both instruments of the shepherd\'s care bring comfort to the sheep in the valley of shadow.',
+    texto: 'Ainda que eu ande pelo vale da sombra da morte, não temerei mal algum, porque tu estás comigo; a tua vara e o teu cajado me consolam. "O vale da sombra da morte" — esta é uma figura para as experiências mais sombrias e perigosas da vida. Mesmo diante da morte, o crente não precisa temer, porque Deus está com ele. "A tua vara e o teu cajado" — a vara era usada para defender as ovelhas de animais selvagens, e o cajado era usado para guiá-las e apoiá-las. Ambos os instrumentos do cuidado do pastor trazem conforto às ovelhas no vale da sombra.',
     tipo: 'aplicacao',
   },
   {
@@ -42,7 +42,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 119,
     versiculo: 105,
     autor: 'Albert Barnes',
-    texto: 'Thy word is a lamp unto my feet, and a light unto my path. The word of God is compared to a lamp and a light. "A lamp unto my feet" — it provides guidance for the present step. "A light unto my path" — it illuminates the road ahead. The word of God is sufficient for every step of the way, even if it does not show us the whole road at once. We need not know what is before us, if we know that God\'s word directs our present path.',
+    texto: 'Lâmpada para os meus pés é tua palavra, e luz para o meu caminho. A palavra de Deus é comparada a uma lâmpada e a uma luz. "Uma lâmpada para os meus pés" — ela fornece orientação para o passo presente. "Uma luz para o meu caminho" — ela ilumina a estrada à frente. A palavra de Deus é suficiente para cada passo do caminho, mesmo que não nos mostre toda a estrada de uma vez. Não precisamos saber o que está diante de nós, se sabemos que a palavra de Deus dirige nosso caminho presente.',
     tipo: 'aplicacao',
   },
   {
@@ -50,7 +50,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 31,
     versiculo: 10,
     autor: 'Albert Barnes',
-    texto: 'Who can find a virtuous woman? for her price is far above rubies. This chapter is an acrostic psalm, each verse beginning with a successive letter of the Hebrew alphabet. It describes the character and conduct of a virtuous woman. "Who can find a virtuous woman?" — the question implies that such a woman is rare and precious. "Her price is far above rubies" — no earthly treasure can be compared to her worth. The virtuous woman is industrious, prudent, generous, and devout.',
+    texto: 'Quem achará uma mulher virtuosa? O seu valor muito excede o das pedras de preço. Este capítulo é um salmo acróstico, cada versículo começando com uma letra sucessiva do alfabeto hebraico. Ele descreve o caráter e a conduta de uma mulher virtuosa. "Quem achará uma mulher virtuosa?" — a pergunta implica que tal mulher é rara e preciosa. "O seu valor muito excede o das pedras de preço" — nenhuma riqueza terrestre pode ser comparada ao seu valor. A mulher virtuosa é trabalhadora, prudente, generosa e devota.',
     tipo: 'aplicacao',
   },
   {
@@ -58,7 +58,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 53,
     versiculo: 5,
     autor: 'Albert Barnes',
-    texto: 'But he was wounded for our transgressions, he was bruised for our iniquities: the chastisement of our peace was upon him; and with his stripes we are healed. This verse contains the heart of the gospel message. "Wounded for our transgressions" — the suffering of the Messiah was substitutionary; he suffered in our place. "Bruised for our iniquities" — the crushing weight of our sin was borne by him. "The chastisement of our peace was upon him" — the punishment that should have been ours was laid upon him, so that we might have peace with God. "With his stripes we are healed" — the wounds of Christ are the means of our spiritual healing.',
+    texto: 'Mas ele foi ferido por causa das nossas transgressões, e moido por causa das nossas iniquidades; o castigo que nos trazia a paz estava sobre ele, e pelas suas chagas fomos sarados. Este versículo contém o cerne da mensagem do evangelho. "Ferido por causa das nossas transgressões" — o sofrimento do Messias foi substitutivo; Ele sofreu em nosso lugar. "Moido por causa das nossas iniquidades" — o peso esmagador de nosso pecado foi suportado por Ele. "O castigo que nos trazia a paz estava sobre ele" — o castigo que deveria ser nosso foi colocado sobre Ele, para que pudéssemos ter paz com Deus. "Pelas suas chagas fomos sarados" — as feridas de Cristo são o meio de nossa cura espiritual.',
     tipo: 'teologico',
   },
   {
@@ -66,7 +66,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 53,
     versiculo: 6,
     autor: 'Albert Barnes',
-    texto: 'All we like sheep have gone astray; we have turned every one to his own way; and the Lord hath laid on him the iniquity of us all. This verse presents a universal confession of sin and a declaration of the substitutionary atonement. "All we like sheep" — the comparison of humans to sheep suggests both our tendency to wander and our helplessness. "The Lord hath laid on him" — the entire burden of human sin was transferred to the Messiah. "The iniquity of us all" — no one is excluded from the need for atonement.',
+    texto: 'Todos nós, como ovelhas, nos descaminhamos; cada um se desviou para o seu caminho; e o Senhor carregou sobre ele a iniquidade de todos nós. Este versículo apresenta uma confissão universal de pecado e uma declaração da expiação substitutiva. "Todos nós, como ovelhas" — a comparação dos humanos com ovelhas sugere tanto nossa tendência a nos desviarmos quanto nossa impotência. "O Senhor carregou sobre ele" — todo o fardo do pecado humano foi transferido para o Messias. "A iniquidade de todos nós" — ninguém é excluído da necessidade de expiação.',
     tipo: 'teologico',
   },
   {
@@ -74,7 +74,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 5,
     versiculo: 3,
     autor: 'Albert Barnes',
-    texto: 'Blessed are the poor in spirit: for theirs is the kingdom of heaven. "Poor in spirit" — those who recognize their spiritual poverty and their need of God\'s grace. The "kingdom of heaven" belongs to such people because they come to God with empty hands, ready to receive his blessings. This beatitude is the foundation of the Christian character; without humility, there can be no progress in the spiritual life.',
+    texto: 'Bem-aventurados os pobres de espírito, porque deles é o reino dos céus. "Pobres de espírito" — aqueles que reconhecem sua pobreza espiritual e sua necessidade da graça de Deus. O "reino dos céus" pertence a essas pessoas porque vêm a Deus com as mãos vazias, prontas para receber Suas bênçãos. Esta bem-aventurança é o fundamento do caráter cristão; sem humildade, não pode haver progresso na vida espiritual.',
     tipo: 'aplicacao',
   },
   {
@@ -82,7 +82,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 6,
     versiculo: 33,
     autor: 'Albert Barnes',
-    texto: 'But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you. "Seek first" — this implies that the things of God\'s kingdom should be our primary concern. "The kingdom of God" — God\'s rule and reign in our hearts and in the world. "His righteousness" — the righteousness that comes from God through faith in Christ. "All these things shall be added" — God will provide for our temporal needs when we put him first. This is a promise of divine provision for those who seek God\'s kingdom above all else.',
+    texto: 'Mas buscai primeiro o reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas. "Buscai primeiro" — isso implica que as coisas do reino de Deus devem ser nossa preocupação principal. "O reino de Deus" — o reino e o governo de Deus em nossos corações e no mundo. "A sua justiça" — a justiça que vem de Deus por meio da fé em Cristo. "Todas estas coisas vos serão acrescentadas" — Deus suprirá nossas necessidades temporais quando O colocarmos em primeiro lugar. Esta é uma promessa de provisão divina para aqueles que buscam o reino de Deus acima de tudo.',
     tipo: 'aplicacao',
   },
   {
@@ -90,7 +90,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 1,
     versiculo: 1,
     autor: 'Albert Barnes',
-    texto: 'In the beginning was the Word, and the Word was with God, and the Word was God. "The Word" — the Greek word Logos was well known to both Jewish and Greek readers. For the Jews, it represented the creative word of God; for the Greeks, it represented the divine reason that governs the universe. "Was with God" — the Word was distinct from the Father, yet he was God. "The Word was God" — this is a direct declaration of the deity of Christ, affirming that he is of the same essence as the Father.',
+    texto: 'No princípio era o Verbo, e o Verbo estava com Deus, e o Verbo era Deus. "O Verbo" — a palavra grega Logos era bem conhecida tanto pelos leitores judeus quanto gregos. Para os judeus, representava a palavra criadora de Deus; para os gregos, representava a razão divina que governa o universo. "Estava com Deus" — o Verbo era distinto do Pai, mas era Deus. "O Verbo era Deus" — esta é uma declaração direta da divindade de Cristo, afirmando que Ele é da mesma essência que o Pai.',
     tipo: 'teologico',
   },
   {
@@ -98,7 +98,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 3,
     versiculo: 16,
     autor: 'Albert Barnes',
-    texto: 'For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life. This is the most famous verse in the Bible, and it summarizes the entire gospel message. "God so loved the world" — God\'s love extends to the entire human race. "He gave his only begotten Son" — the greatest gift that heaven could give. "Whosoever believeth" — faith is the condition of salvation, and it is offered to all. "Should not perish, but have everlasting life" — the alternative is clearly stated.',
+    texto: 'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna. Este é o versículo mais famoso da Bíblia, e resume toda a mensagem do evangelho. "Deus amou o mundo" — o amor de Deus se estende a toda a raça humana. "Deu o seu Filho unigênito" — o maior presente que o céu poderia dar. "Todo aquele que nele crê" — a fé é a condição da salvação, e é oferecida a todos. "Não pereça, mas tenha a vida eterna" — a alternativa está claramente declarada.',
     tipo: 'teologico',
   },
   {
@@ -106,7 +106,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 14,
     versiculo: 6,
     autor: 'Albert Barnes',
-    texto: 'Jesus saith unto him, I am the way, the truth, and the life: no man cometh unto the Father, but by me. "I am the way" — Christ is the only road to God. "The truth" — he is the embodiment of all divine truth. "The life" — he is the source of all spiritual and eternal life. "No man cometh unto the Father, but by me" — this excludes all other mediators and all other paths to God. Christ is the exclusive way of salvation.',
+    texto: 'Jesus disse-lhe: Eu sou o caminho, e a verdade, e a vida; ninguém vem ao Pai senão por mim. "Eu sou o caminho" — Cristo é a única estrada para Deus. "A verdade" — Ele é a encarnação de toda verdade divina. "A vida" — Ele é a fonte de toda vida espiritual e eterna. "Ninguém vem ao Pai senão por mim" — isso exclui todos os outros mediadores e todos os outros caminhos para Deus. Cristo é o caminho exclusivo da salvação.',
     tipo: 'teologico',
   },
   {
@@ -114,7 +114,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 3,
     versiculo: 23,
     autor: 'Albert Barnes',
-    texto: 'For all have sinned, and come short of the glory of God. "All have sinned" — this is a universal declaration; no one is exempt from sin. "Come short of the glory of God" — the standard is God\'s perfect glory, and all humanity falls short. Sin is not merely the violation of a law, but the failure to reach God\'s standard of perfection. This verse is the basis of the gospel: because all are sinners, all need the grace of God in Christ.',
+    texto: 'Porque todos pecaram e estão destituídos da glória de Deus. "Todos pecaram" — esta é uma declaração universal; ninguém está isento de pecado. "Estão destituídos da glória de Deus" — o padrão é a perfeita glória de Deus, e toda a humanidade cai aquém. O pecado não é apenas a violação de uma lei, mas a falha em alcançar o padrão de perfeição de Deus. Este versículo é a base do evangelho: porque todos são pecadores, todos precisam da graça de Deus em Cristo.',
     tipo: 'teologico',
   },
   {
@@ -122,7 +122,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 5,
     versiculo: 1,
     autor: 'Albert Barnes',
-    texto: 'Therefore being justified by faith, we have peace with God through our Lord Jesus Christ. Justification by faith brings peace with God. Before justification, we were enemies of God, at enmity with him because of our sin. But through faith in Christ, we are reconciled to God, and we have peace with him. This peace is not merely a feeling, but a settled state of reconciliation.',
+    texto: 'Portanto, sendo justificados pela fé, temos paz com Deus por meio de nosso Senhor Jesus Cristo. A justificação pela fé traz paz com Deus. Antes da justificação, éramos inimigos de Deus, em inimizade com Ele por causa de nosso pecado. Mas pela fé em Cristo, somos reconciliados com Deus, e temos paz com Ele. Esta paz não é apenas um sentimento, mas um estado firme de reconciliação.',
     tipo: 'teologico',
   },
   {
@@ -130,7 +130,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 5,
     versiculo: 8,
     autor: 'Albert Barnes',
-    texto: 'But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us. "Commendeth" — God proves and demonstrates his love in the most powerful way possible. "While we were yet sinners" — Christ did not die for us when we were worthy, but when we were unworthy. This is the supreme demonstration of divine love: it is not a response to our goodness, but a gift to our wickedness.',
+    texto: 'Mas Deus prova o seu amor por nós em que, sendo nós ainda pecadores, Cristo morreu por nós. "Prova" — Deus demonstra e exibe Seu amor da maneira mais poderosa possível. "Sendo nós ainda pecadores" — Cristo não morreu por nós quando éramos dignos, mas quando éramos indignos. Esta é a suprema demonstração do amor divino: não é uma resposta à nossa bondade, mas um presente à nossa maldade.',
     tipo: 'teologico',
   },
   {
@@ -138,7 +138,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 8,
     versiculo: 28,
     autor: 'Albert Barnes',
-    texto: 'And we know that all things work together for good to them that love God, to them who are the called according to his purpose. "All things work together for good" — not that all things are good in themselves, but that God overrules all things for the ultimate good of his people. "To them that love God" — this promise is limited to believers. "The called according to his purpose" — God\'s electing purpose is the foundation of this promise.',
+    texto: 'E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito. "Todas as coisas contribuem juntamente para o bem" — não que todas as coisas sejam boas em si mesmas, mas que Deus governa todas as coisas para o bem último de Seu povo. "Daqueles que amam a Deus" — esta promessa é limitada aos crentes. "Os chamados segundo o seu propósito" — o propósito eleito de Deus é o fundamento desta promessa.',
     tipo: 'aplicacao',
   },
   {
@@ -146,7 +146,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 8,
     versiculo: 38,
     autor: 'Albert Barnes',
-    texto: 'For I am persuaded, that neither death, nor life, nor angels, nor principalities, nor powers, nor things present, nor things to come, nor height, nor depth, nor any other creature, shall be able to separate us from the love of God, which is in Christ Jesus our Lord. "Neither death, nor life" — neither the terrors of death nor the temptations of life. "Nor angels, nor principalities, nor powers" — neither good angels nor evil angels. "Nor things present, nor things to come" — neither present trials nor future fears. The love of God in Christ is an unbreakable bond.',
+    texto: 'Porque estou certo de que, nem a morte, nem a vida, nem os anjos, nem os principados, nem as potestades, nem o presente, nem o porvir, nem a altura, nem a profundidade, nem alguma outra criatura nos poderá separar do amor de Deus, que está em Cristo Jesus nosso Senhor. "Nem a morte, nem a vida" — nem os terrores da morte nem as tentações da vida. "Nem os anjos, nem os principados, nem as potestades" — nem os anjos bons nem os anjos maus. "Nem o presente, nem o porvir" — nem as provações presentes nem os temores futuros. O amor de Deus em Cristo é um vínculo inquebrável.',
     tipo: 'aplicacao',
   },
   {
@@ -154,7 +154,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 12,
     versiculo: 1,
     autor: 'Albert Barnes',
-    texto: 'I beseech you therefore, brethren, by the mercies of God, that ye present your bodies a living sacrifice, holy, acceptable unto God, which is your reasonable service. "Present your bodies a living sacrifice" — this is the practical application of the doctrine of justification. We are to offer our whole selves to God as a living sacrifice. "Holy, acceptable unto God" — the sacrifice must be holy and pleasing to God. "Your reasonable service" — it is the least we can do in response to God\'s mercies.',
+    texto: 'Rogo-vos, pois, irmãos, pelas misericórdias de Deus, que presentes os vossos corpos em sacrifício vivo, santo e agradável a Deus, que é o vosso culto racional. "Apresentai os vossos corpos em sacrifício vivo" — esta é a aplicação prática da doutrina da justificação. Devemos oferecer a nós mesmos por completo a Deus como um sacrifício vivo. "Santo e agradável a Deus" — o sacrifício deve ser santo e agradável a Deus. "O vosso culto racional" — é o menos que podemos fazer em resposta às misericórdias de Deus.',
     tipo: 'aplicacao',
   },
   {
@@ -162,7 +162,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 2,
     versiculo: 8,
     autor: 'Albert Barnes',
-    texto: 'For by grace are ye saved through faith; and that not of yourselves: it is the gift of God. "By grace" — the source of salvation is God\'s unmerited favor. "Through faith" — faith is the instrument by which we receive grace. "Not of yourselves" — salvation is entirely of God; we contribute nothing to it. "The gift of God" — even the faith by which we believe is a gift of God\'s grace. This verse excludes all boasting and all human merit from the work of salvation.',
+    texto: 'Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus. "Pela graça" — a fonte da salvação é o favor imerecido de Deus. "Por meio da fé" — a fé é o instrumento pelo qual recebemos a graça. "Não vem de vós" — a salvação é inteiramente de Deus; não contribuímos com nada. "Dom de Deus" — até mesmo a fé pela qual cremos é um dom da graça de Deus. Este versículo exclui toda gloriação e todo mérito humano da obra da salvação.',
     tipo: 'teologico',
   },
   {
@@ -170,7 +170,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 2,
     versiculo: 9,
     autor: 'Albert Barnes',
-    texto: 'Not of works, lest any man should boast. Salvation is not the result of human effort or achievement. If we could save ourselves by our good works, we would have reason to boast. But God has abolished all boasting by making salvation a free gift. We have nothing to boast about except what God has done for us in Christ.',
+    texto: 'Não é das obras, para que ninguém se glorie. A salvação não é o resultado do esforço ou conquista humana. Se pudéssemos nos salvar pelas nossas boas obras, teríamos motivo para gloriar-nos. Mas Deus aboliu toda gloriação, tornando a salvação um dom gratuito. Não temos do que gloriar-nos, exceto o que Deus fez por nós em Cristo.',
     tipo: 'teologico',
   },
   {
@@ -178,7 +178,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 15,
     versiculo: 3,
     autor: 'Albert Barnes',
-    texto: 'For I delivered unto you first of all that which I also received, how that Christ died for our sins according to the scriptures. "I delivered unto you" — Paul is reminding the Corinthians of the gospel he had preached to them. "Christ died for our sins" — this is the heart of the gospel: the death of Christ was substitutionary, for our sins. "According to the scriptures" — the death of Christ was in fulfillment of Old Testament prophecy. This verse contains the three essential elements of the gospel: the person of Christ, the work of Christ, and the fulfillment of Scripture.',
+    texto: 'Porque primeiramente vos entreguei o que também recebi: que Cristo morreu por nossos pecados, segundo as Escrituras. "Vos entreguei" — Paulo está lembrando os coríntios do evangelho que lhes pregoou. "Cristo morreu por nossos pecados" — este é o cerne do evangelho: a morte de Cristo foi substitutiva, por nossos pecados. "Segundo as Escrituras" — a morte de Cristo foi em cumprimento da profecia do Antigo Testamento. Este versículo contém os três elementos essenciais do evangelho: a pessoa de Cristo, a obra de Cristo e o cumprimento das Escrituras.',
     tipo: 'teologico',
   },
   {
@@ -186,7 +186,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 21,
     versiculo: 1,
     autor: 'Albert Barnes',
-    texto: 'And I saw a new heaven and a new earth: for the first heaven and the first earth were passed away; and there was no more sea. "A new heaven and a new earth" — not the annihilation of the present world, but its complete renewal and transformation. "There was no more sea" — the sea, which in the Old Testament often represents chaos and evil, will be no more. The new creation will be a place of perfect peace and order.',
+    texto: 'E vi um novo céu e uma nova terra; porque o primeiro céu e a primeira terra passaram, e o mar não existe mais. "Um novo céu e uma nova terra" — não a aniquilação do mundo presente, mas sua completa renovação e transformação. "O mar não existe mais" — o mar, que no Antigo Testamento frequentemente representa o caos e o mal, não existirá mais. A nova criação será um lugar de perfeita paz e ordem.',
     tipo: 'escatologico',
   },
   {
@@ -194,7 +194,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 21,
     versiculo: 4,
     autor: 'Albert Barnes',
-    texto: 'And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: for the former things are passed away. "God shall wipe away all tears" — this is a gesture of tender compassion. "No more death" — the last enemy will be destroyed. "Neither sorrow, nor crying" — all the sadness of this world will be replaced by eternal joy. "The former things are passed away" — the entire order of sin and suffering will be abolished.',
+    texto: 'E enxugará toda a lágrima dos seus olhos; e a morte não existirá mais; nem haverá mais luto, nem choro, nem dor, porque as primeiras coisas passaram. "Deus enxugará toda a lágrima" — este é um gesto de terna compaixão. "A morte não existirá mais" — o último inimigo será destruído. "Nem haverá mais luto, nem choro" — toda a tristeza deste mundo será substituída por eterna alegria. "As primeiras coisas passaram" — toda a ordem do pecado e do sofrimento será abolido.',
     tipo: 'escatologico',
   },
   {
@@ -202,7 +202,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 22,
     versiculo: 5,
     autor: 'Albert Barnes',
-    texto: 'And there shall be no night there; and they need no candle, neither light of the sun; for the Lord God giveth them light: and they shall reign for ever and ever. "No night there" — in the new creation, there will be no darkness, no sin, no sorrow. "The Lord God giveth them light" — Christ himself will be the light of heaven. "They shall reign for ever and ever" — the saints will share in Christ\'s glory and reign with him for eternity.',
+    texto: 'E não haverá mais noite; e não necessitarão de lâmpada nem de luz do sol, porque o Senhor Deus os ilumina; e reinarão para todo o sempre. "Não haverá mais noite" — na nova criação, não haverá trevas, nem pecado, nem tristeza. "O Senhor Deus os ilumina" — Cristo Himself será a luz do céu. "Reinarão para todo o sempre" — os santos compartilharão da glória de Cristo e reinarão com Ele por toda a eternidade.',
     tipo: 'escatologico',
   },
   {
@@ -210,7 +210,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 1,
     versiculo: 1,
     autor: 'Albert Barnes',
-    texto: 'God, who at sundry times and in divers manners spake in time past unto the fathers by the prophets. "At sundry times" — God spoke through the prophets in various periods of history. "In divers manners" — God used different methods of revelation, including dreams, visions, and direct communication. "In time past unto the fathers by the prophets" — the Old Testament revelation was given to the ancestors of the Jewish people through the prophets. This verse sets the stage for the superior revelation that comes through the Son.',
+    texto: 'Deus, que antigamente falou de muitos modos aos pais por meio dos profetas. "Antigamente" — Deus falou por meio dos profetas em vários períodos da história. "De muitos modos" — Deus usou diferentes métodos de revelação, incluindo sonhos, visões e comunicação direta. "Aos pais por meio dos profetas" — a revelação do Antigo Testamento foi dada aos ancestrais do povo judeu por meio dos profetas. Este versículo prepara o terreno para a revelação superior que vem por meio do Filho.',
     tipo: 'teologico',
   },
   {
@@ -218,7 +218,7 @@ export const comentariosBarnes: Comentario[] = [
     capitulo: 4,
     versiculo: 12,
     autor: 'Albert Barnes',
-    texto: 'For the word of God is quick, and powerful, and sharper than any twoedged sword, piercing even to the dividing asunder of soul and spirit, and of the joints and marrow, and is a discerner of the thoughts and intents of the heart. "The word of God is quick" — it is alive and active. "Powerful" — it has the ability to accomplish its purposes. "Sharper than any twoedged sword" — it cuts both ways, exposing sin and bringing salvation. "Piercing even to the dividing asunder of soul and spirit" — it penetrates to the deepest parts of our being. "A discerner of the thoughts and intents of the heart" — it reveals the hidden motives and desires of the heart.',
+    texto: 'Porque a palavra de Deus é viva, e eficaz, e mais cortante do que qualquer espada de dois gumes, penetrando até ao ponto de dividir alma e espírito, juntas e medulas, sendo juíza dos pensamentos e propósitos do coração. "A palavra de Deus é viva" — ela está viva e é ativa. "Eficaz" — ela tem a capacidade de realizar seus propósitos. "Mais cortante do que qualquer espada de dois gumes" — ela corta nos dois lados, expondo o pecado e trazendo a salvação. "Penetrando até ao ponto de dividir alma e espírito" — ela penetra nas partes mais profundas de nosso ser. "Juíza dos pensamentos e propósitos do coração" — ela revela os motivos e desejos ocultos do coração.',
     tipo: 'teologico',
   },
 ];

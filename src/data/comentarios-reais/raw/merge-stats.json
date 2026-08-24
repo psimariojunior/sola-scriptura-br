@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-08-24T17:47:30.328Z",
-  "totalManual": 5841,
+  "timestamp": "2026-08-24T18:05:12.320Z",
+  "totalManual": 5843,
   "totalReal": 135,
-  "totalCurated": 2,
+  "totalCurated": 0,
   "totalFinal": 5978,
-  "duplicatesSkipped": 3501,
+  "duplicatesSkipped": 3502,
   "byBook": {
     "gn": {
       "manual": 559,
@@ -202,8 +202,8 @@
       "total": 24
     },
     "mt": {
-      "manual": 169,
-      "real": 1,
+      "manual": 170,
+      "real": 0,
       "total": 170
     },
     "mc": {
@@ -302,8 +302,8 @@
       "total": 24
     },
     "1pe": {
-      "manual": 23,
-      "real": 1,
+      "manual": 24,
+      "real": 0,
       "total": 24
     },
     "2pe": {

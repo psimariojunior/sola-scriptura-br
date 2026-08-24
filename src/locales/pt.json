@@ -1298,6 +1298,72 @@
     "location": "Local",
     "readMore": "Ler mais"
   },
+  "configuracoes": {
+    "title": "Configurações",
+    "description": "Personalize sua experiência de estudo bíblico",
+    "appearance": {
+      "title": "Aparência",
+      "description": "Visual e leitura",
+      "theme": "Tema",
+      "themeDesc": "Escolha o tema visual da aplicação",
+      "fontSize": "Tamanho da fonte",
+      "fontFamily": "Família da fonte",
+      "serif": "Serifado (Spectral)",
+      "sans": "Sem serifa (Inter)",
+      "reading": "Leitura (Cormorant)"
+    },
+    "bible": {
+      "title": "Bíblia",
+      "description": "Tradução e áudio",
+      "defaultTranslation": "Tradução padrão",
+      "defaultTranslationDesc": "Usada na leitura e pesquisa",
+      "viewMode": "Modo de visualização",
+      "viewModeDesc": "Como os capítulos são exibidos",
+      "single": "Simples",
+      "parallel": "Paralelo",
+      "interlinear": "Interlinear",
+      "autoPlayAudio": "Reproduzir áudio automaticamente",
+      "audioVoice": "Voz do áudio",
+      "audioSpeed": "Velocidade do áudio"
+    },
+    "notifications": {
+      "title": "Notificações",
+      "description": "Lembretes e alertas",
+      "devocionalReminder": "Lembrete do devocional diário",
+      "devocionalReminderDesc": "Receba um lembrete para o devocional",
+      "planoReminder": "Lembrete do plano de leitura",
+      "planoReminderDesc": "Receba um lembrete do seu plano",
+      "streakReminder": "Lembrete de sequência",
+      "streakReminderDesc": "Mantenha sua sequência de leitura"
+    },
+    "idioma": {
+      "title": "Idioma",
+      "description": "Idioma da interface",
+      "portuguese": "Português",
+      "english": "English"
+    },
+    "dados": {
+      "title": "Dados",
+      "description": "Exportar e gerenciar",
+      "exportarFavoritos": "Exportar favoritos",
+      "exportarFavoritosDesc": "Salve seus versículos favoritos em JSON",
+      "exportarNotas": "Exportar notas",
+      "exportarNotasDesc": "Salve suas notas pessoais em JSON",
+      "limparDados": "Limpar dados locais",
+      "limparDadosDesc": "Remove todos os dados salvos neste dispositivo",
+      "limparConfirm": "Tem certeza? Isso não pode ser desfeito.",
+      "offlineTranslations": "Traduções offline",
+      "offlineTranslationsDesc": "Traduções baixadas para uso sem internet"
+    },
+    "conta": {
+      "title": "Conta",
+      "description": "Perfil e acesso",
+      "loggedIn": "Conectado como",
+      "irParaConta": "Ir para minha conta",
+      "fazerLogin": "Fazer login",
+      "fazerLoginDesc": "Acesse sua conta para sincronizar dados"
+    }
+  },
   "comparar": {
     "title": "Comparar Traduções",
     "subtitle": "Veja o mesmo versículo em diferentes traduções lado a lado",

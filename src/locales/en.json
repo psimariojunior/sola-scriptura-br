@@ -1298,6 +1298,72 @@
     "location": "Location",
     "readMore": "Read more"
   },
+  "configuracoes": {
+    "title": "Settings",
+    "description": "Customize your Bible study experience",
+    "appearance": {
+      "title": "Appearance",
+      "description": "Visual and reading",
+      "theme": "Theme",
+      "themeDesc": "Choose the application visual theme",
+      "fontSize": "Font size",
+      "fontFamily": "Font family",
+      "serif": "Serif (Spectral)",
+      "sans": "Sans-serif (Inter)",
+      "reading": "Reading (Cormorant)"
+    },
+    "bible": {
+      "title": "Bible",
+      "description": "Translation and audio",
+      "defaultTranslation": "Default translation",
+      "defaultTranslationDesc": "Used in reading and search",
+      "viewMode": "View mode",
+      "viewModeDesc": "How chapters are displayed",
+      "single": "Single",
+      "parallel": "Parallel",
+      "interlinear": "Interlinear",
+      "autoPlayAudio": "Auto-play audio",
+      "audioVoice": "Audio voice",
+      "audioSpeed": "Audio speed"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Reminders and alerts",
+      "devocionalReminder": "Daily devotional reminder",
+      "devocionalReminderDesc": "Receive a reminder for the devotional",
+      "planoReminder": "Reading plan reminder",
+      "planoReminderDesc": "Receive a reminder for your plan",
+      "streakReminder": "Streak reminder",
+      "streakReminderDesc": "Keep your reading streak"
+    },
+    "idioma": {
+      "title": "Language",
+      "description": "Interface language",
+      "portuguese": "Português",
+      "english": "English"
+    },
+    "dados": {
+      "title": "Data",
+      "description": "Export and manage",
+      "exportarFavoritos": "Export favorites",
+      "exportarFavoritosDesc": "Save your favorite verses as JSON",
+      "exportarNotas": "Export notes",
+      "exportarNotasDesc": "Save your personal notes as JSON",
+      "limparDados": "Clear local data",
+      "limparDadosDesc": "Remove all data saved on this device",
+      "limparConfirm": "Are you sure? This cannot be undone.",
+      "offlineTranslations": "Offline translations",
+      "offlineTranslationsDesc": "Translations downloaded for offline use"
+    },
+    "conta": {
+      "title": "Account",
+      "description": "Profile and access",
+      "loggedIn": "Logged in as",
+      "irParaConta": "Go to my account",
+      "fazerLogin": "Log in",
+      "fazerLoginDesc": "Access your account to sync data"
+    }
+  },
   "comparar": {
     "title": "Compare Translations",
     "subtitle": "View the same verse in different translations side by side",

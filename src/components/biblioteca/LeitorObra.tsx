@@ -52,7 +52,7 @@ function renderizarParagrafo(texto: string, key: number) {
   return (
     <p
       key={key}
-      className={`leading-relaxed mb-6 font-serif-body ${
+      className={`leading-relaxed mb-6 font-serif ${
         comNota
           ? 'text-sm text-muted-foreground bg-muted/60 border border-border/60 rounded-lg p-4 not-italic'
           : 'text-foreground/90'

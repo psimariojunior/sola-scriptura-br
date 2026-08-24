@@ -60,6 +60,7 @@ const NAV_COMMANDS: { label: string; href: string; icon: typeof BookOpen; grupo:
   { label: 'Bíblia', href: '/biblia', icon: BookOpen, grupo: 'Páginas' },
   { label: 'Pesquisa', href: '/pesquisa', icon: Compass, grupo: 'Páginas' },
   { label: 'Teologia Sistemática', href: '/teologia', icon: Church, grupo: 'Páginas' },
+  { label: 'Biblioteca — Clássicos da Fé', href: '/biblioteca', icon: BookOpen, grupo: 'Páginas' },
   { label: 'Estudos', href: '/estudos', icon: FileText, grupo: 'Páginas' },
   { label: 'Línguas Originais', href: '/idiomas', icon: Brain, grupo: 'Páginas' },
   { label: 'Exegese', href: '/exegese', icon: BookOpen, grupo: 'Páginas' },

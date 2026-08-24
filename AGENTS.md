@@ -63,6 +63,14 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
 - `/conta` — Conta do usuario (requer auth)
 - `/ofertas` — Ofertas voluntarias via PIX (QR Code + copiar chave)
 
+### Biblioteca Digital (NOVO — rivaliza com Logos Faithlife)
+- `/biblioteca` — **Biblioteca Digital "Classicos da Fe"**: 15 obras-primas de dominio publico com textos integrais/selecoes, fichas academicas (contexto historico + importancia), capas CSS estilo editora classica, linha do tempo por seculo, filtros por categoria/nivel, busca, progresso de leitura (localStorage `ssb_bib_leitura`) e "continuar leitura"
+- `/biblioteca/[obra]` — Pagina da obra: capa, citação destaque, contexto historico, importancia academica, sumario com checkmarks de capitulos lidos, ficha academica (autor, composicao, idioma original, edicao)
+- `/biblioteca/[obra]/[capitulo]` — **Leitor imersivo premium**: barra de progresso de scroll, controle de tamanho de fonte (A-/A+), drop cap no primeiro paragrafo, blockquotes com borda dourada, notas historicas destacadas, sumario expansivel, navegacao anterior/proximo, marcar capitulo como lido
+- **Obras** (15, ~9h de leitura): Didache (integral), Epistola a Diogneto (integral), Inacio aos Romanos (integral + trechos), Martirio de Policarpo, Justino Primeira Apologia (com o c.67 — culto dominical mais antigo), Credos Ecumenicos (4 credos com notas), Agostinho Confissoes (selecoes), Westminster Menor (107 perguntas INTEGRAIS), Heidelberg (selecoes), 95 Teses (INTEGRAIS), Lutero Liberdade do Cristao, Calvino Institutas (selecoes), Imitacao de Cristo, Irmão Lawrence, Josefo Queda de Jerusalem
+- **Dados**: `src/data/biblioteca/` — `catalogo.ts` (metadados leves), `obras/<id>.ts` (conteudo lazy por rota), `index.ts` (loader dinamico), `types.ts`
+- **Componentes**: `src/components/biblioteca/CapaLivro.tsx`, `ObraDetalhe.tsx`, `LeitorObra.tsx`
+
 ### Novas (sessao atual)
 - `/favoritos` — Versiculos favoritos com cores, filtros por cor/livro, export JSON, ordenacao
 - `/notas` — Editor rico com formatacao, tags, historico de versoes
@@ -348,6 +356,7 @@ Plataforma de estudo biblico completa. Site + App mobile. **Acesso livre, sem an
 | Audio com preload + karaoke | ✅ | ✅ | ✅ |
 | Busca semantica | 💰 | ❌ | ✅ |
 | Comentarios inline (4911) | 💰 | ❌ | ✅ |
+| Biblioteca de classicos (Pais da Igreja, Reforma, credos) | 💰 | Parcial | ✅ 15 obras gratis |
 | Referencias cruzadas visuais | 💰 | ❌ | ✅ |
 | Harmonia sinotica interativa | 💰 | ❌ | ✅ |
 | IA para estudo biblico | 💰 | ❌ | ✅ Gratis |

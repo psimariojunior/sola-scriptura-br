@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { OBRAS } from '@/data/biblioteca';
 
 const BASE_URL = 'https://solascripturabr.com.br';
 
@@ -16,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/idiomas`, lastModified: ONE_MONTH_AGO, changeFrequency: 'monthly' as const, priority: 0.85 },
     { url: `${BASE_URL}/palavras`, lastModified: ONE_MONTH_AGO, changeFrequency: 'monthly' as const, priority: 0.85 },
     { url: `${BASE_URL}/teologia`, lastModified: ONE_MONTH_AGO, changeFrequency: 'monthly' as const, priority: 0.8 },
+    { url: `${BASE_URL}/biblioteca`, lastModified: ONE_MONTH_AGO, changeFrequency: 'monthly' as const, priority: 0.9 },
     { url: `${BASE_URL}/historia`, lastModified: ONE_MONTH_AGO, changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: `${BASE_URL}/personagens`, lastModified: ONE_MONTH_AGO, changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: `${BASE_URL}/cronologia`, lastModified: TWO_MONTHS_AGO, changeFrequency: 'monthly' as const, priority: 0.75 },
@@ -81,5 +83,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...studyPages];
+  // Obras da Biblioteca Digital (Clássicos da Fé)
+  const bibliotecaPages = OBRAS.map(obra => ({
+    url: `${BASE_URL}/biblioteca/${obra.id}`,
+    lastModified: ONE_MONTH_AGO,
+    changeFrequency: 'monthly' as const,
+    priority: 0.75,
+  }));
+
+  return [...staticPages, ...studyPages, ...bibliotecaPages];
 }

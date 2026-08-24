@@ -144,7 +144,7 @@ export function ObraDetalhe({ meta, capitulos }: ObraDetalheProps) {
                   <h2 className="font-display text-xl mb-4 text-primary flex items-center gap-2">
                     <Landmark className="w-5 h-5" /> Contexto Histórico
                   </h2>
-                  <p className="text-sm md:text-base text-foreground/80 leading-relaxed font-serif-body">
+                  <p className="text-sm md:text-base text-foreground/80 leading-relaxed font-serif">
                     {meta.contexto}
                   </p>
                 </div>
@@ -156,7 +156,7 @@ export function ObraDetalhe({ meta, capitulos }: ObraDetalheProps) {
                   <h2 className="font-display text-xl mb-4 text-primary flex items-center gap-2">
                     <GraduationCap className="w-5 h-5" /> Por Que Esta Obra Importa
                   </h2>
-                  <p className="text-sm md:text-base text-foreground/80 leading-relaxed font-serif-body">
+                  <p className="text-sm md:text-base text-foreground/80 leading-relaxed font-serif">
                     {meta.importancia}
                   </p>
                 </div>

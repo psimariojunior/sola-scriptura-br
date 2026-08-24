@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import dynamic from 'next/dynamic';
 import { Header } from '@/components/Header';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
-import { X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Sparkles, Info } from 'lucide-react';
 import { useEstudos } from '@/components/EstudosProvider';
 import { useVerseAudio } from '@/hooks/useVerseAudio';
 import { useAudioNatural } from '@/hooks/useAudioNatural';
@@ -28,6 +28,7 @@ import { BibleVerseList } from '@/components/Biblia/BibleVerseList';
 import { BibleSidebar } from '@/components/Biblia/BibleSidebar';
 import { SplitNotesPanel } from '@/components/Biblia/SplitNotesPanel';
 import OfflineBanner from '@/components/OfflineBanner';
+import { HotkeysDialog } from '@/components/HotkeysDialog';
 import type { CenaDramatica, PersonagemVoz } from '@/components/NarracaoDramatica';
 import Paywall from '@/components/Paywall';
 
@@ -88,6 +89,9 @@ export default function BibliaPage() {
   const [painelTabInicial, setPainelTabInicial] = useState<string | undefined>(undefined);
 
   const { vibrate } = useMicroInteracoes();
+
+  const [showHotkeysDialog, setShowHotkeysDialog] = useState(false);
+  const [showHotkeysToast, setShowHotkeysToast] = useState(false);
 
   const handlePrevChapter = useCallback(() => {
     if (nav.capituloIdx > 0) {
@@ -171,6 +175,169 @@ export default function BibliaPage() {
     }
   }, [nav.capituloIdx, nav.livroIdx, nav.temDados, nav.data, nav.livro.abreviacao]);
 
+  // First-visit hotkeys toast
+  useEffect(() => {
+    try {
+      const shown = localStorage.getItem('ssb_hotkeys_toast_shown');
+      if (!shown) {
+        const timer = setTimeout(() => {
+          setShowHotkeysToast(true);
+          localStorage.setItem('ssb_hotkeys_toast_shown', '1');
+          setTimeout(() => setShowHotkeysToast(false), 5000);
+        }, 2000);
+        return () => clearTimeout(timer);
+      }
+    } catch {}
+  }, []);
+
+  // Keyboard shortcuts for Bible reader
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) return;
+
+      const key = e.key;
+      const mod = e.metaKey || e.ctrlKey;
+
+      // ? — Show hotkeys
+      if (key === '?' || (e.shiftKey && key === '/')) {
+        e.preventDefault();
+        setShowHotkeysDialog(prev => !prev);
+        return;
+      }
+
+      // Escape — close hotkeys dialog
+      if (key === 'Escape' && showHotkeysDialog) {
+        e.preventDefault();
+        setShowHotkeysDialog(false);
+        return;
+      }
+
+      // Don't process other shortcuts if dialog is open
+      if (showHotkeysDialog) return;
+
+      // Ctrl+K — Search
+      if (mod && key === 'k') {
+        e.preventDefault();
+        ui.setQuickSearchOpen(true);
+        return;
+      }
+
+      // Ctrl+D — Verse of the day (navigate to home)
+      if (mod && key === 'd') {
+        e.preventDefault();
+        window.location.href = '/';
+        return;
+      }
+
+      // Arrow Left — Previous chapter
+      if (key === 'ArrowLeft' && !mod) {
+        e.preventDefault();
+        handlePrevChapter();
+        return;
+      }
+
+      // Arrow Right — Next chapter
+      if (key === 'ArrowRight' && !mod) {
+        e.preventDefault();
+        handleNextChapter();
+        return;
+      }
+
+      // Arrow Up — Previous verse
+      if (key === 'ArrowUp' && !mod) {
+        e.preventDefault();
+        if (verse.versiculoSelecionado) {
+          const prev = Math.max(1, verse.versiculoSelecionado.versiculo - 1);
+          verse.handleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, prev, verse.versiculoSelecionado.traducao, '');
+        } else if (nav.data[0]?.versiculos?.length) {
+          verse.handleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, 1, nav.selectedTrads[0] || 'arc', '');
+        }
+        return;
+      }
+
+      // Arrow Down — Next verse
+      if (key === 'ArrowDown' && !mod) {
+        e.preventDefault();
+        const maxVerse = nav.data[0]?.versiculos?.length || 0;
+        if (verse.versiculoSelecionado && maxVerse > 0) {
+          const next = Math.min(maxVerse, verse.versiculoSelecionado.versiculo + 1);
+          verse.handleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, next, verse.versiculoSelecionado.traducao, '');
+        } else if (nav.data[0]?.versiculos?.length) {
+          verse.handleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, 1, nav.selectedTrads[0] || 'arc', '');
+        }
+        return;
+      }
+
+      // F — Toggle zen/fullscreen mode
+      if (key === 'f' && !mod) {
+        e.preventDefault();
+        ui.setZenMode(!ui.zenMode);
+        return;
+      }
+
+      // I — Toggle interlinear
+      if (key === 'i' && !mod) {
+        e.preventDefault();
+        ui.setShowInterlinear(!ui.showInterlinear);
+        return;
+      }
+
+      // S — Toggle split view
+      if (key === 's' && !mod) {
+        e.preventDefault();
+        if (ui.modoLeitura === 'split') {
+          ui.setModoLeitura('foco');
+        } else {
+          ui.setModoLeitura('split');
+        }
+        return;
+      }
+
+      // A — Toggle audio
+      if (key === 'a' && !mod) {
+        e.preventDefault();
+        if (capituloAudio.state.isPlaying || capituloAudio.state.isPaused) {
+          capituloAudio.stop();
+        } else {
+          capituloAudio.play();
+        }
+        return;
+      }
+
+      // + — Increase font size
+      if (key === '+' || key === '=') {
+        e.preventDefault();
+        ui.setFontSize(Math.min(32, ui.fontSize + 1));
+        return;
+      }
+
+      // - — Decrease font size
+      if (key === '-') {
+        e.preventDefault();
+        ui.setFontSize(Math.max(12, ui.fontSize - 1));
+        return;
+      }
+
+      // T — Toggle theme
+      if (key === 't' && !mod) {
+        e.preventDefault();
+        const themes = ['claro', 'escuro', 'dim', 'sepia', 'noturno'];
+        try {
+          const current = localStorage.getItem('ssb_theme') || 'escuro';
+          const idx = themes.indexOf(current);
+          const next = themes[(idx + 1) % themes.length];
+          localStorage.setItem('ssb_theme', next);
+          document.documentElement.setAttribute('data-theme', next);
+        } catch {}
+        return;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [showHotkeysDialog, ui, nav, verse, capituloAudio, handlePrevChapter, handleNextChapter]);
+
   if (ui.zenMode && nav.temDados) {
     return (
       <div className="fixed inset-0 z-50 bg-[var(--bg)] overflow-y-auto">
@@ -221,6 +388,7 @@ export default function BibliaPage() {
               passagemDramatica={passagemDramatica}
               verse={verse}
               onShowDownloadManager={setShowDownloadManager}
+              onShowHotkeys={() => setShowHotkeysDialog(true)}
             />
             <div className="flex-1 flex overflow-hidden">
               <div className="flex-1 overflow-y-auto" style={ui.modoLeitura === 'split' ? { flex: `0 0 ${ui.splitRatio}%` } : undefined}>
@@ -319,6 +487,16 @@ export default function BibliaPage() {
           traducao={nav.selectedTrads[0] || 'arc'}
           onClose={() => ui.setImmersiveMode(false)}
         />
+      )}
+      <HotkeysDialog open={showHotkeysDialog} onOpenChange={setShowHotkeysDialog} />
+      {showHotkeysToast && (
+        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-2 px-4 py-2.5 rounded-full bg-[var(--surface-raised)] border border-[var(--border)]/60 shadow-lg shadow-black/10 animate-in slide-in-from-bottom-4 fade-in duration-300">
+          <Info className="w-4 h-4 text-[var(--brand-default)] shrink-0" />
+          <span className="text-sm text-[var(--content-primary)]">Pressione <kbd className="px-1.5 py-0.5 text-[10px] font-mono border border-[var(--border)]/50 rounded bg-[var(--surface-sunken)]">?</kbd> para ver os atalhos de teclado</span>
+          <button onClick={() => setShowHotkeysToast(false)} className="ml-1 p-0.5 rounded hover:bg-[var(--surface-sunken)] text-[var(--content-muted)]">
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
       )}
     </div>);
 }

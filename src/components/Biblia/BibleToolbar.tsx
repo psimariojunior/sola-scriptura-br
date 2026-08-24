@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Mic, Volume2, ListFilter, HardDrive, MoreVertical, Maximize2 } from 'lucide-react';
+import { BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Mic, Volume2, ListFilter, HardDrive, MoreVertical, Maximize2, Keyboard } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TranslationDropdown } from './TranslationDropdown';
 import { ToolsDropdown } from './ToolsDropdown';
@@ -29,10 +29,11 @@ interface BibleToolbarProps {
   passagemDramatica: { titulo: string; subtitulo: string } | undefined;
   verse: Pick<UseBibliaVerseReturn, 'notaAtiva' | 'criarNota' | 'setNotaAtiva' | 'setAnotacaoTexto'>;
   onShowDownloadManager: (v: boolean) => void;
+  onShowHotkeys: () => void;
 }
 
 export function BibleToolbar({
-  nav, ui, panels, capituloAudio, passagemDramatica, verse, onShowDownloadManager,
+  nav, ui, panels, capituloAudio, passagemDramatica, verse, onShowDownloadManager, onShowHotkeys,
 }: BibleToolbarProps) {
   const { t } = useTranslation();
   const [mobileToolbarMenuOpen, setMobileToolbarMenuOpen] = useState(false);
@@ -131,6 +132,12 @@ export function BibleToolbar({
             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20 transition-all"
             title="Modo Imersivo">
             <Maximize2 className="w-3.5 h-3.5" />
+          </button>
+          <button onClick={onShowHotkeys}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20 transition-all"
+            title="Atalhos ( ? )"
+            aria-label="Mostrar atalhos de teclado">
+            <Keyboard className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>

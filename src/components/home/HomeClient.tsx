@@ -17,6 +17,7 @@ import dynamic from 'next/dynamic';
 const VerseDoDia = dynamic(() => import('@/components/VerseDoDia'), { ssr: false });
 const ContinuarLeitura = dynamic(() => import('@/components/ContinuarLeitura'), { ssr: false });
 const StreakCard = dynamic(() => import('@/components/StreakCard').then(m => ({ default: m.StreakCard })), { ssr: false });
+const ReadingProgressRing = dynamic(() => import('@/components/ReadingProgressRing').then(m => ({ default: m.ReadingProgressRing })), { ssr: false });
 
 const FERRAMENTAS = [
   { href: '/biblia', icon: BookOpen, label: 'Bíblia', desc: '10 traduções, áudio, karaoke', cor: 'from-blue-500/15 to-blue-600/5' },
@@ -69,6 +70,13 @@ export default function HomeClient() {
           <ScrollReveal delay={0.15}>
             <div className="mb-6">
               <StreakCard />
+            </div>
+          </ScrollReveal>
+
+          {/* Progresso bíblico */}
+          <ScrollReveal delay={0.18}>
+            <div className="mb-6">
+              <ReadingProgressRing />
             </div>
           </ScrollReveal>
 

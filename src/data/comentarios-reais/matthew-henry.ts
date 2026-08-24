@@ -18,7 +18,7 @@ export const comentariosMatthewHenry: Comentario[] = [
     capitulo: 1,
     versiculo: 3,
     autor: 'Matthew Henry',
-    texto: 'E Deus disse: Haja luz; e houve luz. O primeiro de todos os seres visíveis que Deus criou foi a luz. Não para que Ele próprio pudesse ver ao trabalhar (pois trevas e luz são iguais para Ele), mas para que nós pudéssemos ver Suas obras e Sua glória nelas, e pudéssemos realizar nossas obras enquanto houver luz. A luz é a grande beleza e bênção do universo. Como o primogênito, ela se assemelha mais a seu grande Pai em pureza e poder, brilho e beneficência, dentre todos os seres visíveis; possui grande afinidade com um espírito, e está logo abaixo dele. A primeira coisa que Deus fez foi a luz; o que indica que a luz é o mais excelente dentre os seres visíveis, e que o Deus da luz é luz, e n'Ele não há trevas alguma.',
+    texto: 'E Deus disse: Haja luz; e houve luz. O primeiro de todos os seres visíveis que Deus criou foi a luz. Não para que Ele próprio pudesse ver ao trabalhar (pois trevas e luz são iguais para Ele), mas para que nós pudéssemos ver Suas obras e Sua glória nelas, e pudéssemos realizar nossas obras enquanto houver luz. A luz é a grande beleza e bênção do universo. Como o primogênito, ela se assemelha mais a seu grande Pai em pureza e poder, brilho e beneficência, dentre todos os seres visíveis; possui grande afinidade com um espírito, e está logo abaixo dele. A primeira coisa que Deus fez foi a luz; o que indica que a luz é o mais excelente dentre os seres visíveis, e que o Deus da luz é luz, e n\'Ele não há trevas alguma.',
     tipo: 'teologico',
   },
   {

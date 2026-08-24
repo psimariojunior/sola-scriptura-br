@@ -59,7 +59,7 @@ export const comentariosgn: Comentario[] = [
     "capitulo": 1,
     "versiculo": 24,
     "autor": "Matthew Henry",
-    "texto": "Temos aqui a primeira parte do trabalho do sexto dia. O mar foi, no dia anterior, reabastecido com seus peixes, e o ar com suas aves; e neste dia foram feitos os animais da terra, o gado e os répteis que pertencem à terra. Aqui, como antes: 1. O Senhor deu a palavra; Ele disse: Traga a terra — não como se a terra tivesse alguma virtude prolífica para produzir esses animais, ou como se Deus resignasse Seu poder criador a ela; mas, "Que essas criaturas agora venham à existência sobre a terra, e fora dela, em seus respectivos tipos, conforme as ideias delas nos conselhos divinos concernentes à sua criação." 2. Ele também fez a obra; Ele os fez todos segundo sua espécie, não apenas de diversas formas, mas de diversas naturezas, costumes, alimentos e estilos — alguns para serem mansos...",
+    "texto": `Temos aqui a primeira parte do trabalho do sexto dia. O mar foi, no dia anterior, reabastecido com seus peixes, e o ar com suas aves; e neste dia foram feitos os animais da terra, o gado e os répteis que pertencem à terra. Aqui, como antes: 1. O Senhor deu a palavra; Ele disse: Traga a terra — não como se a terra tivesse alguma virtude prolífica para produzir esses animais, ou como se Deus resignasse Seu poder criador a ela; mas, "Que essas criaturas agora venham à existência sobre a terra, e fora dela, em seus respectivos tipos, conforme as ideias delas nos conselhos divinos concernentes à sua criação." 2. Ele também fez a obra; Ele os fez todos segundo sua espécie, não apenas de diversas formas, mas de diversas naturezas, costumes, alimentos e estilos — alguns para serem mansos...`,
     "tipo": "teologico"
   },
   {

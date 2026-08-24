@@ -1,3 +1,5 @@
+import { authService } from './auth';
+
 const API_BASE_URL = 'https://api.solascripturabr.com.br/api/v1';
 
 export class ApiError extends Error {
@@ -19,7 +21,7 @@ interface RequestOptions extends Omit<RequestInit, 'body'> {
 
 function getToken(): string | null {
   if (typeof window === 'undefined') return null;
-  return localStorage.getItem('accessToken');
+  return authService.getAccessToken();
 }
 
 function buildUrl(path: string, params?: Record<string, string | number | boolean | undefined | null>): string {

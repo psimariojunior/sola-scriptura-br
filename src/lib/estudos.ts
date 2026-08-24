@@ -55,7 +55,7 @@ function salvarLocal(data: EstudosData) {
 
 function obterToken(): string | null {
   if (typeof window === 'undefined') return null;
-  return localStorage.getItem('accessToken');
+  return authService.getAccessToken();
 }
 
 // Sync with backend

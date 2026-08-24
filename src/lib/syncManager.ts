@@ -1,6 +1,7 @@
 'use client';
 
 import { saveFavoritesOffline, getFavoritesOffline, saveNotesOffline, getNotesOffline, isOffline } from './offlineStorage';
+import { authService } from './auth';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
 
@@ -12,12 +13,12 @@ interface SyncResult {
 
 function getUserId(): string | null {
   if (typeof window === 'undefined') return null;
-  return localStorage.getItem('ssb_user_id');
+  return authService.getUsuario()?.id || localStorage.getItem('ssb_user_id');
 }
 
 function getAuthToken(): string | null {
   if (typeof window === 'undefined') return null;
-  return localStorage.getItem('ssb_token');
+  return authService.getAccessToken();
 }
 
 async function apiCall(endpoint: string, method: string = 'GET', body?: unknown): Promise<unknown> {

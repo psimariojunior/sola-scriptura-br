@@ -4,7 +4,7 @@ export async function POST(request: NextRequest) {
   try {
     const { name } = await request.json();
 
-    const allowedCookies = ['ssb_token', 'ssb_usuario'];
+    const allowedCookies = ['ssb_token', 'ssb_usuario', 'ssb_refresh'];
     if (!name || !allowedCookies.includes(name)) {
       return NextResponse.json({ ok: true });
     }

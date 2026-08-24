@@ -1,17 +1,5 @@
 'use client';
 
-const USERS_KEY = 'ssb_users';
-const TOKEN_KEY = 'accessToken';
-const REFRESH_KEY = 'refreshToken';
-const USER_KEY = 'usuario';
-
-const LEGACY_KEYS = {
-  users: ['ssb_users_v1', 'sola_users', 'users', 'auth_users', 'ssb_accounts'],
-  token: ['accessToken', 'auth_token', 'ssb_token', 'token', 'jwt'],
-  refresh: ['refreshToken', 'refresh_token', 'ssb_refresh'],
-  user: ['usuario', 'user', 'currentUser', 'ssb_user', 'ssb_usuario'],
-};
-
 interface Usuario {
   id: string;
   nome: string;
@@ -27,8 +15,6 @@ interface AuthResponse {
   usuario: Usuario;
 }
 
-type StoredUser = Usuario & { name?: string };
-
 function readJSON<T>(raw: string | null): T | null {
   if (!raw) return null;
   try {
@@ -42,48 +28,6 @@ function normalizeEmail(email: string): string {
   return (email || '').trim().toLowerCase();
 }
 
-function makeUserId(): string {
-  return `user_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-}
-
-function makeToken(prefix: string): string {
-  return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
-}
-
-function readLegacyUsers(): StoredUser[] {
-  if (typeof window === 'undefined') return [];
-  for (const key of LEGACY_KEYS.users) {
-    const parsed = readJSON<StoredUser[] | { users: StoredUser[] }>(localStorage.getItem(key));
-    if (Array.isArray(parsed)) return parsed;
-    if (parsed && Array.isArray((parsed as { users: StoredUser[] }).users)) {
-      return (parsed as { users: StoredUser[] }).users;
-    }
-  }
-  return [];
-}
-
-function readLegacySession(): { token: string | null; refresh: string | null; usuario: Usuario | null } {
-  if (typeof window === 'undefined') return { token: null, refresh: null, usuario: null };
-  let token: string | null = null;
-  let refresh: string | null = null;
-  let usuario: Usuario | null = null;
-
-  for (const key of LEGACY_KEYS.token) {
-    const v = localStorage.getItem(key);
-    if (v) { token = v; break; }
-  }
-  for (const key of LEGACY_KEYS.refresh) {
-    const v = localStorage.getItem(key);
-    if (v) { refresh = v; break; }
-  }
-  for (const key of LEGACY_KEYS.user) {
-    const parsed = readJSON<Usuario>(localStorage.getItem(key));
-    if (parsed && parsed.email) { usuario = parsed; break; }
-  }
-
-  return { token, refresh, usuario };
-}
-
 const ADMIN_EMAILS = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || '')
   .split(',')
   .map((e) => e.trim().toLowerCase())
@@ -95,17 +39,27 @@ function aplicarRole(usuario: Usuario): Usuario {
   return { ...usuario, role: isAdmin ? 'admin' : 'user' };
 }
 
+/**
+ * Le valor de um cookie pelo nome (acessa cookies NAO-HttpOnly).
+ * Para cookies HttpOnly, use a rota /api/auth/user.
+ */
+function getCookie(name: string): string | null {
+  if (typeof document === 'undefined') return null;
+  const match = document.cookie.split(';').find((c) => c.trim().startsWith(`${name}=`));
+  return match ? decodeURIComponent(match.split('=').slice(1).join('=')) : null;
+}
+
 class AuthService {
   private static instance: AuthService;
   private accessToken: string | null = null;
-  private refreshToken: string | null = null;
+  private refreshTokenValue: string | null = null;
   private usuario: Usuario | null = null;
   private listeners: Set<() => void> = new Set();
-  private migrated = false;
+  private initialized = false;
 
   private constructor() {
     if (typeof window !== 'undefined') {
-      this.loadFromStorage();
+      this.initFromCookies();
     }
   }
 
@@ -116,94 +70,21 @@ class AuthService {
     return AuthService.instance;
   }
 
-  private loadFromStorage(): void {
-    if (typeof window === 'undefined') return;
+  /**
+   * Inicializa estado a partir de cookies na primeira visita.
+   * Le o cookie ssb_usuario (nao-HttpOnly) para info do UI.
+   * O token de acesso so e necessario em memoria apos login/refresh.
+   */
+  private initFromCookies(): void {
+    if (typeof window === 'undefined' || this.initialized) return;
+    this.initialized = true;
 
-    this.migrarContasAntigas();
-
-    this.accessToken = localStorage.getItem(TOKEN_KEY);
-    this.refreshToken = localStorage.getItem(REFRESH_KEY);
-    const usuarioStr = localStorage.getItem(USER_KEY);
+    const usuarioStr = getCookie('ssb_usuario');
     if (usuarioStr) {
       const parsed = readJSON<Usuario>(usuarioStr);
       if (parsed && parsed.email) {
         this.usuario = aplicarRole(parsed);
       }
-    }
-
-    // Ensure cookies exist from localStorage (recreate if missing)
-    if (this.accessToken && this.usuario) {
-      const existingToken = document.cookie.split(';').some(c => c.trim().startsWith('ssb_token='));
-      if (!existingToken) {
-        this.setCookie('ssb_token', this.accessToken);
-        this.setCookie('ssb_usuario', JSON.stringify(this.usuario));
-      }
-    }
-  }
-
-  private getUsers(): StoredUser[] {
-    if (typeof window === 'undefined') return [];
-    const parsed = readJSON<StoredUser[]>(localStorage.getItem(USERS_KEY));
-    return Array.isArray(parsed) ? parsed : [];
-  }
-
-  private saveUsers(users: StoredUser[]): void {
-    if (typeof window === 'undefined') return;
-    localStorage.setItem(USERS_KEY, JSON.stringify(users));
-  }
-
-  private migrarContasAntigas(): void {
-    if (typeof window === 'undefined') return;
-    if (this.migrated) return;
-    this.migrated = true;
-
-    try {
-      const currentUsers = this.getUsers();
-      const legacyUsers = readLegacyUsers();
-
-      if (legacyUsers.length > 0) {
-        const emailsAtuais = new Set(currentUsers.map((u) => normalizeEmail(u.email)));
-        const usersMigrados: StoredUser[] = [...currentUsers];
-
-        for (const legacy of legacyUsers) {
-          if (!legacy || !legacy.email) continue;
-          const emailNorm = normalizeEmail(legacy.email);
-          if (emailsAtuais.has(emailNorm)) continue;
-          const id = legacy.id || makeUserId();
-          usersMigrados.push({
-            id,
-            nome: legacy.nome || legacy.name || legacy.email.split('@')[0],
-            email: legacy.email,
-            role: legacy.role || 'user',
-          });
-          emailsAtuais.add(emailNorm);
-        }
-
-        if (usersMigrados.length > currentUsers.length) {
-          this.saveUsers(usersMigrados);
-        }
-      }
-
-      const hasCurrentSession = !!localStorage.getItem(TOKEN_KEY) && !!localStorage.getItem(USER_KEY);
-      if (!hasCurrentSession) {
-        const { token, refresh, usuario } = readLegacySession();
-        if (token && usuario && usuario.email) {
-          this.accessToken = token;
-          this.refreshToken = refresh;
-          this.usuario = aplicarRole(usuario);
-          this.setSession({
-            accessToken: token,
-            refreshToken: refresh || makeToken('refresh'),
-            usuario: this.usuario,
-          });
-        }
-      }
-
-      for (const key of LEGACY_KEYS.users) {
-        if (key !== USERS_KEY) localStorage.removeItem(key);
-      }
-    } catch {
-      // Falha silenciosa - migração não pode quebrar o app
     }
   }
 
@@ -234,13 +115,13 @@ class AuthService {
 
     const result = data.data || data;
 
-    this.setSession({
-      accessToken: result.accessToken,
-      refreshToken: result.refreshToken,
-      usuario: result.usuario,
-    });
+    // API route ja setou cookies HttpOnly; armazena token em memoria
+    this.accessToken = result.accessToken || null;
+    this.refreshTokenValue = result.refreshToken || null;
+    this.usuario = aplicarRole(result.usuario);
 
-    return result.usuario;
+    this.notifyListeners();
+    return this.usuario!;
   }
 
   async login(email: string, senha: string): Promise<Usuario> {
@@ -266,12 +147,12 @@ class AuthService {
     const result = data.data || data;
     const usuario: Usuario = aplicarRole(result.usuario);
 
-    this.setSession({
-      accessToken: result.accessToken,
-      refreshToken: result.refreshToken,
-      usuario,
-    });
+    // API route ja setou cookies HttpOnly; armazena token em memoria
+    this.accessToken = result.accessToken || null;
+    this.refreshTokenValue = result.refreshToken || null;
+    this.usuario = usuario;
 
+    this.notifyListeners();
     return usuario;
   }
 
@@ -301,7 +182,6 @@ class AuthService {
     });
   }
 
-  // Isolado para permitir spy em testes e evitar acesso direto a window.location.
   protected redirecionar(url: string): void {
     if (typeof window !== 'undefined') {
       window.location.assign(url);
@@ -309,27 +189,60 @@ class AuthService {
   }
 
   async logout(): Promise<void> {
-    this.clearSession();
+    this.accessToken = null;
+    this.refreshTokenValue = null;
+    this.usuario = null;
+
+    if (typeof window !== 'undefined') {
+      // Limpa cookies via API route (HttpOnly)
+      const cookiesToClear = ['ssb_token', 'ssb_usuario', 'ssb_refresh'];
+      await Promise.allSettled(
+        cookiesToClear.map((name) =>
+          fetch('/api/auth/cookie/clear', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name }),
+          }).catch(() => {
+            // Fallback: limpa cookie acessivel via document.cookie
+            document.cookie = `${name}=; path=/; max-age=0`;
+          })
+        )
+      );
+    }
+
+    this.notifyListeners();
   }
 
   async refreshAccessToken(): Promise<boolean> {
-    if (!this.refreshToken) return false;
+    if (!this.refreshTokenValue) {
+      // Tenta ler refresh token do cookie HttpOnly via API
+      try {
+        const cookieRes = await fetch('/api/auth/user');
+        if (!cookieRes.ok) return false;
+        // Nao temos acesso ao refresh token HttpOnly no client
+        return false;
+      } catch {
+        return false;
+      }
+    }
+
     try {
       const res = await fetch('/api/auth/refresh', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ refreshToken: this.refreshToken }),
+        body: JSON.stringify({ refreshToken: this.refreshTokenValue }),
         signal: AbortSignal.timeout(10000),
       });
       if (!res.ok) return false;
       const data = await res.json();
-      if (data.accessToken) {
-        const result = data.data || data;
-        this.setSession({
-          accessToken: result.accessToken,
-          refreshToken: result.refreshToken || this.refreshToken,
-          usuario: result.usuario || this.usuario,
-        });
+      const result = data.data || data;
+      if (result.accessToken) {
+        this.accessToken = result.accessToken;
+        this.refreshTokenValue = result.refreshToken || this.refreshTokenValue;
+        if (result.usuario) {
+          this.usuario = aplicarRole(result.usuario);
+        }
+        this.notifyListeners();
         return true;
       }
     } catch { /* ignore */ }
@@ -341,7 +254,7 @@ class AuthService {
     const headers = { ...options.headers, Authorization: `Bearer ${token}` };
     let res = await fetch(url, { ...options, headers });
 
-    if (res.status === 401 && this.refreshToken) {
+    if (res.status === 401 && this.refreshTokenValue) {
       const refreshed = await this.refreshAccessToken();
       if (refreshed) {
         const newToken = this.getAccessToken();
@@ -351,62 +264,6 @@ class AuthService {
     }
 
     return res;
-  }
-
-  private setSession(data: AuthResponse): void {
-    const usuario = aplicarRole(data.usuario);
-
-    this.accessToken = data.accessToken;
-    this.refreshToken = data.refreshToken;
-    this.usuario = usuario;
-
-    if (typeof window !== 'undefined') {
-      try {
-        localStorage.setItem(TOKEN_KEY, data.accessToken);
-        localStorage.setItem(REFRESH_KEY, data.refreshToken);
-        localStorage.setItem(USER_KEY, JSON.stringify(usuario));
-      } catch { /* ignore */ }
-      this.setCookie('ssb_token', data.accessToken);
-      this.setCookie('ssb_usuario', JSON.stringify(usuario));
-    }
-
-    this.notifyListeners();
-  }
-
-  private setCookie(name: string, value: string): void {
-    try {
-      // Set cookie synchronously via document.cookie (middleware reads this)
-      const expirar = 60 * 60 * 24 * 30; // 30 days
-      const secure = typeof window !== 'undefined' && window.location.protocol === 'https:';
-      document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${expirar}; SameSite=Lax${secure ? '; Secure' : ''}`;
-    } catch { /* ignore */ }
-  }
-
-  private clearSession(): void {
-    this.accessToken = null;
-    this.refreshToken = null;
-    this.usuario = null;
-
-    if (typeof window !== 'undefined') {
-      try {
-        localStorage.removeItem(TOKEN_KEY);
-        localStorage.removeItem(REFRESH_KEY);
-        localStorage.removeItem(USER_KEY);
-      } catch { /* ignore */ }
-      // Limpa cookies via API route (HttpOnly)
-      ['ssb_token', 'ssb_usuario'].forEach((name) => {
-        fetch('/api/auth/cookie/clear', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name }),
-        }).catch(() => {
-          // Fallback
-          document.cookie = `${name}=; path=/; max-age=0`;
-        });
-      });
-    }
-
-    this.notifyListeners();
   }
 
   subscribe(callback: () => void): () => void {
@@ -427,7 +284,7 @@ class AuthService {
   }
 
   isAutenticado(): boolean {
-    return !!this.accessToken && !!this.usuario;
+    return !!this.usuario;
   }
 
   isAdmin(): boolean {
@@ -439,10 +296,6 @@ class AuthService {
     return !!this.usuario?.acessoTotal;
   }
 
-  // Confirma o "Acesso Total" real no servidor (Supabase) e, se confirmado,
-  // persiste a flag no localStorage para atualizar a UI instantaneamente.
-  // O localStorage continua sendo o cache de UX; o servidor e' a fonte de verdade.
-  // Em caso de falha de rede/offline, mantem o valor atual do localStorage.
   async sincronizarAcessoTotal(): Promise<void> {
     if (typeof window === 'undefined') return;
     if (!this.isAutenticado()) return;
@@ -463,7 +316,7 @@ class AuthService {
         }
       }
     } catch {
-      // Offline/rede indisponivel: mantem o valor do localStorage.
+      // Offline/rede indisponivel: mantem o valor atual
     }
   }
 
@@ -476,9 +329,11 @@ class AuthService {
       dataPagamento: new Date().toISOString(),
     };
     this.usuario = usuarioAtualizado;
+    // Atualiza cookie de usuario (nao-HttpOnly para leitura no client)
     try {
-      localStorage.setItem(USER_KEY, JSON.stringify(usuarioAtualizado));
-      this.setCookie('ssb_usuario', JSON.stringify(usuarioAtualizado));
+      const expirar = 60 * 60 * 24 * 30;
+      const secure = window.location.protocol === 'https:';
+      document.cookie = `ssb_usuario=${encodeURIComponent(JSON.stringify(usuarioAtualizado))}; path=/; max-age=${expirar}; SameSite=Lax${secure ? '; Secure' : ''}`;
     } catch { /* ignore */ }
     this.notifyListeners();
   }
@@ -488,39 +343,51 @@ class AuthService {
   }
 
   getRefreshToken(): string | null {
-    return this.refreshToken;
+    return this.refreshTokenValue;
   }
 
+  /**
+   * Recarrega sessao a partir dos cookies (util para mudancas em outra aba).
+   */
   recarregarSessao(): void {
     if (typeof window === 'undefined') return;
-    this.migrarContasAntigas();
-    this.accessToken = localStorage.getItem(TOKEN_KEY);
-    this.refreshToken = localStorage.getItem(REFRESH_KEY);
-    const usuarioStr = localStorage.getItem(USER_KEY);
+    const usuarioStr = getCookie('ssb_usuario');
     if (usuarioStr) {
       const parsed = readJSON<Usuario>(usuarioStr);
       this.usuario = parsed && parsed.email ? aplicarRole(parsed) : null;
     } else {
       this.usuario = null;
+      this.accessToken = null;
+      this.refreshTokenValue = null;
     }
     this.notifyListeners();
   }
 
+  /**
+   * Define sessao a partir de dados externos (ex: OAuth callback).
+   * Os cookies HttpOnly devem ser setados pela API route correspondente.
+   */
   definirSessaoExterna(data: AuthResponse): void {
     if (typeof window === 'undefined') return;
-    this.setSession(data);
+    this.accessToken = data.accessToken || null;
+    this.refreshTokenValue = data.refreshToken || null;
+    this.usuario = data.usuario ? aplicarRole(data.usuario) : null;
+    this.notifyListeners();
   }
 
-  migrarManualmente(): boolean {
-    if (typeof window === 'undefined') return false;
-    this.migrated = false;
-    this.migrarContasAntigas();
-    this.recarregarSessao();
-    return this.isAutenticado();
-  }
-
-  listarUsuariosCadastrados(): number {
-    return this.getUsers().length;
+  /**
+   * Sessao do OAuth: chama API para setar cookies HttpOnly e armazena em memoria.
+   */
+  async definirSessaoOAuth(data: AuthResponse): Promise<void> {
+    if (typeof window === 'undefined') return;
+    try {
+      await fetch('/api/auth/oauth/set-cookies', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+    } catch { /* ignore */ }
+    this.definirSessaoExterna(data);
   }
 
   diagnosticarEstado(): {
@@ -532,16 +399,11 @@ class AuthService {
     if (typeof window === 'undefined') {
       return { temToken: false, temUsuario: false, totalUsers: 0, temLegacy: false };
     }
-    const totalUsers = this.getUsers().length;
-    const temLegacy =
-      LEGACY_KEYS.users.some((k) => !!localStorage.getItem(k) && k !== USERS_KEY) ||
-      LEGACY_KEYS.token.some((k) => !!localStorage.getItem(k) && k !== TOKEN_KEY) ||
-      LEGACY_KEYS.user.some((k) => !!localStorage.getItem(k) && k !== USER_KEY);
     return {
-      temToken: !!localStorage.getItem(TOKEN_KEY),
-      temUsuario: !!localStorage.getItem(USER_KEY),
-      totalUsers,
-      temLegacy,
+      temToken: !!this.accessToken,
+      temUsuario: !!this.usuario,
+      totalUsers: 0,
+      temLegacy: false,
     };
   }
 }

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Crown, Sparkles, X, Check, Lock } from 'lucide-react';
+import { authService } from '@/lib/auth';
 
 const BENEFICIOS = [
   'Assistente de IA (chat teológico)',
@@ -34,11 +35,7 @@ export default function Paywall({
     setCarregando(true);
     setErro('');
     try {
-      const userEmail =
-        (window as any) &&
-        (localStorage.getItem('usuario')
-          ? JSON.parse(localStorage.getItem('usuario') || '{}')?.email
-          : '');
+      const userEmail = authService.getUsuario()?.email || '';
 
       const res = await fetch('/api/pagamento/criar', {
         method: 'POST',

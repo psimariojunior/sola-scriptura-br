@@ -8,6 +8,7 @@ import { Brain, ChevronRight, ArrowLeft } from 'lucide-react';
 import { QuizCard } from '@/components/QuizCard';
 import { QuizProgress } from '@/components/QuizProgress';
 import { QuizTimer } from '@/components/QuizTimer';
+import { authService } from '@/lib/auth';
 import { QuizResults } from '@/components/QuizResults';
 import ScrollReveal from '@/components/ScrollReveal';
 import Link from 'next/link';
@@ -48,8 +49,7 @@ export default function QuizClassicoPage() {
   const [nomeJogador, setNomeJogador] = useState(() => {
     if (typeof window !== 'undefined') {
       try {
-        const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
-        return usuario.nome || '';
+        return authService.getUsuario()?.nome || '';
       } catch { return ''; }
     }
     return '';

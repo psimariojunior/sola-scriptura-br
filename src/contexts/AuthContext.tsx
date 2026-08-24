@@ -13,7 +13,6 @@ interface AuthContextType {
   loginWithGoogle: () => Promise<Usuario>;
   loginWithApple: () => Promise<Usuario>;
   recarregarSessao: () => void;
-  migrarContas: () => boolean;
   diagnosticar: () => { temToken: boolean; temUsuario: boolean; totalUsers: number; temLegacy: boolean };
 }
 
@@ -42,7 +41,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    authService.migrarManualmente();
     syncState();
   }, [syncState]);
 
@@ -53,6 +51,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
     return unsub;
   }, [syncState]);
+
+  // Escuta mudancas de cookie em outra aba
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const handleStorage = () => {
+      authService.recarregarSessao();
+    };
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
+  }, []);
 
   const login = useCallback(async (email: string, senha: string) => {
     const user = await authService.login(email, senha);
@@ -88,10 +96,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     syncState();
   }, [syncState]);
 
-  const migrarContas = useCallback(() => {
-    return authService.migrarManualmente();
-  }, []);
-
   const diagnosticar = useCallback(() => {
     return authService.diagnosticarEstado();
   }, []);
@@ -108,7 +112,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         loginWithGoogle,
         loginWithApple,
         recarregarSessao,
-        migrarContas,
         diagnosticar,
       }}
     >
@@ -130,7 +133,6 @@ export function useAuth(): AuthContextType {
       loginWithGoogle: async () => { throw new Error('AuthProvider not mounted'); },
       loginWithApple: async () => { throw new Error('AuthProvider not mounted'); },
       recarregarSessao: () => {},
-      migrarContas: () => false,
       diagnosticar: () => ({ temToken: false, temUsuario: false, totalUsers: 0, temLegacy: false }),
     };
   }

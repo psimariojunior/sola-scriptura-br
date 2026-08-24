@@ -28,12 +28,14 @@ function AuthCallbackContent() {
     if (token && refresh && usuarioRaw) {
       try {
         const usuario = JSON.parse(decodeURIComponent(usuarioRaw));
-        authService.definirSessaoExterna({
+        // Usa definirSessaoOAuth para setar cookies HttpOnly via API
+        authService.definirSessaoOAuth({
           accessToken: token,
           refreshToken: refresh,
           usuario,
+        }).then(() => {
+          router.replace('/');
         });
-        router.replace('/');
         return;
       } catch {
         setErro('Falha ao processar autenticação');

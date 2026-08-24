@@ -1,6 +1,6 @@
 /**
  * Testes do serviço de autenticação (src/lib/auth.ts)
- * Valida: cadastro, login, roles de admin, persistência em localStorage/cookie
+ * Valida: cadastro, login, roles de admin, persistência em cookies HttpOnly
  * e propagação de estado sem necessidade de refresh.
  */
 import { authService, AuthService } from '@/lib/auth';
@@ -30,6 +30,7 @@ function mockFetchLogin(nome: string, email: string, role?: string) {
       try {
         document.cookie = `ssb_token=; path=/; max-age=0`;
         document.cookie = `ssb_usuario=; path=/; max-age=0`;
+        document.cookie = `ssb_refresh=; path=/; max-age=0`;
       } catch {}
       return { ok: true, json: async () => ({ message: 'ok' }) };
     }
@@ -39,6 +40,12 @@ function mockFetchLogin(nome: string, email: string, role?: string) {
         json: async () => ({
           data: { accessToken: 'tok_123', refreshToken: 'ref_123' },
         }),
+      };
+    }
+    if (String(url).includes('/auth/user')) {
+      return {
+        ok: true,
+        json: async () => ({ usuario: null }),
       };
     }
     return { ok: false, json: async () => ({ message: 'erro' }) };
@@ -55,12 +62,12 @@ describe('auth.ts', () => {
     authService.logout();
   });
 
-  test('login persiste sessão em localStorage e cookie', async () => {
+  test('login persiste sessão em memória e cookies HttpOnly', async () => {
     mockFetchLogin('Mário', 'teste@exemplo.com');
     const user = await authService.login('teste@exemplo.com', 'senha123');
     expect(user.email).toBe('teste@exemplo.com');
     expect(authService.isAutenticado()).toBe(true);
-    expect(localStorage.getItem('accessToken')).toBe('tok_123');
+    expect(authService.getAccessToken()).toBe('tok_123');
     expect(document.cookie).toContain('ssb_token=');
   });
 
@@ -88,25 +95,20 @@ describe('auth.ts', () => {
     expect(typeof authService.loginWithGoogle).toBe('function');
   });
 
-  test('logout limpa estado, storage e cookie', async () => {
+  test('logout limpa estado, memória e cookies', async () => {
     mockFetchLogin('Mário', 'teste@exemplo.com');
     await authService.login('teste@exemplo.com', 'senha123');
     expect(authService.isAutenticado()).toBe(true);
     await authService.logout();
-    // flush microtasks para que o .catch() do fetch fire-and-forget limpe os cookies
     await new Promise(r => setTimeout(r, 0));
     expect(authService.isAutenticado()).toBe(false);
-    expect(localStorage.getItem('accessToken')).toBeNull();
+    expect(authService.getAccessToken()).toBeNull();
     expect(document.cookie).not.toContain('ssb_token=tok');
   });
 
-  test('recarregarSessao restaura estado do localStorage', async () => {
-    mockFetchLogin('Mário', 'teste@exemplo.com');
-    await authService.login('teste@exemplo.com', 'senha123');
-    await authService.logout();
-    localStorage.setItem('accessToken', 'tok_123');
-    localStorage.setItem('refreshToken', 'ref_123');
-    localStorage.setItem('usuario', JSON.stringify({ id: 'u1', nome: 'Mário', email: 'teste@exemplo.com' }));
+  test('recarregarSessao restaura estado do cookie ssb_usuario', async () => {
+    // Simula cookie de usuario definido pela API route
+    document.cookie = `ssb_usuario=${encodeURIComponent(JSON.stringify({ id: 'u1', nome: 'Mário', email: 'teste@exemplo.com' }))}; path=/; max-age=3600`;
     authService.recarregarSessao();
     expect(authService.isAutenticado()).toBe(true);
     expect(authService.getUsuario()?.email).toBe('teste@exemplo.com');

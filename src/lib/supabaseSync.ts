@@ -1,5 +1,7 @@
 'use client';
 
+import { authService } from './auth';
+
 export type SyncDataType = 'favoritos' | 'notas' | 'colecoes' | 'flashcards' | 'progresso';
 
 interface SyncResult {
@@ -28,13 +30,8 @@ let autoSyncInterval: ReturnType<typeof setInterval> | null = null;
 export function getUserId(): string | null {
   try {
     if (typeof window === 'undefined') return null;
-    // Read from auth.ts format: { id, email, nome, ... }
-    const userStr = localStorage.getItem('usuario');
-    if (userStr) {
-      const user = JSON.parse(userStr);
-      if (user?.id) return String(user.id);
-    }
-    // Fallback: legacy key
+    const user = authService.getUsuario();
+    if (user?.id) return String(user.id);
     return localStorage.getItem('ssb_user_id');
   } catch (e) {
     console.error('[supabase:get-user-id]', e);
@@ -45,7 +42,7 @@ export function getUserId(): string | null {
 export function getAuthToken(): string | null {
   try {
     if (typeof window === 'undefined') return null;
-    return localStorage.getItem('accessToken') || localStorage.getItem('ssb_token');
+    return authService.getAccessToken();
   } catch (e) {
     console.error('[supabase:get-auth-token]', e);
     return null;

@@ -1,3 +1,5 @@
+import { authService } from './auth';
+
 const VAPID_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || '';
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1';
 const PUSH_ENABLED_KEY = 'ssb_push_enabled';
@@ -42,10 +44,7 @@ const DAILY_VERSES = [
 async function obterTokenAuth(): Promise<string | null> {
   if (typeof window === 'undefined') return null;
   try {
-    const cookies = document.cookie.split(';');
-    const tokenCookie = cookies.find((c) => c.trim().startsWith('ssb_token='));
-    if (tokenCookie) return tokenCookie.split('=')[1];
-    return localStorage.getItem('ssb_token');
+    return authService.getAccessToken();
   } catch {
     return null;
   }

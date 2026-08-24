@@ -4,8 +4,9 @@ import { OBRAS, getObraMeta, TOTAL_CAPITULOS, TOTAL_MINUTOS, SECULOS_COBERTOS } 
 export { OBRAS, getObraMeta, TOTAL_CAPITULOS, TOTAL_MINUTOS, SECULOS_COBERTOS };
 export * from './types';
 
-// Loader dinâmico: só o módulo da obra roteada entra no bundle/SSG da página
-const LOADERS: Record<string, () => Promise<{ obra: ObraConteudo }>> = {
+// Lazy-load por rota: so o modulo da obra visitada entra no bundle
+// Cada arquivo ./obras/*.ts exporta { obra: ObraConteudo } (named export)
+const OBRA_MAP: Record<string, () => Promise<{ obra: ObraConteudo }>> = {
   'didache': () => import('./obras/didache'),
   'diogneto': () => import('./obras/diogneto'),
   'inacio-romanos': () => import('./obras/inacio-romanos'),
@@ -24,7 +25,7 @@ const LOADERS: Record<string, () => Promise<{ obra: ObraConteudo }>> = {
 };
 
 export async function getObraConteudo(id: string): Promise<ObraConteudo | null> {
-  const loader = LOADERS[id];
+  const loader = OBRA_MAP[id];
   if (!loader) return null;
   const mod = await loader();
   return mod.obra;

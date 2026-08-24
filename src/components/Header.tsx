@@ -74,6 +74,7 @@ const maisGrupos: NavGroup[] = [
       { href: '/exegese', label: 'header.exegesis', icon: ScrollText },
       { href: '/comparar', label: 'header.compareTranslations', icon: Languages },
       { href: '/comparar-comentarios', label: 'header.commentaries', icon: MessageCircle },
+      { href: '/biblioteca', label: 'header.classics', icon: Library },
     ],
   },
 ];

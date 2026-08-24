@@ -40,28 +40,34 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Future<void> _loadSettings() async {
-    final prefs = await SharedPreferences.getInstance();
-    final biometricsAvailable = await _appLock.isBiometricsAvailable();
-    final cached = await OfflineSyncService.getCachedChapterCount();
-    final lastSync = await OfflineSyncService.getLastSyncTime();
-    final streak = await StreakService.getCurrentStreak();
-    final downloadedTranslations = await BibleOfflineService.instance.getDownloadedTranslations();
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final biometricsAvailable = await _appLock.isBiometricsAvailable();
+      final cached = await OfflineSyncService.getCachedChapterCount();
+      final lastSync = await OfflineSyncService.getLastSyncTime();
+      final streak = await StreakService.getCurrentStreak();
+      final downloadedTranslations = await BibleOfflineService.instance.getDownloadedTranslations();
 
-    setState(() {
-      _appLockEnabled = prefs.getBool('ssb_app_lock_enabled') ?? false;
-      _biometricsAvailable = biometricsAvailable;
-      _selectedTheme = prefs.getString('ssb_theme') ?? 'dark';
-      _dailyNotificationEnabled = prefs.getBool('ssb_daily_notif_enabled') ?? false;
-      _notificationHour = prefs.getInt('ssb_notif_hour') ?? 8;
-      _notificationMinute = prefs.getInt('ssb_notif_minute') ?? 0;
-      _streakRemindersEnabled = prefs.getBool('ssb_streak_reminders_enabled') ?? true;
-      _streakReminderHour = prefs.getInt('ssb_streak_reminder_hour') ?? 20;
-      _streakReminderMinute = prefs.getInt('ssb_streak_reminder_minute') ?? 0;
-      _cachedChapters = cached;
-      _lastSync = lastSync;
-      _currentStreak = streak;
-      _offlineTranslations = downloadedTranslations.length;
-    });
+      if (mounted) {
+        setState(() {
+          _appLockEnabled = prefs.getBool('ssb_app_lock_enabled') ?? false;
+          _biometricsAvailable = biometricsAvailable;
+          _selectedTheme = prefs.getString('ssb_theme') ?? 'dark';
+          _dailyNotificationEnabled = prefs.getBool('ssb_daily_notif_enabled') ?? false;
+          _notificationHour = prefs.getInt('ssb_notif_hour') ?? 8;
+          _notificationMinute = prefs.getInt('ssb_notif_minute') ?? 0;
+          _streakRemindersEnabled = prefs.getBool('ssb_streak_reminders_enabled') ?? true;
+          _streakReminderHour = prefs.getInt('ssb_streak_reminder_hour') ?? 20;
+          _streakReminderMinute = prefs.getInt('ssb_streak_reminder_minute') ?? 0;
+          _cachedChapters = cached;
+          _lastSync = lastSync;
+          _currentStreak = streak;
+          _offlineTranslations = downloadedTranslations.length;
+        });
+      }
+    } catch (e) {
+      debugPrint('[SettingsScreen] Load error: $e');
+    }
   }
 
   @override

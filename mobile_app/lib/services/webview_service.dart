@@ -27,18 +27,23 @@ class WebViewService {
   Future<void> initialize() async {
     if (_isInitialized) return;
 
-    controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setUserAgent(AppConstants.userAgent)
-      ..setNavigationDelegate(_createNavigationDelegate())
-      ..setOnConsoleMessage(_onConsoleMessage)
-      ..addJavaScriptChannel('SSBNotification', onMessageReceived: _onNotificationMessage)
-      ..addJavaScriptChannel('SSBStreak', onMessageReceived: _onStreakMessage)
-      ..addJavaScriptChannel('SSBOffline', onMessageReceived: _onOfflineMessage)
-      ..addJavaScriptChannel('SSBFavorite', onMessageReceived: _onFavoriteMessage)
-      ..addJavaScriptChannel('SSBNote', onMessageReceived: _onNoteMessage);
+    try {
+      controller = WebViewController()
+        ..setJavaScriptMode(JavaScriptMode.unrestricted)
+        ..setUserAgent(AppConstants.userAgent)
+        ..setNavigationDelegate(_createNavigationDelegate())
+        ..setOnConsoleMessage(_onConsoleMessage)
+        ..addJavaScriptChannel('SSBNotification', onMessageReceived: _onNotificationMessage)
+        ..addJavaScriptChannel('SSBStreak', onMessageReceived: _onStreakMessage)
+        ..addJavaScriptChannel('SSBOffline', onMessageReceived: _onOfflineMessage)
+        ..addJavaScriptChannel('SSBFavorite', onMessageReceived: _onFavoriteMessage)
+        ..addJavaScriptChannel('SSBNote', onMessageReceived: _onNoteMessage);
 
-    _isInitialized = true;
+      _isInitialized = true;
+    } catch (e) {
+      debugPrint('[WebViewService] Initialize error: $e');
+      _errorDescription = e.toString();
+    }
   }
 
   NavigationDelegate _createNavigationDelegate() {
@@ -435,49 +440,69 @@ class WebViewService {
   Future<void> loadUrl(String url) async {
     if (!_isInitialized) return;
     _errorDescription = null;
-    if (!_isOnline) {
-      // When offline, try to load from SQLite first
-      final offlineData = await _getOfflineData(url);
-      if (offlineData != null) {
-        await controller.loadHtmlString(offlineData, baseUrl: url);
+    try {
+      if (!_isOnline) {
+        final offlineData = await _getOfflineData(url);
+        if (offlineData != null) {
+          await controller.loadHtmlString(offlineData, baseUrl: url);
+        } else {
+          await controller.loadRequest(
+            Uri.parse(url),
+            headers: {'Cache-Control': 'max-stale=31536000'},
+          );
+        }
       } else {
-        // Fallback to cache
-        await controller.loadRequest(
-          Uri.parse(url),
-          headers: {'Cache-Control': 'max-stale=31536000'},
-        );
+        await controller.loadRequest(Uri.parse(url));
       }
-    } else {
-      // Use normal cache policy — let SW handle caching
-      await controller.loadRequest(Uri.parse(url));
+    } catch (e) {
+      debugPrint('[WebViewService] LoadUrl error: $e');
+      _errorDescription = e.toString();
+      _isLoading = false;
+      onLoadingChanged?.call(false);
+      onError?.call(e.toString());
     }
   }
 
   Future<void> reload() async {
     if (!_isInitialized) return;
     _errorDescription = null;
-    if (!_isOnline) {
-      // Offline reload: try to load current URL from cache
-      if (_currentUrl != null) {
-        await controller.loadRequest(
-          Uri.parse(_currentUrl!),
-          headers: {'Cache-Control': 'max-stale=31536000'},
-        );
+    try {
+      if (!_isOnline) {
+        if (_currentUrl != null) {
+          await controller.loadRequest(
+            Uri.parse(_currentUrl!),
+            headers: {'Cache-Control': 'max-stale=31536000'},
+          );
+        }
+      } else {
+        await controller.reload();
       }
-    } else {
-      await controller.reload();
+    } catch (e) {
+      debugPrint('[WebViewService] Reload error: $e');
+      _errorDescription = e.toString();
+      _isLoading = false;
+      onLoadingChanged?.call(false);
+      onError?.call(e.toString());
     }
   }
 
   Future<bool> canGoBack() async {
     if (!_isInitialized) return false;
-    return controller.canGoBack();
+    try {
+      return await controller.canGoBack();
+    } catch (e) {
+      return false;
+    }
   }
 
   Future<void> goBack() async {
     if (!_isInitialized) return;
-    if (await canGoBack()) {
-      await controller.goBack();
+    try {
+      if (await canGoBack()) {
+        await controller.goBack();
+      }
+    } catch (e) {
+      debugPrint('[WebViewService] goBack error: $e');
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:home_widget/home_widget.dart';
 import 'streak_service.dart';
@@ -9,34 +10,42 @@ class VerseWidgetService {
     required String verseText,
     required String verseReference,
   }) async {
-    await HomeWidget.saveWidgetData<String>('verse_text', verseText);
-    await HomeWidget.saveWidgetData<String>('verse_reference', verseReference);
+    try {
+      await HomeWidget.saveWidgetData<String>('verse_text', verseText);
+      await HomeWidget.saveWidgetData<String>('verse_reference', verseReference);
 
-    await HomeWidget.updateWidget(
-      name: 'VerseWidgetProvider',
-      androidName: 'VerseWidgetProvider',
-    );
+      await HomeWidget.updateWidget(
+        name: 'VerseWidgetProvider',
+        androidName: 'VerseWidgetProvider',
+      );
+    } catch (e) {
+      debugPrint('[VerseWidgetService] Update error: $e');
+    }
   }
 
   static Future<void> updateStreakWidget() async {
-    final stats = await StreakService.getStreakStats();
-    final streak = stats['currentStreak'] ?? 0;
-    final bestStreak = stats['bestStreak'] ?? 0;
-    final totalDays = stats['totalDays'] ?? 0;
+    try {
+      final stats = await StreakService.getStreakStats();
+      final streak = stats['currentStreak'] ?? 0;
+      final bestStreak = stats['bestStreak'] ?? 0;
+      final totalDays = stats['totalDays'] ?? 0;
 
-    await HomeWidget.saveWidgetData<String>('streak_count', streak.toString());
-    await HomeWidget.saveWidgetData<String>('best_streak', bestStreak.toString());
-    await HomeWidget.saveWidgetData<String>('total_days', totalDays.toString());
+      await HomeWidget.saveWidgetData<String>('streak_count', streak.toString());
+      await HomeWidget.saveWidgetData<String>('best_streak', bestStreak.toString());
+      await HomeWidget.saveWidgetData<String>('total_days', totalDays.toString());
 
-    await HomeWidget.updateWidget(
-      name: 'ProgressWidgetProvider',
-      androidName: 'ProgressWidgetProvider',
-    );
+      await HomeWidget.updateWidget(
+        name: 'ProgressWidgetProvider',
+        androidName: 'ProgressWidgetProvider',
+      );
 
-    await HomeWidget.updateWidget(
-      name: 'VerseWidgetProvider',
-      androidName: 'VerseWidgetProvider',
-    );
+      await HomeWidget.updateWidget(
+        name: 'VerseWidgetProvider',
+        androidName: 'VerseWidgetProvider',
+      );
+    } catch (e) {
+      debugPrint('[VerseWidgetService] Streak widget error: $e');
+    }
   }
 
   static Future<void> updateWithDailyVerse() async {

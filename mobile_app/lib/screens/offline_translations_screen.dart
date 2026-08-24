@@ -27,14 +27,18 @@ class _OfflineTranslationsScreenState extends State<OfflineTranslationsScreen> {
 
   Future<void> _loadData() async {
     setState(() => _isLoading = true);
-
-    final bookStatus = await _offlineService.getBookDownloadStatus(_selectedTranslation);
-
-    if (mounted) {
-      setState(() {
-        _bookStatus = bookStatus;
-        _isLoading = false;
-      });
+    try {
+      final bookStatus = await _offlineService.getBookDownloadStatus(_selectedTranslation);
+      if (mounted) {
+        setState(() {
+          _bookStatus = bookStatus;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
     }
   }
 

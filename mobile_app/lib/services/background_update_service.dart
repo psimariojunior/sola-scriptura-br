@@ -85,7 +85,11 @@ class BackgroundUpdateService {
   }
 
   static Future<void> forceUpdate() async {
-    debugPrint('[BackgroundUpdateService] Force update triggered');
-    await VerseWidgetService.updateWithDailyVerse();
+    try {
+      debugPrint('[BackgroundUpdateService] Force update triggered');
+      await VerseWidgetService.updateWithDailyVerse();
+    } catch (e) {
+      debugPrint('[BackgroundUpdateService] Force update error: $e');
+    }
   }
 }

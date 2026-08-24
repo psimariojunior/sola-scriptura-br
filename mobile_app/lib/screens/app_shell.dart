@@ -46,7 +46,9 @@ class _AppShellState extends State<AppShell> {
   void _loadInitialUrl() {
     final path = widget.initialPath ?? '/';
     final url = '${AppConstants.baseUrl}$path';
-    widget.webViewService.loadUrl(url);
+    widget.webViewService.loadUrl(url).catchError((e) {
+      debugPrint('[AppShell] LoadUrl error: $e');
+    });
   }
 
   void _setupWebView() {
@@ -127,9 +129,13 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<bool> _handleBackButton() async {
-    if (await widget.webViewService.canGoBack()) {
-      await widget.webViewService.goBack();
-      return false;
+    try {
+      if (await widget.webViewService.canGoBack()) {
+        await widget.webViewService.goBack();
+        return false;
+      }
+    } catch (e) {
+      debugPrint('[AppShell] Back button error: $e');
     }
 
     final now = DateTime.now();

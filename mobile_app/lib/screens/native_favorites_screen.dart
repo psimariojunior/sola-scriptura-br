@@ -35,11 +35,19 @@ class _NativeFavoritesScreenState extends State<NativeFavoritesScreen> {
 
   Future<void> _loadFavorites() async {
     setState(() => _isLoading = true);
-    final favorites = await _offlineService.getFavorites();
-    setState(() {
-      _favorites = favorites;
-      _isLoading = false;
-    });
+    try {
+      final favorites = await _offlineService.getFavorites();
+      if (mounted) {
+        setState(() {
+          _favorites = favorites;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
+    }
   }
 
   Color _getColor(String? hexColor) {

@@ -24,11 +24,19 @@ class _NativeNotesScreenState extends State<NativeNotesScreen> {
 
   Future<void> _loadNotes() async {
     setState(() => _isLoading = true);
-    final notes = await _offlineService.getNotes();
-    setState(() {
-      _notes = notes;
-      _isLoading = false;
-    });
+    try {
+      final notes = await _offlineService.getNotes();
+      if (mounted) {
+        setState(() {
+          _notes = notes;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
+    }
   }
 
   @override

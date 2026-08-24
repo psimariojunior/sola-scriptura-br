@@ -1,0 +1,11 @@
+▲ Next.js 16.2.11 (Turbopack)
+- Local:         http://localhost:3096
+- Network:       http://54.232.189.113:3096
+- Environments: .env.local
+✓ Ready in 876ms
+- Experiments (use with caution):
+  · clientTraceMetadata
+  · optimizePackageImports
+
+○ Compiling / ...
+ GET / 200 in 47s (next.js: 46s, application-code: 931ms)

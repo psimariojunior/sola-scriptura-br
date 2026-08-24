@@ -21,13 +21,21 @@ class _StreakScreenState extends State<StreakScreen> {
   }
 
   Future<void> _loadStats() async {
-    final stats = await StreakService.getStreakStats();
-    final history = await StreakService.getMonthHistory();
-    setState(() {
-      _stats = stats;
-      _monthHistory = history;
-      _isLoading = false;
-    });
+    try {
+      final stats = await StreakService.getStreakStats();
+      final history = await StreakService.getMonthHistory();
+      if (mounted) {
+        setState(() {
+          _stats = stats;
+          _monthHistory = history;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
+    }
   }
 
   @override

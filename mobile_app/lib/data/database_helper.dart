@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -9,8 +10,13 @@ class DatabaseHelper {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('sola_scriptura.db');
-    return _database!;
+    try {
+      _database = await _initDB('sola_scriptura.db');
+      return _database!;
+    } catch (e) {
+      debugPrint('[DatabaseHelper] Init error: $e');
+      rethrow;
+    }
   }
 
   Future<Database> _initDB(String filePath) async {

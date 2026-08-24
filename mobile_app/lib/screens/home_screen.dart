@@ -135,7 +135,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _loadWebsite() async {
     final url = _resolveInitialUrl();
-    await _webView.loadUrl(url);
+    try {
+      await _webView.loadUrl(url);
+    } catch (e) {
+      debugPrint('[HomeScreen] Load error: $e');
+      if (mounted) {
+        setState(() {
+          _hasError = true;
+          _errorMessage = e.toString();
+          _isLoading = false;
+        });
+      }
+    }
   }
 
   void _handleDeepLink(String url) {
@@ -192,9 +203,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<bool> _handleBackButton() async {
-    if (await _webView.canGoBack()) {
-      await _webView.goBack();
-      return false;
+    try {
+      if (await _webView.canGoBack()) {
+        await _webView.goBack();
+        return false;
+      }
+    } catch (e) {
+      debugPrint('[HomeScreen] Back button error: $e');
     }
 
     final now = DateTime.now();

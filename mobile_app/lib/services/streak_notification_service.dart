@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -31,45 +32,53 @@ class StreakNotificationService {
   ];
 
   Future<void> initialize() async {
-    final androidPlugin = _localNotifications
-        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+    try {
+      final androidPlugin = _localNotifications
+          .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
 
-    await androidPlugin?.createNotificationChannel(
-      const AndroidNotificationChannel(
-        _streakChannel,
-        'Lembretes de Sequência',
-        description: 'Lembretes para manter sua sequência de estudo',
-        importance: Importance.high,
-        enableVibration: true,
-        enableLights: true,
-      ),
-    );
+      await androidPlugin?.createNotificationChannel(
+        const AndroidNotificationChannel(
+          _streakChannel,
+          'Lembretes de Sequência',
+          description: 'Lembretes para manter sua sequência de estudo',
+          importance: Importance.high,
+          enableVibration: true,
+          enableLights: true,
+        ),
+      );
 
-    await androidPlugin?.createNotificationChannel(
-      const AndroidNotificationChannel(
-        _motivationChannel,
-        'Motivação Diária',
-        description: 'Versículos motivacionais para seu dia',
-        importance: Importance.defaultImportance,
-        enableVibration: false,
-      ),
-    );
+      await androidPlugin?.createNotificationChannel(
+        const AndroidNotificationChannel(
+          _motivationChannel,
+          'Motivação Diária',
+          description: 'Versículos motivacionais para seu dia',
+          importance: Importance.defaultImportance,
+          enableVibration: false,
+        ),
+      );
+    } catch (e) {
+      debugPrint('[StreakNotificationService] Init error: $e');
+    }
   }
 
   Future<void> scheduleStreakReminders() async {
-    final prefs = await SharedPreferences.getInstance();
-    final enabled = prefs.getBool('ssb_streak_reminders_enabled') ?? true;
-    if (!enabled) return;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final enabled = prefs.getBool('ssb_streak_reminders_enabled') ?? true;
+      if (!enabled) return;
 
-    final streak = await StreakService.getCurrentStreak();
-    final hour = prefs.getInt('ssb_streak_reminder_hour') ?? 20;
-    final minute = prefs.getInt('ssb_streak_reminder_minute') ?? 0;
+      final streak = await StreakService.getCurrentStreak();
+      final hour = prefs.getInt('ssb_streak_reminder_hour') ?? 20;
+      final minute = prefs.getInt('ssb_streak_reminder_minute') ?? 0;
 
-    if (streak > 0) {
-      await _scheduleDailyReminder(hour, minute, streak);
+      if (streak > 0) {
+        await _scheduleDailyReminder(hour, minute, streak);
+      }
+
+      await _scheduleMotivationNotification();
+    } catch (e) {
+      debugPrint('[StreakNotificationService] Schedule error: $e');
     }
-
-    await _scheduleMotivationNotification();
   }
 
   Future<void> _scheduleDailyReminder(int hour, int minute, int streak) async {

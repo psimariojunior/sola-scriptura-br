@@ -11,21 +11,25 @@ class StreakService {
   static const _historyKey = 'ssb_streak_history';
 
   static Future<int> getCurrentStreak() async {
-    final prefs = await SharedPreferences.getInstance();
-    final lastRead = prefs.getString(_lastReadKey);
-    final streak = prefs.getInt(_streakKey) ?? 0;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final lastRead = prefs.getString(_lastReadKey);
+      final streak = prefs.getInt(_streakKey) ?? 0;
 
-    if (lastRead == null) return 0;
+      if (lastRead == null) return 0;
 
-    final lastDate = DateTime.parse(lastRead);
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final lastDay = DateTime(lastDate.year, lastDate.month, lastDate.day);
-    final diff = today.difference(lastDay).inDays;
+      final lastDate = DateTime.parse(lastRead);
+      final now = DateTime.now();
+      final today = DateTime(now.year, now.month, now.day);
+      final lastDay = DateTime(lastDate.year, lastDate.month, lastDate.day);
+      final diff = today.difference(lastDay).inDays;
 
-    if (diff == 0) return streak;
-    if (diff == 1) return streak;
-    return 0;
+      if (diff == 0) return streak;
+      if (diff == 1) return streak;
+      return 0;
+    } catch (e) {
+      return 0;
+    }
   }
 
   static Future<int> recordReading() async {
@@ -118,20 +122,31 @@ class StreakService {
   }
 
   static Future<Map<String, dynamic>> getStreakStats() async {
-    final current = await getCurrentStreak();
-    final best = await getBestStreak();
-    final total = await getTotalDays();
-    final weeklyGoal = await getWeeklyGoal();
-    final weeklyProgress = await getWeeklyProgress();
+    try {
+      final current = await getCurrentStreak();
+      final best = await getBestStreak();
+      final total = await getTotalDays();
+      final weeklyGoal = await getWeeklyGoal();
+      final weeklyProgress = await getWeeklyProgress();
 
-    return {
-      'currentStreak': current,
-      'bestStreak': best,
-      'totalDays': total,
-      'weeklyGoal': weeklyGoal,
-      'weeklyProgress': weeklyProgress,
-      'motivation': _getMotivation(current),
-    };
+      return {
+        'currentStreak': current,
+        'bestStreak': best,
+        'totalDays': total,
+        'weeklyGoal': weeklyGoal,
+        'weeklyProgress': weeklyProgress,
+        'motivation': _getMotivation(current),
+      };
+    } catch (e) {
+      return {
+        'currentStreak': 0,
+        'bestStreak': 0,
+        'totalDays': 0,
+        'weeklyGoal': 7,
+        'weeklyProgress': 0,
+        'motivation': _getMotivation(0),
+      };
+    }
   }
 
   static String _getMotivation(int streak) {
@@ -144,14 +159,18 @@ class StreakService {
   }
 
   static Future<List<String>> getMonthHistory() async {
-    final prefs = await SharedPreferences.getInstance();
-    final history = prefs.getStringList(_historyKey) ?? [];
-    final now = DateTime.now();
-    final monthAgo = DateTime(now.year, now.month - 1, now.day);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final history = prefs.getStringList(_historyKey) ?? [];
+      final now = DateTime.now();
+      final monthAgo = DateTime(now.year, now.month - 1, now.day);
 
-    return history.where((dateStr) {
-      final date = DateTime.parse(dateStr);
-      return date.isAfter(monthAgo);
-    }).toList();
+      return history.where((dateStr) {
+        final date = DateTime.parse(dateStr);
+        return date.isAfter(monthAgo);
+      }).toList();
+    } catch (e) {
+      return [];
+    }
   }
 }

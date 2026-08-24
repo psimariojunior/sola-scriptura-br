@@ -117,7 +117,11 @@ class _SplashScreenState extends State<SplashScreen>
 
   Future<void> _navigateToHome() async {
     final webViewService = WebViewService();
-    await webViewService.initialize();
+    try {
+      await webViewService.initialize();
+    } catch (e) {
+      debugPrint('[SplashScreen] WebView init error: $e');
+    }
 
     await Future.delayed(const Duration(milliseconds: 3500));
 

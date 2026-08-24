@@ -64,15 +64,50 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp();
+  // Global error handlers — prevent white screen
+  FlutterError.onError = (details) {
+    debugPrint('[FlutterError] ${details.exception}');
+    debugPrint('[FlutterError] ${details.stack}');
+    try {
+      FirebaseCrashlytics.instance.recordFlutterFatalError(details);
+    } catch (_) {}
+  };
 
-  // Crashlytics: catch Flutter errors
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  ErrorWidget.builder = (details) {
+    return Material(
+      color: const Color(0xFF0A0908),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.error_outline, color: Color(0xFFA17A2C), size: 48),
+              const SizedBox(height: 16),
+              Text(
+                'Algo deu errado',
+                style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '${details.exceptionAsString()}',
+                style: TextStyle(color: Colors.white54, fontSize: 12),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  };
 
-  // Analytics
-  FirebaseAnalytics.instance;
-
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // Firebase — wrapped in try-catch so app still launches if Firebase fails
+  try {
+    await Firebase.initializeApp();
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  } catch (e) {
+    debugPrint('[Main] Firebase init failed: $e');
+  }
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -89,19 +124,41 @@ void main() async {
     ),
   );
 
-  AppLockService().init();
-  final notifService = NotificationService();
-  await notifService.initialize();
-  await notifService.rescheduleFromPrefs();
+  // Services — each wrapped individually so one failure doesn't kill the app
+  try {
+    AppLockService().init();
+  } catch (e) {
+    debugPrint('[Main] AppLockService init failed: $e');
+  }
 
-  final streakNotifService = StreakNotificationService();
-  await streakNotifService.initialize();
-  await streakNotifService.scheduleStreakReminders();
+  try {
+    final notifService = NotificationService();
+    await notifService.initialize();
+    await notifService.rescheduleFromPrefs();
+  } catch (e) {
+    debugPrint('[Main] NotificationService init failed: $e');
+  }
 
-  await BackgroundUpdateService.initialize();
-  await BackgroundUpdateService.schedulePeriodicUpdate();
+  try {
+    final streakNotifService = StreakNotificationService();
+    await streakNotifService.initialize();
+    await streakNotifService.scheduleStreakReminders();
+  } catch (e) {
+    debugPrint('[Main] StreakNotificationService init failed: $e');
+  }
 
-  VerseWidgetService.updateWithDailyVerse();
+  try {
+    await BackgroundUpdateService.initialize();
+    await BackgroundUpdateService.schedulePeriodicUpdate();
+  } catch (e) {
+    debugPrint('[Main] BackgroundUpdateService init failed: $e');
+  }
+
+  try {
+    VerseWidgetService.updateWithDailyVerse();
+  } catch (e) {
+    debugPrint('[Main] VerseWidgetService failed: $e');
+  }
 
   runApp(const SolaScripturaApp());
 }

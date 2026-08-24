@@ -22,6 +22,7 @@ import {
   Heart,
   Landmark,
   Filter,
+  LayoutGrid,
 } from 'lucide-react';
 import {
   OBRAS,
@@ -71,6 +72,7 @@ export default function BibliotecaPage() {
   const [filtroCategoria, setFiltroCategoria] = useState<CategoriaObra | null>(null);
   const [filtroDificuldade, setFiltroDificuldade] = useState<string | null>(null);
   const [progresso, setProgresso] = useState<ProgressoLeitura | null>(null);
+  const [viewMode, setViewMode] = useState<'grid' | 'shelf'>('grid');
 
   useEffect(() => {
     try {
@@ -269,6 +271,30 @@ export default function BibliotecaPage() {
                     {d ?? 'Todos'}
                   </button>
                 ))}
+                <div className="ml-auto flex items-center gap-1 border-l border-border/50 pl-2">
+                  <button
+                    onClick={() => setViewMode('grid')}
+                    className={`p-1.5 rounded-md transition-all ${viewMode === 'grid' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'}`}
+                    title="Vista Grade"
+                  >
+                    <LayoutGrid className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={() => setViewMode('shelf')}
+                    className={`p-1.5 rounded-md transition-all ${viewMode === 'shelf' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'}`}
+                    title="Vista Estante 3D"
+                  >
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M2 3h12M2 8h12M2 13h12" />
+                      <rect x="3" y="4" width="3" height="3" rx="0.5" fill="currentColor" opacity="0.3" />
+                      <rect x="7" y="4" width="2" height="3" rx="0.5" fill="currentColor" opacity="0.3" />
+                      <rect x="10" y="4.5" width="2.5" height="2.5" rx="0.5" fill="currentColor" opacity="0.3" />
+                      <rect x="4" y="9" width="2" height="3" rx="0.5" fill="currentColor" opacity="0.3" />
+                      <rect x="7" y="9.5" width="3" height="2.5" rx="0.5" fill="currentColor" opacity="0.3" />
+                      <rect x="11" y="9" width="1.5" height="3" rx="0.5" fill="currentColor" opacity="0.3" />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           </ScrollReveal>
@@ -319,61 +345,130 @@ export default function BibliotecaPage() {
           )}
 
           {/* ═══════════ GRID DE OBRAS ═══════════ */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {obrasFiltradas.map((obra, i) => {
-              const p = progresso?.[obra.id];
-              const pct = p ? Math.round((p.lidos.length / obra.numCapitulos) * 100) : 0;
-              return (
-                <ScrollReveal key={obra.id} delay={Math.min(i * 0.04, 0.4)}>
-                  <Link href={`/biblioteca/${obra.id}`} className="group block h-full">
-                    <motion.div
-                      className="sola-card p-5 h-full flex gap-4"
-                      whileHover={{ y: -5 }}
-                    >
-                      <CapaLivro obra={obra} size="sm" />
-                      <div className="flex-1 min-w-0 flex flex-col">
-                        <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
-                          <span
-                            className={`text-[10px] px-2 py-0.5 rounded-full ${CATEGORIA_CORES[obra.categoria].bg} ${CATEGORIA_CORES[obra.categoria].text}`}
-                          >
-                            {CATEGORIAS_INFO[obra.categoria].rotulo}
-                          </span>
-                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground flex items-center gap-1">
-                            <ScrollText className="w-2.5 h-2.5" /> {obra.edicao === 'integral' ? 'Integral' : 'Seleção'}
-                          </span>
-                        </div>
-                        <h3 className="font-serif font-semibold leading-snug line-clamp-2 mb-1 group-hover:text-primary transition-colors">
-                          {obra.titulo}
-                        </h3>
-                        <p className="text-xs text-muted-foreground mb-2 truncate">
-                          {obra.autor.split('(')[0].trim()} · {obra.anoTexto}
-                        </p>
-                        <p className="text-xs text-foreground/70 leading-relaxed line-clamp-3 mb-3">
-                          {obra.descricao}
-                        </p>
-                        <div className="mt-auto flex items-center justify-between text-[11px] text-muted-foreground">
-                          <span className="flex items-center gap-1">
-                            <Clock className="w-3 h-3" /> {formatarTempo(obra.tempoLeituraMin)}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <BookOpen className="w-3 h-3" /> {obra.numCapitulos} caps.
-                          </span>
-                          <span className={`px-1.5 py-0.5 rounded ${obra.dificuldade === 'Iniciante' ? 'bg-green-100 text-green-700 dark:bg-green-950/40 dark:text-green-300' : obra.dificuldade === 'Intermediário' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-950/40 dark:text-yellow-300' : 'bg-red-100 text-red-700 dark:bg-red-950/40 dark:text-red-300'}`}>
-                            {obra.dificuldade}
-                          </span>
-                        </div>
-                        {pct > 0 && (
-                          <div className="mt-2 h-1 bg-muted rounded-full overflow-hidden">
-                            <div className="h-full bg-primary rounded-full" style={{ width: `${pct}%` }} />
+          {viewMode === 'grid' ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {obrasFiltradas.map((obra, i) => {
+                const p = progresso?.[obra.id];
+                const pct = p ? Math.round((p.lidos.length / obra.numCapitulos) * 100) : 0;
+                return (
+                  <ScrollReveal key={obra.id} delay={Math.min(i * 0.04, 0.4)}>
+                    <Link href={`/biblioteca/${obra.id}`} className="group block h-full">
+                      <motion.div
+                        className="sola-card p-5 h-full flex gap-4"
+                        whileHover={{ y: -5 }}
+                      >
+                        <CapaLivro obra={obra} size="sm" />
+                        <div className="flex-1 min-w-0 flex flex-col">
+                          <div className="flex items-center gap-1.5 mb-1.5 flex-wrap">
+                            <span
+                              className={`text-[10px] px-2 py-0.5 rounded-full ${CATEGORIA_CORES[obra.categoria].bg} ${CATEGORIA_CORES[obra.categoria].text}`}
+                            >
+                              {CATEGORIAS_INFO[obra.categoria].rotulo}
+                            </span>
+                            <span className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground flex items-center gap-1">
+                              <ScrollText className="w-2.5 h-2.5" /> {obra.edicao === 'integral' ? 'Integral' : 'Seleção'}
+                            </span>
                           </div>
-                        )}
+                          <h3 className="font-serif font-semibold leading-snug line-clamp-2 mb-1 group-hover:text-primary transition-colors">
+                            {obra.titulo}
+                          </h3>
+                          <p className="text-xs text-muted-foreground mb-2 truncate">
+                            {obra.autor.split('(')[0].trim()} · {obra.anoTexto}
+                          </p>
+                          <p className="text-xs text-foreground/70 leading-relaxed line-clamp-3 mb-3">
+                            {obra.descricao}
+                          </p>
+                          <div className="mt-auto flex items-center justify-between text-[11px] text-muted-foreground">
+                            <span className="flex items-center gap-1">
+                              <Clock className="w-3 h-3" /> {formatarTempo(obra.tempoLeituraMin)}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <BookOpen className="w-3 h-3" /> {obra.numCapitulos} caps.
+                            </span>
+                            <span className={`px-1.5 py-0.5 rounded ${obra.dificuldade === 'Iniciante' ? 'bg-green-100 text-green-700 dark:bg-green-950/40 dark:text-green-300' : obra.dificuldade === 'Intermediário' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-950/40 dark:text-yellow-300' : 'bg-red-100 text-red-700 dark:bg-red-950/40 dark:text-red-300'}`}>
+                              {obra.dificuldade}
+                            </span>
+                          </div>
+                          {pct > 0 && (
+                            <div className="mt-2 h-1 bg-muted rounded-full overflow-hidden">
+                              <div className="h-full bg-primary rounded-full" style={{ width: `${pct}%` }} />
+                            </div>
+                          )}
+                        </div>
+                      </motion.div>
+                    </Link>
+                  </ScrollReveal>
+                );
+              })}
+            </div>
+          ) : (
+            /* ═══════════ ESTANTE 3D ═══════════ */
+            <div className="space-y-8">
+              {(() => {
+                // Agrupar por categoria para estantes
+                const grupos = new Map<CategoriaObra, ObraMeta[]>();
+                const obrasParaEstante = filtroCategoria
+                  ? obrasFiltradas
+                  : obrasFiltradas;
+                for (const o of obrasParaEstante) {
+                  if (!grupos.has(o.categoria)) grupos.set(o.categoria, []);
+                  grupos.get(o.categoria)!.push(o);
+                }
+                return [...grupos.entries()].map(([cat, obrasCat]) => (
+                  <ScrollReveal key={cat}>
+                    <div>
+                      <h3 className="font-display text-lg font-light text-primary mb-4 flex items-center gap-2">
+                        {(() => { const Icon = CATEGORIA_ICONES[cat]; return <Icon className="w-4 h-4" />; })()}
+                        {CATEGORIAS_INFO[cat].rotulo}
+                        <span className="text-xs text-muted-foreground font-normal">({obrasCat.length})</span>
+                      </h3>
+                      {/* Shelf container */}
+                      <div
+                        className="relative pb-4"
+                        style={{ perspective: '1200px' }}
+                      >
+                        {/* Books row */}
+                        <div className="flex items-end gap-1 overflow-x-auto pb-3 pt-2 px-2 scrollbar-hide"
+                          style={{ transformStyle: 'preserve-3d' }}>
+                          {obrasCat.map((obra, i) => (
+                            <motion.div
+                              key={obra.id}
+                              initial={{ opacity: 0, rotateY: -20 }}
+                              animate={{ opacity: 1, rotateY: 0 }}
+                              transition={{ delay: i * 0.06, duration: 0.4, type: 'spring', stiffness: 150 }}
+                              className="shrink-0"
+                              style={{ transformStyle: 'preserve-3d' }}
+                            >
+                              <Link href={`/biblioteca/${obra.id}`}>
+                                <CapaLivro obra={obra} size="md" showShelf />
+                              </Link>
+                            </motion.div>
+                          ))}
+                        </div>
+                        {/* Wooden shelf */}
+                        <div className="relative h-3 -mt-1">
+                          <div className="absolute inset-0 rounded-b-sm"
+                            style={{
+                              background: 'linear-gradient(180deg, #8B7355 0%, #6B5B3D 40%, #5A4A30 100%)',
+                              boxShadow: '0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
+                            }}
+                          />
+                          {/* Wood grain */}
+                          <div className="absolute inset-0 opacity-20 rounded-b-sm"
+                            style={{
+                              backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(0,0,0,0.1) 20px, rgba(0,0,0,0.1) 21px)',
+                            }}
+                          />
+                          {/* Front edge highlight */}
+                          <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10" />
+                        </div>
                       </div>
-                    </motion.div>
-                  </Link>
-                </ScrollReveal>
-              );
-            })}
-          </div>
+                    </div>
+                  </ScrollReveal>
+                ));
+              })()}
+            </div>
+          )}
 
           {obrasFiltradas.length === 0 && (
             <div className="sola-card p-12 text-center">

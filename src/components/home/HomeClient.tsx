@@ -42,24 +42,101 @@ export default function HomeClient() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <main id="main-content" className="pt-20 pb-24 px-4 sm:px-6">
-        <div className="max-w-3xl mx-auto">
+      <main id="main-content" className="pt-20 pb-24">
 
-          {/* Busca rápida */}
-          <ScrollReveal>
-            <Link href="/pesquisa" className="block mb-6">
-              <div className="flex items-center gap-3 px-4 py-3.5 rounded-2xl border border-border/50 bg-card/60 backdrop-blur-sm hover:border-primary/30 hover:bg-card/80 transition-all duration-300 group">
-                <Search className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                <span className="text-sm text-muted-foreground">Buscar versículos, livros ou palavras...</span>
-                <kbd className="ml-auto text-[10px] bg-muted/50 px-2 py-0.5 rounded-md text-muted-foreground">/</kbd>
-              </div>
-            </Link>
-          </ScrollReveal>
+          {/* ═══════ HERO SECTION ═══════ */}
+          <section className="relative overflow-hidden px-4 sm:px-6 -mt-1">
+            {/* Background aurora */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full opacity-30 blur-3xl"
+                style={{ background: 'radial-gradient(ellipse, var(--brand-default) 0%, transparent 70%)' }} />
+              <div className="absolute top-20 left-1/4 w-[300px] h-[300px] rounded-full opacity-10 blur-2xl"
+                style={{ background: 'radial-gradient(circle, #E07A30 0%, transparent 70%)' }} />
+              <div className="absolute top-10 right-1/4 w-[250px] h-[250px] rounded-full opacity-10 blur-2xl"
+                style={{ background: 'radial-gradient(circle, #B45309 0%, transparent 70%)' }} />
+            </div>
 
-          {/* Versículo do dia — destaque principal */}
-          <ScrollReveal delay={0.05}>
-            <VerseDoDia />
-          </ScrollReveal>
+            <div className="relative max-w-4xl mx-auto text-center pt-12 pb-8 sm:pt-16 sm:pb-10">
+              {/* Badge */}
+              <ScrollReveal>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                  <span className="text-xs font-semibold text-primary tracking-wide uppercase">Estudo Biblico Completo</span>
+                </div>
+              </ScrollReveal>
+
+              {/* Title */}
+              <ScrollReveal delay={0.05}>
+                <h1 className="text-3xl sm:text-5xl font-serif font-bold text-foreground leading-tight mb-4">
+                  Sola Scriptura
+                  <span className="block text-lg sm:text-2xl font-normal text-muted-foreground mt-1">
+                    Estude a Biblia como nos grandes seminarios
+                  </span>
+                </h1>
+              </ScrollReveal>
+
+              {/* Stats row */}
+              <ScrollReveal delay={0.1}>
+                <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mb-8">
+                  {[
+                    { value: '10', label: 'Traducoes' },
+                    { value: '14.200', label: 'Palavras originais' },
+                    { value: '5.978', label: 'Comentarios' },
+                    { value: '29k+', label: 'Referencias cruzadas' },
+                  ].map((s) => (
+                    <div key={s.label} className="text-center">
+                      <p className="text-xl sm:text-2xl font-bold text-primary">{s.value}</p>
+                      <p className="text-[10px] sm:text-xs text-muted-foreground">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </ScrollReveal>
+
+              {/* CTA row */}
+              <ScrollReveal delay={0.15}>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <Link href="/biblia"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300
+                      bg-gradient-to-r from-[#A17A2C] via-[#C49A4D] to-[#E07A30] text-white
+                      hover:from-[#8A6923] hover:via-[#B4903D] hover:to-[#D06A20]
+                      shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                    <BookOpen className="w-4 h-4" />
+                    Abrir Biblia
+                  </Link>
+                  <Link href="/exegese"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300
+                      border border-primary/30 text-primary hover:bg-primary/10 hover:border-primary/50">
+                    <Brain className="w-4 h-4" />
+                    Estudo com IA
+                  </Link>
+                  <Link href="/biblioteca"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300
+                      border border-border text-muted-foreground hover:bg-card/60 hover:text-foreground">
+                    <BookMarked className="w-4 h-4" />
+                    Classicos da Fe
+                  </Link>
+                </div>
+              </ScrollReveal>
+            </div>
+          </section>
+
+          {/* ═══════ SEARCH + VERSE ═══════ */}
+          <div className="max-w-3xl mx-auto px-4 sm:px-6">
+            {/* Busca rapida */}
+            <ScrollReveal delay={0.2}>
+              <Link href="/pesquisa" className="block mb-6">
+                <div className="flex items-center gap-3 px-4 py-3.5 rounded-2xl border border-border/50 bg-card/60 backdrop-blur-sm hover:border-primary/30 hover:bg-card/80 transition-all duration-300 group">
+                  <Search className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <span className="text-sm text-muted-foreground">Buscar versiculos, livros ou palavras...</span>
+                  <kbd className="ml-auto text-[10px] bg-muted/50 px-2 py-0.5 rounded-md text-muted-foreground">/</kbd>
+                </div>
+              </Link>
+            </ScrollReveal>
+
+            {/* Versiculo do dia */}
+            <ScrollReveal delay={0.25}>
+              <VerseDoDia />
+            </ScrollReveal>
 
           {/* Continuar lendo */}
           <ScrollReveal delay={0.1}>
@@ -143,8 +220,7 @@ export default function HomeClient() {
               </div>
             </div>
           </ScrollReveal>
-
-        </div>
+          </div>
       </main>
       <Footer />
     </div>

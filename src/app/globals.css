@@ -398,6 +398,32 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Dark mode premium textures — leather grain + subtle noise */
+.dark body::before,
+.dark body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.dark body::before {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+}
+.dark body::after {
+  background: radial-gradient(ellipse at 50% 0%, rgba(212,168,67,0.04) 0%, transparent 60%);
+}
+
+/* Card leather texture in dark mode */
+.dark .bg-card,
+.dark [class*="bg-card/"] {
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-blend-mode: overlay;
+}
+
 @layer components {
   .font-display { font-family: 'Cormorant Garamond', Georgia, serif; }
   .font-serif-body { font-family: 'Spectral', Georgia, serif; }

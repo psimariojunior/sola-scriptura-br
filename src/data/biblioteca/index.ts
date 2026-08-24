@@ -4,29 +4,41 @@ import { OBRAS, getObraMeta, TOTAL_CAPITULOS, TOTAL_MINUTOS, SECULOS_COBERTOS } 
 export { OBRAS, getObraMeta, TOTAL_CAPITULOS, TOTAL_MINUTOS, SECULOS_COBERTOS };
 export * from './types';
 
-// Lazy-load por rota: so o modulo da obra visitada entra no bundle
-// Cada arquivo ./obras/*.ts exporta { obra: ObraConteudo } (named export)
-const OBRA_MAP: Record<string, () => Promise<{ obra: ObraConteudo }>> = {
-  'didache': () => import('./obras/didache'),
-  'diogneto': () => import('./obras/diogneto'),
-  'inacio-romanos': () => import('./obras/inacio-romanos'),
-  'policarpo-martirio': () => import('./obras/policarpo-martirio'),
-  'justino-apologia': () => import('./obras/justino-apologia'),
-  'agostinho-confissoes': () => import('./obras/agostinho-confissoes'),
-  'credos-ecumenicos': () => import('./obras/credos-ecumenicos'),
-  'catecismo-menor-westminster': () => import('./obras/catecismo-menor-westminster'),
-  'catecismo-heidelberg': () => import('./obras/catecismo-heidelberg'),
-  'lutero-95-teses': () => import('./obras/lutero-95-teses'),
-  'lutero-liberdade': () => import('./obras/lutero-liberdade'),
-  'calvino-institutas': () => import('./obras/calvino-institutas'),
-  'imitacao-cristo': () => import('./obras/imitacao-cristo'),
-  'presenca-deus': () => import('./obras/presenca-deus'),
-  'josefo-quaeda-jerusalem': () => import('./obras/josefo-quaeda-jerusalem'),
+// Imports diretos — todas as obras já são SSG via generateStaticParams()
+import { obra as didache } from './obras/didache';
+import { obra as diogneto } from './obras/diogneto';
+import { obra as inacio } from './obras/inacio-romanos';
+import { obra as policarpo } from './obras/policarpo-martirio';
+import { obra as justino } from './obras/justino-apologia';
+import { obra as agostinho } from './obras/agostinho-confissoes';
+import { obra as credos } from './obras/credos-ecumenicos';
+import { obra as westminster } from './obras/catecismo-menor-westminster';
+import { obra as heidelberg } from './obras/catecismo-heidelberg';
+import { obra as lutero95 } from './obras/lutero-95-teses';
+import { obra as luteroLib } from './obras/lutero-liberdade';
+import { obra as calvino } from './obras/calvino-institutas';
+import { obra as imitacao } from './obras/imitacao-cristo';
+import { obra as presenca } from './obras/presenca-deus';
+import { obra as josefo } from './obras/josefo-quaeda-jerusalem';
+
+const OBRA_MAP: Record<string, ObraConteudo> = {
+  'didache': didache,
+  'diogneto': diogneto,
+  'inacio-romanos': inacio,
+  'policarpo-martirio': policarpo,
+  'justino-apologia': justino,
+  'agostinho-confissoes': agostinho,
+  'credos-ecumenicos': credos,
+  'catecismo-menor-westminster': westminster,
+  'catecismo-heidelberg': heidelberg,
+  'lutero-95-teses': lutero95,
+  'lutero-liberdade': luteroLib,
+  'calvino-institutas': calvino,
+  'imitacao-cristo': imitacao,
+  'presenca-deus': presenca,
+  'josefo-quaeda-jerusalem': josefo,
 };
 
-export async function getObraConteudo(id: string): Promise<ObraConteudo | null> {
-  const loader = OBRA_MAP[id];
-  if (!loader) return null;
-  const mod = await loader();
-  return mod.obra;
+export function getObraConteudo(id: string): ObraConteudo | null {
+  return OBRA_MAP[id] ?? null;
 }

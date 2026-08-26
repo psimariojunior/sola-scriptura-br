@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
 import { BuscaGlobal } from '@/components/BuscaGlobal';
 import {
@@ -245,21 +246,20 @@ export default function EstudarPage() {
 
         {/* Welcome Banner */}
         <ScrollReveal>
-          <section className="mb-10">
-            <h1 className="font-display text-3xl sm:text-4xl font-normal text-foreground mb-2">
-              O que você quer estudar hoje?
-            </h1>
-            <p className="text-muted-foreground mb-6 max-w-xl text-sm">
-              Ferramentas acadêmicas, estudos por livro e recursos para aprofundar as Escrituras.
-            </p>
+          <PageHero
+            icon={GraduationCap}
+            align="left"
+            title="O que você quer estudar hoje?"
+            subtitle="Ferramentas acadêmicas, estudos por livro e recursos para aprofundar as Escrituras."
+          >
             <button
               onClick={handleSearch}
-              className="flex items-center gap-3 w-full max-w-lg py-3 border-b border-border hover:border-primary/50 transition-colors text-left group"
+              className="flex items-center gap-3 w-full max-w-lg mt-6 py-3 border-b border-border hover:border-primary/50 transition-colors text-left group"
             >
               <Search className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
               <span className="text-muted-foreground text-sm">Buscar versículos, estudos, personagens…</span>
             </button>
-          </section>
+          </PageHero>
         </ScrollReveal>
 
         {/* Continuar Estudando */}

@@ -124,7 +124,7 @@ function FloatingDonateButton() {
     <div className="fixed bottom-20 right-4 z-[25] sm:bottom-6 animate-fade-in-up">
       <Link
         href="/ofertas"
-        className="group flex items-center gap-2 px-3 py-2.5 rounded-full bg-amber-500/90 hover:bg-amber-500 text-white shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-300 hover:scale-105"
+        className="group flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-primary text-primary-foreground shadow-md hover:brightness-110 transition-all duration-300"
         aria-label="Apoie o projeto"
       >
         <Heart className="w-4 h-4 fill-current animate-heart-pulse" />

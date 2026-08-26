@@ -47,11 +47,15 @@ export default function HomeClient() {
   return (
     <PageShell noContainer noPadding>
       <div className="max-w-3xl mx-auto px-5 sm:px-6">
-        <header className="pt-10 sm:pt-14 text-center">
-          <p className="text-[11px] font-semibold tracking-[0.28em] uppercase text-primary">
-            Sola Scriptura
+        <header className="pt-12 sm:pt-16 text-center">
+          <p className="text-[11px] font-semibold tracking-[0.32em] uppercase text-primary/80">
+            Estudo Bíblico Acadêmico
           </p>
-          <div className="lectern-rule mt-5 mb-2" />
+          <h1 className="font-display text-[2.75rem] sm:text-6xl md:text-7xl font-normal tracking-tight mt-3 text-foreground leading-[0.95]">
+            <span className="italic text-primary">Sola</span>{' '}
+            Scriptura
+          </h1>
+          <div className="lectern-ornament mt-7" aria-hidden="true" />
         </header>
       </div>
 
@@ -61,16 +65,16 @@ export default function HomeClient() {
         <div className="flex flex-wrap items-center justify-center gap-3 -mt-2 mb-10">
           <Link
             href="/biblia"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-md text-sm font-semibold
-              bg-primary text-primary-foreground hover:brightness-110 transition-[filter]"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-semibold
+              bg-primary text-primary-foreground shadow-md hover:brightness-110 transition-[filter]"
           >
             <BookOpen className="w-4 h-4" />
             Abrir a Bíblia
           </Link>
           <Link
             href="/exegese"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-medium
-              text-primary border border-primary/35 hover:bg-primary/10 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-md text-sm font-medium
+              text-primary border border-primary/35 bg-card/70 hover:bg-primary/10 hover:border-primary/55 transition-colors"
           >
             Estudo com IA
           </Link>
@@ -78,23 +82,25 @@ export default function HomeClient() {
 
         <form onSubmit={enviarBusca} className="mb-12" role="search">
           <label htmlFor="home-search" className="sr-only">Buscar nas Escrituras</label>
-          <div className="search-underline">
-            <Search className="w-4 h-4 text-muted-foreground shrink-0" />
-            <input
-              id="home-search"
-              value={busca}
-              onChange={(e) => setBusca(e.target.value)}
-              placeholder="João 3:16, Strong G26, fé…"
-              className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none min-w-0"
-              autoComplete="off"
-            />
-            <button
-              type="submit"
-              className="text-xs font-semibold tracking-wide uppercase text-primary hover:brightness-110"
-              aria-label="Pesquisar"
-            >
-              Buscar
-            </button>
+          <div className="ssb-panel px-4">
+            <div className="search-underline border-0">
+              <Search className="w-4 h-4 text-muted-foreground shrink-0" />
+              <input
+                id="home-search"
+                value={busca}
+                onChange={(e) => setBusca(e.target.value)}
+                placeholder="João 3:16, Strong G26, fé…"
+                className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none min-w-0"
+                autoComplete="off"
+              />
+              <button
+                type="submit"
+                className="text-xs font-semibold tracking-wide uppercase text-primary hover:brightness-110"
+                aria-label="Pesquisar"
+              >
+                Buscar
+              </button>
+            </div>
           </div>
         </form>
 
@@ -119,7 +125,7 @@ export default function HomeClient() {
 
         <section className="mb-14" aria-labelledby="estante-home">
           <div className="flex items-baseline justify-between mb-5">
-            <h2 id="estante-home" className="font-display text-2xl font-normal text-foreground">
+            <h2 id="estante-home" className="font-display text-2xl sm:text-3xl font-normal text-foreground">
               Clássicos da Fé
             </h2>
             <Link href="/biblioteca" className="text-xs font-medium text-primary hover:underline">
@@ -135,7 +141,7 @@ export default function HomeClient() {
 
         <section className="mb-14" aria-labelledby="planos-home">
           <div className="flex items-baseline justify-between mb-4">
-            <h2 id="planos-home" className="font-display text-2xl font-normal text-foreground">
+            <h2 id="planos-home" className="font-display text-2xl sm:text-3xl font-normal text-foreground">
               Planos de leitura
             </h2>
             <Link href="/planos" className="text-xs font-medium text-primary hover:underline">

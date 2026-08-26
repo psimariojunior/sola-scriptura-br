@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import { useTema } from '@/lib/temas';
 import { authService } from '@/lib/auth';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/contexts/AuthContext';
@@ -187,10 +186,10 @@ function HeaderInner() {
       <motion.header
         animate={{ y: hidden ? '-100%' : '0%' }}
         transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        className={`ssb-header fixed top-0 w-full z-50 transition-shadow duration-300 ${
           scrolled
-            ? 'bg-background/95 border-b border-border shadow-[0_1px_0_hsl(var(--border))]'
-            : 'bg-background/88 border-b border-transparent'
+            ? 'border-b border-border/80 shadow-[0_1px_0_hsl(var(--primary)/0.12)]'
+            : 'border-b border-transparent'
         }`}
       >
         <AnimatePresence>

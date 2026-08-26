@@ -1,33 +1,20 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import type { LucideIcon } from 'lucide-react';
 
 interface PageHeroProps {
-  /** Ícone Lucide exibido no selo circular acima do título. */
   icon?: LucideIcon;
-  /** Texto pequeno em maiúsculas acima do título (opcional). */
   eyebrow?: string;
-  /** Título principal. Pode conter <span className="italic text-primary"> para destaque. */
   title: ReactNode;
-  /** Subtítulo/descrição abaixo do título. */
   subtitle?: ReactNode;
-  /** Alinhamento do bloco. Padrão: center. */
   align?: 'center' | 'left';
-  /** Mostra o ornamento dourado abaixo do subtítulo. Padrão: true. */
   ornament?: boolean;
   className?: string;
-  /** Conteúdo extra (estatísticas, ações) renderizado abaixo do subtítulo/ornamento. */
   children?: ReactNode;
 }
 
-/**
- * Cabeçalho hero reutilizável para páginas hub: selo com ícone, título com
- * escala tipográfica h1 (.text-h1) e subtítulo, no padrão já usado em
- * Biblioteca/Ferramentas.
- */
 export function PageHero({
   icon: Icon,
   eyebrow,
@@ -41,32 +28,38 @@ export function PageHero({
   const isCenter = align === 'center';
 
   return (
-    <div className={cn('mb-10', isCenter && 'text-center', className)}>
+    <div className={cn('mb-12', isCenter && 'text-center', className)}>
       {Icon && (
-        <motion.div
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-          className={cn(
-            'w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6',
-            isCenter && 'mx-auto'
-          )}
-        >
-          <Icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
-        </motion.div>
+        <div className={cn('mb-5', isCenter && 'flex justify-center')}>
+          <span className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
+            <Icon className="w-5 h-5" strokeWidth={1.4} />
+          </span>
+        </div>
       )}
 
       {eyebrow && (
-        <p className="text-h6 text-primary mb-2">{eyebrow}</p>
+        <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-primary mb-3">
+          {eyebrow}
+        </p>
       )}
 
-      <h1 className="text-h1 text-foreground mb-4">{title}</h1>
+      <h1 className="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-normal text-foreground mb-3 tracking-tight leading-tight">
+        {title}
+      </h1>
 
       {subtitle && (
-        <p className={cn('text-muted-foreground', isCenter && 'max-w-2xl mx-auto')}>{subtitle}</p>
+        <p className={cn('text-sm sm:text-[15px] text-muted-foreground leading-relaxed', isCenter && 'max-w-xl mx-auto')}>
+          {subtitle}
+        </p>
       )}
 
-      {ornament && <div className={cn('ornament w-16 mt-6', isCenter && 'mx-auto')} />}
+      {ornament && (
+        <div
+          className={cn('lectern-ornament mt-7', !isCenter && 'ml-0 mr-auto')}
+          style={!isCenter ? { marginInline: 0 } : undefined}
+          aria-hidden="true"
+        />
+      )}
 
       {children}
     </div>

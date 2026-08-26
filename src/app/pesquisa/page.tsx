@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
 import { biblia } from '@/lib/api-client';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -377,10 +378,13 @@ export default function PesquisaPage() {
 
   return (
     <PageShell maxWidth="7xl">
-          <div className="mb-8">
-            <h1 className="text-h1 mb-2">{t('pesquisa.title')}</h1>
-            <p className="text-muted-foreground">{t('pesquisa.subtitle')}</p>
-          </div>
+          <PageHero
+            icon={Search}
+            align="left"
+            title={t('pesquisa.title')}
+            subtitle={t('pesquisa.subtitle')}
+            className="mb-8"
+          />
 
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
             <aside className="sola-card p-4 h-fit lg:sticky lg:top-20">

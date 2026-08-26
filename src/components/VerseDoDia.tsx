@@ -130,19 +130,18 @@ export default function VerseDoDia() {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <blockquote className="font-serif-body text-[1.35rem] sm:text-[1.65rem] md:text-[1.85rem] italic font-normal text-foreground leading-[1.65] max-w-2xl mx-auto">
+            <blockquote className="lectern-quote font-serif-body text-[1.35rem] sm:text-[1.65rem] md:text-[1.85rem] italic font-normal text-foreground leading-[1.65] max-w-2xl mx-auto">
               {verso.texto}
             </blockquote>
           </motion.div>
         </AnimatePresence>
 
         <div className="flex items-center justify-center gap-3 mt-7">
-          <span className="h-px w-8 bg-primary/40" aria-hidden="true" />
-          <p className="text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-primary">
-            {verso.referencia}
-          </p>
-          <span className="h-px w-8 bg-primary/40" aria-hidden="true" />
+          <span className="lectern-ornament" aria-hidden="true" />
         </div>
+        <p className="text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-primary mt-3">
+          {verso.referencia}
+        </p>
 
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mt-7 text-xs text-muted-foreground">
           <button

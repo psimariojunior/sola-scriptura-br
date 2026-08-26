@@ -22,19 +22,19 @@ type SortBy = 'strong' | 'frequencia' | 'palavra';
 type ModoView = 'grid' | 'list' | 'frequency';
 
 const DOMINIOS_SEMANTICOS: Record<string, { label: string; cor: string }> = {
-  '1': { label: 'Corpo Humano', cor: 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300' },
-  '2': { label: 'Agrupamentos Humanos', cor: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' },
-  '3': { label: 'Atividades Humanas', cor: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' },
-  '4': { label: 'Ações Sociais', cor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300' },
-  '5': { label: 'Cognição e Percepção', cor: 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300' },
-  '6': { label: 'Mundo Físico', cor: 'bg-lime-100 text-lime-700 dark:bg-lime-900/30 dark:text-lime-300' },
-  '7': { label: 'Espaço e Movimento', cor: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300' },
-  '11': { label: 'Dimensão Espiritual', cor: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300' },
-  '12': { label: 'Relacionamentos', cor: 'bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-300' },
-  '43': { label: 'Fé e Crença', cor: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300' },
-  '44': { label: 'Perdão e Graça', cor: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' },
-  '46': { label: 'Redenção e Salvação', cor: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' },
-  '50': { label: 'Reino de Deus', cor: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300' },
+  '1': { label: 'Corpo Humano', cor: 'bg-primary/10 text-primary' },
+  '2': { label: 'Agrupamentos Humanos', cor: 'bg-primary/10 text-primary' },
+  '3': { label: 'Atividades Humanas', cor: 'bg-primary/10 text-primary' },
+  '4': { label: 'Ações Sociais', cor: 'bg-primary/10 text-primary' },
+  '5': { label: 'Cognição e Percepção', cor: 'bg-primary/10 text-primary' },
+  '6': { label: 'Mundo Físico', cor: 'bg-primary/10 text-primary' },
+  '7': { label: 'Espaço e Movimento', cor: 'bg-primary/10 text-primary' },
+  '11': { label: 'Dimensão Espiritual', cor: 'bg-primary/10 text-primary' },
+  '12': { label: 'Relacionamentos', cor: 'bg-primary/10 text-primary' },
+  '43': { label: 'Fé e Crença', cor: 'bg-primary/10 text-primary' },
+  '44': { label: 'Perdão e Graça', cor: 'bg-primary/10 text-primary' },
+  '46': { label: 'Redenção e Salvação', cor: 'bg-primary/10 text-primary' },
+  '50': { label: 'Reino de Deus', cor: 'bg-primary/10 text-primary' },
 };
 
 const LOUW_NIDA_MAP: Record<string, string[]> = {

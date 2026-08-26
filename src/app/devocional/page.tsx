@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
 import { devocionais, getDevocionalDoDia } from '@/data/devocional';
 import {
   ChevronLeft,
@@ -246,15 +247,10 @@ export default function DevocionalPage() {
     <PageShell maxWidth="3xl">
 
           <ScrollReveal>
-            <div className="text-center mb-10">
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--muted-fg)] mb-2">
-                Devocional Diário
-              </p>
-              <h1 className="text-h1 text-[var(--fg)]">
-                {devocionalDoDia.titulo}
-              </h1>
-              <div className="ornament w-16 mx-auto mt-4" />
-            </div>
+            <PageHero
+              eyebrow="Devocional diário"
+              title={devocionalDoDia.titulo}
+            />
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>

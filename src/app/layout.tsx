@@ -124,8 +124,8 @@ export const viewport: Viewport = {
   maximumScale: 5,
   viewportFit: 'cover',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#fafaf7' },
-    { media: '(prefers-color-scheme: dark)', color: '#0c0a09' },
+    { media: '(prefers-color-scheme: light)', color: '#F7F1E4' },
+    { media: '(prefers-color-scheme: dark)', color: '#1A1510' },
   ],
 };
 
@@ -159,24 +159,18 @@ const jsonLd = {
 const themeInitScript = `
 (function() {
   try {
-    var t = localStorage.getItem('ssb_theme') || '';
-    var theme = t;
-    if (!theme) {
-      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      theme = prefersDark ? 'escuro' : 'claro';
-    }
+    var t = localStorage.getItem('ssb_theme_v2') || localStorage.getItem('ssb_theme') || '';
+    if (t === 'claro') t = 'light';
+    var theme = t || 'light';
     var root = document.documentElement;
     root.setAttribute('data-theme', theme);
-    root.classList.add('theme-' + theme);
-    if (theme === 'escuro' || theme === 'noturno' || theme === 'sepia' || theme === 'dim') {
+    if (theme === 'escuro' || theme === 'noturno' || theme === 'dim') {
       root.classList.add('dark');
     }
     if (theme === 'noturno') root.classList.add('noturno');
     if (theme === 'sepia') root.classList.add('sepia');
     if (theme === 'dim') root.classList.add('dim');
-  } catch (_) {
-    document.documentElement.classList.add('dark');
-  }
+  } catch (_) {}
 })();
 `.trim();
 
@@ -201,7 +195,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="antialiased bg-background text-foreground">
+      <body className="font-body antialiased bg-background text-foreground">
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>

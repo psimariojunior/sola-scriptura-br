@@ -9,6 +9,7 @@ import { carregarTraducao } from '@/data/biblia/texto/carregar';
 import { motion, AnimatePresence } from 'framer-motion';
 import { doutrinas } from '@/data/biblia';
 import ScrollReveal from '@/components/ScrollReveal';
+import { PageHero } from '@/components/layout/PageHero';
 import {
   Search,
   BookOpen,
@@ -267,18 +268,12 @@ export function ExegeseClient() {
         <div className="max-w-7xl mx-auto">
           {/* Hero Section */}
           <ScrollReveal>
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                <Sparkles className="w-4 h-4" />
-                {t('exegesis.heroBadge')}
-              </div>
-              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-light mb-4">
-                Estudo <span className="text-primary italic">Multirreferencial</span>
-              </h1>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                {t('exegesis.heroSubtitle')}
-              </p>
-            </div>
+            <PageHero
+              icon={Sparkles}
+              eyebrow={t('exegesis.heroBadge')}
+              title={<>Estudo <span className="italic text-primary">Multirreferencial</span></>}
+              subtitle={t('exegesis.heroSubtitle')}
+            />
           </ScrollReveal>
 
           {carregando ? (

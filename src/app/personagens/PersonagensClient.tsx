@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
+import { PageHero } from '@/components/layout/PageHero';
 import dynamic from 'next/dynamic';
 const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
   ssr: false,
@@ -73,18 +74,12 @@ export default function PersonagensClient() {
         />
       </div>
       <ScrollReveal>
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            <Users className="w-4 h-4" />
-            Biografias dos Personagens
-          </div>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-light mb-4">
-            Personagens <span className="text-primary italic">Biblicos</span>
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Biografias detalhadas com linhagem, referencias, doutrinas e tipologia
-          </p>
-        </div>
+        <PageHero
+          icon={Users}
+          eyebrow="Biografias"
+          title={<>Personagens <span className="italic text-primary">Bíblicos</span></>}
+          subtitle="Biografias detalhadas com linhagem, referências, doutrinas e tipologia"
+        />
       </ScrollReveal>
 
       <ScrollReveal>
@@ -94,11 +89,11 @@ export default function PersonagensClient() {
             <p className="text-xs text-muted-foreground mt-1">Total</p>
           </div>
           <div className="glass-card p-4 rounded-2xl text-center">
-            <p className="font-display text-3xl font-light text-amber-500">{stats.at}</p>
+            <p className="font-display text-3xl font-light text-primary">{stats.at}</p>
             <p className="text-xs text-muted-foreground mt-1">Antigo Testamento</p>
           </div>
           <div className="glass-card p-4 rounded-2xl text-center">
-            <p className="font-display text-3xl font-light text-blue-500">{stats.nt}</p>
+            <p className="font-display text-3xl font-light text-primary">{stats.nt}</p>
             <p className="text-xs text-muted-foreground mt-1">Novo Testamento</p>
           </div>
         </div>

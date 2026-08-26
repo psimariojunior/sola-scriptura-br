@@ -45,11 +45,11 @@ const CATEGORIA_ICONES: Record<CategoriaObra, typeof Church> = {
 };
 
 const CATEGORIA_CORES: Record<CategoriaObra, { bg: string; text: string }> = {
-  'pais-igreja': { bg: 'bg-amber-100 dark:bg-amber-950/40', text: 'text-amber-700 dark:text-amber-300' },
-  credos: { bg: 'bg-blue-100 dark:bg-blue-950/40', text: 'text-blue-700 dark:text-blue-300' },
-  reforma: { bg: 'bg-red-100 dark:bg-red-950/40', text: 'text-red-700 dark:text-red-300' },
-  espiritualidade: { bg: 'bg-emerald-100 dark:bg-emerald-950/40', text: 'text-emerald-700 dark:text-emerald-300' },
-  historia: { bg: 'bg-stone-200 dark:bg-stone-800/60', text: 'text-stone-700 dark:text-stone-300' },
+  'pais-igreja': { bg: 'bg-primary/10', text: 'text-primary' },
+  credos: { bg: 'bg-primary/10', text: 'text-primary' },
+  reforma: { bg: 'bg-primary/10', text: 'text-primary' },
+  espiritualidade: { bg: 'bg-primary/10', text: 'text-primary' },
+  historia: { bg: 'bg-primary/10', text: 'text-primary' },
 };
 
 interface ProgressoLeitura {

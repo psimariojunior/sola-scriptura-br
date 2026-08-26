@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Calendar, CheckCircle2, BookOpen, ChevronRight, Flame, ArrowRight, Sparkles,
@@ -236,18 +237,18 @@ export default function PlanosPage() {
 
   return (
     <PageShell maxWidth="4xl" className="pb-16">
-        <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl tile-warning flex items-center justify-center shrink-0">
-              <Calendar className="w-5 h-5" /></div>
-            <div className="flex-1"><h1 className="text-h1">Planos de <span className="text-primary italic">Leitura</span></h1>
-              <p className="text-xs text-muted-foreground">Escolha um plano ou crie o seu próprio</p></div>
+          <PageHero
+            icon={Calendar}
+            align="left"
+            title={<>Planos de <span className="italic text-primary">Leitura</span></>}
+            subtitle="Escolha um plano ou crie o seu próprio"
+            className="mb-8"
+          >
             <button onClick={() => { setEditandoPlano(null); setShowCriarModal(true); }}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors">
+              className="mt-6 inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:brightness-110 transition-[filter]">
               <Plus className="w-4 h-4" /> Criar Plano
             </button>
-          </div>
-        </motion.div>
+          </PageHero>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">{PLANOS.map((plano,i)=>(
           <motion.button key={plano.id} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:i*0.08}}

@@ -30,13 +30,13 @@ const CATEGORIAS: { valor: Categoria; labelKey: string }[] = [
 ];
 
 const CATEGORIA_COR: Record<string, string> = {
-  narrativa: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
-  parabola: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
-  milagre: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300',
-  discurso: 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300',
-  ensino: 'bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-300',
-  paixao: 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300',
-  'pos-ressurreicao': 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
+  narrativa: 'bg-primary/10 text-primary',
+  parabola: 'bg-primary/10 text-primary',
+  milagre: 'bg-primary/10 text-primary',
+  discurso: 'bg-primary/10 text-primary',
+  ensino: 'bg-primary/10 text-primary',
+  paixao: 'bg-primary/10 text-primary',
+  'pos-ressurreicao': 'bg-primary/10 text-primary',
 };
 
 const EVANGELHOS = [

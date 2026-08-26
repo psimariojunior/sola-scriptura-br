@@ -3,9 +3,7 @@
 import Link from 'next/link';
 import { memo } from 'react';
 import { BookOpen, Mail, ExternalLink, X, Heart } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import ScrollReveal from '@/components/ScrollReveal';
 
 function FooterInner() {
   const { t } = useTranslation();
@@ -33,46 +31,40 @@ function FooterInner() {
   ];
 
   return (
-    <footer className="border-t border-border bg-card/50 relative overflow-hidden" role="contentinfo">
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
-        backgroundImage: 'radial-gradient(circle at 20% 80%, hsl(var(--primary)) 0%, transparent 40%), radial-gradient(circle at 80% 20%, hsl(var(--primary)) 0%, transparent 40%)',
-      }} />
-      
-      <div className="max-w-6xl mx-auto px-5 py-14 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4 group">
-              <motion.div 
-                className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-all duration-300"
-                whileHover={{ rotate: 10, scale: 1.1 }}
-              >
+    <footer className="border-t border-border bg-background/70" role="contentinfo">
+      <div className="ssb-hairline" aria-hidden="true" />
+      <div className="max-w-6xl mx-auto px-5 py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+          <div className="sm:col-span-2">
+            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
+              <span className="w-9 h-9 rounded-lg bg-primary/10 ring-1 ring-primary/25 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
                 <BookOpen className="w-4 h-4 text-primary" strokeWidth={1.5} />
-              </motion.div>
-              <span className="font-display text-xl font-semibold">Sola Scriptura</span>
+              </span>
+              <span className="font-display text-xl font-semibold tracking-tight">Sola Scriptura</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-md mb-6">
               {t('footer.description')}
             </p>
 
             <div className="flex items-center gap-3">
-              <a href="mailto:contato@solascripturabr.com.br" className="text-muted-foreground hover:text-foreground transition-colors duration-200" aria-label="Enviar email de contato">
+              <a href="mailto:contato@solascripturabr.com.br" className="text-muted-foreground hover:text-primary transition-colors duration-200" aria-label="Enviar email de contato">
                 <Mail className="w-4 h-4" />
               </a>
-              <a href="https://github.com/psimariojunior/sola-scriptura-br" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-200" aria-label="GitHub">
+              <a href="https://github.com/psimariojunior/sola-scriptura-br" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors duration-200" aria-label="GitHub">
                 <ExternalLink className="w-4 h-4" />
               </a>
-              <a href="https://twitter.com/solascriptura_br" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-200" aria-label="Twitter">
+              <a href="https://twitter.com/solascriptura_br" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors duration-200" aria-label="Twitter">
                 <X className="w-4 h-4" />
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="font-semibold text-sm mb-4">{t('footer.tools')}</h3>
+            <h3 className="text-[11px] font-semibold tracking-[0.16em] uppercase text-primary mb-4">{t('footer.tools')}</h3>
             <ul className="space-y-2" aria-label="Ferramentas">
               {ferramentas.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 inline-block transition-all duration-300">
+                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 inline-block transition-all duration-200">
                     {link.label}
                   </Link>
                 </li>
@@ -81,25 +73,23 @@ function FooterInner() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-sm mb-4">{t('footer.study')}</h3>
+            <h3 className="text-[11px] font-semibold tracking-[0.16em] uppercase text-primary mb-4">{t('footer.study')}</h3>
             <ul className="space-y-2" aria-label="Estudo">
               {estudo.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground hover:translate-x-1 inline-block transition-all duration-300">
+                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-foreground hover:translate-x-0.5 inline-block transition-all duration-200">
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-
-
         </div>
 
-        <div className="mt-10 pt-6 divider-gradient">
+        <div className="mt-12 pt-6 border-t border-border/60">
           <div className="flex flex-col md:flex-row items-center justify-between gap-3">
             <p className="text-xs text-muted-foreground text-center md:text-left">
-              Sola Scriptura — Estudo Bíblico Acadêmico · Feito com <Heart className="w-3 h-3 inline text-red-500 fill-current" /> para o povo de Deus · 100% gratuito
+              Sola Scriptura — Estudo Bíblico Acadêmico · Feito com <Heart className="w-3 h-3 inline text-primary fill-current" /> para o povo de Deus · 100% gratuito
             </p>
             <div className="flex items-center gap-4">
               <p className="text-xs text-muted-foreground text-center md:text-right">

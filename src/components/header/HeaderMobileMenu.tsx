@@ -80,7 +80,7 @@ export function HeaderMobileMenu({
         {open && (
           <>
             <motion.div
-              className="fixed inset-0 bg-black/60 lg:hidden z-[55]"
+              className="fixed inset-0 bg-foreground/40 lg:hidden z-[55]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

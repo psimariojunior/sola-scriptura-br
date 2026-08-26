@@ -101,7 +101,7 @@ export function FloatingActionButton({ extraActions = [], hidden = false }: Prop
     }
   }, [isOpen]);
 
-  if (hidden) return null;
+  if (hidden || pathname === '/' || pathname?.startsWith('/biblia')) return null;
 
   return (
     <div className="fab-container sm:hidden">

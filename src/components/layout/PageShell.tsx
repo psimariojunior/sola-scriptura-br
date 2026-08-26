@@ -52,7 +52,7 @@ export function PageShell({
   hideFooter = false,
 }: PageShellProps) {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-transparent text-foreground">
       <Header />
       <main
         id="main-content"

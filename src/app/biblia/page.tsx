@@ -18,6 +18,7 @@ import { AnnotationModal } from '@/components/Biblia/AnnotationModal';
 import { QuickSearchModal } from '@/components/Biblia/QuickSearchModal';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { cn } from '@/lib/utils';
+import { cycleTema } from '@/lib/temas';
 import { labelMap, tradBadgeColors } from '@/components/Biblia/TranslationDropdown';
 import { UseBibliaNavigation } from '@/hooks/biblia/useBibliaNavigation';
 import { UseBibliaUI } from '@/hooks/biblia/useBibliaUI';
@@ -322,13 +323,10 @@ export default function BibliaPage() {
       // T — Toggle theme
       if (key === 't' && !mod) {
         e.preventDefault();
-        const themes = ['claro', 'escuro', 'dim', 'sepia', 'noturno'];
         try {
-          const current = localStorage.getItem('ssb_theme') || 'escuro';
-          const idx = themes.indexOf(current);
-          const next = themes[(idx + 1) % themes.length];
-          localStorage.setItem('ssb_theme', next);
-          document.documentElement.setAttribute('data-theme', next);
+          const current = localStorage.getItem('ssb_theme_v2') || localStorage.getItem('ssb_theme');
+          const next = cycleTema(current);
+          window.dispatchEvent(new CustomEvent('ssb:theme-change', { detail: next }));
         } catch {}
         return;
       }
@@ -367,7 +365,7 @@ export default function BibliaPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-background">
       <Header /><OfflineBanner />
       <main id="main-content" className="pt-16">
         <div className="hidden sm:block px-4 sm:px-6 py-2 bg-[var(--surface-raised)]/80 border-b border-[var(--border)]/40 backdrop-blur-sm"><Breadcrumbs items={[{ label: t('bottomBar.home'), href: '/' }, { label: t('nav.bible') }]} /></div>

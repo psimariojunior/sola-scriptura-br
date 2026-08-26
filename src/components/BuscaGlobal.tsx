@@ -31,6 +31,7 @@ import {
   CommandShortcut,
 } from '@/components/ui/command';
 import { useAI } from '@/hooks/useAI';
+import { useTema } from '@/lib/temas';
 import { VoiceSearchButton } from '@/components/VoiceSearchButton';
 import { Command as CommandPrimitive } from 'cmdk';
 
@@ -99,6 +100,7 @@ export const BuscaGlobal = memo(function BuscaGlobal({ open, onOpenChange, initi
   const [recentes, setRecentes] = useState<string[]>([]);
   const router = useRouter();
   const { open: openAI, ask: askAI } = useAI();
+  const { tema, setTema } = useTema();
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -212,11 +214,8 @@ export const BuscaGlobal = memo(function BuscaGlobal({ open, onOpenChange, initi
       } else if (acao === 'atalhos') {
         window.dispatchEvent(new CustomEvent('ssb:open-shortcuts'));
       } else if (acao === 'tema') {
-        const current = localStorage.getItem('ssb_theme') || 'escuro';
-        const next = (current === 'escuro' || current === 'noturno') ? 'claro' : 'escuro';
-        localStorage.setItem('ssb_theme', next);
-        window.dispatchEvent(new CustomEvent('ssb:theme-change', { detail: next }));
-        window.location.reload();
+        const next = (tema === 'escuro' || tema === 'noturno' || tema === 'dim') ? 'light' : 'escuro';
+        setTema(next);
       } else if (acao === 'idioma') {
         const current = localStorage.getItem('ssb_lang') || 'pt';
         const next = current === 'pt' ? 'en' : 'pt';
@@ -224,7 +223,7 @@ export const BuscaGlobal = memo(function BuscaGlobal({ open, onOpenChange, initi
         window.location.reload();
       }
     },
-    [onOpenChange, openAI]
+    [onOpenChange, openAI, tema, setTema]
   );
 
   const perguntarIA = useCallback(
@@ -247,7 +246,7 @@ export const BuscaGlobal = memo(function BuscaGlobal({ open, onOpenChange, initi
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-[60] bg-foreground/40 backdrop-blur-sm"
             onClick={() => onOpenChange(false)}
           />
           <motion.div
@@ -257,7 +256,7 @@ export const BuscaGlobal = memo(function BuscaGlobal({ open, onOpenChange, initi
             transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="fixed inset-x-0 top-[12vh] z-[70] mx-auto w-[calc(100%-2rem)] max-w-2xl"
           >
-            <div className="rounded-2xl border border-border/40 bg-background/95 backdrop-blur-xl shadow-2xl overflow-hidden">
+            <div className="rounded-xl border border-border bg-card/95 backdrop-blur-xl shadow-lg overflow-hidden">
               <Command label="Busca global" shouldFilter={false}>
                 <div className="flex items-center border-b border-border/30 px-4">
                   <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />

@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import { Search, ChevronDown, ExternalLink, Copy, Check, Layers, GraduationCap, BookOpen } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
+import { PageHero } from '@/components/layout/PageHero';
 import { useTranslation } from 'react-i18next';
 
 const EstudosTeologicosAba = dynamic(() => import('@/components/EstudosTeologicosAba'), {
@@ -29,30 +30,8 @@ const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo')
   loading: () => null,
 });
 
-const CATEGORIA_CORES: Record<string, { bg: string; text: string; dot: string }> = {
-  'Doutrinas Fundamentais': { bg: 'bg-amber-50 dark:bg-amber-950/30', text: 'text-amber-600 dark:text-amber-400', dot: 'bg-amber-500' },
-  'Cristologia': { bg: 'bg-emerald-50 dark:bg-emerald-950/30', text: 'text-emerald-600 dark:text-emerald-400', dot: 'bg-emerald-500' },
-  'Pneumatologia': { bg: 'bg-violet-50 dark:bg-violet-950/30', text: 'text-violet-600 dark:text-violet-400', dot: 'bg-violet-500' },
-  'Bibliologia': { bg: 'bg-blue-50 dark:bg-blue-950/30', text: 'text-blue-600 dark:text-blue-400', dot: 'bg-blue-500' },
-  'Angelologia': { bg: 'bg-cyan-50 dark:bg-cyan-950/30', text: 'text-cyan-600 dark:text-cyan-400', dot: 'bg-cyan-500' },
-  'Antropologia': { bg: 'bg-orange-50 dark:bg-orange-950/30', text: 'text-orange-600 dark:text-orange-400', dot: 'bg-orange-500' },
-  'Hamartiologia': { bg: 'bg-red-50 dark:bg-red-950/30', text: 'text-red-600 dark:text-red-400', dot: 'bg-red-500' },
-  'Soteriologia': { bg: 'bg-green-50 dark:bg-green-950/30', text: 'text-green-600 dark:text-green-400', dot: 'bg-green-500' },
-  'Eclesiologia': { bg: 'bg-rose-50 dark:bg-rose-950/30', text: 'text-rose-600 dark:text-rose-400', dot: 'bg-rose-500' },
-  'Escatologia': { bg: 'bg-indigo-50 dark:bg-indigo-950/30', text: 'text-indigo-600 dark:text-indigo-400', dot: 'bg-indigo-500' },
-  'Teologia Biblica': { bg: 'bg-teal-50 dark:bg-teal-950/30', text: 'text-teal-600 dark:text-teal-400', dot: 'bg-teal-500' },
-  'Apologetica': { bg: 'bg-slate-50 dark:bg-slate-950/30', text: 'text-slate-600 dark:text-slate-400', dot: 'bg-slate-500' },
-  'Teologia Sistematica': { bg: 'bg-purple-50 dark:bg-purple-950/30', text: 'text-purple-600 dark:text-purple-400', dot: 'bg-purple-500' },
-  'Historia da Igreja': { bg: 'bg-stone-50 dark:bg-stone-950/30', text: 'text-stone-600 dark:text-stone-400', dot: 'bg-stone-500' },
-  'Hermenapeutica': { bg: 'bg-sky-50 dark:bg-sky-950/30', text: 'text-sky-600 dark:text-sky-400', dot: 'bg-sky-500' },
-  'Questoes Contemporaneas': { bg: 'bg-orange-50 dark:bg-orange-950/30', text: 'text-orange-600 dark:text-orange-400', dot: 'bg-orange-500' },
-  'Missiologia': { bg: 'bg-emerald-50 dark:bg-emerald-950/30', text: 'text-emerald-600 dark:text-emerald-400', dot: 'bg-emerald-500' },
-  'Vida Crista': { bg: 'bg-rose-50 dark:bg-rose-950/30', text: 'text-rose-600 dark:text-rose-400', dot: 'bg-rose-500' },
-  'Estudos Comparativos': { bg: 'bg-teal-50 dark:bg-teal-950/30', text: 'text-teal-600 dark:text-teal-400', dot: 'bg-teal-500' },
-};
-
-function getCoresCategoria(cat: string) {
-  return CATEGORIA_CORES[cat] ?? { bg: 'bg-muted', text: 'text-muted-foreground', dot: 'bg-muted-foreground' };
+function getCoresCategoria(_cat: string) {
+  return { bg: 'bg-primary/10', text: 'text-primary', dot: 'bg-primary' };
 }
 
 function parseReferencia(ref: string): { livro: string; capitulo: number; versiculo: number } | null {
@@ -149,23 +128,15 @@ export default function TeologiaClient() {
   return (
     <>
       <ScrollReveal>
-        <div className="text-center mb-12">
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-            className="w-16 h-16 rounded-2xl bg-indigo-500/10 flex items-center justify-center mx-auto mb-6"
-          >
-            <BookOpen className="w-8 h-8 text-indigo-500" />
-          </motion.div>
-          <h1 className="font-display text-4xl md:text-5xl font-light mb-4">
-            {t('theology.titlePart1')} <span className="italic text-primary">{t('theology.titlePart2')}</span>
-          </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {t('theology.description')}
-          </p>
-          <div className="ornament w-16 mx-auto mt-6" />
-        </div>
+        <PageHero
+          icon={BookOpen}
+          title={
+            <>
+              {t('theology.titlePart1')} <span className="italic text-primary">{t('theology.titlePart2')}</span>
+            </>
+          }
+          subtitle={t('theology.description')}
+        />
       </ScrollReveal>
 
       <ScrollReveal delay={0.1}>

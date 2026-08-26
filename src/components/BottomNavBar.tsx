@@ -137,12 +137,12 @@ function BottomNavBarInner() {
       {showMore && (
         <>
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] animate-[fadeIn_0.2s_ease-out] md:hidden"
+            className="fixed inset-0 bg-foreground/40 z-[60] animate-[fadeIn_0.2s_ease-out] md:hidden"
             onClick={closeMore}
             role="presentation"
           />
           <div
-            className="fixed bottom-[calc(64px+env(safe-area-inset-bottom,0px))] left-3 right-3 z-[61] bg-card/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl overflow-hidden animate-[slideUp_0.25s_ease-out] md:hidden"
+            className="fixed bottom-[calc(64px+env(safe-area-inset-bottom,0px))] left-3 right-3 z-[61] bg-card border border-border rounded-md shadow-lg overflow-hidden animate-[slideUp_0.25s_ease-out] md:hidden"
             role="dialog"
             aria-modal="true"
             aria-label={t('header.moreNavOptions')}
@@ -217,7 +217,7 @@ function BottomNavBarInner() {
         className={`fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300 md:hidden ${hidden ? 'translate-y-full' : 'translate-y-0'}`}
         style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       >
-        <div className="relative border-t border-border/40 bg-background/80 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/60">
+        <div className="relative border-t border-border/80 bg-background/90 backdrop-blur-xl">
           {/* Subtle top glow */}
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
           
@@ -244,10 +244,7 @@ function BottomNavBarInner() {
                     }`}
                   >
                     <div className="relative">
-                      <tab.icon className={`w-5 h-5 mb-0.5 transition-all duration-200 ${active ? 'scale-110' : ''}`} strokeWidth={active ? 2.2 : 1.5} />
-                      {active && (
-                        <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-primary animate-pulse" />
-                      )}
+                      <tab.icon className="w-5 h-5 mb-0.5" strokeWidth={active ? 2 : 1.5} />
                     </div>
                     <span className={`text-[10px] font-medium leading-tight mt-0.5 transition-all duration-200 ${active ? 'font-semibold' : ''}`}>{tab.label}</span>
                   </button>
@@ -265,7 +262,7 @@ function BottomNavBarInner() {
                       : 'text-muted-foreground active:bg-muted/50'
                   }`}
                 >
-                  <tab.icon className={`w-5 h-5 mb-0.5 transition-all duration-200 ${active ? 'scale-110' : ''}`} strokeWidth={active ? 2.2 : 1.5} />
+                  <tab.icon className="w-5 h-5 mb-0.5" strokeWidth={active ? 2 : 1.5} />
                   <span className={`text-[10px] font-medium leading-tight mt-0.5 transition-all duration-200 ${active ? 'font-semibold' : ''}`}>{tab.label}</span>
                 </Link>
               );

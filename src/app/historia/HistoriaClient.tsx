@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useCallback } from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
+import { PageHero } from '@/components/layout/PageHero';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { BookOpen, Globe, CalendarDays, MapPin, Users, Crown, ArrowRight, ChevronDown } from 'lucide-react';
@@ -105,18 +106,12 @@ export default function HistoriaClient() {
   return (
     <>
       <ScrollReveal>
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            <Globe className="w-4 h-4" />
-            Contexto Historico Biblico
-          </div>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-light mb-4">
-            A <span className="text-primary italic">Historia</span> Bíblica
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            {cronologia.length} eventos historicos — da criacao a igreja primitiva
-          </p>
-        </div>
+        <PageHero
+          icon={Globe}
+          eyebrow="Contexto histórico bíblico"
+          title={<>A <span className="italic text-primary">História</span> Bíblica</>}
+          subtitle={`${cronologia.length} eventos históricos — da criação à igreja primitiva`}
+        />
       </ScrollReveal>
 
       <ScrollReveal>

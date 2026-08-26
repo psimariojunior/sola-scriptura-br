@@ -43,9 +43,15 @@ const config: Config = {
         burgundy: { DEFAULT: '#8b2252', light: '#a33368', dark: '#6e1a40' },
       },
       fontFamily: {
-        display: ['Cormorant Garamond', 'Georgia', 'serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Spectral', 'Georgia', 'serif'],
+        display: ['var(--font-cormorant)', 'Georgia', 'serif'],
+        body: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-spectral)', 'Georgia', 'serif'],
+      },
+      boxShadow: {
+        sm: 'var(--shadow-sm)',
+        md: 'var(--shadow-md)',
+        lg: 'var(--shadow-lg)',
+        glow: 'var(--shadow-glow)',
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -28,7 +28,8 @@ interface NavLinkSpec {
 const navLinksStatic: NavLinkSpec[] = [
   { href: '/biblia', label: 'nav.bible', icon: BookOpen },
   { href: '/estudar', label: 'nav.study', icon: Search },
-  { href: '/teologia', label: 'nav.theology', icon: Library },
+  { href: '/biblioteca', label: 'nav.library', icon: Library },
+  { href: '/teologia', label: 'nav.theology', icon: BookMarked },
 ];
 
 interface NavGroup {

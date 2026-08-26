@@ -154,6 +154,11 @@ export default function PesquisaPage() {
   const inputRef = useRef<HTMLInputElement>(null);
   const { t } = useTranslation();
 
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get('q');
+    if (q) setQuery(q);
+  }, []);
+
   const alternarTrad = useCallback((id: string) => {
     setTradSel((prev) => {
       const next = new Set(prev);

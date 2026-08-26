@@ -52,6 +52,7 @@ function BottomNavBarInner() {
     { href: '/', label: t('bottomBar.home'), icon: Home },
     { href: '/biblia', label: t('bottomBar.bible'), icon: BookOpen },
     { href: '/estudar', label: t('bottomBar.study', 'Estudar'), icon: Search },
+    { href: '/biblioteca', label: t('bottomBar.library', 'Biblioteca'), icon: BookMarked },
     { href: '#more', label: t('bottomBar.more'), icon: MoreHorizontal },
   ], [t]);
 

@@ -28,6 +28,8 @@ function FooterInner() {
     { href: '/cronologia', label: t('nav.chronology') },
     { href: '/personagens', label: t('nav.characters') },
     { href: '/atlas', label: t('footer.biblicalAtlas') },
+    { href: '/biblioteca', label: t('nav.library') },
+    { href: '/harmonia', label: t('bottomBar.harmony', 'Harmonia') },
   ];
 
   return (

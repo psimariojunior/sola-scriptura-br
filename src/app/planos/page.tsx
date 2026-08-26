@@ -83,6 +83,10 @@ export default function PlanosPage() {
 
   useEffect(() => {
     setPlanosCustom(carregarPlanosCustom());
+    const id = new URLSearchParams(window.location.search).get('plano');
+    if (!id) return;
+    const found = PLANOS.find((p) => p.id === id);
+    if (found) setPlanoSel(found);
   }, []);
 
   useEffect(() => {

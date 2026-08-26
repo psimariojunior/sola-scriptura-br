@@ -41,6 +41,7 @@
     "exegesis": "Biblical Study",
     "languages": "Languages",
     "theology": "Theology",
+    "library": "Library",
     "history": "History",
     "tools": "Tools",
     "ai": "AI",
@@ -635,6 +636,7 @@
   "bottomBar": {
     "home": "Home",
     "bible": "Bible",
+    "library": "Library",
     "studies": "Studies",
     "search": "Search",
     "more": "More",

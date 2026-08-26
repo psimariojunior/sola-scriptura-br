@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // ═══════════════════════════════════════════════════════════════════════════
-// IMPORTADOR STEPBible-Data — Piloto de interlinear com forma flexionada real
+// IMPORTADOR STEPBible-Data — interlinear com forma flexionada real,
+// Strong desambiguado, morfologia e aparato crítico (grego)
 // ═══════════════════════════════════════════════════════════════════════════
 //
 // Fonte: STEPBible-Data (Tyndale House Cambridge / STEPBible.org)
@@ -9,16 +10,16 @@
 // Creative Commons Attribution 4.0 (CC BY 4.0)"
 //
 // Este script baixa (com cache local) os arquivos brutos TAHOT (hebraico) e
-// TAGNT (grego) do repositório STEPBible-Data e gera arquivos TS por livro,
-// no padrão lazy-load do projeto (um arquivo por trecho coberto, carregado
-// sob demanda por src/data/biblia/stepbible/index.ts).
-//
-// ESCOPO DO PILOTO (ver relatório em src/data/biblia/stepbible/index.ts):
-//   - Hebraico: Gênesis 1-3 (a partir de "TAHOT Gen-Deu")
-//   - Grego: Evangelho de João completo (a partir de "TAGNT Mat-Jhn")
+// TAGNT (grego) do repositório STEPBible-Data e gera, LIVRO POR LIVRO, um
+// arquivo TS por livro em src/data/biblia/stepbible/, no padrão lazy-load já
+// usado pelo restante do projeto (ex.: src/data/biblia/texto/alm1911/*.ts).
 //
 // Uso:
-//   node scripts/import-stepbible.mjs
+//   node scripts/import-stepbible.mjs               (processa todos os livros
+//                                                      configurados em LIVROS)
+//   node scripts/import-stepbible.mjs mt mc lc       (processa só os livros
+//                                                      informados, por abreviação
+//                                                      do projeto)
 //
 // O script cacheia os .txt brutos (multi-MB) em scripts/.cache/stepbible/
 // para não precisar baixar de novo a cada execução.
@@ -32,16 +33,88 @@ const ROOT = path.resolve(__dirname, '..');
 const CACHE_DIR = path.join(__dirname, '.cache', 'stepbible');
 const OUT_DIR = path.join(ROOT, 'src', 'data', 'biblia', 'stepbible');
 
+// ─────────────────────────────────────────────────────────────────────────
+// Arquivos-fonte do STEPBible-Data. Cada um cobre um intervalo de livros do
+// cânon (limitação de tamanho de arquivo do GitHub).
+// ─────────────────────────────────────────────────────────────────────────
+
 const SOURCES = {
   tahotGenDeu: {
     url: "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/master/Translators%20Amalgamated%20OT%2BNT/TAHOT%20Gen-Deu%20-%20Translators%20Amalgamated%20Hebrew%20OT%20-%20STEPBible.org%20CC%20BY.txt",
     file: 'TAHOT_Gen-Deu.txt',
   },
+  tahotJosEst: {
+    url: "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/master/Translators%20Amalgamated%20OT%2BNT/TAHOT%20Jos-Est%20-%20Translators%20Amalgamated%20Hebrew%20OT%20-%20STEPBible.org%20CC%20BY.txt",
+    file: 'TAHOT_Jos-Est.txt',
+  },
+  tahotJobSng: {
+    url: "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/master/Translators%20Amalgamated%20OT%2BNT/TAHOT%20Job-Sng%20-%20Translators%20Amalgamated%20Hebrew%20OT%20-%20STEPBible.org%20CC%20BY.txt",
+    file: 'TAHOT_Job-Sng.txt',
+  },
+  tahotIsaMal: {
+    url: "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/master/Translators%20Amalgamated%20OT%2BNT/TAHOT%20Isa-Mal%20-%20Translators%20Amalgamated%20Hebrew%20OT%20-%20STEPBible.org%20CC%20BY.txt",
+    file: 'TAHOT_Isa-Mal.txt',
+  },
   tagntMatJhn: {
     url: "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/master/Translators%20Amalgamated%20OT%2BNT/TAGNT%20Mat-Jhn%20-%20Translators%20Amalgamated%20Greek%20NT%20-%20STEPBible.org%20CC-BY.txt",
     file: 'TAGNT_Mat-Jhn.txt',
   },
+  tagntActRev: {
+    url: "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/master/Translators%20Amalgamated%20OT%2BNT/TAGNT%20Act-Rev%20-%20Translators%20Amalgamated%20Greek%20NT%20-%20STEPBible.org%20CC-BY.txt",
+    file: 'TAGNT_Act-Rev.txt',
+  },
 };
+
+// ─────────────────────────────────────────────────────────────────────────
+// Catálogo de livros suportados: código do livro no STEPBible -> abreviação
+// do projeto (ver src/data/biblia/livros.ts), idioma, arquivo-fonte e total
+// de capítulos esperado (para validação de integridade pós-importação).
+// ─────────────────────────────────────────────────────────────────────────
+
+const LIVROS = [
+  // ---- Hebraico (TAHOT) ----
+  { stepCode: 'Gen', abrev: 'gn', idioma: 'hebraico', fonte: 'tahotGenDeu', totalCapitulos: 50 },
+  { stepCode: 'Exo', abrev: 'ex', idioma: 'hebraico', fonte: 'tahotGenDeu', totalCapitulos: 40 },
+  { stepCode: 'Psa', abrev: 'sl', idioma: 'hebraico', fonte: 'tahotJobSng', totalCapitulos: 150 },
+
+  // ---- Grego (TAGNT) — Evangelhos ----
+  { stepCode: 'Mat', abrev: 'mt', idioma: 'grego', fonte: 'tagntMatJhn', totalCapitulos: 28 },
+  { stepCode: 'Mrk', abrev: 'mc', idioma: 'grego', fonte: 'tagntMatJhn', totalCapitulos: 16 },
+  { stepCode: 'Luk', abrev: 'lc', idioma: 'grego', fonte: 'tagntMatJhn', totalCapitulos: 24 },
+  { stepCode: 'Jhn', abrev: 'jo', idioma: 'grego', fonte: 'tagntMatJhn', totalCapitulos: 21 },
+
+  // ---- Grego (TAGNT) — restante do NT em ordem canônica ----
+  { stepCode: 'Act', abrev: 'at', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 28 },
+  { stepCode: 'Rom', abrev: 'rm', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 16 },
+  { stepCode: '1Co', abrev: '1co', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 16 },
+  { stepCode: '2Co', abrev: '2co', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 13 },
+  { stepCode: 'Gal', abrev: 'gl', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 6 },
+  { stepCode: 'Eph', abrev: 'ef', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 6 },
+  { stepCode: 'Php', abrev: 'fp', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 4 },
+  { stepCode: 'Col', abrev: 'cl', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 4 },
+  { stepCode: '1Th', abrev: '1ts', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 5 },
+  { stepCode: '2Th', abrev: '2ts', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 3 },
+  { stepCode: '1Ti', abrev: '1tm', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 6 },
+  { stepCode: '2Ti', abrev: '2tm', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 4 },
+  { stepCode: 'Tit', abrev: 'tt', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 3 },
+  { stepCode: 'Phm', abrev: 'fm', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 1 },
+  { stepCode: 'Heb', abrev: 'hb', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 13 },
+  { stepCode: 'Jas', abrev: 'tg', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 5 },
+  { stepCode: '1Pe', abrev: '1pe', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 5 },
+  { stepCode: '2Pe', abrev: '2pe', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 3 },
+  { stepCode: '1Jn', abrev: '1jo', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 5 },
+  { stepCode: '2Jn', abrev: '2jo', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 1 },
+  { stepCode: '3Jn', abrev: '3jo', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 1 },
+  { stepCode: 'Jud', abrev: 'jd', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 1 },
+  { stepCode: 'Rev', abrev: 'ap', idioma: 'grego', fonte: 'tagntActRev', totalCapitulos: 22 },
+];
+
+/** Livros que este script deve efetivamente processar nesta execução. */
+function livrosAlvo() {
+  const args = process.argv.slice(2).map((a) => a.toLowerCase());
+  if (args.length === 0) return LIVROS;
+  return LIVROS.filter((l) => args.includes(l.abrev));
+}
 
 async function baixarComCache(nome) {
   const { url, file } = SOURCES[nome];
@@ -60,10 +133,21 @@ async function baixarComCache(nome) {
   return texto;
 }
 
+const _cacheTextoFonte = new Map();
+async function textoFonte(nomeFonte) {
+  if (!_cacheTextoFonte.has(nomeFonte)) {
+    _cacheTextoFonte.set(nomeFonte, await baixarComCache(nomeFonte));
+  }
+  return _cacheTextoFonte.get(nomeFonte);
+}
+
 // ─────────────────────────────────────────────────────────────────────────
 // Decodificador de morfologia hebraica (esquema OSHB/Westminster, usado
 // pelo TAHOT). Referência: openscriptures.github.io/morphhb (CC BY 4.0).
-// Cobre os casos mais comuns encontrados em Gênesis 1-3.
+// Cobre os casos mais comuns encontrados no corpus (verbo, substantivo,
+// adjetivo, partícula, preposição, conjunção, advérbio, pronome, sufixo).
+// Não é exaustivo — para expandir, ver a documentação completa em
+// https://openscriptures.github.io/morphhb/parsing/HebrewMorphologyCodes.html
 // ─────────────────────────────────────────────────────────────────────────
 
 const HEB_STEM = {
@@ -170,25 +254,48 @@ function normalizarStrongGrego(bruto) {
   return m ? `G${m[1]}` : bruto;
 }
 
+// Referência do STEPBible: 2-3 letras, opcionalmente precedidas de um dígito
+// (ex.: "Gen", "Jhn", "1Co", "2Th", "3Jn"), seguida de capítulo.versículo.
+// Quando a versificação de referência (massorética/crítica) diverge de uma
+// numeração alternativa mais comum em outras tradições, a referência traz
+// essa alternativa entre parênteses (ex.: "Gen.31.55(32.1)"). Confirmado por
+// amostragem contra o texto local (ARC): a numeração PRINCIPAL (antes dos
+// parênteses) é a que corresponde à versificação usada pelas traduções do
+// projeto — a alternativa entre parênteses deve ser apenas ignorada, mas
+// precisa ser tolerada pela regex para o versículo não ser descartado.
+const REGEX_REF = /^(\d?[A-Za-z]{2,3})\.(\d+)\.(\d+)(?:\(\d+\.\d+\))?#(\d+)/;
+
+/** Resolve capítulo/versículo finais a partir dos grupos de REGEX_REF.
+ * Versículo 0 (usado pelo STEPBible para o título/superscrição de alguns
+ * Salmos, ex. "Psa.3.0") é mesclado ao versículo 1, já que as traduções do
+ * projeto não numeram o título separadamente. */
+function resolverCapVer(m) {
+  const [, , capStr, verStr, wordIdx] = m;
+  const ver = Number(verStr);
+  return {
+    cap: Number(capStr),
+    ver: ver <= 0 ? 1 : ver,
+    wordIdx,
+  };
+}
+
 // ─────────────────────────────────────────────────────────────────────────
 // Parser TAHOT (hebraico) — colunas: Ref&Type, Hebrew, Translit, Translation,
 // dStrongs, Grammar, ...
 // ─────────────────────────────────────────────────────────────────────────
 
-function parseTahot(texto, livroFiltro, capitulosFiltro) {
+function parseTahot(texto, livroFiltro) {
   const linhas = texto.split(/\r?\n/);
   const porVersiculo = new Map(); // "cap:ver" -> [palavras]
 
   for (const linha of linhas) {
     if (!linha || linha.startsWith('Eng (Heb)')) continue;
     const ref = linha.slice(0, linha.indexOf('\t'));
-    const m = ref.match(/^([A-Za-z]{3})\.(\d+)\.(\d+)#(\d+)/);
+    const m = ref.match(REGEX_REF);
     if (!m) continue;
-    const [, livroAbrevEn, capStr, verStr] = m;
+    const livroAbrevEn = m[1];
     if (livroFiltro && livroAbrevEn !== livroFiltro) continue;
-    const cap = Number(capStr);
-    const ver = Number(verStr);
-    if (capitulosFiltro && !capitulosFiltro.includes(cap)) continue;
+    const { cap, ver, wordIdx } = resolverCapVer(m);
 
     const cols = linha.split('\t');
     if (cols.length < 6) continue;
@@ -209,7 +316,7 @@ function parseTahot(texto, livroFiltro, capitulosFiltro) {
     const chave = `${cap}:${ver}`;
     if (!porVersiculo.has(chave)) porVersiculo.set(chave, []);
     porVersiculo.get(chave).push({
-      ref: `${livroAbrevEn}.${cap}.${ver}#${m[4]}`,
+      ref: `${livroAbrevEn}.${cap}.${ver}#${wordIdx}`,
       formaOriginal,
       transliteracao: translit.replace(/\//g, '').trim(),
       glosaIngles: translation.replace(/\//g, ' ').replace(/\s+/g, ' ').trim(),
@@ -234,12 +341,11 @@ function parseTagnt(texto, livroFiltro) {
   for (const linha of linhas) {
     if (!linha || linha.startsWith('Word & Type')) continue;
     const ref = linha.slice(0, linha.indexOf('\t'));
-    const m = ref.match(/^([A-Za-z]{3})\.(\d+)\.(\d+)#(\d+)/);
+    const m = ref.match(REGEX_REF);
     if (!m) continue;
-    const [, livroAbrevEn, capStr, verStr] = m;
+    const livroAbrevEn = m[1];
     if (livroFiltro && livroAbrevEn !== livroFiltro) continue;
-    const cap = Number(capStr);
-    const ver = Number(verStr);
+    const { cap, ver, wordIdx } = resolverCapVer(m);
 
     const cols = linha.split('\t');
     if (cols.length < 6) continue;
@@ -253,7 +359,7 @@ function parseTagnt(texto, livroFiltro) {
     const chave = `${cap}:${ver}`;
     if (!porVersiculo.has(chave)) porVersiculo.set(chave, []);
     porVersiculo.get(chave).push({
-      ref: `${livroAbrevEn}.${cap}.${ver}#${m[4]}`,
+      ref: `${livroAbrevEn}.${cap}.${ver}#${wordIdx}`,
       formaOriginal,
       transliteracao: translitMatch ? translitMatch[1] : '',
       glosaIngles: (ingles || '').trim(),
@@ -271,7 +377,7 @@ function parseTagnt(texto, livroFiltro) {
 // ─────────────────────────────────────────────────────────────────────────
 
 const CABECALHO_ATRIBUICAO = `// ═══════════════════════════════════════════════════════════════════════
-// PILOTO STEPBible-Data — gerado por scripts/import-stepbible.mjs
+// STEPBible-Data — gerado por scripts/import-stepbible.mjs
 //
 // FONTE E ATRIBUIÇÃO (OBRIGATÓRIA por licença):
 //   Dados de STEPBible.org / Tyndale House Cambridge.
@@ -284,60 +390,117 @@ const CABECALHO_ATRIBUICAO = `// ═══════════════�
 // ═══════════════════════════════════════════════════════════════════════
 `;
 
-function gerarArquivoHebraico(porVersiculo, nomeExport) {
-  const obj = {};
-  for (const [chave, palavras] of [...porVersiculo.entries()].sort(compararChaves)) {
-    obj[chave] = palavras;
-  }
-  return `${CABECALHO_ATRIBUICAO}
-import type { PalavraStepBibleHebraico } from './types';
-
-export const ${nomeExport}: Record<string, PalavraStepBibleHebraico[]> = ${JSON.stringify(obj, null, 0)};
-`;
-}
-
-function gerarArquivoGrego(porVersiculo, nomeExport) {
-  const obj = {};
-  for (const [chave, palavras] of [...porVersiculo.entries()].sort(compararChaves)) {
-    obj[chave] = palavras;
-  }
-  return `${CABECALHO_ATRIBUICAO}
-import type { PalavraStepBibleGrego } from './types';
-
-export const ${nomeExport}: Record<string, PalavraStepBibleGrego[]> = ${JSON.stringify(obj, null, 0)};
-`;
-}
-
 function compararChaves(a, b) {
   const [ca, va] = a[0].split(':').map(Number);
   const [cb, vb] = b[0].split(':').map(Number);
   return ca - cb || va - vb;
 }
 
+function gerarArquivo(idioma, porVersiculo) {
+  const obj = {};
+  for (const [chave, palavras] of [...porVersiculo.entries()].sort(compararChaves)) {
+    obj[chave] = palavras;
+  }
+  const tipo = idioma === 'hebraico' ? 'PalavraStepBibleHebraico' : 'PalavraStepBibleGrego';
+  return `${CABECALHO_ATRIBUICAO}
+import type { ${tipo} } from './types';
+
+/** Palavras por versículo ("capítulo:versículo" -> palavras), na ordem do texto original. */
+export const PALAVRAS: Record<string, ${tipo}[]> = ${JSON.stringify(obj, null, 0)};
+`;
+}
+
+/** Nome de arquivo válido para o filesystem/import: livros cuja abreviação
+ * começa com dígito (1co, 2co, ...) recebem prefixo "_", como já é feito em
+ * src/data/biblia/texto/alm1911/*.ts. */
+function nomeArquivo(abrev) {
+  return /^\d/.test(abrev) ? `_${abrev}` : abrev;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Validação de integridade pós-importação
+// ─────────────────────────────────────────────────────────────────────────
+
+function validar(livro, porVersiculo) {
+  const avisos = [];
+  const capitulos = new Set();
+  let totalPalavras = 0;
+  let semStrong = 0;
+  let semMorfologia = 0;
+
+  for (const [chave, palavras] of porVersiculo) {
+    const [cap] = chave.split(':').map(Number);
+    capitulos.add(cap);
+    totalPalavras += palavras.length;
+    for (const p of palavras) {
+      if (!p.strong || p.strong.trim() === '') semStrong++;
+      const morfVazia = livro.idioma === 'hebraico' ? !p.morfologiaCodigo : !p.morfologiaCodigo;
+      if (morfVazia) semMorfologia++;
+    }
+  }
+
+  const capitulosOrdenados = [...capitulos].sort((a, b) => a - b);
+  const capMin = capitulosOrdenados[0];
+  const capMax = capitulosOrdenados[capitulosOrdenados.length - 1];
+
+  if (porVersiculo.size === 0) {
+    avisos.push('NENHUM versículo encontrado — verifique o código do livro/fonte.');
+  }
+  if (capitulosOrdenados.length !== livro.totalCapitulos) {
+    avisos.push(`Capítulos encontrados (${capitulosOrdenados.length}) != esperado (${livro.totalCapitulos}).`);
+  }
+  if (capMin !== 1) {
+    avisos.push(`Primeiro capítulo encontrado é ${capMin}, esperado 1.`);
+  }
+  if (capMax !== livro.totalCapitulos) {
+    avisos.push(`Último capítulo encontrado é ${capMax}, esperado ${livro.totalCapitulos}.`);
+  }
+  const pctSemStrong = totalPalavras ? (semStrong / totalPalavras) * 100 : 0;
+  if (pctSemStrong > 5) {
+    avisos.push(`${semStrong}/${totalPalavras} palavras (${pctSemStrong.toFixed(1)}%) sem Strong — acima do esperado.`);
+  }
+
+  console.log(
+    `  [${livro.abrev}] versículos=${porVersiculo.size} capítulos=${capitulosOrdenados.length}/${livro.totalCapitulos} ` +
+    `palavras=${totalPalavras} semStrong=${semStrong} semMorfologia=${semMorfologia}`
+  );
+  for (const aviso of avisos) {
+    console.warn(`    ⚠ ${aviso}`);
+  }
+  return avisos.length === 0;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+
 async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
+  const alvos = livrosAlvo();
+  if (alvos.length === 0) {
+    console.error('Nenhum livro reconhecido nos argumentos. Livros disponíveis:', LIVROS.map((l) => l.abrev).join(', '));
+    process.exit(1);
+  }
 
-  console.log('\n=== Processando Gênesis 1-3 (TAHOT — hebraico) ===');
-  const tahotTexto = await baixarComCache('tahotGenDeu');
-  const genesis13 = parseTahot(tahotTexto, 'Gen', [1, 2, 3]);
-  const totalPalavrasGn = [...genesis13.values()].reduce((n, l) => n + l.length, 0);
-  console.log(`Versículos processados: ${genesis13.size}, palavras: ${totalPalavrasGn}`);
-  fs.writeFileSync(
-    path.join(OUT_DIR, 'genesis-1-3.ts'),
-    gerarArquivoHebraico(genesis13, 'GENESIS_1_3_STEPBIBLE')
-  );
+  console.log(`Processando ${alvos.length} livro(s): ${alvos.map((l) => l.abrev).join(', ')}\n`);
 
-  console.log('\n=== Processando Evangelho de João (TAGNT — grego) ===');
-  const tagntTexto = await baixarComCache('tagntMatJhn');
-  const joao = parseTagnt(tagntTexto, 'Jhn');
-  const totalPalavrasJo = [...joao.values()].reduce((n, l) => n + l.length, 0);
-  console.log(`Versículos processados: ${joao.size}, palavras: ${totalPalavrasJo}`);
-  fs.writeFileSync(
-    path.join(OUT_DIR, 'joao.ts'),
-    gerarArquivoGrego(joao, 'JOAO_STEPBIBLE')
-  );
+  const resumo = [];
+  for (const livro of alvos) {
+    const texto = await textoFonte(livro.fonte);
+    const porVersiculo = livro.idioma === 'hebraico'
+      ? parseTahot(texto, livro.stepCode)
+      : parseTagnt(texto, livro.stepCode);
 
+    const ok = validar(livro, porVersiculo);
+    const arquivo = `${nomeArquivo(livro.abrev)}.ts`;
+    fs.writeFileSync(path.join(OUT_DIR, arquivo), gerarArquivo(livro.idioma, porVersiculo));
+    resumo.push({ abrev: livro.abrev, idioma: livro.idioma, versiculos: porVersiculo.size, ok });
+  }
+
+  console.log('\n=== Resumo ===');
+  for (const r of resumo) {
+    console.log(`  ${r.ok ? '✓' : '✗'} ${r.abrev} (${r.idioma}) — ${r.versiculos} versículos`);
+  }
   console.log('\nConcluído. Arquivos gerados em src/data/biblia/stepbible/.');
+  console.log('Lembrete: atualize manualmente src/data/biblia/stepbible/index.ts com os novos livros.');
 }
 
 main().catch((err) => {

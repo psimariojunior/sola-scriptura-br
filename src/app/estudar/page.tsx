@@ -31,7 +31,6 @@ import {
   Network,
 } from 'lucide-react';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
-import { cn } from '@/lib/utils';
 
 interface RecentPage {
   path: string;
@@ -246,26 +245,20 @@ export default function EstudarPage() {
 
         {/* Welcome Banner */}
         <ScrollReveal>
-          <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20 p-6 md:p-8 mb-8">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="relative">
-              <h1 className="text-h2 text-foreground mb-2">
-                O que você quer estudar hoje?
-              </h1>
-              <p className="text-muted-foreground mb-6 max-w-xl">
-                Explore ferramentas, estudos e recursos para aprofundar seu conhecimento bíblico.
-              </p>
-              <button
-                onClick={handleSearch}
-                className="flex items-center gap-3 w-full max-w-lg px-4 py-3 rounded-xl border border-border bg-background/80 backdrop-blur-sm hover:border-primary/50 hover:shadow-md transition-all duration-200 text-left group"
-              >
-                <Search className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                <span className="text-muted-foreground text-sm">Buscar versículos, estudos, personagens...</span>
-                <kbd className="ml-auto hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded bg-muted text-xs text-muted-foreground">
-                  <span className="text-xs">⌘</span>K
-                </kbd>
-              </button>
-            </div>
+          <section className="mb-10">
+            <h1 className="font-display text-3xl sm:text-4xl font-normal text-foreground mb-2">
+              O que você quer estudar hoje?
+            </h1>
+            <p className="text-muted-foreground mb-6 max-w-xl text-sm">
+              Ferramentas acadêmicas, estudos por livro e recursos para aprofundar as Escrituras.
+            </p>
+            <button
+              onClick={handleSearch}
+              className="flex items-center gap-3 w-full max-w-lg py-3 border-b border-border hover:border-primary/50 transition-colors text-left group"
+            >
+              <Search className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+              <span className="text-muted-foreground text-sm">Buscar versículos, estudos, personagens…</span>
+            </button>
           </section>
         </ScrollReveal>
 
@@ -307,18 +300,22 @@ export default function EstudarPage() {
               <Zap className="w-5 h-5 text-primary" />
               <h2 className="text-lg font-semibold text-foreground">Ferramentas Rápidas</h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="divide-y divide-border">
               {QUICK_TOOLS.map((tool) => (
                 <Link
                   key={tool.href}
                   href={tool.href}
-                  className="group flex flex-col p-4 rounded-xl border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-200"
+                  className="group flex items-start gap-4 py-3.5 first:pt-0 last:pb-0"
                 >
-                  <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center mb-3 group-hover:scale-105 transition-transform', tool.tile)}>
-                    <tool.icon className="w-5 h-5" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-sm font-semibold text-foreground mb-1">{tool.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{tool.description}</p>
+                  <tool.icon className="w-4 h-4 mt-0.5 text-primary shrink-0" strokeWidth={1.5} />
+                  <span className="min-w-0">
+                    <span className="block text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                      {tool.title}
+                    </span>
+                    <span className="text-xs text-muted-foreground leading-relaxed">
+                      {tool.description}
+                    </span>
+                  </span>
                 </Link>
               ))}
             </div>
@@ -387,18 +384,20 @@ export default function EstudarPage() {
               <Brain className="w-5 h-5 text-primary" />
               <h2 className="text-lg font-semibold text-foreground">IA & Análise</h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="divide-y divide-border">
               {IA_TOOLS.map((tool) => (
                 <Link
                   key={tool.href}
                   href={tool.href}
-                  className="group flex flex-col p-4 rounded-xl border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-200"
+                  className="group flex items-start gap-4 py-3.5 first:pt-0 last:pb-0"
                 >
-                  <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center mb-3 group-hover:scale-105 transition-transform', tool.tile)}>
-                    <tool.icon className="w-5 h-5" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-sm font-semibold text-foreground mb-1">{tool.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{tool.description}</p>
+                  <tool.icon className="w-4 h-4 mt-0.5 text-primary shrink-0" strokeWidth={1.5} />
+                  <span className="min-w-0">
+                    <span className="block text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                      {tool.title}
+                    </span>
+                    <span className="text-xs text-muted-foreground">{tool.description}</span>
+                  </span>
                 </Link>
               ))}
             </div>
@@ -412,18 +411,20 @@ export default function EstudarPage() {
               <GraduationCap className="w-5 h-5 text-primary" />
               <h2 className="text-lg font-semibold text-foreground">Cursos & Manuais</h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="divide-y divide-border">
               {COURSE_TOOLS.map((tool) => (
                 <Link
                   key={tool.href}
                   href={tool.href}
-                  className="group flex flex-col p-4 rounded-xl border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-200"
+                  className="group flex items-start gap-4 py-3.5 first:pt-0 last:pb-0"
                 >
-                  <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center mb-3 group-hover:scale-105 transition-transform', tool.tile)}>
-                    <tool.icon className="w-5 h-5" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-sm font-semibold text-foreground mb-1">{tool.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{tool.description}</p>
+                  <tool.icon className="w-4 h-4 mt-0.5 text-primary shrink-0" strokeWidth={1.5} />
+                  <span className="min-w-0">
+                    <span className="block text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                      {tool.title}
+                    </span>
+                    <span className="text-xs text-muted-foreground">{tool.description}</span>
+                  </span>
                 </Link>
               ))}
             </div>
@@ -437,18 +438,20 @@ export default function EstudarPage() {
               <Flame className="w-5 h-5 text-primary" />
               <h2 className="text-lg font-semibold text-foreground">Desafios & Quiz</h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="divide-y divide-border">
               {QUIZ_TOOLS.map((tool) => (
                 <Link
                   key={tool.href}
                   href={tool.href}
-                  className="group flex flex-col p-4 rounded-xl border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-200"
+                  className="group flex items-start gap-4 py-3.5 first:pt-0 last:pb-0"
                 >
-                  <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center mb-3 group-hover:scale-105 transition-transform', tool.tile)}>
-                    <tool.icon className="w-5 h-5" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-sm font-semibold text-foreground mb-1">{tool.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{tool.description}</p>
+                  <tool.icon className="w-4 h-4 mt-0.5 text-primary shrink-0" strokeWidth={1.5} />
+                  <span className="min-w-0">
+                    <span className="block text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                      {tool.title}
+                    </span>
+                    <span className="text-xs text-muted-foreground">{tool.description}</span>
+                  </span>
                 </Link>
               ))}
             </div>

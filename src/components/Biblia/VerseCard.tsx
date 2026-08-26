@@ -238,21 +238,17 @@ export const VerseCard = memo(function VerseCard({
         onMouseEnter={() => setShowActions(true)}
         onMouseLeave={() => setShowActions(false)}
         className={cn(
-          'group relative cursor-pointer rounded-xl',
-          'transition-all duration-300 animate-verse-fade-in',
-          'px-4 sm:px-5 -mx-4 sm:-mx-5',
-          'py-3 sm:py-4',
+          'group relative cursor-pointer',
+          'transition-colors duration-200 animate-verse-fade-in',
+          'px-1 sm:px-2 -mx-1 sm:-mx-2',
+          'py-2 sm:py-2.5',
           isCurrentAudioVerse
-            ? 'bg-gradient-to-r from-amber-50/80 via-amber-100/60 to-amber-50/80 dark:from-amber-900/30 dark:via-amber-900/20 dark:to-amber-900/30 border-l-[3px] border-l-amber-500 shadow-lg shadow-amber-500/10 ring-1 ring-amber-400/30'
-            : isFocused
-            ? 'bg-gradient-to-r from-[var(--brand-subtle)] via-[var(--brand-subtle)]/80 to-[var(--brand-subtle)] border-l-[3px] border-l-[var(--brand-default)] shadow-lg shadow-[var(--brand-default)]/10 ring-1 ring-[var(--brand-default)]/30'
-            : isSelected
-            ? 'bg-gradient-to-r from-[var(--brand-subtle)] via-[var(--brand-subtle)]/80 to-[var(--brand-subtle)] border-l-[3px] border-l-[var(--brand-default)] shadow-md'
-            : isPlaying
-            ? 'bg-[var(--brand-subtle)]/50 border-l-[3px] border-l-[var(--brand-default)]'
-            : isHighlighted
-            ? 'bg-[var(--brand-subtle)]/60'
-            : 'hover:bg-[var(--surface-sunken)]/40 border-l-[3px] border-l-transparent hover:border-l-[var(--brand-default)]/30 hover:shadow-sm',
+            ? 'bg-primary/[0.08] border-l-2 border-l-primary'
+            : isFocused || isSelected
+            ? 'bg-primary/[0.06] border-l-2 border-l-primary/70'
+            : isPlaying || isHighlighted
+            ? 'bg-primary/[0.04] border-l-2 border-l-primary/40'
+            : 'border-l-2 border-l-transparent hover:bg-primary/[0.03] hover:border-l-primary/25',
           corMarca && corBgMap[corMarca]
         )}
       >
@@ -261,30 +257,12 @@ export const VerseCard = memo(function VerseCard({
           {!hideNumber && (
             <span
               className={cn(
-                'shrink-0 inline-flex items-center justify-center relative',
-                'w-8 h-8 sm:w-9 sm:h-9 rounded-full',
-                'text-[11px] sm:text-xs font-bold tabular-nums',
-                'transition-all duration-300',
-                isSelected || isPlaying
-                  ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20'
-                  : 'bg-[var(--brand-subtle)]/80 text-[var(--brand-default)] group-hover:bg-[var(--brand-default)] group-hover:text-[var(--brand-contrast)] group-hover:shadow-md group-hover:shadow-[var(--brand-default)]/20'
+                'bible-verse-number shrink-0 mt-1',
+                (isSelected || isPlaying || isCurrentAudioVerse || isFocused) && 'is-active'
               )}
               aria-hidden="true"
             >
               {numero}
-              {corMarca && (
-                <span
-                  className={cn(
-                    'absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full ring-2 ring-[var(--surface-raised)]',
-                    corMarca === 'yellow' && 'bg-yellow-400',
-                    corMarca === 'green' && 'bg-green-400',
-                    corMarca === 'blue' && 'bg-blue-400',
-                    corMarca === 'pink' && 'bg-pink-400',
-                    corMarca === 'orange' && 'bg-orange-400',
-                    corMarca === 'purple' && 'bg-purple-400'
-                  )}
-                />
-              )}
             </span>
           )}
 
@@ -295,24 +273,17 @@ export const VerseCard = memo(function VerseCard({
               livroAbreviacao={livroAbreviacao}
               capitulo={capitulo}
               numero={numero}
-              className="text-[var(--content-primary)] tracking-[0.01em]"
+              className="font-serif-body text-[var(--content-primary)] tracking-[0.01em]"
               style={{ fontSize: `${fontSize}px`, lineHeight: lineSpacing ?? undefined, fontFamily: fontFamilyCss }}
             />
 
-            {/* Subtle reference + resource indicator */}
-            <div className="flex items-center gap-2 mt-1.5">
-              <span className="text-[0.65em] text-[var(--content-muted)] font-medium tracking-wide tabular-nums">
-                {ref}
-              </span>
-              {hasResourcesProp && (
-                <span
-                  className="inline-flex items-center text-[9px] text-[var(--brand-default)]/60 font-medium"
-                  title="Recursos disponíveis"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--brand-default)]/40" />
-                </span>
-              )}
-            </div>
+            {/* Subtle resource indicator */}
+            {hasResourcesProp && (
+              <span
+                className="inline-block mt-1 w-1 h-1 rounded-full bg-primary/50"
+                title="Recursos disponíveis"
+              />
+            )}
           </div>
 
           {/* Actions - appear on hover/selection */}

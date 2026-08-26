@@ -79,7 +79,7 @@ export function ChapterHeader({
         <div className="animate-scale-in text-center mt-4 md:mt-0">
           {/* Chapter number — watermarked background */}
           <div className="relative mb-6">
-            <span className="block text-[100px] sm:text-[140px] font-display font-light text-[var(--brand-default)]/6 leading-none select-none" aria-hidden="true">
+            <span className="block text-[72px] sm:text-[96px] font-display font-light text-[var(--brand-default)]/[0.08] leading-none select-none" aria-hidden="true">
               {capitulo}
             </span>
           </div>

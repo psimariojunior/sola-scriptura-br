@@ -147,7 +147,7 @@ export function UseBibliaUI({
   const [mostrarApresentacao, setMostrarApresentacao] = useState(false);
   const [mostrarQualidadeAudio, setMostrarQualidadeAudio] = useState(false);
   const [immersiveMode, setImmersiveMode] = useState(false);
-  const [estudoCapituloAberto, setEstudoCapituloAberto] = useState(true);
+  const [estudoCapituloAberto, setEstudoCapituloAberto] = useState(false);
   const [fontFamily, setFontFamily] = useState<'serif' | 'sans'>(() => {
     if (typeof window !== 'undefined') {
       return (localStorage.getItem('ssb_font_family') as 'serif' | 'sans') || 'serif';

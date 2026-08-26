@@ -105,17 +105,17 @@ export const designTokens: Record<ThemeName, DesignTokens> = {
 
   dark: {
     surface: {
-      base: '#0A0908',
-      raised: '#161412',
-      overlay: 'rgba(22, 20, 18, 0.96)',
-      sunken: '#0F0D0B',
-      inverted: '#F5F1E8',
+      base: '#1C1610',
+      raised: '#2A231C',
+      overlay: 'rgba(42, 35, 28, 0.96)',
+      sunken: '#14100C',
+      inverted: '#F3EDE3',
     },
     content: {
-      primary: '#F5F1E8',
-      secondary: '#B8B0A4',
-      muted: '#7A7368',
-      inverse: '#0A0908',
+      primary: '#F3EDE3',
+      secondary: '#C4B8A8',
+      muted: '#8A7E70',
+      inverse: '#1C1610',
       link: '#D4A843',
     },
     brand: {
@@ -123,7 +123,7 @@ export const designTokens: Record<ThemeName, DesignTokens> = {
       hover: '#E0B558',
       emphasis: '#E8C56B',
       subtle: 'rgba(212, 168, 67, 0.14)',
-      contrast: '#0A0908',
+      contrast: '#1C1610',
     },
     accent: {
       warm: '#E07A30',
@@ -150,7 +150,7 @@ export const designTokens: Record<ThemeName, DesignTokens> = {
       hero: 'linear-gradient(135deg, #D4A843 0%, #E0B558 50%, #E07A30 100%)',
       divine: 'linear-gradient(135deg, #D4A843 0%, #E07A30 100%)',
       warm: 'linear-gradient(135deg, #E07A30 0%, #F59E0B 100%)',
-      sunset: 'linear-gradient(180deg, #0A0908 0%, #1A1612 50%, #2A1810 100%)',
+      sunset: 'linear-gradient(180deg, #1C1610 0%, #241C14 50%, #2A1C12 100%)',
     },
   },
 

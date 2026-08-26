@@ -85,53 +85,53 @@
   }
 
   .dark {
-    /* ShadCN HSL tokens — Premium Dark (noite) */
-    --background: 20 12% 4%;
-    --foreground: 38 25% 93%;
-    --card: 24 12% 9%;
-    --card-foreground: 38 25% 93%;
-    --popover: 24 12% 9%;
-    --popover-foreground: 38 25% 93%;
+    /* Mesa de nogueira — tinta quente, nao OLED preto-cinza */
+    --background: 30 22% 9%;
+    --foreground: 38 28% 93%;
+    --card: 30 20% 14%;
+    --card-foreground: 38 28% 93%;
+    --popover: 30 20% 14%;
+    --popover-foreground: 38 28% 93%;
     --primary: 38 60% 60%;
-    --primary-foreground: 20 12% 4%;
-    --secondary: 24 8% 14%;
-    --secondary-foreground: 38 15% 80%;
-    --muted: 24 8% 14%;
-    --muted-foreground: 30 8% 55%;
-    --accent: 24 10% 18%;
-    --accent-foreground: 38 25% 93%;
+    --primary-foreground: 30 22% 9%;
+    --secondary: 30 16% 18%;
+    --secondary-foreground: 38 18% 82%;
+    --muted: 30 14% 16%;
+    --muted-foreground: 32 12% 62%;
+    --accent: 32 18% 20%;
+    --accent-foreground: 38 28% 93%;
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 98%;
-    --border: 24 8% 18%;
-    --input: 24 8% 18%;
+    --border: 32 16% 24%;
+    --input: 32 16% 24%;
     --ring: 38 60% 60%;
 
     /* Legacy aliases */
-    --bg: #0A0908;
-    --fg: #F5F1E8;
-    --muted-fg: #B8B0A4;
-    --card-bg: #161412;
-    --card-border: #2A2724;
+    --bg: #1C1610;
+    --fg: #F3EDE3;
+    --muted-fg: #C4B8A8;
+    --card-bg: #2A231C;
+    --card-border: #3D342C;
     --primary-light: #D4A843;
 
-    /* UNIFIED SEMANTIC TOKENS — Dark (noite) */
-    --surface-base: #0A0908;
-    --surface-raised: #161412;
-    --surface-overlay: rgba(22, 20, 18, 0.96);
-    --surface-sunken: #0F0D0B;
-    --surface-inverted: #F5F1E8;
+    /* UNIFIED SEMANTIC TOKENS — Dark (nogueira) */
+    --surface-base: #1C1610;
+    --surface-raised: #2A231C;
+    --surface-overlay: rgba(42, 35, 28, 0.96);
+    --surface-sunken: #14100C;
+    --surface-inverted: #F3EDE3;
 
-    --content-primary: #F5F1E8;
-    --content-secondary: #B8B0A4;
-    --content-muted: #7A7368;
-    --content-inverse: #0A0908;
+    --content-primary: #F3EDE3;
+    --content-secondary: #C4B8A8;
+    --content-muted: #8A7E70;
+    --content-inverse: #1C1610;
     --content-link: #D4A843;
 
     --brand-default: #D4A843;
     --brand-hover: #E0B558;
     --brand-emphasis: #E8C56B;
     --brand-subtle: rgba(212, 168, 67, 0.14);
-    --brand-contrast: #0A0908;
+    --brand-contrast: #1C1610;
 
     --accent-warm: #E07A30;
     --accent-cool: #3B5BA5;
@@ -154,7 +154,7 @@
     --gradient-hero: linear-gradient(135deg, #D4A843 0%, #E0B558 50%, #E07A30 100%);
     --gradient-divine: linear-gradient(135deg, #D4A843 0%, #E07A30 100%);
     --gradient-warm: linear-gradient(135deg, #E07A30 0%, #F59E0B 100%);
-    --gradient-sunset: linear-gradient(180deg, #0A0908 0%, #1A1612 50%, #2A1810 100%);
+    --gradient-sunset: linear-gradient(180deg, #1C1610 0%, #241C14 50%, #2A1C12 100%);
   }
 
   .dim {
@@ -398,30 +398,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dark mode premium textures — leather grain + subtle noise */
-.dark body::before,
+/* Vinheta quente — sem ruido fractal (parecia interferencia de TV) */
 .dark body::after {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-}
-.dark body::before {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  opacity: 0.025;
-  mix-blend-mode: overlay;
-}
-.dark body::after {
-  background: radial-gradient(ellipse at 50% 0%, rgba(212,168,67,0.04) 0%, transparent 60%);
-}
-
-/* Card leather texture in dark mode */
-.dark .bg-card,
-.dark [class*="bg-card/"] {
-  background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  background-blend-mode: overlay;
+  background: radial-gradient(ellipse at 50% 0%, rgba(212, 168, 67, 0.07) 0%, transparent 55%);
 }
 
 @layer components {
@@ -502,9 +486,11 @@ body {
   }
 
   .dark .glass-card {
-    background: hsl(var(--card) / 0.85);
-    border: 1px solid hsl(var(--primary) / 0.12);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 8px 28px rgba(12, 8, 4, 0.35);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   .dim .glass-card {
@@ -2071,7 +2057,7 @@ textarea:focus-visible,
 }
 
 .bible-reading-column {
-  max-width: 800px;
+  max-width: 42rem;
   margin: 0 auto;
   width: 100%;
 }
@@ -2145,20 +2131,21 @@ textarea:focus-visible,
 /* Verse number — Inter 600, subtle color */
 .bible-verse-number {
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 11px;
+  font-size: 0.7em;
   font-weight: 600;
   line-height: 1;
-  color: var(--content-muted, #A8A29E);
-  vertical-align: top;
-  margin-right: 6px;
-  transition: color 0.2s ease;
+  color: hsl(var(--primary) / 0.75);
+  vertical-align: super;
+  margin-right: 0.4em;
+  transition: color 0.15s ease;
   font-feature-settings: 'tnum' 1;
   user-select: none;
 }
 
+.bible-verse-number.is-active,
 .bible-verse-wrapper:hover .bible-verse-number,
 .bible-verse-wrapper.is-selected .bible-verse-number {
-  color: var(--brand-default, #A17A2C);
+  color: hsl(var(--primary));
 }
 
 /* Reading mode toggle */
@@ -3696,5 +3683,48 @@ button, a, [role="button"] {
 .tile-warning {
   background-image: linear-gradient(135deg, color-mix(in srgb, var(--accent-warning) 18%, transparent), transparent);
   color: var(--accent-warning);
+}
+
+/* Atril de leitura — home editorial, sem blocos pretos */
+.lectern-rule {
+  height: 1px;
+  width: min(12rem, 40%);
+  margin-inline: auto;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.7), transparent);
+}
+
+.desk-panel {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.75rem;
+}
+
+.tool-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.15rem;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.tool-link:hover {
+  color: hsl(var(--primary));
+  border-bottom-color: hsl(var(--primary) / 0.45);
+}
+
+.search-underline {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 0.15rem;
+  border-bottom: 1px solid hsl(var(--border));
+  transition: border-color 0.2s ease;
+}
+.search-underline:focus-within {
+  border-bottom-color: hsl(var(--primary));
 }
 

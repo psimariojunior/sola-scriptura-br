@@ -187,10 +187,10 @@ function HeaderInner() {
       <motion.header
         animate={{ y: hidden ? '-100%' : '0%' }}
         transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-background/92 backdrop-blur-2xl border-b border-border/40 shadow-[0_1px_8px_rgba(0,0,0,0.06)]'
-            : 'bg-background/60 backdrop-blur-xl border-b border-transparent'
+            ? 'bg-background/95 border-b border-border shadow-[0_1px_0_hsl(var(--border))]'
+            : 'bg-background/88 border-b border-transparent'
         }`}
       >
         <AnimatePresence>

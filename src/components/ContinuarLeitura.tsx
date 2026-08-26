@@ -1,9 +1,8 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { BookOpen, ArrowRight, Flame, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { LIVROS_AT, LIVROS_NT, type LivroInfo } from '@/data/biblia/livros';
 
 const STORAGE_KEY_CHAPTERS = 'ssb_chapters_read';
@@ -80,94 +79,59 @@ export default function ContinuarLeitura() {
   const proximoIsNovoLivro = ultimaLeitura && proximoCapitulo > getBookChapters(ultimaLeitura.livro);
 
   return (
-    <section className="py-6 sm:py-8 px-4 sm:px-6" aria-label="Continuar Leitura">
-      <div className="max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/[0.03] via-card to-amber-500/[0.03] shadow-lg shadow-primary/[0.03] group hover:shadow-xl hover:shadow-primary/[0.06] transition-all duration-500"
-        >
-          {/* Subtle top accent */}
-          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          
-          {/* Hover glow */}
-          <div className="absolute top-0 right-0 w-40 h-40 bg-primary/[0.03] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:bg-primary/[0.06] transition-all duration-700" />
-
-          <div className="relative p-5 sm:p-6">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/15 transition-colors duration-300">
-                <BookOpen className="w-4 h-4 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-display text-base font-semibold">Continuar Leitura</h3>
-              </div>
-              {capitulosLidos.size > 0 && (
-                <span className="ml-auto flex items-center gap-1.5 text-[11px] text-muted-foreground bg-primary/[0.06] px-2.5 py-1 rounded-full">
-                  <Flame className="w-3 h-3 text-primary" />
-                  {capitulosLidos.size} capítulos
-                </span>
-              )}
-            </div>
-
-            {/* Progress — premium bar */}
-            {capitulosLidos.size > 0 && (
-              <div className="mb-4">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[11px] text-muted-foreground font-medium">{progresso}% da Bíblia</span>
-                  <span className="text-[11px] text-muted-foreground">{capitulosLidos.size}/{TOTAL_CHAPTERS}</span>
-                </div>
-                <div className="w-full h-2 bg-secondary/80 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${progresso}%` }}
-                    transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="h-full bg-gradient-to-r from-primary via-amber-500 to-primary rounded-full relative"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_2s_ease-in-out_infinite]" />
-                  </motion.div>
-                </div>
-              </div>
-            )}
-
-            <div className="space-y-2">
-              {ultimaLeitura && (
-                <Link
-                  href={`/biblia?livro=${ultimaLeitura.livro}&capitulo=${proximoIsNovoLivro ? 1 : proximoCapitulo}`}
-                  className="flex items-center gap-3 p-3.5 rounded-xl bg-secondary/40 hover:bg-secondary/70 transition-all duration-300 group/link"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover/link:bg-primary/15 transition-colors duration-300">
-                    <BookOpen className="w-4 h-4 text-primary" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold truncate">
-                      {proximoIsNovoLivro ? 'Próximo Livro' : `${livroAtual} ${proximoCapitulo}`}
-                    </p>
-                    <p className="text-[11px] text-muted-foreground">Continue de onde parou</p>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover/link:text-primary group-hover/link:translate-x-1 transition-all duration-300" />
-                </Link>
-              )}
-
-              {sugestao && (
-                <Link
-                  href={`/biblia?livro=${sugestao.livro}&capitulo=${sugestao.capitulo}`}
-                  className="flex items-center gap-3 p-3.5 rounded-xl bg-amber-500/[0.04] border border-amber-500/10 hover:bg-amber-500/[0.08] hover:border-amber-500/20 transition-all duration-300 group/link"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0 group-hover/link:bg-amber-500/15 transition-colors duration-300">
-                    <ChevronRight className="w-4 h-4 text-amber-500" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold truncate">{sugestao.nomeLivro} {sugestao.capitulo}</p>
-                    <p className="text-[11px] text-muted-foreground">Próximo não lido</p>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover/link:text-amber-500 group-hover/link:translate-x-1 transition-all duration-300" />
-                </Link>
-              )}
-            </div>
-          </div>
-        </motion.div>
+    <section className="mb-14" aria-label="Continuar Leitura">
+      <div className="flex items-baseline justify-between mb-3">
+        <h2 className="font-display text-2xl font-normal text-foreground">Continuar leitura</h2>
+        {capitulosLidos.size > 0 && (
+          <span className="text-xs tabular-nums text-muted-foreground">
+            {progresso}% · {capitulosLidos.size}/{TOTAL_CHAPTERS}
+          </span>
+        )}
       </div>
+
+      {capitulosLidos.size > 0 && (
+        <div className="h-[2px] w-full bg-border mb-5 overflow-hidden">
+          <div
+            className="h-full bg-primary"
+            style={{ width: `${progresso}%` }}
+          />
+        </div>
+      )}
+
+      <ul className="divide-y divide-border">
+        {ultimaLeitura && (
+          <li>
+            <Link
+              href={`/biblia?livro=${ultimaLeitura.livro}&capitulo=${proximoIsNovoLivro ? 1 : proximoCapitulo}`}
+              className="flex items-center justify-between py-3.5 group"
+            >
+              <span>
+                <span className="block text-sm text-foreground group-hover:text-primary transition-colors">
+                  {proximoIsNovoLivro ? 'Próximo livro' : `${livroAtual} ${proximoCapitulo}`}
+                </span>
+                <span className="text-xs text-muted-foreground">De onde você parou</span>
+              </span>
+              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+            </Link>
+          </li>
+        )}
+        {sugestao && (
+          <li>
+            <Link
+              href={`/biblia?livro=${sugestao.livro}&capitulo=${sugestao.capitulo}`}
+              className="flex items-center justify-between py-3.5 group"
+            >
+              <span>
+                <span className="block text-sm text-foreground group-hover:text-primary transition-colors">
+                  {sugestao.nomeLivro} {sugestao.capitulo}
+                </span>
+                <span className="text-xs text-muted-foreground">Próximo não lido</span>
+              </span>
+              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+            </Link>
+          </li>
+        )}
+      </ul>
     </section>
   );
 }

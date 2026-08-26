@@ -3663,8 +3663,8 @@ button, a, [role="button"] {
 
 /* ═════════════════════════════════════════════════════════════
    FASE 1 — LINGUAGEM VISUAL UNICA PARA GRIDS DE FERRAMENTAS
-   Substitui as paletas "arco-iris" (from-blue-500/15 etc.) por
-   variantes tonais derivadas de --brand-*/--accent-*, coerentes
+   Substitui as paletas "arco-iris" (from-blue-500 15 porcento etc.)
+   por variantes tonais derivadas de --brand- e --accent-, coerentes
    em todos os temas (claro, escuro, dim, sepia, noturno).
    ═════════════════════════════════════════════════════════════ */
 
@@ -3674,7 +3674,6 @@ button, a, [role="button"] {
 }
 
 .tile-warm {
-  background-image: linear-gradient(135deg, var(--accent-warm) / 0.18, transparent);
   background-image: linear-gradient(135deg, color-mix(in srgb, var(--accent-warm) 18%, transparent), transparent);
   color: var(--accent-warm);
 }

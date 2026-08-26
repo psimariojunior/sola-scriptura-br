@@ -82,6 +82,13 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
     if (!livroAbrev || !Number.isFinite(capituloIdx)) return;
     const cap = Math.max(1, Math.min(totalCapitulos, capituloIdx + 1));
 
+    // Grava a posição de leitura atual (capítulo 1-indexado, mesmo formato usado
+    // por PlanoPersonalizado/ContinuarLeitura) para o widget "Continuar lendo" da home
+    // funcionar também a partir da leitura livre, não só do plano de leitura.
+    if (typeof window !== 'undefined') {
+      try { localStorage.setItem('ssb_last_read', JSON.stringify({ livro: livroAbrev, capitulo: cap })); } catch {}
+    }
+
     // FAST PATH: try in-memory cache synchronously (instant after first load)
     const TRADUCOES_LOCAIS = ['arc', 'kjv', 'web', 'nvi', 'ara', 'acf'];
     const allLocal = selectedTrads.every(t => TRADUCOES_LOCAIS.includes(t));

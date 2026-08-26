@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, CheckCircle2, BookOpen, ChevronRight, Flame, ArrowRight, Sparkles, Plus, Share2, Trash2, Copy, Check } from 'lucide-react';
+import {
+  Calendar, CheckCircle2, BookOpen, ChevronRight, Flame, ArrowRight, Sparkles,
+  Plus, Share2, Trash2, Copy, Check, Church, Leaf, Music, PenLine, type LucideIcon,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { trackEvent, getSummary } from '@/lib/gamificationTracker';
@@ -16,7 +18,7 @@ import PlanoPersonalizadoCriar, {
 } from '@/components/PlanoPersonalizadoCriar';
 
 interface DiaLeitura { dia: number; titulo: string; passagens: { livro: string; capitulo: number }[]; }
-interface PlanoLeitura { id: string; titulo: string; descricao: string; duracao: number; nivel: string; icone: string; dias: DiaLeitura[]; }
+interface PlanoLeitura { id: string; titulo: string; descricao: string; duracao: number; nivel: string; icone: LucideIcon; dias: DiaLeitura[]; }
 
 function gerarPlanoBiblia1Ano(): DiaLeitura[] {
   const livros: { a: string; c: number }[] = [
@@ -50,10 +52,10 @@ function gerarPlanoBiblia1Ano(): DiaLeitura[] {
 }
 
 const PLANOS: PlanoLeitura[] = [
-  { id: 'biblia-1-ano', titulo: 'Bíblia em 1 Ano', descricao: '365 dias, ~3-4 capítulos/dia', duracao: 365, nivel: 'intermediario', icone: '📖', dias: gerarPlanoBiblia1Ano() },
-  { id: 'nt-90', titulo: 'Novo Testamento em 90 Dias', descricao: '3 capítulos/dia', duracao: 90, nivel: 'iniciante', icone: '✝️', dias: Array.from({length:90},(_,i)=>({dia:i+1,titulo:`Dia ${i+1}`,passagens:[{livro:'Mt',capitulo:i+1}]})) },
-  { id: 'evangelhos-60', titulo: '4 Evangelhos em 60 Dias', descricao: '1-2 capítulos/dia', duracao: 60, nivel: 'iniciante', icone: '🌿', dias: Array.from({length:60},(_,i)=>({dia:i+1,titulo:`Dia ${i+1}`,passagens:[{livro:['Mt','Mc','Lc','Jo'][i%4],capitulo:Math.floor(i/4)+1}]})) },
-  { id: 'salmos-30', titulo: 'Salmos em 30 Dias', descricao: '5 salmos/dia', duracao: 30, nivel: 'iniciante', icone: '🎵', dias: Array.from({length:30},(_,i)=>({dia:i+1,titulo:`Dia ${i+1}`,passagens:Array.from({length:5},(_,j)=>({livro:'Sl',capitulo:i*5+j+1}))})) },
+  { id: 'biblia-1-ano', titulo: 'Bíblia em 1 Ano', descricao: '365 dias, ~3-4 capítulos/dia', duracao: 365, nivel: 'intermediario', icone: BookOpen, dias: gerarPlanoBiblia1Ano() },
+  { id: 'nt-90', titulo: 'Novo Testamento em 90 Dias', descricao: '3 capítulos/dia', duracao: 90, nivel: 'iniciante', icone: Church, dias: Array.from({length:90},(_,i)=>({dia:i+1,titulo:`Dia ${i+1}`,passagens:[{livro:'Mt',capitulo:i+1}]})) },
+  { id: 'evangelhos-60', titulo: '4 Evangelhos em 60 Dias', descricao: '1-2 capítulos/dia', duracao: 60, nivel: 'iniciante', icone: Leaf, dias: Array.from({length:60},(_,i)=>({dia:i+1,titulo:`Dia ${i+1}`,passagens:[{livro:['Mt','Mc','Lc','Jo'][i%4],capitulo:Math.floor(i/4)+1}]})) },
+  { id: 'salmos-30', titulo: 'Salmos em 30 Dias', descricao: '5 salmos/dia', duracao: 30, nivel: 'iniciante', icone: Music, dias: Array.from({length:30},(_,i)=>({dia:i+1,titulo:`Dia ${i+1}`,passagens:Array.from({length:5},(_,j)=>({livro:'Sl',capitulo:i*5+j+1}))})) },
 ];
 
 function customToPlanoLeitura(c: PlanoPersonalizadoData): PlanoLeitura {
@@ -63,7 +65,7 @@ function customToPlanoLeitura(c: PlanoPersonalizadoData): PlanoLeitura {
     descricao: c.descricao || `${c.dias.length} dias`,
     duracao: c.dias.length,
     nivel: c.nivel,
-    icone: '✏️',
+    icone: PenLine,
     dias: c.dias.map((d, i) => ({
       dia: i + 1,
       titulo: d.titulo,
@@ -145,14 +147,16 @@ export default function PlanosPage() {
   }, [planosCustom]);
 
   if (planoSel) {
+    const IconePlano = planoSel.icone;
     return (
-      <div className="min-h-screen"><Header />
-        <main className="pt-20 pb-32 px-4"><div className="max-w-3xl mx-auto">
+      <PageShell maxWidth="3xl" className="pb-32">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} className="mb-6">
             <button onClick={()=>setPlanoSel(null)} className="text-sm text-muted-foreground hover:text-primary mb-3 flex items-center gap-1">← Voltar</button>
             <div className="flex items-center gap-3">
-              <span className="text-3xl">{planoSel.icone}</span>
-              <div className="flex-1"><h1 className="font-display text-2xl font-light">{planoSel.titulo}</h1>
+              <div className="w-10 h-10 rounded-xl tile-brand flex items-center justify-center shrink-0">
+                <IconePlano className="w-5 h-5" />
+              </div>
+              <div className="flex-1"><h1 className="text-h2">{planoSel.titulo}</h1>
                 <p className="text-sm text-muted-foreground">{planoSel.descricao}</p></div>
               {planoSel.id.startsWith('custom-') && (
                 <div className="flex gap-2">
@@ -226,18 +230,17 @@ export default function PlanosPage() {
                 {a&&!c&&<ArrowRight className="w-4 h-4 text-primary shrink-0"/>}</motion.button>);
             })}</div>
           </motion.div>
-        </div></main><Footer /></div>
+      </PageShell>
       );
   }
 
   return (
-    <div className="min-h-screen"><Header />
-      <main className="pt-20 pb-16 px-4"><div className="max-w-4xl mx-auto">
+    <PageShell maxWidth="4xl" className="pb-16">
         <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} className="mb-8">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-500/5 flex items-center justify-center border border-amber-500/20">
-              <Calendar className="w-5 h-5 text-amber-600" /></div>
-            <div className="flex-1"><h1 className="font-display text-2xl md:text-3xl font-light">Planos de <span className="text-primary italic">Leitura</span></h1>
+            <div className="w-10 h-10 rounded-xl tile-warning flex items-center justify-center shrink-0">
+              <Calendar className="w-5 h-5" /></div>
+            <div className="flex-1"><h1 className="text-h1">Planos de <span className="text-primary italic">Leitura</span></h1>
               <p className="text-xs text-muted-foreground">Escolha um plano ou crie o seu próprio</p></div>
             <button onClick={() => { setEditandoPlano(null); setShowCriarModal(true); }}
               className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors">
@@ -251,7 +254,9 @@ export default function PlanosPage() {
             onClick={()=>setPlanoSel(plano)}
             className="text-left rounded-2xl border border-border/50 bg-card/50 p-5 hover:border-primary/30 transition-all group">
             <div className="flex items-start gap-3 mb-3">
-              <span className="text-3xl">{plano.icone}</span>
+              <div className="w-10 h-10 rounded-xl tile-brand flex items-center justify-center shrink-0">
+                <plano.icone className="w-5 h-5" />
+              </div>
               <div><h3 className="font-display text-lg font-medium group-hover:text-primary transition-colors">{plano.titulo}</h3>
                 <p className="text-xs text-muted-foreground mt-1">{plano.descricao}</p></div>
             </div>
@@ -274,7 +279,9 @@ export default function PlanosPage() {
                   <motion.div key={c.id} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}}
                     className="text-left rounded-2xl border border-border/50 bg-card/50 p-5 hover:border-primary/30 transition-all group">
                     <div className="flex items-start gap-3 mb-3">
-                      <span className="text-3xl">✏️</span>
+                      <div className="w-10 h-10 rounded-xl tile-cool flex items-center justify-center shrink-0">
+                        <PenLine className="w-5 h-5" />
+                      </div>
                       <div className="flex-1">
                         <button onClick={() => setPlanoSel(pl)} className="w-full text-left">
                           <h3 className="font-display text-lg font-medium group-hover:text-primary transition-colors">{c.titulo}</h3>
@@ -311,7 +318,6 @@ export default function PlanosPage() {
             </div>
           </motion.div>
         )}
-      </div></main><Footer />
 
       <AnimatePresence>
         {showCriarModal && (
@@ -322,6 +328,6 @@ export default function PlanosPage() {
           />
         )}
       </AnimatePresence>
-    </div>
+    </PageShell>
   );
 }

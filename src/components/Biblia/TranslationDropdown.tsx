@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 type ViewMode = 'single' | 'parallel' | 'comparison';
 
 const TRAD_IDS = [
-  'arc', 'nvi', 'ara', 'acf', 'naa', 'ntlh', 'nvt', 'kja', 'aa', 'nbv',
+  'arc', 'nvi', 'ara', 'acf', 'alm1911', 'blivre', 'jfaal', 'naa', 'ntlh', 'nvt', 'kja', 'aa', 'nbv',
   'as21', 'jfaa', 'kjf', 'msgpt', 'bpm', 'nva',
   'kjv', 'web', 'esv', 'niv', 'nkjv', 'nlt',
   'rvr1960', 'lsg',
@@ -15,19 +15,21 @@ const TRAD_IDS = [
 type GrupoTrad = { label: string; ids: readonly string[] };
 const GRUPOS: GrupoTrad[] = [
   { label: 'Portugues', ids: ['arc', 'nvi', 'ara', 'acf', 'naa', 'ntlh', 'nvt', 'kja', 'aa', 'nbv', 'as21', 'jfaa', 'kjf', 'msgpt', 'bpm', 'nva'] },
+  { label: 'Portugues (dominio publico / livre)', ids: ['alm1911', 'blivre', 'jfaal'] },
   { label: 'English', ids: ['kjv', 'web', 'esv', 'niv', 'nkjv', 'nlt'] },
   { label: 'Espanol', ids: ['rvr1960'] },
   { label: 'Francais', ids: ['lsg'] },
 ];
 
 const labelMap: Record<string, string> = {
-  arc: 'ARC', nvi: 'NVI', ara: 'ARA', acf: 'ACF', naa: 'NAA', ntlh: 'NTLH', nvt: 'NVT', kja: 'KJA', aa: 'AA', nbv: 'NBV',
+  arc: 'ARC', nvi: 'NVI', ara: 'ARA', acf: 'ACF', alm1911: 'ALM1911', blivre: 'BLIVRE', jfaal: 'JFAAL', naa: 'NAA', ntlh: 'NTLH', nvt: 'NVT', kja: 'KJA', aa: 'AA', nbv: 'NBV',
   as21: 'AS21', jfaa: 'JFAA', kjf: 'KJF', msgpt: 'MSG', bpm: 'BPM', nva: 'NVA',
   kjv: 'KJV', web: 'WEB', esv: 'ESV', niv: 'NIV', nkjv: 'NKJV', nlt: 'NLT',
   rvr1960: 'RVR1960', lsg: 'LSG',
 };
 const nomeMap: Record<string, string> = {
   arc: 'Almeida Revista e Corrigida', nvi: 'Nova Versao Internacional', ara: 'Almeida Revista e Atualizada', acf: 'Almeida Corrigida Fiel',
+  alm1911: 'Almeida 1911 (dominio publico)', blivre: 'Biblia Livre (CC BY 3.0 BR)', jfaal: 'Joao Ferreira de Almeida Atualizada Livre (CC BY 3.0 BR)',
   naa: 'Nova Almeida Atualizada', ntlh: 'Nova Traducao na Linguagem de Hoje', nvt: 'Nova Versao Transformadora', kja: 'King James Atualizada',
   aa: 'Almeida e Atualizada', nbv: 'Nova Biblia Viva',
   as21: 'Almeida Seculo 21', jfaa: 'Joao Ferreira de Almeida Atualizada', kjf: 'King James Fiel', msgpt: 'A Mensagem',
@@ -38,7 +40,9 @@ const nomeMap: Record<string, string> = {
 };
 const tradBadgeColors: Record<string, string> = {
   arc: 'bg-primary/10 text-primary', nvi: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400', ara: 'bg-purple-500/10 text-purple-600 dark:text-purple-400',
-  acf: 'bg-rose-500/10 text-rose-600 dark:text-rose-400', naa: 'bg-teal-500/10 text-teal-600 dark:text-teal-400', ntlh: 'bg-orange-500/10 text-orange-600 dark:text-orange-400',
+  acf: 'bg-rose-500/10 text-rose-600 dark:text-rose-400',
+  alm1911: 'bg-[var(--brand-default)]/10 text-[var(--brand-default)]', blivre: 'bg-[var(--brand-default)]/10 text-[var(--brand-default)]', jfaal: 'bg-[var(--brand-default)]/10 text-[var(--brand-default)]',
+  naa: 'bg-teal-500/10 text-teal-600 dark:text-teal-400', ntlh: 'bg-orange-500/10 text-orange-600 dark:text-orange-400',
   nvt: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400', kja: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400', aa: 'bg-pink-500/10 text-pink-600 dark:text-pink-400',
   nbv: 'bg-lime-500/10 text-lime-600 dark:text-lime-400',
   as21: 'bg-sky-500/10 text-sky-600 dark:text-sky-400', jfaa: 'bg-violet-500/10 text-violet-600 dark:text-violet-400', kjf: 'bg-fuchsia-500/10 text-fuchsia-600 dark:text-fuchsia-400',

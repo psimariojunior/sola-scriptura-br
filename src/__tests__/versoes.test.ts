@@ -1,8 +1,8 @@
 import { traducoes, traducaoPadrao } from '@/data/biblia/versoes';
 
 describe('Traduções', () => {
-  it('should have 24 translations', () => {
-    expect(traducoes).toHaveLength(24);
+  it('should have 27 translations', () => {
+    expect(traducoes).toHaveLength(27);
   });
 
   it('should have ARC as default translation', () => {
@@ -23,6 +23,9 @@ describe('Traduções', () => {
     expect(ids).toContain('nbv');
     expect(ids).toContain('kjv');
     expect(ids).toContain('web');
+    expect(ids).toContain('alm1911');
+    expect(ids).toContain('blivre');
+    expect(ids).toContain('jfaal');
   });
 
   it('should have valid translation structure', () => {

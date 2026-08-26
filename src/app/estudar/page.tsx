@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
 import ScrollReveal from '@/components/ScrollReveal';
 import { BuscaGlobal } from '@/components/BuscaGlobal';
 import {
@@ -29,8 +28,10 @@ import {
   History,
   Target,
   Flame,
+  Network,
 } from 'lucide-react';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
+import { cn } from '@/lib/utils';
 
 interface RecentPage {
   path: string;
@@ -44,64 +45,70 @@ const QUICK_TOOLS = [
     title: 'Bíblia',
     description: '10 traduções com interlinear, karaoke e comentários inline',
     icon: BookOpen,
-    color: 'from-blue-500/15 to-blue-600/15',
-    iconColor: 'text-blue-500 dark:text-blue-400',
+    tile: 'tile-brand',
   },
   {
     href: '/pesquisa',
     title: 'Pesquisa',
     description: 'Busca avançada com filtros semânticos e por livro',
     icon: Search,
-    color: 'from-emerald-500/15 to-emerald-600/15',
-    iconColor: 'text-emerald-500 dark:text-emerald-400',
+    tile: 'tile-success',
   },
   {
     href: '/ferramentas/concordancia',
     title: 'Concordância',
     description: 'Encontre todas as ocorrências de uma palavra',
     icon: ListOrdered,
-    color: 'from-violet-500/15 to-violet-600/15',
-    iconColor: 'text-violet-500 dark:text-violet-400',
+    tile: 'tile-cool',
   },
   {
     href: '/ferramentas/critica-textual',
     title: 'Crítica Textual',
     description: 'Variantes manuscritas e notas de rodapé',
     icon: FileText,
-    color: 'from-amber-500/15 to-amber-600/15',
-    iconColor: 'text-amber-500 dark:text-amber-400',
+    tile: 'tile-warning',
   },
   {
     href: '/harmonia',
     title: 'Harmonia Sinótica',
     description: 'Mateus, Marcos, Lucas e João lado a lado',
     icon: Columns,
-    color: 'from-rose-500/15 to-rose-600/15',
-    iconColor: 'text-rose-500 dark:text-rose-400',
+    tile: 'tile-warm',
   },
   {
     href: '/atlas',
     title: 'Atlas Bíblico',
     description: 'Mapas interativos com 20 locais históricos',
     icon: Map,
-    color: 'from-teal-500/15 to-teal-600/15',
-    iconColor: 'text-teal-500 dark:text-teal-400',
+    tile: 'tile-success',
   },
   {
     href: '/idiomas',
     title: 'Léxico Grego & Hebraico',
     description: '5526 palavras gregas + 8674 hebraicas com Strong\'s',
     icon: Languages,
-    color: 'from-cyan-500/15 to-cyan-600/15',
-    iconColor: 'text-cyan-500 dark:text-cyan-400',
+    tile: 'tile-info',
   },
   {
     href: '/referencias',
     title: 'Referências Cruzadas',
     description: '29k+ conexões entre versículos do AT e NT',
     icon: GitBranch,
-    color: 'from-indigo-500/15 to-indigo-600/15',
-    iconColor: 'text-indigo-500 dark:text-indigo-400',
+    tile: 'tile-cool',
+  },
+  {
+    href: '/guia',
+    title: 'Guia de Passagem',
+    description: 'Comentários, referências cruzadas e palavras originais de qualquer versículo',
+    icon: FileText,
+    tile: 'tile-warm',
+  },
+  {
+    href: '/explorador',
+    title: 'Explorador de Conceitos',
+    description: 'Grafo interativo de pessoas, temas, lugares e eventos bíblicos',
+    icon: Network,
+    tile: 'tile-info',
   },
 ];
 
@@ -111,24 +118,21 @@ const IA_TOOLS = [
     title: 'Exegese com IA',
     description: 'Análise exegeta automática de qualquer versículo',
     icon: Brain,
-    color: 'from-purple-500/15 to-purple-600/15',
-    iconColor: 'text-purple-500 dark:text-purple-400',
+    tile: 'tile-brand',
   },
   {
     href: '/teologia',
     title: 'Estudo Temático',
     description: 'Teologia sistemática em 13 categorias',
     icon: Sparkles,
-    color: 'from-pink-500/15 to-pink-600/15',
-    iconColor: 'text-pink-500 dark:text-pink-400',
+    tile: 'tile-warm',
   },
   {
     href: '/ia',
     title: 'Modo Socrático',
     description: 'Converse com IA sobre qualquer tema bíblico',
     icon: MessageSquare,
-    color: 'from-orange-500/15 to-orange-600/15',
-    iconColor: 'text-orange-500 dark:text-orange-400',
+    tile: 'tile-info',
   },
 ];
 
@@ -138,16 +142,14 @@ const COURSE_TOOLS = [
     title: 'Cursos Acadêmicos',
     description: 'Estudos aprofundados com rigor teológico',
     icon: GraduationCap,
-    color: 'from-blue-500/15 to-blue-600/15',
-    iconColor: 'text-blue-500 dark:text-blue-400',
+    tile: 'tile-cool',
   },
   {
     href: '/estudos/manuais',
     title: 'Manuais Bíblicos',
     description: 'Guias práticos de estudo por tema',
     icon: BookMarked,
-    color: 'from-emerald-500/15 to-emerald-600/15',
-    iconColor: 'text-emerald-500 dark:text-emerald-400',
+    tile: 'tile-success',
   },
 ];
 
@@ -157,24 +159,21 @@ const QUIZ_TOOLS = [
     title: 'Quiz Diário',
     description: 'Teste seus conhecimentos bíblicos',
     icon: Target,
-    color: 'from-amber-500/15 to-amber-600/15',
-    iconColor: 'text-amber-500 dark:text-amber-400',
+    tile: 'tile-warning',
   },
   {
     href: '/desafios',
     title: 'Desafios Comunitários',
     description: 'Progresso individual e ranking',
     icon: Trophy,
-    color: 'from-violet-500/15 to-violet-600/15',
-    iconColor: 'text-violet-500 dark:text-violet-400',
+    tile: 'tile-brand',
   },
   {
     href: '/quiz/multiplayer',
     title: 'Quiz Multiplayer',
     description: 'Desafie amigos em tempo real',
     icon: Users,
-    color: 'from-emerald-500/15 to-emerald-600/15',
-    iconColor: 'text-emerald-500 dark:text-emerald-400',
+    tile: 'tile-success',
   },
 ];
 
@@ -242,17 +241,15 @@ export default function EstudarPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-background">
-      <Header />
+    <PageShell className="pt-6">
       <BuscaGlobal open={buscaOpen} onOpenChange={setBuscaOpen} />
 
-      <div className="max-w-6xl mx-auto px-4 py-6 pb-24">
         {/* Welcome Banner */}
         <ScrollReveal>
           <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/20 p-6 md:p-8 mb-8">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
             <div className="relative">
-              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+              <h1 className="text-h2 text-foreground mb-2">
                 O que você quer estudar hoje?
               </h1>
               <p className="text-muted-foreground mb-6 max-w-xl">
@@ -317,8 +314,8 @@ export default function EstudarPage() {
                   href={tool.href}
                   className="group flex flex-col p-4 rounded-xl border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-200"
                 >
-                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${tool.color} flex items-center justify-center mb-3 group-hover:scale-105 transition-transform`}>
-                    <tool.icon className={`w-5 h-5 ${tool.iconColor}`} strokeWidth={1.5} />
+                  <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center mb-3 group-hover:scale-105 transition-transform', tool.tile)}>
+                    <tool.icon className="w-5 h-5" strokeWidth={1.5} />
                   </div>
                   <h3 className="text-sm font-semibold text-foreground mb-1">{tool.title}</h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">{tool.description}</p>
@@ -397,8 +394,8 @@ export default function EstudarPage() {
                   href={tool.href}
                   className="group flex flex-col p-4 rounded-xl border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-200"
                 >
-                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${tool.color} flex items-center justify-center mb-3 group-hover:scale-105 transition-transform`}>
-                    <tool.icon className={`w-5 h-5 ${tool.iconColor}`} strokeWidth={1.5} />
+                  <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center mb-3 group-hover:scale-105 transition-transform', tool.tile)}>
+                    <tool.icon className="w-5 h-5" strokeWidth={1.5} />
                   </div>
                   <h3 className="text-sm font-semibold text-foreground mb-1">{tool.title}</h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">{tool.description}</p>
@@ -422,8 +419,8 @@ export default function EstudarPage() {
                   href={tool.href}
                   className="group flex flex-col p-4 rounded-xl border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-200"
                 >
-                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${tool.color} flex items-center justify-center mb-3 group-hover:scale-105 transition-transform`}>
-                    <tool.icon className={`w-5 h-5 ${tool.iconColor}`} strokeWidth={1.5} />
+                  <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center mb-3 group-hover:scale-105 transition-transform', tool.tile)}>
+                    <tool.icon className="w-5 h-5" strokeWidth={1.5} />
                   </div>
                   <h3 className="text-sm font-semibold text-foreground mb-1">{tool.title}</h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">{tool.description}</p>
@@ -447,8 +444,8 @@ export default function EstudarPage() {
                   href={tool.href}
                   className="group flex flex-col p-4 rounded-xl border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-200"
                 >
-                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${tool.color} flex items-center justify-center mb-3 group-hover:scale-105 transition-transform`}>
-                    <tool.icon className={`w-5 h-5 ${tool.iconColor}`} strokeWidth={1.5} />
+                  <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center mb-3 group-hover:scale-105 transition-transform', tool.tile)}>
+                    <tool.icon className="w-5 h-5" strokeWidth={1.5} />
                   </div>
                   <h3 className="text-sm font-semibold text-foreground mb-1">{tool.title}</h3>
                   <p className="text-xs text-muted-foreground leading-relaxed">{tool.description}</p>
@@ -457,9 +454,6 @@ export default function EstudarPage() {
             </div>
           </section>
         </ScrollReveal>
-      </div>
-
-      <Footer />
-    </main>
+    </PageShell>
   );
 }

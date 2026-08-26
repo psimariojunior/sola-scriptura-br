@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Eye, Palette, Type, Minus, Plus } from 'lucide-react';
+import { Eye, Palette, Type, Minus, Plus, AlignLeft, Rows3, Hash } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeCustomizer } from '@/components/ThemeCustomizer';
 
@@ -17,6 +17,10 @@ interface SettingsPanelProps {
   onFontFamilyChange?: (font: 'serif' | 'sans') => void;
   lineSpacing?: number;
   onLineSpacingChange?: (spacing: number) => void;
+  modoExibicao?: 'versiculo' | 'paragrafo';
+  onModoExibicaoChange?: (modo: 'versiculo' | 'paragrafo') => void;
+  ocultarNumeros?: boolean;
+  onOcultarNumerosChange?: (v: boolean) => void;
 }
 
 const FONT_MIN = 14;
@@ -24,7 +28,7 @@ const FONT_MAX = 28;
 const SPACING_MIN = 1.4;
 const SPACING_MAX = 2.4;
 
-export function SettingsPanel({ open, fontSize, onFontSizeChange, showDiff, onToggleDiff, showComparison, fontFamily = 'serif', onFontFamilyChange, lineSpacing = 1.8, onLineSpacingChange }: SettingsPanelProps) {
+export function SettingsPanel({ open, fontSize, onFontSizeChange, showDiff, onToggleDiff, showComparison, fontFamily = 'serif', onFontFamilyChange, lineSpacing = 1.8, onLineSpacingChange, modoExibicao = 'versiculo', onModoExibicaoChange, ocultarNumeros = false, onOcultarNumerosChange }: SettingsPanelProps) {
   const [showCustomizer, setShowCustomizer] = useState(false);
 
   const fontPercent = ((fontSize - FONT_MIN) / (FONT_MAX - FONT_MIN)) * 100;
@@ -116,7 +120,53 @@ export function SettingsPanel({ open, fontSize, onFontSizeChange, showDiff, onTo
               </div>
             )}
 
-            {/* Row 2: Font family + Theme + Diff */}
+            {/* Row 2: Modo de exibição + Ocultar números */}
+            {(onModoExibicaoChange || onOcultarNumerosChange) && (
+              <div className="flex items-center gap-2 flex-wrap">
+                {onModoExibicaoChange && (
+                  <div className="flex items-center rounded-lg border border-[var(--border)]/60 overflow-hidden">
+                    <button
+                      onClick={() => onModoExibicaoChange('versiculo')}
+                      className={cn(
+                        'flex items-center gap-1.5 px-3 py-2 text-xs font-medium transition-colors min-h-[44px]',
+                        modoExibicao === 'versiculo'
+                          ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)]'
+                          : 'text-[var(--content-muted)] hover:text-[var(--content-primary)]'
+                      )}
+                      aria-pressed={modoExibicao === 'versiculo'}
+                    >
+                      <Rows3 className="w-3.5 h-3.5" /> Versículo
+                    </button>
+                    <button
+                      onClick={() => onModoExibicaoChange('paragrafo')}
+                      className={cn(
+                        'flex items-center gap-1.5 px-3 py-2 text-xs font-medium transition-colors min-h-[44px]',
+                        modoExibicao === 'paragrafo'
+                          ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)]'
+                          : 'text-[var(--content-muted)] hover:text-[var(--content-primary)]'
+                      )}
+                      aria-pressed={modoExibicao === 'paragrafo'}
+                    >
+                      <AlignLeft className="w-3.5 h-3.5" /> Parágrafo
+                    </button>
+                  </div>
+                )}
+                {onOcultarNumerosChange && (
+                  <button
+                    onClick={() => onOcultarNumerosChange(!ocultarNumeros)}
+                    className={cn(
+                      'flex items-center gap-1.5 px-3 py-2 rounded-lg border text-xs font-medium transition-colors min-h-[44px]',
+                      ocultarNumeros ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] border-[var(--brand-default)]/20' : 'text-[var(--content-muted)] border-[var(--border)]/60'
+                    )}
+                    aria-pressed={ocultarNumeros}
+                  >
+                    <Hash className="w-3.5 h-3.5" /> Ocultar números
+                  </button>
+                )}
+              </div>
+            )}
+
+            {/* Row 3: Font family + Theme + Diff */}
             <div className="flex items-center gap-2 flex-wrap">
               {onFontFamilyChange && (
                 <div className="flex items-center rounded-lg border border-[var(--border)]/60 overflow-hidden">
@@ -211,6 +261,51 @@ export function SettingsPanel({ open, fontSize, onFontSizeChange, showDiff, onTo
               </button>
               <span className="font-mono w-6 text-center tabular-nums">{fontSize}</span>
             </div>
+
+            {/* Modo de exibição */}
+            {onModoExibicaoChange && (
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={() => onModoExibicaoChange('versiculo')}
+                  className={cn(
+                    'flex items-center gap-1 px-2 py-1 rounded-l-full border transition-colors text-[11px] font-medium',
+                    modoExibicao === 'versiculo'
+                      ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] border-[var(--brand-default)]/20'
+                      : 'text-[var(--content-muted)] border-[var(--border)]/60 hover:text-[var(--content-primary)]'
+                  )}
+                  aria-pressed={modoExibicao === 'versiculo'}
+                  title="Modo versículo (cartões)"
+                >
+                  <Rows3 className="w-3 h-3" /> Versículo
+                </button>
+                <button
+                  onClick={() => onModoExibicaoChange('paragrafo')}
+                  className={cn(
+                    'flex items-center gap-1 px-2 py-1 rounded-r-full border-t border-b border-r transition-colors text-[11px] font-medium',
+                    modoExibicao === 'paragrafo'
+                      ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] border-[var(--brand-default)]/20'
+                      : 'text-[var(--content-muted)] border-[var(--border)]/60 hover:text-[var(--content-primary)]'
+                  )}
+                  aria-pressed={modoExibicao === 'paragrafo'}
+                  title="Modo parágrafo (texto corrido)"
+                >
+                  <AlignLeft className="w-3 h-3" /> Parágrafo
+                </button>
+              </div>
+            )}
+
+            {/* Ocultar números */}
+            {onOcultarNumerosChange && (
+              <button onClick={() => onOcultarNumerosChange(!ocultarNumeros)}
+                className={cn(
+                  'flex items-center gap-1.5 px-2.5 py-1 rounded-full border transition-colors',
+                  ocultarNumeros ? 'bg-[var(--brand-subtle)] text-[var(--brand-default)] border-[var(--brand-default)]/20' : 'text-[var(--content-muted)] border-[var(--border)]/60 hover:text-[var(--content-primary)]'
+                )}
+                aria-pressed={ocultarNumeros}
+              >
+                <Hash className="w-3.5 h-3.5" /> Ocultar números
+              </button>
+            )}
 
             {/* Font family */}
             {onFontFamilyChange && (

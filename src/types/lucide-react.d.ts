@@ -152,6 +152,7 @@ declare module 'lucide-react' {
   export const RotateCcw: LucideIcon;
   export const RotateCw: LucideIcon;
   export const Route: LucideIcon;
+  export const Rows3: LucideIcon;
   export const Save: LucideIcon;
   export const ScrollText: LucideIcon;
   export const Search: LucideIcon;

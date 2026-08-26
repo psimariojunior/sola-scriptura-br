@@ -2,8 +2,7 @@
 
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
 import ScrollReveal from '@/components/ScrollReveal';
 import {
   BookOpen, Search, Brain, Map, Languages, ArrowRight,
@@ -49,21 +48,21 @@ const PILARES = [
 ];
 
 const FERRAMENTAS = [
-  { href: '/biblia', icon: BookOpen, label: 'Bíblia', desc: '10 traduções, áudio, karaoke', cor: 'from-blue-500/15 to-blue-600/5' },
-  { href: '/pesquisa', icon: Search, label: 'Pesquisa', desc: 'Busca semântica e avançada', cor: 'from-emerald-500/15 to-emerald-600/5' },
-  { href: '/idiomas', icon: Languages, label: 'Grego / Hebraico', desc: '14.200 verbetes Strong’s', cor: 'from-violet-500/15 to-violet-600/5' },
-  { href: '/exegese', icon: Brain, label: 'Exegese', desc: 'Análise com IA gratuita', cor: 'from-purple-500/15 to-purple-600/5' },
-  { href: '/harmonia', icon: Columns, label: 'Harmonia', desc: 'Sinóticos lado a lado', cor: 'from-sky-500/15 to-sky-600/5' },
-  { href: '/atlas', icon: Map, label: 'Atlas', desc: 'Mapas interativos', cor: 'from-amber-500/15 to-amber-600/5' },
-  { href: '/comparar', icon: Compass, label: 'Comparar', desc: 'Traduções com diff', cor: 'from-rose-500/15 to-rose-600/5' },
-  { href: '/biblioteca', icon: Library, label: 'Clássicos', desc: 'Pais, Reforma, credos', cor: 'from-yellow-500/15 to-yellow-700/5' },
+  { href: '/biblia', icon: BookOpen, label: 'Bíblia', desc: '10 traduções, áudio, karaoke', tile: 'tile-brand' },
+  { href: '/pesquisa', icon: Search, label: 'Pesquisa', desc: 'Busca semântica e avançada', tile: 'tile-success' },
+  { href: '/idiomas', icon: Languages, label: 'Grego / Hebraico', desc: '14.200 verbetes Strong’s', tile: 'tile-cool' },
+  { href: '/exegese', icon: Brain, label: 'Exegese', desc: 'Análise com IA gratuita', tile: 'tile-brand' },
+  { href: '/harmonia', icon: Columns, label: 'Harmonia', desc: 'Sinóticos lado a lado', tile: 'tile-info' },
+  { href: '/atlas', icon: Map, label: 'Atlas', desc: 'Mapas interativos', tile: 'tile-warm' },
+  { href: '/comparar', icon: Compass, label: 'Comparar', desc: 'Traduções com diff', tile: 'tile-cool' },
+  { href: '/biblioteca', icon: Library, label: 'Clássicos', desc: 'Pais, Reforma, credos', tile: 'tile-warning' },
 ];
 
 const LEITURAS = [
-  { titulo: 'Salmos em 30 dias', dias: 30, href: '/planos?plano=salmos-30', cor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400' },
-  { titulo: '4 Evangelhos em 60 dias', dias: 60, href: '/planos?plano=evangelhos-60', cor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' },
-  { titulo: 'Novo Testamento em 90 dias', dias: 90, href: '/planos?plano=nt-90', cor: 'bg-amber-500/10 text-amber-600 dark:text-amber-400' },
-  { titulo: 'Bíblia em 1 ano', dias: 365, href: '/planos?plano=biblia-1-ano', cor: 'bg-purple-500/10 text-purple-600 dark:text-purple-400' },
+  { titulo: 'Salmos em 30 dias', dias: 30, href: '/planos?plano=salmos-30', tile: 'tile-brand' },
+  { titulo: '4 Evangelhos em 60 dias', dias: 60, href: '/planos?plano=evangelhos-60', tile: 'tile-success' },
+  { titulo: 'Novo Testamento em 90 dias', dias: 90, href: '/planos?plano=nt-90', tile: 'tile-warning' },
+  { titulo: 'Bíblia em 1 ano', dias: 365, href: '/planos?plano=biblia-1-ano', tile: 'tile-cool' },
 ];
 
 const OBRAS_DESTAQUE = OBRAS.slice(0, 6);
@@ -86,9 +85,7 @@ export default function HomeClient() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Header />
-      <main id="main-content" className="pt-20 pb-24">
+    <PageShell noContainer noPadding>
 
           <section className="relative overflow-hidden px-4 sm:px-6 -mt-1">
             <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -111,7 +108,7 @@ export default function HomeClient() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.05}>
-                <h1 className="font-display text-4xl sm:text-6xl font-semibold text-foreground leading-[1.1] mb-4">
+                <h1 className="text-h1 text-foreground leading-[1.1] mb-4">
                   Sola Scriptura
                   <span className="block text-lg sm:text-2xl font-normal font-sans text-muted-foreground mt-3 tracking-normal">
                     Leia, estude e ensine as Escrituras como num seminário — sem paywall.
@@ -234,9 +231,9 @@ export default function HomeClient() {
                     <motion.div
                       whileHover={{ y: -2, scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className={`h-full p-4 rounded-xl bg-gradient-to-br ${f.cor} border border-border/30 hover:border-primary/25 transition-all duration-300 group`}
+                      className={`h-full p-4 rounded-xl ${f.tile} border border-border/30 hover:border-primary/25 transition-all duration-300 group`}
                     >
-                      <f.icon className="w-5 h-5 text-primary mb-2 group-hover:scale-110 transition-transform" />
+                      <f.icon className="w-5 h-5 mb-2 group-hover:scale-110 transition-transform" />
                       <p className="text-sm font-semibold text-foreground">{f.label}</p>
                       <p className="text-[11px] text-muted-foreground mt-0.5">{f.desc}</p>
                     </motion.div>
@@ -270,7 +267,7 @@ export default function HomeClient() {
                 {LEITURAS.map((l) => (
                   <Link key={l.titulo} href={l.href} className="flex-shrink-0 w-48">
                     <div className="p-4 rounded-xl bg-card/60 border border-border/30 hover:border-primary/25 transition-all h-full">
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${l.cor}`}>{l.dias} dias</span>
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${l.tile}`}>{l.dias} dias</span>
                       <p className="text-sm font-medium mt-2 line-clamp-2">{l.titulo}</p>
                     </div>
                   </Link>
@@ -286,7 +283,7 @@ export default function HomeClient() {
               <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 Interlinear palavra a palavra, léxico Strong’s, comentários clássicos, harmonia sinótica, atlas e biblioteca de domínio público. Estude com rigor acadêmico, no celular ou no computador.
               </p>
-              <Link href="/guia" className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
+              <Link href="/estudar" className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
                 Como começar em 2 minutos <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -297,11 +294,11 @@ export default function HomeClient() {
               <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Meu Espaço</h2>
               <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
                 {[
-                  { href: '/favoritos', icon: Heart, label: 'Favoritos', cor: 'text-red-500' },
-                  { href: '/notas', icon: StickyNote, label: 'Notas', cor: 'text-amber-500' },
-                  { href: '/colecoes', icon: BookMarked, label: 'Coleções', cor: 'text-blue-500' },
-                  { href: '/social', icon: Users, label: 'Social', cor: 'text-emerald-500' },
-                  { href: '/planos', icon: Clock, label: 'Planos', cor: 'text-purple-500' },
+                  { href: '/favoritos', icon: Heart, label: 'Favoritos', cor: 'text-[var(--accent-warm)]' },
+                  { href: '/notas', icon: StickyNote, label: 'Notas', cor: 'text-[var(--accent-warning)]' },
+                  { href: '/colecoes', icon: BookMarked, label: 'Coleções', cor: 'text-[var(--accent-cool)]' },
+                  { href: '/social', icon: Users, label: 'Social', cor: 'text-[var(--accent-success)]' },
+                  { href: '/planos', icon: Clock, label: 'Planos', cor: 'text-primary' },
                   { href: '/conta', icon: User, label: 'Conta', cor: 'text-primary' },
                 ].map((a) => (
                   <Link key={a.href} href={a.href} className="flex flex-col items-center gap-1.5 p-3 rounded-xl hover:bg-card/60 transition-colors group">
@@ -313,8 +310,6 @@ export default function HomeClient() {
             </div>
           </ScrollReveal>
           </div>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

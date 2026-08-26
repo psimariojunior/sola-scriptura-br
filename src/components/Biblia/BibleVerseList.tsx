@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState, useRef, useCallback } from 'react';
+import { Suspense, useState, useRef, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, WifiOff, Heart, Copy, Share2, Bookmark } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -102,24 +102,24 @@ export function BibleVerseList({
   const [lastRead, setLastRead] = useState<{ livro: string; capitulo: number } | null>(null);
   const [showLastRead, setShowLastRead] = useState(false);
 
-  // Check if current view is the last read position
-  const isCurrentLastRead = lastRead?.livro === nav.livro.abreviacao && lastRead?.capitulo === nav.capituloIdx;
+  // Check if current view is the last read position (capitulo salvo é 1-indexado)
+  const isCurrentLastRead = lastRead?.livro === nav.livro.abreviacao && lastRead?.capitulo === nav.capituloIdx + 1;
 
-  // Load last read on mount
-  useState(() => {
+  // Recarrega a última leitura sempre que o capítulo/livro mudar (corrigido: era useState, nunca reavaliava)
+  useEffect(() => {
     if (typeof window === 'undefined') return;
     try {
       const raw = localStorage.getItem('ssb_last_read');
       if (raw) {
         const data = JSON.parse(raw);
         setLastRead(data);
-        // Show banner only if we're NOT already at that position
-        if (data.livro !== nav.livro.abreviacao || data.capitulo !== nav.capituloIdx) {
-          setShowLastRead(true);
-        }
+        // Mostra o banner só se NÃO estivermos já naquela posição
+        setShowLastRead(data.livro !== nav.livro.abreviacao || data.capitulo !== nav.capituloIdx + 1);
+      } else {
+        setShowLastRead(false);
       }
     } catch {}
-  });
+  }, [nav.livro.abreviacao, nav.capituloIdx]);
 
   const getLivroNome = (abrev: string) => {
     const { LIVROS_AT, LIVROS_NT } = require('@/data/biblia/livros');
@@ -139,7 +139,7 @@ export function BibleVerseList({
             <div className="flex-1 min-w-0">
               <p className="text-xs font-semibold text-[var(--brand-default)]">Continuar lendo</p>
               <p className="text-[11px] text-[var(--content-muted)] truncate">
-                {getLivroNome(lastRead.livro)} {lastRead.capitulo + 1}
+                {getLivroNome(lastRead.livro)} {lastRead.capitulo}
               </p>
             </div>
             <button
@@ -147,7 +147,7 @@ export function BibleVerseList({
                 const { LIVROS_AT, LIVROS_NT } = require('@/data/biblia/livros');
                 const all = [...LIVROS_AT, ...LIVROS_NT];
                 const idx = all.findIndex((l: { abreviacao: string }) => l.abreviacao === lastRead.livro);
-                if (idx !== -1) nav.goToBook(idx, lastRead.capitulo);
+                if (idx !== -1) nav.goToBook(idx, lastRead.capitulo - 1);
                 setShowLastRead(false);
               }}
               className="px-3 py-1.5 rounded-lg bg-[var(--brand-default)] text-[var(--brand-contrast)] text-xs font-medium hover:opacity-90 transition-opacity flex items-center gap-1"
@@ -193,7 +193,46 @@ export function BibleVerseList({
               </div>
             )}
             {ui.showInterlinear && nav.data[0] && (<div className="mb-8"><div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/40"><span className="font-hebrew text-lg text-[var(--brand-default)]">א</span><span className="text-sm font-semibold text-[var(--content-primary)]">{t('biblia.interlinearView')}</span></div><InterlinearView versiculos={nav.data[0].versiculos} livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} traducao={nav.data[0].traducao} /></div>)}
-            {(ui.modoLeitura === 'foco' || ui.modoLeitura === 'estudo') && nav.data.map((item) => (<div key={item.traducao} className="mb-6">
+            {(ui.modoLeitura === 'foco' || ui.modoLeitura === 'estudo') && ui.modoExibicao === 'paragrafo' && nav.data.map((item) => (<div key={item.traducao} className="mb-6">
+              {nav.selectedTrads.length > 1 && (<div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/40"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span>{ui.modoLeitura === 'foco' && <span className="text-xs text-[var(--content-muted)]">{nomeMap[item.traducao]}</span>}</div>)}
+              {/* Modo parágrafo: versículos fundidos em texto corrido, estilo Bíblia impressa */}
+              <div
+                className="bible-paragraph-spacer bible-reading-text"
+                style={{
+                  fontSize: `${ui.fontSize}px`,
+                  lineHeight: ui.lineSpacing,
+                  fontFamily: ui.fontFamily === 'sans' ? "'Inter', system-ui, sans-serif" : "'Spectral', Georgia, serif",
+                }}
+              >
+                {item.versiculos.map((v) => {
+                  const isSelected = verse.versiculoSelecionado?.versiculo === v.numero && verse.versiculoSelecionado?.traducao === item.traducao;
+                  const isCurrentAudioVerse = capituloAudio.state.isPlaying && capituloAudio.state.currentVerseIndex === v.numero - 1;
+                  const isHighlighted = ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero;
+                  return (
+                    <span
+                      key={`${item.traducao}-${v.numero}-p`}
+                      onClick={() => stableHandleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto)}
+                      className={cn(
+                        'cursor-pointer rounded transition-colors text-[var(--content-primary)]',
+                        isCurrentAudioVerse
+                          ? 'bg-amber-100/70 dark:bg-amber-900/30'
+                          : isSelected
+                          ? 'bg-[var(--brand-subtle)]'
+                          : isHighlighted
+                          ? 'bg-[var(--brand-subtle)]/60'
+                          : 'hover:bg-[var(--surface-sunken)]/50'
+                      )}
+                    >
+                      {!ui.ocultarNumeros && (
+                        <sup className="bible-verse-number">{v.numero}</sup>
+                      )}
+                      {v.texto}{' '}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>))}
+            {(ui.modoLeitura === 'foco' || ui.modoLeitura === 'estudo') && ui.modoExibicao === 'versiculo' && nav.data.map((item) => (<div key={item.traducao} className="mb-6">
               {nav.selectedTrads.length > 1 && (<div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/40"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span>{ui.modoLeitura === 'foco' && <span className="text-xs text-[var(--content-muted)]">{nomeMap[item.traducao]}</span>}</div>)}
               <div className="space-y-0">{item.versiculos.map((v) => {
                 const isSelected = verse.versiculoSelecionado?.versiculo === v.numero && verse.versiculoSelecionado?.traducao === item.traducao;
@@ -224,6 +263,7 @@ export function BibleVerseList({
                     onTouchMove={longPress.onTouchMove}
                   >
                     <VerseListItem numero={v.numero} texto={v.texto} livroAbreviacao={nav.livro.abreviacao} livroNome={nav.livro.nome} capitulo={nav.capituloIdx + 1} traducao={item.traducao} fontSize={ui.fontSize}
+                      lineSpacing={ui.lineSpacing} fontFamily={ui.fontFamily} hideNumber={ui.ocultarNumeros}
                       isSelected={isSelected} isPlaying={isPlaying} isHighlighted={ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero} isFocused={ui.focusedVerse === v.numero} isFavorito={fav} copiedVerse={verse.copiedVerse}
                       audioNatural={audioNatural} audio={audio} flashcards={flashcards} estudoAberto={verse.estudoAberto === v.numero}
                       isCurrentAudioVerse={isCurrentAudioVerse} hasResources={verseResources.hasResources(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero)}

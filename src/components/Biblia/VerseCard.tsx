@@ -22,6 +22,9 @@ export interface VerseCardProps {
   capitulo: number;
   traducao: string;
   fontSize: number;
+  lineSpacing?: number;
+  fontFamily?: 'serif' | 'sans';
+  hideNumber?: boolean;
   isSelected: boolean;
   isPlaying: boolean;
   isHighlighted: boolean;
@@ -65,6 +68,9 @@ export const VerseCard = memo(function VerseCard({
   capitulo,
   traducao,
   fontSize,
+  lineSpacing,
+  fontFamily = 'serif',
+  hideNumber = false,
   isSelected,
   isPlaying,
   isHighlighted,
@@ -214,6 +220,8 @@ export const VerseCard = memo(function VerseCard({
     purple: 'bg-[var(--mark-purple)]',
   };
 
+  const fontFamilyCss = fontFamily === 'sans' ? "'Inter', system-ui, sans-serif" : "'Spectral', Georgia, serif";
+
   return (
     <Fragment>
       <div
@@ -250,33 +258,35 @@ export const VerseCard = memo(function VerseCard({
       >
         <div className="flex items-start gap-2.5 sm:gap-4">
           {/* Verse number badge */}
-          <span
-            className={cn(
-              'shrink-0 inline-flex items-center justify-center relative',
-              'w-8 h-8 sm:w-9 sm:h-9 rounded-full',
-              'text-[11px] sm:text-xs font-bold tabular-nums',
-              'transition-all duration-300',
-              isSelected || isPlaying
-                ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20'
-                : 'bg-[var(--brand-subtle)]/80 text-[var(--brand-default)] group-hover:bg-[var(--brand-default)] group-hover:text-[var(--brand-contrast)] group-hover:shadow-md group-hover:shadow-[var(--brand-default)]/20'
-            )}
-            aria-hidden="true"
-          >
-            {numero}
-            {corMarca && (
-              <span
-                className={cn(
-                  'absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full ring-2 ring-[var(--surface-raised)]',
-                  corMarca === 'yellow' && 'bg-yellow-400',
-                  corMarca === 'green' && 'bg-green-400',
-                  corMarca === 'blue' && 'bg-blue-400',
-                  corMarca === 'pink' && 'bg-pink-400',
-                  corMarca === 'orange' && 'bg-orange-400',
-                  corMarca === 'purple' && 'bg-purple-400'
-                )}
-              />
-            )}
-          </span>
+          {!hideNumber && (
+            <span
+              className={cn(
+                'shrink-0 inline-flex items-center justify-center relative',
+                'w-8 h-8 sm:w-9 sm:h-9 rounded-full',
+                'text-[11px] sm:text-xs font-bold tabular-nums',
+                'transition-all duration-300',
+                isSelected || isPlaying
+                  ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-md shadow-[var(--brand-default)]/20'
+                  : 'bg-[var(--brand-subtle)]/80 text-[var(--brand-default)] group-hover:bg-[var(--brand-default)] group-hover:text-[var(--brand-contrast)] group-hover:shadow-md group-hover:shadow-[var(--brand-default)]/20'
+              )}
+              aria-hidden="true"
+            >
+              {numero}
+              {corMarca && (
+                <span
+                  className={cn(
+                    'absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full ring-2 ring-[var(--surface-raised)]',
+                    corMarca === 'yellow' && 'bg-yellow-400',
+                    corMarca === 'green' && 'bg-green-400',
+                    corMarca === 'blue' && 'bg-blue-400',
+                    corMarca === 'pink' && 'bg-pink-400',
+                    corMarca === 'orange' && 'bg-orange-400',
+                    corMarca === 'purple' && 'bg-purple-400'
+                  )}
+                />
+              )}
+            </span>
+          )}
 
           <div className="flex-1 min-w-0">
             {/* Verse text - clickable words for lexicon */}
@@ -285,8 +295,8 @@ export const VerseCard = memo(function VerseCard({
               livroAbreviacao={livroAbreviacao}
               capitulo={capitulo}
               numero={numero}
-              className="font-serif-body text-[var(--content-primary)] leading-[1.85] sm:leading-[1.95] tracking-[0.01em]"
-              style={{ fontSize: `${fontSize}px` }}
+              className="text-[var(--content-primary)] tracking-[0.01em]"
+              style={{ fontSize: `${fontSize}px`, lineHeight: lineSpacing ?? undefined, fontFamily: fontFamilyCss }}
             />
 
             {/* Subtle reference + resource indicator */}

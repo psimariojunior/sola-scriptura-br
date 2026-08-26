@@ -17,6 +17,9 @@ interface VerseListItemProps {
   capitulo: number;
   traducao: string;
   fontSize: number;
+  lineSpacing?: number;
+  fontFamily?: 'serif' | 'sans';
+  hideNumber?: boolean;
   isSelected: boolean;
   isPlaying: boolean;
   isHighlighted: boolean;
@@ -58,6 +61,9 @@ export const VerseListItem = memo(function VerseListItem({
   capitulo,
   traducao,
   fontSize,
+  lineSpacing,
+  fontFamily,
+  hideNumber,
   isSelected,
   isPlaying,
   isHighlighted,
@@ -128,6 +134,9 @@ export const VerseListItem = memo(function VerseListItem({
       capitulo={capitulo}
       traducao={traducao}
       fontSize={fontSize}
+      lineSpacing={lineSpacing}
+      fontFamily={fontFamily}
+      hideNumber={hideNumber}
       isSelected={isSelected}
       isPlaying={isPlaying}
       isHighlighted={isHighlighted}

@@ -7,7 +7,6 @@ import { Footer } from '@/components/Footer';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
 import { carregarTraducao } from '@/data/biblia/texto/carregar';
 import { motion, AnimatePresence } from 'framer-motion';
-import { carregarLexicoGrego, carregarLexicoHebraico } from '@/lib/lexicon-lazy';
 import { doutrinas } from '@/data/biblia';
 import ScrollReveal from '@/components/ScrollReveal';
 import {
@@ -21,13 +20,15 @@ import {
   Sparkles,
   ArrowRight,
   ChevronRight,
+  GitBranch,
+  AlertTriangle,
 } from 'lucide-react';
 import { getIntroducaoLivro } from '@/data/biblia/introducoes';
 import dynamic from 'next/dynamic';
-import type { PalavraGrega } from '@/data/lexicon/grego';
-import type { PalavraHebraica } from '@/data/lexicon/hebraico';
+import type { PalavraStrong } from '@/data/biblia/strong';
+import type { VarianteTextual } from '@/data/biblia/criticaTextual';
+import type { PalavraStepBibleHebraico, PalavraStepBibleGrego } from '@/data/biblia/stepbible';
 
-type PalavraOriginal = (PalavraGrega | PalavraHebraica) & { idioma: 'grego' | 'hebraico' };
 const PainelDoVersiculo = dynamic(() => import('@/components/PainelDoVersiculo'), {
   ssr: false,
   loading: () => (
@@ -141,27 +142,57 @@ export function ExegeseClient() {
   const [carregando, setCarregando] = useState(true);
   const [tab, setTab] = useState<TabId>('texto');
   const [versiculoSelecionado, setVersiculoSelecionado] = useState<{livro: string, cap: number, ver: number} | null>(null);
-  const [palavrasOriginais, setPalavrasOriginais] = useState<PalavraOriginal[]>([]);
+  const [versiculoExegese, setVersiculoExegese] = useState(1);
+  const [strongVersiculo, setStrongVersiculo] = useState<PalavraStrong[]>([]);
+  const [crossRefsVersiculo, setCrossRefsVersiculo] = useState<string[]>([]);
+  const [variantesVersiculo, setVariantesVersiculo] = useState<VarianteTextual[]>([]);
+  const [stepbibleVersiculo, setStepbibleVersiculo] = useState<
+    { idioma: 'hebraico'; palavras: PalavraStepBibleHebraico[] } | { idioma: 'grego'; palavras: PalavraStepBibleGrego[] } | null
+  >(null);
+  const [carregandoVerso, setCarregandoVerso] = useState(false);
 
   useEffect(() => {
-    Promise.all([
-      ...TRAD_IDS.map((t) => carregarTraducao(t)),
-      carregarLexicoGrego(),
-      carregarLexicoHebraico(),
-    ]).then((results) => {
-      const lexicoGrego = results[results.length - 2] as PalavraGrega[];
-      const lexicoHebraico = results[results.length - 1] as PalavraHebraica[];
+    Promise.all(TRAD_IDS.map((t) => carregarTraducao(t))).then((results) => {
       const map: Record<string, LivroData> = {};
       TRAD_IDS.forEach((t, i) => { map[t] = results[i] as LivroData; });
       setData(map);
-      const palavrasComIdioma: PalavraOriginal[] = [
-        ...lexicoGrego.map(g => ({ ...g, idioma: 'grego' as const })),
-        ...lexicoHebraico.map(h => ({ ...h, idioma: 'hebraico' as const })),
-      ];
-      setPalavrasOriginais(palavrasComIdioma);
       setCarregando(false);
     });
   }, []);
+
+  useEffect(() => {
+    if (!livroAbrev || capituloNum === null) return;
+    setVersiculoExegese(1);
+  }, [livroAbrev, capituloNum]);
+
+  // Busca real de dados por versículo: Strong + morfologia, referências cruzadas (TSK),
+  // variantes textuais e (quando disponível) o piloto STEPBible com a forma flexionada real.
+  useEffect(() => {
+    if (!livroAbrev || capituloNum === null) {
+      setStrongVersiculo([]);
+      setCrossRefsVersiculo([]);
+      setVariantesVersiculo([]);
+      setStepbibleVersiculo(null);
+      return;
+    }
+    let cancelado = false;
+    setCarregandoVerso(true);
+    const chave = `${livroAbrev}:${capituloNum}:${versiculoExegese}`;
+    Promise.all([
+      import('@/data/biblia/strong').then((mod) => mod.getStrongPorVersiculo(livroAbrev, capituloNum, versiculoExegese)),
+      import('@/data/crossReferences').then((mod) => mod.crossReferences[chave] ?? []),
+      import('@/data/biblia/criticaTextual').then((mod) => mod.getVariantePorReferencia(chave)),
+      import('@/data/biblia/stepbible').then((mod) => mod.getVersiculoStepBible(livroAbrev, capituloNum, versiculoExegese)),
+    ]).then(([strong, refs, variantes, stepbible]) => {
+      if (cancelado) return;
+      setStrongVersiculo(strong);
+      setCrossRefsVersiculo(refs);
+      setVariantesVersiculo(variantes);
+      setStepbibleVersiculo(stepbible);
+      setCarregandoVerso(false);
+    });
+    return () => { cancelado = true; };
+  }, [livroAbrev, capituloNum, versiculoExegese]);
 
   const livro = useMemo(
     () => TODOS_LIVROS.find((l) => l.abreviacao === livroAbrev),
@@ -197,15 +228,23 @@ export function ExegeseClient() {
     };
   }, [livroAbrev]);
 
-  const palavrasRelacionadas = useMemo(() => {
-    if (!livroAbrev || palavrasOriginais.length === 0) return [];
-    const livroObj = TODOS_LIVROS.find((l) => l.abreviacao === livroAbrev);
-    if (!livroObj) return [];
-    const isNT = livroObj.testamento === 'NT';
-    return palavrasOriginais
-      .filter((p) => p.idioma === (isNT ? 'grego' : 'hebraico'))
-      .slice(0, 10);
-  }, [livroAbrev, palavrasOriginais]);
+  const totalVersiculosCap = textoMulti[0]?.versiculos.length ?? 0;
+
+  const formatarRefTSK = useCallback((ref: string) => {
+    const [abrev, cap, ver] = ref.split(':');
+    const livroObj = TODOS_LIVROS.find((l) => l.abreviacao === abrev);
+    return `${livroObj?.nome ?? abrev?.toUpperCase() ?? ref} ${cap}:${ver}`;
+  }, []);
+
+  const abrirReferenciaCruzada = useCallback((ref: string) => {
+    const [abrev, cap, ver] = ref.split(':');
+    const livroObj = TODOS_LIVROS.find((l) => l.abreviacao === abrev);
+    if (!livroObj) return;
+    setLivroAbrev(abrev);
+    setCapituloNum(Number(cap));
+    setVersiculoExegese(Number(ver) || 1);
+    setTab('palavras');
+  }, []);
 
   const doutrinasRelacionadas = useMemo(() => {
     if (!livroAbrev) return [];
@@ -521,39 +560,171 @@ export function ExegeseClient() {
                       >
                         <ScrollReveal>
                           <div className="glass-card p-6 rounded-2xl">
-                            <h3 className="font-semibold text-sm mb-4 flex items-center gap-2 text-muted-foreground uppercase tracking-wider">
-                              <Languages className="w-4 h-4" strokeWidth={1.5} />
-                              {t('exegesis.originalWords')}
-                            </h3>
-                            <p className="text-xs text-muted-foreground mb-6">
-                              {t('exegesis.keywordsIn', { lang: livro?.testamento === 'NT' ? t('languages.greek').toLowerCase() : t('languages.hebrew').toLowerCase() })}
-                            </p>
-                            <div className="space-y-4">
-                              {palavrasRelacionadas.length > 0 ? (
-                                palavrasRelacionadas.map((p, i) => (
-                                  <div key={i} className="p-4 bg-muted/30 rounded-xl hover:bg-muted/50 transition-colors">
-                                    <div className="flex items-start justify-between mb-2">
-                                      <div>
-                                        <p className="font-serif text-2xl text-primary">{p.palavra}</p>
-                                        <p className="text-xs text-muted-foreground italic">{p.transliteracao}</p>
-                                      </div>
-                                      <span className="text-[10px] uppercase font-bold text-muted-foreground bg-background px-3 py-1 rounded-full">
-                                        {p.strong}
-                                      </span>
-                                    </div>
-                                    <p className="text-sm mt-2">{p.definicao}</p>
-                                    {('morfologia' in p ? p.morfologia : 'morphologia' in p ? (p as PalavraGrega).morphologia : null) && (
-                                      <p className="text-xs text-muted-foreground mt-2 flex items-center gap-1">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                                        {'morfologia' in p ? p.morfologia : (p as PalavraGrega).morphologia}
-                                      </p>
-                                    )}
-                                  </div>
-                                ))
-                              ) : (
-                                <p className="text-sm text-muted-foreground text-center py-8">{t('exegesis.originalWordsPending')}</p>
+                            <div className="flex items-center justify-between mb-1 flex-wrap gap-3">
+                              <h3 className="font-semibold text-sm flex items-center gap-2 text-muted-foreground uppercase tracking-wider">
+                                <Languages className="w-4 h-4" strokeWidth={1.5} />
+                                {t('exegesis.originalWords')}
+                              </h3>
+                              {totalVersiculosCap > 0 && (
+                                <div className="flex items-center gap-2">
+                                  <label className="text-xs text-muted-foreground">{t('exegesis.verseLabel')}</label>
+                                  <select
+                                    value={versiculoExegese}
+                                    onChange={(e) => setVersiculoExegese(Number(e.target.value))}
+                                    className="px-3 py-1.5 bg-background/50 border border-border/50 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                                  >
+                                    {Array.from({ length: totalVersiculosCap }, (_, i) => i + 1).map((v) => (
+                                      <option key={v} value={v}>{v}</option>
+                                    ))}
+                                  </select>
+                                </div>
                               )}
                             </div>
+                            <p className="text-xs text-muted-foreground mb-6">
+                              {t('exegesis.wordsForVerse', { ref: `${livro?.nome ?? ''} ${capituloNum}:${versiculoExegese}` })}
+                            </p>
+
+                            {carregandoVerso ? (
+                              <div className="py-8 flex justify-center">
+                                <div className="inline-flex gap-2">
+                                  <span className="w-2.5 h-2.5 bg-primary rounded-full animate-bounce [animation-delay:0s]" />
+                                  <span className="w-2.5 h-2.5 bg-primary rounded-full animate-bounce [animation-delay:0.15s]" />
+                                  <span className="w-2.5 h-2.5 bg-primary rounded-full animate-bounce [animation-delay:0.3s]" />
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="space-y-3">
+                                {strongVersiculo.length > 0 ? (
+                                  strongVersiculo.map((p, i) => (
+                                    <div key={i} className="p-4 bg-muted/30 rounded-xl hover:bg-muted/50 transition-colors">
+                                      <div className="flex items-start justify-between mb-2 gap-3 flex-wrap">
+                                        <div>
+                                          <p className="font-serif text-2xl text-primary">{p.palavra || '—'}</p>
+                                          {p.transliteracao && <p className="text-xs text-muted-foreground italic">{p.transliteracao}</p>}
+                                        </div>
+                                        <span className="text-[10px] uppercase font-bold text-muted-foreground bg-background px-3 py-1 rounded-full shrink-0">
+                                          {p.strong}
+                                        </span>
+                                      </div>
+                                      {p.definicao && <p className="text-sm mt-2">{p.definicao}</p>}
+                                      {p.morfologia && (
+                                        <p className="text-xs text-muted-foreground mt-2 flex items-center gap-1">
+                                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                                          {p.morfologia}
+                                        </p>
+                                      )}
+                                    </div>
+                                  ))
+                                ) : (
+                                  <p className="text-sm text-muted-foreground text-center py-8">{t('exegesis.originalWordsPending')}</p>
+                                )}
+                              </div>
+                            )}
+
+                            {stepbibleVersiculo && stepbibleVersiculo.palavras.length > 0 && (
+                              <div className="mt-6 pt-6 border-t border-border/50">
+                                <h4 className="font-semibold text-xs mb-1 flex items-center gap-2 text-muted-foreground uppercase tracking-wider">
+                                  <Sparkles className="w-3.5 h-3.5" strokeWidth={1.5} />
+                                  {t('exegesis.stepbibleTitle')}
+                                </h4>
+                                <p className="text-[11px] text-muted-foreground mb-4">{t('exegesis.stepbibleDesc')}</p>
+                                <div className="overflow-x-auto">
+                                  <table className="w-full text-sm">
+                                    <thead>
+                                      <tr className="text-left text-[11px] uppercase tracking-wider text-muted-foreground">
+                                        <th className="pb-2 pr-3">{t('exegesis.stepbibleForm')}</th>
+                                        <th className="pb-2 pr-3">{t('exegesis.stepbibleTranslit')}</th>
+                                        <th className="pb-2 pr-3">{t('exegesis.stepbibleGloss')}</th>
+                                        <th className="pb-2 pr-3">Strong</th>
+                                        <th className="pb-2 pr-3">{t('exegesis.stepbibleMorph')}</th>
+                                        {stepbibleVersiculo.idioma === 'grego' && (
+                                          <th className="pb-2">{t('exegesis.stepbibleEditions')}</th>
+                                        )}
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {stepbibleVersiculo.palavras.map((p, i) => (
+                                        <tr key={i} className="border-t border-border/30">
+                                          <td className="py-2 pr-3 font-serif text-lg">{p.formaOriginal}</td>
+                                          <td className="py-2 pr-3 text-xs italic text-muted-foreground">{p.transliteracao}</td>
+                                          <td className="py-2 pr-3 text-xs text-muted-foreground">{p.glosaIngles}</td>
+                                          <td className="py-2 pr-3 text-xs font-mono">{p.strong}</td>
+                                          <td className="py-2 pr-3 text-xs text-muted-foreground">
+                                            {'morfologia' in p ? p.morfologia : p.morfologiaCodigo}
+                                          </td>
+                                          {stepbibleVersiculo.idioma === 'grego' && 'edicoes' in p && (
+                                            <td className="py-2 text-[10px] text-muted-foreground">{p.edicoes.join(', ')}</td>
+                                          )}
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                </div>
+                                <p className="text-[10px] text-muted-foreground mt-3 italic">{t('exegesis.stepbibleAttribution')}</p>
+                              </div>
+                            )}
+                          </div>
+                        </ScrollReveal>
+
+                        <ScrollReveal delay={80}>
+                          <div className="glass-card p-6 rounded-2xl">
+                            <h3 className="font-semibold text-sm mb-4 flex items-center gap-2 text-muted-foreground uppercase tracking-wider">
+                              <GitBranch className="w-4 h-4" strokeWidth={1.5} />
+                              {t('exegesis.crossReferences')}
+                            </h3>
+                            {crossRefsVersiculo.length > 0 ? (
+                              <div className="flex flex-wrap gap-2">
+                                {crossRefsVersiculo.map((ref, i) => (
+                                  <button
+                                    key={i}
+                                    onClick={() => abrirReferenciaCruzada(ref)}
+                                    className="text-xs font-medium text-primary bg-primary/10 hover:bg-primary/20 px-3 py-1.5 rounded-full transition-colors flex items-center gap-1"
+                                  >
+                                    {formatarRefTSK(ref)}
+                                    <ChevronRight className="w-3 h-3" />
+                                  </button>
+                                ))}
+                              </div>
+                            ) : (
+                              <p className="text-sm text-muted-foreground text-center py-4">{t('exegesis.noCrossReferences')}</p>
+                            )}
+                          </div>
+                        </ScrollReveal>
+
+                        <ScrollReveal delay={160}>
+                          <div className="glass-card p-6 rounded-2xl">
+                            <h3 className="font-semibold text-sm mb-4 flex items-center gap-2 text-muted-foreground uppercase tracking-wider">
+                              <FileText className="w-4 h-4" strokeWidth={1.5} />
+                              {t('exegesis.textualVariants')}
+                            </h3>
+                            {variantesVersiculo.length > 0 ? (
+                              <div className="space-y-4">
+                                {variantesVersiculo.map((v) => (
+                                  <div key={v.id} className="p-4 bg-amber-500/5 border border-amber-500/20 rounded-xl">
+                                    <div className="flex items-center gap-2 mb-3">
+                                      <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" strokeWidth={1.5} />
+                                      <span className="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider">{v.tipo.replace(/_/g, ' ')}</span>
+                                    </div>
+                                    <div className="space-y-2 mb-3">
+                                      {v.variantes.map((leitura, j) => (
+                                        <div key={j} className="p-3 bg-background/50 rounded-lg">
+                                          <p className="text-sm font-serif-body mb-1">&ldquo;{leitura.leitura}&rdquo;</p>
+                                          <p className="text-[11px] text-muted-foreground">
+                                            {t('exegesis.manuscripts')}: {leitura.manuscritos.join(', ')} — <span className="font-semibold">{leitura.classificacao}</span>
+                                          </p>
+                                        </div>
+                                      ))}
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">{v.explicacao}</p>
+                                    {v.recomendacaoNA28 && (
+                                      <p className="text-xs text-muted-foreground mt-2 italic">NA28: {v.recomendacaoNA28}</p>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <p className="text-sm text-muted-foreground text-center py-4">{t('exegesis.noTextualVariants')}</p>
+                            )}
                           </div>
                         </ScrollReveal>
                     </motion.div>

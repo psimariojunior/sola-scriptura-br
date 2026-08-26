@@ -31215,3 +31215,74 @@ export function getTodasOcorrenciasStrong(codigo: string): string[] {
   }
   return results;
 }
+
+export interface OcorrenciaCorpus {
+  ref: string;
+  strong: string;
+  palavra: string;
+  transliteracao: string;
+  definicao: string;
+  morfologia: string;
+  idioma: 'grego' | 'hebraico';
+}
+
+export interface FiltroMorfologico {
+  /** Restringe a busca a um idioma. Se omitido, busca em ambos. */
+  idioma?: 'grego' | 'hebraico';
+  /**
+   * Lista de termos que devem aparecer (todos, lógica E) no rótulo morfológico
+   * de cada palavra do corpus (comparação case-insensitive). Ex.: ['aoristo', 'passivo', 'indicativo'].
+   */
+  morfologiaContem?: string[];
+}
+
+/**
+ * Busca real no corpus interlinear (STRONG_CODES, ~31 mil versículos) por um
+ * padrão gramatical/morfológico — não uma busca no léxico (que é um dicionário
+ * de lemas), mas nas ocorrências de fato marcadas em cada versículo.
+ *
+ * Ex.: buscarPadraoMorfologico({ idioma: 'grego', morfologiaContem: ['aoristo', 'passivo', 'indicativo'] })
+ *      retorna todos os aoristos passivos indicativos atestados no corpus.
+ */
+export async function buscarPadraoMorfologico(
+  filtro: FiltroMorfologico,
+  limite = 300
+): Promise<{ total: number; ocorrencias: OcorrenciaCorpus[] }> {
+  const termos = (filtro.morfologiaContem ?? []).map((t) => t.toLowerCase());
+  const heb = await getHebLookup();
+  const grk = await getGrkLookup();
+  const ocorrencias: OcorrenciaCorpus[] = [];
+  let total = 0;
+
+  for (const [ref, [codes, morphs]] of Object.entries(STRONG_CODES)) {
+    for (let i = 0; i < codes.length; i++) {
+      const code = codes[i];
+      const isHeb = code.startsWith('H');
+      const idioma: 'grego' | 'hebraico' = isHeb ? 'hebraico' : 'grego';
+      if (filtro.idioma && filtro.idioma !== idioma) continue;
+
+      const morfBruta = morphs[i] || '';
+      if (termos.length > 0) {
+        const morfLower = morfBruta.toLowerCase();
+        if (!termos.every((termo) => morfLower.includes(termo))) continue;
+      }
+
+      total++;
+      if (ocorrencias.length < limite) {
+        const lex = isHeb ? heb[code] : grk[code];
+        ocorrencias.push({
+          ref,
+          strong: code,
+          palavra: lex?.palavra || '',
+          transliteracao: lex?.transliteracao || '',
+          definicao: lex?.definicao || '',
+          morfologia: morfBruta,
+          idioma,
+        });
+      }
+    }
+  }
+
+  return { total, ocorrencias };
+}
+

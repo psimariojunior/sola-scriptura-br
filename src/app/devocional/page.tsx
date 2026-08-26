@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
 import { devocionais, getDevocionalDoDia } from '@/data/devocional';
 import {
   ChevronLeft,
@@ -244,17 +243,14 @@ export default function DevocionalPage() {
   const currentDay = new Date().getDate();
 
   return (
-    <div className="min-h-screen bg-[var(--bg)]">
-      <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
-        <div className="max-w-3xl mx-auto">
+    <PageShell maxWidth="3xl">
 
           <ScrollReveal>
             <div className="text-center mb-10">
               <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--muted-fg)] mb-2">
                 Devocional Diário
               </p>
-              <h1 className="font-display text-4xl md:text-5xl font-light text-[var(--fg)]">
+              <h1 className="text-h1 text-[var(--fg)]">
                 {devocionalDoDia.titulo}
               </h1>
               <div className="ornament w-16 mx-auto mt-4" />
@@ -388,7 +384,7 @@ export default function DevocionalPage() {
                 <p className="text-xs font-semibold tracking-[0.15em] uppercase text-[var(--muted-fg)] mb-1">
                   Dia {devocional.dia} de {devocionais.length}
                 </p>
-                <h2 className="font-display text-3xl md:text-4xl font-light text-[var(--fg)]">
+                <h2 className="text-h2 text-[var(--fg)]">
                   {devocional.titulo}
                 </h2>
               </div>
@@ -499,9 +495,6 @@ export default function DevocionalPage() {
             </div>
           </ScrollReveal>
 
-        </div>
-      </main>
-
       <AnimatePresence>
         {showImageModal && (
           <motion.div
@@ -543,9 +536,7 @@ export default function DevocionalPage() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <Footer />
-    </div>
+    </PageShell>
   );
 }
 

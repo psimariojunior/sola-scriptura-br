@@ -59,6 +59,10 @@ export interface UseBibliaUIReturn {
   setFontFamily: (font: 'serif' | 'sans') => void;
   lineSpacing: number;
   setLineSpacing: (spacing: number) => void;
+  modoExibicao: 'versiculo' | 'paragrafo';
+  setModoExibicao: (modo: 'versiculo' | 'paragrafo') => void;
+  ocultarNumeros: boolean;
+  setOcultarNumeros: (v: boolean) => void;
   chapterAnimProps: {
     initial: { opacity: number; x: number; filter?: string };
     animate: { opacity: number; x: number; filter?: string };
@@ -162,6 +166,19 @@ export function UseBibliaUI({
       return parseFloat(localStorage.getItem('ssb_line_spacing') || '1.8');
     }
     return 1.8;
+  });
+  const [modoExibicao, setModoExibicaoState] = useState<'versiculo' | 'paragrafo'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('ssb_modo_exibicao');
+      if (saved === 'paragrafo' || saved === 'versiculo') return saved;
+    }
+    return 'versiculo';
+  });
+  const [ocultarNumeros, setOcultarNumerosState] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('ssb_ocultar_numeros') === '1';
+    }
+    return false;
   });
 
   const capituloIdxRef = useRef(capituloIdx);
@@ -438,6 +455,16 @@ export function UseBibliaUI({
     setLineSpacing: (spacing: number) => {
       setLineSpacing(spacing);
       try { localStorage.setItem('ssb_line_spacing', String(spacing)); } catch (e) { console.error('[biblia:save-line-spacing]', e); }
+    },
+    modoExibicao,
+    setModoExibicao: (modo: 'versiculo' | 'paragrafo') => {
+      setModoExibicaoState(modo);
+      try { localStorage.setItem('ssb_modo_exibicao', modo); } catch (e) { console.error('[biblia:save-modo-exibicao]', e); }
+    },
+    ocultarNumeros,
+    setOcultarNumeros: (v: boolean) => {
+      setOcultarNumerosState(v);
+      try { localStorage.setItem('ssb_ocultar_numeros', v ? '1' : '0'); } catch (e) { console.error('[biblia:save-ocultar-numeros]', e); }
     },
     chapterAnimProps,
   };

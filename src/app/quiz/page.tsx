@@ -3,7 +3,7 @@
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, Zap, BookOpen, Users, Trophy, ChevronRight, Clock, Target, CheckCircle2, XCircle, Flame, Star, ArrowLeft, RotateCcw, Home, Timer, Award, TrendingUp } from 'lucide-react';
+import { Brain, Zap, BookOpen, Users, Trophy, ChevronRight, Clock, Target, CheckCircle2, XCircle, Flame, Star, ArrowLeft, RotateCcw, Home, Timer, Award, TrendingUp, Languages } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import Link from 'next/link';
 import { LIVROS_BIBLIA, todasPerguntas, type PerguntaQuiz } from '@/data/quiz';
@@ -47,6 +47,15 @@ const MODOS = [
     cor: 'from-purple-500/20 to-purple-500/5',
     iconeCor: 'text-purple-500',
     link: '/quiz/multiplayer',
+  },
+  {
+    id: 'vocabulario',
+    titulo: 'Vocabulário Grego & Hebraico',
+    descricao: 'Flashcards e quiz com palavras do léxico Strong\'s.',
+    icone: Languages,
+    cor: 'from-teal-500/20 to-teal-500/5',
+    iconeCor: 'text-teal-500',
+    link: '/quiz/vocabulario',
   },
 ];
 

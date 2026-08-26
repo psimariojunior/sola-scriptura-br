@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, Trash2, Search, BookOpen, X, Plus, ArrowLeft, Edit3 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -95,10 +94,7 @@ export default function NotasPage() {
   // Editor view
   if (view === 'editor') {
     return (
-      <div className="min-h-screen">
-        <Header />
-        <main className="pt-20 pb-16 px-4">
-          <div className="max-w-4xl mx-auto">
+      <PageShell maxWidth="4xl">
             <button onClick={() => { setView('list'); setEditingNota(undefined); }}
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4">
               <ArrowLeft className="w-4 h-4" /> {t('notas.backToNotes')}
@@ -111,20 +107,15 @@ export default function NotasPage() {
                 autoSalvar={false}
               />
             </div>
-          </div>
-        </main>
-        <Footer />
-      </div>
+      </PageShell>
     );
   }
 
   // List view
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-24 pb-24 md:pb-16 px-6">
+    <PageShell maxWidth="3xl">
         <PullToRefreshWrapper onRefresh={carregarNotas}>
-        <div className="max-w-3xl mx-auto">
+        <div>
           <ScrollReveal>
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-3">
@@ -132,7 +123,7 @@ export default function NotasPage() {
                   <FileText className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h1 className="font-display text-3xl font-light">{t('notas.title')}</h1>
+                  <h1 className="text-h1">{t('notas.title')}</h1>
                   <p className="text-sm text-muted-foreground">{t('notas.subtitle')}</p>
                 </div>
               </div>
@@ -150,7 +141,7 @@ export default function NotasPage() {
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <FileText className="w-8 h-8 text-primary/50" />
                 </div>
-                <h2 className="font-display text-xl font-light mb-2">{t('notas.empty')}</h2>
+                <h2 className="text-h2 mb-2">{t('notas.empty')}</h2>
                 <p className="text-sm text-muted-foreground mb-6">
                   {t('notas.emptyDesc')}
                 </p>
@@ -241,8 +232,6 @@ export default function NotasPage() {
           )}
         </div>
         </PullToRefreshWrapper>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

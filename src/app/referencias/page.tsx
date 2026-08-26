@@ -1,10 +1,13 @@
 'use client';
 
 import { useState, useMemo, useCallback } from 'react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, GitBranch, BarChart3, Zap, BookOpen, Filter, ChevronDown, ChevronRight, ArrowRight } from 'lucide-react';
+import {
+  Search, X, GitBranch, BarChart3, Zap, BookOpen, ChevronDown, ChevronRight, ArrowRight,
+  Columns2, CheckCircle2, Quote, Lightbulb, Link2, type LucideIcon,
+} from 'lucide-react';
 import { crossReferencesMap, type CrossReference, formatReference } from '@/data/biblia/crossReferences';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
 import Link from 'next/link';
@@ -37,13 +40,13 @@ const TYPE_COLORS_BG: Record<CrossReference['type'], string> = {
   typology: 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300 border-cyan-200 dark:border-cyan-800',
 };
 
-const TYPE_ICONS: Record<CrossReference['type'], string> = {
-  parallel: '⚖️',
-  fulfillment: '✅',
-  quotation: '📜',
-  contrast: '⚡',
-  thematic: '💡',
-  typology: '🔗',
+const TYPE_ICONS: Record<CrossReference['type'], LucideIcon> = {
+  parallel: Columns2,
+  fulfillment: CheckCircle2,
+  quotation: Quote,
+  contrast: Zap,
+  thematic: Lightbulb,
+  typology: Link2,
 };
 
 const TYPE_DESCRIPTIONS: Record<string, string> = {
@@ -201,22 +204,12 @@ export default function ReferenciasPage() {
   const quickRefs = ['Gn 1:1', 'Jo 3:16', 'Sl 23:1', 'Rm 8:28', 'Fp 4:13', 'Ef 2:8', 'Sl 110:1', 'Is 53:5'];
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-            className="text-center mb-10">
-            <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-indigo-500/20 to-blue-500/20 flex items-center justify-center border border-indigo-500/20">
-              <GitBranch className="w-10 h-10 text-indigo-500" />
-            </div>
-            <h1 className="font-display text-3xl sm:text-4xl font-light mb-3">
-              Referências <span className="text-primary italic">Cruzadas</span>
-            </h1>
-            <p className="text-muted-foreground max-w-lg mx-auto text-sm sm:text-base">
-              Explore conexões entre versículos — {todasRefs.length} referências classificadas em 6 tipos teológicos.
-            </p>
-          </motion.div>
+    <PageShell maxWidth="6xl">
+          <PageHero
+            icon={GitBranch}
+            title={<>Referências <span className="text-primary italic">Cruzadas</span></>}
+            subtitle={`Explore conexões entre versículos — ${todasRefs.length} referências classificadas em 6 tipos teológicos.`}
+          />
 
           <div className="flex gap-2 mb-6 flex-wrap">
             {([['graph', 'Grafo'], ['explorar', 'Explorar'], ['por-livro', 'Por Livro'], ['estatisticas', 'Estatísticas']] as [AbaView, string][]).map(([tab, label]) => (
@@ -435,13 +428,13 @@ export default function ReferenciasPage() {
               <div className="flex flex-wrap gap-2 mb-6">
                 {(['all', 'quotation', 'fulfillment', 'typology', 'thematic', 'parallel', 'contrast'] as const).map(t => {
                   const label = t === 'all' ? 'Todos' : TYPE_LABELS[t];
-                  const icon = t === 'all' ? '📖' : TYPE_ICONS[t];
+                  const Icon = t === 'all' ? BookOpen : TYPE_ICONS[t];
                   const color = t === 'all' ? 'bg-primary/10 text-primary' : TYPE_COLORS_BG[t];
                   return (
                     <button key={t} onClick={() => setTipoFiltro(t)}
-                      className={cn('px-3 py-1.5 rounded-full text-sm font-medium transition-all',
+                      className={cn('inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all',
                         tipoFiltro === t ? `${color} ring-2 ring-primary/40` : 'bg-muted text-muted-foreground')}>
-                      {icon} {label}
+                      <Icon className="w-3.5 h-3.5" /> {label}
                     </button>
                   );
                 })}
@@ -457,8 +450,8 @@ export default function ReferenciasPage() {
                       <button onClick={() => toggleExpand(key)}
                         className="w-full flex items-center justify-between p-3 hover:bg-muted/30 transition-colors">
                         <div className="flex items-center gap-3">
-                          <span className={`px-2 py-0.5 rounded text-xs font-medium ${TYPE_COLORS_BG[r.type]}`}>
-                            {TYPE_ICONS[r.type]}
+                          <span className={`inline-flex p-1 rounded ${TYPE_COLORS_BG[r.type]}`}>
+                            {(() => { const Icon = TYPE_ICONS[r.type]; return <Icon className="w-3 h-3" />; })()}
                           </span>
                           <span className="font-semibold text-foreground text-sm">{formatReference(r.from)}</span>
                           <ArrowRight className="w-3 h-3 text-muted-foreground" />
@@ -498,7 +491,9 @@ export default function ReferenciasPage() {
                     <div className="mt-3 space-y-1">
                       {refsPorLivro[livro].map((r, i) => (
                         <div key={i} className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/30 text-sm">
-                          <span className={`px-1.5 py-0.5 rounded text-xs ${TYPE_COLORS_BG[r.type]}`}>{TYPE_ICONS[r.type]}</span>
+                          <span className={`inline-flex p-1 rounded ${TYPE_COLORS_BG[r.type]}`}>
+                            {(() => { const Icon = TYPE_ICONS[r.type]; return <Icon className="w-3 h-3" />; })()}
+                          </span>
                           <span className="font-medium text-foreground">{formatReference(r.from)}</span>
                           <ArrowRight className="w-3 h-3 text-muted-foreground" />
                           <span className="text-primary">{formatReference(r.to)}</span>
@@ -525,7 +520,9 @@ export default function ReferenciasPage() {
                     return (
                       <div key={t}>
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium">{TYPE_ICONS[t]} {TYPE_LABELS[t]}</span>
+                          <span className="inline-flex items-center gap-1.5 text-sm font-medium">
+                            {(() => { const Icon = TYPE_ICONS[t]; return <Icon className="w-3.5 h-3.5" />; })()} {TYPE_LABELS[t]}
+                          </span>
                           <span className="text-sm text-muted-foreground">{count} ({pct}%)</span>
                         </div>
                         <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -542,7 +539,9 @@ export default function ReferenciasPage() {
                 <div className="space-y-4">
                   {(['quotation', 'fulfillment', 'typology', 'thematic', 'parallel', 'contrast'] as const).map(t => (
                     <div key={t} className="p-3 rounded-lg bg-muted/30">
-                      <h4 className="font-semibold text-sm mb-1">{TYPE_ICONS[t]} {TYPE_LABELS[t]} ({statsGlobais[t] || 0})</h4>
+                      <h4 className="inline-flex items-center gap-1.5 font-semibold text-sm mb-1">
+                        {(() => { const Icon = TYPE_ICONS[t]; return <Icon className="w-4 h-4" />; })()} {TYPE_LABELS[t]} ({statsGlobais[t] || 0})
+                      </h4>
                       <p className="text-xs text-muted-foreground">{TYPE_DESCRIPTIONS[t]}</p>
                     </div>
                   ))}
@@ -565,9 +564,6 @@ export default function ReferenciasPage() {
               </div>
             </div>
           )}
-        </div>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

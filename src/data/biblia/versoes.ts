@@ -16,6 +16,11 @@ export const traducoes: Versao[] = [
   { id: 'kjv', nome: 'King James Version', sigla: 'KJV', descricao: 'Authorized Version em inglês', idioma: 'en', ano: 1611 },
   { id: 'web', nome: 'World English Bible', sigla: 'WEB', descricao: 'Domínio público em inglês moderno', idioma: 'en', ano: 2000 },
 
+  // Traduções de domínio público / licença livre (ver src/data/biblia/texto/LICENCAS.md)
+  { id: 'alm1911', nome: 'Almeida 1911', sigla: 'ALM1911', descricao: 'Almeida Revista e Corrigida, edição de 1911, domínio público', idioma: 'pt-BR', ano: 1911 },
+  { id: 'blivre', nome: 'Bíblia Livre', sigla: 'BLIVRE', descricao: 'Modernização da Almeida 1819, licença CC BY 3.0 BR', idioma: 'pt-BR', ano: 2018 },
+  { id: 'jfaal', nome: 'João Ferreira de Almeida Atualizada Livre', sigla: 'JFAAL', descricao: 'Base Almeida 1911 (domínio público) revisada com IA, licença CC BY 3.0 BR', idioma: 'pt-BR', ano: 2023 },
+
   // Traduções via API Midvash
   { id: 'naa', nome: 'Nova Almeida Atualizada', sigla: 'NAA', descricao: 'Revisão da Almeida pela SBB em linguagem contemporânea', idioma: 'pt-BR', ano: 2017 },
   { id: 'ntlh', nome: 'Nova Tradução na Linguagem de Hoje', sigla: 'NTLH', descricao: 'Tradução em linguagem simples e acessível', idioma: 'pt-BR', ano: 2000 },

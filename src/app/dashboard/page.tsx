@@ -1,13 +1,13 @@
 'use client';
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
 import { motion } from 'framer-motion';
 import {
-  BookOpen, Flame, Trophy, Star, Clock, Search, Eye, Brain,
-  ChevronRight, Award, Target, TrendingUp, BarChart3, History,
-  Heart, FileText, Zap, Cross, Map, Globe, Languages, BookMarked,
+  BookOpen, Flame, Trophy, Clock, Search, Eye, Brain,
+  ChevronRight, Award, TrendingUp, BarChart3, History,
+  Heart, Globe, Languages, BookMarked, GraduationCap, ScrollText,
+  Compass, GitCompareArrows, type LucideIcon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
@@ -43,7 +43,7 @@ interface Achievement {
   id: string;
   nome: string;
   descricao: string;
-  icon: string;
+  icon: LucideIcon;
   desbloqueada: boolean;
   progresso: number;
   meta: number;
@@ -195,7 +195,7 @@ function useStudyDashboard() {
         id: 'primeiro_estudo',
         nome: 'Primeiro Estudo',
         descricao: 'Visite pela primeira vez',
-        icon: '📖',
+        icon: BookOpen,
         desbloqueada: state.activity.pagesVisited.length >= 1,
         progresso: Math.min(state.activity.pagesVisited.length, 1),
         meta: 1,
@@ -204,7 +204,7 @@ function useStudyDashboard() {
         id: 'leitor_assiduo',
         nome: 'Leitor Assíduo',
         descricao: '7 dias seguidos lendo',
-        icon: '🔥',
+        icon: Flame,
         desbloqueada: state.streak >= 7 || state.bestStreak >= 7,
         progresso: Math.min(state.streak, 7),
         meta: 7,
@@ -213,7 +213,7 @@ function useStudyDashboard() {
         id: 'estudioso',
         nome: 'Estudioso',
         descricao: '30 dias seguidos lendo',
-        icon: '🎓',
+        icon: GraduationCap,
         desbloqueada: state.streak >= 30 || state.bestStreak >= 30,
         progresso: Math.min(state.bestStreak, 30),
         meta: 30,
@@ -222,7 +222,7 @@ function useStudyDashboard() {
         id: 'polyglot',
         nome: 'Polyglot',
         descricao: '50 palavras gregas aprendidas',
-        icon: '🗣️',
+        icon: Languages,
         desbloqueada: state.stats.wordsLearned.grego >= 50,
         progresso: Math.min(state.stats.wordsLearned.grego, 50),
         meta: 50,
@@ -231,7 +231,7 @@ function useStudyDashboard() {
         id: 'erudito',
         nome: 'Erudito',
         descricao: '50 palavras hebraicas aprendidas',
-        icon: '📜',
+        icon: ScrollText,
         desbloqueada: state.stats.wordsLearned.hebraico >= 50,
         progresso: Math.min(state.stats.wordsLearned.hebraico, 50),
         meta: 50,
@@ -240,7 +240,7 @@ function useStudyDashboard() {
         id: 'explorador',
         nome: 'Explorador',
         descricao: 'Visite todas as seções',
-        icon: '🧭',
+        icon: Compass,
         desbloqueada: allSectionsVisited,
         progresso: SECTIONS_VISITED.filter(s => sectionsVisited.has(s)).length,
         meta: SECTIONS_VISITED.length,
@@ -249,7 +249,7 @@ function useStudyDashboard() {
         id: 'polemicista',
         nome: 'Polemicista',
         descricao: 'Compare 10 traduções',
-        icon: '⚖️',
+        icon: GitCompareArrows,
         desbloqueada: state.stats.comparisonsMade >= 10,
         progresso: Math.min(state.stats.comparisonsMade, 10),
         meta: 10,
@@ -365,16 +365,16 @@ function ProgressBar({ percent, color = 'bg-primary' }: { percent: number; color
   );
 }
 
-function StatCard({ icon: Icon, label, value, sub, color, bg }: {
-  icon: typeof BookOpen; label: string; value: string | number; sub?: string; color: string; bg: string;
+function StatCard({ icon: Icon, label, value, sub, tile }: {
+  icon: typeof BookOpen; label: string; value: string | number; sub?: string; tile: string;
 }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={cn('rounded-2xl border p-4 transition-all hover:scale-[1.02] bg-gradient-to-br', bg)}
+      className={cn('rounded-2xl border border-border/40 p-4 transition-all hover:scale-[1.02]', tile)}
     >
-      <Icon className={cn('w-5 h-5 mb-2', color)} />
+      <Icon className="w-5 h-5 mb-2" />
       <p className="text-2xl font-bold tabular-nums">{value}</p>
       <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-0.5">{label}</p>
       {sub && <p className="text-[10px] text-muted-foreground mt-1">{sub}</p>}
@@ -392,25 +392,18 @@ export default function DashboardPage() {
 
   if (!loaded) {
     return (
-      <div className="min-h-screen">
-        <Header />
-        <main className="pt-24 pb-16 px-4">
-          <div className="max-w-6xl mx-auto space-y-6">
+      <PageShell maxWidth="6xl" className="pt-24">
+          <div className="space-y-6">
             {[1, 2, 3].map(i => (
               <div key={i} className="h-32 rounded-2xl bg-muted/30 animate-pulse" />
             ))}
           </div>
-        </main>
-        <Footer />
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-20 pb-16 px-4">
-        <div className="max-w-6xl mx-auto">
+    <PageShell maxWidth="6xl">
 
           {/* ═══ HERO: STREAK + OVERVIEW ═══ */}
           <motion.div
@@ -434,7 +427,7 @@ export default function DashboardPage() {
                     </div>
                   </motion.div>
                   <div>
-                    <h1 className="font-display text-2xl md:text-3xl font-light">
+                    <h1 className="text-h2">
                       {state.streak > 0 ? `${state.streak} dias seguidos!` : 'Comece sua jornada'}
                     </h1>
                     <p className="text-sm text-muted-foreground mt-1">
@@ -460,32 +453,28 @@ export default function DashboardPage() {
               label="Capítulos"
               value={totalRead}
               sub={`de ${TOTAL_CHAPTERS}`}
-              color="text-blue-500"
-              bg="from-blue-500/15 to-blue-500/5 border-blue-500/20"
+              tile="tile-brand"
             />
             <StatCard
               icon={Clock}
               label="Tempo"
               value={formatTime(state.stats.totalTimeMs)}
               sub="de estudo"
-              color="text-emerald-500"
-              bg="from-emerald-500/15 to-emerald-500/5 border-emerald-500/20"
+              tile="tile-success"
             />
             <StatCard
               icon={Brain}
               label="Palavras"
               value={state.stats.wordsLearned.grego + state.stats.wordsLearned.hebraico}
               sub={`${state.stats.wordsLearned.grego} gregas, ${state.stats.wordsLearned.hebraico} hebraicas`}
-              color="text-purple-500"
-              bg="from-purple-500/15 to-purple-500/5 border-purple-500/20"
+              tile="tile-cool"
             />
             <StatCard
               icon={Search}
               label="Pesquisas"
               value={state.stats.searchHistory.length}
               sub="realizadas"
-              color="text-amber-500"
-              bg="from-amber-500/15 to-amber-500/5 border-amber-500/20"
+              tile="tile-warning"
             />
           </div>
 
@@ -637,7 +626,7 @@ export default function DashboardPage() {
                       : 'bg-muted/20 border-border/30 opacity-40 grayscale'
                   )}
                 >
-                  <div className="text-2xl mb-1.5">{a.icon}</div>
+                  <a.icon className={cn('w-6 h-6 mx-auto mb-1.5', a.desbloqueada ? 'text-primary' : 'text-muted-foreground')} strokeWidth={1.5} />
                   <p className="text-xs font-semibold leading-tight">{a.nome}</p>
                   <p className="text-[10px] text-muted-foreground mt-1 leading-tight">{a.descricao}</p>
                   {!a.desbloqueada && (
@@ -755,19 +744,19 @@ export default function DashboardPage() {
             <h2 className="font-display text-lg font-medium mb-4">Acesso Rápido</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3">
               {[
-                { icon: BookOpen, label: 'Bíblia', href: '/biblia', color: 'bg-blue-500/10 text-blue-500' },
-                { icon: Search, label: 'Pesquisa', href: '/pesquisa', color: 'bg-amber-500/10 text-amber-500' },
-                { icon: Languages, label: 'Idiomas', href: '/idiomas', color: 'bg-purple-500/10 text-purple-500' },
-                { icon: Brain, label: 'Exegese', href: '/exegese', color: 'bg-emerald-500/10 text-emerald-500' },
-                { icon: Globe, label: 'Atlas', href: '/atlas', color: 'bg-orange-500/10 text-orange-500' },
-                { icon: Award, label: 'Quiz', href: '/quiz', color: 'bg-pink-500/10 text-pink-500' },
-              ].map(({ icon: Icon, label, href, color }, i) => (
+                { icon: BookOpen, label: 'Bíblia', href: '/biblia', tile: 'tile-brand' },
+                { icon: Search, label: 'Pesquisa', href: '/pesquisa', tile: 'tile-warning' },
+                { icon: Languages, label: 'Idiomas', href: '/idiomas', tile: 'tile-cool' },
+                { icon: Brain, label: 'Exegese', href: '/exegese', tile: 'tile-success' },
+                { icon: Globe, label: 'Atlas', href: '/atlas', tile: 'tile-warm' },
+                { icon: Award, label: 'Quiz', href: '/quiz', tile: 'tile-info' },
+              ].map(({ icon: Icon, label, href, tile }) => (
                 <Link
                   key={label}
                   href={href}
                   className="flex flex-col items-center gap-2 p-4 rounded-xl border border-border/50 hover:border-primary/30 transition-all hover:scale-[1.02]"
                 >
-                  <div className={cn('w-10 h-10 rounded-xl flex items-center justify-center', color)}>
+                  <div className={cn('w-10 h-10 rounded-xl flex items-center justify-center', tile)}>
                     <Icon className="w-5 h-5" />
                   </div>
                   <span className="text-xs font-medium">{label}</span>
@@ -776,9 +765,6 @@ export default function DashboardPage() {
             </div>
           </motion.div>
 
-        </div>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

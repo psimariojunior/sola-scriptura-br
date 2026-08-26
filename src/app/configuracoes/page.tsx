@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
 import ConfiguracoesClient from './ConfiguracoesClient';
 
 export const metadata: Metadata = {
@@ -15,12 +14,8 @@ export const metadata: Metadata = {
 
 export default function ConfiguracoesPage() {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-20 pb-16 px-4 sm:px-6">
-        <ConfiguracoesClient />
-      </main>
-      <Footer />
-    </div>
+    <PageShell noContainer>
+      <ConfiguracoesClient />
+    </PageShell>
   );
 }

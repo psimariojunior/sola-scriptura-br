@@ -1,7 +1,8 @@
 'use client';
 
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
+import { Card, CardContent } from '@/components/ui/card';
 import { Languages, Search, BookOpen, Sparkles, Volume2, Loader2, Hash, BarChart3, ChevronDown, ChevronUp, Link2, ArrowRight, Filter, SortAsc, Layers, Info, BookMarked } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -169,10 +170,8 @@ export default function IdiomasPage() {
 
   if (carregando) {
     return (
-      <div className="min-h-screen">
-        <Header />
-        <main className="pt-24 pb-16 px-6">
-          <div className="max-w-6xl mx-auto text-center py-20">
+      <PageShell maxWidth="6xl">
+          <div className="text-center py-20">
             <div className="inline-flex gap-2">
               <span className="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:0s]" />
               <span className="w-3 h-3 bg-primary rounded-full animate-bounce [animation-delay:0.15s]" />
@@ -180,51 +179,40 @@ export default function IdiomasPage() {
             </div>
             <p className="text-sm text-muted-foreground mt-4">{t('languages.loadingLexicon')}</p>
           </div>
-        </main>
-        <Footer />
-      </div>
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-24 pb-16 px-6">
-        <div className="max-w-6xl mx-auto">
+    <PageShell maxWidth="6xl">
           <ScrollReveal>
-            <div className="text-center mb-12">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="w-16 h-16 rounded-2xl bg-rose-500/10 flex items-center justify-center mx-auto mb-6"
-              >
-                <Languages className="w-8 h-8 text-rose-500" />
-              </motion.div>
-              <h1 className="font-display text-4xl md:text-5xl font-light mb-4">
-                {t('languages.pageTitle1')} <span className="italic text-primary">{t('languages.pageTitle2')}</span>
-              </h1>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                {t('languages.pageDescription')}
-              </p>
-              <div className="ornament w-16 mx-auto mt-6" />
-            </div>
+            <PageHero
+              icon={Languages}
+              title={<>{t('languages.pageTitle1')} <span className="italic text-primary">{t('languages.pageTitle2')}</span></>}
+              subtitle={t('languages.pageDescription')}
+            />
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
             <div className="grid grid-cols-3 gap-4 mb-8">
-              <div className="sola-card p-4 text-center">
-                <p className="font-display text-3xl font-light text-primary">{gregoCount + hebraicoCount}</p>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">{t('languages.total')}</p>
-              </div>
-              <div className="sola-card p-4 text-center">
-                <p className="font-display text-3xl font-light text-blue-500">{gregoCount}</p>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">{t('languages.greek')}</p>
-              </div>
-              <div className="sola-card p-4 text-center">
-                <p className="font-display text-3xl font-light text-amber-500">{hebraicoCount}</p>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider">{t('languages.hebrew')}</p>
-              </div>
+              <Card className="sola-card">
+                <CardContent className="p-4 text-center">
+                  <p className="text-h2 text-primary">{gregoCount + hebraicoCount}</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider">{t('languages.total')}</p>
+                </CardContent>
+              </Card>
+              <Card className="sola-card">
+                <CardContent className="p-4 text-center">
+                  <p className="text-h2 text-[var(--accent-cool)]">{gregoCount}</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider">{t('languages.greek')}</p>
+                </CardContent>
+              </Card>
+              <Card className="sola-card">
+                <CardContent className="p-4 text-center">
+                  <p className="text-h2 text-[var(--accent-warning)]">{hebraicoCount}</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider">{t('languages.hebrew')}</p>
+                </CardContent>
+              </Card>
             </div>
           </ScrollReveal>
 
@@ -781,9 +769,6 @@ export default function IdiomasPage() {
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

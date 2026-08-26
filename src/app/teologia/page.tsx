@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
 import TeologiaClient from './TeologiaClient';
 
 export const metadata: Metadata = {
@@ -15,14 +14,8 @@ export const metadata: Metadata = {
 
 export default function TeologiaPage() {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-20 pb-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <TeologiaClient />
-        </div>
-      </main>
-      <Footer />
-    </div>
+    <PageShell>
+      <TeologiaClient />
+    </PageShell>
   );
 }

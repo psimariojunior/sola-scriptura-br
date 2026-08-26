@@ -2,16 +2,17 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Folder, FolderPlus, Trash2, ChevronLeft, BookOpen, Plus,
-  X, FileText, Calendar, Hash, Share2,
+  X, Calendar, Hash, Share2,
 } from 'lucide-react';
-import Link from 'next/link';
 import { getCollectionsOffline, saveCollectionsOffline } from '@/lib/offlineStorage';
 import { PullToRefreshWrapper } from '@/components/PullToRefresh';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 interface Versiculo {
   livro: string;
@@ -120,19 +121,13 @@ export default function ColecoesPage() {
   const colecaoSelecionada = colecoes.find(c => c.id === selectedId);
 
   if (!mounted) return (
-    <div className="min-h-screen bg-[var(--bg)]">
-      <Header />
-      <main className="pt-24 pb-16 px-4"><div className="max-w-3xl mx-auto" /></main>
-      <Footer />
-    </div>
+    <PageShell maxWidth="3xl">{null}</PageShell>
   );
 
   return (
-    <div className="min-h-screen bg-[var(--bg)]">
-      <Header />
-      <main className="pt-24 pb-24 md:pb-16 px-4 sm:px-6">
+    <PageShell maxWidth="3xl">
         <PullToRefreshWrapper onRefresh={carregarColecoes}>
-        <div className="max-w-3xl mx-auto">
+        <div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
 
             <div className="flex items-center justify-between mb-8">
@@ -140,7 +135,7 @@ export default function ColecoesPage() {
                 <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--muted-fg)] mb-2">
                   {colecaoSelecionada ? 'Coleção' : 'Minhas Coleções'}
                 </p>
-                <h1 className="font-display text-3xl md:text-4xl font-light text-[var(--fg)]">
+                <h1 className="text-h1 text-[var(--fg)]">
                   {colecaoSelecionada ? colecaoSelecionada.nome : 'Coleções de Versículos'}
                 </h1>
               </div>
@@ -218,19 +213,20 @@ export default function ColecoesPage() {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: idx * 0.03 }}
-                          className="sola-card p-5 flex gap-4"
                         >
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-primary mb-1">{v.referencia}</p>
-                            <p className="text-sm text-[var(--fg)] leading-relaxed">{v.texto}</p>
-                          </div>
-                          <button
-                            onClick={() => removerVersiculo(colecaoSelecionada.id, idx)}
-                            className="shrink-0 p-1.5 rounded-lg hover:bg-red-500/10 text-muted-foreground hover:text-red-500 transition-colors self-start"
-                            title="Remover versículo"
-                          >
-                            <X className="w-4 h-4" />
-                          </button>
+                          <Card className="sola-card p-5 flex gap-4">
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-semibold text-primary mb-1">{v.referencia}</p>
+                              <p className="text-sm text-[var(--fg)] leading-relaxed">{v.texto}</p>
+                            </div>
+                            <button
+                              onClick={() => removerVersiculo(colecaoSelecionada.id, idx)}
+                              className="shrink-0 p-1.5 rounded-lg hover:bg-red-500/10 text-muted-foreground hover:text-red-500 transition-colors self-start"
+                              title="Remover versículo"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                          </Card>
                         </motion.div>
                       ))}
                     </div>
@@ -242,53 +238,45 @@ export default function ColecoesPage() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  className="sola-card p-8"
                 >
-                  <h2 className="text-lg font-semibold text-[var(--fg)] mb-4 flex items-center gap-2">
-                    <FolderPlus className="w-5 h-5 text-primary" />
-                    Nova Coleção
-                  </h2>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-xs font-semibold text-[var(--muted-fg)] uppercase tracking-wider mb-1">
-                        Nome *
-                      </label>
-                      <input
-                        autoFocus
-                        value={nome}
-                        onChange={e => setNome(e.target.value)}
-                        onKeyDown={e => e.key === 'Enter' && criar()}
-                        placeholder="Ex: Versículos de fé"
-                        className="w-full px-4 py-2.5 rounded-xl bg-[var(--bg)] border border-[var(--border)] text-[var(--fg)] placeholder:text-[var(--muted-fg)]/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
-                      />
+                  <Card className="sola-card p-8">
+                    <h2 className="text-lg font-semibold text-[var(--fg)] mb-4 flex items-center gap-2">
+                      <FolderPlus className="w-5 h-5 text-primary" />
+                      Nova Coleção
+                    </h2>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-xs font-semibold text-[var(--muted-fg)] uppercase tracking-wider mb-1">
+                          Nome *
+                        </label>
+                        <Input
+                          autoFocus
+                          value={nome}
+                          onChange={e => setNome(e.target.value)}
+                          onKeyDown={e => e.key === 'Enter' && criar()}
+                          placeholder="Ex: Versículos de fé"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-[var(--muted-fg)] uppercase tracking-wider mb-1">
+                          Descrição (opcional)
+                        </label>
+                        <Input
+                          value={descricao}
+                          onChange={e => setDescricao(e.target.value)}
+                          placeholder="Breve descrição..."
+                        />
+                      </div>
+                      <div className="flex gap-3 pt-2">
+                        <Button variant="outline" onClick={() => setShowCriar(false)} className="flex-1">
+                          Cancelar
+                        </Button>
+                        <Button onClick={criar} disabled={!nome.trim()} className="flex-1">
+                          Criar
+                        </Button>
+                      </div>
                     </div>
-                    <div>
-                      <label className="block text-xs font-semibold text-[var(--muted-fg)] uppercase tracking-wider mb-1">
-                        Descrição (opcional)
-                      </label>
-                      <input
-                        value={descricao}
-                        onChange={e => setDescricao(e.target.value)}
-                        placeholder="Breve descrição..."
-                        className="w-full px-4 py-2.5 rounded-xl bg-[var(--bg)] border border-[var(--border)] text-[var(--fg)] placeholder:text-[var(--muted-fg)]/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
-                      />
-                    </div>
-                    <div className="flex gap-3 pt-2">
-                      <button
-                        onClick={() => setShowCriar(false)}
-                        className="flex-1 px-4 py-2.5 rounded-xl border border-[var(--border)] text-sm text-[var(--fg)] hover:bg-[var(--card-bg)] transition-colors"
-                      >
-                        Cancelar
-                      </button>
-                      <button
-                        onClick={criar}
-                        disabled={!nome.trim()}
-                        className="flex-1 px-4 py-2.5 rounded-xl bg-primary text-white text-sm font-medium disabled:opacity-50 hover:bg-primary/90 transition-colors"
-                      >
-                        Criar
-                      </button>
-                    </div>
-                  </div>
+                  </Card>
                 </motion.div>
               ) : colecoes.length === 0 ? (
                 <motion.div
@@ -298,18 +286,13 @@ export default function ColecoesPage() {
                   className="text-center py-20"
                 >
                   <Folder className="w-16 h-16 text-[var(--muted-fg)] mx-auto mb-6 opacity-30" />
-                  <h2 className="text-xl font-display text-[var(--fg)] mb-2">{t('colecoes.emptyTitle')}</h2>
+                  <h2 className="text-h2 text-[var(--fg)] mb-2">{t('colecoes.emptyTitle')}</h2>
                   <p className="text-[var(--muted-fg)] mb-6 max-w-sm mx-auto text-sm">
                     {t('colecoes.emptyDesc')}
                   </p>
-                  <motion.button
-                    onClick={() => setShowCriar(true)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white hover:bg-primary/90 transition-colors"
-                  >
+                  <Button onClick={() => setShowCriar(true)} size="lg" className="inline-flex items-center gap-2">
                     <Plus className="w-5 h-5" /> {t('colecoes.createFirst')}
-                  </motion.button>
+                  </Button>
                 </motion.div>
               ) : (
                 <motion.div key="lista" className="space-y-3">
@@ -319,28 +302,31 @@ export default function ColecoesPage() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.05 }}
-                      onClick={() => setSelectedId(c.id)}
-                      className="sola-card p-5 cursor-pointer hover:border-primary/30 transition-all group"
                     >
-                      <div className="flex items-start gap-4">
-                        <div className="p-2.5 rounded-xl bg-primary/10 shrink-0">
-                          <Folder className="w-5 h-5 text-primary" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-semibold text-[var(--fg)] group-hover:text-primary transition-colors">
-                            {c.nome}
-                          </h3>
-                          {c.descricao && (
-                            <p className="text-sm text-[var(--muted-fg)] mt-0.5 truncate">{c.descricao}</p>
-                          )}
-                          <div className="flex items-center gap-3 mt-2 text-xs text-[var(--muted-fg)]">
-                            <span>{c.versiculos.length} versículo{c.versiculos.length !== 1 ? 's' : ''}</span>
-                            <span>·</span>
-                            <span>{new Date(c.criadaEm).toLocaleDateString('pt-BR')}</span>
+                      <Card
+                        onClick={() => setSelectedId(c.id)}
+                        className="sola-card p-5 cursor-pointer hover:border-primary/30 transition-all group"
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className="p-2.5 rounded-xl bg-primary/10 shrink-0">
+                            <Folder className="w-5 h-5 text-primary" />
                           </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-semibold text-[var(--fg)] group-hover:text-primary transition-colors">
+                              {c.nome}
+                            </h3>
+                            {c.descricao && (
+                              <p className="text-sm text-[var(--muted-fg)] mt-0.5 truncate">{c.descricao}</p>
+                            )}
+                            <div className="flex items-center gap-3 mt-2 text-xs text-[var(--muted-fg)]">
+                              <span>{c.versiculos.length} versículo{c.versiculos.length !== 1 ? 's' : ''}</span>
+                              <span>·</span>
+                              <span>{new Date(c.criadaEm).toLocaleDateString('pt-BR')}</span>
+                            </div>
+                          </div>
+                          <ChevronLeft className="w-5 h-5 text-[var(--muted-fg)] rotate-180 group-hover:text-primary transition-colors shrink-0" />
                         </div>
-                        <ChevronLeft className="w-5 h-5 text-[var(--muted-fg)] rotate-180 group-hover:text-primary transition-colors shrink-0" />
-                      </div>
+                      </Card>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -349,8 +335,6 @@ export default function ColecoesPage() {
           </motion.div>
         </div>
         </PullToRefreshWrapper>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

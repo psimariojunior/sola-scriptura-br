@@ -2,8 +2,8 @@
 
 import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Search, Columns3, ChevronRight, ChevronDown, ChevronUp, Clock, Layers, X } from 'lucide-react';
@@ -287,32 +287,16 @@ export default function HarmoniaPage() {
   }
 
   return (
-    <div className="min-h-screen bg-pattern-wave">
-      <Header />
-      <main className="pt-20 pb-16">
+    <PageShell maxWidth="7xl" className="bg-pattern-wave">
         <ScrollReveal>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-8">
-            <div className="text-center mb-8">
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6"
-              >
-                <Columns3 className="w-8 h-8 text-primary" />
-              </motion.div>
-              <h1 className="font-display text-4xl md:text-5xl font-light mb-4">
-                {t('harmonia.title1')} <span className="italic text-primary">{t('harmonia.title2')}</span>
-              </h1>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
-                {t('harmonia.subtitle')}
-              </p>
-              <div className="ornament w-16 mx-auto mt-6" />
-            </div>
-          </div>
+          <PageHero
+            icon={Columns3}
+            title={<>{t('harmonia.title1')} <span className="italic text-primary">{t('harmonia.title2')}</span></>}
+            subtitle={t('harmonia.subtitle')}
+          />
         </ScrollReveal>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div>
           {/* Search + Filters */}
           <ScrollReveal delay={0.1}>
             <div className="sola-card p-4 mb-6">
@@ -498,14 +482,12 @@ export default function HarmoniaPage() {
             <ScrollReveal>
               <div className="text-center py-16">
                 <BookOpen className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                <p className="font-display text-xl text-muted-foreground">{t('harmonia.noParallels')}</p>
+                <p className="text-h3 text-muted-foreground">{t('harmonia.noParallels')}</p>
                 <p className="text-sm text-muted-foreground/60 mt-2">{t('harmonia.tryAdjust')}</p>
               </div>
             </ScrollReveal>
           )}
         </div>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

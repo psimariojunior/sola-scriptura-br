@@ -2,10 +2,12 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
 import { CapaLivro } from '@/components/biblioteca/CapaLivro';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
 import { motion } from 'framer-motion';
 import {
   Library,
@@ -135,46 +137,35 @@ export default function BibliotecaPage() {
   ];
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-20 pb-16 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
+    <PageShell maxWidth="7xl">
           {/* ═══════════ HERO ═══════════ */}
           <ScrollReveal>
-            <div className="text-center mb-12">
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6"
-              >
-                <Library className="w-8 h-8 text-primary" />
-              </motion.div>
-              <h1 className="font-display text-4xl md:text-5xl font-light mb-4">
-                Biblioteca <span className="italic text-primary">Digital</span>
-              </h1>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Os clássicos que mudaram a história da fé — Pais da Igreja, credos
-                ecumênicos, a Reforma e testemunhas oculares do mundo bíblico.
-                Textos de domínio público, fichas acadêmicas e leitor premium.
-                <span className="text-primary font-medium"> Para sempre grátis.</span>
-              </p>
-              <div className="ornament w-16 mx-auto mt-6" />
-            </div>
+            <PageHero
+              icon={Library}
+              title={<>Biblioteca <span className="italic text-primary">Digital</span></>}
+              subtitle={
+                <>
+                  Os clássicos que mudaram a história da fé — Pais da Igreja, credos
+                  ecumênicos, a Reforma e testemunhas oculares do mundo bíblico.
+                  Textos de domínio público, fichas acadêmicas e leitor premium.
+                  <span className="text-primary font-medium"> Para sempre grátis.</span>
+                </>
+              }
+            />
           </ScrollReveal>
 
           {/* ═══════════ STATS ═══════════ */}
           <ScrollReveal delay={0.1}>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               {stats.map((s) => (
-                <motion.div
-                  key={s.rotulo}
-                  className="sola-card p-4 text-center"
-                  whileHover={{ y: -2 }}
-                >
-                  <s.icone className="w-5 h-5 text-primary mx-auto mb-2" />
-                  <p className="font-display text-3xl font-light text-primary">{s.valor}</p>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">{s.rotulo}</p>
+                <motion.div key={s.rotulo} whileHover={{ y: -2 }}>
+                  <Card className="text-center">
+                    <CardContent className="p-4">
+                      <s.icone className="w-5 h-5 text-primary mx-auto mb-2" />
+                      <p className="text-h2 text-primary">{s.valor}</p>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider">{s.rotulo}</p>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               ))}
             </div>
@@ -223,12 +214,12 @@ export default function BibliotecaPage() {
               <div className="flex flex-col lg:flex-row gap-4">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <input
+                  <Input
                     type="text"
                     placeholder="Buscar por obra, autor, tema... (ex: batismo, martírio, graça)"
                     value={busca}
                     onChange={(e) => setBusca(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                    className="pl-10 pr-4"
                   />
                 </div>
                 <div className="flex gap-2 flex-wrap items-center">
@@ -504,9 +495,6 @@ export default function BibliotecaPage() {
               </div>
             </div>
           </ScrollReveal>
-        </div>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

@@ -1,4 +1,4 @@
-export type ThemeName = 'light' | 'dark' | 'sepia' | 'noturno';
+export type ThemeName = 'light' | 'dark' | 'dim' | 'sepia' | 'noturno';
 
 export interface DesignTokens {
   surface: {
@@ -154,41 +154,41 @@ export const designTokens: Record<ThemeName, DesignTokens> = {
     },
   },
 
-  sepia: {
+  dim: {
     surface: {
-      base: '#ECE5D3',
-      raised: '#F4EBD8',
-      overlay: 'rgba(244, 235, 216, 0.96)',
-      sunken: '#E0D6BD',
-      inverted: '#3A2E1C',
+      base: '#1E1C1A',
+      raised: '#252320',
+      overlay: 'rgba(37, 35, 32, 0.96)',
+      sunken: '#161412',
+      inverted: '#D4CCC0',
     },
     content: {
-      primary: '#3A2E1C',
-      secondary: '#6B5A42',
-      muted: '#9A8A6E',
-      inverse: '#ECE5D3',
-      link: '#7A5418',
+      primary: '#D4CCC0',
+      secondary: '#A09888',
+      muted: '#6A6258',
+      inverse: '#1E1C1A',
+      link: '#C8A050',
     },
     brand: {
-      default: '#7A5418',
-      hover: '#6A4612',
-      emphasis: '#A07420',
-      subtle: 'rgba(122, 84, 24, 0.14)',
-      contrast: '#F4EBD8',
+      default: '#C8A050',
+      hover: '#D4B068',
+      emphasis: '#E0C080',
+      subtle: 'rgba(200, 160, 80, 0.14)',
+      contrast: '#1E1C1A',
     },
     accent: {
-      warm: '#A04020',
-      cool: '#2C3E70',
-      success: '#2F6B3F',
-      danger: '#9B2C2C',
-      warning: '#B8860B',
-      info: '#1F6A8A',
+      warm: '#D06830',
+      cool: '#4A6AA5',
+      success: '#30A050',
+      danger: '#D04040',
+      warning: '#D0A020',
+      info: '#3090C0',
     },
     effects: {
-      shadowSm: '0 1px 2px rgba(58, 46, 28, 0.08), 0 1px 3px rgba(58, 46, 28, 0.05)',
-      shadowMd: '0 4px 12px rgba(58, 46, 28, 0.10), 0 2px 4px rgba(58, 46, 28, 0.05)',
-      shadowLg: '0 12px 32px rgba(58, 46, 28, 0.15), 0 4px 12px rgba(58, 46, 28, 0.08)',
-      shadowGlow: '0 0 24px rgba(160, 64, 32, 0.22)',
+      shadowSm: '0 1px 2px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.25)',
+      shadowMd: '0 4px 12px rgba(0, 0, 0, 0.45), 0 2px 4px rgba(0, 0, 0, 0.25)',
+      shadowLg: '0 12px 32px rgba(0, 0, 0, 0.55), 0 4px 12px rgba(0, 0, 0, 0.35)',
+      shadowGlow: '0 0 24px rgba(200, 160, 80, 0.22)',
     },
     geometry: {
       radiusSm: '0.25rem',
@@ -198,10 +198,61 @@ export const designTokens: Record<ThemeName, DesignTokens> = {
       radiusFull: '9999px',
     },
     gradients: {
-      hero: 'linear-gradient(135deg, #7A5418 0%, #A04020 50%, #B45309 100%)',
-      divine: 'linear-gradient(135deg, #7A5418 0%, #A04020 100%)',
-      warm: 'linear-gradient(135deg, #A04020 0%, #B45309 100%)',
-      sunset: 'linear-gradient(180deg, #ECE5D3 0%, #E0C9A0 50%, #C49858 100%)',
+      hero: 'linear-gradient(135deg, #C8A050 0%, #D4B068 50%, #D06830 100%)',
+      divine: 'linear-gradient(135deg, #C8A050 0%, #D06830 100%)',
+      warm: 'linear-gradient(135deg, #D06830 0%, #E08040 100%)',
+      sunset: 'linear-gradient(180deg, #1E1C1A 0%, #252018 50%, #302018 100%)',
+    },
+  },
+
+  sepia: {
+    surface: {
+      base: '#E8DFC8',
+      raised: '#F0E6CE',
+      overlay: 'rgba(240, 230, 206, 0.96)',
+      sunken: '#DCD2B4',
+      inverted: '#382A18',
+    },
+    content: {
+      primary: '#382A18',
+      secondary: '#685840',
+      muted: '#988A6C',
+      inverse: '#E8DFC8',
+      link: '#785018',
+    },
+    brand: {
+      default: '#785018',
+      hover: '#684412',
+      emphasis: '#986820',
+      subtle: 'rgba(120, 80, 24, 0.14)',
+      contrast: '#F0E6CE',
+    },
+    accent: {
+      warm: '#983820',
+      cool: '#2A3C6C',
+      success: '#2C6838',
+      danger: '#982A2A',
+      warning: '#B08008',
+      info: '#1C6888',
+    },
+    effects: {
+      shadowSm: '0 1px 2px rgba(56, 42, 24, 0.08), 0 1px 3px rgba(56, 42, 24, 0.05)',
+      shadowMd: '0 4px 12px rgba(56, 42, 24, 0.10), 0 2px 4px rgba(56, 42, 24, 0.05)',
+      shadowLg: '0 12px 32px rgba(56, 42, 24, 0.15), 0 4px 12px rgba(56, 42, 24, 0.08)',
+      shadowGlow: '0 0 24px rgba(152, 56, 32, 0.22)',
+    },
+    geometry: {
+      radiusSm: '0.25rem',
+      radiusMd: '0.5rem',
+      radiusLg: '0.75rem',
+      radiusXl: '1.25rem',
+      radiusFull: '9999px',
+    },
+    gradients: {
+      hero: 'linear-gradient(135deg, #785018 0%, #983820 50%, #B08008 100%)',
+      divine: 'linear-gradient(135deg, #785018 0%, #983820 100%)',
+      warm: 'linear-gradient(135deg, #983820 0%, #B08008 100%)',
+      sunset: 'linear-gradient(180deg, #E8DFC8 0%, #DCD0A8 50%, #C0A860 100%)',
     },
   },
 
@@ -257,11 +308,12 @@ export const designTokens: Record<ThemeName, DesignTokens> = {
   },
 };
 
-export const themeList: ThemeName[] = ['light', 'dark', 'sepia', 'noturno'];
+export const themeList: ThemeName[] = ['light', 'dark', 'dim', 'sepia', 'noturno'];
 
 export const themeLabels: Record<ThemeName, { pt: string; en: string }> = {
   light: { pt: 'Manhã', en: 'Morning' },
   dark: { pt: 'Noite', en: 'Night' },
+  dim: { pt: 'Meio-escuro', en: 'Dim' },
   sepia: { pt: 'Leitura', en: 'Reading' },
   noturno: { pt: 'OLED', en: 'OLED' },
 };

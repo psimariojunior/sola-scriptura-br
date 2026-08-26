@@ -53,6 +53,9 @@ interface UseAudioCapituloReturn {
 
 const TRADUCOES_EN = new Set(['KJV', 'WEB']);
 
+/** Quantidade de versículos à frente que são pré-gerados enquanto o atual toca. */
+const PRELOAD_COUNT = 3;
+
 function useAudioCapituloImpl(
   livroAbreviacao: string,
   capitulo: number,
@@ -79,7 +82,19 @@ function useAudioCapituloImpl(
   const isPlayingRef = useRef(false);
   const queueRef = useRef<VersiculoAudio[]>([]);
 
+  // Pré-cache de áudio: evita gerar o TTS sob demanda (latência perceptível no karaokê).
+  // Mapeia texto+voz+velocidade+idioma -> data URL já gerada, e rastreia gerações em andamento
+  // para não disparar a mesma requisição duas vezes.
+  const audioCacheRef = useRef<Map<string, string>>(new Map());
+  const inflightRef = useRef<Map<string, Promise<string | null>>>(new Map());
+
   const lingua = options?.traducao && TRADUCOES_EN.has(options.traducao.toUpperCase()) ? 'en' : 'pt';
+
+  // Limpa o cache ao trocar de capítulo/livro para não acumular memória indefinidamente.
+  useEffect(() => {
+    audioCacheRef.current.clear();
+    inflightRef.current.clear();
+  }, [livroAbreviacao, capitulo]);
 
   const gerarAudio = useCallback(async (texto: string): Promise<string | null> => {
     try {
@@ -117,10 +132,40 @@ function useAudioCapituloImpl(
     } catch (e) { console.error('[audio:gerar-audio-capitulo]', e); return null; }
   }, [voz, velocidade, lingua]);
 
+  const cacheKeyFor = useCallback((texto: string) => `${texto}|${voz}|${velocidade}|${lingua}`, [voz, velocidade, lingua]);
+
+  // Gera o áudio de um texto reaproveitando o cache em memória (ou a geração já em andamento),
+  // para que o pré-carregamento e a reprodução não disparem chamadas duplicadas ao /api/audio/edge.
+  const gerarAudioCached = useCallback((texto: string): Promise<string | null> => {
+    const key = cacheKeyFor(texto);
+    const cached = audioCacheRef.current.get(key);
+    if (cached) return Promise.resolve(cached);
+    const emAndamento = inflightRef.current.get(key);
+    if (emAndamento) return emAndamento;
+
+    const promise = gerarAudio(texto).then((url) => {
+      inflightRef.current.delete(key);
+      if (url) audioCacheRef.current.set(key, url);
+      return url;
+    });
+    inflightRef.current.set(key, promise);
+    return promise;
+  }, [gerarAudio, cacheKeyFor]);
+
+  // Dispara a geração antecipada dos próximos PRELOAD_COUNT versículos a partir de um índice,
+  // em paralelo e sem bloquear a reprodução atual (fire-and-forget).
+  const precarregarVersiculos = useCallback((fromIdx: number, quantidade: number = PRELOAD_COUNT) => {
+    const alvo = versiculos.slice(Math.max(0, fromIdx), Math.max(0, fromIdx) + quantidade);
+    alvo.forEach((v) => { gerarAudioCached(v.texto).catch(() => {}); });
+  }, [versiculos, gerarAudioCached]);
+
   const playVersiculo = useCallback(async (v: VersiculoAudio): Promise<void> => {
     if (!isPlayingRef.current) return;
-    setState(prev => ({ ...prev, status: 'loading', currentVerseIndex: versiculos.findIndex(vv => vv.numero === v.numero) }));
-    const url = await gerarAudio(v.texto);
+    const idx = versiculos.findIndex(vv => vv.numero === v.numero);
+    setState(prev => ({ ...prev, status: 'loading', currentVerseIndex: idx }));
+    // Enquanto o versículo atual carrega/toca, já dispara a geração dos próximos.
+    precarregarVersiculos(idx + 1);
+    const url = await gerarAudioCached(v.texto);
     if (!url || !isPlayingRef.current) return;
     return new Promise<void>((resolve) => {
       const audio = new Audio(url);
@@ -134,7 +179,7 @@ function useAudioCapituloImpl(
       audio.onerror = () => resolve();
       audio.play().catch(() => resolve());
     });
-  }, [gerarAudio, velocidade, versiculos]);
+  }, [gerarAudioCached, velocidade, versiculos, precarregarVersiculos]);
 
   const playSequencia = useCallback(async () => {
     for (const v of queueRef.current) {
@@ -153,8 +198,11 @@ function useAudioCapituloImpl(
     isPlayingRef.current = true;
     const startIdx = state.currentVerseIndex >= 0 ? state.currentVerseIndex : 0;
     queueRef.current = versiculos.slice(startIdx);
+    // Dispara já o pré-carregamento do primeiro lote (versículo atual + próximos),
+    // para que o karaokê comece sem a latência de gerar o TTS sob demanda.
+    precarregarVersiculos(startIdx);
     playSequencia();
-  }, [versiculos, state.currentVerseIndex, playSequencia]);
+  }, [versiculos, state.currentVerseIndex, playSequencia, precarregarVersiculos]);
 
   const pause = useCallback(() => {
     isPlayingRef.current = false;

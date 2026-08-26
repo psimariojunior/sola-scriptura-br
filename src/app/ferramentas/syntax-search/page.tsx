@@ -5,14 +5,44 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Filter, BookOpen, ChevronDown, Languages, ExternalLink } from 'lucide-react';
+import { Search, X, Filter, BookOpen, ChevronDown, Languages, ExternalLink, Loader2, ChevronRight } from 'lucide-react';
 import type { PalavraGrega } from '@/data/lexicon/grego';
-
-type Idioma = 'todos' | 'grego';
+import type { OcorrenciaCorpus } from '@/data/biblia/strong';
+import { TODOS_LIVROS } from '@/data/biblia/livros';
+import { useRouter } from 'next/navigation';
 
 interface ResultadoBusca {
   palavra: PalavraGrega;
 }
+
+type ModoBusca = 'lexico' | 'corpus';
+
+function refParaLabelCorpus(ref: string): { livro: string; capitulo: number; versiculo: number; label: string } {
+  const [abrev, capStr, verStr] = ref.split(':');
+  const livroObj = TODOS_LIVROS.find((l) => l.abreviacao === abrev);
+  const capitulo = Number(capStr);
+  const versiculo = Number(verStr);
+  return { livro: abrev, capitulo, versiculo, label: `${livroObj?.nome ?? abrev.toUpperCase()} ${capitulo}:${versiculo}` };
+}
+
+// Chips de padrão gramatical para a busca no corpus real (STRONG_CODES).
+// Os termos batem literalmente (case-insensitive) contra o rótulo morfológico
+// já presente em cada ocorrência do corpus interlinear.
+const GREGO_CATEGORIAS = ['verbo', 'substantivo', 'adjetivo', 'artigo', 'pronome', 'advérbio', 'preposição', 'conjunção', 'partícula'];
+const GREGO_TEMPOS_CORPUS = ['presente', 'aoristo', 'perfeito', 'imperfeito', 'futuro'];
+const GREGO_VOZES_CORPUS = ['ativo', 'passivo', 'médio'];
+const GREGO_MODOS_CORPUS = ['indicativo', 'subjuntivo', 'imperativo', 'infinitivo', 'particípio', 'optativo'];
+const GREGO_CASOS_CORPUS = [
+  { valor: 'nom', label: 'Nominativo' },
+  { valor: 'gen', label: 'Genitivo' },
+  { valor: 'dat', label: 'Dativo' },
+  { valor: 'acc', label: 'Acusativo' },
+  { valor: 'voc', label: 'Vocativo' },
+];
+
+const HEBRAICO_TEMAS_CORPUS = ['Qal', 'Niphal', 'Piel', 'Pual', 'Hiphil', 'Hophal', 'Hithpael', 'Hithpolel', 'Poel', 'Poal', 'Pilpel'];
+const HEBRAICO_CONJ_CORPUS = ['perfecto', 'imperfecto', 'particípio', 'infinitivo', 'jussivo', 'imperativo'];
+const HEBRAICO_CATEGORIAS = ['verbo', 'substantivo', 'adjetivo', 'artigo', 'pronome', 'advérbio', 'preposição', 'conjunção', 'partícula', 'sufixo'];
 
 const CATEGORIAS = [
   { valor: 'todos', label: 'Todos' },
@@ -85,6 +115,46 @@ const VOZES = [
 ];
 
 export default function SyntaxSearchPage() {
+  const router = useRouter();
+  const [modo, setModo] = useState<ModoBusca>('lexico');
+
+  // ─── Modo "Busca no Corpus" (padrão gramatical real, não o léxico) ──────
+  const [idiomaCorpus, setIdiomaCorpus] = useState<'grego' | 'hebraico'>('grego');
+  const [termosCorpus, setTermosCorpus] = useState<string[]>([]);
+  const [buscandoCorpus, setBuscandoCorpus] = useState(false);
+  const [buscouCorpus, setBuscouCorpus] = useState(false);
+  const [resultadosCorpus, setResultadosCorpus] = useState<OcorrenciaCorpus[]>([]);
+  const [totalCorpus, setTotalCorpus] = useState(0);
+
+  const alternarTermoCorpus = (termo: string) => {
+    setTermosCorpus((atual) =>
+      atual.includes(termo) ? atual.filter((t) => t !== termo) : [...atual, termo]
+    );
+  };
+
+  useEffect(() => {
+    setTermosCorpus([]);
+    setBuscouCorpus(false);
+  }, [idiomaCorpus]);
+
+  const buscarCorpus = async () => {
+    setBuscandoCorpus(true);
+    setBuscouCorpus(true);
+    const mod = await import('@/data/biblia/strong');
+    const { total, ocorrencias } = await mod.buscarPadraoMorfologico({
+      idioma: idiomaCorpus,
+      morfologiaContem: termosCorpus,
+    }, 300);
+    setTotalCorpus(total);
+    setResultadosCorpus(ocorrencias);
+    setBuscandoCorpus(false);
+  };
+
+  const irParaVersiculoCorpus = (ref: string) => {
+    const { livro, capitulo, versiculo } = refParaLabelCorpus(ref);
+    router.push(`/biblia?livro=${livro}&capitulo=${capitulo}&versiculo=${versiculo}`);
+  };
+
   const [categoria, setCategoria] = useState('todos');
   const [tempo, setTempo] = useState<string | null>(null);
   const [voz, setVoz] = useState<string | null>(null);
@@ -163,17 +233,247 @@ export default function SyntaxSearchPage() {
                 Syntax <span className="italic text-primary">Search</span>
               </h1>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Busca morfológica avançada no léxico grego do Novo Testamento.
-                Filtre por categoria, tempo verbal, voz e mais.
+                {modo === 'lexico'
+                  ? 'Busca morfológica avançada no léxico grego do Novo Testamento. Filtre por categoria, tempo verbal, voz e mais.'
+                  : 'Busca por padrão gramatical real no corpus interlinear (grego e hebraico) — não no léxico, mas nas ocorrências de fato atestadas em cada versículo.'}
               </p>
               <p className="text-sm text-muted-foreground mt-2">
-                {carregando ? '...' : gregoData.length.toLocaleString()} palavras gregas indexadas
+                {carregando ? '...' : gregoData.length.toLocaleString()} palavras gregas indexadas no léxico · corpus interlinear com ~31 mil versículos
               </p>
               <div className="ornament w-16 mx-auto mt-6" />
+            </div>
+
+            <div className="flex gap-2 justify-center">
+              <button
+                onClick={() => setModo('lexico')}
+                className={`px-4 py-2 text-sm font-medium rounded-xl border transition-all duration-300 flex items-center gap-2 ${
+                  modo === 'lexico'
+                    ? 'bg-primary text-primary-foreground border-primary'
+                    : 'border-border text-muted-foreground hover:text-foreground hover:border-foreground/30'
+                }`}
+              >
+                <BookOpen className="w-4 h-4" />
+                Léxico (grego)
+              </button>
+              <button
+                onClick={() => setModo('corpus')}
+                className={`px-4 py-2 text-sm font-medium rounded-xl border transition-all duration-300 flex items-center gap-2 ${
+                  modo === 'corpus'
+                    ? 'bg-primary text-primary-foreground border-primary'
+                    : 'border-border text-muted-foreground hover:text-foreground hover:border-foreground/30'
+                }`}
+              >
+                <Filter className="w-4 h-4" />
+                Busca no corpus (grego + hebraico)
+              </button>
             </div>
           </div>
         </ScrollReveal>
 
+        {modo === 'corpus' && (
+          <div className="max-w-5xl mx-auto px-6">
+            <ScrollReveal delay={0.1}>
+              <div className="sola-card rounded-xl p-6 mb-6">
+                <div className="mb-4">
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Idioma</label>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setIdiomaCorpus('grego')}
+                      className={`px-3 py-1.5 text-xs rounded-full border transition-all ${
+                        idiomaCorpus === 'grego' ? 'bg-primary/20 text-primary font-medium border-primary/30' : 'border-border text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      Grego (NT)
+                    </button>
+                    <button
+                      onClick={() => setIdiomaCorpus('hebraico')}
+                      className={`px-3 py-1.5 text-xs rounded-full border transition-all ${
+                        idiomaCorpus === 'hebraico' ? 'bg-primary/20 text-primary font-medium border-primary/30' : 'border-border text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      Hebraico (AT)
+                    </button>
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Categoria gramatical</label>
+                  <div className="flex flex-wrap gap-2">
+                    {(idiomaCorpus === 'grego' ? GREGO_CATEGORIAS : HEBRAICO_CATEGORIAS).map((c) => (
+                      <button
+                        key={c}
+                        onClick={() => alternarTermoCorpus(c)}
+                        className={`px-2.5 py-1 text-xs rounded-full border transition-all capitalize ${
+                          termosCorpus.includes(c) ? 'bg-primary/20 text-primary font-medium border-primary/30' : 'border-border text-muted-foreground hover:text-foreground'
+                        }`}
+                      >
+                        {c}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {idiomaCorpus === 'grego' ? (
+                  <>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                      <div>
+                        <label className="text-xs font-medium text-muted-foreground mb-2 block">Tempo</label>
+                        <div className="flex flex-wrap gap-1.5">
+                          {GREGO_TEMPOS_CORPUS.map((v) => (
+                            <button key={v} onClick={() => alternarTermoCorpus(v)}
+                              className={`px-2 py-1 text-[11px] rounded-full border transition-all capitalize ${
+                                termosCorpus.includes(v) ? 'bg-primary/20 text-primary font-medium border-primary/30' : 'border-border text-muted-foreground hover:text-foreground'
+                              }`}>
+                              {v}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <label className="text-xs font-medium text-muted-foreground mb-2 block">Voz</label>
+                        <div className="flex flex-wrap gap-1.5">
+                          {GREGO_VOZES_CORPUS.map((v) => (
+                            <button key={v} onClick={() => alternarTermoCorpus(v)}
+                              className={`px-2 py-1 text-[11px] rounded-full border transition-all capitalize ${
+                                termosCorpus.includes(v) ? 'bg-primary/20 text-primary font-medium border-primary/30' : 'border-border text-muted-foreground hover:text-foreground'
+                              }`}>
+                              {v}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <label className="text-xs font-medium text-muted-foreground mb-2 block">Modo</label>
+                        <div className="flex flex-wrap gap-1.5">
+                          {GREGO_MODOS_CORPUS.map((v) => (
+                            <button key={v} onClick={() => alternarTermoCorpus(v)}
+                              className={`px-2 py-1 text-[11px] rounded-full border transition-all capitalize ${
+                                termosCorpus.includes(v) ? 'bg-primary/20 text-primary font-medium border-primary/30' : 'border-border text-muted-foreground hover:text-foreground'
+                              }`}>
+                              {v}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mb-4">
+                      <label className="text-xs font-medium text-muted-foreground mb-2 block">Caso</label>
+                      <div className="flex flex-wrap gap-1.5">
+                        {GREGO_CASOS_CORPUS.map((c) => (
+                          <button key={c.valor} onClick={() => alternarTermoCorpus(c.valor)}
+                            className={`px-2 py-1 text-[11px] rounded-full border transition-all ${
+                              termosCorpus.includes(c.valor) ? 'bg-primary/20 text-primary font-medium border-primary/30' : 'border-border text-muted-foreground hover:text-foreground'
+                            }`}>
+                            {c.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <label className="text-xs font-medium text-muted-foreground mb-2 block">Tema verbal (binyan)</label>
+                      <div className="flex flex-wrap gap-1.5">
+                        {HEBRAICO_TEMAS_CORPUS.map((v) => (
+                          <button key={v} onClick={() => alternarTermoCorpus(v)}
+                            className={`px-2 py-1 text-[11px] rounded-full border transition-all ${
+                              termosCorpus.includes(v) ? 'bg-primary/20 text-primary font-medium border-primary/30' : 'border-border text-muted-foreground hover:text-foreground'
+                            }`}>
+                            {v}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <label className="text-xs font-medium text-muted-foreground mb-2 block">Conjugação</label>
+                      <div className="flex flex-wrap gap-1.5">
+                        {HEBRAICO_CONJ_CORPUS.map((v) => (
+                          <button key={v} onClick={() => alternarTermoCorpus(v)}
+                            className={`px-2 py-1 text-[11px] rounded-full border transition-all capitalize ${
+                              termosCorpus.includes(v) ? 'bg-primary/20 text-primary font-medium border-primary/30' : 'border-border text-muted-foreground hover:text-foreground'
+                            }`}>
+                            {v}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                  <div className="flex flex-wrap gap-1.5">
+                    {termosCorpus.map((t) => (
+                      <span key={t} className="text-[10px] px-2 py-0.5 rounded bg-primary/10 text-primary font-medium capitalize">{t}</span>
+                    ))}
+                    {termosCorpus.length === 0 && (
+                      <span className="text-xs text-muted-foreground">Nenhum filtro selecionado — a busca trará uma amostra do idioma.</span>
+                    )}
+                  </div>
+                  <button
+                    onClick={buscarCorpus}
+                    disabled={buscandoCorpus}
+                    className="px-4 py-2 text-sm font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-60 flex items-center gap-2"
+                  >
+                    {buscandoCorpus && <Loader2 className="w-4 h-4 animate-spin" />}
+                    Buscar no corpus
+                  </button>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {buscouCorpus && (
+              <ScrollReveal delay={0.15}>
+                {buscandoCorpus ? (
+                  <div className="flex items-center justify-center py-16 gap-2 text-muted-foreground">
+                    <Loader2 className="w-5 h-5 animate-spin text-primary" />
+                    <span>Varrendo o corpus interlinear...</span>
+                  </div>
+                ) : (
+                  <>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {totalCorpus.toLocaleString()} ocorrência{totalCorpus !== 1 ? 's' : ''} encontrada{totalCorpus !== 1 ? 's' : ''} no corpus
+                      {resultadosCorpus.length < totalCorpus && ` (mostrando as primeiras ${resultadosCorpus.length})`}
+                    </p>
+                    {resultadosCorpus.length === 0 ? (
+                      <div className="text-center py-12">
+                        <Filter className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
+                        <p className="text-muted-foreground">Nenhuma ocorrência encontrada com este padrão gramatical.</p>
+                      </div>
+                    ) : (
+                      <div className="sola-card rounded-xl overflow-hidden">
+                        <div className="divide-y divide-border/30">
+                          {resultadosCorpus.map((oc, i) => (
+                            <button
+                              key={`${oc.ref}-${i}`}
+                              onClick={() => irParaVersiculoCorpus(oc.ref)}
+                              className="w-full text-left flex items-start justify-between gap-3 px-4 py-3 hover:bg-muted/50 transition-all duration-200 group"
+                            >
+                              <div className="min-w-0">
+                                <div className="flex items-center gap-2 mb-1 flex-wrap">
+                                  <span className="font-serif text-lg">{oc.palavra || '—'}</span>
+                                  <span className="text-xs text-muted-foreground font-mono">{oc.strong}</span>
+                                  <span className="text-xs text-muted-foreground group-hover:text-primary group-hover:underline">
+                                    {refParaLabelCorpus(oc.ref).label}
+                                  </span>
+                                </div>
+                                <p className="text-xs text-muted-foreground italic">{oc.transliteracao}</p>
+                                <p className="text-xs text-muted-foreground mt-1">{oc.morfologia}</p>
+                              </div>
+                              <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0 mt-1" />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </>
+                )}
+              </ScrollReveal>
+            )}
+          </div>
+        )}
+
+        {modo === 'lexico' && (
         <div className="max-w-5xl mx-auto px-6">
           {carregando ? (
             <div className="text-center py-16">
@@ -368,6 +668,7 @@ export default function SyntaxSearchPage() {
           </>
           )}
         </div>
+        )}
       </main>
       <Footer />
     </div>

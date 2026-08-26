@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
+import { Card, CardContent } from '@/components/ui/card';
 import { 
   BookOpen, Search, Map, Brain, MessageSquare, Languages, 
   Calendar, Users, Lightbulb, FileText, Compass, BookMarked,
@@ -30,7 +31,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Leitura Bíblica',
     descricao: '10 traduções com interlinear, karaoke e comentários inline',
     icone: <BookOpen className="w-6 h-6" />,
-    cor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
+    cor: 'tile-brand',
     href: '/biblia',
     categoria: 'estudo',
   },
@@ -39,7 +40,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Estudo Palavra-a-Palavra',
     descricao: 'Guia completo com 50 domínios semânticos Louw-Nida',
     icone: <Languages className="w-6 h-6" />,
-    cor: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400',
+    cor: 'tile-cool',
     href: '/word-study',
     categoria: 'estudo',
   },
@@ -48,7 +49,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Exegese com IA',
     descricao: 'Análise exegetica automática de qualquer versículo',
     icone: <Brain className="w-6 h-6" />,
-    cor: 'bg-purple-500/10 text-purple-600 dark:text-purple-400',
+    cor: 'tile-brand',
     href: '/exegese',
     categoria: 'estudo',
   },
@@ -57,7 +58,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Harmonia Sinótica',
     descricao: 'Comparação interativa de Mateus, Marcos, Lucas e João',
     icone: <FileText className="w-6 h-6" />,
-    cor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
+    cor: 'tile-success',
     href: '/harmonia',
     categoria: 'estudo',
   },
@@ -66,7 +67,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Uso do NT no OT',
     descricao: 'Citações, alusões e ecos do AT no Novo Testamento',
     icone: <BookOpen className="w-6 h-6" />,
-    cor: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',
+    cor: 'tile-cool',
     href: '/uso-nt-not',
     categoria: 'estudo',
   },
@@ -75,7 +76,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Diagramas de Sentença',
     descricao: 'Análise sintática visual de versículos-chave',
     icone: <Sparkles className="w-6 h-6" />,
-    cor: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400',
+    cor: 'tile-info',
     href: '/diagramas',
     categoria: 'estudo',
   },
@@ -84,7 +85,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Ferramentas de Línguas',
     descricao: 'Paradigmas completos, léxico e concordância grego/hebraico',
     icone: <Languages className="w-6 h-6" />,
-    cor: 'bg-teal-500/10 text-teal-600 dark:text-teal-400',
+    cor: 'tile-info',
     href: '/idiomas/ferramentas',
     categoria: 'estudo',
     novo: true,
@@ -94,7 +95,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Comparar Comentários',
     descricao: '8 teólogos lado a lado para cada versículo',
     icone: <MessageSquare className="w-6 h-6" />,
-    cor: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
+    cor: 'tile-warning',
     href: '/comparar-comentarios',
     categoria: 'estudo',
   },
@@ -103,7 +104,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Referências Cruzadas',
     descricao: 'Exploração visual de 29K conexões AT-NT por tipo teológico',
     icone: <GitBranch className="w-6 h-6" />,
-    cor: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400',
+    cor: 'tile-cool',
     href: '/referencias-explorer',
     categoria: 'estudo',
   },
@@ -112,17 +113,17 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Comparar Traduções',
     descricao: '6 traduções lado a lado com modo foco e interlinear',
     icone: <Languages className="w-6 h-6" />,
-    cor: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',
+    cor: 'tile-cool',
     href: '/comparar-traducoes',
     categoria: 'estudo',
   },
   {
-    id: 'quiz-biblico',
-    titulo: 'Quiz Bíblico',
+    id: 'quiz-vocabulario',
+    titulo: 'Vocabulário Grego & Hebraico',
     descricao: 'Flashcards e quiz de vocabulário grego/hebraico',
     icone: <Brain className="w-6 h-6" />,
-    cor: 'bg-pink-500/10 text-pink-600 dark:text-pink-400',
-    href: '/quiz-biblico',
+    cor: 'tile-warm',
+    href: '/quiz/vocabulario',
     categoria: 'aprendizado',
   },
   {
@@ -130,7 +131,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Dashboard de Estudo',
     descricao: 'Progresso, conquistas e atividade recente',
     icone: <BarChart3 className="w-6 h-6" />,
-    cor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
+    cor: 'tile-success',
     href: '/dashboard',
     categoria: 'aprendizado',
   },
@@ -140,7 +141,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Pesquisa Avançada',
     descricao: 'Busca semântica com 50 grupos de sinônimos',
     icone: <Search className="w-6 h-6" />,
-    cor: 'bg-rose-500/10 text-rose-600 dark:text-rose-400',
+    cor: 'tile-success',
     href: '/pesquisa',
     categoria: 'busca',
   },
@@ -149,7 +150,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Concordância',
     descricao: 'Todas as ocorrências de uma palavra na Bíblia',
     icone: <BookMarked className="w-6 h-6" />,
-    cor: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400',
+    cor: 'tile-info',
     href: '/ferramentas/concordancia',
     categoria: 'busca',
   },
@@ -158,7 +159,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Referências Cruzadas',
     descricao: '29.000 conexões entre versículos',
     icone: <Compass className="w-6 h-6" />,
-    cor: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400',
+    cor: 'tile-cool',
     href: '/referencias',
     categoria: 'busca',
   },
@@ -167,7 +168,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Estudo por Palavra',
     descricao: '5.526 palavras gregas com Strong\'s, morfologia e frequência',
     icone: <Languages className="w-6 h-6" />,
-    cor: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',
+    cor: 'tile-cool',
     href: '/palavras',
     categoria: 'busca',
   },
@@ -176,7 +177,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Syntax Search',
     descricao: 'Busca morfológica avançada: tempo, voz, categoria, Strong\'s',
     icone: <Search className="w-6 h-6" />,
-    cor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
+    cor: 'tile-brand',
     href: '/ferramentas/syntax-search',
     categoria: 'busca',
     novo: true,
@@ -187,7 +188,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Teologia Sistemática',
     descricao: '13 categorias doutrinárias com estudos aprofundados',
     icone: <GraduationCap className="w-6 h-6" />,
-    cor: 'bg-orange-500/10 text-orange-600 dark:text-orange-400',
+    cor: 'tile-warning',
     href: '/teologia',
     categoria: 'aprendizado',
   },
@@ -196,7 +197,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Contexto Histórico',
     descricao: 'O contexto histórico de cada livro da Bíblia',
     icone: <Calendar className="w-6 h-6" />,
-    cor: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
+    cor: 'tile-warning',
     href: '/historia',
     categoria: 'aprendizado',
   },
@@ -205,7 +206,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Personagens Bíblicos',
     descricao: 'Biografias detalhadas de personagens do AT e NT',
     icone: <Users className="w-6 h-6" />,
-    cor: 'bg-pink-500/10 text-pink-600 dark:text-pink-400',
+    cor: 'tile-warm',
     href: '/personagens',
     categoria: 'aprendizado',
   },
@@ -214,7 +215,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Quiz Bíblico',
     descricao: 'Teste seus conhecimentos com perguntas desafiadoras',
     icone: <Lightbulb className="w-6 h-6" />,
-    cor: 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400',
+    cor: 'tile-warning',
     href: '/quiz',
     categoria: 'aprendizado',
   },
@@ -224,8 +225,8 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Atlas Bíblico',
     descricao: 'Mapa interativo com 150+ locais mapeados',
     icone: <Map className="w-6 h-6" />,
-    cor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
-    href: '/ferramentas/atlas',
+    cor: 'tile-success',
+    href: '/atlas',
     categoria: 'criacao',
   },
   {
@@ -233,7 +234,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Criador de Imagens',
     descricao: 'Crie imagens 1080x1080 para compartilhar versículos',
     icone: <Edit3 className="w-6 h-6" />,
-    cor: 'bg-fuchsia-500/10 text-fuchsia-600 dark:text-fuchsia-400',
+    cor: 'tile-warm',
     href: '/compartilhar',
     categoria: 'criacao',
     novo: true,
@@ -243,7 +244,7 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Gerador de Sermão',
     descricao: 'Crie esboços e slides para pregações',
     icone: <Mic className="w-6 h-6" />,
-    cor: 'bg-teal-500/10 text-teal-600 dark:text-teal-400',
+    cor: 'tile-info',
     href: '/sermon-builder',
     categoria: 'criacao',
     novo: true,
@@ -253,49 +254,34 @@ const FERRAMENTAS: Ferramenta[] = [
     titulo: 'Estatísticas de Estudo',
     descricao: 'Acompanhe seu progresso e hábitos de leitura',
     icone: <BarChart3 className="w-6 h-6" />,
-    cor: 'bg-sky-500/10 text-sky-600 dark:text-sky-400',
+    cor: 'tile-info',
     href: '/estatisticas',
     categoria: 'criacao',
   },
 ];
 
 const CATEGORIAS = [
-  { id: 'estudo', label: 'Estudo', cor: 'bg-blue-500' },
-  { id: 'busca', label: 'Busca', cor: 'bg-rose-500' },
-  { id: 'aprendizado', label: 'Aprendizado', cor: 'bg-amber-500' },
-  { id: 'criacao', label: 'Criação', cor: 'bg-emerald-500' },
+  { id: 'estudo', label: 'Estudo', cor: 'bg-primary' },
+  { id: 'busca', label: 'Busca', cor: 'bg-[var(--accent-cool)]' },
+  { id: 'aprendizado', label: 'Aprendizado', cor: 'bg-[var(--accent-warning)]' },
+  { id: 'criacao', label: 'Criação', cor: 'bg-[var(--accent-success)]' },
 ] as const;
 
 export default function FerramentasHubPage() {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-20 pb-16">
-        <ScrollReveal>
-          <div className="max-w-6xl mx-auto px-6 mb-12">
-            <div className="text-center">
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="w-16 h-16 rounded-2xl bg-[var(--brand-default)]/10 flex items-center justify-center mx-auto mb-6"
-              >
-                <Sparkles className="w-8 h-8 text-[var(--brand-default)]" />
-              </motion.div>
-              <h1 className="font-display text-4xl md:text-5xl font-light mb-4">
-                Ferramentas <span className="italic text-[var(--brand-default)]">Bíblicas</span>
-              </h1>
-              <p className="text-[var(--content-muted)] max-w-2xl mx-auto text-lg">
-                Explore todas as ferramentas de estudo bíblico disponíveis. 
-                Tudo gratuito, sem anúncios, sem assinatura.
-              </p>
-              <div className="ornament w-16 mx-auto mt-6" />
-            </div>
-          </div>
-        </ScrollReveal>
+    <PageShell maxWidth="6xl">
+      <ScrollReveal>
+        <PageHero
+          icon={Sparkles}
+          title={
+            <>Ferramentas <span className="italic text-primary">Bíblicas</span></>
+          }
+          subtitle="Explore todas as ferramentas de estudo bíblico disponíveis. Tudo gratuito, sem anúncios, sem assinatura."
+        />
+      </ScrollReveal>
 
-        <div className="max-w-6xl mx-auto px-6">
-          {CATEGORIAS.map((cat, catIndex) => {
+      <div>
+        {CATEGORIAS.map((cat, catIndex) => {
             const ferramentasDaCategoria = FERRAMENTAS.filter(f => f.categoria === cat.id);
             if (ferramentasDaCategoria.length === 0) return null;
             
@@ -304,7 +290,7 @@ export default function FerramentasHubPage() {
                 <div className="mb-10">
                   <div className="flex items-center gap-3 mb-5">
                     <div className={`w-2.5 h-2.5 rounded-full ${cat.cor}`} />
-                    <h2 className="font-display text-2xl font-light text-[var(--content-primary)]">
+                    <h2 className="text-h3 text-[var(--content-primary)]">
                       {cat.label}
                     </h2>
                   </div>
@@ -352,37 +338,41 @@ export default function FerramentasHubPage() {
               </ScrollReveal>
             );
           })}
-        </div>
+      </div>
 
-        {/* Comparativo */}
-        <ScrollReveal delay={0.4}>
-          <div className="max-w-4xl mx-auto px-6 mt-16">
-            <div className="text-center mb-8">
-              <h2 className="font-display text-3xl font-light mb-4">
-                O que outros cobram, <span className="italic text-[var(--brand-default)]">aqui é grátis</span>
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-5 rounded-xl border border-[var(--border)]/40 bg-[var(--surface-raised)] text-center">
-                <div className="text-3xl font-bold text-[var(--brand-default)] mb-2">$0</div>
-                <div className="text-sm text-[var(--content-muted)]">Acesso completo</div>
-                <div className="text-xs text-[var(--content-muted)] mt-1">vs Logos: $10-20/mês</div>
-              </div>
-              <div className="p-5 rounded-xl border border-[var(--border)]/40 bg-[var(--surface-raised)] text-center">
-                <div className="text-3xl font-bold text-[var(--brand-default)] mb-2">0</div>
-                <div className="text-sm text-[var(--content-muted)]">Anúncios</div>
-                <div className="text-xs text-[var(--content-muted)] mt-1">vs Bible Gateway: anúncios intrusivos</div>
-              </div>
-              <div className="p-5 rounded-xl border border-[var(--border)]/40 bg-[var(--surface-raised)] text-center">
-                <div className="text-3xl font-bold text-[var(--brand-default)] mb-2">15+</div>
-                <div className="text-sm text-[var(--content-muted)]">Ferramentas</div>
-                <div className="text-xs text-[var(--content-muted)] mt-1">vs YouVersion: 0 ferramentas de estudo</div>
-              </div>
-            </div>
+      {/* Comparativo */}
+      <ScrollReveal delay={0.4}>
+        <div className="max-w-4xl mx-auto mt-16">
+          <div className="text-center mb-8">
+            <h2 className="text-h2 mb-4">
+              O que outros cobram, <span className="italic text-primary">aqui é grátis</span>
+            </h2>
           </div>
-        </ScrollReveal>
-      </main>
-      <Footer />
-    </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Card className="text-center">
+              <CardContent className="p-5">
+                <div className="text-h2 text-primary mb-2">$0</div>
+                <div className="text-sm text-muted-foreground">Acesso completo</div>
+                <div className="text-xs text-muted-foreground mt-1">vs Logos: $10-20/mês</div>
+              </CardContent>
+            </Card>
+            <Card className="text-center">
+              <CardContent className="p-5">
+                <div className="text-h2 text-primary mb-2">0</div>
+                <div className="text-sm text-muted-foreground">Anúncios</div>
+                <div className="text-xs text-muted-foreground mt-1">vs Bible Gateway: anúncios intrusivos</div>
+              </CardContent>
+            </Card>
+            <Card className="text-center">
+              <CardContent className="p-5">
+                <div className="text-h2 text-primary mb-2">15+</div>
+                <div className="text-sm text-muted-foreground">Ferramentas</div>
+                <div className="text-xs text-muted-foreground mt-1">vs YouVersion: 0 ferramentas de estudo</div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </ScrollReveal>
+    </PageShell>
   );
 }

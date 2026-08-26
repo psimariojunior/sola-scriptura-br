@@ -2,7 +2,21 @@
 
 import dynamic from 'next/dynamic';
 import { icon } from 'leaflet';
-import type { LocalBiblico } from './page';
+
+// `/mapas` foi consolidado em `/atlas` (ver página de redirect); esta interface
+// era antes reexportada de `./page` e agora fica autocontida para manter o
+// componente compilável, mesmo sem uso ativo.
+export interface LocalBiblico {
+  nome: string;
+  descricao: string;
+  referencia: string;
+  localizacaoAtual: string;
+  lat: number;
+  lng: number;
+  categoria: 'AT' | 'NT' | 'AT & NT';
+  tipo: 'cidade' | 'montanha' | 'rio' | 'deserto' | 'mar' | 'regiao';
+  eventos: string[];
+}
 
 const MapContainer = dynamic(() => import('react-leaflet').then(m => m.MapContainer), { ssr: false });
 const TileLayer = dynamic(() => import('react-leaflet').then(m => m.TileLayer), { ssr: false });

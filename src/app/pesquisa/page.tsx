@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import Link from 'next/link';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
 import { biblia } from '@/lib/api-client';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -377,12 +376,9 @@ export default function PesquisaPage() {
   };
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-20 pb-24 sm:pb-16 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
+    <PageShell maxWidth="7xl">
           <div className="mb-8">
-            <h1 className="font-display text-3xl md:text-5xl font-light mb-2">{t('pesquisa.title')}</h1>
+            <h1 className="text-h1 mb-2">{t('pesquisa.title')}</h1>
             <p className="text-muted-foreground">{t('pesquisa.subtitle')}</p>
           </div>
 
@@ -865,9 +861,6 @@ export default function PesquisaPage() {
               </AnimatePresence>
             </div>
           </div>
-        </div>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Trash2, Search, X, ArrowUpDown, BookOpen, Download } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -116,19 +115,17 @@ export default function FavoritosPage() {
   }, [favoritos, busca, filtroCor, filtroLivro, sortBy]);
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-24 pb-24 md:pb-16 px-6">
+    <PageShell maxWidth="3xl">
         <PullToRefreshWrapper onRefresh={carregarFavoritos}>
-        <div className="max-w-3xl mx-auto">
+        <div>
           <ScrollReveal>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center">
-                  <Heart className="w-5 h-5 text-red-500" />
+                <div className="w-10 h-10 rounded-xl tile-warm flex items-center justify-center">
+                  <Heart className="w-5 h-5" />
                 </div>
                 <div>
-                  <h1 className="font-display text-3xl font-light">{t('favoritos.title')}</h1>
+                  <h1 className="text-h1">{t('favoritos.title')}</h1>
                   <p className="text-sm text-muted-foreground">{favoritos.length} {t('favoritos.subtitle')}</p>
                 </div>
               </div>
@@ -144,10 +141,10 @@ export default function FavoritosPage() {
           {carregado && favoritos.length === 0 ? (
             <ScrollReveal>
               <div className="rounded-2xl border border-border/50 bg-card/50 p-12 text-center">
-                <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4">
-                  <Heart className="w-8 h-8 text-red-500/50" />
+                <div className="w-16 h-16 rounded-full tile-warm flex items-center justify-center mx-auto mb-4 opacity-60">
+                  <Heart className="w-8 h-8" />
                 </div>
-                <h2 className="font-display text-xl font-light mb-2">{t('favoritos.empty')}</h2>
+                <h2 className="text-h2 mb-2">{t('favoritos.empty')}</h2>
                 <p className="text-sm text-muted-foreground">{t('favoritos.emptyDesc')}</p>
               </div>
             </ScrollReveal>
@@ -222,8 +219,6 @@ export default function FavoritosPage() {
           )}
         </div>
         </PullToRefreshWrapper>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

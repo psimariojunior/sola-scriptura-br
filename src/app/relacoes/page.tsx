@@ -1,11 +1,10 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Network, Search, X, Users, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
-import ScrollReveal from '@/components/ScrollReveal';
+import { useState, useCallback, useMemo } from 'react';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
+import { motion } from 'framer-motion';
+import { Network, Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface Personagem {
@@ -44,16 +43,16 @@ const PERSONAGENS: Personagem[] = [
   { nome: 'Barnabé', slug: 'barnabe', testamento: 'NT', role: 'Missionário', periodo: 'Atos', relations: [{ target: 'Paulo', tipo: 'Missionário' }], cor: '#20B2AA' },
 ];
 
-const TESTAMENTO_COLORS = { AT: 'bg-amber-500/10 text-amber-600', NT: 'bg-blue-500/10 text-blue-600' };
+const TESTAMENTO_COLORS = { AT: 'bg-primary/10 text-primary', NT: 'bg-muted text-muted-foreground' };
 const TIPO_COLORS: Record<string, string> = {
-  'Pai': 'bg-blue-500/10 text-blue-500', 'Mãe': 'bg-pink-500/10 text-pink-500',
-  'Filho': 'bg-green-500/10 text-green-500', 'Esposa': 'bg-purple-500/10 text-purple-500',
-  'Esposo': 'bg-purple-500/10 text-purple-500', 'Irmão': 'bg-orange-500/10 text-orange-500',
-  'Mestre': 'bg-amber-500/10 text-amber-500', 'Discípulo': 'bg-blue-500/10 text-blue-500',
-  'Apóstolo': 'bg-indigo-500/10 text-indigo-500', 'Profeta': 'bg-red-500/10 text-red-500',
-  'Ancestral': 'bg-gray-500/10 text-gray-500', 'Sucessor': 'bg-teal-500/10 text-teal-500',
-  'Missionário': 'bg-cyan-500/10 text-cyan-500', 'Tipologia': 'bg-violet-500/10 text-violet-500',
-  'Profetizou': 'bg-rose-500/10 text-rose-500',
+  'Pai': 'bg-primary/10 text-primary', 'Mãe': 'bg-primary/10 text-primary',
+  'Filho': 'bg-primary/10 text-primary', 'Esposa': 'bg-muted text-muted-foreground',
+  'Esposo': 'bg-muted text-muted-foreground', 'Irmão': 'bg-primary/10 text-primary',
+  'Mestre': 'bg-primary/10 text-primary', 'Discípulo': 'bg-primary/10 text-primary',
+  'Apóstolo': 'bg-primary/10 text-primary', 'Profeta': 'bg-primary/10 text-primary',
+  'Ancestral': 'bg-muted text-muted-foreground', 'Sucessor': 'bg-muted text-muted-foreground',
+  'Missionário': 'bg-primary/10 text-primary', 'Tipologia': 'bg-muted text-muted-foreground',
+  'Profetizou': 'bg-primary/10 text-primary',
 };
 
 export default function RelacoesBiblicasPage() {
@@ -83,19 +82,12 @@ export default function RelacoesBiblicasPage() {
   }, []);
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-24 pb-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-10">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center border border-violet-500/20">
-                <Network className="w-10 h-10 text-violet-500" />
-              </div>
-              <h1 className="font-display text-2xl sm:text-4xl font-light mb-3">Relações <span className="text-primary italic">Bíblicas</span></h1>
-              <p className="text-muted-foreground max-w-lg mx-auto">Mapa interativo de conexões entre personagens da Bíblia</p>
-            </div>
-          </ScrollReveal>
+    <PageShell maxWidth="6xl">
+          <PageHero
+            icon={Network}
+            title={<>Relações <span className="italic text-primary">Bíblicas</span></>}
+            subtitle="Mapa interativo de conexões entre personagens da Bíblia"
+          />
 
           <div className="mb-6">
             <div className="relative max-w-md mx-auto">
@@ -184,9 +176,6 @@ export default function RelacoesBiblicasPage() {
           </div>
 
           <p className="text-center text-xs text-muted-foreground mt-8">{PERSONAGENS.length} personagens • Clique para ver conexões</p>
-        </div>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { PageShell } from '@/components/layout/PageShell';
 
 const features = [
   {
@@ -95,104 +96,99 @@ const stats = [
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0f0f23] via-[#1a1a3e] to-[#0f0f23]">
-      {/* Hero */}
-      <section className="relative px-6 py-24 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.08)_0%,_transparent_70%)]" />
+    <PageShell noContainer noPadding>
+      <section className="relative px-6 py-20 text-center overflow-hidden">
         <div className="relative max-w-4xl mx-auto">
-          <div className="inline-block mb-6 px-4 py-2 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-sm font-medium">
+          <p className="inline-block mb-6 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold tracking-[0.18em] uppercase">
             Estudo Bíblico Acadêmico com IA
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight" style={{ fontFamily: 'var(--font-display)' }}>
+          </p>
+          <h1 className="font-display text-5xl md:text-7xl font-normal text-foreground mb-6 leading-tight">
             Sola Scriptura
-            <span className="block text-amber-400">BR</span>
+            <span className="block text-primary italic">BR</span>
           </h1>
-          <p className="text-xl md:text-2xl text-white/70 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
             A plataforma mais completa para estudo bíblico. 10 traduções, léxico original, IA, exegese automática — e 100% gratuita.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/biblia"
-              className="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold rounded-xl text-lg hover:from-amber-400 hover:to-amber-500 transition-all shadow-lg shadow-amber-500/25"
+              className="px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl text-lg hover:opacity-90 transition-opacity"
             >
-              Começar Agora →
+              Começar agora
             </Link>
             <Link
               href="/socratico"
-              className="px-8 py-4 border border-white/20 text-white font-medium rounded-xl text-lg hover:bg-white/5 transition-all"
+              className="px-8 py-4 border border-border text-foreground font-medium rounded-xl text-lg hover:bg-muted/40 transition-colors"
             >
-              Experimentar Modo Socrático
+              Experimentar modo socrático
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="px-6 py-16 border-y border-white/10">
+      <section className="px-6 py-16 border-y border-border/40">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-6 gap-8">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-amber-400">{stat.value}</div>
-              <div className="text-sm text-white/50 mt-1">{stat.label}</div>
+              <div className="text-3xl md:text-4xl font-display font-normal text-primary">{stat.value}</div>
+              <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Features */}
-      <section className="px-6 py-24">
+      <section className="px-6 py-20">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">Tudo que você precisa</h2>
-          <p className="text-white/60 text-center mb-16 max-w-2xl mx-auto">
+          <h2 className="font-display text-3xl md:text-4xl font-normal text-foreground text-center mb-4">Tudo que você precisa</h2>
+          <p className="text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
             Ferramentas profissionais que outros apps cobram — aqui é gratuito.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f) => (
               <div
                 key={f.title}
-                className="p-6 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all group"
+                className="sola-card p-6 rounded-2xl"
               >
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{f.icon}</div>
-                <h3 className="text-lg font-semibold text-white mb-2">{f.title}</h3>
-                <p className="text-white/60 text-sm leading-relaxed">{f.description}</p>
+                <div className="text-3xl mb-4">{f.icon}</div>
+                <h3 className="text-lg font-semibold text-foreground mb-2">{f.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{f.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Comparison */}
-      <section className="px-6 py-24 border-y border-white/10">
+      <section className="px-6 py-20 border-y border-border/40">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">Por que Sola Scriptura?</h2>
-          <p className="text-white/60 text-center mb-12">Comparação com os apps mais populares</p>
+          <h2 className="font-display text-3xl md:text-4xl font-normal text-foreground text-center mb-4">Por que Sola Scriptura?</h2>
+          <p className="text-muted-foreground text-center mb-12">Comparação com os apps mais populares</p>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-white/20">
-                  <th className="text-left py-3 px-4 text-white/70 font-medium">Feature</th>
-                  <th className="py-3 px-4 text-white/50 font-medium">Logos</th>
-                  <th className="py-3 px-4 text-white/50 font-medium">YouVersion</th>
-                  <th className="py-3 px-4 text-amber-400 font-medium">Sola Scriptura</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-3 px-4 text-muted-foreground font-medium">Recurso</th>
+                  <th className="py-3 px-4 text-muted-foreground font-medium">Logos</th>
+                  <th className="py-3 px-4 text-muted-foreground font-medium">YouVersion</th>
+                  <th className="py-3 px-4 text-primary font-medium">Sola Scriptura</th>
                 </tr>
               </thead>
               <tbody>
                 {comparisons.map((c) => (
-                  <tr key={c.feature} className="border-b border-white/5 hover:bg-white/5">
-                    <td className="py-3 px-4 text-white/80">{c.feature}</td>
+                  <tr key={c.feature} className="border-b border-border/40 hover:bg-muted/30">
+                    <td className="py-3 px-4 text-foreground/80">{c.feature}</td>
                     <td className="py-3 px-4 text-center">
-                      <span className={c.logos === true ? 'text-green-400' : 'text-white/40'}>
-                        {c.logos === true ? '✓' : c.logos === false ? '✗' : c.logos}
+                      <span className={c.logos === true ? 'text-primary' : 'text-muted-foreground'}>
+                        {c.logos === true ? '✓' : c.logos === false ? '—' : c.logos}
                       </span>
                     </td>
                     <td className="py-3 px-4 text-center">
-                      <span className={c.youversion === true ? 'text-green-400' : 'text-white/40'}>
-                        {c.youversion === true ? '✓' : c.youversion === false ? '✗' : c.youversion}
+                      <span className={c.youversion === true ? 'text-primary' : 'text-muted-foreground'}>
+                        {c.youversion === true ? '✓' : c.youversion === false ? '—' : c.youversion}
                       </span>
                     </td>
                     <td className="py-3 px-4 text-center">
-                      <span className={c.sola === true ? 'text-amber-400 font-bold' : 'text-white/40'}>
-                        {c.sola === true ? '✓' : c.sola === false ? '✗' : c.sola}
+                      <span className={c.sola === true ? 'text-primary font-bold' : 'text-muted-foreground'}>
+                        {c.sola === true ? '✓' : c.sola === false ? '—' : c.sola}
                       </span>
                     </td>
                   </tr>
@@ -203,32 +199,21 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="px-6 py-24 text-center">
+      <section className="px-6 py-20 text-center">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Comece hoje</h2>
-          <p className="text-xl text-white/60 mb-10">
+          <h2 className="font-display text-4xl md:text-5xl font-normal text-foreground mb-6">Comece hoje</h2>
+          <p className="text-xl text-muted-foreground mb-10">
             Junte-se a milhares de pessoas que estudam a Bíblia de forma mais profunda.
           </p>
           <Link
             href="/biblia"
-            className="inline-block px-10 py-5 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold rounded-xl text-xl hover:from-amber-400 hover:to-amber-500 transition-all shadow-lg shadow-amber-500/25"
+            className="inline-block px-10 py-5 bg-primary text-primary-foreground font-semibold rounded-xl text-xl hover:opacity-90 transition-opacity"
           >
-            Abrir Bíblia →
+            Abrir Bíblia
           </Link>
-          <p className="text-white/40 text-sm mt-6">Não precisa de cadastro. Comece a ler agora.</p>
+          <p className="text-muted-foreground text-sm mt-6">Não precisa de cadastro. Comece a ler agora.</p>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="px-6 py-12 border-t border-white/10 text-center">
-        <p className="text-white/40 text-sm">
-          Sola Scriptura BR — Estudo Bíblico Acadêmico Gratuito
-        </p>
-        <p className="text-white/30 text-xs mt-2">
-          © {new Date().getFullYear()} Sola Scriptura. Feito com ❤️ para a glória de Deus.
-        </p>
-      </footer>
-    </div>
+    </PageShell>
   );
 }

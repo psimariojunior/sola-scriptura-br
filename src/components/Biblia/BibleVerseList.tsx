@@ -8,6 +8,7 @@ import { ChapterHeader } from './ChapterHeader';
 import { VerseListItem } from './VerseListItem';
 import { ProgressBar } from './ProgressBar';
 import { ComparisonTable } from './ComparisonTable';
+import { SyncedParallelColumns } from './SyncedParallelColumns';
 import ReadingPlanBanner from '@/components/ReadingPlanBanner';
 import { NotesPanelSection } from './NotesPanelSection';
 import type { UseBibliaNavigationReturn } from '@/hooks/biblia/useBibliaNavigation';
@@ -303,11 +304,28 @@ export function BibleVerseList({
                 );
               })}</div>
             </div>))}
-            {ui.modoLeitura === 'comparacao' && nav.viewMode === 'parallel' && (<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">{nav.data.map((item) => (
-              <div key={item.traducao} className="border border-[var(--border)]/40 rounded-xl p-3 sm:p-5 hover:shadow-md transition-shadow">
-                <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/30"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold">{labelMap[item.traducao]}</span></div>
-                {item.versiculos.map(v => (<p key={v.numero} className="mb-2 bible-reading-text font-serif-body" style={{ fontSize: `${Math.max(ui.fontSize - 2, 14)}px` }}><span className="bible-verse-number">{v.numero}</span>{v.texto}</p>))}
-              </div>))}</div>)}
+            {ui.modoLeitura === 'comparacao' && nav.viewMode === 'parallel' && (
+              <SyncedParallelColumns
+                columns={nav.data.map((item) => ({
+                  key: item.traducao,
+                  header: (
+                    <div className="flex items-center gap-2">
+                      <div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} />
+                      <span className="text-sm font-semibold">{labelMap[item.traducao]}</span>
+                    </div>
+                  ),
+                  verses: item.versiculos.map((v) => ({
+                    numero: v.numero,
+                    content: (
+                      <p className="bible-reading-text font-serif-body" style={{ fontSize: `${Math.max(ui.fontSize - 2, 14)}px` }}>
+                        <span className="bible-verse-number">{v.numero}</span>
+                        {v.texto}
+                      </p>
+                    ),
+                  })),
+                }))}
+              />
+            )}
             {ui.modoLeitura === 'comparacao' && nav.viewMode === 'comparison' && nav.data.length >= 2 && (<ComparisonTable data={nav.data} fontSize={ui.fontSize} showDiff={ui.showDiff} highlightedVerse={ui.highlightedVerse} onHighlight={ui.setHighlightedVerse} maxVersiculos={nav.maxVersiculos} tradBadgeColors={tradBadgeColors} labelMap={labelMap} />)}
             <div className="flex items-center justify-center gap-3 sm:gap-4 mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">
               <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-all active:scale-98 min-h-[44px]"><ChevronLeft className="w-4 h-4" /> {t('biblia.previous')}</button>

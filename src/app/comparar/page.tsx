@@ -6,11 +6,12 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Languages, Search, X, ChevronDown, ChevronLeft, ChevronRight,
+  Languages, Search, ChevronDown, ChevronLeft, ChevronRight,
   Copy, Check, Eye, EyeOff, Layers, BookOpen, Loader2, AlertCircle,
-  Columns, Maximize2, Minimize2,
+  Maximize2, Minimize2,
 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
+import { SyncedParallelColumns } from '@/components/Biblia/SyncedParallelColumns';
 import { cn } from '@/lib/utils';
 import { TODOS_LIVROS, type LivroInfo } from '@/data/biblia/livros';
 import { carregarCapitulo } from '@/lib/apresentacao/versiculos';
@@ -531,36 +532,42 @@ export default function CompararPage() {
                 </ScrollReveal>
 
                 {modoView === 'parallel' ? (
-                  <div className="flex gap-4 overflow-x-auto">
-                    {tradsArray.map(tradId => {
-                      const info = TRADUCOES.find(t => t.id === tradId);
-                      return (
-                        <div key={tradId} className="flex-1 min-w-[280px] rounded-xl border border-[var(--border)]/30 bg-card/50 overflow-hidden">
-                          <div className="px-4 py-2.5 border-b border-[var(--border)]/40 bg-[var(--surface-raised)]/40 flex items-center justify-between">
+                  <SyncedParallelColumns
+                    columns={tradsArray.map((tradId) => {
+                      const info = TRADUCOES.find((t) => t.id === tradId);
+                      return {
+                        key: tradId,
+                        header: (
+                          <div className="flex items-center justify-between gap-2">
                             <span className={cn('text-xs font-bold px-2 py-0.5 rounded-full', info?.bg, info?.cor)}>
                               {info?.nome}
                             </span>
-                            <button onClick={() => copiarTexto(tradId, versiculosFiltrados.map(v => `${v.numero}. ${v.traducoes[tradId] || ''}`).join('\n'))}
-                              className="p-1 rounded hover:bg-[var(--surface-sunken)] transition-colors">
+                            <button
+                              type="button"
+                              onClick={() => copiarTexto(tradId, versiculosFiltrados.map((v) => `${v.numero}. ${v.traducoes[tradId] || ''}`).join('\n'))}
+                              className="p-1 rounded hover:bg-[var(--surface-sunken)] transition-colors"
+                              aria-label={`Copiar ${info?.nome ?? tradId}`}
+                            >
                               {copiado === tradId ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3 text-[var(--content-muted)]" />}
                             </button>
                           </div>
-                          <div className="p-4 space-y-3 max-h-[calc(100vh-300px)] overflow-y-auto">
-                            {versiculosFiltrados.map(v => (
-                              <div key={v.numero} className="group flex items-start gap-2">
-                                <span className="text-[10px] font-bold text-[var(--content-muted)] mt-1 w-5 text-right flex-shrink-0">
-                                  {v.numero}
-                                </span>
-                                <p className="text-sm leading-relaxed flex-1 font-serif-body text-[var(--content-primary)]">
-                                  {v.traducoes[tradId] || <span className="text-[var(--content-muted)]">...</span>}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      );
+                        ),
+                        verses: versiculosFiltrados.map((v) => ({
+                          numero: v.numero,
+                          content: (
+                            <div className="flex items-start gap-2">
+                              <span className="text-[10px] font-bold text-[var(--content-muted)] mt-1 w-5 text-right flex-shrink-0">
+                                {v.numero}
+                              </span>
+                              <p className="text-sm leading-relaxed flex-1 font-serif-body text-[var(--content-primary)]">
+                                {v.traducoes[tradId] || <span className="text-[var(--content-muted)]">...</span>}
+                              </p>
+                            </div>
+                          ),
+                        })),
+                      };
                     })}
-                  </div>
+                  />
                 ) : (
                   <div className="space-y-3">
                     {versiculosFiltrados.map((verso, idx) => {

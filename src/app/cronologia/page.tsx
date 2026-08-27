@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
 import { cronologia } from '@/data/biblia';
 import ScrollReveal from '@/components/ScrollReveal';
 import dynamic from 'next/dynamic';
@@ -138,25 +138,14 @@ export default function CronologiaPage() {
   );
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto">
-          {/* Hero */}
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                <CalendarDays className="w-4 h-4" />
-                Cronologia das Escrituras
-              </div>
-              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-light mb-4">
-                Cronologia <span className="text-primary italic">Bíblica</span>
-              </h1>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                {cronologia.length} eventos da criação à igreja primitiva — uma jornada pela história divina
-              </p>
-            </div>
-          </ScrollReveal>
+    <>
+    <PageShell maxWidth="5xl">
+          <PageHero
+            icon={CalendarDays}
+            eyebrow="Escrituras"
+            title={<>Cronologia <span className="italic text-primary">Bíblica</span></>}
+            subtitle={`${cronologia.length} eventos da criação à igreja primitiva — uma jornada pela história divina`}
+          />
 
           {/* Filters */}
           <ScrollReveal>
@@ -184,7 +173,7 @@ export default function CronologiaPage() {
                       onClick={() => setFiltro(tipo)}
                       className={`px-4 py-2 text-sm font-medium rounded-xl transition-all flex items-center gap-2 ${
                         filtro === tipo
-                          ? `bg-gradient-to-r ${tipoCores[tipo]?.gradient} text-white shadow-lg`
+                          ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
                           : `${tipoCores[tipo]?.bg} ${tipoCores[tipo]?.text} hover:opacity-80`
                       }`}
                     >
@@ -199,7 +188,7 @@ export default function CronologiaPage() {
 
           {/* Timeline */}
           <div className="relative">
-            <div className="absolute left-6 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 via-primary to-indigo-500" />
+            <div className="absolute left-6 sm:left-1/2 top-0 bottom-0 w-0.5 bg-primary/25" />
 
             <div className="space-y-8">
               {filtrados.map((evento, i) => (
@@ -212,12 +201,11 @@ export default function CronologiaPage() {
 
                     {/* Content */}
                     <div className={`ml-16 sm:ml-0 sm:w-[calc(50%-2.5rem)] ${i % 2 === 0 ? 'sm:pr-8 sm:text-right' : 'sm:pl-8'}`}>
-                      <div className="glass-card rounded-2xl overflow-hidden hover:shadow-lg transition-all">
-                        {/* Header with gradient */}
-                        <div className={`px-5 py-3 bg-gradient-to-r ${tipoCores[evento.tipo]?.gradient}`}>
+                      <div className="sola-card rounded-2xl overflow-hidden hover:shadow-lg transition-all">
+                        <div className="px-5 py-3 bg-primary/10 border-b border-primary/15">
                           <div className={`flex items-center gap-2 ${i % 2 === 0 ? 'sm:justify-end' : ''}`}>
                             <span className="text-lg">{tipoIcones[evento.tipo]}</span>
-                            <span className="text-xs font-bold text-white/90 uppercase tracking-wider">
+                            <span className="text-xs font-bold text-primary uppercase tracking-wider">
                               {tipoLabels[evento.tipo]}
                             </span>
                           </div>
@@ -285,8 +273,7 @@ export default function CronologiaPage() {
               </div>
             </div>
           </ScrollReveal>
-        </div>
-      </main>
+    </PageShell>
 
       <PainelDoVersiculo
         livro={versiculoPainel?.livro ?? 'gn'}
@@ -295,8 +282,6 @@ export default function CronologiaPage() {
         aberto={versiculoPainel !== null}
         onFechar={() => setVersiculoPainel(null)}
       />
-
-      <Footer />
-    </div>
+    </>
   );
 }

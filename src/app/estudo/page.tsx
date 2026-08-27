@@ -550,7 +550,6 @@ export default function EstudoPage() {
               </div>
             </motion.div>
           )}
-        </div>
 
         <ScrollReveal delay={0.1}>
           <div className="sola-card p-8 mt-8">

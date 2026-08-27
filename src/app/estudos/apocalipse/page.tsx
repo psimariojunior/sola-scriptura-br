@@ -430,3 +430,41 @@ export default function ApocalipsePage() {
     </div>
   );
 }
+
+function IgrejaCard({ igreja, index }: { igreja: { nome: string; tema: string; verso: string; corao: string; problema: string; elogio: string; correcao: string; promessa: string }; index: number }) {
+  const [expandido, setExpandido] = useState(false);
+  return (
+    <motion.div layout className="sola-card overflow-hidden">
+      <div className="p-4 cursor-pointer" onClick={() => setExpandido(!expandido)}>
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-medium">{index + 1}</span>
+            <div>
+              <p className="font-display text-sm font-medium">{igreja.nome}</p>
+              <p className="text-xs text-muted-foreground">{igreja.verso} — {igreja.tema}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">{igreja.corao}</span>
+            <motion.div animate={{ rotate: expandido ? 180 : 0 }} transition={{ duration: 0.2 }}>
+              <ChevronDown className="w-4 h-4 text-muted-foreground" />
+            </motion.div>
+          </div>
+        </div>
+      </div>
+      <AnimatePresence>
+        {expandido && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
+            <div className="px-4 pb-4 border-t border-border/50 pt-3 space-y-2">
+              <div><span className="text-xs font-semibold text-primary">Problema: </span><span className="text-sm text-muted-foreground">{igreja.problema}</span></div>
+              <div><span className="text-xs font-semibold text-primary">Elogio: </span><span className="text-sm text-muted-foreground">{igreja.elogio}</span></div>
+              <div><span className="text-xs font-semibold text-primary">Correção: </span><span className="text-sm text-muted-foreground">{igreja.correcao}</span></div>
+              <div><span className="text-xs font-semibold text-primary">Promessa: </span><span className="text-sm text-muted-foreground">{igreja.promessa}</span></div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+

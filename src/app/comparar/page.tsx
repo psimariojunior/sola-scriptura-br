@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Languages, Search, ChevronDown, ChevronLeft, ChevronRight,
@@ -272,24 +272,12 @@ export default function CompararPage() {
   }, [livro, capitulo, versiculoInicio]);
 
   return (
-    <div className="min-h-screen bg-[var(--bg)]">
-      <Header />
-      <main className="pt-20 pb-16 px-4 sm:px-6">
-        <div className="max-w-[1400px] mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-8">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#d4a853]/20 to-amber-500/20 flex items-center justify-center border border-[#d4a853]/20">
-                <Languages className="w-8 h-8 sm:w-10 sm:h-10 text-[#d4a853]" />
-              </div>
-              <h1 className="font-display text-2xl sm:text-4xl font-light mb-2 text-[var(--content-primary)]">
-                {t('compare.title', 'Comparar')}{' '}
-                <span className="text-[#d4a853] italic">{t('compare.subtitle', 'Traduções')}</span>
-              </h1>
-              <p className="text-[var(--content-secondary)] max-w-md mx-auto text-sm sm:text-base">
-                {t('compare.description', 'Compare passagens bíblicas lado a lado em diferentes traduções')}
-              </p>
-            </div>
-          </ScrollReveal>
+    <PageShell maxWidth="7xl">
+          <PageHero
+            icon={Languages}
+            title={t('compare.title', 'Comparar Traduções')}
+            subtitle={t('compare.description', 'Compare passagens bíblicas lado a lado em diferentes traduções')}
+          />
 
           <ScrollReveal>
             <div className="glass-card rounded-2xl border border-[var(--border)]/30 p-4 sm:p-6 mb-6">
@@ -390,7 +378,7 @@ export default function CompararPage() {
                   <button
                     onClick={carregarDados}
                     disabled={carregando}
-                    className="w-full px-4 py-2.5 bg-gradient-to-r from-[#d4a853] to-amber-600 text-white rounded-lg text-sm font-semibold hover:shadow-lg hover:shadow-[#d4a853]/20 active:scale-[0.98] transition-all disabled:opacity-50"
+                    className="w-full px-4 py-2.5 bg-primary text-primary-foreground rounded-lg text-sm font-semibold hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-50"
                   >
                     {carregando ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : t('compare.load', 'Carregar')}
                   </button>
@@ -676,9 +664,6 @@ export default function CompararPage() {
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

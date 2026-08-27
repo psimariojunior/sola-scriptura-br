@@ -4,25 +4,18 @@ import { useState, useCallback, useEffect, useMemo } from 'react';
 import type { Nota } from '@/components/NotaEditor';
 import { downloadAsFile } from '@/lib/exportPdf';
 import { authService } from '@/lib/auth';
+import {
+  unificarTodasAsNotas,
+  persistirNotasRich,
+  aplicarSalvarNotaRich,
+  aplicarExcluirNotaRich,
+} from '@/lib/notasUnificadas';
 
-const STORAGE_KEY = 'sola-notas';
 const API_BASE = 'https://api.solascripturabr.com.br/api/v1';
 
 function carregarNotasLocal(): Nota[] {
   if (typeof window === 'undefined') return [];
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch (e) {
-    console.error('[notas:carregar-local]', e);
-    return [];
-  }
-}
-
-function salvarNotasLocal(notas: Nota[]) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(notas));
-  } catch (e) { console.error('[notas:salvar-local]', e); }
+  return unificarTodasAsNotas();
 }
 
 async function sincronizarComBackend(notas: Nota[]): Promise<Nota[]> {
@@ -88,14 +81,14 @@ export function useNotas() {
     setCarregado(true);
 
     sincronizarComBackend(notasLocais).then(sincronizadas => {
-      setNotas(sincronizadas);
-      salvarNotasLocal(sincronizadas);
+      persistirNotasRich(sincronizadas);
+      setNotas(unificarTodasAsNotas());
     });
   }, []);
 
   const persistir = useCallback((novasNotas: Nota[]) => {
+    persistirNotasRich(novasNotas);
     setNotas(novasNotas);
-    salvarNotasLocal(novasNotas);
   }, []);
 
   const criarNota = useCallback((titulo: string): Nota => {
@@ -116,27 +109,24 @@ export function useNotas() {
   }, [notas, persistir]);
 
   const salvarNota = useCallback((id: string, conteudo: string) => {
-    const novasNotas = notas.map(n => {
-      if (n.id !== id) return n;
-      const agora = new Date().toISOString();
-      return {
-        ...n,
-        conteudo,
-        dataAtualizacao: agora,
-        versoes: [
-          ...n.versoes.slice(-19),
-          { conteudo, data: agora },
-        ],
-      };
-    });
-    persistir(novasNotas);
-    const notaSalva = novasNotas.find(n => n.id === id);
-    if (notaSalva) salvarNoBackend(notaSalva);
+    const atual = notas.find(n => n.id === id);
+    if (!atual) return;
+    const agora = new Date().toISOString();
+    const notaSalva: Nota = {
+      ...atual,
+      conteudo,
+      dataAtualizacao: agora,
+      versoes: [
+        ...atual.versoes.slice(-19),
+        { conteudo, data: agora },
+      ],
+    };
+    persistir(aplicarSalvarNotaRich(notaSalva, notas));
+    salvarNoBackend(notaSalva);
   }, [notas, persistir]);
 
   const excluirNota = useCallback((id: string) => {
-    const novasNotas = notas.filter(n => n.id !== id);
-    persistir(novasNotas);
+    persistir(aplicarExcluirNotaRich(id, notas));
     excluirNoBackend(id);
   }, [notas, persistir]);
 

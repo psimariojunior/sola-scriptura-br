@@ -3,76 +3,61 @@
 import { useState, useEffect, useCallback } from 'react';
 import { StickyNote, BookOpen, MessageSquare, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { NotaEditor } from '@/components/NotaEditor';
+import { NotaEditor, type Nota } from '@/components/NotaEditor';
 import type { UseBibliaUIReturn } from '@/hooks/biblia/useBibliaUI';
 import type { UseBibliaVerseReturn } from '@/hooks/biblia/useBibliaVerse';
+import {
+  verseNoteId,
+  mergeVerseNotes,
+  aplicarSalvarNotaRich,
+  lerNotasRich,
+} from '@/lib/notasUnificadas';
 
 interface SplitNotesPanelProps {
   verse: UseBibliaVerseReturn;
   ui: UseBibliaUIReturn;
 }
 
-interface Nota {
-  id: string;
-  titulo: string;
-  conteudo: string;
-  dataCriacao: string;
-  dataAtualizacao: string;
-  tags: string[];
-  imagens: string[];
-  versoes: { conteudo: string; data: string }[];
-}
-
-const STORAGE_KEY = 'ssb_split_notes';
-
-export function SplitNotesPanel({ verse, ui }: SplitNotesPanelProps) {
+export function SplitNotesPanel({ verse }: SplitNotesPanelProps) {
   const [nota, setNota] = useState<Nota | null>(null);
   const [activeTab, setActiveTab] = useState<'notes' | 'study'>('notes');
 
   const verseKey = verse.versiculoSelecionado
-    ? `${verse.versiculoSelecionado.livroAbreviacao}:${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}:${verse.versiculoSelecionado.traducao}`
+    ? verseNoteId(
+        verse.versiculoSelecionado.livroAbreviacao,
+        verse.versiculoSelecionado.capitulo,
+        verse.versiculoSelecionado.versiculo,
+        verse.versiculoSelecionado.traducao,
+      )
     : null;
 
-  // Load note for selected verse
   useEffect(() => {
     if (!verseKey) {
       setNota(null);
       return;
     }
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const notes: Record<string, Nota> = JSON.parse(saved);
-        if (notes[verseKey]) {
-          setNota(notes[verseKey]);
-          return;
-        }
-      }
-    } catch {}
-    // Create new note
-    setNota({
-      id: crypto.randomUUID(),
-      titulo: verse.versiculoSelecionado
-        ? `${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`
-        : '',
-      conteudo: '',
-      dataCriacao: new Date().toISOString(),
-      dataAtualizacao: new Date().toISOString(),
-      tags: [],
-      imagens: [],
-      versoes: [],
-    });
-  }, [verseKey]);
+    const existente = mergeVerseNotes(lerNotasRich()).find((n) => n.id === verseKey);
+    setNota(
+      existente ?? {
+        id: verseKey,
+        titulo: verse.versiculoSelecionado
+          ? `${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`
+          : '',
+        conteudo: '',
+        dataCriacao: new Date().toISOString(),
+        dataAtualizacao: new Date().toISOString(),
+        tags: ['Versículo'],
+        imagens: [],
+        versoes: [],
+      },
+    );
+  }, [verseKey, verse.versiculoSelecionado]);
 
   const handleSalvar = useCallback((notaAtualizada: Nota) => {
     if (!verseKey) return;
-    setNota(notaAtualizada);
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      const notes: Record<string, Nota> = saved ? JSON.parse(saved) : {};
-      notes[verseKey] = notaAtualizada;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
-    } catch {}
+    const salva = { ...notaAtualizada, id: verseKey };
+    setNota(salva);
+    aplicarSalvarNotaRich(salva, lerNotasRich());
   }, [verseKey]);
 
   const ref = verse.versiculoSelecionado

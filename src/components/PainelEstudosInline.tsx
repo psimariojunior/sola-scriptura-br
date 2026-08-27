@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { obterEstudoVersiculo, type EstudoVersiculoUnificado } from '@/lib/estudosLoader';
 import { tradicaoCores } from '@/lib/tradicaoCores';
 import { VersiculoLink, extrairReferencias } from '@/components/VersiculoLink';
+import Link from 'next/link';
+import { hrefBiblia } from '@/lib/bibliaHref';
 
 interface Props {
   livro: string;
@@ -187,6 +189,12 @@ export default function PainelEstudosInline({ livro, capitulo, versiculo, nomeLi
             <span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted-fg)]">
               Estudos — {nomeLivro} {capitulo}:{versiculo}
             </span>
+            <Link
+              href={hrefBiblia(livro, capitulo, versiculo)}
+              className="text-[10px] font-medium text-[var(--primary)] hover:underline"
+            >
+              Ler na Bíblia
+            </Link>
           </div>
           <button onClick={onClose} className="p-1 hover:bg-[var(--bg)] rounded transition-colors">
             <X className="w-3.5 h-3.5 text-[var(--muted-fg)]" />

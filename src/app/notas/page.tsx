@@ -1,41 +1,45 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { PageShell } from '@/components/layout/PageShell';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, Trash2, Search, BookOpen, X, Plus, ArrowLeft, Edit3 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { NotaEditor, type Nota } from '@/components/NotaEditor';
-import { cn } from '@/lib/utils';
-import { getNotesOffline, saveNotesOffline } from '@/lib/offlineStorage';
+import { getNotesOffline } from '@/lib/offlineStorage';
 import { PullToRefreshWrapper } from '@/components/PullToRefresh';
+import {
+  unificarTodasAsNotas,
+  persistirNotasRich,
+  aplicarSalvarNotaRich,
+  aplicarExcluirNotaRich,
+  hrefFromVerseNoteId,
+} from '@/lib/notasUnificadas';
 
 type View = 'list' | 'editor';
 
-export default function NotasPage() {
+function NotasPageInner() {
   const { t } = useTranslation();
+  const searchParams = useSearchParams();
   const [notas, setNotas] = useState<Nota[]>([]);
   const [busca, setBusca] = useState('');
   const [carregado, setCarregado] = useState(false);
   const [view, setView] = useState<View>('list');
   const [editingNota, setEditingNota] = useState<Nota | undefined>(undefined);
+  const notaQueryAberta = useRef(false);
 
   const carregarNotas = useCallback(async () => {
     try {
-      const fromIDB = (await getNotesOffline()) as Nota[];
-      if (fromIDB.length > 0) {
-        setNotas(fromIDB);
-      } else {
-        const raw = localStorage.getItem('ssb_notas_rich');
-        if (raw) setNotas(JSON.parse(raw));
-      }
+      await getNotesOffline();
     } catch {
-      try {
-        const raw = localStorage.getItem('ssb_notas_rich');
-        if (raw) setNotas(JSON.parse(raw));
-      } catch {}
+      /* IndexedDB indisponível */
     }
+    const merged = unificarTodasAsNotas();
+    persistirNotasRich(merged);
+    setNotas(merged);
     setCarregado(true);
   }, []);
 
@@ -51,28 +55,26 @@ export default function NotasPage() {
     }, 2000);
   }, []);
 
+  useEffect(() => {
+    if (!carregado || notaQueryAberta.current) return;
+    const notaId = searchParams.get('nota');
+    if (!notaId) return;
+    const encontrada = notas.find((n) => n.id === notaId);
+    if (!encontrada) return;
+    notaQueryAberta.current = true;
+    setEditingNota(encontrada);
+    setView('editor');
+  }, [carregado, notas, searchParams]);
+
   const salvarNota = useCallback((nota: Nota) => {
-    setNotas(prev => {
-      const exists = prev.findIndex(n => n.id === nota.id);
-      const updated = exists >= 0
-        ? prev.map(n => n.id === nota.id ? nota : n)
-        : [...prev, nota];
-      localStorage.setItem('ssb_notas_rich', JSON.stringify(updated));
-      saveNotesOffline(updated).catch(() => {});
-      return updated;
-    });
+    setNotas((prev) => aplicarSalvarNotaRich(nota, prev));
     triggerSync();
     setView('list');
     setEditingNota(undefined);
   }, [triggerSync]);
 
   const excluirNota = useCallback((id: string) => {
-    setNotas(prev => {
-      const updated = prev.filter(n => n.id !== id);
-      localStorage.setItem('ssb_notas_rich', JSON.stringify(updated));
-      saveNotesOffline(updated).catch(() => {});
-      return updated;
-    });
+    setNotas((prev) => aplicarExcluirNotaRich(id, prev));
     triggerSync();
   }, [triggerSync]);
 
@@ -99,6 +101,14 @@ export default function NotasPage() {
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4">
               <ArrowLeft className="w-4 h-4" /> {t('notas.backToNotes')}
             </button>
+            {editingNota && hrefFromVerseNoteId(editingNota.id) && (
+              <Link
+                href={hrefFromVerseNoteId(editingNota.id)!}
+                className="inline-flex items-center gap-1.5 text-sm text-primary mb-4 ml-4 hover:underline"
+              >
+                <BookOpen className="w-4 h-4" /> Ler na Bíblia
+              </Link>
+            )}
             <div className="rounded-2xl border border-border/50 bg-card/50 p-6">
               <NotaEditor
                 nota={editingNota}
@@ -203,9 +213,18 @@ export default function NotasPage() {
                               <p className="text-sm text-muted-foreground line-clamp-2 mb-3"
                                 dangerouslySetInnerHTML={{ __html: nota.conteudo.replace(/<[^>]+>/g, ' ').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;').slice(0, 150) }} />
                               <div className="flex items-center gap-2 flex-wrap">
-                                {nota.tags.map(t => (
-                                  <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground">{t}</span>
+                                {nota.tags.map(tag => (
+                                  <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground">{tag}</span>
                                 ))}
+                                {hrefFromVerseNoteId(nota.id) && (
+                                  <Link
+                                    href={hrefFromVerseNoteId(nota.id)!}
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="inline-flex items-center gap-1 text-[10px] font-medium text-primary hover:underline"
+                                  >
+                                    <BookOpen className="w-3 h-3" /> Ler na Bíblia
+                                  </Link>
+                                )}
                                 <span className="text-[10px] text-muted-foreground ml-auto">
                                   {new Date(nota.dataAtualizacao).toLocaleDateString('pt-BR')}
                                 </span>
@@ -233,5 +252,13 @@ export default function NotasPage() {
         </div>
         </PullToRefreshWrapper>
     </PageShell>
+  );
+}
+
+export default function NotasPage() {
+  return (
+    <Suspense fallback={<PageShell maxWidth="3xl">{null}</PageShell>}>
+      <NotasPageInner />
+    </Suspense>
   );
 }

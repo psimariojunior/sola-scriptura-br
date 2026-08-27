@@ -1,14 +1,17 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
 import Paywall from '@/components/Paywall';
 import { authService } from '@/lib/auth';
-import { Sparkles, BookOpen, Loader2, Copy, Check, ChevronDown, Brain, Cross, Lightbulb, MessageCircle, Heart, RotateCcw, Zap } from 'lucide-react';
+import { Sparkles, BookOpen, Loader2, Copy, Check, ChevronDown, Brain, Cross, Lightbulb, MessageCircle, Heart, RotateCcw, Zap, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
 import ReactMarkdown from 'react-markdown';
+import Link from 'next/link';
+import { hrefFromRef } from '@/lib/bibliaHref';
+import { criarNotaDeEstudo } from '@/lib/notasUnificadas';
 
 const SUGESTOES = [
   { texto: 'Romanos 8 — A Vida no Espírito', tipo: 'exegese' },
@@ -121,6 +124,7 @@ export default function EstudoIAPage() {
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState('');
   const [copiado, setCopiado] = useState(false);
+  const [salvoNota, setSalvoNota] = useState(false);
   const [historico, setHistorico] = useState<Array<{ passagem: string; data: string }>>([]);
   const [fontes, setFontes] = useState<string[]>([]);
   const [fundamentado, setFundamentado] = useState(false);
@@ -298,6 +302,13 @@ export default function EstudoIAPage() {
     setTimeout(() => setCopiado(false), 2000);
   };
 
+  const salvarComoNota = () => {
+    if (!estudo.trim()) return;
+    criarNotaDeEstudo(`Estudo: ${passagem.trim() || 'Passagem'}`, estudo);
+    setSalvoNota(true);
+    setTimeout(() => setSalvoNota(false), 2500);
+  };
+
   const compartilhar = async () => {
     if (navigator.share) {
       await navigator.share({
@@ -309,30 +320,13 @@ export default function EstudoIAPage() {
   };
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-20 pb-16 px-6">
-        <div className="max-w-4xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-violet-500/25"
-              >
-                <Sparkles className="w-8 h-8 text-white" />
-              </motion.div>
-              <h1 className="font-display text-4xl md:text-5xl font-light mb-4">
-                Gerador de Estudo <span className="italic text-primary">Bíblico com IA</span>
-              </h1>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Digite uma passagem ou tópico e receba um guia de estudo completo com análise exegética,
-                temas teológicos, referências cruzadas e aplicações práticas.
-              </p>
-              <div className="ornament w-16 mx-auto mt-6" />
-            </div>
-          </ScrollReveal>
+    <>
+    <PageShell maxWidth="4xl">
+          <PageHero
+            icon={Sparkles}
+            title={<>Gerador de estudo <span className="italic text-primary">bíblico com IA</span></>}
+            subtitle="Digite uma passagem ou tópico e receba um guia com análise exegética, temas teológicos, referências cruzadas e aplicações práticas."
+          />
 
           <ScrollReveal delay={0.1}>
             {!temAcesso && (
@@ -388,8 +382,8 @@ export default function EstudoIAPage() {
                   whileTap={{ scale: (!passagem.trim() && !carregando) ? 1 : 0.98 }}
                   className={`w-full py-3 rounded-lg font-medium flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg transition-all duration-300 ${
                     carregando
-                      ? 'bg-gradient-to-r from-red-500 to-rose-500 text-white shadow-red-500/25 hover:shadow-red-500/40'
-                      : 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-violet-500/25 hover:shadow-violet-500/40'
+                      ? 'bg-destructive text-destructive-foreground'
+                      : 'bg-primary text-primary-foreground hover:opacity-90'
                   }`}
                 >
                   {carregando ? (
@@ -469,7 +463,7 @@ export default function EstudoIAPage() {
                       <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-[10px] font-medium"
+                        className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-medium"
                       >
                         <Zap className="w-3 h-3" />
                         Streaming ao vivo
@@ -482,7 +476,24 @@ export default function EstudoIAPage() {
                       </span>
                     )}
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 items-center">
+                    {passagem.trim() && (
+                      <Link
+                        href={hrefFromRef(passagem)}
+                        className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted"
+                        title="Ler na Bíblia"
+                      >
+                        <BookOpen className="w-4 h-4" />
+                      </Link>
+                    )}
+                    <button
+                      onClick={salvarComoNota}
+                      disabled={!estudo}
+                      className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted disabled:opacity-30"
+                      title="Salvar nas notas"
+                    >
+                      {salvoNota ? <Check className="w-4 h-4 text-primary" /> : <FileText className="w-4 h-4" />}
+                    </button>
                     <button
                       onClick={copiarEstudo}
                       disabled={!estudo}
@@ -556,11 +567,8 @@ export default function EstudoIAPage() {
               </div>
             </ScrollReveal>
           )}
-        </div>
-      </main>
-      <Footer />
-
+    </PageShell>
       <Paywall aberto={paywallAberto} onFechar={() => setPaywallAberto(false)} />
-    </div>
+    </>
   );
 }

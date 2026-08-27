@@ -824,7 +824,7 @@ export default function EstudosPage() {
                           <div className="flex items-start gap-4">
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 mb-2 flex-wrap">
-                                <Link href={`/biblia?livro=${m.livro}&capitulo=${m.capitulo}&trads=${m.traducao}`} className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
+                                <Link href={hrefBiblia(m.livro, m.capitulo, m.versiculo, [m.traducao])} className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors">
                                   {livro?.nome || m.livro} {m.capitulo}:{m.versiculo}
                                 </Link>
                                 <span className="text-[10px] px-2 py-0.5 bg-primary/10 text-primary rounded-full font-medium uppercase tracking-wider">{m.traducao}</span>
@@ -841,6 +841,12 @@ export default function EstudosPage() {
                                     </span>
                                   </div>
                                   <p className="text-xs text-muted-foreground leading-relaxed bg-muted/30 rounded-lg p-2.5">{m.anotacao.texto}</p>
+                                  <Link
+                                    href={`/notas?nota=verse:${m.livro}:${m.capitulo}:${m.versiculo}:${m.traducao}`}
+                                    className="inline-flex items-center gap-1 mt-2 text-[10px] font-medium text-primary hover:underline"
+                                  >
+                                    Abrir em Notas
+                                  </Link>
                                 </div>
                               )}
                             </div>

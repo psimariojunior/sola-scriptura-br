@@ -10,6 +10,7 @@ import {
 import { ExportModal } from '@/components/ExportModal';
 import type { ConteudoExport } from '@/lib/exportPdf';
 import { useToast } from '@/hooks/useToast';
+import { aplicarSalvarNotaRich, lerNotasRich } from '@/lib/notasUnificadas';
 
 function sanitizarHTML(html: string): string {
   if (!html) return '';
@@ -119,19 +120,11 @@ export function NotaEditor({
     setSalvando(false);
     setEditando(false);
 
-    try {
-      const storage = localStorage.getItem('sola-notas');
-      const notas: Nota[] = storage ? JSON.parse(storage) : [];
-      const idx = notas.findIndex(n => n.id === notaSalva.id);
-      if (idx >= 0) notas[idx] = notaSalva;
-      else notas.push(notaSalva);
-      localStorage.setItem('sola-notas', JSON.stringify(notas));
-      toast({ title: 'Anotação salva', variant: 'success' });
-    } catch {
-      toast({ title: 'Erro ao salvar', variant: 'error' });
-    }
-
     onSalvar?.(notaSalva);
+    if (!onSalvar) {
+      aplicarSalvarNotaRich(notaSalva, lerNotasRich());
+    }
+    toast({ title: 'Anotação salva', variant: 'success' });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nota, onSalvar]);
 

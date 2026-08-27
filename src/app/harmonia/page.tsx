@@ -15,6 +15,7 @@ import {
 } from '@/data/biblia/sinopticos';
 import type { ParaleloSinotico } from '@/data/biblia/sinopticos';
 import { hrefFromRef } from '@/lib/bibliaHref';
+import { useSyncedColumnScroll } from '@/hooks/useSyncedColumnScroll';
 
 type Categoria = ParaleloSinotico['categoria'] | 'todas';
 type Visao = 'colunas' | 'lista';
@@ -41,10 +42,10 @@ const CATEGORIA_COR: Record<string, string> = {
 };
 
 const EVANGELHOS = [
-  { chave: 'mateus' as const, abrev: 'Mt', nome: 'Mateus', cor: 'from-blue-500 to-blue-600', corBg: 'bg-blue-500/10', corText: 'text-blue-500', corBorder: 'border-blue-500/30', corDot: 'bg-blue-500' },
-  { chave: 'marcos' as const, abrev: 'Mc', nome: 'Marcos', cor: 'from-red-500 to-red-600', corBg: 'bg-red-500/10', corText: 'text-red-500', corBorder: 'border-red-500/30', corDot: 'bg-red-500' },
-  { chave: 'lucas' as const, abrev: 'Lc', nome: 'Lucas', cor: 'from-green-500 to-green-600', corBg: 'bg-green-500/10', corText: 'text-green-500', corBorder: 'border-green-500/30', corDot: 'bg-green-500' },
-  { chave: 'joao' as const, abrev: 'Jo', nome: 'João', cor: 'from-purple-500 to-purple-600', corBg: 'bg-purple-500/10', corText: 'text-purple-500', corBorder: 'border-purple-500/30', corDot: 'bg-purple-500' },
+  { chave: 'mateus' as const, abrev: 'Mt', nome: 'Mateus', cor: 'from-primary/90 to-primary', corBg: 'bg-primary/10', corText: 'text-primary', corBorder: 'border-primary/30', corDot: 'bg-primary' },
+  { chave: 'marcos' as const, abrev: 'Mc', nome: 'Marcos', cor: 'from-primary/80 to-primary', corBg: 'bg-primary/10', corText: 'text-primary', corBorder: 'border-primary/30', corDot: 'bg-primary' },
+  { chave: 'lucas' as const, abrev: 'Lc', nome: 'Lucas', cor: 'from-primary/70 to-primary', corBg: 'bg-primary/10', corText: 'text-primary', corBorder: 'border-primary/30', corDot: 'bg-primary' },
+  { chave: 'joao' as const, abrev: 'Jo', nome: 'João', cor: 'from-primary/60 to-primary', corBg: 'bg-primary/10', corText: 'text-primary', corBorder: 'border-primary/30', corDot: 'bg-primary' },
 ];
 
 function RefLink({ ref: r }: { ref: string }) {
@@ -103,25 +104,33 @@ function ColunaEvangelho({
   paralelos,
   expandido,
   onToggle,
+  scrollRef,
+  onScroll,
 }: {
   evangelho: typeof EVANGELHOS[number];
   paralelos: ParaleloSinotico[];
   expandido: string | null;
   onToggle: (id: string) => void;
+  scrollRef?: (el: HTMLDivElement | null) => void;
+  onScroll?: () => void;
 }) {
   const { t } = useTranslation();
   const comPassagem = paralelos.filter((p) => getRefs(p, evangelho.chave).length > 0);
 
   return (
     <div className="flex flex-col min-w-0">
-      <div className={`sticky top-20 z-10 bg-gradient-to-r ${evangelho.cor} px-4 py-3 rounded-t-xl`}>
+      <div className="sticky top-0 z-10 px-4 py-3 rounded-t-xl border border-b-0 border-border/50 bg-[var(--surface-raised)]">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-white/80" />
-          <h3 className="text-sm font-bold text-white">{evangelho.nome}</h3>
-          <span className="ml-auto text-xs text-white/70">{comPassagem.length}</span>
+          <span className="w-2 h-2 rounded-full bg-primary" />
+          <h3 className="text-sm font-bold text-foreground">{evangelho.nome}</h3>
+          <span className="ml-auto text-xs text-muted-foreground">{comPassagem.length}</span>
         </div>
       </div>
-      <div className="border border-t-0 rounded-b-xl border-border/50 divide-y divide-border/30 bg-card/50">
+      <div
+        ref={scrollRef}
+        onScroll={onScroll}
+        className="border border-t-0 rounded-b-xl border-border/50 divide-y divide-border/30 bg-card/50 max-h-[calc(100vh-280px)] overflow-y-auto overscroll-contain"
+      >
         {comPassagem.length === 0 ? (
           <div className="p-6 text-center text-xs text-muted-foreground/50">
             {t('harmonia.noParallelsForGospel')}
@@ -133,6 +142,7 @@ function ColunaEvangelho({
             return (
               <motion.div
                 key={p.id}
+                data-sync-verse={p.id}
                 layout
                 className={`p-3 cursor-pointer hover:bg-secondary/30 transition-colors ${isExpanded ? 'bg-secondary/50' : ''}`}
                 onClick={() => onToggle(p.id)}
@@ -218,7 +228,7 @@ function MobileTabs({
               onClick={() => setActiveTab(i)}
               className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all ${
                 activeTab === i
-                  ? `bg-gradient-to-r ${ev.cor} text-white shadow-sm`
+                  ? 'bg-primary text-primary-foreground shadow-sm'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
@@ -246,6 +256,7 @@ export default function HarmoniaPage() {
   const [filtroCategoria, setFiltroCategoria] = useState<Categoria>('todas');
   const [expandido, setExpandido] = useState<string | null>(null);
   const [visao, setVisao] = useState<Visao>('colunas');
+  const { setRef, onScroll } = useSyncedColumnScroll();
 
   const paralelos = useMemo(() => {
     let lista = filtroCategoria === 'todas'
@@ -374,16 +385,21 @@ export default function HarmoniaPage() {
           {/* Content */}
           {visao === 'colunas' ? (
             /* Desktop: Side-by-side columns */
-            <div className="hidden lg:grid lg:grid-cols-4 gap-3">
-              {EVANGELHOS.map((ev) => (
+            <div className="hidden lg:block">
+              <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2">Rolagem sincronizada</p>
+              <div className="grid grid-cols-4 gap-3">
+              {EVANGELHOS.map((ev, i) => (
                 <ColunaEvangelho
                   key={ev.chave}
                   evangelho={ev}
                   paralelos={paralelos}
                   expandido={expandido}
                   onToggle={toggleExpandido}
+                  scrollRef={setRef(i)}
+                  onScroll={() => onScroll(i)}
                 />
               ))}
+              </div>
             </div>
           ) : null}
 

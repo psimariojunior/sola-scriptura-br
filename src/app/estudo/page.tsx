@@ -10,6 +10,9 @@ import {
   ChevronDown, ChevronUp, Bookmark, Quote, CheckCircle2,
   ListOrdered, Brain, Target, BookMarked, StickyNote
 } from 'lucide-react';
+import Link from 'next/link';
+import { hrefFromRef } from '@/lib/bibliaHref';
+import { criarNotaDeEstudo } from '@/lib/notasUnificadas';
 import { obterEstudoLivro } from '@/lib/estudosLoader';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
 
@@ -175,6 +178,93 @@ const DICAS_DEVOCIONAL = [
   { titulo: 'Não Tenha Medo de Falhar', descricao: 'Se errar um dia, não desista. Deus não está marmando ponto. Recomece sem culpa. A graça é diária, assim como a Palavra.' },
 ];
 
+function CadernoSoap() {
+  const [referencia, setReferencia] = useState('');
+  const [scripture, setScripture] = useState('');
+  const [observation, setObservation] = useState('');
+  const [application, setApplication] = useState('');
+  const [prayer, setPrayer] = useState('');
+  const [salvo, setSalvo] = useState(false);
+
+  const podeSalvar = scripture.trim() || observation.trim() || application.trim() || prayer.trim();
+
+  const salvar = () => {
+    if (!podeSalvar) return;
+    const partes = [
+      referencia.trim() && `Referência: ${referencia.trim()}`,
+      scripture.trim() && `S — Escritura\n${scripture.trim()}`,
+      observation.trim() && `O — Observação\n${observation.trim()}`,
+      application.trim() && `A — Aplicação\n${application.trim()}`,
+      prayer.trim() && `P — Oração\n${prayer.trim()}`,
+    ].filter(Boolean);
+    criarNotaDeEstudo(`SOAP: ${referencia.trim() || 'Devocional'}`, partes.join('\n\n'), ['Estudo', 'SOAP']);
+    setSalvo(true);
+    setTimeout(() => setSalvo(false), 2500);
+  };
+
+  const campo = (
+    id: string,
+    label: string,
+    value: string,
+    onChange: (v: string) => void,
+    rows = 3,
+  ) => (
+    <label className="block" htmlFor={id}>
+      <span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted-fg)]">{label}</span>
+      <textarea
+        id={id}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        rows={rows}
+        className="mt-1.5 w-full px-3 py-2 text-sm bg-[var(--surface-sunken)] border border-[var(--border)]/60 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/30 resize-y"
+      />
+    </label>
+  );
+
+  return (
+    <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 space-y-4">
+      <div>
+        <h4 className="font-semibold text-[var(--fg)]">Caderno SOAP</h4>
+        <p className="text-sm text-[var(--muted-fg)] mt-1">
+          Preencha e salve nas suas notas. Depois você encontra em{' '}
+          <Link href="/notas" className="text-primary hover:underline">Minhas notas</Link>.
+        </p>
+      </div>
+      <label className="block" htmlFor="soap-ref">
+        <span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted-fg)]">Referência</span>
+        <input
+          id="soap-ref"
+          type="text"
+          value={referencia}
+          onChange={(e) => setReferencia(e.target.value)}
+          placeholder="Ex: Filipenses 4:6-7"
+          className="mt-1.5 w-full px-3 py-2 text-sm bg-[var(--surface-sunken)] border border-[var(--border)]/60 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/30"
+        />
+      </label>
+      {campo('soap-s', 'S — Escritura', scripture, setScripture, 2)}
+      {campo('soap-o', 'O — Observação', observation, setObservation)}
+      {campo('soap-a', 'A — Aplicação', application, setApplication)}
+      {campo('soap-p', 'P — Oração', prayer, setPrayer, 2)}
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={salvar}
+          disabled={!podeSalvar}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium disabled:opacity-40 hover:opacity-90"
+        >
+          <StickyNote className="w-4 h-4" />
+          {salvo ? 'Salvo nas notas' : 'Salvar nas notas'}
+        </button>
+        {referencia.trim() && (
+          <Link href={hrefFromRef(referencia)} className="text-sm text-primary hover:underline">
+            Ler na Bíblia
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function MetodoCard({ metodo, isOpen, onToggle }: { metodo: Metodo; isOpen: boolean; onToggle: () => void }) {
   return (
     <motion.div
@@ -275,6 +365,8 @@ function MetodoCard({ metodo, isOpen, onToggle }: { metodo: Metodo; isOpen: bool
                   ))}
                 </ul>
               </div>
+
+              {metodo.id === 'soap' && <CadernoSoap />}
             </div>
           </motion.div>
         )}
@@ -368,7 +460,9 @@ export default function EstudoPage() {
                       { ref: 'Efésios 2:8-9', texto: 'Porque vocês são salvos pela graça, por meio da fé.' },
                     ].map((v) => (
                       <div key={v.ref} className="bg-[var(--card-bg)] rounded-lg p-4">
-                        <p className="text-xs font-bold text-[var(--primary)] mb-1">{v.ref}</p>
+                        <Link href={hrefFromRef(v.ref)} className="text-xs font-bold text-[var(--primary)] mb-1 hover:underline inline-block">
+                          {v.ref}
+                        </Link>
                         <p className="text-sm text-[var(--fg)] italic font-serif-body">{v.texto}</p>
                       </div>
                     ))}
@@ -602,7 +696,9 @@ export default function EstudoPage() {
                     <div className="space-y-2">
                       {estudoDoLivro.versiculosChave.map((vc, i) => (
                         <div key={i} className="bg-[var(--bg)]/60 rounded-lg p-3 border-l-2 border-[var(--primary)]/20">
-                          <p className="text-xs font-bold text-[var(--primary)] mb-1">{vc.referencia}</p>
+                          <p className="text-xs font-bold text-[var(--primary)] mb-1">
+                            <Link href={hrefFromRef(vc.referencia)} className="hover:underline">{vc.referencia}</Link>
+                          </p>
                           <p className="text-xs text-[var(--fg)] italic leading-relaxed font-serif-body mb-1">&ldquo;{vc.texto}&rdquo;</p>
                           <p className="text-xs text-[var(--muted-fg)] leading-relaxed">{vc.explicacao}</p>
                         </div>

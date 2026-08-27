@@ -1,0 +1,10 @@
+---
+description: Sempre commitar e enviar ao remoto para a Vercel publicar
+alwaysApply: true
+---
+
+# Deploy automático
+
+Depois de concluir mudanças de código, faça commit e `git push` para `origin` sem esperar o usuário pedir. A Vercel publica a partir desse push.
+
+Não incluir segredos (`.env`, chaves) nem artefatos só locais (`next-env.d.ts` com caminho `.next/dev`).

@@ -18,24 +18,26 @@ import { livroPorAbreviacao } from '@/data/biblia/livros';
 
 export default function ContaPage() {
   const router = useRouter();
-  const { usuario, isAutenticado, logout } = useAuth();
+  const { usuario, isAutenticado, logout, sessaoPronta } = useAuth();
   const [marcas, setMarcas] = useState<MarcaBiblia[]>([]);
   const [temAcessoTotal, setTemAcessoTotal] = useState(false);
 
   useEffect(() => {
+    if (!sessaoPronta) return;
     if (!isAutenticado) {
       router.push('/auth/login');
       return;
     }
     setMarcas(listarMarcas());
     setTemAcessoTotal(authService.temAcessoTotal());
-  }, [isAutenticado, router]);
+  }, [sessaoPronta, isAutenticado, router]);
 
   const handleLogout = async () => {
     await logout();
     router.push('/');
   };
 
+  if (!sessaoPronta) return null;
   if (!isAutenticado || !usuario) return null;
 
   const favoritos = marcas.filter(m => m.favorito);

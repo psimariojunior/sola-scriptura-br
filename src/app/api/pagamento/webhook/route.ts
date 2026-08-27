@@ -37,12 +37,15 @@ function verificarAssinatura(body: string, signature: string | null, secret: str
 export async function POST(request: NextRequest) {
   const rawBody = await request.text();
 
-  if (MP_WEBHOOK_SECRET) {
-    const signature = request.headers.get('x-signature') || request.headers.get('x-hub-signature-256');
-    if (!verificarAssinatura(rawBody, signature, MP_WEBHOOK_SECRET)) {
-      console.warn('[webhook] Assinatura invalida ou ausente. Requisicao rejeitada.');
-      return NextResponse.json({ received: false, error: 'invalid signature' }, { status: 401 });
-    }
+  if (!MP_WEBHOOK_SECRET) {
+    console.warn('[webhook] MERCADO_PAGO_WEBHOOK_SECRET ausente. Requisicao rejeitada.');
+    return NextResponse.json({ received: false, error: 'webhook nao configurado' }, { status: 401 });
+  }
+
+  const signature = request.headers.get('x-signature') || request.headers.get('x-hub-signature-256');
+  if (!verificarAssinatura(rawBody, signature, MP_WEBHOOK_SECRET)) {
+    console.warn('[webhook] Assinatura invalida ou ausente. Requisicao rejeitada.');
+    return NextResponse.json({ received: false, error: 'invalid signature' }, { status: 401 });
   }
 
   let body: Record<string, unknown>;

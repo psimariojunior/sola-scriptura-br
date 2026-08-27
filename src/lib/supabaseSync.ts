@@ -50,7 +50,7 @@ export function getAuthToken(): string | null {
 }
 
 export function isAuthenticated(): boolean {
-  return !!getUserId() && !!getAuthToken();
+  return authService.isAutenticado();
 }
 
 export function getLocalData(type: SyncDataType): unknown[] {
@@ -74,21 +74,21 @@ export function saveLocalData(type: SyncDataType, data: unknown[]): void {
 }
 
 export async function pushToCloud(type: SyncDataType): Promise<SyncResult> {
-  const userId = getUserId();
-  const token = getAuthToken();
-  if (!userId || !token) {
+  if (!authService.isAutenticado()) {
     return { ok: false, erro: 'Não autenticado', timestamp: Date.now() };
   }
 
   try {
     const dados = getLocalData(type);
+    const token = getAuthToken();
     const res = await fetch('/api/sync', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
-      body: JSON.stringify({ tipo: type, dados, userId }),
+      body: JSON.stringify({ tipo: type, dados }),
     });
 
     if (!res.ok) {
@@ -108,18 +108,18 @@ export async function pushToCloud(type: SyncDataType): Promise<SyncResult> {
 }
 
 export async function pullFromCloud(type: SyncDataType): Promise<SyncResult> {
-  const userId = getUserId();
-  const token = getAuthToken();
-  if (!userId || !token) {
+  if (!authService.isAutenticado()) {
     return { ok: false, erro: 'Não autenticado', timestamp: Date.now() };
   }
 
   try {
-    const params = new URLSearchParams({ tipo: type, userId });
+    const token = getAuthToken();
+    const params = new URLSearchParams({ tipo: type });
     const res = await fetch(`/api/sync?${params.toString()}`, {
       method: 'GET',
+      credentials: 'include',
       headers: {
-        'Authorization': `Bearer ${token}`,
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
     });
 
@@ -184,9 +184,7 @@ function mergeData(local: unknown[], remote: unknown[]): unknown[] {
 }
 
 export async function syncType(type: SyncDataType): Promise<SyncResult> {
-  const userId = getUserId();
-  const token = getAuthToken();
-  if (!userId || !token) {
+  if (!authService.isAutenticado()) {
     return { ok: false, erro: 'Não autenticado', timestamp: Date.now() };
   }
 

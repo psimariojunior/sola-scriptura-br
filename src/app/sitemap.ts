@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { OBRAS } from '@/data/biblioteca';
+import { TODOS_LIVROS } from '@/data/biblia/livros';
 
 const BASE_URL = 'https://solascripturabr.com.br';
 
@@ -65,18 +66,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/quiz/multiplayer`, lastModified: ONE_WEEK_AGO, changeFrequency: 'weekly' as const, priority: 0.7 },
   ];
 
-  const bookAbbreviations = [
-    'gn', 'ex', 'lv', 'nm', 'dt', 'js', 'jz', 'rt', '1sm', '2sm',
-    '1r', '2r', '1cr', '2cr', 'ed', 'ne', 'et', 'job', 'sl', 'pv',
-    'ec', 'ct', 'is', 'jr', 'lm', 'ez', 'dn', 'os', 'jl', 'am',
-    'ob', 'jn', 'mq', 'na', 'hc', 'sf', 'ag', 'zc', 'mc',
-    'mt', 'mc2', 'lc', 'jo', 'at', 'rm', '1co', '2co', 'gl', 'ef',
-    'fp', 'cl', '1ts', '2ts', '1tm', '2tm', 'tt', 'fm', 'hb', 'tg',
-    '1pe', '2pe', '1jo', '2jo', '3jo', 'jd', 'ap',
-  ];
-
-  const studyPages = bookAbbreviations.map(book => ({
-    url: `${BASE_URL}/estudos/${book}`,
+  const studyPages = TODOS_LIVROS.map((livro) => ({
+    url: `${BASE_URL}/estudos/${encodeURIComponent(livro.abreviacao)}`,
     lastModified: ONE_MONTH_AGO,
     changeFrequency: 'monthly' as const,
     priority: 0.7,

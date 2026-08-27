@@ -80,7 +80,7 @@ export default function AdminPage() {
       setIsAuth(true);
       setCheckingAuth(false);
     };
-    check();
+    void authService.hidratarSessao().then(check);
   }, [router]);
 
   const apiFetch = useCallback(async <T,>(endpoint: string, options: RequestInit = {}): Promise<T> => {

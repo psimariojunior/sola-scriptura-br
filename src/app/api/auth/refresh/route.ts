@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { proxyToBackend } from '../proxy';
+import { applyRateLimit } from '@/lib/api-rate-limit';
 
 export async function POST(request: NextRequest) {
+  const blocked = await applyRateLimit(request, 'AUTH_REFRESH');
+  if (blocked) return blocked;
+
   const body = await request.text();
 
   const BACKEND_URL = 'https://api.solascripturabr.com.br/api/v1';

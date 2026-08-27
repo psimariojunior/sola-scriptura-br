@@ -207,7 +207,7 @@ async function obterDoCache(chave: string): Promise<ArrayBuffer | null> {
 function getConfig(
   partial?: Partial<ElevenLabsConfig>
 ): ElevenLabsConfig {
-  const envKey = process.env.NEXT_PUBLIC_ELEVENLABS_API_KEY || '';
+  const envKey = '';
   const saved =
     typeof window !== 'undefined'
       ? localStorage.getItem('elevenlabs-config')

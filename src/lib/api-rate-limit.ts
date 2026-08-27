@@ -25,7 +25,7 @@ export async function applyRateLimit(
       {
         status: 429,
         headers: {
-          ...buildRateLimitHeaders(result),
+          ...buildRateLimitHeaders(result, RATE_LIMITS[limiter].max),
           'Retry-After': String(Math.ceil((result.resetAt - Date.now()) / 1000)),
         },
       },
@@ -38,8 +38,12 @@ export async function applyRateLimit(
  * Anexa headers de rate-limit a uma resposta ja construida (para rotas que
  * querem retornar 200 mas ainda assim reportar contadores ao cliente).
  */
-export function withRateLimitHeaders(res: NextResponse, result: RateLimitResult): NextResponse {
-  for (const [k, v] of Object.entries(buildRateLimitHeaders(result))) {
+export function withRateLimitHeaders(
+  res: NextResponse,
+  result: RateLimitResult,
+  limite: number,
+): NextResponse {
+  for (const [k, v] of Object.entries(buildRateLimitHeaders(result, limite))) {
     res.headers.set(k, v);
   }
   return res;

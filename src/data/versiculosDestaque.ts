@@ -3,7 +3,7 @@ export interface VersiculoDestaque {
   texto: string;
   tema: 'fe' | 'amor' | 'esperanca' | 'forca' | 'paz' | 'sabedoria' | 'graca' | 'louvor' | 'oracao' | 'justica' | 'consolo' | 'promessa';
   epoca: 'manha' | 'tarde' | 'noite' | 'qualquer';
-  estacao: 'primavera' | ' verao' | 'outono' | 'inverno' | 'qualquer';
+  estacao: 'primavera' | 'verao' | 'outono' | 'inverno' | 'qualquer';
 }
 
 export const versiculosDestaque: VersiculoDestaque[] = [

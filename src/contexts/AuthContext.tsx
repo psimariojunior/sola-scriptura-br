@@ -7,6 +7,7 @@ interface AuthContextType {
   usuario: Usuario | null;
   isAutenticado: boolean;
   isAdmin: boolean;
+  sessaoPronta: boolean;
   login: (email: string, senha: string) => Promise<Usuario>;
   cadastrar: (nome: string, email: string, senha: string) => Promise<Usuario>;
   logout: () => Promise<void>;
@@ -31,6 +32,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [usuario, setUsuario] = useState<Usuario | null>(null);
   const [isAutenticado, setIsAutenticado] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [sessaoPronta, setSessaoPronta] = useState(false);
 
   const syncState = useCallback(() => {
     const snap = snapshot();
@@ -41,7 +43,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    syncState();
+    let vivo = true;
+    void authService.hidratarSessao().then(() => {
+      if (!vivo) return;
+      syncState();
+      setSessaoPronta(true);
+      if (authService.isAutenticado()) {
+        void authService.sincronizarAcessoTotal().then(() => {
+          if (vivo) syncState();
+        });
+      }
+    });
+    return () => {
+      vivo = false;
+    };
   }, [syncState]);
 
   useEffect(() => {
@@ -92,8 +107,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [syncState]);
 
   const recarregarSessao = useCallback(() => {
-    authService.recarregarSessao();
-    syncState();
+    void authService.hidratarSessao().then(syncState);
   }, [syncState]);
 
   const diagnosticar = useCallback(() => {
@@ -106,6 +120,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         usuario,
         isAutenticado,
         isAdmin,
+        sessaoPronta,
         login,
         cadastrar,
         logout,
@@ -127,6 +142,7 @@ export function useAuth(): AuthContextType {
       usuario: null,
       isAutenticado: false,
       isAdmin: false,
+      sessaoPronta: true,
       login: async () => { throw new Error('AuthProvider not mounted'); },
       cadastrar: async () => { throw new Error('AuthProvider not mounted'); },
       logout: async () => {},

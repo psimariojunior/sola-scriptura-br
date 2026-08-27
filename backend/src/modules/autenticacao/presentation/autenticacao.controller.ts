@@ -44,6 +44,18 @@ export class AutenticacaoController {
 
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
+  @Get('me')
+  @ApiOperation({ summary: 'Usuário autenticado atual' })
+  me(@UsuarioAtual() usuario: { id: string; email: string; role?: string }) {
+    return {
+      id: usuario.id,
+      email: usuario.email,
+      role: usuario.role || 'user',
+    };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @Post('logout')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Logout de usuário' })

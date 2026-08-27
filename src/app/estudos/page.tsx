@@ -143,32 +143,27 @@ export default function EstudosPage() {
   const livrosComEstudo = useMemo(() => {
     if (!dadosCarregados) return [];
     // Mapear abreviacoes para slugs de paginas hardcoded quando existem
-    const PAGINAS_HARDCODED: Record<string, string> = {
-      'gn': 'genesis', 'ex': 'exodo', 'lv': 'levitico', 'nm': 'numeros', 'dt': 'deuteronomio',
-      'js': 'josue', 'jz': 'juizes', 'rt': 'rute', '1sm': '1samuel', '2sm': '2samuel',
-      '1rs': '1reis', '2rs': '2reis', '1cr': '1cronicas', '2cr': '2cronicas',
-      'ed': 'esdras', 'ne': 'neemias', 'et': 'ester', 'sl': 'salmos',
-      'pv': 'proverbios', 'ec': 'eclesiastes', 'ct': 'cantares', 'is': 'isaias',
-      'jr': 'jeremias', 'lm': 'lamentacoes', 'ez': 'ezequiel', 'dn': 'daniel',
-      'os': 'oseias', 'jl': 'joel', 'am': 'amos', 'ob': 'obadias', 'jn': 'jonas',
-      'mq': 'miqueias', 'na': 'naum', 'hc': 'habacuque', 'sf': 'sofonias',
-      'ag': 'ageu', 'zc': 'zacarias', 'ml': 'malaquias',
-      'mt': 'mateus', 'mc': 'marcos', 'lc': 'lucas', 'jo': 'joao', 'atos': 'atos',
-      'rm': 'romanos', '1co': '1corintios', '2co': '2corintios', 'gl': 'galatas',
-      'ef': 'efesios', 'fp': 'filipenses', 'cl': 'colossenses', '1ts': '1tessalonicenses',
-      '2ts': '2tessalonicenses', '1tm': '1timoteo', '2tm': '2timoteo', 'tt': 'tito',
-      'fm': 'filemom', 'hb': 'hebreus', 'tg': 'tiago', '1pe': '1pedro', '2pe': '2pedro',
-      '1jo': '1joao', '2jo': '2joao', '3jo': '3joao', 'jd': 'judas', 'ap': 'apocalipse',
+    const PAGINAS_DEDICADAS: Record<string, string> = {
+      gn: 'genesis',
+      sl: 'salmos',
+      pv: 'proverbios',
+      jo: 'joao',
+      at: 'atos',
+      rm: 'romanos',
+      '1co': '1corintios',
+      ef: 'efesios',
+      fp: 'filipenses',
+      ap: 'apocalipse',
     };
     return Object.keys(estudosPorLivro).map(slug => {
       const info = livroPorAbreviacao.get(slug);
-      const paginaHardcoded = PAGINAS_HARDCODED[slug];
-      return { 
-        slug, 
-        titulo: info?.nome || slug, 
-        estudo: estudosPorLivro[slug], 
+      const paginaDedicada = PAGINAS_DEDICADAS[slug];
+      return {
+        slug,
+        titulo: info?.nome || slug,
+        estudo: estudosPorLivro[slug],
         testamento: info?.testamento || 'AT',
-        href: paginaHardcoded ? `/estudos/${paginaHardcoded}` : `/estudos/${slug}`,
+        href: paginaDedicada ? `/estudos/${paginaDedicada}` : `/estudos/${slug}`,
       };
     }).sort((a, b) => a.titulo.localeCompare(b.titulo, 'pt-BR'));
   }, [estudosPorLivro, dadosCarregados]);

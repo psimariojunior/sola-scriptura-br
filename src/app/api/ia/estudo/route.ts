@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     const mensagem = erro instanceof Error ? erro.message : String(erro);
     console.error('Erro ao gerar estudo:', mensagem);
     return NextResponse.json(
-      { erro: 'Falha ao gerar estudo. Tente novamente.', detalhes: mensagem },
+      { erro: 'Falha ao gerar estudo. Tente novamente.' },
       { status: 500 }
     );
   }

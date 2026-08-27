@@ -71,10 +71,26 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  const vozFinal = vozCustom || (lingua === 'en'
+  const vozesPermitidas = new Set([
+    ...VOZES_PT.feminina,
+    ...VOZES_PT.masculina,
+    ...VOZES_EN.feminina,
+    ...VOZES_EN.masculina,
+    'he-IL-HilaNeural',
+    'he-IL-AvriNeural',
+    'el-GR-AthinaNeural',
+    'el-GR-NestorasNeural',
+  ]);
+
+  const vozPadrao = lingua === 'en'
     ? (voz === 'masculina' ? VOZES_EN.masculina[0] : VOZES_EN.feminina[0])
-    : (voz === 'masculina' ? VOZES_PT.masculina[0] : VOZES_PT.feminina[0])
-  );
+    : lingua === 'he'
+      ? (voz === 'masculina' ? 'he-IL-AvriNeural' : 'he-IL-HilaNeural')
+      : lingua === 'el'
+        ? (voz === 'masculina' ? 'el-GR-NestorasNeural' : 'el-GR-AthinaNeural')
+        : (voz === 'masculina' ? VOZES_PT.masculina[0] : VOZES_PT.feminina[0]);
+
+  const vozFinal = vozCustom && vozesPermitidas.has(vozCustom) ? vozCustom : vozPadrao;
 
   const ttsLang =
     lingua === 'en' ? 'en-US'

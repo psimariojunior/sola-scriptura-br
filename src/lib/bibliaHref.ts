@@ -116,7 +116,7 @@ export function parseRefLivre(raw: string): { livro: string; capitulo: number; v
   const s = raw.trim();
   if (!s) return null;
 
-  const colon = s.match(/^([a-z0-9]+):(\d+)(?::(\d+))?/i);
+  const colon = s.match(/^([a-z0-9]+):(\d+)(?::(\d+)(?:-\d+)?)?/i);
   if (colon) {
     const livro = resolverLivroParam(colon[1]);
     if (livro) {
@@ -128,7 +128,7 @@ export function parseRefLivre(raw: string): { livro: string; capitulo: number; v
     }
   }
 
-  const spaced = s.match(/^(.+?)\s+(\d+)(?::(\d+))?/);
+  const spaced = s.match(/^(.+?)\s+(\d+)(?::(\d+)(?:-\d+)?)?/);
   if (spaced) {
     const livro = resolverLivroParam(spaced[1]);
     if (livro) {

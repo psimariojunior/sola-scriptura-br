@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getUserFromRequest } from '@/lib/session';
 
 export const runtime = 'nodejs';
 
@@ -22,7 +23,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ erro: 'JSON invalido' }, { status: 400 });
   }
 
-  const { fcmToken, userId, platform } = body as { fcmToken?: string; userId?: string; platform?: string };
+  const session = await getUserFromRequest(request);
+  if (!session) {
+    return NextResponse.json({ erro: 'Nao autenticado' }, { status: 401 });
+  }
+
+  const { fcmToken, platform } = body as { fcmToken?: string; platform?: string };
 
   if (!fcmToken) {
     return NextResponse.json({ erro: 'fcmToken obrigatorio' }, { status: 400 });
@@ -39,7 +45,7 @@ export async function POST(request: NextRequest) {
       headers: headersSupabase(),
       body: JSON.stringify({
         fcm_token: fcmToken,
-        user_id: userId || null,
+        user_id: session.id,
         platform: platform || 'unknown',
         ativo: true,
         atualizado_em: new Date().toISOString(),

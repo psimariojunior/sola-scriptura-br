@@ -105,7 +105,7 @@ const FERRAMENTAS: Ferramenta[] = [
     descricao: 'Exploração visual de 29K conexões AT-NT por tipo teológico',
     icone: <GitBranch className="w-6 h-6" />,
     cor: 'tile-cool',
-    href: '/referencias-explorer',
+    href: '/referencias',
     categoria: 'estudo',
   },
   {
@@ -114,7 +114,7 @@ const FERRAMENTAS: Ferramenta[] = [
     descricao: '6 traduções lado a lado com modo foco e interlinear',
     icone: <Languages className="w-6 h-6" />,
     cor: 'tile-cool',
-    href: '/comparar-traducoes',
+    href: '/comparar',
     categoria: 'estudo',
   },
   {

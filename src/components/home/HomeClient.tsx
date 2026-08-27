@@ -99,12 +99,12 @@ export default function HomeClient() {
         </div>
 
         <form onSubmit={enviarBusca} className="mb-12" role="search">
-          <label htmlFor="home-search" className="sr-only">Buscar nas Escrituras</label>
+          <label htmlFor="pesquisa-input" className="sr-only">Buscar nas Escrituras</label>
           <div className="ssb-panel px-4">
             <div className="search-underline border-0">
               <Search className="w-4 h-4 text-muted-foreground shrink-0" />
               <input
-                id="home-search"
+                id="pesquisa-input"
                 value={busca}
                 onChange={(e) => setBusca(e.target.value)}
                 placeholder="João 3:16, Strong G26, fé…"

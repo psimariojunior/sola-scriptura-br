@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getUserFromRequest } from '@/lib/session';
 
 export const runtime = 'nodejs';
 
@@ -30,10 +31,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ erro: 'JSON invalido' }, { status: 400 });
   }
 
-  const { tipo, dados, userId } = body as { tipo?: string; dados?: unknown; userId?: string };
+  const session = await getUserFromRequest(request);
+  if (!session) {
+    return NextResponse.json({ erro: 'Nao autenticado' }, { status: 401 });
+  }
+  const userId = session.id;
 
-  if (!tipo || !dados || !userId) {
-    return NextResponse.json({ erro: 'Campos obrigatorios: tipo, dados, userId' }, { status: 400 });
+  const { tipo, dados } = body as { tipo?: string; dados?: unknown };
+
+  if (!tipo || !dados) {
+    return NextResponse.json({ erro: 'Campos obrigatorios: tipo, dados' }, { status: 400 });
   }
 
   const tiposValidos = ['favoritos', 'notas', 'colecoes', 'flashcards', 'progresso'];
@@ -117,12 +124,17 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
+  const session = await getUserFromRequest(request);
+  if (!session) {
+    return NextResponse.json({ erro: 'Nao autenticado' }, { status: 401 });
+  }
+  const userId = session.id;
+
   const { searchParams } = new URL(request.url);
   const tipo = searchParams.get('tipo');
-  const userId = searchParams.get('userId');
 
-  if (!tipo || !userId) {
-    return NextResponse.json({ erro: 'Campos obrigatorios: tipo, userId' }, { status: 400 });
+  if (!tipo) {
+    return NextResponse.json({ erro: 'Campo obrigatorio: tipo' }, { status: 400 });
   }
 
   const tiposValidos = ['favoritos', 'notas', 'colecoes', 'flashcards', 'progresso'];

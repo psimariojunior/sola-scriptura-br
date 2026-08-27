@@ -40,7 +40,7 @@ const maisGrupos: NavGroup[] = [
   {
     titulo: 'header.biblicalContext',
     links: [
-      { href: '/historia', label: 'header.history', icon: Map },
+      { href: '/historia', label: 'header.history', icon: ScrollText },
       { href: '/cronologia', label: 'header.chronology', icon: History },
       { href: '/personagens', label: 'header.characters', icon: User },
       { href: '/atlas', label: 'header.biblicalAtlas', icon: Map },
@@ -62,7 +62,6 @@ const maisGrupos: NavGroup[] = [
       { href: '/exegese', label: 'header.exegesis', icon: ScrollText },
       { href: '/comparar', label: 'header.compareTranslations', icon: Languages },
       { href: '/comparar-comentarios', label: 'header.commentaries', icon: MessageCircle },
-      { href: '/biblioteca', label: 'header.classics', icon: Library },
     ],
   },
 ];

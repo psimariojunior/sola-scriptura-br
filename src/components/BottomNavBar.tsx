@@ -91,7 +91,7 @@ function BottomNavBarInner() {
         { href: '/devocional', label: t('bottomBar.devotional'), icon: Heart },
         { href: '/flashcards', label: t('bottomBar.flashcards'), icon: BookMarked },
         { href: '/quiz', label: t('bottomBar.quizzes'), icon: HelpCircle },
-        { href: '/social', label: 'Social', icon: Users },
+        { href: '/social', label: t('bottomBar.social', 'Social'), icon: Users },
       ],
     },
   ], [t]);

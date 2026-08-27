@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { chatWithAI } from '@/lib/ai-provider';
 import { construirContextoRAG } from '@/lib/ragGrounding';
-import { AI_CONFIG } from '@/lib/ai-config';
-import { applyRateLimit, withRateLimitHeaders } from '@/lib/api-rate-limit';
-import { getClientIP, rateLimit, RATE_LIMITS, buildRateLimitHeaders } from '@/lib/rate-limit';
+import { applyRateLimit } from '@/lib/api-rate-limit';
 
 export const runtime = 'nodejs';
 
@@ -65,11 +63,12 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       pergunta: consulta,
-      resposta: `## Assistente Biblico\n\nSua pergunta: **${consulta}**\n\nNo momento, os provedores de IA estao indisponiveis. Por favor, tente novamente em alguns instantes.\n\nEnquanto isso, acesse:\n- [Teologia](/teologia) — doutrinas sistematicas\n- [Pesquisa](/pesquisa) — busca avancada\n- [Exegese](/exegese) — analise versiculo a versiculo`,
+      resposta: `## Assistente Bíblico\n\nSua pergunta: **${consulta}**\n\nNo momento, os provedores de IA estão indisponíveis. Por favor, tente novamente em alguns instantes.\n\nEnquanto isso, acesse:\n- [Teologia](/teologia) — doutrinas sistemáticas\n- [Pesquisa](/pesquisa) — busca avançada\n- [Exegese](/exegese) — análise versículo a versículo`,
       fontes: [],
       fonte: 'fallback',
+      indisponivel: true,
       tradicaoTeologica: tradicao || 'geral',
       metadados: { tempoMs: Date.now() - inicio },
-    });
+    }, { status: 503 });
   }
 }

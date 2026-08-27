@@ -7,12 +7,13 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { BookOpen, Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { caminhoInternoSeguro } from '@/lib/caminhoInterno';
 import { Suspense } from 'react';
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get('redirect') || '/conta';
+  const redirectTo = caminhoInternoSeguro(searchParams.get('redirect'), '/conta');
   const { login, loginWithGoogle, loginWithApple } = useAuth();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');

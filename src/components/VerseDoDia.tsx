@@ -80,11 +80,17 @@ export default function VerseDoDia() {
         setTimeout(() => setCopied(false), 2000);
       }
     } catch {
-      const a = document.createElement('a');
-      a.href = `ssb-share://${encodeURIComponent(texto)}`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      try {
+        await navigator.clipboard.writeText(texto);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch {
+        const a = document.createElement('a');
+        a.href = `ssb-share://${encodeURIComponent(texto)}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
     }
   };
 

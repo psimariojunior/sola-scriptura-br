@@ -304,10 +304,10 @@ class AuthService {
     if (!email) return;
 
     try {
-      const res = await fetch(
-        '/api/pagamento/status?email=' + encodeURIComponent(email),
-        { method: 'GET', headers: { 'Content-Type': 'application/json' } },
-      );
+    const res = await fetch('/api/pagamento/status', {
+      method: 'GET',
+      credentials: 'include',
+    });
       if (!res.ok) return;
       const data = await res.json();
       if (data && data.acessoTotal === true) {
@@ -347,20 +347,28 @@ class AuthService {
   }
 
   /**
+   * Restaura o usuário a partir dos cookies HttpOnly (via API).
+   */
+  async hidratarSessao(): Promise<void> {
+    if (typeof window === 'undefined') return;
+    try {
+      const res = await fetch('/api/auth/user', { credentials: 'include', cache: 'no-store' });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (data?.usuario?.email) {
+        this.usuario = aplicarRole(data.usuario);
+        this.notifyListeners();
+      }
+    } catch {
+      /* rede/offline: mantém estado atual */
+    }
+  }
+
+  /**
    * Recarrega sessao a partir dos cookies (util para mudancas em outra aba).
    */
   recarregarSessao(): void {
-    if (typeof window === 'undefined') return;
-    const usuarioStr = getCookie('ssb_usuario');
-    if (usuarioStr) {
-      const parsed = readJSON<Usuario>(usuarioStr);
-      this.usuario = parsed && parsed.email ? aplicarRole(parsed) : null;
-    } else {
-      this.usuario = null;
-      this.accessToken = null;
-      this.refreshTokenValue = null;
-    }
-    this.notifyListeners();
+    void this.hidratarSessao();
   }
 
   /**

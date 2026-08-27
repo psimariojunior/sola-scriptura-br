@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getUserFromRequest } from '@/lib/session';
 
 export const runtime = 'nodejs';
 
@@ -15,7 +16,11 @@ function headersSupabase(): Record<string, string> {
 }
 
 export async function GET(request: NextRequest) {
-  const userId = request.nextUrl.searchParams.get('userId');
+  const session = await getUserFromRequest(request);
+  if (!session) {
+    return NextResponse.json({ erro: 'Nao autenticado' }, { status: 401 });
+  }
+  const userId = session.id;
 
   if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
     return NextResponse.json({ tokens: [], modo: 'degradado' });
@@ -23,9 +28,7 @@ export async function GET(request: NextRequest) {
 
   try {
     let url = `${SUPABASE_URL}/rest/v1/notification_tokens?ativo=eq.true&select=id,user_id,platform,criado_em`;
-    if (userId) {
-      url += `&user_id=eq.${encodeURIComponent(userId)}`;
-    }
+    url += `&user_id=eq.${encodeURIComponent(userId)}`;
     url += '&order=criado_em.desc&limit=100';
 
     const res = await fetch(url, { method: 'GET', headers: headersSupabase() });
@@ -46,6 +49,11 @@ export async function GET(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  const session = await getUserFromRequest(request);
+  if (!session) {
+    return NextResponse.json({ erro: 'Nao autenticado' }, { status: 401 });
+  }
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();
@@ -65,7 +73,7 @@ export async function DELETE(request: NextRequest) {
 
   try {
     const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/notification_tokens?fcm_token=eq.${encodeURIComponent(fcmToken)}`,
+      `${SUPABASE_URL}/rest/v1/notification_tokens?fcm_token=eq.${encodeURIComponent(fcmToken)}&user_id=eq.${encodeURIComponent(session.id)}`,
       {
         method: 'DELETE',
         headers: headersSupabase(),

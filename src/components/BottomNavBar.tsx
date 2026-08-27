@@ -119,6 +119,7 @@ function BottomNavBarInner() {
 
   useEffect(() => {
     setShowMore(false);
+    setHidden(false);
   }, [pathname]);
 
   const toggleMore = useCallback(() => setShowMore((s) => !s), []);

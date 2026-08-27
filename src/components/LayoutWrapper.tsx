@@ -19,7 +19,6 @@ import { initSentry } from '@/lib/sentry';
 import { startAutoSync, syncAll } from '@/lib/supabaseSync';
 import { onOfflineStatusChange } from '@/lib/offlineStorage';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
-import PageTransition from '@/components/PageTransition';
 import { SkipLinks } from '@/components/SkipLinks';
 import { checkAndSendPlanReminder } from '@/lib/pushPlanReminder';
 import '@/lib/i18n';
@@ -102,6 +101,11 @@ function GlobalHotkeys() {
   );
 }
 
+function PageContent({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  return <ErrorBoundary key={pathname}>{children}</ErrorBoundary>;
+}
+
 function PageViewTracker() {
   const pathname = usePathname();
   useEffect(() => {
@@ -168,12 +172,11 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
         <SincronizacaoAcessoTotal />
         <PageViewTracker />
         <TooltipProvider delayDuration={300}>
-          <Suspense fallback={null}>
             <AIProvider>
               <EstudosProvider>
               <TopProgressBar />
               <Toaster />
-              <PageTransition><ErrorBoundary>{children}</ErrorBoundary></PageTransition>
+              <PageContent>{children}</PageContent>
               <BackToTop />
               <FloatingDonateButton />
               <Suspense fallback={null}>
@@ -205,7 +208,6 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               )}
               </EstudosProvider>
             </AIProvider>
-          </Suspense>
         </TooltipProvider>
       </AuthProvider>
     </ThemeProvider>

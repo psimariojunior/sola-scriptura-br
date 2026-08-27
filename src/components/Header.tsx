@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { authService } from '@/lib/auth';
 import { useTranslation } from 'react-i18next';
@@ -82,8 +82,7 @@ function HeaderInner() {
   const { i18n, t } = useTranslation();
   const pathname = usePathname();
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const currentLivro = searchParams.get('livro');
+  const [currentLivro, setCurrentLivro] = useState<string | null>(null);
 
   const navLinks = useMemo(() => navLinksStatic.map(l => ({
     ...l,
@@ -104,6 +103,8 @@ function HeaderInner() {
     localStorage.setItem('ssb_lang', novo);
   }, [idioma, i18n]);
 
+  const [hidden, setHidden] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -112,6 +113,8 @@ function HeaderInner() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    setCurrentLivro(new URLSearchParams(window.location.search).get('livro'));
+    setHidden(false);
     const stats = getStats();
     setXp(stats.totalChapters * 50 + stats.streak * 10);
     setStreak(stats.streak);
@@ -128,7 +131,6 @@ function HeaderInner() {
     return unsub;
   }, []);
 
-  const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const previous = scrollY.getPrevious() ?? 0;

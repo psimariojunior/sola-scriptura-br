@@ -8,7 +8,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { getPageContext, buildContextualQuestion, type PageContext } from '@/lib/ai-context';
 
 export interface AIMessage {
@@ -81,13 +81,17 @@ export function AIProvider({ children }: AIProviderProps) {
   const [messages, setMessages] = useState<AIMessage[]>([]);
   const [isStreaming, setIsStreaming] = useState(false);
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const [queryString, setQueryString] = useState('');
   const abortRef = useRef<AbortController | null>(null);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    setQueryString(window.location.search.replace(/^\?/, ''));
+  }, [pathname]);
+
   const pageContext = useMemo(() => {
-    const sp = searchParams?.toString() ?? null;
-    return getPageContext(pathname || '/', sp);
-  }, [pathname, searchParams]);
+    return getPageContext(pathname || '/', queryString || null);
+  }, [pathname, queryString]);
 
   useEffect(() => {
     setMessages(loadMessages());

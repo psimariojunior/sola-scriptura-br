@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useRef, ReactNode } from 'react';
+import { motion } from 'framer-motion';
+import type { ReactNode } from 'react';
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -11,26 +11,18 @@ interface ScrollRevealProps {
   once?: boolean;
 }
 
-const directionMap = {
-  up: { y: 30, x: 0 },
-  down: { y: -30, x: 0 },
-  left: { x: 30, y: 0 },
-  right: { x: -30, y: 0 },
-  scale: { scale: 0.92, x: 0, y: 0 },
-};
-
-export default function ScrollReveal({ children, delay = 0, direction = 'up', className = '', once = true }: ScrollRevealProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once, margin: '100px' });
-  const offset = directionMap[direction];
-
+/**
+ * Entrada suave sem esconder o conteúdo. O estado inicial em opacity 0
+ * + IntersectionObserver falhava na navegação client-side (tela em branco
+ * até o refresh).
+ */
+export default function ScrollReveal({ children, delay = 0, className = '' }: ScrollRevealProps) {
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, ...offset }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0, scale: 1 } : { opacity: 0, ...offset }}
+      initial={{ opacity: 1, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.6,
+        duration: 0.35,
         delay,
         ease: [0.25, 0.46, 0.45, 0.94],
       }}

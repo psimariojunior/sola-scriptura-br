@@ -12,6 +12,7 @@ import { toggleFavorito } from '@/lib/estudos';
 import { setMarcador, removeMarcador, getMarcador, CORES, type CorMarcador } from '@/lib/marcadores';
 import { MobileVersePanel } from '@/components/MobileVersePanel';
 import { ClickableVerse } from './ClickableVerse';
+import { VerseFocusOverlay } from './VerseFocusOverlay';
 import { compartilharVersiculo } from '@/lib/compartilharVersiculo';
 import { EstudoDoVerso } from './EstudoDoVerso';
 

@@ -8,6 +8,7 @@ import { toggleFavorito } from '@/lib/estudos';
 import { CORES, setMarcador, removeMarcador, getMarcador, type CorMarcador } from '@/lib/marcadores';
 import { compartilharVersiculo } from '@/lib/compartilharVersiculo';
 import { AudioPronunciation } from '@/components/AudioPronunciation';
+import type { RecursoVersiculo } from '@/data/biblia/versiculoRecursos';
 
 const VerseImageCreator = lazy(() => import('@/components/VerseImageCreator').then(m => ({ default: m.VerseImageCreator })));
 

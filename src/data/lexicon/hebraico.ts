@@ -9,7 +9,6 @@ export interface PalavraHebraica {
   frequencia?: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const _hebraicoData = [
   { strong: 'H1', palavra: 'אב', transliteracao: 'ʼâb', definicao: "pai", morfologia: 'awb', pronuncia: 'AWB', frequencia: 1213 },
   { strong: 'H2', palavra: 'אב', transliteracao: 'ʼab', definicao: "father", morfologia: 'ab', pronuncia: 'AB', frequencia: 9 },

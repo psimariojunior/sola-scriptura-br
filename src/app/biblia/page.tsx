@@ -80,7 +80,7 @@ export default function BibliaPage() {
   const [painelVersiculoAberto, setPainelVersiculoAberto] = useState(false);
   const [painelTabInicial, setPainelTabInicial] = useState<string | undefined>(undefined);
   const openStudyPanel = useCallback(() => {
-    setPainelTabInicial('comentarios');
+    setPainelTabInicial('estudo');
     setPainelVersiculoAberto(true);
   }, []);
   const verse = UseBibliaVerse({

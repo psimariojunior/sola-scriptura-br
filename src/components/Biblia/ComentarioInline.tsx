@@ -25,11 +25,12 @@ interface ComentarioInlineProps {
   capitulo: number;
   verso: number;
   className?: string;
+  defaultExpanded?: boolean;
 }
 
-function ComentarioConteudo({ livro, capitulo, verso }: { livro: string; capitulo: number; verso: number }) {
+function ComentarioConteudo({ livro, capitulo, verso, defaultExpanded }: { livro: string; capitulo: number; verso: number; defaultExpanded?: boolean }) {
   const [comentarios, setComentarios] = useState<Comentario[]>([]);
-  const [expandido, setExpandido] = useState(false);
+  const [expandido, setExpandido] = useState(!!defaultExpanded);
   const [carregado, setCarregado] = useState(false);
 
   useEffect(() => {
@@ -44,14 +45,18 @@ function ComentarioConteudo({ livro, capitulo, verso }: { livro: string; capitul
     return () => { cancelado = true; };
   }, [livro, capitulo, verso]);
 
+  useEffect(() => {
+    setExpandido(!!defaultExpanded);
+  }, [defaultExpanded]);
+
   if (!carregado || comentarios.length === 0) return null;
 
-  const primeiros = comentarios.slice(0, 2);
-  const resto = comentarios.slice(2);
+  const principal = comentarios[0];
 
   return (
-    <div className="mt-2 border-t border-[var(--brand-default)]/10 pt-2">
+    <div className="mt-2 border-t border-[var(--brand-default)]/10 pt-2 first:border-t-0 first:mt-0 first:pt-0">
       <button
+        type="button"
         onClick={(e) => {
           e.stopPropagation();
           setExpandido(!expandido);
@@ -67,6 +72,13 @@ function ComentarioConteudo({ livro, capitulo, verso }: { livro: string; capitul
         {expandido ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
       </button>
 
+      {!expandido && principal && (
+        <p className="mt-2 text-[13px] leading-relaxed text-[var(--content-secondary)] font-serif-body line-clamp-3">
+          <span className="font-semibold text-[var(--brand-default)]">{principal.autor}: </span>
+          {principal.texto}
+        </p>
+      )}
+
       <AnimatePresence>
         {expandido && (
           <motion.div
@@ -78,8 +90,8 @@ function ComentarioConteudo({ livro, capitulo, verso }: { livro: string; capitul
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mt-2 space-y-2">
-              {(expandido ? comentarios : primeiros).map((c, i) => (
-                <ComentarioCard key={`${c.autor}-${i}`} comentario={c} truncado={!expandido && i >= 2} />
+              {comentarios.map((c, i) => (
+                <ComentarioCard key={`${c.autor}-${i}`} comentario={c} />
               ))}
             </div>
           </motion.div>
@@ -135,11 +147,11 @@ function ComentarioCard({ comentario, truncado }: { comentario: Comentario; trun
   );
 }
 
-export function ComentarioInline({ livro, capitulo, verso, className }: ComentarioInlineProps) {
+export function ComentarioInline({ livro, capitulo, verso, className, defaultExpanded }: ComentarioInlineProps) {
   return (
     <div className={cn('relative', className)} onClick={(e) => e.stopPropagation()}>
       <Suspense fallback={<ComentarioInlineFallback />}>
-        <ComentarioConteudo livro={livro} capitulo={capitulo} verso={verso} />
+        <ComentarioConteudo livro={livro} capitulo={capitulo} verso={verso} defaultExpanded={defaultExpanded} />
       </Suspense>
     </div>
   );

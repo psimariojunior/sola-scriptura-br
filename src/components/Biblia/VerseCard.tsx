@@ -13,6 +13,7 @@ import { setMarcador, removeMarcador, getMarcador, CORES, type CorMarcador } fro
 import { MobileVersePanel } from '@/components/MobileVersePanel';
 import { ClickableVerse } from './ClickableVerse';
 import { VerseFocusOverlay } from './VerseFocusOverlay';
+import { EstudoDoVerso } from './EstudoDoVerso';
 
 export interface VerseCardProps {
   numero: number;
@@ -59,6 +60,7 @@ export interface VerseCardProps {
   isCurrentAudioVerse?: boolean;
   hasResources?: boolean;
   onCorMarcaChange?: () => void;
+  studyMode?: boolean;
 }
 
 export const VerseCard = memo(function VerseCard({
@@ -102,6 +104,7 @@ export const VerseCard = memo(function VerseCard({
   isCurrentAudioVerse = false,
   hasResources: hasResourcesProp = false,
   onCorMarcaChange,
+  studyMode = false,
 }: VerseCardProps) {
   const ref = `${livroNome} ${capitulo}:${numero}`;
   const articleRef = useRef<HTMLDivElement>(null);
@@ -253,6 +256,8 @@ export const VerseCard = memo(function VerseCard({
             : isPlaying || isHighlighted
             ? 'bg-primary/[0.04]'
             : 'hover:bg-primary/[0.03]',
+          studyMode && 'border-l-2 border-l-[var(--brand-default)]/25 pl-1 -ml-1',
+          studyMode && isSelected && 'border-l-[var(--brand-default)]',
           corMarca && corBgMap[corMarca]
         )}
       >
@@ -289,8 +294,19 @@ export const VerseCard = memo(function VerseCard({
               </button>
             )}
 
-            {/* Subtle resource indicator */}
-            {hasResourcesProp && (
+            {studyMode && (isSelected || hasResourcesProp) && (
+              <EstudoDoVerso
+                livro={livroAbreviacao}
+                capitulo={capitulo}
+                verso={numero}
+                texto={texto}
+                fontSize={fontSize}
+                expanded={isSelected}
+                onOpenFull={isSelected ? () => onAbrirPainel?.('estudo') : undefined}
+              />
+            )}
+
+            {!studyMode && hasResourcesProp && (
               <span
                 className="inline-block mt-1 w-1 h-1 rounded-full bg-primary/50"
                 title="Recursos disponíveis"

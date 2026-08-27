@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { ChapterHeader } from './ChapterHeader';
 import { VerseListItem } from './VerseListItem';
 import { PericopeHeading } from './PericopeHeading';
+import { EstudoDoVerso } from './EstudoDoVerso';
 import { ProgressBar } from './ProgressBar';
 import { ComparisonTable } from './ComparisonTable';
 import { SyncedParallelColumns } from './SyncedParallelColumns';
@@ -251,6 +252,17 @@ export function BibleVerseList({
                       )}
                       {v.texto}{' '}
                     </span>
+                    {isModoEstudo && isSelected && (
+                      <EstudoDoVerso
+                        livro={nav.livro.abreviacao}
+                        capitulo={nav.capituloIdx + 1}
+                        verso={v.numero}
+                        texto={v.texto}
+                        fontSize={ui.fontSize}
+                        expanded
+                        onOpenFull={() => { setPainelTabInicial('estudo'); setPainelVersiculoAberto(true); }}
+                      />
+                    )}
                     </Fragment>
                   );
                 })}
@@ -315,6 +327,7 @@ export function BibleVerseList({
                       }}
                       onAbrirPainel={(tab?: string) => { setPainelTabInicial(tab); setPainelVersiculoAberto(true); }}
                       painelVersiculoAberto={painelVersiculoAberto}
+                      studyMode={isModoEstudo}
                       />
                     {estudoAbertoNeste && (
                       <Suspense fallback={<PanelFallback />}>

@@ -2241,6 +2241,9 @@ textarea:focus-visible,
 .reading-mode-estudo .bible-study-inline {
   display: block;
 }
+.reading-mode-estudo .bible-verse-row {
+  margin-bottom: 0.35rem;
+}
 
 /* Chapter study collapsible */
 .chapter-study-panel {

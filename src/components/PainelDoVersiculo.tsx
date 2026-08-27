@@ -257,7 +257,7 @@ function TabComentarios({ recursos, busca = '' }: { recursos: RecursoVersiculo[]
     );
   }
 
-  const [expandido, setExpandido] = useState<number | null>(null);
+  const [expandido, setExpandido] = useState<number | null>(0);
 
   const tipoLabels: Record<string, { label: string; color: string }> = {
     teologico: { label: 'Teológico', color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300' },
@@ -313,6 +313,17 @@ function TabComentarios({ recursos, busca = '' }: { recursos: RecursoVersiculo[]
 }
 
 function TabEstudo({ recursos, busca = '', livro, capitulo, versiculo }: { recursos: RecursoVersiculo[]; busca?: string; livro?: string; capitulo?: number; versiculo?: number }) {
+  const comentarios = recursos
+    .filter((r) => r.tipo === 'comentario')
+    .map((r) => r.dados as RecursoComentario);
+  const lexico = recursos
+    .filter((r) => r.tipo === 'lexico')
+    .map((r) => r.dados as RecursoLexico);
+  const cross = recursos
+    .filter((r) => r.tipo === 'cross-ref')
+    .map((r) => r.dados as RecursoCrossRef);
+  const refs = cross[0]?.refs?.slice(0, 8) ?? [];
+
   let estudos = recursos
     .filter((r) => r.tipo === 'estudo')
     .map((r) => r.dados as RecursoEstudo);
@@ -332,7 +343,42 @@ function TabEstudo({ recursos, busca = '', livro, capitulo, versiculo }: { recur
 
   return (
     <div className="space-y-4">
-      {/* Link para estudo completo */}
+      {comentarios[0] && (
+        <section className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3">
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-400 mb-1">Comentário</p>
+          <p className="text-[11px] font-semibold text-foreground/70 mb-1">{comentarios[0].autor}</p>
+          <p className="text-sm leading-relaxed font-serif-body text-foreground/85">{comentarios[0].texto}</p>
+          {comentarios.length > 1 && (
+            <p className="mt-2 text-[11px] text-muted-foreground">+{comentarios.length - 1} comentário{comentarios.length > 2 ? 's' : ''} na aba Comentários</p>
+          )}
+        </section>
+      )}
+
+      {lexico.length > 0 && (
+        <section>
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">Palavras originais</p>
+          <div className="flex flex-wrap gap-1.5">
+            {lexico.slice(0, 8).map((lex) => (
+              <span key={lex.strong} className="text-[11px] px-2 py-1 rounded-lg border border-border/60 bg-background">
+                <span className={lex.idioma === 'hebraico' ? 'font-hebrew' : 'font-greek'}>{lex.palavra}</span>
+                <span className="text-muted-foreground"> · {lex.transliteracao}</span>
+              </span>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {refs.length > 0 && (
+        <section>
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">Referências cruzadas</p>
+          <div className="flex flex-wrap gap-1.5">
+            {refs.map((ref) => (
+              <Badge key={ref} variant="outline" className="text-[11px] font-normal">{ref}</Badge>
+            ))}
+          </div>
+        </section>
+      )}
+
       {estudoLink && (
         <a
           href={estudoLink}
@@ -346,11 +392,11 @@ function TabEstudo({ recursos, busca = '', livro, capitulo, versiculo }: { recur
         </a>
       )}
 
-      {estudos.length === 0 ? (
+      {estudos.length === 0 && !comentarios[0] && refs.length === 0 && lexico.length === 0 ? (
         <p className="text-sm text-muted-foreground text-center py-8">
-          {busca ? 'Nenhum estudo encontrado para esta busca.' : 'Nenhum estudo multiteológico disponível para este versículo.'}
+          {busca ? 'Nenhum estudo encontrado para esta busca.' : 'Toque em Comentários, Léxico ou Referências para aprofundar este versículo.'}
         </p>
-      ) : (
+      ) : estudos.length > 0 ? (
         <div className="space-y-4">
           {estudos.map((e, i) => (
             <div key={i} className="glass-card rounded-lg p-4 border border-border/50">
@@ -380,7 +426,7 @@ function TabEstudo({ recursos, busca = '', livro, capitulo, versiculo }: { recur
             </div>
           ))}
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
@@ -420,7 +466,7 @@ function TabNotas({ recursos }: { recursos: RecursoVersiculo[] }) {
   );
 }
 
-function TabCrossRefs({ recursos, onVersiculoClick, busca = '' }: { recursos: RecursoVersiculo[]; onVersiculoClick?: (livro: string, cap: number, ver: number) => void; busca?: string }) {
+function TabCrossRefs({ recursos, livro, capitulo, versiculo, onVersiculoClick, busca = '' }: { recursos: RecursoVersiculo[]; livro: string; capitulo: number; versiculo: number; onVersiculoClick?: (livro: string, cap: number, ver: number) => void; busca?: string }) {
   const [typedRefs, setTypedRefs] = useState<Array<{ from: string; to: string; type: string; description?: string }>>([]);
   const [expandedRef, setExpandedRef] = useState<string | null>(null);
   const [verseTexts, setVerseTexts] = useState<Record<string, string>>({});
@@ -434,13 +480,19 @@ function TabCrossRefs({ recursos, onVersiculoClick, busca = '' }: { recursos: Re
 
   // Load typed cross-references with descriptions
   useEffect(() => {
+    let cancelado = false;
     import('@/data/biblia/crossReferences').then(mod => {
-      const currentKey = `${recursos[0] ? 'current' : ''}`;
-      void currentKey;
-      // We'll use the typed data if available
-      setTypedRefs([]);
+      if (cancelado) return;
+      const list = mod.getCrossReferencesByVerse(livro, capitulo, versiculo);
+      setTypedRefs(list.map((r) => ({
+        from: r.from,
+        to: r.to,
+        type: r.type,
+        description: r.description,
+      })));
     }).catch(() => {});
-  }, [recursos]);
+    return () => { cancelado = true; };
+  }, [livro, capitulo, versiculo]);
 
   function parseRef(ref: string): { livro: string; cap: number; ver: number } | null {
     const match = ref.trim().match(/^(\d*\w+)\s*(\d+):(\d+)$/);
@@ -869,7 +921,7 @@ export default function PainelDoVersiculo({
 }: PainelDoVersiculoProps) {
   const [recursos, setRecursos] = useState<RecursoVersiculo[]>([]);
   const [erro, setErro] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState(tabInicial || 'comentarios');
+  const [activeTab, setActiveTab] = useState(tabInicial || 'estudo');
   const [busca, setBusca] = useState('');
   const [isMobile, setIsMobile] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
@@ -903,7 +955,7 @@ export default function PainelDoVersiculo({
           setErro('Erro ao carregar recursos. Tente novamente.');
         }
       });
-    setActiveTab(tabInicial || 'comentarios');
+    setActiveTab(tabInicial || 'estudo');
     return () => {
       abortController.abort();
     };
@@ -1087,7 +1139,7 @@ export default function PainelDoVersiculo({
             </TabsContent>
             <TabsContent value="cross-refs" className="mt-0">
               <Suspense fallback={<GenericSkeleton />}>
-                <TabCrossRefs recursos={recursos} onVersiculoClick={onVersiculoClick} busca={busca} />
+                <TabCrossRefs recursos={recursos} livro={livro} capitulo={capitulo} versiculo={versiculo} onVersiculoClick={onVersiculoClick} busca={busca} />
               </Suspense>
             </TabsContent>
             <TabsContent value="personagens" className="mt-0">

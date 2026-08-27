@@ -27,7 +27,7 @@ interface BibleToolbarProps {
     stop: () => void;
   };
   passagemDramatica: { titulo: string; subtitulo: string } | undefined;
-  verse: Pick<UseBibliaVerseReturn, 'notaAtiva' | 'criarNota' | 'setNotaAtiva' | 'setAnotacaoTexto'>;
+  verse: Pick<UseBibliaVerseReturn, 'notaAtiva' | 'criarNota' | 'setNotaAtiva' | 'setAnotacaoTexto' | 'handleSelectFromList' | 'setVersiculoSelecionado' | 'versiculoSelecionado'>;
   onShowDownloadManager: (v: boolean) => void;
   onShowHotkeys: () => void;
 }
@@ -45,17 +45,39 @@ export function BibleToolbar({
       : ui.modoLeitura === 'estudo' || ui.modoLeitura === 'split' ? 'estudo'
         : 'leitura';
 
+  const leituraExibicaoRef = useRef(ui.modoExibicao);
+
   const handleReadingModeChange = (mode: ReadingMode) => {
     ui.setShowInterlinear(false);
     if (mode === 'leitura') {
       ui.setModoLeitura('foco');
+      ui.setModoExibicao(leituraExibicaoRef.current);
       nav.setViewMode('single');
       panels.setSidePanelWidth('collapsed');
     } else if (mode === 'estudo') {
+      leituraExibicaoRef.current = ui.modoExibicao;
       ui.setModoLeitura('estudo');
+      ui.setModoExibicao('versiculo');
+      ui.setEstudoCapituloAberto(true);
       nav.setViewMode('single');
       panels.setSidePanelWidth('half');
       panels.setSidePanelTab('comentarios');
+      if (!verse.versiculoSelecionado && nav.data[0]?.versiculos?.[0]) {
+        const v = nav.data[0].versiculos[0];
+        if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
+          verse.handleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, nav.data[0].traducao, v.texto);
+        } else {
+          verse.setVersiculoSelecionado({
+            livro: nav.livro.abreviacao,
+            livroNome: nav.livro.nome,
+            livroAbreviacao: nav.livro.abreviacao,
+            capitulo: nav.capituloIdx + 1,
+            versiculo: v.numero,
+            traducao: nav.data[0].traducao,
+            texto: v.texto,
+          });
+        }
+      }
     } else {
       ui.setModoLeitura('comparacao');
       nav.setViewMode('parallel');

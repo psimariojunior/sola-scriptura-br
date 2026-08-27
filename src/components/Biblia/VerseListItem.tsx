@@ -51,6 +51,7 @@ interface VerseListItemProps {
   onAbrirPainel?: (tab?: string) => void;
   onDeselect?: () => void;
   painelVersiculoAberto?: boolean;
+  studyMode?: boolean;
 }
 
 export const VerseListItem = memo(function VerseListItem({
@@ -95,6 +96,7 @@ export const VerseListItem = memo(function VerseListItem({
   onAbrirPainel,
   onDeselect,
   painelVersiculoAberto: _painelVersiculoAberto = false,
+  studyMode = false,
 }: VerseListItemProps) {
   const verseKey = `${livroAbreviacao}:${capitulo}:${numero}:${traducao}`;
   const marcaMarcador = getMarcador(livroAbreviacao, capitulo, numero, traducao);
@@ -171,6 +173,7 @@ export const VerseListItem = memo(function VerseListItem({
       onAbrirPainel={onAbrirPainel}
       onDeselect={onDeselect}
       hideMobileActions
+      studyMode={studyMode}
     />
   );
 });

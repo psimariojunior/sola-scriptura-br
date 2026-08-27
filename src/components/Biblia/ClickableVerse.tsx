@@ -3,6 +3,8 @@
 import { memo, useCallback, useState, useRef, useMemo, useEffect } from 'react';
 import { getStrongByNumber, getTestamentoByLivro, type LexiconResult } from '@/lib/lexiconSearch';
 import type { PalavraAlinhada } from '@/lib/wordAlignment';
+import type { TrechoMarcado } from '@/lib/marcadores';
+import { cn } from '@/lib/utils';
 import { LexiconPopup } from './LexiconPopup';
 
 interface ClickableVerseProps {
@@ -12,6 +14,25 @@ interface ClickableVerseProps {
   numero?: number;
   className?: string;
   style?: React.CSSProperties;
+  trechos?: TrechoMarcado[];
+}
+
+const MARK_CLASS: Record<string, string> = {
+  yellow: 'bible-mark bible-mark-yellow',
+  green: 'bible-mark bible-mark-green',
+  blue: 'bible-mark bible-mark-blue',
+  pink: 'bible-mark bible-mark-pink',
+  orange: 'bible-mark bible-mark-orange',
+  purple: 'bible-mark bible-mark-purple',
+};
+
+function corDoOffset(offset: number, trechos?: TrechoMarcado[]): string | null {
+  if (!trechos?.length) return null;
+  for (let i = trechos.length - 1; i >= 0; i--) {
+    const t = trechos[i];
+    if (offset >= t.inicio && offset < t.fim) return t.cor;
+  }
+  return null;
 }
 
 function limparPalavra(token: string): string {
@@ -29,6 +50,7 @@ export const ClickableVerse = memo(function ClickableVerse({
   numero,
   className = '',
   style,
+  trechos,
 }: ClickableVerseProps) {
   const [popup, setPopup] = useState<{
     results: LexiconResult[];
@@ -60,6 +82,7 @@ export const ClickableVerse = memo(function ClickableVerse({
   const handleWordClick = useCallback(
     async (word: string, e: React.MouseEvent, wordIndex: number) => {
       e.stopPropagation();
+      if (window.getSelection()?.toString()) return;
       const cleaned = limparPalavra(word);
       if (!ehClicavel(cleaned)) return;
 
@@ -139,18 +162,22 @@ export const ClickableVerse = memo(function ClickableVerse({
       {ptWords.map((token, i) => {
         const cleaned = limparPalavra(token);
         const clickable = ehClicavel(cleaned);
+        let charPos = 0;
+        for (let j = 0; j < i; j++) charPos += ptWords[j].length + 1;
+        const mark = corDoOffset(charPos, trechos);
+        const inner = clickable ? (
+          <span
+            onClick={(e) => handleWordClick(token, e, i)}
+            className="bible-word cursor-pointer rounded-sm hover:text-primary transition-colors duration-150"
+          >
+            {token}
+          </span>
+        ) : (
+          token
+        );
         return (
           <span key={`${i}-${token.slice(0, 8)}`}>
-            {clickable ? (
-              <span
-                onClick={(e) => handleWordClick(token, e, i)}
-                className="bible-word cursor-pointer rounded-sm hover:text-primary transition-colors duration-150"
-              >
-                {token}
-              </span>
-            ) : (
-              token
-            )}
+            {mark ? <mark className={cn(MARK_CLASS[mark])}>{inner}</mark> : inner}
             {i < ptWords.length - 1 ? ' ' : null}
           </span>
         );

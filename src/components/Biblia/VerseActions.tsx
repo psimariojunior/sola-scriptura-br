@@ -15,7 +15,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { CORES, setMarcador, removeMarcador, getMarcador, type CorMarcador } from '@/lib/marcadores';
+import { CORES, setMarcador, removeMarcador, getMarcador, COR_SIGNIFICADO, type CorMarcador } from '@/lib/marcadores';
 import { toggleFavorito, obterMarca } from '@/lib/estudos';
 import { temComentario } from '@/data/comentarios-index';
 import VersiculoAudioNatural from '@/components/VersiculoAudioNatural';
@@ -203,8 +203,8 @@ function VerseActionsInner({
                   corMap[cor],
                   ativa && 'ring-2 ring-offset-1 ring-[var(--brand-default)]'
                 )}
-                title={cor}
-                aria-label={`Cor ${cor}`}
+                title={`${COR_SIGNIFICADO[cor].label} — ${COR_SIGNIFICADO[cor].uso}`}
+                aria-label={`Cor ${COR_SIGNIFICADO[cor].label}`}
               />
             );
           })}

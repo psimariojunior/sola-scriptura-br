@@ -26,6 +26,7 @@ export interface VerseImageCreatorProps {
 }
 
 export type TemplateId = 'classico' | 'minimalista' | 'pergaminho' | 'gradient' | 'natureza';
+export type FormatoImagem = 'quadrado' | 'stories';
 
 export interface ImageTemplate {
   id: TemplateId;
@@ -53,7 +54,6 @@ export interface DrawOptions {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const CANVAS_W = 1080;
-const CANVAS_H = 1080;
 const MARGIN = 100;
 const MAX_TEXT_W = CANVAS_W - MARGIN * 2;
 
@@ -660,11 +660,12 @@ function drawVerseImage(
   canvas: HTMLCanvasElement,
   opts: DrawOptions,
   template: ImageTemplate,
+  formato: FormatoImagem = 'quadrado',
 ) {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
-  canvas.width = CANVAS_W;
-  canvas.height = CANVAS_H;
+  canvas.width = 1080;
+  canvas.height = formato === 'stories' ? 1920 : 1080;
   template.draw(ctx, canvas, opts);
 }
 
@@ -680,6 +681,7 @@ export function VerseImageCreator({ texto, referencia, onClose }: VerseImageCrea
   const [bgColorIdx, setBgColorIdx] = useState(0);
   const [bgOpacity, setBgOpacity] = useState(100);
   const [showControls, setShowControls] = useState(true);
+  const [formato, setFormato] = useState<FormatoImagem>('quadrado');
   const [busy, setBusy] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
 
@@ -708,9 +710,9 @@ export function VerseImageCreator({ texto, referencia, onClose }: VerseImageCrea
         showLogo,
         bgColor,
         bgOpacity,
-      }, template);
+      }, template, formato);
     }
-  }, [texto, referencia, fontSize, showRef, showLogo, bgColor, bgOpacity, template]);
+  }, [texto, referencia, fontSize, showRef, showLogo, bgColor, bgOpacity, template, formato]);
 
   useEffect(() => {
     redraw();
@@ -793,7 +795,12 @@ export function VerseImageCreator({ texto, referencia, onClose }: VerseImageCrea
       {/* ── Canvas preview ── */}
       <div className="flex justify-center">
         <div
-          className="relative w-full max-w-[340px] aspect-square rounded-xl overflow-hidden shadow-xl ring-1 ring-[var(--border)]/30"
+          className={cn(
+            'relative rounded-xl overflow-hidden shadow-xl ring-1 ring-[var(--border)]/30',
+            formato === 'stories'
+              ? 'w-[200px] sm:w-[220px] aspect-[9/16]'
+              : 'w-full max-w-[340px] aspect-square'
+          )}
         >
           <canvas
             ref={canvasRef}
@@ -802,6 +809,34 @@ export function VerseImageCreator({ texto, referencia, onClose }: VerseImageCrea
             aria-label={`Imagem do versiculo: ${referencia}`}
           />
         </div>
+      </div>
+
+      {/* ── Format ── */}
+      <div className="grid grid-cols-2 gap-2">
+        <button
+          type="button"
+          onClick={() => setFormato('quadrado')}
+          className={cn(
+            'px-3 py-2 rounded-xl text-xs font-semibold border transition-all',
+            formato === 'quadrado'
+              ? 'border-[var(--brand-default)] bg-[var(--brand-subtle)] text-[var(--brand-default)]'
+              : 'border-[var(--border)]/60 text-[var(--content-muted)]'
+          )}
+        >
+          Quadrado · feed
+        </button>
+        <button
+          type="button"
+          onClick={() => setFormato('stories')}
+          className={cn(
+            'px-3 py-2 rounded-xl text-xs font-semibold border transition-all',
+            formato === 'stories'
+              ? 'border-[var(--brand-default)] bg-[var(--brand-subtle)] text-[var(--brand-default)]'
+              : 'border-[var(--border)]/60 text-[var(--content-muted)]'
+          )}
+        >
+          Stories · 9:16
+        </button>
       </div>
 
       {/* ── Template selector ── */}

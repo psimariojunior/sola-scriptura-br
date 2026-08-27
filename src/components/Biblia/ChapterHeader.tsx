@@ -54,7 +54,7 @@ export function ChapterHeader({
       </div>
 
       <p className="mt-4 max-w-md mx-auto text-[12px] sm:text-[13px] leading-relaxed text-[var(--content-muted)]">
-        Toque em um versículo para abrir o estudo: comentário clássico, palavra original e referências cruzadas.
+        Toque no versículo para estudar. Selecione um trecho para marcar com cor ou criar uma imagem.
       </p>
 
       <div className="mt-5 max-w-xs mx-auto px-2">

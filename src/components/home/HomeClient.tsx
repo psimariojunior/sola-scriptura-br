@@ -125,7 +125,7 @@ export default function HomeClient() {
         <ol className="grid sm:grid-cols-3 gap-4 mb-12 text-left" aria-label="Como começar">
           {[
             { n: '1', t: 'Abra um capítulo', d: 'Comece pela Bíblia. O texto aparece versículo a versículo, fácil de acompanhar.' },
-            { n: '2', t: 'Toque no versículo', d: 'Abre o estudo na hora: o que o texto diz, no original e nas referências.' },
+            { n: '2', t: 'Toque ou selecione', d: 'Toque abre o estudo. Selecione um trecho para marcar com cor ou gerar imagem.' },
             { n: '3', t: 'Leia com profundidade', d: 'Comentários clássicos, léxico Strong e clássicos da fé — tudo livre.' },
           ].map((passo) => (
             <li key={passo.n} className="ssb-panel p-4">
@@ -258,6 +258,7 @@ export default function HomeClient() {
           <Link href="/favoritos" className="hover:text-primary inline-flex items-center gap-1.5">
             <Heart className="w-3.5 h-3.5" /> Favoritos
           </Link>
+          <Link href="/marcacoes" className="hover:text-primary">Marcações</Link>
           <Link href="/notas" className="hover:text-primary">Notas</Link>
           <Link href="/colecoes" className="hover:text-primary inline-flex items-center gap-1.5">
             <BookMarked className="w-3.5 h-3.5" /> Coleções

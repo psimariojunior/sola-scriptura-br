@@ -7,14 +7,17 @@ import type { useVerseAudio } from '@/hooks/useVerseAudio';
 import type { useFlashcards } from '@/hooks/useFlashcards';
 import { VerseActions } from './VerseActions';
 import { VerseComments, CommentBadge } from './VerseComments';
-import { Heart, Palette, Copy, StickyNote, Languages, MessageSquare, Share2, Sparkles, ImageIcon, Users, BookOpen, Maximize2 } from 'lucide-react';
+import { Heart, Copy, Share2, ImageIcon, BookOpen, Maximize2 } from 'lucide-react';
 import { toggleFavorito } from '@/lib/estudos';
-import { setMarcador, removeMarcador, getMarcador, CORES, type CorMarcador } from '@/lib/marcadores';
+import { setMarcador, removeMarcador, getMarcador, CORES, COR_SIGNIFICADO, type CorMarcador } from '@/lib/marcadores';
+import { useMarcaVerso } from '@/hooks/useMarcadores';
 import { MobileVersePanel } from '@/components/MobileVersePanel';
 import { ClickableVerse } from './ClickableVerse';
+import { TextSelectionBar } from './TextSelectionBar';
 import { VerseFocusOverlay } from './VerseFocusOverlay';
 import { compartilharVersiculo } from '@/lib/compartilharVersiculo';
 import { EstudoDoVerso } from './EstudoDoVerso';
+import { ShareVerseImageModal } from '@/components/ShareVerseImageModal';
 
 export interface VerseCardProps {
   numero: number;
@@ -95,7 +98,7 @@ export const VerseCard = memo(function VerseCard({
   onToggleEstudo,
   copyVerse,
   onApresentar,
-  onCompartilharImagem,
+  onCompartilharImagem: _onCompartilharImagem,
   onAprofundar,
   onCompartilharSala,
   onAbrirPainel,
@@ -115,11 +118,16 @@ export const VerseCard = memo(function VerseCard({
   const [showMobilePanel, setShowMobilePanel] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showFocusOverlay, setShowFocusOverlay] = useState(false);
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [textoImagem, setTextoImagem] = useState<string | null>(null);
   const [commentsRefreshKey, setCommentsRefreshKey] = useState(0);
+  const textoRef = useRef<HTMLDivElement>(null);
+  const marcaLive = useMarcaVerso(livroAbreviacao, capitulo, numero, traducao);
   const mobileColorRef = useRef<HTMLDivElement>(null);
   const colorRef = useRef<HTMLDivElement>(null);
   const longPressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const didLongPressRef = useRef(false);
+  const pressStartRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     if ((isCurrentAudioVerse || isFocused) && articleRef.current) {
@@ -171,12 +179,24 @@ export const VerseCard = memo(function VerseCard({
     };
   }, [showLongPressColor]);
 
-  const handlePointerDown = useCallback(() => {
+  const handlePointerDown = useCallback((e: React.PointerEvent) => {
     didLongPressRef.current = false;
+    pressStartRef.current = { x: e.clientX, y: e.clientY };
     longPressTimerRef.current = setTimeout(() => {
       didLongPressRef.current = true;
       setShowLongPressColor(true);
     }, 500);
+  }, []);
+
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    const start = pressStartRef.current;
+    if (!start || !longPressTimerRef.current) return;
+    const dx = e.clientX - start.x;
+    const dy = e.clientY - start.y;
+    if (dx * dx + dy * dy > 64) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
   }, []);
 
   const handlePointerUp = useCallback(() => {
@@ -207,7 +227,7 @@ export const VerseCard = memo(function VerseCard({
     };
   }, []);
 
-  const corAtual = getMarcador(livroAbreviacao, capitulo, numero, traducao)?.cor ?? null;
+  const corAtual = marcaLive?.cor ?? getMarcador(livroAbreviacao, capitulo, numero, traducao)?.cor ?? null;
   const corBgMapInline: Record<CorMarcador, string> = {
     yellow: 'bg-yellow-400',
     green: 'bg-green-400',
@@ -238,11 +258,15 @@ export const VerseCard = memo(function VerseCard({
         aria-current={isCurrentAudioVerse ? 'true' : undefined}
         tabIndex={-1}
         aria-label={`Versículo ${numero} de ${livroNome} ${capitulo}${isSelected ? ' (selecionado)' : ''}${isCurrentAudioVerse ? ' (reproduzindo áudio)' : ''}`}
-        onClick={onSelect}
+        onClick={() => {
+          if (window.getSelection()?.toString()) return;
+          onSelect();
+        }}
         onClickCapture={handleClickCapture}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
         onPointerLeave={handlePointerLeave}
+        onPointerMove={handlePointerMove}
         onMouseEnter={() => setShowActions(true)}
         onMouseLeave={() => setShowActions(false)}
         style={{ fontSize: `${fontSize}px` }}
@@ -263,23 +287,37 @@ export const VerseCard = memo(function VerseCard({
         )}
       >
         {isSelected && (
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              void compartilharVersiculo({
-                livro: livroNome,
-                capitulo,
-                versiculo: numero,
-                texto,
-                traducao,
-              });
-            }}
-            className="lg:hidden absolute right-1 top-1 z-10 p-2 rounded-full bg-[var(--surface-raised)]/95 border border-[var(--border)]/40 text-[var(--content-secondary)] shadow-sm"
-            aria-label="Compartilhar versículo"
-          >
-            <Share2 className="w-4 h-4" />
-          </button>
+          <div className="lg:hidden absolute right-1 top-1 z-10 flex gap-1">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setTextoImagem(null);
+                setShowImageModal(true);
+              }}
+              className="p-2 rounded-full bg-[var(--surface-raised)]/95 border border-[var(--border)]/40 text-[var(--content-secondary)] shadow-sm"
+              aria-label="Criar imagem do versículo"
+            >
+              <ImageIcon className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                void compartilharVersiculo({
+                  livro: livroNome,
+                  capitulo,
+                  versiculo: numero,
+                  texto,
+                  traducao,
+                });
+              }}
+              className="p-2 rounded-full bg-[var(--surface-raised)]/95 border border-[var(--border)]/40 text-[var(--content-secondary)] shadow-sm"
+              aria-label="Compartilhar versículo"
+            >
+              <Share2 className="w-4 h-4" />
+            </button>
+          </div>
         )}
         <div className="flex items-start gap-2.5 sm:gap-3.5">
           {!hideNumber && (
@@ -294,12 +332,13 @@ export const VerseCard = memo(function VerseCard({
             </span>
           )}
 
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0" ref={textoRef}>
             <ClickableVerse
               text={texto}
               livroAbreviacao={livroAbreviacao}
               capitulo={capitulo}
               numero={numero}
+              trechos={marcaLive?.trechos}
               className="bible-reading-text font-serif-body text-[var(--content-primary)]"
               style={{ fontSize: `${fontSize}px`, lineHeight: lineSpacing ?? 1.85, fontFamily: fontFamilyCss }}
             />
@@ -327,10 +366,9 @@ export const VerseCard = memo(function VerseCard({
             )}
 
             {!studyMode && !isSelected && hasResourcesProp && (
-              <span
-                className="inline-block mt-1 w-1 h-1 rounded-full bg-primary/50"
-                title="Há estudo neste versículo"
-              />
+              <span className="inline-flex items-center gap-1 mt-1.5 text-[10px] font-semibold tracking-wide uppercase text-[var(--brand-default)]/80">
+                Estudo
+              </span>
             )}
           </div>
 
@@ -383,6 +421,7 @@ export const VerseCard = memo(function VerseCard({
             {CORES.map((cor) => (
               <button
                 key={cor}
+                title={`${COR_SIGNIFICADO[cor].label} — ${COR_SIGNIFICADO[cor].uso}`}
                 onClick={(e) => {
                   e.stopPropagation();
                   if (corAtual === cor) removeMarcador(livroAbreviacao, capitulo, numero, traducao);
@@ -395,7 +434,7 @@ export const VerseCard = memo(function VerseCard({
                   corBgMapInline[cor],
                   corAtual === cor && 'ring-2 ring-offset-2 ring-[var(--brand-default)]'
                 )}
-                aria-label={`Marcar ${cor}`}
+                aria-label={`Marcar ${COR_SIGNIFICADO[cor].label}`}
               />
             ))}
           </div>
@@ -404,7 +443,7 @@ export const VerseCard = memo(function VerseCard({
         {/* Mobile inline action panel - only show when PainelDoVersiculo is NOT open */}
         {isSelected && !hideMobileActions && (
           <div className="lg:hidden mt-2 pt-2 border-t border-[var(--border)]/20 animate-[slideDown_0.2s_ease-out]">
-            <div className="grid grid-cols-5 gap-1.5">
+            <div className="grid grid-cols-3 gap-1.5">
               <button
                 onClick={(e) => { e.stopPropagation(); toggleFavorito(livroAbreviacao, capitulo, numero, traducao, texto); if (navigator?.vibrate) navigator.vibrate([10, 50, 10]); onFavoritoChange(); }}
                 className={cn('flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl transition-all active:scale-95', isFavorito ? 'text-white bg-red-500' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)]')}
@@ -439,8 +478,20 @@ export const VerseCard = memo(function VerseCard({
                 <span className="text-[10px] font-medium">Compartilhar</span>
               </button>
               <button
-                onClick={(e) => { e.stopPropagation(); setShowFocusOverlay(true); }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setTextoImagem(null);
+                  setShowImageModal(true);
+                }}
                 className="flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl bg-[var(--brand-subtle)] text-[var(--brand-default)] transition-all active:scale-95"
+                aria-label="Criar imagem"
+              >
+                <ImageIcon className="w-5 h-5" />
+                <span className="text-[10px] font-medium">Imagem</span>
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); setShowFocusOverlay(true); }}
+                className="flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] transition-all active:scale-95"
                 aria-label="Visão completa"
               >
                 <Maximize2 className="w-5 h-5" />
@@ -502,6 +553,36 @@ export const VerseCard = memo(function VerseCard({
         texto={texto}
         traducao={traducao}
       />
+
+      <TextSelectionBar
+        containerRef={textoRef}
+        textoCompleto={texto}
+        livro={livroAbreviacao}
+        capitulo={capitulo}
+        versiculo={numero}
+        traducao={traducao}
+        onImagem={(trecho) => {
+          setTextoImagem(trecho);
+          setShowImageModal(true);
+        }}
+        onCopiar={(trecho) => {
+          void navigator.clipboard.writeText(`"${trecho}"\n\n— ${ref}`).catch(() => {});
+        }}
+      />
+
+      {showImageModal && (
+      <ShareVerseImageModal
+        open={showImageModal}
+        onClose={() => { setShowImageModal(false); setTextoImagem(null); }}
+        verse={{
+          livroNome,
+          capitulo,
+          versiculo: numero,
+          texto: textoImagem || texto,
+          traducao,
+        }}
+      />
+      )}
     </Fragment>
   );
 });

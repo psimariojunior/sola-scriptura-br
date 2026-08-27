@@ -90,6 +90,9 @@ export function EstudoDoVerso({ livro, capitulo, verso, texto, fontSize, expande
       className="bible-study-inline mt-2 rounded-xl border border-[var(--brand-default)]/15 bg-[var(--brand-subtle)]/35 px-3 py-2.5"
       onClick={(e) => e.stopPropagation()}
     >
+      <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--brand-default)] mb-1.5">
+        Neste versículo
+      </p>
       <ComentarioInline livro={livro} capitulo={capitulo} verso={verso} defaultExpanded={expanded} />
 
       {expanded && refs.length > 0 && (

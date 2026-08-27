@@ -192,11 +192,12 @@ export function UseBibliaUI({
   });
   const [modoExibicao, setModoExibicaoState] = useState<'versiculo' | 'paragrafo'>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('ssb_modo_exibicao');
-      if (saved === 'paragrafo' || saved === 'versiculo') return saved;
-      return window.innerWidth >= 768 ? 'paragrafo' : 'versiculo';
+      const escolheu = localStorage.getItem('ssb_modo_exibicao_user_v2') === '1';
+      const saved = localStorage.getItem('ssb_modo_exibicao_v2');
+      if (escolheu && (saved === 'paragrafo' || saved === 'versiculo')) return saved;
+      return 'versiculo';
     }
-    return 'paragrafo';
+    return 'versiculo';
   });
   const [ocultarNumeros, setOcultarNumerosState] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -481,7 +482,10 @@ export function UseBibliaUI({
     modoExibicao,
     setModoExibicao: (modo: 'versiculo' | 'paragrafo') => {
       setModoExibicaoState(modo);
-      try { localStorage.setItem('ssb_modo_exibicao', modo); } catch (e) { console.error('[biblia:save-modo-exibicao]', e); }
+      try {
+        localStorage.setItem('ssb_modo_exibicao_v2', modo);
+        localStorage.setItem('ssb_modo_exibicao_user_v2', '1');
+      } catch (e) { console.error('[biblia:save-modo-exibicao]', e); }
     },
     ocultarNumeros,
     setOcultarNumeros: (v: boolean) => {

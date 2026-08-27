@@ -314,7 +314,7 @@ export const VerseCard = memo(function VerseCard({
               </button>
             )}
 
-            {studyMode && (isSelected || hasResourcesProp) && (
+            {(isSelected || (studyMode && hasResourcesProp)) && (
               <EstudoDoVerso
                 livro={livroAbreviacao}
                 capitulo={capitulo}
@@ -326,10 +326,10 @@ export const VerseCard = memo(function VerseCard({
               />
             )}
 
-            {!studyMode && hasResourcesProp && (
+            {!studyMode && !isSelected && hasResourcesProp && (
               <span
                 className="inline-block mt-1 w-1 h-1 rounded-full bg-primary/50"
-                title="Recursos disponíveis"
+                title="Há estudo neste versículo"
               />
             )}
           </div>

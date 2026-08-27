@@ -808,7 +808,7 @@ export const estudosPorLivro: Record<string, EstudoLivro> = {
   },
   jo: {
     slug: 'jo', titulo: 'João', autor: 'João', data: '~85-95 d.C.',
-    contexto: 'Evangelho teológico. Jesus como Verbo encarnado, Filho de Deus.',
+    contexto: 'Escrito no fim do século I, João apresenta Jesus como o Verbo eterno que se fez carne. Não é só uma biografia: é um testemunho para que o leitor creia que Jesus é o Cristo, o Filho de Deus, e tenha vida em seu nome (Jo 20:31). Os sete sinais e as sete declarações “Eu sou” revelam quem Ele é.',
     genero: 'Evangelho', temasPrincipais: ['Deus-homem', 'Vida eterna', 'Fé', 'Luz e trevas', 'Espírito Santo'],
     versiculosChave: [
       { referencia: 'João 1:1', texto: 'No princípio era o Verbo.', explicacao: 'Jesus é Deus.' },
@@ -846,7 +846,7 @@ export const estudosPorLivro: Record<string, EstudoLivro> = {
   },
   rm: {
     slug: 'rm', titulo: 'Romanos', autor: 'Paulo', data: '~57 d.C.',
-    contexto: 'Epístola teológica mais abrangente. Pecado, justificação, santificação, soberania.',
+    contexto: 'Paulo escreve aos cristãos de Roma a carta mais sistemática do Novo Testamento: o pecado de toda a humanidade, a justificação somente pela fé, a vida no Espírito e a fidelidade de Deus a Israel. Os capítulos 1–11 expõem o evangelho; 12–16 mostram a vida que dele nasce.',
     genero: 'Epístola', temasPrincipais: ['Justificação pela fé', 'Graça', 'Soberania', 'Espírito', 'Israel e igreja'],
     versiculosChave: [
       { referencia: 'Romanos 1:16', texto: 'Não me envergonho do evangelho.', explicacao: 'Poder de Deus.' },

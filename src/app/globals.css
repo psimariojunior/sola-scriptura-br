@@ -2074,12 +2074,13 @@ textarea:focus-visible,
 }
 
 .bible-verse-row {
-  padding: 0.28rem 0.2rem 0.28rem 0.1rem;
+  padding: 0.85rem 0.3rem 0.95rem 0.1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 38%, transparent);
 }
 
 @media (min-width: 768px) {
   .bible-verse-row {
-    padding: 0.38rem 0.35rem 0.38rem 0.15rem;
+    padding: 1rem 0.45rem 1.1rem 0.15rem;
   }
 }
 
@@ -2152,6 +2153,25 @@ textarea:focus-visible,
   text-wrap: pretty;
 }
 
+.bible-prose-para {
+  display: block;
+  margin: 0 0 1.75em;
+}
+
+.bible-prose-para > span[role="button"] {
+  display: block;
+  margin: 0 0 0.85em;
+  padding: 0.12em 0.15em;
+  line-height: 1.75;
+}
+
+.bible-prose-para .bible-verse-number {
+  font-size: 0.78em;
+  font-weight: 700;
+  margin-right: 0.35em;
+  margin-left: 0.12em;
+}
+
 /* Responsive reading typography */
 .bible-verse-text,
 .bible-reading-text {
@@ -2169,7 +2189,7 @@ textarea:focus-visible,
     letter-spacing: 0.012em;
   }
   .bible-verse-spacer {
-    margin-bottom: 2px;
+    margin-bottom: 0.15rem;
   }
   .bible-paragraph-spacer {
     margin-bottom: 24px;
@@ -2186,7 +2206,7 @@ textarea:focus-visible,
     letter-spacing: 0.01em;
   }
   .bible-verse-spacer {
-    margin-bottom: 4px;
+    margin-bottom: 0.15rem;
   }
   .bible-paragraph-spacer {
     margin-bottom: 28px;
@@ -2203,7 +2223,7 @@ textarea:focus-visible,
     letter-spacing: 0.01em;
   }
   .bible-verse-spacer {
-    margin-bottom: 6px;
+    margin-bottom: 0.1rem;
   }
   .bible-paragraph-spacer {
     margin-bottom: 32px;

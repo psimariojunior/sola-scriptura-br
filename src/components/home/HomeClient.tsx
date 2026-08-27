@@ -11,6 +11,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { OBRAS } from '@/data/biblioteca/catalogo';
 import { CapaLivro } from '@/components/biblioteca/CapaLivro';
+import { hrefBiblia } from '@/lib/bibliaHref';
 
 const VerseDoDia = dynamic(() => import('@/components/VerseDoDia'), { ssr: false });
 const ContinuarLeitura = dynamic(() => import('@/components/ContinuarLeitura'), { ssr: false });
@@ -34,6 +35,20 @@ const LEITURAS = [
 
 const OBRAS_DESTAQUE = OBRAS.slice(0, 6);
 
+const ESTUDOS_PRONTOS = [
+  { href: '/estudos/joao', titulo: 'João', desc: 'Os sete “Eu sou”, os sinais e o que é vida eterna.' },
+  { href: '/estudos/romanos', titulo: 'Romanos', desc: 'Justificação pela fé — o coração da carta de Paulo.' },
+  { href: '/estudos/genesis', titulo: 'Gênesis', desc: 'Criação, queda e a primeira promessa do Redentor.' },
+  { href: '/estudos/apocalipse', titulo: 'Apocalipse', desc: 'A esperança da Igreja e o Cordeiro que vence.' },
+];
+
+const PASSAGENS_COMECO = [
+  { href: hrefBiblia('jo', 1), titulo: 'João 1', desc: 'O Verbo se fez carne' },
+  { href: hrefBiblia('sl', 23), titulo: 'Salmo 23', desc: 'O Senhor é o meu pastor' },
+  { href: hrefBiblia('rm', 8), titulo: 'Romanos 8', desc: 'Nada nos separará do amor' },
+  { href: hrefBiblia('gn', 1), titulo: 'Gênesis 1', desc: 'No princípio, Deus criou' },
+];
+
 export default function HomeClient() {
   const router = useRouter();
   const [busca, setBusca] = useState('');
@@ -55,6 +70,9 @@ export default function HomeClient() {
             <span className="italic text-primary">Sola</span>{' '}
             Scriptura
           </h1>
+          <p className="mt-5 text-sm sm:text-base text-muted-foreground max-w-md mx-auto leading-relaxed">
+            Abra a Bíblia, toque no versículo e estude de graça — comentários clássicos, hebraico, grego e referências, sem anúncios.
+          </p>
           <div className="lectern-ornament mt-7" aria-hidden="true" />
         </header>
       </div>
@@ -104,6 +122,20 @@ export default function HomeClient() {
           </div>
         </form>
 
+        <ol className="grid sm:grid-cols-3 gap-4 mb-12 text-left" aria-label="Como começar">
+          {[
+            { n: '1', t: 'Abra um capítulo', d: 'Comece pela Bíblia. O texto aparece versículo a versículo, fácil de acompanhar.' },
+            { n: '2', t: 'Toque no versículo', d: 'Abre o estudo na hora: o que o texto diz, no original e nas referências.' },
+            { n: '3', t: 'Leia com profundidade', d: 'Comentários clássicos, léxico Strong e clássicos da fé — tudo livre.' },
+          ].map((passo) => (
+            <li key={passo.n} className="ssb-panel p-4">
+              <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-primary/80 mb-1.5">{passo.n}</p>
+              <p className="text-sm font-semibold text-foreground mb-1">{passo.t}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{passo.d}</p>
+            </li>
+          ))}
+        </ol>
+
         <nav
           aria-label="Ferramentas de estudo"
           className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mb-12"
@@ -122,6 +154,54 @@ export default function HomeClient() {
         </nav>
 
         <ContinuarLeitura />
+
+        <section className="mb-14" aria-labelledby="passagens-home">
+          <div className="flex items-baseline justify-between mb-4">
+            <h2 id="passagens-home" className="font-display text-2xl sm:text-3xl font-normal text-foreground">
+              Comece por uma passagem
+            </h2>
+            <Link href="/biblia" className="text-xs font-medium text-primary hover:underline">
+              Abrir a Bíblia
+            </Link>
+          </div>
+          <ul className="grid sm:grid-cols-2 gap-3">
+            {PASSAGENS_COMECO.map((p) => (
+              <li key={p.href}>
+                <Link
+                  href={p.href}
+                  className="ssb-panel block p-4 h-full hover:border-primary/35 transition-colors"
+                >
+                  <p className="text-sm font-semibold text-foreground">{p.titulo}</p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{p.desc}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mb-14" aria-labelledby="estudos-home">
+          <div className="flex items-baseline justify-between mb-4">
+            <h2 id="estudos-home" className="font-display text-2xl sm:text-3xl font-normal text-foreground">
+              Estudos de livros
+            </h2>
+            <Link href="/estudos" className="text-xs font-medium text-primary hover:underline">
+              Todos os estudos
+            </Link>
+          </div>
+          <ul className="grid sm:grid-cols-2 gap-3">
+            {ESTUDOS_PRONTOS.map((e) => (
+              <li key={e.href}>
+                <Link
+                  href={e.href}
+                  className="ssb-panel block p-4 h-full hover:border-primary/35 transition-colors"
+                >
+                  <p className="text-sm font-semibold text-foreground">{e.titulo}</p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{e.desc}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         <section className="mb-14" aria-labelledby="estante-home">
           <div className="flex items-baseline justify-between mb-5">

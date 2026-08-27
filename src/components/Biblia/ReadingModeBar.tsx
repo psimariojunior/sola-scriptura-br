@@ -12,8 +12,8 @@ interface ReadingModeBarProps {
 }
 
 const modes: { id: ReadingMode; label: string; icon: typeof BookOpen; desc: string }[] = [
-  { id: 'leitura', label: 'Leitura', icon: BookOpen, desc: 'Texto contínuo, como um livro' },
-  { id: 'estudo', label: 'Estudo', icon: GraduationCap, desc: 'Comentários, léxico e referências' },
+  { id: 'leitura', label: 'Leitura', icon: BookOpen, desc: 'Um versículo por vez, fácil de acompanhar' },
+  { id: 'estudo', label: 'Estudo', icon: GraduationCap, desc: 'Comentário clássico, léxico e referências no verso' },
   { id: 'comparar', label: 'Comparar', icon: Columns2, desc: 'Traduções lado a lado' },
 ];
 

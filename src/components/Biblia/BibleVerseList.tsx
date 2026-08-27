@@ -24,11 +24,30 @@ import { useAudioNatural } from '@/hooks/useAudioNatural';
 import { useFlashcards } from '@/hooks/useFlashcards';
 import dynamic from 'next/dynamic';
 
-const InterlinearView = dynamic(() => import('@/components/InterlinearView').then(m => ({ default: m.InterlinearView })), { ssr: false });
-const PainelEstudosCapitulo = dynamic(() => import('./PainelEstudosCapitulo'));
+import { ClickableVerse } from './ClickableVerse';
+import { IntroLivroLeitura } from './IntroLivroLeitura';
 import { useLongPress } from '@/hooks/useLongPress';
 import { toggleFavorito } from '@/lib/estudos';
+
+const InterlinearView = dynamic(() => import('@/components/InterlinearView').then(m => ({ default: m.InterlinearView })), { ssr: false });
+const PainelEstudosCapitulo = dynamic(() => import('./PainelEstudosCapitulo'));
 const PainelEstudosInline = dynamic(() => import('@/components/PainelEstudosInline'));
+
+function agruparPorPericope<T extends { numero: number }>(
+  versiculos: T[],
+  pericopeStarts: Map<number, { titulo: string; tema: string }>,
+) {
+  const grupos: { heading: { titulo: string; tema: string } | null; verses: T[] }[] = [];
+  for (const v of versiculos) {
+    const heading = pericopeStarts.get(v.numero) ?? null;
+    if (heading || grupos.length === 0) {
+      grupos.push({ heading, verses: [v] });
+    } else {
+      grupos[grupos.length - 1].verses.push(v);
+    }
+  }
+  return grupos;
+}
 
 function PanelFallback() {
   return (<div className="flex items-center justify-center py-8"><div className="flex gap-1.5"><span className="w-2 h-2 bg-[var(--brand-default)] rounded-full animate-bounce [animation-delay:0s]" /><span className="w-2 h-2 bg-[var(--brand-default)] rounded-full animate-bounce [animation-delay:0.15s]" /><span className="w-2 h-2 bg-[var(--brand-default)] rounded-full animate-bounce [animation-delay:0.3s]" /></div></div>);
@@ -188,7 +207,8 @@ export function BibleVerseList({
             <div role="article" aria-label={`${nav.livro.nome} capítulo ${nav.capituloIdx + 1}`} className={cn(isModoLeitura && 'reading-mode-leitura', isModoEstudo && 'reading-mode-estudo')}>
             {nav.loading && nav.temDados && (<div className="fixed top-0 left-0 right-0 z-20 h-0.5 bg-[var(--brand-default)]/20"><div className="h-full bg-[var(--brand-default)] animate-loading-bar" /></div>)}
             <ChapterHeader livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} totalCapitulos={nav.livro.totalCapitulos} totalVersiculos={nav.data[0]?.versiculos?.length ?? 0} />
-            {nav.estudoCapitulo && ui.modoLeitura !== 'foco' && (
+            <IntroLivroLeitura livroAbrev={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} nomeLivro={nav.livro.nome} />
+            {nav.estudoCapitulo && (
               <div className={cn("mb-4 rounded-lg border border-[var(--brand-default)]/15 bg-[var(--brand-subtle)]/40 transition-all", ui.estudoCapituloAberto ? "p-3" : "px-3 py-2")}>
                 <button onClick={() => ui.setEstudoCapituloAberto(o => !o)} className="w-full flex items-center gap-2 text-left group" aria-expanded={ui.estudoCapituloAberto}>
                   <div className="w-7 h-7 rounded-md bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0"><BookOpen className="w-3.5 h-3.5 text-[var(--brand-default)]" /></div>
@@ -213,7 +233,7 @@ export function BibleVerseList({
             {ui.showInterlinear && nav.data[0] && (<div className="mb-8"><div className="flex items-center gap-2 mb-4 pb-2 border-b border-[var(--border)]/40"><span className="font-hebrew text-lg text-[var(--brand-default)]">א</span><span className="text-sm font-semibold text-[var(--content-primary)]">{t('biblia.interlinearView')}</span></div><InterlinearView versiculos={nav.data[0].versiculos} livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} traducao={nav.data[0].traducao} /></div>)}
             {(ui.modoLeitura === 'foco' || ui.modoLeitura === 'estudo') && ui.modoExibicao === 'paragrafo' && nav.data.map((item) => (<div key={item.traducao} className="mb-6">
               {nav.selectedTrads.length > 1 && (<div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/40"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span>{ui.modoLeitura === 'foco' && <span className="text-xs text-[var(--content-muted)]">{nomeMap[item.traducao]}</span>}</div>)}
-              {/* Modo parágrafo: versículos fundidos em texto corrido, estilo Bíblia impressa */}
+              {/* Modo página: um parágrafo por perícope, números de verso visíveis */}
               <div
                 className="bible-prose bible-reading-text"
                 style={{
@@ -222,50 +242,68 @@ export function BibleVerseList({
                   fontFamily: ui.fontFamily === 'sans' ? "'Inter', system-ui, sans-serif" : "'Spectral', Georgia, serif",
                 }}
               >
-                {item.versiculos.map((v) => {
-                  const isSelected = verse.versiculoSelecionado?.versiculo === v.numero && verse.versiculoSelecionado?.traducao === item.traducao;
-                  const isCurrentAudioVerse = capituloAudio.state.isPlaying && capituloAudio.state.currentVerseIndex === v.numero - 1;
-                  const isHighlighted = ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero;
-                  const pericope = pericopeStarts.get(v.numero);
-                  return (
-                    <Fragment key={`${item.traducao}-${v.numero}-p`}>
-                      {pericope && <PericopeHeading titulo={pericope.titulo} tema={pericope.tema} />}
-                      <span
-                        role="button"
-                        tabIndex={0}
-                        aria-label={`Versículo ${v.numero}`}
-                        onClick={() => stableHandleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto)}
-                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); stableHandleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto); } }}
-                        className={cn(
-                          'cursor-pointer rounded-sm transition-colors text-[var(--content-primary)]',
-                          isCurrentAudioVerse
-                            ? 'bg-amber-100/70 dark:bg-amber-900/30'
-                            : isSelected
-                            ? 'bg-[var(--brand-subtle)]'
-                            : isHighlighted
-                            ? 'bg-[var(--brand-subtle)]/60'
-                            : 'hover:bg-[var(--surface-sunken)]/40'
-                        )}
-                      >
-                      {!ui.ocultarNumeros && (
-                        <sup className="bible-verse-number">{v.numero}</sup>
-                      )}
-                      {v.texto}{' '}
-                    </span>
-                    {isModoEstudo && isSelected && (
-                      <EstudoDoVerso
-                        livro={nav.livro.abreviacao}
-                        capitulo={nav.capituloIdx + 1}
-                        verso={v.numero}
-                        texto={v.texto}
-                        fontSize={ui.fontSize}
-                        expanded
-                        onOpenFull={() => { setPainelTabInicial('estudo'); setPainelVersiculoAberto(true); }}
-                      />
-                    )}
-                    </Fragment>
-                  );
-                })}
+                {agruparPorPericope(item.versiculos, pericopeStarts).map((grupo, gi) => (
+                  <Fragment key={`${item.traducao}-g-${gi}`}>
+                    {grupo.heading && <PericopeHeading titulo={grupo.heading.titulo} tema={grupo.heading.tema} />}
+                    <div className="bible-prose-para">
+                      {grupo.verses.map((v) => {
+                        const isSelected = verse.versiculoSelecionado?.versiculo === v.numero && verse.versiculoSelecionado?.traducao === item.traducao;
+                        const isCurrentAudioVerse = capituloAudio.state.isPlaying && capituloAudio.state.currentVerseIndex === v.numero - 1;
+                        const isHighlighted = ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero;
+                        const temRecurso = verseResources.hasResources(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero);
+                        return (
+                          <span
+                            key={`${item.traducao}-${v.numero}-p`}
+                            role="button"
+                            tabIndex={0}
+                            aria-label={`Versículo ${v.numero}`}
+                            onClick={() => stableHandleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto)}
+                            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); stableHandleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto); } }}
+                            className={cn(
+                              'cursor-pointer rounded-sm transition-colors text-[var(--content-primary)]',
+                              isCurrentAudioVerse
+                                ? 'bg-amber-100/70 dark:bg-amber-900/30'
+                                : isSelected
+                                ? 'bg-[var(--brand-subtle)]'
+                                : isHighlighted
+                                ? 'bg-[var(--brand-subtle)]/60'
+                                : 'hover:bg-[var(--surface-sunken)]/40'
+                            )}
+                          >
+                            {!ui.ocultarNumeros && (
+                              <sup className="bible-verse-number">{v.numero}</sup>
+                            )}
+                            <ClickableVerse
+                              text={v.texto}
+                              livroAbreviacao={nav.livro.abreviacao}
+                              capitulo={nav.capituloIdx + 1}
+                              numero={v.numero}
+                            />
+                            {temRecurso && (
+                              <span className="inline-block w-1 h-1 ml-0.5 mb-0.5 rounded-full bg-[var(--brand-default)]/70" title="Há estudo neste versículo" />
+                            )}
+                            {' '}
+                          </span>
+                        );
+                      })}
+                    </div>
+                    {isModoEstudo && grupo.verses.some((v) => verse.versiculoSelecionado?.versiculo === v.numero && verse.versiculoSelecionado?.traducao === item.traducao) && (() => {
+                      const sel = grupo.verses.find((v) => verse.versiculoSelecionado?.versiculo === v.numero && verse.versiculoSelecionado?.traducao === item.traducao);
+                      if (!sel) return null;
+                      return (
+                        <EstudoDoVerso
+                          livro={nav.livro.abreviacao}
+                          capitulo={nav.capituloIdx + 1}
+                          verso={sel.numero}
+                          texto={sel.texto}
+                          fontSize={ui.fontSize}
+                          expanded
+                          onOpenFull={() => { setPainelTabInicial('estudo'); setPainelVersiculoAberto(true); }}
+                        />
+                      );
+                    })()}
+                  </Fragment>
+                ))}
               </div>
             </div>))}
             {(ui.modoLeitura === 'foco' || ui.modoLeitura === 'estudo') && ui.modoExibicao === 'versiculo' && nav.data.map((item) => (<div key={item.traducao} className="mb-6">

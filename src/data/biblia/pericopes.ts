@@ -3544,12 +3544,26 @@ const joao: Pericope[] = [
     versiculoInicio: 1,
     capituloFim: 3,
     versiculoFim: 21,
-    titulo: 'Nicodemus e o Novo Nascimento',
+    titulo: 'Nicodemos e o Novo Nascimento',
     genero: 'discurso',
     tema: 'Regeneração / Salvação',
     temaHomiletico: 'Nascer de novo',
     outline: ['A visita (3:1-15)', 'A serpente (3:14-15)', 'O amor (3:16-18)', 'A luz (3:19-21)'],
     textoChave: 'João 3:16',
+  },
+  {
+    id: 'jn-003-022-036',
+    livro: 'João',
+    capituloInicio: 3,
+    versiculoInicio: 22,
+    capituloFim: 3,
+    versiculoFim: 36,
+    titulo: 'O testemunho de João Batista',
+    genero: 'discurso',
+    tema: 'Testemunho / Cristo acima de todos',
+    temaHomiletico: 'Ele deve crescer, e eu diminuir',
+    outline: ['João batiza (3:22-24)', 'A controvérsia (3:25-30)', 'Quem vem do céu (3:31-36)'],
+    textoChave: 'João 3:30',
   },
   {
     id: 'jn-004-001-042',
@@ -5988,6 +6002,32 @@ export function getPericopesLivro(livro: string): Pericope[] {
   return todasPericopes.filter(
     (p) => p.livro.toLowerCase() === livro.toLowerCase()
   );
+}
+
+/** Perícopes que atravessam este capítulo. */
+export function getPericopesCapitulo(livro: string, capitulo: number): Pericope[] {
+  return getPericopesLivro(livro).filter(
+    (p) => p.capituloInicio <= capitulo && p.capituloFim >= capitulo
+  );
+}
+
+/**
+ * Mapa versículo → perícope que começa naquele verso neste capítulo.
+ * Se a seção veio do capítulo anterior, marca o verso 1.
+ */
+export function getPericopeStartsInChapter(
+  livro: string,
+  capitulo: number
+): Map<number, Pericope> {
+  const map = new Map<number, Pericope>();
+  for (const p of getPericopesCapitulo(livro, capitulo)) {
+    if (p.capituloInicio === capitulo) {
+      if (!map.has(p.versiculoInicio)) map.set(p.versiculoInicio, p);
+    } else if (!map.has(1)) {
+      map.set(1, p);
+    }
+  }
+  return map;
 }
 
 /**

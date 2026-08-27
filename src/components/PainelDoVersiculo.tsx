@@ -869,7 +869,7 @@ export default function PainelDoVersiculo({
 }: PainelDoVersiculoProps) {
   const [recursos, setRecursos] = useState<RecursoVersiculo[]>([]);
   const [erro, setErro] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState(tabInicial || 'texto');
+  const [activeTab, setActiveTab] = useState(tabInicial || 'comentarios');
   const [busca, setBusca] = useState('');
   const [isMobile, setIsMobile] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
@@ -903,10 +903,7 @@ export default function PainelDoVersiculo({
           setErro('Erro ao carregar recursos. Tente novamente.');
         }
       });
-    setActiveTab(tabInicial || 'texto');
-    if (aberto && typeof window !== 'undefined') {
-      requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    }
+    setActiveTab(tabInicial || 'comentarios');
     return () => {
       abortController.abort();
     };
@@ -932,7 +929,7 @@ export default function PainelDoVersiculo({
 
   const tabsDisponiveis = TAB_CONFIG.filter((tab) => {
     const count = contagemPorTipo(tab.value);
-    return count > 0 || tab.value === 'texto' || tab.value === 'critica' || tab.value === 'ia';
+    return count > 0 || tab.value === 'texto' || tab.value === 'comentarios' || tab.value === 'critica' || tab.value === 'ia';
   });
 
   const panelContent = (

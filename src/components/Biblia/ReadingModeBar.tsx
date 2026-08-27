@@ -1,9 +1,9 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { BookOpen, Search, Sparkles, Presentation } from 'lucide-react';
+import { BookOpen, GraduationCap, Columns2 } from 'lucide-react';
 
-export type ReadingMode = 'leitura' | 'estudo' | 'interlinear' | 'apresentacao';
+export type ReadingMode = 'leitura' | 'estudo' | 'comparar';
 
 interface ReadingModeBarProps {
   mode: ReadingMode;
@@ -12,31 +12,40 @@ interface ReadingModeBarProps {
 }
 
 const modes: { id: ReadingMode; label: string; icon: typeof BookOpen; desc: string }[] = [
-  { id: 'leitura', label: 'Leitura', icon: BookOpen, desc: 'Foco no texto, sem distrações' },
-  { id: 'estudo', label: 'Estudo', icon: Search, desc: 'Comentários, léxico e referências' },
-  { id: 'interlinear', label: 'Interlinear', icon: Sparkles, desc: 'Texto original palavra a palavra' },
-  { id: 'apresentacao', label: 'Apresentação', icon: Presentation, desc: 'Fonte ampla para projetar' },
+  { id: 'leitura', label: 'Leitura', icon: BookOpen, desc: 'Texto contínuo, como um livro' },
+  { id: 'estudo', label: 'Estudo', icon: GraduationCap, desc: 'Comentários, léxico e referências' },
+  { id: 'comparar', label: 'Comparar', icon: Columns2, desc: 'Traduções lado a lado' },
 ];
 
 export function ReadingModeBar({ mode, onModeChange, className }: ReadingModeBarProps) {
   return (
-    <div className={cn('flex items-center gap-1 p-1 rounded-xl bg-[var(--surface-sunken)]/60 border border-[var(--border)]/30', className)}>
-      {modes.map(m => {
+    <div
+      role="tablist"
+      aria-label="Modo de leitura"
+      className={cn(
+        'flex items-center gap-0.5 p-0.5 rounded-full bg-[var(--surface-sunken)]/80 border border-[var(--border)]/40',
+        className
+      )}
+    >
+      {modes.map((m) => {
         const isActive = mode === m.id;
         return (
           <button
             key={m.id}
+            type="button"
+            role="tab"
+            aria-selected={isActive}
             onClick={() => onModeChange(m.id)}
             title={m.desc}
             className={cn(
-              'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-semibold transition-all duration-200',
+              'flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all duration-200',
               isActive
                 ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] shadow-sm shadow-[var(--brand-default)]/20'
-                : 'text-[var(--content-muted)] hover:text-[var(--content-secondary)] hover:bg-[var(--surface-raised)]/50'
+                : 'text-[var(--content-muted)] hover:text-[var(--content-primary)]'
             )}
           >
             <m.icon className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">{m.label}</span>
+            <span>{m.label}</span>
           </button>
         );
       })}

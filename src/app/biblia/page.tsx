@@ -28,6 +28,7 @@ import { BibleToolbar } from '@/components/Biblia/BibleToolbar';
 import { BibleVerseList } from '@/components/Biblia/BibleVerseList';
 import { BibleSidebar } from '@/components/Biblia/BibleSidebar';
 import { SplitNotesPanel } from '@/components/Biblia/SplitNotesPanel';
+import { ChapterAudioDock } from '@/components/Biblia/ChapterAudioDock';
 import OfflineBanner from '@/components/OfflineBanner';
 import { HotkeysDialog } from '@/components/HotkeysDialog';
 import type { CenaDramatica, PersonagemVoz } from '@/components/NarracaoDramatica';
@@ -75,7 +76,18 @@ export default function BibliaPage() {
   const verseResources = useVerseResources();
   const panels = UseBibliaPanels();
   const nav = UseBibliaNavigation();
-  const verse = UseBibliaVerse({ setSidePanelTab: panels.setSidePanelTab, setSidePanelWidth: panels.setSidePanelWidth });
+  const [showDownloadManager, setShowDownloadManager] = useState(false);
+  const [painelVersiculoAberto, setPainelVersiculoAberto] = useState(false);
+  const [painelTabInicial, setPainelTabInicial] = useState<string | undefined>(undefined);
+  const openStudyPanel = useCallback(() => {
+    setPainelTabInicial('comentarios');
+    setPainelVersiculoAberto(true);
+  }, []);
+  const verse = UseBibliaVerse({
+    setSidePanelTab: panels.setSidePanelTab,
+    setSidePanelWidth: panels.setSidePanelWidth,
+    onOpenStudy: openStudyPanel,
+  });
   const capituloAudio = useAudioCapitulo(nav.livro.abreviacao, nav.capituloIdx + 1, nav.data[0]?.versiculos?.map(v => ({ numero: v.numero, texto: v.texto })) ?? []);
   const ui = UseBibliaUI({
     capituloIdx: nav.capituloIdx, livroTotalCapitulos: nav.livro.totalCapitulos, livroAbreviacao: nav.livro.abreviacao,
@@ -85,9 +97,6 @@ export default function BibliaPage() {
   });
   const chaveDramatica = `${nav.livro.abreviacao}-${nav.capituloIdx + 1}`;
   const passagemDramatica = PASSAGENS_DRAMATICAS[chaveDramatica];
-  const [showDownloadManager, setShowDownloadManager] = useState(false);
-  const [painelVersiculoAberto, setPainelVersiculoAberto] = useState(false);
-  const [painelTabInicial, setPainelTabInicial] = useState<string | undefined>(undefined);
 
   const { vibrate } = useMicroInteracoes();
 
@@ -124,7 +133,16 @@ export default function BibliaPage() {
 
   const handleDeselectVerse = useCallback(() => {
     verse.setVersiculoSelecionado(null);
+    setPainelVersiculoAberto(false);
   }, [verse.setVersiculoSelecionado]);
+
+  const selectedVerseKey = verse.versiculoSelecionado
+    ? `${verse.versiculoSelecionado.livroAbreviacao}:${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`
+    : null;
+
+  useEffect(() => {
+    if (!selectedVerseKey) setPainelVersiculoAberto(false);
+  }, [selectedVerseKey]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleGoToBook = useCallback((idx: number, cap?: number) => { nav.goToBook(idx, cap); ui.setMobileMenu(false); ui.setChapterGridOpen(false); }, [nav.goToBook, ui.setMobileMenu, ui.setChapterGridOpen]);
@@ -404,7 +422,7 @@ export default function BibliaPage() {
               onShowDownloadManager={setShowDownloadManager}
               onShowHotkeys={() => setShowHotkeysDialog(true)}
             />
-            <div className="flex-1 flex overflow-hidden">
+            <div className="bible-reading-scroll flex-1 flex overflow-hidden">
               <div className="flex-1 overflow-y-auto" style={ui.modoLeitura === 'split' ? { flex: `0 0 ${ui.splitRatio}%` } : undefined}>
                 <BibleVerseList
                   nav={nav}
@@ -480,6 +498,20 @@ export default function BibliaPage() {
         <a href={`/estudo-ia?ref=${encodeURIComponent(`${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`)}`} target="_blank" rel="noreferrer"
           className="fade-in-bottom hidden lg:flex fixed bottom-6 right-6 z-30 items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all"><Sparkles className="w-4 h-4" />{t('biblia.deepenAI')}</a>)}
       <AudioPlayers audioNatural={audioNatural} audio={audio} data={nav.data} livroNome={nav.livro.nome} capitulo={nav.capituloIdx + 1} />
+      {(capituloAudio.state.isPlaying || capituloAudio.state.isPaused) && (
+        <ChapterAudioDock
+          livroNome={nav.livro.nome}
+          capitulo={nav.capituloIdx + 1}
+          versiculoAtual={(capituloAudio.state.currentVerseIndex ?? 0) + 1}
+          totalVersiculos={nav.data[0]?.versiculos?.length ?? 0}
+          isPlaying={capituloAudio.state.isPlaying}
+          isLoading={capituloAudio.state.isLoading}
+          onToggle={() => { if (capituloAudio.state.isPlaying) capituloAudio.pause(); else capituloAudio.resume(); }}
+          onStop={capituloAudio.stop}
+          onPrevVerse={() => capituloAudio.skipBackward(1)}
+          onNextVerse={() => capituloAudio.skipForward(1)}
+        />
+      )}
       <AnnotationModal open={verse.anotandoVersiculo !== null} verseKey={verse.anotandoVersiculo} initialText={verse.anotacaoTexto} onClose={() => verse.setAnotandoVersiculo(null)}
         onSave={async (texto) => { const { salvarAnotacaoUnificada } = await import('@/lib/notasUnificadas'); const parts = verse.anotandoVersiculo!.split(':'); salvarAnotacaoUnificada(parts[0], Number(parts[1]), Number(parts[2]), parts[3], texto || null); refresh(); verse.setAnotandoVersiculo(null); verse.setAnotacaoTexto(''); }} />
       {ui.quickSearchOpen && (<QuickSearchModal open={ui.quickSearchOpen} onClose={() => ui.setQuickSearchOpen(false)}

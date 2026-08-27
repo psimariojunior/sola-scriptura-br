@@ -1,11 +1,12 @@
 'use client';
 
-import { Suspense, useState, useRef, useCallback, useEffect } from 'react';
+import { Suspense, useState, useRef, useCallback, useEffect, Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, WifiOff, Heart, Copy, Share2, Bookmark } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ChapterHeader } from './ChapterHeader';
 import { VerseListItem } from './VerseListItem';
+import { PericopeHeading } from './PericopeHeading';
 import { ProgressBar } from './ProgressBar';
 import { ComparisonTable } from './ComparisonTable';
 import { SyncedParallelColumns } from './SyncedParallelColumns';
@@ -122,6 +123,18 @@ export function BibleVerseList({
     } catch {}
   }, [nav.livro.abreviacao, nav.capituloIdx]);
 
+  const [pericopeStarts, setPericopeStarts] = useState<Map<number, { titulo: string; tema: string }>>(new Map());
+  useEffect(() => {
+    let cancelled = false;
+    import('@/data/biblia/pericopes').then((mod) => {
+      if (cancelled) return;
+      setPericopeStarts(mod.getPericopeStartsInChapter(nav.livro.nome, nav.capituloIdx + 1));
+    }).catch(() => {
+      if (!cancelled) setPericopeStarts(new Map());
+    });
+    return () => { cancelled = true; };
+  }, [nav.livro.nome, nav.capituloIdx]);
+
   const getLivroNome = (abrev: string) => {
     const { LIVROS_AT, LIVROS_NT } = require('@/data/biblia/livros');
     const all = [...LIVROS_AT, ...LIVROS_NT];
@@ -130,7 +143,10 @@ export function BibleVerseList({
 
   return (
     <div ref={nav.mainRef} className="flex-1 overflow-y-auto" {...swipeHandlers}>
-      <div className="bible-reading-column px-4 sm:px-6 py-6 sm:py-10 pb-24 md:pb-10" style={{ transform: `translateX(${swipeOffset}px)`, transition: swipeOffset === 0 ? 'transform 0.3s ease' : 'none' }}>
+      <div
+        className="bible-reading-column px-4 sm:px-6 py-6 sm:py-10 pb-24 md:pb-10"
+        style={swipeOffset === 0 ? undefined : { transform: `translateX(${swipeOffset}px)`, transition: 'none' }}
+      >
         {ui.showPlan && <ReadingPlanBanner />}
         {showLastRead && lastRead && !isCurrentLastRead && (
           <div className="mb-4 p-3 rounded-xl bg-[var(--brand-subtle)]/50 border border-[var(--brand-default)]/15 flex items-center gap-3">
@@ -171,7 +187,7 @@ export function BibleVerseList({
             <div role="article" aria-label={`${nav.livro.nome} capítulo ${nav.capituloIdx + 1}`} className={cn(isModoLeitura && 'reading-mode-leitura', isModoEstudo && 'reading-mode-estudo')}>
             {nav.loading && nav.temDados && (<div className="fixed top-0 left-0 right-0 z-20 h-0.5 bg-[var(--brand-default)]/20"><div className="h-full bg-[var(--brand-default)] animate-loading-bar" /></div>)}
             <ChapterHeader livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} totalCapitulos={nav.livro.totalCapitulos} totalVersiculos={nav.data[0]?.versiculos?.length ?? 0} />
-            {nav.estudoCapitulo && (
+            {nav.estudoCapitulo && ui.modoLeitura !== 'foco' && (
               <div className={cn("mb-4 rounded-lg border border-[var(--brand-default)]/15 bg-[var(--brand-subtle)]/40 transition-all", ui.estudoCapituloAberto ? "p-3" : "px-3 py-2")}>
                 <button onClick={() => ui.setEstudoCapituloAberto(o => !o)} className="w-full flex items-center gap-2 text-left group" aria-expanded={ui.estudoCapituloAberto}>
                   <div className="w-7 h-7 rounded-md bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0"><BookOpen className="w-3.5 h-3.5 text-[var(--brand-default)]" /></div>
@@ -198,7 +214,7 @@ export function BibleVerseList({
               {nav.selectedTrads.length > 1 && (<div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/40"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span>{ui.modoLeitura === 'foco' && <span className="text-xs text-[var(--content-muted)]">{nomeMap[item.traducao]}</span>}</div>)}
               {/* Modo parágrafo: versículos fundidos em texto corrido, estilo Bíblia impressa */}
               <div
-                className="bible-paragraph-spacer bible-reading-text"
+                className="bible-prose bible-reading-text"
                 style={{
                   fontSize: `${ui.fontSize}px`,
                   lineHeight: ui.lineSpacing,
@@ -209,26 +225,33 @@ export function BibleVerseList({
                   const isSelected = verse.versiculoSelecionado?.versiculo === v.numero && verse.versiculoSelecionado?.traducao === item.traducao;
                   const isCurrentAudioVerse = capituloAudio.state.isPlaying && capituloAudio.state.currentVerseIndex === v.numero - 1;
                   const isHighlighted = ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero;
+                  const pericope = pericopeStarts.get(v.numero);
                   return (
-                    <span
-                      key={`${item.traducao}-${v.numero}-p`}
-                      onClick={() => stableHandleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto)}
-                      className={cn(
-                        'cursor-pointer rounded transition-colors text-[var(--content-primary)]',
-                        isCurrentAudioVerse
-                          ? 'bg-amber-100/70 dark:bg-amber-900/30'
-                          : isSelected
-                          ? 'bg-[var(--brand-subtle)]'
-                          : isHighlighted
-                          ? 'bg-[var(--brand-subtle)]/60'
-                          : 'hover:bg-[var(--surface-sunken)]/50'
-                      )}
-                    >
+                    <Fragment key={`${item.traducao}-${v.numero}-p`}>
+                      {pericope && <PericopeHeading titulo={pericope.titulo} tema={pericope.tema} />}
+                      <span
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`Versículo ${v.numero}`}
+                        onClick={() => stableHandleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto)}
+                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); stableHandleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto); } }}
+                        className={cn(
+                          'cursor-pointer rounded-sm transition-colors text-[var(--content-primary)]',
+                          isCurrentAudioVerse
+                            ? 'bg-amber-100/70 dark:bg-amber-900/30'
+                            : isSelected
+                            ? 'bg-[var(--brand-subtle)]'
+                            : isHighlighted
+                            ? 'bg-[var(--brand-subtle)]/60'
+                            : 'hover:bg-[var(--surface-sunken)]/40'
+                        )}
+                      >
                       {!ui.ocultarNumeros && (
                         <sup className="bible-verse-number">{v.numero}</sup>
                       )}
                       {v.texto}{' '}
                     </span>
+                    </Fragment>
                   );
                 })}
               </div>
@@ -241,6 +264,7 @@ export function BibleVerseList({
                 const isCurrentAudioVerse = capituloAudio.state.isPlaying && capituloAudio.state.currentVerseIndex === v.numero - 1;
                 const fav = isFavorito(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao);
                 const estudoAbertoNeste = verse.estudoAberto === v.numero && item.traducao === nav.data[0]?.traducao;
+                const pericope = pericopeStarts.get(v.numero);
                 return (
                   <div
                     key={`${item.traducao}-${v.numero}`}
@@ -263,6 +287,9 @@ export function BibleVerseList({
                     onTouchEnd={longPress.onTouchEnd}
                     onTouchMove={longPress.onTouchMove}
                   >
+                    {pericope && (
+                      <PericopeHeading titulo={pericope.titulo} tema={pericope.tema} />
+                    )}
                     <VerseListItem numero={v.numero} texto={v.texto} livroAbreviacao={nav.livro.abreviacao} livroNome={nav.livro.nome} capitulo={nav.capituloIdx + 1} traducao={item.traducao} fontSize={ui.fontSize}
                       lineSpacing={ui.lineSpacing} fontFamily={ui.fontFamily} hideNumber={ui.ocultarNumeros}
                       isSelected={isSelected} isPlaying={isPlaying} isHighlighted={ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero} isFocused={ui.focusedVerse === v.numero} isFavorito={fav} copiedVerse={verse.copiedVerse}

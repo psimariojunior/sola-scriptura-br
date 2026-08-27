@@ -194,8 +194,9 @@ export function UseBibliaUI({
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('ssb_modo_exibicao');
       if (saved === 'paragrafo' || saved === 'versiculo') return saved;
+      return window.innerWidth >= 768 ? 'paragrafo' : 'versiculo';
     }
-    return 'versiculo';
+    return 'paragrafo';
   });
   const [ocultarNumeros, setOcultarNumerosState] = useState(() => {
     if (typeof window !== 'undefined') {

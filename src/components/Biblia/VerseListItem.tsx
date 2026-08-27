@@ -94,7 +94,7 @@ export const VerseListItem = memo(function VerseListItem({
   onCompartilharSala,
   onAbrirPainel,
   onDeselect,
-  painelVersiculoAberto = false,
+  painelVersiculoAberto: _painelVersiculoAberto = false,
 }: VerseListItemProps) {
   const verseKey = `${livroAbreviacao}:${capitulo}:${numero}:${traducao}`;
   const marcaMarcador = getMarcador(livroAbreviacao, capitulo, numero, traducao);
@@ -170,7 +170,7 @@ export const VerseListItem = memo(function VerseListItem({
       onCompartilharSala={onCompartilharSala}
       onAbrirPainel={onAbrirPainel}
       onDeselect={onDeselect}
-      hideMobileActions={painelVersiculoAberto}
+      hideMobileActions
     />
   );
 });

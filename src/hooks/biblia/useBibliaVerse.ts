@@ -53,11 +53,13 @@ export interface UseBibliaVerseReturn {
 interface UseBibliaVerseParams {
   setSidePanelTab: React.Dispatch<React.SetStateAction<'comentarios' | 'strong' | 'notas' | 'estudos' | 'contexto' | 'referencias' | null>>;
   setSidePanelWidth: React.Dispatch<React.SetStateAction<SidePanelWidth>>;
+  onOpenStudy?: () => void;
 }
 
 export function UseBibliaVerse({
   setSidePanelTab,
   setSidePanelWidth,
+  onOpenStudy,
 }: UseBibliaVerseParams): UseBibliaVerseReturn {
   const [versiculoSelecionado, setVersiculoSelecionado] = useState<{
     livro: string;
@@ -96,14 +98,23 @@ export function UseBibliaVerse({
       if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
         setSidePanelTab('comentarios');
         setSidePanelWidth('half');
+      } else {
+        onOpenStudy?.();
       }
     } catch (e) {
       console.error('Erro ao selecionar versículo:', e);
     }
-  }, [setSidePanelTab, setSidePanelWidth]);
+  }, [setSidePanelTab, setSidePanelWidth, onOpenStudy]);
 
   const handleSelectFromList = useCallback((livro: string, cap: number, ver: number, traducao: string, texto: string) => {
-    if (versiculoSelecionado?.livroAbreviacao === livro && versiculoSelecionado?.capitulo === cap && versiculoSelecionado?.versiculo === ver && versiculoSelecionado?.traducao === traducao) {
+    const mesmo =
+      versiculoSelecionado?.livroAbreviacao === livro &&
+      versiculoSelecionado?.capitulo === cap &&
+      versiculoSelecionado?.versiculo === ver &&
+      versiculoSelecionado?.traducao === traducao;
+    // No computador, segundo clique no mesmo verso fecha o painel.
+    // No app/celular, o toque sempre abre o estudo.
+    if (mesmo && typeof window !== 'undefined' && window.innerWidth >= 1024) {
       setVersiculoSelecionado(null);
       return;
     }

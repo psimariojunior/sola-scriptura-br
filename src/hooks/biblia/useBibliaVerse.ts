@@ -39,6 +39,7 @@ export interface UseBibliaVerseReturn {
   setNotaAtiva: React.Dispatch<React.SetStateAction<Nota | null>>;
   handleSelectVerse: (v: { livro: string; livroNome: string; livroAbreviacao: string; cap: number; ver: number; traducao: string; texto: string }) => void;
   handleSelectFromList: (livro: string, cap: number, ver: number, traducao: string, texto: string) => void;
+  aplicarSelecao: (livro: string, cap: number, ver: number, traducao: string, texto: string) => void;
   copyVerse: (text: string, reference: string) => Promise<void>;
   shareVerse: (text: string, reference: string) => Promise<void>;
   recentSearches: Array<{ query: string; livro: string; nome: string; cap: number; versiculo: number }>;
@@ -87,13 +88,8 @@ export function UseBibliaVerse({
     setVersiculoSelecionado({ ...v, capitulo: v.cap, versiculo: v.ver });
   }, []);
 
-  const handleSelectFromList = useCallback((livro: string, cap: number, ver: number, traducao: string, texto: string) => {
+  const aplicarSelecao = useCallback((livro: string, cap: number, ver: number, traducao: string, texto: string) => {
     try {
-      // Toggle: same verse = deselect
-      if (versiculoSelecionado?.livroAbreviacao === livro && versiculoSelecionado?.capitulo === cap && versiculoSelecionado?.versiculo === ver && versiculoSelecionado?.traducao === traducao) {
-        setVersiculoSelecionado(null);
-        return;
-      }
       const livroInfo = livroPorAbreviacao.get(livro);
       const livroNome = livroInfo?.nome || livro;
       setVersiculoSelecionado({ livro, livroNome, livroAbreviacao: livro, capitulo: cap, versiculo: ver, traducao, texto });
@@ -104,7 +100,15 @@ export function UseBibliaVerse({
     } catch (e) {
       console.error('Erro ao selecionar versículo:', e);
     }
-  }, [setSidePanelTab, setSidePanelWidth, versiculoSelecionado]);
+  }, [setSidePanelTab, setSidePanelWidth]);
+
+  const handleSelectFromList = useCallback((livro: string, cap: number, ver: number, traducao: string, texto: string) => {
+    if (versiculoSelecionado?.livroAbreviacao === livro && versiculoSelecionado?.capitulo === cap && versiculoSelecionado?.versiculo === ver && versiculoSelecionado?.traducao === traducao) {
+      setVersiculoSelecionado(null);
+      return;
+    }
+    aplicarSelecao(livro, cap, ver, traducao, texto);
+  }, [aplicarSelecao, versiculoSelecionado]);
 
   const copyVerse = useCallback(async (text: string, reference: string) => {
     await navigator.clipboard.writeText(`${reference}\n${text}`);
@@ -134,6 +138,7 @@ export function UseBibliaVerse({
     setNotaAtiva,
     handleSelectVerse,
     handleSelectFromList,
+    aplicarSelecao,
     copyVerse,
     shareVerse,
     recentSearches,

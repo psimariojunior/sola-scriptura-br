@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
+import { resolverLivroParam } from '@/lib/bibliaHref';
 import { TRAD_IDS } from '@/components/Biblia/TranslationDropdown';
 import type { CapituloComparado } from '@/data/biblia/texto/carregar';
 import { obterCapituloMulti, carregarTraducao, carregarTraducaoSync } from '@/data/biblia/texto/carregar';
@@ -37,17 +38,17 @@ export interface UseBibliaNavigationReturn {
   statsData: ReturnType<typeof getStats> | null;
   estudoCapitulo: import('@/data/estudosCapitulo').EstudoCapitulo | null;
   mainRef: React.RefObject<HTMLDivElement | null>;
+  versiculoAlvo: number | null;
+  setVersiculoAlvo: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 export function UseBibliaNavigation(): UseBibliaNavigationReturn {
   const [livroIdx, setLivroIdx] = useState(() => {
     if (typeof window === 'undefined') return 0;
     const params = new URLSearchParams(window.location.search);
-    const livroParam = params.get('livro');
-    if (livroParam) {
-      const idx = TODOS_LIVROS.findIndex(l =>
-        l.abreviacao === livroParam || l.nome.toLowerCase() === livroParam.toLowerCase()
-      );
+    const info = resolverLivroParam(params.get('livro'));
+    if (info) {
+      const idx = TODOS_LIVROS.findIndex((l) => l.abreviacao === info.abreviacao);
       if (idx >= 0) return idx;
     }
     return 0;
@@ -55,12 +56,17 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
   const [capituloIdx, setCapituloIdx] = useState(() => {
     if (typeof window === 'undefined') return 0;
     const params = new URLSearchParams(window.location.search);
-    const capParam = params.get('capitulo');
+    const capParam = params.get('capitulo') || params.get('cap');
     if (capParam) {
       const cap = parseInt(capParam, 10);
       if (!isNaN(cap) && cap > 0) return cap - 1;
     }
     return 0;
+  });
+  const [versiculoAlvo, setVersiculoAlvo] = useState<number | null>(() => {
+    if (typeof window === 'undefined') return null;
+    const n = parseInt(new URLSearchParams(window.location.search).get('versiculo') || '', 10);
+    return Number.isFinite(n) && n > 0 ? n : null;
   });
   const [chapterDirection, setChapterDirection] = useState<'next' | 'prev'>('next');
   const [selectedTrads, setSelectedTrads] = useState<string[]>(['arc']);
@@ -112,7 +118,7 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
       if (allCached && results.length > 0) {
         setData(results);
         setLoading(false);
-        mainRef.current?.scrollTo({ top: 0 });
+        if (!versiculoAlvo) mainRef.current?.scrollTo({ top: 0 });
         recordReading(livroAbrev, cap);
         setStatsData(getStats());
         requestIdleCallback(() => { prefetchAdjacent(livroAbrev, cap); });
@@ -144,7 +150,7 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
           }
           recordReading(livroAbrev, cap);
           setStatsData(getStats());
-          mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+          if (!versiculoAlvo) mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
         }
         const ric = typeof requestIdleCallback !== 'undefined' ? requestIdleCallback : (cb: () => void) => setTimeout(cb, 0);
         ric(() => { prefetchAdjacent(livroAbrev, cap); });
@@ -152,39 +158,51 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
         setLoading(false);
       }
     })();
-  }, [livroAbrev, totalCapitulos, capituloIdx, selectedTrads, prefetchAdjacent]);
+  }, [livroAbrev, totalCapitulos, capituloIdx, selectedTrads, prefetchAdjacent, versiculoAlvo]);
 
   useEffect(() => { loadChapter(); }, [loadChapter]);
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const livroParam = params.get('livro');
+  const aplicarParamsUrl = useCallback((search: string) => {
+    const params = new URLSearchParams(search);
+    const info = resolverLivroParam(params.get('livro'));
     const capituloParam = params.get('capitulo') || params.get('cap');
+    const verseParam = params.get('versiculo');
     const tradsParam = params.get('trads');
-    if (livroParam) {
-      const idx = TODOS_LIVROS.findIndex((l) => l.abreviacao.toLowerCase() === livroParam.toLowerCase());
-      if (idx >= 0) {
-        setLivroIdx(idx);
-        if (capituloParam) {
-          const n = Number(capituloParam);
-          if (Number.isFinite(n) && n > 0) setCapituloIdx(n - 1);
-        }
-      }
+    if (info) {
+      const idx = TODOS_LIVROS.findIndex((l) => l.abreviacao === info.abreviacao);
+      if (idx >= 0) setLivroIdx(idx);
+    }
+    if (capituloParam) {
+      const n = Number(capituloParam);
+      if (Number.isFinite(n) && n > 0) setCapituloIdx(n - 1);
+    }
+    if (verseParam) {
+      const n = parseInt(verseParam, 10);
+      setVersiculoAlvo(Number.isFinite(n) && n > 0 ? n : null);
+    } else {
+      setVersiculoAlvo(null);
     }
     if (tradsParam) {
       const t = tradsParam.split(',').filter((x) => (TRAD_IDS as readonly string[]).includes(x));
       if (t.length > 0) setSelectedTrads(t);
     }
-
   }, []);
+
+  useEffect(() => {
+    const onPopState = () => aplicarParamsUrl(window.location.search);
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, [aplicarParamsUrl]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     params.set('livro', livro.abreviacao);
     params.set('capitulo', String(capituloIdx + 1));
     params.set('trads', selectedTrads.join(','));
+    if (versiculoAlvo && versiculoAlvo > 0) params.set('versiculo', String(versiculoAlvo));
+    else params.delete('versiculo');
     window.history.replaceState(null, '', `?${params.toString()}`);
-  }, [livro.abreviacao, capituloIdx, selectedTrads]);
+  }, [livro.abreviacao, capituloIdx, selectedTrads, versiculoAlvo]);
 
   const toggleTrad = useCallback((id: string) => {
     setSelectedTrads(prev => {
@@ -220,6 +238,7 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
     if (idx < 0 || idx >= TODOS_LIVROS.length) return;
     setLivroIdx(idx);
     setCapituloIdx(Math.max(0, cap ?? 0));
+    setVersiculoAlvo(null);
   }, []);
 
   const changeChapter = useCallback((newIdx: number) => {
@@ -228,6 +247,7 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
     const clamped = Math.max(0, Math.min(max, Math.floor(newIdx)));
     setChapterDirection(clamped > capituloIdx ? 'next' : 'prev');
     setCapituloIdx(clamped);
+    setVersiculoAlvo(null);
   }, [totalCapitulos, capituloIdx]);
 
   return {
@@ -256,5 +276,7 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
     statsData,
     estudoCapitulo,
     mainRef,
+    versiculoAlvo,
+    setVersiculoAlvo,
   };
 }

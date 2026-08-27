@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
+import { hrefBiblia } from '@/lib/bibliaHref';
 import {
   Heart, StickyNote, Bookmark, Search, X, BookOpen, Trash2, ArrowRight,
   GraduationCap, Users, Layers, Quote, ChevronRight, Star, Library,
@@ -256,32 +257,24 @@ export default function EstudosPage() {
   };
 
   return (
-    <div className="min-h-screen bg-pattern-diamond">
-      <Header />
-      <main id="main-content" className="pt-20 pb-24 md:pb-16 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
+    <PageShell maxWidth="6xl">
           <div className="mb-6">
             <Breadcrumbs items={[{ label: t('estudos.breadcrumbHome'), href: '/' }, { label: t('estudos.breadcrumbEstudos') }]} />
           </div>
 
-          <ScrollReveal>
-            <div className="mb-8">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <GraduationCap className="w-5 h-5 text-primary" />
-                </div>
-                <h1 className="font-display text-3xl md:text-4xl font-light">{t('estudos.title')}</h1>
-              </div>
-              <p className="text-muted-foreground ml-0 sm:ml-13 text-sm">
-                {t('estudos.subtitle')}
-              </p>
-              <Link href="/estudos/academico" className="inline-flex items-center gap-2 mt-4 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[var(--brand-default)]/10 to-[var(--brand-default)]/5 border border-[var(--brand-default)]/20 text-sm font-medium text-[var(--brand-default)] hover:border-[var(--brand-default)]/40 transition-all">
-                <GraduationCap className="w-4 h-4" />
-                Estudos Acadêmicos — Nível Seminário
-                <ChevronRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </ScrollReveal>
+          <PageHero
+            icon={GraduationCap}
+            eyebrow={t('estudos.breadcrumbEstudos')}
+            title={t('estudos.title')}
+            subtitle={t('estudos.subtitle')}
+            align="left"
+          >
+            <Link href="/estudos/academico" className="inline-flex items-center gap-2 mt-6 px-4 py-2.5 rounded-xl bg-primary/10 border border-primary/20 text-sm font-medium text-primary hover:border-primary/40 transition-all">
+              <GraduationCap className="w-4 h-4" />
+              Estudos Acadêmicos — Nível Seminário
+              <ChevronRight className="w-4 h-4" />
+            </Link>
+          </PageHero>
 
           {/* ═══ FILTROS EMOCIONAIS — YouVersion style ═══ */}
           <ScrollReveal delay={0.05}>
@@ -289,21 +282,21 @@ export default function EstudosPage() {
               <p className="text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-3">{t('estudos.exploreByFeeling')}</p>
               <div className="flex flex-wrap gap-2">
                 {[
-                  { query: 'fé', tKey: 'emotionFe', color: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20' },
-                  { query: 'esperança', tKey: 'emotionEsperanca', color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20' },
-                  { query: 'amor', tKey: 'emotionAmor', color: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 hover:bg-rose-500/20' },
-                  { query: 'cura', tKey: 'emotionCura', color: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 hover:bg-purple-500/20' },
-                  { query: 'ansiedade', tKey: 'emotionAnsiedade', color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20' },
-                  { query: 'paz', tKey: 'emotionPaz', color: 'bg-sky-500/10 text-sky-600 dark:text-sky-400 hover:bg-sky-500/20' },
-                  { query: 'sabedoria', tKey: 'emotionSabedoria', color: 'bg-orange-500/10 text-orange-600 dark:text-orange-400 hover:bg-orange-500/20' },
-                  { query: 'gratidão', tKey: 'emotionGratidao', color: 'bg-teal-500/10 text-teal-600 dark:text-teal-400 hover:bg-teal-500/20' },
-                  { query: 'força', tKey: 'emotionForca', color: 'bg-red-500/10 text-red-600 dark:text-red-400 hover:bg-red-500/20' },
-                  { query: 'perdão', tKey: 'emotionPerdao', color: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/20' },
+                  { query: 'fé', tKey: 'emotionFe' },
+                  { query: 'esperança', tKey: 'emotionEsperanca' },
+                  { query: 'amor', tKey: 'emotionAmor' },
+                  { query: 'cura', tKey: 'emotionCura' },
+                  { query: 'ansiedade', tKey: 'emotionAnsiedade' },
+                  { query: 'paz', tKey: 'emotionPaz' },
+                  { query: 'sabedoria', tKey: 'emotionSabedoria' },
+                  { query: 'gratidão', tKey: 'emotionGratidao' },
+                  { query: 'força', tKey: 'emotionForca' },
+                  { query: 'perdão', tKey: 'emotionPerdao' },
                 ].map(emocao => (
                   <button
                     key={emocao.tKey}
                     onClick={() => setQuery(emocao.query)}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${emocao.color}`}
+                    className="px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all bg-primary/10 text-primary hover:bg-primary/20"
                   >
                     {t(`estudos.${emocao.tKey}`)}
                   </button>
@@ -332,7 +325,7 @@ export default function EstudosPage() {
                     </div>
                   </div>
                   <Link
-                    href={`/biblia?livro=${retomar.livro}&capitulo=${retomar.capitulo}`}
+                    href={hrefBiblia(retomar.livro, retomar.capitulo)}
                     className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:shadow-md shrink-0"
                   >
                     <Play className="w-4 h-4" /> {t('estudos.openReading')}
@@ -871,10 +864,7 @@ export default function EstudosPage() {
               )}
             </div>
           )}
-        </div>
-      </main>
-      <Footer />
-    </div>
+        </PageShell>
   );
 }
 
@@ -939,7 +929,7 @@ function ComentariosSection() {
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-xs font-semibold text-primary">{c.autor}</span>
                   <span className="text-[10px] px-1.5 py-0.5 rounded bg-muted text-muted-foreground capitalize">{c.tipo}</span>
-                  <Link href={`/biblia?livro=${c.livro}&capitulo=${c.capitulo}`} className="text-[10px] text-muted-foreground hover:text-primary transition-colors ml-auto">
+                  <Link href={hrefBiblia(c.livro, c.capitulo, c.versiculo)} className="text-[10px] text-muted-foreground hover:text-primary transition-colors ml-auto">
                     {livroInfo?.nome || c.livro} {c.capitulo}:{c.versiculo}
                   </Link>
                 </div>

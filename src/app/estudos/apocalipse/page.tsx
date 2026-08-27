@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { VersiculoCard } from '@/components/estudos/VersiculoCard';
 import {
   BookOpen, ChevronRight, ChevronDown, Quote, Target, HelpCircle,
   Lightbulb, User, Calendar, Tag, Layers, ArrowLeft, CheckCircle2,
@@ -427,84 +428,5 @@ export default function ApocalipsePage() {
       </main>
       <Footer />
     </div>
-  );
-}
-
-function VersiculoCard({ versiculo }: { versiculo: { referência: string; texto: string; explicação: string; comentarios: { teologo: string; texto: string }[] } }) {
-  const [expandido, setExpandido] = useState(false);
-  return (
-    <motion.div layout className="sola-card overflow-hidden">
-      <div className="p-5 cursor-pointer" onClick={() => setExpandido(!expandido)}>
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            <p className="font-display text-sm font-medium text-primary mb-1">{versiculo.referência}</p>
-            <p className="text-sm italic leading-relaxed font-serif-body">&ldquo;{versiculo.texto}&rdquo;</p>
-          </div>
-          <motion.div animate={{ rotate: expandido ? 180 : 0 }} transition={{ duration: 0.2 }} className="flex-shrink-0">
-            <ChevronDown className="w-4 h-4 text-muted-foreground" />
-          </motion.div>
-        </div>
-      </div>
-      <AnimatePresence>
-        {expandido && (
-          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
-            <div className="px-5 pb-5 border-t border-border/50 pt-3 space-y-4">
-              <p className="text-sm text-muted-foreground leading-relaxed">{versiculo.explicação}</p>
-              <div className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-wider text-primary">Comentarios de Teologos</p>
-                {versiculo.comentarios.map((c, i) => (
-                  <div key={i} className="glass-card p-4 rounded-xl">
-                    <p className="text-xs font-semibold text-foreground mb-1">{c.teologo}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed italic">&ldquo;{c.texto}&rdquo;</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-}
-
-function IgrejaCard({ igreja, index }: { igreja: { nome: string; tema: string; verso: string; corao: string; problema: string; elogio: string; correcao: string; promessa: string }; index: number }) {
-  const [expandido, setExpandido] = useState(false);
-  return (
-    <motion.div layout className="sola-card overflow-hidden">
-      <div className="p-4 cursor-pointer" onClick={() => setExpandido(!expandido)}>
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-medium">{index + 1}</span>
-            <div>
-              <p className="font-display text-sm font-medium">{igreja.nome}</p>
-              <p className="text-xs text-muted-foreground">{igreja.verso} — {igreja.tema}</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-              igreja.corao === 'Fiel' ? 'bg-green-500/10 text-green-600 dark:text-green-400' :
-              igreja.corao === 'Sofredora' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400' :
-              igreja.corao === 'Morta' ? 'bg-red-500/10 text-red-600 dark:text-red-400' :
-              'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400'
-            }`}>{igreja.corao}</span>
-            <motion.div animate={{ rotate: expandido ? 180 : 0 }} transition={{ duration: 0.2 }}>
-              <ChevronDown className="w-4 h-4 text-muted-foreground" />
-            </motion.div>
-          </div>
-        </div>
-      </div>
-      <AnimatePresence>
-        {expandido && (
-          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
-            <div className="px-4 pb-4 border-t border-border/50 pt-3 space-y-2">
-              <div><span className="text-xs font-semibold text-red-600 dark:text-red-400">Problema: </span><span className="text-sm text-muted-foreground">{igreja.problema}</span></div>
-              <div><span className="text-xs font-semibold text-green-600 dark:text-green-400">Elogio: </span><span className="text-sm text-muted-foreground">{igreja.elogio}</span></div>
-              <div><span className="text-xs font-semibold text-blue-600 dark:text-blue-400">Correcao: </span><span className="text-sm text-muted-foreground">{igreja.correcao}</span></div>
-              <div><span className="text-xs font-semibold text-purple-600 dark:text-purple-400">Promessa: </span><span className="text-sm text-muted-foreground">{igreja.promessa}</span></div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
   );
 }

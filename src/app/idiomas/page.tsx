@@ -15,7 +15,7 @@ import { parsearMorfologia, getCorMorfologia } from '@/lib/morphology';
 import { cn } from '@/lib/utils';
 import type { PalavraGrega } from '@/data/lexicon/grego';
 import type { PalavraHebraica } from '@/data/lexicon/hebraico';
-import type { LexiconWord } from '@/types/lexicon';
+import { hrefFromRef } from '@/lib/bibliaHref';
 
 type Idioma = 'grego' | 'hebraico';
 type SortBy = 'strong' | 'frequencia' | 'palavra';
@@ -475,7 +475,7 @@ export default function IdiomasPage() {
                                     </p>
                                     <div className="flex flex-wrap gap-1.5">
                                       {(p as PalavraGrega).versiculos!.map((v, i) => (
-                                        <a key={i} href={`/biblia`}
+                                        <a key={i} href={hrefFromRef(v)}
                                           className="text-xs px-2.5 py-1 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
                                           {v}
                                         </a>
@@ -717,7 +717,7 @@ export default function IdiomasPage() {
                             <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                               <div className="mt-3 flex flex-wrap gap-1.5">
                                 {(selectedWord as PalavraGrega).versiculos!.map((v, i) => (
-                                  <a key={i} href={`/biblia?ref=${v}`}
+                                  <a key={i} href={hrefFromRef(v)}
                                     className="text-xs px-2.5 py-1.5 rounded-lg bg-muted hover:bg-primary/10 hover:text-primary cursor-pointer transition-all border border-border/50 hover:border-primary/30 flex items-center gap-1">
                                     <ArrowRight className="w-3 h-3" />
                                     {v}

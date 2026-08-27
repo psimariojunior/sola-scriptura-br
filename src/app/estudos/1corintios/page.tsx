@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { VersiculoCard } from '@/components/estudos/VersiculoCard';
 import {
   BookOpen, ChevronRight, ChevronDown, Quote, Target, HelpCircle,
   Lightbulb, User, Calendar, Tag, Layers, ArrowLeft, CheckCircle2,
@@ -355,42 +356,5 @@ export default function PrimeiraCorintiosPage() {
       </main>
       <Footer />
     </div>
-  );
-}
-
-function VersiculoCard({ versiculo }: { versiculo: { referência: string; texto: string; explicação: string; comentarios: { teologo: string; texto: string }[] } }) {
-  const [expandido, setExpandido] = useState(false);
-  return (
-    <motion.div layout className="sola-card overflow-hidden">
-      <div className="p-5 cursor-pointer" onClick={() => setExpandido(!expandido)}>
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            <p className="font-display text-sm font-medium text-primary mb-1">{versiculo.referência}</p>
-            <p className="text-sm italic leading-relaxed font-serif-body">&ldquo;{versiculo.texto}&rdquo;</p>
-          </div>
-          <motion.div animate={{ rotate: expandido ? 180 : 0 }} transition={{ duration: 0.2 }} className="flex-shrink-0">
-            <ChevronDown className="w-4 h-4 text-muted-foreground" />
-          </motion.div>
-        </div>
-      </div>
-      <AnimatePresence>
-        {expandido && (
-          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
-            <div className="px-5 pb-5 border-t border-border/50 pt-3 space-y-4">
-              <p className="text-sm text-muted-foreground leading-relaxed">{versiculo.explicação}</p>
-              <div className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-wider text-primary">Comentarios de Teologos</p>
-                {versiculo.comentarios.map((c, i) => (
-                  <div key={i} className="glass-card p-4 rounded-xl">
-                    <p className="text-xs font-semibold text-foreground mb-1">{c.teologo}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed italic">&ldquo;{c.texto}&rdquo;</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
   );
 }

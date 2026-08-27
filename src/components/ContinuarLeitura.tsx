@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { LIVROS_AT, LIVROS_NT, type LivroInfo } from '@/data/biblia/livros';
+import { hrefBiblia } from '@/lib/bibliaHref';
 
 const STORAGE_KEY_CHAPTERS = 'ssb_chapters_read';
 const STORAGE_KEY_LAST = 'ssb_last_read';
@@ -37,11 +38,6 @@ function getBookName(abrev: string): string {
   return book?.nome ?? abrev;
 }
 
-function getBookChapters(abrev: string): number {
-  const book = ALL_BOOKS.find((b) => b.abreviacao === abrev);
-  return book?.totalCapitulos ?? 1;
-}
-
 function getSuggestedNext(lidos: Set<string>): { livro: string; capitulo: number; nomeLivro: string } | null {
   for (const book of ALL_BOOKS) {
     for (let c = 1; c <= book.totalCapitulos; c++) {
@@ -72,16 +68,16 @@ export default function ContinuarLeitura() {
   const sugestao = useMemo(() => getSuggestedNext(capitulosLidos), [capitulosLidos]);
 
   if (!mounted) return null;
-  if (capitulosLidos.size === 0 && !sugestao) return null;
 
   const livroAtual = ultimaLeitura ? getBookName(ultimaLeitura.livro) : null;
-  const proximoCapitulo = ultimaLeitura ? Math.min(ultimaLeitura.capitulo + 1, getBookChapters(ultimaLeitura.livro)) : 1;
-  const proximoIsNovoLivro = ultimaLeitura && proximoCapitulo > getBookChapters(ultimaLeitura.livro);
+  const comecar = sugestao ?? { livro: 'gn', capitulo: 1, nomeLivro: 'Gênesis' };
 
   return (
     <section className="mb-14" aria-label="Continuar Leitura">
       <div className="flex items-baseline justify-between mb-3">
-        <h2 className="font-display text-2xl font-normal text-foreground">Continuar leitura</h2>
+        <h2 className="font-display text-2xl font-normal text-foreground">
+          {capitulosLidos.size > 0 || ultimaLeitura ? 'Continuar leitura' : 'Comece a ler'}
+        </h2>
         {capitulosLidos.size > 0 && (
           <span className="text-xs tabular-nums text-muted-foreground">
             {progresso}% · {capitulosLidos.size}/{TOTAL_CHAPTERS}
@@ -102,12 +98,12 @@ export default function ContinuarLeitura() {
         {ultimaLeitura && (
           <li>
             <Link
-              href={`/biblia?livro=${ultimaLeitura.livro}&capitulo=${proximoIsNovoLivro ? 1 : proximoCapitulo}`}
+              href={hrefBiblia(ultimaLeitura.livro, ultimaLeitura.capitulo)}
               className="flex items-center justify-between py-3.5 group"
             >
               <span>
                 <span className="block text-sm text-foreground group-hover:text-primary transition-colors">
-                  {proximoIsNovoLivro ? 'Próximo livro' : `${livroAtual} ${proximoCapitulo}`}
+                  {livroAtual} {ultimaLeitura.capitulo}
                 </span>
                 <span className="text-xs text-muted-foreground">De onde você parou</span>
               </span>
@@ -115,10 +111,26 @@ export default function ContinuarLeitura() {
             </Link>
           </li>
         )}
-        {sugestao && (
+        {!ultimaLeitura && (
           <li>
             <Link
-              href={`/biblia?livro=${sugestao.livro}&capitulo=${sugestao.capitulo}`}
+              href={hrefBiblia(comecar.livro, comecar.capitulo)}
+              className="flex items-center justify-between py-3.5 group"
+            >
+              <span>
+                <span className="block text-sm text-foreground group-hover:text-primary transition-colors">
+                  {comecar.nomeLivro} {comecar.capitulo}
+                </span>
+                <span className="text-xs text-muted-foreground">O melhor ponto para começar</span>
+              </span>
+              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+            </Link>
+          </li>
+        )}
+        {sugestao && ultimaLeitura && (sugestao.livro !== ultimaLeitura.livro || sugestao.capitulo !== ultimaLeitura.capitulo) && (
+          <li>
+            <Link
+              href={hrefBiblia(sugestao.livro, sugestao.capitulo)}
               className="flex items-center justify-between py-3.5 group"
             >
               <span>

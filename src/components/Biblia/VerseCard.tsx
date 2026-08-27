@@ -226,6 +226,8 @@ export const VerseCard = memo(function VerseCard({
     <Fragment>
       <div
         ref={articleRef}
+        id={`verse-${numero}`}
+        data-verse={numero}
         role="article"
         aria-current={isCurrentAudioVerse ? 'true' : undefined}
         tabIndex={-1}

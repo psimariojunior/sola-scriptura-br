@@ -12,6 +12,8 @@ interface TourStep {
   descricao: string;
   targetSelector: string;
   position: 'top' | 'bottom' | 'left' | 'right';
+  ctaHref?: string;
+  ctaLabel?: string;
 }
 
 const TOUR_STEPS: TourStep[] = [
@@ -37,32 +39,20 @@ const TOUR_STEPS: TourStep[] = [
     position: 'bottom',
   },
   {
-    id: 'favoritos',
-    titulo: 'Salve seus versículos',
-    descricao: 'Toque no ícone de favorito para salvar versículos. Organize em coleções e faça anotações.',
-    targetSelector: '.bible-verse-spacer',
-    position: 'top',
-  },
-  {
-    id: 'audio',
-    titulo: 'Ouça a Bíblia',
-    descricao: 'Toque no ícone de áudio para ouvir cada versículo com narração de alta qualidade.',
-    targetSelector: 'button[title*="áudio"], button[title*="Audio"]',
-    position: 'top',
-  },
-  {
     id: 'temas',
     titulo: 'Personalize',
-    descricao: '5 temas (claro, escuro, sépia, noturno, dim), 3 fontes e modo imersivo para leitura.',
+    descricao: '5 temas (claro, escuro, sépia, noturno, dim) para leitura confortável de dia ou de noite.',
     targetSelector: '[data-testid="theme-toggle"], button[aria-label*="tema"]',
     position: 'bottom',
   },
   {
-    id: 'offline',
-    titulo: 'Leia offline',
-    descricao: 'O app funciona sem internet! Capítulos são salvos automaticamente para leitura offline.',
+    id: 'ler',
+    titulo: 'Abra a Bíblia agora',
+    descricao: 'Gênesis 1 está a um toque. Leia, ouça e estude o versículo no mesmo lugar.',
     targetSelector: 'a[href="/biblia"]',
     position: 'bottom',
+    ctaHref: '/biblia?livro=gn&capitulo=1',
+    ctaLabel: 'Começar a ler',
   },
 ];
 
@@ -165,9 +155,11 @@ export function OnboardingTour() {
   const next = () => {
     if (step < TOUR_STEPS.length - 1) {
       setStep((s) => s + 1);
-    } else {
-      dismiss();
+      return;
     }
+    const href = TOUR_STEPS[step]?.ctaHref;
+    dismiss();
+    if (href) window.location.assign(href);
   };
 
   useEffect(() => {
@@ -182,7 +174,9 @@ export function OnboardingTour() {
         if (stepRef.current < TOUR_STEPS.length - 1) {
           setStep((s) => s + 1);
         } else {
+          const href = TOUR_STEPS[stepRef.current]?.ctaHref;
           dismiss();
+          if (href) window.location.assign(href);
         }
       }
     };
@@ -278,7 +272,7 @@ export function OnboardingTour() {
                   onClick={next}
                   className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all shadow-md hover:shadow-lg"
                 >
-                  {isLast ? 'Começar' : 'Próximo'}
+                  {isLast ? (current.ctaLabel ?? 'Começar a ler') : 'Próximo'}
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>

@@ -148,9 +148,25 @@ export default function BibliaPage() {
   }, [verse.setEstudoAberto]);
   /* eslint-enable react-hooks/exhaustive-deps */
 
+  // Deep link: seleciona e rola até o versículo da URL
+  useEffect(() => {
+    const alvo = nav.versiculoAlvo;
+    if (!alvo || !nav.temDados) return;
+    const item = nav.data[0];
+    const encontrado = item?.versiculos.find((v) => v.numero === alvo);
+    if (!encontrado) return;
+    verse.aplicarSelecao(nav.livro.abreviacao, nav.capituloIdx + 1, alvo, item.traducao, encontrado.texto);
+    const t = window.setTimeout(() => {
+      document.getElementById(`verse-${alvo}`)?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }, 80);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nav.versiculoAlvo, nav.temDados, nav.livro.abreviacao, nav.capituloIdx, nav.data]);
+
   // Scroll to top when chapter changes + save/restore scroll position
   const scrollKeyRef = useRef('');
   useEffect(() => {
+    if (nav.versiculoAlvo) return;
     const key = `${nav.livro.abreviacao}-${nav.capituloIdx}`;
     const prevKey = scrollKeyRef.current;
     if (prevKey && typeof window !== 'undefined') {

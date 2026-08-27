@@ -14,6 +14,7 @@ import {
   buscarParalelos,
 } from '@/data/biblia/sinopticos';
 import type { ParaleloSinotico } from '@/data/biblia/sinopticos';
+import { hrefFromRef } from '@/lib/bibliaHref';
 
 type Categoria = ParaleloSinotico['categoria'] | 'todas';
 type Visao = 'colunas' | 'lista';
@@ -46,18 +47,10 @@ const EVANGELHOS = [
   { chave: 'joao' as const, abrev: 'Jo', nome: 'João', cor: 'from-purple-500 to-purple-600', corBg: 'bg-purple-500/10', corText: 'text-purple-500', corBorder: 'border-purple-500/30', corDot: 'bg-purple-500' },
 ];
 
-function parseRef(ref: string): { livro: string; capitulo: string; versiculo?: string } {
-  const parts = ref.split(':');
-  if (parts.length >= 3) return { livro: parts[0], capitulo: parts[1], versiculo: parts[2] };
-  if (parts.length === 2) return { livro: parts[0], capitulo: parts[1] };
-  return { livro: ref, capitulo: '1' };
-}
-
 function RefLink({ ref: r }: { ref: string }) {
-  const { livro, capitulo } = parseRef(r);
   return (
     <Link
-      href={`/biblia?livro=${livro}&capitulo=${capitulo}`}
+      href={hrefFromRef(r)}
       onClick={(e) => e.stopPropagation()}
       className="text-xs font-medium px-2 py-0.5 rounded bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
     >
@@ -182,7 +175,7 @@ function ColunaEvangelho({
                           {refs.map((r) => (
                             <Link
                               key={r}
-                              href={`/biblia?livro=${parseRef(r).livro}&capitulo=${parseRef(r).capitulo}`}
+                              href={hrefFromRef(r)}
                               onClick={(e) => e.stopPropagation()}
                               className="text-[10px] px-2 py-1 rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition-colors font-medium"
                             >

@@ -24,6 +24,7 @@ import {
 import Link from 'next/link';
 import { estudosPorLivro, type EstudoLivro } from '@/data/estudosPorLivro';
 import { livroPorAbreviacao } from '@/data/biblia/livros';
+import { hrefBiblia, hrefFromRef } from '@/lib/bibliaHref';
 
 export default function EstudoLivroPage() {
   const params = useParams();
@@ -96,8 +97,8 @@ export default function EstudoLivroPage() {
                   {infoLivro.testamento}
                 </span>
                 <Link
-                  href={`/biblia?livro=${slug}&capitulo=1`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium hover:bg-emerald-500/20 transition-colors"
+                  href={hrefBiblia(slug, 1)}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/20 transition-colors"
                 >
                   <BookOpen className="w-3.5 h-3.5" />
                   Ler na Bíblia
@@ -226,7 +227,7 @@ export default function EstudoLivroPage() {
                 Todos os Estudos
               </Link>
               <Link
-                href={`/biblia`}
+                href={hrefBiblia(slug, 1)}
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 Ir para a Bíblia
@@ -243,15 +244,8 @@ export default function EstudoLivroPage() {
 
 function VersiculoChaveCard({ versiculo, index, slug }: { versiculo: { referencia: string; texto: string; explicacao: string }; index: number; slug: string }) {
   const [expandido, setExpandido] = useState(false);
-  
-  // Parse reference to create Bible link (e.g., "Gênesis 1:1" -> "/biblia?livro=gn&capitulo=1")
-  const parseRef = (ref: string) => {
-    const match = ref.match(/(\d+):(\d+)/);
-    if (match) {
-      return `/biblia?livro=${slug}&capitulo=${match[1]}`;
-    }
-    return `/biblia?livro=${slug}`;
-  };
+  const href = hrefFromRef(versiculo.referencia);
+  const bibleHref = href === '/biblia' ? hrefBiblia(slug, 1) : href;
 
   return (
     <motion.div layout className="sola-card overflow-hidden">
@@ -264,8 +258,8 @@ function VersiculoChaveCard({ versiculo, index, slug }: { versiculo: { referenci
             <div className="flex items-center gap-2 mb-1">
               <p className="font-display text-sm font-medium text-primary">{versiculo.referencia}</p>
               <Link
-                href={parseRef(versiculo.referencia)}
-                className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
+                href={bibleHref}
+                className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
                 onClick={(e) => e.stopPropagation()}
               >
                 Ler na Bíblia

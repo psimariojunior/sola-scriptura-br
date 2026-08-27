@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { VoiceSearchButton } from '@/components/VoiceSearchButton';
 import { obterQueryExpandida } from '@/lib/sinonimos';
+import { hrefBiblia } from '@/lib/bibliaHref';
 import { useTranslation } from 'react-i18next';
 
 const lexiconHebraico = () => import('@/data/lexicon/hebraico');
@@ -808,7 +809,7 @@ export default function PesquisaPage() {
                         <div className="sola-card p-5 group">
                           <div className="flex items-start justify-between gap-4">
                             <Link
-                              href={`/biblia?livro=${r.livroAbrev}&capitulo=${r.capitulo}`}
+                              href={hrefBiblia(r.livroAbrev, r.capitulo, r.versiculo)}
                               className="flex-1"
                             >
                               <div className="flex items-center gap-2 mb-1.5">
@@ -849,7 +850,7 @@ export default function PesquisaPage() {
                                 <Share2 className="w-4 h-4" />
                               </button>
                               <Link
-                                href={`/biblia?livro=${r.livroAbrev}&capitulo=${r.capitulo}`}
+                                href={hrefBiblia(r.livroAbrev, r.capitulo, r.versiculo)}
                                 className="p-1.5 text-muted-foreground hover:text-foreground transition-colors rounded-sm"
                                 title={t('pesquisa.goToBible')}
                               >

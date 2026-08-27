@@ -1,5 +1,12 @@
 import 'server-only';
 import type { NextRequest } from 'next/server';
+import {
+  decodeJwtPayload,
+  getTokenFromRequest,
+  isJwtExpired,
+} from '@/lib/tokenSessao';
+
+export { getTokenFromRequest, isJwtExpired } from '@/lib/tokenSessao';
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
@@ -12,39 +19,6 @@ export interface SessionUser {
   email?: string;
   role: 'authenticated' | 'anon';
   exp?: number;
-}
-
-/**
- * Lê token do cookie ssb_token ou header (nunca da query string).
- */
-export function getTokenFromRequest(request: NextRequest): string | null {
-  const cookieToken = request.cookies.get('ssb_token')?.value;
-  if (cookieToken) return cookieToken;
-  const authHeader = request.headers.get('x-ssb-token');
-  if (authHeader) return authHeader;
-  const bearer = request.headers.get('authorization');
-  if (bearer?.toLowerCase().startsWith('bearer ')) {
-    return bearer.slice(7).trim();
-  }
-  return null;
-}
-
-function decodeJwtPayload(token: string): Record<string, unknown> | null {
-  const parts = token.split('.');
-  if (parts.length !== 3) return null;
-  try {
-    return JSON.parse(
-      Buffer.from(parts[1].replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf8'),
-    );
-  } catch {
-    return null;
-  }
-}
-
-function isJwtExpired(token: string): boolean {
-  const payload = decodeJwtPayload(token);
-  if (!payload || typeof payload.exp !== 'number') return false;
-  return payload.exp * 1000 < Date.now();
 }
 
 async function validateNestJwt(token: string): Promise<SessionUser | null> {

@@ -3,6 +3,8 @@
 // Data: 2026-08-24T18:05:12.299Z
 // Total: 5978 comentários (5843 manuais + 135 reais + 0 curados)
 
+import { obterComentariosClassicos, temComentarioClassico } from './comentariosClassicos';
+
 export interface Comentario {
   livro: string;
   capitulo: number;
@@ -6010,11 +6012,16 @@ add('ap', 20, 7, 'Matthew Henry', '7-10 Enquanto este mundo durar, o poder de Sa
 add('ap', 21, 22, 'Matthew Henry', '22-27 A comunhão perfeita e direta com Deus mais do que suprirá o lugar das instituições do evangelho. E que palavras podem expressar mais plenamente a união e co-igualdade do Filho com o Pai, na Divindade? Que mundo sombrio seria esse, se não fosse a luz do sol! O que há no céu que supre seu lugar? A glória de Deus ilumina aquela cidade, e o Cordeiro é a Luz dela. Deus em Cristo será uma fonte eterna de conhecimento e alegria para os santos no céu. Não há noite, portanto não há necessidade de fechar os portões; tudo está em paz e seguro. O todo nos mostra que devemos ser cada vez mais leva...', 'teologico', 'resumo');
 
 export function obterComentarios(livro: string, capitulo: number, versiculo: number): Comentario[] {
-  return comentarios[chave(livro, capitulo, versiculo)] || [];
+  const base = comentarios[chave(livro, capitulo, versiculo)] || [];
+  const extra = obterComentariosClassicos(livro, capitulo, versiculo);
+  if (extra.length === 0) return base;
+  const autores = new Set(base.map((c) => c.autor.toLowerCase()));
+  return [...base, ...extra.filter((c) => !autores.has(c.autor.toLowerCase()))];
 }
 
 export function temComentario(livro: string, capitulo: number, versiculo: number): boolean {
-  return chave(livro, capitulo, versiculo) in comentarios;
+  return chave(livro, capitulo, versiculo) in comentarios
+    || temComentarioClassico(livro, capitulo, versiculo);
 }
 
 export function obterTodosComentarios(): Comentario[] {

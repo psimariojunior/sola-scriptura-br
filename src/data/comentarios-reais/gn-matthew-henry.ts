@@ -3,7 +3,7 @@
 // Baixado em: 2026-07-18T01:42:09.707Z
 // Livro: Gênesis
 
-import { Comentario } from '../comentarios';
+import type { Comentario } from '../comentarios';
 
 export const comentariosgn: Comentario[] = [
   {

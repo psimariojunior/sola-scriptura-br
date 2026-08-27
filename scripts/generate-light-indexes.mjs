@@ -18,6 +18,26 @@ while ((match = addPattern.exec(comentariosContent)) !== null) {
   keys.add(`${match[1]}:${match[2]}:${match[3]}`);
 }
 
+const curatedFiles = [
+  'src/data/comentarios-reais/matthew-henry.ts',
+  'src/data/comentarios-reais/jamieson-fausset-brown.ts',
+  'src/data/comentarios-reais/albert-barnes.ts',
+  'src/data/comentarios-reais/gn-matthew-henry.ts',
+];
+const curatedPattern = /livro:\s*['"](\w+)['"],\s*\n\s*capitulo:\s*(\d+),\s*\n\s*versiculo:\s*(\d+)/g;
+const jsonPattern = /"livro":\s*"(\w+)",\s*\n\s*"capitulo":\s*(\d+),\s*\n\s*"versiculo":\s*(\d+)/g;
+for (const rel of curatedFiles) {
+  const content = readFileSync(resolve(ROOT, rel), 'utf-8');
+  curatedPattern.lastIndex = 0;
+  jsonPattern.lastIndex = 0;
+  while ((match = curatedPattern.exec(content)) !== null) {
+    keys.add(`${match[1]}:${match[2]}:${match[3]}`);
+  }
+  while ((match = jsonPattern.exec(content)) !== null) {
+    keys.add(`${match[1]}:${match[2]}:${match[3]}`);
+  }
+}
+
 const sortedKeys = [...keys].sort();
 console.log(`  ${sortedKeys.length} chaves unicas encontradas`);
 
@@ -39,13 +59,18 @@ console.log(`  -> comentarios-index.ts escrito (${(Buffer.byteLength(comentarios
 
 // === GERAR estudos-index.ts ===
 console.log('Gerando src/data/estudos-index.ts...');
-const estudosContent = readFileSync(resolve(ROOT, 'src/data/estudosTeologicos.ts'), 'utf-8');
-
-// Extrair chaves do byRefMap: livro: 'gn', capitulo: 1, versiculo: 1
+const estudosFiles = [
+  resolve(ROOT, 'src/data/estudosTeologicos.ts'),
+  resolve(ROOT, 'src/data/estudosClassicosCanon.ts'),
+];
 const estudoPattern = /livro:\s*'(\w+)',\s*capitulo:\s*(\d+),\s*versiculo:\s*(\d+)/g;
 const estudoKeys = new Set();
-while ((match = estudoPattern.exec(estudosContent)) !== null) {
-  estudoKeys.add(`${match[1]}:${match[2]}:${match[3]}`);
+for (const file of estudosFiles) {
+  const estudosContent = readFileSync(file, 'utf-8');
+  estudoPattern.lastIndex = 0;
+  while ((match = estudoPattern.exec(estudosContent)) !== null) {
+    estudoKeys.add(`${match[1]}:${match[2]}:${match[3]}`);
+  }
 }
 
 const sortedEstudoKeys = [...estudoKeys].sort();

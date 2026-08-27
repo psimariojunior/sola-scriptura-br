@@ -2,7 +2,7 @@
 // Fonte: Matthew Henry (1662-1714) — Domínio Público
 // Obra completa: https://www.ccel.org/ccel/henry
 
-import { Comentario } from '../comentarios';
+import type { Comentario } from '../comentarios';
 
 export const comentariosMatthewHenry: Comentario[] = [
   {

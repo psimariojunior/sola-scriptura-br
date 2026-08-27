@@ -1,4 +1,5 @@
 import { estudosTeologicosExpandidos, EstudoTeologico } from './estudosTeologicosExpandidos';
+import { estudosClassicosCanon } from './estudosClassicosCanon';
 
 export interface EstudoTeologo {
   teologo: string;
@@ -62,7 +63,7 @@ const estudosData: EstudoVersiculo[] = [
       { teologo: 'São Tomás de Aquino', periodo: '1225-1274', tradicao: 'Escolástica', visao: 'Cristologia central', resumo: 'Este versículo é a primeira menção à vinda de Cristo. A vitória sobre Satanás se dá pela Paixão e Morte de Jesus, esmagando a cabeça do inimigo.', citacao: '«A cabeça da serpente, que é o diabo, será esmagada pelacruz de Cristo.»' },
       { teologo: 'Lutero', periodo: '1483-1546', tradicao: 'Reforma', visao: 'Promessa de graça', resumo: 'Aqui começa o evangelho — Deus promete um redentor mesmo antes da sentença. A promessa é gratuita, não condicional. A semente da mulher é Cristo.', citacao: '«Este é o primeiro sermão evangélico, pregado por Deus em pessoa.»' },
       { teologo: 'Calvino', periodo: '1509-1564', tradicao: 'Reforma', visao: 'Aliança de graça', resumo: 'O versículo estabelece a aliança de redenção. A vitória de Cristo é certa — a serpente será esmagada, não apenas ferida. É promessa, não possibilidade.', citacao: '«Deus não apenas prediz a vitória — Ele a garante pela Sua palavra.»' },
-      { teologo: 'Jonah Goldberg', periodo: 'Contemporâneo', tradicao: 'Evangélica', visao: 'Cosmologia do conflito', resumo: 'O versículo estabelece o conflito cósmico entre semente da mulher e semente da serpente que percorre toda a Escritura até o Apocalipse.', citacao: '«Toda a história bíblica é o drama desta guerra cósmica iniciada em Gn 3:15.»' },
+      { teologo: 'Herman Bavinck', periodo: '1854-1921', tradicao: 'Reforma neocalvinista', visao: 'História da redenção', resumo: 'Gn 3:15 é o protoevangelho: toda a revelação posterior desdobra a inimizade entre a semente da mulher e a da serpente, até a vitória de Cristo na cruz e no juízo.', citacao: '«A primeira promessa do evangelho é o germe de toda a história da redenção.»' },
     ],
   },
   // ═══════════════════════════════════════════════════════════════════════
@@ -1284,6 +1285,7 @@ function addToIndex(estudo: EstudoVersiculo) {
 }
 
 for (const e of estudosData) addToIndex(e);
+for (const e of estudosClassicosCanon) addToIndex(e);
 
 // ═══════════════════════════════════════════════════════════════════════
 // MAIS ESTUDOS — VERSÍCLOS ESSENCIAIS DO NT E AT
@@ -3142,8 +3144,7 @@ for (const e of estudosExtras) {
 
 
 
-export function obterEstudos(livro: string, capitulo: number, versiculo: number): EstudoVersiculo[] {
-  return byRefMap.get(`${livro}:${capitulo}:${versiculo}`) || [
+const estudosCatalogoRestante: EstudoVersiculo[] = [
   {
     livro: 'gn', capitulo: 1, versiculo: 2,
     tema: 'Caos primordial',
@@ -6772,6 +6773,11 @@ export function obterEstudos(livro: string, capitulo: number, versiculo: number)
     ],
   },
 ];
+
+for (const e of estudosCatalogoRestante) addToIndex(e);
+
+export function obterEstudos(livro: string, capitulo: number, versiculo: number): EstudoVersiculo[] {
+  return byRefMap.get(`${livro}:${capitulo}:${versiculo}`) || [];
 }
 
 export function temEstudo(livro: string, capitulo: number, versiculo: number): boolean {
@@ -6779,7 +6785,7 @@ export function temEstudo(livro: string, capitulo: number, versiculo: number): b
 }
 
 export function listarTodosEstudos(): EstudoVersiculo[] {
-  return estudosData;
+  return Array.from(byRefMap.values()).flat();
 }
 
 export function obterEstudosExpandidos(): EstudoTeologico[] {

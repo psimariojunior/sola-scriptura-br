@@ -2,7 +2,7 @@
 // Fonte: Robert Jamieson, A.R. Fausset, David Brown (1871)
 // Domínio Público (publicado em 1871, autores falecidos há 200+ anos)
 
-import { Comentario } from '../comentarios';
+import type { Comentario } from '../comentarios';
 
 export const comentariosJFB: Comentario[] = [
   {

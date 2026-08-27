@@ -2,7 +2,7 @@
 // Fonte: Albert Barnes (1798-1870) — Domínio Público
 // "Notes on the Old and New Testaments" (1830s)
 
-import { Comentario } from '../comentarios';
+import type { Comentario } from '../comentarios';
 
 export const comentariosBarnes: Comentario[] = [
   {

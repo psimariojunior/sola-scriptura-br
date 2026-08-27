@@ -23,6 +23,7 @@ export interface VerseImageCreatorProps {
   texto: string;
   referencia: string;
   onClose: () => void;
+  formatoInicial?: FormatoImagem;
 }
 
 export type TemplateId = 'classico' | 'minimalista' | 'pergaminho' | 'gradient' | 'natureza';
@@ -673,15 +674,15 @@ function drawVerseImage(
 // COMPONENTE PRINCIPAL
 // ═══════════════════════════════════════════════════════════════════════════════
 
-export function VerseImageCreator({ texto, referencia, onClose }: VerseImageCreatorProps) {
+export function VerseImageCreator({ texto, referencia, onClose, formatoInicial = 'quadrado' }: VerseImageCreatorProps) {
   const [templateIdx, setTemplateIdx] = useState(0);
-  const [fontSize, setFontSize] = useState(50);
+  const [fontSize, setFontSize] = useState(formatoInicial === 'stories' ? 44 : 50);
   const [showRef, setShowRef] = useState(true);
   const [showLogo, setShowLogo] = useState(true);
   const [bgColorIdx, setBgColorIdx] = useState(0);
   const [bgOpacity, setBgOpacity] = useState(100);
   const [showControls, setShowControls] = useState(true);
-  const [formato, setFormato] = useState<FormatoImagem>('quadrado');
+  const [formato, setFormato] = useState<FormatoImagem>(formatoInicial);
   const [busy, setBusy] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
 

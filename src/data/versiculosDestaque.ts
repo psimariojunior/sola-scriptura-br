@@ -103,19 +103,19 @@ export const versiculosDestaque: VersiculoDestaque[] = [
   { referencia: 'Apocalipse 3:20', texto: 'Eis que estou à porta, e bato; se alguém ouvir a minha voz, e abrir a porta, entrarei para ele, e com ele cearei, e ele comigo.', tema: 'promessa', epoca: 'qualquer', estacao: 'qualquer' },
 ];
 
-export const TEMAS_INFO: Record<string, { label: string; cor: string; emoji: string; gradient: string }> = {
-  fe: { label: 'Fé', cor: 'bg-blue-500/10 text-blue-600 border-blue-500/20', emoji: '✝️', gradient: 'from-blue-500/20 via-blue-600/10 to-transparent' },
-  amor: { label: 'Amor', cor: 'bg-rose-500/10 text-rose-600 border-rose-500/20', emoji: '❤️', gradient: 'from-rose-500/20 via-rose-600/10 to-transparent' },
-  esperanca: { label: 'Esperança', cor: 'bg-amber-500/10 text-amber-600 border-amber-500/20', emoji: '🌅', gradient: 'from-amber-500/20 via-amber-600/10 to-transparent' },
-  forca: { label: 'Força', cor: 'bg-red-500/10 text-red-600 border-red-500/20', emoji: '💪', gradient: 'from-red-500/20 via-red-600/10 to-transparent' },
-  paz: { label: 'Paz', cor: 'bg-teal-500/10 text-teal-600 border-teal-500/20', emoji: '🕊️', gradient: 'from-teal-500/20 via-teal-600/10 to-transparent' },
-  sabedoria: { label: 'Sabedoria', cor: 'bg-violet-500/10 text-violet-600 border-violet-500/20', emoji: '📖', gradient: 'from-violet-500/20 via-violet-600/10 to-transparent' },
-  graca: { label: 'Graça', cor: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20', emoji: '✨', gradient: 'from-emerald-500/20 via-emerald-600/10 to-transparent' },
-  louvor: { label: 'Louvor', cor: 'bg-yellow-500/10 text-yellow-600 border-yellow-500/20', emoji: '🎵', gradient: 'from-yellow-500/20 via-yellow-600/10 to-transparent' },
-  oracao: { label: 'Oração', cor: 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20', emoji: '🙏', gradient: 'from-indigo-500/20 via-indigo-600/10 to-transparent' },
-  justica: { label: 'Justiça', cor: 'bg-orange-500/10 text-orange-600 border-orange-500/20', emoji: '⚖️', gradient: 'from-orange-500/20 via-orange-600/10 to-transparent' },
-  consolo: { label: 'Consolo', cor: 'bg-sky-500/10 text-sky-600 border-sky-500/20', emoji: '💙', gradient: 'from-sky-500/20 via-sky-600/10 to-transparent' },
-  promessa: { label: 'Promessa', cor: 'bg-purple-500/10 text-purple-600 border-purple-500/20', emoji: '🌟', gradient: 'from-purple-500/20 via-purple-600/10 to-transparent' },
+export const TEMAS_INFO: Record<string, { label: string; cor: string; emoji: string; gradient: string; reflexao: string }> = {
+  fe: { label: 'Fé', cor: 'bg-blue-500/10 text-blue-600 border-blue-500/20', emoji: '✝️', gradient: 'from-blue-500/20 via-blue-600/10 to-transparent', reflexao: 'A fé não é um salto no escuro: é confiar na Palavra que já falou e continua falando.' },
+  amor: { label: 'Amor', cor: 'bg-rose-500/10 text-rose-600 border-rose-500/20', emoji: '❤️', gradient: 'from-rose-500/20 via-rose-600/10 to-transparent', reflexao: 'O amor de Deus não espera mérito. Ele ama primeiro — e isso muda o jeito de amar o próximo.' },
+  esperanca: { label: 'Esperança', cor: 'bg-amber-500/10 text-amber-600 border-amber-500/20', emoji: '🌅', gradient: 'from-amber-500/20 via-amber-600/10 to-transparent', reflexao: 'Esperança bíblica não é otimismo vazio: é certeza de que Deus cumpre o que prometeu.' },
+  forca: { label: 'Força', cor: 'bg-red-500/10 text-red-600 border-red-500/20', emoji: '💪', gradient: 'from-red-500/20 via-red-600/10 to-transparent', reflexao: 'A força do cristão não vem de si. Vem de Cristo habitando em quem se reconhece fraco.' },
+  paz: { label: 'Paz', cor: 'bg-teal-500/10 text-teal-600 border-teal-500/20', emoji: '🕊️', gradient: 'from-teal-500/20 via-teal-600/10 to-transparent', reflexao: 'A paz de Cristo não depende das circunstâncias. Ela guarda o coração no meio da tempestade.' },
+  sabedoria: { label: 'Sabedoria', cor: 'bg-violet-500/10 text-violet-600 border-violet-500/20', emoji: '📖', gradient: 'from-violet-500/20 via-violet-600/10 to-transparent', reflexao: 'Sabedoria começa no temor do Senhor: deixar a Palavra corrigir o que o mundo chama de óbvio.' },
+  graca: { label: 'Graça', cor: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20', emoji: '✨', gradient: 'from-emerald-500/20 via-emerald-600/10 to-transparent', reflexao: 'Graça é presente, não salário. Ninguém se glória nas obras — só na cruz de Cristo.' },
+  louvor: { label: 'Louvor', cor: 'bg-yellow-500/10 text-yellow-600 border-yellow-500/20', emoji: '🎵', gradient: 'from-yellow-500/20 via-yellow-600/10 to-transparent', reflexao: 'Louvor não é só cântico. É reconhecer, em voz alta, quem Deus é — de manhã e na angústia.' },
+  oracao: { label: 'Oração', cor: 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20', emoji: '🙏', gradient: 'from-indigo-500/20 via-indigo-600/10 to-transparent', reflexao: 'Orar é falar com o Pai que já conhece a necessidade — e ainda assim nos convida a clamar.' },
+  justica: { label: 'Justiça', cor: 'bg-orange-500/10 text-orange-600 border-orange-500/20', emoji: '⚖️', gradient: 'from-orange-500/20 via-orange-600/10 to-transparent', reflexao: 'A justiça de Deus não é só veredito: é vida transformada, humildade e cuidado com o oprimido.' },
+  consolo: { label: 'Consolo', cor: 'bg-sky-500/10 text-sky-600 border-sky-500/20', emoji: '💙', gradient: 'from-sky-500/20 via-sky-600/10 to-transparent', reflexao: 'O consolo de Deus não apaga a dor de imediato. Ele se senta junto — e sustenta até o fim.' },
+  promessa: { label: 'Promessa', cor: 'bg-purple-500/10 text-purple-600 border-purple-500/20', emoji: '🌟', gradient: 'from-purple-500/20 via-purple-600/10 to-transparent', reflexao: 'Toda promessa de Deus encontra o “sim” em Cristo. O que Ele falou, Ele guarda.' },
 };
 
 export function getVersiculoDoDia(): VersiculoDestaque {

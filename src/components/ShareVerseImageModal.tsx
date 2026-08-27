@@ -3,7 +3,7 @@
 import { useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Image as ImageIcon } from 'lucide-react';
-import { VerseImageCreator } from './VerseImageCreator';
+import { VerseImageCreator, type FormatoImagem } from './VerseImageCreator';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // TYPES
@@ -21,13 +21,14 @@ export interface ShareVerseImageModalProps {
   open: boolean;
   onClose: () => void;
   verse: ShareVerseImageData | null;
+  formatoInicial?: FormatoImagem;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // MODAL WRAPPER
 // ═══════════════════════════════════════════════════════════════════════════════
 
-export function ShareVerseImageModal({ open, onClose, verse }: ShareVerseImageModalProps) {
+export function ShareVerseImageModal({ open, onClose, verse, formatoInicial }: ShareVerseImageModalProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -76,7 +77,7 @@ export function ShareVerseImageModal({ open, onClose, verse }: ShareVerseImageMo
                   id="share-image-title"
                   className="font-display text-lg font-semibold text-[var(--content-primary)]"
                 >
-                  Imagem do versículo
+                  {formatoInicial === 'stories' ? 'Imagem para Stories' : 'Imagem do versículo'}
                 </h2>
               </div>
               <button
@@ -95,6 +96,7 @@ export function ShareVerseImageModal({ open, onClose, verse }: ShareVerseImageMo
                 texto={verse.texto}
                 referencia={`${referencia} (${verse.traducao.toUpperCase()})`}
                 onClose={onClose}
+                formatoInicial={formatoInicial}
               />
             </div>
           </motion.div>

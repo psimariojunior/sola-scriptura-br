@@ -71,7 +71,7 @@ export default function HomeClient() {
             Scriptura
           </h1>
           <p className="mt-5 text-sm sm:text-base text-muted-foreground max-w-md mx-auto leading-relaxed">
-            Abra a Bíblia, toque no versículo e estude de graça — comentários clássicos, hebraico, grego e referências, sem anúncios.
+            O versículo de hoje já está pronto para o Stories. Abra a Bíblia, toque no verso e estude de graça — sem anúncios.
           </p>
           <div className="lectern-ornament mt-7" aria-hidden="true" />
         </header>

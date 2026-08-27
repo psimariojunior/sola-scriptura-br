@@ -160,45 +160,7 @@ export const ClickableVerse = memo(function ClickableVerse({
             <span
               key={i}
               onClick={(e) => handleWordClick(token.word, e, wordIndex)}
-              className="cursor-pointer border-b border-dashed border-[var(--content-muted)] hover:border-[var(--brand-default)] hover:text-[var(--brand-default)] transition-colors duration-150"
-              role="button"
-              tabIndex={0}
-              onKeyDown={async (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  const cleaned = token.word.replace(
-                    /[.,;:!?\u2014\u2013()""''"]/g,
-                    ''
-                  );
-                  if (cleaned.length > 2) {
-                    let results: LexiconResult[] = [];
-
-                    // Try Strong's alignment first
-                    if (alignmentMap && wordIndex >= 0) {
-                      const alinhada = alignmentMap.get(wordIndex);
-                      if (alinhada?.strong) {
-                        const entry = await getStrongByNumber(alinhada.strong);
-                        if (entry) results = [{ entry, score: 1.0 }];
-                      }
-                    }
-
-                    // Fall back to fuzzy search
-                    if (results.length === 0) {
-                      results = await findWordInText(cleaned, testamento ?? undefined);
-                    }
-
-                    if (results.length > 0 && containerRef.current) {
-                      setPopup({
-                        results,
-                        position: {
-                          x: window.innerWidth / 2,
-                          y: 100,
-                        },
-                      });
-                    }
-                  }
-                }
-              }}
+              className="bible-word cursor-pointer rounded-sm hover:text-primary transition-colors duration-150"
             >
               {token.word}
             </span>

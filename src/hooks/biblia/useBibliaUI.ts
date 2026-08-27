@@ -71,6 +71,53 @@ export interface UseBibliaUIReturn {
   };
 }
 
+const BIBLE_MIN_A11Y_FONT = 18;
+
+function defaultBibleFontSize(width: number): number {
+  if (width < 360) return 17;
+  if (width < 480) return 18;
+  if (width < 640) return 19;
+  if (width < 768) return 19;
+  return 21;
+}
+
+function readStoredBibleFontSize(): number | null {
+  try {
+    const savedSize = localStorage.getItem('ssb_font_size');
+    if (savedSize) {
+      const n = Number(savedSize);
+      if (n >= 14 && n <= 42) return n;
+    }
+    const saved = localStorage.getItem('ssb_accessibility');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // Tamanho global de UI (ex.: 16px) não serve para leitura bíblica em serifa.
+      if (typeof parsed.fontSize === 'number' && parsed.fontSize >= BIBLE_MIN_A11Y_FONT) {
+        return parsed.fontSize;
+      }
+    }
+  } catch {}
+  return null;
+}
+
+function readStoredLineSpacing(): number {
+  try {
+    const savedLine = localStorage.getItem('ssb_line_spacing');
+    if (savedLine) {
+      const n = parseFloat(savedLine);
+      if (n >= 1.3 && n <= 2.6) return n;
+    }
+    const saved = localStorage.getItem('ssb_accessibility');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (typeof parsed.lineHeight === 'number' && parsed.lineHeight >= 1.7) {
+        return parsed.lineHeight;
+      }
+    }
+  } catch {}
+  return 1.85;
+}
+
 interface UseBibliaUIParams {
   capituloIdx: number;
   livroTotalCapitulos: number;
@@ -110,22 +157,7 @@ export function UseBibliaUI({
   const [showDiff, setShowDiff] = useState(true);
   const [fontSize, setFontSize] = useState(() => {
     if (typeof window !== 'undefined') {
-      try {
-        const saved = localStorage.getItem('ssb_accessibility');
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (parsed.fontSize && typeof parsed.fontSize === 'number') return parsed.fontSize;
-        }
-        const savedSize = localStorage.getItem('ssb_font_size');
-        if (savedSize) return Number(savedSize);
-      } catch {}
-      // Auto-fit: ajusta fonte baseado na largura da tela
-      const w = window.innerWidth;
-      if (w < 360) return 16;
-      if (w < 480) return 17;
-      if (w < 640) return 18;
-      if (w < 768) return 19;
-      return 20;
+      return readStoredBibleFontSize() ?? defaultBibleFontSize(window.innerWidth);
     }
     return 20;
   });
@@ -155,17 +187,8 @@ export function UseBibliaUI({
     return 'serif';
   });
   const [lineSpacing, setLineSpacing] = useState(() => {
-    if (typeof window !== 'undefined') {
-      try {
-        const saved = localStorage.getItem('ssb_accessibility');
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (parsed.lineHeight && typeof parsed.lineHeight === 'number') return parsed.lineHeight;
-        }
-      } catch {}
-      return parseFloat(localStorage.getItem('ssb_line_spacing') || '1.8');
-    }
-    return 1.8;
+    if (typeof window !== 'undefined') return readStoredLineSpacing();
+    return 1.85;
   });
   const [modoExibicao, setModoExibicaoState] = useState<'versiculo' | 'paragrafo'>(() => {
     if (typeof window !== 'undefined') {
@@ -276,10 +299,15 @@ export function UseBibliaUI({
     const loadAccessibility = () => {
       try {
         const saved = localStorage.getItem('ssb_accessibility');
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (parsed.fontSize && typeof parsed.fontSize === 'number') setFontSize(parsed.fontSize);
-          if (parsed.lineHeight && typeof parsed.lineHeight === 'number') setLineSpacing(parsed.lineHeight);
+        if (!saved) return;
+        const parsed = JSON.parse(saved);
+        const bibleSize = localStorage.getItem('ssb_font_size');
+        if (!bibleSize && typeof parsed.fontSize === 'number' && parsed.fontSize >= BIBLE_MIN_A11Y_FONT) {
+          setFontSize(parsed.fontSize);
+        }
+        const bibleLine = localStorage.getItem('ssb_line_spacing');
+        if (!bibleLine && typeof parsed.lineHeight === 'number' && parsed.lineHeight >= 1.7) {
+          setLineSpacing(parsed.lineHeight);
         }
       } catch {}
     };
@@ -301,14 +329,7 @@ export function UseBibliaUI({
     const mql = window.matchMedia('(orientation: portrait)');
     const onResize = () => {
       if (userHasAdjusted) return;
-      const w = window.innerWidth;
-      let newSize: number;
-      if (w < 360) newSize = 16;
-      else if (w < 480) newSize = 17;
-      else if (w < 640) newSize = 18;
-      else if (w < 768) newSize = 19;
-      else newSize = 20;
-      setFontSize(newSize);
+      setFontSize(readStoredBibleFontSize() ?? defaultBibleFontSize(window.innerWidth));
     };
     mql.addEventListener('change', onResize);
     return () => {

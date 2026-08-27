@@ -62,10 +62,12 @@ export function BibleToolbar({
         <div className="flex items-center gap-1 shrink-0">
           <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform" aria-label={t('biblia.previousChapter', 'Capítulo anterior')}><ChevronLeft className="w-4 h-4" /></button>
           <div className="relative">
-            <button onClick={() => ui.setChapterGridOpen(!ui.chapterGridOpen)} className="px-2.5 py-1 rounded-md bg-[var(--surface-sunken)] border border-[var(--border)]/40 min-w-[80px] max-w-[130px] sm:min-w-[120px] sm:max-w-none text-center hover:bg-[var(--surface-raised)] transition-colors cursor-pointer truncate" aria-label={`${nav.livro.nome} ${nav.capituloIdx + 1}/${nav.livro.totalCapitulos} — ${t('biblia.selectChapter', 'Selecionar capítulo')}`} aria-expanded={ui.chapterGridOpen}>
-              <span className="text-sm font-semibold text-[var(--content-primary)]">{nav.livro.nome}</span>
-              <span className="text-[var(--brand-default)] font-bold ml-1.5 tabular-nums">{nav.capituloIdx + 1}</span>
-              <span className="text-[var(--content-muted)] font-normal text-xs ml-1">/{nav.livro.totalCapitulos}</span>
+            <button onClick={() => ui.setChapterGridOpen(!ui.chapterGridOpen)} className="px-2.5 py-1 rounded-md bg-[var(--surface-sunken)] border border-[var(--border)]/40 min-w-[5.5rem] sm:min-w-[9rem] text-center hover:bg-[var(--surface-raised)] transition-colors cursor-pointer" aria-label={`${nav.livro.nome} ${nav.capituloIdx + 1}/${nav.livro.totalCapitulos} — ${t('biblia.selectChapter', 'Selecionar capítulo')}`} aria-expanded={ui.chapterGridOpen}>
+              <span className="flex items-baseline justify-center gap-1.5 min-w-0">
+                <span className="text-sm font-semibold text-[var(--content-primary)] truncate max-w-[7rem] sm:max-w-[12rem]">{nav.livro.nome}</span>
+                <span className="text-primary font-bold tabular-nums shrink-0">{nav.capituloIdx + 1}</span>
+                <span className="text-[var(--content-muted)] font-normal text-xs tabular-nums shrink-0">/{nav.livro.totalCapitulos}</span>
+              </span>
             </button>
             <ChapterGrid open={ui.chapterGridOpen} onClose={() => ui.setChapterGridOpen(false)} totalCapitulos={nav.livro.totalCapitulos} capituloAtual={nav.capituloIdx} onSelect={(idx) => nav.changeChapter(idx)} />
           </div>

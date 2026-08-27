@@ -172,9 +172,9 @@ export function BibleVerseList({
             {nav.loading && nav.temDados && (<div className="fixed top-0 left-0 right-0 z-20 h-0.5 bg-[var(--brand-default)]/20"><div className="h-full bg-[var(--brand-default)] animate-loading-bar" /></div>)}
             <ChapterHeader livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} totalCapitulos={nav.livro.totalCapitulos} totalVersiculos={nav.data[0]?.versiculos?.length ?? 0} />
             {nav.estudoCapitulo && (
-              <div className={cn("mb-6 rounded-xl border border-[var(--brand-default)]/20 bg-[var(--brand-subtle)]/50 transition-all", ui.estudoCapituloAberto ? "p-4" : "p-3")}>
-                <button onClick={() => ui.setEstudoCapituloAberto(o => !o)} className="w-full flex items-center gap-2.5 text-left group" aria-expanded={ui.estudoCapituloAberto}>
-                  <div className="w-8 h-8 rounded-lg bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0"><BookOpen className="w-4 h-4 text-[var(--brand-default)]" /></div>
+              <div className={cn("mb-4 rounded-lg border border-[var(--brand-default)]/15 bg-[var(--brand-subtle)]/40 transition-all", ui.estudoCapituloAberto ? "p-3" : "px-3 py-2")}>
+                <button onClick={() => ui.setEstudoCapituloAberto(o => !o)} className="w-full flex items-center gap-2 text-left group" aria-expanded={ui.estudoCapituloAberto}>
+                  <div className="w-7 h-7 rounded-md bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0"><BookOpen className="w-3.5 h-3.5 text-[var(--brand-default)]" /></div>
                   <div className="flex-1 min-w-0">
                     <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-default)] block">{t('biblia.chapterStudy')}</span>
                     <span className="text-xs text-[var(--content-muted)] truncate block">{nav.estudoCapitulo.titulo}</span>

@@ -241,27 +241,26 @@ export const VerseCard = memo(function VerseCard({
         onPointerLeave={handlePointerLeave}
         onMouseEnter={() => setShowActions(true)}
         onMouseLeave={() => setShowActions(false)}
+        style={{ fontSize: `${fontSize}px` }}
         className={cn(
-          'group relative cursor-pointer',
+          'group relative cursor-pointer bible-verse-row',
           'transition-colors duration-200 animate-verse-fade-in',
-          'px-1 sm:px-2 -mx-1 sm:-mx-2',
-          'py-2 sm:py-2.5',
+          'rounded-md',
           isCurrentAudioVerse
-            ? 'bg-primary/[0.08] border-l-2 border-l-primary'
+            ? 'bg-primary/[0.07]'
             : isFocused || isSelected
-            ? 'bg-primary/[0.06] border-l-2 border-l-primary/70'
+            ? 'bg-primary/[0.05]'
             : isPlaying || isHighlighted
-            ? 'bg-primary/[0.04] border-l-2 border-l-primary/40'
-            : 'border-l-2 border-l-transparent hover:bg-primary/[0.03] hover:border-l-primary/25',
+            ? 'bg-primary/[0.04]'
+            : 'hover:bg-primary/[0.03]',
           corMarca && corBgMap[corMarca]
         )}
       >
-        <div className="flex items-start gap-2.5 sm:gap-4">
-          {/* Verse number badge */}
+        <div className="flex items-start gap-2.5 sm:gap-3.5">
           {!hideNumber && (
             <span
               className={cn(
-                'bible-verse-number shrink-0 mt-1',
+                'bible-verse-hanging',
                 (isSelected || isPlaying || isCurrentAudioVerse || isFocused) && 'is-active'
               )}
               aria-hidden="true"
@@ -271,14 +270,13 @@ export const VerseCard = memo(function VerseCard({
           )}
 
           <div className="flex-1 min-w-0">
-            {/* Verse text - clickable words for lexicon */}
             <ClickableVerse
               text={texto}
               livroAbreviacao={livroAbreviacao}
               capitulo={capitulo}
               numero={numero}
-              className="font-serif-body text-[var(--content-primary)] tracking-[0.01em]"
-              style={{ fontSize: `${fontSize}px`, lineHeight: lineSpacing ?? undefined, fontFamily: fontFamilyCss }}
+              className="bible-reading-text font-serif-body text-[var(--content-primary)]"
+              style={{ fontSize: `${fontSize}px`, lineHeight: lineSpacing ?? 1.85, fontFamily: fontFamilyCss }}
             />
 
             {anotacaoPreview && (
@@ -300,20 +298,18 @@ export const VerseCard = memo(function VerseCard({
             )}
           </div>
 
-          {/* Actions - appear on hover/selection */}
-          <div className={cn(
-            'shrink-0 transition-all duration-150 hidden lg:block',
-            (showActions || isSelected) ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
-          )}>
-            <div className="flex items-center gap-0.5">
-              <CommentBadge
-                livroAbreviacao={livroAbreviacao}
-                capitulo={capitulo}
-                versiculo={numero}
-                onClick={(e) => { e.stopPropagation(); setShowComments(true); }}
-                refreshKey={commentsRefreshKey}
-              />
-              <VerseActions
+          {(showActions || isSelected) && (
+          <div
+            className="hidden lg:flex absolute right-0 top-0 z-10 items-center gap-0.5 rounded-md bg-[var(--surface-raised)]/95 backdrop-blur-sm px-0.5 shadow-sm border border-[var(--border)]/40"
+          >
+            <CommentBadge
+              livroAbreviacao={livroAbreviacao}
+              capitulo={capitulo}
+              versiculo={numero}
+              onClick={(e) => { e.stopPropagation(); setShowComments(true); }}
+              refreshKey={commentsRefreshKey}
+            />
+            <VerseActions
               livro={livroNome}
               livroNome={livroNome}
               livroAbreviacao={livroAbreviacao}
@@ -336,8 +332,8 @@ export const VerseCard = memo(function VerseCard({
               copiedVerse={copiedVerse}
               verseKey={verseKey}
             />
-            </div>
           </div>
+          )}
         </div>
 
         {/* Long-press color picker popup */}

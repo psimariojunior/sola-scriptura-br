@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Biblioteca Digital — Clássicos da Fé | Sola Scriptura BR',
     description:
-      'Os clássicos que o Logos cobra caro para vender: grátis, com leitor premium e fichas acadêmicas.',
+      '15 obras-primas do cristianismo de domínio público, com leitor premium e fichas acadêmicas. Grátis.',
   },
 };
 

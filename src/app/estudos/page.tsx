@@ -271,7 +271,7 @@ export default function EstudosPage() {
             </Link>
           </PageHero>
 
-          {/* ═══ FILTROS EMOCIONAIS — YouVersion style ═══ */}
+          {/* ═══ FILTROS EMOCIONAIS ═══ */}
           <ScrollReveal delay={0.05}>
             <div className="mb-8">
               <p className="text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-3">{t('estudos.exploreByFeeling')}</p>

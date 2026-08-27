@@ -6011,12 +6011,30 @@ add('ap', 20, 4, 'Matthew Henry', '4-6 Aqui está um relato do reinado dos santo
 add('ap', 20, 7, 'Matthew Henry', '7-10 Enquanto este mundo durar, o poder de Satanás nele não será totalmente destruído, embora possa ser limitado e diminuído. Assim que Satanás é libertado, ele novamente começa a enganar as nações e a incitá-las a fazer guerra com os santos e servos de Deus. Seria bom se os servos e ministros de Cristo fossem tão ativos e perseverantes em fazer o bem, como seus inimigos em fazer travessuras. Deus travará esta última e decisiva batalha por seu povo, para que a vitória seja completa e a glória seja para si mesmo.', 'teologico', 'resumo');
 add('ap', 21, 22, 'Matthew Henry', '22-27 A comunhão perfeita e direta com Deus mais do que suprirá o lugar das instituições do evangelho. E que palavras podem expressar mais plenamente a união e co-igualdade do Filho com o Pai, na Divindade? Que mundo sombrio seria esse, se não fosse a luz do sol! O que há no céu que supre seu lugar? A glória de Deus ilumina aquela cidade, e o Cordeiro é a Luz dela. Deus em Cristo será uma fonte eterna de conhecimento e alegria para os santos no céu. Não há noite, portanto não há necessidade de fechar os portões; tudo está em paz e seguro. O todo nos mostra que devemos ser cada vez mais leva...', 'teologico', 'resumo');
 
+function comentarioEmPortugues(texto: string): boolean {
+  if (/\b(We have|Observe here|Here is |commanded|endeavouring|approbation|help-meet|settlement of|offenders found|prisoners being|account of the)\b/i.test(texto)) {
+    return false;
+  }
+  if (/Matthew Henry:\s*(The |We |This |Here |Observe )/i.test(texto)) return false;
+  return true;
+}
+
+function semAutorDuplicado(lista: Comentario[]): Comentario[] {
+  const vistos = new Set<string>();
+  const out: Comentario[] = [];
+  for (const c of lista) {
+    const k = c.autor.toLowerCase();
+    if (vistos.has(k)) continue;
+    vistos.add(k);
+    out.push(c);
+  }
+  return out;
+}
+
 export function obterComentarios(livro: string, capitulo: number, versiculo: number): Comentario[] {
-  const base = comentarios[chave(livro, capitulo, versiculo)] || [];
-  const extra = obterComentariosClassicos(livro, capitulo, versiculo);
-  if (extra.length === 0) return base;
-  const autores = new Set(base.map((c) => c.autor.toLowerCase()));
-  return [...base, ...extra.filter((c) => !autores.has(c.autor.toLowerCase()))];
+  const base = (comentarios[chave(livro, capitulo, versiculo)] || []).filter((c) => comentarioEmPortugues(c.texto));
+  const extra = obterComentariosClassicos(livro, capitulo, versiculo).filter((c) => comentarioEmPortugues(c.texto));
+  return semAutorDuplicado([...base, ...extra]);
 }
 
 export function temComentario(livro: string, capitulo: number, versiculo: number): boolean {

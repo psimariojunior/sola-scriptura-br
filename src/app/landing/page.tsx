@@ -66,23 +66,13 @@ const features = [
   },
 ];
 
-const comparisons = [
-  { feature: 'Bíblia 10 traduções', logos: true, youversion: true, sola: true },
-  { feature: 'Léxico hebraico 8.674', logos: '💰', youversion: 'Básico', sola: true },
-  { feature: 'Léxico grego 5.526', logos: '💰', youversion: 'Básico', sola: true },
-  { feature: 'Interlinear palavra-a-palavra', logos: '💰', youversion: false, sola: true },
-  { feature: 'Criador de imagem social', logos: '💰', youversion: true, sola: true },
-  { feature: 'Atlas bíblico interativo', logos: '💰', youversion: false, sola: true },
-  { feature: 'Comentários inline (4.911)', logos: '💰', youversion: false, sola: true },
-  { feature: 'Referências cruzadas visuais', logos: '💰', youversion: false, sola: true },
-  { feature: 'Busca semântica', logos: '💰', youversion: false, sola: true },
-  { feature: 'IA para estudo bíblico', logos: '💰', youversion: false, sola: true },
-  { feature: 'Exegese automática', logos: false, youversion: false, sola: true },
-  { feature: 'Modo imersivo', logos: false, youversion: false, sola: true },
-  { feature: 'Modo socrático', logos: false, youversion: false, sola: true },
-  { feature: '5 temas visuais', logos: false, youversion: false, sola: true },
-  { feature: 'PWA offline', logos: 'App nativo', youversion: 'App nativo', sola: true },
-  { feature: '100% gratuito', logos: '💰', youversion: '💰', sola: true },
+const destaques = [
+  { titulo: 'Léxico hebraico e grego', texto: '8.674 entradas hebraicas e 5.526 gregas, com Strong e morfologia.' },
+  { titulo: 'Interlinear palavra a palavra', texto: 'Texto original alinhado à leitura, para o estudo do versículo.' },
+  { titulo: 'Comentários clássicos', texto: 'Pais da Igreja, Reforma e puritanos, em português do Brasil.' },
+  { titulo: 'Referências cruzadas', texto: 'Mais de 29 mil ligações TSK, com exploração visual.' },
+  { titulo: 'Exegese e harmonia', texto: 'Análise do texto, paralelos sinóticos e atlas bíblico.' },
+  { titulo: 'Biblioteca de clássicos', texto: 'Obras de domínio público com leitor e fichas acadêmicas.' },
 ];
 
 const stats = [
@@ -141,7 +131,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto">
           <h2 className="font-display text-3xl md:text-4xl font-normal text-foreground text-center mb-4">Tudo que você precisa</h2>
           <p className="text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
-            Ferramentas profissionais que outros apps cobram — aqui é gratuito.
+            Ferramentas de estudo acadêmico em português do Brasil — gratuitas e sem anúncios.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f) => (
@@ -160,41 +150,15 @@ export default function LandingPage() {
 
       <section className="px-6 py-20 border-y border-border/40">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-display text-3xl md:text-4xl font-normal text-foreground text-center mb-4">Por que Sola Scriptura?</h2>
-          <p className="text-muted-foreground text-center mb-12">Comparação com os apps mais populares</p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-3 px-4 text-muted-foreground font-medium">Recurso</th>
-                  <th className="py-3 px-4 text-muted-foreground font-medium">Logos</th>
-                  <th className="py-3 px-4 text-muted-foreground font-medium">YouVersion</th>
-                  <th className="py-3 px-4 text-primary font-medium">Sola Scriptura</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparisons.map((c) => (
-                  <tr key={c.feature} className="border-b border-border/40 hover:bg-muted/30">
-                    <td className="py-3 px-4 text-foreground/80">{c.feature}</td>
-                    <td className="py-3 px-4 text-center">
-                      <span className={c.logos === true ? 'text-primary' : 'text-muted-foreground'}>
-                        {c.logos === true ? '✓' : c.logos === false ? '—' : c.logos}
-                      </span>
-                    </td>
-                    <td className="py-3 px-4 text-center">
-                      <span className={c.youversion === true ? 'text-primary' : 'text-muted-foreground'}>
-                        {c.youversion === true ? '✓' : c.youversion === false ? '—' : c.youversion}
-                      </span>
-                    </td>
-                    <td className="py-3 px-4 text-center">
-                      <span className={c.sola === true ? 'text-primary font-bold' : 'text-muted-foreground'}>
-                        {c.sola === true ? '✓' : c.sola === false ? '—' : c.sola}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <h2 className="font-display text-3xl md:text-4xl font-normal text-foreground text-center mb-4">Por que estudar aqui</h2>
+          <p className="text-muted-foreground text-center mb-12">Recursos pensados para o leitor brasileiro, com fontes clássicas e texto bíblico em primeiro lugar.</p>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {destaques.map((d) => (
+              <div key={d.titulo} className="sola-card p-5 rounded-2xl">
+                <h3 className="font-semibold text-foreground mb-1">{d.titulo}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{d.texto}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

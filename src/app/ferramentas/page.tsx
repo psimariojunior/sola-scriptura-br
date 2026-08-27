@@ -340,34 +340,33 @@ export default function FerramentasHubPage() {
           })}
       </div>
 
-      {/* Comparativo */}
       <ScrollReveal delay={0.4}>
         <div className="max-w-4xl mx-auto mt-16">
           <div className="text-center mb-8">
             <h2 className="text-h2 mb-4">
-              O que outros cobram, <span className="italic text-primary">aqui é grátis</span>
+              Estudo completo, <span className="italic text-primary">sem anúncios</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card className="text-center">
               <CardContent className="p-5">
-                <div className="text-h2 text-primary mb-2">$0</div>
+                <div className="text-h2 text-primary mb-2">Livre</div>
                 <div className="text-sm text-muted-foreground">Acesso completo</div>
-                <div className="text-xs text-muted-foreground mt-1">vs Logos: $10-20/mês</div>
+                <div className="text-xs text-muted-foreground mt-1">Sem assinatura para ler e estudar</div>
               </CardContent>
             </Card>
             <Card className="text-center">
               <CardContent className="p-5">
                 <div className="text-h2 text-primary mb-2">0</div>
                 <div className="text-sm text-muted-foreground">Anúncios</div>
-                <div className="text-xs text-muted-foreground mt-1">vs Bible Gateway: anúncios intrusivos</div>
+                <div className="text-xs text-muted-foreground mt-1">A Palavra em primeiro plano</div>
               </CardContent>
             </Card>
             <Card className="text-center">
               <CardContent className="p-5">
                 <div className="text-h2 text-primary mb-2">15+</div>
                 <div className="text-sm text-muted-foreground">Ferramentas</div>
-                <div className="text-xs text-muted-foreground mt-1">vs YouVersion: 0 ferramentas de estudo</div>
+                <div className="text-xs text-muted-foreground mt-1">Léxico, harmonia, atlas e comentários</div>
               </CardContent>
             </Card>
           </div>

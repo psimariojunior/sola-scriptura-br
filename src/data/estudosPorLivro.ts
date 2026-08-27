@@ -805,7 +805,7 @@ export const estudosPorLivro: Record<string, EstudoLivro> = {
   },
   jo: {
     slug: 'jo', titulo: 'João', autor: 'João, o evangelista (tradição apostólica)', data: '~85-95 d.C.',
-    contexto: 'Testemunho para que o leitor creia que Jesus é o Cristo, o Filho de Deus, e tenha vida em seu nome (Jo 20:31). O prólogo (1:1–18) identifica Jesus com o Logos eterno. Sete sinais e as declarações “Eu sou” (pão, luz, porta, pastor, ressurreição, caminho, videira) revelam a identidade divina. A “hora” da glorificação é a cruz. Irineu e a igreja antiga reconheceram este evangelho como apostolico e anti-doceta: a carne de Cristo é real.',
+    contexto: 'Testemunho para que o leitor creia que Jesus é o Cristo, o Filho de Deus, e tenha vida em seu nome (Jo 20:31). O prólogo (1:1–18) identifica Jesus com o Verbo eterno. Sete sinais e as declarações “Eu sou” (pão, luz, porta, pastor, ressurreição, caminho, videira) revelam a identidade divina. A “hora” da glorificação é a cruz. Irineu e a igreja antiga reconheceram este evangelho como apostólico e contra o docetismo: a carne de Cristo é real.',
     genero: 'Evangelho / testemunho teológico',
     temasPrincipais: ['Encarnação', 'Vida eterna', 'Fé e sinais', 'Luz e trevas', 'Paráclito'],
     versiculosChave: [

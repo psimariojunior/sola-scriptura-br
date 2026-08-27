@@ -248,10 +248,10 @@ export default function HomeClient() {
         </section>
 
         <p className="text-center font-display text-xl sm:text-2xl text-foreground/90 leading-snug mb-3">
-          Tudo o que a Logos cobra — aqui é livre.
+          Estudo bíblico acadêmico, livre e sem anúncios.
         </p>
         <p className="text-center text-sm text-muted-foreground leading-relaxed max-w-lg mx-auto mb-10">
-          Interlinear, léxico Strong’s, comentários clássicos, harmonia sinótica e biblioteca de domínio público. Sem anúncios.
+          Interlinear, léxico Strong’s, comentários clássicos, harmonia sinótica e biblioteca de domínio público — em português do Brasil.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pb-8 text-xs text-muted-foreground">

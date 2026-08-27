@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import {
-  BookOpen, ScrollText, Sparkles, Lightbulb, Link2, Quote, Users, HelpCircle, Tag, List, FileText, Copy, Download, X,
+  BookOpen, ScrollText, Sparkles, Lightbulb, Link2, Quote, Users, HelpCircle, Tag, List, FileText, Copy, Download, X, Landmark, GraduationCap,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { sintetizarEstudo, estudoParaTexto, type EstudoSintetizado, type BlocoEstudo } from '@/lib/estudoSintetizado';
 
 const ICONES: Record<string, React.ComponentType<{ className?: string }>> = {
-  BookOpen, ScrollText, Sparkles, Lightbulb, Link2, Quote, Users, HelpCircle, Tag, List, FileText,
+  BookOpen, ScrollText, Sparkles, Lightbulb, Link2, Quote, Users, HelpCircle, Tag, List, FileText, Landmark, GraduationCap,
 };
 
 interface Props {

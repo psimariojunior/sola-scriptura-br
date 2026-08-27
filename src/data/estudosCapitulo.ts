@@ -13,6 +13,18 @@ export interface EstudoCapitulo {
   VersiculosChave: VersiculoChaveCap[];
   aplicacaoPratica: string;
   perguntasEstudo: string[];
+  /** Contexto histórico e literário do capítulo. */
+  contextoHistorico?: string;
+  /** Esboço da estrutura interna. */
+  estrutura?: string[];
+  /** Significado teológico no cânon (analogia da fé). */
+  significadoTeologico?: string;
+  /** Palavras hebraicas/gregas relevantes (quando houver). */
+  palavrasOriginais?: string[];
+  /** Fontes usadas na ficha (nunca citação inventada). */
+  fontes?: string[];
+  /** Origem da ficha: escrita à mão ou síntese a partir do livro/perícopes. */
+  nivel?: 'profundo' | 'legado' | 'sintese';
 }
 
 export const estudosCapitulo: Record<string, EstudoCapitulo> = {

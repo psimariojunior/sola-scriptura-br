@@ -184,6 +184,13 @@ export async function sintetizarEstudo(
   if (estudoCap) {
     fontes.add('Estudo do Capítulo');
     if (estudoCap.resumo) blocos.push({ secao: 'Resumo do Capítulo', icone: 'BookOpen', conteudo: estudoCap.resumo });
+    if (estudoCap.contextoHistorico) blocos.push({ secao: 'Contexto', icone: 'Landmark', conteudo: estudoCap.contextoHistorico });
+    if (estudoCap.estrutura && estudoCap.estrutura.length > 0) {
+      blocos.push({ secao: 'Estrutura', icone: 'List', conteudo: estudoCap.estrutura });
+    }
+    if (estudoCap.significadoTeologico) {
+      blocos.push({ secao: 'Teologia no cânon', icone: 'GraduationCap', conteudo: estudoCap.significadoTeologico });
+    }
     if (estudoCap.temas.length > 0) blocos.push({ secao: 'Temas', icone: 'Tag', conteudo: estudoCap.temas });
     if (estudoCap.VersiculosChave.length > 0) {
       blocos.push({

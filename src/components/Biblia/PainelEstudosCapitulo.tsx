@@ -4,7 +4,7 @@ import { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   BookOpen, User, ChevronDown, ChevronUp, GraduationCap, Quote,
-  Sparkles, HelpCircle, ChevronRight,
+  Sparkles, HelpCircle, ChevronRight, List, Landmark, Languages,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { obterEstudoCapitulo } from '@/lib/estudosLoader';
@@ -244,6 +244,66 @@ export default function PainelEstudosCapitulo({ livro, capitulo, nomeLivro }: Pr
             {estudoCap.resumo}
           </p>
 
+          {estudoCap.nivel && (
+            <p className="text-[10px] uppercase tracking-wider text-[var(--primary)]/80 font-medium">
+              {estudoCap.nivel === 'profundo'
+                ? 'Ficha de estudo profundo'
+                : estudoCap.nivel === 'sintese'
+                  ? 'Síntese acadêmica do capítulo (livro + perícopes)'
+                  : 'Ficha do capítulo'}
+            </p>
+          )}
+
+          {estudoCap.contextoHistorico && (
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1 flex items-center gap-1">
+                <Landmark className="w-3 h-3" /> Contexto
+              </p>
+              <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
+                {estudoCap.contextoHistorico}
+              </p>
+            </div>
+          )}
+
+          {estudoCap.estrutura && estudoCap.estrutura.length > 0 && (
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1 flex items-center gap-1">
+                <List className="w-3 h-3" /> Estrutura
+              </p>
+              <ol className="space-y-1 list-decimal list-inside">
+                {estudoCap.estrutura.map((item, i) => (
+                  <li key={i} className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">{item}</li>
+                ))}
+              </ol>
+            </div>
+          )}
+
+          {estudoCap.significadoTeologico && (
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1 flex items-center gap-1">
+                <GraduationCap className="w-3 h-3" /> Teologia no cânon
+              </p>
+              <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
+                {estudoCap.significadoTeologico}
+              </p>
+            </div>
+          )}
+
+          {estudoCap.palavrasOriginais && estudoCap.palavrasOriginais.length > 0 && (
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1 flex items-center gap-1">
+                <Languages className="w-3 h-3" /> Palavras originais
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {estudoCap.palavrasOriginais.map((p, i) => (
+                  <span key={i} className="px-2 py-0.5 rounded-md bg-[var(--bg)] border border-[var(--primary)]/20 text-[11px] font-serif-body">
+                    {p}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
           {estudoCap.temas.length > 0 && (
             <div className="flex flex-wrap gap-1.5">
               {estudoCap.temas.map((t, i) => (
@@ -291,6 +351,12 @@ export default function PainelEstudosCapitulo({ livro, capitulo, nomeLivro }: Pr
                 ))}
               </ol>
             </div>
+          )}
+
+          {estudoCap.fontes && estudoCap.fontes.length > 0 && (
+            <p className="text-[10px] text-[var(--muted-fg)] leading-relaxed">
+              Fontes da ficha: {estudoCap.fontes.join(' · ')}
+            </p>
           )}
         </>
       )}

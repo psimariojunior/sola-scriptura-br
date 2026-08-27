@@ -1,5 +1,6 @@
 import { estudosTeologicosExpandidos, EstudoTeologico } from './estudosTeologicosExpandidos';
 import { estudosClassicosCanon } from './estudosClassicosCanon';
+import { estudosEvangelicoBrasileiro } from './estudosEvangelicoBrasileiro';
 
 export interface EstudoTeologo {
   teologo: string;
@@ -1286,6 +1287,7 @@ function addToIndex(estudo: EstudoVersiculo) {
 
 for (const e of estudosData) addToIndex(e);
 for (const e of estudosClassicosCanon) addToIndex(e);
+for (const e of estudosEvangelicoBrasileiro) addToIndex(e);
 
 // ═══════════════════════════════════════════════════════════════════════
 // MAIS ESTUDOS — VERSÍCLOS ESSENCIAIS DO NT E AT

@@ -1,7 +1,9 @@
 import { getVersiculoEstudo, type VersicoEstudo } from '@/data/versiculosEstudo';
-import { estudosCapitulo } from '@/data/estudosCapitulo';
+import { estudosCapitulo, type EstudoCapitulo } from '@/data/estudosCapitulo';
+import { estudosCapituloProfundos } from '@/data/estudosCapituloProfundos';
 import { estudosPorLivro } from '@/data/estudosPorLivro';
 import { obterEstudos, type EstudoVersiculo } from '@/data/estudosTeologicos';
+import { eStubGenerico, sintetizarEstudoCapitulo, resolverLivroEstudo } from '@/lib/sintetizarEstudoCapitulo';
 
 export interface EstudoVersiculoUnificado {
   fonte: 'teologico' | 'versiculo';
@@ -39,8 +41,20 @@ export async function obterEstudoVersiculo(
   return null;
 }
 
-export function obterEstudoCapitulo(livro: string, capitulo: number) {
-  return estudosCapitulo[`${livro.toLowerCase()}:${capitulo}`];
+export function obterEstudoCapitulo(livro: string, capitulo: number): EstudoCapitulo {
+  const info = resolverLivroEstudo(livro);
+  const abrev = info?.abreviacao ?? livro.toLowerCase();
+  const key = `${abrev}:${capitulo}`;
+
+  const profundo = estudosCapituloProfundos[key];
+  if (profundo) return profundo;
+
+  const legado = estudosCapitulo[key];
+  if (legado && !eStubGenerico(legado)) {
+    return { ...legado, nivel: legado.nivel ?? 'legado' };
+  }
+
+  return sintetizarEstudoCapitulo(abrev, capitulo);
 }
 
 export function obterEstudoLivro(livro: string) {

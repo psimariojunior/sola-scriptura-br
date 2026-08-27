@@ -3,8 +3,10 @@ import { comentariosMatthewHenry } from './comentarios-reais/matthew-henry';
 import { comentariosJFB } from './comentarios-reais/jamieson-fausset-brown';
 import { comentariosBarnes } from './comentarios-reais/albert-barnes';
 import { comentariosgn } from './comentarios-reais/gn-matthew-henry';
+import { comentariosClassicosProfundos } from './comentariosClassicosProfundos';
 
 const CLASSICOS: Comentario[] = [
+  ...comentariosClassicosProfundos,
   ...comentariosMatthewHenry,
   ...comentariosJFB,
   ...comentariosBarnes,

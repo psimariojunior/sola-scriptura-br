@@ -106,6 +106,12 @@ export async function construirContextoRAG(
     blocos.push(
       `ESTUDO DO CAPÍTULO ${referencia.capitulo} — ${estudoCap.titulo}: ${estudoCap.resumo}`,
     );
+    if (estudoCap.contextoHistorico) {
+      blocos.push(`CONTEXTO HISTÓRICO DO CAPÍTULO: ${estudoCap.contextoHistorico}`);
+    }
+    if (estudoCap.significadoTeologico) {
+      blocos.push(`TEOLOGIA DO CAPÍTULO: ${estudoCap.significadoTeologico}`);
+    }
     if (estudoCap.VersiculosChave.length > 0) {
       const vs = estudoCap.VersiculosChave
         .map((v) => `  • ${v.referencia}: "${v.texto}" — ${v.explicacao}`)

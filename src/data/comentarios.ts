@@ -6034,7 +6034,7 @@ function semAutorDuplicado(lista: Comentario[]): Comentario[] {
 export function obterComentarios(livro: string, capitulo: number, versiculo: number): Comentario[] {
   const base = (comentarios[chave(livro, capitulo, versiculo)] || []).filter((c) => comentarioEmPortugues(c.texto));
   const extra = obterComentariosClassicos(livro, capitulo, versiculo).filter((c) => comentarioEmPortugues(c.texto));
-  return semAutorDuplicado([...base, ...extra]);
+  return semAutorDuplicado([...extra, ...base]);
 }
 
 export function temComentario(livro: string, capitulo: number, versiculo: number): boolean {

@@ -32,6 +32,7 @@ export interface VerseCardProps {
   isFavorito: boolean;
   corMarca: string | null;
   temAnotacao: boolean;
+  anotacaoPreview?: string | null;
   copiedVerse: string | null;
   audioNatural: ReturnType<typeof useAudioNatural>;
   audio: ReturnType<typeof useVerseAudio>;
@@ -78,6 +79,7 @@ export const VerseCard = memo(function VerseCard({
   isFavorito,
   corMarca,
   temAnotacao,
+  anotacaoPreview = null,
   copiedVerse,
   audioNatural,
   audio,
@@ -278,6 +280,16 @@ export const VerseCard = memo(function VerseCard({
               className="font-serif-body text-[var(--content-primary)] tracking-[0.01em]"
               style={{ fontSize: `${fontSize}px`, lineHeight: lineSpacing ?? undefined, fontFamily: fontFamilyCss }}
             />
+
+            {anotacaoPreview && (
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); onAnotar(); }}
+                className="mt-2 w-full text-left text-xs italic text-[var(--content-muted)] leading-relaxed line-clamp-2 border-l-2 border-primary/40 pl-2.5 hover:text-[var(--content-secondary)]"
+              >
+                {anotacaoPreview}
+              </button>
+            )}
 
             {/* Subtle resource indicator */}
             {hasResourcesProp && (

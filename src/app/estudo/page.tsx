@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -33,7 +33,7 @@ const METODOS: Metodo[] = [
     titulo: 'Método Hermenêutico',
     sigla: 'O.I.A.',
     descricao: 'Observação, Interpretação e Aplicação — o método clássico de estudo bíblico que conduz do texto ao leitor de forma segura.',
-    cor: 'from-blue-500/20 to-indigo-500/20 border-blue-400/30',
+    cor: 'from-primary/15 to-primary/5 border-primary/20',
     icone: <Eye className="w-6 h-6" />,
     passos: [
       { titulo: 'Observação — O que o texto diz?', descricao: 'Leia o trecho pelo menos 3 vezes. Sublinhe palavras repetidas, observe conectivos (mas, porque, portanto), identifique o contexto histórico, quem fala, a quem se destina, e quais são os verbos principais. Anote perguntas que surgirem.' },
@@ -58,7 +58,7 @@ const METODOS: Metodo[] = [
     titulo: 'Método SOAP',
     sigla: 'S.O.A.P.',
     descricao: 'Scripture, Observation, Application, Prayer — método simples e poderoso para devocionais diários, ideal para iniciantes e para manter consistência.',
-    cor: 'from-emerald-500/20 to-teal-500/20 border-emerald-400/30',
+    cor: 'from-primary/15 to-primary/5 border-primary/20',
     icone: <BookMarked className="w-6 h-6" />,
     passos: [
       { titulo: 'S — Scripture (Escritura)', descricao: 'Escreva o versículo ou trecho do dia. Transcreva com cuidado, palavra por palavra. Isso força você a prestar atenção em cada termo. Use uma tradução que você entenda bem.' },
@@ -85,7 +85,7 @@ const METODOS: Metodo[] = [
     titulo: 'Método Indutivo',
     sigla: 'P.I.A.',
     descricao: 'Pergunta, Inferência, Aplicação — método que desenvolve pensamento crítico e independência na leitura bíblica, descobrindo verdades por conta própria.',
-    cor: 'from-purple-500/20 to-pink-500/20 border-purple-400/30',
+    cor: 'from-primary/15 to-primary/5 border-primary/20',
     icone: <Brain className="w-6 h-6" />,
     passos: [
       { titulo: 'Pergunta 1: O que o texto DIZ?', descricao: 'Leia e re-leia. Resuma o texto em suas próprias palavras. Identifique os personagens, eventos, lugares e tempo. Responda: Quem? O quê? Quando? Onde? Por quê? Isso é a base factual do estudo.' },
@@ -108,7 +108,7 @@ const METODOS: Metodo[] = [
     titulo: 'Método por Tópico',
     sigla: 'TOP.',
     descricao: 'Como estudar um tema específico na Bíblia — reúne todas as passagens relevantes para construir uma teologia sólida sobre um assunto.',
-    cor: 'from-amber-500/20 to-orange-500/20 border-amber-400/30',
+    cor: 'from-primary/15 to-primary/5 border-primary/20',
     icone: <Target className="w-6 h-6" />,
     passos: [
       { titulo: 'Passo 1: Defina o tema', descricao: 'Escolha um tema específico (ex: "oração", "perdão", "segunda vinda"). Quanto mais específico, melhor. Em vez de "amor", estude "o amor fraternal no Novo Testamento".' },
@@ -134,7 +134,7 @@ const METODOS: Metodo[] = [
     titulo: 'Método por Livro',
     sigla: 'LIV.',
     descricao: 'Como estudar um livro bíblico completo — do contexto à aplicação, passo a passo para dominar cada livro da Bíblia.',
-    cor: 'from-rose-500/20 to-red-500/20 border-rose-400/30',
+    cor: 'from-primary/15 to-primary/5 border-primary/20',
     icone: <BookOpen className="w-6 h-6" />,
     passos: [
       { titulo: 'Passo 1: Leia o livro inteiro de uma vez', descricao: 'Leia o livro completo em uma sentada (ou duas no máximo). Não se prenda a detalhes. O objetivo é ter uma visão panorâmica — o "big picture". Anote as impressões gerais, o tom, os personagens principais.' },
@@ -294,29 +294,8 @@ export default function EstudoPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[var(--bg)]">
-      <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--primary)]/20 to-[var(--primary)]/10 flex items-center justify-center mx-auto mb-5"
-              >
-                <BookOpen className="w-8 h-8 text-[var(--primary)]" />
-              </motion.div>
-              <h1 className="font-display text-4xl md:text-5xl font-light text-[var(--fg)] mb-3">
-                Guia de Estudo Bíblico
-              </h1>
-              <p className="text-[var(--muted-fg)] text-lg max-w-2xl mx-auto">
-                Métodos práticos para estudar a Bíblia com profundidade e consistência
-              </p>
-              <div className="ornament w-16 mx-auto mt-6" />
-            </div>
-          </ScrollReveal>
+    <PageShell maxWidth="4xl">
+          <PageHero icon={BookOpen} title="Guia de Estudo Bíblico" subtitle="Métodos práticos para estudar a Bíblia com profundidade e consistência" />
 
           {/* Tabs */}
           <ScrollReveal delay={0.1}>
@@ -654,8 +633,6 @@ export default function EstudoPage() {
             )}
           </div>
         </ScrollReveal>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

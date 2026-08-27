@@ -5,6 +5,8 @@ import { doutrinas } from '@/data/biblia';
 import { getTodosTemas, type TemaTeologico } from '@/data/teologiaSistematica';
 import dynamic from 'next/dynamic';
 import { Search, ChevronDown, ExternalLink, Copy, Check, Layers, GraduationCap, BookOpen } from 'lucide-react';
+import Link from 'next/link';
+import { hrefBiblia, parseRefLivre } from '@/lib/bibliaHref';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ScrollReveal';
 import { PageHero } from '@/components/layout/PageHero';
@@ -35,12 +37,9 @@ function getCoresCategoria(_cat: string) {
 }
 
 function parseReferencia(ref: string): { livro: string; capitulo: number; versiculo: number } | null {
-  const m = ref.trim().match(/^(\d?\s*[A-Za-zÀ-ú]+)\s+(\d+)(?::(\d+))?/);
-  if (!m) return null;
-  const livro = m[1].toLowerCase().replace(/\s+/g, '');
-  const capitulo = parseInt(m[2], 10);
-  const versiculo = m[3] ? parseInt(m[3], 10) : 1;
-  return { livro, capitulo, versiculo };
+  const parsed = parseRefLivre(ref);
+  if (!parsed) return null;
+  return { livro: parsed.livro, capitulo: parsed.capitulo, versiculo: parsed.versiculo ?? 1 };
 }
 
 export default function TeologiaClient() {
@@ -328,13 +327,13 @@ export default function TeologiaClient() {
                                     return (
                                       <div key={ref} className="flex items-center gap-1">
                                         {parsed ? (
-                                          <button
-                                            onClick={() => handleVersiculoClick(parsed.livro, parsed.capitulo, parsed.versiculo)}
+                                          <Link
+                                            href={hrefBiblia(parsed.livro, parsed.capitulo, parsed.versiculo)}
                                             className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-sm hover:bg-primary/20 transition-colors flex items-center gap-1"
                                           >
                                             {ref}
                                             <ExternalLink className="w-3 h-3" />
-                                          </button>
+                                          </Link>
                                         ) : (
                                           <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-sm">
                                             {ref}
@@ -437,13 +436,13 @@ export default function TeologiaClient() {
                                 return (
                                   <div key={ref} className="flex items-center gap-1">
                                     {parsed ? (
-                                      <button
-                                        onClick={() => handleVersiculoClick(parsed.livro, parsed.capitulo, parsed.versiculo)}
+                                      <Link
+                                        href={hrefBiblia(parsed.livro, parsed.capitulo, parsed.versiculo)}
                                         className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-sm hover:bg-primary/20 transition-colors flex items-center gap-1"
                                       >
                                         {ref}
                                         <ExternalLink className="w-3 h-3" />
-                                      </button>
+                                      </Link>
                                     ) : (
                                       <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-sm">
                                         {ref}

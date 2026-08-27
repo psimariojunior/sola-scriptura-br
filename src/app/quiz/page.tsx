@@ -1,7 +1,7 @@
 'use client';
 
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Brain, Zap, BookOpen, Users, Trophy, ChevronRight, Clock, Target, CheckCircle2, XCircle, Flame, Star, ArrowLeft, RotateCcw, Home, Timer, Award, TrendingUp, Languages } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -26,8 +26,8 @@ const MODOS = [
     titulo: 'Desafio do Tempo',
     descricao: '60 segundos. O máximo de acertos que conseguir.',
     icone: Zap,
-    cor: 'from-amber-500/20 to-amber-500/5',
-    iconeCor: 'text-amber-500',
+    cor: 'from-primary/20 to-primary/5',
+    iconeCor: 'text-primary',
     link: '/quiz/temporal',
   },
   {
@@ -35,8 +35,8 @@ const MODOS = [
     titulo: 'Estudo por Livro',
     descricao: 'Foque em um livro específico da Bíblia.',
     icone: BookOpen,
-    cor: 'from-emerald-500/20 to-emerald-500/5',
-    iconeCor: 'text-emerald-500',
+    cor: 'from-primary/20 to-primary/5',
+    iconeCor: 'text-primary',
     link: '/quiz/livro',
   },
   {
@@ -44,8 +44,8 @@ const MODOS = [
     titulo: 'Multiplayer',
     descricao: 'Desafie amigos em tempo real.',
     icone: Users,
-    cor: 'from-purple-500/20 to-purple-500/5',
-    iconeCor: 'text-purple-500',
+    cor: 'from-primary/20 to-primary/5',
+    iconeCor: 'text-primary',
     link: '/quiz/multiplayer',
   },
   {
@@ -53,21 +53,21 @@ const MODOS = [
     titulo: 'Vocabulário Grego & Hebraico',
     descricao: 'Flashcards e quiz com palavras do léxico Strong\'s.',
     icone: Languages,
-    cor: 'from-teal-500/20 to-teal-500/5',
-    iconeCor: 'text-teal-500',
+    cor: 'from-primary/20 to-primary/5',
+    iconeCor: 'text-primary',
     link: '/quiz/vocabulario',
   },
 ];
 
 const CATEGORIAS_QUIZ = [
   { id: 'geral', label: 'Geral', icon: '📖', cor: 'from-primary/20 to-primary/5', iconeCor: 'text-primary', livros: [] as string[] },
-  { id: 'genesis', label: 'Gênesis', icon: '🌍', cor: 'from-emerald-500/20 to-emerald-500/5', iconeCor: 'text-emerald-500', livros: ['Gênesis'] },
-  { id: 'exodo', label: 'Êxodo', icon: '🔥', cor: 'from-amber-500/20 to-amber-500/5', iconeCor: 'text-amber-500', livros: ['Êxodo'] },
-  { id: 'salmos', label: 'Salmos', icon: '🎵', cor: 'from-blue-500/20 to-blue-500/5', iconeCor: 'text-blue-500', livros: ['Salmos'] },
-  { id: 'proverbios', label: 'Provérbios', icon: '💡', cor: 'from-yellow-500/20 to-yellow-500/5', iconeCor: 'text-yellow-500', livros: ['Provérbios'] },
-  { id: 'evangelhos', label: 'Evangelhos', icon: '✝️', cor: 'from-rose-500/20 to-rose-500/5', iconeCor: 'text-rose-500', livros: ['Mateus', 'Marcos', 'Lucas', 'João'] },
-  { id: 'epistolas', label: 'Epístolas', icon: '✉️', cor: 'from-violet-500/20 to-violet-500/5', iconeCor: 'text-violet-500', livros: ['Romanos', '1 Coríntios', '2 Coríntios', 'Gálatas', 'Efésios', 'Filipenses', 'Colossenses', '1 Tessalonicenses', '2 Tessalonicenses', '1 Timóteo', '2 Timóteo', 'Tito', 'Filemon', 'Hebreus', 'Tiago', '1 Pedro', '2 Pedro', '1 João', '2 João', '3 João', 'Judas'] },
-  { id: 'profetas', label: 'Profetas', icon: '📜', cor: 'from-orange-500/20 to-orange-500/5', iconeCor: 'text-orange-500', livros: ['Isaías', 'Jeremias', 'Lamentações', 'Ezequiel', 'Daniel', 'Oséias', 'Joel', 'Amós', 'Obadias', 'Jonas', 'Miquéias', 'Naum', 'Habacuque', 'Sofonias', 'Ageu', 'Zacarias', 'Malaquias'] },
+  { id: 'genesis', label: 'Gênesis', icon: '🌍', cor: 'from-primary/20 to-primary/5', iconeCor: 'text-primary', livros: ['Gênesis'] },
+  { id: 'exodo', label: 'Êxodo', icon: '🔥', cor: 'from-primary/20 to-primary/5', iconeCor: 'text-primary', livros: ['Êxodo'] },
+  { id: 'salmos', label: 'Salmos', icon: '🎵', cor: 'from-primary/20 to-primary/5', iconeCor: 'text-primary', livros: ['Salmos'] },
+  { id: 'proverbios', label: 'Provérbios', icon: '💡', cor: 'from-primary/20 to-primary/5', iconeCor: 'text-primary', livros: ['Provérbios'] },
+  { id: 'evangelhos', label: 'Evangelhos', icon: '✝️', cor: 'from-primary/20 to-primary/5', iconeCor: 'text-primary', livros: ['Mateus', 'Marcos', 'Lucas', 'João'] },
+  { id: 'epistolas', label: 'Epístolas', icon: '✉️', cor: 'from-primary/20 to-primary/5', iconeCor: 'text-primary', livros: ['Romanos', '1 Coríntios', '2 Coríntios', 'Gálatas', 'Efésios', 'Filipenses', 'Colossenses', '1 Tessalonicenses', '2 Tessalonicenses', '1 Timóteo', '2 Timóteo', 'Tito', 'Filemon', 'Hebreus', 'Tiago', '1 Pedro', '2 Pedro', '1 João', '2 João', '3 João', 'Judas'] },
+  { id: 'profetas', label: 'Profetas', icon: '📜', cor: 'from-primary/20 to-primary/5', iconeCor: 'text-primary', livros: ['Isaías', 'Jeremias', 'Lamentações', 'Ezequiel', 'Daniel', 'Oséias', 'Joel', 'Amós', 'Obadias', 'Jonas', 'Miquéias', 'Naum', 'Habacuque', 'Sofonias', 'Ageu', 'Zacarias', 'Malaquias'] },
 ];
 
 const TEMPO_POR_PERGUNTA = 5;
@@ -264,22 +264,11 @@ export default function QuizPage() {
   const corTimer = tempoRestante <= 2 ? 'bg-red-500' : tempoRestante <= 3 ? 'bg-amber-500' : 'bg-emerald-500';
 
   return (
-    <div className="min-h-screen bg-pattern-ripple">
-      <Header />
-      <main className="pt-24 pb-16 px-6">
-        <div className="max-w-3xl mx-auto">
+    <PageShell maxWidth="3xl">
           <AnimatePresence mode="wait">
             {tela === 'inicio' && (
               <motion.div key="inicio" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
-                <ScrollReveal>
-                  <div className="text-center mb-12">
-                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', duration: 0.6 }} className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                      <Brain className="w-8 h-8 text-primary" />
-                    </motion.div>
-                    <h1 className="font-display text-2xl sm:text-4xl font-light mb-3">Quiz Bíblico</h1>
-                    <p className="text-muted-foreground max-w-md mx-auto">750+ perguntas em 5 categorias. Teste seus conhecimentos das Escrituras de várias formas.</p>
-                  </div>
-                </ScrollReveal>
+                <PageHero icon={Brain} title="Quiz Bíblico" subtitle="750+ perguntas em 5 categorias. Teste seus conhecimentos das Escrituras de várias formas." />
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
                   {MODOS.map((modo, i) => (
@@ -612,9 +601,6 @@ export default function QuizPage() {
               </>
             )}
           </AnimatePresence>
-        </div>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

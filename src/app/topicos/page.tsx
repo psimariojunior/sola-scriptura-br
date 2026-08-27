@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import Link from 'next/link';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
+import { hrefFromRef } from '@/lib/bibliaHref';
 import { motion } from 'framer-motion';
-import { Tag, Search, X, BookOpen, ChevronRight } from 'lucide-react';
-import ScrollReveal from '@/components/ScrollReveal';
+import { Tag, Search, X, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface Topico {
@@ -463,19 +464,8 @@ export default function TopicosPage() {
   }, [busca, filtroCategoria]);
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-24 pb-16 px-6">
-        <div className="max-w-4xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-10">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-500/20 flex items-center justify-center border border-emerald-500/20">
-                <Tag className="w-10 h-10 text-emerald-500" />
-              </div>
-              <h1 className="font-display text-4xl font-light mb-3">Índice <span className="text-primary italic">Tópico</span></h1>
-              <p className="text-muted-foreground max-w-lg mx-auto">Encontre versículos organizados por temas — nomes de Deus, profecias, virtudes e doutrinas</p>
-            </div>
-          </ScrollReveal>
+    <PageShell maxWidth="4xl">
+          <PageHero icon={Tag} title={<>Índice <span className="italic text-primary">Tópico</span></>} subtitle="Encontre versículos organizados por temas — nomes de Deus, profecias, virtudes e doutrinas" />
 
           <div className="space-y-3 mb-8">
             <div className="relative max-w-md mx-auto">
@@ -513,7 +503,7 @@ export default function TopicosPage() {
                   onClick={() => setExpandedTopico(isExpanded ? null : topico.id)}>
                   <div className="p-5">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className={cn('w-10 h-10 rounded-xl bg-gradient-to-br flex items-center justify-center text-lg', topico.cor)}>
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-lg">
                         {topico.icone}
                       </div>
                       <div className="flex-1">
@@ -526,10 +516,10 @@ export default function TopicosPage() {
                     {isExpanded && (
                       <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} className="mt-4 space-y-2">
                         {topico.versiculos.map((v, j) => (
-                          <div key={j} className="flex gap-3 px-3 py-2.5 rounded-xl bg-muted/30 hover:bg-muted/50 transition-all">
+                          <Link key={j} href={hrefFromRef(v.ref)} onClick={(e) => e.stopPropagation()} className="flex gap-3 px-3 py-2.5 rounded-xl bg-muted/30 hover:bg-primary/5 transition-all">
                             <span className="text-xs font-bold text-primary flex-shrink-0 w-24">{v.ref}</span>
                             <p className="text-xs text-foreground/80 leading-relaxed">{v.texto}</p>
-                          </div>
+                          </Link>
                         ))}
                       </motion.div>
                     )}
@@ -538,9 +528,6 @@ export default function TopicosPage() {
               );
             })}
           </div>
-        </div>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

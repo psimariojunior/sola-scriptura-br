@@ -2,8 +2,8 @@
 
 import { useState, useMemo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { PageShell } from '@/components/layout/PageShell';
+import { PageHero } from '@/components/layout/PageHero';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Filter, Clock, Route, ChevronDown, ChevronUp, X, BookOpen, Users, Search, Layers, Globe, BarChart3 } from 'lucide-react';
 import dynamic from 'next/dynamic';
@@ -91,25 +91,13 @@ export default function AtlasPage() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <main className="flex-1 pt-20 pb-8 px-4">
-        <div className="max-w-7xl mx-auto">
-
-          {/* ═══ HERO ═══ */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 flex items-center justify-center border border-emerald-500/20">
-                <MapPin className="w-5 h-5 text-emerald-600" />
-              </div>
-              <div>
-                <h1 className="font-display text-2xl md:text-3xl font-light">
-                  Atlas <span className="text-primary italic">Bíblico</span>
-                </h1>
-                <p className="text-xs text-muted-foreground">{localizacoesBiblicas.length} locais · {rotasBiblicas.length} rotas · 12 períodos históricos</p>
-              </div>
-            </div>
-          </motion.div>
+    <PageShell maxWidth="7xl">
+          <PageHero
+            icon={MapPin}
+            align="left"
+            title={<>Atlas <span className="italic text-primary">Bíblico</span></>}
+            subtitle={`${localizacoesBiblicas.length} locais · ${rotasBiblicas.length} rotas · 12 períodos históricos`}
+          />
 
           {/* ═══ TOOLBAR ═══ */}
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
@@ -431,9 +419,6 @@ export default function AtlasPage() {
               })}
             </div>
           </motion.div>
-        </div>
-      </main>
-      <Footer />
-    </div>
+        </PageShell>
   );
 }

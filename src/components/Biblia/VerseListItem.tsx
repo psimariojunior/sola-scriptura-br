@@ -144,6 +144,7 @@ export const VerseListItem = memo(function VerseListItem({
       isFavorito={isFavorito}
       corMarca={marcaMarcador?.cor ?? null}
       temAnotacao={temAnotacao}
+      anotacaoPreview={marcaEstudo?.anotacao?.texto ?? null}
       copiedVerse={copiedVerse}
       audioNatural={audioNatural}
       audio={audio}

@@ -419,11 +419,11 @@ export default function DashboardPage() {
                   <motion.div
                     animate={{ scale: [1, 1.08, 1] }}
                     transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                    className="w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-500/20 to-red-500/10 flex items-center justify-center border border-orange-500/20"
+                    className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center border border-primary/20"
                   >
                     <div className="text-center">
-                      <Flame className="w-7 h-7 text-orange-500 mx-auto" />
-                      <span className="text-2xl font-bold text-orange-500">{state.streak}</span>
+                      <Flame className="w-7 h-7 text-primary mx-auto" />
+                      <span className="text-2xl font-bold text-primary">{state.streak}</span>
                     </div>
                   </motion.div>
                   <div>
@@ -497,14 +497,14 @@ export default function DashboardPage() {
                     <span className="text-sm font-medium">Antigo Testamento</span>
                     <span className="text-xs text-muted-foreground">{atProgress.read}/{atProgress.total} ({atProgress.percent}%)</span>
                   </div>
-                  <ProgressBar percent={atProgress.percent} color="bg-gradient-to-r from-blue-600 to-blue-400" />
+                  <ProgressBar percent={atProgress.percent} color="bg-primary" />
                 </div>
                 <div>
                   <div className="flex justify-between items-baseline mb-1.5">
                     <span className="text-sm font-medium">Novo Testamento</span>
                     <span className="text-xs text-muted-foreground">{ntProgress.read}/{ntProgress.total} ({ntProgress.percent}%)</span>
                   </div>
-                  <ProgressBar percent={ntProgress.percent} color="bg-gradient-to-r from-emerald-600 to-emerald-400" />
+                  <ProgressBar percent={ntProgress.percent} color="bg-primary/70" />
                 </div>
               </div>
 

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Mic, Volume2, ListFilter, HardDrive, MoreVertical, Maximize2, Keyboard } from 'lucide-react';
+import { BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Mic, Volume2, ListFilter, HardDrive, MoreVertical, Maximize2, Keyboard, FileText, Settings, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TranslationDropdown } from './TranslationDropdown';
 import { ToolsDropdown } from './ToolsDropdown';
@@ -72,9 +72,18 @@ export function BibleToolbar({
           <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] disabled:opacity-30 text-[var(--content-secondary)] active:scale-95 transition-transform" aria-label={t('biblia.nextChapter', 'Próximo capítulo')}><ChevronRight className="w-4 h-4" /></button>
         </div>
         <div className="flex-1" />
-        <ReadingModeBar mode={readingMode} onModeChange={handleReadingModeChange} />
+        <div className="hidden sm:block">
+          <ReadingModeBar mode={readingMode} onModeChange={handleReadingModeChange} />
+        </div>
         <div className="flex-1 sm:flex-none" />
         <TranslationDropdown open={ui.tradOpen} onToggle={() => { ui.setTradOpen(!ui.tradOpen); ui.setToolsOpen(false); }} onClose={() => ui.setTradOpen(false)} selectedTrads={nav.selectedTrads} onToggleTrad={nav.toggleTrad} viewMode={nav.viewMode} onViewModeChange={nav.setViewMode} />
+        <button
+          onClick={() => { if (capituloAudio.state.isPlaying || capituloAudio.state.isPaused) capituloAudio.stop(); else capituloAudio.play(); }}
+          className={cn('md:hidden touch-target p-1.5 rounded-lg shrink-0 active:scale-95 transition-transform', capituloAudio.state.isPlaying ? 'text-[var(--brand-default)] bg-[var(--brand-subtle)]' : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]')}
+          aria-label={capituloAudio.state.isPlaying ? t('biblia.stopAudio', 'Parar áudio') : t('biblia.playAudio', 'Ouvir capítulo')}
+        >
+          {capituloAudio.state.isLoading ? <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin block" /> : capituloAudio.state.isPlaying ? <Volume2 className="w-4 h-4" /> : <Play className="w-4 h-4 fill-current" />}
+        </button>
         <div className="md:hidden relative shrink-0">
           <button ref={mobileMenuBtnRef} onClick={() => {
             if (!mobileToolbarMenuOpen && mobileMenuBtnRef.current) {
@@ -87,14 +96,16 @@ export function BibleToolbar({
             <>
               <div className="fixed inset-0 z-30" onClick={() => setMobileToolbarMenuOpen(false)} />
               <div className="fixed z-40 w-56 rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] shadow-xl py-1 animate-scale-in origin-top-right" style={{ top: mobileMenuPos.top, right: mobileMenuPos.right }}>
-                <button onClick={() => { ui.setModoLeitura(ui.modoLeitura === 'foco' ? 'estudo' : 'foco'); nav.setViewMode('single'); panels.setSidePanelWidth('collapsed'); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><BookOpen className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.readingMode')}</button>
+                <button onClick={() => { handleReadingModeChange(readingMode === 'estudo' ? 'leitura' : 'estudo'); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><BookOpen className="w-4 h-4 text-[var(--content-muted)]" />{readingMode === 'estudo' ? 'Modo leitura' : 'Modo estudo'}</button>
                 <button onClick={() => { ui.setShowInterlinear(!ui.showInterlinear); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><span className="font-hebrew text-sm text-[var(--brand-default)]">א</span>Interlinear</button>
                 <button onClick={() => { onShowDownloadManager(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><HardDrive className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.offlineVersions')}</button>
-                <button onClick={() => { if (capituloAudio.state.isPlaying || capituloAudio.state.isPaused) capituloAudio.stop(); else capituloAudio.play(); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Volume2 className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.chapterAudio')}</button>
                 <div className="h-px bg-[var(--border)]/40 my-1" />
-                <button onClick={() => { ui.setToolsOpen(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Sparkles className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.tools')}</button>
+                <button onClick={() => { if (!ui.mostrarNotas && !verse.notaAtiva) { verse.setNotaAtiva(verse.criarNota(`${nav.livro.nome} ${nav.capituloIdx + 1}`)); } ui.setMostrarNotas(!ui.mostrarNotas); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><FileText className="w-4 h-4 text-[var(--content-muted)]" />Notas</button>
+                <button onClick={() => { ui.setExportOpen(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Download className="w-4 h-4 text-[var(--content-muted)]" />Exportar PDF</button>
+                <button onClick={() => { ui.setShowSettings(!ui.showSettings); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Settings className="w-4 h-4 text-[var(--content-muted)]" />Configurações</button>
+                <div className="h-px bg-[var(--border)]/40 my-1" />
                 <button onClick={() => { ui.setMostrarApresentacao(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-semibold text-[var(--brand-default)] hover:bg-[var(--brand-subtle)] transition-colors"><Sparkles className="w-4 h-4" />{t('biblia.present')}</button>
-                <button onClick={() => { ui.setImmersiveMode(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Maximize2 className="w-4 h-4 text-[var(--content-muted)]" />Modo Imersivo</button>
+                <button onClick={() => { ui.setImmersiveMode(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Maximize2 className="w-4 h-4 text-[var(--content-muted)]" />Modo imersivo</button>
               </div>
             </>
           )}
@@ -126,7 +137,7 @@ export function BibleToolbar({
           <button onClick={() => ui.setMostrarApresentacao(true)}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-[var(--brand-contrast)] bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] shadow-md shadow-[var(--brand-default)]/30 hover:shadow-lg hover:shadow-[var(--brand-default)]/40 transition-all active:scale-97 hover:scale-105"
             aria-label={t('biblia.present', 'Apresentar')}>
-            <Sparkles className="w-3.5 h-3.5" />{t('biblia.present')}<span className="inline-flex items-center px-1 py-0 rounded text-[8px] font-extrabold bg-white/20">{t('biblia.new')}</span>
+            <Sparkles className="w-3.5 h-3.5" />{t('biblia.present')}<span className="inline-flex items-center px-1 py-0 rounded text-[8px] font-extrabold bg-[var(--brand-contrast)]/20">{t('biblia.new')}</span>
           </button>
           <button onClick={() => ui.setImmersiveMode(true)}
             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:bg-[var(--brand-default)]/15 border border-[var(--brand-default)]/20 transition-all"

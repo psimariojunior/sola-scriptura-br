@@ -4,6 +4,8 @@ import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, BookOpen, Languages, MessageSquare, GraduationCap, StickyNote, Link2, Users, Shield, Clock, Map, ScrollText, FileText, Sparkles, ChevronRight, ExternalLink, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { hrefBiblia } from '@/lib/bibliaHref';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -951,11 +953,20 @@ export default function PainelDoVersiculo({
               </p>
             </div>
           </div>
-          {onFechar && (
-            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={onFechar} aria-label="Fechar painel">
-              <X className="w-4 h-4" />
-            </Button>
-          )}
+          <div className="flex items-center gap-1">
+            <Link
+              href={hrefBiblia(livro, capitulo, versiculo)}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+            >
+              <BookOpen className="w-3 h-3" />
+              Ler na Bíblia
+            </Link>
+            {onFechar && (
+              <Button variant="ghost" size="icon" className="h-8 w-8" onClick={onFechar} aria-label="Fechar painel">
+                <X className="w-4 h-4" />
+              </Button>
+            )}
+          </div>
         </div>
         {/* Quick resource chips */}
         <div className="flex flex-wrap gap-1.5">

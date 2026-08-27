@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,7 +62,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   }
 }
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Global error handlers — prevent white screen
@@ -101,14 +102,6 @@ void main() async {
     );
   };
 
-  // Firebase — wrapped in try-catch so app still launches if Firebase fails
-  try {
-    await Firebase.initializeApp();
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  } catch (e) {
-    debugPrint('[Main] Firebase init failed: $e');
-  }
-
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -124,7 +117,18 @@ void main() async {
     ),
   );
 
-  // Services — each wrapped individually so one failure doesn't kill the app
+  runApp(const SolaScripturaApp());
+  unawaited(_initDeferredServices());
+}
+
+Future<void> _initDeferredServices() async {
+  try {
+    await Firebase.initializeApp();
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  } catch (e) {
+    debugPrint('[Main] Firebase init failed: $e');
+  }
+
   try {
     AppLockService().init();
   } catch (e) {
@@ -159,8 +163,6 @@ void main() async {
   } catch (e) {
     debugPrint('[Main] VerseWidgetService failed: $e');
   }
-
-  runApp(const SolaScripturaApp());
 }
 
 class SolaScripturaApp extends StatefulWidget {
@@ -252,6 +254,22 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
   }
 
   Future<void> _setupFCM() async {
+    for (var i = 0; i < 30; i++) {
+      try {
+        Firebase.app();
+        break;
+      } catch (_) {
+        await Future.delayed(const Duration(milliseconds: 100));
+      }
+    }
+
+    try {
+      Firebase.app();
+    } catch (_) {
+      debugPrint('[FCM] Firebase ainda não inicializado');
+      return;
+    }
+
     final messaging = FirebaseMessaging.instance;
     final settings = await messaging.requestPermission(
       alert: true,

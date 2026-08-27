@@ -38,7 +38,7 @@ interface AudioEdgeRequest {
   rate?: string;
   pitch?: string;
   volume?: string;
-  lingua?: 'pt' | 'en';
+  lingua?: 'pt' | 'en' | 'he' | 'el';
 }
 
 export async function POST(request: NextRequest) {
@@ -76,6 +76,12 @@ export async function POST(request: NextRequest) {
     : (voz === 'masculina' ? VOZES_PT.masculina[0] : VOZES_PT.feminina[0])
   );
 
+  const ttsLang =
+    lingua === 'en' ? 'en-US'
+      : lingua === 'he' ? 'he-IL'
+        : lingua === 'el' ? 'el-GR'
+          : 'pt-BR';
+
   const tempId = randomUUID();
   const tempFile = path.join(tmpdir(), `edge-tts-${tempId}.mp3`);
 
@@ -91,7 +97,7 @@ export async function POST(request: NextRequest) {
 
         const tts = new EdgeTTS({
           voice: vozFinal,
-          lang: lingua === 'en' ? 'en-US' : 'pt-BR',
+          lang: ttsLang,
           outputFormat: 'audio-24khz-96kbitrate-mono-mp3',
           rate,
           pitch,

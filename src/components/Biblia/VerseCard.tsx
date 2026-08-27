@@ -12,7 +12,7 @@ import { toggleFavorito } from '@/lib/estudos';
 import { setMarcador, removeMarcador, getMarcador, CORES, type CorMarcador } from '@/lib/marcadores';
 import { MobileVersePanel } from '@/components/MobileVersePanel';
 import { ClickableVerse } from './ClickableVerse';
-import { VerseFocusOverlay } from './VerseFocusOverlay';
+import { compartilharVersiculo } from '@/lib/compartilharVersiculo';
 import { EstudoDoVerso } from './EstudoDoVerso';
 
 export interface VerseCardProps {
@@ -261,6 +261,25 @@ export const VerseCard = memo(function VerseCard({
           corMarca && corBgMap[corMarca]
         )}
       >
+        {isSelected && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              void compartilharVersiculo({
+                livro: livroNome,
+                capitulo,
+                versiculo: numero,
+                texto,
+                traducao,
+              });
+            }}
+            className="lg:hidden absolute right-1 top-1 z-10 p-2 rounded-full bg-[var(--surface-raised)]/95 border border-[var(--border)]/40 text-[var(--content-secondary)] shadow-sm"
+            aria-label="Compartilhar versículo"
+          >
+            <Share2 className="w-4 h-4" />
+          </button>
+        )}
         <div className="flex items-start gap-2.5 sm:gap-3.5">
           {!hideNumber && (
             <span
@@ -384,10 +403,10 @@ export const VerseCard = memo(function VerseCard({
         {/* Mobile inline action panel - only show when PainelDoVersiculo is NOT open */}
         {isSelected && !hideMobileActions && (
           <div className="lg:hidden mt-2 pt-2 border-t border-[var(--border)]/20 animate-[slideDown_0.2s_ease-out]">
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-5 gap-1.5">
               <button
                 onClick={(e) => { e.stopPropagation(); toggleFavorito(livroAbreviacao, capitulo, numero, traducao, texto); if (navigator?.vibrate) navigator.vibrate([10, 50, 10]); onFavoritoChange(); }}
-                className={cn('flex flex-col items-center justify-center gap-1 p-3 rounded-xl transition-all active:scale-95', isFavorito ? 'text-white bg-red-500' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)]')}
+                className={cn('flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl transition-all active:scale-95', isFavorito ? 'text-white bg-red-500' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)]')}
                 aria-label={isFavorito ? 'Remover favorito' : 'Favoritar'}
               >
                 <Heart className="w-5 h-5" fill={isFavorito ? 'currentColor' : 'none'} />
@@ -395,15 +414,32 @@ export const VerseCard = memo(function VerseCard({
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); copyVerse(texto, ref); }}
-                className={cn('flex flex-col items-center justify-center gap-1 p-3 rounded-xl transition-all active:scale-95', copiedVerse === ref ? 'text-white bg-green-500' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)]')}
+                className={cn('flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl transition-all active:scale-95', copiedVerse === ref ? 'text-white bg-green-500' : 'bg-[var(--surface-sunken)] text-[var(--content-secondary)]')}
                 aria-label="Copiar"
               >
                 <Copy className="w-5 h-5" />
                 <span className="text-[10px] font-medium">Copiar</span>
               </button>
               <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  void compartilharVersiculo({
+                    livro: livroNome,
+                    capitulo,
+                    versiculo: numero,
+                    texto,
+                    traducao,
+                  });
+                }}
+                className="flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] transition-all active:scale-95"
+                aria-label="Compartilhar"
+              >
+                <Share2 className="w-5 h-5" />
+                <span className="text-[10px] font-medium">Compartilhar</span>
+              </button>
+              <button
                 onClick={(e) => { e.stopPropagation(); setShowFocusOverlay(true); }}
-                className="flex flex-col items-center justify-center gap-1 p-3 rounded-xl bg-[var(--brand-subtle)] text-[var(--brand-default)] transition-all active:scale-95"
+                className="flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl bg-[var(--brand-subtle)] text-[var(--brand-default)] transition-all active:scale-95"
                 aria-label="Visão completa"
               >
                 <Maximize2 className="w-5 h-5" />
@@ -411,7 +447,7 @@ export const VerseCard = memo(function VerseCard({
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); setShowMobilePanel(true); }}
-                className="flex flex-col items-center justify-center gap-1 p-3 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] transition-all active:scale-95"
+                className="flex flex-col items-center justify-center gap-1 p-2.5 rounded-xl bg-[var(--surface-sunken)] text-[var(--content-secondary)] transition-all active:scale-95"
                 aria-label="Mais opções"
               >
                 <BookOpen className="w-5 h-5" />

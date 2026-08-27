@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import '../config/theme.dart';
+import '../config/constants.dart';
 import '../data/versiculos_splash.dart';
 import '../services/webview_service.dart';
 import 'app_shell.dart';
@@ -36,10 +37,10 @@ class _SplashScreenState extends State<SplashScreen>
     _selectedVerse = VersiculosSplash
         .versiculos[Random().nextInt(VersiculosSplash.versiculos.length)];
 
-    // Main animation controller (3.5 seconds)
+    // Main animation controller — curto, o site já carrega em paralelo
     _mainController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 3500),
+      duration: AppConstants.splashDuration,
     );
 
     // Glow/pulse controller (loops)
@@ -117,13 +118,27 @@ class _SplashScreenState extends State<SplashScreen>
 
   Future<void> _navigateToHome() async {
     final webViewService = WebViewService();
-    try {
-      await webViewService.initialize();
-    } catch (e) {
-      debugPrint('[SplashScreen] WebView init error: $e');
-    }
+    final path = widget.initialPath ?? '/';
+    final url = '${AppConstants.baseUrl}$path';
 
-    await Future.delayed(const Duration(milliseconds: 3500));
+    final preload = () async {
+      try {
+        await webViewService.initialize();
+        await webViewService.loadUrl(url);
+      } catch (e) {
+        debugPrint('[SplashScreen] WebView init/load error: $e');
+      }
+    }();
+
+    await Future.wait([
+      Future.delayed(AppConstants.splashDuration),
+      preload.timeout(
+        const Duration(seconds: 8),
+        onTimeout: () {
+          debugPrint('[SplashScreen] Preload timeout — abrindo mesmo assim');
+        },
+      ),
+    ]);
 
     if (!mounted) return;
 
@@ -136,7 +151,7 @@ class _SplashScreenState extends State<SplashScreen>
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(opacity: animation, child: child);
         },
-        transitionDuration: const Duration(milliseconds: 500),
+        transitionDuration: const Duration(milliseconds: 280),
       ),
     );
   }

@@ -19,7 +19,7 @@ class AppConstants {
   ];
 
   // Timing
-  static const Duration splashDuration = Duration(seconds: 2);
+  static const Duration splashDuration = Duration(milliseconds: 1600);
   static const Duration splashAnimationDuration = Duration(milliseconds: 1200);
   static const Duration backPressExitDelay = Duration(seconds: 2);
   static const Duration connectivityCheckInterval = Duration(seconds: 5);

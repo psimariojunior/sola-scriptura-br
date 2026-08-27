@@ -10,66 +10,120 @@ export interface PalavraAlinhada {
   idioma: 'grego' | 'hebraico' | null;
 }
 
+const PT_STOP = new Set([
+  'o', 'a', 'os', 'as', 'um', 'uma', 'uns', 'umas',
+  'de', 'do', 'da', 'dos', 'das', 'e', 'ou', 'que', 'se',
+  'em', 'no', 'na', 'nos', 'nas', 'por', 'para', 'com', 'sem',
+  'ao', 'aos', 'pelo', 'pela', 'pelos', 'pelas',
+  'é', 'foi', 'são', 'não', 'ja', 'mais', 'como', 'lhe', 'lhes',
+  'seu', 'sua', 'seus', 'suas', 'ele', 'ela', 'eles', 'elas',
+  'este', 'esta', 'isto', 'esse', 'essa', 'isso', 'aquele', 'aquela',
+]);
+
+function norm(s: string): string {
+  return s
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\p{L}\p{N}]+/gu, '');
+}
+
+function matchScore(ptWord: string, strong: PalavraStrong): number {
+  const pt = norm(ptWord);
+  if (pt.length < 3 || PT_STOP.has(pt)) return 0;
+
+  const def = norm(strong.definicao || '');
+  const trans = norm(strong.transliteracao || '');
+  if (!def && !trans) return 0;
+  if (def === pt || trans === pt) return 10;
+
+  const defParts = (strong.definicao || '')
+    .split(/[,;/()|]|\be\b|\bou\b/i)
+    .map((t) => norm(t))
+    .filter((t) => t.length >= 3);
+
+  if (defParts.some((t) => t === pt)) return 9;
+  if (defParts.some((t) => t.startsWith(pt) || (pt.startsWith(t) && t.length >= 4))) return 7;
+  if (pt.length >= 4 && (def.includes(pt) || trans.includes(pt))) return 6;
+  if (pt.length >= 5 && def.includes(pt.slice(0, 5))) return 4;
+  return 0;
+}
+
+/** Alinha palavras da tradução com Strong's: primeiro por definição, depois pela ordem. */
 export function alignSequences(ptWords: string[], strongs: PalavraStrong[]): (number | null)[] {
   const n = ptWords.length;
   const m = strongs.length;
   if (m === 0) return ptWords.map(() => null);
   if (n === 0) return [];
 
-  const GAP_PENALTY = 1;
+  const alignment: (number | null)[] = new Array(n).fill(null);
+  const usedStrong = new Set<number>();
+  const usedPt = new Set<number>();
 
-  const dp: number[][] = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
-  const trace: number[][][] = Array.from({ length: n + 1 }, () =>
-    Array.from({ length: m + 1 }, () => [0, 0, 0])
-  );
-
-  for (let i = 0; i <= n; i++) { dp[i][0] = i * GAP_PENALTY; trace[i][0] = [0, 1, 0]; }
-  for (let j = 0; j <= m; j++) { dp[0][j] = j * GAP_PENALTY; trace[0][j] = [0, 0, 1]; }
-
-  for (let i = 1; i <= n; i++) {
-    for (let j = 1; j <= m; j++) {
-      const match = dp[i - 1][j - 1];
-      const gapPt = dp[i - 1][j] + GAP_PENALTY;
-      const gapStrong = dp[i][j - 1] + GAP_PENALTY;
-
-      if (match <= gapPt && match <= gapStrong) {
-        dp[i][j] = match;
-        trace[i][j] = [1, 0, 0];
-      } else if (gapPt <= gapStrong) {
-        dp[i][j] = gapPt;
-        trace[i][j] = [0, 1, 0];
-      } else {
-        dp[i][j] = gapStrong;
-        trace[i][j] = [0, 0, 1];
-      }
+  const candidates: { i: number; j: number; score: number; dist: number }[] = [];
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < m; j++) {
+      const score = matchScore(ptWords[i], strongs[j]);
+      if (score < 4) continue;
+      candidates.push({
+        i,
+        j,
+        score,
+        dist: Math.abs(i / Math.max(n, 1) - j / Math.max(m, 1)),
+      });
     }
   }
+  candidates.sort((a, b) => b.score - a.score || a.dist - b.dist);
 
-  const alignment: (number | null)[] = new Array(n).fill(null);
-  let i = n, j = m;
-  while (i > 0 || j > 0) {
-    if (i > 0 && j > 0 && trace[i][j][0]) {
-      alignment[i - 1] = j - 1;
-      i--; j--;
-    } else if (i > 0 && trace[i][j][1]) {
-      i--;
-    } else if (j > 0 && trace[i][j][2]) {
-      j--;
-    } else {
-      break;
+  for (const c of candidates) {
+    if (usedPt.has(c.i) || usedStrong.has(c.j)) continue;
+    alignment[c.i] = c.j;
+    usedPt.add(c.i);
+    usedStrong.add(c.j);
+  }
+
+  let j = 0;
+  for (let i = 0; i < n; i++) {
+    if (alignment[i] !== null) continue;
+    while (j < m && usedStrong.has(j)) j++;
+    if (j >= m) break;
+
+    let crosses = false;
+    for (let k = i + 1; k < n; k++) {
+      const later = alignment[k];
+      if (later !== null && j > later) {
+        crosses = true;
+        break;
+      }
     }
+    if (crosses) continue;
+
+    alignment[i] = j;
+    usedStrong.add(j);
+    j++;
   }
 
   return alignment;
 }
 
-export async function alinharVersiculo(livro: string, capitulo: number, verNumero: number, textoPt: string): Promise<PalavraAlinhada[]> {
+export async function alinharVersiculo(
+  livro: string,
+  capitulo: number,
+  verNumero: number,
+  textoPt: string,
+): Promise<PalavraAlinhada[]> {
   const mod = await import('@/data/biblia/strong');
   const strongs = await mod.getStrongPorVersiculo(livro, capitulo, verNumero) ?? [];
-  const words = textoPt.split(/\s+/);
+  const words = textoPt.split(/\s+/).filter(Boolean);
   if (strongs.length === 0) {
-    return words.map(w => ({
-      texto: w, strong: null, palavraOriginal: null, transliteracao: null, definicao: null, morfologia: null, idioma: null,
+    return words.map((w) => ({
+      texto: w,
+      strong: null,
+      palavraOriginal: null,
+      transliteracao: null,
+      definicao: null,
+      morfologia: null,
+      idioma: null,
     }));
   }
   const alignment = alignSequences(words, strongs);
@@ -77,8 +131,24 @@ export async function alinharVersiculo(livro: string, capitulo: number, verNumer
     const idx = alignment[i];
     if (idx !== null && idx !== undefined && idx >= 0 && idx < strongs.length) {
       const s = strongs[idx];
-      return { texto: w, strong: s.strong, palavraOriginal: s.palavra, transliteracao: s.transliteracao, definicao: s.definicao, morfologia: s.morfologia, idioma: s.idioma };
+      return {
+        texto: w,
+        strong: s.strong,
+        palavraOriginal: s.palavra,
+        transliteracao: s.transliteracao,
+        definicao: s.definicao,
+        morfologia: s.morfologia,
+        idioma: s.idioma,
+      };
     }
-    return { texto: w, strong: null, palavraOriginal: null, transliteracao: null, definicao: null, morfologia: null, idioma: null };
+    return {
+      texto: w,
+      strong: null,
+      palavraOriginal: null,
+      transliteracao: null,
+      definicao: null,
+      morfologia: null,
+      idioma: null,
+    };
   });
 }

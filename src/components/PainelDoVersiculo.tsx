@@ -2,7 +2,9 @@
 
 import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, BookOpen, Languages, MessageSquare, GraduationCap, StickyNote, Link2, Users, Shield, Clock, Map, ScrollText, FileText, Sparkles, ChevronRight, ExternalLink, Search } from 'lucide-react';
+import { X, BookOpen, Languages, MessageSquare, GraduationCap, StickyNote, Link2, Users, Shield, Clock, Map, ScrollText, FileText, Sparkles, ChevronRight, ExternalLink, Search, Share2 } from 'lucide-react';
+import { AudioPronunciation } from '@/components/AudioPronunciation';
+import { compartilharVersiculo } from '@/lib/compartilharVersiculo';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { hrefBiblia } from '@/lib/bibliaHref';
@@ -30,6 +32,9 @@ interface PainelDoVersiculoProps {
   onFechar?: () => void;
   onVersiculoClick?: (livro: string, cap: number, ver: number) => void;
   tabInicial?: string;
+  texto?: string;
+  traducao?: string;
+  livroNome?: string;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -227,7 +232,18 @@ function TabLexico({ livro, capitulo, versiculo }: { livro: string; capitulo: nu
               </Badge>
               <span className="text-xs font-medium text-muted-foreground">{p.idioma}</span>
             </div>
-            <p className={`text-base font-semibold mb-0.5 ${isHeb ? 'font-hebrew' : 'font-greek'}`}>{p.palavra}</p>
+            <div className="flex items-center gap-2 mb-0.5">
+              <p className={`text-base font-semibold ${isHeb ? 'font-hebrew' : 'font-greek'}`}>{p.palavra}</p>
+              {p.palavra && (
+                <AudioPronunciation
+                  palavra={p.palavra}
+                  strong={p.strong}
+                  lingua={isHeb ? 'hebraico' : 'grego'}
+                  transliteracao={p.transliteracao}
+                  size="sm"
+                />
+              )}
+            </div>
             <p className="text-xs text-muted-foreground italic mb-1">{p.transliteracao}</p>
             <p className="text-sm text-foreground/80">{p.definicao}</p>
             {p.morfologia && (
@@ -918,6 +934,9 @@ export default function PainelDoVersiculo({
   onFechar,
   onVersiculoClick,
   tabInicial,
+  texto,
+  traducao,
+  livroNome,
 }: PainelDoVersiculoProps) {
   const [recursos, setRecursos] = useState<RecursoVersiculo[]>([]);
   const [erro, setErro] = useState<string | null>(null);
@@ -1003,6 +1022,25 @@ export default function PainelDoVersiculo({
             </div>
           </div>
           <div className="flex items-center gap-1">
+            {texto && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8"
+                aria-label="Compartilhar versículo"
+                onClick={() => {
+                  void compartilharVersiculo({
+                    livro: livroNome || livro,
+                    capitulo,
+                    versiculo,
+                    texto,
+                    traducao,
+                  });
+                }}
+              >
+                <Share2 className="w-4 h-4" />
+              </Button>
+            )}
             <Link
               href={hrefBiblia(livro, capitulo, versiculo)}
               className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-primary/10 text-primary hover:bg-primary/20 transition-colors"

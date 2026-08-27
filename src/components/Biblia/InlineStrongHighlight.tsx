@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { X, BookOpen } from 'lucide-react';
+import { AudioPronunciation } from '@/components/AudioPronunciation';
 import { cn } from '@/lib/utils';
 import type { RecursoLexico } from '@/data/biblia/versiculoRecursos';
 
@@ -112,10 +113,18 @@ export function InlineStrongHighlight({
               {palavraAtiva.palavra}
             </p>
 
-            {/* Transliteração */}
-            <p className="text-xs text-[var(--content-muted)] italic text-center mb-2">
-              {palavraAtiva.transliteracao}
-            </p>
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <p className="text-xs text-[var(--content-muted)] italic">
+                {palavraAtiva.transliteracao}
+              </p>
+              <AudioPronunciation
+                palavra={palavraAtiva.palavra}
+                strong={palavraAtiva.strong}
+                lingua={palavraAtiva.idioma === 'grego' ? 'grego' : 'hebraico'}
+                transliteracao={palavraAtiva.transliteracao}
+                size="sm"
+              />
+            </div>
 
             {/* Definição */}
             <div className="bg-[var(--surface-sunken)] rounded-lg p-2.5 mb-2 border border-[var(--border)]/40">

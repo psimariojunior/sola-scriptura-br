@@ -13,8 +13,8 @@ class JsBridge {
       
       window.__SSB_SHARE = function(text, url) {
         var shareText = text || document.title;
-        var shareUrl = url || window.location.href;
-        var encoded = encodeURIComponent(shareText + ' ' + shareUrl);
+        if (url) shareText = shareText + ' ' + url;
+        var encoded = encodeURIComponent(shareText);
         window.location.href = 'ssb-share://' + encoded;
       };
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { memo, useCallback, useState, useRef, useMemo, useEffect } from 'react';
-import { findWordInText, getStrongByNumber, getTestamentoByLivro, type LexiconEntry, type LexiconResult } from '@/lib/lexiconSearch';
+import { getStrongByNumber, getTestamentoByLivro, type LexiconResult } from '@/lib/lexiconSearch';
 import type { PalavraAlinhada } from '@/lib/wordAlignment';
 import { LexiconPopup } from './LexiconPopup';
 
@@ -14,15 +14,12 @@ interface ClickableVerseProps {
   style?: React.CSSProperties;
 }
 
-function extractWords(text: string): Array<{ word: string; isClickable: boolean }> {
-  const tokens = text.split(/(\s+|[.,;:!?\u2014\u2013()""'']+)/);
-  return tokens.map((token) => {
-    const cleaned = token.replace(/[.,;:!?\u2014\u2013()""''"]/g, '');
-    return {
-      word: token,
-      isClickable: cleaned.length > 2 && /^[a-zA-ZÀ-ÿ\u00C0-\u024F]+$/.test(cleaned),
-    };
-  });
+function limparPalavra(token: string): string {
+  return token.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, '');
+}
+
+function ehClicavel(cleaned: string): boolean {
+  return cleaned.length > 2 && /^[\p{L}]+$/u.test(cleaned);
 }
 
 export const ClickableVerse = memo(function ClickableVerse({
@@ -35,13 +32,12 @@ export const ClickableVerse = memo(function ClickableVerse({
 }: ClickableVerseProps) {
   const [popup, setPopup] = useState<{
     results: LexiconResult[];
+    palavraPt: string;
     position: { x: number; y: number };
   } | null>(null);
   const containerRef = useRef<HTMLSpanElement>(null);
-
   const testamento = livroAbreviacao ? getTestamentoByLivro(livroAbreviacao) : undefined;
 
-  // Pre-compute Strong's alignment when verse context is available
   const [palavrasAlinhadas, setPalavrasAlinhadas] = useState<PalavraAlinhada[] | null>(null);
   useEffect(() => {
     let cancelled = false;
@@ -59,45 +55,53 @@ export const ClickableVerse = memo(function ClickableVerse({
     };
   }, [livroAbreviacao, capitulo, numero, text]);
 
-  // Map word index to PalavraAlinhada for quick lookup
-  const alignmentMap = useMemo(() => {
-    if (!palavrasAlinhadas) return null;
-    const map = new Map<number, PalavraAlinhada>();
-    palavrasAlinhadas.forEach((p, i) => {
-      if (p.strong) map.set(i, p);
-    });
-    return map;
-  }, [palavrasAlinhadas]);
-
-  // Extract clean words for indexing
-  const cleanWords = useMemo(() => {
-    return text.split(/\s+/);
-  }, [text]);
-
-  // Map word index (from space-split) to alignment data
-  const ptWords = useMemo(() => text.split(/\s+/), [text]);
+  const ptWords = useMemo(() => text.split(/\s+/).filter(Boolean), [text]);
 
   const handleWordClick = useCallback(
-    async (word: string, e: React.MouseEvent, wordIndex?: number) => {
+    async (word: string, e: React.MouseEvent, wordIndex: number) => {
       e.stopPropagation();
-      const cleaned = word.replace(/[.,;:!?\u2014\u2013()""''"]/g, '');
-      if (cleaned.length <= 2) return;
+      const cleaned = limparPalavra(word);
+      if (!ehClicavel(cleaned)) return;
 
-      let results: LexiconResult[] = [];
-
-      // Try Strong's alignment first (exact match)
-      if (alignmentMap && wordIndex != null) {
-        const alinhada = alignmentMap.get(wordIndex);
-        if (alinhada?.strong) {
-          const entry = await getStrongByNumber(alinhada.strong);
-          if (entry) {
-            results = [{ entry, score: 1.0 }];
-          }
-        }
+      let alinhadas = palavrasAlinhadas;
+      if (!alinhadas && livroAbreviacao && capitulo != null && numero != null) {
+        const mod = await import('@/lib/wordAlignment');
+        alinhadas = await mod.alinharVersiculo(livroAbreviacao, capitulo, numero, text);
       }
 
-      // Fall back to fuzzy text search
+      let results: LexiconResult[] = [];
+      const alinhada = alinhadas?.[wordIndex];
+
+      if (alinhada?.strong && alinhada.palavraOriginal) {
+        results = [{
+          entry: {
+            strong: alinhada.strong,
+            palavra: alinhada.palavraOriginal,
+            transliteracao: alinhada.transliteracao || '',
+            definicao: alinhada.definicao || '',
+          },
+          score: 1,
+        }];
+        if (!alinhada.definicao) {
+          const entry = await getStrongByNumber(alinhada.strong);
+          if (entry) {
+            results = [{
+              entry: {
+                ...entry,
+                palavra: alinhada.palavraOriginal || entry.palavra,
+                transliteracao: alinhada.transliteracao || entry.transliteracao,
+              },
+              score: 1,
+            }];
+          }
+        }
+      } else if (alinhada?.strong) {
+        const entry = await getStrongByNumber(alinhada.strong);
+        if (entry) results = [{ entry, score: 1 }];
+      }
+
       if (results.length === 0) {
+        const { findWordInText } = await import('@/lib/lexiconSearch');
         results = await findWordInText(cleaned, testamento ?? undefined);
       }
 
@@ -106,10 +110,8 @@ export const ClickableVerse = memo(function ClickableVerse({
       const rect = (e.target as HTMLElement).getBoundingClientRect();
       const vw = window.innerWidth;
       const isMobile = vw < 768;
-
       let x: number;
       let y: number;
-
       if (isMobile) {
         x = vw / 2;
         y = rect.bottom + 8;
@@ -121,58 +123,44 @@ export const ClickableVerse = memo(function ClickableVerse({
           vw - POPUP_MAX_WIDTH - VIEWPORT_MARGIN
         ));
         y = rect.bottom + 8;
-        const vh = window.innerHeight;
-        if (y + 400 > vh - VIEWPORT_MARGIN) {
-          y = rect.top - 8;
-        }
+        if (y + 400 > window.innerHeight - VIEWPORT_MARGIN) y = rect.top - 8;
         y = Math.max(VIEWPORT_MARGIN, y);
       }
 
-      setPopup({
-        results,
-        position: { x, y },
-      });
+      setPopup({ results, palavraPt: cleaned, position: { x, y } });
     },
-    [alignmentMap, testamento]
+    [palavrasAlinhadas, testamento, livroAbreviacao, capitulo, numero, text]
   );
 
   const handleClose = useCallback(() => setPopup(null), []);
 
-  const tokens = extractWords(text);
-
   return (
     <span ref={containerRef} className={className} style={style}>
-      {tokens.map((token, i) => {
-        // Find the word index in the space-split array
-        // Find the word index in the space-split array for alignment lookup
-        const wordIndex = (() => {
-          let idx = 0;
-          for (let j = 0; j < tokens.length; j++) {
-            if (j === i) return idx;
-            // Count only actual words (non-punctuation tokens)
-            if (tokens[j].isClickable) idx++;
-          }
-          return -1;
-        })();
-
-        if (token.isClickable) {
-          return (
-            <span
-              key={i}
-              onClick={(e) => handleWordClick(token.word, e, wordIndex)}
-              className="bible-word cursor-pointer rounded-sm hover:text-primary transition-colors duration-150"
-            >
-              {token.word}
-            </span>
-          );
-        }
-        return <span key={i}>{token.word}</span>;
+      {ptWords.map((token, i) => {
+        const cleaned = limparPalavra(token);
+        const clickable = ehClicavel(cleaned);
+        return (
+          <span key={`${i}-${token.slice(0, 8)}`}>
+            {clickable ? (
+              <span
+                onClick={(e) => handleWordClick(token, e, i)}
+                className="bible-word cursor-pointer rounded-sm hover:text-primary transition-colors duration-150"
+              >
+                {token}
+              </span>
+            ) : (
+              token
+            )}
+            {i < ptWords.length - 1 ? ' ' : null}
+          </span>
+        );
       })}
 
       {popup && (
         <LexiconPopup
           entry={popup.results[0].entry}
           allResults={popup.results}
+          palavraPt={popup.palavraPt}
           position={popup.position}
           onClose={handleClose}
         />

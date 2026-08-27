@@ -11,13 +11,14 @@ import { AudioPronunciation } from '@/components/AudioPronunciation';
 interface LexiconPopupProps {
   entry: LexiconEntry;
   allResults?: LexiconResult[];
+  palavraPt?: string;
   position: { x: number; y: number };
   onClose: () => void;
 }
 
 const POPUP_MAX_WIDTH = 320;
 
-export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPopupProps) {
+export function LexiconPopup({ entry, allResults, palavraPt, position, onClose }: LexiconPopupProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [viewportSize, setViewportSize] = useState(() => {
@@ -74,6 +75,11 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
           >
             {currentEntry.palavra}
           </p>
+          {palavraPt && (
+            <p className="text-[11px] mt-0.5" style={{ color: 'var(--content-muted)' }}>
+              Na tradução: <span className="font-medium" style={{ color: 'var(--content-secondary)' }}>{palavraPt}</span>
+            </p>
+          )}
         </div>
         <button
           onClick={onClose}
@@ -167,7 +173,7 @@ export function LexiconPopup({ entry, allResults, position, onClose }: LexiconPo
         </Link>
       </div>
     </div>
-  ), [currentEntry, isHebrew, langLabel, hasMultiple, allResults, selectedIndex, onClose]);
+  ), [currentEntry, isHebrew, langLabel, hasMultiple, allResults, selectedIndex, onClose, palavraPt]);
 
   if (viewportSize.w === 0) return null;
 

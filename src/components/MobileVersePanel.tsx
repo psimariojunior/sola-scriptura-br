@@ -6,7 +6,8 @@ import { X, Heart, Copy, Share2, Languages, MessageSquare, GraduationCap, Link2,
 import { cn } from '@/lib/utils';
 import { toggleFavorito } from '@/lib/estudos';
 import { CORES, setMarcador, removeMarcador, getMarcador, type CorMarcador } from '@/lib/marcadores';
-import type { RecursoVersiculo } from '@/data/biblia/versiculoRecursos';
+import { compartilharVersiculo } from '@/lib/compartilharVersiculo';
+import { AudioPronunciation } from '@/components/AudioPronunciation';
 
 const VerseImageCreator = lazy(() => import('@/components/VerseImageCreator').then(m => ({ default: m.VerseImageCreator })));
 
@@ -71,13 +72,14 @@ export const MobileVersePanel = memo(function MobileVersePanel({
   };
 
   const compartilhar = async () => {
-    const textoCompleto = `${ref}\n\n${texto}`;
     try {
-      if (navigator.share) {
-        await navigator.share({ title: ref, text: textoCompleto });
-      } else {
-        await copiarTexto(textoCompleto);
-      }
+      await compartilharVersiculo({
+        livro,
+        capitulo,
+        versiculo,
+        texto,
+        traducao,
+      });
     } catch { /* user cancelled */ }
   };
 
@@ -169,12 +171,7 @@ export const MobileVersePanel = memo(function MobileVersePanel({
               <p className="text-xs text-[var(--content-muted)] mb-3">Compartilhar versículo:</p>
               <p className="text-sm text-[var(--content-secondary)] font-serif-body leading-relaxed mb-4 p-3 bg-[var(--surface-sunken)] rounded-xl">{ref} — {texto}</p>
               <button onClick={() => {
-                const textoCompleto = `"${texto}"\n\n— ${ref}\n\n📖 Sola Scriptura\nhttps://solascripturabr.com.br`;
-                const a = document.createElement('a');
-                a.href = `ssb-share://${encodeURIComponent(textoCompleto)}`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
+                void compartilhar();
                 setSubView('main');
               }} className="w-full flex items-center justify-center gap-2 p-4 rounded-xl bg-gradient-to-r from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold active:scale-[0.98] transition-transform">
                 <Share2 className="w-5 h-5" />
@@ -385,7 +382,18 @@ export const MobileVersePanel = memo(function MobileVersePanel({
                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${p.idioma === 'grego' ? 'bg-purple-500/20 text-purple-600' : 'bg-amber-500/20 text-amber-600'}`}>{p.strong}</span>
                         <span className="text-xs text-[var(--content-muted)]">{p.idioma}</span>
                       </div>
-                      <p className="text-base font-bold text-[var(--content-primary)] mb-0.5">{p.palavra}</p>
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <p className="text-base font-bold text-[var(--content-primary)]">{p.palavra}</p>
+                        {p.palavra && (
+                          <AudioPronunciation
+                            palavra={p.palavra}
+                            strong={p.strong}
+                            lingua={p.idioma === 'grego' ? 'grego' : 'hebraico'}
+                            transliteracao={p.transliteracao}
+                            size="sm"
+                          />
+                        )}
+                      </div>
                       <p className="text-xs text-[var(--content-muted)] italic mb-1">{p.transliteracao}</p>
                       <p className="text-sm text-[var(--content-secondary)] leading-relaxed">{p.definicao}</p>
                       {(p as any).morfologiaEstruturada?.label ? (

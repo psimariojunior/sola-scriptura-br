@@ -38,6 +38,7 @@ class _AppShellState extends State<AppShell> {
   void initState() {
     super.initState();
     _connectivity = ConnectivityService();
+    _isLoading = widget.webViewService.isLoading;
     _setupWebView();
     _setupConnectivity();
     _loadInitialUrl();
@@ -46,6 +47,16 @@ class _AppShellState extends State<AppShell> {
   void _loadInitialUrl() {
     final path = widget.initialPath ?? '/';
     final url = '${AppConstants.baseUrl}$path';
+    final current = widget.webViewService.currentUrl;
+    if (current != null) {
+      final currentUri = Uri.tryParse(current);
+      final targetUri = Uri.tryParse(url);
+      final currentPath = currentUri?.path ?? '';
+      final targetPath = targetUri?.path.isEmpty == true ? '/' : (targetUri?.path ?? '/');
+      if (currentPath == targetPath || current.startsWith(url.split('?').first)) {
+        return;
+      }
+    }
     widget.webViewService.loadUrl(url).catchError((e) {
       debugPrint('[AppShell] LoadUrl error: $e');
     });
@@ -86,6 +97,12 @@ class _AppShellState extends State<AppShell> {
         _handleShareImage(url);
       }
     };
+
+    if (!widget.webViewService.isLoading && widget.webViewService.currentUrl != null) {
+      _isLoading = false;
+      JsBridge.injectPerformanceOptimizations(widget.webViewService.controller);
+      JsBridge.injectOfflineSupport(widget.webViewService.controller);
+    }
   }
 
   void _handleShareImage(String url) {

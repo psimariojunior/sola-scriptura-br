@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import { Link2, Languages } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -35,6 +35,29 @@ function parseRef(ref: string): { livro: string; cap: number; ver: number } | nu
   return { livro: match[1].toLowerCase().replace(/\s+/g, ''), cap: parseInt(match[2], 10), ver: parseInt(match[3], 10) };
 }
 
+function LazyWhenVisible({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: '80px' },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return <div ref={ref}>{visible ? children : <div className="h-8" aria-hidden />}</div>;
+}
+
 export function EstudoDoVerso({ livro, capitulo, verso, texto, fontSize, expanded, onOpenFull }: EstudoDoVersoProps) {
   const [refs, setRefs] = useState<CrossReference[]>([]);
   const [lexico, setLexico] = useState<RecursoLexico[]>([]);
@@ -55,7 +78,9 @@ export function EstudoDoVerso({ livro, capitulo, verso, texto, fontSize, expande
   if (!expanded) {
     return (
       <div className="bible-study-inline" onClick={(e) => e.stopPropagation()}>
-        <ComentarioInline livro={livro} capitulo={capitulo} verso={verso} />
+        <LazyWhenVisible>
+          <ComentarioInline livro={livro} capitulo={capitulo} verso={verso} />
+        </LazyWhenVisible>
       </div>
     );
   }

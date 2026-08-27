@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Copy, Check, Share2, ExternalLink, Image as ImageIcon } from 'lucide-react';
+import { Copy, Check, Share2, Image as ImageIcon } from 'lucide-react';
 import { useToast } from '@/hooks/useToast';
 import { ShareVerseImageModal } from './ShareVerseImageModal';
 import type { ShareVerseImageData } from './ShareVerseImageModal';
+import { compartilharVersiculo } from '@/lib/compartilharVersiculo';
 
 interface CompartilharVersiculoProps {
   livro: string;
@@ -46,7 +47,40 @@ export function CompartilharVersiculo({ livro, capítulo, versículo, texto, tra
     }
   };
 
-  const compartilharWhatsApp = () => {
+  const compartilharNativo = async () => {
+    try {
+      const resultado = await compartilharVersiculo({
+        livro,
+        capitulo: capítulo,
+        versiculo: versículo,
+        texto,
+        traducao,
+      });
+      setAberto(false);
+      if (resultado === 'copiado') {
+        setCopiado(true);
+        setTimeout(() => setCopiado(false), 2000);
+        toast({ title: 'Versículo copiado!', variant: 'success' });
+      }
+    } catch {
+      /* usuário cancelou */
+    }
+  };
+
+  const compartilharWhatsApp = async () => {
+    try {
+      await compartilharVersiculo({
+        livro,
+        capitulo: capítulo,
+        versiculo: versículo,
+        texto,
+        traducao,
+      });
+      setAberto(false);
+      return;
+    } catch {
+      /* segue para wa.me no navegador */
+    }
     const url = `https://wa.me/?text=${encodeURIComponent(`${referência}\n\n${texto}\n\nEstude mais em Sola Scriptura`)}`;
     window.open(url, '_blank');
   };
@@ -96,6 +130,14 @@ export function CompartilharVersiculo({ livro, capítulo, versículo, texto, tra
 
             {/* Ações */}
             <div className="p-2 space-y-1">
+              <button
+                onClick={compartilharNativo}
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-muted/50 transition-all duration-200"
+              >
+                <Share2 className="w-4 h-4 text-[var(--brand-default)]" />
+                Compartilhar
+              </button>
+
               <button
                 onClick={() => {
                   setAberto(false);

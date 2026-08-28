@@ -1785,5 +1785,222 @@ export const estudosCapituloProfundos: Record<string, EstudoCapitulo> = {
     ],
     fontes: ['Apocalipse 5', 'Gênesis 49:9–10', 'Isaías 53', 'Êxodo 19:5–6', 'Daniel 7'],
   }),
+
+  'mc:1': ficha('mc', 1, 'O evangelho começa: o Filho, o deserto e a autoridade', {
+    contextoHistorico:
+      'Marcos escreve em ritmo de urgência (euthys, “logo”). João Batista no deserto (Is 40; Ml 3) prepara o caminho. O batismo e a tentação abrem o ministério galileu.',
+    resumo:
+      'Princípio do evangelho de Jesus Cristo, Filho de Deus. A voz do Pai e a descida do Espírito no Jordão. Quarenta dias no deserto. “O tempo está cumprido”: o Reino chegou; arrependei-vos e crede. Chamado dos pescadores. Cafarnaum: ensino com autoridade, expulsão de demônios, cura da sogra de Pedro, leproso. O segredo messiânico já começa: Jesus não se deixa reduzir a taumaturgo.',
+    estrutura: ['1:1–13 — prólogo: Batista, batismo, deserto', '1:14–20 — Reino e discípulos', '1:21–45 — um sábado de autoridade'],
+    temas: ['Evangelho', 'Filho de Deus', 'Reino', 'Autoridade', 'Discipulado'],
+    VersiculosChave: [
+      chave('Marcos 1:1', 'Princípio do evangelho de Jesus Cristo, Filho de Deus.', 'Título e tese: evangelho = Jesus, o Filho.'),
+      chave('Marcos 1:15', 'O tempo está cumprido, e o reino de Deus está próximo.', 'Não é conselho moral: é anúncio de invasão do Reino.'),
+    ],
+    significadoTeologico:
+      'Cristologia alta no primeiro verso. O Filho é servo que luta no deserto (contraste com Adão e Israel). A autoridade sobre impureza antecipa a cruz que limpa de verdade.',
+    aplicacaoPratica:
+      'Comece o dia com “o tempo está cumprido”, não com a urgência do século. Siga como pescador chamado — o discipulado interrompe a rede. Ore contra o mal pessoal, não só “sistêmico”.',
+    perguntasEstudo: [
+      'O que 1:1 afirma que o resto do livro vai provar?',
+      'Como 1:15 une arrependimento e fé?',
+      'Por que Jesus silencia demônios que o confessam?',
+    ],
+    fontes: ['Marcos 1', 'Isaías 40:3', 'Malaquias 3:1', 'Salmos 2:7'],
+  }),
+
+  'lc:1': ficha('lc', 1, 'Duas anunciações: o Batista e o Filho do Altíssimo', {
+    contextoHistorico:
+      'Lucas dedica a Teófilo uma narrativa “em ordem”. O templo, Zacarias mudo, Isabel e Maria: o AT reabre em famílias piedosas da esperança de Israel.',
+    resumo:
+      'O anjo a Zacarias: João, Elias que prepara. O anjo a Maria: conceberás o Filho do Altíssimo; o trono de Davi será eterno. O Magnificat canta o Deus que derruba poderosos e exalta os humildes (1 Sm 2). O Benedictus: juramento a Abraão e caminho de paz. João é profeta do Altíssimo; Jesus é Senhor cujo nascimento Isabel já reconhece.',
+    estrutura: ['1:1–4 — prólogo a Teófilo', '1:5–25 — Zacarias e Isabel', '1:26–56 — anunciação e Magnificat', '1:57–80 — nascimento de João e Benedictus'],
+    temas: ['Encarnação', 'Promessa', 'Humildes', 'Espírito', 'Davi'],
+    VersiculosChave: [
+      chave('Lucas 1:32–33', 'Será grande e será chamado Filho do Altíssimo… o seu reino não terá fim.', '2 Sm 7 cumprido no ventre de Maria.'),
+      chave('Lucas 1:46–47', 'A minha alma engrandece ao Senhor.', 'A teologia dos pobres: Deus lembra da serva.'),
+    ],
+    significadoTeologico:
+      'A encarnação é conceção virginal pelo Espírito (1:35), não mito grego de deuses. O Magnificat é política do Reino: misericórdia, não revolução pagã. João e Jesus: preparador e Senhor.',
+    aplicacaoPratica:
+      'Diga “faça-se em mim” (1:38) antes de entender tudo. Cante o Magnificat contra o orgulho. Leia a Bíblia como cumprimento, não como arquivo morto.',
+    perguntasEstudo: [
+      'Como 1:32–33 ecoa a aliança davídica?',
+      'O que o Magnificat faz com os ricos e os famintos?',
+      'Por que Zacarias emudece e Maria crê?',
+    ],
+    fontes: ['Lucas 1', '2 Samuel 7', '1 Samuel 2', 'Malaquias 4:5–6'],
+  }),
+
+  'at:1': ficha('at', 1, 'A ascensão e o testemunho até os confins', {
+    contextoHistorico:
+      'Continuação de Lucas. Quarenta dias, instruções sobre o Reino, espera em Jerusalém. A pergunta nacionalista (“restituirás o reino a Israel?”) é redirecionada à missão.',
+    resumo:
+      'Jesus é elevado; a nuvem (Dn 7) o recebe. Dois homens de branco: voltará do mesmo modo. Os onze (e Maria) perseveram em oração. Sortes para Matias: o Doze reconstitui-se antes de Pentecostes. O programa: Jerusalém, Judeia, Samaria, confins — mapa de Atos inteiro.',
+    estrutura: ['1:1–11 — promessa, Espírito, ascensão', '1:12–26 — o cenáculo e Matias'],
+    temas: ['Ascensão', 'Espírito', 'Missão', 'Apóstolos', 'Reino'],
+    VersiculosChave: [
+      chave('Atos 1:8', 'Recebereis poder… e ser-me-eis testemunhas… até os confins da terra.', 'Não é sugestão: é a espinha de Atos.'),
+      chave('Atos 1:11', 'Esse Jesus… virá do modo como o vistes ir.', 'A esperança não é fuga: é o mesmo Jesus histórico.'),
+    ],
+    significadoTeologico:
+      'A ascensão não é ausência: é entronização (Sl 110) e envio do Espírito. A igreja não adivinha datas (1:7); testemunha. O Doze sinaliza o Israel restaurado que abraça as nações.',
+    aplicacaoPratica:
+      'Pare de mapear o fim; seja testemunha hoje. Ore em comunidade enquanto espera o poder. A missão inclui Samaria — o próximo que você evita.',
+    perguntasEstudo: [
+      'Como 1:6–8 corrige a curiosidade escatológica?',
+      'O que a nuvem de 1:9 evoca em Daniel 7?',
+      'Por que era importante completar os Doze?',
+    ],
+    fontes: ['Atos 1', 'Lucas 24', 'Daniel 7', 'Salmos 110'],
+  }),
+
+  'sl:103': ficha('sl', 103, 'Bendize, ó minha alma: o Senhor que perdoa', {
+    contextoHistorico:
+      'Hino de Davi. Bênção interior que se expande até anjos e obras todas. Ecoa Êxodo 34:6–7: compassivo, tardio em irar-se.',
+    resumo:
+      'A alma deve lembrar dos benefícios: perdão, cura, resgate da cova, coroa de graça, satisfação. O Senhor é lento para a ira; não nos trata segundo os pecados. Como um pai se compadece. O homem é erva; a misericórdia é de eternidade a eternidade para os que o temem. O trono está estabelecido; bendizei-o, anjos.',
+    estrutura: ['103:1–5 — benefícios pessoais', '103:6–18 — caráter de Deus e aliança', '103:19–22 — doxologia cósmica'],
+    temas: ['Perdão', 'Misericórdia', 'Aliança', 'Fraqueza humana', 'Doxologia'],
+    VersiculosChave: [
+      chave('Salmos 103:8–12', 'Compassivo e misericordioso… quanto está longe o ocidente do oriente.', 'O perdão não é amnésia barata: é remoção medida pela infinitude de Deus.'),
+      chave('Salmos 103:13–14', 'Como um pai… pois ele conhece a nossa estrutura.', 'Paternidade divina e pó: graça para mortais.'),
+    ],
+    significadoTeologico:
+      'A teologia do Nome (Ex 34) torna-se oração. O NT lê o Pai compassivo em Jesus (Lc 15). A transitoriedade humana (Is 40) não anula a aliança.',
+    aplicacaoPratica:
+      'Faça lista de benefícios antes de fazer lista de pedidos. Perdoe como quem foi perdoado “de oriente a ocidente”. Trate o próximo frágil como pó, não como máquina.',
+    perguntasEstudo: [
+      'Quais os cinco benefícios de 103:3–5?',
+      'Como 103:8 cita Êxodo 34?',
+      'O que 103:17–18 exige além do sentimento?',
+    ],
+    fontes: ['Salmos 103', 'Êxodo 34:6–7', 'Isaías 40:6–8', 'Lucas 15'],
+  }),
+
+  'rt:1': ficha('rt', 1, 'No tempo dos juízes: lealdade no amargor', {
+    contextoHistorico:
+      '“Nos dias em que os juízes julgavam” — ânimo de Juízes 21:25. Fome em Belém (“casa do pão”). Moabe, inimigo histórico, torna-se palco da graça.',
+    resumo:
+      'Eliméleque morre; os filhos morrem. Noemi volta vazia e pede para ser chamada Mara. Rute: “o teu povo é o meu povo, o teu Deus é o meu Deus”. A estrangeira cola-se (dabaq) a Israel. O capítulo é êxodo invertido: de Belém para Moabe e de volta, com uma gentia na linhagem de Davi (4:17) e de Cristo (Mt 1:5).',
+    estrutura: ['1:1–5 — fome e morte', '1:6–18 — três viúvas e o voto de Rute', '1:19–22 — Mara em Belém, no início da ceifa'],
+    temas: ['Lealdade', 'Providência', 'Gentios', 'Amargura', 'Redenção'],
+    VersiculosChave: [
+      chave('Rute 1:16–17', 'Para onde quer que fores, irei… o teu Deus será o meu Deus.', 'Fé e hesed (lealdade de aliança) na boca de uma moabita.'),
+      chave('Rute 1:20–21', 'Não me chameis Noemi; chamai-me Mara.', 'A honestidade da dor não é incredulidade final.'),
+    ],
+    significadoTeologico:
+      'Hesed é o fio de Rute. A inclusão da moabita (Dt 23:3 parece fechar a porta) mostra a graça que prepara Davi. A ceifa no fim do cap. 1 já aponta o goel (Boaz).',
+    aplicacaoPratica:
+      'Fique com os amargos sem sermão barato. A lealdade custa a terra natal. Deus escreve linhagem messiânica com viúvas e estrangeiras.',
+    perguntasEstudo: [
+      'Como o cenário de Juízes ilumina Rute 1?',
+      'O que 1:16–17 afirma sobre conversão e povo?',
+      'Por que Belém importa para Mateus 1 e Miqueias 5?',
+    ],
+    fontes: ['Rute 1', 'Juízes 21:25', 'Deuteronômio 23:3', 'Mateus 1:5', 'Miqueias 5:2'],
+  }),
+
+  '1sm:17': ficha('1sm', 17, 'Davi e Golias: o nome do Senhor dos Exércitos', {
+    contextoHistorico:
+      'Conflito com os filisteus no vale de Elá. Saul, rei alto, treme. O rapaz de Belém já foi ungido (cap. 16); agora a unção se torna pública.',
+    resumo:
+      'Quarenta dias de desafio. Davi recusa a armadura de Saul. Cinco pedras, funda, “eu venho a ti em nome do Senhor dos Exércitos”. A queda do gigante é teologia: “para que toda esta terra saiba que há Deus em Israel”. O NT não alega “seja você Davi”; aponta o Filho de Davi que vence o inimigo forte (Lc 11:21–22).',
+    estrutura: ['17:1–11 — o desafio', '17:12–40 — Davi perante Saul', '17:41–58 — o combate e a pergunta “de quem é este jovem?”'],
+    temas: ['Fé', 'Realeza', 'Nome de Deus', 'Gigante', 'Ungido'],
+    VersiculosChave: [
+      chave('1 Samuel 17:45', 'Tu vens a mim com espada… eu vou a ti em nome do Senhor dos Exércitos.', 'A assimetria é o ponto: o Nome contra o ferro.'),
+      chave('1 Samuel 17:47', 'Do Senhor é a guerra.', 'Não é autoajuda heroica: é confissão.'),
+    ],
+    significadoTeologico:
+      'O rei segundo o coração de Deus luta pela honra do Nome, não pela própria lenda. Golias amaldiçoa por seus deuses; Davi responde com YHWH. Tipologia cristã: o representante do povo vence o campeão inimigo.',
+    aplicacaoPratica:
+      'Identifique o “Nome” em que você realmente entra na briga. Não vista a armadura de Saul (métodos que não são seus). Celebre o Filho de Davi, não o seu ego de funda.',
+    perguntasEstudo: [
+      'Por que Saul não luta, se era o mais alto?',
+      'O que 17:26 revela sobre a paixão de Davi?',
+      'Como ler 17 sem moralismo (“mate seus gigantes”)?',
+    ],
+    fontes: ['1 Samuel 17', '1 Samuel 16', 'Lucas 11:21–22', 'Salmos 9'],
+  }),
+
+  'jo:15': ficha('jo', 15, 'A videira verdadeira: permanecer e amar', {
+    contextoHistorico:
+      'Discurso do cenáculo, depois de “levantai-vos, vamo-nos” (14:31). Israel era videira (Is 5; Sl 80); Jesus afirma ser a verdadeira.',
+    resumo:
+      'Eu sou a videira; vós, as varas. Sem mim, nada podeis fazer. O Pai poda para mais fruto. Permanecei no meu amor: guardar mandamentos. Mandamento novo reiterado: amai-vos. O mundo odeia como odiou a mim. O Espírito testemunhará; vós também. A alegria de Jesus em nós.',
+    estrutura: ['15:1–11 — videira, poda, alegria', '15:12–17 — amigos, não servos', '15:18–27 — ódio do mundo e testemunho'],
+    temas: ['União com Cristo', 'Fruto', 'Amor', 'Perseguição', 'Espírito'],
+    VersiculosChave: [
+      chave('João 15:5', 'Sem mim nada podeis fazer.', 'A impotência é doutrina, não humor.'),
+      chave('João 15:13', 'Ninguém tem maior amor do que este: de dar alguém a vida pelos seus amigos.', 'A cruz interpreta o mandamento de amar.'),
+    ],
+    significadoTeologico:
+      'A união com Cristo (permanecer) precede a ética. Israel-videira falhou; o Filho é o Israel fiel. O ódio do mundo é cristológico, não paranoia.',
+    aplicacaoPratica:
+      'Permanecer é Palavra e oração, não feeling. Aceite a poda. Ame de fato — a medida é 15:13. Não estranhe o ódio se o Senhor foi odiado primeiro.',
+    perguntasEstudo: [
+      'O que distingue varas que permanecem e varas lançadas fora?',
+      'Como 15:3 e 15:7 ligam Palavra e oração?',
+      'Por que “amigos” em 15:15 muda o discipulado?',
+    ],
+    fontes: ['João 15', 'Isaías 5:1–7', 'Salmos 80', 'João 13:34'],
+  }),
+
+  '1jo:4': ficha('1jo', 4, 'Provai os espíritos: Deus é amor', {
+    contextoHistorico:
+      'Cisma proto-gnóstico: negar Jesus Cristo vindo em carne. João dá teste cristológico e ético (amor aos irmãos).',
+    resumo:
+      'Não creiais a todo espírito. Todo espírito que confessa Jesus Cristo vindo em carne é de Deus. Vós sois de Deus e os vencestes. Amemo-nos, porque o amor é de Deus; Deus é amor. Nisto se manifestou: enviou o Filho como propiciação. Se Deus nos amou, devemos amar os irmãos. O amor perfeito lança fora o medo. Quem não ama a seu irmão, a quem viu, não ama a Deus.',
+    estrutura: ['4:1–6 — discernimento', '4:7–21 — Deus é amor e o irmão visível'],
+    temas: ['Encarnação', 'Amor', 'Propiciação', 'Discernimento', 'Temor'],
+    VersiculosChave: [
+      chave('1 João 4:2', 'Todo espírito que confessa que Jesus Cristo veio em carne é de Deus.', 'A ortodoxia da encarnação é teste, não detalhe.'),
+      chave('1 João 4:10', 'Nisto está o amor: não em que nós tenhamos amado a Deus, mas em que ele nos amou e enviou seu Filho como propiciação.', 'O amor começa na cruz, não no nosso romantismo.'),
+    ],
+    significadoTeologico:
+      'Teologia e ética inseparáveis: encarnação verdadeira + propiciação + amor fraterno. “Deus é amor” não é slogan liberal que esvazia a ira: está no mesmo capítulo da propiciação (hilasmos).',
+    aplicacaoPratica:
+      'Teste pregadores pela carne de Jesus e pela cruz. Ame o irmão inconveniente. Traga o medo ao amor de 4:18, não à negação do juízo.',
+    perguntasEstudo: [
+      'Qual o critério de 4:2–3 contra o espírito do anticristo?',
+      'Como 4:10 impede que “Deus é amor” vire sentimentalismo?',
+      'O que 4:20 faz com a piedade privada?',
+    ],
+    fontes: ['1 João 4', 'João 1:14', 'João 3:16', 'Levítico 16'],
+  }),
+
+  'hb:4': ficha('hb', 4, 'O descanso de Deus: hoje, se ouvirdes a sua voz', {
+    contextoHistorico:
+      'A carta a hebreus cansaços: tentação de voltar ao templo visível. O autor lê Salmo 95 e Gênesis 2: o sábado de Deus ainda está aberto.',
+    resumo:
+      'A promessa de entrar no descanso permanece. Israel no deserto não entrou por incredulidade. “Hoje” ainda vale. A Palavra é viva, eficaz, mais cortante que espada de dois gumes — discerne intenções. Temos um sumo sacerdote que se compadece; cheguemos com confiança ao trono da graça.',
+    estrutura: ['4:1–11 — descanso e desobediência', '4:12–13 — a Palavra que discerne', '4:14–16 — o trono da graça'],
+    temas: ['Descanso', 'Fé', 'Palavra', 'Sacerdócio', 'Graça'],
+    VersiculosChave: [
+      chave('Hebreus 4:9–11', 'Resta ainda um repouso para o povo de Deus… procuremos entrar.', 'O sábado escatológico não foi esgotado em Canaã.'),
+      chave('Hebreus 4:15–16', 'Não temos um sumo sacerdote que não possa compadecer-se… cheguemos com confiança.', 'A humanidade de Jesus é pastoral, não só dogmática.'),
+    ],
+    significadoTeologico:
+      'Tipologia: Josué não deu o descanso final (4:8); Jesus (mesmo nome grego) dá. A Palavra julga melhor que o sacerdote levítico. O trono é de graça agora, não só no fim.',
+    aplicacaoPratica:
+      'Não adie o “hoje” da obediência. Deixe a Palavra cortar desculpas. Ore com ousadia — o sacerdote já passou pelos céus.',
+    perguntasEstudo: [
+      'Como Sl 95 funciona em Hb 3–4?',
+      'O que 4:8 afirma sobre Josué e Jesus?',
+      'Como 4:12 e 4:16 se equilibram (juízos e graça)?',
+    ],
+    fontes: ['Hebreus 4', 'Salmos 95', 'Gênesis 2:2', 'Josué 21–22'],
+  }),
 };
+
+export function listarFichasProfundas() {
+  return Object.values(estudosCapituloProfundos);
+}
+
+export function fichaProfundaDoDia(agora = new Date()) {
+  const lista = listarFichasProfundas();
+  const dia = Math.floor(Date.UTC(agora.getFullYear(), agora.getMonth(), agora.getDate()) / 86_400_000);
+  return lista[Math.abs(dia) % lista.length];
+}
 

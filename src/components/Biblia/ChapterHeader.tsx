@@ -1,7 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { Clock } from 'lucide-react';
 import { ProgressBar } from './ProgressBar';
+import { hrefGuia } from '@/lib/bibliaHref';
 
 interface ChapterHeaderProps {
   livroNome: string;
@@ -29,12 +32,26 @@ function Ornament({ compact = false }: { compact?: boolean }) {
 
 export function ChapterHeader({
   livroNome,
+  livroAbreviacao,
   capitulo,
   totalCapitulos,
   totalVersiculos,
   variant = 'estudo',
 }: ChapterHeaderProps) {
   const tempoLeituraMinutos = Math.max(1, Math.ceil(totalVersiculos * 0.25));
+  const [temFichaProfunda, setTemFichaProfunda] = useState(false);
+
+  useEffect(() => {
+    let cancel = false;
+    import('@/lib/estudosLoader').then(({ obterEstudoCapitulo }) => {
+      if (cancel) return;
+      const ficha = obterEstudoCapitulo(livroAbreviacao, capitulo);
+      setTemFichaProfunda(ficha.nivel === 'profundo');
+    }).catch(() => {
+      if (!cancel) setTemFichaProfunda(false);
+    });
+    return () => { cancel = true; };
+  }, [livroAbreviacao, capitulo]);
 
   if (variant === 'leitura') {
     return (
@@ -50,6 +67,16 @@ export function ChapterHeader({
           {capitulo}
         </h1>
         <Ornament compact />
+        {temFichaProfunda && (
+          <p className="mt-1">
+            <Link
+              href={hrefGuia(livroAbreviacao, capitulo)}
+              className="text-[12px] text-[var(--content-muted)] hover:text-[var(--brand-default)] underline-offset-4 hover:underline"
+            >
+              Ficha profunda deste capítulo
+            </Link>
+          </p>
+        )}
       </header>
     );
   }

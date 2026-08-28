@@ -32,6 +32,9 @@ import {
   Network,
 } from 'lucide-react';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
+import dynamic from 'next/dynamic';
+
+const CanonFichasProfundas = dynamic(() => import('@/components/CanonFichasProfundas'), { ssr: false });
 
 interface RecentPage {
   path: string;
@@ -292,6 +295,10 @@ export default function EstudarPage() {
             </section>
           </ScrollReveal>
         )}
+
+        <ScrollReveal delay={0.12}>
+          <CanonFichasProfundas />
+        </ScrollReveal>
 
         {/* Ferramentas Rápidas */}
         <ScrollReveal delay={0.15}>

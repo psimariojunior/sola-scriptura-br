@@ -15,6 +15,7 @@ import { hrefBiblia } from '@/lib/bibliaHref';
 
 const VerseDoDia = dynamic(() => import('@/components/VerseDoDia'), { ssr: false });
 const ContinuarLeitura = dynamic(() => import('@/components/ContinuarLeitura'), { ssr: false });
+const EstudoDoDia = dynamic(() => import('@/components/EstudoDoDia'), { ssr: false });
 
 const FERRAMENTAS = [
   { href: '/biblia', icon: BookOpen, label: 'Bíblia' },
@@ -79,6 +80,8 @@ export default function HomeClient() {
 
       <VerseDoDia />
 
+      <EstudoDoDia />
+
       <div className="max-w-3xl mx-auto px-5 sm:px-6">
         <div className="flex flex-wrap items-center justify-center gap-3 -mt-2 mb-10">
           <Link
@@ -124,7 +127,7 @@ export default function HomeClient() {
 
         <ol className="grid sm:grid-cols-3 gap-4 mb-12 text-left" aria-label="Como começar">
           {[
-            { n: '1', t: 'Abra um capítulo', d: 'Comece pela Bíblia. O texto aparece versículo a versículo, fácil de acompanhar.' },
+            { n: '1', t: 'Abra um capítulo', d: 'A página lê como Bíblia impressa. Toque no verso quando quiser estudar.' },
             { n: '2', t: 'Toque ou selecione', d: 'Toque abre o estudo. Selecione um trecho para marcar com cor ou gerar imagem.' },
             { n: '3', t: 'Leia com profundidade', d: 'Comentários clássicos, léxico Strong e clássicos da fé — tudo livre.' },
           ].map((passo) => (

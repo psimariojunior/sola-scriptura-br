@@ -164,11 +164,34 @@ export function BibleVerseList({
   return (
     <div ref={nav.mainRef} className="flex-1 overflow-y-auto" {...swipeHandlers}>
       <div
-        className="bible-reading-column px-4 sm:px-6 py-6 sm:py-10 pb-24 md:pb-10"
+        className={cn(
+          'bible-reading-column px-5 sm:px-8 pb-24 md:pb-12',
+          isModoLeitura ? 'is-leitura-page py-8 sm:py-14' : 'py-6 sm:py-10',
+        )}
         style={swipeOffset === 0 ? undefined : { transform: `translateX(${swipeOffset}px)`, transition: 'none' }}
       >
-        {ui.showPlan && <ReadingPlanBanner />}
+        {ui.showPlan && !isModoLeitura && <ReadingPlanBanner />}
         {showLastRead && lastRead && !isCurrentLastRead && (
+          isModoLeitura ? (
+            <p className="mb-8 text-center text-[12px] text-[var(--content-muted)]">
+              <button
+                type="button"
+                onClick={() => {
+                  const { LIVROS_AT, LIVROS_NT } = require('@/data/biblia/livros');
+                  const all = [...LIVROS_AT, ...LIVROS_NT];
+                  const idx = all.findIndex((l: { abreviacao: string }) => l.abreviacao === lastRead.livro);
+                  if (idx !== -1) nav.goToBook(idx, lastRead.capitulo - 1);
+                  setShowLastRead(false);
+                }}
+                className="hover:text-[var(--brand-default)] underline-offset-4 hover:underline"
+              >
+                Continuar em {getLivroNome(lastRead.livro)} {lastRead.capitulo}
+              </button>
+              <button type="button" onClick={() => setShowLastRead(false)} className="ml-3 opacity-60 hover:opacity-100" aria-label="Dispensar">
+                ×
+              </button>
+            </p>
+          ) : (
           <div className="mb-4 p-3 rounded-xl bg-[var(--brand-subtle)]/50 border border-[var(--brand-default)]/15 flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0">
               <Bookmark className="w-4 h-4 text-[var(--brand-default)]" />
@@ -196,6 +219,7 @@ export function BibleVerseList({
               ×
             </button>
           </div>
+          )
         )}
         {nav.loading && !nav.temDados ? (
           <div className="space-y-4 chapter-enter"><div className="skeleton skeleton-title w-48 mx-auto animate-pulse" /><div className="ornament w-20 mx-auto mb-8 opacity-30" />
@@ -206,22 +230,33 @@ export function BibleVerseList({
         ) : nav.temDados ? (
             <div role="article" aria-label={`${nav.livro.nome} capítulo ${nav.capituloIdx + 1}`} className={cn(isModoLeitura && 'reading-mode-leitura', isModoEstudo && 'reading-mode-estudo')}>
             {nav.loading && nav.temDados && (<div className="fixed top-0 left-0 right-0 z-20 h-0.5 bg-[var(--brand-default)]/20"><div className="h-full bg-[var(--brand-default)] animate-loading-bar" /></div>)}
-            <ChapterHeader livroNome={nav.livro.nome} livroAbreviacao={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} totalCapitulos={nav.livro.totalCapitulos} totalVersiculos={nav.data[0]?.versiculos?.length ?? 0} />
-            <IntroLivroLeitura livroAbrev={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} nomeLivro={nav.livro.nome} />
-            {nav.estudoCapitulo && (
-              <div className={cn("mb-4 rounded-lg border border-[var(--brand-default)]/15 bg-[var(--brand-subtle)]/40 transition-all", ui.estudoCapituloAberto ? "p-3" : "px-3 py-2")}>
-                <button onClick={() => ui.setEstudoCapituloAberto(o => !o)} className="w-full flex items-center gap-2 text-left group" aria-expanded={ui.estudoCapituloAberto}>
-                  <div className="w-7 h-7 rounded-md bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0"><BookOpen className="w-3.5 h-3.5 text-[var(--brand-default)]" /></div>
-                  <div className="flex-1 min-w-0">
-                    <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-default)] block">{t('biblia.chapterStudy')}</span>
-                    <span className="text-xs text-[var(--content-muted)] truncate block">{nav.estudoCapitulo.titulo}</span>
+            <ChapterHeader
+              livroNome={nav.livro.nome}
+              livroAbreviacao={nav.livro.abreviacao}
+              capitulo={nav.capituloIdx + 1}
+              totalCapitulos={nav.livro.totalCapitulos}
+              totalVersiculos={nav.data[0]?.versiculos?.length ?? 0}
+              variant={isModoLeitura ? 'leitura' : 'estudo'}
+            />
+            {!isModoLeitura && (
+              <>
+                <IntroLivroLeitura livroAbrev={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} nomeLivro={nav.livro.nome} />
+                {nav.estudoCapitulo && (
+                  <div className={cn("mb-4 rounded-lg border border-[var(--brand-default)]/15 bg-[var(--brand-subtle)]/40 transition-all", ui.estudoCapituloAberto ? "p-3" : "px-3 py-2")}>
+                    <button onClick={() => ui.setEstudoCapituloAberto(o => !o)} className="w-full flex items-center gap-2 text-left group" aria-expanded={ui.estudoCapituloAberto}>
+                      <div className="w-7 h-7 rounded-md bg-[var(--brand-default)]/10 flex items-center justify-center shrink-0"><BookOpen className="w-3.5 h-3.5 text-[var(--brand-default)]" /></div>
+                      <div className="flex-1 min-w-0">
+                        <span className="text-xs font-bold uppercase tracking-wider text-[var(--brand-default)] block">{t('biblia.chapterStudy')}</span>
+                        <span className="text-xs text-[var(--content-muted)] truncate block">{nav.estudoCapitulo.titulo}</span>
+                      </div>
+                      {ui.estudoCapituloAberto ? <ChevronUp className="w-4 h-4 text-[var(--content-muted)] shrink-0" /> : <ChevronDown className="w-4 h-4 text-[var(--content-muted)] shrink-0" />}
+                    </button>
+                    {ui.estudoCapituloAberto && (<div className="panel-expand-enter overflow-hidden mt-3">
+                      <Suspense fallback={<PanelFallback />}><PainelEstudosCapitulo livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} nomeLivro={nav.livro.nome} /></Suspense>
+                    </div>)}
                   </div>
-                  {ui.estudoCapituloAberto ? <ChevronUp className="w-4 h-4 text-[var(--content-muted)] shrink-0" /> : <ChevronDown className="w-4 h-4 text-[var(--content-muted)] shrink-0" />}
-                </button>
-                {ui.estudoCapituloAberto && (<div className="panel-expand-enter overflow-hidden mt-3">
-                  <Suspense fallback={<PanelFallback />}><PainelEstudosCapitulo livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} nomeLivro={nav.livro.nome} /></Suspense>
-                </div>)}
-              </div>
+                )}
+              </>
             )}
             {swipeProgress > 0 && (
               <div className="fixed top-1/2 -translate-y-1/2 z-10 pointer-events-none" style={{ [canGoPrev ? 'left' : 'right']: '8px', opacity: swipeProgress }}>
@@ -279,7 +314,7 @@ export function BibleVerseList({
                               capitulo={nav.capituloIdx + 1}
                               numero={v.numero}
                             />
-                            {temRecurso && (
+                            {temRecurso && !isModoLeitura && (
                               <span className="inline-block w-1 h-1 ml-0.5 mb-0.5 rounded-full bg-[var(--brand-default)]/70" title="Há estudo neste versículo" />
                             )}
                             {' '}
@@ -405,6 +440,23 @@ export function BibleVerseList({
               />
             )}
             {ui.modoLeitura === 'comparacao' && nav.viewMode === 'comparison' && nav.data.length >= 2 && (<ComparisonTable data={nav.data} fontSize={ui.fontSize} showDiff={ui.showDiff} highlightedVerse={ui.highlightedVerse} onHighlight={ui.setHighlightedVerse} maxVersiculos={nav.maxVersiculos} tradBadgeColors={tradBadgeColors} labelMap={labelMap} />)}
+            {isModoLeitura && (
+              <p className="mt-12 text-center">
+                <button
+                  type="button"
+                  onClick={() => {
+                    ui.setModoLeitura('estudo');
+                    ui.setEstudoCapituloAberto(true);
+                    ui.setModoExibicao('versiculo', { persist: false });
+                    panels.setSidePanelWidth('half');
+                    panels.setSidePanelTab('comentarios');
+                  }}
+                  className="text-[12px] tracking-wide text-[var(--content-muted)] hover:text-[var(--brand-default)] underline-offset-4 hover:underline"
+                >
+                  Estudar este capítulo
+                </button>
+              </p>
+            )}
             <div className="flex items-center justify-center gap-3 sm:gap-4 mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">
               <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-all active:scale-98 min-h-[44px]"><ChevronLeft className="w-4 h-4" /> {t('biblia.previous')}</button>
               <div className="hidden sm:flex flex-col items-center gap-1.5 min-w-[120px]"><span className="text-[10px] text-[var(--content-muted)] font-mono tabular-nums">{nav.capituloIdx + 1} / {nav.livro.totalCapitulos}</span><ProgressBar value={nav.capituloIdx + 1} total={nav.livro.totalCapitulos} className="w-24" /></div>

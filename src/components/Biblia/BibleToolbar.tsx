@@ -63,7 +63,16 @@ export function BibleToolbar({
       : ui.modoLeitura === 'estudo' || ui.modoLeitura === 'split' ? 'estudo'
         : 'leitura';
 
-  const leituraExibicaoRef = useRef(ui.modoExibicao);
+  const leituraExibicaoRef = useRef<'versiculo' | 'paragrafo'>(ui.modoExibicao);
+
+  useEffect(() => {
+    if (ui.modoLeitura === 'foco') leituraExibicaoRef.current = ui.modoExibicao;
+  }, [ui.modoExibicao, ui.modoLeitura]);
+
+  const setExibicaoLeitura = (modo: 'versiculo' | 'paragrafo') => {
+    ui.setModoExibicao(modo);
+    if (ui.modoLeitura === 'foco') leituraExibicaoRef.current = modo;
+  };
 
   const handleReadingModeChange = (mode: ReadingMode) => {
     ui.setShowInterlinear(false);
@@ -75,7 +84,7 @@ export function BibleToolbar({
     } else if (mode === 'estudo') {
       leituraExibicaoRef.current = ui.modoExibicao;
       ui.setModoLeitura('estudo');
-      ui.setModoExibicao('versiculo');
+      ui.setModoExibicao('versiculo', { persist: false });
       ui.setEstudoCapituloAberto(true);
       nav.setViewMode('single');
       panels.setSidePanelWidth('half');
@@ -155,7 +164,7 @@ export function BibleToolbar({
             <>
               <div className="fixed inset-0 z-[70]" onClick={() => setMobileToolbarMenuOpen(false)} aria-hidden="true" />
               <div className="fixed z-[80] w-56 rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] shadow-xl py-1 animate-scale-in origin-top-right" style={{ top: mobileMenuPos.top, right: mobileMenuPos.right }}>
-                <button onClick={() => { ui.setModoExibicao(ui.modoExibicao === 'paragrafo' ? 'versiculo' : 'paragrafo'); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors">{ui.modoExibicao === 'paragrafo' ? <Rows3 className="w-4 h-4 text-[var(--content-muted)]" /> : <AlignLeft className="w-4 h-4 text-[var(--content-muted)]" />}{ui.modoExibicao === 'paragrafo' ? 'Ver versículo a versículo' : 'Ver como página'}</button>
+                <button onClick={() => { setExibicaoLeitura(ui.modoExibicao === 'paragrafo' ? 'versiculo' : 'paragrafo'); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors">{ui.modoExibicao === 'paragrafo' ? <Rows3 className="w-4 h-4 text-[var(--content-muted)]" /> : <AlignLeft className="w-4 h-4 text-[var(--content-muted)]" />}{ui.modoExibicao === 'paragrafo' ? 'Ver versículo a versículo' : 'Ver como página'}</button>
                 <button onClick={() => { ui.setShowInterlinear(!ui.showInterlinear); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><span className="font-hebrew text-sm text-[var(--brand-default)]">א</span>Interlinear</button>
                 <button onClick={() => { onShowDownloadManager(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><HardDrive className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.offlineVersions')}</button>
                 <button onClick={() => { if (!ui.mostrarNotas && !verse.notaAtiva) { verse.setNotaAtiva(verse.criarNota(`${nav.livro.nome} ${nav.capituloIdx + 1}`)); } ui.setMostrarNotas(!ui.mostrarNotas); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><FileText className="w-4 h-4 text-[var(--content-muted)]" />Notas</button>
@@ -212,7 +221,7 @@ export function BibleToolbar({
         </div>
         <button
           type="button"
-          onClick={() => ui.setModoExibicao(ui.modoExibicao === 'paragrafo' ? 'versiculo' : 'paragrafo')}
+          onClick={() => setExibicaoLeitura(ui.modoExibicao === 'paragrafo' ? 'versiculo' : 'paragrafo')}
           className={cn(
             'inline-flex items-center gap-1 px-2 h-8 rounded-lg text-[11px] font-semibold transition-colors',
             ui.modoExibicao === 'paragrafo'

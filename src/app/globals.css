@@ -2067,9 +2067,16 @@ textarea:focus-visible,
   width: 100%;
 }
 
+.bible-reading-column.is-leitura-page {
+  max-width: 38rem;
+}
+
 @media (min-width: 1024px) {
   .bible-reading-column {
     max-width: 46rem;
+  }
+  .bible-reading-column.is-leitura-page {
+    max-width: 40rem;
   }
 }
 
@@ -2282,6 +2289,51 @@ textarea:focus-visible,
 }
 .reading-mode-estudo .bible-verse-row {
   margin-bottom: 0.35rem;
+}
+
+/* Leitura: página de Bíblia — texto contínuo, chrome mínimo */
+.reading-mode-leitura .bible-verse-row {
+  border-bottom-color: transparent;
+  padding-top: 0.42rem;
+  padding-bottom: 0.48rem;
+  border-radius: 0;
+}
+.reading-mode-leitura .bible-verse-hanging {
+  color: hsl(var(--primary) / 0.38);
+  font-size: 0.62em;
+  padding-top: 0.38em;
+}
+.reading-mode-leitura .bible-pericope-heading {
+  margin: 2.6rem 0 0.9rem;
+}
+.reading-mode-leitura .bible-pericope-heading h2 {
+  font-size: 1.08em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--content-secondary);
+}
+.reading-mode-leitura .bible-pericope-heading p {
+  display: none;
+}
+.reading-mode-leitura .bible-prose {
+  orphans: 3;
+  widows: 3;
+}
+.reading-mode-leitura .bible-prose-para {
+  margin: 0 0 1.35em;
+}
+.reading-mode-leitura .bible-prose-para > span[role="button"] {
+  display: inline;
+  margin: 0;
+  padding: 0.04em 0;
+  line-height: inherit;
+  border-radius: 0.12em;
+}
+.reading-mode-leitura .bible-prose-para .bible-verse-number {
+  font-size: 0.68em;
+  font-weight: 600;
+  margin-right: 0.22em;
+  margin-left: 0.28em;
 }
 
 /* Chapter study collapsible */

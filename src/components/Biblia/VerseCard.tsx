@@ -280,7 +280,7 @@ export const VerseCard = memo(function VerseCard({
             ? 'bg-primary/[0.05]'
             : isPlaying || isHighlighted
             ? 'bg-primary/[0.04]'
-            : 'hover:bg-primary/[0.03]',
+            : studyMode && 'hover:bg-primary/[0.03]',
           studyMode && 'border-l-2 border-l-[var(--brand-default)]/25 pl-1 -ml-1',
           studyMode && isSelected && 'border-l-[var(--brand-default)]',
           corMarca && corBgMap[corMarca]
@@ -366,7 +366,7 @@ export const VerseCard = memo(function VerseCard({
             )}
 
             {!studyMode && !isSelected && hasResourcesProp && (
-              <span className="inline-flex items-center gap-1 mt-1.5 text-[10px] font-semibold tracking-wide uppercase text-[var(--brand-default)]/80">
+              <span className="bible-study-inline inline-flex items-center gap-1 mt-1.5 text-[10px] font-semibold tracking-wide uppercase text-[var(--brand-default)]/80">
                 Estudo
               </span>
             )}

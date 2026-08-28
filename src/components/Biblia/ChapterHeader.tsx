@@ -9,16 +9,20 @@ interface ChapterHeaderProps {
   capitulo: number;
   totalCapitulos: number;
   totalVersiculos: number;
+  variant?: 'leitura' | 'estudo';
 }
 
-function Ornament() {
+function Ornament({ compact = false }: { compact?: boolean }) {
   return (
-    <div className="flex items-center justify-center gap-3 my-3" aria-hidden="true">
-      <span className="block h-px w-10 sm:w-14 bg-gradient-to-r from-transparent to-primary/50" />
-      <svg className="w-3.5 h-3.5 text-primary" viewBox="0 0 24 24" fill="currentColor">
+    <div
+      className={compact ? 'flex items-center justify-center gap-2.5 my-4' : 'flex items-center justify-center gap-3 my-3'}
+      aria-hidden="true"
+    >
+      <span className={`block h-px bg-gradient-to-r from-transparent to-primary/40 ${compact ? 'w-8 sm:w-12' : 'w-10 sm:w-14'}`} />
+      <svg className={`${compact ? 'w-2.5 h-2.5' : 'w-3.5 h-3.5'} text-primary/80`} viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 2 L13.5 9 L21 10.5 L15 14.5 L16.5 21 L12 17 L7.5 21 L9 14.5 L3 10.5 L10.5 9 Z" />
       </svg>
-      <span className="block h-px w-10 sm:w-14 bg-gradient-to-l from-transparent to-primary/50" />
+      <span className={`block h-px bg-gradient-to-l from-transparent to-primary/40 ${compact ? 'w-8 sm:w-12' : 'w-10 sm:w-14'}`} />
     </div>
   );
 }
@@ -28,8 +32,27 @@ export function ChapterHeader({
   capitulo,
   totalCapitulos,
   totalVersiculos,
+  variant = 'estudo',
 }: ChapterHeaderProps) {
   const tempoLeituraMinutos = Math.max(1, Math.ceil(totalVersiculos * 0.25));
+
+  if (variant === 'leitura') {
+    return (
+      <header
+        className="bible-chapter-open mb-8 sm:mb-12 text-center"
+        aria-label={`${livroNome} capítulo ${capitulo}, ${totalVersiculos} versículos`}
+      >
+        <p className="font-display text-[13px] sm:text-[15px] uppercase tracking-[0.38em] text-[var(--content-muted)]">
+          {livroNome}
+        </p>
+        <h1 className="mt-2 font-display text-[4.25rem] sm:text-[5.25rem] leading-none font-medium text-[var(--content-primary)] tabular-nums">
+          <span className="sr-only">Capítulo </span>
+          {capitulo}
+        </h1>
+        <Ornament compact />
+      </header>
+    );
+  }
 
   return (
     <header className="mb-6 sm:mb-8 text-center">

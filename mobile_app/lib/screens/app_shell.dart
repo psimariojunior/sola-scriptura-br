@@ -12,6 +12,7 @@ import '../widgets/offline_banner.dart';
 import '../widgets/loading_indicator.dart';
 import '../bridges/js_bridge.dart';
 import '../widgets/native_bottom_nav.dart';
+import 'native_bible_screen.dart';
 
 class AppShell extends StatefulWidget {
   final WebViewService webViewService;
@@ -33,6 +34,7 @@ class _AppShellState extends State<AppShell> {
   bool _hasError = false;
   DateTime? _lastBackPress;
   int _navIndex = 0;
+  bool _nativeBible = false;
 
   late final ConnectivityService _connectivity;
 
@@ -151,6 +153,13 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<bool> _handleBackButton() async {
+    if (_nativeBible) {
+      setState(() {
+        _nativeBible = false;
+        _navIndex = 0;
+      });
+      return false;
+    }
     try {
       if (await widget.webViewService.canGoBack()) {
         await widget.webViewService.goBack();
@@ -196,8 +205,18 @@ class _AppShellState extends State<AppShell> {
   }
 
   void _onNavTap(int index) {
-    if (index == _navIndex) return;
-    setState(() => _navIndex = index);
+    if (index == 1 && (_isOffline || _hasError)) {
+      setState(() {
+        _navIndex = 1;
+        _nativeBible = true;
+        _hasError = false;
+      });
+      return;
+    }
+    setState(() {
+      _navIndex = index;
+      _nativeBible = false;
+    });
     final url = '${AppConstants.baseUrl}${_navPaths[index]}';
     widget.webViewService.loadUrl(url);
   }
@@ -226,7 +245,9 @@ class _AppShellState extends State<AppShell> {
       },
       child: Scaffold(
         backgroundColor: AppTheme.bgDark,
-        body: Stack(
+        body: _nativeBible
+            ? const NativeBibleScreen()
+            : Stack(
           children: [
             if (widget.webViewService.isInitialized && !_hasError)
               WebViewWidget(controller: widget.webViewService.controller),
@@ -257,20 +278,29 @@ class _AppShellState extends State<AppShell> {
                       ),
                       const SizedBox(height: 8),
                       const Text(
-                        'Verifique sua conexão com a internet',
+                        'Verifique sua conexão ou leia os capítulos já baixados.',
                         style: TextStyle(color: AppTheme.textMuted, fontSize: 14),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 24),
                       ElevatedButton.icon(
-                        onPressed: _retry,
-                        icon: const Icon(Icons.refresh, size: 18),
-                        label: const Text('Tentar novamente'),
+                        onPressed: () => setState(() {
+                          _hasError = false;
+                          _nativeBible = true;
+                          _navIndex = 1;
+                        }),
+                        icon: const Icon(Icons.menu_book_rounded, size: 18),
+                        label: const Text('Ler Bíblia offline'),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppTheme.goldPrimary,
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                         ),
+                      ),
+                      const SizedBox(height: 12),
+                      TextButton(
+                        onPressed: _retry,
+                        child: const Text('Tentar novamente', style: TextStyle(color: AppTheme.textSecondary)),
                       ),
                     ],
                   ),

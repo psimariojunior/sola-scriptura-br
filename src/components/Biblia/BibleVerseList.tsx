@@ -8,6 +8,7 @@ import { ChapterHeader } from './ChapterHeader';
 import { VerseListItem } from './VerseListItem';
 import { PericopeHeading } from './PericopeHeading';
 import { EstudoDoVerso } from './EstudoDoVerso';
+import { PerguntaDoCapitulo } from './PerguntaDoCapitulo';
 import { ProgressBar } from './ProgressBar';
 import { ComparisonTable } from './ComparisonTable';
 import { SyncedParallelColumns } from './SyncedParallelColumns';
@@ -441,7 +442,9 @@ export function BibleVerseList({
             )}
             {ui.modoLeitura === 'comparacao' && nav.viewMode === 'comparison' && nav.data.length >= 2 && (<ComparisonTable data={nav.data} fontSize={ui.fontSize} showDiff={ui.showDiff} highlightedVerse={ui.highlightedVerse} onHighlight={ui.setHighlightedVerse} maxVersiculos={nav.maxVersiculos} tradBadgeColors={tradBadgeColors} labelMap={labelMap} />)}
             {isModoLeitura && (
-              <p className="mt-12 text-center">
+              <>
+                <PerguntaDoCapitulo livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} />
+                <p className="mt-8 text-center">
                 <button
                   type="button"
                   onClick={() => {
@@ -455,7 +458,8 @@ export function BibleVerseList({
                 >
                   Estudar este capítulo
                 </button>
-              </p>
+                </p>
+              </>
             )}
             <div className="flex items-center justify-center gap-3 sm:gap-4 mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">
               <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-all active:scale-98 min-h-[44px]"><ChevronLeft className="w-4 h-4" /> {t('biblia.previous')}</button>

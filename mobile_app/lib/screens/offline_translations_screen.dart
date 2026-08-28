@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../config/theme.dart';
 import '../data/bible_books.dart';
 import '../services/bible_offline_service.dart';
+import 'native_bible_screen.dart';
 
 class OfflineTranslationsScreen extends StatefulWidget {
   const OfflineTranslationsScreen({super.key});
@@ -416,7 +417,14 @@ class _OfflineTranslationsScreenState extends State<OfflineTranslationsScreen> {
       onTap: _isDownloading
           ? null
           : isComplete
-              ? () => _deleteBook(bookNumber, bookName)
+              ? () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => NativeBibleScreen(
+                        translation: _selectedTranslation,
+                        initialBook: bookNumber,
+                      ),
+                    ),
+                  )
               : () => _downloadBook(bookNumber, bookName),
       onLongPress: isComplete ? () => _deleteBook(bookNumber, bookName) : null,
       child: AnimatedContainer(

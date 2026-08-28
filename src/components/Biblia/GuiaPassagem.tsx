@@ -25,6 +25,9 @@ import type { PalavraStrong } from '@/data/biblia/strong';
 import type { Pericope } from '@/data/biblia/pericopes';
 import type { EstudoVersiculo } from '@/data/estudosTeologicos';
 import type { LocalBiblico } from '@/data/biblia/locais';
+import { CadeiaReferencias } from './CadeiaReferencias';
+import { montarCadeia, type EloCadeia } from '@/lib/cadeiaReferencias';
+import { ensinarPalavra } from '@/lib/ensinarPalavra';
 
 export interface GuiaPassagemProps {
   livro: string;
@@ -65,6 +68,9 @@ export function GuiaPassagem({ livro, capitulo, versiculo, compact = false }: Gu
   const [comentarios, setComentarios] = useState<Comentario[]>([]);
   const [palavras, setPalavras] = useState<PalavraStrong[]>([]);
   const [tsk, setTsk] = useState<string[]>([]);
+  const [cadeia, setCadeia] = useState<EloCadeia[]>([]);
+  const [mostrarTsk, setMostrarTsk] = useState(false);
+  const [comentarioProximoDe, setComentarioProximoDe] = useState<number | null>(null);
   const [pericopes, setPericopes] = useState<Pericope[]>([]);
   const [estudosTeo, setEstudosTeo] = useState<EstudoVersiculo[]>([]);
   const [locais, setLocais] = useState<LocalBiblico[]>([]);
@@ -86,6 +92,9 @@ export function GuiaPassagem({ livro, capitulo, versiculo, compact = false }: Gu
     setComentarios([]);
     setPalavras([]);
     setTsk([]);
+    setCadeia([]);
+    setMostrarTsk(false);
+    setComentarioProximoDe(null);
     setPericopes([]);
     setEstudosTeo([]);
     setLocais([]);
@@ -131,6 +140,14 @@ export function GuiaPassagem({ livro, capitulo, versiculo, compact = false }: Gu
       for (const v of versesToLoad) {
         comps.push(...comentariosMod.obterComentarios(livroLower, capitulo, v));
       }
+      if (comps.length === 0 && versiculo) {
+        const classicosMod = await import('@/data/comentariosClassicos');
+        const proximo = classicosMod.obterComentarioClassicoProximo(livroLower, capitulo, versiculo);
+        if (proximo.length > 0) {
+          comps.push(...proximo);
+          setComentarioProximoDe(proximo[0].versiculo);
+        }
+      }
       const seen = new Set<string>();
       setComentarios(
         comps.filter((c) => {
@@ -146,9 +163,16 @@ export function GuiaPassagem({ livro, capitulo, versiculo, compact = false }: Gu
         if (!cancelled) setPalavras(p ?? []);
       }
 
-      if (tskMod && versiculo) {
-        const key = `${livroLower}:${capitulo}:${versiculo}`;
-        setTsk((tskMod.crossReferences[key] || []).slice(0, 24));
+      if (versiculo) {
+        const curatedMod = await import('@/data/biblia/crossReferences');
+        const tskList = tskMod ? (tskMod.crossReferences[`${livroLower}:${capitulo}:${versiculo}`] || []) : [];
+        setTsk(tskList);
+        setCadeia(montarCadeia({
+          livro: livroLower,
+          curated: curatedMod.getCrossReferencesByVerse(livroLower, capitulo, versiculo),
+          tsk: tskList,
+          limite: 5,
+        }));
       }
 
       setPericopes(pericopesMod.getPericopesCapitulo(nome, capitulo).slice(0, 8));
@@ -330,16 +354,30 @@ export function GuiaPassagem({ livro, capitulo, versiculo, compact = false }: Gu
             <Skeleton className="h-20" />
           </div>
         ) : comentarios.length === 0 ? (
-          <p className="px-5 py-8 text-sm text-center text-[var(--content-muted)]">
-            Sem comentário clássico neste {versiculo ? 'versículo' : 'capítulo'}. A ficha acima e a síntese do capítulo continuam disponíveis.
-          </p>
+          <div className="px-5 py-6">
+            <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-2">
+              Síntese da ficha (não é citação de Henry ou JFB)
+            </p>
+            <p className="text-sm text-[var(--content-secondary)] leading-relaxed">
+              {estudo?.resumo
+                ?? 'Não há comentário clássico de domínio público neste versículo. Use a ficha acima — ela não inventa falas de autores.'}
+            </p>
+          </div>
         ) : (
           <div className="divide-y divide-[var(--border)]/40">
+            {comentarioProximoDe && versiculo && comentarioProximoDe !== versiculo && (
+              <p className="px-5 pt-4 text-[11px] text-[var(--content-muted)]">
+                Sem ficha clássica neste versículo. Comentário de domínio público em {nome} {capitulo}:{comentarioProximoDe} (mesmo capítulo).
+              </p>
+            )}
             {comentarios.map((c, i) => (
               <article key={`${c.autor}-${c.versiculo}-${i}`} className="p-5">
                 <p className="text-xs font-semibold text-[var(--content-primary)] mb-1">
                   {c.autor}
-                  <span className="font-normal text-[var(--content-muted)]"> · {nome} {c.capitulo}:{c.versiculo}</span>
+                  <span className="font-normal text-[var(--content-muted)]">
+                    {' '}· {nome} {c.capitulo}:{c.versiculo}
+                    {c.fonte === 'dominio-publico' ? ' · domínio público' : c.fonte === 'resumo' ? ' · síntese rotulada' : ''}
+                  </span>
                 </p>
                 <p className="text-sm text-[var(--content-secondary)] leading-relaxed">{c.texto}</p>
               </article>
@@ -383,7 +421,8 @@ export function GuiaPassagem({ livro, capitulo, versiculo, compact = false }: Gu
                     {p.palavra}{' '}
                     <span className="italic font-normal text-[var(--content-muted)]">/{p.transliteracao}/</span>
                   </p>
-                  <p className="text-sm text-[var(--content-secondary)]">{p.definicao}</p>
+                  <p className="text-sm text-[var(--content-secondary)] leading-relaxed">{ensinarPalavra(p)}</p>
+                  <p className="text-[11px] text-[var(--content-muted)] mt-1">Glossário: {p.definicao}</p>
                   <Link href={`/palavras?strong=${encodeURIComponent(p.strong)}`} className="text-[11px] text-[var(--brand-default)] hover:underline">
                     Ver ocorrências
                   </Link>
@@ -394,23 +433,37 @@ export function GuiaPassagem({ livro, capitulo, versiculo, compact = false }: Gu
         </section>
       )}
 
-      {tsk.length > 0 && (
+      {cadeia.length > 0 && (
         <section className="rounded-2xl border border-[var(--border)]/60 bg-[var(--surface-raised)] overflow-hidden">
           <header className="flex items-center gap-2 px-5 py-3.5 border-b border-[var(--border)]/40">
             <Link2 className="w-4 h-4 text-[var(--brand-default)]" />
-            <h2 className="text-sm font-semibold">Referências cruzadas</h2>
+            <h2 className="text-sm font-semibold">Daqui → Cristo</h2>
           </header>
-          <div className="p-4 grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {tsk.map((ref) => (
-              <Link
-                key={ref}
-                href={hrefFromRef(ref)}
-                className="flex items-center gap-1.5 text-xs px-2.5 py-2 rounded-lg bg-[var(--surface-sunken)] hover:bg-[var(--brand-subtle)] text-[var(--content-secondary)] hover:text-[var(--brand-default)]"
+          <div className="p-3">
+            <CadeiaReferencias elos={cadeia} />
+            {tsk.length > cadeia.length && (
+              <button
+                type="button"
+                onClick={() => setMostrarTsk((v) => !v)}
+                className="mt-2 px-3 py-1.5 text-[11px] text-[var(--content-muted)] hover:text-[var(--brand-default)]"
               >
-                <ChevronRight className="w-3 h-3 shrink-0" />
-                <span className="truncate">{formatTsk(ref)}</span>
-              </Link>
-            ))}
+                {mostrarTsk ? 'Ocultar dump do TSK' : `Ver as ${tsk.length} refs do TSK`}
+              </button>
+            )}
+            {mostrarTsk && (
+              <div className="mt-2 grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {tsk.map((ref) => (
+                  <Link
+                    key={ref}
+                    href={hrefFromRef(ref)}
+                    className="flex items-center gap-1.5 text-xs px-2.5 py-2 rounded-lg bg-[var(--surface-sunken)] hover:bg-[var(--brand-subtle)] text-[var(--content-secondary)] hover:text-[var(--brand-default)]"
+                  >
+                    <ChevronRight className="w-3 h-3 shrink-0" />
+                    <span className="truncate">{formatTsk(ref)}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       )}

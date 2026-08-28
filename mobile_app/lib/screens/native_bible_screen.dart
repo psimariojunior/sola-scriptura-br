@@ -1,26 +1,14 @@
 import 'package:flutter/material.dart';
 import '../config/theme.dart';
-
-class BibleBook {
-  final int number;
-  final String name;
-  final String abbreviation;
-  final int chapters;
-  final String testament;
-
-  const BibleBook({
-    required this.number,
-    required this.name,
-    required this.abbreviation,
-    required this.chapters,
-    required this.testament,
-  });
-}
+import '../data/bible_books.dart';
+import '../services/bible_offline_service.dart';
+import 'native_chapter_reader.dart';
 
 class NativeBibleScreen extends StatefulWidget {
-  final Function(String translation, int book, int chapter) onChapterSelected;
+  final String? translation;
+  final int? initialBook;
 
-  const NativeBibleScreen({super.key, required this.onChapterSelected});
+  const NativeBibleScreen({super.key, this.translation, this.initialBook});
 
   @override
   State<NativeBibleScreen> createState() => _NativeBibleScreenState();
@@ -29,85 +17,25 @@ class NativeBibleScreen extends StatefulWidget {
 class _NativeBibleScreenState extends State<NativeBibleScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  String _selectedTranslation = 'ARC';
+  late String _selectedTranslation;
   int? _selectedBook;
-
-  static const List<BibleBook> _oldTestament = [
-    BibleBook(number: 1, name: 'Gênesis', abbreviation: 'Gn', chapters: 50, testament: 'AT'),
-    BibleBook(number: 2, name: 'Êxodo', abbreviation: 'Ex', chapters: 40, testament: 'AT'),
-    BibleBook(number: 3, name: 'Levítico', abbreviation: 'Lv', chapters: 27, testament: 'AT'),
-    BibleBook(number: 4, name: 'Números', abbreviation: 'Nm', chapters: 36, testament: 'AT'),
-    BibleBook(number: 5, name: 'Deuteronômio', abbreviation: 'Dt', chapters: 34, testament: 'AT'),
-    BibleBook(number: 6, name: 'Josué', abbreviation: 'Js', chapters: 24, testament: 'AT'),
-    BibleBook(number: 7, name: 'Juízes', abbreviation: 'Jz', chapters: 21, testament: 'AT'),
-    BibleBook(number: 8, name: 'Rute', abbreviation: 'Rt', chapters: 4, testament: 'AT'),
-    BibleBook(number: 9, name: '1 Samuel', abbreviation: '1Sm', chapters: 31, testament: 'AT'),
-    BibleBook(number: 10, name: '2 Samuel', abbreviation: '2Sm', chapters: 24, testament: 'AT'),
-    BibleBook(number: 11, name: '1 Reis', abbreviation: '1Rs', chapters: 22, testament: 'AT'),
-    BibleBook(number: 12, name: '2 Reis', abbreviation: '2Rs', chapters: 25, testament: 'AT'),
-    BibleBook(number: 13, name: '1 Crônicas', abbreviation: '1Cr', chapters: 29, testament: 'AT'),
-    BibleBook(number: 14, name: '2 Crônicas', abbreviation: '2Cr', chapters: 36, testament: 'AT'),
-    BibleBook(number: 15, name: 'Esdras', abbreviation: 'Ed', chapters: 10, testament: 'AT'),
-    BibleBook(number: 16, name: 'Neemias', abbreviation: 'Ne', chapters: 13, testament: 'AT'),
-    BibleBook(number: 17, name: 'Ester', abbreviation: 'Et', chapters: 10, testament: 'AT'),
-    BibleBook(number: 18, name: 'Jó', abbreviation: 'Jó', chapters: 42, testament: 'AT'),
-    BibleBook(number: 19, name: 'Salmos', abbreviation: 'Sl', chapters: 150, testament: 'AT'),
-    BibleBook(number: 20, name: 'Provérbios', abbreviation: 'Pv', chapters: 31, testament: 'AT'),
-    BibleBook(number: 21, name: 'Eclesiastes', abbreviation: 'Ec', chapters: 12, testament: 'AT'),
-    BibleBook(number: 22, name: 'Cânticos', abbreviation: 'Ct', chapters: 8, testament: 'AT'),
-    BibleBook(number: 23, name: 'Isaías', abbreviation: 'Is', chapters: 66, testament: 'AT'),
-    BibleBook(number: 24, name: 'Jeremias', abbreviation: 'Jr', chapters: 52, testament: 'AT'),
-    BibleBook(number: 25, name: 'Lamentações', abbreviation: 'Lm', chapters: 5, testament: 'AT'),
-    BibleBook(number: 26, name: 'Ezequiel', abbreviation: 'Ez', chapters: 48, testament: 'AT'),
-    BibleBook(number: 27, name: 'Daniel', abbreviation: 'Dn', chapters: 12, testament: 'AT'),
-    BibleBook(number: 28, name: 'Oséias', abbreviation: 'Os', chapters: 14, testament: 'AT'),
-    BibleBook(number: 29, name: 'Joel', abbreviation: 'Jl', chapters: 3, testament: 'AT'),
-    BibleBook(number: 30, name: 'Amós', abbreviation: 'Am', chapters: 9, testament: 'AT'),
-    BibleBook(number: 31, name: 'Obadias', abbreviation: 'Ob', chapters: 1, testament: 'AT'),
-    BibleBook(number: 32, name: 'Jonas', abbreviation: 'Jn', chapters: 4, testament: 'AT'),
-    BibleBook(number: 33, name: 'Miquéias', abbreviation: 'Mq', chapters: 7, testament: 'AT'),
-    BibleBook(number: 34, name: 'Naum', abbreviation: 'Na', chapters: 3, testament: 'AT'),
-    BibleBook(number: 35, name: 'Habacuque', abbreviation: 'Hb', chapters: 3, testament: 'AT'),
-    BibleBook(number: 36, name: 'Sofonias', abbreviation: 'Sf', chapters: 3, testament: 'AT'),
-    BibleBook(number: 37, name: 'Ageu', abbreviation: 'Ag', chapters: 2, testament: 'AT'),
-    BibleBook(number: 38, name: 'Zacarias', abbreviation: 'Zc', chapters: 14, testament: 'AT'),
-    BibleBook(number: 39, name: 'Malaquias', abbreviation: 'Ml', chapters: 4, testament: 'AT'),
-  ];
-
-  static const List<BibleBook> _newTestament = [
-    BibleBook(number: 40, name: 'Mateus', abbreviation: 'Mt', chapters: 28, testament: 'NT'),
-    BibleBook(number: 41, name: 'Marcos', abbreviation: 'Mc', chapters: 16, testament: 'NT'),
-    BibleBook(number: 42, name: 'Lucas', abbreviation: 'Lc', chapters: 24, testament: 'NT'),
-    BibleBook(number: 43, name: 'João', abbreviation: 'Jo', chapters: 21, testament: 'NT'),
-    BibleBook(number: 44, name: 'Atos', abbreviation: 'At', chapters: 28, testament: 'NT'),
-    BibleBook(number: 45, name: 'Romanos', abbreviation: 'Rm', chapters: 16, testament: 'NT'),
-    BibleBook(number: 46, name: '1 Coríntios', abbreviation: '1Co', chapters: 16, testament: 'NT'),
-    BibleBook(number: 47, name: '2 Coríntios', abbreviation: '2Co', chapters: 13, testament: 'NT'),
-    BibleBook(number: 48, name: 'Gálatas', abbreviation: 'Gl', chapters: 6, testament: 'NT'),
-    BibleBook(number: 49, name: 'Efésios', abbreviation: 'Ef', chapters: 6, testament: 'NT'),
-    BibleBook(number: 50, name: 'Filipenses', abbreviation: 'Fp', chapters: 4, testament: 'NT'),
-    BibleBook(number: 51, name: 'Colossenses', abbreviation: 'Cl', chapters: 4, testament: 'NT'),
-    BibleBook(number: 52, name: '1 Tessalonicenses', abbreviation: '1Ts', chapters: 5, testament: 'NT'),
-    BibleBook(number: 53, name: '2 Tessalonicenses', abbreviation: '2Ts', chapters: 3, testament: 'NT'),
-    BibleBook(number: 54, name: '1 Timóteo', abbreviation: '1Tm', chapters: 6, testament: 'NT'),
-    BibleBook(number: 55, name: '2 Timóteo', abbreviation: '2Tm', chapters: 4, testament: 'NT'),
-    BibleBook(number: 56, name: 'Tito', abbreviation: 'Tt', chapters: 3, testament: 'NT'),
-    BibleBook(number: 57, name: 'Filemom', abbreviation: 'Fm', chapters: 1, testament: 'NT'),
-    BibleBook(number: 58, name: 'Hebreus', abbreviation: 'Hb', chapters: 13, testament: 'NT'),
-    BibleBook(number: 59, name: 'Tiago', abbreviation: 'Tg', chapters: 5, testament: 'NT'),
-    BibleBook(number: 60, name: '1 Pedro', abbreviation: '1Pd', chapters: 5, testament: 'NT'),
-    BibleBook(number: 61, name: '2 Pedro', abbreviation: '2Pd', chapters: 3, testament: 'NT'),
-    BibleBook(number: 62, name: '1 João', abbreviation: '1Jo', chapters: 5, testament: 'NT'),
-    BibleBook(number: 63, name: '2 João', abbreviation: '2Jo', chapters: 1, testament: 'NT'),
-    BibleBook(number: 64, name: '3 João', abbreviation: '3Jo', chapters: 1, testament: 'NT'),
-    BibleBook(number: 65, name: 'Judas', abbreviation: 'Jd', chapters: 1, testament: 'NT'),
-    BibleBook(number: 66, name: 'Apocalipse', abbreviation: 'Ap', chapters: 22, testament: 'NT'),
-  ];
+  Map<int, int> _status = {};
 
   @override
   void initState() {
     super.initState();
+    _selectedTranslation = widget.translation ?? 'NVI';
+    _selectedBook = widget.initialBook;
     _tabController = TabController(length: 2, vsync: this);
+    if (widget.initialBook != null && widget.initialBook! >= 40) {
+      _tabController.index = 1;
+    }
+    _loadStatus();
+  }
+
+  Future<void> _loadStatus() async {
+    final status = await BibleOfflineService.instance.getBookDownloadStatus(_selectedTranslation);
+    if (mounted) setState(() => _status = status);
   }
 
   @override
@@ -116,43 +44,59 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
     super.dispose();
   }
 
+  void _openChapter(int bookNumber, int chapter) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => NativeChapterReader(
+          translationId: _selectedTranslation,
+          bookNumber: bookNumber,
+          chapterNumber: chapter,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.bgDark,
-      body: Column(
-        children: [
-          _buildHeader(),
-          _buildTranslationSelector(),
-          _buildTabBar(),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                _buildBookList(_oldTestament),
-                _buildBookList(_newTestament),
-              ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            _buildHeader(),
+            _buildTranslationSelector(),
+            _buildTabBar(),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  _buildBookList(BibleBooks.oldTestament),
+                  _buildBookList(BibleBooks.newTestament),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildHeader() {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-      child: const Row(
+      child: Row(
         children: [
-          Icon(Icons.menu_book_rounded, color: AppTheme.goldPrimary, size: 24),
-          SizedBox(width: 10),
-          Text(
-            'Bíblia',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+          const Icon(Icons.menu_book_rounded, color: AppTheme.goldPrimary, size: 24),
+          const SizedBox(width: 10),
+          const Expanded(
+            child: Text(
+              'Bíblia offline',
+              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
             ),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pushNamed('/offline-translations'),
+            child: const Text('Baixar', style: TextStyle(color: AppTheme.goldPrimary, fontSize: 13)),
           ),
         ],
       ),
@@ -160,15 +104,15 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
   }
 
   Widget _buildTranslationSelector() {
-    final translations = ['ARC', 'ARA', 'ACF', 'KJV', 'NVI', 'WEB'];
-    return Container(
+    final translations = BibleOfflineService.availableTranslations;
+    return SizedBox(
       height: 40,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         itemCount: translations.length,
         itemBuilder: (context, index) {
-          final t = translations[index];
+          final t = translations[index]['id']!;
           final isSelected = t == _selectedTranslation;
           return Padding(
             padding: const EdgeInsets.only(right: 8),
@@ -183,7 +127,9 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
               onSelected: (selected) {
+                if (!selected) return;
                 setState(() => _selectedTranslation = t);
+                _loadStatus();
               },
             ),
           );
@@ -219,93 +165,131 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
     );
   }
 
-  Widget _buildBookList(List<BibleBook> books) {
+  Widget _buildBookList(List<Map<String, dynamic>> books) {
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       itemCount: books.length,
-      itemBuilder: (context, index) {
-        final book = books[index];
-        return _buildBookTile(book);
-      },
+      itemBuilder: (context, index) => _buildBookTile(books[index]),
     );
   }
 
-  Widget _buildBookTile(BibleBook book) {
-    final isSelected = _selectedBook == book.number;
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      margin: const EdgeInsets.only(bottom: 4),
+  Widget _buildBookTile(Map<String, dynamic> book) {
+    final number = book['number'] as int;
+    final name = book['name'] as String;
+    final abbr = book['abbr'] as String;
+    final chapters = book['chapters'] as int;
+    final downloaded = _status[number] ?? 0;
+    final isSelected = _selectedBook == number;
+    final complete = downloaded >= chapters;
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () {
-            if (_selectedBook == book.number) {
-              setState(() => _selectedBook = null);
-            } else {
-              setState(() => _selectedBook = book.number);
-            }
-          },
+          onTap: () => setState(() => _selectedBook = isSelected ? null : number),
           borderRadius: BorderRadius.circular(10),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             decoration: BoxDecoration(
-              color: isSelected
-                  ? AppTheme.goldPrimary.withValues(alpha: 0.1)
-                  : Colors.transparent,
+              color: isSelected ? AppTheme.goldPrimary.withValues(alpha: 0.1) : Colors.transparent,
               borderRadius: BorderRadius.circular(10),
               border: isSelected
                   ? Border.all(color: AppTheme.goldPrimary.withValues(alpha: 0.3))
                   : null,
             ),
-            child: Row(
+            child: Column(
               children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: isSelected
-                        ? AppTheme.goldPrimary.withValues(alpha: 0.2)
-                        : Colors.white.withValues(alpha: 0.05),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(
-                    child: Text(
-                      book.abbreviation,
-                      style: TextStyle(
-                        color: isSelected ? AppTheme.goldPrimary : AppTheme.textSecondary,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
+                Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: complete
+                            ? AppTheme.goldPrimary.withValues(alpha: 0.2)
+                            : Colors.white.withValues(alpha: 0.05),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Center(
+                        child: Text(
+                          abbr.toUpperCase(),
+                          style: TextStyle(
+                            color: complete ? AppTheme.goldPrimary : AppTheme.textSecondary,
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        book.name,
-                        style: TextStyle(
-                          color: isSelected ? Colors.white : AppTheme.textPrimary,
-                          fontSize: 15,
-                          fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-                        ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            name,
+                            style: TextStyle(
+                              color: isSelected ? Colors.white : AppTheme.textPrimary,
+                              fontSize: 15,
+                              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                            ),
+                          ),
+                          Text(
+                            complete
+                                ? '$chapters capítulos baixados'
+                                : downloaded > 0
+                                    ? '$downloaded/$chapters baixados'
+                                    : '$chapters capítulos — não baixado',
+                            style: const TextStyle(color: AppTheme.textMuted, fontSize: 12),
+                          ),
+                        ],
                       ),
-                      Text(
-                        '${book.chapters} capítulos',
-                        style: TextStyle(
-                          color: AppTheme.textMuted,
-                          fontSize: 12,
+                    ),
+                    Icon(
+                      isSelected ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_right,
+                      color: isSelected ? AppTheme.goldPrimary : AppTheme.textMuted,
+                    ),
+                  ],
+                ),
+                if (isSelected) ...[
+                  const SizedBox(height: 12),
+                  Wrap(
+                    spacing: 6,
+                    runSpacing: 6,
+                    children: List.generate(chapters, (i) {
+                      final cap = i + 1;
+                      final has = downloaded >= cap || complete;
+                      return InkWell(
+                        onTap: () => _openChapter(number, cap),
+                        child: Container(
+                          width: 40,
+                          height: 36,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: has
+                                ? AppTheme.goldPrimary.withValues(alpha: 0.18)
+                                : Colors.white.withValues(alpha: 0.05),
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              color: has
+                                  ? AppTheme.goldPrimary.withValues(alpha: 0.4)
+                                  : Colors.white.withValues(alpha: 0.08),
+                            ),
+                          ),
+                          child: Text(
+                            '$cap',
+                            style: TextStyle(
+                              color: has ? AppTheme.goldPrimary : AppTheme.textMuted,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
+                      );
+                    }),
                   ),
-                ),
-                Icon(
-                  isSelected ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_right,
-                  color: isSelected ? AppTheme.goldPrimary : AppTheme.textMuted,
-                ),
+                ],
               ],
             ),
           ),

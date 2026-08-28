@@ -6,7 +6,7 @@ import { PageHero } from '@/components/layout/PageHero';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Calendar, CheckCircle2, BookOpen, ChevronRight, Flame, ArrowRight, Sparkles,
-  Plus, Share2, Trash2, Copy, Check, Church, Leaf, Music, PenLine, type LucideIcon,
+  Plus, Share2, Trash2, Copy, Check, Church, Leaf, Music, PenLine, GraduationCap, type LucideIcon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
@@ -53,6 +53,48 @@ function gerarPlanoBiblia1Ano(): DiaLeitura[] {
 }
 
 const PLANOS: PlanoLeitura[] = [
+  { id: 'fichas-40', titulo: '40 dias nas fichas profundas', descricao: 'Um capítulo/dia com ficha escrita: contexto, teologia e pergunta', duracao: 40, nivel: 'intermediario', icone: GraduationCap, dias: [
+    { dia: 1, titulo: 'Deus fala e o mundo existe', passagens: [{ livro: 'gn', capitulo: 1 }] },
+    { dia: 2, titulo: 'O jardim e a aliança', passagens: [{ livro: 'gn', capitulo: 2 }] },
+    { dia: 3, titulo: 'A queda e o protoevangelho', passagens: [{ livro: 'gn', capitulo: 3 }] },
+    { dia: 4, titulo: 'A arca da graça', passagens: [{ livro: 'gn', capitulo: 6 }] },
+    { dia: 5, titulo: 'O chamado de Abrão', passagens: [{ livro: 'gn', capitulo: 12 }] },
+    { dia: 6, titulo: 'Justiça pela fé', passagens: [{ livro: 'gn', capitulo: 15 }] },
+    { dia: 7, titulo: 'O Cordeiro provido', passagens: [{ livro: 'gn', capitulo: 22 }] },
+    { dia: 8, titulo: 'Eu Sou o que Sou', passagens: [{ livro: 'ex', capitulo: 3 }] },
+    { dia: 9, titulo: 'A Páscoa', passagens: [{ livro: 'ex', capitulo: 12 }] },
+    { dia: 10, titulo: 'O mar se abre', passagens: [{ livro: 'ex', capitulo: 14 }] },
+    { dia: 11, titulo: 'Os Dez Mandamentos', passagens: [{ livro: 'ex', capitulo: 20 }] },
+    { dia: 12, titulo: 'O Dia da Expiação', passagens: [{ livro: 'lv', capitulo: 16 }] },
+    { dia: 13, titulo: 'O Shema', passagens: [{ livro: 'dt', capitulo: 6 }] },
+    { dia: 14, titulo: 'Sê forte: a Palavra', passagens: [{ livro: 'js', capitulo: 1 }] },
+    { dia: 15, titulo: 'Lealdade no amargor', passagens: [{ livro: 'rt', capitulo: 1 }] },
+    { dia: 16, titulo: 'Davi e Golias', passagens: [{ livro: '1sm', capitulo: 17 }] },
+    { dia: 17, titulo: 'A aliança davídica', passagens: [{ livro: '2sm', capitulo: 7 }] },
+    { dia: 18, titulo: 'Os dois caminhos', passagens: [{ livro: 'sl', capitulo: 1 }] },
+    { dia: 19, titulo: 'O Rei no Sião', passagens: [{ livro: 'sl', capitulo: 2 }] },
+    { dia: 20, titulo: 'O servo sofredor (Sl 22)', passagens: [{ livro: 'sl', capitulo: 22 }] },
+    { dia: 21, titulo: 'O Senhor é o meu pastor', passagens: [{ livro: 'sl', capitulo: 23 }] },
+    { dia: 22, titulo: 'Cria em mim um coração puro', passagens: [{ livro: 'sl', capitulo: 51 }] },
+    { dia: 23, titulo: 'Bendize, ó minha alma', passagens: [{ livro: 'sl', capitulo: 103 }] },
+    { dia: 24, titulo: 'O Senhor diz ao meu Senhor', passagens: [{ livro: 'sl', capitulo: 110 }] },
+    { dia: 25, titulo: 'Santo, santo, santo', passagens: [{ livro: 'is', capitulo: 6 }] },
+    { dia: 26, titulo: 'O Servo ferido', passagens: [{ livro: 'is', capitulo: 53 }] },
+    { dia: 27, titulo: 'A nova aliança', passagens: [{ livro: 'jr', capitulo: 31 }] },
+    { dia: 28, titulo: 'O Filho do Homem', passagens: [{ livro: 'dn', capitulo: 7 }] },
+    { dia: 29, titulo: 'As bem-aventuranças', passagens: [{ livro: 'mt', capitulo: 5 }] },
+    { dia: 30, titulo: 'O filho perdido', passagens: [{ livro: 'lc', capitulo: 15 }] },
+    { dia: 31, titulo: 'O Verbo se fez carne', passagens: [{ livro: 'jo', capitulo: 1 }] },
+    { dia: 32, titulo: 'Nascer do alto', passagens: [{ livro: 'jo', capitulo: 3 }] },
+    { dia: 33, titulo: 'Eis o Homem', passagens: [{ livro: 'jo', capitulo: 19 }] },
+    { dia: 34, titulo: 'Pentecostes', passagens: [{ livro: 'at', capitulo: 2 }] },
+    { dia: 35, titulo: 'Todos pecaram', passagens: [{ livro: 'rm', capitulo: 3 }] },
+    { dia: 36, titulo: 'Nenhuma condenação', passagens: [{ livro: 'rm', capitulo: 8 }] },
+    { dia: 37, titulo: 'Mortos, vivificados', passagens: [{ livro: 'ef', capitulo: 2 }] },
+    { dia: 38, titulo: 'A fé que vê o invisível', passagens: [{ livro: 'hb', capitulo: 11 }] },
+    { dia: 39, titulo: 'Deus é amor', passagens: [{ livro: '1jo', capitulo: 4 }] },
+    { dia: 40, titulo: 'Céus novos, terra nova', passagens: [{ livro: 'ap', capitulo: 21 }] },
+  ] },
   { id: 'biblia-1-ano', titulo: 'Bíblia em 1 Ano', descricao: '365 dias, ~3-4 capítulos/dia', duracao: 365, nivel: 'intermediario', icone: BookOpen, dias: gerarPlanoBiblia1Ano() },
   { id: 'nt-90', titulo: 'Novo Testamento em 90 Dias', descricao: '3 capítulos/dia', duracao: 90, nivel: 'iniciante', icone: Church, dias: Array.from({length:90},(_,i)=>({dia:i+1,titulo:`Dia ${i+1}`,passagens:[{livro:'Mt',capitulo:i+1}]})) },
   { id: 'evangelhos-60', titulo: '4 Evangelhos em 60 Dias', descricao: '1-2 capítulos/dia', duracao: 60, nivel: 'iniciante', icone: Leaf, dias: Array.from({length:60},(_,i)=>({dia:i+1,titulo:`Dia ${i+1}`,passagens:[{livro:['Mt','Mc','Lc','Jo'][i%4],capitulo:Math.floor(i/4)+1}]})) },
@@ -205,10 +247,18 @@ export default function PlanosPage() {
               className="rounded-2xl border border-primary/30 bg-primary/5 p-5 mb-6">
               <div className="flex items-center gap-2 mb-2"><Sparkles className="w-5 h-5 text-primary" /><h2 className="font-display text-lg font-medium">Hoje — Dia {diaAtual}</h2></div>
               <div className="space-y-2">{planoSel.dias[diaAtual-1]?.passagens.map((p,i)=>(
-                <Link key={i} href={`/biblia?livro=${p.livro}&capitulo=${p.capitulo}`}
+                <div key={i} className="space-y-1.5">
+                <Link href={`/biblia?livro=${p.livro}&capitulo=${p.capitulo}`}
                   className="flex items-center gap-2 p-2.5 rounded-xl bg-card/50 border border-border/30 hover:border-primary/30 transition-all group">
-                  <BookOpen className="w-4 h-4 text-primary shrink-0" /><span className="text-sm font-medium">{p.livro} {p.capitulo}</span>
+                  <BookOpen className="w-4 h-4 text-primary shrink-0" /><span className="text-sm font-medium">{p.livro} {p.capitulo} — ler</span>
                   <ChevronRight className="w-4 h-4 text-muted-foreground ml-auto group-hover:text-primary transition-colors" /></Link>
+                {planoSel.id === 'fichas-40' && (
+                  <Link href={`/guia?livro=${p.livro}&capitulo=${p.capitulo}`}
+                    className="flex items-center gap-2 p-2.5 rounded-xl bg-primary/5 border border-primary/20 hover:border-primary/40 transition-all group">
+                    <GraduationCap className="w-4 h-4 text-primary shrink-0" /><span className="text-sm font-medium">Abrir a ficha profunda</span>
+                    <ChevronRight className="w-4 h-4 text-muted-foreground ml-auto group-hover:text-primary transition-colors" /></Link>
+                )}
+                </div>
               ))}</div>
               <button onClick={()=>toggleDia(diaAtual)}
                 className="mt-3 w-full py-2.5 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">

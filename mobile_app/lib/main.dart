@@ -15,6 +15,7 @@ import 'screens/splash_screen.dart';
 import 'screens/settings_screen.dart';
 import 'screens/streak_screen.dart';
 import 'screens/offline_translations_screen.dart';
+import 'screens/native_bible_screen.dart';
 import 'widgets/onboarding_tour.dart';
 import 'services/notification_service.dart';
 import 'services/app_lock_service.dart';
@@ -341,6 +342,7 @@ class _SolaScripturaAppState extends State<SolaScripturaApp> with WidgetsBinding
         '/settings': (_) => const SettingsScreen(),
         '/streak': (_) => const StreakScreen(),
         '/offline-translations': (_) => const OfflineTranslationsScreen(),
+        '/native-bible': (_) => const NativeBibleScreen(),
       },
       home: _showOnboarding
           ? OnboardingTour(onComplete: _completeOnboarding)

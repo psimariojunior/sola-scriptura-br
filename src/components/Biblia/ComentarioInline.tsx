@@ -32,12 +32,29 @@ function ComentarioConteudo({ livro, capitulo, verso, defaultExpanded }: { livro
   const [comentarios, setComentarios] = useState<Comentario[]>([]);
   const [expandido, setExpandido] = useState(!!defaultExpanded);
   const [carregado, setCarregado] = useState(false);
+  const [sintese, setSintese] = useState<string | null>(null);
+  const [proximoDe, setProximoDe] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelado = false;
-    comentariosModulePromise.then(mod => {
+    setSintese(null);
+    setProximoDe(null);
+    comentariosModulePromise.then(async (mod) => {
+      if (cancelado) return;
+      let resultado = mod.obterComentarios(livro, capitulo, verso);
+      if (resultado.length === 0) {
+        const classicos = await import('@/data/comentariosClassicos');
+        const proximo = classicos.obterComentarioClassicoProximo(livro, capitulo, verso);
+        if (proximo.length > 0) {
+          resultado = proximo;
+          if (!cancelado) setProximoDe(proximo[0].versiculo);
+        } else {
+          const estudos = await import('@/lib/estudosLoader');
+          const ficha = estudos.obterEstudoCapitulo(livro, capitulo);
+          if (!cancelado) setSintese(ficha.resumo);
+        }
+      }
       if (!cancelado) {
-        const resultado = mod.obterComentarios(livro, capitulo, verso);
         setComentarios(resultado);
         setCarregado(true);
       }
@@ -49,7 +66,20 @@ function ComentarioConteudo({ livro, capitulo, verso, defaultExpanded }: { livro
     setExpandido(!!defaultExpanded);
   }, [defaultExpanded]);
 
-  if (!carregado || comentarios.length === 0) return null;
+  if (!carregado) return null;
+  if (comentarios.length === 0) {
+    if (!sintese) return null;
+    return (
+      <div className="mt-2 border-t border-[var(--brand-default)]/10 pt-2 first:border-t-0 first:mt-0 first:pt-0">
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-1">
+          Síntese da ficha (não é Henry/JFB)
+        </p>
+        <p className="text-[13px] leading-relaxed text-[var(--content-secondary)] font-serif-body line-clamp-4">
+          {sintese}
+        </p>
+      </div>
+    );
+  }
 
   const principal = comentarios[0];
 
@@ -75,6 +105,9 @@ function ComentarioConteudo({ livro, capitulo, verso, defaultExpanded }: { livro
       {!expandido && principal && (
         <p className="mt-2 text-[13px] leading-relaxed text-[var(--content-secondary)] font-serif-body line-clamp-3">
           <span className="font-semibold text-[var(--brand-default)]">{principal.autor}: </span>
+          {proximoDe && proximoDe !== verso && (
+            <span className="text-[var(--content-muted)] font-normal">v.{proximoDe} · </span>
+          )}
           {principal.texto}
         </p>
       )}

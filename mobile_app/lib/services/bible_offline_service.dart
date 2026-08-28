@@ -1,8 +1,15 @@
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:sqflite/sqflite.dart';
 import '../data/database_helper.dart';
 import '../data/bible_books.dart';
+
+class OfflineVerse {
+  final int number;
+  final String text;
+  const OfflineVerse({required this.number, required this.text});
+}
 
 class BibleOfflineService {
   static final BibleOfflineService instance = BibleOfflineService._init();
@@ -461,6 +468,59 @@ class BibleOfflineService {
   Future<void> markNoteSynced(String id) async {
     final db = await DatabaseHelper.instance.database;
     await db.update('notes', {'synced': 1}, where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<List<OfflineVerse>> getChapterVerses(
+    String translationId,
+    int bookNumber,
+    int chapterNumber,
+  ) async {
+    final raw = await getCachedChapter(translationId, bookNumber, chapterNumber);
+    if (raw == null || raw.isEmpty) return [];
+    return parseChapterJson(raw);
+  }
+
+  static List<OfflineVerse> parseChapterJson(String raw) {
+    try {
+      final decoded = jsonDecode(raw);
+      final list = _extractVerseList(decoded);
+      final verses = <OfflineVerse>[];
+      for (var i = 0; i < list.length; i++) {
+        final item = list[i];
+        if (item is String) {
+          verses.add(OfflineVerse(number: i + 1, text: item));
+          continue;
+        }
+        if (item is Map) {
+          final n = item['number'] ?? item['numero'] ?? item['verse'] ?? item['n'] ?? (i + 1);
+          final t = item['text'] ?? item['texto'] ?? item['content'] ?? '';
+          verses.add(OfflineVerse(
+            number: n is int ? n : int.tryParse('$n') ?? i + 1,
+            text: '$t'.trim(),
+          ));
+        }
+      }
+      return verses.where((v) => v.text.isNotEmpty).toList();
+    } catch (e) {
+      debugPrint('parseChapterJson: $e');
+      return [];
+    }
+  }
+
+  static List<dynamic> _extractVerseList(dynamic decoded) {
+    if (decoded is List) return decoded;
+    if (decoded is! Map) return [];
+    final map = Map<String, dynamic>.from(decoded);
+    for (final key in ['verses', 'versiculos', 'data', 'chapter']) {
+      final v = map[key];
+      if (v is List) return v;
+      if (v is Map) {
+        final nested = _extractVerseList(v);
+        if (nested.isNotEmpty) return nested;
+      }
+    }
+    if (map['texto'] is List) return map['texto'] as List;
+    return [];
   }
 
   Future<void> clearAllData() async {

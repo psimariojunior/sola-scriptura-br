@@ -1,23 +1,13 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import Link from 'next/link';
 import { Link2, Languages } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { hrefBiblia } from '@/lib/bibliaHref';
 import { ComentarioInline } from './ComentarioInline';
 import { InlineStrongHighlight } from './InlineStrongHighlight';
 import { getRecursosVersiculo, type RecursoLexico } from '@/data/biblia/versiculoRecursos';
-import type { CrossReference } from '@/data/biblia/crossReferences';
-
-const TIPO_REF: Record<string, string> = {
-  parallel: 'Paralelo',
-  fulfillment: 'Cumprimento',
-  quotation: 'Citação',
-  contrast: 'Contraste',
-  thematic: 'Temático',
-  typology: 'Tipologia',
-};
+import { CadeiaReferencias } from './CadeiaReferencias';
+import { montarCadeia, type EloCadeia } from '@/lib/cadeiaReferencias';
+import { ensinarPalavra } from '@/lib/ensinarPalavra';
 
 interface EstudoDoVersoProps {
   livro: string;
@@ -27,12 +17,6 @@ interface EstudoDoVersoProps {
   fontSize: number;
   expanded: boolean;
   onOpenFull?: () => void;
-}
-
-function parseRef(ref: string): { livro: string; cap: number; ver: number } | null {
-  const match = ref.trim().match(/^(\d?\s?[A-Za-zÀ-ú]+)\s+(\d+):(\d+)$/);
-  if (!match) return null;
-  return { livro: match[1].toLowerCase().replace(/\s+/g, ''), cap: parseInt(match[2], 10), ver: parseInt(match[3], 10) };
 }
 
 function LazyWhenVisible({ children }: { children: React.ReactNode }) {
@@ -59,14 +43,24 @@ function LazyWhenVisible({ children }: { children: React.ReactNode }) {
 }
 
 export function EstudoDoVerso({ livro, capitulo, verso, texto, fontSize, expanded, onOpenFull }: EstudoDoVersoProps) {
-  const [refs, setRefs] = useState<CrossReference[]>([]);
+  const [cadeia, setCadeia] = useState<EloCadeia[]>([]);
   const [lexico, setLexico] = useState<RecursoLexico[]>([]);
 
   useEffect(() => {
     if (!expanded) return;
     let cancelado = false;
-    import('@/data/biblia/crossReferences').then((mod) => {
-      if (!cancelado) setRefs(mod.getCrossReferencesByVerse(livro, capitulo, verso).slice(0, 6));
+    Promise.all([
+      import('@/data/biblia/crossReferences'),
+      import('@/data/crossReferences'),
+    ]).then(([curated, tsk]) => {
+      if (cancelado) return;
+      const key = `${livro.toLowerCase()}:${capitulo}:${verso}`;
+      setCadeia(montarCadeia({
+        livro,
+        curated: curated.getCrossReferencesByVerse(livro, capitulo, verso),
+        tsk: tsk.crossReferences[key] || [],
+        limite: 5,
+      }));
     }).catch(() => {});
     getRecursosVersiculo(livro, capitulo, verso).then((recursos) => {
       if (cancelado) return;
@@ -95,40 +89,12 @@ export function EstudoDoVerso({ livro, capitulo, verso, texto, fontSize, expande
       </p>
       <ComentarioInline livro={livro} capitulo={capitulo} verso={verso} defaultExpanded={expanded} />
 
-      {expanded && refs.length > 0 && (
+      {expanded && cadeia.length > 0 && (
         <div className="mt-2.5 pt-2 border-t border-[var(--brand-default)]/10">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-1.5 flex items-center gap-1">
-            <Link2 className="w-3 h-3" /> Referências
+            <Link2 className="w-3 h-3" /> Daqui → Cristo
           </p>
-          <div className="flex flex-wrap gap-1.5">
-            {refs.map((ref) => {
-              const parsed = parseRef(ref.to);
-              const label = `${ref.to}${ref.description ? ` — ${ref.description}` : ''}`;
-              const inner = (
-                <span className="inline-flex items-center gap-1 max-w-full">
-                  <span className="font-semibold shrink-0">{ref.to}</span>
-                  {ref.type && (
-                    <span className="text-[9px] opacity-70 shrink-0">{TIPO_REF[ref.type] || ref.type}</span>
-                  )}
-                  {ref.description && (
-                    <span className="text-[var(--content-muted)] font-normal truncate">· {ref.description}</span>
-                  )}
-                </span>
-              );
-              const className = cn(
-                'max-w-full text-left text-[11px] px-2 py-1 rounded-lg',
-                'bg-[var(--surface-raised)] border border-[var(--border)]/50',
-                'text-[var(--content-secondary)] hover:border-[var(--brand-default)]/40 hover:text-[var(--content-primary)] transition-colors'
-              );
-              return parsed ? (
-                <Link key={`${ref.from}-${ref.to}`} href={hrefBiblia(parsed.livro, parsed.cap, parsed.ver)} className={className} title={label}>
-                  {inner}
-                </Link>
-              ) : (
-                <span key={`${ref.from}-${ref.to}`} className={className} title={label}>{inner}</span>
-              );
-            })}
-          </div>
+          <CadeiaReferencias elos={cadeia} compact />
         </div>
       )}
 
@@ -137,6 +103,11 @@ export function EstudoDoVerso({ livro, capitulo, verso, texto, fontSize, expande
           <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-1 flex items-center gap-1">
             <Languages className="w-3 h-3" /> Palavras originais
           </p>
+          {lexico[0] && (
+            <p className="text-[12px] text-[var(--content-secondary)] leading-relaxed mb-2 font-serif-body">
+              {ensinarPalavra(lexico[0])}
+            </p>
+          )}
           <InlineStrongHighlight lexicoRecursos={lexico} textoVersiculo={texto} fontSize={fontSize} />
         </div>
       )}

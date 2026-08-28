@@ -36,3 +36,32 @@ export function temComentarioClassico(
 ): boolean {
   return byRef.has(`${livro}:${capitulo}:${versiculo}`);
 }
+
+/** Henry / JFB / Barnes no mesmo capítulo, se este verso não tiver ficha. */
+export function obterComentarioClassicoProximo(
+  livro: string,
+  capitulo: number,
+  versiculo: number,
+  raio = 8,
+): Comentario[] {
+  const exato = obterComentariosClassicos(livro, capitulo, versiculo);
+  if (exato.length > 0) return exato;
+
+  for (let d = 1; d <= raio; d++) {
+    const antes = versiculo - d;
+    if (antes >= 1) {
+      const c = obterComentariosClassicos(livro, capitulo, antes);
+      if (c.length > 0) return c;
+    }
+    const depois = versiculo + d;
+    const c = obterComentariosClassicos(livro, capitulo, depois);
+    if (c.length > 0) return c;
+  }
+
+  for (let v = 1; v <= 180; v++) {
+    if (v === versiculo) continue;
+    const c = obterComentariosClassicos(livro, capitulo, v);
+    if (c.length > 0) return c;
+  }
+  return [];
+}

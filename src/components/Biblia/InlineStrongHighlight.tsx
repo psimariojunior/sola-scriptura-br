@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { X, BookOpen } from 'lucide-react';
+import { ensinarPalavra } from '@/lib/ensinarPalavra';
 import { AudioPronunciation } from '@/components/AudioPronunciation';
 import { cn } from '@/lib/utils';
 import type { RecursoLexico } from '@/data/biblia/versiculoRecursos';
@@ -126,16 +127,21 @@ export function InlineStrongHighlight({
               />
             </div>
 
-            {/* Definição */}
+            {/* Por que esta palavra muda a leitura */}
             <div className="bg-[var(--surface-sunken)] rounded-lg p-2.5 mb-2 border border-[var(--border)]/40">
               <div className="flex items-center gap-1 mb-1">
                 <BookOpen className="w-3 h-3 text-[var(--brand-default)]" />
-                <span className="text-[9px] font-semibold uppercase tracking-wider text-[var(--brand-default)]">Definição</span>
+                <span className="text-[9px] font-semibold uppercase tracking-wider text-[var(--brand-default)]">Por que importa</span>
               </div>
-              <p className="text-xs font-medium text-[var(--content-primary)] leading-relaxed">
-                {palavraAtiva.definicao}
+              <p className="text-xs text-[var(--content-primary)] leading-relaxed">
+                {ensinarPalavra(palavraAtiva)}
               </p>
             </div>
+
+            <p className="text-[10px] text-[var(--content-muted)] mb-2 leading-relaxed">
+              <span className="font-semibold">Glossário: </span>
+              {palavraAtiva.definicao}
+            </p>
 
             {/* Morfologia */}
             {palavraAtiva.morfologia && (

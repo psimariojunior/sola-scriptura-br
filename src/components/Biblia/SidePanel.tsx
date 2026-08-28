@@ -156,7 +156,7 @@ export function SidePanel({
     } catch {
       return { comentarios: [], crossRefs: [], tiposRecursos: [], estudos: [] };
     }
-  }, [versiculo, livroAbreviacao, capitulo]);
+  }, [versiculo, livroAbreviacao, capitulo, comentariosLazy]);
 
   const comentarios = resourceData.comentarios;
   const crossRefs = resourceData.crossRefs;
@@ -482,7 +482,8 @@ export function SidePanel({
         })}
       </nav>
 
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 min-h-0 flex flex-col">
+      <div className="flex-1 overflow-y-auto min-h-0">
         {/* Verse Overview - shows when a verse is selected */}
         {versiculo && versiculoTexto && !isCollapsed && (
           <div className="px-4 pt-4 pb-3 border-b border-[var(--border)]/30">
@@ -637,6 +638,32 @@ export function SidePanel({
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
+      {!isCollapsed && versiculo ? (
+        <div className="h-[38%] min-h-[150px] max-h-[280px] border-t border-[var(--border)]/50 overflow-y-auto shrink-0 bg-[var(--surface-sunken)]/30">
+          <p className="px-3 pt-2 pb-1 text-[10px] uppercase tracking-wider font-semibold text-[var(--content-muted)]">
+            {activeTab === 'strong' ? 'Comentários (mesmo versículo)' : 'Léxico (mesmo versículo)'}
+          </p>
+          <div className="px-2 pb-3">
+            <Suspense fallback={<PanelFallback />}>
+              {activeTab === 'strong' ? (
+                <PainelComentarios
+                  livro={livroAbreviacao}
+                  capitulo={capitulo}
+                  versiculo={versiculo}
+                  onClose={() => {}}
+                />
+              ) : (
+                <PainelStrong
+                  livro={livroAbreviacao}
+                  capitulo={capitulo}
+                  versiculo={versiculo}
+                />
+              )}
+            </Suspense>
+          </div>
+        </div>
+      ) : null}
       </div>
     </motion.aside>
   );

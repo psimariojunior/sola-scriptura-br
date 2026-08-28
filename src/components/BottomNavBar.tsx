@@ -23,6 +23,8 @@ import {
   HelpCircle,
   ChevronDown,
   Users,
+  Compass,
+  History,
 } from 'lucide-react';
 
 interface TabItem {
@@ -79,6 +81,8 @@ function BottomNavBarInner() {
       titulo: t('bottomBar.groupDeep', 'Aprofundar'),
       links: [
         { href: '/teologia', label: t('bottomBar.theology', 'Teologia'), icon: BookMarked },
+        { href: '/guia', label: t('bottomBar.passageGuide', 'Guia da passagem'), icon: Compass },
+        { href: '/historico', label: t('bottomBar.historyRead', 'Histórico'), icon: History },
         { href: '/ferramentas', label: t('bottomBar.tools'), icon: Wrench },
         { href: '/topicos', label: t('bottomBar.topics'), icon: Tag },
         { href: '/estudos', label: t('bottomBar.studies'), icon: GraduationCap },

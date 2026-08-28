@@ -1,4 +1,5 @@
 const STORAGE_KEY = 'ssb_stats';
+const LOG_KEY = 'ssb_reading_log';
 
 interface StatsData {
   leituras: Record<string, number>;
@@ -71,6 +72,37 @@ export function recordReading(livro: string, capitulo: number) {
 
   data.ultimaLeitura = hojeStr;
   salvar(data);
+  appendReadingLog(livro, capitulo);
+}
+
+export interface ReadingLogEntry {
+  livro: string;
+  capitulo: number;
+  ts: number;
+}
+
+function appendReadingLog(livro: string, capitulo: number) {
+  if (typeof window === 'undefined') return;
+  try {
+    const raw = localStorage.getItem(LOG_KEY);
+    const list: ReadingLogEntry[] = raw ? JSON.parse(raw) : [];
+    const last = list[list.length - 1];
+    if (last && last.livro === livro && last.capitulo === capitulo && Date.now() - last.ts < 45_000) return;
+    list.push({ livro, capitulo, ts: Date.now() });
+    localStorage.setItem(LOG_KEY, JSON.stringify(list.slice(-300)));
+  } catch {}
+}
+
+export function getReadingLog(): ReadingLogEntry[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = localStorage.getItem(LOG_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed.slice().reverse() : [];
+  } catch {
+    return [];
+  }
 }
 
 export function getStats(): Stats {

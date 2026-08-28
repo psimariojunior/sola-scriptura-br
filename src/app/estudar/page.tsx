@@ -98,8 +98,8 @@ const QUICK_TOOLS = [
   },
   {
     href: '/guia',
-    title: 'Guia de Passagem',
-    description: 'Comentários, referências cruzadas e palavras originais de qualquer versículo',
+    title: 'Guia da passagem',
+    description: 'Ficha do capítulo, comentários clássicos, léxico e referências num só lugar',
     icon: FileText,
     tile: 'tile-warm',
   },

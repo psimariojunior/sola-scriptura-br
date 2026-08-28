@@ -1,9 +1,12 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import { BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Volume2, ListFilter, HardDrive, MoreVertical, Maximize2, Keyboard, FileText, Settings, Download, Minus, Plus, AlignLeft, Rows3 } from 'lucide-react';
+import { BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Volume2, ListFilter, HardDrive, MoreVertical, Maximize2, Keyboard, FileText, Settings, Download, Minus, Plus, AlignLeft, Rows3, Compass, Bookmark } from 'lucide-react';
+import Link from 'next/link';
+import { hrefGuia } from '@/lib/bibliaHref';
+import { isChapterBookmarked, toggleChapterBookmark } from '@/lib/readingProgress';
 import { cn } from '@/lib/utils';
 import { TranslationDropdown } from './TranslationDropdown';
 import { ToolsDropdown } from './ToolsDropdown';
@@ -39,6 +42,21 @@ export function BibleToolbar({
   const [mobileToolbarMenuOpen, setMobileToolbarMenuOpen] = useState(false);
   const mobileMenuBtnRef = useRef<HTMLButtonElement>(null);
   const [mobileMenuPos, setMobileMenuPos] = useState<{ top: number; right: number }>({ top: 0, right: 0 });
+  const [capituloMarcado, setCapituloMarcado] = useState(false);
+
+  const guiaHref = hrefGuia(
+    nav.livro.abreviacao,
+    nav.capituloIdx + 1,
+    verse.versiculoSelecionado?.versiculo
+  );
+
+  const syncBookmark = () => {
+    setCapituloMarcado(isChapterBookmarked(nav.livro.abreviacao, nav.capituloIdx + 1));
+  };
+
+  useEffect(() => {
+    syncBookmark();
+  }, [nav.livro.abreviacao, nav.capituloIdx]);
 
   const readingMode: ReadingMode =
     ui.modoLeitura === 'comparacao' ? 'comparar'
@@ -143,6 +161,7 @@ export function BibleToolbar({
                 <button onClick={() => { if (!ui.mostrarNotas && !verse.notaAtiva) { verse.setNotaAtiva(verse.criarNota(`${nav.livro.nome} ${nav.capituloIdx + 1}`)); } ui.setMostrarNotas(!ui.mostrarNotas); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><FileText className="w-4 h-4 text-[var(--content-muted)]" />Notas</button>
                 <button onClick={() => { ui.setExportOpen(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Download className="w-4 h-4 text-[var(--content-muted)]" />Exportar PDF</button>
                 <button onClick={() => { ui.setShowSettings(!ui.showSettings); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Settings className="w-4 h-4 text-[var(--content-muted)]" />Configurações</button>
+                <a href={guiaHref} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Compass className="w-4 h-4 text-[var(--content-muted)]" />Guia da passagem</a>
                 <div className="h-px bg-[var(--border)]/40 my-1" />
                 <button onClick={() => { ui.setMostrarApresentacao(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-semibold text-[var(--brand-default)] hover:bg-[var(--brand-subtle)] transition-colors"><Sparkles className="w-4 h-4" />{t('biblia.present')}</button>
                 <button onClick={() => { ui.setImmersiveMode(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Maximize2 className="w-4 h-4 text-[var(--content-muted)]" />Modo imersivo</button>
@@ -155,6 +174,32 @@ export function BibleToolbar({
 
       <div className="px-3 sm:px-4 pb-2 flex items-center gap-2">
         <ReadingModeBar mode={readingMode} onModeChange={handleReadingModeChange} className="flex-1 sm:flex-none" />
+        <Link
+          href={guiaHref}
+          className="touch-target p-1.5 rounded-lg text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] hover:text-[var(--brand-default)] shrink-0"
+          title="Guia da passagem"
+          aria-label="Abrir guia da passagem"
+        >
+          <Compass className="w-4 h-4" />
+        </Link>
+        <button
+          type="button"
+          onClick={() => {
+            const next = toggleChapterBookmark(nav.livro.abreviacao, nav.capituloIdx + 1);
+            setCapituloMarcado(next);
+          }}
+          className={cn(
+            'touch-target p-1.5 rounded-lg shrink-0',
+            capituloMarcado
+              ? 'text-[var(--brand-default)] bg-[var(--brand-subtle)]'
+              : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]'
+          )}
+          title={capituloMarcado ? 'Remover marcador deste capítulo' : 'Marcar capítulo'}
+          aria-pressed={capituloMarcado}
+          aria-label={capituloMarcado ? 'Remover marcador deste capítulo' : 'Marcar capítulo'}
+        >
+          <Bookmark className={cn('w-4 h-4', capituloMarcado && 'fill-current')} />
+        </button>
         <div className="flex-1 hidden sm:block" />
         <div className="flex items-center gap-0.5 shrink-0">
           <button type="button" onClick={() => bumpFont(-1)} className="w-8 h-8 rounded-lg text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] flex items-center justify-center" aria-label="Diminuir fonte">

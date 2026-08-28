@@ -14,7 +14,7 @@ import { HeaderNav } from '@/components/header/HeaderNav';
 import { HeaderSearch } from '@/components/header/HeaderSearch';
 import { HeaderUserMenu } from '@/components/header/HeaderUserMenu';
 import { HeaderMobileMenu } from '@/components/header/HeaderMobileMenu';
-import { Map, History, User, Calendar, Heart, HelpCircle, ScrollText, Languages, MessageCircle, Library, BookOpen, BookMarked, Search } from 'lucide-react';
+import { Map, History, User, Calendar, Heart, HelpCircle, ScrollText, Languages, MessageCircle, Library, BookOpen, BookMarked, Search, Compass } from 'lucide-react';
 
 type LucideIcon = typeof BookOpen;
 
@@ -60,6 +60,8 @@ const maisGrupos: NavGroup[] = [
     titulo: 'header.compareAndAnalyze',
     links: [
       { href: '/exegese', label: 'header.exegesis', icon: ScrollText },
+      { href: '/guia', label: 'header.passageGuide', icon: Compass },
+      { href: '/historico', label: 'header.readingHistory', icon: History },
       { href: '/comparar', label: 'header.compareTranslations', icon: Languages },
       { href: '/comparar-comentarios', label: 'header.commentaries', icon: MessageCircle },
     ],

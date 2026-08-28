@@ -153,6 +153,16 @@ export function hrefBiblia(livro: string, capitulo: number, versiculo?: number, 
   return `/biblia?${params.toString()}`;
 }
 
+/** Guia da passagem: ficha, comentários, léxico e referências num só lugar. */
+export function hrefGuia(livro: string, capitulo: number, versiculo?: number): string {
+  const info = resolverLivroParam(livro);
+  const params = new URLSearchParams();
+  params.set('livro', info?.abreviacao ?? livro);
+  params.set('capitulo', String(Math.max(1, capitulo)));
+  if (versiculo && versiculo > 0) params.set('versiculo', String(versiculo));
+  return `/guia?${params.toString()}`;
+}
+
 export function hrefFromRef(raw: string): string {
   const parsed = parseRefLivre(raw);
   if (!parsed) return '/biblia';

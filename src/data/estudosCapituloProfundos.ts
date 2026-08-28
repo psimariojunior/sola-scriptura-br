@@ -1080,5 +1080,332 @@ export const estudosCapituloProfundos: Record<string, EstudoCapitulo> = {
     ],
     fontes: ['Apocalipse 21', 'Isaías 65:17–19', 'Ezequiel 48', 'João 1:14'],
   }),
+
+  'ex:3': ficha('ex', 3, 'A sarça e o Nome: Eu Sou o que Sou', {
+    contextoHistorico:
+      'Moisés, fugitivo em Midiã, pastoreia o rebanho de Jetro no Horebe. Israel geme no Egito. O chamado no deserto inaugura a revelação do Nome (YHWH) e o êxodo como ato de aliança, não só de libertação política.',
+    resumo:
+      'A sarça arde e não se consome: presença santa que não destrói o criado. «Tira as sandálias» — o chão é santo. Deus se identifica como o Deus de Abraão, Isaque e Jacó: continuidade da promessa. Moisés objeta; o Senhor dá o Nome: «Eu Sou o que Sou» (Ehyeh asher ehyeh) e YHWH. A missão é clara: tira o povo, adora neste monte. O êxodo começa na revelação, não na estratégia de Moisés.',
+    estrutura: [
+      '3:1–6 — sarça, santidade, Deus dos patriarcas',
+      '3:7–12 — «vi a aflição»; sinal do monte',
+      '3:13–15 — o Nome e a memória perpétua',
+      '3:16–22 — anciãos, Faraó, despojo do Egito',
+    ],
+    temas: ['Nome de Deus', 'Santidade', 'Chamado', 'Aliança patriarcal', 'Êxodo'],
+    VersiculosChave: [
+      chave('Êxodo 3:5', 'Tira as tuas sandálias… o lugar em que estás é terra santa.', 'A presença de Deus consagra o espaço; a missão nasce da adoração.'),
+      chave('Êxodo 3:14', 'Eu Sou o que Sou.', 'Deus é auto-existente; Jesus aplica o «Eu Sou» a si mesmo (Jo 8:58).'),
+    ],
+    significadoTeologico:
+      'O Nome não é magia: é compromisso. «Eu serei convosco» (3:12) interpreta o Nome na história. A libertação tem fim cultual: servir a Deus no deserto.',
+    palavrasOriginais: ['אֶהְיֶה אֲשֶׁר אֶהְיֶה', 'יְהוָה', 'קֹדֶשׁ'],
+    aplicacaoPratica:
+      'Não entre no chamado sem tirar as sandálias: reverência primeiro. Confie no Eu Sou, não na sua elocução. Lembre os oprimidos: Deus vê e desce.',
+    perguntasEstudo: [
+      'O que a sarça que não se consome ensina sobre Deus e a criação?',
+      'Como 3:14 se relaciona com João 8:58 sem forçar o hebraico?',
+      'Por que o sinal é «adorareis neste monte» e não a queda de Faraó?',
+    ],
+    fontes: ['Êxodo 3', 'João 8:58', 'Mateus 22:32', 'Comentário de Calvino a Êxodo'],
+  }),
+
+  'js:1': ficha('js', 1, 'Sê forte: a Terra e a Palavra', {
+    contextoHistorico:
+      'Moisés morreu. Josué, auxiliar, assume a conquista a oeste do Jordão (c. século XIII/XII a.C. na leitura tradicional). O livro abre com mandato, não com batalha: a sucessão é teológica.',
+    resumo:
+      'O Senhor transfere a missão a Josué: atravessa o Jordão, toma a terra jurada aos pais. Os limites são vastos; a condição é a Torá: não se aparte da boca, medita de dia e de noite. «Sê forte e corajoso» três vezes — força para obedecer, não para improvisar. O povo promete lealdade como a Moisés. A conquista começa na Palavra.',
+    estrutura: [
+      '1:1–9 — mandato, limites, Torá, ânimo',
+      '1:10–18 — oficiais, transjordanianos, lealdade',
+    ],
+    temas: ['Sucessão', 'Promessa da terra', 'Torá', 'Coragem', 'Obediência'],
+    VersiculosChave: [
+      chave('Josué 1:8', 'Não se aparte da tua boca o livro desta lei; medita nele…', 'Vitória e prosperidade estão ligadas à meditação, não ao gênio militar.'),
+      chave('Josué 1:9', 'Não to mandei eu? Sê forte e corajoso.', 'A coragem cristã é obediência à ordem de Deus, não autoajuda.'),
+    ],
+    significadoTeologico:
+      'Hebreus 4 lê o «descanso» de Josué como tipo incompleto: o descanso definitivo é em Cristo. A terra é dom; a conquista é fé operante.',
+    aplicacaoPratica:
+      'Medite a Escritura antes de «atravessar o Jordão» do dia. Anime outros com a Palavra, não com clichês. Honre sucessores fiéis.',
+    perguntasEstudo: [
+      'Por que a Torá vem antes das batalhas?',
+      'Como 1:8 se liga ao Salmo 1?',
+      'Em que sentido Hebreus 4 completa Josué 1?',
+    ],
+    fontes: ['Josué 1', 'Deuteronômio 31', 'Salmo 1', 'Hebreus 4'],
+  }),
+
+  '2sm:7': ficha('2sm', 7, 'A aliança davídica: casa, trono e semente', {
+    contextoHistorico:
+      'Davi em Jerusalém, em paz com os inimigos, deseja casa para a arca. Natã primeiro aprova; Deus corrige à noite. O oráculo reinterpreta «casa»: não templo agora, mas dinastia.',
+    resumo:
+      'Davi não edificará casa a Deus; Deus edificará casa a Davi. O filho (Salomão) levantará o templo; o trono será estabelecido para sempre. Castigo há, se houver iniquidade, mas a misericórdia não se retirará como de Saul. Davi responde com oração de espanto: «Quem sou eu?» A aliança incondicional com a casa de Davi fundamenta a esperança messiânica (Sl 89; 132; Is 9; Lc 1:32–33).',
+    estrutura: [
+      '7:1–7 — desejo do templo; Deus nunca pediu casa',
+      '7:8–17 — oráculo: nome, semente, trono eterno',
+      '7:18–29 — oração de Davi',
+    ],
+    temas: ['Aliança davídica', 'Messias', 'Templo', 'Graça', 'Realeza'],
+    VersiculosChave: [
+      chave('2 Samuel 7:12–13', 'Levantarei a tua semente… e estabelecerei o trono do seu reino para sempre.', 'Salomão é o cumprimento próximo; Cristo, o definitivo.'),
+      chave('2 Samuel 7:16', 'A tua casa e o teu reino serão firmes para sempre.', 'A estabilidade não está no mérito de Davi, mas na palavra de Deus.'),
+    ],
+    significadoTeologico:
+      'A aliança davídica é o fio que liga o reino de Israel ao Filho de Davi. Atos 2 e 13 pregam a ressurreição como entronização dessa promessa.',
+    aplicacaoPratica:
+      'Deixe Deus definir o que você «edifica». Ore como Davi: surpresa grata, não barganha. Espere o Rei cujo trono não vacila.',
+    perguntasEstudo: [
+      'Por que Deus recusa o templo neste momento?',
+      'Como 7:14 («eu lhe serei por pai») se aplica a Salomão e a Cristo (Hb 1:5)?',
+      'O que 7:15 ensina sobre disciplina e rejeição?',
+    ],
+    fontes: ['2 Samuel 7', 'Salmo 89', 'Lucas 1:32–33', 'Atos 2:30–36', 'Hebreus 1:5'],
+  }),
+
+  'sl:119': ficha('sl', 119, 'A Torá como vida: o acróstico da Palavra', {
+    contextoHistorico:
+      'O maior salmo, acróstico de 22 estrofes (alíf a tav), 8 versos cada. Provavelmente pós-exílico ou do círculo sapiencial: a Lei é prazer, não fardo, no contexto em que a identidade de Israel se ancora na Escritura.',
+    resumo:
+      'O salmista ama os testemunhos, preceitos, estatutos, mandamentos, juízos e a Palavra — um vocabulário rico para a revelação. Inimigos, príncipes e o próprio desvio ameaçam; o refúgio é meditar. «Lâmpada para os meus pés» (v. 105) resume o ethos: a Escritura guia o passo, não só o horizonte. O poema ensina a orar a Bíblia, não apenas lê-la.',
+    estrutura: [
+      '22 estrofes alfabéticas (8 versos cada)',
+      'Temas recorrentes: amor à Lei, aflição, ensino, integridade',
+      'Clímax prático: v. 105; súplica final: v. 176 (ovelha desgarrada)',
+    ],
+    temas: ['Escritura', 'Meditação', 'Obediência', 'Aflição', 'Integridade'],
+    VersiculosChave: [
+      chave('Salmos 119:9', 'Como purificará o jovem o seu caminho? Observando-o conforme a tua palavra.', 'Santidade começa na Palavra interiorizada.'),
+      chave('Salmos 119:105', 'Lâmpada para os meus pés é tua palavra, e luz para o meu caminho.', 'Guia concreto, não abstrato.'),
+    ],
+    significadoTeologico:
+      'Jesus cumpre a Lei (Mt 5:17) e é a Palavra (Jo 1). O salmo não é legalismo: é amor à voz do Senhor. O Espírito escreve a Lei no coração (Jr 31; 2 Co 3).',
+    aplicacaoPratica:
+      'Memorize um verso da estrofe do dia. Ore o salmo quando a Bíblia parecer fria. Confesse o v. 176: volte como ovelha.',
+    perguntasEstudo: [
+      'Quantos sinônimos de «Palavra» o salmo usa — e o que cada um enfatiza?',
+      'Como o salmo equilibra amor à Lei e consciência do desvio (v. 176)?',
+      'De que modo 119:105 se distingue de um uso mágico da Bíblia?',
+    ],
+    fontes: ['Salmo 119', 'Deuteronômio 6', 'Jeremias 31:33', 'Mateus 5:17–18'],
+  }),
+
+  'is:9': ficha('is', 9, 'Um menino nos nasceu: luz em Galileia', {
+    contextoHistorico:
+      'Após as trevas de 8:22 e o juízo sobre o Norte (Zebulom e Naftali, devastados pela Assíria). Isaías anuncia virada: a mesma região humilhada verá grande luz. Contexto de Acaz/Ezequias e ameaça neoassíria (séc. VIII a.C.).',
+    resumo:
+      'O povo que andava em trevas viu grande luz. O jugo se quebra como no dia de Midiã. Nasce um menino; o governo está sobre os seus ombros. Quatro nomes: Maravilhoso Conselheiro, Deus Forte, Pai da Eternidade, Príncipe da Paz. O aumento do principado e a paz não terão fim sobre o trono de Davi, com juízo e justiça — o zelo do Senhor fará isso. Mateus 4:12–16 lê o cumprimento em Jesus na Galileia.',
+    estrutura: [
+      '9:1–5 — luz, júbilo, fim da opressão',
+      '9:6–7 — o menino, os nomes, o trono eterno',
+    ],
+    temas: ['Messias', 'Luz', 'Reino davídico', 'Paz', 'Galileia'],
+    VersiculosChave: [
+      chave('Isaías 9:2', 'O povo que andava em trevas viu uma grande luz.', 'A salvação irrompe onde o juízo tinha passado.'),
+      chave('Isaías 9:6', 'Um menino nos nasceu, um filho se nos deu.', 'A criança é o governo; a encarnação é o meio do reino.'),
+    ],
+    significadoTeologico:
+      'Os títulos atribuem ao menino funções divinas (Deus Forte) sem diluir a humanidade (nasceu). O zelo de YHWH, não o mérito de Judá, garante o trono.',
+    aplicacaoPratica:
+      'Leve luz a «Galileias» desprezadas. Adore o menino como Conselheiro e Príncipe. Recuse paz sem justiça.',
+    perguntasEstudo: [
+      'Como 9:1 inverte 8:22?',
+      'O que cada título de 9:6 afirma sobre o Messias?',
+      'Por que Mateus cita este texto no início do ministério na Galileia?',
+    ],
+    fontes: ['Isaías 9', 'Mateus 4:12–16', 'Lucas 1:32–33', '2 Samuel 7'],
+  }),
+
+  'mc:15': ficha('mc', 15, 'O Rei crucificado: paixão segundo Marcos', {
+    contextoHistorico:
+      'Jerusalém, sexta-feira da Páscoa, sob Pôncio Pilatos. Marcos, tradicionalmente ligado a Pedro em Roma, narra a paixão com sobriedade: pouco discurso, muitos fatos, o grito de abandono.',
+    resumo:
+      'O Sinédrio entrega Jesus a Pilatos. Barrabás é solto; o Rei dos Judeus é açoitado e escarnecido (púrpura, espinhos). Simão cireneu carrega a cruz. Crucificado às nove; trevas ao meio-dia; «Eloí, Eloí, lemá sabactâni» (Sl 22). O véu do templo se rasga; o centurião confessa: «Verdadeiramente este homem era Filho de Deus.» As mulheres observam. José de Arimateia sepulta. O Messias reina desde a cruz.',
+    estrutura: [
+      '15:1–15 — Pilatos, Barrabás, condenação',
+      '15:16–32 — escárnio, Gólgota, insultos',
+      '15:33–41 — trevas, grito, véu, centurião, mulheres',
+      '15:42–47 — sepultura',
+    ],
+    temas: ['Expiação', 'Realeza irônica', 'Abandono', 'Gentios', 'Sepultura'],
+    VersiculosChave: [
+      chave('Marcos 15:34', 'Deus meu, Deus meu, por que me desamparaste?', 'Jesus ora o Salmo 22: sofre o abandono que o pecador merecia, sem deixar de ser Filho.'),
+      chave('Marcos 15:39', 'Verdadeiramente este homem era Filho de Deus.', 'O primeiro humano a confessar assim no Evangelho é um soldado romano, ao pé da cruz.'),
+    ],
+    significadoTeologico:
+      'Marcos 10:45 («resgate de muitos») se cumpre aqui. Isaías 53 e o Salmo 22 são a gramática da paixão. A sepultura confirma a morte real; o cap. 16 anunciará a ressurreição.',
+    aplicacaoPratica:
+      'Contemple a cruz sem pressa. Recuse um cristianismo sem paixão. Confesse com o centurião. Sirva como as mulheres que não fugiram.',
+    perguntasEstudo: [
+      'Como o título «Rei dos Judeus» funciona como ironia verdadeira?',
+      'O que o véu rasgado significa (cf. Hb 10:19–20)?',
+      'Por que Marcos destaca as mulheres e o centurião?',
+    ],
+    fontes: ['Marcos 15', 'Salmo 22', 'Isaías 53', 'Marcos 10:45', 'Hebreus 10:19–20'],
+  }),
+
+  'lc:24': ficha('lc', 24, 'O sepulcro vazio e o caminho de Emaús', {
+    contextoHistorico:
+      'Domingo após a crucificação. Lucas, companheiro de Paulo, enfatiza cumprimento das Escrituras e refeições. Emaús (~11 km de Jerusalém) é palco da revelação no partir do pão.',
+    resumo:
+      'As mulheres acham a pedra removida; dois homens em vestes resplandecentes: «Por que buscais o vivente entre os mortos?» Pedro corre ao sepulcro. No caminho, Jesus explica Moisés e os Profetas; os corações ardem; reconhecem-no ao partir o pão. Aparece aos Onze: «Paz»; mostra as mãos e os pés; come peixe. Abre-lhes o entendimento. A missão: arrependimento e perdão a todas as nações, começando por Jerusalém. A bênção e a ascensão (ou o prelúdio de Atos 1) fecham o Evangelho em júbilo no templo.',
+    estrutura: [
+      '24:1–12 — sepulcro, anjos, Pedro',
+      '24:13–35 — Emaús: Escritura e pão',
+      '24:36–49 — aparição, comissão',
+      '24:50–53 — bênção, louvor',
+    ],
+    temas: ['Ressurreição', 'Escrituras', 'Ceia', 'Missão', 'Testemunho'],
+    VersiculosChave: [
+      chave('Lucas 24:27', 'Começando por Moisés, e por todos os profetas, explicava-lhes o que dele se achava em todas as Escrituras.', 'Cristologia bíblica: o Cristo ressuscitado é o intérprete do cânon.'),
+      chave('Lucas 24:32', 'Porventura não ardia em nós o nosso coração…?', 'A Palavra exposta aquece antes mesmo do reconhecimento visual.'),
+    ],
+    significadoTeologico:
+      'A ressurreição é corporal (peixe) e escriturística (Moisés e Profetas). A igreja nasce da Palavra aberta e da mesa. Atos continuará «tudo o que Jesus começou».',
+    aplicacaoPratica:
+      'Leia o AT em Cristo sem alegoria irresponsável. Parta o pão. Comece a missão em casa («Jerusalém») e não pare nas nações.',
+    perguntasEstudo: [
+      'Por que Jesus some ao ser reconhecido em Emaús?',
+      'O que 24:44–47 resume como conteúdo da pregação?',
+      'Como este capítulo liga Lucas e Atos?',
+    ],
+    fontes: ['Lucas 24', 'Isaías 53', 'Salmo 16', 'Atos 1:1–8'],
+  }),
+
+  'jo:20': ficha('jo', 20, 'O primeiro dia: Madalena, os discípulos e Tomé', {
+    contextoHistorico:
+      'Domingo da ressurreição, em Jerusalém. João (o discípulo amado) narra sinais para que creiais (20:31). O cap. 20 é o clímax epistêmico do Evangelho: ver, tocar, crer.',
+    resumo:
+      'Maria Madalena acha o sepulcro vazio; chama Pedro e o outro discípulo. Os lençóis e o lenço à parte. Maria chora; o «jardineiro» chama «Maria» — o Bom Pastor conhece as ovelhas pelo nome. «Não me detenhas»; vai aos irmãos. À tarde, portas cerradas: «Paz»; sopro: «Recebei o Espírito Santo». Tomé duvida; oito dias depois: «Meu Senhor e meu Deus!» Bem-aventurados os que não viram e creram. O livro declara o propósito: crer que Jesus é o Cristo, o Filho de Deus, e ter vida.',
+    estrutura: [
+      '20:1–10 — sepulcro vazio, corrida, fé do discípulo amado',
+      '20:11–18 — Madalena e o Mestre',
+      '20:19–23 — paz, Espírito, envio',
+      '20:24–31 — Tomé; propósito do livro',
+    ],
+    temas: ['Ressurreição', 'Fé', 'Espírito', 'Envio', 'Confissão'],
+    VersiculosChave: [
+      chave('João 20:28', 'Senhor meu, e Deus meu!', 'A confissão mais alta do Evangelho sai da dúvida vencida.'),
+      chave('João 20:31', 'Estes, porém, foram escritos para que creiais… e para que, crendo, tenhais vida.', 'O Evangelho não é biografia neutra: é convite à vida.'),
+    ],
+    significadoTeologico:
+      'O sopro (20:22) ecoa Gênesis 2:7: nova criação. A paz da cruz (19) torna-se paz da ressurreição. A fé sem visão (20:29) é a nossa condição.',
+    aplicacaoPratica:
+      'Leve a notícia como Madalena. Não envergonhe Tomé: traga-o à presença de Cristo. Leia João para crer e viver, não só para informar-se.',
+    perguntasEstudo: [
+      'O que os lençóis ordenados sugerem (vs. furto)?',
+      'Como 20:22 se relaciona com Pentecostes em Atos 2?',
+      'Por que 20:31 pode ser o «final» original antes do epílogo do cap. 21?',
+    ],
+    fontes: ['João 20', 'Gênesis 2:7', 'João 10:3', 'João 20:31'],
+  }),
+
+  'at:9': ficha('at', 9, 'Saulo no caminho: o perseguidor chamado', {
+    contextoHistorico:
+      'Saulo de Tarso, fariseu, com cartas do sumo sacerdote, vai a Damasco prender cristãos (c. 33–36 d.C.). Lucas narra três vezes a conversão (caps. 9, 22, 26): evento fundante da missão aos gentios.',
+    resumo:
+      'Luz do céu; voz: «Saulo, Saulo, por que me persegues?» Perseguir a igreja é perseguir a Cristo. Cegueira de três dias; Ananias, relutante, impõe as mãos: «irmão Saulo». Escamas caem; batismo. Prega em Damasco que Jesus é o Filho de Deus. Fuga no cesto; desconfiança em Jerusalém; Barnabé apresenta-o. A igreja tem paz e edificação na Judeia, Galileia e Samaria. Pedro cura Enéias e ressuscita Tabita — a missão continua nos dois pólos (Paulo e Pedro).',
+    estrutura: [
+      '9:1–9 — caminho, luz, cegueira',
+      '9:10–19 — Ananias, batismo',
+      '9:20–31 — pregação, fuga, Barnabé, paz da igreja',
+      '9:32–43 — Pedro em Lida e Jope',
+    ],
+    temas: ['Conversão', 'Graça', 'Igreja como corpo de Cristo', 'Chamado apostólico', 'Missão'],
+    VersiculosChave: [
+      chave('Atos 9:4–5', 'Por que me persegues? … Eu sou Jesus, a quem tu persegues.', 'União mística: o Cabeça sofre no corpo.'),
+      chave('Atos 9:15', 'Este é para mim um vaso escolhido, para levar o meu nome diante dos gentios.', 'O perseguidor torna-se apóstolo pela eleição, não pelo currículo.'),
+    ],
+    significadoTeologico:
+      'A graça interrompe o mérito. Gálatas 1 confirma: o evangelho de Paulo é revelação, não invenção. A igreja deve receber o inimigo convertido (Ananias, Barnabé).',
+    aplicacaoPratica:
+      'Não desespere de ninguém. Obedeça como Ananias mesmo com medo. Apresente convertidos à comunidade como Barnabé. Pregue o Filho de Deus.',
+    perguntasEstudo: [
+      'O que muda entre as três narrações (9, 22, 26)?',
+      'Como 9:4 informa a eclesiologia?',
+      'Por que Lucas junta Paulo e Pedro no mesmo capítulo?',
+    ],
+    fontes: ['Atos 9', 'Atos 22', 'Atos 26', 'Gálatas 1:11–24', '1 Timóteo 1:12–16'],
+  }),
+
+  'gl:3': ficha('gl', 3, 'A fé de Abraão contra as obras da Lei', {
+    contextoHistorico:
+      'Igrejas da Galácia, pressionadas por «judaizantes» a circuncidar-se para ser povo pleno. Paulo escreve com urgência (c. 48–55 d.C.): o evangelho da justificação pela fé está em jogo.',
+    resumo:
+      '«Ó insensatos galatas!» Recebestes o Espírito por obras ou pela pregação da fé? Abraão creu e lhe foi imputado como justiça (Gn 15:6). Os da fé são filhos de Abraão; a Escritura previu a justificação dos gentios. Quem está sob obras está sob maldição (Dt 27:26); Cristo nos resgatou, fazendo-se maldição (Dt 21:23). A Lei veio 430 anos depois da promessa e não a anula. Foi pedagogo até Cristo. Em Cristo não há judeu nem grego, escravo nem livre, homem nem mulher: todos um, semente de Abraão, herdeiros segundo a promessa.',
+    estrutura: [
+      '3:1–14 — Espírito, Abraão, maldição, cruz',
+      '3:15–22 — testamento, 430 anos, mediador',
+      '3:23–29 — pedagogo, filhos, unidade',
+    ],
+    temas: ['Justificação', 'Promessa', 'Lei', 'Espírito', 'Unidade em Cristo'],
+    VersiculosChave: [
+      chave('Gálatas 3:13', 'Cristo nos resgatou da maldição da lei, fazendo-se maldição por nós.', 'Substituição penal nas Escrituras da própria Lei.'),
+      chave('Gálatas 3:28', 'Todos vós sois um em Cristo Jesus.', 'A igualdade evangélica não apaga a criação; apaga a hierarquia soteriológica.'),
+    ],
+    significadoTeologico:
+      'A cronologia (promessa → Lei → Cristo) impede que a Lei seja caminho de justificação. O Espírito é evidência da fé, não prêmio das obras. Romanos 4 desenvolve o mesmo Abraão.',
+    aplicacaoPratica:
+      'Não complete a graça com desempenho. Receba gentios (e «impuros») como herdeiros. Viva a unidade batismal contra racismo e soberba espiritual.',
+    perguntasEstudo: [
+      'Como Gn 15:6 e Gn 12:3 sustentam o argumento?',
+      'O que significa a Lei como «pedagogo» — e o que não significa?',
+      'Como 3:28 se relaciona com 3:16 (a semente é Cristo)?',
+    ],
+    fontes: ['Gálatas 3', 'Gênesis 12:3', 'Gênesis 15:6', 'Deuteronômio 27:26', 'Romanos 4'],
+  }),
+
+  'hb:1': ficha('hb', 1, 'O Filho acima dos anjos: a revelação final', {
+    contextoHistorico:
+      'Sermão-epístola a crentes hebreus tentados a voltar ao culto angélico/levítico visível. O cap. 1 estabelece a superioridade do Filho por uma cadeia de citações do AT (Salmos, 2 Samuel 7, Deuteronômio).',
+    resumo:
+      'Deus falou muitas vezes pelos profetas; nestes últimos dias, pelo Filho — herdeiro, criador, resplendor da glória, expressão do Ser, sustentador, purificador de pecados, assentado à direita. Superior aos anjos: nome mais excelente. Sete citações: «Tu és meu Filho»; adoração dos anjos; trono eterno; Deus chama o Filho de Deus; os céus se envelhecem, o Filho permanece. Os anjos são ministros; o Filho reina.',
+    estrutura: [
+      '1:1–4 — prólogo: revelação, pessoa e obra do Filho',
+      '1:5–14 — catena de Escrituras contra a angelolatria',
+    ],
+    temas: ['Cristologia', 'Revelação', 'Anjos', 'Trono', 'Expiação'],
+    VersiculosChave: [
+      chave('Hebreus 1:1–2', 'Havendo Deus antigamente falado… nestes últimos dias nos falou pelo Filho.', 'A revelação é progressiva e culmina em Cristo; não há um «terceiro testamento».'),
+      chave('Hebreus 1:3', 'Havendo feito por si mesmo a purificação dos nossos pecados, assentou-se.', 'Sacerdote e Rei: a obra está consumada; o trono é consequente.'),
+    ],
+    significadoTeologico:
+      'A cristologia de Hebreus 1 é nicena avant la lettre: o Filho é Deus (1:8) e distinto do Pai. A criação e a providência passam por Ele. O cap. 2 dirá: por um pouco menor que os anjos — na encarnação.',
+    aplicacaoPratica:
+      'Ouça o Filho mais que vozes religiosas espetaculares. Adore-O, não anjos nem mestres. Descanse na purificação já feita.',
+    perguntasEstudo: [
+      'Como 1:1–4 resume todo o livro?',
+      'Por que o autor insiste tanto nos anjos?',
+      'Como 1:8–12 usa os Salmos 45 e 102?',
+    ],
+    fontes: ['Hebreus 1', 'Salmo 2', 'Salmo 45', 'Salmo 102', 'Salmo 110', '2 Samuel 7:14'],
+  }),
+
+  '1pe:1': ficha('1pe', 1, 'Esperança viva no meio do fogo', {
+    contextoHistorico:
+      'Pedro escreve a eleitos da Dispersão (Ponto, Galácia, Capadócia, Ásia, Bitínia), provavelmente no império de Nero, sob pressão social e ameaça de sofrimento por causa do Nome.',
+    resumo:
+      'Eleitos segundo a presciência, santificação do Espírito, aspersão do sangue. Bênção ao Deus que nos regenerou para uma esperança viva, pela ressurreição, para herança incorruptível, guardada nos céus; vós sois guardados pelo poder de Deus. O sofrimento prova a fé, mais preciosa que o ouro. Ama-se a Jesus sem O ter visto. Os profetas investigaram esta salvação; os anjos anelam contemplá-la. Portanto: cingi o entendimento, sede santos, andai em temor, tendo sido resgatados não com ouro, mas com o sangue precioso de Cristo, cordeiro sem defeito, manifesto no fim dos tempos. Purificai-vos no amor fraternal, nascidos da Palavra que permanece.',
+    estrutura: [
+      '1:1–12 — eleição, esperança, sofrimento, salvação anunciada',
+      '1:13–21 — santidade, temor, resgate',
+      '1:22–25 — amor, Palavra imperecível',
+    ],
+    temas: ['Esperança', 'Sofrimento', 'Santidade', 'Resgate', 'Palavra'],
+    VersiculosChave: [
+      chave('1 Pedro 1:3–4', 'Nos gerou de novo para uma viva esperança… para uma herança incorruptível.', 'A esperança cristã é tão viva quanto o Cristo ressurreto.'),
+      chave('1 Pedro 1:18–19', 'Fostes resgatados… com o precioso sangue de Cristo.', 'Isaías 53 e o êxodo (cordeiro) interpretam a cruz.'),
+    ],
+    significadoTeologico:
+      'Soteriologia trinitária (1:2). A peregrinação (diáspora) é identidade: não somos de casa neste século. A Palavra (Is 40) permanece quando impérios passam.',
+    aplicacaoPratica:
+      'Cingi a mente na graça, não no pânico. Sede santos no endereço pagão. Amai os irmãos de verdade. Estime a Bíblia mais que o ouro que perece.',
+    perguntasEstudo: [
+      'Como 1:6–7 reinterpreta o sofrimento sem romantizá-lo?',
+      'O que 1:10–12 ensina sobre o AT e o evangelho?',
+      'Como 1:23–25 liga novo nascimento e pregação?',
+    ],
+    fontes: ['1 Pedro 1', 'Isaías 40:6–8', 'Isaías 53', 'Êxodo 12', 'Levítico 19:2'],
+  }),
 };
 

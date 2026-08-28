@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Layers, FileText, Download, BookMarked, Play, Settings, Volume2, Users } from 'lucide-react';
+import { Layers, FileText, Download, BookMarked, Play, Settings, Volume2, Users, Compass } from 'lucide-react';
+import { hrefGuia } from '@/lib/bibliaHref';
 import { cn } from '@/lib/utils';
 import type { CapituloComparado } from '@/data/biblia';
 
@@ -42,7 +43,7 @@ interface ToolsDropdownProps {
 }
 
 export function ToolsDropdown({
-  open, onToggle, onClose, hasDramatica, onNotas, onExportPdf, onPlanoLeitura,
+  open, onToggle, onClose, bookName, chapter, hasDramatica, onNotas, onExportPdf, onPlanoLeitura,
   onNarracaoDramatica, onNarrarCapitulo, onConfiguracoes,
 }: ToolsDropdownProps) {
   const btnRef = useRef<HTMLButtonElement>(null);
@@ -77,6 +78,7 @@ export function ToolsDropdown({
         <ToolItem icon={Volume2} label="Narrar Capítulo" onClick={onNarrarCapitulo} />
         <div className="my-1 h-px bg-[var(--border)]/40" />
         <ToolItem icon={Users} label="Estudo Colaborativo" onClick={() => { window.location.href = '/estudo-colaborativo'; }} />
+        <ToolItem icon={Compass} label="Guia da passagem" onClick={() => { window.location.href = hrefGuia(bookName, chapter); }} />
         <ToolItem icon={Settings} label="Configurações" onClick={onConfiguracoes} />
       </div>
     </>,

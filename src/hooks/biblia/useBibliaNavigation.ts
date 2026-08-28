@@ -8,6 +8,7 @@ import type { CapituloComparado } from '@/data/biblia/texto/carregar';
 import { obterCapituloMulti, carregarTraducao, carregarTraducaoSync } from '@/data/biblia/texto/carregar';
 import { isOnline, cacheChapter, getCachedChapter, getCachedChapterDB } from '@/lib/offline';
 import { recordReading, getStats } from '@/lib/estatisticas';
+import { markChapterRead } from '@/lib/readingProgress';
 import { useChapterPrefetch } from '@/hooks/useChapterPrefetch';
 
 type ViewMode = 'single' | 'parallel' | 'comparison';
@@ -120,6 +121,7 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
         setLoading(false);
         if (!versiculoAlvo) mainRef.current?.scrollTo({ top: 0 });
         recordReading(livroAbrev, cap);
+        markChapterRead(livroAbrev, cap);
         setStatsData(getStats());
         requestIdleCallback(() => { prefetchAdjacent(livroAbrev, cap); });
         return;
@@ -149,6 +151,7 @@ export function UseBibliaNavigation(): UseBibliaNavigationReturn {
             cacheChapter(livroAbrev, cap, item.traducao, item.versiculos.map(v => v.texto));
           }
           recordReading(livroAbrev, cap);
+        markChapterRead(livroAbrev, cap);
           setStatsData(getStats());
           if (!versiculoAlvo) mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
         }

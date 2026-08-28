@@ -63,6 +63,8 @@ const NAV_COMMANDS: { label: string; href: string; icon: typeof BookOpen; grupo:
   { label: 'Teologia Sistemática', href: '/teologia', icon: Church, grupo: 'Páginas' },
   { label: 'Biblioteca — Clássicos da Fé', href: '/biblioteca', icon: BookOpen, grupo: 'Páginas' },
   { label: 'Estudos', href: '/estudos', icon: FileText, grupo: 'Páginas' },
+  { label: 'Guia da passagem', href: '/guia', icon: Compass, grupo: 'Páginas' },
+  { label: 'Histórico de leitura', href: '/historico', icon: History, grupo: 'Páginas' },
   { label: 'Línguas Originais', href: '/idiomas', icon: Brain, grupo: 'Páginas' },
   { label: 'Exegese', href: '/exegese', icon: BookOpen, grupo: 'Páginas' },
   { label: 'História Bíblica', href: '/historia', icon: History, grupo: 'Páginas' },

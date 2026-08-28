@@ -96,7 +96,7 @@ export function UseBibliaVerse({
       const livroNome = livroInfo?.nome || livro;
       setVersiculoSelecionado({ livro, livroNome, livroAbreviacao: livro, capitulo: cap, versiculo: ver, traducao, texto });
       if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
-        setSidePanelTab('comentarios');
+        setSidePanelTab('estudos');
         setSidePanelWidth('half');
       } else {
         onOpenStudy?.();

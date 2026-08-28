@@ -66,6 +66,7 @@ function BottomNavBarInner() {
         { href: '/referencias', label: t('bottomBar.references'), icon: GitBranch },
         { href: '/harmonia', label: t('bottomBar.harmony', 'Harmonia'), icon: GitBranch },
         { href: '/comparar', label: t('bottomBar.compare', 'Comparar'), icon: BookOpen },
+        { href: '/pesquisa', label: t('bottomBar.search', 'Pesquisa'), icon: Search },
       ],
     },
     {
@@ -219,7 +220,7 @@ function BottomNavBarInner() {
       {/* Barra inferior — Premium iOS-style */}
       <nav
         aria-label={t('header.mobileNav')}
-        className={`fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300 md:hidden ${hidden ? 'translate-y-full' : 'translate-y-0'}`}
+        className={`ssb-bottom-nav fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300 md:hidden ${hidden ? 'translate-y-full' : 'translate-y-0'}`}
         style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
       >
         <div className="relative border-t border-border/80 bg-background/90 backdrop-blur-xl">

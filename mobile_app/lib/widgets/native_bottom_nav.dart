@@ -32,8 +32,8 @@ class NativeBottomNav extends StatelessWidget {
             children: [
               _buildNavItem(0, Icons.home_rounded, 'Início'),
               _buildNavItem(1, Icons.menu_book_rounded, 'Bíblia'),
-              _buildNavItem(2, Icons.search_rounded, 'Pesquisa'),
-              _buildNavItem(3, Icons.more_horiz_rounded, 'Mais'),
+              _buildNavItem(2, Icons.school_rounded, 'Estudar'),
+              _buildNavItem(3, Icons.auto_stories_rounded, 'Biblioteca'),
             ],
           ),
         ),

@@ -449,7 +449,7 @@ export function BibleVerseList({
                     ui.setEstudoCapituloAberto(true);
                     ui.setModoExibicao('versiculo', { persist: false });
                     panels.setSidePanelWidth('half');
-                    panels.setSidePanelTab('comentarios');
+                    panels.setSidePanelTab('estudos');
                   }}
                   className="text-[12px] tracking-wide text-[var(--content-muted)] hover:text-[var(--brand-default)] underline-offset-4 hover:underline"
                 >

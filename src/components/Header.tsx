@@ -64,6 +64,8 @@ const maisGrupos: NavGroup[] = [
       { href: '/historico', label: 'header.readingHistory', icon: History },
       { href: '/comparar', label: 'header.compareTranslations', icon: Languages },
       { href: '/comparar-comentarios', label: 'header.commentaries', icon: MessageCircle },
+      { href: '/pesquisa', label: 'nav.search', icon: Search },
+      { href: '/idiomas', label: 'nav.languages', icon: Languages },
     ],
   },
 ];

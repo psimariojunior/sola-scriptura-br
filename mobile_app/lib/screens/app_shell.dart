@@ -11,6 +11,7 @@ import '../services/connectivity_service.dart';
 import '../widgets/offline_banner.dart';
 import '../widgets/loading_indicator.dart';
 import '../bridges/js_bridge.dart';
+import '../widgets/native_bottom_nav.dart';
 
 class AppShell extends StatefulWidget {
   final WebViewService webViewService;
@@ -31,8 +32,11 @@ class _AppShellState extends State<AppShell> {
   bool _isLoading = true;
   bool _hasError = false;
   DateTime? _lastBackPress;
+  int _navIndex = 0;
 
   late final ConnectivityService _connectivity;
+
+  static const _navPaths = ['/', '/biblia', '/estudar', '/biblioteca'];
 
   @override
   void initState() {
@@ -72,6 +76,7 @@ class _AppShellState extends State<AppShell> {
         setState(() {
           _isLoading = false;
           _hasError = false;
+          _navIndex = _indexForUrl(url);
         });
         JsBridge.injectPerformanceOptimizations(widget.webViewService.controller);
         JsBridge.injectOfflineSupport(widget.webViewService.controller);
@@ -181,6 +186,22 @@ class _AppShellState extends State<AppShell> {
     return true;
   }
 
+  int _indexForUrl(String url) {
+    final path = Uri.tryParse(url)?.path ?? '';
+    if (path.startsWith('/biblia')) return 1;
+    if (path.startsWith('/estudar') || path.startsWith('/pesquisa') || path.startsWith('/teologia') || path.startsWith('/guia')) return 2;
+    if (path.startsWith('/biblioteca')) return 3;
+    if (path == '/' || path.isEmpty) return 0;
+    return _navIndex;
+  }
+
+  void _onNavTap(int index) {
+    if (index == _navIndex) return;
+    setState(() => _navIndex = index);
+    final url = '${AppConstants.baseUrl}${_navPaths[index]}';
+    widget.webViewService.loadUrl(url);
+  }
+
   void _retry() {
     setState(() {
       _hasError = false;
@@ -256,6 +277,10 @@ class _AppShellState extends State<AppShell> {
                 ),
               ),
           ],
+        ),
+        bottomNavigationBar: NativeBottomNav(
+          currentIndex: _navIndex,
+          onTap: _onNavTap,
         ),
       ),
     );

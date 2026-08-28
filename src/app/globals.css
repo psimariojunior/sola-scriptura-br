@@ -3006,6 +3006,14 @@ textarea:focus-visible,
   }
 }
 
+/* App Flutter: a barra nativa substitui só o chrome inferior — as páginas continuam todas acessíveis */
+html.ssb-native-app {
+  --mobile-nav-height: 0px;
+}
+html.ssb-native-app .ssb-bottom-nav {
+  display: none !important;
+}
+
 /* Touch target minimo para botoes de icone (WCAG 2.5.5) */
 .touch-target {
   min-height: 44px;

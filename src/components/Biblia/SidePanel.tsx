@@ -15,6 +15,10 @@ const PainelStrong = dynamic(() => import('@/components/PainelStrong'), { ssr: f
 const PainelNotas = dynamic(() => import('@/components/PainelNotas'), { ssr: false });
 const PainelComentarios = dynamic(() => import('@/components/PainelComentarios'), { ssr: false });
 const PainelEstudosSidePanel = dynamic(() => import('@/components/PainelEstudosSidePanel'), { ssr: false });
+const EstudoUnificado = dynamic(
+  () => import('@/components/Biblia/EstudoUnificado').then((m) => ({ default: m.EstudoUnificado })),
+  { ssr: false },
+);
 const CrossReferencePanel = dynamic(() => import('@/components/Biblia/CrossReferencePanel'), { ssr: false });
 
 type TabValue = 'comentarios' | 'strong' | 'notas' | 'estudos' | 'contexto' | 'referencias';
@@ -38,11 +42,11 @@ export interface SidePanelProps {
 }
 
 const tabs: { value: TabValue; label: string; icon: typeof BookOpen }[] = [
+  { value: 'estudos', label: 'Estudo', icon: GraduationCap },
   { value: 'comentarios', label: 'Comentários', icon: MessageSquare },
   { value: 'strong', label: 'Léxico', icon: BookText },
-  { value: 'notas', label: 'Notas', icon: StickyNote },
-  { value: 'estudos', label: 'Estudos', icon: GraduationCap },
   { value: 'referencias', label: 'Ref. Cruzadas', icon: Link2 },
+  { value: 'notas', label: 'Notas', icon: StickyNote },
   { value: 'contexto', label: 'Contexto', icon: History },
 ];
 
@@ -357,19 +361,16 @@ export function SidePanel({
                     ) : activeTab === 'notas' ? (
                       <PainelNotas livroAbrev={livroAbreviacao} capitulo={capitulo} />
                     ) : activeTab === 'estudos' ? (
-                      versiculo ? (
-                        <PainelEstudosSidePanel
-                          livro={livroAbreviacao}
-                          capitulo={capitulo}
-                          versiculo={versiculo}
-                        />
-                      ) : (
-                        <EmptyPanel
-                          icon={GraduationCap}
-                          title="Estudos"
-                          description="Selecione um versículo para ver os estudos teológicos com visões de múltiplos teólogos."
-                        />
-                      )
+                      <div className="space-y-4">
+                        <EstudoUnificado livro={livroAbreviacao} capitulo={capitulo} versiculo={versiculo} />
+                        {versiculo ? (
+                          <PainelEstudosSidePanel
+                            livro={livroAbreviacao}
+                            capitulo={capitulo}
+                            versiculo={versiculo}
+                          />
+                        ) : null}
+                      </div>
                     ) : activeTab === 'contexto' ? (
                       <PainelContexto livro={livroAbreviacao} capitulo={capitulo} />
                     ) : activeTab === 'referencias' ? (
@@ -602,19 +603,16 @@ export function SidePanel({
                 ) : activeTab === 'notas' ? (
                   <PainelNotas livroAbrev={livroAbreviacao} capitulo={capitulo} />
                 ) : activeTab === 'estudos' ? (
-                  versiculo ? (
-                    <PainelEstudosSidePanel
-                      livro={livroAbreviacao}
-                      capitulo={capitulo}
-                      versiculo={versiculo}
-                    />
-                  ) : (
-                    <EmptyPanel
-                      icon={GraduationCap}
-                      title="Estudos"
-                      description="Selecione um versículo para ver os estudos teológicos com visões de múltiplos teólogos."
-                    />
-                  )
+                  <div className="space-y-4">
+                    <EstudoUnificado livro={livroAbreviacao} capitulo={capitulo} versiculo={versiculo} />
+                    {versiculo ? (
+                      <PainelEstudosSidePanel
+                        livro={livroAbreviacao}
+                        capitulo={capitulo}
+                        versiculo={versiculo}
+                      />
+                    ) : null}
+                  </div>
                 ) : activeTab === 'contexto' ? (
                   <PainelContexto livro={livroAbreviacao} capitulo={capitulo} />
                 ) : activeTab === 'referencias' ? (

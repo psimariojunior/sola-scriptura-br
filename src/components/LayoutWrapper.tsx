@@ -25,6 +25,7 @@ import '@/lib/i18n';
 
 const MobilePerformanceMonitor = lazy(() => import('@/components/MobilePerformanceMonitor'));
 const BottomNavBar = lazy(() => import('@/components/BottomNavBar'));
+const InstallBanner = lazy(() => import('@/components/InstallBanner'));
 const AccessibilityPanel = lazy(() => import('@/components/AccessibilityPanel').then(m => ({ default: m.AccessibilityPanel })));
 const PerformanceMonitor = lazy(() => import('@/components/PerformanceMonitor').then(m => ({ default: m.PerformanceMonitor })));
 const FloatingActionButton = lazy(() => import('@/components/FloatingActionButton').then(m => ({ default: m.FloatingActionButton })));
@@ -187,6 +188,9 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               </Suspense>
               <Suspense fallback={<div className="fixed bottom-0 left-0 right-0 h-16 bg-[var(--surface-raised)] border-t border-[var(--border)] sm:hidden" />}>
                 <BottomNavBar />
+              </Suspense>
+              <Suspense fallback={null}>
+                <InstallBanner />
               </Suspense>
               <Suspense fallback={null}>
                 <AIPainelLateral />

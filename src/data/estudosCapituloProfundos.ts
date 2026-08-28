@@ -1407,5 +1407,383 @@ export const estudosCapituloProfundos: Record<string, EstudoCapitulo> = {
     ],
     fontes: ['1 Pedro 1', 'Isaías 40:6–8', 'Isaías 53', 'Êxodo 12', 'Levítico 19:2'],
   }),
+
+  'gn:6': ficha('gn', 6, 'A corrupção da terra e a arca da graça', {
+    contextoHistorico:
+      'As genealogias de Gn 5 desembocam na violência (ḥamas) que enche a terra. No antigo Oriente, dilúvios aparecem em mitos (Gilgamesh); Gênesis afirma juízo moral de um Deus santo, não capricho de deuses rivais.',
+    resumo:
+      'A maldade humana é grande; o Senhor se arrepende de ter feito o homem — linguagem de dor da aliança, não de surpresa. Noé acha graça. A arca é salvação no juízo: madeira, medidas, um só acesso. Hebreus 11:7 lê a fé que condena o mundo; 1 Pedro 3:20–21 vê o batismo à sombra da arca. O dilúvio não é o fim da criação: é limpeza rumo a uma nova terra com aliança.',
+    estrutura: ['6:1–8 — corrupção e graça', '6:9–22 — Noé justo; ordem da arca'],
+    temas: ['Juízo', 'Graça', 'Aliança', 'Fé', 'Violência'],
+    VersiculosChave: [
+      chave('Gênesis 6:5–8', 'Viu o Senhor que a maldade do homem se havia multiplicado… Noé, porém, achou graça.', 'O diagnóstico é total; a salvação começa com graça, não mérito.'),
+      chave('Gênesis 6:18', 'Contigo, porém, estabelecerei a minha aliança.', 'Antes da chuva, Deus promete: o juízo não anula a fidelidade.'),
+    ],
+    significadoTeologico:
+      'Pecado é relacional e social (violência), não só privado. A arca prefigura Cristo: um só caminho, segurança no juízo (1 Pe 3:21). Calvino: Deus “arrepende-se” à maneira humana para nos ensinar a gravidade do pecado.',
+    palavrasOriginais: ['חָמָס (ḥamas)', 'חֵן (ḥen, graça)', 'תֵּבָה (tevah, arca)'],
+    aplicacaoPratica:
+      'Leve a sério a violência e a corrupção. A graça não nega o juízo: prepara um povo para atravessá-lo. Construa “arca” de obediência quando o mundo zomba.',
+    perguntasEstudo: [
+      'O que 6:5 afirma sobre o coração humano — e o que 6:8 afirma sobre Deus?',
+      'Como Hb 11:7 e 1 Pe 3:20–21 leem a arca?',
+      'Que diferença há entre mito de dilúvio pagão e a teologia de Gênesis?',
+    ],
+    fontes: ['Gênesis 6', 'Hebreus 11:7', '1 Pedro 3:20–21', 'Comentário de Calvino a Gênesis'],
+  }),
+
+  'ex:14': ficha('ex', 14, 'O mar se abre: êxodo e batismo', {
+    contextoHistorico:
+      'O êxodo é o evento fundante de Israel. Faraó muda de ideia; o povo fica entre o mar e o exército. O Senhor peleja; Israel só precisa estar quieto (14:14).',
+    resumo:
+      'Deus endurece o coração de Faraó para glória do Nome. A coluna de nuvem separa; Moisés estende a vara; o mar se rasga. Israel passa a pé enxuto; o Egito se afoga. O cântico do cap. 15 interpreta: o Senhor é guerreiro. Paulo: “todos foram batizados em Moisés, na nuvem e no mar” (1 Co 10:1–2). Apocalipse 15 canta o cântico de Moisés e do Cordeiro.',
+    estrutura: ['14:1–14 — terror e “o Senhor pelejará”', '14:15–31 — passagem e juízo no mar'],
+    temas: ['Libertação', 'Batismo', 'Soberania', 'Fé', 'Juízo'],
+    VersiculosChave: [
+      chave('Êxodo 14:13–14', 'Não temais… o Senhor pelejará por vós, e vos calareis.', 'Salvação é obra de Deus; o povo contempla.'),
+      chave('Êxodo 14:31', 'Temeu o povo ao Senhor e creu no Senhor e em Moisés.', 'O milagre gera fé e reconhece o mediador.'),
+    ],
+    significadoTeologico:
+      'O êxodo define redenção: escravidão → sangue (páscoa) → água (mar) → aliança (Sinai). O NT lê a travessia como tipo do batismo e da vitória de Cristo sobre “Egito”.',
+    palavrasOriginais: ['יָשַׁע (yasha, salvar)', 'גָּאַל (gaal, resgatar)'],
+    aplicacaoPratica:
+      'Quando o mar está à frente e Faraó atrás, a fé olha para o mediador. Não volte ao Egito. Lembre o batismo: você já atravessou com Cristo.',
+    perguntasEstudo: [
+      'Como 14:14 corrige tanto o ativismo quanto o desespero?',
+      'De que modo 1 Co 10:1–4 liga o mar a Cristo?',
+      'Por que o cântico (cap. 15) é teologia, não só emoção?',
+    ],
+    fontes: ['Êxodo 14–15', '1 Coríntios 10:1–4', 'Apocalipse 15:3'],
+  }),
+
+  'sl:2': ficha('sl', 2, 'O Rei no Sião e as nações em fúria', {
+    contextoHistorico:
+      'Salmo real da entronização em Sião. Atos 4:25–28 aplica à cruz: Herodes, Pilatos e as nações contra o Ungido — e Deus cumpre o decreto.',
+    resumo:
+      'Por que se amotinam as nações? O Senhor ri e instala o Rei no santo monte. “Tu és meu Filho; eu hoje te gerei” (2:7) é citado em Hb 1:5 e At 13:33 sobre a ressurreição. O convite final: beijai o Filho, para que não se ire. Messianismo davídico explode em cristologia.',
+    estrutura: ['2:1–3 — conspiração', '2:4–9 — decreto do Filho', '2:10–12 — chamado aos reis'],
+    temas: ['Messias', 'Reino', 'Filho', 'Nações', 'Juízo e graça'],
+    VersiculosChave: [
+      chave('Salmos 2:7', 'Tu és meu Filho; eu hoje te gerei.', 'O NT lê a ressurreição/entronização de Jesus neste verso.'),
+      chave('Salmos 2:12', 'Beijai o Filho… bem-aventurados todos os que nele se refugiam.', 'Refúgio e juízo no mesmo Rei.'),
+    ],
+    significadoTeologico:
+      'O messianismo não é espiritualização vaga: é o Filho entronizado. A missão às nações (Mt 28) cumpre o “herança até os fins da terra”.',
+    palavrasOriginais: ['מָשִׁיחַ (mashiach)', 'בַּר (bar, filho)'],
+    aplicacaoPratica:
+      'Não tema o motim cultural. Pregue o Filho. Refugie-se nele; não “beije” ídolos políticos como salvadores últimos.',
+    perguntasEstudo: [
+      'Como Atos 4 usa o Sl 2 na cruz?',
+      'O que “hoje te gerei” significa no NT?',
+      'Como 2:8 fundamenta a missão?',
+    ],
+    fontes: ['Salmos 2', 'Atos 4:25–28', 'Atos 13:33', 'Hebreus 1:5'],
+  }),
+
+  'sl:8': ficha('sl', 8, 'O que é o homem, para que dele te lembres?', {
+    contextoHistorico:
+      'Hino de criação. Hebreus 2:6–9 aplica a Cristo: o homem ainda não vê tudo sujeito, mas vemos Jesus coroado de glória por causa da morte.',
+    resumo:
+      'A majestade do Nome nos céus relativiza o homem — e depois o exalta: pouco menor que os anjos, domínio sobre as obras das mãos. A tensão “pequeno / coroado” só se resolve no último Adão. Crianças e lactentes calamm o adversário (8:2; Mt 21:16).',
+    estrutura: ['8:1–2 — Nome e boca das crianças', '8:3–8 — homem e domínio', '8:9 — refrão'],
+    temas: ['Criação', 'Imago Dei', 'Cristo', 'Doxologia'],
+    VersiculosChave: [
+      chave('Salmos 8:4–6', 'Que é o homem… coroaste-o de honra e glória.', 'Gn 1:26–28 em forma de oração; Hb 2 lê Cristo.'),
+    ],
+    significadoTeologico:
+      'Antropologia bíblica: o homem não é o centro do cosmos, mas é vice-regente. Sem Cristo, o domínio vira exploração; nele, é mordomia restaurada.',
+    palavrasOriginais: ['אֱנוֹשׁ (enosh)', 'כָּבוֹד (kavod)'],
+    aplicacaoPratica:
+      'Adore antes de governar. Trate o próximo como coroado — não como recurso. Leia a ciência como livro da criação, não como ídolo.',
+    perguntasEstudo: [
+      'Como Hb 2 muda a leitura de “ainda não vemos”?',
+      'O que 8:2 ensina sobre louvor frágil?',
+      'Como o domínio de Gn 1 se relaciona com a crise ecológica sem cair em panteísmo?',
+    ],
+    fontes: ['Salmos 8', 'Gênesis 1:26–28', 'Hebreus 2:5–9', 'Mateus 21:16'],
+  }),
+
+  'is:40': ficha('is', 40, 'Consolai o meu povo: a Palavra que permanece', {
+    contextoHistorico:
+      'Abre o “Livro da Consolação” (Is 40–55), falando a exilados em Babilônia. O Deus de Israel não perdeu para Marduque: ele mede as águas na concha da mão.',
+    resumo:
+      'Uma voz no deserto: preparai o caminho (João Batista, Mc 1:3). Toda carne é erva; a Palavra do nosso Deus permanece para sempre (1 Pe 1:24–25). O Senhor carrega os cordeiros e não se cansa. Os ídolos são nada. Esperar no Senhor renova as forças como águias.',
+    estrutura: ['40:1–11 — consolo e o Bom Pastor', '40:12–26 — Deus incomparável', '40:27–31 — os que esperam'],
+    temas: ['Consolo', 'Palavra', 'Criador', 'Esperança', 'Ídolos'],
+    VersiculosChave: [
+      chave('Isaías 40:8', 'Seca-se a erva… a palavra de nosso Deus permanece eternamente.', '1 Pedro aplica à pregação do evangelho.'),
+      chave('Isaías 40:31', 'Os que esperam no Senhor renovarão as suas forças.', 'Esperar não é passividade: é fé que corre sem cansar.'),
+    ],
+    significadoTeologico:
+      'Teologia do exílio: Deus não está preso ao templo destruído. A Palavra cria futuro. O Servo (caps. 42–53) será o consolo encarnado.',
+    palavrasOriginais: ['נָחַם (naḥam, consolar)', 'דָּבָר (davar)'],
+    aplicacaoPratica:
+      'Consolo verdadeiro começa com pecado perdoado (40:2), não com otimismo. Pregue a Palavra que não murcha. Espere — e voe.',
+    perguntasEstudo: [
+      'Como os evangelhos leem 40:3?',
+      'Por que 40:8 é âncora contra impérios?',
+      'Qual a diferença entre esperar e resignar-se?',
+    ],
+    fontes: ['Isaías 40', 'Marcos 1:2–3', '1 Pedro 1:24–25'],
+  }),
+
+  'ez:37': ficha('ez', 37, 'Ossos secos e as duas varas: ressurreição e união', {
+    contextoHistorico:
+      'Exílio babilônico: Israel se sente morto como vale de ossos. Ezequiel, sacerdote-profeta, vê o Espírito (ruach = sopro/vento/espírito) três vezes.',
+    resumo:
+      'Pode viver esta ossada? O profeta prega; ossos se ajuntam; sopro entra. A visão é restauração nacional e, no cânon, antecipa a ressurreição. As duas varas (Judá e José) tornam-se uma: um rei davídico, um santuário no meio deles para sempre. Pentecostes e a igreja de judeus e gentios ecoam a união; João 11 e 1 Co 15 ecoam a vida dos mortos.',
+    estrutura: ['37:1–14 — vale dos ossos', '37:15–28 — duas varas, um rei, um santuário'],
+    temas: ['Espírito', 'Ressurreição', 'Unidade', 'Davi', 'Templo'],
+    VersiculosChave: [
+      chave('Ezequiel 37:5–6', 'Eis que farei entrar em vós o espírito, e vivereis.', 'Criação (Gn 2:7) refeita no povo morto.'),
+      chave('Ezequiel 37:24–27', 'Meu servo Davi será rei… o meu santuário no meio deles.', 'Cumprimento em Cristo e no Espírito que habita a igreja.'),
+    ],
+    significadoTeologico:
+      'Israel morto não se reforma: precisa de ruach. A união das varas condena o sectarismo. O templo-em-meio-deles aponta para Emanuel e para o corpo como templo (1 Co 3:16).',
+    palavrasOriginais: ['רוּחַ (ruach)', 'עֲצָמוֹת (atzamot, ossos)'],
+    aplicacaoPratica:
+      'Pregue aos ossos: a Palavra precede o sopro. Não desista da igreja dividida. Viva como quem já recebeu o Espírito da ressurreição.',
+    perguntasEstudo: [
+      'Por que a ordem é: profetiza → ossos → sopro?',
+      'Como 37:15–28 interpreta a divisão das tribos?',
+      'Que textos do NT ecoam este capítulo?',
+    ],
+    fontes: ['Ezequiel 37', 'Gênesis 2:7', 'João 11', '1 Coríntios 15', '1 Coríntios 3:16'],
+  }),
+
+  'mt:1': ficha('mt', 1, 'Genealogia e Emanuel: o Messias na história', {
+    contextoHistorico:
+      'Mateus escreve a judeus e judeu-cristãos: Jesus é filho de Davi e de Abraão. A genealogia tem três blocos de 14; inclui mulheres marcadas (Tamar, Raabe, Rute, “a mulher de Urias”).',
+    resumo:
+      'O livro das origens (biblos geneseos) ecoa Gn 5. José, justo, recebe o anjo: o que nela foi gerado é do Espírito. O nome Jesus (Yehoshua: o Senhor salva) e a citação de Is 7:14 (Emanuel) abrem o evangelho: Deus conosco, para salvar do pecado — não só de Roma.',
+    estrutura: ['1:1–17 — genealogia', '1:18–25 — nascimento virginal e o Nome'],
+    temas: ['Messias', 'Escritura', 'Encarnação', 'Davi', 'Graça nas margens'],
+    VersiculosChave: [
+      chave('Mateus 1:21', 'Chamarás o seu nome Jesus, porque ele salvará o seu povo dos pecados deles.', 'O programa do evangelho: salvação do pecado.'),
+      chave('Mateus 1:23', 'Emanuel, que quer dizer: Deus conosco.', 'Fecha em 28:20: “eis que estou convosco”.'),
+    ],
+    significadoTeologico:
+      'A encarnação é histórica (genealogia) e miraculosa (Espírito). As mulheres “incômodas” anunciam inclusão da graça. Emanuel estrutura Mateus inteiro.',
+    palavrasOriginais: ['Ἰησοῦς', 'Ἐμμανουήλ', 'γένεσις'],
+    aplicacaoPratica:
+      'Leia sua família à luz da graça, não da honra pagã. Chame Jesus pelo ofício: Salvador do pecado. Viva o “Deus conosco” até a missão.',
+    perguntasEstudo: [
+      'Por que Mateus inclui aquelas quatro mulheres?',
+      'Como 1:21 define “salvar” de modo diferente do zelo antiromano?',
+      'Onde 28:20 ecoa 1:23?',
+    ],
+    fontes: ['Mateus 1', 'Isaías 7:14', 'Mateus 28:20', 'Gênesis 5'],
+  }),
+
+  'mt:13': ficha('mt', 13, 'Parábolas do Reino: mistério, joio e tesouro', {
+    contextoHistorico:
+      'Discurso em parábolas junto ao mar. Isaías 6:9–10 explica por que uns ouvem e não entendem: juízo sobre um povo endurecido, e misericórdia aos discípulos.',
+    resumo:
+      'O semeador: o Reino depende da Palavra e do solo. O joio: o juízo é escatológico, não uma seita pura agora. Grão de mostarda e fermento: começo pequeno, alcance grande. Tesouro e pérola: o Reino vale tudo. Rede: separação final. Escriba instruído: coisas novas e velhas.',
+    estrutura: ['13:1–23 — semeador', '13:24–43 — joio, mostarda, fermento', '13:44–52 — tesouro, pérola, rede, escriba'],
+    temas: ['Reino', 'Palavra', 'Juízo', 'Paciência', 'Discipulado'],
+    VersiculosChave: [
+      chave('Mateus 13:11', 'A vós é dado conhecer os mistérios do reino dos céus.', 'Revelação é dom, não técnica.'),
+      chave('Mateus 13:44–46', 'O tesouro escondido e a pérola de grande valor.', 'O Reino não é hobby: custa o “tudo”.'),
+    ],
+    significadoTeologico:
+      'O Reino já/ainda não: presente na Palavra, consumado na colheita. A igreja não é joio-livre; o Filho do Homem julgará. Calvino e a tradição reformada leram o joio contra o perfeccionismo sectário.',
+    aplicacaoPratica:
+      'Semeie a Palavra sem manipular o solo. Não arranque o joio com violência religiosa. Venda o que for preciso para ter Cristo. Seja escriba do Reino: AT e NT juntos.',
+    perguntasEstudo: [
+      'Qual solo descreve você — e o que muda isso?',
+      'Como 13:24–30 corrige tanto o laxismo quanto a caça às bruxas?',
+      'O que o tesouro e a pérola exigem na prática?',
+    ],
+    fontes: ['Mateus 13', 'Isaías 6:9–10', 'Daniel 2; 4'],
+  }),
+
+  'lc:2': ficha('lc', 2, 'O nascimento, os pastores e o menino no templo', {
+    contextoHistorico:
+      'Lucas ancora o nascimento no decreto de César (história imperial) e no templo (história de Israel). Pastores — classe baixa — recebem o anúncio primeiro.',
+    resumo:
+      'Belém, cidade de Davi. Presépio, não palácio. Glória a Deus nas alturas e paz na terra. Simeão e Ana: o Consolo de Israel e a redenção de Jerusalém. A espada atravessará a alma de Maria. Aos doze, no templo: “nos negócios de meu Pai”. Infância e missão já se cruzam.',
+    estrutura: ['2:1–21 — nascimento e pastores', '2:22–40 — Simeão e Ana', '2:41–52 — o menino entre os doutores'],
+    temas: ['Encarnação', 'Pobres', 'Templo', 'Messias', 'Maria'],
+    VersiculosChave: [
+      chave('Lucas 2:10–11', 'Nasceu-vos hoje o Salvador, que é Cristo, o Senhor.', 'Títulos completos no berço: Salvador, Cristo, Senhor.'),
+      chave('Lucas 2:29–32', 'Nunc dimittis: luz para revelação aos gentios.', 'Isaías 42 e 49 no colo de Simeão.'),
+    ],
+    significadoTeologico:
+      'A encarnação é particular (Davi, Lei, templo) e universal (gentios). A paz de 2:14 não é slogan romano (Pax Romana): é shalom messiânico. A espada de Maria aponta para a cruz.',
+    aplicacaoPratica:
+      'Anuncie aos “pastores”: a boa-nova não começa nos palácios. Espere como Simeão. Deixe Jesus “no templo do Pai” — não o domestique.',
+    perguntasEstudo: [
+      'Por que Lucas menciona César e Quirino?',
+      'O que o Nunc dimittis ensina sobre Israel e as nações?',
+      'Como 2:49 antecipa a Paixão?',
+    ],
+    fontes: ['Lucas 2', 'Isaías 9:6', 'Isaías 42:6', 'Miqueias 5:2'],
+  }),
+
+  'jo:11': ficha('jo', 11, 'Lázaro: eu sou a ressurreição e a vida', {
+    contextoHistorico:
+      'Betânia, às portas de Jerusalém. O sétimo sinal de João provoca a sentença do Sinédrio (11:47–53). Caifás profetiza sem saber: um morre pelo povo.',
+    resumo:
+      'Jesus demora; Lázaro morre. “Eu sou a ressurreição e a vida” — não só no último dia. Jesus chora. Clama: Lázaro, vem para fora. Muitos creem; outros denunciam. A vida do amigo antecipa a própria ressurreição do Filho — e custa a vida dele.',
+    estrutura: ['11:1–16 — demora e Tomás', '11:17–44 — Marta, Maria, o túmulo', '11:45–57 — fé e conspiração'],
+    temas: ['Ressurreição', 'Glória', 'Amizade', 'Cruz', 'Fé'],
+    VersiculosChave: [
+      chave('João 11:25–26', 'Eu sou a ressurreição e a vida… crês tu isto?', 'A ressurreição é uma Pessoa, não só um evento futuro.'),
+      chave('João 11:35', 'Jesus chorou.', 'A glória não anula as lágrimas; o Verbo entra no luto.'),
+    ],
+    significadoTeologico:
+      'Sinais de João revelam a glória (1:14) rumo à “hora”. Caifás: substituição penal irônica. A morte de Lázaro serve à fé dos discípulos (11:15) sem deixar de ser tragédia real.',
+    palavrasOriginais: ['ἀνάστασις', 'ζωή', 'δόξα'],
+    aplicacaoPratica:
+      'Leve o luto a Jesus — ele chora e manda. Creia antes de ver o túmulo vazio. Aceite que a vida nova pode irritar o Sinédrio do seu tempo.',
+    perguntasEstudo: [
+      'Por que Jesus espera dois dias?',
+      'Como 11:25–26 supera 11:24?',
+      'De que modo 11:50 antecipa a cruz?',
+    ],
+    fontes: ['João 11', 'João 1:14', 'Isaías 53'],
+  }),
+
+  'rm:1': ficha('rm', 1, 'O evangelho, a ira e a troca da glória', {
+    contextoHistorico:
+      'Paulo escreve a uma igreja que não fundou, rumo à Espanha, via Roma. O evangelho é para judeu primeiro e também para grego, no coração do império.',
+    resumo:
+      'Servo, apóstolo, evangelho prometido nos profetas, Filho da semente de Davi, declarado Filho em poder pela ressurreição. A justiça de Deus se revela no evangelho, de fé em fé (Hc 2:4). A ira se revela contra a impiedade: conhecendo a Deus, não o glorificaram; trocaram a glória por imagens; Deus os entregou. O homossexualismo aparece no quadro da troca (1:26–27), junto com toda injustiça (1:29–32) — ninguém escapa rumo ao cap. 2.',
+    estrutura: ['1:1–17 — cabeçalho e tese', '1:18–32 — ira e entrega'],
+    temas: ['Evangelho', 'Justiça', 'Ira', 'Idolatria', 'Criação'],
+    VersiculosChave: [
+      chave('Romanos 1:16–17', 'Não me envergonho do evangelho… a justiça de Deus se revela de fé em fé.', 'Tese da carta: evangelho = poder e justiça pela fé.'),
+      chave('Romanos 1:21–23', 'Tendo conhecido a Deus… trocaram a glória do Deus incorruptível.', 'O pecado-raiz é a recusa de adorar.'),
+    ],
+    significadoTeologico:
+      'Revelação geral (criação) deixa o homem inescusável. A “entrega” (paradidomi, 1:24.26.28) é juízo presente. A tese de 1:17 se desdobra até 3:21–26 (propiciação) e 5–8 (união com Cristo).',
+    palavrasOriginais: ['εὐαγγέλιον', 'δικαιοσύνη', 'ὀργή', 'παρέδωκεν'],
+    aplicacaoPratica:
+      'Não se envergonhe do evangelho em Roma nenhuma. Adore o Criador. Leia 1:18–32 como espelho de toda cultura — inclusive a sua — antes de apontar o dedo (2:1).',
+    perguntasEstudo: [
+      'O que 1:3–4 afirma sobre a identidade de Jesus?',
+      'Como 1:17 cita Habacuque?',
+      'Por que a idolatria precede a imoralidade no argumento?',
+    ],
+    fontes: ['Romanos 1', 'Habacuque 2:4', 'Salmos 19', 'Gênesis 1'],
+  }),
+
+  'rm:12': ficha('rm', 12, 'Culto racional, corpo e amor sem hipocrisia', {
+    contextoHistorico:
+      'Depois de 11 capítulos de misericórdia, a ética. “Pois” (oun): a vida nova não é anexo; é culto.',
+    resumo:
+      'Apresentai o corpo em sacrifício vivo. Não vos conformeis com este século; transformai-vos pela renovação da mente. Um corpo, muitos membros, dons diferentes. O amor seja sem hipocrisia; a honra, o fervor, a hospitalidade, a bênção sobre quem persegue, a paz possível, as brasas na cabeça do inimigo (Pv 25:21–22).',
+    estrutura: ['12:1–2 — culto e mente', '12:3–8 — dons no corpo', '12:9–21 — amor e inimigos'],
+    temas: ['Santificação', 'Igreja', 'Dons', 'Amor', 'Perseguição'],
+    VersiculosChave: [
+      chave('Romanos 12:1–2', 'Sacrifício vivo… não vos conformeis… transformai-vos.', 'Liturgia de segunda a sábado: o corpo inteiro.'),
+      chave('Romanos 12:21', 'Não te deixes vencer do mal, mas vence o mal com o bem.', 'A cruz define a ética do inimigo.'),
+    ],
+    significadoTeologico:
+      'Indicativo (Rm 1–11) gera imperativo. O culto cristão não se reduz ao rito: é existência. Os dons servem ao corpo, não ao ego. A vingança pertence a Deus (12:19).',
+    aplicacaoPratica:
+      'Ofereça a agenda, o sexo, o dinheiro, a língua. Meça a mente pela Palavra, não pelo século. Honre o irmão sem talento “instagramável”. Abençoe quem te fere.',
+    perguntasEstudo: [
+      'O que é “culto racional” (logikē latreia)?',
+      'Como 12:3–8 combate tanto o individualismo quanto a uniformidade?',
+      'Rm 12:19–21 anula a justiça pública — ou a relativiza?',
+    ],
+    fontes: ['Romanos 12', 'Provérbios 25:21–22', 'Deuteronômio 32:35'],
+  }),
+
+  '2co:5': ficha('2co', 5, 'A nova criação e o ministério da reconciliação', {
+    contextoHistorico:
+      'Paulo defende o apostolado sofrido contra “superapóstolos”. A tenda (corpo) geme; a casa eterna espera.',
+    resumo:
+      'Ausentes do corpo, presentes com o Senhor; o tribunal de Cristo. O amor de Cristo constrange: um morreu por todos. Se alguém está em Cristo, nova criação. Deus estava em Cristo reconciliando o mundo, não imputando os pecados; fez pecado aquele que não conheceu pecado, para que nele fôssemos justiça de Deus. Embaixadores: rogamos, reconciliai-vos.',
+    estrutura: ['5:1–10 — tenda e tribunal', '5:11–21 — reconciliação e imputação'],
+    temas: ['Nova criação', 'Reconciliação', 'Imputação', 'Ministério', 'Julgamento'],
+    VersiculosChave: [
+      chave('2 Coríntios 5:17', 'Se alguém está em Cristo, é nova criação.', 'Não autoajuda: ontologia em Cristo.'),
+      chave('2 Coríntios 5:21', 'Àquele que não conheceu pecado, o fez pecado por nós…', 'Troca: ele, pecado; nós, justiça — linguagem de imputação.'),
+    ],
+    significadoTeologico:
+      'Soteriologia paulina condensada: união com Cristo, substituição, justificação, nova criação, missão. O “fez pecado” não significa que Cristo se tornou pecador moralmente, mas que foi tratado como pecado em nosso lugar (cf. Is 53; Gl 3:13).',
+    aplicacaoPratica:
+      'Viva já como nova criação. Seja embaixador, não turista. Deixe o amor de Cristo — não o ego ferido — constranger o ministério. Tremor santo diante do tribunal, sem terror: somos de Cristo.',
+    perguntasEstudo: [
+      'Como 5:1–8 equilibra gemido e confiança?',
+      'O que 5:14–15 exige da ética?',
+      'Como 5:21 se relaciona com Rm 3:21–26 e Is 53?',
+    ],
+    fontes: ['2 Coríntios 5', 'Isaías 53', 'Gálatas 3:13', 'Romanos 3:21–26'],
+  }),
+
+  'ef:1': ficha('ef', 1, 'Eleitos no Amado: bênção trinitária', {
+    contextoHistorico:
+      'Carta circular da Ásia (talvez sem “em Éfeso” em alguns manuscritos). Hino de 1:3–14 em grego é um só período: Pai elege, Filho redime, Espírito sela.',
+    resumo:
+      'Toda bênção espiritual nas regiões celestiais em Cristo. Eleição antes da fundação do mundo, adoção, graça no Amado, redenção pelo sangue, mistério da vontade: recapitular todas as coisas em Cristo. Herança e selo do Espírito, penhor até a redenção da posse. Paulo ora por revelação: olhos do coração, esperança, riqueza, poder da ressurreição.',
+    estrutura: ['1:1–2 — saudação', '1:3–14 — eulogia trinitária', '1:15–23 — oração e Cristo cabeça'],
+    temas: ['Eleição', 'Trindade', 'Redenção', 'Igreja', 'Cristo exaltado'],
+    VersiculosChave: [
+      chave('Efésios 1:4–5', 'Elegeu-nos nele antes da fundação do mundo… para a adoção.', 'A eleição é em Cristo, para santidade e filiação.'),
+      chave('Efésios 1:13–14', 'Fostes selados com o Espírito Santo da promessa.', 'O selo garante o dia final; não é sentimento volátil.'),
+    ],
+    significadoTeologico:
+      'Pré-destinação (1:5.11) é doxologia, não frio decreto isolado: o fim é “louvor da sua glória”. A igreja é o corpo daquele que enche tudo em todos. Calvino: Cristo é o espelho da eleição.',
+    palavrasOriginais: ['εὐλογητός', 'ἐξελέξατο', 'ἀπολύτρωσις', 'σφραγίζω'],
+    aplicacaoPratica:
+      'Comece a oração com bênção, não com lista. Descanse na eleição sem presunção: o fruto é santidade. Ore 1:17–19 pelos irmãos. Viva selado — identidade estável.',
+    perguntasEstudo: [
+      'Como as três pessoas da Trindade aparecem em 1:3–14?',
+      'O que “em Cristo” faz na eleição?',
+      'Como 1:20–23 relaciona ressurreição e igreja?',
+    ],
+    fontes: ['Efésios 1', 'Romanos 8:28–30', 'Colossenses 1:13–20'],
+  }),
+
+  'ap:1': ficha('ap', 1, 'Apocalipse de Jesus Cristo: o Filho do Homem entre os candeeiros', {
+    contextoHistorico:
+      'João em Patmos, no Dia do Senhor, sob pressão imperial (Domiciano ou Nero, conforme a datação). Apocalipse = desvelamento, não código de pânico.',
+    resumo:
+      'Revelação que Deus deu a Jesus para mostrar aos servos. Bênção a quem lê e guarda. Graça das sete igrejas da Ásia. Cristo: testemunha fiel, primogênito dos mortos, soberano dos reis. Vem com as nuvens (Dn 7). Alfa e Ômega. Visão: Filho do Homem, vestes sacerdotais, voz de muitas águas, sete estrelas, espada da boca. “Não temas: fui morto e eis que estou vivo.”',
+    estrutura: ['1:1–8 — prólogo e doxologia', '1:9–20 — visão e comissão'],
+    temas: ['Cristo glorificado', 'Igreja', 'Profecia', 'Não temer', 'Reino'],
+    VersiculosChave: [
+      chave('Apocalipse 1:17–18', 'Não temas… estive morto… tenho as chaves da morte e do inferno.', 'O Cristo pascal segura o fim da história.'),
+      chave('Apocalipse 1:20', 'Os sete candeeiros são as sete igrejas.', 'Jesus anda no meio da igreja real, não de um símbolo vago.'),
+    ],
+    significadoTeologico:
+      'Apocalipse é cristologia e pastoral antes de ser calendário. As igrejas são candeeiros: luz sob julgamento e cuidado. Daniel 7 se cumpre no Cordeiro/Filho do Homem.',
+    palavrasOriginais: ['ἀποκάλυψις', 'μαρτυρία', 'πρωτότοκος'],
+    aplicacaoPratica:
+      'Leia Apocalipse em voz alta na igreja (1:3). Não tema o império. Deixe a espada da boca (Palavra) julgar a congregação — começando pela sua.',
+    perguntasEstudo: [
+      'O que 1:1–3 promete ao leitor?',
+      'Como a visão de 1:12–16 combina sacerdote, rei e juiz?',
+      'Por que as igrejas são candeeiros e não palácios?',
+    ],
+    fontes: ['Apocalipse 1', 'Daniel 7', 'Zacarias 4', 'Êxodo 3:14'],
+  }),
+
+  'ap:5': ficha('ap', 5, 'O Cordeiro que vence: o livro selado', {
+    contextoHistorico:
+      'Continuação da visão do trono (cap. 4). Quem pode abrir a história? Ninguém no céu, na terra ou debaixo da terra — João chora.',
+    resumo:
+      'O Leão de Judá venceu — e João vê um Cordeiro como tendo sido morto, sete chifres e sete olhos (Espírito). Ele toma o livro. Novo cântico: foste morto e com teu sangue compraste para Deus gente de toda tribo. Os vinte e quatro anciãos, as criaturas e miríades de anjos: digno é o Cordeiro. A história só se abre pela cruz.',
+    estrutura: ['5:1–4 — o livro e o choro', '5:5–10 — Leão/Cordeiro e o cântico', '5:11–14 — doxologia cósmica'],
+    temas: ['Cordeiro', 'Redenção', 'Soberania', 'Missão', 'Adoração'],
+    VersiculosChave: [
+      chave('Apocalipse 5:5–6', 'Venceu o Leão… vi… um Cordeiro como havia sido morto.', 'Vitória messiânica é sacrifício, não espada imperial.'),
+      chave('Apocalipse 5:9–10', 'Compraste para Deus… e os fizeste reino e sacerdotes.', 'Êxodo 19 cumprido na igreja das nações.'),
+    ],
+    significadoTeologico:
+      'A hermenêutica de Apocalipse: o Leão é o Cordeiro. Sem a cruz, o livro da história permanece selado. A missão (toda tribo) nasce do sangue, não do marketing.',
+    aplicacaoPratica:
+      'Pare de chorar como se ninguém governasse: o Cordeiro tomou o livro. Adore. Viva como reino de sacerdotes. Meça poder pela cruz, não pelo espetáculo.',
+    perguntasEstudo: [
+      'Por que João chora — e o que seca as lágrimas?',
+      'Como Leão e Cordeiro se interpretam mutuamente?',
+      'O que 5:9 faz com Êxodo 19:5–6?',
+    ],
+    fontes: ['Apocalipse 5', 'Gênesis 49:9–10', 'Isaías 53', 'Êxodo 19:5–6', 'Daniel 7'],
+  }),
 };
 

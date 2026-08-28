@@ -5,6 +5,7 @@
   "description": "Plataforma completa de estudo bíblico acadêmico com IA. Bíblia em 10 traduções, Grego e Hebraico com léxico Strong, Exegese automática, Teologia Sistemática e ferramentas avançadas de pesquisa.",
   "start_url": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
   "background_color": "#0A0908",
   "theme_color": "#d4a843",
   "orientation": "portrait-primary",
@@ -48,6 +49,13 @@
       "short_name": "Bíblia",
       "url": "/biblia",
       "description": "Leitura bíblica multi-tradução com 10 traduções",
+      "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Estudar",
+      "short_name": "Estudar",
+      "url": "/estudar",
+      "description": "Ferramentas, teologia, léxico e estudos",
       "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]
     },
     {

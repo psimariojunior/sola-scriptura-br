@@ -88,7 +88,7 @@ export function BibleToolbar({
       ui.setEstudoCapituloAberto(true);
       nav.setViewMode('single');
       panels.setSidePanelWidth('half');
-      panels.setSidePanelTab('comentarios');
+      panels.setSidePanelTab('estudos');
       if (!verse.versiculoSelecionado && nav.data[0]?.versiculos?.[0]) {
         const v = nav.data[0].versiculos[0];
         if (typeof window !== 'undefined' && window.innerWidth >= 1024) {

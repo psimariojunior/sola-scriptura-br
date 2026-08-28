@@ -13,6 +13,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getRecursosVersiculo, type RecursoVersiculo, type RecursoComentario, type RecursoEstudo, type RecursoNota, type RecursoCrossRef, type RecursoLexico, type RecursoMapa, type RecursoPersonagem, type RecursoDoutrina, type RecursoCronologia, type RecursoPericope, type TipoRecurso } from '@/data/biblia/versiculoRecursos';
+import { EstudoUnificado } from '@/components/Biblia/EstudoUnificado';
 import type { EstudoCapitulo } from '@/data/estudosCapitulo';
 import { carregarTraducao, obterCapituloMulti, type CapituloComparado } from '@/data/biblia/texto/carregar';
 import { obterVariante, obterVariantesPorLivro } from '@/data/criticaTextual';
@@ -381,81 +382,8 @@ function TabEstudo({ recursos, busca = '', livro, capitulo, versiculo }: { recur
 
   return (
     <div className="space-y-4">
-      {fichaCapitulo && (
-        <section className="rounded-xl border border-emerald-500/25 bg-emerald-500/5 p-3 space-y-2">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-            Ficha do capítulo {fichaCapitulo.nivel === 'profundo' ? '· estudo profundo' : fichaCapitulo.nivel === 'sintese' ? '· síntese acadêmica' : ''}
-          </p>
-          <h4 className="font-display text-sm font-bold leading-snug">{fichaCapitulo.titulo}</h4>
-          <p className="text-sm leading-relaxed font-serif-body text-foreground/85">
-            {fichaCapitulo.resumo}
-          </p>
-          {fichaCapitulo.significadoTeologico && (
-            <p className="text-xs leading-relaxed text-foreground/75 font-serif-body">
-              {fichaCapitulo.significadoTeologico}
-            </p>
-          )}
-          {fichaCapitulo.temas.length > 0 && (
-            <div className="flex flex-wrap gap-1">
-              {fichaCapitulo.temas.slice(0, 6).map((t) => (
-                <Badge key={t} variant="outline" className="text-[10px] font-normal">{t}</Badge>
-              ))}
-            </div>
-          )}
-        </section>
-      )}
-
-      {comentarios.length > 0 && (
-        <section className="space-y-2">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-400">
-            Comentário clássico
-          </p>
-          {comentarios.slice(0, 3).map((c, i) => (
-            <div key={`${c.autor}-${i}`} className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3">
-              <p className="text-[11px] font-semibold text-foreground/70 mb-1">{c.autor}</p>
-              <p className="text-sm leading-relaxed font-serif-body text-foreground/85">{c.texto}</p>
-            </div>
-          ))}
-          {comentarios.length > 3 && (
-            <p className="text-[11px] text-muted-foreground">
-              +{comentarios.length - 3} na aba Comentários
-            </p>
-          )}
-        </section>
-      )}
-
-      {livro && capitulo != null && versiculo != null && (
-        <section>
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-purple-700 dark:text-purple-400 mb-1.5">
-            Língua original · Strong e morfologia
-          </p>
-          <TabLexico livro={livro} capitulo={capitulo} versiculo={versiculo} />
-        </section>
-      )}
-
-      {lexico.length > 0 && !(livro && capitulo != null && versiculo != null) && (
-        <section>
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">Palavras originais</p>
-          <div className="flex flex-wrap gap-1.5">
-            {lexico.slice(0, 8).map((lex) => (
-              <span key={lex.strong} className="text-[11px] px-2 py-1 rounded-lg border border-border/60 bg-background">
-                <span className={lex.idioma === 'hebraico' ? 'font-hebrew' : 'font-greek'}>{lex.palavra}</span>
-                <span className="text-muted-foreground"> · {lex.transliteracao}</span>
-              </span>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {refs.length > 0 && (
-        <section>
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">Referências cruzadas</p>
-          <div className="flex flex-wrap gap-1.5">
-            {refs.map((ref) => (
-              <Badge key={ref} variant="outline" className="text-[11px] font-normal">{ref}</Badge>
-            ))}
-          </div>
-        </section>
+      {livro && capitulo != null && (
+        <EstudoUnificado livro={livro} capitulo={capitulo} versiculo={versiculo} />
       )}
 
       {estudoLink && (
@@ -1066,7 +994,7 @@ export default function PainelDoVersiculo({
 
   const tabsDisponiveis = TAB_CONFIG.filter((tab) => {
     const count = contagemPorTipo(tab.value);
-    return count > 0 || tab.value === 'texto' || tab.value === 'comentarios' || tab.value === 'estudo' || tab.value === 'lexico' || tab.value === 'critica' || tab.value === 'ia';
+    return count > 0 || tab.value === 'texto' || tab.value === 'comentarios' || tab.value === 'estudo' || tab.value === 'lexico' || tab.value === 'critica' || tab.value === 'ia' || tab.value === 'notas';
   });
 
   const panelContent = (

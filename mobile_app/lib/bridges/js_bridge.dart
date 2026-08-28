@@ -140,6 +140,7 @@ class JsBridge {
 
   static const String _performanceScript = '''
     (function() {
+      document.documentElement.classList.add('ssb-native-app');
       document.addEventListener('touchstart', function() {}, { passive: true });
       document.addEventListener('touchmove', function() {}, { passive: true });
       document.addEventListener('wheel', function() {}, { passive: true });

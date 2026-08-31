@@ -11,6 +11,17 @@ class OfflineVerse {
   const OfflineVerse({required this.number, required this.text});
 }
 
+class LastReading {
+  final int bookNumber;
+  final int chapterNumber;
+  final String translationId;
+  const LastReading({
+    required this.bookNumber,
+    required this.chapterNumber,
+    required this.translationId,
+  });
+}
+
 class BibleOfflineService {
   static final BibleOfflineService instance = BibleOfflineService._init();
   BibleOfflineService._init();
@@ -19,20 +30,22 @@ class BibleOfflineService {
   static const String _midvashBase = 'https://api.midvash.com/v1';
 
   static const List<Map<String, String>> availableTranslations = [
-    {'id': 'ARC', 'name': 'A Bíblia de Estudo Arqueológica', 'abbreviation': 'ARC', 'language': 'Português'},
-    {'id': 'ARA', 'name': 'Nova Tradução na Linguagem de Hoje', 'abbreviation': 'ARA', 'language': 'Português'},
-    {'id': 'ACF', 'name': 'Nova Tradução Bíblica', 'abbreviation': 'ACF', 'language': 'Português'},
-    {'id': 'KJV', 'name': 'King James Version', 'abbreviation': 'KJV', 'language': 'Inglês'},
     {'id': 'NVI', 'name': 'Nova Versão Internacional', 'abbreviation': 'NVI', 'language': 'Português'},
-    {'id': 'WEB', 'name': 'World English Bible', 'abbreviation': 'WEB', 'language': 'Inglês'},
-    {'id': 'NVT', 'name': 'Nova Tradução', 'abbreviation': 'NVT', 'language': 'Português'},
+    {'id': 'ARC', 'name': 'Almeida Revista e Corrigida', 'abbreviation': 'ARC', 'language': 'Português'},
+    {'id': 'ARA', 'name': 'Almeida Revista e Atualizada', 'abbreviation': 'ARA', 'language': 'Português'},
+    {'id': 'ACF', 'name': 'Almeida Corrigida Fiel', 'abbreviation': 'ACF', 'language': 'Português'},
+    {'id': 'NVT', 'name': 'Nova Versão Transformadora', 'abbreviation': 'NVT', 'language': 'Português'},
     {'id': 'KJA', 'name': 'King James Atualizada', 'abbreviation': 'KJA', 'language': 'Português'},
     {'id': 'AA', 'name': 'Almeida Atualizada', 'abbreviation': 'AA', 'language': 'Português'},
     {'id': 'NBV', 'name': 'Nova Bíblia Viva', 'abbreviation': 'NBV', 'language': 'Português'},
+    {'id': 'KJV', 'name': 'King James Version', 'abbreviation': 'KJV', 'language': 'Inglês'},
+    {'id': 'WEB', 'name': 'World English Bible', 'abbreviation': 'WEB', 'language': 'Inglês'},
   ];
 
   bool _isDownloading = false;
+  int? _activeDownloadBook;
   bool get isDownloading => _isDownloading;
+  int? get activeDownloadBook => _activeDownloadBook;
 
   // === DOWNLOAD POR LIVRO (YouVersion style) ===
 
@@ -97,31 +110,41 @@ class BibleOfflineService {
     int bookNumber, {
     Function(double progress)? onProgress,
   }) async {
+    if (_activeDownloadBook != null && _activeDownloadBook != bookNumber) {
+      return 0;
+    }
     final db = await DatabaseHelper.instance.database;
     final book = BibleBooks.getBookByNumber(bookNumber);
     if (book == null) return 0;
     final slug = BibleBooks.midvashSlug(bookNumber);
     if (slug == null) return 0;
 
+    _activeDownloadBook = bookNumber;
+    _isDownloading = true;
     final chaptersCount = book['chapters'] as int;
     int saved = 0;
 
-    for (int chapter = 1; chapter <= chaptersCount; chapter++) {
-      if (await _fetchAndStoreChapter(
-        db: db,
-        translationId: translationId,
-        bookNumber: bookNumber,
-        slug: slug,
-        chapter: chapter,
-      )) {
-        saved++;
+    try {
+      for (int chapter = 1; chapter <= chaptersCount; chapter++) {
+        if (await _fetchAndStoreChapter(
+          db: db,
+          translationId: translationId,
+          bookNumber: bookNumber,
+          slug: slug,
+          chapter: chapter,
+        )) {
+          saved++;
+        }
+        onProgress?.call(chapter / chaptersCount);
+        await Future.delayed(const Duration(milliseconds: 50));
       }
-      onProgress?.call(chapter / chaptersCount);
-      await Future.delayed(const Duration(milliseconds: 50));
-    }
 
-    await _updateTranslationMeta(translationId);
-    return saved;
+      await _updateTranslationMeta(translationId);
+      return saved;
+    } finally {
+      _isDownloading = false;
+      _activeDownloadBook = null;
+    }
   }
 
   Future<int> downloadChapter(
@@ -453,14 +476,36 @@ class BibleOfflineService {
 
   // === STREAK ===
 
-  Future<void> recordReading(int bookNumber, int chapterNumber) async {
+  Future<void> recordReading(
+    int bookNumber,
+    int chapterNumber, {
+    String translationId = 'NVI',
+  }) async {
     final db = await DatabaseHelper.instance.database;
     await db.insert('reading_progress', {
       'book_number': bookNumber,
       'chapter_number': chapterNumber,
-      'translation_id': 'ARC',
+      'translation_id': translationId,
       'read_at': DateTime.now().toIso8601String(),
     });
+  }
+
+  Future<LastReading?> getLastReading() async {
+    final db = await DatabaseHelper.instance.database;
+    final result = await db.query(
+      'reading_progress',
+      orderBy: 'id DESC',
+      limit: 1,
+    );
+    if (result.isEmpty) return null;
+    final row = result.first;
+    return LastReading(
+      bookNumber: row['book_number'] as int,
+      chapterNumber: row['chapter_number'] as int,
+      translationId: (row['translation_id'] as String?)?.trim().isNotEmpty == true
+          ? row['translation_id'] as String
+          : 'NVI',
+    );
   }
 
   Future<void> recordStreakDay({int chaptersRead = 1, int minutesRead = 0}) async {

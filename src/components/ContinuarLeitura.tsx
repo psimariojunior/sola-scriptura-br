@@ -96,18 +96,20 @@ export default function ContinuarLeitura() {
 
       <ul className="divide-y divide-border">
         {ultimaLeitura && (
-          <li>
+          <li className="list-none mb-2">
             <Link
               href={hrefBiblia(ultimaLeitura.livro, ultimaLeitura.capitulo)}
-              className="flex items-center justify-between py-3.5 group"
+              className="ssb-panel flex items-center justify-between gap-3 p-4 group hover:border-primary/40 transition-colors"
             >
               <span>
-                <span className="block text-sm text-foreground group-hover:text-primary transition-colors">
+                <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/80">
+                  De onde você parou
+                </span>
+                <span className="block mt-1 font-display text-xl text-foreground group-hover:text-primary transition-colors">
                   {livroAtual} {ultimaLeitura.capitulo}
                 </span>
-                <span className="text-xs text-muted-foreground">De onde você parou</span>
               </span>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+              <ArrowRight className="w-5 h-5 text-primary shrink-0 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </li>
         )}

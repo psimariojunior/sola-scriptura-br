@@ -300,6 +300,26 @@ export default function EstudarPage() {
           <CanonFichasProfundas />
         </ScrollReveal>
 
+        <ScrollReveal delay={0.13}>
+          <Link
+            href="/planos?plano=fichas-40"
+            className="ssb-panel mb-8 p-4 flex items-center justify-between gap-3 hover:border-primary/35 transition-colors"
+          >
+            <span>
+              <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/80">
+                Plano de leitura
+              </span>
+              <span className="block text-sm font-semibold text-foreground mt-1">
+                40 dias nas fichas profundas
+              </span>
+              <span className="block text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                Um capítulo com ficha por dia — contexto, teologia e perguntas. Sem texto inventado.
+              </span>
+            </span>
+            <ArrowRight className="w-4 h-4 text-primary shrink-0" />
+          </Link>
+        </ScrollReveal>
+
         {/* Ferramentas Rápidas */}
         <ScrollReveal delay={0.15}>
           <section className="mb-8">

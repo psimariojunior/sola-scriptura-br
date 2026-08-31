@@ -170,6 +170,9 @@ const themeInitScript = `
     if (theme === 'noturno') root.classList.add('noturno');
     if (theme === 'sepia') root.classList.add('sepia');
     if (theme === 'dim') root.classList.add('dim');
+    if (/SolaScriptura/i.test(navigator.userAgent)) {
+      root.classList.add('ssb-native-app');
+    }
   } catch (_) {}
 })();
 `.trim();

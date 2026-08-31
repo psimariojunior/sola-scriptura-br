@@ -126,7 +126,7 @@ function FloatingDonateButton() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-20 right-4 z-[25] sm:bottom-6 animate-fade-in-up">
+    <div className="ssb-fab-donate fixed bottom-20 right-4 z-[25] sm:bottom-6 animate-fade-in-up">
       <Link
         href="/ofertas"
         className="group flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-primary text-primary-foreground shadow-md hover:brightness-110 transition-all duration-300"

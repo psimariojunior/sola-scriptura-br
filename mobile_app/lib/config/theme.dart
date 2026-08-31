@@ -17,6 +17,12 @@ class AppTheme {
   static const Color surface = Color(0xFF1C1A17);
   static const Color surfaceLight = Color(0xFF2A2722);
 
+  // Leitura: noite dourada e creme (página de Bíblia)
+  static const Color readingNightBg = Color(0xFF0C0B09);
+  static const Color readingNightText = Color(0xFFF5F1E8);
+  static const Color readingCreamBg = Color(0xFFF4EBD8);
+  static const Color readingCreamText = Color(0xFF2A2318);
+
   // Text colors
   static const Color textPrimary = Color(0xFFF5F1E8);
   static const Color textSecondary = Color(0xFFB8B0A0);

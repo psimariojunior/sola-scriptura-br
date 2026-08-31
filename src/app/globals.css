@@ -3006,11 +3006,27 @@ textarea:focus-visible,
   }
 }
 
-/* App Flutter: a barra nativa substitui só o chrome inferior — as páginas continuam todas acessíveis */
+/* App Flutter: chrome nativo substitui header e bottom nav do site */
 html.ssb-native-app {
   --mobile-nav-height: 0px;
 }
 html.ssb-native-app .ssb-bottom-nav {
+  display: none !important;
+}
+html.ssb-native-app .ssb-header {
+  display: none !important;
+}
+html.ssb-native-app footer[role="contentinfo"] {
+  display: none !important;
+}
+html.ssb-native-app main.pt-16,
+html.ssb-native-app main.pt-20 {
+  padding-top: 0.75rem !important;
+}
+html.ssb-native-app .bible-layout {
+  min-height: 100dvh;
+}
+html.ssb-native-app .ssb-fab-donate {
   display: none !important;
 }
 

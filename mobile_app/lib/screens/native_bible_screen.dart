@@ -8,8 +8,15 @@ class NativeBibleScreen extends StatefulWidget {
   final String? translation;
   final int? initialBook;
   final void Function(String path)? onOpenWeb;
+  final bool autoOpenLast;
 
-  const NativeBibleScreen({super.key, this.translation, this.initialBook, this.onOpenWeb});
+  const NativeBibleScreen({
+    super.key,
+    this.translation,
+    this.initialBook,
+    this.onOpenWeb,
+    this.autoOpenLast = false,
+  });
 
   @override
   State<NativeBibleScreen> createState() => _NativeBibleScreenState();
@@ -25,6 +32,9 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
   int? _downloadingBook;
   double _downloadProgress = 0;
   String? _downloadError;
+  LastReading? _lastReading;
+  bool _booting = true;
+  bool _didAutoOpen = false;
 
   @override
   void initState() {
@@ -35,7 +45,32 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
     if (widget.initialBook != null && widget.initialBook! >= 40) {
       _tabController.index = 1;
     }
-    _loadStatus();
+    _boot();
+  }
+
+  Future<void> _boot() async {
+    await _loadStatus();
+    final last = await BibleOfflineService.instance.getLastReading();
+    if (!mounted) return;
+    setState(() {
+      _lastReading = last;
+      if (last != null) _selectedTranslation = last.translationId;
+      _booting = false;
+    });
+    if (widget.autoOpenLast && !_didAutoOpen && last != null) {
+      _didAutoOpen = true;
+      final verses = await BibleOfflineService.instance.getChapterVerses(
+        last.translationId,
+        last.bookNumber,
+        last.chapterNumber,
+      );
+      if (!mounted) return;
+      if (verses.isNotEmpty) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) _openChapter(last.bookNumber, last.chapterNumber, translation: last.translationId);
+        });
+      }
+    }
   }
 
   Future<void> _loadStatus() async {
@@ -49,7 +84,10 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
     super.dispose();
   }
 
-  void _openChapter(int bookNumber, int chapter) {
+  void _openChapter(int bookNumber, int chapter, {String? translation}) {
+    if (translation != null && translation != _selectedTranslation) {
+      setState(() => _selectedTranslation = translation);
+    }
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => NativeChapterReader(
@@ -61,6 +99,9 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
       ),
     ).then((_) {
       _loadStatus();
+      BibleOfflineService.instance.getLastReading().then((last) {
+        if (mounted) setState(() => _lastReading = last);
+      });
       if (_selectedBook != null) {
         BibleOfflineService.instance
             .getDownloadedChapterNumbers(_selectedTranslation, _selectedBook!)
@@ -132,6 +173,12 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
 
   @override
   Widget build(BuildContext context) {
+    if (_booting) {
+      return const Scaffold(
+        backgroundColor: AppTheme.bgDark,
+        body: Center(child: CircularProgressIndicator(color: AppTheme.goldPrimary)),
+      );
+    }
     return Scaffold(
       backgroundColor: AppTheme.bgDark,
       body: SafeArea(
@@ -177,8 +224,13 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
           const SizedBox(width: 10),
           const Expanded(
             child: Text(
-              'Bíblia offline',
-              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              'Bíblia',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'serif',
+              ),
             ),
           ),
           if (widget.onOpenWeb != null)
@@ -269,16 +321,88 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
 
   Widget _buildBookList(List<Map<String, dynamic>> books) {
     final anyDownloaded = _status.values.any((c) => c > 0);
+    final extra = (anyDownloaded ? 0 : 1) + (_lastReading != null ? 1 : 0);
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      itemCount: books.length + (anyDownloaded ? 0 : 1),
+      itemCount: books.length + extra,
       itemBuilder: (context, index) {
-        if (!anyDownloaded && index == 0) {
-          return _buildEmptyDownloadCard();
+        var i = index;
+        if (_lastReading != null) {
+          if (i == 0) return _buildContinueCard();
+          i -= 1;
         }
-        final book = books[anyDownloaded ? index : index - 1];
-        return _buildBookTile(book);
+        if (!anyDownloaded) {
+          if (i == 0) return _buildEmptyDownloadCard();
+          i -= 1;
+        }
+        return _buildBookTile(books[i]);
       },
+    );
+  }
+
+  Widget _buildContinueCard() {
+    final last = _lastReading!;
+    final book = BibleBooks.getBookByNumber(last.bookNumber);
+    final name = book?['name'] as String? ?? 'Livro ${last.bookNumber}';
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => _openChapter(last.bookNumber, last.chapterNumber, translation: last.translationId),
+          borderRadius: BorderRadius.circular(14),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  AppTheme.goldPrimary.withValues(alpha: 0.22),
+                  AppTheme.goldPrimary.withValues(alpha: 0.08),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(color: AppTheme.goldPrimary.withValues(alpha: 0.35)),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.auto_stories_rounded, color: AppTheme.goldPrimary, size: 28),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Continuar leitura',
+                        style: TextStyle(
+                          color: AppTheme.goldLight,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 1.1,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        '$name ${last.chapterNumber}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'serif',
+                        ),
+                      ),
+                      Text(
+                        last.translationId,
+                        style: const TextStyle(color: AppTheme.textMuted, fontSize: 12),
+                      ),
+                    ],
+                  ),
+                ),
+                const Icon(Icons.arrow_forward_ios_rounded, color: AppTheme.goldPrimary, size: 16),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -295,26 +419,51 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Nenhum capítulo baixado',
-            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+            'Baixe Gênesis para ler sem internet',
+            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600, fontFamily: 'serif'),
           ),
           const SizedBox(height: 6),
           const Text(
-            'Baixe um livro para ler sem internet. Abra o livro e toque em “Baixar para ler offline”.',
+            'Um livro de cada vez. Depois abra o capítulo e continue lendo como numa Bíblia impressa.',
             style: TextStyle(color: AppTheme.textSecondary, fontSize: 13, height: 1.4),
           ),
           const SizedBox(height: 14),
           SizedBox(
-            height: 44,
+            height: 48,
             width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamed('/offline-translations'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.goldPrimary,
-                foregroundColor: Colors.white,
-              ),
-              child: const Text('Baixar para ler offline'),
-            ),
+            child: _downloadingBook == 1
+                ? Column(
+                    children: [
+                      LinearProgressIndicator(
+                        value: _downloadProgress > 0 ? _downloadProgress : null,
+                        color: AppTheme.goldPrimary,
+                        backgroundColor: Colors.white12,
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        'Baixando Gênesis ${(_downloadProgress * 100).clamp(0, 100).toStringAsFixed(0)}%',
+                        style: const TextStyle(color: AppTheme.textMuted, fontSize: 11),
+                      ),
+                    ],
+                  )
+                : ElevatedButton(
+                    onPressed: _downloadingBook != null
+                        ? null
+                        : () async {
+                            await _downloadBook(1, 'Gênesis');
+                            if (!mounted) return;
+                            final chapters = await BibleOfflineService.instance
+                                .getDownloadedChapterNumbers(_selectedTranslation, 1);
+                            if (chapters.contains(1)) {
+                              _openChapter(1, 1);
+                            }
+                          },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppTheme.goldPrimary,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: const Text('Baixar Gênesis'),
+                  ),
           ),
         ],
       ),
@@ -424,7 +573,7 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
                                 ],
                               )
                             : OutlinedButton.icon(
-                                onPressed: () => _downloadBook(number, name),
+                                onPressed: _downloadingBook != null ? null : () => _downloadBook(number, name),
                                 icon: const Icon(Icons.download_rounded, size: 18),
                                 label: const Text('Baixar para ler offline'),
                                 style: OutlinedButton.styleFrom(

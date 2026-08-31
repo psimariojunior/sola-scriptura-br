@@ -281,6 +281,7 @@ class _AppShellState extends State<AppShell> {
         body: _nativeBible
             ? NativeBibleScreen(
                 onOpenWeb: _openWebPath,
+                autoOpenLast: true,
               )
             : Stack(
           children: [

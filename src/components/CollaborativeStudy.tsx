@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Users, Plus, Share2, Copy, MessageSquare,
@@ -18,12 +19,28 @@ import {
   upsertStudyRoom,
   type StudyRoom,
 } from '@/lib/collaborative';
-import { VideoCall } from '@/components/VideoCall';
-import { PresentationInline } from '@/components/Apresentacao/PresentationInline';
-import { BibleBrowser } from '@/components/BibleBrowser';
-import { SharedNotes } from '@/components/SharedNotes';
-import { LiveQuiz } from '@/components/LiveQuiz';
 import { RealtimeCursors, useRealtimeCursors } from '@/components/RealtimeCursors';
+
+const VideoCall = dynamic(
+  () => import('@/components/VideoCall').then((m) => ({ default: m.VideoCall })),
+  { ssr: false },
+);
+const PresentationInline = dynamic(
+  () => import('@/components/Apresentacao/PresentationInline').then((m) => ({ default: m.PresentationInline })),
+  { ssr: false },
+);
+const BibleBrowser = dynamic(
+  () => import('@/components/BibleBrowser').then((m) => ({ default: m.BibleBrowser })),
+  { ssr: false, loading: () => <p className="p-8 text-center text-sm text-[var(--content-muted)]">Carregando a Bíblia…</p> },
+);
+const SharedNotes = dynamic(
+  () => import('@/components/SharedNotes').then((m) => ({ default: m.SharedNotes })),
+  { ssr: false },
+);
+const LiveQuiz = dynamic(
+  () => import('@/components/LiveQuiz').then((m) => ({ default: m.LiveQuiz })),
+  { ssr: false },
+);
 import { RoomEntrance } from '@/components/RoomEntrance';
 import { RoomThemeSelector, getRoomThemeClasses } from '@/components/RoomThemes';
 import { BottomSheet } from '@/components/BottomSheet';
@@ -37,7 +54,7 @@ import {
   type VerseSharedEvent,
   type CallInviteEvent,
 } from '@/lib/webrtc';
-import { carregarCapitulo, nomeLivro } from '@/lib/apresentacao/versiculos';
+import { carregarCapitulo } from '@/lib/apresentacao/versiculos';
 
 interface CollaborativeStudyProps {
   initialCode?: string;
@@ -72,6 +89,21 @@ const SAMPLE_QUESTIONS: QuizQuestion[] = [
   { id: 'q4', question: 'Quem foi engolido pelo peixe?', options: ['Pedro', 'Paulo', 'Jonas', 'Tiago'], correctIndex: 2, category: 'Antigo Testamento', difficulty: 'facil' },
   { id: 'q5', question: 'Em que cidade Jesus nasceu?', options: ['Nazaré', 'Jerusalém', 'Belém', 'Cafarnaum'], correctIndex: 2, category: 'Evangelhos', difficulty: 'medio' },
 ];
+
+function parseSharedNotes(raw: unknown): SharedNote[] {
+  if (!raw || typeof raw !== 'object') return [];
+  const values = Array.isArray(raw) ? raw : Object.values(raw as Record<string, unknown>);
+  const out: SharedNote[] = [];
+  for (const v of values) {
+    try {
+      const n = typeof v === 'string' ? JSON.parse(v) : v;
+      if (n && typeof n === 'object' && typeof (n as SharedNote).id === 'string' && typeof (n as SharedNote).content === 'string') {
+        out.push(n as SharedNote);
+      }
+    } catch { /* nota inválida */ }
+  }
+  return out;
+}
 
 export function CollaborativeStudy({ initialCode, compact = false }: CollaborativeStudyProps) {
   const [room, setRoom] = useState<StudyRoom | null>(null);
@@ -109,6 +141,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   const [quizAnswers, setQuizAnswers] = useState<Array<{ participantId: string; participantName: string; questionId: string; selectedIndex: number; timeSpent: number; isCorrect: boolean }>>([]);
   const [quizScores, setQuizScores] = useState<Array<{ participantId: string; participantName: string; score: number; correctAnswers: number; totalAnswered: number; avgTime: number }>>([]);
   const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>(SAMPLE_QUESTIONS);
+  const [quizLive, setQuizLive] = useState(false);
   const [showBiblePanel, setShowBiblePanel] = useState(false);
   const [currentVerseIndex, setCurrentVerseIndex] = useState(-1);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -220,12 +253,29 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       setQuizIndex(0);
       setQuizAnswers([]);
       setQuizScores([]);
+      setQuizLive(true);
       setActiveTab('quiz');
     });
 
     svc.onQuizAnswer((answer) => {
       if (!answer?.participantId || !answer?.questionId) return;
       setQuizAnswers(prev => prev.some(a => a.questionId === answer.questionId && a.participantId === answer.participantId) ? prev : [...prev, { ...answer, timeSpent: answer.timeSpent || 0 }]);
+    });
+
+    svc.onQuizSync((data) => {
+      const idx = typeof data.currentQuestionIndex === 'number'
+        ? data.currentQuestionIndex
+        : Number((data as { currentQuestion?: number }).currentQuestion ?? 0);
+      setQuizLive(true);
+      setActiveTab('quiz');
+      if (data.status === 'finished') {
+        setQuizIndex((prev) => {
+          const total = SAMPLE_QUESTIONS.length;
+          return Number.isFinite(idx) && idx > 0 ? idx : total;
+        });
+      } else if (Number.isFinite(idx)) {
+        setQuizIndex(idx);
+      }
     });
 
     svc.onStatus((status) => setWsStatus(status));
@@ -244,7 +294,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     if (!participantId) return;
     if (initialCode && initialCode.length === 6) {
       const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
-      fetch(`${API_BASE}/colaborativo/rooms/${initialCode}`)
+      fetch(`${API_BASE}/colaborativo/rooms/${initialCode}`, { signal: AbortSignal.timeout(5000) })
         .then(res => res.ok ? res.json() : null)
         .then(serverRoom => {
           const roomId = serverRoom?.id || `room-${Date.now()}`;
@@ -269,6 +319,10 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
                 timestamp: new Date(m.timestamp).getTime(),
               }));
             if (verseMsgs.length > 0) setWsVerses(verseMsgs);
+          }
+          if (serverRoom?.sharedNotes) {
+            const notes = parseSharedNotes(serverRoom.sharedNotes);
+            if (notes.length > 0) setSharedNotes(notes);
           }
         })
         .catch(() => {
@@ -319,17 +373,21 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     setRoomBusy(true);
     const code = Math.floor(100000 + Math.random() * 900000).toString();
     let created: StudyRoom = { id: `room-${Date.now()}`, code, participants: [id], createdAt: Date.now(), verses: [] };
+    const abort = new AbortController();
+    const abortTimer = setTimeout(() => abort.abort(), 5000);
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1'}/colaborativo/rooms`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code, name: `Sala ${code}`, hostUserId: id }),
+        signal: abort.signal,
       });
       if (res.ok) {
         const saved = await res.json();
         created = { id: saved.id || created.id, code, participants: [id], createdAt: Date.now(), verses: [] };
       }
     } catch { /* WS + abas locais ainda funcionam */ }
+    clearTimeout(abortTimer);
     upsertStudyRoom(created);
     setRoom(created);
     setRoomBusy(false);
@@ -343,8 +401,10 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     const id = participantId || getParticipantId();
     let serverRoom: { id: string; participants: Array<{ id: string; name: string }>; messages: Array<{ id: string; userId: string; userName: string; text: string; timestamp: string; type: string }>; sharedNotes: Record<string, string> } | null = null;
     let notFound = false;
+    const abort = new AbortController();
+    const abortTimer = setTimeout(() => abort.abort(), 5000);
     try {
-      const res = await fetch(`${API_BASE}/colaborativo/rooms/${joinCode}`);
+      const res = await fetch(`${API_BASE}/colaborativo/rooms/${joinCode}`, { signal: abort.signal });
       if (res.ok) {
         const data = await res.json();
         if (data?.id || data?.code) serverRoom = data;
@@ -358,10 +418,12 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ code: joinCode, name: `Sala ${joinCode}`, hostUserId: id }),
+          signal: abort.signal,
         });
         if (res.ok) serverRoom = await res.json();
       } catch {}
     }
+    clearTimeout(abortTimer);
 
     const roomId = serverRoom?.id || `room-${Date.now()}`;
     const existingMessages: ChatMessage[] = (serverRoom?.messages || [])
@@ -391,6 +453,8 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     setRoom(joined);
     if (existingMessages.length > 0) setChatMessages(existingMessages);
     if (existingVerses.length > 0) setWsVerses(existingVerses);
+    const joinedNotes = parseSharedNotes(serverRoom?.sharedNotes);
+    if (joinedNotes.length > 0) setSharedNotes(joinedNotes);
 
     try {
       await fetch(`${API_BASE}/colaborativo/rooms/${joinCode}/participants`, {
@@ -715,6 +779,15 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   }, [room, sharedNotes, participantId, participantName]);
 
   // Quiz handlers
+  const handleStartLiveQuiz = useCallback(() => {
+    setQuizQuestions(SAMPLE_QUESTIONS);
+    setQuizIndex(0);
+    setQuizAnswers([]);
+    setQuizScores([]);
+    setQuizLive(true);
+    chatServiceRef.current?.sendQuizStart(SAMPLE_QUESTIONS);
+  }, []);
+
   const handleQuizAnswer = useCallback((questionId: string, selectedIndex: number) => {
     const question = quizQuestions.find(q => q.id === questionId);
     if (!question) return;
@@ -728,12 +801,36 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   }, [participantId, participantName, quizQuestions, room]);
 
   const handleNextQuestion = useCallback(() => {
-    if (quizIndex < quizQuestions.length - 1) setQuizIndex(prev => prev + 1);
-    else {
-      const scores = [{ participantId, participantName, score: quizAnswers.filter(a => a.isCorrect).length * 10, correctAnswers: quizAnswers.filter(a => a.isCorrect).length, totalAnswered: quizAnswers.length, avgTime: 0 }];
-      setQuizScores(scores);
+    const next = quizIndex + 1;
+    if (next < quizQuestions.length) {
+      setQuizIndex(next);
+      chatServiceRef.current?.sendQuizSync({ currentQuestion: next, status: 'active' });
+      return;
     }
-  }, [quizIndex, quizAnswers, participantId, participantName, quizQuestions]);
+    const byUser = new Map<string, { participantId: string; participantName: string; correct: number; total: number }>();
+    for (const a of quizAnswers) {
+      const cur = byUser.get(a.participantId) || {
+        participantId: a.participantId,
+        participantName: a.participantName,
+        correct: 0,
+        total: 0,
+      };
+      cur.total += 1;
+      if (a.isCorrect) cur.correct += 1;
+      byUser.set(a.participantId, cur);
+    }
+    const scores = Array.from(byUser.values()).map((u) => ({
+      participantId: u.participantId,
+      participantName: u.participantName,
+      score: u.correct * 10,
+      correctAnswers: u.correct,
+      totalAnswered: u.total,
+      avgTime: 0,
+    }));
+    setQuizScores(scores);
+    setQuizIndex(quizQuestions.length);
+    chatServiceRef.current?.sendQuizSync({ currentQuestion: quizQuestions.length, status: 'finished' });
+  }, [quizIndex, quizAnswers, quizQuestions]);
 
   const themeClasses = getRoomThemeClasses(roomTheme);
 
@@ -753,7 +850,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
         )}
         <div className={cn('flex flex-col gap-4 w-full', compact ? 'max-w-sm' : 'max-w-md')}>
           <motion.button onClick={handleCreate} disabled={roomBusy} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-            className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-gradient-to-r from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/25 disabled:opacity-60">
+            className="flex items-center justify-center gap-3 px-6 py-4 min-h-[48px] rounded-xl bg-gradient-to-r from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/25 disabled:opacity-60">
             <Plus className="w-5 h-5" /> {roomBusy ? 'Abrindo sala…' : 'Criar Nova Sala'}
           </motion.button>
           {roomFull && (
@@ -768,10 +865,10 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           <div className="flex gap-2">
             <input type="text" value={joinCode} onChange={(e) => setJoinCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
               placeholder="Código de 6 dígitos"
-              className="flex-1 px-4 py-3 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl text-center font-mono text-lg tracking-[0.3em] focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/30"
+              className="flex-1 min-h-[48px] px-4 py-3 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl text-center font-mono text-lg tracking-[0.3em] focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/30"
               onKeyDown={(e) => e.key === 'Enter' && handleJoin()} maxLength={6} />
             <motion.button onClick={handleJoin} disabled={joinCode.length !== 6 || roomBusy} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-              className={cn('px-5 py-3 rounded-xl font-semibold transition-all', joinCode.length === 6 && !roomBusy ? 'bg-[var(--surface-raised)] border border-[var(--border)]' : 'opacity-50 cursor-not-allowed bg-[var(--surface-raised)]')}>
+              className={cn('min-w-[48px] min-h-[48px] px-5 py-3 rounded-xl font-semibold transition-all', joinCode.length === 6 && !roomBusy ? 'bg-[var(--surface-raised)] border border-[var(--border)]' : 'opacity-50 cursor-not-allowed bg-[var(--surface-raised)]')}>
               <LinkIcon className="w-5 h-5" />
             </motion.button>
           </div>
@@ -841,7 +938,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
                 await fetch(`${API_BASE}/colaborativo/rooms/${room.code}/participants/${participantId}/leave`, { method: 'POST' });
               } catch {}
             }
-            setRoom(null); setIsCallActive(false); wsConnectedRef.current = false; setWsStatus('disconnected'); setChatMessages([]); setWsVerses([]);
+            setRoom(null); setIsCallActive(false); wsConnectedRef.current = false; setWsStatus('disconnected'); setChatMessages([]); setWsVerses([]); setSharedNotes([]); setQuizLive(false); setQuizAnswers([]); setQuizScores([]);
           }}
             className="p-2 hover:bg-[var(--surface-raised)] rounded-lg transition-colors text-[var(--content-muted)]"><X className="w-4 h-4" /></button>
         </div>
@@ -866,7 +963,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           { id: 'quiz' as const, icon: Zap, label: 'Quiz', count: 0 },
         ]).map(tab => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-            className={cn('flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 text-xs font-medium transition-all border-b-2 whitespace-nowrap',
+            className={cn('flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 min-h-[44px] text-xs font-medium transition-all border-b-2 whitespace-nowrap',
               activeTab === tab.id ? 'border-[var(--brand-default)] text-[var(--brand-default)]' : 'border-transparent text-[var(--content-muted)] hover:text-[var(--content-primary)]')}>
             <tab.icon className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">{tab.label}</span>
@@ -963,9 +1060,32 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           ) : activeTab === 'notes' ? (
             <SharedNotes notes={sharedNotes} currentUserId={participantId} onAdd={handleAddNote} onDelete={handleDeleteNote} onUpdate={handleUpdateNote} />
           ) : activeTab === 'quiz' ? (
+            !quizLive ? (
+              <div className="flex flex-col items-center justify-center h-full p-8 text-center gap-4">
+                <div className="w-16 h-16 rounded-2xl bg-[var(--brand-default)]/10 flex items-center justify-center">
+                  <Zap className="w-8 h-8 text-[var(--brand-default)]" />
+                </div>
+                <h3 className="font-display text-xl font-medium text-[var(--content-primary)]">Quiz ao vivo</h3>
+                <p className="text-sm text-[var(--content-muted)] max-w-sm leading-relaxed">
+                  Cinco perguntas bíblicas para o grupo. O anfitrião inicia; as respostas entram no ranking da sala.
+                </p>
+                {room.participants[0] === participantId ? (
+                  <button
+                    type="button"
+                    onClick={handleStartLiveQuiz}
+                    className="min-h-[44px] px-6 rounded-xl bg-[var(--brand-default)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/20"
+                  >
+                    Iniciar quiz ao vivo
+                  </button>
+                ) : (
+                  <p className="text-xs text-[var(--content-muted)]">Aguardando o anfitrião iniciar…</p>
+                )}
+              </div>
+            ) : (
             <LiveQuiz questions={quizQuestions} answers={quizAnswers} scores={quizScores} currentQuestionIndex={quizIndex}
               currentUserId={participantId} isHost={room.participants[0] === participantId}
-              onAnswer={handleQuizAnswer} onNextQuestion={handleNextQuestion} onEndQuiz={() => { setQuizIndex(0); setQuizAnswers([]); setQuizScores([]); setQuizQuestions(SAMPLE_QUESTIONS); }} />
+              onAnswer={handleQuizAnswer} onNextQuestion={handleNextQuestion} onEndQuiz={() => { setQuizLive(false); setQuizIndex(0); setQuizAnswers([]); setQuizScores([]); setQuizQuestions(SAMPLE_QUESTIONS); }} />
+            )
           ) : (
             <div className="space-y-3 p-4 h-full overflow-y-auto">
               {chatMessages.length === 0 ? (

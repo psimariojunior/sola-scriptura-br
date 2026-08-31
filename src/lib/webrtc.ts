@@ -26,6 +26,13 @@ if (TURN_URLS && TURN_USERNAME && TURN_CREDENTIAL) {
 
 const ICE_SERVERS: RTCConfiguration = { iceServers };
 
+export function hasTurnRelay(): boolean {
+  return iceServers.some((s) => {
+    const urls = Array.isArray(s.urls) ? s.urls : [s.urls];
+    return urls.some((u) => String(u).startsWith('turn:'));
+  });
+}
+
 export interface PeerStream {
   participantId: string;
   displayName: string;
@@ -204,6 +211,7 @@ export class WebRTCService {
   private onNoteTypingCallback: ((data: NoteTypingEvent) => void) | null = null;
   private onThemeSyncCallback: ((data: ThemeSyncEvent) => void) | null = null;
   private onCursorMoveCallback: ((data: { participantId: string; participantName: string; color: string; verseIndex: number; timestamp: number }) => void) | null = null;
+  private onIceFailedCallback: (() => void) | null = null;
   private peerStreams: PeerStream[] = [];
   private mySocketId = '';
   private roomCode = '';
@@ -361,6 +369,9 @@ export class WebRTCService {
         else if (type === 'note-sync') this.onNoteSyncCallback?.(payload);
         else if (type === 'presentation-sync') this.onPresentationSyncCallback?.(payload);
         else if (type === 'bible-navigation') this.onBibleNavigationCallback?.(payload);
+        else if (type === 'quiz-start') this.onQuizStartCallback?.(payload);
+        else if (type === 'quiz-answer') this.onQuizAnswerCallback?.(payload);
+        else if (type === 'quiz-sync') this.onQuizSyncCallback?.(payload);
       };
     } catch {
       this.localChannel = null;
@@ -453,18 +464,28 @@ export class WebRTCService {
   }
 
   sendQuizStart(questions: unknown[]) {
-    if (!this.socket || !this.roomCode) return;
-    this.socket.emit('quiz-start', { code: this.roomCode, questions });
+    if (!this.roomCode) return;
+    const payload = { code: this.roomCode, questions };
+    this.socket?.emit('quiz-start', payload);
+    this.postLocal('quiz-start', { questions });
   }
 
   sendQuizAnswer(answer: unknown) {
-    if (!this.socket || !this.roomCode) return;
-    this.socket.emit('quiz-answer', { code: this.roomCode, answer });
+    if (!this.roomCode) return;
+    const payload = { code: this.roomCode, answer };
+    this.socket?.emit('quiz-answer', payload);
+    this.postLocal('quiz-answer', answer);
   }
 
   sendQuizSync(data: { currentQuestion: number; status: string }) {
-    if (!this.socket || !this.roomCode) return;
-    this.socket.emit('quiz-sync', { code: this.roomCode, ...data });
+    if (!this.roomCode) return;
+    const payload = {
+      code: this.roomCode,
+      ...data,
+      currentQuestionIndex: data.currentQuestion,
+    };
+    this.socket?.emit('quiz-sync', payload);
+    this.postLocal('quiz-sync', payload);
   }
 
   sendNoteSync(data: NoteSyncEvent) {
@@ -541,6 +562,7 @@ export class WebRTCService {
     };
 
     pc.onconnectionstatechange = () => {
+      if (pc.connectionState === 'failed') this.onIceFailedCallback?.();
       if (pc.connectionState === 'disconnected' || pc.connectionState === 'failed') {
         this.removePeer(targetSocketId);
       }
@@ -581,6 +603,7 @@ export class WebRTCService {
     };
 
     pc.onconnectionstatechange = () => {
+      if (pc.connectionState === 'failed') this.onIceFailedCallback?.();
       if (pc.connectionState === 'disconnected' || pc.connectionState === 'failed') {
         this.removePeer(fromSocketId);
       }
@@ -698,6 +721,10 @@ export class WebRTCService {
     this.onPresentationSyncCallback = cb;
   }
 
+  onIceFailed(cb: () => void) {
+    this.onIceFailedCallback = cb;
+  }
+
   disconnect() {
     this.peers.forEach(pc => pc.close());
     this.peers.clear();
@@ -733,6 +760,7 @@ export class WebRTCService {
     this.onNoteTypingCallback = null;
     this.onThemeSyncCallback = null;
     this.onCursorMoveCallback = null;
+    this.onIceFailedCallback = null;
   }
 }
 

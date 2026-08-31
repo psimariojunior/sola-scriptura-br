@@ -14,7 +14,7 @@ import { HeaderNav } from '@/components/header/HeaderNav';
 import { HeaderSearch } from '@/components/header/HeaderSearch';
 import { HeaderUserMenu } from '@/components/header/HeaderUserMenu';
 import { HeaderMobileMenu } from '@/components/header/HeaderMobileMenu';
-import { Map, History, User, Calendar, Heart, HelpCircle, ScrollText, Languages, MessageCircle, Library, BookOpen, BookMarked, Search, Compass } from 'lucide-react';
+import { Map, History, User, Calendar, Heart, HelpCircle, ScrollText, Languages, MessageCircle, Library, BookOpen, BookMarked, Search, Compass, Users } from 'lucide-react';
 
 type LucideIcon = typeof BookOpen;
 
@@ -50,6 +50,7 @@ const maisGrupos: NavGroup[] = [
     titulo: 'header.practice',
     links: [
       { href: '/planos', label: 'header.readingPlans', icon: Calendar },
+      { href: '/estudo-colaborativo', label: 'footer.collaborativeStudy', icon: Users },
       { href: '/devocional', label: 'header.devotional', icon: Heart },
       { href: '/flashcards', label: 'header.flashcards', icon: BookMarked },
       { href: '/quiz', label: 'header.biblicalQuiz', icon: HelpCircle },

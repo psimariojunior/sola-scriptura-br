@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import {
   cacheTranslation, removeTranslation, isTranslationDownloaded, getOfflineStats,
   cacheBook, cacheTestament, getBookDownloadStatus, removeBook,
+  downloadApiTranslation,
   type BookDownloadStatus,
 } from '@/lib/offline';
 import { LIVROS_AT, LIVROS_NT, TODOS_LIVROS } from '@/data/biblia/livros';
@@ -57,6 +58,7 @@ export function OfflineDownloadManager({ open, onClose }: OfflineDownloadManager
   const [downloading, setDownloading] = useState<string | null>(null);
   const [progress, setProgress] = useState({ current: 0, total: 0, book: '', chapter: '' });
   const [stats, setStats] = useState<{ totalChapters: number; totalTranslations: number; storageUsed: number } | null>(null);
+  const [downloadError, setDownloadError] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
   const loadTranslationStats = useCallback(async () => {
@@ -88,6 +90,7 @@ export function OfflineDownloadManager({ open, onClose }: OfflineDownloadManager
   const handleDownloadFull = useCallback(async (traducao: string, type: 'local' | 'api') => {
     if (downloading) return;
     setDownloading(traducao);
+    setDownloadError(null);
     setProgress({ current: 0, total: 0, book: '', chapter: '' });
     abortRef.current = new AbortController();
 
@@ -96,12 +99,36 @@ export function OfflineDownloadManager({ open, onClose }: OfflineDownloadManager
         await cacheTranslation(traducao, (current, total) => {
           setProgress({ current, total, book: traducao.toUpperCase(), chapter: '' });
         });
+        const ok = await isTranslationDownloaded(traducao);
+        if (!ok) {
+          setDownloadError('Não foi possível gravar esta versão neste aparelho. Tente de novo.');
+        } else {
+          setDownloadedTranslations(prev => ({ ...prev, [traducao]: true }));
+        }
+      } else {
+        const result = await downloadApiTranslation(traducao, (book, _chapter, total) => {
+          setProgress((prev) => ({
+            current: Math.min(prev.current + 1, total),
+            total,
+            book: book.toUpperCase(),
+            chapter: '',
+          }));
+        }, abortRef.current.signal);
+        if (result.saved === 0) {
+          setDownloadError('A API de traduções não respondeu. Use uma versão local (NVI, ARC, ARA) ou tente mais tarde.');
+        } else {
+          if (result.saved < result.attempted) {
+            setDownloadError(`Chegaram ${result.saved} de ${result.attempted} capítulos. Você já pode ler o que foi gravado.`);
+          }
+          setDownloadedTranslations(prev => ({ ...prev, [traducao]: true }));
+        }
       }
-      setDownloadedTranslations(prev => ({ ...prev, [traducao]: true }));
       if (selectedTranslation?.id === traducao) {
         await loadBookStatuses(traducao);
       }
-    } catch {}
+    } catch {
+      setDownloadError('Falha no download. Verifique a internet e tente de novo.');
+    }
 
     setDownloading(null);
     setProgress({ current: 0, total: 0, book: '', chapter: '' });
@@ -114,9 +141,15 @@ export function OfflineDownloadManager({ open, onClose }: OfflineDownloadManager
     setProgress({ current: 0, total: 0, book: '', chapter: '' });
 
     const book = TODOS_LIVROS.find(b => b.abreviacao === bookAbrev);
-    await cacheBook(selectedTranslation.id, bookAbrev, (current, total) => {
+    setDownloadError(null);
+    const result = await cacheBook(selectedTranslation.id, bookAbrev, (current, total) => {
       setProgress({ current, total, book: book?.nome || bookAbrev, chapter: `${current}/${total} capítulos` });
     });
+    if (result.saved === 0) {
+      setDownloadError(`Não foi possível baixar ${book?.nome || bookAbrev}. A fonte da Bíblia não respondeu — tente de novo com internet.`);
+    } else if (result.saved < result.total) {
+      setDownloadError(`${book?.nome || bookAbrev}: ${result.saved} de ${result.total} capítulos. O restante falhou na API.`);
+    }
 
     setDownloading(null);
     setProgress({ current: 0, total: 0, book: '', chapter: '' });
@@ -230,6 +263,12 @@ export function OfflineDownloadManager({ open, onClose }: OfflineDownloadManager
                   {progress.current} de {progress.total} capítulos
                   {progress.chapter ? ` · ${progress.chapter}` : ''}
                 </p>
+              </div>
+            )}
+
+            {downloadError && (
+              <div className="mx-4 mt-3 px-3 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs leading-relaxed text-amber-800 dark:text-amber-200">
+                {downloadError}
               </div>
             )}
 

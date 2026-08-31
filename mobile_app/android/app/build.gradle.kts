@@ -44,7 +44,15 @@ android {
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.getByName("release")
+            // Sem key.properties, assina com debug para `flutter build apk --release` funcionar.
+            // Play Store: crie um keystore e key.properties, depois:
+            //   flutter build appbundle --release
+            //   flutter build apk --release
+            signingConfig = if (keystorePropertiesFile.exists() && keystoreProperties["storeFile"] != null) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")

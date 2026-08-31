@@ -51,22 +51,31 @@ class _OfflineTranslationsScreenState extends State<OfflineTranslationsScreen> {
     });
 
     try {
-      await _offlineService.downloadBook(
-        _selectedTranslation,
-        bookNumber,
-        onProgress: (progress) {
-          if (mounted) setState(() => _downloadProgress = progress);
-        },
-      );
-
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('$bookName baixado!'),
-            backgroundColor: AppTheme.goldPrimary,
-            duration: const Duration(seconds: 1),
-          ),
+        final saved = await _offlineService.downloadBook(
+          _selectedTranslation,
+          bookNumber,
+          onProgress: (progress) {
+            if (mounted) setState(() => _downloadProgress = progress);
+          },
         );
+        if (!mounted) return;
+        if (saved == 0) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Não foi possível baixar $bookName. A API não respondeu.'),
+              backgroundColor: AppTheme.error,
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('$bookName baixado ($saved capítulos)!'),
+              backgroundColor: AppTheme.goldPrimary,
+              duration: const Duration(seconds: 1),
+            ),
+          );
+        }
       }
     } catch (e) {
       if (mounted) {

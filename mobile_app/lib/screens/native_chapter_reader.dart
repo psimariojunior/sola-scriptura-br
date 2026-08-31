@@ -26,6 +26,7 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
   late int _chapter;
   List<OfflineVerse> _verses = [];
   bool _loading = true;
+  bool _downloading = false;
   String? _error;
 
   Map<String, dynamic>? get _book => BibleBooks.getBookByNumber(widget.bookNumber);
@@ -55,7 +56,7 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
         _verses = verses;
         _loading = false;
         if (verses.isEmpty) {
-          _error = 'Este capítulo não está baixado. Abra Bíblia Offline e baixe $_bookName.';
+          _error = 'Este capítulo ainda não está neste aparelho.';
         }
       });
       if (verses.isNotEmpty) {
@@ -67,6 +68,69 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
         _loading = false;
         _error = 'Não foi possível ler o capítulo: $e';
       });
+    }
+  }
+
+  Future<void> _downloadThisChapter() async {
+    setState(() {
+      _downloading = true;
+      _error = null;
+    });
+    try {
+      final saved = await BibleOfflineService.instance.downloadChapter(
+        widget.translationId,
+        widget.bookNumber,
+        _chapter,
+      );
+      if (!mounted) return;
+      if (saved == 0) {
+        setState(() {
+          _downloading = false;
+          _error =
+              'A API da Bíblia não respondeu. Verifique a internet e tente de novo, ou use o site.';
+        });
+        return;
+      }
+      await _load();
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _downloading = false;
+        _error = 'Falha no download: $e';
+      });
+    } finally {
+      if (mounted) setState(() => _downloading = false);
+    }
+  }
+
+  Future<void> _downloadWholeBook() async {
+    setState(() {
+      _downloading = true;
+      _error = null;
+    });
+    try {
+      final saved = await BibleOfflineService.instance.downloadBook(
+        widget.translationId,
+        widget.bookNumber,
+      );
+      if (!mounted) return;
+      if (saved == 0) {
+        setState(() {
+          _downloading = false;
+          _error =
+              'Não foi possível baixar $_bookName. A API não respondeu — tente de novo com internet.';
+        });
+        return;
+      }
+      await _load();
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _downloading = false;
+        _error = 'Falha no download: $e';
+      });
+    } finally {
+      if (mounted) setState(() => _downloading = false);
     }
   }
 
@@ -130,7 +194,7 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.menu_book_outlined, color: AppTheme.textMuted, size: 48),
+            const Icon(Icons.cloud_off_outlined, color: AppTheme.textMuted, size: 48),
             const SizedBox(height: 16),
             Text(
               _error!,
@@ -138,10 +202,41 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
               style: const TextStyle(color: AppTheme.textSecondary, fontSize: 15, height: 1.4),
             ),
             const SizedBox(height: 20),
-            TextButton(
-              onPressed: () => Navigator.of(context).pushNamed('/offline-translations'),
-              child: const Text('Baixar livros', style: TextStyle(color: AppTheme.goldPrimary)),
-            ),
+            if (_downloading)
+              const CircularProgressIndicator(color: AppTheme.goldPrimary)
+            else ...[
+              SizedBox(
+                width: double.infinity,
+                height: 44,
+                child: ElevatedButton.icon(
+                  onPressed: _downloadThisChapter,
+                  icon: const Icon(Icons.download_rounded, size: 18),
+                  label: const Text('Baixar este capítulo'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppTheme.goldPrimary,
+                    foregroundColor: Colors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              SizedBox(
+                width: double.infinity,
+                height: 44,
+                child: OutlinedButton(
+                  onPressed: _downloadWholeBook,
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: AppTheme.goldPrimary,
+                    side: BorderSide(color: AppTheme.goldPrimary.withValues(alpha: 0.5)),
+                  ),
+                  child: Text('Baixar $_bookName inteiro'),
+                ),
+              ),
+              const SizedBox(height: 8),
+              TextButton(
+                onPressed: () => Navigator.of(context).pushNamed('/offline-translations'),
+                child: const Text('Mais versões', style: TextStyle(color: AppTheme.textSecondary)),
+              ),
+            ],
           ],
         ),
       ),

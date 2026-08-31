@@ -261,7 +261,7 @@ export default function PlanosPage() {
                 </div>
               ))}</div>
               <button onClick={()=>toggleDia(diaAtual)}
-                className="mt-3 w-full py-2.5 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                className="mt-3 w-full min-h-[44px] py-2.5 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
                 <CheckCircle2 className="w-4 h-4" /> Marcar dia {diaAtual} como concluído</button>
             </motion.div>
           )}
@@ -303,13 +303,23 @@ export default function PlanosPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">{PLANOS.map((plano,i)=>(
           <motion.button key={plano.id} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:i*0.08}}
             onClick={()=>setPlanoSel(plano)}
-            className="text-left rounded-2xl border border-border/50 bg-card/50 p-5 hover:border-primary/30 transition-all group">
+            className={cn(
+              'text-left rounded-2xl border p-5 hover:border-primary/30 transition-all group min-h-[112px]',
+              plano.id === 'fichas-40'
+                ? 'border-primary/40 bg-primary/8 ring-1 ring-primary/20'
+                : 'border-border/50 bg-card/50',
+            )}>
             <div className="flex items-start gap-3 mb-3">
               <div className="w-10 h-10 rounded-xl tile-brand flex items-center justify-center shrink-0">
                 <plano.icone className="w-5 h-5" />
               </div>
-              <div><h3 className="font-display text-lg font-medium group-hover:text-primary transition-colors">{plano.titulo}</h3>
-                <p className="text-xs text-muted-foreground mt-1">{plano.descricao}</p></div>
+              <div>
+                {plano.id === 'fichas-40' && (
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary mb-1">Recomendado</p>
+                )}
+                <h3 className="font-display text-lg font-medium group-hover:text-primary transition-colors">{plano.titulo}</h3>
+                <p className="text-xs text-muted-foreground mt-1">{plano.descricao}</p>
+              </div>
             </div>
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
               <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">{plano.duracao} dias</span>

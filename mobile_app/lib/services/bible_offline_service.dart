@@ -36,74 +36,111 @@ class BibleOfflineService {
 
   // === DOWNLOAD POR LIVRO (YouVersion style) ===
 
-  Future<void> downloadBook(
-    String translationId,
-    int bookNumber, {
-    Function(double progress)? onProgress,
+  Future<bool> _fetchAndStoreChapter({
+    required dynamic db,
+    required String translationId,
+    required int bookNumber,
+    required String slug,
+    required int chapter,
   }) async {
-    final db = await DatabaseHelper.instance.database;
-    final book = BibleBooks.getBookByNumber(bookNumber);
-    if (book == null) return;
-    final slug = BibleBooks.midvashSlug(bookNumber);
-    if (slug == null) return;
+    String? payload;
+    try {
+      final trad = translationId.toLowerCase();
+      final midvash = await http
+          .get(Uri.parse('$_midvashBase/$trad/$slug/$chapter'))
+          .timeout(const Duration(seconds: 15));
+      if (midvash.statusCode == 200) {
+        final verses = parseChapterJson(midvash.body);
+        if (verses.isNotEmpty) {
+          payload = jsonEncode({
+            'verses': verses.map((v) => {'number': v.number, 'text': v.text}).toList(),
+          });
+        }
+      }
 
-    final chaptersCount = book['chapters'] as int;
-    final trad = translationId.toLowerCase();
-    int downloaded = 0;
-
-    for (int chapter = 1; chapter <= chaptersCount; chapter++) {
-      try {
-        String? payload;
-        final midvash = await http
-            .get(Uri.parse('$_midvashBase/$trad/$slug/$chapter'))
-            .timeout(const Duration(seconds: 15));
-        if (midvash.statusCode == 200) {
-          final verses = parseChapterJson(midvash.body);
+      if (payload == null) {
+        final fallback = await http
+            .get(Uri.parse('$_apiBaseUrl/biblia/livros/$bookNumber/capitulos/$chapter'))
+            .timeout(const Duration(seconds: 12));
+        if (fallback.statusCode == 200) {
+          final verses = parseChapterJson(fallback.body);
           if (verses.isNotEmpty) {
             payload = jsonEncode({
               'verses': verses.map((v) => {'number': v.number, 'text': v.text}).toList(),
             });
           }
         }
-
-        if (payload == null) {
-          final fallback = await http
-              .get(Uri.parse('$_apiBaseUrl/biblia/livros/$bookNumber/capitulos/$chapter'))
-              .timeout(const Duration(seconds: 12));
-          if (fallback.statusCode == 200) {
-            final verses = parseChapterJson(fallback.body);
-            if (verses.isNotEmpty) {
-              payload = jsonEncode({
-                'verses': verses.map((v) => {'number': v.number, 'text': v.text}).toList(),
-              });
-            }
-          }
-        }
-
-        if (payload != null) {
-          await db.delete(
-            'chapters',
-            where: 'translation_id = ? AND book_number = ? AND chapter_number = ?',
-            whereArgs: [translationId, bookNumber, chapter],
-          );
-          await db.insert('chapters', {
-            'translation_id': translationId,
-            'book_number': bookNumber,
-            'chapter_number': chapter,
-            'data': payload,
-            'cached_at': DateTime.now().toIso8601String(),
-          });
-        }
-      } catch (e) {
-        debugPrint('Erro ao baixar $translationId $bookNumber:$chapter - $e');
       }
+    } catch (e) {
+      debugPrint('Erro ao baixar $translationId $bookNumber:$chapter - $e');
+    }
 
-      downloaded++;
-      onProgress?.call(downloaded / chaptersCount);
+    if (payload == null) return false;
+
+    await db.delete(
+      'chapters',
+      where: 'translation_id = ? AND book_number = ? AND chapter_number = ?',
+      whereArgs: [translationId, bookNumber, chapter],
+    );
+    await db.insert('chapters', {
+      'translation_id': translationId,
+      'book_number': bookNumber,
+      'chapter_number': chapter,
+      'data': payload,
+      'cached_at': DateTime.now().toIso8601String(),
+    });
+    return true;
+  }
+
+  Future<int> downloadBook(
+    String translationId,
+    int bookNumber, {
+    Function(double progress)? onProgress,
+  }) async {
+    final db = await DatabaseHelper.instance.database;
+    final book = BibleBooks.getBookByNumber(bookNumber);
+    if (book == null) return 0;
+    final slug = BibleBooks.midvashSlug(bookNumber);
+    if (slug == null) return 0;
+
+    final chaptersCount = book['chapters'] as int;
+    int saved = 0;
+
+    for (int chapter = 1; chapter <= chaptersCount; chapter++) {
+      if (await _fetchAndStoreChapter(
+        db: db,
+        translationId: translationId,
+        bookNumber: bookNumber,
+        slug: slug,
+        chapter: chapter,
+      )) {
+        saved++;
+      }
+      onProgress?.call(chapter / chaptersCount);
       await Future.delayed(const Duration(milliseconds: 50));
     }
 
     await _updateTranslationMeta(translationId);
+    return saved;
+  }
+
+  Future<int> downloadChapter(
+    String translationId,
+    int bookNumber,
+    int chapter,
+  ) async {
+    final db = await DatabaseHelper.instance.database;
+    final slug = BibleBooks.midvashSlug(bookNumber);
+    if (slug == null) return 0;
+    final ok = await _fetchAndStoreChapter(
+      db: db,
+      translationId: translationId,
+      bookNumber: bookNumber,
+      slug: slug,
+      chapter: chapter,
+    );
+    if (ok) await _updateTranslationMeta(translationId);
+    return ok ? 1 : 0;
   }
 
   Future<void> downloadTestament(

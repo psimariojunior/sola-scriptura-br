@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { PageShell } from '@/components/layout/PageShell';
 import {
   BookOpen, Search, Brain, Map, Languages, ArrowRight,
-  Heart, BookMarked, Clock, Columns, Library,
+  Heart, BookMarked, Clock, Columns, Library, Users,
 } from 'lucide-react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -25,9 +25,11 @@ const FERRAMENTAS = [
   { href: '/harmonia', icon: Columns, label: 'Harmonia' },
   { href: '/atlas', icon: Map, label: 'Atlas' },
   { href: '/biblioteca', icon: Library, label: 'Clássicos' },
+  { href: '/estudo-colaborativo', icon: Users, label: 'Sala ao vivo' },
 ];
 
 const LEITURAS = [
+  { titulo: '40 dias nas fichas profundas', dias: 40, href: '/planos?plano=fichas-40' },
   { titulo: 'Salmos', dias: 30, href: '/planos?plano=salmos-30' },
   { titulo: 'Os Evangelhos', dias: 60, href: '/planos?plano=evangelhos-60' },
   { titulo: 'Novo Testamento', dias: 90, href: '/planos?plano=nt-90' },
@@ -86,7 +88,7 @@ export default function HomeClient() {
         <div className="flex flex-wrap items-center justify-center gap-3 -mt-2 mb-10">
           <Link
             href="/biblia"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-md text-sm font-semibold
+            className="inline-flex items-center justify-center gap-2 min-h-[44px] px-7 py-3 rounded-md text-sm font-semibold
               bg-primary text-primary-foreground shadow-md hover:brightness-110 transition-[filter]"
           >
             <BookOpen className="w-4 h-4" />
@@ -94,7 +96,7 @@ export default function HomeClient() {
           </Link>
           <Link
             href="/exegese"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-md text-sm font-medium
+            className="inline-flex items-center justify-center gap-2 min-h-[44px] px-6 py-3 rounded-md text-sm font-medium
               text-primary border border-primary/35 bg-card/70 hover:bg-primary/10 hover:border-primary/55 transition-colors"
           >
             Estudo com IA

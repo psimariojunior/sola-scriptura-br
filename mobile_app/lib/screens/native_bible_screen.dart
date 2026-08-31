@@ -22,6 +22,9 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
   int? _selectedBook;
   Map<int, int> _status = {};
   Set<int> _selectedBookChapters = {};
+  int? _downloadingBook;
+  double _downloadProgress = 0;
+  String? _downloadError;
 
   @override
   void initState() {
@@ -56,7 +59,56 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
           onOpenWeb: widget.onOpenWeb,
         ),
       ),
-    );
+    ).then((_) {
+      _loadStatus();
+      if (_selectedBook != null) {
+        BibleOfflineService.instance
+            .getDownloadedChapterNumbers(_selectedTranslation, _selectedBook!)
+            .then((chapters) {
+          if (mounted) setState(() => _selectedBookChapters = chapters);
+        });
+      }
+    });
+  }
+
+  Future<void> _downloadBook(int bookNumber, String bookName) async {
+    if (_downloadingBook != null) return;
+    setState(() {
+      _downloadingBook = bookNumber;
+      _downloadProgress = 0;
+      _downloadError = null;
+    });
+    try {
+      final saved = await BibleOfflineService.instance.downloadBook(
+        _selectedTranslation,
+        bookNumber,
+        onProgress: (p) {
+          if (mounted) setState(() => _downloadProgress = p);
+        },
+      );
+      if (!mounted) return;
+      await _loadStatus();
+      final chapters = await BibleOfflineService.instance.getDownloadedChapterNumbers(
+        _selectedTranslation,
+        bookNumber,
+      );
+      if (!mounted) return;
+      setState(() {
+        _selectedBookChapters = chapters;
+        _downloadingBook = null;
+        if (saved == 0) {
+          _downloadError =
+              'Não foi possível baixar $bookName. A API da Bíblia não respondeu — tente de novo com internet.';
+        }
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _downloadingBook = null;
+        _downloadError =
+            'Falha ao baixar $bookName. Verifique a internet e tente de novo.';
+      });
+    }
   }
 
   Future<void> _selectBook(int number) async {
@@ -88,6 +140,14 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
             _buildHeader(),
             _buildTranslationSelector(),
             _buildTabBar(),
+            if (_downloadError != null)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                child: Text(
+                  _downloadError!,
+                  style: const TextStyle(color: Color(0xFFFBBF24), fontSize: 12, height: 1.4),
+                ),
+              ),
             Expanded(
               child: TabBarView(
                 controller: _tabController,
@@ -208,10 +268,56 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
   }
 
   Widget _buildBookList(List<Map<String, dynamic>> books) {
+    final anyDownloaded = _status.values.any((c) => c > 0);
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      itemCount: books.length,
-      itemBuilder: (context, index) => _buildBookTile(books[index]),
+      itemCount: books.length + (anyDownloaded ? 0 : 1),
+      itemBuilder: (context, index) {
+        if (!anyDownloaded && index == 0) {
+          return _buildEmptyDownloadCard();
+        }
+        final book = books[anyDownloaded ? index : index - 1];
+        return _buildBookTile(book);
+      },
+    );
+  }
+
+  Widget _buildEmptyDownloadCard() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: AppTheme.goldPrimary.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: AppTheme.goldPrimary.withValues(alpha: 0.28)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Nenhum capítulo baixado',
+            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(height: 6),
+          const Text(
+            'Baixe um livro para ler sem internet. Abra o livro e toque em “Baixar para ler offline”.',
+            style: TextStyle(color: AppTheme.textSecondary, fontSize: 13, height: 1.4),
+          ),
+          const SizedBox(height: 14),
+          SizedBox(
+            height: 44,
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () => Navigator.of(context).pushNamed('/offline-translations'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppTheme.goldPrimary,
+                foregroundColor: Colors.white,
+              ),
+              child: const Text('Baixar para ler offline'),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -296,6 +402,38 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
                 ),
                 if (isSelected) ...[
                   const SizedBox(height: 12),
+                  if (!complete)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 44,
+                        child: _downloadingBook == number
+                            ? Column(
+                                children: [
+                                  LinearProgressIndicator(
+                                    value: _downloadProgress > 0 ? _downloadProgress : null,
+                                    color: AppTheme.goldPrimary,
+                                    backgroundColor: Colors.white12,
+                                  ),
+                                  const SizedBox(height: 6),
+                                  Text(
+                                    'Baixando ${( _downloadProgress * 100).clamp(0, 100).toStringAsFixed(0)}%',
+                                    style: const TextStyle(color: AppTheme.textMuted, fontSize: 11),
+                                  ),
+                                ],
+                              )
+                            : OutlinedButton.icon(
+                                onPressed: () => _downloadBook(number, name),
+                                icon: const Icon(Icons.download_rounded, size: 18),
+                                label: const Text('Baixar para ler offline'),
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: AppTheme.goldPrimary,
+                                  side: BorderSide(color: AppTheme.goldPrimary.withValues(alpha: 0.5)),
+                                ),
+                              ),
+                      ),
+                    ),
                   Wrap(
                     spacing: 6,
                     runSpacing: 6,

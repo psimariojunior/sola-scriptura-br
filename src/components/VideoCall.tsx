@@ -7,7 +7,7 @@ import {
   MonitorUp, Maximize2, Minimize2
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { createWebRTCService, type PeerStream, type ConnectionStatus, type WebRTCService } from '@/lib/webrtc';
+import { createWebRTCService, hasTurnRelay, type PeerStream, type ConnectionStatus, type WebRTCService } from '@/lib/webrtc';
 import { getParticipantLabel } from '@/lib/collaborative';
 
 interface VideoCallProps {
@@ -28,6 +28,8 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
   const [videoEnabled, setVideoEnabled] = useState(callType === 'video');
   const [minimized, setMinimized] = useState(false);
   const [isScreenSharing, setIsScreenSharing] = useState(false);
+  const [iceFailed, setIceFailed] = useState(false);
+  const [waitTimedOut, setWaitTimedOut] = useState(false);
   const serviceRef = useRef<WebRTCService | null>(null);
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const screenStreamRef = useRef<MediaStream | null>(null);
@@ -42,6 +44,7 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
 
       service.onStatus(setStatus);
       service.onPeerStream(setPeerStreams);
+      service.onIceFailed(() => setIceFailed(true));
 
       const stream = await service.getLocalStream(!isVoiceOnly, true);
       setLocalStream(stream);
@@ -79,6 +82,16 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
       localVideoRef.current.srcObject = localStream;
     }
   }, [localStream]);
+
+  useEffect(() => {
+    if (peerStreams.length > 0) {
+      setWaitTimedOut(false);
+      setIceFailed(false);
+      return;
+    }
+    const t = window.setTimeout(() => setWaitTimedOut(true), 18000);
+    return () => window.clearTimeout(t);
+  }, [peerStreams.length]);
 
   const toggleAudio = () => {
     const enabled = serviceRef.current?.toggleAudio();
@@ -186,6 +199,16 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
           </button>
         </div>
       </div>
+
+      {(status === 'error' || iceFailed || (waitTimedOut && totalPeers === 0)) && (
+        <div className="mx-3 mt-2 px-3 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs leading-relaxed text-amber-800 dark:text-amber-200">
+          {status === 'error' && !localStream
+            ? 'Não foi possível acessar câmera ou microfone. Verifique as permissões do navegador.'
+            : hasTurnRelay()
+              ? 'A conexão de mídia falhou. Tente de novo ou peça para todos usarem a mesma rede Wi-Fi.'
+              : 'Sem servidor de relé (TURN). A chamada de vídeo/voz só funciona na mesma rede Wi-Fi. Chat, notas e quiz da sala continuam ao vivo.'}
+        </div>
+      )}
 
       {/* Video/Audio Grid */}
       <div className="flex-1 overflow-y-auto p-2">

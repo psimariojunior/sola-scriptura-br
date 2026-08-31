@@ -48,6 +48,7 @@ class NativeBottomNav extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
+        constraints: const BoxConstraints(minHeight: 48, minWidth: 64),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         decoration: isSelected
             ? BoxDecoration(

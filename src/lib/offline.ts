@@ -544,17 +544,20 @@ export async function downloadApiTranslation(
   traducao: string,
   onProgress?: (book: string, chapter: number, total: number) => void,
   signal?: AbortSignal
-): Promise<number> {
+): Promise<{ saved: number; attempted: number }> {
   const totalCapitulos = LIVROS_COMPLETOS.reduce((acc, l) => acc + l.capitulos, 0);
-  let downloaded = 0;
+  let attempted = 0;
+  let saved = 0;
   let batch: Array<{ key: string; livro: string; capitulo: number; traducao: string; verses: string[] }> = [];
 
   for (const livro of LIVROS_COMPLETOS) {
     for (let cap = 1; cap <= livro.capitulos; cap++) {
-      if (signal?.aborted) return downloaded;
+      if (signal?.aborted) return { saved, attempted };
 
       const verses = await fetchMidvashChapter(traducao, livro.midvash, cap);
+      attempted++;
       if (verses) {
+        saved++;
         batch.push({
           key: `${traducao}:${livro.abrev}:${cap}`,
           livro: livro.abrev,
@@ -564,7 +567,6 @@ export async function downloadApiTranslation(
         });
       }
 
-      downloaded++;
       onProgress?.(livro.abrev, cap, totalCapitulos);
 
       if (batch.length >= 20) {
@@ -572,14 +574,13 @@ export async function downloadApiTranslation(
         batch = [];
       }
 
-      // Stagger para evitar rate limit na API
       await new Promise((r) => setTimeout(r, 150));
     }
   }
 
   if (batch.length > 0) await flushBatch(batch);
-  await saveMeta(`sync:${traducao}`, Date.now());
-  return downloaded;
+  if (saved > 0) await saveMeta(`sync:${traducao}`, Date.now());
+  return { saved, attempted };
 }
 
 async function flushBatch(batch: Array<{ key: string; livro: string; capitulo: number; traducao: string; verses: string[] }>) {
@@ -616,22 +617,42 @@ export async function cacheBook(
   traducao: string,
   bookAbrev: string,
   onProgress?: (current: number, total: number) => void
-): Promise<void> {
+): Promise<{ saved: number; total: number }> {
   const book = ALL_BOOKS.find(b => b.abreviacao === bookAbrev);
-  if (!book) return;
+  if (!book) return { saved: 0, total: 0 };
 
-  const mod = await import(`@/data/biblia/texto/${traducao}/index`);
-  const data = mod.default as Record<string, Record<number, string[]>>;
-  const bookData = data[bookAbrev];
-  if (!bookData) return;
-
-  const chapters = Object.entries(bookData);
-  let count = 0;
-  for (const [capStr, verses] of chapters) {
-    await saveChapterDB(bookAbrev, Number(capStr), traducao, verses);
-    count++;
-    onProgress?.(count, chapters.length);
+  let bookData: Record<number, string[]> | undefined;
+  try {
+    const mod = await import(`@/data/biblia/texto/${traducao}/index`);
+    const data = mod.default as Record<string, Record<number, string[]>>;
+    bookData = data[bookAbrev];
+  } catch {
+    bookData = undefined;
   }
+
+  if (bookData) {
+    const chapters = Object.entries(bookData);
+    let count = 0;
+    for (const [capStr, verses] of chapters) {
+      await saveChapterDB(bookAbrev, Number(capStr), traducao, verses);
+      count++;
+      onProgress?.(count, chapters.length);
+    }
+    return { saved: count, total: chapters.length };
+  }
+
+  const mid = LIVROS_COMPLETOS.find((l) => l.abrev === bookAbrev.toLowerCase());
+  if (!mid) return { saved: 0, total: book.totalCapitulos };
+  let saved = 0;
+  for (let cap = 1; cap <= mid.capitulos; cap++) {
+    const verses = await fetchMidvashChapter(traducao, mid.midvash, cap);
+    if (verses && verses.length > 0) {
+      await saveChapterDB(bookAbrev, cap, traducao, verses);
+      saved++;
+    }
+    onProgress?.(cap, mid.capitulos);
+  }
+  return { saved, total: mid.capitulos };
 }
 
 export async function cacheTestament(

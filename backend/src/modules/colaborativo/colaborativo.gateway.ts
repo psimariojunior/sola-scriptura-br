@@ -330,6 +330,7 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
   ) {
     client.to(data.code).emit('quiz-sync', {
       currentQuestion: data.currentQuestion,
+      currentQuestionIndex: data.currentQuestion,
       status: data.status,
     });
   }

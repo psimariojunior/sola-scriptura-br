@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../config/theme.dart';
 import '../data/bible_books.dart';
 import '../services/bible_offline_service.dart';
+import '../widgets/full_bible_download_panel.dart';
 import 'native_bible_screen.dart';
 
 class OfflineTranslationsScreen extends StatefulWidget {
@@ -23,11 +24,38 @@ class _OfflineTranslationsScreenState extends State<OfflineTranslationsScreen> {
   @override
   void initState() {
     super.initState();
-    _loadData();
+    BibleOfflineService.instance.jobNotifier.addListener(_onJob);
+    _boot();
   }
 
-  Future<void> _loadData() async {
-    setState(() => _isLoading = true);
+  Future<void> _boot() async {
+    await BibleOfflineService.instance.loadPersistedJob();
+    await _loadData();
+  }
+
+  void _onJob() {
+    final job = BibleOfflineService.instance.currentJob;
+    if (!mounted) return;
+    setState(() {
+      if (job != null && job.translationId == _selectedTranslation) {
+        _isDownloading = job.status == 'running';
+        _downloadingBook = job.currentBook.isEmpty ? null : job.currentBook;
+        _downloadProgress = job.progress;
+      }
+    });
+    if (job != null && (job.status == 'done' || job.status == 'paused' || job.status == 'error')) {
+      _loadData(silent: true);
+    }
+  }
+
+  @override
+  void dispose() {
+    BibleOfflineService.instance.jobNotifier.removeListener(_onJob);
+    super.dispose();
+  }
+
+  Future<void> _loadData({bool silent = false}) async {
+    if (!silent) setState(() => _isLoading = true);
     try {
       final bookStatus = await _offlineService.getBookDownloadStatus(_selectedTranslation);
       if (mounted) {
@@ -206,14 +234,15 @@ class _OfflineTranslationsScreenState extends State<OfflineTranslationsScreen> {
       body: Column(
         children: [
           _buildTranslationSelector(),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
-            child: Text(
-              'NVI, ARC e ARA costumam baixar melhor. Nem todas as 10 traduções estão sempre disponíveis.',
-              style: TextStyle(color: AppTheme.textMuted, fontSize: 11, height: 1.35),
-            ),
+          FullBibleDownloadPanel(
+            translationId: _selectedTranslation,
+            bookStatus: _bookStatus,
+            busy: _isDownloading,
           ),
-          if (_isDownloading) _buildDownloadProgress(),
+          if (_isDownloading &&
+              (BibleOfflineService.instance.currentJob == null ||
+                  BibleOfflineService.instance.currentJob!.mode != BibleDownloadMode.all))
+            _buildDownloadProgress(),
           _buildTestamentActions(),
           Expanded(child: _buildBooksGrid()),
         ],
@@ -243,10 +272,9 @@ class _OfflineTranslationsScreenState extends State<OfflineTranslationsScreen> {
               selectedColor: AppTheme.goldPrimary,
               backgroundColor: AppTheme.surfaceLight,
               onSelected: (selected) {
-                if (selected) {
-                  setState(() => _selectedTranslation = t['id']!);
-                  _loadData();
-                }
+                if (!selected || _isDownloading) return;
+                setState(() => _selectedTranslation = t['id']!);
+                _loadData();
               },
             ),
           );
@@ -285,6 +313,12 @@ class _OfflineTranslationsScreenState extends State<OfflineTranslationsScreen> {
               Text(
                 '${(_downloadProgress * 100).toInt()}%',
                 style: const TextStyle(color: AppTheme.goldPrimary, fontWeight: FontWeight.bold, fontSize: 13),
+              ),
+              IconButton(
+                tooltip: 'Pausar',
+                onPressed: () => BibleOfflineService.instance.pauseDownload(),
+                icon: const Icon(Icons.pause_rounded, color: AppTheme.goldPrimary, size: 20),
+                visualDensity: VisualDensity.compact,
               ),
             ],
           ),

@@ -413,6 +413,11 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
     return '/biblia?livro=$abbr&capitulo=$_chapter';
   }
 
+  String get _guiaPath {
+    final abbr = (_book?['abbr'] as String?) ?? 'gn';
+    return '/guia?livro=$abbr&capitulo=$_chapter';
+  }
+
   void _showChapterSheet() {
     showModalBottomSheet<void>(
       context: context,
@@ -683,6 +688,14 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
                   },
                 ),
                 _VerseAction(
+                  icon: Icons.menu_book_outlined,
+                  label: 'Ficha e guia deste capítulo',
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    _openSite(_guiaPath);
+                  },
+                ),
+                _VerseAction(
                   icon: Icons.copy_rounded,
                   label: 'Copiar',
                   onTap: () async {
@@ -858,6 +871,12 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
           ),
           if (widget.onOpenWeb != null)
             IconButton(
+              tooltip: 'Estudar este capítulo',
+              icon: Icon(Icons.auto_stories_outlined, color: _gold, size: 20),
+              onPressed: () => _openSite(_guiaPath),
+            ),
+          if (widget.onOpenWeb != null)
+            IconButton(
               tooltip: 'Ouvir no site',
               icon: Icon(Icons.headphones_outlined, color: _muted, size: 20),
               onPressed: () => _openSite(_sitePath),
@@ -939,6 +958,18 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
               ],
             ),
           ),
+          if (widget.onOpenWeb != null)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: TextButton.icon(
+                onPressed: () => _openSite(_guiaPath),
+                icon: Icon(Icons.auto_stories_outlined, color: _gold, size: 18),
+                label: Text(
+                  'Ficha e guia deste capítulo',
+                  style: TextStyle(color: _gold, fontSize: 13, fontWeight: FontWeight.w600),
+                ),
+              ),
+            ),
         ],
       ),
     );

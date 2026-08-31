@@ -1,9 +1,104 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import '../data/database_helper.dart';
 import '../data/bible_books.dart';
+
+enum BibleDownloadMode { all, oldTestament, newTestament }
+
+class BibleDownloadSnapshot {
+  final String translationId;
+  final BibleDownloadMode mode;
+  final String status; // idle | running | paused | error | done
+  final String currentBook;
+  final int booksDone;
+  final int booksTotal;
+  final int chaptersDone;
+  final int chaptersTotal;
+  final String? error;
+  final int estimatedBytes;
+
+  const BibleDownloadSnapshot({
+    required this.translationId,
+    required this.mode,
+    required this.status,
+    this.currentBook = '',
+    this.booksDone = 0,
+    this.booksTotal = 0,
+    this.chaptersDone = 0,
+    this.chaptersTotal = 0,
+    this.error,
+    this.estimatedBytes = 0,
+  });
+
+  double get progress =>
+      chaptersTotal <= 0 ? 0 : (chaptersDone / chaptersTotal).clamp(0.0, 1.0);
+
+  bool get isActive => status == 'running' || status == 'paused' || status == 'error';
+
+  BibleDownloadSnapshot copyWith({
+    String? status,
+    String? currentBook,
+    int? booksDone,
+    int? booksTotal,
+    int? chaptersDone,
+    int? chaptersTotal,
+    String? error,
+    bool clearError = false,
+  }) {
+    return BibleDownloadSnapshot(
+      translationId: translationId,
+      mode: mode,
+      status: status ?? this.status,
+      currentBook: currentBook ?? this.currentBook,
+      booksDone: booksDone ?? this.booksDone,
+      booksTotal: booksTotal ?? this.booksTotal,
+      chaptersDone: chaptersDone ?? this.chaptersDone,
+      chaptersTotal: chaptersTotal ?? this.chaptersTotal,
+      error: clearError ? null : (error ?? this.error),
+      estimatedBytes: estimatedBytes,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'translationId': translationId,
+        'mode': mode.name,
+        'status': status,
+        'currentBook': currentBook,
+        'booksDone': booksDone,
+        'booksTotal': booksTotal,
+        'chaptersDone': chaptersDone,
+        'chaptersTotal': chaptersTotal,
+        'error': error,
+        'estimatedBytes': estimatedBytes,
+      };
+
+  static BibleDownloadSnapshot? fromJson(Map<String, dynamic> json) {
+    final id = json['translationId'] as String?;
+    if (id == null || id.isEmpty) return null;
+    final modeName = json['mode'] as String? ?? 'all';
+    final mode = BibleDownloadMode.values.firstWhere(
+      (m) => m.name == modeName,
+      orElse: () => BibleDownloadMode.all,
+    );
+    var status = json['status'] as String? ?? 'idle';
+    if (status == 'running') status = 'paused';
+    return BibleDownloadSnapshot(
+      translationId: id,
+      mode: mode,
+      status: status,
+      currentBook: json['currentBook'] as String? ?? '',
+      booksDone: json['booksDone'] as int? ?? 0,
+      booksTotal: json['booksTotal'] as int? ?? 0,
+      chaptersDone: json['chaptersDone'] as int? ?? 0,
+      chaptersTotal: json['chaptersTotal'] as int? ?? 0,
+      error: json['error'] as String?,
+      estimatedBytes: json['estimatedBytes'] as int? ?? 0,
+    );
+  }
+}
 
 class OfflineVerse {
   final int number;
@@ -30,10 +125,16 @@ class BibleOfflineService {
 
   static const String _apiBaseUrl = 'https://api.solascripturabr.com.br/api/v1';
   static const String _midvashBase = 'https://api.midvash.com/v1';
-  static const String _siteChapterApi = 'https://solascripturabr.com.br/api/biblia/capitulo';
+  static const String _siteBase = 'https://solascripturabr.com.br';
+  static const String _siteChapterApi = '$_siteBase/api/biblia/capitulo';
+  static const String _jobPrefKey = 'ssb_bible_dl_job_v1';
   static const Set<String> _siteLocalTranslations = {
     'NVI', 'ARC', 'ARA', 'ACF', 'KJV', 'WEB',
   };
+
+  /// Fonte TS local ~4,1 MB; JSON compacto no aparelho ~3,9 MB.
+  static const int estimatedBytesLocal = 3900000;
+  static const int estimatedBytesRemote = 4000000;
   static const Map<String, String> _httpHeaders = {
     'Accept': 'application/json',
     'User-Agent': 'SolaScripturaBR/1.4 (Android; offline-reader)',
@@ -54,8 +155,46 @@ class BibleOfflineService {
 
   bool _isDownloading = false;
   int? _activeDownloadBook;
+  bool _pauseRequested = false;
+  int _batchDepth = 0;
+  BibleDownloadSnapshot? _job;
+  bool _jobLoaded = false;
+
+  final ValueNotifier<BibleDownloadSnapshot?> jobNotifier = ValueNotifier(null);
+
   bool get isDownloading => _isDownloading;
   int? get activeDownloadBook => _activeDownloadBook;
+  BibleDownloadSnapshot? get currentJob => _job;
+
+  static bool isLocalSiteTranslation(String id) =>
+      _siteLocalTranslations.contains(id.toUpperCase());
+
+  static int estimatedBytesFor(String translationId) =>
+      isLocalSiteTranslation(translationId) ? estimatedBytesLocal : estimatedBytesRemote;
+
+  static String formatBytes(int bytes) {
+    if (bytes >= 1000000) {
+      final mb = bytes / 1000000;
+      return '~${mb.toStringAsFixed(1).replaceAll('.', ',')} MB';
+    }
+    return '~${(bytes / 1000).round()} KB';
+  }
+
+  static int totalChaptersFor(BibleDownloadMode mode) {
+    final books = _booksForMode(mode);
+    return books.fold<int>(0, (sum, b) => sum + (b['chapters'] as int));
+  }
+
+  static List<Map<String, dynamic>> _booksForMode(BibleDownloadMode mode) {
+    switch (mode) {
+      case BibleDownloadMode.oldTestament:
+        return BibleBooks.oldTestament;
+      case BibleDownloadMode.newTestament:
+        return BibleBooks.newTestament;
+      case BibleDownloadMode.all:
+        return BibleBooks.allBooks;
+    }
+  }
 
   // === DOWNLOAD POR LIVRO (YouVersion style) ===
 
@@ -104,12 +243,20 @@ class BibleOfflineService {
 
     try {
       if (_siteLocalTranslations.contains(translationId.toUpperCase())) {
-        final site = await _getWithRetry(
-          Uri.parse(
-            '$_siteChapterApi?traducao=$trad&livro=${Uri.encodeQueryComponent(abbr)}&capitulo=$chapter',
-          ),
+        final encodedAbbr = Uri.encodeComponent(abbr);
+        final rest = await _getWithRetry(
+          Uri.parse('$_siteBase/api/biblia/$trad/$encodedAbbr/$chapter'),
         );
-        if (site != null) payload = _payloadFromBody(site.body);
+        if (rest != null) payload = _payloadFromBody(rest.body);
+
+        if (payload == null) {
+          final site = await _getWithRetry(
+            Uri.parse(
+              '$_siteChapterApi?traducao=$trad&livro=${Uri.encodeQueryComponent(abbr)}&capitulo=$chapter',
+            ),
+          );
+          if (site != null) payload = _payloadFromBody(site.body);
+        }
       }
 
       if (payload == null) {
@@ -160,13 +307,17 @@ class BibleOfflineService {
     if (slug == null) return 0;
 
     _activeDownloadBook = bookNumber;
+    _batchDepth++;
     _isDownloading = true;
     final chaptersCount = book['chapters'] as int;
     final already = await getDownloadedChapterNumbers(translationId, bookNumber);
     int saved = already.length;
+    final local = isLocalSiteTranslation(translationId);
+    final gap = local ? 50 : 110;
 
     try {
       for (int chapter = 1; chapter <= chaptersCount; chapter++) {
+        if (_pauseRequested) break;
         if (already.contains(chapter)) {
           onProgress?.call(chapter / chaptersCount);
           continue;
@@ -182,11 +333,12 @@ class BibleOfflineService {
           already.add(chapter);
         }
         onProgress?.call(chapter / chaptersCount);
-        await Future.delayed(const Duration(milliseconds: 40));
+        await Future.delayed(Duration(milliseconds: gap));
       }
 
-      if (saved < chaptersCount) {
+      if (!_pauseRequested && saved < chaptersCount) {
         for (int chapter = 1; chapter <= chaptersCount; chapter++) {
+          if (_pauseRequested) break;
           if (already.contains(chapter)) continue;
           await Future.delayed(const Duration(milliseconds: 220));
           if (await _fetchAndStoreChapter(
@@ -206,8 +358,14 @@ class BibleOfflineService {
       await _updateTranslationMeta(translationId);
       return saved;
     } finally {
-      _isDownloading = false;
-      _activeDownloadBook = null;
+      _batchDepth--;
+      if (_batchDepth <= 0) {
+        _batchDepth = 0;
+        _isDownloading = false;
+        _activeDownloadBook = null;
+      } else {
+        _activeDownloadBook = null;
+      }
     }
   }
 
@@ -235,43 +393,250 @@ class BibleOfflineService {
     bool isOldTestament, {
     Function(double progress, String currentBook)? onProgress,
   }) async {
-    final books = isOldTestament ? BibleBooks.oldTestament : BibleBooks.newTestament;
-    int totalBooks = books.length;
-    int completedBooks = 0;
-
-    _isDownloading = true;
-
-    for (final book in books) {
-      final bookNumber = book['number'] as int;
-      final bookName = book['name'] as String;
-
-      await downloadBook(translationId, bookNumber);
-      completedBooks++;
-      onProgress?.call(completedBooks / totalBooks, bookName);
-    }
-
-    _isDownloading = false;
+    await downloadFull(
+      translationId,
+      isOldTestament ? BibleDownloadMode.oldTestament : BibleDownloadMode.newTestament,
+      onProgress: onProgress,
+    );
   }
 
   Future<void> downloadAll(
     String translationId, {
     Function(double progress, String currentBook)? onProgress,
   }) async {
-    int totalBooks = BibleBooks.allBooks.length;
-    int completedBooks = 0;
+    await downloadFull(translationId, BibleDownloadMode.all, onProgress: onProgress);
+  }
 
-    _isDownloading = true;
+  void pauseDownload() {
+    _pauseRequested = true;
+  }
 
-    for (final book in BibleBooks.allBooks) {
-      final bookNumber = book['number'] as int;
-      final bookName = book['name'] as String;
+  Future<void> resumeDownload({
+    Function(double progress, String currentBook)? onProgress,
+  }) async {
+    await loadPersistedJob();
+    final job = _job;
+    if (job == null) return;
+    await downloadFull(job.translationId, job.mode, onProgress: onProgress);
+  }
 
-      await downloadBook(translationId, bookNumber);
-      completedBooks++;
-      onProgress?.call(completedBooks / totalBooks, bookName);
+  Future<void> retryDownload({
+    Function(double progress, String currentBook)? onProgress,
+  }) async {
+    await resumeDownload(onProgress: onProgress);
+  }
+
+  Future<BibleDownloadSnapshot?> loadPersistedJob() async {
+    if (_jobLoaded && _job != null) return _job;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final raw = prefs.getString(_jobPrefKey);
+      if (raw == null || raw.isEmpty) {
+        _jobLoaded = true;
+        return _job;
+      }
+      final decoded = jsonDecode(raw);
+      if (decoded is Map) {
+        _job = BibleDownloadSnapshot.fromJson(Map<String, dynamic>.from(decoded));
+        if (_job?.status == 'done') {
+          await _clearJobPref();
+          _job = null;
+        }
+        jobNotifier.value = _job;
+      }
+    } catch (e) {
+      debugPrint('loadPersistedJob: $e');
+    }
+    _jobLoaded = true;
+    return _job;
+  }
+
+  Future<void> _persistJob(BibleDownloadSnapshot job) async {
+    _job = job;
+    jobNotifier.value = job;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(_jobPrefKey, jsonEncode(job.toJson()));
+    } catch (e) {
+      debugPrint('persistJob: $e');
+    }
+  }
+
+  Future<void> _clearJobPref() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove(_jobPrefKey);
+    } catch (_) {}
+  }
+
+  Future<void> clearFinishedJob() async {
+    _job = null;
+    jobNotifier.value = null;
+    await _clearJobPref();
+  }
+
+  Future<int> _countDownloadedChapters(
+    String translationId,
+    List<Map<String, dynamic>> books,
+  ) async {
+    final status = await getBookDownloadStatus(translationId);
+    var total = 0;
+    for (final book in books) {
+      final n = book['number'] as int;
+      final max = book['chapters'] as int;
+      final got = status[n] ?? 0;
+      total += got > max ? max : got;
+    }
+    return total;
+  }
+
+  Future<void> downloadFull(
+    String translationId,
+    BibleDownloadMode mode, {
+    Function(double progress, String currentBook)? onProgress,
+  }) async {
+    if (_isDownloading && _batchDepth > 0) return;
+    await loadPersistedJob();
+    if (_job != null && _job!.isActive && _job!.translationId != translationId) {
+      return;
     }
 
-    _isDownloading = false;
+    final books = _booksForMode(mode);
+    final chaptersTotal = totalChaptersFor(mode);
+    final estimated = estimatedBytesFor(translationId);
+
+    _pauseRequested = false;
+    _batchDepth++;
+    _isDownloading = true;
+
+    try {
+      var chaptersDone = await _countDownloadedChapters(translationId, books);
+      var booksDone = 0;
+      for (final book in books) {
+        final n = book['number'] as int;
+        if (await isBookDownloaded(translationId, n)) booksDone++;
+      }
+
+      var snapshot = BibleDownloadSnapshot(
+        translationId: translationId,
+        mode: mode,
+        status: 'running',
+        currentBook: books.isNotEmpty ? books.first['name'] as String : '',
+        booksDone: booksDone,
+        booksTotal: books.length,
+        chaptersDone: chaptersDone,
+        chaptersTotal: chaptersTotal,
+        estimatedBytes: estimated,
+      );
+      await _persistJob(snapshot);
+      onProgress?.call(snapshot.progress, snapshot.currentBook);
+
+      for (final book in books) {
+        if (_pauseRequested) {
+          await _persistJob(snapshot.copyWith(status: 'paused'));
+          return;
+        }
+
+        final bookNumber = book['number'] as int;
+        final bookName = book['name'] as String;
+        final bookChapters = book['chapters'] as int;
+
+        if (await isBookDownloaded(translationId, bookNumber)) {
+          continue;
+        }
+
+        final alreadyInBook = await getBookChapterCount(translationId, bookNumber);
+        final baseChapters = chaptersDone - alreadyInBook;
+
+        snapshot = snapshot.copyWith(status: 'running', currentBook: bookName, clearError: true);
+        await _persistJob(snapshot);
+        onProgress?.call(snapshot.progress, bookName);
+
+        final saved = await downloadBook(
+          translationId,
+          bookNumber,
+          onProgress: (p) {
+            final inBook = (p * bookChapters).round();
+            final live = (baseChapters + inBook).clamp(0, chaptersTotal).toInt();
+            final next = snapshot.copyWith(
+              currentBook: bookName,
+              chaptersDone: live,
+            );
+            _job = next;
+            jobNotifier.value = next;
+            onProgress?.call(next.progress, bookName);
+          },
+        );
+
+        chaptersDone = await _countDownloadedChapters(translationId, books);
+        booksDone = 0;
+        final statusMap = await getBookDownloadStatus(translationId);
+        for (final b in books) {
+          final n = b['number'] as int;
+          if ((statusMap[n] ?? 0) >= (b['chapters'] as int)) booksDone++;
+        }
+
+        snapshot = snapshot.copyWith(
+          currentBook: bookName,
+          booksDone: booksDone,
+          chaptersDone: chaptersDone,
+        );
+        await _persistJob(snapshot);
+        onProgress?.call(snapshot.progress, bookName);
+
+        if (_pauseRequested) {
+          await _persistJob(snapshot.copyWith(status: 'paused'));
+          return;
+        }
+
+        if (saved < bookChapters && !(await isBookDownloaded(translationId, bookNumber))) {
+          await _persistJob(snapshot.copyWith(
+            status: 'error',
+            error:
+                'Falha em $bookName ($saved/$bookChapters). Toque em Tentar de novo. '
+                'NVI, ARC e ARA vêm do site; as demais usam a rede como fallback.',
+          ));
+          return;
+        }
+
+        await Future.delayed(const Duration(milliseconds: 180));
+      }
+
+      chaptersDone = await _countDownloadedChapters(translationId, books);
+      await _persistJob(snapshot.copyWith(
+        status: 'done',
+        booksDone: books.length,
+        chaptersDone: chaptersDone,
+        currentBook: '',
+        clearError: true,
+      ));
+      onProgress?.call(1, '');
+    } catch (e) {
+      debugPrint('downloadFull: $e');
+      final prev = _job;
+      await _persistJob(
+        (prev ??
+                BibleDownloadSnapshot(
+                  translationId: translationId,
+                  mode: mode,
+                  status: 'error',
+                  estimatedBytes: estimated,
+                  chaptersTotal: chaptersTotal,
+                  booksTotal: books.length,
+                ))
+            .copyWith(
+          status: 'error',
+          error: 'Falha no download. Verifique a internet e toque em Tentar de novo.',
+        ),
+      );
+    } finally {
+      _batchDepth--;
+      if (_batchDepth <= 0) {
+        _batchDepth = 0;
+        _isDownloading = false;
+        _activeDownloadBook = null;
+      }
+    }
   }
 
   // === STATUS DE DOWNLOAD POR LIVRO ===

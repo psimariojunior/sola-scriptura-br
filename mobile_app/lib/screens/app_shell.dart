@@ -178,7 +178,7 @@ class _AppShellState extends State<AppShell> {
       _hasError = false;
       if (path.startsWith('/biblia')) {
         _navIndex = 1;
-      } else if (path.startsWith('/planos') || path.startsWith('/estudar')) {
+      } else if (path.startsWith('/planos') || path.startsWith('/estudar') || path.startsWith('/guia')) {
         _navIndex = 2;
       }
     });

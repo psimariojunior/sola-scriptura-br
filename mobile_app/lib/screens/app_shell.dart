@@ -12,6 +12,7 @@ import '../widgets/offline_banner.dart';
 import '../widgets/loading_indicator.dart';
 import '../bridges/js_bridge.dart';
 import '../widgets/native_bottom_nav.dart';
+import '../services/bible_offline_service.dart';
 import 'native_bible_screen.dart';
 
 class AppShell extends StatefulWidget {
@@ -35,6 +36,7 @@ class _AppShellState extends State<AppShell> {
   DateTime? _lastBackPress;
   int _navIndex = 0;
   bool _nativeBible = false;
+  bool _hasOfflineChapters = false;
 
   late final ConnectivityService _connectivity;
 
@@ -48,6 +50,7 @@ class _AppShellState extends State<AppShell> {
     _setupWebView();
     _setupConnectivity();
     _loadInitialUrl();
+    _refreshOfflineCache();
   }
 
   void _loadInitialUrl() {
@@ -152,6 +155,32 @@ class _AppShellState extends State<AppShell> {
     });
   }
 
+  Future<void> _refreshOfflineCache() async {
+    try {
+      final has = await BibleOfflineService.instance.hasAnyCachedChapters();
+      if (mounted) setState(() => _hasOfflineChapters = has);
+    } catch (e) {
+      debugPrint('[AppShell] Offline cache check: $e');
+    }
+  }
+
+  void _openNativeBible() {
+    setState(() {
+      _navIndex = 1;
+      _nativeBible = true;
+      _hasError = false;
+    });
+  }
+
+  void _openWebPath(String path) {
+    setState(() {
+      _nativeBible = false;
+      _hasError = false;
+      if (path.startsWith('/biblia')) _navIndex = 1;
+    });
+    widget.webViewService.loadUrl('${AppConstants.baseUrl}$path');
+  }
+
   Future<bool> _handleBackButton() async {
     if (_nativeBible) {
       setState(() {
@@ -204,14 +233,18 @@ class _AppShellState extends State<AppShell> {
     return _navIndex;
   }
 
-  void _onNavTap(int index) {
-    if (index == 1 && (_isOffline || _hasError)) {
-      setState(() {
-        _navIndex = 1;
-        _nativeBible = true;
-        _hasError = false;
-      });
-      return;
+  Future<void> _onNavTap(int index) async {
+    if (index == 1) {
+      var has = _hasOfflineChapters;
+      try {
+        has = await BibleOfflineService.instance.hasAnyCachedChapters();
+      } catch (_) {}
+      if (!mounted) return;
+      setState(() => _hasOfflineChapters = has);
+      if (_isOffline || _hasError || has) {
+        _openNativeBible();
+        return;
+      }
     }
     setState(() {
       _navIndex = index;
@@ -246,7 +279,9 @@ class _AppShellState extends State<AppShell> {
       child: Scaffold(
         backgroundColor: AppTheme.bgDark,
         body: _nativeBible
-            ? const NativeBibleScreen()
+            ? NativeBibleScreen(
+                onOpenWeb: _openWebPath,
+              )
             : Stack(
           children: [
             if (widget.webViewService.isInitialized && !_hasError)
@@ -284,11 +319,7 @@ class _AppShellState extends State<AppShell> {
                       ),
                       const SizedBox(height: 24),
                       ElevatedButton.icon(
-                        onPressed: () => setState(() {
-                          _hasError = false;
-                          _nativeBible = true;
-                          _navIndex = 1;
-                        }),
+                        onPressed: _openNativeBible,
                         icon: const Icon(Icons.menu_book_rounded, size: 18),
                         label: const Text('Ler Bíblia offline'),
                         style: ElevatedButton.styleFrom(

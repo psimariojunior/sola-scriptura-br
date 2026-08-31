@@ -15,6 +15,7 @@ import {
   getParticipantId,
   getParticipantColor,
   getParticipantLabel,
+  upsertStudyRoom,
   type StudyRoom,
 } from '@/lib/collaborative';
 import { VideoCall } from '@/components/VideoCall';
@@ -116,8 +117,10 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   const [chatServiceState, setChatServiceState] = useState<WebRTCService | null>(null);
   const typingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const wsConnectedRef = useRef(false);
-  const participantId = getParticipantId();
-  const participantName = getParticipantLabel(participantId);
+  const [participantId, setParticipantId] = useState('');
+  const [participantName, setParticipantName] = useState('Você');
+  const [wsStatus, setWsStatus] = useState<'disconnected' | 'connecting' | 'connected' | 'error'>('disconnected');
+  const [roomBusy, setRoomBusy] = useState(false);
   const { containerRef, isFullscreen, toggleFullscreen } = useFullscreen();
   const { prefetchAdjacent } = useChapterPrefetch();
   const { cursors: realtimeCursors, broadcastCursor } = useRealtimeCursors({
@@ -126,9 +129,15 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     service: chatServiceState,
   });
 
+  useEffect(() => {
+    const id = getParticipantId();
+    setParticipantId(id);
+    setParticipantName(getParticipantLabel(id));
+  }, []);
+
   // Conectar serviço WebSocket
   useEffect(() => {
-    if (!room || wsConnectedRef.current) return;
+    if (!room || !participantId || wsConnectedRef.current) return;
     wsConnectedRef.current = true;
     const svc = createWebRTCService();
     chatServiceRef.current = svc;
@@ -179,7 +188,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       else if (data.action === 'mirror' && data.mirror !== undefined) setPresentationMirror(data.mirror!);
     });
 
-    svc.onNoteSync?.((data: { notes?: Record<string, string>; action?: string; noteId?: string; participantId?: string; participantName?: string; content?: string; verseRef?: string; timestamp?: number }) => {
+    svc.onNoteSync((data) => {
       if (data.notes) {
         const parsed: SharedNote[] = Object.values(data.notes).map(v => JSON.parse(v as string));
         setSharedNotes(parsed);
@@ -204,8 +213,9 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       }
     });
 
-    svc.onQuizStart?.((data: { questions: unknown[] }) => {
-      const qs = data.questions as QuizQuestion[];
+    svc.onQuizStart((data) => {
+      const qs = (data.questions || []) as QuizQuestion[];
+      if (qs.length === 0) return;
       setQuizQuestions(qs);
       setQuizIndex(0);
       setQuizAnswers([]);
@@ -213,11 +223,12 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       setActiveTab('quiz');
     });
 
-    svc.onQuizAnswer?.((answer: { participantId: string; participantName: string; questionId: string; selectedIndex: number; isCorrect: boolean }) => {
-      setQuizAnswers(prev => prev.some(a => a.questionId === answer.questionId && a.participantId === answer.participantId) ? prev : [...prev, { ...answer, timeSpent: 0 }]);
+    svc.onQuizAnswer((answer) => {
+      if (!answer?.participantId || !answer?.questionId) return;
+      setQuizAnswers(prev => prev.some(a => a.questionId === answer.questionId && a.participantId === answer.participantId) ? prev : [...prev, { ...answer, timeSpent: answer.timeSpent || 0 }]);
     });
 
-    svc.getLocalStream(false, false).catch(() => {});
+    svc.onStatus((status) => setWsStatus(status));
     svc.connect(room.code, participantId, participantName);
 
     return () => {
@@ -226,17 +237,20 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       wsConnectedRef.current = false;
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [room?.code]);
+  }, [room?.code, participantId]);
 
   // Auto-join via initialCode — buscar estado do backend e conectar ao WebSocket
   useEffect(() => {
+    if (!participantId) return;
     if (initialCode && initialCode.length === 6) {
       const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
       fetch(`${API_BASE}/colaborativo/rooms/${initialCode}`)
         .then(res => res.ok ? res.json() : null)
         .then(serverRoom => {
           const roomId = serverRoom?.id || `room-${Date.now()}`;
-          setRoom({ id: roomId, code: initialCode, participants: [participantId], createdAt: Date.now(), verses: [] });
+          const joined: StudyRoom = { id: roomId, code: initialCode, participants: [participantId], createdAt: Date.now(), verses: [] };
+          upsertStudyRoom(joined);
+          setRoom(joined);
           if (serverRoom?.messages) {
             const chatMsgs = serverRoom.messages
               .filter((m: { type: string }) => m.type === 'chat')
@@ -258,7 +272,9 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           }
         })
         .catch(() => {
-          setRoom({ id: `room-${Date.now()}`, code: initialCode, participants: [participantId], createdAt: Date.now(), verses: [] });
+          const fallback: StudyRoom = { id: `room-${Date.now()}`, code: initialCode, participants: [participantId], createdAt: Date.now(), verses: [] };
+          upsertStudyRoom(fallback);
+          setRoom(fallback);
         });
     }
   }, [initialCode, participantId]);
@@ -294,33 +310,58 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   }, [bibleSyncData, prefetchAdjacent]);
 
   const handleCreate = useCallback(async () => {
+    if (roomBusy) return;
+    const id = participantId || getParticipantId();
+    if (!participantId) {
+      setParticipantId(id);
+      setParticipantName(getParticipantLabel(id));
+    }
+    setRoomBusy(true);
     const code = Math.floor(100000 + Math.random() * 900000).toString();
+    let created: StudyRoom = { id: `room-${Date.now()}`, code, participants: [id], createdAt: Date.now(), verses: [] };
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1'}/colaborativo/rooms`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code, name: `Sala ${code}`, hostUserId: participantId }),
+        body: JSON.stringify({ code, name: `Sala ${code}`, hostUserId: id }),
       });
       if (res.ok) {
         const saved = await res.json();
-        setRoom({ id: saved.id, code, participants: [participantId], createdAt: Date.now(), verses: [] });
-      } else {
-        setRoom({ id: `room-${Date.now()}`, code, participants: [participantId], createdAt: Date.now(), verses: [] });
+        created = { id: saved.id || created.id, code, participants: [id], createdAt: Date.now(), verses: [] };
       }
-    } catch {
-      setRoom({ id: `room-${Date.now()}`, code, participants: [participantId], createdAt: Date.now(), verses: [] });
-    }
+    } catch { /* WS + abas locais ainda funcionam */ }
+    upsertStudyRoom(created);
+    setRoom(created);
+    setRoomBusy(false);
     setShowEntrance(true);
-  }, [participantId]);
+  }, [participantId, roomBusy]);
 
   const handleJoin = useCallback(async () => {
-    if (joinCode.length !== 6) return;
+    if (joinCode.length !== 6 || roomBusy) return;
+    setRoomBusy(true);
     const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
+    const id = participantId || getParticipantId();
     let serverRoom: { id: string; participants: Array<{ id: string; name: string }>; messages: Array<{ id: string; userId: string; userName: string; text: string; timestamp: string; type: string }>; sharedNotes: Record<string, string> } | null = null;
+    let notFound = false;
     try {
       const res = await fetch(`${API_BASE}/colaborativo/rooms/${joinCode}`);
-      if (res.ok) serverRoom = await res.json();
-    } catch {}
+      if (res.ok) {
+        const data = await res.json();
+        if (data?.id || data?.code) serverRoom = data;
+        else notFound = true;
+      }
+    } catch { /* entra mesmo sem REST — o WebSocket ainda sincroniza */ }
+
+    if (notFound && !serverRoom) {
+      try {
+        const res = await fetch(`${API_BASE}/colaborativo/rooms`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: joinCode, name: `Sala ${joinCode}`, hostUserId: id }),
+        });
+        if (res.ok) serverRoom = await res.json();
+      } catch {}
+    }
 
     const roomId = serverRoom?.id || `room-${Date.now()}`;
     const existingMessages: ChatMessage[] = (serverRoom?.messages || [])
@@ -345,7 +386,9 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
         timestamp: new Date(m.timestamp).getTime(),
       }));
 
-    setRoom({ id: roomId, code: joinCode, participants: [participantId], createdAt: Date.now(), verses: [] });
+    const joined: StudyRoom = { id: roomId, code: joinCode, participants: [id], createdAt: Date.now(), verses: [] };
+    upsertStudyRoom(joined);
+    setRoom(joined);
     if (existingMessages.length > 0) setChatMessages(existingMessages);
     if (existingVerses.length > 0) setWsVerses(existingVerses);
 
@@ -353,13 +396,14 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       await fetch(`${API_BASE}/colaborativo/rooms/${joinCode}/participants`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: participantId, name: participantName, joinedAt: new Date().toISOString() }),
+        body: JSON.stringify({ id, name: participantName, joinedAt: new Date().toISOString() }),
       });
     } catch {}
 
     setJoinCode('');
+    setRoomBusy(false);
     setShowEntrance(true);
-  }, [joinCode, participantId, participantName]);
+  }, [joinCode, participantId, participantName, roomBusy]);
 
   const handleShare = useCallback(() => {
     if (!room || !shareInput.trim()) return;
@@ -708,9 +752,9 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           </div>
         )}
         <div className={cn('flex flex-col gap-4 w-full', compact ? 'max-w-sm' : 'max-w-md')}>
-          <motion.button onClick={handleCreate} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-            className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-gradient-to-r from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/25">
-            <Plus className="w-5 h-5" /> Criar Nova Sala
+          <motion.button onClick={handleCreate} disabled={roomBusy} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+            className="flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-gradient-to-r from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/25 disabled:opacity-60">
+            <Plus className="w-5 h-5" /> {roomBusy ? 'Abrindo sala…' : 'Criar Nova Sala'}
           </motion.button>
           {roomFull && (
             <div className="px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm text-center">
@@ -726,8 +770,8 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               placeholder="Código de 6 dígitos"
               className="flex-1 px-4 py-3 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl text-center font-mono text-lg tracking-[0.3em] focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/30"
               onKeyDown={(e) => e.key === 'Enter' && handleJoin()} maxLength={6} />
-            <motion.button onClick={handleJoin} disabled={joinCode.length !== 6} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-              className={cn('px-5 py-3 rounded-xl font-semibold transition-all', joinCode.length === 6 ? 'bg-[var(--surface-raised)] border border-[var(--border)]' : 'opacity-50 cursor-not-allowed bg-[var(--surface-raised)]')}>
+            <motion.button onClick={handleJoin} disabled={joinCode.length !== 6 || roomBusy} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+              className={cn('px-5 py-3 rounded-xl font-semibold transition-all', joinCode.length === 6 && !roomBusy ? 'bg-[var(--surface-raised)] border border-[var(--border)]' : 'opacity-50 cursor-not-allowed bg-[var(--surface-raised)]')}>
               <LinkIcon className="w-5 h-5" />
             </motion.button>
           </div>
@@ -754,6 +798,12 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           <div>
             <p className="text-xs text-[var(--content-muted)]">Sala</p>
             <p className="font-mono text-sm font-bold tracking-wider text-[var(--content-primary)]">{room.code}</p>
+            <p className={cn(
+              'text-[10px]',
+              wsStatus === 'connected' ? 'text-green-500' : wsStatus === 'connecting' ? 'text-amber-500' : wsStatus === 'error' ? 'text-red-500' : 'text-[var(--content-muted)]',
+            )}>
+              {wsStatus === 'connected' ? 'Ao vivo' : wsStatus === 'connecting' ? 'Conectando…' : wsStatus === 'error' ? 'Sem servidor — abas neste aparelho ainda sincronizam' : 'Desconectado'}
+            </p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -791,7 +841,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
                 await fetch(`${API_BASE}/colaborativo/rooms/${room.code}/participants/${participantId}/leave`, { method: 'POST' });
               } catch {}
             }
-            setRoom(null); setIsCallActive(false); wsConnectedRef.current = false;
+            setRoom(null); setIsCallActive(false); wsConnectedRef.current = false; setWsStatus('disconnected'); setChatMessages([]); setWsVerses([]);
           }}
             className="p-2 hover:bg-[var(--surface-raised)] rounded-lg transition-colors text-[var(--content-muted)]"><X className="w-4 h-4" /></button>
         </div>
@@ -802,7 +852,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
         {isCallActive && (
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 400 }} exit={{ opacity: 0, height: 0 }}
             className="border-b border-[var(--border)]/40 overflow-hidden">
-            <VideoCall roomCode={room.code} participantId={participantId} displayName={participantName} callType={callType} onEndCall={() => setIsCallActive(false)} />
+            <VideoCall roomCode={room.code} participantId={participantId} displayName={participantName} callType={callType} existingService={chatServiceState} onEndCall={() => setIsCallActive(false)} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -917,7 +967,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               currentUserId={participantId} isHost={room.participants[0] === participantId}
               onAnswer={handleQuizAnswer} onNextQuestion={handleNextQuestion} onEndQuiz={() => { setQuizIndex(0); setQuizAnswers([]); setQuizScores([]); setQuizQuestions(SAMPLE_QUESTIONS); }} />
           ) : (
-            <div className="space-y-3 p-4">
+            <div className="space-y-3 p-4 h-full overflow-y-auto">
               {chatMessages.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-12 text-center">
                   <div className="w-16 h-16 rounded-2xl bg-[var(--brand-default)]/10 flex items-center justify-center mb-4">

@@ -220,6 +220,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.menu_book_rounded, color: AppTheme.goldPrimary),
+                title: const Text('Ler Bíblia offline', style: TextStyle(color: Colors.white)),
+                subtitle: Text(
+                  _cachedChapters > 0
+                      ? '$_cachedChapters capítulos prontos para ler'
+                      : 'Baixe um livro e leia sem internet',
+                  style: const TextStyle(color: Colors.white54),
+                ),
+                trailing: const Icon(Icons.chevron_right, color: AppTheme.goldPrimary),
+                onTap: () {
+                  Navigator.pushNamed(context, '/native-bible');
+                },
+              ),
+              ListTile(
                 leading: const Icon(Icons.cloud_download, color: AppTheme.goldPrimary),
                 title: const Text('Capítulos em Cache', style: TextStyle(color: Colors.white)),
                 subtitle: Text('$_cachedChapters capítulos salvos', style: const TextStyle(color: Colors.white54)),

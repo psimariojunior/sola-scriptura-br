@@ -30,6 +30,7 @@ function generateCode(): string {
 }
 
 export function getParticipantId(): string {
+  if (typeof window === 'undefined') return 'ssr';
   const stored = localStorage.getItem('ssb_collab_participant_id');
   if (stored) return stored;
   const id = `user-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
@@ -184,6 +185,12 @@ export function onVerseShared(
 export function getRoom(code: string): StudyRoom | null {
   const rooms = loadRooms();
   return rooms[code] || null;
+}
+
+export function upsertStudyRoom(room: StudyRoom): void {
+  const rooms = loadRooms();
+  rooms[room.code] = room;
+  saveRooms(rooms);
 }
 
 export function getParticipantColor(id: string): string {

@@ -86,4 +86,23 @@ class BibleBooks {
   }
 
   static String getBookName(int number) => getBookByNumber(number)?['name'] ?? 'Livro $number';
+
+  static const Map<int, String> midvashByNumber = {
+    1: 'genesis', 2: 'exodo', 3: 'levitico', 4: 'numeros', 5: 'deuteronomio',
+    6: 'josue', 7: 'juizes', 8: 'rute', 9: '1-samuel', 10: '2-samuel',
+    11: '1-reis', 12: '2-reis', 13: '1-cronicas', 14: '2-cronicas', 15: 'esdras',
+    16: 'neemias', 17: 'ester', 18: 'jo', 19: 'salmos', 20: 'proverbios',
+    21: 'eclesiastes', 22: 'canticos', 23: 'isaias', 24: 'jeremias', 25: 'lamentacoes',
+    26: 'ezequiel', 27: 'daniel', 28: 'oseias', 29: 'joel', 30: 'amos',
+    31: 'obadias', 32: 'jonas', 33: 'miqueias', 34: 'naum', 35: 'habacuque',
+    36: 'sofonias', 37: 'ageu', 38: 'zacarias', 39: 'malaquias',
+    40: 'mateus', 41: 'marcos', 42: 'lucas', 43: 'joao', 44: 'atos',
+    45: 'romanos', 46: '1-corintios', 47: '2-corintios', 48: 'galatas', 49: 'efesios',
+    50: 'filipenses', 51: 'colossenses', 52: '1-tessalonicenses', 53: '2-tessalonicenses',
+    54: '1-timoteo', 55: '2-timoteo', 56: 'tito', 57: 'filemom', 58: 'hebreus',
+    59: 'tiago', 60: '1-pedro', 61: '2-pedro', 62: '1-joao', 63: '2-joao',
+    64: '3-joao', 65: 'judas', 66: 'apocalipse',
+  };
+
+  static String? midvashSlug(int number) => midvashByNumber[number];
 }

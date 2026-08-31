@@ -78,7 +78,7 @@ export default function ComunidadePage() {
           userId: msg.participantId,
           userName: msg.displayName,
           message: msg.message,
-          channel: 'geral',
+          channel: msg.channel || 'geral',
           timestamp: msg.timestamp,
         };
         setMessages(prev => prev.some(m => m.id === msg.id) ? prev : [...prev, chatMsg]);
@@ -107,7 +107,7 @@ export default function ComunidadePage() {
       message: input.trim(), channel: activeChannel, timestamp: Date.now(),
     };
     setMessages(prev => [...prev, msg]);
-    svcRef.current?.sendChatMessage(msg.id, userId, userName || getUserName(), input.trim());
+    svcRef.current?.sendChatMessage(msg.id, userId, userName || getUserName(), input.trim(), activeChannel);
     setInput('');
   }, [input, userId, userName, activeChannel]);
 

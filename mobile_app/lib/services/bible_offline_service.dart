@@ -16,6 +16,7 @@ class BibleOfflineService {
   BibleOfflineService._init();
 
   static const String _apiBaseUrl = 'https://api.solascripturabr.com.br/api/v1';
+  static const String _midvashBase = 'https://api.midvash.com/v1';
 
   static const List<Map<String, String>> availableTranslations = [
     {'id': 'ARC', 'name': 'A Bíblia de Estudo Arqueológica', 'abbreviation': 'ARC', 'language': 'Português'},
@@ -43,24 +44,55 @@ class BibleOfflineService {
     final db = await DatabaseHelper.instance.database;
     final book = BibleBooks.getBookByNumber(bookNumber);
     if (book == null) return;
+    final slug = BibleBooks.midvashSlug(bookNumber);
+    if (slug == null) return;
 
     final chaptersCount = book['chapters'] as int;
+    final trad = translationId.toLowerCase();
     int downloaded = 0;
 
     for (int chapter = 1; chapter <= chaptersCount; chapter++) {
       try {
-        final response = await http.get(
-          Uri.parse('$_apiBaseUrl/biblia/traducoes/$translationId/livros/$bookNumber/capitulos/$chapter'),
-        ).timeout(const Duration(seconds: 15));
+        String? payload;
+        final midvash = await http
+            .get(Uri.parse('$_midvashBase/$trad/$slug/$chapter'))
+            .timeout(const Duration(seconds: 15));
+        if (midvash.statusCode == 200) {
+          final verses = parseChapterJson(midvash.body);
+          if (verses.isNotEmpty) {
+            payload = jsonEncode({
+              'verses': verses.map((v) => {'number': v.number, 'text': v.text}).toList(),
+            });
+          }
+        }
 
-        if (response.statusCode == 200) {
+        if (payload == null) {
+          final fallback = await http
+              .get(Uri.parse('$_apiBaseUrl/biblia/livros/$bookNumber/capitulos/$chapter'))
+              .timeout(const Duration(seconds: 12));
+          if (fallback.statusCode == 200) {
+            final verses = parseChapterJson(fallback.body);
+            if (verses.isNotEmpty) {
+              payload = jsonEncode({
+                'verses': verses.map((v) => {'number': v.number, 'text': v.text}).toList(),
+              });
+            }
+          }
+        }
+
+        if (payload != null) {
+          await db.delete(
+            'chapters',
+            where: 'translation_id = ? AND book_number = ? AND chapter_number = ?',
+            whereArgs: [translationId, bookNumber, chapter],
+          );
           await db.insert('chapters', {
             'translation_id': translationId,
             'book_number': bookNumber,
             'chapter_number': chapter,
-            'data': response.body,
+            'data': payload,
             'cached_at': DateTime.now().toIso8601String(),
-          }, conflictAlgorithm: ConflictAlgorithm.replace);
+          });
         }
       } catch (e) {
         debugPrint('Erro ao baixar $translationId $bookNumber:$chapter - $e');
@@ -478,6 +510,21 @@ class BibleOfflineService {
     final raw = await getCachedChapter(translationId, bookNumber, chapterNumber);
     if (raw == null || raw.isEmpty) return [];
     return parseChapterJson(raw);
+  }
+
+  Future<bool> hasAnyCachedChapters() async {
+    return (await getTotalCachedChapters()) > 0;
+  }
+
+  Future<Set<int>> getDownloadedChapterNumbers(String translationId, int bookNumber) async {
+    final db = await DatabaseHelper.instance.database;
+    final result = await db.query(
+      'chapters',
+      columns: ['chapter_number'],
+      where: 'translation_id = ? AND book_number = ?',
+      whereArgs: [translationId, bookNumber],
+    );
+    return result.map((r) => r['chapter_number'] as int).toSet();
   }
 
   static List<OfflineVerse> parseChapterJson(String raw) {

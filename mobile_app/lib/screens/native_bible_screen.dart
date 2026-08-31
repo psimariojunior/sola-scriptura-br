@@ -7,8 +7,9 @@ import 'native_chapter_reader.dart';
 class NativeBibleScreen extends StatefulWidget {
   final String? translation;
   final int? initialBook;
+  final void Function(String path)? onOpenWeb;
 
-  const NativeBibleScreen({super.key, this.translation, this.initialBook});
+  const NativeBibleScreen({super.key, this.translation, this.initialBook, this.onOpenWeb});
 
   @override
   State<NativeBibleScreen> createState() => _NativeBibleScreenState();
@@ -20,6 +21,7 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
   late String _selectedTranslation;
   int? _selectedBook;
   Map<int, int> _status = {};
+  Set<int> _selectedBookChapters = {};
 
   @override
   void initState() {
@@ -51,9 +53,29 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
           translationId: _selectedTranslation,
           bookNumber: bookNumber,
           chapterNumber: chapter,
+          onOpenWeb: widget.onOpenWeb,
         ),
       ),
     );
+  }
+
+  Future<void> _selectBook(int number) async {
+    if (_selectedBook == number) {
+      setState(() {
+        _selectedBook = null;
+        _selectedBookChapters = {};
+      });
+      return;
+    }
+    final chapters = await BibleOfflineService.instance.getDownloadedChapterNumbers(
+      _selectedTranslation,
+      number,
+    );
+    if (!mounted) return;
+    setState(() {
+      _selectedBook = number;
+      _selectedBookChapters = chapters;
+    });
   }
 
   @override
@@ -86,6 +108,11 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
       child: Row(
         children: [
+          if (Navigator.of(context).canPop())
+            IconButton(
+              icon: const Icon(Icons.arrow_back, color: Colors.white, size: 22),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
           const Icon(Icons.menu_book_rounded, color: AppTheme.goldPrimary, size: 24),
           const SizedBox(width: 10),
           const Expanded(
@@ -94,6 +121,11 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
               style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
+          if (widget.onOpenWeb != null)
+            TextButton(
+              onPressed: () => widget.onOpenWeb!('/biblia'),
+              child: const Text('Site', style: TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
+            ),
           TextButton(
             onPressed: () => Navigator.of(context).pushNamed('/offline-translations'),
             child: const Text('Baixar', style: TextStyle(color: AppTheme.goldPrimary, fontSize: 13)),
@@ -128,8 +160,18 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
               ),
               onSelected: (selected) {
                 if (!selected) return;
-                setState(() => _selectedTranslation = t);
+                setState(() {
+                  _selectedTranslation = t;
+                  _selectedBookChapters = {};
+                });
                 _loadStatus();
+                if (_selectedBook != null) {
+                  BibleOfflineService.instance
+                      .getDownloadedChapterNumbers(t, _selectedBook!)
+                      .then((chapters) {
+                    if (mounted) setState(() => _selectedBookChapters = chapters);
+                  });
+                }
               },
             ),
           );
@@ -187,7 +229,7 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () => setState(() => _selectedBook = isSelected ? null : number),
+          onTap: () => _selectBook(number),
           borderRadius: BorderRadius.circular(10),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
@@ -259,7 +301,7 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
                     runSpacing: 6,
                     children: List.generate(chapters, (i) {
                       final cap = i + 1;
-                      final has = downloaded >= cap || complete;
+                      final has = _selectedBookChapters.contains(cap);
                       return InkWell(
                         onTap: () => _openChapter(number, cap),
                         child: Container(

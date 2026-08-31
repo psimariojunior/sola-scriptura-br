@@ -96,14 +96,13 @@ export interface PresentationSyncEvent {
 }
 
 export interface QuizStartEvent {
-  quizId: string;
-  questions: QuizQuestion[];
-  hostId: string;
-  timePerQuestion: number;
+  quizId?: string;
+  questions: unknown[];
+  hostId?: string;
+  timePerQuestion?: number;
 }
 
 export interface QuizAnswerEvent {
-  quizId: string;
   participantId: string;
   participantName: string;
   questionId: string;
@@ -113,27 +112,27 @@ export interface QuizAnswerEvent {
 }
 
 export interface QuizSyncEvent {
-  quizId: string;
+  quizId?: string;
   currentQuestionIndex: number;
-  status: 'active' | 'finished';
+  status: 'active' | 'finished' | string;
 }
 
 export interface QuizAnswerUpdateEvent {
-  quizId: string;
+  quizId?: string;
   participantId: string;
   participantName: string;
   questionId: string;
   selectedIndex: number;
   timeSpent: number;
   isCorrect: boolean;
-  answers: QuizAnswerEvent[];
+  answers?: QuizAnswerEvent[];
 }
 
 export interface QuizRankingEvent {
-  quizId: string;
+  quizId?: string;
   currentQuestionIndex: number;
-  status: 'active' | 'finished';
-  rankings: QuizScore[];
+  status: 'active' | 'finished' | string;
+  rankings?: QuizScore[];
 }
 
 export interface QuizQuestion {
@@ -143,15 +142,6 @@ export interface QuizQuestion {
   correctIndex: number;
   category: string;
   difficulty: 'facil' | 'medio' | 'dificil';
-}
-
-export interface QuizAnswerEvent {
-  participantId: string;
-  participantName: string;
-  questionId: string;
-  selectedIndex: number;
-  timeSpent: number;
-  isCorrect: boolean;
 }
 
 export interface QuizScore {
@@ -166,14 +156,15 @@ export interface QuizScore {
 export type NoteSyncAction = 'add' | 'update' | 'delete';
 
 export interface NoteSyncEvent {
-  action: NoteSyncAction;
-  noteId: string;
-  participantId: string;
-  participantName: string;
+  action?: NoteSyncAction | string;
+  notes?: Record<string, string>;
+  noteId?: string;
+  participantId?: string;
+  participantName?: string;
   content?: string;
   verseRef?: string;
   color?: string;
-  timestamp: number;
+  timestamp?: number;
 }
 
 export interface NoteTypingEvent {
@@ -206,7 +197,7 @@ export class WebRTCService {
   private onPresentationSyncCallback: ((data: PresentationSyncEvent) => void) | null = null;
   private onBibleNavigationCallback: ((data: { livro: string; capitulo: number; traducao: string }) => void) | null = null;
   private onRoomFullCallback: ((data: { code: string; maxParticipants: number }) => void) | null = null;
-  private onQuizStartCallback: ((data: QuizStartEvent) => void) | null = null;
+  private onQuizStartCallback: ((data: QuizStartEvent | { questions: unknown[] }) => void) | null = null;
   private onQuizAnswerCallback: ((data: QuizAnswerUpdateEvent) => void) | null = null;
   private onQuizSyncCallback: ((data: QuizRankingEvent) => void) | null = null;
   private onNoteSyncCallback: ((data: NoteSyncEvent) => void) | null = null;
@@ -216,6 +207,8 @@ export class WebRTCService {
   private peerStreams: PeerStream[] = [];
   private mySocketId = '';
   private roomCode = '';
+  private participantId = '';
+  private localChannel: BroadcastChannel | null = null;
 
   get socketId(): string {
     return this.mySocketId;
@@ -232,6 +225,9 @@ export class WebRTCService {
 
   connect(roomCode: string, participantId: string, displayName: string) {
     this.roomCode = roomCode;
+    this.participantId = participantId;
+    this.setupLocalChannel(roomCode);
+    this.onStatusCallback?.('connecting');
     this.socket = io(WS_URL, {
       path: '/socket.io/',
       transports: ['websocket', 'polling'],
@@ -326,8 +322,9 @@ export class WebRTCService {
       this.onQuizStartCallback?.(data);
     });
 
-    this.socket.on('quiz-answer', (data: QuizAnswerUpdateEvent) => {
-      this.onQuizAnswerCallback?.(data);
+    this.socket.on('quiz-answer', (data: QuizAnswerUpdateEvent | { answer?: QuizAnswerEvent | QuizAnswerUpdateEvent }) => {
+      const payload = (data && 'answer' in data && data.answer) ? data.answer : data;
+      this.onQuizAnswerCallback?.(payload as QuizAnswerUpdateEvent);
     });
 
     this.socket.on('quiz-sync', (data: QuizRankingEvent) => {
@@ -351,27 +348,63 @@ export class WebRTCService {
     });
   }
 
-  sendChatMessage(id: string, participantId: string, displayName: string, message: string) {
-    if (!this.socket || !this.roomCode) return;
+  private setupLocalChannel(code: string) {
+    try {
+      this.localChannel?.close();
+      this.localChannel = new BroadcastChannel(`ssb-collab-${code}`);
+      this.localChannel.onmessage = (ev: MessageEvent) => {
+        const type = ev.data?.type as string | undefined;
+        const payload = ev.data?.payload;
+        if (!type || payload == null) return;
+        if (type === 'chat-message') this.onChatMessageCallback?.(payload);
+        else if (type === 'verse-shared-ws') this.onVerseSharedCallback?.(payload);
+        else if (type === 'note-sync') this.onNoteSyncCallback?.(payload);
+        else if (type === 'presentation-sync') this.onPresentationSyncCallback?.(payload);
+        else if (type === 'bible-navigation') this.onBibleNavigationCallback?.(payload);
+      };
+    } catch {
+      this.localChannel = null;
+    }
+  }
+
+  private postLocal(type: string, payload: unknown) {
+    try {
+      this.localChannel?.postMessage({ type, payload });
+    } catch { /* BroadcastChannel indisponível */ }
+  }
+
+  stopLocalMedia() {
+    this.localStream?.getTracks().forEach(t => t.stop());
+    this.localStream = null;
+  }
+
+  sendChatMessage(id: string, participantId: string, displayName: string, message: string, channel?: string) {
+    if (!this.roomCode) return;
     const data = {
       code: this.roomCode,
       id,
       participantId,
       displayName,
       message,
+      channel,
       timestamp: Date.now(),
     };
-    this.socket.emit('chat-message', data);
+    this.socket?.emit('chat-message', data);
+    this.postLocal('chat-message', data);
   }
 
   sendVerseShared(data: VerseSharedEvent) {
-    if (!this.socket || !this.roomCode) return;
-    this.socket.emit('verse-shared-ws', { ...data, code: this.roomCode });
+    if (!this.roomCode) return;
+    const payload = { ...data, code: this.roomCode };
+    this.socket?.emit('verse-shared-ws', payload);
+    this.postLocal('verse-shared-ws', payload);
   }
 
   sendBibleNavigation(data: { livro: string; capitulo: number; traducao: string }) {
-    if (!this.socket || !this.roomCode) return;
-    this.socket.emit('bible-navigation', { ...data, code: this.roomCode });
+    if (!this.roomCode) return;
+    const payload = { ...data, code: this.roomCode };
+    this.socket?.emit('bible-navigation', payload);
+    this.postLocal('bible-navigation', data);
   }
 
   sendTypingStart(participantId: string, displayName: string) {
@@ -413,8 +446,10 @@ export class WebRTCService {
   }
 
   sendPresentationSync(data: PresentationSyncEvent) {
-    if (!this.socket || !this.roomCode) return;
-    this.socket.emit('presentation-sync', { ...data, code: this.roomCode });
+    if (!this.roomCode) return;
+    const payload = { ...data, code: this.roomCode };
+    this.socket?.emit('presentation-sync', payload);
+    this.postLocal('presentation-sync', payload);
   }
 
   sendQuizStart(questions: unknown[]) {
@@ -433,8 +468,10 @@ export class WebRTCService {
   }
 
   sendNoteSync(data: NoteSyncEvent) {
-    if (!this.socket || !this.roomCode) return;
-    this.socket.emit('note-sync', { ...data, code: this.roomCode });
+    if (!this.roomCode) return;
+    const payload = { ...data, code: this.roomCode };
+    this.socket?.emit('note-sync', payload);
+    this.postLocal('note-sync', payload);
   }
 
   sendNoteTyping(data: NoteTypingEvent) {
@@ -447,7 +484,7 @@ export class WebRTCService {
     this.socket.emit('theme-sync', { ...data, code: this.roomCode });
   }
 
-  onQuizStart(cb: (data: { questions: unknown[] }) => void) {
+  onQuizStart(cb: (data: QuizStartEvent | { questions: unknown[] }) => void) {
     this.onQuizStartCallback = cb;
   }
 
@@ -668,11 +705,14 @@ export class WebRTCService {
     this.localStream?.getTracks().forEach(t => t.stop());
     this.localStream = null;
     if (this.socket && this.roomCode) {
-      this.socket.emit('leave-room', { code: this.roomCode });
+      this.socket.emit('leave-room', { code: this.roomCode, participantId: this.participantId });
     }
     this.socket?.disconnect();
     this.socket = null;
+    try { this.localChannel?.close(); } catch { /* noop */ }
+    this.localChannel = null;
     this.mySocketId = '';
+    this.participantId = '';
     this.onPeerStreamCallback = null;
     this.onStatusCallback = null;
     this.onParticipantsCallback = null;
@@ -689,6 +729,10 @@ export class WebRTCService {
     this.onQuizStartCallback = null;
     this.onQuizAnswerCallback = null;
     this.onQuizSyncCallback = null;
+    this.onNoteSyncCallback = null;
+    this.onNoteTypingCallback = null;
+    this.onThemeSyncCallback = null;
+    this.onCursorMoveCallback = null;
   }
 }
 

@@ -29,6 +29,10 @@ interface SignalingRoom {
       'https://www.solascripturabr.com.br',
       'https://sola-scriptura-br.vercel.app',
       'http://localhost:3000',
+      'http://localhost:3001',
+      'http://localhost:3012',
+      'http://127.0.0.1:3000',
+      'http://127.0.0.1:3012',
     ],
     credentials: true,
     methods: ['GET', 'POST'],
@@ -333,9 +337,9 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
   @SubscribeMessage('note-sync')
   handleNoteSync(
     @ConnectedSocket() client: Socket,
-    @MessageBody() data: { code: string; notes: unknown },
+    @MessageBody() data: { code: string; notes?: unknown; action?: string; noteId?: string },
   ) {
-    client.to(data.code).emit('note-sync', { notes: data.notes });
+    client.to(data.code).emit('note-sync', data);
   }
 
   @SubscribeMessage('theme-sync')

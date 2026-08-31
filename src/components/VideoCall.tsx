@@ -17,9 +17,10 @@ interface VideoCallProps {
   callType?: 'video' | 'voice';
   onEndCall: () => void;
   onServiceReady?: (service: WebRTCService) => void;
+  existingService?: WebRTCService | null;
 }
 
-export function VideoCall({ roomCode, participantId, displayName, callType = 'video', onEndCall, onServiceReady }: VideoCallProps) {
+export function VideoCall({ roomCode, participantId, displayName, callType = 'video', onEndCall, onServiceReady, existingService }: VideoCallProps) {
   const [status, setStatus] = useState<ConnectionStatus>('disconnected');
   const [localStream, setLocalStream] = useState<MediaStream | null>(null);
   const [peerStreams, setPeerStreams] = useState<PeerStream[]>([]);
@@ -35,7 +36,8 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
 
   const startCall = useCallback(async () => {
     try {
-      const service = createWebRTCService();
+      const ownsConnection = !existingService;
+      const service = existingService || createWebRTCService();
       serviceRef.current = service;
 
       service.onStatus(setStatus);
@@ -47,18 +49,26 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
         localVideoRef.current.srcObject = stream;
       }
 
-      service.connect(roomCode, participantId, name);
+      if (ownsConnection) {
+        service.connect(roomCode, participantId, name);
+      } else {
+        setStatus('connected');
+      }
       onServiceReady?.(service);
     } catch (err) {
       console.error('Failed to start call:', err);
       setStatus('error');
     }
-  }, [roomCode, participantId, name, isVoiceOnly, onServiceReady]);
+  }, [roomCode, participantId, name, isVoiceOnly, onServiceReady, existingService]);
 
   useEffect(() => {
     startCall();
     return () => {
-      serviceRef.current?.disconnect();
+      if (existingService) {
+        serviceRef.current?.stopLocalMedia();
+      } else {
+        serviceRef.current?.disconnect();
+      }
       screenStreamRef.current?.getTracks().forEach(t => t.stop());
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -104,7 +114,11 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
   };
 
   const endCall = () => {
-    serviceRef.current?.disconnect();
+    if (existingService) {
+      serviceRef.current?.stopLocalMedia();
+    } else {
+      serviceRef.current?.disconnect();
+    }
     onEndCall();
   };
 

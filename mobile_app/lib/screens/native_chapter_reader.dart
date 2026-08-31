@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import '../config/theme.dart';
 import '../data/bible_books.dart';
 import '../services/bible_offline_service.dart';
+import 'dart:async';
 
 class NativeChapterReader extends StatefulWidget {
   final String translationId;
   final int bookNumber;
   final int chapterNumber;
+  final void Function(String path)? onOpenWeb;
 
   const NativeChapterReader({
     super.key,
     required this.translationId,
     required this.bookNumber,
     required this.chapterNumber,
+    this.onOpenWeb,
   });
 
   @override
@@ -52,9 +55,12 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
         _verses = verses;
         _loading = false;
         if (verses.isEmpty) {
-          _error = 'Este capítulo não está baixado. Abra Bíblia Offline e baixe ${_bookName}.';
+          _error = 'Este capítulo não está baixado. Abra Bíblia Offline e baixe $_bookName.';
         }
       });
+      if (verses.isNotEmpty) {
+        unawaited(BibleOfflineService.instance.recordReading(widget.bookNumber, _chapter));
+      }
     } catch (e) {
       if (!mounted) return;
       setState(() {
@@ -83,6 +89,16 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
           style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
         ),
         actions: [
+          if (widget.onOpenWeb != null)
+            TextButton(
+              onPressed: () {
+                final abbr = (_book?['abbr'] as String?) ?? 'gn';
+                final path = '/biblia?livro=$abbr&capitulo=$_chapter';
+                Navigator.of(context).pop();
+                widget.onOpenWeb!(path);
+              },
+              child: const Text('Estudar', style: TextStyle(color: AppTheme.goldPrimary, fontSize: 13)),
+            ),
           Padding(
             padding: const EdgeInsets.only(right: 12),
             child: Center(

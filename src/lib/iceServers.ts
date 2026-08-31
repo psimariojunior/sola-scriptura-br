@@ -1,0 +1,125 @@
+/**
+ * Ponto único de ICE (STUN Google + TURN opcional).
+ * Servidor: TURN_URL / TURN_USER / TURN_PASS
+ * Cliente (se precisar no bundle): NEXT_PUBLIC_TURN_URL / NEXT_PUBLIC_TURN_USER / NEXT_PUBLIC_TURN_PASS
+ * Compatível com NEXT_PUBLIC_TURN_URLS / USERNAME / CREDENTIAL.
+ */
+
+export const GOOGLE_STUN_SERVERS: RTCIceServer[] = [
+  { urls: 'stun:stun.l.google.com:19302' },
+  { urls: 'stun:stun1.l.google.com:19302' },
+  { urls: 'stun:stun2.l.google.com:19302' },
+];
+
+export function parseTurnUrls(raw?: string | null): string[] {
+  if (!raw) return [];
+  return raw
+    .split(/[,;\n]+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+export function iceHasTurn(servers: RTCIceServer[]): boolean {
+  return servers.some((s) => {
+    const urls = Array.isArray(s.urls) ? s.urls : [s.urls];
+    return urls.some((u) => {
+      const v = String(u).toLowerCase();
+      return v.startsWith('turn:') || v.startsWith('turns:');
+    });
+  });
+}
+
+export function readTurnEnv(source: NodeJS.ProcessEnv = process.env): {
+  turnUrl?: string;
+  turnUser?: string;
+  turnPass?: string;
+} {
+  return {
+    turnUrl:
+      source.TURN_URL ||
+      source.NEXT_PUBLIC_TURN_URL ||
+      source.NEXT_PUBLIC_TURN_URLS ||
+      undefined,
+    turnUser:
+      source.TURN_USER ||
+      source.NEXT_PUBLIC_TURN_USER ||
+      source.NEXT_PUBLIC_TURN_USERNAME ||
+      undefined,
+    turnPass:
+      source.TURN_PASS ||
+      source.NEXT_PUBLIC_TURN_PASS ||
+      source.NEXT_PUBLIC_TURN_CREDENTIAL ||
+      undefined,
+  };
+}
+
+export function buildIceServers(opts?: {
+  turnUrl?: string | null;
+  turnUser?: string | null;
+  turnPass?: string | null;
+}): RTCIceServer[] {
+  const servers: RTCIceServer[] = [...GOOGLE_STUN_SERVERS];
+  const urls = parseTurnUrls(opts?.turnUrl);
+  const user = opts?.turnUser?.trim();
+  const pass = opts?.turnPass;
+  if (urls.length > 0 && user && pass) {
+    servers.push({ urls: urls.length === 1 ? urls[0] : urls, username: user, credential: pass });
+  }
+  return servers;
+}
+
+export function iceServersFromEnv(source: NodeJS.ProcessEnv = process.env): RTCIceServer[] {
+  return buildIceServers(readTurnEnv(source));
+}
+
+type IceCache = { iceServers: RTCIceServer[]; hasTurn: boolean };
+
+let iceCache: IceCache | null = null;
+let icePromise: Promise<IceCache> | null = null;
+
+function cacheFromServers(iceServers: RTCIceServer[]): IceCache {
+  return { iceServers, hasTurn: iceHasTurn(iceServers) };
+}
+
+export async function loadIceConfiguration(): Promise<RTCConfiguration> {
+  const data = await loadIceStatus();
+  return { iceServers: data.iceServers };
+}
+
+export async function loadIceStatus(): Promise<IceCache> {
+  if (iceCache) return iceCache;
+  if (icePromise) return icePromise;
+
+  icePromise = (async () => {
+    try {
+      const res = await fetch('/api/webrtc/ice', { cache: 'no-store' });
+      if (res.ok) {
+        const json = (await res.json()) as { iceServers?: RTCIceServer[]; hasTurn?: boolean };
+        if (Array.isArray(json.iceServers) && json.iceServers.length > 0) {
+          iceCache = {
+            iceServers: json.iceServers,
+            hasTurn: typeof json.hasTurn === 'boolean' ? json.hasTurn : iceHasTurn(json.iceServers),
+          };
+          return iceCache;
+        }
+      }
+    } catch {
+      /* fallback local */
+    }
+    iceCache = cacheFromServers(iceServersFromEnv());
+    return iceCache;
+  })();
+
+  try {
+    return await icePromise;
+  } catch {
+    iceCache = cacheFromServers(GOOGLE_STUN_SERVERS);
+    return iceCache;
+  }
+}
+
+/** Síncrono: cache se já carregou; senão, só o que o bundle NEXT_PUBLIC_ conhece. */
+export function hasTurnRelay(): boolean {
+  if (iceCache) return iceCache.hasTurn;
+  return iceHasTurn(iceServersFromEnv());
+}

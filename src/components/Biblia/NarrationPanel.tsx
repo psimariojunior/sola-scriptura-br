@@ -19,6 +19,8 @@ import { cn } from '@/lib/utils';
 import { useAudioCapitulo } from '@/hooks/useAudioCapitulo';
 import type { VersiculoAudio } from '@/hooks/useAudioCapitulo';
 import { labelMap as labelMapDefault } from '@/components/Biblia/TranslationDropdown';
+import { KaraokeWords } from '@/components/Biblia/KaraokeWords';
+import { karaokeProgressFromAudio } from '@/lib/karaokeWords';
 
 interface NarrationPanelProps {
   open: boolean;
@@ -88,6 +90,7 @@ export function NarrationPanel({
   }, [open, onClose]);
 
   const isActive = state.isPlaying || state.isPaused;
+  const karaokeProgress = karaokeProgressFromAudio(state.currentTime, state.duration);
   const tradLabel = labelMapDefault[traducao] || traducao.toUpperCase();
 
   const progressPct = useMemo(() => {
@@ -339,13 +342,13 @@ export function NarrationPanel({
                           </sup>
                           <span
                             className={cn(
-                              'text-sm leading-snug',
+                              'text-sm leading-snug font-serif-body',
                               active
-                                ? 'text-[var(--brand-default)] font-medium'
+                                ? 'text-[var(--content-primary)]'
                                 : 'text-[var(--content-secondary)]'
                             )}
                           >
-                            {v.texto}
+                            <KaraokeWords text={v.texto} progress={karaokeProgress} active={active} />
                           </span>
                         </button>
                       );

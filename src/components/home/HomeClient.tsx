@@ -73,7 +73,7 @@ export default function HomeClient() {
             <span className="italic text-primary">Sola</span>{' '}
             Scriptura
           </h1>
-          <p className="mt-5 text-sm sm:text-base text-muted-foreground max-w-md mx-auto leading-relaxed">
+          <p className="mt-5 text-sm sm:text-base text-muted-foreground max-w-md mx-auto leading-relaxed font-serif-body">
             O versículo de hoje já está pronto para o Stories. Abra a Bíblia, toque no verso e estude de graça — sem anúncios.
           </p>
           <div className="lectern-ornament mt-7" aria-hidden="true" />

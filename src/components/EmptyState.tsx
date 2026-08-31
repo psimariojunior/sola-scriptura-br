@@ -94,8 +94,7 @@ export function EmptyState({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="text-lg font-semibold text-[var(--content-primary)] mb-2"
-        style={{ fontFamily: 'var(--font-heading)' }}
+        className="font-display text-xl font-normal text-[var(--content-primary)] mb-2"
       >
         {title || config.title}
       </motion.h3>
@@ -118,14 +117,14 @@ export function EmptyState({
           {actionHref ? (
             <Link
               href={actionHref}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-[var(--brand-default)] text-white shadow-lg shadow-[var(--brand-default)]/20 hover:shadow-xl hover:shadow-[var(--brand-default)]/30 transition-all active:scale-95"
+              className="ssb-hit inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-[var(--brand-default)] text-white shadow-lg shadow-[var(--brand-default)]/20 hover:shadow-xl hover:shadow-[var(--brand-default)]/30 transition-all active:scale-95"
             >
               {actionLabel || 'Começar'}
             </Link>
           ) : (
             <button
               onClick={onAction}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-[var(--brand-default)] text-white shadow-lg shadow-[var(--brand-default)]/20 hover:shadow-xl hover:shadow-[var(--brand-default)]/30 transition-all active:scale-95"
+              className="ssb-hit inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-[var(--brand-default)] text-white shadow-lg shadow-[var(--brand-default)]/20 hover:shadow-xl hover:shadow-[var(--brand-default)]/30 transition-all active:scale-95"
             >
               {actionLabel || 'Começar'}
             </button>

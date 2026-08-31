@@ -29,6 +29,7 @@ import { ClickableVerse } from './ClickableVerse';
 import { IntroLivroLeitura } from './IntroLivroLeitura';
 import { useLongPress } from '@/hooks/useLongPress';
 import { toggleFavorito } from '@/lib/estudos';
+import { karaokeProgressFromAudio } from '@/lib/karaokeWords';
 
 const InterlinearView = dynamic(() => import('@/components/InterlinearView').then(m => ({ default: m.InterlinearView })), { ssr: false });
 const PainelEstudosCapitulo = dynamic(() => import('./PainelEstudosCapitulo'));
@@ -63,7 +64,7 @@ interface BibleVerseListProps {
   audioNatural: ReturnType<typeof useAudioNatural>;
   flashcards: ReturnType<typeof useFlashcards>;
   verseResources: { hasResources: (livro: string, cap: number, ver: number) => boolean };
-  capituloAudio: { state: { isPlaying: boolean; currentVerseIndex: number }; stop: () => void };
+  capituloAudio: { state: { isPlaying: boolean; currentVerseIndex: number; currentTime?: number; duration?: number }; stop: () => void };
   isFavorito: (livro: string, cap: number, ver: number, trad: string) => boolean;
   refresh: () => void;
   swipeHandlers: Record<string, unknown>;
@@ -120,6 +121,10 @@ export function BibleVerseList({
 
   const isModoLeitura = ui.modoLeitura === 'foco';
   const isModoEstudo = ui.modoLeitura === 'estudo';
+  const karaokeProgress = karaokeProgressFromAudio(
+    capituloAudio.state.currentTime ?? 0,
+    capituloAudio.state.duration ?? 0,
+  );
 
   // Last read position
   const [lastRead, setLastRead] = useState<{ livro: string; capitulo: number } | null>(null);
@@ -297,6 +302,7 @@ export function BibleVerseList({
                             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); stableHandleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto); } }}
                             className={cn(
                               'cursor-pointer rounded-sm transition-colors text-[var(--content-primary)]',
+                              isCurrentAudioVerse && 'verse-karaoke-active',
                               isCurrentAudioVerse
                                 ? 'bg-amber-100/70 dark:bg-amber-900/30'
                                 : isSelected
@@ -314,6 +320,8 @@ export function BibleVerseList({
                               livroAbreviacao={nav.livro.abreviacao}
                               capitulo={nav.capituloIdx + 1}
                               numero={v.numero}
+                              karaokeActive={isCurrentAudioVerse}
+                              karaokeProgress={karaokeProgress}
                             />
                             {temRecurso && !isModoLeitura && (
                               <span className="inline-block w-1 h-1 ml-0.5 mb-0.5 rounded-full bg-[var(--brand-default)]/70" title="Há estudo neste versículo" />
@@ -380,7 +388,7 @@ export function BibleVerseList({
                       lineSpacing={ui.lineSpacing} fontFamily={ui.fontFamily} hideNumber={ui.ocultarNumeros}
                       isSelected={isSelected} isPlaying={isPlaying} isHighlighted={ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero} isFocused={ui.focusedVerse === v.numero} isFavorito={fav} copiedVerse={verse.copiedVerse}
                       audioNatural={audioNatural} audio={audio} flashcards={flashcards} estudoAberto={verse.estudoAberto === v.numero}
-                      isCurrentAudioVerse={isCurrentAudioVerse} hasResources={verseResources.hasResources(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero)}
+                      isCurrentAudioVerse={isCurrentAudioVerse} karaokeProgress={karaokeProgress} hasResources={verseResources.hasResources(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero)}
                       selectedTradsCount={nav.selectedTrads.length}
                       onSelectFromList={stableHandleSelectFromList} onFavoritoChange={refresh}
                       onSetAnotandoVersiculo={stableSetAnotandoVersiculo} onSetAnotacaoTexto={verse.setAnotacaoTexto}
@@ -467,7 +475,7 @@ export function BibleVerseList({
               <button onClick={() => nav.changeChapter(Math.min(nav.livro.totalCapitulos - 1, nav.capituloIdx + 1))} disabled={nav.capituloIdx >= nav.livro.totalCapitulos - 1} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-all active:scale-98 min-h-[44px]">{t('biblia.next')} <ChevronRight className="w-4 h-4" /></button>
             </div>
             </div>
-        ) : (<div className="text-center py-20"><BookOpen className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} /><p className="text-lg text-[var(--content-muted)]">{t('biblia.selectBookChapter')}</p></div>)}
+        ) : (<div className="text-center py-20 ssb-empty"><BookOpen className="w-16 h-16 mx-auto mb-4 text-[var(--content-muted)]" strokeWidth={1} /><p className="font-display text-2xl text-[var(--content-primary)] mb-2">Escolha um livro</p><p className="text-lg text-[var(--content-muted)]">{t('biblia.selectBookChapter')}</p></div>)}
       </div>
       <NotesPanelSection open={ui.mostrarNotas} onClose={() => ui.setMostrarNotas(false)} notas={verse.notas} notaAtiva={verse.notaAtiva} onSalvar={(nota) => { verse.setNotaAtiva(nota); verse.salvarNotaHook(nota.id, nota.conteudo); }} onExcluir={(id) => { verse.excluirNota(id); verse.setNotaAtiva(null); ui.setMostrarNotas(false); }} />
 

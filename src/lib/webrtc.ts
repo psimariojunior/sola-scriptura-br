@@ -1,37 +1,15 @@
 'use client';
 
 import { io, Socket } from 'socket.io-client';
+import {
+  GOOGLE_STUN_SERVERS,
+  loadIceConfiguration,
+} from '@/lib/iceServers';
+
+export { hasTurnRelay, loadIceConfiguration, loadIceStatus } from '@/lib/iceServers';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
 const WS_URL = API_URL.replace('/api/v1', '');
-
-const TURN_URLS = process.env.NEXT_PUBLIC_TURN_URLS || '';
-const TURN_USERNAME = process.env.NEXT_PUBLIC_TURN_USERNAME || '';
-const TURN_CREDENTIAL = process.env.NEXT_PUBLIC_TURN_CREDENTIAL || '';
-
-const iceServers: RTCIceServer[] = [
-  { urls: 'stun:stun.l.google.com:19302' },
-  { urls: 'stun:stun1.l.google.com:19302' },
-  { urls: 'stun:stun2.l.google.com:19302' },
-];
-
-if (TURN_URLS && TURN_USERNAME && TURN_CREDENTIAL) {
-  for (const url of TURN_URLS.split(',')) {
-    const trimmed = url.trim();
-    if (trimmed) {
-      iceServers.push({ urls: trimmed, username: TURN_USERNAME, credential: TURN_CREDENTIAL });
-    }
-  }
-}
-
-const ICE_SERVERS: RTCConfiguration = { iceServers };
-
-export function hasTurnRelay(): boolean {
-  return iceServers.some((s) => {
-    const urls = Array.isArray(s.urls) ? s.urls : [s.urls];
-    return urls.some((u) => String(u).startsWith('turn:'));
-  });
-}
 
 export interface PeerStream {
   participantId: string;
@@ -217,6 +195,20 @@ export class WebRTCService {
   private roomCode = '';
   private participantId = '';
   private localChannel: BroadcastChannel | null = null;
+  private iceConfig: RTCConfiguration = { iceServers: GOOGLE_STUN_SERVERS };
+  private iceReady: Promise<RTCConfiguration> | null = null;
+
+  private async getIceConfig(): Promise<RTCConfiguration> {
+    if (!this.iceReady) {
+      this.iceReady = loadIceConfiguration()
+        .then((cfg) => {
+          this.iceConfig = cfg;
+          return cfg;
+        })
+        .catch(() => this.iceConfig);
+    }
+    return this.iceReady;
+  }
 
   get socketId(): string {
     return this.mySocketId;
@@ -234,6 +226,7 @@ export class WebRTCService {
   connect(roomCode: string, participantId: string, displayName: string) {
     this.roomCode = roomCode;
     this.participantId = participantId;
+    void this.getIceConfig();
     this.setupLocalChannel(roomCode);
     this.onStatusCallback?.('connecting');
     this.socket = io(WS_URL, {
@@ -539,7 +532,7 @@ export class WebRTCService {
   }
 
   private async createOffer(targetSocketId: string) {
-    const pc = new RTCPeerConnection(ICE_SERVERS);
+    const pc = new RTCPeerConnection(await this.getIceConfig());
     this.peers.set(targetSocketId, pc);
 
     if (this.localStream) {
@@ -580,7 +573,7 @@ export class WebRTCService {
   }
 
   private async handleOffer(fromSocketId: string, offer: RTCSessionDescriptionInit) {
-    const pc = new RTCPeerConnection(ICE_SERVERS);
+    const pc = new RTCPeerConnection(await this.getIceConfig());
     this.peers.set(fromSocketId, pc);
 
     if (this.localStream) {

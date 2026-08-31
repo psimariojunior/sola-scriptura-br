@@ -5,6 +5,7 @@ import { getStrongByNumber, getTestamentoByLivro, type LexiconResult } from '@/l
 import type { PalavraAlinhada } from '@/lib/wordAlignment';
 import type { TrechoMarcado } from '@/lib/marcadores';
 import { cn } from '@/lib/utils';
+import { karaokeWordIndex } from '@/lib/karaokeWords';
 import { LexiconPopup } from './LexiconPopup';
 
 interface ClickableVerseProps {
@@ -15,6 +16,9 @@ interface ClickableVerseProps {
   className?: string;
   style?: React.CSSProperties;
   trechos?: TrechoMarcado[];
+  /** 0–1 do áudio real (currentTime/duration). Sem timestamps TTS. */
+  karaokeProgress?: number;
+  karaokeActive?: boolean;
 }
 
 const MARK_CLASS: Record<string, string> = {
@@ -51,6 +55,8 @@ export const ClickableVerse = memo(function ClickableVerse({
   className = '',
   style,
   trechos,
+  karaokeProgress = 0,
+  karaokeActive = false,
 }: ClickableVerseProps) {
   const [popup, setPopup] = useState<{
     results: LexiconResult[];
@@ -78,6 +84,7 @@ export const ClickableVerse = memo(function ClickableVerse({
   }, [livroAbreviacao, capitulo, numero, text]);
 
   const ptWords = useMemo(() => text.split(/\s+/).filter(Boolean), [text]);
+  const karaokeIdx = karaokeActive ? karaokeWordIndex(ptWords, karaokeProgress) : -1;
 
   const handleWordClick = useCallback(
     async (word: string, e: React.MouseEvent, wordIndex: number) => {
@@ -165,15 +172,19 @@ export const ClickableVerse = memo(function ClickableVerse({
         let charPos = 0;
         for (let j = 0; j < i; j++) charPos += ptWords[j].length + 1;
         const mark = corDoOffset(charPos, trechos);
-        const inner = clickable ? (
+        const inner = (
           <span
-            onClick={(e) => handleWordClick(token, e, i)}
-            className="bible-word cursor-pointer rounded-sm hover:text-primary transition-colors duration-150"
+            onClick={clickable ? (e) => handleWordClick(token, e, i) : undefined}
+            className={cn(
+              clickable && 'bible-word cursor-pointer rounded-sm hover:text-primary transition-colors duration-150',
+              karaokeActive && 'karaoke-word',
+              karaokeActive && i < karaokeIdx && 'is-spoken',
+              karaokeActive && i === karaokeIdx && 'is-current',
+              karaokeActive && i > karaokeIdx && 'is-upcoming',
+            )}
           >
             {token}
           </span>
-        ) : (
-          token
         );
         return (
           <span key={`${i}-${token.slice(0, 8)}`}>

@@ -81,6 +81,7 @@ function useAudioCapituloImpl(
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const isPlayingRef = useRef(false);
   const queueRef = useRef<VersiculoAudio[]>([]);
+  const lastTimeUpdateRef = useRef(0);
 
   // Pré-cache de áudio: evita gerar o TTS sob demanda (latência perceptível no karaokê).
   // Mapeia texto+voz+velocidade+idioma -> data URL já gerada, e rastreia gerações em andamento
@@ -173,6 +174,9 @@ function useAudioCapituloImpl(
       audio.playbackRate = velocidade;
       audio.onloadedmetadata = () => setState(prev => ({ ...prev, duration: audio.duration }));
       audio.ontimeupdate = () => {
+        const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
+        if (now - lastTimeUpdateRef.current < 80) return;
+        lastTimeUpdateRef.current = now;
         setState(prev => ({ ...prev, currentTime: audio.currentTime }));
       };
       audio.onended = () => resolve();

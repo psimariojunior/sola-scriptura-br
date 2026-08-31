@@ -53,6 +53,7 @@ import {
   type ChatMessage,
   type VerseSharedEvent,
   type CallInviteEvent,
+  loadIceStatus,
 } from '@/lib/webrtc';
 import { carregarCapitulo } from '@/lib/apresentacao/versiculos';
 
@@ -154,6 +155,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   const [participantName, setParticipantName] = useState('Você');
   const [wsStatus, setWsStatus] = useState<'disconnected' | 'connecting' | 'connected' | 'error'>('disconnected');
   const [roomBusy, setRoomBusy] = useState(false);
+  const [hasTurn, setHasTurn] = useState<boolean | null>(null);
   const { containerRef, isFullscreen, toggleFullscreen } = useFullscreen();
   const { prefetchAdjacent } = useChapterPrefetch();
   const { cursors: realtimeCursors, broadcastCursor } = useRealtimeCursors({
@@ -166,6 +168,9 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     const id = getParticipantId();
     setParticipantId(id);
     setParticipantName(getParticipantLabel(id));
+    loadIceStatus()
+      .then((s) => setHasTurn(s.hasTurn))
+      .catch(() => setHasTurn(false));
   }, []);
 
   // Conectar serviço WebSocket
@@ -845,7 +850,12 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               <Users className="w-10 h-10 text-[var(--brand-default)]" />
             </motion.div>
             <h2 className="font-display text-3xl font-light mb-2">Estudo Colaborativo</h2>
-            <p className="text-[var(--content-muted)] max-w-md">Estude a Bíblia em tempo real com amigos. Crie ou entre em uma sala.</p>
+            <p className="text-[var(--content-muted)] max-w-md leading-relaxed">Estude a Bíblia em tempo real com amigos. Crie ou entre em uma sala.</p>
+            {hasTurn === false && (
+              <p className="mt-3 max-w-md mx-auto text-xs leading-relaxed text-amber-800 dark:text-amber-200/90 bg-amber-500/10 border border-amber-500/25 rounded-xl px-3 py-2.5">
+                Chat, notas e quiz funcionam em qualquer rede. Vídeo e voz entre redes diferentes exigem um servidor TURN (<span className="font-mono">TURN_URL</span>, <span className="font-mono">TURN_USER</span>, <span className="font-mono">TURN_PASS</span>). Sem isso, a chamada só fecha na mesma Wi-Fi.
+              </p>
+            )}
           </div>
         )}
         <div className={cn('flex flex-col gap-4 w-full', compact ? 'max-w-sm' : 'max-w-md')}>

@@ -194,12 +194,12 @@ export default function PlanosPage() {
     return (
       <PageShell maxWidth="3xl" className="pb-32">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} className="mb-6">
-            <button onClick={()=>setPlanoSel(null)} className="text-sm text-muted-foreground hover:text-primary mb-3 flex items-center gap-1">← Voltar</button>
+            <button onClick={()=>setPlanoSel(null)} className="ssb-hit text-sm text-muted-foreground hover:text-primary mb-3 flex items-center gap-1">← Voltar</button>
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl tile-brand flex items-center justify-center shrink-0">
                 <IconePlano className="w-5 h-5" />
               </div>
-              <div className="flex-1"><h1 className="text-h2">{planoSel.titulo}</h1>
+              <div className="flex-1"><h1 className="font-display text-3xl sm:text-4xl font-normal tracking-tight">{planoSel.titulo}</h1>
                 <p className="text-sm text-muted-foreground">{planoSel.descricao}</p></div>
               {planoSel.id.startsWith('custom-') && (
                 <div className="flex gap-2">
@@ -271,7 +271,7 @@ export default function PlanosPage() {
             <div className="space-y-2 max-h-[50vh] overflow-y-auto pr-1">{planoSel.dias.map(dia=>{
               const c=diasConcluidos.has(dia.dia), a=dia.dia===diaAtual;
               return (<motion.button key={dia.dia} onClick={()=>toggleDia(dia.dia)}
-                className={cn('w-full text-left rounded-xl border p-3 transition-all flex items-center gap-3',
+                className={cn('w-full text-left rounded-xl border p-3 min-h-[44px] transition-all flex items-center gap-3',
                   c?'bg-primary/5 border-primary/20':a?'border-primary/30 bg-primary/5 ring-1 ring-primary/20':'border-border/30 hover:border-primary/20 bg-card/50')}>
                 <div className={cn('w-8 h-8 rounded-full flex items-center justify-center shrink-0',
                   c?'bg-primary text-white':a?'bg-primary/10 text-primary':'bg-muted/30 text-muted-foreground')}>
@@ -304,7 +304,7 @@ export default function PlanosPage() {
           <motion.button key={plano.id} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:i*0.08}}
             onClick={()=>setPlanoSel(plano)}
             className={cn(
-              'text-left rounded-2xl border p-5 hover:border-primary/30 transition-all group min-h-[112px]',
+              'text-left rounded-2xl border p-5 hover:border-primary/30 transition-all group min-h-[112px] ssb-hit',
               plano.id === 'fichas-40'
                 ? 'border-primary/40 bg-primary/8 ring-1 ring-primary/20'
                 : 'border-border/50 bg-card/50',

@@ -7,7 +7,7 @@ import {
   MonitorUp, Maximize2, Minimize2
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { createWebRTCService, hasTurnRelay, type PeerStream, type ConnectionStatus, type WebRTCService } from '@/lib/webrtc';
+import { createWebRTCService, loadIceStatus, type PeerStream, type ConnectionStatus, type WebRTCService } from '@/lib/webrtc';
 import { getParticipantLabel } from '@/lib/collaborative';
 
 interface VideoCallProps {
@@ -30,6 +30,7 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
   const [isScreenSharing, setIsScreenSharing] = useState(false);
   const [iceFailed, setIceFailed] = useState(false);
   const [waitTimedOut, setWaitTimedOut] = useState(false);
+  const [hasTurn, setHasTurn] = useState<boolean | null>(null);
   const serviceRef = useRef<WebRTCService | null>(null);
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const screenStreamRef = useRef<MediaStream | null>(null);
@@ -66,6 +67,9 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
 
   useEffect(() => {
     startCall();
+    loadIceStatus()
+      .then((s) => setHasTurn(s.hasTurn))
+      .catch(() => setHasTurn(false));
     return () => {
       if (existingService) {
         serviceRef.current?.stopLocalMedia();
@@ -200,13 +204,13 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
         </div>
       </div>
 
-      {(status === 'error' || iceFailed || (waitTimedOut && totalPeers === 0)) && (
+      {(hasTurn === false || status === 'error' || iceFailed || (waitTimedOut && totalPeers === 0)) && (
         <div className="mx-3 mt-2 px-3 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs leading-relaxed text-amber-800 dark:text-amber-200">
           {status === 'error' && !localStream
             ? 'Não foi possível acessar câmera ou microfone. Verifique as permissões do navegador.'
-            : hasTurnRelay()
+            : hasTurn
               ? 'A conexão de mídia falhou. Tente de novo ou peça para todos usarem a mesma rede Wi-Fi.'
-              : 'Sem servidor de relé (TURN). A chamada de vídeo/voz só funciona na mesma rede Wi-Fi. Chat, notas e quiz da sala continuam ao vivo.'}
+              : 'Sem servidor de relé (TURN). A chamada de vídeo/voz só funciona na mesma rede Wi-Fi. Para falar entre redes, o servidor precisa de TURN_URL, TURN_USER e TURN_PASS. Chat, notas e quiz da sala continuam ao vivo.'}
         </div>
       )}
 

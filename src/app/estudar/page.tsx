@@ -257,7 +257,7 @@ export default function EstudarPage() {
           >
             <button
               onClick={handleSearch}
-              className="flex items-center gap-3 w-full max-w-lg mt-6 py-3 border-b border-border hover:border-primary/50 transition-colors text-left group"
+              className="flex items-center gap-3 w-full max-w-lg mt-6 min-h-[44px] py-3 border-b border-border hover:border-primary/50 transition-colors text-left group"
             >
               <Search className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
               <span className="text-muted-foreground text-sm">Buscar versículos, estudos, personagens…</span>
@@ -271,7 +271,7 @@ export default function EstudarPage() {
             <section className="mb-8">
               <div className="flex items-center gap-2 mb-4">
                 <History className="w-5 h-5 text-primary" />
-                <h2 className="text-lg font-semibold text-foreground">Continue de onde parou</h2>
+                <h2 className="font-display text-xl font-normal text-foreground">Continue de onde parou</h2>
               </div>
               <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
                 {recentPages.map((page) => (
@@ -325,7 +325,7 @@ export default function EstudarPage() {
           <section className="mb-8">
             <div className="flex items-center gap-2 mb-4">
               <Zap className="w-5 h-5 text-primary" />
-              <h2 className="text-lg font-semibold text-foreground">Ferramentas Rápidas</h2>
+              <h2 className="font-display text-xl font-normal text-foreground">Ferramentas Rápidas</h2>
             </div>
             <div className="divide-y divide-border">
               {QUICK_TOOLS.map((tool) => (
@@ -355,7 +355,7 @@ export default function EstudarPage() {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-primary" />
-                <h2 className="text-lg font-semibold text-foreground">Estudos por Livro</h2>
+                <h2 className="font-display text-xl font-normal text-foreground">Estudos por Livro</h2>
               </div>
               <Link
                 href="/estudos"
@@ -409,7 +409,7 @@ export default function EstudarPage() {
           <section className="mb-8">
             <div className="flex items-center gap-2 mb-4">
               <Brain className="w-5 h-5 text-primary" />
-              <h2 className="text-lg font-semibold text-foreground">IA & Análise</h2>
+              <h2 className="font-display text-xl font-normal text-foreground">IA & Análise</h2>
             </div>
             <div className="divide-y divide-border">
               {IA_TOOLS.map((tool) => (
@@ -436,7 +436,7 @@ export default function EstudarPage() {
           <section className="mb-8">
             <div className="flex items-center gap-2 mb-4">
               <GraduationCap className="w-5 h-5 text-primary" />
-              <h2 className="text-lg font-semibold text-foreground">Cursos & Manuais</h2>
+              <h2 className="font-display text-xl font-normal text-foreground">Cursos & Manuais</h2>
             </div>
             <div className="divide-y divide-border">
               {COURSE_TOOLS.map((tool) => (
@@ -463,7 +463,7 @@ export default function EstudarPage() {
           <section className="mb-8">
             <div className="flex items-center gap-2 mb-4">
               <Flame className="w-5 h-5 text-primary" />
-              <h2 className="text-lg font-semibold text-foreground">Desafios & Quiz</h2>
+              <h2 className="font-display text-xl font-normal text-foreground">Desafios & Quiz</h2>
             </div>
             <div className="divide-y divide-border">
               {QUIZ_TOOLS.map((tool) => (

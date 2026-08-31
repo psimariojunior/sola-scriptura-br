@@ -32,6 +32,7 @@ interface VerseListItemProps {
   estudoAberto: boolean;
   isCurrentAudioVerse: boolean;
   hasResources: boolean;
+  karaokeProgress?: number;
   selectedTradsCount: number;
   onSelectFromList: (livro: string, cap: number, ver: number, traducao: string, texto: string) => void;
   onFavoritoChange: () => void;
@@ -77,6 +78,7 @@ export const VerseListItem = memo(function VerseListItem({
   estudoAberto,
   isCurrentAudioVerse,
   hasResources,
+  karaokeProgress = 0,
   selectedTradsCount,
   onSelectFromList,
   onFavoritoChange,
@@ -164,6 +166,7 @@ export const VerseListItem = memo(function VerseListItem({
       tradLabel={labelMap[traducao] || traducao.toUpperCase()}
       tradBadgeColor={tradBadgeColors[traducao] || ''}
       isCurrentAudioVerse={isCurrentAudioVerse}
+      karaokeProgress={karaokeProgress}
       hasResources={hasResources}
       onCorMarcaChange={onCorMarcaChange}
       onApresentar={onApresentar}

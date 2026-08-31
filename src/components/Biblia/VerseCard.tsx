@@ -63,6 +63,7 @@ export interface VerseCardProps {
   tradBadgeColor: string;
   isCurrentAudioVerse?: boolean;
   hasResources?: boolean;
+  karaokeProgress?: number;
   onCorMarcaChange?: () => void;
   studyMode?: boolean;
 }
@@ -107,6 +108,7 @@ export const VerseCard = memo(function VerseCard({
   verseKey,
   isCurrentAudioVerse = false,
   hasResources: hasResourcesProp = false,
+  karaokeProgress = 0,
   onCorMarcaChange,
   studyMode = false,
 }: VerseCardProps) {
@@ -274,6 +276,7 @@ export const VerseCard = memo(function VerseCard({
           'group relative cursor-pointer bible-verse-row',
           'transition-colors duration-200 animate-verse-fade-in',
           'rounded-md',
+          isCurrentAudioVerse && 'verse-karaoke-active',
           isCurrentAudioVerse
             ? 'bg-primary/[0.07]'
             : isFocused || isSelected
@@ -339,6 +342,8 @@ export const VerseCard = memo(function VerseCard({
               capitulo={capitulo}
               numero={numero}
               trechos={marcaLive?.trechos}
+              karaokeActive={isCurrentAudioVerse}
+              karaokeProgress={karaokeProgress}
               className="bible-reading-text font-serif-body text-[var(--content-primary)]"
               style={{ fontSize: `${fontSize}px`, lineHeight: lineSpacing ?? 1.85, fontFamily: fontFamilyCss }}
             />

@@ -83,6 +83,10 @@
     --mark-pink: rgba(236,72,153,0.15);
     --mark-orange: rgba(249,115,22,0.15);
     --mark-purple: rgba(168,85,247,0.15);
+
+    --font-heading: var(--font-cormorant), Georgia, serif;
+    --font-reading: var(--font-spectral), Georgia, serif;
+    --rhythm: 1.25rem;
   }
 
   .dark {
@@ -3315,14 +3319,43 @@ button, a, [role="button"] {
   }
 }
 
-/* Versículos karaoke — destaque animado do verso atual */
+/* Versículos karaoke — destaque do verso atual (sync real por versículo) */
 @keyframes verseKaraoke {
   from { background-color: transparent; }
-  to { background-color: rgba(212, 168, 67, 0.15); }
+  to { background-color: color-mix(in srgb, hsl(var(--primary)) 14%, transparent); }
 }
 .verse-karaoke-active {
-  animation: verseKaraoke 0.3s ease-out;
+  animation: verseKaraoke 0.35s ease-out;
   border-radius: 6px;
+  box-shadow: inset 3px 0 0 hsl(var(--primary) / 0.7);
+}
+
+/* Palavra a palavra honesta: progresso = currentTime/duration, não timestamp TTS */
+.karaoke-word {
+  border-radius: 0.14em;
+  padding: 0 0.04em;
+  transition: color 0.12s ease, background-color 0.12s ease, opacity 0.18s ease, box-shadow 0.12s ease;
+}
+.karaoke-word.is-upcoming {
+  opacity: 0.46;
+}
+.karaoke-word.is-spoken {
+  color: hsl(var(--primary));
+  opacity: 0.92;
+}
+.karaoke-word.is-current {
+  background: color-mix(in srgb, hsl(var(--primary)) 22%, transparent);
+  color: var(--content-primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, hsl(var(--primary)) 16%, transparent);
+  font-weight: 600;
+}
+@media (prefers-reduced-motion: reduce) {
+  .karaoke-word {
+    transition: none;
+  }
+  .karaoke-word.is-upcoming {
+    opacity: 1;
+  }
 }
 
 /* Versículos selecionados (modo estudo) */
@@ -4050,6 +4083,64 @@ header.ssb-header {
 
 .bible-layout {
   background: hsl(var(--background));
+}
+
+/* ═════════════════════════════════════════════════════════════
+   SUPERFÍCIES DIÁRIAS — ritmo, leitura, toque 44px, empty states
+   Home, Bíblia, Planos, Estudo colaborativo, Estudar/Guia
+   ═════════════════════════════════════════════════════════════ */
+
+.ssb-empty {
+  color: var(--content-muted);
+}
+.ssb-empty .font-display,
+.empty-state-illustration h3 {
+  font-family: var(--font-heading);
+  color: var(--content-primary);
+}
+
+.empty-state-illustration {
+  gap: 0;
+}
+.empty-state-icon {
+  min-height: 80px;
+  min-width: 80px;
+}
+
+button.ssb-hit,
+a.ssb-hit,
+.ssb-hit {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.reading-mode-leitura .verse-karaoke-active,
+.bible-prose-para > span[role="button"].verse-karaoke-active {
+  background: color-mix(in srgb, hsl(var(--primary)) 16%, transparent);
+  box-shadow: inset 3px 0 0 hsl(var(--primary));
+}
+
+.bible-reading-text {
+  font-family: var(--font-reading);
+}
+
+h1.font-display,
+h2.font-display,
+.page-hero-title {
+  text-wrap: balance;
+}
+
+.ssb-panel {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.ssb-panel:hover {
+  border-color: hsl(var(--primary) / 0.28);
+}
+
+@media (max-width: 767px) {
+  .ssb-panel {
+    border-radius: var(--radius-md);
+  }
 }
 
 

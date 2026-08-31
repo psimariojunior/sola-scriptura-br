@@ -6,6 +6,7 @@ import { Compass, Search } from 'lucide-react';
 import { PageShell } from '@/components/layout/PageShell';
 import { PageHero } from '@/components/layout/PageHero';
 import { GuiaPassagem } from '@/components/Biblia/GuiaPassagem';
+import { EmptyState } from '@/components/EmptyState';
 import { hrefGuia, parseRefLivre, resolverLivroParam } from '@/lib/bibliaHref';
 
 const RAPIDAS = [
@@ -72,13 +73,13 @@ export default function GuiaClient() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="João 3:16, Salmos 23, Gn 1…"
-              className="w-full pl-10 pr-3 py-2.5 rounded-xl bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--content-primary)] placeholder:text-[var(--content-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/40"
+              className="w-full pl-10 pr-3 min-h-[44px] py-2.5 rounded-xl bg-[var(--surface-sunken)] border border-[var(--border)] text-[var(--content-primary)] placeholder:text-[var(--content-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)]/40"
             />
           </div>
           <button
             type="submit"
             disabled={!input.trim()}
-            className="px-5 py-2.5 rounded-xl bg-[var(--brand-default)] text-[var(--brand-contrast)] text-sm font-semibold disabled:opacity-40"
+            className="ssb-hit px-5 py-2.5 rounded-xl bg-[var(--brand-default)] text-[var(--brand-contrast)] text-sm font-semibold disabled:opacity-40"
           >
             Estudar
           </button>
@@ -92,7 +93,7 @@ export default function GuiaClient() {
                 setInput(r);
                 ir(r);
               }}
-              className="text-[11px] px-2.5 py-1 rounded-lg bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:text-[var(--brand-default)]"
+              className="ssb-hit text-[11px] px-2.5 py-1 rounded-lg bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:text-[var(--brand-default)]"
             >
               {r}
             </button>
@@ -103,9 +104,11 @@ export default function GuiaClient() {
       {ativo ? (
         <GuiaPassagem livro={ativo.livro} capitulo={ativo.capitulo} versiculo={ativo.versiculo} />
       ) : (
-        <p className="text-sm text-[var(--content-muted)] text-center py-12">
-          Digite uma referência (capítulo ou versículo) para abrir o guia completo.
-        </p>
+        <EmptyState
+          type="studies"
+          title="Abra uma passagem"
+          description="Digite uma referência — capítulo ou versículo — para ver ficha, comentários clássicos e léxico no mesmo lugar."
+        />
       )}
     </PageShell>
   );

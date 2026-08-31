@@ -15,8 +15,8 @@ export class ColaborativoService {
   async createRoom(code: string, name: string, hostUserId: string): Promise<StudyRoom> {
     const existing = await this.roomRepo.findOne({ where: { code, isActive: true } });
     if (existing) {
-      existing.isActive = false;
-      await this.roomRepo.save(existing);
+      this.logger.log(`Room reused: ${code} (id: ${existing.id})`);
+      return existing;
     }
 
     const room = this.roomRepo.create({
@@ -45,6 +45,7 @@ export class ColaborativoService {
     const room = await this.findByCode(code);
     if (!room) return null;
 
+    room.participants = Array.isArray(room.participants) ? room.participants : [];
     if (!room.participants.some(p => p.id === participant.id)) {
       room.participants.push(participant);
       await this.roomRepo.save(room);
@@ -73,6 +74,7 @@ export class ColaborativoService {
     const room = await this.findByCode(code);
     if (!room) return null;
 
+    room.messages = Array.isArray(room.messages) ? room.messages : [];
     room.messages.push(message);
     if (room.messages.length > 500) {
       room.messages = room.messages.slice(-500);

@@ -84,7 +84,7 @@ export const ClickableVerse = memo(function ClickableVerse({
   }, [livroAbreviacao, capitulo, numero, text]);
 
   const ptWords = useMemo(() => text.split(/\s+/).filter(Boolean), [text]);
-  const karaokeIdx = karaokeActive ? karaokeWordIndex(ptWords, karaokeProgress) : -1;
+  const karaokeIdx = karaokeActive && karaokeProgress > 0 ? karaokeWordIndex(ptWords, karaokeProgress) : -1;
 
   const handleWordClick = useCallback(
     async (word: string, e: React.MouseEvent, wordIndex: number) => {

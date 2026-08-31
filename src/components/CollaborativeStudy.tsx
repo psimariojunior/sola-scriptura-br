@@ -17,6 +17,9 @@ import {
   getParticipantColor,
   getParticipantLabel,
   upsertStudyRoom,
+  fetchColabRoom,
+  createColabRoom,
+  COLAB_API,
   type StudyRoom,
 } from '@/lib/collaborative';
 import { RealtimeCursors, useRealtimeCursors } from '@/components/RealtimeCursors';
@@ -154,6 +157,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   const [participantId, setParticipantId] = useState('');
   const [participantName, setParticipantName] = useState('Você');
   const [wsStatus, setWsStatus] = useState<'disconnected' | 'connecting' | 'connected' | 'error'>('disconnected');
+  const [presence, setPresence] = useState<Array<{ id: string; name: string }>>([]);
   const [roomBusy, setRoomBusy] = useState(false);
   const [hasTurn, setHasTurn] = useState<boolean | null>(null);
   const { containerRef, isFullscreen, toggleFullscreen } = useFullscreen();
@@ -187,6 +191,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
 
     svc.onVerseShared((verse) => {
       setWsVerses(prev => prev.some(v => v.id === verse.id) ? prev : [...prev, verse]);
+      setActiveTab('bible');
     });
 
     svc.onTypingStart((data) => {
@@ -202,6 +207,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     svc.onCallReject(() => setIncomingCall(null));
     svc.onBibleNavigation((data) => setBibleSyncData(data));
     svc.onParticipants((participants) => {
+      setPresence(participants.map((p) => ({ id: p.participantId, name: p.displayName })));
       setRoom(prev => {
         if (!prev) return prev;
         const newParticipantIds = participants.map(p => p.participantId);
@@ -228,8 +234,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
 
     svc.onNoteSync((data) => {
       if (data.notes) {
-        const parsed: SharedNote[] = Object.values(data.notes).map(v => JSON.parse(v as string));
-        setSharedNotes(parsed);
+        setSharedNotes(parseSharedNotes(data.notes));
       } else if (data.action === 'add' && data.noteId && data.participantId) {
         setSharedNotes(prev => {
           if (prev.some(n => n.id === data.noteId)) return prev;
@@ -298,26 +303,24 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   useEffect(() => {
     if (!participantId) return;
     if (initialCode && initialCode.length === 6) {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
-      fetch(`${API_BASE}/colaborativo/rooms/${initialCode}`, { signal: AbortSignal.timeout(5000) })
-        .then(res => res.ok ? res.json() : null)
-        .then(serverRoom => {
+      fetchColabRoom(initialCode, AbortSignal.timeout(5000))
+        .then((serverRoom) => {
           const roomId = serverRoom?.id || `room-${Date.now()}`;
           const joined: StudyRoom = { id: roomId, code: initialCode, participants: [participantId], createdAt: Date.now(), verses: [] };
           upsertStudyRoom(joined);
           setRoom(joined);
           if (serverRoom?.messages) {
             const chatMsgs = serverRoom.messages
-              .filter((m: { type: string }) => m.type === 'chat')
-              .map((m: { id: string; userId: string; userName: string; text: string; timestamp: string }) => ({
+              .filter((m) => m.type === 'chat')
+              .map((m) => ({
                 id: m.id, participantId: m.userId, displayName: m.userName,
                 message: m.text, timestamp: new Date(m.timestamp).getTime(),
               }));
             if (chatMsgs.length > 0) setChatMessages(chatMsgs);
 
             const verseMsgs = serverRoom.messages
-              .filter((m: { type: string }) => m.type === 'verse')
-              .map((m: { id: string; userId: string; userName: string; text: string; timestamp: string }) => ({
+              .filter((m) => m.type === 'verse')
+              .map((m) => ({
                 id: m.id, participantId: m.userId, displayName: m.userName,
                 verse: m.text.split(' - ')[0] || '', livro: '', capitulo: 0, versiculo: 0,
                 texto: m.text.split(' - ').slice(1).join(' - ') || m.text,
@@ -363,6 +366,22 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [chatMessages.length]);
   useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [wsVerses.length]);
 
+  useEffect(() => {
+    if (!room?.code || typeof window === 'undefined') return;
+    const next = `/estudo-colaborativo?code=${room.code}`;
+    if (window.location.pathname + window.location.search !== next) {
+      window.history.replaceState(null, '', next);
+    }
+  }, [room?.code]);
+
+  useEffect(() => {
+    if (!room || wsStatus === 'connected') return;
+    const t = setInterval(() => {
+      chatServiceRef.current?.reconnect();
+    }, 4000);
+    return () => clearInterval(t);
+  }, [room, wsStatus]);
+
   // Prefetch adjacent chapters when bible navigates
   useEffect(() => {
     if (bibleSyncData) prefetchAdjacent(bibleSyncData.livro, bibleSyncData.capitulo);
@@ -381,15 +400,9 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     const abort = new AbortController();
     const abortTimer = setTimeout(() => abort.abort(), 5000);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1'}/colaborativo/rooms`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code, name: `Sala ${code}`, hostUserId: id }),
-        signal: abort.signal,
-      });
-      if (res.ok) {
-        const saved = await res.json();
-        created = { id: saved.id || created.id, code, participants: [id], createdAt: Date.now(), verses: [] };
+      const saved = await createColabRoom(code, id, abort.signal);
+      if (saved?.id) {
+        created = { id: saved.id, code, participants: [id], createdAt: Date.now(), verses: [] };
       }
     } catch { /* WS + abas locais ainda funcionam */ }
     clearTimeout(abortTimer);
@@ -402,38 +415,23 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
   const handleJoin = useCallback(async () => {
     if (joinCode.length !== 6 || roomBusy) return;
     setRoomBusy(true);
-    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
     const id = participantId || getParticipantId();
-    let serverRoom: { id: string; participants: Array<{ id: string; name: string }>; messages: Array<{ id: string; userId: string; userName: string; text: string; timestamp: string; type: string }>; sharedNotes: Record<string, string> } | null = null;
-    let notFound = false;
+    let serverRoom: Awaited<ReturnType<typeof fetchColabRoom>> = null;
     const abort = new AbortController();
     const abortTimer = setTimeout(() => abort.abort(), 5000);
     try {
-      const res = await fetch(`${API_BASE}/colaborativo/rooms/${joinCode}`, { signal: abort.signal });
-      if (res.ok) {
-        const data = await res.json();
-        if (data?.id || data?.code) serverRoom = data;
-        else notFound = true;
+      serverRoom = await fetchColabRoom(joinCode, abort.signal);
+      if (!serverRoom) {
+        serverRoom = await createColabRoom(joinCode, id, abort.signal);
       }
     } catch { /* entra mesmo sem REST — o WebSocket ainda sincroniza */ }
 
-    if (notFound && !serverRoom) {
-      try {
-        const res = await fetch(`${API_BASE}/colaborativo/rooms`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ code: joinCode, name: `Sala ${joinCode}`, hostUserId: id }),
-          signal: abort.signal,
-        });
-        if (res.ok) serverRoom = await res.json();
-      } catch {}
-    }
     clearTimeout(abortTimer);
 
     const roomId = serverRoom?.id || `room-${Date.now()}`;
     const existingMessages: ChatMessage[] = (serverRoom?.messages || [])
-      .filter((m: { type: string }) => m.type === 'chat')
-      .map((m: { id: string; userId: string; userName: string; text: string; timestamp: string }) => ({
+      .filter((m) => m.type === 'chat')
+      .map((m) => ({
         id: m.id,
         participantId: m.userId,
         displayName: m.userName,
@@ -442,8 +440,8 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       }));
 
     const existingVerses: VerseSharedEvent[] = (serverRoom?.messages || [])
-      .filter((m: { type: string }) => m.type === 'verse')
-      .map((m: { id: string; userId: string; userName: string; text: string; timestamp: string }) => ({
+      .filter((m) => m.type === 'verse')
+      .map((m) => ({
         id: m.id,
         participantId: m.userId,
         displayName: m.userName,
@@ -462,7 +460,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     if (joinedNotes.length > 0) setSharedNotes(joinedNotes);
 
     try {
-      await fetch(`${API_BASE}/colaborativo/rooms/${joinCode}/participants`, {
+      await fetch(`${COLAB_API}/rooms/${joinCode}/participants`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id, name: participantName, joinedAt: new Date().toISOString() }),
@@ -504,8 +502,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     chatServiceRef.current?.sendVerseShared(verseData);
 
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
-      await fetch(`${API_BASE}/colaborativo/rooms/${room.code}/messages`, {
+      await fetch(`${COLAB_API}/rooms/${room.code}/messages`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -526,8 +523,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
     chatServiceRef.current?.sendChatMessage(msg.id, participantId, participantName, shareMessage);
 
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
-      await fetch(`${API_BASE}/colaborativo/rooms/${room.code}/messages`, {
+      await fetch(`${COLAB_API}/rooms/${room.code}/messages`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -736,10 +732,9 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
 
     if (room) {
       try {
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
         const notesMap: Record<string, string> = {};
         updated.forEach(n => { notesMap[n.id] = JSON.stringify(n); });
-        await fetch(`${API_BASE}/colaborativo/rooms/${room.code}/notes`, {
+        await fetch(`${COLAB_API}/rooms/${room.code}/notes`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ notes: notesMap }),
@@ -759,10 +754,9 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
 
     if (room) {
       try {
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
         const notesMap: Record<string, string> = {};
         updated.forEach(n => { notesMap[n.id] = JSON.stringify(n); });
-        await fetch(`${API_BASE}/colaborativo/rooms/${room.code}/notes`, {
+        await fetch(`${COLAB_API}/rooms/${room.code}/notes`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ notes: notesMap }),
@@ -909,19 +903,33 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
               'text-[10px]',
               wsStatus === 'connected' ? 'text-green-500' : wsStatus === 'connecting' ? 'text-amber-500' : wsStatus === 'error' ? 'text-red-500' : 'text-[var(--content-muted)]',
             )}>
-              {wsStatus === 'connected' ? 'Ao vivo' : wsStatus === 'connecting' ? 'Conectando…' : wsStatus === 'error' ? 'Sem servidor — abas neste aparelho ainda sincronizam' : 'Desconectado'}
+              {wsStatus === 'connected' ? 'Ao vivo' : wsStatus === 'connecting' ? 'Reconectando…' : wsStatus === 'error' ? 'Sem servidor — abas neste aparelho ainda sincronizam' : 'Desconectado'}
             </p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5">
-            {room.participants.map((pId) => (
-              <div key={pId} className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white border-2 border-[var(--surface-base)]"
-                style={{ backgroundColor: getParticipantColor(pId) }} title={getParticipantLabel(pId)}>
-                {pId === participantId ? 'Eu' : pId.slice(-2).toUpperCase()}
+          <div className="flex items-center gap-1.5 max-w-[40vw] overflow-x-auto" title={presence.map((p) => p.id === participantId ? 'Você' : p.name).join(', ')}>
+            {(presence.length > 0 ? presence : room.participants.map((id) => ({ id, name: getParticipantLabel(id) }))).map((p) => (
+              <div key={p.id} className="flex items-center gap-1 shrink-0">
+                <div className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white border-2 border-[var(--surface-base)]"
+                  style={{ backgroundColor: getParticipantColor(p.id) }} title={p.id === participantId ? 'Você' : p.name}>
+                  {p.id === participantId ? 'Eu' : (p.name || p.id).slice(-2).toUpperCase()}
+                </div>
               </div>
             ))}
+            <span className="text-[10px] text-[var(--content-muted)] whitespace-nowrap">
+              {Math.max(presence.length, room.participants.length)} aqui
+            </span>
           </div>
+          {wsStatus !== 'connected' && (
+            <button
+              type="button"
+              onClick={() => chatServiceRef.current?.reconnect()}
+              className="text-[10px] font-semibold px-2 py-1 rounded-md bg-amber-500/15 text-amber-800 dark:text-amber-200"
+            >
+              Reconectar
+            </button>
+          )}
           <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => handleStartCall('voice')} disabled={isCallActive}
             className={cn('p-2 rounded-lg transition-all', isCallActive ? 'opacity-50' : 'bg-green-500/10 border border-green-500/30 text-green-600 dark:text-green-400 hover:bg-green-500/20')}
             title="Chamada de voz"><Mic className="w-4 h-4" /></motion.button>
@@ -944,8 +952,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
           <button onClick={async () => {
             if (room) {
               try {
-                const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.solascripturabr.com.br/api/v1';
-                await fetch(`${API_BASE}/colaborativo/rooms/${room.code}/participants/${participantId}/leave`, { method: 'POST' });
+                await fetch(`${COLAB_API}/rooms/${room.code}/participants/${participantId}/leave`, { method: 'POST' });
               } catch {}
             }
             setRoom(null); setIsCallActive(false); wsConnectedRef.current = false; setWsStatus('disconnected'); setChatMessages([]); setWsVerses([]); setSharedNotes([]); setQuizLive(false); setQuizAnswers([]); setQuizScores([]);
@@ -1031,6 +1038,18 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
         <div className={cn('flex-1 overflow-hidden', presentedVerse && showBiblePanel ? 'min-h-0' : presentedVerse ? 'hidden' : '')}>
           {activeTab === 'bible' ? (
             <div className="h-full flex flex-col">
+              {wsVerses.length > 0 && (() => {
+                const latest = wsVerses[wsVerses.length - 1];
+                return (
+                  <div className="px-4 py-3 border-b border-[var(--brand-default)]/25 bg-[var(--brand-subtle)]/70">
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--brand-default)] mb-1">
+                      Verso compartilhado agora · {latest.displayName}
+                    </p>
+                    <p className="text-sm font-semibold text-[var(--content-primary)]">{latest.verse}</p>
+                    <p className="text-sm font-serif-body text-[var(--content-secondary)] leading-relaxed mt-0.5">{latest.texto}</p>
+                  </div>
+                );
+              })()}
               <PullToRefreshWrapper onRefresh={async () => { if (bibleSyncData) await prefetchAdjacent(bibleSyncData.livro, bibleSyncData.capitulo); }} className="flex-1 min-h-0">
                 <BibleBrowser
                   onPresentVerse={handlePresentVerse}

@@ -498,7 +498,7 @@ export default function BibliaPage() {
         <a href={`/estudo-ia?ref=${encodeURIComponent(`${verse.versiculoSelecionado.livroNome} ${verse.versiculoSelecionado.capitulo}:${verse.versiculoSelecionado.versiculo}`)}`} target="_blank" rel="noreferrer"
           className="fade-in-bottom hidden lg:flex fixed bottom-6 right-6 z-30 items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-br from-[var(--brand-default)] to-[var(--brand-hover)] text-[var(--brand-contrast)] font-semibold shadow-lg shadow-[var(--brand-default)]/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all"><Sparkles className="w-4 h-4" />{t('biblia.deepenAI')}</a>)}
       <AudioPlayers audioNatural={audioNatural} audio={audio} data={nav.data} livroNome={nav.livro.nome} capitulo={nav.capituloIdx + 1} />
-      {(capituloAudio.state.isPlaying || capituloAudio.state.isPaused) && (
+      {(capituloAudio.state.isPlaying || capituloAudio.state.isPaused || capituloAudio.state.isLoading) && (
         <ChapterAudioDock
           livroNome={nav.livro.nome}
           capitulo={nav.capituloIdx + 1}
@@ -506,6 +506,7 @@ export default function BibliaPage() {
           totalVersiculos={nav.data[0]?.versiculos?.length ?? 0}
           isPlaying={capituloAudio.state.isPlaying}
           isLoading={capituloAudio.state.isLoading}
+          speechFallback={capituloAudio.state.speechFallback}
           onToggle={() => { if (capituloAudio.state.isPlaying) capituloAudio.pause(); else capituloAudio.resume(); }}
           onStop={capituloAudio.stop}
           onPrevVerse={() => capituloAudio.skipBackward(1)}

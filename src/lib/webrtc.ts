@@ -194,6 +194,7 @@ export class WebRTCService {
   private mySocketId = '';
   private roomCode = '';
   private participantId = '';
+  private displayName = '';
   private localChannel: BroadcastChannel | null = null;
   private iceConfig: RTCConfiguration = { iceServers: GOOGLE_STUN_SERVERS };
   private iceReady: Promise<RTCConfiguration> | null = null;
@@ -226,6 +227,7 @@ export class WebRTCService {
   connect(roomCode: string, participantId: string, displayName: string) {
     this.roomCode = roomCode;
     this.participantId = participantId;
+    this.displayName = displayName;
     void this.getIceConfig();
     this.setupLocalChannel(roomCode);
     this.onStatusCallback?.('connecting');
@@ -233,26 +235,33 @@ export class WebRTCService {
       path: '/socket.io/',
       transports: ['websocket', 'polling'],
       reconnection: true,
-      reconnectionAttempts: 10,
+      reconnectionAttempts: Infinity,
       reconnectionDelay: 1000,
+      reconnectionDelayMax: 8000,
+      timeout: 12000,
     });
 
     this.socket.on('connect', () => {
       this.mySocketId = this.socket!.id!;
       this.onStatusCallback?.('connected');
       this.socket!.emit('join-room', {
-        code: roomCode,
-        participantId,
-        displayName,
+        code: this.roomCode,
+        participantId: this.participantId,
+        displayName: this.displayName,
       });
     });
 
-    this.socket.on('disconnect', () => {
-      this.onStatusCallback?.('disconnected');
+    this.socket.io.on('reconnect_attempt', () => {
+      this.onStatusCallback?.('connecting');
+    });
+
+    this.socket.on('disconnect', (reason) => {
+      if (reason === 'io client disconnect') this.onStatusCallback?.('disconnected');
+      else this.onStatusCallback?.('connecting');
     });
 
     this.socket.on('connect_error', () => {
-      this.onStatusCallback?.('error');
+      if (!this.socket?.connected) this.onStatusCallback?.('connecting');
     });
 
     this.socket.on('room-participants', (data: { participants: SignalingParticipant[] }) => {
@@ -716,6 +725,17 @@ export class WebRTCService {
 
   onIceFailed(cb: () => void) {
     this.onIceFailedCallback = cb;
+  }
+
+  reconnect() {
+    if (this.socket?.connected) return;
+    if (this.socket) {
+      this.socket.connect();
+      return;
+    }
+    if (this.roomCode && this.participantId) {
+      this.connect(this.roomCode, this.participantId, this.displayName || 'Você');
+    }
   }
 
   disconnect() {

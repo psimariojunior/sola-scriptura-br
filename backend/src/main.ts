@@ -68,13 +68,23 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1');
 
   const allowedOrigins = configService
-    .get('CORS_ORIGINS', 'http://localhost:3000')
+    .get(
+      'CORS_ORIGINS',
+      'http://localhost:3000,http://localhost:3012,https://solascripturabr.com.br,https://www.solascripturabr.com.br,https://sola-scriptura-br.vercel.app',
+    )
     .split(',')
     .map((o) => o.trim());
 
   app.enableCors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        /^https:\/\/[\w.-]+\.vercel\.app$/.test(origin) ||
+        /solascripturabr\.com\.br$/.test(origin) ||
+        /^http:\/\/localhost:\d+$/.test(origin) ||
+        /^http:\/\/127\.0\.0\.1:\d+$/.test(origin)
+      ) {
         callback(null, true);
       } else {
         callback(null, false);

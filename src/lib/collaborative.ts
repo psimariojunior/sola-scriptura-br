@@ -5,6 +5,55 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 const STORAGE_KEY = 'ssb_study_rooms';
 const CHANNEL_PREFIX = 'ssb-collab-';
 
+/** Mesma origem — o proxy Next encaminha ao Nest e evita CORS. */
+export const COLAB_API = '/api/colaborativo';
+
+/** Nest envolve respostas em `{ success, data }`. */
+export function unwrapApiData<T extends object>(json: unknown): T | null {
+  if (!json || typeof json !== 'object') return null;
+  const obj = json as Record<string, unknown>;
+  const inner = obj.data;
+  if (inner && typeof inner === 'object' && !Array.isArray(inner)) {
+    const rec = inner as Record<string, unknown>;
+    if ('id' in rec || 'code' in rec || 'messages' in rec || 'participants' in rec) {
+      return inner as T;
+    }
+  }
+  if ('id' in obj || 'code' in obj) return json as T;
+  return null;
+}
+
+export interface ColabServerRoom {
+  id: string;
+  code?: string;
+  participants?: Array<{ id: string; name: string }>;
+  messages?: Array<{ id: string; userId: string; userName: string; text: string; timestamp: string; type: string }>;
+  sharedNotes?: Record<string, string>;
+}
+
+export async function fetchColabRoom(code: string, signal?: AbortSignal): Promise<ColabServerRoom | null> {
+  const res = await fetch(`${COLAB_API}/rooms/${code}`, { signal, cache: 'no-store' });
+  if (!res.ok) return null;
+  const json = await res.json();
+  return unwrapApiData<ColabServerRoom>(json);
+}
+
+export async function createColabRoom(
+  code: string,
+  hostUserId: string,
+  signal?: AbortSignal,
+): Promise<ColabServerRoom | null> {
+  const res = await fetch(`${COLAB_API}/rooms`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ code, name: `Sala ${code}`, hostUserId }),
+    signal,
+  });
+  if (!res.ok) return null;
+  const json = await res.json();
+  return unwrapApiData<ColabServerRoom>(json);
+}
+
 export interface VerseShared {
   id: string;
   verse: string;

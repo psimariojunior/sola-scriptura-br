@@ -64,7 +64,18 @@ interface BibleVerseListProps {
   audioNatural: ReturnType<typeof useAudioNatural>;
   flashcards: ReturnType<typeof useFlashcards>;
   verseResources: { hasResources: (livro: string, cap: number, ver: number) => boolean };
-  capituloAudio: { state: { isPlaying: boolean; currentVerseIndex: number; currentTime?: number; duration?: number }; stop: () => void };
+  capituloAudio: {
+    state: {
+      isPlaying: boolean;
+      isLoading?: boolean;
+      isPaused?: boolean;
+      currentVerseIndex: number;
+      currentTime?: number;
+      duration?: number;
+      speechFallback?: boolean;
+    };
+    stop: () => void;
+  };
   isFavorito: (livro: string, cap: number, ver: number, trad: string) => boolean;
   refresh: () => void;
   swipeHandlers: Record<string, unknown>;
@@ -121,10 +132,23 @@ export function BibleVerseList({
 
   const isModoLeitura = ui.modoLeitura === 'foco';
   const isModoEstudo = ui.modoLeitura === 'estudo';
-  const karaokeProgress = karaokeProgressFromAudio(
-    capituloAudio.state.currentTime ?? 0,
-    capituloAudio.state.duration ?? 0,
-  );
+  const audioVerseActive = !!(capituloAudio.state.isPlaying || capituloAudio.state.isLoading);
+  const hasAudioClock =
+    (capituloAudio.state.currentTime ?? 0) > 0 && (capituloAudio.state.duration ?? 0) > 0;
+  const karaokeProgress = hasAudioClock
+    ? karaokeProgressFromAudio(
+        capituloAudio.state.currentTime ?? 0,
+        capituloAudio.state.duration ?? 0,
+      )
+    : 0;
+
+  useEffect(() => {
+    if (!audioVerseActive) return;
+    const numero = (capituloAudio.state.currentVerseIndex ?? -1) + 1;
+    if (numero < 1) return;
+    const el = document.getElementById(`verse-${numero}`);
+    el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [audioVerseActive, capituloAudio.state.currentVerseIndex]);
 
   // Last read position
   const [lastRead, setLastRead] = useState<{ livro: string; capitulo: number } | null>(null);
@@ -289,11 +313,13 @@ export function BibleVerseList({
                     <div className="bible-prose-para">
                       {grupo.verses.map((v) => {
                         const isSelected = verse.versiculoSelecionado?.versiculo === v.numero && verse.versiculoSelecionado?.traducao === item.traducao;
-                        const isCurrentAudioVerse = capituloAudio.state.isPlaying && capituloAudio.state.currentVerseIndex === v.numero - 1;
+                        const isCurrentAudioVerse = audioVerseActive && capituloAudio.state.currentVerseIndex === v.numero - 1;
                         const isHighlighted = ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero;
                         const temRecurso = verseResources.hasResources(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero);
                         return (
                           <span
+                            id={`verse-${v.numero}`}
+                            data-verse={v.numero}
                             key={`${item.traducao}-${v.numero}-p`}
                             role="button"
                             tabIndex={0}
@@ -320,7 +346,7 @@ export function BibleVerseList({
                               livroAbreviacao={nav.livro.abreviacao}
                               capitulo={nav.capituloIdx + 1}
                               numero={v.numero}
-                              karaokeActive={isCurrentAudioVerse}
+                              karaokeActive={isCurrentAudioVerse && hasAudioClock}
                               karaokeProgress={karaokeProgress}
                             />
                             {temRecurso && !isModoLeitura && (
@@ -352,10 +378,10 @@ export function BibleVerseList({
             </div>))}
             {(ui.modoLeitura === 'foco' || ui.modoLeitura === 'estudo') && ui.modoExibicao === 'versiculo' && nav.data.map((item) => (<div key={item.traducao} className="mb-6">
               {nav.selectedTrads.length > 1 && (<div className="flex items-center gap-2 mb-3 pb-2 border-b border-[var(--border)]/40"><div className={cn('w-2 h-2 rounded-full', tradBadgeColors[item.traducao])} /><span className="text-sm font-semibold text-[var(--content-primary)]">{labelMap[item.traducao]}</span>{ui.modoLeitura === 'foco' && <span className="text-xs text-[var(--content-muted)]">{nomeMap[item.traducao]}</span>}</div>)}
-              <div className="space-y-0">{item.versiculos.map((v) => {
+              <div className="space-y-2">{item.versiculos.map((v) => {
                 const isSelected = verse.versiculoSelecionado?.versiculo === v.numero && verse.versiculoSelecionado?.traducao === item.traducao;
                 const isPlaying = audio.isVersePlaying(v.numero);
-                const isCurrentAudioVerse = capituloAudio.state.isPlaying && capituloAudio.state.currentVerseIndex === v.numero - 1;
+                const isCurrentAudioVerse = audioVerseActive && capituloAudio.state.currentVerseIndex === v.numero - 1;
                 const fav = isFavorito(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao);
                 const estudoAbertoNeste = verse.estudoAberto === v.numero && item.traducao === nav.data[0]?.traducao;
                 const pericope = pericopeStarts.get(v.numero);
@@ -388,7 +414,7 @@ export function BibleVerseList({
                       lineSpacing={ui.lineSpacing} fontFamily={ui.fontFamily} hideNumber={ui.ocultarNumeros}
                       isSelected={isSelected} isPlaying={isPlaying} isHighlighted={ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero} isFocused={ui.focusedVerse === v.numero} isFavorito={fav} copiedVerse={verse.copiedVerse}
                       audioNatural={audioNatural} audio={audio} flashcards={flashcards} estudoAberto={verse.estudoAberto === v.numero}
-                      isCurrentAudioVerse={isCurrentAudioVerse} karaokeProgress={karaokeProgress} hasResources={verseResources.hasResources(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero)}
+                      isCurrentAudioVerse={isCurrentAudioVerse} karaokeProgress={hasAudioClock ? karaokeProgress : 0} hasResources={verseResources.hasResources(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero)}
                       selectedTradsCount={nav.selectedTrads.length}
                       onSelectFromList={stableHandleSelectFromList} onFavoritoChange={refresh}
                       onSetAnotandoVersiculo={stableSetAnotandoVersiculo} onSetAnotacaoTexto={verse.setAnotacaoTexto}

@@ -10,6 +10,7 @@ interface ChapterAudioDockProps {
   totalVersiculos: number;
   isPlaying: boolean;
   isLoading: boolean;
+  speechFallback?: boolean;
   onToggle: () => void;
   onStop: () => void;
   onPrevVerse: () => void;
@@ -23,6 +24,7 @@ export function ChapterAudioDock({
   totalVersiculos,
   isPlaying,
   isLoading,
+  speechFallback = false,
   onToggle,
   onStop,
   onPrevVerse,
@@ -54,7 +56,13 @@ export function ChapterAudioDock({
           </p>
           <p className="text-[10px] text-[var(--content-muted)] tabular-nums">
             Versículo {versiculoAtual} de {totalVersiculos}
+            {speechFallback ? ' · voz do aparelho' : ''}
           </p>
+          {speechFallback && (
+            <p className="text-[10px] text-amber-700 dark:text-amber-300/90">
+              Sem áudio do servidor — usando a voz do navegador.
+            </p>
+          )}
         </div>
         <div className="flex items-center gap-0.5">
           <button type="button" onClick={onPrevVerse} className="p-2 rounded-lg text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]" aria-label="Versículo anterior">

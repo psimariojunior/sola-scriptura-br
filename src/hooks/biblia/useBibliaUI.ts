@@ -192,12 +192,12 @@ export function UseBibliaUI({
   });
   const [modoExibicao, setModoExibicaoState] = useState<'versiculo' | 'paragrafo'>(() => {
     if (typeof window !== 'undefined') {
-      const escolheu = localStorage.getItem('ssb_modo_exibicao_user_v3') === '1';
-      const saved = localStorage.getItem('ssb_modo_exibicao_v3');
+      const escolheu = localStorage.getItem('ssb_modo_exibicao_user_v4') === '1';
+      const saved = localStorage.getItem('ssb_modo_exibicao_v4');
       if (escolheu && (saved === 'paragrafo' || saved === 'versiculo')) return saved;
-      return 'paragrafo';
+      return 'versiculo';
     }
-    return 'paragrafo';
+    return 'versiculo';
   });
   const [ocultarNumeros, setOcultarNumerosState] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -484,8 +484,8 @@ export function UseBibliaUI({
       setModoExibicaoState(modo);
       if (opts?.persist === false) return;
       try {
-        localStorage.setItem('ssb_modo_exibicao_v3', modo);
-        localStorage.setItem('ssb_modo_exibicao_user_v3', '1');
+        localStorage.setItem('ssb_modo_exibicao_v4', modo);
+        localStorage.setItem('ssb_modo_exibicao_user_v4', '1');
       } catch (e) { console.error('[biblia:save-modo-exibicao]', e); }
     },
     ocultarNumeros,

@@ -22,18 +22,26 @@ interface SignalingRoom {
   participants: Map<string, RoomParticipant>;
 }
 
+function isAllowedOrigin(origin: string | undefined): boolean {
+  if (!origin) return true;
+  if (
+    origin === 'https://solascripturabr.com.br' ||
+    origin === 'https://www.solascripturabr.com.br' ||
+    origin === 'https://sola-scriptura-br.vercel.app' ||
+    /^https:\/\/[\w.-]+\.vercel\.app$/.test(origin) ||
+    /^http:\/\/localhost:\d+$/.test(origin) ||
+    /^http:\/\/127\.0\.0\.1:\d+$/.test(origin)
+  ) {
+    return true;
+  }
+  return false;
+}
+
 @WebSocketGateway({
   cors: {
-    origin: [
-      'https://solascripturabr.com.br',
-      'https://www.solascripturabr.com.br',
-      'https://sola-scriptura-br.vercel.app',
-      'http://localhost:3000',
-      'http://localhost:3001',
-      'http://localhost:3012',
-      'http://127.0.0.1:3000',
-      'http://127.0.0.1:3012',
-    ],
+    origin: (origin: string, cb: (err: Error | null, allow?: boolean) => void) => {
+      cb(null, isAllowedOrigin(origin));
+    },
     credentials: true,
     methods: ['GET', 'POST'],
   },
@@ -114,11 +122,19 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
       client.emit('existing-participants', otherParticipants);
     }
 
-    await this.colaborativoService.addParticipant(code, {
-      id: participantId,
-      name: displayName,
-      joinedAt: new Date(),
-    });
+    try {
+      let persisted = await this.colaborativoService.findByCode(code);
+      if (!persisted) {
+        persisted = await this.colaborativoService.createRoom(code, `Sala ${code}`, participantId);
+      }
+      await this.colaborativoService.addParticipant(code, {
+        id: participantId,
+        name: displayName,
+        joinedAt: new Date(),
+      });
+    } catch (err) {
+      this.logger.warn(`Persistência da sala ${code} falhou; a sessão ao vivo segue.`, err as Error);
+    }
   }
 
   @SubscribeMessage('leave-room')
@@ -129,7 +145,11 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
     this.removeParticipantFromRoom(client, data.code);
 
     if (data.participantId) {
-      await this.colaborativoService.removeParticipant(data.code, data.participantId);
+      try {
+        await this.colaborativoService.removeParticipant(data.code, data.participantId);
+      } catch (err) {
+        this.logger.warn(`Leave persist failed in ${data.code}`, err as Error);
+      }
     }
   }
 
@@ -164,14 +184,18 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
   ) {
     client.to(data.code).emit('chat-message', data);
 
-    await this.colaborativoService.addMessage(data.code, {
-      id: data.id,
-      userId: data.participantId,
-      userName: data.displayName,
-      text: data.message,
-      timestamp: new Date(data.timestamp),
-      type: 'chat',
-    });
+    try {
+      await this.colaborativoService.addMessage(data.code, {
+        id: data.id,
+        userId: data.participantId,
+        userName: data.displayName,
+        text: data.message,
+        timestamp: new Date(data.timestamp),
+        type: 'chat',
+      });
+    } catch (err) {
+      this.logger.warn(`Chat persist failed in ${data.code}`, err as Error);
+    }
   }
 
   @SubscribeMessage('verse-shared-ws')
@@ -193,14 +217,18 @@ export class ColaborativoGateway implements OnGatewayConnection, OnGatewayDiscon
   ) {
     client.to(data.code).emit('verse-shared-ws', data);
 
-    await this.colaborativoService.addMessage(data.code, {
-      id: data.id,
-      userId: data.participantId,
-      userName: data.displayName,
-      text: `${data.verse} - ${data.texto}${data.message ? `\n${data.message}` : ''}`,
-      timestamp: new Date(data.timestamp),
-      type: 'verse',
-    });
+    try {
+      await this.colaborativoService.addMessage(data.code, {
+        id: data.id,
+        userId: data.participantId,
+        userName: data.displayName,
+        text: `${data.verse} - ${data.texto}${data.message ? `\n${data.message}` : ''}`,
+        timestamp: new Date(data.timestamp),
+        type: 'verse',
+      });
+    } catch (err) {
+      this.logger.warn(`Verse persist failed in ${data.code}`, err as Error);
+    }
   }
 
   @SubscribeMessage('typing-start')

@@ -13,7 +13,7 @@ interface KaraokeWordsProps {
 
 export function KaraokeWords({ text, progress, active, className }: KaraokeWordsProps) {
   const words = useMemo(() => splitKaraokeWords(text), [text]);
-  const idx = active ? karaokeWordIndex(words, progress) : -1;
+  const idx = active && progress > 0 ? karaokeWordIndex(words, progress) : -1;
 
   return (
     <span className={className}>

@@ -27,6 +27,7 @@ interface AudioState {
   isPaused: boolean;
   isLoading: boolean;
   announceVerseNumbers: boolean;
+  speechFallback: boolean;
 }
 
 interface UseAudioCapituloReturn {
@@ -73,6 +74,7 @@ function useAudioCapituloImpl(
     isPaused: false,
     isLoading: false,
     announceVerseNumbers: false,
+    speechFallback: false,
   });
   const [voz, setVoz] = useState<'feminina' | 'masculina'>(options?.voz ?? 'feminina');
   const [velocidade, setVelocidadeState] = useState(options?.velocidade ?? 1);
@@ -82,6 +84,8 @@ function useAudioCapituloImpl(
   const isPlayingRef = useRef(false);
   const queueRef = useRef<VersiculoAudio[]>([]);
   const lastTimeUpdateRef = useRef(0);
+  const speechUtteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const speechFallbackRef = useRef(false);
 
   // Pré-cache de áudio: evita gerar o TTS sob demanda (latência perceptível no karaokê).
   // Mapeia texto+voz+velocidade+idioma -> data URL já gerada, e rastreia gerações em andamento
@@ -160,30 +164,78 @@ function useAudioCapituloImpl(
     alvo.forEach((v) => { gerarAudioCached(v.texto).catch(() => {}); });
   }, [versiculos, gerarAudioCached]);
 
+  const cancelarFala = useCallback(() => {
+    try {
+      if (typeof window !== 'undefined') window.speechSynthesis?.cancel();
+    } catch { /* noop */ }
+    speechUtteranceRef.current = null;
+  }, []);
+
+  const falarWebSpeech = useCallback((texto: string): Promise<void> => {
+    return new Promise((resolve) => {
+      if (typeof window === 'undefined' || !window.speechSynthesis) {
+        resolve();
+        return;
+      }
+      speechFallbackRef.current = true;
+      setState((prev) => ({
+        ...prev,
+        speechFallback: true,
+        duration: 0,
+        currentTime: 0,
+        error: 'Áudio do servidor indisponível — usando a voz do aparelho.',
+      }));
+      const u = new SpeechSynthesisUtterance(texto);
+      u.lang = lingua === 'en' ? 'en-US' : 'pt-BR';
+      u.rate = Math.min(2, Math.max(0.5, velocidade));
+      speechUtteranceRef.current = u;
+      u.onend = () => {
+        speechUtteranceRef.current = null;
+        resolve();
+      };
+      u.onerror = () => {
+        speechUtteranceRef.current = null;
+        resolve();
+      };
+      window.speechSynthesis.speak(u);
+    });
+  }, [lingua, velocidade]);
+
   const playVersiculo = useCallback(async (v: VersiculoAudio): Promise<void> => {
     if (!isPlayingRef.current) return;
     const idx = versiculos.findIndex(vv => vv.numero === v.numero);
-    setState(prev => ({ ...prev, status: 'loading', currentVerseIndex: idx }));
-    // Enquanto o versículo atual carrega/toca, já dispara a geração dos próximos.
+    setState(prev => ({ ...prev, status: 'loading', currentVerseIndex: idx, currentTime: 0, duration: 0 }));
     precarregarVersiculos(idx + 1);
     const url = await gerarAudioCached(v.texto);
-    if (!url || !isPlayingRef.current) return;
+    if (!isPlayingRef.current) return;
+    if (!url) {
+      await falarWebSpeech(v.texto);
+      return;
+    }
+    speechFallbackRef.current = false;
+    setState(prev => ({ ...prev, speechFallback: false, error: prev.error?.startsWith('Áudio do servidor') ? null : prev.error }));
     return new Promise<void>((resolve) => {
       const audio = new Audio(url);
       audioRef.current = audio;
       audio.playbackRate = velocidade;
-      audio.onloadedmetadata = () => setState(prev => ({ ...prev, duration: audio.duration }));
+      audio.onloadedmetadata = () => setState(prev => ({ ...prev, status: 'playing', duration: Number.isFinite(audio.duration) ? audio.duration : 0 }));
       audio.ontimeupdate = () => {
         const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
         if (now - lastTimeUpdateRef.current < 80) return;
         lastTimeUpdateRef.current = now;
-        setState(prev => ({ ...prev, currentTime: audio.currentTime }));
+        setState(prev => ({ ...prev, status: 'playing', currentTime: audio.currentTime }));
       };
       audio.onended = () => resolve();
-      audio.onerror = () => resolve();
-      audio.play().catch(() => resolve());
+      audio.onerror = () => {
+        falarWebSpeech(v.texto).then(resolve);
+      };
+      audio.play().then(() => {
+        setState(prev => ({ ...prev, status: 'playing' }));
+      }).catch(() => {
+        falarWebSpeech(v.texto).then(resolve);
+      });
     });
-  }, [gerarAudioCached, velocidade, versiculos, precarregarVersiculos]);
+  }, [gerarAudioCached, velocidade, versiculos, precarregarVersiculos, falarWebSpeech]);
 
   const playSequencia = useCallback(async () => {
     for (const v of queueRef.current) {
@@ -202,8 +254,12 @@ function useAudioCapituloImpl(
     isPlayingRef.current = true;
     const startIdx = state.currentVerseIndex >= 0 ? state.currentVerseIndex : 0;
     queueRef.current = versiculos.slice(startIdx);
-    // Dispara já o pré-carregamento do primeiro lote (versículo atual + próximos),
-    // para que o karaokê comece sem a latência de gerar o TTS sob demanda.
+    setState(prev => ({
+      ...prev,
+      status: 'loading',
+      currentVerseIndex: startIdx,
+      error: null,
+    }));
     precarregarVersiculos(startIdx);
     playSequencia();
   }, [versiculos, state.currentVerseIndex, playSequencia, precarregarVersiculos]);
@@ -212,22 +268,27 @@ function useAudioCapituloImpl(
     isPlayingRef.current = false;
     setState(prev => ({ ...prev, status: 'paused' }));
     if (audioRef.current) audioRef.current.pause();
+    try { if (speechFallbackRef.current) window.speechSynthesis?.pause(); } catch { /* noop */ }
   }, []);
 
   const resume = useCallback(() => {
-    if (audioRef.current && state.status === 'paused') {
-      isPlayingRef.current = true;
-      setState(prev => ({ ...prev, status: 'playing' }));
-      audioRef.current.play();
+    if (state.status !== 'paused') return;
+    isPlayingRef.current = true;
+    setState(prev => ({ ...prev, status: 'playing' }));
+    if (audioRef.current) {
+      audioRef.current.play().catch(() => {});
     }
+    try { if (speechFallbackRef.current) window.speechSynthesis?.resume(); } catch { /* noop */ }
   }, [state.status]);
 
   const stop = useCallback(() => {
     isPlayingRef.current = false;
-    setState(prev => ({ ...prev, status: 'idle', currentVerseIndex: -1, currentTime: 0 }));
+    speechFallbackRef.current = false;
+    cancelarFala();
+    setState(prev => ({ ...prev, status: 'idle', currentVerseIndex: -1, currentTime: 0, duration: 0, speechFallback: false, error: null }));
     queueRef.current = [];
     if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; }
-  }, []);
+  }, [cancelarFala]);
 
   const toggle = useCallback(() => {
     if (state.status === 'playing') pause();
@@ -257,6 +318,7 @@ function useAudioCapituloImpl(
   useEffect(() => {
     return () => {
       if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; }
+      try { window.speechSynthesis?.cancel(); } catch { /* noop */ }
       isPlayingRef.current = false;
     };
   }, []);
@@ -264,10 +326,11 @@ function useAudioCapituloImpl(
   return {
     state: {
       ...state,
-      isPlaying: state.status === 'playing',
+      isPlaying: state.status === 'playing' || state.status === 'loading',
       isPaused: state.status === 'paused',
       isLoading: state.status === 'loading',
       announceVerseNumbers,
+      speechFallback: state.speechFallback,
     },
     isPlaying: state.status === 'playing',
     isLoading: state.status === 'loading',

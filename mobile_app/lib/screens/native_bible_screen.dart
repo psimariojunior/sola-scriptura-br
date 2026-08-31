@@ -67,7 +67,14 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
       if (!mounted) return;
       if (verses.isNotEmpty) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) _openChapter(last.bookNumber, last.chapterNumber, translation: last.translationId);
+          if (mounted) {
+            _openChapter(
+              last.bookNumber,
+              last.chapterNumber,
+              translation: last.translationId,
+              verse: last.verseNumber,
+            );
+          }
         });
       }
     }
@@ -84,7 +91,7 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
     super.dispose();
   }
 
-  void _openChapter(int bookNumber, int chapter, {String? translation}) {
+  void _openChapter(int bookNumber, int chapter, {String? translation, int verse = 0}) {
     if (translation != null && translation != _selectedTranslation) {
       setState(() => _selectedTranslation = translation);
     }
@@ -94,6 +101,7 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
           translationId: _selectedTranslation,
           bookNumber: bookNumber,
           chapterNumber: chapter,
+          initialVerse: verse,
           onOpenWeb: widget.onOpenWeb,
         ),
       ),
@@ -378,7 +386,12 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () => _openChapter(last.bookNumber, last.chapterNumber, translation: last.translationId),
+          onTap: () => _openChapter(
+            last.bookNumber,
+            last.chapterNumber,
+            translation: last.translationId,
+            verse: last.verseNumber,
+          ),
           borderRadius: BorderRadius.circular(14),
           child: Container(
             padding: const EdgeInsets.all(16),
@@ -411,7 +424,9 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        '$name ${last.chapterNumber}',
+                        last.verseNumber > 0
+                            ? '$name ${last.chapterNumber}:${last.verseNumber}'
+                            : '$name ${last.chapterNumber}',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,

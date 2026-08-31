@@ -24,6 +24,10 @@
 -keep @androidx.room.Entity class *
 -dontwarn androidx.room.**
 
+# TTS nativo
+-keep class com.tundralabs.fluttertts.** { *; }
+-dontwarn com.tundralabs.fluttertts.**
+
 # WebView
 -keepclassmembers class * {
     @android.webkit.JavascriptInterface <methods>;

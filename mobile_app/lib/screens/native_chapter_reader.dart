@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../config/theme.dart';
 import '../data/bible_books.dart';
@@ -10,6 +11,7 @@ class NativeChapterReader extends StatefulWidget {
   final String translationId;
   final int bookNumber;
   final int chapterNumber;
+  final int initialVerse;
   final void Function(String path)? onOpenWeb;
 
   const NativeChapterReader({
@@ -17,6 +19,7 @@ class NativeChapterReader extends StatefulWidget {
     required this.translationId,
     required this.bookNumber,
     required this.chapterNumber,
+    this.initialVerse = 0,
     this.onOpenWeb,
   });
 
@@ -34,12 +37,24 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
   late PageController _pageController;
   final Map<int, List<OfflineVerse>> _cache = {};
   final Map<int, Set<int>> _favByChapter = {};
+  final Map<String, GlobalKey> _verseKeys = {};
   final Set<int> _loading = {};
   bool _downloading = false;
   double _downloadProgress = 0;
   String? _error;
   double _fontSize = 21;
   bool _cream = false;
+
+  FlutterTts? _tts;
+  bool? _ttsReady;
+  bool _speaking = false;
+  bool _paused = false;
+  bool _wantSpeak = false;
+  int _speakIndex = 0;
+  int? _speakingVerse;
+  int _lastVerse = 0;
+  int _ttsGen = 0;
+  Timer? _versePersistTimer;
 
   Map<String, dynamic>? get _book => BibleBooks.getBookByNumber(_bookNumber);
   String get _bookName => _book?['name'] as String? ?? 'Livro $_bookNumber';
@@ -57,6 +72,7 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
     _bookNumber = widget.bookNumber;
     _chapter = widget.chapterNumber;
     _pageController = PageController(initialPage: (_chapter - 1).clamp(0, 1000));
+    _lastVerse = widget.initialVerse;
     _restorePrefs();
     _loadChapter(_chapter);
     unawaited(_prefetchNeighbors());
@@ -79,8 +95,179 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
 
   @override
   void dispose() {
+    _versePersistTimer?.cancel();
+    _wantSpeak = false;
+    _ttsGen++;
+    unawaited(_tts?.stop());
     _pageController.dispose();
     super.dispose();
+  }
+
+  GlobalKey _verseKey(int chapter, int number) =>
+      _verseKeys.putIfAbsent('$chapter:$number', () => GlobalKey());
+
+  Future<void> _persistLastVerse(int verse) async {
+    _lastVerse = verse;
+    unawaited(BibleOfflineService.instance.updateLastVerse(verse));
+  }
+
+  void _schedulePersistVisibleVerse(int chapter) {
+    _versePersistTimer?.cancel();
+    _versePersistTimer = Timer(const Duration(milliseconds: 450), () {
+      if (!mounted || chapter != _chapter) return;
+      final verses = _cache[chapter];
+      if (verses == null || verses.isEmpty) return;
+      for (final v in verses) {
+        final ctx = _verseKey(chapter, v.number).currentContext;
+        if (ctx == null) continue;
+        final box = ctx.findRenderObject();
+        if (box is! RenderBox || !box.hasSize) continue;
+        final y = box.localToGlobal(Offset.zero).dy;
+        if (y >= 72 && y < 280) {
+          _persistLastVerse(v.number);
+          return;
+        }
+      }
+    });
+  }
+
+  void _scrollToVerse(int chapter, int number) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final ctx = _verseKey(chapter, number).currentContext;
+      if (ctx == null) return;
+      Scrollable.ensureVisible(
+        ctx,
+        alignment: 0.22,
+        duration: const Duration(milliseconds: 280),
+        curve: Curves.easeOutCubic,
+      );
+    });
+  }
+
+  Future<bool> _ensureTts() async {
+    if (_ttsReady == true) return true;
+    if (_ttsReady == false) return false;
+    try {
+      final tts = FlutterTts();
+      _tts = tts;
+      await tts.setLanguage('pt-BR');
+      await tts.setSpeechRate(0.46);
+      await tts.setPitch(1.0);
+      await tts.setVolume(1.0);
+      tts.setCompletionHandler(() {
+        if (!mounted) return;
+        _advanceTts();
+      });
+      tts.setErrorHandler((msg) {
+        debugPrint('TTS error: $msg');
+        if (mounted) unawaited(_onTtsFailed());
+      });
+      _ttsReady = true;
+      return true;
+    } catch (e) {
+      debugPrint('TTS init: $e');
+      _ttsReady = false;
+      return false;
+    }
+  }
+
+  Future<void> _onTtsFailed() async {
+    _wantSpeak = false;
+    _ttsGen++;
+    await _tts?.stop();
+    if (!mounted) return;
+    setState(() {
+      _speaking = false;
+      _paused = false;
+      _speakingVerse = null;
+      _ttsReady = false;
+    });
+    _toast('Áudio nativo indisponível neste aparelho. Use o fone no topo para ouvir no site.');
+  }
+
+  Future<void> _togglePlay({int? fromVerse}) async {
+    if (_speaking && !_paused) {
+      _wantSpeak = false;
+      _ttsGen++;
+      await _tts?.stop();
+      if (mounted) setState(() => _paused = true);
+      return;
+    }
+    final verses = _cache[_chapter];
+    if (verses == null || verses.isEmpty) {
+      _toast('Baixe o capítulo para ouvir offline.');
+      return;
+    }
+    final ok = await _ensureTts();
+    if (!ok) {
+      await _onTtsFailed();
+      return;
+    }
+    if (fromVerse != null) {
+      final idx = verses.indexWhere((v) => v.number == fromVerse);
+      _speakIndex = idx >= 0 ? idx : 0;
+    } else if (!_paused) {
+      _speakIndex = 0;
+    }
+    _wantSpeak = true;
+    _paused = false;
+    setState(() => _speaking = true);
+    await _speakAt(_speakIndex);
+  }
+
+  void _advanceTts() {
+    if (!_wantSpeak || _paused) return;
+    _speakIndex++;
+    unawaited(_speakAt(_speakIndex));
+  }
+
+  Future<void> _speakAt(int index) async {
+    final gen = ++_ttsGen;
+    final verses = _cache[_chapter];
+    if (verses == null || index < 0 || index >= verses.length) {
+      if (!mounted) return;
+      setState(() {
+        _speaking = false;
+        _paused = false;
+        _speakingVerse = null;
+        _wantSpeak = false;
+      });
+      return;
+    }
+    if (!_wantSpeak) return;
+    final verse = verses[index];
+    if (mounted) {
+      setState(() {
+        _speaking = true;
+        _paused = false;
+        _speakingVerse = verse.number;
+        _speakIndex = index;
+      });
+    }
+    _persistLastVerse(verse.number);
+    _scrollToVerse(_chapter, verse.number);
+    try {
+      final result = await _tts?.speak(verse.text);
+      if (gen != _ttsGen) return;
+      if (result == 0 || result == false) {
+        await _onTtsFailed();
+      }
+    } catch (_) {
+      if (gen == _ttsGen) await _onTtsFailed();
+    }
+  }
+
+  Future<void> _stopTts() async {
+    _wantSpeak = false;
+    _ttsGen++;
+    await _tts?.stop();
+    if (!mounted) return;
+    setState(() {
+      _speaking = false;
+      _paused = false;
+      _speakingVerse = null;
+    });
   }
 
   Future<void> _loadChapter(int chapter) async {
@@ -109,7 +296,14 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
           _bookNumber,
           chapter,
           translationId: _translationId,
+          verseNumber: _lastVerse,
         ));
+        if (_lastVerse > 1) {
+          _scrollToVerse(chapter, _lastVerse);
+          Future<void>.delayed(const Duration(milliseconds: 160), () {
+            if (mounted && chapter == _chapter) _scrollToVerse(chapter, _lastVerse);
+          });
+        }
       }
     } finally {
       _loading.remove(chapter);
@@ -176,9 +370,12 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
 
   void _onPageChanged(int index) {
     final next = index + 1;
+    unawaited(_stopTts());
     setState(() {
       _chapter = next;
       _error = null;
+      _lastVerse = 1;
+      _speakIndex = 0;
     });
     _loadChapter(next);
     unawaited(_prefetchNeighbors());
@@ -354,6 +551,7 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
                       selectedColor: AppTheme.goldPrimary,
                       onSelected: (_) async {
                         Navigator.pop(ctx);
+                        await _stopTts();
                         setState(() {
                           _translationId = id;
                           _cache.clear();
@@ -390,6 +588,7 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
 
   Future<void> _onVerseTap(OfflineVerse verse, int chapter) async {
     HapticFeedback.selectionClick();
+    unawaited(_persistLastVerse(verse.number));
     final favId = BibleOfflineService.instance.favoriteId(
       translationId: _translationId,
       bookNumber: _bookNumber,
@@ -446,6 +645,14 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
                   ),
                 ),
                 const SizedBox(height: 16),
+                _VerseAction(
+                  icon: Icons.play_circle_outline_rounded,
+                  label: 'Ouvir a partir daqui',
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    unawaited(_togglePlay(fromVerse: verse.number));
+                  },
+                ),
                 _VerseAction(
                   icon: isFav ? Icons.star_rounded : Icons.star_outline_rounded,
                   label: isFav ? 'Remover dos favoritos' : 'Favoritar',
@@ -652,7 +859,7 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
           if (widget.onOpenWeb != null)
             IconButton(
               tooltip: 'Ouvir no site',
-              icon: Icon(Icons.headphones_outlined, color: _gold, size: 22),
+              icon: Icon(Icons.headphones_outlined, color: _muted, size: 20),
               onPressed: () => _openSite(_sitePath),
             ),
         ],
@@ -669,19 +876,27 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
       return _buildEmpty(chapter);
     }
     final favs = _favByChapter[chapter] ?? const <int>{};
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(child: _buildChapterHeading(chapter)),
-        SliverPadding(
-          padding: const EdgeInsets.fromLTRB(16, 4, 18, 40),
-          sliver: SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, i) => _buildVerseBlock(verses[i], chapter, favs.contains(verses[i].number)),
-              childCount: verses.length,
+    return NotificationListener<ScrollNotification>(
+      onNotification: (n) {
+        if (n is ScrollUpdateNotification) {
+          _schedulePersistVisibleVerse(chapter);
+        }
+        return false;
+      },
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: _buildChapterHeading(chapter)),
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(16, 4, 18, 40),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, i) => _buildVerseBlock(verses[i], chapter, favs.contains(verses[i].number)),
+                childCount: verses.length,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -730,14 +945,20 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
   }
 
   Widget _buildVerseBlock(OfflineVerse verse, int chapter, bool isFav) {
+    final speaking = chapter == _chapter && _speakingVerse == verse.number;
     return Material(
+      key: _verseKey(chapter, verse.number),
       color: Colors.transparent,
       child: InkWell(
         onTap: () => _onVerseTap(verse, chapter),
         child: Container(
           width: double.infinity,
-          padding: const EdgeInsets.fromLTRB(4, 12, 4, 12),
+          padding: const EdgeInsets.fromLTRB(8, 12, 8, 12),
           decoration: BoxDecoration(
+            color: speaking
+                ? _gold.withValues(alpha: _cream ? 0.20 : 0.16)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(8),
             border: Border(
               bottom: BorderSide(color: _muted.withValues(alpha: 0.14), width: 0.5),
             ),
@@ -772,7 +993,7 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
                     fontSize: _fontSize,
                     height: 1.55,
                     fontFamily: 'serif',
-                    fontWeight: FontWeight.w400,
+                    fontWeight: speaking ? FontWeight.w600 : FontWeight.w400,
                   ),
                 ),
               ),
@@ -867,9 +1088,20 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
                     },
               icon: Text('A−', style: TextStyle(color: _muted, fontSize: 13, fontWeight: FontWeight.w600)),
             ),
+            IconButton(
+              tooltip: _speaking && !_paused ? 'Pausar' : 'Ouvir capítulo',
+              onPressed: () => unawaited(_togglePlay()),
+              icon: Icon(
+                _speaking && !_paused ? Icons.pause_circle_filled_rounded : Icons.play_circle_filled_rounded,
+                color: _gold,
+                size: 36,
+              ),
+            ),
             Expanded(
               child: Text(
-                '$_chapter / $_maxChapter',
+                _speaking && _speakingVerse != null
+                    ? 'v. $_speakingVerse'
+                    : '$_chapter / $_maxChapter',
                 textAlign: TextAlign.center,
                 style: TextStyle(color: _muted, fontSize: 12, letterSpacing: 0.4),
               ),

@@ -406,9 +406,32 @@ class BibleOfflineService {
     return await db.query('favorites', orderBy: 'created_at DESC');
   }
 
+  String favoriteId({
+    required String translationId,
+    required int bookNumber,
+    required int chapterNumber,
+    required int verseNumber,
+  }) =>
+      '${translationId}_${bookNumber}_${chapterNumber}_$verseNumber';
+
   Future<void> removeFavorite(String id) async {
     final db = await DatabaseHelper.instance.database;
     await db.delete('favorites', where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<Set<int>> getFavoriteVerseNumbers({
+    required String translationId,
+    required int bookNumber,
+    required int chapterNumber,
+  }) async {
+    final db = await DatabaseHelper.instance.database;
+    final rows = await db.query(
+      'favorites',
+      columns: ['verse_number'],
+      where: 'translation_id = ? AND book_number = ? AND chapter_number = ?',
+      whereArgs: [translationId, bookNumber, chapterNumber],
+    );
+    return rows.map((r) => r['verse_number'] as int).toSet();
   }
 
   // === NOTAS ===

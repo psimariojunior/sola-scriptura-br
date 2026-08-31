@@ -63,7 +63,10 @@ class _OfflineTranslationsScreenState extends State<OfflineTranslationsScreen> {
         if (saved == 0) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Não foi possível baixar $bookName. A API não respondeu.'),
+              content: Text(
+                'Não foi possível baixar $bookName. Verifique a internet. '
+                'NVI, ARC e ARA costumam funcionar melhor — nem todas as traduções estão sempre disponíveis.',
+              ),
               backgroundColor: AppTheme.error,
             ),
           );
@@ -80,7 +83,12 @@ class _OfflineTranslationsScreenState extends State<OfflineTranslationsScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Erro: $e'), backgroundColor: AppTheme.error),
+          SnackBar(
+            content: Text(
+              'Falha ao baixar $bookName. Verifique a internet. NVI, ARC e ARA costumam funcionar melhor.',
+            ),
+            backgroundColor: AppTheme.error,
+          ),
         );
       }
     } finally {
@@ -150,7 +158,12 @@ class _OfflineTranslationsScreenState extends State<OfflineTranslationsScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Erro: $e'), backgroundColor: AppTheme.error),
+          SnackBar(
+            content: Text(
+              'Falha ao baixar $testamentName. Verifique a internet. NVI, ARC e ARA costumam funcionar melhor.',
+            ),
+            backgroundColor: AppTheme.error,
+          ),
         );
       }
     } finally {
@@ -193,6 +206,13 @@ class _OfflineTranslationsScreenState extends State<OfflineTranslationsScreen> {
       body: Column(
         children: [
           _buildTranslationSelector(),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
+            child: Text(
+              'NVI, ARC e ARA costumam baixar melhor. Nem todas as 10 traduções estão sempre disponíveis.',
+              style: TextStyle(color: AppTheme.textMuted, fontSize: 11, height: 1.35),
+            ),
+          ),
           if (_isDownloading) _buildDownloadProgress(),
           _buildTestamentActions(),
           Expanded(child: _buildBooksGrid()),

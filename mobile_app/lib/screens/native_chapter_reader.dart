@@ -33,6 +33,7 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
   late int _chapter;
   late PageController _pageController;
   final Map<int, List<OfflineVerse>> _cache = {};
+  final Map<int, Set<int>> _favByChapter = {};
   final Set<int> _loading = {};
   bool _downloading = false;
   double _downloadProgress = 0;
@@ -84,7 +85,10 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
 
   Future<void> _loadChapter(int chapter) async {
     if (chapter < 1 || chapter > _maxChapter) return;
-    if (_cache.containsKey(chapter) || _loading.contains(chapter)) return;
+    if (_cache.containsKey(chapter) || _loading.contains(chapter)) {
+      unawaited(_refreshFavorites(chapter));
+      return;
+    }
     _loading.add(chapter);
     try {
       final verses = await BibleOfflineService.instance.getChapterVerses(
@@ -99,6 +103,7 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
           _error = null;
         }
       });
+      unawaited(_refreshFavorites(chapter));
       if (verses.isNotEmpty && chapter == _chapter) {
         unawaited(BibleOfflineService.instance.recordReading(
           _bookNumber,
@@ -111,9 +116,26 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
     }
   }
 
+  Future<void> _refreshFavorites(int chapter) async {
+    try {
+      final nums = await BibleOfflineService.instance.getFavoriteVerseNumbers(
+        translationId: _translationId,
+        bookNumber: _bookNumber,
+        chapterNumber: chapter,
+      );
+      if (!mounted) return;
+      setState(() => _favByChapter[chapter] = nums);
+    } catch (_) {}
+  }
+
   Future<void> _prefetchNeighbors() async {
     await _loadChapter(_chapter - 1);
     await _loadChapter(_chapter + 1);
+  }
+
+  String _downloadFailMessage(String bookName) {
+    return 'Não foi possível baixar $bookName. Verifique a internet e tente de novo. '
+        'NVI, ARC e ARA costumam funcionar melhor — nem todas as traduções estão sempre disponíveis.';
   }
 
   Future<void> _downloadWholeBook() async {
@@ -136,14 +158,17 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
       await _loadChapter(_chapter);
       await _prefetchNeighbors();
       if (saved == 0) {
+        setState(() => _error = _downloadFailMessage(_bookName));
+      } else if (saved < _maxChapter) {
         setState(() {
           _error =
-              'Não foi possível baixar $_bookName. Verifique a internet e tente de novo.';
+              'Baixados $saved de $_maxChapter capítulos de $_bookName. '
+              'Tente de novo para completar. Nem todas as traduções respondem sempre.';
         });
       }
-    } catch (e) {
+    } catch (_) {
       if (!mounted) return;
-      setState(() => _error = 'Falha no download: $e');
+      setState(() => _error = _downloadFailMessage(_bookName));
     } finally {
       if (mounted) setState(() => _downloading = false);
     }
@@ -176,6 +201,19 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
       return;
     }
     _showChapterSheet();
+  }
+
+  void _openSite(String path) {
+    if (widget.onOpenWeb == null) return;
+    if (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
+    }
+    widget.onOpenWeb!(path);
+  }
+
+  String get _sitePath {
+    final abbr = (_book?['abbr'] as String?) ?? 'gn';
+    return '/biblia?livro=$abbr&capitulo=$_chapter';
   }
 
   void _showChapterSheet() {
@@ -298,6 +336,11 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
                   'Tradução',
                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
                 ),
+                const SizedBox(height: 8),
+                const Text(
+                  'NVI, ARC e ARA costumam baixar melhor. Nem todas as 10 estão sempre disponíveis.',
+                  style: TextStyle(color: AppTheme.textMuted, fontSize: 12, height: 1.35),
+                ),
                 const SizedBox(height: 12),
                 Wrap(
                   spacing: 8,
@@ -314,6 +357,7 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
                         setState(() {
                           _translationId = id;
                           _cache.clear();
+                          _favByChapter.clear();
                         });
                         await _loadChapter(_chapter);
                         await _prefetchNeighbors();
@@ -327,6 +371,189 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
         );
       },
     );
+  }
+
+  void _toast(String message) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message, style: const TextStyle(color: Colors.white, fontSize: 13)),
+        backgroundColor: AppTheme.surfaceLight,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 2),
+        margin: const EdgeInsets.all(16),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    );
+  }
+
+  Future<void> _onVerseTap(OfflineVerse verse, int chapter) async {
+    HapticFeedback.selectionClick();
+    final favId = BibleOfflineService.instance.favoriteId(
+      translationId: _translationId,
+      bookNumber: _bookNumber,
+      chapterNumber: chapter,
+      verseNumber: verse.number,
+    );
+    final isFav = _favByChapter[chapter]?.contains(verse.number) ?? false;
+    final ref = '$_bookName $chapter:${verse.number}';
+
+    await showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: AppTheme.bgMedium,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+      ),
+      builder: (ctx) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Container(
+                    width: 36,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: Colors.white24,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 14),
+                Text(
+                  ref,
+                  style: const TextStyle(
+                    color: AppTheme.goldLight,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.4,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  verse.text,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    height: 1.45,
+                    fontFamily: 'serif',
+                  ),
+                ),
+                const SizedBox(height: 16),
+                _VerseAction(
+                  icon: isFav ? Icons.star_rounded : Icons.star_outline_rounded,
+                  label: isFav ? 'Remover dos favoritos' : 'Favoritar',
+                  onTap: () async {
+                    Navigator.pop(ctx);
+                    if (isFav) {
+                      await BibleOfflineService.instance.removeFavorite(favId);
+                      if (!mounted) return;
+                      setState(() {
+                        _favByChapter.putIfAbsent(chapter, () => <int>{}).remove(verse.number);
+                      });
+                      _toast('Removido dos favoritos');
+                    } else {
+                      await BibleOfflineService.instance.saveFavorite(
+                        bookNumber: _bookNumber,
+                        chapterNumber: chapter,
+                        verseNumber: verse.number,
+                        translationId: _translationId,
+                        text: verse.text,
+                        reference: ref,
+                      );
+                      if (!mounted) return;
+                      setState(() {
+                        _favByChapter.putIfAbsent(chapter, () => <int>{}).add(verse.number);
+                      });
+                      _toast('Salvo nos favoritos');
+                    }
+                  },
+                ),
+                _VerseAction(
+                  icon: Icons.copy_rounded,
+                  label: 'Copiar',
+                  onTap: () async {
+                    Navigator.pop(ctx);
+                    await Clipboard.setData(
+                      ClipboardData(text: '$ref\n${verse.text}\n($_translationId)'),
+                    );
+                    _toast('Versículo copiado');
+                  },
+                ),
+                _VerseAction(
+                  icon: Icons.note_alt_outlined,
+                  label: 'Nota',
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    _showNoteDialog(verse, chapter, ref);
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _showNoteDialog(OfflineVerse verse, int chapter, String ref) async {
+    final controller = TextEditingController();
+    final saved = await showDialog<bool>(
+      context: context,
+      builder: (ctx) {
+        return AlertDialog(
+          backgroundColor: AppTheme.bgMedium,
+          title: Text(
+            'Nota · $ref',
+            style: const TextStyle(color: Colors.white, fontSize: 16),
+          ),
+          content: TextField(
+            controller: controller,
+            autofocus: true,
+            maxLines: 5,
+            style: const TextStyle(color: Colors.white, fontSize: 15, height: 1.4),
+            decoration: InputDecoration(
+              hintText: 'Escreva sua anotação…',
+              hintStyle: TextStyle(color: AppTheme.textMuted),
+              filled: true,
+              fillColor: Colors.white.withValues(alpha: 0.06),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              child: const Text('Salvar', style: TextStyle(color: AppTheme.goldPrimary)),
+            ),
+          ],
+        );
+      },
+    );
+    final text = controller.text.trim();
+    controller.dispose();
+    if (saved != true || text.isEmpty) return;
+    await BibleOfflineService.instance.saveNote(
+      bookNumber: _bookNumber,
+      chapterNumber: chapter,
+      verseNumber: verse.number,
+      translationId: _translationId,
+      title: ref,
+      content: text,
+    );
+    _toast('Nota salva');
   }
 
   @override
@@ -354,7 +581,7 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
 
   Widget _buildHeader() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(4, 4, 8, 4),
+      padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
       child: Row(
         children: [
           if (Navigator.of(context).canPop())
@@ -423,16 +650,10 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
             },
           ),
           if (widget.onOpenWeb != null)
-            TextButton(
-              onPressed: () {
-                final abbr = (_book?['abbr'] as String?) ?? 'gn';
-                final path = '/biblia?livro=$abbr&capitulo=$_chapter';
-                if (Navigator.of(context).canPop()) {
-                  Navigator.of(context).pop();
-                }
-                widget.onOpenWeb!(path);
-              },
-              child: Text('Estudar', style: TextStyle(color: _gold, fontSize: 13)),
+            IconButton(
+              tooltip: 'Ouvir no site',
+              icon: Icon(Icons.headphones_outlined, color: _gold, size: 22),
+              onPressed: () => _openSite(_sitePath),
             ),
         ],
       ),
@@ -447,8 +668,26 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
     if (verses.isEmpty) {
       return _buildEmpty(chapter);
     }
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(28, 12, 28, 36),
+    final favs = _favByChapter[chapter] ?? const <int>{};
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(child: _buildChapterHeading(chapter)),
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(16, 4, 18, 40),
+          sliver: SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, i) => _buildVerseBlock(verses[i], chapter, favs.contains(verses[i].number)),
+              childCount: verses.length,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildChapterHeading(int chapter) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(24, 12, 24, 8),
       child: Column(
         children: [
           Text(
@@ -485,40 +724,66 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
               ],
             ),
           ),
-          Text.rich(
-            TextSpan(
-              children: [
-                for (final v in verses) ...[
-                  WidgetSpan(
-                    alignment: PlaceholderAlignment.top,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 5, top: 1),
-                      child: Text(
-                        '${v.number}',
-                        style: TextStyle(
-                          color: _gold.withValues(alpha: 0.72),
-                          fontSize: (_fontSize * 0.55).clamp(10, 14),
-                          fontWeight: FontWeight.w600,
-                          height: 1,
-                          fontFeatures: const [FontFeature.tabularFigures()],
-                        ),
-                      ),
-                    ),
-                  ),
-                  TextSpan(text: '${v.text} '),
-                ],
-              ],
-            ),
-            textAlign: TextAlign.justify,
-            style: TextStyle(
-              color: _fg,
-              fontSize: _fontSize,
-              height: 1.88,
-              fontFamily: 'serif',
-              fontWeight: FontWeight.w400,
+        ],
+      ),
+    );
+  }
+
+  Widget _buildVerseBlock(OfflineVerse verse, int chapter, bool isFav) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => _onVerseTap(verse, chapter),
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(4, 12, 4, 12),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: _muted.withValues(alpha: 0.14), width: 0.5),
             ),
           ),
-        ],
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 36,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 3),
+                  child: Text(
+                    '${verse.number}',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      color: _gold,
+                      fontSize: (_fontSize * 0.72).clamp(13.0, 17.0),
+                      fontWeight: FontWeight.w700,
+                      height: 1.2,
+                      fontFeatures: const [FontFeature.tabularFigures()],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  verse.text,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    color: _fg,
+                    fontSize: _fontSize,
+                    height: 1.55,
+                    fontFamily: 'serif',
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              if (isFav)
+                Padding(
+                  padding: const EdgeInsets.only(left: 6, top: 4),
+                  child: Icon(Icons.star_rounded, size: 14, color: _gold),
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -541,6 +806,12 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
             Text(
               'Capítulo $chapter · $_translationId',
               style: TextStyle(color: _muted, fontSize: 13),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              'NVI, ARC e ARA costumam funcionar melhor.',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: _muted, fontSize: 12, height: 1.35),
             ),
             const SizedBox(height: 22),
             if (_downloading) ...[
@@ -625,6 +896,28 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _VerseAction extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  const _VerseAction({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(icon, color: AppTheme.goldPrimary, size: 22),
+      title: Text(label, style: const TextStyle(color: Colors.white, fontSize: 16)),
+      onTap: onTap,
     );
   }
 }

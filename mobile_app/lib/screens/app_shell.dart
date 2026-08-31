@@ -176,7 +176,11 @@ class _AppShellState extends State<AppShell> {
     setState(() {
       _nativeBible = false;
       _hasError = false;
-      if (path.startsWith('/biblia')) _navIndex = 1;
+      if (path.startsWith('/biblia')) {
+        _navIndex = 1;
+      } else if (path.startsWith('/planos') || path.startsWith('/estudar')) {
+        _navIndex = 2;
+      }
     });
     widget.webViewService.loadUrl('${AppConstants.baseUrl}$path');
   }

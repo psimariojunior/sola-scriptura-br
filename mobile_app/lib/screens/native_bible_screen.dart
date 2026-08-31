@@ -139,15 +139,17 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
         _downloadingBook = null;
         if (saved == 0) {
           _downloadError =
-              'Não foi possível baixar $bookName. A API da Bíblia não respondeu — tente de novo com internet.';
+              'Não foi possível baixar $bookName. Verifique a internet. '
+              'NVI, ARC e ARA costumam funcionar melhor — nem todas as traduções estão sempre disponíveis.';
         }
       });
-    } catch (e) {
+    } catch (_) {
       if (!mounted) return;
       setState(() {
         _downloadingBook = null;
         _downloadError =
-            'Falha ao baixar $bookName. Verifique a internet e tente de novo.';
+            'Falha ao baixar $bookName. Verifique a internet e tente de novo. '
+            'NVI, ARC e ARA costumam funcionar melhor.';
       });
     }
   }
@@ -186,6 +188,13 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
           children: [
             _buildHeader(),
             _buildTranslationSelector(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+              child: Text(
+                'NVI, ARC e ARA costumam baixar melhor. Nem todas as 10 traduções estão sempre disponíveis.',
+                style: TextStyle(color: AppTheme.textMuted, fontSize: 11, height: 1.35),
+              ),
+            ),
             _buildTabBar(),
             if (_downloadError != null)
               Padding(
@@ -235,12 +244,32 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
           ),
           if (widget.onOpenWeb != null)
             TextButton(
+              onPressed: () => widget.onOpenWeb!('/planos'),
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                minimumSize: Size.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              child: const Text('Planos', style: TextStyle(color: AppTheme.goldPrimary, fontSize: 13)),
+            ),
+          if (widget.onOpenWeb != null)
+            TextButton(
               onPressed: () => widget.onOpenWeb!('/biblia'),
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                minimumSize: Size.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
               child: const Text('Site', style: TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
             ),
           TextButton(
             onPressed: () => Navigator.of(context).pushNamed('/offline-translations'),
-            child: const Text('Baixar', style: TextStyle(color: AppTheme.goldPrimary, fontSize: 13)),
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              minimumSize: Size.zero,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            child: const Text('Baixar', style: TextStyle(color: AppTheme.textSecondary, fontSize: 13)),
           ),
         ],
       ),
@@ -424,7 +453,7 @@ class _NativeBibleScreenState extends State<NativeBibleScreen>
           ),
           const SizedBox(height: 6),
           const Text(
-            'Um livro de cada vez. Depois abra o capítulo e continue lendo como numa Bíblia impressa.',
+            'Um livro de cada vez. NVI, ARC e ARA costumam baixar melhor — nem todas as 10 traduções estão sempre disponíveis.',
             style: TextStyle(color: AppTheme.textSecondary, fontSize: 13, height: 1.4),
           ),
           const SizedBox(height: 14),

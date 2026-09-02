@@ -16,7 +16,19 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { hrefBiblia, hrefFromRef } from '@/lib/bibliaHref';
+import { hrefBiblia, hrefFromRef, hrefHarmonia } from '@/lib/bibliaHref';
+import { TODOS_LIVROS } from '@/data/biblia/livros';
+import { temComentario } from '@/data/comentarios-index';
+import type { EstudoCapitulo } from '@/data/estudosCapitulo';
+import type { Comentario } from '@/data/comentarios';
+import type { PalavraStrong } from '@/data/biblia/strong';
+import type { Pericope } from '@/data/biblia/pericopes';
+import type { EstudoVersiculo } from '@/data/estudosTeologicos';
+import type { LocalBiblico } from '@/data/biblia/locais';
+import { CadeiaReferencias } from './CadeiaReferencias';
+import { montarCadeia, type EloCadeia } from '@/lib/cadeiaReferencias';
+import { ensinarPalavra } from '@/lib/ensinarPalavra';
+import { ParalelosDoCapitulo } from './ParalelosDoCapitulo';
 import { TODOS_LIVROS } from '@/data/biblia/livros';
 import { temComentario } from '@/data/comentarios-index';
 import type { EstudoCapitulo } from '@/data/estudosCapitulo';
@@ -229,11 +241,20 @@ export function GuiaPassagem({ livro, capitulo, versiculo, compact = false }: Gu
         <div className="flex flex-wrap gap-2 mt-4">
           <Link
             href={hrefBiblia(livroLower, capitulo, versiculo)}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:opacity-90"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-[var(--brand-subtle)] text-[var(--brand-default)] hover:opacity-90 min-h-[44px]"
           >
             <BookOpen className="w-3.5 h-3.5" />
             Abrir na Bíblia
           </Link>
+          {['mt', 'mc', 'lc', 'jo'].includes(livroLower) && (
+            <Link
+              href={hrefHarmonia(livroLower, capitulo)}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:text-[var(--content-primary)] min-h-[44px]"
+            >
+              <List className="w-3.5 h-3.5" />
+              Paralelos sinóticos
+            </Link>
+          )}
           <Link
             href={`/exegese?ref=${encodeURIComponent(refLabel)}`}
             className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-[var(--surface-sunken)] text-[var(--content-secondary)] hover:text-[var(--content-primary)]"
@@ -252,6 +273,8 @@ export function GuiaPassagem({ livro, capitulo, versiculo, compact = false }: Gu
           )}
         </div>
       </section>
+
+      <ParalelosDoCapitulo livro={livroLower} capitulo={capitulo} defaultAberto />
 
       {estudo && (
         <section className="rounded-2xl border border-[var(--border)]/60 bg-[var(--surface-raised)] overflow-hidden">

@@ -28,6 +28,7 @@ import dynamic from 'next/dynamic';
 
 import { ClickableVerse } from './ClickableVerse';
 import { IntroLivroLeitura } from './IntroLivroLeitura';
+import { ParalelosDoCapitulo } from './ParalelosDoCapitulo';
 import { useLongPress } from '@/hooks/useLongPress';
 import { toggleFavorito } from '@/lib/estudos';
 import { karaokeProgressFromAudio } from '@/lib/karaokeWords';
@@ -276,6 +277,7 @@ export function BibleVerseList({
                 panels.setSidePanelTab('estudos');
               }}
             />
+            <ParalelosDoCapitulo livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} />
             {!isModoLeitura && (
               <>
                 <IntroLivroLeitura livroAbrev={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} nomeLivro={nav.livro.nome} />

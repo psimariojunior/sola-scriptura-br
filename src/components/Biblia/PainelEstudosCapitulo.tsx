@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { obterEstudoCapitulo } from '@/lib/estudosLoader';
+import { hrefHarmonia } from '@/lib/bibliaHref';
 import type { Comentario } from '@/data/comentarios';
 import { temComentario } from '@/data/comentarios-index';
 import { listarTodosEstudos, type EstudoVersiculo } from '@/data/estudosTeologicos';
@@ -244,11 +245,20 @@ export default function PainelEstudosCapitulo({ livro, capitulo, nomeLivro }: Pr
     <div className="mt-4 border-l-2 border-[var(--primary)]/30 pl-4 py-2 space-y-4">
       <Link
         href={`/guia?livro=${encodeURIComponent(livro)}&capitulo=${capitulo}`}
-        className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[var(--primary)] hover:underline"
+        className="inline-flex items-center gap-1.5 min-h-[44px] text-[11px] font-semibold text-[var(--primary)] hover:underline"
       >
         Abrir guia completo da passagem
         <ChevronRight className="w-3 h-3" />
       </Link>
+      {['mt', 'mc', 'lc', 'jo'].includes(livro.toLowerCase()) && (
+        <Link
+          href={hrefHarmonia(livro, capitulo)}
+          className="inline-flex items-center gap-1.5 min-h-[44px] text-[11px] font-medium text-[var(--primary)] hover:underline"
+        >
+          Paralelos sinóticos deste capítulo
+          <ChevronRight className="w-3 h-3" />
+        </Link>
+      )}
       {/* Resumo do capítulo */}
       {estudoCap && (
         <>

@@ -302,6 +302,122 @@ const paralelos: ParaleloSinotico[] = [
 
 export default paralelos;
 
+export const LIVROS_EVANGELHO = ['mt', 'mc', 'lc', 'jo'] as const;
+export type LivroEvangelho = (typeof LIVROS_EVANGELHO)[number];
+
+const CHAVE_EVANGELHO: Record<LivroEvangelho, keyof Pick<ParaleloSinotico, 'mateus' | 'marcos' | 'lucas' | 'joao'>> = {
+  mt: 'mateus',
+  mc: 'marcos',
+  lc: 'lucas',
+  jo: 'joao',
+};
+
+const ABREV_EXIBICAO: Record<LivroEvangelho, string> = { mt: 'Mt', mc: 'Mc', lc: 'Lc', jo: 'Jo' };
+const NOME_EVANGELHO: Record<LivroEvangelho, string> = {
+  mt: 'Mateus',
+  mc: 'Marcos',
+  lc: 'Lucas',
+  jo: 'João',
+};
+
+export function isLivroEvangelho(livro: string): livro is LivroEvangelho {
+  return (LIVROS_EVANGELHO as readonly string[]).includes(livro.toLowerCase());
+}
+
+/**
+ * Aceita `mt:13:33`, `mt:5:1-12` e intervalos que cruzam capítulo (`mt:5:1-7:29`).
+ */
+export function parseRefSinotico(ref: string): {
+  livro: string;
+  capInicio: number;
+  verInicio: number;
+  capFim: number;
+  verFim: number;
+} | null {
+  const m = ref.trim().match(/^([a-z0-9]+):(\d+)(?::(\d+))?(?:-(\d+)(?::(\d+))?)?$/i);
+  if (!m) return null;
+  const livro = m[1].toLowerCase();
+  const a = Number(m[2]);
+  const b = m[3] != null ? Number(m[3]) : undefined;
+  const c = m[4] != null ? Number(m[4]) : undefined;
+  const d = m[5] != null ? Number(m[5]) : undefined;
+  if (b == null && c == null) {
+    return { livro, capInicio: a, verInicio: 1, capFim: a, verFim: 999 };
+  }
+  if (b != null && c == null) {
+    return { livro, capInicio: a, verInicio: b, capFim: a, verFim: b };
+  }
+  if (b != null && c != null && d == null) {
+    return { livro, capInicio: a, verInicio: b, capFim: a, verFim: c };
+  }
+  if (b != null && c != null && d != null) {
+    return { livro, capInicio: a, verInicio: b, capFim: c, verFim: d };
+  }
+  return null;
+}
+
+export function formatarRefSinotica(ref: string): string {
+  const p = parseRefSinotico(ref);
+  if (!p) return ref.replace(/:/g, ' ');
+  const abrev = isLivroEvangelho(p.livro) ? ABREV_EXIBICAO[p.livro] : p.livro;
+  if (p.capInicio === p.capFim) {
+    if (p.verInicio === p.verFim) return `${abrev} ${p.capInicio}:${p.verInicio}`;
+    return `${abrev} ${p.capInicio}:${p.verInicio}–${p.verFim}`;
+  }
+  return `${abrev} ${p.capInicio}:${p.verInicio}–${p.capFim}:${p.verFim}`;
+}
+
+export interface EvangelhoParalelo {
+  livro: LivroEvangelho;
+  abrev: string;
+  nome: string;
+  refs: string[];
+}
+
+export interface ParaleloDoCapitulo {
+  paralelo: ParaleloSinotico;
+  refsNesteCapitulo: string[];
+  outrosEvangelhos: EvangelhoParalelo[];
+}
+
+/**
+ * Perícopes catalogadas neste capítulo que também aparecem em outro evangelho.
+ * Não inclui material só deste livro (fonte M/L/independente sem contra-relato).
+ */
+export function getParalelosDoCapitulo(livro: string, capitulo: number): ParaleloDoCapitulo[] {
+  const abrev = livro.toLowerCase();
+  if (!isLivroEvangelho(abrev) || capitulo < 1) return [];
+  const chaveAtual = CHAVE_EVANGELHO[abrev];
+  const seen = new Set<string>();
+  const out: ParaleloDoCapitulo[] = [];
+
+  for (const p of paralelos) {
+    const refsAtual = p[chaveAtual] ?? [];
+    const refsNeste = refsAtual.filter((r) => {
+      const parsed = parseRefSinotico(r);
+      return parsed != null && parsed.livro === abrev && parsed.capInicio <= capitulo && capitulo <= parsed.capFim;
+    });
+    if (refsNeste.length === 0) continue;
+
+    const outros: EvangelhoParalelo[] = [];
+    for (const ev of LIVROS_EVANGELHO) {
+      if (ev === abrev) continue;
+      const refs = p[CHAVE_EVANGELHO[ev]] ?? [];
+      if (refs.length > 0) {
+        outros.push({ livro: ev, abrev: ABREV_EXIBICAO[ev], nome: NOME_EVANGELHO[ev], refs });
+      }
+    }
+    if (outros.length === 0) continue;
+
+    const chaveDedup = `${p.titulo.toLowerCase()}|${outros.map((o) => o.livro + o.refs.join()).join('|')}`;
+    if (seen.has(chaveDedup)) continue;
+    seen.add(chaveDedup);
+    out.push({ paralelo: p, refsNesteCapitulo: refsNeste, outrosEvangelhos: outros });
+  }
+
+  return out;
+}
+
 export function getParalelosLivro(livro: 'mt' | 'mc' | 'lc' | 'jo'): ParaleloSinotico[] {
   const chaveMap: Record<string, keyof Pick<ParaleloSinotico, 'mateus' | 'marcos' | 'lucas' | 'joao'>> = {
     mt: 'mateus',

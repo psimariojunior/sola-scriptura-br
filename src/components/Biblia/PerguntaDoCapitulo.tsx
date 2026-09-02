@@ -32,12 +32,17 @@ export function PerguntaDoCapitulo({ livro, capitulo, onEstudar }: PerguntaDoCap
   const pergunta = estudo?.perguntasEstudo?.[0]?.trim();
   if (!estudo || !pergunta) return null;
 
-  const profunda = estudo.nivel === 'profundo';
+  const rotuloNivel =
+    estudo.nivel === 'profundo'
+      ? 'Ficha profunda deste capítulo'
+      : estudo.nivel === 'sintese'
+        ? 'Síntese deste capítulo'
+        : 'Estudo deste capítulo';
 
   return (
     <aside className="mt-16 mx-auto max-w-xl px-4 py-8 rounded-2xl border border-[var(--brand-default)]/20 bg-[var(--brand-default)]/[0.06] shadow-[0_18px_40px_-28px_rgba(161,122,44,0.55)]">
       <p className="text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--brand-default)] mb-2">
-        {profunda ? 'Ficha profunda deste capítulo' : 'Síntese deste capítulo'}
+        {rotuloNivel}
       </p>
       <p className="text-center font-serif text-base sm:text-lg text-[var(--content-primary)] leading-snug mb-5">
         {estudo.titulo}

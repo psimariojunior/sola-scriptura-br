@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { Suspense, useState, useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import { PageShell } from '@/components/layout/PageShell';
 import { PageHero } from '@/components/layout/PageHero';
@@ -12,9 +13,11 @@ import {
   getParalelosLivro,
   getParalelosPorCategoria,
   buscarParalelos,
+  getParalelosDoCapitulo,
+  isLivroEvangelho,
 } from '@/data/biblia/sinopticos';
 import type { ParaleloSinotico } from '@/data/biblia/sinopticos';
-import { hrefFromRef } from '@/lib/bibliaHref';
+import { hrefFromRef, hrefBiblia, hrefHarmonia, resolverLivroParam } from '@/lib/bibliaHref';
 import { useSyncedColumnScroll } from '@/hooks/useSyncedColumnScroll';
 
 type Categoria = ParaleloSinotico['categoria'] | 'todas';
@@ -251,7 +254,24 @@ function MobileTabs({
 }
 
 export default function HarmoniaPage() {
+  return (
+    <Suspense fallback={<div className="max-w-3xl mx-auto px-4 py-16 text-sm text-muted-foreground">Carregando harmonia…</div>}>
+      <HarmoniaInner />
+    </Suspense>
+  );
+}
+
+function HarmoniaInner() {
   const { t } = useTranslation();
+  const params = useSearchParams();
+  const livroQ = params.get('livro');
+  const capQ = Number(params.get('capitulo') || 0);
+  const infoLivro = resolverLivroParam(livroQ);
+  const filtroCapitulo =
+    infoLivro && isLivroEvangelho(infoLivro.abreviacao) && capQ > 0
+      ? { livro: infoLivro.abreviacao, capitulo: capQ, nome: infoLivro.nome }
+      : null;
+
   const [busca, setBusca] = useState('');
   const [filtroCategoria, setFiltroCategoria] = useState<Categoria>('todas');
   const [expandido, setExpandido] = useState<string | null>(null);
@@ -259,6 +279,16 @@ export default function HarmoniaPage() {
   const { setRef, onScroll } = useSyncedColumnScroll();
 
   const paralelos = useMemo(() => {
+    if (filtroCapitulo) {
+      let lista = getParalelosDoCapitulo(filtroCapitulo.livro, filtroCapitulo.capitulo).map((x) => x.paralelo);
+      if (filtroCategoria !== 'todas') lista = lista.filter((p) => p.categoria === filtroCategoria);
+      if (busca.trim()) {
+        const termo = busca.toLowerCase();
+        lista = lista.filter((p) => `${p.titulo} ${p.notas ?? ''}`.toLowerCase().includes(termo));
+      }
+      return lista;
+    }
+
     let lista = filtroCategoria === 'todas'
       ? getParalelosLivro('mt').length > 0
         ? [...getParalelosLivro('mt'), ...getParalelosLivro('mc'), ...getParalelosLivro('lc'), ...getParalelosLivro('jo')]
@@ -277,7 +307,7 @@ export default function HarmoniaPage() {
     if (busca.trim()) lista = buscarParalelos(busca);
 
     return lista;
-  }, [busca, filtroCategoria]);
+  }, [busca, filtroCategoria, filtroCapitulo?.livro, filtroCapitulo?.capitulo]);
 
   const stats = useMemo(() => ({
     total: paralelos.length,
@@ -299,6 +329,26 @@ export default function HarmoniaPage() {
             subtitle={t('harmonia.subtitle')}
           />
         </ScrollReveal>
+
+        {filtroCapitulo && (
+          <div className="mb-5 flex flex-wrap items-center gap-2 rounded-xl border border-border/60 bg-card/60 px-4 py-3">
+            <p className="text-sm text-foreground">
+              Paralelo sinótico · {filtroCapitulo.nome} {filtroCapitulo.capitulo}
+            </p>
+            <Link
+              href={hrefBiblia(filtroCapitulo.livro, filtroCapitulo.capitulo)}
+              className="inline-flex min-h-[44px] items-center text-xs font-medium text-primary hover:underline underline-offset-4"
+            >
+              Abrir o capítulo
+            </Link>
+            <Link
+              href={hrefHarmonia()}
+              className="inline-flex min-h-[44px] items-center text-xs font-medium text-muted-foreground hover:text-foreground"
+            >
+              Ver todos os paralelos
+            </Link>
+          </div>
+        )}
 
         <div>
           {/* Search + Filters */}

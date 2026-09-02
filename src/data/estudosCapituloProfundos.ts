@@ -3585,6 +3585,72 @@ export const estudosCapituloProfundos: Record<string, EstudoCapitulo> = {
     ],
     fontes: ['Isaías 61', 'Lucas 4:16–21', 'Levítico 25', 'Isaías 53'],
   }),
+
+  'fm:1': ficha('fm', 1, 'Onésimo: irmão, não mais só escravo', {
+    contextoHistorico:
+      'Carta pessoal de Paulo, da prisão (tradicionalmente Roma, c. 60–62), a Filémon de Colossos — anfitrião de uma igreja doméstica (v. 2). Onésimo, escravo fugitivo, encontrou Paulo e creu. A carta viaja com Colossenses: Onésimo e Tíquico levam notícias (Cl 4:7–9); Arquipo é exortado em Cl 4:17. O Império Romano não discute abolição aqui: Paulo interpela um irmão dono de casa à luz do evangelho, não publica um edito.',
+    resumo:
+      'Paulo, prisioneiro de Cristo, e Timóteo saúdam Filémon, Áfia e Arquipo, e a igreja em tua casa. Graças pelo amor e a fé; a comunhão (koinonia) da fé se torne eficaz. Paulo poderia mandar, mas prefere rogar por amor: Onésimo, «inútil» que se tornou «útil», é filho gerado na prisão. Paulo o envia — o próprio coração. Talvez se tenha apartado por breve tempo para que o recebas para sempre, não já como escravo, senão mais do que escravo, irmão amado. Se me tens por companheiro (koinonos), recebe-o como a mim. Se te deve, põe na minha conta; eu pagarei. Confio que farás ainda mais do que digo. Prepara-me pousada. Bênção final sobre o espírito de todos.',
+    estrutura: [
+      '1–3 — remetentes, destinatários, igreja da casa',
+      '4–7 — ação de graças: fé, amor, koinonia',
+      '8–16 — o rogo por Onésimo: útil, filho, irmão',
+      '17–22 — imputação da dívida, confiança, pousada',
+      '23–25 — saudações da prisão e graça',
+    ],
+    temas: ['Koinonia', 'Perdão', 'Escravidão e irmandade', 'Imputação', 'Amor que roga'],
+    VersiculosChave: [
+      chave('Filémon 10–11', 'Rogo-te por meu filho Onésimo… o qual noutro tempo te foi inútil, mas agora a ti e a mim muito útil.', 'O nome (Onésimo = «útil») vira evangelho: a graça reescreve o currículo do fugitivo.'),
+      chave('Filémon 15–16', 'Para que o recebesses para sempre, não já como escravo, antes mais do que escravo, como irmão amado.', 'A identidade em Cristo não apaga o fato social de uma vez; ela o relativiza até a raiz.'),
+      chave('Filémon 17–18', 'Se me tens por companheiro, recebe-o como a mim mesmo. Se algum dano te fez… põe isso na minha conta.', 'Koinonia prática: acolher o outro como se acolhesse o apóstolo; a dívida passa para a conta de Paulo.'),
+    ],
+    significadoTeologico:
+      'A carta não é um tratado contra a escravidão romana nem um endosso dela. É ecclesiologia aplicada: quem é «em Cristo» (v. 16) não pode ser tratado só como propriedade. A igreja leu 17–18 à luz da imputação — Cristo assume a dívida do pecador — sem que o texto deixe de ser, primeiro, uma carta entre irmãos. Colossenses 3:11 e 4:1 sustentam o mesmo horizonte: no novo homem não há escravo nem livre; senhores, dai o que é de justiça. O «ainda mais» do v. 21 deixa a manumissão possível, mas Paulo não a exige por decreto: quer obediência livre (v. 14).',
+    palavrasOriginais: ['κοινωνία (koinonia, v. 6)', 'ἄχρηστος / εὔχρηστος (inútil / útil)', 'κοινωνός (companheiro, v. 17)', 'ἐλλόγα (põe na conta, v. 18)'],
+    aplicacaoPratica:
+      'Rogue antes de mandar, quando o amor tem autoridade. Receba o convertido como irmão, não como expediente. Se há dívida, alguém a assume — não a esconda com piedade barata. A comunhão da fé (v. 6) se prova na casa e no bolso, não só na oração.',
+    perguntasEstudo: [
+      'Como v. 8–9 relacionam autoridade apostólica e rogo por amor?',
+      'O que muda, e o que não muda, quando o escravo é chamado «irmão» (v. 16)?',
+      'Como v. 17–18 se leem primeiro na carta — e depois, analogicamente, na imputação em Cristo?',
+      'Que papel Cl 4:9 e 4:17 dão a Onésimo e Arquipo no mesmo envio?',
+      'Por que Paulo insiste em que o bem seja «não por necessidade, mas voluntário» (v. 14)?',
+    ],
+    fontes: ['Filémon 1–25', 'Colossenses 3:11', 'Colossenses 4:7–17', '1 Coríntios 7:20–24', 'Gálatas 3:28'],
+  }),
+
+  'jd:1': ficha('jd', 1, 'Contendei pela fé: misericórdia com temor', {
+    contextoHistorico:
+      'Judas, «servo de Jesus Cristo e irmão de Tiago» (v. 1) — o Tiago de Jerusalém, irmão do Senhor (Gl 1:19). Carta breve contra infiltrados que torcem a graça em libertinagem e negam o único Soberano e Senhor. Paralelismo forte com 2 Pedro 2 (anjos, Sodoma, Balaão, naus sem rumo): dois testemunhos canônicos do mesmo perigo, sem que seja preciso decidir quem citou quem. A menção de Enoque (v. 14–15) usa uma tradição conhecida no judaísmo do Segundo Templo; a igreja recebeu Judas no cânon sem igualar 1 Enoque à Torá.',
+    resumo:
+      'Aos chamados, amados no Pai, guardados em Jesus Cristo: misericórdia, paz e amor. Judas queria escrever da salvação comum; viu-se obrigado a exortar: combatei pela fé uma vez entregue aos santos. Homens ímpios se introduziram, convertendo a graça em dissolução. Exemplos: o povo saído do Egito e depois destruído; anjos que não guardaram seu principado; Sodoma e Gomorra. Estes amancilham a carne, rejeitam autoridade, maldizem glórias. Caim, Balaão, Coré. Manchas nas vossas ágapes; nuvens sem água; estrelas errantes. Enoque profetizou juízo. Lembrai as palavras dos apóstolos sobre escarnecedores. Edificai-vos na fé santíssima, orai no Espírito Santo, conservai-vos no amor de Deus, esperando a misericórdia para a vida eterna. Salvai alguns, arrebatando-os do fogo; de outros, tende misericórdia com temor. Àquele que é poderoso para vos guardar de tropeçar — glória, majestade, domínio e poder, agora e para todo o sempre.',
+    estrutura: [
+      '1–2 — remetente e bênção trinitária na prática',
+      '3–4 — a fé entregue; a graça torcida',
+      '5–16 — tipos de juízo e retrato dos infiltrados',
+      '17–23 — memória apostólica, edificação, resgate com temor',
+      '24–25 — doxologia: Deus guarda e recebe com alegria',
+    ],
+    temas: ['Fé entregue', 'Falsos mestres', 'Juízo', 'Graça vs libertinagem', 'Doxologia'],
+    VersiculosChave: [
+      chave('Judas 3', 'Combatei ardentes pela fé que uma vez foi dada aos santos.', 'A fé é depósito, não invenção de cada geração; o combate é pastoral, não rixa de ego.'),
+      chave('Judas 4', 'Homens ímpios… convertem em dissolução a graça de Deus e negam o único Soberano e Senhor, Jesus Cristo.', 'Dois testes juntos: ética (graça que não solta o pecado) e cristologia (Jesus é Senhor).'),
+      chave('Judas 24–25', 'Ora, àquele que é poderoso para vos guardar de tropeçar… ao único Deus, Salvador nosso.', 'A contenda da igreja descansa na guarda de Deus, não no nervo do polemista.'),
+    ],
+    significadoTeologico:
+      'Sola gratia não é antinomismo: a graça que se torna desculpa para a carne já foi negada no v. 4. A fé «uma vez entregue» afirma continuidade apostólica (v. 17) contra o gnosticismo prático. Os tipos do Êxodo, dos anjos e de Sodoma leem o juízo como história, não como metáfora suave. A doxologia final (24–25) é soteriologia: só Deus guarda; a igreja disputa, mas não se auto-salva. 2 Pedro 2 confirma o mesmo mapa de perigos; João 10 e 1 João 4 exigem o mesmo Senhor encarnado.',
+    palavrasOriginais: ['πίστις (fé/depósito, v. 3)', 'ἅπαξ (uma vez, v. 3)', 'ἀσέλγεια (dissolução, v. 4)', 'δεσπότης (Soberano, v. 4)'],
+    aplicacaoPratica:
+      'Não troque a graça por permissividade nem a contenda por amargura. Prove mestres pela cristologia e pela vida. Edifique-se na fé e na oração (v. 20) antes de apontar o dedo. Resgate com temor: ódio até à roupa manchada, misericórdia à pessoa. Descanse na doxologia — quem guarda é Deus.',
+    perguntasEstudo: [
+      'O que a fé «uma vez entregue» (v. 3) afirma contra novidade religiosa?',
+      'Como v. 4 une libertinagem e negação do Senhor — e por que os dois andam juntos?',
+      'Que diferença há entre citar Enoque (v. 14) e igualar esse livro à Escritura?',
+      'Como v. 22–23 evitam tanto o rigorismo frio quanto a conivência?',
+      'De que modo a doxologia (v. 24–25) corrige uma igreja que só polemiza?',
+    ],
+    fontes: ['Judas 1–25', '2 Pedro 2', 'Êxodo 12–14 e Números 14', 'Números 16 (Coré)', 'Números 22–24 (Balaão)', 'Gênesis 19'],
+  }),
 };
 
 export function listarFichasProfundas() {

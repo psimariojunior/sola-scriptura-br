@@ -418,6 +418,16 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
     return '/guia?livro=$abbr&capitulo=$_chapter';
   }
 
+  bool get _isGospel {
+    final n = _bookNumber;
+    return n >= 40 && n <= 43;
+  }
+
+  String get _harmoniaPath {
+    final abbr = (_book?['abbr'] as String?) ?? 'mt';
+    return '/harmonia?livro=$abbr&capitulo=$_chapter';
+  }
+
   String _interlinearHref({int? verse}) {
     final abbr = (_book?['abbr'] as String?) ?? 'gn';
     final v = verse != null ? '&verso=$verse' : '';
@@ -508,6 +518,31 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
                   ),
                 ),
                 const SizedBox(height: 16),
+                if (widget.onOpenWeb != null) ...[
+                  TextButton.icon(
+                    onPressed: () {
+                      Navigator.pop(ctx);
+                      _openSite(_guiaPath);
+                    },
+                    icon: const Icon(Icons.auto_stories_outlined, color: AppTheme.goldPrimary, size: 18),
+                    label: const Text(
+                      'Estudar este capítulo',
+                      style: TextStyle(color: AppTheme.goldPrimary),
+                    ),
+                  ),
+                  if (_isGospel)
+                    TextButton.icon(
+                      onPressed: () {
+                        Navigator.pop(ctx);
+                        _openSite(_harmoniaPath);
+                      },
+                      icon: const Icon(Icons.view_column_outlined, color: AppTheme.goldPrimary, size: 18),
+                      label: const Text(
+                        'Paralelos sinóticos',
+                        style: TextStyle(color: AppTheme.goldPrimary),
+                      ),
+                    ),
+                ],
                 if (Navigator.of(context).canPop())
                   TextButton(
                     onPressed: () {
@@ -703,6 +738,15 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
                     _openSite(_guiaPath);
                   },
                 ),
+                if (_isGospel)
+                  _VerseAction(
+                    icon: Icons.view_column_outlined,
+                    label: 'Paralelos sinóticos',
+                    onTap: () {
+                      Navigator.pop(ctx);
+                      _openSite(_harmoniaPath);
+                    },
+                  ),
                 _VerseAction(
                   icon: Icons.translate_outlined,
                   label: 'Ver no original',
@@ -983,13 +1027,29 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
           if (widget.onOpenWeb != null)
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: TextButton.icon(
-                onPressed: () => _openSite(_guiaPath),
-                icon: Icon(Icons.auto_stories_outlined, color: _gold, size: 18),
-                label: Text(
-                  'Ficha e guia deste capítulo',
-                  style: TextStyle(color: _gold, fontSize: 13, fontWeight: FontWeight.w600),
-                ),
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 4,
+                runSpacing: 0,
+                children: [
+                  TextButton.icon(
+                    onPressed: () => _openSite(_guiaPath),
+                    icon: Icon(Icons.auto_stories_outlined, color: _gold, size: 18),
+                    label: Text(
+                      'Estudar capítulo',
+                      style: TextStyle(color: _gold, fontSize: 13, fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  if (_isGospel)
+                    TextButton.icon(
+                      onPressed: () => _openSite(_harmoniaPath),
+                      icon: Icon(Icons.view_column_outlined, color: _gold, size: 18),
+                      label: Text(
+                        'Paralelos',
+                        style: TextStyle(color: _gold, fontSize: 13, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                ],
               ),
             ),
         ],

@@ -29,6 +29,13 @@ describe('fichas profundas vs cânon', () => {
       expect(estudosCapituloProfundos[`rm:${c}`]?.nivel).toBe('profundo');
     }
   });
+
+  it('Filemom e Judas (livros de um capítulo) têm ficha profunda', () => {
+    expect(estudosCapituloProfundos['fm:1']?.nivel).toBe('profundo');
+    expect(estudosCapituloProfundos['jd:1']?.nivel).toBe('profundo');
+    expect(estudosCapituloProfundos['fm:1']?.perguntasEstudo.length).toBeGreaterThanOrEqual(4);
+    expect(estudosCapituloProfundos['jd:1']?.fontes?.some((f) => /Judas/i.test(f))).toBe(true);
+  });
 });
 
 describe('sintetizarEstudoCapitulo', () => {

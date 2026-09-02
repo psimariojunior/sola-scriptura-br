@@ -1,6 +1,9 @@
 import paralelos, { 
   getParalelosLivro, 
-  getParalelosPorCategoria 
+  getParalelosPorCategoria,
+  getParalelosDoCapitulo,
+  parseRefSinotico,
+  formatarRefSinotica,
 } from '@/data/biblia/sinopticos';
 
 describe('sinopticos.ts', () => {
@@ -37,5 +40,37 @@ describe('sinopticos.ts', () => {
       const temReferencia = !!(p.mateus || p.marcos || p.lucas || p.joao);
       expect(temReferencia).toBe(true);
     });
+  });
+
+  test('parseRefSinotico cobre verso, faixa e capítulo cruzado', () => {
+    expect(parseRefSinotico('mt:13:33')).toMatchObject({
+      livro: 'mt', capInicio: 13, verInicio: 33, capFim: 13, verFim: 33,
+    });
+    expect(parseRefSinotico('mc:1:9-11')).toMatchObject({
+      livro: 'mc', capInicio: 1, verInicio: 9, capFim: 1, verFim: 11,
+    });
+    expect(parseRefSinotico('mt:5:1-7:29')).toMatchObject({
+      livro: 'mt', capInicio: 5, verInicio: 1, capFim: 7, verFim: 29,
+    });
+    expect(formatarRefSinotica('lc:6:20-26')).toBe('Lc 6:20–26');
+  });
+
+  test('getParalelosDoCapitulo lista outros evangelhos e omite caixa vazia', () => {
+    const mt3 = getParalelosDoCapitulo('mt', 3);
+    expect(mt3.length).toBeGreaterThan(0);
+    mt3.forEach((item) => {
+      expect(item.outrosEvangelhos.length).toBeGreaterThan(0);
+      expect(item.refsNesteCapitulo.length).toBeGreaterThan(0);
+    });
+    const titulos = mt3.map((i) => i.paralelo.titulo).join(' ');
+    expect(titulos.toLowerCase()).toMatch(/batismo|joão batista|tentação/);
+
+    const soDeste = getParalelosDoCapitulo('gn', 1);
+    expect(soDeste).toEqual([]);
+  });
+
+  test('Sermão do Monte cruza capítulos 5–7 em Mateus', () => {
+    const mt6 = getParalelosDoCapitulo('mt', 6);
+    expect(mt6.some((i) => /pai nosso|sermão|preocupar|tesouro/i.test(i.paralelo.titulo))).toBe(true);
   });
 });

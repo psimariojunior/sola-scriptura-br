@@ -169,6 +169,16 @@ export function hrefFromRef(raw: string): string {
   return hrefBiblia(parsed.livro, parsed.capitulo, parsed.versiculo);
 }
 
+/** Harmonia sinótica; opcionalmente filtra o capítulo do evangelho. */
+export function hrefHarmonia(livro?: string, capitulo?: number): string {
+  if (!livro || !capitulo || capitulo < 1) return '/harmonia';
+  const info = resolverLivroParam(livro);
+  const params = new URLSearchParams();
+  params.set('livro', info?.abreviacao ?? livro);
+  params.set('capitulo', String(capitulo));
+  return `/harmonia?${params.toString()}`;
+}
+
 /** Interlinear palavra-a-palavra; `verso` ancora em `#v{n}`. */
 export function hrefInterlinear(
   livro: string,

@@ -4204,19 +4204,16 @@ html.ssb-native-app .ssb-mobile-nav-sheet-body {
   padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
 }
 
-/* Interlinear: original + significado no tamanho da leitura (px, não em aninhado).
-   Android/WebView auto-size distorce em pequenos; colunas devem viajar juntas. */
+/* Interlinear: no desktop a forma clássica (faixas); no celular fonte de leitura. */
 .interlinear-reading {
   font-family: var(--font-spectral), Georgia, serif;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 .interlinear-original {
-  font-size: 1.45em;
   line-height: 1.35;
 }
 .interlinear-gloss {
-  font-size: 1em;
   line-height: 1.35;
 }
 .interlinear-col {
@@ -4229,7 +4226,7 @@ html.ssb-native-app .ssb-mobile-nav-sheet-body {
   font-family: "Noto Serif", "Times New Roman", "Palatino Linotype", serif;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .interlinear-reading .interlinear-original {
     font-size: 26px !important;
     line-height: 1.4 !important;

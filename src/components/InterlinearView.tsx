@@ -1144,10 +1144,10 @@ export function InterlinearView({
   versiculos,
   livro,
   capitulo,
-  fontSize = 20,
+  fontSize = 18,
 }: InterlinearViewProps) {
-  const bodyPx = Math.max(fontSize, 20);
-  const originalPx = Math.round(bodyPx * 1.45);
+  const bodyPx = Math.max(fontSize, 16);
+  const originalPx = Math.round(bodyPx * 1.12);
   const [selectedWord, setSelectedWord] = useState<SelectedWord | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
   const [panelEntry, setPanelEntry] = useState<
@@ -1295,8 +1295,62 @@ export function InterlinearView({
                   </div>
                 </div>
 
-                {/* Colunas: original + significado juntos (não três linhas que quebram fora de sync) */}
-                <div className="interlinear-word-row flex flex-wrap items-start gap-x-3 gap-y-5 mt-3 ml-0 sm:ml-8">
+                {/* Desktop: faixas clássicas. Celular: coluna por palavra. */}
+                <div className="hidden md:block mt-3 ml-8">
+                  <div className="flex flex-wrap gap-x-3 gap-y-1">
+                    {palavrasComStrong.map((p, wi) => (
+                      <span
+                        key={`o-${wi}`}
+                        className={`interlinear-original inline-block text-center cursor-pointer min-w-[4.5em] max-w-[9em] ${
+                          selectedWord?.verso === versiculo.numero && selectedWord?.strong === p.strong
+                            ? "text-[var(--brand-default)] font-bold"
+                            : "text-[var(--content-primary)] hover:text-[var(--brand-default)]"
+                        } ${p.idioma === "hebraico" ? "font-hebrew" : "font-greek"}`}
+                        style={{ fontSize: `${originalPx}px`, lineHeight: 1.35 }}
+                        dir={p.idioma === "hebraico" ? "rtl" : "ltr"}
+                        onClick={() =>
+                          handleWordClick(versiculo.numero, p.strong!, p.palavraOriginal, p.transliteracao, p.idioma, p.texto)
+                        }
+                        role="button"
+                        tabIndex={0}
+                      >
+                        {p.palavraOriginal || "\u00A0"}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap gap-x-3 gap-y-1 mt-1">
+                    {palavrasComStrong.map((p, wi) => {
+                      const meaning = (p.definicao?.trim() || p.texto || p.transliteracao || "").trim();
+                      return (
+                        <span
+                          key={`g-${wi}`}
+                          className="interlinear-gloss inline-block text-center font-serif-body min-w-[4.5em] max-w-[9em]"
+                          style={{ fontSize: `${bodyPx}px`, lineHeight: 1.35, color: "var(--content-primary)" }}
+                        >
+                          {meaning}
+                        </span>
+                      );
+                    })}
+                  </div>
+                  <div className="flex flex-wrap gap-x-3 gap-y-1 mt-0.5">
+                    {palavrasComStrong.map((p, wi) => (
+                      <span
+                        key={`s-${wi}`}
+                        className="inline-block text-center min-w-[4.5em] max-w-[9em] cursor-pointer hover:text-[var(--brand-default)]"
+                        style={{ fontSize: `${Math.max(12, Math.round(bodyPx * 0.72))}px`, color: "var(--content-muted)" }}
+                        onClick={() =>
+                          handleWordClick(versiculo.numero, p.strong!, p.palavraOriginal, p.transliteracao, p.idioma, p.texto)
+                        }
+                      >
+                        {p.transliteracao && <span className="italic block">{p.transliteracao}</span>}
+                        {p.morfologia && <MorphMiniTag morphCode={p.morfologia} />}
+                        <span className="block">{p.strong}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="interlinear-word-row flex md:hidden flex-wrap items-start gap-x-3 gap-y-5 mt-3">
                   {palavrasComStrong.map((p, wi) => {
                     const meaning = (
                       p.definicao?.trim() ||

@@ -95,7 +95,7 @@ function InterlinearClient() {
             livro={livro.abreviacao}
             capitulo={capitulo}
             traducao="arc"
-            fontSize={22}
+            fontSize={18}
           />
         )}
       </div>

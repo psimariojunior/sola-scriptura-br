@@ -171,19 +171,42 @@ export function desenharDiploma(ctx: CanvasRenderingContext2D, W: number, H: num
   ctx.fillText('solascripturabr.com.br', W / 2, H - 36);
 }
 
-function diplomaIntroducao(nome: string, nomeCurso: string, dataIso: string): DiplomaOpcoes {
-  const curto = Date.now().toString(36).toUpperCase();
+export function diplomaCursoIntroducao(params: {
+  nome: string;
+  nomeCurso: string;
+  dataIso: string;
+  id: string;
+  hash: string;
+  aulasFeitas: number;
+  totalAulas: number;
+  autenticado?: boolean;
+}): DiplomaOpcoes {
   return {
-    nome,
-    titulo: nomeCurso,
-    dataIso,
-    id: `SSB-INT-${curto}`,
-    hash: curto.slice(0, 12).padEnd(12, '0'),
+    nome: params.nome,
+    titulo: params.nomeCurso,
+    dataIso: params.dataIso,
+    id: params.id,
+    hash: params.hash,
     nivel: 'introducao',
-    atesta:
-      'Conclusão das aulas e do quiz deste curso introdutório na plataforma. Não é trilha capítulo a capítulo com ficha profunda.',
-    naoAtesta: 'carga horária acadêmica, grau, ordenação ou equivalência de seminário.',
+    atesta: `Conclusão de ${params.aulasFeitas} de ${params.totalAulas} aulas do curso introdutório «${params.nomeCurso}» nesta plataforma (texto, vídeo quando houver, e avaliação com 70% se o curso tiver quiz).`,
+    naoAtesta:
+      'carga horária acadêmica, diploma de seminário, ordenação, equivalência institucional ou verificação de identidade além do nome informado.',
+    aviso: params.autenticado
+      ? undefined
+      : 'Nome informado neste dispositivo, sem sessão autenticada. Certificado de conclusão do curso no aparelho — não é diploma institucional.',
   };
+}
+
+function diplomaIntroducao(nome: string, nomeCurso: string, dataIso: string): DiplomaOpcoes {
+  return diplomaCursoIntroducao({
+    nome,
+    nomeCurso,
+    dataIso,
+    id: 'SSB-RASCUNHO',
+    hash: '------------',
+    aulasFeitas: 0,
+    totalAulas: 0,
+  });
 }
 
 export function gerarCertificado(

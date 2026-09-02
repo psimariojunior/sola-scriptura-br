@@ -1,30 +1,49 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { GraduationCap, BookOpen, CheckCircle2, Clock, ChevronRight, Award, Play, FileText, HelpCircle, ArrowLeft, Download, Share2, RotateCcw, Users, BarChart3, ClipboardCheck, ChevronDown } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { GraduationCap, BookOpen, CheckCircle2, Clock, ChevronRight, Award, Play, FileText, HelpCircle, ArrowLeft, Download, Users, BarChart3, ClipboardCheck, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
-import { CURSOS, type Curso, type CursoModulo, type CursoAula, type QuizQuestion } from '@/data/cursos';
-import { matricularCurso, marcarAulaCompleta, salvarResultadoQuiz, obterProgressoCurso, calcularProgresso, estaConcluido, marcarCursoConcluido, type CursoProgresso } from '@/lib/cursoProgress';
-import { gerarCertificado } from '@/lib/certificado';
+import { CURSOS, rotuloCargaCurso, rotuloNivelCurso, type Curso, type CursoAula, type QuizQuestion } from '@/data/cursos';
+import {
+  matricularCurso,
+  marcarAulaCompleta,
+  salvarResultadoQuiz,
+  obterProgressoCurso,
+  calcularProgresso,
+  estaConcluido,
+  marcarCursoConcluido,
+  cursoProntoParaCertificado,
+  quizLiberado,
+  emitirCertificadoCurso,
+  aulasDoCurso,
+  totalAulasCurso,
+  proximaAulaPendente,
+  CURSO_NOME_KEY,
+  type CursoProgresso,
+  type CertificadoCurso,
+} from '@/lib/cursoProgress';
+import { diplomaCursoIntroducao, gerarCertificado } from '@/lib/certificado';
+import { YouTubeAulaPlayer } from '@/components/cursos/YouTubeAulaPlayer';
+import { authService } from '@/lib/auth';
 import { TextToSpeechButton } from '@/components/TextToSpeechButton';
 import { NoteEditor } from '@/components/NoteEditor';
 import { ShareNoteModal } from '@/components/ShareNoteModal';
 import { getNote } from '@/lib/seminaryNotes';
 import { checkAndUnlock } from '@/lib/achievements';
 
-const LEVEL_COLORS = {
-  iniciante: 'text-green-500 bg-green-500/10',
-  intermediário: 'text-yellow-500 bg-yellow-500/10',
-  avançado: 'text-red-500 bg-red-500/10',
+const LEVEL_LABELS = {
+  iniciante: 'Introdução',
+  intermediário: 'Introdução',
+  avançado: 'Introdução',
 };
 
-const LEVEL_LABELS = {
-  iniciante: 'Iniciante',
-  intermediário: 'Intermediário',
-  avançado: 'Avançado',
+const LEVEL_COLORS = {
+  iniciante: 'text-green-500 bg-green-500/10',
+  intermediário: 'text-green-500 bg-green-500/10',
+  avançado: 'text-green-500 bg-green-500/10',
 };
 
 const LESSON_ICONS = {
@@ -38,7 +57,6 @@ type ViewState = { tela: 'lista' } | { tela: 'curso'; cursoId: string } | { tela
 export function BibleCourses() {
   const [state, setState] = useState<ViewState>({ tela: 'lista' });
   const [progressos, setProgressos] = useState<Record<string, CursoProgresso>>({});
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const p: Record<string, CursoProgresso> = {};
@@ -50,8 +68,6 @@ export function BibleCourses() {
   }, []);
 
   const getCurso = useCallback((id: string) => CURSOS.find(c => c.id === id), []);
-
-  const getTotalAulas = useCallback((curso: Curso) => curso.módulos.reduce((sum, m) => sum + m.aulas.length, 0), []);
 
   const refreshProgress = useCallback((cursoId: string) => {
     const prog = obterProgressoCurso(cursoId);
@@ -74,77 +90,27 @@ export function BibleCourses() {
     checkAndUnlock({ type: 'lesson_completed' });
     checkAndUnlock({ type: 'study_time' });
     const curso = getCurso(cursoId);
-    if (curso) {
-      const prog = obterProgressoCurso(cursoId);
-      const total = getTotalAulas(curso);
-      if (prog && prog.aulasCompletas.length >= total) {
-        marcarCursoConcluido(cursoId);
-        refreshProgress(cursoId);
-        checkAndUnlock({ type: 'course_completed' });
-      }
+    if (curso && cursoProntoParaCertificado(curso, obterProgressoCurso(cursoId))) {
+      marcarCursoConcluido(cursoId);
+      refreshProgress(cursoId);
+      checkAndUnlock({ type: 'course_completed' });
     }
-  }, [getCurso, getTotalAulas, refreshProgress]);
+  }, [getCurso, refreshProgress]);
 
   const handleQuizComplete = useCallback((cursoId: string, aulaId: string, pontuacao: number, total: number) => {
     const aprovado = pontuacao >= Math.ceil(total * 0.7);
     salvarResultadoQuiz(cursoId, aulaId, pontuacao, total, aprovado);
-    marcarAulaCompleta(cursoId, aulaId);
+    if (aprovado) marcarAulaCompleta(cursoId, aulaId);
     refreshProgress(cursoId);
     checkAndUnlock({ type: 'lesson_completed' });
-    checkAndUnlock({ type: 'study_time' });
-    if (aprovado) {
-      const curso = getCurso(cursoId);
-      if (curso) {
-        const prog = obterProgressoCurso(cursoId);
-        const totalAulas = getTotalAulas(curso);
-        if (prog && prog.aulasCompletas.length >= totalAulas) {
-          marcarCursoConcluido(cursoId);
-          refreshProgress(cursoId);
-          checkAndUnlock({ type: 'course_completed' });
-        }
-      }
-      setState({ tela: 'certificado', cursoId });
+    const curso = getCurso(cursoId);
+    if (curso && aprovado && cursoProntoParaCertificado(curso, obterProgressoCurso(cursoId))) {
+      marcarCursoConcluido(cursoId);
+      refreshProgress(cursoId);
+      checkAndUnlock({ type: 'course_completed' });
     }
-  }, [getCurso, getTotalAulas, refreshProgress]);
-
-  const handleBaixarCertificado = useCallback((nomeCurso: string) => {
-    if (!canvasRef.current) return;
-    const nome = prompt('Digite seu nome completo para o certificado:');
-    if (!nome) return;
-    gerarCertificado(canvasRef.current, nome, nomeCurso, new Date().toISOString()).then((blob) => {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `certificado-${nomeCurso.toLowerCase().replace(/\s+/g, '-')}.png`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    });
-  }, []);
-
-  const handleCompartilharCertificado = useCallback(async (nomeCurso: string) => {
-    const shareData = {
-      title: `Certificado - ${nomeCurso}`,
-      text: `Conclui o curso "${nomeCurso}" no Sola Scriptura Bíblico! 🎓`,
-      url: typeof window !== 'undefined' ? window.location.origin + '/cursos' : '',
-    };
-    try {
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        await navigator.clipboard.writeText(shareData.url);
-        alert('Link copiado para a área de transferência!');
-      }
-    } catch {
-      try {
-        await navigator.clipboard.writeText(shareData.url);
-        alert('Link copiado para a área de transferência!');
-      } catch {
-        alert('Não foi possível compartilhar. Acesse: ' + shareData.url);
-      }
-    }
-  }, []);
+    setState({ tela: 'aula', cursoId, aulaId });
+  }, [getCurso, refreshProgress]);
 
   if (state.tela === 'certificado') {
     const curso = getCurso(state.cursoId);
@@ -152,10 +118,9 @@ export function BibleCourses() {
     return (
       <CertificadoView
         curso={curso}
-        canvasRef={canvasRef}
-        onBaixar={() => handleBaixarCertificado(curso.título)}
-        onCompartilhar={() => handleCompartilharCertificado(curso.título)}
-        onVoltar={() => setState({ tela: 'lista' })}
+        progresso={progressos[state.cursoId]}
+        onAtualizar={() => refreshProgress(state.cursoId)}
+        onVoltar={() => setState({ tela: 'curso', cursoId: state.cursoId })}
       />
     );
   }
@@ -186,7 +151,10 @@ export function BibleCourses() {
         curso={curso}
         aula={aula}
         onComplete={() => handleConcluirAula(state.cursoId, state.aulaId)}
-        onStartQuiz={() => setState({ tela: 'quiz', cursoId: state.cursoId, aulaId: state.aulaId })}
+        onStartQuiz={() => {
+          if (!quizLiberado(curso, state.aulaId, progressos[state.cursoId])) return;
+          setState({ tela: 'quiz', cursoId: state.cursoId, aulaId: state.aulaId });
+        }}
         onBack={() => setState({ tela: 'curso', cursoId: state.cursoId })}
         progresso={progressos[state.cursoId]}
         lessonIndex={currentIdx}
@@ -222,9 +190,11 @@ export function BibleCourses() {
       <div className="p-4 border-b border-[var(--border)]/40">
         <div className="flex items-center gap-2 mb-1">
           <GraduationCap className="w-5 h-5 text-[var(--brand)]" />
-          <h2 className="font-bold text-lg">Seminário Bíblico Gratuito</h2>
+          <h2 className="font-bold text-lg">Cursos introdutórios</h2>
         </div>
-        <p className="text-xs text-[var(--content-muted)]">Cursos introdutórios com certificado de conclusão nesta plataforma — sem carga horária inventada.</p>
+        <p className="text-xs text-[var(--content-muted)] leading-relaxed">
+          Aulas com texto e vídeo, trilha visível e certificado só depois de concluir as aulas e a avaliação (70%). Sem carga horária, seminário ou grau.
+        </p>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-4 border-b border-[var(--border)]/20">
         <div className="text-center p-2 rounded-lg bg-[var(--surface-sunken)]">
@@ -251,7 +221,7 @@ export function BibleCourses() {
       <ScrollArea>
         <div className="p-3 space-y-3">
           {CURSOS.map((curso) => {
-            const totalAulas = getTotalAulas(curso);
+            const totalAulas = totalAulasCurso(curso);
             const prog = progressos[curso.id];
             const concluido = estaConcluido(curso.id);
             const progressoPct = calcularProgresso(curso.id, totalAulas);
@@ -269,7 +239,7 @@ export function BibleCourses() {
                   <h3 className="font-bold text-sm mb-1">{curso.título}</h3>
                   <p className="text-xs text-[var(--content-muted)] mb-3 line-clamp-2">{curso.descrição}</p>
                   <div className="flex items-center gap-3 text-xs text-[var(--content-muted)] mb-3 flex-wrap">
-                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{curso.duração}</span>
+                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{rotuloCargaCurso(curso)}</span>
                     <span className="flex items-center gap-1"><BookOpen className="w-3 h-3" />{curso.módulos.length} modulos</span>
                     <span className="flex items-center gap-1"><FileText className="w-3 h-3" />{totalAulas} aulas</span>
                     <span className={cn('text-[10px] px-2 py-0.5 rounded-full font-medium', LEVEL_COLORS[curso.nível])}>{LEVEL_LABELS[curso.nível]}</span>
@@ -281,12 +251,12 @@ export function BibleCourses() {
                         <span className="text-[10px] font-bold">{progressoPct}%</span>
                       </div>
                       <Progress value={progressoPct} className="h-1.5 mb-3" />
-                      <Button onClick={() => setState({ tela: 'curso', cursoId: curso.id })} size="sm" className="w-full bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white text-xs">
+                      <Button onClick={() => setState({ tela: 'curso', cursoId: curso.id })} size="sm" className="w-full min-h-[44px] bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white text-xs">
                         {concluido ? 'Ver Certificado' : 'Continuar Estudando'}
                       </Button>
                     </div>
                   ) : (
-                    <Button onClick={() => handleMatricular(curso.id)} size="sm" variant="outline" className="w-full text-xs">
+                    <Button onClick={() => handleMatricular(curso.id)} size="sm" variant="outline" className="w-full min-h-[44px] text-xs">
                       Começar Curso — Gratuito
                     </Button>
                   )}
@@ -300,63 +270,161 @@ export function BibleCourses() {
   );
 }
 
-function CertificadoView({ curso, canvasRef, onBaixar, onCompartilhar, onVoltar }: { curso: Curso; canvasRef: React.RefObject<HTMLCanvasElement | null>; onBaixar: () => void; onCompartilhar: () => void; onVoltar: () => void }) {
+function CertificadoView({
+  curso,
+  progresso,
+  onAtualizar,
+  onVoltar,
+}: {
+  curso: Curso;
+  progresso?: CursoProgresso;
+  onAtualizar: () => void;
+  onVoltar: () => void;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [nome, setNome] = useState('');
+  const [autenticado, setAutenticado] = useState(false);
+  const [emitindo, setEmitindo] = useState(false);
+  const [erro, setErro] = useState<string | null>(null);
+  const [certificado, setCertificado] = useState<CertificadoCurso | null>(progresso?.certificado ?? null);
+  const [pronto, setPronto] = useState(false);
+  const pronta = cursoProntoParaCertificado(curso, progresso);
+  const total = totalAulasCurso(curso);
+  const feitas = progresso?.aulasCompletas.length ?? 0;
+
+  useEffect(() => {
+    const u = authService.getUsuario();
+    if (u?.nome) {
+      setNome(u.nome);
+      setAutenticado(true);
+    } else if (typeof window !== 'undefined') {
+      setNome(localStorage.getItem(CURSO_NOME_KEY) || '');
+    }
+  }, []);
+
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    import('@/lib/certificado').then(({ gerarCertificado }) => {
-      gerarCertificado(canvas, 'Estudante da Bíblia', curso.título, new Date().toISOString()).catch(() => {});
+    if (!canvas || !certificado) {
+      setPronto(false);
+      return;
+    }
+    const op = diplomaCursoIntroducao({
+      nome: certificado.nome,
+      nomeCurso: curso.título,
+      dataIso: certificado.data,
+      id: certificado.id,
+      hash: certificado.hash,
+      aulasFeitas: certificado.aulasFeitas,
+      totalAulas: certificado.totalAulas,
+      autenticado: certificado.autenticado,
     });
-  }, [curso.título, canvasRef]);
+    gerarCertificado(canvas, certificado.nome, curso.título, certificado.data, op)
+      .then(() => setPronto(true))
+      .catch(() => setPronto(false));
+  }, [certificado, curso.título]);
+
+  async function emitir() {
+    setErro(null);
+    setEmitindo(true);
+    try {
+      const cert = await emitirCertificadoCurso({ curso, nome, autenticado });
+      setCertificado(cert);
+      onAtualizar();
+    } catch (e) {
+      setErro(e instanceof Error ? e.message : 'Não foi possível emitir.');
+    } finally {
+      setEmitindo(false);
+    }
+  }
+
+  function baixar() {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    canvas.toBlob((blob) => {
+      if (!blob) return;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `certificado-${curso.id}.png`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }, 'image/png');
+  }
 
   return (
-    <div className="flex flex-col h-full items-center justify-center p-6 text-center">
-      <div className="animate-scale-in">
-        <Award className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
-        <h2 className="text-xl font-bold mb-2">Trilha concluída</h2>
-        <p className="text-sm text-[var(--content-muted)] mb-6">
-          Conclusão do curso introdutório <strong>{curso.título}</strong>. Este diploma não atesta carga horária acadêmica nem estudo avançado.
+    <div className="flex flex-col p-5 sm:p-6 space-y-4">
+      <button type="button" onClick={onVoltar} className="text-xs text-[var(--brand)] flex items-center gap-1 min-h-[44px] hover:underline self-start">
+        <ArrowLeft className="w-3 h-3" /> Voltar ao curso
+      </button>
+      <Award className="w-12 h-12 text-yellow-500" />
+      <h2 className="text-xl font-bold">Certificado — {curso.título}</h2>
+      <p className="text-sm text-[var(--content-muted)] leading-relaxed">
+        O diploma atesta a conclusão das aulas deste curso introdutório nesta plataforma. Não atesta carga horária, seminário nem grau.
+      </p>
+      <p className="text-xs text-[var(--content-muted)]">{feitas} de {total} aulas marcadas.</p>
+      {!pronta && (
+        <p className="text-sm text-amber-700 dark:text-amber-400/90 leading-relaxed">
+          Ainda faltam aulas ou a avaliação (70%). O certificado não é emitido com um clique.
         </p>
-        <canvas ref={canvasRef} width={540} height={420} className="rounded-lg shadow-2xl mb-4 max-w-full" />
-        <div className="flex gap-3 justify-center flex-wrap">
-          <Button onClick={onBaixar} className="bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
-            <Download className="w-4 h-4 mr-2" /> Baixar Certificado
+      )}
+      {pronta && !certificado && (
+        <>
+          <label className="block text-sm text-left">
+            <span className="text-[var(--content-muted)] text-xs uppercase tracking-wider">Nome no certificado</span>
+            <input
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              className="mt-1 w-full min-h-[44px] rounded-lg bg-[var(--surface-sunken)] border border-[var(--border)] px-3 text-[var(--content-primary)]"
+              placeholder="Nome completo"
+            />
+          </label>
+          <Button onClick={emitir} disabled={emitindo || nome.trim().length < 3} className="min-h-[44px] bg-[var(--brand)] text-white">
+            <Award className="w-4 h-4 mr-2" /> Emitir certificado
           </Button>
-          <Button variant="outline" onClick={onCompartilhar}>
-            <Share2 className="w-4 h-4 mr-2" /> Compartilhar
-          </Button>
-          <Button variant="outline" onClick={onVoltar}>
-            <ArrowLeft className="w-4 h-4 mr-2" /> Voltar
-          </Button>
-        </div>
-      </div>
+          {erro && <p className="text-xs text-red-500">{erro}</p>}
+        </>
+      )}
+      {certificado && (
+        <>
+          <canvas ref={canvasRef} className="w-full max-w-3xl mx-auto rounded-lg shadow-2xl border border-[var(--brand-default)]/20" style={{ aspectRatio: '1200 / 850' }} />
+          <p className="text-xs font-mono text-[var(--content-muted)]">ID {certificado.id} · SHA {certificado.hash}</p>
+          <div className="flex flex-wrap gap-2">
+            <Button onClick={baixar} disabled={!pronto} className="min-h-[44px] bg-[var(--brand)] text-white">
+              <Download className="w-4 h-4 mr-2" /> Baixar PNG
+            </Button>
+            <Button variant="outline" onClick={onVoltar} className="min-h-[44px]">
+              <ArrowLeft className="w-4 h-4 mr-2" /> Voltar
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
 
 function CursoDetailView({ curso, progresso, onAulaClick, onBack, onCertificado }: { curso: Curso; progresso?: CursoProgresso; onAulaClick: (aulaId: string) => void; onBack: () => void; onCertificado: () => void }) {
   const [modExpandido, setModExpandido] = useState<string | null>(curso.módulos[0]?.id || null);
-  const totalAulas = curso.módulos.reduce((s, m) => s + m.aulas.length, 0);
+  const totalAulas = totalAulasCurso(curso);
   const aulasCompletas = progresso?.aulasCompletas.length || 0;
   const progressoPct = totalAulas > 0 ? Math.round((aulasCompletas / totalAulas) * 100) : 0;
-  const concluido = estaConcluido(curso.id);
+  const pronta = cursoProntoParaCertificado(curso, progresso);
+  const proxima = proximaAulaPendente(curso, progresso);
 
-  // Find quiz lessons for quick access
   const quizAulas = curso.módulos.flatMap(m => m.aulas.filter(a => a.tipo === 'quiz'));
-  const quizCompleto = quizAulas.length > 0 && quizAulas.every(a => progresso?.aulasCompletas.includes(a.id));
+  const proximoQuiz = quizAulas.find((q) => quizLiberado(curso, q.id, progresso) && !progresso?.aulasCompletas.includes(q.id));
 
   return (
     <div className="flex flex-col h-full">
       <div className="p-4 border-b border-[var(--border)]/40">
-        <button onClick={onBack} className="text-xs text-[var(--brand)] mb-2 flex items-center gap-1 hover:underline">
+        <button onClick={onBack} className="text-xs text-[var(--brand)] mb-2 flex items-center gap-1 min-h-[44px] hover:underline">
           <ArrowLeft className="w-3 h-3" /> Voltar aos cursos
         </button>
         <h2 className="font-bold text-lg">{curso.título}</h2>
         <p className="text-xs text-[var(--content-muted)] mt-1">{curso.descrição}</p>
         <div className="flex items-center gap-3 mt-3 flex-wrap">
-          <div className="flex items-center gap-1 text-xs"><Clock className="w-3 h-3" /> {curso.duração}</div>
-          <span className={cn('text-[10px] px-2 py-0.5 rounded-full font-medium', LEVEL_COLORS[curso.nível])}>{LEVEL_LABELS[curso.nível]}</span>
-          {concluido && <span className="text-[10px] px-2 py-0.5 rounded-full font-medium bg-green-500/10 text-green-500">Concluído</span>}
+          <div className="flex items-center gap-1 text-xs"><Clock className="w-3 h-3" /> {rotuloCargaCurso(curso)}</div>
+          <span className={cn('text-[10px] px-2 py-0.5 rounded-full font-medium', LEVEL_COLORS[curso.nível])}>{rotuloNivelCurso(curso)}</span>
+          {pronta && <span className="text-[10px] px-2 py-0.5 rounded-full font-medium bg-green-500/10 text-green-500">Pronto para certificado</span>}
         </div>
         {progresso?.matriculado && (
           <div className="mt-3">
@@ -364,26 +432,19 @@ function CursoDetailView({ curso, progresso, onAulaClick, onBack, onCertificado 
             <p className="text-[10px] text-[var(--content-muted)] mt-1">{progressoPct}% concluido ({aulasCompletas}/{totalAulas} aulas)</p>
           </div>
         )}
-        {concluido && (
-          <Button onClick={onCertificado} size="sm" className="mt-3 bg-yellow-500 hover:bg-yellow-600 text-black text-xs">
-            <Award className="w-3 h-3 mr-1" /> Ver Certificado
+        {pronta && (
+          <Button onClick={onCertificado} size="sm" className="mt-3 min-h-[44px] bg-yellow-500 hover:bg-yellow-600 text-black text-xs">
+            <Award className="w-3 h-3 mr-1" /> Certificado
           </Button>
         )}
-        {quizAulas.length > 0 && !concluido && (
-          <Button
-            onClick={() => {
-              const quizAula = quizAulas[0];
-              if (progresso?.aulasCompletas.includes(quizAula.id)) {
-                onAulaClick(quizAula.id);
-              } else {
-                onAulaClick(quizAula.id);
-              }
-            }}
-            size="sm"
-            className="mt-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs"
-          >
-            <HelpCircle className="w-3 h-3 mr-1" />
-            {quizCompleto ? 'Ver Avaliação' : 'Fazer Avaliação Final'}
+        {proxima && (
+          <Button onClick={() => onAulaClick(proxima.id)} size="sm" className="mt-3 ml-2 min-h-[44px] bg-[var(--brand)] text-white text-xs">
+            Continuar: {proxima.título}
+          </Button>
+        )}
+        {proximoQuiz && (
+          <Button onClick={() => onAulaClick(proximoQuiz.id)} size="sm" className="mt-3 min-h-[44px] bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs">
+            <HelpCircle className="w-3 h-3 mr-1" /> Avaliação liberada
           </Button>
         )}
       </div>
@@ -446,18 +507,21 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso, onN
   const [notasExpandidas, setNotasExpandidas] = useState(false);
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [noteText, setNoteText] = useState('');
+  const [confirmou, setConfirmou] = useState(false);
+  const quizOk = aula.tipo !== 'quiz' || quizLiberado(curso, aula.id, progresso);
 
   const lessonText = aula.conteúdo || '';
 
   useEffect(() => {
     const note = getNote(aula.id);
     if (note) setNoteText(note.text);
+    setConfirmou(false);
   }, [aula.id]);
 
   return (
     <div className="flex flex-col h-full">
       <div className="p-4 border-b border-[var(--border)]/40">
-        <button onClick={onBack} className="text-xs text-[var(--brand)] mb-2 flex items-center gap-1 hover:underline">
+        <button onClick={onBack} className="text-xs text-[var(--brand)] mb-2 flex items-center gap-1 min-h-[44px] hover:underline">
           <ArrowLeft className="w-3 h-3" /> Voltar ao curso
         </button>
         <div className="flex items-start justify-between gap-3">
@@ -481,33 +545,9 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso, onN
               <MarkdownRenderer content={aula.conteúdo} />
             </div>
           )}
-          {aula.tipo === 'video' && aula.videoUrl && (
+          {aula.tipo === 'video' && (
             <div className="space-y-3">
-              <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black ring-1 ring-[var(--border)]/20">
-                <iframe
-                  src={`${aula.videoUrl.replace('watch?v=', 'embed/')}?rel=0&modestbranding=1`}
-                  title={aula.videoTítulo || aula.título}
-                  className="absolute inset-0 w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-              {aula.videoTítulo && (
-                <div className="flex items-center justify-between gap-2 px-1">
-                  <div className="flex items-center gap-2 text-xs text-[var(--content-muted)]">
-                    <Play className="w-3 h-3 text-[var(--brand-default)]" />
-                    <span className="font-medium">{aula.videoTítulo}</span>
-                  </div>
-                  <a
-                    href={aula.videoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[10px] text-[var(--brand-default)] hover:underline flex items-center gap-1"
-                  >
-                    Abrir no YouTube ↗
-                  </a>
-                </div>
-              )}
+              <YouTubeAulaPlayer url={aula.videoUrl} titulo={aula.videoTítulo || aula.título} subtitulo={aula.videoTítulo} />
               {aula.conteúdo && (
                 <div className="prose prose-sm dark:prose-invert max-w-none mt-2">
                   <MarkdownRenderer content={aula.conteúdo} />
@@ -518,13 +558,19 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso, onN
           {aula.tipo === 'quiz' && (
             <div className="text-center py-8">
               <HelpCircle className="w-12 h-12 text-[var(--brand)] mx-auto mb-4" />
-              <h3 className="font-bold text-lg mb-2">Avaliação Final</h3>
+              <h3 className="font-bold text-lg mb-2">Avaliação</h3>
               <p className="text-sm text-[var(--content-muted)] mb-4">
-                Responda {aula.perguntas?.length || 0} perguntas. Você precisa acertar 70% para ser aprovado e receber o certificado.
+                Responda {aula.perguntas?.length || 0} perguntas. É preciso acertar 70% para esta aula contar. O certificado só sai quando todas as aulas estiverem feitas.
               </p>
-              <Button onClick={onStartQuiz} className="bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
-                Iniciar Avaliação
-              </Button>
+              {quizOk ? (
+                <Button onClick={onStartQuiz} className="min-h-[44px] bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
+                  Iniciar Avaliação
+                </Button>
+              ) : (
+                <p className="text-sm text-amber-700 dark:text-amber-400/90">
+                  Conclua as aulas anteriores da trilha para liberar esta avaliação.
+                </p>
+              )}
             </div>
           )}
           {aula.versículosChave && aula.versículosChave.length > 0 && (
@@ -562,15 +608,34 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso, onN
               />
             </div>
           )}
-          <div className="p-4">
+          <div className="p-4 space-y-3">
             {completa ? (
-              <div className="flex items-center gap-2 text-green-500 text-sm">
+              <div className="flex items-center gap-2 text-green-500 text-sm min-h-[44px]">
                 <CheckCircle2 className="w-4 h-4" /> Aula concluída
               </div>
             ) : (
-              <Button onClick={onComplete} className="w-full bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
-                Marcar como Concluída
-              </Button>
+              <>
+                <label className="flex items-start gap-3 text-sm text-[var(--content-secondary)] cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={confirmou}
+                    onChange={(e) => setConfirmou(e.target.checked)}
+                    className="mt-1 w-4 h-4"
+                  />
+                  <span>
+                    {aula.tipo === 'video'
+                      ? 'Assisti o vídeo (quando disponível) e li o texto desta aula.'
+                      : 'Li o texto desta aula.'}
+                  </span>
+                </label>
+                <Button
+                  onClick={onComplete}
+                  disabled={!confirmou}
+                  className="w-full min-h-[44px] bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white disabled:opacity-50"
+                >
+                  Marcar como concluída
+                </Button>
+              </>
             )}
           </div>
         </div>
@@ -582,7 +647,7 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso, onN
             onClick={onPrevLesson}
             disabled={!onPrevLesson}
             className={cn(
-              'flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all',
+              'flex items-center gap-1.5 px-3 min-h-[44px] rounded-lg text-xs font-medium transition-all',
               onPrevLesson
                 ? 'bg-[var(--surface-sunken)] text-[var(--content-primary)] hover:bg-[var(--surface-raised)]'
                 : 'opacity-30 cursor-not-allowed text-[var(--content-muted)]'
@@ -600,7 +665,7 @@ function AulaView({ curso, aula, onComplete, onStartQuiz, onBack, progresso, onN
             onClick={onNextLesson}
             disabled={!onNextLesson}
             className={cn(
-              'flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all',
+              'flex items-center gap-1.5 px-3 min-h-[44px] rounded-lg text-xs font-medium transition-all',
               onNextLesson
                 ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] hover:opacity-90'
                 : 'opacity-30 cursor-not-allowed text-[var(--content-muted)]'
@@ -650,10 +715,10 @@ function QuizView({ perguntas, onComplete, onBack }: { perguntas: QuizQuestion[]
   return (
     <div className="flex flex-col h-full">
       <div className="p-4 border-b border-[var(--border)]/40">
-        <button onClick={onBack} className="text-xs text-[var(--brand)] mb-2 flex items-center gap-1 hover:underline">
+        <button onClick={onBack} className="text-xs text-[var(--brand)] mb-2 flex items-center gap-1 min-h-[44px] hover:underline">
           <ArrowLeft className="w-3 h-3" /> Voltar a aula
         </button>
-        <h2 className="font-bold text-lg">Avaliação Final</h2>
+        <h2 className="font-bold text-lg">Avaliação</h2>
         <div className="flex items-center gap-2 mt-2">
           <span className="text-xs text-[var(--content-muted)]">Pergunta {atual + 1} de {perguntas.length}</span>
           <Progress value={((atual + 1) / perguntas.length) * 100} className="h-1.5 flex-1" />
@@ -672,7 +737,7 @@ function QuizView({ perguntas, onComplete, onBack }: { perguntas: QuizQuestion[]
               }
               return (
                 <button key={idx} onClick={() => handleResponder(idx)}
-                  className={cn('w-full p-3 rounded-xl border text-left text-sm transition-all', style)}>
+                  className={cn('w-full p-3 min-h-[44px] rounded-xl border text-left text-sm transition-all', style)}>
                   <span className="font-medium mr-2">{String.fromCharCode(65 + idx)}.</span> {op}
                 </button>
               );
@@ -687,7 +752,7 @@ function QuizView({ perguntas, onComplete, onBack }: { perguntas: QuizQuestion[]
       </ScrollArea>
       {respondido && (
         <div className="p-4 border-t border-[var(--border)]/40">
-          <Button onClick={handleProxima} className="w-full bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
+          <Button onClick={handleProxima} className="w-full min-h-[44px] bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">
             {atual < perguntas.length - 1 ? 'Próxima Pergunta' : 'Ver Resultado'}
           </Button>
         </div>

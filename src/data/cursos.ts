@@ -50,13 +50,26 @@ import { CURSO_JOAO } from './_curso_joao';
 import { CURSO_TEOLOGIA_SISTEMATICA } from './_curso_teologia_sistematica';
 import { CURSO_VIDA_DE_JESUS } from './_curso_vida_de_jesus';
 
+export function aulasDoCursoLista(curso: Curso): CursoAula[] {
+  return curso.módulos.flatMap((m) => m.aulas);
+}
+
+export function rotuloNivelCurso(_curso: Curso): string {
+  return 'Introdução';
+}
+
+export function rotuloCargaCurso(curso: Curso): string {
+  const n = aulasDoCursoLista(curso).length;
+  return `${n} aulas · introdução`;
+}
+
 export const CURSOS: Curso[] = [
   {
     id: 'conhecendo-a-biblia',
     título: 'Conhecendo a Bíblia',
-    descrição: 'Os pilares para entender a Bíblia: inspiração, cânon, traduções, divisões e métodos de estudo. O primeiro passo para qualquer crente.',
-    instrutor: 'Sola Scriptura',
-    duração: '4 semanas',
+  descrição: 'Os pilares para entender a Bíblia: inspiração, cânon, traduções, divisões e métodos de estudo. Curso introdutório — primeiro passo, sem carga horária inventada.',
+  instrutor: 'Sola Scriptura',
+  duração: 'Introdução',
     nível: 'iniciante',
     categoria: 'Introdução Bíblica',
     certificado: true,
@@ -188,13 +201,13 @@ Uma tradução para estudiosos (como a ARA) prioriza fidelidade ao original. Uma
 | Almeida Corrigida Fiel | ACF | Formal, literal | Estudiosos |
 | Nova Versão Internacional | NVI | Equilibrada | Geral |
 | King James Atualizada | KJA | Equilibrada | Geral |
-| Nova Bíblia do Dia | NBV | Coloquial | Iniciantes |
+| Nova Bíblia Viva | NBV | Coloquial | Iniciantes |
 
 ### Qual a melhor tradução?
 
 A melhor tradução é aquela que você vai ler! Para estudo profundo, ter duas ou três traduções é ideal — comparar a ARA com a NVI, por exemplo, revela nuances que uma só tradução não captura.
 
-A Sola Scriptura oferece 24 traduções para você comparar livremente.`,
+A Sola Scriptura oferece várias traduções para você comparar livremente.`,
             versículosChave: [
               { ref: 'Provérbios 8:11', texto: 'Porque a sabedoria vale mais que as pedras preciosas...' },
             ],

@@ -3,10 +3,10 @@ import { Curso } from './cursos';
 export const CURSO_FUNDAMENTOS: Curso = {
   id: 'fundamentos-da-fe',
   título: 'Fundamentos da Fé Cristã',
-  descrição: 'Os pilares fundamentais do cristianismo: salvação, graça, fé, arrependimento, trindade e a autoridade das Escrituras.',
+  descrição: 'Introdução aos pilares da fé: salvação, graça, fé, arrependimento, Trindade e a autoridade das Escrituras. Sem carga horária inventada.',
   instrutor: 'Sola Scriptura',
-  duração: '6 semanas',
-  nível: 'intermediário',
+  duração: 'Introdução',
+  nível: 'iniciante',
   categoria: 'Teologia Sistemática',
   certificado: true,
   módulos: [
@@ -154,10 +154,8 @@ Entender a gravidade do pecado é essencial para apreciar a grandeza da salvaç�
         {
           id: 'aula-1-3',
           título: 'A Solução em Cristo: Substituição e Expição',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '15 min',
-          videoUrl: 'https://www.youtube.com/watch?v=EEf8lGwWr2k',
-          videoTítulo: 'Santidade – BibleProject Português',
           conteúdo: `## A Solução em Cristo: Substituição e Expição
 
 Se o problema da humanidade é o pecado com suas consequências de morte e separação, a solução não veio através de esforços humanos, religiões ou filosofias. A solução veio através de uma pessoa: Jesus Cristo.

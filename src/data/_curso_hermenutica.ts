@@ -3,10 +3,10 @@ import type { Curso } from './cursos';
 export const CURSO_HERMENEUTICA: Curso = {
   id: 'hermeneutica-pratica',
   título: 'Hermenêutica Prática',
-  descrição: 'Aprenda a interpretar a Bíblia corretamente com métodos comprovados. Evite erros comuns e aprofunde seu entendimento.',
+  descrição: 'Introdução à leitura fiel da Bíblia: contexto, gênero e o texto no seu lugar. Métodos práticos — não é curso avançado de seminário.',
   instrutor: 'Sola Scriptura',
-  duração: '5 semanas',
-  nível: 'intermediário',
+  duração: 'Introdução',
+  nível: 'iniciante',
   categoria: 'Interpretação Bíblica',
   certificado: true,
   módulos: [
@@ -531,10 +531,8 @@ A chave é sempre perguntar: "O autor estava sendo literal ou figurado? Como eu 
         {
           id: 'aula-herm-2-3',
           título: 'Literatura profética',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '14 min',
-          videoUrl: 'https://www.youtube.com/watch?v=sAl1sYsN3eM',
-          videoTítulo: 'Estilos literários na Bíblia – BibleProject',
           conteúdo: `## Literatura profética
 
 A literatura profética é uma das mais mal compreendidas da Bíblia. Muita gente abre o livro de Apocalipse ou Isaías e se perde em símbolos, visões e linguagem apocalíptica. Entender os gêneros proféticos é a chave para destrancar esses livros.

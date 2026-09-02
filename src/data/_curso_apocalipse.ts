@@ -3,10 +3,10 @@ import type { Curso } from './cursos';
 export const CURSO_APOCALIPSE: Curso = {
   id: 'apocalipse-consumacao',
   título: 'Apocalipse: A Consumação de Todas as Coisas',
-  descrição: 'Decifre o livro mais misterioso da Bíblia. Das sete igrejas ao novo céu e nova terra, entenda o plano final de Deus.',
+  descrição: 'Curso introdutório ao Apocalipse: sete igrejas, selos, esperança da nova criação. Símbolos lidos à luz da Escritura, sem tabela de datas nem grau avançado.',
   instrutor: 'Sola Scriptura',
-  duração: '6 semanas',
-  nível: 'avançado',
+  duração: 'Introdução',
+  nível: 'iniciante',
   categoria: 'Estudo Bíblico',
   certificado: true,
   módulos: [
@@ -32,10 +32,8 @@ export const CURSO_APOCALIPSE: Curso = {
         {
           id: 'aula-apo-1-2',
           título: 'A visão de Cristo (Ap 1:9-20)',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '15 min',
-          videoUrl: 'https://www.youtube.com/watch?v=BLQEAe9VDUQ',
-          videoTítulo: 'Apocalipse 1-11 || BibleProject Português',
           conteúdo: '## A visão de Cristo\n\nJoão vê Cristo glorificado no meio das sete candelabros. A visão é impressionante e teológica.\n\n### A descrição\n\nCabelos brancos como lã (sabedoria e eternidade). Olhos como chamas de fogo (juízo e conhecimento). Pés como bronze refinado (solidez e justiça). Voz como águas caudalosas (poder e autoridade).\n\n### Os sete candelabros\n\nRepresentam as sete igrejas. Cristo anda no meio delas. Ele está presente na Sua igreja.\n\n### As sete estrelas\n\nSão os anjos (mensageiros) das sete igrejas. Cristo as tem na Sua mão direita. Ele tem autoridade sobre as igrejas.\n\n### Eu sou o primeiro e o último\n\nCristo é o Alfa e o Omega, o que era, o que é e o que há de vir. Ele é soberano sobre toda a história.',
           versículosChave: [
             { ref: 'Apocalipse 1:12-13', texto: 'Vi sete candelabros de ouro... e no meio dos candelabros, um como o Filho do Homem.' },
@@ -107,10 +105,8 @@ export const CURSO_APOCALIPSE: Curso = {
         {
           id: 'aula-apo-2-2',
           título: 'Os sete selos (Ap 6-8:1)',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '15 min',
-          videoUrl: 'https://www.youtube.com/watch?v=BLQEAe9VDUQ',
-          videoTítulo: 'Apocalipse 1-11 – BibleProject Português',
           conteúdo: '## Os sete selos\n\nO Cordeiro abre os selos do pergaminho, e o julgamento começa.\n\n### Os quatro cavaleiros\n\n1. Cavaleiro branco — conquista (ou o evangelho)\n2. Cavaleiro vermelho — guerra\n3. Cavaleiro preto — fome\n4. Cavaleiro pálido — morte\n\n### Os selos 5-7\n\nO quinto selo revela os mártires clamando por justiça. O sexto selo traz terremotos e desastres. O sétimo selo traz silêncio por meia hora — o mais temível dos sinais.\n\n### O significado\n\nOs selos revelam o julgamento de Deus sobre o mal. Não é arbitrário — é a consequência do pecado e a defesa dos oprimidos.\n\n### A esperança\n\nMesmo no meio do julgamento, os mártres recebem brancos vestidos e são consolados. Deus não esquece os que sofreram.',
           versículosChave: [
             { ref: 'Apocalipse 6:1', texto: 'E vi quando o Cordeiro abriu um dos sete selos.' },
@@ -193,9 +189,7 @@ export const CURSO_APOCALIPSE: Curso = {
         {
           id: 'aula-apo-3-3',
           título: 'O novo céu e a nova terra (Ap 21-22)',
-          tipo: 'video',
-          videoUrl: 'https://www.youtube.com/watch?v=eizPQBawrsU',
-          videoTítulo: 'Apocalipse 12-22 || Bible Project Português ||',
+          tipo: 'texto',
           duração: '16 min',
           conteúdo: '## O novo céu e a nova terra\n\nO Apocalipse termina com a mais bela visão da Bíblia: a nova criação.\n\n### A renovação\n\nVi um novo céu e uma nova terra (21:1). Não é destruição total — é renovação. Assim como a ressurreição de Cristo, a criação será restaurada e transformada.\n\n### A nova Jerusalém\n\nA cidade desce do céu, preparada como uma noiva. Suas portas nunca se fecharão. Não há Templo nela, porque o Senhor Deus Todo-Poderoso e o Cordeiro são o seu templo.\n\n### Sem sofrimento\n\nEnxugará toda lágrima dos seus olhos, e a morte não haverá mais (21:4). Não haverá mais luto, nem pranto, nem dor.\n\n### O rio da vida\n\nUm rio da água da vida corria do trono de Deus (22:1). De cada lado do rio, a árvore da vida. As folhas são para a cura das nações.\n\n### A bênção final\n\nNão haverá mais noite; e não precisarão de lâmpada nem de luz do sol, porque o Senhor Deus os iluminará (22:5). A eternidade é luz eterna.\n\n### O convite final\n\nO Espírito e a noiva dizem: Vem! E quem ouve diga: Vem! (22:17). O Apocalipse termina com um convite aberto a todos.',
           versículosChave: [
@@ -208,10 +202,8 @@ export const CURSO_APOCALIPSE: Curso = {
         {
           id: 'aula-apo-3-4',
           título: 'A mensagem do Apocalipse para hoje',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '12 min',
-          videoUrl: 'https://www.youtube.com/watch?v=eizPQBawrsU',
-          videoTítulo: 'Apocalipse 12-22 – BibleProject Português',
           conteúdo: '## A mensagem do Apocalipse para hoje\n\nO Apocalipse não é apenas sobre o futuro — é uma mensagem para o presente.\n\n### Perseverança\n\nA mensagem central é: permanecei fiéis. A perseguição e o sofrimento são temporários. A vitória é eterna.\n\n### Esperança\n\nEm meio ao caos do mundo, o Apocalipse mostra que Deus está no controle. O trono não está vazio.\n\n### Justiça\n\nO Apocalipse assegura que toda injustiça será julgada. Os mártres receberão justiça. Os opressores serão responsabilizados.\n\n### Louvor\n\nO Apocalipse é o livro mais cheio de louvor da Bíblia. Mesmo no meio do julgamento, há adoração. O louvor é a resposta eterna ao amor de Deus.\n\n### Missão\n\nO Apocalipse nos envia ao mundo com a mensagem do evangelho. Há um convite aberto: Vem! (22:17).',
           versículosChave: [
             { ref: 'Apocalipse 2:10', texto: 'Sê fiel até a morte, e eu te darei a coroa da vida.' },

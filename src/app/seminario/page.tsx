@@ -37,33 +37,33 @@ interface NivelFormacao {
 const TRILHA_FORMACAO: NivelFormacao[] = [
   {
     id: 'fundamentos',
-    titulo: 'Fundamentos da Fé',
-    subtitulo: 'Nível Iniciante',
+    titulo: 'Primeiros passos',
+    subtitulo: 'Introdução',
     cor: 'from-emerald-500 to-teal-600',
     icone: Lightbulb,
-    descricao: 'Construa uma base sólida nos fundamentos da fé cristã, da interpretação bíblica às doutrinas essenciais.',
-    cursosIds: ['conhecendo-a-biblia', 'fundamentos-da-fe', 'genesis-origem'],
+    descricao: 'Cursos introdutórios: o que é a Bíblia, fundamentos da fé, Gênesis e a vida de Jesus. Sem carga horária nem grau.',
+    cursosIds: ['conhecendo-a-biblia', 'fundamentos-da-fe', 'genesis-origem', 'vida-de-jesus'],
     requisitos: [],
   },
   {
     id: 'intermediario',
-    titulo: 'Estudo Aprofundado',
-    subtitulo: 'Nível Intermediário',
+    titulo: 'Livros e leitura',
+    subtitulo: 'Introdução',
     cor: 'from-blue-500 to-indigo-600',
     icone: Brain,
-    descricao: 'Aprofunde seu conhecimento nos Evangelhos, livros poéticos e proféticos com exegese prática.',
-    cursosIds: ['hermeneutica-pratica', 'evangelhos-vida-de-jesus', 'salmos-oracao-louvor', 'joao-verbo', 'exodo-libertacao'],
-    requisitos: ['fundamentos'],
+    descricao: 'Hermenêutica prática, evangelhos, Salmos, João e Êxodo — ainda introdução, não seminário avançado.',
+    cursosIds: ['hermeneutica-pratica', 'evangelhos-vida-de-jesus', 'salmos-oração-louvor', 'joao-verbo', 'exodo-libertação'],
+    requisitos: [],
   },
   {
     id: 'avancado',
-    titulo: 'Teologia Sistematizada',
-    subtitulo: 'Nível Avançado',
+    titulo: 'Doutrina e cartas',
+    subtitulo: 'Introdução',
     cor: 'from-purple-500 to-violet-600',
     icone: Cross,
-    descricao: 'Domine as grandes doutrinas da fé: soteriologia, escatologia e teologia do Novo Testamento.',
-    cursosIds: ['romanos-teologia-cruz', 'apocalipse-consumacao'],
-    requisitos: ['fundamentos', 'intermediario'],
+    descricao: 'Teologia sistemática, Romanos e Apocalipse como introdução nesta plataforma — não é mestrado nem “nível avançado”.',
+    cursosIds: ['teologia-sistematica', 'romanos-teologia-cruz', 'apocalipse-consumacao'],
+    requisitos: [],
   },
 ];
 
@@ -123,9 +123,7 @@ export default function SeminarioPage() {
   const statsGlobais = useMemo(() => {
     const inscritos = Object.keys(cursosInscritos).length;
     const totalAulas = CURSOS.reduce((acc, c) => acc + c.módulos.reduce((a, m) => a + m.aulas.length, 0), 0);
-    const aulasCompletas = Object.values(cursosInscritos).reduce((acc, p) => acc + Math.round(totalAulas * p / 100), 0);
-    const tempoEstudo = aulasCompletas * 15;
-    return { inscritos, totalAulas, aulasCompletas, tempoEstudo };
+    return { inscritos, totalAulas };
   }, [cursosInscritos]);
 
   const nivelConcluido = useMemo(() => {
@@ -160,7 +158,7 @@ export default function SeminarioPage() {
       <main id="main-content" className="pt-20 pb-24 sm:pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="mb-6">
-            <Breadcrumbs items={[{ label: 'Início', href: '/' }, { label: 'Seminário' }]} />
+            <Breadcrumbs items={[{ label: 'Início', href: '/' }, { label: 'Cursos' }]} />
           </div>
 
           {/* Hero Section */}
@@ -176,16 +174,16 @@ export default function SeminarioPage() {
                   <GraduationCap className="w-8 h-8" />
                 </div>
                 <div>
-                  <h1 className="font-display text-3xl md:text-4xl font-bold">Seminário Bíblico Gratuito</h1>
-                  <p className="text-white/80 text-sm mt-1">Formação teológica completa — sem custo, sem registro</p>
+                  <h1 className="font-display text-3xl md:text-4xl font-bold">Cursos introdutórios</h1>
+                  <p className="text-white/80 text-sm mt-1">Trilha, vídeos e certificado de introdução — gratuito, sem grau de seminário</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
                 <StatCard icon={<BookOpen className="w-5 h-5" />} label="Cursos" value={CURSOS.length.toString()} />
-                <StatCard icon={<Clock className="w-5 h-5" />} label="Horas de estudo" value={`${Math.round(statsGlobais.tempoEstudo / 60)}h`} />
-                <StatCard icon={<Target className="w-5 h-5" />} label="Aulas" value={statsGlobais.totalAulas.toString()} />
-                <StatCard icon={<Award className="w-5 h-5" />} label="Certificados" value={statsGlobais.inscritos.toString()} />
+                <StatCard icon={<Target className="w-5 h-5" />} label="Aulas no catálogo" value={statsGlobais.totalAulas.toString()} />
+                <StatCard icon={<Clock className="w-5 h-5" />} label="Matrículas neste aparelho" value={statsGlobais.inscritos.toString()} />
+                <StatCard icon={<Award className="w-5 h-5" />} label="Cursos com diploma" value={CURSOS.filter(c => c.certificado).length.toString()} />
               </div>
             </div>
           </section>
@@ -193,7 +191,7 @@ export default function SeminarioPage() {
           {/* Tabs */}
           <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
             {[
-              { id: 'trilha' as const, label: 'Formação Teológica', icon: GraduationCap },
+              { id: 'trilha' as const, label: 'Ordem sugerida', icon: GraduationCap },
               { id: 'catalogo' as const, label: 'Todos os Cursos', icon: BookOpen },
               { id: 'progresso' as const, label: 'Meu Progresso', icon: Trophy },
               { id: 'favoritos' as const, label: 'Favoritos', icon: Heart },
@@ -225,8 +223,8 @@ export default function SeminarioPage() {
                 transition={{ duration: 0.25 }}
               >
                 <div className="mb-6">
-                  <h2 className="font-display text-2xl font-bold text-[var(--content-primary)] mb-2">Trilha de Formação Teológica</h2>
-                  <p className="text-[var(--content-secondary)] text-sm">Complete os níveis em ordem para obter sua formação completa</p>
+                  <h2 className="font-display text-2xl font-bold text-[var(--content-primary)] mb-2">Ordem sugerida</h2>
+                  <p className="text-[var(--content-secondary)] text-sm">Todos os grupos são introdução. Avance na ordem que quiser — não há “nível avançado” nem formação completa de seminário.</p>
                 </div>
 
                 <div className="mb-8 p-6 rounded-2xl bg-[var(--surface-raised)] border border-[var(--border)]/30">
@@ -268,7 +266,7 @@ export default function SeminarioPage() {
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2 mb-1">
-                                  <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--content-muted)]">Nível {idx + 1}</span>
+                                  <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--content-muted)]">Grupo {idx + 1}</span>
                                   {concluido && <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">Concluído</span>}
                                 </div>
                                 <h3 className="font-display text-xl font-bold text-[var(--content-primary)]">{nivel.titulo}</h3>
@@ -390,9 +388,9 @@ export default function SeminarioPage() {
 
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8">
                   <ProgressCard icon={<BookOpen className="w-5 h-5" />} label="Cursos Inscritos" value={statsGlobais.inscritos} total={CURSOS.length} color="text-blue-500" />
-                  <ProgressCard icon={<CheckCircle2 className="w-5 h-5" />} label="Aulas Concluídas" value={statsGlobais.aulasCompletas} total={statsGlobais.totalAulas} color="text-emerald-500" />
-                  <ProgressCard icon={<Clock className="w-5 h-5" />} label="Horas de Estudo" value={Math.round(statsGlobais.tempoEstudo / 60)} total={Math.round(statsGlobais.totalAulas * 15 / 60)} color="text-amber-500" />
-                  <ProgressCard icon={<Award className="w-5 h-5" />} label="Níveis Concluídos" value={nivelConcluido.length} total={TRILHA_FORMACAO.length} color="text-purple-500" />
+                  <ProgressCard icon={<CheckCircle2 className="w-5 h-5" />} label="Cursos no catálogo" value={CURSOS.length} total={CURSOS.length} color="text-emerald-500" />
+                  <ProgressCard icon={<Award className="w-5 h-5" />} label="Com certificado (introdução)" value={CURSOS.filter(c => c.certificado).length} total={CURSOS.length} color="text-amber-500" />
+                  <ProgressCard icon={<Target className="w-5 h-5" />} label="Grupos concluídos" value={nivelConcluido.length} total={TRILHA_FORMACAO.length} color="text-purple-500" />
                 </div>
 
                 {/* Gráfico de Progresso */}
@@ -405,7 +403,7 @@ export default function SeminarioPage() {
 
                 {/* Níveis */}
                 <div className="space-y-4 mb-8">
-                  <h3 className="font-display text-lg font-bold text-[var(--content-primary)]">Trilha de Formação</h3>
+                  <h3 className="font-display text-lg font-bold text-[var(--content-primary)]">Ordem sugerida</h3>
                   {TRILHA_FORMACAO.map((nivel, idx) => {
                     const Icone = nivel.icone;
                     const progressoNivel = nivel.cursosIds.reduce((acc, id) => acc + (cursosInscritos[id] || 0), 0) / nivel.cursosIds.length;

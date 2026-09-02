@@ -3,10 +3,10 @@ import type { Curso } from './cursos';
 export const CURSO_ROMANOS: Curso = {
   id: 'romanos-teologia-cruz',
   título: 'Romanos: A Teologia da Cruz',
-  descrição: 'Estude a carta mais sistemática do NT. De 1 a 16, Paulo explica o pecado, a justificação, a vida no espírito e o plano eterno de Deus.',
+  descrição: 'Curso introdutório à carta aos Romanos: pecado, justificação, vida no Espírito e o povo de Deus. Não é seminário nem carga horária.',
   instrutor: 'Sola Scriptura',
-  duração: '8 semanas',
-  nível: 'avançado',
+  duração: 'Introdução',
+  nível: 'iniciante',
   categoria: 'Estudo Bíblico',
   certificado: true,
   módulos: [
@@ -247,10 +247,8 @@ export const CURSO_ROMANOS: Curso = {
         {
           id: 'aula-rom-4-1',
           título: 'O plano para Israel (Rom 9-11)',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '14 min',
-          videoUrl: 'https://www.youtube.com/watch?v=w5rkwQb3cFM',
-          videoTítulo: 'Romanos 5-16 || Bible Project Português ||',
           conteúdo: '## O plano para Israel\n\nPaulo dedica três capítulos a questão de Israel: por que muitos judeus rejeitaram o Messias?\n\n### A dor de Paulo\n\nTenho grande tristeza e contínua dor no meu coração pelos meus irmãos segundo a carne (9:2). Paulo ama Israel e se entristece pela sua incredulidade.\n\n### A soberania de Deus\n\nNão é a palavra de Deus falhou? (9:6). Não! Deus é soberano sobre Suas promessas. Nem todo Israel é Israel (9:6).\n\n### O barro e o oleiro\n\nDeus tem direito de fazer vasos para honra e para desonra (9:21). Isso não é injustiça — é soberania.\n\n### O mistério\n\nParte de Israel endureceu para que a salvação fosse aos gentios, e depois todo Israel será salvo (11:25-26). O plano de Deus inclui todos.',
           versículosChave: [
             { ref: 'Romanos 9:6', texto: 'Não caiu por terra a palavra de Deus.' },

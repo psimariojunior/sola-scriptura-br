@@ -3,10 +3,10 @@ import { Curso } from './cursos';
 export const CURSO_EVANGELHOS: Curso = {
   id: 'evangelhos-vida-de-jesus',
   título: 'Evangelhos: A Vida de Jesus',
-  descrição: 'Estudo comparativo dos quatro evangelhos — Mateus, Marcos, Lucas e João. A pessoa e obra de Cristo.',
+  descrição: 'Introdução comparativa aos quatro evangelhos — Mateus, Marcos, Lucas e João. Panoramas em vídeo (BibleProject) sem repetir o mesmo iframe em aulas diferentes.',
   instrutor: 'Sola Scriptura',
-  duração: '8 semanas',
-  nível: 'intermediário',
+  duração: 'Introdução',
+  nível: 'iniciante',
   categoria: 'Novo Testamento',
   certificado: true,
   módulos: [
@@ -635,10 +635,8 @@ José de Arimateia pede o corpo de Jesus e o sepulta em um túmulo novo, onde ni
         {
           id: 'aula-ev-2-5',
           título: 'A ressurreição e ascensão (cap. 16)',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '15 min',
-          videoUrl: 'https://www.youtube.com/watch?v=EOT1Mo_YERM',
-          videoTítulo: 'Evangelho de Marcos – BibleProject Português',
           conteúdo: `## A ressurreição e ascensão (cap. 16)
 
 Marcos 16 é um dos capítulos mais debatidos da Bíblia. A versão mais antiga dos manuscritos (como o Código Sinaiticus e o Vaticano) termina em 16:8, com as mulheres fugindo do túmulo com medo. Versões posteriores acrescentam aparições e a ascensão. Vamos estudar o que Marcos realmente escreveu.

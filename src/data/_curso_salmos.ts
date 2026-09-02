@@ -3,9 +3,9 @@ import type { Curso } from './cursos';
 export const CURSO_SALMOS: Curso = {
   id: 'salmos-oração-louvor',
   título: 'Salmos: Oração e Louvor',
-  descrição: 'Explore o livro de Salmos: louvor, lamentação e sabedoria. Aprenda a orar, a louvar e a encontrar conforto na Palavra.',
+  descrição: 'Introdução ao Saltério: louvor, lamentação e sabedoria. Um vídeo de panorama por tema; as demais aulas são texto. Sem carga horária inventada.',
   instrutor: 'Sola Scriptura',
-  duração: '6 semanas',
+  duração: 'Introdução',
   nível: 'iniciante',
   categoria: 'Estudo Bíblico',
   certificado: true,
@@ -46,10 +46,8 @@ export const CURSO_SALMOS: Curso = {
         {
           id: 'aula-sal-1-3',
           título: 'Salmo 100: Entrem com louvor',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '12 min',
-          videoUrl: 'https://www.youtube.com/watch?v=fOPF8khGeII',
-          videoTítulo: 'Salmos – BibleProject Português',
           conteúdo: '## Salmo 100: Entrem com louvor\n\nO Salmo 100 é um chamado universal ao louvor. Não é apenas para Israel — e para todas as nações.\n\n### O chamado\n\nGritai de júbilo ao Senhor, toda a terra. Servi ao Senhor com alegria. Entrai diante dele com júbilo.\n\n### O fundamento do louvor\n\nPor que devemos louvar? Porque o Senhor é bom (v.5), porque o Seu amor dura para sempre (v.5), porque Ele nos fez (v.3) e somos do Seu povo (v.3).\n\n### A atitude correta\n\nO salmo pede: Sabei que o Senhor é Deus. E ele quem nos fez, e não nos a nós mesmos. Somos do seu povo e as ovelhas do seu pastoreio. Humildade e reconhecimento são a base do louvor autêntico.',
           versículosChave: [
             { ref: 'Salmo 100:1', texto: 'Gritai de júbilo ao Senhor, toda a terra.' },
@@ -132,10 +130,8 @@ export const CURSO_SALMOS: Curso = {
         {
           id: 'aula-sal-2-3',
           título: 'Salmo 51: Tira de mim o meu pecado',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '15 min',
-          videoUrl: 'https://www.youtube.com/watch?v=u5i9Rx9EGzo',
-          videoTítulo: 'Salmos messiânicos - Moises Brasil',
           conteúdo: '## Salmo 51: Tira de mim o meu pecado\n\nO Salmo 51 é o grande salmo de arrependimento. Escrito por Davi depois do pecado com Betsabé e o assassinato de Urias.\n\n### O contexto\n\nNatan, o profeta, confrontou Davi. Davi se arrependeu e escreveu este salmo. É a oração mais honesta da Bíblia.\n\n### As petições\n\nMisericórdia de mim, ó Deus (v.1). Lava-me completamente da minha iniquidade (v.2). Cria em mim um coração puro (v.10). Não me lances fora da tua presença (v.11). O sacrifícios a Deus e o espírito quebrantado (v.17).\n\n### A teologia do arrependimento\n\nDavi não minimiza o pecado. Ele reconhece que pecou contra Deus diretamente (v.4). O arrependimento começa com honestidade.\n\n### Jesus e o intercessor\n\nO Salmo 51 mostra que mesmo o pior pecador pode voltar a Deus. A misericórdia de Deus e maior que o nosso pecado.',
           versículosChave: [
             { ref: 'Salmo 51:1-2', texto: 'Misericórdia de mim, ó Deus, segundo a tua grande compaixão.' },
@@ -195,10 +191,8 @@ export const CURSO_SALMOS: Curso = {
         {
           id: 'aula-sal-3-1',
           título: 'Salmo 1: O justo e a palmeira',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '13 min',
-          videoUrl: 'https://www.youtube.com/watch?v=fOPF8khGeII',
-          videoTítulo: 'Salmos – BibleProject Português',
           conteúdo: '## Salmo 1: O justo e a palmeira\n\nO Salmo 1 é o portal do Saltério. Ele estabelece dois caminhos: o do justo e o do ímpio.\n\n### O homem abençoado\n\nBem-aventurado o homem que não anda no conselho dos ímpios, não sedetem no caminho dos pecadores, não seassenta na cadeira dos escarnecedores. O homem abençado é aquele cujo prazer esta na Lei do Senhor.\n\n### A imagem da arvore\n\nEle será como arvore plantada junto a correntes de aguas. A arvore da vida em Gênesis se conecta aqui. O justo é frutífero, firme e perpétuo.\n\n### Os dois caminhos\n\nO justo floresce; o ímpio perece. A sabedoria e a opção fundamental da vida. Deuteronômio 30:19 apresenta a mesma escolha: vida ou morte, bênção ou maldição.',
           versículosChave: [
             { ref: 'Salmo 1:1-3', texto: 'Bem-aventurado o homem... ele será como arvore plantada junto a correntes de aguas.' },
@@ -246,10 +240,8 @@ export const CURSO_SALMOS: Curso = {
         {
           id: 'aula-sal-3-5',
           título: 'Vida Cristã e Salmos',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '11 min',
-          videoUrl: 'https://www.youtube.com/watch?v=fOPF8khGeII',
-          videoTítulo: 'Salmos – BibleProject Português',
           conteúdo: '## Vida Cristã e Salmos\n\nComo os Salmos podem transformar nossa vida diária?\n\n### Oração\n\nOs Salmos são o melhor manual de oração. Quando não sabe o que orar, escolha um salmo e ore como Jesus orou.\n\n### Louvor\n\nAprenda a louvar em todas as circunstâncias. Os Salmos mostram que o louvor vai além da música — é uma atitude de vida.\n\n### Consolo\n\nNos momentos difíceis, os Salmos de lamentação mostram que podemos chorar e ainda assim confiar em Deus.\n\n### Guia\n\nOs Salmos de sabedoria nos ensinam a caminhar no caminho certo, evitando os caminhos dos ímpios.\n\n### Comunidade\n\nOs Salmos eram cantados em comunidade. A oração e o louvor são atos comunitários, não apenas individuais.',
           versículosChave: [
             { ref: 'Salmo 1:1', texto: 'Bem-aventurado o homem que não anda no conselho dos ímpios.' },

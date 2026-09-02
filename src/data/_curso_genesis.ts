@@ -3,9 +3,9 @@ import type { Curso } from './cursos';
 export const CURSO_GENESIS: Curso = {
   id: 'genesis-origem',
   título: 'Gênesis — A Origem de Tudo',
-  descrição: 'Um estudo completo do primeiro livro da Bíblia. Da criação do universo à história dos patriarcas, Gênesis estabelece as bases de toda a narrativa bíblica e revela o caráter de Deus como Criador e Restaurador.',
+  descrição: 'Introdução a Gênesis: criação, queda e patriarcas. Vídeos de panorama sem repetir o mesmo recorte em aulas distintas. Não é carga horária de seminário.',
   instrutor: 'Sola Scriptura',
-  duração: '6 semanas',
+  duração: 'Introdução',
   nível: 'iniciante',
   categoria: 'Antigo Testamento',
   certificado: true,
@@ -315,10 +315,8 @@ A linhagem de Caim representa a humanidade afastada de Deus: progresso tecnológ
         {
           id: 'genesis-1-6',
           título: 'O dilúvio: Juízo e misericórdia',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '15 min',
-          videoUrl: 'https://www.youtube.com/watch?v=HFNKIRb8G4c',
-          videoTítulo: 'Gênesis 6-9 — O Dilúvio | BibleProject Português',
           conteúdo: `## O dilúvio: Juízo e misericórdia
 
 Gênesis 6-9 narra o evento mais catastrófico da história antiga: o dilúvio universal. É uma história de juízo e misericórdia, de destruição e recomeço.
@@ -1325,7 +1323,7 @@ Hebreus 11:9-10 acrescenta que Abraão "peregrinou na terra da promessa como em 
 
 O versículo mais teologicamente denso da história de Abraão é Gênesis 15:6: "Ele creu no Senhor, e isso lhe foi contado por justiça." Paulo usa extensivamente esse versículo em Romanos 4 e Gálatas 3 para estabelecer a doutrina da justificação pela fé. Abraão não foi justificado por circuncisão (que veio depois), nem pela lei (que veio séculos depois com Moisés), mas pela fé na promessa de Deus.
 
-Martinho Lutero chamou Gênesis 15:6 de "o versículo que derruba o papado", porque ele estabelece que a justificação é por fé alone, não por obras. João Calvino escreveu que "a fé é a mão que recebe o que Deus oferece gratuitamente." A fé abraâmica é o modelo para todo o povo de Deus — aceitar a promessa divina sem merecê-la.
+Paulo usa esse versículo em Romanos 4 e Gálatas 3: Abraão não foi justificado pela circuncisão (que veio depois) nem pela Lei (séculos depois, com Moisés), mas pela fé na promessa. A fé abraâmica é o modelo: aceitar o que Deus oferece, sem merecê-lo.
 
 ### A aliança incondicional de Gênesis 15
 
@@ -1862,7 +1860,7 @@ Faraó ficou impressionado: "Acharemos outro homem como este, em quem esteja o e
 4. **Deus sustenta na prisão** — A presença divina não depende de liberdade física
 5. **O timing de Deus é perfeito** — José esperou 13 anos entre o sonho e a exaltação
 
-O puritano Matthew Henry escreveu: "A mesma Deus que estava com José em Potifar e na prisão estava com ele no palácio. A companhia de Deus é o maior tesouro, seja onde for."
+Gênesis 39:2, 21 e 23 repetem: o Senhor estava com José — na casa de Potifar, na prisão e depois no palácio. A presença de Deus não depende do endereço.
 
 ### Aplicação prática
 
@@ -2060,7 +2058,7 @@ O perdão de José nos ensina:
 4. **A vingança pertence a Deus** — Não somos juizes, somos servos
 5. **A família pode ser restaurada** — O perdão reconstrói o que o pecado destruiu
 
-O reformador João Calvino escreveu: "Deus tem o hábito de fazer brilhar sua luz nas trevas, e de trazer a ordem onde havia confusão." A história de José é a prova viva desse princípio.
+Gênesis 50:20 resume o fio: o mal humano não anula o bem que Deus pretende. A história de José mostra ordem onde havia confusão — não porque o irmão fosse inocente, mas porque Deus governa.
 
 ### O fio messiânico
 

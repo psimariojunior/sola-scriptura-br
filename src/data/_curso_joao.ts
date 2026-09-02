@@ -2,11 +2,11 @@ import type { Curso } from './cursos';
 
 export const CURSO_JOAO: Curso = {
   id: 'joao-verbo',
-  título: 'João — O Verbo Encarnado',
-  descrição: 'Um estudo profundo do Evangelho de João — o mais teológico dos quatro. Descubra quem Jesus é: o Verbo eterno que se fez carne, a Palavra de Deus encarnada, o Caminho, a Verdade e a Vida.',
+  título: 'João — O Verbo Encarnado (introdução)',
+  descrição: 'Curso introdutório ao Evangelho de João: prólogo, sinais, diálogos e a cruz. Texto das aulas + vídeos de panorama (BibleProject). Não é trilha capítulo a capítulo nem estudo avançado.',
   instrutor: 'Sola Scriptura',
-  duração: '6 semanas',
-  nível: 'intermediário',
+  duração: 'Introdução',
+  nível: 'iniciante',
   categoria: 'Novo Testamento',
   certificado: true,
   módulos: [
@@ -113,10 +113,8 @@ Jesus prometeu: "Vereis o céu aberto e os anjos de Deus subindo e descindo sobr
         {
           id: 'joao-1-3',
           título: 'As bodas de Caná: O primeiro sinal',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '12 min',
-          videoUrl: 'https://www.youtube.com/watch?v=x2Q23ddS1TM',
-          videoTítulo: 'João 1-12 – BibleProject Brasil',
           conteúdo: `## As bodas de Caná: O primeiro sinal
 
 João 2:1-11 narra o primeiro "sinal" de Jesus. João usa "sinal" em vez de "milagre" — indicando significado teológico.
@@ -148,10 +146,8 @@ Maria não discutiu. Disse: "Fazei tudo o que ele vos disser." Essa é a postura
         {
           id: 'joao-1-4',
           título: 'Nicodemos: Nascer de novo',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '15 min',
-          videoUrl: 'https://www.youtube.com/watch?v=x2Q23ddS1TM',
-          videoTítulo: 'João 1-12 – BibleProject Brasil',
           conteúdo: `## Nicodemos: Nascer de novo
 
 João 3 contém o diálogo entre Jesus e Nicodemos — e o versículo mais conhecido do cristianismo.
@@ -191,10 +187,8 @@ Jesus conectou com Números 21: "Assim como Moisés levantou a serpente no deser
         {
           id: 'joao-1-5',
           título: 'A mulher samaritana',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '15 min',
-          videoUrl: 'https://www.youtube.com/watch?v=x2Q23ddS1TM',
-          videoTítulo: 'João 1-12 – BibleProject Brasil',
           conteúdo: `## A mulher samaritana
 
 João 4 narra um encontro que quebrou barreiras: Jesus conversou com uma mulher samaritana no poço de Jacó.
@@ -231,10 +225,8 @@ A mulher deixou seu cântaro e foi missionária. Muitos samaritanos creram.`,
         {
           id: 'joao-1-6',
           título: 'O pão da vida',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '15 min',
-          videoUrl: 'https://www.youtube.com/watch?v=x2Q23ddS1TM',
-          videoTítulo: 'João 1-12 – BibleProject Brasil',
           conteúdo: `## O pão da vida
 
 João 6 contém o Sermão do Pão da Vida. Após multiplicar pães para 5.000 pessoas, Jesus declara ser o Pão que desceu do céu.

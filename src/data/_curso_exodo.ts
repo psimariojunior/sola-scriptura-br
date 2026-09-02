@@ -3,10 +3,10 @@
 export const CURSO_EXODO: Curso = {
   id: 'exodo-libertação',
   título: 'Êxodo: Libertação de Deus',
-  descrição: 'Explore o livro de Êxodo: da escravidão no Egito a revelação da lei no Sinai. Uma jornada de libertação, aliança e presença divina.',
+  descrição: 'Introdução ao livro de Êxodo: da escravidão no Egito à revelação no Sinai. Vídeos de panorama (BibleProject) uma vez por bloco — o restante é texto. Não é seminário.',
   instrutor: 'Sola Scriptura',
-  duração: '6 semanas',
-  nível: 'intermediário',
+  duração: 'Introdução',
+  nível: 'iniciante',
   categoria: 'Estudo Bíblico',
   certificado: true,
   módulos: [
@@ -46,10 +46,8 @@ export const CURSO_EXODO: Curso = {
         {
           id: 'aula-exo-1-3',
           título: 'A Passagem do Mar Vermelho',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '15 min',
-          videoUrl: 'https://www.youtube.com/watch?v=TF6whgRN6AM',
-          videoTítulo: 'Êxodo 1-18 – BibleProject Português',
           conteúdo: '## A Passagem do Mar Vermelho\n\nO episódio do Mar Vermelho é o momento cumbre da libertação de Israel.\n\n### A intervenção divina\n\nMoisés disse ao povo: Não temais; estai firmes e vede o livramento do Senhor (Ex 14:13). Deus abriu o mar em dois. Os israelitas atravéssaram em terra seca, enquanto as águas engoliram o exército egípcio.\n\n### Significado teológico\n\nDeus é soberano sobre a natureza, fiel as Suas promessas, julga o mal e cria um novo povo através do mar.\n\n### O cântico de Moisés\n\nDepois da passagem, Moisés cantou um hino de louvor (Ex 15:1-18), considerado um dos mais antigos textos poéticos da Bíblia.',
           versículosChave: [
             { ref: 'Êxodo 14:21-22', texto: 'Moisés estendeu a mão sobre o mar, e os filhos de Israel entraram pelo meio do mar em terra seca.' },
@@ -132,10 +130,8 @@ export const CURSO_EXODO: Curso = {
         {
           id: 'aula-exo-2-3',
           título: 'O Código do Montanha',
-          tipo: 'video',
+          tipo: 'texto',
           duração: '14 min',
-          videoUrl: 'https://www.youtube.com/watch?v=cfZVX_ns8ds',
-          videoTítulo: 'Êxodo 19-40 – BibleProject Português',
           conteúdo: '## O Código do Montanha\n\nDepois dos Dez Mandamentos, Deus deu leis específicas (Ex 21-23).\n\n### Misericórdia social\n\nAs leis protegiam viúvas, estrangeiros e órfãos. Deus ordenou: Não oprima o estrangeiro, pois estrangeiros fostes no Egito.\n\n### Sabático e jubileu\n\nA terra descansaria a cada sete anos, e a cada 50 anos havia o jubileu. Escravos seriam libertados e dívidas perdoadas.',
           versículosChave: [
             { ref: 'Êxodo 22:21', texto: 'Não oprimares o estrangeiro.' },
@@ -146,7 +142,7 @@ export const CURSO_EXODO: Curso = {
           título: 'O Tabernáculo',
           tipo: 'texto',
           duração: '15 min',
-          conteúdo: '## O Tabernáculo\n\nDeus ordenou um tabernáculo — um lugar móvel de adoração.\n\n### Tipologia cristã\n\nCada elemento aponta para Cristo: o cortineiro (porta de entrada), a mesa dos paes (pão da vida), o castiçal (luz do mundo), a arca (trono de graça), os sacrificios (o Cordeiro de Deus).',
+          conteúdo: '## O Tabernáculo\n\nDeus ordenou um santuário móvel: «E me farão um santuário, para que eu possa habitar no meio deles» (Êxodo 25:8). O detalhe do mobiliário não é decoração — ensina presença, mediação e santidade.\n\n### O recinto\n\nO átrio, o Santo e o Santo dos Santos marcam aproximação progressiva. Só o sumo sacerdote, uma vez no ano, entra além do véu (Lv 16) — contraste com Hebreus 10:19–22, onde o sangue de Cristo abre o caminho.\n\n### Mobiliário e Cristo\n\nO texto não precisa de alegoria frouxa: a Escritura mesma liga sombra e cumprimento (Hb 8:5; 9:1–12). Mesa dos pães, candelabro, altar e arca falam de provisão, luz, expiação e trono de graça — todos encontram o cumprimento no Filho, não num esquema inventado.\n\n### Habitar no meio\n\nO alvo não é um edifício permanente no deserto, e sim Deus no meio do povo. No Novo Testamento, o corpo do crente é templo do Espírito (1 Co 6:19), e a igreja é morada de Deus no Espírito (Ef 2:21–22).',
           versículosChave: [
             { ref: 'Êxodo 25:8', texto: 'Me fizeram um santuário, para que eu habite no meio deles.' },
             { ref: 'Hebreus 8:5', texto: 'Servem a um santuário e sombra celestial.' },

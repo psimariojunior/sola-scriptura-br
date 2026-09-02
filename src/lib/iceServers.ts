@@ -37,7 +37,7 @@ function envStr(source: NodeJS.ProcessEnv, keys: string[]): string | undefined {
   return undefined;
 }
 
-export function readTurnEnv(source: NodeJS.ProcessEnv = process.env): {
+export function readTurnEnv(source: NodeJS.ProcessEnv): {
   turnUrl?: string;
   turnUser?: string;
   turnPass?: string;
@@ -82,7 +82,7 @@ export function buildIceServers(opts?: {
   return servers;
 }
 
-export function iceServersFromEnv(source: NodeJS.ProcessEnv = process.env): RTCIceServer[] {
+export function iceServersFromEnv(source: NodeJS.ProcessEnv): RTCIceServer[] {
   return buildIceServers(readTurnEnv(source));
 }
 
@@ -124,7 +124,7 @@ export async function loadIceStatus(): Promise<IceCache> {
     } catch {
       /* fallback local */
     }
-    iceCache = cacheFromServers(iceServersFromEnv());
+    iceCache = cacheFromServers(GOOGLE_STUN_SERVERS);
     return iceCache;
   })();
 
@@ -136,8 +136,7 @@ export async function loadIceStatus(): Promise<IceCache> {
   }
 }
 
-/** Síncrono: cache se já carregou; senão, só o que o bundle NEXT_PUBLIC_ conhece. */
+/** Síncrono: cache se o /api/webrtc/ice já respondeu. */
 export function hasTurnRelay(): boolean {
-  if (iceCache) return iceCache.hasTurn;
-  return iceHasTurn(iceServersFromEnv());
+  return iceCache?.hasTurn ?? false;
 }

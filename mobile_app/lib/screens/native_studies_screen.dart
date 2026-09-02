@@ -22,6 +22,37 @@ class NativeStudiesScreen extends StatelessWidget {
 
   const NativeStudiesScreen({super.key, required this.onNavigate});
 
+  static const List<StudyItem> _hoje = [
+    StudyItem(
+      icon: Icons.school_rounded,
+      title: 'Cursos',
+      subtitle: 'Vídeo, quiz e introdução',
+      route: '/cursos',
+      color: Color(0xFFA17A2C),
+    ),
+    StudyItem(
+      icon: Icons.account_balance_rounded,
+      title: 'Seminário',
+      subtitle: 'Ordem dos 12 cursos',
+      route: '/seminario',
+      color: Color(0xFF8B5CF6),
+    ),
+    StudyItem(
+      icon: Icons.translate_rounded,
+      title: 'Interlinear',
+      subtitle: 'Hebraico e grego',
+      route: '/biblia/interlinear',
+      color: Color(0xFF3B82F6),
+    ),
+    StudyItem(
+      icon: Icons.menu_book_rounded,
+      title: 'Bíblia',
+      subtitle: 'Leitura do capítulo',
+      route: '/biblia',
+      color: Color(0xFF10B981),
+    ),
+  ];
+
   static const List<StudyItem> _quickAccess = [
     StudyItem(
       icon: Icons.auto_stories_rounded,
@@ -68,13 +99,6 @@ class NativeStudiesScreen extends StatelessWidget {
   ];
 
   static const List<StudyItem> _deepStudy = [
-    StudyItem(
-      icon: Icons.translate_rounded,
-      title: 'Interlinear',
-      subtitle: 'Hebraico e Grego palavra-a-palavra',
-      route: '/biblia/interlinear',
-      color: Color(0xFFA17A2C),
-    ),
     StudyItem(
       icon: Icons.search_rounded,
       title: 'Concordância',
@@ -151,6 +175,7 @@ class NativeStudiesScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeader(),
+          _buildSection('Hoje', _hoje),
           _buildSection('Acesso Rápido', _quickAccess),
           _buildSection('Estudo Profundo', _deepStudy),
           _buildSection('Meus Dados', _extras),

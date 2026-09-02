@@ -7,13 +7,14 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { GraduationCap, BookOpen, Clock, Award, ChevronRight, Star, Lock, CheckCircle2, Play, Trophy, Target, Flame, Brain, Lightbulb, Cross, Church, ScrollText, Heart, Medal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { CURSOS, type Curso } from '@/data/cursos';
+import { CURSOS, rotuloNivelCurso, type Curso } from '@/data/cursos';
 import dynamic from 'next/dynamic';
-import { obterProgressoCursos, obterProgressoCurso } from '@/lib/cursoProgress';
+import Link from 'next/link';
+import { obterProgressoCurso, hrefCurso } from '@/lib/cursoProgress';
 import { getFavoritos, toggleCursoFavorito, type SeminaryFavorites } from '@/lib/seminaryFavorites';
-import { getAllAchievements, checkAndUnlock, type Achievement } from '@/lib/achievements';
+import { getAllAchievements, type Achievement } from '@/lib/achievements';
 import { AchievementBadge } from '@/components/AchievementBadge';
-import { CertificateGenerator } from '@/components/CertificateGenerator';
+import { BannerTrilhasOficiais } from '@/components/cursos/BannerTrilhasOficiais';
 
 const JourneyMap = dynamic(() => import('@/components/JourneyMap').then(m => ({ default: m.JourneyMap })), {
   ssr: false,
@@ -158,7 +159,7 @@ export default function SeminarioPage() {
       <main id="main-content" className="pt-20 pb-24 sm:pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="mb-6">
-            <Breadcrumbs items={[{ label: 'Início', href: '/' }, { label: 'Cursos' }]} />
+            <Breadcrumbs items={[{ label: 'Início', href: '/' }, { label: 'Estudos', href: '/estudos' }, { label: 'Seminário' }]} />
           </div>
 
           {/* Hero Section */}
@@ -175,7 +176,7 @@ export default function SeminarioPage() {
                 </div>
                 <div>
                   <h1 className="font-display text-3xl md:text-4xl font-bold">Cursos introdutórios</h1>
-                  <p className="text-white/80 text-sm mt-1">Trilha, vídeos e certificado de introdução — gratuito, sem grau de seminário</p>
+                  <p className="text-white/80 text-sm mt-1">Vídeo, trilha e certificado de introdução — outro diploma das trilhas João e Romanos</p>
                 </div>
               </div>
 
@@ -187,6 +188,12 @@ export default function SeminarioPage() {
               </div>
             </div>
           </section>
+
+          <BannerTrilhasOficiais compact />
+          <p className="text-xs text-[var(--content-muted)] mb-8 -mt-2">
+            João e Romanos são fichas profundas (ler + responder). Os 12 cursos desta página são
+            introdução com vídeo — os diplomas não se misturam.
+          </p>
 
           {/* Tabs */}
           <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
@@ -323,8 +330,8 @@ export default function SeminarioPage() {
                 {/* Bible Courses Component */}
                 <div className="mt-10 rounded-2xl border border-[var(--border)]/40 overflow-hidden bg-[var(--surface-raised)]">
                   <div className="p-6 border-b border-[var(--border)]/30">
-                    <h3 className="font-display text-lg font-bold text-[var(--content-primary)]">Gerenciar Cursos</h3>
-                    <p className="text-[var(--content-secondary)] text-sm mt-1">Inscreva-se, assista aulas e acompanhe seu progresso</p>
+                    <h3 className="font-display text-lg font-bold text-[var(--content-primary)]">Cursos introdutórios</h3>
+                    <p className="text-[var(--content-secondary)] text-sm mt-1">Vídeo, trilha e quiz. O diploma daqui é de introdução — não o das fichas João e Romanos.</p>
                   </div>
                   <BibleCourses />
                 </div>
@@ -341,8 +348,8 @@ export default function SeminarioPage() {
                 transition={{ duration: 0.25 }}
               >
                 <div className="mb-6">
-                  <h2 className="font-display text-2xl font-bold text-[var(--content-primary)] mb-2">Catálogo de Cursos</h2>
-                  <p className="text-[var(--content-secondary)] text-sm">Escolha entre {CURSOS.length} cursos de formação bíblica</p>
+                  <h2 className="font-display text-2xl font-bold text-[var(--content-primary)] mb-2">Catálogo introdutório</h2>
+                  <p className="text-[var(--content-secondary)] text-sm">Os {CURSOS.length} cursos abaixo são introdução com vídeo. João e Romanos (fichas) estão no banner acima.</p>
                 </div>
 
                 <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
@@ -450,14 +457,24 @@ export default function SeminarioPage() {
                   <div className="mb-8">
                     <div className="flex items-center gap-2 mb-4">
                       <Award className="w-5 h-5 text-amber-500" />
-                      <h3 className="font-display text-lg font-bold text-[var(--content-primary)]">Certificados</h3>
+                      <h3 className="font-display text-lg font-bold text-[var(--content-primary)]">Certificados de introdução</h3>
                     </div>
-                    <div className="space-y-6">
+                    <p className="text-xs text-[var(--content-muted)] mb-4">
+                      O diploma com ID sai na página do curso, depois das aulas e do quiz. Não é o certificado das trilhas João e Romanos.
+                    </p>
+                    <div className="space-y-3">
                       {cursosCompletos.map(({ id, titulo }) => (
-                        <div key={id} className="p-6 rounded-2xl bg-[var(--surface-raised)] border border-[var(--border)]/30">
-                          <h4 className="font-semibold text-sm text-[var(--content-primary)] mb-4">{titulo}</h4>
-                          <CertificateGenerator cursoNome={titulo} />
-                        </div>
+                        <Link
+                          key={id}
+                          href={hrefCurso(id)}
+                          className="flex items-center justify-between gap-3 p-4 rounded-2xl bg-[var(--surface-raised)] border border-[var(--border)]/30 hover:border-[var(--brand-default)]/40 min-h-[44px]"
+                        >
+                          <span>
+                            <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--brand-default)]">Introdução</span>
+                            <span className="font-semibold text-sm text-[var(--content-primary)]">{titulo}</span>
+                          </span>
+                          <ChevronRight className="w-4 h-4 text-[var(--content-muted)]" />
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -644,43 +661,41 @@ function FilterButton({ active, onClick, children }: { active: boolean; onClick:
 }
 
 function CursoCardMini({ curso, progresso, favoritos, onToggleFavorito }: { curso: Curso; progresso: number; favoritos?: SeminaryFavorites; onToggleFavorito?: (id: string) => void }) {
-  const nivelCor = curso.nível === 'iniciante' ? 'text-emerald-500' : curso.nível === 'intermediário' ? 'text-blue-500' : 'text-purple-500';
   const totalAulas = curso.módulos.reduce((acc, m) => acc + m.aulas.length, 0);
   const isFav = favoritos?.cursos.includes(curso.id) ?? false;
 
   return (
-    <div className="p-4 rounded-xl bg-[var(--surface-sunken)] hover:bg-[var(--surface-raised)] transition-colors cursor-pointer group relative">
+    <div className="p-4 rounded-xl bg-[var(--surface-sunken)] hover:bg-[var(--surface-raised)] transition-colors group relative">
       {onToggleFavorito && (
         <button
           onClick={(e) => { e.stopPropagation(); onToggleFavorito(curso.id); }}
-          className="absolute top-3 right-3 p-1 rounded-full hover:bg-[var(--surface-sunken)] transition-colors z-10"
+          className="absolute top-3 right-3 p-1 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-[var(--surface-sunken)] transition-colors z-10"
           aria-label={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
         >
           <Heart className={cn('w-4 h-4', isFav ? 'fill-[var(--brand-default)] text-[var(--brand-default)]' : 'text-[var(--content-muted)]')} />
         </button>
       )}
-      <div className="flex items-center gap-2 mb-2">
-        <span className={cn('text-[10px] font-bold uppercase tracking-wider', nivelCor)}>{curso.nível}</span>
-        {progresso >= 100 && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />}
-      </div>
-      <h4 className="font-semibold text-sm text-[var(--content-primary)] group-hover:text-[var(--brand-default)] transition-colors line-clamp-2 pr-6">{curso.título}</h4>
-      <p className="text-xs text-[var(--content-muted)] mt-1">{totalAulas} aulas · {curso.duração}</p>
-      {progresso > 0 && (
-        <div className="mt-2 flex items-center gap-2">
-          <div className="flex-1 h-1.5 bg-[var(--surface-raised)] rounded-full overflow-hidden">
-            <div className="h-full bg-[var(--brand-default)] rounded-full" style={{ width: `${progresso}%` }} />
-          </div>
-          <span className="text-[10px] font-medium text-[var(--content-muted)]">{progresso}%</span>
+      <Link href={hrefCurso(curso.id)} className="block min-h-[44px]">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-500">{rotuloNivelCurso(curso)}</span>
+          {progresso >= 100 && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />}
         </div>
-      )}
+        <h4 className="font-semibold text-sm text-[var(--content-primary)] group-hover:text-[var(--brand-default)] transition-colors line-clamp-2 pr-8">{curso.título}</h4>
+        <p className="text-xs text-[var(--content-muted)] mt-1">{totalAulas} aulas · vídeo e quiz</p>
+        {progresso > 0 && (
+          <div className="mt-2 flex items-center gap-2">
+            <div className="flex-1 h-1.5 bg-[var(--surface-raised)] rounded-full overflow-hidden">
+              <div className="h-full bg-[var(--brand-default)] rounded-full" style={{ width: `${progresso}%` }} />
+            </div>
+            <span className="text-[10px] font-medium text-[var(--content-muted)]">{progresso}%</span>
+          </div>
+        )}
+      </Link>
     </div>
   );
 }
 
 function CursoCardCompleto({ curso, progresso, index, favoritos, onToggleFavorito }: { curso: Curso; progresso: number; index: number; favoritos?: SeminaryFavorites; onToggleFavorito?: (id: string) => void }) {
-  const nivelCor = curso.nível === 'iniciante' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' :
-    curso.nível === 'intermediário' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400' :
-    'bg-purple-500/10 text-purple-600 dark:text-purple-400';
   const totalAulas = curso.módulos.reduce((acc, m) => acc + m.aulas.length, 0);
   const isFav = favoritos?.cursos.includes(curso.id) ?? false;
 
@@ -694,7 +709,7 @@ function CursoCardCompleto({ curso, progresso, index, favoritos, onToggleFavorit
       {onToggleFavorito && (
         <button
           onClick={(e) => { e.stopPropagation(); onToggleFavorito(curso.id); }}
-          className="absolute top-4 right-4 p-2 rounded-full hover:bg-[var(--surface-sunken)] transition-colors z-10"
+          className="absolute top-4 right-4 p-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-[var(--surface-sunken)] transition-colors z-10"
           aria-label={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
         >
           <Heart className={cn('w-5 h-5', isFav ? 'fill-[var(--brand-default)] text-[var(--brand-default)]' : 'text-[var(--content-muted)]')} />
@@ -702,8 +717,8 @@ function CursoCardCompleto({ curso, progresso, index, favoritos, onToggleFavorit
       )}
       <div className="p-5">
         <div className="flex items-center gap-2 mb-3">
-          <span className={cn('text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full', nivelCor)}>
-            {curso.nível}
+          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+            {rotuloNivelCurso(curso)}
           </span>
           <span className="text-[10px] text-[var(--content-muted)]">{curso.categoria}</span>
         </div>
@@ -726,14 +741,17 @@ function CursoCardCompleto({ curso, progresso, index, favoritos, onToggleFavorit
         )}
       </div>
       <div className="px-5 pb-4">
-        <button className={cn(
-          'w-full py-2.5 rounded-xl text-sm font-semibold transition-all',
-          progresso > 0
-            ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] hover:opacity-90'
-            : 'bg-[var(--surface-sunken)] text-[var(--content-primary)] hover:bg-[var(--brand-default)] hover:text-[var(--brand-contrast)]'
-        )}>
+        <Link
+          href={hrefCurso(curso.id)}
+          className={cn(
+            'flex items-center justify-center w-full min-h-[44px] py-2.5 rounded-xl text-sm font-semibold transition-all',
+            progresso > 0
+              ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)] hover:opacity-90'
+              : 'bg-[var(--surface-sunken)] text-[var(--content-primary)] hover:bg-[var(--brand-default)] hover:text-[var(--brand-contrast)]'
+          )}
+        >
           {progresso >= 100 ? 'Revisar' : progresso > 0 ? 'Continuar' : 'Começar'}
-        </button>
+        </Link>
       </div>
     </motion.div>
   );

@@ -11,6 +11,9 @@ import {
   emitirCertificadoCurso,
   idCertificadoCurso,
   aulasDoCurso,
+  hrefCurso,
+  cursoParaContinuar,
+  proximaAulaPendente,
 } from '@/lib/cursoProgress';
 
 function limpar() {
@@ -128,5 +131,29 @@ describe('cursos introdutórios (trilha + vídeo + certificado)', () => {
     expect(diploma.atesta).toContain(curso.título);
     expect(diploma.naoAtesta).toMatch(/seminário/i);
     expect(idCertificadoCurso(curso.id, cert.data, cert.hash)).toBe(cert.id);
+  });
+
+  test('hrefCurso aponta para o catálogo introdutório, não para a trilha de fichas', () => {
+    expect(hrefCurso()).toBe('/cursos');
+    expect(hrefCurso('conhecendo-a-biblia')).toBe('/cursos?curso=conhecendo-a-biblia');
+    expect(hrefCurso('conhecendo-a-biblia', 'aula-1')).toBe(
+      '/cursos?curso=conhecendo-a-biblia&aula=aula-1',
+    );
+    expect(hrefCurso('joao')).not.toMatch(/\/cursos\/joao/);
+  });
+
+  test('cursoParaContinuar devolve a próxima aula do curso matriculado mais recente', () => {
+    const a = CURSOS.find((c) => c.id === 'conhecendo-a-biblia')!;
+    const b = CURSOS.find((c) => c.id === 'fundamentos-da-fe')!;
+    matricularCurso(a.id);
+    matricularCurso(b.id);
+    const store = JSON.parse(localStorage.getItem('ssb_cursos_progresso') || '{}');
+    store[a.id].dataInicio = '2000-01-01T00:00:00.000Z';
+    store[b.id].dataInicio = '2099-01-01T00:00:00.000Z';
+    localStorage.setItem('ssb_cursos_progresso', JSON.stringify(store));
+    marcarAulaCompleta(a.id, aulasDoCurso(a)[0].id);
+    const retomar = cursoParaContinuar(CURSOS);
+    expect(retomar?.curso.id).toBe(b.id);
+    expect(retomar?.aula.id).toBe(proximaAulaPendente(b, obterProgressoCurso(b.id))?.id);
   });
 });

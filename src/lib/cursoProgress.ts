@@ -150,6 +150,31 @@ export function proximaAulaPendente(curso: Curso, progresso?: CursoProgresso | n
   return aulasDoCurso(curso).find((a) => !feitas.has(a.id)) ?? null;
 }
 
+/** Deep link para o catálogo introdutório (mesmo progresso de `/cursos`). */
+export function hrefCurso(cursoId?: string, aulaId?: string): string {
+  if (!cursoId) return '/cursos';
+  const params = new URLSearchParams();
+  params.set('curso', cursoId);
+  if (aulaId) params.set('aula', aulaId);
+  return `/cursos?${params.toString()}`;
+}
+
+/** Curso matriculado mais recente que ainda tem aula pendente. */
+export function cursoParaContinuar(cursos: Curso[]): { curso: Curso; aula: CursoAula } | null {
+  const store = obterProgressoCursos();
+  const emAndamento: { curso: Curso; aula: CursoAula; inicio: string }[] = [];
+  for (const curso of cursos) {
+    const prog = store[curso.id];
+    if (!prog?.matriculado || prog.dataConclusao) continue;
+    const aula = proximaAulaPendente(curso, prog);
+    if (!aula) continue;
+    emAndamento.push({ curso, aula, inicio: prog.dataInicio });
+  }
+  emAndamento.sort((a, b) => b.inicio.localeCompare(a.inicio));
+  const top = emAndamento[0];
+  return top ? { curso: top.curso, aula: top.aula } : null;
+}
+
 function prefixoCurso(cursoId: string): string {
   const limpo = cursoId
     .normalize('NFD')

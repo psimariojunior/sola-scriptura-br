@@ -65,6 +65,26 @@ export function BibleCourses() {
       if (prog) p[curso.id] = prog;
     }
     setProgressos(p);
+
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const cursoId = params.get('curso');
+    const aulaId = params.get('aula');
+    if (!cursoId) return;
+    const curso = CURSOS.find((c) => c.id === cursoId);
+    if (!curso) return;
+    if (aulaId) {
+      const aula = aulasDoCurso(curso).find((a) => a.id === aulaId);
+      if (aula) {
+        setState(
+          aula.tipo === 'quiz'
+            ? { tela: 'quiz', cursoId, aulaId }
+            : { tela: 'aula', cursoId, aulaId },
+        );
+        return;
+      }
+    }
+    setState({ tela: 'curso', cursoId });
   }, []);
 
   const getCurso = useCallback((id: string) => CURSOS.find(c => c.id === id), []);

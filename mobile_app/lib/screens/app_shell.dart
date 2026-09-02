@@ -14,6 +14,7 @@ import '../bridges/js_bridge.dart';
 import '../widgets/native_bottom_nav.dart';
 import '../services/bible_offline_service.dart';
 import 'native_bible_screen.dart';
+import 'native_studies_screen.dart';
 
 class AppShell extends StatefulWidget {
   final WebViewService webViewService;
@@ -36,6 +37,7 @@ class _AppShellState extends State<AppShell> {
   DateTime? _lastBackPress;
   int _navIndex = 0;
   bool _nativeBible = false;
+  bool _nativeStudies = false;
   bool _hasOfflineChapters = false;
 
   late final ConnectivityService _connectivity;
@@ -81,7 +83,9 @@ class _AppShellState extends State<AppShell> {
         setState(() {
           _isLoading = false;
           _hasError = false;
-          _navIndex = _indexForUrl(url);
+          if (!_nativeBible && !_nativeStudies) {
+            _navIndex = _indexForUrl(url);
+          }
         });
         JsBridge.injectPerformanceOptimizations(widget.webViewService.controller);
         JsBridge.injectOfflineSupport(widget.webViewService.controller);
@@ -168,6 +172,16 @@ class _AppShellState extends State<AppShell> {
     setState(() {
       _navIndex = 1;
       _nativeBible = true;
+      _nativeStudies = false;
+      _hasError = false;
+    });
+  }
+
+  void _openNativeStudies() {
+    setState(() {
+      _navIndex = 2;
+      _nativeBible = false;
+      _nativeStudies = true;
       _hasError = false;
     });
   }
@@ -175,10 +189,16 @@ class _AppShellState extends State<AppShell> {
   void _openWebPath(String path) {
     setState(() {
       _nativeBible = false;
+      _nativeStudies = false;
       _hasError = false;
       if (path.startsWith('/biblia')) {
         _navIndex = 1;
-      } else if (path.startsWith('/planos') || path.startsWith('/estudar') || path.startsWith('/guia')) {
+      } else if (path.startsWith('/planos') ||
+          path.startsWith('/estudar') ||
+          path.startsWith('/estudos') ||
+          path.startsWith('/cursos') ||
+          path.startsWith('/seminario') ||
+          path.startsWith('/guia')) {
         _navIndex = 2;
       }
     });
@@ -191,6 +211,14 @@ class _AppShellState extends State<AppShell> {
         _nativeBible = false;
         _navIndex = 0;
       });
+      return false;
+    }
+    if (_nativeStudies) {
+      setState(() {
+        _nativeStudies = false;
+        _navIndex = 0;
+      });
+      widget.webViewService.loadUrl('${AppConstants.baseUrl}/');
       return false;
     }
     try {
@@ -231,7 +259,13 @@ class _AppShellState extends State<AppShell> {
   int _indexForUrl(String url) {
     final path = Uri.tryParse(url)?.path ?? '';
     if (path.startsWith('/biblia')) return 1;
-    if (path.startsWith('/estudar') || path.startsWith('/pesquisa') || path.startsWith('/teologia') || path.startsWith('/guia')) return 2;
+    if (path.startsWith('/estudar') ||
+        path.startsWith('/estudos') ||
+        path.startsWith('/cursos') ||
+        path.startsWith('/seminario') ||
+        path.startsWith('/pesquisa') ||
+        path.startsWith('/teologia') ||
+        path.startsWith('/guia')) return 2;
     if (path.startsWith('/biblioteca')) return 3;
     if (path == '/' || path.isEmpty) return 0;
     return _navIndex;
@@ -250,9 +284,14 @@ class _AppShellState extends State<AppShell> {
         return;
       }
     }
+    if (index == 2) {
+      _openNativeStudies();
+      return;
+    }
     setState(() {
       _navIndex = index;
       _nativeBible = false;
+      _nativeStudies = false;
     });
     final url = '${AppConstants.baseUrl}${_navPaths[index]}';
     widget.webViewService.loadUrl(url);
@@ -286,6 +325,18 @@ class _AppShellState extends State<AppShell> {
             ? NativeBibleScreen(
                 onOpenWeb: _openWebPath,
                 autoOpenLast: true,
+              )
+            : _nativeStudies
+            ? SafeArea(
+                child: NativeStudiesScreen(
+                  onNavigate: (route) {
+                    if (route == '/biblia') {
+                      _onNavTap(1);
+                      return;
+                    }
+                    _openWebPath(route);
+                  },
+                ),
               )
             : Stack(
           children: [

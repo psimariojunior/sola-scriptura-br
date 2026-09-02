@@ -32,10 +32,11 @@ export default function CursosPage() {
 
           <BannerTrilhasOficiais />
 
-          <div className="mb-3">
+          <div id="introducao" className="mb-3 scroll-mt-24">
             <h2 className="font-display text-xl mb-1">Cursos introdutórios</h2>
             <p className="text-xs text-[var(--content-muted)]">
-              Aulas e quiz na plataforma. O certificado desses cursos é de introdução, não de estudo avançado.
+              Vídeo, trilha e quiz. O certificado desses 12 cursos é de introdução — outro diploma,
+              distinto das trilhas João e Romanos acima.
             </p>
           </div>
           <div className="rounded-2xl border border-[var(--border)]/40 overflow-hidden">

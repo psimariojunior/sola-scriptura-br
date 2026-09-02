@@ -4,7 +4,9 @@ import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { LIVROS_AT, LIVROS_NT, type LivroInfo } from '@/data/biblia/livros';
-import { hrefBiblia } from '@/lib/bibliaHref';
+import { hrefBiblia, hrefInterlinear } from '@/lib/bibliaHref';
+import { cursoParaContinuar, hrefCurso } from '@/lib/cursoProgress';
+import type { Curso, CursoAula } from '@/data/cursos';
 
 const STORAGE_KEY_CHAPTERS = 'ssb_chapters_read';
 const STORAGE_KEY_LAST = 'ssb_last_read';
@@ -38,45 +40,39 @@ function getBookName(abrev: string): string {
   return book?.nome ?? abrev;
 }
 
-function getSuggestedNext(lidos: Set<string>): { livro: string; capitulo: number; nomeLivro: string } | null {
-  for (const book of ALL_BOOKS) {
-    for (let c = 1; c <= book.totalCapitulos; c++) {
-      const key = `${book.abreviacao}:${c}`;
-      if (!lidos.has(key)) {
-        return { livro: book.abreviacao, capitulo: c, nomeLivro: book.nome };
-      }
-    }
-  }
-  return null;
-}
-
 export default function ContinuarLeitura() {
   const [capitulosLidos, setCapitulosLidos] = useState<Set<string>>(new Set());
   const [ultimaLeitura, setUltimaLeitura] = useState<{ livro: string; capitulo: number } | null>(null);
+  const [cursoAtual, setCursoAtual] = useState<{ curso: Curso; aula: CursoAula } | null>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     setCapitulosLidos(carregarCapitulosLidos());
     setUltimaLeitura(carregarUltimaLeitura());
+    let cancel = false;
+    import('@/data/cursos').then(({ CURSOS }) => {
+      if (!cancel) setCursoAtual(cursoParaContinuar(CURSOS));
+    });
+    return () => {
+      cancel = true;
+    };
   }, []);
 
   const progresso = useMemo(() => {
     return Math.min(Math.round((capitulosLidos.size / TOTAL_CHAPTERS) * 100), 100);
   }, [capitulosLidos]);
 
-  const sugestao = useMemo(() => getSuggestedNext(capitulosLidos), [capitulosLidos]);
-
   if (!mounted) return null;
 
   const livroAtual = ultimaLeitura ? getBookName(ultimaLeitura.livro) : null;
-  const comecar = sugestao ?? { livro: 'gn', capitulo: 1, nomeLivro: 'Gênesis' };
+  const temLeitura = Boolean(ultimaLeitura || capitulosLidos.size > 0);
 
   return (
-    <section className="mb-14" aria-label="Continuar Leitura">
+    <section className="mb-14" aria-label="Continuar">
       <div className="flex items-baseline justify-between mb-3">
         <h2 className="font-display text-2xl font-normal text-foreground">
-          {capitulosLidos.size > 0 || ultimaLeitura ? 'Continuar leitura' : 'Comece a ler'}
+          {temLeitura || cursoAtual ? 'Continuar' : 'Comece por aqui'}
         </h2>
         {capitulosLidos.size > 0 && (
           <span className="text-xs tabular-nums text-muted-foreground">
@@ -94,54 +90,64 @@ export default function ContinuarLeitura() {
         </div>
       )}
 
-      <ul className="divide-y divide-border">
+      <ul className="space-y-2">
+        <li>
+          <Link
+            href={
+              ultimaLeitura
+                ? hrefBiblia(ultimaLeitura.livro, ultimaLeitura.capitulo)
+                : hrefBiblia('gn', 1)
+            }
+            className="ssb-panel flex items-center justify-between gap-3 min-h-[44px] px-4 py-3 group hover:border-primary/40 transition-colors"
+          >
+            <span className="min-w-0">
+              <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/80">
+                Continuar leitura
+              </span>
+              <span className="block mt-0.5 text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
+                {ultimaLeitura
+                  ? `${livroAtual} ${ultimaLeitura.capitulo}`
+                  : 'Gênesis 1'}
+              </span>
+            </span>
+            <ArrowRight className="w-4 h-4 text-primary shrink-0 group-hover:translate-x-0.5 transition-transform" />
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            href={cursoAtual ? hrefCurso(cursoAtual.curso.id, cursoAtual.aula.id) : '/cursos#introducao'}
+            className="ssb-panel flex items-center justify-between gap-3 min-h-[44px] px-4 py-3 group hover:border-primary/40 transition-colors"
+          >
+            <span className="min-w-0">
+              <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/80">
+                Continuar curso
+              </span>
+              <span className="block mt-0.5 text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
+                {cursoAtual
+                  ? `${cursoAtual.curso.título} · ${cursoAtual.aula.título}`
+                  : '12 cursos introdutórios com vídeo'}
+              </span>
+            </span>
+            <ArrowRight className="w-4 h-4 text-primary shrink-0 group-hover:translate-x-0.5 transition-transform" />
+          </Link>
+        </li>
+
         {ultimaLeitura && (
-          <li className="list-none mb-2">
+          <li>
             <Link
-              href={hrefBiblia(ultimaLeitura.livro, ultimaLeitura.capitulo)}
-              className="ssb-panel flex items-center justify-between gap-3 p-4 group hover:border-primary/40 transition-colors"
+              href={hrefInterlinear(ultimaLeitura.livro, ultimaLeitura.capitulo)}
+              className="ssb-panel flex items-center justify-between gap-3 min-h-[44px] px-4 py-3 group hover:border-primary/40 transition-colors"
             >
-              <span>
+              <span className="min-w-0">
                 <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/80">
-                  De onde você parou
+                  Original deste capítulo
                 </span>
-                <span className="block mt-1 font-display text-xl text-foreground group-hover:text-primary transition-colors">
-                  {livroAtual} {ultimaLeitura.capitulo}
+                <span className="block mt-0.5 text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
+                  {livroAtual} {ultimaLeitura.capitulo} — hebraico e grego
                 </span>
               </span>
-              <ArrowRight className="w-5 h-5 text-primary shrink-0 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
-          </li>
-        )}
-        {!ultimaLeitura && (
-          <li>
-            <Link
-              href={hrefBiblia(comecar.livro, comecar.capitulo)}
-              className="flex items-center justify-between py-3.5 group"
-            >
-              <span>
-                <span className="block text-sm text-foreground group-hover:text-primary transition-colors">
-                  {comecar.nomeLivro} {comecar.capitulo}
-                </span>
-                <span className="text-xs text-muted-foreground">O melhor ponto para começar</span>
-              </span>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
-            </Link>
-          </li>
-        )}
-        {sugestao && ultimaLeitura && (sugestao.livro !== ultimaLeitura.livro || sugestao.capitulo !== ultimaLeitura.capitulo) && (
-          <li>
-            <Link
-              href={hrefBiblia(sugestao.livro, sugestao.capitulo)}
-              className="flex items-center justify-between py-3.5 group"
-            >
-              <span>
-                <span className="block text-sm text-foreground group-hover:text-primary transition-colors">
-                  {sugestao.nomeLivro} {sugestao.capitulo}
-                </span>
-                <span className="text-xs text-muted-foreground">Próximo não lido</span>
-              </span>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+              <ArrowRight className="w-4 h-4 text-primary shrink-0 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </li>
         )}

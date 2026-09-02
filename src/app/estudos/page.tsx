@@ -22,6 +22,7 @@ import type { Teologo } from '@/data/teologos';
 import { getStats } from '@/lib/estatisticas';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'react-i18next';
+import { BannerTrilhasOficiais } from '@/components/cursos/BannerTrilhasOficiais';
 
 const BibleCourses = dynamic(() => import('@/components/BibleCourses').then(m => ({ default: m.BibleCourses })), {
   ssr: false,
@@ -330,21 +331,37 @@ export default function EstudosPage() {
             </ScrollReveal>
           )}
 
-          {/* Cursos CTA Banner */}
-          <Link href="/cursos" className="block mb-4">
-            <div className="glass-card-3d gradient-border shine-effect p-4 rounded-xl cursor-pointer group">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500 to-amber-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <GraduationCap className="w-6 h-6 text-white" />
+          {/* Cursos CTA — dois diplomas, sem misturar */}
+          <div className="grid sm:grid-cols-2 gap-3 mb-4">
+            <Link href="/cursos" className="block">
+              <div className="glass-card-3d gradient-border shine-effect p-4 rounded-xl cursor-pointer group min-h-[44px]">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500 to-amber-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <GraduationCap className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-sm">{t('estudos.freeSeminary')}</h3>
+                    <p className="text-xs text-[var(--content-muted)]">{t('estudos.freeSeminaryDesc')}</p>
+                  </div>
+                  <ChevronRight className="w-5 h-5 text-[var(--content-muted)] group-hover:translate-x-1 transition-transform" />
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-bold text-sm">{t('estudos.freeSeminary')}</h3>
-                  <p className="text-xs text-[var(--content-muted)]">{t('estudos.freeSeminaryDesc')}</p>
-                </div>
-                <ChevronRight className="w-5 h-5 text-[var(--content-muted)] group-hover:translate-x-1 transition-transform" />
               </div>
-            </div>
-          </Link>
+            </Link>
+            <Link href="/seminario" className="block">
+              <div className="glass-card p-4 rounded-xl border border-border/60 cursor-pointer group hover:border-primary/35 transition-all min-h-[44px]">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Play className="w-6 h-6 text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-sm">{t('estudos.introCourses')}</h3>
+                    <p className="text-xs text-[var(--content-muted)]">{t('estudos.introCoursesDesc')}</p>
+                  </div>
+                  <ChevronRight className="w-5 h-5 text-[var(--content-muted)] group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+          </div>
 
           {/* Donation CTA */}
           <Link href="/ofertas" className="block mb-6">
@@ -789,8 +806,14 @@ export default function EstudosPage() {
               </div>
 
               {aba === 'cursos' ? (
-                <div className="sola-card overflow-hidden" style={{ height: '700px' }}>
-                  <BibleCourses />
+                <div className="space-y-4">
+                  <BannerTrilhasOficiais compact />
+                  <p className="text-xs text-muted-foreground">
+                    Abaixo: cursos introdutórios com vídeo e quiz. O diploma deles não é o das trilhas João e Romanos.
+                  </p>
+                  <div className="sola-card overflow-hidden" style={{ height: '700px' }}>
+                    <BibleCourses />
+                  </div>
                 </div>
               ) : filtradas.length === 0 ? (
                 <div className="sola-card p-12 text-center">

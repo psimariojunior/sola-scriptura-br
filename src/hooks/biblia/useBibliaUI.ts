@@ -163,7 +163,11 @@ export function UseBibliaUI({
   });
   const [zenMode, setZenMode] = useState(false);
   const [splitRatio, setSplitRatio] = useState(55);
-  const [showInterlinear, setShowInterlinear] = useState(false);
+  const [showInterlinear, setShowInterlinear] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const p = new URLSearchParams(window.location.search);
+    return p.get('interlinear') === '1' || p.get('vista') === 'interlinear';
+  });
   const [showPlan, setShowPlan] = useState(false);
   const [modoLeitura, setModoLeitura] = useState<ModoLeituraValue>('foco');
   const [focusedVerse, setFocusedVerse] = useState<number | null>(null);

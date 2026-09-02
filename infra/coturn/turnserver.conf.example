@@ -1,0 +1,19 @@
+# Exemplo de coturn (NÃO commitar senhas reais).
+# Instale na Oracle VM só se souber o que faz: sudo apt install coturn
+# Copie para /etc/turnserver.conf e preencha realm/user.
+#
+# No Vercel (API Next /api/webrtc/ice) e, se quiser, no .env do backend:
+#   TURN_URL=turn:SEU_DOMINIO_OU_IP:3478
+#   TURN_USER=ssb
+#   TURN_PASS=(o mesmo da linha user abaixo)
+#
+# listening-port=3478
+# fingerprint
+# lt-cred-mech
+# realm=solascripturabr.com.br
+# user=ssb:COLOQUE_A_SENHA_AQUI
+# no-cli
+# no-multicast-peers
+# stale-nonce=600
+# denied-peer-ip=0.0.0.0-0.255.255.255
+# allowed-peer-ip=0.0.0.0-255.255.255.255

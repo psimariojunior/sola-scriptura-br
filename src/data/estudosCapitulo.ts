@@ -21,6 +21,14 @@ export interface EstudoCapitulo {
   significadoTeologico?: string;
   /** Palavras hebraicas/gregas relevantes (quando houver). */
   palavrasOriginais?: string[];
+  /** Síntese cultural (mundo do texto), nunca citação clássica inventada. */
+  contextoCultural?: string;
+  /** Locais do atlas/perícopes ligados ao capítulo. */
+  contextoGeografico?: string;
+  /** Nota exegética curta a partir de dados já catalogados (palavras, gênero). */
+  notaExegetica?: string;
+  /** Nota hermenêutica (analogia da fé / paralelos), rotulada como síntese. */
+  notaHermeneutica?: string;
   /** Fontes usadas na ficha (nunca citação inventada). */
   fontes?: string[];
   /** Origem da ficha: escrita à mão ou síntese a partir do livro/perícopes. */

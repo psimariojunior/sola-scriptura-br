@@ -70,8 +70,8 @@ export function LexiconPopup({ entry, allResults, palavraPt, position, onClose }
           </div>
           <p
             dir={isHebrew ? 'rtl' : 'ltr'}
-            className="text-lg font-semibold leading-tight truncate"
-            style={{ color: 'var(--content-primary)' }}
+            className="font-semibold leading-tight"
+            style={{ color: 'var(--content-primary)', fontSize: isMobile ? 24 : 22 }}
           >
             {currentEntry.palavra}
           </p>
@@ -173,7 +173,7 @@ export function LexiconPopup({ entry, allResults, palavraPt, position, onClose }
         </Link>
       </div>
     </div>
-  ), [currentEntry, isHebrew, langLabel, hasMultiple, allResults, selectedIndex, onClose, palavraPt]);
+  ), [currentEntry, isHebrew, langLabel, hasMultiple, allResults, selectedIndex, onClose, palavraPt, isMobile]);
 
   if (viewportSize.w === 0) return null;
 
@@ -196,17 +196,19 @@ export function LexiconPopup({ entry, allResults, palavraPt, position, onClose }
           style={{
             position: 'fixed',
             zIndex: 9999,
-            left: '1rem',
-            right: '1rem',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            maxWidth: `${viewportSize.w - 32}px`,
-            maxHeight: '80vh',
+            left: '2vw',
+            right: '2vw',
+            width: '96vw',
+            maxWidth: '100%',
+            bottom: 'max(0.75rem, env(safe-area-inset-bottom))',
+            top: 'auto',
+            transform: 'none',
+            maxHeight: '85dvh',
             overflowY: 'auto',
             borderRadius: '1rem',
             border: '1px solid var(--border)',
             backgroundColor: 'var(--surface-raised)',
-            padding: '1rem',
+            padding: '1.1rem',
             boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
             animation: 'scaleIn 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
           }}

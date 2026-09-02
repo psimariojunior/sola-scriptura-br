@@ -176,7 +176,7 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex flex-col h-full"
+      className="flex flex-col h-full min-h-0 overflow-hidden w-full"
     >
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border)]/40">
@@ -215,7 +215,7 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
       )}
 
       {/* Video/Audio Grid */}
-      <div className="flex-1 overflow-y-auto p-2">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden p-2 min-h-0">
         {isVoiceOnly ? (
           <div className="flex flex-wrap justify-center items-center gap-4 h-full">
             {/* Local participant avatar */}
@@ -238,15 +238,14 @@ export function VideoCall({ roomCode, participantId, displayName, callType = 'vi
           </div>
         ) : (
           <div className={cn(
-            'grid gap-2 h-full',
+            'grid gap-2 w-full',
             totalPeers === 0 ? 'grid-cols-1' :
-            totalPeers <= 1 ? 'grid-cols-2' :
-            totalPeers <= 4 ? 'grid-cols-2 grid-rows-2' :
-            totalPeers <= 9 ? 'grid-cols-3 grid-rows-3' :
-            'grid-cols-4 grid-rows-4'
+            totalPeers <= 1 ? 'grid-cols-1 sm:grid-cols-2' :
+            totalPeers <= 4 ? 'grid-cols-1 sm:grid-cols-2' :
+            'grid-cols-2 sm:grid-cols-3'
           )}>
             {/* Local Video */}
-            <div className="relative rounded-xl overflow-hidden bg-black/80 border border-[var(--border)]/20">
+            <div className="relative rounded-xl overflow-hidden bg-black/80 border border-[var(--border)]/20 aspect-video w-full max-h-[42dvh]">
               <video
                 ref={localVideoRef}
                 autoPlay
@@ -361,8 +360,8 @@ function RemoteVideo({ peer }: { peer: PeerStream }) {
 
   return (
     <div className={cn(
-      'relative rounded-xl overflow-hidden bg-black/80 border border-[var(--border)]/20',
-      isFullscreen ? 'col-span-2 row-span-2' : ''
+      'relative rounded-xl overflow-hidden bg-black/80 border border-[var(--border)]/20 aspect-video w-full max-h-[42dvh]',
+      isFullscreen ? 'col-span-full sm:col-span-2' : ''
     )}>
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video

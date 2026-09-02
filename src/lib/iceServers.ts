@@ -39,16 +39,22 @@ export function readTurnEnv(source: NodeJS.ProcessEnv = process.env): {
       source.TURN_URL ||
       source.NEXT_PUBLIC_TURN_URL ||
       source.NEXT_PUBLIC_TURN_URLS ||
+      source.TWILIO_TURN_URL ||
+      source.METERED_TURN_URL ||
       undefined,
     turnUser:
       source.TURN_USER ||
       source.NEXT_PUBLIC_TURN_USER ||
       source.NEXT_PUBLIC_TURN_USERNAME ||
+      source.TWILIO_TURN_USER ||
+      source.METERED_TURN_USER ||
       undefined,
     turnPass:
       source.TURN_PASS ||
       source.NEXT_PUBLIC_TURN_PASS ||
       source.NEXT_PUBLIC_TURN_CREDENTIAL ||
+      source.TWILIO_TURN_PASS ||
+      source.METERED_TURN_PASS ||
       undefined,
   };
 }
@@ -83,7 +89,11 @@ function cacheFromServers(iceServers: RTCIceServer[]): IceCache {
 
 export async function loadIceConfiguration(): Promise<RTCConfiguration> {
   const data = await loadIceStatus();
-  return { iceServers: data.iceServers };
+  const iceServers =
+    Array.isArray(data.iceServers) && data.iceServers.length > 0
+      ? data.iceServers
+      : GOOGLE_STUN_SERVERS;
+  return { iceServers, iceCandidatePoolSize: 10 };
 }
 
 export async function loadIceStatus(): Promise<IceCache> {

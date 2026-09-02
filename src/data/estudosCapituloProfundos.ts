@@ -2543,6 +2543,439 @@ export const estudosCapituloProfundos: Record<string, EstudoCapitulo> = {
     ],
     fontes: ['Apocalipse 22', 'Gênesis 2–3', 'Ezequiel 47', 'Isaías 55:1', '1 Coríntios 16:22'],
   }),
+
+  'mc:4': ficha('mc', 4, 'O semeador, a lâmpada e o grão: o mistério do reino', {
+    contextoHistorico:
+      'Marcos reúne o ensino junto ao mar da Galileia. A parábola, no judaísmo do Segundo Templo, não é ilustração fofa: esconde e revela. Isaías 6:9–10 é citado para explicar por que muitos ouvem e não entendem.',
+    resumo:
+      'O semeador sai a semear: caminho, pedregais, espinhos, terra boa. «Quem tem ouvidos para ouvir, ouça.» Aos de fora, tudo é parábola; aos discípulos, o mistério do reino. A lâmpada não se põe debaixo do alqueire. A medida com que medis. A semente cresce sozinha enquanto o homem dorme; a colheita vem. O grão de mostarda. Marcos sublinha a Palavra que produz fruto apesar da oposição, não um programa de marketing.',
+    estrutura: [
+      '4:1–20 — semeador e interpretação',
+      '4:21–25 — lâmpada e medida',
+      '4:26–34 — semente que cresce e mostarda',
+      '4:35–41 — a tempestade (transição: quem é este?)',
+    ],
+    temas: ['Palavra', 'Reino', 'Ouvir', 'Fruto', 'Mistério'],
+    VersiculosChave: [
+      chave('Marcos 4:11', 'A vós vos é dado saber o mistério do reino de Deus.', 'O reino se revela a quem segue Jesus, não a espectadores curiosos.'),
+      chave('Marcos 4:20', 'Os que ouvem a palavra, e a recebem, e dão fruto.', 'Ouvir sem receber e sem fruto não é fé no sentido de Marcos.'),
+    ],
+    significadoTeologico:
+      'Isaías 6 no evangelho não cancela a missão: explica a dureza. A semente autônoma (4:26–29) guarda a soberania de Deus na colheita. A tempestade seguinte pergunta a cristologia que as parábolas prepararam.',
+    aplicacaoPratica:
+      'Examine o solo, não só o volume de culto. Não esconda a lâmpada. Espere o crescimento que você não controla. Ouça de novo o mesmo texto até dar fruto.',
+    perguntasEstudo: [
+      'Como 4:11–12 usa Isaías 6 — juízo, paciência, ou ambos?',
+      'O que distingue a terra boa das outras três em 4:14–20?',
+      'Que relação há entre 4:26–29 e a ansiedade evangelística?',
+    ],
+    fontes: ['Marcos 4', 'Isaías 6:9–10', 'Mateus 13', 'Lucas 8'],
+  }),
+
+  'mc:5': ficha('mc', 5, 'Tombos, sangue e uma menina: três libertações', {
+    contextoHistorico:
+      'Decápolis, região gentílica com criação de porcos — ofensiva à lei de Israel. Marcos empilha três narrativas de impureza: túmulos, fluxo de sangue, cadáver. Jesus atravessa a fronteira da impureza sem se contaminar; ele purifica.',
+    resumo:
+      'O endemoninhado de Gerasa: Legião, os porcos, o homem vestido e em juízo. Os da cidade pedem que Jesus se retire. A mulher com fluxo de doze anos toca a fímbria; «a tua fé te salvou». A filha de Jairo, de doze anos, é dita morta; «talita cumi». O capítulo une poder sobre demônios, doença e morte, e a fé que se aproxima apesar da lei da impureza e da zombaria.',
+    estrutura: [
+      '5:1–20 — Gerasa, Legião, testemunho',
+      '5:21–34 — Jairo interrompido; a mulher',
+      '5:35–43 — a menina, o quarto, o sigilo',
+    ],
+    temas: ['Impureza', 'Fé', 'Morte', 'Gentios', 'Autoridade'],
+    VersiculosChave: [
+      chave('Marcos 5:19', 'Anuncia-lhes quão grandes coisas o Senhor te fez.', 'O libertado é missionário em casa, na Decápolis.'),
+      chave('Marcos 5:41–42', 'Talita cumi… a menina levantou-se.', 'A morte não é o último dado quando Jesus toma pela mão.'),
+    ],
+    significadoTeologico:
+      'Doze anos de sangue e doze anos de vida amarram as duas histórias. Jesus chama a mulher de «filha» — inclusão. Jairo, chefe da sinagoga, aprende a crer contra o relatório da morte. O sigilo (5:43) ainda opera no «segredo messiânico» de Marcos.',
+    aplicacaoPratica:
+      'Não peça a Jesus que saia do seu território. Toque-o na fila, sem protocolo perfeito. Entre no quarto da morte com a Palavra, não com a zombaria.',
+    perguntasEstudo: [
+      'Por que os gerasenos preferem os porcos a Jesus?',
+      'Como a fé da mulher e a de Jairo se completam?',
+      'O que «talita cumi» preservado em aramaico sugere sobre a memória da igreja?',
+    ],
+    fontes: ['Marcos 5', 'Levítico 15', 'Lucas 8:26–56'],
+  }),
+
+  'mc:16': ficha('mc', 16, 'O sepulcro vazio e o temor que envia', {
+    contextoHistorico:
+      'O final curto de Marcos (16:1–8) é o texto mais antigo na tradição manuscrita; 16:9–20 aparece em testemunhas posteriores. A ficha lê 16:1–8 como o desfecho que Marcos deu: túmulo vazio, anúncio, tremor — e a missão implícita.',
+    resumo:
+      'As mulheres levam aromas. A pedra está rolada. Um jovem de branco: «não está aqui; ressuscitou». Ide, dizei a seus discípulos e a Pedro. Elas fogem, tremendo, e a ninguém dizem nada, porque temiam. O evangelho que começou com «princípio do evangelho de Jesus Cristo» (1:1) termina com o silêncio aterrorizado que o leitor deve quebrar. A menção a Pedro (16:7) amarra a queda de 14:72.',
+    estrutura: [
+      '16:1–4 — o caminho e a pedra',
+      '16:5–7 — o anúncio e a Galileia',
+      '16:8 — temor e silêncio',
+    ],
+    temas: ['Ressurreição', 'Testemunho', 'Pedro', 'Temor', 'Galileia'],
+    VersiculosChave: [
+      chave('Marcos 16:6–7', 'Não está aqui; ressuscitou… dizei a seus discípulos e a Pedro.', 'A ressurreição restaura o desertor pelo nome.'),
+      chave('Marcos 16:8', 'E não disseram nada a ninguém, porque temiam.', 'O leitor é convocado a falar o que elas, naquele instante, calaram.'),
+    ],
+    significadoTeologico:
+      'A Galileia (16:7) relê 14:28: o reencontro é no lugar do primeiro chamado. O temor não anula o fato: o sepulcro está vazio. 1 Coríntios 15 interpreta a ressurreição como evangelho, não como nota de rodapé.',
+    aplicacaoPratica:
+      'Não fique no túmulo. Leve a notícia a quem falhou. Não transforme o final curto em desculpa para o silêncio permanente.',
+    perguntasEstudo: [
+      'Por que Marcos nomeia Pedro em 16:7?',
+      'Como 16:8 relê o «temor» ao longo do evangelho?',
+      'O que 1 Coríntios 15 acrescenta que Marcos 16:1–8 não narra?',
+    ],
+    fontes: ['Marcos 16:1–8', 'Marcos 14:28, 72', '1 Coríntios 15:3–8'],
+  }),
+
+  'lc:4': ficha('lc', 4, 'O deserto, Nazaré e a autoridade na Galileia', {
+    contextoHistorico:
+      'Lucas liga o batismo, a genealogia até Adão (cap. 3) e a tentação: o Filho é o homem obediente. Nazaré, no sábado, lê Isaías 61. A rejeição na pátria antecipa a rejeição em Jerusalém.',
+    resumo:
+      'Quarenta dias no deserto: pão, reinos, pináculo. Jesus responde com Deuteronômio. Em Nazaré, «o Espírito do Senhor está sobre mim». «Hoje se cumpriu.» A ira quando lembra Elias e Eliseu entre gentios. Quase o precipitam. Em Cafarnaum, expulsa demônios e cura a sogra de Pedro. «É necessário que eu anuncie o evangelho do reino às outras cidades.» O programa de 4:18–19 governa o evangelho de Lucas e Atos.',
+    estrutura: [
+      '4:1–13 — tentação',
+      '4:14–30 — Nazaré e Isaías 61',
+      '4:31–44 — Cafarnaum, autoridade, missão',
+    ],
+    temas: ['Tentação', 'Escritura', 'Jubileu', 'Rejeição', 'Reino'],
+    VersiculosChave: [
+      chave('Lucas 4:18–21', 'O Espírito do Senhor… Hoje se cumpriu esta Escritura.', 'O jubileu messiânico começa na boca de Jesus, não num calendário político.'),
+      chave('Lucas 4:43', 'É necessário que eu anuncie… o reino de Deus.', 'A missão não se acomoda ao sucesso local.'),
+    ],
+    significadoTeologico:
+      'A tentação relê Israel no deserto: onde o povo murmurou, o Filho obedece. Isaías 61 + 58 no texto de Lucas (libertação dos oprimidos) define o Messias como evangelista dos pobres. Atos 10 cumprirá o horizonte gentílico que Nazaré recusou.',
+    aplicacaoPratica:
+      'Responda a tentação com a Escritura, não com slogans. Não mate o profeta da sua rua. Anuncie o reino noutro lugar quando o fecham a porta.',
+    perguntasEstudo: [
+      'Como as três tentações citam ou distorcem a Escritura?',
+      'Por que Isaías 61 provoca ira em 4:28–29?',
+      'Que «necessidade» (dei) Lucas introduz em 4:43?',
+    ],
+    fontes: ['Lucas 4', 'Deuteronômio 6–8', 'Isaías 61:1–2', 'Atos 10'],
+  }),
+
+  'lc:10': ficha('lc', 10, 'Os setenta, o samaritano e a parte boa', {
+    contextoHistorico:
+      'Lucas enfatiza a missão além dos Doze e o samaritano — figura odiada em Jerusalém. O jurista testa Jesus com Dt 6 e Lv 19. A parábola redefine «próximo» pelo agir, não pela etnia.',
+    resumo:
+      'Setenta (ou setenta e dois) enviados: a seara é grande. «Vi Satanás cair.» Os nomes estão nos céus. O jurista: «quem é o meu próximo?» O samaritano derrama azeite e vinho, paga a hospedaria. «Vai, e faze o mesmo.» Marta se afadiga; Maria ouve. «Maria escolheu a boa parte.» O capítulo une missão, misericórdia concreta e escuta da Palavra contra o ativismo ansioso.',
+    estrutura: [
+      '10:1–24 — envio, queda de Satanás, júbilo',
+      '10:25–37 — o samaritano',
+      '10:38–42 — Marta e Maria',
+    ],
+    temas: ['Missão', 'Próximo', 'Misericórdia', 'Escuta', 'Reino'],
+    VersiculosChave: [
+      chave('Lucas 10:27–28', 'Amarás o Senhor… e o teu próximo. Faze isso, e viverás.', 'O resumo da Lei é verdadeiro; o jurista ainda precisa de um próximo concreto.'),
+      chave('Lucas 10:42', 'Maria escolheu a boa parte, a qual não lhe será tirada.', 'Servir sem ouvir vira acusação; ouvir habilita o serviço.'),
+    ],
+    significadoTeologico:
+      'O samaritano é o que faz misericórdia — Jesus depois será o rejeitado que salva. Os setenta prefiguram a missão da igreja. O júbilo de 10:21 é revelação aos pequeninos.',
+    aplicacaoPratica:
+      'Pague o custo do próximo, não só o debate. Envie trabalhadores. Sente-se aos pés antes de recriminar quem não seca os pratos no seu ritmo.',
+    perguntasEstudo: [
+      'A pergunta certa em 10:29 é «quem é meu próximo» ou «de quem me faço próximo»?',
+      'Como 10:17–20 corrige o entusiasmo com milagres?',
+      'Por que Lucas cola o samaritano e Marta/Maria no mesmo capítulo?',
+    ],
+    fontes: ['Lucas 10', 'Deuteronômio 6:5', 'Levítico 19:18', '2 Crônicas 28:15'],
+  }),
+
+  'lc:19': ficha('lc', 19, 'Zaqueu, as minas e o Rei que chora sobre a cidade', {
+    contextoHistorico:
+      'Jericó, cidade de publicanos na rota a Jerusalém. Lucas ama o perdido que é achado (cap. 15). A parábola das minas, no caminho da Paixão, confronta a recusa de ter Jesus como rei. A entrada e o pranto sobre Jerusalém antecipam 70 d.C. sem virar tabela de datas.',
+    resumo:
+      'Zaqueu sobe ao sicômoro. «Hoje entrou a salvação nesta casa.» Restituição quádrupla. A parábola: negociar até que o rei volte; o que escondeu a mina é julgado. Entrada em Jerusalém sobre o jumentinho (Zc 9:9). Fariseus pedem silêncio; as pedras clamariam. Jesus chora: «se tu conhecesses… as coisas que à tua paz pertencem.» Purifica o templo: casa de oração, covil de salteadores.',
+    estrutura: [
+      '19:1–10 — Zaqueu',
+      '19:11–27 — minas e reino',
+      '19:28–48 — entrada, pranto, templo',
+    ],
+    temas: ['Salvação', 'Restituição', 'Reino', 'Jerusalém', 'Templo'],
+    VersiculosChave: [
+      chave('Lucas 19:10', 'O Filho do Homem veio buscar e salvar o que se havia perdido.', 'O versículo amarra Zaqueu ao programa de Lucas 15 e 4:18.'),
+      chave('Lucas 19:41–42', 'Chorou sobre ela… se tu conhecesses.', 'O Rei não entra só em glória: entra em pranto profético.'),
+    ],
+    significadoTeologico:
+      'A salvação «hoje» (19:9) é escatologia inaugurada. As minas recusam a ideia de reino imediato sem responsabilidade. O templo em Lucas é o lugar do ensino; o juízo sobre a cidade ecoa Jeremias 7.',
+    aplicacaoPratica:
+      'Desça da árvore e restitua. Negocie a mina até a volta. Não celebre o Domingo de Ramos sem o pranto de quarta-feira. Ore no templo, não o transforme em mercado.',
+    perguntasEstudo: [
+      'O que Zaqueu faz que o jovem rico (Lc 18) não fez?',
+      'Como 19:11 corrige a expectativa de reino imediato?',
+      'Que textos de Jeremias ecoam em 19:46?',
+    ],
+    fontes: ['Lucas 19', 'Zacarias 9:9', 'Jeremias 7:11', 'Lucas 15'],
+  }),
+
+  'jo:2': ficha('jo', 2, 'Caná e o templo: o primeiro sinal e o corpo', {
+    contextoHistorico:
+      'Caná da Galileia; casamento judaico de sete dias. João numera sinais. A Páscoa em Jerusalém e a purificação do templo, no começo do evangelho (não só no fim, como nos sinóticos), define o conflito com o culto.',
+    resumo:
+      '«Não tenho vinho.» «Mulher, que tenho eu contigo? Ainda não é chegada a minha hora.» Seis talhas de purificação: água vira vinho bom. Manifestou a sua glória; os discípulos creram. No templo, cordéis, mesas, ovelhas. «Destruí este templo, e em três dias o levantarei» — falava do seu corpo. Depois da ressurreição, os discípulos se lembraram. Muitos creram ao verem os sinais; Jesus não se confiava a eles (2:23–25).',
+    estrutura: [
+      '2:1–12 — Caná, o vinho, o sinal',
+      '2:13–22 — templo, corpo, três dias',
+      '2:23–25 — fé superficial',
+    ],
+    temas: ['Sinal', 'Glória', 'Hora', 'Templo', 'Ressurreição'],
+    VersiculosChave: [
+      chave('João 2:11', 'Manifestou a sua glória, e os seus discípulos creram nele.', 'O sinal serve à fé na glória, não ao estoque de vinho.'),
+      chave('João 2:19–21', 'Destruí este templo… falava do templo do seu corpo.', 'O culto se desloca do edifício para o Crucificado-ressuscitado.'),
+    ],
+    significadoTeologico:
+      'As talhas de purificação: a água da lei dá lugar ao vinho da nova aliança. A «hora» de João é a cruz (12:23). O templo-corpo cumpre a presença de Deus (1:14). 2:24–25 prepara Nicodemos (cap. 3): nem toda crença é novo nascimento.',
+    aplicacaoPratica:
+      'Peça o vinho da hora de Jesus, não o milagre para a festa. Não confunda templo de pedra com o corpo de Cristo. Desconfie da fé que só conta sinais.',
+    perguntasEstudo: [
+      'O que as talhas de pedra (purificação) acrescentam ao milagre?',
+      'Como 2:19–22 ensina a ler o Antigo Testamento à luz da ressurreição?',
+      'Por que 2:23–25 segue os sinais?',
+    ],
+    fontes: ['João 2', 'João 1:14', 'Salmos 69:9', 'João 12:23'],
+  }),
+
+  'jo:4': ficha('jo', 4, 'A samaritana, a água e a seara', {
+    contextoHistorico:
+      'Sicar, junto à herança de Jacó. Judeus e samaritanos sem trato (4:9). O poço ao meio-dia. João mostra Jesus cansado — verdadeira humanidade — e a missão fora da Judeia antes de Atos 8.',
+    resumo:
+      '«Dá-me de beber.» A mulher: cinco maridos. «Os que adoram devem adorar em espírito e em verdade.» O Messias: «eu o sou, eu que falo contigo.» Os discípulos se maravilham. Ela deixa o cântaro; a cidade vem. «A minha comida é fazer a vontade daquele que me enviou.» A seara é branca. Muitos creem por causa da palavra dela, depois por causa da palavra de Jesus. Em Caná de novo, o oficial: o filho vive — segundo sinal.',
+    estrutura: [
+      '4:1–26 — poço, água, culto, Messias',
+      '4:27–42 — testemunho e seara',
+      '4:43–54 — o filho do oficial',
+    ],
+    temas: ['Água viva', 'Adoração', 'Missão', 'Palavra', 'Sinal'],
+    VersiculosChave: [
+      chave('João 4:14', 'A água que eu lhe der será uma fonte a jorrar para a vida eterna.', 'A sede humana não se resolve no poço de Jacó.'),
+      chave('João 4:24', 'Deus é Espírito, e importa que os que o adoram o adorem em espírito e em verdade.', 'Nem Gerizim nem só Jerusalém: o Pai busca adoradores.'),
+    ],
+    significadoTeologico:
+      'A água viva antecipa 7:37–39 (o Espírito). A ceifa samaritana antecipa Atos 8. A fé do oficial (4:50) é pela Palavra, não pela vista — contraste com 2:23 e 4:48.',
+    aplicacaoPratica:
+      'Fale com quem a sua tribo evita. Deixe o cântaro. Adore em espírito e verdade. Creia na Palavra antes de ver o milagre.',
+    perguntasEstudo: [
+      'Como 4:20–24 relê o conflito do templo?',
+      'O que muda entre 4:39 e 4:42?',
+      'Como o segundo sinal (4:54) dialoga com Caná (2:11)?',
+    ],
+    fontes: ['João 4', 'João 7:37–39', 'Atos 8:4–25', 'Deuteronômio 12'],
+  }),
+
+  'jo:21': ficha('jo', 21, 'Tiberíades: o peixe, o amor e o seguir', {
+    contextoHistorico:
+      'Apêndice reconhecido (21:24–25) após o propósito de 20:30–31. O mar de Tiberíades, a pesca, o carvão — eco de 18:18. A restauração de Pedro é pública, como a negação.',
+    resumo:
+      '«Vou pescar.» Nada naquela noite. «Lançai à direita.» A rede não se rompe. «É o Senhor.» Pedro se cinge e lança-se ao mar. Pão e peixe no carvão. Três vezes: «amas-me?» Apascenta, pastoreia. «Quando fores velho… outro te cingirá.» «Segue-me.» O discípulo a quem Jesus amava: «se eu quero que ele fique…» O testemunho é verdadeiro. O mundo não caberia os livros.',
+    estrutura: [
+      '21:1–14 — pesca e café da manhã',
+      '21:15–19 — Pedro restaurado e o martírio',
+      '21:20–25 — o outro discípulo e o testemunho',
+    ],
+    temas: ['Restauração', 'Pastoreio', 'Martírio', 'Testemunho', 'Seguir'],
+    VersiculosChave: [
+      chave('João 21:17', 'Senhor, tu sabes tudo; tu sabes que eu te amo.', 'A restauração não esconde a ferida; entrega o pastorado.'),
+      chave('João 21:22', 'Que te importa? Segue-me tu.', 'A vocação alheia não é o nosso mapa.'),
+    ],
+    significadoTeologico:
+      'Três perguntas cobrem três negações. O pastorado nasce do amor a Cristo, não da autoestima. 21:18–19 interpreta a morte de Pedro como glorificação de Deus. O final recusa a curiosidade espetacular sobre João.',
+    aplicacaoPratica:
+      'Volte à praia depois de falhar. Receba o encargo, não só o café. Não compare o seu «seguir» com o do irmão. Testemunhe o que viu.',
+    perguntasEstudo: [
+      'Que ecos de João 18 há no carvão de 21:9?',
+      'Por que três vezes «amas-me»?',
+      'Como 21:23 corrige um rumor na igreja?',
+    ],
+    fontes: ['João 21', 'João 18:15–27', 'João 20:30–31', '1 Pedro 5:1–4'],
+  }),
+
+  'at:7': ficha('at', 7, 'Estêvão: a história de Israel e o céu aberto', {
+    contextoHistorico:
+      'O primeiro mártir cristão, helenista, diante do Sinédrio. O discurso percorre o Pentateuco e os Profetas para mostrar que Israel repetidamente rejeitou os enviados — José, Moisés, os profetas — e agora o Justo.',
+    resumo:
+      'O Deus da glória a Abraão. José vendido; Deus com ele. Moisés rejeitado: «quem te constituiu chefe?» O bezerro. O tabernáculo e o templo: «o Altíssimo não habita em templos feitos por mãos.» «Homens de dura cerviz… matastes o Justo.» Eles rangem os dentes. Estêvão vê o Filho do Homem em pé. «Senhor Jesus, recebe o meu espírito.» «Não lhes imputes este pecado.» Saulo consente na morte.',
+    estrutura: [
+      '7:1–53 — a recusa da história santa',
+      '7:54–60 — visão, morte, perdão',
+      '8:1 — perseguição (fronteira do cap. 7)',
+    ],
+    temas: ['Rejeição', 'Templo', 'Filho do Homem', 'Martírio', 'Perdão'],
+    VersiculosChave: [
+      chave('Atos 7:48–49', 'O Altíssimo não habita em templos feitos por mãos de homens.', 'Isaías 66 no julgamento do culto que se tornou ídolo.'),
+      chave('Atos 7:56–60', 'Vejo o Filho do Homem… Senhor, não lhes imputes este pecado.', 'A morte de Estêvão relê a de Jesus (Lc 23:34, 46).'),
+    ],
+    significadoTeologico:
+      'O templo não é condenado como tal; a idolatria do templo é. O Filho do Homem «em pé» (não sentado) tem sido lido como testemunha e advogado. A perseguição espalha a Palavra (8:1, 4). Saulo ouvirá o mesmo Jesus.',
+    aplicacaoPratica:
+      'Conte a Escritura inteira, não um versículo de efeito. Não faça do edifício o Deus. Morra perdoando. Não desperdice o sangue dos mártires em espetáculo.',
+    perguntasEstudo: [
+      'Que padrão Estêvão vê em José, Moisés e Jesus?',
+      'Como Isaías 66 funciona em 7:48–50?',
+      'Que paralelos há entre Lc 23 e At 7:59–60?',
+    ],
+    fontes: ['Atos 7', 'Isaías 66:1–2', 'Lucas 23:34, 46', 'Êxodo 2:14'],
+  }),
+
+  'at:16': ficha('at', 16, 'Filipos: a Macedônia, Lídia, o cárcere e a casa', {
+    contextoHistorico:
+      'Primeira igreja na Europa, colônia romana. O «vem à Macedônia» (16:9) redireciona a missão. Filipos tem poucos judeus: o sábado é junto ao rio, sem sinagoga mencionada.',
+    resumo:
+      'Timóteo circuncidado por causa dos judeus. A visão do macedônio. Lídia, vendedora de púrpura, cujo coração o Senhor abre; o batismo da casa. A jovem com espírito de adivinhação. Paulo e Silas açoitados, no tronco, cantando. Terremoto; o carcereiro: «que é necessário que eu faça para me salvar?» «Crê no Senhor Jesus.» A casa ouve a Palavra, é batizada, põe a mesa. Cidadania romana revelada. Pedem-lhes que saiam; visitam Lídia e partem.',
+    estrutura: [
+      '16:1–10 — Timóteo, a visão, a travessia',
+      '16:11–24 — Lídia, a jovem, a prisão',
+      '16:25–40 — hino, carcereiro, saída',
+    ],
+    temas: ['Missão', 'Casa', 'Batismo', 'Sofrimento', 'Fé'],
+    VersiculosChave: [
+      chave('Atos 16:14', 'O Senhor lhe abriu o coração para que estivesse atenta.', 'A conversão de Lídia é obra de Deus na Palavra, não técnica.'),
+      chave('Atos 16:31', 'Crê no Senhor Jesus Cristo e serás salvo, tu e a tua casa.', 'A fé do carcereiro se torna Palavra para a casa, não mágica hereditária.'),
+    ],
+    significadoTeologico:
+      'O coração aberto (Lídia) e a pergunta do cárcere mostram a mesma graça em ambientes opostos. A Carta aos Filipenses nascerá desta igreja. O hino à meia-noite é teologia da cruz: louvor no tronco.',
+    aplicacaoPratica:
+      'Obedeça ao redirecionamento. Pregue junto ao rio se não houver púlpito. Cante no tronco. Fale a Palavra à casa inteira. Use direitos civis sem transformar a missão em processo.',
+    perguntasEstudo: [
+      'Por que circuncidar Timóteo em 16:3 depois do concílio (At 15)?',
+      'O que 16:14 ensina sobre evangelismo e soberania?',
+      'Como 16:31–34 evita tanto o individualismo quanto o batismo mágico?',
+    ],
+    fontes: ['Atos 16', 'Filipenses 1:3–7', 'Atos 15', 'Salmos 119:62'],
+  }),
+
+  'rm:9': ficha('rm', 9, 'A eleição, Israel e o oleiro', {
+    contextoHistorico:
+      'Após Rm 8, a pergunta: a Palavra de Deus falhou se Israel, em massa, rejeita o Messias? Paulo jura tristeza; lista privilégios (9:4–5). Recorre a Gênesis e Êxodo: Isaque, Jacó, Faraó.',
+    resumo:
+      'Nem todos os de Israel são Israel. «Em Isaque será chamada a tua descendência.» Jacó e Esaú: «o maior servirá o menor»; «amei Jacó e aborreci Esaú» (Ml 1). «Não depende do que quer, nem do que corre, mas de Deus que se compadece.» Faraó: para mostrar poder. O oleiro e o barro. Vasos de misericórdia, também de gentios. Oséias: «chamarei povo meu ao que não era.» Isaías: o remanescente. Israel busca pela lei, não pela fé; tropeça na pedra (Is 8; 28).',
+    estrutura: [
+      '9:1–5 — dor e privilégios',
+      '9:6–29 — eleição e Escritura',
+      '9:30–33 — fé, lei, pedra',
+    ],
+    temas: ['Eleição', 'Israel', 'Misericórdia', 'Remanescente', 'Pedra'],
+    VersiculosChave: [
+      chave('Romanos 9:16', 'Não depende do que quer, nem do que corre, mas de Deus que se compadece.', 'A salvação não é salário da vontade; é compaixão.'),
+      chave('Romanos 9:33', 'Eis que eu ponho em Sião uma pedra de tropeço.', 'Cristo é pedra: fé ou queda (Is 28:16).'),
+    ],
+    significadoTeologico:
+      'Rm 9–11 é um bloco: 11 ainda falará de enxerto e mistério. 9 não ensina capricho; ensina que a aliança nunca foi carne pura (9:6–8). A cristologia de 9:5 («Deus sobre todos») é das mais densas de Paulo.',
+    aplicacaoPratica:
+      'Doe por Israel perdido. Não transforme eleição em frieza. Tropece menos na pedra: creia. Leia 9 com 10 e 11, não como folheto isolado.',
+    perguntasEstudo: [
+      'Como 9:6 impede a leitura racial da aliança?',
+      'O que Êxodo 33:19 faz em 9:15?',
+      'Como 9:30–33 prepara o «todo aquele» de 10:11–13?',
+    ],
+    fontes: ['Romanos 9', 'Gênesis 21:12', 'Malaquias 1:2–3', 'Êxodo 9:16', 'Isaías 28:16'],
+  }),
+
+  'sl:16': ficha('sl', 16, 'Mictão de Davi: o Santo não verá corrupção', {
+    contextoHistorico:
+      'Salmo de confiança. Atos 2 e 13 leem 16:10 na ressurreição de Jesus: Davi morreu e viu corrupção; o Santo não. A hermenêutica apostólica não é inventada aqui: está no próprio texto da esperança para além do Seol.',
+    resumo:
+      '«Guarda-me, ó Deus, porque em ti confio.» Os santos na terra; os que correm após outro deus terão dores. O Senhor é porção da minha herança e do meu cálice. Cordéis em lugares aprazíveis. «Bênçãos à minha direita.» «Não deixarás a minha alma no inferno, nem permitirás que o teu Santo veja corrupção.» Na tua presença há fartura de alegria; delícias à tua direita para sempre.',
+    estrutura: [
+      '16:1–4 — refúgio e recusa dos ídolos',
+      '16:5–8 — porção e presença',
+      '16:9–11 — Seol, Santo, alegria',
+    ],
+    temas: ['Confiança', 'Herança', 'Seol', 'Ressurreição', 'Alegria'],
+    VersiculosChave: [
+      chave('Salmos 16:5', 'O Senhor é a porção da minha herança e do meu cálice.', 'A herança de Davi não é só terra: é o próprio Deus.'),
+      chave('Salmos 16:10', 'Não deixarás a minha alma no inferno, nem permitirás que o teu Santo veja corrupção.', 'Pedro e Paulo pregam este verso em Jesus (At 2:27; 13:35).'),
+    ],
+    significadoTeologico:
+      'A «porção» sacerdotal (Nm 18) torna-se linguagem de fé. A ressurreição de Cristo é o cumprimento pleno; o crente participa da esperança (1 Co 15). A direita de 16:11 encontra a direita de 110:1.',
+    aplicacaoPratica:
+      'Recuse ídolos que multiplicam dores. Diga: o Senhor é minha porção. Espere o corpo, não só a alma. Peça a alegria da presença, não o escape do tédio.',
+    perguntasEstudo: [
+      'Como Atos 2 argumenta que 16:10 não se esgota em Davi?',
+      'O que «porção» e «cálice» evocam no culto de Israel?',
+      'Como 16:11 se relaciona com Salmos 110?',
+    ],
+    fontes: ['Salmos 16', 'Atos 2:25–32', 'Atos 13:34–37', 'Números 18:20'],
+  }),
+
+  'sl:46': ficha('sl', 46, 'Deus é o nosso refúgio: a cidade que não se abala', {
+    contextoHistorico:
+      'Cântico de Sião. Tradições ligam-no a livramentos de Jerusalém (como no tempo de Ezequias), sem que o salmo dependa de uma data única. Lutero cantou-o em «Castelo forte» — fato histórico da Reforma, não citação inventada do salmo.',
+    resumo:
+      'Deus é refúgio, fortaleza, socorro bem presente na angústia. Por isso não temeremos ainda que a terra se mude e os montes se precipitam no mar. Um rio alegra a cidade de Deus. Deus está no meio dela; não se abalará. Nações se embravecem; ele profere a sua voz, a terra se derrete. «Estai quietos, e sabei que eu sou Deus.» O Senhor dos Exércitos está conosco; o Deus de Jacó é o nosso refúgio.',
+    estrutura: [
+      '46:1–3 — caos cósmico e confiança',
+      '46:4–7 — a cidade e o rio',
+      '46:8–11 — guerras cessam; «estai quietos»',
+    ],
+    temas: ['Refúgio', 'Sião', 'Soberania', 'Paz', 'Presença'],
+    VersiculosChave: [
+      chave('Salmos 46:1', 'Deus é o nosso refúgio e fortaleza, socorro bem presente na angústia.', 'A fé não nega a angústia; localiza o socorro.'),
+      chave('Salmos 46:10', 'Estai quietos, e sabei que eu sou Deus.', 'A quietude é conhecimento, não apatia.'),
+    ],
+    significadoTeologico:
+      'O rio de 46:4 antecipa Ezequiel 47 e Apocalipse 22: a cidade de Deus tem água que o caos do mar não tem. «Conosco» (imanuel) ecoa a aliança. Hebreus 12 fala da cidade inabalável.',
+    aplicacaoPratica:
+      'Quando as manchetes tremerem, recite 46. Não confunda quietude com omissão: saiba quem é Deus. Habite a cidade pela fé, não pelo pânico.',
+    perguntasEstudo: [
+      'Como o mar de 46:2–3 contrasta com o rio de 46:4?',
+      'O que «Senhor dos Exércitos» acrescenta a «Deus de Jacó»?',
+      'Como Hb 12:26–28 lê uma cidade que não se abala?',
+    ],
+    fontes: ['Salmos 46', 'Isaías 7:14', 'Ezequiel 47', 'Hebreus 12:26–28', 'Apocalipse 22:1'],
+  }),
+
+  'is:7': ficha('is', 7, 'Emanuel: o sinal a Acaz e a casa de Davi', {
+    contextoHistorico:
+      'Guerra siro-efraimita (~734 a.C.). Acaz, rei de Judá, treme diante de Rezim e Peca. Isaías encontra-o no aqueduto. A casa de Davi é ameaçada; o sinal é para ela, não só para a fé privada de um rei incrédulo.',
+    resumo:
+      '«Acautela-te e aquieta-te; não temas.» Os dois tições fumegantes. Se não crerdes, não permanecereis. Pede um sinal: Acaz recusa com piedade falsa. «Pois o Senhor mesmo vos dará um sinal: eis que a virgem conceberá, e dará à luz um filho, e será o seu nome Emanuel.» Antes que o menino saiba rejeitar o mal, a terra dos dois reis será desamparada. A Assíria, navalha alugada, varrerá Judá. Mateus 1:23 lê o cumprimento em Jesus sem apagar o horizonte do século VIII.',
+    estrutura: [
+      '7:1–9 — o encontro e a fé',
+      '7:10–17 — o sinal de Emanuel',
+      '7:18–25 — o juízo assírio',
+    ],
+    temas: ['Fé', 'Emanuel', 'Casa de Davi', 'Juízo', 'Sinal'],
+    VersiculosChave: [
+      chave('Isaías 7:9', 'Se o não crerdes, não permanecereis.', 'A política de Acaz sem fé não sustenta o trono de Davi.'),
+      chave('Isaías 7:14', 'A virgem conceberá… Emanuel.', 'Deus-conosco é o sinal; Mateus identifica o menino com Jesus.'),
+    ],
+    significadoTeologico:
+      'Emanuel é presença no juízo e na salvação. O nome reaparece em 8:8–10. A leitura canônica une o menino do século de Acaz e o nascimento de Cristo: a casa de Davi não se apaga. 2 Rs 16 mostra Acaz buscando a Assíria — o contrário de 7:4.',
+    aplicacaoPratica:
+      'Não recuse o sinal com linguagem piedosa. Creia para permanecer. Não alugue a Assíria (alianças que substituem Deus). Confesse Emanuel no medo político.',
+    perguntasEstudo: [
+      'Por que o sinal é dado à «casa de Davi» (7:13), não só a Acaz?',
+      'Como Mateus 1 usa 7:14 sem anular 7:15–16?',
+      'Que contraste há entre 7:4 e 2 Reis 16?',
+    ],
+    fontes: ['Isaías 7', 'Isaías 8:8–10', 'Mateus 1:22–23', '2 Reis 16'],
+  }),
+
+  'is:61': ficha('is', 61, 'O Espírito do Senhor: o ano aceitável e os pranteadores', {
+    contextoHistorico:
+      'No bloco de restauração (Is 56–66), após o Servo (53) e a aliança (54–55). Lucas 4 põe este texto na boca de Jesus em Nazaré como cumprimento «hoje».',
+    resumo:
+      'O Espírito do Senhor Jeová está sobre mim, porque o Senhor me ungiu para pregar boas-novas aos mansos, curar os quebrantados, apregoar liberdade aos cativos, o ano aceitável do Senhor e o dia da vingança. Consolar os que choram em Sião; cinza em glória, pranto em óleo de gozo. «Sacerdotes do Senhor» se chamarão. A aliança eterna. A justiça brotará como o jardim. «Eu, o Senhor, o faço a seu tempo.»',
+    estrutura: [
+      '61:1–3 — unção, pobres, consolação',
+      '61:4–7 — reconstrução e dupla porção',
+      '61:8–11 — aliança, justiça, júbilo',
+    ],
+    temas: ['Espírito', 'Ungido', 'Jubileu', 'Consolação', 'Aliança'],
+    VersiculosChave: [
+      chave('Isaías 61:1–2', 'O Espírito do Senhor… o ano aceitável do Senhor.', 'Jesus lê até «ano aceitável» em Nazaré (Lc 4:19); o dia da vingança permanece no horizonte canônico.'),
+      chave('Isaías 61:10', 'Vestiu-me com os vestidos da salvação.', 'A justiça é traje dado, não costurado pelo pranteador.'),
+    ],
+    significadoTeologico:
+      'A unção (mashach) aponta o Messias. O jubileu (Lv 25) torna-se evangelho. 61:6 universaliza o sacerdócio do povo restaurado. Apocalipse 21 ainda espera a reconstrução plena; Lucas 4 inaugura o ano aceitável.',
+    aplicacaoPratica:
+      'Pregue aos pobres de fato. Troque cinza por louvor, sem negar o pranto. Vista a salvação; não a fabrique. Espere o tempo do Senhor.',
+    perguntasEstudo: [
+      'O que Lucas 4 inclui e o que omite de Isaías 61:2 — e por quê?',
+      'Como o jubileu de Levítico 25 ilumina 61:1?',
+      'Que relação há entre 61:10 e a justiça de Isaías 53?',
+    ],
+    fontes: ['Isaías 61', 'Lucas 4:16–21', 'Levítico 25', 'Isaías 53'],
+  }),
 };
 
 export function listarFichasProfundas() {

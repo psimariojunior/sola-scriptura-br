@@ -196,15 +196,21 @@ export class WebRTCService {
   private participantId = '';
   private displayName = '';
   private localChannel: BroadcastChannel | null = null;
-  private iceConfig: RTCConfiguration = { iceServers: GOOGLE_STUN_SERVERS };
+  private iceConfig: RTCConfiguration = { iceServers: GOOGLE_STUN_SERVERS, iceCandidatePoolSize: 10 };
   private iceReady: Promise<RTCConfiguration> | null = null;
+  private knownRemoteSocketIds: string[] = [];
+  private pendingIce = new Map<string, RTCIceCandidateInit[]>();
 
   private async getIceConfig(): Promise<RTCConfiguration> {
     if (!this.iceReady) {
       this.iceReady = loadIceConfiguration()
         .then((cfg) => {
-          this.iceConfig = cfg;
-          return cfg;
+          const iceServers =
+            Array.isArray(cfg.iceServers) && cfg.iceServers.length > 0
+              ? cfg.iceServers
+              : GOOGLE_STUN_SERVERS;
+          this.iceConfig = { ...cfg, iceServers, iceCandidatePoolSize: 10 };
+          return this.iceConfig;
         })
         .catch(() => this.iceConfig);
     }
@@ -221,6 +227,7 @@ export class WebRTCService {
       audio,
     });
     this.localStream = stream;
+    await this.startMediaWithPeers();
     return stream;
   }
 
@@ -266,6 +273,12 @@ export class WebRTCService {
 
     this.socket.on('room-participants', (data: { participants: SignalingParticipant[] }) => {
       this.onParticipantsCallback?.(data.participants);
+      this.knownRemoteSocketIds = data.participants
+        .map((p) => p.socketId)
+        .filter((id) => id && id !== this.mySocketId);
+      if (this.localStream) {
+        void this.startMediaWithPeers();
+      }
     });
 
     this.socket.on('room-full', (data: { code: string; maxParticipants: number }) => {
@@ -273,8 +286,11 @@ export class WebRTCService {
     });
 
     this.socket.on('existing-participants', async (participants: SignalingParticipant[]) => {
-      for (const p of participants) {
-        await this.createOffer(p.socketId);
+      this.knownRemoteSocketIds = participants.map((p) => p.socketId);
+      if (this.localStream) {
+        for (const p of participants) {
+          await this.createOffer(p.socketId);
+        }
       }
     });
 
@@ -540,23 +556,38 @@ export class WebRTCService {
     this.onCursorMoveCallback = cb;
   }
 
-  private async createOffer(targetSocketId: string) {
-    const pc = new RTCPeerConnection(await this.getIceConfig());
-    this.peers.set(targetSocketId, pc);
+  private async flushPendingIce(socketId: string, pc: RTCPeerConnection) {
+    const queued = this.pendingIce.get(socketId);
+    if (!queued?.length) return;
+    this.pendingIce.delete(socketId);
+    for (const candidate of queued) {
+      try {
+        await pc.addIceCandidate(new RTCIceCandidate(candidate));
+      } catch {
+        /* candidato tardio */
+      }
+    }
+  }
 
+  private wirePeer(pc: RTCPeerConnection, remoteSocketId: string) {
     if (this.localStream) {
-      this.localStream.getTracks().forEach(track => pc.addTrack(track, this.localStream!));
+      const senders = pc.getSenders();
+      this.localStream.getTracks().forEach((track) => {
+        if (!senders.some((s) => s.track?.id === track.id)) {
+          pc.addTrack(track, this.localStream!);
+        }
+      });
     }
 
     pc.ontrack = (event) => {
-      this.updatePeerStream(targetSocketId, event.streams[0]);
+      this.updatePeerStream(remoteSocketId, event.streams[0]);
     };
 
     pc.onicecandidate = (event) => {
       if (event.candidate) {
         this.socket?.emit('signal', {
           code: '',
-          to: targetSocketId,
+          to: remoteSocketId,
           type: 'ice-candidate',
           payload: event.candidate.toJSON(),
         });
@@ -566,9 +597,50 @@ export class WebRTCService {
     pc.onconnectionstatechange = () => {
       if (pc.connectionState === 'failed') this.onIceFailedCallback?.();
       if (pc.connectionState === 'disconnected' || pc.connectionState === 'failed') {
-        this.removePeer(targetSocketId);
+        this.removePeer(remoteSocketId);
       }
     };
+  }
+
+  private async startMediaWithPeers() {
+    if (!this.localStream) return;
+    for (const socketId of this.knownRemoteSocketIds) {
+      const existing = this.peers.get(socketId);
+      if (existing) {
+        const senders = existing.getSenders();
+        let added = false;
+        this.localStream.getTracks().forEach((track) => {
+          if (!senders.some((s) => s.track?.kind === track.kind)) {
+            existing.addTrack(track, this.localStream!);
+            added = true;
+          }
+        });
+        if (added) {
+          try {
+            const offer = await existing.createOffer();
+            await existing.setLocalDescription(offer);
+            this.socket?.emit('signal', {
+              code: '',
+              to: socketId,
+              type: 'offer',
+              payload: offer,
+            });
+          } catch {
+            /* renegociação opcional */
+          }
+        }
+      } else {
+        await this.createOffer(socketId);
+      }
+    }
+  }
+
+  private async createOffer(targetSocketId: string) {
+    if (this.peers.has(targetSocketId)) return;
+    const ice = await this.getIceConfig();
+    const pc = new RTCPeerConnection(ice);
+    this.peers.set(targetSocketId, pc);
+    this.wirePeer(pc, targetSocketId);
 
     const offer = await pc.createOffer();
     await pc.setLocalDescription(offer);
@@ -582,36 +654,16 @@ export class WebRTCService {
   }
 
   private async handleOffer(fromSocketId: string, offer: RTCSessionDescriptionInit) {
-    const pc = new RTCPeerConnection(await this.getIceConfig());
-    this.peers.set(fromSocketId, pc);
-
-    if (this.localStream) {
-      this.localStream.getTracks().forEach(track => pc.addTrack(track, this.localStream!));
+    let pc = this.peers.get(fromSocketId);
+    if (!pc) {
+      const ice = await this.getIceConfig();
+      pc = new RTCPeerConnection(ice);
+      this.peers.set(fromSocketId, pc);
+      this.wirePeer(pc, fromSocketId);
     }
 
-    pc.ontrack = (event) => {
-      this.updatePeerStream(fromSocketId, event.streams[0]);
-    };
-
-    pc.onicecandidate = (event) => {
-      if (event.candidate) {
-        this.socket?.emit('signal', {
-          code: '',
-          to: fromSocketId,
-          type: 'ice-candidate',
-          payload: event.candidate.toJSON(),
-        });
-      }
-    };
-
-    pc.onconnectionstatechange = () => {
-      if (pc.connectionState === 'failed') this.onIceFailedCallback?.();
-      if (pc.connectionState === 'disconnected' || pc.connectionState === 'failed') {
-        this.removePeer(fromSocketId);
-      }
-    };
-
     await pc.setRemoteDescription(offer);
+    await this.flushPendingIce(fromSocketId, pc);
     const answer = await pc.createAnswer();
     await pc.setLocalDescription(answer);
 
@@ -627,13 +679,22 @@ export class WebRTCService {
     const pc = this.peers.get(fromSocketId);
     if (pc) {
       await pc.setRemoteDescription(answer);
+      await this.flushPendingIce(fromSocketId, pc);
     }
   }
 
   private async handleIceCandidate(fromSocketId: string, candidate: RTCIceCandidateInit) {
     const pc = this.peers.get(fromSocketId);
-    if (pc) {
+    if (!pc || !pc.remoteDescription) {
+      const q = this.pendingIce.get(fromSocketId) ?? [];
+      q.push(candidate);
+      this.pendingIce.set(fromSocketId, q);
+      return;
+    }
+    try {
       await pc.addIceCandidate(new RTCIceCandidate(candidate));
+    } catch {
+      /* ignorar candidato inválido */
     }
   }
 
@@ -641,6 +702,13 @@ export class WebRTCService {
     const existing = this.peerStreams.find(p => p.socketId === socketId);
     if (existing) {
       existing.stream = stream;
+    } else {
+      this.peerStreams.push({
+        participantId: socketId,
+        displayName: socketId.slice(0, 8),
+        stream,
+        socketId,
+      });
     }
     this.onPeerStreamCallback?.([...this.peerStreams]);
   }
@@ -742,6 +810,8 @@ export class WebRTCService {
     this.peers.forEach(pc => pc.close());
     this.peers.clear();
     this.peerStreams = [];
+    this.knownRemoteSocketIds = [];
+    this.pendingIce.clear();
     this.localStream?.getTracks().forEach(t => t.stop());
     this.localStream = null;
     if (this.socket && this.roomCode) {

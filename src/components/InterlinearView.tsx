@@ -1144,8 +1144,10 @@ export function InterlinearView({
   versiculos,
   livro,
   capitulo,
-  fontSize = 18,
+  fontSize = 20,
 }: InterlinearViewProps) {
+  const bodyPx = Math.max(fontSize, 20);
+  const originalPx = Math.round(bodyPx * 1.45);
   const [selectedWord, setSelectedWord] = useState<SelectedWord | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
   const [panelEntry, setPanelEntry] = useState<
@@ -1247,17 +1249,17 @@ export function InterlinearView({
           >
             {palavrasComStrong.length > 0 && (
               <div
-                className="py-2 px-1 interlinear-reading bible-reading-text"
-                style={{ fontSize: `${fontSize}px` }}
+                className="py-3 px-1 interlinear-reading bible-reading-text"
+                style={{ fontSize: `${bodyPx}px` }}
               >
                 {/* Linha 1: Texto em português */}
-                <div className="flex items-start gap-2 mb-1">
-                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)] text-[0.7em] font-bold shrink-0 mt-0.5">
+                <div className="flex items-start gap-2 mb-2">
+                  <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)] text-sm font-bold shrink-0 mt-0.5">
                     {versiculo.numero}
                   </span>
                   <div
                     className="flex flex-wrap gap-x-1.5 gap-y-0.5 leading-relaxed font-serif-body text-[var(--content-primary)]"
-                    style={{ fontSize: "1em" }}
+                    style={{ fontSize: `${bodyPx}px` }}
                   >
                     {versiculo.palavras.map((p, wi) => (
                       <span
@@ -1293,25 +1295,33 @@ export function InterlinearView({
                   </div>
                 </div>
 
-                {/* Linha 2: Palavras originais (grego/hebraico) */}
-                <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1 ml-8 mt-1">
-                  {versiculo.palavras.map((p, wi) => (
-                    <span
-                      key={wi}
-                      className="inline-flex flex-col items-center px-0.5"
-                    >
-                      {p.strong ? (
+                {/* Colunas: original + significado juntos (não três linhas que quebram fora de sync) */}
+                <div className="interlinear-word-row flex flex-wrap items-start gap-x-3 gap-y-5 mt-3 ml-0 sm:ml-8">
+                  {palavrasComStrong.map((p, wi) => {
+                    const meaning = (
+                      p.definicao?.trim() ||
+                      p.texto ||
+                      p.transliteracao ||
+                      ""
+                    ).trim();
+                    return (
+                      <span
+                        key={wi}
+                        className="interlinear-col inline-flex flex-col items-center text-center px-1.5 min-w-[4.75em] max-w-[10em]"
+                      >
                         <span
-                          className={`interlinear-original leading-none text-center cursor-pointer transition-colors ${
+                          className={`interlinear-original text-center cursor-pointer transition-colors ${
                             selectedWord?.verso === versiculo.numero &&
                             selectedWord?.strong === p.strong
                               ? "text-[var(--brand-default)] font-bold"
-                              : "text-[var(--content-muted)] hover:text-[var(--brand-default)]"
+                              : "text-[var(--content-primary)] hover:text-[var(--brand-default)]"
                           } ${
                             p.idioma === "hebraico"
                               ? "font-hebrew"
                               : "font-greek"
                           }`}
+                          style={{ fontSize: `${originalPx}px`, lineHeight: 1.35 }}
+                          dir={p.idioma === "hebraico" ? "rtl" : "ltr"}
                           onClick={() =>
                             handleWordClick(
                               versiculo.numero,
@@ -1327,77 +1337,54 @@ export function InterlinearView({
                         >
                           {p.palavraOriginal || "\u00A0"}
                         </span>
-                      ) : (
-                        <span className="text-[0.7em] text-transparent select-none">
-                          ·
-                        </span>
-                      )}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Linha 3: Transliteração / significado */}
-                <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1 ml-8 mt-1">
-                  {versiculo.palavras.map((p, wi) => (
-                    <span
-                      key={wi}
-                      className="inline-flex flex-col items-center px-0.5"
-                    >
-                      {p.strong && p.transliteracao ? (
                         <span
-                          className="interlinear-gloss leading-none text-center italic"
-                          style={{ color: "var(--content-muted)" }}
+                          className="interlinear-gloss mt-1 text-center font-serif-body"
+                          style={{
+                            fontSize: `${bodyPx}px`,
+                            lineHeight: 1.35,
+                            color: "var(--content-primary)",
+                          }}
                         >
-                          {p.transliteracao.length > 14
-                            ? p.transliteracao.slice(0, 14) + "."
-                            : p.transliteracao}
+                          {meaning}
                         </span>
-                      ) : (
-                        <span className="text-[0.7em] text-transparent select-none">
-                          ·
-                        </span>
-                      )}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Linha 4: Tags morfológicas compactas + Strong's */}
-                <div className="flex flex-wrap items-center gap-x-1 gap-y-0.5 ml-8 mt-1">
-                  {versiculo.palavras.map((p, wi) => (
-                    <span
-                      key={wi}
-                      className="inline-flex flex-col items-center px-0.5 min-w-[1.5em]"
-                    >
-                      {p.strong ? (
-                        <div className="flex flex-col items-center gap-0.5">
+                        {p.transliteracao &&
+                          meaning.toLowerCase() !== p.transliteracao.toLowerCase() && (
+                            <span
+                              className="mt-0.5 italic text-center"
+                              style={{
+                                fontSize: `${Math.max(14, Math.round(bodyPx * 0.8))}px`,
+                                color: "var(--content-muted)",
+                              }}
+                            >
+                              {p.transliteracao}
+                            </span>
+                          )}
+                        <span
+                          className="mt-1 cursor-pointer hover:text-[var(--brand-default)] transition-colors"
+                          style={{
+                            fontSize: `${Math.max(12, Math.round(bodyPx * 0.7))}px`,
+                            color: "var(--content-muted)",
+                          }}
+                          onClick={() =>
+                            handleWordClick(
+                              versiculo.numero,
+                              p.strong!,
+                              p.palavraOriginal,
+                              p.transliteracao,
+                              p.idioma,
+                              p.texto
+                            )
+                          }
+                          title={`Ver detalhes de ${p.strong}`}
+                        >
                           {p.morfologia && (
                             <MorphMiniTag morphCode={p.morfologia} />
                           )}
-                          <span
-                            className="text-[0.65em] leading-none cursor-pointer hover:text-[var(--brand-default)] transition-colors"
-                            style={{ color: "var(--content-muted)" }}
-                            onClick={() =>
-                              handleWordClick(
-                                versiculo.numero,
-                                p.strong!,
-                                p.palavraOriginal,
-                                p.transliteracao,
-                                p.idioma,
-                                p.texto
-                              )
-                            }
-                            title={`Ver detalhes de ${p.strong}`}
-                          >
-                            {p.strong}
-                          </span>
-                        </div>
-                      ) : (
-                        <span className="text-[0.65em] text-transparent select-none">
-                          ·
+                          <span className="block">{p.strong}</span>
                         </span>
-                      )}
-                    </span>
-                  ))}
+                      </span>
+                    );
+                  })}
                 </div>
 
                 {/* Detalhe inline */}
@@ -1479,10 +1466,13 @@ function MorphMiniTag({ morphCode }: { morphCode: string }) {
 
   return (
     <span
-      className={`text-[0.65em] leading-none px-0.5 rounded font-medium ${colorMap[parsed.tipo] || "bg-gray-500/10 text-gray-500"}`}
+      className="leading-none px-0.5 rounded font-medium"
+      style={{ fontSize: "12px" }}
       title={parsed.label}
     >
-      {parsed.tipo.slice(0, 1)}
+      <span className={colorMap[parsed.tipo] || "bg-gray-500/10 text-gray-500"}>
+        {parsed.tipo.slice(0, 1)}
+      </span>
     </span>
   );
 }

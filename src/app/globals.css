@@ -4204,17 +4204,49 @@ html.ssb-native-app .ssb-mobile-nav-sheet-body {
   padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
 }
 
-/* Interlinear: original + gloss no mesmo tamanho da leitura */
+/* Interlinear: original + significado no tamanho da leitura (px, não em aninhado).
+   Android/WebView auto-size distorce em pequenos; colunas devem viajar juntas. */
 .interlinear-reading {
   font-family: var(--font-spectral), Georgia, serif;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 .interlinear-original {
-  font-size: 1em;
+  font-size: 1.45em;
   line-height: 1.35;
 }
 .interlinear-gloss {
-  font-size: 0.9em;
-  line-height: 1.3;
+  font-size: 1em;
+  line-height: 1.35;
+}
+.interlinear-col {
+  min-width: 4.75em;
+}
+.font-hebrew {
+  font-family: "Noto Serif Hebrew", "Noto Serif", "Times New Roman", "David", serif;
+}
+.font-greek {
+  font-family: "Noto Serif", "Times New Roman", "Palatino Linotype", serif;
+}
+
+@media (max-width: 640px) {
+  .interlinear-reading .interlinear-original {
+    font-size: 26px !important;
+    line-height: 1.4 !important;
+  }
+  .interlinear-reading .interlinear-gloss {
+    font-size: 20px !important;
+    line-height: 1.35 !important;
+  }
+}
+
+html.ssb-native-app .interlinear-reading .interlinear-original {
+  font-size: 28px !important;
+  line-height: 1.4 !important;
+}
+html.ssb-native-app .interlinear-reading .interlinear-gloss {
+  font-size: 20px !important;
+  line-height: 1.35 !important;
 }
 
 

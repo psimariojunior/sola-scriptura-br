@@ -891,7 +891,7 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       </AnimatePresence>
 
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border)]/40 bg-[var(--surface-sunken)]/30">
+      <div className="flex items-center justify-between gap-2 px-3 py-3 border-b border-[var(--border)]/40 bg-[var(--surface-sunken)]/30 flex-wrap">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-[var(--brand-default)]/10 flex items-center justify-center">
             <Users className="w-4 h-4 text-[var(--brand-default)]" />
@@ -964,9 +964,11 @@ export function CollaborativeStudy({ initialCode, compact = false }: Collaborati
       {/* Video Call Panel */}
       <AnimatePresence>
         {isCallActive && (
-          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 400 }} exit={{ opacity: 0, height: 0 }}
-            className="border-b border-[var(--border)]/40 overflow-hidden">
-            <VideoCall roomCode={room.code} participantId={participantId} displayName={participantName} callType={callType} existingService={chatServiceState} onEndCall={() => setIsCallActive(false)} />
+          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
+            className="border-b border-[var(--border)]/40 overflow-hidden w-full">
+            <div className="w-full min-h-[200px] max-h-[min(52dvh,440px)] h-[min(52dvh,440px)]">
+              <VideoCall roomCode={room.code} participantId={participantId} displayName={participantName} callType={callType} existingService={chatServiceState} onEndCall={() => setIsCallActive(false)} />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

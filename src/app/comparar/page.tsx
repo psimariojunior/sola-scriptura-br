@@ -116,23 +116,22 @@ function InterlinearLine({ texto, testamento }: { texto: string; testamento: 'AT
   const dict = testamento === 'NT' ? GREGOS : HEBRAICOS;
 
   return (
-    <div className="mt-2 pt-2 border-t border-[var(--border)]/15">
-      <p className="text-[10px] leading-relaxed text-[var(--content-muted)]/70 font-mono italic space-x-3">
+    <div className="mt-3 pt-3 border-t border-[var(--border)]/15">
+      <div className="flex flex-wrap gap-x-3 gap-y-4">
         {palavras.map((p, i) => {
           const clean = p.replace(/[.,;:!?'"()]/g, '').toLowerCase();
           const entry = dict[clean];
           if (entry) {
             return (
-              <span key={i} className="inline-block mr-2" title={`${entry.def} (${entry.palavra})`}>
-                <span className="text-[#d4a853] font-semibold">{entry.palavra}</span>
-                <span className="text-[var(--content-muted)]/40 mx-0.5">·</span>
-                <span className="text-[var(--content-muted)]/50 text-[9px]">{entry.def}</span>
+              <span key={i} className="inline-flex flex-col items-center text-center min-w-[4.5em] max-w-[9em] px-1" title={`${entry.def} (${entry.palavra})`}>
+                <span className={`${testamento === 'NT' ? 'font-greek' : 'font-hebrew'} text-[22px] sm:text-[24px] leading-snug font-semibold text-[#d4a853]`}>{entry.palavra}</span>
+                <span className="mt-1 text-[18px] sm:text-[20px] leading-snug text-[var(--content-primary)]">{entry.def}</span>
               </span>
             );
           }
-          return <span key={i} className="text-[var(--content-muted)]/30">·</span>;
+          return null;
         })}
-      </p>
+      </div>
     </div>
   );
 }

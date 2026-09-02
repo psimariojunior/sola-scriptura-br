@@ -46,6 +46,8 @@ const config: Config = {
         display: ['var(--font-cormorant)', 'Georgia', 'serif'],
         body: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         serif: ['var(--font-spectral)', 'Georgia', 'serif'],
+        hebrew: ['"Noto Serif Hebrew"', '"Noto Serif"', '"Times New Roman"', 'David', 'serif'],
+        greek: ['"Noto Serif"', '"Times New Roman"', '"Palatino Linotype"', 'serif'],
       },
       boxShadow: {
         sm: 'var(--shadow-sm)',

@@ -2,6 +2,7 @@ import type { EstudoCapitulo, VersiculoChaveCap } from '@/data/estudosCapitulo';
 import { estudosPorLivro } from '@/data/estudosPorLivro';
 import { getPericopesCapitulo, type Pericope } from '@/data/biblia/pericopes';
 import { livroPorAbreviacao, TODOS_LIVROS, type LivroInfo } from '@/data/biblia/livros';
+import { localizacoesBiblicas } from '@/data/atlasBiblico';
 
 function semAcento(s: string): string {
   return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -43,6 +44,32 @@ function pericopesDoCapitulo(info: LivroInfo, capitulo: number): Pericope[] {
 function capituloDaRef(ref: string): number | null {
   const m = ref.match(/(\d+)\s*:\s*\d+/);
   return m ? Number.parseInt(m[1], 10) : null;
+}
+
+function escapeReg(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function locaisDoCapitulo(info: LivroInfo, capitulo: number): string[] {
+  const prefixes = new Set<string>([
+    info.abreviacao,
+    info.nome,
+    semAcento(info.nome),
+    info.abreviacao.replace(/^_/, ''),
+  ]);
+  const ab = info.abreviacao.replace(/^_/, '');
+  prefixes.add(ab.charAt(0).toUpperCase() + ab.slice(1));
+  const capRe = new RegExp(
+    `^(${[...prefixes].map(escapeReg).join('|')})\\s*${capitulo}(:|\\s|$)`,
+    'i',
+  );
+  const out: string[] = [];
+  for (const loc of localizacoesBiblicas) {
+    if (loc.versiculos.some((v) => capRe.test(v.trim()))) {
+      out.push(`${loc.nome}: ${loc.descricao}`);
+    }
+  }
+  return unicos(out).slice(0, 4);
 }
 
 function unicos(itens: Array<string | undefined>): string[] {
@@ -183,7 +210,7 @@ export function sintetizarEstudoCapitulo(livro: string, capitulo: number): Estud
   const resumo = [blocoLivro, blocoPericopes, blocoVerso, blocoTeologia].filter(Boolean).join(' ');
 
   const contextoHistorico = intro
-    ? `${intro.contexto} ${posicao} se insere nesse quadro${
+    ? `Síntese histórica (introdução do livro, não Henry): ${intro.contexto} ${posicao} se insere nesse quadro${
         pericopes[0]
           ? `: a unidade «${pericopes[0].titulo}» trata de ${pericopes[0].temaHomiletico || pericopes[0].tema}`
           : temasLivro[0]
@@ -191,6 +218,32 @@ export function sintetizarEstudoCapitulo(livro: string, capitulo: number): Estud
             : ''
       }.`
     : `${posicao}, no ${info?.testamento === 'AT' ? 'Antigo' : 'Novo'} Testamento.`;
+
+  const generos = unicos(pericopes.map((p) => p.genero));
+  const contextoCultural = intro
+    ? `Síntese cultural (gênero literário catalogado): ${nome} é ${intro.genero}${
+        generos.length ? `; neste capítulo as perícopes são de gênero ${generos.join(', ')}` : ''
+      }. Leia segundo o gênero — não transforme parábola em crônica nem epístola em apocalipse.`
+    : generos.length
+      ? `Síntese cultural: gênero(s) pericopal(is) ${generos.join(', ')}.`
+      : undefined;
+
+  const geo = info ? locaisDoCapitulo(info, capitulo) : [];
+  const contextoGeografico = geo.length > 0
+    ? `Síntese geográfica (atlas já catalogado): ${geo.join(' ')}`
+    : undefined;
+
+  const notaExegetica = palavrasOriginais.length > 0
+    ? `Síntese exegética (palavras das perícopes, não comentário clássico): ${palavrasOriginais.join('; ')}. Leia cada termo no versículo, não como glossário solto.`
+    : undefined;
+
+  const paralelos = unicos(pericopes.flatMap((p) => p.paralelosSinoticos ?? [])).slice(0, 6);
+  const notaHermeneutica = [
+    'Síntese hermenêutica (analogia da fé, não Henry nem Calvino): leia o capítulo à luz de toda a Escritura (Lc 24:44–47; Jo 5:39). A lei acusa, a promessa sustenta, o cumprimento está em Cristo.',
+    paralelos.length > 0 ? `Paralelos sinóticos já catalogados: ${paralelos.join('; ')}.` : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   const significadoTeologico = pericopes.some((p) => p.temaHomiletico)
     ? `${pericopes
@@ -226,6 +279,10 @@ export function sintetizarEstudoCapitulo(livro: string, capitulo: number): Estud
     aplicacaoPratica,
     perguntasEstudo,
     contextoHistorico,
+    contextoCultural,
+    contextoGeografico,
+    notaExegetica,
+    notaHermeneutica,
     estrutura: estrutura.length > 0 ? estrutura : undefined,
     significadoTeologico,
     palavrasOriginais: palavrasOriginais.length > 0 ? palavrasOriginais : undefined,

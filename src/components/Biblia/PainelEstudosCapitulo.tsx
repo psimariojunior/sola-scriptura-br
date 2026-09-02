@@ -264,10 +264,54 @@ export default function PainelEstudosCapitulo({ livro, capitulo, nomeLivro }: Pr
           {estudoCap.contextoHistorico && (
             <div>
               <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1 flex items-center gap-1">
-                <Landmark className="w-3 h-3" /> Contexto
+                <Landmark className="w-3 h-3" /> {estudoCap.nivel === 'sintese' ? 'Síntese — histórico' : 'Contexto'}
               </p>
               <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
                 {estudoCap.contextoHistorico}
+              </p>
+            </div>
+          )}
+
+          {estudoCap.contextoCultural && (
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">
+                Síntese — cultural
+              </p>
+              <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
+                {estudoCap.contextoCultural}
+              </p>
+            </div>
+          )}
+
+          {estudoCap.contextoGeografico && (
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">
+                Síntese — geográfico
+              </p>
+              <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
+                {estudoCap.contextoGeografico}
+              </p>
+            </div>
+          )}
+
+          {estudoCap.notaExegetica && (
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">
+                Síntese — exegese
+              </p>
+              <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
+                {estudoCap.notaExegetica}
+              </p>
+            </div>
+          )}
+
+          {estudoCap.notaHermeneutica && (
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">
+                Síntese — hermenêutica
+              </p>
+              <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
+                {estudoCap.notaHermeneutica}
               </p>
             </div>
           )}

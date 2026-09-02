@@ -35,6 +35,15 @@ describe('sintetizarEstudoCapitulo', () => {
     expect(s.nivel).toBe('sintese');
   });
 
+  it('marca seções histórico/cultural/exegese/hermenêutica como síntese, não Henry', () => {
+    const s = sintetizarEstudoCapitulo('lc', 3);
+    expect(s.nivel).toBe('sintese');
+    expect(s.contextoHistorico?.toLowerCase()).toContain('síntese');
+    expect(s.notaHermeneutica?.toLowerCase()).toContain('síntese');
+    expect(s.notaHermeneutica?.toLowerCase()).not.toMatch(/matthew henry disse/);
+    expect(s.contextoCultural?.toLowerCase()).toContain('síntese');
+  });
+
   it('usa temas do livro quando não há perícope isolada', () => {
     const s = sintetizarEstudoCapitulo('nm', 7);
     expect(s.nivel).toBe('sintese');

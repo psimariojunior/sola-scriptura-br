@@ -1,12 +1,11 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { Link2, Languages } from 'lucide-react';
+import { Languages } from 'lucide-react';
 import { ComentarioInline } from './ComentarioInline';
 import { InlineStrongHighlight } from './InlineStrongHighlight';
 import { getRecursosVersiculo, type RecursoLexico } from '@/data/biblia/versiculoRecursos';
-import { CadeiaReferencias } from './CadeiaReferencias';
-import { montarCadeia, type EloCadeia } from '@/lib/cadeiaReferencias';
+import { EcoCanonico } from '@/components/EcoCanonico';
 import { ensinarPalavra } from '@/lib/ensinarPalavra';
 
 interface EstudoDoVersoProps {
@@ -43,25 +42,11 @@ function LazyWhenVisible({ children }: { children: React.ReactNode }) {
 }
 
 export function EstudoDoVerso({ livro, capitulo, verso, texto, fontSize, expanded, onOpenFull }: EstudoDoVersoProps) {
-  const [cadeia, setCadeia] = useState<EloCadeia[]>([]);
   const [lexico, setLexico] = useState<RecursoLexico[]>([]);
 
   useEffect(() => {
     if (!expanded) return;
     let cancelado = false;
-    Promise.all([
-      import('@/data/biblia/crossReferences'),
-      import('@/data/crossReferences'),
-    ]).then(([curated, tsk]) => {
-      if (cancelado) return;
-      const key = `${livro.toLowerCase()}:${capitulo}:${verso}`;
-      setCadeia(montarCadeia({
-        livro,
-        curated: curated.getCrossReferencesByVerse(livro, capitulo, verso),
-        tsk: tsk.crossReferences[key] || [],
-        limite: 5,
-      }));
-    }).catch(() => {});
     getRecursosVersiculo(livro, capitulo, verso).then((recursos) => {
       if (cancelado) return;
       setLexico(recursos.filter((r) => r.tipo === 'lexico').map((r) => r.dados as RecursoLexico));
@@ -89,13 +74,13 @@ export function EstudoDoVerso({ livro, capitulo, verso, texto, fontSize, expande
       </p>
       <ComentarioInline livro={livro} capitulo={capitulo} verso={verso} defaultExpanded={expanded} />
 
-      {expanded && cadeia.length > 0 && (
-        <div className="mt-2.5 pt-2 border-t border-[var(--brand-default)]/10">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)] mb-1.5 flex items-center gap-1">
-            <Link2 className="w-3 h-3" /> Daqui → Cristo
-          </p>
-          <CadeiaReferencias elos={cadeia} compact />
-        </div>
+      {expanded && (
+        <EcoCanonico
+          livro={livro}
+          capitulo={capitulo}
+          versiculo={verso}
+          compact
+        />
       )}
 
       {expanded && lexico.length > 0 && (

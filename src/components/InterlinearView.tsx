@@ -19,6 +19,10 @@ import { type PalavraAlinhada } from "@/lib/wordAlignment";
 import { romanizeHebrew } from "@/lib/hebrewRomanize";
 import { AudioPronunciation } from "@/components/AudioPronunciation";
 import { UsoDoLemaNoLivro } from "@/components/UsoDoLemaNoLivro";
+import { VersoNasTraducoes } from "@/components/VersoNasTraducoes";
+import { RarasNesteLivro, type RotuloRara } from "@/components/RarasNesteLivro";
+import { EcoCanonico } from "@/components/EcoCanonico";
+import { nomeDivino } from "@/lib/nomesDivinos";
 import {
   parseMorphology,
   getCorMorfologia,
@@ -683,6 +687,7 @@ function DetalhePalavraInline({
   livro,
   capitulo,
   versoAtual,
+  traducaoAtual,
   onClose,
   onOpenPanel,
   onSearch,
@@ -694,6 +699,7 @@ function DetalhePalavraInline({
   livro: string;
   capitulo: number;
   versoAtual: number;
+  traducaoAtual?: string;
   onClose: () => void;
   onOpenPanel: () => void;
   onSearch: (term: string) => void;
@@ -953,6 +959,12 @@ function DetalhePalavraInline({
               capitulo={capitulo}
               versoAtual={versoAtual}
             />
+            <VersoNasTraducoes
+              livro={livro}
+              capitulo={capitulo}
+              versiculo={versoAtual}
+              traducaoAtual={traducaoAtual}
+            />
             {definicao && (
               <div
                 className="rounded-lg p-3"
@@ -1168,6 +1180,7 @@ function InterlinearWordCol({
   onClick: () => void;
 }) {
   const meaning = glossDaPalavra(p);
+  const divino = nomeDivino(p.strong);
 
   return (
     <button
@@ -1181,7 +1194,13 @@ function InterlinearWordCol({
             ? "bg-[var(--brand-default)]/7"
             : "hover:bg-[var(--surface-sunken)]"
       }`}
-      title={[p.palavraOriginal, meaning, p.transliteracao, p.strong]
+      title={[
+        divino?.titulo,
+        p.palavraOriginal,
+        meaning,
+        p.transliteracao,
+        p.strong,
+      ]
         .filter(Boolean)
         .join(" · ")}
     >
@@ -1191,12 +1210,23 @@ function InterlinearWordCol({
             ? "text-[var(--brand-default)] font-bold"
             : "text-[var(--content-primary)]"
         } ${p.idioma === "hebraico" ? "font-hebrew" : "font-greek"}`}
-        style={{ fontSize: `${originalPx}px`, lineHeight: 1.35 }}
+        style={{
+          fontSize: `${originalPx}px`,
+          lineHeight: 1.35,
+          borderBottom: divino
+            ? "2px solid color-mix(in srgb, var(--brand-default) 55%, transparent)"
+            : undefined,
+        }}
         dir={p.idioma === "hebraico" ? "rtl" : "ltr"}
         lang={p.idioma === "hebraico" ? "he" : p.idioma === "grego" ? "el" : undefined}
       >
         {p.palavraOriginal || "\u00A0"}
       </span>
+      {divino && (
+        <span className="mt-0.5 text-[9px] uppercase tracking-wide text-[var(--brand-default)]">
+          {divino.rotulo}
+        </span>
+      )}
       <span
         className="interlinear-gloss mt-1 text-center font-serif-body whitespace-normal"
         dir="ltr"
@@ -1243,6 +1273,7 @@ export function InterlinearView({
   versiculos,
   livro,
   capitulo,
+  traducao = "arc",
   fontSize = 18,
   versoFoco,
 }: InterlinearViewProps) {
@@ -1379,8 +1410,55 @@ export function InterlinearView({
     ? ocorrenciasNoCapitulo.get(selectedWord.strong) || 0
     : 0;
 
+  const rotulosRaras = useMemo(() => {
+    const m = new Map<string, RotuloRara>();
+    for (const v of dados) {
+      for (const p of v.palavras) {
+        if (!p.strong || m.has(p.strong)) continue;
+        m.set(p.strong, {
+          strong: p.strong,
+          original: p.palavraOriginal,
+          gloss: glossDaPalavra(p),
+          idioma: p.idioma,
+        });
+      }
+    }
+    return m;
+  }, [dados]);
+
+  const selecionarStrongDoCapitulo = useCallback(
+    (strong: string, verso: number) => {
+      const noVerso = dados.find((d) => d.numero === verso);
+      const noCap = dados.find((d) => d.palavras.some((p) => p.strong === strong));
+      const bloco = noVerso?.palavras.some((p) => p.strong === strong) ? noVerso : noCap;
+      const p = bloco?.palavras.find((w) => w.strong === strong);
+      if (!bloco || !p?.strong) return;
+      setSelectedWord({
+        verso: bloco.numero,
+        strong: p.strong,
+        palavraOriginal: p.palavraOriginal,
+        transliteracao: p.transliteracao,
+        idioma: p.idioma,
+        palavraPT: p.texto,
+      });
+      document.getElementById(`v${bloco.numero}`)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    },
+    [dados]
+  );
+
   return (
     <div className="space-y-0">
+      {dados.length > 0 && (
+        <RarasNesteLivro
+          livro={livro}
+          capitulo={capitulo}
+          rotulos={rotulosRaras}
+          onSelect={selecionarStrongDoCapitulo}
+        />
+      )}
       {selectedWord && (
         <div className="sticky top-0 z-20 mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border border-[var(--brand-default)]/25 bg-[var(--surface-raised)]/95 px-3 py-2 backdrop-blur-sm">
           <span
@@ -1530,6 +1608,12 @@ export function InterlinearView({
                   </>
                 )}
 
+                <EcoCanonico
+                  livro={livro}
+                  capitulo={capitulo}
+                  versiculo={versiculo.numero}
+                />
+
                 {/* Detalhe inline */}
                 <AnimatePresence>
                   {selectedWord?.verso === versiculo.numero && (
@@ -1545,6 +1629,7 @@ export function InterlinearView({
                       livro={livro}
                       capitulo={capitulo}
                       versoAtual={versiculo.numero}
+                      traducaoAtual={traducao}
                       onClose={() => setSelectedWord(null)}
                       onOpenPanel={handleOpenPanel}
                       onSearch={handleSearch}

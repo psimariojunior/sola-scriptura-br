@@ -59,7 +59,8 @@ function InterlinearClient() {
         </h1>
         <p className="text-sm text-[var(--content-muted)] mb-4 max-w-2xl">
             Cada coluna é uma palavra: original em cima, sentido inteiro no meio, Strong embaixo.
-            Toque uma palavra para ver o lema neste capítulo e neste livro.
+            Toque um lema para ver ocorrências no livro, o mesmo verso nas traduções locais e o eco
+            canônico. Palavras raras neste livro ficam no topo.
         </p>
         <div className="flex flex-wrap items-center gap-2 mb-6">
           <select

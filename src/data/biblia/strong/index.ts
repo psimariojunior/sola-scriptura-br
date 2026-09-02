@@ -31286,3 +31286,81 @@ export async function buscarPadraoMorfologico(
   return { total, ocorrencias };
 }
 
+
+export function ehCodigoStrongValido(codigo: string): boolean {
+  return /^[HG]\d+$/.test(codigo);
+}
+
+const cacheOcorrenciasLivro = new Map<string, Map<string, string[]>>();
+
+/** Versículos únicos por Strong neste livro (mesma regra de getTodasOcorrenciasStrong). */
+export function ocorrenciasPorStrongNoLivro(livro: string): Map<string, string[]> {
+  const key = livro.toLowerCase();
+  const hit = cacheOcorrenciasLivro.get(key);
+  if (hit) return hit;
+  const prefix = `${key}:`;
+  const map = new Map<string, string[]>();
+  for (const [ref, [codes]] of Object.entries(STRONG_CODES)) {
+    if (!ref.startsWith(prefix)) continue;
+    const noVerso = new Set<string>();
+    for (const code of codes) {
+      if (!ehCodigoStrongValido(code) || noVerso.has(code)) continue;
+      noVerso.add(code);
+      const arr = map.get(code);
+      if (arr) arr.push(ref);
+      else map.set(code, [ref]);
+    }
+  }
+  cacheOcorrenciasLivro.set(key, map);
+  return map;
+}
+
+export function getCoberturaStrongDoLivro(livro: string): {
+  capitulosComStrong: number;
+  versiculosComStrong: number;
+} {
+  const prefix = `${livro.toLowerCase()}:`;
+  const caps = new Set<number>();
+  let versiculosComStrong = 0;
+  for (const ref of Object.keys(STRONG_CODES)) {
+    if (!ref.startsWith(prefix)) continue;
+    versiculosComStrong++;
+    const cap = Number(ref.split(':')[1]);
+    if (Number.isFinite(cap)) caps.add(cap);
+  }
+  return { capitulosComStrong: caps.size, versiculosComStrong };
+}
+
+export interface PalavraRaraNoLivro {
+  strong: string;
+  noLivro: number;
+  versiculosNoLivro: string[];
+  versiculosNoCapitulo: string[];
+}
+
+/**
+ * Lemas deste capítulo cujo Strong ocorre 1× ou 2× (versículos únicos) neste livro.
+ * Hapax / quase-hapax de livro — não da Bíblia inteira.
+ */
+export function getPalavrasRarasNoCapitulo(
+  livro: string,
+  capitulo: number,
+  maxNoLivro = 2
+): PalavraRaraNoLivro[] {
+  const freq = ocorrenciasPorStrongNoLivro(livro);
+  const prefixCap = `${livro.toLowerCase()}:${capitulo}:`;
+  const out: PalavraRaraNoLivro[] = [];
+  for (const [strong, refs] of freq) {
+    if (refs.length < 1 || refs.length > maxNoLivro) continue;
+    const versiculosNoCapitulo = refs.filter((r) => r.startsWith(prefixCap));
+    if (versiculosNoCapitulo.length === 0) continue;
+    out.push({
+      strong,
+      noLivro: refs.length,
+      versiculosNoLivro: refs,
+      versiculosNoCapitulo,
+    });
+  }
+  out.sort((a, b) => a.noLivro - b.noLivro || a.strong.localeCompare(b.strong, 'en'));
+  return out;
+}

@@ -20,6 +20,9 @@ function InterlinearClient() {
     ? Math.min(Math.max(capParam, 1), livro.totalCapitulos)
     : 1;
 
+  const versoParam = parseInt(params.get('verso') || params.get('versiculo') || '', 10);
+  const versoFoco = Number.isFinite(versoParam) && versoParam > 0 ? versoParam : undefined;
+
   const [versiculos, setVersiculos] = useState<{ numero: number; texto: string }[]>([]);
   const [carregando, setCarregando] = useState(true);
 
@@ -51,9 +54,13 @@ function InterlinearClient() {
         <p className="text-sm font-semibold uppercase tracking-wider text-[var(--brand-default)] mb-1">
           Interlinear
         </p>
-        <h1 className="text-2xl font-display font-semibold text-[var(--content-primary)] mb-4">
+        <h1 className="text-2xl font-display font-semibold text-[var(--content-primary)] mb-2">
           {livro.nome} {capitulo} — hebraico e grego palavra a palavra
         </h1>
+        <p className="text-sm text-[var(--content-muted)] mb-4 max-w-2xl">
+            Cada coluna é uma palavra: original em cima, sentido inteiro no meio, Strong embaixo.
+            Toque uma palavra para ver o lema neste capítulo e neste livro.
+        </p>
         <div className="flex flex-wrap items-center gap-2 mb-6">
           <select
             value={livro.abreviacao}
@@ -96,6 +103,7 @@ function InterlinearClient() {
             capitulo={capitulo}
             traducao="arc"
             fontSize={18}
+            versoFoco={versoFoco}
           />
         )}
       </div>

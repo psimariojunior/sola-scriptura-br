@@ -418,6 +418,14 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
     return '/guia?livro=$abbr&capitulo=$_chapter';
   }
 
+  String _interlinearHref({int? verse}) {
+    final abbr = (_book?['abbr'] as String?) ?? 'gn';
+    final v = verse != null ? '&verso=$verse' : '';
+    return '/biblia/interlinear?livro=$abbr&capitulo=$_chapter$v';
+  }
+
+  String get _interlinearPath => _interlinearHref();
+
   void _showChapterSheet() {
     showModalBottomSheet<void>(
       context: context,
@@ -696,6 +704,14 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
                   },
                 ),
                 _VerseAction(
+                  icon: Icons.translate_outlined,
+                  label: 'Ver no original',
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    _openSite(_interlinearHref(verse: verse.number));
+                  },
+                ),
+                _VerseAction(
                   icon: Icons.copy_rounded,
                   label: 'Copiar',
                   onTap: () async {
@@ -874,6 +890,12 @@ class _NativeChapterReaderState extends State<NativeChapterReader> {
               tooltip: 'Estudar este capítulo',
               icon: Icon(Icons.auto_stories_outlined, color: _gold, size: 20),
               onPressed: () => _openSite(_guiaPath),
+            ),
+          if (widget.onOpenWeb != null)
+            IconButton(
+              tooltip: 'Interlinear (hebraico e grego)',
+              icon: Icon(Icons.translate_outlined, color: _gold, size: 20),
+              onPressed: () => _openSite(_interlinearPath),
             ),
           if (widget.onOpenWeb != null)
             IconButton(

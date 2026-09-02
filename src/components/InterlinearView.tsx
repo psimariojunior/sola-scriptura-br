@@ -5,20 +5,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
   BookOpen,
-  Languages,
   Hash,
-  ArrowRight,
   ExternalLink,
   Volume2,
   Search,
   ChevronRight,
-  ChevronLeft,
   Sparkles,
+  Copy,
+  Check,
 } from "lucide-react";
 import { getStrongByNumber, type LexiconEntry } from "@/lib/lexiconSearch";
-import { alinharVersiculo, type PalavraAlinhada } from "@/lib/wordAlignment";
+import { type PalavraAlinhada } from "@/lib/wordAlignment";
 import { romanizeHebrew } from "@/lib/hebrewRomanize";
 import { AudioPronunciation } from "@/components/AudioPronunciation";
+import { UsoDoLemaNoLivro } from "@/components/UsoDoLemaNoLivro";
 import {
   parseMorphology,
   getCorMorfologia,
@@ -42,6 +42,7 @@ interface InterlinearViewProps {
   capitulo: number;
   traducao: string;
   fontSize?: number;
+  versoFoco?: number;
 }
 
 interface SelectedWord {
@@ -679,6 +680,9 @@ function DetalhePalavraInline({
   palavraOriginal,
   idioma,
   morphCode,
+  livro,
+  capitulo,
+  versoAtual,
   onClose,
   onOpenPanel,
   onSearch,
@@ -687,6 +691,9 @@ function DetalhePalavraInline({
   palavraOriginal?: string;
   idioma?: "grego" | "hebraico" | null;
   morphCode?: string | null;
+  livro: string;
+  capitulo: number;
+  versoAtual: number;
   onClose: () => void;
   onOpenPanel: () => void;
   onSearch: (term: string) => void;
@@ -727,7 +734,6 @@ function DetalhePalavraInline({
   const versiculos = hasBDAG ? [] : [];
   const notas = hasBDAG ? bdagEntry!.notas || "" : "";
   const livros = hasBDAG ? bdagEntry!.livros || [] : [];
-  const categoria = hasBDAG ? bdagEntry!.categoria || "" : entry?.categoria || "";
   const definicoesSecundarias = hasBDAG ? bdagEntry!.definicoesSecundarias || [] : [];
 
   // Determine paradigm key for verb
@@ -939,8 +945,14 @@ function DetalhePalavraInline({
             </div>
           )}
 
-          {/* Definição */}
+            {/* Definição */}
           <div className="px-4 pb-3 space-y-2">
+            <UsoDoLemaNoLivro
+              strong={strong}
+              livro={livro}
+              capitulo={capitulo}
+              versoAtual={versoAtual}
+            />
             {definicao && (
               <div
                 className="rounded-lg p-3"
@@ -1136,6 +1148,93 @@ function DetalhePalavraInline({
   );
 }
 
+function glossDaPalavra(p: PalavraAlinhada): string {
+  return (p.definicao?.trim() || p.texto || p.transliteracao || "").trim();
+}
+
+function InterlinearWordCol({
+  p,
+  selected,
+  echo,
+  originalPx,
+  bodyPx,
+  onClick,
+}: {
+  p: PalavraAlinhada;
+  selected: boolean;
+  echo: boolean;
+  originalPx: number;
+  bodyPx: number;
+  onClick: () => void;
+}) {
+  const meaning = glossDaPalavra(p);
+
+  return (
+    <button
+      type="button"
+      dir="ltr"
+      onClick={onClick}
+      className={`interlinear-col inline-flex flex-col items-center text-center px-1.5 py-1.5 rounded-lg min-w-[4.75em] transition-colors ${
+        selected
+          ? "bg-[var(--brand-default)]/14 ring-1 ring-[var(--brand-default)]/45"
+          : echo
+            ? "bg-[var(--brand-default)]/7"
+            : "hover:bg-[var(--surface-sunken)]"
+      }`}
+      title={[p.palavraOriginal, meaning, p.transliteracao, p.strong]
+        .filter(Boolean)
+        .join(" · ")}
+    >
+      <span
+        className={`interlinear-original text-center ${
+          selected
+            ? "text-[var(--brand-default)] font-bold"
+            : "text-[var(--content-primary)]"
+        } ${p.idioma === "hebraico" ? "font-hebrew" : "font-greek"}`}
+        style={{ fontSize: `${originalPx}px`, lineHeight: 1.35 }}
+        dir={p.idioma === "hebraico" ? "rtl" : "ltr"}
+        lang={p.idioma === "hebraico" ? "he" : p.idioma === "grego" ? "el" : undefined}
+      >
+        {p.palavraOriginal || "\u00A0"}
+      </span>
+      <span
+        className="interlinear-gloss mt-1 text-center font-serif-body whitespace-normal"
+        dir="ltr"
+        lang="pt"
+        style={{
+          fontSize: `${bodyPx}px`,
+          lineHeight: 1.35,
+          color: "var(--content-primary)",
+        }}
+      >
+        {meaning}
+      </span>
+      {p.transliteracao && (
+        <span
+          className="mt-0.5 italic text-center whitespace-normal"
+          dir="ltr"
+          style={{
+            fontSize: `${Math.max(13, Math.round(bodyPx * 0.78))}px`,
+            color: "var(--content-muted)",
+          }}
+        >
+          {p.transliteracao}
+        </span>
+      )}
+      <span
+        className="mt-1"
+        style={{
+          fontSize: `${Math.max(11, Math.round(bodyPx * 0.68))}px`,
+          color: "var(--content-muted)",
+        }}
+      >
+        {p.morfologia && <MorphMiniTag morphCode={p.morfologia} />}
+        <span className="block tabular-nums">{p.strong}</span>
+      </span>
+    </button>
+  );
+}
+
 // ═══════════════════════════════════════════════════════════════
 // MAIN COMPONENT
 // ═══════════════════════════════════════════════════════════════
@@ -1145,10 +1244,12 @@ export function InterlinearView({
   livro,
   capitulo,
   fontSize = 18,
+  versoFoco,
 }: InterlinearViewProps) {
   const bodyPx = Math.max(fontSize, 16);
-  const originalPx = Math.round(bodyPx * 1.12);
+  const originalPx = Math.round(bodyPx * 1.18);
   const [selectedWord, setSelectedWord] = useState<SelectedWord | null>(null);
+  const [copiedVerse, setCopiedVerse] = useState<number | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
   const [panelEntry, setPanelEntry] = useState<
     import("@/data/biblia/lexiconBDAG").LexiconEntry | null
@@ -1180,6 +1281,45 @@ export function InterlinearView({
       cancelled = true;
     };
   }, [versiculos, livro, capitulo]);
+
+  useEffect(() => {
+    if (!versoFoco || dados.length === 0) return;
+    const el = document.getElementById(`v${versoFoco}`);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [versoFoco, dados.length]);
+
+  const ocorrenciasNoCapitulo = useMemo(() => {
+    const m = new Map<string, number>();
+    for (const v of dados) {
+      for (const p of v.palavras) {
+        if (!p.strong) continue;
+        m.set(p.strong, (m.get(p.strong) || 0) + 1);
+      }
+    }
+    return m;
+  }, [dados]);
+
+  const copiarVerso = useCallback(
+    async (numero: number, palavras: PalavraAlinhada[]) => {
+      const linhas = palavras
+        .filter((p) => p.strong)
+        .map((p) =>
+          [p.palavraOriginal, glossDaPalavra(p), p.transliteracao, p.strong]
+            .filter(Boolean)
+            .join(" · ")
+        );
+      const texto = `${livro} ${capitulo}:${numero}\n${linhas.join("\n")}`;
+      try {
+        await navigator.clipboard.writeText(texto);
+        setCopiedVerse(numero);
+        window.setTimeout(() => setCopiedVerse(null), 1600);
+      } catch {
+        /* ignore */
+      }
+    },
+    [livro, capitulo]
+  );
 
   const handleWordClick = useCallback(
     (
@@ -1235,211 +1375,160 @@ export function InterlinearView({
     window.open(`/pesquisa?q=${encodeURIComponent(term)}`, "_blank");
   }, []);
 
+  const lemmaCount = selectedWord
+    ? ocorrenciasNoCapitulo.get(selectedWord.strong) || 0
+    : 0;
+
   return (
     <div className="space-y-0">
+      {selectedWord && (
+        <div className="sticky top-0 z-20 mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border border-[var(--brand-default)]/25 bg-[var(--surface-raised)]/95 px-3 py-2 backdrop-blur-sm">
+          <span
+            className={`font-semibold text-[var(--brand-default)] ${
+              selectedWord.idioma === "hebraico" ? "font-hebrew" : "font-greek"
+            }`}
+            dir={selectedWord.idioma === "hebraico" ? "rtl" : "ltr"}
+          >
+            {selectedWord.palavraOriginal}
+          </span>
+          <span className="text-xs text-[var(--content-muted)]">
+            {selectedWord.palavraPT}
+            {selectedWord.transliteracao ? ` · ${selectedWord.transliteracao}` : ""}
+          </span>
+          <span className="rounded-full bg-[var(--brand-default)]/12 px-2 py-0.5 text-xs font-medium text-[var(--brand-default)]">
+            {selectedWord.strong}
+            {lemmaCount > 1 ? ` · ${lemmaCount}× neste capítulo` : ""}
+          </span>
+          <button
+            type="button"
+            className="ml-auto text-xs text-[var(--content-muted)] hover:text-[var(--brand-default)]"
+            onClick={() => setSelectedWord(null)}
+          >
+            Limpar
+          </button>
+        </div>
+      )}
+
       {dados.map((versiculo) => {
         const palavrasComStrong = versiculo.palavras.filter(
           (p) => p.strong
         );
+        const isHebrew = palavrasComStrong.some((p) => p.idioma === "hebraico");
 
         return (
           <div
             key={versiculo.numero}
-            className="border-b border-[var(--border)]/15 last:border-b-0"
+            id={`v${versiculo.numero}`}
+            className={`border-b border-[var(--border)]/15 last:border-b-0 ${
+              versoFoco === versiculo.numero
+                ? "bg-[var(--brand-default)]/6 rounded-xl"
+                : ""
+            }`}
           >
-            {palavrasComStrong.length > 0 && (
-              <div
-                className="py-3 px-1 interlinear-reading bible-reading-text"
-                style={{ fontSize: `${bodyPx}px` }}
-              >
-                {/* Linha 1: Texto em português */}
+            <div
+              className="py-3 px-1 interlinear-reading bible-reading-text"
+              style={{ fontSize: `${bodyPx}px` }}
+            >
                 <div className="flex items-start gap-2 mb-2">
                   <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)] text-sm font-bold shrink-0 mt-0.5">
                     {versiculo.numero}
                   </span>
                   <div
-                    className="flex flex-wrap gap-x-1.5 gap-y-0.5 leading-relaxed font-serif-body text-[var(--content-primary)]"
+                    className="flex flex-wrap gap-x-1.5 gap-y-0.5 leading-relaxed font-serif-body text-[var(--content-primary)] flex-1"
                     style={{ fontSize: `${bodyPx}px` }}
                   >
-                    {versiculo.palavras.map((p, wi) => (
-                      <span
-                        key={wi}
-                        className={`cursor-pointer transition-colors relative ${
-                          selectedWord?.verso === versiculo.numero &&
-                          selectedWord?.strong === p.strong
-                            ? "text-[var(--brand-default)] font-semibold"
-                            : p.strong
-                            ? "hover:text-[var(--brand-default)]"
-                            : ""
-                        }`}
-                        onClick={() =>
-                          p.strong &&
-                          handleWordClick(
-                            versiculo.numero,
-                            p.strong,
-                            p.palavraOriginal,
-                            p.transliteracao,
-                            p.idioma,
-                            p.texto
-                          )
-                        }
-                        role={p.strong ? "button" : undefined}
-                        tabIndex={p.strong ? 0 : undefined}
-                      >
-                        {p.texto}
-                        {p.strong && (
-                          <span className="absolute -bottom-px left-0 right-0 h-px bg-[var(--brand-default)]/30 scale-x-0 hover:scale-x-100 transition-transform origin-left rounded-full" />
-                        )}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Desktop: faixas clássicas. Celular: coluna por palavra. */}
-                <div className="hidden md:block mt-3 ml-8">
-                  <div className="flex flex-wrap gap-x-3 gap-y-1">
-                    {palavrasComStrong.map((p, wi) => (
-                      <span
-                        key={`o-${wi}`}
-                        className={`interlinear-original inline-block text-center cursor-pointer min-w-[4.5em] max-w-[9em] ${
-                          selectedWord?.verso === versiculo.numero && selectedWord?.strong === p.strong
-                            ? "text-[var(--brand-default)] font-bold"
-                            : "text-[var(--content-primary)] hover:text-[var(--brand-default)]"
-                        } ${p.idioma === "hebraico" ? "font-hebrew" : "font-greek"}`}
-                        style={{ fontSize: `${originalPx}px`, lineHeight: 1.35 }}
-                        dir={p.idioma === "hebraico" ? "rtl" : "ltr"}
-                        onClick={() =>
-                          handleWordClick(versiculo.numero, p.strong!, p.palavraOriginal, p.transliteracao, p.idioma, p.texto)
-                        }
-                        role="button"
-                        tabIndex={0}
-                      >
-                        {p.palavraOriginal || "\u00A0"}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex flex-wrap gap-x-3 gap-y-1 mt-1">
-                    {palavrasComStrong.map((p, wi) => {
-                      const meaning = (p.definicao?.trim() || p.texto || p.transliteracao || "").trim();
+                    {versiculo.palavras.map((p, wi) => {
+                      const sameLemma = !!(
+                        selectedWord?.strong && p.strong === selectedWord.strong
+                      );
+                      const activeHere =
+                        sameLemma && selectedWord?.verso === versiculo.numero;
                       return (
                         <span
-                          key={`g-${wi}`}
-                          className="interlinear-gloss inline-block text-center font-serif-body min-w-[4.5em] max-w-[9em]"
-                          style={{ fontSize: `${bodyPx}px`, lineHeight: 1.35, color: "var(--content-primary)" }}
+                          key={wi}
+                          className={`cursor-pointer transition-colors ${
+                            activeHere
+                              ? "text-[var(--brand-default)] font-semibold underline decoration-[var(--brand-default)]/50 underline-offset-4"
+                              : sameLemma
+                                ? "text-[var(--brand-default)]/85"
+                                : p.strong
+                                  ? "hover:text-[var(--brand-default)]"
+                                  : ""
+                          }`}
+                          onClick={() =>
+                            p.strong &&
+                            handleWordClick(
+                              versiculo.numero,
+                              p.strong,
+                              p.palavraOriginal,
+                              p.transliteracao,
+                              p.idioma,
+                              p.texto
+                            )
+                          }
+                          role={p.strong ? "button" : undefined}
+                          tabIndex={p.strong ? 0 : undefined}
                         >
-                          {meaning}
+                          {p.texto}
                         </span>
                       );
                     })}
                   </div>
-                  <div className="flex flex-wrap gap-x-3 gap-y-1 mt-0.5">
-                    {palavrasComStrong.map((p, wi) => (
-                      <span
-                        key={`s-${wi}`}
-                        className="inline-block text-center min-w-[4.5em] max-w-[9em] cursor-pointer hover:text-[var(--brand-default)]"
-                        style={{ fontSize: `${Math.max(12, Math.round(bodyPx * 0.72))}px`, color: "var(--content-muted)" }}
-                        onClick={() =>
-                          handleWordClick(versiculo.numero, p.strong!, p.palavraOriginal, p.transliteracao, p.idioma, p.texto)
-                        }
-                      >
-                        {p.transliteracao && <span className="italic block">{p.transliteracao}</span>}
-                        {p.morfologia && <MorphMiniTag morphCode={p.morfologia} />}
-                        <span className="block">{p.strong}</span>
-                      </span>
-                    ))}
-                  </div>
+                  <button
+                    type="button"
+                    className="shrink-0 mt-0.5 p-1.5 rounded-lg text-[var(--content-muted)] hover:text-[var(--brand-default)] hover:bg-[var(--surface-sunken)]"
+                    title="Copiar este verso interlinear"
+                    aria-label={`Copiar verso ${versiculo.numero}`}
+                    onClick={() => copiarVerso(versiculo.numero, versiculo.palavras)}
+                  >
+                    {copiedVerse === versiculo.numero ? (
+                      <Check className="w-4 h-4" />
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
+                  </button>
                 </div>
 
-                <div className="interlinear-word-row flex md:hidden flex-wrap items-start gap-x-3 gap-y-5 mt-3">
-                  {palavrasComStrong.map((p, wi) => {
-                    const meaning = (
-                      p.definicao?.trim() ||
-                      p.texto ||
-                      p.transliteracao ||
-                      ""
-                    ).trim();
-                    return (
-                      <span
-                        key={wi}
-                        className="interlinear-col inline-flex flex-col items-center text-center px-1.5 min-w-[4.75em] max-w-[10em]"
-                      >
-                        <span
-                          className={`interlinear-original text-center cursor-pointer transition-colors ${
-                            selectedWord?.verso === versiculo.numero &&
-                            selectedWord?.strong === p.strong
-                              ? "text-[var(--brand-default)] font-bold"
-                              : "text-[var(--content-primary)] hover:text-[var(--brand-default)]"
-                          } ${
-                            p.idioma === "hebraico"
-                              ? "font-hebrew"
-                              : "font-greek"
-                          }`}
-                          style={{ fontSize: `${originalPx}px`, lineHeight: 1.35 }}
-                          dir={p.idioma === "hebraico" ? "rtl" : "ltr"}
-                          onClick={() =>
-                            handleWordClick(
-                              versiculo.numero,
-                              p.strong!,
-                              p.palavraOriginal,
-                              p.transliteracao,
-                              p.idioma,
-                              p.texto
-                            )
-                          }
-                          role="button"
-                          tabIndex={0}
-                        >
-                          {p.palavraOriginal || "\u00A0"}
-                        </span>
-                        <span
-                          className="interlinear-gloss mt-1 text-center font-serif-body"
-                          style={{
-                            fontSize: `${bodyPx}px`,
-                            lineHeight: 1.35,
-                            color: "var(--content-primary)",
-                          }}
-                        >
-                          {meaning}
-                        </span>
-                        {p.transliteracao &&
-                          meaning.toLowerCase() !== p.transliteracao.toLowerCase() && (
-                            <span
-                              className="mt-0.5 italic text-center"
-                              style={{
-                                fontSize: `${Math.max(14, Math.round(bodyPx * 0.8))}px`,
-                                color: "var(--content-muted)",
-                              }}
-                            >
-                              {p.transliteracao}
-                            </span>
-                          )}
-                        <span
-                          className="mt-1 cursor-pointer hover:text-[var(--brand-default)] transition-colors"
-                          style={{
-                            fontSize: `${Math.max(12, Math.round(bodyPx * 0.7))}px`,
-                            color: "var(--content-muted)",
-                          }}
-                          onClick={() =>
-                            handleWordClick(
-                              versiculo.numero,
-                              p.strong!,
-                              p.palavraOriginal,
-                              p.transliteracao,
-                              p.idioma,
-                              p.texto
-                            )
-                          }
-                          title={`Ver detalhes de ${p.strong}`}
-                        >
-                          {p.morfologia && (
-                            <MorphMiniTag morphCode={p.morfologia} />
-                          )}
-                          <span className="block">{p.strong}</span>
-                        </span>
-                      </span>
-                    );
-                  })}
+                {palavrasComStrong.length > 0 && (
+                  <>
+                <p className="ml-9 mb-1.5 text-[10px] uppercase tracking-wider text-[var(--content-muted)]">
+                  Original · sentido · Strong
+                </p>
+
+                <div
+                  className="interlinear-word-row flex flex-wrap items-start gap-x-2 gap-y-4 mt-1 ml-2 md:ml-8"
+                  dir={isHebrew ? "rtl" : "ltr"}
+                >
+                  {palavrasComStrong.map((p, wi) => (
+                    <InterlinearWordCol
+                      key={`${p.strong}-${wi}`}
+                      p={p}
+                      selected={
+                        selectedWord?.verso === versiculo.numero &&
+                        selectedWord?.strong === p.strong
+                      }
+                      echo={
+                        !!selectedWord &&
+                        selectedWord.strong === p.strong &&
+                        selectedWord.verso !== versiculo.numero
+                      }
+                      originalPx={originalPx}
+                      bodyPx={bodyPx}
+                      onClick={() =>
+                        handleWordClick(
+                          versiculo.numero,
+                          p.strong!,
+                          p.palavraOriginal,
+                          p.transliteracao,
+                          p.idioma,
+                          p.texto
+                        )
+                      }
+                    />
+                  ))}
                 </div>
+                  </>
+                )}
 
                 {/* Detalhe inline */}
                 <AnimatePresence>
@@ -1453,6 +1542,9 @@ export function InterlinearView({
                           (p) => p.strong === selectedWord.strong
                         )?.morfologia || null
                       }
+                      livro={livro}
+                      capitulo={capitulo}
+                      versoAtual={versiculo.numero}
                       onClose={() => setSelectedWord(null)}
                       onOpenPanel={handleOpenPanel}
                       onSearch={handleSearch}
@@ -1460,7 +1552,6 @@ export function InterlinearView({
                   )}
                 </AnimatePresence>
               </div>
-            )}
           </div>
         );
       })}
@@ -1520,12 +1611,12 @@ function MorphMiniTag({ morphCode }: { morphCode: string }) {
 
   return (
     <span
-      className="leading-none px-0.5 rounded font-medium"
+      className="leading-snug px-0.5 rounded font-medium whitespace-normal"
       style={{ fontSize: "12px" }}
       title={parsed.label}
     >
       <span className={colorMap[parsed.tipo] || "bg-gray-500/10 text-gray-500"}>
-        {parsed.tipo.slice(0, 1)}
+        {parsed.label || parsed.tipo}
       </span>
     </span>
   );

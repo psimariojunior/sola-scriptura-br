@@ -2,7 +2,8 @@
 
 import { Suspense, useState, useRef, useCallback, useEffect, Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, WifiOff, Heart, Copy, Share2, Bookmark } from 'lucide-react';
+import { BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, WifiOff, Heart, Copy, Share2, Bookmark, Languages } from 'lucide-react';
+import { hrefInterlinear } from '@/lib/bibliaHref';
 import { cn } from '@/lib/utils';
 import { ChapterHeader } from './ChapterHeader';
 import { VerseListItem } from './VerseListItem';
@@ -533,6 +534,13 @@ export function BibleVerseList({
             >
               <Copy className="w-4 h-4" /> Copiar
             </button>
+            <a
+              href={hrefInterlinear(longPressMenu.livroAbrev, longPressMenu.capitulo, longPressMenu.versiculo)}
+              onClick={(e) => e.stopPropagation()}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-[var(--surface-sunken)] text-sm transition-colors"
+            >
+              <Languages className="w-4 h-4" /> Original
+            </a>
             <button
               onClick={(e) => {
                 e.stopPropagation();

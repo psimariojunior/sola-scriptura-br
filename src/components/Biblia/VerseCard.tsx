@@ -1,14 +1,16 @@
 'use client';
 
 import { memo, Fragment, useRef, useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import type { useAudioNatural } from '@/hooks/useAudioNatural';
 import type { useVerseAudio } from '@/hooks/useVerseAudio';
 import type { useFlashcards } from '@/hooks/useFlashcards';
 import { VerseActions } from './VerseActions';
 import { VerseComments, CommentBadge } from './VerseComments';
-import { Heart, Copy, Share2, ImageIcon, BookOpen, Maximize2 } from 'lucide-react';
+import { Heart, Copy, Share2, ImageIcon, BookOpen, Maximize2, Languages } from 'lucide-react';
 import { toggleFavorito } from '@/lib/estudos';
+import { hrefInterlinear } from '@/lib/bibliaHref';
 import { setMarcador, removeMarcador, getMarcador, CORES, COR_SIGNIFICADO, type CorMarcador } from '@/lib/marcadores';
 import { useMarcaVerso } from '@/hooks/useMarcadores';
 import { MobileVersePanel } from '@/components/MobileVersePanel';
@@ -347,6 +349,17 @@ export const VerseCard = memo(function VerseCard({
               className="bible-reading-text font-serif-body text-[var(--content-primary)]"
               style={{ fontSize: `${fontSize}px`, lineHeight: lineSpacing ?? 1.85, fontFamily: fontFamilyCss }}
             />
+
+            {(isSelected || studyMode) && (
+              <Link
+                href={hrefInterlinear(livroAbreviacao, capitulo, numero)}
+                onClick={(e) => e.stopPropagation()}
+                className="mt-2 inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--brand-default)] hover:underline"
+              >
+                <Languages className="w-3.5 h-3.5" />
+                Original deste verso
+              </Link>
+            )}
 
             {anotacaoPreview && (
               <button

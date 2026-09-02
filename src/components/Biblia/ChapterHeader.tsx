@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Clock } from 'lucide-react';
 import { ProgressBar } from './ProgressBar';
-import { hrefGuia } from '@/lib/bibliaHref';
+import { hrefGuia, hrefInterlinear } from '@/lib/bibliaHref';
 
 interface ChapterHeaderProps {
   livroNome: string;
@@ -97,6 +97,14 @@ export function ChapterHeader({
         </h1>
         <Ornament compact />
         {atalhoEstudo}
+        <p className="mt-3">
+          <Link
+            href={hrefInterlinear(livroAbreviacao, capitulo)}
+            className="text-[12px] sm:text-[13px] font-medium text-[var(--brand-default)] hover:underline underline-offset-4"
+          >
+            Original · hebraico e grego
+          </Link>
+        </p>
       </header>
     );
   }
@@ -125,6 +133,14 @@ export function ChapterHeader({
 
       <p className="mt-4 max-w-md mx-auto text-[12px] sm:text-[13px] leading-relaxed text-[var(--content-muted)]">
         Toque no versículo para estudar. Selecione um trecho para marcar com cor ou criar uma imagem.
+      </p>
+      <p className="mt-2">
+        <Link
+          href={hrefInterlinear(livroAbreviacao, capitulo)}
+          className="text-[12px] sm:text-[13px] font-medium text-[var(--brand-default)] hover:underline underline-offset-4"
+        >
+          Original · hebraico e grego
+        </Link>
       </p>
 
       <div className="mt-5 max-w-xs mx-auto px-2">

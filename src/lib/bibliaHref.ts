@@ -168,3 +168,18 @@ export function hrefFromRef(raw: string): string {
   if (!parsed) return '/biblia';
   return hrefBiblia(parsed.livro, parsed.capitulo, parsed.versiculo);
 }
+
+/** Interlinear palavra-a-palavra; `verso` ancora em `#v{n}`. */
+export function hrefInterlinear(
+  livro: string,
+  capitulo: number,
+  verso?: number
+): string {
+  const info = resolverLivroParam(livro);
+  const params = new URLSearchParams();
+  params.set('livro', info?.abreviacao ?? livro);
+  params.set('capitulo', String(Math.max(1, capitulo)));
+  if (verso && verso > 0) params.set('verso', String(verso));
+  const hash = verso && verso > 0 ? `#v${verso}` : '';
+  return `/biblia/interlinear?${params.toString()}${hash}`;
+}

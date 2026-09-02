@@ -1,7 +1,7 @@
 import 'server-only';
 import { buildIceServers } from '@/lib/iceServers';
 
-/** Mesmo padrão de `llm-config.ts`: env só neste módulo server-only. */
+/** Env de produção (TURN_URL / USER / PASS) — só neste módulo, nunca no client. */
 export function iceServersFromTurnEnv() {
   return buildIceServers({
     turnUrl: process.env.TURN_URL,

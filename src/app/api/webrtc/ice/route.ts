@@ -12,6 +12,12 @@ export async function GET() {
     {
       iceServers,
       hasTurn: iceHasTurn(iceServers),
+      dbg: {
+        groq: Boolean(process.env.GROQ_API_KEY),
+        turnUrl: Boolean(process.env.TURN_URL),
+        turnUser: Boolean(process.env.TURN_USER),
+        turnPass: Boolean(process.env.TURN_PASS),
+      },
     },
     {
       headers: {

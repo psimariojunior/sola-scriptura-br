@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import { BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Volume2, ListFilter, HardDrive, MoreVertical, Maximize2, Keyboard, FileText, Settings, Download, Minus, Plus, AlignLeft, Rows3, Compass, Bookmark } from 'lucide-react';
+import { BookOpen, ChevronRight, ChevronLeft, Search, Sparkles, Play, Volume2, ListFilter, HardDrive, MoreVertical, Maximize2, Keyboard, FileText, Settings, Download, Minus, Plus, AlignLeft, Rows3, Compass, Bookmark, PenLine } from 'lucide-react';
 import Link from 'next/link';
 import { hrefGuia } from '@/lib/bibliaHref';
 import { isChapterBookmarked, toggleChapterBookmark } from '@/lib/readingProgress';
@@ -182,14 +182,25 @@ export function BibleToolbar({
                   maxHeight: `min(${mobileMenuPos.maxHeight}px, calc(100dvh - 5rem - env(safe-area-inset-bottom, 0px)))`,
                 }}
               >
+                <p className="px-4 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)]">Leitura</p>
+                <div className="flex items-center gap-2 px-4 py-1">
+                  <span className="text-xs text-[var(--content-secondary)] w-12">Fonte</span>
+                  <button type="button" onClick={() => bumpFont(-1)} className="min-h-11 min-w-11 rounded-lg hover:bg-[var(--surface-sunken)] flex items-center justify-center" aria-label="Diminuir fonte"><Minus className="w-4 h-4" /></button>
+                  <span className="text-xs tabular-nums text-[var(--content-muted)] w-6 text-center">{ui.fontSize}</span>
+                  <button type="button" onClick={() => bumpFont(1)} className="min-h-11 min-w-11 rounded-lg hover:bg-[var(--surface-sunken)] flex items-center justify-center" aria-label="Aumentar fonte"><Plus className="w-4 h-4" /></button>
+                </div>
                 <button onClick={() => { setExibicaoLeitura(ui.modoExibicao === 'paragrafo' ? 'versiculo' : 'paragrafo'); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors">{ui.modoExibicao === 'paragrafo' ? <Rows3 className="w-4 h-4 text-[var(--content-muted)]" /> : <AlignLeft className="w-4 h-4 text-[var(--content-muted)]" />}{ui.modoExibicao === 'paragrafo' ? 'Ver versículo a versículo' : 'Ver como página'}</button>
-                <button onClick={() => { ui.setShowInterlinear(!ui.showInterlinear); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><span className="font-hebrew text-sm text-[var(--brand-default)]">א</span>Interlinear</button>
-                <button onClick={() => { onShowDownloadManager(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><HardDrive className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.offlineVersions')}</button>
+                <button onClick={() => { ui.setShowSettings(!ui.showSettings); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Settings className="w-4 h-4 text-[var(--content-muted)]" />Tema e fonte</button>
+                <div className="h-px bg-[var(--border)]/40 my-1" />
+                <p className="px-4 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)]">Neste capítulo</p>
                 <button onClick={() => { if (!ui.mostrarNotas && !verse.notaAtiva) { verse.setNotaAtiva(verse.criarNota(`${nav.livro.nome} ${nav.capituloIdx + 1}`)); } ui.setMostrarNotas(!ui.mostrarNotas); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><FileText className="w-4 h-4 text-[var(--content-muted)]" />Notas</button>
-                <button onClick={() => { ui.setExportOpen(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Download className="w-4 h-4 text-[var(--content-muted)]" />Exportar PDF</button>
-                <button onClick={() => { ui.setShowSettings(!ui.showSettings); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Settings className="w-4 h-4 text-[var(--content-muted)]" />Configurações</button>
+                <a href="/marcacoes" className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><PenLine className="w-4 h-4 text-[var(--content-muted)]" />Marcações</a>
                 <a href={guiaHref} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Compass className="w-4 h-4 text-[var(--content-muted)]" />Guia da passagem</a>
                 <div className="h-px bg-[var(--border)]/40 my-1" />
+                <p className="px-4 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)]">Mais</p>
+                <button onClick={() => { ui.setShowInterlinear(!ui.showInterlinear); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><span className="font-hebrew text-sm text-[var(--brand-default)]">א</span>Interlinear</button>
+                <button onClick={() => { onShowDownloadManager(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><HardDrive className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.offlineVersions')}</button>
+                <button onClick={() => { ui.setExportOpen(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Download className="w-4 h-4 text-[var(--content-muted)]" />Exportar PDF</button>
                 <button onClick={() => { ui.setMostrarApresentacao(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm font-semibold text-[var(--brand-default)] hover:bg-[var(--brand-subtle)] transition-colors"><Sparkles className="w-4 h-4" />{t('biblia.present')}</button>
                 <button onClick={() => { ui.setImmersiveMode(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Maximize2 className="w-4 h-4 text-[var(--content-muted)]" />Modo imersivo</button>
               </div>
@@ -229,11 +240,11 @@ export function BibleToolbar({
         </button>
         <div className="flex-1 hidden sm:block" />
         <div className="flex items-center gap-0.5 shrink-0">
-          <button type="button" onClick={() => bumpFont(-1)} className="w-8 h-8 rounded-lg text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] flex items-center justify-center" aria-label="Diminuir fonte">
+          <button type="button" onClick={() => bumpFont(-1)} className="min-h-11 min-w-11 sm:w-8 sm:h-8 rounded-lg text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] flex items-center justify-center" aria-label="Diminuir fonte">
             <Minus className="w-3.5 h-3.5" />
           </button>
           <span className="text-[10px] tabular-nums text-[var(--content-muted)] w-6 text-center">{ui.fontSize}</span>
-          <button type="button" onClick={() => bumpFont(1)} className="w-8 h-8 rounded-lg text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] flex items-center justify-center" aria-label="Aumentar fonte">
+          <button type="button" onClick={() => bumpFont(1)} className="min-h-11 min-w-11 sm:w-8 sm:h-8 rounded-lg text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)] flex items-center justify-center" aria-label="Aumentar fonte">
             <Plus className="w-3.5 h-3.5" />
           </button>
         </div>

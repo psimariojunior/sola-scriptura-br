@@ -199,7 +199,7 @@ function VerseActionsInner({
                   setColorOpen(false);
                 }}
                 className={cn(
-                  'w-5 h-5 rounded-full transition-all duration-200 hover:scale-125 active:scale-90',
+                  'min-h-11 min-w-11 sm:min-h-5 sm:min-w-5 rounded-full transition-all duration-200 hover:scale-125 active:scale-90',
                   corMap[cor],
                   ativa && 'ring-2 ring-offset-1 ring-[var(--brand-default)]'
                 )}

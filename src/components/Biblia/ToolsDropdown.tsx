@@ -72,6 +72,7 @@ export function ToolsDropdown({
         style={{ top: pos.top, right: pos.right }}
       >
         <ToolItem icon={FileText} label="Notas" onClick={onNotas} />
+        <ToolItem icon={BookMarked} label="Marcações" onClick={() => { window.location.href = '/marcacoes'; }} />
         <ToolItem icon={Download} label="Exportar PDF" onClick={onExportPdf} />
         <ToolItem icon={BookMarked} label="Plano de Leitura" onClick={onPlanoLeitura} />
         {hasDramatica && <ToolItem icon={Play} label="Narração Dramática" onClick={onNarracaoDramatica} />}

@@ -125,7 +125,7 @@ function MobileActionBarInner({
                             setColorOpen(false);
                           }}
                           className={cn(
-                            'w-7 h-7 rounded-full transition-all',
+                            'min-h-11 min-w-11 rounded-full transition-all',
                             corMap[cor],
                             ativa && 'ring-2 ring-offset-1 ring-[var(--brand-default)]'
                           )}

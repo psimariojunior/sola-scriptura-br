@@ -1,9 +1,8 @@
 'use client';
 
-import { Suspense, useState, useRef, useCallback, useEffect, Fragment } from 'react';
+import { Suspense, useState, useEffect, Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, WifiOff, Heart, Copy, Share2, Bookmark, Languages } from 'lucide-react';
-import { hrefInterlinear } from '@/lib/bibliaHref';
+import { BookOpen, ChevronRight, ChevronLeft, ChevronUp, ChevronDown, WifiOff, Bookmark } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ChapterHeader } from './ChapterHeader';
 import { VerseListItem } from './VerseListItem';
@@ -29,9 +28,12 @@ import dynamic from 'next/dynamic';
 import { ClickableVerse } from './ClickableVerse';
 import { IntroLivroLeitura } from './IntroLivroLeitura';
 import { ParalelosDoCapitulo } from './ParalelosDoCapitulo';
-import { useLongPress } from '@/hooks/useLongPress';
-import { toggleFavorito } from '@/lib/estudos';
+import { VerseQuickBar } from './VerseQuickBar';
+import { MarcasDoCapitulo } from './MarcasDoCapitulo';
 import { karaokeProgressFromAudio } from '@/lib/karaokeWords';
+import { useMarcasCapitulo } from '@/hooks/useMarcadores';
+import { MARCA_CLASSE, type CorMarcador } from '@/lib/marcadores';
+import { obterMarca } from '@/lib/estudos';
 
 const InterlinearView = dynamic(() => import('@/components/InterlinearView').then(m => ({ default: m.InterlinearView })), { ssr: false });
 const PainelEstudosCapitulo = dynamic(() => import('./PainelEstudosCapitulo'));
@@ -107,33 +109,14 @@ export function BibleVerseList({
 }: BibleVerseListProps) {
   const { t } = useTranslation();
 
-  const [longPressMenu, setLongPressMenu] = useState<{
-    livroAbrev: string; capitulo: number; versiculo: number;
-    traducao: string; texto: string; x: number; y: number;
-  } | null>(null);
-  const longPressVerseRef = useRef<{
-    livroAbrev: string; capitulo: number; versiculo: number;
-    traducao: string; texto: string;
-  } | null>(null);
-  const longPressPosRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
-
-  const handleLongPress = useCallback(() => {
-    if (longPressVerseRef.current) {
-      setLongPressMenu({
-        ...longPressVerseRef.current,
-        x: longPressPosRef.current.x,
-        y: longPressPosRef.current.y,
-      });
-    }
-  }, []);
-
-  const longPress = useLongPress({
-    delay: 500,
-    onLongPress: handleLongPress,
-  });
-
   const isModoLeitura = ui.modoLeitura === 'foco';
   const isModoEstudo = ui.modoLeitura === 'estudo';
+  const marcasCapitulo = useMarcasCapitulo(
+    nav.livro.abreviacao,
+    nav.capituloIdx + 1,
+    nav.data[0]?.traducao,
+  );
+  const marcaPorVerso = new Map(marcasCapitulo.map((m) => [m.versiculo, m]));
   const audioVerseActive = !!(capituloAudio.state.isPlaying || capituloAudio.state.isLoading);
   const hasAudioClock =
     (capituloAudio.state.currentTime ?? 0) > 0 && (capituloAudio.state.duration ?? 0) > 0;
@@ -198,6 +181,7 @@ export function BibleVerseList({
       <div
         className={cn(
           'bible-reading-column px-5 sm:px-8 pb-24 md:pb-12',
+          verse.versiculoSelecionado && 'pb-56 lg:pb-12',
           isModoLeitura ? 'is-leitura-page py-8 sm:py-14' : 'py-6 sm:py-10',
         )}
         style={swipeOffset === 0 ? undefined : { transform: `translateX(${swipeOffset}px)`, transition: 'none' }}
@@ -278,6 +262,11 @@ export function BibleVerseList({
               }}
             />
             <ParalelosDoCapitulo livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} />
+            <MarcasDoCapitulo
+              livro={nav.livro.abreviacao}
+              capitulo={nav.capituloIdx + 1}
+              traducao={nav.data[0]?.traducao}
+            />
             {!isModoLeitura && (
               <>
                 <IntroLivroLeitura livroAbrev={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} nomeLivro={nav.livro.nome} />
@@ -326,6 +315,7 @@ export function BibleVerseList({
                         const isCurrentAudioVerse = audioVerseActive && capituloAudio.state.currentVerseIndex === v.numero - 1;
                         const isHighlighted = ui.modoLeitura === 'foco' && ui.highlightedVerse === v.numero;
                         const temRecurso = verseResources.hasResources(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero);
+                        const marcaVerso = marcaPorVerso.get(v.numero);
                         return (
                           <span
                             id={`verse-${v.numero}`}
@@ -333,19 +323,20 @@ export function BibleVerseList({
                             key={`${item.traducao}-${v.numero}-p`}
                             role="button"
                             tabIndex={0}
-                            aria-label={`Versículo ${v.numero}`}
+                            aria-label={`Versículo ${v.numero}${marcaVerso ? `, marcado como ${marcaVerso.cor}` : ''}`}
                             onClick={() => stableHandleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto)}
                             onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); stableHandleSelectFromList(nav.livro.abreviacao, nav.capituloIdx + 1, v.numero, item.traducao, v.texto); } }}
                             className={cn(
                               'cursor-pointer rounded-sm transition-colors text-[var(--content-primary)]',
                               isCurrentAudioVerse && 'verse-karaoke-active',
+                              marcaVerso && MARCA_CLASSE[marcaVerso.cor as CorMarcador],
                               isCurrentAudioVerse
                                 ? 'bg-amber-100/70 dark:bg-amber-900/30'
                                 : isSelected
                                 ? 'bg-[var(--brand-subtle)]'
                                 : isHighlighted
                                 ? 'bg-[var(--brand-subtle)]/60'
-                                : 'hover:bg-[var(--surface-sunken)]/40'
+                                : !marcaVerso && 'hover:bg-[var(--surface-sunken)]/40'
                             )}
                           >
                             {!ui.ocultarNumeros && (
@@ -356,6 +347,7 @@ export function BibleVerseList({
                               livroAbreviacao={nav.livro.abreviacao}
                               capitulo={nav.capituloIdx + 1}
                               numero={v.numero}
+                              trechos={marcaVerso?.trechos}
                               karaokeActive={isCurrentAudioVerse && hasAudioClock}
                               karaokeProgress={karaokeProgress}
                             />
@@ -367,19 +359,44 @@ export function BibleVerseList({
                         );
                       })}
                     </div>
-                    {isModoEstudo && grupo.verses.some((v) => verse.versiculoSelecionado?.versiculo === v.numero && verse.versiculoSelecionado?.traducao === item.traducao) && (() => {
+                    {grupo.verses.some((v) => verse.versiculoSelecionado?.versiculo === v.numero && verse.versiculoSelecionado?.traducao === item.traducao) && (() => {
                       const sel = grupo.verses.find((v) => verse.versiculoSelecionado?.versiculo === v.numero && verse.versiculoSelecionado?.traducao === item.traducao);
                       if (!sel) return null;
+                      const verseKey = `${nav.livro.abreviacao}:${nav.capituloIdx + 1}:${sel.numero}:${item.traducao}`;
+                      const temAnotacao = !!obterMarca(nav.livro.abreviacao, nav.capituloIdx + 1, sel.numero, item.traducao)?.anotacao?.texto;
                       return (
-                        <EstudoDoVerso
-                          livro={nav.livro.abreviacao}
-                          capitulo={nav.capituloIdx + 1}
-                          verso={sel.numero}
-                          texto={sel.texto}
-                          fontSize={ui.fontSize}
-                          expanded
-                          onOpenFull={() => { setPainelTabInicial('estudo'); setPainelVersiculoAberto(true); }}
-                        />
+                        <>
+                          <div className="hidden lg:block my-2">
+                            <VerseQuickBar
+                              livroNome={nav.livro.nome}
+                              livroAbreviacao={nav.livro.abreviacao}
+                              capitulo={nav.capituloIdx + 1}
+                              versiculo={sel.numero}
+                              traducao={item.traducao}
+                              texto={sel.texto}
+                              isFavorito={isFavorito(nav.livro.abreviacao, nav.capituloIdx + 1, sel.numero, item.traducao)}
+                              temAnotacao={temAnotacao}
+                              onFavoritoChange={refresh}
+                              onAnotar={() => {
+                                stableSetAnotandoVersiculo(verseKey);
+                                verse.setAnotacaoTexto('');
+                              }}
+                              onClose={handleDeselectVerse}
+                              variant="inline"
+                            />
+                          </div>
+                          {isModoEstudo && (
+                            <EstudoDoVerso
+                              livro={nav.livro.abreviacao}
+                              capitulo={nav.capituloIdx + 1}
+                              verso={sel.numero}
+                              texto={sel.texto}
+                              fontSize={ui.fontSize}
+                              expanded
+                              onOpenFull={() => { setPainelTabInicial('estudo'); setPainelVersiculoAberto(true); }}
+                            />
+                          )}
+                        </>
                       );
                     })()}
                   </Fragment>
@@ -399,23 +416,6 @@ export function BibleVerseList({
                   <div
                     key={`${item.traducao}-${v.numero}`}
                     className="bible-verse-spacer"
-                    onMouseDown={(e) => {
-                      setLongPressMenu(null);
-                      longPressVerseRef.current = { livroAbrev: nav.livro.abreviacao, capitulo: nav.capituloIdx + 1, versiculo: v.numero, traducao: item.traducao, texto: v.texto };
-                      longPressPosRef.current = { x: e.clientX, y: e.clientY };
-                      longPress.onMouseDown(e);
-                    }}
-                    onMouseUp={longPress.onMouseUp}
-                    onMouseLeave={longPress.onMouseLeave}
-                    onTouchStart={(e) => {
-                      setLongPressMenu(null);
-                      longPressVerseRef.current = { livroAbrev: nav.livro.abreviacao, capitulo: nav.capituloIdx + 1, versiculo: v.numero, traducao: item.traducao, texto: v.texto };
-                      const touch = e.touches[0];
-                      longPressPosRef.current = { x: touch.clientX, y: touch.clientY };
-                      longPress.onTouchStart(e);
-                    }}
-                    onTouchEnd={longPress.onTouchEnd}
-                    onTouchMove={longPress.onTouchMove}
                   >
                     {pericope && (
                       <PericopeHeading titulo={pericope.titulo} tema={pericope.tema} />
@@ -508,59 +508,38 @@ export function BibleVerseList({
       </div>
       <NotesPanelSection open={ui.mostrarNotas} onClose={() => ui.setMostrarNotas(false)} notas={verse.notas} notaAtiva={verse.notaAtiva} onSalvar={(nota) => { verse.setNotaAtiva(nota); verse.salvarNotaHook(nota.id, nota.conteudo); }} onExcluir={(id) => { verse.excluirNota(id); verse.setNotaAtiva(null); ui.setMostrarNotas(false); }} />
 
-      {longPressMenu && (
-        <>
-          <div className="fixed inset-0 z-40" onClick={() => setLongPressMenu(null)} onTouchStart={() => setLongPressMenu(null)} />
-          <div
-            className="fixed z-50 bg-[var(--surface-raised)] border border-[var(--border)] rounded-xl shadow-xl p-1.5 flex gap-1"
-            style={{ left: Math.min(Math.max(longPressMenu.x, 80), typeof window !== 'undefined' ? window.innerWidth - 80 : 300), top: Math.max(longPressMenu.y - 60, 8) }}
-          >
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleFavorito(longPressMenu.livroAbrev, longPressMenu.capitulo, longPressMenu.versiculo, longPressMenu.traducao, longPressMenu.texto);
-                refresh();
-                setLongPressMenu(null);
-              }}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-[var(--surface-sunken)] text-sm transition-colors"
-            >
-              <Heart className="w-4 h-4" /> Favoritar
-            </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                verse.copyVerse(longPressMenu.texto, `${nav.livro.nome} ${longPressMenu.capitulo}:${longPressMenu.versiculo}`);
-                setLongPressMenu(null);
-              }}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-[var(--surface-sunken)] text-sm transition-colors"
-            >
-              <Copy className="w-4 h-4" /> Copiar
-            </button>
-            <a
-              href={hrefInterlinear(longPressMenu.livroAbrev, longPressMenu.capitulo, longPressMenu.versiculo)}
-              onClick={(e) => e.stopPropagation()}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-[var(--surface-sunken)] text-sm transition-colors"
-            >
-              <Languages className="w-4 h-4" /> Original
-            </a>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                const ref = `${nav.livro.nome} ${longPressMenu.capitulo}:${longPressMenu.versiculo}`;
-                const text = `${longPressMenu.texto} — ${ref}`;
-                if (navigator.share) {
-                  navigator.share({ title: ref, text });
-                } else {
-                  navigator.clipboard?.writeText(text);
-                }
-                setLongPressMenu(null);
-              }}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-[var(--surface-sunken)] text-sm transition-colors"
-            >
-              <Share2 className="w-4 h-4" /> Compartilhar
-            </button>
-          </div>
-        </>
+      {verse.versiculoSelecionado && (
+        <div className="lg:hidden">
+          <VerseQuickBar
+            livroNome={verse.versiculoSelecionado.livroNome}
+            livroAbreviacao={verse.versiculoSelecionado.livroAbreviacao}
+            capitulo={verse.versiculoSelecionado.capitulo}
+            versiculo={verse.versiculoSelecionado.versiculo}
+            traducao={verse.versiculoSelecionado.traducao}
+            texto={verse.versiculoSelecionado.texto}
+            isFavorito={isFavorito(
+              verse.versiculoSelecionado.livroAbreviacao,
+              verse.versiculoSelecionado.capitulo,
+              verse.versiculoSelecionado.versiculo,
+              verse.versiculoSelecionado.traducao,
+            )}
+            temAnotacao={!!obterMarca(
+              verse.versiculoSelecionado.livroAbreviacao,
+              verse.versiculoSelecionado.capitulo,
+              verse.versiculoSelecionado.versiculo,
+              verse.versiculoSelecionado.traducao,
+            )?.anotacao?.texto}
+            onFavoritoChange={refresh}
+            onAnotar={() => {
+              const s = verse.versiculoSelecionado;
+              if (!s) return;
+              stableSetAnotandoVersiculo(`${s.livroAbreviacao}:${s.capitulo}:${s.versiculo}:${s.traducao}`);
+              verse.setAnotacaoTexto('');
+            }}
+            onClose={handleDeselectVerse}
+            variant="dock"
+          />
+        </div>
       )}
     </div>
   );

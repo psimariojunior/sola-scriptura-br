@@ -135,7 +135,7 @@ export function ChapterHeader({
       </div>
 
       <p className="mt-4 max-w-md mx-auto text-[12px] sm:text-[13px] leading-relaxed text-[var(--content-muted)]">
-        Toque no versículo para estudar. Selecione um trecho para marcar com cor ou criar uma imagem.
+        Toque no versículo para marcar, anotar ou favoritar. Selecione um trecho para destacar só aquela frase.
       </p>
       <p className="mt-2">
         <Link

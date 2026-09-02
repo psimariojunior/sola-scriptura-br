@@ -77,12 +77,12 @@
     --gradient-warm: linear-gradient(135deg, #B45309 0%, #E07A30 100%);
     --gradient-sunset: linear-gradient(180deg, #FAFAF7 0%, #F4EBD8 50%, #E8C19A 100%);
 
-    --mark-yellow: rgba(234,179,8,0.15);
-    --mark-green: rgba(34,197,94,0.15);
-    --mark-blue: rgba(59,130,246,0.15);
-    --mark-pink: rgba(236,72,153,0.15);
-    --mark-orange: rgba(249,115,22,0.15);
-    --mark-purple: rgba(168,85,247,0.15);
+    --mark-yellow: rgba(234,179,8,0.22);
+    --mark-green: rgba(34,197,94,0.22);
+    --mark-blue: rgba(59,130,246,0.22);
+    --mark-pink: rgba(236,72,153,0.22);
+    --mark-orange: rgba(249,115,22,0.22);
+    --mark-purple: rgba(168,85,247,0.22);
 
     --font-heading: var(--font-cormorant), Georgia, serif;
     --font-reading: var(--font-spectral), Georgia, serif;

@@ -107,7 +107,7 @@ export function TextSelectionBar({
             type="button"
             title={`${COR_SIGNIFICADO[cor].label} — ${COR_SIGNIFICADO[cor].uso}`}
             onClick={() => aplicar(cor)}
-            className={cn('w-7 h-7 rounded-full ring-1 ring-black/10 hover:scale-110 transition-transform', COR_SIGNIFICADO[cor].swatch)}
+            className={cn('min-h-11 min-w-11 rounded-full ring-1 ring-black/10 hover:scale-110 transition-transform', COR_SIGNIFICADO[cor].swatch)}
             aria-label={`Marcar como ${COR_SIGNIFICADO[cor].label}`}
           />
         ))}

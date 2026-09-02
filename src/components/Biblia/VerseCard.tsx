@@ -11,8 +11,9 @@ import { VerseComments, CommentBadge } from './VerseComments';
 import { Heart, Copy, Share2, ImageIcon, BookOpen, Maximize2, Languages } from 'lucide-react';
 import { toggleFavorito } from '@/lib/estudos';
 import { hrefInterlinear } from '@/lib/bibliaHref';
-import { setMarcador, removeMarcador, getMarcador, CORES, COR_SIGNIFICADO, type CorMarcador } from '@/lib/marcadores';
+import { setMarcador, removeMarcador, getMarcador, CORES, COR_SIGNIFICADO, MARCA_CLASSE, type CorMarcador } from '@/lib/marcadores';
 import { useMarcaVerso } from '@/hooks/useMarcadores';
+import { VerseQuickBar } from './VerseQuickBar';
 import { MobileVersePanel } from '@/components/MobileVersePanel';
 import { ClickableVerse } from './ClickableVerse';
 import { TextSelectionBar } from './TextSelectionBar';
@@ -231,24 +232,7 @@ export const VerseCard = memo(function VerseCard({
     };
   }, []);
 
-  const corAtual = marcaLive?.cor ?? getMarcador(livroAbreviacao, capitulo, numero, traducao)?.cor ?? null;
-  const corBgMapInline: Record<CorMarcador, string> = {
-    yellow: 'bg-yellow-400',
-    green: 'bg-green-400',
-    blue: 'bg-blue-400',
-    pink: 'bg-pink-400',
-    orange: 'bg-orange-400',
-    purple: 'bg-purple-400',
-  };
-
-  const corBgMap: Record<string, string> = {
-    yellow: 'bg-[var(--mark-yellow)]',
-    green: 'bg-[var(--mark-green)]',
-    blue: 'bg-[var(--mark-blue)]',
-    pink: 'bg-[var(--mark-pink)]',
-    orange: 'bg-[var(--mark-orange)]',
-    purple: 'bg-[var(--mark-purple)]',
-  };
+  const corAtual = marcaLive?.cor ?? getMarcador(livroAbreviacao, capitulo, numero, traducao)?.cor ?? corMarca;
 
   const fontFamilyCss = fontFamily === 'sans' ? "'Inter', system-ui, sans-serif" : "'Spectral', Georgia, serif";
 
@@ -288,7 +272,7 @@ export const VerseCard = memo(function VerseCard({
             : studyMode && 'hover:bg-primary/[0.03]',
           studyMode && 'border-l-2 border-l-[var(--brand-default)]/25 pl-1 -ml-1',
           studyMode && isSelected && 'border-l-[var(--brand-default)]',
-          corMarca && corBgMap[corMarca]
+          corAtual && MARCA_CLASSE[corAtual as CorMarcador]
         )}
       >
         {isSelected && (
@@ -349,6 +333,25 @@ export const VerseCard = memo(function VerseCard({
               className="bible-reading-text font-serif-body text-[var(--content-primary)]"
               style={{ fontSize: `${fontSize}px`, lineHeight: lineSpacing ?? 1.85, fontFamily: fontFamilyCss }}
             />
+
+            {isSelected && (
+              <div className="hidden lg:block">
+                <VerseQuickBar
+                  livroNome={livroNome}
+                  livroAbreviacao={livroAbreviacao}
+                  capitulo={capitulo}
+                  versiculo={numero}
+                  traducao={traducao}
+                  texto={texto}
+                  isFavorito={isFavorito}
+                  temAnotacao={temAnotacao}
+                  onFavoritoChange={onFavoritoChange}
+                  onAnotar={onAnotar}
+                  onClose={onDeselect}
+                  variant="inline"
+                />
+              </div>
+            )}
 
             {(isSelected || studyMode) && (
               <Link
@@ -448,13 +451,27 @@ export const VerseCard = memo(function VerseCard({
                   onCorMarcaChange?.();
                 }}
                 className={cn(
-                  'w-8 h-8 rounded-full transition-all active:scale-90',
-                  corBgMapInline[cor],
+                  'min-h-11 min-w-11 rounded-full transition-all active:scale-90',
+                  COR_SIGNIFICADO[cor].swatch,
                   corAtual === cor && 'ring-2 ring-offset-2 ring-[var(--brand-default)]'
                 )}
                 aria-label={`Marcar ${COR_SIGNIFICADO[cor].label}`}
               />
             ))}
+            {corAtual && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  removeMarcador(livroAbreviacao, capitulo, numero, traducao);
+                  setShowLongPressColor(false);
+                  onCorMarcaChange?.();
+                }}
+                className="min-h-11 px-2 rounded-lg text-xs font-semibold text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]"
+              >
+                Limpar
+              </button>
+            )}
           </div>
         )}
 

@@ -84,7 +84,7 @@ function drawCertificate(
   // Subtitle
   ctx.font = '11px "Inter", "Segoe UI", sans-serif';
   ctx.fillStyle = 'rgba(212, 175, 55, 0.6)';
-  ctx.fillText('Seminário Bíblico Gratuito', width / 2, 132);
+  ctx.fillText('Sola Scriptura BR', width / 2, 132);
 
   // Decorative divider
   ctx.strokeStyle = 'rgba(212, 175, 55, 0.25)';
@@ -127,7 +127,7 @@ function drawCertificate(
   // "a conclusão do curso"
   ctx.font = '12px "Inter", "Segoe UI", sans-serif';
   ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-  ctx.fillText('a conclusão do curso', width / 2, 300);
+  ctx.fillText('concluiu o curso introdutório', width / 2, 300);
 
   // Course name
   ctx.font = 'bold 20px "Cormorant Garamond", "Georgia", serif';
@@ -168,6 +168,9 @@ function drawCertificate(
   ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
   ctx.textAlign = 'center';
   ctx.fillText(dataConclusao, width / 2, divY + 30);
+  ctx.font = '10px "Inter", "Segoe UI", sans-serif';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
+  ctx.fillText('Não atesta carga horária acadêmica, grau ou ordenação.', width / 2, divY + 48);
 
   // "Sola Scriptura — Gratuito para glória de Deus"
   ctx.font = '10px "Inter", "Segoe UI", sans-serif';

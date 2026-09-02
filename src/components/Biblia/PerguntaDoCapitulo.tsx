@@ -1,9 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ComponentType } from 'react';
 import Link from 'next/link';
 import { hrefGuia } from '@/lib/bibliaHref';
 import type { EstudoCapitulo } from '@/data/estudosCapitulo';
+import { obterTrilhaPorLivro, type TrilhaLivro } from '@/data/trilhasLivro';
+
+type RespostaProps = {
+  trilha: TrilhaLivro;
+  capitulo: number;
+  compact?: boolean;
+};
 
 interface PerguntaDoCapituloProps {
   livro: string;
@@ -13,6 +20,8 @@ interface PerguntaDoCapituloProps {
 
 export function PerguntaDoCapitulo({ livro, capitulo, onEstudar }: PerguntaDoCapituloProps) {
   const [estudo, setEstudo] = useState<EstudoCapitulo | null>(null);
+  const [Resposta, setResposta] = useState<ComponentType<RespostaProps> | null>(null);
+  const trilha = obterTrilhaPorLivro(livro);
 
   useEffect(() => {
     let cancelado = false;
@@ -28,6 +37,17 @@ export function PerguntaDoCapitulo({ livro, capitulo, onEstudar }: PerguntaDoCap
       cancelado = true;
     };
   }, [livro, capitulo]);
+
+  useEffect(() => {
+    if (!trilha) return;
+    let cancelado = false;
+    import('@/components/cursos/RespostaCapituloTrilha').then((m) => {
+      if (!cancelado) setResposta(() => m.RespostaCapituloTrilha);
+    });
+    return () => {
+      cancelado = true;
+    };
+  }, [trilha]);
 
   const pergunta = estudo?.perguntasEstudo?.[0]?.trim();
   if (!estudo || !pergunta) return null;
@@ -69,7 +89,20 @@ export function PerguntaDoCapitulo({ livro, capitulo, onEstudar }: PerguntaDoCap
         >
           Abrir o guia completo
         </Link>
+        {trilha && (
+          <Link
+            href={`/cursos/${trilha.slug}`}
+            className="inline-flex items-center justify-center min-h-[44px] px-4 text-[13px] font-medium text-[var(--content-muted)] hover:underline underline-offset-4"
+          >
+            Voltar à trilha
+          </Link>
+        )}
       </div>
+      {trilha && Resposta && (
+        <div className="mt-6 text-left">
+          <Resposta trilha={trilha} capitulo={capitulo} compact />
+        </div>
+      )}
     </aside>
   );
 }

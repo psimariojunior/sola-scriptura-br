@@ -10,7 +10,7 @@ import { VersiculoCard } from '@/components/estudos/VersiculoCard';
 import {
   BookOpen, ChevronRight, ChevronDown, Quote, Target, HelpCircle,
   Lightbulb, User, Calendar, Tag, Layers, ArrowLeft, CheckCircle2,
-  Sparkles, Heart, Eye, Droplets, Sun, Wine, Cross, DoorOpen, Leaf,
+  Sparkles, Heart, Eye, Droplets, Sun, Wine, Cross, DoorOpen, Leaf, GraduationCap,
 } from 'lucide-react';
 
 const secoes = [
@@ -178,6 +178,18 @@ export default function JoaoPage() {
               </div>
             </div>
           </ScrollReveal>
+
+          <Link
+            href="/cursos/joao"
+            className="mb-8 flex items-center gap-3 rounded-2xl border border-[var(--brand-default)]/30 bg-[var(--brand-default)]/[0.06] p-4 hover:border-[var(--brand-default)]/50 transition-colors"
+          >
+            <GraduationCap className="w-5 h-5 text-[var(--brand-default)] shrink-0" />
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--brand-default)]">Trilha oficial com certificado</p>
+              <p className="text-sm text-[var(--content-primary)]">21 capítulos · ficha profunda · ler o texto e responder a pergunta</p>
+            </div>
+            <ChevronRight className="w-4 h-4 text-[var(--content-muted)]" />
+          </Link>
 
           <ScrollReveal delay={0.1}>
             <div className="flex flex-wrap gap-2 mb-8 sticky top-20 z-10 bg-background/80 backdrop-blur-lg py-3 -mx-6 px-6">

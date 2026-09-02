@@ -224,7 +224,7 @@ export function BibleCourses() {
           <GraduationCap className="w-5 h-5 text-[var(--brand)]" />
           <h2 className="font-bold text-lg">Seminário Bíblico Gratuito</h2>
         </div>
-        <p className="text-xs text-[var(--content-muted)]">Cursos completos com certificado. Estude no seu ritmo, sem custo.</p>
+        <p className="text-xs text-[var(--content-muted)]">Cursos introdutórios com certificado de conclusão nesta plataforma — sem carga horária inventada.</p>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-4 border-b border-[var(--border)]/20">
         <div className="text-center p-2 rounded-lg bg-[var(--surface-sunken)]">
@@ -313,8 +313,10 @@ function CertificadoView({ curso, canvasRef, onBaixar, onCompartilhar, onVoltar 
     <div className="flex flex-col h-full items-center justify-center p-6 text-center">
       <div className="animate-scale-in">
         <Award className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
-        <h2 className="text-xl font-bold mb-2">Parabéns!</h2>
-        <p className="text-sm text-[var(--content-muted)] mb-6">Você concluiu o curso <strong>{curso.título}</strong></p>
+        <h2 className="text-xl font-bold mb-2">Trilha concluída</h2>
+        <p className="text-sm text-[var(--content-muted)] mb-6">
+          Conclusão do curso introdutório <strong>{curso.título}</strong>. Este diploma não atesta carga horária acadêmica nem estudo avançado.
+        </p>
         <canvas ref={canvasRef} width={540} height={420} className="rounded-lg shadow-2xl mb-4 max-w-full" />
         <div className="flex gap-3 justify-center flex-wrap">
           <Button onClick={onBaixar} className="bg-[var(--brand)] hover:bg-[var(--brand-hover)] text-white">

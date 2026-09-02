@@ -29,17 +29,8 @@ import { CadeiaReferencias } from './CadeiaReferencias';
 import { montarCadeia, type EloCadeia } from '@/lib/cadeiaReferencias';
 import { ensinarPalavra } from '@/lib/ensinarPalavra';
 import { ParalelosDoCapitulo } from './ParalelosDoCapitulo';
-import { TODOS_LIVROS } from '@/data/biblia/livros';
-import { temComentario } from '@/data/comentarios-index';
-import type { EstudoCapitulo } from '@/data/estudosCapitulo';
-import type { Comentario } from '@/data/comentarios';
-import type { PalavraStrong } from '@/data/biblia/strong';
-import type { Pericope } from '@/data/biblia/pericopes';
-import type { EstudoVersiculo } from '@/data/estudosTeologicos';
-import type { LocalBiblico } from '@/data/biblia/locais';
-import { CadeiaReferencias } from './CadeiaReferencias';
-import { montarCadeia, type EloCadeia } from '@/lib/cadeiaReferencias';
-import { ensinarPalavra } from '@/lib/ensinarPalavra';
+import { obterTrilhaPorLivro } from '@/data/trilhasLivro';
+import { RespostaCapituloTrilha } from '@/components/cursos/RespostaCapituloTrilha';
 
 export interface GuiaPassagemProps {
   livro: string;
@@ -217,6 +208,7 @@ export function GuiaPassagem({ livro, capitulo, versiculo, compact = false }: Gu
   }, [livroLower, capitulo, versiculo, nome, versosComComentario]);
 
   const nivel = estudo?.nivel ? NIVEL[estudo.nivel] ?? NIVEL.sintese : null;
+  const trilhaCap = obterTrilhaPorLivro(livroLower);
 
   return (
     <div className="space-y-5">
@@ -329,6 +321,18 @@ export function GuiaPassagem({ livro, capitulo, versiculo, compact = false }: Gu
                   <li key={p} className="text-sm text-[var(--content-secondary)]">{p}</li>
                 ))}
               </ol>
+            )}
+            {trilhaCap && (
+              <div className="pt-2 space-y-2">
+                <Link
+                  href={`/cursos/${trilhaCap.slug}`}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--brand-default)] hover:underline"
+                >
+                  <GraduationCap className="w-3.5 h-3.5" />
+                  Voltar à trilha de {trilhaCap.livroNome}
+                </Link>
+                <RespostaCapituloTrilha trilha={trilhaCap} capitulo={capitulo} compact />
+              </div>
             )}
           </div>
         </section>

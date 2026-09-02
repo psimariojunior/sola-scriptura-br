@@ -71,27 +71,57 @@ export function eStubGenerico(estudo: EstudoCapitulo): boolean {
   return perguntasGenericas.length >= 2 && estudo.resumo.length < 180;
 }
 
+function perguntaEspecifica(
+  nome: string,
+  capitulo: number,
+  pericopes: Pericope[],
+  chavesLivro: VersiculoChaveCap[],
+  introTemas: string[],
+): string {
+  const verso = chavesLivro[0];
+  if (verso) {
+    const trecho = verso.texto.replace(/\s+/g, ' ').trim();
+    const curto = trecho.length > 90 ? `${trecho.slice(0, 87)}…` : trecho;
+    return `Como ${verso.referencia} («${curto}») governa a leitura de ${nome} ${capitulo} — e onde o cânon retoma essa afirmação?`;
+  }
+  const p = pericopes[0];
+  if (p) {
+    return `Na unidade «${p.titulo}» de ${nome} ${capitulo}, o que o texto afirma sobre «${p.tema}» que o restante do livro desenvolve ou corrige?`;
+  }
+  const tema = introTemas[0];
+  if (tema) {
+    return `Onde ${nome} ${capitulo} ilustra o tema «${tema}» — e o que o capítulo, lido no próprio teor, não permite forçar?`;
+  }
+  return `Qual afirmação concreta de ${nome} ${capitulo} (não um slogan) deve governar a leitura deste trecho?`;
+}
+
 /**
  * Ficha de estudo para qualquer capítulo dos 66 livros.
- * Prioriza perícopes + introdução do livro; nunca inventa citação de autor.
+ * Perícopes + temas do livro + 1 pergunta específica do capítulo.
+ * Sempre `nivel: 'sintese'`. Nunca inventa citação de Henry, Calvino ou contemporâneo.
  */
 export function sintetizarEstudoCapitulo(livro: string, capitulo: number): EstudoCapitulo {
   const info = resolverLivroEstudo(livro);
   const abrev = info?.abreviacao ?? livro.toLowerCase();
   const nome = info?.nome ?? livro;
+  const total = info?.totalCapitulos;
   const intro = estudosPorLivro[abrev];
   const pericopes = info ? pericopesDoCapitulo(info, capitulo) : [];
+  const temasLivro = intro?.temasPrincipais ?? [];
 
-  const titulo =
+  const tituloPericopes =
     pericopes.length === 1
       ? pericopes[0].titulo
       : pericopes.length > 1
         ? pericopes.map((p) => p.titulo).join(' · ')
-        : `${nome} ${capitulo}`;
+        : '';
+  const tituloTemas = temasLivro.slice(0, 2).join('; ');
+  const tituloBruto = tituloPericopes
+    || (tituloTemas ? `${nome} ${capitulo} — ${tituloTemas}` : `${nome} ${capitulo}`);
 
   const temas = unicos([
     ...pericopes.flatMap((p) => [p.tema, p.temaHomiletico]),
-    ...(intro?.temasPrincipais ?? []),
+    ...temasLivro,
   ]).slice(0, 8);
 
   const estrutura = unicos(
@@ -125,60 +155,71 @@ export function sintetizarEstudoCapitulo(livro: string, capitulo: number): Estud
 
   const palavrasOriginais = unicos(pericopes.flatMap((p) => p.palavrasOriginais ?? [])).slice(0, 8);
 
+  const posicao = total
+    ? `${nome} ${capitulo} (capítulo ${capitulo} de ${total} em ${nome})`
+    : `${nome} ${capitulo}`;
+
   const blocoLivro = intro
-    ? `${nome} (${intro.genero}) é tradicionalmente associado a ${intro.autor}, ${intro.data}. ${intro.contexto}`
-    : `${nome} capítulo ${capitulo} deve ser lido no cânon completo, com Cristo como centro da Escritura (Lc 24:27, 44–47).`;
+    ? `${posicao} se lê no livro ${intro.genero}, associado pela tradição a ${intro.autor} (${intro.data}). Temas do livro que iluminam este capítulo: ${temasLivro.slice(0, 4).join('; ')}.`
+    : `${posicao} deve ser lido no cânon completo, com Cristo como centro da Escritura (Lc 24:27, 44–47).`;
 
   const blocoPericopes =
     pericopes.length > 0
-      ? `Neste capítulo a narrativa/argumento se organiza em ${pericopes.length === 1 ? 'uma unidade' : `${pericopes.length} unidades`}: ${pericopes
+      ? `Unidades pericopais catalogadas neste capítulo (${pericopes.length}): ${pericopes
           .map((p) => {
             const hom = p.temaHomiletico ? ` — ${p.temaHomiletico}` : '';
             return `«${p.titulo}» (${p.tema}${hom})`;
           })
           .join('; ')}.`
-      : `Não há perícope catalogada isolada para este capítulo; leia-o, portanto, no fluxo literário de ${nome} e nos temas do livro${intro ? ` (${intro.temasPrincipais.slice(0, 3).join(', ')})` : ''}.`;
+      : `Não há perícope isolada catalogada para ${nome} ${capitulo}: leia o capítulo no fluxo literário do livro, sem extrair um título inventado. Os temas de ${nome} (${temasLivro.slice(0, 3).join(', ') || 'revelação, aliança, fé'}) dão o horizonte, não um resumo substituto do texto.`;
 
-  const blocoTeologia = intro
-    ? `Teologicamente, ${nome} ${capitulo} não é um fragmento isolado: pertence à história da aliança. Os temas do livro — ${intro.temasPrincipais.slice(0, 4).join(', ')} — iluminam o texto. A analogia da fé exige ler o capítulo à luz de toda a Escritura: a lei acusa, a promessa sustenta, e o cumprimento está em Cristo.`
-    : `A analogia da fé exige ler ${nome} ${capitulo} à luz de toda a Escritura, com Cristo como chave (Jo 5:39).`;
+  const blocoVerso = VersiculosChave[0]
+    ? `Verso que a introdução do livro assinala neste capítulo: ${VersiculosChave[0].referencia} — «${VersiculosChave[0].texto}» (${VersiculosChave[0].explicacao}).`
+    : '';
 
-  const resumo = [blocoLivro, blocoPericopes, blocoTeologia].join(' ');
+  const blocoTeologia =
+    'Esta ficha é síntese automática (introdução do livro + perícopes), não comentário clássico nem ficha profunda. A analogia da fé pede: leia o capítulo à luz de toda a Escritura (Lc 24:44–47; Jo 5:39); a lei acusa, a promessa sustenta, o cumprimento está em Cristo.';
+
+  const resumo = [blocoLivro, blocoPericopes, blocoVerso, blocoTeologia].filter(Boolean).join(' ');
 
   const contextoHistorico = intro
-    ? `${intro.contexto} O capítulo ${capitulo} se insere nesse quadro: ${pericopes[0]?.temaHomiletico || pericopes[0]?.tema || temas[0] || 'o desdobramento da revelação neste trecho'}.`
-    : `Capítulo ${capitulo} de ${nome}, no ${info?.testamento === 'AT' ? 'Antigo' : 'Novo'} Testamento.`;
+    ? `${intro.contexto} ${posicao} se insere nesse quadro${
+        pericopes[0]
+          ? `: a unidade «${pericopes[0].titulo}» trata de ${pericopes[0].temaHomiletico || pericopes[0].tema}`
+          : temasLivro[0]
+            ? `, no horizonte de «${temasLivro[0]}»`
+            : ''
+      }.`
+    : `${posicao}, no ${info?.testamento === 'AT' ? 'Antigo' : 'Novo'} Testamento.`;
 
-  const significadoTeologico =
-    pericopes.find((p) => p.temaHomiletico)?.temaHomiletico
-      ? `${pericopes
-          .filter((p) => p.temaHomiletico)
-          .map((p) => p.temaHomiletico)
-          .join(' ')} No cânon, o capítulo serve à revelação do caráter de Deus — santo, fiel à aliança, juiz do mal e salvador do Seu povo — e prepara ou aplica a obra de Cristo.`
-      : `Este capítulo revela o caráter de Deus e a condição humana. No conjunto da Escritura, juízo e graça não se separam: a lei expõe o pecado; a promessa aponta o Redentor; a igreja é chamada à fé que obedece.`;
+  const significadoTeologico = pericopes.some((p) => p.temaHomiletico)
+    ? `${pericopes
+        .filter((p) => p.temaHomiletico)
+        .map((p) => `«${p.titulo}»: ${p.temaHomiletico}`)
+        .join(' ')} No cânon o capítulo serve à revelação do caráter de Deus — santo, fiel à aliança, juiz do mal e salvador do Seu povo — e prepara ou aplica a obra de Cristo.`
+    : temasLivro.length > 0
+      ? `${nome} ${capitulo} deve ser lido pelos temas do próprio livro (${temasLivro.slice(0, 3).join(', ')}), não por um resumo genérico. Juízo e graça não se separam: a lei expõe o pecado; a promessa aponta o Redentor.`
+      : `Este capítulo revela o caráter de Deus e a condição humana. No conjunto da Escritura, juízo e graça não se separam.`;
 
   const aplicacaoPratica = intro
-    ? `${intro.aplicacaoPratica} Em ${nome} ${capitulo}, isso se concretiza na obediência ao que o texto de fato ensina — não em slogans. Medite no argumento do capítulo, ore com as palavras da Escritura e pergunte: o que Deus revela de Si, o que exige do Seu povo, e como Cristo cumpre o que aqui se promete ou se exige.`
-    : `Leia ${nome} ${capitulo} com oração. Busque o que o texto revela sobre Deus, o pecado, a aliança e a esperança em Cristo; depois aplique em obediência concreta, na igreja e na vida cotidiana.`;
+    ? `${intro.aplicacaoPratica} Em ${nome} ${capitulo}, aplique o que o texto de fato ensina — não slogans. Ore com as palavras da Escritura: o que Deus revela de Si, o que exige do povo, e como Cristo cumpre o que aqui se promete ou se exige.`
+    : `Leia ${nome} ${capitulo} com oração. Busque o que o texto revela sobre Deus, o pecado, a aliança e a esperança em Cristo; depois obedeça na igreja e na vida cotidiana.`;
+
+  const especifica = perguntaEspecifica(nome, capitulo, pericopes, chavesLivro, temasLivro);
 
   const perguntasBase = [
     `Qual o argumento literário de ${nome} ${capitulo} no fluxo do livro?`,
-    `O que este capítulo revela sobre o caráter de Deus (santidade, fidelidade, juízo, misericórdia)?`,
-    `Como o texto descreve a condição humana e a resposta da fé?`,
+    `O que ${nome} ${capitulo} revela sobre o caráter de Deus (santidade, fidelidade, juízo, misericórdia) sem importar um tema de outro capítulo?`,
     `De que modo ${nome} ${capitulo} aponta para Cristo ou é cumprido nEle (Lc 24:44–47)?`,
     `Que obediência concreta a igreja é chamada a viver a partir deste capítulo?`,
   ];
 
-  const perguntasPericope = pericopes
-    .slice(0, 2)
-    .map((p) => `Na unidade «${p.titulo}», como o tema «${p.tema}» se desdobra no texto?`);
-
-  const perguntasEstudo = unicos([...perguntasPericope, ...perguntasBase, ...(intro?.perguntasEstudo ?? [])]).slice(0, 6);
+  const perguntasEstudo = unicos([especifica, ...perguntasBase]).slice(0, 6);
 
   return {
     livro: abrev,
     capitulo,
-    titulo: titulo.length > 140 ? `${nome} ${capitulo}` : titulo,
+    titulo: tituloBruto.length > 140 ? `${nome} ${capitulo}` : tituloBruto,
     resumo,
     temas: temas.length > 0 ? temas : ['Revelação', 'Aliança', 'Fé e obediência'],
     VersiculosChave,
@@ -189,9 +230,13 @@ export function sintetizarEstudoCapitulo(livro: string, capitulo: number): Estud
     significadoTeologico,
     palavrasOriginais: palavrasOriginais.length > 0 ? palavrasOriginais : undefined,
     fontes: unicos([
-      intro ? `Introdução a ${intro.titulo}` : undefined,
-      pericopes.length > 0 ? 'Perícopes canônicas do capítulo' : undefined,
+      `${nome} ${capitulo} (Escritura)`,
+      intro ? `Introdução a ${intro.titulo} (temas e contexto do livro)` : undefined,
+      pericopes.length > 0
+        ? `Perícopes catalogadas do capítulo (${pericopes.length})`
+        : 'Sem perícope isolada catalogada — leitura no fluxo do livro',
       'Analogia da fé (Escritura interpreta Escritura)',
+      'Síntese automática — não é Henry, Calvino, Wright nem ficha profunda',
     ]),
     nivel: 'sintese',
   };

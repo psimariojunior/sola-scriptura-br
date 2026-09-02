@@ -1992,6 +1992,557 @@ export const estudosCapituloProfundos: Record<string, EstudoCapitulo> = {
     ],
     fontes: ['Hebreus 4', 'Salmos 95', 'Gênesis 2:2', 'Josué 21–22'],
   }),
+
+  'gn:9': ficha('gn', 9, 'A aliança noéica: sangue, arco e as nações', {
+    contextoHistorico:
+      'Após o dilúvio, a terra é reabitada. Gênesis 9 renova o mandato de Gn 1 e estabelece a primeira aliança explícita com «toda carne» — não só com Israel. O arco no céu (sinal já conhecido na natureza) torna-se memorial da fidelidade de Deus.',
+    resumo:
+      'Deus abençoa Noé e os filhos: frutificai, enchei a terra. A alimentação se amplia; o sangue é vedado porque a vida pertence a Deus (9:4). Quem derramar sangue humano, pelo homem o seu sangue será derramado: o homem é imagem de Deus (9:6). A aliança é incondicional no sentido de que o dilúvio universal não se repetirá (9:11). O arco é sinal (9:12–17). A cena de Cam e a bênção de Sem antecipa a história das nações e a linhagem da promessa. Isaías 54:9 lê o juramento noéico como paradigma da misericórdia; Atos 17:26 vê um só sangue de todas as nações.',
+    estrutura: [
+      '9:1–7 — bênção, alimento, sangue, imagem',
+      '9:8–17 — aliança com toda carne e o arco',
+      '9:18–29 — vinho, Cam, bênção e maldição',
+    ],
+    temas: ['Aliança', 'Imago Dei', 'Sangue', 'Nações', 'Graça após o juízo'],
+    VersiculosChave: [
+      chave('Gênesis 9:6', 'Quem derramar o sangue do homem, pelo homem o seu sangue será derramado; porque Deus fez o homem conforme a sua imagem.', 'A dignidade humana sobrevive à queda: a imagem fundamenta a proteção da vida.'),
+      chave('Gênesis 9:13–15', 'O meu arco tenho posto nas nuvens… não haverá mais dilúvio.', 'O juízo não é a última palavra sobre a criação; Deus se amarra à própria promessa.'),
+    ],
+    significadoTeologico:
+      'A aliança noéica é comum a toda a humanidade: preservação da criação até o fim. O sangue (Lv 17:11) e a imagem preparam tanto a ética quanto o culto. A vergonha de Noé mostra que o justo do dilúvio ainda precisa de graça; a bênção de Sem aponta o canal da revelação.',
+    palavrasOriginais: ['בְּרִית (berit)', 'קֶשֶׁת (qeshet, arco)', 'דָּם (dam, sangue)'],
+    aplicacaoPratica:
+      'Defenda a vida humana porque ela é imagem, não porque o mercado a precifica. Receba o mundo pós-juízo como dom. Não transforme o arco em amuleto: ele lembra a fidelidade de Deus, não a nossa inocência.',
+    perguntasEstudo: [
+      'O que Gn 9:6 afirma sobre a imagem de Deus depois da queda?',
+      'Como a proibição do sangue (9:4) se relaciona com Levítico 17 e Atos 15?',
+      'Por que a aliança é com «toda carne», não só com Noé?',
+      'Como Is 54:9 usa o juramento noéico?',
+    ],
+    fontes: ['Gênesis 9', 'Gênesis 1:26–28', 'Levítico 17:11', 'Isaías 54:9', 'Atos 17:26'],
+  }),
+
+  'gn:50': ficha('gn', 50, 'O mal intentado e o bem soberano', {
+    contextoHistorico:
+      'Fecha o livro das origens: Jacó morre no Egito; José chora, enterra o pai em Canaã e acalma os irmãos. O povo da promessa está fora da terra — semente do êxodo. A última palavra de Gênesis é ossos e juramento, não triunfo político.',
+    resumo:
+      'José honra Jacó com luto egípcio e sepultura na cova de Macpela (50:1–14). Os irmãos temem vingança; inventam uma ordem do pai. José chora e diz: «Vós bem intentastes mal contra mim; porém Deus o tornou em bem, para fazer como está neste dia, para conservar muita gente com vida» (50:20). Perdoa e sustenta. José faz jurar: Deus vos visitará; fazei subir os meus ossos (50:24–25; cf. Êx 13:19; Hb 11:22). O caixão no Egito é fé na visita futura.',
+    estrutura: [
+      '50:1–14 — morte e sepultura de Jacó',
+      '50:15–21 — medo dos irmãos e palavra de José',
+      '50:22–26 — juramento, ossos, morte de José',
+    ],
+    temas: ['Providência', 'Perdão', 'Mal e bem', 'Promessa', 'Êxodo futuro'],
+    VersiculosChave: [
+      chave('Gênesis 50:20', 'Vós bem intentastes mal contra mim; porém Deus o tornou em bem.', 'A soberania não desculpa o pecado dos irmãos; interpreta o resultado para a salvação de muitos.'),
+      chave('Gênesis 50:24–25', 'Deus certamente vos visitará… fareis subir daqui os meus ossos.', 'A fé de José é escatológica: o Egito não é casa definitiva.'),
+    ],
+    significadoTeologico:
+      'Gênesis termina como começou: Deus governa. 50:20 é a teologia do livro em uma frase — e antecipa a cruz, onde o mal humano e o propósito de Deus se encontram (At 2:23; 4:27–28) sem confundir os agentes. Hebreus 11:22 canoniza os ossos como ato de fé.',
+    aplicacaoPratica:
+      'Perdoe quem teme a sua vingança. Nomeie o mal como mal e o governo de Deus como governo. Viva de visita prometida, não de túmulo no Egito.',
+    perguntasEstudo: [
+      'Como 50:20 evita tanto o fatalismo quanto o ressentimento?',
+      'Por que José chora em 50:17?',
+      'De que modo Êx 13:19 e Hb 11:22 leem o juramento dos ossos?',
+      'Que paralelo há entre Gn 50:20 e Atos 2:23?',
+    ],
+    fontes: ['Gênesis 50', 'Êxodo 13:19', 'Hebreus 11:22', 'Atos 2:23'],
+  }),
+
+  'ex:19': ficha('ex', 19, 'Sinai: tesouro, reino de sacerdotes, teofania', {
+    contextoHistorico:
+      'Três meses após o êxodo, Israel acampa diante do monte. O êxodo não termina na liberdade política: termina em culto e aliança. O Sinai é o casamento nacional — com terror santo, não com sentimentalismo.',
+    resumo:
+      'Moisés sobe; o Senhor lembra o que fez ao Egito e como levou Israel «sobre asas de águias» (19:4). A proposta: se ouvirdes a minha voz e guardardes a minha aliança, sereis propriedade peculiar, reino de sacerdotes e nação santa (19:5–6). O povo responde: tudo o que o Senhor tem falado faremos. Consagração, limites, trovões, nuvem, voz de trombeta. A teofania prepara os Dez Mandamentos (cap. 20). 1 Pedro 2:9 aplica o título sacerdotal à igreja; Hebreus 12:18–24 contrapõe Sinai e Sião.',
+    estrutura: [
+      '19:1–8 — proposta da aliança e «tudo faremos»',
+      '19:9–15 — consagração e limites',
+      '19:16–25 — teofania e mediação de Moisés',
+    ],
+    temas: ['Aliança', 'Santidade', 'Sacerdócio do povo', 'Teofania', 'Mediação'],
+    VersiculosChave: [
+      chave('Êxodo 19:4–6', 'Vos levei sobre asas de águias… reino de sacerdotes e nação santa.', 'A graça precede a Lei: primeiro o livramento, depois a vocação.'),
+      chave('Êxodo 19:16', 'Trovões, relâmpagos, nuvem espessa e voz de trombeta.', 'A proximidade de Deus não é casual: é fogo que exige mediador.'),
+    ],
+    significadoTeologico:
+      'Israel é povo sacerdotal para as nações, não clube. A Lei é dada a resgatados. O terror do monte expõe a necessidade de um mediador melhor que Moisés (Hb 3; 12). A igreja herda o título (1 Pe 2:9) sem anular Israel na história da aliança.',
+    palavrasOriginais: ['סְגֻלָּה (segullah)', 'מַמְלֶכֶת כֹּהֲנִים'],
+    aplicacaoPratica:
+      'Lembre o êxodo antes de moralizar. Trate a congregação como sacerdócio, não como plateia. Não domestique o Deus de Êxodo 19; aproxime-se pelo mediador que Hebreus proclama.',
+    perguntasEstudo: [
+      'Como 19:4–6 ordena graça e obediência?',
+      'O que «reino de sacerdotes» exige das nações vizinhas e de Israel?',
+      'Como Hb 12:18–24 lê este capítulo?',
+      'Por que o povo precisa de limites no monte?',
+    ],
+    fontes: ['Êxodo 19', '1 Pedro 2:9', 'Hebreus 12:18–24', 'Deuteronômio 7:6'],
+  }),
+
+  'sl:32': ficha('sl', 32, 'Bem-aventurado o que é perdoado: confissão e ensino', {
+    contextoHistorico:
+      'Salmo de Davi, maskil (instrução). A tradição o liga ao ciclo de arrependimento (cf. Sl 51), mas o texto mesmo é teologia da imputação e da confissão, não biografia obrigatória. Paulo o cita em Romanos 4:6–8 como prova de que a justiça é creditada sem obras.',
+    resumo:
+      'Duas bem-aventuranças: iniquidade perdoada, pecado coberto; o Senhor não imputa iniquidade (32:1–2). O silêncio faz os ossos envelhecerem; a confissão traz perdão (32:3–5). O piedoso ora «no tempo em que podes ser achado». Deus instrui e conselha; não sejais como cavalo sem entendimento (32:8–9). Alegria dos justos no Senhor. O evangelho de Romanos lê este salmo: a bem-aventurança de Davi é a do homem a quem Deus atribui justiça sem obras.',
+    estrutura: [
+      '32:1–2 — bem-aventurança da não imputação',
+      '32:3–5 — silêncio, confissão, perdão',
+      '32:6–11 — oração, ensino, júbilo',
+    ],
+    temas: ['Perdão', 'Confissão', 'Imputação', 'Instrução', 'Alegria'],
+    VersiculosChave: [
+      chave('Salmos 32:1–2', 'Bem-aventurado aquele cuja transgressão é perdoada, e cujo pecado é coberto.', 'Três imagens: perdoar, cobrir, não imputar — o vocabulário da justificação.'),
+      chave('Salmos 32:5', 'Confessei-te o meu pecado… e tu perdoaste a iniquidade do meu pecado.', 'A confissão não compra o perdão: encontra o Deus que já se dispõe a perdoar.'),
+    ],
+    significadoTeologico:
+      'Romanos 4 recusa ler o salmo como mérito da confissão. A bem-aventurança é da não imputação. Ao mesmo tempo o salmo recusa o silêncio orgulhoso: a fé fala. Cobrimento e imputação preparam a linguagem paulina da justiça de Deus em Cristo.',
+    palavrasOriginais: ['אַשְׁרֵי (ashrei)', 'נָשָׂא (nasa, perdoar)', 'חָשַׁב (hashav, imputar)'],
+    aplicacaoPratica:
+      'Pare de envelhecer em silêncio. Confesse ao Senhor (e, quando o caso exigir, ao irmão). Não trate o perdão como folha de figueira: celebre. Deixe-se instruir (32:8) depois de ser perdoado.',
+    perguntasEstudo: [
+      'Como Rm 4:6–8 usa Sl 32 — e o que isso impede de concluir?',
+      'Qual a diferença entre cobrir o pecado (Deus) e escondê-lo (o salmista em 32:3)?',
+      'O que 32:9 critica na vida do perdoado?',
+    ],
+    fontes: ['Salmos 32', 'Romanos 4:6–8', 'Salmos 51', '1 João 1:9'],
+  }),
+
+  'sl:139': ficha('sl', 139, 'Sondado e tecido: onisciência e dignidade', {
+    contextoHistorico:
+      'Salmo de Davi. Não é tratado filosófico: é oração de quem é conhecido. O «ventre» e o «mais baixo da terra» (139:15) falam da formação pessoal diante do Criador, no mesmo cânon que afirma a imagem (Gn 1) e a queda (Gn 3).',
+    resumo:
+      'O Senhor sonda e conhece: sentar, levantar, pensamento, caminho, palavra (139:1–6). Não há fuga — céus, Seol, asas da alva, trevas (139:7–12). «Tu formaste os meus rins; entreteceste-me no ventre de minha mãe» (139:13). Admiráveis obras; o livro dos dias (139:16). Ódio aos violentos e exame final: «sonda-me… vê se há em mim algum caminho mau» (139:23–24). O NT afirma o mesmo conhecimento em Cristo (Jo 2:24–25; Hb 4:13).',
+    estrutura: [
+      '139:1–6 — conhecimento total',
+      '139:7–12 — presença inescapável',
+      '139:13–18 — formação no ventre',
+      '139:19–24 — ódio ao mal e oração de exame',
+    ],
+    temas: ['Onisciência', 'Onipresença', 'Criação pessoal', 'Dignidade', 'Santidade'],
+    VersiculosChave: [
+      chave('Salmos 139:13–14', 'Tu formaste os meus rins… maravilhosas são as tuas obras.', 'A pessoa não é acidente: é obra conhecida de Deus.'),
+      chave('Salmos 139:23–24', 'Sonda-me, ó Deus, e conhece o meu coração.', 'A onisciência que inquieta o ímpio consola e julga o fiel.'),
+    ],
+    significadoTeologico:
+      'O conhecimento de Deus não é vigilância fria: é cuidado que antecede o nascimento. O salmo não autoriza autonomismo sobre o corpo nem romantismo que ignore 139:19–22 (o mal é odiado). Hebreus 4:13 lê a nudez diante da Palavra; o exame final pede o «caminho eterno».',
+    palavrasOriginais: ['חָקַר (haqar, sondar)', 'סָכַךְ (sakhakh, entretecer)'],
+    aplicacaoPratica:
+      'Viva como quem já é conhecido. Honre a vida no ventre como obra de Deus. Peça exame, não só consolo. Não use o salmo para vanglória: use-o para arrependimento e louvor.',
+    perguntasEstudo: [
+      'Como 139:7–12 impede tanto o deísmo quanto o pânico?',
+      'O que 139:13–16 afirma — e o que não responde — sobre ética da vida?',
+      'Por que o salmo termina com ódio ao sangue inocente e com «sonda-me»?',
+    ],
+    fontes: ['Salmos 139', 'Gênesis 1:26–27', 'Hebreus 4:13', 'João 2:24–25'],
+  }),
+
+  'is:55': ficha('is', 55, 'Oh vós, todos os que tendes sede: a Palavra que não volta vazia', {
+    contextoHistorico:
+      'No bloco de consolo (Is 40–55), após o Servo de 52:13–53:12. O convite é a exilados e a «todo o que tem sede» — Israel e nações. A aliança de Davi é oferecida como «misericórdias firmes» (55:3; cf. 2 Sm 7; At 13:34).',
+    resumo:
+      'Vinde às águas, sem dinheiro; pão que não sacia versus o que é bom (55:1–2). Inclinai os ouvidos: a aliança davídica se torna convite público. O ímpio deixe o seu caminho; o Senhor perdoa abundantemente (55:6–7). Os pensamentos de Deus não são os nossos (55:8–9). A Palavra sai da boca de Deus e não volta vazia: como chuva que faz germinar (55:10–11). Alegria, paz, árvores que batem palmas: a criação participa da redenção. João 7:37 e Apocalipse 22:17 ecoam o convite da água.',
+    estrutura: [
+      '55:1–5 — convite gratuito e aliança de Davi',
+      '55:6–9 — arrependimento e pensamentos de Deus',
+      '55:10–13 — Palavra eficaz e júbilo da terra',
+    ],
+    temas: ['Graça', 'Palavra', 'Arrependimento', 'Aliança davídica', 'Nações'],
+    VersiculosChave: [
+      chave('Isaías 55:1', 'Oh vós, todos os que tendes sede, vinde às águas.', 'A sede, não o mérito, é a condição do convite.'),
+      chave('Isaías 55:10–11', 'Assim será a palavra que sair da minha boca: não voltará para mim vazia.', 'A eficácia está no falante divino, não no marketing humano.'),
+    ],
+    significadoTeologico:
+      'O evangelho é convite caro para Deus (o Servo já foi ferido) e de graça para o sedento. A Palavra é meio da nova criação. Atos 13:34 cita 55:3 para a ressurreição: as misericórdias de Davi são firmes porque o Santo não viu corrupção.',
+    aplicacaoPratica:
+      'Pregue de graça o que custou sangue. Não barganhe a água. Confie que a Escritura germina. Arrependa-se enquanto o Senhor «pode ser achado» (55:6).',
+    perguntasEstudo: [
+      'Como o cap. 53 torna possível o convite do cap. 55?',
+      'O que 55:3 tem a ver com 2 Samuel 7 e Atos 13?',
+      'Como 55:10–11 corrige tanto o desespero quanto a magia da Palavra?',
+    ],
+    fontes: ['Isaías 55', 'Isaías 53', '2 Samuel 7', 'Atos 13:34', 'João 7:37', 'Apocalipse 22:17'],
+  }),
+
+  'mt:16': ficha('mt', 16, 'Tu és o Cristo: pedra, chaves e a cruz do discípulo', {
+    contextoHistorico:
+      'Cesareia de Filipe, território de culto imperial e de Pã. A confissão ocorre longe de Jerusalém, no limite das nações. Mateus já mostrou sinais e conflitos; agora o Messias pergunta e anuncia a paixão.',
+    resumo:
+      'O fermento dos fariseus e saduceus. «Quem dizem os homens…? E vós?» Simão: «Tu és o Cristo, o Filho do Deus vivo» (16:16). Carne e sangue não revelaram: o Pai. Sobre esta pedra edificarei a minha igreja; as portas do hades não prevalecerão. Chaves do reino: ligar e desligar (16:19). Em seguida Jesus anuncia sofrer, morrer e ressuscitar; Pedro repreende; «para trás, Satanás». Tomar a cruz, perder a vida, o Filho do Homem na glória do Pai. A confissão sem a cruz é tentação.',
+    estrutura: [
+      '16:1–12 — sinais e fermento',
+      '16:13–20 — confissão, igreja, chaves',
+      '16:21–28 — paixão e discipulado',
+    ],
+    temas: ['Cristologia', 'Igreja', 'Revelação', 'Cruz', 'Discipulado'],
+    VersiculosChave: [
+      chave('Mateus 16:16', 'Tu és o Cristo, o Filho do Deus vivo.', 'O evangelho não é opinião pública: é revelação do Pai sobre o Filho.'),
+      chave('Mateus 16:24', 'Se alguém quiser vir após mim, negue-se a si mesmo, tome a sua cruz e siga-me.', 'A igreja das chaves é a igreja da cruz.'),
+    ],
+    significadoTeologico:
+      'A igreja é de Cristo («minha»). A pedra envolve a confissão e o apóstolo confessante (cf. Ef 2:20; 1 Co 3:11 — o fundamento é Cristo). Ligar e desligar é disciplina e anúncio do evangelho, não magia. O «é necessário» (dei) da paixão (16:21) é o núcleo do plano de Deus.',
+    aplicacaoPratica:
+      'Confesse Cristo contra o fermento. Não separe messianismo de cruz. Use as chaves para perdoar e reter segundo o evangelho, não segundo o gosto da plateia.',
+    perguntasEstudo: [
+      'Por que a confissão vem depois da pergunta «e vós»?',
+      'Como 16:21–23 corrige 16:16–18?',
+      'O que 16:24 exige que 16:18 não substitui?',
+    ],
+    fontes: ['Mateus 16', 'Efésios 2:20', '1 Coríntios 3:11', 'Marcos 8', 'Lucas 9'],
+  }),
+
+  'mt:27': ficha('mt', 27, 'O Rei dos judeus: julgamento, cruz e o véu rasgado', {
+    contextoHistorico:
+      'Paixão sob Pôncio Pilatos, na preparação da Páscoa. Mateus enfatiza o sangue inocente (Judas, Pilatos, o povo), o título real, as trevas e o véu. O «rei» morre como amaldiçoado (Dt 21:23; Gl 3:13).',
+    resumo:
+      'Judas devolve as moedas; campo de sangue. Jesus perante Pilatos; Barrabás solto; «o seu sangue caia sobre nós». Escárnio, Gólgota, vinagre, sortes sobre as vestes. «Deus meu, Deus meu, por que me desamparaste?» (Sl 22:1). Trevas, véu do templo rasgado de alto a baixo, terra treme, sepulcros. O centurião: «verdadeiramente este era Filho de Deus». As mulheres observam; José sepulta; a guarda sela a laje — e assim prepara o cap. 28.',
+    estrutura: [
+      '27:1–26 — Sinédrio, Judas, Pilatos, Barrabás',
+      '27:27–56 — crucificação, trevas, véu, centurião',
+      '27:57–66 — sepultura e guarda',
+    ],
+    temas: ['Expiação', 'Realeza', 'Sangue inocente', 'Templo', 'Escritura cumprida'],
+    VersiculosChave: [
+      chave('Mateus 27:46', 'Deus meu, Deus meu, por que me desamparaste?', 'Jesus ora o Salmo 22: o abandono é real e escriturístico, não teatro.'),
+      chave('Mateus 27:51', 'O véu do templo se rasgou em dois, de alto a baixo.', 'O acesso a Deus já não passa pelo Santo dos Santos levítico (Hb 10:19–20).'),
+    ],
+    significadoTeologico:
+      'O inocente é condenado no lugar do culpado (Barrabás é o retrato irônico). O véu rasgado de cima para baixo é ato de Deus. O centurião gentio confessa o que Jerusalém recusou. A guarda e o selo tornam a ressurreição historicamente contestável — e, no cap. 28, publicamente proclamada.',
+    aplicacaoPratica:
+      'Não lave as mãos como Pilatos. Pregue o desamparo e o véu, não só o exemplo moral de Jesus. Fique com as mulheres que olham de longe — testemunhas da morte real.',
+    perguntasEstudo: [
+      'Como Mateus constrói o tema do sangue em 27:3–25?',
+      'O que o véu rasgado significa em Hebreus 9–10?',
+      'Por que o centurião importa para a missão de Mt 28?',
+    ],
+    fontes: ['Mateus 27', 'Salmos 22', 'Deuteronômio 21:23', 'Gálatas 3:13', 'Hebreus 10:19–20'],
+  }),
+
+  'mc:8': ficha('mc', 8, 'O eixo de Marcos: os olhos, o Cristo e a cruz', {
+    contextoHistorico:
+      'Marcos divide-se neste capítulo: milagres e incompreensão na Galileia; daqui em diante, o caminho para Jerusalém. A cura em duas etapas (8:22–26) é a parábola dos discípulos: veem, mas não claramente.',
+    resumo:
+      'Multiplicação para quatro mil; fermento de Herodes e fariseus; os discípulos esquecem os pães. Cego de Betsaida: primeiro «homens como árvores», depois nitidez. Em Cesareia, «tu és o Cristo»; Jesus silencia e ensina o Filho do Homem sofredor. Pedro repreende; Jesus repreende Satanás. «Se alguém quiser vir após mim…» Negar-se, cruz, evangelho e alma. O capítulo recusa um messianismo de glória sem morte.',
+    estrutura: [
+      '8:1–21 — pães, sinais, fermento',
+      '8:22–26 — cego em duas etapas',
+      '8:27–38 — confissão, paixão, discipulado',
+    ],
+    temas: ['Cegueira', 'Messias', 'Cruz', 'Discipulado', 'Evangelho'],
+    VersiculosChave: [
+      chave('Marcos 8:29', 'Tu és o Cristo.', 'A confissão certa ainda precisa da correção da cruz.'),
+      chave('Marcos 8:34–35', 'Tome a sua cruz e siga-me… quem perder a vida por causa de mim e do evangelho, salvá-la-á.', 'Seguir é morrer com o Messias, não usar o título.'),
+    ],
+    significadoTeologico:
+      'O milagre em duas etapas interpreta o livro: revelação progressiva. O messianismo sem cruz é satânico (8:33). A alma não se troca pelo mundo (8:36–37). O Filho do Homem se envergonhará de quem se envergonhar dele (8:38).',
+    aplicacaoPratica:
+      'Peça segunda imposição de mãos — clareza, não só entusiasmo. Recuse o Cristo que não vai a Jerusalém. Meça o discipulado pela cruz e pelo evangelho, não pelo sucesso.',
+    perguntasEstudo: [
+      'Como 8:22–26 explica 8:17–21 e 8:27–30?',
+      'Por que chamar Pedro de Satanás não anula 8:29?',
+      'O que 8:35 une — «mim e o evangelho» — que as igrejas às vezes separam?',
+    ],
+    fontes: ['Marcos 8', 'Mateus 16', 'Isaías 53', 'Marcos 10:45'],
+  }),
+
+  'lc:23': ficha('lc', 23, 'Pai, perdoa-lhes: o inocente, o ladrão e o véu', {
+    contextoHistorico:
+      'Lucas escreve a Teófilo com ênfase na inocência jurídica de Jesus (Pilatos, Herodes, o ladrão, o centurião) e na salvação dos marginalizados. A cruz é o lugar onde o reino é anunciado a um criminoso.',
+    resumo:
+      'O Sinédrio leva Jesus a Pilatos: «achamos este pervertendo a nação». Pilatos e Herodes não acham culpa; mesmo assim há troca por Barrabás. Simão de Cirene. «Filhas de Jerusalém, não choreis por mim.» «Pai, perdoa-lhes, porque não sabem o que fazem.» Sortes, escárnio, o título. O malfeitor: «lembra-te de mim»; «hoje estarás comigo no paraíso». Trevas, véu rasgado, «Pai, nas tuas mãos entrego o meu espírito» (Sl 31:5). O centurião glorifica a Deus: «este homem era justo». José sepulta; as mulheres preparam aromas.',
+    estrutura: [
+      '23:1–25 — tribunais e Barrabás',
+      '23:26–49 — via, cruz, ladrão, morte',
+      '23:50–56 — sepultura e sábado',
+    ],
+    temas: ['Inocência', 'Perdão', 'Paraíso', 'Reino', 'Escritura'],
+    VersiculosChave: [
+      chave('Lucas 23:34', 'Pai, perdoa-lhes, porque não sabem o que fazem.', 'A intercessão do Justo começa na cruz, não depois da glória.'),
+      chave('Lucas 23:42–43', 'Lembra-te de mim… Hoje estarás comigo no paraíso.', 'A salvação é pela fé no Rei crucificado, sem obras que o ladrão pudesse oferecer.'),
+    ],
+    significadoTeologico:
+      'Lucas acumula testemunhas da inocência para que a morte seja vicária, não trágica. O «hoje» do paraíso recusa o desespero. O véu (23:45) abre o acesso. O espírito entregue ao Pai cumpre o salmo de confiança. Atos continuará: o mesmo Jesus ressuscitado.',
+    aplicacaoPratica:
+      'Perdoe inimigos com a lógica da cruz. Evangelize o «ladrão» sem exigir currículo. Morra com o salmo na boca. Não transforme o paraíso em debate ocioso: creia no Rei que o promete.',
+    perguntasEstudo: [
+      'Quantas vezes Lucas insiste que Jesus é inocente — e por quê?',
+      'O que o ladrão confessa sobre o reino em 23:42?',
+      'Como Sl 31:5 funciona em 23:46?',
+    ],
+    fontes: ['Lucas 23', 'Salmos 31:5', 'Isaías 53:12', 'Levítico 16', 'Hebreus 10:19–20'],
+  }),
+
+  'jo:6': ficha('jo', 6, 'O pão da vida: deserto, murmuração e palavras de vida eterna', {
+    contextoHistorico:
+      'Perto da Páscoa (6:4), na Galileia. João relê o maná (Êx 16) e o «pão do céu». A multiplicação é sinal; o discurso na sinagoga de Cafarnaum é o significado — e o escândalo que faz muitos se retirarem.',
+    resumo:
+      'Cinco pães e dois peixes; doze cestos. Jesus anda sobre o mar. A turba busca mais pão. «Trabalhai… pela comida que permanece para a vida eterna.» A obra de Deus: crer naquele que ele enviou (6:29). «Eu sou o pão da vida» (6:35). Ninguém vem se o Pai não o trouxer; o que vem, Jesus não lança fora. «A minha carne é verdadeira comida» — linguagem que a igreja leu à luz da ceia, sem reduzir o capítulo a rubrica. Muitos discípulos saem. Pedro: «tu tens as palavras da vida eterna». Judas já está à sombra.',
+    estrutura: [
+      '6:1–21 — pães e mar',
+      '6:22–59 — discurso do pão',
+      '6:60–71 — escândalo, Pedro, Judas',
+    ],
+    temas: ['Pão da vida', 'Eleição', 'Fé', 'Encarnação', 'Ceia'],
+    VersiculosChave: [
+      chave('João 6:35', 'Eu sou o pão da vida; quem vem a mim nunca terá fome.', 'O sinal aponta para a pessoa, não para o milagre repetido.'),
+      chave('João 6:68–69', 'Senhor, para quem iremos? Tu tens as palavras da vida eterna.', 'A fé permanece quando o discurso ofende a carne.'),
+    ],
+    significadoTeologico:
+      'O maná sustentou e os pais morreram (6:49); o pão vivo dá vida eterna. «Descer do céu» é encarnação. O «dar a carne» antecipa a cruz (6:51). O puxar do Pai (6:44) e o «não lançarei fora» (6:37) afirmam graça soberana e segurança. A ceia celebra o que o discurso prega; não substitui a fé.',
+    palavrasOriginais: ['ἄρτος τῆς ζωῆς', 'ἕλκω (helkō, trazer/puxar)'],
+    aplicacaoPratica:
+      'Não busque Jesus só por pão. Alimente-se da Palavra quando o ensino dura. Permaneça quando a multidão sair. Examine se Judas ainda parte o pão ao seu lado — comece por si.',
+    perguntasEstudo: [
+      'Como Êxodo 16 ilumina e é superado em João 6?',
+      'O que 6:37 e 6:44 afirmam juntos?',
+      'Por que 6:66 é tão grave quanto 6:70–71?',
+    ],
+    fontes: ['João 6', 'Êxodo 16', 'Isaías 54:13', 'João 6:45', '1 Coríntios 11:23–26'],
+  }),
+
+  'jo:17': ficha('jo', 17, 'A oração sacerdotal: glória, guarda e unidade', {
+    contextoHistorico:
+      'Após os discursos de despedida (Jo 13–16), antes de Getsêmani no arranjo joanino. Jesus ora ao Pai — não é tratado eclesiástico, é intercessão do Filho que «chegou a hora».',
+    resumo:
+      'Pai, glorifica o Filho, para que o Filho te glorifique. Vida eterna: conhecer a ti, o único Deus verdadeiro, e a Jesus Cristo, a quem enviaste (17:3). Manifestei o teu nome; guardei os que me deste. Não peço que os tires do mundo, mas que os guardes do mal. Santifica-os na verdade; a tua palavra é a verdade. Como tu me enviaste, eu os enviei. Não rogo somente por estes, mas também por aqueles que, pela sua palavra, hão de crer em mim: que todos sejam um, para que o mundo creia. Quero que estejam comigo e vejam a minha glória.',
+    estrutura: [
+      '17:1–5 — glória do Filho e vida eterna',
+      '17:6–19 — os apóstolos: guarda e santificação',
+      '17:20–26 — a igreja vindoura: unidade e glória',
+    ],
+    temas: ['Glória', 'Vida eterna', 'Santificação', 'Unidade', 'Missão'],
+    VersiculosChave: [
+      chave('João 17:3', 'A vida eterna é esta: que te conheçam a ti, o único Deus verdadeiro, e a Jesus Cristo, a quem enviaste.', 'Vida eterna é relação revelada, não duração vazia.'),
+      chave('João 17:17–18', 'Santifica-os na verdade… Assim como tu me enviaste ao mundo, também eu os enviei.', 'A santidade pela Palavra serve à missão, não ao isolamento.'),
+    ],
+    significadoTeologico:
+      'A unidade que Jesus pede é a unidade do Pai e do Filho (17:21–23), não um federativismo sem doutrina. A guarda «no nome» (17:11–12) e a perda do filho da perdição cumprem a Escritura. O «quero» de 17:24 é vontade salvadora que atravessa a morte. Hebreus chama Jesus de sacerdote; João o mostra orando como tal.',
+    aplicacaoPratica:
+      'Meça a unidade pela verdade de 17:3 e 17:17. Ore pela igreja que ainda vai crer. Permaneça no mundo sem ser do mal. Deseje ver a glória, não só melhorar o ambiente.',
+    perguntasEstudo: [
+      'O que 17:3 inclui — e o que exclui — na definição de vida eterna?',
+      'Como 17:15 corrige tanto a fuga do mundo quanto a amizade com o mal?',
+      'Que tipo de unidade 17:21 exige da igreja?',
+    ],
+    fontes: ['João 17', 'João 1:14–18', 'Salmos 41:9', 'Hebreus 7:25'],
+  }),
+
+  'at:10': ficha('at', 10, 'Cornélio: o Espírito sobre os gentios', {
+    contextoHistorico:
+      'Cesareia, sede do poder romano na Judeia. Cornélio é centurião, temente a Deus — ainda fora da mesa de Israel. O capítulo é o Pentecostes dos gentios: o mesmo Espírito de Atos 2, sem exigir primeiro a circuncisão.',
+    resumo:
+      'Visão de Cornélio: envia a Jope. Visão de Pedro: o lençol com animais impuros; «não faças tu comum ao que Deus purificou» (10:15). Pedro entra na casa do gentio. Sermão: paz por Jesus Cristo, Senhor de todos; unção, milagres, morte, ressurreição, juízes dos vivos e mortos, remissão pelo nome. O Espírito cai enquanto Pedro ainda fala; falavam línguas e magnificavam a Deus. Batismo em água. Pedro: «pode alguém recusar a água?» Atos 11 e 15 interpretarão o episódio como decisão de Deus, não inovação de Pedro.',
+    estrutura: [
+      '10:1–23 — duas visões e a viagem',
+      '10:24–43 — hospitalidade e kerygma',
+      '10:44–48 — Espírito e batismo',
+    ],
+    temas: ['Gentios', 'Pureza', 'Espírito Santo', 'Batismo', 'Evangelho universal'],
+    VersiculosChave: [
+      chave('Atos 10:15', 'Não faças tu comum ao que Deus purificou.', 'A barreira alimentar simboliza a barreira de pessoas; Deus a derruba no evangelho.'),
+      chave('Atos 10:43–44', 'Todos os que nele creem receberão o perdão dos pecados… caiu o Espírito Santo sobre todos os que ouviam.', 'A fé no nome precede o selo visível; o Espírito confirma a inclusão.'),
+    ],
+    significadoTeologico:
+      'O evangelho não anexa gentios como prosélitos de segunda classe. A visão não abole a criação boa: abole a impureza cerimonial como muro (cf. Mc 7:19; Ef 2:14–16). O «Senhor de todos» (10:36) é o centro. O batismo segue o Espírito, não o substitui.',
+    aplicacaoPratica:
+      'Não chame de impuro o irmão que Deus limpou. Pregue morte e ressurreição, não só hospitalidade. Receba o que o Espírito já selou — e batize.',
+    perguntasEstudo: [
+      'Por que Lucas narra a visão duas vezes (caps. 10 e 11)?',
+      'O que o sermão de 10:36–43 tem em comum com Atos 2?',
+      'Como Atos 15 usará Cornélio?',
+    ],
+    fontes: ['Atos 10', 'Atos 2', 'Atos 15', 'Marcos 7:19', 'Efésios 2:11–16'],
+  }),
+
+  'at:15': ficha('at', 15, 'O concílio de Jerusalém: graça, jugo e quatro preceitos', {
+    contextoHistorico:
+      'Antioquia envia Paulo e Barnabé porque alguns da Judeia exigiam circuncisão para salvar-se. A questão não é etiqueta: é o evangelho. Jerusalém, com apóstolos e presbíteros, delibera à luz do que Deus já fez entre os gentios.',
+    resumo:
+      'Grande contenda. Pedro: Deus deu o Espírito aos gentios como a nós; purificou-lhes o coração pela fé; por que pondes sobre o pescoço um jugo que nem nossos pais puderam suportar? «Cremos que seremos salvos pela graça do Senhor Jesus, como eles também» (15:11). Barnabé e Paulo relatam sinais. Tiago cita Amós 9:11–12: o tabernáculo de Davi e os gentios sobre os quais o nome é invocado. Decreto: não inquietar; abstinência de idolotitos, prostituição, sufocado e sangue — hospitalidade na mesa mista, não um novo Sinai. Silas e Judas levam a carta. Em Antioquia há alegria. A cisão de Paulo e Barnabé (15:36–41) mostra santos ainda falíveis após a doutrina certa.',
+    estrutura: [
+      '15:1–21 — debate, Pedro, Tiago e a Escritura',
+      '15:22–35 — a carta e o consolo',
+      '15:36–41 — desavença missionária',
+    ],
+    temas: ['Justificação', 'Gentios', 'Lei', 'Concílio', 'Unidade'],
+    VersiculosChave: [
+      chave('Atos 15:11', 'Cremos que seremos salvos pela graça do Senhor Jesus Cristo, como eles também.', 'A ordem é invertida: judeus salvos como gentios, pela graça.'),
+      chave('Atos 15:28–29', 'Pareceu bem ao Espírito Santo e a nós não vos impor maior encargo…', 'A autoridade apostólica alega o Espírito e a Escritura, não o gosto da maioria.'),
+    ],
+    significadoTeologico:
+      'Gálatas 2 é o comentário teológico paralelo: a verdade do evangelho não cede. Amós no concílio mostra analogia da fé. Os quatro preceitos protegem a comunhão (Gn 9; Lv 17–18) sem reintroduzir a circuncisão como porta da salvação. A igreja aprende a distinguir jugo salvifico e prudência de mesa.',
+    aplicacaoPratica:
+      'Não acrescente rito à graça. Use a Escritura no conflito, não só experiências. Distinga o que salva do que facilita a mesa do irmão. Mesmo após a doutrina certa, reconcilie ministérios feridos.',
+    perguntasEstudo: [
+      'Como 15:11 inverte a hierarquia judeu/gentio?',
+      'O que Amós 9 faz no argumento de Tiago?',
+      'Os quatro preceitos são evangelho ou disciplina de comunhão — e como Gálatas ajuda a responder?',
+    ],
+    fontes: ['Atos 15', 'Amós 9:11–12', 'Gênesis 9:4', 'Gálatas 2', 'Levítico 17–18'],
+  }),
+
+  'rm:4': ficha('rm', 4, 'Abraão: a fé imputada antes da circuncisão', {
+    contextoHistorico:
+      'Paulo argumenta em Roma a judeus e gentios. Após a justiça de Deus manifestada (Rm 3), o cap. 4 toma Abraão e Davi como testemunhas da Escritura: a justificação não é salário.',
+    resumo:
+      'Se Abraão foi justificado por obras, tem de que se gloriar — mas não diante de Deus. «Creu Abraão em Deus, e isso lhe foi imputado como justiça» (Gn 15:6). Ao que trabalha, o salário não é graça; ao que não trabalha, mas crê naquele que justifica o ímpio, a fé lhe é imputada. Davi: bem-aventurado aquele cuja iniquidade é coberta (Sl 32). A imputação foi antes da circuncisão, para que Abraão fosse pai dos que creem incircuncisos e dos circuncisos que andam nas pisadas da fé. A promessa vem pela fé, segundo a graça. Abraão creu contra a esperança, no Deus que ressuscita os mortos — e isso foi escrito também para nós que cremos naquele que ressuscitou Jesus.',
+    estrutura: [
+      '4:1–8 — Gn 15:6 e Sl 32: imputação sem obras',
+      '4:9–12 — circuncisão posterior, paternidade universal',
+      '4:13–25 — promessa, fé, ressurreição',
+    ],
+    temas: ['Justificação', 'Imputação', 'Fé', 'Graça', 'Abraão'],
+    VersiculosChave: [
+      chave('Romanos 4:5', 'Ao que não trabalha, mas crê naquele que justifica o ímpio, a sua fé lhe é atribuída como justiça.', 'O objeto da fé é o Deus que justifica o ímpio — escândalo e evangelho.'),
+      chave('Romanos 4:24–25', 'Nós que cremos naquele que dos mortos ressuscitou a Jesus… o qual foi entregue por causa das nossas ofensas e ressuscitado para nossa justificação.', 'A fé de Abraão tem o mesmo Deus; o conteúdo agora é o Cristo ressurreto.'),
+    ],
+    significadoTeologico:
+      'Imputar (logizomai) não é fingir: é creditar conforme o tribunal de Deus. A circuncisão é selo, não causa (4:11). A lei produz ira (4:15); a promessa exige fé. A ressurreição de Jesus é o «sim» público da justificação (4:25).',
+    palavrasOriginais: ['λογίζομαι (logizomai)', 'χάρις (charis)', 'πίστις (pistis)'],
+    aplicacaoPratica:
+      'Pare de apresentar fatura a Deus. Creia no que justifica o ímpio. Trate os sacramentos como selos, não como moeda. Espere contra a esperança no Deus que ressuscita.',
+    perguntasEstudo: [
+      'Por que Paulo precisa de Gn 15:6 e de Sl 32 juntos?',
+      'O que muda se a circuncisão viesse antes de 15:6?',
+      'Como 4:25 liga sexta-feira e domingo à nossa justificação?',
+    ],
+    fontes: ['Romanos 4', 'Gênesis 15:6', 'Gênesis 17', 'Salmos 32', 'Gálatas 3'],
+  }),
+
+  'rm:6': ficha('rm', 6, 'Mortos para o pecado: batismo, senhorio e santificação', {
+    contextoHistorico:
+      'Alguém pode distorcer Rm 5:20 («onde abundou o pecado, superabundou a graça») como licença. Paulo responde com união a Cristo na morte e na ressurreição — não com moralismo sem cruz.',
+    resumo:
+      'Permaneceremos no pecado para que a graça abunde? De modo nenhum. Os que morremos para o pecado, como viveremos nele? O batismo em Cristo Jesus é batismo na sua morte; fomos sepultados e ressuscitados para andarmos em novidade de vida. O velho homem foi crucificado para que o corpo do pecado seja desfeito. Considerai-vos mortos para o pecado e vivos para Deus. Não reine o pecado no vosso corpo mortal. Sois escravos daquele a quem vos apresentais — do pecado para a morte ou da obediência para a justiça. O salário do pecado é a morte; o dom gratuito de Deus é a vida eterna em Cristo Jesus, nosso Senhor.',
+    estrutura: [
+      '6:1–14 — união com a morte e a vida de Cristo',
+      '6:15–23 — dois senhorios, salário e dom',
+    ],
+    temas: ['Santificação', 'Batismo', 'União com Cristo', 'Senhorio', 'Graça'],
+    VersiculosChave: [
+      chave('Romanos 6:4', 'Fomos sepultados com ele… para que, como Cristo ressuscitou… assim também nós andemos em novidade de vida.', 'O batismo prega união, não mágica; a ética flui da Páscoa.'),
+      chave('Romanos 6:23', 'O salário do pecado é a morte, mas o dom gratuito de Deus é a vida eterna em Cristo Jesus, nosso Senhor.', 'Salário versus dom: a santificação não volta ao regime de pagamento.'),
+    ],
+    significadoTeologico:
+      'A justificação (caps. 3–5) não deixa o crente no pecado como casa. A santificação é consequência da união, não condição prévia. «Considerai» (logizesthe, 6:11) é fé que conta como Deus conta. O batismo é o selo visível dessa morte e vida. O «dom» de 6:23 impede transformar 6:15–22 em nova lei de mérito.',
+    palavrasOriginais: ['βαπτίζω', 'λογίζεσθε', 'χάρισμα'],
+    aplicacaoPratica:
+      'Quando a tentação argumentar com a graça, responda com a sepultura. Apresente os membros a Deus. Não negocie o senhorio. Receba a vida eterna como dom, e obedeça como quem já ressuscitou.',
+    perguntasEstudo: [
+      'Como 6:1–2 usa 5:20 sem anulá-lo?',
+      'O que o batismo significa aqui — e o que o texto não atribui à água isolada?',
+      'Como 6:23 impede ler o capítulo como salvação por santidade?',
+    ],
+    fontes: ['Romanos 6', 'Romanos 5:20–21', 'Gálatas 2:20', 'Colossenses 2:12', 'Colossenses 3:1–5'],
+  }),
+
+  '1co:1': ficha('1co', 1, 'A loucura da cruz contra as divisões de Corinto', {
+    contextoHistorico:
+      'Corinto: cidade de retórica, status e culto. A igreja se parte em slogans («eu sou de Paulo… de Apolo… de Cefas… de Cristo»). Paulo escreve da graça já dada (1:4–9) para confrontar a sabedoria do século.',
+    resumo:
+      'Graça e paz; enriquecidos em Cristo; Deus é fiel. Rogo que faleis todos a mesma coisa: Cristo não está dividido. Paulo não foi crucificado por vós. Cristo enviou-me a evangelizar, não com sabedoria de palavras, para que a cruz não seja esvaziada. A palavra da cruz é loucura para os que perecem; para nós, poder de Deus. Deus escolheu o que é louco, fraco, vil, para que ninguém se glorie. «Aquele que se gloria, glorie-se no Senhor» (Jr 9:24). Cristo nos foi feito sabedoria, justiça, santificação e redenção.',
+    estrutura: [
+      '1:1–9 — saudação e graça já dada',
+      '1:10–17 — partidarismo e batismo',
+      '1:18–31 — cruz, eleição, glória só no Senhor',
+    ],
+    temas: ['Cruz', 'Unidade', 'Sabedoria', 'Eleição', 'Glória'],
+    VersiculosChave: [
+      chave('1 Coríntios 1:18', 'A palavra da cruz é loucura para os que perecem, mas para nós, que somos salvos, poder de Deus.', 'O critério não é brilho retórico: é o poder de Deus na cruz.'),
+      chave('1 Coríntios 1:30–31', 'Cristo Jesus… nos foi feito sabedoria, e justiça, e santificação, e redenção.', 'Tudo o que Corinto busca em líderes, Deus deu numa pessoa.'),
+    ],
+    significadoTeologico:
+      'A cruz julga a sabedoria humana (Is 29:14 em 1:19). A eleição dos «não nobres» é pedagogia contra a jactância. Justiça, santificação e redenção estão em Cristo, não em facções. O cap. 2 continuará: o Espírito, não a excelência de palavra.',
+    aplicacaoPratica:
+      'Nomeie o partidarismo como ameaça à cruz. Pregue Cristo crucificado sem esvaziar o escândalo. Glorie-se no Senhor, não no apóstolo, no método ou na classe.',
+    perguntasEstudo: [
+      'Como 1:4–9 torna 1:10–17 ainda mais grave?',
+      'O que significa «esvaziar a cruz» em 1:17?',
+      'Como Jr 9:23–24 funciona no fecho do capítulo?',
+    ],
+    fontes: ['1 Coríntios 1', 'Jeremias 9:23–24', 'Isaías 29:14', 'Gálatas 6:14'],
+  }),
+
+  'hb:9': ficha('hb', 9, 'Sangue, tenda e a redenção eterna', {
+    contextoHistorico:
+      'Leitores tentados a voltar ao culto visível. O autor descreve o tabernáculo (não o templo herodiano) para mostrar que até o original no deserto era parábola do tempo presente. O Dia da Expiação (Lv 16) é a chave.',
+    resumo:
+      'A primeira tenda: candeeiro, mesa, Santo dos Santos, arca, querubins. Os sacerdotes entram sempre no primeiro; no segundo, só o sumo sacerdote uma vez no ano, não sem sangue. O Espírito Santo indica que o caminho do Santo dos Santos ainda não se manifestou enquanto a primeira tenda estava de pé. Cristo veio como sumo sacerdote dos bens futuros; pelo seu próprio sangue entrou uma vez no santuário, havendo efetuado uma redenção eterna (9:12). O sangue de touros purifica a carne; o sangue de Cristo, que pelo Espírito eterno se ofereceu, purifica a consciência. Sem derramamento de sangue não há remissão. É necessário que as figuras das coisas que estão no céu sejam purificadas; o próprio céu, com melhor sacrifício. Como aos homens está ordenado morrerem uma vez, vindo depois o juízo, assim Cristo, oferecendo-se uma vez para tirar os pecados de muitos, aparecerá segunda vez, sem pecado, aos que o esperam para a salvação.',
+    estrutura: [
+      '9:1–10 — culto da primeira aliança como parábola',
+      '9:11–22 — sangue de Cristo e testamento',
+      '9:23–28 — uma vez, juízo e segunda vinda',
+    ],
+    temas: ['Sangue', 'Tabernáculo', 'Consciência', 'Uma vez', 'Parousia'],
+    VersiculosChave: [
+      chave('Hebreus 9:12', 'Por seu próprio sangue, entrou uma vez no santuário, havendo efetuado uma redenção eterna.', 'O sacerdote é a vítima; o lugar é o céu; o tempo é «uma vez».'),
+      chave('Hebreus 9:27–28', 'Aos homens está ordenado morrerem uma vez… assim também Cristo, oferecendo-se uma vez… aparecerá segunda vez.', 'A tipologia do Dia da Expiação se completa na volta, não num terceiro sacrifício.'),
+    ],
+    significadoTeologico:
+      'Lv 16 é sombra; a consciência (não só o corpo) precisa de purificação. O «testamento» (diatheke) exige morte do testador (9:16–17). A segunda vinda não é para lidar de novo com o pecado, mas para a salvação dos que o esperam. O capítulo mata a repetição sacrificial e o medo de um juízo sem fiador.',
+    palavrasOriginais: ['ἅπαξ (hapax, uma vez)', 'λύτρωσις', 'συνείδησις (consciência)'],
+    aplicacaoPratica:
+      'Pare de reofertar a si mesmo. Aproxime-se com consciência purificada. Espere a segunda vinda como quem já tem sumo sacerdote no santuário, não como quem ainda espera um bode.',
+    perguntasEstudo: [
+      'O que 9:8 afirma que o culto levítico nunca podia abrir?',
+      'Por que «seu próprio sangue» em 9:12 muda tudo em relação a Lv 16?',
+      'Como 9:27–28 estrutura morte, juízo e esperança cristã?',
+    ],
+    fontes: ['Hebreus 9', 'Levítico 16', 'Êxodo 24:8', 'Isaías 53:12', 'Hebreus 10'],
+  }),
+
+  'hb:10': ficha('hb', 10, 'Uma vez por todas: o véu, a confiança e o pecado voluntário', {
+    contextoHistorico:
+      'Continua Hb 8–9. A Lei tem sombra dos bens futuros, não a imagem exata. O autor cita o Salmo 40 (lxx) na boca de Cristo e Jeremias 31 de novo. Depois vem a exortação: o mesmo sangue que abre o Santo exige perseverança.',
+    resumo:
+      'Sacrifícios repetidos nunca podem aperfeiçoar. «Eis aqui venho, para fazer, ó Deus, a tua vontade.» Tira o primeiro para estabelecer o segundo. Pela qual vontade temos sido santificados pela oblação do corpo de Jesus Cristo, feita uma vez. Ele, depois de ter oferecido um único sacrifício pelos pecados, está assentado. «Nunca mais me lembrarei dos seus pecados.» Temos ousadia para entrar no Santo dos Santos, pelo sangue de Jesus, pelo caminho novo e vivo que ele nos consagrou, pelo véu, isto é, pela sua carne. Cheguemo-nos com verdadeiro coração; retenhamos a confissão; consideremo-nos uns aos outros. Se pecarmos voluntariamente depois de recebermos o conhecimento da verdade, já não resta mais sacrifício — só juízo. «O meu justo viverá da fé.» Não somos de retrocesso para a perdição, mas de fé para conservar a alma.',
+    estrutura: [
+      '10:1–18 — sombra, Salmo 40, um sacrifício, nova aliança',
+      '10:19–25 — ousadia, véu, igreja',
+      '10:26–39 — aviso, juízo, fé que permanece',
+    ],
+    temas: ['Expiação única', 'Véu', 'Igreja', 'Apostasia', 'Fé'],
+    VersiculosChave: [
+      chave('Hebreus 10:19–20', 'Temos ousadia para entrar no Santo dos Santos, pelo sangue de Jesus, pelo caminho novo e vivo… pelo véu, isto é, pela sua carne.', 'Mateus 27:51 ganha comentário: a carne de Cristo é o véu rasgado.'),
+      chave('Hebreus 10:23–25', 'Retenhamos a confissão da esperança… não deixando a nossa congregação.', 'A ousadia cultual produz congregação, não individualismo místico.'),
+    ],
+    significadoTeologico:
+      'O «uma vez» de 10:10–14 é o fim do sistema levítico. A nova aliança interioriza a lei e apaga a memória judicial do pecado (10:16–17). O aviso de 10:26–31 não contradiz a suficiência: descreve quem pisoteia o Filho depois de conhecer a verdade. Habacuque 2:4 prepara o cap. 11.',
+    aplicacaoPratica:
+      'Entre. Não fique no átrio da culpa. Não troque a congregação por espiritualidade privada. Leve a sério apostasia: a cruz não é um de muitos sacrifícios. Viva da fé que não recua.',
+    perguntasEstudo: [
+      'Como o Salmo 40 funciona na boca de Cristo em 10:5–10?',
+      'O que 10:19–25 une — acesso a Deus e vida da igreja?',
+      'Como ler 10:26–31 sem anular 10:14?',
+    ],
+    fontes: ['Hebreus 10', 'Salmos 40:6–8', 'Jeremias 31:33–34', 'Habacuque 2:4', 'Mateus 27:51'],
+  }),
+
+  'ap:22': ficha('ap', 22, 'O rio, a árvore e o «vem, Senhor Jesus»', {
+    contextoHistorico:
+      'Fecha o cânon cristão. Após a cidade santa (cap. 21), o paraíso é restaurado e superado: rio, árvore da vida, trono, visão face a face. A igreja perseguida (Ásia Menor, fim do século I) recebe não um mapa secreto, mas uma promessa e um convite.',
+    resumo:
+      'Rio da água da vida, claro como cristal, do trono de Deus e do Cordeiro. Árvore da vida com doze frutos; folhas para cura das nações. Não haverá mais maldição. Verão a sua face; o seu nome na fronte; reinarão para todo o sempre. Estas palavras são fiéis e verdadeiras. «Eis que presto venho.» Bem-aventurado o que guarda as palavras da profecia. João cai diante do anjo e é repreendido: adora a Deus. Não seles o livro. Fora os cães e os idólatras. «Eu, Jesus, enviei o meu anjo… eu sou a raiz e a geração de Davi, a estrela resplandecente da manhã.» O Espírito e a esposa dizem: vem. Quem tem sede venha. Aviso contra acrescentar ou tirar. «Certamente cedo venho. Amém. Vem, Senhor Jesus.» A graça seja com todos.',
+    estrutura: [
+      '22:1–5 — paraíso cumprido: rio, árvore, face, reinado',
+      '22:6–16 — testemunho, culto, Davi',
+      '22:17–21 — convite, aviso, maranata, graça',
+    ],
+    temas: ['Nova criação', 'Árvore da vida', 'Culto', 'Vinda de Cristo', 'Graça'],
+    VersiculosChave: [
+      chave('Apocalipse 22:3–4', 'Não haverá mais maldição… verão a sua face.', 'Gn 3 se inverte: a face vedada se torna visão; a maldição, culto.'),
+      chave('Apocalipse 22:17–20', 'O Espírito e a esposa dizem: vem… Amém. Vem, Senhor Jesus.', 'A igreja não fecha o cânon com sistema: fecha com sede e com maranata.'),
+    ],
+    significadoTeologico:
+      'A árvore da vida, perdida em Gn 3, é dada na cidade. O trono é «de Deus e do Cordeiro» — cristologia até o último capítulo. O convite de 22:17 ecoa Isaías 55. O aviso de 22:18–19 protege o testemunho, não autoriza superstição numerológica. A última palavra do cânon é graça (22:21).',
+    aplicacaoPratica:
+      'Adore a Deus, não o anjo nem o intérprete. Tenha sede. Diga maranata na perseguição e na mesmice. Não acrescente à profecia o seu partido. Termine a leitura da Bíblia como ela termina: pedindo Jesus e recebendo graça.',
+    perguntasEstudo: [
+      'Como Ap 22 relê Gênesis 1–3 (rio, árvore, maldição, face)?',
+      'Quem diz «vem» em 22:17 — e a quem?',
+      'Por que o livro termina com graça, não com ameaça isolada?',
+    ],
+    fontes: ['Apocalipse 22', 'Gênesis 2–3', 'Ezequiel 47', 'Isaías 55:1', '1 Coríntios 16:22'],
+  }),
 };
 
 export function listarFichasProfundas() {

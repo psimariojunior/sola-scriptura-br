@@ -256,7 +256,7 @@ export default function PainelEstudosCapitulo({ livro, capitulo, nomeLivro }: Pr
               {estudoCap.nivel === 'profundo'
                 ? 'Ficha de estudo profundo'
                 : estudoCap.nivel === 'sintese'
-                  ? 'Síntese acadêmica do capítulo (livro + perícopes)'
+                  ? 'Síntese automática (livro + perícopes) — não é ficha profunda'
                   : 'Ficha do capítulo'}
             </p>
           )}

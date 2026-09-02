@@ -2788,6 +2788,331 @@ export const estudosCapituloProfundos: Record<string, EstudoCapitulo> = {
     fontes: ['João 21', 'João 18:15–27', 'João 20:30–31', '1 Pedro 5:1–4'],
   }),
 
+  'jo:5': ficha('jo', 5, 'Betesda: o paralítico, o sábado e o Pai que opera', {
+    contextoHistorico:
+      'Jerusalém numa festa (5:1). A piscina de Betesda, junto à Porta das Ovelhas, é sítio arqueológico reconhecido. O sábado é o palco do conflito: curar e mandar carregar o leito viola a halacá que os adversários invocam, não o mandamento do Decálogo em si.',
+    contextoCultural:
+      'A espera junto à água e a lenda do anjo (5:4, ausente nos melhores manuscritos) mostram a piedade popular de cura. João não funda a teologia no folclore: o homem não tem «ninguém» (5:7); Jesus tem a Palavra. Carregar o leito no sábado era trabalho visível — o sinal provoca o processo.',
+    contextoGeografico:
+      'Betesda («casa de misericórdia») ao norte do templo, junto à Porta das Ovelhas. O cenário une o culto sacrificial (ovelhas) e a miséria que o templo não cura.',
+    resumo:
+      'Trinta e oito anos. «Queres ficar são?» «Não tenho ninguém.» «Levanta-te, toma o teu leito e anda.» Os judeus: é sábado. Jesus: «Meu Pai trabalha até agora, e eu trabalho também.» Querem matá-lo — se fazia igual a Deus. O Filho nada faz de si; o Pai mostra ao Filho o que faz, inclusive ressuscitar e julgar. Quem ouve e crê tem a vida eterna e não entra em juízo. Quatro testemunhas: João, as obras, o Pai, as Escrituras. «Não quereis vir a mim para terdes vida.» Moisés acusa: se não credes nos escritos dele, como crereis nas minhas palavras?',
+    estrutura: [
+      '5:1–18 — Betesda, sábado, igualdade com o Pai',
+      '5:19–30 — o Filho que dá vida e julga',
+      '5:31–47 — testemunhas e a recusa de Moisés lido em Cristo',
+    ],
+    temas: ['Sábado', 'Vida', 'Juízo', 'Testemunho', 'Escritura'],
+    VersiculosChave: [
+      chave('João 5:17', 'Meu Pai trabalha até agora, e eu trabalho também.', 'O descanso de Deus em Gn 2 não é ociosidade: o Pai sustenta e salva; o Filho opera com Ele.'),
+      chave('João 5:24', 'Quem ouve a minha palavra e crê… tem a vida eterna e não entra em juízo.', 'A vida escatológica começa na fé, não só no último dia (5:25–29).'),
+    ],
+    notaExegetica:
+      'ἰσόθεον (fazer-se igual a Deus, 5:18) é a acusação; Jesus não a recua — a relê: o Filho é enviado, não independente. ζωοποιεῖν (dar vida, 5:21) é prerrogativa divina. 5:4 é variante tardia; a fé não depende do anjo, e sim da Palavra.',
+    notaHermeneutica:
+      'Leia 5:39–47 com Lc 24:44–47: as Escrituras testemunham de Cristo; estudá-las contra Ele é recusar Moisés. O juízo de 5:22 não anula 5:24: quem crê já passou da morte para a vida; o tribunal final manifesta o que a Palavra já decidiu.',
+    significadoTeologico:
+      'João 5 é o dossiê da cristologia: o Filho dá vida como o Pai, julga, recebe honra igual (5:23). O sábado não é abolido por capricho: o Senhor do sábado revela o fim do sábado — a vida do século futuro irrompendo agora.',
+    palavrasOriginais: ['θέλεις ὑγιὴς γενέσθαι', 'ζωοποιεῖ', 'κρίσις', 'μαρτυρία'],
+    aplicacaoPratica:
+      'Responda se quer ficar são — a pergunta não é ingênua. Não use o sábado (nem a igreja) para acusar quem Cristo levantou. Leia Moisés até Cristo. Honre o Filho como honra o Pai.',
+    perguntasEstudo: [
+      'O que a pergunta «queres ficar são?» expõe no homem de 38 anos — e em nós?',
+      'Como 5:17–23 afirma a divindade do Filho sem negar a missão?',
+      'Por que Moisés, não só Jesus, acusa os adversários (5:45–47)?',
+    ],
+    fontes: ['João 5', 'Gênesis 2:1–3', 'Deuteronômio 18:15–19', 'Lucas 24:44–47'],
+  }),
+
+  'jo:7': ficha('jo', 7, 'Tabernáculos: a água viva e a divisão sobre o Cristo', {
+    contextoHistorico:
+      'A Festa dos Tabernáculos (Sukkot) lembrava o deserto e pedia chuva. No último dia, a liturgia da água (libação no altar, tradição posterior atestada na Mishná) é o palco de 7:37. Os irmãos de Jesus ainda não creem (7:5). O Sinédrio discute prisão; Nicodemos reaparece.',
+    contextoCultural:
+      'Morar em cabanas, lulav e a cerimônia da água ligam a festa à provisão de Deus no deserto (Êx 17; Nm 20). «Ainda não é chegada a minha hora» (7:6, 30) ecoa Caná: a hora de João é a cruz, não o calendário da festa.',
+    contextoGeografico:
+      'Galileia → Judeia em segredo. O templo em Jerusalém, no meio da festa. A divisão: «da Galileia não se levanta profeta» (7:52) — ironia, pois Jonas e a Escritura não cabem no preconceito geográfico.',
+    resumo:
+      'Os irmãos: manifesta-te. Jesus sobe não publicamente. No templo ensina: a doutrina é de quem O enviou. «Julgai com justo juízo.» Muitos: é o Cristo? Outros: da Galileia. No último dia, em pé: «Se alguém tem sede, venha a mim e beba.» Falava do Espírito, que os que cressem haviam de receber. Divisão. Os guardas: «nunca homem algum falou assim.» Nicodemos: a lei julga sem ouvir? «Examina e verás que da Galileia não se levanta profeta.»',
+    estrutura: [
+      '7:1–13 — irmãos, hora, subir em segredo',
+      '7:14–36 — ensino, origem, tentativa de prisão',
+      '7:37–52 — água viva, Espírito, concílio',
+    ],
+    temas: ['Sede', 'Espírito', 'Hora', 'Divisão', 'Lei'],
+    VersiculosChave: [
+      chave('João 7:37–39', 'Se alguém tem sede, venha a mim e beba… isto disse do Espírito.', 'A libação da festa encontra o seu cumprimento: o Espírito após a glorificação (a cruz-ressurreição).'),
+      chave('João 7:17', 'Se alguém quiser fazer a vontade dele, conhecerá se a doutrina é de Deus.', 'O conhecimento não é só crítico: é obediência que se dispõe a ser ensinada.'),
+    ],
+    notaExegetica:
+      'κοιλίας (7:38) — rios do interior. A citação «como diz a Escritura» sintetiza Is 55:1; 58:11; Zc 14:8; Ez 47, sem um único verso isolado. 7:39 liga o Espírito à glorificação: pentecostes não é anexo, é o fruto da hora.',
+    notaHermeneutica:
+      'Não leia 7:52 contra a Galileia como se João desprezasse o Norte: o evangelho já mostrou Caná e Cafarnaum. O preconceito do concílio é o mesmo de 1:46 (Nazaré). Nicodemos (3 e 7) ainda não é 19:39: a fé cresce ouvindo a lei de verdade.',
+    significadoTeologico:
+      'Jesus é o cumprimento da festa: água, luz (cap. 8) e presença de Deus no meio do povo. A divisão (schisma) é o efeito da Palavra, não um acidente pastoral a evitar a qualquer custo.',
+    palavrasOriginais: ['σκηνοπηγία', 'διψάω', 'πνεῦμα', 'σχίσμα'],
+    aplicacaoPratica:
+      'Não cobre de Jesus um espetáculo para convencer a família. Venha com sede. Julgue depois de ouvir. Não descarte o irmão «da Galileia».',
+    perguntasEstudo: [
+      'Como a liturgia da água ilumina 7:37–39 sem depender da Mishná como Escritura?',
+      'O que 7:17 ensina a quem só debate e não obedece?',
+      'Nicodemos em 7:50–51 avançou em relação a João 3?',
+    ],
+    fontes: ['João 7', 'Isaías 55:1', 'Zacarias 14:8', 'Ezequiel 47', 'João 3'],
+  }),
+
+  'jo:8': ficha('jo', 8, 'A luz do mundo: Abraão, a verdade e o «Eu Sou»', {
+    contextoHistorico:
+      'Continua Tabernáculos: a iluminação do templo (candelabros no átrio das mulheres, tradição da festa) é o fundo de «eu sou a luz do mundo». O diálogo com «os judeus que haviam crido» (8:31) endurece até a pedrada.',
+    contextoCultural:
+      'Paternidade de Abraão vs. escravidão — debate clássico da eleição étnica. «Não somos escravos» ignora o Egito, a Babilônia e Roma. A mulher adúltera (7:53–8:11) é perícope amada na igreja, mas ausente dos manuscritos gregos mais antigos: a ficha a trata com honestidade textual, não a esconde nem a usa como base única do capítulo.',
+    contextoGeografico:
+      'O tesouro do templo (8:20), onde se lançavam as ofertas — Jesus ensina no lugar da piedade visível. O monte das Oliveiras abre a perícope da adúltera, se lida na liturgia.',
+    resumo:
+      '«Eu sou a luz do mundo.» Quem O segue não anda em trevas. O juízo segundo a carne. «Quando tiverdes levantado o Filho do Homem, então sabereis que EU SOU.» A verdade liberta; o pecado escraviza. «Abraão, nosso pai» — se fossem filhos, fariam as obras de Abraão. «Antes que Abraão existisse, EU SOU.» Tomam pedras. (A perícope 7:53–8:11, onde existir na edição: Jesus escreve no chão, «quem não tem pecado», «vai e não peques mais» — misericórdia sem negar a lei.)',
+    estrutura: [
+      '7:53–8:11 — a adúltera (tradição posterior; ler com nota textual)',
+      '8:12–30 — luz, testemunho, o levantado, EU SOU',
+      '8:31–59 — discípulos, escravidão, Abraão, pedras',
+    ],
+    temas: ['Luz', 'Verdade', 'Liberdade', 'Abraão', 'Eu Sou'],
+    VersiculosChave: [
+      chave('João 8:12', 'Eu sou a luz do mundo; quem me segue não andará em trevas.', 'Cumprimento da luz da festa e de Is 9:2; 42:6 — a luz é uma Pessoa, não um programa.'),
+      chave('João 8:58', 'Antes que Abraão existisse, eu sou.', 'ἐγὼ εἰμί absoluto: o Nome de Êx 3:14 na boca de Jesus. Por isso as pedras.'),
+    ],
+    notaExegetica:
+      'ἐγὼ εἰμί em 8:24, 28, 58. 8:58 não é «eu era»: o presente do Nome. ἁμαρτία em 8:34 é escravidão, não só atos. Sobre 7:53–8:11: Nestle-Aland marca o texto como não original de João; a igreja ocidental o recebeu. Não construa a cristologia do capítulo só sobre ele; 8:12–59 basta e é estável.',
+    notaHermeneutica:
+      'João 8 combate a segurança da linhagem (Mt 3:9). A liberdade não é autonomia: é permanecer na Palavra (8:31–32). Leia 8:56 com Hb 11: o dia de Cristo que Abraão viu é promessa, não visão gnóstica.',
+    significadoTeologico:
+      'A reivindicação do Nome divino é o clímax da primeira metade de João. A cruz («quando tiverdes levantado») é a revelação, não o acidente. A paternidade diabólica (8:44) é ética e teológica: a mentira e o homicídio, não uma raça.',
+    palavrasOriginais: ['ἐγὼ εἰμί', 'ἀλήθεια', 'ἐλευθερόω', 'μένω'],
+    aplicacaoPratica:
+      'Permaneça na Palavra, não na tribo. Diga a verdade que liberta, não a que humilha. Se ler a adúltera, não apedreje nem barateie o «não peques mais». Adore o EU SOU; não atire pedras no Verbo.',
+    perguntasEstudo: [
+      'Por que 8:58 provoca pedras e 8:12 ainda admite seguidores?',
+      'Como 8:31–36 define discípulo de modo diferente de 2:23–25?',
+      'O que a crítica textual de 7:53–8:11 ensina sobre honestidade na igreja?',
+    ],
+    fontes: ['João 8', 'Êxodo 3:14', 'Isaías 42:6', 'Gênesis 12–22', 'Aparato Nestle-Aland (7:53–8:11)'],
+  }),
+
+  'jo:9': ficha('jo', 9, 'O cego de nascença: Siloé, o sábado e quem está cego', {
+    contextoHistorico:
+      'Continuação do conflito sabático. A pergunta dos discípulos (pecado dele ou dos pais?) reflete teodiceia popular (cf. Ez 18; Jó). Expulsar da sinagoga (9:22) aponta para a ruptura crescente entre a comunidade joanina e a sinagoga no fim do século I, sem transformar o milagre em só alegoria da igreja.',
+    contextoCultural:
+      'Cuspe e lodo: gesto de profeta, ofensivo para a pureza. Siloé («enviado») — João traduz o nome. O interrogatório em três tempos (vizinhos, fariseus, pais) é processo, não reportagem.',
+    contextoGeografico:
+      'A piscina de Siloé, ao sul da cidade de Davi, alimentada pelo túnel de Ezequias. O cego é enviado para baixo, para a água do «Enviado».',
+    resumo:
+      'Cego de nascença. «Nem ele pecou nem seus pais, mas para que se manifestem nele as obras de Deus.» Lodo, Siloé, vê. «É o sábado.» Os pais têm medo. «Sabemos que esse homem é pecador.» «Uma coisa sei: eu era cego e agora vejo.» «Se esse não viesse de Deus, nada poderia fazer.» Expulso. Jesus: «Crês tu no Filho do Homem?» «Eu sou.» «Para juízo vim… os que veem fiquem cegos.»',
+    estrutura: [
+      '9:1–12 — o sinal e Siloé',
+      '9:13–34 — o processo e a expulsão',
+      '9:35–41 — fé, juízo, cegueira culposa',
+    ],
+    temas: ['Luz', 'Sábado', 'Testemunho', 'Juízo', 'Fé'],
+    VersiculosChave: [
+      chave('João 9:3', 'Nem este pecou nem seus pais, mas para que se manifestem nele as obras de Deus.', 'Jesus recusa o esquema automático pecado-castigo sem negar que o mal existe.'),
+      chave('João 9:25', 'Uma coisa sei: cego eu era e agora vejo.', 'O testemunho cristão começa no que Cristo fez, não na onisciência do recém-iluminado.'),
+    ],
+    notaExegetica:
+      'ἀπεσταλμένος (Siloé) ecoa o Enviado do Pai. ἵνα φανερωθῇ (9:3) é propósito, não sadismo: a cegueira entra no plano da manifestação, não é explicada como mérito. τυφλοί em 9:39–41 é ironia: a culpa é dizer «vemos».',
+    notaHermeneutica:
+      'Não use 9:3 para dizer que todo sofrimento é «para Deus se manifestar» de modo espetacular. O texto recusa a acusação; não vira teodiceia completa. Leia com Jó e com Jo 11:4 (Lázaro).',
+    significadoTeologico:
+      'O capítulo é o comentário narrativo de 8:12. Ver é crer no Filho do Homem. A expulsão antecipa 16:2. A progressão da fé do homem (profeta → de Deus → Senhor) contrasta com a regressão dos «que veem».',
+    palavrasOriginais: ['Σιλωάμ', 'νίπτω', 'ἀποσυνάγωγος', 'τυφλός'],
+    aplicacaoPratica:
+      'Não explique a dor do irmão com a ficha do pecado dele. Testemunhe o que Cristo fez. Não tema a expulsão mais do que a cegueira. Adore quando o Enviado se revelar.',
+    perguntasEstudo: [
+      'Como 9:3 corrige — e o que ele não responde — sobre o sofrimento?',
+      'Que etapas de confissão o homem percorre de 9:11 a 9:38?',
+      'Quem está cego em 9:40–41, e por quê?',
+    ],
+    fontes: ['João 9', 'João 8:12', 'Ezequiel 18', 'Isaías 42:6–7'],
+  }),
+
+  'jo:10': ficha('jo', 10, 'O bom pastor: a porta, as ovelhas e a unidade com o Pai', {
+    contextoHistorico:
+      'A festa da Dedicação (Hanuká, 10:22) lembra a reconquista do templo sob os Macabeus (164 a.C.). Inverno, pórtico de Salomão. Ezequiel 34 e 37 estão no ar: pastores que se apascentam a si, o único Pastor, um rebanho.',
+    contextoCultural:
+      'O curral, o porteiro, o lobo, o mercenário — imagens do pastoreio palestino, não de capela moderna. «Dar a vida» (τίθημι) é depor, não só morrer por acidente. Hanuká celebra a luz e a reconagração: Jesus afirma ser o Consagrado do Pai (10:36).',
+    contextoGeografico:
+      'Jerusalém, inverno, pórtico de Salomão no lado leste do templo — lugar de ensino (At 3:11; 5:12).',
+    resumo:
+      'Quem não entra pela porta é ladrão. O pastor chama pelo nome; as ovelhas conhecem a voz. «Eu sou a porta.» «Eu sou o bom pastor: dou a vida pelas ovelhas.» Outras ovelhas, não deste curral: um rebanho, um pastor. Ninguém tira a vida; Ele a dá e a retoma. Na Dedicação: «se tu és o Cristo, dize-nos abertamente.» «Eu e o Pai somos um.» Pedras. «As obras testemunham.» Escapa das mãos deles; volta para além do Jordão, onde João batizava.',
+    estrutura: [
+      '10:1–21 — porta, pastor, mercenário, outras ovelhas',
+      '10:22–39 — Hanuká, «somos um», tentativa de apedrejamento',
+      '10:40–42 — além do Jordão, o testemunho de João',
+    ],
+    temas: ['Pastor', 'Porta', 'Vida', 'Unidade', 'Obras'],
+    VersiculosChave: [
+      chave('João 10:11', 'Eu sou o bom pastor; o bom pastor dá a vida pelas ovelhas.', 'Não é metáfora sentimental: é a cruz como ato pastoral.'),
+      chave('João 10:30', 'Eu e o Pai somos um.', 'ἕν (neutro): um na obra e no ser, não uma pessoa só (sabelianismo). Os ouvintes entendem reivindicação divina (10:33).'),
+    ],
+    notaExegetica:
+      'καλός (bom pastor) é o pastor belo/nobre, não só «simpático». τίθημι τὴν ψυχήν — depor a vida (10:11, 15, 17–18): autoridade sobre a morte e a ressurreição. 10:16: «outras ovelhas» — gentios, lido com 11:52 e 12:20–24, não um grupo secreto.',
+    notaHermeneutica:
+      'Leia Ez 34: Deus mesmo pastoreia; João identifica esse «Eu» com Jesus sem apagar o Pai. 10:30 não apaga 14:28 («o Pai é maior do que eu»): missão e igualdade convivem. Não use 10:28 como talismã contra a disciplina: as ovelhas ouvem a voz (10:27).',
+    significadoTeologico:
+      'Cristologia e soteriologia juntas: só o Pastor-Deus pode dar a vida e retomá-la. A unidade do rebanho é obra da cruz, não federação. Hanuká: o templo reconagrado aponta para o Consagrado que o Pai enviou.',
+    palavrasOriginais: ['ποιμὴν ὁ καλός', 'θύρα', 'τίθημι τὴν ψυχήν', 'ἕν'],
+    aplicacaoPratica:
+      'Ouça a voz, não o ladrão. Pastores humanos: não sejam mercenários. Não apedreje a unidade do Filho com o Pai. Traga as «outras ovelhas» pelo evangelho, não por um curral fechado.',
+    perguntasEstudo: [
+      'Qual a diferença entre porta, pastor e mercenário neste capítulo?',
+      'Como Ez 34 ilumina 10:11–16 sem reduzir Jesus a um Davi redivivo?',
+      'O que 10:30 afirma — e o que 10:33 mostra que os ouvintes entenderam?',
+    ],
+    fontes: ['João 10', 'Ezequiel 34', 'Salmos 23', '1 Macabeus 4 (contexto de Hanuká)'],
+  }),
+
+  'jo:12': ficha('jo', 12, 'A hora: unção, palmas, o grão de trigo e a voz do céu', {
+    contextoHistorico:
+      'Seis dias antes da Páscoa, Betânia. A unção antecipa o embalsamamento. A entrada em Jerusalém (Zc 9:9) e os gregos que querem ver Jesus (12:20) marcam a virada: «é chegada a hora» (12:23) — a mesma hora adiada desde Caná.',
+    contextoCultural:
+      'Nardo puro, um litra, trezentos denários: o salário anual de um trabalhador. Palmas e «Hosana» (Sl 118) na véspera da Páscoa. Os gregos (helenistas tementes) sobem à festa: a missão às nações bate à porta antes da cruz.',
+    contextoGeografico:
+      'Betânia (casa de Lázaro), o caminho a Jerusalém, o templo. O grão que cai na terra é imagem agrícola da Judeia na primavera.',
+    resumo:
+      'Maria unge os pés; Judas protesta a bolsa. Lázaro à mesa — os sacerdotes querem matá-lo também. Palmas, jumentinho, «o teu Rei vem». Os fariseus: «o mundo vai após ele.» Gregos a Filipe. «Se o grão de trigo…» «Agora a minha alma está perturbada.» Voz do céu. «Quando eu for levantado, atrairei todos a mim.» Cegueira de Isaías 6 e 53. «Quem crê em mim não crê em mim, mas naquele que me enviou.»',
+    estrutura: [
+      '12:1–11 — unção, Judas, o plano contra Lázaro',
+      '12:12–19 — palmas e o Rei no jumento',
+      '12:20–36 — gregos, grão, hora, levantado',
+      '12:37–50 — incredulidade, Isaías, último apelo público',
+    ],
+    temas: ['Hora', 'Cruz', 'Glória', 'Nações', 'Unção'],
+    VersiculosChave: [
+      chave('João 12:24', 'Se o grão de trigo… não morrer, fica ele só; se morrer, dá muito fruto.', 'A missão às nações passa pela morte, não pelo atalho do espetáculo.'),
+      chave('João 12:32', 'Quando eu for levantado da terra, todos atrairei a mim.', 'O «levantar» é a cruz (3:14; 8:28) — e, no mesmo movimento, a exaltação.'),
+    ],
+    notaExegetica:
+      'ὑψωθῶ (12:32) é o vocabulário de Isaías 52:13 (o Servo exaltado) aplicado ao madeiro. 12:40 cita Is 6:10: o endurecimento é juízo, não desculpa. 12:6 desmascara Judas: a piedade social pode ser capa.',
+    notaHermeneutica:
+      'Não separe palmas e sexta-feira: João amarra Hosana e «agora a minha alma está perturbada». Os gregos não recebem audiência privada: recebem a teologia da semente. Is 53:1 em 12:38 liga a incredulidade ao Cântico do Servo.',
+    significadoTeologico:
+      'A hora é glória-na-cruz. A atração universal (πάντας) é a cruz, não um universalismo que anula a fé (12:36, 46). Maria antecipa o túmulo; Judas antecipa a traição; Lázaro antecipa a ressurreição que os chefes querem calar.',
+    palavrasOriginais: ['νάρδος', 'ὑψόω', 'κόκκος τοῦ σίτου', 'ὥρα'],
+    aplicacaoPratica:
+      'Unja o Senhor com o que dói na bolsa. Não mate Lázaro para proteger o sistema. Aceite a hora da semente. Pregue o levantado, não só o Rei das palmas.',
+    perguntasEstudo: [
+      'Como 12:23 cumpre 2:4 e 7:30?',
+      'O que os gregos de 12:20–24 ensinam sobre «ver Jesus»?',
+      'Como Isaías 6 e 53 funcionam juntos em 12:37–41?',
+    ],
+    fontes: ['João 12', 'Zacarias 9:9', 'Salmos 118:25–26', 'Isaías 6:10', 'Isaías 53:1'],
+  }),
+
+  'jo:13': ficha('jo', 13, 'A toalha e o cálice: o lava-pés, a traição e o mandamento novo', {
+    contextoHistorico:
+      'Véspera da Páscoa, no cenáculo. João não narra a instituição do pão e do vinho como os sinóticos: narra o lava-pés e o discurso de despedida (13–17). «Sabendo Jesus que era chegada a sua hora» (13:1) abre o livro da Paixão joanina.',
+    contextoCultural:
+      'Lavar os pés é ofício de escravo. Reclinar-se à mesa, o discípulo amado no peito, o bocado ao hóspede — honra que Judas recebe antes de sair. A noite (13:30) é teológica, não só meteorológica.',
+    contextoGeografico:
+      'Jerusalém, uma casa no andar alto (tradição sinótica). João não nomeia o bairro; o palco é a mesa e a porta pela qual Judas sai.',
+    resumo:
+      'Tendo amado os seus, amou-os até o fim. Depõe as vestes, cinge-se, lava os pés. Pedro recusa; depois pede banho inteiro. «Nem todos estais limpos.» O traidor. «Um de vós me trairá.» O discípulo amado pergunta. O bocado; Satanás entra. «O que fazes, faze-o depressa.» Saiu. Era noite. «Agora é glorificado o Filho do Homem.» «Amai-vos uns aos outros como eu vos amei.» Pedro: «darei a vida.» «Negar-me-ás três vezes.»',
+    estrutura: [
+      '13:1–17 — lava-pés, exemplo, bem-aventurança do fazer',
+      '13:18–30 — a traição, o bocado, a noite',
+      '13:31–38 — glória, mandamento novo, a negação anunciada',
+    ],
+    temas: ['Amor', 'Serviço', 'Traição', 'Glória', 'Igreja'],
+    VersiculosChave: [
+      chave('João 13:1', 'Tendo amado os seus… amou-os até o fim.', 'εἰς τέλος: até a extremidade e até a consumação da cruz (19:30).'),
+      chave('João 13:34–35', 'Um novo mandamento vos dou: que vos ameis uns aos outros… nisto conhecerão que sois meus discípulos.', 'Novo não porque o amor ao próximo fosse desconhecido (Lv 19:18), mas porque a medida é o amor da cruz.'),
+    ],
+    notaExegetica:
+      'τίθησιν τὰ ἱμάτια (13:4) ecoa τίθημι τὴν ψυχήν (10:11): depor as vestes antecipa depor a vida. λούω vs. νίπτω (13:10): o banho da regeneração e a lavagem cotidiana. 13:31–32: a glória começa quando Judas sai — a cruz não espera a platéia piedosa.',
+    notaHermeneutica:
+      'Não transforme o lava-pés em único sacramento em disputa com o batismo. João ensina o padrão do Senhor: quem não serve não entendeu a cruz. O mandamento novo interpreta 1 João 3–4: o amor fraterno é evidência, não mérito que compra a salvação.',
+    significadoTeologico:
+      'A cristologia do Servo (Is 53) vira eclesiologia: a igreja é a comunidade dos pés lavados que lavam. A noite de Judas e a queda de Pedro mostram que a mesa não é clube de perfeitos — é graça que depois restaura (cap. 21).',
+    palavrasOriginais: ['εἰς τέλος', 'νίπτω', 'ἐντολὴ καινή', 'δόξα'],
+    aplicacaoPratica:
+      'Pegue a toalha. Não recuse a lavagem por orgulho, nem a peça só para os outros. Ame na medida da cruz. Não confunda zelo de Pedro com fidelidade.',
+    perguntasEstudo: [
+      'O que 13:8–10 ensina sobre graça já recebida e obediência contínua?',
+      'Por que a glória é anunciada depois que Judas sai (13:31)?',
+      'Em que sentido o mandamento é «novo» diante de Levítico 19:18?',
+    ],
+    fontes: ['João 13', 'Levítico 19:18', 'Isaías 53', 'João 10:11', 'João 21:15–17'],
+  }),
+
+  'jo:16': ficha('jo', 16, 'O Paráclito, um pouco e a vitória sobre o mundo', {
+    contextoHistorico:
+      'Ainda o discurso de despedida, na noite da prisão. A expulsão da sinagoga (16:2) já pairava no cap. 9; agora é previsão de morte «como culto a Deus». O «um pouco» (16:16) atravessa a cruz, o sábado santo e o primeiro dia.',
+    contextoCultural:
+      'A dor de parto (16:21) é imagem da Escritura para a angústia que vira gozo (Is 26:17–19; Mq 4:9–10). Pedir «em nome» não é fórmula mágica: é pedir como quem está unido ao Filho enviado.',
+    contextoGeografico:
+      'O cenáculo ainda; 16:32 antecipa a dispersão e o Getsêmani («me deixareis só»). O «mundo» (κόσμος) em João é a ordem humana em rebelião, não o planeta.',
+    resumo:
+      '«Expulsar-vos-ão das sinagogas; quem vos matar cuidará prestar culto a Deus.» Convém que Eu vá: o Paráclito convencerá o mundo do pecado, da justiça e do juízo. O Espírito da verdade vos guiará a toda a verdade e glorificará a mim. «Um pouco, e não me vereis; de novo um pouco…» A mulher na hora do parto. «Pedi e recebereis.» «Eu venci o mundo.»',
+    estrutura: [
+      '16:1–15 — ódio, partida, Paráclito, verdade',
+      '16:16–24 — um pouco, parto, pedir no nome',
+      '16:25–33 — o Pai, a paz, a vitória',
+    ],
+    temas: ['Espírito', 'Verdade', 'Perseguição', 'Oração', 'Vitória'],
+    VersiculosChave: [
+      chave('João 16:8–11', 'Ele convencerá o mundo do pecado, da justiça e do juízo.', 'Pecado: não crer; justiça: vou para o Pai; juízo: o príncipe deste mundo já está julgado.'),
+      chave('João 16:33', 'No mundo tereis aflições, mas tende bom ânimo: eu venci o mundo.', 'A vitória é de Cristo, anunciada antes da cruz visível; a igreja participa, não substitui.'),
+    ],
+    notaExegetica:
+      'ἐλέγχω (convencer/expor, 16:8) é jurídico. ἁμαρτία em 16:9 é definida: incredulidade. ὁδηγήσει (16:13): o Espírito não inventa um cânon paralelo; recebe do Filho e anuncia (16:14–15). μικρόν (16:16) é o intervalo da Paixão, não uma era indefinida só.',
+    notaHermeneutica:
+      'Não leia «toda a verdade» (16:13) como licença para revelação que contradiz a Escritura já dada. O Espírito glorifica Cristo (16:14), não o pregador. 16:2 impede batizar violência religiosa: matar em nome de Deus é a tragédia que o capítulo prevê.',
+    significadoTeologico:
+      'A Trindade na missão: o Pai envia, o Filho parte pela cruz, o Espírito aplica a vitória. A paz (16:33) não é ausência de aflição. A oração no nome é participação na comunhão do Filho com o Pai (16:26–27).',
+    palavrasOriginais: ['παράκλητος', 'ἐλέγχω', 'μικρόν', 'νικάω'],
+    aplicacaoPratica:
+      'Não se surpreenda com a expulsão. Confie no Paráclito, não no humor do mundo. Peça no nome de Cristo. Tenha ânimo: a vitória já foi anunciada.',
+    perguntasEstudo: [
+      'Como 16:8–11 define pecado, justiça e juízo de modo diferente do tribunal humano?',
+      'O que o «um pouco» de 16:16 cobre na história da Paixão?',
+      'Como 16:33 dialoga com 15:18–20?',
+    ],
+    fontes: ['João 16', 'João 14–15', 'Isaías 26:17–19', 'João 9:22'],
+  }),
+
+  'jo:18': ficha('jo', 18, 'O jardim, o «Eu Sou» e o reino que não é deste mundo', {
+    contextoHistorico:
+      'Kidron, jardim conhecido de Judas. A coorte (σπεῖρα, termo de tropa romana) e os guardas do templo: Roma e o templo juntos. Anás, sogro de Caifás, ainda influencia. O pretório de Pilatos de manhã, para não se contaminarem antes da Páscoa (18:28) — ironia: evitam impureza ritual enquanto pedem a morte do Inocente.',
+    contextoCultural:
+      'O «Eu Sou» no jardim derruba a tropa (18:6): o Nome de 8:58 agora é público. A espada de Pedro e a orelha de Malco. O reino «não é deste mundo» não é fuga: é origem e método (não luta como as nações), não ausência de reivindicação sobre César.',
+    contextoGeografico:
+      'Cedrom / Kidron entre o templo e o monte das Oliveiras. Casa de Anás, pátio de Caifás (o fogo, a negação). Pretório — Fortaleza Antônia ou palácio de Herodes, debate histórico; o texto importa o contraste templo/Roma.',
+    resumo:
+      '«A quem buscais?» «Jesus, o Nazareno.» «EU SOU.» Caem por terra. «Deixai ir estes.» Pedro corta a orelha; «não beberei o cálice?» Anás interroga; Jesus: pergunta aos que ouviram. Uma bofetada. Caifás. Pedro nega três vezes; o galo. Em Pilatos: «não te é lícito matar ninguém» — para que se cumprisse a morte de cruz. «O meu reino não é deste mundo.» «Que é a verdade?» Barrabás.',
+    estrutura: [
+      '18:1–11 — jardim, EU SOU, o cálice, Malco',
+      '18:12–27 — Anás, a bofetada, Pedro',
+      '18:28–40 — Pilatos, o reino, a verdade, Barrabás',
+    ],
+    temas: ['Eu Sou', 'Reino', 'Verdade', 'Cálice', 'Negação'],
+    VersiculosChave: [
+      chave('João 18:6', 'Quando lhes disse «eu sou», recuaram e caíram por terra.', 'O preso é o Senhor: a Paixão não é derrota do Nome.'),
+      chave('João 18:36–37', 'O meu reino não é deste mundo… para isto vim ao mundo, a fim de dar testemunho da verdade.', 'Reino e verdade se definem mutuamente: sem a Palavra, o reino vira espada de Pedro.'),
+    ],
+    notaExegetica:
+      'ἐγώ εἰμι em 18:5–8 (com ou sem o predicado «Jesus»). 18:32: o modo da morte (cruz romana, não apedrejamento) cumpre 12:32–33. 18:28: ἀλλὰ φάγωσιν τὸ πάσχα — ironia joanina clássica. ἀλήθεια na pergunta de Pilatos fica sem espera de resposta: a Verdade está à sua frente.',
+    notaHermeneutica:
+      'Não use 18:36 para dizer que a fé não tem nada a dizer à justiça pública. O reino não se instala pela espada da igreja; o testemunho da verdade julga Pilatos. Leia a negação de Pedro com 13:38 e 21:15–17: a queda não é o fim.',
+    significadoTeologico:
+      'A soberania de Jesus na prisão (entrega voluntária, proteção dos discípulos, o cálice do Pai) mostra que a cruz é obediência, não acidente. Israel e Roma cooperam; o Cordeiro reina. Barrabás (salteador) é o tipo de libertação que o mundo prefere.',
+    palavrasOriginais: ['ἐγώ εἰμι', 'ποτήριον', 'βασιλεία', 'ἀλήθεια'],
+    aplicacaoPratica:
+      'Não puxe a espada para defender o Senhor do cálice. Diga a verdade diante de Pilatos. Não troque Cristo por Barrabás. Depois de negar, volte — o galo não é a última palavra.',
+    perguntasEstudo: [
+      'Como 18:6 relê 8:58 e 10:18?',
+      'O que 18:36 afirma sobre o método do reino — e o que não afirma sobre a soberania de Cristo?',
+      'Qual a ironia de 18:28 em face de 19:14–16?',
+    ],
+    fontes: ['João 18', 'João 8:58', 'João 12:32–33', 'Salmos 75:8', 'Isaías 53'],
+  }),
+
   'at:7': ficha('at', 7, 'Estêvão: a história de Israel e o céu aberto', {
     contextoHistorico:
       'O primeiro mártir cristão, helenista, diante do Sinédrio. O discurso percorre o Pentateuco e os Profetas para mostrar que Israel repetidamente rejeitou os enviados — José, Moisés, os profetas — e agora o Justo.',

@@ -12,6 +12,11 @@ import type { Comentario } from '@/data/comentarios';
 import { temComentario } from '@/data/comentarios-index';
 import { listarTodosEstudos, type EstudoVersiculo } from '@/data/estudosTeologicos';
 import { tradicaoCores } from '@/lib/tradicaoCores';
+import type { EstudoCapitulo } from '@/data/estudosCapitulo';
+
+function rotuloCampo(nivel: EstudoCapitulo['nivel'], seSintese: string, seProfundo: string) {
+  return nivel === 'sintese' ? seSintese : seProfundo;
+}
 
 interface Props {
   livro: string;
@@ -264,7 +269,7 @@ export default function PainelEstudosCapitulo({ livro, capitulo, nomeLivro }: Pr
           {estudoCap.contextoHistorico && (
             <div>
               <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1 flex items-center gap-1">
-                <Landmark className="w-3 h-3" /> {estudoCap.nivel === 'sintese' ? 'Síntese — histórico' : 'Contexto'}
+                <Landmark className="w-3 h-3" /> {rotuloCampo(estudoCap.nivel, 'Síntese — histórico', 'Contexto histórico')}
               </p>
               <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
                 {estudoCap.contextoHistorico}
@@ -275,7 +280,7 @@ export default function PainelEstudosCapitulo({ livro, capitulo, nomeLivro }: Pr
           {estudoCap.contextoCultural && (
             <div>
               <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">
-                Síntese — cultural
+                {rotuloCampo(estudoCap.nivel, 'Síntese — cultural', 'Contexto cultural')}
               </p>
               <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
                 {estudoCap.contextoCultural}
@@ -286,7 +291,7 @@ export default function PainelEstudosCapitulo({ livro, capitulo, nomeLivro }: Pr
           {estudoCap.contextoGeografico && (
             <div>
               <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">
-                Síntese — geográfico
+                {rotuloCampo(estudoCap.nivel, 'Síntese — geográfico', 'Contexto geográfico')}
               </p>
               <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
                 {estudoCap.contextoGeografico}
@@ -297,7 +302,7 @@ export default function PainelEstudosCapitulo({ livro, capitulo, nomeLivro }: Pr
           {estudoCap.notaExegetica && (
             <div>
               <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">
-                Síntese — exegese
+                {rotuloCampo(estudoCap.nivel, 'Síntese — exegese', 'Nota exegética')}
               </p>
               <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
                 {estudoCap.notaExegetica}
@@ -308,7 +313,7 @@ export default function PainelEstudosCapitulo({ livro, capitulo, nomeLivro }: Pr
           {estudoCap.notaHermeneutica && (
             <div>
               <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted-fg)] mb-1">
-                Síntese — hermenêutica
+                {rotuloCampo(estudoCap.nivel, 'Síntese — hermenêutica', 'Nota hermenêutica')}
               </p>
               <p className="text-xs text-[var(--fg)] leading-relaxed font-serif-body">
                 {estudoCap.notaHermeneutica}

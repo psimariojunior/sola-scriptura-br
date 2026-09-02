@@ -476,24 +476,17 @@ export function BibleVerseList({
             )}
             {ui.modoLeitura === 'comparacao' && nav.viewMode === 'comparison' && nav.data.length >= 2 && (<ComparisonTable data={nav.data} fontSize={ui.fontSize} showDiff={ui.showDiff} highlightedVerse={ui.highlightedVerse} onHighlight={ui.setHighlightedVerse} maxVersiculos={nav.maxVersiculos} tradBadgeColors={tradBadgeColors} labelMap={labelMap} />)}
             {isModoLeitura && (
-              <>
-                <PerguntaDoCapitulo livro={nav.livro.abreviacao} capitulo={nav.capituloIdx + 1} />
-                <p className="mt-8 text-center">
-                <button
-                  type="button"
-                  onClick={() => {
-                    ui.setModoLeitura('estudo');
-                    ui.setEstudoCapituloAberto(true);
-                    ui.setModoExibicao('versiculo', { persist: false });
-                    panels.setSidePanelWidth('half');
-                    panels.setSidePanelTab('estudos');
-                  }}
-                  className="text-[12px] tracking-wide text-[var(--content-muted)] hover:text-[var(--brand-default)] underline-offset-4 hover:underline"
-                >
-                  Estudar este capítulo
-                </button>
-                </p>
-              </>
+              <PerguntaDoCapitulo
+                livro={nav.livro.abreviacao}
+                capitulo={nav.capituloIdx + 1}
+                onEstudar={() => {
+                  ui.setModoLeitura('estudo');
+                  ui.setEstudoCapituloAberto(true);
+                  ui.setModoExibicao('versiculo', { persist: false });
+                  panels.setSidePanelWidth('half');
+                  panels.setSidePanelTab('estudos');
+                }}
+              />
             )}
             <div className="flex items-center justify-center gap-3 sm:gap-4 mt-10 sm:mt-16 pt-6 sm:pt-10 border-t border-[var(--border)]/30">
               <button onClick={() => nav.changeChapter(Math.max(0, nav.capituloIdx - 1))} disabled={nav.capituloIdx === 0} className="flex items-center gap-1.5 px-4 py-2.5 text-sm border border-[var(--border)]/60 rounded-full disabled:opacity-30 hover:bg-[var(--brand-subtle)] hover:border-[var(--brand-default)]/30 transition-all active:scale-98 min-h-[44px]"><ChevronLeft className="w-4 h-4" /> {t('biblia.previous')}</button>

@@ -17,6 +17,12 @@ describe('fichas profundas vs cânon', () => {
       expect(estudosCapituloProfundos[k].nivel).toBe('profundo');
     }
   });
+
+  it('João 1–21 está coberto por ficha profunda', () => {
+    for (let c = 1; c <= 21; c++) {
+      expect(estudosCapituloProfundos[`jo:${c}`]?.nivel).toBe('profundo');
+    }
+  });
 });
 
 describe('sintetizarEstudoCapitulo', () => {

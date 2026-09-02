@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Search, User, LogOut, Settings, Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -51,52 +53,70 @@ export function HeaderMobileMenu({
   const { t } = useTranslation();
   const { usuario, isAutenticado, isAdmin } = useAuth();
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open, setOpen]);
 
   const userInitial = usuario?.nome?.charAt(0)?.toUpperCase() || '?';
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/');
 
-  return (
-    <>
-      {/* Hamburger button */}
-      <button
-        className="mobile-hamburger p-2.5 min-h-[40px] min-w-[40px] hover:bg-muted/50 rounded-lg transition-all duration-300"
-        onClick={() => setOpen(!open)}
-        aria-expanded={open}
-        aria-controls="mobile-menu"
-        aria-label={open ? t('header.closeNavMenu') : t('header.openNavMenu')}
-      >
-        <motion.span
-          animate={open ? { rotate: 90 } : { rotate: 0 }}
-          transition={{ duration: 0.2 }}
-          className="block"
-        >
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </motion.span>
-      </button>
+  const linkClass = (active: boolean) =>
+    `flex items-center gap-2.5 text-sm font-medium px-3 py-3 min-h-[44px] rounded-lg transition-all ${
+      active
+        ? 'text-primary bg-primary/10 font-semibold'
+        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+    }`;
 
-      {/* Mobile menu overlay + drawer */}
+  const drawer =
+    mounted &&
+    createPortal(
       <AnimatePresence>
         {open && (
           <>
             <motion.div
-              className="fixed inset-0 bg-foreground/40 lg:hidden z-[55]"
+              className="ssb-mobile-nav-overlay lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
+              aria-hidden="true"
             />
             <motion.div
               id="mobile-menu"
-              role="navigation"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="lg:hidden border-t border-border bg-card overflow-hidden relative z-[56] shadow-lg"
+              role="dialog"
+              aria-modal="true"
+              aria-label={t('header.mobileNav')}
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="ssb-mobile-nav-sheet lg:hidden"
             >
+              <div className="ssb-mobile-nav-sheet-bar">
+                <span className="text-sm font-semibold">{t('header.mobileNav')}</span>
+                <button
+                  type="button"
+                  className="touch-target p-2 rounded-lg hover:bg-muted/50"
+                  onClick={() => setOpen(false)}
+                  aria-label={t('header.closeNavMenu')}
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
               <nav
-                className="flex flex-col px-5 py-4 gap-1 max-h-[75vh] overflow-y-auto"
+                className="ssb-mobile-nav-sheet-body"
                 aria-label={t('header.mobileNav')}
               >
                 {/* Mobile search */}
@@ -125,11 +145,7 @@ export function HeaderMobileMenu({
                       <Link
                         href={link.href}
                         aria-current={active ? 'page' : undefined}
-                        className={`flex items-center gap-2.5 text-sm font-medium px-3 py-3 min-h-[44px] rounded-lg transition-all ${
-                          active
-                            ? 'text-primary bg-primary/10 font-semibold'
-                            : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                        }`}
+                        className={linkClass(active)}
                         onClick={() => setOpen(false)}
                       >
                         <Icon className="w-4 h-4" strokeWidth={1.75} />
@@ -162,11 +178,7 @@ export function HeaderMobileMenu({
                           <Link
                             href={link.href}
                             aria-current={active ? 'page' : undefined}
-                            className={`flex items-center gap-2.5 text-sm font-medium px-3 py-2.5 rounded-lg transition-all ${
-                              active
-                                ? 'text-primary bg-primary/10 font-semibold'
-                                : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                            }`}
+                            className={linkClass(active)}
                             onClick={() => setOpen(false)}
                           >
                             <Icon className="w-4 h-4" strokeWidth={1.75} />
@@ -228,11 +240,11 @@ export function HeaderMobileMenu({
                     >
                       <Link
                         href="/conta"
-                        className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2.5 rounded-lg hover:bg-muted/50 transition-all"
-                        onClick={() => setOpen(false)}
-                      >
-                        <User className="w-4 h-4" />
-                        {t('header.myAccount')}
+                      className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-3 min-h-[44px] rounded-lg hover:bg-muted/50 transition-all"
+                      onClick={() => setOpen(false)}
+                    >
+                      <User className="w-4 h-4" />
+                      {t('header.myAccount')}
                       </Link>
                     </motion.div>
                     <motion.div
@@ -256,7 +268,7 @@ export function HeaderMobileMenu({
                   >
                     <Link
                       href="/auth/login"
-                      className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2.5 rounded-lg hover:bg-muted/50 transition-all"
+                      className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-3 min-h-[44px] rounded-lg hover:bg-muted/50 transition-all"
                       onClick={() => setOpen(false)}
                     >
                       <User className="w-4 h-4" />
@@ -268,7 +280,29 @@ export function HeaderMobileMenu({
             </motion.div>
           </>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+    );
+
+  return (
+    <>
+      <button
+        type="button"
+        className="mobile-hamburger lg:hidden p-2.5 min-h-[44px] min-w-[44px] hover:bg-muted/50 rounded-lg transition-all duration-300"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-controls="mobile-menu"
+        aria-label={open ? t('header.closeNavMenu') : t('header.openNavMenu')}
+      >
+        <motion.span
+          animate={open ? { rotate: 90 } : { rotate: 0 }}
+          transition={{ duration: 0.2 }}
+          className="block"
+        >
+          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </motion.span>
+      </button>
+      {drawer}
     </>
   );
 }

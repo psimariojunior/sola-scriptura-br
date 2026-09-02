@@ -4145,4 +4145,77 @@ h2.font-display,
   }
 }
 
+/* Menu hamburger mobile — portal no body, fora do transform do header.
+   100dvh + safe-area para Android/WebView (100vh inclui chrome e corta o painel). */
+.ssb-mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: hsl(var(--foreground) / 0.4);
+}
+
+.ssb-mobile-nav-sheet {
+  position: fixed;
+  z-index: 81;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100vh;
+  max-height: 100dvh;
+  background: hsl(var(--card));
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.35);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+.ssb-mobile-nav-sheet-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  padding-top: max(0.5rem, env(safe-area-inset-top, 0px));
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.ssb-mobile-nav-sheet-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.25rem;
+  padding-bottom: calc(var(--mobile-nav-height, 64px) + env(safe-area-inset-bottom, 0px) + 1.25rem);
+  padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+}
+
+html.ssb-native-app .ssb-mobile-nav-sheet-body {
+  padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Interlinear: original + gloss no mesmo tamanho da leitura */
+.interlinear-reading {
+  font-family: var(--font-spectral), Georgia, serif;
+}
+.interlinear-original {
+  font-size: 1em;
+  line-height: 1.35;
+}
+.interlinear-gloss {
+  font-size: 0.9em;
+  line-height: 1.3;
+}
+
+
 

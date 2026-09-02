@@ -190,7 +190,7 @@ function HeaderInner() {
     <>
       <BuscaGlobal open={buscaOpen} onOpenChange={setBuscaOpen} initialQuery={pendingSearchQuery} />
       <motion.header
-        animate={{ y: hidden ? '-100%' : '0%' }}
+        animate={{ y: hidden && !open ? '-100%' : '0%' }}
         transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
         className={`ssb-header fixed top-0 w-full z-50 transition-shadow duration-300 ${
           scrolled

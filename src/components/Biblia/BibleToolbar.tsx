@@ -41,7 +41,7 @@ export function BibleToolbar({
   const { t } = useTranslation();
   const [mobileToolbarMenuOpen, setMobileToolbarMenuOpen] = useState(false);
   const mobileMenuBtnRef = useRef<HTMLButtonElement>(null);
-  const [mobileMenuPos, setMobileMenuPos] = useState<{ top: number; right: number }>({ top: 0, right: 0 });
+  const [mobileMenuPos, setMobileMenuPos] = useState<{ top: number; right: number; maxHeight: number }>({ top: 0, right: 8, maxHeight: 360 });
   const [capituloMarcado, setCapituloMarcado] = useState(false);
 
   const guiaHref = hrefGuia(
@@ -156,24 +156,42 @@ export function BibleToolbar({
           <button ref={mobileMenuBtnRef} onClick={() => {
             if (!mobileToolbarMenuOpen && mobileMenuBtnRef.current) {
               const rect = mobileMenuBtnRef.current.getBoundingClientRect();
-              setMobileMenuPos({ top: rect.bottom + 4, right: window.innerWidth - rect.right });
+              const vv = window.visualViewport;
+              const vw = vv?.width ?? window.innerWidth;
+              const vh = vv?.height ?? window.innerHeight;
+              const ox = vv?.offsetLeft ?? 0;
+              const oy = vv?.offsetTop ?? 0;
+              const menuW = 224;
+              const gutter = 8;
+              const bottomChrome = 72;
+              const right = Math.max(gutter, Math.min(vw - (rect.right - ox), vw - menuW - gutter));
+              const top = Math.max(gutter, rect.bottom - oy + 4);
+              const maxHeight = Math.max(180, vh - top - bottomChrome);
+              setMobileMenuPos({ top, right, maxHeight });
             }
             setMobileToolbarMenuOpen(!mobileToolbarMenuOpen);
           }} className="touch-target p-1.5 rounded-lg hover:bg-[var(--surface-sunken)] text-[var(--content-secondary)] active:scale-95 transition-transform" aria-label={t('biblia.moreOptions')}><MoreVertical className="w-4 h-4" /></button>
           {mobileToolbarMenuOpen && typeof document !== 'undefined' && createPortal(
             <>
               <div className="fixed inset-0 z-[70]" onClick={() => setMobileToolbarMenuOpen(false)} aria-hidden="true" />
-              <div className="fixed z-[80] w-56 rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] shadow-xl py-1 animate-scale-in origin-top-right" style={{ top: mobileMenuPos.top, right: mobileMenuPos.right }}>
-                <button onClick={() => { setExibicaoLeitura(ui.modoExibicao === 'paragrafo' ? 'versiculo' : 'paragrafo'); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors">{ui.modoExibicao === 'paragrafo' ? <Rows3 className="w-4 h-4 text-[var(--content-muted)]" /> : <AlignLeft className="w-4 h-4 text-[var(--content-muted)]" />}{ui.modoExibicao === 'paragrafo' ? 'Ver versículo a versículo' : 'Ver como página'}</button>
-                <button onClick={() => { ui.setShowInterlinear(!ui.showInterlinear); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><span className="font-hebrew text-sm text-[var(--brand-default)]">א</span>Interlinear</button>
-                <button onClick={() => { onShowDownloadManager(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><HardDrive className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.offlineVersions')}</button>
-                <button onClick={() => { if (!ui.mostrarNotas && !verse.notaAtiva) { verse.setNotaAtiva(verse.criarNota(`${nav.livro.nome} ${nav.capituloIdx + 1}`)); } ui.setMostrarNotas(!ui.mostrarNotas); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><FileText className="w-4 h-4 text-[var(--content-muted)]" />Notas</button>
-                <button onClick={() => { ui.setExportOpen(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Download className="w-4 h-4 text-[var(--content-muted)]" />Exportar PDF</button>
-                <button onClick={() => { ui.setShowSettings(!ui.showSettings); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Settings className="w-4 h-4 text-[var(--content-muted)]" />Configurações</button>
-                <a href={guiaHref} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Compass className="w-4 h-4 text-[var(--content-muted)]" />Guia da passagem</a>
+              <div
+                className="fixed z-[80] w-56 max-w-[calc(100vw-16px)] rounded-xl border border-[var(--border)] bg-[var(--surface-raised)] shadow-xl py-1 animate-scale-in origin-top-right overflow-y-auto overscroll-contain"
+                style={{
+                  top: mobileMenuPos.top,
+                  right: mobileMenuPos.right,
+                  maxHeight: `min(${mobileMenuPos.maxHeight}px, calc(100dvh - 5rem - env(safe-area-inset-bottom, 0px)))`,
+                }}
+              >
+                <button onClick={() => { setExibicaoLeitura(ui.modoExibicao === 'paragrafo' ? 'versiculo' : 'paragrafo'); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors">{ui.modoExibicao === 'paragrafo' ? <Rows3 className="w-4 h-4 text-[var(--content-muted)]" /> : <AlignLeft className="w-4 h-4 text-[var(--content-muted)]" />}{ui.modoExibicao === 'paragrafo' ? 'Ver versículo a versículo' : 'Ver como página'}</button>
+                <button onClick={() => { ui.setShowInterlinear(!ui.showInterlinear); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><span className="font-hebrew text-sm text-[var(--brand-default)]">א</span>Interlinear</button>
+                <button onClick={() => { onShowDownloadManager(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><HardDrive className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.offlineVersions')}</button>
+                <button onClick={() => { if (!ui.mostrarNotas && !verse.notaAtiva) { verse.setNotaAtiva(verse.criarNota(`${nav.livro.nome} ${nav.capituloIdx + 1}`)); } ui.setMostrarNotas(!ui.mostrarNotas); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><FileText className="w-4 h-4 text-[var(--content-muted)]" />Notas</button>
+                <button onClick={() => { ui.setExportOpen(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Download className="w-4 h-4 text-[var(--content-muted)]" />Exportar PDF</button>
+                <button onClick={() => { ui.setShowSettings(!ui.showSettings); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Settings className="w-4 h-4 text-[var(--content-muted)]" />Configurações</button>
+                <a href={guiaHref} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Compass className="w-4 h-4 text-[var(--content-muted)]" />Guia da passagem</a>
                 <div className="h-px bg-[var(--border)]/40 my-1" />
-                <button onClick={() => { ui.setMostrarApresentacao(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-semibold text-[var(--brand-default)] hover:bg-[var(--brand-subtle)] transition-colors"><Sparkles className="w-4 h-4" />{t('biblia.present')}</button>
-                <button onClick={() => { ui.setImmersiveMode(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Maximize2 className="w-4 h-4 text-[var(--content-muted)]" />Modo imersivo</button>
+                <button onClick={() => { ui.setMostrarApresentacao(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm font-semibold text-[var(--brand-default)] hover:bg-[var(--brand-subtle)] transition-colors"><Sparkles className="w-4 h-4" />{t('biblia.present')}</button>
+                <button onClick={() => { ui.setImmersiveMode(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Maximize2 className="w-4 h-4 text-[var(--content-muted)]" />Modo imersivo</button>
               </div>
             </>,
             document.body

@@ -41,6 +41,7 @@ interface InterlinearViewProps {
   livro: string;
   capitulo: number;
   traducao: string;
+  fontSize?: number;
 }
 
 interface SelectedWord {
@@ -1143,6 +1144,7 @@ export function InterlinearView({
   versiculos,
   livro,
   capitulo,
+  fontSize = 18,
 }: InterlinearViewProps) {
   const [selectedWord, setSelectedWord] = useState<SelectedWord | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
@@ -1244,15 +1246,18 @@ export function InterlinearView({
             className="border-b border-[var(--border)]/15 last:border-b-0"
           >
             {palavrasComStrong.length > 0 && (
-              <div className="py-2 px-1">
+              <div
+                className="py-2 px-1 interlinear-reading bible-reading-text"
+                style={{ fontSize: `${fontSize}px` }}
+              >
                 {/* Linha 1: Texto em português */}
                 <div className="flex items-start gap-2 mb-1">
-                  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)] text-[9px] font-bold shrink-0 mt-0.5">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[var(--brand-default)]/10 text-[var(--brand-default)] text-[0.7em] font-bold shrink-0 mt-0.5">
                     {versiculo.numero}
                   </span>
                   <div
-                    className="flex flex-wrap gap-x-1 gap-y-0 leading-relaxed font-serif-body text-[var(--content-primary)]"
-                    style={{ fontSize: "14px" }}
+                    className="flex flex-wrap gap-x-1.5 gap-y-0.5 leading-relaxed font-serif-body text-[var(--content-primary)]"
+                    style={{ fontSize: "1em" }}
                   >
                     {versiculo.palavras.map((p, wi) => (
                       <span
@@ -1289,15 +1294,15 @@ export function InterlinearView({
                 </div>
 
                 {/* Linha 2: Palavras originais (grego/hebraico) */}
-                <div className="flex flex-wrap items-baseline gap-x-0 gap-y-0 ml-7">
+                <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1 ml-8 mt-1">
                   {versiculo.palavras.map((p, wi) => (
                     <span
                       key={wi}
-                      className="inline-flex flex-col items-center px-px"
+                      className="inline-flex flex-col items-center px-0.5"
                     >
                       {p.strong ? (
                         <span
-                          className={`text-[10px] leading-none text-center cursor-pointer transition-colors ${
+                          className={`interlinear-original leading-none text-center cursor-pointer transition-colors ${
                             selectedWord?.verso === versiculo.numero &&
                             selectedWord?.strong === p.strong
                               ? "text-[var(--brand-default)] font-bold"
@@ -1323,7 +1328,7 @@ export function InterlinearView({
                           {p.palavraOriginal || "\u00A0"}
                         </span>
                       ) : (
-                        <span className="text-[9px] text-transparent select-none">
+                        <span className="text-[0.7em] text-transparent select-none">
                           ·
                         </span>
                       )}
@@ -1331,24 +1336,24 @@ export function InterlinearView({
                   ))}
                 </div>
 
-                {/* Linha 3: Transliteração compacta */}
-                <div className="flex flex-wrap items-baseline gap-x-0 gap-y-0 ml-7 mt-0.5">
+                {/* Linha 3: Transliteração / significado */}
+                <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1 ml-8 mt-1">
                   {versiculo.palavras.map((p, wi) => (
                     <span
                       key={wi}
-                      className="inline-flex flex-col items-center px-px"
+                      className="inline-flex flex-col items-center px-0.5"
                     >
                       {p.strong && p.transliteracao ? (
                         <span
-                          className="text-[7px] leading-none text-center italic"
+                          className="interlinear-gloss leading-none text-center italic"
                           style={{ color: "var(--content-muted)" }}
                         >
-                          {p.transliteracao.length > 6
-                            ? p.transliteracao.slice(0, 6) + "."
+                          {p.transliteracao.length > 14
+                            ? p.transliteracao.slice(0, 14) + "."
                             : p.transliteracao}
                         </span>
                       ) : (
-                        <span className="text-[7px] text-transparent select-none">
+                        <span className="text-[0.7em] text-transparent select-none">
                           ·
                         </span>
                       )}
@@ -1357,21 +1362,19 @@ export function InterlinearView({
                 </div>
 
                 {/* Linha 4: Tags morfológicas compactas + Strong's */}
-                <div className="flex flex-wrap items-center gap-x-0 gap-y-0 ml-7 mt-0.5">
+                <div className="flex flex-wrap items-center gap-x-1 gap-y-0.5 ml-8 mt-1">
                   {versiculo.palavras.map((p, wi) => (
                     <span
                       key={wi}
-                      className="inline-flex flex-col items-center px-px min-w-[18px]"
+                      className="inline-flex flex-col items-center px-0.5 min-w-[1.5em]"
                     >
                       {p.strong ? (
                         <div className="flex flex-col items-center gap-0.5">
-                          {/* Morphology mini-tag */}
                           {p.morfologia && (
                             <MorphMiniTag morphCode={p.morfologia} />
                           )}
-                          {/* Strong's number as clickable link */}
                           <span
-                            className="text-[6px] leading-none cursor-pointer hover:text-[var(--brand-default)] transition-colors"
+                            className="text-[0.65em] leading-none cursor-pointer hover:text-[var(--brand-default)] transition-colors"
                             style={{ color: "var(--content-muted)" }}
                             onClick={() =>
                               handleWordClick(
@@ -1389,7 +1392,7 @@ export function InterlinearView({
                           </span>
                         </div>
                       ) : (
-                        <span className="text-[6px] text-transparent select-none">
+                        <span className="text-[0.65em] text-transparent select-none">
                           ·
                         </span>
                       )}
@@ -1476,7 +1479,7 @@ function MorphMiniTag({ morphCode }: { morphCode: string }) {
 
   return (
     <span
-      className={`text-[6px] leading-none px-0.5 rounded font-medium ${colorMap[parsed.tipo] || "bg-gray-500/10 text-gray-500"}`}
+      className={`text-[0.65em] leading-none px-0.5 rounded font-medium ${colorMap[parsed.tipo] || "bg-gray-500/10 text-gray-500"}`}
       title={parsed.label}
     >
       {parsed.tipo.slice(0, 1)}

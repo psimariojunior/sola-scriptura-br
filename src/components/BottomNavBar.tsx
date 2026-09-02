@@ -148,7 +148,7 @@ function BottomNavBarInner() {
             role="presentation"
           />
           <div
-            className="fixed bottom-[calc(64px+env(safe-area-inset-bottom,0px))] left-3 right-3 z-[61] bg-card border border-border rounded-md shadow-lg overflow-hidden animate-[slideUp_0.25s_ease-out] md:hidden"
+            className="fixed bottom-[calc(64px+env(safe-area-inset-bottom,0px))] left-3 right-3 z-[61] bg-card border border-border rounded-md shadow-lg overflow-hidden animate-[slideUp_0.25s_ease-out] md:hidden max-h-[min(70dvh,calc(100dvh-var(--mobile-nav-height,64px)-env(safe-area-inset-bottom,0px)-1.5rem))]"
             role="dialog"
             aria-modal="true"
             aria-label={t('header.moreNavOptions')}
@@ -170,7 +170,7 @@ function BottomNavBarInner() {
             </div>
             
             {/* Scrollable content */}
-            <div className="max-h-[60vh] overflow-y-auto overscroll-contain">
+            <div className="max-h-[min(60dvh,calc(100dvh-12rem))] overflow-y-auto overscroll-contain">
               {grupos.map((grupo) => {
                 const expanded = expandedGroups[grupo.titulo];
                 return (
@@ -196,7 +196,7 @@ function BottomNavBarInner() {
                               key={link.href}
                               href={link.href}
                               aria-label={link.label}
-                              className={`flex items-center gap-2.5 p-3 rounded-xl transition-all duration-200 ${
+                              className={`flex items-center gap-2.5 p-3 min-h-[44px] rounded-xl transition-all duration-200 ${
                                 active
                                   ? 'bg-primary/10 text-primary shadow-sm'
                                   : 'text-muted-foreground hover:bg-muted/50 active:scale-[0.97]'

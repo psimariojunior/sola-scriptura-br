@@ -24,12 +24,16 @@ import { RarasNesteLivro, type RotuloRara } from "@/components/RarasNesteLivro";
 import { EcoCanonico } from "@/components/EcoCanonico";
 import { nomeDivino } from "@/lib/nomesDivinos";
 import {
-  parseMorphology,
   getCorMorfologia,
   getParadigmTable,
-  type MorfologiaEstruturada,
   type ParadigmTable,
 } from "@/lib/morphology";
+import {
+  parsearMorfologia,
+  paraLabelMorfologia,
+  type MorfologiaEstruturada,
+} from "@/lib/morphologiaParser";
+import { useTranslation } from "react-i18next";
 import {
   buscarPorStrong,
   type LexiconEntry as BDAGEntry,
@@ -56,6 +60,112 @@ interface SelectedWord {
   transliteracao: string | null;
   idioma: "grego" | "hebraico" | null;
   palavraPT: string;
+}
+
+/** Heurística leve: gloss Strong em PT vs. inglês cru do léxico. */
+function parecePortugues(s: string): boolean {
+  if (/[ãõáéíóúâêôç]/i.test(s)) return true;
+  if (/^\d+\.\s/.test(s) && !/\b(the|of|from|to|and)\b/i.test(s)) return true;
+  return /\b(de|do|da|dos|das|e|ou|para|com|amor|Deus|verbo|substantivo|praticar|fazer|significa)\b/i.test(
+    s
+  );
+}
+
+function glossDaPalavra(p: PalavraAlinhada): string {
+  const def = p.definicao?.trim();
+  if (def && parecePortugues(def)) return def;
+  const texto = p.texto?.trim();
+  if (texto) return texto;
+  return def || p.transliteracao?.trim() || "";
+}
+
+function escolherDefinicaoExibida(
+  strongDef?: string | null,
+  fallback?: string | null
+): string {
+  const s = strongDef?.trim();
+  const f = fallback?.trim();
+  if (s && parecePortugues(s)) return s;
+  if (f) return f;
+  return s || "";
+}
+
+function parseMorfologiaPT(
+  morphCode: string | null | undefined,
+  idioma: "grego" | "hebraico" | null
+): MorfologiaEstruturada | null {
+  if (!morphCode?.trim() || !idioma) return null;
+  return parsearMorfologia(morphCode, idioma);
+}
+
+function labelMorfologiaPT(
+  morphCode: string | null | undefined,
+  idioma: "grego" | "hebraico" | null
+): string {
+  if (!morphCode?.trim()) return "";
+  if (!idioma) return morphCode;
+  const parsed = parsearMorfologia(morphCode, idioma);
+  return paraLabelMorfologia(parsed) || morphCode;
+}
+
+function TagsMorfologiaPT({
+  morphCode,
+  idioma,
+  onParadigmClick,
+  labelClassName = "text-[11px] mt-2 font-medium",
+}: {
+  morphCode: string | null | undefined;
+  idioma: "grego" | "hebraico" | null;
+  onParadigmClick?: () => void;
+  labelClassName?: string;
+}) {
+  const morphParsed = useMemo(
+    () => parseMorfologiaPT(morphCode, idioma),
+    [morphCode, idioma]
+  );
+
+  if (!morphParsed?.tipo) return null;
+
+  return (
+    <>
+      <div className="flex flex-wrap gap-1 justify-center">
+        {morphParsed.tipo && (
+          <MorfologiaTag
+            campo="tipo"
+            valor={morphParsed.tipo}
+            onClick={onParadigmClick}
+          />
+        )}
+        {morphParsed.tempo && (
+          <MorfologiaTag campo="tempo" valor={morphParsed.tempo} />
+        )}
+        {morphParsed.voz && (
+          <MorfologiaTag campo="voz" valor={morphParsed.voz} />
+        )}
+        {morphParsed.diatecnica && (
+          <MorfologiaTag campo="modo" valor={morphParsed.diatecnica} />
+        )}
+        {morphParsed.pessoa && (
+          <MorfologiaTag campo="pessoa" valor={morphParsed.pessoa} />
+        )}
+        {morphParsed.numero && (
+          <MorfologiaTag campo="numero" valor={morphParsed.numero} />
+        )}
+        {morphParsed.genero && (
+          <MorfologiaTag campo="genero" valor={morphParsed.genero} />
+        )}
+        {morphParsed.caso && (
+          <MorfologiaTag campo="caso" valor={morphParsed.caso} />
+        )}
+      </div>
+      <p
+        className={labelClassName}
+        style={{ color: "var(--content-secondary)" }}
+      >
+        {paraLabelMorfologia(morphParsed)}
+      </p>
+    </>
+  );
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -142,6 +252,7 @@ function PronunciationButton({
 // ═══════════════════════════════════════════════════════════════
 
 function BDAGPanel({
+  strong,
   entry,
   morphCode,
   idioma,
@@ -149,6 +260,7 @@ function BDAGPanel({
   onSearch,
   onClose,
 }: {
+  strong: string;
   entry: BDAGEntry | null;
   morphCode: string | null;
   idioma: "grego" | "hebraico" | null;
@@ -156,16 +268,33 @@ function BDAGPanel({
   onSearch: (term: string) => void;
   onClose: () => void;
 }) {
+  const { t } = useTranslation();
   const isHebrew = idioma === "hebraico";
-  const morphParsed: MorfologiaEstruturada | null = useMemo(
-    () =>
-      morphCode && idioma
-        ? parseMorphology(morphCode)
-        : null,
-    [morphCode, idioma]
+  const [strongEntry, setStrongEntry] = useState<LexiconEntry | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    getStrongByNumber(strong).then((e) => {
+      if (!cancelled) setStrongEntry(e);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [strong]);
+
+  const definicao = escolherDefinicaoExibida(
+    strongEntry?.definicao,
+    entry?.definicao
   );
 
-  if (!entry) return null;
+  if (!entry && !strongEntry) return null;
+
+  const palavra =
+    palavraOriginal || entry?.palavra || strongEntry?.palavra || "";
+  const transliteracao =
+    entry?.transliteracao || strongEntry?.transliteracao || "";
+  const codigoStrong = entry?.strong || strongEntry?.strong || strong;
+  const palavraFala = entry?.palavra || strongEntry?.palavra || palavra;
 
   return (
     <motion.div
@@ -208,7 +337,7 @@ function BDAGPanel({
                   : { backgroundColor: "#ede9fe", color: "#5b21b6" }
               }
             >
-              {entry.strong}
+              {codigoStrong}
             </span>
             <span
               className="text-[10px] font-medium ml-2"
@@ -236,7 +365,7 @@ function BDAGPanel({
             }`}
             style={{ color: "var(--content-primary)", lineHeight: 1.2 }}
           >
-            {palavraOriginal || entry.palavra}
+            {palavra}
           </p>
           <div className="flex items-center justify-center gap-2 mt-2">
             <p
@@ -244,10 +373,10 @@ function BDAGPanel({
               style={{ color: "var(--content-muted)" }}
             >
               {isHebrew
-                ? romanizeHebrew(entry.transliteracao || entry.palavra)
-                : entry.transliteracao}
+                ? romanizeHebrew(transliteracao || palavra)
+                : transliteracao}
             </p>
-            {entry.pronuncia && (
+            {entry?.pronuncia && (
               <span
                 className="text-[10px] px-1.5 py-0.5 rounded"
                 style={{
@@ -260,7 +389,7 @@ function BDAGPanel({
               </span>
             )}
             <PronunciationButton
-              palavra={entry.palavra}
+              palavra={palavraFala}
               idioma={idioma}
               size="md"
             />
@@ -268,7 +397,7 @@ function BDAGPanel({
         </div>
 
         {/* Tags morfológicas */}
-        {morphParsed && (
+        {morphCode && idioma && (
           <div
             className="rounded-xl p-3"
             style={{
@@ -285,50 +414,10 @@ function BDAGPanel({
                 className="text-[9px] font-semibold uppercase tracking-wider"
                 style={{ color: "var(--content-muted)" }}
               >
-                Morfologia
+                {t("biblia.interlinear.morphology")}
               </span>
             </div>
-            <div className="flex flex-wrap gap-1">
-              {morphParsed.tipo && (
-                <MorfologiaTag campo="tipo" valor={morphParsed.tipo} />
-              )}
-              {morphParsed.stem && (
-                <MorfologiaTag campo="stem" valor={morphParsed.stem} />
-              )}
-              {morphParsed.tempo && (
-                <MorfologiaTag campo="tempo" valor={morphParsed.tempo} />
-              )}
-              {morphParsed.voz && (
-                <MorfologiaTag campo="voz" valor={morphParsed.voz} />
-              )}
-              {morphParsed.modo && (
-                <MorfologiaTag campo="modo" valor={morphParsed.modo} />
-              )}
-              {morphParsed.pessoa && (
-                <MorfologiaTag
-                  campo="pessoa"
-                  valor={`${morphParsed.pessoa} pessoa`}
-                />
-              )}
-              {morphParsed.numero && (
-                <MorfologiaTag campo="numero" valor={morphParsed.numero} />
-              )}
-              {morphParsed.genero && (
-                <MorfologiaTag campo="genero" valor={morphParsed.genero} />
-              )}
-              {morphParsed.caso && (
-                <MorfologiaTag campo="caso" valor={morphParsed.caso} />
-              )}
-              {morphParsed.estado && (
-                <MorfologiaTag campo="estado" valor={morphParsed.estado} />
-              )}
-            </div>
-            <p
-              className="text-[11px] mt-2 font-medium"
-              style={{ color: "var(--content-secondary)" }}
-            >
-              {morphParsed.label}
-            </p>
+            <TagsMorfologiaPT morphCode={morphCode} idioma={idioma} />
           </div>
         )}
 
@@ -356,12 +445,12 @@ function BDAGPanel({
             className="text-sm font-medium leading-relaxed"
             style={{ color: "var(--content-primary)" }}
           >
-            {entry.definicao}
+            {definicao}
           </p>
         </div>
 
         {/* Definições secundárias */}
-        {entry.definicoesSecundarias &&
+        {entry?.definicoesSecundarias &&
           entry.definicoesSecundarias.length > 0 && (
             <div
               className="rounded-xl p-3"
@@ -374,7 +463,7 @@ function BDAGPanel({
                 className="text-[9px] font-semibold uppercase tracking-wider"
                 style={{ color: "var(--content-muted)" }}
               >
-                Significados secundarios
+                {t("biblia.interlinear.secondaryMeanings")}
               </span>
               <div className="flex flex-wrap gap-1.5 mt-2">
                 {entry.definicoesSecundarias.map((def: string, i: number) => (
@@ -539,6 +628,7 @@ function ParadigmModal({
   table: ParadigmTable;
   onClose: () => void;
 }) {
+  const { t } = useTranslation();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -600,31 +690,31 @@ function ParadigmModal({
                   className="text-left py-1.5 px-2 font-semibold"
                   style={{ color: "var(--content-muted)" }}
                 >
-                  Pessoa
+                  {t("biblia.interlinear.paradigm.person")}
                 </th>
                 <th
                   className="text-left py-1.5 px-2 font-semibold"
                   style={{ color: "var(--content-muted)" }}
                 >
-                  Numero
+                  {t("biblia.interlinear.paradigm.number")}
                 </th>
                 <th
                   className="text-left py-1.5 px-2 font-semibold font-greek"
                   style={{ color: "var(--content-muted)" }}
                 >
-                  Forma
+                  {t("biblia.interlinear.paradigm.form")}
                 </th>
                 <th
                   className="text-left py-1.5 px-2 font-semibold"
                   style={{ color: "var(--content-muted)" }}
                 >
-                  Transliteracao
+                  {t("biblia.interlinear.paradigm.transliteration")}
                 </th>
                 <th
                   className="text-left py-1.5 px-2 font-semibold"
                   style={{ color: "var(--content-muted)" }}
                 >
-                  Codigo
+                  {t("biblia.interlinear.paradigm.code")}
                 </th>
               </tr>
             </thead>
@@ -726,16 +816,17 @@ function DetalhePalavraInline({
   }, [strong]);
 
   const morphParsed: MorfologiaEstruturada | null = useMemo(
-    () => (morphCode ? parseMorphology(morphCode) : null),
-    [morphCode]
+    () => parseMorfologiaPT(morphCode, idioma || null),
+    [morphCode, idioma]
   );
 
   const isHebrew = idioma === "hebraico";
   const hasBDAG = bdagEntry !== null;
 
-  const definicao = hasBDAG
-    ? bdagEntry!.definicao
-    : entry?.definicao || "";
+  const definicao = escolherDefinicaoExibida(
+    entry?.definicao,
+    hasBDAG ? bdagEntry!.definicao : null
+  );
   const usoNoNT = hasBDAG ? bdagEntry!.usoNoNT : entry?.frequencia;
   const versiculos = hasBDAG ? [] : [];
   const notas = hasBDAG ? bdagEntry!.notas || "" : "";
@@ -744,7 +835,7 @@ function DetalhePalavraInline({
 
   // Determine paradigm key for verb
   const paradigmKey = useMemo(() => {
-    if (!morphParsed || morphParsed.tipo !== "Verb") return null;
+    if (!morphParsed || morphParsed.tipo !== "Verbo") return null;
     const word = (palavraOriginal || "").toLowerCase();
     if (word.includes("λυ")) return "lyo";
     if (word.includes("βαλ")) return "balko";
@@ -899,55 +990,14 @@ function DetalhePalavraInline({
           </div>
 
           {/* Tags morfológicas */}
-          {morphParsed && (
+          {morphCode && idioma && (
             <div className="px-4 pb-2">
-              <div className="flex flex-wrap gap-1 justify-center">
-                {morphParsed.tipo && (
-                  <MorfologiaTag
-                    campo="tipo"
-                    valor={morphParsed.tipo}
-                    onClick={
-                      paradigmKey ? handleParadigmClick : undefined
-                    }
-                  />
-                )}
-                {morphParsed.stem && (
-                  <MorfologiaTag campo="stem" valor={morphParsed.stem} />
-                )}
-                {morphParsed.tempo && (
-                  <MorfologiaTag campo="tempo" valor={morphParsed.tempo} />
-                )}
-                {morphParsed.voz && (
-                  <MorfologiaTag campo="voz" valor={morphParsed.voz} />
-                )}
-                {morphParsed.modo && (
-                  <MorfologiaTag campo="modo" valor={morphParsed.modo} />
-                )}
-                {morphParsed.pessoa && (
-                  <MorfologiaTag
-                    campo="pessoa"
-                    valor={`${morphParsed.pessoa} pessoa`}
-                  />
-                )}
-                {morphParsed.numero && (
-                  <MorfologiaTag campo="numero" valor={morphParsed.numero} />
-                )}
-                {morphParsed.genero && (
-                  <MorfologiaTag campo="genero" valor={morphParsed.genero} />
-                )}
-                {morphParsed.caso && (
-                  <MorfologiaTag campo="caso" valor={morphParsed.caso} />
-                )}
-                {morphParsed.estado && (
-                  <MorfologiaTag campo="estado" valor={morphParsed.estado} />
-                )}
-              </div>
-              <p
-                className="text-center text-[10px] mt-1.5 font-medium"
-                style={{ color: "var(--content-muted)" }}
-              >
-                {morphParsed.label}
-              </p>
+              <TagsMorfologiaPT
+                morphCode={morphCode}
+                idioma={idioma}
+                onParadigmClick={paradigmKey ? handleParadigmClick : undefined}
+                labelClassName="text-center text-[10px] mt-1.5 font-medium"
+              />
             </div>
           )}
 
@@ -1160,10 +1210,6 @@ function DetalhePalavraInline({
   );
 }
 
-function glossDaPalavra(p: PalavraAlinhada): string {
-  return (p.definicao?.trim() || p.texto || p.transliteracao || "").trim();
-}
-
 function InterlinearWordCol({
   p,
   selected,
@@ -1241,7 +1287,7 @@ function InterlinearWordCol({
       </span>
       {p.transliteracao && (
         <span
-          className="mt-0.5 italic text-center whitespace-normal"
+          className="interlinear-translit mt-0.5 italic text-center whitespace-normal"
           dir="ltr"
           style={{
             fontSize: `${Math.max(13, Math.round(bodyPx * 0.78))}px`,
@@ -1251,15 +1297,19 @@ function InterlinearWordCol({
           {p.transliteracao}
         </span>
       )}
+      {p.morfologia && (
+        <span className="interlinear-morph mt-1 w-full">
+          <MorphMiniTag morphCode={p.morfologia} idioma={p.idioma} />
+        </span>
+      )}
       <span
-        className="mt-1"
+        className="interlinear-strong mt-0.5 tabular-nums"
         style={{
           fontSize: `${Math.max(11, Math.round(bodyPx * 0.68))}px`,
           color: "var(--content-muted)",
         }}
       >
-        {p.morfologia && <MorphMiniTag morphCode={p.morfologia} />}
-        <span className="block tabular-nums">{p.strong}</span>
+        {p.strong}
       </span>
     </button>
   );
@@ -1277,6 +1327,7 @@ export function InterlinearView({
   fontSize = 18,
   versoFoco,
 }: InterlinearViewProps) {
+  const { t } = useTranslation();
   const bodyPx = Math.max(fontSize, 16);
   const originalPx = Math.round(bodyPx * 1.18);
   const [selectedWord, setSelectedWord] = useState<SelectedWord | null>(null);
@@ -1460,7 +1511,7 @@ export function InterlinearView({
         />
       )}
       {selectedWord && (
-        <div className="sticky top-0 z-20 mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border border-[var(--brand-default)]/25 bg-[var(--surface-raised)]/95 px-3 py-2 backdrop-blur-sm">
+        <div className="sticky top-0 z-20 mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg bg-[var(--surface-raised)] px-3 py-2 shadow-sm">
           <span
             className={`font-semibold text-[var(--brand-default)] ${
               selectedWord.idioma === "hebraico" ? "font-hebrew" : "font-greek"
@@ -1469,20 +1520,22 @@ export function InterlinearView({
           >
             {selectedWord.palavraOriginal}
           </span>
-          <span className="text-xs text-[var(--content-muted)]">
+          <span className="text-xs text-[var(--content-muted)]" dir="ltr">
             {selectedWord.palavraPT}
             {selectedWord.transliteracao ? ` · ${selectedWord.transliteracao}` : ""}
           </span>
           <span className="rounded-full bg-[var(--brand-default)]/12 px-2 py-0.5 text-xs font-medium text-[var(--brand-default)]">
             {selectedWord.strong}
-            {lemmaCount > 1 ? ` · ${lemmaCount}× neste capítulo` : ""}
+            {lemmaCount > 1
+              ? ` · ${t("biblia.interlinear.timesInChapter", { count: lemmaCount })}`
+              : ""}
           </span>
           <button
             type="button"
             className="ml-auto text-xs text-[var(--content-muted)] hover:text-[var(--brand-default)]"
             onClick={() => setSelectedWord(null)}
           >
-            Limpar
+            {t("biblia.interlinear.clear")}
           </button>
         </div>
       )}
@@ -1491,7 +1544,6 @@ export function InterlinearView({
         const palavrasComStrong = versiculo.palavras.filter(
           (p) => p.strong
         );
-        const isHebrew = palavrasComStrong.some((p) => p.idioma === "hebraico");
 
         return (
           <div
@@ -1555,8 +1607,8 @@ export function InterlinearView({
                   <button
                     type="button"
                     className="shrink-0 mt-0.5 p-1.5 rounded-lg text-[var(--content-muted)] hover:text-[var(--brand-default)] hover:bg-[var(--surface-sunken)]"
-                    title="Copiar este verso interlinear"
-                    aria-label={`Copiar verso ${versiculo.numero}`}
+                    title={t("biblia.interlinear.copyVerse")}
+                    aria-label={t("biblia.interlinear.copyVerseAria", { n: versiculo.numero })}
                     onClick={() => copiarVerso(versiculo.numero, versiculo.palavras)}
                   >
                     {copiedVerse === versiculo.numero ? (
@@ -1570,12 +1622,12 @@ export function InterlinearView({
                 {palavrasComStrong.length > 0 && (
                   <>
                 <p className="ml-9 mb-1.5 text-[10px] uppercase tracking-wider text-[var(--content-muted)]">
-                  Original · sentido · Strong
+                  {t("biblia.interlinear.columnLegend")}
                 </p>
 
                 <div
                   className="interlinear-word-row flex flex-wrap items-start gap-x-2 gap-y-4 mt-1 ml-2 md:ml-8"
-                  dir={isHebrew ? "rtl" : "ltr"}
+                  dir="ltr"
                 >
                   {palavrasComStrong.map((p, wi) => (
                     <InterlinearWordCol
@@ -1643,7 +1695,7 @@ export function InterlinearView({
 
       {dados.length === 0 && (
         <div className="text-center py-10 text-[var(--content-muted)] text-sm">
-          Nenhum dado interlinear disponivel para este capitulo.
+          {t("biblia.interlinear.noData")}
         </div>
       )}
 
@@ -1660,6 +1712,7 @@ export function InterlinearView({
               onClick={handleClosePanel}
             />
             <BDAGPanel
+              strong={selectedWord.strong}
               entry={panelEntry}
               morphCode={panelMorph}
               idioma={panelIdioma}
@@ -1678,30 +1731,46 @@ export function InterlinearView({
 // MINI MORPHOLOGY TAG (for alignment row)
 // ═══════════════════════════════════════════════════════════════
 
-function MorphMiniTag({ morphCode }: { morphCode: string }) {
-  const parsed = useMemo(() => parseMorphology(morphCode), [morphCode]);
+function MorphMiniTag({
+  morphCode,
+  idioma,
+}: {
+  morphCode: string;
+  idioma: "grego" | "hebraico" | null;
+}) {
+  const label = useMemo(
+    () => labelMorfologiaPT(morphCode, idioma),
+    [morphCode, idioma]
+  );
+  const parsed = useMemo(
+    () => parseMorfologiaPT(morphCode, idioma),
+    [morphCode, idioma]
+  );
 
   const colorMap: Record<string, string> = {
-    Verb: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
-    Noun: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
-    Adjective: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
-    Article: "bg-gray-500/10 text-gray-600 dark:text-gray-400",
-    Pronoun: "bg-pink-500/10 text-pink-600 dark:text-pink-400",
-    Preposition: "bg-purple-500/10 text-purple-600 dark:text-purple-400",
-    Conjunction: "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400",
-    Adverb: "bg-rose-500/10 text-rose-600 dark:text-rose-400",
+    Verbo: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+    Substantivo: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
+    "Substantivo Próprio": "bg-blue-500/10 text-blue-600 dark:text-blue-400",
+    Adjetivo: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
+    Artigo: "bg-gray-500/10 text-gray-600 dark:text-gray-400",
+    Pronome: "bg-pink-500/10 text-pink-600 dark:text-pink-400",
+    Preposição: "bg-purple-500/10 text-purple-600 dark:text-purple-400",
+    Conjunção: "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400",
+    Advérbio: "bg-rose-500/10 text-rose-600 dark:text-rose-400",
+    Partícula: "bg-slate-500/10 text-slate-600 dark:text-slate-400",
   };
 
-  if (!parsed || !parsed.tipo) return null;
+  if (!label) return null;
 
+  const tipo = parsed?.tipo || "";
   return (
     <span
-      className="leading-snug px-0.5 rounded font-medium whitespace-normal"
+      className="block leading-snug px-0.5 rounded font-medium whitespace-normal text-center"
       style={{ fontSize: "12px" }}
-      title={parsed.label}
+      title={label}
     >
-      <span className={colorMap[parsed.tipo] || "bg-gray-500/10 text-gray-500"}>
-        {parsed.label || parsed.tipo}
+      <span className={colorMap[tipo] || "bg-gray-500/10 text-gray-500"}>
+        {label}
       </span>
     </span>
   );

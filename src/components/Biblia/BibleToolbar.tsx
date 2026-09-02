@@ -198,7 +198,7 @@ export function BibleToolbar({
                 <a href={guiaHref} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Compass className="w-4 h-4 text-[var(--content-muted)]" />Guia da passagem</a>
                 <div className="h-px bg-[var(--border)]/40 my-1" />
                 <p className="px-4 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--content-muted)]">Mais</p>
-                <button onClick={() => { ui.setShowInterlinear(!ui.showInterlinear); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><span className="font-hebrew text-sm text-[var(--brand-default)]">א</span>Interlinear</button>
+                <button onClick={() => { ui.setShowInterlinear(!ui.showInterlinear); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><span className="font-hebrew text-sm text-[var(--brand-default)]">א</span>{t('biblia.interlinearView')}</button>
                 <button onClick={() => { onShowDownloadManager(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><HardDrive className="w-4 h-4 text-[var(--content-muted)]" />{t('biblia.offlineVersions')}</button>
                 <button onClick={() => { ui.setExportOpen(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm text-[var(--content-primary)] hover:bg-[var(--surface-sunken)] transition-colors"><Download className="w-4 h-4 text-[var(--content-muted)]" />Exportar PDF</button>
                 <button onClick={() => { ui.setMostrarApresentacao(true); setMobileToolbarMenuOpen(false); }} className="w-full flex items-center gap-3 px-4 py-3 min-h-[44px] text-sm font-semibold text-[var(--brand-default)] hover:bg-[var(--brand-subtle)] transition-colors"><Sparkles className="w-4 h-4" />{t('biblia.present')}</button>
@@ -265,7 +265,7 @@ export function BibleToolbar({
         </button>
         <div className="hidden lg:flex items-center gap-1">
           <button onClick={() => ui.setShowInterlinear(!ui.showInterlinear)} className={cn('px-2 h-8 rounded-lg text-[11px] font-semibold', ui.showInterlinear ? 'bg-[var(--brand-default)] text-[var(--brand-contrast)]' : 'text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]')} aria-pressed={ui.showInterlinear}>
-            <span className="font-hebrew mr-1">א</span>Interlinear
+            <span className="font-hebrew mr-1">א</span>{t('biblia.interlinearView')}
           </button>
           <button onClick={() => ui.setMostrarApresentacao(true)} className="px-2 h-8 rounded-lg text-[11px] font-semibold text-[var(--content-secondary)] hover:bg-[var(--surface-sunken)]" aria-label={t('biblia.present')}>
             <Sparkles className="w-3.5 h-3.5" />

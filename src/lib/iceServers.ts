@@ -29,33 +29,41 @@ export function iceHasTurn(servers: RTCIceServer[]): boolean {
   });
 }
 
+function envStr(source: NodeJS.ProcessEnv, keys: string[]): string | undefined {
+  for (const k of keys) {
+    const v = source[k];
+    if (typeof v === 'string' && v.trim()) return v.trim();
+  }
+  return undefined;
+}
+
 export function readTurnEnv(source: NodeJS.ProcessEnv = process.env): {
   turnUrl?: string;
   turnUser?: string;
   turnPass?: string;
 } {
   return {
-    turnUrl:
-      source.TURN_URL ||
-      source.NEXT_PUBLIC_TURN_URL ||
-      source.NEXT_PUBLIC_TURN_URLS ||
-      source.TWILIO_TURN_URL ||
-      source.METERED_TURN_URL ||
-      undefined,
-    turnUser:
-      source.TURN_USER ||
-      source.NEXT_PUBLIC_TURN_USER ||
-      source.NEXT_PUBLIC_TURN_USERNAME ||
-      source.TWILIO_TURN_USER ||
-      source.METERED_TURN_USER ||
-      undefined,
-    turnPass:
-      source.TURN_PASS ||
-      source.NEXT_PUBLIC_TURN_PASS ||
-      source.NEXT_PUBLIC_TURN_CREDENTIAL ||
-      source.TWILIO_TURN_PASS ||
-      source.METERED_TURN_PASS ||
-      undefined,
+    turnUrl: envStr(source, [
+      'TURN_URL',
+      'NEXT_PUBLIC_TURN_URL',
+      'NEXT_PUBLIC_TURN_URLS',
+      'TWILIO_TURN_URL',
+      'METERED_TURN_URL',
+    ]),
+    turnUser: envStr(source, [
+      'TURN_USER',
+      'NEXT_PUBLIC_TURN_USER',
+      'NEXT_PUBLIC_TURN_USERNAME',
+      'TWILIO_TURN_USER',
+      'METERED_TURN_USER',
+    ]),
+    turnPass: envStr(source, [
+      'TURN_PASS',
+      'NEXT_PUBLIC_TURN_PASS',
+      'NEXT_PUBLIC_TURN_CREDENTIAL',
+      'TWILIO_TURN_PASS',
+      'METERED_TURN_PASS',
+    ]),
   };
 }
 
